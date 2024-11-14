@@ -147,6 +147,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   after_create :create_agile, if: :agile?
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
 
+  after_commit :invalidate_cache
+
   #
   ### END ASSOCIATIONS
 
@@ -383,5 +385,13 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     self.status = self.class.statuses[:in_progress] unless status
     self.category = self.class.categories[:psychometric] unless category
     self.norm_rules ||= {}
+  end
+
+  def serializer_cache_key
+    "AssessmentSerializer##{id}"
+  end
+
+  def invalidate_cache
+    Rails.cache.delete(serializer_cache_key)
   end
 end

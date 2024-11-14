@@ -1160,6 +1160,7 @@ as: :simulation_progress_notification
             post :toggle_archive
             post :copy
             post :restore
+            post :remove_cache
             get :fetch_translations
             post :update_translations
             scope module: :assessments do

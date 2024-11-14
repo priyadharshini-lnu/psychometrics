@@ -290,6 +290,15 @@ const getActionsMenuProps = ({
     message.success(I18n.t('assessments.messages.external_scores_export_scheduled'))
   })
 
+  const removeCache = () => resource.memberAction({
+    id: assessment.id,
+    action: 'remove_cache',
+    method: 'post',
+  })
+    .then(() => {
+      message.success(I18n.t('assessments.actions.assessment_cache.success_message', { name: assessment.name }))
+    })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'details') {
       return openDrawer(assessment)
@@ -320,6 +329,9 @@ const getActionsMenuProps = ({
     }
     if (key === 'export_normed_results') {
       return exportNormedResults()
+    }
+    if (key === 'remove_cache') {
+      return removeCache()
     }
     if (key === 'external_scores') {
       return exportExternalScores()
@@ -355,6 +367,14 @@ const getActionsMenuProps = ({
       label: (
         <Button type="link" className="ps-0">
           {I18n.t('common.actions.copy')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.manage && !assessment.deleted && {
+      key: 'remove_cache',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.assessment_cache.remove_cache')}
         </Button>
       ),
     },

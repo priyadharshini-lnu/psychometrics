@@ -789,6 +789,9 @@ en:
         success_message: Tag was added successfully
       archived:
         success_message: Assessment "%{name}" was archived successfully.
+      assessment_cache:
+        remove_cache: Remove Cache
+        success_message: Removed cache successfully
       back_to_campaign: Back to Campaign
       back_to_dashboard: Back to Dashboard
       copy:
