@@ -5,7 +5,7 @@ module Administration
     def user
       UserWithAllFieldsSerializer.new(
         context: {
-          campaign: campaign
+          campaign: object.campaign
         }
       ).serialize(object.user)
     end
