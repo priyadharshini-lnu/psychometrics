@@ -38,7 +38,8 @@ unless Rails.env.test?
 
     script_src = [
       :self, :unsafe_eval, :unsafe_inline, 'https://chatwoot.tte-work.com',
-      'https://svc.webspellchecker.net', Settings.oac.base_embed_url
+      'https://svc.webspellchecker.net', Settings.oac.base_embed_url,
+      'https://consent.trustarc.com'
     ].compact
 
     script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?

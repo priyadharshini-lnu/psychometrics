@@ -31,3 +31,4 @@ html.body-full-height lang="#{I18n.locale}"
           #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}
     .main#devise
     = vite_javascript_tag 'entrypoints/user/login.jsx'
+    = render partial: 'layouts/consent_banner'
