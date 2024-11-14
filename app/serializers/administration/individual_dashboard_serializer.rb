@@ -3,7 +3,11 @@
 module Administration
   class IndividualDashboardSerializer < ::UserReportSerializer
     def user
-      UserWithAllFieldsSerializer.new.serialize(object.user)
+      UserWithAllFieldsSerializer.new(
+        context: {
+          campaign: campaign
+        }
+      ).serialize(object.user)
     end
   end
 end
