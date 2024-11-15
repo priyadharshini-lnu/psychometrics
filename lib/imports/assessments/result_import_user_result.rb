@@ -171,17 +171,21 @@ module Imports
           return
         end
 
-        if data['relationship'] && data['evaluator_email']
-          evaluator = User.find_by(email: data['evaluator_email'].to_s.downcase, project_id: campaign&.project_id)
-          unless evaluator
-            errors.add(
-              :base,
-              I18n.t('administration.imports.errors.result.user.record_not_found', email: data['evaluator_email'])
-            )
-            return
-          end
-        else
-          evaluator = subject
+        evaluator_email = data['evaluator_email']
+        evaluator = if data['relationship'] == 'Assessor'
+                      User.find_by(email: evaluator_email.to_s.downcase, project_id: nil)
+                    elsif data['relationship'] && evaluator_email
+                      User.find_by(email: evaluator_email.to_s.downcase, project_id: campaign&.project_id)
+                    else
+                      subject
+                    end
+
+        unless evaluator
+          errors.add(
+            :base,
+            I18n.t('administration.imports.errors.result.user.record_not_found', email: evaluator_email)
+          )
+          return
         end
 
         user_assessment = find_user_assessments(subject, evaluator)
