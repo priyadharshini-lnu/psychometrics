@@ -1640,6 +1640,7 @@ en:
       errors:
         invalid_format: Invalid File format
         result:
+          answer_invalid: "[Row %{row}] Answer for qid %{question_id} is invalid: %{error}"
           date_errors:
             both_dates_required: Both started_at and completed_at are required for completed status
             completed_at_should_be_after_started_at: completed_at must be after started_at for completed status
@@ -1649,6 +1650,7 @@ en:
             started_at_required: Valid started_at is required for in_progress status
           invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_date: "[Row %{row}] %{error}"
+          question_invalid: "[Row %{row}] Question %{question_id} is invalid"
           user:
             record_not_found: Can't find existing user with email %{email}.
           user_assessment:
