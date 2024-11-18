@@ -15,7 +15,7 @@ module Questions::Validations
 
       invalid = value.split(/\s+/).size > args['maxLength']
 
-      broadcast :ok, invalid ? [I18n.t('validations.max_words', max: args['maxLength'])] : nil
+      broadcast :ok, invalid ? [I18n.t('validations.max_word', max: args['maxLength'])] : nil
     end
   end
 end

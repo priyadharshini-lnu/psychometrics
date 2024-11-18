@@ -3,7 +3,7 @@
 # TODO: (atanych) should be replaced with FormObject and Command
 module Imports
   module Assessments
-    class ResultImportUserResult < Imports::BaseImport
+    class ResultImportUserResult < Imports::BaseImport # rubocop:disable Metrics/ClassLength
       include ImportExportConst
       # Authorisation flow
       #
@@ -58,7 +58,7 @@ module Imports
         questions = Question.
                     joining { block }.
                     not_deleted.
-                    selecting { [id, type, props] }.
+                    selecting { [id, type, props, validation] }.
                     where.has { |q| q.block.assessment_id == assessment.id }.
                     ordering { [block.position.asc, position.asc] }.
                     group_by(&:id)
@@ -84,6 +84,10 @@ module Imports
           completed_at = parse_date(data['completed_at'], index)
 
           validate_dates_by_status(status, started_at, completed_at, index)
+
+          next if errors.present?
+
+          validate_question_and_answers(data, questions, index)
 
           next if errors.present?
 
@@ -167,18 +171,23 @@ module Imports
           return
         end
 
-        if data['relationship'] == 'Assessor'
-          evaluator = User.find_by(email: data['evaluator_email'].to_s.downcase, project_id: nil)
-          unless evaluator
-            errors.add(
-              :base,
-              I18n.t('administration.imports.errors.result.user.record_not_found', email: data['evaluator_email'])
-            )
-            return
-          end
-        else
-          evaluator = subject
+        evaluator_email = data['evaluator_email']
+        evaluator = if data['relationship'] == 'Assessor'
+                      User.find_by(email: evaluator_email.to_s.downcase, project_id: nil)
+                    elsif data['relationship'] && evaluator_email
+                      User.find_by(email: evaluator_email.to_s.downcase, project_id: campaign&.project_id)
+                    else
+                      subject
+                    end
+
+        unless evaluator
+          errors.add(
+            :base,
+            I18n.t('administration.imports.errors.result.user.record_not_found', email: evaluator_email)
+          )
+          return
         end
+
         user_assessment = find_user_assessments(subject, evaluator)
 
         unless user_assessment
@@ -246,6 +255,28 @@ module Imports
 
         [started_at, completed_at].each do |date|
           date_error(:dates_not_in_future, index) if date.present? && date > DateTime.current
+        end
+      end
+
+      def validate_question_and_answers(data, questions, index)
+        data.each do |key, value|
+          next unless /qid/.match?(key) # rubocop:disable Performance/StringInclude
+          next if key.include?(DURATION)
+
+          qid = key.split(/\D+/).compact_blank.map(&:to_i).first
+          question = questions[qid].try(:first)
+
+          unless question
+            errors.add(:base, I18n.t('administration.imports.errors.result.question_invalid',
+                                     row: index + SKIP_ROWS, question_id: qid))
+            next
+          end
+
+          validation_errors = ::Questions::Validation.call!(question, value)
+          next if validation_errors.nil?
+
+          errors.add(:base, I18n.t('administration.imports.errors.result.answer_invalid',
+                                   row: index + SKIP_ROWS, question_id: qid, error: validation_errors.join(',')))
         end
       end
 
