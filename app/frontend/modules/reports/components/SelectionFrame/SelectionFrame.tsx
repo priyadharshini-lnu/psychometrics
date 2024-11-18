@@ -33,7 +33,8 @@ const SelectionFrame = ({ report, page, children }) => {
   const boxRef = useRef({
     left: 0, top: 0, width: 0, height: 0,
   })
-  const modules = getModules(report, page.modules)
+
+  const modules = getModules(report, page?.modules ?? [])
     .filter(module => !module.removed && !module.meta.locked && !module.meta.hidden)
   const modulesRef = useRef(modules)
   const pageRef = useRef(page)
