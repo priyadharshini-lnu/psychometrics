@@ -38,7 +38,7 @@ export const DefaultFields: React.FC<Props> = ({
         enabledDefaultFields: {
           ...enabledFields,
           [row.index]: !requiredFields[row.index],
-        }
+        },
       }
       onChangeMultiple({ ...multiple })
     } else {
