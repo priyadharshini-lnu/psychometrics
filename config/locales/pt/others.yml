@@ -1,5 +1,16 @@
 ---
 pt:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Todas as respostas
+      numeric_comparator:
+        enter_value: Insira o valor
+        select_data: Selecione Dados
+      scoring:
+        select_comparison: Escolha o tipo de comparação
+        select_factors: Selecione Fatores
+        select_operation: Selecione Operação
   activerecord:
     attributes:
       membership:

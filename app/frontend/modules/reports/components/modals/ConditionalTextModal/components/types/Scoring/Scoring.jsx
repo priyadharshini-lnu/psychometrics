@@ -66,7 +66,7 @@ export class Scoring extends Component {
           onChange={this.changeSubject}
           className={`form-control ${localStyles.subjectSelect}`}
         >
-          <option />
+          <option value="" selected hidden>{I18n.t('activemodel.attributes.scoring.select_factors')}</option>
           {subjects?.map(factor => (
             <option key={factor.id} value={factor.id}>{factor.alias || factor.name}</option>
           ))}
@@ -76,7 +76,9 @@ export class Scoring extends Component {
           onChange={this.changeOperation}
           className={`form-control ${localStyles.predicateSelect}`}
         >
-          {!condition.props.operation && <option />}
+          <option value="" hidden selected>
+            {I18n.t('activemodel.attributes.scoring.select_operation')}
+          </option>
           <option value="Mean">Mean</option>
           <option value="Max">Max</option>
           <option value="Min">Min</option>
@@ -86,7 +88,7 @@ export class Scoring extends Component {
           onChange={this.changePredicate}
           className={`form-control ${localStyles.predicateSelect}`}
         >
-          {!condition.props.predicate && <option />}
+          <option value="" hidden selected>{I18n.t('activemodel.attributes.scoring.select_comparison')}</option>
           <option value="EqualTo">Equal To</option>
           <option value="NotEqualTo">Not Equal To</option>
           <option value="GreaterThen">Greater Than</option>
@@ -94,7 +96,12 @@ export class Scoring extends Component {
           <option value="LessThen">Less Than</option>
           <option value="LessThenOrEqual">Less Than Or Equal To</option>
         </select>
-        <input className={`form-control ${localStyles.subjectSelect}`} value={value} onChange={this.changeValue} />
+        <input
+          className={`form-control ${localStyles.subjectSelect}`}
+          value={value}
+          onChange={this.changeValue}
+          placeholder={I18n.t('activemodel.attributes.numeric_comparator.enter_value')}
+        />
       </div>
     )
   }

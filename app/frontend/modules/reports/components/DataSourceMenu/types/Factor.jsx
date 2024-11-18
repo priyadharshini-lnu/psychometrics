@@ -72,6 +72,7 @@ class Factor extends Component {
             getOptionValue={opt => opt.id}
             getOptionLabel={opt => opt.alias}
             autoFocus={false}
+            hideSelectedOptions={false}
             isMulti={!singleChoice}
             onChange={this.onChange}
             styles={{

@@ -1,6 +1,16 @@
 ---
 de:
   activemodel:
+    attributes:
+      condition:
+        all_responses: Alle Antworten
+      numeric_comparator:
+        enter_value: Geben Sie den Wert ein
+        select_data: Wählen Sie Daten aus
+      scoring:
+        select_comparison: Wählen Sie Vergleichstyp
+        select_factors: Wählen Sie Faktoren aus
+        select_operation: Wählen Sie Operation aus
     errors:
       models:
         admin_edit:

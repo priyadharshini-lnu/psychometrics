@@ -42,7 +42,8 @@ export default class NumericComparator extends Component {
           className={`form-control ${comparatorStyles.keyInput}`}
           onChange={this.changeKey}
         >
-          <option />
+
+          <option value="" disabled selected>{I18n.t('activemodel.attributes.numeric_comparator.select_data')}</option>
           {_.map(data, item => (
             <option key={item.value} value={item.value}>{item.label || item.value}</option>
           ))}
@@ -53,7 +54,7 @@ export default class NumericComparator extends Component {
           className={`form-control ${comparatorStyles.predicateSelect}`}
           onChange={this.changePredicate}
         >
-          {!condition.props.predicate && <option />}
+          <option value="" hidden selected>{I18n.t('activemodel.attributes.scoring.select_comparison')}</option>
           <option value="EqualTo">Equal To</option>
           <option value="NotEqualTo">Not Equal To</option>
           <option value="GreaterThen">Greater Than</option>
@@ -65,6 +66,7 @@ export default class NumericComparator extends Component {
           className={`form-control ${comparatorStyles.valueInput}`}
           value={condition.props.count || ''}
           onChange={this.changeCount}
+          placeholder={I18n.t('activemodel.attributes.numeric_comparator.enter_value')}
         />
       </div>
     )
