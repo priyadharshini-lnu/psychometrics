@@ -3,7 +3,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   getModules, getModulesShowOnAll, getQuestions, getRenderModules,
 } from '~/modules/reports/core/builder/selectors'
-import { addPage, unselectModules, selectModule } from '~/modules/reports/core/builder/actions'
+import { addPage } from '~/modules/reports/core/builder/actions'
 import { renamePage, removeDisplayLogic } from '~/modules/reports/core/builder/page/actions'
 
 export default connect(
@@ -18,8 +18,6 @@ export default connect(
   {
     addPage,
     renamePage,
-    unselectModules,
-    selectModule,
     openDisplayLogic: data => openModal('displayLogic', data),
     removeDisplayLogic,
   },

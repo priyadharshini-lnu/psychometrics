@@ -11,14 +11,17 @@ const AVAILABLE_QUESTION_TYPES = ['VideoResponse']
 
 class Properties extends Component {
   onChange = (key, value) => {
-    const { model } = this.props
-    model.props[key] = value
-    model.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props[key] = value
+      model.update()
+    })
     this.forceUpdate()
   }
 
   render () {
-    const { model, questions } = this.props
+    const { modules, questions } = this.props
+    const model = modules[0]
     const videoQuestions = _.filter(questions || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type))
     const options = _.map(videoQuestions, question => ({ label: question.name, value: question.id }))
 
@@ -26,7 +29,7 @@ class Properties extends Component {
       <div>
         <div className={styles.title}>Video Response</div>
         <div className="mtm">
-          <PropertyFilter model={model} />
+          <PropertyFilter modules={modules} />
           <div className="mtm">
             Question
             <Select
@@ -45,6 +48,6 @@ class Properties extends Component {
   }
 }
 
-export default connect((state, { model }) => ({
-  questions: getQuestions(state.report, model.assessment_id),
+export default connect((state, { modules }) => ({
+  questions: getQuestions(state.report, modules[0].assessment_id),
 }), {})(Properties)

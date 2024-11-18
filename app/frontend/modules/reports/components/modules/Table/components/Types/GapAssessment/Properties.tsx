@@ -28,10 +28,11 @@ const GAP_TYPE_OPTIONS = [
 ]
 
 interface Props {
-  model: PropertiesModel
+  modules: PropertiesModel[]
 }
 
-export const Properties: FC<Props> = ({ model }) => {
+export const Properties: FC<Props> = ({ modules }) => {
+  const model = modules[0]
   const {
     props: {
       gapType, sourceType, questionsChoices, factorIds, hideValues = false, noOfItems, gapCutoff, precision,
@@ -41,13 +42,17 @@ export const Properties: FC<Props> = ({ model }) => {
   } = model
 
   const onChange = (key: string, value: unknown) => {
-    model.props[key] = value
-    model.update()
+    modules.forEach((model) => {
+      model.props[key] = value
+      model.update()
+    })
   }
 
   const changeAll = () => {
-    model.props.allFactors = !allFactors
-    model.update()
+    modules.forEach((model) => {
+      model.props.allFactors = !allFactors
+      model.update()
+    })
   }
 
   return (
@@ -80,7 +85,7 @@ export const Properties: FC<Props> = ({ model }) => {
           onChange={onChange}
         />
       )}
-      <PropertyFilter model={model} />
+      <PropertyFilter modules={modules} />
       <GapTypeSelect
         value={gapType}
         onChange={value => onChange('gapType', value)}

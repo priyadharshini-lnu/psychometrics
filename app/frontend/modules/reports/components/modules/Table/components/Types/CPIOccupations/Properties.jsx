@@ -6,16 +6,30 @@ import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import PropertyPagination from '~/modules/reports/components/PropertyPagination'
 import { ColorPicker } from '~/glint'
 
-const Properties = ({ model }) => {
+const Properties = ({ modules }) => {
+  const model = modules[0]
   const [tableStyle, setTableStyle] = useState(model.props.tableStyle || 'classic')
+
   const changeBackgroundColor = (color) => {
-    model.props.style.barColor = color
-    model.update()
+    modules.forEach((model) => {
+      model.props.style.barColor = color
+      model.update()
+    })
   }
 
   const changeProps = (key, value) => {
-    model.props[key] = value
-    model.update()
+    modules.forEach((model) => {
+      model.props[key] = value
+      model.update()
+    })
+  }
+
+  const changeTableStyle = (value) => {
+    modules.forEach((model) => {
+      model.props.tableStyle = value
+      model.update()
+    })
+    setTableStyle(value)
   }
 
   const showOptions = [
@@ -27,18 +41,15 @@ const Properties = ({ model }) => {
   return (
     <div>
       <div>Font</div>
-      <PropertyFonts model={model} colors={false} />
+      <PropertyFonts modules={modules} colors={false} />
       <hr className={styles.divider} />
-      <PropertyPagination />
+      <PropertyPagination modules={modules} />
       <hr className={styles.divider} />
       <div className={styles.block}>
         <div className={styles.label}>Sort By</div>
         <Select
           value={model.props.sortBy || 'name'}
-          onChange={(value) => {
-            model.props.sortBy = value
-            model.update()
-          }}
+          onChange={value => changeProps('sortBy', value)}
           size="small"
         >
           <Select.Option value="name">Name</Select.Option>
@@ -57,11 +68,7 @@ const Properties = ({ model }) => {
         <div className={styles.label}>Table Style</div>
         <Select
           value={model.props.tableStyle || 'classic'}
-          onChange={(value) => {
-            model.props.tableStyle = value
-            model.update()
-            setTableStyle(value)
-          }}
+          onChange={changeTableStyle}
           size="small"
         >
           <Select.Option value="classic">Classic</Select.Option>

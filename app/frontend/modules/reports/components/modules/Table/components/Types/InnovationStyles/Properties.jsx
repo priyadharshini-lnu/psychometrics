@@ -6,22 +6,21 @@ import connect from './connect'
 
 class Properties extends Component {
   openConditionModal = () => {
-    const { model } = this.props
-    const { openInnovationStyleCondition } = this.props
-    openInnovationStyleCondition({ module: model })
+    const { modules, openInnovationStyleCondition } = this.props
+    openInnovationStyleCondition({ modules })
   }
 
   render () {
-    const { model } = this.props
+    const { modules } = this.props
     return (
       <div>
         <div style={{ width: '100%' }} onClick={this.openConditionModal} className="btn btn-default margin-bottom-10">
           Manage conditions
         </div>
         <div>Font</div>
-        <PropertyFonts model={model} colors={false} />
+        <PropertyFonts modules={modules} colors={false} />
         <hr className={styles.divider} />
-        <PropertyPagination />
+        <PropertyPagination modules={modules} />
         <hr className={styles.divider} />
       </div>
     )

@@ -1,8 +1,7 @@
+import { useState, useEffect, useRef } from 'react'
 import _ from 'lodash'
-import { Component } from 'react'
 import {
-  Slider, InputNumber, Row, Col, Collapse, Input,
-  Tabs, Select, Tag,
+  Slider, InputNumber, Row, Col, Collapse, Input, Tabs, Select, Tag,
 } from 'antd'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Properties } from '~/modules/reports/components/modules'
@@ -13,90 +12,106 @@ import StylesEditor from '~/modules/reports/components/StylesEditor'
 
 const { $ } = window
 const { Panel } = Collapse
+const AlignTypes = [
+  'alignLeft',
+  'alignRight',
+  'alignTop',
+  'alignBottom',
+  'alignMiddleVertical',
+  'alignMiddleHorizontal',
+]
 
-class PropertyPanel extends Component {
-  state = {
-    popupOpen: false,
-    currentTab: 'properties',
-  }
+const uniqType = (modules) => {
+  const res = _.uniqBy(modules, 'type')
+  if (modules.length > 1 && res.length > 1) { return false }
+  return res[0].type
+}
 
-  componentDidMount () {
-    $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
-      this.scrollTop = this.inspector.scrollTop
-      this.setState({ popupOpen: true })
+
+const PropertyPanel = (props) => {
+  const [popupOpen, setPopupOpen] = useState(false)
+  const [currentTab, setCurrentTab] = useState('properties')
+  const inspector = useRef(null)
+  const [scrollTop, setScrollTop] = useState(0)
+
+  const {
+    updateModule, reportStyles, report, modules,
+  } = props
+  const module = modules[0]
+
+  useEffect(() => {
+    const inspectorEl = $(inspector.current)
+    inspectorEl.on('show.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      setScrollTop(inspector.current.scrollTop)
+      setPopupOpen(true)
     })
-    $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
-      this.scrollTop = 0
-      this.setState({ popupOpen: false })
+    inspectorEl.on('hide.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      setScrollTop(0)
+      setPopupOpen(false)
+    })
+
+    return () => {
+      inspectorEl.off('show.bs.dropdown')
+      inspectorEl.off('hide.bs.dropdown')
+    }
+  }, [])
+
+  const onChangePosition = (value) => {
+    modules.forEach((module) => {
+      const position = { ...module.props.position, ...value }
+      module.props.position = position
+      updateModule({ ...module })
     })
   }
 
-  componentDidUpdate (prevProps) {
-    const { selected } = this.props
-
-    // eslint-disable-next-line react/no-did-update-set-state
-    prevProps.selected !== selected && this.setState({ currentTab: 'properties' })
+  const onChangeName = (e) => {
+    modules.forEach((module) => {
+      updateModule({ ...module, name: e.currentTarget.value })
+    })
   }
 
-  onChangePosition = (value) => {
-    const { module } = this.props
-    const position = { ...module.props.position, ...value }
-    module.props.position = position
-    this.forceUpdate()
+  const layoutHandler = (method) => {
+    modules.forEach((module) => {
+      const model = new ModuleModel(module, { id: module.page_id })
+      const layout = new LayoutManager({})
+      layout[method](model)
+      model.update()
+    })
   }
 
-  onChangeName = (e) => {
-    const { module, updateModule } = this.props
-    updateModule({ ...module, name: e.currentTarget.value })
-  }
-
-  updateModule = () => {
-    const { module, updateModule } = this.props
-    updateModule({ ...module })
-  }
-
-  layoutHandler = (method) => {
-    const { module } = this.props
-    const model = new ModuleModel(module, { id: module.page_id })
-
-    const layout = new LayoutManager({})
-    layout[method](model)
-    model.update()
-  }
-
-  changeStyles = (val) => {
-    const { module, updateModule, reportStyles } = this.props
+  const changeStyles = (val) => {
     const filteredValues = val.filter(v => reportStyles[v])
-    updateModule({ ...module, props: { ...module.props, styleIds: filteredValues } })
+    modules.forEach((module) => {
+      updateModule({ ...module, props: { ...module.props, styleIds: filteredValues } })
+    })
   }
 
-  showOnAllPages = () => {
-    const { module } = this.props
-    const model = new ModuleModel(module, { id: module.page_id })
-    model.props.showOnAllPages = !model.props.showOnAllPages
-    model.update()
+  const showOnAllPages = () => {
+    modules.forEach((module) => {
+      const model = new ModuleModel(module, { id: module.page_id })
+      model.props.showOnAllPages = !model.props.showOnAllPages
+      model.update()
+    })
   }
 
-  hideOnDashboard = () => {
-    const { module } = this.props
-    const model = new ModuleModel(module, { id: module.page_id })
-    model.props.hideOnDashboard = !model.props.hideOnDashboard
-    model.update()
+  const hideOnDashboard = () => {
+    modules.forEach((module) => {
+      const model = new ModuleModel(module, { id: module.page_id })
+      model.props.hideOnDashboard = !model.props.hideOnDashboard
+      model.update()
+    })
   }
 
-  renderCustomProperties () {
-    const { selected, module, page } = this.props
-
-    if ((!module && !page) || !selected) {
-      return
+  const renderCustomProperties = () => {
+    if (!module) {
+      return null
     }
 
-    const type = selected.type === 'Module' ? module.type : selected.type
+    const type = uniqType(modules)
+    if (!type) { return null }
 
     const View = Properties[`${type}Properties`]
-    if (!View) { return }
 
-    const model = new ModuleModel(module, { id: module.page_id })
     return (
       <ErrorBoundary
         key={module.id}
@@ -104,35 +119,34 @@ class PropertyPanel extends Component {
           <p style={{ color: '#f00' }}>{I18n.t('errors.module_props_error')}</p>
         )}
       >
-        <View model={model || page} />
+        <View modules={modules} />
       </ErrorBoundary>
     )
   }
 
-  renderSlider (props, label) {
-    return (
-      <Row align="middle">
-        <Col span={2}>{label}</Col>
-        <Col span={16}>
-          <Slider {...props} onAfterChange={() => this.updateModule()} />
-        </Col>
-        <Col span={6}>
-          <InputNumber
-            controls={false}
-            className={styles.antInput}
-            onPressEnter={() => this.updateModule()}
-            {...props}
-          />
-        </Col>
-      </Row>
-    )
-  }
+  const renderSlider = (props, label) => (
+    <Row align="middle">
+      <Col span={2}>{label}</Col>
+      <Col span={16}>
+        <Slider {...props} onAfterChange={updateModule} />
+      </Col>
+      <Col span={6}>
+        <InputNumber
+          controls={false}
+          className={styles.antInput}
+          onPressEnter={updateModule}
+          {...props}
+        />
+      </Col>
+    </Row>
+  )
 
-  renderLayout () {
-    const { module, report: { builder: { props } } } = this.props
-    if (!module) { return null }
-    const { width, height } = props.sizes
+  const renderLayout = () => {
+    if (!modules.length > 0) return null
+    const { width, height } = report.builder.props.sizes
+    const module = modules[0]
     const { position } = module.props
+
     return (
       <>
         <hr className={styles.divider} />
@@ -152,31 +166,31 @@ class PropertyPanel extends Component {
         </div>
         <Collapse accordion className={styles.propertiesPanel}>
           <Panel header="Dimensions" key="Dimensions">
-            {this.renderSlider({
+            {renderSlider({
               value: position.width,
               min: 0,
               max: width - position.left,
-              onChange: value => this.onChangePosition({ width: value }),
+              onChange: value => onChangePosition({ width: value }),
             }, 'W:')}
-            {this.renderSlider({
+            {renderSlider({
               value: position.height,
               min: 0,
               max: height - position.top,
-              onChange: value => this.onChangePosition({ height: value }),
+              onChange: value => onChangePosition({ height: value }),
             }, 'H:')}
           </Panel>
           <Panel header="Co-ordinates" key="Co-ordinates">
-            {this.renderSlider({
+            {renderSlider({
               value: position.left,
               min: 0,
               max: width - position.width,
-              onChange: value => this.onChangePosition({ left: value }),
+              onChange: value => onChangePosition({ left: value }),
             }, 'X:')}
-            {this.renderSlider({
+            {renderSlider({
               value: position.top,
               min: 0,
               max: height - position.height,
-              onChange: value => this.onChangePosition({ top: value }),
+              onChange: value => onChangePosition({ top: value }),
             }, 'Y:')}
           </Panel>
         </Collapse>
@@ -184,26 +198,24 @@ class PropertyPanel extends Component {
         <div className={styles.layout}>
           Layout
           <ul className={styles.variants}>
-            {_.map(['alignLeft', 'alignRight', 'alignTop', 'alignBottom', 'alignMiddleVertical',
-              'alignMiddleHorizontal'], type => (
-                <li key={type}>
-                  <a
-                    className={`${styles.alignedBlock} ${styles[type]}`}
-                    onClick={e => this.layoutHandler(type, e)}
-                  />
-                </li>
+            {_.map(AlignTypes, type => (
+              <li key={type}>
+                <a
+                  className={`${styles.alignedBlock} ${styles[type]}`}
+                  onClick={() => layoutHandler(type)}
+                />
+              </li>
             ))}
           </ul>
           <ul>
-            <li><a onClick={e => this.layoutHandler('moveInFront', e)}>Bring Forward</a></li>
-            <li><a onClick={e => this.layoutHandler('moveInBack', e)}>Send Backward</a></li>
-
+            <li><a onClick={() => layoutHandler('moveInFront')}>Bring Forward</a></li>
+            <li><a onClick={() => layoutHandler('moveInBack')}>Send Backward</a></li>
             <li>
               <label>
                 <input
                   type="checkbox"
                   checked={module.props.onTop || false}
-                  onChange={e => this.layoutHandler('alwaysOnTop', e)}
+                  onChange={() => layoutHandler('alwaysOnTop')}
                 />
                 Always On Top
               </label>
@@ -213,7 +225,7 @@ class PropertyPanel extends Component {
                 <input
                   type="checkbox"
                   checked={module.props.onBottom || false}
-                  onChange={e => this.layoutHandler('alwaysOnBottom', e)}
+                  onChange={() => layoutHandler('alwaysOnBottom')}
                 />
                 Always On Bottom
               </label>
@@ -223,7 +235,7 @@ class PropertyPanel extends Component {
                 <input
                   type="checkbox"
                   checked={module.props.showOnAllPages || false}
-                  onChange={() => this.showOnAllPages()}
+                  onChange={showOnAllPages}
                 />
                 Show On All Pages
               </label>
@@ -233,7 +245,7 @@ class PropertyPanel extends Component {
                 <input
                   type="checkbox"
                   checked={module.props.hideOnDashboard || false}
-                  onChange={() => this.hideOnDashboard()}
+                  onChange={hideOnDashboard}
                 />
                 Hide on Dashboard
               </label>
@@ -244,81 +256,76 @@ class PropertyPanel extends Component {
     )
   }
 
-  render () {
-    const { selected, module, reportStyles } = this.props
-    const { popupOpen, currentTab } = this.state
-    const inspectorClasses = [styles.inspector]
-    let style = {}
-    if (popupOpen) {
-      inspectorClasses.push(styles.dropdownOpen)
-      if (this.scrollTop > 0) {
-        style = {
-          marginTop: -this.scrollTop,
-        }
+  const inspectorClasses = [styles.inspector]
+  let style = {}
+  if (popupOpen) {
+    inspectorClasses.push(styles.dropdownOpen)
+    if (scrollTop > 0) {
+      style = {
+        marginTop: -scrollTop,
       }
     }
-    return (
-      <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
-        <Tabs
-          tabBarStyle={{ padding: '0 10px', margin: 0, borderBottom: '1px solid #ccc' }}
-          defaultActiveKey="properties"
-          activeKey={currentTab}
-          onChange={tab => this.setState({ currentTab: tab })}
-          items={[{
+  }
+
+  return (
+    <div className={inspectorClasses.join(' ')} ref={inspector} style={style}>
+      <Tabs
+        tabBarStyle={{ padding: '0 10px', margin: 0, borderBottom: '1px solid #ccc' }}
+        defaultActiveKey="properties"
+        activeKey={module ? currentTab : 'styles'}
+        onChange={setCurrentTab}
+        items={[
+          module && {
             label: 'Properties',
             key: 'properties',
             children: (
               <div className={styles.main}>
-                {selected.type === 'Module' && module && (
-                  <>
+                <>
+                  <div>
+                    <div className={styles.title}>Module Name:</div>
                     <div>
-                      <div className={styles.title}>Module Name:</div>
-                      <div>
-                        <Input key={module.id} value={module.name} onChange={this.onChangeName} />
-                      </div>
+                      <Input key={module.id} value={module.name} onChange={onChangeName} />
                     </div>
-                    <div className="margin-top-10">Styles</div>
-                    <Select
-                      mode="tags"
-                      size="small"
-                      showSearch
-                      filterOption={(input, option) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                      style={{ width: '100%' }}
-                      value={module.props.styleIds?.filter(s => reportStyles[s])}
-                      options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
-                      tagRender={({ label, value, onClose }) => {
-                        const deleted = !_.find(reportStyles, { id: value })
-                        return (
-                          <Tag
-                            color={deleted ? 'red' : 'green'}
-                            closable
-                            onClose={onClose}
-                          >
-                            {deleted ? 'DELETED' : label}
-                          </Tag>
-                        )
-                      }}
-                      onChange={this.changeStyles}
-                    />
-                    <hr className={styles.divider} />
-                  </>
-                )}
-                {this.renderCustomProperties()}
-                {selected.type === 'Module' && this.renderLayout()}
+                  </div>
+                  <div className="margin-top-10">Styles</div>
+                  <Select
+                    mode="tags"
+                    size="small"
+                    showSearch
+                    filterOption={(input, option) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                    style={{ width: '100%' }}
+                    value={module.props.styleIds?.filter(s => reportStyles[s])}
+                    options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
+                    tagRender={({ label, value, onClose }) => {
+                      const deleted = !_.find(reportStyles, { id: value })
+                      return (
+                        <Tag
+                          color={deleted ? 'red' : 'green'}
+                          closable
+                          onClose={onClose}
+                        >
+                          {deleted ? 'DELETED' : label}
+                        </Tag>
+                      )
+                    }}
+                    onChange={changeStyles}
+                  />
+                  <hr className={styles.divider} />
+                </>
+                {renderCustomProperties()}
+                {renderLayout()}
               </div>
             ),
-          }, {
+          },
+          {
             label: 'Styles',
             key: 'styles',
-            children: (
-              <StylesEditor />
-            ),
-          }]}
-        />
-
-      </div>
-    )
-  }
+            children: <StylesEditor />,
+          },
+        ].filter(f => f)}
+      />
+    </div>
+  )
 }
 
 export default PropertyPanel

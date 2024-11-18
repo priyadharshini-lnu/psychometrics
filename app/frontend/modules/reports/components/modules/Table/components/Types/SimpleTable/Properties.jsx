@@ -6,37 +6,43 @@ import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
 class Properties extends Component {
   static propTypes = {
-    model: PropTypes.object.isRequired,
+    modules: PropTypes.array,
   }
 
   changeColumnsCount = (val) => {
-    const { model } = this.props
-    model.props.columnsCount = val
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.columnsCount = val
 
-    _.each(model.props.rowData, (row) => {
-      row.splice(val, row.length)
-      _.times(val, (i) => {
-        row[i] = row[i] || {}
+      _.each(model.props.rowData, (row) => {
+        row.splice(val, row.length)
+        _.times(val, (i) => {
+          row[i] = row[i] || {}
+        })
       })
-    })
 
-    model.update()
+      model.update()
+    })
   }
 
   changeRowsCount = (val) => {
-    const { model, model: { props } } = this.props
-    props.rowsCount = val
-    props.rowData.splice(val, model.props.rowData.length)
+    const { modules } = this.props
+    modules.forEach((model) => {
+      const { props } = model
+      props.rowsCount = val
+      props.rowData.splice(val, model.props.rowData.length)
 
-    _.times(val, (i) => {
-      props.rowData[i] = props.rowData[i] || _.times(props.columnsCount, () => ({}))
+      _.times(val, (i) => {
+        props.rowData[i] = props.rowData[i] || _.times(props.columnsCount, () => ({}))
+      })
+
+      model.update()
     })
-
-    model.update()
   }
 
   render () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
 
     return (
       <div>
