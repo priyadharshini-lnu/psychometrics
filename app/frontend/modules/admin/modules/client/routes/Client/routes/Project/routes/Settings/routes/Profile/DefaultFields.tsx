@@ -31,10 +31,14 @@ export const DefaultFields: React.FC<Props> = ({
   const changeRequired = (row) => {
     if (!requiredFields[row.index] && !enabledFields[row.index]) {
       const multiple = {
-        ...requiredFields,
-        [row.index]: !requiredFields[row.index],
-        ...enabledFields,
-        [row.index]: !requiredFields[row.index],
+        requiredDefaultFields: {
+          ...requiredFields,
+          [row.index]: !requiredFields[row.index],
+        },
+        enabledDefaultFields: {
+          ...enabledFields,
+          [row.index]: !requiredFields[row.index],
+        }
       }
       onChangeMultiple({ ...multiple })
     } else {
