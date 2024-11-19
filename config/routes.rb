@@ -315,6 +315,7 @@ Rails.application.routes.draw do
             get :export_normed_results
             get :export_raw_factor_scores
             get :export_external_results
+            get :export_occupations
             post :import_results
             get :norms
             post :update_norm

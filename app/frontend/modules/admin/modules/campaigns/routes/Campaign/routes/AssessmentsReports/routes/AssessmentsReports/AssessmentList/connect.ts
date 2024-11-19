@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux'
 import { get as getAssessments } from '~/modules/admin/modules/campaigns/core/assessments'
 import {
-  rescoreResponses, remove, exportRawResults, exportScoringResults,
+  rescoreResponses, remove, exportRawResults, exportScoringResults, exportOccupations,
   exportNormedResults, exportRawFactorScores, enableUniversalLink, exportExternalResults, updateExternalConfig,
   updatePrework, updateWorkshopActivity, toggleRequireScheduling, toggleAutoAssign, updateMettlSchedule,
   normalizeFactorScores, updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE,
@@ -27,6 +27,7 @@ const connecter = connect(
     exportNormedResults,
     exportRawFactorScores,
     exportExternalResults,
+    exportOccupations,
     enableUniversalLink,
     updateExternalConfig,
     updateContentVariation,
