@@ -64,3 +64,20 @@
 .tac {
   text-align: center;
 }
+
+.header {
+  background-color: @white;
+  border: 1px solid @border-color-base;
+  border-inline: none;
+  height: auto;
+}
+
+@media screen and (max-width: @screen-sm) {
+  .policyContent {
+    max-height: 100vh;
+    overflow-y: scroll;
+  }
+  .consentTitle:global(.ant-typography) {
+    font-size: 1.5rem;
+  }
+}

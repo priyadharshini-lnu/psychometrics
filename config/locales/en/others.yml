@@ -2727,6 +2727,7 @@ en:
     filters:
       clear: Clear Filters
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    mte_logo_alt_text: Mercer Talent Enterprise logo
     terms_conditions_privacy: Privacy Statement
     tte_terms_and_condition: Terms & Privacy
   sheet:
@@ -3161,6 +3162,8 @@ en:
         success: Success
         undelivered: Undelivered
     mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
+    more_info_evaluation_label: More information - Evaluations
+    more_info_nomination_label: More information - Nominations
     my_projects: My Projects
     name_label: Name
     nominate: Nominate

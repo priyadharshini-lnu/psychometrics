@@ -38,13 +38,16 @@
 
 .fs {
   &-12 {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   &-14 {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   &-20 {
-    font-size: 20px !important;
+    font-size: 1.25rem !important;
+  }
+  &-24 {
+    font-size: 1.5rem;
   }
 }
 
@@ -242,4 +245,15 @@ each(@spacing-scale, {
 
 .color-primary {
   color: var(--ant-primary-color) !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
