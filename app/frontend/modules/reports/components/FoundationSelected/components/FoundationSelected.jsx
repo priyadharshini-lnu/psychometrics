@@ -11,6 +11,27 @@ import styles from './FoundationSelected.less'
 
 const { $ } = window
 
+const getRotatedPoints = ({
+  left: x, top: y, width: w, height: h,
+}, angle = 0) => {
+  const rad = angle * Math.PI / 180
+  const cos = Math.cos(rad)
+  const sin = Math.sin(rad)
+  const cx = x + w / 2
+  const cy = y + h / 2
+
+  const rx = (x, y) => Math.round(cx + ((x - cx) * cos - (y - cy) * sin))
+  const ry = (x, y) => Math.round(cy + ((x - cx) * sin + (y - cy) * cos))
+
+  return [
+    { x: rx(x, y), y: ry(x, y) },
+    { x: rx(x + w, y), y: ry(x + w, y) },
+    { x: rx(x + w, y + h), y: ry(x + w, y + h) },
+    { x: rx(x, y + h), y: ry(x, y + h) },
+  ]
+}
+
+
 const FoundationSelected = ({
   modules, aspectRatio, pageId, selectedPageId, currentPage, pageSize,
 }) => {
@@ -87,10 +108,11 @@ const FoundationSelected = ({
 
   useEffect(() => {
     models.current = modules
-    const left = _.min(modules.map(m => m.props.position.left))
-    const top = _.min(modules.map(m => m.props.position.top))
-    const right = _.max(modules.map(m => m.props.position.left + m.props.position.width))
-    const bottom = _.max(modules.map(m => m.props.position.top + m.props.position.height))
+    const points = _.flatten(modules.map(m => getRotatedPoints(m.props.position, m.props.position.rotation)))
+    const left = _.minBy(points, 'x')?.x
+    const top = _.minBy(points, 'y')?.y
+    const right = _.maxBy(points, 'x')?.x
+    const bottom = _.maxBy(points, 'y')?.y
 
     posRef.current = {
       left, top, width: right - left, height: bottom - top,
@@ -231,7 +253,7 @@ const FoundationSelected = ({
           <div className={cs(styles.corner, styles.bottomrightcorner)} />
           <div className={cs(styles.corner, styles.bottomleftcorner)} />
         </div>
-        <div className={styles.sizeBox} ref={mover}>
+        <div className={cs(styles.sizeBox, { [styles.bottom]: pos.top < 0 })} ref={mover}>
           <i
             className={`fa fa-arrows ${styles.mover}`}
             data-right="true"

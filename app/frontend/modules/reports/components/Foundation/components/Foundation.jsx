@@ -4,6 +4,7 @@ import styles from './Foundation.less'
 import RichEditorStore from '~/modules/reports/store/RichEditorStore'
 import { actions } from '~/modules/reports/core/temp/selection'
 
+
 const Foundation = ({
   module, shadow, preview, outerStyle, children, error, closeRichEditor,
 }) => {
@@ -40,7 +41,7 @@ const Foundation = ({
 
   if (module.meta.hidden) { return null }
   const {
-    left, top, width, height,
+    left, top, width, height, rotation,
   } = mprops.position
 
   const style = {
@@ -52,7 +53,7 @@ const Foundation = ({
     style.top = `${top}px`
     style.left = `${left}px`
   } else {
-    style.transform = `translate(${left}px,${top}px)`
+    style.transform = `translate(${left}px,${top}px) rotate(${rotation || 0}deg)`
   }
   const className = cs(styles.base,
     {
