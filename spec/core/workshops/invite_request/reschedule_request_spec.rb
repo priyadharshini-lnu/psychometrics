@@ -31,10 +31,24 @@ describe Workshops::InviteRequest::RescheduleRequest do
             user
           )
         end.to change { workshop.reload.booked_seats }.from(1).to(0).
+          and change { WorkshopSubject.count }.by(1).
           and change { reschedule_workshop.reload.booked_seats }.from(0).to(1).
           and change { WorkshopInviteLog.count }.by(1).
           and change { WorkshopInviteLog.last&.action }.from(nil).to('rescheduled').
           and change { workshop_invited_subject.reload.status }.from('requested_rescheduling').to('rescheduled')
+      end
+
+      it 'updates existing workshop subject if exists' do
+        workshop_subject = create(:workshop_subject, workshop: reschedule_workshop, user: user,
+          scheduling_status: 'cancelled')
+
+        expect do
+          described_class.call(
+            { id: workshop_invited_subject.id },
+            user
+          )
+        end.to change { WorkshopSubject.count }.by(0).
+          and change { workshop_subject.reload.scheduling_status }.from('cancelled').to('scheduled')
       end
     end
   end

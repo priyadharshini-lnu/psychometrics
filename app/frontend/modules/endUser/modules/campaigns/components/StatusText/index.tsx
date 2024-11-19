@@ -20,6 +20,14 @@ const STATUSES = {
     label: I18n.t('frontend.workshop_invited_subjects.statuses.requested_rescheduling'),
     textType: 'secondary',
   },
+  requested_cancellation_rejected: {
+    label: I18n.t('frontend.workshop_invited_subjects.statuses.requested_cancellation_rejected'),
+    textType: 'secondary',
+  },
+  requested_rescheduling_rejected: {
+    label: I18n.t('frontend.workshop_invited_subjects.statuses.requested_rescheduling_rejected'),
+    textType: 'secondary',
+  },
 }
 
 type StatusTextProps = {

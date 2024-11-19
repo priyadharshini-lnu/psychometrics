@@ -499,7 +499,9 @@ ar:
       statuses:
         cancelled: ألغيت
         requested_cancellation: لقد تم طلب الإلغاء
+        requested_cancellation_rejected: لقد تم رفض طلب الإلغاء
         requested_rescheduling: لقد تم طلب إعادة الجدولة
+        requested_rescheduling_rejected: لقد تم رفض طلب إعادة الجدولة
     'yes': نعم
   mailer:
     magic_link:

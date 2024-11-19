@@ -2100,7 +2100,9 @@ en:
       statuses:
         cancelled: Cancelled
         requested_cancellation: Requested Cancellation
+        requested_cancellation_rejected: Requested Cancellation Rejected
         requested_rescheduling: Requested Rescheduling
+        requested_rescheduling_rejected: Requested Rescheduling Rejected
     'yes': 'Yes'
   glint:
     booking_card:
