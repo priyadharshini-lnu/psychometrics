@@ -91,7 +91,7 @@ module Administration
     end
 
     def export_occupations?
-      has_permission?(:results, :export_occupations) && @record.dimension.occupations_enabled?
+      has_permission?(:results, :export_occupations) && @record.dimension&.occupations_enabled?
     end
 
     def toggle_auto_assign?
