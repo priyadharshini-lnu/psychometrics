@@ -3423,6 +3423,10 @@ en:
         system_error_message: Could not remove the user, please try again later or contact support.
       reset_password:
         option: Reset Password
+      unlock_user_access:
+        message: User access for %{email} has been unlocked successfully.
+        title: Unlock User Access
+        tooltip: This user account is in locked state
     admins: Admins
     create_global_assessor: Create Global Assessor
     create_superadmin: Create Super Admin

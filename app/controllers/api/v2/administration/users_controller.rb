@@ -6,7 +6,7 @@ module Api
     validates_request_schema :create_global_assessor, Api::V2::User::CreateGlobalAssessorContract.new
     validates_request_schema :reset_password, Api::V2::User::ResetPasswordContract.new
 
-    prepend_before_action :set_resource, only: %i[reset_password roles]
+    prepend_before_action :set_resource, only: %i[reset_password roles unlock_user_access]
 
     def reset_password
       attrs = params.dig(:data, :attributes)
@@ -29,6 +29,12 @@ module Api
         @resource,
         { password: auto_generated_password, login_url: login_url, success_message: success_message }
       )
+    end
+
+    def unlock_user_access
+      @resource.unlock_access!
+      audit! :unlock_user_access, @resource
+      jsonapi_render json: @resource
     end
 
     def roles

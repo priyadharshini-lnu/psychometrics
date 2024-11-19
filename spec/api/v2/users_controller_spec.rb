@@ -49,7 +49,8 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
                 remove: false,
                 reset_password: true,
                 toggle_enable_2fa: true,
-                login_as: true
+                login_as: true,
+                unlock_user_access: false
               }
             }
           }
@@ -65,7 +66,8 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
                 'reset_password' => true,
                 'remove' => true,
                 'toggle_enable_2fa' => true,
-                'login_as' => true
+                'login_as' => true,
+                'unlock_user_access' => false
               }
             }
           )
@@ -211,6 +213,34 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
           expect(data).to have_attribute(:password)
           expect(user.reload.force_password_change).to eq(true)
           expect(user.reload.valid_password?(new_password)).to eq(true)
+        end
+      end
+    end
+  end
+
+  path '/users/{user_id}/unlock_user_access' do
+    let(:user) { create(:user, :locked) }
+    let(:user_id) { user.id }
+
+    post 'Unlock User Access' do
+      operationId 'UnlockUserAccess'
+      description 'Unlock User Access'
+      tags 'User'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :user_id, in: :path, type: :string
+
+      response '200', 'User Access Unlocked' do
+        examples 'application/json' => {
+          type: 'users',
+          data: { id: '770' }
+        }
+
+        run_test! do
+          user.reload
+          expect(user.locked_at).to be_nil
+          expect(user.failed_attempts).to eq(0)
+          expect(user.unlock_token).to be_nil
         end
       end
     end

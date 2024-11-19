@@ -1134,6 +1134,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :users do
             post :reset_password
+            post :unlock_user_access
             get :roles
             scope module: :users do
               resource :uploads, only: %i[update]
