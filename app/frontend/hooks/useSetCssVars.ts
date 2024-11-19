@@ -40,7 +40,11 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
         { varName: '--ant-primary-color-outline', value: colorPrimaryBg },
         { varName: '--ant-text-color', value: colorText },
       ]
-      addCssVars(rootElement, cssVarsFromToken)
+      const cssVarColors = [
+        { varName: '--bright-green-bg', value: '#038731' },
+        { varName: '--green-bg', value: '#00807D' },
+      ]
+      addCssVars(rootElement, [...cssVarsFromToken, ...cssVarColors])
     }
   }, [])
 }

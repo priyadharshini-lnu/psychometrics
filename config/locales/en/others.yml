@@ -1934,11 +1934,15 @@ en:
       back_to_tasks: Back to Tasks
       campaign_name_description: ', for campaign "%{campaignName}"'
       collapse_menu: Collapse menu
+      delete_message: Delete message
       expand_menu: Expand menu
+      file_uploaded: File uploaded
       lang_dropdown_description: ",change language"
       profile_progress: Profile completion is
+      send_message: Send message
       task_btn_description: task %{assessmentName}
       task_progress_label: Task completion is
+      write_message: Write your message
     assessment: Assessment
     assessment_groups:
       create_success: The group was created successfully

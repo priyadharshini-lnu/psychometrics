@@ -1,10 +1,12 @@
 import _ from 'lodash'
-import { useEffect, useReducer } from 'react'
+import {
+  useEffect, useReducer, useLayoutEffect, useRef,
+} from 'react'
 import PropTypes from 'prop-types'
 import {
   Upload, Button, Progress,
 } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
+import { UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import api from '~/middleware/api'
 import ErrorList from './ErrorList'
 import FileDetails from './FileDetails'
@@ -14,6 +16,8 @@ import reducer, {
   SET_UPLOAD_STATE, SET_FILE, REMOVE_FILE, SET_ERRORS, initialState, deleteFile,
 } from './reducer'
 import { UPLOAD_STATES } from './constants'
+
+const { I18n } = window
 
 export default function FileUpload ({
   mediaUrl,
@@ -28,10 +32,20 @@ export default function FileUpload ({
   onBeforeRemove,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const uploadRef = useRef(null)
+  const uploadSuccessRef = useRef(null)
 
   useEffect(() => {
     if (mediaResponse && mediaResponse.url) {
       dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
+    }
+  }, [])
+
+  // TODO: Remove this after upgrading antd to version >= 5.12.6
+  useLayoutEffect(() => {
+    if (uploadRef.current?.parentNode) {
+      uploadRef.current.parentNode.tabIndex = -1
+      uploadRef.current.parentNode.role = 'none'
     }
   }, [])
 
@@ -64,6 +78,12 @@ export default function FileUpload ({
 
   const handleSuccessfulUpload = (media) => {
     removeQuestionInProgress(model.id)
+    if (uploadSuccessRef.current) {
+      uploadSuccessRef.current.innerText = I18n.t('frontend.aria.file_uploaded')
+      setTimeout(() => {
+        uploadSuccessRef.current.innerText = ''
+      }, 5000)
+    }
     onSuccessUpload && onSuccessUpload(media)
   }
 
@@ -118,7 +138,9 @@ export default function FileUpload ({
             onChange={handleFileChange}
             disabled={readOnly}
           >
-            <Button>
+            <Button
+              ref={uploadRef}
+            >
               <UploadOutlined />
               {' '}
               Select File
@@ -138,6 +160,7 @@ export default function FileUpload ({
       )}
       {uploadState === UPLOAD_STATES.SAVED
         && <FileDetails localFile={file} savedFile={mediaResponse} removeFile={removeFile} readOnly={readOnly} /> }
+      <div className="sr-only" aria-live="polite" ref={uploadSuccessRef} />
     </div>
   )
 }
