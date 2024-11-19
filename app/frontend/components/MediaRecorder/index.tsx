@@ -5,13 +5,19 @@ import axios, { AxiosResponse, AxiosProgressEvent } from 'axios'
 import _ from 'lodash'
 import {
   Button, Flex, Alert, Space,
+  Dropdown,
 } from 'antd'
 import {
   DeleteOutlined, StopOutlined, VideoCameraOutlined, LoadingOutlined,
+  DownOutlined,
+  AudioOutlined,
+  CheckCircleFilled,
 } from '@ant-design/icons'
+import type { MenuProps } from 'antd'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import VideoPlayer from './components/VideoPlayer'
 import ProgressWithCountdown, { ProgressWithCountdownProps } from './components/ProgressWIthCountdown'
+import styles from './styles.less'
 
 interface MimeType {
   mimeType: string;
@@ -52,6 +58,11 @@ interface UrlDetails {
   checksum: string;
 }
 
+interface DeviceDetails {
+  videoDevices : MediaDeviceInfo[];
+  audioDevices : MediaDeviceInfo[];
+}
+
 const formatDuration = (durationInSeconds: number): string => {
   const minutes = Math.floor(durationInSeconds / 60)
   const seconds = durationInSeconds % 60
@@ -62,6 +73,9 @@ const MediaRecorderComponent: React.FC<Props> = ({
   mediaUrl, questionId, maxDuration, mediaResponse,
 }) => {
   const [permissionGranted, setPermissionGranted] = useState<boolean>(false)
+  const [devices, setDevices] = useState<DeviceDetails>({ videoDevices: [], audioDevices: [] })
+  const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
+  const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
   const [streamReady, setStreamReady] = useState<boolean>(false)
   const [visualizing, setVisualizing] = useState<boolean>(false)
   const [stream, setStream] = useState<MediaStream | null>(null)
@@ -69,6 +83,8 @@ const MediaRecorderComponent: React.FC<Props> = ({
   const [recordingState, setRecordingState] = useState<'recording' | 'saved' | 'saving'>('recording')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isUploading, setIsUploading] = useState<boolean>(false)
+  const [showMessage, setShowMessage] = useState<boolean>(false)
+
 
   const videoRef = useRef<HTMLVideoElement>(null)
   const promisesArrayRef = useRef<AxiosResponse[]>([])
@@ -85,8 +101,9 @@ const MediaRecorderComponent: React.FC<Props> = ({
   )
   const [startRecStartCountdown, setStartRecStartCountdown] = useState<boolean>(false)
   const [recStopCountdownTime, setRecStopCountdownTime] = useState<number>(Date.now() + 1000 * maxDuration)
-
   const [existingVideoUrl, setExistingVideoUrl] = useState<string | null>(mediaResponse?.url || null)
+  const [existingMedia, setExistingMedia] = useState<Props['mediaResponse']>(mediaResponse)
+
 
   const [totalSize, setTotalSize] = useState<number>(0)
   const chunksRef = useRef<{ size: number }[]>([])
@@ -106,6 +123,27 @@ const MediaRecorderComponent: React.FC<Props> = ({
     })
   }
 
+
+  useEffect(() => {
+    const getDevices = async () => {
+      const devices = await navigator.mediaDevices.enumerateDevices()
+      const videoDevices = devices.filter(device => device.kind === 'videoinput')
+      const audioDevices = devices.filter(device => device.kind === 'audioinput')
+
+      setDevices({ videoDevices, audioDevices })
+
+      if (videoDevices.length > 0) {
+        setSelectedVideoDevice(videoDevices[0].deviceId)
+      }
+
+      if (audioDevices.length > 0) {
+        setSelectedAudioDevice(audioDevices[0].deviceId)
+      }
+    }
+
+    getDevices()
+  }, [])
+
   const getUploadUrl = useCallback(async (): Promise<void> => {
     try {
       const response = await axios.get<UrlDetails>(
@@ -120,8 +158,10 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }, [mediaUrl, questionId, supportedMimeType])
 
   useEffect(() => {
-    getUploadUrl()
-  }, [getUploadUrl])
+    if (!existingMedia.id) {
+      getUploadUrl()
+    }
+  }, [getUploadUrl, existingMedia.id])
 
   const chunkCounterRef = useRef<number>(0)
 
@@ -177,7 +217,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         part_number: index + 1,
       }))
 
-      await axios.put(
+      const { data } = await axios.put(
         `${mediaUrl}/complete_multipart_upload`,
         {
           parts: uploadPartsArray,
@@ -193,8 +233,10 @@ const MediaRecorderComponent: React.FC<Props> = ({
         },
       )
 
+      setExistingMedia(data)
       handleRecordingSaved()
       resetMultipartUpload()
+      successMessage()
     } catch (error) {
       console.error('Error completing media upload:', error)
       setError('complete')('An unknown error occurred while completing the upload')
@@ -247,9 +289,9 @@ const MediaRecorderComponent: React.FC<Props> = ({
   const handleRequestPermission = useCallback(async () => {
     setIsRequestingPermission(true)
     try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true,
+      const mediaStream = await window.navigator.mediaDevices.getUserMedia({
+        audio: { deviceId: selectedAudioDevice },
+        video: { deviceId: selectedVideoDevice },
       })
       setStream(mediaStream)
       mediaStreamRef.current = mediaStream
@@ -273,11 +315,11 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }, [])
 
   useEffect(() => {
-    if ((mediaBlobUrl || mediaResponse) && videoRef.current) {
+    if ((mediaBlobUrl || existingMedia) && videoRef.current) {
       videoRef.current.srcObject = null
-      videoRef.current.src = mediaBlobUrl || mediaResponse.url
+      videoRef.current.src = mediaBlobUrl || existingMedia.url
     }
-  }, [mediaBlobUrl, mediaResponse])
+  }, [mediaBlobUrl, existingMedia])
 
   const resetRecorder = useCallback((): void => {
     setPermissionGranted(false)
@@ -306,16 +348,19 @@ const MediaRecorderComponent: React.FC<Props> = ({
     // Reset upload-related state
     resetMultipartUpload()
     chunkCounterRef.current = 0
+    handleRequestPermission()
+    getUploadUrl()
   }, [maxDuration])
 
   const handleDiscard = useCallback(async (): Promise<void> => {
-    if (mediaResponse) {
+    if (existingMedia) {
       try {
         await axios.delete(`${mediaUrl}/remove_media`, {
           headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
-          data: { media_id: mediaResponse.id },
+          data: { media_id: existingMedia.id },
         })
         setExistingVideoUrl(null)
+        clearBlobUrl()
       } catch (error) {
         console.error('Error discarding existing video:', error)
         setError('discard')('Failed to discard existing video')
@@ -326,7 +371,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
 
     resetRecorder()
-  }, [mediaUrl, mediaResponse, clearBlobUrl, resetRecorder])
+  }, [mediaUrl, existingMedia, clearBlobUrl, resetRecorder])
 
   const handleStopRecording = useCallback((): void => {
     stopRecording()
@@ -395,18 +440,75 @@ const MediaRecorderComponent: React.FC<Props> = ({
     </Button>
   )
 
+  const renderSuccessText = () => (
+    <>
+      <CheckCircleFilled style={{ color: 'var(--ant-primary-color)' }} />
+      <span>Response Recorded</span>
+    </>
+  )
+
   const controls = (
+
     <Flex gap={8}>
       {showActionButton && renderActionButton()}
-      {(mediaBlobUrl || existingVideoUrl) && renderDiscardButton()}
+      {showMessage && renderSuccessText()}
+      {(mediaBlobUrl || existingVideoUrl) && !isUploading && !showMessage && renderDiscardButton()}
     </Flex>
   )
+
+  const successMessage = () => {
+    setShowMessage(true)
+
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 3000)
+  }
 
   useEffect(() => {
     // Reset chunk counter when starting a new recording
     if (status === 'idle') {
       chunkCounterRef.current = 0
     }
+  }, [status])
+
+  // Effect to handle countdown for starting recording
+  useEffect(() => {
+    let countdownInterval: NodeJS.Timeout
+
+    if (startRecStartCountdown && status === 'idle') {
+      countdownInterval = setInterval(() => {
+        setRecStartCountdownRemainingDuration((prev) => {
+          if (prev <= 0) {
+            clearInterval(countdownInterval)
+            handleStartRecording()
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    }
+
+    return () => clearInterval(countdownInterval)
+  }, [startRecStartCountdown, status])
+
+  // Effect to handle countdown for stopping recording
+  useEffect(() => {
+    let stopCountdownInterval: NodeJS.Timeout
+
+    if (status === 'recording') {
+      stopCountdownInterval = setInterval(() => {
+        setRecStopCountdownRemainingDuration((prev) => {
+          if (prev <= 0) {
+            clearInterval(stopCountdownInterval)
+            handleStopRecording()
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    }
+
+    return () => clearInterval(stopCountdownInterval)
   }, [status])
 
   const getProgressProps = (): ProgressWithCountdownProps => {
@@ -419,13 +521,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
           value: recStartCountdownTime,
           format: 'mm:ss',
           onFinish: handleStartRecording,
-          onChange: (value: number) => {
-            setRecStartCountdownTime(Date.now() + value)
-            setRecStartCountdownRemainingDuration(value / 1000)
-            if (value <= 0) {
-              setStartRecStartCountdown(false)
-            }
-          },
           totalDuration: `00:${recStartCountdownTotalDuration} mins`,
         } : undefined,
       }
@@ -437,10 +532,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
           value: recStopCountdownTime,
           format: 'mm:ss',
           onFinish: handleStopRecording,
-          onChange: (value: number) => {
-            setRecStopCountdownTime(Date.now() + value)
-            setRecStopCountdownRemainingDuration(value / 1000)
-          },
           totalDuration: `${formatDuration(maxDuration)} mins`,
         },
       }
@@ -448,6 +539,14 @@ const MediaRecorderComponent: React.FC<Props> = ({
       return {
         percent: Math.round(_.mean(Object.values(percent))),
         label: 'Saving video...',
+        strokeColor: '#009C37',
+      }
+    }
+    if (recordingState === 'saved') {
+      return {
+        percent: 100,
+        label: 'Video Saved',
+        strokeColor: '#009C37',
       }
     }
     return {
@@ -456,8 +555,62 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
   }
 
+  const getCameraDevices = () : MenuProps['items'] => {
+    const items = devices.videoDevices.map(device => ({
+      key: device.deviceId,
+      label:
+  <span
+    role="button"
+    tabIndex={0}
+    onClick={() => handleChangeVideoDevice(device.deviceId)}
+  >
+    {device.label || `Camera ${device.deviceId}` }
+  </span>,
+    }))
+    return items
+  }
+
+  const getMicrophoneDevices = () : MenuProps['items'] => {
+    const audioDevices = devices.audioDevices.map(device => ({
+      key: device.deviceId,
+      label:
+  <span
+    role="button"
+    tabIndex={0}
+    onClick={() => handleChangeAudioDevice(device.deviceId)}
+  >
+    {device.label || `Microphone ${device.deviceId}` }
+  </span>,
+    }))
+    return audioDevices
+  }
+
+  const handleChangeVideoDevice = (deviceId : string) => {
+    setSelectedVideoDevice(deviceId)
+  }
+
+  const handleChangeAudioDevice = (deviceId : string) => {
+    setSelectedAudioDevice(deviceId)
+  }
+
   return (
     <Flex vertical justify="center" align="center" gap={4}>
+      <Flex className={styles.controls} justify="flex-end" align="flex-end" gap={8}>
+        <Dropdown menu={{ items: getMicrophoneDevices() }}>
+          <Space>
+            <AudioOutlined />
+            Mic
+            <DownOutlined />
+          </Space>
+        </Dropdown>
+        <Dropdown menu={{ items: getCameraDevices() }}>
+          <Space>
+            <VideoCameraOutlined />
+            Camera
+            <DownOutlined />
+          </Space>
+        </Dropdown>
+      </Flex>
       <VideoPlayer
         videoRef={videoRef}
         mediaUrl={existingVideoUrl || mediaBlobUrl}
@@ -473,17 +626,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         )}
         {controls}
       </Flex>
-      {recordingState === 'saving' && (
-        <Alert
-          type="info"
-          message={(
-            <Space>
-              <LoadingOutlined />
-              Finalizing upload...
-            </Space>
-          )}
-        />
-      )}
+
       {Object.keys(errors).map(key => (
         <Alert key={key} type="error" message={errors[key]} />
       ))}
