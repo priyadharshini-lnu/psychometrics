@@ -16,18 +16,13 @@ module CampaignFactors
     private
 
     def non_completed_assessor_user_assessments_exists?
-      campaign.user_assessments.
-        joins(:assessment).
-        joins(assessment: :factors_scoring).
-        where(user_assessments: { subject_id: user.id }).
-        where(assessments: { category: Assessment::CATEGORIES[:assessor_form] }).
-        where(factors_scoring: { factor_id: campaign_factor.factor_id }).
+      user_assessments_for_assessor_scoring.
         where.not(user_assessments: { status: :completed }).
         exists?
     end
 
-    def campaign
-      @campaign ||= campaign_factor.campaign
+    def user_assessments_for_assessor_scoring
+      GetUserAssessmentForAssessorScoring.new(campaign_factor, user).query
     end
   end
 end
