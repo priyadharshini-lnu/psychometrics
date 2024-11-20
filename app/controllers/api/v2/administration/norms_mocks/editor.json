@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Norma 1",
+    "factor_norms_props": {
+      "very_low": 10,
+      "low": 20,
+      "average": 30,
+      "high": 40,
+      "very_high": 50
+    }
+  },
+  {
+    "id": 2,
+    "name": "Norma 2",
+    "factor_norms_props": {
+      "very_low": 10,
+      "low": 20,
+      "average": 30,
+      "high": 40,
+      "very_high": 50
+    }
+  },
+  {
+    "id": 3,
+    "name": "Norma 3",
+    "factor_norms_props": {
+      "very_low": 10,
+      "low": 20,
+      "average": 30,
+      "high": 40,
+      "very_high": 50
+    }
+  },
+  {
+    "id": 4,
+    "name": "Norma 4",
+    "factor_norms_props": {
+      "very_low": 10,
+      "low": 20,
+      "average": 30,
+      "high": 40,
+      "very_high": 50
+    }
+  },
+  {
+    "id": 5,
+    "name": "Norma 5",
+    "factor_norms_props": {
+      "very_low": 10,
+      "low": 20,
+      "average": 30,
+      "high": 40,
+      "very_high": 50
+    }
+  }
+]
