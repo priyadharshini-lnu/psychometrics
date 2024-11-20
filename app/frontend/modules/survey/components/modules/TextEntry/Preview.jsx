@@ -72,6 +72,7 @@ class PreviewComponent extends Component {
           className="mb-4"
           html={I18n.tQuestion(model, 'questionText')}
           config="adminRichText"
+          id={`question-text-${model.id}`}
         />
         {this.renderAnswersType()}
       </div>
