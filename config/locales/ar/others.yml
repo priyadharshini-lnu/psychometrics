@@ -67,7 +67,7 @@ ar:
       next: التالي
       read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
       save: حفظ
-      submit: تسليم
+      submit: إرسال
     pickgrouprank:
       items: عناصر
     proceed: سأُتابع على أي حال
@@ -123,10 +123,10 @@ ar:
       resend_in: إعادة إرسال خلال %{timestamp} ثانية
       resend_success: إعادة إرسال رمز التحقق
       sms_description: الرجاء إدخال الرمز المؤقت الذي تم إرساله لهاتفك النقال
-      submit: تسليم
+      submit: إرسال
       title: كلمة السر لمرة واحدة
-    password: كلمه السر
-    password_confirmation: تأكيد كلمة المرور
+    password: كلمة المرور
+    password_confirmation: أدخل كلمة المرور الجديدة
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
     password_placeholder: أدخل كلمة مرور جديدة
     registration:
@@ -148,8 +148,8 @@ ar:
       submit: إعادة تعيين كلمة المرور
       title: هل نسيت كلمة السر؟
     set_password:
-      description: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
-      submit: تسليم
+      description: لإنشاء كلمة مرور جديدة، يُرجى إدخال كلمة المرور في الحقول أدناه
+      submit: إرسال
       title: أنشئ كلمة مرور
     sign_out: تسجيل خروج
     sign_up: تسجيل
@@ -771,7 +771,7 @@ ar:
     set_name_for_evaluator: عيين اسم مقيم
     setup_nominations: إعداد الترشيحات
     subject: الموضوع
-    submit: تسليم
+    submit: إرسال
     total_progress: مجموع التقدم المحرز
     user_name_input_placeholder: اكتب اسمك أو بريدك الإلكتروني...
     validation_errors: أخطاء التحقق من الصحة
