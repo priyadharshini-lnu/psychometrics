@@ -6,6 +6,7 @@ class HoganCredentialSerializer < Panko::Serializer
              :direct_assessment_id, :display_informed_consent, :return_url
 
   delegate :first_name, :last_name, to: :maskable_identity
+  delegate :user, to: :object
 
   def url
     Settings.secrets.hogan[:login_url]
@@ -40,7 +41,8 @@ class HoganCredentialSerializer < Panko::Serializer
                           participant_id: 'HASUserID', status: 'AssessmentStatus',
                           assessment_id: 'AssessmentID', domain: Settings.domain,
                           host: Settings.domain, subdomain: object.campaign.project.subdomain,
-                          port: Settings.port, protocol: Settings.protocol)
+                          port: Settings.port, protocol: Settings.protocol,
+                          jwt: jwt_token)
   end
 
   private
@@ -51,5 +53,9 @@ class HoganCredentialSerializer < Panko::Serializer
 
   def hogan_credential
     context[:hogan_credential]
+  end
+
+  def jwt_token
+    JWT.encode({ 'sub' => user.id, 'exp' => 2.hours.from_now.to_i }, Settings.secrets.encrypted_key.to_s, 'HS256')
   end
 end
