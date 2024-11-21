@@ -52,6 +52,7 @@ const Foundation = ({
   if (preview) {
     style.top = `${top}px`
     style.left = `${left}px`
+    style.transform = `rotate(${rotation || 0}deg)`
   } else {
     style.transform = `translate(${left}px,${top}px) rotate(${rotation || 0}deg)`
   }
