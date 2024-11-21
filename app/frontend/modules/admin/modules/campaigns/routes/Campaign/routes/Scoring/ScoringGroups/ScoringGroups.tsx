@@ -194,10 +194,15 @@ const ScoringGroupsComponent = (props: Props) => {
 
   const handleFactorSelect = (id: Key[], form) => {
     if (isFormValid(form)) {
-      setModifiedFactors(currModifiedFactors => ({
-        ...currModifiedFactors,
-        [currentFactor?.id as string]: form.getFieldsValue(),
-      }))
+      setModifiedFactors((currModifiedFactors) => {
+        const newModifiedFactors = { ...currModifiedFactors }
+        if (_.isMatch(currentFactor || {}, form.getFieldsValue())) {
+          delete newModifiedFactors[currentFactor?.id as string]
+        } else {
+          newModifiedFactors[currentFactor?.id as string] = form.getFieldsValue()
+        }
+        return newModifiedFactors
+      })
     }
     const factor = campaignFactorsLocalState.find(factor => factor.id === id[0])
     if (factor) {
@@ -383,15 +388,34 @@ const ScoringGroupsComponent = (props: Props) => {
       fetchAndUpdateFactors()
     })
   }
-
   const handleEditFactors = (form) => {
-    if (isFormValid(form)) {
-      // const payload = {
-      //   ...modifiedFactors,
-      //   [currentFactor?.id as string]: form.getFieldsValue(),
-      // }
-      // update campaign factor
+    const finalModifiedFactors = {
+      ...modifiedFactors,
     }
+    if (isFormValid(form)) {
+      finalModifiedFactors[currentFactor?.id as string] = form.getFieldsValue()
+    }
+    const payload: number[] = []
+
+    Object.keys(finalModifiedFactors).forEach((key) => {
+      const value = finalModifiedFactors[key]
+      campaignFactorsLocalState.forEach((factor) => {
+        if (factor.id === key) {
+          payload.push({
+            ...value,
+            campaignFactorGroupId: factor.campaignFactorGroupId,
+            position: factor.position,
+            campaign: { id: campaignId },
+            campaignFactorGroup: { id: factor.campaignFactorGroupId.toString() },
+          })
+        }
+      })
+    })
+
+    // TODO: integrate api for bulk edit
+    // return updateCampaignFactor(payload).then(() => {
+    //   fetchAndUpdateFactors()
+    // })
   }
 
   const handleEditFactor = (data): Promise<void> => {

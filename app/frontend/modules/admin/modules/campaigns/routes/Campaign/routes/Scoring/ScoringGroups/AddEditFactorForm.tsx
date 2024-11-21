@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined, SaveOutlined } from '@ant-design/icons'
 import { Key } from 'antd/lib/table/interface'
 import ResourceForm from '~/components/ResourceForm'
 import { slugify } from '~/utils/string'
@@ -341,7 +341,13 @@ export const AddEditFactorForm: FC<Props> = ({
       title={(
         <div className={styles.titleContainer}>
           <span>{title}</span>
-          <Button type="primary" htmlType="button" className="ml-auto" onClick={() => editFactors?.(form)}>
+          <Button
+            type="primary"
+            htmlType="button"
+            icon={<SaveOutlined />}
+            className="ml-auto"
+            onClick={() => editFactors?.(form)}
+          >
             {I18n.t('administration.scoring.save_all')}
           </Button>
         </div>
