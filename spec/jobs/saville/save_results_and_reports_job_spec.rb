@@ -209,6 +209,36 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
     end
 
     it 'marks user_assessment as completed and calculates scoring' do
+      response = %(
+        <AssessmentResult>
+          <ReceiptId>
+            <IdValue>#{saville_user_assessment.request_id}</IdValue>
+          </ReceiptId>
+          <Results>
+            <DetailResult>
+                <Description>Ratings Acquiescence</Description>
+                  <CompetencyAssessed>
+                    <CompetencyId idOwner="Saville Consulting">
+                      <IdValue name="Reference">WAVEFS_RATACQ</IdValue>
+                      <IdValue name="Type">Normative</IdValue>
+                    </CompetencyId>
+                  </CompetencyAssessed>
+                <Score type="sten">1</Score>
+              </DetailResult>
+              <DetailResult>
+                <Description>Consistency of Rankings</Description>
+                <CompetencyAssessed>
+                  <CompetencyId idOwner="Saville Consulting">
+                    <IdValue name="Reference">WAVEFS_CONRANK</IdValue>
+                    <IdValue name="Type">Ipsative</IdValue>
+                  </CompetencyId>
+                </CompetencyAssessed>
+                <Score type='Percentile'>2.0</Score>
+              </DetailResult>
+          </Results>
+        </AssessmentResult>
+      )
+
       dimension = user_assessment.assessment.dimension
       external_scoring = [{
         'type' => 'norm_score',
@@ -224,7 +254,7 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
         user_id: user_assessment.subject_id, pdf: nil, status: :not_prepared)
 
       perform_enqueued_jobs do
-        described_class.new.perform(score_response)
+        described_class.new.perform(response)
 
         scores = user_assessment.users_result.reload.external_results['scores']
         expect(scores).to eq(
