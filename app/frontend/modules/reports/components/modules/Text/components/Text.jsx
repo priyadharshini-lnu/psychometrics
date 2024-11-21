@@ -216,29 +216,6 @@ class Text extends Component {
       moduleOverrides,
     } = this.props
 
-    if (sourceType === 'ResponseText') {
-      const question = _.find(questions, { id: modelQuestion })
-      if (!question) { return null }
-      const QuestionTypeModel = ResponseTextByQuestionType[question.type]
-      const particularResult = _.get(ResultStore, ['results', assessmentId, 'questions', question.id, 0])
-      if (!QuestionTypeModel) {
-        // eslint-disable-next-line no-console
-        console.error(`QuestionTypeModel for ResponseText is not found by question ${question}`)
-        return null
-      }
-      return (
-        <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
-          <QuestionTypeModel
-            result={particularResult}
-            model={model}
-            question={question}
-            isReal={ResultStore.realResults}
-            preview={preview}
-          />
-        </div>
-      )
-    }
-
     if (preview) {
       const override = _.find(moduleOverrides, { moduleId: model.id })
 
@@ -250,6 +227,29 @@ class Text extends Component {
             className={cs(styles.editor)}
             config="adminRichText"
           />
+        )
+      }
+
+      if (sourceType === 'ResponseText') {
+        const question = _.find(questions, { id: modelQuestion })
+        if (!question) { return null }
+        const QuestionTypeModel = ResponseTextByQuestionType[question.type]
+        const particularResult = _.get(ResultStore, ['results', assessmentId, 'questions', question.id, 0])
+        if (!QuestionTypeModel) {
+          // eslint-disable-next-line no-console
+          console.error(`QuestionTypeModel for ResponseText is not found by question ${question}`)
+          return null
+        }
+        return (
+          <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
+            <QuestionTypeModel
+              result={particularResult}
+              model={model}
+              question={question}
+              isReal={ResultStore.realResults}
+              preview={preview}
+            />
+          </div>
         )
       }
 
