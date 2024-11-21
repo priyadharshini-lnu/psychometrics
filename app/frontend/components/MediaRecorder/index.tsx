@@ -1,11 +1,14 @@
+// Refer to the below gist for code which has a buffer time logic before recording starts
+// https://gist.github.com/ruthvik-mandapati/ac0a60719554b8cd08e57fbe2488dac3
+
 import {
   useState, useRef, useEffect, useCallback,
 } from 'react'
 import axios, { AxiosResponse, AxiosProgressEvent } from 'axios'
 import _ from 'lodash'
 import {
-  Button, Flex, Alert, Space,
-  Dropdown,
+  Button, Flex, Alert,
+  Select,
 } from 'antd'
 import {
   DeleteOutlined, StopOutlined, VideoCameraOutlined, LoadingOutlined,
@@ -13,8 +16,8 @@ import {
   AudioOutlined,
   CheckCircleFilled,
 } from '@ant-design/icons'
-import type { MenuProps } from 'antd'
 import { useReactMediaRecorder } from './components/MediaRecorder'
+import { useRecording } from '~/context/RecordingContext'
 import VideoPlayer from './components/VideoPlayer'
 import ProgressWithCountdown, { ProgressWithCountdownProps } from './components/ProgressWIthCountdown'
 import styles from './styles.less'
@@ -72,11 +75,12 @@ const formatDuration = (durationInSeconds: number): string => {
 const MediaRecorderComponent: React.FC<Props> = ({
   mediaUrl, questionId, maxDuration, mediaResponse,
 }) => {
+  const { isRecording, startVideoRecording, stopVideoRecording } = useRecording()
+
   const [permissionGranted, setPermissionGranted] = useState<boolean>(false)
   const [devices, setDevices] = useState<DeviceDetails>({ videoDevices: [], audioDevices: [] })
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
   const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
-  const [streamReady, setStreamReady] = useState<boolean>(false)
   const [visualizing, setVisualizing] = useState<boolean>(false)
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [percent, setPercent] = useState<Record<string, number>>({})
@@ -91,15 +95,9 @@ const MediaRecorderComponent: React.FC<Props> = ({
   const urlDetailsRef = useRef<UrlDetails | null>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
 
-  const [recStartCountdownTime, setRecStartCountdownTime] = useState<number>(Date.now()
-      + 1000 * recStartCountdownTotalDuration)
-  const [recStartCountdownRemainingDuration, setRecStartCountdownRemainingDuration] = useState<number>(
-    recStartCountdownTotalDuration,
-  )
   const [recStopCountdownRemainingDuration, setRecStopCountdownRemainingDuration] = useState<number>(
     maxDuration,
   )
-  const [startRecStartCountdown, setStartRecStartCountdown] = useState<boolean>(false)
   const [recStopCountdownTime, setRecStopCountdownTime] = useState<number>(Date.now() + 1000 * maxDuration)
   const [existingVideoUrl, setExistingVideoUrl] = useState<string | null>(mediaResponse?.url || null)
   const [existingMedia, setExistingMedia] = useState<Props['mediaResponse']>(mediaResponse)
@@ -158,10 +156,10 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }, [mediaUrl, questionId, supportedMimeType])
 
   useEffect(() => {
-    if (!existingMedia.id) {
+    if (!existingMedia?.id) {
       getUploadUrl()
     }
-  }, [getUploadUrl, existingMedia.id])
+  }, [getUploadUrl, existingMedia?.id])
 
   const chunkCounterRef = useRef<number>(0)
 
@@ -237,6 +235,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       handleRecordingSaved()
       resetMultipartUpload()
       successMessage()
+      stopVideoRecording()
     } catch (error) {
       console.error('Error completing media upload:', error)
       setError('complete')('An unknown error occurred while completing the upload')
@@ -298,14 +297,10 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream
-        videoRef.current.onloadedmetadata = () => {
-          setStreamReady(true)
-          setRecStartCountdownTime(Date.now() + 1000 * recStartCountdownTotalDuration)
-          setRecStartCountdownRemainingDuration(recStartCountdownTotalDuration)
-          setStartRecStartCountdown(true)
-        }
       }
       setPermissionGranted(true)
+      startVideoRecording()
+      handleStartRecording()
     } catch (error) {
       console.error('Permission denied:', error)
       setError('permission')('Failed to access camera and microphone')
@@ -323,16 +318,12 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const resetRecorder = useCallback((): void => {
     setPermissionGranted(false)
-    setStreamReady(false)
     setVisualizing(false)
     setStream(null)
     setRecordingState('recording')
     setErrors({})
     setIsUploading(false)
-    setStartRecStartCountdown(false)
-    setRecStartCountdownRemainingDuration(recStartCountdownTotalDuration)
     setRecStopCountdownRemainingDuration(maxDuration)
-    setRecStartCountdownTime(Date.now() + 1000 * recStartCountdownTotalDuration)
     setRecStopCountdownTime(Date.now() + 1000 * maxDuration)
 
     if (mediaStreamRef.current) {
@@ -357,7 +348,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       try {
         await axios.delete(`${mediaUrl}/remove_media`, {
           headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
-          data: { media_id: existingMedia.id },
+          data: { media_id: existingMedia?.id },
         })
         setExistingVideoUrl(null)
         clearBlobUrl()
@@ -374,6 +365,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }, [mediaUrl, existingMedia, clearBlobUrl, resetRecorder])
 
   const handleStopRecording = useCallback((): void => {
+    stopVideoRecording()
     stopRecording()
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
@@ -382,7 +374,9 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }, [stopRecording])
 
   const handleStartRecording = useCallback((): void => {
-    startRecording()
+    if (!isRecording) {
+      startRecording()
+    }
     setRecStopCountdownTime(Date.now() + 1000 * maxDuration)
     setRecStopCountdownRemainingDuration(maxDuration)
   }, [startRecording, maxDuration])
@@ -427,9 +421,9 @@ const MediaRecorderComponent: React.FC<Props> = ({
         onClick={handleRequestPermission}
         type="primary"
         icon={<VideoCameraOutlined />}
-        disabled={startRecStartCountdown} // Disable the button during countdown
+        disabled={isRecording}
       >
-        {startRecStartCountdown ? 'Starting Soon...' : 'Start Recording'}
+        Start Recording
       </Button>
     )
   }
@@ -464,42 +458,15 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }, 3000)
   }
 
-  useEffect(() => {
-    // Reset chunk counter when starting a new recording
-    if (status === 'idle') {
-      chunkCounterRef.current = 0
-    }
-  }, [status])
-
   // Effect to handle countdown for starting recording
   useEffect(() => {
     let countdownInterval: NodeJS.Timeout
 
-    if (startRecStartCountdown && status === 'idle') {
-      countdownInterval = setInterval(() => {
-        setRecStartCountdownRemainingDuration((prev) => {
-          if (prev <= 0) {
-            clearInterval(countdownInterval)
-            handleStartRecording()
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
-    }
-
-    return () => clearInterval(countdownInterval)
-  }, [startRecStartCountdown, status])
-
-  // Effect to handle countdown for stopping recording
-  useEffect(() => {
-    let stopCountdownInterval: NodeJS.Timeout
-
     if (status === 'recording') {
-      stopCountdownInterval = setInterval(() => {
+      countdownInterval = setInterval(() => {
         setRecStopCountdownRemainingDuration((prev) => {
           if (prev <= 0) {
-            clearInterval(stopCountdownInterval)
+            clearInterval(countdownInterval)
             handleStopRecording()
             return 0
           }
@@ -508,32 +475,30 @@ const MediaRecorderComponent: React.FC<Props> = ({
       }, 1000)
     }
 
-    return () => clearInterval(stopCountdownInterval)
+
+    return () => clearInterval(countdownInterval)
   }, [status])
 
+
   const getProgressProps = (): ProgressWithCountdownProps => {
-    if (status === 'idle') {
+    const getCountdownProps = (value: number, onFinish: () => void, totalDuration: string) => ({
+      value,
+      format: 'mm:ss',
+      onFinish,
+      totalDuration,
+    })
+
+    if (status === 'idle' && !existingVideoUrl) {
       return {
-        percent: ((recStartCountdownTotalDuration
-            - recStartCountdownRemainingDuration) / recStartCountdownTotalDuration) * 100,
-        label: 'Recording will start in',
-        countdownProps: startRecStartCountdown ? {
-          value: recStartCountdownTime,
-          format: 'mm:ss',
-          onFinish: handleStartRecording,
-          totalDuration: `00:${recStartCountdownTotalDuration} mins`,
-        } : undefined,
+        percent: 0,
+        label: `Recording will last for 00:${recStartCountdownTotalDuration} mins`,
       }
     } if (status === 'recording') {
       return {
         percent: ((maxDuration - recStopCountdownRemainingDuration) / maxDuration) * 100,
         label: 'Recording will stop in',
-        countdownProps: {
-          value: recStopCountdownTime,
-          format: 'mm:ss',
-          onFinish: handleStopRecording,
-          totalDuration: `${formatDuration(maxDuration)} mins`,
-        },
+        countdownProps: getCountdownProps(recStopCountdownTime,
+          handleStopRecording, `${formatDuration(maxDuration)} mins`),
       }
     } if (isUploading) {
       return {
@@ -542,7 +507,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         strokeColor: '#009C37',
       }
     }
-    if (recordingState === 'saved') {
+    if (recordingState === 'saved' || existingVideoUrl) {
       return {
         percent: 100,
         label: 'Video Saved',
@@ -555,32 +520,18 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
   }
 
-  const getCameraDevices = () : MenuProps['items'] => {
+  const getCameraDevices = () => {
     const items = devices.videoDevices.map(device => ({
-      key: device.deviceId,
-      label:
-  <span
-    role="button"
-    tabIndex={0}
-    onClick={() => handleChangeVideoDevice(device.deviceId)}
-  >
-    {device.label || `Camera ${device.deviceId}` }
-  </span>,
+      value: device.deviceId,
+      label: device.label || `Camera ${device.deviceId}`,
     }))
     return items
   }
 
-  const getMicrophoneDevices = () : MenuProps['items'] => {
+  const getMicrophoneDevices = () => {
     const audioDevices = devices.audioDevices.map(device => ({
-      key: device.deviceId,
-      label:
-  <span
-    role="button"
-    tabIndex={0}
-    onClick={() => handleChangeAudioDevice(device.deviceId)}
-  >
-    {device.label || `Microphone ${device.deviceId}` }
-  </span>,
+      value: device.deviceId,
+      label: device.label || `Microphone ${device.deviceId}`,
     }))
     return audioDevices
   }
@@ -595,21 +546,27 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   return (
     <Flex vertical justify="center" align="center" gap={4}>
-      <Flex className={styles.controls} justify="flex-end" align="flex-end" gap={8}>
-        <Dropdown menu={{ items: getMicrophoneDevices() }}>
-          <Space>
-            <AudioOutlined />
-            Mic
-            <DownOutlined />
-          </Space>
-        </Dropdown>
-        <Dropdown menu={{ items: getCameraDevices() }}>
-          <Space>
-            <VideoCameraOutlined />
-            Camera
-            <DownOutlined />
-          </Space>
-        </Dropdown>
+      <Flex className={styles.controls} justify="flex-end" align="flex-end">
+        <AudioOutlined style={{ alignSelf: 'center' }} />
+        <Select
+          placeholder={<p style={{ color: '#000', margin: 0 }}>Mic</p>}
+          onChange={handleChangeAudioDevice}
+          suffixIcon={<DownOutlined style={{ color: '#000' }} />}
+          variant="borderless"
+          disabled={status === 'recording'}
+          dropdownStyle={{ minWidth: '300px' }}
+          options={getMicrophoneDevices()}
+        />
+        <VideoCameraOutlined style={{ alignSelf: 'center' }} />
+        <Select
+          disabled={status === 'recording'}
+          placeholder={<p style={{ color: '#000', margin: 0 }}>Camera</p>}
+          dropdownStyle={{ minWidth: '300px' }}
+          suffixIcon={<DownOutlined style={{ color: '#000' }} />}
+          onChange={handleChangeVideoDevice}
+          variant="borderless"
+          options={getCameraDevices()}
+        />
       </Flex>
       <VideoPlayer
         videoRef={videoRef}
@@ -621,9 +578,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         getMediaStream={getMediaStream}
       />
       <Flex vertical justify="center" align="center" gap={4}>
-        {permissionGranted && streamReady && (
         <ProgressWithCountdown {...getProgressProps()} />
-        )}
         {controls}
       </Flex>
 
