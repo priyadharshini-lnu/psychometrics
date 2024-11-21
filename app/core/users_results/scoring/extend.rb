@@ -34,7 +34,7 @@ module UsersResults
 
         extended_scoring = ::UsersResults::Scoring::AddScore.call!(
           factor_hash, factor_hash.keys, scoring, norm, factor_norm_hash, external_results, factors_question_count,
-          answers
+          Set.new, answers
         )
 
         broadcast :ok, extended_scoring
