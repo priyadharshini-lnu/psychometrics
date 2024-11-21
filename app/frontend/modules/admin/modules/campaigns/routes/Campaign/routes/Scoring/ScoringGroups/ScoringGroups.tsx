@@ -20,6 +20,7 @@ import { useParams } from 'react-router-dom'
 
 import { ConnectedProps, connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { Key } from 'antd/lib/table/interface'
 import { useResources } from '~/hooks/useResources'
 import { AddGroupForm } from './AddGroupForm'
 import { AddEditFactorForm } from './AddEditFactorForm'
@@ -71,6 +72,7 @@ const ScoringGroupsComponent = (props: Props) => {
   const recentlyMovedToNewContainer = useRef(false)
   const { modal, message } = App.useApp()
   const { campaignPermissions, importFactors, loading } = props
+  const [modifiedFactors, setModifiedFactors] = useState({})
 
   const {
     createResource: initializeScoring,
@@ -181,6 +183,26 @@ const ScoringGroupsComponent = (props: Props) => {
   const handleOpenEditFactor = (factor: CampaignFactor) => {
     setCurrentFactor(factor)
     setOpenAddEditFactor({ open: true, mode: 'edit' })
+  }
+
+  const isFormValid = (form) => {
+    if (!form.isFieldsTouched()) return false
+    const errorFields = form.getFieldsError().some(field => field.errors.length)
+    if (errorFields) return false
+    return true
+  }
+
+  const handleFactorSelect = (id: Key[], form) => {
+    if (isFormValid(form)) {
+      setModifiedFactors(currModifiedFactors => ({
+        ...currModifiedFactors,
+        [currentFactor?.id as string]: form.getFieldsValue(),
+      }))
+    }
+    const factor = campaignFactorsLocalState.find(factor => factor.id === id[0])
+    if (factor) {
+      handleOpenEditFactor(factor)
+    }
   }
 
   const handleGroupDragnDrop = (activeId: string, overId: string) => {
@@ -360,6 +382,16 @@ const ScoringGroupsComponent = (props: Props) => {
     return addCampaignFactor(newFactor).then(() => {
       fetchAndUpdateFactors()
     })
+  }
+
+  const handleEditFactors = (form) => {
+    if (isFormValid(form)) {
+      // const payload = {
+      //   ...modifiedFactors,
+      //   [currentFactor?.id as string]: form.getFieldsValue(),
+      // }
+      // update campaign factor
+    }
   }
 
   const handleEditFactor = (data): Promise<void> => {
@@ -641,11 +673,17 @@ const ScoringGroupsComponent = (props: Props) => {
         onClose={() => {
           setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
           setCurrentFactor(undefined)
+          setModifiedFactors({})
         }}
-        factorData={currentFactor}
+        factorData={modifiedFactors[currentFactor?.id as string] ?? currentFactor}
         editFactor={handleEditFactor}
         title={openAddEditFactor.mode === 'edit'
           ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
+        totalFactors={campaignFactorsLocalState}
+        groupName={sortedGroups}
+        handleFactorSelect={handleFactorSelect}
+        dirtyFactors={modifiedFactors}
+        editFactors={handleEditFactors}
       />
       <ManageVariablesForm
         open={openVariablesForm}
