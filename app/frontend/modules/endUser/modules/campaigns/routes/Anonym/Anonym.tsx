@@ -31,7 +31,8 @@ type Props = PropsFromRedux & OwnProps
 
 const AnonymComponent: React.FC<Props> = ({
   anonym: {
-    loaded, error, assessment, results: { agileUserAssessmentUrl },
+    loaded, error, assessment,
+    results: { agileUserAssessmentUrl, agileUserAssessmentId },
   },
   fetchResult,
 }) => {
@@ -43,7 +44,7 @@ const AnonymComponent: React.FC<Props> = ({
   if (!loaded || error) { return null }
 
   return assessment.category === 'agile'
-    ? <AgileUserAssessment agileUserAssessmentUrl={agileUserAssessmentUrl} />
+    ? <AgileUserAssessment {...{ agileUserAssessmentUrl, agileUserAssessmentId }} />
     : <CommonAssessment />
 }
 
