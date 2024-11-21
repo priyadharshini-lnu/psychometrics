@@ -10,6 +10,7 @@ interface Props {
   gapType: GapType
   sourceType: 'Factor' | 'Question'
   filter: Array<number>
+  tableStyle: TableStyleType
   questionsChoices: Array<{ questionId: number; choiceIds: Array<number> }>
   factorIds: Array<number>
   hideValues: boolean
@@ -23,4 +24,9 @@ export enum GapType {
   ALL = 0,
   POSITIVE = 1,
   NEGATIVE = 2,
+}
+
+export enum TableStyleType {
+  UNSTYLED = 'default',
+  MINIMAL = 'minimal',
 }

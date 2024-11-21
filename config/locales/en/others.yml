@@ -1237,8 +1237,7 @@ en:
       export_raw_labels: Raw (with labels)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
-      export_result: Export Result
-      export_scores: Export Scores
+      export_scores: Scores
       export_scoring: Scoring
       factor_benchmark_score: Factor Benchmark Score
       import_raw: Raw
@@ -1506,6 +1505,7 @@ en:
       edit: Edit
       export: Export
       filter_by_tags: Filter by tags
+      import: Import
       insert: Insert
       ok: OK
       remove: Remove

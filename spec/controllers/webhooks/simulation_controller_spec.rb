@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Webhooks::SimulationController, type: :controller do
   let(:project) { create(:project) }
-  let(:assessment) { create(:assessment, project: project) }
+  let(:assessment) { create(:assessment, :simulation, project: project) }
   let(:user_assessment) { create(:user_assessment, assessment: assessment, project: project) }
   let(:user_result) { create(:users_result, user_assessment: user_assessment) }
   let(:jwt_token) do
@@ -21,6 +21,35 @@ RSpec.describe Webhooks::SimulationController, type: :controller do
         progress: 1,
         token: jwt_token
       }.to_json
+    end
+
+    let(:decisions) do
+      {
+        'wfra_labor' => 60_000,
+        'pitchSolution' => {
+          'rankings' => {
+            '1A' => 2,
+            '1B' => 3,
+            '1C' => 1,
+            '2C1' => 3,
+            '2C2' => 2,
+            '2C3' => 1,
+            '3I1' => 2,
+            '3I2' => 3,
+            '3I3' => 1
+          },
+          'takenOptions' => %w[
+            1C
+            2C3
+            3I3
+          ]
+        },
+        'communityNeeds' => %w[
+          restorationOfElectricity
+          accessToCleanDrinkingWater
+          supplyOfLuxuryFoodItems
+        ]
+      }
     end
 
     before do
@@ -77,34 +106,25 @@ RSpec.describe Webhooks::SimulationController, type: :controller do
         end
       end
 
-      context 'when user_assessment is completed' do
-        before do
-          allow(user_assessment).to receive(:completed?).and_return(true)
-        end
-
-        it 'enqueues the Simulation::SaveScoresAndReportJob' do
-          expect(Simulation::SaveScoresAndReportJob).to receive(:perform_later).with(user_assessment)
-          post :progress_notification, params: { project_id: project.id }, body: json_payload
-        end
-      end
-
-      context 'when assessment is timed out' do
+      context 'when event is decisions_available' do
         let(:json_payload) do
           {
-            event: 'progress_update',
+            event: 'decisions_available',
             userId: '22d87cc0-d911-4ca8-9913-1a48520b04c0',
             simulationId: '22d87cc0-d911-4ca8-9913-1a48520b04c0',
-            timedOut: true,
-            progress: 0.6,
-            token: jwt_token
+            decisions: decisions,
+            jwt_token: jwt_token
           }.to_json
         end
 
-        it 'does update the user assessment as timed out' do
+        it 'saves answers and set assessment completed' do
           post :progress_notification, params: { project_id: project.id }, body: json_payload
 
-          expect(user_assessment.reload).to be_timed_out
-          expect(user_assessment.completion_reason).to eq('time_out_offline')
+          expect(response).to have_http_status(:ok)
+          expect(user_assessment.users_result.reload.answers).to eq(
+            decisions
+          )
+          expect(user_assessment.reload).to be_completed
         end
       end
 

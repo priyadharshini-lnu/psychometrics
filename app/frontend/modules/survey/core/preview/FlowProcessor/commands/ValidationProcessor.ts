@@ -32,9 +32,15 @@ const ValidationProcessor = {
             value: Utils.removeTags(answer.value),
           }
         })
-        const answers = isRichTextTextEntryQuestion(question) && result.answers
-          ? removeTags(result.answers) : result.answers
-        const resultModel = new Result(qwrap, answers, result.not_applicable, results, answeredQuestions)
+
+        let richTextEditorAnswerWordsCount = 0
+        let { answers } = result
+        if (isRichTextTextEntryQuestion(question)) {
+          richTextEditorAnswerWordsCount = result.richTextEditorAnswerWordCount
+          answers = removeTags(result.answers)
+        }
+        const resultModel = new Result(qwrap, answers, result.not_applicable,
+          results, answeredQuestions, richTextEditorAnswerWordsCount)
         err = resultModel.validate()
       }
 
