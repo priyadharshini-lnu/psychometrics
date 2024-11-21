@@ -134,6 +134,7 @@ module Administration
             export_threesixty_scores
             bulk_regenerate_reports
             import_results
+            bulk_download
           ],
           {
             project_id: threesixty_campaign.campaign.project_id,

@@ -1,5 +1,4 @@
 import CellProperties from './CommonProperties/CellProperties'
-import PageProperties from './CommonProperties/PageProperties'
 import ImageProperties from './Image/components/Properties'
 
 import Text, { TextProperties } from './Text'
@@ -20,7 +19,6 @@ const Modules = {
 
 const Properties = {
   CellProperties,
-  PageProperties,
   TextProperties,
   ImageProperties,
   ShapeProperties,

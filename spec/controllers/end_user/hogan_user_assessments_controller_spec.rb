@@ -11,10 +11,10 @@ RSpec.describe EndUser::HoganUserAssessmentsController, type: :controller do
   let(:async_request_uuid) { "#{uuid}|#{user.id}" }
   let(:request_params) { { id: user_assessment.id, hogan_user_assessment: { id: user_assessment.id } } }
 
-  before(:each) { login_user(user) }
-  after(:each) { sign_out(user) }
-
   describe 'POST #pass' do
+    before(:each) { login_user(user) }
+    after(:each) { sign_out(user) }
+
     before do
       allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
       allow(AsyncRequestHandlerJob).to receive(:perform_later)
@@ -42,6 +42,76 @@ RSpec.describe EndUser::HoganUserAssessmentsController, type: :controller do
         post :pass, params: request_params
 
         expect(response).to redirect_to(campaign_path(user_assessment.campaign_id))
+      end
+    end
+  end
+
+  describe 'GET #redirect' do
+    before(:each) do
+      user.update(project: campaign.project)
+      allow(GetProjectBySubdomain).to receive(:call!).and_return(campaign.project)
+    end
+
+    context 'valid jwt token is passed' do
+      let(:jwt_token) do
+        JWT.encode({ 'sub' => user.id, 'exp' => 2.hours.from_now.to_i }, Settings.secrets.encrypted_key.to_s, 'HS256')
+      end
+
+      let(:params) do
+        {
+          jwt: jwt_token,
+          status: 'Completed',
+          id: user_assessment.id
+        }
+      end
+
+      it 'updates the user assessment status to completed' do
+        get :redirect, params: params
+
+        expect(response).to redirect_to(assessment_completed_path(user_assessment.campaign,
+                                                                  user_assessment_id: user_assessment.id))
+        expect(user_assessment.reload.status).to eq('completed')
+      end
+    end
+
+    context 'invalid jwt token is passed' do
+      let(:jwt_token) do
+        JWT.encode({ 'sub' => user.id, 'exp' => 2.hours.from_now.to_i }, 'random secret', 'HS256')
+      end
+
+      let(:params) do
+        {
+          jwt: jwt_token,
+          status: 'Completed',
+          id: user_assessment.id
+        }
+      end
+
+      it 'do not updates the user assessment status to completed' do
+        get :redirect, params: params
+
+        expect(response).to redirect_to(new_user_session_path)
+        expect(user_assessment.reload.status).not_to eq('completed')
+      end
+    end
+
+    context 'when jwt with expired token passed' do
+      let(:jwt_token) do
+        JWT.encode({ 'sub' => user.id, 'exp' => 1.hour.before.to_i }, Settings.secrets.encrypted_key.to_s, 'HS256')
+      end
+
+      let(:params) do
+        {
+          jwt: jwt_token,
+          status: 'Completed',
+          id: user_assessment.id
+        }
+      end
+
+      it 'updates the user assessment status to completed and show log in screen' do
+        get :redirect, params: params
+
+        expect(user_assessment.reload.status).to eq('completed')
       end
     end
   end

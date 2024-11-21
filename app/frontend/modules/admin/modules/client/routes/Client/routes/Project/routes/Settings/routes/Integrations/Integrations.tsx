@@ -18,7 +18,7 @@ import { isRequestInProgress } from '~/core/request'
 import { IntegrationFormModal } from './IntegrationFormModal'
 import routeUtils from '~/utils/route'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
-
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { Column } = Table
 
@@ -53,7 +53,7 @@ const IntegrationsComponent: React.FC<Props> = ({
   isDeleteRequestInProgress,
 }) => {
   const { projectId } = useParams() as { projectId: string }
-
+  const { width: windowWidth } = useWindowSize()
   const navigate = useNavigate()
   const prefix = `${settings.urlPrefix}/:projectId/settings`
 
@@ -86,9 +86,10 @@ const IntegrationsComponent: React.FC<Props> = ({
             {I18n.t('administration.integrations.actions.add')}
           </Button>
 
-          <Table dataSource={integrations} pagination={false}>
+          <Table dataSource={integrations} pagination={false} scroll={{ x: 'max-content' }}>
             <Column
               title={I18n.t('common.column.status')}
+              fixed={windowWidth > 800 ? 'left' : undefined}
               render={({ active }) => (
                 <Badge status={active ? 'success' : 'default'} text={active ? 'Active' : 'Inactive'} />
               )}
@@ -142,6 +143,7 @@ const IntegrationsComponent: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('common.column.action')}
+              fixed={windowWidth > 800 ? 'right' : undefined}
               render={integration => (
                 <Space size="middle">
                   {integration.name === 'mettl' && (

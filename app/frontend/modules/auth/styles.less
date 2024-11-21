@@ -94,3 +94,14 @@ body {
     object-position: top right;
   }
 }
+
+:global {
+  a:focus-visible {
+    outline-offset: 2px;
+    outline: 3px solid var(--ant-primary-3);
+  }
+}
+
+a:hover {
+  text-decoration: underline !important;
+}

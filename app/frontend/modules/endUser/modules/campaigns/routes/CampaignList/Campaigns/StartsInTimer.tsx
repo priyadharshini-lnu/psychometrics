@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
-import { Descriptions, Space } from 'antd'
-import { ClockCircleOutlined, LoadingOutlined } from '@ant-design/icons'
+import { Space } from 'antd'
+import { ClockCircleOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { CountdownTimer } from '~/glint'
@@ -54,11 +54,11 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
   return (
     <Space direction="vertical">
       {campaign.timing && (
-        <Descriptions size="small">
-          <Descriptions.Item label={I18n.t('campaigns.card.duration')}>
-            <TimerText textType="none" text={duration()} />
-          </Descriptions.Item>
-        </Descriptions>
+        <Space size="small">
+          {I18n.t('campaigns.card.duration')}
+          :
+          <TimerText textType="none" text={duration()} />
+        </Space>
       )}
       {scheduledForFuture
         && hoursRemaining >= 24 && I18n.t('campaigns.card.starts_on', { date })}

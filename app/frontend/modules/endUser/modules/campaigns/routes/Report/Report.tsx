@@ -3,9 +3,9 @@ import { PageHeader } from '@ant-design/pro-layout'
 import {
   Layout, Button, App, Row, Col, Typography, notification,
 } from 'antd'
-import { DownloadOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
@@ -79,6 +79,7 @@ const ReportComponent = ({
 
   return (
     <>
+      <title>{`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}</title>
       <GlintPageHeader />
       <Content className={styles.pageContent}>
         <PageHeader

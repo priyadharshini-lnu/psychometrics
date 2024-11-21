@@ -11,6 +11,10 @@ module Api
         has_permission?(:dashboards, :view, campaign_id: record.campaign_id)
       end
 
+      def oracle_analytics_embed?
+        user.admin?
+      end
+
       def create?
         can_manage_dashboard?
       end

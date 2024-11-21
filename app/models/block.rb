@@ -21,6 +21,8 @@ class Block < ApplicationRecord
   before_save :dup_for_template, if: :save_as_template
   after_update :sync_with_template, if: :template
 
+  after_commit :invalidate_assessment_cache
+
   acts_as_list scope: :assessment_id
   enum view: { assessments: 0, templates: 1 }
 
@@ -80,5 +82,11 @@ class Block < ApplicationRecord
 
   def sync_with_template
     template.update(general_attributes)
+  end
+
+  private
+
+  def invalidate_assessment_cache
+    assessment&.invalidate_cache
   end
 end

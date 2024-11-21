@@ -6,7 +6,6 @@ import {
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
-import useUpdate from '~/hooks/useUpdate'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import PropertyPixelOrPercent from '~/modules/reports/components/PropertyPixelOrPercent'
@@ -16,14 +15,14 @@ import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphProperty
 const { I18n } = window
 
 const connector = connect(
-  (state: RootState, { model }: OwnProps) => ({
-    questions: getQuestions(state.report, model.assessment_id),
+  (state: RootState, { modules }: OwnProps) => ({
+    questions: getQuestions(state.report, modules[0].assessment_id),
   }),
   {},
 )
 
 interface OwnProps {
-  model: PropertiesModel
+  modules: PropertiesModel[]
   questions?: Record<string, unknown>
 }
 
@@ -60,50 +59,61 @@ const axisDisplayOptions: AxisDisplayOptions [] = [
   { label: I18n.t('reports.builder.graph.properties.reverse'), propName: 'reverse' },
 ]
 
-const Properties: React.FC<Props> = ({ model, questions }: Props) => {
-  const forceUpdate = useUpdate()
-  const update = () => {
-    model.update()
-    forceUpdate()
+const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
+  const model = modules[0]
+
+  const updateAll = (cb?) => {
+    modules.forEach((module) => {
+      cb?.(module)
+      module.update()
+    })
   }
 
   const changeDataFormat = (value: string) => {
-    model.props.dataFormat = value
-    update()
+    updateAll((model) => {
+      model.props.dataFormat = value
+    })
   }
 
   const change3D = (value: string) => {
-    model.props.graphicalRepresentation = value
-    update()
+    updateAll((model) => {
+      model.props.graphicalRepresentation = value
+    })
   }
 
   const changeBarBorderRadius = (value: string) => {
-    model.props.barBorderRadius = value
-    update()
+    updateAll((model) => {
+      model.props.barBorderRadius = value
+    })
   }
   const changeBarBorderRadiusType = (value: boolean) => {
-    model.props.barBorderRadiusType = value
-    update()
+    updateAll((model) => {
+      model.props.barBorderRadiusType = value
+    })
   }
 
   const changeGraphicalPosition = (value: string) => {
-    model.props.graphicalPosition = value
-    update()
+    updateAll((model) => {
+      model.props.graphicalPosition = value
+    })
   }
 
   const changeLegendPosition = (value: string) => {
-    model.props.legendPosition = value
-    update()
+    updateAll((model) => {
+      model.props.legendPosition = value
+    })
   }
 
   const changeMaxValue = (value: string) => {
-    model.props.maxValue = value !== '' ? value : null
-    update()
+    updateAll((model) => {
+      model.props.maxValue = value !== '' ? value : null
+    })
   }
 
   const checkboxHandler = (type: string, e: CheckboxChangeEvent) => {
-    model.props[type] = e.target.checked
-    update()
+    updateAll((model) => {
+      model.props[type] = e.target.checked
+    })
   }
   if (!model.props.source || !model.getSourceType()) {
     return null

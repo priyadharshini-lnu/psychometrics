@@ -191,6 +191,48 @@ assessments and reports.'
           expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_two.id)
         end
       end
+
+      response '200', 'New user created with campaign schedule' do
+        schema '$ref' => '#/definitions/User'
+        examples 'application/json' => {
+          id: 14_602,
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          created_at: '2019-03-04T15:47:33.570+04:00',
+          updated_at: '2019-03-04T15:47:33.950+04:00',
+          campaign_ids: [
+            510
+          ]
+        }
+
+        let(:user) { create(:user, project: project) }
+        let(:schedule_start_date) { 2.days.from_now.beginning_of_day }
+        let(:schedule_end_date) { 3.days.from_now.beginning_of_day }
+        let(:campaigns) do
+          [
+            { 'id' => campaign.id, 'active' => true, 'existing_record' => 'new_evaluation', schedule_end_date:,
+              schedule_start_date: },
+            { 'id' => campaign_two.id, 'active' => false, 'existing_record' => 'copy_evaluation' }
+          ]
+        end
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:body) { { campaigns: campaigns } }
+
+        run_test! do |response|
+          user = JSON.parse(response.body)
+          campaign_user = campaign.campaign_users.find_by(user_id: user['id'])
+
+          expect(user).to have_key('first_name')
+          expect(user).to have_key('last_name')
+          expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_two.id)
+
+          expect(campaign_user.active).to eq campaigns[0]['active']
+          expect(campaign_user.schedule_start_date).to eq schedule_start_date
+          expect(campaign_user.schedule_end_date).to eq schedule_end_date
+        end
+      end
     end
   end
 

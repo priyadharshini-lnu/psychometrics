@@ -18,6 +18,7 @@ import SubjectImportModal from './SubjectImportModal'
 import ResetPasswordModal from '../ResetPasswordModal'
 import Pagination from '../../../components/Pagination'
 import SearchInput from '../SearchInput'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { Column } = Table
 
@@ -41,7 +42,7 @@ export default function SubjectList ({
   const page = params.get('page') || 1
   const { message } = App.useApp()
   const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
-
+  const { width: windowWidth } = useWindowSize()
   useEffect(() => {
     fetchSubjects(campaignId, page, searchTerm)
   }, [page, searchTerm])
@@ -84,9 +85,11 @@ export default function SubjectList ({
             rowKey="id"
             dataSource={subjects}
             pagination={false}
+            scroll={{ x: 'max-content' }}
           >
             <Column
               title="Name"
+              fixed={windowWidth > 800 ? 'left' : undefined}
               key="fullName"
               render={({ user, permissions }) => (
                 <a
@@ -129,6 +132,7 @@ export default function SubjectList ({
 
             <Column
               key="action"
+              fixed={windowWidth > 800 ? 'right' : undefined}
               title="Action"
               render={({
                 id, user: { email }, user, permissions,

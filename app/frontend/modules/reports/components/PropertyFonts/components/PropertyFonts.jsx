@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { Component } from 'react'
 import cs from 'classnames'
 import { rgba2hex } from '~/utils/color'
 import { ColorPicker } from '~/glint'
@@ -53,43 +52,49 @@ export const styleClassess = (textStyles, styleName, value) => {
 
 const overridenStyle = (style, value) => !isDefault(style, value)
 
-class PropertyFilter extends Component {
-  static propTypes = {}
 
-  changeFontFamily = (e) => {
-    const { model } = this.props
-    model.props.style.fontFamily = e.currentTarget.value
-    this.update()
+const PropertyFilter = ({
+  modules, colors, reportStyles = {},
+}) => {
+  const model = modules[0]
+  const updateAll = (cb) => {
+    modules.forEach((module) => {
+      cb?.(module)
+      module.update()
+    })
   }
 
-  changeFontSize = (e) => {
-    const { model } = this.props
-    model.props.style.fontSize = e.currentTarget.value
-    this.update()
+  const changeFontFamily = (e) => {
+    updateAll((model) => {
+      model.props.style.fontFamily = e.currentTarget.value
+    })
   }
 
-  changeFontColor = (color) => {
-    const { model } = this.props
-    model.props.style.fontColor = color
-    this.update()
+  const changeFontSize = (e) => {
+    updateAll((model) => {
+      model.props.style.fontSize = e.currentTarget.value
+    })
   }
 
-  update = () => {
-    const { model } = this.props
-    model.update()
-    this.forceUpdate()
+  const changeFontColor = (color) => {
+    updateAll((model) => {
+      model.props.style.fontColor = color
+    })
+  }
+
+  const update = () => {
+    updateAll()
   }
 
 
-  renderFontFamily () {
-    const { model, reportStyles = {} } = this.props
+  const renderFontFamily = () => {
     const textStyles = _.compact((model.props.styleIds || []).map(id => reportStyles[id]))
     const hasStyle = isHasStyle(textStyles, 'fontFamily')
     return (
       <select
         className={cs('form-control', styleClassess(textStyles, 'fontFamily', model.props.style.fontFamily))}
         value={model.props.style.fontFamily}
-        onChange={this.changeFontFamily}
+        onChange={changeFontFamily}
       >
         <option value="">{hasStyle ? 'Inherited' : 'Default'}</option>
         {_.map(FONTS, (value, key) => (<option key={key} value={value}>{key}</option>))}
@@ -97,15 +102,14 @@ class PropertyFilter extends Component {
     )
   }
 
-  renderFontSize () {
-    const { model, reportStyles = {} } = this.props
+  const renderFontSize = () => {
     const textStyles = _.compact((model.props.styleIds || []).map(id => reportStyles[id]))
 
     return (
       <select
         className={cs('form-control', styleClassess(textStyles, 'fontSize', model.props.style.fontSize))}
         value={model.props.style.fontSize}
-        onChange={this.changeFontSize}
+        onChange={changeFontSize}
       >
         {_.times(1 + (FONT_MAX_SIZE - FONT_MIN_SIZE) / FONT_STEP_SIZE, i => (
           <option key={i} value={`${i * FONT_STEP_SIZE + FONT_MIN_SIZE}%`}>
@@ -117,8 +121,7 @@ class PropertyFilter extends Component {
     )
   }
 
-  renderFontColor () {
-    const { model, reportStyles = {} } = this.props
+  const renderFontColor = () => {
     const { fontColor } = model.props.style
     const notNullfontColor = fontColor || '#000000'
     const fontColorHex = typeof notNullfontColor === 'object'
@@ -130,37 +133,34 @@ class PropertyFilter extends Component {
         swatchClassName={cs(styles.swatch, styleClassess(textStyles, 'color', notNullfontColor))}
         getValueInHexFormat
         value={fontColorHex}
-        onChange={this.changeFontColor}
-        onComplete={this.update}
+        onChange={changeFontColor}
+        onComplete={update}
       />
     )
   }
 
-  render () {
-    const { colors } = this.props
-    let output = (
+  let output = (
+    <div>
+      {renderFontFamily()}
+      <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+        {renderFontSize()}
+        {renderFontColor()}
+      </div>
+    </div>
+  )
+
+  if (colors === false) {
+    output = (
       <div>
-        {this.renderFontFamily()}
+        {renderFontFamily()}
         <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-          {this.renderFontSize()}
-          {this.renderFontColor()}
+          {renderFontSize()}
         </div>
       </div>
     )
-
-    if (colors === false) {
-      output = (
-        <div>
-          {this.renderFontFamily()}
-          <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-            {this.renderFontSize()}
-          </div>
-        </div>
-      )
-    }
-
-    return output
   }
+
+  return output
 }
 
 export default PropertyFilter

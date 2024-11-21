@@ -1,4 +1,6 @@
-import React, { useEffect, FC, useState } from 'react'
+import React, {
+  useEffect, FC, useState, useContext,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
@@ -10,7 +12,7 @@ import {
 
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { DirectionalNavigateBackIcon } from '~/glint'
+import { DirectionalNavigateBackIcon, MediaQueryContext } from '~/glint'
 import styles from './styles.less'
 
 const { I18n } = window
@@ -39,6 +41,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   const [openMenu, setOpenMenu] = useState(false)
   const { token } = useToken()
   const navigate = useNavigate()
+  const { isMobile } = useContext(MediaQueryContext)
   const activeCampaign = campaigns.find(campaign => campaign.id === activeCampaignId)
   const completedCampaignsCount = campaigns.filter(campaign => campaign.progressStatus === 'completed').length
   const totalCampaigns = campaigns.length
@@ -66,7 +69,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       {
         key: routePath,
         label: (
-          <Row gutter={[8, 0]} wrap={false} className={styles.campaignItem}>
+          <Row gutter={[8, 0]} className={styles.campaignItem}>
             <Col>{campaignName}</Col>
             <Col flex="auto" className="ta-e">
               {campaign.progressStatus && (
@@ -93,6 +96,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       trigger={['click']}
       className={styles.campaignDropdown}
       onOpenChange={setOpenMenu}
+      placement={isMobile ? 'bottom' : 'bottomLeft'}
     >
       <Button className="ps-0 pe-0" type="link" aria-expanded={openMenu}>
         <Row wrap={false}>
@@ -116,13 +120,12 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       backIcon={(
         <Button
           size="small"
-          ghost
           type="text"
           aria-label={I18n.t('frontend.aria.back_to_dashboard')}
         >
           <DirectionalNavigateBackIcon className={styles.backIcon} />
         </Button>
-)}
+      )}
       ghost={false}
       title={titleElement}
       extra={extra}

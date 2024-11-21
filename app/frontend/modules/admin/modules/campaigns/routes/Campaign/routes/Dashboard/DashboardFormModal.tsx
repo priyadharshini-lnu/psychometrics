@@ -51,12 +51,27 @@ export const DashboardFormModal: React.FC<Props> = ({
       close={close}
       scrollToFirstError
       modalProps={{ width: 620 }}
+      formProps={{ initialValues: { dashboard_type: 'oracle_analytics' } }}
       request={{
         createResource: handleDashboardCreation,
       }}
     >
-      {() => (
+      {({ form }) => (
         <>
+          <Form.Item
+            name="dashboard_type"
+            label={I18n.t('common.column.type')}
+            rules={[{ required: true }]}
+          >
+            <Select>
+              <Select.Option value="powerbi">
+                {I18n.t('administration.dashboard.dashboard_types.powerbi')}
+              </Select.Option>
+              <Select.Option value="oracle_analytics">
+                {I18n.t('administration.dashboard.dashboard_types.oracle_analytics')}
+              </Select.Option>
+            </Select>
+          </Form.Item>
           <Form.Item
             name="name"
             label={I18n.t('common.column.name')}
@@ -65,19 +80,21 @@ export const DashboardFormModal: React.FC<Props> = ({
             <Input name="dashboard_name" />
           </Form.Item>
 
-          <Form.Item
-            name="capacityId"
-            label={I18n.t('administration.dashboard.capacity_name')}
-            rules={[{ required: true }]}
-          >
-            <Select loading={!capacitiesRequestSuccessful}>
-              {capacities.map(c => (
-                <Select.Option value={c.id}>
-                  {`${c.name} - ${c.id}`}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
+          {form.getFieldValue('dashboard_type') === 'powerbi' && (
+            <Form.Item
+              name="capacityId"
+              label={I18n.t('administration.dashboard.capacity_name')}
+              rules={[{ required: true }]}
+            >
+              <Select loading={!capacitiesRequestSuccessful}>
+                {capacities.map(c => (
+                  <Select.Option value={c.id}>
+                    {`${c.name} - ${c.id}`}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+          )}
         </>
       )}
     </ResourceFormModal>

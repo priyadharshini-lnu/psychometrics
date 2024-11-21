@@ -34,6 +34,7 @@ class Factor < ApplicationRecord
   after_create :create_aliases
   after_update ::Callbacks::Models::Factors::UpdateAliases.new
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
+  after_commit :invalidate_assessment_cache
 
   enum scoring_strategy: {
     questions: 0,
@@ -143,5 +144,10 @@ class Factor < ApplicationRecord
     existing_reports.find_each do |report|
       FactorsAlias.create(report: report, factor: self)
     end
+  end
+
+  def invalidate_assessment_cache
+    assessment_ids = factors_scoring.pluck(:assessment_id).uniq
+    Assessment.where(id: assessment_ids).find_each(&:invalidate_cache)
   end
 end

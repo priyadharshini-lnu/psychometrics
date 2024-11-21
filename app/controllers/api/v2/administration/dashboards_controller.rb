@@ -40,10 +40,18 @@ module Api
 
     private
 
+    def context_for_schema_validation
+      super.merge(dashboard: dashboard)
+    end
+
     def dashboard
       @dashboard ||= Api::Administration::DashboardPolicy::Scope.new(
         current_user, Dashboard
-      ).resolve.find(params[:dashboard_id])
+      ).resolve.find(dashboard_id)
+    end
+
+    def dashboard_id
+      params[:dashboard_id] || params[:id]
     end
 
     def image_upload_params

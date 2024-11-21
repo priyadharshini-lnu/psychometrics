@@ -18,7 +18,7 @@ import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 const { I18n } = window
 const { useToken } = theme
-const { DEFAULT_PRIMARY_COLOR } = constants
+const { DEFAULT_PRIMARY_COLOR, DARK_GREY } = constants
 
 export const LayoutComponent = ({ config }) => {
   const { token } = useToken()
@@ -58,6 +58,8 @@ export const LayoutComponent = ({ config }) => {
           colorSuccess: config.success_color || token.colorSuccess,
           colorInfo: config.info_color || token.colorInfo,
           colorLink: primaryColor,
+          colorBorder: DARK_GREY,
+          borderRadius: 2,
         },
       }}
     >
@@ -83,7 +85,7 @@ export const LayoutComponent = ({ config }) => {
             </Layout.Content>
             <Layout.Footer className={styles.footer}>
               <Space>
-                <img src={footerLogo} className={styles.footerLogo} />
+                <img src={footerLogo} className={styles.footerLogo} alt={I18n.t('auth.lighthouse_logo_alt_text')} />
                 <div dangerouslySetInnerHTML={{
                   __html: I18n.t('auth.terms_link',
                     { terms_url: 'https://thetalententerprise.com/privacy-statement/' }),

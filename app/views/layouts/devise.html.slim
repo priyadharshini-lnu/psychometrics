@@ -1,10 +1,10 @@
 doctype html
-html.body-full-height
+html.body-full-height lang="#{I18n.locale}"
   head
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
-    title = @current_project&.name || t('devise.administrators.meta_title')
+    title = t('auth.login.login_btn')
     = csrf_meta_tags
     = vite_client_tag
     = vite_react_refresh_tag
@@ -17,7 +17,7 @@ html.body-full-height
         = t('maintenance_message', **maintenance_time_frame)
     = render 'devise/shared/locales'
 
-    javascript:
+    javascript [nonce=content_security_policy_nonce]:
       __INITIAL_STATE__ = {
         csrfToken: '#{form_authenticity_token}',
         user: #{::Auth::CurrentUserSerializer.new.serialize((current_user || resource || User.new)).to_json.html_safe},
@@ -26,20 +26,21 @@ html.body-full-height
       }
     - action = "#{controller_name}/#{action_name}"
     - if ["registrations/new", "registrations/create"].include?(action)
-        javascript:
+        javascript [nonce=content_security_policy_nonce]:
           #{@form ? ("__INITIAL_STATE__['user'] = " + @form.attributes.to_json).html_safe : ''}
           #{@form ? ("__INITIAL_STATE__['errors'] = " + @form.errors.messages.to_json).html_safe : ''}
     - if ["invitations/update", "passwords/edit", "passwords/update"].include?(action)
-        javascript:
+        javascript [nonce=content_security_policy_nonce]:
           #{resource.persisted? && resource.invalid? ? ("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe : ''}
     - if ["password_expired/show", "password_expired/update"].include?(action)
-        javascript:
+        javascript [nonce=content_security_policy_nonce]:
           #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}
     - if action == "magic_links/send_magic_link"
-        javascript:
+        javascript [nonce=content_security_policy_nonce]:
           #{@form ? ("__INITIAL_STATE__['user'] = " + @form.attributes.merge({success: @form.valid?}).to_json).html_safe : ''}
           #{@form ? ("__INITIAL_STATE__['errors'] = " + @form.errors.messages.to_json).html_safe : ''}
 
     .main#devise
 
     = vite_javascript_tag 'entrypoints/user/login.jsx'
+    = render partial: 'layouts/consent_banner'

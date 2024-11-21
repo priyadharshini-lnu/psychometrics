@@ -52,6 +52,8 @@ class Question < ApplicationRecord
   after_create :create_in_assessments_blocks, if: proc { block&.blocks&.any? }
   after_update :sync_with_template, if: :template
 
+  after_commit :invalidate_assessment_cache
+
   #
   # Disables single column inheritance
   #
@@ -138,5 +140,11 @@ class Question < ApplicationRecord
 
   def of_sub_type?(*types)
     types.include?(props['type'])
+  end
+
+  private
+
+  def invalidate_assessment_cache
+    assessment&.invalidate_cache
   end
 end

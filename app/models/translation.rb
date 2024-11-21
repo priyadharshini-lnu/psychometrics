@@ -11,6 +11,8 @@ class Translation < ApplicationRecord
   validates :locale, presence: true
   validates :translateable_type, uniqueness: { scope: %i[translateable_id locale resource_type resource_id] }
 
+  after_commit :touch_assessment
+
   scope :for_assessment, lambda { |assessment_id|
     where(resource_type: Assessment::TYPES[:common], resource_id: assessment_id)
   }
@@ -56,6 +58,14 @@ class Translation < ApplicationRecord
 
     def available_translation_for_report(report_id, _assessment_id)
       for_report(report_id).group(:locale).pluck(:locale)
+    end
+  end
+
+  private
+
+  def touch_assessment
+    if translateable.is_a?(Question)
+      translateable.assessment&.touch
     end
   end
 end

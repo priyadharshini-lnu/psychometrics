@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, FC } from 'react'
 import {
   Button, Popover, Space,
 } from 'antd'
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
+import { MinusOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { AccessibilityIcon } from '~/glint/icons'
 import styles from './FontSizeModifier.less'
 

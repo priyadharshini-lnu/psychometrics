@@ -1,0 +1,32 @@
+doctype html
+html[dir="ltr"]
+  head
+    meta[http-equiv="Content-Type" content="text/html; charset=utf-8"]
+    script[src="#{Settings.oac[:base_embed_url]}/public/dv/v1/embedding/standalone/embedding.js?TOKEN=true" type="application/javascript"]
+
+  body
+    div[style="position: absolute; width: calc(100% - 40px); height: 100%"]
+      oracle-dv[project-path="#{@dashboard.project_path}" active-page="insight" project-options="{{projectOptions}}"]
+      javascript [nonce=content_security_policy_nonce]:
+        requirejs(['knockout', 'obitech-application/application', 'ojs/ojcore', 'ojs/ojknockout', 'ojs/ojcomposite', 'jet-composites/oracle-dv/loader'],
+  	      function(ko, application, oac_core) {
+
+            function ProjectSettings() {
+               var self = this
+               self.projectOptions = ko.observable({
+                  "bShowFilterBar": true,
+                  "showCanvasNavigation": true
+               });
+            }
+                        application.shouldDisableErrorDialog(false)
+            application.setSecurityConfig("token", {tokenAuthFunction:
+               function(){
+                  return "#{@embed_token}"
+               }
+            });
+            window.oac_application = application
+            window.oac_core = oac_core
+
+            ko.applyBindings(ProjectSettings)
+          }
+	      )

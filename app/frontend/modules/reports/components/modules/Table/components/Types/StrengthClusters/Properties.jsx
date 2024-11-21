@@ -16,7 +16,8 @@ class Properties extends Component {
   }
 
   collectFactors = () => {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
@@ -26,7 +27,8 @@ class Properties extends Component {
   }
 
   allFactors = () => {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
@@ -36,13 +38,16 @@ class Properties extends Component {
   factor = f => ({ id: f.id, alias: `${f.alias.substring(0, 24)}` })
 
   factorSelect = (factors) => {
-    const { model } = this.props
+    const { modules } = this.props
     // add all
     if (_.find(factors, { id: ALL_FACTORS })) {
       factors = this.allFactors()
     }
-    model.props.source = { factors }
-    this.update()
+    modules.forEach((model) => {
+      model.props.source = { factors }
+      model.props.group = null
+      model.update()
+    })
   }
 
   update = () => {
@@ -52,25 +57,29 @@ class Properties extends Component {
   }
 
   openConditionModal = () => {
-    const { model } = this.props
-    const { openConditionModal } = this.props
-    openConditionModal({ module: model })
+    const { modules, openConditionModal } = this.props
+    openConditionModal({ modules })
   }
 
   changeProp = (propName, e) => {
-    const { model } = this.props
-    model.props[propName] = parseInt(e.currentTarget.value, 10)
-    model.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props[propName] = parseInt(e.currentTarget.value, 10)
+      model.update()
+    })
   }
 
   changeOrder = () => {
-    const { model } = this.props
-    model.props.reverseOrder = !model.props.reverseOrder
-    model.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.reverseOrder = !model.props.reverseOrder
+      model.update()
+    })
   }
 
   renderTopFactors () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     return (
       <div>
         <span className={styles.label}>Factors</span>
@@ -89,7 +98,8 @@ class Properties extends Component {
   }
 
   renderMinSelect () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     return (
       <select onChange={e => this.changeProp('minPosition', e)} value={model.props.minPosition}>
         {_.times(model.props.maxPosition, i => <option value={i + 1} key={i}>{i + 1}</option>)}
@@ -98,7 +108,8 @@ class Properties extends Component {
   }
 
   renderMaxSelect () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     const assessment = _.find(AppStore.assessments, { id: model.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
     if (!dimensionId) { return null }
@@ -114,8 +125,8 @@ class Properties extends Component {
   }
 
   render () {
-    const { model } = this.props
-
+    const { modules } = this.props
+    const model = modules[0]
     return (
       <div>
         <div style={{ width: '100%' }} onClick={this.openConditionModal} className="btn btn-default margin-bottom-10">

@@ -11,11 +11,12 @@ import styles from './styles.less'
 const { Title } = Typography
 type DetailsCardProps = {
   title: string | React.ReactElement
+  titleId?: string
   description?: string | React.ReactElement
   buttonText?: string
-  buttonAriaDescription?: string
+  buttonId?: string
   secondaryBtnText?: string
-  secondaryBtnAriaDescription?: string
+  secondaryBtnId?: string
   onButtonClick?: () => void
   onSecondaryBtnClick?: () => void
   progressPercentage?: number
@@ -33,10 +34,11 @@ type DetailsCardProps = {
 
 export const DetailsCard: FC<DetailsCardProps> = ({
   title,
+  titleId,
   buttonText,
-  buttonAriaDescription,
+  buttonId,
   secondaryBtnText,
-  secondaryBtnAriaDescription,
+  secondaryBtnId,
   onButtonClick,
   onSecondaryBtnClick,
   progressPercentage,
@@ -113,13 +115,14 @@ export const DetailsCard: FC<DetailsCardProps> = ({
               {secondaryBtnText && (
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
                 <Button
+                  id={secondaryBtnId}
                   size="small"
                   type="primary"
                   disabled={actionDisabled}
                   ghost
                   onClick={onSecondaryBtnClick}
                   className={styles.actionButton}
-                  aria-description={secondaryBtnAriaDescription || ''}
+                  aria-labelledby={`${secondaryBtnId} ${titleId}`}
                 >
                   {secondaryBtnText}
                   <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
@@ -128,13 +131,14 @@ export const DetailsCard: FC<DetailsCardProps> = ({
               )}
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
                 <Button
+                  id={buttonId}
                   loading={actionLoading}
                   type="primary"
                   disabled={actionDisabled}
                   size="small"
                   onClick={handleClick}
                   className={styles.actionButton}
-                  aria-description={buttonAriaDescription || ''}
+                  aria-labelledby={`${buttonId} ${titleId}`}
                 >
                   {buttonText}
                   <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />

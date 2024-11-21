@@ -28,6 +28,7 @@ const connecter = connect((state: RootState) => ({
 interface Props extends ConnectedProps<typeof connecter> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   store: any
+  readOnly: boolean
 }
 
 const Evaluation = (props) => {
@@ -48,6 +49,7 @@ const LeadAssessorAssessment: React.FC<Props> = ({
   fetchLeadAssessment,
   fetchAssessorAssessments,
   store,
+  readOnly,
 }) => {
   let parsedCampaignId
   let parsedUserId
@@ -81,9 +83,10 @@ const LeadAssessorAssessment: React.FC<Props> = ({
           <AssessmentContainer
             id="pass_assessment"
             initialized={false}
-            type="pass_assessment"
+            type={readOnly ? 'view_results' : 'pass_assessment'}
             data={assessorForm}
             result={assessorResult}
+            notAnEndPage={readOnly}
             resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${assessorResult.id}`}
             rstore={store}
             isAssessor

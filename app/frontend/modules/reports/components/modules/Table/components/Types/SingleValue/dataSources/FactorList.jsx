@@ -3,7 +3,8 @@ import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
-export default function FactorList ({ model, onChange }) {
+export default function FactorList ({ modules, onChange }) {
+  const model = modules[0]
   const assessment = AppStore.getAssessmentById(model.assessment_id)
   const options = AppStore.factors[assessment.dimensionId] || []
   const factorIds = model.props.factorIds || []

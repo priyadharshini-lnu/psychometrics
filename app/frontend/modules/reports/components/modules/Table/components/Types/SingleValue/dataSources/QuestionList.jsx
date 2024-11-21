@@ -5,7 +5,8 @@ import connect from './connect'
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
 
-function QuestionList ({ model, onChange, getQuestions }) {
+function QuestionList ({ modules, onChange, getQuestions }) {
+  const model = modules[0]
   const questions = getQuestions(model.assessment_id)
   const findQuestion = id => _.find(questions, question => question.id === id)
 

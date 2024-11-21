@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResource
   attributes :name, :email, :first_name, :last_name, :full_name, :updated_at, :disabled, :enable_2fa,
-             :created_by, :modified_by, :role, :project_id, :photo_url, :user_profile_data
+             :created_by, :modified_by, :role, :project_id, :photo_url, :user_profile_data, :access_locked
   has_one :user_profile, foreign_key_on: :related
 
   delegate :photo_url, to: :user_profile, allow_nil: true
@@ -46,6 +46,10 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
     @model.modifier&.decorate&.display_name
   end
 
+  def access_locked
+    @model.access_locked?
+  end
+
   def meta_details
     {
       permissions: lambda {
@@ -57,7 +61,8 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
             %w[remove destroy],
             'reset_password',
             'toggle_enable_2fa',
-            %w[login_as spoof]
+            %w[login_as spoof],
+            'unlock_user_access'
           ],
           {
             project_id: @model.project_id

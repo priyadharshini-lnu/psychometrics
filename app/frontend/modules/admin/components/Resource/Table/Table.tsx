@@ -6,8 +6,7 @@ import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useResourceContext } from '../ResourceContext'
 import { Column } from '../Column'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
-
-const { Column: AntColumn } = AntTable
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 type Props = {
   children: React.ReactNode[]
@@ -26,6 +25,23 @@ export const Table: FC<Props> = ({
 
   const { resource } = useResourceContext()
   const tableLoading = resource.isLoading('fetch')
+  const { width: windowWidth } = useWindowSize()
+
+  const columns = arrayChildren.map((c, index) => {
+    let innerProps = { ...c.props, key: c.props.id }
+    if (!innerProps.render && !innerProps.dataIndex) {
+      innerProps.dataIndex = _.camelCase(innerProps.id)
+    }
+    if (c.props.sorter) {
+      innerProps = { ...innerProps, sortOrder: resource.getSortOrder(innerProps.id) }
+    }
+    if (windowWidth > 800 && (index === 0 || index === 1)) {
+      innerProps = { ...innerProps, fixed: 'left' }
+    } else if (index === arrayChildren.length - 1 && windowWidth > 800) {
+      innerProps = { ...innerProps, fixed: 'right' }
+    }
+    return innerProps
+  })
 
   const InnerTable = (
     <AntTable
@@ -33,20 +49,11 @@ export const Table: FC<Props> = ({
       dataSource={resource.data}
       pagination={false}
       loading={tableLoading}
+      scroll={{ x: 'max-content' }}
       expandable={expandable}
       onChange={resource.handleTableChange}
-    >
-      {arrayChildren.map((c) => {
-        let innerProps = { ...c.props, key: c.props.id }
-        if (!innerProps.render && !innerProps.dataIndex) {
-          innerProps.dataIndex = _.camelCase(innerProps.id)
-        }
-        if (c.props.sorter) {
-          innerProps = { ...innerProps, sortOrder: resource.getSortOrder(innerProps.id) }
-        }
-        return <AntColumn {...innerProps} />
-      })}
-    </AntTable>
+      columns={columns}
+    />
   )
 
   return (

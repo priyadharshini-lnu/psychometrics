@@ -49,7 +49,7 @@
 }
 .mineCommon {
   border-radius: 15px 15px 0 15px;
-  background-color: #00b3b0;
+  background-color: var(--green-bg);
 }
 :global(.rtl) {
   .mineCommon {
@@ -64,7 +64,8 @@
   align-items: center;
   &:hover {
     .deleteIconContainer {
-      display: flex;
+      position: initial;
+      z-index: 1;
     }
   }
 }
@@ -89,10 +90,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #009c37;
+  background-color: var(--bright-green-bg);
   border-radius: 15px;
   margin: 0 10px;
   cursor: pointer;
+  &:focus-visible {
+    outline-offset: 2px;
+    outline: 4px solid var(--ant-primary-3);
+
+  }
 }
 .sendIcon {
   color: #ffffff;
@@ -129,15 +135,16 @@
   }
 }
 .deleteIconContainer {
-  display: none;
-  height: 20px;
-  width: 20px;
-  min-width: 20px;
+  position: absolute;
+  z-index: -9999;
   align-items: center;
   justify-content: center;
   background-color: #ff0000;
-  border-radius: 10px;
   margin: 0 10px;
+  &:focus-visible {
+    position: initial;
+    z-index: 1;
+  }
 }
 .deleteIcon {
   color: #ffffff !important;

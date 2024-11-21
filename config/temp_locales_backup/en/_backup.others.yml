@@ -2101,8 +2101,6 @@ en:
     invalidate_session_info: Your evaluation was in progress and session has expired or another active evaluation being detected. Please continue to invalidate another session.
     messages:
       already_confirmed: was already confirmed, please try signing in
-      carrierwave_direct_allowed_extensions: Wrong file type uploaded. Allowed extensions are %{extensions}
-      carrierwave_direct_filename_invalid: ''
       confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
       expired: has expired, please request a new one
       iiht_cannot_reset: This assessment can't be reset as maximum reset count has been reached.

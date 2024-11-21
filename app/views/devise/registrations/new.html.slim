@@ -1,3 +1,3 @@
-javascript:
+javascript [nonce=content_security_policy_nonce]:
   #{@form ? ("__INITIAL_STATE__['user'] = " + @form.attributes.to_json).html_safe : ''}
   #{@form ? ("__INITIAL_STATE__['errors'] = " + @form.errors.messages.to_json).html_safe : ''}

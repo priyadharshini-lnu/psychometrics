@@ -1428,9 +1428,7 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -1773,7 +1771,9 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone
+    refresh_tried_at timestamp without time zone,
+    dashboard_type integer DEFAULT 0 NOT NULL,
+    project_path character varying
 );
 
 
@@ -3376,6 +3376,40 @@ ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
 
 
 --
+-- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.oracle_credentials (
+    id bigint NOT NULL,
+    idcs_user_id character varying NOT NULL,
+    idcs_user_name character varying NOT NULL,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    last_accessed_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: oracle_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.oracle_credentials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: oracle_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.oracle_credentials_id_seq OWNED BY public.oracle_credentials.id;
+
+
+--
 -- Name: pearson_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3649,6 +3683,40 @@ CREATE SEQUENCE public.proctoring_sessions_id_seq
 --
 
 ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sessions.id;
+
+
+--
+-- Name: profile_field_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profile_field_values (
+    id bigint NOT NULL,
+    numeric_value double precision,
+    string_value character varying,
+    user_profile_id bigint NOT NULL,
+    profile_field_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: profile_field_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.profile_field_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: profile_field_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.profile_field_values_id_seq OWNED BY public.profile_field_values.id;
 
 
 --
@@ -6059,9 +6127,10 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
+    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
-    manager_id bigint
+    unique_session_id character varying
 );
 
 
@@ -7184,6 +7253,13 @@ ALTER TABLE ONLY public.old_passwords ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: oracle_credentials id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.oracle_credentials ALTER COLUMN id SET DEFAULT nextval('public.oracle_credentials_id_seq'::regclass);
+
+
+--
 -- Name: pearson_assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7237,6 +7313,13 @@ ALTER TABLE ONLY public.privacy_settings ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval('public.proctoring_sessions_id_seq'::regclass);
+
+
+--
+-- Name: profile_field_values id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values ALTER COLUMN id SET DEFAULT nextval('public.profile_field_values_id_seq'::regclass);
 
 
 --
@@ -8504,6 +8587,14 @@ ALTER TABLE ONLY public.old_passwords
 
 
 --
+-- Name: oracle_credentials oracle_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.oracle_credentials
+    ADD CONSTRAINT oracle_credentials_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pearson_assessments pearson_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8565,6 +8656,14 @@ ALTER TABLE ONLY public.privacy_settings
 
 ALTER TABLE ONLY public.proctoring_sessions
     ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profile_field_values profile_field_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values
+    ADD CONSTRAINT profile_field_values_pkey PRIMARY KEY (id);
 
 
 --
@@ -10728,6 +10827,13 @@ CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree
 
 
 --
+-- Name: index_oracle_credentials_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_oracle_credentials_on_user_id ON public.oracle_credentials USING btree (user_id);
+
+
+--
 -- Name: index_password_archivable; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10795,6 +10901,20 @@ CREATE INDEX index_privacy_settings_on_project_id ON public.privacy_settings USI
 --
 
 CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_sessions USING btree (campaign_user_id);
+
+
+--
+-- Name: index_profile_field_values_on_profile_field_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_field_values_on_profile_field_id ON public.profile_field_values USING btree (profile_field_id);
+
+
+--
+-- Name: index_profile_field_values_on_user_profile_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_field_values_on_user_profile_id ON public.profile_field_values USING btree (user_profile_id);
 
 
 --
@@ -12569,6 +12689,14 @@ ALTER TABLE ONLY public.memberships_admin_roles
 
 
 --
+-- Name: oracle_credentials fk_rails_30dd1b931a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.oracle_credentials
+    ADD CONSTRAINT fk_rails_30dd1b931a FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12797,7 +12925,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13006,6 +13134,14 @@ ALTER TABLE ONLY public.webhook_subscriptions
 
 ALTER TABLE ONLY public.campaign_factor_values
     ADD CONSTRAINT fk_rails_6a0d5562d2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: profile_field_values fk_rails_6bc6ed19b8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values
+    ADD CONSTRAINT fk_rails_6bc6ed19b8 FOREIGN KEY (profile_field_id) REFERENCES public.profile_fields(id) ON DELETE CASCADE;
 
 
 --
@@ -13985,6 +14121,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: profile_field_values fk_rails_da47a0e23d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values
+    ADD CONSTRAINT fk_rails_da47a0e23d FOREIGN KEY (user_profile_id) REFERENCES public.user_profiles(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_availability_days fk_rails_dc0c48bc79; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14344,10 +14488,14 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241105093139'),
+('20241108085232'),
+('20241106103020'),
+('20241018100709'),
 ('20241101110602'),
-('20241023071718'),
+('20241030111222'),
 ('20241025070422'),
 ('20241025042720'),
+('20241023071718'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
@@ -14355,6 +14503,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241010122532'),
 ('20241009075129'),
 ('20241008100312'),
+('20241007113728'),
 ('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),

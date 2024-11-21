@@ -30,6 +30,7 @@ import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserLis
 import Modals from '~/modules/admin/components/Modals/'
 import { DetailsDrawer } from './DetailsDrawer'
 import { AddEditDrawer } from './AddEditDrawer'
+import { useWindowSize } from '~/hooks/useWindowSize'
 import { ActionsMenu } from './ActionsMenu'
 import {
   DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes, CampaignTypes,
@@ -74,7 +75,7 @@ const AdminsComponent: React.FC<Props> = ({
     campaignId: campaignIdParam,
   } = useParams() as { campaignId: string; projectId: string; clientId: string }
   const { modal } = App.useApp()
-
+  const { width: windowWidth } = useWindowSize()
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParam : currentCampaignId
 
   const filterHash = {
@@ -226,12 +227,14 @@ const AdminsComponent: React.FC<Props> = ({
           <Table
             pagination={false}
             loading={tableLoading}
+            scroll={{ x: 'max-content' }}
             dataSource={data}
             onChange={handleTableChange}
           >
             <Table.Column
               dataIndex="userId"
               key="userId"
+              fixed={windowWidth > 800 ? 'left' : undefined}
               title={I18n.t('administration.administrators.list.columns.id')}
               sorter
               sortOrder={getSortOrder('userId')}
@@ -270,6 +273,7 @@ const AdminsComponent: React.FC<Props> = ({
             />
             <Table.Column
               dataIndex="actions"
+              fixed={windowWidth > 800 ? 'right' : undefined}
               title={I18n.t(
                 'administration.administrators.list.columns.actions',
               )}

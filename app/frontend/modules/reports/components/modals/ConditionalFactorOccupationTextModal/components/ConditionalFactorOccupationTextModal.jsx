@@ -17,7 +17,7 @@ export class ConditionalTextModal extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      module: _.cloneDeep(props.module),
+      module: _.cloneDeep(props.modules[0]),
     }
   }
 
@@ -33,9 +33,11 @@ export class ConditionalTextModal extends Component {
   save = () => {
     const { module: newModule } = this.state
     if (newModule.props.basedOn === 'occupation') { newModule.textConditions = [] }
-    const { module, close } = this.props
-    module.textConditions = newModule.textConditions
-    module.update()
+    const { modules, close } = this.props
+    modules.forEach((model) => {
+      model.textConditions = newModule.textConditions
+      model.update()
+    })
     close()
   }
 

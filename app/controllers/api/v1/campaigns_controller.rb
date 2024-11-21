@@ -41,7 +41,9 @@ module Api
             struct = OpenStruct.new(
               email: form.email,
               operation: campaign_attrs[:existing_record],
-              active: campaign_attrs[:active]
+              active: campaign_attrs[:active],
+              schedule_start_date: campaign_attrs[:schedule_start_date],
+              schedule_end_date: campaign_attrs[:schedule_end_date]
             )
             # rubocop:enable all
             audit! :assign_user, campaign, payload: campaign_attrs.permit!, campaign: campaign

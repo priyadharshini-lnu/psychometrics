@@ -4,7 +4,7 @@ import React, {
 import {
   Row, Col, Button, Typography, Space,
 } from 'antd'
-import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons'
+import { UnorderedListOutlined, AppstoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { useLocalStorage } from '~/hooks/useLocalStorage'
 import { MediaQueryContext } from '~/glint'
@@ -38,6 +38,9 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
     onViewChange && onViewChange(view)
   }, [view])
 
+  const listSelected = view === VIEW_TYPE.list
+  const gridSelected = view === VIEW_TYPE.grid
+
   return (
     <>
       <div className={className}>
@@ -51,22 +54,24 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
           <Col span={12} className={styles.viewControls}>
             <Space>
               <Button
-                className={view === VIEW_TYPE.grid ? styles.activeButton : styles.inActiveButton}
+                className={gridSelected ? styles.activeButton : styles.inActiveButton}
                 id={VIEW_TYPE.grid}
                 onClick={() => setView(VIEW_TYPE.grid)}
                 shape="circle"
                 icon={<AppstoreOutlined aria-label="" />}
                 size="middle"
                 aria-label={I18n.t('glint.views_container.aria_grid_view')}
+                aria-description={gridSelected ? I18n.t('glint.views_container.aria_selected') : ''}
               />
               <Button
-                className={view === VIEW_TYPE.list ? styles.activeButton : styles.inActiveButton}
+                className={listSelected ? styles.activeButton : styles.inActiveButton}
                 id={VIEW_TYPE.list}
                 shape="circle"
                 onClick={() => setView(VIEW_TYPE.list)}
                 icon={<UnorderedListOutlined aria-label="" />}
                 size="middle"
                 aria-label={I18n.t('glint.views_container.aria_list_view')}
+                aria-description={listSelected ? I18n.t('glint.views_container.aria_selected') : ''}
               />
             </Space>
           </Col>

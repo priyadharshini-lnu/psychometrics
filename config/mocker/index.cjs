@@ -100,10 +100,10 @@ const proxy = {
   },
 
   'DELETE /api/v2/administration/norms/:normId': (req, res) => {
-    const updatedNormList = NormsData.list.filter(
+    const updatedNormList = NormsData.data.filter(
       norm => norm.id !== parseInt(req.params.normId, 10),
     )
-    const updatedNormData = { total: updatedNormList.length, list: updatedNormList }
+    const updatedNormData = { data: updatedNormList }
     NormsData = updatedNormData
 
     const resObj = { id: parseInt(req.params.normId, 10) }

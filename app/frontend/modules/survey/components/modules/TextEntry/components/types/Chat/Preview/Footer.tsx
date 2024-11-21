@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import cs from 'classnames'
-import { Input } from 'antd'
+import { Input, Button } from 'antd'
 import _ from 'lodash'
 import { I18n } from '~/modules/survey/store/StoreWatchman'
 import styles from '../ChatStyle.less'
@@ -8,6 +8,7 @@ import { Question } from '../interfaces'
 import { ENTER_CODE } from '../constants'
 
 const { TextArea } = Input
+const { I18n: I18nTextTranslations } = window
 
 interface Props {
   model: Question
@@ -44,10 +45,15 @@ const Footer: React.FC<Props> = ({ model, choices, readOnly }) => {
         className={styles.chatInput}
         placeholder={I18n().t('threesixty.question.chat_type.input_placeholder')}
         onKeyUp={handleKeyUp}
+        aria-label={I18nTextTranslations.t('frontend.aria.write_message')}
       />
-      <div onClick={createMessage} className={styles.sendIconContainer}>
+      <Button
+        aria-label={I18nTextTranslations.t('frontend.aria.send_message')}
+        onClick={createMessage}
+        className={styles.sendIconContainer}
+      >
         <span className={cs('fa fa-paper-plane', styles.sendIcon)} />
-      </div>
+      </Button>
     </div>
   )
 }

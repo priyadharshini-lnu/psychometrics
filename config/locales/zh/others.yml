@@ -1,5 +1,16 @@
 ---
 zh:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: 所有回应
+      numeric_comparator:
+        enter_value: 输入值
+        select_data: 选择数据
+      scoring:
+        select_comparison: 选择比较类型
+        select_factors: 选择因素
+        select_operation: 选择操作
   activerecord:
     attributes:
       membership:

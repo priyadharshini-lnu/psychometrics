@@ -88,6 +88,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin, :client_admin, :project_admin)
   end
 
+  def unlock_user_access?
+    @user.is?(:superadmin) && @record.access_locked?
+  end
+
   # @deprecated
   def manage_grants?
     @user.is?(:superadmin, :client_admin) && @record.scope == :administration

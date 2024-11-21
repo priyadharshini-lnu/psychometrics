@@ -18,7 +18,7 @@ interface Props {
   errors: QuestionError[]
 }
 
-interface ContactProps {
+export interface ContactProps {
   type: ContactType
   visible: boolean
 }
@@ -92,20 +92,22 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
           toggleCopyField={toggleCopyField}
           type={type}
           readOnly={readOnly}
+          contactProps={contactProps}
         />
       ))}
       <div className={styles.subject}>
-        <div>{I18n().t('threesixty.question.email_type.subject')}</div>
+        <label htmlFor={`email-subject-${model.id}`}>{I18n().t('threesixty.question.email_type.subject')}</label>
         <Form.Item {...validationProps('subject')}>
           <Input
             defaultValue={model.result.answers.subject}
             onChange={({ target: { value } }): void => handleTestChange('subject', value)}
             disabled={readOnly}
+            id={`email-subject-${model.id}`}
           />
         </Form.Item>
       </div>
       <div>
-        <div>{I18n().t('threesixty.question.email_type.message')}</div>
+        <label htmlFor={`email-message-${model.id}`}>{I18n().t('threesixty.question.email_type.message')}</label>
         <Form.Item {...validationProps('message')}>
           <TextArea
             className={styles.message}
@@ -114,6 +116,7 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
             onChange={({ target: { value } }): void => handleTestChange('message', value)}
             disabled={readOnly}
             maxLength={maxLength}
+            id={`email-message-${model.id}`}
           />
         </Form.Item>
         {maxLength

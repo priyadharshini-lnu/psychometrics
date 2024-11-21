@@ -28,6 +28,7 @@ class CampaignAssessment < ApplicationRecord
            :has_external_norm?,
            :external_assessment_id,
            :assessor_form?,
+           :dimension,
            to: :assessment
 
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true

@@ -12,15 +12,18 @@ export class ConditionalImageModal extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      model: _.cloneDeep(props.model),
+      model: _.cloneDeep(props.modules[0]),
     }
   }
 
   save = () => {
     const { model: newModule } = this.state
-    const { model, close } = this.props
-    model.props = newModule.props
-    model.update()
+    const { modules, close } = this.props
+    modules.forEach((module) => {
+      module.props = newModule.props
+      module.update()
+    })
+
     close()
   }
 

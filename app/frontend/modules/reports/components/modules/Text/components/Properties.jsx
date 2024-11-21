@@ -1,11 +1,9 @@
 import _ from 'lodash'
-import { Component } from 'react'
 import { Button, Space } from 'antd'
 import { DeleteOutlined, ClearOutlined } from '@ant-design/icons'
 import Select from 'react-select'
 import cs from 'classnames'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import Action from '~/modules/reports/undo'
 import { ColorPicker } from '~/glint'
 import PropertyFonts, { styleClassess, getStyle } from '~/modules/reports/components/PropertyFonts'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
@@ -28,147 +26,140 @@ const SELECT_OPTIONS = [
   { label: 'Result/DataSheet Text', value: 'ResultText' },
 ]
 
-class Properties extends Component {
-  update = () => {
-    const { model } = this.props
-    model.update()
+const Properties = ({
+  modules, reportStyles, openConditionalText, openConditionalFactorOccupationText, questions,
+}) => {
+  const model = modules[0]
+
+  const update = () => {
+    updateAll()
   }
 
-  changeBg = (color) => {
-    const { model } = this.props
-    model.props.style.backgroundColor = color
-    model.update()
+  const updateAll = (cb) => {
+    modules.forEach((module) => {
+      cb?.(module)
+      module.update()
+    })
   }
 
-  changeBorder = (color) => {
-    const { model } = this.props
-    model.props.style.borderColor = color
-    model.update()
+  const changeBg = (color) => {
+    updateAll((model) => {
+      model.props.style.backgroundColor = color
+    })
   }
 
-  changeType = (type, props = {}) => {
-    const { model } = this.props
-    if (model.type === type) { return }
-    Action('QuestionChangeType', model, { oldType: model.type, newType: type })
-    model.changeType(type, props)
-    this.update()
+  const changeBorder = (color) => {
+    updateAll((model) => {
+      model.props.style.borderColor = color
+    })
   }
 
-  changeHorizontalAlign = (type) => {
-    const { model } = this.props
-    if (model.props.style.horizontalAlign === type) {
-      model.props.style.horizontalAlign = ''
-    } else {
-      model.props.style.horizontalAlign = type
-    }
-    model.update()
+  const changeHorizontalAlign = (type) => {
+    updateAll((model) => {
+      if (model.props.style.horizontalAlign === type) {
+        model.props.style.horizontalAlign = ''
+      } else {
+        model.props.style.horizontalAlign = type
+      }
+    })
   }
 
-  changeVerticalAlign = (type) => {
-    const { model } = this.props
-    if (model.props.style.verticalAlign === type) {
-      model.props.style.verticalAlign = ''
-    } else {
-      model.props.style.verticalAlign = type
-    }
-
-    this.update()
+  const changeVerticalAlign = (type) => {
+    updateAll((model) => {
+      if (model.props.style.verticalAlign === type) {
+        model.props.style.verticalAlign = ''
+      } else {
+        model.props.style.verticalAlign = type
+      }
+    })
   }
 
-  changeFontWeight = (e) => {
-    const { model } = this.props
-    model.props.style.fontWeight = e.currentTarget.checked ? 'bold' : 'normal'
-    this.update()
+  const changeFontWeight = (e) => {
+    updateAll((model) => {
+      model.props.style.fontWeight = e.currentTarget.checked ? 'bold' : 'normal'
+    })
   }
 
-  changeFontStyle = (e) => {
-    const { model } = this.props
-    model.props.style.fontStyle = e.currentTarget.checked ? 'italic' : 'normal'
-    this.update()
+  const changeFontStyle = (e) => {
+    updateAll((model) => {
+      model.props.style.fontStyle = e.currentTarget.checked ? 'italic' : 'normal'
+    })
   }
 
-  changeBorderRadius = (val) => {
-    const { model } = this.props
-    model.props.style.borderRadius = val
-    this.update()
+  const changeBorderRadius = (val) => {
+    updateAll((model) => {
+      model.props.style.borderRadius = val
+    })
   }
 
-  reset = () => {
-    const { model } = this.props
+  const reset = () => {
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure?')) {
-      model.reset()
-      this.forceUpdate()
+      updateAll((model) => {
+        model.reset()
+      })
     }
   }
 
-  removeStyle = (name) => {
-    const { model } = this.props
-    model.props.style = _.omit(model.props.style, name)
-    this.update()
+  const removeStyle = (name) => {
+    updateAll((model) => {
+      model.props.style = _.omit(model.props.style, name)
+    })
   }
 
-  resetStyles = () => {
-    const { model } = this.props
+  const resetStyles = () => {
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure?')) {
-      model.props.style = _.cloneDeep(DefaultProps.Text.style)
-      this.update()
+      updateAll((model) => {
+        model.props.style = _.cloneDeep(DefaultProps.Text.style)
+      })
     }
   }
 
-  changeSourceType = (obj) => {
-    const { model } = this.props
-    model.props.sourceType = obj.value
-    this.update()
+  const changeSourceType = (obj) => {
+    updateAll((model) => {
+      model.props.sourceType = obj.value
+    })
   }
 
-  openConditionModal = () => {
-    const { model, openConditionalText } = this.props
-    openConditionalText({ module: model })
+  const openConditionModal = () => {
+    openConditionalText({ modules })
   }
 
-  openConditionalFactorOccupationModal = () => {
-    const { model, openConditionalFactorOccupationText } = this.props
-    openConditionalFactorOccupationText({ module: model })
+  const openConditionalFactorOccupationModal = () => {
+    openConditionalFactorOccupationText({ modules })
   }
 
-  changeAssessment = (assessmentId) => {
-    const { model } = this.props
-    model.assessment_id = assessmentId
-    clearAfterAssessmentChange(model)
-    this.update()
+  const changeAssessment = (assessmentId) => {
+    updateAll((model) => {
+      model.assessment_id = assessmentId
+      clearAfterAssessmentChange(model)
+    })
   }
 
-  changeEditAndApprove = (e) => {
-    const { model } = this.props
-    model.props.editable = e.currentTarget.checked
-    this.update()
+  const changeEditAndApprove = (e) => {
+    updateAll((model) => {
+      model.props.editable = e.currentTarget.checked
+      model.update()
+    })
   }
 
-  changeModelIn = (keys, value) => {
-    const { model } = this.props
+  const changeModelIn = (keys, value) => {
     // TODO (atanych): update model by link directly in the component is not good
     // practice. We should avoid mutations in future.
     // TODO (atanych): But for now let's keep as is.
-    _.set(model, keys, value)
-    this.update()
+    updateAll((model) => {
+      _.set(model, keys, value)
+    })
   }
 
-  changeSkipRoundValues = (e) => {
-    const { model } = this.props
-    model.props.skipRoundingValues = e.currentTarget.checked
-    this.update()
+  const changePrecision = (val) => {
+    updateAll((model) => {
+      model.props.precision = val
+    })
   }
 
-  changePrecision = (val) => {
-    const { model } = this.props
-    model.props.precision = val
-    this.update()
-  }
-
-  renderPosition () {
-    const { model, reportStyles } = this.props
+  const renderPosition = () => {
     const { verticalAlign } = model.props.style
     const { horizontalAlign } = model.props.style
 
@@ -183,7 +174,7 @@ class Properties extends Component {
           {_.map(['left', 'center', 'right', 'justify'], (type, i) => (
             <div
               key={i}
-              onClick={e => this.changeHorizontalAlign(type, e)}
+              onClick={e => changeHorizontalAlign(type, e)}
               className={
                 cs(localStyles.alignedBlock, localStyles[type], {
                   [localStyles.active]: horizontalAlign === type,
@@ -197,7 +188,7 @@ class Properties extends Component {
           {_.map(['flex-start', 'center', 'flex-end'], (type, i) => (
             <div
               key={i}
-              onClick={e => this.changeVerticalAlign(type, e)}
+              onClick={e => changeVerticalAlign(type, e)}
               className={
                 cs(localStyles.alignedBlock, localStyles[type], {
                   [localStyles.active]: verticalAlign === type,
@@ -212,78 +203,72 @@ class Properties extends Component {
   }
 
   // TODO (atanych): should be extracted neighbourhood as dedicated Components according to store.model.props.sourceType
-  renderResponseTextForm () {
-    const { model, questions } = this.props
+  const renderResponseTextForm = () => {
     if (model.props.sourceType !== 'ResponseText') { return null }
     return (
-      <ResponseText model={model} onChangeModelIn={this.changeModelIn} questions={questions} />
+      <ResponseText model={model} onChangeModelIn={changeModelIn} questions={questions} />
     )
   }
 
   // TODO (atanych): should be extracted neighbourhood as dedicated Components according to store.model.props.sourceType
-  renderResultTextForm () {
-    const { model, questions } = this.props
+  const renderResultTextForm = () => {
     if (model.props.sourceType !== 'ResultText') { return null }
     return (
-      <ResultText model={model} onChangeModelIn={this.changeModelIn} update={this.update} questions={questions} />
+      <ResultText modules={modules} onChangeModelIn={changeModelIn} update={update} questions={questions} />
     )
   }
 
-  renderDataSourceOptions () {
-    const { model } = this.props
+  const renderDataSourceOptions = () => {
     if (model.props.sourceType === 'ResultText') return null
 
     return (
       <div>
         <hr className={styles.divider} />
-        <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />
+        <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={changeAssessment} />
       </div>
     )
   }
 
+  const { backgroundColor, borderColor, borderRadius } = model.props.style
 
-  render () {
-    const { model, reportStyles } = this.props
-    const { backgroundColor, borderColor, borderRadius } = model.props.style
-
-    return (
-      <div>
-        <div className={styles.title}>Text Options</div>
-        {this.renderDataSourceOptions()}
-        <hr className={styles.divider} />
-        <div className="margin-top-10 margin-bottom-10">
-          <Select
-            name="form-field-name"
-            value={getValue(SELECT_OPTIONS, model.props.sourceType)}
-            options={SELECT_OPTIONS}
-            getOptionValue={opt => opt.value}
-            autoFocus={false}
-            isClearable={false}
-            onChange={this.changeSourceType}
-          />
-          {model.props.sourceType === 'ConditionalText'
+  return (
+    <div>
+      <div className={styles.title}>Text Options</div>
+      {renderDataSourceOptions()}
+      <hr className={styles.divider} />
+      <div className="margin-top-10 margin-bottom-10">
+        <Select
+          name="form-field-name"
+          value={getValue(SELECT_OPTIONS, model.props.sourceType)}
+          options={SELECT_OPTIONS}
+          getOptionValue={opt => opt.value}
+          autoFocus={false}
+          isClearable={false}
+          onChange={changeSourceType}
+        />
+        {model.props.sourceType === 'ConditionalText'
             && (
             <div
               style={{ width: '100%' }}
-              onClick={this.openConditionModal}
+              onClick={openConditionModal}
               className="btn btn-default"
             >
               Manage condition
             </div>
             )}
-          {model.props.sourceType === 'ConditionalFactorOccupationText'
+        {model.props.sourceType === 'ConditionalFactorOccupationText'
             && (
             <div
               style={{ width: '100%' }}
-              onClick={this.openConditionalFactorOccupationModal}
+              onClick={openConditionalFactorOccupationModal}
               className="btn btn-default"
             >
               Manage condition
             </div>
             )}
-          {this.renderResponseTextForm()}
-          {this.renderResultTextForm()}
-          {
+        {renderResponseTextForm()}
+        {renderResultTextForm()}
+        {
           model.props.sourceType === 'PipedText'
           && (
           <div style={{ width: '100%' }}>
@@ -317,126 +302,125 @@ class Properties extends Component {
           </div>
           )
         }
-        </div>
-        <hr className={styles.divider} />
-        <div className="margin-top-10">Font</div>
-        <PropertyFonts model={model} reportStyles={reportStyles} />
-        <div className="margin-top-10">Paragraph</div>
-        {this.renderPosition()}
-        <div className="margin-top-10">
-          <label className={styles.inputLabel}>
-            <input
-              style={{ marginRight: '5px' }}
-              className={cs(styleClassess(reportStyles, 'fontWeight', model.props.style.fontWeight))}
-              type="checkbox"
-              checked={model.props.style.fontWeight === 'bold'}
-              onChange={this.changeFontWeight}
-            />
-            Bold
-          </label>
-          <label className={styles.inputLabel}>
-            <input
-              style={{ marginRight: '5px' }}
-              className={cs(styleClassess(reportStyles, 'fontStyle', model.props.style.fontStyle))}
-              type="checkbox"
-              checked={model.props.style.fontStyle === 'italic'}
-              onChange={this.changeFontStyle}
-            />
-            Italics
-          </label>
-          {model.props.sourceType === 'ResultText' && model.props.source?.type === 'DataSheet' && (
+      </div>
+      <hr className={styles.divider} />
+      <div className="margin-top-10">Font</div>
+      <PropertyFonts modules={modules} model={model} reportStyles={reportStyles} />
+      <div className="margin-top-10">Paragraph</div>
+      {renderPosition()}
+      <div className="margin-top-10">
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            className={cs(styleClassess(reportStyles, 'fontWeight', model.props.style.fontWeight))}
+            type="checkbox"
+            checked={model.props.style.fontWeight === 'bold'}
+            onChange={changeFontWeight}
+          />
+          Bold
+        </label>
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            className={cs(styleClassess(reportStyles, 'fontStyle', model.props.style.fontStyle))}
+            type="checkbox"
+            checked={model.props.style.fontStyle === 'italic'}
+            onChange={changeFontStyle}
+          />
+          Italics
+        </label>
+        {model.props.sourceType === 'ResultText' && model.props.source?.type === 'DataSheet' && (
           <div className={styles.block} style={{ position: 'relative' }}>
             <div className="margin-top-10">Number Precision</div>
             <label className={styles.inputLabel}>
               <ChoicesInput
                 value={model.props.precision || 0}
-                onChange={this.changePrecision}
+                onChange={changePrecision}
                 minValue={0}
                 maxValue={10}
               />
             </label>
           </div>
-          )}
-        </div>
-        <Button size="small" danger onClick={this.resetStyles} icon={<ClearOutlined />}>Reset Font Styles</Button>
-        <hr className={styles.divider} />
-        <div className={styles.block} style={{ position: 'relative' }}>
-          <div className="margin-top-10">Content overriding</div>
-          <label className={styles.inputLabel}>
-            <input
-              style={{ marginRight: '5px' }}
-              type="checkbox"
-              checked={model.props.editable}
-              onChange={this.changeEditAndApprove}
-            />
-            Edit and Approve
-          </label>
-        </div>
-
-        <hr className={styles.divider} />
-        <div className={styles.block} style={{ position: 'relative' }}>
-          Background Color
-          <Space.Compact block className={localStyles.flexCenter}>
-            <ColorPicker
-              swatchClassName={localStyles.swatch}
-              value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
-              onChange={this.changeBg}
-            />
-            {backgroundColor && (
-              <Button
-                onClick={() => this.removeStyle('backgroundColor')}
-                size="small"
-                type="link"
-                danger
-                icon={<DeleteOutlined />}
-              />
-            )}
-          </Space.Compact>
-
-        </div>
-        <div className={styles.block} style={{ position: 'relative' }}>
-          Border Color
-          <Space.Compact block className={localStyles.flexCenter}>
-            <ColorPicker
-              swatchClassName={localStyles.swatch}
-              value={_.isObject(borderColor) ? rgba2hex(borderColor) : borderColor}
-              onChange={this.changeBorder}
-            />
-            {borderColor && (
-              <Button
-                onClick={() => this.removeStyle('borderColor')}
-                size="small"
-                type="link"
-                danger
-                icon={<DeleteOutlined />}
-              />
-            )}
-          </Space.Compact>
-
-        </div>
-        <hr className={styles.divider} />
-        <div className={styles.block}>
-          Rounded Corners
-          <Space>
-            <ChoicesInput value={borderRadius || 0} onChange={this.changeBorderRadius} maxValue={1000} />
-            {borderRadius !== undefined && (
-              <Button
-                onClick={() => this.removeStyle('borderRadius')}
-                size="small"
-                type="link"
-                danger
-                icon={<DeleteOutlined />}
-              />
-            )}
-          </Space>
-        </div>
-        <hr className={styles.divider} />
-        <div className={`${styles.block} ${styles.reset}`} onClick={this.reset}>
-          Reset Text...
-        </div>
+        )}
       </div>
-    )
-  }
+      <Button size="small" danger onClick={resetStyles} icon={<ClearOutlined />}>Reset Font Styles</Button>
+      <hr className={styles.divider} />
+      <div className={styles.block} style={{ position: 'relative' }}>
+        <div className="margin-top-10">Content overriding</div>
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={model.props.editable}
+            onChange={changeEditAndApprove}
+          />
+          Edit and Approve
+        </label>
+      </div>
+
+      <hr className={styles.divider} />
+      <div className={styles.block} style={{ position: 'relative' }}>
+        Background Color
+        <Space.Compact block className={localStyles.flexCenter}>
+          <ColorPicker
+            swatchClassName={localStyles.swatch}
+            value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
+            onChange={changeBg}
+          />
+          {backgroundColor && (
+          <Button
+            onClick={() => removeStyle('backgroundColor')}
+            size="small"
+            type="link"
+            danger
+            icon={<DeleteOutlined />}
+          />
+          )}
+        </Space.Compact>
+
+      </div>
+      <div className={styles.block} style={{ position: 'relative' }}>
+        Border Color
+        <Space.Compact block className={localStyles.flexCenter}>
+          <ColorPicker
+            swatchClassName={localStyles.swatch}
+            value={_.isObject(borderColor) ? rgba2hex(borderColor) : borderColor}
+            onChange={changeBorder}
+          />
+          {borderColor && (
+          <Button
+            onClick={() => removeStyle('borderColor')}
+            size="small"
+            type="link"
+            danger
+            icon={<DeleteOutlined />}
+          />
+          )}
+        </Space.Compact>
+
+      </div>
+      <hr className={styles.divider} />
+      <div className={styles.block}>
+        Rounded Corners
+        <Space>
+          <ChoicesInput value={borderRadius || 0} onChange={changeBorderRadius} maxValue={1000} />
+          {borderRadius !== undefined && (
+          <Button
+            onClick={() => removeStyle('borderRadius')}
+            size="small"
+            type="link"
+            danger
+            icon={<DeleteOutlined />}
+          />
+          )}
+        </Space>
+      </div>
+      <hr className={styles.divider} />
+      <div className={`${styles.block} ${styles.reset}`} onClick={reset}>
+        Reset Text...
+      </div>
+    </div>
+  )
 }
 
 export default connect(Properties)

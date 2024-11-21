@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Card, Col, Row, Skeleton,
+  Card, Col, Row, Skeleton, Pagination,
 } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 import { useNavigate } from 'react-router-dom'
@@ -14,7 +14,7 @@ const { I18n } = window
 export const DashboardList = () => {
   const navigate = useNavigate()
   const {
-    data, fetch, isLoading,
+    data, fetch, isLoading, currentPage, pageSize, changePage, meta,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })
 
   useEffect(() => {
@@ -45,6 +45,13 @@ export const DashboardList = () => {
           </Col>
         ))}
       </Row>
+      <Pagination
+        current={currentPage}
+        pageSize={pageSize}
+        total={meta.recordCount}
+        onChange={changePage}
+        className="pl"
+      />
     </div>
   )
 }

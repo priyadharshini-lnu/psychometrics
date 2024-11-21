@@ -33,11 +33,12 @@ type AssessmentFactor = {
 }
 
 interface Props {
-  model: PropertiesModel
   factors: AssessmentFactor[]
+  modules: PropertiesModel[]
 }
 
-const Properties: FC<Props> = ({ model, factors }) => {
+const Properties: FC<Props> = ({ factors, modules }) => {
+  const model = modules[0]
   const [meanValues, setMeanValues] = useState({
     x: {
       title: model?.props?.xMeanTitle ?? '',
@@ -57,8 +58,10 @@ const Properties: FC<Props> = ({ model, factors }) => {
     field: string,
     value: string | number | DataPoint[],
   ) => {
-    model.props[field] = value
-    model.update()
+    modules.forEach((item) => {
+      item.props[field] = value
+      item.update()
+    })
   }
 
   const insertDataPointAt = (
@@ -340,5 +343,5 @@ const FactorsSelect: FC<FactorsSelectProps> = ({
 )
 
 export default connect((state: RootState, props: Props) => ({
-  factors: getAssessmentFactors(state, props.model.assessment_id),
+  factors: getAssessmentFactors(state, props.modules[0].assessment_id),
 }), {})(Properties)

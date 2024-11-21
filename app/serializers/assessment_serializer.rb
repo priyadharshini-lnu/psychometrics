@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 class AssessmentSerializer < Panko::Serializer
+  include CachingSerializer
+
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
              :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,
              :resources_content, :resources_translations, :instructions, :fixed_timed, :options, :default_norm_id,
              :extra, :linked_questions, :allow_multiple_responses, :default_language, :campaign_factors_list
+
+  cache_serializer except: %i[relationships data_sheet_columns allow_multiple_responses],
+                   cache_key: lambda { |object|
+                     object.serializer_cache_key
+                   }
 
   def blocks
     blocks = object.blocks.selecting do

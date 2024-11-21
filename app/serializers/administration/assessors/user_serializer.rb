@@ -37,7 +37,6 @@ module Administration
 
       def assessor_can_moderate_scores
         lead_user_assessment = UserAssessments::GetLeadUserAssessmentForSubject.call!(context[:campaign], object)
-        return false if lead_user_assessment&.completed?
 
         lead_user_assessment&.evaluator == current_user
       end

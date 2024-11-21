@@ -68,6 +68,7 @@ class User < ApplicationRecord
   devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable,
          :magic_link_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
          :secure_validatable, :password_archivable, :password_expirable, :lockable, :timeoutable,
+         :session_limitable,
          request_keys: { subdomain: false }
 
   attr_accessor :create_by_invite, :terms, :current_membership
@@ -116,6 +117,7 @@ class User < ApplicationRecord
   has_many :campaign_users, dependent: :destroy
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
   has_one :hogan_credential, dependent: :destroy
+  has_one :oracle_credential, dependent: :destroy
   has_many  :available_client_admin_reports,
             through: :client_admin_clients,
             source: :available_reports,
@@ -134,6 +136,7 @@ class User < ApplicationRecord
 
   has_one :security_setting, through: :project
   has_one :user_profile
+  has_many :profile_field_values, through: :user_profile
   has_one :active_user_idp_plan, -> { active }, class_name: 'UserIdpPlan'
   has_many :user_idp_plans, dependent: :destroy
   has_many :user_idp_development_actions, through: :active_user_idp_plan, dependent: :destroy
@@ -160,7 +163,7 @@ class User < ApplicationRecord
   acts_as_tagger
 
   delegate :subdomain, to: :project, allow_nil: true
-  delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
+  delegate :age, :gender, :timezone, :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
   delegate :email, to: :manager, prefix: true, allow_nil: true
 
   def accessible_client_ids
