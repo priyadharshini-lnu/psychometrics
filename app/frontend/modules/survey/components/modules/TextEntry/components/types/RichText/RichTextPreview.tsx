@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useRef } from 'react'
 import { Row, Col } from 'antd'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
@@ -9,6 +9,14 @@ import { characterAndWordLimit } from './characterAndWordLimit'
 interface Props {
   model: PreviewModel
   readOnly: boolean
+}
+
+type RichTextEditorRef = {
+  editor?: {
+    wordCounter: {
+      wordCount: () => number
+    }
+  }
 }
 
 const RichTextPreview: FC<Props> = ({
@@ -23,9 +31,12 @@ const RichTextPreview: FC<Props> = ({
     validation,
   } = model
 
+  const ref = useRef<RichTextEditorRef>()
+
   const text = (result.answers[0] && result.answers[0].value) || (usePredefinedRichText && predefinedRichText) || ''
 
   const saveContent = (text: string) => {
+    model.result.setRichTextEditorAnswerWordCount(ref.current?.editor?.wordCounter.wordCount() || 0)
     model.result.answer(text)
   }
 
@@ -37,6 +48,7 @@ const RichTextPreview: FC<Props> = ({
             content={text}
             handleContentChange={value => saveContent(value)}
             readOnly={readOnly}
+            ref={ref}
             {...characterAndWordLimit(validation)}
           />
         </Col>

@@ -3,13 +3,14 @@ import { connect, ConnectedProps } from 'react-redux'
 import keyBy from 'lodash/keyBy'
 import compact from 'lodash/compact'
 import round from 'lodash/round'
+import cs from 'classnames'
 import get from 'lodash/get'
 import find from 'lodash/find'
 import meanBy from 'lodash/meanBy'
 
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
-import { GapType, PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
+import { GapType, PropertiesModel, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
 import { BasePropertiesModel as BaseQuestionModelInProperties } from '~/modules/survey/interfaces/questions/Base'
 
 import ResultStore from '~/modules/reports/store/ResultStore'
@@ -74,6 +75,7 @@ interface OwnProps {
   filters: typeof AppStore.report.filters
   gapType: PropertiesModel['props']['gapType']
   assessment_id: number
+  tableStyle: TableStyleType
   questionsChoices: PropertiesModel['props']['questionsChoices']
   hideValues: boolean
   noOfItems: number | null
@@ -87,6 +89,7 @@ const QuestionTypeComponent: FC<Props> = ({
   filters: [leftFilter, rightFilter],
   gapType,
   assessment_id,
+  tableStyle,
   questionsChoices,
   getQuestions,
   hideValues,
@@ -197,7 +200,7 @@ const QuestionTypeComponent: FC<Props> = ({
   const showTitle = gapType === GapType.ALL
 
   return (
-    <div className={styles.table}>
+    <div className={cs(styles.table, styles[tableStyle])}>
       <table>
         <tbody>
           {showPositiveGapTable && (
@@ -357,13 +360,13 @@ const THeader: FC<THeaderProps> = ({
 }) => (
   <>
     {title.length === 0 && (
-      <tr>
-        <th className={styles.label} colSpan={hideValues ? 3 : 6}>
+      <tr className={styles.title}>
+        <th colSpan={hideValues ? 3 : 6}>
           {title}
         </th>
       </tr>
     )}
-    <tr>
+    <tr className={styles.headers}>
       <th className={styles.label}>
         {I18nStore.t('reports.modules.gap_assessment.rank')}
       </th>
@@ -418,7 +421,7 @@ const TBody: FC<TBodyProps> = ({
   return (
     <>
       {gaps.map((gap, i) => (
-        <tr key={i}>
+        <tr key={i} className={styles.row}>
           <td>{i + 1}</td>
           <td>{gap.factorName}</td>
           <td>{gap.questionName}</td>

@@ -145,7 +145,7 @@ export class Scoring extends Component {
                         onClear={e => this.clear({ choice }, e)}
                         onSet={e => this.setTemplate({ choice }, e)}
                         filled={filled}
-                        label={props.choicesTexts[choice].split(':')[0] || moduleConfig.defaultChoiceText(choice + 1)}
+                        label={props.choicesTexts[choice]?.split(':')[0] || moduleConfig.defaultChoiceText(choice + 1)}
                       />
                     </td>
                     {_.times(props.scalePoints, scale => _.times(data[scale].answers, answer => (

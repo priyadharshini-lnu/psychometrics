@@ -2,7 +2,7 @@
 
 class LuaEvaluator
   def self.eval(code, lua = Lua::State.new)
-    lua.__load_stdlib :base, :math, :string
+    lua.__load_stdlib :base, :math, :string, :table
     lua.__eval(%(
       arg=nil
       debug=nil

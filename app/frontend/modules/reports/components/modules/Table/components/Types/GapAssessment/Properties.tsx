@@ -5,7 +5,7 @@ import {
 } from 'antd'
 
 import { HintCheckbox } from '~/glint'
-import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'
+import { PropertiesModel, GapType, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter/components/PropertyFilter'
 import PropertyNumber from '~/modules/reports/components/PropertyNumber'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
@@ -26,7 +26,16 @@ const GAP_TYPE_OPTIONS = [
     value: GapType.NEGATIVE,
   },
 ]
-
+const GAP_TABLE_STYLE_OPTIONS = [
+  {
+    label: 'Unstyled',
+    value: TableStyleType.UNSTYLED,
+  },
+  {
+    label: 'Minimal',
+    value: TableStyleType.MINIMAL,
+  },
+]
 interface Props {
   modules: PropertiesModel[]
 }
@@ -36,7 +45,7 @@ export const Properties: FC<Props> = ({ modules }) => {
   const {
     props: {
       gapType, sourceType, questionsChoices, factorIds, hideValues = false, noOfItems, gapCutoff, precision,
-      allFactors,
+      allFactors, tableStyle = TableStyleType.UNSTYLED,
     },
     assessment_id,
   } = model
@@ -90,6 +99,11 @@ export const Properties: FC<Props> = ({ modules }) => {
         value={gapType}
         onChange={value => onChange('gapType', value)}
       />
+      <TableStyleSelect
+        value={tableStyle}
+        onChange={value => onChange('tableStyle', value)}
+      />
+
       <TablePreferences
         hideValues={hideValues}
         noOfItems={noOfItems}
@@ -121,6 +135,25 @@ const GapTypeSelect: FC<GapTypeSelectProps> = ({ value, onChange }) => (
     />
   </div>
 )
+
+interface TableStyleSelectProps {
+  value: TableStyleType
+  onChange(value: TableStyleType): void
+}
+const TableStyleSelect: FC<TableStyleSelectProps> = ({ value, onChange }) => (
+  <div>
+
+    <Typography.Text>Style</Typography.Text>
+    <Select
+      className="w-100"
+      size="small"
+      value={value}
+      options={GAP_TABLE_STYLE_OPTIONS}
+      onChange={onChange}
+    />
+  </div>
+)
+
 
 interface TablePreferencesProps {
   hideValues: boolean
