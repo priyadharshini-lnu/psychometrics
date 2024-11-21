@@ -2,10 +2,10 @@ import { useEffect, FC } from 'react'
 import {
   Layout, Flex, Space,
 } from 'antd'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { useLocation } from 'react-router-dom'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { fetchCampaign, reset as resetCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
