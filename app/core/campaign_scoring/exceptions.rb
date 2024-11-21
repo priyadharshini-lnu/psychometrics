@@ -7,5 +7,8 @@ module CampaignScoring
 
     class WrongOutputType < Base
     end
+
+    class IncorrectFunctionUsages < Base
+    end
   end
 end

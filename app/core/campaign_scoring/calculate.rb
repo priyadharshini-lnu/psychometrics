@@ -105,7 +105,8 @@ module CampaignScoring
       }
       lua.helpers = {
         'round' => proc { |value, precision = 0| value.round(precision) },
-        'percentile' => proc { |value| Ztable.percentile(value) }
+        'percentile' => proc { |value| Ztable.percentile(value) },
+        'average' => proc { |values, precision = nil| calculate_average(values, precision) }
       }
       lua_code = %(
         #{campaign_scoring_variables_as_lua_table}
@@ -115,6 +116,17 @@ module CampaignScoring
       value = LuaEvaluator.eval(lua_code, lua)
 
       value.is_a?(Lua::Table) ? value.to_hash.with_indifferent_access : value
+    end
+
+    def calculate_average(values, precision)
+      unless values.is_a?(Lua::Table)
+        raise CampaignScoring::Exceptions::IncorrectFunctionUsages,
+              'helpers.average: First parameter must be a Lua table, and second parameter is precision (integer)'
+      end
+
+      values_array = values.to_a
+      average = values_array.sum / values_array.size.to_f
+      precision.nil? ? average : average.round(precision)
     end
 
     def assessment_factor_score(assessment_id, factor_id, score_type)

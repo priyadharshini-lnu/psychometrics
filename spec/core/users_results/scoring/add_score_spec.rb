@@ -369,6 +369,20 @@ describe UsersResults::Scoring::AddScore do
       end
     end
 
+    describe 'when custom formula contains assessment.answer' do
+      let(:custom_formula) { "return assessment.answer(\"$.question_id['answers'][0].value\")" }
+
+      it 'calculates lua script properly' do
+        answers = {}
+        answers['question_id'] = { 'dirty' => false,
+                                   'answers' => [{ 'index' => 0, 'value' => 2.2 },
+                                                 { 'index' => 1, 'value' => 'Javascript' }] }
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {}, nil, Set.new, answers)
+
+        expect(result[factor2.id.to_s]['score']).to eq(2.2)
+      end
+    end
+
     describe 'formula factor can depend on other formula factor' do
       let(:custom_formula) { "return assessment.raw_score(#{factor1.id})" }
 
@@ -450,6 +464,38 @@ describe UsersResults::Scoring::AddScore do
         result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
         expect(result[factor2.id.to_s]['score']).to eq(nil)
+      end
+    end
+
+    describe 'lua helpers - round' do
+      let(:custom_formula) { 'return helpers.round(2.267, 2)' }
+
+      it 'it can return values rounded to specified digits' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(2.27)
+      end
+    end
+
+    describe 'lua helpers - average' do
+      context 'when precision is passed' do
+        let(:custom_formula) { 'return helpers.average({46.66, 61, 8}, nil)' }
+
+        it 'it can find avarage using average helper' do
+          result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+          expect(result[factor2.id.to_s]['score']).to eq(38.553333333333335)
+        end
+      end
+
+      context 'when precision is not passed' do
+        let(:custom_formula) { 'return helpers.average({46.66, 61, 8})' }
+
+        it 'it raise error when precision is not passed in average helper' do
+          expect do
+            described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+          end.to raise_error
+        end
       end
     end
   end
