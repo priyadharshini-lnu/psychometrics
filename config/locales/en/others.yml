@@ -1229,7 +1229,6 @@ en:
       notification_minutes: you have %{minutes} minutes left
   campaign_assessment:
     actions:
-      export_completion_status: Completion Status
       bulk_download: Bulk Download
       export_completion_status: Export Completion Status
       export_external: External
