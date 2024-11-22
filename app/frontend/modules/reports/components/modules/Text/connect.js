@@ -4,9 +4,10 @@ import { openRichEditor, closeRichEditor } from '~/modules/reports/core/builder/
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 
 export default connect(
-  (state, { module, model }) => ({
+  (state, { modules, module }) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
-    questions: state.report.builder.loaded ? getQuestions(state.report, (module || model).assessment_id) || {} : {},
+    questions: state.report.builder.loaded
+      ? getQuestions(state.report, (module || modules[0]).assessment_id) || {} : {},
     reportStyles: state.report.builder.styles,
   }),
   dispatch => ({

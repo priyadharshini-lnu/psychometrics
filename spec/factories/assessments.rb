@@ -14,6 +14,14 @@ FactoryBot.define do
       end
     end
 
+    trait :with_same_owner_dimension do
+      after(:create) do |assessment, _evaluator|
+        if assessment.dimension && assessment.owner.present?
+          assessment.dimension.update!(owner: assessment.owner)
+        end
+      end
+    end
+
     factory :hogan_assessment, class: '::Assessments::Hogan' do
       category { Assessment::CATEGORIES[:hogan] }
       type { ::Assessments::Hogan }

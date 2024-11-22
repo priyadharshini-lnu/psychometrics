@@ -27,9 +27,7 @@ class WorkshopInvitedSubject < ApplicationRecord
   after_commit :publish_scheduling_invited, on: %i[create]
 
   scope :invites, -> { where(status: :pending) }
-  scope :bookings, lambda {
-    where(status: %i[accepted rescheduled cancelled requested_rescheduling requested_cancellation])
-  }
+  scope :bookings, -> { where.not(status: :pending) }
   scope :filterable_fields, ->(query) { joins(:user).merge(User.filterable_fields(query)) }
 
   def self.ransackable_attributes(_auth_object = nil)

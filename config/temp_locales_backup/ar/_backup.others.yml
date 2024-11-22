@@ -438,8 +438,6 @@ ar:
     invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
     messages:
       already_confirmed: تم تأكيده بالفعل، يرجى محاولة تسجيل الدخول
-      carrierwave_direct_allowed_extensions: تم تحميل نوع ملف خاطئ. الامتدادات المسموح بها هي %{extensions}
-      carrierwave_direct_filename_invalid: ''
       confirmation_period_expired: يجب التأكيد خلال %{period}، يرجى طلب تأكيد جديد
       expired: انتهت صلاحيته، يرجى طلب واحدة جديدة
       iiht_cannot_reset: لا يمكن إعادة تعيين هذا التقييم لأنه تم الوصول إلى الحد الأقصى لعدد مرات إعادة التعيين.

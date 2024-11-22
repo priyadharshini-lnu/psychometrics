@@ -19,6 +19,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { RemoveClientModal } from './RemoveClientModal'
 import { ClientFormModal } from './ClientFormModal'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { Column } = Table
 const { Search } = Input
@@ -47,6 +48,7 @@ interface Meta extends BaseMeta{
 const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
   const [countries, setCoutries] = useState<Meta['countries']>([])
   const [types, setTypes] = useState<Meta['types']>([])
+  const { width: windowWidth } = useWindowSize()
   const baseApiConfig = {
     include: ['project_manager'],
     fields: { users: ['name', 'email'] },
@@ -81,6 +83,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
         rowKey={row => row?.id ?? -1}
         dataSource={data}
         pagination={false}
+        scroll={{ x: 'max-content' }}
         loading={tableLoading}
         onChange={handleTableChange}
       >
@@ -88,13 +91,14 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
           title={I18n.t('common.column.id')}
           dataIndex="id"
           key="id"
+          fixed={windowWidth > 800 ? 'left' : undefined}
           sorter
           sortOrder={getSortOrder('id')}
         />
         <Column
           title={I18n.t('common.column.name')}
           key="name"
-          width={300}
+          width="auto"
           sorter
           sortOrder={getSortOrder('name')}
           render={({ name, id }) => (
@@ -126,6 +130,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
         <Column
           title={I18n.t('common.column.action')}
           key="action"
+          fixed={windowWidth > 800 ? 'right' : undefined}
           render={client => (
             <ConditionalDropdown
               menu={

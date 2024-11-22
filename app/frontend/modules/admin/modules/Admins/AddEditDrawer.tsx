@@ -236,7 +236,9 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const setRequiredStates = (value) => {
     setNotFromList(!(_.includes(_.map(users, 'id'), value[0])))
-    setSelectedUser(_.find(users, { id: value[0] }) || null)
+    setSelectedUser(_.find(users, { id: value[0] }) || {
+      firstName: '', lastName: '', name: '', email: value[0], id: value[0],
+    })
     setSelected(value[0])
     setUserSelectOpen(false)
   }
@@ -358,10 +360,11 @@ const AddEditDrawerComponent: FC<Props> = ({
                     open={open}
                     value={selected}
                     onChange={(value) => {
-                      if (value?.length > 1) {
-                        value.pop()
+                      const trimmedValue = value.map((v: string) => v.trim()).filter(v => v)
+                      if (trimmedValue?.length > 1) {
+                        trimmedValue.pop()
                       }
-                      setRequiredStates(value)
+                      setRequiredStates(trimmedValue)
                     }}
                     onFocus={() => setUserSelectOpen(true)}
                     onBlur={() => setUserSelectOpen(false)}
@@ -376,7 +379,10 @@ const AddEditDrawerComponent: FC<Props> = ({
                       })
                     }}
                     notFoundContent={isUserLoading('fetch') ? <Spin size="small" /> : null}
-                    optionFilterProp="children"
+                    filterOption={(input, option) => {
+                      const optionText = typeof option?.children === 'string' ? option.children : ''
+                      return optionText.toLowerCase().includes(input.trim().toLowerCase())
+                    }}
                   >
                     {users.map(({ id, email }) => (
                       <Option key={id} value={id}>

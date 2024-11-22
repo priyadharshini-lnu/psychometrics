@@ -5,9 +5,9 @@ require 'swagger_helper'
 
 describe Api::V2::Administration::CampaignTemplatesController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let!(:assessment) { create(:assessment) }
   let!(:owner) { create(:tenancy) }
-  let(:report) { create(:report, assessments: [assessment]) }
+  let!(:assessment) { create(:assessment, :with_same_owner_dimension, owner:, created_by: superadmin) }
+  let(:report) { create(:report, assessments: [assessment], owner:, created_by: superadmin) }
   let!(:campaign_template) { create(:campaign_template, assessment: assessment, report: report, owner: owner) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
@@ -99,9 +99,14 @@ describe Api::V2::Administration::CampaignTemplatesController, swagger_doc: 'v2/
           }
         }
 
-        let!(:assessment_new) { create(:assessment, name: 'New Assessmen') }
         let!(:owner_new) { create(:tenancy, name: 'New Client') }
-        let(:report_new) { create(:report, assessments: [assessment], name: 'New Report') }
+        let!(:assessment_new) do
+          create(:assessment, :with_same_owner_dimension, name: 'New Assessmen', owner: owner_new,
+            skip_owner_validation: true)
+        end
+        let(:report_new) do
+          create(:report, assessments: [assessment], name: 'New Report', owner: owner_new, skip_owner_validation: true)
+        end
 
         let(:body) do
           {
@@ -193,9 +198,14 @@ describe Api::V2::Administration::CampaignTemplatesController, swagger_doc: 'v2/
           }
         }
 
-        let!(:assessment_new) { create(:assessment, name: 'New Assessmen') }
         let!(:owner_new) { create(:tenancy, name: 'New Client') }
-        let(:report_new) { create(:report, assessments: [assessment], name: 'New Report') }
+        let!(:assessment_new) do
+          create(:assessment, :with_same_owner_dimension, name: 'New Assessmen', owner: owner_new,
+           skip_owner_validation: true)
+        end
+        let(:report_new) do
+          create(:report, assessments: [assessment], name: 'New Report', owner: owner_new, skip_owner_validation: true)
+        end
         let!(:campaign_template) do
           create(:campaign_template, name: 'Old Name', assessment: assessment, report: report, owner: owner)
         end

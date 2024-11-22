@@ -37,23 +37,26 @@ export const NetworkCheck: React.FC<Props> = ({ nextStep, config }) => {
   const View = VIEWS[status]
 
   return (
-    <Col
-      className={cardStyles.container}
-      lg={{ span: 8, offset: 8 }}
-      xs={24}
-      sm={{ span: 16, offset: 4 }}
-    >
-      <Card className={cardStyles.card}>
-        <View
-          nextStep={nextStep}
-          measures={{ download, upload }}
-          resetMetrics={resetMetrics}
-          updateMetrics={updateMetrics}
-          updateStatus={setStatus}
-          config={config}
-        />
-      </Card>
-    </Col>
+    <>
+      <title>{`${I18n.t('checking_wizard.network_check.title')}`}</title>
+      <Col
+        className={cardStyles.container}
+        lg={{ span: 8, offset: 8 }}
+        xs={24}
+        sm={{ span: 16, offset: 4 }}
+      >
+        <Card className={cardStyles.card}>
+          <View
+            nextStep={nextStep}
+            measures={{ download, upload }}
+            resetMetrics={resetMetrics}
+            updateMetrics={updateMetrics}
+            updateStatus={setStatus}
+            config={config}
+          />
+        </Card>
+      </Col>
+    </>
   )
 }
 

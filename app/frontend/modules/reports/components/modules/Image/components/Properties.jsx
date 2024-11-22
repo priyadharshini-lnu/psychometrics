@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { useRef, useEffect } from 'react'
 import Select from 'react-select'
 import { Space, InputNumber, Select as AntSelect } from 'antd'
 import { LibraryStore } from '~/libs/library'
@@ -21,236 +21,230 @@ const TYPE_OPTIONS = [
   { label: 'User Profile Image', value: 'UserProfileImage' },
 ]
 
-class Properties extends Component {
-  componentWillMount () {
-    const { model } = this.props
-    const type = model.props.sourceType
-    model.props.sourceType = type || 'SimpleImage'
+const Properties = ({
+  modules, questions, openConditionalImage, pageSize,
+}) => {
+  const model = modules[0]
+  const updateAll = (cb) => {
+    modules.forEach((module) => {
+      cb?.(module)
+      module.update()
+    })
   }
 
-  componentDidMount () {
+  const librarySocket = useRef(null)
+
+  useEffect(() => {
     LibraryTransport.init()
-    this.librarySocket = Socket.library()
+    librarySocket.current = Socket.library()
+  }, [])
+
+  const onSelectGraphic = (item) => {
+    updateAll((model) => {
+      model.props.url = item.file
+    })
   }
 
-  onSelectGraphic = (item) => {
-    const { model } = this.props
-    model.props.url = item.file
-    this.update()
+  const changeBorderColor = (color) => {
+    updateAll((model) => {
+      model.props.style.borderColor = color
+    })
   }
 
-  changeBorderColor = (color) => {
-    const { model } = this.props
-    model.props.style.borderColor = color
-    model.update()
+  const changeBorderRadius = (val) => {
+    updateAll((model) => {
+      model.props.style.borderRadius = val
+    })
   }
 
-  changeBorderRadius = (val) => {
-    const { model } = this.props
-    model.props.style.borderRadius = val
-    model.update()
+  const changeBorderWidth = (val) => {
+    updateAll((model) => {
+      model.props.style.borderWidth = val
+    })
   }
 
-  changeBorderWidth = (val) => {
-    const { model } = this.props
-    model.props.style.borderWidth = val
-    model.update()
+  const changeBorderStyle = (val) => {
+    updateAll((model) => {
+      model.props.style.borderStyle = val
+    })
   }
 
-  changeBorderStyle = (val) => {
-    const { model } = this.props
-    model.props.style.borderStyle = val
-    model.update()
+  const changeUrl = (e) => {
+    updateAll((model) => {
+      const val = e.currentTarget.value
+      model.props.url = val
+    })
   }
 
-  changeUrl = (e) => {
-    const { model } = this.props
-    const val = e.currentTarget.value
-    model.props.url = val
-    model.update()
+  const changeBorder = (e) => {
+    updateAll((model) => {
+      const val = e.currentTarget.checked
+      model.props.border = val
+      if (val) {
+        model.props.style = model.props.style ? model.props.style : { style: 'solid' }
+      }
+    })
   }
 
-  changeBorder = (e) => {
-    const { model } = this.props
-    const val = e.currentTarget.checked
-    model.props.border = val
-    if (val) {
-      model.props.style = model.props.style ? model.props.style : { style: 'solid' }
-    }
-    model.update()
+  const changeAspectRatio = (e) => {
+    updateAll((model) => {
+      const val = e.currentTarget.checked
+      model.props.aspectRatio = val
+    })
   }
 
-  changeAspectRatio = (e) => {
-    const { model } = this.props
-    const val = e.currentTarget.checked
-    model.props.aspectRatio = val
-    model.update()
+  const openLibrary = () => {
+    LibraryStore.openPopup(librarySocket.current, onSelectGraphic, 'image')
   }
 
-  openLibrary = () => {
-    LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic, 'image')
+  const update = () => {
+    updateAll()
   }
 
-  update = () => {
-    const { model } = this.props
-    model.update()
+  const changeSourceType = (obj) => {
+    updateAll((model) => {
+      model.props.sourceType = obj.value
+      if (model.props.sourceType === 'ConditionalImage') {
+        model.props.url = null
+      }
+    })
   }
 
-  changeSourceType = (obj) => {
-    const { model } = this.props
-    model.props.sourceType = obj.value
-    if (model.props.sourceType === 'ConditionalImage') {
-      model.props.url = null
-    }
-    this.update()
+  const openConditionModal = () => {
+    openConditionalImage({ modules })
   }
 
-  openConditionModal = () => {
-    const { model, openConditionalImage } = this.props
-    openConditionalImage({ model })
+  const changeAssessment = (assessmentId) => {
+    updateAll((model) => {
+      model.assessment_id = assessmentId
+      clearAfterAssessmentChange(model)
+    })
   }
 
-  changeAssessment = (assessmentId) => {
-    const { model } = this.props
-    model.assessment_id = assessmentId
-    clearAfterAssessmentChange(model)
-    this.update()
+  const expand = () => {
+    updateAll((model) => {
+      model.props.position.left = 0
+      model.props.position.top = 0
+      model.props.position.width = pageSize.width
+      model.props.position.height = pageSize.height
+    })
   }
 
-  expand = () => {
-    const { model, pageSize } = this.props
-    model.props.position.left = 0
-    model.props.position.top = 0
-    model.props.position.width = pageSize.width
-    model.props.position.height = pageSize.height
-    this.update()
-  }
+  const {
+    borderRadius, borderColor = {}, borderWidth, borderStyle,
+  } = (model.props.style || {})
 
-  render () {
-    const { model, questions } = this.props
-    const {
-      borderRadius, borderColor = {}, borderWidth, borderStyle,
-    } = (model.props.style || {})
-
-    return (
-      <div>
-        <div className={styles.title}>Image Options</div>
-        <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />
-        <hr className={styles.divider} />
-        <div className="margin-top-10 margin-bottom-10">
-          <Select
-            name="form-field-name"
-            value={getValue(TYPE_OPTIONS, model.props.sourceType)}
-            options={TYPE_OPTIONS}
-            getOptionValue={opt => opt.value}
-            autoFocus={false}
-            clearable={false}
-            onChange={this.changeSourceType}
-          />
-          {model.props.sourceType === 'ConditionalImage'
-            && (
-            <div
-              style={{ width: '100%' }}
-              onClick={this.openConditionModal}
-              className="btn btn-default"
-            >
-              Manage condition
-            </div>
-            )}
-          {
-            model.props.sourceType === 'SimpleImage'
-            && (
-            <div>
-              <div className={styles.block}>
-                <a onClick={this.openLibrary} className={styles.text}>Choose Image</a>
-              </div>
-              <div className={styles.block}>
-                <label className={styles.inputLabel}>
-                  Url
-                </label>
-                <input value={model.props.url} onChange={this.changeUrl} />
-              </div>
-            </div>
-            )
-          }
-          {
-            model.props.sourceType === 'ResponseImage'
-            && (
-            <div>
-              <div className={styles.block}>
-                <QuestionsSelect questions={questions} model={model} onSelect={this.update} />
-              </div>
-            </div>
-            )
-          }
-          <div className={styles.block}>
-            <button className="btn btn-default" onClick={this.expand}>Expand to page sizes</button>
+  return (
+    <div>
+      <div className={styles.title}>Image Options</div>
+      <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={changeAssessment} />
+      <hr className={styles.divider} />
+      <div className="margin-top-10 margin-bottom-10">
+        <Select
+          name="form-field-name"
+          value={getValue(TYPE_OPTIONS, model.props.sourceType)}
+          options={TYPE_OPTIONS}
+          getOptionValue={opt => opt.value}
+          autoFocus={false}
+          clearable={false}
+          onChange={changeSourceType}
+        />
+        {model.props.sourceType === 'ConditionalImage' && (
+          <div
+            style={{ width: '100%' }}
+            onClick={openConditionModal}
+            className="btn btn-default"
+          >
+            Manage condition
           </div>
-        </div>
-        <div className={styles.block} style={{ position: 'relative' }}>
-          <label className={styles.inputLabel}>
-            <input
-              style={{ marginRight: '5px' }}
-              type="checkbox"
-              checked={model.props.aspectRatio}
-              onChange={this.changeAspectRatio}
-            />
-            Resize with Aspect Ratio
-          </label>
-        </div>
-        <hr className={styles.divider} />
-        <div className={styles.block} style={{ position: 'relative' }}>
-          <label className={styles.inputLabel}>
-            <input
-              style={{ marginRight: '5px' }}
-              type="checkbox"
-              checked={model.props.border}
-              onChange={this.changeBorder}
-            />
-            Border
-          </label>
-        </div>
-        {model.props.border && (
-          <>
-            <Space.Compact block>
-              <div className={styles.inline}>
-                <label>Width</label>
-                <InputNumber value={borderWidth || 0} min={0} onChange={this.changeBorderWidth} max={100} />
-              </div>
-              <div className={styles.inline}>
-                <label>Style</label>
-                <AntSelect
-                  style={{ width: '100%' }}
-                  onChange={this.changeBorderStyle}
-                  value={borderStyle}
-                  options={[
-                    { value: 'solid' },
-                    { value: 'dashed' },
-                    { value: 'dotted' },
-                    { value: 'double' },
-                    { value: 'groove' },
-                    { value: 'ridge' },
-                    { value: 'inset' },
-                    { value: 'outset' },
-                  ]}
-                />
-              </div>
-            </Space.Compact>
-            <div className={styles.block} style={{ position: 'relative' }}>
-              <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorderColor} />
-              Border Color
-            </div>
-          </>
         )}
-
+        {model.props.sourceType === 'SimpleImage' && (
+          <div>
+            <div className={styles.block}>
+              <a onClick={openLibrary} className={styles.text}>Choose Image</a>
+            </div>
+            <div className={styles.block}>
+              <label className={styles.inputLabel}>
+                Url
+              </label>
+              <input value={model.props.url} onChange={changeUrl} />
+            </div>
+          </div>
+        )}
+        {model.props.sourceType === 'ResponseImage' && (
+          <div>
+            <div className={styles.block}>
+              <QuestionsSelect questions={questions} model={model} onSelect={update} />
+            </div>
+          </div>
+        )}
         <div className={styles.block}>
-          Rounded Corners
-          <ChoicesInput value={borderRadius || 0} onChange={this.changeBorderRadius} maxValue={1000} />
+          <button className="btn btn-default" onClick={expand}>Expand to page sizes</button>
         </div>
-        <hr className={styles.divider} />
       </div>
-    )
-  }
+      <div className={styles.block} style={{ position: 'relative' }}>
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={model.props.aspectRatio}
+            onChange={changeAspectRatio}
+          />
+          Resize with Aspect Ratio
+        </label>
+      </div>
+      <hr className={styles.divider} />
+      <div className={styles.block} style={{ position: 'relative' }}>
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={model.props.border}
+            onChange={changeBorder}
+          />
+          Border
+        </label>
+      </div>
+      {model.props.border && (
+        <>
+          <Space.Compact block>
+            <div className={styles.inline}>
+              <label>Width</label>
+              <InputNumber value={borderWidth || 0} min={0} onChange={changeBorderWidth} max={100} />
+            </div>
+            <div className={styles.inline}>
+              <label>Style</label>
+              <AntSelect
+                style={{ width: '100%' }}
+                onChange={changeBorderStyle}
+                value={borderStyle}
+                options={[
+                  { value: 'solid' },
+                  { value: 'dashed' },
+                  { value: 'dotted' },
+                  { value: 'double' },
+                  { value: 'groove' },
+                  { value: 'ridge' },
+                  { value: 'inset' },
+                  { value: 'outset' },
+                ]}
+              />
+            </div>
+          </Space.Compact>
+          <div className={styles.block} style={{ position: 'relative' }}>
+            <ColorPicker value={rgba2hex(borderColor)} onChange={changeBorderColor} />
+            Border Color
+          </div>
+        </>
+      )}
+
+      <div className={styles.block}>
+        Rounded Corners
+        <ChoicesInput value={borderRadius || 0} onChange={changeBorderRadius} maxValue={1000} />
+      </div>
+      <hr className={styles.divider} />
+    </div>
+  )
 }
 
 export default connect(Properties)

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'carrierwave/storage/fog'
-
 class UserAssessmentVerificationImage < ApplicationRecord
   belongs_to :user_assessment
 

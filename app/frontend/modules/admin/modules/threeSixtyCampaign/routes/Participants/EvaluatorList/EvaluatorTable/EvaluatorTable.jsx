@@ -3,6 +3,7 @@ import { CheckOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import userPresenter from '~/presenters/user'
 import { getActionsMenuProps } from '../getActionsMenuProps'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { Column } = Table
 
@@ -17,11 +18,12 @@ export default function EvaluatorTable ({
   const openParticipantModal = (user, permissions) => {
     openModal('ParticipantModal', { user, permissions, onClose: onCloseParticipantModal })
   }
-
+  const { width: windowWidth } = useWindowSize()
   return (
-    <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false}>
+    <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false} scroll={{ x: 'max-content' }}>
       <Column
         title="Name"
+        fixed={windowWidth > 800 ? 'left' : undefined}
         key="fullName"
         render={({ user, permissions }) => (
           <a
@@ -57,6 +59,7 @@ export default function EvaluatorTable ({
 
       <Column
         key="action"
+        fixed={windowWidth > 800 ? 'right' : undefined}
         render={({ user, permissions }) => (
           <ConditionalDropdown
             menu={

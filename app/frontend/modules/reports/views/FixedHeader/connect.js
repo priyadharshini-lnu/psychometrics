@@ -1,11 +1,15 @@
 import { connect } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import {
-  save, updateCurrentPage, unselectModules, copyModule, pasteModule, selectModule,
+  save, updateCurrentPage, copyModule, pasteModule,
 } from '~/modules/reports/core/builder/actions'
 import { addModule } from '~/modules/reports/core/builder/page/actions'
 import { removeModule, updateModule } from '~/modules/reports/core/builder/module/actions'
-import { getCurrentPage, getBufferedModule, getModule } from '~/modules/reports/core/builder/selectors'
+import {
+  getCurrentPage, getBufferedModule, getModules,
+} from '~/modules/reports/core/builder/selectors'
+import ModuleModel from '~/modules/reports/models/Module'
+import { actions } from '~/modules/reports/core/temp/selection'
 
 export default connect(
   state => ({
@@ -13,9 +17,11 @@ export default connect(
     pages: state.report.pages,
     currentPage: state.report.builder.loaded && getCurrentPage(state.report),
     richEditorOpened: state.report.builder.richEditorOpened,
-    selected: state.report.builder.selected,
     bufferedModule: getBufferedModule(state.report),
-    module: getModule(state.report, state.report.builder.selected?.moduleId),
+    selected: state.report.ui.selection.selected,
+    selectedPageId: state.report.ui.selection.pageId,
+    modules: getModules(state.report, state.report.ui.selection.selected)
+      .map(m => new ModuleModel(m, state.report.ui.selection.pageId)),
   }),
   {
     save,
@@ -25,8 +31,8 @@ export default connect(
     addModule,
     removeModule,
     updateModule,
-    unselectModules,
-    selectModule,
+    unselectModules: actions.unselectAll,
+    selectModules: actions.selectMultiple,
     openFilter: data => openModal('filter', data),
     openDataSheet: data => openModal('dataSheetModal', data),
     openAlias: data => openModal('alias', data),

@@ -22,6 +22,7 @@ import styles from './styles.less'
 
 const { I18n } = window
 const DEFAULT_PRIMARY_COLOR = '#009ea7'
+const DEFAULT_ERROR_COLOR = '#ff4d4f'
 
 const connecter = connect(() => ({}), { uploadFiles })
 
@@ -42,10 +43,20 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   const backgroundOverlay = Form.useWatch('backgroundOverlay', form)
   const secondaryLogo = Form.useWatch('secondaryLogo', form)
 
+  interface UploadFormErrorValues {
+    logo?: string[]
+    background?: string[]
+    secondaryLogo?: string[]
+    backgroundOverlay?: string[]
+  }
+
+  const [uploadFormErrors, setUploadFormErrors] = useState<UploadFormErrorValues>({})
+
   const colors = _.pick(designSettings,
     ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
 
   const primaryColor = Form.useWatch('primaryColor', form) || colors.primaryColor || DEFAULT_PRIMARY_COLOR
+  const errorColor = Form.useWatch('errorColor', form) || colors.errorColor || DEFAULT_ERROR_COLOR
 
   useEffect(() => {
     if (designSettings) {
@@ -78,6 +89,15 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     return true
   }, [primaryColor])
 
+  const errorColorHasEnoughContrast = useMemo(() => {
+    if (errorColor) {
+      const errorColorCodeWithoutHash = errorColor.slice(1)
+      const hasEnoughContrastRatioWhiteBackground = getContrastRatio(errorColorCodeWithoutHash, 'FFFFFF').isAccessible
+      return (hasEnoughContrastRatioWhiteBackground)
+    }
+    return true
+  }, [errorColor])
+
   const onFinish = () => {
     const values = form.getFieldsValue()
     setIsLoading(true)
@@ -95,6 +115,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
       ])
       updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType).then(() => {
         message.success(I18n.t('administration.projects.design_settings.success_update'))
+        setIsLoading(false)
       })
     }
     const files: Files = {
@@ -112,14 +133,20 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
             : formData.append(name, img.file as File, img.file.name)
         }
       })
-      uploadFiles(designSettings.id, formData).finally(update)
+      uploadFiles(designSettings.id, formData).then(() => {
+        _.isEmpty(uploadFormErrors) && update()
+      }).catch((errors) => {
+        setUploadFormErrors(errors)
+        setIsLoading(false)
+      })
     } else {
       update()
     }
   }
 
-  const removeFile = (file: UploadFile) => {
+  const removeFile = (file: UploadFile, fieldName) => {
     form.setFieldsValue({ [file.name]: null })
+    setUploadFormErrors(prevErrors => _.omit(prevErrors, fieldName))
   }
 
   const resetColor = (field) => {
@@ -143,11 +170,16 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           }}
           initialValues={designSettings}
         >
-          <Form.Item name="logo" label={I18n.t('administration.projects.design_settings.client_logo_label')}>
+          <Form.Item
+            name="logo"
+            label={I18n.t('administration.projects.design_settings.client_logo_label')}
+            validateStatus={uploadFormErrors.logo ? 'error' : 'success'}
+            help={uploadFormErrors.logo?.[0] ?? ''}
+          >
             <Upload
               listType="picture"
               maxCount={1}
-              onRemove={removeFile}
+              onRemove={file => removeFile(file, 'logo')}
               accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
               fileList={logo && typeof logo === 'string' ? [{
                 uid: '1', name: 'logo', status: 'done', url: logo,
@@ -157,10 +189,16 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               <Button icon={<UploadOutlined />}>{I18n.t('administration.projects.design_settings.logo_upload')}</Button>
             </Upload>
           </Form.Item>
-          <Form.Item name="background" label={I18n.t('administration.projects.design_settings.background_label')}>
+          <Form.Item
+            name="background"
+            label={I18n.t('administration.projects.design_settings.background_label')}
+            validateStatus={uploadFormErrors.background ? 'error' : 'success'}
+            help={uploadFormErrors.background?.[0] ?? ''}
+          >
             <Upload
               listType="picture"
               maxCount={1}
+              onRemove={file => removeFile(file, 'background')}
               // eslint-disable-next-line max-len
               accept=".jpeg, .jpg, .png, .svg, .gif, image/jpeg, image/png, image/svg+xml, image/gif"
               fileList={background && typeof background === 'string' ? [{
@@ -182,10 +220,13 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           <Form.Item
             name="backgroundOverlay"
             label={I18n.t('administration.projects.design_settings.background_overlay_label')}
+            validateStatus={uploadFormErrors.backgroundOverlay ? 'error' : 'success'}
+            help={uploadFormErrors.backgroundOverlay?.[0] ?? ''}
           >
             <Upload
               listType="picture"
               maxCount={1}
+              onRemove={file => removeFile(file, 'backgroundOverlay')}
               // eslint-disable-next-line max-len
               accept=".jpeg, .jpg, .png, .svg, .mp4, .gif, image/jpeg, image/png, image/svg+xml, image/gif"
               fileList={backgroundOverlay && typeof backgroundOverlay === 'string' ? [{
@@ -198,10 +239,16 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               </Button>
             </Upload>
           </Form.Item>
-          <Form.Item name="secondaryLogo" label={I18n.t('administration.projects.design_settings.sec_logo_label')}>
+          <Form.Item
+            name="secondaryLogo"
+            label={I18n.t('administration.projects.design_settings.sec_logo_label')}
+            validateStatus={uploadFormErrors.secondaryLogo ? 'error' : 'success'}
+            help={uploadFormErrors.secondaryLogo?.[0] ?? ''}
+          >
             <Upload
               listType="picture"
               maxCount={1}
+              onRemove={file => removeFile(file, 'secondaryLogo')}
               accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
               fileList={secondaryLogo && typeof secondaryLogo === 'string' ? [{
                 uid: '1', name: 'secondary_logo', status: 'done', url: secondaryLogo,
@@ -236,17 +283,24 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               >
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor={DEFAULT_PRIMARY_COLOR} />
               </Form.Item>
-              <Button className={styles.primaryColorReset} onClick={() => resetColor('primaryColor')}>
+              <Button className={styles.colorReset} onClick={() => resetColor('primaryColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
               </Button>
             </div>
           </Form.Item>
           <Form.Item label={I18n.t('administration.projects.design_settings.error_color')}>
             <div className={styles.colorPicker}>
-              <Form.Item name="errorColor">
+              <Form.Item
+                name="errorColor"
+                help={errorColorHasEnoughContrast ? ''
+                  : I18n.t('administration.projects.design_settings.contrast_ratio_warning_lighter_color',
+                    { name: 'error' })}
+                hasFeedback={!errorColorHasEnoughContrast}
+                validateStatus="error"
+              >
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#f5222d" />
               </Form.Item>
-              <Button onClick={() => resetColor('errorColor')}>
+              <Button className={styles.colorReset} onClick={() => resetColor('errorColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
               </Button>
             </div>

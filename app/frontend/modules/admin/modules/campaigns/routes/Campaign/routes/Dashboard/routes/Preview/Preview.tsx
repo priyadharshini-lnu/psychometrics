@@ -23,9 +23,9 @@ export const Preview: React.FC = () => {
 
   if (!fetchSuccessful || !data[0]) return <Skeleton active />
 
-  const { reportId, embedToken, name } = data[0]
+  const dashboard = data[0]
 
   return (
-    <EmbeddedDashboard dashboardName={name} reportId={reportId} embedToken={embedToken} />
+    <EmbeddedDashboard dashboard={dashboard} />
   )
 }

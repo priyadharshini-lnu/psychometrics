@@ -3,9 +3,9 @@ import { useState } from 'react'
 import {
   Progress, Modal, Tooltip, Typography, Row, Button,
 } from 'antd'
-import { QuestionCircleOutlined, CheckCircleFilled } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { QuestionCircleOutlined, CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { getApprovalNominations, getNominations } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
 import userPresenter from '~/presenters/user'
@@ -85,10 +85,16 @@ const NominationListComponent = ({
 
   return (
     <ThreesixtyCard
-      title={<Title level={5}>{I18n.t('threesixty.nominations')}</Title>}
+      title={<Title className="fs-16" level={2}>{I18n.t('threesixty.nominations')}</Title>}
       helpIcon={nominationHelp && (
         <div>
-          <QuestionCircleOutlined onClick={() => setShowHelp(true)} />
+          <Button
+            aria-label={I18n.t('threesixty.more_info_nomination_label')}
+            type="link"
+            size="small"
+            onClick={() => setShowHelp(true)}
+            icon={<QuestionCircleOutlined />}
+          />
         </div>
       )}
     >

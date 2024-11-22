@@ -1,5 +1,16 @@
 ---
 pl:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Wszystkie odpowiedzi
+      numeric_comparator:
+        enter_value: Wprowadź wartość
+        select_data: Wybierz Dane
+      scoring:
+        select_comparison: Wybierz typ porównania
+        select_factors: Wybierz Czynniki
+        select_operation: Wybierz opcję Operacja
   assessments:
     card_actions:
       begin: Zaczynać

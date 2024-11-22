@@ -65,7 +65,7 @@ class Condition extends Component {
         onChange={this.changeFilterScope}
         className={`form-control ${styles.condType}`}
       >
-        <option>All Responses</option>
+        <option value="" disabled selected>{I18n.t('activemodel.attributes.condition.all_responses')}</option>
         {_.map(assessmentFilters, filter => (
           <option key={filter.id} value={filter.id}>
             {filter.name}

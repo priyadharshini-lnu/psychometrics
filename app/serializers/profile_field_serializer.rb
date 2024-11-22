@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProfileFieldSerializer < Panko::Serializer
-  attributes :required, :half_size, :position, :name, :question_id, :question, :locked, :translations
+  attributes :required, :half_size, :position, :id, :name, :question_id, :question, :locked, :translations
 
   delegate :question, to: :object
 

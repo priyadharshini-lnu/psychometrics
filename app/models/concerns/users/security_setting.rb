@@ -13,11 +13,12 @@ module Users
 
       def generate_strong_password
         length = [12, applicable_security_setting.min_password_length].max
-        password = Devise.friendly_token.first(length - 3)
+        password = Devise.friendly_token.first(length - 4)
         special_chars = ['@', '#', '$', '%', '^', '&', '*']
         password += special_chars.sample
         password += [*'0'..'9'].sample
         password += [*'A'..'Z'].sample
+        password += [*'a'..'z'].sample
         password.chars.shuffle.join
       end
 

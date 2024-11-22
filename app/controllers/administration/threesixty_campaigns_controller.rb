@@ -78,6 +78,14 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     render json: :ok
   end
 
+  def bulk_download
+    AdminJob.call(:bulk_download_user_reports,
+                  { campaign_id: resource.campaign_id, is_threesixty: true },
+                  current_user)
+    audit! :bulk_download, nil, record_type: 'UserReport', payload: {}, campaign: campaign
+    head :ok
+  end
+
   def destroy
     audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
     resource.destroy!

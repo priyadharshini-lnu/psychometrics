@@ -71,6 +71,7 @@ module Administration
           'export_raw_factor_scores',
           'export_normed_results',
           'export_external_results',
+          'export_occupations',
           'rescore_responses',
           'update_external_config',
           %w[remove destroy],

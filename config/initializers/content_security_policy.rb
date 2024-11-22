@@ -18,65 +18,71 @@
 #     # policy.report_uri "/csp-violation-report-endpoint"
 #   end
 #
-#   # Generate session nonces for permitted importmap and inline scripts
-#   config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
-#   config.content_security_policy_nonce_directives = %w(script-src)
 #
 #   # Report violations without enforcing the policy.
 #   # config.content_security_policy_report_only = true
 # end
 
 unless Rails.env.test?
-  Rails.application.config.content_security_policy_report_only = ENV.fetch('CSP_REPORT_ONLY', 'false') == 'true'
-
   # rubocop:disable Metrics/BlockLength
-  Rails.application.config.content_security_policy do |policy|
-    protocol = Settings.protocol
-    vite_domain = "#{Settings.domain}:#{ViteRuby.config.port}"
-    mocker_api_domain = "#{Settings.domain}:3037"
-    websocket_protocol = protocol == 'https' ? 'wss' : 'ws'
+  Rails.application.configure do
+    config.content_security_policy_report_only = ENV.fetch('CSP_REPORT_ONLY', 'false') == 'true'
+    config.content_security_policy_nonce_generator = ->(_) { SecureRandom.base64(16) }
+    config.content_security_policy_nonce_directives = %w[script-src]
 
-    script_src = [
-      :self, :unsafe_eval, :unsafe_inline, 'https://chatwoot.tte-work.com',
-      'https://svc.webspellchecker.net'
-    ]
+    config.content_security_policy do |policy|
+      protocol = Settings.protocol
+      vite_domain = "#{Settings.domain}:#{ViteRuby.config.port}"
+      mocker_api_domain = "#{Settings.domain}:3037"
+      websocket_protocol = protocol == 'https' ? 'wss' : 'ws'
 
-    script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+      script_src = [
+        :self, :unsafe_eval, 'https://chatwoot.tte-work.com',
+        'https://svc.webspellchecker.net', Settings.oac.base_embed_url,
+        'https://consent.trustarc.com'
+      ].compact
 
-    style_src = %i[
-      self unsafe_inline
-    ]
-    style_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+      script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
-    font_src = %i[
-      self data
-    ]
-    font_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+      style_src = [
+        :self, :unsafe_inline, Settings.oac.base_embed_url
+      ].compact
+      style_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
-    policy.default_src :self
-    policy.font_src(*font_src)
-    policy.img_src     '*', :data, :blob
-    policy.media_src   '*'
-    policy.object_src  '*'
-    policy.frame_src   '*'
-    policy.script_src(*script_src)
-    policy.style_src(*style_src)
-    policy.connect_src(
-      :self, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
-      'wss://*.amazonaws.com:8443'
-    )
+      font_src = [
+        :self, :data, Settings.oac.base_embed_url
+      ].compact
+      font_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
-    if Rails.env.development?
-      policy.script_src(*policy.script_src,
-                        :unsafe_eval, :unsafe_inline, "#{protocol}://#{vite_domain}")
-      policy.connect_src(
-        *policy.connect_src, "#{protocol}://#{vite_domain}", "#{protocol}://*.#{vite_domain}",
-        "#{websocket_protocol}://#{vite_domain}", "#{websocket_protocol}://*.#{vite_domain}",
-        "#{protocol}://*.#{mocker_api_domain}", "#{protocol}://#{mocker_api_domain}"
-      )
+      connect_src = [
+        :self, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
+        'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url
+      ].compact
+
+      policy.worker_src :self, :blob
+      policy.default_src :self
+      policy.font_src(*font_src)
+      policy.img_src     '*', :data, :blob
+      policy.media_src   '*'
+      policy.object_src  :none
+      policy.frame_src   '*'
+      policy.script_src(*script_src)
+      policy.style_src(*style_src)
+      policy.connect_src(*connect_src)
+      policy.base_uri :self
+
+      if Rails.env.development?
+        policy.script_src(*policy.script_src,
+                          :unsafe_eval, "#{protocol}://#{vite_domain}")
+        policy.connect_src(
+          *policy.connect_src, "#{protocol}://#{vite_domain}", "#{protocol}://*.#{vite_domain}",
+          "#{websocket_protocol}://#{vite_domain}", "#{websocket_protocol}://*.#{vite_domain}",
+          "#{protocol}://*.#{mocker_api_domain}", "#{protocol}://#{mocker_api_domain}"
+        )
+      end
+
+      policy.report_uri 'https://webhook.site/f4b15a4b-6e16-401b-9bbb-716cb198157a' if Rails.env.production?
     end
-
-    policy.report_uri 'https://webhook.site/f4b15a4b-6e16-401b-9bbb-716cb198157a' if Rails.env.production?
   end
   # rubocop:enable Metrics/BlockLength
 end

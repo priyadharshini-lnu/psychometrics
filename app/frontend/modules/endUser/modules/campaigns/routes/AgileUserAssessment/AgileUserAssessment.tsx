@@ -119,6 +119,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
 
   return (
     <>
+      <title>{assessment.name}</title>
       {remainingCampaignTime > 0 && (
       <GlintPageHeader>
         <Col span={16} className="ta-c">

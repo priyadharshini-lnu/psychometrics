@@ -105,6 +105,7 @@ const NominationComponent = (props) => {
 
   return (
     <>
+      <title>{`${I18n.t('threesixty.nomination')}`}</title>
       <GlintHeader>
         <Col flex="auto" span={24} className="ta-e">
           <Space>

@@ -4,18 +4,21 @@ import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPan
 
 class Properties extends Component {
   static propTypes = {
-    model: PropTypes.object.isRequired,
+    modules: PropTypes.array.isRequired,
   }
 
   changePercentage = () => {
-    const { model } = this.props
-    model.props.percentageColumn = !model.props.percentageColumn
-    model.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.percentageColumn = !model.props.percentageColumn
+      model.update()
+    })
     this.forceUpdate()
   }
 
   render () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
 
     return (
       <div>

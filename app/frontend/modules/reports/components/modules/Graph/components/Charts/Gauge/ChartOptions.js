@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 export default function ChartOptions (model) {
+  const maxValue = model.props.gaugePercentage ? 100 : (model.props.maxValue || 6)
   return {
     chart: {
       type: 'solidgauge',
@@ -15,15 +16,13 @@ export default function ChartOptions (model) {
     },
     yAxis: {
       min: 0,
-      max: model.props.gaugePercentage ? 100 : (model.props.maxValue || 6),
+      max: maxValue,
       lineWidth: 0,
       tickWidth: 0,
       tickAmount: 0,
-      tickInterval: model.props.hideMarkers ? 0 : Math.round(model.props.maxValue / 6),
+      tickInterval: model.props.hideMarkers ? 0 : Math.round(maxValue / 6),
       // eslint-disable-next-line no-nested-ternary
-      tickPositions: model.props.hideMarkers ? '' : model.props.maxValue > 12
-        ? [..._.times(Math.round(model.props.maxValue / 6), i => i * 6), model.props.maxValue || 6]
-        : [..._.times(Math.round(model.props.maxValue), i => i), model.props.maxValue || 6],
+      tickPositions: model.props.hideMarkers ? '' : [..._.times(Math.round(maxValue / 6), i => i * 6), maxValue],
       labels: {
         y: 16,
       },

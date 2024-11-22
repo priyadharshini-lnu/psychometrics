@@ -103,6 +103,7 @@ en:
             manage: Manage
             view: View
           campaigns:
+            bulk_download: Bulk Download
             bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
             manage_admins: Manage Admins
@@ -177,6 +178,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             download_report: Download Report
             edit_report: Edit Report
+            export_occupations: Export occupations
             external_score_import: External Score Import
             finalize_scores: Finalize Scores
             normalize_factor_scores: Normalize Factor Scores
@@ -705,6 +707,8 @@ en:
         successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
+      errors:
+        owner_invalid: Template owner must be the same as the owners of the assessment, report, and dimension
       form:
         assessment: Assessment
         assessment_placeholder: Select an assessment
@@ -1416,16 +1420,18 @@ en:
     create: Create
     dashboard:
       capacity_name: Capacity Name
+      dashboard_types:
+        oracle_analytics: Oracle Analytics
+        powerbi: PowerBi
       dashboards: Dashboards
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
+      loading_failed: Dashboard loading failed.
       preview:
         embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
         embed_token_error_title: Unable to generate Embed token.
       settings:
-        accesssheet_view_name: Accesssheet View Name
         capacity_id: Capacity Id
-        datasheet_view_name: Datasheet View Name
         details: Details
         refresh: Refresh
         workspace_id: Workspace id
@@ -1439,6 +1445,7 @@ en:
         dataset_id: Dataset Id
         enabled: Enabled
         image: Image
+        project_path: Project Path
         refresh_interval: Refresh Interval (minutes)
         report_id: Report Id
       image_upload_failed: Image upload failed.
@@ -1940,6 +1947,9 @@ en:
         updated_by: Updated by
       new:
         header: New norm
+      norms: Norms
+      remove:
+        confirm: Are you sure you want to delete the norm "%{name}"
       resource:
         confirmations:
           delete:
@@ -1955,6 +1965,10 @@ en:
           copy: Copy Norm
           delete: Delete Norm
           edit: Rename Norm
+      score_types:
+        five_scale: Five scale
+        norm_type: Norm type
+        percentage: Percentage
       sidebar:
         copy: Copy Norm
         destroy: Delete Norm
@@ -2218,6 +2232,7 @@ en:
         bg_upload: Upload
         client_logo_label: Client Logo
         contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+        contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
         error_color: Error Color
         info_color: Info Color
         logo_upload: Upload

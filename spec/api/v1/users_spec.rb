@@ -107,18 +107,74 @@ the campaign\'s default assessments and reports.'
         let(:email) { 'max@example.com' }
         let(:project_id) { project.id }
         let(:body) do
-          { email: email, first_name: first_name, last_name: last_name, campaigns: [
-            { id: campaign.id, active: true, existing_record: 'new_evaluation' }
-          ] }
+          { email: email, first_name: first_name, last_name: last_name,
+            campaigns: [{
+              id: campaign.id,
+              active: true,
+              existing_record: 'new_evaluation'
+            }] }
         end
 
         run_test! do |response|
           user = JSON.parse(response.body)
+          campaign_user = campaign.campaign_users.find_by(user_id: user['id'])
+
           expect(user['id']).to be
           expect(user['first_name']).to eq first_name
           expect(user['last_name']).to eq last_name
           expect(user['email']).to eq email
           expect(user['campaigns'][0]['id']).to eq campaign.id
+
+          expect(campaign_user.active).to eq true
+          expect(campaign_user.schedule_start_date).to eq nil
+          expect(campaign_user.schedule_end_date).to eq nil
+        end
+      end
+
+      response '200', 'User created with campaign schedule' do
+        schema '$ref' => '#/definitions/User'
+        examples 'application/json' => {
+          id: 14_602,
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          created_at: '2019-03-04T15:47:33.570+04:00',
+          updated_at: '2019-03-04T15:47:33.950+04:00',
+          campaign_ids: [
+            510
+          ]
+        }
+
+        let(:first_name) { 'Max' }
+        let(:last_name) { 'Holloway' }
+        let(:email) { 'max@example.com' }
+        let(:project_id) { project.id }
+        let(:schedule_start_date) { 2.days.from_now.beginning_of_day }
+        let(:schedule_end_date) { 3.days.from_now.beginning_of_day }
+        let(:body) do
+          { email: email, first_name: first_name, last_name: last_name,
+            campaigns: [{
+              id: campaign.id,
+              active: true,
+              existing_record: 'new_evaluation',
+              schedule_start_date:,
+              schedule_end_date:
+            }] }
+        end
+
+        run_test! do |response|
+          user = JSON.parse(response.body)
+          campaign_user = campaign.campaign_users.find_by(user_id: user['id'])
+
+          expect(user['id']).to be
+          expect(user['first_name']).to eq first_name
+          expect(user['last_name']).to eq last_name
+          expect(user['email']).to eq email
+          expect(user['campaigns'][0]['id']).to eq campaign.id
+
+          expect(campaign_user.active).to eq true
+          expect(campaign_user.schedule_start_date).to eq schedule_start_date
+          expect(campaign_user.schedule_end_date).to eq schedule_end_date
         end
       end
 

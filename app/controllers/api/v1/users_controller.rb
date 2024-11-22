@@ -25,7 +25,9 @@ module Api
               first_name: form.first_name,
               last_name: form.last_name,
               operation: campaign_attrs[:existing_record],
-              active: campaign_attrs[:active]
+              active: campaign_attrs[:active],
+              schedule_start_date: campaign_attrs[:schedule_start_date],
+              schedule_end_date: campaign_attrs[:schedule_end_date]
             )
             # rubocop:enable all
             response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do

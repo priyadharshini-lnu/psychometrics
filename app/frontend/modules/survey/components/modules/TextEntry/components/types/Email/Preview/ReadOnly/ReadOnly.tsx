@@ -30,7 +30,7 @@ const ReadOnly: React.FC<Props> = ({ model }) => {
   })
   return (
     <div className={styles.container}>
-      <table className={styles.contacts}>
+      <table className={styles.contacts} role="presentation">
         <tbody>
           <tr>
             <td className={styles.contactLabel}>{I18n().t('threesixty.question.email_type.to')}</td>

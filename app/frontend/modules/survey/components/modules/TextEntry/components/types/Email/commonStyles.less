@@ -11,6 +11,9 @@
 }
 .emailForm {
   margin: 0 24px;
+  & label {
+    font-weight: normal;
+  }
 }
 .selectLabel {
   display: flex;
@@ -34,5 +37,8 @@
   input {
     padding: 0;
   }
-  width: 100%
+  width: 100%;
+  & :global(.ant-select-arrow) {
+    color: #757575;
+  }
 }

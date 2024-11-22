@@ -2,10 +2,10 @@ import { useEffect, FC } from 'react'
 import {
   Layout, Flex, Space,
 } from 'antd'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { useLocation } from 'react-router-dom'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { fetchCampaign, reset as resetCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
@@ -96,10 +96,10 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
     </>
 
   )
-
   const Campaign = TYPES[campaign.type]
   return (
     <>
+      <title>{`${I18n.t('user_assessments.timer_title.campaign')}`}</title>
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         { loaded ? <Campaign />

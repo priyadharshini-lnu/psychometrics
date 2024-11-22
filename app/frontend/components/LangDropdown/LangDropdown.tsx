@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Dropdown, Space, Flex } from 'antd'
-import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
 import { useMedia } from 'use-media'
+import { DownOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { LanguageIcon } from '~/glint/icons/LanguageIcon'
 import styles from './styles.less'
 
@@ -48,12 +48,17 @@ const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => 
               {loading
                 ? <LoadingOutlined />
                 : (
-                  <span>
-                    {isMobile ? null
-                      : I18n.t(`languages_localized.${currentLocale}`)}
-                    {' '}
-                    <DownOutlined />
-                  </span>
+                  <>
+                    <span lang={currentLocale}>
+                      {isMobile ? null
+                        : I18n.t(`languages_localized.${currentLocale}`)}
+                      {' '}
+                      <DownOutlined />
+                    </span>
+                    <span className="sr-only">
+                      {I18n.t('frontend.aria.change_language')}
+                    </span>
+                  </>
                 )}
             </Flex>
           </a>

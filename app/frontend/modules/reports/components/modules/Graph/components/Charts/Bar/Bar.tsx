@@ -4,6 +4,7 @@ import Highcharts, { Chart, AxisLabelsFormatterContextObject } from 'highcharts'
 import Highcharts3D from 'highcharts/highcharts-3d'
 import CustomEvents from 'highcharts-custom-events'
 import _ from 'lodash'
+import cs from 'classnames'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 import { Factor } from '~/modules/reports/interfaces/Base'
 import { SourceModel } from '~/modules/reports/interfaces/graphs/Base'
@@ -157,5 +158,7 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
     return null
   }
 
-  return <div ref={containerRef} className={styles.graph} />
+  const rounded = model.props.barBorderRadiusType && model.props.yAxisLinesHide
+
+  return <div ref={containerRef} className={cs(styles.graph, { [styles.rounded]: rounded })} />
 }

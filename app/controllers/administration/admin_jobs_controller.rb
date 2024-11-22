@@ -6,7 +6,12 @@ module Administration
     skip_before_action :init_state
 
     def index
-      jobs = policy_scope(AdminJobRecord).order(created_at: :desc).offset(params[:offset] || 0).limit(20).all
+      jobs = policy_scope(AdminJobRecord).
+             includes(:owner, :file_attachment).
+             order(created_at: :desc).
+             offset(params[:offset] || 0).
+             limit(20).
+             all
       render json: {
         jobs: Panko::ArraySerializer.new(
           jobs,

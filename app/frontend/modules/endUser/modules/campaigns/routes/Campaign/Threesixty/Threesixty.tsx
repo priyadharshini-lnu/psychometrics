@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import {
-  Layout, Row, Col, Progress, Alert, Card,
+  Row, Col, Progress, Alert, Card,
 } from 'antd'
 import _ from 'lodash'
 import { connect } from 'react-redux'
@@ -20,7 +20,6 @@ import { ReportList } from './ReportList'
 
 import styles from './Threesixty.less'
 
-const { Content } = Layout
 const { I18n } = window
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connector = connect((state:any) => ({
@@ -58,7 +57,7 @@ const ThreesixtyComponent = ({
   const camapaignClosed = campaign.status === STATUSES.CLOSED
 
   return (
-    <Content>
+    <>
       <CampaignPageHeader
         activeCampaignId={campaign.id}
         extra={(
@@ -109,7 +108,7 @@ const ThreesixtyComponent = ({
           </>
         </Col>
       </Row>
-    </Content>
+    </>
   )
 }
 

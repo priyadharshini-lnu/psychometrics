@@ -19,6 +19,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { AddEditWebhookModal } from './AddEditWebhookModal/AddEditWebhookModal'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import { truncateWithStartEndCharCount } from '~/utils/string'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const MODALS = {
   AddEditWebhookModal,
@@ -56,6 +57,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
     },
   )
   const { modal, message } = App.useApp()
+  const { width: windowWidth } = useWindowSize()
 
   useEffect(() => {
     fetch()
@@ -101,10 +103,12 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
         loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
+        scroll={{ x: 'max-content' }}
       >
         <Column
           title={I18n.t('common.column.id')}
           dataIndex="id"
+          fixed={windowWidth > 800 ? 'left' : undefined}
           key="id"
           sorter
           sortOrder={getSortOrder('id')}
@@ -154,6 +158,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
         />
         <Column
           key="manage"
+          fixed={windowWidth > 800 ? 'right' : undefined}
           title={I18n.t('administration.projects.webhook_settings.column_manage')}
           render={webhook => (
             <ConditionalDropdown

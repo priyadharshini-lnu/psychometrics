@@ -66,6 +66,11 @@ FactoryBot.define do
       to_create { |instance| instance.save(validate: false) }
     end
 
+    trait :locked do
+      locked_at { Time.zone.now }
+      failed_attempts { 3 }
+    end
+
     trait :with_photo do
       after(:create) do |user|
         user.user_profile.update(

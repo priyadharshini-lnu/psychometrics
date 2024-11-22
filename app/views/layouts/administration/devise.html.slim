@@ -18,7 +18,7 @@ html.body-full-height lang="#{I18n.locale}"
         = t('maintenance_message', **maintenance_time_frame)
     = render 'devise/shared/locales'
 
-    javascript:
+    javascript [nonce=content_security_policy_nonce]:
       __INITIAL_STATE__ = {
         csrfToken: '#{form_authenticity_token}',
         user: #{::Auth::CurrentUserSerializer.new.serialize((current_user || resource || User.new)).to_json.html_safe},
@@ -27,7 +27,8 @@ html.body-full-height lang="#{I18n.locale}"
       }
 
     - if resource && resource.errors.present?
-        javascript:
+        javascript [nonce=content_security_policy_nonce]:
           #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}
     .main#devise
     = vite_javascript_tag 'entrypoints/user/login.jsx'
+    = render partial: 'layouts/consent_banner'

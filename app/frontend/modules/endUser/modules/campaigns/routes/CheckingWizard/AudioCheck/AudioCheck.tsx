@@ -119,6 +119,7 @@ const AudioCheckComponent: React.FC<Props> = ({
 
   return (
     <>
+      <title>{`${I18n.t('checking_wizard.audio_check.title')}`}</title>
       <Col className={styles.container} lg={16} xs={24} sm={24}>
         {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access)
          && (

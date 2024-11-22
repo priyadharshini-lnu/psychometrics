@@ -45,11 +45,12 @@ export class FixedHeader extends Component {
 
   onCopy = ({ originalEvent }) => {
     const {
-      richEditorOpened, selected, module, currentPage,
+      richEditorOpened, selected, modules, selectedPageId,
     } = this.props
 
     if (document.getSelection().toString()) { return }
-    if (selected?.type !== 'Module') { return }
+
+    if (!selected.length) { return }
 
     if (originalEvent.target) {
       if (originalEvent.target.tagName === 'INPUT' || originalEvent.target.tagName === 'TEXTAREA') {
@@ -61,7 +62,7 @@ export class FixedHeader extends Component {
 
     const data = {
       type: 'Module',
-      data: { ...module, pageId: currentPage.id },
+      data: { modules, pageId: selectedPageId },
     }
 
     originalEvent.preventDefault()
@@ -70,7 +71,7 @@ export class FixedHeader extends Component {
 
   onPaste = ({ originalEvent }) => {
     const {
-      richEditorOpened, pasteModule, currentPage, selectModule, report,
+      richEditorOpened, pasteModule, currentPage, selectModules, report,
     } = this.props
     if (richEditorOpened) { return }
 
@@ -83,18 +84,23 @@ export class FixedHeader extends Component {
     originalEvent.preventDefault()
     const data = originalEvent.clipboardData.getData('text/plain')
     try {
-      const { type, data: moduleData } = JSON.parse(data)
+      const { type, data: { modules, pageId } } = JSON.parse(data)
       if (type === 'Module') {
-        const assessmentId = report.builder.assessments[moduleData.assessment_id]
-          ? moduleData.assessment_id
-          : null
+        const modulesToSelect = []
+        modules.forEach((moduleData) => {
+          const assessmentId = report.builder.assessments[moduleData.assessment_id]
+            ? moduleData.assessment_id
+            : null
 
-        const module = new Module({ ..._.cloneDeep(moduleData), id: null, assessment_id: assessmentId }, currentPage)
-        if (currentPage.id === moduleData.pageId) {
-          module.shift()
-        }
-        pasteModule(currentPage.id, module)
-        selectModule('Module', module.id)
+          const module = new Module({ ..._.cloneDeep(moduleData), id: null, assessment_id: assessmentId }, currentPage)
+          if (currentPage.id === pageId) {
+            module.shift()
+          }
+          pasteModule(currentPage.id, module)
+          modulesToSelect.push(module.id)
+        })
+
+        selectModules({ moduleIds: modulesToSelect, pageId: currentPage.id })
       }
     } catch (e) { /* empty */ }
   }
@@ -102,30 +108,37 @@ export class FixedHeader extends Component {
   bodyKeyDown = (e) => {
     const {
       richEditorOpened, removeModule, selected, unselectModules,
-      module, updateModule, report,
+      updateModule, report, modules,
     } = this.props
     if (e.target.nodeName === 'INPUT') { return }
     if (e.target.nodeName === 'TEXTAREA') { return }
     if (richEditorOpened) { return }
+    if (e.keyCode === 27) {
+      unselectModules()
+    }
     if (e.keyCode === 8 || e.keyCode === 46) {
       unselectModules()
-      selected.moduleId && removeModule(selected.moduleId)
+      selected.forEach((moduleId) => {
+        removeModule(moduleId)
+      })
     }
 
-    if (module && [37, 38, 39, 40].includes(e.keyCode)) {
+    if (modules.length > 0 && [37, 38, 39, 40].includes(e.keyCode)) {
       e.preventDefault()
       const { width, height } = report.builder.props.sizes
       const multiplier = e.shiftKey ? 10 : 1
-      const position = { ...module.props.position }
-      if (e.keyCode === 40) { position.top += 1 * multiplier } // down
-      if (e.keyCode === 38) { position.top -= 1 * multiplier } // up
-      if (e.keyCode === 37) { position.left -= 1 * multiplier } // left
-      if (e.keyCode === 39) { position.left += 1 * multiplier } // right
-      position.top = Math.round(position.top < 0 ? 0 : position.top)
-      position.top = Math.round(position.top + position.height > height ? height - position.height : position.top)
-      position.left = Math.round(position.left < 0 ? 0 : position.left)
-      position.left = Math.round(position.left + position.width > width ? width - position.width : position.left)
-      updateModule({ ...module, props: { ...module.props, position: { ...position } } })
+      modules.forEach((module) => {
+        const position = { ...module.props.position }
+        if (e.keyCode === 40) { position.top += 1 * multiplier } // down
+        if (e.keyCode === 38) { position.top -= 1 * multiplier } // up
+        if (e.keyCode === 37) { position.left -= 1 * multiplier } // left
+        if (e.keyCode === 39) { position.left += 1 * multiplier } // right
+        position.top = Math.round(position.top < 0 ? 0 : position.top)
+        position.top = Math.round(position.top + position.height > height ? height - position.height : position.top)
+        position.left = Math.round(position.left < 0 ? 0 : position.left)
+        position.left = Math.round(position.left + position.width > width ? width - position.width : position.left)
+        updateModule({ ...module, props: { ...module.props, position: { ...position } } })
+      })
     }
   }
 
@@ -166,8 +179,9 @@ export class FixedHeader extends Component {
   }
 
   save = (e) => {
-    const { save, report } = this.props
+    const { save, report, unselectModules } = this.props
     const target = e.currentTarget
+    unselectModules()
     target.setAttribute('disabled', 'disabled')
 
     save(report).then(({ response: { data } }) => {

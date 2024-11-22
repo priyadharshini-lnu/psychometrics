@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Skeleton } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -36,16 +35,13 @@ export const DashboardComponent = ({ collapsed, triggerCollapse }) => {
   }, [])
 
   return (
-    <div className={styles.fullScreen} style={{ left: collapsed ? 55 : 220 }}>
-      {dashboard ? (
+    <div className={styles.fullScreen}>
+      {dashboard && (
         <EmbeddedDashboard
           alwaysFullScreen
-          dashboardName={dashboard.name}
-          embedToken={dashboard.embedToken}
-          reportId={dashboard.reportId}
+          dashboard={dashboard}
         />
-      )
-        : <Skeleton active />}
+      )}
     </div>
   )
 }

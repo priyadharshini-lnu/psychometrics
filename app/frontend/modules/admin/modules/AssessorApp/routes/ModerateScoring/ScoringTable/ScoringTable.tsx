@@ -24,6 +24,7 @@ const { I18n } = window
 
 interface ScoringTableProps {
   onSave: () => void
+  readOnly: boolean
 }
 
 type DataType = {
@@ -45,7 +46,7 @@ const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRo
   return baseData
 }
 
-const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
+const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   const { campaignId, userId } = useParams() as { campaignId: string, userId: string }
   const { message } = App.useApp()
 
@@ -185,6 +186,8 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
   }
 
   const handleSave = () => {
+    if (readOnly) { return }
+
     setDisabledSave(true)
     const scores = Object.keys(finalScores).map(key => ({
       campaign_factor_id: factorIdToIdMap[`factorId${key}`],
@@ -277,13 +280,14 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
       ...acc,
       [factor.factorId]: (
         <InputNumber
+          disabled={readOnly}
           min={0}
           value={finalScores[factor.factorId]}
           onChange={value => handleFinalScoreChange(factor.factorId, value)}
         />
       ),
     }), {}),
-  }), [finalScores, columnsData])
+  }), [finalScores, columnsData, readOnly])
 
   const rowClassName = (record, index): string => {
     if (record.key === 'final') {

@@ -14,6 +14,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
 
     render json: {
       lead_assessor_user_assessment_id: lead_assessment.id,
+      assessor_can_moderate_scores: !lead_assessment.completed? && lead_assessment&.evaluator == current_user,
       lead_assessor_form: AssessmentSerializer.new(context: {
         selected_locale: selected_locale,
         piped_text_context: build_piped_context(lead_assessment),

@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { getFeatures } from '~/core/config.ts'
 import {
   getI18n,
   isAssessmentTimedOut,
@@ -19,14 +20,16 @@ import { SafeHTML } from '~/components/SafeHTML'
 import { checkBrowserSupportForFeature } from '~/utils/uaParser'
 import { UnsupportedBrowser } from './UnsupportedBrowser'
 import VideoPlayer from './VideoPlayer'
+import MediaRecorder from '~/components/MediaRecorder'
 
 const connector = connect(
-  ({ preview }, { model }) => ({
-    type: preview.type,
-    mediaUrl: preview.mediaUrl,
-    I18n: getI18n(preview),
-    isAssessmentTimedOut: isAssessmentTimedOut(preview),
-    mediaResponses: getMediaResponsesByQuestionId(preview, model.id),
+  (state, { model }) => ({
+    type: state.preview.type,
+    mediaUrl: state.preview.mediaUrl,
+    I18n: getI18n(state.preview),
+    isAssessmentTimedOut: isAssessmentTimedOut(state.preview),
+    mediaResponses: getMediaResponsesByQuestionId(state.preview, model.id),
+    features: getFeatures(state),
   }),
   {
     markQuestionInProgress,
@@ -48,6 +51,7 @@ const PreviewComponent = ({
   isAssessmentTimedOut,
   mediaResponses,
   readOnly,
+  features,
 }) => {
   const { isBrowserSupported, supportedBrowsers } = checkBrowserSupportForFeature(
     BROWSER_FEATURES.mediaRecorderAPI,
@@ -72,6 +76,7 @@ const PreviewComponent = ({
           isAssessmentTimedOut={isAssessmentTimedOut}
           mediaResponses={mediaResponses}
           readOnly={readOnly}
+          features={features}
         />
       ) : (
         <UnsupportedBrowser supportedBrowsers={supportedBrowsers} />
@@ -106,6 +111,7 @@ class SupportedVideoRecorder extends Component {
       removeQuestionInProgress,
       isAssessmentTimedOut,
       mediaResponses,
+      features,
     } = this.props
     const { VideoRecorderComponent } = this
 
@@ -118,22 +124,32 @@ class SupportedVideoRecorder extends Component {
 
     return (
       <div className="col">
-        <VideoRecorderComponent
-          key={model.id}
-          model={model}
-          preview={type === 'preview_assessment'}
-          readOnly={readOnly}
-          maxDuration={model.props.duration}
-          mediaResponse={mediaResponses[0]}
-          mediaUrl={mediaUrl}
-          fitInFrame={model.props.fitInFrame}
-          trackerOptions={model.props.trackerOptions}
-          onSuccessUpload={this.successUpload}
-          onDeleteMedia={this.deleteMedia}
-          markQuestionInProgress={markQuestionInProgress}
-          removeQuestionInProgress={removeQuestionInProgress}
-          isAssessmentTimedOut={isAssessmentTimedOut}
-        />
+        {features?.new_video_recording_ui ? (
+          <MediaRecorder
+            mediaUrl={mediaUrl}
+            questionId={model.id}
+            maxDuration={model.props.duration}
+            mediaResponse={mediaResponses[mediaResponses.length - 1]}
+          />
+        ) : (
+          <VideoRecorderComponent
+            key={model.id}
+            model={model}
+            preview={type === 'preview_assessment'}
+            readOnly={readOnly}
+            maxDuration={model.props.duration}
+            mediaResponse={mediaResponses[0]}
+            mediaUrl={mediaUrl}
+            fitInFrame={model.props.fitInFrame}
+            trackerOptions={model.props.trackerOptions}
+            onSuccessUpload={this.successUpload}
+            onDeleteMedia={this.deleteMedia}
+            markQuestionInProgress={markQuestionInProgress}
+            removeQuestionInProgress={removeQuestionInProgress}
+            isAssessmentTimedOut={isAssessmentTimedOut}
+          />
+        )
+        }
       </div>
     )
   }

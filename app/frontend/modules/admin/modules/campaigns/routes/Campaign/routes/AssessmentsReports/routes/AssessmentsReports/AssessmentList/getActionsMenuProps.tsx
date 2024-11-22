@@ -32,6 +32,7 @@ export interface ActionMenuData {
   exportScoringResults: AssessmentListProps['exportScoringResults']
   exportNormedResults: AssessmentListProps['exportNormedResults']
   exportRawFactorScores: AssessmentListProps['exportRawFactorScores']
+  exportOccupations?: AssessmentListProps['exportOccupations']
   normalizeFactorScores?: AssessmentListProps['normalizeFactorScores']
   exportExternalResults: AssessmentListProps['exportExternalResults']
   updateExternalConfig?: AssessmentListProps['updateExternalConfig']
@@ -40,7 +41,7 @@ export interface ActionMenuData {
 export const getActionsMenuProps = ({
   projectId, campaignId, assessment, openModal, rescoreResponses, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores, normalizeFactorScores,
-  exportExternalResults, updateExternalConfig, optionsOverrides, message,
+  exportExternalResults, updateExternalConfig, optionsOverrides, message, exportOccupations,
 }:ActionMenuData): MenuProps => {
   const { id, name, permissions } = assessment
   const actions = { ...DEFAULT_OPTIONS, ...optionsOverrides || {} }
@@ -68,6 +69,12 @@ export const getActionsMenuProps = ({
     })
   }
 
+  const handleExportOccupations = () => {
+    exportOccupations && exportOccupations(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.export_occupations_job_scheduled'))
+    })
+  }
+
   const handleRawFactorExport = () => {
     exportRawFactorScores(campaignId, id).then(() => {
       message.success(I18n.t('campaign_assessment.messages.raw_factor_export_scheduled'))
@@ -89,6 +96,10 @@ export const getActionsMenuProps = ({
   }
 
   const exportGroupItems: MenuItemType[] = []
+  permissions.exportOccupations && exportGroupItems.push({
+    key: 'export_occupations',
+    label: I18n.t('campaign_assessment.actions.export_occupations'),
+  })
   permissions.exportRawResults && exportGroupItems.push({
     key: 'export_raw_labels',
     label: I18n.t('campaign_assessment.actions.export_raw_labels'),
@@ -169,6 +180,9 @@ export const getActionsMenuProps = ({
     }
     if (key === 'export_external') {
       return handleExternalResultExport()
+    }
+    if (key === 'export_occupations') {
+      return handleExportOccupations()
     }
     if (key === 'import_raw') {
       return openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })

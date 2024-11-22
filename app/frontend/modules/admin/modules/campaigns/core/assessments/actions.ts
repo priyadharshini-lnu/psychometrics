@@ -19,6 +19,7 @@ const EXPORT_SCORING_RESULTS = 'campaigns/userAssessments/EXPORT_SCORING_RESULTS
 const EXPORT_NORMED_RESULTS = 'campaigns/userAssessments/EXPORT_NORMED_RESULTS'
 const EXPORT_RAW_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_RAW_FACTOR_RESULTS'
 const EXPORT_EXTERNAL_RESULTS = 'campaigns/userAssessments/EXPORT_EXTERNAL_RESULTS'
+const EXPORT_OCCUPATIONS = 'campaigns/assessments/EXPORT_OCCUPATIONS'
 export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/assessments/TOGGLE_REQUIRE_SCHEDULE'
 export const TOGGLE_AUTO_ASSIGN = 'campaigns/assessments/TOGGLE_AUTO_ASSIGN'
 
@@ -257,6 +258,15 @@ export const exportExternalResults = (campaignId: number, assessmentId: number) 
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_external_results`,
+    loader: true,
+  },
+})
+
+export const exportOccupations = (campaignId: number, assessmentId: number) => ({
+  type: EXPORT_OCCUPATIONS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_occupations`,
     loader: true,
   },
 })

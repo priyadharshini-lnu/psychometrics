@@ -12,19 +12,24 @@ const SELECT_OPTIONS = _.times(30, i => ({
 
 class Properties extends Component {
   update = () => {
-    const { model } = this.props
-    model.props.group = null
-    model.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.group = null
+      model.update()
+    })
   }
 
   changeTopPosition = (e) => {
-    const { model } = this.props
-    model.props.topPosition = e ? e.value : null
-    model.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.topPosition = e ? e.value : null
+      model.update()
+    })
   }
 
   render () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     return (
       <div>
         <span className={styles.label}>Top Position</span>
@@ -37,7 +42,7 @@ class Properties extends Component {
         />
         <hr className={styles.divider} />
         <div>Font</div>
-        <PropertyFonts model={model} colors={false} />
+        <PropertyFonts modules={modules} colors={false} />
         <hr className={styles.divider} />
       </div>
     )

@@ -39,6 +39,7 @@ module Administration
           optional(:normalize_factor_scores).maybe(:bool?)
           required(:update_content_variation).filled(:bool?)
           required(:update_available_locales).filled(:bool?)
+          optional(:export_occupations).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)

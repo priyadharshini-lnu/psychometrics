@@ -25,6 +25,7 @@ import {
   UpdatePositionsSchema, CampaignFactorsSchema,
 } from '~/modules/admin/modules/campaigns/core/campaignFactorGroup'
 import { Schema as CampaignTemplateSchema } from '~/modules/admin/core/types/campaignTemplates'
+import { Schema as normsSchema } from '~/modules/admin/modules/client/core/norms'
 
 export const Schema = {
   clients: clientSchema,
@@ -51,4 +52,5 @@ export const Schema = {
   campaign_factors: CampaignFactorsSchema,
   update_positions: UpdatePositionsSchema,
   campaign_templates: CampaignTemplateSchema,
+  norms: normsSchema,
 }
