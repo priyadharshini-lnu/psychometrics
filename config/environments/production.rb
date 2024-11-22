@@ -29,18 +29,10 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  if Settings.asset_host.present?
-    config.action_dispatch.default_headers.merge!(
-      'Access-Control-Allow-Origin' => '*',
-      'Access-Control-Request-Method' => 'GET, OPTIONS',
-      'Access-Control-Allow-Headers' => '*'
-    )
-  end
   config.public_file_server.headers = {
     'Cache-Control' => 'public, s-maxage=31536000, max-age=15552000',
     'Expires' => 1.year.from_now.to_fs(:rfc822)
   }
-  config.public_file_server.headers['Access-Control-Allow-Origin'] = '*' if Settings.asset_host.present?
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :terser if ENV.fetch('DISABLE_TERSER', 'false') == 'false'
   config.logger = Syslog::Logger.new 'psychometrics'
