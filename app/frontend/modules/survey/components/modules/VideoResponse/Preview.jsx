@@ -62,6 +62,7 @@ const PreviewComponent = ({
       <SafeHTML
         html={I18n.tQuestion(model, 'questionText')}
         className="mb-4"
+        style={{ marginLeft: '32px' }}
         config="adminRichText"
       />
       {isBrowserSupported ? (

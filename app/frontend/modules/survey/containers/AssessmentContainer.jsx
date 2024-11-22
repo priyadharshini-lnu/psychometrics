@@ -79,37 +79,37 @@ class AssessmentContainer extends Component {
 
     const { loading } = this.state
     return (
-      <RecordingProvider>
-        <ThemeWrapper
-          renderedByEnduser={renderedByEnduser}
-        >
-          <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
-            <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
-              {/* <ConnectionCheck
+      <ThemeWrapper
+        renderedByEnduser={renderedByEnduser}
+      >
+        <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
+          <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
+            {/* <ConnectionCheck
             onConnected={() => rstore.dispatch(connected())}
             onDisconnected={() => rstore.dispatch(disconnected())}
           /> */}
-              {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-              <DndProvider backend={HTML5Backend}>
-                <div translate="no" className={containerStyles.previewConainer}>
-                  {disabled && this.overlay()}
-                  {!showAsSinglePage
+            {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+            <DndProvider backend={HTML5Backend}>
+              <div translate="no" className={containerStyles.previewConainer}>
+                {disabled && this.overlay()}
+                {!showAsSinglePage
                   && <ParallaxWrapper loading={loading} onLoaded={() => { this.setState({ loading: false }) }} />}
-                  {!loading
-                    ? (
+                {!loading
+                  ? (
+                    <RecordingProvider>
                       <AssessmentPreview
                         showAsSinglePage={showAsSinglePage}
                         type={type}
                         defaultLanguage={data.default_language}
                       />
-                    )
-                    : <div className={containerStyles.loading}><PageLoadSpinner /></div>}
-                </div>
-              </DndProvider>
-            </ConfigProvider>
-          </ErrorBoundary>
-        </ThemeWrapper>
-      </RecordingProvider>
+                    </RecordingProvider>
+                  )
+                  : <div className={containerStyles.loading}><PageLoadSpinner /></div>}
+              </div>
+            </DndProvider>
+          </ConfigProvider>
+        </ErrorBoundary>
+      </ThemeWrapper>
     )
   }
 }

@@ -972,14 +972,23 @@ en:
         unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
       save: Save
       saved:
-        label: Saved
-      saving: Saving...
+        label: Video Saved
+      saving: Saving Video...
+      recording_duration_label: Maximum duration of recording
+      recording_stop_label: Recording will stop in
       start_recording: Start recording
+      stop_recording: Stop recording
+      requesting_permission: Requesting Permission...
+      discard_record_again:  Discard & Record Again
+      response_recorded: Response Recorded
       tracker:
         backward: You are too close to the screen. Please move a bit back
         forward: You are too far away from the screen. Please move a bit closer
         frame: Please make sure that your face aligns with the frame
         ready: Press the Record button when ready to record
+      device_selection:
+        mic: Mic
+        camera: Camera
     wait: Wait
   assessments_reports:
     add_group_form:

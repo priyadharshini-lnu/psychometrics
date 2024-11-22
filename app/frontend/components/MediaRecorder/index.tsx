@@ -22,10 +22,16 @@ import VideoPlayer from './components/VideoPlayer'
 import ProgressWithCountdown, { ProgressWithCountdownProps } from './components/ProgressWIthCountdown'
 import styles from './styles.less'
 
+const { I18n } = window
+
 interface MimeType {
   mimeType: string;
   extension: string;
 }
+
+const VIDEO_BACKGROUND_COLOR = '#E9F7F6'
+const PLACEHOLDER_BLACK = '#000'
+const PROGRESS_BAR_SUCCESS = '#009C37'
 
 const recStartCountdownTotalDuration = 10 // 10 seconds
 
@@ -403,7 +409,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     if (status === 'recording') {
       return (
         <Button onClick={handleStopRecording} type="primary" danger icon={<StopOutlined />}>
-          Stop Recording
+          {I18n.t('assessments.video_response.start_recording')}
         </Button>
       )
     }
@@ -411,7 +417,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     if (isRequestingPermission) {
       return (
         <Button type="primary" icon={<LoadingOutlined />} disabled>
-          Requesting Permission...
+          {I18n.t('assessments.video_response.requesting_permission')}
         </Button>
       )
     }
@@ -423,27 +429,27 @@ const MediaRecorderComponent: React.FC<Props> = ({
         icon={<VideoCameraOutlined />}
         disabled={isRecording}
       >
-        Start Recording
+        {I18n.t('assessments.video_response.start_recording')}
       </Button>
     )
   }
 
   const renderDiscardButton = () => (
-    <Button onClick={handleDiscard} type="primary" icon={<DeleteOutlined />}>
-      Discard & Record Again
+    <Button disabled={isRecording} onClick={handleDiscard} type="primary" icon={<DeleteOutlined />}>
+      {I18n.t('assessments.video_response.discard_record_again')}
     </Button>
   )
 
   const renderSuccessText = () => (
     <>
       <CheckCircleFilled style={{ color: 'var(--ant-primary-color)' }} />
-      <span>Response Recorded</span>
+      <span>{I18n.t('assessments.video_response.response_recorded')}</span>
     </>
   )
 
   const controls = (
 
-    <Flex gap={8}>
+    <Flex style={{ paddingBottom: '16px' }} gap={8}>
       {showActionButton && renderActionButton()}
       {showMessage && renderSuccessText()}
       {(mediaBlobUrl || existingVideoUrl) && !isUploading && !showMessage && renderDiscardButton()}
@@ -491,27 +497,28 @@ const MediaRecorderComponent: React.FC<Props> = ({
     if (status === 'idle' && !existingVideoUrl) {
       return {
         percent: 0,
-        label: `Recording will last for 00:${recStartCountdownTotalDuration} mins`,
+        label: `${I18n.t('assessments.video_response.recording_duration_label')} 
+        00:${recStartCountdownTotalDuration} mins`,
       }
     } if (status === 'recording') {
       return {
         percent: ((maxDuration - recStopCountdownRemainingDuration) / maxDuration) * 100,
-        label: 'Recording will stop in',
+        label: I18n.t('assessments.video_response.recording_stop_label'),
         countdownProps: getCountdownProps(recStopCountdownTime,
           handleStopRecording, `${formatDuration(maxDuration)} mins`),
       }
     } if (isUploading) {
       return {
         percent: Math.round(_.mean(Object.values(percent))),
-        label: 'Saving video...',
-        strokeColor: '#009C37',
+        label: I18n.t('assessments.video_response.saving'),
+        strokeColor: PROGRESS_BAR_SUCCESS,
       }
     }
     if (recordingState === 'saved' || existingVideoUrl) {
       return {
         percent: 100,
-        label: 'Video Saved',
-        strokeColor: '#009C37',
+        label: I18n.t('assessments.video_response.saved.label'),
+        strokeColor: PROGRESS_BAR_SUCCESS,
       }
     }
     return {
@@ -545,13 +552,17 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }
 
   return (
-    <Flex vertical justify="center" align="center" gap={4}>
-      <Flex className={styles.controls} justify="flex-end" align="flex-end">
+    <Flex style={{ background: VIDEO_BACKGROUND_COLOR }} vertical justify="center" align="center" gap={4}>
+      <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
         <AudioOutlined style={{ alignSelf: 'center' }} />
         <Select
-          placeholder={<p style={{ color: '#000', margin: 0 }}>Mic</p>}
+          placeholder={(
+            <p style={{ color: PLACEHOLDER_BLACK, margin: 0 }}>
+              {I18n.t('assessments.video_response.device_selection.mic')}
+            </p>
+            )}
           onChange={handleChangeAudioDevice}
-          suffixIcon={<DownOutlined style={{ color: '#000' }} />}
+          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK }} />}
           variant="borderless"
           disabled={status === 'recording'}
           dropdownStyle={{ minWidth: '300px' }}
@@ -560,9 +571,13 @@ const MediaRecorderComponent: React.FC<Props> = ({
         <VideoCameraOutlined style={{ alignSelf: 'center' }} />
         <Select
           disabled={status === 'recording'}
-          placeholder={<p style={{ color: '#000', margin: 0 }}>Camera</p>}
+          placeholder={(
+            <p style={{ color: PLACEHOLDER_BLACK, margin: 0 }}>
+              {I18n.t('assessments.video_response.device_selection.camera')}
+            </p>
+          )}
           dropdownStyle={{ minWidth: '300px' }}
-          suffixIcon={<DownOutlined style={{ color: '#000' }} />}
+          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK }} />}
           onChange={handleChangeVideoDevice}
           variant="borderless"
           options={getCameraDevices()}

@@ -37,6 +37,7 @@
 
 .selectable {
   border: 2px dashed transparent;
+
   &:hover {
     border-color: var(--ant-primary-color);
   }
@@ -48,7 +49,8 @@
 
 .selected {
   margin-right: -20px;
-  .content{
+
+  .content {
     background: #f0f0f0;
   }
 }
@@ -66,7 +68,7 @@
   color: #E73F61;
 }
 
-.content{
+.content {
   flex: 1;
   display: flex;
   justify-content: space-between;
@@ -74,13 +76,21 @@
   overflow-x: auto;
 }
 
-.contentOuter {
-  margin-inline: 32px;
+.contentOuterBase() {
   margin-top: 30px;
   border-bottom: 1px @border-color-base solid;
 }
 
-.infobar{
+.contentOuter {
+  margin-inline: 32px;
+  .contentOuterBase();
+}
+
+.contentOuterVideoResponse {
+  .contentOuterBase();
+}
+
+.infobar {
   width: 60px;
   box-sizing: content-box;
   padding: 5px;
@@ -89,7 +99,7 @@
   border-right: 1px solid #CCC;
   background: #E6E6E6;
 
-  .editable{
+  .editable {
     line-height: 1;
     max-height: 77px;
     overflow: hidden;
@@ -99,62 +109,64 @@
   }
 }
 
-.header{
+.header {
   display: flex;
 }
 
-.menuicon{
+.menuicon {
   display: inline-block;
   width: 14px;
   margin-right: 5px;
 }
 
-.content{
+.content {
   background: rgba(255, 255, 255, 0.7);
 }
 
-.footerOptions{
+.footerOptions {
   height: 20px;
 }
 
-.footerButtons{
+.footerButtons {
   margin: 25px auto;
   width: 450px;
   display: flex;
   justify-content: space-between;
 }
 
-.button{
+.button {
   display: inline-flex;
   align-items: center;
 
-  &:active{
-    box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+  &:active {
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .2);
   }
 }
 
-.messages{
+.messages {
   padding: 8px;
   border-top: 1px solid #D5D5D5;
   border-bottom: 1px solid #D5D5D5;
-  .item{
+
+  .item {
     margin: 0;
   }
 
-  .remove{
+  .remove {
     padding: 0 5px;
     color: #ff0000 !important;
     cursor: pointer;
   }
 
-  .itemText{
+  .itemText {
     background: transparent !important;
     padding: 3px 0 !important;
     border-radius: 0 !important;
     border: 0 !important;
   }
 }
-.messagesForm{
+
+.messagesForm {
   padding: 8px;
 }
 
@@ -168,7 +180,7 @@
   text-align: center;
 }
 
-.ltr_direction{
+.ltr_direction {
   direction: ltr;
 }
 
@@ -177,6 +189,7 @@
     left: initial;
     right: -32px;
   }
+
   &.content input[type='radio']:after {
     right: -4px;
   }
