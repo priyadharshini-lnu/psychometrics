@@ -56,3 +56,33 @@ const getFeedbackByCode = (result: CampaignFactorModel[]|null, code: string | nu
     result, { code },
   ) as CampaignFactorModel)?.value || ''
 }
+
+export const CampaignFactorResult = (props: Props) => {
+  const {
+    result,
+    model: {
+      props: {
+        answerIndex = 0,
+        campaignFactorResultType = '',
+        answerIndexCode = '',
+      },
+      campaignFactorsList,
+    },
+  } = props
+
+  const code = result && result[answerIndex - 1]?.code
+  const campaignFactor = campaignFactorsList.find(item => item.code === code)
+
+  if (campaignFactorResultType === 'code') {
+    return getFeedbackByCode(result, answerIndexCode)
+  }
+
+  if (campaignFactorResultType === 'feedback') {
+    return (result && result[answerIndex - 1]?.value) || ''
+  }
+
+  if (campaignFactorResultType === 'name') {
+    return campaignFactor?.name || ''
+  }
+  return ''
+}

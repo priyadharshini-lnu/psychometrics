@@ -25,13 +25,18 @@ import ModuleInterface from '~/modules/reports/core/interfaces/Module'
 import GetText from '~/modules/reports/components/modules/Text/components/GetText'
 import PipedText from '~/modules/reports/components/modules/Text/components/PipedText'
 import LookupResultTextValue from '~/modules/reports/components/modules/Text/components/LookupResultTextValue'
+import { ResponseTexts } from '~/modules/reports/components/modules/Text/components/ResponseTextByQuestionType'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import ResultStore from '~/modules/reports/store/ResultStore'
+
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './styles.less'
 
 const connector = connect(
-  (state: RootState, { rstore }: {rstore: Store}) => ({
+  (state: RootState, { rstore, module }: {rstore: Store, module: ModuleInterface}) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
     userReport: rstore?.getState().campaigns.userReports.current,
+    questions: state.report.builder.loaded ? getQuestions(state.report, module.assessment_id) || {} : {},
     rstore,
   }),
   (dispatch, { rstore }: {rstore: Store}) => ({
@@ -66,7 +71,7 @@ const OverrideComponent: FC<Props> = ({
   override, userReport, module, allowEdit, allowApprove,
   openReviewEditor, approveTextOverride, closeReviewEditor,
   removeTextOverride, updateTextOverride, createTextOverride,
-  selectModule, rstore, disapproveTextOverride,
+  selectModule, rstore, disapproveTextOverride, questions,
 }) => {
   const [box, setBox] = useState<{}>({})
   const [edit, setEdit] = useState(false)
@@ -142,6 +147,16 @@ const OverrideComponent: FC<Props> = ({
     if (module.props.sourceType === 'ResultText') {
       const result = LookupResultTextValue.run(module)
       return result ? renderToStaticMarkup(result as ReactElement) : ''
+    }
+    if (module.props.sourceType === 'ResponseText') {
+      if (!module.props.question) { return '' }
+      const question = questions[module.props.question]
+      if (!question) { return '' }
+      const ResponseText = ResponseTexts[question.type]
+      if (!ResponseText) { return ' ' }
+
+      const particularResult = _.get(ResultStore, ['results', module.assessment_id, 'questions', question.id, 0])
+      return ResponseText({ result: particularResult, model: module, question })
     }
     return I18nStore.tModule(module, 'text')
   }
