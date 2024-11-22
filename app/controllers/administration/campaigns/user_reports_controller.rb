@@ -161,7 +161,8 @@ module Administration
                 piped_text_context: {},
                 user_results: user_dashboard.user_results(view_report_as),
                 current_user: current_user,
-                include: '**'
+                include: '**',
+                campaign: campaign
               }
             ).serialize(user_dashboard)
           end

@@ -1,4 +1,4 @@
-import { createRef } from 'react'
+import { forwardRef } from 'react'
 import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 import FroalaEditor from 'react-froala-wysiwyg'
@@ -8,7 +8,7 @@ import 'froala-editor/js/plugins.pkgd.min'
 
 function Editor ({
   content, handleContentChange, readOnly = false, maxCharacterLimit = null, maxWordLimit = null,
-}) {
+}, ref) {
   const config = {
     iconsTemplate: 'font_awesome',
     pluginsEnabled: [
@@ -64,8 +64,6 @@ function Editor ({
     // config.wordCounterMax = maxWordLimit
   }
 
-  const ref = createRef()
-
   return (
     <div className="classname">
       <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
@@ -73,4 +71,4 @@ function Editor ({
   )
 }
 
-export default Editor
+export default forwardRef(Editor)

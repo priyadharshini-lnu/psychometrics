@@ -7,7 +7,8 @@ import RequiredValidation from '../Validations/Required'
 import { isEmailTextEntryQuestion } from '~/modules/survey/utils/question'
 import Results from './Results'
 
-const Result = function (question, answers = null, notApplicable = null, results = {}, answeredQuestions = null) {
+const Result = function (question, answers = null, notApplicable = null, results = {},
+  answeredQuestions = null, richTextEditorAnswerWordCount = 0) {
   this.questionId = question.id
   this.question = question
   this.answeredQuestions = answeredQuestions
@@ -17,6 +18,7 @@ const Result = function (question, answers = null, notApplicable = null, results
   this.answers = _.cloneDeep(answers || question.props.defaultValues) || []
   this.notApplicable = notApplicable
   this.moduleResult = new Res(this)
+  this.richTextEditorAnswerWordCount = richTextEditorAnswerWordCount
 }
 
 Result.prototype = new EventEmitter()
@@ -66,7 +68,7 @@ _.extend(Result.prototype, {
       throw new Error(`Undefined Validation Type ${this.question.validation.type}`)
     }
     const validation = new Validation(this.question.validation.args, this.question)
-    return validation.validate(this.moduleResult.results())
+    return validation.validate(this.moduleResult.results(), this.richTextEditorAnswerWordCount)
   },
 
   processCustomValidation (validation) {
@@ -114,6 +116,10 @@ _.extend(Result.prototype, {
     this.reduxAnswer()
   },
 
+  setRichTextEditorAnswerWordCount (richTextEditorAnswerCount) {
+    this.richTextEditorAnswerCount = richTextEditorAnswerCount
+  },
+
   reduxAnswer () {
     getStore() && getStore().dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
   },
@@ -137,6 +143,7 @@ _.extend(Result.prototype, {
       question_id: this.question.id,
       answers: this.answers,
       not_applicable: this.notApplicable,
+      richTextEditorAnswerWordCount: this.richTextEditorAnswerCount,
     }
   },
 })

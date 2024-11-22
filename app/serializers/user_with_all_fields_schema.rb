@@ -19,6 +19,7 @@ class UserWithAllFieldsSchema < BaseSchema
           required(:value).filled(:str?)
         end
       end
+      required(:datasheet).maybe(:hash?)
     end
   end
 end

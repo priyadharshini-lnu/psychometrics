@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class UserWithAllFieldsSerializer < Panko::Serializer
-  attributes :id, :first_name, :last_name, :email, :age, :gender, :locale, :custom_fields, :photo
+  attributes :id, :first_name, :last_name, :email, :age, :gender, :locale, :custom_fields, :photo, :datasheet
 
   delegate :age, :gender, :locale, to: :user_profile
 
   def photo
     object.user_profile.photo&.url
+  end
+
+  def datasheet
+    campaign&.datasheet_data(object.email) || {}
   end
 
   def custom_fields
@@ -29,5 +33,9 @@ class UserWithAllFieldsSerializer < Panko::Serializer
 
   def user_profile
     object.user_profile
+  end
+
+  def campaign
+    context[:campaign]
   end
 end
