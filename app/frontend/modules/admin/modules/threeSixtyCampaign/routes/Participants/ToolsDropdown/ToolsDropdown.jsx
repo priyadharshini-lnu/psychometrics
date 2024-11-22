@@ -8,7 +8,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const getCustomMenuProps = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
-  handleExportThreeSixtyScores, openModal, handleBulkDownloads,
+  handleExportThreeSixtyScores, handleBulkDownloads, openModal,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {

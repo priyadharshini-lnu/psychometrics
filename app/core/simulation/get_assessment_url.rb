@@ -66,7 +66,7 @@ module Simulation
     end
 
     def available_locales
-      user_assessment.campaign_assessment.available_locales
+      user_assessment.campaign_assessment&.available_locales
     end
 
     def project

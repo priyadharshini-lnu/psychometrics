@@ -66,6 +66,42 @@ describe UsersResults::Scoring::AddScore do
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(2))
     end
 
+    it 'scoring_strategy :formula with std libs math, string, table' do
+      formula_with_table = %(
+        local t = {"b", "a", "c"}
+        table.sort(t)
+        if table.concat(t) == "abc" then return 1 else return 0 end
+      )
+      factor1 = create(
+        :factor, scoring_strategy: :custom_formula, custom_formula: formula_with_table,
+        precision: 3
+      )
+      factor2 = create(
+        :factor, scoring_strategy: :custom_formula,
+        custom_formula: 'if string.upper("abc") == "ABC" then return 1 else return 0 end',
+        precision: 3
+      )
+      factor3 = create(
+        :factor, scoring_strategy: :custom_formula, custom_formula: 'return math.deg(math.pi)',
+        precision: 3
+      )
+      # scoring = {
+      #   factor1.id.to_s => { 'score' => 3 },
+      #   factor2.id.to_s => { 'score' => 3 }
+      # }
+      factor_hash = {
+        factor1.id => { factor: factor1, sub_factor_hash: {} },
+        factor2.id => { factor: factor2, sub_factor_hash: {} },
+        factor3.id => { factor: factor3, sub_factor_hash: {} }
+      }
+      factor_ids = factor_hash.keys
+      # result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!(factor_hash, factor_ids, {}, five_scale_norm, {}, {})
+      expect(result[factor1.id.to_s]['score']).to eq(1)
+      expect(result[factor2.id.to_s]['score']).to eq(1)
+      expect(result[factor3.id.to_s]['score']).to eq(180)
+    end
+
     it 'scoring_strategy :formula' do
       factor1 = create(:factor)
       factor2 = create(

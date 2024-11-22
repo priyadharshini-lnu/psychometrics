@@ -108,6 +108,8 @@ const CampaignListComponent: React.FC<Props> = ({
     openModal('PDFPasswordModal', { projectId, campaignId })
   }
 
+  const displayableType = (type: string) => I18n.t(`administration.campaigns.types.${type}`)
+
   return (
     <div>
       <Row
@@ -198,10 +200,10 @@ const CampaignListComponent: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.listing.type')}
               key="type"
-              render={({ type }) => capitalize(type)}
+              render={({ type }) => displayableType(type)}
               filterMultiple={false}
               filters={map(TYPES, type => ({
-                text: capitalize(type),
+                text: displayableType(type),
                 value: type,
               }))}
               filteredValue={getFilteredValue('type')}

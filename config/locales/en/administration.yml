@@ -771,17 +771,20 @@ en:
         reports: Reports
         status: Status
         type: Type
+      menus:
+        add_common_campaign: Add Common Campaign
+        add_multi_rater_campaign: Add Multi Rater Campaign
       modals:
         create_threesixity:
           close:
-            content: Are you sure you want to close the 360 Campaign Creator? Any unsaved customization work will be lost. Please confirm your decision.
-            title: Close 360 Campaign Creator?
+            content: Are you sure you want to close the Multi Rater Campaign Creator? Any unsaved customization work will be lost. Please confirm your decision.
+            title: Close Multi Rater Campaign Creator?
           instructions_creation:
             empty: 'Empty: Start with a blank survey and customize it according to your specific needs.'
             previous: 'Previous: Select a previous assessment as a starting point and make modifications.'
             standard: 'Standard: Use a pre-designed template with commonly used questions & indicators.'
             sub_title: Please select the type of campaign you would like to create.
-            title: Welcome to the 360 Campaign Creator!
+            title: Welcome to the Multi Rater Campaign Creator!
           instructions_customization:
             sub_title: Select the template and factors to be included in the assessment.
             title: Customize your assessment!
@@ -794,8 +797,8 @@ en:
           search_factors:
             description: Please enter at least 3 characters to find the factors you're looking for.
             title: Begin Your Search
-          success: 360 Campaign was successfully created.
-          success_job: 360 Campaign creation job was successfully scheduled.
+          success: Multi Rater Campaign was successfully created.
+          success_job: Multi Rater Campaign creation job was successfully scheduled.
       options:
         description:
           name: Description
@@ -840,6 +843,9 @@ en:
         watermark_content: Watermark Content
         watermark_info: If you don't add any content, by default email of user would appear as water mark. You can use any of following pipetext -<br/> {{id}} - Participant id </br> {{first_name}} - Participant first name </br> {{last_name}} - Participant last name </br> {{email}} - Participant email
       pdf_password: PDF Password
+      types:
+        common: Common
+        threesixty: Multi Rater
       users:
         completion_status: Completion Status
         created_by: Created By
