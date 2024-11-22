@@ -74,29 +74,29 @@ ar:
     unknown_error: حدث خطأ غير معروف
     video_response:
       device: السماح
+      device_selection:
+        camera: آلة تصوير
+        mic: ميكروفون
       discard: تجاهل
+      discard_record_again: تجاهل وتسجيل مرة أخرى
       media_recorder:
         failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
         success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
+      recording_duration_label: الحد الأقصى لمدة التسجيل
+      recording_stop_label: سيتوقف التسجيل
+      requesting_permission: جارٍ طلب الإذن...
+      response_recorded: تم تسجيل الرد
       save: حفظ
       saved:
         label: تم الحفظ
       saving: جاري الحفظ
-      recording_duration_label: الحد الأقصى لمدة التسجيل
-      recording_stop_label: سيتوقف التسجيل
       start_recording: ابدأ التسجيل
       stop_recording: توقف عن التسجيل
-      requesting_permission: جارٍ طلب الإذن...
-      discard_record_again:  تجاهل وتسجيل مرة أخرى
-      response_recorded: تم تسجيل الرد
       tracker:
         backward: أنت قريب جداً من الشاشة، يرجى الإبتعاد قليلاً
         forward: أنت بعيد جداً من الشاشة، يرجى الإقتراب قليلاً
         frame: الرجاء التأكد من أن وجهك يحاذي الإطار المرسوم على الشاشه
         ready: 'اضغط على زر التسجيل عندما تكون جاهزاً '
-      device_selection:
-        mic: ميكروفون
-        camera: آلة تصوير
     wait: انتظر
   auth:
     current_password: كلمة المرور الحالية

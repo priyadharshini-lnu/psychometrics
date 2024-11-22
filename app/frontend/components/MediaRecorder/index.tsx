@@ -409,7 +409,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     if (status === 'recording') {
       return (
         <Button onClick={handleStopRecording} type="primary" danger icon={<StopOutlined />}>
-          {I18n.t('assessments.video_response.start_recording')}
+          {I18n.t('assessments.video_response.stop_recording')}
         </Button>
       )
     }
