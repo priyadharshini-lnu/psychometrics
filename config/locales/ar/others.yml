@@ -126,9 +126,9 @@ ar:
       submit: إرسال
       title: كلمة السر لمرة واحدة
     password: كلمة المرور
-    password_confirmation: أدخل كلمة المرور الجديدة
+    password_confirmation: تأكيد كلمة المرور
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
-    password_placeholder: أدخل كلمة مرور جديدة
+    password_placeholder: أدخل كلمة المرور الجديدة
     registration:
       description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
@@ -240,6 +240,9 @@ ar:
       completed: تم اكماله
       in_progress: قيد التنفيذ
       not_started: لم يبدأ بعد
+  campaigns:
+    card:
+      duration: المدة الزمنية
   change_password_page:
     old_password: كلمة المرور القديمة
     password: كلمة المرور
@@ -610,7 +613,7 @@ ar:
       clear: امسح المُرشحات
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
     terms_conditions_privacy: بيان الخصوصية
-    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة TTE"
+    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
   simple_form:
     placeholders:
       administrator:
@@ -780,7 +783,7 @@ ar:
     view_reports: عرض التقارير
     waiting: منتظر
     you: أنت
-    yourself: نفسك
+    yourself: ذاتي
   user:
     fields:
       email: البريد الإلكتروني
