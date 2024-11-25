@@ -219,18 +219,7 @@ class Text extends Component {
     if (preview) {
       const override = _.find(moduleOverrides, { moduleId: model.id })
 
-      if (override) {
-        return (
-          <SafeHTML
-            html={override?.content || this.getTypeContent()}
-            ref={(ref) => { this.editor = ref }}
-            className={cs(styles.editor)}
-            config="adminRichText"
-          />
-        )
-      }
-
-      if (sourceType === 'ResponseText') {
+      if ((sourceType === 'ResponseText') && !override?.content) {
         const question = _.find(questions, { id: modelQuestion })
         if (!question) { return null }
         const QuestionTypeModel = ResponseTextByQuestionType[question.type]
@@ -250,6 +239,17 @@ class Text extends Component {
               preview={preview}
             />
           </div>
+        )
+      }
+
+      if (override) {
+        return (
+          <SafeHTML
+            html={override?.content || this.getTypeContent()}
+            ref={(ref) => { this.editor = ref }}
+            className={cs(styles.editor)}
+            config="adminRichText"
+          />
         )
       }
 
