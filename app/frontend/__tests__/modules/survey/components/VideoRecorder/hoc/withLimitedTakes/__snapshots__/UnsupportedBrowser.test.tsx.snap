@@ -3,13 +3,13 @@
 exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with given list of supported browsers and os 1`] = `
 <DocumentFragment>
   <div
-    class="ant-card ant-card-bordered css-dev-only-do-not-override-2i2tap"
+    class="ant-card ant-card-bordered css-dev-only-do-not-override-99djwu"
   >
     <div
       class="ant-card-body"
     >
       <div
-        class="ant-result ant-result-warning css-dev-only-do-not-override-2i2tap"
+        class="ant-result ant-result-warning css-dev-only-do-not-override-99djwu"
       >
         <div
           class="ant-result-icon"
@@ -40,22 +40,23 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
         <div
           class="ant-result-subtitle"
         >
-          This browser doesnt support Video Recording. Please use any of the following browsers,
+          [missing "en.assessments.video_response.media_recorder.unsupported" translation]
         </div>
         <div
           class="ant-result-extra"
         >
           <div
-            class="ant-space css-dev-only-do-not-override-2i2tap ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ta-c flex justify-center"
+            class="ant-space css-dev-only-do-not-override-99djwu ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ta-c flex justify-center"
             style="flex-wrap: wrap;"
           >
             <div
               class="ant-space-item"
             >
               <a
-                class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-link"
+                class="ant-btn css-dev-only-do-not-override-99djwu ant-btn-link"
                 href="https://www.mozilla.org/en-US/firefox/mobile/"
                 rel="noopener noreferrer"
+                tabindex="0"
                 target="_blank"
               >
                 <img
@@ -65,7 +66,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-2i2tap"
+                    class="ant-typography css-dev-only-do-not-override-99djwu"
                   >
                     Mozilla Firefox 29+
                   </span>
@@ -76,9 +77,10 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
               class="ant-space-item"
             >
               <a
-                class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-link"
+                class="ant-btn css-dev-only-do-not-override-99djwu ant-btn-link"
                 href="https://www.google.com/chrome/"
                 rel="noopener noreferrer"
+                tabindex="0"
                 target="_blank"
               >
                 <img
@@ -88,7 +90,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-2i2tap"
+                    class="ant-typography css-dev-only-do-not-override-99djwu"
                   >
                     Google Chrome 49+
                   </span>
@@ -99,9 +101,10 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
               class="ant-space-item"
             >
               <a
-                class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-link"
+                class="ant-btn css-dev-only-do-not-override-99djwu ant-btn-link"
                 href="https://www.microsoft.com/en-us/edge"
                 rel="noopener noreferrer"
+                tabindex="0"
                 target="_blank"
               >
                 <img
@@ -111,7 +114,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-2i2tap"
+                    class="ant-typography css-dev-only-do-not-override-99djwu"
                   >
                     Microsoft Edge 79+
                   </span>
