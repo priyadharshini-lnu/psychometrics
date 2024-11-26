@@ -51,7 +51,7 @@ class Radar extends Component {
     const sourceModel = model.getSourceModel()
     const data = Series[sourceType]
     if (!data) { return null }
-    const series = data.series(getCorrectResults(model), sourceModel, model, factors)
+    const series = data.series(getCorrectResults(model), sourceModel, model, factors).filter(s => s?.data?.length)
     const { fontSize, fontColor: color, fontFamily } = model.props.style
     if (!series.length) { return null }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
