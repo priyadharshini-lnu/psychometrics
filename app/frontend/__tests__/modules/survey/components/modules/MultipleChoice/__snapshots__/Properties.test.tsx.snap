@@ -10,7 +10,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
         class="ant-typography css-dev-only-do-not-override-99djwu"
       >
         <strong>
-          [missing "en.administration.survey_builder.property_panel.answer_type" translation]
+          Answer type
         </strong>
       </span>
       <div
@@ -41,9 +41,9 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           </span>
           <span
             class="ant-select-selection-item"
-            title="[missing "en.administration.survey_builder.property_panel.multiple_choice_types.single_answer" translation]"
+            title="Single answer"
           >
-            [missing "en.administration.survey_builder.property_panel.multiple_choice_types.single_answer" translation]
+            Single answer
           </span>
         </div>
         <span
@@ -94,7 +94,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
               class="ant-typography css-dev-only-do-not-override-99djwu"
             >
               <strong>
-                [missing "en.administration.survey_builder.property_panel.no_of_choices" translation]
+                No. of choices
               </strong>
             </span>
           </div>
@@ -233,7 +233,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
             />
           </span>
           <span>
-            [missing "en.administration.survey_builder.property_panel.add_n_a_option" translation]
+            Add N/A option
           </span>
         </label>
       </div>
@@ -247,7 +247,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
             class="ant-typography css-dev-only-do-not-override-99djwu"
           >
             <strong>
-              [missing "en.administration.survey_builder.property_panel.orientation.title" translation]
+              Orientation
             </strong>
           </span>
           <div
@@ -270,7 +270,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
                 />
               </span>
               <span>
-                [missing "en.administration.survey_builder.property_panel.orientation.vertical" translation]
+                Vertical
               </span>
             </label>
             <label
@@ -289,7 +289,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
                 />
               </span>
               <span>
-                [missing "en.administration.survey_builder.property_panel.orientation.horizontal" translation]
+                Horizontal
               </span>
             </label>
           </div>
@@ -318,7 +318,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           />
         </span>
         <span>
-          [missing "en.administration.survey_builder.property_panel.image_multi_choice_properties.enable" translation]
+          With images
         </span>
       </label>
     </div>
@@ -344,7 +344,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           />
         </span>
         <span>
-          [missing "en.administration.survey_builder.property_panel.validation_response_type" translation]
+          Validation response type
         </span>
       </label>
     </section>

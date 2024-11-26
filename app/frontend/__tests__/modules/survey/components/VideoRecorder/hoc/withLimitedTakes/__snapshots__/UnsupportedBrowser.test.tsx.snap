@@ -40,7 +40,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
         <div
           class="ant-result-subtitle"
         >
-          [missing "en.assessments.video_response.media_recorder.unsupported" translation]
+          This browser doesnt support Video Recording. Please use any of the following browsers,
         </div>
         <div
           class="ant-result-extra"
