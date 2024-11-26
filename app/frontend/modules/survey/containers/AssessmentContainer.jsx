@@ -17,6 +17,7 @@ import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
 import '~/modules/survey/styles/globals.less'
 import '~/modules/survey/utils/i18n'
 import { ParallaxWrapper } from '../components/ParallaxBackground/ParallaxWrapper'
+import { RecordingProvider } from '~/context/RecordingContext'
 
 class AssessmentContainer extends Component {
   constructor (props) {
@@ -95,11 +96,13 @@ class AssessmentContainer extends Component {
                   && <ParallaxWrapper loading={loading} onLoaded={() => { this.setState({ loading: false }) }} />}
                 {!loading
                   ? (
-                    <AssessmentPreview
-                      showAsSinglePage={showAsSinglePage}
-                      type={type}
-                      defaultLanguage={data.default_language}
-                    />
+                    <RecordingProvider>
+                      <AssessmentPreview
+                        showAsSinglePage={showAsSinglePage}
+                        type={type}
+                        defaultLanguage={data.default_language}
+                      />
+                    </RecordingProvider>
                   )
                   : <div className={containerStyles.loading}><PageLoadSpinner /></div>}
               </div>

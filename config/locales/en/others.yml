@@ -978,16 +978,25 @@ en:
     upload: Upload
     video_response:
       device: Allow
+      device_selection:
+        camera: Camera
+        mic: Mic
       discard: Discard
+      discard_record_again: Discard & Record Again
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
         unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
+      recording_duration_label: Maximum duration of recording
+      recording_stop_label: Recording will stop in
+      requesting_permission: Requesting Permission...
+      response_recorded: Response Recorded
       save: Save
       saved:
-        label: Saved
-      saving: Saving...
+        label: Video Saved
+      saving: Saving Video...
       start_recording: Start recording
+      stop_recording: Stop recording
       tracker:
         backward: You are too close to the screen. Please move a bit back
         forward: You are too far away from the screen. Please move a bit closer

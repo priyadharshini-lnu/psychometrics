@@ -7,14 +7,14 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       class="m-4"
     >
       <span
-        class="ant-typography css-dev-only-do-not-override-2i2tap"
+        class="ant-typography css-dev-only-do-not-override-99djwu"
       >
         <strong>
           Answer type
         </strong>
       </span>
       <div
-        class="ant-select ant-select-sm w-100 css-dev-only-do-not-override-2i2tap ant-select-single ant-select-show-arrow"
+        class="ant-select ant-select-sm ant-select-outlined w-100 css-dev-only-do-not-override-99djwu ant-select-single ant-select-show-arrow"
       >
         <div
           class="ant-select-selector"
@@ -75,23 +75,23 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       </div>
     </div>
     <div
-      class="ant-divider css-dev-only-do-not-override-2i2tap ant-divider-horizontal mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-99djwu ant-divider-horizontal mt-4 mb-4"
       role="separator"
     />
     <div
-      class="ant-space css-dev-only-do-not-override-2i2tap ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small"
+      class="ant-space css-dev-only-do-not-override-99djwu ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small"
     >
       <div
         class="ant-space-item"
       >
         <div
-          class="ant-space css-dev-only-do-not-override-2i2tap ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4"
+          class="ant-space css-dev-only-do-not-override-99djwu ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4"
         >
           <div
             class="ant-space-item"
           >
             <span
-              class="ant-typography css-dev-only-do-not-override-2i2tap"
+              class="ant-typography css-dev-only-do-not-override-99djwu"
             >
               <strong>
                 No. of choices
@@ -102,13 +102,13 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
             class="ant-space-item"
           >
             <div
-              class="ant-row ant-row-no-wrap ant-row-space-between ant-row-middle css-dev-only-do-not-override-2i2tap"
+              class="ant-row ant-row-no-wrap ant-row-space-between ant-row-middle css-dev-only-do-not-override-99djwu"
             >
               <div
-                class="ant-col css-dev-only-do-not-override-2i2tap"
+                class="ant-col css-dev-only-do-not-override-99djwu"
               >
                 <button
-                  class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-default ant-btn-sm"
+                  class="ant-btn css-dev-only-do-not-override-99djwu ant-btn-default ant-btn-sm"
                   type="button"
                 >
                   <span
@@ -133,19 +133,19 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
                 </button>
               </div>
               <div
-                class="ant-col ant-col-8 css-dev-only-do-not-override-2i2tap"
+                class="ant-col ant-col-8 css-dev-only-do-not-override-99djwu"
               >
                 <input
-                  class="ant-input ant-input-sm css-dev-only-do-not-override-2i2tap ta-c"
+                  class="ant-input ant-input-sm css-dev-only-do-not-override-99djwu ant-input-outlined ta-c"
                   type="text"
                   value="2"
                 />
               </div>
               <div
-                class="ant-col css-dev-only-do-not-override-2i2tap"
+                class="ant-col css-dev-only-do-not-override-99djwu"
               >
                 <button
-                  class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-default ant-btn-sm"
+                  class="ant-btn css-dev-only-do-not-override-99djwu ant-btn-default ant-btn-sm"
                   type="button"
                 >
                   <span
@@ -180,13 +180,13 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
         class="ant-space-item"
       >
         <div
-          class="ant-space css-dev-only-do-not-override-2i2tap ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4"
+          class="ant-space css-dev-only-do-not-override-99djwu ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4"
         >
           <div
             class="ant-space-item"
           >
             <button
-              class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-primary"
+              class="ant-btn css-dev-only-do-not-override-99djwu ant-btn-primary"
               type="button"
             >
               <span
@@ -219,10 +219,10 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
         class="ant-space-item"
       >
         <label
-          class="ant-checkbox-wrapper ms-4 me-4 css-dev-only-do-not-override-2i2tap"
+          class="ant-checkbox-wrapper ms-4 me-4 css-dev-only-do-not-override-99djwu"
         >
           <span
-            class="ant-checkbox ant-wave-target css-dev-only-do-not-override-2i2tap"
+            class="ant-checkbox ant-wave-target css-dev-only-do-not-override-99djwu"
           >
             <input
               class="ant-checkbox-input"
@@ -244,17 +244,17 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           class="ms-4 me-4"
         >
           <span
-            class="ant-typography css-dev-only-do-not-override-2i2tap"
+            class="ant-typography css-dev-only-do-not-override-99djwu"
           >
             <strong>
               Orientation
             </strong>
           </span>
           <div
-            class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-2i2tap"
+            class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-99djwu"
           >
             <label
-              class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-2i2tap"
+              class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-99djwu"
             >
               <span
                 class="ant-radio ant-wave-target ant-radio-checked"
@@ -274,7 +274,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
               </span>
             </label>
             <label
-              class="ant-radio-wrapper css-dev-only-do-not-override-2i2tap"
+              class="ant-radio-wrapper css-dev-only-do-not-override-99djwu"
             >
               <span
                 class="ant-radio ant-wave-target"
@@ -297,17 +297,17 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       </div>
     </div>
     <div
-      class="ant-divider css-dev-only-do-not-override-2i2tap ant-divider-horizontal mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-99djwu ant-divider-horizontal mt-4 mb-4"
       role="separator"
     />
     <div
       class="ms-4 me-4"
     >
       <label
-        class="ant-checkbox-wrapper css-dev-only-do-not-override-2i2tap"
+        class="ant-checkbox-wrapper css-dev-only-do-not-override-99djwu"
       >
         <span
-          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-2i2tap"
+          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-99djwu"
         >
           <input
             class="ant-checkbox-input"
@@ -323,17 +323,17 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       </label>
     </div>
     <div
-      class="ant-divider css-dev-only-do-not-override-2i2tap ant-divider-horizontal mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-99djwu ant-divider-horizontal mt-4 mb-4"
       role="separator"
     />
     <section
       class="ms-4 me-4 mb-4"
     >
       <label
-        class="ant-checkbox-wrapper mt-2 css-dev-only-do-not-override-2i2tap"
+        class="ant-checkbox-wrapper mt-2 css-dev-only-do-not-override-99djwu"
       >
         <span
-          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-2i2tap"
+          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-99djwu"
         >
           <input
             class="ant-checkbox-input"
@@ -352,17 +352,17 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       class="ms-4 me-4 mb-4"
     >
       <span
-        class="ant-typography css-dev-only-do-not-override-2i2tap"
+        class="ant-typography css-dev-only-do-not-override-99djwu"
       >
         <strong>
           Validation type
         </strong>
       </span>
       <div
-        class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-2i2tap"
+        class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-99djwu"
       >
         <label
-          class="ant-radio-wrapper css-dev-only-do-not-override-2i2tap"
+          class="ant-radio-wrapper css-dev-only-do-not-override-99djwu"
         >
           <span
             class="ant-radio ant-wave-target"
@@ -381,7 +381,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           </span>
         </label>
         <label
-          class="ant-radio-wrapper css-dev-only-do-not-override-2i2tap"
+          class="ant-radio-wrapper css-dev-only-do-not-override-99djwu"
         >
           <span
             class="ant-radio ant-wave-target"
@@ -397,7 +397,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           </span>
           <span>
             <div
-              class="ant-space css-dev-only-do-not-override-2i2tap ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
+              class="ant-space css-dev-only-do-not-override-99djwu ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
             >
               <div
                 class="ant-space-item"
