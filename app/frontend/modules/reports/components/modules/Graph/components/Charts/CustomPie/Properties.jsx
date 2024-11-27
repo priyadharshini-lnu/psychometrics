@@ -33,7 +33,7 @@ class Properties extends Component {
       <div>
         <div className="margin-bottom-10">Up to 4 items can be displayed</div>
         <hr className={styles.divider} />
-        { model.props.source.type === 'CampaignFactors' ? (
+        { model.props?.source?.type === 'CampaignFactors' ? (
           <>
             <div className={styles.block}>
               Radar Maximum
@@ -41,7 +41,7 @@ class Properties extends Component {
                 value={radarMax}
                 onChange={e => this.changeProperty('radarMax', e)}
                 minValue={5}
-                maxValue={10}
+                maxValue={100}
               />
             </div>
             <hr className={styles.divider} />
