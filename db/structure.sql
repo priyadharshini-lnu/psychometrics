@@ -1421,7 +1421,9 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1779,7 +1781,9 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone
+    refresh_tried_at timestamp without time zone,
+    dashboard_type integer DEFAULT 0 NOT NULL,
+    project_path character varying
 );
 
 
@@ -6133,9 +6137,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
+    manager_id bigint,
     unique_session_id character varying
 );
 
@@ -14495,13 +14499,13 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241108085232'),
 ('20241106103020'),
-('20241018100709'),
 ('20241105093139'),
 ('20241101110602'),
 ('20241030111222'),
 ('20241025070422'),
 ('20241025042720'),
 ('20241023071718'),
+('20241018100709'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
@@ -14509,6 +14513,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241010122532'),
 ('20241009075129'),
 ('20241008100312'),
+('20241007113728'),
 ('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),
