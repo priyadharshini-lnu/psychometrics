@@ -1422,8 +1422,6 @@ CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
     disable_data_processing boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1582,16 +1580,6 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 --
 -- Name: comments; Type: TABLE; Schema: public; Owner: -
 --
-
-CREATE TABLE public.comments (
-    id integer NOT NULL,
-    text character varying,
-    created_by integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
-    commentable_type character varying
-);
 
 
 --
@@ -6137,9 +6125,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
+    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
-    manager_id bigint,
     unique_session_id character varying
 );
 
@@ -14501,6 +14489,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241106103020'),
 ('20241105093139'),
 ('20241101110602'),
+('20240912114619'),
 ('20241030111222'),
 ('20241025070422'),
 ('20241025042720'),
@@ -14517,7 +14506,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),
-('20240912114619'),
 ('20240911121555'),
 ('20240910083932'),
 ('20240905041021'),
@@ -15219,4 +15207,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
