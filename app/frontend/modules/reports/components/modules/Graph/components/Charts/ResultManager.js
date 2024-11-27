@@ -37,12 +37,9 @@ export const getCorrectResults = (model, mockFactorIds = []) => {
   }
   if (ResultStore.realResults && model.props.filter) {
     if (model.isMultiFiltering() && Array.isArray(model.props.filter) && model.props.filter.length) {
-      const availableFilters = [...new Set(ResultStore.results[model.assessment_id]
-        .rawResults.map(result => result.relationship))]
-      const filters = Object.fromEntries(AppStore.report.filters.map(filter => [filter.name, filter.id]))
-      return availableFilters.map(f => ({
-        filterId: filters[f],
-        results: ResultStore.results[model.assessment_id].getByFilter(filters[f]),
+      return _.map(model.props.filter, f => ({
+        filterId: f,
+        results: ResultStore.results[model.assessment_id].getByFilter(f),
       }))
     }
     if (!Array.isArray(model.props.filter)) {
