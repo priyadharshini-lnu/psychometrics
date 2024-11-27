@@ -556,18 +556,11 @@ ar:
         color: لون
         delete: يمسح
         description: وصف
-        equal_to: يساوي
-        greater_than: أعظم من
-        greater_than_or_equal_to: أكبر من أو يساوي
         if: لو
         label: ملصق
-        less_than: أقل من
-        less_than_or_equal_to: أقل من أو يساوي
         no_conditions: لا توجد شروط
-        not_equal_to: لا يساوي
         save: يحفظ
         strengths: Strengths
-        then_show_the_following_text: ثم أظهر النص التالي
         title: عنوان
       factors_table:
         description: الوصف

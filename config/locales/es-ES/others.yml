@@ -494,18 +494,11 @@ es-ES:
         color: Color
         delete: Borrar
         description: Descripción
-        equal_to: igual a
-        greater_than: Más que
-        greater_than_or_equal_to: Mayor o igual que
         if: Si
         label: Etiqueta
-        less_than: Menos que
-        less_than_or_equal_to: Menor o igual a
         no_conditions: Sin condiciones
-        not_equal_to: Sin condicionesNo igualdad de derechos
         save: Ahorrar
         strengths: Fortalezas
-        then_show_the_following_text: Luego muestra el siguiente texto.
         title: Título
       factors_table:
         description: Descripción
