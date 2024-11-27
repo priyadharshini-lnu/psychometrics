@@ -548,7 +548,7 @@ ar:
       view: عرض التقرير
     modules:
       campaign_factors_table:
-        add_condition: إضافة شرط 
+        add_condition: إضافة شرط
         baseline_score: النتيجة الأساسية
         blindspots: النقاط العمياء
         campaign_factor_conditions: شروط عامل الحملة
