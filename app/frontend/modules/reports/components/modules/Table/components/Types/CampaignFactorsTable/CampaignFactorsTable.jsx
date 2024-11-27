@@ -333,9 +333,6 @@ class CampaignFactorsTable extends Component {
           ) : null}
           {model.props.showScore && scorePosition === 'inline'
             ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
-          {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
-            <th key={i} className={styles.filter} scope="col">{filter.name}</th>
-          )) : null}
         </tr>
       </thead>
     )
