@@ -5,6 +5,7 @@ import AppStore from '~/modules/reports/store/AppStore'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import ModuleConfigs from '~/modules/reports/consts/ModuleConfigs'
 import { PropTypes as PropertyVies } from './Types'
+
 const TABLE_TYPE_OPTIONS = [
   { value: 'SimpleTable', label: 'Simple Table' },
   { value: 'ThreeSixtyDefault', label: 'Default 360' },

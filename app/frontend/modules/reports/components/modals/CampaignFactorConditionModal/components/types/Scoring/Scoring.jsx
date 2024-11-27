@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Utils from '~/modules/reports/utils/Utils'
 import styles from '../../Condition.less'
 import localStyles from './Scoring.less'
-const { I18n } = window
+
 
 export class Scoring extends Component {
   static propTypes = {

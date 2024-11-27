@@ -2,13 +2,13 @@ import _ from 'lodash'
 import { Component } from 'react'
 import {
   Modal,
-  Button
+  Button,
 } from 'antd'
 import CPIConditionCollection from '~/modules/reports/models/CPIConditionCollection'
 import styles from './CampaignFactorConditionModal.less'
 import ConditionCollection from './ConditionCollection'
-const { $, I18n } = window
 
+const { $, I18n } = window
 
 
 export class ConditionalTextModal extends Component {
@@ -63,19 +63,24 @@ export class ConditionalTextModal extends Component {
   render () {
     const { close } = this.props
     return (
-      <Modal 
+      <Modal
         open
-        title={I18n.t('reports.modules.campaign_factors_table.campaign_factor_conditions')} 
-        keyboard={false} 
-        onCancel={this.props.close} 
+        title={I18n.t('reports.modules.campaign_factors_table.campaign_factor_conditions')}
+        keyboard={false}
+        onCancel={close}
         className={styles.modal}
         width="lg"
         footer={[
           <Button className="btn btn-default" style={{ float: 'left' }} key="1" onClick={this.addCollection}>
-         { I18n.t('reports.modules.campaign_factors_table.add_condition')}
+            { I18n.t('reports.modules.campaign_factors_table.add_condition')}
           </Button>,
-          <Button className="btn btn-success" onClick={this.save} key="2">{I18n.t('reports.modules.campaign_factors_table.save')}</Button>,
-          <Button className="btn btn-danger" onClick={close} key="3"> { I18n.t('reports.modules.campaign_factors_table.cancel')}</Button>
+          <Button className="btn btn-success" onClick={this.save} key="2">
+            {I18n.t('reports.modules.campaign_factors_table.save')}
+          </Button>,
+          <Button className="btn btn-danger" onClick={close} key="3">
+            {' '}
+            { I18n.t('reports.modules.campaign_factors_table.cancel')}
+          </Button>,
         ]}
       >
         {this.renderCollections()}

@@ -148,7 +148,7 @@ class Properties extends Component {
       { label: 'Top Factors', value: 'topFactors' },
       { label: 'Ordered Factors', value: 'orderedFactors' },
     ]
-    
+
     return (
       options.map((option, i) => (
         <label className={styles.inputLabel} key={i}>

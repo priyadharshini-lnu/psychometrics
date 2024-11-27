@@ -10,7 +10,6 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
-
 import styles from './CampaignFactorsTable.less'
 
 const campaignFactorMockData = [
@@ -21,7 +20,6 @@ const campaignFactorMockData = [
     color: '#666666',
     value: 65.8888,
     strategy: 0,
-    benchmarkScore: 70,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur
@@ -39,7 +37,6 @@ const campaignFactorMockData = [
     label: 'Medium',
     color: '#999999',
     value: 35,
-    benchmarkScore: 50,
     strategy: 1,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -58,7 +55,6 @@ const campaignFactorMockData = [
     label: 'Medium',
     color: '#999999',
     value: 55,
-    benchmarkScore: 45,
     strategy: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -78,7 +74,6 @@ const campaignFactorMockData = [
     label: 'Low',
     color: '#aaaaaa',
     value: 0.75,
-    benchmarkScore: 2,
     strategy: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -98,7 +93,6 @@ const campaignFactorMockData = [
     label: 'High',
     color: '#666666',
     value: 95,
-    benchmarkScore: 80,
     strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -133,12 +127,10 @@ class CampaignFactorsTable extends Component {
 
   prepareCampaignFactorTableRows () {
     const { module, module: { props } } = this.props
-    console.log("cf table props ---", this.props)
     const sourceCampaignFactors = _.get(props, ['source', 'campaignFactors'], [])
     const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
     const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
     const campaignFactorCodes = sourceCampaignFactors.map(f => f.code)
-    console.log("campaignFactorCodes", ResultStore)
     if (ResultStore.realResults) {
       if (props.mode === 'topFactors') {
         this.campaignFactorsData = ResultStore.results[module.assessment_id].getTopCampaignFactors(
@@ -341,9 +333,9 @@ class CampaignFactorsTable extends Component {
           ) : null}
           {model.props.showScore && scorePosition === 'inline'
             ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
-          {model.props.showBenchmarks
-            ? <th className={styles.benchmarks} scope="col">{model.props.benchmarksLabel}</th>
-            : null}
+          {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
+            <th key={i} className={styles.filter} scope="col">{filter.name}</th>
+          )) : null}
         </tr>
       </thead>
     )

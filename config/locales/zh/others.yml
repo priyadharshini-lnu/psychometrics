@@ -486,6 +486,28 @@ zh:
       download: 下载报告
       view: 查看报告
     modules:
+      campaign_factors_table:
+        add_condition: 添加条件
+        baseline_score: 基线分数
+        blindspots: 盲点
+        campaign_factor_conditions: 活动因素条件
+        cancel: 取消
+        color: 颜色
+        delete: 删除
+        description: 描述
+        equal_to: 等于
+        greater_than: 大于
+        greater_than_or_equal_to: 大于或等于
+        if: 如果
+        label: 标签
+        less_than: 少于
+        less_than_or_equal_to: 小于或等于
+        no_conditions: 无条件
+        not_equal_to: 不等于
+        save: 节省
+        strengths: 优势
+        then_show_the_following_text: 然后显示以下文字
+        title: 标题
       factors_table:
         description: 描述
         no_data: 此部分没有可用的数据。

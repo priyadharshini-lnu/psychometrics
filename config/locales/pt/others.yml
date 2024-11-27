@@ -483,6 +483,28 @@ pt:
       download: Descarregar relatório
       view: Ver relatório
     modules:
+      campaign_factors_table:
+        add_condition: Adicionar condição
+        baseline_score: Pontuação da linha de base
+        blindspots: Pontos cegos
+        campaign_factor_conditions: Condições do fator de campanha
+        cancel: Cancelar
+        color: Cor
+        delete: Excluir
+        description: Descrição
+        equal_to: Igual a
+        greater_than: Maior que
+        greater_than_or_equal_to: Maior ThMaior ou Igual a Toan
+        if: Se
+        label: Rótulo
+        less_than: Menor que
+        less_than_or_equal_to: Menor ou igual a
+        no_conditions: Sem condições
+        not_equal_to: Diferente de
+        save: Salvar
+        strengths: Pontos fortes
+        then_show_the_following_text: Em seguida, mostre o seguinte texto
+        title: Título
       factors_table:
         description: Descrição
         no_data: Não há dados disponíveis para esta secção.

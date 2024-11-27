@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import {
   InputNumber, Row, Col, Radio, Checkbox, Slider,
-  Input, Space,
+  Space,
 } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
@@ -106,12 +106,6 @@ class Properties extends Component {
     })
   }
 
-  changeBenchmarkLabel = (e) => {
-    this.updateAll((model) => {
-      model.props.benchmarksLabel = e.currentTarget.value
-    })
-  }
-
   update = () => {
     this.updateAll((model) => {
       model.props.group = null
@@ -134,7 +128,7 @@ class Properties extends Component {
             type="radio"
             name="mode"
             value={option.value}
-            checked={model.props.mode === option.value || (!model.props.mode && option.value === 'topFactors')}
+            checked={model.props.mode === option.value}
             onChange={this.changeMode}
           />
           {option.label}
@@ -366,16 +360,6 @@ class Properties extends Component {
         <div className="margin-top-10">
           <div className={cs(styles.label, 'mbm mtl')}>Show Elements</div>
           {this.renderTableOptions()}
-          {model.props.showBenchmarks && (
-            <div>
-              <Input
-                placeholder="Benchmark label"
-                value={model.props.benchmarksLabel}
-                onChange={this.changeBenchmarkLabel}
-              />
-            </div>
-          )}
-
         </div>
         <hr className={styles.divider} />
         <div>

@@ -14,7 +14,6 @@ const {
 } = Modal
 
 
-
 export class ConditionalTextModal extends Component {
   constructor (props) {
     super(props)
@@ -70,7 +69,7 @@ export class ConditionalTextModal extends Component {
   renderCollections () {
     const { module } = this.state
     if (module.textConditions.length) {
-      return _.map(module.textConditions, (collection, i) => (
+      return _.map(module.textConditions, collection => (
         <ConditionCollection key={_.uniqueId('items_')} model={collection} onRemove={this.remove} />
       ))
     }

@@ -489,6 +489,28 @@ ja:
       download: レポートをダウンロード
       view: レポートを表示
     modules:
+      campaign_factors_table:
+        add_condition: 条件の追加
+        baseline_score: ベースラインスコア
+        blindspots: 盲点
+        campaign_factor_conditions: キャンペーン要素の条件
+        cancel: キャンセル
+        color: 色
+        delete: 消去
+        description: 説明
+        equal_to: 等しい
+        greater_than: より大きい
+        greater_than_or_equal_to: 以上
+        if: もし
+        label: ラベル
+        less_than: 未満
+        less_than_or_equal_to: 以下
+        no_conditions: 条件なし
+        not_equal_to: 等しくない
+        save: 保存
+        strengths: 強み
+        then_show_the_following_text: 次に、次のテキストを表示します
+        title: タイトル
       factors_table:
         description: 説明
         no_data: このセクションで利用できるデータはありません。

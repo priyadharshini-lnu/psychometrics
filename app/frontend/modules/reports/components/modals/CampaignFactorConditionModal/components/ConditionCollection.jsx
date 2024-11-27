@@ -8,6 +8,7 @@ import styles from './CampaignFactorConditionModal.less'
 import ConditionList from './ConditionList'
 import localStyles from './types/Scoring/Scoring.less'
 import { ColorPicker } from '~/glint'
+
 const { I18n } = window
 
 
@@ -62,7 +63,7 @@ export class ConditionCollection extends Component {
 
   changeColor = (color) => {
     const { model } = this.props
-    model.color = color 
+    model.color = color
     this.forceUpdate()
   }
 
@@ -167,7 +168,6 @@ export class ConditionCollection extends Component {
             getValueInHexFormat
             colorPickerPosition="leftBottom"
             value={model.color || 'transparent'}
-            
             onChange={
               this.changeColor
             }
