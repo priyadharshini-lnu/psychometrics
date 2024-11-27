@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
 import {
@@ -21,12 +21,15 @@ import { SafeHTML } from '~/components/SafeHTML'
 import { subscribeSocket } from '~/core/socket'
 import Comments from './Comments'
 import styles from './styles.less'
+import { TextModuleContent } from '~/modules/reports/views/Preview/TextModuleContent'
+import QuestionModel from '~/modules/reports/models/Question'
 
 const { I18n } = window
 const { Text } = Typography
 
 type Props = PropsFromRedux & {
   pages: {}[]
+  questions?: {[key:string]: {id: number}}
 }
 
 export const lookUpModules = (report, visiblePages) => {
@@ -40,11 +43,15 @@ export const lookUpModules = (report, visiblePages) => {
 }
 
 function Sidebar ({
-  userReport, subscribeSocket, selectModule, selectedModuleId, pages,
+  userReport, subscribeSocket, selectModule, selectedModuleId, pages, questions,
 }: Props) {
   useEffect(() => {
     subscribeSocket('Comments::Channel', { id: userReport.id })
   }, [])
+
+  const qModels = useMemo(() => _.reduce(
+    questions, (acc, q) => ({ ...acc, [q.id]: new QuestionModel(q) }), {},
+  ), [questions])
 
   if (!(userReport && userReport.loaded)) { return null }
 
@@ -102,7 +109,7 @@ function Sidebar ({
                 </div>
                 {modules.map((module, j) => {
                   const override = _.find(userReport.moduleOverrides, { moduleId: module.id })
-                  const content = override?.content || module.props.text
+                  const content = override?.content || TextModuleContent.run(module, qModels)
                   number += 1
                   return (
                     <>

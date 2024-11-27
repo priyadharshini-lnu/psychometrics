@@ -1,5 +1,5 @@
 import {
-  useEffect, useState, FC, ReactElement,
+  useEffect, useState, FC,
 } from 'react'
 import { Button, Checkbox, Popconfirm } from 'antd'
 import {
@@ -7,13 +7,10 @@ import {
 } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { Store } from 'redux'
-import ReactMarkdown from 'react-markdown'
-import { renderToStaticMarkup } from 'react-dom/server'
 import cs from 'classnames'
 import FroalaEditor from 'react-froala-wysiwyg'
 import _ from 'lodash'
 import '~/libs/htmldiff.cjs'
-import I18nStore from '~/modules/reports/store/I18nStore'
 import { openRichEditor, closeRichEditor } from '~/modules/reports/core/builder/actions'
 import {
   createTextOverride, updateTextOverride, approveTextOverride, removeTextOverride,
@@ -22,15 +19,11 @@ import {
 import { RootState } from '~/modules/reports/core/rootReducers'
 import config from '~/modules/reports/components/modules/Text/components/froalaConfig'
 import ModuleInterface from '~/modules/reports/core/interfaces/Module'
-import GetText from '~/modules/reports/components/modules/Text/components/GetText'
-import PipedText from '~/modules/reports/components/modules/Text/components/PipedText'
-import LookupResultTextValue from '~/modules/reports/components/modules/Text/components/LookupResultTextValue'
-import { ResponseTexts } from '~/modules/reports/components/modules/Text/components/ResponseTextByQuestionType'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
-import ResultStore from '~/modules/reports/store/ResultStore'
 
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './styles.less'
+import { TextModuleContent } from './TextModuleContent'
 
 const connector = connect(
   (state: RootState, { rstore, module }: {rstore: Store, module: ModuleInterface}) => ({
@@ -129,38 +122,6 @@ const OverrideComponent: FC<Props> = ({
     closeEditor()
   }
 
-  const getTypeContent = () => {
-    const compileMarkdown = markdown => (
-      <ReactMarkdown>
-        {markdown}
-      </ReactMarkdown>
-    )
-    if (module.props.sourceType === 'ConditionalText') {
-      return renderToStaticMarkup(compileMarkdown(PipedText.run(module.getTextByCondition(), module)))
-    }
-    if (module.props.sourceType === 'ConditionalFactorOccupationText') {
-      return renderToStaticMarkup(compileMarkdown(GetText.run(module)))
-    }
-    if (module.props.sourceType === 'PipedText') {
-      return PipedText.run(I18nStore.tModule(module, 'text'), module)
-    }
-    if (module.props.sourceType === 'ResultText') {
-      const result = LookupResultTextValue.run(module)
-      return result ? renderToStaticMarkup(result as ReactElement) : ''
-    }
-    if (module.props.sourceType === 'ResponseText') {
-      if (!module.props.question) { return '' }
-      const question = questions[module.props.question]
-      if (!question) { return '' }
-      const ResponseText = ResponseTexts[question.type]
-      if (!ResponseText) { return ' ' }
-
-      const particularResult = _.get(ResultStore, ['results', module.assessment_id, 'questions', question.id, 0])
-      return ResponseText({ result: particularResult, model: module, question })
-    }
-    return I18nStore.tModule(module, 'text')
-  }
-
   return (
     <div
       className={
@@ -176,14 +137,14 @@ const OverrideComponent: FC<Props> = ({
         <FroalaEditor
           key="editor"
           config={config}
-          model={content || getTypeContent()}
+          model={content || TextModuleContent.run(module, questions)}
           onModelChange={content => setContent(content)}
         />
       )}
 
       {override && (allowEdit || allowApprove) && showDiff && (
         <SafeHTML
-          html={htmldiff(getTypeContent(), override?.content)}
+          html={htmldiff(TextModuleContent.run(module, questions), override?.content)}
           className={cs(styles.editor, { [styles.diff]: showDiff })}
           config="adminRichText"
         />
