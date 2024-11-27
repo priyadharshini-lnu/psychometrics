@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1421,7 +1428,7 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false,
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -1575,11 +1582,6 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
-
-
---
--- Name: comments; Type: TABLE; Schema: public; Owner: -
---
 
 
 --
@@ -14487,14 +14489,13 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241108085232'),
 ('20241106103020'),
+('20241018100709'),
 ('20241105093139'),
 ('20241101110602'),
-('20240912114619'),
 ('20241030111222'),
 ('20241025070422'),
 ('20241025042720'),
 ('20241023071718'),
-('20241018100709'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
@@ -14506,6 +14507,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),
+('20240912114619'),
 ('20240911121555'),
 ('20240910083932'),
 ('20240905041021'),
