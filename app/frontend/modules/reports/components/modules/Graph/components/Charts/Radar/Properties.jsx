@@ -32,6 +32,12 @@ class Properties extends Component {
     this.update()
   }
 
+  changeEmptyFilters = (e) => {
+    const { model } = this.props
+    model.props.hideEmptyFilters = e.currentTarget.checked
+    this.update()
+  }
+
   render () {
     const { model } = this.props
     const {
@@ -52,6 +58,17 @@ class Properties extends Component {
           </label>
         </div>
         <div className={styles.block}>
+          <label style={{ fontWeight: 'normal' }}>
+            <input
+              type="checkbox"
+              checked={model.props.hideEmptyFilters || false}
+              onChange={this.changeEmptyFilters}
+            />
+            {' '}
+            Hide Empty filters
+          </label>
+        </div>
+        <div className={styles.block}>
           Radar Maximum
           <ChoicesInput
             value={radarMax}
@@ -63,7 +80,12 @@ class Properties extends Component {
         <hr className={styles.divider} />
         <div className={styles.block}>
           Radar Size
-          <ChoicesInput value={parseInt(radarSize, 10)} onChange={this.changeRadarSize} minValue={50} maxValue={150} />
+          <ChoicesInput
+            value={parseInt(radarSize, 10)}
+            onChange={this.changeRadarSize}
+            minValue={50}
+            maxValue={150}
+          />
         </div>
         <hr className={styles.divider} />
         <div className={styles.block}>
