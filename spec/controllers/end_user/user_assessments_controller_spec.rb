@@ -38,5 +38,30 @@ describe EndUser::UserAssessmentsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
     end
+
+    context 'When user is regular user' do
+      let(:user_assessment) { create(:user_assessment, assessment: assessment, campaign: campaign) }
+
+      before do
+        user = user_assessment.user
+        create(:campaign_user, campaign: campaign, user: user, schedule_start_date: 1.day.ago,
+          schedule_end_date: 1.day.from_now)
+        login_user(user)
+      end
+
+      it 'returns a success response' do
+        get :assessment, params: { format: :json, id: user_assessment.id }
+
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'redirects if profile is incomplete' do
+        allow(Users::ProfileCompletion).to receive(:call!).and_return(50)
+
+        get :assessment, params: { format: :json, id: user_assessment.id }
+
+        expect(response).to have_http_status(:redirect)
+      end
+    end
   end
 end
