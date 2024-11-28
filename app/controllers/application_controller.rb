@@ -11,7 +11,7 @@ class ApplicationController < ::BaseController
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :redirect_to_ae_domain, if: :redirect_to_ae_enabled?
-  before_action :ensure_user_profile_completed, unless: -> { current_user.is_anonym? }
+  before_action :ensure_user_profile_completed, unless: -> { current_user&.is_anonym? }
   DOMAIN_REGEXP = %r{^(https?://.+\.)com}
 
   content_security_policy do |policy|
