@@ -16,7 +16,8 @@ module UsersResults
               norm,
               factor_norm_hash,
               external_results,
-              factors_question_count
+              factors_question_count,
+              answers
             )
 
           score =

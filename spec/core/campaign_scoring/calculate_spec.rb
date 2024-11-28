@@ -514,8 +514,8 @@ describe CampaignScoring::Calculate do
     )
 
     skill_score = create(
-      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
-      factor_type: 'formula', formula: "return assessment.form_answer(#{assessment.id}, #{question.id}, 0)"
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor, factor_type: 'formula',
+      formula: "return helpers.round(assessment.form_answer(#{assessment.id}, #{question.id}, 0), 0)"
     )
 
     skill_score_from_json_path = create(
@@ -527,7 +527,7 @@ describe CampaignScoring::Calculate do
     values = described_class.call!(campaign, user)
 
     expect(values[skill].value).to eq('Javascript')
-    expect(values[skill_score].value).to eq(2.2)
+    expect(values[skill_score].value).to eq(2)
     expect(values[skill_score_from_json_path].value).to eq(2.2)
   end
 
@@ -623,6 +623,63 @@ describe CampaignScoring::Calculate do
     values = described_class.call!(campaign, user)
 
     expect(values).to be_empty
+  end
+
+  describe 'lua helpers' do
+    it 'it can return values rounded to specified digits' do
+      round = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.round(2.267, 2)'
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[round].value).to eq(2.27)
+    end
+
+    it 'it can find avarage using average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61}, 2)'
+      )
+
+      average_without_precision = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({5.843, 3.34}, nil)'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].value).to eq(53.83)
+      expect(values[average_without_precision].value).to eq(4.5915)
+    end
+
+    it 'it can find avarage using average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61}, 2)'
+      )
+
+      average_without_precision = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({5.843, 3.34}, nil)'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].value).to eq(53.83)
+      expect(values[average_without_precision].value).to eq(4.5915)
+    end
+
+    it 'it raise error when precision is not passed in average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61})'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].error_message).to eq(
+        'helpers.average: First parameter must be a Lua table, and second parameter is precision (integer)'
+      )
+    end
   end
 
   describe 'lua.user configuration' do

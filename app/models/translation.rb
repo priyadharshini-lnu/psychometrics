@@ -64,8 +64,8 @@ class Translation < ApplicationRecord
   private
 
   def touch_assessment
-    if translateable.is_a?(Question)
-      translateable.assessment&.touch
+    if translateable_type.in?(%w[Question Block Instructions])
+      resource&.touch
     end
   end
 end

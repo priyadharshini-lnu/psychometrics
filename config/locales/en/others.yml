@@ -326,6 +326,8 @@ en:
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
+            name:
+              starts_with_invalid_characters: can't start with =, |, +, -, @, %
             schedule_end_date:
               invalid_datetime: is invalid
             schedule_start_date:

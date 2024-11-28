@@ -1428,7 +1428,9 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -3162,6 +3164,104 @@ ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_crede
 
 
 --
+-- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_columns (
+    id bigint NOT NULL,
+    column_type integer,
+    name character varying,
+    "position" integer,
+    dashboard_use boolean DEFAULT false,
+    accessor_access boolean DEFAULT false,
+    visible_in_list boolean DEFAULT false,
+    sheet_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_row_data (
+    id bigint NOT NULL,
+    string_value text,
+    numeric_value double precision,
+    sheet_row_id bigint NOT NULL,
+    sheet_column_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
+);
+
+
+--
+-- Name: normalized_campaign_accessheets; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_campaign_accessheets AS
+ SELECT sheets.campaign_id,
+    sheet_rows.email,
+    sheet_columns.name AS field,
+    sheet_row_data.numeric_value,
+    sheet_row_data.string_value
+   FROM (((public.sheet_row_data
+     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
+     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
+     JOIN public.sheet_columns ON (((sheet_columns.sheet_id = sheets.id) AND (sheet_columns.id = sheet_row_data.sheet_column_id))))
+  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
+
+
+--
+-- Name: normalized_campaign_accesssheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_campaign_accesssheet AS
+ SELECT sheets.campaign_id AS "Campaign Id",
+    sheet_rows.email AS "Email",
+    sheet_columns.name AS "Field",
+    sheet_row_data.numeric_value AS "Numeric Value",
+    sheet_row_data.string_value AS "String Value"
+   FROM (((public.sheet_row_data
+     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
+     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
+     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
+  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
+
+
+--
 -- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4499,24 +4599,6 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
--- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_columns (
-    id bigint NOT NULL,
-    column_type integer,
-    name character varying,
-    "position" integer,
-    dashboard_use boolean DEFAULT false,
-    accessor_access boolean DEFAULT false,
-    visible_in_list boolean DEFAULT false,
-    sheet_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
 -- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4533,21 +4615,6 @@ CREATE SEQUENCE public.sheet_columns_id_seq
 --
 
 ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
-
-
---
--- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_row_data (
-    id bigint NOT NULL,
-    string_value text,
-    numeric_value double precision,
-    sheet_row_id bigint NOT NULL,
-    sheet_column_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
 
 
 --
@@ -4570,21 +4637,6 @@ ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
 
 
 --
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4601,22 +4653,6 @@ CREATE SEQUENCE public.sheet_rows_id_seq
 --
 
 ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
-
-
---
--- Name: sheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying,
-    flat_view_sha character varying
-);
 
 
 --
@@ -6127,9 +6163,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
+    manager_id bigint,
     unique_session_id character varying
 );
 
@@ -14489,13 +14525,13 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241108085232'),
 ('20241106103020'),
-('20241018100709'),
 ('20241105093139'),
 ('20241101110602'),
 ('20241030111222'),
 ('20241025070422'),
 ('20241025042720'),
 ('20241023071718'),
+('20241018100709'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
