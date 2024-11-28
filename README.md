@@ -160,9 +160,22 @@ Following the above steps, your local development environment should be accessib
 
 # Run tests
 
+To run rails unit test
 ```sh
 bundle exec rspec
 ```
+
+To run vitest unit test
+
+we need to generate translations which can be done by use following rake command
+```sh
+rake i18n:js:export
+```
+then
+```sh
+npm run test
+```
+Check package.json for more details
 
 # Running mock server
 Currently mock server can only run on non ssl mode. For this we would have start rails server and vite server on non ssl mode.
@@ -195,3 +208,6 @@ Run the following rake task to normalize the keys
 ```sh
 bundle exec i18n-tasks normalize -p
 ```
+
+# Production build setup on local
+ Check following wiki https://github.com/TheTalentEnterprise/psychometrics/wiki/Production-build-setup-on-localhost
