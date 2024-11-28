@@ -16,6 +16,7 @@ import { LinkedAssessmentModal } from '../LinkedAssessmentModal/LinkedAssessment
 import { ImportQuestionsModal } from '../ImportQuestionsModal'
 import BlockSettingsModal from '../BlockSettingsModal'
 import { CampaignFactorsFormModal } from '../CampaignFactorsFormModal'
+import AutomaticPageBreakModal from '../AutomaticPageBreakModal/index'
 
 const MODALS = {
   dataSheetModal: DataSheetModal,
@@ -34,6 +35,7 @@ const MODALS = {
   linkedAssessment: LinkedAssessmentModal,
   importQuestionsModal: ImportQuestionsModal,
   blockSettings: BlockSettingsModal,
+  autoPageBreak: AutomaticPageBreakModal,
   campaignFactorsModal: CampaignFactorsFormModal,
 }
 

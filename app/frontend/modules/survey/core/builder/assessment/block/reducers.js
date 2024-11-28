@@ -10,7 +10,7 @@ import {
   RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, UPDATE_BLOCKS,
 } from './actions'
 import { questionsWithoutDeleted, blocksWithoutDeleted } from '../selectors'
-
+import {AUTOMATIC_PAGE_BREAK} from '~/modules/survey/core/builder/assessment/actions.js'
 const filterDeletedQuestions = (block, entities) => questionsWithoutDeleted(entities, block.questions).map(q => q.id)
 
 const HANDLERS = {
@@ -103,13 +103,31 @@ const HANDLERS = {
   },
   [ADD_PAGE_BREAK]: (state, { question, pb }) => {
     const blocks = _.clone(state)
+    console.log("pb",pb)
     const block = _.find(blocks, block => _.includes(block.questions, question.id))
+    console.log("block -2",block)
     const index = _.findIndex(block.questions, id => id === question.id)
+    console.log("index",index)
+    console.log("@@2block@@@",block)
     const newBlock = _.clone(block)
-    newBlock.questions.splice(index + 1, 0, pb.id)
+    newBlock.questions.splice(index + 1, 0, pb.id) 
+    console.log("newBlock",newBlock)
     blocks[block.id] = newBlock
+    console.log("updated state+++++",blocks)
     return blocks
-  },
+  },// want to add page break after the first question put a pb.id at the 2nd index of questions
+  [AUTOMATIC_PAGE_BREAK]: (state,{block,pb,baseOffset}) => {
+    console.log("-------number-----",baseOffset)
+    const blocks = _.clone(state)
+    console.log("blocks p",blocks[block.id])
+    const newBlock = _.clone(blocks[block.id])
+   
+    newBlock.questions.splice(baseOffset, 0, pb.id)
+
+    blocks[block.id] = newBlock
+    console.log("updated state",blocks)
+    return blocks
+   },
   [UPDATE_BLOCK_PROPS]: (state, { block, props }) => setIn(state, [block.id, 'props'], { ...block.props, ...props }),
   [UPDATE_BLOCKS]: (state, { blocks }) => (blocks),
   [COPY_QUESTION]: (state, { question, newQuestion }) => {

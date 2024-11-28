@@ -9,7 +9,7 @@ export const defaultState = {
 }
 
 export const getCurrent = state => _.get(state, ['ui', 'modals', 'current'])
-export const getData = state => _.get(state, ['ui', 'modals', 'data'])
+export const getData = state => _.get(state, ['ui', 'modals', 'data']) //returns undefined if state.ui.modals.data is undefined
 export const getUserId = (state) => {
   const { user } = _.find(getData(state) || {}, d => d.user) || { user: {} }
   return user.id
