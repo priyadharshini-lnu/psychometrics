@@ -1882,6 +1882,10 @@ en:
       number: 'No'
       relationship: Relationship
       subject_name: Subject Name
+    subject_relationship_table:
+      subject_email: Subject Email
+      subject_name: Subject Name
+      subject_relationship: Subject Relationship
   empty: Empty
   enums:
     communication:

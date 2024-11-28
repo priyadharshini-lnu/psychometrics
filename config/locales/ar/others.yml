@@ -378,6 +378,11 @@ ar:
     two_factor_authentication:
       attempt: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
+  emails:
+    subject_relationship_table:
+      subject_email: ايميل المشارك
+      subject_name: اسم المشارك
+      subject_relationship: العلاقه بالمشارك
   errors:
     assessments:
       timed_out: لن تتمكن من إجراء تقييم %{assessment_name} نظرًا لانتهاء المهلة المحددة له.
