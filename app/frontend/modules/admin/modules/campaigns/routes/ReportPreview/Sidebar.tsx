@@ -23,6 +23,8 @@ import Comments from './Comments'
 import styles from './styles.less'
 import { TextModuleContent } from '~/modules/reports/views/Preview/TextModuleContent'
 import QuestionModel from '~/modules/reports/models/Question'
+import ModuleModel from '~/modules/reports/models/Module'
+import ModuleInterface from '~/modules/reports/core/interfaces/Module'
 
 const { I18n } = window
 const { Text } = Typography
@@ -109,7 +111,8 @@ function Sidebar ({
                 </div>
                 {modules.map((module, j) => {
                   const override = _.find(userReport.moduleOverrides, { moduleId: module.id })
-                  const content = override?.content || TextModuleContent.run(module, qModels)
+                  const content = override?.content
+                    || TextModuleContent.run(new ModuleModel(module, page.id) as unknown as ModuleInterface, qModels)
                   number += 1
                   return (
                     <>
