@@ -35,6 +35,10 @@ module Api
         show?
       end
 
+      def remove_cache?
+        show?
+      end
+
       def update?
         @user.has_permission?(:assessments, :manage, project_id: record.owner_id)
       end

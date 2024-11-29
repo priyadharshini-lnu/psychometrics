@@ -5,9 +5,10 @@ module Api
     class ProjectSerializer < Panko::Serializer
       attributes :id, :name, :subdomain, :client_reference, :locales, :enable_strong_password, :enable_2factor_auth,
                  :background_color, :login_box_position, :created_at, :updated_at, :project_logo_url, :partner_logo_url,
-                 :background_image_url, :data_processing_consent, :client_id, :webhook
+                 :background_image_url, :data_processing_consent, :client_id, :webhook, :logo_alt_text,
+                 :secondary_logo_alt_text
 
-      delegate :background_color, :login_box_position, to: :design_setting
+      delegate :background_color, :login_box_position, :logo_alt_text, :secondary_logo_alt_text, to: :design_setting
 
       def client_reference
         object.number

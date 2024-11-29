@@ -28,6 +28,8 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
         run_test! do |response|
           data = JSON.parse(response.body)['data'].first
           expect(data).to have_key('id')
+          expect(data).to have_attribute(:logo_alt_text).with_value(project.name)
+          expect(data).to have_attribute(:secondary_logo_alt_text).with_value(project.name)
           expect(data).to have_attribute(:logo).with_value(nil)
           expect(data).to have_relationship(:project).
             with_data({ 'id' => project.id.to_s, 'type' => 'projects' })
@@ -84,6 +86,34 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
           expect(data).to have_attribute(:login_box_position).with_value('left')
           expect(data).to have_relationship(:project).
             with_data({ 'id' => project.id.to_s, 'type' => 'projects' })
+        end
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:setting_id) { design_setting.id }
+        let(:body) do
+          jsonapi_resource_request(
+            'design_settings',
+            {
+              id: design_setting.id.to_s,
+              logo_alt_text: 'Proj@2024',
+              secondary_logo_alt_text: 'a' * 300
+            }
+          )
+        end
+
+        run_test! do |response|
+          errors = JSON.parse(response.body)['errors']
+          expect(errors).to include(
+            hash_including(
+              'title' => 'is in invalid format',
+              'source' => { 'pointer' => '/data/attributes/logo_alt_text' }
+            ),
+            hash_including(
+              'title' => 'size cannot be greater than 100',
+              'source' => { 'pointer' => '/data/attributes/secondary_logo_alt_text' }
+            )
+          )
         end
       end
     end

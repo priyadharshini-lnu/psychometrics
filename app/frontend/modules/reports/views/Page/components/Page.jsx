@@ -1,5 +1,5 @@
-import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import { Modules } from '~/modules/reports/components/modules'
 import panelStore from '~/modules/reports/store/PropertyPanelStore'
 import ModuleModel from '~/modules/reports/models/Module'
@@ -10,67 +10,69 @@ import Header from './PageHeader'
 import Footer from './PageFooter'
 import DisplayLogic from './DisplayLogic/DisplayLogic'
 import Module from './Module'
+import { actions } from '~/modules/reports/core/temp/selection'
+import FoundationSelected from '~/modules/reports/components/FoundationSelected'
 
-class Page extends Component {
-  storeListener = null
+const Page = (props) => {
+  const {
+    model: pageModel,
+    renderMoudles,
+    report,
+    modules,
+    showOnAllPages,
+  } = props
+  const dispatch = useDispatch()
 
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-    last: PropTypes.bool,
-    renderModules: PropTypes.bool,
-  }
-
-  selectPage = (e) => {
-    const { model, unselectModules, selectModule } = this.props
+  const selectPage = (e) => {
     e.stopPropagation()
-    unselectModules()
-    RichEditorStore.close()
-    selectModule('Page', model)
-  }
-
-  renderModuleType = (module, i) => {
-    const { model: page } = this.props
-
-    // NOTE: @fedor temporary kept update for connects
-    return <Module key={i} moduleId={module.id} page={page} animation={false} />
-  }
-
-  renderShadowModule = (module, i) => {
-    const { model: page } = this.props
-    const model = new ModuleModel(module, page)
-    const View = Modules[model.type]
-    return <View key={i} module={model} page={page} shadow animation={false} />
-  }
-
-  render () {
-    const {
-      report, report: { builder }, modules, model = {}, showOnAllPages,
-      renderMoudles,
-    } = this.props
-    const selected = panelStore.model === model
-    const page = new PageModel(model, report.completed_assessments)
-
-    const style = {
-      ...builder.props.sizes,
+    if (!e.shiftKey) {
+      dispatch(actions.unselectAll())
     }
-
-    return (
-      <div className={styles.page} name={model.id} onClick={this.selectPage}>
-        <div
-          className={`${styles.pageContainer} ${selected ? styles.selected : ''}`}
-          style={{ width: builder.props.sizes.width }}
-        >
-          <Header {...this.props} />
-          {renderMoudles && page.displayLogic && <DisplayLogic {...this.props} model={page} />}
-          <div className={styles.pageContent} style={style}>
-            {renderMoudles && modules.map(this.renderModuleType)}
-            {renderMoudles && showOnAllPages.map(this.renderShadowModule)}
-          </div>
-        </div>
-        <Footer {...this.props} />
-      </div>
-    )
+    RichEditorStore.close()
   }
+
+
+  const renderModuleType = (module, i) => <Module key={i} moduleId={module.id} page={pageModel} animation={false} />
+
+  const renderShadowModule = (module, i) => {
+    const model = new ModuleModel(module, pageModel)
+    const View = Modules[model.type]
+    return <View key={i} module={model} page={pageModel} shadow animation={false} />
+  }
+
+  const selected = panelStore.model === pageModel
+  const page = new PageModel(pageModel, report.completed_assessments)
+
+  const style = {
+    ...report.builder.props.sizes,
+  }
+
+  return (
+    <div className={styles.page} name={pageModel.id} onClick={selectPage}>
+      <div
+        className={`${styles.pageContainer} ${selected ? styles.selected : ''}`}
+        style={{ width: report.builder.props.sizes.width }}
+      >
+        <Header {...props} />
+        {renderMoudles && pageModel.displayLogic && <DisplayLogic {...props} model={page} />}
+        <div className={styles.pageContent} style={style}>
+          {renderMoudles && modules.map(renderModuleType)}
+          {renderMoudles && showOnAllPages.map(renderShadowModule)}
+          <FoundationSelected pageId={pageModel.id} />
+        </div>
+      </div>
+      <Footer {...props} />
+    </div>
+  )
+}
+
+Page.propTypes = {
+  model: PropTypes.object.isRequired,
+  last: PropTypes.bool,
+  renderMoudles: PropTypes.bool,
+  report: PropTypes.object.isRequired,
+  modules: PropTypes.array.isRequired,
+  showOnAllPages: PropTypes.array.isRequired,
 }
 
 export default Page

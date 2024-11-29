@@ -1,55 +1,49 @@
-import { Component } from 'react'
-import PropTypes from 'prop-types'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
-class Properties extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
+const Properties = ({ modules }) => {
+  const model = modules[0]
+  const { factorsWidth, innerCircleRadius, innerCircleText } = model.props
+
+  const updateAll = (cb) => {
+    modules.forEach((module) => {
+      cb(module)
+      module.update()
+    })
   }
 
-  update = () => {
-    const { model } = this.props
-    model.update()
-    this.forceUpdate()
+  const changeFactorsWidth = (value) => {
+    updateAll((item) => {
+      item.props.factorsWidth = value
+    })
   }
 
-  changeFactorsWidth = (value) => {
-    const { model } = this.props
-    model.props.factorsWidth = value
-    this.update()
+  const changeInnerCircleRadius = (value) => {
+    updateAll((item) => {
+      item.props.innerCircleRadius = value
+    })
   }
 
-  changeInnerCircleRadius = (value) => {
-    const { model } = this.props
-    model.props.innerCircleRadius = value
-    this.update()
+  const changeInnerCircleText = (event) => {
+    updateAll((item) => {
+      item.props.innerCircleText = event.currentTarget.value
+    })
   }
 
-  changeInnerCircleText = ({ currentTarget }) => {
-    const { model } = this.props
-    model.props.innerCircleText = currentTarget.value
-    this.update()
-  }
-
-  render () {
-    const { model } = this.props
-    const { factorsWidth, innerCircleRadius, innerCircleText } = model.props
-    return (
+  return (
+    <div className={styles.block}>
+      Factors Width
+      <ChoicesInput minValue={25} maxValue={50} value={factorsWidth} onChange={changeFactorsWidth} />
       <div className={styles.block}>
-        Factors Width
-        <ChoicesInput minValue={25} maxValue={50} value={factorsWidth} onChange={this.changeFactorsWidth} />
-        <div className={styles.block}>
-          Inner Radius
-          <ChoicesInput minValue={5} maxValue={200} value={innerCircleRadius} onChange={this.changeInnerCircleRadius} />
-        </div>
-        <div className={styles.block}>
-          Inner Text
-          <input className="form-control" value={innerCircleText} onChange={this.changeInnerCircleText} />
-        </div>
+        Inner Radius
+        <ChoicesInput minValue={5} maxValue={200} value={innerCircleRadius} onChange={changeInnerCircleRadius} />
       </div>
-    )
-  }
+      <div className={styles.block}>
+        Inner Text
+        <input className="form-control" value={innerCircleText} onChange={changeInnerCircleText} />
+      </div>
+    </div>
+  )
 }
 
 export default Properties

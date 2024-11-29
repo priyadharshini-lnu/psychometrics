@@ -100,6 +100,7 @@ export const getSelected = (): string => {
 const Link = ({ href, children }) => {
   const isThreesixty = location.href.match(/\/(threesixty_campaigns)/)
   const isAssessmentBuilder = (location.href.match(/\/administration(\/)(assessments)/))
+  const isDashboard = (location.href.match(/\/administration(\/)(new_campaigns)/))
   const selected = getSelected()
   const isAllowed = () => {
     const allowedPages = [
@@ -109,7 +110,7 @@ const Link = ({ href, children }) => {
       'reports', 'assessments', 'reportApprovals', 'campaignTemplates']
     return !allowedPages.includes(selected)
   }
-  if (isThreesixty || isAssessmentBuilder || isAllowed()) {
+  if (isThreesixty || isAssessmentBuilder || isDashboard || isAllowed()) {
     return <a href={href}>{children}</a>
   }
   return <RouterLink to={href}>{children}</RouterLink>

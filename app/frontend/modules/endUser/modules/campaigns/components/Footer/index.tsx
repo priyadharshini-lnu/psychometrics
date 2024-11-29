@@ -55,7 +55,7 @@ const FooterComponent: FC<PropsFromRedux> = ({
 }
 
 const TTELogo: FC = () => (
-  <img src={lighthouseLogo} alt="The Talent Enterprise" className={styles.footerLighthouseLogo} />
+  <img src={lighthouseLogo} alt={I18n.t('shared.mte_logo_alt_text')} className={styles.footerLighthouseLogo} />
 )
 
 type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
@@ -107,7 +107,7 @@ const PartnerLogo: FC<PartnerLogsProps> = ({
     )
   }
 
-  return <img src={lighthouseLogo} alt="Lighthouse" className={styles.footerLighthouseLogo} />
+  return <img src={lighthouseLogo} alt={I18n.t('shared.mte_logo_alt_text')} className={styles.footerLighthouseLogo} />
 }
 
 export const Footer = connector(FooterComponent)

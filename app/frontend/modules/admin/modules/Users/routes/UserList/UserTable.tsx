@@ -1,12 +1,15 @@
 
 import React, { useState } from 'react'
 import {
-  Button, MenuProps, Switch, message,
+  Button, MenuProps, Switch, message, Tooltip,
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
 import { Admin } from 'modules/admin/modules/client/core/admin'
 import { useNavigate } from 'react-router-dom'
+import {
+  LockOutlined,
+} from '@ant-design/icons'
 import { isSuperAdmin } from '~/core/currentUser'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
@@ -60,6 +63,22 @@ export const UserTableComponent: React.FC<Props> = ({
       id="email"
       width={300}
       sorter
+      render={user => (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}
+        >
+          <span>{user.email}</span>
+          {user.accessLocked && (
+          <Tooltip placement="top" title={I18n.t('users.actions.unlock_user_access.tooltip')}>
+            <LockOutlined />
+          </Tooltip>
+          )}
+        </div>
+      )}
     />
     <Resource.Column<User>
       title={I18n.t('common.column.updated_at')}
@@ -155,6 +174,14 @@ const getActionsMenuProps = ({
     })
   }
 
+  const unlockUserAccess = () => resource.memberAction({
+    action: 'unlock_user_access',
+    id: user.id,
+    method: 'post',
+  }).then(({ email }: User) => {
+    message.info(I18n.t('users.actions.unlock_user_access.message', { email }))
+  })
+
   const handleAPIKeysClick = (userId: Admin['userId']) => {
     navigate(`/admin/users/admins/${userId}/api_keys`)
   }
@@ -205,6 +232,13 @@ const getActionsMenuProps = ({
           {I18n.t('administration.administrators.list.actions.login')}
         </Button>
       ),
+    },
+    user.meta.permissions.unlockUserAccess && {
+      key: 'unlock_user_access',
+      label: (
+        <Button type="link" onClick={unlockUserAccess} className="ps-0">
+          {I18n.t('users.actions.unlock_user_access.title')}
+        </Button>),
     },
   ]
 

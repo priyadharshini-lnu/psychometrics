@@ -1,5 +1,16 @@
 ---
 ja:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: すべての回答
+      numeric_comparator:
+        enter_value: 値を入力してください
+        select_data: データの選択
+      scoring:
+        select_comparison: 比較タイプの選択
+        select_factors: 要因の選択
+        select_operation: 選択操作
   activerecord:
     attributes:
       membership:

@@ -22,6 +22,13 @@ import Modals from '~/modules/admin/components/Modals'
 import FactorBenchmarkScoreModal from '~/modules/admin/modules/threeSixtyCampaign/components/FactorBenchmarkScoreModal'
 
 import styles from './styles.less'
+import ImportRawModal from './ImportRawModal'
+
+
+const MODALS = {
+  FactorBenchmarkScoreModal,
+  ImportRawModal,
+}
 
 const routes = [
   { redirect: true, from: '', to: 'subjects' },
@@ -70,10 +77,7 @@ function Index ({ currentUser, setSelectedTab, selectedTab }) {
         <ManageRelationshipsModal />
         <ResetCampaignModal />
         <CampaignNameConfirmationModal />
-        <Modals modals={{
-          FactorBenchmarkScoreModal,
-        }}
-        />
+        <Modals modals={MODALS} />
       </div>
     </>
   )

@@ -514,8 +514,8 @@ describe CampaignScoring::Calculate do
     )
 
     skill_score = create(
-      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
-      factor_type: 'formula', formula: "return assessment.form_answer(#{assessment.id}, #{question.id}, 0)"
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor, factor_type: 'formula',
+      formula: "return helpers.round(assessment.form_answer(#{assessment.id}, #{question.id}, 0), 0)"
     )
 
     skill_score_from_json_path = create(
@@ -527,7 +527,7 @@ describe CampaignScoring::Calculate do
     values = described_class.call!(campaign, user)
 
     expect(values[skill].value).to eq('Javascript')
-    expect(values[skill_score].value).to eq(2.2)
+    expect(values[skill_score].value).to eq(2)
     expect(values[skill_score_from_json_path].value).to eq(2.2)
   end
 
@@ -623,5 +623,97 @@ describe CampaignScoring::Calculate do
     values = described_class.call!(campaign, user)
 
     expect(values).to be_empty
+  end
+
+  describe 'lua helpers' do
+    it 'it can return values rounded to specified digits' do
+      round = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.round(2.267, 2)'
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[round].value).to eq(2.27)
+    end
+
+    it 'it can find avarage using average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61}, 2)'
+      )
+
+      average_without_precision = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({5.843, 3.34}, nil)'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].value).to eq(53.83)
+      expect(values[average_without_precision].value).to eq(4.5915)
+    end
+
+    it 'it can find avarage using average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61}, 2)'
+      )
+
+      average_without_precision = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({5.843, 3.34}, nil)'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].value).to eq(53.83)
+      expect(values[average_without_precision].value).to eq(4.5915)
+    end
+
+    it 'it raise error when precision is not passed in average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61})'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].error_message).to eq(
+        'helpers.average: First parameter must be a Lua table, and second parameter is precision (integer)'
+      )
+    end
+  end
+
+  describe 'lua.user configuration' do
+    let!(:user_profile) { create(:user_profile, user: user, age: 30, gender: 'male', locale: 'en') }
+    let(:question) { create(:question) }
+    let(:profile_field) do
+      create(:profile_field, question_id: question.id, profile_setting: campaign.project.profile_setting)
+    end
+
+    it 'calls fixed_field_value on user' do
+      first_name_cf = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', output_type: 'string',
+        formula: "return user.fixed_field_value('first_name')"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[first_name_cf].value).to eq(user.first_name)
+    end
+
+    it 'calls custom_profile_field_value on user' do
+      create(:profile_field_value, user_profile: user_profile, profile_field: profile_field, numeric_value: nil,
+              string_value: 'Developer')
+
+      user_role_cf = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', output_type: 'string',
+        formula:  "return user.custom_profile_field_value(#{profile_field.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[user_role_cf].value).to eq('Developer')
+    end
   end
 end

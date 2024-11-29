@@ -8,7 +8,8 @@ import { ColorPicker } from '~/glint'
 
 export default class ScoreRangeList extends Component {
   addScoreRange = () => {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     const maxValue = _.maxBy(model.props.scoreRanges || [], x => x.value)
     model.props.scoreRanges = [
       ...(model.props.scoreRanges || []),
@@ -24,42 +25,53 @@ export default class ScoreRangeList extends Component {
   }
 
   removeScoreRange = ({ id }) => {
-    const { model } = this.props
-    model.props.scoreRanges = model.props.scoreRanges.filter(m => m.id !== id)
-    this.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.scoreRanges = model.props.scoreRanges.filter(m => m.id !== id)
+      model.update()
+    })
   }
 
   updateScoreRange = (id, attrs) => {
-    const { model } = this.props
-    model.props.scoreRanges = model.props.scoreRanges.map((m) => {
-      if (m.id !== id) {
-        return m
-      }
-      return { ...m, ...attrs }
-    }).sort((a, b) => a.value - b.value)
-    this.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.scoreRanges = model.props.scoreRanges.map((m) => {
+        if (m.id !== id) {
+          return m
+        }
+        return { ...m, ...attrs }
+      }).sort((a, b) => a.value - b.value)
+      model.update()
+    })
   }
 
   changeLineColor = (color) => {
-    const { model } = this.props
-    model.props.scoreLineColor = color
-    this.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.scoreLineColor = color
+      model.update()
+    })
   }
 
   changeBulletColor = (color) => {
-    const { model } = this.props
-    model.props.scoreBulletColor = color
-    this.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props.scoreBulletColor = color
+      model.update()
+    })
   }
 
   update = () => {
-    const { model } = this.props
-    model.update()
-    this.forceUpdate()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.update()
+    })
   }
 
   render () {
-    const { model: { props: { scoreRanges = [], scoreLineColor, scoreBulletColor } } } = this.props
+    const { modules } = this.props
+    const model = modules[0]
+    const { props: { scoreRanges = [], scoreLineColor, scoreBulletColor } } = model
 
     return (
       <div className="mts">

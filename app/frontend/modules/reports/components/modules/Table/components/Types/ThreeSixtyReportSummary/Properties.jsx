@@ -1,10 +1,10 @@
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 
-const Properties = ({ model }) => (
+const Properties = ({ modules }) => (
   <div>
     <div className={styles.title}>360 Report Summary</div>
-    <PropertyFilter model={model} />
+    <PropertyFilter modules={modules} />
     <hr className={styles.divider} />
   </div>
 )

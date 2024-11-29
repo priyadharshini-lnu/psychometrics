@@ -66,6 +66,42 @@ describe UsersResults::Scoring::AddScore do
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(2))
     end
 
+    it 'scoring_strategy :formula with std libs math, string, table' do
+      formula_with_table = %(
+        local t = {"b", "a", "c"}
+        table.sort(t)
+        if table.concat(t) == "abc" then return 1 else return 0 end
+      )
+      factor1 = create(
+        :factor, scoring_strategy: :custom_formula, custom_formula: formula_with_table,
+        precision: 3
+      )
+      factor2 = create(
+        :factor, scoring_strategy: :custom_formula,
+        custom_formula: 'if string.upper("abc") == "ABC" then return 1 else return 0 end',
+        precision: 3
+      )
+      factor3 = create(
+        :factor, scoring_strategy: :custom_formula, custom_formula: 'return math.deg(math.pi)',
+        precision: 3
+      )
+      # scoring = {
+      #   factor1.id.to_s => { 'score' => 3 },
+      #   factor2.id.to_s => { 'score' => 3 }
+      # }
+      factor_hash = {
+        factor1.id => { factor: factor1, sub_factor_hash: {} },
+        factor2.id => { factor: factor2, sub_factor_hash: {} },
+        factor3.id => { factor: factor3, sub_factor_hash: {} }
+      }
+      factor_ids = factor_hash.keys
+      # result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!(factor_hash, factor_ids, {}, five_scale_norm, {}, {})
+      expect(result[factor1.id.to_s]['score']).to eq(1)
+      expect(result[factor2.id.to_s]['score']).to eq(1)
+      expect(result[factor3.id.to_s]['score']).to eq(180)
+    end
+
     it 'scoring_strategy :formula' do
       factor1 = create(:factor)
       factor2 = create(
@@ -333,6 +369,20 @@ describe UsersResults::Scoring::AddScore do
       end
     end
 
+    describe 'when custom formula contains assessment.answer' do
+      let(:custom_formula) { "return assessment.answer(\"$.question_id['answers'][0].value\")" }
+
+      it 'calculates lua script properly' do
+        answers = {}
+        answers['question_id'] = { 'dirty' => false,
+                                   'answers' => [{ 'index' => 0, 'value' => 2.2 },
+                                                 { 'index' => 1, 'value' => 'Javascript' }] }
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {}, nil, Set.new, answers)
+
+        expect(result[factor2.id.to_s]['score']).to eq(2.2)
+      end
+    end
+
     describe 'formula factor can depend on other formula factor' do
       let(:custom_formula) { "return assessment.raw_score(#{factor1.id})" }
 
@@ -414,6 +464,38 @@ describe UsersResults::Scoring::AddScore do
         result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
         expect(result[factor2.id.to_s]['score']).to eq(nil)
+      end
+    end
+
+    describe 'lua helpers - round' do
+      let(:custom_formula) { 'return helpers.round(2.267, 2)' }
+
+      it 'it can return values rounded to specified digits' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(2.27)
+      end
+    end
+
+    describe 'lua helpers - average' do
+      context 'when precision is passed' do
+        let(:custom_formula) { 'return helpers.average({46.66, 61, 8}, nil)' }
+
+        it 'it can find avarage using average helper' do
+          result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+          expect(result[factor2.id.to_s]['score']).to eq(38.553333333333335)
+        end
+      end
+
+      context 'when precision is not passed' do
+        let(:custom_formula) { 'return helpers.average({46.66, 61, 8})' }
+
+        it 'it raise error when precision is not passed in average helper' do
+          expect do
+            described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+          end.to raise_error
+        end
       end
     end
   end

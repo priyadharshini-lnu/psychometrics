@@ -3,8 +3,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Avatar, Popover, Row, Col, Button,
 } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'

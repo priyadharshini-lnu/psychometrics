@@ -14,7 +14,7 @@ class UserDashboardSchema < BaseSchema
       required(:is_self).filled(:bool?)
       required(:results).maybe(:hash?)
       required(:report).hash(ReportSchema.schema(_, _))
-      required(:user).hash(UserSchema.schema(_, _))
+      required(:user).hash(UserWithAllFieldsSchema.schema(_, _))
     end
   end
 end

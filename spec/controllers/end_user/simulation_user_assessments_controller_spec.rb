@@ -50,4 +50,50 @@ RSpec.describe EndUser::SimulationUserAssessmentsController, type: :controller d
       end
     end
   end
+
+  describe 'GET #redirect' do
+    let(:jwt_token) { JWT.encode({ data: user_assessment.id }, Settings.secrets.webhook_jwt_secret, 'HS256') }
+    let(:request_params) { { id: user_assessment.id, jwt_token: jwt_token } }
+
+    context 'when user assessment is found' do
+      it 'completes the user assessment and redirects to the assessment completed path' do
+        get :redirect, params: request_params
+
+        expect(response).to redirect_to(assessment_completed_path(campaign.id, user_assessment_id: user_assessment.id))
+        expect(user_assessment.reload).to be_completed
+      end
+    end
+
+    context 'when user assessment is not found' do
+      let(:jwt_token) { JWT.encode({ data: nil }, Settings.secrets.webhook_jwt_secret, 'HS256') }
+
+      it 'redirects to the root path' do
+        get :redirect, params: request_params
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when JWT token is invalid' do
+      let(:jwt_token) { 'invalid_token' }
+
+      it 'redirects to the root path' do
+        get :redirect, params: request_params
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when JWT token is expired' do
+      let(:jwt_token) do
+        JWT.encode({ data: user_assessment.id, exp: 1.hour.ago.to_i }, Settings.secrets.webhook_jwt_secret, 'HS256')
+      end
+
+      it 'redirects to the root path' do
+        get :redirect, params: request_params
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
 end

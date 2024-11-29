@@ -215,3 +215,11 @@ body {
 .language-dropdown {
   z-index: 10000;
 }
+
+#consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2147483647;
+}

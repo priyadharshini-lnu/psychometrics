@@ -4,6 +4,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
   layout 'layouts/end_user'
 
+  prepend_before_action :authenticate_anonymous_user!
   initial_state_for %i[show pass begin]
   before_action :set_user_assessment,
                 only: %i[assessment details show pass begin validate_session upload_user_verification_image_url

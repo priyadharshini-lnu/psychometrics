@@ -24,6 +24,8 @@ module Api
           required(:data_processing_consent).maybe(:bool?)
           required(:client_id).filled(:int?)
           required(:webhook).maybe(:str?)
+          required(:logo_alt_text).maybe(:str?)
+          required(:secondary_logo_alt_text).maybe(:str?)
         end
       end
     end

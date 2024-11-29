@@ -97,7 +97,7 @@
     "highcharts-custom-events": "^3.0.10",
     "history": "^4.10.1",
     "humps": "^2.0.1",
-    "interact.js": "1.2.8",
+    "interactjs": "^1.10.27",
     "io-ts": "^2.2.16",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",

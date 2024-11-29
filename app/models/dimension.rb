@@ -22,6 +22,8 @@ class Dimension < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
 
+  after_commit :invalidate_assessment_cache
+
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
@@ -62,5 +64,9 @@ class Dimension < ApplicationRecord
       Factor.where(parent_id: @cloned_dimension.factor_ids).update_all(dimension_id: @cloned_dimension.id)
       @cloned_dimension
     end
+  end
+
+  def invalidate_assessment_cache
+    assessments.each(&:invalidate_cache)
   end
 end

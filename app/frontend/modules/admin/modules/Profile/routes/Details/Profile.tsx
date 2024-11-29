@@ -28,12 +28,19 @@ interface Image {
   type?: string
   src: string
 }
-interface Errors {
-  first_name?: []
-  last_name?: []
-  locale?: []
-  timezone?: []
+
+interface JSONApiError {
+  title: string
+  detail?: string
 }
+
+interface Errors {
+  firstName?: JSONApiError
+  lastName?: JSONApiError
+  locale?: JSONApiError
+  timezone?: JSONApiError
+}
+
 
 interface AdminUser extends User{
   userProfileData: UserProfile,
@@ -48,7 +55,6 @@ function Profile ({
   }, [currentUser.id])
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
-  const [errors, setErrors] = useState <Errors>({})
   const { message } = App.useApp()
   const timezoneOptions = useTimezones()
 
@@ -63,6 +69,8 @@ function Profile ({
     },
   })
   const profileUpdateInProgress = isLoading(`update@${currentUser.id}`)
+
+  const [errors, setErrors] = useState<Errors | null>(null)
 
   const user = getResource(currentUser.id.toString())
   if (!user) return null
@@ -94,7 +102,7 @@ function Profile ({
     }).then(() => {
       message.success(I18n.t('profile.success_update'), 5)
     }).catch((e) => {
-      setErrors(camelizeKeys(e.errors))
+      setErrors(e.errors || e)
     })
   }
 
@@ -179,8 +187,8 @@ function Profile ({
                           name="firstName"
                           label={I18n.t('profile.first_name')}
                           hasFeedback
-                          help={errors?.first_name}
-                          validateStatus={errors?.first_name ? 'error' : ''}
+                          help={errors?.firstName?.title}
+                          validateStatus={errors?.firstName ? 'error' : ''}
                           required
                         >
                           <Input size="large" />
@@ -191,8 +199,8 @@ function Profile ({
                           name="lastName"
                           label={I18n.t('profile.last_name')}
                           hasFeedback
-                          help={errors?.last_name}
-                          validateStatus={errors?.last_name ? 'error' : ''}
+                          help={errors?.lastName?.title}
+                          validateStatus={errors?.lastName ? 'error' : ''}
                           required
                         >
                           <Input size="large" />
@@ -206,7 +214,7 @@ function Profile ({
                       name="locale"
                       label={I18n.t('profile.locale')}
                       hasFeedback
-                      help={errors?.locale}
+                      help={errors?.locale?.title}
                       validateStatus={errors?.locale ? 'error' : ''}
                     >
                       <Select
@@ -227,7 +235,7 @@ function Profile ({
                       name="timezone"
                       label={I18n.t('profile.timezone')}
                       hasFeedback
-                      help={errors?.timezone}
+                      help={errors?.timezone?.title}
                       validateStatus={errors?.timezone ? 'error' : ''}
                     >
                       <Select

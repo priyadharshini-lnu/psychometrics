@@ -4,7 +4,7 @@ html dir=dir lang="#{I18n.locale}"
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     meta content="IE=edge" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1" name="viewport"
-    javascript:
+    javascript [nonce=content_security_policy_nonce]:
       window.I18n = {
         locale: '#{I18n.locale}'
       }
@@ -29,7 +29,7 @@ html dir=dir lang="#{I18n.locale}"
     / = vite_javascript_tag 'notification_center.jsx'
 
   - if @current_project&.enable_live_chat?
-    javascript:
+    javascript [nonce=content_security_policy_nonce]:
       (function(d,t) {
         var state = #{@init_state.to_json.html_safe};
         var config = state.liveChat;
@@ -58,3 +58,4 @@ html dir=dir lang="#{I18n.locale}"
           });
         }
       })(document,"script");
+  = render partial: 'layouts/consent_banner'

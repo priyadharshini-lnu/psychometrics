@@ -22,7 +22,7 @@
       = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'
 
-  javascript:
+  javascript [nonce=content_security_policy_nonce]:
     $(function(){
       $('#new_resource, #edit_resource').on('submit', function(event) {
         event.stopPropagation(); // Stop stuff happening

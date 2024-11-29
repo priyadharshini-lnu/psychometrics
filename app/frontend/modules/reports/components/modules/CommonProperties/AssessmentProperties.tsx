@@ -22,7 +22,6 @@ const AssessmentProperties: React.FC<Props> = ({
       <Typography.Text>Assessment</Typography.Text>
       <Select
         className="w-100"
-        style={{ maxWidth: 'calc(220px - 30px)' }}
         size="small"
         options={assessmentOptions}
         value={assessmentId}

@@ -3,39 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe JwtAuthenticator do
-  describe '.authenticate' do
-    let(:project) { create(:project) }
-    let(:user) { create(:user, project: project) }
-    let(:api_key) { create(:api_key, user: user) }
+  let(:project) { create(:project) }
+  let(:user) { create(:user, project: project) }
+  let(:api_key) { create(:api_key, user: user) }
+
+  describe '.get_user_by_client_jwt' do
     let(:jwt_key) do
       JWT.encode({ 'sub' => user.id, 'exp' => Time.now.to_i + 20 }, api_key.token, 'HS256',
                  { 'api_key' => api_key.key })
     end
 
     context 'when the JWT key is valid' do
-      context 'when user_id is passed as subject' do
-        it 'returns the user' do
-          expect(JwtAuthenticator.authenticate(jwt_key, project)).to eq(user)
-        end
-      end
-
-      context 'when user email is passed as subject' do
-        let(:jwt_key) do
-          JWT.encode({ 'sub' => user.email, 'exp' => Time.now.to_i + 20 }, api_key.token, 'HS256',
-                     { 'api_key' => api_key.key })
-        end
-
-        it 'returns the user' do
-          expect(JwtAuthenticator.authenticate(jwt_key, project)).to eq(user)
-        end
-      end
-
-      context 'when user is not part of project' do
-        let!(:new_project) { create(:project) }
-
-        it 'returns the nil' do
-          expect(JwtAuthenticator.authenticate(jwt_key, new_project)).to eq(nil)
-        end
+      it 'returns the user' do
+        expect(JwtAuthenticator.get_user_by_client_jwt(jwt_key, project)).to eq(user)
       end
     end
 
@@ -43,29 +23,29 @@ RSpec.describe JwtAuthenticator do
       let(:jwt_key) { 'invalid' }
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
+        expect(JwtAuthenticator.get_user_by_client_jwt(jwt_key, project)).to be_nil
       end
     end
 
     context 'when the JWT key is expired' do
       let(:jwt_key) do
-        JWT.encode({ 'sub' => user.id, 'exp' => Time.now.to_i - 1 }, api_key.token,
-                   'HS256', { 'api_key' => api_key.key })
+        JWT.encode({ 'sub' => user.id, 'exp' => Time.now.to_i - 1 }, api_key.token, 'HS256',
+                   { 'api_key' => api_key.key })
       end
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
+        expect(JwtAuthenticator.get_user_by_client_jwt(jwt_key, project)).to be_nil
       end
     end
 
     context 'when the JWT key has an expiration time more than 30 minutes in the future' do
       let(:jwt_key) do
-        JWT.encode({ 'sub' => user.id, 'exp' => 35.minutes.from_now.to_i }, api_key.token,
-                   'HS256', { 'api_key' => api_key.key })
+        JWT.encode({ 'sub' => user.id, 'exp' => 35.minutes.from_now.to_i }, api_key.token, 'HS256',
+                   { 'api_key' => api_key.key })
       end
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
+        expect(JwtAuthenticator.get_user_by_client_jwt(jwt_key, project)).to be_nil
       end
     end
 
@@ -75,7 +55,56 @@ RSpec.describe JwtAuthenticator do
       end
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
+        expect(JwtAuthenticator.get_user_by_client_jwt(jwt_key, project)).to be_nil
+      end
+    end
+  end
+
+  describe '.get_user_by_lighthouse_jwt' do
+    let(:encrypted_key) { Settings.secrets.encrypted_key }
+    let(:jwt_key) do
+      JWT.encode({ 'sub' => user.id, 'exp' => Time.now.to_i + 20 }, encrypted_key, 'HS256')
+    end
+
+    context 'when the JWT key is valid' do
+      it 'returns the user' do
+        returned_user, expired = JwtAuthenticator.get_user_by_lighthouse_jwt(jwt_key, project)
+
+        expect(returned_user).to eq(user)
+        expect(expired).to eq(false)
+      end
+    end
+
+    context 'when the JWT key is invalid' do
+      let(:jwt_key) { 'invalid' }
+
+      it 'returns nil' do
+        returned_user, = JwtAuthenticator.get_user_by_lighthouse_jwt(jwt_key, project)
+
+        expect(returned_user).to be_nil
+      end
+    end
+
+    context 'when the JWT key is expired' do
+      let(:jwt_key) do
+        JWT.encode({ 'sub' => user.id, 'exp' => Time.now.to_i - 1 }, encrypted_key, 'HS256')
+      end
+
+      it 'returns user with expired true' do
+        returned_user, expired = JwtAuthenticator.get_user_by_lighthouse_jwt(jwt_key, project)
+
+        expect(returned_user).to eq(user)
+        expect(expired).to eq(true)
+      end
+    end
+
+    context 'when the JWT key does not have an expiration time' do
+      let(:jwt_key) do
+        JWT.encode({ 'sub' => user.id }, encrypted_key, 'HS256')
+      end
+
+      it 'returns nil' do
+        expect(JwtAuthenticator.get_user_by_lighthouse_jwt(jwt_key, project)).to be_nil
       end
     end
   end

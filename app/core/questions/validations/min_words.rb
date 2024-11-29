@@ -15,7 +15,7 @@ module Questions::Validations
 
       invalid = value.split(/\s+/).size < args['minLength']
 
-      broadcast :ok, invalid ? [I18n.t('validations.min_words', min: args['minLength'])] : nil
+      broadcast :ok, invalid ? [I18n.t('validations.min_word', min: args['minLength'])] : nil
     end
   end
 end

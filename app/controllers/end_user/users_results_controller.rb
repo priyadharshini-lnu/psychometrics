@@ -6,7 +6,7 @@ module EndUser
     include UsersResults::ControllerConcern
     prepend_before_action :authenticate_anonymous_user!,
                           only: %i[
-                            update upload_media_url remove_media update_meta_data complete_multipart_upload
+                            index update upload_media_url remove_media update_meta_data complete_multipart_upload
                             upload_callback mark_as_user_selected_take
                           ]
     before_action :can_start_based_on_sequencing,

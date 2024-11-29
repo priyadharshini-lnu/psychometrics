@@ -552,13 +552,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }
 
   return (
-    <Flex
-      style={{ background: VIDEO_BACKGROUND_COLOR }}
-      vertical
-      justify="center"
-      align="center"
-      gap={4}
-    >
+    <Flex style={{ background: VIDEO_BACKGROUND_COLOR }} vertical justify="center" align="center" gap={4}>
       <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
         <AudioOutlined style={{ alignSelf: 'center' }} />
         <Select

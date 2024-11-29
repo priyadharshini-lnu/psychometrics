@@ -30,7 +30,9 @@ oac:
   base_embed_url: <%= ENV.fetch('OAC_EMBED_BASE_PATH', nil) %>
   base_api_url: <%= ENV.fetch('OAC_BASE_API_URL', nil) %>
   oauth_scope_for_embedding: <%= ENV.fetch('OAC_OAUTH_SCOPE_FOR_EMBEDDING', nil) %>
-  all_workbook_access_user_email: <%= ENV.fetch('OAC_ALL_WORKBOOK_ACCESS_USER_EMAIL', nil) %>
+  all_workbook_access_user_name: <%= ENV.fetch('OAC_ALL_WORKBOOK_ACCESS_USER_NAME', nil) %>
+  oac_default_user_email: <%= ENV.fetch('OAC_DEFAULT_USER_EMAIL', nil) %>
+  analytics_viewers_group_id: <%= ENV.fetch('OAC_ANALYTICS_VIEWERS_GROUP_ID', nil) %>
 storage:
   public_storage_service: <%= ENV.fetch('PUBLIC_BUCKET_STORAGE_SERVICE_KEY', nil) %>
   private_storage_service: <%= ENV.fetch('PRIVATE_BUCKET_STORAGE_SERVICE_KEY', nil) %>
@@ -57,6 +59,7 @@ features:
   react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
   idp_enabled: <%= ENV.fetch('IDP_ENABLED', 'false') == 'true' %>
   new_video_recording_ui: <%= ENV.fetch('NEW_VIDEO_RECORDING_UI', 'false') == 'true' %>
+  cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -1198,6 +1201,26 @@ providers:
           - en
       - id: mte-apply
         name: MTE Apply
+        possible_languages:
+          - en
+          - ar
+      - id: mte-shape
+        name: MTE Shape
+        possible_languages:
+          - en
+          - ar
+      - id: mte-guide
+        name: MTE Guide
+        possible_languages:
+          - en
+          - ar
+      - id: pga-demo
+        name: PGA Demo
+        possible_languages:
+          - en
+          - ar
+      - id: mte-apply-cms
+        name: MTE Apply (CMS)
         possible_languages:
           - en
           - ar

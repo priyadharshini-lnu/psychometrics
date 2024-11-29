@@ -13,7 +13,6 @@ module Reports
         required(:id).filled(:int?)
         required(:status).filled(:str?)
         required(:answers).value { hash? | array? | nil? }
-        required(:results).value { hash? | array? | nil? }
         required(:scoring).maybe(:hash?)
         required(:user_id).filled(:int?)
         required(:assessment_id).filled(:int?)

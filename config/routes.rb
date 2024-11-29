@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
+  get '/async_requests/status', to: 'async_requests#status'
 
   concern :media_uploades do
     member do
@@ -130,6 +131,7 @@ Rails.application.routes.draw do
   namespace :administration do
     get 'user_availabilities', to: 'user_availabilities#index', as: :user_availabilities
     get 'dashboards/:id/oracle_analytics_embed', to: 'dashboards#oracle_analytics_embed'
+    post 'dashboards/:id/get_embed_token', to: 'dashboards#get_embed_token'
 
     get 'dashboards', to: 'dashboards#index', as: :dashboard
     get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
@@ -313,6 +315,7 @@ Rails.application.routes.draw do
             get :export_normed_results
             get :export_raw_factor_scores
             get :export_external_results
+            get :export_occupations
             post :import_results
             get :norms
             post :update_norm
@@ -541,6 +544,7 @@ Rails.application.routes.draw do
       member do
         get :export_threesixty_scores
         get :export_results
+        post :import_results
         get :export_completion_status
         delete :reset
         delete :reset_nominations
@@ -912,6 +916,7 @@ as: :simulation_progress_notification
       resources :simulation_user_assessments, only: [] do
         member do
           post :pass
+          get :redirect
         end
       end
 
@@ -931,18 +936,6 @@ as: :simulation_progress_notification
           get :validate_session
           post :upload_user_verification_image_url
           put :user_verification_image_upload_callback
-        end
-      end
-
-      resource :async_requests, only: [] do
-        collection do
-          get :status
-        end
-      end
-
-      resource :async_requests, only: [] do
-        collection do
-          get :status
         end
       end
 
@@ -1143,6 +1136,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :users do
             post :reset_password
+            post :unlock_user_access
             get :roles
             scope module: :users do
               resource :uploads, only: %i[update]
@@ -1160,6 +1154,7 @@ as: :simulation_progress_notification
             post :toggle_archive
             post :copy
             post :restore
+            post :remove_cache
             get :fetch_translations
             post :update_translations
             scope module: :assessments do
@@ -1173,6 +1168,7 @@ as: :simulation_progress_notification
           jsonapi_resources :dimensions
           jsonapi_resources :norms do
             post :copy
+            post :editor
           end
           jsonapi_resources :tags
           jsonapi_resources :external_assessments
