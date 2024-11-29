@@ -12,14 +12,15 @@ import { Factor } from '~/modules/reports/core/interfaces/Factor'
 
 interface Props {
   assessment: Assessment
-  model: Module
+  modules: Module[]
   onSelect(): void
   singleChoice: boolean
 }
 
 export const SavilleFactor: React.FC<Props> = ({
-  assessment, model, onSelect, singleChoice,
+  modules, assessment, onSelect, singleChoice,
 }) => {
+  const model = modules[0]
   const getAllValueTypes = () => {
     const valueTypes = assessment.factors.reduce((acc, factor) => {
       const scoreType = model.getScoreType()
@@ -41,13 +42,17 @@ export const SavilleFactor: React.FC<Props> = ({
   }
 
   const onValueTypeChange = ({ value }) => {
-    model.props.source.valueType = value
-    model.props.source.factors = null
+    modules.forEach((module) => {
+      module.props.source.valueType = value
+      module.props.source.factors = null
+    })
     onSelect()
   }
 
   const onFactorChange = (data) => {
-    model.props.source.factors = singleChoice ? data && [data.id] : data && data.map(f => f.id)
+    modules.forEach((module) => {
+      module.props.source.factors = singleChoice ? data && [data.id] : data && data.map(f => f.id)
+    })
     onSelect()
   }
 

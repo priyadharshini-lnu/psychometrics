@@ -20,7 +20,8 @@ class DataSheet extends Component {
   }
 
   getValue () {
-    const { model, singleChoice } = this.props
+    const { modules, singleChoice } = this.props
+    const model = modules[0]
     if (singleChoice) {
       const resultingValue = _.result(model, 'props.source.columns', [])[0]
       return {
