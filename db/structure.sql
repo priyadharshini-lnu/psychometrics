@@ -1885,7 +1885,9 @@ CREATE TABLE public.design_settings (
     warning_color character varying,
     success_color character varying,
     info_color character varying,
-    background_size character varying DEFAULT 'cover'::character varying
+    background_size character varying DEFAULT 'cover'::character varying,
+    logo_alt_text character varying,
+    secondary_logo_alt_text character varying
 );
 
 
@@ -14523,6 +14525,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241126112602'),
 ('20241108085232'),
 ('20241106103020'),
 ('20241105093139'),
@@ -15245,4 +15248,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

@@ -4,7 +4,8 @@ module Api
   module V1
     class ProjectsController < Api::V1::BaseController
       skip_before_action :ensure_project, only: [:create]
-      DESIGN_ATTRIBUTES = %i[logo background secondary_logo login_box_position background_color].freeze
+      DESIGN_ATTRIBUTES = %i[logo background secondary_logo login_box_position background_color
+                             logo_alt_text secondary_logo_alt_text].freeze
       SECURITY_SETTINGS = %i[enforce_strong_password tfa_enabled].freeze
       def show
         render json: Api::V1::ProjectSerializer.new.serialize(project)
@@ -61,8 +62,8 @@ module Api
       def project_params
         params.permit(
           :name, :subdomain, :client_reference, :data_processing_consent, :enable_strong_password, :enable_2factor_auth,
-          :project_logo, :partner_logo, :background_image, :background_color, :login_box_position, :client_id,
-          :webhook, locales: []
+          :project_logo, :partner_logo, :background_image, :background_color, :login_box_position, :logo_alt_text,
+          :secondary_logo_alt_text, :client_id, :webhook, locales: []
         )
       end
     end
