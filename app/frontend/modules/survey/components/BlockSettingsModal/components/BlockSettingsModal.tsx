@@ -53,7 +53,6 @@ interface State {
 }
 
 export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
-  console.log("all values", model)
   const [state, setState] = useState<State>({ ...(model.props.background || defaultBackground) })
 
   const librarySocket = useRef<null>()

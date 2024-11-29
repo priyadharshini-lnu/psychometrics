@@ -6,10 +6,10 @@ import { updateBlockProps } from '~/modules/survey/core/builder/assessment/block
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 
 const getModel = (state, data) => {
-  if (data.entityName === 'choice') { // checks the entityname passed from the block
-    return QuestionSerializer.wrap(selectQuestion(state, data.id)) //calls this 
+  if (data.entityName === 'choice') {
+    return QuestionSerializer.wrap(selectQuestion(state, data.id)) 
   }
-  return selectBlock(state, data.id) //
+  return selectBlock(state, data.id)
 }
 
 export default connect(

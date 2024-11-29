@@ -1,56 +1,46 @@
-import { Modal, Button,InputNumber,Space } from 'antd'; 
-const { I18n } = window
+import {
+  Modal, Button, InputNumber, Space,
+} from 'antd'
 import { useState } from 'react'
-import Question from '~/modules/survey/models/Question'
 
-const defaultBackground = {
-  baseOffset: 1,
-}
+const { I18n } = window
 
-interface State {
-  baseOffset: number
-}
-
-
-const AutomaticPageBreakModal = ({ model, updateBlockProps, close,automaticPageBreak }) => {
-  console.log("inside the model",model,automaticPageBreak)
-  const [state, setState] = useState<State>({ ...defaultBackground })
-console.log("model",model)
+const AutomaticPageBreakModal = ({
+  model, close, automaticPageBreak, builder,
+}) => {
+  const [pbOffset, setPbOffset] = useState(1)
   const save = () => {
-    automaticPageBreak(model,new Question({ name: 'PB', type: 'PageBreak' }),state.baseOffset);
+    automaticPageBreak(model, builder, pbOffset)
     close()
   }
   return (
     <Modal
-    width="50%"
-    title={"Automatic Page Break"}
-    open
-    maskClosable={false}
-    onCancel={close}
-    footer={[
-      <Button key="back" onClick={close}>
-        {I18n.t('common.actions.cancel')}
-      </Button>,
-      <Button key="submit" type="primary" onClick={save}>
-        {I18n.t('common.actions.save')}
-      </Button>,
+      width="50%"
+      title={I18n.t('administration.automatic_Page_Break.modal.title')}
+      open
+      maskClosable={false}
+      onCancel={close}
+      footer={[
+        <Button key="back" onClick={close}>
+          {I18n.t('common.actions.cancel')}
+        </Button>,
+        <Button key="submit" type="primary" onClick={save}>
+          {I18n.t('common.actions.save')}
+        </Button>,
       ]}
     >
-  <div>
-  <Space>
-             
-                <p>select page break number</p>    {/* convert to i18 */}
-
-                <InputNumber
-                  value={state.baseOffset}
-                  min={1}
-                  max={100}
-                  onChange={val => setState({ ...state, baseOffset: val ? +val : 1 })}
-                />
-              </Space>
-
+      <div>
+        <Space>
+          <p>{I18n.t('administration.automatic_Page_Break.modal.after_every')}</p>
+          <InputNumber
+            value={pbOffset}
+            min={0}
+            max={model?.questions.length ?? 100}
+            onChange={val => setPbOffset(val)}
+          />
+          <p>{I18n.t('administration.automatic_Page_Break.modal.questions')}</p>
+        </Space>
       </div>
-
     </Modal>
   )
 }

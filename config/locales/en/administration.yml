@@ -514,6 +514,11 @@ en:
       type: Record Type
       user: User
       user_agent: User Agent
+    automatic_Page_Break:
+      modal:
+        after_every: After Every
+        questions: Questions
+        title: Automatic Page Break
     back: Back
     base:
       top_sidebar:

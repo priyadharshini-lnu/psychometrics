@@ -65,7 +65,6 @@ class Block extends Component {
 
   moveDown = () => {
     const { model, moveBlockDown } = this.props
-    console.log("this is props",this.props)
     moveBlockDown(model)
   }
 
@@ -75,15 +74,8 @@ class Block extends Component {
   }
 
   autoPageBreak = () => {
-    const {openAutoPageBreakModal,model} = this.props
-    console.log("props",this.props)
-    if(model)
-    openAutoPageBreakModal({ id: model.id, entityName: 'pageBreak' })  
-  else
-  {
-    console.log("model is undefined")
-  }
-    //  automaticPageBreak(model,new Question({ name: 'PB', type: 'PageBreak' }))
+    const { openAutoPageBreakModal, model } = this.props
+    openAutoPageBreakModal({ id: model.id, entityName: 'pageBreak' })
   }
 
   addStaticContent = () => {

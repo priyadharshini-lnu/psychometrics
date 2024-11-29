@@ -5,7 +5,9 @@ import {
   saveAsTemplate, unlinkTemplate, updateBlockProps,
 } from '~/modules/survey/core/builder/assessment/block/actions'
 import { setFirstBlockContentOffset } from '~/modules/survey/core/temp/propertyPanel'
-import { unselectQuestion, moveBlockDown, moveBlockUp,automaticPageBreak } from '~/modules/survey/core/builder/assessment/actions'
+import {
+  unselectQuestion, moveBlockDown, moveBlockUp, automaticPageBreak,
+} from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
   () => ({}),

@@ -49,13 +49,15 @@ export const unselectQuestion = () => ({ type: UNSELECT_QUESTION })
 export const emptyTrash = () => ({ type: EMPTY_TRASH })
 
 export const moveBlockDown = block => ({ type: MOVE_BLOCK_DOWN, block })
-export const automaticPageBreak = (block,pb,baseOffset) => ({ type: AUTOMATIC_PAGE_BREAK,block,pb,baseOffset})
 export const moveBlockUp = block => ({ type: MOVE_BLOCK_UP, block })
 
 export const addNormRule = rule => ({ type: ADD_NORM_RULE, rule })
 export const removeNormRule = index => ({ type: REMOVE_NORM_RULE, index })
 export const changeDefaultNorm = id => ({ type: CHANGE_DEFAULT_NORM, id })
 
+export const automaticPageBreak = (block, builder, baseOffset) => ({
+  type: AUTOMATIC_PAGE_BREAK, block, baseOffset, builder,
+})
 
 export const updateFlow = flow => ({ type: UPDATE_FLOW, flow })
 

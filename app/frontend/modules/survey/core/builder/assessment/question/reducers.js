@@ -9,9 +9,8 @@ import {
   SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, CHANGE_VALIDATION,
 } from './actions'
 import {
-  REMOVE_QUESTION, ADD_PAGE_BREAK, RESTORE_QUESTION
+  REMOVE_QUESTION, ADD_PAGE_BREAK, RESTORE_QUESTION,
 } from '../block/actions'
-import {AUTOMATIC_PAGE_BREAK} from '~/modules/survey/core/builder/assessment/actions.js'
 import { INIT, EMPTY_TRASH } from '../actions'
 import { questionsWithoutDeleted } from '../selectors'
 import { INIT_QUESTION_CENTER } from '../../questionCenter'
@@ -49,7 +48,6 @@ const HANDLERS = {
     state, [question.id], QuestionSerializer.toJSON(_.cloneDeep(question)),
   ),
   [ADD_PAGE_BREAK]: (state, { pb }) => setIn(state, [pb.id], pb),
-  [AUTOMATIC_PAGE_BREAK]: (state, { pb }) => setIn(state,[pb.id],pb),
   [ADD_SKIP_LOGIC]: (state, { question }) => {
     const newQuestion = _.cloneDeep(question)
     if (!newQuestion.skip_logic) {
