@@ -14,6 +14,7 @@ const getModel = (state, data) => {
 
 export default connect(
   ({ survey, survey: { builder } }) => ({
+    ...getData(survey).blockSettings,
     model: getData(survey).blockSettings && getModel(builder, getData(survey).blockSettings),
   }),
   {
