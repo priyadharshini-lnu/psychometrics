@@ -303,10 +303,13 @@ en:
             email:
               blank: Email field can't be blank
               invalid: Email is invalid
+              starts_with_invalid_characters: Email can't start with =, |, +, -, @, %
             first_name:
               blank: First name can't be blank
+              starts_with_invalid_characters: First Name can't start with =, |, +, -, @, %
             last_name:
               blank: Last name can't be blank
+              starts_with_invalid_characters: Last Name can't start with =, |, +, -, @, %
         update_norm:
           attributes:
             norm_type:
@@ -1587,6 +1590,7 @@ en:
       unschedule: Unschedule
       updated_at: Last Updated
     errors:
+      csv_injection_validation_error: can't start with =, |, +, -, @, %
       something_wrong: Something went wrong. Contact your administrator.
     messages:
       leave_message: Are you sure you want to leave this page? Any unsaved answers that you have will be lost.

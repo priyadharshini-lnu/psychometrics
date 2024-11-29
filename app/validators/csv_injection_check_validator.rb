@@ -7,7 +7,8 @@ class CsvInjectionCheckValidator < ActiveModel::EachValidator
     if starts_with_invalid_characters?(value)
       record.errors.add(
         attribute,
-        I18n.t('activemodel.errors.models.user.attributes.name.starts_with_invalid_characters')
+        :starts_with_invalid_characters,
+        message: I18n.t('common.errors.csv_injection_validation_error')
       )
     end
   end
