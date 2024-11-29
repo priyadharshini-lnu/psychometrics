@@ -7,8 +7,8 @@ import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { removeQuestion } from '~/modules/survey/core/builder/assessment/block/actions'
 
 const getModel = (state, data) => {
-  if (data.entityName === 'autoPageBreak') { 
-    return QuestionSerializer.wrap(selectQuestion(state, data.id)) 
+  if (data.entityName === 'autoPageBreak') {
+    return QuestionSerializer.wrap(selectQuestion(state, data.id))
   }
   return selectBlock(state, data.id)
 }

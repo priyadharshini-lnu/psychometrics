@@ -7,7 +7,7 @@ import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 
 const getModel = (state, data) => {
   if (data.entityName === 'choice') {
-    return QuestionSerializer.wrap(selectQuestion(state, data.id)) 
+    return QuestionSerializer.wrap(selectQuestion(state, data.id))
   }
   return selectBlock(state, data.id)
 }
