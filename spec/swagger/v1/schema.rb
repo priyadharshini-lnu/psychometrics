@@ -8,7 +8,7 @@ module Swagger
     DEFINITION = {
       swagger: '2.0',
       info: {
-        title: 'TTE Lighthouse API',
+        title: 'MTE Lighthouse API',
         version: '1.0.0',
         'x-logo': {
           url: 'https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
@@ -16,8 +16,8 @@ module Swagger
           altText: 'Lighthouse'
         },
         contact: {
-          name: 'TTE Support',
-          email: 'support@thetalententerprise.com',
+          name: 'MTE Support',
+          email: 'mte.support@mercer.com',
           url: 'https://thetalententerprise.com'
         },
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',
@@ -26,7 +26,7 @@ module Swagger
           ## Introduction
           Lighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.
 
-          To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.
+          To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact Mercer Talent Enterprise for more information about getting started.
 
           ## Base URL
           All URLs referenced in this documentation have the following base component.
@@ -320,6 +320,23 @@ module Swagger
             description: { type: 'string', 'x-nullable': true }
           }
         },
+        UpdatedCampaignUser: {
+          type: 'object',
+          properties: {
+            schedule_start_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Start date and time for the campaign schedule',
+              nullable: true
+            },
+            schedule_end_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'End date and time for the campaign schedule',
+              nullable: true
+            }
+          }
+        },
         Campaign: {
           type: 'object',
           properties: {
@@ -487,6 +504,51 @@ module Swagger
             poster_url: { type: 'string', 'x-nullable': true },
             url: { type: 'string' },
             status: { type: 'string', enum: %w[not_started in_progress completed] }
+          }
+        },
+        CampaignUserResults: {
+          type: 'object',
+          properties: {
+            finalized: { type: 'boolean' },
+            finalized_at: { type: 'string', 'x-nullable': true },
+            calculated_at: { type: 'string', 'x-nullable': true },
+            results: {
+              type: 'array',
+              items: {
+                type: 'object'
+              }
+            }
+          },
+          example: {
+            finalized: true,
+            finalized_at: '2019-03-04T15:47:33.570+04:00',
+            last_calculated_at: '2019-03-04T15:47:33.570+04:00',
+            results: [
+              {
+                id: 'competency_a',
+                name: 'Competency A',
+                value: 2.0,
+                value_type: 'numeric'
+              },
+              {
+                id: 'competency_b',
+                name: 'Competency B',
+                value: 3.0,
+                value_type: 'numeric'
+              },
+              {
+                id: 'overall_score',
+                name: 'Overall Score',
+                value: 2.5,
+                value_type: 'numeric'
+              },
+              {
+                id: 'overall_category',
+                name: 'Overall Category',
+                value: 'Moderate',
+                value_type: 'string'
+              }
+            ]
           }
         },
         Occupation: {

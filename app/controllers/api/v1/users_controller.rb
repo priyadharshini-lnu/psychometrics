@@ -87,6 +87,15 @@ module Api
         end
       end
 
+      def results
+        render json: {
+          finalized: campaign_user.campaign_scores_finalized,
+          finalized_at: campaign_user.campaign_scores_finalized_date,
+          calculated_at: campaign_user.campaign_scores_calculated_date,
+          results: CampaignUsers::Results.call!(campaign_user)
+        }
+      end
+
       def search
         render json: Api::UserSearchQuery.new(project, search_params).query
       end
