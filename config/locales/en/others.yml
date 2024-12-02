@@ -960,6 +960,7 @@ en:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or mte.surveys@mercer.com
         title: Last Request Failed
       submit: Submit
+      warning: WARNING
     pages:
       edit:
         assets: Assets
@@ -1949,15 +1950,20 @@ en:
     aria:
       back_to_dashboard: Back to Dashboard
       back_to_tasks: Back to Tasks
+      calendar: Calendar
       campaign_name_description: ', for campaign "%{campaignName}"'
       change_language: "(Change Language)"
+      clear_date: clear date
       collapse_menu: Collapse menu
+      confirm_proceed: Confirm to proceed
       delete_message: Delete message
       expand_menu: Expand menu
       file_uploaded: File uploaded
       lang_dropdown_description: ",change language"
       profile_progress: Profile completion is
+      remove_file: remove file
       send_message: Send message
+      slider_label_instruction: 'min: %{min} and max: %{max}'
       task_btn_description: task %{assessmentName}
       task_progress_label: Task completion is
       write_message: Write your message
