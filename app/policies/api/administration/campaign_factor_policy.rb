@@ -19,6 +19,10 @@ module Api
         update?
       end
 
+      def bulk_update?
+        update?
+      end
+
       def export?
         has_permission?(:campaign_factors, :manage)
       end

@@ -1297,6 +1297,7 @@ as: :simulation_progress_notification
                 post :update_positions
                 get  :export
                 post :import
+                post :bulk_update
               end
             end
             jsonapi_resources :campaign_user_scorings, only: %i[index] do

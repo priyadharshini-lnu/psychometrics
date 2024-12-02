@@ -264,4 +264,51 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       expect(response).to have_http_status(422)
     end
   end
+
+  path '/campaigns/{campaign_id}/campaign_factors/bulk_update' do
+    post 'Bulk update Campaign Factors' do
+      operationId 'BulkUpdateCampaignFactors'
+      description 'Bulk update attributes for multiple campaign factors'
+      tags 'Campaign Factor Scorings'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :body, in: :body, required: true,
+                schema: { '$ref' => '#/components/schemas/CampaignFactorBulkRequest' }
+
+      response '200', 'Bulk update campaign factors' do
+        schema '$ref' => '#/components/schemas/OKResponse'
+
+        let(:campaign_factor1) { create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 1') }
+        let(:campaign_factor2) { create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 2') }
+
+        let(:body) do
+          {
+            data: [
+              {
+                type: 'campaign_factors',
+                id: campaign_factor1.id.to_s,
+                attributes: { name: 'Updated Factor 1', code: 'fc1' }
+              },
+              {
+                type: 'campaign_factors',
+                id: campaign_factor2.id.to_s,
+                attributes: { name: 'Updated Factor 2', code: 'fc2' }
+              }
+            ]
+          }
+        end
+
+        run_test! do
+          campaign_factor1.reload
+          campaign_factor2.reload
+
+          expect(campaign_factor1.name).to eq('Updated Factor 1')
+          expect(campaign_factor2.name).to eq('Updated Factor 2')
+          expect(campaign_factor1.code).to eq('fc1')
+          expect(campaign_factor2.code).to eq('fc2')
+        end
+      end
+    end
+  end
 end

@@ -59,6 +59,29 @@ module Api
           end
         end
 
+        def self.bulk_update
+          Dry::Schema.define do
+            required(:data).array(:hash) do
+              required(:id).filled(:string)
+              required(:attributes).hash do
+                optional(:code).filled(:string)
+                optional(:name).filled(:string)
+                optional(:output_type).filled(:string)
+                optional(:position).filled(:integer)
+                optional(:factor_type).filled(:string, included_in?: ::CampaignFactor.factor_types.keys)
+                optional(:public_visibility).filled(:bool)
+                optional(:assessment_score_type).maybe(:string,
+                                                       included_in?: ::CampaignFactor.assessment_score_types.keys)
+                optional(:assessment_id).maybe(:string)
+                optional(:factor_id).maybe(:string)
+                optional(:description).maybe(:string)
+                optional(:ranked).maybe(:bool)
+                optional(:formula).maybe(:string)
+              end
+            end
+          end
+        end
+
         def self.relationships(_type)
           [
             { name: :campaign, resource: :campaigns, relationship: :one, required: true },

@@ -403,6 +403,7 @@ const ScoringGroupsComponent = (props: Props) => {
         if (factor.id === key) {
           payload.push({
             ...value,
+            id: factor.id,
             campaignFactorGroupId: factor.campaignFactorGroupId,
             position: factor.position,
             campaign: { id: campaignId },
@@ -412,10 +413,14 @@ const ScoringGroupsComponent = (props: Props) => {
       })
     })
 
-    // TODO: integrate api for bulk edit
-    // return updateCampaignFactor(payload).then(() => {
-    //   fetchAndUpdateFactors()
-    // })
+    return collectionAction({
+      action: 'bulk_update',
+      method: 'post',
+      body: payload,
+      responseType: t.literal('ok'),
+    }).then(() => {
+      fetchAndUpdateFactors()
+    })
   }
 
   const handleEditFactor = (data): Promise<void> => {
