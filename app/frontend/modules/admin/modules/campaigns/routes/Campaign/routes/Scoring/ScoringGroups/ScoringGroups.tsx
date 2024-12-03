@@ -395,7 +395,7 @@ const ScoringGroupsComponent = (props: Props) => {
     if (isFormValid(form)) {
       finalModifiedFactors[currentFactor?.id as string] = form.getFieldsValue()
     }
-    const payload: number[] = []
+    const payload: Record<string, unknown>[] = []
 
     Object.keys(finalModifiedFactors).forEach((key) => {
       const value = finalModifiedFactors[key]
@@ -420,7 +420,14 @@ const ScoringGroupsComponent = (props: Props) => {
       responseType: t.literal('ok'),
     }).then(() => {
       fetchAndUpdateFactors()
+      handleFormClose()
     })
+  }
+
+  const handleFormClose = () => {
+    setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
+    setCurrentFactor(undefined)
+    setModifiedFactors({})
   }
 
   const handleEditFactor = (data): Promise<void> => {
@@ -699,11 +706,7 @@ const ScoringGroupsComponent = (props: Props) => {
       <AddEditFactorForm
         addFactor={handleAddFactor}
         open={openAddEditFactor.open}
-        onClose={() => {
-          setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
-          setCurrentFactor(undefined)
-          setModifiedFactors({})
-        }}
+        onClose={handleFormClose}
         factorData={modifiedFactors[currentFactor?.id as string] ?? currentFactor}
         editFactor={handleEditFactor}
         title={openAddEditFactor.mode === 'edit'

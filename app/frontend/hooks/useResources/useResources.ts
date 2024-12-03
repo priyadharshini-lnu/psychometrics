@@ -225,7 +225,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const collectionAction = (
     args: {
       action: string, method: HttpAction,
-      body?: Record<string, unknown>,
+      body?: Record<string, unknown>[],
       updateStore?: boolean, responseType?: ResponseType, apiConfig?: ApiConfig
     },
   ) => {
