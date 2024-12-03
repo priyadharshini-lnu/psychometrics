@@ -497,6 +497,7 @@ pt:
         no_conditions: Sem condições
         save: Salvar
         strengths: Pontos fortes
+        then: Em seguida, mostre o seguinte texto
         title: Título
       factors_table:
         description: Descrição

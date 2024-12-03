@@ -105,7 +105,7 @@ export class ConditionCollection extends Component {
     return (
       <div className={styles.filterContainer}>
         {this.renderConditions()}
-        {I18n.t('reports.modules.campaign_factors_table.if')}
+        {I18n.t('reports.modules.campaign_factors_table.then')}
         <div>
           <strong>{I18n.t('reports.modules.campaign_factors_table.title')}</strong>
           <input

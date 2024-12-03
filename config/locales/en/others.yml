@@ -2642,6 +2642,7 @@ en:
         no_conditions: No conditions
         save: Save
         strengths: Strengths
+        then: Then show the following text
         title: Title
       common:
         all_factors: All factors

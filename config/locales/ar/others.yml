@@ -561,6 +561,7 @@ ar:
         no_conditions: لا توجد شروط
         save: يحفظ
         strengths: Strengths
+        then: ثم اظهر النص التالي
         title: عنوان
       factors_table:
         description: الوصف

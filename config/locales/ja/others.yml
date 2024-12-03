@@ -503,6 +503,7 @@ ja:
         no_conditions: 条件なし
         save: 保存
         strengths: 強み
+        then: 次に、次のテキストを表示します
         title: タイトル
       factors_table:
         description: 説明

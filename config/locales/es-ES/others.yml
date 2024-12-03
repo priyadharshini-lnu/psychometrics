@@ -499,6 +499,7 @@ es-ES:
         no_conditions: Sin condiciones
         save: Ahorrar
         strengths: Fortalezas
+        then: Luego muestra el siguiente texto.
         title: Título
       factors_table:
         description: Descripción

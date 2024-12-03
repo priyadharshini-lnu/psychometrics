@@ -78,7 +78,6 @@ export class ConditionalTextModal extends Component {
             {I18n.t('reports.modules.campaign_factors_table.save')}
           </Button>,
           <Button className="btn btn-danger" onClick={close} key="3">
-            {' '}
             { I18n.t('reports.modules.campaign_factors_table.cancel')}
           </Button>,
         ]}
