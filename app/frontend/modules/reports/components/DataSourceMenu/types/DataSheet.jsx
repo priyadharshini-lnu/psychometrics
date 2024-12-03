@@ -5,7 +5,8 @@ import AppStore from '~/modules/reports/store/AppStore'
 
 class DataSheet extends Component {
   onChange = (data) => {
-    const { model, singleChoice, onSelect } = this.props
+    const { modules, singleChoice, onSelect } = this.props
+    const model = modules[0]
     model.props.source.columns = singleChoice ? [data.value] : data.map(dataObject => dataObject.value)
     onSelect()
   }

@@ -44,9 +44,11 @@ class Factor extends Component {
     onSelect()
   }
 
-  changeAllFactors = () => {
-    const { model, onSelect } = this.props
-    model.props.source.allFactors = !model.props.source.allFactors
+  changeAllFactors = (value) => {
+    const { modules, onSelect } = this.props
+    modules.forEach((model) => {
+      model.props.source.allFactors = value
+    })
     onSelect()
   }
 
