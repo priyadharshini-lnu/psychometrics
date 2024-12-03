@@ -7,13 +7,16 @@ class ApplicationController < ::BaseController
 
   # Authentication user/manager
   before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
-  after_action :set_content_security_policy
   around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :redirect_to_ae_domain, if: :redirect_to_ae_enabled?
   before_action :ensure_user_profile_completed
   DOMAIN_REGEXP = %r{^(https?://.+\.)com}
+
+  content_security_policy do |policy|
+    policy.frame_ancestors allowed_domains
+  end
 
   # Sets particular layout in depends of conditions
   #
@@ -42,11 +45,6 @@ class ApplicationController < ::BaseController
       secure: secure,
       same_site: secure ? 'None' : 'Lax'
     }
-  end
-
-  def set_content_security_policy
-    allowed_domains = inside_sso_iframe? ? '*.maialearning.com' : '*.proctor.alemira.com'
-    response.headers['Content-Security-Policy'] = "frame-ancestors #{allowed_domains}"
   end
 
   def inside_sso_iframe?
@@ -107,5 +105,9 @@ class ApplicationController < ::BaseController
 
     domains = ENV.fetch('UAE_DATA_MIGRATION_SUBDOMAINS', '')&.split(',')
     domains.include?(@current_project&.subdomain)
+  end
+
+  def allowed_domains
+    inside_sso_iframe? ? '*.maialearning.com' : '*.proctor.alemira.com'
   end
 end

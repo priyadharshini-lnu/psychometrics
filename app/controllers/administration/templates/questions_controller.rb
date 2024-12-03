@@ -48,6 +48,7 @@ module Administration
       # PATCH/PUT /administration/resources/1
       def update
         resource.updated_by = current_user
+        params[:question][:props] = Utility::Hash.sanitize_nested_hash(params[:question][:props])
         question = ::Builders::Templates::QuestionBuilder.new(resource, params.require(:question))
         if question.save
           audit! :update, resource, payload: params, user: current_user

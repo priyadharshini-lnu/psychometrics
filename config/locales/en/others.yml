@@ -303,10 +303,13 @@ en:
             email:
               blank: Email field can't be blank
               invalid: Email is invalid
+              starts_with_invalid_characters: Email can't start with =, |, +, -, @, %
             first_name:
               blank: First name can't be blank
+              starts_with_invalid_characters: First Name can't start with =, |, +, -, @, %
             last_name:
               blank: Last name can't be blank
+              starts_with_invalid_characters: Last Name can't start with =, |, +, -, @, %
         update_norm:
           attributes:
             norm_type:
@@ -326,6 +329,8 @@ en:
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
+            name:
+              starts_with_invalid_characters: can't start with =, |, +, -, @, %
             schedule_end_date:
               invalid_datetime: is invalid
             schedule_start_date:
@@ -726,6 +731,7 @@ en:
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_factor_translations: Export Factor Translations
+        export_occupations: Occupations Export
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
         export_users: Campaign Users Export
@@ -954,6 +960,7 @@ en:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or mte.surveys@mercer.com
         title: Last Request Failed
       submit: Submit
+      warning: WARNING
     pages:
       edit:
         assets: Assets
@@ -977,16 +984,25 @@ en:
     upload: Upload
     video_response:
       device: Allow
+      device_selection:
+        camera: Camera
+        mic: Mic
       discard: Discard
+      discard_record_again: Discard & Record Again
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
         unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
+      recording_duration_label: Maximum duration of recording
+      recording_stop_label: Recording will stop in
+      requesting_permission: Requesting Permission...
+      response_recorded: Response Recorded
       save: Save
       saved:
-        label: Saved
-      saving: Saving...
+        label: Video Saved
+      saving: Saving Video...
       start_recording: Start recording
+      stop_recording: Stop recording
       tracker:
         backward: You are too close to the screen. Please move a bit back
         forward: You are too far away from the screen. Please move a bit closer
@@ -1058,10 +1074,12 @@ en:
     login:
       description: Please login with your personal account information
       forgot_password: Forgot Password?
+      hide_password: Hide password
       login_btn: Login
       magic_link_btn: Email me login link
       not_member: Not a member?
       or: OR
+      show_password: Show password
       sso_btn: Login with Single Sign-On
       title: Welcome!
     logout: Logout
@@ -1230,11 +1248,11 @@ en:
       export_completion_status: Export Completion Status
       export_external: External
       export_normed: Normed Factor Scores
+      export_occupations: Occupations
       export_raw_labels: Raw (with labels)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
-      export_result: Export Result
-      export_scores: Export Scores
+      export_scores: Scores
       export_scoring: Scoring
       factor_benchmark_score: Factor Benchmark Score
       import_raw: Raw
@@ -1262,6 +1280,7 @@ en:
       title: Assessment Details
     messages:
       export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
+      export_occupations_job_scheduled: Occupations Export job was scheduled successfully
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
       external_results_export_scheduled: External Assessment export job was scheduled successfully
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
@@ -1501,6 +1520,7 @@ en:
       edit: Edit
       export: Export
       filter_by_tags: Filter by tags
+      import: Import
       insert: Insert
       ok: OK
       remove: Remove
@@ -1571,6 +1591,7 @@ en:
       unschedule: Unschedule
       updated_at: Last Updated
     errors:
+      csv_injection_validation_error: can't start with =, |, +, -, @, %
       something_wrong: Something went wrong. Contact your administrator.
     messages:
       leave_message: Are you sure you want to leave this page? Any unsaved answers that you have will be lost.
@@ -1929,13 +1950,23 @@ en:
     aria:
       back_to_dashboard: Back to Dashboard
       back_to_tasks: Back to Tasks
+      calendar: Calendar
       campaign_name_description: ', for campaign "%{campaignName}"'
+      change_language: "(Change Language)"
+      clear_date: clear date
       collapse_menu: Collapse menu
+      confirm_proceed: Confirm to proceed
+      delete_message: Delete message
       expand_menu: Expand menu
+      file_uploaded: File uploaded
       lang_dropdown_description: ",change language"
       profile_progress: Profile completion is
+      remove_file: remove file
+      send_message: Send message
+      slider_label_instruction: 'min: %{min} and max: %{max}'
       task_btn_description: task %{assessmentName}
       task_progress_label: Task completion is
+      write_message: Write your message
     assessment: Assessment
     assessment_groups:
       create_success: The group was created successfully
@@ -2097,7 +2128,9 @@ en:
       statuses:
         cancelled: Cancelled
         requested_cancellation: Requested Cancellation
+        requested_cancellation_rejected: Requested Cancellation Rejected
         requested_rescheduling: Requested Rescheduling
+        requested_rescheduling_rejected: Requested Rescheduling Rejected
     'yes': 'Yes'
   glint:
     booking_card:
@@ -2718,6 +2751,7 @@ en:
     filters:
       clear: Clear Filters
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    mte_logo_alt_text: Mercer Talent Enterprise logo
     terms_conditions_privacy: Privacy Statement
     tte_terms_and_condition: Terms & Privacy
   sheet:
@@ -3152,6 +3186,8 @@ en:
         success: Success
         undelivered: Undelivered
     mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
+    more_info_evaluation_label: More information - Evaluations
+    more_info_nomination_label: More information - Nominations
     my_projects: My Projects
     name_label: Name
     nominate: Nominate
@@ -3420,6 +3456,10 @@ en:
         system_error_message: Could not remove the user, please try again later or contact support.
       reset_password:
         option: Reset Password
+      unlock_user_access:
+        message: User access for %{email} has been unlocked successfully.
+        title: Unlock User Access
+        tooltip: This user account is in locked state
     admins: Admins
     create_global_assessor: Create Global Assessor
     create_superadmin: Create Super Admin

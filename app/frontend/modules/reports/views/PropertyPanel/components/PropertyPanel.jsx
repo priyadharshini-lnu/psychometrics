@@ -192,6 +192,12 @@ const PropertyPanel = (props) => {
               max: height - position.height,
               onChange: value => onChangePosition({ top: value }),
             }, 'Y:')}
+            {renderSlider({
+              value: position.rotation || 0,
+              min: -180,
+              max: 180,
+              onChange: value => onChangePosition({ rotation: value }),
+            }, 'R:')}
           </Panel>
         </Collapse>
         <hr className={styles.divider} />

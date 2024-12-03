@@ -7,9 +7,6 @@ import { RootState } from 'modules/endUser/core/rootReducers'
 import cs from 'classnames'
 import ReactMarkdown from 'react-markdown'
 import {
-  PageHeader as GlintPageHeader,
-} from '~/glint'
-import {
   getlighthousePrivacyUrl, getCustomPrivacyConsentText, getprivacyPolicyVersion,
 } from '~/modules/endUser/core/config'
 import styles from './UserAssessment.less'
@@ -19,7 +16,7 @@ import { SafeHTML } from '~/components/SafeHTML'
 
 const { I18n } = window
 const { Paragraph } = Typography
-const { Content } = Layout
+const { Content, Header } = Layout
 
 const connector = connect(
   (state: RootState) => ({
@@ -55,16 +52,16 @@ export const PrivacyConsentComponent: FC<Props> = ({
 
   return (
     <>
-      <GlintPageHeader>
+      <Header className={`${styles.header} ps-0 pe-0`}>
         <Col offset={4} span={16} className="ta-c">
-          <Typography.Title level={3}>
+          <Typography.Title className={`${styles.consentTitle} mt-2 mb-2`} level={1}>
             {I18n.t('threesixty.accept_privacy_modal.title')}
           </Typography.Title>
         </Col>
         <Col span={4} className="ta-e" />
-      </GlintPageHeader>
+      </Header>
       <Content className={styles.container}>
-        <Content className={cs(styles.pageContent)}>
+        <div className={cs(styles.pageContent)}>
           {policy?.content || customPrivacyConsentText
             ? (
               <div className={styles.policyContent}>
@@ -90,7 +87,7 @@ export const PrivacyConsentComponent: FC<Props> = ({
               </div>
             </Space>
           </div>
-        </Content>
+        </div>
       </Content>
     </>
   )

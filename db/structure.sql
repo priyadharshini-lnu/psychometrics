@@ -642,16 +642,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -850,8 +850,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -932,9 +931,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
+    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -1429,7 +1428,9 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1884,7 +1885,9 @@ CREATE TABLE public.design_settings (
     warning_color character varying,
     success_color character varying,
     info_color character varying,
-    background_size character varying DEFAULT 'cover'::character varying
+    background_size character varying DEFAULT 'cover'::character varying,
+    logo_alt_text character varying,
+    secondary_logo_alt_text character varying
 );
 
 
@@ -2901,7 +2904,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3160,6 +3163,104 @@ CREATE SEQUENCE public.mindmill_credentials_id_seq
 --
 
 ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
+
+
+--
+-- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_columns (
+    id bigint NOT NULL,
+    column_type integer,
+    name character varying,
+    "position" integer,
+    dashboard_use boolean DEFAULT false,
+    accessor_access boolean DEFAULT false,
+    visible_in_list boolean DEFAULT false,
+    sheet_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_row_data (
+    id bigint NOT NULL,
+    string_value text,
+    numeric_value double precision,
+    sheet_row_id bigint NOT NULL,
+    sheet_column_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
+);
+
+
+--
+-- Name: normalized_campaign_accessheets; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_campaign_accessheets AS
+ SELECT sheets.campaign_id,
+    sheet_rows.email,
+    sheet_columns.name AS field,
+    sheet_row_data.numeric_value,
+    sheet_row_data.string_value
+   FROM (((public.sheet_row_data
+     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
+     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
+     JOIN public.sheet_columns ON (((sheet_columns.sheet_id = sheets.id) AND (sheet_columns.id = sheet_row_data.sheet_column_id))))
+  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
+
+
+--
+-- Name: normalized_campaign_accesssheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_campaign_accesssheet AS
+ SELECT sheets.campaign_id AS "Campaign Id",
+    sheet_rows.email AS "Email",
+    sheet_columns.name AS "Field",
+    sheet_row_data.numeric_value AS "Numeric Value",
+    sheet_row_data.string_value AS "String Value"
+   FROM (((public.sheet_row_data
+     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
+     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
+     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
+  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
 
 
 --
@@ -4123,12 +4224,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4500,24 +4601,6 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
--- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_columns (
-    id bigint NOT NULL,
-    column_type integer,
-    name character varying,
-    "position" integer,
-    dashboard_use boolean DEFAULT false,
-    accessor_access boolean DEFAULT false,
-    visible_in_list boolean DEFAULT false,
-    sheet_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
 -- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4534,21 +4617,6 @@ CREATE SEQUENCE public.sheet_columns_id_seq
 --
 
 ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
-
-
---
--- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_row_data (
-    id bigint NOT NULL,
-    string_value text,
-    numeric_value double precision,
-    sheet_row_id bigint NOT NULL,
-    sheet_column_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
 
 
 --
@@ -4571,21 +4639,6 @@ ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
 
 
 --
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4602,22 +4655,6 @@ CREATE SEQUENCE public.sheet_rows_id_seq
 --
 
 ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
-
-
---
--- Name: sheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying,
-    flat_view_sha character varying
-);
 
 
 --
@@ -5334,7 +5371,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -6127,9 +6165,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
+    manager_id bigint,
     unique_session_id character varying
 );
 
@@ -6166,10 +6204,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -14487,14 +14525,16 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241126112602'),
 ('20241108085232'),
 ('20241106103020'),
-('20241018100709'),
+('20241105093139'),
 ('20241101110602'),
 ('20241030111222'),
 ('20241025070422'),
 ('20241025042720'),
 ('20241023071718'),
+('20241018100709'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
@@ -15208,4 +15248,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

@@ -49,7 +49,8 @@ type Params = {
   userAssessmentId: string
 }
 interface OwnProps {
-  agileUserAssessmentUrl?: string
+  agileUserAssessmentUrl?: string,
+  agileUserAssessmentId?: string
 }
 
 type Props = OwnProps & PropsFromRedux
@@ -57,6 +58,7 @@ type Props = OwnProps & PropsFromRedux
 const AgileUserAssessmentComponent: React.FC<Props> = ({
   agileAssetsUrl,
   agileUserAssessmentUrl,
+  agileUserAssessmentId,
   isAnonym,
   campaignId: agileCampaign,
   assessment,
@@ -99,7 +101,9 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
 
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
-    fetchAssessment(params.userAssessmentId, edit).then(() => {
+    const assessmentId = params.userAssessmentId ?? agileUserAssessmentId
+
+    fetchAssessment(assessmentId, edit).then(() => {
       setAssessmentLoading(false)
     })
   }, [])
@@ -139,6 +143,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
       </GlintPageHeader>
       )}
       <SubHeader
+        hideBackIcon={isAnonym}
         title={assessment.name}
         onBack={() => navigate(`/campaigns/${campaignId}`)}
         backButtonAriaLabel={I18n.t('frontend.aria.back_to_tasks')}

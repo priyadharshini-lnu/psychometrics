@@ -1,6 +1,6 @@
 = vite_javascript_tag "entrypoints/locales/#{I18n.locale || 'en'}.ts"
 
-javascript:
+javascript [nonce=content_security_policy_nonce]:
   I18n.availableLocales = #{(@current_project&.available_locales || Settings.enduser_locales).to_json.html_safe}
   I18n.locale = "#{I18n.locale}"
   I18n.uiLocale = "#{I18n.locale}"

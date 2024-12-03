@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 class UserDashboardSerializer < Panko::Serializer
-  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :report
-
-  has_one :user, method: :user
+  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :report, :user
 
   delegate :campaign_id, to: :object
 
   def user
-    UserSerializer.new.serialize(object.user)
+    UserWithAllFieldsSerializer.new(
+      context: {
+        campaign: object.campaign
+      }
+    ).serialize(object.user)
   end
 
   def is_self

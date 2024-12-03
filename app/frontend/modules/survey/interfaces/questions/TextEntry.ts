@@ -12,6 +12,7 @@ export interface PreviewModel extends BasePreviewModel<Props, ModuleConfig> {
       value: string
       index: number
     }>
+    setRichTextEditorAnswerWordCount: (count: number) => void
   }
 }
 

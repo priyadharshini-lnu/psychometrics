@@ -4,6 +4,6 @@ module Simulation
   module Exceptions
     class RegisterParticipantFailed < StandardError; end
 
-    class GetScoresFailed < StandardError; end
+    class GetDecisionsFailed < StandardError; end
   end
 end

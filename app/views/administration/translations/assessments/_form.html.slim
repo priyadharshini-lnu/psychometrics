@@ -12,7 +12,7 @@
       = f.button :button, t('administration.import'), class: 'btn-info', type: :button
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'
 
-javascript:
+javascript [nonce=content_security_policy_nonce]:
   $(function(){
     $(document).off('click', '#new_import [name="button"]');
     $(document).on('click', '#new_import [name="button"]', function(event) {

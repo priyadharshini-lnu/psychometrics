@@ -1204,6 +1204,26 @@ providers:
         possible_languages:
           - en
           - ar
+      - id: mte-shape
+        name: MTE Shape
+        possible_languages:
+          - en
+          - ar
+      - id: mte-guide
+        name: MTE Guide
+        possible_languages:
+          - en
+          - ar
+      - id: pga-demo
+        name: PGA Demo
+        possible_languages:
+          - en
+          - ar
+      - id: mte-apply-cms
+        name: MTE Apply (CMS)
+        possible_languages:
+          - en
+          - ar
   pearson:
     v2_assessments:
       - id: prd:bmct-ii:c916dfd8-d922-4fe3-b08f-6fead3c787c4

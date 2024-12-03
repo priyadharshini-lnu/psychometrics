@@ -17,6 +17,16 @@ module Administration
         head :ok
       end
 
+      def export_occupations
+        AdminJob.call(
+          :export_occupations,
+          { assessment_id: assessment.id, campaign_id: campaign.id },
+          current_user
+        )
+
+        head :ok
+      end
+
       def export_scoring_results
         AdminJob.call(
           :assessment_scoring_export,

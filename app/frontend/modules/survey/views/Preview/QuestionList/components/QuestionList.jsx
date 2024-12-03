@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from 'react'
 import { useTransition, animated as a } from 'react-spring'
 import Question from '~/modules/survey/views/Preview/Question'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
@@ -7,6 +8,7 @@ import styles from './QuestionList.less'
 const QuestionList = ({
   page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en',
 }) => {
+  const questionRef = useRef(null)
   const transition = useTransition(questions, {
     from: { opacity: 0, transform: `translate(0px, ${backButtonPressed ? -100 : 100}px)` },
     enter: {
@@ -32,11 +34,15 @@ const QuestionList = ({
     key: q => q.id,
   })
 
+  useLayoutEffect(() => {
+    questionRef.current?.focus()
+  }, [page])
+
   return transition((style, q) => {
     const question = QuestionSerializer.wrap(q)
 
     return (
-      <a.div className={styles.main} style={{ ...style }} key={q.key}>
+      <a.div tabIndex={-1} ref={questionRef} className={styles.main} style={{ ...style }} key={q.key}>
         <Question
           readOnly={readOnly}
           page={page}

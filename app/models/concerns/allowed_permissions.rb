@@ -61,6 +61,7 @@ module AllowedPermissions
       external_score_import
       report_file_upload
       normalize_factor_scores
+      export_occupations
       bulk_download
     ],
     'assessors' => %w[view manage],
@@ -122,6 +123,7 @@ module AllowedPermissions
       external_score_import
       report_file_upload
       normalize_factor_scores
+      export_occupations
     ],
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
@@ -165,6 +167,7 @@ module AllowedPermissions
       external_score_import
       report_file_upload
       normalize_factor_scores
+      export_occupations
     ],
     'workshops' => %w[view manage],
     'idp_templates' => %w[view manage]
@@ -193,6 +196,7 @@ module AllowedPermissions
       scores
       report_file_upload
       normalize_factor_scores
+      export_occupations
     ]
   }.freeze
 

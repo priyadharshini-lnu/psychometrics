@@ -38,13 +38,24 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def export_results
     audit! :export_results, resource, campaign: resource.campaign
-
+    with_labels = params[:with_labels] == 'true'
     AdminJob.call(
       :assessment_raw_result_export,
-      { assessment_id: resource.assessment_id, campaign_id: resource.campaign_id, export_with_labels: false },
+      { assessment_id: resource.assessment_id, campaign_id: resource.campaign_id, export_with_labels: with_labels },
       current_user
     )
     head :ok
+  end
+
+  def import_results
+    audit! :import_results, resource, campaign: resource.campaign
+    AdminJob.call(:import_raw_data, {
+      assessment_id: resource.assessment_id,
+      campaign_id: resource.campaign_id,
+      scoring: params[:scoring] == 'true'
+    }, current_user, params[:file])
+
+    render json: :ok
   end
 
   def reset_nominations

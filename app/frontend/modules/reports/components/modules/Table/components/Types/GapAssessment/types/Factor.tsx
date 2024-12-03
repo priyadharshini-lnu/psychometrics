@@ -2,8 +2,8 @@ import { FC } from 'react'
 import reduce from 'lodash/reduce'
 import meanBy from 'lodash/meanBy'
 import isEmpty from 'lodash/isEmpty'
-
-import { GapType, PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
+import cs from 'classnames'
+import { GapType, PropertiesModel, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
 
 import AppStore from '~/modules/reports/store/AppStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
@@ -89,6 +89,7 @@ interface Props {
   filters: typeof AppStore.report.filters
   gapType: PropertiesModel['props']['gapType']
   assessment_id: PropertiesModel['assessment_id']
+  tableStyle: TableStyleType
   hideValues: boolean
   noOfItems: number | null
   gapCutoff: number | null
@@ -100,6 +101,7 @@ const Factor: FC<Props> = ({
   filters: [leftFilter, rightFilter],
   factorIds,
   assessment_id,
+  tableStyle,
   gapType,
   hideValues,
   noOfItems,
@@ -202,7 +204,7 @@ const Factor: FC<Props> = ({
   const showTitle = gapType === GapType.ALL
 
   return (
-    <div className={styles.table}>
+    <div className={cs(styles.table, styles[tableStyle])}>
       <table>
         <tbody>
           {showPositiveGapTable && (
@@ -267,13 +269,13 @@ const THeader: FC<THeaderProps> = ({
 }) => (
   <>
     {title.length !== 0 && (
-    <tr>
-      <th className={styles.label} colSpan={hideValues ? 3 : 6}>
+    <tr className={styles.title}>
+      <th colSpan={hideValues ? 3 : 6}>
         {title}
       </th>
     </tr>
     )}
-    <tr>
+    <tr className={styles.headers}>
       <th className={styles.label}>
         {I18nStore.t('reports.modules.gap_assessment.rank')}
       </th>
@@ -325,7 +327,7 @@ const TBody: FC<TBodyProps> = ({
   return (
     <>
       {gaps.map((gap, i) => (
-        <tr key={i}>
+        <tr key={i} className={styles.row}>
           <td>{i + 1}</td>
           <td>{I18nStore.tFactorName(gap)}</td>
           {!hideValues && (

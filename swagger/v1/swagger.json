@@ -2814,7 +2814,7 @@
           "description": "**copy_evaluation**: This will copy the responses if the user has previously\n              completed the assessment in different a campaign. Most recent response will be used\n              **new_evaluation**: This allows the user to sit an assessment even if the user has previously\n              completed the assessment in a different campaign.\n              "
         },
         "schedule_start_date": {
-          "type": "string", 
+          "type": "string",
           "format": "date-time",
           "description": "Start date and time for the campaign schedule",
           "example": null,
@@ -3162,6 +3162,18 @@
         "login_box_position": {
           "type": "string",
           "x-nullable": true
+        },
+        "logo_alt_text": {
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$",
+          "x-nullable": true
+        },
+        "secondary_logo_alt_text": {
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$",
+          "x-nullable": true
         }
       }
     },
@@ -3228,6 +3240,18 @@
         "login_box_position": {
           "type": "string",
           "x-nullable": true
+        },
+        "logo_alt_text": {
+          "type": "string",
+          "x-nullable": true,
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
+        },
+        "secondary_logo_alt_text": {
+          "type": "string",
+          "x-nullable": true,
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
         }
       }
     },
@@ -3283,6 +3307,18 @@
         "login_box_position": {
           "type": "string",
           "x-nullable": true
+        },
+        "logo_alt_text": {
+          "type": "string",
+          "x-nullable": true,
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
+        },
+        "secondary_logo_alt_text": {
+          "type": "string",
+          "x-nullable": true,
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
         },
         "webhook": {
           "type": "string",

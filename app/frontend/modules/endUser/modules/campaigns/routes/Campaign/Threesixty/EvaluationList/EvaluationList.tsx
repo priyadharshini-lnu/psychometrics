@@ -3,11 +3,11 @@ import { useState } from 'react'
 import {
   Dropdown, Progress, Modal, Tooltip, Typography, Row, Button,
 } from 'antd'
-import {
-  InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined, CheckCircleFilled,
-} from '@ant-design/icons'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import {
+  InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined, CheckCircleFilled,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 import userPresenter from '~/presenters/user'
 import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
@@ -166,10 +166,16 @@ const EvaluationListComponent = ({
 
   return (
     <ThreesixtyCard
-      title={<Title level={5}>{I18n.t('threesixty.evaluations')}</Title>}
+      title={<Title className="fs-16" level={2}>{I18n.t('threesixty.evaluations')}</Title>}
       helpIcon={evaluationHelp && (
         <div>
-          <QuestionCircleOutlined onClick={() => setShowHelp(true)} />
+          <Button
+            aria-label={I18n.t('threesixty.more_info_evaluation_label')}
+            type="link"
+            size="small"
+            onClick={() => setShowHelp(true)}
+            icon={<QuestionCircleOutlined />}
+          />
         </div>
       )}
     >

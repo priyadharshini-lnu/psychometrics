@@ -143,6 +143,8 @@ gem 'reform-rails', '~> 0.2.3'
 gem 'validates_timeliness', '7.0.0.beta2' # TODO: upgrade when released non-beta
 gem 'virtus', '~> 1.0.5'
 
+gem 'csv-safe'
+
 # SOAP client
 gem 'savon', '~> 2.12.1'
 # Abort requests that are taking too long

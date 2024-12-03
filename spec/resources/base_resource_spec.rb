@@ -26,7 +26,8 @@ describe Api::V2::Administration::BaseResource do
             'reset_password' => true,
             'remove' => true,
             'toggle_enable_2fa' => true,
-            'login_as' => true
+            'login_as' => true,
+            'unlock_user_access' => false
           }
         }
       )
@@ -45,7 +46,8 @@ describe Api::V2::Administration::BaseResource do
             'reset_password' => true,
             'remove' => true,
             'toggle_enable_2fa' => true,
-            'login_as' => true
+            'login_as' => true,
+            'unlock_user_access' => false
           }
         }
       )
@@ -64,7 +66,8 @@ describe Api::V2::Administration::BaseResource do
             'reset_password' => true,
             'remove' => true,
             'toggle_enable_2fa' => true,
-            'login_as' => true
+            'login_as' => true,
+            'unlock_user_access' => false
           }
         }
       )

@@ -10,6 +10,7 @@ type ComponentProps = {
   password?: boolean
   errors?: string[]
   type?: string
+  labelFor?: string
 }
 
 type Prop1 = ComponentProps & PasswordProps
@@ -17,7 +18,7 @@ type Prop1 = ComponentProps & PasswordProps
 type Props = Prop1
 
 export const InputField: React.FC<Props> = ({
-  label, name, password, errors = [], disabled, ...props
+  label, name, password, errors = [], disabled, labelFor, ...props
 }) => {
   const InputTag = () => {
     if (password) {
@@ -41,6 +42,7 @@ export const InputField: React.FC<Props> = ({
       help={errors.length
         ? errors.map((error, i) => <div key={i} role="alert" className="ant-form-item-explain-error">{error}</div>)
         : null}
+      htmlFor={labelFor}
     >
       <Input
         className={styles.field}

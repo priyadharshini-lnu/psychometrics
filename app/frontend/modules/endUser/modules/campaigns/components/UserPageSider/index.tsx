@@ -8,7 +8,7 @@ import {
   UserOutlined,
   CalendarOutlined,
   ReadOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 
 import lighthouseLogo from '~/assets/lighthouseLogoTall.png'
@@ -106,7 +106,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     if (pathname.includes('/campaigns/')) {
       setOpenKey([...openKey, 'campaign'])
     }
-    if (pathname.includes('/profile_details' || '/change_password')) {
+    if (pathname.includes('/profile_details') || pathname.includes('/change_password')) {
       setOpenKey([...openKey, 'profile'])
     }
     if (pathname.includes('/idp/')) {

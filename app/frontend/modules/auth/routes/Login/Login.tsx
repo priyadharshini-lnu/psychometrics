@@ -2,8 +2,9 @@ import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-  Typography, Input, Form,
+  Typography, Input, Form, Button,
 } from 'antd'
+import { EyeTwoTone, EyeInvisibleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
@@ -30,7 +31,7 @@ const LoginComponent: React.FC<Props> = ({
 
   return (
     <div className={styles.container}>
-      <Typography.Title level={3}>{I18n.t('auth.login.title')}</Typography.Title>
+      <Typography.Title level={1}>{I18n.t('auth.login.title')}</Typography.Title>
       <Typography.Paragraph className={styles.description}>
         {I18n.t('auth.login.description')}
       </Typography.Paragraph>
@@ -82,12 +83,27 @@ const LoginComponent: React.FC<Props> = ({
               name="user[email]"
               placeholder={I18n.t('auth.email_placeholder')}
               defaultValue={user.email}
+              autoComplete="tte-user-email"
+              labelFor="email"
+              id="email"
             />
             <InputField
               label={I18n.t('auth.password')}
               name="user[password]"
               placeholder={I18n.t('auth.password_placeholder')}
               password
+              iconRender={visible => (
+                <Button
+                  size="small"
+                  type="link"
+                  className="mt-0"
+                  icon={visible ? (<EyeTwoTone />) : <EyeInvisibleOutlined />}
+                  aria-label={visible ? I18n.t('auth.login.hide_password') : I18n.t('auth.login.show_password')}
+                />
+              )}
+              labelFor="password"
+              id="password"
+              autoComplete="tte-user-password"
             />
             <Link to="/users/password/new">
               {I18n.t('auth.login.forgot_password')}

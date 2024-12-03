@@ -1,6 +1,6 @@
 
 div id='norm-editor'
 
-javascript:
+javascript [nonce=content_security_policy_nonce]:
   window.__PROPS__ = #{{ normId: resource.id, factors: resources }.to_json.html_safe}
 = vite_javascript_tag 'entrypoints/admin/norm_editor.jsx'

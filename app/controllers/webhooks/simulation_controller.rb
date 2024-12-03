@@ -13,7 +13,10 @@ module Webhooks
 
       update_user_assessment_progress(user_assessment, response) if response['progress']
 
-      Simulation::SaveScoresAndReportJob.perform_later(user_assessment) if user_assessment.completed?
+      if response['event'] == 'decisions_available'
+        Simulation::SaveScoresAndReport.call!(user_assessment, response)
+      end
+
       head :ok
     end
 
@@ -32,13 +35,11 @@ module Webhooks
 
     def update_user_assessment_progress(user_assessment, response)
       progress = response['progress']
-      timed_out = response['timedOut']
 
       progress_percentage = (progress * 100).round
       user_assessment.users_result.update!(progress: progress_percentage)
 
       user_assessment.complete! if progress_percentage == 100 && !user_assessment.completed?
-      user_assessment.update!(status: :timed_out, completion_reason: :time_out_offline) if timed_out
     end
   end
 end

@@ -78,22 +78,31 @@ ar:
       next: التالي
       read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
       save: حفظ
-      submit: تسليم
+      submit: إرسال
     pickgrouprank:
       items: عناصر
     proceed: سأُتابع على أي حال
     unknown_error: حدث خطأ غير معروف
     video_response:
       device: السماح
+      device_selection:
+        camera: آلة تصوير
+        mic: ميكروفون
       discard: تجاهل
+      discard_record_again: تجاهل وتسجيل مرة أخرى
       media_recorder:
         failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
         success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
+      recording_duration_label: الحد الأقصى لمدة التسجيل
+      recording_stop_label: سيتوقف التسجيل
+      requesting_permission: جارٍ طلب الإذن...
+      response_recorded: تم تسجيل الرد
       save: حفظ
       saved:
         label: تم الحفظ
       saving: جاري الحفظ
       start_recording: ابدأ التسجيل
+      stop_recording: توقف عن التسجيل
       tracker:
         backward: أنت قريب جداً من الشاشة، يرجى الإبتعاد قليلاً
         forward: أنت بعيد جداً من الشاشة، يرجى الإقتراب قليلاً
@@ -134,10 +143,10 @@ ar:
       resend_in: إعادة إرسال خلال %{timestamp} ثانية
       resend_success: إعادة إرسال رمز التحقق
       sms_description: الرجاء إدخال الرمز المؤقت الذي تم إرساله لهاتفك النقال
-      submit: تسليم
+      submit: إرسال
       title: كلمة السر لمرة واحدة
-    password: كلمه السر
-    password_confirmation: تأكيد كلمة المرور
+    password: كلمة المرور
+    password_confirmation: أدخل كلمة المرور الجديدة
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
     password_placeholder: أدخل كلمة مرور جديدة
     registration:
@@ -159,8 +168,8 @@ ar:
       submit: إعادة تعيين كلمة المرور
       title: هل نسيت كلمة السر؟
     set_password:
-      description: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
-      submit: تسليم
+      description: لإنشاء كلمة مرور جديدة، يُرجى إدخال كلمة المرور في الحقول أدناه
+      submit: إرسال
       title: أنشئ كلمة مرور
     sign_out: تسجيل خروج
     sign_up: تسجيل
@@ -499,7 +508,9 @@ ar:
       statuses:
         cancelled: ألغيت
         requested_cancellation: لقد تم طلب الإلغاء
+        requested_cancellation_rejected: لقد تم رفض طلب الإلغاء
         requested_rescheduling: لقد تم طلب إعادة الجدولة
+        requested_rescheduling_rejected: لقد تم رفض طلب إعادة الجدولة
     'yes': نعم
   mailer:
     magic_link:
@@ -782,7 +793,7 @@ ar:
     set_name_for_evaluator: عيين اسم مقيم
     setup_nominations: إعداد الترشيحات
     subject: الموضوع
-    submit: تسليم
+    submit: إرسال
     total_progress: مجموع التقدم المحرز
     user_name_input_placeholder: اكتب اسمك أو بريدك الإلكتروني...
     validation_errors: أخطاء التحقق من الصحة

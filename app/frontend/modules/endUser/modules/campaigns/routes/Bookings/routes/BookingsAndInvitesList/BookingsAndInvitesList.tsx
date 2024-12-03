@@ -38,11 +38,12 @@ const SKELETON_ROW_HEIGHT = '20vh'
 export const SKELETON_ROWS = 4
 
 const MODIFY_FOR_STATUSES = [
-  'accepted', 'rescheduled',
+  'accepted', 'rescheduled', 'requested_cancellation_rejected', 'requested_rescheduling_rejected',
 ]
 
 const SHOW_STATUSES = [
-  'cancelled', 'requested_cancellation', 'requested_rescheduling',
+  'cancelled', 'requested_cancellation', 'requested_rescheduling', 'requested_cancellation_rejected',
+  'requested_rescheduling_rejected',
 ]
 
 export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({

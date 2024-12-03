@@ -68,7 +68,7 @@ module AdminJobs
     end
 
     def record_count
-      @record_count ||= records_for_export.count
+      @record_count ||= records_for_export.size
     end
 
     def export_name

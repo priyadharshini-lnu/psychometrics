@@ -12,7 +12,7 @@ body style="margin: 0"
 
   = vite_javascript_tag "entrypoints/medial_players/video"
 
-  javascript:
+  javascript [nonce=content_security_policy_nonce]:
     var options = {
       sources: [{
         src: "#{params[:url]}",

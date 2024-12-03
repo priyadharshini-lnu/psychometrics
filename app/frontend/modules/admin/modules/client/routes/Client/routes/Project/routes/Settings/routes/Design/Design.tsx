@@ -22,6 +22,7 @@ import styles from './styles.less'
 
 const { I18n } = window
 const DEFAULT_PRIMARY_COLOR = '#009ea7'
+const DEFAULT_ERROR_COLOR = '#ff4d4f'
 
 const connecter = connect(() => ({}), { uploadFiles })
 
@@ -55,6 +56,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
 
   const primaryColor = Form.useWatch('primaryColor', form) || colors.primaryColor || DEFAULT_PRIMARY_COLOR
+  const errorColor = Form.useWatch('errorColor', form) || colors.errorColor || DEFAULT_ERROR_COLOR
 
   useEffect(() => {
     if (designSettings) {
@@ -86,6 +88,15 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     }
     return true
   }, [primaryColor])
+
+  const errorColorHasEnoughContrast = useMemo(() => {
+    if (errorColor) {
+      const errorColorCodeWithoutHash = errorColor.slice(1)
+      const hasEnoughContrastRatioWhiteBackground = getContrastRatio(errorColorCodeWithoutHash, 'FFFFFF').isAccessible
+      return (hasEnoughContrastRatioWhiteBackground)
+    }
+    return true
+  }, [errorColor])
 
   const onFinish = () => {
     const values = form.getFieldsValue()
@@ -272,17 +283,24 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               >
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor={DEFAULT_PRIMARY_COLOR} />
               </Form.Item>
-              <Button className={styles.primaryColorReset} onClick={() => resetColor('primaryColor')}>
+              <Button className={styles.colorReset} onClick={() => resetColor('primaryColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
               </Button>
             </div>
           </Form.Item>
           <Form.Item label={I18n.t('administration.projects.design_settings.error_color')}>
             <div className={styles.colorPicker}>
-              <Form.Item name="errorColor">
+              <Form.Item
+                name="errorColor"
+                help={errorColorHasEnoughContrast ? ''
+                  : I18n.t('administration.projects.design_settings.contrast_ratio_warning_lighter_color',
+                    { name: 'error' })}
+                hasFeedback={!errorColorHasEnoughContrast}
+                validateStatus="error"
+              >
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#f5222d" />
               </Form.Item>
-              <Button onClick={() => resetColor('errorColor')}>
+              <Button className={styles.colorReset} onClick={() => resetColor('errorColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
               </Button>
             </div>

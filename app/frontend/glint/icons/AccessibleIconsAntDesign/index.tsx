@@ -30,6 +30,10 @@ import Icon, {
   QuestionCircleOutlined as AntdQuestionCircleOutlined,
   CheckCircleFilled as AntdCheckCircleFilled,
   EllipsisOutlined as AntdEllipsisOutlined,
+  CloseCircleFilled as AntdCloseCircleFilled,
+  UploadOutlined as AntdUploadOutlined,
+  EyeTwoTone as AntdEyeTwoTone,
+  EyeInvisibleOutlined as AntdEyeInvisibleOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -69,3 +73,7 @@ export const SafetyCertificateOutlined = withAccessibilityProps(AntdSafetyCertif
 export const QuestionCircleOutlined = withAccessibilityProps(AntdQuestionCircleOutlined)
 export const CheckCircleFilled = withAccessibilityProps(AntdCheckCircleFilled)
 export const EllipsisOutlined = withAccessibilityProps(AntdEllipsisOutlined)
+export const CloseCircleFilled = withAccessibilityProps(AntdCloseCircleFilled)
+export const UploadOutlined = withAccessibilityProps(AntdUploadOutlined)
+export const EyeTwoTone = withAccessibilityProps(AntdEyeTwoTone)
+export const EyeInvisibleOutlined = withAccessibilityProps(AntdEyeInvisibleOutlined)

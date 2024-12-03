@@ -315,6 +315,7 @@ Rails.application.routes.draw do
             get :export_normed_results
             get :export_raw_factor_scores
             get :export_external_results
+            get :export_occupations
             post :import_results
             get :norms
             post :update_norm
@@ -543,6 +544,7 @@ Rails.application.routes.draw do
       member do
         get :export_threesixty_scores
         get :export_results
+        post :import_results
         get :export_completion_status
         delete :reset
         delete :reset_nominations
@@ -914,6 +916,7 @@ as: :simulation_progress_notification
       resources :simulation_user_assessments, only: [] do
         member do
           post :pass
+          get :redirect
         end
       end
 
@@ -1133,6 +1136,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :users do
             post :reset_password
+            post :unlock_user_access
             get :roles
             scope module: :users do
               resource :uploads, only: %i[update]
@@ -1164,6 +1168,7 @@ as: :simulation_progress_notification
           jsonapi_resources :dimensions
           jsonapi_resources :norms do
             post :copy
+            post :editor
           end
           jsonapi_resources :tags
           jsonapi_resources :external_assessments

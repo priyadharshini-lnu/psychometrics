@@ -43,7 +43,8 @@ module EndUser
           if assessment.agile?
             render json: {
               assessment: { category: assessment.category },
-              user_result: { agileUserAssessmentUrl: agile_user_assessment_path(@user_assessment) }
+              user_result: { agileUserAssessmentUrl: agile_user_assessment_path(@user_assessment),
+                             agileUserAssessmentId: @user_assessment.id }
             }
           else
             render_assessment_and_result

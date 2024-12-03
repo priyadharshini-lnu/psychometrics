@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv-safe'
+
 module Threesixty
   class GenerateMailHistoryCsv < BaseCommand
     private_attr_reader :email_schedule, :recipient_type, :threesixty_campaign
@@ -11,7 +13,7 @@ module Threesixty
     end
 
     def call
-      csv_file = CSV.generate(headers: true) do |csv|
+      csv_file = CSVSafe.generate(headers: true) do |csv|
         csv << headers
 
         email_schedule.email_histories.includes(:subject, :evaluator).each do |email_history|

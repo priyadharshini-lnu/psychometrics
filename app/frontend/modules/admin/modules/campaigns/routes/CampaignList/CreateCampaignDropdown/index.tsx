@@ -9,13 +9,15 @@ interface Props {
   projectId: number
 }
 
+const { I18n } = window
+
 const CreateCampaignDropdown: React.FC<Props> = ({ openModal, projectId }) => {
   const menuItems = [
-    { key: 'add_normal_campaign', label: 'Add Normal Campaign' },
-    { key: 'add_360_campaign', label: 'Add 360 Campaign' },
+    { key: 'add_common_campaign', label: I18n.t('administration.campaigns.menus.add_common_campaign') },
+    { key: 'add_360_campaign', label: I18n.t('administration.campaigns.menus.add_multi_rater_campaign') },
   ]
   const handleMenuClick = ({ key }) => {
-    if (key === 'add_normal_campaign') {
+    if (key === 'add_common_campaign') {
       openModal('CommonCampaignFormModal', { projectId })
     }
     if (key === 'add_360_campaign') {
@@ -27,7 +29,7 @@ const CreateCampaignDropdown: React.FC<Props> = ({ openModal, projectId }) => {
     <Dropdown menu={{ items: menuItems, onClick: handleMenuClick }} className="mrm" trigger={['click']}>
       <Button type="primary">
         <PlusOutlined />
-        <span>Add Campaign</span>
+        <span>{I18n.t('common.actions.add')}</span>
         <DownOutlined />
       </Button>
     </Dropdown>

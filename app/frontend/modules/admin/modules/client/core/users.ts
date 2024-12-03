@@ -22,6 +22,7 @@ export const UserTR = t.type({
   role: t.string,
   disabled: t.boolean,
   enable_2fa: t.boolean,
+  accessLocked: t.boolean,
   photoUrl: t.union([t.string, t.null]),
   updatedAt: t.union([t.string, t.null]),
   createdBy: t.union([t.string, t.null]),
@@ -32,6 +33,7 @@ export const UserTR = t.type({
       resetPassword: t.boolean,
       toggleEnable2fa: t.boolean,
       loginAs: t.boolean,
+      unlockUserAccess: t.boolean,
     }),
   }),
 })

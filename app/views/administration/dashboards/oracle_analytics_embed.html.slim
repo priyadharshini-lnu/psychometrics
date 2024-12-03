@@ -7,7 +7,7 @@ html[dir="ltr"]
   body
     div[style="position: absolute; width: calc(100% - 40px); height: 100%"]
       oracle-dv[project-path="#{@dashboard.project_path}" active-page="insight" project-options="{{projectOptions}}"]
-      javascript:
+      javascript [nonce=content_security_policy_nonce]:
         requirejs(['knockout', 'obitech-application/application', 'ojs/ojcore', 'ojs/ojknockout', 'ojs/ojcomposite', 'jet-composites/oracle-dv/loader'],
   	      function(ko, application, oac_core) {
 
