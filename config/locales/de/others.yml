@@ -321,6 +321,22 @@ de:
       add: hinzufügen Bericht
       view: Ansicht Bericht
     modules:
+      campaign_factors_table:
+        add_condition: Voorwaarde toevoegen
+        baseline_score: Basisscore
+        blindspots: Blinde vlekken
+        campaign_factor_conditions: Voorwaarden voor campagnefactoren
+        cancel: Annuleren
+        color: Kleur
+        delete: Verwijderen
+        description: Beschrijving
+        if: Als
+        label: Label
+        no_conditions: Geen voorwaarden
+        save: Redden
+        strengths: Sterke punten
+        then: Laat dan de volgende tekst zien
+        title: Titel
       gap_assessment:
         gap: lück
         negative_gap: negativ lücken

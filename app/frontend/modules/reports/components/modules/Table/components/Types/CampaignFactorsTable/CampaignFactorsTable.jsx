@@ -10,10 +10,9 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
-
 import styles from './CampaignFactorsTable.less'
 
-const MockData = [
+const campaignFactorMockData = [
   {
     code: 'ambiguity',
     name: 'Ambiguity',
@@ -21,7 +20,6 @@ const MockData = [
     color: '#666666',
     value: 65.8888,
     strategy: 0,
-    benchmarkScore: 70,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur
@@ -39,7 +37,6 @@ const MockData = [
     label: 'Medium',
     color: '#999999',
     value: 35,
-    benchmarkScore: 50,
     strategy: 1,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -58,7 +55,6 @@ const MockData = [
     label: 'Medium',
     color: '#999999',
     value: 55,
-    benchmarkScore: 45,
     strategy: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -78,7 +74,6 @@ const MockData = [
     label: 'Low',
     color: '#aaaaaa',
     value: 0.75,
-    benchmarkScore: 2,
     strategy: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -98,7 +93,6 @@ const MockData = [
     label: 'High',
     color: '#666666',
     value: 95,
-    benchmarkScore: 80,
     strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -119,10 +113,10 @@ class CampaignFactorsTable extends Component {
     module: PropTypes.object.isRequired,
   }
 
-  getMockData (campaignFactors, size) {
+  getCampaignFactorMockData (campaignFactors, size) {
     const data = []
     while (data.length < size && size > 0) {
-      const items = _.take(MockData, size - data.length)
+      const items = _.take(campaignFactorMockData, size - data.length)
       data.push(...items)
     }
     return data.map((campaignFactor, i) => ({
@@ -131,7 +125,7 @@ class CampaignFactorsTable extends Component {
     }))
   }
 
-  prepareRows () {
+  prepareCampaignFactorTableRows () {
     const { module, module: { props } } = this.props
     const sourceCampaignFactors = _.get(props, ['source', 'campaignFactors'], [])
     const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
@@ -149,9 +143,9 @@ class CampaignFactorsTable extends Component {
     } else {
       // eslint-disable-next-line no-lonely-if
       if (props.mode === 'topFactors') {
-        this.campaignFactorsData = this.getMockData(sourceCampaignFactors, props.maxPosition - props.minPosition + 1)
+        this.campaignFactorsData = this.getCampaignFactorMockData(sourceCampaignFactors, props.maxPosition - props.minPosition + 1)
       } else {
-        this.campaignFactorsData = this.getMockData(sourceCampaignFactors, campaignFactorCodes.length)
+        this.campaignFactorsData = this.getCampaignFactorMockData(sourceCampaignFactors, campaignFactorCodes.length)
       }
     }
     if (props.reverseOrder && props.mode === 'topFactors') {
@@ -165,7 +159,7 @@ class CampaignFactorsTable extends Component {
     return (mode !== 'orderedFactors' && showRankOrder)
   }
 
-  renderFactors () {
+  renderCampaignFactors () {
     const { model, module } = this.props
     const { fontFamily } = module.props.style
     return (
@@ -339,9 +333,6 @@ class CampaignFactorsTable extends Component {
           ) : null}
           {model.props.showScore && scorePosition === 'inline'
             ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
-          {model.props.showBenchmarks
-            ? <th className={styles.benchmarks} scope="col">{model.props.benchmarksLabel}</th>
-            : null}
         </tr>
       </thead>
     )
@@ -356,13 +347,13 @@ class CampaignFactorsTable extends Component {
       fontFamily,
       backgroundColor: backgroundColor || false,
     }
-    this.prepareRows()
+    this.prepareCampaignFactorTableRows()
     const hasData = this.campaignFactorsData.length > 0
     return (
       <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
         {hasData && this.renderHeader(model.props.showHeader)}
         <tbody>
-          {hasData ? this.renderFactors() : this.renderNoData()}
+          {hasData ? this.renderCampaignFactors() : this.renderNoData()}
         </tbody>
       </table>
     )

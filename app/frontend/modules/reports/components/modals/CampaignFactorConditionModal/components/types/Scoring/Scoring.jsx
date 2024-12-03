@@ -4,6 +4,7 @@ import Utils from '~/modules/reports/utils/Utils'
 import styles from '../../Condition.less'
 import localStyles from './Scoring.less'
 
+
 export class Scoring extends Component {
   static propTypes = {
     condition: PropTypes.object.isRequired,
