@@ -109,9 +109,9 @@ class Text extends Component {
     } = this.props
     if (preview) { return }
     if (module.props.sourceType === 'ConditionalText') {
-      openConditionalText({ module })
+      openConditionalText({ modules: [module] })
     } else if (module.props.sourceType === 'ConditionalFactorOccupationText') {
-      openConditionalFactorOccupationText({ module })
+      openConditionalFactorOccupationText({ modules: [module] })
     } else {
       this.edit = true
       openRichEditor()
