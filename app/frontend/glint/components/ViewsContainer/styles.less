@@ -1,14 +1,16 @@
 @import '~/glint/styles/mixins.less';
 @bg-color: var(--ant-primary-color-outline);
 
-.title {
+.title:global(.ant-typography) {
   position: relative;
   padding-inline-start: 14px;
+  font-size: 1.5rem;
   .highlighter();
 }
 
 .viewControls {
   text-align: end;
+  margin-block: auto;
 }
 
 .activeButton,

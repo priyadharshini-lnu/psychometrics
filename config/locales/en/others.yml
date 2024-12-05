@@ -1211,7 +1211,9 @@ en:
           You will be required to download and install a special browser to complete the proctored tasks. Please follow the instructions in the next screen. You can uninstall this after completing all required activities.
         </p>
     instructions:
+      collapse_aria_label: 'Show more information above: Virtual Learning Centre'
       collapse_link_text: Show less
+      expand_aria_label: 'Show less information above: Virtual Learning Centre'
       expand_link_text: Show more
       heading: Please review the guidelines below before you get started. We wish you all the best!
     language:
@@ -2485,8 +2487,6 @@ en:
     add_field: Add Field
     add_photo: Add Photo
     age: Age
-    aria_label_decrease_age: Decrease Age by 1
-    aria_label_increase_age: Increase Age by 1
     change_password: Change Password
     change_photo: Change Photo
     email: Email
@@ -2497,6 +2497,7 @@ en:
     last_name: Last Name
     locale: Preferred Language
     male: Male
+    mandatory_fields: Indicates mandatory fields
     not_disclosed: Prefer not to disclose
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
