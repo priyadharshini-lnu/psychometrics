@@ -33,11 +33,11 @@ export const DefaultFields: React.FC<Props> = ({
       const multiple = {
         requiredDefaultFields: {
           ...requiredFields,
-          [row.index]: !requiredFields[row.index],
+          [row.index]: true,
         },
         enabledDefaultFields: {
           ...enabledFields,
-          [row.index]: !requiredFields[row.index],
+          [row.index]: true,
         },
       }
       onChangeMultiple({ ...multiple })
