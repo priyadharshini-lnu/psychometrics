@@ -2,19 +2,20 @@ import _ from 'lodash'
 import Foundation from '~/modules/reports/components/Foundation'
 import styles from './Shape.less'
 import {
-  joinStyles, useAssignStyle, convertColor, gradientStyle,
+  joinStyles, useAssignStyle, convertColor, gradientStyle, borderRadiusStyle,
 } from '../../CommonMethods/styles'
 
 const assignStyle = useAssignStyle('Shape')
 
 const buildeStyles = (styles, overrides) => {
   let style = styles
-  const outerStyle = {}
+  let outerStyle = {}
   const {
     backgroundColor, borderColor, borderRadius, shadow, offsetX, offsetY,
   } = overrides
 
-  style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
+  const br = assignStyle(style, 'borderRadius', borderRadius)
+  const borderCorners = borderRadiusStyle(style, br)
 
   if (!style.border && !borderColor) {
     style = _.omit(style, ['border', 'borderColor', 'borderWidth', 'borderStyle'])
@@ -22,12 +23,21 @@ const buildeStyles = (styles, overrides) => {
 
   style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
   style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor))
-  style = _.omit(style, 'border')
+  style = _.omit(style, 'border', 'borderRadius')
+  outerStyle = _.omit(outerStyle, 'border', 'borderRadius')
+
+  if (!_.isNil(borderRadius)) {
+    style.borderRadius = `${borderRadius}px`
+    outerStyle.borderRadius = `${borderRadius}px`
+  } else {
+    Object.assign(style, borderCorners)
+    Object.assign(outerStyle, borderCorners)
+  }
 
   if (borderColor && !style.borderWidth) {
     style.border = `1px solid ${convertColor(borderColor)}`
   }
-  outerStyle.borderRadius = style.borderRadius || borderRadius
+
 
   if (style.boxShadow?.enabled || shadow) {
     const {

@@ -39,7 +39,7 @@ const Properties = ({ openConditionalText, modules }) => {
   )
 
   const changeBorderRadius = useCallback(
-    val => changeStyle('borderRadius', val),
+    val => changeStyle('borderRadius', +val),
     [changeStyle],
   )
 
@@ -141,7 +141,18 @@ const Properties = ({ openConditionalText, modules }) => {
       <hr className={panelStyles.divider} />
       <div className={styles.block}>
         Rounded Corners
-        <ChoicesInput value={borderRadius} onChange={changeBorderRadius} maxValue={1000} />
+        <Space.Compact block className={styles.flexCenter}>
+          <ChoicesInput value={borderRadius || ''} onChange={changeBorderRadius} maxValue={1000} />
+          {!_.isNil(borderRadius) && (
+            <Button
+              onClick={() => removeStyle('borderRadius')}
+              size="small"
+              type="link"
+              danger
+              icon={<DeleteOutlined />}
+            />
+          )}
+        </Space.Compact>
       </div>
       <hr className={panelStyles.divider} />
       <div className={styles.block}>

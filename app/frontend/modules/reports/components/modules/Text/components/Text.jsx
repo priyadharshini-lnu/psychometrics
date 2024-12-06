@@ -22,7 +22,7 @@ import LookupResultTextValue from './LookupResultTextValue'
 import GetStyles from './GetStyles'
 import PipedText from './PipedText'
 import {
-  convertColor, useAssignStyle, joinStyles, gradientStyle,
+  convertColor, useAssignStyle, joinStyles, gradientStyle, borderRadiusStyle,
 } from '../../CommonMethods/styles'
 
 const assignStyle = useAssignStyle('Text')
@@ -175,11 +175,19 @@ class Text extends Component {
     style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
     style.borderWidth = assignStyle(style, 'borderWidth')
     style.borderStyle = assignStyle(style, 'borderStyle')
-    style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
+    const br = assignStyle(style, 'borderRadius', borderRadius)
+    const borderCorners = borderRadiusStyle(style, br)
+
 
     style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor))
 
-    outerStyle.borderRadius = style.borderRadius || borderRadius
+    if (!_.isNil(borderRadius)) {
+      style.borderRadius = `${borderRadius}px`
+      outerStyle.borderRadius = `${borderRadius}px`
+    } else {
+      Object.assign(style, borderCorners)
+      Object.assign(outerStyle, borderCorners)
+    }
 
     if (style.boxShadow?.enabled) {
       const {
