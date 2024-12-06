@@ -64,6 +64,8 @@ module Imports
                     group_by(&:id)
         # rubocop:disable Metrics/BlockLength
         rows.each_with_index.map do |row, index|
+          row.map! { |value| Utility::String.remove_csv_injection_marker(value) }
+
           data = header.zip(row).to_h
           # Try to find user_result by encoded id
           begin

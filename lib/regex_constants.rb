@@ -6,4 +6,5 @@ module RegexConstants
   LUA_VARIABLE = /^[A-Za-z_][A-za-z0-9_]*$/
   LUA_GLOBLA_VAR = /^[a-zA-Z_]\w*\s*=\s*(?:"[^"]*"|\d+(?:\.\d+)?)$/
   DANGEROUS_CSV_EXPORT_START_CHARS = /^[=+\-@\t\r|%]/
+  CSV_INJECTION_PREFIX_PATTERN = /^'[=+\-@\t\r|%]/
 end

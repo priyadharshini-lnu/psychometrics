@@ -48,4 +48,42 @@ describe Utility::String do
       ).to eq(true)
     end
   end
+
+  describe '.remove_csv_injection_marker' do
+    it 'removes the first character if it is a single quote appended with csv injection char' do
+      expect(
+        described_class.remove_csv_injection_marker("'=abc")
+      ).to eq('=abc')
+      expect(
+        described_class.remove_csv_injection_marker("'+abc")
+      ).to eq('+abc')
+      expect(
+        described_class.remove_csv_injection_marker("'-abc")
+      ).to eq('-abc')
+      expect(
+        described_class.remove_csv_injection_marker("'@abc")
+      ).to eq('@abc')
+      expect(
+        described_class.remove_csv_injection_marker("'\tabc")
+      ).to eq("\tabc")
+      expect(
+        described_class.remove_csv_injection_marker("'\rabc")
+      ).to eq("\rabc")
+      expect(
+        described_class.remove_csv_injection_marker("'%abc")
+      ).to eq('%abc')
+      expect(
+        described_class.remove_csv_injection_marker("'|abc")
+      ).to eq('|abc')
+    end
+
+    it 'does not remove the first character if it is not a single quote appended with csv injection char' do
+      expect(
+        described_class.remove_csv_injection_marker("'abc")
+      ).to eq("'abc")
+      expect(
+        described_class.remove_csv_injection_marker('abc=')
+      ).to eq('abc=')
+    end
+  end
 end
