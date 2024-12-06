@@ -30,7 +30,7 @@ const Properties = ({ modules }) => {
     <div>
       <div className="margin-bottom-10">Up to 4 items can be displayed</div>
       <hr className={styles.divider} />
-      {source?.type === 'CampaignFactors' && (
+      {source?.type === 'CampaignFactors' ? (
         <>
           <div className={styles.block}>
             Radar Maximum
@@ -43,7 +43,7 @@ const Properties = ({ modules }) => {
           </div>
           <hr className={styles.divider} />
         </>
-      )}
+      ) : ''}
       <div className={styles.block}>
         Pie Thickness
         <ChoicesInput

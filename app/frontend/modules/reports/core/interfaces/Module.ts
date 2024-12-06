@@ -21,7 +21,7 @@ export default interface Module {
       type: string
     }
     sourceType: 'Factor' | 'Question' | 'ConditionalText' | 'ConditionalFactorOccupationText' |
-      'PipedText' | 'ResultText'
+      'PipedText' | 'ResultText' | 'ResponseText'
     mainHeaderColor: RgbaColor | string
     secondHeaderColor: RgbaColor | string
     scoreBackgroundColor: RgbaColor | string
@@ -37,6 +37,7 @@ export default interface Module {
     url?: string
     position: {width: number, height: number}
     style: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    question?: number
   }
   meta: {
     hidden?: boolean

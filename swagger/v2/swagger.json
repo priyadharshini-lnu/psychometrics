@@ -516,6 +516,77 @@
         }
       }
     },
+    "/projects/{project_id}/assessments/{assessment_id}/factors": {
+      "get": {
+        "summary": "Fetch Factors",
+        "operationId": "FetchFactors",
+        "description": "Fetch Factors",
+        "tags": [
+          "Factors"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched Factors",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factors",
+                          "attributes": {
+                            "name": "Factor",
+                            "scoring_strategy": "question"
+                          },
+                          "relationships": {
+                            "sub_factors": {
+                              "data": {
+                                "type": "factors",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/FactorsMultipleResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/assessments/": {
       "get": {
         "summary": "Assessments List",
@@ -764,6 +835,38 @@
         "responses": {
           "204": {
             "description": "Assessment Deleted"
+          }
+        }
+      }
+    },
+    "/assessments/{assessment_id}/copy": {
+      "post": {
+        "summary": "Copy Assessment",
+        "operationId": "CopyAssessment",
+        "description": "Copy a Assessment",
+        "tags": [
+          "Assessments"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment Copied"
           }
         }
       }
@@ -1193,28 +1296,33 @@
               "application/json": {
                 "examples": {
                   "example_0": {
-                    "value": [
-                      {
-                        "data": {
-                          "type": "subject_assessor_assessments",
-                          "attributes": {
+                    "value": {
+                      "assessor_user_assessments": [
+                        {
+                          "id": "1",
+                          "name": "Assessment 1",
+                          "status": "pending",
+                          "schedule_time": "2023-08-04T02:00:00.063Z",
+                          "meeting_link": "http://www.example.com",
+                          "assessor": {
                             "id": "1",
-                            "name": "Assessment 1",
-                            "user_assessment_id": 1,
-                            "status": "pending",
-                            "schedule_time": "2020-10-10T10:10:10.000Z",
-                            "meeting_type": "internal",
-                            "meeting_link": "https://meet.google.com/abc-xyz",
-                            "linked_activity": "Assessment 1",
-                            "assessor": {
-                              "id": "1",
-                              "name": "John Doe",
-                              "photo_url": "https://example.com/photo.jpg"
-                            }
-                          }
+                            "user_id": 1,
+                            "name": "Assessor 1",
+                            "photo_url": "http://www.example.com"
+                          },
+                          "assessment_id": 1,
+                          "linked_activity_id": "1"
                         }
-                      }
-                    ]
+                      ],
+                      "campaign_assessor_assessments": [
+                        {
+                          "id": "1",
+                          "name": "Assessment 1",
+                          "assessment_id": 1,
+                          "linked_activity_id": "1"
+                        }
+                      ]
+                    }
                   }
                 }
               }
@@ -2181,6 +2289,247 @@
         }
       }
     },
+    "/campaign_templates/": {
+      "get": {
+        "summary": "Campaign Templates List",
+        "operationId": "CampaignTemplatesList",
+        "description": "Fetch Campaign Templates list",
+        "tags": [
+          "Campaign Templates"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign Templates list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "type": "campaign_templates",
+                        "data": {
+                          "id": "770",
+                          "attributes": {
+                            "name": "Campaign Template Name",
+                            "owner": {
+                              "id": "1",
+                              "name": "TTE"
+                            },
+                            "assessment": {
+                              "id": "1",
+                              "name": "Assessment 1"
+                            },
+                            "report": {
+                              "id": "1",
+                              "name": "Report 1"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignTemplateListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a Campaign Template",
+        "operationId": "CampaignTemplate",
+        "description": "Create new Campaign Template",
+        "tags": [
+          "CampaignTemplates"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Campaign Template Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": {
+                        "type": "campaign_templates",
+                        "id": "20",
+                        "attributes": {
+                          "name": "Campaign Template Name"
+                        },
+                        "relationships": {
+                          "owner": {
+                            "data": {
+                              "type": "clients",
+                              "id": "100"
+                            }
+                          },
+                          "report": {
+                            "data": {
+                              "type": "reports",
+                              "id": "100"
+                            }
+                          },
+                          "assessment": {
+                            "data": {
+                              "type": "assessments",
+                              "id": "100"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignTemplateResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignTemplateCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaign_templates/{campaign_template_id}": {
+      "patch": {
+        "summary": "Update a campaign template",
+        "operationId": "CampaignTemplate",
+        "description": "Update a Campaign Template",
+        "tags": [
+          "Campaign Templates"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_template_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign Template Updated",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": {
+                        "type": "campaign_templates",
+                        "id": "20",
+                        "attributes": {
+                          "name": "Campaign Template Name"
+                        },
+                        "relationships": {
+                          "owner": {
+                            "data": {
+                              "type": "clients",
+                              "id": "100"
+                            }
+                          },
+                          "report": {
+                            "data": {
+                              "type": "reports",
+                              "id": "100"
+                            }
+                          },
+                          "assessment": {
+                            "data": {
+                              "type": "assessments",
+                              "id": "100"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignTemplateResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignTemplateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete a Campaign Template",
+        "operationId": "DeleteCampaignTemplate",
+        "description": "Delete a Campaign Template",
+        "tags": [
+          "Clients"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_template_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Campaign Template Deleted"
+          }
+        }
+      }
+    },
     "/campaigns/{campaign_id}/campaign_user_scorings": {
       "get": {
         "summary": "Get campaign user scorings",
@@ -2601,6 +2950,105 @@
         }
       }
     },
+    "/campaigns/{campaign_id}/factor_benchmark_scores/bulk_create": {
+      "post": {
+        "summary": "Factor Benchmark Scores bulk create/update",
+        "operationId": "FactorBenchmarkScoresBulkCreate",
+        "description": "Factor Benchmark Scores Bulk Create",
+        "tags": [
+          "Factor Benchmark Scores"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Factor Benchmark Scores Bulk Create",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factor_values",
+                          "attributes": {
+                            "factor_id": 1,
+                            "numeric_value": 3
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FactorBenchmarkScoreBulkCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/sms_histories": {
+      "get": {
+        "summary": "Get SMS histories",
+        "operationId": "GetSMSHistories",
+        "description": "Fetch SMS histories",
+        "tags": [
+          "SMS History"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters[filterable_fields]",
+            "in": "query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of SMS histories filtered by first name"
+          }
+        }
+      }
+    },
     "/campaigns/{campaign_id}/users/{user_id}/assessors_scores": {
       "get": {
         "summary": "Assessor Scores List",
@@ -2671,6 +3119,242 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/users/{user_id}/active_idp_template": {
+      "get": {
+        "summary": "Active Idp Template ",
+        "operationId": "ActiveIdpTemplate",
+        "tags": [
+          "IdpTemplate"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Active Idp Template"
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}": {
+      "get": {
+        "summary": "Show Campaign",
+        "operationId": "ShowCampaign",
+        "tags": [
+          "ShowCampaign"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign Found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Campaign",
+        "operationId": "UpdateCampaign",
+        "tags": [
+          "UpdateCampaign"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign Updated"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/{client_id}/client_privacy_settings": {
+      "get": {
+        "summary": "Fetch Client Privacy Settings",
+        "operationId": "getClientPrivacySettings",
+        "description": "Retrieve Client Privacy Settings",
+        "tags": [
+          "ClientPrivacySettings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[client_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Privacy Settings found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientPrivacySettingListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/{client_id}/client_privacy_settings/{id}": {
+      "patch": {
+        "summary": "Update Client Privacy Setting",
+        "operationId": "updateClientPrivacySetting",
+        "description": "Update a specific Client Privacy Setting",
+        "tags": [
+          "ClientPrivacySettings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Privacy Setting updated successfully"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientPrivacySettingUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/:client_id/idp_templates": {
+      "get": {
+        "summary": "Idp Template list",
+        "operationId": "IdpTemplateList",
+        "tags": [
+          "IdpTemplate"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idp Template list"
           }
         }
       }
@@ -4126,7 +4810,7 @@
                   }
                 },
                 "schema": {
-                  "$ref": "#/components/schemas/PrivacySettingResponse"
+                  "$ref": "#/components/schemas/PrivacySettingListRespose"
                 }
               }
             }
@@ -4134,31 +4818,25 @@
         }
       }
     },
-    "/clients/{client_id}/client_privacy_settings": {
+    "/projects/{project_id}/project_assessments/": {
       "get": {
-        "summary": "Fetch Client Privacy Setting",
-        "operationId": "getClientPrivacySetting",
-        "description": "Retrieve the privacy settings for a specific client",
+        "summary": "Assessment List",
+        "operationId": "AssessmentList",
+        "description": "Fetch Assessment list",
         "tags": [
-          "ClientPrivacySetting"
+          "Assessment"
         ],
         "security": [
           {
-            "basic": []
+            "basic": [
+
+            ]
           }
         ],
         "parameters": [
           {
-            "name": "client_id",
+            "name": "project_id",
             "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter[client_id_eq]",
-            "in": "query",
             "required": true,
             "schema": {
               "type": "string"
@@ -4167,29 +4845,203 @@
         ],
         "responses": {
           "200": {
-            "description": "ClientPrivacySetting",
+            "description": "Assessment List",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "type": "project_assessments",
+                        "data": {
+                          "id": "1",
+                          "attributes": {
+                            "project_id": "1",
+                            "assessment_id": "1",
+                            "normalize_factor_scores": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectAssessmentListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an Project Assessment",
+        "operationId": "CreateProjectAssessment",
+        "description": "Create new Project Assessment",
+        "tags": [
+          "Project Assessment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Project Assessment created",
             "content": {
               "application/json": {
                 "examples": {
                   "example_0": {
                     "value": {
-                      "data": [
-                        {
-                          "id": "1",
-                          "type": "client_privacy_setting",
-                          "attributes": {
-                            "disable_data_processing": false
-                          }
+                      "type": "project_assessments",
+                      "data": {
+                        "id": "1",
+                        "attributes": {
+                          "project_id": "1",
+                          "assessment_id": "1",
+                          "normalize_factor_scores": false
                         }
-                      ]
+                      }
                     }
                   }
                 },
                 "schema": {
-                  "$ref": "#/components/schemas/ClientPrivacySettingListResponse"
+                  "$ref": "#/components/schemas/ProjectAssessmentResponse"
                 }
               }
             }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectAssessmentCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/project_assessments/{project_assessment_id}": {
+      "put": {
+        "summary": "Update an Project Assessment",
+        "operationId": "UpdateProjectAssessment",
+        "description": "Update an Project Assessment",
+        "tags": [
+          "Project Assessment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "project_assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project Assessment updated",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": {
+                        "type": "project_assessments",
+                        "id": "1",
+                        "attributes": {
+                          "project_id": "1",
+                          "assessment_id": "1",
+                          "normalize_factor_scores": false
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectAssessmentResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectAssessmentUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete an Project Assessment",
+        "operationId": "DeleteProjectAssessment",
+        "description": "Delete an Project Assessment",
+        "tags": [
+          "Project Assessment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "project_assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Project Assessment deleted"
           }
         }
       }
@@ -4240,7 +5092,6 @@
                             ],
                             "logo": "https://dummy_bucket.s3.amazonaws.com/uploads/client/logo/1005/8845148b-2404-48b7-9cbc-9f90e088341c.png",
                             "number": "TTE-2022",
-                            "privacy_consent": false,
                             "subdomain": "project-subdomain"
                           }
                         }
@@ -4315,6 +5166,93 @@
             }
           },
           "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/seach_user": {
+      "get": {
+        "summary": "Project Users list",
+        "operationId": "ProjectUserslist",
+        "description": "Fetch Projects users list",
+        "tags": [
+          "ProjectUsers"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[search_query]",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projects users list"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/add_manager": {
+      "put": {
+        "summary": "Add manager to User",
+        "operationId": "AddManager",
+        "description": "Add manager to user",
+        "tags": [
+          "AddManager"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "manager_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Add manager to user"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
         }
       }
     },
@@ -4970,6 +5908,9 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
         },
         "requestBody": {
@@ -5282,7 +6223,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Report Coppied"
+            "description": "Report Copied"
           }
         }
       }
@@ -5315,6 +6256,299 @@
         "responses": {
           "200": {
             "description": "Report Restored"
+          }
+        }
+      }
+    },
+    "/clients/{client_id}/skill_aliases": {
+      "get": {
+        "summary": "Skill Alias list",
+        "operationId": "SkillAliasList",
+        "tags": [
+          "SkillAliases"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "skill_aliases",
+                          "attributes": {
+                            "name": "Skill XYZ",
+                            "client_id": "1",
+                            "skill_id": "1"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/SkillAliasListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Skill Alias",
+        "operationId": "SkillAliasRole",
+        "description": "Create new Skill Alias",
+        "tags": [
+          "SkillAliases"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Skill Alias Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "skill_aliases",
+                          "attributes": {
+                            "name": "Skill XYZ",
+                            "client_id": "1",
+                            "skill_id": "1"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/SkillAliasResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillAliasCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/{client_id}/skill_aliases/{skill_alias_id}": {
+      "get": {
+        "summary": "Skill Alias",
+        "operationId": "SkillAlias",
+        "description": "Fetch Skill Alias",
+        "tags": [
+          "SkillAliases"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skill_alias_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skill Alias",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "skill_aliases",
+                          "attributes": {
+                            "name": "Skill XYZ",
+                            "client_id": "1",
+                            "skill_id": "1"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/SkillAliasResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an Skill Alias",
+        "operationId": "UpdateSkillAlias",
+        "description": "Update Skill Alias",
+        "tags": [
+          "SkillAliases"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skill_alias_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skill Alias Updated",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Skill XYZ",
+                            "client_id": "1",
+                            "skill_id": "1"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/SkillAliasResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillAliasUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete Skill Alias",
+        "operationId": "DeleteSkillAlias",
+        "description": "Delete Skill Alias",
+        "tags": [
+          "SkillAliases"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skill_alias_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Skill Alias Deleted"
           }
         }
       }
@@ -5357,6 +6591,75 @@
               }
             }
           }
+        }
+      }
+    },
+    "/projects/{project_id}/threesixty_campaigns/create_campaign": {
+      "post": {
+        "summary": "Create an threesixty campaign",
+        "operationId": "CreateThreesixtyCampaign",
+        "description": "Create new ThreesixtyCampaign",
+        "tags": [
+          "ThreesixtyCampaigns"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ThreesixtyCampaign Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": {
+                        "type": "threesixty_campaigns",
+                        "attributes": {
+                          "name": "name",
+                          "threesixty_type": "standard_360",
+                          "campaign_template_id": "1",
+                          "factors": [
+
+                          ],
+                          "questions": [
+
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OKResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThreesixtyCampaignRequest"
+              }
+            }
+          },
+          "required": true
         }
       }
     },
@@ -5518,6 +6821,43 @@
             "application/vnd.api+json": {
               "schema": {
                 "$ref": "#/components/schemas/UserAvailabilityDateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/user_idp_plans": {
+      "post": {
+        "summary": "Activate existing Inactive User IDP Plan",
+        "operationId": "ActiveExistingInactiveUserIdpPlan",
+        "tags": [
+          "ActiveExistingInactiveUserIdpPlan"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Activate existing Inactive User IDP Plan"
+          },
+          "422": {
+            "description": "IDP Plan creation failed due to existing plan"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserIdpPlanCreateRequest"
               }
             }
           },
@@ -5848,7 +7188,8 @@
                             "permissions": {
                               "remove": false,
                               "reset_password": true,
-                              "toggle_enable_2fa": true
+                              "toggle_enable_2fa": true,
+                              "login_as": true
                             }
                           }
                         }
@@ -7888,6 +9229,8 @@
                           "workshop_managers_ids": [
                             1
                           ],
+                          "scheduling_lead_time": 60,
+                          "cancellation_lead_time": 60,
                           "allow_late_cancellation_and_rescheduling": false
                         }
                       }
@@ -8827,7 +10170,9 @@
                         "hogan",
                         "saville",
                         "pearson",
-                        "iiht"
+                        "iiht",
+                        "mettl",
+                        "simulation"
                       ],
                       "nullable": false
                     },
@@ -9456,7 +10801,9 @@
                       "hogan",
                       "saville",
                       "pearson",
-                      "iiht"
+                      "iiht",
+                      "mettl",
+                      "simulation"
                     ],
                     "nullable": false
                   },
@@ -9889,9 +11236,10 @@
                           }
                         },
                         "required": [
-
+                          "type",
+                          "id"
                         ],
-                        "nullable": true
+                        "nullable": false
                       },
                       "links": {
                         "type": "object",
@@ -9982,6 +11330,10 @@
               "attributes": {
                 "type": "object",
                 "properties": {
+                  "external_package_id": {
+                    "type": "string",
+                    "nullable": true
+                  }
                 },
                 "required": [
 
@@ -12533,9 +13885,10 @@
                             }
                           },
                           "required": [
-
+                            "type",
+                            "id"
                           ],
-                          "nullable": true
+                          "nullable": false
                         },
                         "links": {
                           "type": "object",
@@ -12626,6 +13979,10 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
+                    "external_package_id": {
+                      "type": "string",
+                      "nullable": true
+                    }
                   },
                   "required": [
 
@@ -15300,53 +16657,7 @@
                     },
                     "nullable": false
                   },
-                  "privacy_consent": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "custom_privacy_consent": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "custom_privacy_policy_version": {
-                    "type": "integer",
-                    "nullable": true
-                  },
-                  "custom_privacy_consent_texts": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "locale": {
-                          "type": "string",
-                          "nullable": false
-                        },
-                        "text": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      },
-                      "required": [
-                        "locale",
-                        "text"
-                      ],
-                      "nullable": false
-                    },
-                    "nullable": false
-                  },
                   "enable_live_chat": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "text": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "link": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "enable_privacy_link": {
                     "type": "boolean",
                     "nullable": true
                   }
@@ -15422,53 +16733,7 @@
                     },
                     "nullable": false
                   },
-                  "privacy_consent": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "custom_privacy_consent": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "custom_privacy_policy_version": {
-                    "type": "integer",
-                    "nullable": true
-                  },
-                  "custom_privacy_consent_texts": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "locale": {
-                          "type": "string",
-                          "nullable": false
-                        },
-                        "text": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      },
-                      "required": [
-                        "locale",
-                        "text"
-                      ],
-                      "nullable": false
-                    },
-                    "nullable": false
-                  },
                   "enable_live_chat": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "text": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "link": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "enable_privacy_link": {
                     "type": "boolean",
                     "nullable": true
                   }
@@ -15546,53 +16811,7 @@
                     },
                     "nullable": false
                   },
-                  "privacy_consent": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "custom_privacy_consent": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "custom_privacy_policy_version": {
-                    "type": "integer",
-                    "nullable": true
-                  },
-                  "custom_privacy_consent_texts": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "locale": {
-                          "type": "string",
-                          "nullable": false
-                        },
-                        "text": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      },
-                      "required": [
-                        "locale",
-                        "text"
-                      ],
-                      "nullable": false
-                    },
-                    "nullable": false
-                  },
                   "enable_live_chat": {
-                    "type": "boolean",
-                    "nullable": true
-                  },
-                  "text": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "link": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "enable_privacy_link": {
                     "type": "boolean",
                     "nullable": true
                   }
@@ -15684,53 +16903,7 @@
                       },
                       "nullable": false
                     },
-                    "privacy_consent": {
-                      "type": "boolean",
-                      "nullable": true
-                    },
-                    "custom_privacy_consent": {
-                      "type": "boolean",
-                      "nullable": true
-                    },
-                    "custom_privacy_policy_version": {
-                      "type": "integer",
-                      "nullable": true
-                    },
-                    "custom_privacy_consent_texts": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "locale": {
-                            "type": "string",
-                            "nullable": false
-                          },
-                          "text": {
-                            "type": "string",
-                            "nullable": true
-                          }
-                        },
-                        "required": [
-                          "locale",
-                          "text"
-                        ],
-                        "nullable": false
-                      },
-                      "nullable": false
-                    },
                     "enable_live_chat": {
-                      "type": "boolean",
-                      "nullable": true
-                    },
-                    "text": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "link": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "enable_privacy_link": {
                       "type": "boolean",
                       "nullable": true
                     }
@@ -15810,7 +16983,31 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
-                    "mask_data_for_third_party_assessment": {
+                    "mask_identity_for_pearson": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "mask_identity_for_saville": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "mask_identity_for_hogan": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "mask_identity_for_iiht": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "mask_identity_for_examus": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "mask_identity_for_mettl": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "disable_data_processing": {
                       "type": "boolean",
                       "nullable": true
                     },
@@ -15919,7 +17116,31 @@
               "attributes": {
                 "type": "object",
                 "properties": {
-                  "mask_data_for_third_party_assessment": {
+                  "mask_identity_for_pearson": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "mask_identity_for_saville": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "mask_identity_for_hogan": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "mask_identity_for_iiht": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "mask_identity_for_examus": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "mask_identity_for_mettl": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "disable_data_processing": {
                     "type": "boolean",
                     "nullable": true
                   },
@@ -15972,6 +17193,125 @@
                 },
                 "required": [
 
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ClientPrivacySettingListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to client_privacy_settings",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "disable_data_processing": {
+                      "type": "boolean",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "disable_data_processing"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ClientPrivacySettingUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to client_privacy_settings",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "disable_data_processing": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "disable_data_processing"
                 ],
                 "nullable": false
               }
@@ -16317,6 +17657,286 @@
         "required": [
           "data",
           "meta"
+        ]
+      },
+      "ProjectAssessmentListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to project_assessments",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "assessment_id": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "project_id": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "normalize_factor_scores": {
+                      "type": "boolean",
+                      "nullable": false
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "assessment_id",
+                    "project_id",
+                    "normalize_factor_scores"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProjectAssessmentCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to project_assessments",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "assessment_id": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "normalize_factor_scores": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "assessment_id",
+                  "project_id",
+                  "normalize_factor_scores"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ProjectAssessmentResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to project_assessments",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "assessment_id": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "normalize_factor_scores": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "assessment_id",
+                  "project_id",
+                  "normalize_factor_scores"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ProjectAssessmentUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to project_assessments",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "assessment_id": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "normalize_factor_scores": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
         ]
       },
       "CampaignAssessorAssessmentListResponse": {
@@ -17498,6 +19118,596 @@
               "type",
               "relationships",
               "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignTemplateListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_templates",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "owner": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to clients",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "report": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to reports",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    },
+                    "assessment": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to assessments",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "report",
+                    "assessment"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "relationships",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CampaignTemplateResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_templates",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "owner": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "report": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to reports",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "assessment": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to assessments",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "report",
+                  "assessment"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "relationships",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignTemplateCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_templates",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "owner": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "report": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to reports",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "assessment": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to assessments",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "report",
+                  "assessment"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignTemplatetUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_templates",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "owner": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "report": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to reports",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "assessment": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to assessments",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "report",
+                  "assessment"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes",
+              "relationships"
             ],
             "nullable": false
           }
@@ -19873,6 +22083,106 @@
           "data"
         ]
       },
+      "CampaignUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaigns",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "default_idp_template": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to idp_templates",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "threesixty_campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to threesixty_campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
       "CampaignAssessmentsListResponse": {
         "type": "object",
         "properties": {
@@ -20260,13 +22570,23 @@
                       "nullable": false
                     },
                     "nullable": false
+                  },
+                  "scheduling_lead_time": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "cancellation_lead_time": {
+                    "type": "integer",
+                    "nullable": false
                   }
                 },
                 "required": [
                   "total_seats",
                   "allow_late_cancellation_and_rescheduling",
                   "workshop_assessors_ids",
-                  "workshop_managers_ids"
+                  "workshop_managers_ids",
+                  "scheduling_lead_time",
+                  "cancellation_lead_time"
                 ],
                 "nullable": false
               }
@@ -21079,6 +23399,618 @@
             "required": [
               "id",
               "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "IdpTemplateListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to idp_template",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "SkillAliasListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to skill_aliases",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "skill_id": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "client_id": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "skill_id",
+                    "client_id"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "SkillAliasResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to skill_aliases",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "skill_id": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "skill_id",
+                  "client_id"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "SkillAliasCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to skill_aliases",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "skill_id": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "skill_id"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "SkillAliasUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to skill_aliases",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "skill_id": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ThreesixtyCampaignSingleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "FactorsMultipleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to factors",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "sub_factors": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to factors",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [
+
+                            ],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "parent_factors": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to factors",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [
+
+                            ],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "scoring_strategy": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "parent": {
+                      "type": "boolean",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "scoring_strategy",
+                    "parent"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "FactorBenchmarkScoreResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to factor_benchmark_scores",
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "FactorBenchmarkScoreBulkCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
               "attributes"
             ],
             "nullable": false

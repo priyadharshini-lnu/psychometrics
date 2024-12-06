@@ -160,12 +160,12 @@ interface TBodyProps {
 
 const TBody: FC<TBodyProps> = ({ data, hideValues }) => (
   <>
-    {data.map(({ avg, name }, index) => (
+    {data.map((factor, index) => (
       <tr key={index} className={styles.row}>
         <td>{index + 1}</td>
-        <td>{name}</td>
+        <td>{I18nStore.tFactorName(factor)}</td>
         {!hideValues && (
-          <td className={styles.number}>{avg}</td>
+          <td className={styles.number}>{factor.avg}</td>
         )}
       </tr>
     ))}

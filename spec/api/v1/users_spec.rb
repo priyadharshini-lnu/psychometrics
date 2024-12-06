@@ -432,4 +432,52 @@ enough licenses for '#{report.name}'",
       end
     end
   end
+
+  path '/projects/{project_id}/campaigns/{campaign_id}/users/{user_id}/results' do
+    get 'Get campaign user results' do
+      operationId 'GetCampaignUserResults'
+      description 'Update user assessments and reports'
+      tags 'Users'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, type: :string
+
+      response '200', 'Success' do
+        schema '$ref' => '#/definitions/CampaignUserResults'
+
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:user_id) { user.id }
+        let!(:campaign_user) do
+          create(:campaign_user, campaign: campaign, user: user,
+            campaign_scores_finalized: true, campaign_scores_calculated_date: Time.current,
+            campaign_scores_finalized_date: Time.current)
+        end
+        let!(:campaign_factor) { create(:campaign_factor, campaign: campaign, output_type: 'numeric') }
+        let!(:campaign_factor_value) do
+          create(:campaign_factor_value, campaign: campaign, campaign_factor: campaign_factor, user: user,
+numeric_value: 2.0)
+        end
+
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          expect(body).to eq({
+            'finalized' => campaign_user.campaign_scores_finalized,
+            'finalized_at' => campaign_user.campaign_scores_finalized_date.as_json,
+            'calculated_at' => campaign_user.campaign_scores_calculated_date.as_json,
+            'results' => [
+              {
+                'id' => campaign_factor.code,
+                'name' => campaign_factor.name,
+                'value' => campaign_factor_value.numeric_value,
+                'value_type' => 'numeric'
+              }
+            ]
+          })
+        end
+      end
+    end
+  end
 end
