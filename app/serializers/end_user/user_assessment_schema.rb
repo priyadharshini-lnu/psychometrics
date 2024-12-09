@@ -27,6 +27,7 @@ module EndUser
         required(:assessment_id).filled(:int?)
         required(:status).filled(:str?)
         required(:completion_percent).filled(:int?)
+        required(:completion_reason).maybe(:str?)
         required(:available_locales).maybe(:array?)
         required(:selected_locale).maybe(:str?)
         required(:assessment_icon_url).maybe(:str?)
