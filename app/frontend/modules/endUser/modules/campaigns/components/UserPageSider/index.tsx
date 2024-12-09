@@ -16,6 +16,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   getProjectLogo,
   getName as getProjectName,
+  getLogoAltText,
 } from '~/modules/endUser/modules/campaigns/core/project'
 import {
   getShowBookings,
@@ -31,6 +32,7 @@ const connector = connect((state: RootState) => ({
   projectName: getProjectName(state),
   showBookings: getShowBookings(state),
   features: getFeatures(state),
+  logoAltText: getLogoAltText(state),
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -89,7 +91,7 @@ const getMenuItems = (
 }])
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
-  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings, features,
+  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings, features, logoAltText,
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -166,7 +168,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     !isAnonym ? (
       <PageSider
         logo={siderLogo}
-        logoAltText={projectName}
+        logoAltText={logoAltText || projectName}
         activeKey={activeItem}
         onMenuSelect={handleMenuSelect}
         items={menuItems}

@@ -2230,6 +2230,9 @@ en:
       columns:
         project_number: Project Number
       design_settings:
+        alt_text_logo: Logo Alt-Text
+        alt_text_logo_required: Alt-Text Logo is Required
+        alt_text_long: Exceeds the maximum limit of 100 characters.
         background_color: Background Color
         background_label: Background
         background_overlay_label: Background Overlay
@@ -2251,6 +2254,8 @@ en:
         reset: Reset
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
+        secondary_logo_alt_text: Secondary Logo Alt-Text
+        secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
         success_color: Success Color
         success_update: Design Settings were saved successfully
         warning_color: Warning Color

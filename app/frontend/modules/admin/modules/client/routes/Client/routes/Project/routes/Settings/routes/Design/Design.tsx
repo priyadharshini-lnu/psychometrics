@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import {
-  Row, Col, Form, Radio, Button, Upload, ConfigProvider, App,
+  Row, Col, Form, Radio, Button, Upload, ConfigProvider, App, Input,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { UploadFile } from 'antd/lib/upload/interface'
 import type { Theme } from 'antd/lib/config-provider/context'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   Files, DesignSettings as DesignSettingsType,
   uploadFiles,
@@ -17,18 +18,27 @@ import { useResources } from '~/hooks/useResources/useResources'
 import { ColorPicker } from '~/glint'
 import { DesignPreview } from './DesignPreview'
 import { getContrastRatio } from '~/utils/contrastRatio'
+import { getProject as getCurrentProject } from '~/modules/admin/core/ui/breadcrumbs'
 
 import styles from './styles.less'
 
 const { I18n } = window
 const DEFAULT_PRIMARY_COLOR = '#009ea7'
 const DEFAULT_ERROR_COLOR = '#ff4d4f'
+const MAX_ALT_TEXT_LENGTH = 100
 
-const connecter = connect(() => ({}), { uploadFiles })
+const connecter = connect(
+  (state: RootState) => ({
+    projectName: getCurrentProject(state).name,
+  }),
+  {
+    uploadFiles,
+  },
+)
 
 type Props = ConnectedProps<typeof connecter>
 
-export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
+export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) => {
   const { projectId } = useParams() as { projectId: string }
   const [isLoading, setIsLoading] = useState(false)
   const {
@@ -60,10 +70,16 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
 
   useEffect(() => {
     if (designSettings) {
-      form.setFieldsValue(designSettings)
+      const initialFormValues = {
+        ...designSettings,
+        logoAltText: designSettings.logoAltText || projectName,
+        secondaryLogoAltText: designSettings.secondaryLogoAltText || projectName,
+      }
+
+      form.setFieldsValue(initialFormValues)
       setIsLoading(false)
     }
-  }, [designSettings])
+  }, [designSettings, projectName])
 
   useEffect(() => {
     fetch({
@@ -99,49 +115,63 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   }, [errorColor])
 
   const onFinish = () => {
-    const values = form.getFieldsValue()
-    setIsLoading(true)
+    form
+      .validateFields()
+      .then(() => {
+        const values = form.getFieldsValue()
+        setIsLoading(true)
 
-    const update = () => {
-      const jsonData = _.pick(values, [
-        'backgroundColor',
-        'backgroundSize',
-        'loginBoxPosition',
-        'primaryColor',
-        'errorColor',
-        'warningColor',
-        'successColor',
-        'infoColor',
-      ])
-      updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType).then(() => {
-        message.success(I18n.t('administration.projects.design_settings.success_update'))
-        setIsLoading(false)
-      })
-    }
-    const files: Files = {
-      ..._.pick(values, ['logo', 'background']),
-      secondary_logo: values.secondaryLogo,
-      background_overlay: values.backgroundOverlay,
-    }
+        const update = () => {
+          const jsonData = _.pick(values, [
+            'backgroundColor',
+            'backgroundSize',
+            'loginBoxPosition',
+            'primaryColor',
+            'errorColor',
+            'warningColor',
+            'successColor',
+            'infoColor',
+            'logoAltText',
+            'secondaryLogoAltText',
+          ])
+          updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType).then(() => {
+            message.success(
+              I18n.t('administration.projects.design_settings.success_update'),
+            )
+            setIsLoading(false)
+          })
+        }
 
-    if (_.some(files, f => f && !!f.file)) {
-      const formData = new FormData()
-      _.each(files, (img, name) => {
-        if (img?.file) {
-          (img.file as UploadFile).status === 'removed'
-            ? formData.append(`purge_${name}`, '1')
-            : formData.append(name, img.file as File, img.file.name)
+        const files: Files = {
+          ..._.pick(values, ['logo', 'background']),
+          secondary_logo: values.secondaryLogo,
+          background_overlay: values.backgroundOverlay,
+        }
+
+        if (_.some(files, f => f && !!f.file)) {
+          const formData = new FormData()
+          _.each(files, (img, name) => {
+            if (img?.file) {
+              (img.file as UploadFile).status === 'removed'
+                ? formData.append(`purge_${name}`, '1')
+                : formData.append(name, img.file as File, img.file.name)
+            }
+          })
+          uploadFiles(designSettings.id, formData)
+            .then(() => {
+              _.isEmpty(uploadFormErrors) && update()
+            })
+            .catch((errors) => {
+              setUploadFormErrors(errors)
+              setIsLoading(false)
+            })
+        } else {
+          update()
         }
       })
-      uploadFiles(designSettings.id, formData).then(() => {
-        _.isEmpty(uploadFormErrors) && update()
-      }).catch((errors) => {
-        setUploadFormErrors(errors)
-        setIsLoading(false)
+      .catch((errorInfo) => {
+        message.error(`${errorInfo.message}`)
       })
-    } else {
-      update()
-    }
   }
 
   const removeFile = (file: UploadFile, fieldName) => {
@@ -189,6 +219,18 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               <Button icon={<UploadOutlined />}>{I18n.t('administration.projects.design_settings.logo_upload')}</Button>
             </Upload>
           </Form.Item>
+          {logo && (
+          <Form.Item
+            name="logoAltText"
+            label={I18n.t('administration.projects.design_settings.alt_text_logo')}
+            rules={[
+              { max: MAX_ALT_TEXT_LENGTH, message: I18n.t('administration.projects.design_settings.alt_text_long') },
+              { required: true, message: I18n.t('administration.projects.design_settings.alt_text_logo_required') },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          )}
           <Form.Item
             name="background"
             label={I18n.t('administration.projects.design_settings.background_label')}
@@ -260,6 +302,24 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               </Button>
             </Upload>
           </Form.Item>
+          {secondaryLogo && (
+          <Form.Item
+            name="secondaryLogoAltText"
+            label={I18n.t('administration.projects.design_settings.secondary_logo_alt_text')}
+            rules={[
+              {
+                max: MAX_ALT_TEXT_LENGTH,
+                message: I18n.t('administration.projects.design_settings.alt_text_long'),
+              },
+              {
+                required: true,
+                message: I18n.t('administration.projects.design_settings.secondary_logo_alt_text_required'),
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          )}
           <Form.Item label={I18n.t('administration.projects.design_settings.background_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="backgroundColor">
