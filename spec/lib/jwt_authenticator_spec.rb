@@ -40,7 +40,7 @@ RSpec.describe JwtAuthenticator do
 
     context 'when the JWT key has an expiration time more than 30 days in the future' do
       let(:jwt_key) do
-        JWT.encode({ 'sub' => user.id, 'exp' => 35.minutes.from_now.to_i }, api_key.token, 'HS256',
+        JWT.encode({ 'sub' => user.id, 'exp' => 31.days.from_now.to_i }, api_key.token, 'HS256',
                    { 'api_key' => api_key.key })
       end
 
