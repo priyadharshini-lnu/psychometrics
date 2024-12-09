@@ -115,6 +115,7 @@ ar:
       success: لقد أرسلنا لك رابط تسجيل الدخول إلى '%{email}'. انقر على الرابط في البريد الإلكتروني الذي تلقيته لتسجيل الدخول
     mobile_number: رقم الجوال
     new_password: كلمة السر الجديدة
+    new_password_placeholder: أدخل كلمة المرور الجديدة
     otp:
       code: رمز
       code_placeholder: OTP
@@ -128,7 +129,7 @@ ar:
     password: كلمة المرور
     password_confirmation: تأكيد كلمة المرور
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
-    password_placeholder: أدخل كلمة المرور الجديدة
+    password_placeholder: أدخل كلمة مرور جديدة
     registration:
       description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
