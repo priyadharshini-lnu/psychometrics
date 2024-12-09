@@ -17,7 +17,7 @@ RSpec.describe Campaigns::ExternalCampaignScoresImport::ProcessRows do
     end
 
     it 'transforms rows into an array of hashes with id' do
-      result = described_class.call!(rows)
+      result = described_class.call!(rows, campaign)
 
       expect(result.size).to eq(1)
 

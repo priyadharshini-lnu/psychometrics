@@ -8,16 +8,24 @@ export default class EvaluatorRelationship extends Component {
     condition: PropTypes.object.isRequired,
   }
 
+  update = () => {
+    const {
+      model, index, condition, onUpdate,
+    } = this.props
+    const conditions = model.props.conditions.map((c, i) => (i === index ? condition : c))
+    onUpdate({ ...model, props: { ...model.props, conditions } })
+  }
+
   changePredicate = (e) => {
     const { condition } = this.props
     condition.predicate = e.currentTarget.value
-    this.forceUpdate()
+    this.update()
   }
 
   changeValue = (e) => {
     const { condition } = this.props
     condition.value = e.currentTarget.value
-    this.forceUpdate()
+    this.update()
   }
 
   render () {

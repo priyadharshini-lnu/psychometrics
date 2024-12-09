@@ -92,3 +92,26 @@ export default class MultipleChoice extends Component {
     )
   }
 }
+
+
+export const MultipleChoiceResult = (props) => {
+  const getValues = () => {
+    const { result, question } = props
+
+    if (!result) {
+      return question.props.choicesTexts.map((_, i) => I18nStore.tQuestion(
+        question, `choicesTexts${i + 1}`, { choice: i },
+      ))
+    }
+
+    let results = result.filter(r => r.value !== undefined)
+    if (question.type === 'RankOrder') {
+      results = _.sortBy(results, r => parseInt(r.value, 10))
+    }
+
+    return results.map(
+      r => I18nStore.tQuestion(question, `choicesTexts${r.index + 1}`, { choice: r.index }),
+    )
+  }
+  return getValues().join(', ')
+}

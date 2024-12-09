@@ -160,7 +160,7 @@ const QuestionTypeComponent: FC<Props> = ({
         questionId: choice.questionId,
         questionName: choice.name,
         choice: choice.id,
-        factorName: factor?.name ?? '',
+        factorName: factor ? I18nStore.tFactorName(factor) : '',
         value: round(value, 2) || 0,
       }
     }).filter(r => r.value > 0)

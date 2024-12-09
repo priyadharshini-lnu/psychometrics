@@ -47,7 +47,7 @@ module Campaigns
       end
 
       def processed_rows
-        @processed_rows ||= Campaigns::ExternalCampaignScoresImport::ProcessRows.call!(rows)
+        @processed_rows ||= Campaigns::ExternalCampaignScoresImport::ProcessRows.call!(rows, campaign)
       end
 
       private
