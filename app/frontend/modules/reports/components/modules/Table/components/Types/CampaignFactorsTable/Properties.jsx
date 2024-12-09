@@ -7,7 +7,6 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
-import AppStore from '~/modules/reports/store/AppStore'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
@@ -177,12 +176,10 @@ class Properties extends Component {
   }
 
   renderMaxSelect () {
-    const { modules } = this.props
+    const { modules, campaignFactors } = this.props
     const model = modules[0]
-    const assessment = _.find(AppStore.assessments, { id: model.assessment_id })
-    const dimensionId = assessment && assessment.dimensionId
-    if (!dimensionId) { return null }
-    let max = AppStore.factors[dimensionId].length + 1
+    if (!campaignFactors) { return null }
+    let max = campaignFactors.length + 1
     if (max < 6) { max = 6 }
     return (
       <select onChange={e => this.changeProp('maxPosition', e)} value={model.props.maxPosition}>
