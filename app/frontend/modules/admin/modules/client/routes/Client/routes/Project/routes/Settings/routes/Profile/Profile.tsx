@@ -71,6 +71,13 @@ export const Profile: React.FC<{}> = () => {
     }])
   }
 
+  const updateMultipleSettings = (data) => {
+    setData([{
+      ...profileSettings,
+      ...data,
+    }])
+  }
+
   const onFinish = (values) => {
     updateResource({
       id: profileSettings.id,
@@ -163,6 +170,7 @@ export const Profile: React.FC<{}> = () => {
             onChangeRequired={updateRequiredSettings}
             onChangeLocked={updateLockedSettings}
             onChangeEnabled={updateEnabledSettings}
+            onChangeMultiple={updateMultipleSettings}
           />
           <Fields
             profileFields={profileSettings.profileFields}
