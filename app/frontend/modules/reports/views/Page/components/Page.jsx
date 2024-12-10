@@ -54,7 +54,7 @@ const Page = (props) => {
         style={{ width: report.builder.props.sizes.width }}
       >
         <Header {...props} />
-        {renderMoudles && pageModel.displayLogic && <DisplayLogic {...props} model={page} />}
+        {renderMoudles && page.displayLogic && <DisplayLogic {...props} model={page} />}
         <div className={styles.pageContent} style={style}>
           {renderMoudles && modules.map(renderModuleType)}
           {renderMoudles && showOnAllPages.map(renderShadowModule)}
