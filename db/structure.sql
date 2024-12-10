@@ -9640,6 +9640,13 @@ CREATE INDEX index_assessments_on_dimension_id ON public.assessments USING btree
 
 
 --
+-- Name: index_assessments_on_linked_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_on_linked_assessment_id ON public.assessments USING btree (linked_assessment_id);
+
+
+--
 -- Name: index_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14525,6 +14532,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241129104313'),
 ('20241126112602'),
 ('20241108085232'),
 ('20241106103020'),
@@ -15248,3 +15256,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
