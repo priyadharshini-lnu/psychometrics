@@ -75,7 +75,7 @@ export class Randomization extends Component {
           <Title>
             {_.capitalize(entityName)}
             {' '}
-            Randomization
+            {I18n.t('administration.assessments.randomization.title')}
           </Title>
         </Header>
         <Body>
@@ -95,7 +95,7 @@ export class Randomization extends Component {
               onChange={this.handleChangeType}
             />
             {' '}
-            No Randomization
+            {I18n.t('administration.assessments.randomization.no_randomization')}
           </label>
           <label className={styles.inputLabel}>
             <input
@@ -105,9 +105,10 @@ export class Randomization extends Component {
               onChange={this.handleChangeType}
             />
             {' '}
-            Randomize the order of all
+            {I18n.t('administration.assessments.randomization.no_randomization_order_all')}
+            {' '}
             {entityName}
-            s
+            {I18n.t('administration.assessments.randomization.s')}
           </label>
           <label className={styles.inputLabel}>
             <input
@@ -117,17 +118,18 @@ export class Randomization extends Component {
               onChange={this.handleChangeType}
             />
             {' '}
-            Present only
+            {I18n.t('administration.assessments.randomization.present_only')}
             <input
               value={type === 'Some' ? questions : undefined}
               onChange={this.handleChangeQuestions}
               className={styles.questionInput}
               disabled={type !== 'Some'}
             />
-            of total
+            {I18n.t('administration.assessments.randomization.of_total')}
             {' '}
             {entityName}
-            s
+            {I18n.t('administration.assessments.randomization.s')}
+
           </label>
           {entityName === 'question' && (
             <label className={styles.inputLabel}>
@@ -138,14 +140,14 @@ export class Randomization extends Component {
                 onChange={this.handleChangeType}
               />
               {' '}
-              Select only
+              {I18n.t('administration.assessments.randomization.select_only')}
               <input
                 value={type === 'ByFactors' ? questions : undefined}
                 onChange={this.handleChangeQuestions}
                 className={styles.questionInput}
                 disabled={type !== 'ByFactors'}
               />
-              questions per factor and show
+              {I18n.t('administration.assessments.randomization.question_per_factor_and_show')}
               <input
                 value={type === 'ByFactors' ? perPage : undefined}
                 onChange={this.handleChangePerPage}
@@ -153,7 +155,7 @@ export class Randomization extends Component {
                 disabled={type !== 'ByFactors'}
               />
               {' '}
-              per page
+              {I18n.t('administration.assessments.randomization.per_page')}
             </label>
           )}
           <label className={styles.inputLabel}>
@@ -164,7 +166,7 @@ export class Randomization extends Component {
               onChange={this.handleChangeType}
             />
             {' '}
-            Select
+            {I18n.t('administration.assessments.randomization.select')}
             <input
               value={type === 'page' ? questions : undefined}
               onChange={this.handleChangeQuestions}
@@ -172,16 +174,20 @@ export class Randomization extends Component {
               disabled={type !== 'page'}
             />
             {entityName}
-            s
+            {I18n.t('administration.assessments.randomization.s')}
             {' '}
-            per pages
+            {I18n.t('administration.assessments.randomization.per_page')}
           </label>
 
 
         </Body>
         <Footer>
-          <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={close}>Cancel</button>
+          <button className="btn btn-success" onClick={this.save}>
+            {I18n.t('administration.assessments.randomization.save')}
+          </button>
+          <button className="btn btn-danger" onClick={close}>
+            {I18n.t('administration.assessments.randomization.cancel')}
+          </button>
         </Footer>
       </Modal>
     )

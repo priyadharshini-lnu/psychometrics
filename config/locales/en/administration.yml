@@ -346,7 +346,19 @@ en:
         header: New assessment
       preview: Assessment Preview
       randomization:
+        cancel: Cancel
+        no_randomization: No Randomization
+        no_randomization_order_all: Randomize the order of all
+        of_total: of total
+        per_page: per page
+        present_only: Present only
+        question_per_factor_and_show: questions per factor and show
+        s: s
+        save: Save
+        select: Select
+        select_only: Select only
         single_question_page_warning: Current Assessment is configured to show one question per page. Setting more than one question per page here will automatically disable Single Question Per Page setting.
+        title: Randomization
       reports: Reports
       resource:
         confirmations:
@@ -514,11 +526,6 @@ en:
       type: Record Type
       user: User
       user_agent: User Agent
-    automatic_Page_Break:
-      modal:
-        after_every: After Every
-        questions: Questions
-        title: Automatic Page Break
     back: Back
     base:
       top_sidebar:
