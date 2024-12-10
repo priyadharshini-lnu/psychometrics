@@ -49,7 +49,9 @@ describe Api::V1::Projects::CreateForm do
       background_color: '#cccccc',
       login_box_position: 'right',
       name: 'project1',
-      data_processing_consent: true
+      data_processing_consent: true,
+      logo_alt_text: 'alt text',
+      secondary_logo_alt_text: 'alt text'
     })
 
     expect(form.valid?).to eq(true)

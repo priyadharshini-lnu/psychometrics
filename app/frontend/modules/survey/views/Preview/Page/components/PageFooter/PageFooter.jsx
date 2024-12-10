@@ -1,8 +1,12 @@
-import { Component } from 'react'
+import {
+  Component, createRef, forwardRef,
+  useEffect, useRef,
+} from 'react'
 import cs from 'classnames'
 import {
   Popconfirm, Alert, message,
 } from 'antd'
+import { ExclamationCircleFilled } from '@ant-design/icons'
 import { FixedWidthButton } from '~/glint'
 import { isRtl } from '~/utils/locales'
 import { getQuestion } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -22,6 +26,10 @@ class PageFooter extends Component {
     saveButtonPressed: false,
   }
 
+  popUpContainerRef = createRef(null)
+
+  popUpTriggerRef = createRef(null)
+
   areQuestionsInProgress = () => {
     const { preview: { inProgressQuestions } } = this.props
     return inProgressQuestions.length
@@ -36,7 +44,8 @@ class PageFooter extends Component {
     prevPage(preview)
   }
 
-  handlePreviousClick = () => {
+  handlePreviousClick = (e) => {
+    this.popUpTriggerRef.current = e.target
     if (this.areQuestionsInProgress()) {
       this.setState({ popConfirmVisibleFor: BACK })
     } else {
@@ -58,7 +67,8 @@ class PageFooter extends Component {
     nextPage()
   }
 
-  handleNextClick = (buttonType) => {
+  handleNextClick = (buttonType, e) => {
+    this.popUpTriggerRef.current = e.target
     if (this.areQuestionsInProgress()) {
       this.setState({ popConfirmVisibleFor: NEXT })
     } else {
@@ -66,8 +76,9 @@ class PageFooter extends Component {
     }
   }
 
-  saveResults = () => {
+  saveResults = (e) => {
     const { saveCurrentPage } = this.props
+    this.popUpTriggerRef.current = e.target
     this.setState(prevState => ({
       ...prevState, nextButtonPressed: false, backButtonPressed: false, saveButtonPressed: true,
     }))
@@ -129,13 +140,15 @@ class PageFooter extends Component {
             open={popConfirmVisibleFor === BACK}
             hidePopConfirm={this.hidePopConfirm}
             onConfirm={this.moveToPreviousPage}
+            popUpContainerRef={this.popUpContainerRef}
+            popUpTriggerRef={this.popUpTriggerRef}
           >
             <FixedWidthButton
               size="large"
               type="default"
               disabled={disableActionableButtons}
               loading={submissionInProgress && backButtonPressed}
-              onClick={this.handlePreviousClick}
+              onClick={e => this.handlePreviousClick(e)}
               className="mrs"
             >
               <span className="mrs mls fa fa-chevron-left rtl-flip" />
@@ -148,6 +161,8 @@ class PageFooter extends Component {
             open={popConfirmVisibleFor === NEXT}
             hidePopConfirm={this.hidePopConfirm}
             onConfirm={this.moveToNextPage}
+            popUpContainerRef={this.popUpContainerRef}
+            popUpTriggerRef={this.popUpTriggerRef}
           >
             {!showSubmit && showSave && (
               <FixedWidthButton
@@ -156,7 +171,7 @@ class PageFooter extends Component {
                 disabled={disableActionableButtons}
                 loading={saveButtonPressed && submissionInProgress}
                 className={styles.next}
-                onClick={this.saveResults}
+                onClick={e => this.saveResults(e)}
               >
                 {I18n.t('assessments.page.save', { locale: I18n.uiLocale })}
               </FixedWidthButton>
@@ -168,7 +183,7 @@ class PageFooter extends Component {
                 disabled={disableActionableButtons}
                 loading={submitButtonPressed && submissionInProgress}
                 className={styles.next}
-                onClick={() => this.handleNextClick(SUBMIT)}
+                onClick={e => this.handleNextClick(SUBMIT, e)}
               >
                 {I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
               </FixedWidthButton>
@@ -178,7 +193,7 @@ class PageFooter extends Component {
                 type="primary"
                 disabled={disableActionableButtons}
                 loading={submissionInProgress && nextButtonPressed}
-                onClick={() => this.handleNextClick(NEXT)}
+                onClick={e => this.handleNextClick(NEXT, e)}
                 className={styles.next}
               >
                 {page.nextBtn || I18n.t('assessments.page.next', { locale: I18n.uiLocale })}
@@ -186,18 +201,33 @@ class PageFooter extends Component {
               </FixedWidthButton>
             )}
           </QuestionInProgressPopConfirm>
+          <div ref={this.popUpContainerRef} />
         </div>
       </div>
     )
   }
 }
 
-function QuestionInProgressPopConfirm ({
-  preview, preview: { inProgressQuestions }, open, hidePopConfirm, onConfirm, children,
-}) {
+const QuestionInProgressPopConfirm = forwardRef(({
+  preview, preview: { inProgressQuestions }, open, hidePopConfirm, onConfirm, children, popUpContainerRef,
+  popUpTriggerRef,
+}) => {
+  const titleTextRef = useRef(null)
+  useEffect(() => {
+    const popUpContainerNode = popUpContainerRef?.current
+    if (popUpContainerRef?.current && open) {
+      popUpContainerNode.role = 'dialog'
+      popUpContainerNode.ariaModal = 'false'
+      popUpContainerNode.ariaLabel = I18n.t('frontend.aria.confirm_proceed')
+    }
+    if (titleTextRef?.current && open) {
+      titleTextRef.current.focus()
+    }
+  }, [open])
+
   const popConfirmTitle = () => (
     <div>
-      <b>{I18n.t('validations.actions_still_in_progress', { locale: I18n.uiLocale })}</b>
+      <b ref={titleTextRef}>{I18n.t('validations.actions_still_in_progress', { locale: I18n.uiLocale })}</b>
       <ul className="pll">
         {inProgressQuestions.map(({ questionId, progressState }) => {
           const question = getQuestion(preview, questionId)
@@ -213,6 +243,7 @@ function QuestionInProgressPopConfirm ({
 
   return (
     <Popconfirm
+      icon={<ExclamationCircleFilled aria-label={I18n.t('assessments.page.warning')} />}
       title={popConfirmTitle()}
       onConfirm={onConfirm}
       okText={I18n.t('assessments.proceed', { locale: I18n.uiLocale })}
@@ -221,10 +252,16 @@ function QuestionInProgressPopConfirm ({
       open={open && inProgressQuestions.length > 0}
       disabled={!inProgressQuestions.length}
       placement="topRight"
+      getPopupContainer={() => popUpContainerRef?.current || document.body}
+      onOpenChange={(open) => {
+        if (!open && popUpTriggerRef.current) {
+          popUpTriggerRef.current.focus()
+        }
+      }}
     >
       {children}
     </Popconfirm>
   )
-}
+})
 
 export default PageFooter

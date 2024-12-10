@@ -69,7 +69,10 @@ const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => 
 }
 
 // updates `lang` query param in URL
-export const LangDropdownWithChangeUrl: React.FC<Omit<Props, 'onChange'>> = ({ locales, currentLocale }) => {
+export const LangDropdownWithChangeUrl: React.FC<Omit<Props, 'onChange'>> = ({
+  locales = defaultLocales,
+  currentLocale = defaultCurrentLocale,
+}) => {
   const { search } = useLocation()
   const searchParams = new URLSearchParams(search)
 

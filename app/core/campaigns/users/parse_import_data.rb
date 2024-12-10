@@ -32,6 +32,8 @@ module Campaigns
       def call
         header = records.shift
         rows = records.map do |record|
+          record.map! { |value| Utility::String.remove_csv_injection_marker(value) }
+
           record.each_with_object({}).with_index do |(value, attrs), index|
             key = keys[index]
             next if keys.exclude?(key)

@@ -4,9 +4,14 @@
 .subHeader:global(.ant-page-header) {
   background-color: var(--ant-primary-color);
   padding-block: @space-2;
+
+  & :global(.ant-btn):focus-visible {
+    outline: 4px solid var(--ant-primary-1);
+    outline-offset: -2px;
+  }
+
 }
 .subHeaderTitle {
-  display: inline-block;
   white-space: break-spaces;
   color: @white;
   &:hover {

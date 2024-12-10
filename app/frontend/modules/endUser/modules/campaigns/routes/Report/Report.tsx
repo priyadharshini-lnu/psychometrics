@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Layout, Button, App, Row, Col, Typography, notification,
+  Space,
 } from 'antd'
 import { connect } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -84,26 +85,30 @@ const ReportComponent = ({
       <Content className={styles.pageContent}>
         <PageHeader
           className={styles.campaignHeader}
-          backIcon={(
-            <Button ghost type="text" size="small" aria-label={I18n.t('frontend.aria.back_to_tasks')}>
-              <DirectionalNavigateBackIcon
-                className={styles.backIcon}
-              />
-            </Button>
-          )}
           title={(
-            <Text className={styles.campaignDropdown}>
-              {`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}
-              <StatusItem
-                isSelf={isSelf}
-                managerApprovesReports={managerApprovesReports}
-                approvalStatus={approvalStatus}
-                handleStatusClick={handleStatusClick}
-              />
-            </Text>
+            <Space>
+              <Button
+                onClick={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
+                type="text"
+                size="small"
+                aria-label={I18n.t('frontend.aria.back_to_tasks')}
+              >
+                <DirectionalNavigateBackIcon
+                  className={styles.backIcon}
+                />
+              </Button>
+              <Text className={styles.campaignDropdown}>
+                {`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}
+                <StatusItem
+                  isSelf={isSelf}
+                  managerApprovesReports={managerApprovesReports}
+                  approvalStatus={approvalStatus}
+                  handleStatusClick={handleStatusClick}
+                />
+              </Text>
+            </Space>
           )}
           ghost={false}
-          onBack={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
           extra={!disableDownloadReport && [
             <Button
               key="download"

@@ -1,5 +1,8 @@
-import { FC } from 'react'
+import {
+  FC, useEffect, useRef, useState,
+} from 'react'
 import { DatePicker } from 'antd'
+import cs from 'classnames'
 import dayjs from '~/utils/dayjs'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
@@ -8,11 +11,15 @@ import { CalendarOutlined, CloseCircleFilled } from '~/glint/icons/AccessibleIco
 import { getIn } from '~/utils/immutable'
 import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 
+import styles from './DateEntryPreview.less'
+
 interface Props {
   model: PreviewModel
   readOnly: boolean
   errors: string[]
 }
+
+const { I18n } = window
 
 const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
   const {
@@ -20,6 +27,30 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
     props: { dateFormat },
     id: questionId,
   } = model
+
+  const [openPanel, setOpenPanel] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const clearIconRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const panelNode = panelRef.current?.parentNode as HTMLDivElement
+    const clearIconNode = clearIconRef.current?.parentNode as HTMLSpanElement
+
+    if (panelNode && openPanel && panelNode.getAttribute('role') !== 'dialog') {
+      panelNode.setAttribute('role', 'dialog')
+      panelNode.ariaModal = 'false'
+      panelNode.ariaLabel = I18n.t('frontend.aria.calendar')
+    }
+    if (clearIconNode && clearIconNode.tabIndex !== 0) {
+      clearIconNode.ariaLabel = I18n.t('frontend.aria.clear_date')
+      clearIconNode.tabIndex = 0
+      clearIconNode.addEventListener('keyup', clearDateSelection)
+    }
+
+    return () => {
+      clearIconNode?.removeEventListener('click', clearDateSelection)
+    }
+  }, [openPanel])
 
   const handleAnswerChange = (value: dayjs.Dayjs | null) => {
     if (value) {
@@ -29,24 +60,52 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
     }
   }
 
+  const clearDateSelection = (key) => {
+    key.code === 'Enter' && handleAnswerChange(null)
+  }
+
   const value = getIn(answers, ['0', 'value'])
   const pickerMode = DATE_FORMAT_OPTIONS.find(
     dateFormatOption => dateFormatOption.value === dateFormat,
   )?.picker ?? 'date'
 
+  const dataFormatLabelId = `date-format-${questionId}`
+  const format = dateFormat || DATE_FORMAT_OPTIONS[0].value
+  const dateValue = value ? dayjs(value, dateFormat) : null
+
   return (
-    <DatePicker
-      allowClear={{ clearIcon: <CloseCircleFilled className="grey-text" /> }}
-      disabled={readOnly}
-      format={dateFormat || DATE_FORMAT_OPTIONS[0].value}
-      picker={pickerMode}
-      value={value ? dayjs(value, dateFormat) : null}
-      onChange={handleAnswerChange}
-      aria-invalid={!!errors.length}
-      aria-describedby={`error-for-question-${questionId}`}
-      aria-labelledby={`question-text-${model.id}`}
-      suffixIcon={<CalendarOutlined className="grey-text" />}
-    />
+    <div>
+      <span id={dataFormatLabelId} className="sr-only">{`(${format})`}</span>
+      <DatePicker
+        allowClear={{
+          clearIcon: (
+            <span ref={clearIconRef}>
+              <CloseCircleFilled
+                className={cs(styles.clearDate, 'grey-text')}
+              />
+            </span>),
+        }}
+        disabled={readOnly}
+        format={format}
+        picker={pickerMode}
+        value={dateValue}
+        onChange={handleAnswerChange}
+        aria-invalid={!!errors.length}
+        aria-describedby={`error-for-question-${questionId}`}
+        aria-labelledby={`question-text-${model.id} ${dataFormatLabelId}`}
+        suffixIcon={<CalendarOutlined className="grey-text" />}
+        panelRender={originalPanel => (
+          <div
+            className={cs({ [styles.noDateSelected]: !dateValue })}
+            ref={panelRef}
+          >
+            {originalPanel}
+          </div>
+        )}
+        onOpenChange={(open) => { setOpenPanel(open) }}
+      />
+    </div>
+
   )
 }
 

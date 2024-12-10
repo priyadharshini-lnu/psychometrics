@@ -1885,7 +1885,9 @@ CREATE TABLE public.design_settings (
     warning_color character varying,
     success_color character varying,
     info_color character varying,
-    background_size character varying DEFAULT 'cover'::character varying
+    background_size character varying DEFAULT 'cover'::character varying,
+    logo_alt_text character varying,
+    secondary_logo_alt_text character varying
 );
 
 
@@ -9638,6 +9640,13 @@ CREATE INDEX index_assessments_on_dimension_id ON public.assessments USING btree
 
 
 --
+-- Name: index_assessments_on_linked_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_on_linked_assessment_id ON public.assessments USING btree (linked_assessment_id);
+
+
+--
 -- Name: index_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14524,6 +14533,8 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241128105109'),
+('20241129104313'),
+('20241126112602'),
 ('20241108085232'),
 ('20241106103020'),
 ('20241105093139'),

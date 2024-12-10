@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { PageHeader } from '@ant-design/pro-layout'
-import { Button } from 'antd'
+import { Button, Space } from 'antd'
 
 import { DirectionalNavigateBackIcon } from '~/glint'
 import styles from './SubHeader.less'
@@ -18,23 +18,24 @@ export const SubHeader:FC<Props> = ({
 }) => (
   <PageHeader
     className={styles.subHeader}
-    backIcon={hideBackIcon ? false : (
-      <Button
-        ghost
-        size="small"
-        type="text"
-        aria-label={backButtonAriaLabel}
-      >
-        <DirectionalNavigateBackIcon className={styles.backIcon} />
-      </Button>
-    )}
     ghost={false}
     title={(
-      <div className={styles.subHeaderTitle}>
+      <Space className={styles.subHeaderTitle}>
+        {
+          hideBackIcon ? null : (
+            <Button
+              size="small"
+              type="text"
+              aria-label={backButtonAriaLabel}
+              onClick={onBack}
+            >
+              <DirectionalNavigateBackIcon className={styles.backIcon} />
+            </Button>
+          )
+        }
         {title}
-      </div>
-          )}
-    onBack={onBack}
+      </Space>
+    )}
     extra={extra}
   />
 )

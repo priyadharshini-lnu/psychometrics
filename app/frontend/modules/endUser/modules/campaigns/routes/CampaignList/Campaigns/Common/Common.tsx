@@ -28,6 +28,7 @@ export const Common = ({
       <DetailsCard
         title={<TruncatedTitle id={titleId} title={campaign.name} />}
         titleId={titleId}
+        titleHeadingLevel={3}
         status={<StatusText taskStatus={campaign.progressStatus} />}
         subtitle={
           <StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} scheduledForFuture={scheduledForFuture} />

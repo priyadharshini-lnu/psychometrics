@@ -1,14 +1,16 @@
-import { useState, useRef, useLayoutEffect } from 'react'
+import {
+  useState, useRef, useLayoutEffect,
+  useEffect,
+} from 'react'
+import humps from 'humps'
 import { connect } from 'react-redux'
 import {
   Col, Row, Typography, Form, Upload, Input, Select, Layout, InputNumber,
   Space, Progress, Button, message,
 } from 'antd'
-import {
-  PlusOutlined, EditOutlined, UpOutlined, DownOutlined,
-} from '@ant-design/icons'
 import cs from 'classnames'
 import _ from 'lodash'
+import { PlusOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { CropImageModal } from '~/glint/components/CropImageModal'
 import Utils from '~/modules/reports/utils/Utils'
@@ -28,6 +30,30 @@ const { Text, Title } = Typography
 const { I18n } = window
 const locales = I18n.availableLocales
 const { Content } = Layout
+
+const languageOptions = locales.map(locale => ({
+  key: locale,
+  label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span>,
+  value: locale,
+}))
+
+const genderOptions = [
+  {
+    key: 'male',
+    label: I18n.t('profile.male'),
+    value: 'male',
+  },
+  {
+    key: 'female',
+    label: I18n.t('profile.female'),
+    value: 'female',
+  },
+  {
+    key: 'not_disclosed',
+    label: I18n.t('profile.not_disclosed'),
+    value: 'not_disclosed',
+  },
+]
 
 interface Image {
   type?: string
@@ -59,6 +85,12 @@ function ProfileComponent ({
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
   const messageContainerRef = useRef<HTMLDivElement>(null)
+  const [form] = Form.useForm()
+  const uploadRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    focusFirstErrorField(errors)
+  }, [errors])
 
   useLayoutEffect(() => {
     message.config({ getContainer: () => messageContainerRef.current || document.body })
@@ -67,6 +99,22 @@ function ProfileComponent ({
       message.destroy()
     }
   }, [])
+
+  const focusFirstErrorField = (errors) => {
+    const firstErrorKey = Object.keys(errors)[0]
+    if (firstErrorKey === 'photo' && uploadRef.current?.parentNode) {
+      const uploadButton = uploadRef.current?.parentNode as HTMLSpanElement
+      // hack to make upload button focusable
+      uploadButton.contentEditable = 'true'
+      uploadButton.focus()
+      uploadButton.contentEditable = 'false'
+      return
+    }
+    if (firstErrorKey) {
+      const fieldErrorFieldNamePath = humps.camelize(firstErrorKey)
+      form.getFieldInstance(fieldErrorFieldNamePath)?.focus()
+    }
+  }
 
   const uploadFile = (canvas) => {
     if (canvas) {
@@ -124,12 +172,6 @@ function ProfileComponent ({
     </Col>
   )
 
-  const languageOptions = locales.map(locale => ({
-    key: locale,
-    label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span>,
-    value: locale,
-  }))
-
   return (
     <>
       <title>{`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('campaign.details')}`}</title>
@@ -169,7 +211,7 @@ function ProfileComponent ({
                         onChange={onChangeFile}
                         beforeUpload={() => false}
                       >
-                        <div className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}>
+                        <div ref={uploadRef} className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}>
                           {user.photo && <img src={user.photo} className={styles.photo} />}
                           <div className={styles.controls}>
                             {user.photo ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
@@ -185,11 +227,15 @@ function ProfileComponent ({
                   </Col>
                 )}
                 <Col xs={24} sm={24} md={12} lg={16}>
+                  <div className="fs-14 mb-4">
+                    <span className={styles.note}>{I18n.t('profile.mandatory_fields')}</span>
+                  </div>
                   <Form
                     layout="vertical"
                     initialValues={user}
                     onFinish={submitForm}
                     className={styles.form}
+                    form={form}
                   >
                     <Row gutter={24}>
                       <Col xs={24} sm={24} md={12}>
@@ -235,10 +281,7 @@ function ProfileComponent ({
                               className={styles.numberInput}
                               size="large"
                               disabled={lockedFields.age}
-                              controls={{
-                                upIcon: <UpOutlined aria-label="Increase Age by 1" />,
-                                downIcon: <DownOutlined aria-label="Decrease Age by 1" />,
-                              }}
+                              controls={false}
                             />
                           </Form.Item>
                         </Col>
@@ -251,11 +294,13 @@ function ProfileComponent ({
                             hasFeedback
                             required={requiredFields.gender}
                           >
-                            <Select size="large" disabled={lockedFields.gender}>
-                              <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
-                              <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
-                              <Select.Option value="not_disclosed">{I18n.t('profile.not_disclosed')}</Select.Option>
-                            </Select>
+                            <Select
+                              options={genderOptions}
+                              showSearch={false}
+                              size="large"
+                              disabled={lockedFields.gender}
+                              virtual={false} // this is to make Select component accessibility compatible
+                            />
                           </Form.Item>
                         </Col>
                       )}
@@ -269,7 +314,12 @@ function ProfileComponent ({
                       validateStatus={errors?.locale ? 'error' : ''}
                       required={requiredFields.locale}
                     >
-                      <Select options={languageOptions} size="large" disabled={lockedFields.locale} />
+                      <Select
+                        virtual={false} // this is to make Select component accessibility compatible
+                        options={languageOptions}
+                        size="large"
+                        disabled={lockedFields.locale}
+                      />
                     </Form.Item>
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   Col, Row, Typography, Layout, Card, Skeleton, Space,
 } from 'antd'
+import cs from 'classnames'
 import dayjs from '~/utils/dayjs'
 import { isRequestInProgress } from '~/core/request'
 import { Flash } from '~/components/Flash'
@@ -102,7 +103,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
               </Card>
             </Col>
             <Col span={24}>
-              <Title level={4} className={styles['campaign-title']}>
+              <Title level={2} className={cs(styles['campaign-title'], 'fs-20')}>
                 {error ? I18n.t('errors.error') : I18n.t('campaign.campaigns')}
               </Title>
               {error

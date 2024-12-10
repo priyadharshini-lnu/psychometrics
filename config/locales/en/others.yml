@@ -303,10 +303,13 @@ en:
             email:
               blank: Email field can't be blank
               invalid: Email is invalid
+              starts_with_invalid_characters: Email can't start with =, |, +, -, @, %
             first_name:
               blank: First name can't be blank
+              starts_with_invalid_characters: First Name can't start with =, |, +, -, @, %
             last_name:
               blank: Last name can't be blank
+              starts_with_invalid_characters: Last Name can't start with =, |, +, -, @, %
         update_norm:
           attributes:
             norm_type:
@@ -957,6 +960,7 @@ en:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or mte.surveys@mercer.com
         title: Last Request Failed
       submit: Submit
+      warning: WARNING
     pages:
       edit:
         assets: Assets
@@ -980,16 +984,25 @@ en:
     upload: Upload
     video_response:
       device: Allow
+      device_selection:
+        camera: Camera
+        mic: Mic
       discard: Discard
+      discard_record_again: Discard & Record Again
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
         unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
+      recording_duration_label: Maximum duration of recording
+      recording_stop_label: Recording will stop in
+      requesting_permission: Requesting Permission...
+      response_recorded: Response Recorded
       save: Save
       saved:
-        label: Saved
-      saving: Saving...
+        label: Video Saved
+      saving: Saving Video...
       start_recording: Start recording
+      stop_recording: Stop recording
       tracker:
         backward: You are too close to the screen. Please move a bit back
         forward: You are too far away from the screen. Please move a bit closer
@@ -1199,7 +1212,9 @@ en:
           You will be required to download and install a special browser to complete the proctored tasks. Please follow the instructions in the next screen. You can uninstall this after completing all required activities.
         </p>
     instructions:
+      collapse_aria_label: 'Show more information above: Virtual Learning Centre'
       collapse_link_text: Show less
+      expand_aria_label: 'Show less information above: Virtual Learning Centre'
       expand_link_text: Show more
       heading: Please review the guidelines below before you get started. We wish you all the best!
     language:
@@ -1579,6 +1594,7 @@ en:
       unschedule: Unschedule
       updated_at: Last Updated
     errors:
+      csv_injection_validation_error: can't start with =, |, +, -, @, %
       something_wrong: Something went wrong. Contact your administrator.
     messages:
       leave_message: Are you sure you want to leave this page? Any unsaved answers that you have will be lost.
@@ -1941,15 +1957,20 @@ en:
     aria:
       back_to_dashboard: Back to Dashboard
       back_to_tasks: Back to Tasks
+      calendar: Calendar
       campaign_name_description: ', for campaign "%{campaignName}"'
       change_language: "(Change Language)"
+      clear_date: clear date
       collapse_menu: Collapse menu
+      confirm_proceed: Confirm to proceed
       delete_message: Delete message
       expand_menu: Expand menu
       file_uploaded: File uploaded
       lang_dropdown_description: ",change language"
       profile_progress: Profile completion is
+      remove_file: remove file
       send_message: Send message
+      slider_label_instruction: 'min: %{min} and max: %{max}'
       task_btn_description: task %{assessmentName}
       task_progress_label: Task completion is
       write_message: Write your message
@@ -2471,8 +2492,6 @@ en:
     add_field: Add Field
     add_photo: Add Photo
     age: Age
-    aria_label_decrease_age: Decrease Age by 1
-    aria_label_increase_age: Increase Age by 1
     change_password: Change Password
     change_photo: Change Photo
     email: Email
@@ -2483,6 +2502,7 @@ en:
     last_name: Last Name
     locale: Preferred Language
     male: Male
+    mandatory_fields: Indicates mandatory fields
     not_disclosed: Prefer not to disclose
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
@@ -2626,6 +2646,22 @@ en:
       load_from_pearson: Load from Pearson
       none_external: None - Use report builder
     modules:
+      campaign_factors_table:
+        add_condition: Add Condition
+        baseline_score: Baseline Score
+        blindspots: Blindspots
+        campaign_factor_conditions: Campaign Factor Conditions
+        cancel: Cancel
+        color: Color
+        delete: Delete
+        description: Description
+        if: If
+        label: Label
+        no_conditions: No conditions
+        save: Save
+        strengths: Strengths
+        then: Then show the following text
+        title: Title
       common:
         all_factors: All factors
       factors_table:

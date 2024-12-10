@@ -22,6 +22,8 @@ export const DesignSettingsTR = t.type({
       id: t.string,
     }),
     t.undefined]),
+  logoAltText: t.union([t.string, t.null]),
+  secondaryLogoAltText: t.union([t.string, t.null]),
 })
 
 export type DesignSettings = t.TypeOf<typeof DesignSettingsTR>

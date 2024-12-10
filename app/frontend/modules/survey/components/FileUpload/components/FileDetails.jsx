@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types'
-import { FileOutlined, DeleteOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
+import { FileOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './FileUpload.less'
+
+const { I18n } = window
 
 export default function FileDetails ({
   localFile, savedFile, removeFile, readOnly,
@@ -25,9 +29,13 @@ export default function FileDetails ({
       </div>
       {!readOnly && (
       <div className={styles.removeFileButton}>
-        <a onClick={removeFile}>
-          <DeleteOutlined className={styles.deleteIcon} />
-        </a>
+        <Button
+          aria-label={I18n.t('frontend.aria.remove_file')}
+          size="small"
+          icon={<DeleteOutlined className={styles.deleteIcon} />}
+          type="text"
+          onClick={removeFile}
+        />
       </div>
       )}
     </div>
