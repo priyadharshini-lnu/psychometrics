@@ -13,7 +13,7 @@ export default connect(
       offset: propPanel.offset,
       timestamp,
       firstBlockContentOffset: ui?.propertyPanel?.firstBlockContentOffset,
-      block: state.survey.builder.blocks,
+      blocks: state.survey.builder.blocks,
     })
   },
   {

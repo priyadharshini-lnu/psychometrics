@@ -23,7 +23,7 @@ const PropertyPanelComponent = (props) => {
   const {
     question, offset, addPageBreak, addSkipLogic, copyQuestion, restricted,
     openDisplayLogic, changeType, openPreview, firstBlockContentOffset, unselectQuestion,
-    allowChange, block,
+    allowChange, blocks,
   } = props
   const panelRef = useRef(null)
   const [showMenu, setShowMenu] = useState(false)
@@ -103,7 +103,7 @@ const PropertyPanelComponent = (props) => {
       {!restricted && (
         <>
           {
-            block[question.block_id].props.randomization.type !== 'page' ? (
+            blocks[question.block_id].props.randomization.type !== 'page' ? (
               <a
                 onClick={() => addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))}
                 className={styles.menuitem}
