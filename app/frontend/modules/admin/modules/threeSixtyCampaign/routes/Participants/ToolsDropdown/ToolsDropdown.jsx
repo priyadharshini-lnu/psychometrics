@@ -8,7 +8,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const getCustomMenuProps = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
-  handleExportThreeSixtyScores, openModal,
+  handleExportThreeSixtyScores, handleBulkDownloads, openModal,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {
@@ -37,6 +37,9 @@ const getCustomMenuProps = ({
     }
     if (key === 'export_360_scores') {
       return handleExportThreeSixtyScores(campaignId)
+    }
+    if (key === 'bulk_downloads') {
+      return handleBulkDownloads(campaignId)
     }
   }
 
@@ -94,13 +97,17 @@ const getCustomMenuProps = ({
       key: 'regenerate_reports',
       label: I18n.t('campaign_assessment.actions.regenerate'),
     },
+    permissions.bulkDownload && {
+      key: 'bulk_downloads',
+      label: I18n.t('campaign_assessment.actions.bulk_download'),
+    },
   ]
   return { items: menuItems, onClick: handleMenuClick }
 }
 
 export default function ToolsDropdown ({
   dimensionId, resetCampaign, resetAllNominations, openModal, rescoreAssessment, permissions,
-  exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores,
+  exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
 }) {
   const { projectId, campaignId } = useParams()
   const resetCampaignWithConfirmation = (campaignId) => {
@@ -151,6 +158,11 @@ export default function ToolsDropdown ({
     })
   }
 
+  const handleBulkDownloads = () => {
+    bulkDownloads(campaignId).then(() => {
+      message.success(I18n.t('jobs.threesixty.bulk_downloads'))
+    })
+  }
   const resetAllNominationsWithConfirmation = (campaignId) => {
     openModal('CampaignNameConfirmationModal', {
       onConfirm: () => resetAllNominations(campaignId),
@@ -192,6 +204,7 @@ export default function ToolsDropdown ({
           onExport,
           handleExportRawResults,
           handleExportThreeSixtyScores,
+          handleBulkDownloads,
         })
       }
       className="mrm"

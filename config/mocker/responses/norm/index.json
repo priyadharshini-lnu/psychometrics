@@ -10,6 +10,14 @@
         "created_at": "2022-01-01T00:00:00.000Z",
         "updated_at": "2022-01-01T00:00:00.000Z"
       },
+      "meta": {
+        "permissions": {
+            "manage": true,
+            "export_raw_results": true,
+            "export_raw_factor_scores": true,
+            "export_normed_results": true
+        }
+    },
       "relationships": {
         "dimension": {
           "data": {
@@ -28,13 +36,6 @@
             "id": "1",
             "type": "user"
           }
-        }
-      },
-      "meta": {
-        "permissions": {
-          "edit": true,
-          "delete": true,
-          "copy": true
         }
       }
     }
@@ -63,7 +64,7 @@
     }
   ],
   "meta": {
-    "record_count": 1,
-    "page_count": 1
+      "record_count": 124,
+      "page_count": 5
   }
 }

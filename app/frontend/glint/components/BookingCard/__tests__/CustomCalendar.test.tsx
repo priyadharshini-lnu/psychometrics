@@ -111,7 +111,8 @@ test('Should be able to navigate to and fro between months', async () => {
 
   const year = screen.getByTestId('year')
   const month = screen.getByTestId('month')
-  const [gotoPrevMonthIcon, gotoNextMonthIcon] = screen.getAllByRole('img')
+  const gotoNextMonthIcon = screen.getByLabelText('Go to next month')
+  const gotoPrevMonthIcon= screen.getByLabelText('Go to previous month')
 
   await act(async () => {
     await user.click(gotoNextMonthIcon)
@@ -138,7 +139,8 @@ test('Should clear currently selected date when navigated between months', async
     </div>,
   )
 
-  const [gotoPrevMonthIcon, gotoNextMonthIcon] = screen.getAllByRole('img')
+  const gotoNextMonthIcon = screen.getByLabelText('Go to next month')
+  const gotoPrevMonthIcon= screen.getByLabelText('Go to previous month')
   const availDateThisMonth = screen.getByText(availableDateStrings[0])
 
   await act(async () => {

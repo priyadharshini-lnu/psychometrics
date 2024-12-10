@@ -264,6 +264,15 @@ module Swagger
           ProjectsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Projects::Schema.multiple_resource_response
           ),
+          NormsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Norm::Schema.multiple_resource_response
+          ),
+          NormsCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Norm::Schema.create_request
+          ),
+          NormResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Norm::Schema.single_resource_response
+          ),
           PrivacySettingListRespose: Api::Base::GenerateSwagger.call!(
             Api::V2::PrivacySettings::Schema.multiple_resource_response
           ),

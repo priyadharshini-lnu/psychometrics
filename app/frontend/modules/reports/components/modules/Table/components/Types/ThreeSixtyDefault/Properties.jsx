@@ -60,30 +60,33 @@ const lists = {
 
 class Properties extends Component {
   onChange = (key, value) => {
-    const { model } = this.props
-    model.props[key] = value
-    model.update()
+    const { modules } = this.props
+    modules.forEach((model) => {
+      model.props[key] = value
+      model.update()
+    })
     this.forceUpdate()
   }
 
   render () {
-    const { model, questions } = this.props
+    const { modules, questions } = this.props
+    const model = modules[0]
     const List = lists[model.props.sourceType]
     return (
       <div>
         <div>Font</div>
-        <PropertyFonts model={model} colors={false} />
+        <PropertyFonts modules={modules} colors={false} />
         <div className={styles.title}>Default 360</div>
         <SourceTypeButtonGroup model={model} onChange={this.onChange} />
         <List model={model} onChange={this.onChange} questions={questions} />
         <div className="mtm">
-          <PropertyFilter model={model} />
+          <PropertyFilter modules={modules} />
         </div>
       </div>
     )
   }
 }
 
-export default connect((state, { model }) => ({
-  questions: getQuestions(state.report, model.assessment_id),
+export default connect((state, { modules }) => ({
+  questions: getQuestions(state.report, modules[0].assessment_id),
 }), {})(Properties)

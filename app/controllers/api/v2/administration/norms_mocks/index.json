@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "norm",
+      "attributes": {
+        "name": "Norm 1",
+        "disabled": false,
+        "description": "This is norm 1",
+        "created_at": "2022-01-01T00:00:00.000Z",
+        "updated_at": "2022-01-01T00:00:00.000Z",
+        "norm_type": "five_scale"
+      },
+      "meta": {
+        "permissions": {
+            "edit": true,
+            "copy": true,
+            "delete": true,
+            "export": true,
+            "editor": true
+        }
+    },
+      "relationships": {
+        "dimension": {
+          "data": {
+            "id": "1",
+            "type": "dimension"
+          }
+        },
+        "owner": {
+          "data": {
+            "id": "1",
+            "type": "owner"
+          }
+        },
+        "updated_by": {
+          "data": {
+            "id": "1",
+            "type": "user"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "1",
+      "type": "dimension",
+      "attributes": {
+        "name": "Dimension 1"
+      }
+    },
+    {
+      "id": "1",
+      "type": "owner",
+      "attributes": {
+        "name": "Owner 1"
+      }
+    },
+    {
+      "id": "1",
+      "type": "user",
+      "attributes": {
+        "name": "User 1"
+      }
+    }
+  ],
+  "meta": {
+      "record_count": 124,
+      "page_count": 5
+  }
+}

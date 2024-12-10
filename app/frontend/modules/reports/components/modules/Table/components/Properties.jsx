@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import { Space, Typography, Select } from 'antd'
 import _ from 'lodash'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
@@ -28,87 +27,91 @@ const TABLE_TYPE_OPTIONS = [
   { value: 'CampaignFactorsTable', label: 'Campaign Factors' },
 ]
 
-class Properties extends Component {
-  handleTableTypeChange = (value) => {
-    const { model } = this.props
+const Properties = ({ modules }) => {
+  const model = modules[0]
 
-    if (model.props.type === value) return null
-
-    model.props.type = value
-    model.props.rowData = null
-    model.props.headerData = null
-
-    const defaultProps = ModuleConfigs.Table.defaultProps[value] || {}
-    model.props = { ...model.props, ...defaultProps }
-    const assessmentId = model.assessment_id
-    const assessment = _.find(AppStore.assessments, { id: assessmentId })
-    const dimensionId = assessment && assessment.dimensionId
-
-    if (['FactorsTable', 'StrengthClusters'].includes(value)) {
-      model.props.source = {
-        factors: _.map(AppStore.subfactors[dimensionId], this.factor),
-      }
-    }
-    if (['CampaignFactorsTable'].includes(value)) {
-      model.props.source = {
-        campaignFactors: AppStore.report.campaignFactors,
-      }
-    }
-    model.update()
-    this.forceUpdate()
+  const forceUpdate = () => {
+    modules.forEach((item) => {
+      item.update()
+    })
   }
 
-  factor = f => ({
+  const handleTableTypeChange = (value) => {
+    modules.forEach((model) => {
+      if (model.props.type === value) return
+
+      model.props.type = value
+      model.props.rowData = null
+      model.props.headerData = null
+
+      const defaultProps = ModuleConfigs.Table.defaultProps[value] || {}
+      model.props = { ...model.props, ...defaultProps }
+
+      const assessmentId = model.assessment_id
+      const assessment = _.find(AppStore.assessments, { id: assessmentId })
+      const dimensionId = assessment && assessment.dimensionId
+
+      if (['FactorsTable', 'StrengthClusters'].includes(value)) {
+        model.props.source = {
+          factors: _.map(AppStore.subfactors[dimensionId], factor),
+        }
+      }
+      if (['CampaignFactorsTable'].includes(value)) {
+        model.props.source = {
+          campaignFactors: AppStore.report.campaignFactors,
+        }
+      }
+      model.update()
+    })
+
+    forceUpdate()
+  }
+
+  const factor = f => ({
     id: f.id,
     alias: `${f.alias.substring(0, 24)}`,
   })
 
-  changeAssessment = (assessmentId) => {
-    const { model } = this.props
-    model.assessment_id = assessmentId
-    clearAfterAssessmentChange(model)
-    model.update()
-    this.forceUpdate()
+  const changeAssessment = (assessmentId) => {
+    modules.forEach((model) => {
+      model.assessment_id = assessmentId
+      clearAfterAssessmentChange(model)
+      model.update()
+    })
+    forceUpdate()
   }
 
-  renderTypeProps () {
-    const { model } = this.props
+  const renderTypeProps = () => {
+    if (modules.length > 1 && _.uniqBy(modules, 'props.type').length > 1) { return null }
+
     const View = PropertyVies[model.props.type]
-    if (!View) {
-      return
-    }
-    return <View {...this.props} key={model.id} />
+    if (!View) return null
+
+    return <View {...{ model }} modules={modules} key={model.id} />
   }
 
-  render () {
-    const { model } = this.props
-    const {
-      props: { type },
-      assessment_id,
-    } = model
+  const { props: { type }, assessment_id } = model
 
-    return (
-      <Space size="small" direction="vertical" className="w-100">
-        <Typography.Text strong>Table options</Typography.Text>
-        <div>
-          <Typography.Text>Table type</Typography.Text>
-          <Select
-            className="w-100"
-            style={{ maxWidth: 'calc(220px - 30px)' }}
-            size="small"
-            options={TABLE_TYPE_OPTIONS}
-            value={type}
-            onChange={this.handleTableTypeChange}
-          />
-        </div>
-        <AssessmentProperties
-          assessmentId={assessment_id}
-          changeAssessment={this.changeAssessment}
+  return (
+    <Space size="small" direction="vertical" className="w-100">
+      <Typography.Text strong>Table options</Typography.Text>
+      <div>
+        <Typography.Text>Table type</Typography.Text>
+        <Select
+          className="w-100"
+          size="small"
+          options={TABLE_TYPE_OPTIONS}
+          value={type}
+          onChange={handleTableTypeChange}
         />
-        {this.renderTypeProps()}
-      </Space>
-    )
-  }
+      </div>
+      <AssessmentProperties
+        assessmentId={assessment_id}
+        changeAssessment={changeAssessment}
+      />
+      {renderTypeProps()}
+    </Space>
+  )
 }
 
 export default Properties

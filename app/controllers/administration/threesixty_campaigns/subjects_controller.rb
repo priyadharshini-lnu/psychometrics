@@ -133,6 +133,7 @@ module Administration
             rescore_assessment
             export_threesixty_scores
             bulk_regenerate_reports
+            bulk_download
             import_results
           ],
           {

@@ -7,7 +7,6 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
-import AppStore from '~/modules/reports/store/AppStore'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
@@ -21,25 +20,33 @@ const ALL_FACTORS = 'All Campaign Factors'
 
 class Properties extends Component {
   static propTypes = {
-    model: PropTypes.object.isRequired,
+    modules: PropTypes.array.isRequired,
+  }
+
+  updateAll = (cb) => {
+    const { modules } = this.props
+    modules.forEach((module) => {
+      cb?.(module)
+      module.update()
+    })
   }
 
   onChangeColor = (key, value) => {
-    const { model } = this.props
-    model.props[key] = value
-    model.update()
+    this.updateAll((model) => {
+      model.props[key] = value
+    })
   }
 
   setProp = (propName, e) => {
-    const { model } = this.props
-    model.props[propName] = e.currentTarget.checked
-    model.update()
+    this.updateAll((model) => {
+      model.props[propName] = e.currentTarget.checked
+    })
   }
 
   setSortedFactors = (campaignFactors) => {
-    const { model } = this.props
-    model.props.source = { campaignFactors }
-    model.update()
+    this.updateAll((model) => {
+      model.props.source = { campaignFactors }
+    })
   }
 
   collectCampaignFactors = () => {
@@ -50,68 +57,69 @@ class Properties extends Component {
 
 
   campaignFactorSelect = (selectedCampaignFactors) => {
-    const { model } = this.props
-    // add all
     if (_.find(selectedCampaignFactors, { code: ALL_FACTORS })) {
       const { campaignFactors } = this.props
       selectedCampaignFactors = [...campaignFactors]
     }
-    model.props.source = { campaignFactors: selectedCampaignFactors }
-    this.update()
+    this.updateAll((model) => {
+      model.props.source = { campaignFactors: selectedCampaignFactors }
+    })
   }
 
   openConditionModal = () => {
-    const { model } = this.props
-    const { openConditionModal } = this.props
-    openConditionModal({ module: model })
+    const { modules, openConditionModal } = this.props
+    openConditionModal({ modules })
   }
 
   changeProp = (propName, e) => {
-    const { model } = this.props
     const propValue = parseFloat(e.currentTarget.value, 10)
-    model.props[propName] = isNaN(propValue) ? null : propValue
-    model.update()
+    this.updateAll((model) => {
+      model.props[propName] = isNaN(propValue) ? null : propValue
+      model.update()
+    })
   }
 
   changeOrder = () => {
-    const { model } = this.props
-    model.props.reverseOrder = !model.props.reverseOrder
-    model.update()
+    this.updateAll((model) => {
+      model.props.reverseOrder = !model.props.reverseOrder
+      model.update()
+    })
     this.forceUpdate()
   }
 
   changeMode = (e) => {
-    const { model } = this.props
-    model.props.mode = e.currentTarget.value
-    model.update()
+    this.updateAll((model) => {
+      model.props.mode = e.currentTarget.value
+    })
   }
 
   changeStyle = (propName, e) => {
-    const { model } = this.props
-    model.props[propName] = e.currentTarget.value
-    model.update()
+    this.updateAll((model) => {
+      model.props[propName] = e.currentTarget.value
+    })
   }
 
   changePrecision = (val) => {
-    const { model } = this.props
-    model.props.precision = val
-    this.update()
+    this.updateAll((model) => {
+      model.props.precision = val
+    })
   }
 
   changeBenchmarkLabel = (e) => {
-    const { model } = this.props
-    model.props.benchmarksLabel = e.currentTarget.value
-    model.update()
+    this.updateAll((model) => {
+      model.props.benchmarksLabel = e.currentTarget.value
+    })
   }
 
   update = () => {
-    const { model } = this.props
-    model.props.group = null
-    model.update()
+    this.updateAll((model) => {
+      model.props.group = null
+    })
   }
 
   renderTableModes () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     const options = [
       { label: 'Top Factors', value: 'topFactors' },
       { label: 'Ordered Factors', value: 'orderedFactors' },
@@ -135,7 +143,8 @@ class Properties extends Component {
   }
 
   renderTopFactors () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     return (
       <Space direction="vertical">
         <div>
@@ -157,7 +166,8 @@ class Properties extends Component {
   }
 
   renderMinSelect () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     return (
       <select onChange={e => this.changeProp('minPosition', e)} value={model.props.minPosition}>
         {_.times(model.props.maxPosition, i => <option value={i + 1} key={i}>{i + 1}</option>)}
@@ -166,11 +176,10 @@ class Properties extends Component {
   }
 
   renderMaxSelect () {
-    const { model } = this.props
-    const assessment = _.find(AppStore.assessments, { id: model.assessment_id })
-    const dimensionId = assessment && assessment.dimensionId
-    if (!dimensionId) { return null }
-    let max = AppStore.factors[dimensionId].length + 1
+    const { modules, campaignFactors } = this.props
+    const model = modules[0]
+    if (!campaignFactors) { return null }
+    let max = campaignFactors.length + 1
     if (max < 6) { max = 6 }
     return (
       <select onChange={e => this.changeProp('maxPosition', e)} value={model.props.maxPosition}>
@@ -184,7 +193,8 @@ class Properties extends Component {
   }
 
   renderStyleSelect () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     const layouts = [
       { value: 'default', label: 'Default' },
       { value: 'compact', label: 'Compact' },
@@ -202,7 +212,8 @@ class Properties extends Component {
   }
 
   renderScoreDisplaySelect () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     const layouts = [
       { value: 'circular', label: 'Circular' },
       { value: 'bullet', label: 'Bullet Graph' },
@@ -220,7 +231,9 @@ class Properties extends Component {
   }
 
   renderTableOptions () {
-    const { model, model: { props: { mode } } } = this.props
+    const { modules } = this.props
+    const model = modules[0]
+    const { props: { mode } } = model
     const options = [
       { label: 'Header', prop: 'showHeader', default: false },
       {
@@ -255,16 +268,15 @@ class Properties extends Component {
   }
 
   render () {
+    const { modules } = this.props
+    const model = modules[0]
     const {
-      model, model: {
-        props: {
-          mode, tableStyle, showScore,
-          scoreDisplay = 'circular',
-          source: { campaignFactors },
-        },
+      props: {
+        mode, tableStyle, showScore,
+        scoreDisplay = 'circular',
+        source: { campaignFactors },
       },
-    } = this.props
-
+    } = model
     return (
       <div>
         <div style={{ width: '100%' }} onClick={this.openConditionModal} className="btn btn-default margin-bottom-10">
@@ -429,7 +441,7 @@ class Properties extends Component {
                   Show Score Text
                 </Checkbox>
               </div>
-              <ScoreRangeList model={model} />
+              <ScoreRangeList modules={modules} />
               <div className={styles.block}>
                 Bullet line height
                 <Slider
@@ -464,7 +476,7 @@ class Properties extends Component {
         )}
         <hr className={styles.divider} />
         <div>Font</div>
-        <PropertyFonts model={model} colors={false} />
+        <PropertyFonts modules={modules} colors={false} />
       </div>
     )
   }

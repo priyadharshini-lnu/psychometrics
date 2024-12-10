@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select } from 'antd'
+import { Select, Button } from 'antd'
 import _ from 'lodash'
 import styles from '../commonStyles.less'
 import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
@@ -23,8 +23,20 @@ const ContactSelect: React.FC<Props> = ({
       <div>{_.capitalize(type)}</div>
       {type === TO_TYPE && (
         <div>
-          <span className={styles.copy} onClick={(): void => toggleCopyField(CC_TYPE)}>{_.capitalize(CC_TYPE)}</span>
-          <span className={styles.copy} onClick={(): void => toggleCopyField(BCC_TYPE)}>{_.capitalize(BCC_TYPE)}</span>
+          <Button
+            type="link"
+            className={styles.copy}
+            onClick={(): void => toggleCopyField(CC_TYPE)}
+          >
+            {_.capitalize(CC_TYPE)}
+          </Button>
+          <Button
+            type="link"
+            className={styles.copy}
+            onClick={(): void => toggleCopyField(BCC_TYPE)}
+          >
+            {_.capitalize(BCC_TYPE)}
+          </Button>
         </div>
       )}
     </div>

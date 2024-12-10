@@ -5,7 +5,6 @@ import {
 } from 'antd'
 import { UploadOutlined, CopyOutlined, RedoOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
 import { MessageInstance } from 'antd/es/message/interface'
@@ -41,7 +40,6 @@ type Props = PropsFromRedux
 export const SettingsComponent: React.FC<Props> = ({
   uploadImage, uploadInProgress, refresh, refreshRequestInProgress,
 }) => {
-  const { campaignId } = useParams() as { campaignId: string }
   const [form] = Form.useForm()
   const stateManager = useDashboardStore()
   const {
@@ -118,36 +116,21 @@ export const SettingsComponent: React.FC<Props> = ({
                 <Switch />
               </Form.Item>
               <Form.Item
+                name="dashboardType"
+                label={I18n.t('common.column.type')}
+                getValueProps={value => ({ value: I18n.t(`administration.dashboard.dashboard_types.${value}`) })}
+              >
+                <Input disabled />
+              </Form.Item>
+              <Form.Item
                 name="name"
                 label={I18n.t('common.column.name')}
                 rules={[{ required: true }]}
               >
                 <Input name="dashboard_tab_name" />
               </Form.Item>
-              <Form.Item
-                name="datasetId"
-                label={I18n.t('administration.dashboard_form.fields.dataset_id')}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                name="reportId"
-                label={I18n.t('administration.dashboard_form.fields.report_id')}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                name="refreshInterval"
-                label={I18n.t('administration.dashboard_form.fields.refresh_interval')}
-              >
-                <Select>
-                  {[null, 15, 30, 60, 90].map(n => (
-                    <Select.Option key={n || 'None'} value={n}>
-                      {n || I18n.t('administration.dashboard_form.none')}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
+              {dashboard.dashboardType === 'powerbi' && <PowerBIFields />}
+              {dashboard.dashboardType === 'oracle_analytics' && <OracleAnalyticsFields />}
               <Form.Item name="imageUrl" label={I18n.t('administration.dashboard_form.fields.image')}>
                 <Upload
                   listType="picture"
@@ -174,9 +157,9 @@ export const SettingsComponent: React.FC<Props> = ({
           )}
         </ResourceForm>
       </Col>
+      {dashboard.dashboardType === 'powerbi' && (
       <Col sm={24} md={16} xl={10}>
-        <ViewNameInfo
-          campaignId={campaignId}
+        <AdditionalInfoForPowerBi
           canBeRefreshed={canBeRefreshed}
           handleRefresh={handleRefresh}
           refreshRequestInProgress={refreshRequestInProgress}
@@ -185,14 +168,55 @@ export const SettingsComponent: React.FC<Props> = ({
           message={message}
         />
       </Col>
+      )}
     </Row>
   )
 }
 
 export const Settings = connecter(SettingsComponent)
 
-interface ViewNameInfoProps {
-  campaignId: string
+const PowerBIFields = () => (
+  <>
+    <Form.Item
+      name="datasetId"
+      label={I18n.t('administration.dashboard_form.fields.dataset_id')}
+    >
+      <Input />
+    </Form.Item>
+    <Form.Item
+      name="reportId"
+      label={I18n.t('administration.dashboard_form.fields.report_id')}
+    >
+      <Input />
+    </Form.Item>
+    <Form.Item
+      name="refreshInterval"
+      label={I18n.t('administration.dashboard_form.fields.refresh_interval')}
+    >
+      <Select>
+        {[null, 15, 30, 60, 90].map(n => (
+          <Select.Option key={n || 'None'} value={n}>
+            {n || I18n.t('administration.dashboard_form.none')}
+          </Select.Option>
+        ))}
+      </Select>
+    </Form.Item>
+  </>
+)
+
+const OracleAnalyticsFields = () => (
+  <>
+    <Form.Item
+      name="projectPath"
+      label={I18n.t('administration.dashboard_form.fields.project_path')}
+    >
+      <Input />
+    </Form.Item>
+  </>
+)
+
+
+interface AdditionalInfoForPowerBiProps {
   canBeRefreshed: boolean
   refreshRequestInProgress: boolean
   handleRefresh: () => void
@@ -201,8 +225,8 @@ interface ViewNameInfoProps {
   workspaceId?: string | null
 }
 
-const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
-  campaignId, capacityId, workspaceId, canBeRefreshed, handleRefresh, refreshRequestInProgress, message,
+const AdditionalInfoForPowerBi: React.FC<AdditionalInfoForPowerBiProps> = ({
+  capacityId, workspaceId, canBeRefreshed, handleRefresh, refreshRequestInProgress, message,
 }) => (
   <Alert
     message={(
@@ -224,46 +248,6 @@ const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
     )}
     description={(
       <Form layout="vertical" className="clear-float">
-        <Form.Item
-          label={I18n.t('administration.dashboard.settings.datasheet_view_name')}
-          initialValue={`c_${campaignId}.datasheet`}
-          name="datasheetView"
-        >
-          <Input
-            readOnly
-            suffix={(
-              <CopyToClipboard
-                text={`c_${campaignId}_datasheet`}
-                onCopy={() => {
-                  message.info(I18n.t('common.text.copied'))
-                }}
-              >
-                <CopyOutlined />
-              </CopyToClipboard>
-            )}
-          />
-        </Form.Item>
-
-        <Form.Item
-          label={I18n.t('administration.dashboard.settings.accesssheet_view_name')}
-          initialValue={`c_${campaignId}.accesssheet`}
-          name="accesssheetView"
-        >
-          <Input
-            readOnly
-            suffix={(
-              <CopyToClipboard
-                text={`c_${campaignId}_accesssheet`}
-                onCopy={() => {
-                  message.info(I18n.t('common.text.copied'))
-                }}
-              >
-                <CopyOutlined />
-              </CopyToClipboard>
-            )}
-          />
-        </Form.Item>
-
         {capacityId && (
         <Form.Item
           label={

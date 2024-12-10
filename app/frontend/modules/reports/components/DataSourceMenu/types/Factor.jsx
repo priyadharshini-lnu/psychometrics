@@ -11,7 +11,8 @@ const ALL_FACTORS = 'All Factors'
 
 class Factor extends Component {
   getOptions () {
-    const { model, singleChoice } = this.props
+    const { modules, singleChoice } = this.props
+    const model = modules[0]
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
@@ -27,7 +28,8 @@ class Factor extends Component {
   }
 
   onChange = (factors) => {
-    const { model, onSelect } = this.props
+    const { modules, onSelect } = this.props
+    const model = modules[0]
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
@@ -36,18 +38,24 @@ class Factor extends Component {
       factors = _.map(model.filterFactors(AppStore.factors[dimensionId]),
         f => ({ id: f.id, alias: `${f.alias}` }))
     }
-    model.props.source.factors = factors
+    modules.forEach((model) => {
+      model.props.source.factors = factors
+    })
     onSelect()
   }
 
-  changeAllFactors = () => {
-    const { model, onSelect } = this.props
-    model.props.source.allFactors = !model.props.source.allFactors
+  changeAllFactors = (value) => {
+    const { modules, onSelect } = this.props
+    modules.forEach((model) => {
+      model.props.source.allFactors = value
+    })
     onSelect()
   }
 
   render () {
-    const { model, model: { type, props: { type: propType, source } }, singleChoice } = this.props
+    const { modules, singleChoice } = this.props
+    const model = modules[0]
+    const  { type, props: { type: propType, source } } = model
 
     if (type === 'Graph' && propType === 'Bubble') {
       return null
@@ -72,6 +80,7 @@ class Factor extends Component {
             getOptionValue={opt => opt.id}
             getOptionLabel={opt => opt.alias}
             autoFocus={false}
+            hideSelectedOptions={false}
             isMulti={!singleChoice}
             onChange={this.onChange}
             styles={{

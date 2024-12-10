@@ -10,8 +10,10 @@ const connecter = connect(
 )
 class CampaignFactors extends Component {
   onChange = (data) => {
-    const { model, singleChoice, onSelect } = this.props
-    model.props.source.codes = singleChoice ? [data.value] : data.map(dataObject => dataObject.value)
+    const { modules, singleChoice, onSelect } = this.props
+    modules.forEach((module) => {
+      module.props.source.codes = singleChoice ? [data.value] : data.map(dataObject => dataObject.value)
+    })
     onSelect()
   }
 
@@ -25,7 +27,7 @@ class CampaignFactors extends Component {
   }
 
   getValue () {
-    const { model, singleChoice } = this.props
+    const { modules: [model], singleChoice } = this.props
     if (singleChoice) {
       const resultingValue = _.result(model, 'props.source.codes.0')
       return {

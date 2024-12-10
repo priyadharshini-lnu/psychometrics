@@ -1,11 +1,14 @@
 import React from 'react'
 import cs from 'classnames'
-import { CloseOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
+import { CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { I18n } from '~/modules/survey/store/StoreWatchman'
 import styles from './ChatStyle.less'
 import commonStyles from '../ChatStyle.less'
 import { Question, Message as MessageInterface } from '../interfaces'
 import { MINE_TYPE } from '../constants'
+
+const { I18n: I18nTextTranslations } = window
 
 interface Props {
   message: MessageInterface
@@ -40,9 +43,14 @@ const Message: React.FC<Props> = ({
           )}
         </div>
         {isAnswer && !readOnly && (
-          <div className={commonStyles.deleteIconContainer}>
-            <CloseOutlined onClick={deleteMessage} className={commonStyles.deleteIcon} />
-          </div>
+        <Button
+          className={commonStyles.deleteIconContainer}
+          onClick={deleteMessage}
+          shape="circle"
+          size="small"
+          aria-label={I18nTextTranslations.t('frontend.aria.delete_message')}
+          icon={<CloseOutlined className={commonStyles.deleteIcon} />}
+        />
         )}
       </div>
     </div>

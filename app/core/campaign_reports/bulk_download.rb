@@ -94,7 +94,9 @@ module CampaignReports
     end
 
     def user_reports_with_pdf
-      if user_reports.nil?
+      if job_record.data['is_threesixty'] || user_reports.present?
+        user_reports.where(status: 'prepared').includes(:user, :report)
+      else
         start_date = job_record.data['start_date']
         end_date = job_record.data['end_date']
 
@@ -104,8 +106,6 @@ module CampaignReports
         UserReport.
           includes(:user, :report).
           where(id: user_report_ids)
-      else
-        user_reports.where(status: 'prepared').includes(:user, :report)
       end
     end
   end

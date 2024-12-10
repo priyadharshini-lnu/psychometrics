@@ -1,6 +1,5 @@
 import React from 'react'
 import { Checkbox, Typography, Space } from 'antd'
-
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import useUpdate from '~/hooks/useUpdate'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/StackedBar'
@@ -10,7 +9,7 @@ import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphProperty
 const { I18n } = window
 
 type Props = {
-  model: PropertiesModel
+  modules: PropertiesModel[]
 }
 
 type AxisDisplayOptions = {
@@ -27,27 +26,35 @@ const axisDisplayOptions = [
   { label: I18n.t('reports.builder.graph.properties.hideYAxisLine'), propName: 'yAxisLinesHide' },
 ]
 
-export const StackedBarProperties: React.FC<Props> = ({ model }) => {
+export const StackedBarProperties: React.FC<Props> = ({ modules }) => {
   const forceUpdate = useUpdate()
+  const model = modules[0]
   const { pointWidth } = model.props
-  const update = () => {
-    model.update()
+
+  const updateAll = (cb: (item: PropertiesModel) => void) => {
+    modules.forEach((module) => {
+      cb(module)
+      module.update()
+    })
     forceUpdate()
   }
 
   const checkboxHandler = (type: string, e: CheckboxChangeEvent) => {
-    model.props[type] = e.target.checked
-    update()
+    updateAll((item: PropertiesModel) => {
+      item.props[type] = e.target.checked
+    })
   }
 
   const changePointWidth = (value: string) => {
-    model.props.pointWidth = value
-    update()
+    updateAll((item: PropertiesModel) => {
+      item.props.pointWidth = value
+    })
   }
 
   const changeGraphicalPosition = (value: string) => {
-    model.props.graphicalPosition = value
-    update()
+    updateAll((item: PropertiesModel) => {
+      item.props.graphicalPosition = value
+    })
   }
 
   return (

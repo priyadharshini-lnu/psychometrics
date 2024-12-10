@@ -36,6 +36,7 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { CreateProjectModal } from './CreateProjectModal'
 import styles from './styles.less'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { I18n } = window
 
@@ -61,7 +62,7 @@ type Props = PropsFromRedux & TableProps
 const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const { clientId } = useParams() as { clientId: string }
   const { modal, message } = App.useApp()
-
+  const { width: windowWidth } = useWindowSize()
   const navigate = useNavigate()
 
   const {
@@ -119,11 +120,13 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
+        scroll={{ x: 'max-content' }}
         rowKey={row => row.id}
       >
         <Column
           title={I18n.t('common.column.id')}
           dataIndex="id"
+          fixed={windowWidth > 800 ? 'left' : undefined}
           key="id"
           sorter
           sortOrder={getSortOrder('id')}
@@ -229,6 +232,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           <Column
             title={I18n.t('common.column.action')}
             key="action"
+            fixed={windowWidth > 800 ? 'right' : undefined}
             render={project => (
               <ConditionalDropdown
                 menu={

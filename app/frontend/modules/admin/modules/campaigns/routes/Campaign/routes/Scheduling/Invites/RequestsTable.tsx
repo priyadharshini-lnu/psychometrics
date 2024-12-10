@@ -139,6 +139,7 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
           method: 'patch',
           updateStore: true,
         }).then(() => {
+          resource.setData(resource.data.filter(r => r.id !== id))
           message.success(I18n.t(
             'administration.assessment_center.invite_request.remove_confirm.success',
             {

@@ -17,8 +17,8 @@ export class ConditionalTextModal extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      module: _.cloneDeep(props.module),
-      skipRoundingValues: props.module.props.skipRoundingValues || false,
+      module: _.cloneDeep(props.modules[0]),
+      skipRoundingValues: props.modules[0].props.skipRoundingValues || false,
     }
   }
 
@@ -45,10 +45,13 @@ export class ConditionalTextModal extends Component {
 
   save = () => {
     const { module: newModule, skipRoundingValues } = this.state
-    const { module, close } = this.props
-    module.textConditions = newModule.textConditions
-    module.props.skipRoundingValues = skipRoundingValues
-    module.update()
+    const { modules, close } = this.props
+    modules.forEach((m) => {
+      m.textConditions = newModule.textConditions
+      m.props.skipRoundingValues = skipRoundingValues
+      m.update()
+    })
+
     close()
   }
 

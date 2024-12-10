@@ -76,7 +76,7 @@ module CampaignScoring
         campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
     end
 
-    def compute_formula(campaign_factor)
+    def compute_formula(campaign_factor) # rubocop:disable Metrics/AbcSize
       calculate_dependent_campaign_factors(campaign_factor)
 
       lua = Lua::State.new
@@ -99,6 +99,10 @@ module CampaignScoring
         'answer' => proc { |assessment_id, json_path, relationship_name = Relationship::SELF|
                       answer_from_json_path(assessment_id, json_path, relationship_name)
                     }
+      }
+      lua.user = {
+        'fixed_field_value' => proc { |field| user_fixed_field_value(field) },
+        'custom_profile_field_value' => proc { |profile_id| user_custom_profile_field_value(profile_id) }
       }
       lua.datasheet = {
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
@@ -222,5 +226,23 @@ module CampaignScoring
     def relationships
       @relationships ||= Relationship.where(type: :global)
     end
+
+    def user_fixed_field_value(field_name)
+      if PERMITTED_USER_FIELDS_IN_FORMULA.include?(field_name)
+        user.send(field_name)
+      end
+    end
+
+    def user_custom_profile_field_value(profile_id)
+      profile_question_id_and_answer_hash[profile_id.to_s]
+    end
+
+    def profile_question_id_and_answer_hash
+      @profile_question_id_and_answer_hash ||= user.profile_field_values.joins(:profile_field).to_h do |profile|
+        [profile.profile_field.id.to_s, profile.value]
+      end
+    end
+
+    PERMITTED_USER_FIELDS_IN_FORMULA = %w[first_name last_name email age gender timezone photo locale].freeze
   end
 end

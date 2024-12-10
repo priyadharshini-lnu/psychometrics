@@ -107,6 +107,12 @@ module Api
       jsonapi_render json: resource
     end
 
+    def remove_cache
+      resource.invalidate_cache
+      audit! :remove_cache, resource, payload: { assessment_id: resource.id }
+      jsonapi_render json: resource
+    end
+
     private
 
     def resource

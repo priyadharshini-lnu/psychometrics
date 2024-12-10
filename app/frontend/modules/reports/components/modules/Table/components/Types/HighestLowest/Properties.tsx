@@ -38,10 +38,11 @@ const TABLE_STYLE_OPTIONS = [
 ]
 
 interface Props {
-  model: PropertiesModel
+  modules: PropertiesModel[]
 }
 
-export const Properties: FC<Props> = ({ model }) => {
+export const Properties: FC<Props> = ({ modules }) => {
+  const model = modules[0]
   const {
     props: {
       sourceType, factorIds, questionsChoices, sections = TableSectionsType.ALL,
@@ -51,8 +52,10 @@ export const Properties: FC<Props> = ({ model }) => {
   } = model
 
   const onChange = (key: string, value: unknown) => {
-    model.props[key] = value
-    model.update()
+    modules.forEach((module) => {
+      module.props[key] = value
+      module.update()
+    })
   }
 
   return (
@@ -72,7 +75,7 @@ export const Properties: FC<Props> = ({ model }) => {
           onChange={onChange}
         />
       )}
-      <PropertyFilter model={model} />
+      <PropertyFilter modules={modules} />
       <TableSectionsSelect
         value={sections}
         onChange={value => onChange('sections', value)}

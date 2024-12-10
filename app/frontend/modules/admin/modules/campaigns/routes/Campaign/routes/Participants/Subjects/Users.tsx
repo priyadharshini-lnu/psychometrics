@@ -23,6 +23,7 @@ import ImportUsersModal from './ImportUsersModal'
 import ImportReportsAndAssessmentsModal from './ImportReportsAndAssessmentsModal'
 import { ExportUsersModal } from './ExportUsersModal'
 import ToolsDropdown from './ToolsDropdown'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const MODALS = {
   UserFormModal,
@@ -98,6 +99,7 @@ const UserList: React.FC<Props> = ({
 }) => {
   const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const { modal, message } = App.useApp()
+  const { width: windowWidth } = useWindowSize()
   useEffect(() => {
     fetch(campaignId, {
       ...tableConfig,
@@ -171,6 +173,7 @@ const UserList: React.FC<Props> = ({
               title={I18n.t('administration.campaigns.users.id')}
               key="id"
               sorter
+              fixed={windowWidth > 800 ? 'left' : undefined}
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
                 <Link to={`${id}`}>
@@ -178,7 +181,6 @@ const UserList: React.FC<Props> = ({
                 </Link>
               )}
               width={80}
-              fixed="left"
             />
             <Column
               title={I18n.t('administration.campaigns.users.is_active')}
@@ -289,6 +291,7 @@ const UserList: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
+              fixed={windowWidth > 800 ? 'right' : undefined}
               render={(user: User) => (
                 <ConditionalDropdown
                   menu={

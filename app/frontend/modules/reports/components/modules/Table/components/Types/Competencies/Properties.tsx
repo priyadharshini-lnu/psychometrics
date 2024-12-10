@@ -15,23 +15,27 @@ import FactorList from './dataSources/FactorList'
 import MilestoneList from './MilestoneList'
 
 interface Props {
-  model: Module
+  modules: Module[]
 }
 
-const Properties: FC<Props> = ({ model }) => {
+const Properties: FC<Props> = ({ modules }) => {
+  const model = modules[0]
+
   const {
     props: { sourceType },
   } = model
 
   const onChange = (key: string, value: unknown) => {
-    model.props[key] = value
-    model.update()
+    modules.forEach((module) => {
+      module.props[key] = value
+      module.update()
+    })
   }
 
   return (
     <div>
       <div>Font</div>
-      <PropertyFonts model={model} colors={false} />
+      <PropertyFonts modules={modules} colors={false} />
       <div className="mt-2">Competencies</div>
       <SourceTypeButtonGroup model={model} onChange={onChange} />
       {sourceType === 'Factor' && (
@@ -41,7 +45,7 @@ const Properties: FC<Props> = ({ model }) => {
         <QuestionList model={model} onChange={onChange} />
       )}
       <div className="mtm">
-        <PropertyFilter model={model} />
+        <PropertyFilter modules={modules} />
       </div>
       <div className={styles.block}>
         Header Colours

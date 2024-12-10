@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  Form, Layout, Typography, Input, Row, Col, Space, Button,
+  Form, Layout, Typography, Input, Row, Col, Space, Button, Alert,
 } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DirectionalArrowIcon, PageHeader as GlintPageHeader } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -31,9 +31,10 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
 
   return (
     <>
+      <title>{`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('change_password_page.title')}`}</title>
       <GlintPageHeader />
       <Layout.Content className={styles.pageContent}>
-        <Typography.Title level={3}>{I18n.t('change_password_page.title')}</Typography.Title>
+        <Typography.Title level={1} className={styles.title}>{I18n.t('change_password_page.title')}</Typography.Title>
         <Row>
           <Col xs={24} lg={12} xl={6}>
             <ResourceForm
@@ -50,13 +51,13 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                     name="currentPassword"
                     label={I18n.t('change_password_page.old_password')}
                   >
-                    <Input.Password />
+                    <Input.Password autoComplete="tte-old-password" />
                   </Form.Item>
                   <Form.Item
                     name="password"
                     label={I18n.t('change_password_page.password')}
                   >
-                    <Input.Password />
+                    <Input.Password autoComplete="tte-new-password" />
                   </Form.Item>
                   <Form.Item
                     name="passwordConfirmation"
@@ -65,10 +66,15 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                     <Input.Password />
                   </Form.Item>
                   <>
-                    <Typography.Text type="warning">
-                      <InfoCircleOutlined className={styles.infoIcon} />
-                      {I18n.t('change_password_page.warning_message')}
-                    </Typography.Text>
+                    <Alert
+                      message={(
+                        <span>
+                          <InfoCircleOutlined className={styles.infoIcon} />
+                          {I18n.t('change_password_page.warning_message')}
+                        </span>
+                      )}
+                      type="warning"
+                    />
                   </>
                   <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
                     <Button

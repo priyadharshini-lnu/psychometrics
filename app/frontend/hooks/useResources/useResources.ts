@@ -478,6 +478,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const changeSort = (column: React.Key, order: string) => {
+    const newSort = (order === 'ascend' ? '' : '-') + column
+    if (queryState?.sort === newSort) { return }
     let newUrlQuery = queryState || {}
     newUrlQuery = { ...queryState, sort: `${order === 'ascend' ? '' : '-'}${column}` }
     changeUrlQuery(newUrlQuery)
@@ -503,6 +505,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const removeFilter = (name: string) => {
+    if (!queryState?.filter?.[name]) { return }
     let newUrlQuery = queryState || {}
     const filter = queryState?.filter
     if (!filter) { return }

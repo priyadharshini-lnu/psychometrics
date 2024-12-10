@@ -11,6 +11,8 @@ module Api
         def self.attributes(attribute, _)
           proc do
             attribute[:name].filled(:string)
+            attribute[:dashboard_type].filled(:string, included_in?: ::Dashboard.dashboard_types.keys)
+            optional(:project_path).maybe(:string)
             optional(:capacity_id).maybe(:string)
             optional(:dataset_id).maybe(:string)
             optional(:report_id).maybe(:string)

@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 import {
   LeftOutlined, RightOutlined, ArrowLeftOutlined, ArrowRightOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { isRtl } from '~/utils/locales'
 

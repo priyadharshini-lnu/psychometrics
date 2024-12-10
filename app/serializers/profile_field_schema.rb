@@ -9,6 +9,7 @@ class ProfileFieldSchema < BaseSchema
       required(:half_size).filled(:bool?)
       required(:position).filled(:int?)
       required(:name).filled(:str?)
+      required(:id).filled(:int?)
       required(:question_id).filled(:int?)
       required(:question).hash do
         required(:type).filled(:str?)

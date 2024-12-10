@@ -122,6 +122,7 @@ export const Fields: React.FC<Props> = ({
         width={30}
         render={() => <DragHandle />}
       />
+      <Column title="ID" dataIndex="id" />
       <Column title="Name" dataIndex="name" />
       <Column
         title="Required"

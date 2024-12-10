@@ -48,6 +48,7 @@ import CommonCampaignFormModal from './CommonCampaignFormModal'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import { PDFPasswordModal } from './PDFPasswordModal'
 import ToolsDropdown from './ToolsDropdown'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const MODALS = {
   CommonCampaignFormModal,
@@ -98,7 +99,7 @@ const CampaignListComponent: React.FC<Props> = ({
 }) => {
   const params = useParams() as { projectId: string }
   const projectId = parseInt(params.projectId, 10)
-
+  const { width: windowWidth } = useWindowSize()
   useEffect(() => {
     fetch(projectId, tableConfig)
   }, [tableConfig])
@@ -147,11 +148,13 @@ const CampaignListComponent: React.FC<Props> = ({
             dataSource={list}
             onChange={onTableChange}
             pagination={false}
+            scroll={{ x: 'max-content' }}
             loading={isLoading}
           >
             <Column
               title={I18n.t('administration.campaigns.listing.id')}
               dataIndex="id"
+              fixed={windowWidth > 800 ? 'left' : undefined}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
@@ -220,6 +223,7 @@ const CampaignListComponent: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
+              fixed={windowWidth > 800 ? 'right' : undefined}
               render={campaign => (
                 <ConditionalDropdown
                   menu={

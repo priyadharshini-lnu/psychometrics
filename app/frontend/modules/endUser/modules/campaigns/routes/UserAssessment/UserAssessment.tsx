@@ -14,7 +14,6 @@ import store from '~/modules/endUser/store'
 import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
-
 import {
   fetchAssessment, validateSession, setInvalidated,
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
@@ -92,6 +91,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const { isMobile } = useContext(MediaQueryContext)
   const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
+
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
 
   const needsProctoring = proctoringEnabled && !prework && !isProctored()
@@ -112,9 +112,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     } return I18n.t('campaign.timer.notification_minutes', { minutes })
   }
 
+  const handleBackToAssessmentList = () => {
+    window.location.href = `/campaigns/${campaignId}`
+  }
+
   return (
 
     <>
+      <title>{ assessment.name || '' }</title>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
@@ -177,19 +182,25 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             <>
               <PageHeader
                 className={styles.campaignHeader}
-                onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
-                backIcon={enableBackButton
-                && (
-                <Button size="small" type="text" ghost aria-label={I18n.t('frontend.aria.back_to_tasks')}>
-                  <DirectionalNavigateBackIcon className={styles.backIcon} />
-                </Button>
-                )
-              }
                 ghost={false}
                 title={(
-                  <div className={styles.campaignDropdown}>
-                    {assessment.name}
-                  </div>
+                  <Space>
+                    {enableBackButton
+                      && (
+                      <Button
+                        onClick={handleBackToAssessmentList}
+                        size="small"
+                        type="text"
+                        ghost
+                        aria-label={I18n.t('frontend.aria.back_to_tasks')}
+                      >
+                        <DirectionalNavigateBackIcon className={styles.backIcon} />
+                      </Button>
+                      )}
+                    <h1 className={styles.campaignDropdown}>
+                      {assessment.name}
+                    </h1>
+                  </Space>
               )}
                 extra={type !== 'preview_block' && enableProgress && started && (
                 <Progress

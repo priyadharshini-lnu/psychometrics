@@ -122,9 +122,6 @@ gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
 gem 'browser', '~> 5.3.1'
-gem 'carrierwave', '~> 1.3.2'
-gem 'carrierwave-base64', '~> 2.5.3'
-gem 'carrierwave_direct', '~> 2.1.0'
 gem 'fog-aws', '~> 3.5.2'
 gem 'image_processing', '~> 1.2'
 gem 'inky-rb', '~> 1.4.2.1', require: 'inky'
@@ -145,6 +142,8 @@ gem 'mobility', '~> 1.2.9'
 gem 'reform-rails', '~> 0.2.3'
 gem 'validates_timeliness', '7.0.0.beta2' # TODO: upgrade when released non-beta
 gem 'virtus', '~> 1.0.5'
+
+gem 'csv-safe'
 
 # SOAP client
 gem 'savon', '~> 2.12.1'

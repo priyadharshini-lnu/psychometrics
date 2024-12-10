@@ -1,5 +1,5 @@
+import { useCallback } from 'react'
 import _ from 'lodash'
-import { Component } from 'react'
 import { Button, Space } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import panelStyles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
@@ -11,152 +11,155 @@ import clearAfterAssessmentChange from '~/modules/reports/components/modules/Com
 import styles from './PropStyles.less'
 import connect from '../connect'
 
-class Properties extends Component {
-  changeBg = (color) => {
-    const { model } = this.props
-    model.props.style.backgroundColor = color
-    model.update()
-  }
+const Properties = ({ openConditionalText, modules }) => {
+  const { style } = modules[0].props
+  const { assessment_id } = modules[0]
 
-  changeBorder = (color) => {
-    const { model } = this.props
-    model.props.style.borderColor = color
-    model.update()
-  }
+  const {
+    backgroundColor, borderColor, borderRadius, shadow, offsetX, offsetY,
+  } = style
 
-  complete = () => {
-    const { model } = this.props
-    model.update()
-  }
+  const changeStyle = useCallback(
+    (property, value) => {
+      modules.forEach((model) => {
+        model.props.style[property] = value
+        model.update()
+      })
+    },
+    [modules],
+  )
 
-  changeBorderRadius = (val) => {
-    const { model } = this.props
-    model.props.style.borderRadius = val
-    model.update()
-  }
+  const changeBg = useCallback(
+    color => changeStyle('backgroundColor', color),
+    [changeStyle],
+  )
 
-  changeShadow = (val) => {
-    const { model } = this.props
-    model.props.style.shadow = val
-    model.update()
-  }
+  const changeBorder = useCallback(
+    color => changeStyle('borderColor', color),
+    [changeStyle],
+  )
 
-  changeX = (val) => {
-    const { model } = this.props
-    model.props.style.offsetX = val
-    model.update()
-  }
+  const changeBorderRadius = useCallback(
+    val => changeStyle('borderRadius', val),
+    [changeStyle],
+  )
 
-  changeY = (val) => {
-    const { model } = this.props
-    model.props.style.offsetY = val
-    model.update()
-  }
+  const changeShadow = useCallback(
+    val => changeStyle('shadow', val),
+    [changeStyle],
+  )
 
-  changeShapeType = (obj) => {
-    const { model } = this.props
-    model.props.shapeType = obj.value
-    model.update()
-  }
+  const changeX = useCallback(
+    val => changeStyle('offsetX', val),
+    [changeStyle],
+  )
 
-  openConditionModal = () => {
-    const { model, openConditionalText } = this.props
-    openConditionalText({ module: model })
-  }
+  const changeY = useCallback(
+    val => changeStyle('offsetY', val),
+    [changeStyle],
+  )
 
-  changeAssessment = (assessmentId) => {
-    const { model } = this.props
-    model.assessment_id = assessmentId
-    clearAfterAssessmentChange(model)
-    model.update()
-  }
+  const changeAssessment = useCallback(
+    (assessmentId) => {
+      modules.forEach((model) => {
+        model.assessment_id = assessmentId
+        clearAfterAssessmentChange(model)
+        model.update()
+      })
+    },
+    [modules],
+  )
 
-  removeStyle = (name) => {
-    const { model } = this.props
-    model.props.style = _.omit(model.props.style, name)
-    model.update()
-  }
+  const openConditionModal = useCallback(() => {
+    openConditionalText({ modules })
+  }, [openConditionalText, modules])
 
-  render () {
-    const { model } = this.props
-    const {
-      borderRadius, backgroundColor, borderColor, shadow, offsetX, offsetY,
-    } = model.props.style
+  const removeStyle = useCallback(
+    (name) => {
+      modules.forEach((model) => {
+        model.props.style = _.omit(model.props.style, name)
+        model.update()
+      })
+    },
+    [modules],
+  )
 
-    return (
-      <div>
-        <div className={panelStyles.title}>Shape Options</div>
-        <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />
-        <hr className={panelStyles.divider} />
-        <hr className={styles.divider} />
-        <div className="margin-top-10 margin-bottom-10">
-          <div
-            style={{ width: '100%' }}
-            onClick={this.openConditionModal}
-            className="btn btn-default"
-          >
-            Manage style conditions
-          </div>
+  return (
+    <div>
+      <div className={panelStyles.title}>Shape Options</div>
+      <AssessmentProperties
+        assessmentId={assessment_id}
+        changeAssessment={changeAssessment}
+      />
+      <hr className={panelStyles.divider} />
+      <hr className={styles.divider} />
+      <div className="margin-top-10 margin-bottom-10">
+        <div
+          style={{ width: '100%' }}
+          onClick={openConditionModal}
+          className="btn btn-default"
+        >
+          Manage style conditions
         </div>
-        <hr className={styles.divider} />
-        <div className={styles.block} style={{ position: 'relative' }}>
-          Background Color
-          <Space.Compact block className={styles.flexCenter}>
-            <ColorPicker
-              value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
-              onChange={this.changeBg}
-            />
-            {backgroundColor && (
-              <Button
-                onClick={() => this.removeStyle('backgroundColor')}
-                size="small"
-                type="link"
-                danger
-                icon={<DeleteOutlined />}
-              />
-            )}
-          </Space.Compact>
-        </div>
-        <div className={styles.block} style={{ position: 'relative' }}>
-          Border Color
-          <Space.Compact block className={styles.flexCenter}>
-            <ColorPicker
-              value={_.isObject(borderColor) ? rgba2hex(borderColor) : borderColor}
-              onChange={this.changeBorder}
-            />
-            {borderColor && (
-              <Button
-                onClick={() => this.removeStyle('borderColor')}
-                size="small"
-                type="link"
-                danger
-                icon={<DeleteOutlined />}
-              />
-            )}
-          </Space.Compact>
-        </div>
-        <hr className={panelStyles.divider} />
-        <div className={styles.block}>
-          Rounded Corners
-          <ChoicesInput value={borderRadius} onChange={this.changeBorderRadius} maxValue={1000} />
-        </div>
-        <hr className={panelStyles.divider} />
-        <div className={styles.block}>
-          Drop Shadow
-          <ChoicesInput value={shadow} onChange={this.changeShadow} maxValue={1000} />
-        </div>
-        <div className={styles.block}>
-          Offset X
-          <ChoicesInput value={offsetX} onChange={this.changeX} maxValue={1000} />
-        </div>
-        <div className={styles.block}>
-          Offset Y
-          <ChoicesInput value={offsetY} onChange={this.changeY} maxValue={1000} />
-        </div>
-        <hr className={panelStyles.divider} />
       </div>
-    )
-  }
+      <hr className={styles.divider} />
+      <div className={styles.block} style={{ position: 'relative' }}>
+        Background Color
+        <Space.Compact block className={styles.flexCenter}>
+          <ColorPicker
+            value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
+            onChange={changeBg}
+          />
+          {backgroundColor && (
+            <Button
+              onClick={() => removeStyle('backgroundColor')}
+              size="small"
+              type="link"
+              danger
+              icon={<DeleteOutlined />}
+            />
+          )}
+        </Space.Compact>
+      </div>
+      <div className={styles.block} style={{ position: 'relative' }}>
+        Border Color
+        <Space.Compact block className={styles.flexCenter}>
+          <ColorPicker
+            value={_.isObject(borderColor) ? rgba2hex(borderColor) : borderColor}
+            onChange={changeBorder}
+          />
+          {borderColor && (
+            <Button
+              onClick={() => removeStyle('borderColor')}
+              size="small"
+              type="link"
+              danger
+              icon={<DeleteOutlined />}
+            />
+          )}
+        </Space.Compact>
+      </div>
+      <hr className={panelStyles.divider} />
+      <div className={styles.block}>
+        Rounded Corners
+        <ChoicesInput value={borderRadius} onChange={changeBorderRadius} maxValue={1000} />
+      </div>
+      <hr className={panelStyles.divider} />
+      <div className={styles.block}>
+        Drop Shadow
+        <ChoicesInput value={shadow} onChange={changeShadow} maxValue={1000} />
+      </div>
+      <div className={styles.block}>
+        Offset X
+        <ChoicesInput value={offsetX} onChange={changeX} maxValue={1000} />
+      </div>
+      <div className={styles.block}>
+        Offset Y
+        <ChoicesInput value={offsetY} onChange={changeY} maxValue={1000} />
+      </div>
+      <hr className={panelStyles.divider} />
+    </div>
+  )
 }
 
 export default connect(Properties)

@@ -681,4 +681,39 @@ describe CampaignScoring::Calculate do
       )
     end
   end
+
+  describe 'lua.user configuration' do
+    let!(:user_profile) { create(:user_profile, user: user, age: 30, gender: 'male', locale: 'en') }
+    let(:question) { create(:question) }
+    let(:profile_field) do
+      create(:profile_field, question_id: question.id, profile_setting: campaign.project.profile_setting)
+    end
+
+    it 'calls fixed_field_value on user' do
+      first_name_cf = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', output_type: 'string',
+        formula: "return user.fixed_field_value('first_name')"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[first_name_cf].value).to eq(user.first_name)
+    end
+
+    it 'calls custom_profile_field_value on user' do
+      create(:profile_field_value, user_profile: user_profile, profile_field: profile_field, numeric_value: nil,
+              string_value: 'Developer')
+
+      user_role_cf = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', output_type: 'string',
+        formula:  "return user.custom_profile_field_value(#{profile_field.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[user_role_cf].value).to eq('Developer')
+    end
+  end
 end

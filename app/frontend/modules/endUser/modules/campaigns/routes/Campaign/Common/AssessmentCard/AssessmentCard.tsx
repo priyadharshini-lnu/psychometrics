@@ -37,7 +37,7 @@ export const AssessmentCard: React.FC<Props> = ({
   workshopAttended,
 }) => {
   const {
-    status, assessmentIconUrl, assessmentName, completionPercent,
+    status, assessmentIconUrl, assessmentName, completionPercent, completionReason,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
     requireScheduling, assessmentCategory,
   } = userAssessment
@@ -51,6 +51,7 @@ export const AssessmentCard: React.FC<Props> = ({
   )
   const navigate = useNavigate()
   const isWorkshopActivity = userAssessment.workshopActivity
+  const titleId = `assessment-card-title-${userAssessment.id}`
 
   let disableActionButton = disabled
   if (isWorkshopActivity) {
@@ -82,7 +83,7 @@ export const AssessmentCard: React.FC<Props> = ({
 
   const iconUrl = assessmentIconUrl
   const assessmentIcon = iconUrl ? (
-    <Avatar src={iconUrl} />
+    <Avatar src={iconUrl} alt={assessmentName} />
   ) : (
     <Avatar
       style={{ backgroundColor: token.colorPrimary }}
@@ -91,7 +92,9 @@ export const AssessmentCard: React.FC<Props> = ({
     </Avatar>
   )
 
-  if (completionPercent === 100) {
+  if (completionReason && completionReason === 'time_out_offline') {
+    taskStatus = 'timed_out'
+  } else if (completionPercent === 100) {
     taskStatus = 'completed'
   }
 
@@ -102,7 +105,7 @@ export const AssessmentCard: React.FC<Props> = ({
       <Col>{assessmentIcon}</Col>
       <Col className={styles.assessmentLabel}>
         <span>
-          <TruncatedTitle title={assessmentName} />
+          <TruncatedTitle id={titleId} title={assessmentName} />
         </span>
       </Col>
     </Row>
@@ -135,10 +138,11 @@ export const AssessmentCard: React.FC<Props> = ({
         status={statusElement}
         showStatusAtTop={view === 'list'}
         title={titleElement}
+        titleId={titleId}
         progressPercentage={assessmentCategory === 'meeting' ? undefined : completionPercent || 0}
         progressLabelAria={I18n.t('frontend.aria.task_progress_label')}
         buttonText={assessmentCategory === 'meeting' ? null : buttonTextData[status]}
-        buttonAriaDescription={I18n.t('frontend.aria.task_btn_description', { assessmentName })}
+        buttonId={`assessment-card-btn-${userAssessment.id}`}
         actionDisabled={disableActionButton}
         actionLoading={loading}
         actionDisabledText={actionDisabledText}

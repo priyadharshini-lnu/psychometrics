@@ -7,8 +7,11 @@ module Api
     before_action :set_resource
 
     def update
-      @settings.update!(design_params)
-      head :no_content
+      if @settings.update(design_params)
+        head :no_content
+      else
+        render json: { errors: @settings.errors }, status: :unprocessable_entity
+      end
     end
 
     def set_resource

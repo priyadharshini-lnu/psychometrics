@@ -3,11 +3,11 @@ import { useContext, useState } from 'react'
 import {
   Table, Dropdown, Button, Row, Popconfirm, Card, Typography, Space, MenuProps,
 } from 'antd'
+import { useParams } from 'react-router-dom'
 import {
   DownOutlined, CheckOutlined, ReloadOutlined, DeleteOutlined, PlusOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
-import { useParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
 import conditionPresenter from '~/presenters/condition'

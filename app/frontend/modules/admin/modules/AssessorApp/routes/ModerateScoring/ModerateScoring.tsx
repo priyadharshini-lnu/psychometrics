@@ -38,12 +38,13 @@ const items = [
 
 const connecter = connect((state: RootState) => ({
   assessorResult: getLeadAssessorResult(state.assessors.scoreModerate),
+  canModerateScore: state.assessors.scoreModerate.canModerateScore,
 }), {
 })
 
 interface Props extends ConnectedProps<typeof connecter> {}
 
-export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
+export const ModerateScoringComponent: FC<Props> = ({ assessorResult, canModerateScore }) => {
   const [tab, setTab] = useState<string>()
   const [refreshTab, setRefreshTab] = useState(false)
 
@@ -65,7 +66,6 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
       <Button type="text" onClick={handleCloseTab}><CloseOutlined /></Button>
     </div>
   )
-
   return (
     <div>
       <div className={styles.header}>
@@ -81,8 +81,8 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
       </div>
       <div className={styles.main}>
         <div className={styles.evaluation}>
-          <ScoringTable onSave={handleSave} />
-          <Evaluation />
+          <ScoringTable onSave={handleSave} readOnly={!canModerateScore} />
+          <Evaluation readOnly={!canModerateScore} />
         </div>
         {tab && (
           <>

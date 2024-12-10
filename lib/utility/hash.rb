@@ -26,5 +26,31 @@ module Utility
       end
       hash
     end
+
+    def self.sanitize_nested_hash(props, key = nil)
+      case props
+        when ActionController::Parameters
+          sanitize_nested_hash(props.to_unsafe_h)
+        when ::Hash
+          props.each_with_object({}) do |(param_key, value), sanitized_hash|
+            sanitized_hash[param_key] = sanitize_nested_hash(value, param_key)
+          end
+        when ::Array
+          props.map { |value| sanitize_nested_hash(value, key) }
+        when ::String
+          sanitize_field(key, props)
+        else
+          props
+      end
+    end
+
+    def self.sanitize_field(key, value)
+      allowed_tags = []
+      if key == 'questionText'
+        Utility::SanitizeHtml.process(value)
+      else
+        ActionController::Base.helpers.sanitize(value, tags: allowed_tags, attributes: [])
+      end
+    end
   end
 end

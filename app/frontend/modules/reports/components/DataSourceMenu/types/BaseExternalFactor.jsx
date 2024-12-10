@@ -5,8 +5,10 @@ import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
 class BaseExternalFactor extends Component {
   onChange = (data) => {
-    const { model, onSelect, singleChoice } = this.props
-    model.props.source.factors = singleChoice ? data && [data.id] : data && data.map(f => f.id)
+    const { modules, onSelect, singleChoice } = this.props
+    modules.forEach((module) => {
+      module.props.source.factors = singleChoice ? data && [data.id] : data && data.map(f => f.id)
+    })
     onSelect()
   }
 
@@ -16,7 +18,7 @@ class BaseExternalFactor extends Component {
   }
 
   render () {
-    const { model, singleChoice } = this.props
+    const { modules: [model], singleChoice } = this.props
     const options = this.getOptions()
     const values = _.result(model, 'props.source.factors') || []
     const value = singleChoice ? { id: values[0] } : values.map(f => ({ id: f }))

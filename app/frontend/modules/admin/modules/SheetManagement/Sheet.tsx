@@ -13,10 +13,12 @@ import {
   Empty,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-
+import { FixedType } from 'rc-table/lib/interface'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
-import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
-
+import {
+  DrawerModes,
+  ParentResourceType,
+} from '~/modules/admin/modules/SheetManagement/interfaces'
 import {
   get,
   fetch,
@@ -32,10 +34,6 @@ import {
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
-import {
-  DrawerModes,
-  ParentResourceType,
-} from '~/modules/admin/modules/SheetManagement/interfaces'
 
 import { COLUMN_ID_EMAIL } from '~/modules/admin/modules/SheetManagement/constants'
 import settings from '~/modules/admin/settings'
@@ -50,6 +48,7 @@ import { ImportSheetModal } from '~/modules/admin/modules/SheetManagement/compon
 import { useDeepCompareEffect } from '~/hooks/useDeepCompareEffect'
 import { CountDisplay } from '~/components/CountDisplay'
 import { isRequestInProgress } from '~/core/request'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { I18n } = window
 
@@ -99,9 +98,9 @@ const SheetComponent: FC<Props> = ({
   sheetType = SheetType.Datasheet,
 }) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([])
-
   const [activeDrawerIs, setDrawerTo] = useState<DrawerModes>(DrawerModes.None)
   const [currentSheetRowId, setCurrentSheetId] = useState('')
+  const { width: windowWidth } = useWindowSize()
   const allColumns = useMemo(
     () => columnDefinitions
       .map((filteredColumn) => {
@@ -121,15 +120,31 @@ const SheetComponent: FC<Props> = ({
           }
         }
         return {
-          title: toReadableString(filteredColumn.name || ''),
+          title: filteredColumn.name || '',
           dataIndex: filteredColumn.name || '',
         }
       }),
     [columnDefinitions],
   )
 
+  const getColBehaviour = (index: number, length: number): FixedType| undefined => {
+    if (windowWidth > 800 && (index === 0 || index === 1)) {
+      return 'left'
+    }
+    if (index === length - 1 && windowWidth > 800) {
+      return 'right'
+    }
+    return undefined
+  }
+
   const visibleColumnsDefinition = useMemo(
-    () => allColumns.filter(originalColumn => visibleColumns.includes(originalColumn.dataIndex)),
+    () => {
+      const visCols = allColumns.filter(originalColumn => visibleColumns.includes(originalColumn.dataIndex))
+      return visCols.map((originalColumn, index) => ({
+        ...originalColumn,
+        fixed: getColBehaviour(index, visCols.length),
+      }))
+    },
     [columnDefinitions],
   )
 
@@ -205,6 +220,7 @@ const SheetComponent: FC<Props> = ({
               columns={visibleColumnsDefinition}
               dataSource={list}
               rowKey={row => row.id}
+              scroll={{ x: 'max-content' }}
               pagination={false}
               rowSelection={{
                 selectedRowKeys,

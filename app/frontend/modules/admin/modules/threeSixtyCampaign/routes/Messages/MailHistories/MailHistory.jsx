@@ -9,6 +9,7 @@ import { STATUSES } from '~/modules/admin/constants/mailHistory'
 import styles from './styles.less'
 import Pagination from '../../../components/Pagination'
 import EmailScheduleModal from '../EmailList/EmailScheduleModal'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 export default function MailHistory ({
   fetch,
@@ -18,6 +19,7 @@ export default function MailHistory ({
   mailHistories: { list, total },
 }) {
   const { campaignId } = useParams()
+  const { width: windowWidth } = useWindowSize()
   useEffect(() => {
     fetch(campaignId, page)
   }, [page])
@@ -27,6 +29,7 @@ export default function MailHistory ({
   const columns = [
     {
       title: 'Status',
+      fixed: windowWidth > 800 ? 'left' : undefined,
       dataIndex: 'status',
       key: 'status',
       render: (text) => {
@@ -63,6 +66,7 @@ export default function MailHistory ({
     },
     {
       title: 'Actions',
+      fixed: windowWidth > 800 ? 'right' : undefined,
       key: 'actions',
       render: (_, record) => (
         <ActionMenu
@@ -78,7 +82,13 @@ export default function MailHistory ({
 
   return (
     <div className="mtl">
-      <Table rowKey={record => record.id} dataSource={list} columns={columns} pagination={false} />
+      <Table
+        rowKey={record => record.id}
+        dataSource={list}
+        columns={columns}
+        pagination={false}
+        scroll={{ x: 'max-content' }}
+      />
       <div className="pm">
         <Pagination
           total={total}

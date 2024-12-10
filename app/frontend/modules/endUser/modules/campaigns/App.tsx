@@ -12,14 +12,13 @@ import { MAX_PAGE_LOAD_WAIT_TIME } from '~/constants/time'
 import { GlintProvider, withLoadingSpinner, DefaultAntThemeWrapper } from '~/glint'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 import routes from './routes'
-import './styles.less'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import '~/styles/common.less'
 import RouteList from '~/components/RouteList'
 
 const { antdLocale, I18n } = window
 const { useToken } = theme
-const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS } = constants
+const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS, DARK_GREY } = constants
 const px2rem = px2remTransformer({
   rootValue: 16,
 })
@@ -58,6 +57,7 @@ function App () {
             colorInfo: design.info_color || token.colorInfo,
             borderRadius: DEFAULT_BORDER_RADIUS,
             colorLink: primaryColor,
+            colorBorder: DARK_GREY,
           },
           components: {
             Progress: {

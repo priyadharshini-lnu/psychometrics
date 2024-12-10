@@ -19,16 +19,20 @@ export const Threesixty = ({
     navigate(`/threesixty_campaigns/${campaign.id}`)
   }
 
+  const titleId = `360camp-card-title-${campaign.id}`
+
   return (
     <Col lg={12} xs={24} sm={24} className={styles.campaignCard}>
       <DetailsCard
-        title={<TruncatedTitle title={campaign.assessmentName} />}
+        title={<TruncatedTitle id={titleId} title={campaign.assessmentName} />}
+        titleId={titleId}
         subtitle={
           <StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} scheduledForFuture={scheduledForFuture} />
         }
+        progressLabelAria={I18n.t('frontend.aria.task_progress_label')}
         progressPercentage={totalProgress}
         buttonText={I18n.t('campaign.details')}
-        buttonAriaDescription={I18n.t('frontend.aria.campaign_name_description', { campaignName: campaign.name })}
+        buttonId={`360-camp-card-btn-${campaign.id}`}
         onButtonClick={handleClick}
         actionDisabled={campaignDisabled}
       />

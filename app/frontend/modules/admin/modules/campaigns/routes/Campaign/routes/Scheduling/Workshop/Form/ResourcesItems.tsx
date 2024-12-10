@@ -13,11 +13,12 @@ const fieldLayout = {
 const { I18n } = window
 
 interface Props {
+  fieldName?: number
   videoCallTypeValue?: number
   showMeetigOption?: boolean
 }
 
-export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetigOption }) => {
+export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetigOption, fieldName }) => {
   const [videoCallType, setVideoCallType] = useState<number>(videoCallTypeValue || 0)
 
   return (
@@ -27,7 +28,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
             {...fieldLayout}
-            name="video_call_type"
+            name={fieldName !== undefined ? [fieldName, 'video_call_type'] : 'video_call_type'}
             rules={[{ required: true }]}
           >
             <Radio.Group onChange={e => setVideoCallType(e.target.value)}>
@@ -61,7 +62,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
       )}
       <Title level={5}>Resources</Title>
       <Form.List
-        name="workshop_resources"
+        name={fieldName !== undefined ? [fieldName, 'workshop_resources'] : 'workshop_resources'}
         rules={[{
           validator (_, resources) {
             const valid = resources.every((resource) => {

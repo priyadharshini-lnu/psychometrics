@@ -5,7 +5,7 @@ import cs from 'classnames'
 import { MediaQueryContext } from '~/glint'
 import styles from './styles.less'
 
-const { Title, Text } = Typography
+const { Text } = Typography
 
 type ProgressStatusProps = {
   statusText: string
@@ -20,7 +20,7 @@ export const ProgressStatus: FC<ProgressStatusProps> = ({
   const { isMobile, isTablet } = useContext(MediaQueryContext)
 
   return (
-    <Row gutter={[16, 0]} wrap={isMobile || isTablet}>
+    <Row gutter={[8, 0]} wrap={isMobile || isTablet}>
       {!isMobile && (
       <Col span={6} className={cs(styles[theme], styles.iconColumn)}>
         <StatusIcon className={styles.statusIcon} />
@@ -31,9 +31,9 @@ export const ProgressStatus: FC<ProgressStatusProps> = ({
           <Text className={styles[theme]}>{statusText}</Text>
         </Row>
         <Row>
-          <Title level={5} className={cs(styles[theme], styles.statusCount)}>
+          <Text className={cs(styles[theme], styles.statusCount)}>
             {count}
-          </Title>
+          </Text>
         </Row>
       </Col>
     </Row>

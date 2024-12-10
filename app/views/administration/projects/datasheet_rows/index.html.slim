@@ -1,6 +1,6 @@
 div#datasheet-management-container
 
-javascript:
+javascript [nonce=content_security_policy_nonce]:
   window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
 
 = javascript_packs_with_chunks_tag 'entrypoints/admin/datasheet_management.jsx'

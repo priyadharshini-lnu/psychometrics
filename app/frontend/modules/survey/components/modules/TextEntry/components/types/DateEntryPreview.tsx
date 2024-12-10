@@ -3,6 +3,7 @@ import { DatePicker } from 'antd'
 import dayjs from '~/utils/dayjs'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
+import { CalendarOutlined, CloseCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { getIn } from '~/utils/immutable'
 import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
@@ -35,7 +36,7 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
 
   return (
     <DatePicker
-      allowClear
+      allowClear={{ clearIcon: <CloseCircleFilled className="grey-text" /> }}
       disabled={readOnly}
       format={dateFormat || DATE_FORMAT_OPTIONS[0].value}
       picker={pickerMode}
@@ -43,6 +44,8 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
       onChange={handleAnswerChange}
       aria-invalid={!!errors.length}
       aria-describedby={`error-for-question-${questionId}`}
+      aria-labelledby={`question-text-${model.id}`}
+      suffixIcon={<CalendarOutlined className="grey-text" />}
     />
   )
 }

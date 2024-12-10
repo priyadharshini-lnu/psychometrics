@@ -80,7 +80,7 @@ module Users
     # Tries auth by JWT token
     #
     def authenticate_by_jwt
-      @user = JwtAuthenticator.authenticate(params[JWT_KEY], project)
+      @user = JwtAuthenticator.get_user_by_client_jwt(params[JWT_KEY], project)
     end
 
     # Builds an url for redirection with status

@@ -1,5 +1,16 @@
 ---
 ar:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: جميع الردود
+      numeric_comparator:
+        enter_value: أدخل القيمة
+        select_data: حدد البيانات
+      scoring:
+        select_comparison: اختر نوع المقارنة
+        select_factors: عوامل الاختيار
+        select_operation: حدد العملية
   activerecord:
     attributes:
       membership:
@@ -497,7 +508,9 @@ ar:
       statuses:
         cancelled: ألغيت
         requested_cancellation: لقد تم طلب الإلغاء
+        requested_cancellation_rejected: لقد تم رفض طلب الإلغاء
         requested_rescheduling: لقد تم طلب إعادة الجدولة
+        requested_rescheduling_rejected: لقد تم رفض طلب إعادة الجدولة
     'yes': نعم
   mailer:
     magic_link:
