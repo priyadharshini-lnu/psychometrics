@@ -129,7 +129,7 @@ ar:
     password: كلمة المرور
     password_confirmation: تأكيد كلمة المرور
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
-    password_placeholder: أدخل كلمة مرور جديدة
+    password_placeholder: أدخل كلمة المرور
     registration:
       description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
