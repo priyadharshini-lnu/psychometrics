@@ -39,7 +39,8 @@ export class Randomization extends Component {
 
   save = () => {
     const {
-      entityName, model, close, updateBlockProps, enableSingleQuestionPage, toggleSingleQuestionPage,
+      entityName, model, close, updateBlockProps, enableSingleQuestionPage,
+      toggleSingleQuestionPage, automaticPageBreak, builder,
     } = this.props
     const { type, questions, perPage } = this.state
     if (enableSingleQuestionPage && type === 'ByFactors' && perPage && perPage > 1) {
@@ -47,6 +48,11 @@ export class Randomization extends Component {
     }
     if (type === 'Some' && !questions) {
       NotificationDispatcher.notify({ level: 'error', message: 'You must enter a value' })
+    }
+    if (type === 'page') {
+      model.props.randomization = this.state
+      automaticPageBreak(model, builder)
+      close()
     } else {
       if (entityName === 'choice') {
         model.props.randomization = this.state
@@ -150,6 +156,28 @@ export class Randomization extends Component {
               per page
             </label>
           )}
+          <label className={styles.inputLabel}>
+            <input
+              checked={type === 'page'}
+              type="radio"
+              value="page"
+              onChange={this.handleChangeType}
+            />
+            {' '}
+            Select
+            <input
+              value={type === 'page' ? questions : undefined}
+              onChange={this.handleChangeQuestions}
+              className={styles.questionInput}
+              disabled={type !== 'page'}
+            />
+            {entityName}
+            s
+            {' '}
+            per pages
+          </label>
+
+
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>

@@ -54,15 +54,32 @@ const InitPages = {
         }
 
         return questions
-      }, [])
+      },
+      [])
 
-      if (questions.length) {
+      if (b.props?.randomization.type === 'page') {
+        const ques = b.props.randomization?.questions
+        if (questions.length) {
+          const questionChunks = _.chunk(questions, ques)
+          pages[symbolId] = []
+          questionChunks.forEach((chunk) => {
+            pages[symbolId] = [
+              ...pages[symbolId],
+              { questions: chunk, blockId: b.id },
+            ]
+          })
+        }
+      }
+
+      if (questions.length && b.props?.randomization.type !== 'page') {
         const attrs = {
-          questions, blockId: b.id,
+          questions,
+          blockId: b.id,
         }
 
         pages[symbolId] = [...pages[symbolId], attrs]
       }
+
       if (b.props && b.props.randomization) {
         pages[symbolId] = RandomizeBlockQuestions.run(
           b.props.randomization,
@@ -72,7 +89,8 @@ const InitPages = {
         )
       }
       return { ...pages }
-    }, {})
+    },
+    {})
   },
 }
 

@@ -6,7 +6,7 @@ import {
 } from '~/modules/survey/core/builder/assessment/block/actions'
 import { setFirstBlockContentOffset } from '~/modules/survey/core/temp/propertyPanel'
 import {
-  unselectQuestion, moveBlockDown, moveBlockUp, automaticPageBreak,
+  unselectQuestion, moveBlockDown, moveBlockUp,
 } from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
@@ -21,7 +21,6 @@ export default connect(
     removeBlock,
     addQuestion,
     moveBlockDown,
-    automaticPageBreak,
     moveBlockUp,
     cloneBlock,
     renameBlock,

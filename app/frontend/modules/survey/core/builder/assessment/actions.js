@@ -12,7 +12,6 @@ export const ENABLE = 'survey/assessment/ENABLE'
 export const DISABLE = 'survey/assessment/DISABLE'
 export const EMPTY_TRASH = 'survey/assessment/EMPTY_TRASH'
 export const MOVE_BLOCK_DOWN = 'survey/assessment/MOVE_BLOCK_DOWN'
-export const AUTOMATIC_PAGE_BREAK = 'survey/assessment/AUTOMATIC_PAGE_BREAK'
 export const MOVE_BLOCK_UP = 'survey/assessment/MOVE_BLOCK_UP'
 export const ADD_NORM_RULE = 'survey/assessment/ADD_NORM_RULE'
 export const REMOVE_NORM_RULE = 'survey/assessment/REMOVE_NORM_RULE'
@@ -55,9 +54,6 @@ export const addNormRule = rule => ({ type: ADD_NORM_RULE, rule })
 export const removeNormRule = index => ({ type: REMOVE_NORM_RULE, index })
 export const changeDefaultNorm = id => ({ type: CHANGE_DEFAULT_NORM, id })
 
-export const automaticPageBreak = (block, builder, baseOffset) => ({
-  type: AUTOMATIC_PAGE_BREAK, block, baseOffset, builder,
-})
 
 export const updateFlow = flow => ({ type: UPDATE_FLOW, flow })
 

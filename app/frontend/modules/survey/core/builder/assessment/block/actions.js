@@ -13,6 +13,7 @@ export const REMOVE_QUESTION = 'builder/assessment/block/REMOVE_QUESTION'
 export const MOVE_QUESTION_UP = 'builder/assessment/block/MOVE_QUESTION_UP'
 export const MOVE_QUESTION_DOWN = 'builder/assessment/block/MOVE_QUESTION_DOWN'
 export const ADD_PAGE_BREAK = 'builder/assessment/block/ADD_PAGE_BREAK'
+export const AUTOMATIC_PAGE_BREAK = 'builder/assessment/block/AUTOMATIC_PAGE_BREAK'
 export const UPDATE_BLOCK_PROPS = 'builder/assessment/block/UPDATE_BLOCK_PROPS'
 export const UPDATE_BLOCKS = 'builder/assessment/block/UPDATE_BLOCKS'
 export const COPY_QUESTION = 'builder/assessment/block/COPY_QUESTION'
@@ -65,6 +66,11 @@ export const updatePositions = ids => ({
 export const addPageBreak = (question, pb) => ({
   type: ADD_PAGE_BREAK, question, pb,
 })
+
+export const automaticPageBreak = (block, builder) => ({
+  type: AUTOMATIC_PAGE_BREAK, block, builder,
+})
+
 
 export const updateBlockProps = (block, props) => ({
   type: UPDATE_BLOCK_PROPS, block, props,

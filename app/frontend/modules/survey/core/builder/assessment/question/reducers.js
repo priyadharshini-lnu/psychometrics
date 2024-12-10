@@ -10,6 +10,7 @@ import {
 } from './actions'
 import {
   REMOVE_QUESTION, ADD_PAGE_BREAK, RESTORE_QUESTION,
+  AUTOMATIC_PAGE_BREAK,
 } from '../block/actions'
 import { INIT, EMPTY_TRASH } from '../actions'
 import { questionsWithoutDeleted } from '../selectors'
@@ -48,6 +49,15 @@ const HANDLERS = {
     state, [question.id], QuestionSerializer.toJSON(_.cloneDeep(question)),
   ),
   [ADD_PAGE_BREAK]: (state, { pb }) => setIn(state, [pb.id], pb),
+  [AUTOMATIC_PAGE_BREAK]: (state, { block }) => {
+    const questions = _.cloneDeep(state)
+    _.forEach(state, (question) => {
+      if (question.type === 'PageBreak' && block.questions.includes(question.id)) {
+        questions[question.id].deleted = true
+      }
+    })
+    return questions
+  },
   [ADD_SKIP_LOGIC]: (state, { question }) => {
     const newQuestion = _.cloneDeep(question)
     if (!newQuestion.skip_logic) {

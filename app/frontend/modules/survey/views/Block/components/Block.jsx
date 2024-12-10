@@ -13,8 +13,6 @@ import Footer from './BlockFooter'
 import styles from './Block.less'
 import StaticContent from './StaticContent'
 import { NORMAL_TOP, STRETCH } from './StaticContent/settings'
-// import Question from '~/modules/survey/models/Question'
-
 
 class Block extends Component {
   static propTypes = {
@@ -73,11 +71,6 @@ class Block extends Component {
     moveBlockUp(model)
   }
 
-  autoPageBreak = () => {
-    const { openAutoPageBreakModal, model } = this.props
-    openAutoPageBreakModal({ id: model.id, entityName: 'pageBreak' })
-  }
-
   addStaticContent = () => {
     const { model, updateBlockProps } = this.props
     updateBlockProps(model, {
@@ -101,6 +94,7 @@ class Block extends Component {
     const {
       model, openRandomization, enableSingleQuestionPage, toggleSingleQuestionPage,
     } = this.props
+
     openRandomization({
       id: model.id, entityName: 'question', enableSingleQuestionPage, toggleSingleQuestionPage,
     })
@@ -204,12 +198,6 @@ class Block extends Component {
               icon: <span className={`icon fa fa-trash ${styles.menuicon}`} />,
               label: 'Delete Block...',
               onClick: model.templateId ? this.openConfirmation : this.remove,
-            },
-            {
-              key: 'automatic_page_break',
-              icon: <span className={`fa fa-file-o ${styles.menuicon}`} />,
-              label: 'Automatic Page Break',
-              onClick: this.autoPageBreak,
             },
             ...this.addToTemplateItem(),
           ],

@@ -7,12 +7,9 @@ import {
   MOVE_QUESTION_DOWN, INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
   UPDATE_POSITIONS, REMOVE, ADD_PAGE_BREAK, UPDATE_BLOCK_PROPS, COPY_QUESTION,
   CLONE_BLOCK, UPDATE_QUESTION_IDS, RENAME_BLOCK, PERMANENT_REMOVE, RESTORE_BLOCK,
-  RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, UPDATE_BLOCKS,
-  removeQuestion,
+  RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, UPDATE_BLOCKS, AUTOMATIC_PAGE_BREAK,
 } from './actions'
 import { questionsWithoutDeleted, blocksWithoutDeleted } from '../selectors'
-import { AUTOMATIC_PAGE_BREAK } from '~/modules/survey/core/builder/assessment/actions.js'
-import Question from '~/modules/survey/models/Question'
 
 const filterDeletedQuestions = (block, entities) => questionsWithoutDeleted(entities, block.questions).map(q => q.id)
 
@@ -113,9 +110,8 @@ const HANDLERS = {
     blocks[block.id] = newBlock
     return blocks
   },
-  [AUTOMATIC_PAGE_BREAK]: (state, { block, baseOffset, builder }) => {
+  [AUTOMATIC_PAGE_BREAK]: (state, { block, builder }) => {
     const blocks = _.clone(state)
-    let counter = 0
     const filteredQuestions = questionsWithoutDeleted(builder, block.questions)
     const ques = block.questions
     const newBlock = _.clone(blocks[block.id])
@@ -124,14 +120,6 @@ const HANDLERS = {
       const isPageBreak = filteredQuestions.some(question => (question.id === ques[i] && question.type === 'PageBreak'))
       if (!isPageBreak) {
         newQues.push(ques[i])
-        counter += 1
-        if (counter % baseOffset === 0) {
-          const pb = new Question({ name: 'PB', type: 'PageBreak' })
-          newQues.push(pb.id)
-          builder.questions[pb.id] = pb
-        }
-      } else {
-        removeQuestion(block, builder.questions[ques[i]])
       }
     }
     newBlock.questions = newQues
