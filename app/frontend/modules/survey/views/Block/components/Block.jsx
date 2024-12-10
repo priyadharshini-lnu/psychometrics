@@ -94,7 +94,6 @@ class Block extends Component {
     const {
       model, openRandomization, enableSingleQuestionPage, toggleSingleQuestionPage,
     } = this.props
-
     openRandomization({
       id: model.id, entityName: 'question', enableSingleQuestionPage, toggleSingleQuestionPage,
     })
