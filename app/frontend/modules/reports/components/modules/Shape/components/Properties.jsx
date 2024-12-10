@@ -12,7 +12,8 @@ import styles from './PropStyles.less'
 import connect from '../connect'
 
 const Properties = ({ openConditionalText, modules }) => {
-  const { style, assessment_id } = modules[0].props
+  const { style } = modules[0].props
+  const { assessment_id } = modules[0]
 
   const {
     backgroundColor, borderColor, borderRadius, shadow, offsetX, offsetY,

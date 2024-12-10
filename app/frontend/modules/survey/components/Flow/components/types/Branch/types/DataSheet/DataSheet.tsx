@@ -1,5 +1,4 @@
 import React from 'react'
-import useUpdate from '~/hooks/useUpdate'
 import styles from './styles.less'
 import conditionStyles from '../../Condition.less'
 
@@ -22,25 +21,33 @@ interface Props {
     value: string
   }
   dataSheetColumns: [{name: string}]
+  onUpdate: (model) => void
+  index: number
+  model: {props: {conditions: []}}
 }
 
-const DataSheet: React.FC<Props> = ({ condition, dataSheetColumns }) => {
-  const forceUpdate = useUpdate()
+const DataSheet: React.FC<Props> = ({
+  condition, dataSheetColumns, model, onUpdate, index,
+}) => {
+  const update = () => {
+    const conditions = model.props.conditions.map((c, i) => (i === index ? condition : c))
+    onUpdate({ ...model, props: { ...model.props, conditions } })
+  }
 
   const changePredicate = (e: React.ChangeEvent<HTMLSelectElement>) => {
     condition.predicate = e.currentTarget.value
-    forceUpdate()
+    update()
   }
 
   const changeField = (e: React.ChangeEvent<HTMLSelectElement>) => {
     condition.field = e.currentTarget.value
     condition.value = ''
-    forceUpdate()
+    update()
   }
 
   const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     condition.value = e.currentTarget.value
-    forceUpdate()
+    update()
   }
 
   return (

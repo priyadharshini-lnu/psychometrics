@@ -39,10 +39,10 @@ class JwtAuthenticator
     nil
   end
 
-  def self.check_expiration(exp, expire_time = 30.minutes.from_now)
+  def self.check_expiration(exp, expire_time = 30.days.from_now)
     if exp.nil? || Time.zone.at(exp) > expire_time
       raise JWT::InvalidPayload,
-            'Token has expired or is more than 30 minutes in the future'
+            'Token has expired or is more than 30 days in the future'
     end
   end
 

@@ -14,6 +14,7 @@ module Psychometrics
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.action_dispatch.cookies_same_site_protection = :none
+    config.action_dispatch.default_headers.delete('X-XSS-Protection')
     config.active_record.belongs_to_required_by_default = false
     # setting default storage service, this will fallback to this service throughout the application
     config.active_storage.service = ENV.fetch('PUBLIC_BUCKET_STORAGE_SERVICE_KEY', 's3_public_bucket')

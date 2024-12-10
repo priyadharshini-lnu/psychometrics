@@ -34,6 +34,12 @@ const Properties = ({ modules }) => {
     radarMax, radarSize, tickInterval, startAngle,
   } = props
 
+  const changeEmptyFilters = (e) => {
+    updateAll((item) => {
+      item.props.hideEmptyFilters = e.currentTarget.checked
+    })
+  }
+
   return (
     <div>
       <hr className={styles.divider} />
@@ -41,11 +47,22 @@ const Properties = ({ modules }) => {
         <label style={{ fontWeight: 'normal' }}>
           <input
             type="checkbox"
-            checked={props.hideYaxisLabels || false}
+            checked={model.props.hideYaxisLabels || false}
             onChange={changeHideYaxisLabels}
           />
           {' '}
           Hide Y Axis Labels
+        </label>
+      </div>
+      <div className={styles.block}>
+        <label style={{ fontWeight: 'normal' }}>
+          <input
+            type="checkbox"
+            checked={model.props.hideEmptyFilters || false}
+            onChange={changeEmptyFilters}
+          />
+          {' '}
+          Hide Empty filters
         </label>
       </div>
       <div className={styles.block}>

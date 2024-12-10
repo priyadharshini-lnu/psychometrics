@@ -24,8 +24,15 @@ module Threesixty
     private
 
     def get_body(schedule_email, context)
-      Mobility.with_locale(context[:recipient].locale || I18n.default_locale) do
-        Threesixty::PipedText::Perform.call!(schedule_email.template&.content || schedule_email.content, context)
+      recipient_locale = context[:recipient].locale || I18n.default_locale
+      template_in_locale_exists = schedule_email.template.present? &&
+                                  schedule_email.template.content(locale: recipient_locale).present?
+      locale_to_use = template_in_locale_exists ? recipient_locale : I18n.default_locale
+
+      Mobility.with_locale(locale_to_use) do
+        I18n.with_locale(locale_to_use) do
+          Threesixty::PipedText::Perform.call!(schedule_email.template&.content || schedule_email.content, context)
+        end
       end
     end
 

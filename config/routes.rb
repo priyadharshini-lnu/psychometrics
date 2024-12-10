@@ -1059,6 +1059,7 @@ as: :simulation_progress_notification
             put :assessments_reports, on: :member
             resources :users, only: %i[indexs] do
               put :assessments_reports, on: :member
+              get :results, on: :member
             end
 
             scope module: :campaigns do
