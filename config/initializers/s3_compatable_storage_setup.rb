@@ -5,6 +5,11 @@ silence_warnings do
 end
 
 s3_compatible_storage = Settings.secrets.s3_compatible_storage
+
+if s3_compatible_storage[:provider] != 'aws'
+  Aws.config[:s3] = { force_path_style: true }
+end
+
 Aws.config.update(
   region: s3_compatible_storage[:region],
   credentials: Aws::Credentials.new(
