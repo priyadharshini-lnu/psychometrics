@@ -317,23 +317,33 @@ export const AddEditFactorForm: FC<Props> = ({
     onClose()
   }
 
-  const renderTreeNodes = () => groupName?.map(group => (
-    <TreeNode selectable={false} title={group.name}>
-      {totalFactors?.map((factor) => {
-        if (_.isEqual(factor.campaignFactorGroupId, _.toNumber(group.id))) {
-          return (
-            <TreeNode
-              key={factor.id}
-              title={factor.name}
-              selectable
-              className={`${styles.factorNode} ${dirtyFactors[factor.id] ? styles.modified : ''}`}
-            />
-          )
-        }
-        return null
-      })}
-    </TreeNode>
-  ))
+
+  const renderTreeNodes = () => {
+    if (!groupName || !totalFactors) return null
+    return groupName?.map((group) => {
+      const { id: groupId, name: groupname } = group
+
+      const groupFactors = totalFactors?.filter(factor => _.isEqual(factor.campaignFactorGroupId, _.toNumber(groupId)))
+
+      return (
+        <TreeNode selectable={false} title={groupname}>
+          {groupFactors?.map((factor) => {
+            const { id: factorId, name: factorName } = factor
+            const isModified = dirtyFactors[factorId]
+            return (
+              <TreeNode
+                key={factorId}
+                title={factorName}
+                selectable
+                className={`${styles.factorNode} ${isModified ? styles.modified : ''}`}
+              />
+            )
+          })}
+        </TreeNode>
+      )
+    })
+  }
+
 
   return (
     <Drawer

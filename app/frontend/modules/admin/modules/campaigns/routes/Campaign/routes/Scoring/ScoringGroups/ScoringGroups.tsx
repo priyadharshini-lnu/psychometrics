@@ -185,12 +185,7 @@ const ScoringGroupsComponent = (props: Props) => {
     setOpenAddEditFactor({ open: true, mode: 'edit' })
   }
 
-  const isFormValid = (form) => {
-    if (!form.isFieldsTouched()) return false
-    const errorFields = form.getFieldsError().some(field => field.errors.length)
-    if (errorFields) return false
-    return true
-  }
+  const isFormValid = form => form.isFieldsTouched() && !form.getFieldsError().some(({ errors }) => errors.length > 0)
 
   const handleFactorSelect = (id: Key[], form) => {
     if (isFormValid(form)) {
