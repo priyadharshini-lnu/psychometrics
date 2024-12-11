@@ -56,7 +56,7 @@ class AdminJobRecord < ApplicationRecord
     super_admin_assessment_norm_export: 36,
     super_admin_datasheet_export: 37,
     super_admin_external_assessment_export: 38,
-    super_admin_export_admin_with_permissions: 39,
+    export_admin_with_permissions: 39,
     bulk_download_user_reports: 40,
     export_campaign_factors: 41,
     import_campaign_factors: 42,

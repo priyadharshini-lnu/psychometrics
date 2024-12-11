@@ -1133,6 +1133,7 @@ as: :simulation_progress_notification
             get :reset_password
             collection do
               get :available_permissions
+              post :export
             end
           end
           jsonapi_resources :users do

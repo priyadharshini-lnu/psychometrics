@@ -66,6 +66,7 @@ en:
           cancel_text: Cancel
           change_password: Reset password
           edit: Edit
+          export_success: Admin export job was scheduled successfully
           login: Login
           send_email: Send email
           spoof:
@@ -79,6 +80,8 @@ en:
         header:
           add_admin: Add admin
           search_admins: Search admins
+        toolbar:
+          export_admins_with_permissions: Admins(With permissions)
       modals:
         delete:
           cancelText: Cancel
@@ -3227,6 +3230,7 @@ en:
         show:
           title: Subject Report
     time_zone: Time Zone
+    tools: Tools
     translations:
       assessments:
         new:

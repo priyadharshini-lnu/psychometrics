@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
+import * as t from 'io-ts'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col,
@@ -35,6 +36,7 @@ import { ActionsMenu } from './ActionsMenu'
 import {
   DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes, CampaignTypes,
 } from './constants'
+import ToolsDropdown from './ToolsDropdown'
 
 const MODALS = {
   ResetPasswordModal,
@@ -92,6 +94,7 @@ const AdminsComponent: React.FC<Props> = ({
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, createResource, updateResource,
     removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter, getErrors,
+    collectionAction,
   } = useResources<ProjectAdmin, Meta>(
     'memberships',
     {
@@ -188,6 +191,17 @@ const AdminsComponent: React.FC<Props> = ({
     navigate(addUrl)
   }
 
+  const handleExportAdminsClick = () => {
+    collectionAction({
+      action: 'export',
+      method: 'post',
+      body: { clientId, projectId, campaignId },
+      responseType: t.literal('ok'),
+    }).then(() => {
+      message.success(I18n.t('administration.administrators.list.actions.export_success'))
+    })
+  }
+
   return (
     <>
       <Row
@@ -210,6 +224,10 @@ const AdminsComponent: React.FC<Props> = ({
               )}
               value={getFilteredValue('filterable_fields')}
               onChange={e => changeFilter('filterable_fields', e.target.value)}
+            />
+            <ToolsDropdown
+              permissions={meta.permissions}
+              onExportAdminsWithPermissions={handleExportAdminsClick}
             />
             <Button
               type="primary"

@@ -52,6 +52,7 @@ const AdminPermissionsTR = t.type({
   resetPassword: t.boolean,
   sendMail: t.boolean,
   apiKeys: t.boolean,
+  export: t.boolean,
 })
 
 const CampaignAdminTR = t.type({
