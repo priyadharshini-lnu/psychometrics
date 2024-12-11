@@ -2517,6 +2517,8 @@ en:
         reschedule_duration_min_error: Cannot be less than 1 minute
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
+          resource_name_placeholder: Resource Name
+          resource_url_placeholder: Resource Link
           title: Resources
           validation_error: Enter both Name and URL or remove the resource
         scheduling_lead_time_label: Lead time for scheduling
@@ -2591,6 +2593,7 @@ en:
         confirm_message: Are you sure you want to delete the resource '%{resource_name}'?
         confirm_title: Confirmation Required
         create: Create Resource
+        invalid_url: Invalid URL. Specify the complete url with http or https protocol in it.
         resource: Resource
         successful_remove: Assessment Center resource %{resource_name} was deleted successfully.
       schedule_assessments: Schedule Assessments

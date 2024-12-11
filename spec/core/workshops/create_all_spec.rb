@@ -16,7 +16,7 @@ RSpec.describe Workshops::CreateAll do
         workshop_resources: [
           {
             name: 'name',
-            url: 'www.abc.com'
+            url: 'https://www.google.com'
           }
         ],
         start_time: 'Wed Jul 05 2023 00:07:43 GMT+0530',

@@ -4,4 +4,6 @@ class WorkshopResource < ApplicationRecord
   audited
 
   belongs_to :workshop
+
+  validates :url, http_url: { presence: true }
 end
