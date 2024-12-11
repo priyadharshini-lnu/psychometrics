@@ -59,7 +59,7 @@ unless Rails.env.test?
         :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
         'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
         'https://o111210.ingest.sentry.io',
-        'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url
+        'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
@@ -67,7 +67,7 @@ unless Rails.env.test?
       policy.default_src :self
       policy.font_src(*font_src)
       policy.img_src     '*', :data, :blob
-      policy.media_src   '*'
+      policy.media_src   '*', :blob
       policy.object_src  :none
       policy.frame_src   '*'
       policy.script_src(*script_src)
