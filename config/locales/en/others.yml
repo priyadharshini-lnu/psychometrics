@@ -1167,7 +1167,7 @@ en:
     complete_prev: Complete all previous assessments
     complete_tasks: Please complete tasks below before taking this action.
     continue: Continue your tasks
-    dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
+    dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
       bookings: Bookings
       campaign: Campaign
@@ -1816,7 +1816,7 @@ en:
           register: Register
           sign_in: Login
         title: Welcome!
-      signed_in: You have Signed in successfully!
+      signed_in: You have signed in successfully!
       signed_in_time: You last signed in on %{date_time}
       signed_out: Signed out successfully.
       unsuccessful_sign_in_time: Your last sign-in attempt on %{date_time} was unsuccessful.
