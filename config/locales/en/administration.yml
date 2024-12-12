@@ -1959,7 +1959,8 @@ en:
         header: New norm
       norms: Norms
       remove:
-        confirm: Are you sure you want to delete the norm "%{name}"
+        confirm: Enter norm name given below in text box to confirm
+        warning: Are you sure you want to delete the norm "%{name}"
       resource:
         confirmations:
           delete:
@@ -2679,6 +2680,12 @@ en:
         years: Years
       public: Public
       ranked: Ranked
+      remove_all_campaign_factors:
+        confirmation: Enter current campaign name given below in text box to confirm
+        error: Campaign Factors remove failed
+        success: Campaign Factors removed successfully
+        title: Remove campaign factors
+        warning: Your are about to delete all campaign factor and all associated scores for the users. Are you sure you want to perform this action?
       remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
       remove_factor_confirmation_title: Remove Factor
       remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?

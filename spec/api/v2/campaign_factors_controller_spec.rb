@@ -243,6 +243,32 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
     end
   end
 
+  path '/campaigns/{campaign_id}/campaign_factors/remove_all' do
+    post 'Remove all CampaignFactors' do
+      operationId 'RemoveAllCampaignFactors'
+      description 'Remove all campaign Factors'
+      tags 'Campaign Factor Scoring'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :body, in: :body, required: true
+
+      response '200', 'remove all campaign factors' do
+        examples 'application/json' => {
+          data: [{
+            type: 'campaign_factors',
+            id: 1
+          }]
+        }
+
+        run_test! do |_response|
+          expect(campaign.campaign_factors).to be_empty
+          expect(campaign.campaign_factor_groups).to be_empty
+        end
+      end
+    end
+  end
+
   describe 'import' do
     it 'queues import_campaign_factors job successfully' do
       file = Rack::Test::UploadedFile.new(
