@@ -158,6 +158,12 @@ Reverse proxy can be used to publicly expose local development environment to re
 
 Following the above steps, your local development environment should be accessible via `https://www.project458.com`
 
+# Receive emails in local development environment
+
+1. Install mailhog from [here](https://github.com/mailhog/MailHog)
+2. Run mailhog server `brew services start mailhog`
+3. Visit `http://localhost:8025` in your browser to see received emails.
+
 # Run tests
 
 To run rails unit test

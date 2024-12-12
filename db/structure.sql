@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -2057,6 +2050,42 @@ ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
 
 
 --
+-- Name: event_deliveries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.event_deliveries (
+    id bigint NOT NULL,
+    resource_type character varying NOT NULL,
+    resource_id bigint NOT NULL,
+    event_type integer NOT NULL,
+    delivery_type integer NOT NULL,
+    sent_at timestamp(6) without time zone,
+    meta jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: event_deliveries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.event_deliveries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: event_deliveries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.event_deliveries_id_seq OWNED BY public.event_deliveries.id;
+
+
+--
 -- Name: factor_benchmark_scores; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2745,6 +2774,39 @@ ALTER SEQUENCE public.job_roles_id_seq OWNED BY public.job_roles.id;
 
 
 --
+-- Name: last_job_runs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.last_job_runs (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    started_at timestamp(6) without time zone NOT NULL,
+    finished_at timestamp(6) without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: last_job_runs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.last_job_runs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: last_job_runs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.last_job_runs_id_seq OWNED BY public.last_job_runs.id;
+
+
+--
 -- Name: libraries; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3163,104 +3225,6 @@ CREATE SEQUENCE public.mindmill_credentials_id_seq
 --
 
 ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
-
-
---
--- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_columns (
-    id bigint NOT NULL,
-    column_type integer,
-    name character varying,
-    "position" integer,
-    dashboard_use boolean DEFAULT false,
-    accessor_access boolean DEFAULT false,
-    visible_in_list boolean DEFAULT false,
-    sheet_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_row_data (
-    id bigint NOT NULL,
-    string_value text,
-    numeric_value double precision,
-    sheet_row_id bigint NOT NULL,
-    sheet_column_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
--- Name: sheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying,
-    flat_view_sha character varying
-);
-
-
---
--- Name: normalized_campaign_accessheets; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_accessheets AS
- SELECT sheets.campaign_id,
-    sheet_rows.email,
-    sheet_columns.name AS field,
-    sheet_row_data.numeric_value,
-    sheet_row_data.string_value
-   FROM (((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON (((sheet_columns.sheet_id = sheets.id) AND (sheet_columns.id = sheet_row_data.sheet_column_id))))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
-
-
---
--- Name: normalized_campaign_accesssheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_accesssheet AS
- SELECT sheets.campaign_id AS "Campaign Id",
-    sheet_rows.email AS "Email",
-    sheet_columns.name AS "Field",
-    sheet_row_data.numeric_value AS "Numeric Value",
-    sheet_row_data.string_value AS "String Value"
-   FROM (((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
 
 
 --
@@ -4601,6 +4565,24 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
+-- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_columns (
+    id bigint NOT NULL,
+    column_type integer,
+    name character varying,
+    "position" integer,
+    dashboard_use boolean DEFAULT false,
+    accessor_access boolean DEFAULT false,
+    visible_in_list boolean DEFAULT false,
+    sheet_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4617,6 +4599,21 @@ CREATE SEQUENCE public.sheet_columns_id_seq
 --
 
 ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
+
+
+--
+-- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_row_data (
+    id bigint NOT NULL,
+    string_value text,
+    numeric_value double precision,
+    sheet_row_id bigint NOT NULL,
+    sheet_column_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
@@ -4639,6 +4636,21 @@ ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
 
 
 --
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4655,6 +4667,22 @@ CREATE SEQUENCE public.sheet_rows_id_seq
 --
 
 ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
+);
 
 
 --
@@ -7046,6 +7074,13 @@ ALTER TABLE ONLY public.email_templates ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: event_deliveries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.event_deliveries ALTER COLUMN id SET DEFAULT nextval('public.event_deliveries_id_seq'::regclass);
+
+
+--
 -- Name: factor_benchmark_scores id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7176,6 +7211,13 @@ ALTER TABLE ONLY public.job_role_translations ALTER COLUMN id SET DEFAULT nextva
 --
 
 ALTER TABLE ONLY public.job_roles ALTER COLUMN id SET DEFAULT nextval('public.job_roles_id_seq'::regclass);
+
+
+--
+-- Name: last_job_runs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.last_job_runs ALTER COLUMN id SET DEFAULT nextval('public.last_job_runs_id_seq'::regclass);
 
 
 --
@@ -8329,6 +8371,14 @@ ALTER TABLE ONLY public.email_templates
 
 
 --
+-- Name: event_deliveries event_deliveries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.event_deliveries
+    ADD CONSTRAINT event_deliveries_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: factor_benchmark_scores factor_benchmark_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8486,6 +8536,14 @@ ALTER TABLE ONLY public.job_role_translations
 
 ALTER TABLE ONLY public.job_roles
     ADD CONSTRAINT job_roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: last_job_runs last_job_runs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.last_job_runs
+    ADD CONSTRAINT last_job_runs_pkey PRIMARY KEY (id);
 
 
 --
@@ -10323,6 +10381,13 @@ CREATE INDEX index_dimensions_on_updated_by_id ON public.dimensions USING btree 
 --
 
 CREATE INDEX index_email_templates_on_campaign_id ON public.email_templates USING btree (campaign_id);
+
+
+--
+-- Name: index_event_deliveries_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_event_deliveries_on_resource ON public.event_deliveries USING btree (resource_type, resource_id);
 
 
 --
@@ -14532,8 +14597,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20241128105109'),
+('20241210073446'),
+('20241205111711'),
 ('20241129104313'),
+('20241128105109'),
 ('20241126112602'),
 ('20241108085232'),
 ('20241106103020'),

@@ -407,6 +407,8 @@ en:
       completed_at: Completed At
       count: "%{count} Assessors"
       evaluations: Evaluations
+      mailer:
+        subject: New subjects added for your evaluation
       modals:
         create_assessor:
           add: Add
