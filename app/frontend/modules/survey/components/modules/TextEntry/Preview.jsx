@@ -33,6 +33,11 @@ class PreviewComponent extends Component {
     model: PropTypes.object.isRequired,
   }
 
+  getQuestionId () {
+    const { model } = this.props
+    return `question-text-${model.id}`
+  }
+
   renderAnswersType () {
     const {
       errors,
@@ -59,6 +64,7 @@ class PreviewComponent extends Component {
         nextPage={nextPage}
         singleQuestionFlow={singleQuestionFlow}
         errors={errors}
+        questionTextId={this.getQuestionId()}
       />
     )
   }
@@ -72,7 +78,7 @@ class PreviewComponent extends Component {
           className="mb-4"
           html={I18n.tQuestion(model, 'questionText')}
           config="adminRichText"
-          id={`question-text-${model.id}`}
+          id={this.getQuestionId()}
         />
         {this.renderAnswersType()}
       </div>

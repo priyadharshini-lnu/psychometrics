@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { createPortal } from 'react-dom'
 import {
   DndContext, useSensor, useSensors, MouseSensor, TouchSensor, DragOverlay,
@@ -8,13 +8,21 @@ import {
 import {
   SortableContext, arrayMove, verticalListSortingStrategy, sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable'
+import { MediaQueryContext } from '~/glint'
 
 import { DragItem, DragItemSortable } from './DragItem'
 
 import styles from './DragAndDrop.less'
 
+const { I18n: I18nTextTranslations } = window
+
 export default function Preview ({ I18n, model }) {
   const [activeId, setActiveId] = useState(null)
+  const { isMobile } = useContext(MediaQueryContext)
+
+  const dragDropInstructions = isMobile
+    ? I18nTextTranslations.t('frontend.aria.drag_drop_instructions_mobile')
+    : I18nTextTranslations.t('frontend.aria.drag_drop_instructions_desktop')
 
   const dataForState = model => ({
     data: _.map(model.result.answers, answer => ({
@@ -80,40 +88,43 @@ export default function Preview ({ I18n, model }) {
 
 
   return (
-    <div className={styles.preview}>
-      <DndContext
-        measuring={{
-          droppable: {
-            strategy: verticalListSortingStrategy,
-          },
-        }}
-        sensors={sensors}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onDragCancel={handleDragCancel}
-      >
-        <SortableContext
-          items={[...prefixedItemIds]}
-          strategy={verticalListSortingStrategy}
+    <>
+      <span className="sr-only">{dragDropInstructions}</span>
+      <ul className={styles.preview}>
+        <DndContext
+          measuring={{
+            droppable: {
+              strategy: verticalListSortingStrategy,
+            },
+          }}
+          sensors={sensors}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDragCancel={handleDragCancel}
         >
-          {data.map((item, index) => (
-            <DragItemSortable
-              key={item.id}
-              sortId={item.text}
-              number={index + 1}
-              text={item.text}
-              showDescription={item.showDescription}
-              description={item.description}
-            />
-          ))}
-        </SortableContext>
-        {createPortal(
-          <DragOverlay adjustScale={false} dropAnimation={dropAnimation}>
-            {
+          <SortableContext
+            items={[...prefixedItemIds]}
+            strategy={verticalListSortingStrategy}
+          >
+            {data.map((item, index) => (
+              <DragItemSortable
+                id={`drag-item-${model.id}-${item.id}`}
+                key={item.id}
+                sortId={item.text}
+                number={index + 1}
+                text={item.text}
+                showDescription={item.showDescription}
+                description={item.description}
+              />
+            ))}
+          </SortableContext>
+          {createPortal(
+            <DragOverlay adjustScale={false} dropAnimation={dropAnimation}>
+              {
               activeId && prefixedItemIds.includes(activeId) ? (
                 <div className={`${styles.preview} ${styles.dragging}`}>
                   <DragItem
-                    number={currentActiveItem.id + 1}
+                    number={data.findIndex(item => currentActiveItem.id === item.id) + 1}
                     text={currentActiveItem.text}
                     showDescription={currentActiveItem.showDescription}
                     description={currentActiveItem.description}
@@ -121,10 +132,11 @@ export default function Preview ({ I18n, model }) {
                 </div>
               ) : null
             }
-          </DragOverlay>,
-          document.body,
-        )}
-      </DndContext>
-    </div>
+            </DragOverlay>,
+            document.body,
+          )}
+        </DndContext>
+      </ul>
+    </>
   )
 }

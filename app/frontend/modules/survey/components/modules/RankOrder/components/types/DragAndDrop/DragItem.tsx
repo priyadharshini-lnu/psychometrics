@@ -1,7 +1,7 @@
 import React, {
   FC, CSSProperties, RefObject,
 } from 'react'
-import { Button } from 'antd'
+import { Button, Space } from 'antd'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
@@ -14,6 +14,7 @@ type CommonProps = {
   number: number,
   showDescription: boolean,
   description: string,
+  id?: string
 }
 
 export type Props = CommonProps & {
@@ -25,16 +26,22 @@ export type Props = CommonProps & {
 
 export const DragItem = React.forwardRef(
   ({
-    showDescription, text, number, description, style, dragStyle, attributes, listeners,
-  }: Props, ref:RefObject<HTMLDivElement>) => (
-    <div ref={ref} className={styles.item} style={{ ...style, ...dragStyle }}>
-      <Button type="text" className={`fa fa-arrows-v ${styles.icon}`} {...attributes} {...listeners} />
-      <div className={styles.number}>{number}</div>
-      <div>
+    showDescription, text, number, description, style, dragStyle, attributes, listeners, id,
+  }: Props, ref:RefObject<HTMLLIElement>) => (
+    <li ref={ref} className={styles.item} style={{ ...style, ...dragStyle }}>
+      <Button
+        aria-labelledby={id}
+        type="text"
+        className={`fa fa-arrows-v ${styles.icon}`}
+        {...attributes}
+        {...listeners}
+      />
+      <Space id={id} size={0}>
+        <div className={styles.number}>{number}</div>
         <div className={styles.text}>{text}</div>
         {showDescription && <DescriptionPreview description={description} />}
-      </div>
-    </div>
+      </Space>
+    </li>
   ),
 )
 
@@ -43,7 +50,7 @@ type FactorSortableProps = CommonProps & {
 }
 
 export const DragItemSortable:FC<FactorSortableProps> = ({
-  text, sortId, number, showDescription, description,
+  text, sortId, number, showDescription, description, id,
 }) => {
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging,
@@ -73,6 +80,7 @@ export const DragItemSortable:FC<FactorSortableProps> = ({
       number={number}
       showDescription={showDescription}
       description={description}
+      id={id}
     />
   )
 }

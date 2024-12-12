@@ -137,7 +137,7 @@ const TextChoices: FC<TextChoicesProps> = ({
   }
 
   return (
-    <ol
+    <div
       className={cs(styles.list, styles[position], styles.singleAnswer)}
       style={listStyles}
     >
@@ -146,14 +146,14 @@ const TextChoices: FC<TextChoicesProps> = ({
         const choiceAnswer = choice?.value ?? false
 
         return (
-          <li
+          <div
             className={`${styles.listItem} ${styles.liButton} ${
               choiceAnswer ? styles.buttonActive : ''
             }`}
             key={choiceId}
           >
             <label className={`${styles.label} ${styles.labelButton}`}>
-              <span className={cs('fa fa-check', styles.checkIcon)} />
+              <span aria-hidden="true" className={cs('fa fa-check', styles.checkIcon)} />
               <input
                 type="radio"
                 name={`${id}`}
@@ -162,15 +162,14 @@ const TextChoices: FC<TextChoicesProps> = ({
                 value={choiceId}
                 checked={choiceAnswer}
                 onChange={handleChoiceChange}
-                aria-labelledby={`answer-desc-${choiceId}`}
               />
-              <div id={`answer-desc-${choiceId}`} className={styles.optionDescription}>
+              <div className={styles.optionDescription}>
                 {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
                   choice: choiceId,
                 }) || defaultChoiceText(choiceId + 1)}
               </div>
             </label>
-          </li>
+          </div>
         )
       })}
       {notApplicable && (
@@ -183,7 +182,7 @@ const TextChoices: FC<TextChoicesProps> = ({
           onChange={handleNotApplicableChange}
         />
       )}
-    </ol>
+    </div>
   )
 }
 
@@ -204,13 +203,13 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
   checked,
   onChange,
 }) => (
-  <li
+  <div
     className={`${styles.listItem} ${styles.liButton} ${
       checked ? styles.buttonActive : ''
     }`}
   >
     <label className={`${styles.label} ${styles.labelButton}`}>
-      <span className={cs('fa fa-check', styles.checkIcon)} />
+      <span aria-hidden="true" className={cs('fa fa-check', styles.checkIcon)} />
       <input
         type="radio"
         name={`${id}`}
@@ -219,11 +218,10 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
         checked={checked}
         value=""
         onChange={onChange}
-        id={`not-applicable-${id}`}
       />
-      <span id={`not-applicable-${id}`}>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
+      <span>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
     </label>
-  </li>
+  </div>
 )
 
 export default SingleAnswerPreview
