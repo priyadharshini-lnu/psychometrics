@@ -201,6 +201,132 @@ de:
     timer:
       notification_hours: Sie haben noch %{hours} Stunde(n).
       notification_minutes: Sie haben noch %{minutes} Minute(n).
+  campaign_assessment:
+    actions:
+      bulk_download: Massendownload
+      export_completion_status: Abschlussstatus exportieren
+      export_external: Extern
+      export_normed: Normierte Faktorergebnisse
+      export_occupations: Berufe
+      export_raw_labels: Rohdaten (mit Labels)
+      export_raw_scores: Rohdaten (Faktorergebnisse)
+      export_raw_without_labels: Rohdaten (ohne Labels)
+      export_scores: Ergebnisse
+      export_scoring: Bewertung
+      factor_benchmark_score: Faktor-Benchmark-Score
+      import_raw: Rohdaten importieren
+      import_scoring: Bewertung importieren
+      regenerate: Berichte neu generieren
+      rescore: Bewertung erneut durchführen
+      reset_all_nominations: Alle Nominierungen zurücksetzen
+      reset_participant: Alle Teilnehmer zurücksetzen
+    assessments_heading: Ihre Aufgaben
+    column:
+      assessment_center_activity: Aktivitäten im Assessment-Center
+      assessment_name: Name des Assessments
+      assessor_form: Assessor-Formular
+      auto_assign: Automatisch zuweisen
+      dimension_id: Dimensions-ID
+      id: Kampagnen-Assessment-ID
+      locales: Lokalisierungen
+      norm: Norm
+      norm_id: Norm-ID
+      prework: Vorbereitungsarbeit
+      simulation_content_variation: Simulationsinhaltsvariante
+      universal_link: Universeller Link
+    drawer:
+      mettl_schedule_name: Mettl-Planungsname
+      title: Assessment-Details
+    messages:
+      export_completion_statuses_scheduled: Der Exportjob für Abschlussstatus wurde erfolgreich geplant.
+      export_occupations_job_scheduled: Der Exportjob für Berufe wurde erfolgreich geplant.
+      export_reports_and_assessments_statuses_scheduled: Der Exportjob für Berichte und Bewertungen wurde erfolgreich geplant.
+      external_results_export_scheduled: Der Exportjob für externe Bewertungen wurde erfolgreich geplant.
+      norm_results_export_scheduled: Der Exportjob für normierte Ergebnisse wurde erfolgreich geplant.
+      normalize_factor_scores_scheduled: Der Normalisierungsjob für Faktorergebnisse wurde erfolgreich geplant.
+      raw_factor_export_scheduled: Der Exportjob für Rohdaten-Faktorergebnisse wurde erfolgreich geplant.
+      raw_results_export_scheduled: Der Exportjob für Rohdaten-Ergebnisse wurde erfolgreich geplant.
+      scoring_results_export_scheduled: Der Exportjob für Bewertungsergebnisse wurde erfolgreich geplant.
+    modals:
+      import_raw:
+        body: Nutzen Sie die Exportfunktion, um eine Vorlage zu extrahieren, die hier importiert werden kann.
+        success_msg: Der Import wurde erfolgreich hochgeladen.
+        title: Rohdaten importieren
+        upload: Hochladen
+      import_scoring:
+        body: Nutzen Sie die Exportfunktion, um eine Vorlage zu extrahieren, die hier importiert werden kann.
+        success_msg: Der Import wurde erfolgreich hochgeladen.
+        title: Bewertungsergebnisse importieren
+        upload: Hochladen
+      regenerate:
+        content: Möchten Sie wirklich die verfügbaren Berichte neu generieren?
+        title: Berichte neu generieren?
+      remove:
+        helper_text: 'WARNUNG: Diese Auswahl entfernt alle Benutzerantworten auf dieses Assessment in dieser Kampagne.'
+        msg_text: Sie versuchen, das Assessment <strong>"%{name}"</strong> zu löschen.
+        successfully: "%{name} Assessment wurde erfolgreich entfernt."
+        title: Assessment entfernen?
+      rescore:
+        content: Möchten Sie die Bewertung wirklich erneut durchführen?
+        successfully: Die Bewertung wurde erfolgreich erneut durchgeführt.
+        title: Bewertung erneut durchführen?
+      rescore_response:
+        message: Die erneute Bewertung wurde für das Assessment "%{name}" geplant.
+        title: Antworten neu bewerten
+      reset:
+        content: Möchten Sie die Ergebnisse wirklich zurücksetzen?
+        successfully: Die Ergebnisdaten wurden erfolgreich zurückgesetzt.
+        title: Ergebnisse für Assessment %{name} zurücksetzen?
+      update_assessor_form:
+        select_assessor: Assessor-Formular auswählen
+        success_msg: Das Assessor-Formular wurde erfolgreich hochgeladen.
+        title: Assessor-Formular aktualisieren
+        update: Aktualisieren
+      update_content_variation:
+        select_schedule: Inhaltsvariante auswählen
+        success_msg: Die Simulationsinhaltsvariante wurde erfolgreich aktualisiert.
+        update: Aktualisieren
+      update_external_config:
+        text_placeholder: Externe JSON-Konfiguration
+        title: Externe Konfiguration aktualisieren
+      update_locales:
+        select_locales: Lokalisierungen auswählen
+        success_msg: Lokalisierungen wurden erfolgreich aktualisiert.
+        title: Verfügbare Lokalisierungen aktualisieren
+      update_mettl_schedule:
+        select_schedule: Zeitplan auswählen
+        success_msg: Mettl-Zeitplan wurde erfolgreich aktualisiert.
+        update: Aktualisieren
+      update_norm:
+        apply: Diese Änderung auf bestehende Benutzer in dieser Kampagne anwenden
+        cannot_remove_norm: Norm kann für abgeschlossene Assessments nicht entfernt werden.
+        select_norm: Norm auswählen
+        success_msg: Normen wurden erfolgreich aktualisiert.
+        title: Norm aktualisieren
+        update: Aktualisieren
+      update_time:
+        additional_time: Zeit (Minuten)
+        title: Zeit verlängern
+      workshop_activity_duration:
+        form:
+          duration: Dauer in Minuten
+        title: Dauer für die Workshop-Aktivität
+    normalize_factor_scores:
+      normalization_not_allowed: Die Normalisierung von Faktorergebnissen ist für dieses Assessment in den Projekteinstellungen deaktiviert. Bitte aktivieren Sie diese, um fortzufahren.
+      success: Die Normalisierung der Faktorergebnisse wurde erfolgreich abgeschlossen.
+    scheduled_successfully: Das Assessment wurde erfolgreich geplant.
+    scheduling:
+      update_exists: Vorhandenen Zeitplan überschreiben
+    scheduling_time: Assessment-Zeitplan
+    statuses:
+      completed: Abgeschlossen
+      in_progress: In Bearbeitung
+      ineligible: Nicht berechtigt
+      interrupted: Unterbrochen
+      not_started: Nicht gestartet
+      timed_out: Abgelaufen
+      universal_link: Universeller Link
+    ungrouped_assessments_heading: Ungruppiert
   change_password_page:
     old_password: Altes Passwort
     password: Passwort
@@ -250,6 +376,7 @@ de:
     text:
       confirm: bestätigen
       continue: fortfahren
+      download: Herunterladen
       response: Antwort
   devise:
     administrators:
