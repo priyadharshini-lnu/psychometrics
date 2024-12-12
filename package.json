@@ -17,8 +17,7 @@
     "coveralls": "coveralls < coverage/lcov.info",
     "types": "tsc",
     "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi",
-    "prepare": "husky install",
-    "mockApi": "mocker config/mocker/index.cjs --port ${MOCK_SERVER_API_PORT:-'3037'}"
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=18.16.1"
@@ -211,7 +210,6 @@
     "i18n-js": "^3.8.0",
     "identity-obj-proxy": "^3.0.0",
     "jsdom": "^24.0.0",
-    "mocker-api": "^2.10.0",
     "rollup-plugin-visualizer": "^5.9.0",
     "typescript": "4.7.2",
     "vite-plugin-svgr": "^4.3.0",

@@ -185,18 +185,6 @@ Run below code in terminal to run mock server
 yarn run mockApi
 ```
 
-To use mock api, pass `mocked: true` from redux api action
-```
-export const fetch = () => ({
-  type: FETCH,
-  request: {
-    method: 'get',
-    mocked: true,
-    url: `/invites`,
-  },
-})
-```
-
 # Other Development Tasks
 
 ## Localisation

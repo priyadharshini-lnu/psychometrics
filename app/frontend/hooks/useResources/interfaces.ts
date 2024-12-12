@@ -64,7 +64,6 @@ export interface Options<R, M> {
   trackUrl?: boolean,
   basePath?: string,
   initialFilter?: {[key:string]: unknown},
-  mocked?: boolean,
 }
 
 export interface BaseMeta {
