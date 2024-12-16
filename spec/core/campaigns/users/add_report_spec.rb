@@ -121,6 +121,24 @@ describe Campaigns::Users::AddReport do
     saville_user_assessment = assessment.saville_user_assessments.first
 
     expect(saville_user_assessment.norm_id).to eq(assessment.external_settings[:norm_id])
+    expect(saville_user_assessment.data_seprator).to eq(saville_user_assessment.user_assessment.campaign.uniq_code)
+  end
+
+  it 'copy saville_user_assessment data if assessment is of type saville with existing_result' do
+    assessment = create(:assessment, :saville)
+    report = create(:report, assessments: [assessment])
+
+    existing_users_result = create(:users_result, without_user_assessment: true, evaluator: campaign_user.user)
+    existing_user_assessment = create(:user_assessment, evaluator: campaign_user.user, assessment: assessment,
+users_result: existing_users_result)
+    create(:saville_user_assessment, user_assessment: existing_user_assessment, norm_id: 'norm_id',
+data_seprator: '4-2')
+
+    described_class.call!(campaign_user, report, assessments: report.assessments)
+    saville_user_assessment = assessment.saville_user_assessments.first
+
+    expect(saville_user_assessment.norm_id).to eq('norm_id')
+    expect(saville_user_assessment.data_seprator).to eq('4-2')
   end
 
   it 'create pearson_user_assessment if assessment is of type pearson' do
