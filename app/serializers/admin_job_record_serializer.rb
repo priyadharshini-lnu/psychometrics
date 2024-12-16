@@ -7,16 +7,16 @@ class AdminJobRecordSerializer < Panko::Serializer
   def title_link
     return unless is_valid
 
-    AdminJob::JOBS[object.operation.to_sym].generate_title_link(object)
+    object.job_operation_instance.generate_title_link
   end
 
   def is_valid
-    AdminJob::JOBS[object.operation.to_sym].valid?(object)
+    object.job_operation_instance.valid?
   end
 
   def details
     return unless is_valid
 
-    AdminJob::JOBS[object.operation.to_sym].generate_details(object)
+    object.job_operation_instance.generate_details
   end
 end

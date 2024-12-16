@@ -30,20 +30,6 @@ module AdminJobs
       true
     end
 
-    class << self
-      def generate_title_link(record)
-        new(record).generate_title_link
-      end
-
-      def generate_details(record)
-        new(record).generate_details
-      end
-
-      def valid?(record)
-        new(record).valid?
-      end
-    end
-
     private
 
     def campaign

@@ -99,4 +99,8 @@ class AdminJobRecord < ApplicationRecord
   def broadcast(action)
     AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new.serialize(self))
   end
+
+  def job_operation_instance
+    @job_operation_instance ||= AdminJob::JOBS[operation.to_sym].new(self)
+  end
 end
