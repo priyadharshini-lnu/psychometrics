@@ -42,6 +42,10 @@ module Simulation
       payload[:modifiers][:contentId] = content_variation_id if content_variation_id.present?
       payload[:modifiers][:languageRestrictions] = available_locales if available_locales.present?
 
+      if Settings.features.simulation_branding_enabled
+        payload[:modifiers][:branding][:primary] = project.design_setting.primary_color
+      end
+
       JWT.encode(payload, shared_secret, 'HS256')
     end
 

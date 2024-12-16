@@ -26,8 +26,10 @@ const Properties: FC<Props> = ({ modules }) => {
   } = model
 
   const onChange = (key: string, value: unknown) => {
-    model.props[key] = value
-    model.update()
+    modules.forEach((module) => {
+      module.props[key] = value
+      module.update()
+    })
   }
 
   return (

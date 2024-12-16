@@ -31,8 +31,13 @@ import { ToolsDropdown } from './ToolsDropdown'
 import { ManageVariablesForm } from './ManageVariablesForm'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import { ImportFactorsForm } from './ImportFactorsForm'
-import { importFactors, IMPORT } from '~/modules/admin/modules/campaigns/core/campaignFactor'
+import {
+  importFactors, IMPORT,
+} from '~/modules/admin/modules/campaigns/core/campaignFactor'
 import { isRequestInProgress } from '~/core/request'
+import { RemoveCampaignFactorsModal } from './RemoveCampaignFactorsModal'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import Modals from '~/modules/admin/components/Modals'
 
 const getFactorsByGroupId = (factors: CampaignFactor[], groupId: string) => factors
   .filter(factor => factor.campaignFactorGroupId === parseInt(groupId, 10))
@@ -44,16 +49,21 @@ const getPrefixFactorIds = (factors: CampaignFactor[]) => factors.map(
 
 const { I18n } = window
 
+const MODALS = {
+  RemoveCampaignFactorsModal,
+}
+
 const connector = connect(
   (state: RootState) => ({
+    campaignName: getCurrentCampaign(state).name,
     campaignPermissions: getCurrentCampaign(state).permissions,
     loading: isRequestInProgress(state, IMPORT),
   }),
   {
     importFactors,
+    openModal,
   },
 )
-
 
 type Props = ConnectedProps<typeof connector>;
 
@@ -71,8 +81,10 @@ const ScoringGroupsComponent = (props: Props) => {
   const [activeId, setActiveId] = useState<string | null>(null)
   const recentlyMovedToNewContainer = useRef(false)
   const { modal, message } = App.useApp()
-  const { campaignPermissions, importFactors, loading } = props
   const [modifiedFactors, setModifiedFactors] = useState({})
+  const {
+    campaignPermissions, importFactors, loading, openModal, campaignName,
+  } = props
 
   const {
     createResource: initializeScoring,
@@ -485,6 +497,9 @@ const ScoringGroupsComponent = (props: Props) => {
     if (key === 'export_factors') {
       handleExportFactors()
     }
+    if (key === 'remove_all_campaign_factors') {
+      handleResetCampaignFactors()
+    }
   }
 
   const handleExportFactors = () => {
@@ -496,6 +511,10 @@ const ScoringGroupsComponent = (props: Props) => {
       message.success(I18n.t('administration.scoring.factors_exported_successfully'))
     })
   }
+
+  const handleResetCampaignFactors = () => openModal('RemoveCampaignFactorsModal', {
+    campaignId, campaignName, fetchAndUpdateFactors, fetchAndUpdateFactorGroups,
+  })
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
     setActiveId(null)
@@ -724,6 +743,7 @@ const ScoringGroupsComponent = (props: Props) => {
         close={() => setOpenImportFactorsForm(false)}
         loading={loading}
       />
+      <Modals modals={MODALS} />
     </Flex>
   )
 }

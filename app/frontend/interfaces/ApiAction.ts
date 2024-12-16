@@ -6,7 +6,6 @@ type ContentTypes = 'multipart/form-data;' | 'application/json'
 
 export interface Request<T> {
   method?: string
-  mocked?: boolean
   url: string
   loader?: boolean
   camelize?: boolean

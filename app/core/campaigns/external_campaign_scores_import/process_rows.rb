@@ -5,10 +5,11 @@ require 'csv'
 module Campaigns
   module ExternalCampaignScoresImport
     class ProcessRows < BaseCommand
-      private_attr_reader :rows
+      private_attr_reader :rows, :campaign
 
-      def initialize(rows)
+      def initialize(rows, campaign)
         @rows = rows
+        @campaign = campaign
       end
 
       # Process the rows of the CSV file and transform them into an array of hashes.
@@ -46,7 +47,7 @@ module Campaigns
       def campaign_factors
         campaign_factor_codes = rows[0].keys.drop(1) # Skip the 'Email' column
 
-        @campaign_factors ||= CampaignFactor.where(code: campaign_factor_codes).pluck(:code, :id).to_h
+        @campaign_factors ||= campaign.campaign_factors.where(code: campaign_factor_codes).pluck(:code, :id).to_h
       end
     end
   end

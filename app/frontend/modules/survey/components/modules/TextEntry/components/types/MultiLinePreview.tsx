@@ -14,6 +14,7 @@ interface Props {
   setDictationActiveOnQuestion(questionId: number): void
   fetchAwsSpeechTextPresignedUrl(): Promise<{ response: { url: string } }>
   errors: string[]
+  questionTextId: string
 }
 
 const MultiLinePreview: FC<Props> = ({
@@ -23,6 +24,7 @@ const MultiLinePreview: FC<Props> = ({
   setDictationActiveOnQuestion,
   fetchAwsSpeechTextPresignedUrl,
   errors,
+  questionTextId,
 }) => {
   const {
     props: { type, allowDictation },
@@ -82,6 +84,7 @@ const MultiLinePreview: FC<Props> = ({
                 handleOnChange={handleOnChange}
                 errors={errors}
                 questionId={questionId}
+                questionTextId={questionTextId}
               />
             </SpeechToTextInput>
           ) : (
@@ -92,6 +95,7 @@ const MultiLinePreview: FC<Props> = ({
               handleOnChange={handleOnChange}
               errors={errors}
               questionId={questionId}
+              questionTextId={questionTextId}
             />
           )}
         </Col>
@@ -108,6 +112,7 @@ interface MultiLineTextAreaProps {
   handleOnChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
   errors: string[]
   questionId: number
+  questionTextId: string
 }
 
 const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
@@ -117,6 +122,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   value,
   errors,
   questionId,
+  questionTextId,
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
 
@@ -131,6 +137,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
       onChange={handleOnChange}
       value={value}
       id={`question-${questionId}`}
+      aria-labelledby={questionTextId}
     />
   )
 }

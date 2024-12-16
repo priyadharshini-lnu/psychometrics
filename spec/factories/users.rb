@@ -19,9 +19,21 @@ FactoryBot.define do
 
     factory :client_admin, traits: [:with_membership_client_admin], class: 'Users::Admin' do
       role { User::ADMIN_ROLE }
+
+      memberships { [association(:client_admin_membership, client: client)] }
+
+      transient do
+        client { create(:tenancy) }
+      end
     end
     factory :project_admin, traits: [:with_membership_project_admin], class: 'Users::Admin' do
       role { User::ADMIN_ROLE }
+
+      memberships { [association(:project_admin_membership, client: project)] }
+
+      transient do
+        project { create(:project) }
+      end
     end
 
     factory :campaign_admin, traits: [:with_membership_project_admin], class: 'Users::Admin' do

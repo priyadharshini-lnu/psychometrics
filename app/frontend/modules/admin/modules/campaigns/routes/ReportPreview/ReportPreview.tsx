@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import cs from 'classnames'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
@@ -7,12 +7,14 @@ import {
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import _ from 'lodash'
+import { normalize } from 'normalizr'
 import Report from '~/modules/reports/report'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { ApprovalStatuses } from '~/modules/admin/modules/campaigns/core/userReports'
 import { PropsFromRedux } from './connect'
 import Sidebar, { lookUpModules } from './Sidebar'
 import styles from './styles.less'
+import schema from '~/modules/reports/store/schema'
 
 const { Content } = Layout
 const { I18n } = window
@@ -191,6 +193,8 @@ export default function ReportPreview ({
     ]
   }
 
+  const normalizedReport = useMemo(() => normalize(userReport.report, schema), [userReport])
+
   return (
     <Layout>
       <Content className={cs('fluid-container', styles.container)}>
@@ -258,7 +262,7 @@ export default function ReportPreview ({
               && (
               <Col>
                 <Affix style={{ maxHeight: '100vh' }}>
-                  <Sidebar pages={pages} />
+                  <Sidebar pages={pages} questions={normalizedReport.entities.questions} />
                 </Affix>
               </Col>
               )

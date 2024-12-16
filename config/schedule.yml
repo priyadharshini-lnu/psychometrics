@@ -95,3 +95,8 @@ refresh_audit_log_cache:
   cron: "0 1 * * *"  # Every day at 01:00 AM
   class: RefreshAuditLogCacheJob
   queue_as: cron_tasks
+
+send_assessor_notifications:
+  cron: "*/30 * * * *"  # Every 30 minutes
+  class: SendAssessorNotificationsJob
+  queue_as: cron_tasks

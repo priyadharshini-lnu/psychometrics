@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require 'csv-safe'
+
 class CsvUtf8
   def self.write(file_path)
-    CSV.open(file_path, 'wb:utf-8') do |csv|
+    CSVSafe.open(file_path, 'wb:utf-8') do |csv|
       csv.to_io.write "\uFEFF".encode('utf-8')
 
       yield(csv) if block_given?

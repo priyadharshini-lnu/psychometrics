@@ -9,18 +9,20 @@ import { getQuestions } from '~/modules/reports/core/builder/selectors'
 
 class Question extends Component {
   onChange = (questions) => {
-    const { model, onSelect } = this.props
-    if (_.isArray(questions)) {
-      model.props.source.id = questions.map(q => q.value)
-    } else {
-      model.props.source.id = questions.value
-    }
+    const { modules, onSelect } = this.props
+    modules.forEach(((module) => {
+      if (_.isArray(questions)) {
+        module.props.source.id = questions.map(q => q.value)
+      } else {
+        module.props.source.id = questions.value
+      }
+    }))
     onSelect()
     PropertyPanelStore.update()
   }
 
   getOptions () {
-    const { model, questions } = this.props
+    const { modules: [model], questions } = this.props
     const qstns = _.map(questions, q => ({
       value: q.id,
       label: `${q.name} ${(Utils.stripHTML(q.props.questionText) || '').substring(0, 24)}...`,
@@ -30,7 +32,8 @@ class Question extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { modules } = this.props
+    const model = modules[0]
     return (
       <Select
         name="form-field-name"
@@ -45,6 +48,6 @@ class Question extends Component {
   }
 }
 
-export default connect((state, { model }) => ({
+export default connect((state, { modules: [model] }) => ({
   questions: getQuestions(state.report, model.assessment_id),
 }), {})(Question)

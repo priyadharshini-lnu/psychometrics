@@ -158,6 +158,12 @@ Reverse proxy can be used to publicly expose local development environment to re
 
 Following the above steps, your local development environment should be accessible via `https://www.project458.com`
 
+# Receive emails in local development environment
+
+1. Install mailhog from [here](https://github.com/mailhog/MailHog)
+2. Run mailhog server `brew services start mailhog`
+3. Visit `http://localhost:8025` in your browser to see received emails.
+
 # Run tests
 
 To run rails unit test
@@ -183,18 +189,6 @@ Currently mock server can only run on non ssl mode. For this we would have start
 Run below code in terminal to run mock server
 ```
 yarn run mockApi
-```
-
-To use mock api, pass `mocked: true` from redux api action
-```
-export const fetch = () => ({
-  type: FETCH,
-  request: {
-    method: 'get',
-    mocked: true,
-    url: `/invites`,
-  },
-})
 ```
 
 # Other Development Tasks

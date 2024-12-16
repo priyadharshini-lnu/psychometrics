@@ -449,6 +449,10 @@ class VideoRecorder extends Component {
 
     this.player.controlBar.currentTimeDisplay.addClass('hide')
     this.player.controlBar.currentTimeDisplay.removeClass('show')
+
+    this.player.controlBar.progressControl.children()[0]?.setAttribute(
+      'aria-label', I18n.t('assessments.video_response.seek'),
+    )
   }
 
   addRemainingTimeControl () {

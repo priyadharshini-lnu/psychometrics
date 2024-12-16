@@ -728,6 +728,7 @@ en:
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         create_threesixty_campaign: Create Threesixty Campaign
+        export_admin_with_permissions: Export Admin With Permissions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_factor_translations: Export Factor Translations
@@ -760,7 +761,6 @@ en:
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         super_admin_datasheet_export: Super Admin Datasheet Export
-        super_admin_export_admin_with_permissions: Super Admin Export Admin With Permissions
         super_admin_external_assessment_export: Super Admin External Assessment Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         threesixty_campaign_export_scores: Threesixty Campaign Scores Export
@@ -947,7 +947,7 @@ en:
     page:
       back: Back
       confirm_message: |-
-        #### Your responses will be submitted and cannot be changed after this.
+        ## Your responses will be submitted and cannot be changed after this.
 
         Click **Back** to review your responses one final time or click **Submit** if you are finished.
       invalid_session:
@@ -1001,6 +1001,7 @@ en:
       saved:
         label: Video Saved
       saving: Saving Video...
+      seek: Seek
       start_recording: Start recording
       stop_recording: Stop recording
       tracker:
@@ -1091,6 +1092,7 @@ en:
       success: We have send you a login link to '%{email}'. Click the link in the email that you would have received to login
     mobile_number: Mobile Number
     new_password: New Password
+    new_password_placeholder: Enter the new password
     otp:
       code: Code
       code_placeholder: One Time Password
@@ -1166,7 +1168,7 @@ en:
     complete_prev: Complete all previous assessments
     complete_tasks: Please complete tasks below before taking this action.
     continue: Continue your tasks
-    dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
+    dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
       bookings: Bookings
       campaign: Campaign
@@ -1211,7 +1213,9 @@ en:
           You will be required to download and install a special browser to complete the proctored tasks. Please follow the instructions in the next screen. You can uninstall this after completing all required activities.
         </p>
     instructions:
+      collapse_aria_label: 'Show more information above: Virtual Learning Centre'
       collapse_link_text: Show less
+      expand_aria_label: 'Show less information above: Virtual Learning Centre'
       expand_link_text: Show more
       heading: Please review the guidelines below before you get started. We wish you all the best!
     language:
@@ -1813,7 +1817,7 @@ en:
           register: Register
           sign_in: Login
         title: Welcome!
-      signed_in: You have Signed in successfully!
+      signed_in: You have signed in successfully!
       signed_in_time: You last signed in on %{date_time}
       signed_out: Signed out successfully.
       unsuccessful_sign_in_time: Your last sign-in attempt on %{date_time} was unsuccessful.
@@ -1917,6 +1921,10 @@ en:
       number: 'No'
       relationship: Relationship
       subject_name: Subject Name
+    subject_relationship_table:
+      subject_email: Subject Email
+      subject_name: Subject Name
+      subject_relationship: Subject Relationship
   empty: Empty
   enums:
     communication:
@@ -1957,9 +1965,13 @@ en:
       collapse_menu: Collapse menu
       confirm_proceed: Confirm to proceed
       delete_message: Delete message
+      drag_drop_instructions_desktop: Turn on the forms mode to drag and drop the items with a screen reader.
+      drag_drop_instructions_mobile: With a screen reader, double tap and hold on an drag button, move to another item and lift the finger to move the item.
       expand_menu: Expand menu
       file_uploaded: File uploaded
       lang_dropdown_description: ",change language"
+      pause: Pause
+      play: Play
       profile_progress: Profile completion is
       remove_file: remove file
       send_message: Send message
@@ -2485,8 +2497,6 @@ en:
     add_field: Add Field
     add_photo: Add Photo
     age: Age
-    aria_label_decrease_age: Decrease Age by 1
-    aria_label_increase_age: Increase Age by 1
     change_password: Change Password
     change_photo: Change Photo
     email: Email
@@ -2497,6 +2507,7 @@ en:
     last_name: Last Name
     locale: Preferred Language
     male: Male
+    mandatory_fields: Indicates mandatory fields
     not_disclosed: Prefer not to disclose
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
@@ -2640,6 +2651,22 @@ en:
       load_from_pearson: Load from Pearson
       none_external: None - Use report builder
     modules:
+      campaign_factors_table:
+        add_condition: Add Condition
+        baseline_score: Baseline Score
+        blindspots: Blindspots
+        campaign_factor_conditions: Campaign Factor Conditions
+        cancel: Cancel
+        color: Color
+        delete: Delete
+        description: Description
+        if: If
+        label: Label
+        no_conditions: No conditions
+        save: Save
+        strengths: Strengths
+        then: Then show the following text
+        title: Title
       common:
         all_factors: All factors
       factors_table:
@@ -3381,8 +3408,6 @@ en:
     normalize_factor_scores:
       no_scoring_data: Normalization of factor scores cannot be completed as no scoring data is available.
     progress_label: Assessment Progress
-    questions:
-      single_line_answer_label: Answer
     redirect: You would be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
     status:
       completed: Completed

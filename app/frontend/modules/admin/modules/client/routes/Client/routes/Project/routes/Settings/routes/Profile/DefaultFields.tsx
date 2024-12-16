@@ -22,13 +22,28 @@ interface Props {
   onChangeRequired: (data: {}) => void
   onChangeLocked: (data: {}) => void
   onChangeEnabled: (data: {}) => void
+  onChangeMultiple:(data : {}) => void
 }
 
 export const DefaultFields: React.FC<Props> = ({
-  requiredFields, lockedFields, enabledFields, onChangeRequired, onChangeLocked, onChangeEnabled,
+  requiredFields, lockedFields, enabledFields, onChangeRequired, onChangeLocked, onChangeEnabled, onChangeMultiple,
 }) => {
   const changeRequired = (row) => {
-    onChangeRequired({ ...requiredFields, [row.index]: !requiredFields[row.index] })
+    if (!requiredFields[row.index] && !enabledFields[row.index]) {
+      const multiple = {
+        requiredDefaultFields: {
+          ...requiredFields,
+          [row.index]: true,
+        },
+        enabledDefaultFields: {
+          ...enabledFields,
+          [row.index]: true,
+        },
+      }
+      onChangeMultiple({ ...multiple })
+    } else {
+      onChangeRequired({ ...requiredFields, [row.index]: !requiredFields[row.index] })
+    }
   }
   const changeLocked = (row) => {
     onChangeLocked({ ...lockedFields, [row.index]: !lockedFields[row.index] })
@@ -80,6 +95,7 @@ export const DefaultFields: React.FC<Props> = ({
           <Checkbox
             onChange={() => changeEnabled(row)}
             checked={requiredFields[row.index] ? true : enabledFields[row.index]}
+            disabled={requiredFields[row.index]}
           />
         ) : null)
         }

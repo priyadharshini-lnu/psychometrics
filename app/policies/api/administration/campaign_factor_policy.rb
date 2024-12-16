@@ -35,6 +35,10 @@ module Api
         has_permission?(:campaign_factors, :manage)
       end
 
+      def remove_all?
+        destroy?
+      end
+
       class Scope < ::Api::Administration::BasePolicy::Scope
         def resolve
           if @user.has_permission?(:campaign_factors, :view)

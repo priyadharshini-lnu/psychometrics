@@ -244,8 +244,12 @@ export default {
         filter: [],
         minPosition: 1,
         maxPosition: 5,
+        showIcons: false,
+        showLabel: false,
+        showBorder: false,
+        mode: 'topFactors',
       },
-      CampaignFactorTable: {
+      CampaignFactorsTable: {
         precision: null,
         scoreRangeMin: null,
         scoreRangeMax: null,
@@ -258,6 +262,11 @@ export default {
         filter: [],
         minPosition: 1,
         maxPosition: 5,
+        showIcons: false,
+        showLabel: false,
+        showBorder: false,
+        showStrengthsBlindspots: false,
+        mode: 'topFactors',
       },
       HighestLowest: {
         sourceType: 'Question',

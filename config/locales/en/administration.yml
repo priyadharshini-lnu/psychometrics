@@ -66,6 +66,7 @@ en:
           cancel_text: Cancel
           change_password: Reset password
           edit: Edit
+          export_success: Admin export job was scheduled successfully
           login: Login
           send_email: Send email
           spoof:
@@ -79,6 +80,8 @@ en:
         header:
           add_admin: Add admin
           search_admins: Search admins
+        toolbar:
+          export_admins_with_permissions: Admins(With permissions)
       modals:
         delete:
           cancelText: Cancel
@@ -404,6 +407,8 @@ en:
       completed_at: Completed At
       count: "%{count} Assessors"
       evaluations: Evaluations
+      mailer:
+        subject: New subjects added for your evaluation
       modals:
         create_assessor:
           add: Add
@@ -1956,7 +1961,8 @@ en:
         header: New norm
       norms: Norms
       remove:
-        confirm: Are you sure you want to delete the norm "%{name}"
+        confirm: Enter norm name given below in text box to confirm
+        warning: Are you sure you want to delete the norm "%{name}"
       resource:
         confirmations:
           delete:
@@ -2230,6 +2236,9 @@ en:
       columns:
         project_number: Project Number
       design_settings:
+        alt_text_logo: Logo Alt-Text
+        alt_text_logo_required: Alt-Text Logo is Required
+        alt_text_long: Exceeds the maximum limit of 100 characters.
         background_color: Background Color
         background_label: Background
         background_overlay_label: Background Overlay
@@ -2251,6 +2260,8 @@ en:
         reset: Reset
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
+        secondary_logo_alt_text: Secondary Logo Alt-Text
+        secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
         success_color: Success Color
         success_update: Design Settings were saved successfully
         warning_color: Warning Color
@@ -2509,6 +2520,8 @@ en:
         reschedule_duration_min_error: Cannot be less than 1 minute
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
+          resource_name_placeholder: Resource Name
+          resource_url_placeholder: Resource Link
           title: Resources
           validation_error: Enter both Name and URL or remove the resource
         scheduling_lead_time_label: Lead time for scheduling
@@ -2583,6 +2596,7 @@ en:
         confirm_message: Are you sure you want to delete the resource '%{resource_name}'?
         confirm_title: Confirmation Required
         create: Create Resource
+        invalid_url: Invalid URL. Specify the complete url with http or https protocol in it.
         resource: Resource
         successful_remove: Assessment Center resource %{resource_name} was deleted successfully.
       schedule_assessments: Schedule Assessments
@@ -2668,6 +2682,12 @@ en:
         years: Years
       public: Public
       ranked: Ranked
+      remove_all_campaign_factors:
+        confirmation: Enter current campaign name given below in text box to confirm
+        error: Campaign Factors remove failed
+        success: Campaign Factors removed successfully
+        title: Remove campaign factors
+        warning: Your are about to delete all campaign factor and all associated scores for the users. Are you sure you want to perform this action?
       remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
       remove_factor_confirmation_title: Remove Factor
       remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
@@ -3223,6 +3243,7 @@ en:
         show:
           title: Subject Report
     time_zone: Time Zone
+    tools: Tools
     translations:
       assessments:
         new:

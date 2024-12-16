@@ -31,6 +31,10 @@ module Api
         manage_admins?
       end
 
+      def export?
+        manage_admins?
+      end
+
       private
 
       def manage_admins?

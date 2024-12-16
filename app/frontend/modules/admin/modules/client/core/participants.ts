@@ -49,7 +49,6 @@ export const fetch = (projectId: number, tableConfig: TableConfig): ApiAction<Fe
     method: 'get',
     loader: true,
     camelize: false,
-    mocked: true,
     tableConfig,
     typedResponse: FetchResponseTR,
     url: `/administration/projects/${projectId}/participants`,
@@ -70,7 +69,6 @@ export const resetPassword = (
 ): ApiAction<ResetPassword> => ({
   type: RESET_PASSWORD,
   request: {
-    mocked: true, // Remove this line to send request to server
     method: 'get',
     loader: true,
     camelize: true,
@@ -91,7 +89,6 @@ export const remove = (
 ): ApiAction<RemoveResponse> => ({
   type: REMOVE,
   request: {
-    mocked: true, // Remove this line to send request to server
     method: 'delete',
     loader: true,
     camelize: true,

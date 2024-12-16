@@ -44,7 +44,7 @@ module Imports
         errors.blank?
       end
 
-      def load_imported_items # rubocop:disable Metrics/AbcSize
+      def load_imported_items # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         rows = open_spreadsheet.to_a
         header = rows.shift
 
@@ -67,6 +67,8 @@ module Imports
         end
 
         rows.each_with_index.map do |row, index|
+          row.map! { |value| Utility::String.remove_csv_injection_marker(value) }
+
           data = header.zip(row).to_h
 
           user_result ||= find_user_result(data['email'])

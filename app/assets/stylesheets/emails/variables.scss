@@ -24,7 +24,7 @@ $warning-color: #ffae00;
 $alert-color: #ec5840;
 $light-gray: #f3f3f3;
 $medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
+$dark-gray: #757575;
 $black: #0a0a0a;
 $white: #fefefe;
 $pre-color: #ff6908;
@@ -150,3 +150,7 @@ $thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
 $thumbnail-transition: box-shadow 200ms ease-out;
 $thumbnail-radius: $global-radius;
 
+// 9. Link
+// ------
+
+$link-color: #337ab7;

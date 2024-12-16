@@ -119,6 +119,9 @@ _.extend(Module.prototype, {
     if (source === 'DataSheet') {
       return 'DataSheet'
     }
+    if (source === 'CampaignFactors') {
+      return 'CampaignFactors'
+    }
     if (assessment.category === HOGAN || assessment.category === MINDMILL) {
       if (source === 'Factor') return 'Factor'
 

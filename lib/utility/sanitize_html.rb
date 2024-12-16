@@ -16,7 +16,7 @@ module Utility
       altglyphdef altglyphitem animatecolor animatemotion animatetransform circle clippath defs desc ellipse filter
       font g glyph glyphref hkern image line lineargradient marker mask metadata mpath path pattern polygon polyline
       radialgradient rect stop style switch symbol text textpath title tref tspan view vkernmath menclose merror
-      mfenced mfrac mglyph mi mlabeledtr mmultiscripts mn mo mover mpadded mphantom mroot mrow ms mspace msqrt mstyle
+      mfenced mfrac mi mlabeledtr mmultiscripts mn mo mover mpadded mphantom mroot mrow ms mspace msqrt mstyle
       msub msup msubsup mtable mtd mtext mtr munder munderover feBlend feColorMatrix feComponentTransfer feComposite
       feConvolveMatrix feDiffuseLighting feDisplacementMap feDistantLight feFlood feFuncA feFuncB feFuncG feFuncR
       feGaussianBlur feImage feMerge feMergeNode feMorphology feOffset fePointLight feSpecularLighting feSpotLight
@@ -57,7 +57,7 @@ module Utility
     ].freeze
 
     def self.process(html)
-      new.sanitize(html, tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)
+      new.sanitize(html, tags: ALLOWED_TAGS.dup, attributes: ALLOWED_ATTRIBUTES.dup)
     end
   end
 end

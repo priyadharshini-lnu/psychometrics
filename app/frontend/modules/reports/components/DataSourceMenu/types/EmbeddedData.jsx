@@ -7,8 +7,10 @@ import { getEmbeddedData } from '~/modules/reports/core/builder/selectors'
 
 class EmbeddedData extends Component {
   onChange = (data) => {
-    const { model, onSelect } = this.props
-    model.props.source.name = data.name
+    const { modules, onSelect } = this.props
+    modules.forEach((module) => {
+      module.props.source.name = data.name
+    })
     onSelect()
   }
 
@@ -18,7 +20,7 @@ class EmbeddedData extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { modules: [model] } = this.props
     return (
       <Select
         name="form-field-name"
@@ -33,6 +35,6 @@ class EmbeddedData extends Component {
   }
 }
 
-export default connect((state, { model }) => ({
+export default connect((state, { modules: [model] }) => ({
   embeddedData: getEmbeddedData(state.report, model.assessment_id),
 }), {})(EmbeddedData)

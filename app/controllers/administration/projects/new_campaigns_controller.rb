@@ -189,7 +189,7 @@ module Administration
 
       def set_campaign
         @campaign = policy_scope(Campaign).includes(
-          assessments: { icon_attachment: { blob: :variant_records } },
+          assessments: [:translations, { icon_attachment: { blob: :variant_records } }],
           reports: { icon_attachment: { blob: :variant_records } }
         ).find_by(project_id: params[:project_id], id: params[:id])
       end

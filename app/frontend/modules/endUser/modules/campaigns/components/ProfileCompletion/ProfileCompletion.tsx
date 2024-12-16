@@ -24,7 +24,7 @@ export const ProfileCompletion:FC<Props> = ({
   return (
     <Row>
       <Col span={24 - progressBarColSpan}>
-        <Title level={5}>{title}</Title>
+        <Title className="fs-16" level={2}>{title}</Title>
         <Space size="middle" direction="vertical">
           {subTitle && <Text>{subTitle}</Text>}
           {completionPercent === 100 ? (

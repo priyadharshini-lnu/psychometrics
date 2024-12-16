@@ -1059,6 +1059,7 @@ as: :simulation_progress_notification
             put :assessments_reports, on: :member
             resources :users, only: %i[indexs] do
               put :assessments_reports, on: :member
+              get :results, on: :member
             end
 
             scope module: :campaigns do
@@ -1132,6 +1133,7 @@ as: :simulation_progress_notification
             get :reset_password
             collection do
               get :available_permissions
+              post :export
             end
           end
           jsonapi_resources :users do
@@ -1303,6 +1305,7 @@ as: :simulation_progress_notification
                 get  :export
                 post :import
                 post :bulk_update
+                post :remove_all
               end
             end
             jsonapi_resources :campaign_user_scorings, only: %i[index] do

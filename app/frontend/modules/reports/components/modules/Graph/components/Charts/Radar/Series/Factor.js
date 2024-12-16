@@ -14,7 +14,8 @@ export const getFilterName = (filterId) => {
 
 export default {
   series (results, factors, model, factorsData) {
-    return results.map((result, i) => {
+    const resultsData = model.props.hideEmptyFilters ? results.filter(r => !_.isEmpty(r.results.scoring)) : results
+    return resultsData.map((result, i) => {
       let data = _.map(factors, (factor) => {
         const factorResults = result.results.scoring[factor.id]
         if (factorResults && factorResults.results) {

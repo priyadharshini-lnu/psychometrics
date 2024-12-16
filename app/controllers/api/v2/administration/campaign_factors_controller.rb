@@ -51,5 +51,16 @@ module Api
         render json: { errors: form.errors.full_messages }, status: 422
       end
     end
+
+    def remove_all
+      result = ::CampaignFactors::RemoveAll.call(campaign)
+      audit! :remove_all_campaign_factors, campaign, payload: params, campaign: campaign
+
+      if result[:ok]
+        render json: :ok
+      else
+        jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
+      end
+    end
   end
 end

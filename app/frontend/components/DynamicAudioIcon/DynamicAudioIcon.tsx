@@ -20,6 +20,7 @@ const DynamicAudioIcon: React.FC<Props> = ({ pulse, level }) => (
       <img
         src={level === AudioLevel.Low ? RedMicrophone : GreenMicrophone}
         className={styles.microphoneImg}
+        alt=""
       />
     </div>
   </div>

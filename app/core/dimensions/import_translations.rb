@@ -15,6 +15,9 @@ module Dimensions
 
       Factor.transaction do
         rows.each_slice(2) do |name_row, description_row|
+          name_row.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
+          description_row.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
+
           id_key = name_row.keys.first
           next unless name_row[id_key]
 

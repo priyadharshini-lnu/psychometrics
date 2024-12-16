@@ -78,6 +78,7 @@ export const AssessmentsContainer = ({
       <title>{`${I18n.t('campaign.dashboard_menu.campaign')} ${I18n.t('campaign.dashboard_menu.tasks')}`}</title>
       <ViewsContainer
         title={I18n.t('campaign_assessment.assessments_heading')}
+        titleHeadingLevel={1}
         defaultView="grid"
         viewTypeStorageKey="assessmentListingType"
         className={styles.container}

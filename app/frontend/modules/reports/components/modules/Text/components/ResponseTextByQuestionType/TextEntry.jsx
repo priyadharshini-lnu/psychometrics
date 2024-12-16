@@ -30,6 +30,18 @@ const TextEntry = (props) => {
   return <div>{text}</div>
 }
 
+export const TextEntryResult = (props) => {
+  const {
+    result,
+    model: {
+      props: {
+        answerIndex = 0,
+      },
+    },
+  } = props
+  return _.get(result, [answerIndex, 'value'], '')
+}
+
 TextEntry.propTypes = {
   model: PropTypes.object.isRequired,
   result: PropTypes.any,

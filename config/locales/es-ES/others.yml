@@ -485,6 +485,22 @@ es-ES:
       download: Descargar informe
       view: Ver informe
     modules:
+      campaign_factors_table:
+        add_condition: Agregar condición
+        baseline_score: Puntuación inicial
+        blindspots: Puntos ciegos
+        campaign_factor_conditions: BlindspCondiciones del factor de campañaots
+        cancel: Cancelar
+        color: Color
+        delete: Borrar
+        description: Descripción
+        if: Si
+        label: Etiqueta
+        no_conditions: Sin condiciones
+        save: Ahorrar
+        strengths: Fortalezas
+        then: Luego muestra el siguiente texto.
+        title: Título
       factors_table:
         description: Descripción
         no_data: No hay información disponible para esta sección.

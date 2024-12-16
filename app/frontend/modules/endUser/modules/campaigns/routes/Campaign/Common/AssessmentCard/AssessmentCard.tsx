@@ -37,7 +37,7 @@ export const AssessmentCard: React.FC<Props> = ({
   workshopAttended,
 }) => {
   const {
-    status, assessmentIconUrl, assessmentName, completionPercent,
+    status, assessmentIconUrl, assessmentName, completionPercent, completionReason,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
     requireScheduling, assessmentCategory,
   } = userAssessment
@@ -92,7 +92,9 @@ export const AssessmentCard: React.FC<Props> = ({
     </Avatar>
   )
 
-  if (completionPercent === 100) {
+  if (completionReason && completionReason === 'time_out_offline') {
+    taskStatus = 'timed_out'
+  } else if (completionPercent === 100) {
     taskStatus = 'completed'
   }
 
@@ -137,6 +139,7 @@ export const AssessmentCard: React.FC<Props> = ({
         showStatusAtTop={view === 'list'}
         title={titleElement}
         titleId={titleId}
+        titleHeadingLevel={2}
         progressPercentage={assessmentCategory === 'meeting' ? undefined : completionPercent || 0}
         progressLabelAria={I18n.t('frontend.aria.task_progress_label')}
         buttonText={assessmentCategory === 'meeting' ? null : buttonTextData[status]}

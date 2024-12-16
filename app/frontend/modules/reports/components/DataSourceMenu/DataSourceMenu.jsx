@@ -114,7 +114,7 @@ const ChartsMenu = ({
           <TypeComponent
             singleChoice={singleChoice}
             onlyNumbers={onlyNumbers}
-            model={model}
+            modules={modules}
             onSelect={onSelect}
             assessment={assessment}
             sourceType={sourceType}

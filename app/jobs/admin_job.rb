@@ -48,7 +48,7 @@ class AdminJob < ApplicationJob
     super_admin_assessment_norm_export: AdminJobs::SuperAdmin::AssessmentNormExport,
     super_admin_datasheet_export: AdminJobs::SuperAdmin::DatasheetExport,
     super_admin_external_assessment_export: AdminJobs::SuperAdmin::ExternalAssessmentExport,
-    super_admin_export_admin_with_permissions: AdminJobs::SuperAdmin::ExportAdminsWithPermissions,
+    export_admin_with_permissions: AdminJobs::ExportAdminsWithPermissions,
     bulk_download_user_reports: AdminJobs::BulkDownloadUserReports,
     export_campaign_factors: AdminJobs::ExportCampaignFactors,
     import_campaign_factors: AdminJobs::ImportCampaignFactors,

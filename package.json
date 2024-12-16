@@ -17,8 +17,7 @@
     "coveralls": "coveralls < coverage/lcov.info",
     "types": "tsc",
     "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi",
-    "prepare": "husky install",
-    "mockApi": "mocker config/mocker/index.cjs --port ${MOCK_SERVER_API_PORT:-'3037'}"
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=18.16.1"
@@ -47,8 +46,7 @@
     "@rails/activestorage": "^7.1.2",
     "@rc-component/tour": "^1.10.0",
     "@reduxjs/toolkit": "^2.2.6",
-    "@sentry/react": "^6.3.5",
-    "@sentry/rrweb": "^0.3.1",
+    "@sentry/react": "^8.34.0",
     "@tensorflow-models/face-detection": "^1.0.2",
     "@tensorflow-models/face-landmarks-detection": "^1.0.5",
     "@tensorflow/tfjs-converter": "^4.20.0",
@@ -114,7 +112,7 @@
     "normalize.css": "^4.1.1",
     "normalizr": "^3.6.2",
     "noty": "^2.3.8",
-    "path-to-regexp": "0.1.11",
+    "path-to-regexp": "0.1.12",
     "pluralize": "^8.0.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^16.1.0",
@@ -211,7 +209,6 @@
     "i18n-js": "^3.8.0",
     "identity-obj-proxy": "^3.0.0",
     "jsdom": "^24.0.0",
-    "mocker-api": "^2.10.0",
     "rollup-plugin-visualizer": "^5.9.0",
     "typescript": "4.7.2",
     "vite-plugin-svgr": "^4.3.0",

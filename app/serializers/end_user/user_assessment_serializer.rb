@@ -4,7 +4,7 @@ module EndUser
   class UserAssessmentSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category, :completed_at,
-               :assessment_extra, :assessment_id, :status, :completion_percent, :available_locales,
+               :assessment_extra, :assessment_id, :status, :completion_percent, :completion_reason, :available_locales,
                :selected_locale, :assessment_icon_url, :prework, :schedule_time, :workshop_activity_duration,
                :workshop_activity, :meeting_time, :meeting_link, :require_scheduling, :evaluation_session_id
 
@@ -59,7 +59,7 @@ module EndUser
 
     def completion_percent
       result = object.users_result
-      return 100 if result.deemed_completed?
+      return 100 if completed_without_timed_out?(result)
 
       return result.progress == 100 ? 99 : result.progress if result.progress.present?
 
@@ -96,6 +96,10 @@ module EndUser
 
     def current_user
       context[:current_user]
+    end
+
+    def completed_without_timed_out?(result)
+      result.deemed_completed? && !result.timed_out?
     end
   end
 end

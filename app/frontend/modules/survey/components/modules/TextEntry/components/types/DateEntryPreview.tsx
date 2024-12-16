@@ -17,11 +17,14 @@ interface Props {
   model: PreviewModel
   readOnly: boolean
   errors: string[]
+  questionTextId: string
 }
 
 const { I18n } = window
 
-const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
+const DateEntryPreview: FC<Props> = ({
+  model, readOnly, errors, questionTextId,
+}) => {
   const {
     result: { answers },
     props: { dateFormat },
@@ -81,7 +84,7 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
           clearIcon: (
             <span ref={clearIconRef}>
               <CloseCircleFilled
-                className={cs(styles.clearDate, 'grey-text')}
+                className={cs(styles.clearDate, 'grey-border')}
               />
             </span>),
         }}
@@ -92,8 +95,8 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
         onChange={handleAnswerChange}
         aria-invalid={!!errors.length}
         aria-describedby={`error-for-question-${questionId}`}
-        aria-labelledby={`question-text-${model.id} ${dataFormatLabelId}`}
-        suffixIcon={<CalendarOutlined className="grey-text" />}
+        aria-labelledby={`${questionTextId} ${dataFormatLabelId}`}
+        suffixIcon={<CalendarOutlined className="grey-border" />}
         panelRender={originalPanel => (
           <div
             className={cs({ [styles.noDateSelected]: !dateValue })}

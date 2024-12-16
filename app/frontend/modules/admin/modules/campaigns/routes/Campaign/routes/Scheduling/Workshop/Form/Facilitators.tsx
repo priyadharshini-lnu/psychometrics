@@ -277,8 +277,10 @@ const FacilitatorsForm = ({
               key="1"
             >
               <ResourcesItems
+                fieldName={field.name}
                 videoCallTypeValue={basicInfoData.video_call_type}
                 showMeetigOption
+                validationsErrors={errors}
               />
             </Collapse.Panel>
           </Collapse>
