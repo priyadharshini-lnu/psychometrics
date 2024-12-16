@@ -103,7 +103,7 @@ const PropertyPanelComponent = (props) => {
       {!restricted && (
         <>
           {
-            blocks[question.block_id].props.randomization.type !== 'page' ? (
+            blocks[question.block_id].props.randomization.type !== 'QuestionsPerPage' ? (
               <a
                 onClick={() => addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))}
                 className={styles.menuitem}

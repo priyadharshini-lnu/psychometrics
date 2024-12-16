@@ -40,7 +40,7 @@ export class Randomization extends Component {
   save = () => {
     const {
       entityName, model, close, updateBlockProps, enableSingleQuestionPage,
-      toggleSingleQuestionPage, automaticPageBreak, builder,
+      toggleSingleQuestionPage  
     } = this.props
     const { type, questions, perPage } = this.state
     if (enableSingleQuestionPage && type === 'ByFactors' && perPage && perPage > 1) {
@@ -49,11 +49,7 @@ export class Randomization extends Component {
     if (type === 'Some' && !questions) {
       NotificationDispatcher.notify({ level: 'error', message: 'You must enter a value' })
     }
-    if (type === 'page') {
-      model.props.randomization = this.state
-      automaticPageBreak(model, builder)
-      close()
-    } else {
+    else {
       if (entityName === 'choice') {
         model.props.randomization = this.state
         model.update()
@@ -107,8 +103,7 @@ export class Randomization extends Component {
             {' '}
             {I18n.t('administration.assessments.randomization.no_randomization_order_all')}
             {' '}
-            {entityName}
-            {I18n.t('administration.assessments.randomization.s')}
+            {I18n.t(`administration.assessments.randomization.plural.${entityName}`)}
           </label>
           <label className={styles.inputLabel}>
             <input
@@ -127,8 +122,7 @@ export class Randomization extends Component {
             />
             {I18n.t('administration.assessments.randomization.of_total')}
             {' '}
-            {entityName}
-            {I18n.t('administration.assessments.randomization.s')}
+            {I18n.t(`administration.assessments.randomization.plural.${entityName}`)}
 
           </label>
           {entityName === 'question' && (
@@ -160,21 +154,20 @@ export class Randomization extends Component {
           )}
           <label className={styles.inputLabel}>
             <input
-              checked={type === 'page'}
+              checked={type === 'QuestionsPerPage'}
               type="radio"
-              value="page"
+              value="QuestionsPerPage" 
               onChange={this.handleChangeType}
             />
             {' '}
             {I18n.t('administration.assessments.randomization.select')}
             <input
-              value={type === 'page' ? questions : undefined}
+              value={type === 'QuestionsPerPage' ? questions : undefined}
               onChange={this.handleChangeQuestions}
               className={styles.questionInput}
-              disabled={type !== 'page'}
+              disabled={type !== 'QuestionsPerPage'}
             />
-            {entityName}
-            {I18n.t('administration.assessments.randomization.s')}
+            {I18n.t(`administration.assessments.randomization.plural.${entityName}`)}
             {' '}
             {I18n.t('administration.assessments.randomization.per_page')}
           </label>

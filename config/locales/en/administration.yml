@@ -351,9 +351,11 @@ en:
         no_randomization_order_all: Randomize the order of all
         of_total: of total
         per_page: per page
+        plural:
+          block: blocks
+          question: questions
         present_only: Present only
         question_per_factor_and_show: questions per factor and show
-        s: s
         save: Save
         select: Select
         select_only: Select only

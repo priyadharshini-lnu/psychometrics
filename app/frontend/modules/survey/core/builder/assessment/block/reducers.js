@@ -7,7 +7,7 @@ import {
   MOVE_QUESTION_DOWN, INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
   UPDATE_POSITIONS, REMOVE, ADD_PAGE_BREAK, UPDATE_BLOCK_PROPS, COPY_QUESTION,
   CLONE_BLOCK, UPDATE_QUESTION_IDS, RENAME_BLOCK, PERMANENT_REMOVE, RESTORE_BLOCK,
-  RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, UPDATE_BLOCKS, AUTOMATIC_PAGE_BREAK,
+  RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, UPDATE_BLOCKS,
 } from './actions'
 import { questionsWithoutDeleted, blocksWithoutDeleted } from '../selectors'
 
@@ -107,22 +107,6 @@ const HANDLERS = {
     const index = _.findIndex(block.questions, id => id === question.id)
     const newBlock = _.clone(block)
     newBlock.questions.splice(index + 1, 0, pb.id)
-    blocks[block.id] = newBlock
-    return blocks
-  },
-  [AUTOMATIC_PAGE_BREAK]: (state, { block, builder }) => {
-    const blocks = _.clone(state)
-    const filteredQuestions = questionsWithoutDeleted(builder, block.questions)
-    const ques = block.questions
-    const newBlock = _.clone(blocks[block.id])
-    const newQues = []
-    for (let i = 0; i < ques.length; i += 1) {
-      const isPageBreak = filteredQuestions.some(question => (question.id === ques[i] && question.type === 'PageBreak'))
-      if (!isPageBreak) {
-        newQues.push(ques[i])
-      }
-    }
-    newBlock.questions = newQues
     blocks[block.id] = newBlock
     return blocks
   },
