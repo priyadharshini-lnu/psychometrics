@@ -22,6 +22,6 @@ export default connect(
   {
     close: () => closeModal('randomization'),
     updateBlockProps,
-    toggleSingleQuestionPage
+    toggleSingleQuestionPage,
   },
 )

@@ -37,10 +37,14 @@ export class Randomization extends Component {
     this.setState({ perPage: Math.abs(parseInt(e.currentTarget.value, 10)) || '' })
   }
 
+  handleChangeQuestionsPerPage = (e) => {
+    this.setState({ questions: Math.abs(parseInt(e.currentTarget.value, 10)) || '' })
+  }
+
   save = () => {
     const {
       entityName, model, close, updateBlockProps, enableSingleQuestionPage,
-      toggleSingleQuestionPage  
+      toggleSingleQuestionPage,
     } = this.props
     const { type, questions, perPage } = this.state
     if (enableSingleQuestionPage && type === 'ByFactors' && perPage && perPage > 1) {
@@ -48,8 +52,7 @@ export class Randomization extends Component {
     }
     if (type === 'Some' && !questions) {
       NotificationDispatcher.notify({ level: 'error', message: 'You must enter a value' })
-    }
-    else {
+    } else {
       if (entityName === 'choice') {
         model.props.randomization = this.state
         model.update()
@@ -156,14 +159,14 @@ export class Randomization extends Component {
             <input
               checked={type === 'QuestionsPerPage'}
               type="radio"
-              value="QuestionsPerPage" 
+              value="QuestionsPerPage"
               onChange={this.handleChangeType}
             />
             {' '}
             {I18n.t('administration.assessments.randomization.select')}
             <input
               value={type === 'QuestionsPerPage' ? questions : undefined}
-              onChange={this.handleChangeQuestions}
+              onChange={this.handleChangeQuestionsPerPage}
               className={styles.questionInput}
               disabled={type !== 'QuestionsPerPage'}
             />
