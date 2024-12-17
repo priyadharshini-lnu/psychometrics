@@ -1304,6 +1304,7 @@ as: :simulation_progress_notification
                 post :update_positions
                 get  :export
                 post :import
+                post :bulk_update
                 post :remove_all
               end
             end

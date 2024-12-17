@@ -3,8 +3,20 @@
 module Api
   class V2::Administration::CampaignFactorsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::CampaignFactor::Schema
+    validates_request_schema :bulk_update, Api::V2::CampaignFactor::Schema.bulk_update
     validates_request_schema :create, Api::V2::CampaignFactor::Contract.new
     validates_request_schema :update, Api::V2::CampaignFactor::Contract.new
+
+    def bulk_update
+      result = ::CampaignFactors::BulkUpdate.call(campaign, params[:data])
+      audit! :bulk_update_campaign_factors, campaign, payload: params, campaign: campaign
+
+      if result[:ok]
+        render json: :ok
+      else
+        jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
+      end
+    end
 
     def update_positions
       result = ::CampaignFactors::UpdatePositions.call(campaign, params[:data])

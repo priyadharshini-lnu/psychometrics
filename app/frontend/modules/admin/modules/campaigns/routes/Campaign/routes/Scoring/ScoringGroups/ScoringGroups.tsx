@@ -20,6 +20,7 @@ import { useParams } from 'react-router-dom'
 
 import { ConnectedProps, connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { Key } from 'antd/lib/table/interface'
 import { useResources } from '~/hooks/useResources'
 import { AddGroupForm } from './AddGroupForm'
 import { AddEditFactorForm } from './AddEditFactorForm'
@@ -80,6 +81,7 @@ const ScoringGroupsComponent = (props: Props) => {
   const [activeId, setActiveId] = useState<string | null>(null)
   const recentlyMovedToNewContainer = useRef(false)
   const { modal, message } = App.useApp()
+  const [modifiedFactors, setModifiedFactors] = useState({})
   const {
     campaignPermissions, importFactors, loading, openModal, campaignName,
   } = props
@@ -193,6 +195,26 @@ const ScoringGroupsComponent = (props: Props) => {
   const handleOpenEditFactor = (factor: CampaignFactor) => {
     setCurrentFactor(factor)
     setOpenAddEditFactor({ open: true, mode: 'edit' })
+  }
+
+  const isFormValid = form => form.isFieldsTouched() && !form.getFieldsError().some(({ errors }) => errors.length > 0)
+
+  const handleFactorSelect = (id: Key[], form) => {
+    if (isFormValid(form)) {
+      setModifiedFactors((currModifiedFactors) => {
+        const newModifiedFactors = { ...currModifiedFactors }
+        if (_.isMatch(currentFactor || {}, form.getFieldsValue())) {
+          delete newModifiedFactors[currentFactor?.id as string]
+        } else {
+          newModifiedFactors[currentFactor?.id as string] = form.getFieldsValue()
+        }
+        return newModifiedFactors
+      })
+    }
+    const factor = campaignFactorsLocalState.find(factor => factor.id === id[0])
+    if (factor) {
+      handleOpenEditFactor(factor)
+    }
   }
 
   const handleGroupDragnDrop = (activeId: string, overId: string) => {
@@ -372,6 +394,47 @@ const ScoringGroupsComponent = (props: Props) => {
     return addCampaignFactor(newFactor).then(() => {
       fetchAndUpdateFactors()
     })
+  }
+  const handleEditFactors = (form) => {
+    const finalModifiedFactors = {
+      ...modifiedFactors,
+    }
+    if (isFormValid(form)) {
+      finalModifiedFactors[currentFactor?.id as string] = form.getFieldsValue()
+    }
+    const payload: Record<string, unknown>[] = []
+
+    Object.keys(finalModifiedFactors).forEach((key) => {
+      const value = finalModifiedFactors[key]
+      campaignFactorsLocalState.forEach((factor) => {
+        if (factor.id === key) {
+          payload.push({
+            ...value,
+            id: factor.id,
+            campaignFactorGroupId: factor.campaignFactorGroupId,
+            position: factor.position,
+            campaign: { id: campaignId },
+            campaignFactorGroup: { id: factor.campaignFactorGroupId.toString() },
+          })
+        }
+      })
+    })
+
+    return collectionAction({
+      action: 'bulk_update',
+      method: 'post',
+      body: payload,
+      responseType: t.literal('ok'),
+    }).then(() => {
+      fetchAndUpdateFactors()
+      handleFormClose()
+    })
+  }
+
+  const handleFormClose = () => {
+    setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
+    setCurrentFactor(undefined)
+    setModifiedFactors({})
   }
 
   const handleEditFactor = (data): Promise<void> => {
@@ -657,14 +720,16 @@ const ScoringGroupsComponent = (props: Props) => {
       <AddEditFactorForm
         addFactor={handleAddFactor}
         open={openAddEditFactor.open}
-        onClose={() => {
-          setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
-          setCurrentFactor(undefined)
-        }}
-        factorData={currentFactor}
+        onClose={handleFormClose}
+        factorData={modifiedFactors[currentFactor?.id as string] ?? currentFactor}
         editFactor={handleEditFactor}
         title={openAddEditFactor.mode === 'edit'
           ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
+        totalFactors={campaignFactorsLocalState}
+        groupName={sortedGroups}
+        handleFactorSelect={handleFactorSelect}
+        dirtyFactors={modifiedFactors}
+        editFactors={handleEditFactors}
       />
       <ManageVariablesForm
         open={openVariablesForm}

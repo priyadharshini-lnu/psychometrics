@@ -2694,6 +2694,7 @@ en:
       remove_factor_group_confirmation_title: Remove Factor Group
       required_error: Can't be empty
       save: Save
+      save_all: Save All
       score_range: Score Range
       score_types:
         norm_score: Norm Score

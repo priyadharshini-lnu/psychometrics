@@ -339,6 +339,9 @@ module Swagger
           CampaignFactorCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignFactor::Schema.create_request
           ),
+          CampaignFactorBulkRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactor::Schema.bulk_update
+          ),
           CampaignFactorResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignFactor::Schema.single_resource_response
           ),
