@@ -420,7 +420,7 @@ jobs:
             git add -f public/assets
             git add -f config/database.yml
             git commit -m "ci compiled assets" --no-verify
-      - heroku/install
+      - heroku_cli_install
       - heroku/deploy-via-git:
           force: true
           app-name: << parameters.app-name >>
@@ -512,7 +512,7 @@ jobs:
       app-name:
         type: string
     steps:
-      - heroku/install
+      - heroku_cli_install
       - heroku_docker_login
       - run:
           name: Release to heroku
@@ -535,7 +535,7 @@ jobs:
       target-app-name:
         type: string
     steps:
-      - heroku/install
+      - heroku_cli_install
       - heroku_docker_login
       - run:
           name: Release to heroku
