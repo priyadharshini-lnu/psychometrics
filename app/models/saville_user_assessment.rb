@@ -7,5 +7,9 @@ class SavilleUserAssessment < ApplicationRecord
 
   delegate :user_reports, to: :user_assessment
 
-  before_create -> { self.data_seprator = user_assessment.campaign.uniq_code }
+  before_create :set_default_data_seprator, if: proc { data_seprator.nil? }
+
+  def set_default_data_seprator
+    self.data_seprator = user_assessment.campaign.uniq_code
+  end
 end
