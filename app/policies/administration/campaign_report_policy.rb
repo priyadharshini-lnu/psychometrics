@@ -68,7 +68,7 @@ module Administration
 
     def bulk_download?
       @user.is?(:superadmin) || @user.has_permission?(
-        :results, :view_report, project_id: project_id, campaign_id: campaign_id
+        :results, :bulk_download, project_id: project_id, campaign_id: campaign_id
       )
     end
   end

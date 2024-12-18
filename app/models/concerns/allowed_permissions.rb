@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ModuleLength
+
 module AllowedPermissions
   extend ActiveSupport::Concern
 
@@ -124,6 +126,7 @@ module AllowedPermissions
       report_file_upload
       normalize_factor_scores
       export_occupations
+      bulk_download
     ],
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
@@ -168,6 +171,7 @@ module AllowedPermissions
       report_file_upload
       normalize_factor_scores
       export_occupations
+      bulk_download
     ],
     'workshops' => %w[view manage],
     'idp_templates' => %w[view manage]
@@ -207,3 +211,5 @@ module AllowedPermissions
     'threesixty_campaign_admin' => THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS
   }.freeze
 end
+
+# rubocop:enable Metrics/ModuleLength
