@@ -18,12 +18,12 @@ module Users
     def find_or_create_user
       user = User.find_by(email: @create_resource_params[:email], project_id: nil)
       if user.nil?
-        user = User.new(@create_resource_params)
+        user = Users::Admin.new(@create_resource_params)
         user.modified_by_id = @current_user.id
         user.global_assessor = true
         user.created_by_id = @current_user.id
         user.create_by_invite = true
-        user.invite!(@current_user)
+        user.invite_assessor!
         user.role = User::ADMIN_ROLE
       else
         user.assign_attributes(@create_resource_params)
