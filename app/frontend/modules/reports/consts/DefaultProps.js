@@ -95,6 +95,12 @@ export default {
       fontFamily: 'Arial',
       color: '#000000',
     },
+    legendStyle: {
+      fontColor: '#000000',
+      fontSize: '100%',
+      fontFamily: 'Arial',
+      color: '#000000',
+    },
     source: null,
     type: null,
     zIndex: 3000,

@@ -18,14 +18,20 @@ class Api::V2::Administration::Assessments::FactorResource < Api::V2::Administra
   end
 
   def self.records(opts)
-    user_clients_ids = opts[:context][:user].accessible_client_ids
-    campaign_template_assessment_ids = CampaignTemplate.where(
-      owner_id: [nil, user_clients_ids]
-    ).pluck(:assessment_id)
+    if opts[:context][:user].is?(:superadmin)
+      Assessment.find(opts[:context][:params][:assessment_id]).dimension.all_factors
+    else
+      user_clients_ids = opts[:context][:user].accessible_client_ids
+      campaign_template_assessment_ids = CampaignTemplate.where(
+        owner_id: [nil, user_clients_ids]
+      ).pluck(:assessment_id)
 
-    ::Assessment.where(owner_id: user_clients_ids).or(
-      Assessment.where(id: campaign_template_assessment_ids)
-    ).find_by(owner: [nil, opts[:context][:project].client.id],
-              id: opts[:context][:params][:assessment_id]).dimension.all_factors
+      ::Assessment.where(owner_id: user_clients_ids).or(
+        Assessment.where(id: campaign_template_assessment_ids)
+      ).find_by(
+        owner: [nil, opts[:context][:project].client.id],
+        id: opts[:context][:params][:assessment_id]
+      )&.dimension&.all_factors || Factor.none
+    end
   end
 end

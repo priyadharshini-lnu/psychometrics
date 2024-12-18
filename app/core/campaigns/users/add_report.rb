@@ -77,9 +77,15 @@ module Campaigns
             campaign: campaign
           )
         end
+
         if assessment.hogan? && user.hogan_credential && user_assessment.completed?
           Hogan::HandleAssessmentCompletion.call!(user_assessment)
         end
+
+        if options[:operation] == 'add_with_existing_response'
+          ::UsersResults::Recompute.call!(user_assessment.users_result, user)
+        end
+
         user_assessment
       end
 

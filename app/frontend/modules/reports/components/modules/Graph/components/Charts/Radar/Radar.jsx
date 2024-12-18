@@ -53,6 +53,7 @@ class Radar extends Component {
     if (!data) { return null }
     const series = data.series(getCorrectResults(model), sourceModel, model, factors)
     const { fontSize, fontColor: color, fontFamily } = model.props.style
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
     if (!series.length) { return null }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const { hideYaxisLabels } = model.props
@@ -61,6 +62,14 @@ class Radar extends Component {
       _.merge(
         ChartOptions(model, animation),
         {
+          legend: {
+            enabled: true,
+            itemStyle: {
+              color: legendColor,
+              fontSize: legendFontSize,
+              fontFamily: legendFontFamily,
+            },
+          },
           plotOptions: {
             series: {
               animation,

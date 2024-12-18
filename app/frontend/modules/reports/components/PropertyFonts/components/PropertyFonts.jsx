@@ -4,6 +4,7 @@ import { rgba2hex } from '~/utils/color'
 import { ColorPicker } from '~/glint'
 import DefaultProps from '~/modules/reports/consts/DefaultProps'
 import styles from './PropertyFonts.less'
+import { STYLE_TYPE } from './constants'
 
 export const FONTS = {
   Arial: 'arial, helvetica, sans-serif',
@@ -54,7 +55,7 @@ const overridenStyle = (style, value) => !isDefault(style, value)
 
 
 const PropertyFilter = ({
-  modules, colors, reportStyles = {},
+  modules, colors, reportStyles = {}, styleType = STYLE_TYPE.style,
 }) => {
   const model = modules[0]
   const updateAll = (cb) => {
@@ -66,19 +67,19 @@ const PropertyFilter = ({
 
   const changeFontFamily = (e) => {
     updateAll((model) => {
-      model.props.style.fontFamily = e.currentTarget.value
+      model.props[styleType].fontFamily = e.currentTarget.value
     })
   }
 
   const changeFontSize = (e) => {
     updateAll((model) => {
-      model.props.style.fontSize = e.currentTarget.value
+      model.props[styleType].fontSize = e.currentTarget.value
     })
   }
 
   const changeFontColor = (color) => {
     updateAll((model) => {
-      model.props.style.fontColor = color
+      model.props[styleType].fontColor = color
     })
   }
 
@@ -92,8 +93,8 @@ const PropertyFilter = ({
     const hasStyle = isHasStyle(textStyles, 'fontFamily')
     return (
       <select
-        className={cs('form-control', styleClassess(textStyles, 'fontFamily', model.props.style.fontFamily))}
-        value={model.props.style.fontFamily}
+        className={cs('form-control', styleClassess(textStyles, 'fontFamily', model.props[styleType].fontFamily))}
+        value={model.props[styleType].fontFamily}
         onChange={changeFontFamily}
       >
         <option value="">{hasStyle ? 'Inherited' : 'Default'}</option>
@@ -107,8 +108,8 @@ const PropertyFilter = ({
 
     return (
       <select
-        className={cs('form-control', styleClassess(textStyles, 'fontSize', model.props.style.fontSize))}
-        value={model.props.style.fontSize}
+        className={cs('form-control', styleClassess(textStyles, 'fontSize', model.props[styleType].fontSize))}
+        value={model.props[styleType].fontSize}
         onChange={changeFontSize}
       >
         {_.times(1 + (FONT_MAX_SIZE - FONT_MIN_SIZE) / FONT_STEP_SIZE, i => (
@@ -122,7 +123,7 @@ const PropertyFilter = ({
   }
 
   const renderFontColor = () => {
-    const { fontColor } = model.props.style
+    const { fontColor } = model.props[styleType]
     const notNullfontColor = fontColor || '#000000'
     const fontColorHex = typeof notNullfontColor === 'object'
       ? (rgba2hex(fontColor)) : notNullfontColor

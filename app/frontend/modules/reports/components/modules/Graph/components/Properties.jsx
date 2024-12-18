@@ -12,6 +12,7 @@ import iconsStyles from './Graph.less'
 import Menu from './ChartsMenu'
 import connect from '../connect'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
+import { STYLE_TYPE } from '~/modules/reports/components/PropertyFonts/components/constants'
 
 const Properties = ({
   reportStlyes, openConditionalText, modules,
@@ -132,6 +133,11 @@ const Properties = ({
             maxValue={9}
           />
         </label>
+      </div>
+      <hr className={styles.divider} />
+      <div className={styles.block}>
+        Legend Font
+        <PropertyFonts modules={modules} reportStlyes={reportStlyes} styleType={STYLE_TYPE.legendStyle} />
       </div>
       <hr className={styles.divider} />
       <div className="margin-top-10">Font</div>

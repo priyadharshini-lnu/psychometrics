@@ -1078,6 +1078,7 @@ en:
       success: We have send you a login link to '%{email}'. Click the link in the email that you would have received to login
     mobile_number: Mobile Number
     new_password: New Password
+    new_password_placeholder: Enter the new password
     otp:
       code: Code
       code_placeholder: One Time Password
