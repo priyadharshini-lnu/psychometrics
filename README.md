@@ -179,7 +179,7 @@ rake i18n:js:export
 ```
 then
 ```sh
-npm run test
+yarn run test
 ```
 Check package.json for more details
 
