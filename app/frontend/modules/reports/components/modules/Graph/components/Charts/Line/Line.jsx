@@ -39,7 +39,9 @@ class Line extends Component {
   }
 
   renderChart () {
-    const { model, animation, factors } = this.props
+    const {
+      model, animation, factors, isRTL,
+    } = this.props
 
     if (this.chart) {
       this.chart.destroy()
@@ -107,10 +109,12 @@ class Line extends Component {
               },
             },
           },
+          reversed: isRTL,
         }),
         yAxis: {
           gridLineWidth: model.props.yAxisLinesHide ? 0 : 1,
           title: { enabled: !model.props.yAxisTitleDisabled },
+          opposite: isRTL,
         },
         series,
       }))

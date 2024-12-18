@@ -36,7 +36,7 @@ class PreviewContainer extends Component {
     const { default_language } = parsedData
 
     if (default_language) {
-      I18nStore.setLocale(default_language.code || document.body.dataset.locale)
+      I18nStore.setLocale(document.body.dataset.locale || default_language.code)
       this.setState({ localeDirection: default_language.direction })
     }
 

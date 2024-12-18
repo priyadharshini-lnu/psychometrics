@@ -7,7 +7,7 @@ import {
 
 const assignStyle = useAssignStyle('Shape')
 
-const buildeStyles = (styles, overrides) => {
+const buildeStyles = (styles, overrides, flipContent) => {
   let style = styles
   let outerStyle = {}
   const {
@@ -43,8 +43,12 @@ const buildeStyles = (styles, overrides) => {
     const {
       x = offsetX, y = offsetY, blur = shadow, spread = 0, color = '#000000',
     } = (style.boxShadow || {})
-    // eslint-disable-next-line max-len
-    outerStyle.boxShadow = `${offsetX || x || 0}px ${offsetY || y || 0}px ${shadow || blur || 0}px ${spread || 0}px ${color}`
+    outerStyle.boxShadow = `${offsetX || x || 0}px ${offsetY || y || 0}px
+    ${shadow || blur || 0}px ${spread || 0}px ${color}`
+    if (flipContent) {
+      outerStyle.boxShadow = `${-offsetX || -x || 0}px ${offsetY || y || 0}px
+      ${shadow || blur || 0}px ${spread || 0}px ${color}`
+    }
   }
 
   if (!backgroundColor && style.gradient?.enabled) {
@@ -57,9 +61,11 @@ const buildeStyles = (styles, overrides) => {
 }
 
 const Shape = (props) => {
-  const { module, reportStyles } = props
+  const { module, reportStyles, flipContent } = props
 
-  let [style, outerStyle] = buildeStyles(joinStyles(reportStyles, module.props.styleIds), module.props.style)
+  let [style, outerStyle] = buildeStyles(joinStyles(
+    reportStyles, module.props.styleIds,
+  ), module.props.style, flipContent)
 
   if (module.textConditions.length > 0) {
     const styles = module.getStylesByCondition()

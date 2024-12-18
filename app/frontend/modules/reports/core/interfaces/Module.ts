@@ -35,7 +35,7 @@ export default interface Module {
     text?: string
     type?: string
     url?: string
-    position: {width: number, height: number}
+    position: {width: number, height: number, top: number, left: number}
     style: any // eslint-disable-line @typescript-eslint/no-explicit-any
     question?: number
   }

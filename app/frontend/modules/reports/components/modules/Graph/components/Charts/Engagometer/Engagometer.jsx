@@ -35,7 +35,9 @@ class Engagometer extends Component {
   }
 
   renderChart () {
-    const { model, animation, factors } = this.props
+    const {
+      model, animation, factors, isRTL,
+    } = this.props
     const colors = _.map(model.props.colors, 'color')
     if (this.chart) {
       this.chart.destroy()
@@ -84,6 +86,7 @@ class Engagometer extends Component {
               to: ser.to,
               color: colors[i],
             })),
+            reversed: isRTL,
           },
           legend: {
             itemStyle: {
@@ -95,6 +98,7 @@ class Engagometer extends Component {
               return `<span style="color:${this.color}">${this.name}</span>`
             },
             symbolWidth: 0,
+            rtl: isRTL,
           },
           series: _.map(sourceModel, (factor, i) => ({
             marker: { enabled: false },

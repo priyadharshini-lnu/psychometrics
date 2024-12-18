@@ -15,10 +15,12 @@ module Administration
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
         set_available_translations(@user_report.report)
+        set_available_languages(@user_report.report)
         @data = ::Reports::PrepareDataForReport.call!(
           user_report: @user_report,
           locale: @user_report.report.default_language,
-          current_user: current_user
+          current_user: current_user,
+          lang: params[:lang]
         )
 
         respond_to do |format|
@@ -98,6 +100,10 @@ module Administration
 
       def set_available_translations(report)
         @available_translations = Translation.available_translation_for_report(report.id, report.assessments.first)
+      end
+
+      def set_available_languages(report)
+        @available_languages = [report.default_language] + report.other_languages
       end
     end
   end

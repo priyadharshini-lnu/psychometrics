@@ -114,7 +114,7 @@ class CustomPie extends Component {
   }
 
   renderChart () {
-    const { model, animation } = this.props
+    const { model, animation, isRTL } = this.props
     const colors = _.map(model.props.colors, 'color')
     if (this.chart) {
       this.chart.destroy()
@@ -149,8 +149,8 @@ class CustomPie extends Component {
           },
         },
         pane: {
-          startAngle: 0,
-          endAngle: 360,
+          startAngle: isRTL ? 360 : 0,
+          endAngle: isRTL ? 0 : 360,
           background: _.times(sourceModel.length, i => ({
             // Track for Move
             outerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * i - i}%`,
@@ -173,6 +173,7 @@ class CustomPie extends Component {
           symbolPadding: 0,
           symbolHeight: 0,
           symbolWidth: 0,
+          rtl: isRTL,
         },
         series,
       }),

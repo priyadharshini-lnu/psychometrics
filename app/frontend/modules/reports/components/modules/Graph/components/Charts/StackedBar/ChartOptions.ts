@@ -3,7 +3,7 @@ import { Options } from 'highcharts'
 
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/StackedBar'
 
-export default function ChartOptions (model: PropertiesModel, animation: boolean): Options {
+export default function ChartOptions (model: PropertiesModel, animation: boolean, rtl = false): Options {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
   const [...colorsObjectList] = model.props.colors
   let xAxisOptions = {}
@@ -63,6 +63,7 @@ export default function ChartOptions (model: PropertiesModel, animation: boolean
         color: color || '#000',
         fontFamily,
       },
+      rtl,
     },
     tooltip: {
       enabled: animation,

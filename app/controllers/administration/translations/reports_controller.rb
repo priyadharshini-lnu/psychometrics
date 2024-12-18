@@ -12,7 +12,7 @@ module Administration
 
       def export
         data = JSON.parse(params[:data])
-        xlsx = ::Exports::Translations::ReportExport.new(@report.id, data)
+        xlsx = ::Exports::Translations::ReportExport.new(@report, data)
         send_data xlsx.render.to_stream.read, filename: 'report_translations.xlsx'
       end
 

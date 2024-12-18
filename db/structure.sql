@@ -4204,7 +4204,8 @@ CREATE TABLE public.reports (
     data_only boolean DEFAULT false,
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors jsonb DEFAULT '[]'::jsonb NOT NULL,
-    styles jsonb DEFAULT '{}'::jsonb
+    styles jsonb DEFAULT '{}'::jsonb,
+    other_languages jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -14599,6 +14600,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241210073446'),
 ('20241205111711'),
+('20241203151030'),
 ('20241129104313'),
 ('20241128105109'),
 ('20241126112602'),

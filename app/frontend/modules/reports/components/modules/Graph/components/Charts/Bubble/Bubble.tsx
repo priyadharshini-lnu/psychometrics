@@ -20,10 +20,11 @@ import {
 highChartMore(Highcharts)
 
 interface Props {
-  model: PropertiesModel
+  model: PropertiesModel,
+  isRTL: boolean,
 }
 
-const Bubble: FC<Props> = ({ model }) => {
+const Bubble: FC<Props> = ({ model, isRTL }) => {
   const chartContainer = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
   const [plotSize, setPlotSize] = useState<Size>({ width: 0, height: 0 })
@@ -32,7 +33,7 @@ const Bubble: FC<Props> = ({ model }) => {
     if (!chartContainer.current) {
       return
     }
-    const chartOptions = getBubbleChartOptions(model, plotSize)
+    const chartOptions = getBubbleChartOptions(model, plotSize, isRTL)
     if (chartRef.current) {
       chartRef.current.update(chartOptions, true, true, false)
     } else {
@@ -58,7 +59,7 @@ const Bubble: FC<Props> = ({ model }) => {
   return <div className="h-100 w-100" ref={chartContainer} />
 }
 
-const getBubbleChartOptions = (model: PropertiesModel, size: Size): ChartOptions => {
+const getBubbleChartOptions = (model: PropertiesModel, size: Size, isRTL = false): ChartOptions => {
   const {
     source,
     seriesValueIds,
@@ -131,6 +132,14 @@ const getBubbleChartOptions = (model: PropertiesModel, size: Size): ChartOptions
     series: [
       { type: 'bubble', states: { hover: undefined }, data: seriesData },
     ],
+    xAxis: {
+      reversed: isRTL,
+      ...configChartOptions.xAxis,
+    },
+    yAxis: {
+      opposite: isRTL,
+      ...configChartOptions.yAxis,
+    },
   }
 
   return chartOptions

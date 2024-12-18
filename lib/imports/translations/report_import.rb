@@ -58,6 +58,7 @@ module Imports
         header = rows.shift
 
         collect_translations = {}
+        report = Report.find report_id
 
         rows.each do |row|
           data = header.zip(row).to_h
@@ -75,7 +76,7 @@ module Imports
           # Nested hash if not initilized return blank hash insted nil
           data.each do |locale, translation|
             locale = locale.split(' / ').last
-            next if locale == 'en' || translation.blank? # Default locale or not translated
+            next if locale == report.default_language || translation.blank? # Default locale or not translated
 
             collect_translations[translateable_type][translateable_id][locale] ||= {}
             collect_translations[translateable_type][translateable_id][locale][key] = translation

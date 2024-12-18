@@ -2633,6 +2633,7 @@ en:
       external_settings:
         hogan_report_id: Hogan Report ID
         saville_report_id: Saville Report ID
+      other_available_languages: Other Available Languages
     create: Create
     dashboard: Dashboard
     drawer:

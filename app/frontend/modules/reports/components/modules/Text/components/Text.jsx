@@ -39,6 +39,7 @@ class Text extends Component {
     preview: PropTypes.bool,
   }
 
+
   componentDidMount () {
     this.listener = RichEditorStore.addListener('close', () => {
       this.closeEditor()
@@ -143,21 +144,27 @@ class Text extends Component {
   }
 
   buildStyles (styles, overrides) {
-    const { module } = this.props
+    const { module, flipContent } = this.props
 
     let style = styles
     const outerStyle = {}
 
     const {
       backgroundColor, fontColor, fontFamily, borderColor, borderRadius,
-      fontSize, fontWeight, fontStyle, verticalAlign,
+      fontSize, fontWeight, fontStyle, verticalAlign, horizontalAlign,
     } = overrides
-    let { horizontalAlign } = overrides
+    let horizontalAlignNew = assignStyle(style, 'textAlign', horizontalAlign)
 
-    horizontalAlign = assignStyle(style, 'textAlign', horizontalAlign)
+    if (window.I18n.locale === 'ar' && horizontalAlignNew === 'left' && I18nStore.isExistTModule(module, 'text')) {
+      horizontalAlignNew = 'right'
+    }
 
-    if (window.I18n.locale === 'ar' && horizontalAlign === 'left' && I18nStore.isExistTModule(module, 'text')) {
-      horizontalAlign = 'right'
+    if (flipContent && horizontalAlign === 'left') {
+      horizontalAlignNew = horizontalAlign === 'left' ? 'right' : 'left'
+    }
+
+    if (flipContent && horizontalAlign === 'right') {
+      horizontalAlignNew = horizontalAlign === 'right' ? 'left' : 'right'
     }
 
     if (!style.border && !overrides.borderColor) {
@@ -169,7 +176,7 @@ class Text extends Component {
     style.fontFamily = assignStyle(style, 'fontFamily', fontFamily)
     style.fontWeight = assignStyle(style, 'fontWeight', fontWeight)
     style.fontStyle = assignStyle(style, 'fontStyle', fontStyle)
-    style.textAlign = horizontalAlign || assignStyle(style, 'textAlign', '')
+    style.textAlign = horizontalAlignNew || assignStyle(style, 'textAlign', '')
     style.alignItems = verticalAlign || assignStyle(style, 'alignItems', '')
 
     style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
@@ -193,7 +200,8 @@ class Text extends Component {
       const {
         x, y, blur, spread, color,
       } = style.boxShadow
-      outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
+      const sx = flipContent ? -(x || 0) : x || 0
+      outerStyle.boxShadow = `${sx}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
     }
 
     if (!backgroundColor && style.gradient?.enabled) {
@@ -333,7 +341,7 @@ class Text extends Component {
           onModelChange={this.onChange}
         />
       )
-      : <SafeHTML className={styles.editor} html={text} />
+      : <SafeHTML className={styles.editor} html={I18nStore.tModule(model, 'text')} />
   }
 
   render () {

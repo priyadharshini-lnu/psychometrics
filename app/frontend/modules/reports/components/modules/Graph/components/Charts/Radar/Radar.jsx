@@ -40,7 +40,9 @@ class Radar extends Component {
   }
 
   renderChart () {
-    const { model, animation, factors } = this.props
+    const {
+      model, animation, factors, isRTL,
+    } = this.props
     if (this.chart) {
       this.chart.destroy()
       this.chart = null
@@ -59,7 +61,7 @@ class Radar extends Component {
     this.chart = Highcharts.chart(
       this.container,
       _.merge(
-        ChartOptions(model, animation),
+        ChartOptions(model, animation, isRTL),
         {
           plotOptions: {
             series: {

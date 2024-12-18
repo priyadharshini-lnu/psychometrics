@@ -93,6 +93,13 @@ const Properties = ({
     })
   }
 
+  const flipImageForOtherDirectionLang = (e) => {
+    updateAll((model) => {
+      const val = e.currentTarget.checked
+      model.props.flipImageForOtherDirectionLang = val
+    })
+  }
+
   const openLibrary = () => {
     LibraryStore.openPopup(librarySocket.current, onSelectGraphic, 'image')
   }
@@ -181,6 +188,17 @@ const Properties = ({
         <div className={styles.block}>
           <button className="btn btn-default" onClick={expand}>Expand to page sizes</button>
         </div>
+      </div>
+      <div className={styles.block} style={{ position: 'relative' }}>
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={model.props.flipImageForOtherDirectionLang || false}
+            onChange={flipImageForOtherDirectionLang}
+          />
+          <span>Flip Image for Other Direction Language(ltr/rtl)</span>
+        </label>
       </div>
       <div className={styles.block} style={{ position: 'relative' }}>
         <label className={styles.inputLabel}>
