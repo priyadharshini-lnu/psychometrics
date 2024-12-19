@@ -183,6 +183,31 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
     form.setFieldsValue({ [field]: null })
   }
 
+  const validateAltText = (fieldName: string, value: string): Promise<void> => {
+    if (!value || value.trim() === '') {
+      return Promise.reject(
+        new Error(I18n.t(`administration.projects.design_settings.${fieldName}_required`)),
+      )
+    }
+    const validPattern = /^[a-zA-Z0-9\s.,'-]+$/
+    if (!validPattern.test(value.trim())) {
+      return Promise.reject(
+        new Error(I18n.t('administration.projects.design_settings.alt_text_invalid')),
+      )
+    }
+    return Promise.resolve()
+  }
+
+  const getFieldRules = (fieldName: string) => [
+    {
+      validator: (_: unknown, value: string) => validateAltText(fieldName, value),
+    },
+    {
+      max: MAX_ALT_TEXT_LENGTH,
+      message: I18n.t('administration.projects.design_settings.alt_text_long'),
+    },
+  ]
+
   return (
     <Row justify="space-between" className="pl" gutter={16}>
       <Col sm={24} md={16} xl={12} xxl={10}>
@@ -223,12 +248,9 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
           <Form.Item
             name="logoAltText"
             label={I18n.t('administration.projects.design_settings.alt_text_logo')}
-            rules={[
-              { max: MAX_ALT_TEXT_LENGTH, message: I18n.t('administration.projects.design_settings.alt_text_long') },
-              { required: true, message: I18n.t('administration.projects.design_settings.alt_text_logo_required') },
-            ]}
+            rules={getFieldRules('alt_text_logo')}
           >
-            <Input />
+            <Input maxLength={MAX_ALT_TEXT_LENGTH} />
           </Form.Item>
           )}
           <Form.Item
@@ -306,18 +328,9 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
           <Form.Item
             name="secondaryLogoAltText"
             label={I18n.t('administration.projects.design_settings.secondary_logo_alt_text')}
-            rules={[
-              {
-                max: MAX_ALT_TEXT_LENGTH,
-                message: I18n.t('administration.projects.design_settings.alt_text_long'),
-              },
-              {
-                required: true,
-                message: I18n.t('administration.projects.design_settings.secondary_logo_alt_text_required'),
-              },
-            ]}
+            rules={getFieldRules('secondary_logo_alt_text')}
           >
-            <Input />
+            <Input maxLength={MAX_ALT_TEXT_LENGTH} />
           </Form.Item>
           )}
           <Form.Item label={I18n.t('administration.projects.design_settings.background_color')}>

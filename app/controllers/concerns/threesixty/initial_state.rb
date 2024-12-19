@@ -30,7 +30,9 @@ module Threesixty::InitialState
           error_color: @current_project.design_setting.error_color,
           warning_color: @current_project.design_setting.warning_color,
           success_color: @current_project.design_setting.success_color,
-          info_color: @current_project.design_setting.info_color
+          info_color: @current_project.design_setting.info_color,
+          secondary_logo_alt_text: @current_project.design_setting.secondary_logo_alt_text,
+          logo_alt_text: @current_project.design_setting.logo_alt_text
         },
         profile: {
           fields: Panko::ArraySerializer.new(

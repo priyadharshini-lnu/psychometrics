@@ -2236,6 +2236,7 @@ en:
       columns:
         project_number: Project Number
       design_settings:
+        alt_text_invalid: Alt Text contains unsupported characters.
         alt_text_logo: Logo Alt-Text
         alt_text_logo_required: Alt-Text Logo is Required
         alt_text_long: Exceeds the maximum limit of 100 characters.
