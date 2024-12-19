@@ -36,6 +36,7 @@ import {
 } from '~/modules/admin/modules/campaigns/core/campaignFactor'
 import { isRequestInProgress } from '~/core/request'
 import { RemoveCampaignFactorsModal } from './RemoveCampaignFactorsModal'
+import { RemoveCampaignFactorModal } from './RemoveCampaignFactorModal'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
 
@@ -51,6 +52,7 @@ const { I18n } = window
 
 const MODALS = {
   RemoveCampaignFactorsModal,
+  RemoveCampaignFactorModal,
 }
 
 const connector = connect(
@@ -452,18 +454,16 @@ const ScoringGroupsComponent = (props: Props) => {
     })
   }
 
-  const handleRemoveFactor = (factorId: string) => {
-    removeCampaignFactor(factorId).then(() => {
-      message.success(I18n.t('administration.scoring.factor_removed_successfully'))
-      fetchAndUpdateFactors()
-    })
-  }
-
   const handleConfirmRemoveFactor = (factor: CampaignFactor) => {
-    modal.confirm({
-      title: I18n.t('administration.scoring.remove_factor_confirmation_title'),
-      content: I18n.t('administration.scoring.remove_factor_confirmation_content', { factor_name: factor.name }),
-      onOk: () => handleRemoveFactor(factor.id),
+    collectionAction({
+      action: 'validate_campaign_factor_deletion',
+      method: 'get',
+      body: { id: factor.id },
+      responseType: t.type({ response: t.string }),
+    }).then((data: { response: string }) => {
+      openModal('RemoveCampaignFactorModal', {
+        factor, removeCampaignFactor, fetchAndUpdateFactors, warningMessage: data.response,
+      })
     })
   }
 

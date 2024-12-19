@@ -36,7 +36,11 @@ module Api
       end
 
       def remove_all?
-        destroy?
+        has_permission?(:campaign_factors, :manage)
+      end
+
+      def validate_campaign_factor_deletion?
+        has_permission?(:campaign_factors, :manage)
       end
 
       class Scope < ::Api::Administration::BasePolicy::Scope

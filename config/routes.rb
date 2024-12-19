@@ -1306,6 +1306,7 @@ as: :simulation_progress_notification
                 post :import
                 post :bulk_update
                 post :remove_all
+                get :validate_campaign_factor_deletion
               end
             end
             jsonapi_resources :campaign_user_scorings, only: %i[index] do

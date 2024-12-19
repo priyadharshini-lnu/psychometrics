@@ -269,6 +269,21 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
     end
   end
 
+  describe 'validate_campaign_factor_deletion' do
+    let(:campaign_factor) { create(:campaign_factor, campaign: campaign) }
+
+    it 'returns a successful response' do
+      get "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/validate_campaign_factor_deletion",
+          params: { id: campaign_factor.id }
+
+      expect(response).to have_http_status(:ok)
+
+      expect(JSON.parse(response.body)).to eq(
+        'response' => "Are you sure you want to delete the campaign factor '#{campaign_factor.name}'?"
+      )
+    end
+  end
+
   describe 'import' do
     it 'queues import_campaign_factors job successfully' do
       file = Rack::Test::UploadedFile.new(

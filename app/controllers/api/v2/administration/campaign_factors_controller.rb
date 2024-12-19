@@ -62,5 +62,11 @@ module Api
         jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
       end
     end
+
+    def validate_campaign_factor_deletion
+      result = ::CampaignFactors::ValidateDelete.call(campaign, params[:id])
+
+      render json: { response: result[:ok] }
+    end
   end
 end

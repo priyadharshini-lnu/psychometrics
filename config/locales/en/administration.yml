@@ -696,6 +696,12 @@ en:
         missing_factor_id: Factor id is required.
         name_already_exists: A factor with the same name '%{name}' already exists.
         name_size_exceded: Name should not exceed %{size} characters.
+    campaign_factors:
+      delete:
+        confirm_message:
+          assessor_scoring: You are about to delete Assessor scoring. You will lose all moderated assessor scores for this factor '%{factor_name}'. Are you sure you want to proceed?
+          default: Are you sure you want to delete the campaign factor '%{factor_name}'?
+          external_score: You are about to delete External scoring. You will lose external scores that are associated with this factor '%{factor_name}'. Are you sure you want to proceed?
     campaign_factors_import:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
@@ -2665,6 +2671,7 @@ en:
         factors: Export Campaign Factors
       factor: Factor
       factor_group_removed_successfully: Campaign Factor group was removed successfully
+      factor_removal_confirmation: Enter factor name given below in text box to confirm
       factor_removed_successfully: Campaign Factor was removed successfully
       factors_exported_successfully: Export campaign factors job was scheduled successfully
       factors_imported_successfully: Import campaign factors job was scheduled successfully
@@ -2689,8 +2696,6 @@ en:
         success: Campaign Factors removed successfully
         title: Remove campaign factors
         warning: Your are about to delete all campaign factor and all associated scores for the users. Are you sure you want to perform this action?
-      remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
-      remove_factor_confirmation_title: Remove Factor
       remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
       remove_factor_group_confirmation_title: Remove Factor Group
       required_error: Can't be empty
