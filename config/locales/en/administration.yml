@@ -175,6 +175,7 @@ en:
             view: View
           results:
             approve_report: Approve Report
+            bulk_download: Bulk Download
             bulk_regenerate_reports: Bulk Regenerate Reports
             download_report: Download Report
             edit_report: Edit Report

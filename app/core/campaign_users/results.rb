@@ -9,7 +9,10 @@ module CampaignUsers
     end
 
     def call
-      results = campaign_user.campaign_factor_values.includes(:campaign_factor).map do |factor_value|
+      campaign_factor_values = CampaignFactorValue.where(
+        campaign_id: campaign_user.campaign_id, user_id: campaign_user.user_id
+      )
+      results = campaign_factor_values.includes(:campaign_factor).map do |factor_value|
         {
           id: factor_value.campaign_factor.code,
           name: factor_value.campaign_factor.name,
