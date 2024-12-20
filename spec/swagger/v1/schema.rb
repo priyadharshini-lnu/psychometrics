@@ -289,6 +289,20 @@ module Swagger
               **new_evaluation**: This allows the user to sit an assessment even if the user has previously
               completed the assessment in a different campaign.
               '
+            },
+            schedule_start_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Start date and time for the campaign schedule',
+              example: nil,
+              nullable: true
+            },
+            schedule_end_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'End date and time for the campaign schedule',
+              example: nil,
+              nullable: true
             }
           }
         },
@@ -423,7 +437,19 @@ module Swagger
             webhook: { type: 'string', 'x-nullable': true },
             background_image: { type: 'string', 'x-nullable': true },
             background_color: { type: 'string', 'x-nullable': true },
-            login_box_position: { type: 'string', 'x-nullable': true }
+            login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
+              'x-nullable': true
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
+              'x-nullable': true
+            }
           }
         },
         UpdatedProject: {
@@ -441,7 +467,19 @@ module Swagger
             background_image: { type: 'string', 'x-nullable': true },
             background_color: { type: 'string', 'x-nullable': true },
             webhook: { type: 'string', 'x-nullable': true },
-            login_box_position: { type: 'string', 'x-nullable': true }
+            login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            }
           }
         },
         Project: {
@@ -461,6 +499,18 @@ module Swagger
             background_image: { type: 'string', 'x-nullable': true },
             background_color: { type: 'string', 'x-nullable': true },
             login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            },
             webhook: { type: 'string', 'x-nullable': true },
             created_at: { type: 'string' },
             updated_at: { type: 'string' }
