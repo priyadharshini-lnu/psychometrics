@@ -1277,6 +1277,7 @@ en:
       norm: Norm
       norm_id: Norm ID
       prework: Prework
+      simuation_time_extension: Simulation Time Extension
       simulation_content_variation: Simulation Content Variation
       universal_link: Universal link
     drawer:
@@ -1348,6 +1349,11 @@ en:
         select_norm: Select Norm
         success_msg: Norms were updated successfully
         title: Update Norm
+        update: Update
+      update_simulation_time_extension:
+        success_msg: Simulation Time Extension was updated successfully
+        title: Time extension
+        tooltip: Time extension as a factor (e.g., 1.5 for 50% more time)
         update: Update
       update_time:
         additional_time: Time (min)

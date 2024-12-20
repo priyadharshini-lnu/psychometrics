@@ -309,6 +309,12 @@ class Client < ApplicationRecord
     provider_from_hogan_integration || Settings.secrets.hogan[:default_provider]
   end
 
+  def simulation_user_assessment_exist?
+    SimulationUserAssessment.joins(:user_assessment).exists?(
+      user_assessments: { campaign_id: project_campaigns.ids }
+    )
+  end
+
   private
 
   def generate_hogan_group_name

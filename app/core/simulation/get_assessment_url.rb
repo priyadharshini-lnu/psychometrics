@@ -29,6 +29,7 @@ module Simulation
         modifiers: {
           returnUrl: return_url,
           webhookUrl: assessment_progress_notification_url,
+          timeExtension: time_extension,
           branding: {
             logo: project.design_setting.logo_url,
             # primary: project.design_setting.primary_color,
@@ -67,6 +68,10 @@ module Simulation
 
     def content_variation_id
       simulation_user_assessment.content_variation_id
+    end
+
+    def time_extension
+      simulation_user_assessment.time_extension
     end
 
     def available_locales

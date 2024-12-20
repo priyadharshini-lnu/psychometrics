@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { Descriptions, Button } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import UpdateContentVariationForm from './UpdateContentVariationForm'
+import UpdateTimeExtensionForm from './UpdateTimeExtensionForm'
 import SimulationContentVariation from '~/modules/admin/modules/campaigns/interfaces/SimulationContentVariation'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
@@ -22,7 +23,9 @@ export const SimulationDetails: FC<Props> = ({
   }
 
   const [contentVariation, setContentVariation] = useState<SimulationContentVariation>()
+  const [timeExtension, setTimeExtension] = useState<number|undefined>(assessment.simuationTimeExtension ?? undefined)
   const [isFormVisible, setIsFormVisible] = useState(false)
+  const [isUpdateTimeExtensionFormVisible, setIsUpdateTimeExtensionFormVisible] = useState(false)
   const { permissions } = assessment
 
   useEffect(() => {
@@ -35,13 +38,13 @@ export const SimulationDetails: FC<Props> = ({
 
   return (
     <>
-      {contentVariation ? (
-        <Descriptions
-          layout="horizontal"
-          rootClassName="mb-6 w-100"
-          bordered
-          column={1}
-        >
+      <Descriptions
+        layout="horizontal"
+        rootClassName="mb-6 w-100"
+        bordered
+        column={1}
+      >
+        {contentVariation ? (
           <Descriptions.Item
             className="va-t w-30"
             labelStyle={{ width: '40%' }}
@@ -71,8 +74,38 @@ export const SimulationDetails: FC<Props> = ({
               />
             )}
           </Descriptions.Item>
-        </Descriptions>
-      ) : null}
+        ) : null}
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('campaign_assessment.column.simuation_time_extension')}
+          key="simuation_time_extension"
+        >
+          {!isUpdateTimeExtensionFormVisible ? (
+            <>
+              {timeExtension}
+              {permissions.updateSimulationTimeExtension && (
+                <>
+                  <Button
+                    type="link"
+                    icon={<EditOutlined />}
+                    onClick={() => setIsUpdateTimeExtensionFormVisible(true)}
+                  />
+                </>
+              )}
+            </>
+          ) : (
+            <UpdateTimeExtensionForm
+              campaignId={campaignId}
+              userAssessmentId={assessment.id}
+              close={() => setIsUpdateTimeExtensionFormVisible(false)}
+              timeExtension={timeExtension}
+              setTimeExtension={setTimeExtension}
+            />
+          )}
+        </Descriptions.Item>
+      </Descriptions>
     </>
   )
 }

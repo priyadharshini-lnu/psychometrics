@@ -20,6 +20,7 @@ const defaultState = {
 export const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 export const UPDATE_METTL_SCHEDULE = 'campaigns/userAssessments/UPDATE_METTL_SCHEDULE'
 export const UPDATE_CONTENT_VARIATION = 'campaigns/userAssessments/UPDATE_CONTENT_VARIATION'
+export const UPDATE_TIME_EXTENSION = 'campaigns/userAssessments/UPDATE_TIME_EXTENSION'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
 export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PROGRESS_OF_ASSESSMENT'
@@ -73,6 +74,17 @@ export const updateContentVariation = (campaignId, campaignAssessmentId: number,
     method: 'put',
     // eslint-disable-next-line max-len
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_content_variation`,
+    body: { ...body, campaignAssessmentId },
+    loader: true,
+  },
+})
+
+export const updateSimulationTimeExtension = (campaignId, campaignAssessmentId: number, body) => ({
+  type: UPDATE_TIME_EXTENSION,
+  request: {
+    method: 'put',
+    // eslint-disable-next-line max-len
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_simulation_time_extension`,
     body: { ...body, campaignAssessmentId },
     loader: true,
   },
@@ -190,6 +202,17 @@ const HANDLERS = {
         if (assessment.id !== campaignAssessmentId) return assessment
 
         return { ...assessment, mettlScheduleRecordId, ...response }
+      },
+    ))
+  },
+  [UPDATE_TIME_EXTENSION]: (state, { response, requestAction: { request } }: UpdateMettlScheduleType) => {
+    const { campaignAssessmentId, timeExtension } = request.body
+
+    return updateIn(state, ['list'], (assessments: UserAssessment[]) => assessments.map(
+      (assessment: UserAssessment) => {
+        if (assessment.id !== campaignAssessmentId) return assessment
+
+        return { ...assessment, simuationTimeExtension: timeExtension, ...response }
       },
     ))
   },

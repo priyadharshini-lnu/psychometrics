@@ -165,7 +165,8 @@ module Campaigns
 
         user_assessment.create_simulation_user_assessment(
           participant_id: existing_simulation_user_assessment&.participant_id,
-          content_variation_id: content_variation_id
+          content_variation_id: content_variation_id,
+          time_extension: existing_simulation_user_assessment&.time_extension
         )
       end
 
