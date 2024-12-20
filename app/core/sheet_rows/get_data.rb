@@ -15,11 +15,14 @@ module SheetRows
       valid_columns = (opts[:sheet] || datasheet_row.sheet).sheet_columns
       if opts[:without_types]
         valid_columns = valid_columns.select do |column|
-          opts[:without_types].exclude?(column.humanize_type)
+          opts[:without_types].exclude?(column.column_type)
         end
       end
-      data = datasheet_row.data.slice(*valid_columns.map(&:name))
-
+      rows = datasheet_row.sheet_row_data.where(sheet_column_id: valid_columns)
+      data = rows.each_with_object(default_column_attr) do |datum, acc|
+        acc[datum.sheet_column.name] = datum.value
+        acc
+      end
       broadcast :ok, default_column_attr.merge(data)
     end
   end

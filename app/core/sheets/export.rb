@@ -9,10 +9,9 @@ module Sheets
     end
 
     def call
-      column_definition = datasheet.sheet_columns
-
-      column_names = column_definition.map(&:name)
-      coulmn_types = column_definition.map(&:humanize_type)
+      columns = datasheet.sheet_columns
+      column_names = columns.map(&:name)
+      coulmn_types = columns.map(&:humanize_type)
 
       result = Axlsx::Package.new do |package|
         package.workbook.add_worksheet(name: 'Datasheet') do |sheet|
@@ -20,8 +19,9 @@ module Sheets
           sheet.add_row coulmn_types
 
           datasheet.rows.order(updated_at: :desc).each do |row|
-            row_data = column_names.map do |column|
-              column == Sheet::EMAIL_COLUMN ? row.email : row.data[column]
+            rows = row.sheet_row_data.to_a
+            row_data = columns.map do |column|
+              column.name == Sheet::EMAIL_COLUMN ? row.email : rows.find { |r| r.sheet_column_id == column.id }&.value
             end
 
             sheet.add_row row_data

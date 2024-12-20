@@ -23,8 +23,12 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
                                   accessor_access: true, dashboard_use: true, visible_in_list: true)
   end
   let!(:sheet_row) do
-    create(:sheet_row, sheet: sheet, email: 'james@cc.com',
-            data: { 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1' })
+    create(:sheet_row, sheet: sheet, email: 'james@cc.com')
+  end
+  let!(:sheet_row_data) do
+    sheet_row.add_sheet_row_data({
+      'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1'
+    })
   end
 
   before(:each) { login_user(current_user) }
@@ -32,8 +36,10 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
   describe 'GET index' do
     it 'renders sheet_row json without HTML and Markdown type on json request' do
-      sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com',
-            data: { 'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1' })
+      sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com')
+      sheet_row2.add_sheet_row_data({
+        'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1'
+      })
 
       get :index, params: { new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
       parsed_response = JSON.parse(response.body)
@@ -72,8 +78,11 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       project_sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string',
                                     accessor_access: true, dashboard_use: true, visible_in_list: true)
 
-      project_sheet_row = create(:sheet_row, sheet: project_sheet, email: sheet_row.email,
-      data: { 'Name' => 'James S' })
+      project_sheet_row = create(:sheet_row, sheet: project_sheet, email: sheet_row.email)
+
+      project_sheet_row.add_sheet_row_data({
+        'Name' => 'James S'
+      })
 
       get :show, params: { id: sheet_row.id, new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
       parsed_response = JSON.parse(response.body)
@@ -121,7 +130,6 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       }, format: :json
 
       sheet_row = sheet.rows.find_by(email: 'mark@cc.com')
-      expect(sheet_row.data).to eq({ 'Email' => 'mark@cc.com', 'Name' => 'Mark' })
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq({
@@ -148,11 +156,10 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
         type: 'Datasheet'
       }, format: :json
 
-      expect(sheet_row.reload.data).to eq({ 'Name' => 'James Smith' })
-
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq({
-        'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James Smith'
+        'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James Smith',
+        'Description' => 'J1', 'Profile' => 'Software Engineer'
       })
       expect(sheet_row.sheet_row_data.first.string_value).to eq('James Smith')
     end
@@ -160,7 +167,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
   describe 'DELETE bulk_delete' do
     it 'bulk deletes sheet_row' do
-      sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com', data: { 'Name' => 'Smith' })
+      sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com')
 
       delete :bulk_delete,
              params: { new_campaign_id: campaign.id, ids: [sheet_row.id, sheet_row2.id], type: 'Datasheet' },

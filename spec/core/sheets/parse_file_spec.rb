@@ -62,15 +62,20 @@ describe Sheets::ParseFile do
     expect { subject }.to change { Sheet.count }.from(0).to(1)
     sheet_row = project.sheets.first.rows.last
     expect(sheet_row.email).to eq(email)
-    expect(sheet_row.data).to eq({ 'key' => 'value', 'value' => '' })
+    expect(sheet_row.sheet_row_data.reduce({}) do |acc, d|
+             acc.merge(d.sheet_column.name => d.value)
+           end).to eq({ 'key' => 'value' })
   end
 
   it 'merge exists sheet row data' do
     sheet = project.sheets.create(columns: columns)
-    sheet_row = sheet.rows.create(email: email, data: { 'Name' => 'James' })
-
+    column = sheet.sheet_columns.create(name: 'Name', column_type: 'string')
+    sheet_row = sheet.rows.create(email: email)
+    sheet_row.sheet_row_data.create(sheet_column: column, string_value: 'James')
     subject
 
-    expect(sheet_row.reload.data).to eq({ 'key' => 'value', 'value' => '', 'Name' => 'James' })
+    expect(sheet_row.reload.sheet_row_data.reduce({}) do |acc, d|
+      acc.merge(d.sheet_column.name => d.value)
+    end).to eq({ 'key' => 'value', 'Name' => 'James' })
   end
 end

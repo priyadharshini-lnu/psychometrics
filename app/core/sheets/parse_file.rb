@@ -12,7 +12,7 @@ module Sheets
 
     def call
       transaction do
-        parent_resource.sheets.find_by(type: sheet_type)&.destroy if sheet_type == 'Accesssheet'
+        parent_resource.sheets.find_by(type: sheet_type)&.destroy if accesssheet?
         create_and_update_sheet
         parse_file
       end
@@ -50,10 +50,10 @@ module Sheets
         email = data[Sheet::EMAIL_COLUMN].strip
         next if email.blank?
 
-        row = accesssheet? ? sheet.rows.new(email: email) : sheet.rows.find_or_initialize_by(email: email)
+        row = accesssheet? ? sheet.rows.create(email: email) : sheet.rows.find_or_create_by(email: email)
         data = data.reject { |k, _v| k == Sheet::EMAIL_COLUMN }
-        row.data = (row.data || {}).merge(data.transform_values { |v| v.is_a?(String) ? v.strip : v })
-        row.save!
+        row.add_sheet_row_data(data)
+        row.update(migrated: true)
       end
     end
 
