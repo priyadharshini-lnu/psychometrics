@@ -1,6 +1,7 @@
 import { ProjectList } from './ProjectList'
 import { Admins } from './Admins'
 import { Settings } from './Settings'
+import LicenseList from '../../LicenseList'
 
 export const routes = [
   { redirect: true, from: '', to: 'projects' },
@@ -15,5 +16,9 @@ export const routes = [
   {
     path: '/settings',
     component: <Settings />,
+  },
+  {
+    path: '/licenses',
+    component: <LicenseList />,
   },
 ]

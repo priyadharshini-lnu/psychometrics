@@ -88,7 +88,7 @@ export const UserDetails: React.FC<Props> = ({
   const { modal, message } = App.useApp()
   const navigate = useNavigate()
   const [tab, setTab] = useState(paramTab || 'assessments')
-  const idpEnabled = features.idp_enabled
+  const { idpEnabled } = features
 
   useEffect(() => {
     fetchSingleUser(parsedCampaignId, parsedUserId)
