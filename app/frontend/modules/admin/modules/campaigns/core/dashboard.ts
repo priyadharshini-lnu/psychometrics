@@ -15,6 +15,7 @@ export const DashboardTR = t.type({
   workspaceId: t.union([t.undefined, t.null, t.string]),
   dashboardType: t.string,
   projectPath: t.union([t.undefined, t.null, t.string]),
+  visualHeaderVisibility: t.union([t.literal('hide_all'), t.literal('show_all'), t.literal('keep_original')]),
   campaign: t.union([
     t.type({
       id: t.string,

@@ -10,12 +10,12 @@ import { Dashboard as DashboardType } from '~/modules/admin/modules/campaigns/co
 const { I18n } = window
 interface OwnProps {
   fitToWidth?: boolean,
-  dashboard: DashboardType
+  dashboard: DashboardType,
 }
 type Props = OwnProps
 
 export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
-  fitToWidth, dashboard: { reportId, embedToken },
+  fitToWidth, dashboard: { reportId, embedToken, visualHeaderVisibility },
 }) => {
   const embedContainer = useRef<HTMLDivElement>(null)
   const [powerBiLoaded, setPowerBiLoaded] = useState(false)
@@ -35,6 +35,16 @@ export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
     }
   }, [fitToWidth])
 
+  const visualHeaders = () => {
+    if (visualHeaderVisibility === 'keep_original') return []
+
+    return [{
+      settings: {
+        visible: visualHeaderVisibility === 'show_all',
+      },
+    }]
+  }
+
   const embedConfig = () => {
     const embedUrl = `https://app.powerbi.com/reportEmbed?reportId=${reportId}`
     const displayOption = pbi.models.DisplayOption
@@ -50,13 +60,7 @@ export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
           displayOption: fitToWidth ? displayOption.FitToWidth : displayOption.FitToPage,
         },
         visualSettings: {
-          visualHeaders: [
-            {
-              settings: {
-                visible: false,
-              },
-            },
-          ],
+          visualHeaders: visualHeaders(),
         },
         panes: {
           filters: {

@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::DashboardResource < Api::V2::Administration::BaseResource
   attributes :name, :enabled, :dataset_id, :report_id, :embed_token, :image_url, :image_name, :refresh_interval,
-             :capacity_id, :workspace_id, :dashboard_type, :project_path
+             :capacity_id, :workspace_id, :dashboard_type, :project_path, :visual_header_visibility
 
   has_one :campaign
 
