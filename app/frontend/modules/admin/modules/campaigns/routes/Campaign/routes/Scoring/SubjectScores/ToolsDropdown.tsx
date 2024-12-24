@@ -11,6 +11,7 @@ const { I18n } = window
 type Persmission = {
   changeFinalizedCampaignScore?: boolean,
   rescore?: boolean,
+  pushWebhook?: boolean,
 }
 
 type Props = {
@@ -64,6 +65,12 @@ const getMenuProps = ({ onClick, persmission }: Props): MenuProps => {
     menuItems.push({
       key: 'rescore',
       label: I18n.t('administration.scoring.subject_list.rescore'),
+    })
+  }
+  if (persmission?.pushWebhook) {
+    menuItems.push({
+      key: 'push_webhook',
+      label: I18n.t('administration.scoring.subject_list.push_webhook'),
     })
   }
 

@@ -146,10 +146,14 @@ module Api
         Api::Administration::CampaignUserScoringPolicy,
         context[:user],
         campaign,
-        %w[change_finalized_campaign_score rescore
-           change_finalized_campaign_score_bulk
-           rescore_bulk
-           export_scorings],
+        [
+          'change_finalized_campaign_score',
+          'rescore',
+          'change_finalized_campaign_score_bulk',
+          'rescore_bulk',
+          'export_scorings',
+          %w[push_webhook publish_campaign_results_available]
+        ],
         { campaign_id: campaign.id }
       )
     end

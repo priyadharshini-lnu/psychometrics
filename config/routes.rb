@@ -265,6 +265,7 @@ Rails.application.routes.draw do
           member do
             patch :toggle_status
             post :extend_time
+            get :webhook_payload
           end
           collection do
             post :import
