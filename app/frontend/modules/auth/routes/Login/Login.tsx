@@ -2,9 +2,8 @@ import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-  Typography, Input, Form, Button,
+  Typography, Input, Form,
 } from 'antd'
-import { EyeTwoTone, EyeInvisibleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
@@ -92,15 +91,6 @@ const LoginComponent: React.FC<Props> = ({
               name="user[password]"
               placeholder={I18n.t('auth.password_placeholder')}
               password
-              iconRender={visible => (
-                <Button
-                  size="small"
-                  type="link"
-                  className="mt-0"
-                  icon={visible ? (<EyeTwoTone />) : <EyeInvisibleOutlined />}
-                  aria-label={visible ? I18n.t('auth.login.hide_password') : I18n.t('auth.login.show_password')}
-                />
-              )}
               labelFor="password"
               id="password"
               autoComplete="tte-user-password"

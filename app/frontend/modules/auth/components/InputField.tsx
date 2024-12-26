@@ -3,6 +3,7 @@ import {
   Input as AntInput, Form,
 } from 'antd'
 import { PasswordProps } from 'antd/lib/input'
+import { AccessiblePasswordInput } from '~/glint'
 import styles from './styles.less'
 
 type ComponentProps = {
@@ -22,7 +23,7 @@ export const InputField: React.FC<Props> = ({
 }) => {
   const InputTag = () => {
     if (password) {
-      return AntInput.Password
+      return AccessiblePasswordInput
     }
 
     return AntInput
