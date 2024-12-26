@@ -46,7 +46,7 @@ module Api
       end
 
       def export?
-        @user.is?(:superadmin)
+        @user.is?(:superadmin) || @user.has_permission?(:data_exports, :admin_permissions)
       end
 
       def available_permissions?

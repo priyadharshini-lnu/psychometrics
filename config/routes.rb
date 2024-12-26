@@ -1359,6 +1359,11 @@ as: :simulation_progress_notification
               get :search_user
             end
           end
+          resources :user_report_events do
+            collection do
+              get :export
+            end
+          end
           resources :workshop_facilitators, only: %i[] do
             collection do
               get :search_assessors

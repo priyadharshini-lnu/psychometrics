@@ -59,7 +59,8 @@ class AdminJob < ApplicationJob
     export_factor_translations: AdminJobs::ExportFactorTranslations,
     import_factor_translations: AdminJobs::ImportFactorTranslations,
     normalize_factor_scores: AdminJobs::NormalizeFactorScores,
-    export_occupations: AdminJobs::ExportOccupations
+    export_occupations: AdminJobs::ExportOccupations,
+    export_user_report_events: AdminJobs::ExportUserReportEvents
   }.freeze
 
   def perform(record)

@@ -132,6 +132,9 @@ en:
             accesssheet_settings: Accesssheet Settings
             accesssheet_view: Accesssheet View
             view: View
+          dataExports:
+            admin_permissions: Admin Permissions
+            user_report_events: User Report Events
           datasheets:
             manage: Manage
             view: View
@@ -1939,6 +1942,7 @@ en:
       reports: Reports
       scheduling: Scheduling
       show_submenu: Show Sub Menu
+      user_report_events: User Report Events
       users: Users
     no_data_found: No data found
     norms:
