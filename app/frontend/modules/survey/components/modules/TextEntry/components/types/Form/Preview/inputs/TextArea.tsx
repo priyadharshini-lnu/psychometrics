@@ -8,12 +8,14 @@ interface Props {
   index: number
   readOnly: boolean
   onChange: (i: number, value: string) => void
+  id: string
 }
 
 const TextArea: React.FC<Props> = ({
-  onChange, name, model: { result: { answers } }, index, readOnly,
+  onChange, name, model: { result: { answers } }, index, readOnly, id,
 }) => (
   <Input.TextArea
+    id={id}
     name={name}
     disabled={readOnly}
     value={answers[index].value}

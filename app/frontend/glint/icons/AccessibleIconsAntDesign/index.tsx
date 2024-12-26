@@ -37,6 +37,7 @@ import Icon, {
   CaretRightOutlined as AntdCaretRightOutlined,
   PauseOutlined as AntdEyePauseOutlined,
   EditOutlined as AntdEditOutlined,
+  ExpandOutlined as AntdExpandOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -83,3 +84,4 @@ export const EyeInvisibleOutlined = withAccessibilityProps(AntdEyeInvisibleOutli
 export const CaretRightOutlined = withAccessibilityProps(AntdCaretRightOutlined)
 export const PauseOutlined = withAccessibilityProps(AntdEyePauseOutlined)
 export const EditOutlined = withAccessibilityProps(AntdEditOutlined)
+export const ExpandOutlined = withAccessibilityProps(AntdExpandOutlined)

@@ -54,7 +54,9 @@ class Question extends Component {
   }
 
   renderPreview () {
-    const { model, result, randomseed } = this.props
+    const {
+      model, result, randomseed,
+    } = this.props
     const View = Previews[`${model.type}Preview`] || Previews.MultipleChoice
     return (
       <View
@@ -81,7 +83,6 @@ class Question extends Component {
         ))
       }
       </div>
-
     )
   }
 

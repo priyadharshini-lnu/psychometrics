@@ -51,6 +51,7 @@ class PreviewComponent extends Component {
       fetchAwsSpeechTextPresignedUrl,
       nextPage,
       singleQuestionFlow,
+      focus,
     } = this.props
     const View = Previews[type]
 
@@ -64,6 +65,7 @@ class PreviewComponent extends Component {
         nextPage={nextPage}
         singleQuestionFlow={singleQuestionFlow}
         errors={errors}
+        focus={focus}
         questionTextId={this.getQuestionId()}
       />
     )

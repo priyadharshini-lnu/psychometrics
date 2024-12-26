@@ -196,9 +196,15 @@ const HANDLERS = {
     ), state.results)
     return setIn(state, 'results', results)
   },
-  [ANSWER]: (state: State, { result }: AnswerType) => setIn(state, ['results', result.question_id], result),
+  [ANSWER]: (state: State, { result }: AnswerType) => ({
+    ...setIn(state, ['results', result.question_id], result),
+    focusFirstError: false,
+  }),
   [SET_ANSWERS_SAVED]: (state: State, { value }: SetAnsersSaved) => ({ ...state, answersSaved: value }),
-  [SHOW_ERRORS]: (state: State, { errors }: ShowErrors) => setIn(state, ['errors'], errors),
+  [SHOW_ERRORS]: (state: State, { errors }: ShowErrors) => ({
+    ...setIn(state, ['errors'], errors),
+    focusFirstError: true,
+  }),
   [EMPTY_ERRORS]: (state: State) => setIn(state, ['errors'], defaultState.errors),
   [CHANGE_ELEMENT]: (state: State, { id, page }: ChangeElement) => ({
     ...state, currentPage: page || 0, currentElement: id,

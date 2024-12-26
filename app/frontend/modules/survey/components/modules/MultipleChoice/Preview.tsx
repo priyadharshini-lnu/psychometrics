@@ -31,6 +31,7 @@ interface OwnProps {
   readOnly: boolean
   nextPage: () => {}
   questionCount: number
+  focus: boolean
 }
 
 const connector = connect(
@@ -57,6 +58,7 @@ export const PreviewComponent: FC<Props> = ({
   nextPage,
   enableSingleQuestionPage,
   questionCount,
+  focus,
 }) => {
   const {
     props: { type },
@@ -69,6 +71,7 @@ export const PreviewComponent: FC<Props> = ({
     I18n,
     nextPage,
     singleQuestionFlow: enableSingleQuestionPage && questionCount === 1,
+    focus,
   }
 
   return (

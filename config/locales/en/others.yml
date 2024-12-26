@@ -881,13 +881,15 @@ en:
     dashboard: Dashboard
     dictation:
       allow_browser_permision: Please allow browser audio permission to use dictation
-      autostopping_in: Auto-stopping in %{reverseCountdown}
+      autostopping_in: Auto-stopping dictation in %{reverseCountdown} seconds
       browser_unsupported: Your browser does not support Audio input
       dictation_active: Dictation is now active
       dictation_disabled: Dictation is currently disabled or is being used by another question
       dictation_not_started: Speech dictation failed to start
       dictation_stopped: Speech dictation stopped
+      left: left
       listening: Listening
+      minutes: minutes
       no_dictation_url: Server failed to respond for speech to text capability
       notifications:
         autostopped: Dictation was auto stopped due to continued silence for %{autocutoff} seconds
@@ -1973,6 +1975,7 @@ en:
       delete_message: Delete message
       drag_drop_instructions_desktop: Turn on the forms mode to drag and drop the items with a screen reader.
       drag_drop_instructions_mobile: With a screen reader, double tap and hold on an drag button, move to another item and lift the finger to move the item.
+      enlarge_view_text: Enlarge view of %{text}
       expand_menu: Expand menu
       file_uploaded: File uploaded
       lang_dropdown_description: ",change language"

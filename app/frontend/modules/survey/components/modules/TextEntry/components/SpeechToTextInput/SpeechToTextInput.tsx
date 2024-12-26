@@ -19,7 +19,7 @@ import {
   OnTranscribe,
   OnTranscribeError,
 } from '~/libs/amazon-transcribe-websocket-static'
-import { convertSecondsToMMSS } from '~/utils/time'
+import { convertSecondsToMMSS, secondsToDayHoursAndMinutes } from '~/utils/time'
 
 import styles from './styles.less'
 
@@ -29,6 +29,12 @@ const LAST_ONE_MINUTE_OF_MAXIMUM_DICTATION_ALLOWED_IN_SECONDS = MAXIMUM_DICTATIO
 
 const { I18n } = window
 
+const screenReaderNotificationIntervals = {
+  first: MAXIMUM_DICTATION_ALLOWED_IN_SECONDS - (MAXIMUM_DICTATION_ALLOWED_IN_SECONDS / 2),
+  second: MAXIMUM_DICTATION_ALLOWED_IN_SECONDS - (MAXIMUM_DICTATION_ALLOWED_IN_SECONDS / 5),
+  third: MAXIMUM_DICTATION_ALLOWED_IN_SECONDS - (MAXIMUM_DICTATION_ALLOWED_IN_SECONDS / 6),
+}
+
 export interface Props {
   value?: string
   onValueChange: (value: string) => void
@@ -36,6 +42,7 @@ export interface Props {
   isDisabled?: boolean
   fetchPresignUrl(): Promise<{ response: { url: string } }>
   children: ReactElement
+  tooltipId?: string
 }
 
 export const SpeechToTextInput: FC<Props> = ({
@@ -45,6 +52,7 @@ export const SpeechToTextInput: FC<Props> = ({
   fetchPresignUrl,
   isDisabled = false,
   children,
+  tooltipId,
 }) => {
   const [isDictating, setDictationIndicator] = useState(false)
   const [isLoading, setLoadingIndication] = useState(false)
@@ -63,6 +71,8 @@ export const SpeechToTextInput: FC<Props> = ({
   const audioAnalyzerRef = useRef<AnalyserNode | null>(null)
   const analyzerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [analyzerLevel, setAnalyzerLevel] = useState(0)
+  const tooltipContainerRef = useRef(null)
+  const screenReaderNotificationRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     if (
@@ -242,6 +252,18 @@ export const SpeechToTextInput: FC<Props> = ({
     analyzerTimerRef.current = null
   }
 
+  useEffect(() => {
+    if (screenReaderNotificationRef.current && (countdownTimer === screenReaderNotificationIntervals.first
+      || countdownTimer === screenReaderNotificationIntervals.second
+      || countdownTimer === screenReaderNotificationIntervals.third)
+    ) {
+      const remainingDictationTime = MAXIMUM_DICTATION_ALLOWED_IN_SECONDS - countdownTimer
+      screenReaderNotificationRef.current.innerText = `${secondsToDayHoursAndMinutes(
+        remainingDictationTime, undefined, undefined, I18n.t('assessments.dictation.minutes'),
+      )} ${I18n.t('assessments.dictation.left')}`
+    }
+  }, [countdownTimer])
+
   // Effect running on every timers
   useEffect(() => {
     if (
@@ -279,7 +301,7 @@ export const SpeechToTextInput: FC<Props> = ({
 
   const countdownTimerTextType = countdownTimer > LAST_ONE_MINUTE_OF_MAXIMUM_DICTATION_ALLOWED_IN_SECONDS
     ? 'danger'
-    : 'secondary'
+    : undefined
 
   let buttonText = I18n.t('assessments.dictation.start_dictation')
   if (isDictating) {
@@ -290,8 +312,13 @@ export const SpeechToTextInput: FC<Props> = ({
     <>
       <div className="ta-e pb-4">
         <Space>
-          <Tooltip title={tooltipText}>
-            <InfoCircleOutlined aria-hidden="true" />
+          <Tooltip
+            getPopupContainer={() => tooltipContainerRef.current || document.body}
+            trigger={['focus', 'hover']}
+            id={tooltipId}
+            title={tooltipText}
+          >
+            <InfoCircleOutlined aria-describedby={tooltipId} tabIndex={0} aria-label="Information: Dictation" />
           </Tooltip>
           <Button
             type="primary"
@@ -342,6 +369,13 @@ export const SpeechToTextInput: FC<Props> = ({
           </Col>
         </Row>
       </div>
+      <span
+        role="alert"
+        aria-live="polite"
+        className="sr-only"
+        ref={screenReaderNotificationRef}
+      />
+      <div ref={tooltipContainerRef} role="tooltip" id={tooltipId} />
     </>
   )
 }
@@ -356,12 +390,19 @@ const AutoStopperAlert: FC<AutoStopperAlertProps> = ({
   const shouldShow = autoSilenceCutoffTimer >= AUTO_SILENCE_CUTOFF_TIME_IN_SECONDS - 9
   const reverseCountdown = AUTO_SILENCE_CUTOFF_TIME_IN_SECONDS - autoSilenceCutoffTimer
 
-  if (shouldShow) {
-    return (
-      <Typography.Text className="ps-4" type="danger">
-        {I18n.t('assessments.dictation.autostopping_in', { reverseCountdown })}
-      </Typography.Text>
-    )
-  }
-  return null
+  return (
+    <div>
+      {shouldShow ? (
+        <Typography.Text className="ps-4" type="danger">
+          {I18n.t('assessments.dictation.autostopping_in', { reverseCountdown })}
+        </Typography.Text>
+      ) : null}
+      <span
+        aria-live="polite"
+        className="sr-only"
+      >
+        {shouldShow && I18n.t('assessments.dictation.autostopping_in', { reverseCountdown })}
+      </span>
+    </div>
+  )
 }

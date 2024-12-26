@@ -9,12 +9,14 @@ interface Props {
   index: number
   readOnly: boolean
   onChange: (i: number, value: boolean) => void
+  id: string
 }
 
 const Checkbox: React.FC<Props> = ({
-  onChange, name, model: { result: { answers } }, index, readOnly,
+  onChange, name, model: { result: { answers } }, index, readOnly, id,
 }) => (
   <BaseCheckbox
+    id={id}
     disabled={readOnly}
     className={styles.formCheckbox}
     name={name}

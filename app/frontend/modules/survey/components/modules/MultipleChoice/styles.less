@@ -36,8 +36,10 @@
   width: 12px;
   position: absolute;
   left: 30px;
-  &:focus-visible:after {
-    outline: 6px solid var(--ant-primary-3);
+  &:focus-visible, &.showFocusRing:focus {
+    &:after {
+      outline: 6px solid var(--ant-primary-3);
+    }
   }
 }
 

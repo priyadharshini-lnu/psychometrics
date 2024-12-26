@@ -1,5 +1,9 @@
-import { ChangeEvent, FC } from 'react'
-import { Input, Row, Col } from 'antd'
+import {
+  ChangeEvent, FC, useRef,
+} from 'react'
+import {
+  Input, Row, Col, InputRef,
+} from 'antd'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
@@ -12,18 +16,24 @@ interface Props {
   nextPage: () => {}
   singleQuestionFlow: boolean
   errors: string[]
-  questionTextId: string
+  focus?: boolean
+  questionTextId?: string
 }
 
 const SingleLinePreview: FC<Props> = ({
-  model, readOnly, nextPage, singleQuestionFlow, errors, questionTextId,
+  model, readOnly, nextPage, singleQuestionFlow, errors, focus, questionTextId,
 }) => {
+  const inputRef = useRef<InputRef>(null)
   const forceUpdate = useForceUpdate()
   const {
     result,
     props: { type },
     id: questionId,
   } = model
+
+  if (focus && inputRef.current) {
+    inputRef.current.focus()
+  }
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -54,6 +64,7 @@ const SingleLinePreview: FC<Props> = ({
             onKeyDown={handleKeyDown}
             value={value}
             type={type === 'SingleLine' ? 'text' : 'password'}
+            ref={inputRef}
             aria-labelledby={questionTextId}
           />
         </Col>

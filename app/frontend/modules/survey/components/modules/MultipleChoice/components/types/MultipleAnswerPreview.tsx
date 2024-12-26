@@ -1,5 +1,5 @@
 import {
-  ChangeEvent, FC, lazy, Suspense,
+  ChangeEvent, FC, lazy, Suspense, useRef,
 } from 'react'
 import { Spin } from 'antd'
 import cs from 'classnames'
@@ -17,9 +17,12 @@ interface Props {
   model: PreviewModel
   readOnly: boolean
   I18n: I18nInterface
+  focus?: boolean
 }
 
-export const MultipleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
+export const MultipleAnswerPreview: FC<Props> = ({
+  model, readOnly, I18n, focus,
+}) => {
   const forceUpdate = useForceUpdate()
 
   const {
@@ -94,6 +97,7 @@ export const MultipleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
       I18n={I18n}
       handleChoiceChange={handleChoiceChange}
       handleNotApplicableChange={handleNotApplicableChange}
+      focusFirstInput={focus}
     />
   )
 }
@@ -111,6 +115,7 @@ interface TextChoicesProps {
   model: PreviewModel
   handleChoiceChange(event: ChangeEvent<HTMLInputElement>, index?: number): void
   handleNotApplicableChange(): void
+  focusFirstInput?: boolean
 }
 
 const TextChoices: FC<TextChoicesProps> = ({
@@ -126,9 +131,15 @@ const TextChoices: FC<TextChoicesProps> = ({
   model,
   handleChoiceChange,
   handleNotApplicableChange,
+  focusFirstInput,
 }) => {
   const listStyles = {
     display: position === 'Vertical' ? 'block' : 'flex',
+  }
+  const firstInputRef = useRef<HTMLInputElement>(null)
+
+  if (focusFirstInput && firstInputRef.current) {
+    firstInputRef.current.focus()
   }
 
   return (
@@ -136,9 +147,10 @@ const TextChoices: FC<TextChoicesProps> = ({
       className={cs(styles.list, styles[position], styles.multipleAnswer)}
       style={listStyles}
     >
-      {choicesIds.map((choiceId) => {
+      {choicesIds.map((choiceId, index) => {
         const choice = answers.find(answer => answer.index === choiceId)
         const choiceAnswer = choice?.value ?? false
+        const focusInput = index === 0 && focusFirstInput
 
         return (
           <div
@@ -152,11 +164,13 @@ const TextChoices: FC<TextChoicesProps> = ({
               <input
                 type="checkbox"
                 name={`${id}`}
-                className={styles.input}
+                className={cs(styles.input, { [styles.showFocusRing]: focusInput })}
                 disabled={readOnly}
                 value={choiceId}
                 checked={choiceAnswer}
                 onChange={handleChoiceChange}
+                aria-labelledby={`answer-desc-${choiceId}`}
+                ref={index === 0 ? firstInputRef : null}
               />
               <div className={styles.optionDescription}>
                 {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
