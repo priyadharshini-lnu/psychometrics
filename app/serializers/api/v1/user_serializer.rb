@@ -8,7 +8,10 @@ module Api
       def campaigns
         Panko::ArraySerializer.new(
           object.campaigns,
-          each_serializer: UserCampaignSerializer
+          each_serializer: UserCampaignSerializer,
+          context: {
+            user: object
+          }
         ).to_a
       end
 

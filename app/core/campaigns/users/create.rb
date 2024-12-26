@@ -3,18 +3,20 @@
 module Campaigns
   module Users
     class Create < BaseCommand
-      private_attr_reader :form, :campaign, :current_user, :project, :user, :campaign_user
+      private_attr_reader :form, :campaign, :current_user, :project, :campaign_user, :user
 
-      def initialize(form, campaign, current_user = nil)
+      def initialize(form, campaign, current_user = nil, user: nil)
         @form = form
         @campaign = campaign
         @project = campaign.project
         @current_user = current_user
+        @user = user || User.find_by(project_id: campaign.project_id, email: form.email)
       end
 
       def call
         transaction do
-          create_campaign_user
+          create_or_update_user
+          create_or_update_campaign_user
           add_reports_and_assessments
           send_invite_email
         end
@@ -25,22 +27,18 @@ module Campaigns
 
       private
 
-      def existing_user_in_project
-        @existing_user_in_project ||= User.find_by(project_id: campaign.project_id, email: form.email)
-      end
-
-      def create_campaign_user # rubocop:disable Metrics/AbcSize
-        if existing_user_in_project
-          @user = existing_user_in_project
-          if form.first_name.present? && form.last_name &&
-             (@user.first_name != form.first_name || @user.last_name != form.last_name)
+      def create_or_update_user
+        if user
+          if form.first_name.present? && form.last_name && (
+            @user.first_name != form.first_name || @user.last_name != form.last_name
+          )
             @user.update!(first_name: form.first_name, last_name: form.last_name, modifier: current_user)
           end
         else
           ActiveRecord::Base.transaction do
             user_attributes = form.to_h.except(
               :operation, :campaign_ids, :active, :locale,
-              :schedule_start_date, :schedule_start_date, :schedule_end_date
+              :schedule_start_date, :schedule_start_date, :schedule_end_date, :external_id
             ).merge(
               project: project,
               create_by_invite: true,
@@ -54,11 +52,17 @@ module Campaigns
             )
           end
         end
+      end
+
+      def create_or_update_campaign_user
         @campaign_user = campaign.campaign_users.find_or_initialize_by(user: user)
-        campaign_user.assign_attributes(
-          active: form.active, schedule_start_date: form.schedule_start_date,
+        attributes = {
+          active: form.active,
+          schedule_start_date: form.schedule_start_date,
           schedule_end_date: form.schedule_end_date
-        )
+        }
+        attributes[:external_id] = form.external_id if form.respond_to?(:external_id)
+        campaign_user.assign_attributes(attributes)
         campaign_user.save!
       end
 

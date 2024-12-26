@@ -212,6 +212,13 @@ en:
             manage: Manage
             view: View
     any: " - Any - "
+    api:
+      campaigns:
+        validate_form:
+          external_id_taken: External Id '%{external_id}' is already taken'
+      users:
+        form:
+          campaign_ids_not_existing: Not all campaign ids are existing
     api_keys:
       form:
         description: Description

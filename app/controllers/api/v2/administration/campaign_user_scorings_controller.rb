@@ -113,7 +113,7 @@ module Api
     end
 
     def import_external_campaign_scorings
-      form = Campaigns::ExternalCampaignScoresImport::ImportForm.new(
+      form = ::Campaigns::ExternalCampaignScoresImport::ImportForm.new(
         file: params[:file]
       ).with_context(campaign: campaign)
 

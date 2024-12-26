@@ -2658,6 +2658,13 @@
         "email": {
           "type": "string",
           "x-nullable": true
+        },
+        "campaigns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewUserCampaign"
+          },
+          "x-nullable": true
         }
       }
     },
@@ -2816,6 +2823,10 @@
         },
         "active": {
           "type": "boolean"
+        },
+        "external_id": {
+          "type": "string",
+          "x-nullable": true
         },
         "existing_record": {
           "type": "string",

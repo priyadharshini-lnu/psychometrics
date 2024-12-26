@@ -106,11 +106,15 @@ the campaign\'s default assessments and reports.'
         let(:last_name) { 'Holloway' }
         let(:email) { 'max@example.com' }
         let(:project_id) { project.id }
+        let(:external_id) { '123' }
         let(:body) do
-          { email: email, first_name: first_name, last_name: last_name,
+          { email: email,
+            first_name: first_name,
+            last_name: last_name,
             campaigns: [{
               id: campaign.id,
               active: true,
+              external_id: external_id,
               existing_record: 'new_evaluation'
             }] }
         end
@@ -126,6 +130,7 @@ the campaign\'s default assessments and reports.'
           expect(user['campaigns'][0]['id']).to eq campaign.id
 
           expect(campaign_user.active).to eq true
+          expect(campaign_user.external_id).to eq external_id
           expect(campaign_user.schedule_start_date).to eq nil
           expect(campaign_user.schedule_end_date).to eq nil
         end

@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -41,7 +34,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 -- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION pg_stat_statements IS 'track planning and execution statistics of all SQL statements executed';
 
 
 --
@@ -1314,7 +1307,8 @@ CREATE TABLE public.campaign_users (
     campaign_scores_finalized boolean DEFAULT false,
     campaign_scores_calculated_date timestamp(6) without time zone,
     campaign_scores_finalized_date timestamp(6) without time zone,
-    campaign_scores_errors json
+    campaign_scores_errors json,
+    external_id character varying
 );
 
 
@@ -3236,104 +3230,6 @@ ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_crede
 
 
 --
--- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_columns (
-    id bigint NOT NULL,
-    column_type integer,
-    name character varying,
-    "position" integer,
-    dashboard_use boolean DEFAULT false,
-    accessor_access boolean DEFAULT false,
-    visible_in_list boolean DEFAULT false,
-    sheet_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_row_data (
-    id bigint NOT NULL,
-    string_value text,
-    numeric_value double precision,
-    sheet_row_id bigint NOT NULL,
-    sheet_column_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
--- Name: sheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying,
-    flat_view_sha character varying
-);
-
-
---
--- Name: normalized_campaign_accessheets; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_accessheets AS
- SELECT sheets.campaign_id,
-    sheet_rows.email,
-    sheet_columns.name AS field,
-    sheet_row_data.numeric_value,
-    sheet_row_data.string_value
-   FROM (((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON (((sheet_columns.sheet_id = sheets.id) AND (sheet_columns.id = sheet_row_data.sheet_column_id))))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
-
-
---
--- Name: normalized_campaign_accesssheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_accesssheet AS
- SELECT sheets.campaign_id AS "Campaign Id",
-    sheet_rows.email AS "Email",
-    sheet_columns.name AS "Field",
-    sheet_row_data.numeric_value AS "Numeric Value",
-    sheet_row_data.string_value AS "String Value"
-   FROM (((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
-
-
---
 -- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4672,6 +4568,24 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
+-- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_columns (
+    id bigint NOT NULL,
+    column_type integer,
+    name character varying,
+    "position" integer,
+    dashboard_use boolean DEFAULT false,
+    accessor_access boolean DEFAULT false,
+    visible_in_list boolean DEFAULT false,
+    sheet_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4688,6 +4602,21 @@ CREATE SEQUENCE public.sheet_columns_id_seq
 --
 
 ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
+
+
+--
+-- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_row_data (
+    id bigint NOT NULL,
+    string_value text,
+    numeric_value double precision,
+    sheet_row_id bigint NOT NULL,
+    sheet_column_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
@@ -4710,6 +4639,21 @@ ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
 
 
 --
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4726,6 +4670,22 @@ CREATE SEQUENCE public.sheet_rows_id_seq
 --
 
 ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
+);
 
 
 --
@@ -5443,8 +5403,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -10092,6 +10051,13 @@ CREATE INDEX index_campaign_users_on_campaign_id ON public.campaign_users USING 
 
 
 --
+-- Name: index_campaign_users_on_campaign_id_and_external_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_users_on_campaign_id_and_external_id ON public.campaign_users USING btree (campaign_id, external_id);
+
+
+--
 -- Name: index_campaign_users_on_campaign_id_and_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14642,6 +14608,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241223122302'),
+('20241219131514'),
 ('20241219060937'),
 ('20241210073446'),
 ('20241205111711'),
@@ -15371,3 +15338,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

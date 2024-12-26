@@ -204,7 +204,8 @@ module Swagger
           properties: {
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
-            email: { type: 'string', 'x-nullable': true }
+            email: { type: 'string', 'x-nullable': true },
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
           }
         },
         ReportResults: {
@@ -281,6 +282,7 @@ module Swagger
           properties: {
             id: { type: 'integer' },
             active: { type: 'boolean' },
+            external_id: { type: 'string', 'x-nullable': true },
             existing_record: {
               type: 'string',
               enum: %w[copy_evaluation new_evaluation],

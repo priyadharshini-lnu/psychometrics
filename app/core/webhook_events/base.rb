@@ -29,7 +29,8 @@ module WebhookEvents
       {
         subject: {
           id: ctx[:subject]&.id,
-          name: ctx[:subject]&.decorate&.full_name
+          name: ctx[:subject]&.decorate&.full_name,
+          campaign_user_external_id: ctx[:subject]&.campaign_user_external_id(ctx[:campaign]&.id)
         },
         project: {
           id: ctx[:project]&.id,
