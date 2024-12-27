@@ -17,6 +17,7 @@ describe ::SheetRows::GetData do
   end
   let(:sheet_row) do
     r1 = create(:sheet_row, sheet: sheet, email: 'james@cc.com')
+    create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[0], string_value: 'james@cc.com')
     create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[1], string_value: 'James')
     create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[2], string_value: 'Software Engineer')
     r1
@@ -40,6 +41,7 @@ describe ::SheetRows::GetData do
                                          { name: 'Profile', type: 'Text' }])
     create(:sheet_column, sheet: new_sheet, name: 'Email', column_type: 'string')
     create(:sheet_column, sheet: new_sheet, name: 'Profile', column_type: 'text')
+    columns[0].update(sheet: new_sheet)
     columns[2].update(sheet: new_sheet)
     result = described_class.call!(sheet_row, sheet: new_sheet)
 

@@ -26,7 +26,7 @@ module Sheets
       is_email = name == Sheet::EMAIL_COLUMN
       column = {
         name: name.chomp,
-        column_type: SheetColumn::COLUMN_TYPES[column_type],
+        column_type: is_email ? :string : SheetColumn::COLUMN_TYPES[column_type],
         visible_in_list: is_email
       }
       column = column.merge(dashboard_use: is_email, accessor_access: is_email) if sheet_type == 'Datasheet'
@@ -51,7 +51,6 @@ module Sheets
         next if email.blank?
 
         row = accesssheet? ? sheet.rows.create(email: email) : sheet.rows.find_or_create_by(email: email)
-        data = data.reject { |k, _v| k == Sheet::EMAIL_COLUMN }
         row.add_sheet_row_data(data)
         row.update(migrated: true)
       end

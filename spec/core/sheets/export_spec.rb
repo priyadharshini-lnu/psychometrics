@@ -18,7 +18,7 @@ describe Sheets::Export do
   end
   let!(:sheet_row_data) do
     sheet_row.add_sheet_row_data(
-      { 'Profile' => 'carpenter' }
+      { 'Email' => 'james@cc.com', 'Profile' => 'carpenter' }
     )
   end
   let(:file_name) { "sheet-#{Time.zone.now}.xlsx" }

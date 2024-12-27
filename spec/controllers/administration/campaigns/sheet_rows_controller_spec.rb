@@ -27,7 +27,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
   end
   let!(:sheet_row_data) do
     sheet_row.add_sheet_row_data({
-      'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1'
+      'Email' => 'james@cc.com', 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1'
     })
   end
 
@@ -38,7 +38,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
     it 'renders sheet_row json without HTML and Markdown type on json request' do
       sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com')
       sheet_row2.add_sheet_row_data({
-        'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1'
+        'Email' => 'smith@cc.com', 'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1'
       })
 
       get :index, params: { new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
@@ -81,7 +81,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       project_sheet_row = create(:sheet_row, sheet: project_sheet, email: sheet_row.email)
 
       project_sheet_row.add_sheet_row_data({
-        'Name' => 'James S'
+        'Email' => 'james@cc.com', 'Name' => 'James S'
       })
 
       get :show, params: { id: sheet_row.id, new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
@@ -161,7 +161,8 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
         'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James Smith',
         'Description' => 'J1', 'Profile' => 'Software Engineer'
       })
-      expect(sheet_row.sheet_row_data.first.string_value).to eq('James Smith')
+      expect(sheet_row.sheet_row_data[0].string_value).to eq('james@cc.com')
+      expect(sheet_row.sheet_row_data[1].string_value).to eq('James Smith')
     end
   end
 

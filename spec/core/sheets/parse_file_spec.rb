@@ -26,7 +26,7 @@ describe Sheets::ParseFile do
     [
       {
         'name' => 'Email',
-        'column_type' => 'text',
+        'column_type' => 'string',
         'accessor_access' => true,
         'dashboard_use' => true,
         'visible_in_list' => true
@@ -64,7 +64,7 @@ describe Sheets::ParseFile do
     expect(sheet_row.email).to eq(email)
     expect(sheet_row.sheet_row_data.reduce({}) do |acc, d|
              acc.merge(d.sheet_column.name => d.value)
-           end).to eq({ 'key' => 'value' })
+           end).to eq({ 'Email' => email, 'key' => 'value' })
   end
 
   it 'merge exists sheet row data' do
@@ -76,6 +76,6 @@ describe Sheets::ParseFile do
 
     expect(sheet_row.reload.sheet_row_data.reduce({}) do |acc, d|
       acc.merge(d.sheet_column.name => d.value)
-    end).to eq({ 'key' => 'value', 'Name' => 'James' })
+    end).to eq({ 'Email' => email, 'key' => 'value', 'Name' => 'James' })
   end
 end

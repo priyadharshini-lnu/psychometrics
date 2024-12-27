@@ -21,7 +21,7 @@ module Sheets
           datasheet.rows.order(updated_at: :desc).each do |row|
             rows = row.sheet_row_data.to_a
             row_data = columns.map do |column|
-              column.name == Sheet::EMAIL_COLUMN ? row.email : rows.find { |r| r.sheet_column_id == column.id }&.value
+              rows.find { |r| r.sheet_column_id == column.id }&.value
             end
 
             sheet.add_row row_data

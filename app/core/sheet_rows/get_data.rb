@@ -10,7 +10,7 @@ module SheetRows
     end
 
     def call
-      default_column_attr = { id: datasheet_row.id, 'Email' => datasheet_row.email }
+      default_column_attr = { id: datasheet_row.id }
 
       valid_columns = (opts[:sheet] || datasheet_row.sheet).sheet_columns
       if opts[:without_types]
