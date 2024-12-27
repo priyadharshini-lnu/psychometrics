@@ -65,7 +65,7 @@ class Radar extends Component {
         ChartOptions(model, animation, isRTL),
         {
           legend: {
-            enabled: true,
+            enabled: model.props.showLegend || false,
             itemStyle: {
               color: legendColor,
               fontSize: legendFontSize,

@@ -1,3 +1,4 @@
+import { Checkbox } from 'antd'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
@@ -23,6 +24,12 @@ const Properties = ({ modules }) => {
       item.props.chartBorderWidth = `${value}px`
     })
   }
+  const changeShowLegend = (e) => {
+    updateAll((item) => {
+      item.props.showLegend = e.target.checked
+    })
+  }
+
 
   const { chartBorderWidth, radarMax, source } = props
 
@@ -52,6 +59,15 @@ const Properties = ({ modules }) => {
           minValue={1}
           maxValue={30}
         />
+      </div>
+      <div className={styles.block}>
+        <Checkbox
+          checked={model.props.showLegend || false}
+          onChange={changeShowLegend}
+          className="font-normal"
+        >
+          {I18n.t('reports.builder.graph.properties.showLegend')}
+        </Checkbox>
       </div>
     </div>
   )

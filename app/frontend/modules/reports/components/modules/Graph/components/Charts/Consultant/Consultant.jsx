@@ -56,6 +56,7 @@ class Consultant extends Component {
     const data = Series[sourceType]
     if (!data) { return null }
     const { fontSize, fontColor: color, fontFamily } = model.props.style
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const seriesData = {
       type: 'column',
@@ -109,7 +110,14 @@ class Consultant extends Component {
               groupPadding: 0,
             },
           },
-          legend: false,
+          legend: {
+            enabled: model.props.showLegend,
+            itemStyle: {
+              color: legendColor || '#000',
+              fontSize: legendFontSize || '10px',
+              fontFamily: legendFontFamily,
+            },
+          },
           series: [seriesData],
         },
       ),

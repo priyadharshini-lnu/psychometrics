@@ -66,10 +66,17 @@ export const StackedBar: React.FC<Props> = ({
         xAxis: {
           reversed: model.props.graphicalPosition === 'Vertical' && isRTL,
           opposite: model.props.graphicalPosition === 'Horizontal' && isRTL,
+
         },
         yAxis: {
           reversed: model.props.graphicalPosition === 'Horizontal' && isRTL,
           opposite: model.props.graphicalPosition === 'Vertical' && isRTL,
+          labels: {
+            enabled: !model.props.hideYaxisLabels,
+          },
+          title: {
+            enabled: !model.props.hideYAxisTitle,
+          },
         },
         plotOptions: {
           series: {

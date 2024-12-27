@@ -49,6 +49,8 @@ class Line extends Component {
     }
     if (!model.props.source) { return null }
 
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
+
     const sourceType = model.getSourceType()
     const sourceModel = model.getSourceModel()
     const data = Series[sourceType]
@@ -76,7 +78,12 @@ class Line extends Component {
     this.chart = Highcharts.chart(this.container,
       _.merge(ChartOptions(model, animation), {
         legend: {
-          enabled: !!data.hasLegend,
+          enabled: !!data.hasLegend && model.props.showLegend,
+          itemStyle: {
+            color: legendColor,
+            fontSize: legendFontSize || '10px',
+            fontFamily: legendFontFamily,
+          },
         },
         labels: {
           items: labels,
@@ -114,6 +121,7 @@ class Line extends Component {
         yAxis: {
           gridLineWidth: model.props.yAxisLinesHide ? 0 : 1,
           title: { enabled: !model.props.yAxisTitleDisabled },
+          labels: { enabled: !model.props.yAxisLabelDisabled },
           opposite: isRTL,
         },
         series,

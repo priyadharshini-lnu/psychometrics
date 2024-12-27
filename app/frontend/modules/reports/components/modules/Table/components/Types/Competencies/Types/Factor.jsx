@@ -146,7 +146,7 @@ export default function Factor ({ model, filters }) {
           </tbody>
         </table>
       </div>
-      <Legend filters={filtersHavingResults()} model={model} />
+      {!model.props?.hideLegend && <Legend filters={filtersHavingResults()} model={model} />}
     </>
   )
 }

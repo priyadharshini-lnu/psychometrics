@@ -31,6 +31,7 @@ export default interface Module {
     showLines: boolean
     showAsBarChart: boolean
     hideHeader: boolean
+    hideLegend: boolean
     precision?: number
     text?: string
     type?: string

@@ -135,7 +135,7 @@ class CustomPie extends Component {
       return null
     }
 
-    const { fontSize, fontColor: color, fontFamily } = model.props.style
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
 
     this.chart = Highcharts.chart(
       this.container,
@@ -162,13 +162,13 @@ class CustomPie extends Component {
           })),
         },
         legend: {
+          enabled: model.props.showLegend,
           itemStyle: {
-            color,
-            fontSize,
-            fontFamily,
+            fontSize: legendFontSize || '10px',
+            fontFamily: legendFontFamily,
           },
           labelFormatter () {
-            return `<span style="text-weight:bold;color:${this.userOptions.color}">${this.name}</span>`
+            return `<span style="text-weight:bold;color:${this.userOptions.color || legendColor}">${this.name}</span>`
           },
           symbolPadding: 0,
           symbolHeight: 0,

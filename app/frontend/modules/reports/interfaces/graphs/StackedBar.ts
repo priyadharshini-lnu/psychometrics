@@ -11,9 +11,17 @@ interface Props {
     type: string
     id: string
   }
+  legendStyle: {
+    fontSize: string
+    fontColor: string
+    fontFamily: string
+  }
   showValues: boolean
   xAxisLinesHide: boolean
   yAxisLinesHide: boolean
   transparentBackground: boolean
   pointWidth: string
+  showLegend: boolean
+  hideYAxisTitle: boolean
+  hideYaxisLabels: boolean
 }

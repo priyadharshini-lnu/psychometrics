@@ -5,7 +5,7 @@ export const Functions = {}
 
 export default {
   series (results, factor, model, factorsData) {
-    results = results.scoring[factor.id]
+    results = results.scoring?.[factor.id]
     if (results && results.results) {
       const sum = _.reduce(results.results, (n, result) => result.getValue() + n, 0)
       return {

@@ -9,7 +9,7 @@ const MAX_SCORING_VALUE = 6
 
 const buildForSources = (results, factors) => {
   const data = _.map(factors, (factor) => {
-    const factorResults = results.scoring[factor.id]
+    const factorResults = results.scoring?.[factor.id]
     if (factorResults && factorResults.results) {
       const sum = _.reduce(factorResults.results, (n, result) => result.getValue() + n, 0)
       return sum / factorResults.results.length
@@ -21,7 +21,7 @@ const buildForSources = (results, factors) => {
 
 const buildForFilters = (results, factors) => results.map((result, i) => {
   let data = _.map(factors, (factor) => {
-    const factorResults = result.results.scoring[factor.id]
+    const factorResults = result.results.scoring?.[factor.id]
     if (factorResults && factorResults.results) {
       const sum = _.reduce(factorResults.results, (n, res) => res.getValue() + n, 0)
       return sum / factorResults.results.length

@@ -43,6 +43,7 @@ class Engagometer extends Component {
       this.chart.destroy()
       this.chart = null
     }
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
     if (!model.props.source) { return null }
 
     const sourceType = model.getSourceType()
@@ -89,13 +90,13 @@ class Engagometer extends Component {
             reversed: isRTL,
           },
           legend: {
+            enabled: model.props.showLegend,
             itemStyle: {
-              color,
-              fontSize,
-              fontFamily,
+              fontSize: legendFontSize || '10px',
+              fontFamily: legendFontFamily,
             },
             labelFormatter () {
-              return `<span style="color:${this.color}">${this.name}</span>`
+              return `<span style="color:${legendColor}">${this.name}</span>`
             },
             symbolWidth: 0,
             rtl: isRTL,

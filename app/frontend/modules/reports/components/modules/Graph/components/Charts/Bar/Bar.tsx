@@ -36,6 +36,7 @@ export const Bar: React.FC<Props> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
+  const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
 
   useEffect(() => {
     renderChart()
@@ -163,6 +164,11 @@ export const Bar: React.FC<Props> = ({
             align: legendHorizontalPosition.toLowerCase(),
             verticalAlign: legendVerticalPosition.toLowerCase(),
             rtl: isRTL,
+            itemStyle: {
+              color: legendColor,
+              fontSize: legendFontSize || '10px',
+              fontFamily: legendFontFamily,
+            },
           },
           plotOptions: {
             series: {

@@ -33,6 +33,9 @@ export type AdditionalChartOptions = {
   colors: string[]
   size: Size
   bubbleSize: number
+  yAxisLabelDisabled: boolean
+  yAxisTitleDisabled: boolean
+  yAxisLinesHide: boolean
 }
 
 type Props = {
@@ -41,4 +44,14 @@ type Props = {
   xMeanValueId: number
   yMeanValueId: number
   transparentBackground: false
+  showLegend: boolean
+  legendStyle: {
+    fontSize: string
+    fontColor: string
+    fontFamily: string
+  }
+  xAxisLinesHide: boolean
+  yAxisLinesHide: boolean
+  yAxisTitleDisabled: boolean
+  yAxisLabelDisabled: boolean
 } & AdditionalChartOptions

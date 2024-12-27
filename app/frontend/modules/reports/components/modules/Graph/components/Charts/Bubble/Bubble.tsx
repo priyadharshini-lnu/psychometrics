@@ -74,7 +74,13 @@ const getBubbleChartOptions = (model: PropertiesModel, size: Size, isRTL = false
     bubbleSize,
     transparentBackground = false,
     colors: chartColors,
+    showLegend = true,
+    yAxisLabelDisabled = false,
+    yAxisTitleDisabled = false,
+    yAxisLinesHide = false,
   } = model.props
+
+  const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
 
   if (!source) {
     return defaultChartOptions
@@ -123,21 +129,34 @@ const getBubbleChartOptions = (model: PropertiesModel, size: Size, isRTL = false
       colors,
       size,
       bubbleSize,
+      yAxisLabelDisabled,
+      yAxisTitleDisabled,
+      yAxisLinesHide,
     })
   }
 
   const configChartOptions = _.merge(defaultChartOptions, updatedChartOptions)
   const chartOptions: ChartOptions = {
     ...configChartOptions,
+    legend: {
+      enabled: showLegend,
+      itemStyle: {
+        color: legendColor,
+        fontSize: legendFontSize || '10px',
+        fontFamily: legendFontFamily,
+      },
+    },
     series: [
       { type: 'bubble', states: { hover: undefined }, data: seriesData },
     ],
     xAxis: {
       reversed: isRTL,
+      lineWidth: model.props.xAxisLinesHide ? 0 : 1,
       ...configChartOptions.xAxis,
     },
     yAxis: {
       opposite: isRTL,
+      lineWidth: model.props.yAxisLinesHide ? 0 : 1,
       ...configChartOptions.yAxis,
     },
   }

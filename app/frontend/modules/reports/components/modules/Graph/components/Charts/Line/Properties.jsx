@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import { Checkbox } from 'antd'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
@@ -17,7 +18,7 @@ const Properties = ({ modules, questions }) => {
 
   const checkboxHandler = (type, e) => {
     updateAll((model) => {
-      model.props[type] = e.currentTarget.checked
+      model.props[type] = e.target.checked
     })
   }
 
@@ -58,36 +59,35 @@ const Properties = ({ modules, questions }) => {
 
   const renderAxisOptions = () => (
     <div>
-      <div className="margin-top-10">
-        <label style={{ fontWeight: 'normal' }}>
-          <input
-            type="checkbox"
-            checked={lineModule.props.xAxisLinesHide || false}
-            onChange={e => checkboxHandler('xAxisLinesHide', e)}
-          />
-          Hide X-axis gridlines
-        </label>
-      </div>
-      <div className="margin-top-10">
-        <label style={{ fontWeight: 'normal' }}>
-          <input
-            type="checkbox"
-            checked={lineModule.props.yAxisLinesHide || false}
-            onChange={e => checkboxHandler('yAxisLinesHide', e)}
-          />
-          Hide Y-axis gridlines
-        </label>
-      </div>
-      <div className="margin-top-10">
-        <label style={{ fontWeight: 'normal' }}>
-          <input
-            type="checkbox"
-            checked={lineModule.props.yAxisTitleDisabled || false}
-            onChange={e => checkboxHandler('yAxisTitleDisabled', e)}
-          />
-          Hide Y-axis title
-        </label>
-      </div>
+      <Checkbox
+        checked={lineModule.props.xAxisLinesHide || false}
+        onChange={e => checkboxHandler('xAxisLinesHide', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide X-axis gridlines
+      </Checkbox>
+      <Checkbox
+        checked={lineModule.props.yAxisLinesHide || false}
+        onChange={e => checkboxHandler('yAxisLinesHide', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide Y-axis gridlines
+
+      </Checkbox>
+      <Checkbox
+        checked={lineModule.props.yAxisTitleDisabled || false}
+        onChange={e => checkboxHandler('yAxisTitleDisabled', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide Y-axis title
+      </Checkbox>
+      <Checkbox
+        checked={lineModule.props.yAxisLabelDisabled || false}
+        onChange={e => checkboxHandler('yAxisLabelDisabled', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide Y-axis label
+      </Checkbox>
     </div>
   )
 
@@ -100,6 +100,14 @@ const Properties = ({ modules, questions }) => {
         <ChoicesInput value={lineModule.props.lineWidth} onChange={changeLineWidth} maxValue={10} />
       </div>
       {renderAxisOptions()}
+      <hr className={styles.divider} />
+      <Checkbox
+        checked={lineModule.props.showLegend || false}
+        onChange={e => checkboxHandler('showLegend', e)}
+        className="font-normal"
+      >
+        Show Legend
+      </Checkbox>
     </div>
   )
 }
