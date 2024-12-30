@@ -34,7 +34,7 @@ export default {
       return _.map(results, (res, i) => {
         const commonData = _.map(question.props.choicesTexts, (label, i) => {
           label = I18nStore.tQuestion(question, `choicesTexts${i + 1}`, { choice: i })
-          const data = func(res.results.questions[question.id], i)
+          const data = func(res.results.questions?.[question.id], i)
           return {
             name: model.props.choicesTexts[i] || label,
             y: data,

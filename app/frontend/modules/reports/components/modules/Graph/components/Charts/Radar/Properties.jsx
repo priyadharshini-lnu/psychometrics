@@ -1,3 +1,4 @@
+import { Checkbox } from 'antd'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
@@ -9,6 +10,12 @@ const Properties = ({ modules }) => {
     modules.forEach((module) => {
       cb(module)
       module.update()
+    })
+  }
+
+  const checkboxHandler = (type, e) => {
+    updateAll((model) => {
+      model.props[type] = e.target.checked
     })
   }
 
@@ -24,46 +31,42 @@ const Properties = ({ modules }) => {
     })
   }
 
-  const changeHideYaxisLabels = (e) => {
-    updateAll((item) => {
-      item.props.hideYaxisLabels = e.currentTarget.checked
-    })
-  }
-
   const {
     radarMax, radarSize, tickInterval, startAngle,
   } = props
-
-  const changeEmptyFilters = (e) => {
-    updateAll((item) => {
-      item.props.hideEmptyFilters = e.currentTarget.checked
-    })
-  }
 
   return (
     <div>
       <hr className={styles.divider} />
       <div className={styles.block}>
-        <label style={{ fontWeight: 'normal' }}>
-          <input
-            type="checkbox"
-            checked={model.props.hideYaxisLabels || false}
-            onChange={changeHideYaxisLabels}
-          />
-          {' '}
+
+        <Checkbox
+          checked={model.props.hideYaxisLabels || false}
+          onChange={e => checkboxHandler('hideYaxisLabels', e)}
+          className="font-normal"
+        >
           Hide Y Axis Labels
-        </label>
+        </Checkbox>
       </div>
       <div className={styles.block}>
-        <label style={{ fontWeight: 'normal' }}>
-          <input
-            type="checkbox"
-            checked={model.props.hideEmptyFilters || false}
-            onChange={changeEmptyFilters}
-          />
-          {' '}
+        <Checkbox
+          checked={model.props.hideEmptyFilters || false}
+          onChange={e => checkboxHandler('hideEmptyFilters', e)}
+          className="font-normal"
+        >
           Hide Empty filters
-        </label>
+
+        </Checkbox>
+      </div>
+
+      <div className={styles.block}>
+        <Checkbox
+          checked={model.props.showLegend || false}
+          onChange={e => checkboxHandler('showLegend', e)}
+          className="font-normal"
+        >
+          {I18n.t('reports.builder.graph.properties.showLegend')}
+        </Checkbox>
       </div>
       <div className={styles.block}>
         Radar Maximum

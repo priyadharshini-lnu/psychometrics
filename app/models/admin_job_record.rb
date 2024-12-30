@@ -56,7 +56,7 @@ class AdminJobRecord < ApplicationRecord
     super_admin_assessment_norm_export: 36,
     super_admin_datasheet_export: 37,
     super_admin_external_assessment_export: 38,
-    super_admin_export_admin_with_permissions: 39,
+    export_admin_with_permissions: 39,
     bulk_download_user_reports: 40,
     export_campaign_factors: 41,
     import_campaign_factors: 42,
@@ -67,7 +67,8 @@ class AdminJobRecord < ApplicationRecord
     export_factor_translations: 47,
     import_factor_translations: 48,
     normalize_factor_scores: 49,
-    export_occupations: 50
+    export_occupations: 50,
+    export_user_report_events: 51
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
@@ -98,5 +99,9 @@ class AdminJobRecord < ApplicationRecord
 
   def broadcast(action)
     AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new.serialize(self))
+  end
+
+  def job_operation_instance
+    @job_operation_instance ||= AdminJob::JOBS[operation.to_sym].new(self)
   end
 end

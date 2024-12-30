@@ -44,6 +44,11 @@ module Administration
                       project_id: project_id) && record.assessment.simulation? && record.not_started?
     end
 
+    def update_simulation_time_extension?
+      has_permission?(:project_settings, :manage_users,
+                      project_id: project_id) && record.assessment.simulation? && record.not_started?
+    end
+
     def update_additional_time?
       !record&.assessment&.external? &&
         (@user.is?(:superadmin) || @user.has_permission?(

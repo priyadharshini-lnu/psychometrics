@@ -28,11 +28,15 @@ interface Props {
   model: PropertiesModel
   animation?: boolean
   factors: Factor[]
+  isRTL: boolean
 }
 
-export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
+export const Bar: React.FC<Props> = ({
+  factors, model, isRTL, animation = false,
+}) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
+  const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
 
   useEffect(() => {
     renderChart()
@@ -99,6 +103,35 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
       data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors),
     )
 
+    let reversedX = false
+    let reversedY = false
+    let oppositeY = false
+    let oppositeX = false
+    if (model.props.graphicalPosition === 'Horizontal' && model.props.reverse && !isRTL) {
+      reversedX = true
+      reversedY = true
+      oppositeX = true
+      oppositeY = false
+    } else if (model.props.graphicalPosition === 'Horizontal' && model.props.reverse && isRTL) {
+      reversedX = true
+      oppositeY = false
+      oppositeX = false
+      reversedY = false
+    } else if (model.props.graphicalPosition === 'Horizontal' && !model.props.reverse && isRTL) {
+      reversedX = false
+      reversedY = true
+      oppositeX = true
+      oppositeY = false
+    } else if (model.props.graphicalPosition === 'Vertical' && !model.props.reverse && isRTL) {
+      reversedX = true
+      oppositeY = true
+    } else {
+      reversedX = false
+      reversedY = false
+      oppositeY = false
+      oppositeX = false
+    }
+
     const format = data.format
       ? data.format(model.props.dataFormat)
       : Formats[model.props.dataFormat](model.props.precision)
@@ -123,12 +156,19 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
             type: model.props.graphicalPosition === 'Vertical' ? 'column' : 'bar',
             options3d: get3DOptions(),
             animation,
+            rtl: isRTL,
           },
           animation,
           legend: {
             enabled: model.props.showLegend,
             align: legendHorizontalPosition.toLowerCase(),
             verticalAlign: legendVerticalPosition.toLowerCase(),
+            rtl: isRTL,
+            itemStyle: {
+              color: legendColor,
+              fontSize: legendFontSize || '10px',
+              fontFamily: legendFontFamily,
+            },
           },
           plotOptions: {
             series: {
@@ -145,11 +185,12 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
             },
           },
           xAxis: {
-            reversed: model.props.reverse && model.props.graphicalPosition === 'Horizontal',
-            opposite: model.props.reverse && model.props.graphicalPosition === 'Horizontal',
+            reversed: reversedX,
+            opposite: oppositeX,
           },
           yAxis: {
-            reversed: model.props.reverse && model.props.graphicalPosition === 'Horizontal',
+            reversed: reversedY,
+            opposite: oppositeY,
           },
           series,
         },

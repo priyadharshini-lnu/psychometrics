@@ -48,7 +48,7 @@ class AdminJob < ApplicationJob
     super_admin_assessment_norm_export: AdminJobs::SuperAdmin::AssessmentNormExport,
     super_admin_datasheet_export: AdminJobs::SuperAdmin::DatasheetExport,
     super_admin_external_assessment_export: AdminJobs::SuperAdmin::ExternalAssessmentExport,
-    super_admin_export_admin_with_permissions: AdminJobs::SuperAdmin::ExportAdminsWithPermissions,
+    export_admin_with_permissions: AdminJobs::ExportAdminsWithPermissions,
     bulk_download_user_reports: AdminJobs::BulkDownloadUserReports,
     export_campaign_factors: AdminJobs::ExportCampaignFactors,
     import_campaign_factors: AdminJobs::ImportCampaignFactors,
@@ -59,7 +59,8 @@ class AdminJob < ApplicationJob
     export_factor_translations: AdminJobs::ExportFactorTranslations,
     import_factor_translations: AdminJobs::ImportFactorTranslations,
     normalize_factor_scores: AdminJobs::NormalizeFactorScores,
-    export_occupations: AdminJobs::ExportOccupations
+    export_occupations: AdminJobs::ExportOccupations,
+    export_user_report_events: AdminJobs::ExportUserReportEvents
   }.freeze
 
   def perform(record)

@@ -1,1 +1,1 @@
-export { Admins } from './Admins'
+export { Admins, type Meta } from './Admins'

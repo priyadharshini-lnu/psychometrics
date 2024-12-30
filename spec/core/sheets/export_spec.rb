@@ -14,7 +14,12 @@ describe Sheets::Export do
     create(:sheet_column, sheet: sheet, name: 'Empty', column_type: 'number')
   end
   let!(:sheet_row) do
-    create(:sheet_row, sheet: sheet, email: 'james@cc.com', data: { 'Profile' => 'carpenter' })
+    create(:sheet_row, sheet: sheet, email: 'james@cc.com')
+  end
+  let!(:sheet_row_data) do
+    sheet_row.add_sheet_row_data(
+      { 'Email' => 'james@cc.com', 'Profile' => 'carpenter' }
+    )
   end
   let(:file_name) { "sheet-#{Time.zone.now}.xlsx" }
 

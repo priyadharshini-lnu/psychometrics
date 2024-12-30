@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserReport < ApplicationRecord
+class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   audited
 
   include WorkflowActiverecord
@@ -18,9 +18,12 @@ class UserReport < ApplicationRecord
   has_one :subject, -> { where('campaign_id = threesixty_subjects.campaign_id') },
           foreign_key: :user_id, primary_key: :user_id,
           class_name: 'Threesixty::Subject'
+
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
   has_many :user_report_events
+  has_many :communication_email_resources, as: :resource
+  has_many :communication_emails, through: :communication_email_resources
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
@@ -40,6 +43,10 @@ class UserReport < ApplicationRecord
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
   after_commit :publish_to_webhook,
+               if: proc { status_previously_changed? && status == 'prepared' },
+               on: [:update]
+
+  after_commit :schedule_report_available_notification,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
 
@@ -238,5 +245,19 @@ class UserReport < ApplicationRecord
     return unless prepared?
 
     update!(purge_pdf_file: true, status: :not_prepared, approval_status: :not_ready)
+  end
+
+  def schedule_report_available_notification
+    return unless user_access?
+    return if communication_emails.joins(:communication).
+              exists?(communications: { kind: :report_available })
+
+    communication = Communication.order(:created_at).where(kind: :report_available, campaign_id: campaign_id).last
+    return unless communication
+
+    communication.create_communication_email_with_resources(
+      { user: user, campaign_user: campaign_user },
+      self
+    )
   end
 end

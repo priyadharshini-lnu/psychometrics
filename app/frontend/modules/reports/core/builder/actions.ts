@@ -40,11 +40,12 @@ export enum SelectedTypes {
   'Report'= 'Report'
 }
 
-export const fetch = id => ({
+export const fetch = (id, lang = 'en') => ({
   type: FETCH,
   request: {
     url: `/administration/reports/${id}/builders`,
     camelize: false,
+    body: { lang },
   },
 })
 

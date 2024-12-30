@@ -50,8 +50,8 @@ module Workshops
     def create_workshop_resources(workshop_id, resources_data)
       resources_data.each do |workshop_resource|
         WorkshopResource.create!(
-          name: workshop_resource['name'],
-          url: workshop_resource['url'],
+          name: workshop_resource[:name],
+          url: workshop_resource[:url],
           workshop_id: workshop_id
         )
       end

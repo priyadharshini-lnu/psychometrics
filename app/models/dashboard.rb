@@ -6,6 +6,7 @@ class Dashboard < ApplicationRecord
   include ActiveStorageAttachable
 
   enum :dashboard_type, { powerbi: 0, oracle_analytics: 1 }
+  enum :visual_header_visibility, { hide_all: 0, show_all: 1, keep_original: 2 }
 
   has_one_image_attachment :image, variants: [:thumb], service: Settings.storage.private_storage_service
 

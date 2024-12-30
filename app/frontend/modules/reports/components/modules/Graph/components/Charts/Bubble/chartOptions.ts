@@ -114,6 +114,9 @@ export const additionalChartOptions = ({
   colors = [],
   size,
   bubbleSize,
+  yAxisLabelDisabled,
+  yAxisTitleDisabled,
+  yAxisLinesHide,
 }: AdditionalChartOptions): ChartOptions => ({
   chart: {
     backgroundColor,
@@ -131,10 +134,14 @@ export const additionalChartOptions = ({
   },
   yAxis: {
     title: {
-      text: yMeanTitle,
+      text: yAxisTitleDisabled ? '' : yMeanTitle,
       align: 'low',
       rotation: 0,
       y: 20,
+    },
+    gridLineWidth: yAxisLinesHide ? 0 : 1,
+    labels: {
+      enabled: !yAxisLabelDisabled,
     },
     min: yMin,
     max: yMax,

@@ -6,12 +6,13 @@ import cs from 'classnames'
 
 type Ref = RefAttributes<HTMLDivElement | HTMLSpanElement>
 
-interface Props extends HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
+interface Props extends HTMLAttributes<HTMLDivElement | HTMLSpanElement | HTMLLabelElement> {
   html: string | Node
-  as?: 'div' | 'span'
+  as?: 'div' | 'span' | 'label'
   config?: keyof SanitizeConfig
   className?: string
   key?: Key
+  htmlFor?: string
 }
 
 interface SanitizeConfig {

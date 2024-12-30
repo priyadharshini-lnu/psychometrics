@@ -201,6 +201,18 @@ const PowerBIFields = () => (
         ))}
       </Select>
     </Form.Item>
+    <Form.Item
+      name="visualHeaderVisibility"
+      label={I18n.t('administration.dashboard_form.fields.visual_header_visibility')}
+    >
+      <Select
+        options={
+            ['hide_all', 'show_all', 'keep_original'].map(opt => ({
+              value: opt, label: I18n.t(`administration.dashboard_form.visual_header_visibility_options.${opt}`),
+            }))
+          }
+      />
+    </Form.Item>
   </>
 )
 

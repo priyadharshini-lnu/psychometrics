@@ -2,9 +2,11 @@ import { useEffect } from 'react'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Layout, Button, App, Row, Col, Typography, notification,
+  Space,
 } from 'antd'
 import { connect } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import userPresenter from '~/presenters/user'
@@ -37,6 +39,8 @@ const ReportComponent = ({
     report: {
       default_language: defaultLanguage,
       locales,
+      other_languages: otherLanguages,
+      available_languages: availableLanguages,
     }, report, results, user, campaign, approvalStatus, isSelf,
   }, fetchReport, updateStatus, downloadReport, checkReport,
   options: { approval: { managerApprovesReports }, access: { disableDownloadReport } },
@@ -44,8 +48,10 @@ const ReportComponent = ({
   const { message } = App.useApp()
   const navigate = useNavigate()
   const params = useParams()
+  const [searchParams] = useSearchParams()
+  const lang = searchParams.get('lang') || 'en'
   useEffect(() => {
-    fetchReport(params.campaignId, params.id)
+    fetchReport(params.campaignId, params.id, lang)
   }, [])
 
   const handleStatusClick = (status) => {
@@ -53,7 +59,7 @@ const ReportComponent = ({
   }
 
   const requestDownloadReport = (campaignId, userReportId) => {
-    downloadReport(campaignId, userReportId, defaultLanguage.code)
+    downloadReport(campaignId, userReportId, lang || defaultLanguage.code)
       .then(({ response }) => {
         if (response.success) {
           message.success(I18n.t('threesixty.report_generation_in_progress'), 3)
@@ -75,6 +81,29 @@ const ReportComponent = ({
     }, 10000)
   }
 
+  const availableLocales = availableLanguages?.map(l => l.code)
+
+  const extraContent = (
+    <>
+      {otherLanguages?.length > 0 && (
+        <LangDropdownWithChangeUrl
+          locales={availableLocales}
+          currentLocale={lang || defaultLanguage.code}
+          withBg
+        />
+      )}
+      {!disableDownloadReport && [
+        <Button
+          key="download"
+          icon={<DownloadOutlined />}
+          onClick={() => requestDownloadReport(params.campaignId, params.id)}
+        >
+          {I18n.t('threesixty.download_pdf')}
+        </Button>,
+      ]}
+    </>
+  )
+
   if (!loaded) { return null }
 
   return (
@@ -84,37 +113,33 @@ const ReportComponent = ({
       <Content className={styles.pageContent}>
         <PageHeader
           className={styles.campaignHeader}
-          backIcon={(
-            <Button ghost type="text" size="small" aria-label={I18n.t('frontend.aria.back_to_tasks')}>
-              <DirectionalNavigateBackIcon
-                className={styles.backIcon}
-              />
-            </Button>
-          )}
           title={(
-            <Text className={styles.campaignDropdown}>
-              {`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}
-              <StatusItem
-                isSelf={isSelf}
-                managerApprovesReports={managerApprovesReports}
-                approvalStatus={approvalStatus}
-                handleStatusClick={handleStatusClick}
-              />
-            </Text>
+            <Space>
+              <Button
+                onClick={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
+                type="text"
+                size="small"
+                aria-label={I18n.t('frontend.aria.back_to_tasks')}
+              >
+                <DirectionalNavigateBackIcon
+                  className={styles.backIcon}
+                />
+              </Button>
+              <Text className={styles.campaignDropdown}>
+                {`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}
+                <StatusItem
+                  isSelf={isSelf}
+                  managerApprovesReports={managerApprovesReports}
+                  approvalStatus={approvalStatus}
+                  handleStatusClick={handleStatusClick}
+                />
+              </Text>
+            </Space>
           )}
           ghost={false}
-          onBack={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
-          extra={!disableDownloadReport && [
-            <Button
-              key="download"
-              icon={<DownloadOutlined />}
-              onClick={() => requestDownloadReport(params.campaignId, params.id)}
-            >
-              {I18n.t('threesixty.download_pdf')}
-            </Button>,
-          ]}
+          extra={extraContent}
         />
-        <Row justify="center">
+        <Row justify="center" className="mt-5">
           <Col className={styles.reportContainer} xs={24} lg={22} xl={18} xxl={16}>
             <ReportPreview
               id="threesixty-report"
@@ -123,7 +148,7 @@ const ReportComponent = ({
               campaign={JSON.stringify(campaign)}
               user={JSON.stringify(user)}
               locales={locales}
-              selectedLocale={defaultLanguage}
+              selectedLocale={lang ? { code: lang } : defaultLanguage}
               userReport={{}}
             />
           </Col>

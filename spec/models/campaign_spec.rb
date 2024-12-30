@@ -55,23 +55,36 @@ describe Campaign, type: :model do
     let(:project_datasheet) { create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }]) }
 
     it 'returns campaign datasheet columns if there is not project datasheet' do
-      create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet, data: { 'Name' => 'James' })
-      create(:sheet_row, email: 'smith@cc.com', sheet: campaign_datasheet, data: { 'Name' => 'Smith' })
-
+      col = create(:sheet_column, name: 'Name', column_type: 'string', sheet: campaign_datasheet)
+      r1 = create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet)
+      r2 = create(:sheet_row, email: 'smith@cc.com', sheet: campaign_datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: col, value: 'James')
+      create(:sheet_row_datum, sheet_row: r2, sheet_column: col, value: 'Smith')
       expect(campaign.datasheet_data('james@cc.com')).to eq({ 'Name' => 'James' })
     end
 
     it 'return project datsheet columns if there is no campaign datasheet' do
-      create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet, data: { 'Name' => 'James' })
+      col = create(:sheet_column, name: 'Name', column_type: 'string', sheet: campaign_datasheet)
+      r1 = create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: col, value: 'James')
 
       expect(campaign.datasheet_data('james@cc.com')).to eq({ 'Name' => 'James' })
     end
 
     it 'returns combined datasheet columns' do
-      create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet,
-        data: { 'Name' => 'James', 'Id' => 1 })
-      create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet,
-        data: { 'Name' => 'Smith', 'Title' => 'Developer' })
+      col_name1 = create(:sheet_column, name: 'Name', column_type: 'string', sheet: project_datasheet)
+      col_name2 = create(:sheet_column, name: 'Name', column_type: 'string', sheet: campaign_datasheet)
+      col_id = create(:sheet_column, sheet: project_datasheet, name: 'Id', column_type: 'number')
+      col_title = create(:sheet_column, sheet: campaign_datasheet, name: 'Title', column_type: 'string')
+
+      r1 = create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet)
+      r2 = create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet)
+
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: col_name1, string_value: 'James')
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: col_id, numeric_value: 1)
+
+      create(:sheet_row_datum, sheet_row: r2, sheet_column: col_name2, string_value: 'Smith')
+      create(:sheet_row_datum, sheet_row: r2, sheet_column: col_title, string_value: 'Developer')
 
       expect(campaign.datasheet_data('james@cc.com')).to eq({ 'Name' => 'Smith', 'Id' => 1, 'Title' => 'Developer' })
     end

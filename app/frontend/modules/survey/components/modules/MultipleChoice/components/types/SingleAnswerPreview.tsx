@@ -1,5 +1,5 @@
 import {
-  ChangeEvent, FC, lazy, Suspense,
+  ChangeEvent, FC, lazy, Suspense, useRef,
 } from 'react'
 import { Spin } from 'antd'
 import cs from 'classnames'
@@ -19,10 +19,11 @@ interface Props {
   I18n: I18nInterface
   nextPage: () => {}
   singleQuestionFlow?: boolean
+  focus: boolean
 }
 
 export const SingleAnswerPreview: FC<Props> = ({
-  model, readOnly, I18n, nextPage, singleQuestionFlow,
+  model, readOnly, I18n, nextPage, singleQuestionFlow, focus,
 }) => {
   const forceUpdate = useForceUpdate()
   const {
@@ -99,6 +100,7 @@ export const SingleAnswerPreview: FC<Props> = ({
       I18n={I18n}
       handleChoiceChange={handleChoiceChange}
       handleNotApplicableChange={handleNotApplicableChange}
+      focusFirstInput={focus}
     />
   )
 }
@@ -116,6 +118,7 @@ interface TextChoicesProps {
   model: PreviewModel
   handleChoiceChange(event: ChangeEvent<HTMLInputElement>): void
   handleNotApplicableChange(): void
+  focusFirstInput: boolean
 }
 
 const TextChoices: FC<TextChoicesProps> = ({
@@ -131,46 +134,55 @@ const TextChoices: FC<TextChoicesProps> = ({
   I18n,
   handleChoiceChange,
   handleNotApplicableChange,
+  focusFirstInput,
 }) => {
   const listStyles = {
     display: position === 'Vertical' ? 'block' : 'flex',
   }
+  const firstInputRef = useRef<HTMLInputElement>(null)
+
+  if (focusFirstInput && firstInputRef.current) {
+    firstInputRef.current.focus()
+  }
 
   return (
-    <ol
+    <div
       className={cs(styles.list, styles[position], styles.singleAnswer)}
       style={listStyles}
     >
-      {choicesIds.map((choiceId) => {
+      {choicesIds.map((choiceId, index) => {
         const choice = answers.find(answer => answer.index === choiceId)
         const choiceAnswer = choice?.value ?? false
+        const focusInput = index === 0 && focusFirstInput
 
         return (
-          <li
+          <div
             className={`${styles.listItem} ${styles.liButton} ${
               choiceAnswer ? styles.buttonActive : ''
             }`}
             key={choiceId}
           >
             <label className={`${styles.label} ${styles.labelButton}`}>
-              <span className={cs('fa fa-check', styles.checkIcon)} />
+              <span aria-hidden="true" className={cs('fa fa-check', styles.checkIcon)} />
               <input
                 type="radio"
                 name={`${id}`}
-                className={styles.input}
+                className={cs(styles.input, { [styles.showFocusRing]: focusInput })}
                 disabled={readOnly}
                 value={choiceId}
                 checked={choiceAnswer}
+                aria-describedby={`error-for-question-${model.id}`}
                 onChange={handleChoiceChange}
                 aria-labelledby={`answer-desc-${choiceId}`}
+                ref={index === 0 ? firstInputRef : null}
               />
-              <div id={`answer-desc-${choiceId}`} className={styles.optionDescription}>
+              <div className={styles.optionDescription}>
                 {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
                   choice: choiceId,
                 }) || defaultChoiceText(choiceId + 1)}
               </div>
             </label>
-          </li>
+          </div>
         )
       })}
       {notApplicable && (
@@ -183,7 +195,7 @@ const TextChoices: FC<TextChoicesProps> = ({
           onChange={handleNotApplicableChange}
         />
       )}
-    </ol>
+    </div>
   )
 }
 
@@ -204,13 +216,13 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
   checked,
   onChange,
 }) => (
-  <li
+  <div
     className={`${styles.listItem} ${styles.liButton} ${
       checked ? styles.buttonActive : ''
     }`}
   >
     <label className={`${styles.label} ${styles.labelButton}`}>
-      <span className={cs('fa fa-check', styles.checkIcon)} />
+      <span aria-hidden="true" className={cs('fa fa-check', styles.checkIcon)} />
       <input
         type="radio"
         name={`${id}`}
@@ -219,11 +231,10 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
         checked={checked}
         value=""
         onChange={onChange}
-        id={`not-applicable-${id}`}
       />
-      <span id={`not-applicable-${id}`}>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
+      <span>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
     </label>
-  </li>
+  </div>
 )
 
 export default SingleAnswerPreview

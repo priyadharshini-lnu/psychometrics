@@ -218,6 +218,57 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     end
   end
 
+  describe 'PUT update_simulation_time_extension' do
+    let!(:simulation_user_assessment) { create(:simulation_user_assessment, user_assessment: user_assessment) }
+
+    it 'updates time_extension in simulation user assessment' do
+      assessment.update!(type: Assessments::Simulation)
+      user_assessment.update!(status: 'not_started')
+
+      post :update_simulation_time_extension, params: {
+        time_extension: 1.5,
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(simulation_user_assessment.reload.time_extension).to eq(1.5)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'does not update time_extension if user assessment is completed' do
+      assessment.update!(type: Assessments::Simulation)
+      user_assessment.update!(status: 'completed')
+      original_time_extension = simulation_user_assessment.time_extension
+
+      post :update_simulation_time_extension, params: {
+        time_extension: 1.5,
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(simulation_user_assessment.reload.time_extension).to eq(original_time_extension)
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it 'does not update time_extension if user assessment is not simulation' do
+      assessment.update!(type: Assessments::Hogan)
+      user_assessment.update!(status: 'not_started')
+      original_time_extension = simulation_user_assessment.time_extension
+
+      post :update_mettl_schedule, params: {
+        time_extension: 1.6,
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(simulation_user_assessment.reload.time_extension).to eq(original_time_extension)
+      expect(response).to have_http_status(:forbidden)
+    end
+  end
+
   describe 'POST normalize_factor_scores' do
     let(:factor) { create(:factor) }
     let!(:user_result_with_scoring) do

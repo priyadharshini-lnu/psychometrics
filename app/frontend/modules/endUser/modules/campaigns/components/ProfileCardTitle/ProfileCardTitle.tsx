@@ -25,7 +25,7 @@ const ProfileCardTitleComponent: FC<Props> = ({ currentUser }) => (
     <Col span={16}>
       <Space size="middle">
         <Avatar size={64} icon={!currentUser.photo && <UserOutlined />} src={currentUser.photo} />
-        <Title level={4} className={styles.welcomeText}>
+        <Title level={1} className={styles.welcomeText}>
           {I18n.t('campaign.profile.welcome_text')}
           {' '}
           {currentUser.firstName}

@@ -10,7 +10,7 @@ module Campaigns
       attribute :email, String
       attribute :locale, String
 
-      validates :first_name, :last_name, :email, presence: true
+      validates :first_name, :last_name, :email, presence: true, csv_injection_check: true
       validates :email, format: { with: Devise.email_regexp }
       validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
       validate :user_exists_in_campaign

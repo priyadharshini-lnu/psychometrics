@@ -43,17 +43,25 @@ prevent bundle secure warnings with
 
 6. Create databases `$> bundle exec rake db:create`
 
-    Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
+    Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data. In case you don't have access to the DB dump, you can seed the data manually by following
+    step 7.
 
-7. `$> yarn install`
+7. Seed Data by running the following:
+   - `$> bundle exec rake db:create`
+   - `$> bundle exec rake db:schema:load`
+   - `$> bundle exec rake db:migrate`
+   - `$> bundle exec rake seed_relationships`
+   - `$> bundle exec rake geo:import`
+
+8. `$> yarn install`
 
     in case of `error Error: unable to get local issuer certificate` run below command
 
     ```yarn config set "strict-ssl" false -g```
 
-8. Install redis.
+9. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
-9. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
+10. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
 Follow the instruction mentioned in the README.md to install and run the serverless framework.
 In the main psychometric repo set environment variable `URL_TO_PDF_LAMBDA_URL` to `http://localhost:3000/dev`
 
@@ -158,11 +166,30 @@ Reverse proxy can be used to publicly expose local development environment to re
 
 Following the above steps, your local development environment should be accessible via `https://www.project458.com`
 
+# Receive emails in local development environment
+
+1. Install mailhog from [here](https://github.com/mailhog/MailHog)
+2. Run mailhog server `brew services start mailhog`
+3. Visit `http://localhost:8025` in your browser to see received emails.
+
 # Run tests
 
+To run rails unit test
 ```sh
 bundle exec rspec
 ```
+
+To run vitest unit test
+
+we need to generate translations which can be done by use following rake command
+```sh
+rake i18n:js:export
+```
+then
+```sh
+yarn run test
+```
+Check package.json for more details
 
 # Running mock server
 Currently mock server can only run on non ssl mode. For this we would have start rails server and vite server on non ssl mode.
@@ -170,18 +197,6 @@ Currently mock server can only run on non ssl mode. For this we would have start
 Run below code in terminal to run mock server
 ```
 yarn run mockApi
-```
-
-To use mock api, pass `mocked: true` from redux api action
-```
-export const fetch = () => ({
-  type: FETCH,
-  request: {
-    method: 'get',
-    mocked: true,
-    url: `/invites`,
-  },
-})
 ```
 
 # Other Development Tasks
@@ -195,3 +210,6 @@ Run the following rake task to normalize the keys
 ```sh
 bundle exec i18n-tasks normalize -p
 ```
+
+# Production build setup on local
+ Check following wiki https://github.com/TheTalentEnterprise/psychometrics/wiki/Production-build-setup-on-localhost

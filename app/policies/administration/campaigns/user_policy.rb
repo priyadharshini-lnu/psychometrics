@@ -119,6 +119,14 @@ module Administration
         has_permission?(:workshops, :view)
       end
 
+      def push_webhook?
+        @user.has_permission?(:project_settings, :webhooks, project_id: project_id)
+      end
+
+      def webhook_payload?
+        has_permission?(:project_settings, :webhooks, project_id: project_id)
+      end
+
       private
 
       def can_mange_campaign_users?

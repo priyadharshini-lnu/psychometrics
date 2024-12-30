@@ -17,7 +17,7 @@ class Page extends Component {
 
   renderModuleType = (module, i) => {
     const {
-      model, pageNumber, totalPages, rstore, moduleOverrides, pdfExport, dashboard,
+      model, pageNumber, flipContent, totalPages, rstore, moduleOverrides, pdfExport, dashboard,
     } = this.props
     if (dashboard && module.props.hideOnDashboard) { return null }
     if (!module.type) { return }
@@ -33,6 +33,7 @@ class Page extends Component {
         <View
           module={module}
           page={model}
+          flipContent={flipContent}
           preview
           pageNumber={pageNumber}
           totalPages={totalPages}
@@ -46,7 +47,7 @@ class Page extends Component {
 
   renderShadowModule = (module, i) => {
     const {
-      model, pageNumber, totalPages, pdfExport, dashboard,
+      model, pageNumber, totalPages, pdfExport, dashboard, flipContent,
     } = this.props
     if (dashboard && module.props.hideOnDashboard) { return null }
     if (module.onPage(model)) { return }
@@ -61,6 +62,7 @@ class Page extends Component {
         <View
           module={module}
           page={model}
+          flipContent={flipContent}
           preview
           pageNumber={pageNumber}
           totalPages={totalPages}

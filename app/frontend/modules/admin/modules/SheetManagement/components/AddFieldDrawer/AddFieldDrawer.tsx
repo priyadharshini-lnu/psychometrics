@@ -133,6 +133,9 @@ const AddFieldDrawerComponent: FC<Props> = ({
           key="name"
           help={errors.name}
           validateStatus={errors.name ? 'error' : 'success'}
+          rules={[
+            { required: true, message: 'Column name is required' },
+          ]}
         >
           <Input name="sheet_name" onChange={({ target: { value } }) => setName(value)} />
         </Form.Item>

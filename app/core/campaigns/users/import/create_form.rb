@@ -17,6 +17,7 @@ module Campaigns
         attribute :schedule_start_date, DateTime
         attribute :schedule_end_date, DateTime
         attribute :manager_id, Integer
+        attribute :external_id, String, default: nil
 
         validates :first_name, :last_name, :email, presence: true
         validates :email, format: { with: Devise.email_regexp }

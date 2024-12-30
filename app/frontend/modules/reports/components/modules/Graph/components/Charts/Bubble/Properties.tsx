@@ -9,6 +9,7 @@ import {
   Button,
   Select,
   InputNumber,
+  Checkbox,
 } from 'antd'
 import { connect } from 'react-redux'
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
@@ -21,6 +22,7 @@ import { RootState } from '~/modules/reports/core/rootReducers'
 
 import styles from './styles.less'
 
+const { I18n } = window
 interface DataPoint {
   label: string
   x: number
@@ -87,6 +89,10 @@ const Properties: FC<Props> = ({ factors, modules }) => {
       },
     ])
   }
+  const checkboxHandler = (type: string, e) => {
+    model.props[type] = e.target.checked
+    model.update()
+  }
 
   const handleRemoveDatapointRow = (index: number) => {
     const filteredDataPoints = dataPoints.filter(
@@ -96,214 +102,263 @@ const Properties: FC<Props> = ({ factors, modules }) => {
     updateChartProps('seriesValueIds', filteredDataPoints)
   }
 
+
+  const renderAxisOptions = () => (
+    <div>
+      <Checkbox
+        checked={model.props.xAxisLinesHide || false}
+        onChange={e => checkboxHandler('xAxisLinesHide', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide X-axis gridlines
+      </Checkbox>
+      <Checkbox
+        checked={model.props.yAxisLinesHide || false}
+        onChange={e => checkboxHandler('yAxisLinesHide', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide Y-axis gridlines
+
+      </Checkbox>
+      <Checkbox
+        checked={model.props.yAxisTitleDisabled || false}
+        onChange={e => checkboxHandler('yAxisTitleDisabled', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide Y-axis title
+      </Checkbox>
+      <Checkbox
+        checked={model.props.yAxisLabelDisabled || false}
+        onChange={e => checkboxHandler('yAxisLabelDisabled', e)}
+        className="font-normal margin-top-10"
+      >
+        Hide Y-axis label
+      </Checkbox>
+      <Checkbox
+        checked={model.props.showLegend || false}
+        onChange={e => checkboxHandler('showLegend', e)}
+        className="font-normal margin-top-10"
+      >
+        {I18n.t('reports.builder.graph.properties.showLegend')}
+      </Checkbox>
+    </div>
+  )
+
   return (
-    <Collapse defaultActiveKey={[]} className={styles.properties} key={model.id}>
-      <Collapse.Panel header="Chart" key="1">
-        <Row justify="space-between">
-          <Col className="mb-4">
-            <Typography.Text strong>Size</Typography.Text>
-          </Col>
-          <Col className="mb-4">
-            <InputNumber
-              onBlur={({ currentTarget: { value } }) => updateChartProps('bubbleSize', parseFloat(value))}
-              defaultValue={model.props.bubbleSize}
-              size="small"
-            />
-          </Col>
-        </Row>
-        <Row justify="space-between">
-          <Col className="mb-4">
-            <Typography.Text strong>Min X</Typography.Text>
-          </Col>
-          <Col className="mb-4">
-            <InputNumber
-              onBlur={({ currentTarget: { value } }) => updateChartProps('xMin', parseFloat(value))}
-              defaultValue={model.props.xMin}
-              size="small"
-            />
-          </Col>
-        </Row>
-        <Row justify="space-between">
-          <Col className="mb-4">
-            <Typography.Text strong>Max X</Typography.Text>
-          </Col>
-          <Col className="mb-4">
-            <InputNumber
-              onBlur={({ currentTarget: { value } }) => updateChartProps('xMax', parseFloat(value))}
-              defaultValue={model.props.xMax}
-              size="small"
-            />
-          </Col>
-        </Row>
-        <Row justify="space-between">
-          <Col className="mb-4">
-            <Typography.Text strong>Min Y</Typography.Text>
-          </Col>
-          <Col className="mb-4">
-            <InputNumber
-              onBlur={({ currentTarget: { value } }) => updateChartProps('yMin', parseFloat(value))}
-              defaultValue={model.props.yMin}
-              size="small"
-            />
-          </Col>
-        </Row>
-        <Row justify="space-between">
-          <Col className="mb-4">
-            <Typography.Text strong>Max Y</Typography.Text>
-          </Col>
-          <Col className="mb-4">
-            <InputNumber
-              onBlur={({ currentTarget: { value } }) => updateChartProps('yMax', parseFloat(value))}
-              defaultValue={model.props.yMax}
-              size="small"
-            />
-          </Col>
-        </Row>
-      </Collapse.Panel>
-      <Collapse.Panel header="Mean factors" key="2">
-        <Row>
-          <Typography.Text strong>X mean</Typography.Text>
-          <Col className="mb-4">
-            <Input
-              placeholder="Enter title"
-              className="w-100"
-              onChange={({ currentTarget: { value } }) => setMeanValues({
-                ...meanValues,
-                x: { title: value, value: meanValues.x.value },
-              })
-              }
-              onBlur={() => updateChartProps('xMeanTitle', meanValues.x.title)}
-              value={meanValues.x.title}
-              size="small"
-            />
-          </Col>
-          <Col className="mb-8" flex="1 1 0">
-            <FactorsSelect
-              propertiesOptions={factors}
-              placeholder="Select X value"
-              onChange={(value) => {
-                setMeanValues({
+    <>
+      <Collapse defaultActiveKey={[]} className={styles.properties} key={model.id}>
+        <Collapse.Panel header="Chart" key="1">
+          <Row justify="space-between">
+            <Col className="mb-4">
+              <Typography.Text strong>Size</Typography.Text>
+            </Col>
+            <Col className="mb-4">
+              <InputNumber
+                onBlur={({ currentTarget: { value } }) => updateChartProps('bubbleSize', parseFloat(value))}
+                defaultValue={model.props.bubbleSize}
+                size="small"
+              />
+            </Col>
+          </Row>
+          <Row justify="space-between">
+            <Col className="mb-4">
+              <Typography.Text strong>Min X</Typography.Text>
+            </Col>
+            <Col className="mb-4">
+              <InputNumber
+                onBlur={({ currentTarget: { value } }) => updateChartProps('xMin', parseFloat(value))}
+                defaultValue={model.props.xMin}
+                size="small"
+              />
+            </Col>
+          </Row>
+          <Row justify="space-between">
+            <Col className="mb-4">
+              <Typography.Text strong>Max X</Typography.Text>
+            </Col>
+            <Col className="mb-4">
+              <InputNumber
+                onBlur={({ currentTarget: { value } }) => updateChartProps('xMax', parseFloat(value))}
+                defaultValue={model.props.xMax}
+                size="small"
+              />
+            </Col>
+          </Row>
+          <Row justify="space-between">
+            <Col className="mb-4">
+              <Typography.Text strong>Min Y</Typography.Text>
+            </Col>
+            <Col className="mb-4">
+              <InputNumber
+                onBlur={({ currentTarget: { value } }) => updateChartProps('yMin', parseFloat(value))}
+                defaultValue={model.props.yMin}
+                size="small"
+              />
+            </Col>
+          </Row>
+          <Row justify="space-between">
+            <Col className="mb-4">
+              <Typography.Text strong>Max Y</Typography.Text>
+            </Col>
+            <Col className="mb-4">
+              <InputNumber
+                onBlur={({ currentTarget: { value } }) => updateChartProps('yMax', parseFloat(value))}
+                defaultValue={model.props.yMax}
+                size="small"
+              />
+            </Col>
+          </Row>
+        </Collapse.Panel>
+        <Collapse.Panel header="Mean factors" key="2">
+          <Row>
+            <Typography.Text strong>X mean</Typography.Text>
+            <Col className="mb-4">
+              <Input
+                placeholder="Enter title"
+                className="w-100"
+                onChange={({ currentTarget: { value } }) => setMeanValues({
                   ...meanValues,
-                  x: { value, title: meanValues.x.title },
+                  x: { title: value, value: meanValues.x.value },
                 })
-                updateChartProps('xMeanValueId', value)
-              }}
-              value={meanValues.x.value}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Typography.Text strong>Y mean</Typography.Text>
-          <Col className="mb-4">
-            <Input
-              placeholder="Enter title"
-              className="w-100"
-              onChange={({ currentTarget: { value } }) => setMeanValues({
-                ...meanValues,
-                y: { title: value, value: meanValues.y.value },
-              })
               }
-              onBlur={() => updateChartProps('yMeanTitle', meanValues.y.title)}
-              value={meanValues.y.title}
-              size="small"
-            />
-          </Col>
-          <Col className="mb-8" flex="1 1 0">
-            <FactorsSelect
-              propertiesOptions={factors}
-              placeholder="Select Y value"
-              onChange={(value) => {
-                setMeanValues({
+                onBlur={() => updateChartProps('xMeanTitle', meanValues.x.title)}
+                value={meanValues.x.title}
+                size="small"
+              />
+            </Col>
+            <Col className="mb-8" flex="1 1 0">
+              <FactorsSelect
+                propertiesOptions={factors}
+                placeholder="Select X value"
+                onChange={(value) => {
+                  setMeanValues({
+                    ...meanValues,
+                    x: { value, title: meanValues.x.title },
+                  })
+                  updateChartProps('xMeanValueId', value)
+                }}
+                value={meanValues.x.value}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Typography.Text strong>Y mean</Typography.Text>
+            <Col className="mb-4">
+              <Input
+                placeholder="Enter title"
+                className="w-100"
+                onChange={({ currentTarget: { value } }) => setMeanValues({
                   ...meanValues,
-                  y: { value, title: meanValues.y.title },
+                  y: { title: value, value: meanValues.y.value },
                 })
-                updateChartProps('yMeanValueId', value)
-              }}
-              value={meanValues.y.value}
-            />
-          </Col>
-        </Row>
-      </Collapse.Panel>
-      <Collapse.Panel header="Data points" key="3">
-        <List
-          className={styles.list}
-          itemLayout="vertical"
-          size="small"
-          dataSource={dataPoints}
-          renderItem={(dataPoint, index) => (
-            <List.Item key={index}>
-              <Row align="middle" justify="space-between" className="mb-2">
-                <Col flex="1 1 0">
-                  <Input
-                    placeholder="Label"
-                    className="w-100"
-                    defaultValue={dataPoint.label}
-                    onChange={({ currentTarget: { value } }) => setDataPoints(insertDataPointAt(index, 'label', value))
+              }
+                onBlur={() => updateChartProps('yMeanTitle', meanValues.y.title)}
+                value={meanValues.y.title}
+                size="small"
+              />
+            </Col>
+            <Col className="mb-8" flex="1 1 0">
+              <FactorsSelect
+                propertiesOptions={factors}
+                placeholder="Select Y value"
+                onChange={(value) => {
+                  setMeanValues({
+                    ...meanValues,
+                    y: { value, title: meanValues.y.title },
+                  })
+                  updateChartProps('yMeanValueId', value)
+                }}
+                value={meanValues.y.value}
+              />
+            </Col>
+          </Row>
+        </Collapse.Panel>
+        <Collapse.Panel header="Data points" key="3">
+          <List
+            className={styles.list}
+            itemLayout="vertical"
+            size="small"
+            dataSource={dataPoints}
+            renderItem={(dataPoint, index) => (
+              <List.Item key={index}>
+                <Row align="middle" justify="space-between" className="mb-2">
+                  <Col flex="1 1 0">
+                    <Input
+                      placeholder="Label"
+                      className="w-100"
+                      defaultValue={dataPoint.label}
+                      onChange={
+                      ({ currentTarget: { value } }) => {
+                        setDataPoints(insertDataPointAt(index, 'label', value))
+                      }
                     }
-                    onBlur={() => updateChartProps('seriesValueIds', dataPoints)
+                      onBlur={() => updateChartProps('seriesValueIds', dataPoints)
                     }
-                    size="small"
-                  />
-                </Col>
-              </Row>
-              <Row className="mb-2">
-                <Col flex="1 1 0">
-                  <FactorsSelect
-                    propertiesOptions={factors}
-                    placeholder="X value"
-                    value={dataPoint.x}
-                    onChange={(value) => {
-                      const updatedDataPoints = insertDataPointAt(
-                        index,
-                        'x',
-                        value,
-                      )
-                      setDataPoints(updatedDataPoints)
-                      updateChartProps('seriesValueIds', updatedDataPoints)
-                    }}
-                  />
-                </Col>
-              </Row>
-              <Row align="middle" justify="space-between" className="mb-2">
-                <Col flex="1 1 0">
-                  <FactorsSelect
-                    propertiesOptions={factors}
-                    placeholder="Y value"
-                    value={dataPoint.y}
-                    onChange={(value) => {
-                      const updatedDataPoints = insertDataPointAt(
-                        index,
-                        'y',
-                        value,
-                      )
-                      setDataPoints(updatedDataPoints)
-                      updateChartProps('seriesValueIds', updatedDataPoints)
-                    }}
-                  />
-                </Col>
-              </Row>
-              <Row className="mb-2">
-                <Col flex="1 1 0">
-                  <Button
-                    className="w-100"
-                    onClick={() => handleRemoveDatapointRow(index)}
-                    danger
-                    size="small"
-                  >
-                    <DeleteOutlined />
-                  </Button>
-                </Col>
-              </Row>
-            </List.Item>
-          )}
-          footer={(
-            <Button className="w-100" onClick={handleAddDatapointRow} size="small">
-              <PlusOutlined />
-            </Button>
+                      size="small"
+                    />
+                  </Col>
+                </Row>
+                <Row className="mb-2">
+                  <Col flex="1 1 0">
+                    <FactorsSelect
+                      propertiesOptions={factors}
+                      placeholder="X value"
+                      value={dataPoint.x}
+                      onChange={(value) => {
+                        const updatedDataPoints = insertDataPointAt(
+                          index,
+                          'x',
+                          value,
+                        )
+                        setDataPoints(updatedDataPoints)
+                        updateChartProps('seriesValueIds', updatedDataPoints)
+                      }}
+                    />
+                  </Col>
+                </Row>
+                <Row align="middle" justify="space-between" className="mb-2">
+                  <Col flex="1 1 0">
+                    <FactorsSelect
+                      propertiesOptions={factors}
+                      placeholder="Y value"
+                      value={dataPoint.y}
+                      onChange={(value) => {
+                        const updatedDataPoints = insertDataPointAt(
+                          index,
+                          'y',
+                          value,
+                        )
+                        setDataPoints(updatedDataPoints)
+                        updateChartProps('seriesValueIds', updatedDataPoints)
+                      }}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mb-2">
+                  <Col flex="1 1 0">
+                    <Button
+                      className="w-100"
+                      onClick={() => handleRemoveDatapointRow(index)}
+                      danger
+                      size="small"
+                    >
+                      <DeleteOutlined />
+                    </Button>
+                  </Col>
+                </Row>
+              </List.Item>
+            )}
+            footer={(
+              <Button className="w-100" onClick={handleAddDatapointRow} size="small">
+                <PlusOutlined />
+              </Button>
 )}
-        />
-      </Collapse.Panel>
-    </Collapse>
+          />
+        </Collapse.Panel>
+
+      </Collapse>
+      {renderAxisOptions()}
+    </>
   )
 }
 

@@ -193,6 +193,13 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
           ))}
         </Select>
       </Form.Item>
+      <Form.Item name="otherLanguages" label={I18n.t('reports.columns.other_available_languages')}>
+        <Select mode="multiple">
+          {availableLocales.filter(l => l !== (report?.defaultLanguage || 'en')).map(locale => (
+            <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
     </>
   )
 }

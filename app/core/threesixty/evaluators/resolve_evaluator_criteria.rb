@@ -21,11 +21,12 @@ module Threesixty
         return false unless data_sheet
 
         criteria.all? do |condition|
-          value = data_sheet[condition['field']].to_s.downcase
-          next value == condition['value'] if condition['comparator'] == 'equal'
+          value = data_sheet[condition['field']]
+          condition_value = value.is_a?(Numeric) ? condition['value'].to_d : condition['value']
+          next value == condition_value if condition['comparator'] == 'equal'
           next false unless subject_data_sheet
 
-          subject_value = subject_data_sheet[condition['field']].to_s.downcase
+          subject_value = subject_data_sheet[condition['field']]
           next value == subject_value if condition['comparator'] == 'is_same_as_subject'
         end
       end

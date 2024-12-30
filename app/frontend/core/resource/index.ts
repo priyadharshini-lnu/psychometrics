@@ -5,14 +5,12 @@ export const fetch = (
   resourceName: string,
   resourceBaseUrl: string,
   resourceId: number | string,
-  mocked?: boolean,
 ) => ({
   type: getActionType(requestScope, resourceName, 'FETCH'),
   request: {
     url: `${resourceBaseUrl}/${resourceId}`,
     method: 'GET',
     loader: true,
-    mocked,
   },
 })
 
@@ -21,13 +19,11 @@ export const create = (
   resourceName: string,
   resourceBaseUrl: string,
   data: object,
-  mocked?: boolean,
 ) => ({
   type: getActionType(requestScope, resourceName, 'CREATE'),
   request: {
     url: resourceBaseUrl,
     method: 'POST',
-    mocked,
     loader: true,
     body: { resource: data },
   },
@@ -39,7 +35,6 @@ export const update = (
   resourceBaseUrl: string,
   resourceId: number | string,
   data: object,
-  mocked?: boolean,
 ) => ({
   type: getActionType(requestScope, resourceName, 'UPDATE'),
   id: resourceId,
@@ -47,7 +42,6 @@ export const update = (
     url: `${resourceBaseUrl}/${resourceId}`,
     method: 'PUT',
     loader: true,
-    mocked,
     body: { resource: data },
   },
 })

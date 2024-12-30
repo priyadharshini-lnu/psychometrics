@@ -132,6 +132,8 @@ class Page extends Component {
               backButtonPressed={backButtonPressed}
               nextPage={nextPage}
               defaultLanguage={defaultLanguage}
+              allErrors={preview.errors}
+              focusFirstError={preview.focusFirstError}
             />
           </div>
         </div>

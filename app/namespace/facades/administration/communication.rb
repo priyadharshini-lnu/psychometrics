@@ -35,7 +35,7 @@ module Facades
       end
 
       def show_recipients?
-        return false if workshop_communication? || project_level_email?
+        return false if workshop_communication? || project_level_email? || form.kind == 'report_available'
 
         form.end_level_id.present?
       end
@@ -53,7 +53,7 @@ module Facades
 
         form.kind.present? &&
           %w[new_users new_assignment].exclude?(form.recipients) &&
-          form.kind != 'completion'
+          form.kind != 'completion' && form.kind != 'report_available'
       end
 
       def show_assessments?

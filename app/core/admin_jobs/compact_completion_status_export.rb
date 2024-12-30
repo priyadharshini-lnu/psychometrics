@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv-safe'
+
 module AdminJobs
   class CompactCompletionStatusExport < BaseExportCsv
     def generate_details
@@ -15,7 +17,7 @@ module AdminJobs
     def write_csv
       job_record.update(total_tasks: record_count)
 
-      CSV.open(file_path, 'wb') do |csv|
+      CSVSafe.open(file_path, 'wb') do |csv|
         write_csv_headers(csv)
 
         limit = 1000

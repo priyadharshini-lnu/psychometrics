@@ -21,7 +21,7 @@ export class PageEditor extends Component {
 
   render () {
     return (
-      <div className={styles.rightSide}>
+      <div className={`${styles.rightSide}`}>
         <div className={styles.reportContainer}>
           <SelectionFrame>
             <PageList />

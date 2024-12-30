@@ -22,7 +22,12 @@ describe CampaignScoring::CalculateAndSave do
   it 'saves campaign factor values' do
     create(:campaign_user, campaign: campaign, user: user)
     datasheet = create(:datasheet, campaign: campaign)
-    create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Grade' => 'Senior', 'Previous Score' => 10 })
+    c1 = create(:sheet_column, sheet: datasheet, name: 'Grade', column_type: 'string')
+    c2 = create(:sheet_column, sheet: datasheet, name: 'Previous Score', column_type: 'number')
+    r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+    create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, string_value: 'Senior')
+    create(:sheet_row_datum, sheet_row: r1, sheet_column: c2, numeric_value: 10)
+
     cf_factor1 = create(
       :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
       factor_type: 'assessment', assessment_score_type: 'score'

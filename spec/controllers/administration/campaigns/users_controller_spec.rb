@@ -171,7 +171,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'push_webhook' => true,
         'update_mettl_schedule' => false,
         'normalize_factor_scores' => policy.normalize_factor_scores?,
-        'update_content_variation' => false
+        'update_content_variation' => false,
+        'update_simulation_time_extension' => false
       },
       'norm_id' => nil,
       'additional_time' => nil,
@@ -185,6 +186,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'mettl_schedule_record_id' => nil,
       'dimension_id' => assessment.dimension_id,
       'simulation_content_variation_id' => nil,
+      'simuation_time_extension' => nil,
       'simulation_content_variations' => []
     })
   end

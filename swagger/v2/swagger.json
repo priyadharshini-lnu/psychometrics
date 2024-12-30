@@ -2090,6 +2090,77 @@
         }
       }
     },
+    "/campaigns/{campaign_id}/campaign_factors/bulk_update": {
+      "post": {
+        "summary": "Bulk Update Campaign Factors",
+        "operationId": "BulkUpdateCampaignFactors",
+        "description": "Update multiple campaign factors in a single request",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignFactorBulkRequest"
+              },
+              "examples": {
+                "example_0": {
+                  "value": {
+                    "data": [
+                      {
+                        "type": "campaign_factors",
+                        "id": "1",
+                        "attributes": {
+                          "name": "Updated Factor 1",
+                          "weight": 1.5
+                        }
+                      },
+                      {
+                        "type": "campaign_factors",
+                        "id": "2",
+                        "attributes": {
+                          "name": "Updated Factor 2",
+                          "weight": 2.5
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "CampaignFactorsUpdate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OKResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/campaigns/{campaign_id}/campaign_factors/update_positions": {
       "post": {
         "summary": "Update CampaignFactor positions",

@@ -15,6 +15,7 @@ describe Idp::GetSkillGapReportData do
                                         campaign: campaign, user: user, value: 2.3)
   end
   let!(:datasheet) { create(:datasheet, campaign: campaign, columns: [name: 'Job Title']) }
+  let!(:col) { create(:sheet_column, sheet: datasheet, name: 'Job Title', column_type: 'string') }
   let!(:idp_template_skill) { create(:idp_template_skill, campaign_factor_code: 'code', idp_template: idp_template) }
   let!(:idp_template_skill2) do
     create(:idp_template_skill, scoring_source: :assessment, idp_template: idp_template, assessment_id: assessment.id,
@@ -27,7 +28,8 @@ describe Idp::GetSkillGapReportData do
   end
 
   it 'returns skill gap data' do
-    create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Job Title' => 'Developer' })
+    r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+    create(:sheet_row_datum, sheet_row: r1, sheet_column: col, string_value: 'Developer')
     user_assessment.result.update(scoring: { factor.id.to_s => { 'score' => 2 } })
     skill_gap = described_class.call!(user)
 

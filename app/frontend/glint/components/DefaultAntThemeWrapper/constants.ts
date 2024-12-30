@@ -1,5 +1,6 @@
 export const constants = {
   DEFAULT_PRIMARY_COLOR: '#009ea7',
   DARK_GREY: '#757575',
+  GREY_BORDER: '#8F8F8F',
   DEFAULT_BORDER_RADIUS: 2,
 }

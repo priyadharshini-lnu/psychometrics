@@ -1,12 +1,14 @@
-import { ChangeEvent, FC } from 'react'
-import { Input, Row, Col } from 'antd'
+import {
+  ChangeEvent, FC, useRef,
+} from 'react'
+import {
+  Input, Row, Col, InputRef,
+} from 'antd'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
 import useForceUpdate from '~/hooks/useUpdate'
 import { TextEntryCounter } from '~/modules/survey/components/modules/TextEntry/components/TextEntryCounter'
-
-const { I18n } = window
 
 interface Props {
   model: PreviewModel
@@ -14,17 +16,24 @@ interface Props {
   nextPage: () => {}
   singleQuestionFlow: boolean
   errors: string[]
+  focus?: boolean
+  questionTextId?: string
 }
 
 const SingleLinePreview: FC<Props> = ({
-  model, readOnly, nextPage, singleQuestionFlow, errors,
+  model, readOnly, nextPage, singleQuestionFlow, errors, focus, questionTextId,
 }) => {
+  const inputRef = useRef<InputRef>(null)
   const forceUpdate = useForceUpdate()
   const {
     result,
     props: { type },
     id: questionId,
   } = model
+
+  if (focus && inputRef.current) {
+    inputRef.current.focus()
+  }
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -55,7 +64,8 @@ const SingleLinePreview: FC<Props> = ({
             onKeyDown={handleKeyDown}
             value={value}
             type={type === 'SingleLine' ? 'text' : 'password'}
-            aria-label={I18n.t('user_assessments.questions.single_line_answer_label')}
+            ref={inputRef}
+            aria-labelledby={questionTextId}
           />
         </Col>
       </Row>

@@ -198,9 +198,16 @@ const EvaluationComponent = ({
         >
           <PageHeader
             className={styles.campaignHeader}
-            backIcon={(
+            ghost={false}
+            title={(
               <Space>
-                <Button ghost type="text" size="small" aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+                <Button
+                  onClick={handleBackButtonClick}
+                  ghost
+                  type="text"
+                  size="small"
+                  aria-label={I18n.t('frontend.aria.back_to_tasks')}
+                >
                   <DirectionalNavigateBackIcon
                     className={styles.backIcon}
                   />
@@ -212,11 +219,9 @@ const EvaluationComponent = ({
                   seconds={secondsLeftFromNow(expiry_date)}
                   onFinish={() => markAssessmentTimedOut(preview)}
                 />
+                {titleElement}
               </Space>
             )}
-            ghost={false}
-            title={titleElement}
-            onBack={handleBackButtonClick}
             extra={[
               type !== 'preview_block' && enableProgress
                 && (

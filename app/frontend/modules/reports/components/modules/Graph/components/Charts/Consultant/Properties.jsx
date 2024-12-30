@@ -1,4 +1,4 @@
-import { Slider } from 'antd'
+import { Slider, Checkbox } from 'antd'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
@@ -37,6 +37,11 @@ const Properties = ({ modules }) => {
     })
   }
 
+  const changeShowLegend = (e) => {
+    updateAll((item) => {
+      item.props.showLegend = e.target.checked
+    })
+  }
   const updateValuePadding = () => {
     update()
   }
@@ -62,6 +67,15 @@ const Properties = ({ modules }) => {
         />
       </div>
       <hr className={styles.divider} />
+      <div className={styles.block}>
+        <Checkbox
+          checked={model.props.showLegend || false}
+          onChange={changeShowLegend}
+          className="font-normal"
+        >
+          {I18n.t('reports.builder.graph.properties.showLegend')}
+        </Checkbox>
+      </div>
       <div className={styles.block}>
         Values Padding
         {' '}

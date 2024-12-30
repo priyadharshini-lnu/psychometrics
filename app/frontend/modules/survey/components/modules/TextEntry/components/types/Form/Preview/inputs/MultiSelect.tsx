@@ -7,6 +7,7 @@ interface Props {
   index: number
   readOnly: boolean
   onChange: (i: number, value: string) => void
+  id: string
 }
 
 const MultiSelect: React.FC<Props> = props => (

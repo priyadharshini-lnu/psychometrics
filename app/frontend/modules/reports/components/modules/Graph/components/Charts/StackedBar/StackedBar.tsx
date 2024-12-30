@@ -16,9 +16,12 @@ interface Props {
   model: PropertiesModel
   animation?: boolean
   factors: Factor[]
+  isRTL: boolean
 }
 
-export const StackedBar: React.FC<Props> = ({ model, animation = false, factors }: Props) => {
+export const StackedBar: React.FC<Props> = ({
+  model, animation = false, factors, isRTL,
+}: Props) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
 
@@ -56,9 +59,24 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false, factors 
 
     chartRef.current = containerRef.current ? Highcharts.chart(
       containerRef.current,
-      merge(ChartOptions(model, animation), {
+      merge(ChartOptions(model, animation, isRTL), {
         chart: {
           type: model.props.graphicalPosition === 'Vertical' ? 'column' : 'bar',
+        },
+        xAxis: {
+          reversed: model.props.graphicalPosition === 'Vertical' && isRTL,
+          opposite: model.props.graphicalPosition === 'Horizontal' && isRTL,
+
+        },
+        yAxis: {
+          reversed: model.props.graphicalPosition === 'Horizontal' && isRTL,
+          opposite: model.props.graphicalPosition === 'Vertical' && isRTL,
+          labels: {
+            enabled: !model.props.hideYaxisLabels,
+          },
+          title: {
+            enabled: !model.props.hideYAxisTitle,
+          },
         },
         plotOptions: {
           series: {

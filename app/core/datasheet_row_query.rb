@@ -22,6 +22,7 @@ class DatasheetRowQuery < Rectify::Query
         #{only_count ? 'count(*)' : select_clause_columns}
       FROM sheet_rows
       LEFT JOIN sheets ON sheet_rows.sheet_id = sheets.id
+      LEFT JOIN (#{crosstab_query}) AS sheet_data ON sheet_rows.id = sheet_data.sheet_row_id
       LEFT JOIN campaigns ON sheets.campaign_id = campaigns.id
       LEFT JOIN clients sheet_project ON sheets.project_id = sheet_project.id
       LEFT JOIN clients campaign_project ON campaigns.project_id = campaign_project.id
@@ -39,6 +40,28 @@ class DatasheetRowQuery < Rectify::Query
     )
   end
 
+  def crosstab_query
+    <<~SQL.squish
+      SELECT * FROM crosstab(
+        $$
+          SELECT srd.sheet_row_id, sheet_columns.name,
+            CASE WHEN srd.numeric_value is not null
+              THEN srd.numeric_value::text
+              ELSE srd.string_value
+            END
+          FROM sheet_row_data srd
+          LEFT JOIN sheet_columns on sheet_columns.id = srd.sheet_column_id
+          where sheet_columns.name in (#{escaped_column_names.map { |cn| "'#{cn}'" }.join(', ')}) and
+          sheet_columns.sheet_id in (:datasheet_ids)
+          ORDER BY 1
+        $$,
+        $$
+          VALUES #{escaped_column_names.map { |cn| "('#{cn}')" }.join(', ')}
+        $$
+      ) AS final_result(sheet_row_id BIGINT, #{escaped_column_names.map { |cn| "\"#{cn}\" TEXT" }.join(', ')})
+    SQL
+  end
+
   def total_count
     return 0 if project_ids.blank? && campaign_ids.blank?
 
@@ -53,25 +76,31 @@ class DatasheetRowQuery < Rectify::Query
       COALESCE(sheet_project.name, campaign_project.name) "Project Name",
       campaigns.id "Campaign ID",
       campaigns.name "Campaign Name",
-      #{sheet_rows_columns_for_select}
+      #{sheet_rows_data_columns_for_select}
     SQL
   end
 
-  def sheet_rows_columns_for_select
+  def escaped_column_names
+    datasheet_column_names.map do |column_name|
+      ActiveRecord::Base.connection.quote_string(column_name)
+    end
+  end
+
+  def sheet_rows_data_columns_for_select
     datasheet_column_names.map do |column_name|
       quote_escaped_column = ActiveRecord::Base.connection.quote_string(column_name)
       column_name = DEFAULT_COLUMN_NAMES.include?(column_name) ? "#{column_name}_1" : column_name
-      "(sheet_rows.data->>'#{quote_escaped_column}') as \"#{column_name.gsub('"', '""')}\""
+      "sheet_data.\"#{quote_escaped_column}\" as \"#{column_name.gsub('"', '""')}\""
     end.join(', ')
   end
 
   def datasheet_column_names
     @datasheet_column_names if defined?(@datasheet_column_names)
-    @datasheet_column_names = datasheets.pluck(:columns).map do |columns|
+    @datasheet_column_names = datasheets.map(&:sheet_columns).map do |columns|
       columns.map do |column|
-        next if column['name'] == 'Email'
+        next if column.name == 'Email'
 
-        column['name']
+        column.name
       end
     end.flatten.compact.uniq.sort
   end

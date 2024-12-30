@@ -34,6 +34,13 @@ module Api
       params.dig(:filter, :campaign_id_eq)
     end
 
+    def export
+      AdminJob.call(:export_admin_with_permissions, export_job_data, current_user)
+      audit! :export, nil, payload: export_job_data, record_type: Membership
+
+      render json: :ok
+    end
+
     private
 
     def set_resource
@@ -53,6 +60,21 @@ module Api
                         end
     end
 
+    def export_job_data
+      case params.dig(:filter, :with_role)
+        when 'campaign_admin'
+          { campaign_id: Campaign.find(export_params[:campaign_id]).id }
+        when 'project_admin'
+          { project_id: Project.find(export_params[:project_id]).id }
+        else
+          { client_id: Client.find(export_params[:client_id]).id }
+      end
+    end
+
+    def export_params
+      params.require(:data).require(:attributes).permit(:client_id, :project_id, :campaign_id)
+    end
+
     def base_response_meta
       return {} if params[:action] != 'index'
 
@@ -66,7 +88,8 @@ module Api
             'edit',
             %w[remove destroy],
             'reset_password',
-            'send_mail'
+            'send_mail',
+            'export'
           ],
           {
             project_id: context[:project_id],

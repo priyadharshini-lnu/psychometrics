@@ -6,6 +6,7 @@ import {
   ShopOutlined,
   DatabaseOutlined,
   SolutionOutlined,
+  ExportOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
@@ -65,6 +66,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/settings')) {
       return ['settings']
     }
+    if (pathname.includes('/data_exports')) {
+      return ['data_exports']
+    }
     return undefined
   }
 
@@ -97,6 +101,8 @@ const Project: FC<Props> = ({
         }
         return I18n.t('administration.breadcrumbs.settings')
       }
+      case 'data_exports':
+        return I18n.t('administration.breadcrumbs.data_exports')
       default:
         return ''
     }
@@ -123,6 +129,11 @@ const Project: FC<Props> = ({
     key: 'settings',
     icon: <SettingOutlined />,
     label: I18n.t('administration.breadcrumbs.settings'),
+  })
+  currentUser.permissions.viewDataExports && menuItems.push({
+    key: 'data_exports',
+    icon: <ExportOutlined />,
+    label: I18n.t('administration.breadcrumbs.data_exports'),
   })
 
   return (

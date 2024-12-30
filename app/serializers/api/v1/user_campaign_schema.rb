@@ -11,6 +11,10 @@ module Api
           required(:name).filled(:str?)
           required(:created_at).maybe(:str?)
           required(:updated_at).maybe(:str?)
+          required(:external_id).maybe(:str?)
+          required(:active).filled(:bool?)
+          required(:schedule_start_date).maybe(:str?)
+          required(:schedule_end_date).maybe(:str?)
         end
       end
     end

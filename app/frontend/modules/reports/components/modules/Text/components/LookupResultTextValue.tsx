@@ -66,6 +66,14 @@ const LookupResultTextValue = {
         const key = _.get(model, ['props', 'source', 'reportDataColumns', 'value'])
         return _.get(ResultStore, ['results', model.assessment_id, 'reportData', key])
       }
+      case 'CampaignFactors': {
+        if (model?.props?.source?.codes?.length > 0) {
+          const factorResults = _.get(ResultStore, ['results', model.assessment_id, 'campaignFactorResults'])
+          const code = model.props.source.codes[0]
+          return factorResults && (_.find(factorResults, { code })?.value ?? '')
+        }
+        return ''
+      }
       default:
     }
     return ''

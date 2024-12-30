@@ -82,6 +82,7 @@ interface State {
   },
   pdfExport: boolean,
   styles: {[id:string]: Style},
+  flip_content: boolean
 }
 
 export const defaultState: State = {
@@ -127,6 +128,7 @@ export const defaultState: State = {
   },
   pdfExport: false,
   styles: {},
+  flip_content: false,
 }
 
 

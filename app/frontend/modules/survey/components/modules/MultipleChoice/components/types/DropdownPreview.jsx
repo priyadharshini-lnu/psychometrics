@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { Component } from 'react'
+import { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import { Select } from 'antd'
 
@@ -9,6 +9,15 @@ import { NOT_APPLICABLE } from '../../../MatrixTable/components/Consts'
 class DropdownPreview extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
+  }
+
+  selectRef = createRef(null)
+
+  componentDidUpdate () {
+    const { focus } = this.props
+    if (this.selectRef.current && focus) {
+      this.selectRef.current.focus()
+    }
   }
 
   changeAnswer = (value) => {
@@ -36,12 +45,13 @@ class DropdownPreview extends Component {
 
   render () {
     const {
-      model, model: { moduleConfig, result }, readOnly, I18n,
+      model, model: { moduleConfig, result }, readOnly, I18n, focus,
     } = this.props
     const value = _.get(result, ['answers', 0, 'index'], (result.notApplicable && NOT_APPLICABLE))
     return (
       <div>
         <Select
+          autoFocus={focus}
           className={styles.dropdown}
           listItemHeight={0}
           showSearch
@@ -54,6 +64,7 @@ class DropdownPreview extends Component {
             label: I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
               || moduleConfig.defaultChoiceText(i + 1),
           })).concat(this.notApplicableOption())}
+          ref={this.selectRef}
         />
       </div>
     )

@@ -5,7 +5,7 @@ import { QuestionsResult } from './interfaces/RawResult'
 export default {
   run: (rawResults: RawResult[]) => _.reduce(
     rawResults,
-    (result: QuestionScoringObject, data: RawResult) => _.reduce(data.results, (
+    (result: QuestionScoringObject, data: RawResult) => _.reduce(data.answers, (
       result: QuestionScoringObject,
       questionsResults: QuestionsResult,
       questionId: string,

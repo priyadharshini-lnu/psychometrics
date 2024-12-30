@@ -7,6 +7,7 @@ export default connect(
     pdfExport: report.builder.pdfExport,
     moduleOverrides: moduleOverrides || report.builder.moduleOverrides,
     skipLogic: report.builder.skipLogic,
+    flipContent: report.builder.flip_content,
   }),
   {},
 )

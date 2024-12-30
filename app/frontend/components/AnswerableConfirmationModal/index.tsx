@@ -7,9 +7,11 @@ import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 interface Props {
   confirmationTitle?: string
   confirmationMessage: string
+  warningMessage?: string
   requiredAnswer: string
   onConfirm(): void | Promise<unknown>
   onWrongAnswer?(): void
+  alertType?: 'warning' | 'error'
   onCancel(): void
   children?: ReactNode
 }
@@ -17,7 +19,8 @@ interface Props {
 const { I18n } = window
 
 const AnswerableConfirmationModal: React.FC<Props> = ({
-  confirmationTitle, confirmationMessage, requiredAnswer, onConfirm, onWrongAnswer, onCancel, children,
+  confirmationTitle, confirmationMessage, warningMessage, requiredAnswer, onConfirm, onWrongAnswer, onCancel, children,
+  alertType = 'warning',
 }) => {
   const [answer, setAnswer] = useState('')
   const [error, setError] = useState(null)
@@ -61,22 +64,24 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
       ]}
     >
       {error && <div className="mbl"><Alert message={error} type="error" /></div>}
-      <div className="mbl">
+      { warningMessage && (
         <Alert
           message={(
-            <>
-              {confirmationMessage}
-              <div>
-                <b>
-                  &quot;
-                  {requiredAnswer}
-                  &quot;
-                </b>
-              </div>
-            </>
-          )}
-          type="warning"
+            <>{ warningMessage }</>
+            )}
+          type={alertType}
         />
+      )}
+      <div className="mbl" />
+      <div>
+        {confirmationMessage}
+        <div>
+          <b>
+            &quot;
+            {requiredAnswer}
+            &quot;
+          </b>
+        </div>
       </div>
       <Input
         className="mbm"

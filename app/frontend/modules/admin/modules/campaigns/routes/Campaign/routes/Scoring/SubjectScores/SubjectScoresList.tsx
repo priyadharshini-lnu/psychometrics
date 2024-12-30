@@ -23,7 +23,14 @@ import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
 import { ImportExternalScoringModal } from './ImportExternalScoringModal'
+import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
+import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
+import Modals from '~/modules/admin/components/Modals/'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
+const MODALS = {
+  PushWebhookModal,
+}
 const { I18n } = window
 const { Search } = Input
 
@@ -32,6 +39,7 @@ type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignF
 enum StackRank {
   UNRANKED = '-',
 }
+
 
 type DataType = {
   id: string;
@@ -44,19 +52,25 @@ type DataType = {
   [key: string]: string | number | boolean | null | Error[] | {[key: string]: boolean};
 }
 
+interface OwnProps {
+  openModal(name: string, data?: object): void
+}
+
 const connector = connect(
   (state: RootState) => ({
     campaignPermissions: getCurrentCampaign(state).permissions,
   }),
   {
     fetch,
+    openModal,
   },
 )
+
 type Props = ConnectedProps<typeof connector>
 
-const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) => {
+const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, campaignPermissions }) => {
   const { modal, message } = App.useApp()
-  const { campaignId } = useParams() as { campaignId: string }
+  const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
@@ -157,6 +171,14 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.email }))
       })
+    } else if (action === 'push_webhook') {
+      openModal('PushWebhookModal', {
+        campaignId,
+        parentType: ParentResourceType.CampaignUser,
+        parentId: subject.id,
+        testMode: false,
+        projectId,
+      })
     }
   }
 
@@ -209,12 +231,16 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
   }
 
   const handleConfirmAction = (action: string, subject: DataType) => {
-    const { title, content } = actionDetails(action, subject)
-    modal.confirm({
-      title,
-      content,
-      onOk: () => handleIndividualAction(action, subject),
-    })
+    if (action === 'push_webhook') {
+      handleIndividualAction(action, subject)
+    } else {
+      const { title, content } = actionDetails(action, subject)
+      modal.confirm({
+        title,
+        content,
+        onOk: () => handleIndividualAction(action, subject),
+      })
+    }
   }
 
   const handleBulkConfirmAction = (action: string) => {
@@ -309,6 +335,7 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
           />
         </>
       )}
+      <Modals modals={MODALS} />
     </div>
   )
 }
@@ -438,6 +465,7 @@ function createSortedTableColumns (
                 {
                   changeFinalizedCampaignScore: meta.permissions?.changeFinalizedCampaignScore,
                   rescore: meta.permissions?.rescore,
+                  pushWebhook: meta.permissions?.pushWebhook,
                 }
               }
           />

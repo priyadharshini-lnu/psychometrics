@@ -1,9 +1,11 @@
 import { Component } from 'react'
 import { normalize } from 'normalizr'
 import { message } from 'antd'
+import _ from 'lodash'
 import schema from '~/modules/reports/store/schema'
 import Library from '~/libs/library'
 import AppStore from '~/modules/reports/store/AppStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
 import Modals from '~/modules/reports/components/modals'
 import Prompt from '~/modules/reports/components/Prompt'
 import PageEditor from '~/modules/reports/views/PageEditor'
@@ -17,10 +19,17 @@ export class Dashboard extends Component {
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
     const urldata = location.pathname.match(/reports\/(\d+)/)
     const id = urldata && urldata[1]
+    const lang = new URLSearchParams(location.search).get('lang') || 'en'
 
-    fetch(id).then(({ response }) => {
+    fetch(id, lang).then(({ response }) => {
       const normalizedData = normalize(response, schema)
       AppStore.init(response)
+      const currentLocale = new URLSearchParams(window.location.search).get('lang') || 'en'
+      if (!_.isEmpty(response.locales)) {
+        I18nStore.locales = response.locales
+      }
+      I18nStore.setLocale(currentLocale)
+
       init(normalizedData)
     })
 

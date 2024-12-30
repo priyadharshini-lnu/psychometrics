@@ -6,6 +6,10 @@
   padding-block: @space-2;
   position: relative;
   z-index: 1;
+
+  & :global(.ant-btn):focus-visible {
+    outline: 4px solid var(--ant-primary-1);
+  }
 }
 .backIcon {
   color: @white;

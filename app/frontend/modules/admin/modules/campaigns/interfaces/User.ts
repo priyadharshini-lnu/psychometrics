@@ -21,5 +21,6 @@ export default interface User {
     viewSmsInvites: boolean
     viewDatasheets: boolean
     stats: boolean
+    pushWebhook: boolean
   }
 }

@@ -92,7 +92,7 @@ const EndPage: FC<Props> = ({
             {!showScoringOnEndPage && !isAnonymousAssessment && !extra.disable_continue_to_dashboard && (
               <>
                   {otherPendingAssessmentCount > 0 && (
-                  <Typography.Title level={3}>
+                  <Typography.Title className="fs-20" level={2}>
                     {I18n.t('assessments.actions.pending_tasks',
                       { count: otherPendingAssessmentCount, locale: I18n.uiLocale })
                  }

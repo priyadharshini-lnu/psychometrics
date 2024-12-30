@@ -6,5 +6,6 @@ module Users
     attribute :last_name, String
 
     validates :first_name, :last_name, presence: true
+    validates :first_name, :last_name, :email, csv_injection_check: true
   end
 end

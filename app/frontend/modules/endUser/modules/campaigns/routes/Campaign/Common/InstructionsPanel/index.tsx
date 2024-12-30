@@ -34,6 +34,13 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
     setFirstRender(false)
   }, [])
 
+  useEffect(() => {
+    const instuctionsElement = containerRef.current?.querySelector('iframe')
+    if (instuctionsElement) {
+      instuctionsElement.tabIndex = showExpandLink && collapsed ? -1 : 0
+    }
+  }, [showExpandLink, collapsed])
+
   const handleClick = () => {
     setAnimate(true)
     setCollapsed(collapsed => !collapsed)
@@ -50,8 +57,8 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
       })}
     >
       <div className={styles.instructionsContent}>
-        <Title level={5}>{title}</Title>
-        {description}
+        <Title className="fs-16" level={1}>{title}</Title>
+        <div aria-hidden={showExpandLink && collapsed ? 'true' : 'false'}>{description}</div>
         {showExpandLink && (
         <div className={styles['container-button']}>
           <Button
@@ -59,6 +66,8 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
             type="primary"
             shape="round"
             onClick={handleClick}
+            aria-label={collapsed
+              ? I18n.t('campaign.instructions.collapse_aria_label') : I18n.t('campaign.instructions.expand_aria_label')}
           >
             {collapsed ? I18n.t('campaign.instructions.expand_link_text')
               : I18n.t('campaign.instructions.collapse_link_text')

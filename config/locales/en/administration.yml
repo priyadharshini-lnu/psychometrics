@@ -66,6 +66,7 @@ en:
           cancel_text: Cancel
           change_password: Reset password
           edit: Edit
+          export_success: Admin export job was scheduled successfully. Please check your notification for status.
           login: Login
           send_email: Send email
           spoof:
@@ -79,6 +80,8 @@ en:
         header:
           add_admin: Add admin
           search_admins: Search admins
+        toolbar:
+          export_admins_with_permissions: Admins(With permissions)
       modals:
         delete:
           cancelText: Cancel
@@ -129,6 +132,9 @@ en:
             accesssheet_settings: Accesssheet Settings
             accesssheet_view: Accesssheet View
             view: View
+          dataExports:
+            admin_permissions: Admin Permissions
+            user_report_events: User Report Events
           datasheets:
             manage: Manage
             view: View
@@ -206,6 +212,13 @@ en:
             manage: Manage
             view: View
     any: " - Any - "
+    api:
+      campaigns:
+        validate_form:
+          external_id_taken: External Id '%{external_id}' is already taken'
+      users:
+        form:
+          campaign_ids_not_existing: Not all campaign ids are existing
     api_keys:
       form:
         description: Description
@@ -404,6 +417,8 @@ en:
       completed_at: Completed At
       count: "%{count} Assessors"
       evaluations: Evaluations
+      mailer:
+        subject: New subjects added for your evaluation
       modals:
         create_assessor:
           add: Add
@@ -578,6 +593,7 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       create: Create
+      data_exports: Data Exports
       datasheets: Datasheets
       design: Design
       dimension: Dimension
@@ -691,6 +707,12 @@ en:
         missing_factor_id: Factor id is required.
         name_already_exists: A factor with the same name '%{name}' already exists.
         name_size_exceded: Name should not exceed %{size} characters.
+    campaign_factors:
+      delete:
+        confirm_message:
+          assessor_scoring: You are about to delete Assessor scoring. You will lose all moderated assessor scores for this factor '%{factor_name}'. Are you sure you want to proceed?
+          default: Are you sure you want to delete the campaign factor '%{factor_name}'?
+          external_score: You are about to delete External scoring. You will lose external scores that are associated with this factor '%{factor_name}'. Are you sure you want to proceed?
     campaign_factors_import:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
@@ -1348,6 +1370,7 @@ en:
         new_users: New Users
         other: Other
         reminder: Reminder
+        report_available: Report Available
         selected: Selected
         selected_cc_recipients: Selected CC Recipients
         selected_recipients: Selected Recipients
@@ -1455,9 +1478,16 @@ en:
         project_path: Project Path
         refresh_interval: Refresh Interval (minutes)
         report_id: Report Id
+        visual_header_visibility: Visual Header Visibility
       image_upload_failed: Image upload failed.
       none: None
       refresh_success: Refresh of dataset was scheduled successfully.
+      visual_header_visibility_options:
+        hide_all: Hide All
+        keep_original: Keep Original (Controlled from PowerBi "Header icons" option)
+        show_all: Show All
+    data_exports_modal:
+      title: Select date range
     datasheet:
       threesixty_warning: You can’t upload datasheet columns for 360 report from here. For 360 report datasheet columns are loaded from the campaign to which this report is linked to
     dates:
@@ -1923,6 +1953,7 @@ en:
       reports: Reports
       scheduling: Scheduling
       show_submenu: Show Sub Menu
+      user_report_events: User Report Events
       users: Users
     no_data_found: No data found
     norms:
@@ -1956,7 +1987,8 @@ en:
         header: New norm
       norms: Norms
       remove:
-        confirm: Are you sure you want to delete the norm "%{name}"
+        confirm: Enter norm name given below in text box to confirm
+        warning: Are you sure you want to delete the norm "%{name}"
       resource:
         confirmations:
           delete:
@@ -2069,10 +2101,14 @@ en:
     piped_text_modal:
       assessment_id: Assessment ID
       campaign_id: Campaign ID
+      insight_page_link: Insight Page Link
+      insight_page_url: Insight Page URL
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
       profile_custom_field: Profile Custom Field
+      report_name: Report Name
+      text: Text
       title: Add Piped Text
     proctoring_sessions:
       columns:
@@ -2230,6 +2266,10 @@ en:
       columns:
         project_number: Project Number
       design_settings:
+        alt_text_invalid: Alt Text contains unsupported characters.
+        alt_text_logo: Logo Alt-Text
+        alt_text_logo_required: Alt-Text Logo is Required
+        alt_text_long: Exceeds the maximum limit of 100 characters.
         background_color: Background Color
         background_label: Background
         background_overlay_label: Background Overlay
@@ -2251,6 +2291,8 @@ en:
         reset: Reset
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
+        secondary_logo_alt_text: Secondary Logo Alt-Text
+        secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
         success_color: Success Color
         success_update: Design Settings were saved successfully
         warning_color: Warning Color
@@ -2509,6 +2551,8 @@ en:
         reschedule_duration_min_error: Cannot be less than 1 minute
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
+          resource_name_placeholder: Resource Name
+          resource_url_placeholder: Resource Link
           title: Resources
           validation_error: Enter both Name and URL or remove the resource
         scheduling_lead_time_label: Lead time for scheduling
@@ -2583,6 +2627,7 @@ en:
         confirm_message: Are you sure you want to delete the resource '%{resource_name}'?
         confirm_title: Confirmation Required
         create: Create Resource
+        invalid_url: Invalid URL. Specify the complete url with http or https protocol in it.
         resource: Resource
         successful_remove: Assessment Center resource %{resource_name} was deleted successfully.
       schedule_assessments: Schedule Assessments
@@ -2650,6 +2695,7 @@ en:
         factors: Export Campaign Factors
       factor: Factor
       factor_group_removed_successfully: Campaign Factor group was removed successfully
+      factor_removal_confirmation: Enter factor name given below in text box to confirm
       factor_removed_successfully: Campaign Factor was removed successfully
       factors_exported_successfully: Export campaign factors job was scheduled successfully
       factors_imported_successfully: Import campaign factors job was scheduled successfully
@@ -2668,12 +2714,17 @@ en:
         years: Years
       public: Public
       ranked: Ranked
-      remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
-      remove_factor_confirmation_title: Remove Factor
+      remove_all_campaign_factors:
+        confirmation: Enter current campaign name given below in text box to confirm
+        error: Campaign Factors remove failed
+        success: Campaign Factors removed successfully
+        title: Remove campaign factors
+        warning: Your are about to delete all campaign factor and all associated scores for the users. Are you sure you want to perform this action?
       remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
       remove_factor_group_confirmation_title: Remove Factor Group
       required_error: Can't be empty
       save: Save
+      save_all: Save All
       score_range: Score Range
       score_types:
         norm_score: Norm Score
@@ -2706,6 +2757,7 @@ en:
         mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
         mark_not_finalized: Mark Not Finalized
         mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
+        push_webhook: Push webhooks
         rank: Rank
         rescore: Rescore
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
@@ -3222,6 +3274,7 @@ en:
         show:
           title: Subject Report
     time_zone: Time Zone
+    tools: Tools
     translations:
       assessments:
         new:

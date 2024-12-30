@@ -8,6 +8,10 @@ class CommunicationEmail < ApplicationRecord
   belongs_to :workshop
   belongs_to :workshop_invite
 
+  has_many :communication_email_resources, inverse_of: :communication_email, dependent: :destroy
+
+  delegate :project_campaign, to: :communication, allow_nil: true
+
   before_create :set_user_id
   after_commit :delivery_email, on: :create
 
@@ -22,6 +26,15 @@ class CommunicationEmail < ApplicationRecord
                                             }).
                                             where('sent_at > ? ', 24.hours.ago)
                                         }
+
+  def self.create_with_resources(attributes, resources)
+    ApplicationRecord.transaction do
+      communication_email = CommunicationEmail.create!(attributes)
+      Array.wrap(resources).each do |resource|
+        communication_email.communication_email_resources.create!(resource: resource)
+      end
+    end
+  end
 
   private
 

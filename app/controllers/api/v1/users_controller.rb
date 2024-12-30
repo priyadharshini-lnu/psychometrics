@@ -17,26 +17,36 @@ module Api
         form = Api::V1::Users::CreateForm.from_params(normalized_params).with_context(project: project)
 
         if form.valid?
-          user = normalized_params[:campaigns].map do |campaign_attrs|
-            campaign = Campaign.find(campaign_attrs[:id])
-            # rubocop:disable Style/OpenStructUse
-            struct = OpenStruct.new(
-              email: form.email,
-              first_name: form.first_name,
-              last_name: form.last_name,
-              operation: campaign_attrs[:existing_record],
-              active: campaign_attrs[:active],
-              schedule_start_date: campaign_attrs[:schedule_start_date],
-              schedule_end_date: campaign_attrs[:schedule_end_date]
-            )
-            # rubocop:enable all
-            response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
-              on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
+          Api::Campaigns::Users::Upsert.call(
+            form, current_user, campaigns: normalized_params[:campaigns], project: project
+          ) do
+            on(:ok) do |user|
+              audit! :api_create, user, payload: params, project: project
+              return render json: Api::V1::UserSerializer.new(
+                context: {
+                  project: project
+                }
+              ).serialize(user)
             end
-            audit! :api_create, response[:ok], payload: params, campaign: campaign
+            on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
+          end
+        else
+          render_validation_errors(form)
+        end
+      end
 
-            response[:ok]
-          end.sample
+      def update
+        normalized_params = Api::NormalizeCampaignParams.call!(params)
+        form = Api::V1::Users::UpdateForm.from_params(normalized_params).with_context(project: project, user: user)
+
+        if form.valid?
+          Api::Campaigns::Users::Upsert.call(
+            form, current_user, campaigns: normalized_params[:campaigns], project: project, user: user
+          ) do
+            on(:ok) { |user| audit! :api_update, user, payload: params, project: project }
+            on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
+          end
+
           render json: Api::V1::UserSerializer.new(
             context: {
               project: project
@@ -44,21 +54,6 @@ module Api
           ).serialize(user)
         else
           render_validation_errors(form)
-        end
-      end
-
-      def update
-        form = Api::V1::Users::UpdateForm.from_params(params[:user]).with_context(project: project, user: user)
-        ::Users::Update.call(form, project, user) do
-          on(:invalid) { |f| render_validation_errors(f) }
-          on(:ok) do |user|
-            audit! :api_update, user, payload: params, project: project
-            render json: Api::V1::UserSerializer.new(
-              context: {
-                project: project
-              }
-            ).serialize(user)
-          end
         end
       end
 

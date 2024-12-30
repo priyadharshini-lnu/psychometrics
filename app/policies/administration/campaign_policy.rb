@@ -234,6 +234,12 @@ module Administration
       has_permission?(:campaign_factors, :manage)
     end
 
+    def view_data_exports?
+      @user.is?(:superadmin, :client_admin, :project_admin, :campaign_admin) ||
+        @user.has_permission?(:data_exports, :user_report_events) ||
+        @user.has_permission?(:data_exports, :admin_permissions)
+    end
+
     private
 
     def can_manage_campaign?

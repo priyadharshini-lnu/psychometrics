@@ -146,9 +146,11 @@ describe CampaignScoring::Calculate do
 
   describe 'calculate datasheet factor_type' do
     let(:datasheet) { create(:datasheet, campaign: campaign) }
+    let(:c1) { create(:sheet_column, sheet: datasheet, name: 'Title', column_type: 'string') }
 
     it 'returns datasheet value' do
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Title' => 'Software Engineer' })
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, string_value: 'Software Engineer')
       cf = create(
         :campaign_factor, campaign: campaign, factor_type: 'formula',
         output_type: 'string', formula: "return datasheet.value('Title')"
@@ -169,7 +171,8 @@ describe CampaignScoring::Calculate do
     end
 
     it 'returns nil if datasheet column is not present' do
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Title' => 'Software Engineer' })
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, string_value: 'Software Engineer')
       cf = create(
         :campaign_factor, campaign: campaign, factor_type: 'formula',
         output_type: 'string', formula: "return datasheet.value('Age')"
@@ -195,7 +198,12 @@ describe CampaignScoring::Calculate do
 
     it 'computes formula' do
       datasheet = create(:datasheet, campaign: campaign)
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Grade' => '1', 'Previous Score' => 10 })
+      c1 = create(:sheet_column, sheet: datasheet, name: 'Previous Score', column_type: 'number')
+      c2 = create(:sheet_column, sheet: datasheet, name: 'Grade', column_type: 'string')
+
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, numeric_value: 10)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c2, string_value: '1')
       create(
         :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
         factor_type: 'assessment', assessment_score_type: 'score'
@@ -231,7 +239,13 @@ describe CampaignScoring::Calculate do
 
     it 'handles single and double quote in factor value' do
       datasheet = create(:datasheet, campaign: campaign)
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Grade' => '1"', 'Previous Grade' => "2'" })
+      c1 = create(:sheet_column, sheet: datasheet, name: 'Previous Grade', column_type: 'string')
+      c2 = create(:sheet_column, sheet: datasheet, name: 'Grade', column_type: 'string')
+
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c2, string_value: '1"')
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, string_value: "2'")
+
       create(
         :campaign_factor, code: 'grade', campaign: campaign, factor_type: 'formula',
          output_type: 'string', formula: "return datasheet.value('Grade')"

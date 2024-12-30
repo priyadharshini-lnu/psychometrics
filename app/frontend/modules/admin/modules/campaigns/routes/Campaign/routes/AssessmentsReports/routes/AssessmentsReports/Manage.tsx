@@ -5,6 +5,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import dayjs from 'dayjs'
 import Modals from '~/modules/admin/components/Modals'
 import ReportList from './ReportList'
 import { OtherReportList } from './OtherReportList'
@@ -13,7 +14,7 @@ import { OtherAssessmentList } from './OtherAssessmentList'
 import { OtherAssessorAssessmentList } from './OtherAssessorAssessmentList'
 import AssessorAssessmentList from './AssessorAssessmentList'
 import AddReportModal from './AddReportModal'
-import BulkDownloadModal from '../AssessmentsReports/BulkDownloadModal/BulkDownloadModal'
+import { DateRangeSelectorModal } from '~/modules/admin/components/DateRangeSelectorModal'
 import { Strategies } from './AddReportModal/interfaces'
 import UniversalLinkModal from './UniversalLinkModal'
 import ImportRawModal from './ImportRawModal'
@@ -95,8 +96,9 @@ const Manage: React.FC<Props> = ({
     })
   }
 
-  const handleDownload = (startDate: Date, endDate: Date) => {
-    bulkDownload(parsedCampaignId, selectedIds, startDate, endDate)
+  const handleDownload = (startDate: dayjs.Dayjs, endDate: dayjs.Dayjs) => {
+    if (!startDate || !endDate) return
+    bulkDownload(parsedCampaignId, selectedIds, startDate?.toDate(), endDate?.toDate())
       .then(() => {
         message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
         handleCloseDownloadModal()
@@ -146,10 +148,11 @@ const Manage: React.FC<Props> = ({
                   >
                     <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
                   </Button>
-                  <BulkDownloadModal
-                    visible={downloadModalVisible}
+                  <DateRangeSelectorModal
+                    open={downloadModalVisible}
                     onCancel={handleCloseDownloadModal}
                     onDownload={handleDownload}
+                    showTime
                   />
                 </>
               )}

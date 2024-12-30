@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { InputNumber } from 'antd'
+import { Checkbox, InputNumber } from 'antd'
 import Module from '~/modules/reports/core/interfaces/Module'
 
 import ColorSet from '~/modules/reports/components/ColorSet'
@@ -91,17 +91,25 @@ const Properties: FC<Props> = ({ modules }) => {
       </div>
       <div className="margin-top-10">
         <div className={styles.flexRow}>
-          <label className={styles.inputLabel}>
-            <input
-              style={{ marginRight: '5px' }}
-              type="checkbox"
-              checked={model.props.hideHeader}
-              onChange={e => onChange('hideHeader', e.currentTarget.checked)}
-            />
-            Hide header
-          </label>
+          <Checkbox
+            className="font-normal"
+            style={{ marginRight: '5px' }}
+            checked={model.props.hideHeader}
+            onChange={e => onChange('hideHeader', e.target.checked)}
+          >
+            Hide Header
+          </Checkbox>
         </div>
-
+        <div className={styles.flexRow}>
+          <Checkbox
+            className="font-normal"
+            style={{ marginRight: '5px', marginBlock: '3px 5px' }}
+            checked={model.props.hideLegend}
+            onChange={e => onChange('hideLegend', e.target.checked)}
+          >
+            Hide Legend
+          </Checkbox>
+        </div>
         Show
         <div className={styles.flexRow}>
           <label className={styles.inputLabel}>

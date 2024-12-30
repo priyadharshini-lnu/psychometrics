@@ -20,6 +20,7 @@ import { useParams } from 'react-router-dom'
 
 import { ConnectedProps, connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { Key } from 'antd/lib/table/interface'
 import { useResources } from '~/hooks/useResources'
 import { AddGroupForm } from './AddGroupForm'
 import { AddEditFactorForm } from './AddEditFactorForm'
@@ -30,8 +31,14 @@ import { ToolsDropdown } from './ToolsDropdown'
 import { ManageVariablesForm } from './ManageVariablesForm'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import { ImportFactorsForm } from './ImportFactorsForm'
-import { importFactors, IMPORT } from '~/modules/admin/modules/campaigns/core/campaignFactor'
+import {
+  importFactors, IMPORT,
+} from '~/modules/admin/modules/campaigns/core/campaignFactor'
 import { isRequestInProgress } from '~/core/request'
+import { RemoveCampaignFactorsModal } from './RemoveCampaignFactorsModal'
+import { RemoveCampaignFactorModal } from './RemoveCampaignFactorModal'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import Modals from '~/modules/admin/components/Modals'
 
 const getFactorsByGroupId = (factors: CampaignFactor[], groupId: string) => factors
   .filter(factor => factor.campaignFactorGroupId === parseInt(groupId, 10))
@@ -43,16 +50,22 @@ const getPrefixFactorIds = (factors: CampaignFactor[]) => factors.map(
 
 const { I18n } = window
 
+const MODALS = {
+  RemoveCampaignFactorsModal,
+  RemoveCampaignFactorModal,
+}
+
 const connector = connect(
   (state: RootState) => ({
+    campaignName: getCurrentCampaign(state).name,
     campaignPermissions: getCurrentCampaign(state).permissions,
     loading: isRequestInProgress(state, IMPORT),
   }),
   {
     importFactors,
+    openModal,
   },
 )
-
 
 type Props = ConnectedProps<typeof connector>;
 
@@ -70,7 +83,10 @@ const ScoringGroupsComponent = (props: Props) => {
   const [activeId, setActiveId] = useState<string | null>(null)
   const recentlyMovedToNewContainer = useRef(false)
   const { modal, message } = App.useApp()
-  const { campaignPermissions, importFactors, loading } = props
+  const [modifiedFactors, setModifiedFactors] = useState({})
+  const {
+    campaignPermissions, importFactors, loading, openModal, campaignName,
+  } = props
 
   const {
     createResource: initializeScoring,
@@ -181,6 +197,26 @@ const ScoringGroupsComponent = (props: Props) => {
   const handleOpenEditFactor = (factor: CampaignFactor) => {
     setCurrentFactor(factor)
     setOpenAddEditFactor({ open: true, mode: 'edit' })
+  }
+
+  const isFormValid = form => form.isFieldsTouched() && !form.getFieldsError().some(({ errors }) => errors.length > 0)
+
+  const handleFactorSelect = (id: Key[], form) => {
+    if (isFormValid(form)) {
+      setModifiedFactors((currModifiedFactors) => {
+        const newModifiedFactors = { ...currModifiedFactors }
+        if (_.isMatch(currentFactor || {}, form.getFieldsValue())) {
+          delete newModifiedFactors[currentFactor?.id as string]
+        } else {
+          newModifiedFactors[currentFactor?.id as string] = form.getFieldsValue()
+        }
+        return newModifiedFactors
+      })
+    }
+    const factor = campaignFactorsLocalState.find(factor => factor.id === id[0])
+    if (factor) {
+      handleOpenEditFactor(factor)
+    }
   }
 
   const handleGroupDragnDrop = (activeId: string, overId: string) => {
@@ -361,6 +397,47 @@ const ScoringGroupsComponent = (props: Props) => {
       fetchAndUpdateFactors()
     })
   }
+  const handleEditFactors = (form) => {
+    const finalModifiedFactors = {
+      ...modifiedFactors,
+    }
+    if (isFormValid(form)) {
+      finalModifiedFactors[currentFactor?.id as string] = form.getFieldsValue()
+    }
+    const payload: Record<string, unknown>[] = []
+
+    Object.keys(finalModifiedFactors).forEach((key) => {
+      const value = finalModifiedFactors[key]
+      campaignFactorsLocalState.forEach((factor) => {
+        if (factor.id === key) {
+          payload.push({
+            ...value,
+            id: factor.id,
+            campaignFactorGroupId: factor.campaignFactorGroupId,
+            position: factor.position,
+            campaign: { id: campaignId },
+            campaignFactorGroup: { id: factor.campaignFactorGroupId.toString() },
+          })
+        }
+      })
+    })
+
+    return collectionAction({
+      action: 'bulk_update',
+      method: 'post',
+      body: payload,
+      responseType: t.literal('ok'),
+    }).then(() => {
+      fetchAndUpdateFactors()
+      handleFormClose()
+    })
+  }
+
+  const handleFormClose = () => {
+    setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
+    setCurrentFactor(undefined)
+    setModifiedFactors({})
+  }
 
   const handleEditFactor = (data): Promise<void> => {
     const factorData = {
@@ -377,18 +454,16 @@ const ScoringGroupsComponent = (props: Props) => {
     })
   }
 
-  const handleRemoveFactor = (factorId: string) => {
-    removeCampaignFactor(factorId).then(() => {
-      message.success(I18n.t('administration.scoring.factor_removed_successfully'))
-      fetchAndUpdateFactors()
-    })
-  }
-
   const handleConfirmRemoveFactor = (factor: CampaignFactor) => {
-    modal.confirm({
-      title: I18n.t('administration.scoring.remove_factor_confirmation_title'),
-      content: I18n.t('administration.scoring.remove_factor_confirmation_content', { factor_name: factor.name }),
-      onOk: () => handleRemoveFactor(factor.id),
+    collectionAction({
+      action: 'validate_campaign_factor_deletion',
+      method: 'get',
+      body: { id: factor.id },
+      responseType: t.type({ response: t.string }),
+    }).then((data: { response: string }) => {
+      openModal('RemoveCampaignFactorModal', {
+        factor, removeCampaignFactor, fetchAndUpdateFactors, warningMessage: data.response,
+      })
     })
   }
 
@@ -422,6 +497,9 @@ const ScoringGroupsComponent = (props: Props) => {
     if (key === 'export_factors') {
       handleExportFactors()
     }
+    if (key === 'remove_all_campaign_factors') {
+      handleResetCampaignFactors()
+    }
   }
 
   const handleExportFactors = () => {
@@ -433,6 +511,10 @@ const ScoringGroupsComponent = (props: Props) => {
       message.success(I18n.t('administration.scoring.factors_exported_successfully'))
     })
   }
+
+  const handleResetCampaignFactors = () => openModal('RemoveCampaignFactorsModal', {
+    campaignId, campaignName, fetchAndUpdateFactors, fetchAndUpdateFactorGroups,
+  })
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
     setActiveId(null)
@@ -638,14 +720,16 @@ const ScoringGroupsComponent = (props: Props) => {
       <AddEditFactorForm
         addFactor={handleAddFactor}
         open={openAddEditFactor.open}
-        onClose={() => {
-          setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
-          setCurrentFactor(undefined)
-        }}
-        factorData={currentFactor}
+        onClose={handleFormClose}
+        factorData={modifiedFactors[currentFactor?.id as string] ?? currentFactor}
         editFactor={handleEditFactor}
         title={openAddEditFactor.mode === 'edit'
           ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
+        totalFactors={campaignFactorsLocalState}
+        groupName={sortedGroups}
+        handleFactorSelect={handleFactorSelect}
+        dirtyFactors={modifiedFactors}
+        editFactors={handleEditFactors}
       />
       <ManageVariablesForm
         open={openVariablesForm}
@@ -659,6 +743,7 @@ const ScoringGroupsComponent = (props: Props) => {
         close={() => setOpenImportFactorsForm(false)}
         loading={loading}
       />
+      <Modals modals={MODALS} />
     </Flex>
   )
 }

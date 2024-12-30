@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { connect } from 'react-redux'
 import cs from 'classnames'
-import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import { isRtl } from '~/utils/locales'
 import routes from './routes'
 import styles from './styles.less'
@@ -18,7 +18,7 @@ import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 const { I18n } = window
 const { useToken } = theme
-const { DEFAULT_PRIMARY_COLOR, DARK_GREY } = constants
+const { DEFAULT_PRIMARY_COLOR, GREY_BORDER } = constants
 
 export const LayoutComponent = ({ config }) => {
   const { token } = useToken()
@@ -58,7 +58,7 @@ export const LayoutComponent = ({ config }) => {
           colorSuccess: config.success_color || token.colorSuccess,
           colorInfo: config.info_color || token.colorInfo,
           colorLink: primaryColor,
-          colorBorder: DARK_GREY,
+          colorBorder: GREY_BORDER,
           borderRadius: 2,
         },
       }}
@@ -70,7 +70,7 @@ export const LayoutComponent = ({ config }) => {
               <div className={styles.logoWrapper}>
                 <img src={config.client_logo || logo} className={styles.logo} />
               </div>
-              {config.id && <LangDropdownWithChangeLocale />}
+              {config.id && <LangDropdownWithChangeUrl />}
             </Layout.Header>
             <Layout.Content className={styles.content}>
               <Routes>

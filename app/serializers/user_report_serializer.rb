@@ -120,7 +120,8 @@ class UserReportSerializer < Panko::Serializer
         module_overrides: TextModuleOverride.where(user_report_id: object.id),
         user_results: results,
         piped_text_context: context[:options],
-        campaign: object.campaign
+        campaign: object.campaign,
+        lang: context[:lang]
       }
     ).serialize(context[:report])
   end

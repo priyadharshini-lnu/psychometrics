@@ -18,6 +18,12 @@ module Api
             optional(:success_color).maybe(:string)
             optional(:warning_color).maybe(:string)
             attribute[:background_size].filled(:string)
+            optional(:logo_alt_text).
+              filled(:string, max_size?: ::DesignSetting::MAX_ALT_TEXT_LENGTH,
+              format?: ::DesignSetting::ALLOWED_CHARACTERS_REGEX)
+            optional(:secondary_logo_alt_text).
+              filled(:string, max_size?: ::DesignSetting::MAX_ALT_TEXT_LENGTH,
+              format?: ::DesignSetting::ALLOWED_CHARACTERS_REGEX)
           end
         end
 

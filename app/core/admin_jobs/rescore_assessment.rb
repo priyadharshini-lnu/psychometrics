@@ -44,22 +44,23 @@ module AdminJobs
     end
 
     def campaign
-      Campaign.find_by(id: record.data['campaign_id'])
+      @campaign ||= Campaign.find_by(id: record.data['campaign_id'])
     end
 
     def assessment
-      Assessment.find_by(id: record.data['assessment_id'])
+      @assessment ||= Assessment.find_by(id: record.data['assessment_id'])
     end
 
     def results
-      UsersResult.joins(:user_assessment).
-        where(
-          user_assessments: {
-            assessment_id: record.data['assessment_id'],
-            campaign_id: record.data['campaign_id']
-          }
-        ).
-        includes(user_assessment: :evaluator)
+      @results ||= UsersResult.
+                   includes(user_assessment: %i[assessment subject project evaluator]).
+                   preload(user_assessment: { assessment: { dimension: %i[occupations innovation_styles] } }).
+                   where(
+                     user_assessments: {
+                       assessment_id: record.data['assessment_id'],
+                       campaign_id: record.data['campaign_id']
+                     }
+                   )
     end
   end
 end

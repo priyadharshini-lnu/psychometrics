@@ -30,14 +30,39 @@ module Threesixty
 
       def sql
         <<-SQL.squish
-          SELECT sheet_rows.id, sheet_rows.email, "data"->>'First Name' as first_name, "data"->>'Last Name' as last_name
+          SELECT sheet_rows.id, sheet_rows.email, row_data."First Name" as first_name, row_data."Last Name" as last_name
             FROM sheet_rows
+            LEFT JOIN (#{crosstab_query}) as row_data on sheet_rows.id = row_data.sheet_row_id
             JOIN sheets on sheets.id = sheet_rows.sheet_id and (
               sheets.project_id = :project_id OR sheets.campaign_id = :campaign_id
             )
-            WHERE sheets.type = 'Datasheet'
-            AND sheet_rows.email ILIKE :query OR "data"->>'First Name' ILIKE :query OR "data"->>'Last Name' ILIKE :query
+            WHERE sheets.type = 'Datasheet' and (
+              (sheet_rows.email ILIKE :query) or
+              (row_data."First Name" ILIKE :query) or
+              (row_data."Last Name" ILIKE :query)
+            )
           LIMIT :limit
+        SQL
+      end
+
+      def crosstab_query
+        <<~SQL.squish
+          SELECT * FROM crosstab(
+            $$
+              SELECT srd.sheet_row_id, sheet_columns.name, srd.string_value
+              FROM sheet_row_data srd
+              LEFT JOIN sheet_columns on sheet_columns.id = srd.sheet_column_id
+              LEFT JOIN sheet_rows on sheet_rows.id = srd.sheet_row_id
+              JOIN sheets on sheets.id = sheet_rows.sheet_id and (
+                sheets.project_id = :project_id OR sheets.campaign_id = :campaign_id
+              )
+              where sheet_columns.name in ('First Name', 'Last Name')
+              ORDER BY 1
+            $$,
+            $$
+              VALUES ('First Name'), ('Last Name')
+            $$
+          ) AS final_result(sheet_row_id BIGINT, "First Name" TEXT, "Last Name" TEXT)
         SQL
       end
 

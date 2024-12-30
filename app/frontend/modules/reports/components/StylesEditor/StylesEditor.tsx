@@ -7,6 +7,8 @@ import {
 } from 'antd'
 import {
   CopyOutlined, SnippetsOutlined, DeleteOutlined,
+  RadiusUpleftOutlined, RadiusUprightOutlined, RadiusBottomrightOutlined,
+  RadiusBottomleftOutlined, BorderOuterOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
 import styles from './StylesEditor.less'
@@ -297,18 +299,66 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
           </div>
         </Space>
       )}
+      <hr className={styles.divider} />
       <Space direction="vertical">
         Border Radius
-        <Space>
-          <InputNumber
-            value={get('borderRadius')}
-            onChange={val => changeStyle('borderRadius', val)}
-            size="small"
-            min={0}
-            max={1000}
-            className="w-100"
-          />
-          px
+        <Space direction="vertical">
+          <Space>
+            <BorderOuterOutlined />
+            <InputNumber
+              value={get('borderRadius')}
+              onChange={val => changeStyle('borderRadius', val)}
+              size="small"
+              min={0}
+              max={1000}
+            />
+            px
+          </Space>
+          <Space>
+            <RadiusUpleftOutlined />
+            <InputNumber
+              value={get('borderRadiusTopLeft') ?? get('borderRadius')}
+              onChange={val => changeStyle('borderRadiusTopLeft', val)}
+              size="small"
+              min={0}
+              max={1000}
+            />
+            px
+          </Space>
+          <Space>
+            <RadiusUprightOutlined />
+            <InputNumber
+              value={get('borderRadiusTopRight') ?? get('borderRadius')}
+              onChange={val => changeStyle('borderRadiusTopRight', val)}
+              size="small"
+              min={0}
+              max={1000}
+            />
+            px
+          </Space>
+          <Space>
+            <RadiusBottomrightOutlined />
+            <InputNumber
+              value={get('borderRadiusBottomRight') ?? get('borderRadius')}
+              onChange={val => changeStyle('borderRadiusBottomRight', val)}
+              size="small"
+              min={0}
+              max={1000}
+            />
+            px
+          </Space>
+
+          <Space>
+            <RadiusBottomleftOutlined />
+            <InputNumber
+              value={get('borderRadiusBottomLeft') ?? get('borderRadius')}
+              onChange={val => changeStyle('borderRadiusBottomLeft', val)}
+              size="small"
+              min={0}
+              max={1000}
+            />
+            px
+          </Space>
         </Space>
       </Space>
       <hr className={styles.divider} />

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, ReactNode } from 'react'
 import { Form, App, Alert } from 'antd'
-import humps from 'humps'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
@@ -57,6 +56,7 @@ export type OwnProps = {
   }
   children(props: ChildrenProps): ReactNode
   scrollToFirstError?: boolean
+  focusOnFirstError?: boolean
   mockRequest?: boolean
   nullifyEmptyString?: boolean
 }
@@ -77,6 +77,9 @@ const ResourceForm: React.FC<Props> = ({
   children,
   transformValues,
   scrollToFirstError,
+  // eslint-disable-next-line max-len
+  // TODO: try antd's built-in feature after upgrade(>=v5.22.0) https://github.com/ant-design/ant-design/releases/tag/5.22.0
+  focusOnFirstError = true,
   nullifyEmptyString,
 }: Props) => {
   const baseErrorRef = React.createRef<HTMLDivElement>()
@@ -93,7 +96,10 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    if (!isEdit()) { return }
+    if (!isEdit()) {
+      formValuesToField(form.getFieldsValue())
+      return
+    }
     if (resource) {
       formValuesToField(resourceToFormData(resource, resourceName))
     } else {
@@ -202,18 +208,24 @@ const ResourceForm: React.FC<Props> = ({
     }) as string[]
   )
 
+  const focusFormField = (field: FieldData) => {
+    if (!focusOnFirstError) return
+    const namePath = field.name
+    store.form.getFieldInstance(namePath)?.focus()
+  }
+
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
-    errors = { ...errors, ...humps.decamelizeKeys(errors) }
-    removeErrors()
-    _.each(errors, (error: string | string[] | JSONApiError, name: string) => {
-      const field = _.find(store.fields, field => _.includes(field.name as string[], name))
-      const errors = displayableError(error)
-      let newField: FieldData = { name: name.includes('/') ? name.split('/') : name, errors }
-      if (field) {
-        newField = { ...field, errors }
+    let foundFirstError = false
+    newFields = fields.map((field) => {
+      const { name } = field
+      const fieldNameStringFormat = typeof (name) === 'string' ? name : name.join('/')
+      const displayableErrors = errors[fieldNameStringFormat] ? displayableError(errors[fieldNameStringFormat]) : []
+      if (errors[fieldNameStringFormat] && !foundFirstError) {
+        focusFormField(field)
+        foundFirstError = true
       }
-      newFields = [...newFields, newField]
+      return ({ ...field, errors: displayableErrors })
     })
     store.setFields(newFields)
   }

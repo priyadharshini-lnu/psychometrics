@@ -6,8 +6,8 @@ import I18nStore from '~/modules/reports/store/I18nStore'
 export const Functions = {}
 
 export const getFilterName = (filterId) => {
-  const filter = _.find(AppStore.report.filters, { id: filterId })
-  if (filter) return filter.name
+  const filter = AppStore.report.getFilterNameById(filterId)
+  if (filter) return filter
 
   return filterId
 }

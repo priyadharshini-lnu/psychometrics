@@ -19,6 +19,7 @@ module AllowedPermissions
       assessments
       privacy_settings
     ],
+    'data_exports' => %w[user_report_events admin_permissions],
     'registration_settings' => %w[
       manage
     ],
@@ -87,6 +88,7 @@ module AllowedPermissions
       webhooks
       privacy_settings
     ],
+    'data_exports' => %w[user_report_events admin_permissions],
     'registration_settings' => %w[
       manage
     ],
@@ -148,6 +150,7 @@ module AllowedPermissions
       manage_report_approvals
       view_stats
     ],
+    'data_exports' => %w[user_report_events admin_permissions],
     'campaign_factors' => %w[view manage],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'sms_invites' => %w[view manage],

@@ -19,6 +19,7 @@ export default interface UserAssessment {
   reportIds: number[]
   simulationContentVariations?: SimulationContentVariation[]
   simulationContentVariationId: string | null
+  simuationTimeExtension: number | null
   permissions: {
     updateAdditionalTime: boolean
     resetResults: boolean
@@ -30,5 +31,6 @@ export default interface UserAssessment {
     updateMettlSchedule: boolean
     normalizeFactorScores: boolean
     updateContentVariation: boolean
+    updateSimulationTimeExtension: boolean
   }
 }
