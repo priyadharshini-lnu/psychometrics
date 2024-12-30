@@ -53,7 +53,8 @@ module Administration
             'pdf_password',
             'view_campaign_scoring',
             'view_campaign_scoring_setting',
-            'manage_campaign_scoring'
+            'manage_campaign_scoring',
+            'view_data_exports'
           ],
           {
             project_id: project.id,

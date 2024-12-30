@@ -18,5 +18,20 @@ module Api
     def export_params
       params.permit(:client_id, :project_id, :campaign_id, :start_date, :end_date)
     end
+
+    def base_response_meta
+      return {} if params[:action] != 'index'
+
+      {
+        permissions: GetPermissionsHash.call!(
+          policy_class,
+          context[:user],
+          @model,
+          [
+            'export'
+          ]
+        )
+      }
+    end
   end
 end

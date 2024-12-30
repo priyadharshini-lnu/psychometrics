@@ -12,6 +12,7 @@ import {
   LineChartOutlined,
   CalendarOutlined,
   RadarChartOutlined,
+  ExportOutlined,
 } from '@ant-design/icons'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
@@ -85,6 +86,14 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     </Link>,
     icon: <SettingOutlined />,
   } : null,
+  permissions.viewDataExports ? {
+    key: 'data_exports',
+    label:
+    <Link route={`${basePath}/data_exports`}>
+      {I18n.t('administration.breadcrumbs.data_exports')}
+    </Link>,
+    icon: <ExportOutlined />,
+  } : null,
 ].filter(Boolean)
 
 const getSelected = (pathname): string => {
@@ -117,6 +126,9 @@ const getSelected = (pathname): string => {
   }
   if (pathname.includes('/scoring')) {
     return 'scoring'
+  }
+  if (pathname.includes('/data_exports')) {
+    return 'data_exports'
   }
   return ''
 }

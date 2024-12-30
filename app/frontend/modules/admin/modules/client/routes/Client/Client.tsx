@@ -5,7 +5,7 @@ import {
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
-  ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined,
+  ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
@@ -72,6 +72,9 @@ export const Client: FC<Props> = ({ currentUser }) => {
     if (pathname.includes('/settings')) {
       return ['settings']
     }
+    if (pathname.includes('/data_exports')) {
+      return ['data_exports']
+    }
     if (pathname.includes('/licenses')) {
       return ['licenses']
     }
@@ -92,6 +95,8 @@ export const Client: FC<Props> = ({ currentUser }) => {
         return I18n.t('administration.breadcrumbs.admins')
       case 'settings':
         return I18n.t('administration.breadcrumbs.settings')
+      case 'data_exports':
+        return I18n.t('administration.breadcrumbs.data_exports')
       case 'licenses':
         return I18n.t('administration.breadcrumbs.licenses')
       default:
@@ -114,6 +119,11 @@ export const Client: FC<Props> = ({ currentUser }) => {
     label: I18n.t('administration.breadcrumbs.settings'),
   })
 
+  client?.meta.permissions.viewDataExports && menuItems.push({
+    key: 'data_exports',
+    icon: <ExportOutlined />,
+    label: I18n.t('administration.breadcrumbs.data_exports'),
+  })
   client?.meta.permissions.viewLicenses && menuItems.push(
     {
       key: 'licenses',

@@ -11,6 +11,7 @@ import { Scoring } from './Scoring'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
 import AssessorsDetails from './Participants/Assessors/AssessorDetails'
+import { DataExports } from './DataExports'
 
 const routes = [
   { redirect: true, from: '', to: 'participants' },
@@ -31,6 +32,7 @@ const routes = [
   { path: '/datasheet', component: <Datasheet /> },
   { path: '/admins', component: <Admins /> },
   { path: '/options', component: <CampaignOptions /> },
+  { path: '/data_exports', component: <DataExports /> },
 ]
 
 export default routes

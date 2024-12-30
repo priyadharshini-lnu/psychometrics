@@ -63,7 +63,7 @@ type Props = PropsFromRedux & OwnProps
 
 const { I18n } = window
 
-interface Meta extends BaseMeta {
+export interface Meta extends BaseMeta {
   permissions: AdminPermissions
   usersGrants: CurrentUserPermissions
 }

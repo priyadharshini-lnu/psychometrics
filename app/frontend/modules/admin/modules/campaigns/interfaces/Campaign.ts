@@ -35,6 +35,7 @@ export default interface Campaign {
     viewCampaignScoring: boolean
     manageCampaignScoring: boolean
     viewCampaignScoringSetting: boolean
+    viewDataExports: boolean
   }
 }
 

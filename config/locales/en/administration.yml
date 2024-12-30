@@ -66,7 +66,7 @@ en:
           cancel_text: Cancel
           change_password: Reset password
           edit: Edit
-          export_success: Admin export job was scheduled successfully
+          export_success: Admin export job was scheduled successfully. Please check your notification for status.
           login: Login
           send_email: Send email
           spoof:
@@ -593,6 +593,7 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       create: Create
+      data_exports: Data Exports
       datasheets: Datasheets
       design: Design
       dimension: Dimension
@@ -1485,6 +1486,8 @@ en:
         hide_all: Hide All
         keep_original: Keep Original (Controlled from PowerBi "Header icons" option)
         show_all: Show All
+    data_exports_modal:
+      title: Select date range
     datasheet:
       threesixty_warning: You can’t upload datasheet columns for 360 report from here. For 360 report datasheet columns are loaded from the campaign to which this report is linked to
     dates:

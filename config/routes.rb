@@ -1359,7 +1359,7 @@ as: :simulation_progress_notification
               get :search_user
             end
           end
-          resources :user_report_events do
+          resources :user_report_events, only: %i[index] do
             collection do
               get :export
             end
