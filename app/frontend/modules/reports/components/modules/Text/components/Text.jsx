@@ -240,6 +240,7 @@ class Text extends Component {
         if (!question) { return null }
         const QuestionTypeModel = ResponseTextByQuestionType[question.type]
         const particularResult = _.get(ResultStore, ['results', assessmentId, 'questions', question.id, 0])
+
         if (!QuestionTypeModel) {
           // eslint-disable-next-line no-console
           console.error(`QuestionTypeModel for ResponseText is not found by question ${question}`)
@@ -300,12 +301,7 @@ class Text extends Component {
           />
         )
       } if (sourceType === 'ResultText') {
-        let textValue = LookupResultTextValue.run(model)
-        if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
-          const factorResults = ResultStore.results[assessmentId].campaignFactorResults
-          const code = model.props.source.codes[0]
-          textValue = factorResults && (_.find(factorResults, { code })?.value ?? '')
-        }
+        const textValue = LookupResultTextValue.run(model)
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
             <div>{textValue}</div>
