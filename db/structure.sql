@@ -1581,6 +1581,39 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 
 
 --
+-- Name: communication_email_resources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_email_resources (
+    id bigint NOT NULL,
+    communication_email_id bigint NOT NULL,
+    resource_type character varying NOT NULL,
+    resource_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_email_resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_email_resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_email_resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_email_resources_id_seq OWNED BY public.communication_email_resources.id;
+
+
+--
 -- Name: communication_emails; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6993,6 +7026,13 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_email_resources ALTER COLUMN id SET DEFAULT nextval('public.communication_email_resources_id_seq'::regclass);
+
+
+--
 -- Name: communication_emails id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8275,6 +8315,14 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.clients_reports
     ADD CONSTRAINT clients_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_email_resources communication_email_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_email_resources
+    ADD CONSTRAINT communication_email_resources_pkey PRIMARY KEY (id);
 
 
 --
@@ -10202,6 +10250,20 @@ CREATE INDEX index_clients_reports_on_client_id ON public.clients_reports USING 
 --
 
 CREATE INDEX index_clients_reports_on_report_id ON public.clients_reports USING btree (report_id);
+
+
+--
+-- Name: index_communication_email_resources_on_communication_email_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_email_resources_on_communication_email_id ON public.communication_email_resources USING btree (communication_email_id);
+
+
+--
+-- Name: index_communication_email_resources_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_email_resources_on_resource ON public.communication_email_resources USING btree (resource_type, resource_id);
 
 
 --
@@ -12649,6 +12711,14 @@ ALTER TABLE ONLY public.memberships
 
 
 --
+-- Name: communication_email_resources fk_rails_1e6187986b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_email_resources
+    ADD CONSTRAINT fk_rails_1e6187986b FOREIGN KEY (communication_email_id) REFERENCES public.communication_emails(id);
+
+
+--
 -- Name: campaign_reports fk_rails_1eecc2fd8d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13045,7 +13115,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -14607,6 +14677,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241226171404'),
 ('20241223122302'),
 ('20241219131514'),
 ('20241219060937'),
@@ -15338,4 +15409,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
