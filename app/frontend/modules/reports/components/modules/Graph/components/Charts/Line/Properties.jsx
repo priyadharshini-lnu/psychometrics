@@ -47,7 +47,7 @@ const Properties = ({ modules, questions }) => {
       }
     }
 
-    const seriesFunction = Series[lineModule.getSourceType()].functions
+    const seriesFunction = Series[lineModule.getSourceType()]?.functions
     const funcs = typeof seriesFunction === 'function' ? seriesFunction.call(this, question) : seriesFunction
 
     return (

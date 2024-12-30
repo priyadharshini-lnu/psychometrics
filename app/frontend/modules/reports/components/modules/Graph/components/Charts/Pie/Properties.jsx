@@ -54,10 +54,8 @@ const Properties = ({ questions, modules }) => {
     }
 
     if (!model.getSourceType()) return null
-
-    const seriesFunction = Series[model.getSourceType()].functions
+    const seriesFunction = Series[model.getSourceType()]?.functions
     const funcs = typeof seriesFunction === 'function' ? seriesFunction.call(this, question) : seriesFunction
-
     return (
       <select className="form-control" value={model.props.dataFormat} onChange={changeDataFormat}>
         {_.map(funcs, (name, i) => (<option key={i} value={name}>{name}</option>))}
