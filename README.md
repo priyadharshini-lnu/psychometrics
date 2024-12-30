@@ -43,17 +43,25 @@ prevent bundle secure warnings with
 
 6. Create databases `$> bundle exec rake db:create`
 
-    Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
+    Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data. In case you don't have access to the DB dump, you can seed the data manually by following
+    step 7.
 
-7. `$> yarn install`
+7. Seed Data by running the following:
+   - `$> bundle exec rake db:create`
+   - `$> bundle exec rake db:schema:load`
+   - `$> bundle exec rake db:migrate`
+   - `$> bundle exec rake seed_relationships`
+   - `$> bundle exec rake geo:import`
+
+8. `$> yarn install`
 
     in case of `error Error: unable to get local issuer certificate` run below command
 
     ```yarn config set "strict-ssl" false -g```
 
-8. Install redis.
+9. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
-9. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
+10. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
 Follow the instruction mentioned in the README.md to install and run the serverless framework.
 In the main psychometric repo set environment variable `URL_TO_PDF_LAMBDA_URL` to `http://localhost:3000/dev`
 
