@@ -17,6 +17,7 @@ module Campaigns
         transaction do
           create_or_update_user
           create_or_update_campaign_user
+          create_or_update_datasheet
           add_reports_and_assessments
           send_invite_email
         end
@@ -26,6 +27,12 @@ module Campaigns
       end
 
       private
+
+      def create_or_update_datasheet
+        return unless form.respond_to?(:datasheet) && form.datasheet.present?
+
+        ::SheetRows::UpsertData.call(campaign.campaign_datasheet, form.email, form.datasheet)
+      end
 
       def create_or_update_user
         if user
@@ -38,7 +45,8 @@ module Campaigns
           ActiveRecord::Base.transaction do
             user_attributes = form.to_h.except(
               :operation, :campaign_ids, :active, :locale,
-              :schedule_start_date, :schedule_start_date, :schedule_end_date, :external_id
+              :schedule_start_date, :schedule_start_date, :schedule_end_date, :external_id,
+              :datasheet
             ).merge(
               project: project,
               create_by_invite: true,

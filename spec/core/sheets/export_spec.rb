@@ -9,17 +9,16 @@ describe Sheets::Export do
                              { name: 'Empty', type: 'Number' }])
   end
   let!(:columns) do
-    create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')
-    create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'text')
-    create(:sheet_column, sheet: sheet, name: 'Empty', column_type: 'number')
+    sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')
+    sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'text')
+    sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Empty', column_type: 'number')
   end
   let!(:sheet_row) do
     create(:sheet_row, sheet: sheet, email: 'james@cc.com')
   end
   let!(:sheet_row_data) do
-    sheet_row.add_sheet_row_data(
-      { 'Email' => 'james@cc.com', 'Profile' => 'carpenter' }
-    )
+    create(:sheet_row_datum, sheet_row: sheet_row, sheet_column: columns[0], string_value: 'james@cc.com')
+    create(:sheet_row_datum, sheet_row: sheet_row, sheet_column: columns[1], string_value: 'carpenter')
   end
   let(:file_name) { "sheet-#{Time.zone.now}.xlsx" }
 

@@ -5,16 +5,26 @@ module Api
     class UsersController < Api::V1::BaseController
       def index
         user = project.end_users.find_by(email: params[:email])
-        if user
-          render json: Api::V1::UserSerializer.new.serialize(user)
-        else
+        unless user
           raise Api::Errors::ResourceNotFound, "User with email=#{params[:email]} was not found"
         end
+
+        include_datasheet = params[:datasheet] == 'true'
+
+        options = {
+          context: {
+            project: project,
+            include_datasheet: include_datasheet
+          },
+          except: include_datasheet ? [] : %i[project_datasheet]
+        }
+
+        render json: Api::V1::UserSerializer.new(options).serialize(user)
       end
 
       def create
         normalized_params = Api::NormalizeCampaignParams.call!(params)
-        form = Api::V1::Users::CreateForm.from_params(normalized_params).with_context(project: project)
+        form = Api::V1::Users::CreateForm.new(normalized_params).with_context(project: project)
 
         if form.valid?
           Api::Campaigns::Users::Upsert.call(
@@ -23,8 +33,8 @@ module Api
             on(:ok) do |user|
               audit! :api_create, user, payload: params, project: project
               return render json: Api::V1::UserSerializer.new(
-                context: {
-                  project: project
+                {
+                  context: { project: project, include_datasheet: true }
                 }
               ).serialize(user)
             end
@@ -37,7 +47,7 @@ module Api
 
       def update
         normalized_params = Api::NormalizeCampaignParams.call!(params)
-        form = Api::V1::Users::UpdateForm.from_params(normalized_params).with_context(project: project, user: user)
+        form = Api::V1::Users::UpdateForm.new(normalized_params).with_context(project: project, user: user)
 
         if form.valid?
           Api::Campaigns::Users::Upsert.call(
@@ -48,8 +58,8 @@ module Api
           end
 
           render json: Api::V1::UserSerializer.new(
-            context: {
-              project: project
+            {
+              context: { project: project, include_datasheet: true }
             }
           ).serialize(user)
         else

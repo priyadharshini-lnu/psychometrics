@@ -52,7 +52,7 @@ module Administration
       ).with_context(sheet: sheet)
       if form.valid?
         datasheet_row = sheet.rows.create(form.attributes.slice(:email))
-        datasheet_row.add_sheet_row_data(form.data)
+        ::SheetRows::UpsertData.call!(sheet, form.email, form.data)
         audit! :create, datasheet_row, **audit_resources, payload: form.attributes
         render json: SheetRows::GetData.call!(datasheet_row)
       else
@@ -61,7 +61,8 @@ module Administration
     end
 
     def update
-      resource.add_sheet_row_data(params.permit(*sheet.column_names))
+      ::SheetRows::UpsertData.call!(resource.sheet, resource.email, params.permit(*sheet.column_names))
+
       audit! :update, resource, **audit_resources, payload: params
 
       render json: SheetRows::GetData.call!(resource)
