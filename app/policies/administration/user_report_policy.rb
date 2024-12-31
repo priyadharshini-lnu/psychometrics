@@ -41,7 +41,7 @@ module Administration
     end
 
     def push_webhook?
-      !record.external_report? && @user.has_permission?(
+      @user.has_permission?(
         :project_settings, :webhooks, project_id: project_id
       ) && (record.publish_results_available? || record.has_user_results?)
     end
