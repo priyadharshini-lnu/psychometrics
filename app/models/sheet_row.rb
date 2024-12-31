@@ -33,18 +33,6 @@ class SheetRow < ApplicationRecord
     sheet
   end
 
-  def add_sheet_row_data(data)
-    columns = sheet.sheet_columns
-    data.each do |field, value|
-      column = columns.find { |c| c.name == field }
-      next unless column
-
-      row_data = sheet_row_data.find_or_initialize_by(sheet_column: column)
-      row_data.value = value.is_a?(String) ? value.strip : value
-      row_data.save!
-    end
-  end
-
   def log_attribute_for_delete
     slice(:id, :email, :data)
   end

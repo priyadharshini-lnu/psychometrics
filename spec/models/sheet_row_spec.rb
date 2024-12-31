@@ -34,14 +34,4 @@ describe SheetRow, type: :model do
       end
     end
   end
-
-  describe '#add_sheet_row_data' do
-    it 'creates a new row data' do
-      sheet_column.update(column_type: 'string')
-      sheet.reload
-      sheet_row.add_sheet_row_data(sheet_column.name => 'MyText')
-
-      expect(sheet_row.sheet_row_data.first.string_value).to eq('MyText')
-    end
-  end
 end

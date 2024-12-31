@@ -28,7 +28,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
     create(:sheet_row, sheet: sheet, email: 'james@cc.com')
   end
   let!(:sheet_row_data) do
-    sheet_row.add_sheet_row_data({
+    ::SheetRows::UpsertData.call(sheet, sheet_row.email, {
       'Email' => 'james@cc.com', 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1'
     })
   end
@@ -39,9 +39,9 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
   describe 'GET index' do
     it 'renders sheet_row json without HTML and Markdown type on json request' do
       sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com')
-      sheet_row2.add_sheet_row_data(
-        { 'Email' => 'smith@cc.com', 'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1' }
-      )
+      ::SheetRows::UpsertData.call(sheet, sheet_row2.email, {
+        'Email' => 'smith@cc.com', 'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1'
+      })
 
       get :index, params: { project_id: project.id }, format: :json
       parsed_response = JSON.parse(response.body)

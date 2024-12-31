@@ -9,6 +9,24 @@ describe 'Users' do
   let(:campaign) { create(:campaign, project: project, status: :active) }
   let(:user) { create(:user, project: project) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+  let!(:campaign_datasheet) { create(:sheet, campaign: campaign, type: 'Datasheet') }
+  let!(:project_datasheet) { create(:sheet, project: project, type: 'Datasheet') }
+  let!(:campaign_datasheet_columns) do
+    campaign_datasheet.sheet_columns << create(
+      :sheet_column, sheet: campaign_datasheet, name: 'Current Position', column_type: 'string'
+    )
+    campaign_datasheet.sheet_columns << create(
+      :sheet_column, sheet: campaign_datasheet, name: 'Department', column_type: 'string'
+    )
+    campaign_datasheet.sheet_columns << create(
+      :sheet_column, sheet: campaign_datasheet, name: 'Location', column_type: 'string'
+    )
+  end
+  let!(:project_datasheet_columns) do
+    project_datasheet.sheet_columns << create(
+      :sheet_column, sheet: project_datasheet, name: 'Current Position', column_type: 'string'
+    )
+  end
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
@@ -108,15 +126,26 @@ the campaign\'s default assessments and reports.'
         let(:project_id) { project.id }
         let(:external_id) { '123' }
         let(:body) do
-          { email: email,
+          {
+            email: email,
             first_name: first_name,
             last_name: last_name,
             campaigns: [{
               id: campaign.id,
               active: true,
               external_id: external_id,
-              existing_record: 'new_evaluation'
-            }] }
+              existing_record: 'new_evaluation',
+              datasheet: {
+                'Current Position' => 'Manager',
+                'Department' => 'HR',
+                'Location' => 'London'
+              }
+            }],
+            project_datasheet: {
+              'Current Position' => 'Developer'
+            },
+            existing_record: 'accept'
+          }
         end
 
         run_test! do |response|
@@ -128,11 +157,29 @@ the campaign\'s default assessments and reports.'
           expect(user['last_name']).to eq last_name
           expect(user['email']).to eq email
           expect(user['campaigns'][0]['id']).to eq campaign.id
+          expect(user['campaigns'][0]['datasheet']).to eq(
+            {
+              'Current Position' => 'Manager',
+              'Department' => 'HR',
+              'Location' => 'London'
+            }
+          )
+          expect(user['project_datasheet']).to eq(
+            {
+              'Current Position' => 'Developer'
+            }
+          )
 
           expect(campaign_user.active).to eq true
           expect(campaign_user.external_id).to eq external_id
           expect(campaign_user.schedule_start_date).to eq nil
           expect(campaign_user.schedule_end_date).to eq nil
+          expect(campaign_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
+            %w[Manager HR London]
+          )
+          expect(project_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
+            %w[Developer]
+          )
         end
       end
 

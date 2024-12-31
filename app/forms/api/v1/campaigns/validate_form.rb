@@ -8,12 +8,14 @@ module Api
         attribute :id, Integer
         attribute :active, Boolean
         attribute :external_id, String, default: nil
-
+        attribute :datasheet, Hash, default: {}
         validates :existing_record, inclusion: { in: %w[add_with_existing_response add_and_allow_new_response] }
         validates :id, presence: true
         validates_inclusion_of :active, in: [true, false]
 
         validate :validate_external_id
+        validate :validate_sheet_exists, if: -> { datasheet.present? }
+        validate :validate_datasheet_data, if: -> { datasheet.present? && sheet }
 
         def validate_external_id
           return if external_id.nil?
@@ -30,6 +32,20 @@ module Api
               )
             )
           end
+        end
+
+        def validate_sheet_exists
+          errors.add(:datasheet, I18n.t('datasheet.errors.not_configured')) unless sheet
+        end
+
+        def validate_datasheet_data
+          form = Api::V1::Sheets::UpsertRowForm.new({ data: datasheet }).with_context(sheet: sheet)
+
+          errors.add(:datasheet, form.errors.full_messages) if form.invalid?
+        end
+
+        def sheet
+          Datasheet.find_by(campaign_id: id)
         end
       end
     end

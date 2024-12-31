@@ -51,7 +51,7 @@ module Sheets
         next if email.blank?
 
         row = accesssheet? ? sheet.rows.create(email: email) : sheet.rows.find_or_create_by(email: email)
-        row.add_sheet_row_data(data)
+        ::SheetRows::UpsertData.call(sheet, email, data)
         row.update(migrated: true)
       end
     end

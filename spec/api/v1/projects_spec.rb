@@ -243,6 +243,8 @@ describe 'Projects' do
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string, required: true
       parameter name: :email, in: :query, type: :string, required: true
+      parameter name: :datasheet, in: :query, type: :boolean, required: false,
+                description: 'If true, returns project datasheet and campaign datasheets'
 
       response '200', 'User info' do
         schema '$ref' => '#/definitions/GetUser'

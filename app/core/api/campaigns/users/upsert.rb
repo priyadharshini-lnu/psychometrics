@@ -17,6 +17,7 @@ module Api
         def call
           transaction do
             update_user if user
+            create_or_update_project_datasheet
 
             if campaigns.present?
               @user = campaigns.map do |campaign_attrs|
@@ -34,6 +35,7 @@ module Api
                 )
 
                 struct[:external_id] = campaign_attrs[:external_id] if campaign_attrs.key?(:external_id)
+                struct[:datasheet] = campaign_attrs[:datasheet] if campaign_attrs.key?(:datasheet)
                 # rubocop:enable all
 
                 response = ::Campaigns::Users::Create.call(
@@ -62,6 +64,12 @@ module Api
             last_name: form.last_name,
             email: form.email
           )
+        end
+
+        def create_or_update_project_datasheet
+          return if form.project_datasheet.blank?
+
+          ::SheetRows::UpsertData.call!(project.datasheet, form.email, form.project_datasheet)
         end
       end
     end

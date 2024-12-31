@@ -26,7 +26,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
     create(:sheet_row, sheet: sheet, email: 'james@cc.com')
   end
   let!(:sheet_row_data) do
-    sheet_row.add_sheet_row_data({
+    ::SheetRows::UpsertData.call(sheet, sheet_row.email, {
       'Email' => 'james@cc.com', 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1'
     })
   end
@@ -37,7 +37,8 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
   describe 'GET index' do
     it 'renders sheet_row json without HTML and Markdown type on json request' do
       sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com')
-      sheet_row2.add_sheet_row_data({
+
+      ::SheetRows::UpsertData.call(sheet, sheet_row2.email, {
         'Email' => 'smith@cc.com', 'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1'
       })
 
@@ -80,7 +81,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
       project_sheet_row = create(:sheet_row, sheet: project_sheet, email: sheet_row.email)
 
-      project_sheet_row.add_sheet_row_data({
+      ::SheetRows::UpsertData.call(project_sheet, project_sheet_row.email, {
         'Email' => 'james@cc.com', 'Name' => 'James S'
       })
 
@@ -158,10 +159,11 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq({
-        'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James Smith',
+        'id' => sheet_row.id, 'Name' => 'James Smith', 'Email' => 'james@cc.com',
         'Description' => 'J1', 'Profile' => 'Software Engineer'
       })
-      expect(sheet_row.sheet_row_data[0].string_value).to eq('james@cc.com')
+
+      expect(sheet_row.sheet_row_data[1].string_value).to eq('James Smith')
       expect(sheet_row.sheet_row_data[1].string_value).to eq('James Smith')
     end
   end

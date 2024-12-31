@@ -1450,6 +1450,13 @@
             "in": "query",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "datasheet",
+            "in": "query",
+            "type": "boolean",
+            "required": false,
+            "description": "If true, returns project datasheet and campaign datasheets"
           }
         ],
         "responses": {
