@@ -201,6 +201,10 @@ yarn run mockApi
 
 # Other Development Tasks
 
+## MinIO (Local Development)
+For local development, we use MinIO as an S3-compatible storage solution.
+See our [MinIO Integration Guide](docs/minio_integration.md) for setup instructions.
+
 ## Localisation
 Add the strings to one of the locale files
 - `config/locales/en/others.yml` For all non-admin and shared keys
