@@ -46,6 +46,10 @@ const getMenuProps = (onClick): MenuProps => {
       key: 'import_factors',
       label: I18n.t('administration.scoring.import.factors'),
     },
+    {
+      key: 'remove_all_campaign_factors',
+      label: I18n.t('administration.scoring.remove_all_campaign_factors.title'),
+    },
   ]
   return ({ items: menuItems, onClick })
 }

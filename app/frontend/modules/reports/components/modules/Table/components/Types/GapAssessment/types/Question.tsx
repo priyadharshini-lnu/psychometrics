@@ -156,7 +156,7 @@ const QuestionTypeComponent: FC<Props> = ({
       const row = { left: values[0], right: values[1] }
       return {
         ...row,
-        factorName: factor.name,
+        factorName: factor ? I18nStore.tFactorName(factor) : '',
         questionName: choice.name,
         factor,
         diff: round(row.left - row.right, precision ?? 2),

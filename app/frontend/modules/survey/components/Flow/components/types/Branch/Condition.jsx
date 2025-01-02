@@ -14,11 +14,13 @@ export class Condition extends Component {
   }
 
   changeConditionType = (e) => {
-    const { condition } = this.props
+    const {
+      model, condition, onUpdate, index,
+    } = this.props
     const { value } = e.currentTarget
-    condition.conditionType = value
-    Object.assign(condition, Settings.Branch.defaultsConditions[value])
-    this.forceUpdate()
+    const newCondition = { ...condition, conditionType: value, ...Settings.Branch.defaultsConditions[value] }
+    const conditions = model.props.conditions.map((c, i) => (i === index ? newCondition : c))
+    onUpdate({ ...model, props: { ...model.props, conditions } })
   }
 
   changePrefix = (e) => {

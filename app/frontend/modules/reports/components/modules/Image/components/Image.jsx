@@ -28,11 +28,11 @@ export class Image extends Component {
     }
   }
 
-  renderImg () {
+  renderImg (flipContent) {
     const { module: model, preview } = this.props
 
 
-    const style = this.buildStyles()
+    const style = this.buildStyles(flipContent)
 
     if (preview && model.props.sourceType === 'UserProfileImage') {
       const { user } = ResultStore
@@ -88,7 +88,7 @@ export class Image extends Component {
     return (this.renderText())
   }
 
-  buildStyles () {
+  buildStyles (flipContent) {
     const { module, reportStyles } = this.props
     const {
       borderColor = {}, borderWidth, borderStyle, borderRadius,
@@ -103,6 +103,9 @@ export class Image extends Component {
       if (borderColor) { style.borderColor = convertColor(borderColor) }
     }
     style = _.omit(style, 'border')
+    if (flipContent && module.props.flipImageForOtherDirectionLang) {
+      style.transform = 'scaleX(-1)'
+    }
 
     return style
   }
@@ -118,7 +121,7 @@ export class Image extends Component {
   }
 
   render () {
-    const { module, reportStyles } = this.props
+    const { module, reportStyles, flipContent } = this.props
     const {
       borderRadius,
     } = (module.props.style || {})
@@ -133,11 +136,15 @@ export class Image extends Component {
         x, y, blur, spread = 0, color = '#000000',
       } = style.boxShadow
       outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
+
+      if (flipContent) {
+        outerStyle.boxShadow = `${-x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
+      }
     }
 
     return (
       <Foundation {...this.props} aspectRatio={module.props.aspectRatio} outerStyle={outerStyle}>
-        {this.renderImg()}
+        {this.renderImg(flipContent)}
       </Foundation>
     )
   }

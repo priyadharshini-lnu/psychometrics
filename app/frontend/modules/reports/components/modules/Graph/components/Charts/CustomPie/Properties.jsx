@@ -1,3 +1,4 @@
+import { Checkbox } from 'antd'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
@@ -23,6 +24,12 @@ const Properties = ({ modules }) => {
       item.props.chartBorderWidth = `${value}px`
     })
   }
+  const changeShowLegend = (e) => {
+    updateAll((item) => {
+      item.props.showLegend = e.target.checked
+    })
+  }
+
 
   const { chartBorderWidth, radarMax, source } = props
 
@@ -30,7 +37,7 @@ const Properties = ({ modules }) => {
     <div>
       <div className="margin-bottom-10">Up to 4 items can be displayed</div>
       <hr className={styles.divider} />
-      {source?.type === 'CampaignFactors' && (
+      {source?.type === 'CampaignFactors' ? (
         <>
           <div className={styles.block}>
             Radar Maximum
@@ -43,7 +50,7 @@ const Properties = ({ modules }) => {
           </div>
           <hr className={styles.divider} />
         </>
-      )}
+      ) : ''}
       <div className={styles.block}>
         Pie Thickness
         <ChoicesInput
@@ -52,6 +59,15 @@ const Properties = ({ modules }) => {
           minValue={1}
           maxValue={30}
         />
+      </div>
+      <div className={styles.block}>
+        <Checkbox
+          checked={model.props.showLegend || false}
+          onChange={changeShowLegend}
+          className="font-normal"
+        >
+          {I18n.t('reports.builder.graph.properties.showLegend')}
+        </Checkbox>
       </div>
     </div>
   )

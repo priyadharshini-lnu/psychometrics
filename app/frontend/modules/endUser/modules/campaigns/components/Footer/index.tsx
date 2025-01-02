@@ -10,6 +10,7 @@ import {
   privacyPageLink,
   getSecondaryLogo,
   getName,
+  getSecondaryLogoAltText,
 } from '~/modules/endUser/modules/campaigns/core/project'
 import lighthouseLogo from '~/assets/tte-logo-no-text-raster.png'
 import { isProctored } from '~/utils/isProctored'
@@ -23,6 +24,7 @@ const mapStateToProps = (state: RootState) => ({
   privacyText: getPrivacyText(state),
   privacyPageLink: privacyPageLink(state),
   secondaryLogo: getSecondaryLogo(state),
+  secondaryLogoAltText: getSecondaryLogoAltText(state),
   projectName: getName(state),
 })
 
@@ -35,6 +37,7 @@ const FooterComponent: FC<PropsFromRedux> = ({
   privacyPageLink,
   secondaryLogo,
   projectName,
+  secondaryLogoAltText,
 }) => {
   if (isProctored()) {
     return null
@@ -49,7 +52,13 @@ const FooterComponent: FC<PropsFromRedux> = ({
           privacyPageLink={privacyPageLink}
         />
       )}
-      footerRight={<PartnerLogo secondaryLogo={secondaryLogo} projectName={projectName} />}
+      footerRight={(
+        <PartnerLogo
+          secondaryLogo={secondaryLogo}
+          secondaryLogoAltText={secondaryLogoAltText}
+          projectName={projectName}
+        />
+)}
     />
   )
 }
@@ -95,15 +104,17 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
   )
 }
 
-type PartnerLogsProps = Pick<PropsFromRedux, 'secondaryLogo' | 'projectName' >
-
+type PartnerLogsProps = Pick<PropsFromRedux, 'secondaryLogo' | 'projectName'> & {
+  secondaryLogoAltText: string;
+};
 const PartnerLogo: FC<PartnerLogsProps> = ({
   secondaryLogo,
   projectName,
+  secondaryLogoAltText,
 }) => {
   if (secondaryLogo) {
     return (
-      <img src={secondaryLogo} alt={projectName} className={styles['footer-logo']} />
+      <img src={secondaryLogo} alt={secondaryLogoAltText || projectName} className={styles['footer-logo']} />
     )
   }
 

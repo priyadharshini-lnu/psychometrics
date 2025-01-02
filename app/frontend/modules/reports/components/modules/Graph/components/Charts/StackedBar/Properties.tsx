@@ -24,6 +24,7 @@ const graphSubtypeOptions = [
 const axisDisplayOptions = [
   { label: I18n.t('reports.builder.graph.properties.hideXAxisLine'), propName: 'xAxisLinesHide' },
   { label: I18n.t('reports.builder.graph.properties.hideYAxisLine'), propName: 'yAxisLinesHide' },
+  { label: I18n.t('reports.builder.graph.properties.hideYAxisTitle'), propName: 'hideYAxisTitle' },
 ]
 
 export const StackedBarProperties: React.FC<Props> = ({ modules }) => {
@@ -67,6 +68,22 @@ export const StackedBarProperties: React.FC<Props> = ({ modules }) => {
       />
       <BarWeight value={pointWidth} changeHandler={changePointWidth} />
       <AxisOptions model={model} changeHandler={checkboxHandler} options={axisDisplayOptions} />
+
+      <Checkbox
+        checked={model.props.hideYaxisLabels || false}
+        onChange={e => checkboxHandler('hideYaxisLabels', e)}
+        className="font-normal"
+      >
+        Hide Y-axis labels
+      </Checkbox>
+
+      <Checkbox
+        checked={model.props.showLegend || false}
+        onChange={e => checkboxHandler('showLegend', e)}
+        className="font-normal"
+      >
+        {I18n.t('reports.builder.graph.properties.showLegend')}
+      </Checkbox>
     </Space>
   )
 }

@@ -99,7 +99,7 @@ previous_assessments_required: true)
     )
     _ua2 = create(
       :user_assessment, campaign: campaign, subject: user, evaluator: user,
-      assessment: campaign_group2_assessment1.assessment, status: :completed
+      assessment: campaign_group2_assessment1.assessment, status: :timed_out
     )
     ua3 = create(
       :user_assessment, campaign: campaign, subject: user, evaluator: user,

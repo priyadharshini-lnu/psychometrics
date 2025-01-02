@@ -35,7 +35,8 @@ module Threesixty
               piped_text_context: piped_text_context,
               current_option: @campaign.option,
               current_user: current_user,
-              threesixty_campaign: @campaign
+              threesixty_campaign: @campaign,
+              lang: params[:lang]
             }
           ).serialize(@user_report)
         end

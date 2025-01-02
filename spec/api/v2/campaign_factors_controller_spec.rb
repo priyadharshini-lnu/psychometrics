@@ -243,6 +243,47 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
     end
   end
 
+  path '/campaigns/{campaign_id}/campaign_factors/remove_all' do
+    post 'Remove all CampaignFactors' do
+      operationId 'RemoveAllCampaignFactors'
+      description 'Remove all campaign Factors'
+      tags 'Campaign Factor Scoring'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :body, in: :body, required: true
+
+      response '200', 'remove all campaign factors' do
+        examples 'application/json' => {
+          data: [{
+            type: 'campaign_factors',
+            id: 1
+          }]
+        }
+
+        run_test! do |_response|
+          expect(campaign.campaign_factors).to be_empty
+          expect(campaign.campaign_factor_groups).to be_empty
+        end
+      end
+    end
+  end
+
+  describe 'validate_campaign_factor_deletion' do
+    let(:campaign_factor) { create(:campaign_factor, campaign: campaign) }
+
+    it 'returns a successful response' do
+      get "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/validate_campaign_factor_deletion",
+          params: { id: campaign_factor.id }
+
+      expect(response).to have_http_status(:ok)
+
+      expect(JSON.parse(response.body)).to eq(
+        'response' => "Are you sure you want to delete the campaign factor '#{campaign_factor.name}'?"
+      )
+    end
+  end
+
   describe 'import' do
     it 'queues import_campaign_factors job successfully' do
       file = Rack::Test::UploadedFile.new(
@@ -262,6 +303,53 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import", params: { file: file }
 
       expect(response).to have_http_status(422)
+    end
+  end
+
+  path '/campaigns/{campaign_id}/campaign_factors/bulk_update' do
+    post 'Bulk update Campaign Factors' do
+      operationId 'BulkUpdateCampaignFactors'
+      description 'Bulk update attributes for multiple campaign factors'
+      tags 'Campaign Factor Scorings'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :body, in: :body, required: true,
+                schema: { '$ref' => '#/components/schemas/CampaignFactorBulkRequest' }
+
+      response '200', 'Bulk update campaign factors' do
+        schema '$ref' => '#/components/schemas/OKResponse'
+
+        let(:campaign_factor1) { create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 1') }
+        let(:campaign_factor2) { create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 2') }
+
+        let(:body) do
+          {
+            data: [
+              {
+                type: 'campaign_factors',
+                id: campaign_factor1.id.to_s,
+                attributes: { name: 'Updated Factor 1', code: 'fc1' }
+              },
+              {
+                type: 'campaign_factors',
+                id: campaign_factor2.id.to_s,
+                attributes: { name: 'Updated Factor 2', code: 'fc2' }
+              }
+            ]
+          }
+        end
+
+        run_test! do
+          campaign_factor1.reload
+          campaign_factor2.reload
+
+          expect(campaign_factor1.name).to eq('Updated Factor 1')
+          expect(campaign_factor2.name).to eq('Updated Factor 2')
+          expect(campaign_factor1.code).to eq('fc1')
+          expect(campaign_factor2.code).to eq('fc2')
+        end
+      end
     end
   end
 end

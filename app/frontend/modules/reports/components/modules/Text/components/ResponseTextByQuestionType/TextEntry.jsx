@@ -5,11 +5,6 @@ import { SafeHTML } from '~/components/SafeHTML'
 const TextEntry = (props) => {
   const {
     isReal, result,
-    model: {
-      props: {
-        answerIndex = 0,
-      },
-    },
     question: {
       props: {
         type,
@@ -18,7 +13,7 @@ const TextEntry = (props) => {
   } = props
   if (isReal && !result) { return null }
 
-  const text = _.get(result, [answerIndex, 'value'], '')
+  const text = TextEntryResult(props)
   if (type === 'RichText') {
     return (
       <SafeHTML
@@ -30,8 +25,27 @@ const TextEntry = (props) => {
   return <div>{text}</div>
 }
 
+export const TextEntryResult = (props) => {
+  const {
+    result,
+    model: {
+      props: {
+        answerIndex = 0,
+      },
+    },
+    question: {
+      props: {
+        type,
+      },
+    },
+  } = props
+  if (type === 'Email') {
+    return _.get(result, ['message'], '')
+  }
+  return _.get(result, [answerIndex, 'value'], '')
+}
+
 TextEntry.propTypes = {
-  model: PropTypes.object.isRequired,
   result: PropTypes.any,
   isReal: PropTypes.bool,
 }

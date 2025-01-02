@@ -24,6 +24,8 @@ import ImportReportsAndAssessmentsModal from './ImportReportsAndAssessmentsModal
 import { ExportUsersModal } from './ExportUsersModal'
 import ToolsDropdown from './ToolsDropdown'
 import { useWindowSize } from '~/hooks/useWindowSize'
+import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
+import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 
 const MODALS = {
   UserFormModal,
@@ -31,6 +33,7 @@ const MODALS = {
   ResetPasswordModal,
   ExportUsersModal,
   ImportReportsAndAssessmentsModal,
+  PushWebhookModal,
 }
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',
@@ -348,7 +351,8 @@ interface ActionMenuData {
     edit: boolean
     loginAs: boolean
     resetPassword: boolean
-    remove: boolean
+    remove: boolean,
+    pushWebhook: boolean,
   },
   openModal(name: string, props: object): void
   modal: Omit<ModalStaticFunctions, 'warn'>,
@@ -400,6 +404,11 @@ const getActionsMenuProps = ({
     label: I18n.t('common.actions.remove'),
   })
 
+  permissions.pushWebhook && menuItems.push({
+    key: 'pushWebhook',
+    label: 'Push Webhook',
+  })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return onEdit()
@@ -409,6 +418,16 @@ const getActionsMenuProps = ({
     }
     if (key === 'remove') {
       return handleDelete()
+    }
+
+    if (key === 'pushWebhook') {
+      return openModal('PushWebhookModal', {
+        campaignId,
+        parentType: ParentResourceType.CampaignUser,
+        parentId: user.id,
+        testMode: false,
+        projectId,
+      })
     }
   }
 

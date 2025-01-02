@@ -170,6 +170,12 @@ class User < ApplicationRecord
     client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids
   end
 
+  def campaign_user_external_id(campaign_id)
+    return unless campaign_id
+
+    campaign_users.find_by(campaign_id: campaign_id)&.external_id
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id full_name first_name last_name name email role global_assessor is_anonym]
   end

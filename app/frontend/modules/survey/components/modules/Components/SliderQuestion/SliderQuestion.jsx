@@ -1,5 +1,5 @@
 import times from 'lodash/times'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
   Slider as AntSlider, InputNumber, Row, Col, Button,
   Checkbox,
@@ -11,6 +11,10 @@ import LabelEditor from '~/modules/survey/components/LabelEditor'
 import { scaleNumber } from '~/utils/number'
 
 import styles from './Slider.less'
+
+const antdSliderClassname = 'antd-slider-control'
+
+const { I18n: I18nTextTranslations } = window
 
 export const SliderQuestion = ({
   model, I18n, preview, changeLabel, changeValue, readOnly,
@@ -28,7 +32,17 @@ export const SliderQuestion = ({
   const unscaledValue = value => scaleNumber(value, minValue, maxValue, 1, 100)
   const scaledAnswers = (result.answers || []).map(answer => ({ ...answer, value: unscaledValue(answer.value) }))
   const [values, setValue] = useState(scaledAnswers)
+  const questionRowRef = useRef(null)
 
+  useEffect(() => {
+    if (questionRowRef.current && preview) {
+      const sliderHandles = questionRowRef.current.querySelectorAll(`.${antdSliderClassname}`) || []
+      _.each(sliderHandles, (sliderHandle, index) => {
+        sliderHandle.setAttribute('aria-describedby', `label-instruction-${model.id}`)
+        sliderHandle.setAttribute('aria-labelledby', `slider-label-${model.id}-${index}`)
+      })
+    }
+  }, [])
 
   const onChangeSlider = (choiceId, value, update) => {
     setValue({ ...values, [choiceId]: { index: choiceId, value: update ? unscaledValue(scaledValue(value)) : value } })
@@ -69,7 +83,7 @@ export const SliderQuestion = ({
       {times(labels, i => (
         <Col key={i} flex="auto" style={{ width: labelWidth }} className={styles.label}>
           {preview ? (
-            <span style={{ overflowWrap: 'break-word' }}>
+            <span aria-hidden style={{ overflowWrap: 'break-word' }}>
               {I18n.tQuestion(model, `labelsTexts${i + 1}`, { label: i }) || moduleConfig.defaultLabelText(i + 1)}
             </span>
           ) : (
@@ -123,26 +137,37 @@ export const SliderQuestion = ({
   )
 
   const questionRows = (
-    <div className={styles.responseRowContainer}>
-      {questionChoices.map(choiceId => (
+    <div ref={questionRowRef} className={styles.responseRowContainer}>
+      {questionChoices.map((choiceId, index) => (
         <Row key={choiceId} className={`${styles.gridRow} ${styles.responseRow}`}>
           {!hideChoiceText && (
-          <Col span={8}>
-            {preview ? (
-              <span>
-                {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, { choice: choiceId })
+            <Col span={8}>
+              {preview ? (
+                <span id={`slider-label-${model.id}-${index}`}>
+                  {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, { choice: choiceId })
                     || moduleConfig.defaultChoiceText(choiceId + 1)}
-              </span>
-            ) : (
-              <LabelEditor
-                onChange={e => changeLabel('choicesTexts', choiceId, e)}
-                maxWidth={150}
-                value={props.choicesTexts[choiceId] || moduleConfig.defaultChoiceText(choiceId + 1)}
-              />
-            )}
-          </Col>
+                </span>
+              ) : (
+                <LabelEditor
+                  onChange={e => changeLabel('choicesTexts', choiceId, e)}
+                  maxWidth={150}
+                  value={props.choicesTexts[choiceId] || moduleConfig.defaultChoiceText(choiceId + 1)}
+                />
+              )}
+            </Col>
           )}
           <Col span={hideValue ? 24 : 20} className={styles.responseLabelRowMobile}>
+            {preview && (
+              <span className="sr-only" id={`label-instruction-${model.id}`}>
+                {I18nTextTranslations.t(
+                  'frontend.aria.slider_label_instruction',
+                  {
+                    min: I18n.tQuestion(model, `labelsTexts${1}`, { label: 0 }) || moduleConfig.defaultLabelText(1),
+                    max: I18n.tQuestion(model, `labelsTexts${labels}`, { label: labels ? labels - 1 : 0 }),
+                  },
+                )}
+              </span>
+            )}
             <Row>{labelRow}</Row>
           </Col>
 
@@ -169,19 +194,23 @@ export const SliderQuestion = ({
             <Row className={styles.responseControlsRow}>
               <Col className={styles.sliderContainer} span={hideValue ? 24 : 21}>
                 <AntSlider
+                  classNames={{ handle: antdSliderClassname }}
                   onAfterChange={value => onChangeSlider(choiceId, value, true)}
-                  onChange={value => onChangeSlider(choiceId, value)}
+                  onChange={(value) => {
+                    onChangeSlider(choiceId, value)
+                  }}
                   value={preview
                     ? (values[choiceId]?.value)
                     : props.fakeResults[choiceId]}
-                  min={1}
-                  max={100}
+                  min={minValue}
+                  max={maxValue}
                   className="ms-0 me-0"
                     // Widthout this extra span with key, the tooltip doesn't move properly
                   disabled={readOnly || result.notApplicable?.[choiceId] === true}
                   tooltip={{
                     formatter: hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>,
                   }}
+                  aria-describedby={`label-instruction-${model.id}`}
                 />
               </Col>
               {!hideValue && (
@@ -196,13 +225,16 @@ export const SliderQuestion = ({
                     max={maxValue}
                     controls={false}
                     disabled={readOnly || result.notApplicable?.[choiceId] === true}
+                    aria-labelledby={`slider-label-${model.id}-${index}`}
                   />
                   {!readOnly && (
                     <Button
+                      id={`clear-value-${model.id}-${index}`}
                       disabled={readOnly || result.notApplicable?.[choiceId] === true}
                       onClick={() => onChangeSlider(choiceId, minValue, true)}
                       type="link"
                       className="text-align-c"
+                      aria-labelledby={`slider-label-${model.id}-${index} clear-value-${model.id}-${index}`}
                     >
                       Clear
                     </Button>

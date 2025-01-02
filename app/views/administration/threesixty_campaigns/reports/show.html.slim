@@ -9,6 +9,7 @@
       .panel-heading
         h3.panel-title = t('.title')
         / = render partial: 'application/lang', locals: { with_confirm: false, locales: @available_translations }
+        = render partial: 'lang', locals: { with_confirm: false, locales: @available_languages }
         - if policy(@user_report, { campaign_id: @user_report.campaign_id }).download?
           = link_to(download_url, class: 'mrl pull-right', data: { behavior:  'export-pdf', uses_lambda:  uses_lambda })
             button class="btn btn-default #{uses_lambda ? nil : 'ladda-button'}" type="button" data-style="zoom-out" data-spinner-color="#000000"

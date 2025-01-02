@@ -6,11 +6,13 @@ import { actions } from '~/modules/reports/core/temp/selection'
 
 
 const Foundation = ({
-  module, shadow, preview, outerStyle, children, error, closeRichEditor,
+  module, shadow, preview, outerStyle, children, error, closeRichEditor, pageSize, flipContent,
 }) => {
   const selectedIds = useSelector(state => state.report.ui.selection.selected)
   const dispatch = useDispatch()
   const isSelected = selectedIds.includes(module.id)
+  const lang = new URLSearchParams(window.location.search).get('lang') || 'en'
+  const isRTL = ['ar', 'he'].includes(lang)
 
   const select = (e) => {
     if (preview) { return }
@@ -41,7 +43,7 @@ const Foundation = ({
 
   if (module.meta.hidden) { return null }
   const {
-    left, top, width, height, rotation,
+    left, top, width, height, rotation = 0,
   } = mprops.position
 
   const style = {
@@ -49,13 +51,11 @@ const Foundation = ({
     height,
     zIndex: mprops.zIndex,
   }
-  if (preview) {
-    style.top = `${top}px`
-    style.left = `${left}px`
-    style.transform = `rotate(${rotation || 0}deg)`
-  } else {
-    style.transform = `translate(${left}px,${top}px) rotate(${rotation || 0}deg)`
-  }
+
+  style.transform = flipContent
+    ? `translate(${pageSize.width - left - width}px,${top}px) rotate(${-(rotation || 0)}deg)`
+    : `translate(${left}px,${top}px) rotate(${rotation || 0}deg)`
+
   const className = cs(styles.base,
     {
       [styles.editor]: !preview,
@@ -63,6 +63,7 @@ const Foundation = ({
       [styles.selected]: isSelected,
       [styles.locked]: module.meta.locked,
       [styles.error]: error,
+      rtl: isRTL,
     }, 'fe-module-container')
 
   return (
@@ -74,7 +75,7 @@ const Foundation = ({
       onDoubleClick={forceSelect}
     >
       <div className={styles.sizeBox} />
-      <div className={`${styles.frame}`} style={outerStyle}>
+      <div className={cs(styles.frame)} style={outerStyle}>
         {children}
       </div>
     </div>

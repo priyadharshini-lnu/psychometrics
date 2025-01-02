@@ -12,6 +12,7 @@ module Reports
       @report = args[:report] || @user_report.report
       @locale = args[:locale]
       @current_user = args[:current_user]
+      @lang = args[:lang] || @locale
     end
 
     def call
@@ -27,7 +28,8 @@ module Reports
                 data: ReportSerializer.new(
                   context: {
                     piped_text_context: piped_text_context, membership: membership,
-                    module_overrides: user_report&.text_module_overrides
+                    module_overrides: user_report&.text_module_overrides,
+                    lang: @lang
                   }
                 ).serialize(report).to_json,
                 locales: translations(piped_text_context).to_json,

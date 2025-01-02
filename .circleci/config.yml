@@ -188,6 +188,14 @@ commands:
           name: Login to heroku
           command: |
             echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
+  heroku_cli_install:
+    steps:
+      - node/install:
+          node-version: '16.20'
+      - run:
+          name: Install heroku cli
+          command: |
+            npm install -g heroku@9.5.1
 
 
 jobs:
@@ -412,7 +420,7 @@ jobs:
             git add -f public/assets
             git add -f config/database.yml
             git commit -m "ci compiled assets" --no-verify
-      - heroku/install
+      - heroku_cli_install
       - heroku/deploy-via-git:
           force: true
           app-name: << parameters.app-name >>
@@ -435,7 +443,8 @@ jobs:
       - checkout
       - when:
           condition:
-            equal: [ master, << pipeline.git.branch >> ]
+            or:
+              - equal: [ master, << pipeline.git.branch >> ]
           steps:
             - azure-cli/install
             - azure-cli/login-with-user-or-service-principal
@@ -461,7 +470,8 @@ jobs:
           aws s3 cp --recursive sync/vite s3://psychometrics-static-assets/vite
       - when:
           condition:
-            equal: [ master, << pipeline.git.branch >> ]
+            or:
+              - equal: [ master, << pipeline.git.branch >> ]
           steps:
             - docker/push:
                 step-name: Push Docker image - latest
@@ -483,7 +493,8 @@ jobs:
             docker push registry.heroku.com/<< parameters.app-name >>/release
       - when:
           condition:
-            equal: [ master, << pipeline.git.branch >> ]
+            or:
+              - equal: [ master, << pipeline.git.branch >> ]
           steps:
           - run:
               name: Tag and push docker image for testing
@@ -501,7 +512,7 @@ jobs:
       app-name:
         type: string
     steps:
-      - heroku/install
+      - heroku_cli_install
       - heroku_docker_login
       - run:
           name: Release to heroku
@@ -509,7 +520,8 @@ jobs:
             heroku container:release web worker release -a << parameters.app-name >>
       - when:
           condition:
-            equal: [ master, << pipeline.git.branch >> ]
+            or:
+              - equal: [ master, << pipeline.git.branch >> ]
           steps:
           - run:
               name: Release heroku testing
@@ -523,7 +535,7 @@ jobs:
       target-app-name:
         type: string
     steps:
-      - heroku/install
+      - heroku_cli_install
       - heroku_docker_login
       - run:
           name: Release to heroku
@@ -555,6 +567,7 @@ orbs:
   azure-cli: circleci/azure-cli@1.2.2
   docker: circleci/docker@2.4.0
   jira: circleci/jira@1.3.1
+  node: circleci/node@7.0.0
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:

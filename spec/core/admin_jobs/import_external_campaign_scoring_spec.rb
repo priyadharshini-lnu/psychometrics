@@ -4,12 +4,18 @@ require 'rails_helper'
 
 describe AdminJobs::ImportExternalCampaignScoring do
   let(:campaign) { create(:campaign) }
+  let!(:another_campaign) { create(:campaign) }
   let!(:user) { create(:user, email: 'user@example.com', project: campaign.project) }
+
   let!(:campaign_factor1) do
     create(:campaign_factor, factor_type: :external_score, code: 'ext_code1', campaign: campaign)
   end
   let!(:campaign_factor2) do
     create(:campaign_factor, factor_type: :external_score, code: 'ext_code2', campaign: campaign)
+  end
+
+  let!(:campaign_factor_old) do
+    create(:campaign_factor, factor_type: :external_score, code: 'ext_code1', campaign: another_campaign)
   end
 
   let(:job_record) do

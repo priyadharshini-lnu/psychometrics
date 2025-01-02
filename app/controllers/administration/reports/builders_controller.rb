@@ -9,7 +9,8 @@ module Administration
       def show
         render json: ReportSerializer.new(
           context: {
-            builder: true
+            builder: true,
+            lang: params[:lang]
           }
         ).serialize(@report)
       end

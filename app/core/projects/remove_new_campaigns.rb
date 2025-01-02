@@ -37,6 +37,7 @@ module Projects
           end
         end
       end
+
       Rails.logger.info "Project #{project.id} New campaigns - Deleted"
 
       broadcast :ok
@@ -52,6 +53,7 @@ module Projects
       SavilleUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
       PearsonUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
       IihtUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
+      SimulationUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
       delete_users_results(campaign)
       UserAssessment.where(campaign_id: campaign.id).delete_all
     end

@@ -24,8 +24,6 @@ module CampaignUsers
       )
     end
 
-    private
-
     def campaign_user_status_data
       {
         campaign: campaign_user.campaign,
@@ -38,19 +36,8 @@ module CampaignUsers
       {
         campaign: campaign_user.campaign,
         subject: campaign_user.user,
-        results: results_data
+        results: CampaignUsers::Results.call!(campaign_user)
       }
-    end
-
-    def results_data
-      campaign_user.campaign_factor_values.includes(:campaign_factor).map do |factor_value|
-        {
-          id: factor_value.campaign_factor.code,
-          name: factor_value.campaign_factor.name,
-          value: factor_value.value,
-          value_type: factor_value.campaign_factor.output_type
-        }
-      end
     end
   end
 end

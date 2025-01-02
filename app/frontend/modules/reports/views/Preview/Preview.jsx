@@ -20,7 +20,7 @@ export class Preview extends Component {
   render () {
     const {
       localeDirection, loaded, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
-      allowEdit, allowApprove,
+      allowEdit, allowApprove, flipContent,
     } = this.props
     if (!loaded) { return null }
     const visiblePages = skipLogic
@@ -32,6 +32,7 @@ export class Preview extends Component {
           <Page
             model={page}
             key={i}
+            flipContent={flipContent}
             pageNumber={i + 1}
             totalPages={visiblePages.length}
             rstore={rstore}

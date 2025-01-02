@@ -29,6 +29,9 @@ const uniqType = (modules) => {
 
 
 const PropertyPanel = (props) => {
+  const lang = new URLSearchParams(window.location.search).get('lang') || 'en'
+  const isRTL = ['ar', 'he'].includes(lang)
+
   const [popupOpen, setPopupOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState('properties')
   const inspector = useRef(null)
@@ -181,10 +184,10 @@ const PropertyPanel = (props) => {
           </Panel>
           <Panel header="Co-ordinates" key="Co-ordinates">
             {renderSlider({
-              value: position.left,
+              value: isRTL ? width - position.left - position.width : position.left,
               min: 0,
               max: width - position.width,
-              onChange: value => onChangePosition({ left: value }),
+              onChange: value => onChangePosition({ left: isRTL ? width - value - position.width : value }),
             }, 'X:')}
             {renderSlider({
               value: position.top,

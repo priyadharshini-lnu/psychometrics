@@ -10,6 +10,12 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:clients, :view_licenses)
     end
 
+    def view_data_exports?
+      @user.is?(:superadmin, :client_admin, :project_admin, :campaign_admin) ||
+        @user.has_permission?(:data_exports, :user_report_events) ||
+        @user.has_permission?(:data_exports, :admin_permissions)
+    end
+
     def copy?
       if record.project? || record.campaign? || record.sub_campaign?
         record.active? && (@user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id))

@@ -9,6 +9,7 @@ interface Props {
   onChange: (value: string | null) => void
   dateFormat: string
   readOnly: boolean
+  id?: string
 }
 
 export const DateEntry: React.FC<Props> = ({
@@ -16,6 +17,7 @@ export const DateEntry: React.FC<Props> = ({
   value,
   dateFormat,
   readOnly,
+  id,
 }) => {
   const handleAnswerChange = (value: dayjs.Dayjs | null): void => {
     if (value) {
@@ -31,6 +33,7 @@ export const DateEntry: React.FC<Props> = ({
 
   return (
     <DatePicker
+      id={id}
       allowClear
       disabled={readOnly}
       picker={pickerMode}

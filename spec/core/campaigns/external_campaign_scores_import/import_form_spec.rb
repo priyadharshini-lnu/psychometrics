@@ -14,6 +14,10 @@ describe Campaigns::ExternalCampaignScoresImport::ImportForm do
     create(:campaign_factor, factor_type: :external_score, code: 'ext_code2', campaign: campaign)
   end
 
+  let!(:campaign_factor_old) do
+    create(:campaign_factor, factor_type: :external_score, code: 'ext_code1', campaign: second_campaign)
+  end
+
   it 'validates presence of file is not passed' do
     form = described_class.new
     expect(form.valid?).to_not eq(true)
@@ -53,7 +57,7 @@ describe Campaigns::ExternalCampaignScoresImport::ImportForm do
   end
 
   it 'validates campaign factor code belongs to campain' do
-    campaign_factor.update!(campaign_id: second_campaign.id)
+    campaign_factor2.update!(campaign_id: second_campaign.id)
 
     file = Rack::Test::UploadedFile.new(
       Rails.root.join('spec/fixtures/files/import_external_campaign_scoring/invalid_campaign_factor_codes.csv'),
@@ -61,7 +65,7 @@ describe Campaigns::ExternalCampaignScoresImport::ImportForm do
     )
     form = described_class.new(file: file).with_context(campaign: campaign)
     expect(form.valid?).to eq(false)
-    expect(form.errors[:base]).to include('Following campaign factor_codes are invalid: ext_code1')
+    expect(form.errors[:base]).to include('Following campaign factor_codes are invalid: ext_code2')
   end
 
   it 'validates user emails exists' do
@@ -93,6 +97,17 @@ describe Campaigns::ExternalCampaignScoresImport::ImportForm do
       expect(form.valid?).to eq(true)
       expect(form.processed_rows).to be_an(Array)
       expect(form.processed_rows.size).to eq(1)
+    end
+
+    it 'returns processed rows with correct factor ids and factor values' do
+      file = Rack::Test::UploadedFile.new(file_path, 'text/csv')
+      form = described_class.new(file: file).with_context(campaign: campaign)
+
+      expect(form.processed_rows).to eq([{ 'email' => user.email,
+                                           'factor_values' => { campaign_factor.id => '60',
+                                                                campaign_factor2.id => '71.8' } }])
+
+      expect(form.processed_rows[0]['factor_values'].keys).not_to include(campaign_factor_old.id)
     end
   end
 end

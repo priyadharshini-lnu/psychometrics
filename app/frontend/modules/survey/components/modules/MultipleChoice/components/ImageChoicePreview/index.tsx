@@ -2,8 +2,9 @@ import React, {
   ChangeEvent, FC, useState, MouseEvent,
 } from 'react'
 import { Button, Modal, Typography } from 'antd'
-import { ExpandOutlined, CheckOutlined, StopOutlined } from '@ant-design/icons'
+import { CheckOutlined, StopOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { ExpandOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
@@ -28,6 +29,8 @@ interface Props {
   handleChoiceChange(event?: ChangeEvent<HTMLInputElement>): void
   handleNotApplicableChange(): void
 }
+
+const { I18n } = window
 
 export const ImageChoices: FC<Props> = ({
   id,
@@ -172,47 +175,52 @@ const ImageChoiceCard: FC<ImageChoiceCardProps> = ({
   onChange,
   isDisabled,
 }) => (
-  <label
-    className={cs(styles.card, { [styles.checked]: isChecked })}
-    htmlFor={`mc-input-${id}-${choiceId}`}
-    key={choiceId}
-  >
-    <span
-      className={cs(
-        styles.checkmarkButton,
-        'ant-btn ant-btn-circle ant-btn-icon-only',
-        { 'ant-btn-primary': isChecked },
-      )}
+  <div className={styles.imageInputContainer}>
+    <input
+      id={`mc-input-${id}-${choiceId}`}
+      type={multiple ? 'checkbox' : 'radio'}
+      name={`${id}`}
+      value={choiceId}
+      disabled={isDisabled}
+      checked={isChecked}
+      onChange={onChange}
+      className={styles.input}
+    />
+    <label
+      className={cs(styles.card, { [styles.checked]: isChecked })}
+      htmlFor={`mc-input-${id}-${choiceId}`}
+      key={choiceId}
     >
-      {isChecked && <CheckOutlined />}
-      <input
-        id={`mc-input-${id}-${choiceId}`}
-        type={multiple ? 'checkbox' : 'radio'}
-        name={`${id}`}
-        className="hidden"
-        value={choiceId}
-        disabled={isDisabled}
-        checked={isChecked}
-        onChange={onChange}
-      />
-    </span>
+      <span
+        aria-hidden
+        className={cs(
+          styles.checkmarkButton,
+          'ant-btn ant-btn-circle ant-btn-icon-only',
+          { 'ant-btn-primary': isChecked },
+        )}
+      >
+        {isChecked && <CheckOutlined />}
+      </span>
+      {isNotApplicableOption ? (
+        <StopOutlined className={styles.notApplicable} />
+      ) : (
+        <img loading="lazy" alt={text} src={src} />
+      )}
+      <Typography.Text aria-hidden="true" strong className="mt-2 mb-2 ta-c">
+        {text}
+      </Typography.Text>
+    </label>
     {isImagePreviewEnable && (
       <Button
         className={styles.previewButton}
         shape="circle"
         icon={<ExpandOutlined />}
         onClick={event => onPreview(src, event)}
+        aria-label={I18n.t('frontend.aria.enlarge_view_text', { text })}
       />
     )}
-    {isNotApplicableOption ? (
-      <StopOutlined className={styles.notApplicable} />
-    ) : (
-      <img loading="lazy" alt={text} src={src} />
-    )}
-    <Typography.Text strong className="mt-2 mb-2 ta-c">
-      {text}
-    </Typography.Text>
-  </label>
+  </div>
+
 )
 
 export default ImageChoices

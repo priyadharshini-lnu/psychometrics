@@ -43,7 +43,8 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
                 edit: true,
                 reset_password: true,
                 remove: true,
-                send_mail: true
+                send_mail: true,
+                export: true
               }
             }
           }
@@ -58,7 +59,8 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
               'login_as' => true,
               'remove' => true,
               'reset_password' => true,
-              'send_mail' => true
+              'send_mail' => true,
+              'export' => true
             }
           )
           expect(membership_response).to have_attribute(:first_name).with_value(client_admin.user.first_name)
@@ -277,6 +279,107 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
           expect(membership_response).to have_attribute(:last_name).with_value(user.last_name)
           expect(membership_response).to have_attribute(:email).with_value(user.email)
           expect(membership_response).to have_attribute(:admin_role_ids).with_value([admin_role.id])
+        end
+      end
+    end
+  end
+
+  path '/memberships/export' do
+    post 'Export admin members' do
+      operationId 'MembershipList'
+      tags 'Membership'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :'filter[client_id_eq]', in: :query, required: false
+      parameter name: :'filter[project_id_eq]', in: :query, required: false
+      parameter name: :'filter[campaign_id_eq]', in: :query, required: false
+      parameter name: :'filter[with_role]', in: :query, required: true
+      parameter name: :body, in: :body, required: true
+
+      response '200', 'creates export with permission job for client' do
+        examples 'application/json' => {
+          type: 'memberships',
+          data: {
+            attributes: {
+              client_id: 1
+            }
+          }
+        }
+
+        let!(:client_admin) { create(:client_admin_membership) }
+        let(:'filter[with_role]') { 'client_admin' }
+        let(:'filter[client_id_eq]') { client_admin.client_id }
+        let(:body) do
+          jsonapi_resource_request(
+            'memberships',
+            {
+              client_id: client_admin.client_id
+            }
+          )
+        end
+
+        run_test! do
+          expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
+          expect(AdminJobRecord.last.data).to eq({ 'client_id' => client_admin.client_id })
+        end
+      end
+
+      response '200', 'creates admin export with permission job for project' do
+        examples 'application/json' => {
+          type: 'memberships',
+          data: {
+            attributes: {
+              project_id: 1
+            }
+          }
+        }
+
+        let!(:project) { create(:project) }
+        let!(:project_admin) { create(:project_admin, project: project) }
+        let(:'filter[with_role]') { 'project_admin' }
+        let(:'filter[project_id_eq]') { project.id }
+        let(:body) do
+          jsonapi_resource_request(
+            'memberships',
+            {
+              project_id: project.id
+            }
+          )
+        end
+
+        run_test! do
+          expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
+          expect(AdminJobRecord.last.data).to eq({ 'project_id' => project.id })
+        end
+      end
+
+      response '200', 'creates admin export with permission job for campaign' do
+        examples 'application/json' => {
+          type: 'memberships',
+          data: {
+            attributes: {
+              campaign_id: 1
+            }
+          }
+        }
+
+        let(:campaign) { create(:campaign) }
+        let!(:campaign_admin) { create(:campaign_admin, campaign: campaign) }
+        let(:'filter[with_role]') { 'campaign_admin' }
+        let(:'filter[project_id_eq]') { campaign.project_id }
+        let(:'filter[campaign_id_eq]') { campaign.id }
+        let(:body) do
+          jsonapi_resource_request(
+            'memberships',
+            {
+              campaign_id: campaign.id
+            }
+          )
+        end
+
+        run_test! do
+          expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
+          expect(AdminJobRecord.last.data).to eq({ 'campaign_id' => campaign.id })
         end
       end
     end

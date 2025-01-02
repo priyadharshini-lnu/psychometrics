@@ -7,7 +7,7 @@ module Api
     class UserSchema < BaseSchema
       def self.schema(_, _)
         Dry::Schema.JSON do
-          config.validate_keys = true
+          config.validate_keys = false
 
           required(:id).filled(:int?)
           required(:first_name).filled(:str?)
@@ -19,6 +19,7 @@ module Api
             schema(Api::V1::UserCampaignSchema.schema(_, _))
           end
           required(:campaign_ids).maybe(:array?)
+          optional(:project_datasheet).maybe(:hash?)
         end
       end
     end

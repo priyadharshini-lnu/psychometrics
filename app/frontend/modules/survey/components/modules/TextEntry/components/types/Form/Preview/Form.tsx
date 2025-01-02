@@ -38,11 +38,12 @@ const Form: React.FC<Props> = ({
     model.result.answer(i, value)
   }
 
-  const renderInput = (i: number): React.ReactNode => {
+  const renderInput = (i: number, inputId: string): React.ReactNode => {
     const { name: inputName } = getType(i)
     const Input = inputs[inputName]
     return (
       <Input
+        id={inputId}
         name={`choice_${name}_${id}`}
         index={i}
         model={model}
@@ -56,10 +57,12 @@ const Form: React.FC<Props> = ({
     <ul className={commonStyles.list}>
       {_.map(choicesIds, (i: number) => {
         const { name: inputName } = getType(i)
+        const inputId = `form-input-${id}-${i}`
         return (
           <li className={styles.listItem} key={i}>
             <SafeHTML
-              as="span"
+              as="label"
+              htmlFor={inputId}
               className={styles.previewLabel}
               config="label"
               html={I18n().tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
@@ -69,6 +72,7 @@ const Form: React.FC<Props> = ({
             <div className={styles.inputContainer}>
               {inputName === 'Date' && (
                 <DateEntry
+                  id={inputId}
                   readOnly={readOnly}
                   value={answers?.[i]?.value ?? ''}
                   dateFormat={
@@ -77,7 +81,7 @@ const Form: React.FC<Props> = ({
                   onChange={value => changeAnswer(i, value)}
                 />
               )}
-              {inputName !== 'Date' && renderInput(i)}
+              {inputName !== 'Date' && renderInput(i, inputId)}
             </div>
           </li>
         )

@@ -77,9 +77,15 @@ module Campaigns
             campaign: campaign
           )
         end
+
         if assessment.hogan? && user.hogan_credential && user_assessment.completed?
           Hogan::HandleAssessmentCompletion.call!(user_assessment)
         end
+
+        if options[:operation] == 'add_with_existing_response'
+          ::UsersResults::Recompute.call!(user_assessment.users_result, user)
+        end
+
         user_assessment
       end
 
@@ -159,7 +165,8 @@ module Campaigns
 
         user_assessment.create_simulation_user_assessment(
           participant_id: existing_simulation_user_assessment&.participant_id,
-          content_variation_id: content_variation_id
+          content_variation_id: content_variation_id,
+          time_extension: existing_simulation_user_assessment&.time_extension
         )
       end
 

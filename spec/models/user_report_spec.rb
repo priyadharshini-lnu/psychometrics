@@ -73,4 +73,47 @@ RSpec.describe UserReport, type: :model do
       end
     end
   end
+
+  require 'rails_helper'
+
+  describe 'schedule_report_available_notification' do
+    let(:user) { create(:user) }
+    let(:campaign_user) { create(:campaign_user, user: user) }
+    let(:user_report) do
+      create(:user_report, user: user, campaign_id: campaign_user.campaign_id, user_access: true)
+    end
+    let(:communication) { create(:communication, kind: :report_available, campaign_id: user_report.campaign_id) }
+
+    context 'when status changes to prepared and communication exists' do
+      it 'creates communication emails with the same resource' do
+        communication
+
+        user_report.update!(status: 'prepared')
+
+        expect(CommunicationEmail.count).to eq(1)
+        communication_email = CommunicationEmail.last
+
+        expect(communication_email.communication).to eq(communication)
+        expect(communication_email.user).to eq(user)
+        expect(communication_email.campaign_user).to eq(campaign_user)
+        expect(communication_email.communication_email_resources.first.resource).to eq(user_report)
+      end
+    end
+
+    context 'when status changes to prepared but no communication exists' do
+      it 'does not create any communication emails' do
+        user_report.update!(status: 'prepared')
+
+        expect(CommunicationEmail.count).to eq(0)
+      end
+    end
+
+    context 'when status is not prepared' do
+      it 'does not trigger email creation' do
+        user_report.update!(status: 'not_prepared')
+
+        expect(CommunicationEmail.count).to eq(0)
+      end
+    end
+  end
 end

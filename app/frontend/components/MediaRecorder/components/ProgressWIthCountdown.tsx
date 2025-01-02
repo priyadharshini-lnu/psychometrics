@@ -11,6 +11,7 @@ const { Countdown } = Statistic
 export type ProgressWithCountdownProps = {
     percent: number;
     label: string;
+    strokeColor?: string;
     countdownProps?: CountdownProps & {
       totalDuration: string; // seconds
     };
@@ -19,6 +20,7 @@ export type ProgressWithCountdownProps = {
 const ProgressWithCountdown: React.FC<ProgressWithCountdownProps> = ({
   percent,
   label,
+  strokeColor = '#E89F0F',
   countdownProps,
 }) => {
   const [progress, setProgress] = useState(0)
@@ -31,7 +33,7 @@ const ProgressWithCountdown: React.FC<ProgressWithCountdownProps> = ({
     <Flex vertical className={styles.container}>
       <Flex vertical align="center" className={styles.progressCtr}>
         <Progress
-          strokeColor="#E89F0F"
+          strokeColor={strokeColor}
           className={styles.progress}
           strokeWidth={4}
           percent={progress}

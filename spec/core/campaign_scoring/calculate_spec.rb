@@ -146,9 +146,11 @@ describe CampaignScoring::Calculate do
 
   describe 'calculate datasheet factor_type' do
     let(:datasheet) { create(:datasheet, campaign: campaign) }
+    let(:c1) { create(:sheet_column, sheet: datasheet, name: 'Title', column_type: 'string') }
 
     it 'returns datasheet value' do
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Title' => 'Software Engineer' })
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, string_value: 'Software Engineer')
       cf = create(
         :campaign_factor, campaign: campaign, factor_type: 'formula',
         output_type: 'string', formula: "return datasheet.value('Title')"
@@ -169,7 +171,8 @@ describe CampaignScoring::Calculate do
     end
 
     it 'returns nil if datasheet column is not present' do
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Title' => 'Software Engineer' })
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, string_value: 'Software Engineer')
       cf = create(
         :campaign_factor, campaign: campaign, factor_type: 'formula',
         output_type: 'string', formula: "return datasheet.value('Age')"
@@ -195,7 +198,12 @@ describe CampaignScoring::Calculate do
 
     it 'computes formula' do
       datasheet = create(:datasheet, campaign: campaign)
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Grade' => '1', 'Previous Score' => 10 })
+      c1 = create(:sheet_column, sheet: datasheet, name: 'Previous Score', column_type: 'number')
+      c2 = create(:sheet_column, sheet: datasheet, name: 'Grade', column_type: 'string')
+
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, numeric_value: 10)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c2, string_value: '1')
       create(
         :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
         factor_type: 'assessment', assessment_score_type: 'score'
@@ -231,7 +239,13 @@ describe CampaignScoring::Calculate do
 
     it 'handles single and double quote in factor value' do
       datasheet = create(:datasheet, campaign: campaign)
-      create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Grade' => '1"', 'Previous Grade' => "2'" })
+      c1 = create(:sheet_column, sheet: datasheet, name: 'Previous Grade', column_type: 'string')
+      c2 = create(:sheet_column, sheet: datasheet, name: 'Grade', column_type: 'string')
+
+      r1 = create(:sheet_row, email: user.email, sheet: datasheet)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c2, string_value: '1"')
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, string_value: "2'")
+
       create(
         :campaign_factor, code: 'grade', campaign: campaign, factor_type: 'formula',
          output_type: 'string', formula: "return datasheet.value('Grade')"
@@ -514,8 +528,8 @@ describe CampaignScoring::Calculate do
     )
 
     skill_score = create(
-      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
-      factor_type: 'formula', formula: "return assessment.form_answer(#{assessment.id}, #{question.id}, 0)"
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor, factor_type: 'formula',
+      formula: "return helpers.round(assessment.form_answer(#{assessment.id}, #{question.id}, 0), 0)"
     )
 
     skill_score_from_json_path = create(
@@ -527,7 +541,7 @@ describe CampaignScoring::Calculate do
     values = described_class.call!(campaign, user)
 
     expect(values[skill].value).to eq('Javascript')
-    expect(values[skill_score].value).to eq(2.2)
+    expect(values[skill_score].value).to eq(2)
     expect(values[skill_score_from_json_path].value).to eq(2.2)
   end
 
@@ -623,6 +637,63 @@ describe CampaignScoring::Calculate do
     values = described_class.call!(campaign, user)
 
     expect(values).to be_empty
+  end
+
+  describe 'lua helpers' do
+    it 'it can return values rounded to specified digits' do
+      round = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.round(2.267, 2)'
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[round].value).to eq(2.27)
+    end
+
+    it 'it can find avarage using average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61}, 2)'
+      )
+
+      average_without_precision = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({5.843, 3.34}, nil)'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].value).to eq(53.83)
+      expect(values[average_without_precision].value).to eq(4.5915)
+    end
+
+    it 'it can find avarage using average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61}, 2)'
+      )
+
+      average_without_precision = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({5.843, 3.34}, nil)'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].value).to eq(53.83)
+      expect(values[average_without_precision].value).to eq(4.5915)
+    end
+
+    it 'it raise error when precision is not passed in average helper' do
+      average = create(
+        :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+        factor_type: 'formula', formula: 'return helpers.average({46.66, 61})'
+      )
+
+      values = described_class.call!(campaign, user)
+      expect(values[average].error_message).to eq(
+        'helpers.average: First parameter must be a Lua table, and second parameter is precision (integer)'
+      )
+    end
   end
 
   describe 'lua.user configuration' do

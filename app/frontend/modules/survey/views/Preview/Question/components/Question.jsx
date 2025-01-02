@@ -54,7 +54,9 @@ class Question extends Component {
   }
 
   renderPreview () {
-    const { model, result, randomseed } = this.props
+    const {
+      model, result, randomseed,
+    } = this.props
     const View = Previews[`${model.type}Preview`] || Previews.MultipleChoice
     return (
       <View
@@ -81,7 +83,6 @@ class Question extends Component {
         ))
       }
       </div>
-
     )
   }
 
@@ -125,7 +126,9 @@ class Question extends Component {
         onClick={this.onClick}
       >
         <div className={`${styles.content} ${isRtl(defaultLanguage) ? 'rtl' : ''}`}>
-          <div className={styles.contentOuter}>
+          <div className={cs(styles.contentOuterBase,
+            model.type === 'VideoResponse' ? styles.contentOuterVideoResponse : styles.contentOuter)}
+          >
             {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
             <div className={styles.previewContainer}>
               {this.renderPreview()}

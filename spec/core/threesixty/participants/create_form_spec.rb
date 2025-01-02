@@ -9,6 +9,12 @@ describe Threesixty::Participants::CreateForm do
     create(:datasheet, project_id: campaign.project.id,
                            columns: { 'Age' => 'Number', 'No.' => 'Number' })
   end
+  let!(:columns) do
+    [
+      create(:sheet_column, sheet: datasheet, name: 'Age', column_type: 'number'),
+      create(:sheet_column, sheet: datasheet, name: 'No.', column_type: 'number')
+    ]
+  end
 
   let(:user) { create(:user, email: 'exists@a.com', project: campaign.project) }
   let(:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
@@ -97,7 +103,9 @@ describe Threesixty::Participants::CreateForm do
           { 'field' => 'Age', 'value' => '55', 'comparator' => 'equal' }
         ]
       } }
-      create(:sheet_row, sheet: datasheet, email: subject.user.email, data: { 'Age' => 21, 'No.' => 2 })
+      r1 = create(:sheet_row, sheet: datasheet, email: subject.user.email)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[0], numeric_value: 21)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[1], numeric_value: 2)
     end
 
     it 'should returns error without datasheet' do
@@ -109,7 +117,9 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should returns error with falsy criteria' do
-      create(:sheet_row, sheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
+      r1 = create(:sheet_row, sheet: datasheet, email: 'unexists@a.com')
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[0], numeric_value: 21)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[1], numeric_value: 1)
       form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id).
              with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be false
@@ -122,7 +132,10 @@ describe Threesixty::Participants::CreateForm do
         can_nominate_anyone_from_datasheet: true,
         limit_nomination_by_subject_from_datasheet: false
       } }
-      create(:sheet_row, sheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
+      r1 = create(:sheet_row, sheet: datasheet, email: 'unexists@a.com')
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[0], numeric_value: 21)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[1], numeric_value: 1)
+
       form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id,
                                          first_name: 'first_name', last_name: 'last_name').
              with_context(threesixty_campaign: campaign, subject: subject)
@@ -131,7 +144,10 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be valid with truly criteria' do
-      create(:sheet_row, sheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 55, 'No.' => 1 })
+      r1 = create(:sheet_row, sheet: datasheet, email: 'unexists@a.com')
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[0], numeric_value: 55)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[1], numeric_value: 1)
+
       form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id,
                                          first_name: 'first_name', last_name: 'last_name').
              with_context(threesixty_campaign: campaign, subject: subject)
@@ -140,7 +156,10 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be valid and returns existed user' do
-      create(:sheet_row, sheet: datasheet, email: user.email, data: { 'Age' => 55, 'No.' => 1 })
+      r1 = create(:sheet_row, sheet: datasheet, email: user.email)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[0], numeric_value: 55)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[1], numeric_value: 1)
+
       form = described_class.from_params(evaluator_email: user.email, relationship_id: peer.id).
              with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be true
@@ -148,7 +167,10 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be invalid by uniquesness for existed user' do
-      create(:sheet_row, sheet: datasheet, email: user.email, data: { 'Age' => 55, 'No.' => 1 })
+      r1 = create(:sheet_row, sheet: datasheet, email: user.email)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[0], numeric_value: 55)
+      create(:sheet_row_datum, sheet_row: r1, sheet_column: columns[1], numeric_value: 1)
+
       create(:threesixty_participant, campaign: campaign.campaign, evaluator_id: user.id, subject_id: subject.user_id)
       form = described_class.from_params(evaluator_email: user.email, relationship_id: peer.id).
              with_context(threesixty_campaign: campaign, subject: subject)

@@ -8,7 +8,7 @@ module Swagger
     DEFINITION = {
       swagger: '2.0',
       info: {
-        title: 'TTE Lighthouse API',
+        title: 'MTE Lighthouse API',
         version: '1.0.0',
         'x-logo': {
           url: 'https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
@@ -16,8 +16,8 @@ module Swagger
           altText: 'Lighthouse'
         },
         contact: {
-          name: 'TTE Support',
-          email: 'support@thetalententerprise.com',
+          name: 'MTE Support',
+          email: 'mte.support@mercer.com',
           url: 'https://thetalententerprise.com'
         },
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',
@@ -26,7 +26,7 @@ module Swagger
           ## Introduction
           Lighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.
 
-          To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.
+          To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact Mercer Talent Enterprise for more information about getting started.
 
           ## Base URL
           All URLs referenced in this documentation have the following base component.
@@ -204,7 +204,8 @@ module Swagger
           properties: {
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
-            email: { type: 'string', 'x-nullable': true }
+            email: { type: 'string', 'x-nullable': true },
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
           }
         },
         ReportResults: {
@@ -281,6 +282,7 @@ module Swagger
           properties: {
             id: { type: 'integer' },
             active: { type: 'boolean' },
+            external_id: { type: 'string', 'x-nullable': true },
             existing_record: {
               type: 'string',
               enum: %w[copy_evaluation new_evaluation],
@@ -289,6 +291,20 @@ module Swagger
               **new_evaluation**: This allows the user to sit an assessment even if the user has previously
               completed the assessment in a different campaign.
               '
+            },
+            schedule_start_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Start date and time for the campaign schedule',
+              example: nil,
+              nullable: true
+            },
+            schedule_end_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'End date and time for the campaign schedule',
+              example: nil,
+              nullable: true
             }
           }
         },
@@ -318,6 +334,23 @@ module Swagger
             enable_instructions: { type: 'boolean', 'x-nullable': true },
             instructions: { type: 'string', 'x-nullable': true },
             description: { type: 'string', 'x-nullable': true }
+          }
+        },
+        UpdatedCampaignUser: {
+          type: 'object',
+          properties: {
+            schedule_start_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Start date and time for the campaign schedule',
+              nullable: true
+            },
+            schedule_end_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'End date and time for the campaign schedule',
+              nullable: true
+            }
           }
         },
         Campaign: {
@@ -406,7 +439,19 @@ module Swagger
             webhook: { type: 'string', 'x-nullable': true },
             background_image: { type: 'string', 'x-nullable': true },
             background_color: { type: 'string', 'x-nullable': true },
-            login_box_position: { type: 'string', 'x-nullable': true }
+            login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
+              'x-nullable': true
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
+              'x-nullable': true
+            }
           }
         },
         UpdatedProject: {
@@ -424,7 +469,19 @@ module Swagger
             background_image: { type: 'string', 'x-nullable': true },
             background_color: { type: 'string', 'x-nullable': true },
             webhook: { type: 'string', 'x-nullable': true },
-            login_box_position: { type: 'string', 'x-nullable': true }
+            login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            }
           }
         },
         Project: {
@@ -444,6 +501,18 @@ module Swagger
             background_image: { type: 'string', 'x-nullable': true },
             background_color: { type: 'string', 'x-nullable': true },
             login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            },
             webhook: { type: 'string', 'x-nullable': true },
             created_at: { type: 'string' },
             updated_at: { type: 'string' }
@@ -487,6 +556,51 @@ module Swagger
             poster_url: { type: 'string', 'x-nullable': true },
             url: { type: 'string' },
             status: { type: 'string', enum: %w[not_started in_progress completed] }
+          }
+        },
+        CampaignUserResults: {
+          type: 'object',
+          properties: {
+            finalized: { type: 'boolean' },
+            finalized_at: { type: 'string', 'x-nullable': true },
+            calculated_at: { type: 'string', 'x-nullable': true },
+            results: {
+              type: 'array',
+              items: {
+                type: 'object'
+              }
+            }
+          },
+          example: {
+            finalized: true,
+            finalized_at: '2019-03-04T15:47:33.570+04:00',
+            last_calculated_at: '2019-03-04T15:47:33.570+04:00',
+            results: [
+              {
+                id: 'competency_a',
+                name: 'Competency A',
+                value: 2.0,
+                value_type: 'numeric'
+              },
+              {
+                id: 'competency_b',
+                name: 'Competency B',
+                value: 3.0,
+                value_type: 'numeric'
+              },
+              {
+                id: 'overall_score',
+                name: 'Overall Score',
+                value: 2.5,
+                value_type: 'numeric'
+              },
+              {
+                id: 'overall_category',
+                name: 'Overall Category',
+                value: 'Moderate',
+                value_type: 'string'
+              }
+            ]
           }
         },
         Occupation: {

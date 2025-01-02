@@ -5,7 +5,10 @@
 
 .email-content {
   p, li {
-   color: #787878;
+   color: $dark-gray;
+  }
+  a {
+    color: $link-color;
   }
 }
 

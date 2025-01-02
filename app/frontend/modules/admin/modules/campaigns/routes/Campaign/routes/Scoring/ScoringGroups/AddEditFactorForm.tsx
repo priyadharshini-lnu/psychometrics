@@ -3,14 +3,19 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Drawer, Form, Input, Button, Select, Spin, Switch,
+  Drawer, Form, Input, Button, Select, Spin, Switch, Tree,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
+import { DownOutlined, SaveOutlined } from '@ant-design/icons'
+import { Key } from 'antd/lib/table/interface'
 import ResourceForm from '~/components/ResourceForm'
 import { slugify } from '~/utils/string'
 import { DirectionalNavigateBackIcon, LuaEditor } from '~/glint'
 import { useResources } from '~/hooks/useResources'
+import styles from './styles.less'
+
+const { TreeNode } = Tree
 
 interface FactorData extends Store {
   id: number | string
@@ -19,6 +24,11 @@ interface FactorData extends Store {
   factorId?: string
 }
 
+type groupName = {
+  id: number | string;
+  name: string;
+  position: number;
+};
 type Props = {
   open: boolean
   onClose: () => void
@@ -26,6 +36,11 @@ type Props = {
   addFactor?: (values) => Promise<void> | void
   editFactor?: (values) => Promise<void> | void
   factorData?: FactorData
+  totalFactors?: FactorData[]
+  groupName?: groupName[]
+  handleFactorSelect: (id: Key[], value: object) => void
+  dirtyFactors: object
+  editFactors?: (form) => void
 }
 
 const { I18n } = window
@@ -63,6 +78,7 @@ interface Dimension {
 
 export const AddEditFactorForm: FC<Props> = ({
   open, onClose, addFactor, factorData, editFactor, title,
+  totalFactors, groupName, handleFactorSelect, dirtyFactors, editFactors,
 }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const [codeValueEditedByUser, setCodeValueEditedByUser] = useState(false)
@@ -301,105 +317,169 @@ export const AddEditFactorForm: FC<Props> = ({
     onClose()
   }
 
+
+  const renderTreeNodes = () => {
+    if (!groupName || !totalFactors) return null
+    return groupName?.map((group) => {
+      const { id: groupId, name: groupname } = group
+
+      const groupFactors = totalFactors?.filter(factor => _.isEqual(factor.campaignFactorGroupId, _.toNumber(groupId)))
+
+      return (
+        <TreeNode selectable={false} title={groupname}>
+          {groupFactors?.map((factor) => {
+            const { id: factorId, name: factorName } = factor
+            const isModified = dirtyFactors[factorId]
+            return (
+              <TreeNode
+                key={factorId}
+                title={factorName}
+                selectable
+                className={`${styles.factorNode} ${isModified ? styles.modified : ''}`}
+              />
+            )
+          })}
+        </TreeNode>
+      )
+    })
+  }
+
+
   return (
     <Drawer
       closeIcon={<DirectionalNavigateBackIcon />}
-      title={title}
+      title={(
+        <div className={styles.titleContainer}>
+          <span>{title}</span>
+          <Button
+            type="primary"
+            htmlType="button"
+            icon={<SaveOutlined />}
+            className="ml-auto"
+            onClick={() => editFactors?.(form)}
+          >
+            {I18n.t('administration.scoring.save_all')}
+          </Button>
+        </div>
+      )}
       open={open}
       width="70%"
       onClose={handleClose}
       destroyOnClose
     >
-      <ResourceForm
-        resourceName="campaign_factors"
-        storeManager={{ form }}
-        resource={editFactor ? factorData : undefined}
-        resourceId={factorData?.id}
-        showSuccessMessages
-        formProps={{
-          labelAlign: 'left',
-          preserve: false,
-          initialValues,
-          validateMessages: {
-            required: I18n.t('administration.scoring.required_error'),
-            pattern: { mismatch: I18n.t('administration.scoring.pattern_error') },
-          },
-        }}
-        scrollToFirstError
-        request={{
-          createResource: addFactor,
-          updateResource: editFactor,
-        }}
-        onSuccessfulSubmission={handleFormFinish}
-        transformValues={(values: FactorData) => ({
-          ..._.omit(values, 'dimension_id'),
-          code: values.code || slugify(values.name),
-          name: nameValue.trim(),
-        })}
-      >
-        {() => (
-          <>
-            <Form.Item
-              name="name"
-              label={I18n.t('administration.scoring.name')}
-              rules={[{
-                required: true,
-                whitespace: true,
-                pattern: /^[a-zA-Z0-9\- ]+$/,
-              }]}
+      <div className={styles.parent}>
+        <div className={styles.tree}>
+          {factorData ? (
+            <Tree
+              showLine
+              onSelect={(keys: Key[]) => handleFactorSelect(keys, form)}
+              switcherIcon={<DownOutlined />}
+              defaultExpandAll
+              selectedKeys={[factorData.id]}
             >
-              <Input maxLength={64} name="campaign_factor_name" />
-            </Form.Item>
-            <Form.Item name="code" label={I18n.t('administration.scoring.code')}>
-              <Input
-                maxLength={64}
-                onInput={(e) => {
-                  !codeValueEditedByUser && setCodeValueEditedByUser(true)
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignorets-ignore
-                  e.target.value = alphaNumericWithUnderscore(e.target.value)
-                }}
-              />
-            </Form.Item>
-            <Form.Item name="description" label={I18n.t('administration.scoring.description')}>
-              <Input.TextArea />
-            </Form.Item>
-            <Form.Item name="outputType" label={I18n.t('administration.scoring.output_type')}>
-              <Select defaultValue="numeric">
-                {['numeric', 'string'].map(
-                  value => <Select.Option key={value} value={value}>{value}</Select.Option>,
-                )}
-              </Select>
-            </Form.Item>
-            <Form.Item
-              name="factorType"
-              label={I18n.t('administration.scoring.type')}
-            >
-              <Select disabled={!isNew}>
-                {factorTypes.map(type => (
-                  <Select.Option key={type.value} value={type.value}>
-                    {type.label}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            {formFieldBasedOnFactorType}
-            <Form.Item label={I18n.t('administration.scoring.public')} name="publicVisibility" valuePropName="checked">
-              <Switch />
-            </Form.Item>
-            {outputType === 'numeric'
-              ? (
-                <Form.Item label={I18n.t('administration.scoring.ranked')} name="ranked" valuePropName="checked">
+              {renderTreeNodes()}
+            </Tree>
+          ) : (
+            ''
+          )}
+        </div>
+        <div className={styles.form}>
+          <ResourceForm
+            resourceName="campaign_factors"
+            storeManager={{ form }}
+            resource={editFactor ? factorData : undefined}
+            resourceId={factorData?.id}
+            showSuccessMessages
+            formProps={{
+              labelAlign: 'left',
+              preserve: false,
+              initialValues,
+              validateMessages: {
+                required: I18n.t('administration.scoring.required_error'),
+                pattern: { mismatch: I18n.t('administration.scoring.pattern_error') },
+              },
+            }}
+            scrollToFirstError
+            request={{
+              createResource: addFactor,
+              updateResource: editFactor,
+            }}
+            onSuccessfulSubmission={handleFormFinish}
+            transformValues={(values: FactorData) => ({
+              ..._.omit(values, 'dimension_id'),
+              code: values.code || slugify(values.name),
+              name: nameValue.trim(),
+            })}
+          >
+            {() => (
+              <>
+                <Form.Item
+                  name="name"
+                  label={I18n.t('administration.scoring.name')}
+                  rules={[{
+                    required: true,
+                    whitespace: true,
+                    pattern: /^[a-zA-Z0-9\- ]+$/,
+                  }]}
+                >
+                  <Input maxLength={64} name="campaign_factor_name" />
+                </Form.Item>
+                <Form.Item name="code" label={I18n.t('administration.scoring.code')}>
+                  <Input
+                    maxLength={64}
+                    onInput={(e) => {
+                      !codeValueEditedByUser && setCodeValueEditedByUser(true)
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      // @ts-ignorets-ignore
+                      e.target.value = alphaNumericWithUnderscore(e.target.value)
+                    }}
+                  />
+                </Form.Item>
+                <Form.Item name="description" label={I18n.t('administration.scoring.description')}>
+                  <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="outputType" label={I18n.t('administration.scoring.output_type')}>
+                  <Select defaultValue="numeric">
+                    {['numeric', 'string'].map(
+                      value => <Select.Option key={value} value={value}>{value}</Select.Option>,
+                    )}
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  name="factorType"
+                  label={I18n.t('administration.scoring.type')}
+                >
+                  <Select disabled={!isNew}>
+                    {factorTypes.map(type => (
+                      <Select.Option key={type.value} value={type.value}>
+                        {type.label}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+                {formFieldBasedOnFactorType}
+                <Form.Item
+                  label={I18n.t('administration.scoring.public')}
+                  name="publicVisibility"
+                  valuePropName="checked"
+                >
                   <Switch />
                 </Form.Item>
-              ) : null
+                {outputType === 'numeric'
+                  ? (
+                    <Form.Item label={I18n.t('administration.scoring.ranked')} name="ranked" valuePropName="checked">
+                      <Switch />
+                    </Form.Item>
+                  ) : null
             }
-            <Form.Item>
-              <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
-            </Form.Item>
-          </>
-        )}
-      </ResourceForm>
+                <Form.Item>
+                  <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
+                </Form.Item>
+              </>
+            )}
+          </ResourceForm>
+        </div>
+      </div>
     </Drawer>
   )
 }

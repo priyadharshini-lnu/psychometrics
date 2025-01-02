@@ -5,60 +5,65 @@ module Api
     class UsersController < Api::V1::BaseController
       def index
         user = project.end_users.find_by(email: params[:email])
-        if user
-          render json: Api::V1::UserSerializer.new.serialize(user)
-        else
+        unless user
           raise Api::Errors::ResourceNotFound, "User with email=#{params[:email]} was not found"
         end
+
+        include_datasheet = params[:datasheet] == 'true'
+
+        options = {
+          context: {
+            project: project,
+            include_datasheet: include_datasheet
+          },
+          except: include_datasheet ? [] : %i[project_datasheet]
+        }
+
+        render json: Api::V1::UserSerializer.new(options).serialize(user)
       end
 
       def create
         normalized_params = Api::NormalizeCampaignParams.call!(params)
-        form = Api::V1::Users::CreateForm.from_params(normalized_params).with_context(project: project)
+        form = Api::V1::Users::CreateForm.new(normalized_params).with_context(project: project)
 
         if form.valid?
-          user = normalized_params[:campaigns].map do |campaign_attrs|
-            campaign = Campaign.find(campaign_attrs[:id])
-            # rubocop:disable Style/OpenStructUse
-            struct = OpenStruct.new(
-              email: form.email,
-              first_name: form.first_name,
-              last_name: form.last_name,
-              operation: campaign_attrs[:existing_record],
-              active: campaign_attrs[:active],
-              schedule_start_date: campaign_attrs[:schedule_start_date],
-              schedule_end_date: campaign_attrs[:schedule_end_date]
-            )
-            # rubocop:enable all
-            response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
-              on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
+          Api::Campaigns::Users::Upsert.call(
+            form, current_user, campaigns: normalized_params[:campaigns], project: project
+          ) do
+            on(:ok) do |user|
+              audit! :api_create, user, payload: params, project: project
+              return render json: Api::V1::UserSerializer.new(
+                {
+                  context: { project: project, include_datasheet: true }
+                }
+              ).serialize(user)
             end
-            audit! :api_create, response[:ok], payload: params, campaign: campaign
-
-            response[:ok]
-          end.sample
-          render json: Api::V1::UserSerializer.new(
-            context: {
-              project: project
-            }
-          ).serialize(user)
+            on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
+          end
         else
           render_validation_errors(form)
         end
       end
 
       def update
-        form = Api::V1::Users::UpdateForm.from_params(params[:user]).with_context(project: project, user: user)
-        ::Users::Update.call(form, project, user) do
-          on(:invalid) { |f| render_validation_errors(f) }
-          on(:ok) do |user|
-            audit! :api_update, user, payload: params, project: project
-            render json: Api::V1::UserSerializer.new(
-              context: {
-                project: project
-              }
-            ).serialize(user)
+        normalized_params = Api::NormalizeCampaignParams.call!(params)
+        form = Api::V1::Users::UpdateForm.new(normalized_params).with_context(project: project, user: user)
+
+        if form.valid?
+          Api::Campaigns::Users::Upsert.call(
+            form, current_user, campaigns: normalized_params[:campaigns], project: project, user: user
+          ) do
+            on(:ok) { |user| audit! :api_update, user, payload: params, project: project }
+            on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
+
+          render json: Api::V1::UserSerializer.new(
+            {
+              context: { project: project, include_datasheet: true }
+            }
+          ).serialize(user)
+        else
+          render_validation_errors(form)
         end
       end
 
@@ -87,6 +92,15 @@ module Api
         else
           render_validation_errors(form)
         end
+      end
+
+      def results
+        render json: {
+          finalized: campaign_user.campaign_scores_finalized,
+          finalized_at: campaign_user.campaign_scores_finalized_date,
+          calculated_at: campaign_user.campaign_scores_calculated_date,
+          results: CampaignUsers::Results.call!(campaign_user)
+        }
       end
 
       def search

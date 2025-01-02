@@ -26,7 +26,8 @@ module Administration
             'edit',
             %w[login_as spoof],
             'reset_password',
-            %w[remove destroy]
+            %w[remove destroy],
+            'push_webhook'
           ],
           {
             project_id: context[:project_id],

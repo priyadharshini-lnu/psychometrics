@@ -46,12 +46,7 @@ module CampaignFactors
     end
 
     def assessor_user_assessments(campaign_factor)
-      @assessor_user_assessments = campaign.user_assessments.
-                                   joins(assessment: :factors_scoring).
-                                   includes(:users_result).
-                                   where(factors_scoring: { factor_id: campaign_factor.factor_id }).
-                                   where(assessments: { category: Assessment::CATEGORIES[:assessor_form] }).
-                                   where(subject_id: user.id)
+      @assessor_user_assessments = GetUserAssessmentForAssessorScoring.new(campaign_factor, user).query
     end
 
     def factor_weight(assessment_id, factor_id)

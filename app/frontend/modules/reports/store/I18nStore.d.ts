@@ -1,6 +1,10 @@
 declare class I18nStore {
   constructor()
 
+  locales: { [key: string]: string }
+
+  setLocale (code:string): void
+
   t(code, data = {}): string
 
   tQuestion (question, field, extraData): string

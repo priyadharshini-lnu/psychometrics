@@ -70,6 +70,13 @@ export const gradientStyle = (gradient: Gradient) => {
   return undefined
 }
 
+export const borderRadiusStyle = (style, defaultRadius = 0) => ({
+  borderStartStartRadius: `${style.borderRadiusTopLeft ?? defaultRadius}px`,
+  borderStartEndRadius: `${style.borderRadiusTopRight ?? defaultRadius}px`,
+  borderEndEndRadius: `${style.borderRadiusBottomRight ?? defaultRadius}px`,
+  borderEndStartRadius: `${style.borderRadiusBottomLeft ?? defaultRadius}px`,
+})
+
 
 export const stylesPreview = (styles) => {
   const bs = styles.boxShadow
@@ -78,5 +85,8 @@ export const stylesPreview = (styles) => {
     : undefined
   const gradient = gradientStyle(styles.gradient)
 
-  return { ...styles, boxShadow, ...(gradient ? { backgroundImage: gradient } : {}) }
+
+  return {
+    ...styles, boxShadow, ...(gradient ? { backgroundImage: gradient } : {}), ...borderRadiusStyle(styles),
+  }
 }

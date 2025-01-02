@@ -19,6 +19,18 @@ class Graph extends Component {
     preview: PropTypes.bool,
   }
 
+
+  state = {
+    isRTL: false,
+  }
+
+  componentDidMount () {
+    const { availableLanguages } = this.props
+    const lang = new URLSearchParams(window.location.search).get('lang') || 'en'
+    const isRTL = availableLanguages.find(l => l.code === lang)?.direction === 'rtl' || false
+    this.setState({ isRTL })
+  }
+
   renderGraph () {
     const {
       factors, module: model, preview, animation, reportStyles,
@@ -41,6 +53,7 @@ class Graph extends Component {
     style.fontFamily = assignStyle(style, 'fontFamily', moduleStyles.fontFamily, 'Graph')
 
     model.props.style = style
+    const { isRTL } = this.state
 
     if (model.props.type) {
       const View = Charts[model.props.type] || Charts.Bar
@@ -51,6 +64,7 @@ class Graph extends Component {
           preview={preview}
           animation={animation}
           colorOverrides={colorOverrides}
+          isRTL={isRTL}
         />
       )
     }

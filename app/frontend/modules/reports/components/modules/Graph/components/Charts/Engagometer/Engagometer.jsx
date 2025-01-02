@@ -35,12 +35,15 @@ class Engagometer extends Component {
   }
 
   renderChart () {
-    const { model, animation, factors } = this.props
+    const {
+      model, animation, factors, isRTL,
+    } = this.props
     const colors = _.map(model.props.colors, 'color')
     if (this.chart) {
       this.chart.destroy()
       this.chart = null
     }
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
     if (!model.props.source) { return null }
 
     const sourceType = model.getSourceType()
@@ -84,17 +87,19 @@ class Engagometer extends Component {
               to: ser.to,
               color: colors[i],
             })),
+            reversed: isRTL,
           },
           legend: {
+            enabled: model.props.showLegend,
             itemStyle: {
-              color,
-              fontSize,
-              fontFamily,
+              fontSize: legendFontSize || '10px',
+              fontFamily: legendFontFamily,
             },
             labelFormatter () {
-              return `<span style="color:${this.color}">${this.name}</span>`
+              return `<span style="color:${legendColor}">${this.name}</span>`
             },
             symbolWidth: 0,
+            rtl: isRTL,
           },
           series: _.map(sourceModel, (factor, i) => ({
             marker: { enabled: false },

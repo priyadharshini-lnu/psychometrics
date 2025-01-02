@@ -30,6 +30,14 @@ module Administration
         render json: { content_variation_id: resource.simulation_user_assessment.content_variation_id }
       end
 
+      def update_simulation_time_extension
+        resource.simulation_user_assessment.update!(time_extension: params[:time_extension])
+
+        audit! :update_simulation_time_extension, resource, campaign: resource.campaign
+
+        render json: { time_extension: resource.simulation_user_assessment.time_extension }
+      end
+
       def webhook_command
         @webhook_command ||= UserAssessments::Webhook.new(resource, params[:webhook_id])
       end

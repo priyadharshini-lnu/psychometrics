@@ -9,6 +9,9 @@ import ConditionList from './ConditionList'
 import localStyles from './types/Scoring/Scoring.less'
 import { ColorPicker } from '~/glint'
 
+const { I18n } = window
+
+
 export class ConditionCollection extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
@@ -78,7 +81,7 @@ export class ConditionCollection extends Component {
     return (
       <div className={styles.listWrapper}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <span>If</span>
+          <span>{I18n.t('reports.modules.campaign_factors_table.if')}</span>
           <select
             value={model.campaignFactorCode}
             onChange={this.changeSubject}
@@ -102,9 +105,9 @@ export class ConditionCollection extends Component {
     return (
       <div className={styles.filterContainer}>
         {this.renderConditions()}
-        Then show the following text:
+        {I18n.t('reports.modules.campaign_factors_table.then')}
         <div>
-          <strong>Title</strong>
+          <strong>{I18n.t('reports.modules.campaign_factors_table.title')}</strong>
           <input
             className="form-control"
             value={model.title || ''}
@@ -112,7 +115,7 @@ export class ConditionCollection extends Component {
           />
         </div>
         <div>
-          <strong>Description</strong>
+          <strong>{I18n.t('reports.modules.campaign_factors_table.description')}</strong>
           <textarea
             ref={(ref) => { this.textarea = ref }}
             className="form-control"
@@ -121,7 +124,7 @@ export class ConditionCollection extends Component {
           />
         </div>
         <div>
-          <strong>Strengths</strong>
+          <strong>{I18n.t('reports.modules.campaign_factors_table.strengths')}</strong>
           <textarea
             ref={(ref) => { this.textarea = ref }}
             className="form-control"
@@ -131,7 +134,7 @@ export class ConditionCollection extends Component {
           />
         </div>
         <div>
-          <strong>Blindspots</strong>
+          <strong>{I18n.t('reports.modules.campaign_factors_table.blindspots')}</strong>
           <textarea
             ref={(ref) => { this.textarea = ref }}
             className="form-control"
@@ -141,8 +144,9 @@ export class ConditionCollection extends Component {
           />
         </div>
         <div>
-          <strong>Label</strong>
-          <textarea
+          <strong>{I18n.t('reports.modules.campaign_factors_table.label')}</strong>
+          <input
+            type="text"
             className="form-control"
             value={model.label || ''}
             onChange={this.changeLabel}
@@ -150,7 +154,7 @@ export class ConditionCollection extends Component {
           />
         </div>
         <div>
-          <strong>Baseline Score</strong>
+          <strong>{I18n.t('reports.modules.campaign_factors_table.baseline_score')}</strong>
           <input
             type="number"
             className={cs('form-control', styles.smallInput)}
@@ -159,18 +163,20 @@ export class ConditionCollection extends Component {
           />
         </div>
         <div style={{ position: 'relative' }}>
-          <strong>Color</strong>
+          <strong>{I18n.t('reports.modules.campaign_factors_table.color')}</strong>
           <ColorPicker
             getValueInHexFormat
             colorPickerPosition="leftBottom"
-            value={model.color || '#00000000'}
+            value={model.color || 'transparent'}
             onChange={
               this.changeColor
             }
           />
         </div>
         <div className={styles.footer}>
-          <a onClick={this.remove} className={styles.delete}>Delete</a>
+          <a onClick={this.remove} className={styles.delete}>
+            {I18n.t('reports.modules.campaign_factors_table.delete')}
+          </a>
         </div>
       </div>
     )

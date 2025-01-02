@@ -111,12 +111,28 @@ de:
       save: speich
     wait: wart
   campaign:
+    all_activities_are_completed: Alle Aktivitäten sind abgeschlossen.
+    all_activities_are_completed_multiple: Alle Aktivitäten für diese Kampagne sind abgeschlossen. Bitte gehen Sie zum Dashboard und überprüfen Sie, ob Ihnen weitere Aktivitäten zugewiesen wurden.
+    already_joined: Sie haben sich bereits dieser Kampagne angeschlossen.
+    begin: Beginnen Sie mit Ihren Aufgaben.
+    begin_btn_msg_before_prework: Sie müssen die unten stehenden Aufgaben abschließen, bevor Sie mit der zeitgesteuerten Kampagne beginnen können.
+    begin_campaign_msg: Starten Sie die Kampagne, bevor Sie mit den Bewertungen beginnen.
+    campaigns: Kampagnen
+    closed_campaign_message: Diese Kampagne ist geschlossen. Sie können keine Bewertungen mehr innerhalb dieser Kampagne durchführen.
+    code_usage_limit_reached: Code-Nutzungslimit erreicht. Bitte wenden Sie sich an den Administrator.
+    complete_prev: Schließen Sie alle vorherigen Bewertungen ab.
+    complete_tasks: Bitte schließen Sie die unten stehenden Aufgaben ab, bevor Sie diese Aktion durchführen.
+    continue: Fahren Sie mit Ihren Aufgaben fort.
+    dashboard_instructions: Ihnen wurden mehrere Aktivitäten zugewiesen, die Sie abschließen müssen. Stellen Sie sicher, dass alle zugewiesenen Aktivitäten in allen Kampagnen abgeschlossen sind.
     dashboard_menu:
       bookings: Buchungen
       campaign: Kampagne
       change_password: Kennwort ändern
+      development: Entwicklung
       home: Heim
       insights: Einblicke
+      my_direct_reports: Meine direkten Berichte
+      my_plan: Mein Plan
       profile: Profil
       profile_details: Einzelheiten
       tasks: Aufgaben
@@ -126,6 +142,11 @@ de:
       edit: Neu bewerten
       title: Bestätigen
       view: Aussicht
+    errors:
+      invalid_status: Ungültiger Kampagnenstatus.
+    goto_dashboard: Zum Dashboard gehen.
+    inactive_campaign_message: Derzeit wurden Ihnen keine Aktivitäten zugewiesen.
+    insights_reports: Erkenntnisse und Berichte
     instruction_modal:
       campaign_start_final_instructions: |
         <p>
@@ -147,7 +168,9 @@ de:
           Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
         </p>
     instructions:
+      collapse_aria_label: 'Mehr Informationen anzeigen: Virtuelles Lernzentrum.'
       collapse_link_text: Details verbergen
+      expand_aria_label: 'Weniger Informationen anzeigen: Virtuelles Lernzentrum.'
       expand_link_text: Mehr Details
       heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
     language:
@@ -155,9 +178,155 @@ de:
       single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
       title: Sprache auswählen
     panels:
+      dashboard: Dashboard
       reports: Berichte
+    profile:
+      complete_heading: Ihr Profil ist vollständig.
+      complete_profile_label: Jetzt vervollständigen
+      edit_profile_label: Profil bearbeiten
+      incomplete_heading: Vervollständigen Sie Ihr Profil.
+      last_login_text: 'Letzter Login am:'
+      last_updated_text: 'Profil zuletzt aktualisiert am:'
+      sub_heading: Vervollständigen Sie Ihre vollständigen Profilinformationen.
+      welcome_text: Willkommen,
+    reset_warning: Sie können eine Kampagne nur neu starten, wenn sie als Übungskampagne markiert ist.
+    restart_practice: Übung neu starten
+    restart_practice_confirmation: Möchten Sie die Übung wirklich neu starten?
+    restart_practice_success: Übung erfolgreich neu gestartet.
+    thank_you_for_time: Vielen Dank für Ihre Zeit.
     time_left:
+      cancel: Abbrechen
       continue: fortfahren
+      notification: Die zugewiesene Zeit für diese Aufgabe "%{assessmentName}" betrug %{totalAssessmentTime}. Aufgrund der verstrichenen Zeit haben Sie jetzt noch %{remainingCampaignTime} verbleibend.
+    timer:
+      notification_hours: Sie haben noch %{hours} Stunde(n).
+      notification_minutes: Sie haben noch %{minutes} Minute(n).
+  campaign_assessment:
+    actions:
+      bulk_download: Massendownload
+      export_completion_status: Abschlussstatus exportieren
+      export_external: Extern
+      export_normed: Normierte Faktorergebnisse
+      export_occupations: Berufe
+      export_raw_labels: Rohdaten (mit Labels)
+      export_raw_scores: Rohdaten (Faktorergebnisse)
+      export_raw_without_labels: Rohdaten (ohne Labels)
+      export_scores: Ergebnisse
+      export_scoring: Bewertung
+      factor_benchmark_score: Faktor-Benchmark-Score
+      import_raw: Rohdaten importieren
+      import_scoring: Bewertung importieren
+      regenerate: Berichte neu generieren
+      rescore: Bewertung erneut durchführen
+      reset_all_nominations: Alle Nominierungen zurücksetzen
+      reset_participant: Alle Teilnehmer zurücksetzen
+    assessments_heading: Ihre Aufgaben
+    column:
+      assessment_center_activity: Aktivitäten im Assessment-Center
+      assessment_name: Name des Assessments
+      assessor_form: Assessor-Formular
+      auto_assign: Automatisch zuweisen
+      dimension_id: Dimensions-ID
+      id: Kampagnen-Assessment-ID
+      locales: Lokalisierungen
+      norm: Norm
+      norm_id: Norm-ID
+      prework: Vorbereitungsarbeit
+      simulation_content_variation: Simulationsinhaltsvariante
+      universal_link: Universeller Link
+    drawer:
+      mettl_schedule_name: Mettl-Planungsname
+      title: Assessment-Details
+    messages:
+      export_completion_statuses_scheduled: Der Exportjob für Abschlussstatus wurde erfolgreich geplant.
+      export_occupations_job_scheduled: Der Exportjob für Berufe wurde erfolgreich geplant.
+      export_reports_and_assessments_statuses_scheduled: Der Exportjob für Berichte und Bewertungen wurde erfolgreich geplant.
+      external_results_export_scheduled: Der Exportjob für externe Bewertungen wurde erfolgreich geplant.
+      norm_results_export_scheduled: Der Exportjob für normierte Ergebnisse wurde erfolgreich geplant.
+      normalize_factor_scores_scheduled: Der Normalisierungsjob für Faktorergebnisse wurde erfolgreich geplant.
+      raw_factor_export_scheduled: Der Exportjob für Rohdaten-Faktorergebnisse wurde erfolgreich geplant.
+      raw_results_export_scheduled: Der Exportjob für Rohdaten-Ergebnisse wurde erfolgreich geplant.
+      scoring_results_export_scheduled: Der Exportjob für Bewertungsergebnisse wurde erfolgreich geplant.
+    modals:
+      import_raw:
+        body: Nutzen Sie die Exportfunktion, um eine Vorlage zu extrahieren, die hier importiert werden kann.
+        success_msg: Der Import wurde erfolgreich hochgeladen.
+        title: Rohdaten importieren
+        upload: Hochladen
+      import_scoring:
+        body: Nutzen Sie die Exportfunktion, um eine Vorlage zu extrahieren, die hier importiert werden kann.
+        success_msg: Der Import wurde erfolgreich hochgeladen.
+        title: Bewertungsergebnisse importieren
+        upload: Hochladen
+      regenerate:
+        content: Möchten Sie wirklich die verfügbaren Berichte neu generieren?
+        title: Berichte neu generieren?
+      remove:
+        helper_text: 'WARNUNG: Diese Auswahl entfernt alle Benutzerantworten auf dieses Assessment in dieser Kampagne.'
+        msg_text: Sie versuchen, das Assessment <strong>"%{name}"</strong> zu löschen.
+        successfully: "%{name} Assessment wurde erfolgreich entfernt."
+        title: Assessment entfernen?
+      rescore:
+        content: Möchten Sie die Bewertung wirklich erneut durchführen?
+        successfully: Die Bewertung wurde erfolgreich erneut durchgeführt.
+        title: Bewertung erneut durchführen?
+      rescore_response:
+        message: Die erneute Bewertung wurde für das Assessment "%{name}" geplant.
+        title: Antworten neu bewerten
+      reset:
+        content: Möchten Sie die Ergebnisse wirklich zurücksetzen?
+        successfully: Die Ergebnisdaten wurden erfolgreich zurückgesetzt.
+        title: Ergebnisse für Assessment %{name} zurücksetzen?
+      update_assessor_form:
+        select_assessor: Assessor-Formular auswählen
+        success_msg: Das Assessor-Formular wurde erfolgreich hochgeladen.
+        title: Assessor-Formular aktualisieren
+        update: Aktualisieren
+      update_content_variation:
+        select_schedule: Inhaltsvariante auswählen
+        success_msg: Die Simulationsinhaltsvariante wurde erfolgreich aktualisiert.
+        update: Aktualisieren
+      update_external_config:
+        text_placeholder: Externe JSON-Konfiguration
+        title: Externe Konfiguration aktualisieren
+      update_locales:
+        select_locales: Lokalisierungen auswählen
+        success_msg: Lokalisierungen wurden erfolgreich aktualisiert.
+        title: Verfügbare Lokalisierungen aktualisieren
+      update_mettl_schedule:
+        select_schedule: Zeitplan auswählen
+        success_msg: Mettl-Zeitplan wurde erfolgreich aktualisiert.
+        update: Aktualisieren
+      update_norm:
+        apply: Diese Änderung auf bestehende Benutzer in dieser Kampagne anwenden
+        cannot_remove_norm: Norm kann für abgeschlossene Assessments nicht entfernt werden.
+        select_norm: Norm auswählen
+        success_msg: Normen wurden erfolgreich aktualisiert.
+        title: Norm aktualisieren
+        update: Aktualisieren
+      update_time:
+        additional_time: Zeit (Minuten)
+        title: Zeit verlängern
+      workshop_activity_duration:
+        form:
+          duration: Dauer in Minuten
+        title: Dauer für die Workshop-Aktivität
+    normalize_factor_scores:
+      normalization_not_allowed: Die Normalisierung von Faktorergebnissen ist für dieses Assessment in den Projekteinstellungen deaktiviert. Bitte aktivieren Sie diese, um fortzufahren.
+      success: Die Normalisierung der Faktorergebnisse wurde erfolgreich abgeschlossen.
+    scheduled_successfully: Das Assessment wurde erfolgreich geplant.
+    scheduling:
+      update_exists: Vorhandenen Zeitplan überschreiben
+    scheduling_time: Assessment-Zeitplan
+    statuses:
+      completed: Abgeschlossen
+      in_progress: In Bearbeitung
+      ineligible: Nicht berechtigt
+      interrupted: Unterbrochen
+      not_started: Nicht gestartet
+      timed_out: Abgelaufen
+      universal_link: Universeller Link
+    ungrouped_assessments_heading: Ungruppiert
   change_password_page:
     old_password: Altes Passwort
     password: Passwort
@@ -207,6 +376,7 @@ de:
     text:
       confirm: bestätigen
       continue: fortfahren
+      download: Herunterladen
       response: Antwort
   devise:
     administrators:
@@ -321,6 +491,22 @@ de:
       add: hinzufügen Bericht
       view: Ansicht Bericht
     modules:
+      campaign_factors_table:
+        add_condition: Voorwaarde toevoegen
+        baseline_score: Basisscore
+        blindspots: Blinde vlekken
+        campaign_factor_conditions: Voorwaarden voor campagnefactoren
+        cancel: Annuleren
+        color: Kleur
+        delete: Verwijderen
+        description: Beschrijving
+        if: Als
+        label: Label
+        no_conditions: Geen voorwaarden
+        save: Redden
+        strengths: Sterke punten
+        then: Laat dan de volgende tekst zien
+        title: Titel
       gap_assessment:
         gap: lück
         negative_gap: negativ lücken

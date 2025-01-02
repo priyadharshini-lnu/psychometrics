@@ -23,6 +23,8 @@ export interface ContactProps {
   visible: boolean
 }
 
+const fieldsInOrder = ['to', 'subject', 'message']
+
 const { TextArea } = Input
 
 const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
@@ -58,6 +60,14 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
     }, 200)
     return () => clearTimeout(timeout)
   }, [])
+
+  useEffect(() => {
+    if (errors && errors.length) {
+      const firstErrorField = getFirstErrorField(fieldsInOrder, errors)
+      const errorFieldId = `email-${firstErrorField}-${model.id}`
+      document.getElementById(errorFieldId)?.focus()
+    }
+  }, [errors])
 
   const toggleCopyField = (type: ContactType): void => {
     setContactProps(contactProps.map(p => (p.type === type ? { ...p, visible: !p.visible } : p)))
@@ -121,7 +131,7 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
         </Form.Item>
         {maxLength
          && (
-         <small>
+         <small aria-live="polite">
            {I18n().t('threesixty.question.email_type.max_length_warning', { x: remainingLength })}
          </small>
          )
@@ -129,6 +139,17 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
       </div>
     </div>
   )
+}
+
+const getFirstErrorField = (fieldsInOrder: Array<string>, errors: QuestionError[]):string => {
+  const fieldsWithError = errors.map(error => error.field)
+  for (let fieldIndex = 0; fieldIndex < fieldsInOrder.length;) {
+    if (fieldsWithError.includes(fieldsInOrder[fieldIndex])) {
+      return fieldsInOrder[fieldIndex]
+    }
+    fieldIndex += 1
+  }
+  return ''
 }
 
 export default EmailForm

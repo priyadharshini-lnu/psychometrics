@@ -58,6 +58,7 @@ const ThreesixtyComponent = ({
 
   return (
     <>
+      <h1 className="sr-only">{campaign.assessmentName}</h1>
       <CampaignPageHeader
         activeCampaignId={campaign.id}
         extra={(

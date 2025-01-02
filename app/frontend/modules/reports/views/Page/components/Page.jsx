@@ -20,6 +20,7 @@ const Page = (props) => {
     report,
     modules,
     showOnAllPages,
+    flipContent,
   } = props
   const dispatch = useDispatch()
 
@@ -31,13 +32,29 @@ const Page = (props) => {
     RichEditorStore.close()
   }
 
-
-  const renderModuleType = (module, i) => <Module key={i} moduleId={module.id} page={pageModel} animation={false} />
+  const renderModuleType = (module, i) => (
+    <Module
+      key={i}
+      moduleId={module.id}
+      page={pageModel}
+      animation={false}
+      flipContent={flipContent}
+    />
+  )
 
   const renderShadowModule = (module, i) => {
     const model = new ModuleModel(module, pageModel)
     const View = Modules[model.type]
-    return <View key={i} module={model} page={pageModel} shadow animation={false} />
+    return (
+      <View
+        key={i}
+        module={model}
+        page={pageModel}
+        shadow
+        animation={false}
+        flipContent={flipContent}
+      />
+    )
   }
 
   const selected = panelStore.model === pageModel
@@ -54,7 +71,7 @@ const Page = (props) => {
         style={{ width: report.builder.props.sizes.width }}
       >
         <Header {...props} />
-        {renderMoudles && pageModel.displayLogic && <DisplayLogic {...props} model={page} />}
+        {renderMoudles && page.displayLogic && <DisplayLogic {...props} model={page} />}
         <div className={styles.pageContent} style={style}>
           {renderMoudles && modules.map(renderModuleType)}
           {renderMoudles && showOnAllPages.map(renderShadowModule)}

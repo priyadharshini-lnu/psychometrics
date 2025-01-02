@@ -3,8 +3,9 @@ import { Options } from 'highcharts'
 
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/StackedBar'
 
-export default function ChartOptions (model: PropertiesModel, animation: boolean): Options {
+export default function ChartOptions (model: PropertiesModel, animation: boolean, rtl = false): Options {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
+  const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
   const [...colorsObjectList] = model.props.colors
   let xAxisOptions = {}
   if (model.props.xAxisLinesHide) {
@@ -57,12 +58,14 @@ export default function ChartOptions (model: PropertiesModel, animation: boolean
       },
     },
     legend: {
+      enabled: model.props.showLegend,
       reversed: true,
       itemStyle: {
-        fontSize: fontSize || '11px',
-        color: color || '#000',
-        fontFamily,
+        color: legendColor,
+        fontSize: legendFontSize || '11px',
+        fontFamily: legendFontFamily,
       },
+      rtl,
     },
     tooltip: {
       enabled: animation,

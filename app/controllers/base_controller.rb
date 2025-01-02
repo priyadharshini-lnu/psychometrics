@@ -101,7 +101,8 @@ class BaseController < ActionController::Base
   end
 
   def sign_in_and_redirect(user, found_by)
-    sign_in(user)
+    skip_session_limitable = found_by == :spoof
+    sign_in(user, skip_session_limitable: skip_session_limitable)
 
     return redirect_to(url_without_spoof) if found_by == :spoof
     return redirect_to(url_without_jwt) if found_by == :jwt

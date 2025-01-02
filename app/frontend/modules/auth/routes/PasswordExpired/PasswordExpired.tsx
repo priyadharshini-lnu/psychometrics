@@ -42,7 +42,7 @@ const PasswordExpiredComponent: React.FC<Props> = ({
       <InputField
         label={I18n.t('auth.new_password')}
         name="user[password]"
-        placeholder={I18n.t('auth.password_placeholder')}
+        placeholder={I18n.t('auth.new_password_placeholder')}
         errors={errors.password}
         password
       />

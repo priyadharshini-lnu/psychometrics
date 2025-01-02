@@ -20,11 +20,13 @@ module UsersResults
             'norm_score' => proc { |factor_id| get_score(factor_id, 'norm_score') },
             'raw_score' => proc { |factor_id| get_score(factor_id, 'score') },
             'zscore' => proc { |factor_id| get_score(factor_id, 'zscore') },
-            'percentage_answered' => proc { |factor_id| get_score(factor_id, 'percentage') }
+            'percentage_answered' => proc { |factor_id| get_score(factor_id, 'percentage') },
+            'answer' => proc { |json_path| answer_from_json_path(json_path) }
           }
           lua.helpers = {
             'round' => proc { |value, precision = 0| value.round(precision) },
-            'percentile' => proc { |value| Ztable.percentile(value) }
+            'percentile' => proc { |value| Ztable.percentile(value) },
+            'average' => proc { |values, precision = nil| calculate_average(values, precision) }
           }
           lua
         end
@@ -45,9 +47,24 @@ module UsersResults
             factor_norm_hash,
             external_results,
             factors_question_count,
-            visited_factor_ids
+            visited_factor_ids,
+            answers
           )
           extended_scoring.dig(factor_id.to_i.to_s, score_type)
+        end
+
+        def answer_from_json_path(json_path)
+          JsonPath.new(json_path).on(answers).first
+        end
+
+        def calculate_average(values, precision)
+          unless values.is_a?(Lua::Table)
+            raise 'helpers.average: First parameter must be a Lua table, and second parameter is precision (integer)'
+          end
+
+          values_array = values.to_a
+          average = values_array.sum / values_array.size.to_f
+          precision.nil? ? average : average.round(precision)
         end
 
         def eval_lua(lua, script)

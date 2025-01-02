@@ -18,7 +18,7 @@ import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 const { I18n } = window
 const { useToken } = theme
-const { DEFAULT_PRIMARY_COLOR, DARK_GREY } = constants
+const { DEFAULT_PRIMARY_COLOR, GREY_BORDER } = constants
 
 export const LayoutComponent = ({ config }) => {
   const { token } = useToken()
@@ -58,7 +58,7 @@ export const LayoutComponent = ({ config }) => {
           colorSuccess: config.success_color || token.colorSuccess,
           colorInfo: config.info_color || token.colorInfo,
           colorLink: primaryColor,
-          colorBorder: DARK_GREY,
+          colorBorder: GREY_BORDER,
           borderRadius: 2,
         },
       }}

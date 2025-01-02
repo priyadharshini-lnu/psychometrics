@@ -6,6 +6,7 @@ RSpec.describe CommunicationEmail, type: :model do
   context 'Associations' do
     it { should belong_to(:membership) }
     it { should belong_to(:communication) }
+    it { should have_many(:communication_email_resources).inverse_of(:communication_email).dependent(:destroy) }
   end
 
   context 'Scopes' do

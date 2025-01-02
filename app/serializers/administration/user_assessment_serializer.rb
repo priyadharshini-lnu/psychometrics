@@ -5,7 +5,7 @@ module Administration
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
                :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id, :simulation_content_variations,
-               :simulation_content_variation_id
+               :simulation_content_variation_id, :simuation_time_extension
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -29,6 +29,12 @@ module Administration
       return nil unless object.simulation?
 
       object.simulation_user_assessment.content_variation_id
+    end
+
+    def simuation_time_extension
+      return nil unless object.simulation?
+
+      object.simulation_user_assessment.time_extension
     end
 
     def is_expired
@@ -61,6 +67,7 @@ module Administration
           'update_norm',
           'update_mettl_schedule',
           'update_content_variation',
+          'update_simulation_time_extension',
           'rescore_response',
           %w[remove destroy],
           'reset_progress',

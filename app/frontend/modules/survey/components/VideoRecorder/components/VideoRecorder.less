@@ -74,6 +74,10 @@
                   line-height: 1.2em;
                 }
               }
+              &:focus-visible {
+                outline-offset: 1px;
+                outline: 4px solid var(--ant-primary-1);
+              }
             }
             .vjs-icon-placeholder:before {
               font-size: 2em;
@@ -227,14 +231,14 @@
     padding: 15px;
     font-size: 16px;
     border-radius: 6px;
-    background-color: #009C37;
+    background-color: #03722A;
     box-shadow: 0px 3px 6px #00000029;
     display: block;
     color: white;
     z-index: 5;
 
     &:hover {
-      color: #444
+      background-color: var(--bright-green-bg);
     }
   }
 
@@ -304,6 +308,11 @@
         &:hover {
           color: #e2003d;
           background-color: #FFF;
+        }
+
+        &:focus-visible {
+          outline-offset: 1px;
+          outline: 4px solid var(--ant-primary-3);
         }
 
         &.saving {

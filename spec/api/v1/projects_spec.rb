@@ -53,7 +53,9 @@ describe 'Projects' do
             login_box_position: 'right',
             enable_strong_password: true,
             enable_2factor_auth: true,
-            data_processing_consent: true
+            data_processing_consent: true,
+            logo_alt_text: 'alt text',
+            secondary_logo_alt_text: 'alt text'
           }
         end
 
@@ -65,6 +67,8 @@ describe 'Projects' do
           expect(project['name']).to eq 'project1'
           expect(project['client_id']).to eq membership.client.id
           expect(project['webhook']).to eq 'https://my.site.com'
+          expect(project['logo_alt_text']).to eq 'alt text'
+          expect(project['secondary_logo_alt_text']).to eq 'alt text'
         end
       end
     end
@@ -167,7 +171,9 @@ describe 'Projects' do
             name: 'newname',
             webhook: 'https://my.site.com',
             background_color: '#000000',
-            login_box_position: 'center'
+            login_box_position: 'center',
+            logo_alt_text: 'alt text',
+            secondary_logo_alt_text: 'alt text'
           }
         end
 
@@ -180,6 +186,8 @@ describe 'Projects' do
           expect(project['background_color']).to eq '#000000'
           expect(project['login_box_position']).to eq 'auto'
           expect(project['webhook']).to eq 'https://my.site.com'
+          expect(project['logo_alt_text']).to eq 'alt text'
+          expect(project['secondary_logo_alt_text']).to eq 'alt text'
         end
       end
     end
@@ -235,6 +243,8 @@ describe 'Projects' do
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string, required: true
       parameter name: :email, in: :query, type: :string, required: true
+      parameter name: :datasheet, in: :query, type: :boolean, required: false,
+                description: 'If true, returns project datasheet and campaign datasheets'
 
       response '200', 'User info' do
         schema '$ref' => '#/definitions/GetUser'

@@ -34,6 +34,10 @@ import Icon, {
   UploadOutlined as AntdUploadOutlined,
   EyeTwoTone as AntdEyeTwoTone,
   EyeInvisibleOutlined as AntdEyeInvisibleOutlined,
+  CaretRightOutlined as AntdCaretRightOutlined,
+  PauseOutlined as AntdEyePauseOutlined,
+  EditOutlined as AntdEditOutlined,
+  ExpandOutlined as AntdExpandOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -77,3 +81,7 @@ export const CloseCircleFilled = withAccessibilityProps(AntdCloseCircleFilled)
 export const UploadOutlined = withAccessibilityProps(AntdUploadOutlined)
 export const EyeTwoTone = withAccessibilityProps(AntdEyeTwoTone)
 export const EyeInvisibleOutlined = withAccessibilityProps(AntdEyeInvisibleOutlined)
+export const CaretRightOutlined = withAccessibilityProps(AntdCaretRightOutlined)
+export const PauseOutlined = withAccessibilityProps(AntdEyePauseOutlined)
+export const EditOutlined = withAccessibilityProps(AntdEditOutlined)
+export const ExpandOutlined = withAccessibilityProps(AntdExpandOutlined)

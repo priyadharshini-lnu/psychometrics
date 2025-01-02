@@ -13,12 +13,28 @@ const fieldLayout = {
 const { I18n } = window
 
 interface Props {
+  fieldName?: number
   videoCallTypeValue?: number
   showMeetigOption?: boolean
+  validationsErrors?: {
+    [key: string]: {
+      title: string,
+      detail: string,
+    }
+  }
 }
 
-export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetigOption }) => {
+export const ResourcesItems: React.FC<Props> = ({
+  videoCallTypeValue, showMeetigOption, fieldName, validationsErrors,
+}) => {
   const [videoCallType, setVideoCallType] = useState<number>(videoCallTypeValue || 0)
+
+  const getAttributeValidationError = (attribute: string, index: number) => {
+    if (validationsErrors && fieldName !== undefined) {
+      return validationsErrors[`workshops/${fieldName}/workshopResources/${index}/${attribute}`]
+    }
+    return undefined
+  }
 
   return (
     <>
@@ -27,7 +43,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
             {...fieldLayout}
-            name="video_call_type"
+            name={fieldName !== undefined ? [fieldName, 'video_call_type'] : 'video_call_type'}
             rules={[{ required: true }]}
           >
             <Radio.Group onChange={e => setVideoCallType(e.target.value)}>
@@ -61,7 +77,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
       )}
       <Title level={5}>Resources</Title>
       <Form.List
-        name="workshop_resources"
+        name={fieldName !== undefined ? [fieldName, 'workshop_resources'] : 'workshop_resources'}
         rules={[{
           validator (_, resources) {
             const valid = resources.every((resource) => {
@@ -90,7 +106,11 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                     label="Name"
                     {...fieldLayout}
                   >
-                    <Input />
+                    <Input placeholder={
+                      I18n.t(
+                        'administration.scheduling.assessment_center_form.resources_panel.resource_name_placeholder',
+                      )}
+                    />
                   </Form.Item>
                 </Col>
                 <Col xs={23} sm={15}>
@@ -99,13 +119,25 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                     name={[field.name, 'url']}
                     label="URL"
                     {...fieldLayout}
+                    validateStatus={
+                      getAttributeValidationError('url', index) ? 'error' : undefined
+                    }
+                    help={
+                      getAttributeValidationError('url', index)?.title
+                    }
                     rules={[
                       {
-                        type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url'),
+                        type: 'url',
+                        pattern: /https?:\/\/(.*)/,
+                        message: I18n.t('administration.scheduling.resources.invalid_url'),
                       },
                     ]}
                   >
-                    <Input placeholder="Resource Link" />
+                    <Input placeholder={
+                      I18n.t(
+                        'administration.scheduling.assessment_center_form.resources_panel.resource_url_placeholder',
+                      )}
+                    />
                   </Form.Item>
                 </Col>
                 <Col className="flex items-center justify-center" span={1}>

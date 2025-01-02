@@ -17,6 +17,8 @@ module Api
         attribute :background_color, String
         attribute :login_box_position, String
         attribute :webhook, String
+        attribute :logo_alt_text, String
+        attribute :secondary_logo_alt_text, String
 
         validates :login_box_position, inclusion: { in: %w[left right center auto] }, allow_nil: true
         validates :background_color, hex_color: true
@@ -25,6 +27,13 @@ module Api
         validates :background_image, base64: { presence: false }
         validates :webhook, http_url: { presence: false }
         validates :subdomain, length: { minimum: 3, maximum: 32 }, allow_nil: true
+        validates :logo_alt_text,
+                  length: { maximum: ::DesignSetting::MAX_ALT_TEXT_LENGTH },
+                  format: { with: ::DesignSetting::ALLOWED_CHARACTERS_REGEX }, if: -> { logo_alt_text.present? }
+        validates :secondary_logo_alt_text,
+                  length: { maximum: ::DesignSetting::MAX_ALT_TEXT_LENGTH },
+                  format: { with: ::DesignSetting::ALLOWED_CHARACTERS_REGEX },
+                  if: -> { secondary_logo_alt_text.present? }
 
         validate :validate_locales
         validate :validate_subdomain

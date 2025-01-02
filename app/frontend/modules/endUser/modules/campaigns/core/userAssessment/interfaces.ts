@@ -6,6 +6,7 @@ export interface UserAssessment {
   assessmentIconUrl: string | null
   timing: string
   completionPercent: number | null
+  completionReason: string | null
   mindmill: boolean
   mindmillUrl: string
   url: string

@@ -4,6 +4,7 @@ import React, {
 import {
   Row, Col, Button, Typography, Space,
 } from 'antd'
+import { TitleProps } from 'antd/es/typography/Title'
 import { UnorderedListOutlined, AppstoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { useLocalStorage } from '~/hooks/useLocalStorage'
@@ -21,6 +22,7 @@ const VIEW_TYPE = {
 
 type ViewsContainerProps = {
   title: string
+  titleHeadingLevel?: TitleProps['level']
   onViewChange?: (activeView: string) => void
   children: (view: string) => React.ReactElement | React.ReactNode
   defaultView?: 'list' | 'grid'
@@ -29,7 +31,7 @@ type ViewsContainerProps = {
 }
 
 export const ViewsContainer: FC<ViewsContainerProps> = ({
-  onViewChange, title, children, defaultView = 'list', viewTypeStorageKey = 'listType', className,
+  onViewChange, title, titleHeadingLevel, children, defaultView = 'list', viewTypeStorageKey = 'listType', className,
 }) => {
   const [view, setView] = useLocalStorage<string>(viewTypeStorageKey, defaultView)
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
@@ -46,7 +48,7 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
       <div className={className}>
         <Row gutter={20}>
           <Col span={12}>
-            <Title level={4} className={styles.title}>
+            <Title level={titleHeadingLevel} className={styles.title}>
               {title}
             </Title>
           </Col>

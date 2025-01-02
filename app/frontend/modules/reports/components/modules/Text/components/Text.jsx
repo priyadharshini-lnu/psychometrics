@@ -22,7 +22,7 @@ import LookupResultTextValue from './LookupResultTextValue'
 import GetStyles from './GetStyles'
 import PipedText from './PipedText'
 import {
-  convertColor, useAssignStyle, joinStyles, gradientStyle,
+  convertColor, useAssignStyle, joinStyles, gradientStyle, borderRadiusStyle,
 } from '../../CommonMethods/styles'
 
 const assignStyle = useAssignStyle('Text')
@@ -38,6 +38,7 @@ class Text extends Component {
     children: PropTypes.node,
     preview: PropTypes.bool,
   }
+
 
   componentDidMount () {
     this.listener = RichEditorStore.addListener('close', () => {
@@ -109,9 +110,9 @@ class Text extends Component {
     } = this.props
     if (preview) { return }
     if (module.props.sourceType === 'ConditionalText') {
-      openConditionalText({ module })
+      openConditionalText({ modules: [module] })
     } else if (module.props.sourceType === 'ConditionalFactorOccupationText') {
-      openConditionalFactorOccupationText({ module })
+      openConditionalFactorOccupationText({ modules: [module] })
     } else {
       this.edit = true
       openRichEditor()
@@ -143,21 +144,27 @@ class Text extends Component {
   }
 
   buildStyles (styles, overrides) {
-    const { module } = this.props
+    const { module, flipContent } = this.props
 
     let style = styles
     const outerStyle = {}
 
     const {
       backgroundColor, fontColor, fontFamily, borderColor, borderRadius,
-      fontSize, fontWeight, fontStyle, verticalAlign,
+      fontSize, fontWeight, fontStyle, verticalAlign, horizontalAlign,
     } = overrides
-    let { horizontalAlign } = overrides
+    let horizontalAlignNew = assignStyle(style, 'textAlign', horizontalAlign)
 
-    horizontalAlign = assignStyle(style, 'textAlign', horizontalAlign)
+    if (window.I18n.locale === 'ar' && horizontalAlignNew === 'left' && I18nStore.isExistTModule(module, 'text')) {
+      horizontalAlignNew = 'right'
+    }
 
-    if (window.I18n.locale === 'ar' && horizontalAlign === 'left' && I18nStore.isExistTModule(module, 'text')) {
-      horizontalAlign = 'right'
+    if (flipContent && horizontalAlign === 'left') {
+      horizontalAlignNew = horizontalAlign === 'left' ? 'right' : 'left'
+    }
+
+    if (flipContent && horizontalAlign === 'right') {
+      horizontalAlignNew = horizontalAlign === 'right' ? 'left' : 'right'
     }
 
     if (!style.border && !overrides.borderColor) {
@@ -169,23 +176,32 @@ class Text extends Component {
     style.fontFamily = assignStyle(style, 'fontFamily', fontFamily)
     style.fontWeight = assignStyle(style, 'fontWeight', fontWeight)
     style.fontStyle = assignStyle(style, 'fontStyle', fontStyle)
-    style.textAlign = horizontalAlign || assignStyle(style, 'textAlign', '')
+    style.textAlign = horizontalAlignNew || assignStyle(style, 'textAlign', '')
     style.alignItems = verticalAlign || assignStyle(style, 'alignItems', '')
 
     style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
     style.borderWidth = assignStyle(style, 'borderWidth')
     style.borderStyle = assignStyle(style, 'borderStyle')
-    style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
+    const br = assignStyle(style, 'borderRadius', borderRadius)
+    const borderCorners = borderRadiusStyle(style, br)
+
 
     style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor))
 
-    outerStyle.borderRadius = style.borderRadius || borderRadius
+    if (!_.isNil(borderRadius)) {
+      style.borderRadius = `${borderRadius}px`
+      outerStyle.borderRadius = `${borderRadius}px`
+    } else {
+      Object.assign(style, borderCorners)
+      Object.assign(outerStyle, borderCorners)
+    }
 
     if (style.boxShadow?.enabled) {
       const {
         x, y, blur, spread, color,
       } = style.boxShadow
-      outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
+      const sx = flipContent ? -(x || 0) : x || 0
+      outerStyle.boxShadow = `${sx}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
     }
 
     if (!backgroundColor && style.gradient?.enabled) {
@@ -219,22 +235,12 @@ class Text extends Component {
     if (preview) {
       const override = _.find(moduleOverrides, { moduleId: model.id })
 
-      if (override) {
-        return (
-          <SafeHTML
-            html={override?.content || this.getTypeContent()}
-            ref={(ref) => { this.editor = ref }}
-            className={cs(styles.editor)}
-            config="adminRichText"
-          />
-        )
-      }
-
-      if (sourceType === 'ResponseText') {
+      if ((sourceType === 'ResponseText') && !override?.content) {
         const question = _.find(questions, { id: modelQuestion })
         if (!question) { return null }
         const QuestionTypeModel = ResponseTextByQuestionType[question.type]
         const particularResult = _.get(ResultStore, ['results', assessmentId, 'questions', question.id, 0])
+
         if (!QuestionTypeModel) {
           // eslint-disable-next-line no-console
           console.error(`QuestionTypeModel for ResponseText is not found by question ${question}`)
@@ -250,6 +256,17 @@ class Text extends Component {
               preview={preview}
             />
           </div>
+        )
+      }
+
+      if (override) {
+        return (
+          <SafeHTML
+            html={override?.content || this.getTypeContent()}
+            ref={(ref) => { this.editor = ref }}
+            className={cs(styles.editor)}
+            config="adminRichText"
+          />
         )
       }
 
@@ -284,12 +301,7 @@ class Text extends Component {
           />
         )
       } if (sourceType === 'ResultText') {
-        let textValue = LookupResultTextValue.run(model)
-        if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
-          const factorResults = ResultStore.results[assessmentId].campaignFactorResults
-          const code = model.props.source.codes[0]
-          textValue = factorResults && (_.find(factorResults, { code })?.value ?? '')
-        }
+        const textValue = LookupResultTextValue.run(model)
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
             <div>{textValue}</div>
@@ -325,7 +337,7 @@ class Text extends Component {
           onModelChange={this.onChange}
         />
       )
-      : <SafeHTML className={styles.editor} html={text} />
+      : <SafeHTML className={styles.editor} html={I18nStore.tModule(model, 'text')} />
   }
 
   render () {

@@ -40,7 +40,9 @@ class Radar extends Component {
   }
 
   renderChart () {
-    const { model, animation, factors } = this.props
+    const {
+      model, animation, factors, isRTL,
+    } = this.props
     if (this.chart) {
       this.chart.destroy()
       this.chart = null
@@ -53,14 +55,23 @@ class Radar extends Component {
     if (!data) { return null }
     const series = data.series(getCorrectResults(model), sourceModel, model, factors)
     const { fontSize, fontColor: color, fontFamily } = model.props.style
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
     if (!series.length) { return null }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const { hideYaxisLabels } = model.props
     this.chart = Highcharts.chart(
       this.container,
       _.merge(
-        ChartOptions(model, animation),
+        ChartOptions(model, animation, isRTL),
         {
+          legend: {
+            enabled: model.props.showLegend || false,
+            itemStyle: {
+              color: legendColor,
+              fontSize: legendFontSize,
+              fontFamily: legendFontFamily,
+            },
+          },
           plotOptions: {
             series: {
               animation,

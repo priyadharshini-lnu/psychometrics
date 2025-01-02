@@ -35,7 +35,7 @@ const ValidationProcessor = {
 
         let richTextEditorAnswerWordsCount = 0
         let { answers } = result
-        if (isRichTextTextEntryQuestion(question)) {
+        if (isRichTextTextEntryQuestion(question) && answers) {
           richTextEditorAnswerWordsCount = result.richTextEditorAnswerWordCount
           answers = removeTags(result.answers)
         }

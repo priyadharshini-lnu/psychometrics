@@ -50,23 +50,24 @@ unless Rails.env.test?
       style_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
       font_src = [
-        :self, :data, Settings.oac.base_embed_url
+        :self, :data, Settings.oac.base_embed_url, 'https://consent.trustarc.com'
       ].compact
       font_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
       font_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
       connect_src = [
-        :self, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
+        :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
         'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
         'https://o111210.ingest.sentry.io',
-        'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url
+        'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint
       ].compact
+      connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
       policy.worker_src :self, :blob
       policy.default_src :self
       policy.font_src(*font_src)
       policy.img_src     '*', :data, :blob
-      policy.media_src   '*'
+      policy.media_src   '*', :blob
       policy.object_src  :none
       policy.frame_src   '*'
       policy.script_src(*script_src)

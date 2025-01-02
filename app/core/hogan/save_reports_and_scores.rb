@@ -56,7 +56,7 @@ module Hogan
 
       user_result.update!(external_results: participant_score)
       user_result.user_reports(:internal).where(status: :not_prepared).each do |ur|
-        UserReports::GenerateAndSavePdfJob.perform_later(ur, current_user)
+        UserReports::GenerateAndSavePdfJob.perform_later(ur, user_result.user)
       end
     end
 

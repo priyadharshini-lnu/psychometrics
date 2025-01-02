@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import {
   Button, Col, Row, Slider, Typography,
 } from 'antd'
-import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons'
+import { CaretRightOutlined, PauseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { getMinutesAndSeconds } from '~/utils/time'
 import { PLAYER_STATE } from '~/modules/survey/constants/media'
@@ -15,6 +15,8 @@ interface Props {
   playAudio(): void
   pauseAudioPlay(): void
 }
+
+const { I18n } = window
 
 export const AudioPlayer: React.FC<Props> = ({
   playerState,
@@ -108,6 +110,7 @@ export const AudioPlayer: React.FC<Props> = ({
               loading={loading}
               icon={<PauseOutlined />}
               onClick={pauseAudioPlay}
+              aria-label={I18n.t('frontend.aria.pause')}
             />
           ) : (
             <Button
@@ -115,6 +118,7 @@ export const AudioPlayer: React.FC<Props> = ({
               loading={loading}
               icon={<CaretRightOutlined />}
               onClick={playAudio}
+              aria-label={I18n.t('frontend.aria.play')}
             />
           )}
         </Col>

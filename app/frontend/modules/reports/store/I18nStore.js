@@ -186,12 +186,13 @@ _.extend(I18nStore.prototype, {
         })
         return hash
       }, {}),
-      campaignFactors: _.reduce(AppStore.report.campaignFactors, (hash, factor) => {
-        hash[factor.code] = {
-          name: factor.name,
-        }
-        return hash
-      }, {}),
+      // fix after chaning campaign factors to table saving
+      // campaignFactors: _.reduce(AppStore.report.campaignFactors, (hash, factor) => {
+      //   hash[factor.code] = {
+      //     name: factor.name,
+      //   }
+      //   return hash
+      // }, {}),
       occupation: _.reduce(AppStore.occupations, (hash, occupations) => {
         _.each(occupations, (occupation) => {
           hash[occupation.id] = {

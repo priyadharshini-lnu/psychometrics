@@ -1,11 +1,11 @@
 import React from 'react'
 import {
-  Form, Layout, Typography, Input, Row, Col, Space, Button, Image, Alert,
+  Form, Layout, Typography, Row, Col, Space, Button, Image, Alert,
 } from 'antd'
+import { AccessiblePasswordInput, DirectionalArrowIcon } from '~/glint'
 import { useResources } from '~/hooks/useResources'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import ResourceForm from '~/components/ResourceForm'
-import { DirectionalArrowIcon } from '~/glint'
 import styles from './ChangePassword.less'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { SuccessMessageTR } from '~/modules/admin/modules/client/core/successMessage'
@@ -62,19 +62,19 @@ const ChangePassword: React.FC = () => {
                     name="currentPassword"
                     label={I18n.t('change_password_page.old_password')}
                   >
-                    <Input.Password />
+                    <AccessiblePasswordInput />
                   </Form.Item>
                   <Form.Item
                     name="password"
                     label={I18n.t('change_password_page.password')}
                   >
-                    <Input.Password />
+                    <AccessiblePasswordInput />
                   </Form.Item>
                   <Form.Item
                     name="passwordConfirmation"
                     label={I18n.t('change_password_page.password_confirmation')}
                   >
-                    <Input.Password />
+                    <AccessiblePasswordInput />
                   </Form.Item>
                   <>
                     <Alert message={I18n.t('change_password_page.warning_message')} type="warning" />

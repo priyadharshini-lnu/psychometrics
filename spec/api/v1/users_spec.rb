@@ -9,6 +9,24 @@ describe 'Users' do
   let(:campaign) { create(:campaign, project: project, status: :active) }
   let(:user) { create(:user, project: project) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+  let!(:campaign_datasheet) { create(:sheet, campaign: campaign, type: 'Datasheet') }
+  let!(:project_datasheet) { create(:sheet, project: project, type: 'Datasheet') }
+  let!(:campaign_datasheet_columns) do
+    campaign_datasheet.sheet_columns << create(
+      :sheet_column, sheet: campaign_datasheet, name: 'Current Position', column_type: 'string'
+    )
+    campaign_datasheet.sheet_columns << create(
+      :sheet_column, sheet: campaign_datasheet, name: 'Department', column_type: 'string'
+    )
+    campaign_datasheet.sheet_columns << create(
+      :sheet_column, sheet: campaign_datasheet, name: 'Location', column_type: 'string'
+    )
+  end
+  let!(:project_datasheet_columns) do
+    project_datasheet.sheet_columns << create(
+      :sheet_column, sheet: project_datasheet, name: 'Current Position', column_type: 'string'
+    )
+  end
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
@@ -106,13 +124,28 @@ the campaign\'s default assessments and reports.'
         let(:last_name) { 'Holloway' }
         let(:email) { 'max@example.com' }
         let(:project_id) { project.id }
+        let(:external_id) { '123' }
         let(:body) do
-          { email: email, first_name: first_name, last_name: last_name,
+          {
+            email: email,
+            first_name: first_name,
+            last_name: last_name,
             campaigns: [{
               id: campaign.id,
               active: true,
-              existing_record: 'new_evaluation'
-            }] }
+              external_id: external_id,
+              existing_record: 'new_evaluation',
+              datasheet: {
+                'Current Position' => 'Manager',
+                'Department' => 'HR',
+                'Location' => 'London'
+              }
+            }],
+            project_datasheet: {
+              'Current Position' => 'Developer'
+            },
+            existing_record: 'accept'
+          }
         end
 
         run_test! do |response|
@@ -124,10 +157,29 @@ the campaign\'s default assessments and reports.'
           expect(user['last_name']).to eq last_name
           expect(user['email']).to eq email
           expect(user['campaigns'][0]['id']).to eq campaign.id
+          expect(user['campaigns'][0]['datasheet']).to eq(
+            {
+              'Current Position' => 'Manager',
+              'Department' => 'HR',
+              'Location' => 'London'
+            }
+          )
+          expect(user['project_datasheet']).to eq(
+            {
+              'Current Position' => 'Developer'
+            }
+          )
 
           expect(campaign_user.active).to eq true
+          expect(campaign_user.external_id).to eq external_id
           expect(campaign_user.schedule_start_date).to eq nil
           expect(campaign_user.schedule_end_date).to eq nil
+          expect(campaign_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
+            %w[Manager HR London]
+          )
+          expect(project_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
+            %w[Developer]
+          )
         end
       end
 
@@ -427,6 +479,54 @@ enough licenses for '#{report.name}'",
           expect(body['assessments'].first).to eq({
             'id' => assessment.id,
             'norm_id' => norm.id
+          })
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/campaigns/{campaign_id}/users/{user_id}/results' do
+    get 'Get campaign user results' do
+      operationId 'GetCampaignUserResults'
+      description 'Update user assessments and reports'
+      tags 'Users'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, type: :string
+
+      response '200', 'Success' do
+        schema '$ref' => '#/definitions/CampaignUserResults'
+
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:user_id) { user.id }
+        let!(:campaign_user) do
+          create(:campaign_user, campaign: campaign, user: user,
+            campaign_scores_finalized: true, campaign_scores_calculated_date: Time.current,
+            campaign_scores_finalized_date: Time.current)
+        end
+        let!(:campaign_factor) { create(:campaign_factor, campaign: campaign, output_type: 'numeric') }
+        let!(:campaign_factor_value) do
+          create(:campaign_factor_value, campaign: campaign, campaign_factor: campaign_factor, user: user,
+numeric_value: 2.0)
+        end
+
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          expect(body).to eq({
+            'finalized' => campaign_user.campaign_scores_finalized,
+            'finalized_at' => campaign_user.campaign_scores_finalized_date.as_json,
+            'calculated_at' => campaign_user.campaign_scores_calculated_date.as_json,
+            'results' => [
+              {
+                'id' => campaign_factor.code,
+                'name' => campaign_factor.name,
+                'value' => campaign_factor_value.numeric_value,
+                'value_type' => 'numeric'
+              }
+            ]
           })
         end
       end

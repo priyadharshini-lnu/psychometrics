@@ -36,7 +36,7 @@ module UserReports::PdfGeneration
             view_report_as: view_report_as,
             current_user: current_user,
             campaign: resource.campaign,
-            include: '**'
+            lang: params[:lang]
           }
         ).serialize(resource)
       end

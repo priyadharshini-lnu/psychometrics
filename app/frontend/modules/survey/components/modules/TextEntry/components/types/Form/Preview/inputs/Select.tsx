@@ -14,10 +14,11 @@ interface Props {
   multi?: boolean
   readOnly: boolean
   onChange: (i: number, value: string | string[]) => void
+  id: string
 }
 
 const Select: React.FC<Props> = ({
-  onChange, model, model: { result: { answers }, props: { formTypes } }, index, multi = false, readOnly,
+  onChange, model, model: { result: { answers }, props: { formTypes } }, index, multi = false, readOnly, id,
 }) => {
   const type = formTypes[index]
   const { optionList } = type
@@ -25,6 +26,7 @@ const Select: React.FC<Props> = ({
   return (
     <div className={styles.selectContainer}>
       <BaseSelect
+        id={id}
         disabled={readOnly}
         showArrow
         value={answers[index].value || (multi ? [] : '')}
@@ -32,6 +34,7 @@ const Select: React.FC<Props> = ({
         className={styles.formSelect}
         mode={multi ? MULTIPLE : undefined}
         showSearch
+        virtual={false} // this is for accessibility
       >
         {optionList?.map((option: string, i: number) => (
           <Option key={i} value={option}>

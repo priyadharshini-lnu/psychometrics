@@ -3,6 +3,7 @@ import { Users } from './Users'
 import { Settings } from './Settings'
 import { Datasheet } from './Datasheet'
 import { Admins } from './Admins'
+import { DataExports } from './DataExports'
 
 export const routes = [
   { redirect: true, from: '/', to: 'new_campaigns' },
@@ -29,5 +30,9 @@ export const routes = [
   {
     path: '/settings/*',
     component: <Settings />,
+  },
+  {
+    path: '/data_exports',
+    component: <DataExports />,
   },
 ]

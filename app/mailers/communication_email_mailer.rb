@@ -4,7 +4,7 @@ class CommunicationEmailMailer < ApplicationMailer
   layout 'mailer/layouts/end_user_email_without_footer'
 
   def create(email_id)
-    @communication_email = CommunicationEmail.preload(:communication).find(email_id)
+    @communication_email = CommunicationEmail.preload(:communication, :communication_email_resources).find(email_id)
     @resource = recipient
     data = recipient.slice(:first_name, :last_name, :email)
     data[:user_link] = accept_invitation_link
@@ -40,7 +40,9 @@ class CommunicationEmailMailer < ApplicationMailer
       {
         workshop: @communication_email.workshop,
         workshop_invite: @communication_email.workshop_invite,
-        user: @communication_email.user || @communication_email.campaign_user&.user
+        user: @communication_email.user || @communication_email.campaign_user&.user,
+        campaign: campaign,
+        user_report: user_report
       }.compact
     )
   end
@@ -89,5 +91,13 @@ class CommunicationEmailMailer < ApplicationMailer
     Rails.application.
       message_verifier(Settings.secrets.secret_token_for_generate).
       verify(recipient.encrypted_invitation_raw)
+  end
+
+  def campaign
+    @communication_email.project_campaign
+  end
+
+  def user_report
+    @communication_email.communication_email_resources.find { |r| r.resource_type == 'UserReport' }&.resource
   end
 end

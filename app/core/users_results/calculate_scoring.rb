@@ -35,8 +35,9 @@ module UsersResults
       assessment = users_result.assessment
       return broadcast :ok, {} unless assessment.dimension
 
-      factors_scoring = FactorsScoring.where(assessment_id: assessment.id).joins(:factor).
-                        where(factors: { dimension_id: assessment.dimension_id })
+      factors_scoring = FactorsScoring.
+                        includes(:factor, :question).
+                        where(assessment_id: assessment.id, factors: { dimension_id: assessment.dimension_id })
 
       factors_scoring_map = factors_scoring.group_by(&:factor_id)
       questions_ids = factors_scoring.map(&:question_id).uniq
@@ -70,7 +71,8 @@ module UsersResults
 
       broadcast :ok, ::UsersResults::Scoring::Extend.call!(
         scoring, norm_data,
-        users_result.assessment.dimension, users_result.external_results, factors_question_count
+        users_result.assessment.dimension, users_result.external_results, factors_question_count,
+        users_result.answers
       )
     end
     # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

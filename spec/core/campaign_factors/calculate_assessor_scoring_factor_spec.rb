@@ -113,4 +113,48 @@ describe CampaignFactors::CalculateAssessorScoringFactor do
       expect(campaign_factor_values[campaign_factor2].value).to eq(4.5)
     end
   end
+
+  context 'assessor_user_assessment with sub factors not completed' do
+    let(:factor_with_sub_factors) { create(:factor) }
+    let!(:sub_factor) { create(:factor) }
+
+    let!(:campaign_factor) do
+      create(:campaign_factor, campaign: campaign, factor_type: :assessor_scoring, factor: factor_with_sub_factors)
+    end
+
+    let!(:factor_sub_factor) { create(:factors_sub_factor, factor: factor_with_sub_factors, sub_factor: sub_factor) }
+
+    let(:another_assessor_assessment) { create(:assessment, category: :assessor_form) }
+
+    let!(:third_assessor_user_assessment) do
+      create(:user_assessment, campaign: campaign, subject: user,
+        assessment: another_assessor_assessment, relationship: Relationship.assessor_relationship, status: :in_progress)
+    end
+
+    before(:each) do
+      FactoryBot.create(:factors_scoring, factor: sub_factor, assessment: another_assessor_assessment)
+    end
+
+    it 'do not calculate before sub factors are calculated' do
+      third_assessor_user_assessment.users_result.update!(scoring: {})
+
+      campaign_factor_values = described_class.call!(campaign, user)
+
+      expect(campaign_factor_values[campaign_factor]).to be_nil
+    end
+
+    it 'calculate main factor when sub factors are scored' do
+      third_assessor_user_assessment.users_result.update!(
+        scoring: {
+          factor_with_sub_factors.id.to_s => { 'norm_score' => 2 }
+        }
+      )
+
+      third_assessor_user_assessment.complete!
+
+      campaign_factor_values = described_class.call!(campaign, user)
+
+      expect(campaign_factor_values[campaign_factor].value).to eq(2)
+    end
+  end
 end

@@ -25,7 +25,8 @@ export const RemoveNormModal: React.FC<Props> = ({
   return (
     <AnswerableConfirmationModal
       requiredAnswer={name}
-      confirmationMessage={I18n.t('administration.norms.remove.confirm', { name })}
+      warningMessage={I18n.t('administration.norms.remove.warning', { name })}
+      confirmationMessage={I18n.t('administration.norms.remove.confirm')}
       onConfirm={handleOnConfirm}
       onCancel={close}
     />
