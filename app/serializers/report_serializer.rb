@@ -5,7 +5,6 @@ class ReportSerializer < Panko::Serializer
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language, :other_languages,
              :locales, :campaign_factors, :module_overrides, :assessments, :styles, :flip_content, :available_languages
-
   has_many :filters, each_serializer: Reports::FilterSerializer
 
   def assessments
@@ -31,17 +30,17 @@ class ReportSerializer < Panko::Serializer
 
   def default_language
     {
-      code: locale,
-      name: I18n.t("languages.#{locale}"),
+      code: locale, name: I18n.t("languages.#{locale}"),
       direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
     }
   end
 
   def available_languages
-    (object.other_languages + [locale]).uniq.map do |language|
+    other_languages = context[:available_languages] || object.other_languages
+
+    (other_languages + [locale]).uniq.map do |language|
       {
-        code: language,
-        name: I18n.t("languages.#{language}"),
+        code: language, name: I18n.t("languages.#{language}"),
         direction: Settings.rtl_languages.include?(language) ? 'rtl' : 'ltr'
       }
     end
@@ -52,7 +51,7 @@ class ReportSerializer < Panko::Serializer
   end
 
   def locale
-    object.default_language || I18n.default_locale
+    context[:default_language] || object.default_language || I18n.default_locale
   end
 
   def flip_content

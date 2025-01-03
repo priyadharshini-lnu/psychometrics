@@ -8,6 +8,7 @@ module Threesixty
     before_action :set_campaign
     before_action :set_user_report
     prepend_before_action :authenticate_by_token!, only: %i[show]
+    before_action :load_campaign_report!, only: %i[show download]
     initial_state_for %i[index show]
 
     def index
@@ -36,14 +37,16 @@ module Threesixty
               current_option: @campaign.option,
               current_user: current_user,
               threesixty_campaign: @campaign,
-              lang: params[:lang]
+              default_language: @campaign_report.effective_default_language,
+              available_languages: @campaign_report.available_languages,
+              lang: params[:lang] || @campaign_report.effective_default_language
             }
           ).serialize(@user_report)
         end
         format.pdf do
           @data = ::Reports::PrepareDataForReport.call!(
             user_report: @user_report,
-            locale: @user_report.report.default_language,
+            locale: @campaign_report.effective_default_language,
             current_user: current_user
           )
           @pdf_export = true
@@ -71,7 +74,7 @@ module Threesixty
         campaign_id: @campaign.campaign_id, user_id: @user_report.user_id
       )
       ::Threesixty::Reports::DownloadJob.perform_later(@campaign, current_user, subject, @user_report,
-                                                       lang: @user_report.report.default_language)
+                                                       lang: @campaign_report.effective_default_language)
       render json: { success: true }
     end
 
@@ -100,6 +103,11 @@ module Threesixty
 
     def set_campaign
       @campaign = Threesixty::Campaign.find(params[:campaign_id])
+    end
+
+    def load_campaign_report!
+      @campaign_report = CampaignReport.includes(:report).find_by!(report_id: @campaign.report_id,
+                                                                   campaign_id: @campaign.campaign_id)
     end
   end
 end
