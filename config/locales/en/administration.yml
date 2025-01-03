@@ -104,6 +104,9 @@ en:
             view: View
           auditLogs:
             view: View
+          auditReports:
+            admin_permissions: Admin Roles and Permissions export
+            user_report_events: Report Approval logs
           campaignFactors:
             manage: Manage
             view: View
@@ -134,9 +137,6 @@ en:
             accesssheet_settings: Accesssheet Settings
             accesssheet_view: Accesssheet View
             view: View
-          dataExports:
-            admin_permissions: Admin Roles and Permissions export
-            user_report_events: Report Approval logs
           datasheets:
             manage: Manage
             view: View

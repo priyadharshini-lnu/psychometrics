@@ -41,7 +41,7 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
       context[:user],
       @model,
       [
-        'view_data_exports'
+        'view_audit_reports'
       ]
     )
   end

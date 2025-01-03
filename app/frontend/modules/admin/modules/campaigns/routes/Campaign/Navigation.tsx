@@ -86,7 +86,7 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     </Link>,
     icon: <SettingOutlined />,
   } : null,
-  permissions.viewDataExports ? {
+  permissions.viewAuditReports ? {
     key: 'audit_reports',
     label:
     <Link route={`${basePath}/audit_reports`}>

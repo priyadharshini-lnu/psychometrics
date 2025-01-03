@@ -130,7 +130,7 @@ const Project: FC<Props> = ({
     icon: <SettingOutlined />,
     label: I18n.t('administration.breadcrumbs.settings'),
   })
-  currentUser.permissions.viewDataExports && menuItems.push({
+  currentUser.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
     icon: <ExportOutlined />,
     label: I18n.t('administration.breadcrumbs.audit_reports'),

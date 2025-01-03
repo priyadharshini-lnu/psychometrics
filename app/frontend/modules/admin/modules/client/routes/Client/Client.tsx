@@ -119,7 +119,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
     label: I18n.t('administration.breadcrumbs.settings'),
   })
 
-  client?.meta.permissions.viewDataExports && menuItems.push({
+  client?.meta.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
     icon: <ExportOutlined />,
     label: I18n.t('administration.breadcrumbs.audit_reports'),
