@@ -1,7 +1,7 @@
 
 - uses_lambda = Settings.features.url_to_pdf_lambda
 - download_url = download_administration_threesixty_campaign_subject_reports_path(@user_report.threesixty_campaign,
-    @user_report.threesixty_subject, format: Settings.features.url_to_pdf_lambda ? nil : :pdf, lang: params[:lang], export: true,
+    @user_report.threesixty_subject, format: Settings.features.url_to_pdf_lambda ? nil : :pdf, lang: lang_param, export: true,
     skip_logic: params[:skip_logic])
 .row
   .col-md-12

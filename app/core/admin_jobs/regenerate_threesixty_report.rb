@@ -5,7 +5,7 @@ module AdminJobs
     def call
       if available?
         user_reports = campaign.user_reports.where(user_id: subject.user_id)
-        ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
+        ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
       else
         return broadcast :ok, content: "Report can't be generated"
       end
@@ -58,17 +58,6 @@ module AdminJobs
 
     def threesixty_campaign
       @threesixty_campaign ||= ::Threesixty::Campaign.find(record.data['threesixty_campaign_id'])
-    end
-
-    def campaign_report
-      @campaign_report ||= CampaignReport.includes(:report).find_by!(report_id: threesixty_campaign.report_id,
-                                                                     campaign_id: threesixty_campaign.campaign_id)
-    end
-
-    def options
-      {
-        lang: campaign_report.effective_default_language
-      }
     end
   end
 end

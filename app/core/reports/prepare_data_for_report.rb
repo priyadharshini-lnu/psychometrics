@@ -57,7 +57,7 @@ module Reports
       Reports::GetTranslationWithPipetextReplaced.call!(
         report,
         piped_text_context: piped_text_context,
-        locale: @lang
+        locale: locale
       )
     end
   end

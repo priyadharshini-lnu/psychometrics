@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import AccessSection from './AccessSection'
 import ApprovalSection from './ApprovalSection'
 import ReportAvailabilitySection from './ReportAvailabilitySection'
-import ReportLanguageSection from './ReportLanguageSection'
 import styles from './styles.less'
 
 export default function Options ({
@@ -21,7 +20,6 @@ export default function Options ({
         <AccessSection manageReportsOptions={campaignReportPermissions.manageReportsOptions} />
         <ApprovalSection />
         <ReportAvailabilitySection />
-        <ReportLanguageSection />
       </>
     </div>
   )

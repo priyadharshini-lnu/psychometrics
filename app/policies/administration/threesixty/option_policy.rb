@@ -11,10 +11,6 @@ module Administration
         has_permission?(:campaigns, :report_options)
       end
 
-      def update_language?
-        has_permission?(:campaigns, :report_options)
-      end
-
       def message_options?
         has_permission?(:messages, :options)
       end

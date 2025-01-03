@@ -1,7 +1,6 @@
 export const FETCH = 'threeSixty/option/FETCH'
 export const UPDATE = 'threeSixty/option/UPDATE'
 export const SYNC = 'threeSixty/option/SYNC'
-export const UPDATE_LANGUAGES = 'threeSixty/option/UPDATE_LANGUAGES'
 
 export const fetch = (campaignId: number) => ({
   type: FETCH,
@@ -17,15 +16,6 @@ export const syncWithServer = (campaignId: number, options) => ({
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/options/`,
     body: { reports: options },
-  },
-})
-
-export const updateLanguages = (payload, campaignId: number) => ({
-  type: UPDATE_LANGUAGES,
-  request: {
-    method: 'put',
-    url: `/administration/threesixty_campaigns/${campaignId}/options/update_language`,
-    body: { languages: payload },
   },
 })
 

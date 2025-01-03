@@ -14,8 +14,4 @@ class CampaignReport < ApplicationRecord
   def log_attributes
     slice(:campaign_id, :report_id, :report_family_id)
   end
-
-  def effective_default_language
-    default_language.presence || report.default_language
-  end
 end
