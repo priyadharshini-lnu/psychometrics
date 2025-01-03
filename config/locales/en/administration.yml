@@ -66,11 +66,13 @@ en:
           cancel_text: Cancel
           change_password: Reset password
           edit: Edit
+          export_admins_with_permissions: Admin Roles and Permissions export
           export_success: Admin export job was scheduled successfully. Please check your notification for status.
           login: Login
           send_email: Send email
           spoof:
             login_successful: Login successful.
+          user_report_events: Report Approval logs
         columns:
           actions: Actions
           created_at: Created at
@@ -81,7 +83,7 @@ en:
           add_admin: Add admin
           search_admins: Search admins
         toolbar:
-          export_admins_with_permissions: Admins(With permissions)
+          export_admins_with_permissions: Admin Roles and Permissions export
       modals:
         delete:
           cancelText: Cancel
@@ -133,8 +135,8 @@ en:
             accesssheet_view: Accesssheet View
             view: View
           dataExports:
-            admin_permissions: Admin Permissions
-            user_report_events: User Report Events
+            admin_permissions: Admin Roles and Permissions export
+            user_report_events: Report Approval logs
           datasheets:
             manage: Manage
             view: View
@@ -585,6 +587,7 @@ en:
       assessors: Assessors
       audit_log_info: Audit Log Info
       audit_logs: Audit Logs
+      audit_reports: Audit Reports
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
@@ -593,7 +596,6 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       create: Create
-      data_exports: Data Exports
       datasheets: Datasheets
       design: Design
       dimension: Dimension

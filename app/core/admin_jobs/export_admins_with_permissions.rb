@@ -49,13 +49,34 @@ module AdminJobs
       ]
     end
 
-    def permissions_for_membership(membership)
+    def permissions_for_membership(membership) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+      permissions = Hash.new { |h, k| h[k] = [] }
+      role_sources = Hash.new { |h, k| h[k] = Hash.new { |h2, k2| h2[k2] = [] } }
+
+      membership.admin_roles.each do |role|
+        role.permissions&.each do |entity, permissions_list|
+          next unless permissions_list
+
+          permissions_list.each do |permission|
+            permissions[entity] << permission
+            role_sources[entity][permission] << role.name unless role_sources[entity][permission].include?(role.name)
+          end
+        end
+      end
+
       AllowedPermissions::CLIENT_ADMIN_PERMISSIONS.flat_map do |key, values|
         values.map do |value|
-          grants = membership.grants
-          next 'False' unless grants
+          grants = membership.grants&.data || {}
+          admin_permissions = permissions[key] || []
 
-          grants.data[key]&.include?(value) ? 'True' : 'False'
+          if grants[key]&.include?(value)
+            'True'
+          elsif admin_permissions.include?(value)
+            role_names = role_sources[key][value].join(', ')
+            "True (#{role_names})"
+          else
+            'False'
+          end
         end
       end
     end
@@ -77,7 +98,7 @@ module AdminJobs
         project_admin_role: project_admin_role,
         client_admin_role: client_admin_role,
         campaign_admin_role: campaign_admin_role
-      ).includes(:user, :campaign, :client, :grants).find_each(batch_size: 100)
+      ).includes(:user, :campaign, :client, :grants, :admin_roles).find_each(batch_size: 100)
     end
 
     def file_name
