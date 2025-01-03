@@ -1692,13 +1692,14 @@ en:
             dates_not_in_future: Dates should not be in the future
             dates_should_be_empty: Dates should be empty for not_started status
             started_at_required: Valid started_at is required for in_progress status
+          error: "[Row %{row}] %{error}"
           invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_date: "[Row %{row}] %{error}"
           question_invalid: "[Row %{row}] Question %{question_id} is invalid"
           user:
             record_not_found: Can't find existing user with email %{email}.
           user_assessment:
-            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user .
+            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user.
         translation:
           error: "[Translation %{id}] %{error}"
           invalid_format: Invalid File format
