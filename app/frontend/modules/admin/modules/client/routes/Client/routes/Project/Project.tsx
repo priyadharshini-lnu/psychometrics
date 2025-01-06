@@ -66,8 +66,8 @@ const Project: FC<Props> = ({
     if (pathname.includes('/settings')) {
       return ['settings']
     }
-    if (pathname.includes('/data_exports')) {
-      return ['data_exports']
+    if (pathname.includes('/audit_reports')) {
+      return ['audit_reports']
     }
     return undefined
   }
@@ -101,8 +101,8 @@ const Project: FC<Props> = ({
         }
         return I18n.t('administration.breadcrumbs.settings')
       }
-      case 'data_exports':
-        return I18n.t('administration.breadcrumbs.data_exports')
+      case 'audit_reports':
+        return I18n.t('administration.breadcrumbs.audit_reports')
       default:
         return ''
     }
@@ -130,10 +130,10 @@ const Project: FC<Props> = ({
     icon: <SettingOutlined />,
     label: I18n.t('administration.breadcrumbs.settings'),
   })
-  currentUser.permissions.viewDataExports && menuItems.push({
-    key: 'data_exports',
+  currentUser.permissions.viewAuditReports && menuItems.push({
+    key: 'audit_reports',
     icon: <ExportOutlined />,
-    label: I18n.t('administration.breadcrumbs.data_exports'),
+    label: I18n.t('administration.breadcrumbs.audit_reports'),
   })
 
   return (

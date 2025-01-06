@@ -36,6 +36,10 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
                      service: Settings.storage.private_storage_service,
                      content_type: %w[application/pdf]
 
+  has_one_attachment :translated_pdf_file,
+                     service: Settings.storage.private_storage_service,
+                     content_type: %w[application/pdf]
+
   def attachment_storage_path(attribute_name, filename)
     "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
   end
@@ -116,14 +120,16 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     where(campaign_id: campaign_id, report_id: accessible_report_ids)
   end
 
-  def attach_pdf!(data, filename = nil)
+  def attach_pdf!(data, filename = nil, translated = false)
+    storage_target = translated ? translated_pdf_file : pdf_file
+
     case data
       when String
         if data.start_with?('http://', 'https://')
           url = URI.parse(data)
           file = URI(data).open
 
-          pdf_file.attach(
+          storage_target.attach(
             io: file,
             filename: filename || File.basename(url.path),
             content_type: 'application/pdf'
@@ -133,10 +139,10 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
             data: "data:application/pdf;base64,[#{data}]"
           })
           data_to_attach[:filename] = filename if filename
-          pdf_file.attach(data_to_attach)
+          storage_target.attach(data_to_attach)
         end
       when File, ActionDispatch::Http::UploadedFile
-        pdf_file.attach(
+        storage_target.attach(
           io: data,
           filename: filename || File.basename(data),
           content_type: 'application/pdf'
@@ -149,8 +155,8 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     save!
   end
 
-  def pdf_exists?
-    pdf_file.attached?
+  def pdf_exists?(translated = false)
+    translated ? translated_pdf_file.attached? : pdf_file.attached?
   end
 
   def remove_report_pdf!
@@ -235,10 +241,11 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     "#{user.decorate.full_name}-#{report_name}-#{user.id}.pdf"
   end
 
-  def pdf_download_url
-    return unless pdf_exists?
+  def pdf_download_url(translated = false)
+    return unless pdf_exists?(translated)
 
-    pdf_file.url(disposition: 'attachment', filename: report_name_for_download)
+    storage_target = translated ? translated_pdf_file : pdf_file
+    storage_target.url(disposition: 'attachment', filename: report_name_for_download)
   end
 
   def remove_pdf_and_update_status!

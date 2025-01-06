@@ -110,11 +110,11 @@ module AdminJobs
     end
 
     def start_date
-      record.data['start_date']
+      Date.parse(record.data['start_date']).beginning_of_day
     end
 
     def end_date
-      record.data['end_date']
+      Date.parse(record.data['end_date']).end_of_day
     end
 
     def entity

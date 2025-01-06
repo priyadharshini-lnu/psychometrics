@@ -15,7 +15,7 @@ module Api
 
       def can_manage_user_report_events?
         @user.is?(:superadmin, :client_admin, :project_admin, :campaign_admin) ||
-          @user.has_permission?(:data_exports, :user_report_events)
+          @user.has_permission?(:audit_reports, :user_report_events)
       end
     end
   end

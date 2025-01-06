@@ -19,7 +19,7 @@ export const routes = [
     component: <Settings />,
   },
   {
-    path: '/data_exports',
+    path: '/audit_reports',
     component: <DataExports />,
   },
   {

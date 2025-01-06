@@ -20,7 +20,7 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
   let!(:client_admin1) { create(:client_admin, client: client) }
 
   let!(:expected_header_row) do
-    expected_first_row = [
+    [
       'Membership ID',
       'Email',
       'Role',
@@ -34,7 +34,6 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
         values.map { |value| "#{key.titleize} - #{value.titleize}" }
       end
     ]
-    expected_first_row
   end
 
   context 'when campaign_id is provided' do
@@ -173,6 +172,29 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
       exported_emails = csv.map { |row| row[1] }.drop(1)
 
       expect(exported_emails).to match_array(expected_admins_emails)
+    end
+  end
+
+  context 'when custom admin roles are present' do
+    let(:job_record) do
+      create(:admin_job_record, operation: :export_admin_with_permissions, data: { project_id: project.id })
+    end
+
+    it 'considers custom role permissions in export' do
+      custom_permissions = { 'clients' => ['view'] }
+      custom_role = create(:admin_role, name: 'Custom Role', description: 'A role with custom permissions',
+       permissions: custom_permissions)
+      project_admin1.memberships.first.grants.data.delete('clients')
+      project_admin1.memberships.first.update!(admin_role_ids: [custom_role.id])
+      described_class.call!(job_record)
+
+      csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
+      actual_first_row = csv[0]
+
+      clients_view_index = actual_first_row.index('Clients - View')
+
+      custom_role_permission = csv.find { |row| row[0].to_i == project_admin1.memberships.first.id }
+      expect(custom_role_permission[clients_view_index]).to eq('True (Custom Role)')
     end
   end
 end

@@ -17,7 +17,7 @@ module Administration
     end
 
     def push_webhook?
-      !record.assessment.external? && @user.has_permission?(:project_settings, :webhooks, project_id: project_id)
+      @user.has_permission?(:project_settings, :webhooks, project_id: project_id)
     end
 
     def webhook_payload?

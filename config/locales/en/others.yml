@@ -735,6 +735,7 @@ en:
         export_occupations: Occupations Export
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
+        export_user_report_events: Export User Report Events
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
         import_accesssheet: Import Accessheet
