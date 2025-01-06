@@ -37,11 +37,10 @@ export const downloadReport = (campaignId, id, lang) => ({
   },
 })
 
-export const checkReport = (campaignId, id, lang) => ({
+export const checkReport = (campaignId, id) => ({
   type: CHECK_REPORT,
   request: {
     url: `/threesixty_campaigns/${campaignId}/reports/${id}/check_report`,
-    body: { lang },
   },
 })
 

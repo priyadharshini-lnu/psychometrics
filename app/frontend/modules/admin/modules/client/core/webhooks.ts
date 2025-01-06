@@ -30,6 +30,5 @@ export const getWebhookPayload = (campaignId, parentType, parentId, body) => ({
     url: `/administration/new_campaigns/${campaignId}/${parentType}/${parentId}/webhook_payload`,
     body: { ...body },
     loader: true,
-    camelize: false,
   },
 })

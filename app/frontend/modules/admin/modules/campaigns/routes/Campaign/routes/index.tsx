@@ -32,7 +32,7 @@ const routes = [
   { path: '/datasheet', component: <Datasheet /> },
   { path: '/admins', component: <Admins /> },
   { path: '/options', component: <CampaignOptions /> },
-  { path: '/audit_reports', component: <DataExports /> },
+  { path: '/data_exports', component: <DataExports /> },
 ]
 
 export default routes

@@ -42,7 +42,7 @@ module Administration
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
         options = {
-          lang: params[:lang] || user_report.report.default_language,
+          lang: user_report.report.default_language,
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
           update_record: false,

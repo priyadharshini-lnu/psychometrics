@@ -16,7 +16,7 @@ module Api
         validate :verify_campaign_ids
         validate :validate_campaigns
         validate :validate_project_datasheet_exists
-        validate :validate_project_datasheet_data, if: -> { project_datasheet.present? && sheet }
+        validate :validate_project_datasheet
 
         def verify_campaign_ids
           return if campaign_ids.empty?
@@ -29,12 +29,14 @@ module Api
         end
 
         def validate_project_datasheet_exists
-          return if project_datasheet.blank?
-
-          errors.add(:project_datasheet, I18n.t('datasheet.errors.not_configured')) unless sheet
+          unless sheet
+            errors.add(:project_datasheet, I18n.t('datasheet.errors.not_configured'))
+          end
         end
 
-        def validate_project_datasheet_data
+        def validate_project_datasheet
+          return if project_datasheet.blank?
+
           form = Api::V1::Sheets::UpsertRowForm.new({
             data: project_datasheet
           }).with_context(sheet: sheet)

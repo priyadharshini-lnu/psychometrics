@@ -32,7 +32,7 @@ module Api
       end
 
       def export?
-        manage_admins? || @user.has_permission?(:audit_reports, :admin_permissions)
+        manage_admins? || @user.has_permission?(:data_exports, :admin_permissions)
       end
 
       private
