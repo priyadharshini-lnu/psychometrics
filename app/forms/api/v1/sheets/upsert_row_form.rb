@@ -25,7 +25,9 @@ module Api
 
             next if value.nil?
 
-            if column.column_type == 'number' && !value.is_a?(Numeric)
+            if column.column_type == 'number'
+              next if value.is_a?(Numeric)
+
               errors.add(
                 :data,
                 I18n.t('datasheet.errors.datasheet_column.numeric_value_required', field: field)
