@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 class ReportSerializer < Panko::Serializer
   attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props, :pages, :category,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
@@ -33,17 +32,17 @@ class ReportSerializer < Panko::Serializer
 
   def default_language
     {
-      code: locale,
-      name: I18n.t("languages.#{locale}"),
+      code: locale, name: I18n.t("languages.#{locale}"),
       direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
     }
   end
 
   def available_languages
-    (object.other_languages + [locale]).uniq.map do |language|
+    other_languages = context[:available_languages] || object.other_languages
+
+    (other_languages + [locale]).uniq.map do |language|
       {
-        code: language,
-        name: I18n.t("languages.#{language}"),
+        code: language, name: I18n.t("languages.#{language}"),
         direction: Settings.rtl_languages.include?(language) ? 'rtl' : 'ltr'
       }
     end
@@ -54,7 +53,7 @@ class ReportSerializer < Panko::Serializer
   end
 
   def locale
-    object.default_language || I18n.default_locale
+    context[:default_language] || object.default_language || I18n.default_locale
   end
 
   def flip_content
@@ -246,4 +245,3 @@ class ReportSerializer < Panko::Serializer
     context&.dig(:campaign)
   end
 end
-# rubocop:enable Metrics/ClassLength

@@ -6,6 +6,7 @@ module Administration
       include AuthenticateByToken
 
       prepend_before_action :set_resource_class
+      before_action :load_available_languages, only: %i[show]
       before_action :set_resource, only: %i[show export download regenerate]
       prepend_before_action :authenticate_by_token!, only: %i[show]
       append_before_action :pundit_authorize
@@ -15,10 +16,9 @@ module Administration
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
         set_available_translations(@user_report.report)
-        set_available_languages(@user_report.report)
         @data = ::Reports::PrepareDataForReport.call!(
           user_report: @user_report,
-          locale: @user_report.report.default_language,
+          locale: campaign_report.effective_default_language,
           current_user: current_user,
           lang: params[:lang]
         )
@@ -42,7 +42,7 @@ module Administration
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
         options = {
-          lang: params[:lang] || user_report.report.default_language,
+          lang: params[:lang] || campaign_report.effective_default_language,
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
           update_record: false,
@@ -102,8 +102,13 @@ module Administration
         @available_translations = Translation.available_translation_for_report(report.id, report.assessments.first)
       end
 
-      def set_available_languages(report)
-        @available_languages = [report.default_language] + report.other_languages
+      def load_available_languages
+        @available_languages = [campaign_report.effective_default_language] + campaign_report.available_languages
+      end
+
+      def campaign_report
+        @campaign_report ||= CampaignReport.includes(:report).find_by!(report_id: threesixty_campaign.report_id,
+                                                                       campaign_id: threesixty_campaign.campaign_id)
       end
     end
   end
