@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class ReportSerializer < Panko::Serializer
   attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props, :pages, :category,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language, :other_languages,
-             :locales, :campaign_factors, :module_overrides, :assessments, :styles, :flip_content, :available_languages
+             :locales, :module_overrides, :assessments, :styles, :flip_content, :available_languages
 
   has_many :filters, each_serializer: Reports::FilterSerializer
+  has_many :campaign_factors, each_serializer: Reports::CampaignFactorSerializer
 
   def assessments
     Panko::ArraySerializer.new(
@@ -244,3 +246,4 @@ class ReportSerializer < Panko::Serializer
     context&.dig(:campaign)
   end
 end
+# rubocop:enable Metrics/ClassLength

@@ -36,6 +36,7 @@ class Report < ApplicationRecord
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
+  has_many :campaign_factors, class_name: 'Reports::CampaignFactor', dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error
@@ -65,7 +66,7 @@ class Report < ApplicationRecord
   end
 
   scope :assignable, -> { where(disabled: false, archived: false) }
-  scope :campaign_factor_dependable, -> { where.not("campaign_factors::text = '[]'") }
+  scope :campaign_factor_dependable, -> { where.not(campaign_factors: nil) }
 
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor

@@ -690,6 +690,7 @@ en:
         question_unlink_template: Question was unlinked
         question_update: Question is updated
         report_change_aliases: Aliases are updated
+        report_change_campaign_factors: Campaign factors are updated
         report_change_data_configuration: Data Report Configuration was updated successfully
         report_change_filters: Filters are updated
         report_update: Report is updated

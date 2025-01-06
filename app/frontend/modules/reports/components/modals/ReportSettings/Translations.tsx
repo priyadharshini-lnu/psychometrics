@@ -44,7 +44,7 @@ const TranslationsComponent = ({ report, importTranslations }) => {
         })
         .catch((response) => {
           if (response) {
-            setErrors(response.file.join(' '))
+            setErrors(response.file?.join(' ') || response.base.join(' '))
           } else {
             setErrors(I18n.t('errors.error_500'))
           }

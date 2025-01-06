@@ -19,7 +19,7 @@ module Imports
                                                     'application/octet-stream',
                                                     'text/plain'] }
 
-      AVAILABLE_TRANSLATEABLE_TYPES = %w[reports/filter factor campaignFactors occupation
+      AVAILABLE_TRANSLATEABLE_TYPES = %w[reports/filter factor reports/campaign_factors occupation
                                          innovation_style reports/module external/factor].freeze
 
       def process!
