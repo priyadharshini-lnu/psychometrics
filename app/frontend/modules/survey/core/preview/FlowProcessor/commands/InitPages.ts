@@ -10,82 +10,76 @@ const InitPages = {
       const symbolId = Symbol.for(b.id.toString())
       pages = { ...pages, [symbolId]: [] }
 
-      if (b.props?.randomization?.type === 'QuestionsPerPage') {
-        const questionChunks = _.chunk(
-          b.questions.filter(q => !q.deleted && q.type !== 'PageBreak').map(q => q.id),
-          b.props.randomization.questions,
-        )
+      const questions = _.reduce(b.questions, (questions: number[], q) => {
+        if (q.deleted) { return questions }
 
-        const entries = questionChunks.map(chunk => ({
-          questions: chunk,
-          blockId: b.id,
-        }))
-        pages[symbolId] = [
-          ...pages[symbolId],
-          ...entries,
-        ]
-      } else {
-        const questions = _.reduce(b.questions, (questions: number[], q) => {
-          if (q.deleted) { return questions }
+        if (q.type === 'PageBreak') {
+          if (b.props?.randomization?.type === 'QuestionsPerPage') {
+            return questions
+          }
+          if (questions.length) {
+            pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
+          }
+          return []
+        }
 
-          if (q.type === 'PageBreak') {
-            if (questions.length) {
-              pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
-            }
-            return []
+        if (options.enable_single_question_page) {
+          if (questions.length > 0) {
+            const prev = _.find(b.questions, { id: questions[0] })
+            const skipLogic = prev?.skip_logic?.length ? { skipLogic: prev.skip_logic } : {}
+            pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id, ...skipLogic }]
           }
 
-          if (options.enable_single_question_page) {
-            if (questions.length > 0) {
-              const prev = _.find(b.questions, { id: questions[0] })
-              const skipLogic = prev?.skip_logic?.length ? { skipLogic: prev.skip_logic } : {}
-              pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id, ...skipLogic }]
-            }
+          return [q.id]
+        }
 
-            return [q.id]
+        if (q.display_logic) {
+          if (questions.length > 0) {
+            pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
           }
+          questions = [q.id]
+        }
 
-          if (q.display_logic) {
-            if (questions.length > 0) {
-              pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
-            }
-            questions = [q.id]
-          }
-
-          if (q.skip_logic && q.skip_logic.length) {
-            if (!_.includes(questions, q.id)) {
-              questions = [...questions, q.id]
-            }
-            const attrs = {
-              questions, blockId: b.id, skipLogic: q.skip_logic,
-            }
-
-            pages[symbolId] = [...pages[symbolId], attrs]
-            return []
-          }
-
+        if (q.skip_logic && q.skip_logic.length) {
           if (!_.includes(questions, q.id)) {
             questions = [...questions, q.id]
           }
-
-          return questions
-        }, [])
-
-        if (questions.length) {
           const attrs = {
-            questions, blockId: b.id,
+            questions, blockId: b.id, skipLogic: q.skip_logic,
           }
 
           pages[symbolId] = [...pages[symbolId], attrs]
+          return []
         }
-        if (b.props?.randomization) {
-          pages[symbolId] = RandomizeBlockQuestions.run(
-            b.props.randomization,
-            pages[symbolId],
-            seed + b.id,
-            data.factors,
-          )
+
+        if (!_.includes(questions, q.id)) {
+          questions = [...questions, q.id]
         }
+
+        if (
+          b.props?.randomization?.type === 'QuestionsPerPage' && questions.length === b.props.randomization.questions
+        ) {
+          pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
+          questions = []
+        }
+
+        return questions
+      }, [])
+
+      if (questions.length) {
+        const attrs = {
+          questions, blockId: b.id,
+        }
+        pages[symbolId] = [...pages[symbolId], attrs]
+      }
+
+      if (b.props?.randomization) {
+        pages[symbolId] = RandomizeBlockQuestions.run(
+          b.props.randomization,
+          pages[symbolId],
+          seed + b.id,
+          data.factors,
+        )
       }
 
       return { ...pages }
