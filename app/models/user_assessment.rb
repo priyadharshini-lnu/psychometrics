@@ -164,7 +164,7 @@ class UserAssessment < ApplicationRecord
 
     pearson_assessment.norms['items'].find do |norm|
       norm['normId'] == pearson_norm_id
-    end['supportedLanguage']
+    end&.dig('supportedLanguage') || pearson_assessment.languages['default']
   end
 
   def user_reports(type = nil)

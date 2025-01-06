@@ -64,7 +64,6 @@ export const PearsonFields: React.FC<{
       <Form.Item
         name={['externalSettings', 'normId']}
         label={I18n.t('assessments.column.external_settings.pearson_norm_id')}
-        rules={[{ required: true }]}
       >
         <Select
           notFoundContent={normIsLoading('fetch') ? <Spin size="small" /> : null}
