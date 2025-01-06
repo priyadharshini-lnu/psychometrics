@@ -139,7 +139,7 @@ test('with single_question_page', () => {
   })
 })
 
-test('simple block with n (2 here) questions per page', () => {
+test('simple block with n (here, 2) questions per page', () => {
   const blocks = [{
     id: 1,
     questions: [question(1), question(2), question(3), question(4), question(5), question(6)],
