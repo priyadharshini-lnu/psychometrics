@@ -86,11 +86,11 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     </Link>,
     icon: <SettingOutlined />,
   } : null,
-  permissions.viewAuditReports ? {
-    key: 'audit_reports',
+  permissions.viewDataExports ? {
+    key: 'data_exports',
     label:
-    <Link route={`${basePath}/audit_reports`}>
-      {I18n.t('administration.breadcrumbs.audit_reports')}
+    <Link route={`${basePath}/data_exports`}>
+      {I18n.t('administration.breadcrumbs.data_exports')}
     </Link>,
     icon: <ExportOutlined />,
   } : null,
@@ -127,8 +127,8 @@ const getSelected = (pathname): string => {
   if (pathname.includes('/scoring')) {
     return 'scoring'
   }
-  if (pathname.includes('/audit_reports')) {
-    return 'audit_reports'
+  if (pathname.includes('/data_exports')) {
+    return 'data_exports'
   }
   return ''
 }

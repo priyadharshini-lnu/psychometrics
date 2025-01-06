@@ -66,7 +66,7 @@ const ReportComponent = ({
         }
       })
     const interval = setInterval(() => {
-      checkReport(campaignId, userReportId, lang || defaultLanguage.code).then(({ response }) => {
+      checkReport(campaignId, userReportId).then(({ response }) => {
         if (response) {
           clearInterval(interval)
           const config = {

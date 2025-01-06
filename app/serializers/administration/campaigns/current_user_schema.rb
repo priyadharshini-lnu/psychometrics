@@ -58,7 +58,7 @@ module Administration
             required(:manageDesignSettings).filled(:bool?)
             required(:workshopStatusExport).filled(:bool?)
             required(:manageProjectAssessments).filled(:bool?)
-            required(:viewAuditReports).filled(:bool?)
+            required(:viewDataExports).filled(:bool?)
           end
           required(:name).filled(:str?)
         end

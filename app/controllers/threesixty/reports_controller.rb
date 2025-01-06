@@ -44,8 +44,7 @@ module Threesixty
           @data = ::Reports::PrepareDataForReport.call!(
             user_report: @user_report,
             locale: @user_report.report.default_language,
-            current_user: current_user,
-            lang: params[:lang]
+            current_user: current_user
           )
           @pdf_export = true
           audit! :download_report_pdf, @user_report, campaign: @campaign,
@@ -71,24 +70,19 @@ module Threesixty
       subject = Threesixty::Subject.find_by!(
         campaign_id: @campaign.campaign_id, user_id: @user_report.user_id
       )
-
-      # Translated reports are generated on fly
-      @user_report.translated_pdf_file.purge_later if translated_report_request?
-
       ::Threesixty::Reports::DownloadJob.perform_later(@campaign, current_user, subject, @user_report,
-                                                       lang: params[:lang] || @user_report.report.default_language,
-                                                       report_in_default_language: !translated_report_request?)
+                                                       lang: @user_report.report.default_language)
       render json: { success: true }
     end
 
     def check_report
-      if @user_report.pdf_download_url(translated_report_request?).present?
+      if @user_report.pdf_exists?
         render json: {
           type: 'success',
           message: I18n.t('jobs.threesixty.reports.download.message'),
           description: I18n.t(
             'jobs.threesixty.reports.download.description',
-            url: @user_report.pdf_download_url(translated_report_request?)
+            url: @user_report.pdf_download_url
           )
         }
       else
@@ -106,10 +100,6 @@ module Threesixty
 
     def set_campaign
       @campaign = Threesixty::Campaign.find(params[:campaign_id])
-    end
-
-    def translated_report_request?
-      params[:lang].present? && params[:lang] != @user_report.report.default_language
     end
   end
 end

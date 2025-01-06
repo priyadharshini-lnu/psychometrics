@@ -80,12 +80,12 @@ const DataExportsComponent:FC<Props> = ({
   const dataSource = [
     {
       key: '1',
-      name: I18n.t('administration.administrators.list.actions.export_admins_with_permissions'),
+      name: 'Admin Permission Logs',
       dataType: exportDataTypes.adminPermissions,
     },
     {
       key: '2',
-      name: I18n.t('administration.administrators.list.actions.user_report_events'),
+      name: 'User Report Event Logs',
       dataType: exportDataTypes.userReportEvents,
     },
   ]

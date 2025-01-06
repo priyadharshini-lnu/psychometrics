@@ -42,10 +42,10 @@ module Administration
       has_permission?(:project_settings, :assessments, project_id: project_id)
     end
 
-    def view_audit_reports?
+    def view_data_exports?
       @user.is?(:superadmin, :client_admin, :project_admin, :campaign_admin) ||
-        @user.has_permission?(:audit_reports, :user_report_events) ||
-        @user.has_permission?(:audit_reports, :admin_permissions)
+        @user.has_permission?(:data_exports, :user_report_events) ||
+        @user.has_permission?(:data_exports, :admin_permissions)
     end
 
     private

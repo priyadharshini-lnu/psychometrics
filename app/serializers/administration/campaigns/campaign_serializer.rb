@@ -54,7 +54,7 @@ module Administration
             'view_campaign_scoring',
             'view_campaign_scoring_setting',
             'manage_campaign_scoring',
-            'view_audit_reports'
+            'view_data_exports'
           ],
           {
             project_id: project.id,
