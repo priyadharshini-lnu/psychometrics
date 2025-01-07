@@ -5,6 +5,7 @@ export default connect(
   ({ report: { builder } }) => ({
     reportStyles: builder.styles,
     availableLanguages: builder.available_languages,
+    defaultLanguage: builder.default_language,
   }),
   {
     openConditionalText: data => openModal('conditionalText', data),

@@ -1,13 +1,14 @@
 .dropdown.pull-right
   button#dropdownMenuLang.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-    - if (locales || []).include?(selected_locale)
-      => t("languages.#{selected_locale}")
+    - selected_lang = params[:lang] || @user_report.report.default_language
+    - if (locales || []).include?(selected_lang)
+      => t("languages.#{selected_lang}")
     - else
-      => t("languages.#{locales.first}")
+      => t("languages.#{@user_report.report.default_language}")
     span.caret
   ul.dropdown-menu.language-dropdown aria-labelledby=""
     - (locales || []).each do |lang|
         = active_link_to t("languages.#{lang}"),
                          params.permit.to_h.merge(lang: lang),
                          wrap_tag: :li,
-                         active: selected_locale == lang
+                         active: selected_lang == lang

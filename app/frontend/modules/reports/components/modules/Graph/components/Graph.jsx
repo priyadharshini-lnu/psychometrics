@@ -25,8 +25,8 @@ class Graph extends Component {
   }
 
   componentDidMount () {
-    const { availableLanguages } = this.props
-    const lang = new URLSearchParams(window.location.search).get('lang') || 'en'
+    const { availableLanguages, defaultLanguage } = this.props
+    const lang = new URLSearchParams(window.location.search).get('lang') || defaultLanguage.code
     const isRTL = availableLanguages.find(l => l.code === lang)?.direction === 'rtl' || false
     this.setState({ isRTL })
   }
