@@ -47,6 +47,7 @@ module Sheets
 
     def parse_file
       form.data_rows.each do |data|
+        data.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
         email = data[Sheet::EMAIL_COLUMN].strip
         next if email.blank?
 

@@ -11,14 +11,13 @@ module Assessments
       end
 
       def call
-        results =
-          Axlsx::Package.new do |package|
-            scores.each do |score|
-              add_score(package, score)
-            end
-          end
+        package = ExcelSafe.new
 
-        broadcast :ok, results
+        scores.each do |score|
+          add_score(package, score)
+        end
+
+        broadcast :ok, package
       end
 
       private
@@ -50,8 +49,8 @@ module Assessments
       end
 
       def add_score(package, score)
-        package.workbook.add_worksheet(name: score[:sheet_name]) do |sheet|
-          header_style = package.workbook.styles.add_style(b: true, sz: 14)
+        package.add_worksheet(score[:sheet_name]) do |sheet|
+          header_style = sheet.workbook.styles.add_style(b: true, sz: 14)
           headers = build_headers(score)
           sheet.add_row(default_headers + headers, style: header_style)
 

@@ -52,7 +52,7 @@ module Imports
       # Parse file
       # Return array of new Users
       #
-      def load_imported_items # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      def load_imported_items # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
         header = rows.shift
@@ -61,6 +61,7 @@ module Imports
         report = Report.find report_id
 
         rows.each do |row|
+          row.map! { |value| Utility::String.remove_csv_injection_marker(value) }
           data = header.zip(row).to_h
           translateable_type, translateable_id, key = data.delete('Key').split(':')
           # Are there expected translateable_type
