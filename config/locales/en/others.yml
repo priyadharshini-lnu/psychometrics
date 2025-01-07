@@ -2689,6 +2689,7 @@ en:
         all_factors: All factors
       factors_table:
         description: Description
+        na: N/A
         no_data: There is no data available for this section.
         rank: Rank
         score: Score
