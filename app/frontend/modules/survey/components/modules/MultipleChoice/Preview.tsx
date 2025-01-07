@@ -14,6 +14,8 @@ import { PreviewModel } from '~/modules/survey/interfaces/questions/MultipleChoi
 import { SafeHTML } from '~/components/SafeHTML'
 import { ScoringTable } from './components/ScoringTable'
 
+import styles from './Preview.less'
+
 const SingleAnswerPreview = lazy(
   () => import(/* webpackChunkName: "mc-singleAnswerPreview" */ './components/types/SingleAnswerPreview'),
 )
@@ -29,6 +31,7 @@ interface OwnProps {
   readOnly: boolean
   nextPage: () => {}
   questionCount: number
+  focus: boolean
 }
 
 const connector = connect(
@@ -55,6 +58,7 @@ export const PreviewComponent: FC<Props> = ({
   nextPage,
   enableSingleQuestionPage,
   questionCount,
+  focus,
 }) => {
   const {
     props: { type },
@@ -67,28 +71,33 @@ export const PreviewComponent: FC<Props> = ({
     I18n,
     nextPage,
     singleQuestionFlow: enableSingleQuestionPage && questionCount === 1,
+    focus,
   }
 
   return (
     <div>
       <Suspense fallback={<Spin />}>
-        <SafeHTML
-          html={I18n.tQuestion(model, 'questionText')}
-          className={`mb-4 ${isNeedToAddLtrManually ? 'ltr' : ''}`}
-          config="adminRichText"
-        />
-        {type === 'SingleAnswer' && (
+        <fieldset className={styles.questionContainer}>
+          <legend className={styles.questionText}>
+            <SafeHTML
+              html={I18n.tQuestion(model, 'questionText')}
+              className={`mb-4 ${isNeedToAddLtrManually ? 'ltr' : ''}`}
+              config="adminRichText"
+            />
+          </legend>
+          {type === 'SingleAnswer' && (
           <SingleAnswerPreview {...answerTypeProps} />
-        )}
-        {type === 'MultipleAnswer' && (
+          )}
+          {type === 'MultipleAnswer' && (
           <MultipleAnswerPreview {...answerTypeProps} />
-        )}
-        {type === 'Dropdown' && <DropdownPreview {...answerTypeProps} />}
-        {showQuestionScoring && scores && size(scores) !== 0 && (
+          )}
+          {type === 'Dropdown' && <DropdownPreview {...answerTypeProps} />}
+          {showQuestionScoring && scores && size(scores) !== 0 && (
           <div>
             <ScoringTable factors={factors} scoring={scores} I18n={I18n} />
           </div>
-        )}
+          )}
+        </fieldset>
       </Suspense>
     </div>
   )

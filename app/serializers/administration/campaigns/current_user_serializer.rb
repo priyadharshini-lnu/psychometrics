@@ -25,7 +25,8 @@ module Administration
             'manage_project_webhooks',
             %w[manage_project_general_settings update],
             'manage_project_privacy_setting',
-            'manage_project_assessments'
+            'manage_project_assessments',
+            'view_audit_reports'
           ],
           {
             project_id: context[:project_id],

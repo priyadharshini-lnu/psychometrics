@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Row, Col, Dropdown, Tag, theme,
+  Row, Col, Dropdown, Tag, theme, Space,
   Button,
 } from 'antd'
 
@@ -116,18 +116,23 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
     <PageHeader
       style={{ backgroundColor: token.colorPrimary }}
       className={styles.campaignHeader}
-      onBack={handleNavigation}
-      backIcon={(
-        <Button
-          size="small"
-          type="text"
-          aria-label={I18n.t('frontend.aria.back_to_dashboard')}
-        >
-          <DirectionalNavigateBackIcon className={styles.backIcon} />
-        </Button>
-      )}
+      backIcon={false}
       ghost={false}
-      title={titleElement}
+      title={(
+        <Space>
+          <Button
+            size="small"
+            type="text"
+            aria-label={I18n.t('frontend.aria.back_to_dashboard')}
+            onClick={handleNavigation}
+          >
+            <DirectionalNavigateBackIcon className={styles.backIcon} />
+          </Button>
+          {
+          titleElement
+          }
+        </Space>
+      )}
       extra={extra}
     />
 

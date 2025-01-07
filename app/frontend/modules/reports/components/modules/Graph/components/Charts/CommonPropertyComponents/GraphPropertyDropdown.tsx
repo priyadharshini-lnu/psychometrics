@@ -25,7 +25,7 @@ export const GraphPropertyDropdown: FC<Props> = ({
       getPopupContainer={(triggerNode: HTMLElement) => triggerNode.parentNode as HTMLElement}
       className="w-100"
     >
-      {options.map(option => (
+      {options?.map(option => (
         <Option key={option} value={option}>
           {option}
         </Option>

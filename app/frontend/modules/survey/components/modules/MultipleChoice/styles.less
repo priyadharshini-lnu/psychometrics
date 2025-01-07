@@ -36,8 +36,10 @@
   width: 12px;
   position: absolute;
   left: 30px;
-  &:focus-visible:after {
-    outline: 6px solid var(--ant-primary-3);
+  &:focus-visible, &.showFocusRing:focus {
+    &:after {
+      outline: 6px solid var(--ant-primary-3);
+    }
   }
 }
 
@@ -90,7 +92,7 @@
   font-size: 0.8em;
   padding: 0.4em;
   margin: auto 10px;
-  border: 1px solid @light-gray;
+  border: 1px solid var(--grey-border);
 }
 
 .left_float {

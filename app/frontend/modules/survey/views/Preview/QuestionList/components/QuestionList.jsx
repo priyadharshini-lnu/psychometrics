@@ -6,7 +6,7 @@ import styles from './QuestionList.less'
 
 
 const QuestionList = ({
-  page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en',
+  page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en', allErrors, focusFirstError,
 }) => {
   const questionRef = useRef(null)
   const transition = useTransition(questions, {
@@ -34,6 +34,8 @@ const QuestionList = ({
     key: q => q.id,
   })
 
+  const firstQuestionWithError = questions.find(question => allErrors[question.id])
+
   useLayoutEffect(() => {
     questionRef.current?.focus()
   }, [page])
@@ -50,6 +52,7 @@ const QuestionList = ({
           key={question.id}
           defaultLanguage={defaultLanguage}
           questionCount={questions.length}
+          focus={firstQuestionWithError && firstQuestionWithError.id === question.id && focusFirstError}
         />
       </a.div>
     )

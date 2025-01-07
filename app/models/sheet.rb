@@ -4,7 +4,6 @@ class Sheet < ApplicationRecord
   audited
 
   EMAIL_COLUMN = 'Email'
-  ADVANCE_TYPES = %w[HTML Markdown].freeze
   ALL_COLUMN_TYPES = %w[String Text Number HTML Markdown].freeze
   MAX_COLUMN_NAME_SIZE = 64
 

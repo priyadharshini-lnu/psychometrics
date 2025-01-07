@@ -85,15 +85,24 @@ ar:
     unknown_error: حدث خطأ غير معروف
     video_response:
       device: السماح
+      device_selection:
+        camera: آلة تصوير
+        mic: ميكروفون
       discard: تجاهل
+      discard_record_again: تجاهل وتسجيل مرة أخرى
       media_recorder:
         failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
         success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
+      recording_duration_label: الحد الأقصى لمدة التسجيل
+      recording_stop_label: سيتوقف التسجيل
+      requesting_permission: جارٍ طلب الإذن...
+      response_recorded: تم تسجيل الرد
       save: حفظ
       saved:
         label: تم الحفظ
       saving: جاري الحفظ
       start_recording: ابدأ التسجيل
+      stop_recording: توقف عن التسجيل
       tracker:
         backward: أنت قريب جداً من الشاشة، يرجى الإبتعاد قليلاً
         forward: أنت بعيد جداً من الشاشة، يرجى الإقتراب قليلاً
@@ -547,6 +556,22 @@ ar:
       download: تحميل التقرير
       view: عرض التقرير
     modules:
+      campaign_factors_table:
+        add_condition: إضافة شرط
+        baseline_score: النتيجة الأساسية
+        blindspots: النقاط العمياء
+        campaign_factor_conditions: شروط عامل الحملة
+        cancel: يلغي
+        color: لون
+        delete: يمسح
+        description: وصف
+        if: لو
+        label: ملصق
+        no_conditions: لا توجد شروط
+        save: يحفظ
+        strengths: Strengths
+        then: ثم اظهر النص التالي
+        title: عنوان
       factors_table:
         description: الوصف
         no_data: لا توجد بيانات متاحة لهذا القسم.

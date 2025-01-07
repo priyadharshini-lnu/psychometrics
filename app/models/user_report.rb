@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserReport < ApplicationRecord
+class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   audited
 
   include WorkflowActiverecord
@@ -18,9 +18,12 @@ class UserReport < ApplicationRecord
   has_one :subject, -> { where('campaign_id = threesixty_subjects.campaign_id') },
           foreign_key: :user_id, primary_key: :user_id,
           class_name: 'Threesixty::Subject'
+
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
   has_many :user_report_events
+  has_many :communication_email_resources, as: :resource
+  has_many :communication_emails, through: :communication_email_resources
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
@@ -33,6 +36,10 @@ class UserReport < ApplicationRecord
                      service: Settings.storage.private_storage_service,
                      content_type: %w[application/pdf]
 
+  has_one_attachment :translated_pdf_file,
+                     service: Settings.storage.private_storage_service,
+                     content_type: %w[application/pdf]
+
   def attachment_storage_path(attribute_name, filename)
     "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
   end
@@ -40,6 +47,10 @@ class UserReport < ApplicationRecord
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
   after_commit :publish_to_webhook,
+               if: proc { status_previously_changed? && status == 'prepared' },
+               on: [:update]
+
+  after_commit :schedule_report_available_notification,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
 
@@ -109,14 +120,16 @@ class UserReport < ApplicationRecord
     where(campaign_id: campaign_id, report_id: accessible_report_ids)
   end
 
-  def attach_pdf!(data, filename = nil)
+  def attach_pdf!(data, filename = nil, translated = false)
+    storage_target = translated ? translated_pdf_file : pdf_file
+
     case data
       when String
         if data.start_with?('http://', 'https://')
           url = URI.parse(data)
           file = URI(data).open
 
-          pdf_file.attach(
+          storage_target.attach(
             io: file,
             filename: filename || File.basename(url.path),
             content_type: 'application/pdf'
@@ -126,10 +139,10 @@ class UserReport < ApplicationRecord
             data: "data:application/pdf;base64,[#{data}]"
           })
           data_to_attach[:filename] = filename if filename
-          pdf_file.attach(data_to_attach)
+          storage_target.attach(data_to_attach)
         end
       when File, ActionDispatch::Http::UploadedFile
-        pdf_file.attach(
+        storage_target.attach(
           io: data,
           filename: filename || File.basename(data),
           content_type: 'application/pdf'
@@ -142,8 +155,8 @@ class UserReport < ApplicationRecord
     save!
   end
 
-  def pdf_exists?
-    pdf_file.attached?
+  def pdf_exists?(translated = false)
+    translated ? translated_pdf_file.attached? : pdf_file.attached?
   end
 
   def remove_report_pdf!
@@ -228,15 +241,30 @@ class UserReport < ApplicationRecord
     "#{user.decorate.full_name}-#{report_name}-#{user.id}.pdf"
   end
 
-  def pdf_download_url
-    return unless pdf_exists?
+  def pdf_download_url(translated = false)
+    return unless pdf_exists?(translated)
 
-    pdf_file.url(disposition: 'attachment', filename: report_name_for_download)
+    storage_target = translated ? translated_pdf_file : pdf_file
+    storage_target.url(disposition: 'attachment', filename: report_name_for_download)
   end
 
   def remove_pdf_and_update_status!
     return unless prepared?
 
     update!(purge_pdf_file: true, status: :not_prepared, approval_status: :not_ready)
+  end
+
+  def schedule_report_available_notification
+    return unless user_access?
+    return if communication_emails.joins(:communication).
+              exists?(communications: { kind: :report_available })
+
+    communication = Communication.order(:created_at).where(kind: :report_available, campaign_id: campaign_id).last
+    return unless communication
+
+    communication.create_communication_email_with_resources(
+      { user: user, campaign_user: campaign_user },
+      self
+    )
   end
 end

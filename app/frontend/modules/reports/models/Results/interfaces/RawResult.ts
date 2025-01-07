@@ -10,7 +10,7 @@ export default interface RawResult {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any
   }
-  results: {
+  answers: {
     [questionId: string]: QuestionsResult
   }
   user_id: number

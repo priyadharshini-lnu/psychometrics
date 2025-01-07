@@ -1,0 +1,12 @@
+:global(.ant-picker-clear):focus-visible {
+  opacity: 1;
+}
+
+:global(.ant-picker-panel-focused .ant-picker-cell-selected .ant-picker-cell-inner) {
+  outline-offset: 1px;
+  outline: 4px solid var(--ant-primary-3);
+}
+
+.noDateSelected :global(.ant-picker-panel-focused .ant-picker-cell-today .ant-picker-cell-inner) {
+  outline: 2px solid var(--ant-primary-3);
+}

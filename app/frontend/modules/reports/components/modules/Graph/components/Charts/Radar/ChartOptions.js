@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function ChartOptions (model, animation) {
+export default function ChartOptions (model, animation, rtl) {
   return {
     colors: _.map(model.props.colors, 'color'),
     chart: {
@@ -13,6 +13,7 @@ export default function ChartOptions (model, animation) {
     },
     legend: {
       enabled: true,
+      rtl,
     },
     credits: {
       enabled: false,

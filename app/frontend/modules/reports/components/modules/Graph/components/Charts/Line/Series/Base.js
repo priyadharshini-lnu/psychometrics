@@ -14,7 +14,7 @@ const Functions = {
 export default {
   series (results, question, model, func = 'Count') {
     const data = _.map(question.props.choicesTexts,
-      (label, i) => _.invoke(Functions, [question.type, func], results.questions[question.id], i))
+      (label, i) => _.invoke(Functions, [question.type, func], results.questions?.[question.id], i))
     return [{
       data,
     }]

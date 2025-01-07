@@ -15,6 +15,8 @@ export const privacyPageLink = state => _.get(get(state), ['privacyPageLink'])
 export const getLogo = state => _.get(get(state), ['logo'])
 export const getProjectLogo = state => _.get(state, ['config', 'design', 'logo'])
 export const getSecondaryLogo = state => _.get(state, ['config', 'design', 'secondary_logo'])
+export const getSecondaryLogoAltText = state => _.get(state, ['config', 'design', 'secondary_logo_alt_text'])
+export const getLogoAltText = state => _.get(state, ['config', 'design', 'logo_alt_text'])
 export const getName = state => _.get(get(state), ['name'])
 
 

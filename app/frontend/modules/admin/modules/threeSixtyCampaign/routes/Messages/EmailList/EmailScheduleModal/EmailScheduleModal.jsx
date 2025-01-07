@@ -30,6 +30,7 @@ export default function EmailScheduleModal ({
 }) {
   const { campaignId } = useParams()
   const [errors, setErrors] = useState(null)
+  const [loading, setLoading] = useState(false)
   const { message } = App.useApp()
   const emailSchedule = _.find(list, ({ id }) => id === selectedId)
   const isEdit = !!data.selectedEmailScheduleId
@@ -47,6 +48,7 @@ export default function EmailScheduleModal ({
   }
 
   const handleSave = () => {
+    setLoading(true)
     const save = isEdit ? update : create
 
     save(campaignId, emailSchedule, recipients.map(r => r.id))
@@ -57,6 +59,7 @@ export default function EmailScheduleModal ({
         if (onSave) { onSave() }
       })
       .catch(setErrors)
+      .finally(() => setLoading(false))
   }
 
   const handleInputChange = ({ target: { name, value } }) => {
@@ -91,8 +94,9 @@ export default function EmailScheduleModal ({
         <Button
           key="submit"
           type="primary"
-          disabled={_.isNull(recipientsCount) || recipientsCount === 0}
+          disabled={loading || _.isNull(recipientsCount) || recipientsCount === 0}
           onClick={handleSave}
+          loading={loading}
         >
           <CheckOutlined />
           Schedule

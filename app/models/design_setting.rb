@@ -6,8 +6,12 @@ class DesignSetting < ApplicationRecord
   include ActiveStorageAttachable
 
   LOGIN_BOX_POSITIONS = %i[left auto right].freeze
+  MAX_ALT_TEXT_LENGTH = 100
+  ALLOWED_CHARACTERS_REGEX = /\A[a-zA-Z0-9\s\-.,()&']+\z/
 
   belongs_to :project
+
+  before_validation :set_default_logo_alt_texts, on: :create
 
   has_one_image_attachment :logo, variants: [:thumb]
   has_one_image_attachment :background, variants: [:thumb]
@@ -20,5 +24,12 @@ class DesignSetting < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id project_id]
+  end
+
+  private
+
+  def set_default_logo_alt_texts
+    self.logo_alt_text ||= project.name
+    self.secondary_logo_alt_text ||= project.name
   end
 end

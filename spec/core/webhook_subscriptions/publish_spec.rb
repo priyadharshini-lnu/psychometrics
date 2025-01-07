@@ -44,7 +44,8 @@ describe WebhookSubscriptions::Publish do
             },
             'subject' => {
               'id' => subject.id,
-              'name' => subject.decorate.full_name
+              'name' => subject.decorate.full_name,
+              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id)
             },
             'project' => {
               'id' => project.id,
@@ -102,7 +103,8 @@ describe WebhookSubscriptions::Publish do
             },
             'subject' => {
               'id' => subject.id,
-              'name' => subject.decorate.full_name
+              'name' => subject.decorate.full_name,
+              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id)
             },
             'event_time' => anything
           }

@@ -20,7 +20,6 @@ export const SheetTR = t.intersection([
   t.record(t.string, t.union([t.string, t.number, t.null])),
   t.type({
     id: t.number,
-    Email: t.string,
   }),
 ])
 export type Sheet = t.TypeOf<typeof SheetTR>

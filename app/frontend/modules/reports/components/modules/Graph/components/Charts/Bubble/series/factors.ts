@@ -4,7 +4,7 @@ import { SeriesDataIdPoint } from '~/modules/reports/interfaces/graphs/Bubble'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getFactorValue = (results: any, factor: number): number => {
-  const factorResults = results.scoring[factor]
+  const factorResults = results.scoring?.[factor]
   if (factorResults && factorResults.results) {
     const sum = reduce(factorResults.results, (n, res) => res.getValue() + n, 0)
     return sum / factorResults.results.length

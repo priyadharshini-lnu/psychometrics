@@ -490,6 +490,22 @@ zh-HK:
       download: 下載報告
       view: 查看報告
     modules:
+      campaign_factors_table:
+        add_condition: 新增條件
+        baseline_score: 基線分數
+        blindspots: 盲點
+        campaign_factor_conditions: 活動因素條件
+        cancel: 取消
+        color: 顏色
+        delete: 刪除
+        description: 描述
+        if: 如果
+        label: 標籤
+        no_conditions: 無條件
+        save: 節省
+        strengths: 優勢
+        then: 然後顯示以下文字
+        title: 標題
       factors_table:
         description: 說明
         no_data: 此部分沒有可用的數據。

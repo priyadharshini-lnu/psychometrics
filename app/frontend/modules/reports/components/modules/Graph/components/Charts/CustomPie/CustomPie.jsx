@@ -114,7 +114,7 @@ class CustomPie extends Component {
   }
 
   renderChart () {
-    const { model, animation } = this.props
+    const { model, animation, isRTL } = this.props
     const colors = _.map(model.props.colors, 'color')
     if (this.chart) {
       this.chart.destroy()
@@ -135,7 +135,7 @@ class CustomPie extends Component {
       return null
     }
 
-    const { fontSize, fontColor: color, fontFamily } = model.props.style
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
 
     this.chart = Highcharts.chart(
       this.container,
@@ -149,8 +149,8 @@ class CustomPie extends Component {
           },
         },
         pane: {
-          startAngle: 0,
-          endAngle: 360,
+          startAngle: isRTL ? 360 : 0,
+          endAngle: isRTL ? 0 : 360,
           background: _.times(sourceModel.length, i => ({
             // Track for Move
             outerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * i - i}%`,
@@ -162,17 +162,18 @@ class CustomPie extends Component {
           })),
         },
         legend: {
+          enabled: model.props.showLegend,
           itemStyle: {
-            color,
-            fontSize,
-            fontFamily,
+            fontSize: legendFontSize || '10px',
+            fontFamily: legendFontFamily,
           },
           labelFormatter () {
-            return `<span style="text-weight:bold;color:${this.userOptions.color}">${this.name}</span>`
+            return `<span style="text-weight:bold;color:${this.userOptions.color || legendColor}">${this.name}</span>`
           },
           symbolPadding: 0,
           symbolHeight: 0,
           symbolWidth: 0,
+          rtl: isRTL,
         },
         series,
       }),

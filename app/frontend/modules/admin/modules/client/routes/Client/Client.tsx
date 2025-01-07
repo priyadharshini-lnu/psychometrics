@@ -1,14 +1,16 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import {
   useParams, useNavigate, useLocation,
 } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
-  ShopOutlined, UserOutlined, SettingOutlined,
+  ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
+import { useResources } from '~/hooks/useResources'
+import { Client as ClientType, ClientTR } from '~/modules/admin/modules/client/core/clients'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
@@ -32,6 +34,30 @@ export const Client: FC<Props> = ({ currentUser }) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
+  const baseApiConfig = {
+    include: ['project_manager'],
+    fields: { users: ['name', 'email'] },
+    include_resource_meta: ['permissions'],
+  }
+
+  const {
+    fetchSingle, getResource,
+  } = useResources<ClientType>(
+    'clients',
+    {
+      trackUrl: true,
+      responseType: ClientTR,
+      apiConfig: baseApiConfig,
+    },
+  )
+
+  const client = getResource(clientId)
+
+
+  useEffect(() => {
+    fetchSingle({ id: clientId, responseType: ClientTR, apiConfig: baseApiConfig })
+  }, [clientId])
+
   const handleOnSelect = ({ key }) => {
     navigate(`${settings.urlPrefix}/clients/${clientId}/${key}`)
   }
@@ -45,6 +71,12 @@ export const Client: FC<Props> = ({ currentUser }) => {
     }
     if (pathname.includes('/settings')) {
       return ['settings']
+    }
+    if (pathname.includes('/audit_reports')) {
+      return ['audit_reports']
+    }
+    if (pathname.includes('/licenses')) {
+      return ['licenses']
     }
     return undefined
   }
@@ -63,6 +95,10 @@ export const Client: FC<Props> = ({ currentUser }) => {
         return I18n.t('administration.breadcrumbs.admins')
       case 'settings':
         return I18n.t('administration.breadcrumbs.settings')
+      case 'audit_reports':
+        return I18n.t('administration.breadcrumbs.audit_reports')
+      case 'licenses':
+        return I18n.t('administration.breadcrumbs.licenses')
       default:
         return ''
     }
@@ -82,6 +118,19 @@ export const Client: FC<Props> = ({ currentUser }) => {
     icon: <SettingOutlined />,
     label: I18n.t('administration.breadcrumbs.settings'),
   })
+
+  client?.meta.permissions.viewAuditReports && menuItems.push({
+    key: 'audit_reports',
+    icon: <ExportOutlined />,
+    label: I18n.t('administration.breadcrumbs.audit_reports'),
+  })
+  client?.meta.permissions.viewLicenses && menuItems.push(
+    {
+      key: 'licenses',
+      icon: <SolutionOutlined />,
+      label: I18n.t('administration.breadcrumbs.licenses'),
+    },
+  )
 
   return (
     <div>

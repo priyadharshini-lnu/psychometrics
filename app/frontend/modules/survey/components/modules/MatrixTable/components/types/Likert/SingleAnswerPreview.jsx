@@ -59,9 +59,13 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
                         checked={object.value || false}
                         onChange={e => changeValue(scale, choice, e)}
                         // eslint-disable-next-line max-len
-                        aria-describedby={`${result.questionId}-choice-${choice} ${result.questionId}-scalepoint-${scale}`}
+                        aria-labelledby={`${result.questionId}-choice-${choice} ${result.questionId}-scalepoint-${scale}`}
                       />
-                      <span id={`${result.questionId}-scalepoint-${scale}`} className={styles.scalePointItem}>
+                      <span
+                        aria-hidden="true"
+                        id={`${result.questionId}-scalepoint-${scale}`}
+                        className={styles.scalePointItem}
+                      >
                         {I18n.tQuestion(model, `scalePointsTexts${scale + 1}`, { scale })
                         || moduleConfig.defaultScalePointText(scale + 1)}
                       </span>
@@ -101,7 +105,7 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
       </div>
       <div className={`${styles.row} ${styles.header}`}>
         <div className={styles.firstColumn} />
-        <div className={styles.scalePoints}>
+        <div className={styles.scalePoints} aria-hidden="true">
           {_.times(props.scalePoints, i => (
             <span key={i} className={styles.scalePointItem} id={`${result.questionId}-scalepoint-${i}`}>
               {I18n.tQuestion(model, `scalePointsTexts${i + 1}`, { scale: i })
@@ -132,7 +136,7 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
                   checked={object.value || false}
                   onChange={e => changeValue(scale, choice, e)}
                   // eslint-disable-next-line max-len
-                  aria-describedby={`${result.questionId}-choice-${choice} ${result.questionId}-label-${scale} ${result.questionId}-scalepoint-${scale}`}
+                  aria-labelledby={`${result.questionId}-choice-${choice} ${result.questionId}-label-${scale} ${result.questionId}-scalepoint-${scale}`}
                 />
               )
             })}
@@ -163,7 +167,7 @@ const NotApplicableCheckbox = ({
         disabled={readOnly}
         onChange={e => changeNotApplicable(choice, e)}
         checked={checked || false}
-        aria-describedby={`${result.questionId}-choice-${choice} notApplicable-${result.questionId}`}
+        aria-labelledby={`${result.questionId}-choice-${choice} notApplicable-${result.questionId}`}
       />
     </div>
   )

@@ -1,0 +1,13 @@
+.dropdown.pull-right
+  button#dropdownMenuLang.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+    - if (locales || []).include?(selected_locale)
+      => t("languages.#{selected_locale}")
+    - else
+      => t("languages.#{locales.first}")
+    span.caret
+  ul.dropdown-menu.language-dropdown aria-labelledby=""
+    - (locales || []).each do |lang|
+        = active_link_to t("languages.#{lang}"),
+                         params.permit.to_h.merge(lang: lang),
+                         wrap_tag: :li,
+                         active: selected_locale == lang

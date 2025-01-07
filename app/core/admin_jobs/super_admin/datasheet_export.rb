@@ -22,7 +22,7 @@ module AdminJobs
       def write_csv
         job_record.update(total_tasks: record_count)
         CSV.open(file_path, 'wb') do |csv|
-          limit = 1000
+          limit = 100
           offset = 0
           number_of_queries = (record_count / limit.to_f).ceil
           number_of_queries.times do |i|
@@ -30,7 +30,7 @@ module AdminJobs
             csv << records.first.keys if i.zero?
 
             records.each do |record|
-              csv << record.values
+              csv << record.map { |k, v| parse_value(k, v) }
             end
             offset += limit
             job_record.update!(completed_tasks: offset)
@@ -59,6 +59,14 @@ module AdminJobs
           campaign_ids: filtered_campaign_ids,
           project_ids: filtered_project_ids
         )
+      end
+
+      def parse_value(field, value)
+        return value unless datasheets_columns_types[field]
+        return value if !value || value.is_a?(Numeric)
+        return value.to_f if datasheets_columns_types[field] == 'number'
+
+        value
       end
 
       def file_name
@@ -99,6 +107,40 @@ module AdminJobs
 
       def privacy_conditions
         'privacy_settings.disable_data_processing = false AND client_privacy_settings.disable_data_processing = false'
+      end
+
+      def datasheets_columns_types
+        return @datasheets_columns_types if defined?(@datasheets_columns_types)
+
+        @datasheets_columns_types = {}
+        datasheets_types = datasheets.map(&:sheet_columns).each_with_object({}) do |columns, types|
+          columns.each do |column|
+            types[column.name] ||= []
+            types[column.name] << column.column_type == 'number' ? 'number' : 'string'
+          end
+        end
+        datasheets_types.each do |column_name, column_types|
+          @datasheets_columns_types[column_name] = column_types.all?('number') ? 'number' : 'string'
+        end
+        @datasheets_columns_types
+      end
+
+      def datasheet_ids
+        datasheets.pluck(:id)
+      end
+
+      def datasheets
+        project_ids = filtered_project_ids
+        campaign_ids = filtered_campaign_ids
+        sheet = Datasheet.none
+        if project_ids.present? && campaign_ids.present?
+          sheet = Datasheet.where(project_id: project_ids).or(Datasheet.where(campaign_id: campaign_ids))
+        elsif project_ids.present?
+          sheet = Datasheet.where(project_id: project_ids)
+        elsif campaign_ids.present?
+          sheet = Datasheet.where(campaign_id: campaign_ids)
+        end
+        sheet
       end
     end
   end

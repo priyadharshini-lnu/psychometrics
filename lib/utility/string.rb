@@ -25,5 +25,11 @@ module Utility
       }
       str.encode(Encoding.find('ASCII'), **encoding_options)
     end
+
+    def self.remove_csv_injection_marker(value)
+      return value unless value.is_a?(::String)
+
+      value.match?(::RegexConstants::CSV_INJECTION_PREFIX_PATTERN) ? value[1..] : value
+    end
   end
 end

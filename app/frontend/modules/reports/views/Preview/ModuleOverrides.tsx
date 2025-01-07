@@ -80,7 +80,7 @@ const OverrideComponent: FC<Props> = ({
     if (!rect || !parent) { return }
     setBox({
       left: rect?.left - (page?.getBoundingClientRect()?.left || 0),
-      top: el?.offsetTop + (page?.offsetTop || 0),
+      top: (page?.offsetTop || 0) + module.props.position.top,
       width: rect?.width,
       height: rect?.height,
     })

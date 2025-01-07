@@ -18,7 +18,7 @@ import {
   Webhook, WebhookTR, getWebhookPayload, PushWebhookReponseTR,
 } from '~/modules/admin/modules/client/core/webhooks'
 import {
-  USER_ASSESSMENT_WEBHOOK_EVENTS, ParentResourceType,
+  USER_ASSESSMENT_WEBHOOK_EVENTS, ParentResourceType, CAMPAIGN_WEBHOOK_EVENTS,
 } from './constants'
 import { fetchPossibleWebhookEvents, getCurrentWebhookEvents } from '~/modules/admin/modules/campaigns/core/userReports'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -126,6 +126,8 @@ const PushWebhookModal: React.FC<Props> = ({
         return _.intersection(selectedWebhook?.topics, USER_ASSESSMENT_WEBHOOK_EVENTS)
       case ParentResourceType.UserReport:
         return _.intersection(selectedWebhook?.topics, reportWebhookEvents)
+      case ParentResourceType.CampaignUser:
+        return _.intersection(selectedWebhook?.topics, CAMPAIGN_WEBHOOK_EVENTS)
       default:
         return webhook?.topics || []
     }

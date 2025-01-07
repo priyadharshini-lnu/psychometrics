@@ -19,6 +19,10 @@ module Api
         update?
       end
 
+      def bulk_update?
+        update?
+      end
+
       def export?
         has_permission?(:campaign_factors, :manage)
       end
@@ -28,6 +32,14 @@ module Api
       end
 
       def destroy?
+        has_permission?(:campaign_factors, :manage)
+      end
+
+      def remove_all?
+        has_permission?(:campaign_factors, :manage)
+      end
+
+      def validate_campaign_factor_deletion?
         has_permission?(:campaign_factors, :manage)
       end
 

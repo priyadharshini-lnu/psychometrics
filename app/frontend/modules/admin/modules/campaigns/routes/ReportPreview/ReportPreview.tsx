@@ -52,8 +52,9 @@ export default function ReportPreview ({
   const parsedId = parseInt(id, 10)
   const skipLogic = params.get('skip_logic') === 'true'
 
+  const lang = new URLSearchParams(location.search).get('lang') || 'en'
   useEffect(() => {
-    fetchReport(parsedCampaignId, parsedId)
+    fetchReport(parsedCampaignId, parsedId, { lang })
 
     return () => {
       clearUseReportDetails()

@@ -1,4 +1,4 @@
-import { IResult, useClient, ApiClient } from '@thetalententerprise/jsonapi-react'
+import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
 import _ from 'lodash'
 import * as t from 'io-ts'
@@ -30,27 +30,16 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
-    apiConfig, stateManager, responseType, trackUrl, basePath, initialFilter, mocked,
+    apiConfig, stateManager, responseType, trackUrl, basePath, initialFilter,
   } = options
 
   const [camelizeExcept, camelizeOnly] = [apiConfig?.camelizeExcept, apiConfig?.camelizeOnly]
-  let client = useClient()
+  const client = useClient()
   const dispatch = useDispatch()
   const location = useLocation()
   const navigate = useNavigate()
   const queryString = qs.parse(location.search.substring(1))
   const schema = Schema[resourceName]
-  if (mocked) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mockedURL = new URL((client as any).config.url || `${window.location.origin}/api/v2/administration`)
-    mockedURL.port = __MOCK_SERVER_PORT__
-    const mockedServerURL = mockedURL.toString()
-
-    client = new ApiClient({
-      url: mockedServerURL,
-      schema: humps.decamelizeKeys(Schema),
-    })
-  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const resourceUrl = basePath ? `${(client as any).config.url}/${basePath}` : (client as any).config.url
@@ -225,7 +214,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const collectionAction = (
     args: {
       action: string, method: HttpAction,
-      body?: Record<string, unknown>,
+      body?: Record<string, unknown> | Record<string, unknown>[],
       updateStore?: boolean, responseType?: ResponseType, apiConfig?: ApiConfig
     },
   ) => {

@@ -48,14 +48,6 @@
       justify-content: center;
       align-items: center;
     }
-    .previewButton {
-      position: absolute;
-      inset-block-start: 0;
-      inset-inline-end: 0;
-      margin: 1rem;
-      background-color: rgba(0, 0, 0, 0.2);
-      color: #fff;
-    }
     .checkmarkButton {
       position: absolute;
       inset-block-start: 0;
@@ -63,6 +55,14 @@
       margin: 1rem;
     }
   }
+}
+
+.previewButton {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  margin: 1rem;
+  background-color: var(--ant-primary-1);
 }
 
 .checkmarkButton :global(.anticon) {
@@ -76,4 +76,28 @@
       padding: 0;
     }
   }
+}
+
+.imageInputContainer {
+  position: relative;
+}
+
+.imageInputContainer .input[type='radio'],
+.imageInputContainer .input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  &:after, &:checked:after {
+    background-color: transparent;
+  }
+}
+
+.input:focus-visible,
+.input[type="checkbox"]:focus,
+.input[type="radio"]:focus {
+  outline: none;
+  border: none;
+}
+
+.input:focus-visible + .card {
+  outline: 4px solid var(--ant-primary-3);
 }

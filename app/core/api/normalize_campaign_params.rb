@@ -5,7 +5,7 @@ module Api
     private_attr_accessor :params
 
     def initialize(params)
-      @params = params
+      @params = permitted_params(params)
     end
 
     def call
@@ -32,6 +32,32 @@ module Api
       return 'add_and_allow_new_response' if value == 'new_evaluation'
 
       value
+    end
+
+    def permitted_params(params)
+      params.permit(
+        :first_name,
+        :last_name,
+        :email,
+        :existing_record,
+        :project_id,
+        project_datasheet: {},
+        campaign_ids: [],
+        user: %i[
+          first_name
+          last_name
+          email
+        ],
+        campaigns: [
+          :id,
+          :active,
+          :external_id,
+          :existing_record,
+          :schedule_start_date,
+          :schedule_end_date,
+          { datasheet: {} }
+        ]
+      )
     end
   end
 end

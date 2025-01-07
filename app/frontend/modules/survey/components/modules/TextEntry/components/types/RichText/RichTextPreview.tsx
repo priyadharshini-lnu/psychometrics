@@ -9,18 +9,22 @@ import { characterAndWordLimit } from './characterAndWordLimit'
 interface Props {
   model: PreviewModel
   readOnly: boolean
+  focus?: boolean
 }
 
 type RichTextEditorRef = {
   editor?: {
     wordCounter: {
       wordCount: () => number
+    },
+    events: {
+      focus: (focus: boolean) => void
     }
   }
 }
 
 const RichTextPreview: FC<Props> = ({
-  model, readOnly,
+  model, readOnly, focus,
 }) => {
   const {
     result,
@@ -34,6 +38,10 @@ const RichTextPreview: FC<Props> = ({
   const ref = useRef<RichTextEditorRef>()
 
   const text = (result.answers[0] && result.answers[0].value) || (usePredefinedRichText && predefinedRichText) || ''
+
+  if (focus && ref.current?.editor?.events) {
+    ref.current.editor.events.focus(true)
+  }
 
   const saveContent = (text: string) => {
     model.result.setRichTextEditorAnswerWordCount(ref.current?.editor?.wordCounter.wordCount() || 0)

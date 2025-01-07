@@ -10,6 +10,8 @@ class SheetColumn < ApplicationRecord
     'HTML' => 5
   }.freeze
 
+  ADVANCE_TYPES = %w[html markdown].freeze
+
   belongs_to :sheet
   has_many :sheet_row_data, dependent: :destroy
 

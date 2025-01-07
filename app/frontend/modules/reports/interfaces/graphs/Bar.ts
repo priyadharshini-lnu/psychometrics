@@ -9,6 +9,11 @@ interface Props {
   graphicalRepresentation: string
   graphicalPosition: string
   legendPosition: string
+  legendStyle: {
+    fontSize: string
+    fontColor: string
+    fontFamily: string
+  }
   barBorderRadius: string
   barBorderRadiusType: boolean
   maxValue: string | null

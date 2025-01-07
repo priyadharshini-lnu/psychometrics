@@ -59,11 +59,9 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
     setCountDownValue(Date.now() + seconds * 1000)
     setTimerFormat(getFormat(seconds))
 
-    const notifications = notificationPoints.map((notificationPoint) => {
-      const className = notificationPoint.type === 'info'
-        ? undefined : styles[`notification--${notificationPoint.type}`]
-      return notificationSetTimeout(notificationPoint.timeRemaining, seconds, className)
-    })
+    const notifications = notificationPoints.map(notificationPoint => notificationSetTimeout(
+      notificationPoint.timeRemaining, seconds, notificationPoint.type,
+    ))
 
     return () => {
       notifications.forEach(notification => clearTimeout(notification))
@@ -78,7 +76,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   const notificationSetTimeout = (
     timeRemaining: number,
     totalSeconds: number,
-    className: string | undefined,
+    type: Notification['type'],
   ) => {
     const remainingTimeInMilliseconds = totalSeconds * 1000
     const notificationTimeInMilliseconds = timeRemaining * 1000
@@ -87,10 +85,9 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
       const minutes = Math.floor(timeRemaining / 60)
       return setTimeout(() => {
         if (notificationPoints.length) {
-          antdNotification.warning({
+          antdNotification[type]({
             message: notificationTemplate && notificationTemplate(minutes),
             duration: notificationDuration,
-            className,
           })
         }
       }, remainingTimeInMilliseconds - notificationTimeInMilliseconds)

@@ -14,18 +14,35 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
   def meta_details
     {
       permissions: lambda {
-        GetPermissionsHash.call!(
-          Administration::LicensePolicy,
-          context[:user],
-          @model,
-          [
-            %w[view_licenses index]
-          ],
-          {
-            project_id: @model.id
-          }
-        )
+        license_permissions.merge(client_permissions)
       }
     }
+  end
+
+  private
+
+  def license_permissions
+    GetPermissionsHash.call!(
+      Administration::LicensePolicy,
+      context[:user],
+      @model,
+      [
+        %w[view_licenses index]
+      ],
+      {
+        project_id: @model.id
+      }
+    )
+  end
+
+  def client_permissions
+    GetPermissionsHash.call!(
+      Administration::ClientPolicy,
+      context[:user],
+      @model,
+      [
+        'view_audit_reports'
+      ]
+    )
   end
 end

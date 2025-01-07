@@ -12,6 +12,7 @@ const { Title } = Typography
 type DetailsCardProps = {
   title: string | React.ReactElement
   titleId?: string
+  titleHeadingLevel?: 1 | 5 | 2 | 3 | 4
   description?: string | React.ReactElement
   buttonText?: string
   buttonId?: string
@@ -35,6 +36,7 @@ type DetailsCardProps = {
 export const DetailsCard: FC<DetailsCardProps> = ({
   title,
   titleId,
+  titleHeadingLevel,
   buttonText,
   buttonId,
   secondaryBtnText,
@@ -59,7 +61,10 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   }
 
   const titleElement = (
-    <Title className={cs({ [styles.title]: true, [styles.highlight]: !hideTitleHighlighter })} level={5}>
+    <Title
+      className={cs({ [styles.title]: true, [styles.highlight]: !hideTitleHighlighter })}
+      level={titleHeadingLevel}
+    >
       {title}
     </Title>
   )

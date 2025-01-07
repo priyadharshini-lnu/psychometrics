@@ -192,7 +192,7 @@ assessments and reports.'
         end
       end
 
-      response '200', 'New user created with campaign schedule' do
+      response '200', 'New user created' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
           id: 14_602,

@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -41,7 +34,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 -- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION pg_stat_statements IS 'track planning and execution statistics of all SQL statements executed';
 
 
 --
@@ -1314,7 +1307,8 @@ CREATE TABLE public.campaign_users (
     campaign_scores_finalized boolean DEFAULT false,
     campaign_scores_calculated_date timestamp(6) without time zone,
     campaign_scores_finalized_date timestamp(6) without time zone,
-    campaign_scores_errors json
+    campaign_scores_errors json,
+    external_id character varying
 );
 
 
@@ -1587,6 +1581,39 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 
 
 --
+-- Name: communication_email_resources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_email_resources (
+    id bigint NOT NULL,
+    communication_email_id bigint NOT NULL,
+    resource_type character varying NOT NULL,
+    resource_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_email_resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_email_resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_email_resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_email_resources_id_seq OWNED BY public.communication_email_resources.id;
+
+
+--
 -- Name: communication_emails; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1775,7 +1802,8 @@ CREATE TABLE public.dashboards (
     last_refreshed_at timestamp without time zone,
     refresh_tried_at timestamp without time zone,
     dashboard_type integer DEFAULT 0 NOT NULL,
-    project_path character varying
+    project_path character varying,
+    visual_header_visibility smallint DEFAULT 0
 );
 
 
@@ -1885,7 +1913,9 @@ CREATE TABLE public.design_settings (
     warning_color character varying,
     success_color character varying,
     info_color character varying,
-    background_size character varying DEFAULT 'cover'::character varying
+    background_size character varying DEFAULT 'cover'::character varying,
+    logo_alt_text character varying,
+    secondary_logo_alt_text character varying
 );
 
 
@@ -2052,6 +2082,42 @@ CREATE SEQUENCE public.email_templates_id_seq
 --
 
 ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
+
+
+--
+-- Name: event_deliveries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.event_deliveries (
+    id bigint NOT NULL,
+    resource_type character varying NOT NULL,
+    resource_id bigint NOT NULL,
+    event_type integer NOT NULL,
+    delivery_type integer NOT NULL,
+    sent_at timestamp(6) without time zone,
+    meta jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: event_deliveries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.event_deliveries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: event_deliveries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.event_deliveries_id_seq OWNED BY public.event_deliveries.id;
 
 
 --
@@ -2743,6 +2809,39 @@ ALTER SEQUENCE public.job_roles_id_seq OWNED BY public.job_roles.id;
 
 
 --
+-- Name: last_job_runs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.last_job_runs (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    started_at timestamp(6) without time zone NOT NULL,
+    finished_at timestamp(6) without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: last_job_runs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.last_job_runs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: last_job_runs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.last_job_runs_id_seq OWNED BY public.last_job_runs.id;
+
+
+--
 -- Name: libraries; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3161,104 +3260,6 @@ CREATE SEQUENCE public.mindmill_credentials_id_seq
 --
 
 ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
-
-
---
--- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_columns (
-    id bigint NOT NULL,
-    column_type integer,
-    name character varying,
-    "position" integer,
-    dashboard_use boolean DEFAULT false,
-    accessor_access boolean DEFAULT false,
-    visible_in_list boolean DEFAULT false,
-    sheet_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_row_data (
-    id bigint NOT NULL,
-    string_value text,
-    numeric_value double precision,
-    sheet_row_id bigint NOT NULL,
-    sheet_column_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
--- Name: sheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying,
-    flat_view_sha character varying
-);
-
-
---
--- Name: normalized_campaign_accessheets; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_accessheets AS
- SELECT sheets.campaign_id,
-    sheet_rows.email,
-    sheet_columns.name AS field,
-    sheet_row_data.numeric_value,
-    sheet_row_data.string_value
-   FROM (((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON (((sheet_columns.sheet_id = sheets.id) AND (sheet_columns.id = sheet_row_data.sheet_column_id))))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
-
-
---
--- Name: normalized_campaign_accesssheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_accesssheet AS
- SELECT sheets.campaign_id AS "Campaign Id",
-    sheet_rows.email AS "Email",
-    sheet_columns.name AS "Field",
-    sheet_row_data.numeric_value AS "Numeric Value",
-    sheet_row_data.string_value AS "String Value"
-   FROM (((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
 
 
 --
@@ -4238,7 +4239,8 @@ CREATE TABLE public.reports (
     data_only boolean DEFAULT false,
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors jsonb DEFAULT '[]'::jsonb NOT NULL,
-    styles jsonb DEFAULT '{}'::jsonb
+    styles jsonb DEFAULT '{}'::jsonb,
+    other_languages jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -4599,6 +4601,24 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
+-- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_columns (
+    id bigint NOT NULL,
+    column_type integer,
+    name character varying,
+    "position" integer,
+    dashboard_use boolean DEFAULT false,
+    accessor_access boolean DEFAULT false,
+    visible_in_list boolean DEFAULT false,
+    sheet_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4615,6 +4635,21 @@ CREATE SEQUENCE public.sheet_columns_id_seq
 --
 
 ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
+
+
+--
+-- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_row_data (
+    id bigint NOT NULL,
+    string_value text,
+    numeric_value double precision,
+    sheet_row_id bigint NOT NULL,
+    sheet_column_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
@@ -4637,6 +4672,21 @@ ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
 
 
 --
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4653,6 +4703,22 @@ CREATE SEQUENCE public.sheet_rows_id_seq
 --
 
 ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
+);
 
 
 --
@@ -4721,7 +4787,8 @@ CREATE TABLE public.simulation_user_assessments (
     participant_id character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    content_variation_id character varying
+    content_variation_id character varying,
+    time_extension double precision DEFAULT 1.0
 );
 
 
@@ -5369,8 +5436,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -6960,6 +7026,13 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_email_resources ALTER COLUMN id SET DEFAULT nextval('public.communication_email_resources_id_seq'::regclass);
+
+
+--
 -- Name: communication_emails id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7041,6 +7114,13 @@ ALTER TABLE ONLY public.dimensions ALTER COLUMN id SET DEFAULT nextval('public.d
 --
 
 ALTER TABLE ONLY public.email_templates ALTER COLUMN id SET DEFAULT nextval('public.email_templates_id_seq'::regclass);
+
+
+--
+-- Name: event_deliveries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.event_deliveries ALTER COLUMN id SET DEFAULT nextval('public.event_deliveries_id_seq'::regclass);
 
 
 --
@@ -7174,6 +7254,13 @@ ALTER TABLE ONLY public.job_role_translations ALTER COLUMN id SET DEFAULT nextva
 --
 
 ALTER TABLE ONLY public.job_roles ALTER COLUMN id SET DEFAULT nextval('public.job_roles_id_seq'::regclass);
+
+
+--
+-- Name: last_job_runs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.last_job_runs ALTER COLUMN id SET DEFAULT nextval('public.last_job_runs_id_seq'::regclass);
 
 
 --
@@ -8231,6 +8318,14 @@ ALTER TABLE ONLY public.clients_reports
 
 
 --
+-- Name: communication_email_resources communication_email_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_email_resources
+    ADD CONSTRAINT communication_email_resources_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: communication_emails communication_emails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8324,6 +8419,14 @@ ALTER TABLE ONLY public.dimensions
 
 ALTER TABLE ONLY public.email_templates
     ADD CONSTRAINT email_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: event_deliveries event_deliveries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.event_deliveries
+    ADD CONSTRAINT event_deliveries_pkey PRIMARY KEY (id);
 
 
 --
@@ -8484,6 +8587,14 @@ ALTER TABLE ONLY public.job_role_translations
 
 ALTER TABLE ONLY public.job_roles
     ADD CONSTRAINT job_roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: last_job_runs last_job_runs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.last_job_runs
+    ADD CONSTRAINT last_job_runs_pkey PRIMARY KEY (id);
 
 
 --
@@ -9638,6 +9749,13 @@ CREATE INDEX index_assessments_on_dimension_id ON public.assessments USING btree
 
 
 --
+-- Name: index_assessments_on_linked_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_on_linked_assessment_id ON public.assessments USING btree (linked_assessment_id);
+
+
+--
 -- Name: index_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9981,6 +10099,13 @@ CREATE INDEX index_campaign_users_on_campaign_id ON public.campaign_users USING 
 
 
 --
+-- Name: index_campaign_users_on_campaign_id_and_external_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_users_on_campaign_id_and_external_id ON public.campaign_users USING btree (campaign_id, external_id);
+
+
+--
 -- Name: index_campaign_users_on_campaign_id_and_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10125,6 +10250,20 @@ CREATE INDEX index_clients_reports_on_client_id ON public.clients_reports USING 
 --
 
 CREATE INDEX index_clients_reports_on_report_id ON public.clients_reports USING btree (report_id);
+
+
+--
+-- Name: index_communication_email_resources_on_communication_email_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_email_resources_on_communication_email_id ON public.communication_email_resources USING btree (communication_email_id);
+
+
+--
+-- Name: index_communication_email_resources_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_email_resources_on_resource ON public.communication_email_resources USING btree (resource_type, resource_id);
 
 
 --
@@ -10314,6 +10453,13 @@ CREATE INDEX index_dimensions_on_updated_by_id ON public.dimensions USING btree 
 --
 
 CREATE INDEX index_email_templates_on_campaign_id ON public.email_templates USING btree (campaign_id);
+
+
+--
+-- Name: index_event_deliveries_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_event_deliveries_on_resource ON public.event_deliveries USING btree (resource_type, resource_id);
 
 
 --
@@ -12565,6 +12711,14 @@ ALTER TABLE ONLY public.memberships
 
 
 --
+-- Name: communication_email_resources fk_rails_1e6187986b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_email_resources
+    ADD CONSTRAINT fk_rails_1e6187986b FOREIGN KEY (communication_email_id) REFERENCES public.communication_emails(id);
+
+
+--
 -- Name: campaign_reports fk_rails_1eecc2fd8d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12961,7 +13115,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -14523,7 +14677,16 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241226171404'),
+('20241223122302'),
+('20241219131514'),
+('20241219060937'),
+('20241210073446'),
+('20241205111711'),
+('20241203151030'),
+('20241129104313'),
 ('20241128105109'),
+('20241126112602'),
 ('20241108085232'),
 ('20241106103020'),
 ('20241105093139'),
@@ -15246,4 +15409,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

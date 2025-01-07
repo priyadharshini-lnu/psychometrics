@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class ReportSerializer < Panko::Serializer
-  attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props,
+  attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props, :pages, :category,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
-             :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language,
-             :locales, :campaign_factors, :module_overrides, :assessments, :styles
+             :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language, :other_languages,
+             :locales, :campaign_factors, :module_overrides, :assessments, :styles, :flip_content, :available_languages
 
   has_many :filters, each_serializer: Reports::FilterSerializer
 
@@ -37,12 +37,26 @@ class ReportSerializer < Panko::Serializer
     }
   end
 
+  def available_languages
+    (object.other_languages + [locale]).uniq.map do |language|
+      {
+        code: language,
+        name: I18n.t("languages.#{language}"),
+        direction: Settings.rtl_languages.include?(language) ? 'rtl' : 'ltr'
+      }
+    end
+  end
+
   def locales
-    Translation.to_hash_for_report(object.id, object.assessment_ids, locale)
+    Translation.to_hash_for_report(object.id, object.assessment_ids, current_lang)
   end
 
   def locale
     object.default_language || I18n.default_locale
+  end
+
+  def flip_content
+    Settings.rtl_languages.include?(object.default_language) != Settings.rtl_languages.include?(current_lang)
   end
 
   def factors
@@ -213,6 +227,10 @@ class ReportSerializer < Panko::Serializer
   end
 
   private
+
+  def current_lang
+    context[:lang] || locale
+  end
 
   def results
     user_results || []

@@ -12,7 +12,7 @@ module Sheets
 
     def call
       transaction do
-        parent_resource.sheets.find_by(type: sheet_type)&.destroy if sheet_type == 'Accesssheet'
+        parent_resource.sheets.find_by(type: sheet_type)&.destroy if accesssheet?
         create_and_update_sheet
         parse_file
       end
@@ -26,7 +26,7 @@ module Sheets
       is_email = name == Sheet::EMAIL_COLUMN
       column = {
         name: name.chomp,
-        column_type: SheetColumn::COLUMN_TYPES[column_type],
+        column_type: is_email ? :string : SheetColumn::COLUMN_TYPES[column_type],
         visible_in_list: is_email
       }
       column = column.merge(dashboard_use: is_email, accessor_access: is_email) if sheet_type == 'Datasheet'
@@ -50,10 +50,9 @@ module Sheets
         email = data[Sheet::EMAIL_COLUMN].strip
         next if email.blank?
 
-        row = accesssheet? ? sheet.rows.new(email: email) : sheet.rows.find_or_initialize_by(email: email)
-        data = data.reject { |k, _v| k == Sheet::EMAIL_COLUMN }
-        row.data = (row.data || {}).merge(data.transform_values { |v| v.is_a?(String) ? v.strip : v })
-        row.save!
+        row = accesssheet? ? sheet.rows.create(email: email) : sheet.rows.find_or_create_by(email: email)
+        ::SheetRows::UpsertData.call(sheet, email, data)
+        row.update(migrated: true)
       end
     end
 

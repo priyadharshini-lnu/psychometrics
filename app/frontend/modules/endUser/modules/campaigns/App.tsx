@@ -18,7 +18,7 @@ import RouteList from '~/components/RouteList'
 
 const { antdLocale, I18n } = window
 const { useToken } = theme
-const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS, DARK_GREY } = constants
+const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS, GREY_BORDER } = constants
 const px2rem = px2remTransformer({
   rootValue: 16,
 })
@@ -57,7 +57,7 @@ function App () {
             colorInfo: design.info_color || token.colorInfo,
             borderRadius: DEFAULT_BORDER_RADIUS,
             colorLink: primaryColor,
-            colorBorder: DARK_GREY,
+            colorBorder: GREY_BORDER,
           },
           components: {
             Progress: {

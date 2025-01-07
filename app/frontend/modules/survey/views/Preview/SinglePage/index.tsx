@@ -19,7 +19,7 @@ interface Props extends PropsFromRedux {
 let divScrollTop = 0
 
 const SinglePage: React.FC<Props> = ({
-  questions, blocks,
+  questions, blocks, preview,
 }) => {
   const [visibleQuestions, setVisibleQuestions] = useState<number[]>([])
   const ref = useRef<HTMLDivElement>(null)
@@ -87,7 +87,14 @@ const SinglePage: React.FC<Props> = ({
             <div>
               {staticContent && <StaticContent {...{ block }} key={blockId.description} />}
               <div className={cs(styles.questionsBlock)}>
-                <QuestionList page={null} readOnly questions={questions} backButtonPressed={false} />
+                <QuestionList
+                  allErrors={preview.errors}
+                  focusFirstError={preview.focusFirstError}
+                  page={null}
+                  readOnly
+                  questions={questions}
+                  backButtonPressed={false}
+                />
               </div>
             </div>
           </div>

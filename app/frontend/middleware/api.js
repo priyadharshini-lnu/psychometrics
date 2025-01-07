@@ -13,16 +13,10 @@ import { captureSchemaValidationError } from '~/utils/schemaValidationError'
 
 const debounceTimers = {}
 const buildUrl = ({
-  method = 'get', url, body, tableConfig, mocked, responseType,
+  method = 'get', url, body, tableConfig, responseType,
 }) => {
   if (method === 'get' && responseType !== 'blob' && !/\.json$/.test(url)) {
     url += '.json'
-  }
-  if (mocked) {
-    const mockedURL = new URL(window.location.origin)
-    const mockedServerURL = `http://${mockedURL.hostname}:${__MOCK_SERVER_PORT__}${url}`
-
-    return mockedServerURL
   }
 
   if (method !== 'get') {

@@ -62,6 +62,7 @@ class Pie extends Component {
       this.chart = null
     }
     if (!model.props.source) { return null }
+    const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
 
     const sourceType = model.getSourceType()
     const sourceModel = model.getSourceModel()
@@ -87,7 +88,12 @@ class Pie extends Component {
           height: model.props.position.height - (preview ? 0 : 5),
         },
         legend: {
-          enabled: !!data.hasLegend,
+          enabled: !!data.hasLegend && model.props.showLegend,
+          itemStyle: {
+            color: legendColor,
+            fontSize: legendFontSize || '10px',
+            fontFamily: legendFontFamily,
+          },
         },
         labels: {
           items: labels,

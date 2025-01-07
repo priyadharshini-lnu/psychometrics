@@ -13,8 +13,28 @@ import store from '~/modules/reports/store'
 import schema from '~/modules/reports/store/schema'
 import { INIT } from '~/modules/reports/core/builder/actions'
 import styles from './FixedHeader.less'
+import { LangDropdown } from '~/components/LangDropdown'
 
 const { $ } = window
+const defaultLocales = ['en']
+
+export const LangDropdownWithChangeUrl = ({ locales = defaultLocales }) => {
+  const handleLanguageChange = (key) => {
+    const searchParams = new URLSearchParams(window.location.search)
+    searchParams.set('lang', key)
+    window.location.search = searchParams.toString()
+  }
+
+  const currentLocale = new URLSearchParams(window.location.search).get('lang') || 'en'
+
+  return (
+    <LangDropdown
+      locales={locales}
+      currentLocale={currentLocale}
+      onChange={handleLanguageChange}
+    />
+  )
+}
 
 export class FixedHeader extends Component {
   componentDidMount () {
@@ -226,8 +246,13 @@ export class FixedHeader extends Component {
     openRemapAssessment()
   }
 
+
   render () {
-    const { richEditorOpened } = this.props
+    const {
+      richEditorOpened, report: {
+        builder: { available_languages: availableLanguages },
+      },
+    } = this.props
     const style = {
       position: 'fixed',
       top: 0,
@@ -235,6 +260,7 @@ export class FixedHeader extends Component {
       left: 0,
       width: '100%',
     }
+    const locales = availableLanguages?.map(l => l.code)
 
     return (
       <div ref={(ref) => { this.menu = ref }} id="fixed_header" className={styles.header} style={style}>
@@ -276,6 +302,7 @@ export class FixedHeader extends Component {
 
             <div className={`${styles.rightSet}`}>
               <Space>
+                <LangDropdownWithChangeUrl locales={locales} />
                 <Button onClick={this.save} type="primary">
                   Save
                 </Button>

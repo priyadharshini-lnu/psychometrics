@@ -21,7 +21,9 @@ class Module extends Component {
   }
 
   render () {
-    const { page, module, animation } = this.props
+    const {
+      page, module, animation, flipContent,
+    } = this.props
     if (!module.type) { return null }
     if (module.props.showOnAllPages) { return null }
     const model = new ModuleModel(module, page)
@@ -36,7 +38,7 @@ class Module extends Component {
           <Modules.Error module={model} page={page} update={{}} animation={animation} />
         )}
       >
-        <View module={model} page={page} update={{}} animation={animation} />
+        <View module={model} page={page} update={{}} animation={animation} flipContent={flipContent} />
       </ErrorBoundary>
     )
   }
@@ -45,6 +47,7 @@ class Module extends Component {
 export default connect(
   (state, props) => ({
     module: getModule(state.report, props.moduleId),
+    flipContent: state.report.builder.flip_content,
   }),
   {},
 )(Module)

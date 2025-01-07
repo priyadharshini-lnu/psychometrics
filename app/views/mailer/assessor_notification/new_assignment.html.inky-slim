@@ -1,0 +1,39 @@
+head
+  css:
+    .assessor-assessment-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    .assessor-assessment-table th, .assessor-assessment-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    .assessor-assessment-table td {
+      color: #555;
+    }
+    .assessor-assessment-table th {
+      font-weight: bold;
+      background-color: #ebebeb;
+    }
+    .assessor-assessment-table .subject-cell {
+      width: 30%;
+    }
+body
+  p="Hello #{@assessor_user.decorate.display_name}, "
+
+  p="You have been assigned the following subjects for evaluation"
+
+  table.assessor-assessment-table
+    tr
+      th="Subject"
+      th="Assessments"
+    - @grouped_subjects.each do |group|
+      tr
+        - url = assessors_campaign_users_url(campaign_id: group[:campaign_id])
+        td(colspan="2")= "<a href='#{url}'> #{group[:project_name]} / #{group[:campaign_name]} </a>".html_safe
+        - group[:subjects].each do |subject|
+          tr
+            td.subject-cell= subject[:name]
+            td= subject[:assessments].join(", ")

@@ -28,6 +28,8 @@ class CampaignUser < ApplicationRecord
   }, primary_key: :user_id, foreign_key: :user_id
   has_many :communication_emails
 
+  validates :external_id, uniqueness: { scope: :campaign_id }, allow_nil: true
+
   scope :in_progress, -> { where(completion_status: :in_progress) }
   scope :completed, -> { where(completion_status: :completed) }
 

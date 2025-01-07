@@ -117,6 +117,34 @@ const FIELDS = [
       },
     ],
   },
+  {
+    branch: 'Platform Url and Links',
+    fields: [
+      {
+        name: I18n.t('administration.piped_text_modal.insight_page_url'),
+        type: 'link',
+        value: '${pl://PlatformUrlAndLinksFields/Field/InsightPageURL}',
+      },
+      {
+        name: I18n.t('administration.piped_text_modal.insight_page_link'),
+        type: 'insight_page_link',
+        getValue: text => (
+          `\${pl://PlatformUrlAndLinksFields/Field/InsightPageLink?text=${text}}`
+        ),
+      },
+    ],
+  },
+  {
+    branch: 'User Reports',
+    fields: [
+      {
+        name: I18n.t('administration.piped_text_modal.report_name'),
+        type: 'link',
+        value: '${ur://UserReportFields/Field/ReportName}',
+      },
+    ],
+    supportedCommunicationKind: ['report_available'],
+  },
 ]
 
 export default FIELDS

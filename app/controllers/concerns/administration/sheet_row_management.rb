@@ -21,7 +21,7 @@ module Administration
           sheet_rows = sheet.rows.ransack(params[:filters]).result
           paginated_sheet_rows = sheet_rows.order(:id).page(params[:page])
           serialized_sheet_rows = paginated_sheet_rows.map do |row|
-            SheetRows::GetData.call!(row, sheet: sheet, without_types: Sheet::ADVANCE_TYPES)
+            SheetRows::GetData.call!(row, sheet: sheet, without_types: SheetColumn::ADVANCE_TYPES)
           end
 
           render json: {
@@ -51,7 +51,8 @@ module Administration
         data: params.permit!.slice(*sheet.column_names)
       ).with_context(sheet: sheet)
       if form.valid?
-        datasheet_row = sheet.rows.create(form.attributes)
+        datasheet_row = sheet.rows.create(form.attributes.slice(:email))
+        ::SheetRows::UpsertData.call!(sheet, form.email, form.data)
         audit! :create, datasheet_row, **audit_resources, payload: form.attributes
         render json: SheetRows::GetData.call!(datasheet_row)
       else
@@ -60,7 +61,8 @@ module Administration
     end
 
     def update
-      resource.update!(data: params.permit(*sheet.column_names))
+      ::SheetRows::UpsertData.call!(resource.sheet, resource.email, params.permit(*sheet.column_names))
+
       audit! :update, resource, **audit_resources, payload: params
 
       render json: SheetRows::GetData.call!(resource)

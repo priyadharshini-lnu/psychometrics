@@ -26,6 +26,8 @@ module CampaignUsers
       def call
         header = records.shift
         rows = records.map do |record|
+          record.map! { |value| Utility::String.remove_csv_injection_marker(value) }
+
           {
             email: record[0],
             report_bundle_id: record[1],

@@ -30,6 +30,19 @@ module Communications
             class_name: 'Communications::PipedText::Branches::User',
             required_context: %i[user],
             allow_html: true
+          },
+          {
+            key: 'pl',
+            name: 'PlatformUrlAndLinks',
+            class_name: 'Communications::PipedText::Branches::PlatformUrlAndLinks',
+            required_context: %i[campaign],
+            allow_html: true
+          },
+          {
+            key: 'ur',
+            name: 'UserReport',
+            class_name: 'Communications::PipedText::Branches::UserReport',
+            required_context: %i[user_report]
           }
         ].freeze
       end

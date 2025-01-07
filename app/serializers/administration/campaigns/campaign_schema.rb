@@ -43,6 +43,7 @@ module Administration
             required(:view_campaign_scoring).filled(:bool?)
             required(:view_campaign_scoring_setting).filled(:bool?)
             required(:manage_campaign_scoring).filled(:bool?)
+            required(:view_audit_reports).filled(:bool?)
           end
           required(:assessments).array(Administration::Campaigns::AssessmentSchema.schema(_, _))
           required(:reports).array(Administration::Campaigns::ReportSchema.schema(_, _))

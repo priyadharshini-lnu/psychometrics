@@ -7,7 +7,6 @@ class SheetRow < ApplicationRecord
   has_many :sheet_row_data, dependent: :destroy
 
   before_save { self.email = email&.downcase }
-  after_save :sync_data, if: proc { data_previously_changed? }
 
   delegate :columns, to: :sheet
 

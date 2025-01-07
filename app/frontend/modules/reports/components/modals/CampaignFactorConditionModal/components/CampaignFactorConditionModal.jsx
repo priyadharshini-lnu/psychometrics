@@ -1,15 +1,15 @@
 import _ from 'lodash'
 import { Component } from 'react'
-import { Modal } from 'react-bootstrap'
+import {
+  Modal,
+  Button,
+} from 'antd'
 import CPIConditionCollection from '~/modules/reports/models/CPIConditionCollection'
 import styles from './CampaignFactorConditionModal.less'
 import ConditionCollection from './ConditionCollection'
 
-const { $ } = window
+const { $, I18n } = window
 
-const {
-  Header, Body, Footer, Title,
-} = Modal
 
 export class ConditionalTextModal extends Component {
   constructor (props) {
@@ -56,31 +56,33 @@ export class ConditionalTextModal extends Component {
       ))
     }
     return (
-      <div>No conditions</div>
+      <div>{I18n.t('reports.modules.campaign_factors_table.no_conditions')}</div>
     )
   }
 
   render () {
     const { close } = this.props
     return (
-      <Modal onEntered={this.removeIndex} show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
-        <Header>
-          <Title>Campaign Factor Conditions</Title>
-        </Header>
-        <Body>
-          {this.renderCollections()}
-        </Body>
-        <Footer>
-          <button
-            className="btn btn-default"
-            style={{ float: 'left' }}
-            onClick={this.addCollection}
-          >
-            Add Condition
-          </button>
-          <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={close}>Cancel</button>
-        </Footer>
+      <Modal
+        open
+        title={I18n.t('reports.modules.campaign_factors_table.campaign_factor_conditions')}
+        keyboard={false}
+        onCancel={close}
+        className={styles.modal}
+        width="lg"
+        footer={[
+          <Button className="btn btn-default" style={{ float: 'left' }} key="1" onClick={this.addCollection}>
+            { I18n.t('reports.modules.campaign_factors_table.add_condition')}
+          </Button>,
+          <Button className="btn btn-success" onClick={this.save} key="2">
+            {I18n.t('reports.modules.campaign_factors_table.save')}
+          </Button>,
+          <Button className="btn btn-danger" onClick={close} key="3">
+            { I18n.t('reports.modules.campaign_factors_table.cancel')}
+          </Button>,
+        ]}
+      >
+        {this.renderCollections()}
       </Modal>
     )
   }

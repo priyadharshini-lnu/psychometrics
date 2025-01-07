@@ -27,6 +27,26 @@ module Api
         #   )
         # end
 
+        rule(data: { attributes: :workshops }) do
+          workshops = values.dig(:data, :attributes, :workshops)
+
+          workshops.each_with_index do |workshop, index|
+            workshop_resources = workshop[:workshop_resources]
+            workshop_resources.each_with_index do |resource, resource_index|
+              if resource[:name].blank?
+                key(
+                  [:data, :attributes, :workshops, index, :workshop_resources, resource_index, :name]
+                ).failure(:filled?)
+              end
+              next if Utility::Url.valid?(resource[:url])
+
+              key(
+                [:data, :attributes, :workshops, index, :workshop_resources, resource_index, :url]
+              ).failure(I18n.t('activerecord.errors.messages.invalid_http_url'))
+            end
+          end
+        end
+
         schema Api::V2::Workshop::Schema.create_all_request
       end
     end

@@ -50,6 +50,10 @@
   :global(.ant-menu-submenu-selected) {
     color: @text-color;
   }
+  &:not(:global(.ant-menu-inline-collapsed)) :global(.ant-menu-item) > :global(.ant-menu-title-content) {
+    overflow: auto;
+    text-overflow: initial;
+  }
 }
 .page-sider--expanded {
   & :global(.ant-menu-item),

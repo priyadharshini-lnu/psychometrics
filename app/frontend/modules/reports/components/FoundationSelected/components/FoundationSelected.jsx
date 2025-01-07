@@ -13,12 +13,12 @@ const { $ } = window
 
 const getRotatedPoints = ({
   left: x, top: y, width: w, height: h,
-}, angle = 0) => {
+}, angle = 0, center = {}) => {
   const rad = angle * Math.PI / 180
   const cos = Math.cos(rad)
   const sin = Math.sin(rad)
-  const cx = x + w / 2
-  const cy = y + h / 2
+  const cx = center.x ?? (x + w / 2)
+  const cy = center.y ?? (y + h / 2)
 
   const rx = (x, y) => Math.round(cx + ((x - cx) * cos - (y - cy) * sin))
   const ry = (x, y) => Math.round(cy + ((x - cx) * sin + (y - cy) * cos))
@@ -33,7 +33,7 @@ const getRotatedPoints = ({
 
 
 const FoundationSelected = ({
-  modules, aspectRatio, pageId, selectedPageId, currentPage, pageSize,
+  modules, aspectRatio, pageId, selectedPageId, currentPage, pageSize, flipContent,
 }) => {
   const forceUpdate = useForceUpdate()
   const selectedIds = useSelector(state => state.report.ui.selection.selected)
@@ -113,9 +113,11 @@ const FoundationSelected = ({
     const top = _.minBy(points, 'y')?.y
     const right = _.maxBy(points, 'x')?.x
     const bottom = _.maxBy(points, 'y')?.y
-
     posRef.current = {
-      left, top, width: right - left, height: bottom - top,
+      left: flipContent ? pageSize.width - right : left,
+      top,
+      width: right - left,
+      height: bottom - top,
     }
     forceUpdate()
   }, [selectedIds, modules])
@@ -129,8 +131,10 @@ const FoundationSelected = ({
 
   const startHandler = (event) => {
     event.stopPropagation()
+
     frame.current.style.background = '#00d0ff99'
-    startPos.current = { ...posRef.current }
+
+    startPos.current = { ...posRef.current, edges: event.edges }
   }
 
   const dragHandler = (event) => {
@@ -143,6 +147,7 @@ const FoundationSelected = ({
     if (x < 0) x = 0
     if (y < 0) y = 0
     $target.css({ transform: `translate(${x}px, ${y}px)` })
+
     pos.left = x
     pos.top = y
 
@@ -154,7 +159,7 @@ const FoundationSelected = ({
     frame.current.style.background = ''
 
     const pos = posRef.current
-    const newX = pos.left - startPos.current.left
+    const newX = (pos.left - startPos.current.left) * (flipContent ? -1 : 1)
     const newY = pos.top - startPos.current.top
 
     models.current.forEach((module) => {
@@ -187,7 +192,6 @@ const FoundationSelected = ({
     // eslint-disable-next-line prefer-destructuring
     if (height > pageSize.height) height = pageSize.height
     $target.css({ transform: `translate(${x}px, ${y}px)` })
-
     pos.left = x
     pos.top = y
     pos.width = width
@@ -205,14 +209,36 @@ const FoundationSelected = ({
     const dHeight = pos.height / start.height
     frame.current.style.background = ''
     models.current.forEach((module) => {
-      const dx = (module.props.position.left - start.left) * dWidth
-      const dy = (module.props.position.top - start.top) * dHeight
-      const dw = module.props.position.width * dWidth
-      const dh = module.props.position.height * dHeight
-      module.props.position.left = Math.round(pos.left + dx)
-      module.props.position.top = Math.round(pos.top + dy)
-      module.props.position.width = Math.round(dw)
-      module.props.position.height = Math.round(dh)
+      const sin = Math.sin((module.props.position.rotation || 0) * Math.PI / 180)
+      const cos = Math.cos((module.props.position.rotation || 0) * Math.PI / 180)
+      const dw = dWidth * cos + dHeight * sin
+      const dh = dHeight * cos + dWidth * sin
+      const dx = start.left - pos.left
+      const dy = start.top - pos.top
+      const points = getRotatedPoints(module.props.position, module.props.position.rotation || 0)
+      const { position } = module.props
+      const newPoints = points.map(({ x, y }) => ({
+        x: start.left - dx + (x - start.left) * dWidth,
+        y: start.top - dy + (y - start.top) * dHeight,
+      }))
+      const rAPos = newPoints[0]
+      const rCPos = newPoints[2]
+
+      const newCenter = { x: (rCPos.x + rAPos.x) / 2, y: (rCPos.y + rAPos.y) / 2 }
+      position.width = Math.round(position.width * dw)
+      position.height = Math.round(position.height * dh)
+
+      const newPosition = getRotatedPoints({
+        left: rAPos.x, top: rAPos.y, width: position.width, height: position.height,
+      }, -(module.props.position.rotation || 0), newCenter)
+
+      const newA = newPosition[0]
+
+      position.left = Math.round(newA.x)
+      position.top = Math.round(newA.y)
+      position.width = position.width < 1 ? 1 : position.width
+      position.height = position.height < 1 ? 1 : position.height
+
       module.update()
     })
   }
@@ -230,6 +256,7 @@ const FoundationSelected = ({
   }
 
   style.transform = `translate(${pos.left}px,${pos.top}px)`
+
   const className = cs(styles.base,
     {
       [styles.editor]: true,

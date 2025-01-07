@@ -1,4 +1,6 @@
-import { ChangeEvent, FC, useState } from 'react'
+import {
+  ChangeEvent, FC, useRef, useState,
+} from 'react'
 import { Row, Col } from 'antd'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
@@ -14,6 +16,8 @@ interface Props {
   setDictationActiveOnQuestion(questionId: number): void
   fetchAwsSpeechTextPresignedUrl(): Promise<{ response: { url: string } }>
   errors: string[]
+  focus?: boolean
+  questionTextId: string
 }
 
 const MultiLinePreview: FC<Props> = ({
@@ -23,6 +27,8 @@ const MultiLinePreview: FC<Props> = ({
   setDictationActiveOnQuestion,
   fetchAwsSpeechTextPresignedUrl,
   errors,
+  focus,
+  questionTextId,
 }) => {
   const {
     props: { type, allowDictation },
@@ -74,6 +80,7 @@ const MultiLinePreview: FC<Props> = ({
               onValueChange={updateModelAnswer}
               onDictationChange={handleDictationChange}
               fetchPresignUrl={fetchAwsSpeechTextPresignedUrl}
+              tooltipId={`speechtotext-id-${model.id}`}
             >
               <MultiLineTextArea
                 type={type}
@@ -82,6 +89,8 @@ const MultiLinePreview: FC<Props> = ({
                 handleOnChange={handleOnChange}
                 errors={errors}
                 questionId={questionId}
+                focus={focus}
+                questionTextId={questionTextId}
               />
             </SpeechToTextInput>
           ) : (
@@ -92,6 +101,8 @@ const MultiLinePreview: FC<Props> = ({
               handleOnChange={handleOnChange}
               errors={errors}
               questionId={questionId}
+              focus={focus}
+              questionTextId={questionTextId}
             />
           )}
         </Col>
@@ -108,6 +119,8 @@ interface MultiLineTextAreaProps {
   handleOnChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
   errors: string[]
   questionId: number
+  focus?:boolean
+  questionTextId: string
 }
 
 const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
@@ -117,8 +130,15 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   value,
   errors,
   questionId,
+  focus,
+  questionTextId,
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  if (focus && inputRef.current) {
+    inputRef.current.focus()
+  }
 
   return (
     <textarea
@@ -131,6 +151,8 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
       onChange={handleOnChange}
       value={value}
       id={`question-${questionId}`}
+      ref={inputRef}
+      aria-labelledby={questionTextId}
     />
   )
 }

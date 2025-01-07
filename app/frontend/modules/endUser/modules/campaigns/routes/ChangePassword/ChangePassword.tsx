@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-  Form, Layout, Typography, Input, Row, Col, Space, Button, Alert,
+  Form, Layout, Typography, Row, Col, Space, Button, Alert,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { DirectionalArrowIcon, PageHeader as GlintPageHeader } from '~/glint'
+import { DirectionalArrowIcon, PageHeader as GlintPageHeader, AccessiblePasswordInput } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { changePassword, CHANGE_PASSWORD } from '~/core/currentUser'
@@ -51,19 +51,19 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                     name="currentPassword"
                     label={I18n.t('change_password_page.old_password')}
                   >
-                    <Input.Password autoComplete="tte-old-password" />
+                    <AccessiblePasswordInput autoComplete="tte-old-password" />
                   </Form.Item>
                   <Form.Item
                     name="password"
                     label={I18n.t('change_password_page.password')}
                   >
-                    <Input.Password autoComplete="tte-new-password" />
+                    <AccessiblePasswordInput autoComplete="tte-new-password" />
                   </Form.Item>
                   <Form.Item
                     name="passwordConfirmation"
                     label={I18n.t('change_password_page.password_confirmation')}
                   >
-                    <Input.Password />
+                    <AccessiblePasswordInput />
                   </Form.Item>
                   <>
                     <Alert

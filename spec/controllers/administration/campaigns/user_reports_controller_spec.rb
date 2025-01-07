@@ -244,7 +244,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         id permissions assessment_id name category norm_name status norms norm_id
         additional_time is_expired is_external has_external_norm schedule_time require_scheduling
         mettl_schedule_name mettl_schedule_record_id dimension_id simulation_content_variation_id
-        simulation_content_variations
+        simulation_content_variations simuation_time_extension
       ]
     )
     expect(assessment_response).to include({

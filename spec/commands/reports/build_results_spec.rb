@@ -104,8 +104,9 @@ describe Reports::BuildResults do
         create(:sheet, campaign: user_result.campaign)
       end
       let!(:sheet_row) do
-        create(:sheet_row, sheet: sheet, email: user_result.subject.email,
-                data: { 'Performance Rating' => 2.5 })
+        c1 = create(:sheet_column, sheet: sheet, name: 'Performance Rating', column_type: 'number')
+        r1 = create(:sheet_row, sheet: sheet, email: user_result.subject.email)
+        create(:sheet_row_datum, sheet_row: r1, sheet_column: c1, numeric_value: 2.5)
       end
 
       it 'should return sheet column value' do

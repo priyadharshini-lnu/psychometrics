@@ -128,7 +128,7 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
   if (!model.getSourceType()) {
     return null
   }
-  const seriesFunction = Series[model.getSourceType()].functions
+  const seriesFunction = Series[model.getSourceType()]?.functions
   const funcs = typeof seriesFunction === 'function' ? seriesFunction(question) : seriesFunction
 
   return (

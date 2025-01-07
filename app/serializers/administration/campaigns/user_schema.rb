@@ -25,6 +25,7 @@ module Administration
             required(:login_as).filled(:bool?)
             required(:reset_password).filled(:bool?)
             required(:remove).filled(:bool?)
+            required(:push_webhook).filled(:bool?)
           end
           required(:started_at).maybe(:str?)
           required(:completed_at).maybe(:str?)

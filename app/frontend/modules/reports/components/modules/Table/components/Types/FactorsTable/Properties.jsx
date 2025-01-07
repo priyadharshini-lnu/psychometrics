@@ -157,7 +157,7 @@ class Properties extends Component {
             type="radio"
             name="mode"
             value={option.value}
-            checked={model.props.mode === option.value}
+            checked={model.props.mode === option.value || (!model.props.mode && option.value === 'topFactors')}
             onChange={this.changeMode}
           />
           {option.label}

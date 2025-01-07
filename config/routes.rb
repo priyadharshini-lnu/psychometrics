@@ -265,6 +265,7 @@ Rails.application.routes.draw do
           member do
             patch :toggle_status
             post :extend_time
+            get :webhook_payload
           end
           collection do
             post :import
@@ -348,6 +349,7 @@ Rails.application.routes.draw do
             put :schedule_assessment
             put :toggle_require_scheduling
             put :update_content_variation
+            put :update_simulation_time_extension
           end
         end
 
@@ -1133,6 +1135,7 @@ as: :simulation_progress_notification
             get :reset_password
             collection do
               get :available_permissions
+              post :export
             end
           end
           jsonapi_resources :users do
@@ -1303,6 +1306,9 @@ as: :simulation_progress_notification
                 post :update_positions
                 get  :export
                 post :import
+                post :bulk_update
+                post :remove_all
+                get :validate_campaign_factor_deletion
               end
             end
             jsonapi_resources :campaign_user_scorings, only: %i[index] do
@@ -1351,6 +1357,11 @@ as: :simulation_progress_notification
               get :search_campaign
               get :search_report
               get :search_user
+            end
+          end
+          resources :user_report_events, only: %i[index] do
+            collection do
+              get :export
             end
           end
           resources :workshop_facilitators, only: %i[] do

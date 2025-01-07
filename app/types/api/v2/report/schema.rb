@@ -17,6 +17,7 @@ module Api
             optional(:data_only).maybe(:bool)
             optional(:icon_color).maybe(:string)
             optional(:default_language).maybe(:string)
+            optional(:other_languages).maybe(:array?).each(:str?)
             optional(:external_settings).maybe(:hash) do
               optional(:report_id).maybe(:string)
             end

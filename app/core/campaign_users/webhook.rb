@@ -24,8 +24,6 @@ module CampaignUsers
       )
     end
 
-    private
-
     def campaign_user_status_data
       {
         campaign: campaign_user.campaign,

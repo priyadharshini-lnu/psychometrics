@@ -3,7 +3,8 @@
 module Administration
   module Campaigns
     class UsersController < Administration::Campaigns::BaseController # rubocop:disable Metrics/ClassLength
-      before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password extend_time]
+      before_action :set_resource,
+                    only: %i[update spoof show destroy toggle_status reset_password extend_time webhook_payload]
       skip_before_action :pundit_authorize, only: %i[spoof]
 
       def index
@@ -225,6 +226,20 @@ module Administration
         ).serialize(resource)
       end
 
+      def webhook_payload
+        data = case params['event_name']
+                 when 'campaign_user_status'
+                   webhook_command.campaign_user_status_data
+                 when 'campaign_results_available'
+                   webhook_command.campaign_results_available_data
+               end
+
+        event_payload = Webhook::EVENTS[params['event_name'].to_sym].call(
+          data.merge(project: resource.project, client: resource.project.parent)
+        )
+        render json: event_payload.as_json
+      end
+
       private
 
       def pundit_authorize
@@ -247,6 +262,10 @@ module Administration
 
       def campaign_user
         @campaign_user ||= resource.campaign_users.find_by(campaign: campaign)
+      end
+
+      def webhook_command
+        @webhook_command ||= CampaignUsers::Webhook.new(campaign_user, params[:webhook_id])
       end
     end
   end

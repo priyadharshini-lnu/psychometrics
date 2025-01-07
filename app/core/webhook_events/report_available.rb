@@ -17,8 +17,8 @@ module WebhookEvents
           name: ctx[:report]&.name
         },
         report_pdf: {
-          url: ctx[:user_report]&.pdf_file&.url(expires_in: 10.minutes),
-          expiry_time: 10.minutes.from_now
+          url: ctx[:user_report]&.pdf_file&.url(expires_in: 7.days),
+          expiry_time: 7.days.from_now
         }
       }
     end

@@ -6,11 +6,14 @@ const UPDATE_STATUS = 'threeSixty/report/UPDATE_STATUS'
 const DOWNLOAD_REPORT = 'threeSixty/report/DOWNLOAD_REPORT'
 const CHECK_REPORT = 'threeSixty/report/CHECK_REPORT'
 
-export const fetchReport = (campaignId, id) => ({
+export const fetchReport = (campaignId, id, lang) => ({
   type: FETCH_REPORTS,
   request: {
     url: `/threesixty_campaigns/${campaignId}/reports/${id}`,
     camelize: false,
+    body: {
+      lang,
+    },
   },
 })
 
@@ -34,10 +37,11 @@ export const downloadReport = (campaignId, id, lang) => ({
   },
 })
 
-export const checkReport = (campaignId, id) => ({
+export const checkReport = (campaignId, id, lang) => ({
   type: CHECK_REPORT,
   request: {
     url: `/threesixty_campaigns/${campaignId}/reports/${id}/check_report`,
+    body: { lang },
   },
 })
 
