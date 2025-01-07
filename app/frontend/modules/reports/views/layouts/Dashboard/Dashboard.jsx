@@ -19,12 +19,12 @@ export class Dashboard extends Component {
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
     const urldata = location.pathname.match(/reports\/(\d+)/)
     const id = urldata && urldata[1]
-    const lang = new URLSearchParams(location.search).get('lang') || 'en'
+    const lang = new URLSearchParams(location.search).get('lang') || undefined
 
     fetch(id, lang).then(({ response }) => {
       const normalizedData = normalize(response, schema)
       AppStore.init(response)
-      const currentLocale = new URLSearchParams(window.location.search).get('lang') || 'en'
+      const currentLocale = new URLSearchParams(window.location.search).get('lang') || undefined
       if (!_.isEmpty(response.locales)) {
         I18nStore.locales = response.locales
       }
