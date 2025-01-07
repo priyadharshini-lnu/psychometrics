@@ -14,6 +14,9 @@ const InitPages = {
         if (q.deleted) { return questions }
 
         if (q.type === 'PageBreak') {
+          if (b.props?.randomization?.type === 'QuestionsPerPage') {
+            return questions
+          }
           if (questions.length) {
             pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
           }
@@ -53,6 +56,13 @@ const InitPages = {
           questions = [...questions, q.id]
         }
 
+        if (
+          b.props?.randomization?.type === 'QuestionsPerPage' && questions.length === b.props.randomization.questions
+        ) {
+          pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
+          questions = []
+        }
+
         return questions
       }, [])
 
@@ -60,10 +70,10 @@ const InitPages = {
         const attrs = {
           questions, blockId: b.id,
         }
-
         pages[symbolId] = [...pages[symbolId], attrs]
       }
-      if (b.props && b.props.randomization) {
+
+      if (b.props?.randomization) {
         pages[symbolId] = RandomizeBlockQuestions.run(
           b.props.randomization,
           pages[symbolId],
@@ -71,8 +81,10 @@ const InitPages = {
           data.factors,
         )
       }
+
       return { ...pages }
-    }, {})
+    },
+    {})
   },
 }
 
