@@ -16,9 +16,9 @@ RSpec.describe UserIdpPlan, type: :model do
       before { communication }
 
       it 'creates communication email with the resource' do
-        expect {
+        expect do
           user_idp_plan.save!
-        }.to change(CommunicationEmail, :count).by(1)
+        end.to change(CommunicationEmail, :count).by(1)
 
         communication_email = CommunicationEmail.last
         expect(communication_email.communication).to eq(communication)
@@ -30,9 +30,9 @@ RSpec.describe UserIdpPlan, type: :model do
 
     context 'when no communication exists' do
       it 'does not create any communication emails' do
-        expect {
+        expect do
           user_idp_plan.save!
-        }.not_to change(CommunicationEmail, :count)
+        end.not_to change(CommunicationEmail, :count)
       end
     end
 
@@ -40,20 +40,18 @@ RSpec.describe UserIdpPlan, type: :model do
       before do
         communication
         email = create(:communication_email,
-          communication: communication,
-          user: user,
-          campaign_user: campaign_user
-        )
+                       communication: communication,
+                       user: user,
+                       campaign_user: campaign_user)
         create(:communication_email_resource,
-          communication_email: email,
-          resource: user_idp_plan
-        )
+               communication_email: email,
+               resource: user_idp_plan)
       end
 
       it 'does not create another communication email' do
-        expect {
+        expect do
           user_idp_plan.save!
-        }.not_to change(CommunicationEmail, :count)
+        end.not_to change(CommunicationEmail, :count)
       end
     end
   end
