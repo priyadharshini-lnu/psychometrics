@@ -19,7 +19,6 @@ module MediaResponses
       multipart_request = Aws::S3::Client.new.create_multipart_upload(
         bucket: Settings.secrets.s3_compatible_storage[:private_bucket], key: key, acl: media.asset.acl
       )
-      storage_config = Settings.secrets.s3_compatible_storage
       number_of_urls.times do |time|
         part_number = (time + 1).to_s
         url = signer.presigned_url(
@@ -31,9 +30,6 @@ module MediaResponses
           expires_in: 1800,
           use_accelerate_endpoint: Settings.aws.s3.accelerated
         )
-        if storage_config[:proxy_endpoint]
-          url = url.gsub(storage_config[:endpoint], storage_config[:proxy_endpoint])
-        end
         urls << url
       end
 
