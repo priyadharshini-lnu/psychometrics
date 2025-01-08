@@ -10,6 +10,7 @@ export default connect(
     selected: getSelected(report.builder),
     modules: getModules(report, report.ui.selection.selected).map(m => new ModuleModel(m, report.ui.selection.pageId)),
     reportStyles: builder.styles,
+    defaultLanguage: builder.default_language,
   }),
   {
     updateModule,

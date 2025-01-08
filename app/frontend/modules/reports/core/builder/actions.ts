@@ -40,7 +40,7 @@ export enum SelectedTypes {
   'Report'= 'Report'
 }
 
-export const fetch = (id, lang = 'en') => ({
+export const fetch = (id, lang) => ({
   type: FETCH,
   request: {
     url: `/administration/reports/${id}/builders`,

@@ -29,7 +29,10 @@ const uniqType = (modules) => {
 
 
 const PropertyPanel = (props) => {
-  const lang = new URLSearchParams(window.location.search).get('lang') || 'en'
+  const {
+    updateModule, reportStyles, report, modules, defaultLanguage,
+  } = props
+  const lang = new URLSearchParams(window.location.search).get('lang') || defaultLanguage.code
   const isRTL = ['ar', 'he'].includes(lang)
 
   const [popupOpen, setPopupOpen] = useState(false)
@@ -37,9 +40,6 @@ const PropertyPanel = (props) => {
   const inspector = useRef(null)
   const [scrollTop, setScrollTop] = useState(0)
 
-  const {
-    updateModule, reportStyles, report, modules,
-  } = props
   const module = modules[0]
 
   useEffect(() => {

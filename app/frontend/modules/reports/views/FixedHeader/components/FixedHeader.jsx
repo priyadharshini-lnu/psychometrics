@@ -18,14 +18,14 @@ import { LangDropdown } from '~/components/LangDropdown'
 const { $ } = window
 const defaultLocales = ['en']
 
-export const LangDropdownWithChangeUrl = ({ locales = defaultLocales }) => {
+export const LangDropdownWithChangeUrl = ({ locales = defaultLocales, defaultLanguage }) => {
   const handleLanguageChange = (key) => {
     const searchParams = new URLSearchParams(window.location.search)
     searchParams.set('lang', key)
     window.location.search = searchParams.toString()
   }
 
-  const currentLocale = new URLSearchParams(window.location.search).get('lang') || 'en'
+  const currentLocale = new URLSearchParams(window.location.search).get('lang') || defaultLanguage
 
   return (
     <LangDropdown
@@ -250,7 +250,7 @@ export class FixedHeader extends Component {
   render () {
     const {
       richEditorOpened, report: {
-        builder: { available_languages: availableLanguages },
+        builder: { available_languages: availableLanguages, default_language: defaultLanguage },
       },
     } = this.props
     const style = {
@@ -302,7 +302,7 @@ export class FixedHeader extends Component {
 
             <div className={`${styles.rightSet}`}>
               <Space>
-                <LangDropdownWithChangeUrl locales={locales} />
+                <LangDropdownWithChangeUrl locales={locales} defaultLanguage={defaultLanguage.code} />
                 <Button onClick={this.save} type="primary">
                   Save
                 </Button>

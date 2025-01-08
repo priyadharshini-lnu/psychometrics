@@ -6,6 +6,7 @@ export default connect(
     selected: state.report.builder.selected,
     pageSize: state.report.builder.props.sizes,
     flipContent: state.report.builder.flip_content,
+    defaultLanguage: state.report.builder.default_language,
   }),
   {
     closeRichEditor,

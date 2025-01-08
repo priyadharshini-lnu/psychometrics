@@ -14,10 +14,6 @@ import { init } from '../core/builder/actions'
 import schema from '../store/schema'
 
 class PreviewContainer extends Component {
-  state = {
-    localeDirection: null,
-  }
-
   componentDidMount () {
     const parent = findDOMNode(this).parentNode
     const {
@@ -37,7 +33,6 @@ class PreviewContainer extends Component {
 
     if (default_language) {
       I18nStore.setLocale(document.body.dataset.locale || default_language.code)
-      this.setState({ localeDirection: default_language.direction })
     }
 
     parsedData.moduleOverrides = humps.camelizeKeys(parsedData.module_overrides)
@@ -58,12 +53,10 @@ class PreviewContainer extends Component {
   }
 
   render () {
-    const { localeDirection } = this.state
-
     return (
       <Provider store={rstore}>
         <div className="row">
-          <Preview localeDirection={localeDirection} />
+          <Preview />
         </div>
       </Provider>
     )
