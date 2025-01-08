@@ -1,8 +1,14 @@
 body[data-locale="ar"] {
   #psychometrics_preview,
-  #report_preview,
   #devise {
     direction: rtl;
+    unicode-bidi: embed;
+  }
+}
+
+
+body[data-locale="ar"] {
+  #report_preview {
     unicode-bidi: embed;
   }
 }

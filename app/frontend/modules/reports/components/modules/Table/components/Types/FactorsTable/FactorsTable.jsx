@@ -414,7 +414,7 @@ class FactorsTable extends Component {
                   key={i}
                   className={cs(styles.score)}
                 >
-                  {filter.value.toFixed(precision)}
+                  {_.isNaN(filter.value) ? I18nStore.t('reports.modules.factors_table.na') : filter.value.toFixed(precision)}
                 </td>
               ))
             ) : null}

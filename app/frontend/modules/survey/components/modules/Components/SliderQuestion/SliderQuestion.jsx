@@ -202,8 +202,8 @@ export const SliderQuestion = ({
                   value={preview
                     ? (values[choiceId]?.value)
                     : props.fakeResults[choiceId]}
-                  min={minValue}
-                  max={maxValue}
+                  min={1}
+                  max={100}
                   className="ms-0 me-0"
                     // Widthout this extra span with key, the tooltip doesn't move properly
                   disabled={readOnly || result.notApplicable?.[choiceId] === true}

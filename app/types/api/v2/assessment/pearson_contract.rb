@@ -18,9 +18,12 @@ module Api
         end
 
         rule(data: { attributes: { external_settings: :norm_id } }) do
-          next key.failure(:filled?) unless value
-
           assessment_id = values.dig(:data, :attributes, :external_settings, :assessment_id)
+          available_norms = PearsonAssessment.find_by(product_id: assessment_id)&.norms&.dig('items')
+
+          next if available_norms.blank?
+
+          next key.failure(:filled?) unless value
 
           norm = (Assessments::PearsonSettings.norms(assessment_id) || []).find do |a|
             a[:id] == value
