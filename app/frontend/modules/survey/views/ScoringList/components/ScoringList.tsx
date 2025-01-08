@@ -25,10 +25,14 @@ const renderBlocks = (blocks): Item[] => _.compact(_.flatten(
   ]),
 ))
 
+const removeUnsavedQuestions = (data): Item[] => data.filter(
+  item => !item.isNew,
+)
+
 const ScoringList = ({
   blocks, type, scorings, recoding, selectedFactor,
 }) => {
-  const data = useMemo(() => renderBlocks(blocks), [blocks])
+  const data = useMemo(() => removeUnsavedQuestions(renderBlocks(blocks)), [blocks])
   const [search, setSearch] = useState('')
 
   const filteredData = useMemo(() => {
@@ -56,7 +60,7 @@ const ScoringList = ({
         />
       </div>
 
-      <div style={{ height: '100%' }}>
+      <div className={styles.container}>
 
         <AutoSizer>
           {({ height, width }) => (

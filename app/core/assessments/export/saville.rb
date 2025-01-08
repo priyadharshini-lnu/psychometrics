@@ -11,20 +11,19 @@ module Assessments
       end
 
       def call
-        xlsx =
-          Axlsx::Package.new do |package|
-            savile_factors.each do |score_type, factors_hash|
-              package.workbook.add_worksheet(name: score_type) do |sheet|
-                add_headers_and_sub_headers(factors_hash, sheet)
+        package = ExcelSafe.new
 
-                users_results.find_each(batch_size: 100) do |result|
-                  add_score(result, factors_hash.values.flatten, sheet)
-                end
-              end
+        savile_factors.each do |score_type, factors_hash|
+          package.add_worksheet(score_type) do |sheet|
+            add_headers_and_sub_headers(factors_hash, sheet)
+
+            users_results.find_each(batch_size: 100) do |result|
+              add_score(result, factors_hash.values.flatten, sheet)
             end
           end
+        end
 
-        broadcast :ok, xlsx
+        broadcast :ok, package
       end
 
       private

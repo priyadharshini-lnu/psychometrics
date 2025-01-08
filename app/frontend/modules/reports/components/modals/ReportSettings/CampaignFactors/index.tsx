@@ -1,6 +1,6 @@
 import { Typography } from 'antd'
 import { connect } from 'react-redux'
-
+import { camelizeKeys } from '~/utils/object'
 import { CampaignFactorsForm } from '~/components/CampaignFactorsForm'
 import { saveCampaignFactors } from '~/modules/reports/core/builder/actions'
 import { RootState } from '~/modules/reports/core/rootReducers'
@@ -10,7 +10,7 @@ import styles from './styles.less'
 
 const connecter = connect(
   ({ report: { builder } }: RootState) => ({
-    columns: builder.campaign_factors, id: builder.id,
+    columns: camelizeKeys(builder.campaign_factors), id: builder.id,
   }),
   {
     saveCampaignFactors,

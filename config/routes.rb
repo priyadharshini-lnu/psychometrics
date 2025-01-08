@@ -504,6 +504,7 @@ Rails.application.routes.draw do
           get :participant_options
           get :report_options
           get :message_options
+          put :update_language
         end
 
         resources :email_templates do

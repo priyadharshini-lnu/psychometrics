@@ -5,6 +5,7 @@ module Administration
     class OptionsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
       before_action :set_resource, only: %i[show edit]
+      before_action :load_campaign_report!, only: %i[update_language report_options]
       append_before_action :pundit_authorize
 
       def participant_options
@@ -22,7 +23,24 @@ module Administration
       end
 
       def report_options
-        render json: threesixty_campaign.option.reports
+        options = threesixty_campaign.option.reports
+        languages = {
+          report_locales: @campaign_report.report.other_languages + [@campaign_report.report.default_language],
+          default_language: @campaign_report.effective_default_language,
+          available_languages: @campaign_report.available_languages
+        }
+        options[:languages] = languages
+
+        render json: options
+      end
+
+      def update_language
+        @campaign_report.update!(language_params)
+
+        render json: {
+          status: :ok,
+          data: language_params
+        }
       end
 
       def update
@@ -56,6 +74,15 @@ module Administration
 
       def option_params
         params.require(:option).permit(reports: {}, participants: {}, messages: {})
+      end
+
+      def language_params
+        params.require(:languages).permit(:default_language, available_languages: [])
+      end
+
+      def load_campaign_report!
+        @campaign_report = CampaignReport.includes(:report).find_by!(report_id: threesixty_campaign.report_id,
+                                                                     campaign_id: threesixty_campaign.campaign_id)
       end
     end
   end

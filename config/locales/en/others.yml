@@ -2613,6 +2613,7 @@ en:
         success_message: Report %{name} was restored successfully
       unarchived:
         success_message: Report %{name} was unarchived successfully
+      update_language: Update Language
       view: View Report
     active: Active
     archived: Archived
@@ -2668,6 +2669,8 @@ en:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
       none_external: None - Use report builder
+    language: Report Language
+    language_updated: Report Language was updated successfully
     modules:
       campaign_factors_table:
         add_condition: Add Condition

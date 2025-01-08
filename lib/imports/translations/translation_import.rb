@@ -28,6 +28,7 @@ module Imports
         header = rows.shift
         collect_translations = {}
         rows.each do |row|
+          row.map! { |value| Utility::String.remove_csv_injection_marker(value) }
           data = header.zip(row).to_h
           branch_type, id, key = data.delete('Key').split(':')
           collect_translations[branch_type] ||= {}

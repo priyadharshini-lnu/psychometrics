@@ -4,10 +4,9 @@ module Exports
   module Translations
     class AssessmentExport
       def initialize(assessment_id, data = {})
-        @package = Axlsx::Package.new
+        @package = ExcelSafe.new
         @assessment = ::Assessment.find(assessment_id)
-        wb = @package.workbook
-        wb.add_worksheet(name: 'AssessmentTranslations') do |sheet|
+        @package.add_worksheet('AssessmentTranslations') do |sheet|
           sheet.add_row [
             'Key', "Default Locale / #{@assessment.default_language}",
             *(I18n.available_locales - [@assessment.default_language.to_sym]).map do |locale|

@@ -4,9 +4,8 @@ module Exports
   module Translations
     class ReportExport
       def initialize(report, data = {})
-        @package = Axlsx::Package.new
-        wb = @package.workbook
-        wb.add_worksheet(name: 'ReportTranslations') do |sheet|
+        @package = ExcelSafe.new
+        @package.add_worksheet('ReportTranslations') do |sheet|
           sheet.add_row ['Key', "Default Locale / #{report.default_language}",
                          *(I18n.available_locales - [report.default_language.to_sym]).
                            map do |locale|

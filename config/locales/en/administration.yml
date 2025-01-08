@@ -361,7 +361,21 @@ en:
         header: New assessment
       preview: Assessment Preview
       randomization:
+        cancel: Cancel
+        no_randomization: No Randomization
+        no_randomization_order_all: Randomize the order of all
+        of_total: of total
+        per_page: per page
+        plural:
+          block: blocks
+          question: questions
+        present_only: Present only
+        question_per_factor_and_show: questions per factor and show
+        save: Save
+        select: Select
+        select_only: Select only
         single_question_page_warning: Current Assessment is configured to show one question per page. Setting more than one question per page here will automatically disable Single Question Per Page setting.
+        title: Randomization
       reports: Reports
       resource:
         confirmations:
@@ -692,6 +706,7 @@ en:
         question_unlink_template: Question was unlinked
         question_update: Question is updated
         report_change_aliases: Aliases are updated
+        report_change_campaign_factors: Campaign factors are updated
         report_change_data_configuration: Data Report Configuration was updated successfully
         report_change_filters: Filters are updated
         report_update: Report is updated
@@ -1694,13 +1709,14 @@ en:
             dates_not_in_future: Dates should not be in the future
             dates_should_be_empty: Dates should be empty for not_started status
             started_at_required: Valid started_at is required for in_progress status
+          error: "[Row %{row}] %{error}"
           invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_date: "[Row %{row}] %{error}"
           question_invalid: "[Row %{row}] Question %{question_id} is invalid"
           user:
             record_not_found: Can't find existing user with email %{email}.
           user_assessment:
-            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user .
+            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user.
         translation:
           error: "[Translation %{id}] %{error}"
           invalid_format: Invalid File format

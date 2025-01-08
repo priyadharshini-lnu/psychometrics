@@ -138,3 +138,20 @@ test('with single_question_page', () => {
     ]
   })
 })
+
+test('simple block with n (here, 2) questions per page', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1), question(2), question(3), question(4), question(5), question(6)],
+    props: {
+      randomization: {
+        type: 'QuestionsPerPage',
+        questions: 2
+      }
+    }
+  }]
+
+  expect(InitPages.run({ blocks })).toStrictEqual({
+    [Symbol.for('1')]: [{ questions: [1, 2], blockId: 1 }, { questions: [3, 4], blockId: 1 }, { questions: [5, 6], blockId: 1 }]
+  })
+})

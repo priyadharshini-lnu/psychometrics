@@ -114,8 +114,9 @@ _.extend(I18nStore.prototype, {
   },
 
   tCampaignFactorName (factor) {
-    if (factor?.code && _.get(this, `locales.campaignFactors.${factor.code}`)) {
-      return this.locales.campaignFactors[factor.code].name
+    if (this.locales && this.locales['reports/campaign_factor']
+      && this.locales['reports/campaign_factor'][factor.id]) {
+      return this.locales['reports/campaign_factor'][factor.id].name
     }
     return factor?.name
   },
@@ -186,13 +187,12 @@ _.extend(I18nStore.prototype, {
         })
         return hash
       }, {}),
-      // fix after chaning campaign factors to table saving
-      // campaignFactors: _.reduce(AppStore.report.campaignFactors, (hash, factor) => {
-      //   hash[factor.code] = {
-      //     name: factor.name,
-      //   }
-      //   return hash
-      // }, {}),
+      'reports/campaign_factors': _.reduce(AppStore.report.campaignFactors, (hash, factor) => {
+        hash[factor.id] = {
+          name: factor.name,
+        }
+        return hash
+      }, {}),
       occupation: _.reduce(AppStore.occupations, (hash, occupations) => {
         _.each(occupations, (occupation) => {
           hash[occupation.id] = {

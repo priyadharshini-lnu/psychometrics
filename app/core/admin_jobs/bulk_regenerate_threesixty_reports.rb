@@ -3,7 +3,7 @@
 module AdminJobs
   class BulkRegenerateThreesixtyReports < AdminJobs::Base
     def call
-      options = threesixty_campaign.option
+      campaign_options = threesixty_campaign.option
 
       user_reports = threesixty_campaign.campaign.user_reports
 
@@ -16,7 +16,7 @@ module AdminJobs
                          with_object([]) do |user_report, ids|
         ids << user_report.id if Threesixty::Subjects::IsReportAvailable.call!(
           user_report.subject,
-          options,
+          campaign_options,
           subject_evaluator_counters.dig(user_report.user_id, :completed) || {}
         )
         ids
@@ -25,8 +25,7 @@ module AdminJobs
       record.update(data: record.data.merge(user_reports_ids: user_reports_ids))
 
       user_reports = campaign.user_reports.where(id: user_reports_ids)
-
-      ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
+      ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
 
       broadcast :waiting
     end
@@ -62,6 +61,17 @@ module AdminJobs
 
     def threesixty_campaign
       @threesixty_campaign ||= ::Threesixty::Campaign.find(record.data['campaign_id'])
+    end
+
+    def campaign_report
+      @campaign_report ||= CampaignReport.includes(:report).find_by!(report_id: threesixty_campaign.report_id,
+                                                                     campaign_id: threesixty_campaign.campaign_id)
+    end
+
+    def options
+      {
+        lang: campaign_report.effective_default_language
+      }
     end
   end
 end
