@@ -13,6 +13,21 @@ module Api
       render json: :ok
     end
 
+    def context
+      super.merge(
+        project_id: project_id,
+        campaign_id: campaign_id
+      )
+    end
+
+    def project_id
+      params.dig(:query, :project_id) || params.dig(:query, :client_id)
+    end
+
+    def campaign_id
+      params.dig(:query, :campaign_id)
+    end
+
     private
 
     def export_params
@@ -29,7 +44,11 @@ module Api
           @model,
           [
             'export'
-          ]
+          ],
+          {
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
+          }
         )
       }
     end

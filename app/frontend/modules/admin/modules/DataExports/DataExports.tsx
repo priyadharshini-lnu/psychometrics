@@ -123,7 +123,8 @@ const DataExportsComponent:FC<Props> = ({
     fetch: fetchUserReportEvents,
     meta: userReportEventsMeta,
     collectionAction: exportUserReportEvents,
-  } = useResources('user_report_events')
+  } = useResources('user_report_events',
+    { apiConfig: { query: { project_id: projectId, campaign_id: campaignId, client_id: clientId } } })
 
   useEffect(() => {
     fetchUserReportEvents()

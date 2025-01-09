@@ -21,8 +21,12 @@ module Api
         @user.is?(:superadmin)
       end
 
+      def export?
+        has_permission?(:audit_reports, :admin_permissions, project_id: project_id, campaign_id: campaign_id)
+      end
+
       def index?
-        @user.is?(:superadmin)
+        export?
       end
 
       def edit?
@@ -43,10 +47,6 @@ module Api
 
       def spoof?
         @user.is?(:superadmin)
-      end
-
-      def export?
-        @user.is?(:superadmin) || @user.has_permission?(:audit_reports, :admin_permissions)
       end
 
       def available_permissions?
