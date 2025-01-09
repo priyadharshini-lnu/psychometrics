@@ -120,14 +120,14 @@ const QuestionTypeComponent: FC<Props> = ({
         scale: number
         value: boolean
       }
-
       const data: Array<RawResult> = get(
         ResultStore,
         ['results', assessment_id, 'resultsByFilter', filterId, 'rawResults'],
         [],
       )
         .map((r) => {
-          const answers = get(r, ['results', choice.questionId, 'answers'], [])
+          const answers = get(r, ['answers', choice.questionId, 'answers'], [])
+
           return answers.filter(
             a => a.choice === choice.id && a.recode_value !== undefined,
           )
