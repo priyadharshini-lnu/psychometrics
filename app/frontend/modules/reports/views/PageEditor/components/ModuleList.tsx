@@ -1,5 +1,7 @@
 import { FC } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import {
+  useSelector, useDispatch, connect, ConnectedProps,
+} from 'react-redux'
 import { Space, Divider, Button } from 'antd'
 import {
   EyeOutlined, EyeInvisibleOutlined, LockOutlined, UnlockOutlined,
@@ -8,14 +10,14 @@ import _ from 'lodash'
 import cs from 'classnames'
 import { getModules } from '~/modules/reports/core/builder/selectors'
 import {
-  closeRichEditor, selectModule, unselectModules, SelectedTypes,
+  closeRichEditor,
 } from '~/modules/reports/core/builder/actions'
 import { updateModule } from '~/modules/reports/core/builder/module/actions'
 import { RootState } from '~/modules/reports/core/rootReducers'
-import panelStore from '~/modules/reports/store/PropertyPanelStore'
 import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
 import utils from '~/modules/reports/utils/Utils'
 import iconStyles from '~/modules/reports/components/modules/Graph/components/ChartsMenu.less'
+import { actions } from '~/modules/reports/core/temp/selection'
 
 import styles from './ModuleList.less'
 import { convertColor } from '~/modules/reports/components/modules/CommonMethods/styles'
@@ -24,8 +26,6 @@ const connector = connect((state: RootState, props: OwnProps) => ({
   modules: getModules(state.report, props.page.modules),
   selected: state.report.builder.selected,
 }), {
-  selectModule,
-  unselectModules,
   closeRichEditor,
   updateModule,
 })
@@ -118,21 +118,19 @@ const ModuleLabel = ({
 const ModuleListComponent: FC<Props> = ({
   page,
   modules,
-  selected,
-  selectModule,
-  unselectModules,
   closeRichEditor,
   updateModule,
 }) => {
+  const selectedIds = useSelector<RootState, number[]>(state => state.report.ui.selection.selected)
+  const dispatch = useDispatch()
+
   const select = (module) => {
     if (module.meta.locked || module.meta.visible === false) {
       ScrollDispatcher.scroll(page.id, `Module_${module.id}`)
       return
     }
-    unselectModules()
-    selectModule(SelectedTypes.Module, module.id)
+    dispatch(actions.selectSignle({ moduleId: module.id, pageId: page.id }))
     closeRichEditor()
-    panelStore.select('Module', module)
     ScrollDispatcher.scroll(page.id, `Module_${module.id}`)
   }
 
@@ -148,7 +146,7 @@ const ModuleListComponent: FC<Props> = ({
   return (
     <Space direction="vertical" style={{ width: '100%' }} split={<Divider style={{ margin: 0 }} />} size={4}>
       {_.map(modules, module => !module.removed && (
-        <div className={cs(styles.row, { [styles.selected]: selected.moduleId === module.id })} key={module.id}>
+        <div className={cs(styles.row, { [styles.selected]: selectedIds.includes(module.id) })} key={module.id}>
           <div className={styles.moduleName} onClick={() => select(module)}>
             <ModuleIcon type={module.type} />
             <span className={styles.name}><ModuleLabel module={module} /></span>

@@ -68,7 +68,7 @@ export class FixedHeader extends Component {
       richEditorOpened, selected, modules, selectedPageId,
     } = this.props
 
-    if (document.getSelection().toString()) { return }
+    if (document.getSelection().toString() && selected.length < 2) { return }
 
     if (!selected.length) { return }
 
