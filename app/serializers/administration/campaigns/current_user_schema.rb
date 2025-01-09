@@ -23,6 +23,7 @@ module Administration
               optional(:workshops).maybe(:array).each(:str?)
               optional(:datasheets).maybe(:array).each(:str?)
               optional(:sms_invites).maybe(:array).each(:str?)
+              optional(:audit_reports).maybe(:array).each(:str?)
               optional(:communications).maybe(:array).each(:str?)
               optional(:registration_codes).maybe(:array).each(:str?)
               optional(:dashboards).maybe(:array).each(:str?)

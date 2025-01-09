@@ -3,8 +3,13 @@
 module Api
   module Administration
     class CampaignMembershipPolicy < MembershipPolicy
+      def export?
+        manage_admins? ||
+          has_permission?(:audit_reports, :admin_permissions, project_id: project_id, campaign_id: campaign_id)
+      end
+
       def index?
-        manage_admins?
+        export?
       end
 
       def create?
@@ -29,10 +34,6 @@ module Api
 
       def send_mail?
         manage_admins?
-      end
-
-      def export?
-        manage_admins? || @user.has_permission?(:audit_reports, :admin_permissions)
       end
 
       private

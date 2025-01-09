@@ -42,7 +42,10 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
       @model,
       [
         'view_audit_reports'
-      ]
+      ],
+      {
+        project_id: @model.id
+      }
     )
   end
 end

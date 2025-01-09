@@ -235,9 +235,8 @@ module Administration
     end
 
     def view_audit_reports?
-      @user.is?(:superadmin, :client_admin, :project_admin, :campaign_admin) ||
-        @user.has_permission?(:audit_reports, :user_report_events) ||
-        @user.has_permission?(:audit_reports, :admin_permissions)
+      has_permission?(:audit_reports, :user_report_events, project_id: project_id, campaign_id: campaign_id) ||
+        has_permission?(:audit_reports, :admin_permissions, project_id: project_id, campaign_id: campaign_id)
     end
 
     private
