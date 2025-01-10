@@ -18,7 +18,8 @@ module Mettl
         result = JSON.parse(response.body)
 
         unless result['status'] == 'SUCCESS'
-          raise "Mettl::GetScores failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
+          raise Mettl::Exceptions::GetScoresFailed,
+                "Mettl::GetScores failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
         end
       rescue Faraday::Error => e
         Sentry.capture_exception(e, extra: { project_id: project.id })

@@ -26,8 +26,8 @@ module Mettl
     private
 
     def handle_failure(result)
-      error_message = "Mettl::RegisterCandidate failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
-      raise error_message
+      raise Mettl::Exceptions::RegisterCandidateFailed,
+            "Mettl::RegisterCandidate failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
     end
 
     def handle_exception(exception)
