@@ -13,11 +13,14 @@ class UserIdpPlan < ApplicationRecord
   has_many :communication_email_resources, as: :resource
   has_many :communication_emails, through: :communication_email_resources
 
-  enum status: { draft: 0, pending_approval: 1, approved: 2 }
+  enum status: { draft: 0, pending_approval: 1, approved: 2, rejected: 3 }
 
   scope :active, -> { where(active: true) }
 
   after_create :schedule_idp_assigned_notification
+  after_commit :schedule_idp_status_notification,
+               if: proc { saved_change_to_status? && (approved? || rejected?) },
+               on: [:update]
 
   private
 
@@ -30,6 +33,22 @@ class UserIdpPlan < ApplicationRecord
               exists?(communications: { kind: :idp_template_assigned })
 
     communication = Communication.order(:created_at).where(kind: :idp_template_assigned, campaign_id: campaign_id).last
+    return unless communication
+
+    communication.create_communication_email_with_resources(
+      { user: user, campaign_user: campaign_user },
+      self
+    )
+  end
+
+  def schedule_idp_status_notification
+    notification_kind = approved? ? :idp_template_approved : :idp_template_rejected
+    return if communication_emails.joins(:communication).
+              exists?(communications: { kind: notification_kind })
+
+    communication = Communication.order(:created_at).
+                    where(kind: notification_kind, campaign_id: campaign_id).
+                    last
     return unless communication
 
     communication.create_communication_email_with_resources(
