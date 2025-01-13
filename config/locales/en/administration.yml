@@ -1380,7 +1380,7 @@ en:
           not_started: If assessment is not started
           send_now: Send now
           specific_datetime: Send at
-        idp_assigned: IDP Assigned
+        idp_template_assigned: IDP Assigned
         invitation: Invitation
         kind: Communication Types
         magic_link_email: Magic Link Email

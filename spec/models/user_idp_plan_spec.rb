@@ -7,7 +7,7 @@ RSpec.describe UserIdpPlan, type: :model do
     let(:user) { create(:user) }
     let(:campaign_user) { create(:campaign_user, user: user) }
     let(:campaign) { campaign_user.campaign }
-    let(:communication) { create(:communication, kind: :idp_assigned, campaign_id: campaign.id) }
+    let(:communication) { create(:communication, kind: :idp_template_assigned, campaign_id: campaign.id) }
     let(:user_idp_plan) do
       build(:user_idp_plan, user: user, campaign: campaign)
     end

@@ -27,9 +27,9 @@ class UserIdpPlan < ApplicationRecord
 
   def schedule_idp_assigned_notification
     return if communication_emails.joins(:communication).
-              exists?(communications: { kind: :idp_assigned })
+              exists?(communications: { kind: :idp_template_assigned })
 
-    communication = Communication.order(:created_at).where(kind: :idp_assigned, campaign_id: campaign_id).last
+    communication = Communication.order(:created_at).where(kind: :idp_template_assigned, campaign_id: campaign_id).last
     return unless communication
 
     communication.create_communication_email_with_resources(
