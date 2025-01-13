@@ -1,32 +1,64 @@
-import { FC, useState } from 'react'
+import {
+  FC, useState, useEffect, useCallback,
+} from 'react'
 import {
   Space, Spin, Select, Tag as TagUIComponent,
 } from 'antd'
+import _ from 'lodash'
 import { useResourceContext } from '../ResourceContext'
 import { useResources } from '~/hooks/useResources'
 import { Tag } from '~/modules/admin/modules/client/core/tags'
+import { TaggableResourceType } from './constants'
 
 const { I18n } = window
 
+const MAX_TAG_BATCH_SIZE = 100
+
+export type TagFilterConfig = {
+  taggable_resource_type: TaggableResourceType.Assessment | TaggableResourceType.Report
+}
+
 type Props = {
   placeholder?: string
-  tag: string
+  tag: string,
+  config?: TagFilterConfig
 }
 
 export const TagFilter: FC<Props> = ({
   placeholder,
   tag,
+  config = { taggable_resource_type: '' },
 }) => {
   const {
     data: tags,
     fetch: fetchTags,
     isLoading: isTagsLoading,
-  } = useResources<Tag>('tags')
+  } = useResources<Tag>('tags', {
+    apiConfig: {
+      query: config,
+      page: {
+        size: MAX_TAG_BATCH_SIZE,
+      },
+    },
+  })
 
   const { resource } = useResourceContext()
+
   const defaultPlaceholder = I18n.t('common.actions.filter_by_tags')
 
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+
+  useEffect(() => {
+    fetchTags({
+      apiConfig: {
+        filter: { name_cont: '' },
+        fields: { tags: ['name'] },
+        page: {
+          size: MAX_TAG_BATCH_SIZE,
+        },
+      },
+    })
+  }, [resource])
 
   const handleTagSelect = (value: string) => {
     const newSelectedTags = [...selectedTags, value]
@@ -34,13 +66,20 @@ export const TagFilter: FC<Props> = ({
     resource.changeFilter(tag, newSelectedTags)
   }
 
-  const handleInputChange = (value: string) => {
+  const debouncedFetchTags = useCallback(_.debounce((value) => {
     fetchTags({
       apiConfig: {
         filter: { name_cont: value },
         fields: { tags: ['name'] },
+        page: {
+          size: MAX_TAG_BATCH_SIZE,
+        },
       },
     })
+  }, 300), [])
+
+  const handleInputChange = (value: string) => {
+    debouncedFetchTags(value)
   }
 
   const handleTagClose = (removedTag: string) => {

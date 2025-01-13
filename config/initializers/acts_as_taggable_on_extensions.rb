@@ -6,9 +6,7 @@ ActsAsTaggableOn::Tag.instance_eval do
     tags_table = ActsAsTaggableOn.tags_table
 
     joins(:taggings).
-      where("#{taggings_table}.tenant IN (?) OR " \
-            "#{taggings_table}.tenant IS NULL",
-            tenants.map(&:to_s)).
+      where("#{ApplicationRecord.sanitize_sql("#{taggings_table}.tenant")} IN (?)", tenants.map(&:to_s)).
       select("DISTINCT #{tags_table}.*")
   }
 

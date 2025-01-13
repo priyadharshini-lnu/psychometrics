@@ -17,6 +17,7 @@ import { AssessmentsFilterDropdown } from './AssessmentsFilterDropdown'
 import CopyReportFormModal from './CopyReportFormModal'
 import Modals from '~/modules/admin/components/Modals/'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { TagList } from '~/modules/admin/components/Resource/TagList'
 
 const { I18n } = window
 
@@ -44,6 +45,7 @@ const ReportTableCompnent: React.FC<Props> = ({
   const { resource } = useResourceContext<Report>()
   const providerFilteredValue = resource.getFilteredValue('provider_in') as string[] | undefined
   const assessmentsFilteredValue = resource.getFilteredValue('assessments_id_in') as string[] | undefined
+
 
   return (
     <>
@@ -83,6 +85,17 @@ const ReportTableCompnent: React.FC<Props> = ({
           id="name"
           width={400}
           sorter
+          render={(_, report) => (
+            <>
+              <div>{report.name}</div>
+              <TagList
+                initialTags={report.tagList as string[]}
+                config={{
+                  editable: false,
+                }}
+              />
+            </>
+          )}
         />
         <Resource.Column<Report>
           title={I18n.t('common.column.assessments')}

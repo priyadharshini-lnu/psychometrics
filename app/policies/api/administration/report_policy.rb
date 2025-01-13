@@ -15,6 +15,14 @@ module Api
         manage?
       end
 
+      def add_tag?
+        manage?
+      end
+
+      def remove_tag?
+        manage?
+      end
+
       def restore?
         manage?
       end

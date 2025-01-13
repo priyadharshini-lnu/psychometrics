@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   Form, Input, Select, Spin,
 } from 'antd'
 import cs from 'classnames'
 import { FormInstance } from 'antd/lib/form'
 import { Tag } from 'modules/admin/core/tags'
+import _ from 'lodash'
 import { useResources } from '~/hooks/useResources'
 import {
   Assessment, LinkedAssessment, UPDATABLE_CATEGORIES, CREATABLE_CATEGORIES,
@@ -12,10 +13,13 @@ import {
 import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalAssessmentFields } from './ExternalAssessmentFields'
+import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 
 const { TextArea } = Input
 
 const { I18n } = window
+
+const MAX_TAG_BATCH_SIZE = 100
 
 interface Props {
   assessment?: Assessment
@@ -38,7 +42,7 @@ export const BaseFormFields: React.FC<Props> = ({
   } = useResources<Dimension>('dimensions')
   const {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
-  } = useResources<Tag>('tags')
+  } = useResources<Tag>('tags', { apiConfig: { query: { taggable_resource_type: TaggableResourceType.Assessment } } })
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
@@ -84,6 +88,19 @@ export const BaseFormFields: React.FC<Props> = ({
     }
     return !!ExternalAssessmentFieldsComponent
   }
+
+  const debouncedFetchTags = useCallback(_.debounce((value) => {
+    fetchTags({
+      apiConfig: {
+        filter: { name_cont: value },
+        fields: { tags: ['name'] },
+        page: {
+          size: MAX_TAG_BATCH_SIZE,
+        },
+      },
+    })
+  }, 300), [])
+
 
   return (
     <>
@@ -220,12 +237,7 @@ export const BaseFormFields: React.FC<Props> = ({
           placeholder={I18n.t('common.column.tags')}
           showSearch
           onSearch={(value) => {
-            fetchTags({
-              apiConfig: {
-                filter: { name_cont: value },
-                fields: { tags: ['name'] },
-              },
-            })
+            debouncedFetchTags(value)
           }}
           notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
           filterOption={false}

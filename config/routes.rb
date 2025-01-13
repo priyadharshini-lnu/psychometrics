@@ -1343,7 +1343,7 @@ as: :simulation_progress_notification
 
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
 
-          jsonapi_resources :reports do
+          jsonapi_resources :reports, concerns: :taggable do
             post :copy
             post :restore
             scope module: :reports do

@@ -22,6 +22,7 @@ RSpec.describe Api::V2::Administration::TagsController, swagger_doc: 'v2/swagger
       tags 'Tag'
       consumes 'application/json'
       security [basic: []]
+      parameter name: :'query[taggable_resource_type]', in: :query, type: :string, required: false
 
       response '200', 'Tag list' do
         examples 'application/json' => {
@@ -35,6 +36,8 @@ RSpec.describe Api::V2::Administration::TagsController, swagger_doc: 'v2/swagger
             }
           ]
         }
+
+        let(:'query[taggable_resource_type]') { 'Assessment' }
 
         run_test! do |response|
           tag =  ActsAsTaggableOn::Tag.named('psychometric').last

@@ -3,13 +3,16 @@
 class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :created_at, :updated_at, :created_by, :modified_by, :archived, :deleted,
              :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon,
-             :external_settings, :external_report, :provider, :hogan_report_packages, :other_languages
+             :external_settings, :external_report, :provider, :hogan_report_packages, :other_languages,
+             :tag_list
 
   ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :remove, payload: '*'
   audit_log_for :destroy, payload: ->(_, client) { client.attributes.slice('id', 'name', 'description') }
+
+  add_tag_filter
 
   has_one :owner
   has_many :assessments
@@ -103,6 +106,14 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
         )
       }
     }
+  end
+
+  def tag_list
+    @model.all_tags_list
+  end
+
+  def tag_list=(tags)
+    @model.save_tag_with_ownership(tags)
   end
 
   private

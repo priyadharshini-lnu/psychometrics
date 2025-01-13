@@ -5,6 +5,8 @@ import {
 import { CountDisplay } from '~/components/CountDisplay'
 import { useResourceContext } from '../ResourceContext'
 import { TagFilter } from '~/modules/admin/components/Resource/TagFilter'
+import { TagFilterConfig } from '~/modules/admin/components/Resource/TagFilter/TagFilter'
+
 
 const { I18n } = window
 
@@ -16,6 +18,7 @@ type Props = {
   name: string
   hideSearch?: boolean
   showTagFilter?: boolean
+  tagFilterConfig?: TagFilterConfig
 }
 
 export const Filter: FC<Props> = ({
@@ -24,6 +27,7 @@ export const Filter: FC<Props> = ({
   name,
   hideSearch,
   showTagFilter,
+  tagFilterConfig,
 }) => {
   const { resource } = useResourceContext()
   const loading = resource.isLoading('fetch')
@@ -48,7 +52,7 @@ export const Filter: FC<Props> = ({
 
       <Col>
         <Space>
-          {showTagFilter && <TagFilter tag="tagged_with" />}
+          {showTagFilter && <TagFilter tag="tagged_with" config={tagFilterConfig} />}
           {!hideSearch && (
             <Search
               placeholder={placeholder || defaultPlaceholder}

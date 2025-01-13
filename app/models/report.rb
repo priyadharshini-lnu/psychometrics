@@ -9,6 +9,7 @@ class Report < ApplicationRecord
   include SoftDelete
   include OwnerValidations
   include ActiveStorageAttachable
+  include Taggable
 
   PROVIDERS = {
     internal: 0,
@@ -100,6 +101,9 @@ class Report < ApplicationRecord
 
   has_one_image_attachment :icon, variants: [:thumb]
   has_one_image_attachment :poster, variants: [:thumb]
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :owner_id
 
   def attachment_storage_path(attribute_name, filename)
     "public/report/#{id}/#{attribute_name}/#{filename}"
