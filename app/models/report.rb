@@ -233,7 +233,7 @@ class Report < ApplicationRecord
 
   def pdf_dimension
     height = props&.dig('sizes', 'height') || 1100
-    width = props&.dig('sizes', 'width')
+    width = props&.dig('sizes', 'width') || 850
     page_height_increment = 0
     page_width_increment = 0
     page_height_increment = 1 if [827].include?(height)
