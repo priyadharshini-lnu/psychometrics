@@ -8,11 +8,15 @@ module Projects
       @project = project
     end
 
+    # rubocop:disable Metrics/BlockLength
     def call
       project.project_campaigns.each do |campaign|
         ApplicationRecord.transaction do
           delete_user_reports(campaign)
           delete_user_assessments(campaign)
+          delete_datasheet(campaign)
+          CampaignAssessment.where(campaign_id: campaign.id).delete_all
+          CampaignReport.where(campaign_id: campaign.id).delete_all
           CampaignUser.where(campaign_id: campaign.id).delete_all
           threesixty_campaign = campaign.threesixty_campaign
           campaign.destroy!
@@ -42,6 +46,13 @@ module Projects
 
       broadcast :ok
     end
+    # rubocop:enable Metrics/BlockLength
+
+    def delete_datasheet(campaign)
+      sheets = campaign.sheets
+      SheetRow.where(sheet_id: sheets).delete_all
+      SheetColumn.where(sheet_id: sheets).delete_all
+    end
 
     def delete_user_reports(campaign)
       user_reports = UserReport.where(campaign_id: campaign.id)
@@ -54,6 +65,7 @@ module Projects
       PearsonUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
       IihtUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
       SimulationUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
+      MettlUserAssessment.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
       delete_users_results(campaign)
       UserAssessment.where(campaign_id: campaign.id).delete_all
     end

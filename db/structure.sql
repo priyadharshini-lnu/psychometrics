@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -34,7 +41,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 -- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track planning and execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
 
 
 --
@@ -5436,7 +5443,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -12543,14 +12551,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: admin_roles fk_rails_0a0c2d3429; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.admin_roles
-    ADD CONSTRAINT fk_rails_0a0c2d3429 FOREIGN KEY (client_id) REFERENCES public.clients(id);
-
-
---
 -- Name: workshop_resources fk_rails_0b9b541d1c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12983,6 +12983,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
+-- Name: admin_roles fk_rails_3b1aac0d32; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_roles
+    ADD CONSTRAINT fk_rails_3b1aac0d32 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: highlights fk_rails_3b86ceac89; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13115,7 +13123,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13219,7 +13227,7 @@ ALTER TABLE ONLY public.campaign_factors
 --
 
 ALTER TABLE ONLY public.workshop_invite_logs
-    ADD CONSTRAINT fk_rails_5f05631202 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
+    ADD CONSTRAINT fk_rails_5f05631202 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
 
 
 --
@@ -13603,7 +13611,7 @@ ALTER TABLE ONLY public.hogan_credentials
 --
 
 ALTER TABLE ONLY public.mettl_user_assessments
-    ADD CONSTRAINT fk_rails_8bf226c657 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+    ADD CONSTRAINT fk_rails_8bf226c657 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13699,7 +13707,7 @@ ALTER TABLE ONLY public.threesixty_email_schedules
 --
 
 ALTER TABLE ONLY public.workshop_invite_translations
-    ADD CONSTRAINT fk_rails_96cf57bb2e FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
+    ADD CONSTRAINT fk_rails_96cf57bb2e FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
 
 
 --
@@ -14435,7 +14443,7 @@ ALTER TABLE ONLY public.user_idp_skills
 --
 
 ALTER TABLE ONLY public.assessment_translations
-    ADD CONSTRAINT fk_rails_e8b68f05ba FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+    ADD CONSTRAINT fk_rails_e8b68f05ba FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -14677,6 +14685,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250113081931'),
 ('20241226171404'),
 ('20241223122302'),
 ('20241219131514'),
@@ -15409,3 +15418,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
