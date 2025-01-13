@@ -5120,7 +5120,8 @@ CREATE TABLE public.skills (
     description character varying NOT NULL,
     category integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    owner_id integer
 );
 
 
@@ -14940,6 +14941,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250102162920'),
 ('20250102114258'),
 ('20250102112917'),
 ('20241226171404'),

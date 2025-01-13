@@ -10,6 +10,7 @@ import {
 import { useMedia } from 'use-media'
 import cs from 'classnames'
 import { useLocation } from 'react-router-dom'
+import { getFeatures } from '~/core/config'
 import { DefaultAntThemeWrapper } from '~/glint'
 import { Portal } from './PortalMenu'
 import styles from './MainMenu.less'
@@ -28,6 +29,7 @@ const connecter = connect(
     hasSubmenu: state.ui.menu.hasSubmenu,
     showSubmenu: state.ui.menu.showSubmenu,
     collapsed: state.ui.menu.collapsed,
+    features: getFeatures(state),
   }),
   {
     openSubmenu, triggerCollapse,
@@ -42,7 +44,7 @@ type Props = PropsFromRedux & {
 
 const MainMenuComponent:FC<Props> = ({
   currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
-  showSubmenu, selected,
+  showSubmenu, selected, features,
 }) => {
   const isMobile = useMedia({
     maxWidth: 1024,
@@ -60,7 +62,7 @@ const MainMenuComponent:FC<Props> = ({
         theme="light"
         selectedKeys={selected || [getSelected()]}
         mode="inline"
-        items={menuItems(links, hasSubmenu)}
+        items={menuItems(links, hasSubmenu, features)}
         onClick={onSelect}
         className={styles.menu}
         style={{ border: 0 }}

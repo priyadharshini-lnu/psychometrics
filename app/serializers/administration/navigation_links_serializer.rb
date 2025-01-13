@@ -20,6 +20,7 @@ module Administration
         links['assessor_dashboard'] = assessors_dashboard_path if policy(%i[assessors campaign]).index?
         links['assessor_workshops'] = assessors_assessment_centers_path if policy(%i[assessors workshop]).index?
         links['clients'] = "#{admin_path}/clients" if policy(%i[administration client]).index?
+        links['skills'] = "#{admin_path}/skills" if policy(%i[api administration skill]).index?
         links['users'] = "#{admin_path}/users" if policy(%i[administration user]).index?
         links['norms'] = administration_norms_path if policy(%i[administration norm]).index?
         links['dimensions'] = administration_dimensions_path if policy(%i[administration dimension]).index?

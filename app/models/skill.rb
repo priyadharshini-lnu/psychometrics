@@ -5,6 +5,8 @@ class Skill < ApplicationRecord
 
   translates :name, :description
 
+  belongs_to :owner, class_name: 'Client'
+
   has_many :skills_job_roles
   has_many :job_roles, through: :skills_job_roles
   has_many :skills_development_actions, dependent: :destroy

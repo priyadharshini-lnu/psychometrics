@@ -1971,6 +1971,7 @@ en:
       reports: Reports
       scheduling: Scheduling
       show_submenu: Show Sub Menu
+      skills: Skills
       user_report_events: User Report Events
       users: Users
     no_data_found: No data found
@@ -2896,6 +2897,12 @@ en:
       tabs:
         rows: Rows
         settings: Settings
+    skills:
+      form:
+        description: Description
+        name: Name
+        title: Skill
+      skills: Skills
     sms_histories:
       columns:
         first_name: First Name
