@@ -121,7 +121,7 @@ const QuestionTypeComponent: FC<Props> = ({
           .map((r) => {
             const answers = get(
               r,
-              ['results', choice.questionId, 'answers'],
+              ['answers', choice.questionId, 'answers'],
               [],
             )
             return answers.filter(a => a.choice === choice.id)
