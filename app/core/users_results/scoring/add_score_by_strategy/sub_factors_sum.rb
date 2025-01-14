@@ -8,17 +8,16 @@ module UsersResults
           factor = factor_data[:factor]
           sub_factor_ids = factor_data[:sub_factor_hash].keys
 
-          sub_extended_scoring =
-            ::UsersResults::Scoring::AddScore.call!(
-              factor_hash,
-              sub_factor_ids,
-              extended_scoring,
-              norm,
-              factor_norm_hash,
-              external_results,
-              factors_question_count,
-              answers
-            )
+          sub_extended_scoring = ::UsersResults::Scoring::AddScore.call!({
+            factor_hash: factor_hash,
+            factor_ids: sub_factor_ids,
+            scoring: extended_scoring,
+            norm: norm,
+            factor_norm_hash: factor_norm_hash,
+            external_results: external_results,
+            answers: answers,
+            factors_question_count: factors_question_count
+          })
 
           score =
             if sub_factor_ids.blank?
