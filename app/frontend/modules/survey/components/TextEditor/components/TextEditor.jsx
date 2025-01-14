@@ -20,6 +20,15 @@ export class TextEditor extends Component {
     this.editor = null
   }
 
+  componentDidUpdate (prevProps) {
+    const { value: propsValue } = this.props
+    const { value: stateValue } = prevProps
+    if (propsValue !== prevProps.value && stateValue !== propsValue) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ value: propsValue })
+    }
+  }
+
   shouldComponentUpdate (nextProps, nextState) {
     if (this.editor) {
       return nextState.value !== this.editor.innerHTML

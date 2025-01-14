@@ -3,6 +3,7 @@ const LOCALES = {
 }
 
 export const isRtl = (code = ''): boolean => {
+  if (!code) return false
   const locale = code.substr(0, 2)
   return LOCALES[locale] === 'rtl'
 }

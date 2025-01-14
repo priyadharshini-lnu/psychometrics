@@ -611,7 +611,8 @@ CREATE TABLE public.assessments (
     linked_assessment_id integer,
     linked_questions json DEFAULT '{}'::json,
     default_language character varying DEFAULT 'en'::character varying,
-    campaign_factors_list jsonb DEFAULT '[]'::jsonb
+    campaign_factors_list jsonb DEFAULT '[]'::jsonb,
+    translations_migrated boolean DEFAULT true
 );
 
 
@@ -5909,7 +5910,8 @@ CREATE TABLE public.translations (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     resource_type character varying,
-    resource_id integer
+    resource_id integer,
+    data jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -14957,6 +14959,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241129104313'),
 ('20241128105109'),
 ('20241126112602'),
+('20241216104819'),
+('20241216103218'),
 ('20241108085232'),
 ('20241106103020'),
 ('20241105093139'),

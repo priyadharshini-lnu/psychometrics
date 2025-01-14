@@ -26,7 +26,8 @@ class AssessmentSerializer < Panko::Serializer
         each_serializer: BlockSerializer,
         context: {
           piped_text_context: piped_text_context,
-          selected_locale: context[:selected_locale]
+          selected_locale: context[:selected_locale],
+          translations: translations
         }
       ).to_a
     end
@@ -54,7 +55,9 @@ class AssessmentSerializer < Panko::Serializer
       questions,
       each_serializer: QuestionSerializer,
       context: {
-        piped_text_context: piped_text_context
+        piped_text_context: piped_text_context,
+        selected_locale: context[:selected_locale],
+        translations: translations
       }
     ).to_a
   end
@@ -107,5 +110,13 @@ class AssessmentSerializer < Panko::Serializer
 
   def piped_text_context
     context[:piped_text_context] || {}
+  end
+
+  def translations
+    Assessments::GetTranslationWithPipetextReplaced.call!(
+      object,
+      piped_text_context: piped_text_context,
+      locale: context[:selected_locale]
+    )
   end
 end

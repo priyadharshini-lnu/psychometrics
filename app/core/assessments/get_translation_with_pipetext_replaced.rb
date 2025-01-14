@@ -11,7 +11,8 @@ module Assessments
     end
 
     def call
-      translations = Translation.to_hash_for_assessment(assessment.id, locale)
+      translations = Translation.to_hash_for_assessment(assessment.id, locale,
+                                                        translations_migrated: assessment.translations_migrated?)
       broadcast :ok, {} if translations.empty?
 
       I18n.with_locale(locale) do

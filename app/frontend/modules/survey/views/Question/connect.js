@@ -26,10 +26,11 @@ export default connect(
     blocksOrder: assessment.blocks,
     moduleConfig: moduleConfig(builder, props.model.id),
     linkedAssessment: assessment.linkedAssessment,
-    assessmentDefaultLanguage: assessment.defaultLanguage,
     factors: factors.factors,
     timestamp, // NOTE: @fedor used to fake update
     campaignFactors: campaign_factors_list,
+    currentLocale: assessment.locale,
+    assessmentDefaultLanguage: assessment.defaultLanguage,
   }),
   {
     select: selectQuestion,

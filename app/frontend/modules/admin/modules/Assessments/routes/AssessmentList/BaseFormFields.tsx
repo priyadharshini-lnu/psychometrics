@@ -220,7 +220,7 @@ export const BaseFormFields: React.FC<Props> = ({
           label={I18n.t('common.column.default_language')}
           initialValue={assessment?.defaultLanguage || 'en'}
         >
-          <Select>
+          <Select disabled={!!assessment}>
             {availableLocales.map(locale => (
               <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
             ))}

@@ -21,11 +21,15 @@ class Translation < ApplicationRecord
   }
 
   class << self
-    def to_hash_for_assessment(assessment_id, locale)
+    def to_hash_for_assessment(assessment_id, locale, translations_migrated: false)
       results = {}
       for_assessment(assessment_id).where(locale: locale).find_each do |t|
         results[t.translateable_type.underscore] ||= {}
-        results[t.translateable_type.underscore][t.translateable_id] ||= t.props
+        results[t.translateable_type.underscore][t.translateable_id] ||= if translations_migrated
+                                                                           t.data
+                                                                         else
+                                                                           t.props
+                                                                         end
       end
       results
     end

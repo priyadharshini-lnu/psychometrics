@@ -23,14 +23,14 @@ class QuestionRenderer extends Component {
   render () {
     const {
       model,
-      assessmentDefaultLanguage,
       model: { type },
+      currentLocale,
     } = this.props
 
     const notLazyLoadedYet = type !== 'TextEntry' && type !== 'SideBySide'
 
     return (
-      <div className={`${styles.contentOuter} ${isRtl(assessmentDefaultLanguage) ? 'rtl' : ''}`}>
+      <div className={`${styles.contentOuter} ${isRtl(currentLocale) ? 'rtl' : ''}`}>
         <Suspense fallback={<Spin />}>
           {type === 'TextEntry' && (
             <TextEntryBuilder {...this.props} model={QuestionSerializer.wrap(model)} />

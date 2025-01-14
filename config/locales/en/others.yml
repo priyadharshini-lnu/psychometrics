@@ -750,6 +750,7 @@ en:
         import_scoring_data: Import Scoring Data
         import_sms_invites: Import SMS Invite
         import_users: Import Users
+        migrate_assessment_translations: Assessment Translation migration
         normalize_factor_scores: Normalize Factor Scores
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
@@ -878,6 +879,7 @@ en:
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
+      translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
     dictation:

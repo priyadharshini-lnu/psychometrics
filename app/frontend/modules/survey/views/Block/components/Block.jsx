@@ -236,10 +236,15 @@ class Block extends Component {
   }
 
   render () {
-    const { model, first } = this.props
+    const {
+      model, first, assessmentDefaultLanguage, currentLocale,
+    } = this.props
     const {
       showPrompt, showDeleteConfirmation, search,
     } = this.state
+
+    const showOptions = assessmentDefaultLanguage === currentLocale
+
     return (
       <Collapse
         className={styles.block}
@@ -250,7 +255,7 @@ class Block extends Component {
           label: (
             <div className={styles.header}>
               <div className={styles.expander}>
-                <InlineEditor value={model.name} onChange={this.changeName} />
+                {showOptions ? <InlineEditor value={model.name} onChange={this.changeName} /> : model.name}
               </div>
               {model.questions.length > 100 && (
                 <div className={styles.search}>
@@ -264,7 +269,7 @@ class Block extends Component {
               )}
               <div>
                 {this.renderRandomLabel()}
-                <div className={styles.options}>{this.renderOptions()}</div>
+                {showOptions ? <div className={styles.options}>{this.renderOptions()}</div> : null}
               </div>
             </div>
           ),
@@ -280,7 +285,7 @@ class Block extends Component {
                 className={[styles.content]}
               >
                 <QuestionList block={model} search={search} />
-                <Footer {...this.props} onMinimize={this.expand} />
+                {showOptions ? <Footer {...this.props} onMinimize={this.expand} /> : null}
               </div>
               <Prompt
                 title={`Copy Block - ${model.name}`}

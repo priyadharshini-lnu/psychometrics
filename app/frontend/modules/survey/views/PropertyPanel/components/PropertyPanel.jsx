@@ -23,7 +23,7 @@ const PropertyPanelComponent = (props) => {
   const {
     question, offset, addPageBreak, addSkipLogic, copyQuestion, restricted,
     openDisplayLogic, changeType, openPreview, firstBlockContentOffset, unselectQuestion,
-    allowChange, blocks,
+    allowChange, defaultLanguage, currentLocale, blocks,
   } = props
   const panelRef = useRef(null)
   const [showMenu, setShowMenu] = useState(false)
@@ -144,7 +144,13 @@ const PropertyPanelComponent = (props) => {
     </div>
   )
 
-  const customProperties = View ? <View model={serializedQuestion} restricted={restricted} /> : null
+  const customProperties = View ? (
+    <View
+      showOnlyTranslatable={defaultLanguage !== currentLocale}
+      model={serializedQuestion}
+      restricted={restricted}
+    />
+  ) : null
 
   const commonProperties = (
     <div className={styles.fieldset}>
