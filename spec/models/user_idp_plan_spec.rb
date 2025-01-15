@@ -64,7 +64,9 @@ RSpec.describe UserIdpPlan, type: :model do
     end
 
     context 'when plan is approved' do
-      let(:communication) { create(:communication, kind: :idp_template_approved, campaign_id: user_idp_plan.campaign_id) }
+      let(:communication) do
+        create(:communication, kind: :idp_template_approved, campaign_id: user_idp_plan.campaign_id)
+      end
 
       context 'when communication exists' do
         before { communication }
@@ -111,7 +113,9 @@ RSpec.describe UserIdpPlan, type: :model do
     end
 
     context 'when plan is rejected' do
-      let(:communication) { create(:communication, kind: :idp_template_rejected, campaign_id: user_idp_plan.campaign_id) }
+      let(:communication) do
+        create(:communication, kind: :idp_template_rejected, campaign_id: user_idp_plan.campaign_id)
+      end
 
       context 'when communication exists' do
         before { communication }
