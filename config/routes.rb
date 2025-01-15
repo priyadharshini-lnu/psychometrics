@@ -1372,7 +1372,7 @@ as: :simulation_progress_notification
             end
           end
           resources :user_idp_plans, only: %i[create]
-          jsonapi_resources :skills
+          jsonapi_resources :skills, concerns: :taggable
         end
       end
     end

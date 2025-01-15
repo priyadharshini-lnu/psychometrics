@@ -2,6 +2,7 @@
 
 class Skill < ApplicationRecord
   extend Mobility
+  include Taggable
 
   translates :name, :description
 
@@ -13,6 +14,9 @@ class Skill < ApplicationRecord
   has_many :development_actions, through: :skills_development_actions
 
   enum category: { behavioral: 0, technical: 1, other: 2 }
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :owner_id
 
   # Search entity by word
   scope :search_query, lambda { |query|

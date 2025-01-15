@@ -3,9 +3,12 @@ import {
   Button, MenuProps, Typography,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { getLabelForEnumValue } from '~/utils/object'
 import { Skill } from '~/modules/admin/modules/client/core/skill'
 import { Resource } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TagList } from '~/modules/admin/components/Resource/TagList'
+import { SkillCategoryEnum } from './constants'
 
 const { I18n } = window
 
@@ -26,8 +29,27 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => (
     <Resource.Column<Skill>
       title={I18n.t('common.column.name')}
       id="name"
-      render={skill => <Typography.Text>{skill.name}</Typography.Text>}
+      width={400}
+      render={(_, skill) => (
+        <>
+          <div>
+            <Typography.Text>{skill.name}</Typography.Text>
+          </div>
+          <TagList
+            initialTags={skill.tagList as string[]}
+            config={{
+              editable: false,
+            }}
+          />
+        </>
+      )}
       sorter
+    />
+    <Resource.Column<Skill>
+      title={I18n.t('common.column.category')}
+      id="category"
+      width={200}
+      render={skill => <Typography.Text>{getLabelForEnumValue(SkillCategoryEnum, skill.category)}</Typography.Text>}
     />
     <Resource.Column<Skill>
       title={I18n.t('common.column.description')}

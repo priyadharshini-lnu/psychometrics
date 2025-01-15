@@ -2899,6 +2899,7 @@ en:
         settings: Settings
     skills:
       form:
+        category: Category
         description: Description
         name: Name
         title: Skill
