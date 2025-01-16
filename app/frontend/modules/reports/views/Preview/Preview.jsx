@@ -19,7 +19,7 @@ export class Preview extends Component {
 
   render () {
     const {
-      localeDirection, loaded, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
+      loaded, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
       allowEdit, allowApprove, flipContent,
     } = this.props
     if (!loaded) { return null }
@@ -27,7 +27,7 @@ export class Preview extends Component {
       ? PageList.list
       : _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
     return (
-      <div style={{ position: 'relative' }} className={localeDirection}>
+      <div style={{ position: 'relative', direction: 'ltr' }}>
         {visiblePages.map((page, i) => (
           <Page
             model={page}
