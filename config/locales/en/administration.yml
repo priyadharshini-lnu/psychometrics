@@ -2753,6 +2753,7 @@ en:
         zscore: Z Score
       scoring: Scoring
       scoring_description: Campaign Scoring allows reporting across assessments
+      select_all: Select all %{n} subjects
       select_assessment_first: Select Assessment First
       select_factor: Select Factor
       show_weightages: Show Weightages
@@ -2781,7 +2782,6 @@ en:
         rescore: Rescore
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
         tools: Tools
-      subjects: Subjects
       tabs:
         settings: Settings
         subject_scores: Subject Scores

@@ -24,7 +24,12 @@ module AdminJobs
     private
 
     def users
-      @users ||= User.where(id: record.data['user_ids'])
+      users = User.joins(:campaign_users).where(campaign_users: { campaign_id: campaign.id })
+
+      users = users.where.not(id: record.data['excluded_user_ids']) if record.data['excluded_user_ids'].present?
+      users = users.where(id: record.data['user_ids']) if record.data['user_ids'].present?
+
+      users
     end
   end
 end

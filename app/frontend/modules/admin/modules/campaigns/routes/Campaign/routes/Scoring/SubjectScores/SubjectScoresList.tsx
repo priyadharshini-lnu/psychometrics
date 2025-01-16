@@ -27,6 +27,7 @@ import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWe
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import Modals from '~/modules/admin/components/Modals/'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { useSelectAll } from '~/hooks/useSelectAll'
 
 const MODALS = {
   PushWebhookModal,
@@ -71,7 +72,6 @@ type Props = ConnectedProps<typeof connector>
 const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, campaignPermissions }) => {
   const { modal, message } = App.useApp()
   const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
   const [openImportExternalScoringModal, setopenImportExternalScoringModal] = useState(false)
@@ -124,19 +124,21 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     },
   )
 
+  const dataSource = useMemo(() => processData(CampaignFactorValuesData), [CampaignFactorValuesData])
+
+  const {
+    isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
+  } = useSelectAll(false, dataSource)
+
   useEffect(() => {
     fetchCampaignFactors().then(() => setIsCampaignFactorsLoading(false))
     fetchFinalScores().then(() => setIsCampaignFactorValuesLoading(false))
   }, [])
 
-
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    setSelectedRowKeys(newSelectedRowKeys)
-  }
-
   const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
+    selectedRowKeys: selectedKeys,
+    onChange: onSelectionChange,
+    preserveSelectedRowKeys: true,
   }
 
   const handleIndividualAction = (action: string, subject: DataType) => {
@@ -201,7 +203,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
       collectionAction({
         action: 'change_finalized_campaign_score_bulk',
         method: 'post',
-        body: { userIds: selectedRowKeys, finalized: true },
+        body: { userIds: selectedKeys, finalized: true },
         responseType: t.literal('ok'),
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
@@ -211,7 +213,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
       collectionAction({
         action: 'change_finalized_campaign_score_bulk',
         method: 'post',
-        body: { userIds: selectedRowKeys, finalized: false },
+        body: { userIds: selectedKeys, finalized: false },
         responseType: t.literal('ok'),
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
@@ -221,7 +223,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
       collectionAction({
         action: 'rescore_bulk',
         method: 'post',
-        body: { userIds: selectedRowKeys },
+        body: isAllSelected ? { excluded_user_ids: excludedKeys } : { userIds: selectedKeys },
         responseType: {},
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
@@ -258,8 +260,6 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     getSortOrder, meta,
   ), [campaignFactorData, getSortOrder])
 
-  const dataSource = useMemo(() => processData(CampaignFactorValuesData), [CampaignFactorValuesData])
-
   const handleChange = (pagination, filters, sorter) => {
     handleTableChange(pagination, filters, sorter)
   }
@@ -270,7 +270,10 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
         <Flex className="pls" justify="center" align="center">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">
-            {`${CampaignFactorValuesData.length} ${I18n.t('administration.scoring.subjects')}`}
+            {I18n.t('common.text.total')}
+            :
+            {' '}
+            {meta.recordCount}
           </span>
         </Flex>
         <Flex gap={8}>
@@ -293,7 +296,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
           <ToolsDropdown
             isBulk
             onClick={action => handleBulkConfirmAction(action)}
-            isDisabled={selectedRowKeys.length === 0}
+            isDisabled={selectedKeys.length === 0}
             persmission={
               {
                 changeFinalizedCampaignScore: meta.permissions?.changeFinalizedCampaignScoreBulk,
@@ -325,6 +328,15 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
             loading={false}
             requestStatus={requests.fetch?.status}
             failureMsg={getErrorMsgFromJsonApiRequests(requests)}
+            selectionSetting={{
+              selectionAllowed: CampaignFactorValuesData.length !== meta.recordCount,
+              hasSelectInAllPages: isAllSelected,
+              onSelectionChange: onAllSelect,
+              label: I18n.t('administration.scoring.select_all', { n: meta.recordCount ?? 0 }),
+            }}
+            selectedCount={
+              (isAllSelected && meta.recordCount) ? (meta.recordCount - excludedKeys.length) : selectedKeys.length
+            }
           />
           <Pagination
             current={currentPage}

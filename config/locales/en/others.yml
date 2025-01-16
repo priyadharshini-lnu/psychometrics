@@ -1647,7 +1647,9 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      selected: Selected
       subject: Subject
+      total: Total
       view_as: View as
     tooltips:
       hide: Hide

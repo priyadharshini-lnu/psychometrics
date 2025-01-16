@@ -247,7 +247,9 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
       response '200', 'CampaignUserScorings' do
         run_test! do |_response|
           expect(AdminJobRecord.last.operation).to eq('bulk_rescore_campaign_factors')
-          expect(AdminJobRecord.last.data).to eq({ 'user_ids' => [user_id], 'campaign_id' => campaign.id })
+          expect(AdminJobRecord.last.data).to eq({ 'user_ids' => [user_id],
+                                                   'excluded_user_ids' => nil,
+                                                   'campaign_id' => campaign.id })
         end
       end
     end
