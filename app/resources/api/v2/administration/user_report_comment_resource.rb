@@ -37,7 +37,8 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
       initiator_id: context[:user].id,
       event_type: 'comment_removed',
       details: {
-        text: @model.text[0..80]
+        text: @model.text,
+        module: @model.reports_module_id
       }
     )
     @model.soft_delete!(context[:user])
@@ -50,7 +51,8 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
       initiator_id: context[:user].id,
       event_type: 'comment_added',
       details: {
-        text: @model.text[0..80]
+        text: @model.text,
+        module: @model.reports_module_id
       }
     )
     Comments::Channel.broadcast_to context[:user_report], action: 'new_comment',
@@ -66,7 +68,10 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
       UserReportEvent.create!(
         user_report_id: context[:user_report].id,
         initiator_id: context[:user].id,
-        event_type: @model.resolved ? 'comment_resolved' : 'comment_unresolved'
+        event_type: @model.resolved ? 'comment_resolved' : 'comment_unresolved',
+        details: {
+          module: @model.reports_module_id
+        }
       )
     end
 
@@ -77,7 +82,8 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
         event_type: 'comment_updated',
         details: {
           old_text: old_text,
-          new_text: @model.text
+          new_text: @model.text,
+          module: @model.reports_module_id
         }
       )
     end

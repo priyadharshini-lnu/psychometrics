@@ -10,6 +10,7 @@ module AdminJobs
       'Campaign Name',
       'Subject First Name',
       'Subject Last Name',
+      'Subject Email',
       'Initiator First Name',
       'Initiator Last Name',
       'Initiator Email',
@@ -53,6 +54,7 @@ module AdminJobs
                 'projects.name AS project_name',
                 'users.first_name AS subject_first_name',
                 'users.last_name AS subject_last_name',
+                'users.email AS subject_email',
                 'initiators_user_report_events.first_name AS initiator_first_name',
                 'initiators_user_report_events.last_name AS initiator_last_name',
                 'initiators_user_report_events.email AS initiator_email',
@@ -86,6 +88,7 @@ module AdminJobs
         user_report_event.campaign_name,
         user_report_event.subject_first_name,
         user_report_event.subject_last_name,
+        user_report_event.subject_email,
         user_report_event.initiator_first_name,
         user_report_event.initiator_last_name,
         user_report_event.initiator_email,
@@ -94,7 +97,7 @@ module AdminJobs
         user_report_event.module_name,
         I18n.l(user_report_event.created_at, format: :short),
         user_report_event.event_type,
-        user_report_event.details['content'],
+        extract_content(user_report_event),
         status_changes(user_report_event)
       ]
     end
@@ -104,6 +107,20 @@ module AdminJobs
     end
 
     private
+
+    def extract_content(event)
+      details = event.details
+
+      content = if event.event_type == 'comment_updated'
+                  "Old: #{details['old_text']}\nNew: #{details['new_text']}"
+                elsif event.event_type.start_with?('comment')
+                  details['text']
+                else
+                  details['content']
+                end
+
+      ActionController::Base.helpers.strip_tags(content)
+    end
 
     def status_changes(event)
       event.event_type == 'status_changed' ? event.details['from'] : nil

@@ -29,27 +29,50 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
   end
 
   describe '#data_row' do
-    it 'returns a formatted row of data for csv' do
-      row = job.records_for_export.first
-      data_row = job.data_row(row)
+    context 'with status changed event' do
+      it 'returns a formatted row of data for csv' do
+        row = job.records_for_export.first
+        data_row = job.data_row(row)
 
-      expect(data_row[0]).to eq(user_report_event.id)
-      expect(data_row[1]).to eq(user_report.campaign.project_id)
-      expect(data_row[2]).to eq(user_report.campaign.project.name)
-      expect(data_row[3]).to eq(user_report.campaign_id)
-      expect(data_row[4]).to eq(user_report.campaign.name)
-      expect(data_row[5]).to eq(superadmin.first_name)
-      expect(data_row[6]).to eq(superadmin.last_name)
-      expect(data_row[7]).to eq(superadmin.first_name)
-      expect(data_row[8]).to eq(superadmin.last_name)
-      expect(data_row[9]).to eq(superadmin.email)
-      expect(data_row[10]).to eq(user_report.report.id)
-      expect(data_row[11]).to eq(nil)
-      expect(data_row[12]).to eq(nil)
-      expect(data_row[13]).to eq(I18n.l(user_report_event.created_at, format: :short))
-      expect(data_row[14]).to eq(user_report_event.event_type)
-      expect(data_row[15]).to eq(nil)
-      expect(data_row[16]).to eq('Approved')
+        expect(data_row[0]).to eq(user_report_event.id)
+        expect(data_row[1]).to eq(user_report.campaign.project_id)
+        expect(data_row[2]).to eq(user_report.campaign.project.name)
+        expect(data_row[3]).to eq(user_report.campaign_id)
+        expect(data_row[4]).to eq(user_report.campaign.name)
+        expect(data_row[5]).to eq(superadmin.first_name)
+        expect(data_row[6]).to eq(superadmin.last_name)
+        expect(data_row[7]).to eq(superadmin.email)
+        expect(data_row[8]).to eq(superadmin.first_name)
+        expect(data_row[9]).to eq(superadmin.last_name)
+        expect(data_row[10]).to eq(superadmin.email)
+        expect(data_row[11]).to eq(user_report.report.id)
+        expect(data_row[12]).to eq(nil)
+        expect(data_row[13]).to eq(nil)
+        expect(data_row[14]).to eq(I18n.l(user_report_event.created_at, format: :short))
+        expect(data_row[15]).to eq(user_report_event.event_type)
+        expect(data_row[16]).to eq(nil)
+        expect(data_row[17]).to eq('Approved')
+      end
+    end
+
+    context 'with content' do
+      long_text = 'abc' * 80
+      let!(:comment_event) do
+        create(
+          :user_report_event,
+          id: 2,
+          event_type: 'comment_added',
+          initiator: superadmin,
+          user_report: user_report,
+          details: { 'text' => "<p>#{long_text}</p>" }
+        )
+      end
+
+      it 'includes and strips HTML from comment text' do
+        row = job.records_for_export.find { |r| r.id == comment_event.id }
+        data_row = job.data_row(row)
+        expect(data_row[16]).to eq(long_text)
+      end
     end
   end
 
