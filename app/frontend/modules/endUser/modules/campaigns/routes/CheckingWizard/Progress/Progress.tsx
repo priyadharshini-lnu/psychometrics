@@ -5,10 +5,11 @@ import styles from './Progress.less'
 interface Props {
   percent: number
   title: string
+  status?:'normal' | 'exception' | 'active' | 'success' | undefined
 }
 const MAX = 100
 
-export const Progress: React.FC<Props> = ({ percent, title }) => (
+export const Progress: React.FC<Props> = ({ percent, title, status = 'normal' }) => (
   <>
     <div className={styles.titleContainer}>
       <div className={styles.title}>{title}</div>
@@ -17,6 +18,6 @@ export const Progress: React.FC<Props> = ({ percent, title }) => (
         %
       </div>
     </div>
-    <AntProgress percent={percent} showInfo={false} />
+    <AntProgress status={status} percent={percent} showInfo={status === 'exception'} />
   </>
 )

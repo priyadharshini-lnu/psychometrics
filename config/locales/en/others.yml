@@ -1476,15 +1476,22 @@ en:
   checking_wizard:
     audio_check:
       access: Access
-      access_help: Click here for help.
-      allow: Allow
-      allow_title: Please allow to use microphone to record audio
-      continue: Continue
+      continue: Yes, Ok to proceed
       processing: Processing
+      random_phrases:
+        eight: May your coffee be strong and your day be productive.
+        five: Life is better when you smile. Smile for the mic!
+        four: She sells seashells by the seashore.
+        nine: When in doubt, test it out this mic works!
+        one: I scream, you scream, we all scream for ice cream!
+        seven: Every day is a new beginning. Say it loud and proud!
+        six: Pizza or pasta? Decisions are hard.
+        three: Testing, one two three, the sound is clear as can be!.
+        two: The quick brown fox jumps over the lazy dog.
       record_title: Please speak and repeat the following sentence 3 times.
-      speech_detection: Speech detection
+      retake: No, I want to retake
+      run_again: Run again
       test_message: great to speak with you
-      title: We need to ensure your system can record audio.
     network_check:
       continue: Continue
       download: Download
@@ -1503,21 +1510,41 @@ en:
       start: Start assessment
       title: You have successfully completed all checks.
     system_check:
+      compatibility: System Compatibility
       continue: Continue
+      failure:
+        description: Webcam and Microphone permissions are needed for Audio/Video Questions in this Test.
+        link_text: here
+        link_text_action: Click
+        link_text_instruction: and follow the steps to provide permissions
+        refresh: Refresh Browser
+        refresh_text: Click below to refresh the browser and apply changes
+        subtitle: Quick Fixes
+        title: You cancelled Webcam and Microphone permissions
+      permissions: Webcam & Audio Permissions
       title: Before starting this assessment, your system needs to undergo some checks.
     video_check:
       access: Access
-      access_help: Click here for help.
-      allow: Allow
-      allow_title: Please allow to use camera to record Video
-      continue: Continue
-      description: Once video recording is working and detects your face, the captured photo will be saved for verification.
-      face_detection: Face detection
-      hint: The captured picture will be uploaded for verification.
+      camera_preview: Camera preview will appear here
+      continue: Yes, Ok to proceed
+      description: Click on Start Recording and Record yourself while reading the below passage in your own voice
       processing: Processing
-      retake: Retake
+      random_phrases:
+        eight: If you can see me, the video's a success. If not, we troubleshoot!
+        five: Testing your video,don't worry, no Oscar nomination required.
+        four: Ready, set, focus! The camera is your stage.
+        nine: Big smiles and clear video,let's get this test done right!
+        one: Raise your hand if you can hear me or just wave for the camera!
+        seven: Mirror, mirror on the screen, let the video check be clean.
+        six: Lights, camera, action,this is your time to shine!
+        ten: A friendly wave makes sure everything works fine.
+        three: Say cheese! Or just test that perfect smile.
+        two: Look at the lens, smile, and pretend you're in a movie trailer.
+      rec_text: REC
+      retake: No, I want to retake
       run_again: Run again
       title: We need to ensure your system can record the video
+      upload_again: Upload again
       uploading: Uploading
   common:
     actions:

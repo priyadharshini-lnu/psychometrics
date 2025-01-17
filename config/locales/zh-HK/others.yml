@@ -235,15 +235,10 @@ zh-HK:
   checking_wizard:
     audio_check:
       access: 存取
-      access_help: 點擊此處獲得協助。
-      allow: 允許
-      allow_title: 請允許使用咪高峰錄音
       continue: 繼續
       processing: 處理中
       record_title: 請讀出並重複以下句子 3 次。
-      speech_detection: 語音偵測
       test_message: 很高興與您交談
-      title: 我們需要確保您的系統可以錄音。
     network_check:
       continue: 繼續
       download: 下載
@@ -266,12 +261,8 @@ zh-HK:
       title: 在開始此評估之前，您的系統需要進行一些檢查。
     video_check:
       access: 存取
-      access_help: 點擊此處獲得協助。
-      allow: 允許
-      allow_title: 請允許使用相機錄影
       continue: 繼續
       description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
-      face_detection: 面孔偵測
       processing: 處理中
       run_again: 再次執行
       title: 我們需要確保您的系統可以錄影

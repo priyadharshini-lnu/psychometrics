@@ -1,7 +1,19 @@
 @import "~/styles/antv4.variable.less";
 @import "~/styles/spacing.less";
+
 .steps {
   background-color: @white;
+  padding: 24px;
+
+  :global {
+    .ant-steps-item-tail {
+      width: 102%;
+
+      &::after {
+        height: 4px;
+      }
+    }
+  }
 }
 
 .pageLayout {
@@ -10,4 +22,34 @@
 
 .finish {
   margin: @space-14 0;
+}
+
+.rounded {
+  border: 1px solid;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.system svg {
+  color: white !important;
+}
+
+.video svg {
+  color: white !important;
+}
+
+.audio svg {
+  color: white !important;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.rec {
+  color: white;
 }

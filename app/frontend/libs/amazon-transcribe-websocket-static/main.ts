@@ -20,7 +20,7 @@ export type OnTranscribeError = (message: string, details?: unknown) => void
 
 interface Transcribe {
   url: string
-  stream: MediaStream
+  stream: MediaStream | null
   onTranscribe: OnTranscribe
   onSilence?: () => void
   onError: OnTranscribeError

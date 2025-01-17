@@ -1,29 +1,35 @@
-import React, { useReducer, useEffect, useRef } from 'react'
+import React, {
+  useReducer, useEffect, useRef,
+} from 'react'
 import _ from 'lodash'
 import {
-  Button, Card, Col,
+  Button, Card,
+  Flex,
+  Space,
+  Typography,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { CheckOutlined, RightOutlined } from '@ant-design/icons'
+import {
+  RedoOutlined, RightOutlined, StopOutlined, VideoCameraOutlined,
+} from '@ant-design/icons'
 import { Buffer } from 'buffer'
+import { CountdownTimer } from '~/glint/components/CountdownTimer'
+import AudioWaveVisualizer from '~/components/MediaRecorder/components/AudioWaveVisualizer'
+import { useReactMediaRecorder, StatusMessages } from '~/components/MediaRecorder/components/MediaRecorder'
 import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { AudioLevel } from '~/hooks/useAudioMetrics/interfaces'
-import { RECORDER_STATES } from '~/modules/survey/constants/media'
-import { stopTranscription, transcribe } from '~/libs/amazon-transcribe-websocket-static'
-import useAudioMetrics from '~/hooks/useAudioMetrics'
-import { RecorderCore } from '~/modules/survey/utils/RecorderCore'
-import { BROWSER_NAME } from '~/utils/uaParser'
-import DynamicAudioIcon from '~/components/DynamicAudioIcon'
 import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'
 import { CheckListStatus } from '../interfaces'
 import reducer, {
-  initialState, updateAccess, updateSpeechDetection, State, updateTranscriptionMessage,
-} from './reducer'
+  initialState, updateAccess, State, updateSpeechTestText,
+} from '../VideoCheck/reducer'
 
 import styles from './AudioCheck.less'
+import { getRandomAudioTestPhrase } from '../services/service'
+import { RANDOM_CONSTS_ARRAY } from '../services/consts'
+import { MAX_DURATION } from '../VideoCheck/VideoCheck'
 
 window.Buffer = Buffer
 
@@ -39,217 +45,261 @@ type Props = PropsFromRedux & {
   nextStep: () => void
 }
 
-const SPEECH_DETECTION_TIME_FRAME = 10000
 const { I18n } = window
 
 const AudioCheckComponent: React.FC<Props> = ({
-  nextStep, preSignUrl, preSignedUrl, transcribeSupportedLocales,
+  nextStep, preSignUrl,
 }) => {
+  const {
+    status,
+    mediaBlobUrl,
+    startRecording,
+    stopRecording,
+    clearBlobUrl,
+  } = useReactMediaRecorder({
+    video: true,
+    audio: true,
+  })
+
+
+  const getMediaStream = React.useCallback(async (): Promise<MediaStream | null> => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+      })
+      return stream
+    } catch (error) {
+      console.error('Error accessing media stream:', error)
+      return null
+    }
+  }, [])
+
+
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+
   useEffect(() => {
     preSignUrl()
-    initRecorder()
+    const random = getRandomAudioTestPhrase(RANDOM_CONSTS_ARRAY)
+    dispatch(updateSpeechTestText(random))
   },
   [])
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const recorderRef = useRef<RecorderCore>()
-  const [{ level, pulse }, { updatePulse, resetMetrics }] = useAudioMetrics(recorderRef)
 
-
-  const initRecorder = (): void => {
-    recorderRef.current = new RecorderCore({ onUpdateRecordTime: () => null })
-  }
-
-  const requestAccess = () => {
-    const speechDetectionTimer = setTimeout(() => {
-      dispatch(updateSpeechDetection(CheckListStatus.Failed))
-      stopTranscription()
-      recorderRef.current?.stop()
-      resetMetrics()
-    }, SPEECH_DETECTION_TIME_FRAME)
-
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then((stream) => {
-        window.addEventListener(RECORDER_STATES.RECORDING, updatePulse)
-        recorderRef.current?.start()
-        dispatch(updateAccess(CheckListStatus.Done))
-        transcribe({
-          url: preSignedUrl,
-          stream,
-          onTranscribe: (t: string) => handleTranscriptionResults(t, speechDetectionTimer),
-          onError: () => {
-            recorderRef.current?.stop()
-            resetMetrics()
-            dispatch(updateSpeechDetection(CheckListStatus.Failed))
-            clearInterval(speechDetectionTimer)
-          },
-        })
-      })
-      .catch(() => {
-        dispatch(updateAccess(CheckListStatus.Failed))
-      })
-  }
-
-  const handleTranscriptionResults = (transcription, speechDetectionTimer) => {
-    const testMessage = sanitize(getTranscriptionMessage(transcribeSupportedLocales))
-    const input = sanitize(transcription)
-    dispatch(updateTranscriptionMessage(transcription))
-    if (input.includes(testMessage)) {
-      clearInterval(speechDetectionTimer)
-      dispatch(updateSpeechDetection(CheckListStatus.Done))
-      stopTranscription()
-      recorderRef.current?.stop()
-      resetMetrics()
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0
     }
+    return () => {
+      if (mediaBlobUrl) {
+        URL.revokeObjectURL(mediaBlobUrl)
+      }
+    }
+  }, [mediaBlobUrl, audioRef])
+
+
+  const renderActionButton = () => {
+    if (status === 'recording') {
+      return (
+        <Flex vertical align="center" gap={8}>
+          <Button onClick={handleStopRecording} type="primary" danger icon={<StopOutlined />}>
+            {I18n.t('assessments.video_response.stop_recording')}
+          </Button>
+        </Flex>
+      )
+    }
+
+    return (
+      <Button
+        onClick={() => requestAccess()}
+        type="primary"
+        icon={<VideoCameraOutlined />}
+      >
+        {I18n.t('assessments.video_response.start_recording')}
+      </Button>
+    )
   }
-  const sanitize = (text: string): string => _.toLower(text.replace(/[.,\s]/g, ''))
+
+  const Controls:React.FC = () => (
+    <Flex className="mt-12" gap={8}>
+      {!mediaBlobUrl && renderActionButton()}
+    </Flex>
+  )
+
+  const requestAccess = async () => {
+    try {
+      const mediaStream = await window.navigator.mediaDevices.getUserMedia({
+        audio: true,
+      })
+      if (audioRef.current) {
+        audioRef.current.srcObject = mediaStream
+      }
+      dispatch(updateAccess(CheckListStatus.Done))
+      startRecording()
+    } catch (e) {
+      dispatch(updateAccess(CheckListStatus.Failed))
+    }
+    dispatch(updateAccess(CheckListStatus.Done))
+  }
+
 
   const rerun = () => {
+    clearBlobUrl()
     requestAccess()
-    if (state.access === CheckListStatus.Failed) return
-
-    dispatch(updateTranscriptionMessage(''))
-    dispatch(updateSpeechDetection(CheckListStatus.InProgress))
   }
+
+
+  const handleStopRecording = React.useCallback((): void => {
+    stopRecording()
+  }, [stopRecording])
 
   const getPercent = (): number => {
     const total = [state.access, state.speechDetection].length
-    const { true: completedActions } = _.countBy([state.access, state.speechDetection], s => s === CheckListStatus.Done)
+    const { true: completedActions } = _.countBy([state.access, CheckListStatus.Done], s => s === CheckListStatus.Done)
     return _.round(100 * (completedActions || 0) / total)
   }
 
+
+  const renderProgressAndChecklist = () => (
+    <div className="mt-6" style={{ alignSelf: 'stretch' }}>
+      <Progress
+        percent={getPercent()}
+        title={I18n.t('checking_wizard.audio_check.processing')}
+      />
+      <CheckList
+        className="mt24"
+        dataSource={[
+          { name: I18n.t('checking_wizard.audio_check.access'), status: state.access },
+        ]}
+      />
+    </div>
+  )
+
+  const renderButtons = () => {
+    if (state.access !== CheckListStatus.Failed) {
+      return (
+        <Space className="m-12">
+          <Button
+            onClick={rerun}
+            icon={<RedoOutlined />}
+          >
+            {I18n.t('checking_wizard.audio_check.retake')}
+          </Button>
+          <Button
+            type="primary"
+            className={styles.continueButton}
+            onClick={nextStep}
+          >
+            {I18n.t('checking_wizard.audio_check.continue')}
+            <RightOutlined />
+          </Button>
+        </Space>
+
+      )
+    }
+    return (
+      <Button
+        type="primary"
+        className="mt-16"
+        onClick={rerun}
+        icon={<RedoOutlined />}
+      >
+        {I18n.t('checking_wizard.audio_check.run_again')}
+      </Button>
+    )
+  }
+
+
   return (
-    <>
-      <title>{`${I18n.t('checking_wizard.audio_check.title')}`}</title>
-      <Col className={styles.container} lg={16} xs={24} sm={24}>
-        {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access)
-         && (
-         <IntroCard
-           requestAccess={requestAccess}
-           state={state}
-           preSignedUrl={preSignedUrl}
-         />
-         )}
-        {state.access === CheckListStatus.Done && (
+    <div className={styles.container}>
+
+      <Flex align="center" vertical className={styles.card}>
         <RecordCard
-          pulse={pulse}
-          transcribeSupportedLocales={transcribeSupportedLocales}
-          level={level}
+          mediaBlobUrl={mediaBlobUrl}
+          getMediaStream={getMediaStream}
+          handleStopRecording={handleStopRecording}
+          status={status}
           state={state}
         />
-        )}
-      </Col>
-      <Col className={styles.container} lg={8} xs={24} sm={24}>
-        <Card className={styles.card}>
-          <Progress percent={getPercent()} title={I18n.t('checking_wizard.audio_check.processing')} />
-          <CheckList
-            className="mt24"
-            dataSource={[
-              { name: I18n.t('checking_wizard.audio_check.access'), status: state.access },
-              { name: I18n.t('checking_wizard.audio_check.speech_detection'), status: state.speechDetection },
-            ]}
-          />
-          {state.access !== CheckListStatus.Failed && state.speechDetection !== CheckListStatus.Failed ? (
-            <Button
-              type="primary"
-              className={styles.continueButton}
-              onClick={nextStep}
-              disabled={state.access !== CheckListStatus.Done || state.speechDetection !== CheckListStatus.Done}
-            >
-              {I18n.t('checking_wizard.audio_check.continue')}
-              <RightOutlined />
-            </Button>
-          )
-            : (
-              <Button
-                type="primary"
-                className={styles.continueButton}
-                onClick={rerun}
-              >
-                {I18n.t('checking_wizard.video_check.run_again')}
-                <RightOutlined />
-              </Button>
-            )
-          }
 
-        </Card>
-      </Col>
-    </>
+
+        <Controls />
+
+        {
+          status === 'stopped' && (
+            <>
+              {renderProgressAndChecklist()}
+              {renderButtons()}
+            </>
+
+          )}
+      </Flex>
+      {mediaBlobUrl
+     && (
+     <audio
+       preload="metadata"
+       className={styles.audioElement}
+       ref={audioRef}
+       src={mediaBlobUrl}
+       controls={!!mediaBlobUrl}
+     />
+     )
+     }
+
+    </div>
+
   )
 }
 
 export const AudioCheck = connector(AudioCheckComponent)
 
-interface CardProps {
-  state: State
-}
-type IntroCardProps = {
-  requestAccess: () => void
-  preSignedUrl: string
-} & CardProps
-type RecordCardProps = {
-  level: AudioLevel
-  pulse: number
-  transcribeSupportedLocales: string[]
-} & CardProps
 
-const IntroCard: React.FC<IntroCardProps> = ({ requestAccess, state, preSignedUrl }) => (
-  <Card className={styles.card}>
-    <div className={styles.title}>{I18n.t('checking_wizard.audio_check.title')}</div>
-    <div className={styles.audio}>
-      <div className={styles.iconContainer}>
-        <span className={styles.icon} />
-      </div>
-      <div className={styles.allowTitle}>
-        {I18n.t('checking_wizard.audio_check.allow_title')}
-      </div>
-      {state.access === CheckListStatus.InProgress && (
-      <Button
-        type="primary"
-        onClick={requestAccess}
-        disabled={!preSignedUrl}
-      >
-        <CheckOutlined />
-        {I18n.t('checking_wizard.audio_check.allow')}
-      </Button>
-      )}
-      {state.access === CheckListStatus.Failed && (
-      <Button type="primary">
-        <a
-          href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${BROWSER_NAME}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {I18n.t('checking_wizard.audio_check.access_help')}
-        </a>
-      </Button>
-      )}
-    </div>
-  </Card>
-)
+type RecordCardProps = {
+  mediaBlobUrl: undefined | string;
+  getMediaStream: () => Promise<MediaStream | null>
+  handleStopRecording : () => void;
+  status: StatusMessages
+  state: State,
+}
 
 
 const RecordCard: React.FC<RecordCardProps> = ({
-  level, pulse, state, transcribeSupportedLocales,
+  mediaBlobUrl, getMediaStream, handleStopRecording, state, status,
 }) => (
-  <Card className={styles.card}>
-    <div className={styles.title}>{I18n.t('checking_wizard.audio_check.record_title')}</div>
-    <div className={styles.audio}>
-      <div className={styles.quote}>&quot;</div>
-      <div className={styles.testMessage}>
-        {getTranscriptionMessage(transcribeSupportedLocales)}
+  <>
+    <h4 className={styles.title}>{I18n.t('checking_wizard.audio_check.record_title')}</h4>
+    <Card className={styles.audioCard}>
+      <div className={styles.audio}>
+        <div className={styles.testMessage}>
+          &#8220;
+          {state.speechTestText}
+          &#8221;
+        </div>
+        {
+          status === 'recording'
+        && (
+          <>
+            <Flex justify="center" align="center" className={styles.recordingIndicator}>
+              <div className={styles.dot} />
+              <Typography.Text className={styles.rec}>
+                {I18n.t('checking_wizard.video_check.rec_text')}
+              </Typography.Text>
+              <CountdownTimer
+                onFinish={handleStopRecording}
+                className={styles.countdownIndicator}
+                seconds={MAX_DURATION}
+              />
+            </Flex>
+            <AudioWaveVisualizer
+              getMediaStream={getMediaStream}
+              audioBlobUrl={mediaBlobUrl}
+            />
+          </>
+        )
+      }
+
       </div>
-      <DynamicAudioIcon level={level} pulse={pulse} />
-      <div className={styles.testMessage}>
-        {state.transcriptionMessage}
-      </div>
-    </div>
-  </Card>
+    </Card>
+  </>
 )
-
-const getTranscriptionMessage = (transcribeSupportedLocales: string[]) => {
-  if (_.includes(transcribeSupportedLocales, I18n.locale)) {
-    return I18n.t('checking_wizard.audio_check.test_message')
-  }
-
-  return I18n.t('checking_wizard.audio_check.test_message', { locale: 'en' })
-}

@@ -5,6 +5,7 @@
   & :global(.ant-card) {
     max-height: 100%;
   }
+
   :global {
     .vjs-record {
       &.vjs-device-button {
@@ -13,25 +14,31 @@
           pointer-events: none;
         }
       }
+
       .vjs-modal-dialog {
         display: none;
       }
     }
+
     .vjs_video_3-dimensions {
       width: auto;
       height: auto;
     }
   }
+
   text-align: center;
+
   .card {
     text-align: center;
     margin-bottom: @space-3;
+
     video {
       background: @background-color-base;
       border-radius: 6px;
       height: 400px;
       width: 100%;
     }
+
     .videoOverlap {
       background: @background-color-base;
       top: 0px;
@@ -54,6 +61,7 @@
         text-align: center;
         border-radius: 50%;
         color: @white;
+
         .icon {
           display: inline-block;
           width: 60px;
@@ -75,6 +83,11 @@
     font-size: 45px;
     margin-bottom: @space-4;
   }
+}
+
+
+.testMessage {
+  margin: @space-3 0;
 }
 
 .faceContainer {
