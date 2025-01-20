@@ -59,11 +59,14 @@ const Overview = ({
           dataIndex: 'value',
           key: 'value',
           render (value, row) {
-            const type = userInfo.datasheet_columns.find(({ name }) => name === row.key)?.type
+            const type = userInfo.datasheet_columns
+              .find(({
+                name,
+              }) => name === row.key)?.column_type?.toLowerCase()
             switch (type) {
-              case 'Markdown':
+              case 'markdown':
                 return <ReactMarkdown>{value}</ReactMarkdown>
-              case 'HTML':
+              case 'html':
                 return <SafeHTML as="div" html={`${value}`} />
               default:
                 return value
