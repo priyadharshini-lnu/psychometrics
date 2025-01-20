@@ -189,7 +189,7 @@ module Administration
         else
           AdminJob.call(:bulk_download_reports,
                         { ids: params[:ids], campaign_id: campaign.id, start_date: params[:start_date],
-                          end_date: params[:end_date] },
+                          end_date: params[:end_date], include_inactive_users: params[:include_inactive_users] },
                         current_user)
           audit! :bulk_download, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
 

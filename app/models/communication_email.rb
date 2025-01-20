@@ -12,7 +12,9 @@ class CommunicationEmail < ApplicationRecord
 
   delegate :project_campaign, to: :communication, allow_nil: true
 
+  before_create :ensure_user_is_active
   before_create :set_user_id
+
   after_commit :delivery_email, on: :create
 
   # I'm not certain this scope is used anymore
@@ -29,7 +31,7 @@ class CommunicationEmail < ApplicationRecord
 
   def self.create_with_resources(attributes, resources)
     ApplicationRecord.transaction do
-      communication_email = CommunicationEmail.create!(attributes)
+      communication_email = CommunicationEmail.create(attributes)
       Array.wrap(resources).each do |resource|
         communication_email.communication_email_resources.create!(resource: resource)
       end
@@ -37,6 +39,16 @@ class CommunicationEmail < ApplicationRecord
   end
 
   private
+
+  def ensure_user_is_active
+    user ||= campaign_user&.user
+
+    return unless user
+
+    throw(:abort) if user.disabled?
+
+    throw(:abort) unless campaign_user&.active?
+  end
 
   def need_to_pass_wait_until?
     communication.specific_datetime?
