@@ -63,13 +63,19 @@ unless Rails.env.test?
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
+      object_src = [
+        "https://#{Settings.secrets.s3_compatible_storage.public_bucket}.s3.#{Settings.secrets.s3_compatible_storage.region}.amazonaws.com",
+        "https://#{Settings.secrets.s3_compatible_storage.private_bucket}.s3.#{Settings.secrets.s3_compatible_storage.region}.amazonaws.com",
+        Settings.secrets.s3_compatible_storage.endpoint
+      ].compact
+
       policy.worker_src :self, :blob
       policy.default_src :self
       policy.font_src(*font_src)
       policy.img_src     '*', :data, :blob
       policy.media_src   '*', :blob
-      policy.object_src  :none
-      policy.frame_src   '*'
+      policy.frame_src '*'
+      policy.object_src(*object_src)
       policy.script_src(*script_src)
       policy.style_src(*style_src)
       policy.connect_src(*connect_src)
