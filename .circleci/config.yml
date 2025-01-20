@@ -448,9 +448,9 @@ jobs:
           steps:
             - azure-cli/install
             - azure-cli/login-with-user-or-service-principal
-            - azure-acr/acr-login:
-                registry-name: lhcontregistry
-                configure-docker-credentials-store: true
+            - run:
+                name: Login to ACR
+                command: az acr login --name lhcontregistry --username $AZURE_SP --password $AZURE_SP_PASSWORD
       - docker/build:
           step-name: Build Docker image - latest
           image: psychometrics
@@ -563,7 +563,6 @@ jobs:
 orbs:
   aws-cli: circleci/aws-cli@4.1.2
   heroku: circleci/heroku@2.0.0
-  azure-acr: circleci/azure-acr@0.2.1
   azure-cli: circleci/azure-cli@1.2.2
   docker: circleci/docker@2.4.0
   jira: circleci/jira@1.3.1

@@ -33,6 +33,7 @@ export const SliderQuestion = ({
   const scaledAnswers = (result.answers || []).map(answer => ({ ...answer, value: unscaledValue(answer.value) }))
   const [values, setValue] = useState(scaledAnswers)
   const questionRowRef = useRef(null)
+  const choiceIdRef = useRef(null)
 
   useEffect(() => {
     if (questionRowRef.current && preview) {
@@ -40,12 +41,32 @@ export const SliderQuestion = ({
       _.each(sliderHandles, (sliderHandle, index) => {
         sliderHandle.setAttribute('aria-describedby', `label-instruction-${model.id}`)
         sliderHandle.setAttribute('aria-labelledby', `slider-label-${model.id}-${index}`)
+        sliderHandle.setAttribute('id', getSliderId(model.id, index))
+        sliderHandle.setAttribute('aria-valuemin', minValue)
+        sliderHandle.setAttribute('aria-valuemax', maxValue)
+        if (!isNaN(values[index]?.value)) {
+          sliderHandle.setAttribute('aria-valuenow', scaledValue(values[index]?.value))
+        }
       })
     }
   }, [])
 
+  useEffect(() => {
+    if (choiceIdRef.current !== null) {
+      setSliderAriaValue(choiceIdRef.current, scaledValue(values[choiceIdRef.current]?.value))
+    }
+  }, [values])
+
+  const setSliderAriaValue = (choiceId, value) => {
+    const sliderElement = document.getElementById(getSliderId(model.id, choiceId))
+    if (sliderElement) {
+      sliderElement.setAttribute('aria-valuenow', value)
+    }
+  }
+
   const onChangeSlider = (choiceId, value, update) => {
     setValue({ ...values, [choiceId]: { index: choiceId, value: update ? unscaledValue(scaledValue(value)) : value } })
+    choiceIdRef.current = choiceId
 
     if (update) {
       changeValue(choiceId, scaledValue(value))
@@ -210,7 +231,6 @@ export const SliderQuestion = ({
                   tooltip={{
                     formatter: hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>,
                   }}
-                  aria-describedby={`label-instruction-${model.id}`}
                 />
               </Col>
               {!hideValue && (
@@ -266,3 +286,5 @@ export const SliderQuestion = ({
     </>
   )
 }
+
+const getSliderId = (modelId, choiceId) => `slider-id-${modelId}-${choiceId}`

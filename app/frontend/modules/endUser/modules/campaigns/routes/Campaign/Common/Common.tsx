@@ -91,7 +91,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
   const hasAssessments = !!campaign.userAssessments.length
-  const hasStartedCampaign = !!campaignUser.startedAt
+  const hasStartedCampaign = !!campaignUser.startedAt && campaignUser.status !== 'not_started'
   const campaignUserTimedOut = campaignUser.status === 'timed_out'
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
   const hasNoExpiryDateForTimedCampaign = isTimedCampaign && !expiryDate && campaignUser.status === 'in_progress'

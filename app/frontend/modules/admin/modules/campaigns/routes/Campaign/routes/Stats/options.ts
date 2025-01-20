@@ -5,7 +5,7 @@ import { Stats } from '~/modules/admin/modules/campaigns/core/stats'
 const { I18n } = window
 
 export const COLORS = {
-  not_started: '#009EA7',
+  not_started: '#00838A',
   in_progress: '#E89F0F',
   completed: '#2ED100',
   ineligible: '#8C8C8C',

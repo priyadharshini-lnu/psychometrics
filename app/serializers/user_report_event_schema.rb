@@ -9,7 +9,7 @@ class UserReportEventSchema < BaseSchema
 
       required(:id).filled(:int?)
       required(:event_type).filled(:str?)
-      required(:details).filled(:hash?)
+      required(:details).value(:hash?)
       required(:created_at).filled(:str?)
       required(:initiator).hash(ShortUserSchema.schema(_, _))
     end
