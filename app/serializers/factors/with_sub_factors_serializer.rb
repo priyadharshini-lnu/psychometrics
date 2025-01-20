@@ -10,11 +10,7 @@ module Factors
     end
 
     def question_ids
-      if context[:assessment_id]
-        object.questions.where(assessment_id: context[:assessment_id]).ids
-      else
-        []
-      end
+      context.dig(:question_ids, object.id) || []
     end
 
     def alias
