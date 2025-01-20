@@ -39,7 +39,11 @@ const ReportListComponent = ({
   const navigate = useNavigate()
 
   const redirectToReport = (report) => {
-    navigate(`/threesixty_campaigns/${report.campaignId}/reports/${report.id}`)
+    const defaultLang = report.report.defaultLanguage.code
+    const { availableLanguages } = report.report
+    const userLocale = I18n.locale
+    const lang = availableLanguages.map(l => l.code).includes(userLocale) ? userLocale : defaultLang
+    navigate(`/threesixty_campaigns/${report.campaignId}/reports/${report.id}?lang=${lang}`)
   }
 
   const showReport = (report) => {

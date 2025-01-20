@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReportSerializer < Panko::Serializer
+class ReportSerializer < Panko::Serializer # rubocop:disable Metrics/ClassLength
   attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props, :pages, :category,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language, :other_languages,
@@ -49,7 +49,11 @@ class ReportSerializer < Panko::Serializer
   end
 
   def locales
-    Translation.to_hash_for_report(object.id, object.assessment_ids, current_lang)
+    Reports::GetTranslationWithPipetextReplaced.call!(
+      object,
+      piped_text_context: context[:piped_text_context],
+      locale: current_lang
+    )
   end
 
   def locale

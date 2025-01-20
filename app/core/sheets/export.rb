@@ -18,11 +18,11 @@ module Sheets
       package.add_worksheet('Datasheet') do |sheet|
         sheet.add_row column_names
         sheet.add_row coulmn_types
+        result = DatasheetDataQuery.new(datasheet).query
 
-        datasheet.rows.order(updated_at: :desc).each do |row|
-          rows = row.sheet_row_data.to_a
-          row_data = columns.map do |column|
-            rows.find { |r| r.sheet_column_id == column.id }&.value
+        result.each do |data|
+          row_data = column_names.map do |column|
+            data[column]
           end
 
           sheet.add_row row_data

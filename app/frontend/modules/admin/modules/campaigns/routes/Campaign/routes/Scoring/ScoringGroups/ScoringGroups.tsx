@@ -120,7 +120,7 @@ const ScoringGroupsComponent = (props: Props) => {
           assessments: ['id', 'name'],
           factors: ['id', 'name'],
         },
-        page: { size: 200 },
+        page: { size: 300 },
       },
     },
   )

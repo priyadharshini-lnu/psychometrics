@@ -55,7 +55,7 @@ class PreviewContainer extends Component {
   render () {
     return (
       <Provider store={rstore}>
-        <div className="row">
+        <div className="row" style={{ direction: 'ltr' }}>
           <Preview />
         </div>
       </Provider>

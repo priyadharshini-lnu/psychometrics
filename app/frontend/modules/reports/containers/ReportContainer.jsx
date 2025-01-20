@@ -17,6 +17,10 @@ import { init, changeSkipLogic } from '../core/builder/actions'
 import schema from '../store/schema'
 
 class ReportContainer extends Component {
+  state = {
+    selectedLocale: null,
+  }
+
   componentDidMount () {
     const {
       data, results, locales, user, campaign, selectedLocale, userReport, skipLogic, setPages,
@@ -31,6 +35,7 @@ class ReportContainer extends Component {
     store.init(data, results, user, campaign, userReport.reportData || [], userReport.campaignFactorResults || [])
     rstore.dispatch(init(normalizedData, userReport))
 
+    this.setState({ selectedLocale })
     const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
     setPages && setPages(visiblePages)
   }
@@ -54,11 +59,11 @@ class ReportContainer extends Component {
     return (
       <Provider store={rstore} key={userReport.id}>
         <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
-          <div className="row">
+          <div className="row" style={{ direction: 'ltr' }}>
             <Preview
               key={userReport.id}
               rstore={globalStore}
-              // localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
+              localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
               allowEdit={allowEdit}
               allowApprove={allowApprove}
               moduleOverrides={moduleOverrides}
