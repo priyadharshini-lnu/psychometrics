@@ -40,6 +40,25 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
       check_campaign_reports_and_assesment_response(parsed_response)
     end
+
+    it 'push to admin job when operation is not skip_existing' do
+      expect(AdminJob).to receive(:call).
+        with(:add_campaign_reports,
+             { campaign_id: campaign.id,
+               resource_params: ActionController::Parameters.new(
+                 report_family_id: report_family.id.to_s,
+                 operation: 'add_with_existing_response',
+                 report_ids: [report.id.to_s]
+               ).permit! },
+             current_user)
+
+      put :create, params: {
+        project_id: campaign.project_id,
+        new_campaign_id: campaign.id,
+        resource: { report_family_id: report_family.id, report_ids: [report.id],
+                    operation: 'add_with_existing_response' }
+      }
+    end
   end
 
   describe 'toggle_user_access' do
