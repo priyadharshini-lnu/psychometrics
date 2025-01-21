@@ -4,7 +4,7 @@ module Saville
   class ImportFactors < BaseCommand
     VALID_HEADERS = %w[assessment_id factor_id name score_type value_type].freeze
     VALID_SCORE_TYPE = %w[Raw Ipsative Nipsative Normative].freeze
-    VALID_VALUE_TYPE = %w[sten t z percentile rank].freeze
+    VALID_VALUE_TYPE = %w[sten t z percentile rank percentage].freeze
 
     private_attr_reader :file_url
 
