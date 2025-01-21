@@ -6,8 +6,7 @@ import { getQuestions } from '~/modules/reports/core/builder/selectors'
 export default connect(
   (state, { modules, module }) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
-    questions: state.report.builder.loaded
-      ? getQuestions(state.report, (module || modules[0]).assessment_id) || {} : {},
+    questions: getQuestions(state.report, (module || modules[0]).assessment_id) || {},
     reportStyles: state.report.builder.styles,
   }),
   dispatch => ({
