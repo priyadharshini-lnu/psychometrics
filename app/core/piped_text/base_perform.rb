@@ -12,7 +12,7 @@ module PipedText
 
     # rubocop:disable Style/CharacterLiteral, Metrics/PerceivedComplexity
     def call
-      return if body.blank?
+      return broadcast :ok, '' if body.blank?
 
       result =
         body.to_s.gsub(self.class.piped_text_regex) do

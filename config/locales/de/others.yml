@@ -702,3 +702,6 @@ de:
     range: Bitte wählen Sie mindestens %{min} und nicht mehr als %{max} Auswahlmöglichkeit(en).
     required: Bitte beantworten Sie diese Frage
     text: Ihre Antwort darf keine Zahlen enthalten
+    title:
+      one: Es gibt einen Fehler, bitte überprüfen Sie Ihre Antworten
+      other: Es gibt %{count} Fehler, bitte überprüfen Sie Ihre Antworten

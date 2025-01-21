@@ -9,7 +9,6 @@
 
 ## Ticket
 <!--- Replace XXXX with the ticket name -->
-https://tte.atlassian.net/browse/LH-XXXX
 https://dev.azure.com/mmctech/Mercer-Career-Lighthouse/_workitems/edit/XXXXXXX
 
 ## Screenshots:

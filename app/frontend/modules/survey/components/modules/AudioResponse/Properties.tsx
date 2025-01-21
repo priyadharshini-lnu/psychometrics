@@ -60,9 +60,10 @@ const DURATION_OPTIONS = [
 interface Props {
   model: PropertiesModel
   restricted: boolean
+  showOnlyTranslatable: boolean
 }
 
-export const Properties: FC<Props> = ({ model, restricted }) => {
+export const Properties: FC<Props> = ({ model, restricted, showOnlyTranslatable }) => {
   const forceUpdate = useForceUpdate()
 
   const {
@@ -73,6 +74,10 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
     model.changeProps({
       duration: selectedDuration,
     })
+  }
+
+  if (showOnlyTranslatable && !restricted) {
+    return (<ValidationTypes model={model} update={forceUpdate} />)
   }
 
   return (

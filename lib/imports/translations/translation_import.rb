@@ -22,12 +22,14 @@ module Imports
       # rubocop:disable Metrics/CyclomaticComplexity
       # rubocop:disable Metrics/PerceivedComplexity
       # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/BlockLength
       def load_imported_items
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
         header = rows.shift
         collect_translations = {}
         rows.each do |row|
+          row.map! { |value| Utility::String.remove_csv_injection_marker(value) }
           data = header.zip(row).to_h
           branch_type, id, key = data.delete('Key').split(':')
           collect_translations[branch_type] ||= {}
@@ -58,7 +60,21 @@ module Imports
                 resource_type: resource_type,
                 locale: locale
               )
-              translation.props = props
+
+              if assessment&.translations_migrated?
+                default_props = if branch == 'instructions'
+                                  assessment.instructions
+                                else
+                                  default_props(branch, id)
+                                end
+
+                translated_props = replace_props_with_translations(default_props[:props], default_props[:validation],
+                                                                   props)
+                translation.data = translated_props
+              else
+                translation.props = props
+              end
+
               translations << translation
             end
           end
@@ -95,6 +111,33 @@ module Imports
 
       def translatable_branches
         raise NotImplementedError
+      end
+
+      def default_props(branch, id)
+        resource = branch.capitalize.constantize.find(id)
+
+        {
+          props: resource.props,
+          validation: resource.respond_to?(:validation) ? resource.validation : {}
+        }
+      end
+
+      def replace_props_with_translations(question_props, validations, translated_props)
+        filterd_question_props = Builders::Translations::TranslationBuilder.
+                                 new(question_props).
+                                 filter_allowed_props
+
+        filterd_validations = Builders::Translations::TranslationBuilder.new(validations).filter_allowed_props
+
+        translated_props.map do |k, v|
+          JsonPath.for(filterd_question_props).gsub!(k) { |_vv| v }.to_hash
+          JsonPath.for(filterd_validations).gsub!(k) { |_vv| v }.to_hash
+        end
+
+        {
+          props: filterd_question_props,
+          validation: filterd_validations
+        }
       end
     end
   end

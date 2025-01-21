@@ -18,7 +18,8 @@ module Mettl
       result = ::JSON.parse(response.body)
 
       unless result['status'] == 'SUCCESS'
-        raise "Mettl::EditAssessment failed for Assessment: #{mettl_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
+        raise Mettl::Exceptions::EditAssessmentFailed,
+              "Mettl::EditAssessment failed for Assessment: #{mettl_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
       end
 
       broadcast :ok, result

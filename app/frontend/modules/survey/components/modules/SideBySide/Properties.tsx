@@ -16,6 +16,7 @@ import RequiredValidations from '~/modules/survey/components/RequiredValidations
 interface Props {
   model: PropertiesModel
   restricted: boolean
+  showOnlyTranslatable: boolean
 }
 
 const { I18n } = window
@@ -128,8 +129,19 @@ export class Properties extends Component<Props> {
   }
 
   render () {
-    const { model, restricted } = this.props
+    const { model, restricted, showOnlyTranslatable } = this.props
     const { props: { isRowDescriptionEnabled } } = model
+
+    if (showOnlyTranslatable && !restricted) {
+      return (
+        <div>
+          <ValidationTypes
+            model={model}
+            update={() => this.forceUpdate()}
+          />
+        </div>
+      )
+    }
 
     return (
       <div>

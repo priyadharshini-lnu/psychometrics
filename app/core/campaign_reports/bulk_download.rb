@@ -99,10 +99,17 @@ module CampaignReports
       else
         start_date = job_record.data['start_date']
         end_date = job_record.data['end_date']
+        include_inactive_users = job_record.data['include_inactive_users'] || false
 
-        user_report_ids = ::Reports::BulkDownloadsQuery.new(campaign_reports,
-                                                            { start_date: start_date,
-                                                              end_date: end_date }).query.pluck(:id)
+        user_report_ids = ::Reports::BulkDownloadsQuery.new(
+          campaign_reports,
+          {
+            start_date: start_date,
+            end_date: end_date,
+            include_inactive_users: include_inactive_users
+          }
+        ).query.pluck(:id)
+
         UserReport.
           includes(:user, :report).
           where(id: user_report_ids)

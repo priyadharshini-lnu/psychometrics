@@ -1,93 +1,153 @@
-import _ from 'lodash'
 import React, {
   useReducer, useRef, useEffect, useState,
 } from 'react'
 import {
-  Button, Card, Col, Space,
+  Button, Flex, Space,
 } from 'antd'
 import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
 import * as faceapi from 'face-api.js'
-import { CheckOutlined, RightOutlined, RedoOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { BROWSER_NAME } from '~/utils/uaParser'
-import { InitVideo } from './InitVideo'
+import { StopOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { connect, ConnectedProps } from 'react-redux'
+import VideoPlayer from '~/components/MediaRecorder/components/VideoPlayer'
+import { RightOutlined, RedoOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+
 import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'
 import reducer, {
-  initialState, updateAccess, updateFaceDetection, failFaceDetectionByTimeout, updateUploading,
+  initialState, updateAccess, updateUploading, updateSpeechTestText,
 } from './reducer'
 import { CheckListStatus } from '../interfaces'
 import styles from './styles.less'
+import { useReactMediaRecorder } from '~/components/MediaRecorder/components/MediaRecorder'
+import { RANDOM_CONSTS_ARRAY } from '../services/consts'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
+import { getRandomVideoTestPhrase } from '../services/service'
+
 
 const { I18n, $ } = window
 
-interface Props {
+export const MAX_DURATION = 30
+
+const connector = connect(({ checkingWizard }: RootState) => ({
+  preSignedUrl: checkingWizard.preSignedUrl,
+  transcribeSupportedLocales: checkingWizard.transcribeSupportedLocales,
+}), {
+  preSignUrl,
+})
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = PropsFromRedux & {
   nextStep: () => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let player: any = null
 
-export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
+const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const mediaStreamRef = useRef<MediaStream | null>(null)
+
   const [state, dispatch] = useReducer(reducer, initialState)
   const [img, setImg] = useState<Blob | null>(null)
+  const [stream, setStream] = useState<MediaStream | null>(null)
+  const [visualizing, setVisualizing] = useState<boolean>(false)
+
+  const onStop = React.useCallback(() => {
+    setVisualizing(false)
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop())
+    }
+  }, [])
+
+  const isAccessDone = state.access === CheckListStatus.Done
+  const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
+  const isUploadingDone = state.uploading === CheckListStatus.Done
+
+
+  const {
+    status,
+    mediaBlobUrl,
+    startRecording,
+    stopRecording,
+    clearBlobUrl,
+  } = useReactMediaRecorder({
+    video: true,
+    audio: true,
+    onStop,
+  })
+
+
+  const getMediaStream = React.useCallback(async (): Promise<MediaStream | null> => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+      })
+      return stream
+    } catch (error) {
+      console.error('Error accessing media stream:', error)
+      return null
+    }
+  }, [])
 
   useEffect(() => {
-    if (!videoRef.current) return
-
-    player = InitVideo.run(videoRef.current)
-    player.on('error', () => {
-      dispatch(updateAccess(CheckListStatus.Failed))
-    })
     faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models')
-    player.on('deviceReady', () => {
-      player.record().start()
-    })
-    player.on('startRecord', () => {
-      setTimeout(() => track(), 1000)
-    })
-    player.on('finishRecord', () => dispatch(failFaceDetectionByTimeout()))
-  }, [])
+    if ((mediaBlobUrl) && videoRef.current) {
+      videoRef.current.srcObject = null
+      videoRef.current.src = mediaBlobUrl
+    }
+    preSignUrl()
+    const random = getRandomVideoTestPhrase(RANDOM_CONSTS_ARRAY)
+    dispatch(updateSpeechTestText(random))
+  }, [mediaBlobUrl])
+
 
   const requestAccess = async () => {
     if (!videoRef.current) return
 
     try {
-      await navigator.mediaDevices.getUserMedia({ video: true })
+      const mediaStream = await window.navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: true,
+      })
+      setStream(mediaStream)
+      mediaStreamRef.current = mediaStream
+
+
+      if (videoRef.current) {
+        videoRef.current.srcObject = mediaStream
+      }
       dispatch(updateAccess(CheckListStatus.Done))
-      player.record().getDevice()
+      setVisualizing(true)
+      startRecording()
+      setTimeout(() => track(), 1000)
     } catch (e) {
       dispatch(updateAccess(CheckListStatus.Failed))
     }
   }
 
+
   const track = async () => {
     if (!videoRef.current) return
-    const options = new faceapi.TinyFaceDetectorOptions()
 
-    const canvas = document.createElement('canvas')
-    const video = videoRef.current
-    canvas.width = video.videoWidth
-    canvas.height = video.videoHeight
-    // draw the video at that frame
-    const ctx = canvas.getContext('2d')
-    ctx?.translate(canvas.width, 0)
-    ctx?.scale(-1, 1)
-    ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
+    try {
+      const canvas = document.createElement('canvas')
+      const video = videoRef.current
+      canvas.width = video.videoWidth
+      canvas.height = video.videoHeight
 
-    canvas.toBlob(async (blob) => {
-      const detections = await faceapi.detectSingleFace(canvas, options)
+      const ctx = canvas.getContext('2d')
+      ctx?.translate(canvas.width, 0)
+      ctx?.scale(-1, 1)
+      ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
 
-      if (detections) {
-        player.record().pause()
+      canvas.toBlob(async (blob) => {
         setImg(blob)
-        dispatch(updateFaceDetection(CheckListStatus.Done))
-      } else {
-        setTimeout(() => track(), 500)
-      }
-    }, 'image/jpeg', 0.95)
+      }, 'image/jpeg', 0.95)
+    } catch (err) {
+      handleStopRecording()
+    }
   }
+
 
   const imageUpload = async () => {
     const upload = new DirectUpload(
@@ -127,14 +187,60 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     })
   }
 
+
+  const handleStopRecording = React.useCallback((): void => {
+    stopRecording()
+    // stopTranscription()
+    setVisualizing(false)
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach(track => track.stop())
+      mediaStreamRef.current = null
+    }
+  }, [stopRecording])
+
+
+  const renderActionButton = () => {
+    if (status === 'recording') {
+      return (
+        <Flex vertical align="center" gap={8}>
+          <Button onClick={handleStopRecording} type="primary" danger icon={<StopOutlined />}>
+            {I18n.t('assessments.video_response.stop_recording')}
+          </Button>
+        </Flex>
+      )
+    }
+
+    return (
+      <Button
+        onClick={() => requestAccess()}
+        type="primary"
+        icon={<VideoCameraOutlined />}
+      >
+        {I18n.t('assessments.video_response.start_recording')}
+      </Button>
+    )
+  }
+
+  const Controls:React.FC = () => (
+    <Flex className="m-16" gap={8}>
+      {!mediaBlobUrl && renderActionButton()}
+    </Flex>
+  )
+
   const rerun = async () => {
+    clearBlobUrl()
     setImg(null)
     dispatch(updateUploading(CheckListStatus.Pending))
-    // await requestAccess()
-    if (state.access === CheckListStatus.Failed) return
-    player.record().resume()
-    dispatch(updateFaceDetection(CheckListStatus.InProgress))
-    track()
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach(track => track.stop())
+      mediaStreamRef.current = null
+    }
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = null
+      videoRef.current.src = ''
+    }
+    requestAccess()
   }
   let progress = 0
   if (state.access === CheckListStatus.Done) progress += 33
@@ -142,104 +248,119 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
   if (state.uploading === CheckListStatus.Done) progress += 34
 
 
-  return (
-    <>
-      <title>{`${I18n.t('checking_wizard.video_check.title')}`}</title>
-      <Col className={styles.container} lg={16} xs={24} sm={24}>
-        <Card className={styles.card}>
-          <h4>{I18n.t('checking_wizard.video_check.title')}</h4>
-          <p>{I18n.t('checking_wizard.video_check.description')}</p>
-          <div className="position-relative">
-            <video ref={videoRef} className={styles.video} />
-            {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access) && (
-            <div className={styles.videoOverlap}>
-              <div className={styles.iconContainer}>
-                <span className={styles.icon} />
-              </div>
-              <div className={styles.allowTitle}>
-                {I18n.t('checking_wizard.video_check.allow_title')}
-              </div>
-              {state.access === CheckListStatus.InProgress && (
-              <Button type="primary" onClick={requestAccess}>
-                <CheckOutlined />
-                {I18n.t('checking_wizard.video_check.allow')}
-              </Button>
-              )}
-              {state.access === CheckListStatus.Failed && (
-              <Button type="primary" size="middle">
-                <a
-                  href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${BROWSER_NAME}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {I18n.t('checking_wizard.video_check.access_help')}
-                </a>
-              </Button>
-              )}
-            </div>
-            )}
-          </div>
-        </Card>
-      </Col>
-      <Col className={styles.container} lg={8} xs={24} sm={24}>
-        <Card className={styles.card}>
-          <Progress percent={progress} title={I18n.t('checking_wizard.video_check.processing')} />
-          <CheckList
-            className="mt24"
-            dataSource={[
-              { name: I18n.t('checking_wizard.video_check.access'), status: state.access },
-              { name: I18n.t('checking_wizard.video_check.face_detection'), status: state.faceDetection },
-              { name: I18n.t('checking_wizard.video_check.uploading'), status: state.uploading },
-            ]}
-          />
-          {img && (
-          <div className={styles.faceContainer}>
-            <img src={URL.createObjectURL(img)} alt="face" className={styles.face} />
-            <div className={styles.hint}>{I18n.t('checking_wizard.video_check.hint')}</div>
-          </div>
+  const handleVideoPlay = (): void => {
+    setVisualizing(true)
+  }
+
+  const renderProgressAndChecklist = () => (
+    <div className="mt-6" style={{ alignSelf: 'stretch' }}>
+      <Progress percent={progress} title={I18n.t('checking_wizard.video_check.processing')} />
+      <CheckList
+        className="mt14"
+        dataSource={[
+          { name: I18n.t('checking_wizard.video_check.access'), status: state.access },
+          { name: I18n.t('checking_wizard.video_check.uploading'), status: state.uploading },
+        ]}
+      />
+    </div>
+  )
+
+  const renderButtons = () => {
+    if (state.access !== CheckListStatus.Failed) {
+      return (
+        <Space className="m-12">
+          {isAccessDone && (
+            <Button
+              className={styles.continueButton}
+              onClick={rerun}
+              icon={<RedoOutlined />}
+              disabled={isUploadingInProgress || isUploadingDone}
+            >
+              {I18n.t('checking_wizard.video_check.retake')}
+            </Button>
           )}
-          {state.access !== CheckListStatus.Failed && state.faceDetection !== CheckListStatus.Failed ? (
-            <Space>
-              {state.access === CheckListStatus.Done
-                && (
-                  <Button
-                    className={styles.continueButton}
-                    onClick={rerun}
-                    icon={<RedoOutlined />}
-                    disabled={state.uploading === CheckListStatus.InProgress
-                      || state.uploading === CheckListStatus.Done}
-                  >
-                    {I18n.t('checking_wizard.video_check.retake')}
-                  </Button>
-                )}
-              <Button
-                size="middle"
-                type="primary"
-                className={styles.continueButton}
-                onClick={imageUpload}
-                disabled={state.access !== CheckListStatus.Done || state.faceDetection !== CheckListStatus.Done}
-                loading={state.uploading === CheckListStatus.InProgress}
-              >
-                {I18n.t('checking_wizard.video_check.continue')}
-                <RightOutlined />
-              </Button>
-            </Space>
-          )
-            : (
-              <Button
-                type="primary"
-                className={styles.continueButton}
-                onClick={rerun}
-              >
-                {I18n.t('checking_wizard.video_check.run_again')}
-                <RightOutlined />
-              </Button>
-            )
-          }
-        </Card>
-      </Col>
-    </>
+          <Button
+            size="middle"
+            type="primary"
+            className={styles.continueButton}
+            onClick={imageUpload}
+            disabled={!isAccessDone}
+            loading={isUploadingInProgress}
+          >
+            {I18n.t('checking_wizard.video_check.continue')}
+            <RightOutlined />
+          </Button>
+        </Space>
+      )
+    }
+    if (state.uploading === CheckListStatus.Failed) {
+      return (
+        <Button
+          type="primary"
+          className="m-12"
+          onClick={imageUpload}
+          icon={<RedoOutlined />}
+          loading={isUploadingInProgress}
+        >
+          {I18n.t('checking_wizard.video_check.upload_again')}
+        </Button>
+      )
+    }
+    return (
+      <Button
+        type="primary"
+        className="m-12"
+        onClick={rerun}
+        icon={<RedoOutlined />}
+      >
+        {I18n.t('checking_wizard.video_check.run_again')}
+      </Button>
+    )
+  }
+
+
+  return (
+    <Flex align="center" vertical>
+      <h3>{I18n.t('checking_wizard.video_check.title')}</h3>
+      <p>{I18n.t('checking_wizard.video_check.description')}</p>
+      {
+         ['idle', 'recording'].includes(status)
+        && (
+          <>
+            <h3 className={styles.testMessage}>
+              &#8220;
+              {state.speechTestText}
+              &#8221;
+            </h3>
+          </>
+        )
+      }
+      <VideoPlayer
+        videoRef={videoRef}
+        mediaUrl={mediaBlobUrl}
+        permissionGranted={state.access === CheckListStatus.Done}
+        status={status}
+        showCountdownTimer
+        duration={MAX_DURATION}
+        onFinish={handleStopRecording}
+        onPlay={handleVideoPlay}
+        visualizing={visualizing}
+        getMediaStream={getMediaStream}
+      />
+
+      <Controls />
+
+      {
+        status === 'stopped' && (
+          <>
+            {renderProgressAndChecklist()}
+            {renderButtons()}
+          </>
+        )}
+
+
+    </Flex>
   )
 }
 
-export default VideoCheck
+export const VideoCheck = connector(VideoCheckComponent)

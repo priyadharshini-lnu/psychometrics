@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import humps from 'humps'
 import { getModules, getPages } from './selectors'
 import PageInterface from '../interfaces/Page'
 
@@ -39,7 +40,7 @@ const SerializeReport = {
       name: string,
       props: object,
       data_sheet_columns: string[],
-      campaign_factors: string[],
+      campaign_factors: object[],
       filters: object[],
       styles: {[id: string]: object}
       pages?: object[]
@@ -48,7 +49,7 @@ const SerializeReport = {
       name: state.builder.name,
       props: state.builder.props,
       data_sheet_columns: state.builder.data_sheet_columns,
-      campaign_factors: state.builder.campaign_factors,
+      campaign_factors: humps.decamelizeKeys(state.builder.campaign_factors),
       filters: state.builder.filters,
       styles: state.builder.styles,
     }

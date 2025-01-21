@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Modal, DatePicker, Button } from 'antd'
+import {
+  Modal, DatePicker, Button, Checkbox,
+  Space,
+} from 'antd'
 import type { RangeValue } from 'rc-picker/lib/interface'
 import dayjs from '~/utils/dayjs'
 
 interface Props {
   open: boolean;
   onCancel: () => void;
-  onDownload: (startDate?: dayjs.Dayjs, endDate?: dayjs.Dayjs) => void;
+  onDownload: (startDate?: dayjs.Dayjs, endDate?: dayjs.Dayjs, includeInactiveUsers?: boolean) => void;
   dateFormat?: string
   modalTitle?:string
   showTime?: boolean
@@ -21,10 +24,11 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
   disabledDate, initialRange,
 }) => {
   const [dateRange, setDateRange] = useState<(dayjs.Dayjs | null)[]>(initialRange || [null, null])
+  const [includeInactiveUsers, setIncludeInactiveUsers] = useState(false)
 
   const handleDownload = () => {
     const [startDate, endDate] = dateRange
-    onDownload(startDate || undefined, endDate || undefined)
+    onDownload(startDate || undefined, endDate || undefined, includeInactiveUsers)
     resetDates()
   }
 
@@ -66,16 +70,24 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
       ]}
       destroyOnClose
     >
-      <DatePicker.RangePicker
-        value={[dateRange[0], dateRange[1]]}
-        onCalendarChange={dateRange => dateRange && setDateRange(dateRange)}
-        disabledDate={handleDisableDate}
-        format={dateFormat}
-        showTime={showTime}
-        placeholder={['Start Date', 'End Date']}
-        style={{ width: '100%' }}
-        allowClear={false}
-      />
+      <Space direction="vertical" size={16} className="mt-4">
+        <Checkbox
+          onChange={({ target: { checked } }) => { setIncludeInactiveUsers(checked) }}
+          checked={includeInactiveUsers}
+        >
+          {I18n.t('user.modals.exports.include_inactive_users')}
+        </Checkbox>
+        <DatePicker.RangePicker
+          value={[dateRange[0], dateRange[1]]}
+          onCalendarChange={dateRange => dateRange && setDateRange(dateRange)}
+          disabledDate={handleDisableDate}
+          format={dateFormat}
+          showTime={showTime}
+          placeholder={['Start Date', 'End Date']}
+          style={{ width: '100%' }}
+          allowClear={false}
+        />
+      </Space>
     </Modal>
   )
 }

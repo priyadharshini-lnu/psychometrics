@@ -65,7 +65,7 @@ class WorkshopSubject < ApplicationRecord
     communication = campaign.communications.workshop_booked.last
     return unless communication
 
-    communication.emails.create!(
+    communication.emails.create(
       campaign_user: campaign_user, workshop: workshop, workshop_invite: workshop_invite
     )
   end
@@ -74,7 +74,7 @@ class WorkshopSubject < ApplicationRecord
     communication = campaign.communications.workshop_cancelled.last
     return unless communication
 
-    communication.emails.create!(
+    communication.emails.create(
       campaign_user: campaign_user, workshop: workshop, workshop_invite: workshop_invite
     )
   end

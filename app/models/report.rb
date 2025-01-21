@@ -9,6 +9,7 @@ class Report < ApplicationRecord
   include SoftDelete
   include OwnerValidations
   include ActiveStorageAttachable
+  include Taggable
 
   PROVIDERS = {
     internal: 0,
@@ -36,6 +37,7 @@ class Report < ApplicationRecord
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
+  has_many :campaign_factors, class_name: 'Reports::CampaignFactor', dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error
@@ -65,7 +67,7 @@ class Report < ApplicationRecord
   end
 
   scope :assignable, -> { where(disabled: false, archived: false) }
-  scope :campaign_factor_dependable, -> { where.not("campaign_factors::text = '[]'") }
+  scope :campaign_factor_dependable, -> { where.not(campaign_factors: nil) }
 
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
@@ -99,6 +101,9 @@ class Report < ApplicationRecord
 
   has_one_image_attachment :icon, variants: [:thumb]
   has_one_image_attachment :poster, variants: [:thumb]
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :owner_id
 
   def attachment_storage_path(attribute_name, filename)
     "public/report/#{id}/#{attribute_name}/#{filename}"

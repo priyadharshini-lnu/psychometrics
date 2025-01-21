@@ -207,13 +207,15 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 
-      before { expect(campaign_user.campaign_factor_values).to be_empty }
+      before do
+        expect(CampaignFactorValue.where(campaign_id: campaign_id, user_id: user_id)).to be_empty
+      end
 
       response '200', 'CampaignUserScorings' do
         run_test! do |response|
           expect(response.status).to eq(200)
-
-          expect(campaign_user.campaign_factor_values.first.value).to eq(4)
+          campaign_factor_value = CampaignFactorValue.find_by(campaign_id: campaign_id, user_id: user_id)
+          expect(campaign_factor_value.value).to eq(4)
         end
       end
     end
@@ -245,7 +247,9 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
       response '200', 'CampaignUserScorings' do
         run_test! do |_response|
           expect(AdminJobRecord.last.operation).to eq('bulk_rescore_campaign_factors')
-          expect(AdminJobRecord.last.data).to eq({ 'user_ids' => [user_id], 'campaign_id' => campaign.id })
+          expect(AdminJobRecord.last.data).to eq({ 'user_ids' => [user_id],
+                                                   'excluded_user_ids' => nil,
+                                                   'campaign_id' => campaign.id })
         end
       end
     end

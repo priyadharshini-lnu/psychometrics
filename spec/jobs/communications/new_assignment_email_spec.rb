@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Communications::NewAssignmentJob, type: :job do
   let(:campaign) { create(:campaign) }
-  let(:campaign_user) { create(:campaign_user, campaign: campaign) }
+  let(:campaign_user) { create(:campaign_user, campaign: campaign, active: true) }
   let(:user) { campaign_user.user }
 
   it 'creates communication_email for user with new assessment if new assignment communication
@@ -49,6 +49,18 @@ describe Communications::NewAssignmentJob, type: :job do
     create(:communication, recipients: :new_assignment, project_campaign: new_campaign,
         project_id: new_campaign.project_id, last_ran_at: 5.minutes.ago)
     create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minute.ago)
+    expect do
+      described_class.perform_now
+    end.to_not change(CommunicationEmail, :count)
+  end
+
+  it "doesn't create communication_email for inactive campaign users" do
+    create(:communication, recipients: :new_assignment, project_campaign: campaign,
+      project_id: campaign.project_id, last_ran_at: 5.minutes.ago)
+    inactive_campaign_user = create(:campaign_user, campaign: campaign, active: false)
+    create(:user_assessment, subject: inactive_campaign_user.user, evaluator: inactive_campaign_user.user,
+      campaign: campaign, created_at: 1.minute.ago)
+
     expect do
       described_class.perform_now
     end.to_not change(CommunicationEmail, :count)

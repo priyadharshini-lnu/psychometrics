@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
   Row, Steps, Result, Button, Layout, Col, Space,
+  Flex,
 } from 'antd'
 import qs from 'qs'
 import Cookies from 'js-cookie'
 import { connect, ConnectedProps } from 'react-redux'
-
+import { LaptopOutlined, AudioOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { useLocation } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { fetch } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
@@ -42,18 +43,21 @@ const STEPS = [
     key: 'system',
     component: SystemCheck,
     title: 'checking_wizard.steps.system_check',
+    icon: <LaptopOutlined color="#fff" />,
     when: () => true,
   },
   {
     key: 'video',
     component: VideoCheck,
     title: 'checking_wizard.steps.video_check',
+    icon: <VideoCameraOutlined color="#fff" />,
     when: ({ video }) => video,
   },
   {
     key: 'audio',
     component: AudioCheck,
     title: 'checking_wizard.steps.audio_check',
+    icon: <AudioOutlined color="#fff" />,
     when: ({ audio }) => audio,
   },
   {
@@ -80,6 +84,9 @@ const CheckingWizardComponent: React.FC<Props> = ({
   const { isMobile } = useContext(MediaQueryContext)
   const { search } = useLocation()
   const mode = new URLSearchParams(search).get('mode')
+  if (checks.video) {
+    checks.audio = false
+  }
 
   useEffect(() => {
     const query = qs.parse(location.search.substr(1))
@@ -104,6 +111,7 @@ const CheckingWizardComponent: React.FC<Props> = ({
         `checking_wizard.${steps[currentStep].key}`,
         JSON.stringify({ ...data, [userAssessmentId]: true }), { expires: 1 / 24 },
       )
+      Cookies.set('checking_wizard.audio', true, { expires: 4 / 24 })
     } else {
       Cookies.set(`checking_wizard.${steps[currentStep].key}`, true, { expires: 4 / 24 })
     }
@@ -147,22 +155,44 @@ const CheckingWizardComponent: React.FC<Props> = ({
         : (
           <>
             <Steps
-              type="navigation"
               current={currentStep}
               direction={isMobile ? 'vertical' : 'horizontal'}
+              labelPlacement="vertical"
               className={styles.steps}
+              items={getSteps().map((step, index) => ({
+                title:
+            <span
+              style={{ fontSize: '14px', display: 'inline-block', width: 'max-content' }}
             >
-              {getSteps().map((step, i) => <Step key={i} title={I18n.t(step.title)} />)}
+              {I18n.t(step.title)}
+            </span>,
+                icon:
+            <div
+              style={{
+                background: index < currentStep || getSteps()[currentStep].key === step.key
+                  ? '#009ea7' : '#fff',
+              }}
+              className={styles.rounded}
+            >
+              <div className={index < currentStep || getSteps()[currentStep].key === step.key
+                ? styles[getSteps()[currentStep].key] : ''}
+              >
+                {step.icon}
+              </div>
+            </div>,
+              }))}
+            >
+              {getSteps().map((step, i) => (
+                <Step
+                  key={i}
+                  title={<span style={{ fontSize: '12px' }}>{I18n.t(step.title)}</span>}
+                />
+              ))}
             </Steps>
             <Content className={styles.pageLayout}>
-              <Row justify="center">
-                <Col xs={24} xl={20}>
-                  <Row gutter={12} className="m16">
-                    {CurrentCheck && <CurrentCheck nextStep={nextStep} config={config} />}
-                  </Row>
-                </Col>
-
-              </Row>
+              <Flex justify="center" align="center">
+                {CurrentCheck && <CurrentCheck nextStep={nextStep} config={config} />}
+              </Flex>
             </Content>
           </>
         )}

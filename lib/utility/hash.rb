@@ -27,6 +27,25 @@ module Utility
       hash
     end
 
+    def self.deep_merge(original, updates)
+      case original
+        when ::Hash
+          original.merge(updates) do |_key, old_val, new_val|
+            deep_merge(old_val, new_val)
+          end
+        when ::Array
+          original.each_with_index.map do |value, index|
+            if value.is_a?(::Hash) && updates[index].is_a?(::Hash)
+              deep_merge(value, updates[index])
+            else
+              updates[index] || value
+            end
+          end
+        else
+          updates.nil? ? original : updates
+      end
+    end
+
     def self.sanitize_nested_hash(props, key = nil)
       case props
         when ActionController::Parameters

@@ -16,10 +16,17 @@ describe CampaignReports::BulkDownload do
       campaign: campaign,
       report: report,
       status: 'prepared'
-    )
+    ).each do |user_report|
+      create(:campaign_user, user: user_report.user, campaign: user_report.campaign, active: true)
+    end
+  end
+  let!(:inactive_user_report_with_pdf) do
+    create(:user_report, :with_pdf, campaign: campaign, report: report, status: 'prepared').tap do |user_report|
+      create(:campaign_user, user: user_report.user, campaign: user_report.campaign, active: false)
+    end
   end
   let!(:assessments) do
-    user_reports_with_pdf.map do |user_report|
+    [*user_reports_with_pdf, inactive_user_report_with_pdf].map do |user_report|
       create(:user_assessment,
              subject_id: user_report.user.id,
              campaign_id: campaign.id,
@@ -80,6 +87,25 @@ describe CampaignReports::BulkDownload do
     expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[0])
     expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[1])
     expect_any_instance_of(described_class).to_not receive(:download_report).with(user_report_without_pdf)
+
+    described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
+  end
+
+  it 'ignores inactive users user_report by default' do
+    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[0])
+    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[1])
+    expect_any_instance_of(described_class).to_not receive(:download_report).with(inactive_user_report_with_pdf)
+
+    described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
+  end
+
+  it 'includes inactive users user_report when include_inactive_users param is true' do
+    job_record.data['include_inactive_users'] = true
+    job_record.save!
+
+    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[0])
+    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[1])
+    expect_any_instance_of(described_class).to receive(:download_report).with(inactive_user_report_with_pdf)
 
     described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
   end

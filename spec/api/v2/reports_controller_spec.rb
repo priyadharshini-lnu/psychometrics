@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 require 'swagger_helper'
+require_relative './concerns/taggable_api_endpoints_shared_examples'
 
 describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
@@ -263,5 +264,9 @@ describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.js
         end
       end
     end
+  end
+
+  describe 'taggable API endpoints' do
+    include_examples 'taggable API endpoints', Report
   end
 end

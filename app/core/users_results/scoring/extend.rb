@@ -5,13 +5,13 @@ module UsersResults
     class Extend < BaseCommand
       private_attr_reader :scoring, :norm_data, :dimension, :external_results, :factors_question_count, :answers
 
-      def initialize(scoring, norm_data, dimension, external_results, factors_question_count = {}, answers = {}) # rubocop:disable Metrics/ParameterLists
-        @external_results = external_results
-        @scoring = scoring.deep_stringify_keys
-        @norm_data = norm_data
-        @dimension = dimension
-        @factors_question_count = factors_question_count
-        @answers = answers
+      def initialize(context)
+        @dimension = context[:dimension]
+        @scoring = context[:scoring].deep_stringify_keys
+        @norm_data = context[:norm_data]
+        @external_results = context[:external_results] || {}
+        @answers = context[:answers] || {}
+        @factors_question_count = context[:factors_question_count] || {}
       end
 
       def call
@@ -32,10 +32,16 @@ module UsersResults
 
         norm = Norm.find_by(id: norm_data['id']) if norm_data.present? && norm_data['id']
 
-        extended_scoring = ::UsersResults::Scoring::AddScore.call!(
-          factor_hash, factor_hash.keys, scoring, norm, factor_norm_hash, external_results, factors_question_count,
-          Set.new, answers
-        )
+        extended_scoring = ::UsersResults::Scoring::AddScore.call!({
+          factor_hash: factor_hash,
+          factor_ids: factor_hash.keys,
+          scoring: scoring,
+          norm: norm,
+          factor_norm_hash: factor_norm_hash,
+          external_results: external_results,
+          answers: answers,
+          factors_question_count: factors_question_count
+        })
 
         broadcast :ok, extended_scoring
       end

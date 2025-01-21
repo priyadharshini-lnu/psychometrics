@@ -19,6 +19,7 @@ module Api
             optional(:enable_video_check).maybe(:bool)
             optional(:enable_audio_check).maybe(:bool)
             optional(:enable_network_check).maybe(:bool)
+            optional(:translations_migrated).maybe(:bool)
             optional(:icon_color).maybe(:string)
             optional(:external_settings).maybe(:hash) do
               optional(:assessment_id).maybe(:string)

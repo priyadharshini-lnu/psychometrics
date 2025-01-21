@@ -70,9 +70,14 @@ module UsersResults
       end
 
       broadcast :ok, ::UsersResults::Scoring::Extend.call!(
-        scoring, norm_data,
-        users_result.assessment.dimension, users_result.external_results, factors_question_count,
-        users_result.answers
+        {
+          dimension: users_result.assessment.dimension,
+          scoring: scoring,
+          norm_data: norm_data,
+          external_results: users_result.external_results,
+          answers: users_result.answers,
+          factors_question_count: factors_question_count
+        }
       )
     end
     # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

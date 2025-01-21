@@ -84,7 +84,7 @@ const AssessmentTableComponent: React.FC<Props> = ({
             <>
               <div>{assessment.name}</div>
               <TagList
-                initialTags={(assessment.tagList || []).filter(tag => tag !== null) as string[]}
+                initialTags={assessment.tagList as string[]}
                 config={{
                   editable: false,
                 }}

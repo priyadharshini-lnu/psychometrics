@@ -50,6 +50,7 @@ export const ReportTR = t.type({
   createdBy: t.union([t.string, t.null]),
   modifiedBy: t.union([t.string, t.null]),
   icon: t.union([t.string, t.null]),
+  tagList: t.array(t.union([t.string, t.null])),
   poster: t.union([t.string, t.null]),
   externalSettings: ExternalSettingsTR,
   externalReport: t.boolean,

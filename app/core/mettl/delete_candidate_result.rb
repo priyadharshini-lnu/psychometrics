@@ -15,7 +15,8 @@ module Mettl
       result = ::JSON.parse(response.body)
 
       unless result['status'] == 'SUCCESS'
-        raise "Mettl::DeleteCandidateResult failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
+        raise Mettl::Exceptions::DeleteCandidateResultFailed,
+              "Mettl::DeleteCandidateResult failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
       end
 
       user_assessment.mettl_user_assessment.update!(url: nil)

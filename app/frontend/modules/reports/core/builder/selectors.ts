@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { denormalize } from 'normalizr'
+import { camelizeKeys } from '~/utils/object'
 import {
   module, page, pages,
 } from '~/modules/reports/store/schema'
@@ -85,5 +86,5 @@ export const getFlatFactors = (state: RootState) => _.reduce(
 )
 
 export const getCampaignFactors = (state: RootState) => (
-  state.report.builder.campaign_factors || []
+  camelizeKeys(state.report.builder.campaign_factors) || []
 )

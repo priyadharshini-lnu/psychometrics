@@ -17,7 +17,8 @@ describe ::UsersResults::Scoring::GetNormScoreForFactor do
     factors_norm = create(:factors_norm, norm: five_scale_norm, factor: factor, props: norm_props)
     scoring = { factor.id.to_s => { 'score' => 2.5 } }
     factor_hash = { factor.id => { factor: factor } }
-    result = described_class.call!(factor.id, factor_hash, five_scale_norm, scoring, factors_norm)
+    result = described_class.call!({ factor_id: factor.id, factor_hash: factor_hash, norm: five_scale_norm,
+                                     scoring: scoring, factor_norm: factors_norm })
 
     expect(result).to eq(2)
   end
@@ -40,7 +41,8 @@ describe ::UsersResults::Scoring::GetNormScoreForFactor do
       factor2.id.to_s => { 'score' => 2, 'zscore' => 10.0 },
       factor3.id.to_s => { 'score' => 3.0, 'zscore' => 5.0 }
     }
-    result = described_class.call!(factor1.id, factor_hash, percentile_norm, scoring, nil)
+    result = described_class.call!({ factor_id: factor1.id, factor_hash: factor_hash, norm: percentile_norm,
+                                     scoring: scoring, factor_norm: nil })
 
     expect(result).to eq(Ztable.percentile(((10.0 * 1) + (5 * 3)) / 4))
   end
@@ -63,7 +65,8 @@ describe ::UsersResults::Scoring::GetNormScoreForFactor do
       factor2.id.to_s => { 'score' => 2, 'zscore' => 10.0 },
       factor3.id.to_s => { 'score' => 3.0, 'zscore' => nil }
     }
-    result = described_class.call!(factor1.id, factor_hash, percentile_norm, scoring, nil)
+    result = described_class.call!({ factor_id: factor1.id, factor_hash: factor_hash, norm: percentile_norm,
+                                     scoring: scoring, factor_norm: nil })
 
     expect(result).to eq(nil)
   end

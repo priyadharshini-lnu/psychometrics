@@ -38,9 +38,12 @@
 
 .selected {
   transition: 0.4s;
-  margin-right: -20px;
+  margin-inline-end: -20px;
   .content{
     background: #f0f0f0;
+  }
+  & .rtlContent{
+    padding-inline-end: 20px;
   }
 }
 
@@ -50,6 +53,10 @@
   justify-content: space-between;
   flex-direction: column;
   //overflow-x: auto;
+}
+
+.rtlContent {
+  align-items: flex-end;
 }
 
 .contentOuter {
