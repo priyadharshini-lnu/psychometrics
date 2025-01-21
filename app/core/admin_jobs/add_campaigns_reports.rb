@@ -3,9 +3,11 @@
 module AdminJobs
   class AddCampaignsReports < AdminJobs::Base
     def call
+      job_record.update(total_tasks: reports_names.length)
+
       form = ::Campaigns::Reports::Form.from_params(resource_params)
 
-      ::Campaigns::Reports::Add.call(form, campaign, owner) if form.valid?
+      ::Campaigns::Reports::Add.call(form, campaign, owner, job_record) if form.valid?
 
       broadcast :ok
     end

@@ -1389,6 +1389,9 @@ en:
     text: Text
   campaign_report:
     actions:
+      add_reports:
+        enqueue_message: Add Reports job is successfully enqueued
+        success_message: Reports were added successfully
       bulk_download: Bulk Download
       export_data: Export Data
     bulk_download:

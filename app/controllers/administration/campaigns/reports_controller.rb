@@ -21,7 +21,7 @@ module Administration
           AdminJob.call(:add_campaign_reports, { resource_params: resource_params, campaign_id: campaign.id },
                         current_user)
 
-          head :ok
+          assessments_and_reports
         else
           render json: { errors: form.errors.messages }, status: 422
         end
