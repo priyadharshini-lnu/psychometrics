@@ -1175,32 +1175,6 @@ providers:
               type: Percentile Scale
   simulation:
     assessments:
-      - id: golf
-        name: Golf
-        possible_languages:
-          - en
-      - id: golf-content-variations
-        name: Content Variations
-        default_content_variation_id: starWars
-        content_variations:
-          - id: starWars
-            name: Star Wars
-          - id: spicyFood
-            name: Spicy
-        possible_languages:
-          - en
-      - id: golf-demo
-        name: Golf Demo
-        possible_languages:
-          - en
-      - id: golf-multirole
-        name: Golf Multirole
-        possible_languages:
-          - en
-      - id: feature-showcase
-        name: Feature Showcase
-        possible_languages:
-          - en
       - id: mte-apply
         name: MTE Apply
         possible_languages:
@@ -1213,16 +1187,6 @@ providers:
           - ar
       - id: mte-guide
         name: MTE Guide
-        possible_languages:
-          - en
-          - ar
-      - id: pga-demo
-        name: PGA Demo
-        possible_languages:
-          - en
-          - ar
-      - id: mte-apply-cms
-        name: MTE Apply (CMS)
         possible_languages:
           - en
           - ar

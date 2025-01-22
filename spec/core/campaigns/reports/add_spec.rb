@@ -82,7 +82,19 @@ describe Campaigns::Reports::Add do
   end
 
   it 'saves external_config if campaign assessment is a simulation assessment' do
-    assessment = create(:assessment, :simulation, external_settings: { assessment_id: 'golf-content-variations' })
+    simulation_settings = Config::Options.new(
+      id: 'mte-apply',
+      name: 'MTE Apply',
+      default_content_variation_id: 'starWars',
+      content_variations: [
+        Config::Options.new(id: 'starWars', name: 'Star Wars'),
+        Config::Options.new(id: 'spicyFood', name: 'Spicy')
+      ],
+      possible_languages: ['en']
+    )
+    allow_any_instance_of(Assessment).to receive(:simulation_settings).and_return(simulation_settings)
+
+    assessment = create(:assessment, :simulation, external_settings: { assessment_id: 'mte-apply' })
 
     report = create(:report, assessments: [assessment])
     form = Campaigns::Reports::Form.new(report_ids: report.id, report_access: { report.id.to_s => true })
