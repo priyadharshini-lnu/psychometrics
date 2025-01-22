@@ -1,6 +1,6 @@
 spacer[size="16"]
-p License expired.
+p License overused.
 - if @client
   p
     = "Check Client #{@client.decorate.display_name} License usage "
-    = link_to "here.", license_administration_client_url(@client)
+    = link_to "here.", license_page_url(@client)
