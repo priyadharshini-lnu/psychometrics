@@ -36,7 +36,7 @@ const QuestionComponent = ({ filters, model, questions }) => {
         questionId,
       ], [])
       const values = _.map(answers, (answer) => {
-        const choiceAnswers = answer.filter(a => a.choice === choiceId)
+        const choiceAnswers = answer?.filter(a => a.choice === choiceId) || []
         return _.meanBy(choiceAnswers, (a) => {
           if (a.values) {
             return _.meanBy(a.values, val => val.recode_value)
