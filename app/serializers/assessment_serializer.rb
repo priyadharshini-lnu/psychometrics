@@ -36,11 +36,13 @@ class AssessmentSerializer < Panko::Serializer
   def factors
     return [] unless object.dimension
 
+    question_ids = FactorsScoring.factor_question_ids(object.id)
+
     Panko::ArraySerializer.new(
-      object.dimension.all_factors.with_attached_icon.includes(:sub_factors, :translations),
+      object.dimension.all_factors.with_attached_icon.includes(:sub_factors, :translations, sub_factors: :translations),
       each_serializer: Factors::WithSubFactorsSerializer,
       context: {
-        assessment_id: object.id
+        question_ids: question_ids
       }
     ).to_a
   end

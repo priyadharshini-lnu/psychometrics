@@ -8,6 +8,7 @@ const Question = function (attrs = {}) {
   this.name = attrs.name
   this.type = attrs.type
   this.props = attrs.props
+  this.assessment_id = attrs.assessment_id
 }
 
 Question.prototype = new EventEmitter()

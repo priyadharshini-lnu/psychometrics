@@ -4,12 +4,12 @@ import _ from 'lodash'
 import { denormalize } from 'normalizr'
 import { camelizeKeys } from '~/utils/object'
 import {
-  module, page, pages, blocks as blocksSchema,
+  module, page, pages,
 } from '~/modules/reports/store/schema'
-import QuestionModel from '~/modules/reports/models/Question'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import ModuleInterface from '../interfaces/Module'
 import PageInterface from '../interfaces/Page'
+import QuestionModel from '~/modules/reports/models/Question'
 
 export const getModules = (state: any, ids: number[]): ModuleInterface[] => denormalize(ids, [module], state)
 
@@ -44,16 +44,15 @@ const FILTER_QUESTION_TYPES = [
   'AudioResponse',
 ]
 
+const questionMemo = {}
+
 export const getQuestions = (state: RootState['report'], assessmentId: number) => {
-  const assessment = state.builder.assessments[assessmentId]
-  if (!assessment) { return {} }
-  const blocks = denormalize(assessment.blocks, [blocksSchema], state.builder)
-  return _.reduce(blocks, (acc, block) => {
-    const questions = _.filter(block.questions, q => !_.includes(
-      FILTER_QUESTION_TYPES, q.type,
-    )).reduce((acc, q) => ({ ...acc, [q.id]: new QuestionModel(q) }), {})
-    return { ...acc, ...questions }
-  }, {})
+  if (questionMemo[assessmentId]) { return questionMemo[assessmentId] }
+  const { questions } = state.builder
+
+  const qs = _.filter(questions, (q => q.assessment_id === assessmentId && !_.includes(FILTER_QUESTION_TYPES, q.type)))
+  questionMemo[assessmentId] = qs.reduce((r, q) => ({ ...r, [q.id]: new QuestionModel(q) }), {})
+  return questionMemo[assessmentId]
 }
 
 

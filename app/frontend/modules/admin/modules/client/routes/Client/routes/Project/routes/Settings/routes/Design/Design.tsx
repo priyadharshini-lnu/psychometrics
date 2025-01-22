@@ -23,7 +23,7 @@ import { getProject as getCurrentProject } from '~/modules/admin/core/ui/breadcr
 import styles from './styles.less'
 
 const { I18n } = window
-const DEFAULT_PRIMARY_COLOR = '#009ea7'
+const DEFAULT_PRIMARY_COLOR = '#00838A'
 const DEFAULT_ERROR_COLOR = '#ff4d4f'
 const MAX_ALT_TEXT_LENGTH = 100
 
@@ -401,7 +401,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
           <Form.Item label={I18n.t('administration.projects.design_settings.info_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="infoColor">
-                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#009ea7" />
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor={DEFAULT_PRIMARY_COLOR} />
               </Form.Item>
               <Button onClick={() => resetColor('infoColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}

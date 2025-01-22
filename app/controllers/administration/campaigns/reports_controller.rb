@@ -10,13 +10,18 @@ module Administration
 
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
-        if form.valid?
+        if form.valid? && form.skip_existing?
           ::Campaigns::Reports::Add.call(form, campaign, current_user) do
             on(:ok) do
               return assessments_and_reports
             end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
           end
+        elsif form.valid?
+          AdminJob.call(:add_campaign_reports, { resource_params: resource_params, campaign_id: campaign.id },
+                        current_user)
+
+          assessments_and_reports
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -251,6 +256,15 @@ module Administration
             project_id: campaign.project_id,
             campaign_id: campaign.id
           }
+        )
+      end
+
+      def resource_params
+        params[:resource].permit(
+          :report_family_id,
+          :operation,
+          :report_access,
+          report_ids: []
         )
       end
 

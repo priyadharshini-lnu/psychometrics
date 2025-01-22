@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -34,7 +41,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 -- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track planning and execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
 
 
 --
@@ -5445,7 +5452,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -14738,6 +14746,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250121134222'),
 ('20250113081931'),
 ('20250102162920'),
 ('20250102114258'),
@@ -15478,4 +15487,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

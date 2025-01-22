@@ -15,6 +15,13 @@ class FactorsScoring < ApplicationRecord
 
   scope :with_props, -> { where('factors_scoring.props->>0 is not null') }
 
+  def self.factor_question_ids(assessment_ids)
+    FactorsScoring.where(assessment_id: assessment_ids).
+      where('json_array_length(props) > 0').group(:factor_id).pluck(
+        :factor_id, 'array_agg(question_id)'
+      ).to_h
+  end
+
   # Using for deep clone in Assessment model
   def set_assessment_id
     self.assessment_id = question.try(:assessment_id) || question.block.try(:assessment_id)

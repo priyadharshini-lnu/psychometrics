@@ -711,6 +711,7 @@ en:
   admin_jobs:
     attrs:
       operations:
+        add_campaign_reports: Add Campaign Reports
         assessment_norm_export: Normed Results Export
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Raw Results Export
@@ -1390,6 +1391,9 @@ en:
     text: Text
   campaign_report:
     actions:
+      add_reports:
+        enqueue_message: Add Reports job is successfully enqueued
+        success_message: Reports were added successfully
       bulk_download: Bulk Download
       export_data: Export Data
     bulk_download:
