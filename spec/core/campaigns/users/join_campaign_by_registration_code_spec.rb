@@ -24,10 +24,12 @@ describe Campaigns::Users::JoinCampaignByRegistrationCode do
   end
 
   context 'add report and license usage' do
-    let(:report) { create(:report) }
-    let!(:campaign_reports) { create_list(:campaign_report, 2, report: report, campaign: campaign) }
-    let(:report_family) { report.report_families.first }
-    let!(:license) do
+    before(:each) do
+      reports = create_list(:report, 2)
+      campaign_report1 = create(:campaign_report, campaign: campaign, report: reports[0])
+      create(:campaign_report, campaign: campaign, report: reports[1])
+      report_family = campaign_report1.report.report_families.first
+
       create(
         :license,
         report_family: report_family,

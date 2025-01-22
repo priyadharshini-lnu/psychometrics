@@ -4,24 +4,27 @@ require 'rails_helper'
 
 describe CampaignReports::BulkDownload do
   let(:campaign) { create(:campaign) }
-  let(:report) { create(:report) }
   let(:current_user) { create(:user) }
   let(:job_record) { create(:admin_job_record) }
-  let(:campaign_reports) { create_list(:campaign_report, 2, campaign: campaign, report: report) }
+  let(:report1) { create(:report) }
+  let(:report2) { create(:report) }
+  let!(:campaign_report1) { create(:campaign_report, campaign: campaign, report: report1) }
+  let!(:campaign_report2) { create(:campaign_report, campaign: campaign, report: report2) }
+  let!(:campaign_reports) { [campaign_report1, campaign_report2] }
   let!(:user_reports_with_pdf) do
     create_list(
       :user_report,
       2,
       :with_pdf,
       campaign: campaign,
-      report: report,
+      report: report1,
       status: 'prepared'
     ).each do |user_report|
       create(:campaign_user, user: user_report.user, campaign: user_report.campaign, active: true)
     end
   end
   let!(:inactive_user_report_with_pdf) do
-    create(:user_report, :with_pdf, campaign: campaign, report: report, status: 'prepared').tap do |user_report|
+    create(:user_report, :with_pdf, campaign: campaign, report: report1, status: 'prepared').tap do |user_report|
       create(:campaign_user, user: user_report.user, campaign: user_report.campaign, active: false)
     end
   end
@@ -63,7 +66,7 @@ describe CampaignReports::BulkDownload do
   end
 
   it 'returns error message if no user_reports with pdf' do
-    user_report = create(:user_report, campaign: campaign, report: report)
+    user_report = create(:user_report, campaign: campaign, report: report1)
 
     user_reports = UserReport.where(id: user_report.id)
 
@@ -78,7 +81,7 @@ describe CampaignReports::BulkDownload do
     start_date = 2.days.ago.utc.iso8601(3)
     end_date = 1.day.ago.utc.iso8601(3)
 
-    user_report_without_pdf = create(:user_report, campaign: campaign, report: report)
+    user_report_without_pdf = create(:user_report, campaign: campaign, report: report1)
 
     job_record.data['start_date'] = start_date
     job_record.data['end_date'] = end_date

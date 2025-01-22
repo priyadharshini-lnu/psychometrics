@@ -10125,6 +10125,13 @@ CREATE INDEX index_campaign_reports_on_campaign_id ON public.campaign_reports US
 
 
 --
+-- Name: index_campaign_reports_on_campaign_id_and_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_reports_on_campaign_id_and_report_id ON public.campaign_reports USING btree (campaign_id, report_id);
+
+
+--
 -- Name: index_campaign_reports_on_report_family_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14747,6 +14754,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250121134222'),
+('20250121061959'),
 ('20250113081931'),
 ('20250102162920'),
 ('20250102114258'),
