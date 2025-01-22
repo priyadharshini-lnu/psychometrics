@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReportSerializer < Panko::Serializer # rubocop:disable Metrics/ClassLength
+class ReportSerializer < Panko::Serializer
   attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props, :pages, :category,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language, :other_languages,
@@ -65,28 +65,19 @@ class ReportSerializer < Panko::Serializer # rubocop:disable Metrics/ClassLength
 
   def factors
     object_assessment_ids = object.assessment_ids
-    factors = Factor.
-              selecting do
-      ['factors.*',
-       array(
-         _(
-           FactorsScoring.
-             select(:question_id).
-             where.has { |fs| fs.factor_id.eq(id) & fs.assessment_id.eq(object_assessment_ids) }.
-             where('json_array_length(props) > 0')
-         )
-       ).as('question_ids')]
-    end.
-              where(dimension_id: object.dimension_ids).
-              includes(:sub_factors).
+    factors = Factor.where(dimension_id: object.dimension_ids).
+              includes(:sub_factors, :translations, sub_factors: :translations).
               order(name: :asc)
+
+    question_ids = FactorsScoring.factor_question_ids(object_assessment_ids)
+
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
     factors.with_attached_icon.group_by(&:dimension_id).transform_values do |group|
       Panko::ArraySerializer.new(
         group,
         each_serializer: ::Factors::WithSubFactorsSerializer,
         context: {
-          assessment_id: object_assessment_ids,
+          question_ids: question_ids,
           report_id: object.id,
           alias: aliases
         }

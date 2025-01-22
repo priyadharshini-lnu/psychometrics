@@ -3,18 +3,20 @@
 module Campaigns
   module Reports
     class Add < BaseCommand
-      private_attr_reader :form, :campaign, :current_user
+      private_attr_reader :form, :campaign, :current_user, :job_record
 
-      def initialize(form, campaign, current_user)
+      def initialize(form, campaign, current_user, job_record = nil)
         @form = form
         @campaign = campaign
         @current_user = current_user
+        @job_record = job_record
       end
 
       def call
         transaction do
           reports.each do |report|
             create_campaign_report(report)
+            job_record&.increment_completed_tasks!
           end
         end
         broadcast :ok, nil

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Form, Select, Table, Checkbox, Radio, Space,
+  Form, Select, Table, Checkbox, Radio, Space, message,
 } from 'antd'
 import _ from 'lodash'
 
@@ -77,15 +77,28 @@ const AddReportModal: React.FC<Props> = ({
     }
   }
 
+  const showSuccessMessage = (operation) => {
+    if (operation === 'skip_existing') {
+      message.success(I18n.t('campaign_report.actions.add_reports.success_message'))
+    } else {
+      message.success(I18n.t('campaign_report.actions.add_reports.enqueue_message'))
+    }
+  }
+
   return (
     <ResourceFormModal
       resourceName="report"
       readableResourceName="Report"
       requestScope={requestScope}
       resourceBaseUrl={resourceBaseUrl}
-      showSuccessMessages
       close={close}
       scrollToFirstError
+      onSuccessfulSubmission={(_, form: { operation?: string }) => {
+        const { operation } = form
+        if (operation) {
+          showSuccessMessage(operation)
+        }
+      }}
       modalProps={{ width: 620 }}
       formProps={{ initialValues: { operation: operationsOption[0] } }}
       transformValues={transformValues}

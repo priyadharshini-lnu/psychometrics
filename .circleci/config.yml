@@ -675,5 +675,6 @@ workflows:
           name: heroku_release_production
           source-app-name: tte-lighthouse-staging
           target-app-name: tte-lighthouse-prod
+          context: psychometrics-prod-deployment
           requires:
             - approve_production

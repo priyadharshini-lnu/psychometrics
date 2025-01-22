@@ -833,6 +833,8 @@ ar:
       email: البريد الإلكتروني
       first_name: الاسم الاول
       last_name: إسم العائلة
+  user_assessments:
+    redirect: سيتم إعادة توجيهك إلى موقع طرف ثالث لإجراء هذا التقييم. يُرجى النقر على متابعة إذا كنت ترغب في بدء التقييم.
   user_reports:
     actions:
       regenerate: تجديد

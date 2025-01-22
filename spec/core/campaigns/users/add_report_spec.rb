@@ -223,7 +223,7 @@ data_seprator: '4-2')
   end
 
   it "call Recompute if operation is set to 'add_with_existing_response'" do
-    expect(::UsersResults::Recompute).to receive(:call!)
+    expect(::UsersResults::RecomputeJob).to receive(:perform_later)
 
     described_class.call!(
       campaign_user, report, operation: 'add_with_existing_response', assessments: report.assessments

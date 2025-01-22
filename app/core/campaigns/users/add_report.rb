@@ -83,7 +83,7 @@ module Campaigns
         end
 
         if options[:operation] == 'add_with_existing_response'
-          ::UsersResults::Recompute.call!(user_assessment.users_result, user)
+          ::UsersResults::RecomputeJob.perform_later(user_assessment.users_result, user)
         end
 
         user_assessment

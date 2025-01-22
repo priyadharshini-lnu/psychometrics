@@ -767,6 +767,7 @@ export default {
       "template_id": null,
       "questions": [{
         "id": 17377,
+        "assessment_id": 190,
         "name": "MT",
         "type": "TextEntry",
         "position": 1,
@@ -788,6 +789,7 @@ export default {
         "comments": []
       }, {
         "id": 17480,
+        "assessment_id": 190,
         "name": "Q91",
         "type": "TextEntry",
         "position": 2,
@@ -818,6 +820,7 @@ export default {
       "template_id": null,
       "questions": [{
         "id": 17378,
+        "assessment_id": 190,
         "name": "SBS",
         "type": "SideBySide",
         "position": 1,
@@ -863,6 +866,7 @@ export default {
         "comments": []
       }, {
         "id": 17379,
+        "assessment_id": 190,
         "name": "MC",
         "type": "MultipleChoice",
         "position": 2,
@@ -887,6 +891,7 @@ export default {
         "comments": []
       }, {
         "id": 17381,
+        "assessment_id": 190,
         "name": "Sl",
         "type": "Slider",
         "position": 3,

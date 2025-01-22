@@ -26,6 +26,10 @@ module Campaigns
       def report_map
         {}
       end
+
+      def skip_existing?
+        operation == 'skip_existing'
+      end
     end
   end
 end

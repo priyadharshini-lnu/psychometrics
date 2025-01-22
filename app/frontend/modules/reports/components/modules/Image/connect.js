@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
 
 export default connect(
-  ({ report: { builder } }) => ({
-    pageSize: builder.props.sizes,
-    questions: builder.questions,
-    reportStyles: builder.styles,
+  ({ report }, { modules, module }) => ({
+    pageSize: report.builder.props.sizes,
+    questions: getQuestions(report, (module || modules[0]).assessment_id) || {},
+    reportStyles: report.builder.styles,
   }),
   {
     openConditionalImage: data => openModal('conditionalImage', data),
