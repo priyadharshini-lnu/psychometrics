@@ -45,6 +45,7 @@ enum StackRank {
 type DataType = {
   id: string;
   email: string;
+  active: string;
   campaignScoresFinalized: boolean | null;
   campaignScoresFinalizedDate: string | null;
   campaignScoresCalculatedDate: string | null;
@@ -120,6 +121,9 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
           ],
         },
         include: ['campaign_factor_values', 'user'],
+        filter: {
+          campaign_users_active_in: 'true',
+        },
       },
     },
   )
@@ -258,7 +262,8 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     campaignFactorData,
     handleConfirmAction,
     getSortOrder, meta,
-  ), [campaignFactorData, getSortOrder])
+    getFilteredValue,
+  ), [campaignFactorData, getSortOrder, getFilteredValue])
 
   const handleChange = (pagination, filters, sorter) => {
     handleTableChange(pagination, filters, sorter)
@@ -358,6 +363,7 @@ function createSortedTableColumns (
   campaignFactorData: CampaignFactorGroupType[],
   handleAction: (actions: string, subject)=> void,
   getSortOrder, meta,
+  getFilteredValue,
 ): ColumnsType<DataType> {
   let stackRankColumn: string | null = null
   const sortedGroupColumns: ColumnsType<DataType> = campaignFactorData?.map(group => ({
@@ -393,6 +399,18 @@ function createSortedTableColumns (
       fixed: 'left',
       sorter: true,
       sortOrder: getSortOrder('id'),
+    },
+    {
+      title: I18n.t('administration.scoring.active'),
+      dataIndex: 'active',
+      key: 'campaign_users_active',
+      width: 80,
+      fixed: 'left',
+      filters: [
+        { text: 'Active', value: true },
+        { text: 'Inactive', value: false },
+      ],
+      filteredValue: (getFilteredValue('campaign_users_active_in') || [true]),
     },
     {
       title: I18n.t('administration.scoring.subject'),
@@ -507,6 +525,7 @@ const processData = (
   const userData = {
     key: userId,
     id: userId,
+    active: valueData?.active ? 'Yes' : 'No',
     email: valueData?.user.email,
     campaignScoresFinalizedDate: valueData?.campaignScoresFinalizedDate,
     campaignScoresCalculatedDate: valueData?.campaignScoresCalculatedDate,

@@ -2710,6 +2710,7 @@ en:
         resources: Resources
         subjects: Subjects
     scoring:
+      active: Active
       actual_average: Actual Average
       add_factor: Add Factor
       add_group: Add Group
