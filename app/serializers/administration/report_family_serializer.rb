@@ -5,7 +5,7 @@ module Administration
     attributes :id, :name, :reports
 
     def reports
-      object.reports.order(:name).map { |report| report.slice(:id, :name) }
+      object.reports.where(category: :common).order(:name).map { |report| report.slice(:id, :name) }
     end
   end
 end

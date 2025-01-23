@@ -105,6 +105,10 @@ class Report < ApplicationRecord
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :owner_id
 
+  ransacker :category, formatter: proc { |v| categories[v] } do |parent|
+    parent.table[:category]
+  end
+
   def attachment_storage_path(attribute_name, filename)
     "public/report/#{id}/#{attribute_name}/#{filename}"
   end
@@ -145,7 +149,7 @@ class Report < ApplicationRecord
   scope :unarchived, -> { where(archived: false) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name provider]
+    %w[id name provider category]
   end
 
   def self.ransackable_associations(_auth_object = nil)

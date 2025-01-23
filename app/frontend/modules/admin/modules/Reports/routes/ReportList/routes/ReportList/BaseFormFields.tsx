@@ -32,6 +32,7 @@ type OptionsType = {
 
 export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
   const { availableLocales } = I18n
+  const isEditForm = !!report
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
@@ -205,7 +206,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
         label={I18n.t('reports.columns.default_language')}
         initialValue={report?.defaultLanguage || 'en'}
       >
-        <Select>
+        <Select disabled={isEditForm}>
           {availableLocales.map(locale => (
             <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
           ))}

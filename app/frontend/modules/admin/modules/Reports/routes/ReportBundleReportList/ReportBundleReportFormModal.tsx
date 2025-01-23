@@ -51,7 +51,7 @@ export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
               onSearch={(value) => {
                 fetchReports({
                   apiConfig: {
-                    filter: { filterable_fields: value },
+                    filter: { filterable_fields: value, category_eq: 'common' },
                     fields: { reports: ['name', 'hogan_report_packages'] },
                   },
                 })

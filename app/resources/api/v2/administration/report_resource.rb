@@ -6,7 +6,7 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
              :external_settings, :external_report, :provider, :hogan_report_packages, :other_languages,
              :tag_list
 
-  ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
+  ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in category_eq]
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :remove, payload: '*'
@@ -24,6 +24,10 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
 
   before_update do
     @model.updated_by_id = context[:user].id
+  end
+
+  def self.updatable_fields(_)
+    super - %i[default_language]
   end
 
   def remove
