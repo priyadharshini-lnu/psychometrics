@@ -114,7 +114,12 @@ module Api
 
       AdminJob.call(
         :export_campaign_scorings,
-        { campaign_id: campaign.id },
+        {
+          campaign_id: campaign.id,
+          filters: {
+            campaign_users_active_in: params.dig(:filters, :campaign_users_active_in)
+          }
+        },
         current_user
       )
       render json: :ok

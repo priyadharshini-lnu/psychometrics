@@ -23,6 +23,7 @@ import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
 import { ImportExternalScoringModal } from './ImportExternalScoringModal'
+import { ExportScoringsModal } from './ExportScoringsModal'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import Modals from '~/modules/admin/components/Modals/'
@@ -76,6 +77,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
   const [openImportExternalScoringModal, setopenImportExternalScoringModal] = useState(false)
+  const [openExportScoringsModal, setopenExportScoringsModal] = useState(false)
 
   const {
     data: campaignFactorData,
@@ -190,13 +192,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
 
   const handleToolAction = (action: string) => {
     if (action === 'export') {
-      collectionAction({
-        action: 'export_scorings',
-        method: 'get',
-        responseType: t.literal('ok'),
-      }).then(() => {
-        message.success(I18n.t('administration.scoring.subject_list.export_success'))
-      })
+      setopenExportScoringsModal(true)
     } else if (action === 'import_external_scores') {
       setopenImportExternalScoringModal(true)
     }
@@ -294,6 +290,19 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
             }}
             onClick={action => handleToolAction(action)}
           />
+          <ExportScoringsModal
+            exportScorings={params => collectionAction({
+              action: 'export_scorings',
+              method: 'get',
+              body: {
+                filters: params.filters,
+              },
+              responseType: t.literal('ok'),
+            }).then(() => { message.success(I18n.t('administration.scoring.subject_list.export_success')) })}
+            open={openExportScoringsModal}
+            close={() => setopenExportScoringsModal(false)}
+          />
+
           <ImportExternalScoringModal
             open={openImportExternalScoringModal}
             close={() => setopenImportExternalScoringModal(false)}

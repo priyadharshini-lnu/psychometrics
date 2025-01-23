@@ -76,8 +76,9 @@ module AdminJobs
         campaign_id: campaign.id,
         filter: {
           limit: limit,
-          offset: offset
-        }
+          offset: offset,
+          ** record.data['filters']
+        }.with_indifferent_access
       ).query
     end
 
