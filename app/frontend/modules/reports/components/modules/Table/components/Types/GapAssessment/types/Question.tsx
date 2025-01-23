@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import keyBy from 'lodash/keyBy'
 import compact from 'lodash/compact'
@@ -81,6 +81,7 @@ interface OwnProps {
   noOfItems: number | null
   gapCutoff: number | null
   precision?: number
+  style?: CSSProperties & { fontColor: string }
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -96,6 +97,7 @@ const QuestionTypeComponent: FC<Props> = ({
   noOfItems,
   gapCutoff,
   precision,
+  style,
 }) => {
   const calculateGaps = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -198,9 +200,10 @@ const QuestionTypeComponent: FC<Props> = ({
   const showPositiveGapTable = gapType === GapType.ALL || gapType === GapType.POSITIVE
   const showNegativeGapsTable = gapType === GapType.ALL || gapType === GapType.NEGATIVE
   const showTitle = gapType === GapType.ALL
+  const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
   return (
-    <div className={cs(styles.table, styles[tableStyle])}>
+    <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
       <table>
         <tbody>
           {showPositiveGapTable && (

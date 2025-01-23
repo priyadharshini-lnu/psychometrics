@@ -7,6 +7,6 @@ class Api::V2::Administration::TagResource < Api::V2::Administration::BaseResour
   ransack_filters %i[name_cont]
 
   def self.records(opts = {})
-    Api::Administration::TagPolicy::Scope.new(opts[:context][:user], nil).resolve
+    Api::Administration::TagPolicy::Scope.new(opts[:context][:user], nil, { filter: opts[:context][:filter] }).resolve
   end
 end

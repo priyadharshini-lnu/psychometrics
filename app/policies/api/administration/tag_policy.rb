@@ -9,9 +9,12 @@ module Api
 
       class Scope < Administration::BasePolicy::Scope
         def resolve
-          tags = ActsAsTaggableOn::Tag.all
+          tags = ActsAsTaggableOn::Tag.
+                 joins(:taggings).
+                 where(taggings: { taggable_type: filter[:taggable_resource_type] }).
+                 order(taggings_count: :desc)
 
-          return tags if @user.is?(:superadmin)
+          return tags.distinct if @user.is?(:superadmin)
 
           owner_ids = @user.owner_ids
           tags.accessible_to_clients(owner_ids)

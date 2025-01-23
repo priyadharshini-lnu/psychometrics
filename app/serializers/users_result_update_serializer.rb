@@ -42,7 +42,9 @@ class UsersResultUpdateSerializer < Panko::Serializer
     if block
       BlockSerializer.new(
         context: {
-          piped_text_context: piped_text_context
+          piped_text_context: piped_text_context,
+          selected_locale: object.user_assessment.selected_locale || context[:locale],
+          translations: translations
         }
       ).serialize(block)
     end

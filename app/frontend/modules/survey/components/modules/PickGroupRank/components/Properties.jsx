@@ -157,8 +157,19 @@ export class Properties extends Component {
   }
 
   render () {
-    const { model, restricted } = this.props
+    const { model, restricted, showOnlyTranslatable } = this.props
     const { type } = model.props
+
+    if (showOnlyTranslatable) {
+      return (
+        <div>
+          <ValidationTypes
+            model={model}
+            update={() => this.forceUpdate()}
+          />
+        </div>
+      )
+    }
     return (
       <div>
         {this.renderChoices()}

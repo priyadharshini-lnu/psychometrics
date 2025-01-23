@@ -421,7 +421,8 @@ status: :in_progress)
         assessor_user_assessment.update!(status: :completed, score_calculated: true)
       end
 
-      expect(campaign_user.campaign_factor_values.first.numeric_value).to eq(3)
+      campaign_factor_value = CampaignFactorValue.find_by(campaign_id: campaign.id, user_id: campaign_user.user_id)
+      expect(campaign_factor_value.numeric_value).to eq(3)
     end
 
     it 'ignore calculating factor values if it is not a assessor assessment' do
@@ -431,7 +432,8 @@ status: :in_progress)
         assessor_user_assessment.update!(status: :completed)
       end
 
-      expect(campaign_user.campaign_factor_values).to be_empty
+      campaign_factor_values = CampaignFactorValue.where(campaign_id: campaign.id, user_id: campaign_user.user_id)
+      expect(campaign_factor_values).to be_empty
     end
   end
 end

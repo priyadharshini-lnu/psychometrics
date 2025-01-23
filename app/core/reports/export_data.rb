@@ -13,46 +13,47 @@ module Reports
     end
 
     def call # rubocop:disable Metrics/AbcSize
-      xlsx = Axlsx::Package.new do |package|
-        workbook = package.workbook
-        add_workbook_styles(workbook)
-        workbook.add_worksheet(name: 'ReportDataExport') do |sheet|
-          # Draws two blank rows for header
-          #
-          sheet.add_row [], style: header_style
-          sheet.add_row [], style: header_style
+      package = ExcelSafe.new
 
-          # Draws headers and collect data
-          #
-          header_position = 0
-          configuration_sections.each do |section|
-            # Builds Sub Headers
-            sub_headers = build_sub_headers(section).flatten
-            sub_headers_size = sub_headers.size - 1
+      workbook = package.workbook
+      add_workbook_styles(workbook)
+      package.add_worksheet('ReportDataExport') do |sheet|
+        # Draws two blank rows for header
+        #
+        sheet.add_row [], style: header_style
+        sheet.add_row [], style: header_style
 
-            # Draws Header
-            sheet.rows.first.add_cell(section['label'], style: header_style)
-            # Adds blank cell for then able to merge
-            sub_headers_size.times { sheet.rows.first.add_cell('') }
-            # Draws Sub Headers
-            sub_headers.each do |sub_header|
-              sheet.rows.second.add_cell(sub_header, style: sub_header_style)
-            end
+        # Draws headers and collect data
+        #
+        header_position = 0
+        configuration_sections.each do |section|
+          # Builds Sub Headers
+          sub_headers = build_sub_headers(section).flatten
+          sub_headers_size = sub_headers.size - 1
 
-            # Merge Header cells to one cell
-            cells_range = header_position..(header_position + sub_headers_size)
-            sheet.merge_cells sheet.rows.first.cells[cells_range]
-            # Calculates next header position
-            header_position = cells_range.last + 1
+          # Draws Header
+          sheet.rows.first.add_cell(section['label'], style: header_style)
+          # Adds blank cell for then able to merge
+          sub_headers_size.times { sheet.rows.first.add_cell('') }
+          # Draws Sub Headers
+          sub_headers.each do |sub_header|
+            sheet.rows.second.add_cell(sub_header, style: sub_header_style)
           end
 
-          users_results.includes(:subject).group_by(&:subject_id).each do |_, results|
-            results = ::Reports::BuildResults.call(report, results, resources)[:ok].flatten
-            sheet.add_row(results.pluck(:value), style: content_style)
-          end
+          # Merge Header cells to one cell
+          cells_range = header_position..(header_position + sub_headers_size)
+          sheet.merge_cells sheet.rows.first.cells[cells_range]
+          # Calculates next header position
+          header_position = cells_range.last + 1
+        end
+
+        users_results.includes(:subject).group_by(&:subject_id).each do |_, results|
+          results = ::Reports::BuildResults.call(report, results, resources)[:ok].flatten
+          sheet.add_row(results.pluck(:value), style: content_style)
         end
       end
-      broadcast :ok, xlsx
+
+      broadcast :ok, package
     end
 
     private

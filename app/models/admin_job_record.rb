@@ -69,7 +69,8 @@ class AdminJobRecord < ApplicationRecord
     normalize_factor_scores: 49,
     export_occupations: 50,
     export_user_report_events: 51,
-    add_campaign_reports: 52
+    migrate_assessment_translations: 52,
+    add_campaign_reports: 53
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

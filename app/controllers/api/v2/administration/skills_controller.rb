@@ -2,6 +2,8 @@
 
 module Api
   class V2::Administration::SkillsController < Api::V2::Administration::BaseController
+    include Api::V2::Administration::Concerns::Taggable
+
     def meta_details
       {
         permissions: lambda {

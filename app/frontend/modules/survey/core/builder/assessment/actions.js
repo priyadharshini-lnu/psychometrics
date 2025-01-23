@@ -32,10 +32,13 @@ export const UPDATE_LINKED_QUESTIONS = 'builder/assessment/UPDATE_LINKED_QUESTIO
 export const TOGGLE_ENABLE_SAVE = 'survey/assessment/TOGGLE_ENABLE_SAVE'
 export const SAVE_CAMPAIGN_FACTORS = 'builder/assessment/SAVE_CAMPAIGN_FACTORS'
 
-export const fetch = assessmentId => ({
+export const fetch = (assessmentId, currentLocale) => ({
   type: FETCH,
   request: {
     url: `/administration/assessments/${assessmentId}/builders`,
+    body: {
+      lang: currentLocale,
+    },
     camelize: false,
   },
 })
@@ -65,10 +68,11 @@ export const toggleEnableSave = () => ({ type: TOGGLE_ENABLE_SAVE })
 export const saveCampaignFactors = data => ({ type: SAVE_CAMPAIGN_FACTORS, data })
 
 
-export const saveAssessment = (data) => {
+export const saveAssessment = (data, currentLocale) => {
   const builder = {
     assessment: SerializeAssessment.run(data),
     trash: SerializeTrash.run(trashItems({ survey: { builder: data } })),
+    locale: currentLocale,
   }
 
   return {

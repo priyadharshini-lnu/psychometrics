@@ -1,10 +1,10 @@
 import Types from './Types'
 
-const ThreeSixtyDefault = ({ model }) => {
+const ThreeSixtyDefault = ({ model, insertPaginationPage }) => {
   const Type = Types[model.props.sourceType]
   return (
     <div>
-      <Type model={model} />
+      <Type model={model} insertPaginationPage={insertPaginationPage} />
     </div>
   )
 }

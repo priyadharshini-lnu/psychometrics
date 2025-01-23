@@ -8,22 +8,17 @@ module UsersResults
                             :factor_norm_hash, :factors_question_count, :external_results,
                             :visited_factor_ids, :answers
 
-        # rubocop:disable Metrics/ParameterLists
-        def initialize(
-          factor_data, extended_scoring, factor_hash, norm, factor_norm_hash, external_results, factors_question_count,
-          visited_factor_ids, answers = {}
-        )
-          @factor_data = factor_data
-          @extended_scoring = extended_scoring
-          @factor_hash = factor_hash
-          @norm = norm
-          @factor_norm_hash = factor_norm_hash
-          @external_results = external_results
-          @factors_question_count = factors_question_count
-          @visited_factor_ids = visited_factor_ids
-          @answers = answers
+        def initialize(context)
+          @factor_data = context[:factor_data]
+          @extended_scoring = context[:extended_scoring]
+          @factor_hash = context[:factor_hash]
+          @norm = context[:norm]
+          @factor_norm_hash = context[:factor_norm_hash]
+          @external_results = context[:external_results]
+          @factors_question_count = context[:factors_question_count]
+          @visited_factor_ids = context[:visited_factor_ids]
+          @answers = context[:answers] || {}
         end
-        # rubocop:enable Metrics/ParameterLists
 
         def round_score(score, default_precision = nil)
           return score if score.nil? || !score.is_a?(Numeric)

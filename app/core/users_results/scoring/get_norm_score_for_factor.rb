@@ -5,13 +5,15 @@ module UsersResults
     class GetNormScoreForFactor < BaseCommand
       attr_reader :factor, :sub_factor_hash, :factor_hash, :norm, :scoring, :factor_norm
 
-      def initialize(factor_id, factor_hash, norm, scoring, factor_norm)
+      def initialize(context)
+        factor_id = context[:factor_id]
+        factor_hash = context[:factor_hash]
         @factor = factor_hash.dig(factor_id, :factor)
         @sub_factor_hash = factor_hash.dig(factor_id, :sub_factor_hash)
         @factor_hash = factor_hash
-        @scoring = scoring
-        @factor_norm = factor_norm
-        @norm = norm
+        @scoring = context[:scoring]
+        @factor_norm = context[:factor_norm]
+        @norm = context[:norm]
       end
 
       def call

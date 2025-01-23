@@ -492,7 +492,8 @@ CREATE TABLE public.assessments (
     linked_assessment_id integer,
     linked_questions json DEFAULT '{}'::json,
     default_language character varying DEFAULT 'en'::character varying,
-    campaign_factors_list jsonb DEFAULT '[]'::jsonb
+    campaign_factors_list jsonb DEFAULT '[]'::jsonb,
+    translations_migrated boolean DEFAULT true
 );
 
 
@@ -1235,7 +1236,9 @@ CREATE TABLE public.campaign_reports (
     assessor_access boolean DEFAULT false,
     user_dashboard boolean DEFAULT false,
     main_report boolean DEFAULT false,
-    auto_assign boolean DEFAULT true
+    auto_assign boolean DEFAULT true,
+    default_language character varying,
+    available_languages jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -3270,35 +3273,6 @@ ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_crede
 
 
 --
--- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_assessment_factor_scores (
-    id bigint NOT NULL,
-    user_assessment_id bigint NOT NULL,
-    factor_id bigint NOT NULL,
-    scores jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
-   FROM public.user_assessment_factor_scores;
-
-
---
 -- Name: norms; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4245,7 +4219,7 @@ CREATE TABLE public.reports (
     updated_by_id bigint,
     data_only boolean DEFAULT false,
     external_settings jsonb DEFAULT '{}'::jsonb,
-    campaign_factors jsonb DEFAULT '[]'::jsonb NOT NULL,
+    campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
     other_languages jsonb DEFAULT '[]'::jsonb
 );
@@ -4283,6 +4257,40 @@ CREATE SEQUENCE public.reports_accesses_id_seq
 --
 
 ALTER SEQUENCE public.reports_accesses_id_seq OWNED BY public.reports_accesses.id;
+
+
+--
+-- Name: reports_campaign_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reports_campaign_factors (
+    id bigint NOT NULL,
+    code character varying NOT NULL,
+    report_id bigint NOT NULL,
+    name character varying NOT NULL,
+    output_type character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: reports_campaign_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reports_campaign_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_campaign_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reports_campaign_factors_id_seq OWNED BY public.reports_campaign_factors.id;
 
 
 --
@@ -4530,7 +4538,8 @@ CREATE TABLE public.saville_user_assessments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     data_seprator character varying,
-    error_code character varying
+    error_code character varying,
+    candidate_id bigint
 );
 
 
@@ -4895,7 +4904,8 @@ CREATE TABLE public.skills (
     description character varying NOT NULL,
     category integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    owner_id integer
 );
 
 
@@ -5684,7 +5694,8 @@ CREATE TABLE public.translations (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     resource_type character varying,
-    resource_id integer
+    resource_id integer,
+    data jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -5705,6 +5716,20 @@ CREATE SEQUENCE public.translations_id_seq
 --
 
 ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
+
+
+--
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
@@ -7545,6 +7570,13 @@ ALTER TABLE ONLY public.reports_accesses ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: reports_campaign_factors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_factors ALTER COLUMN id SET DEFAULT nextval('public.reports_campaign_factors_id_seq'::regclass);
+
+
+--
 -- Name: reports_filters id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8918,6 +8950,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
+-- Name: reports_campaign_factors reports_campaign_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_factors
+    ADD CONSTRAINT reports_campaign_factors_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reports_filters reports_filters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10083,6 +10123,13 @@ CREATE INDEX index_campaign_options_on_campaign_id ON public.campaign_options US
 --
 
 CREATE INDEX index_campaign_reports_on_campaign_id ON public.campaign_reports USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_reports_on_campaign_id_and_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_reports_on_campaign_id_and_report_id ON public.campaign_reports USING btree (campaign_id, report_id);
 
 
 --
@@ -11280,6 +11327,20 @@ CREATE INDEX index_reports_accesses_on_report_id ON public.reports_accesses USIN
 --
 
 CREATE UNIQUE INDEX index_reports_accesses_on_report_id_membership_id_assessment_id ON public.reports_accesses USING btree (report_id, membership_id, assessment_id);
+
+
+--
+-- Name: index_reports_campaign_factors_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_campaign_factors_on_report_id ON public.reports_campaign_factors USING btree (report_id);
+
+
+--
+-- Name: index_reports_campaign_factors_on_report_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_reports_campaign_factors_on_report_id_and_code ON public.reports_campaign_factors USING btree (report_id, code);
 
 
 --
@@ -13911,6 +13972,14 @@ ALTER TABLE ONLY public.threesixty_email_schedules
 
 
 --
+-- Name: reports_campaign_factors fk_rails_ad96b42625; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_factors
+    ADD CONSTRAINT fk_rails_ad96b42625 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: dimensions fk_rails_ae68a3a37d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14686,11 +14755,20 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250121134222'),
+('20250121061959'),
 ('20250113081931'),
+('20250109001045'),
+('20250102162920'),
+('20250102114258'),
 ('20241226171404'),
+('20241224114259'),
+('20241224114214'),
+('20241224114112'),
 ('20241223122302'),
 ('20241219131514'),
 ('20241219060937'),
+('20241216104819'),
+('20241216103218'),
 ('20241210073446'),
 ('20241205111711'),
 ('20241203151030'),
@@ -15419,4 +15497,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

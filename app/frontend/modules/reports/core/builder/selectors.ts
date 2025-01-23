@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { denormalize } from 'normalizr'
+import { camelizeKeys } from '~/utils/object'
 import {
   module, page, pages,
 } from '~/modules/reports/store/schema'
@@ -18,6 +19,11 @@ export const getRenderModules = (state: any, id: number) => {
   const { pages, currentPage } = state.builder
   const index = _.indexOf(pages, currentPage)
   return _.includes([pages[index - 1], pages[index], pages[index + 1]], id)
+}
+
+export const getPageModules = (state: any, pageId: number): ModuleInterface[] => {
+  const page = state.pages[pageId]
+  return getModules(state, page.modules).filter(m => !m.removed)
 }
 
 export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
@@ -85,5 +91,5 @@ export const getFlatFactors = (state: RootState) => _.reduce(
 )
 
 export const getCampaignFactors = (state: RootState) => (
-  state.report.builder.campaign_factors || []
+  camelizeKeys(state.report.builder.campaign_factors) || []
 )

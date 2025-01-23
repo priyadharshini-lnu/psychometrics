@@ -66,4 +66,19 @@ describe Communications::CompletionTypeJob, type: :job do
       described_class.perform_now(user_assessment)
     end.to_not change(CommunicationEmail, :count)
   end
+
+  it 'does not create communication_email for inactive user' do
+    user_assessment = create(
+      :user_assessment, subject: user, evaluator: user, campaign: campaign, completion_status_code: 'code_1'
+    )
+    communication = create(:communication, kind: :completion, project_campaign: campaign,
+      project_id: campaign.project_id, assessment_id: user_assessment.assessment.id)
+
+    campaign_user.update!(active: false)
+
+    expect do
+      described_class.perform_now(user_assessment)
+    end.to_not change(CommunicationEmail, :count)
+    expect(communication.reload.emails).to be_empty
+  end
 end

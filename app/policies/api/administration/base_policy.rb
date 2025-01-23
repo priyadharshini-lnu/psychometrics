@@ -27,13 +27,14 @@ module Api
       end
 
       class Scope
-        attr_reader :user, :scope, :campaign_id, :project_id
+        attr_reader :user, :scope, :campaign_id, :project_id, :filter
 
         def initialize(user, scope, options = {})
           @user = user
           @scope = scope.is_a?(Array) ? scope.last : scope
           @project_id = options[:project_id]
           @campaign_id = options[:campaign_id]
+          @filter = options[:filter]
         end
 
         # scope - could be array

@@ -1,4 +1,5 @@
 @import "~/styles/spacing.less";
+@import "~/styles/antv4.variable.less";
 
 .container {
   text-align: center;
@@ -6,50 +7,120 @@
   .card {
     text-align: center;
     margin-bottom: @space-3;
+    width: 500px;
 
-    .audio {
-      border-radius: 6px;
-      padding: @space-20 0;
 
-      .allowTitle {
-        margin-bottom: @space-7;
-      }
-
-      .icon {
-        display: inline-block;
-        width: 60px;
-        height: 60px;
-        background: transparent url("./icon.svg");
-        background-size: contain;
-      }
-
-      .quote {
-        text-align: center;
-        font-family: 'Neue';
-        font-size: 89px;
-        color: #D8D8D8;
-        height: 55px;
-      }
-
-      .testMessage {
-        font-size: 40px;
-        font-family: Medium Helvetica Neue;
-      }
+    .audioCard {
+      width: 520px;
+      height: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
-  .title {
-    font-size: 20px;
-    margin-bottom: @space-3;
+  .audio {
+    border-radius: 6px;
+    padding: @space-10 0;
   }
 
-  .continueButton {
-    margin-top: @space-16;
-    text-transform: uppercase;
+  .allowTitle {
+    margin-bottom: @space-7;
   }
 
-  .mainIcon {
-    font-size: 45px;
-    margin-bottom: @space-4;
+  .icon {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: transparent url("./icon.svg");
+    background-size: contain;
   }
+
+  .quote {
+    text-align: center;
+    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 89px;
+    color: #D8D8D8;
+    display: block;
+    height: 55px;
+  }
+
+  .testMessage {
+    font-size: 32px;
+  }
+
+  .recordingIndicator {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(20, 20, 20, 0.6);
+    border-radius: 4px;
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+
+  .rec {
+    color: white;
+  }
+}
+
+.audioElement {
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  top: 580px;
+  display: flex;
+  height: 50px;
+  width: 500px;
+}
+
+.audioElement::-webkit-media-controls {
+  background-color: #fff;
+  color: #000;
+}
+
+
+.audioElement::-webkit-media-controls-play-button,
+.audioElement::-webkit-media-controls-panel {
+  background-color: #fff;
+  color: #000;
+}
+
+.audioElement::-moz-controls-panel {
+  background-color: #fff;
+  color: #000;
+}
+
+
+.title {
+  font-size: 20px;
+  margin-bottom: @space-3;
+}
+
+.continueButton {
+  margin: @space-8;
+}
+
+.mainIcon {
+  font-size: 45px;
+  margin-bottom: @space-4;
+}
+
+.countdownIndicator :global(.ant-statistic-content) {
+  margin-left: 6px;
+  color: @white;
+  border-left: 1px solid;
+  height: 20px;
+  padding-left: 6px;
 }

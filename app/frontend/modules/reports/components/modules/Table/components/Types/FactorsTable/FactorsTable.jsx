@@ -13,7 +13,7 @@ import { TopFactorType } from '~/modules/reports/models/Results/interfaces'
 import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
 import buildFakeData from './buildFakeData'
-
+import { PaginationContext } from './PaginationContext'
 import styles from './FactorsTable.less'
 
 // Images
@@ -164,6 +164,33 @@ class FactorsTable extends Component {
     module: PropTypes.object.isRequired,
   }
 
+  state = {
+    paginationContext: null,
+  }
+
+  componentDidMount () {
+    const { module: model, insertPaginationPage, preview } = this.props
+    if (!preview) { return }
+
+    if (!model.props.pagination?.enabled) { return }
+
+    if (model.pagination) {
+      this.setState({ paginationContext: model.pagination })
+      return
+    }
+
+    const element = document.querySelector(`[data-table="${model.id}"]`)
+    const context = new PaginationContext(model, element)
+
+    if (!context.needPagination) {
+      return
+    }
+    this.setState({ paginationContext: context.pages[0] })
+    if (insertPaginationPage) {
+      insertPaginationPage(model, context)
+    }
+  }
+
   getMockData (factors, size) {
     const data = []
     while (data.length < size && size > 0) {
@@ -178,6 +205,7 @@ class FactorsTable extends Component {
 
   prepareRows () {
     const { module, assessments, module: { props } } = this.props
+    const { paginationContext } = this.state
     const sourceFactors = _.get(props, ['source', 'factors'], [])
     const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
     const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
@@ -205,6 +233,9 @@ class FactorsTable extends Component {
     }
     if (props.reverseOrder && props.mode === 'topFactors') {
       this.factorsData.reverse()
+    }
+    if (paginationContext) {
+      this.factorsData = this.factorsData.filter(f => paginationContext.factorIds.includes(f.id.toString()))
     }
   }
 
@@ -351,7 +382,7 @@ class FactorsTable extends Component {
         )
 
         return (
-          <tr key={i}>
+          <tr key={i} data-paginatable={1} data-factor-id={factor.id}>
             {this.canShowRank() && (
               <td className={styles.rankOrder}>
                 <span className={tableStyle !== 'compact' ? cs(styles.star, 'icon-star') : ''}>
@@ -450,7 +481,7 @@ class FactorsTable extends Component {
     const filters = this.getFilters()
     const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
     return (
-      <thead>
+      <thead data-table-header>
         <tr>
           {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
           {(showIcons || showName || showDescription || showStrengthsBlindspots) ? (
@@ -472,16 +503,21 @@ class FactorsTable extends Component {
   render () {
     const { module, model } = this.props
     const { showBorder, backgroundColor } = model.props
-    const { fontSize, fontFamily } = module.props.style
+    const { fontSize, fontFamily, fontColor } = module.props.style
     const style = {
       fontSize,
       fontFamily,
       backgroundColor: backgroundColor || false,
+      color: fontColor,
     }
     this.prepareRows()
     const hasData = this.factorsData.length > 0
     return (
-      <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
+      <table
+        data-table={model.id}
+        className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })}
+        style={style}
+      >
         {hasData && this.renderHeader(model.props.showHeader)}
         <tbody>
           {hasData ? this.renderFactors() : this.renderNoData()}

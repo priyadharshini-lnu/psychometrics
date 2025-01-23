@@ -4,10 +4,9 @@ module Exports
   module Translations
     class AssessmentExport
       def initialize(assessment_id, data = {})
-        @package = Axlsx::Package.new
+        @package = ExcelSafe.new
         @assessment = ::Assessment.find(assessment_id)
-        wb = @package.workbook
-        wb.add_worksheet(name: 'AssessmentTranslations') do |sheet|
+        @package.add_worksheet('AssessmentTranslations') do |sheet|
           sheet.add_row [
             'Key', "Default Locale / #{@assessment.default_language}",
             *(I18n.available_locales - [@assessment.default_language.to_sym]).map do |locale|
@@ -15,9 +14,15 @@ module Exports
             end
           ]
 
-          process_branch('block', data, sheet, assessment_id)
-          process_branch('question', data, sheet, assessment_id)
-          process_branch('instructions', data, sheet, assessment_id)
+          if @assessment.translations_migrated?
+            process_blocks(sheet)
+            process_instructions(sheet)
+            process_questions(sheet)
+          else
+            process_branch('block', data, sheet, assessment_id)
+            process_branch('instructions', data, sheet, assessment_id)
+            process_branch('question', data, sheet, assessment_id)
+          end
         end
       end
 
@@ -39,6 +44,90 @@ module Exports
             sheet.add_row(new_row)
           end
         end
+      end
+
+      def process_questions(sheet)
+        questions = @assessment.questions
+
+        questions.each do |question|
+          translations = fetch_translations(@assessment.id, question.id, 'Question')
+
+          filterd_question_props = Builders::Translations::TranslationBuilder.
+                                   new(question.props.merge(question.validation)).
+                                   filter_allowed_props
+
+          filterd_question_props.each do |key, translation|
+            translation_key = "question:#{question.id}:#{key}"
+            process_translations(sheet, translation_key, translation, translations, [key])
+          end
+        end
+      end
+
+      def process_blocks(sheet)
+        blocks = @assessment.blocks
+
+        blocks.each do |block|
+          translations = fetch_translations(@assessment.id, block.id, 'Block')
+
+          next if block.props['staticContent'].blank?
+
+          filterd_block_props = { 'staticContent' => { 'value' => block.props['staticContent']['value'] } }
+
+          filterd_block_props.each do |key, translation|
+            translation_key = "block:#{block.id}:#{key}"
+            process_translations(sheet, translation_key, translation, translations, [key])
+          end
+        end
+      end
+
+      def process_instructions(sheet)
+        instructions = @assessment.instructions['content'] if @assessment.instructions
+        translations = ::Translation.
+                       for_assessment(@assessment.id).
+                       where(translateable_type: 'Instructions').
+                       group_by(&:locale)
+
+        process_translations(sheet, 'instructions:0:content', instructions, translations, ['content'])
+      end
+
+      private
+
+      def process_translations(sheet, translation_key, translation, translations, translations_path)
+        case translation
+          when ::Hash
+            translation.each do |param_key, value|
+              new_translation_key = "#{translation_key}.#{param_key}"
+              new_translation_path = [translations_path, param_key].flatten
+              process_translations(sheet, new_translation_key, value, translations, new_translation_path)
+            end
+          when ::Array
+            translation.each_with_index do |value, index|
+              new_translation_key = "#{translation_key}[#{index}]"
+              new_translation_path = [translations_path, index].flatten
+              process_translations(sheet, new_translation_key, value, translations, new_translation_path)
+            end
+          when ::String
+            process_single_translation(sheet, translation_key, translation, translations, translations_path)
+        end
+      end
+
+      def process_single_translation(sheet, translation_key, translation, translations, translations_path)
+        new_row = [translation_key, translation]
+        (I18n.available_locales - [@assessment.default_language.to_sym]).each do |locale|
+          translation = translations[locale.to_s]&.first&.data
+
+          new_row << (translation&.dig('props', *translations_path) ||
+                        translation&.dig('validation', *translations_path))
+        end
+
+        sheet.add_row(new_row)
+      end
+
+      def fetch_translations(assessment_id, translateable_id, translateable_type)
+        ::Translation.
+          for_assessment(assessment_id).
+          where(translateable_id: translateable_id, translateable_type: translateable_type).
+          group_by(&:locale)
       end
     end
   end

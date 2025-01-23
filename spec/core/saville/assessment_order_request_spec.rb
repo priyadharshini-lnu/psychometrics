@@ -12,7 +12,11 @@ describe Saville::AssessmentOrderRequest do
   let(:report) { create(:report, :saville, assessments: [assessment]) }
   let(:user_assessment) { create(:user_assessment, assessment: assessment) }
   let(:saville_user_assessment) do
-    create(:saville_user_assessment, user_assessment: user_assessment, norm_id: 'norm_id', data_seprator: '12-13')
+    create(
+      :saville_user_assessment,
+      user_assessment: user_assessment,
+      norm_id: 'norm_id', data_seprator: '12-13', candidate_id: user_assessment.subject_id
+    )
   end
   let(:user) { user_assessment.subject }
   let(:campaign) { user_assessment.campaign }

@@ -10,6 +10,7 @@ module Reports
     def query
       start_date = @params[:start_date].presence
       end_date = @params[:end_date].presence
+      include_inactive_users = @params[:include_inactive_users] || false
 
       start_date_parsed = DateTime.parse(start_date) if start_date
       end_date_parsed = DateTime.parse(end_date) if end_date
@@ -21,7 +22,17 @@ module Reports
                      joins('INNER JOIN user_assessments ON
           user_assessments.assessment_id = assessments.id AND
           user_assessments.subject_id = user_reports.user_id AND
-          user_assessments.campaign_id = user_reports.campaign_id').
+          user_assessments.campaign_id = user_reports.campaign_id')
+
+      unless include_inactive_users
+        user_reports = user_reports.
+                       joins('INNER JOIN campaign_users ON
+            campaign_users.campaign_id = user_reports.campaign_id AND
+            campaign_users.user_id = user_reports.user_id').
+                       where('campaign_users.active': true)
+      end
+
+      user_reports = user_reports.
                      where(report_id: @campaign_reports.pluck(:report_id),
                            campaign_id: @campaign_reports.first.campaign_id,
                            status: 'prepared').

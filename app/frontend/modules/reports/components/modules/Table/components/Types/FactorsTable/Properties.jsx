@@ -9,7 +9,6 @@ import _ from 'lodash'
 import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import { ColorPicker, HintCheckbox } from '~/glint'
 import connect from './connect'
@@ -17,6 +16,7 @@ import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
+import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 
 
 const ALL_FACTORS = 'All Factors'
@@ -518,9 +518,13 @@ class Properties extends Component {
           </div>
         </div>
         )}
+        {modules.length > 1 ? null
+          : (
+            <div className="mtm">
+              <PaginationOptions module={model} onChange={this.onChangeColor} />
+            </div>
+          )}
         <hr className={styles.divider} />
-        <div>Font</div>
-        <PropertyFonts modules={modules} colors={false} />
       </div>
     )
   }

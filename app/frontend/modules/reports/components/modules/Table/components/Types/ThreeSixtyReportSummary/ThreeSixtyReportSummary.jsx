@@ -7,7 +7,8 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import styles from './styles.less'
 
 export default function ThreeSixtyReportSummary ({ model }) {
-  const { fontFamily } = model.props.style
+  const { fontFamily, fontSize, fontColor } = model.props.style
+  const styleProp = { fontFamily, fontSize, color: fontColor }
 
   const buildResults = (filters) => {
     const evaluatorsByFilter = filters.reduce((res, filter) => {
@@ -56,7 +57,7 @@ export default function ThreeSixtyReportSummary ({ model }) {
   const total = buildTotal(results)
 
   return (
-    <div className={styles.container} style={{ fontFamily }}>
+    <div className={styles.container} style={styleProp}>
       <table className={styles.table}>
         <thead>
           <tr>

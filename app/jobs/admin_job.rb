@@ -61,6 +61,7 @@ class AdminJob < ApplicationJob
     normalize_factor_scores: AdminJobs::NormalizeFactorScores,
     export_occupations: AdminJobs::ExportOccupations,
     export_user_report_events: AdminJobs::ExportUserReportEvents,
+    migrate_assessment_translations: AdminJobs::MigrateAssessmentTranslations,
     add_campaign_reports: AdminJobs::AddCampaignsReports
   }.freeze
 

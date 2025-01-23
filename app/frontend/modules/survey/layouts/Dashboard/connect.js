@@ -5,9 +5,10 @@ import { actions } from '~/modules/survey/core/builder/flow'
 
 export default connect(
   ({ survey }) => ({
-    loaded: survey.builder.assessment.loaded,
     disabled: survey.builder.assessment.disabled,
     socketInitialized: survey.ui.socket.initialized,
+    defaultLocale: survey.builder.assessment.defaultLanguage,
+    currentLocale: survey.builder.assessment.locale,
   }),
   {
     subscribeSocket,

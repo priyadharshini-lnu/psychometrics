@@ -60,7 +60,7 @@ describe Mettl::CreateSchedule do
       it 'raises an error with the correct message' do
         expect do
           subject.call
-        end.to raise_error(RuntimeError) do |error|
+        end.to raise_error(Mettl::Exceptions::CreateScheduleFailed) do |error|
           expect(error.message).to eq(
             "Mettl::CreateSchedule failed for Assessment: #{assessment.id}. Error: Please use unique title for Schedule"
           )

@@ -6,22 +6,17 @@ module UsersResults
       attr_reader :factor_hash, :factor_ids, :scoring, :norm, :factor_norm_hash,
                   :external_results, :factors_question_count, :visited_factor_ids, :answers
 
-      # rubocop:disable Metrics/ParameterLists
-      def initialize(
-        factor_hash, factor_ids, scoring, norm, factor_norm_hash, external_results, factors_question_count = {},
-        visited_factor_ids = Set.new, answers = {}
-      )
-        @factor_hash = factor_hash
-        @factor_ids = factor_ids
-        @scoring = scoring
-        @factors_question_count = factors_question_count
-        @norm = norm
-        @external_results = external_results
-        @factor_norm_hash = factor_norm_hash
-        @visited_factor_ids = visited_factor_ids
-        @answers = answers
+      def initialize(context)
+        @factor_hash = context[:factor_hash]
+        @factor_ids = context[:factor_ids]
+        @scoring = context[:scoring] || {}
+        @factors_question_count = context[:factors_question_count] || {}
+        @norm = context[:norm]
+        @external_results = context[:external_results] || {}
+        @factor_norm_hash = context[:factor_norm_hash] || {}
+        @visited_factor_ids = context[:visited_factor_ids] || Set.new
+        @answers = context[:answers] || {}
       end
-      # rubocop:enable Metrics/ParameterLists
 
       def call # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
         extended_scoring = factors_sorted_by_formula_factors_at_end.reduce(scoring) do |extending_scoring, factor_data| # rubocop:disable Metrics/BlockLength
@@ -36,17 +31,18 @@ module UsersResults
 
           module_name = "::UsersResults::Scoring::AddScoreByStrategy::#{factor.scoring_strategy.camelize}".constantize
 
-          extending_scoring = module_name.call!(
-            factor_data,
-            extending_scoring,
-            factor_hash,
-            norm,
-            factor_norm_hash,
-            external_results,
-            factors_question_count,
-            visited_factor_ids,
-            answers
-          )
+          extending_scoring = module_name.call!({
+            factor_data: factor_data,
+            extended_scoring: extending_scoring,
+            factor_hash: factor_hash,
+            norm: norm,
+            factor_norm_hash: factor_norm_hash,
+            external_results: external_results,
+            factors_question_count: factors_question_count,
+            visited_factor_ids: visited_factor_ids,
+            answers: answers
+          })
+
           next extending_scoring if norm.nil? || factor.external_score_strategy?
 
           score = extending_scoring.dig(factor.id.to_s, 'score')
@@ -55,7 +51,13 @@ module UsersResults
             extending_scoring = extending_scoring.deep_merge(factor.id.to_s => { 'zscore' => zscore })
           end
           norm_score = UsersResults::Scoring::GetNormScoreForFactor.call!(
-            factor.id, factor_hash, norm, extending_scoring, factor_norm
+            {
+              factor_id: factor.id,
+              factor_hash: factor_hash,
+              norm: norm,
+              scoring: extending_scoring,
+              factor_norm: factor_norm
+            }
           )
           @visited_factor_ids.clear if factor.custom_formula_strategy?
           extending_scoring.deep_merge(factor.id.to_s => { 'norm_score' => norm_score })

@@ -2,10 +2,11 @@ import _ from 'lodash'
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import Select from 'react-select'
+import { camelizeKeys } from '~/utils/object'
 
 const connecter = connect(
   ({ report: { builder } }) => ({
-    campaignFactors: builder.campaign_factors,
+    campaignFactors: camelizeKeys(builder.campaign_factors),
   }),
 )
 class CampaignFactors extends Component {

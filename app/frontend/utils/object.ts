@@ -38,3 +38,16 @@ const camelizeKeysOnly = (data: object, only: string[]) => {
   })
   return clonedData
 }
+
+export const convertEnumToObject = function<T extends Record<string | number, string | number>>
+(enumObject:T):Record<string, Array<string | number>> {
+  return Object.entries(enumObject).map(([key, value]) => ([key, value])).reduce((acc, item) => {
+    acc[item[1]] = item
+    return acc
+  }, {})
+}
+
+export const getLabelForEnumValue = function<T extends Record<string | number, string | number>, V extends string>
+(enumObject:T, value:V):string {
+  return convertEnumToObject(enumObject)[value][0] as V
+}

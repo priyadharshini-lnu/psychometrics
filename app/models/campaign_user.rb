@@ -23,9 +23,6 @@ class CampaignUser < ApplicationRecord
            -> { left_joins(:workshop_invite).where('workshop_invites.campaign_id = campaign_users.campaign_id') },
            foreign_key: :user_id, primary_key: :user_id
   has_many :campaign_factors, through: :campaign
-  has_many :campaign_factor_values, lambda {
-    joins(:campaign_user).where('campaign_factor_values.campaign_id = campaign_users.campaign_id')
-  }, primary_key: :user_id, foreign_key: :user_id
   has_many :communication_emails
 
   validates :external_id, uniqueness: { scope: :campaign_id }, allow_nil: true
@@ -179,6 +176,6 @@ class CampaignUser < ApplicationRecord
   end
 
   def all_campaign_scores_present?
-    campaign_factor_values.count == campaign_factors.count
+    CampaignFactorValue.where(campaign_id: campaign_id, user_id: user_id).count == campaign_factors.count
   end
 end

@@ -60,9 +60,16 @@ const PropertyPanel = (props) => {
   }, [])
 
   const onChangePosition = (value) => {
+    const isEditPagination = modules.length === 1 && _.get(modules, '0.props.pagination.editFrame', false)
+
     modules.forEach((module) => {
-      const position = { ...module.props.position, ...value }
-      module.props.position = position
+      if (isEditPagination) {
+        const position = { ...module.props.pagination.position, ...value }
+        module.props.pagination.position = position
+      } else {
+        const position = { ...module.props.position, ...value }
+        module.props.position = position
+      }
       updateModule({ ...module })
     })
   }
@@ -148,7 +155,8 @@ const PropertyPanel = (props) => {
     if (!modules.length > 0) return null
     const { width, height } = report.builder.props.sizes
     const module = modules[0]
-    const { position } = module.props
+    const isEditPagination = modules.length === 1 && _.get(modules, '0.props.pagination.editFrame', false)
+    const { position } = isEditPagination ? module.props.pagination : module.props
 
     return (
       <>

@@ -94,7 +94,9 @@ module Api
 
       AdminJob.call(
         :bulk_rescore_campaign_factors,
-        { user_ids: params[:data][:attributes][:user_ids], campaign_id: campaign.id },
+        { user_ids: params[:data][:attributes][:user_ids],
+          excluded_user_ids: params[:data][:attributes][:excluded_user_ids],
+          campaign_id: campaign.id },
         current_user
       )
 

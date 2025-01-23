@@ -103,7 +103,19 @@ describe Campaigns::Users::AddReport do
   end
 
   it 'set default content_variation_id if assessment is of type simulation and campaign assessment nil' do
-    assessment = create(:assessment, :simulation, external_settings: { assessment_id: 'golf-content-variations' })
+    simulation_settings = Config::Options.new(
+      id: 'mte-apply',
+      name: 'MTE Apply',
+      default_content_variation_id: 'starWars',
+      content_variations: [
+        Config::Options.new(id: 'starWars', name: 'Star Wars'),
+        Config::Options.new(id: 'spicyFood', name: 'Spicy')
+      ],
+      possible_languages: ['en']
+    )
+    allow_any_instance_of(Assessment).to receive(:simulation_settings).and_return(simulation_settings)
+
+    assessment = create(:assessment, :simulation, external_settings: { assessment_id: 'mte-apply' })
 
     report = create(:report, assessments: [assessment])
     described_class.call!(campaign_user, report, assessments: report.assessments)

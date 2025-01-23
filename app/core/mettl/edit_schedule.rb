@@ -15,7 +15,8 @@ module Mettl
 
       result = ::JSON.parse(response.body)
       unless result['status'] == 'SUCCESS'
-        raise "Mettl::EditSchedule failed for Schedule: #{mettl_schedule_record.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
+        raise Mettl::Exceptions::EditScheduleFailed,
+              "Mettl::EditSchedule failed for Schedule: #{mettl_schedule_record.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
       end
 
       broadcast :ok, result

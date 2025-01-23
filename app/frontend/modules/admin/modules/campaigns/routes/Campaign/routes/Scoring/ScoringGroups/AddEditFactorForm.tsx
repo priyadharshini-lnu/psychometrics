@@ -351,15 +351,17 @@ export const AddEditFactorForm: FC<Props> = ({
       title={(
         <div className={styles.titleContainer}>
           <span>{title}</span>
-          <Button
-            type="primary"
-            htmlType="button"
-            icon={<SaveOutlined />}
-            className="ml-auto"
-            onClick={() => editFactors?.(form)}
-          >
-            {I18n.t('administration.scoring.save_all')}
-          </Button>
+          {factorData ? (
+            <Button
+              type="primary"
+              htmlType="button"
+              icon={<SaveOutlined />}
+              className="ml-auto"
+              onClick={() => editFactors?.(form)}
+            >
+              {I18n.t('administration.scoring.save_all')}
+            </Button>
+          ) : null}
         </div>
       )}
       open={open}
@@ -368,8 +370,8 @@ export const AddEditFactorForm: FC<Props> = ({
       destroyOnClose
     >
       <div className={styles.parent}>
-        <div className={styles.tree}>
-          {factorData ? (
+        {factorData ? (
+          <div className={styles.tree}>
             <Tree
               showLine
               onSelect={(keys: Key[]) => handleFactorSelect(keys, form)}
@@ -379,10 +381,8 @@ export const AddEditFactorForm: FC<Props> = ({
             >
               {renderTreeNodes()}
             </Tree>
-          ) : (
-            ''
-          )}
-        </div>
+          </div>
+        ) : null}
         <div className={styles.form}>
           <ResourceForm
             resourceName="campaign_factors"

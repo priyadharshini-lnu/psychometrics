@@ -26,7 +26,13 @@ module UsersResults
       scoring, factors_question_count = get_factors_scoring
 
       broadcast :ok, ::UsersResults::Scoring::Extend.call!(
-        scoring, norm, dimension, user_result.external_results, factors_question_count
+        {
+          dimension: dimension,
+          scoring: scoring,
+          norm_data: norm,
+          external_results: user_result.external_results,
+          factors_question_count: factors_question_count
+        }
       )
     end
 

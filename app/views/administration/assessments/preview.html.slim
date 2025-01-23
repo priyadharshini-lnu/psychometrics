@@ -1,4 +1,4 @@
-#psychometrics_preview[data-data="#{AssessmentSerializer.new(context: {}, include: '**').serialize(resource).to_json}"
+#psychometrics_preview[data-data="#{AssessmentSerializer.new(context: { selected_locale: params[:lang]}, include: '**').serialize(resource).to_json}"
   data-type="preview_assessment"
   data-locales=@translations.to_json
   data-lang-partial="#{escape_once (render partial: 'application/lang', locals: { locales: @available_translations })}"]

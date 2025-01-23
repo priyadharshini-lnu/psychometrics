@@ -21,6 +21,7 @@ module Api
             optional(:external_settings).maybe(:hash) do
               optional(:report_id).maybe(:string)
             end
+            optional(:tag_list).maybe(:array).each(:string)
           end
         end
 

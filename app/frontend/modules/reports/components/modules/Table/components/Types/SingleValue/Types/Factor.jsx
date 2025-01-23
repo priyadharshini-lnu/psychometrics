@@ -7,6 +7,9 @@ import styles from '../styles.less'
 const VALUES = [[28.69, 55.51, 62.7], [49.3, 46.24, 66.52], [36.03, 47.8, 47.19]]
 
 export default function Factor ({ model, filters }) {
+  const { fontSize, fontFamily, fontColor } = model.props.style
+  const styleProp = { fontSize, fontFamily, color: fontColor }
+
   const getFactorMap = () => {
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const dimensionId = assessment && assessment.dimensionId
@@ -48,7 +51,7 @@ export default function Factor ({ model, filters }) {
 
   const results = getResults()
   return (
-    <div className={styles.table}>
+    <div className={styles.table} style={styleProp}>
       <table>
         <thead>
           <tr>

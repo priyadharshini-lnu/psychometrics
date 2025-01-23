@@ -46,7 +46,7 @@ class WorkshopInvitedSubject < ApplicationRecord
     communication = campaign.communications.workshop_invite.last
     return unless communication
 
-    communication.emails.create!(campaign_user: campaign_user, workshop_invite: workshop_invite)
+    communication.emails.create(campaign_user: campaign_user, workshop_invite: workshop_invite)
   end
 
   def scheduled_workshop_subject

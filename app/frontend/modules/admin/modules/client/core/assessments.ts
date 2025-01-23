@@ -32,6 +32,7 @@ export const AssessmentTR = t.type({
   enableVideoCheck: t.union([t.boolean, t.null]),
   enableAudioCheck: t.union([t.boolean, t.null]),
   enableNetworkCheck: t.union([t.boolean, t.null]),
+  translationsMigrated: t.union([t.boolean, t.null]),
   externalSettings: ExternalSettingsTR,
   icon: t.union([t.string, t.null]),
   tagList: t.array(t.union([t.string, t.null])),

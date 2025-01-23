@@ -124,7 +124,13 @@ export const regenerateReports = (campaignId: number, ids: number[]) => ({
   },
 })
 
-export const bulkDownload = (campaignId: number, ids: number[], startDate: Date, endDate: Date) => ({
+export const bulkDownload = (
+  campaignId: number,
+  ids: number[],
+  startDate: Date,
+  endDate: Date,
+  includeInactiveUsers = false,
+) => ({
   type: BULK_DOWNLOAD,
   request: {
     method: 'post',
@@ -133,10 +139,12 @@ export const bulkDownload = (campaignId: number, ids: number[], startDate: Date,
       ids,
       startDate,
       endDate,
+      includeInactiveUsers,
     },
     loader: true,
   },
 })
+
 
 export const exportData = (campaignId: number, reportId: number) => ({
   type: EXPORT_DATA,

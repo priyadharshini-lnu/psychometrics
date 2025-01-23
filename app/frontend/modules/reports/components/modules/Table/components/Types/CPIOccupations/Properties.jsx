@@ -2,7 +2,6 @@ import { Select, Checkbox, Radio } from 'antd'
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import PropertyPagination from '~/modules/reports/components/PropertyPagination'
 import { ColorPicker } from '~/glint'
 
@@ -40,8 +39,6 @@ const Properties = ({ modules }) => {
   ]
   return (
     <div>
-      <div>Font</div>
-      <PropertyFonts modules={modules} colors={false} />
       <hr className={styles.divider} />
       <PropertyPagination modules={modules} />
       <hr className={styles.divider} />

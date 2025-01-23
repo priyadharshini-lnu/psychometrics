@@ -18,6 +18,7 @@ class Page extends Component {
   renderModuleType = (module, i) => {
     const {
       model, pageNumber, flipContent, totalPages, rstore, moduleOverrides, pdfExport, dashboard,
+      insertPaginationPage,
     } = this.props
     if (dashboard && module.props.hideOnDashboard) { return null }
     if (!module.type) { return }
@@ -40,6 +41,7 @@ class Page extends Component {
           rstore={rstore}
           moduleOverrides={moduleOverrides}
           animation={!pdfExport}
+          insertPaginationPage={insertPaginationPage}
         />
       </ErrorBoundary>
     )

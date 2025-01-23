@@ -6,30 +6,40 @@ import I18nStore from '~/modules/reports/store/I18nStore'
 import Utils from '~/modules/reports/utils'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import { PaginationContext } from './PaginationContext'
 import styles from '../styles.less'
+import { useModulePagination } from '~/hooks/useModulePagination'
 
-const Question = ({ model, questions }) => {
+const Question = ({ model, questions, insertPaginationPage }) => {
   if (!model.props.filter) return null
   const question = _.find(questions, q => q.id === model.props.questionId)
   if (!question) return null
-  const { fontSize, fontFamily } = model.props.style
-  const style = {
-    fontSize,
-    fontFamily,
-  }
+  const { fontSize, fontFamily, fontColor } = model.props.style
+  const styleProp = { fontSize, fontFamily, color: fontColor }
 
+  const { paginationContext } = useModulePagination(
+    model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage,
+  )
+
+  const filters = paginationContext?.filterId?.length ? [...paginationContext?.filterId] : model.props.filter
   return (
-    <div style={style}>
+    <div style={styleProp} data-table={model.id}>
       <table className={styles.table}>
-        <thead>
+        <thead data-table-header>
           <tr>
             <td className={styles.question}>
               {Utils.stripHTML(I18nStore.tQuestion(question, 'questionText'))}
             </td>
           </tr>
         </thead>
-        {model.props.filter.map(filterId => (
-          <FilterTable key={filterId} filterId={filterId} model={model} questions={questions} />
+        {filters.map(filterId => (
+          <FilterTable
+            key={filterId}
+            filterId={filterId}
+            model={model}
+            questions={questions}
+            paginationContext={paginationContext}
+          />
         ))}
       </table>
     </div>
@@ -38,7 +48,9 @@ const Question = ({ model, questions }) => {
 
 const MOCK_RESULTS = ['First answer', 'Second answer']
 
-function FilterTable ({ filterId, model, questions }) {
+function FilterTable ({
+  filterId, model, questions, paginationContext,
+}) {
   const filter = AppStore.report.filters.find(f => f.id === filterId)
   const question = _.find(questions, q => q.id === model.props.questionId)
   if (!question) return null
@@ -71,21 +83,21 @@ function FilterTable ({ filterId, model, questions }) {
   }
 
   return (
-    <tbody>
+    <tbody data-paginatable={1} data-filter-id={filter.id}>
       <tr>
         <td className={styles.filter}>
           {I18nStore.tFilterName(filter)}
         </td>
       </tr>
-      <Results results={getResults()} />
+      <Results filterId={filterId} results={getResults()} paginationContext={paginationContext} />
     </tbody>
   )
 }
 
-const Results = ({ results }) => {
+const Results = ({ results, filterId, paginationContext }) => {
   if (!results || results.length === 0) {
     return (
-      <tr>
+      <tr data-paginatable={2}>
         <td className={cs([styles.answer, styles.noResponse])}>
           {I18nStore.t('reports.modules.three_sixty_default.question.no_response')}
         </td>
@@ -93,8 +105,18 @@ const Results = ({ results }) => {
     )
   }
 
+  if (paginationContext) {
+    return (
+      paginationContext.resultIndexes[filterId].map(i => (
+        <tr>
+          <td key={i} className={styles.answer}>{results[i]}</td>
+        </tr>
+      ))
+    )
+  }
+
   return results.map((r, i) => (
-    <tr key={i}>
+    <tr key={i} data-index={i} data-paginatable={2}>
       <td className={styles.answer}>{r}</td>
     </tr>
   ))

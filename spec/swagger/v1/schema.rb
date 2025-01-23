@@ -171,6 +171,7 @@ module Swagger
 , "campaigns" will be used'
             },
             campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true },
+            project_datasheet: { '$ref' => '#/definitions/Datasheet', 'x-nullable': true },
             existing_record: {
               type: 'string',
               enum: %w[reject accept],
@@ -195,7 +196,8 @@ module Swagger
               description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
 , "campaigns" will be used'
             },
-            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true },
+            project_datasheet: { '$ref' => '#/definitions/Datasheet', 'x-nullable': true }
           },
           required: %w[email first_name last_name campaign_ids]
         },
@@ -205,7 +207,8 @@ module Swagger
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string', 'x-nullable': true },
-            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true },
+            project_datasheet: { '$ref' => '#/definitions/Datasheet', 'x-nullable': true }
           }
         },
         ReportResults: {
@@ -264,6 +267,22 @@ module Swagger
             name: { type: 'string' }
           }
         },
+        Datasheet: {
+          type: 'object',
+          additionalProperties: {
+            oneOf: [
+              { type: 'string', nullable: true },
+              { type: 'integer', nullable: true }
+            ],
+            description: 'The key represents the name of a datasheet column, and the value is the corresponding data,
+  which can be a string, integer, or null.',
+            'x-nullable': true
+          },
+          example: {
+            property1: 'string',
+            property2: 1
+          }
+        },
         NewUserCampaigns: {
           type: 'object',
           properties: {
@@ -305,7 +324,8 @@ module Swagger
               description: 'End date and time for the campaign schedule',
               example: nil,
               nullable: true
-            }
+            },
+            datasheet: { '$ref' => '#/definitions/Datasheet', 'x-nullable': true }
           }
         },
         NewCampaign: {

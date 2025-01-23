@@ -14,9 +14,9 @@ module Campaigns
 
       def call
         transaction do
+          job_record&.update(total_tasks: total_count)
           reports.each do |report|
             create_campaign_report(report)
-            job_record&.increment_completed_tasks!
           end
         end
         broadcast :ok, nil
@@ -73,6 +73,8 @@ module Campaigns
               low_priority: true
             }
           )
+
+          job_record&.increment_completed_tasks!
         end
       end
 
@@ -116,6 +118,10 @@ module Campaigns
         end
 
         nil
+      end
+
+      def total_count
+        campaign.campaign_users.count * reports.count
       end
     end
   end

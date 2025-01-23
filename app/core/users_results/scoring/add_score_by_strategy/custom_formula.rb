@@ -39,17 +39,18 @@ module UsersResults
           factor_data = factor_hash[factor_id]
           return nil if factor_data.nil?
 
-          @extended_scoring = ::UsersResults::Scoring::AddScore.call!(
-            factor_hash,
-            [factor_id],
-            extended_scoring,
-            norm,
-            factor_norm_hash,
-            external_results,
-            factors_question_count,
-            visited_factor_ids,
-            answers
-          )
+          @extended_scoring = ::UsersResults::Scoring::AddScore.call!({
+            factor_hash: factor_hash,
+            factor_ids: [factor_id],
+            scoring: extended_scoring,
+            norm: norm,
+            factor_norm_hash: factor_norm_hash,
+            external_results: external_results,
+            answers: answers,
+            factors_question_count: factors_question_count,
+            visited_factor_ids: visited_factor_ids
+          })
+
           extended_scoring.dig(factor_id.to_i.to_s, score_type)
         end
 

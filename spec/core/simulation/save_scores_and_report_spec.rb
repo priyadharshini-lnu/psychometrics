@@ -45,16 +45,26 @@ RSpec.describe Simulation::SaveScoresAndReport, type: :service do
             accessToCleanDrinkingWater
             supplyOfLuxuryFoodItems
           ]
-        }
+        },
+        metadata: [
+          {
+            'createdAt' => '2025-01-16T04:50:05.977085+00:00',
+            'event' => { 'type' => 'period-started', 'periodKey' => 'onboarding' }
+          }
+        ]
       }
     end
 
     context 'when decisions are present' do
-      it 'updates the users_result answers' do
+      it 'updates the users_result answers and meta data' do
         service.call
 
         expect(user_assessment.users_result.reload.answers).to eq(
           decisions['decisions']
+        )
+
+        expect(user_assessment.users_result.reload.meta_data).to eq(
+          decisions['metadata']
         )
       end
 

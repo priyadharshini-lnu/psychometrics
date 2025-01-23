@@ -13,7 +13,7 @@ module Simulation
     def call
       return retry_save_answers if decisions.blank?
 
-      user_assessment.users_result.update(answers: decisions['decisions'])
+      user_assessment.users_result.update(meta_data: decisions['metadata'], answers: decisions['decisions'])
 
       user_assessment.update(status: :completed) unless user_assessment.completed?
 

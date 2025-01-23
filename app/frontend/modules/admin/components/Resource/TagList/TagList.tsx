@@ -25,6 +25,10 @@ const TagList: React.FC<TagListProps> = ({ initialTags, config }) => {
     }
   }, [inputVisible])
 
+  useEffect(() => {
+    setTags(initialTags)
+  }, [initialTags])
+
   const handleClose = (removedTag: string) => {
     const newTags = tags.filter(tag => tag !== removedTag)
     if (config.removeTag) {

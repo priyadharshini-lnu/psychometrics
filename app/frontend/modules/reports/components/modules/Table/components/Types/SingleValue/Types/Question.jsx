@@ -8,6 +8,9 @@ import styles from '../styles.less'
 const VALUES = [[2.69, 3.51, 2.7], [2.3, 3.24, 2.52], [2.03, 3.8, 2.19]]
 
 function Question ({ model, filters, questions }) {
+  const { fontSize, fontFamily, fontColor } = model.props.style
+  const styleProp = { fontSize, fontFamily, color: fontColor }
+
   const findQuestion = () => _.find(
     questions, question => question.id === model.props.questionId,
   )
@@ -63,7 +66,7 @@ function Question ({ model, filters, questions }) {
   if (!filters.length) return null
 
   return (
-    <div className={styles.table}>
+    <div className={styles.table} style={styleProp}>
       <table>
         <thead>
           <tr>
