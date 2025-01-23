@@ -17,6 +17,7 @@ import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
+import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 
 
 const ALL_FACTORS = 'All Factors'
@@ -518,6 +519,12 @@ class Properties extends Component {
           </div>
         </div>
         )}
+        {modules.length > 1 ? null
+          : (
+            <div className="mtm">
+              <PaginationOptions module={model} onChange={this.onChangeColor} />
+            </div>
+          )}
         <hr className={styles.divider} />
         <div>Font</div>
         <PropertyFonts modules={modules} colors={false} />

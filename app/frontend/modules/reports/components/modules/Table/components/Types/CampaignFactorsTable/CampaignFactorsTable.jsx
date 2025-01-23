@@ -11,6 +11,7 @@ import I18nStore from '~/modules/reports/store/I18nStore'
 import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
 import styles from './CampaignFactorsTable.less'
+import { PaginationContext } from '../FactorsTable/PaginationContext'
 
 const campaignFactorMockData = [
   {
@@ -113,6 +114,32 @@ class CampaignFactorsTable extends Component {
     module: PropTypes.object.isRequired,
   }
 
+  state = {
+    paginationContext: null,
+  }
+
+  componentDidMount () {
+    const { module: model, insertPaginationPage, preview } = this.props
+    if (!model.props.pagination?.enabled) { return }
+    if (!preview) { return }
+
+    if (model.pagination) {
+      this.setState({ paginationContext: model.pagination })
+      return
+    }
+
+    const element = document.querySelector(`[data-table="${model.id}"]`)
+    const context = new PaginationContext(model, element)
+
+    if (!context.needPagination) {
+      return
+    }
+    this.setState({ paginationContext: context.pages[0] })
+    if (insertPaginationPage) {
+      insertPaginationPage(model, context)
+    }
+  }
+
   getCampaignFactorMockData (campaignFactors, size) {
     const data = []
     while (data.length < size && size > 0) {
@@ -127,6 +154,8 @@ class CampaignFactorsTable extends Component {
 
   prepareCampaignFactorTableRows () {
     const { module, module: { props } } = this.props
+    const { paginationContext } = this.state
+
     const sourceCampaignFactors = _.get(props, ['source', 'campaignFactors'], [])
     const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
     const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
@@ -150,6 +179,9 @@ class CampaignFactorsTable extends Component {
     }
     if (props.reverseOrder && props.mode === 'topFactors') {
       this.campaignFactorsData.reverse()
+    }
+    if (paginationContext) {
+      this.campaignFactorsData = this.campaignFactorsData.filter(f => paginationContext.factorIds.includes(f.code))
     }
   }
 
@@ -250,7 +282,7 @@ class CampaignFactorsTable extends Component {
         )
 
         return (
-          <tr key={i}>
+          <tr data-paginatable={1} data-factor-id={campaignfactor.code} key={i}>
             {this.canShowRank() && (
               <td className={styles.rankOrder}>
                 <span className={tableStyle !== 'compact' ? cs(styles.star, 'icon-star') : ''}>
@@ -325,7 +357,7 @@ class CampaignFactorsTable extends Component {
       scorePosition = 'inline', showStrengthsBlindspots, showName, showDescription,
     } = model.props
     return (
-      <thead>
+      <thead data-table-header>
         <tr>
           {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
           {(showName || showDescription || showStrengthsBlindspots) ? (
@@ -350,7 +382,11 @@ class CampaignFactorsTable extends Component {
     this.prepareCampaignFactorTableRows()
     const hasData = this.campaignFactorsData.length > 0
     return (
-      <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
+      <table
+        data-table={model.id}
+        className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })}
+        style={style}
+      >
         {hasData && this.renderHeader(model.props.showHeader)}
         <tbody>
           {hasData ? this.renderCampaignFactors() : this.renderNoData()}

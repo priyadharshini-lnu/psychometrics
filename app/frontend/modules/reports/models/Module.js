@@ -35,6 +35,7 @@ const Module = function (attrs = {}, page) {
     this.isNew = true
   }
   this.meta = attrs.meta || {}
+  this.pagination = attrs.pagination || null
 
   this.assessment_id = attrs.assessment_id || (AppStore.assessments[0] && AppStore.assessments[0].id)
   this.type = attrs.type

@@ -5,7 +5,7 @@ import interact from 'interactjs'
 import cs from 'classnames'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
-import { useForceUpdate } from '@react-spring/shared'
+import useForceUpdate from '~/hooks/useUpdate'
 import styles from './FoundationSelected.less'
 
 
@@ -105,10 +105,14 @@ const FoundationSelected = ({
   const posRef = useRef(null)
   const startPos = useRef(null)
   const models = useRef([])
+  const isEditPagination = modules.length === 1 && _.get(modules, '0.props.pagination.editFrame', false)
 
   useEffect(() => {
     models.current = modules
-    const points = _.flatten(modules.map(m => getRotatedPoints(m.props.position, m.props.position.rotation)))
+
+    const points = _.flatten(modules.map(m => getRotatedPoints(
+      m.props.pagination?.editFrame ? m.props.pagination.position : m.props.position, m.props.position.rotation,
+    )))
     const left = _.minBy(points, 'x')?.x
     const top = _.minBy(points, 'y')?.y
     const right = _.maxBy(points, 'x')?.x
@@ -163,8 +167,13 @@ const FoundationSelected = ({
     const newY = pos.top - startPos.current.top
 
     models.current.forEach((module) => {
-      module.props.position.left += Math.round(newX)
-      module.props.position.top += Math.round(newY)
+      if (module.props.pagination?.editFrame) {
+        module.props.pagination.position.left += Math.round(newX)
+        module.props.pagination.position.top += Math.round(newY)
+      } else {
+        module.props.position.left += Math.round(newX)
+        module.props.position.top += Math.round(newY)
+      }
       module.update()
     })
   }
@@ -215,8 +224,8 @@ const FoundationSelected = ({
       const dh = dHeight * cos + dWidth * sin
       const dx = start.left - pos.left
       const dy = start.top - pos.top
-      const points = getRotatedPoints(module.props.position, module.props.position.rotation || 0)
-      const { position } = module.props
+      const { position } = module.props.pagination?.editFrame ? module.props.pagination : module.props
+      const points = getRotatedPoints(position, position.rotation || 0)
       const newPoints = points.map(({ x, y }) => ({
         x: start.left - dx + (x - start.left) * dWidth,
         y: start.top - dy + (y - start.top) * dHeight,
@@ -261,6 +270,7 @@ const FoundationSelected = ({
     {
       [styles.editor]: true,
       [styles.selected]: true,
+      [styles.editPagination]: isEditPagination,
     }, 'fe-module-container')
 
 
@@ -280,7 +290,10 @@ const FoundationSelected = ({
           <div className={cs(styles.corner, styles.bottomrightcorner)} />
           <div className={cs(styles.corner, styles.bottomleftcorner)} />
         </div>
-        <div className={cs(styles.sizeBox, { [styles.bottom]: pos.top < 0 })} ref={mover}>
+        <div
+          ref={mover}
+          className={cs(styles.sizeBox, { [styles.bottom]: pos.top < 0, [styles.editPagination]: isEditPagination })}
+        >
           <i
             className={`fa fa-arrows ${styles.mover}`}
             data-right="true"

@@ -111,7 +111,7 @@ export class FixedHeader extends Component {
           const assessmentId = report.builder.assessments[moduleData.assessment_id]
             ? moduleData.assessment_id
             : null
-
+          delete moduleData.props.pagination
           const module = new Module({ ..._.cloneDeep(moduleData), id: null, assessment_id: assessmentId }, currentPage)
           if (currentPage.id === pageId) {
             module.shift()

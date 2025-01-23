@@ -2410,6 +2410,18 @@ en:
       download: Download
       report_approvals: Report Approvals
       review: Review
+    report_builder:
+      pagination:
+        edit_frame: Edit Pagination Frame
+        hints:
+          frame_settings_off: Disabled pagination frame settings, module acts as usual
+          frame_settings_on: Enable pagination frame settings to set the next page dimensions for the module (the frame is highlighting with orange color)
+          pagination_disabled: Module pagination is not available for the module. Only one module pagination allowed per page
+          pagination_off: Module pagination is disabled
+          pagination_on: Module pagination is enabled. The content does not fit the module dimensions will be inserted to extra page/pages
+          repeat_modules: Selected modules will be repeated on the exta inserted pages, refers to module name
+        module_pagination: Module Pagination
+        repeat_modules: Repeat Modules
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.

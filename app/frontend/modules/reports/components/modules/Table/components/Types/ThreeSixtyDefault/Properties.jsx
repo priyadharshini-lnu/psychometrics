@@ -7,6 +7,7 @@ import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPan
 import AppStore from '~/modules/reports/store/AppStore'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
+import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 
@@ -82,6 +83,13 @@ class Properties extends Component {
         <div className="mtm">
           <PropertyFilter modules={modules} />
         </div>
+        <div className={styles.divider} />
+        {modules.length > 1 ? null
+          : (
+            <div className="mtm">
+              <PaginationOptions module={model} onChange={this.onChange} />
+            </div>
+          )}
       </div>
     )
   }

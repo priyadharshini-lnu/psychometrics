@@ -21,6 +21,11 @@ export const getRenderModules = (state: any, id: number) => {
   return _.includes([pages[index - 1], pages[index], pages[index + 1]], id)
 }
 
+export const getPageModules = (state: any, pageId: number): ModuleInterface[] => {
+  const page = state.pages[pageId]
+  return getModules(state, page.modules).filter(m => !m.removed)
+}
+
 export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
   state.modules, m => m.props.showOnAllPages && !m.removed,
 )

@@ -15,6 +15,7 @@ import connect from './connect'
 import SortableFactors from './SortableCampaignFactors'
 import ScoreRangeList from './ScoreRangeList'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
+import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 
 const ALL_FACTORS = 'All Campaign Factors'
 
@@ -458,6 +459,12 @@ class Properties extends Component {
           </div>
         </div>
         )}
+        {modules.length > 1 ? null
+          : (
+            <div className="mtm">
+              <PaginationOptions module={model} onChange={this.onChangeColor} />
+            </div>
+          )}
         <hr className={styles.divider} />
         <div>Font</div>
         <PropertyFonts modules={modules} colors={false} />
