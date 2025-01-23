@@ -4538,7 +4538,8 @@ CREATE TABLE public.saville_user_assessments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     data_seprator character varying,
-    error_code character varying
+    error_code character varying,
+    candidate_id bigint
 );
 
 
@@ -14756,6 +14757,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250121134222'),
 ('20250121061959'),
 ('20250113081931'),
+('20250109001045'),
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),

@@ -132,7 +132,8 @@ module Campaigns
         existing_saville_user_assessment = existing_result&.saville_user_assessment
         user_assessment.create_saville_user_assessment(
           norm_id: existing_saville_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
-          data_seprator: existing_saville_user_assessment&.data_seprator
+          data_seprator: existing_saville_user_assessment&.data_seprator,
+          candidate_id: existing_saville_user_assessment&.candidate_id
         )
       end
 

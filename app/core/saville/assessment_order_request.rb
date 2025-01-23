@@ -38,7 +38,7 @@ module Saville
         data_seprator: saville_user_assessment.data_seprator,
         return_url: campaign_url,
         webhook_url: webhook_url,
-        subject_id: subject.id,
+        candidate_id: saville_user_assessment.candidate_id,
         subject_email: maskable_identity.email,
         subject_first_name: maskable_identity.first_name,
         subject_last_name: maskable_identity.last_name,
