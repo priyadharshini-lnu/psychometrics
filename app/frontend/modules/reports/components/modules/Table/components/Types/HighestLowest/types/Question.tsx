@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import find from 'lodash/find'
 import compact from 'lodash/compact'
@@ -89,6 +89,7 @@ interface OwnProps {
   hideValues: boolean
   noOfItems: number | null
   scoreCutoff: number | null
+  style?: CSSProperties & { fontColor: string }
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -103,6 +104,7 @@ const QuestionTypeComponent: FC<Props> = ({
   hideValues,
   noOfItems = 5,
   scoreCutoff,
+  style,
 }) => {
   const calculateHighestLowest = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -196,9 +198,10 @@ const QuestionTypeComponent: FC<Props> = ({
   )
 
   const filterName = filter ? I18nStore.tFilterName(filter) : ''
+  const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
   return (
-    <div className={cs(styles.table, styles[tableStyle])}>
+    <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
       <table>
         <tbody>
           {sections !== TableSectionsType.LOWEST && (

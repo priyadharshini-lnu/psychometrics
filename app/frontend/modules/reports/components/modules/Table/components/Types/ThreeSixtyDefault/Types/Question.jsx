@@ -14,11 +14,8 @@ const Question = ({ model, questions, insertPaginationPage }) => {
   if (!model.props.filter) return null
   const question = _.find(questions, q => q.id === model.props.questionId)
   if (!question) return null
-  const { fontSize, fontFamily } = model.props.style
-  const style = {
-    fontSize,
-    fontFamily,
-  }
+  const { fontSize, fontFamily, fontColor } = model.props.style
+  const styleProp = { fontSize, fontFamily, color: fontColor }
 
   const { paginationContext } = useModulePagination(
     model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage,
@@ -26,7 +23,7 @@ const Question = ({ model, questions, insertPaginationPage }) => {
 
   const filters = paginationContext?.filterId?.length ? [...paginationContext?.filterId] : model.props.filter
   return (
-    <div style={style} data-table={model.id}>
+    <div style={styleProp} data-table={model.id}>
       <table className={styles.table}>
         <thead data-table-header>
           <tr>

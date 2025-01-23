@@ -91,11 +91,14 @@ class CPIOccupations extends Component {
   render () {
     const { module: model } = this.props
     const { tableStyle = 'classic', showOptions = [] } = model.props
-    const { fontSize, fontFamily, width } = model.props.style
+    const {
+      fontSize, fontFamily, fontColor, width,
+    } = model.props.style
     const style = {
       fontSize,
       fontFamily,
       width,
+      color: fontColor,
     }
     this.prepareRows()
     const tableStyleClass = styles[tableStyle]

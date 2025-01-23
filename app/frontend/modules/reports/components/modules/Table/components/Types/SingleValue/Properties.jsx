@@ -17,7 +17,7 @@ const Properties = ({ modules }) => {
 
   return (
     <div>
-      <div className={styles.title}>Single Value</div>
+      <div className={styles.title}>Single value</div>
       <SourceTypeButtonGroup model={model} onChange={onChange} />
       <DataSource modules={modules} onChange={onChange} />
       <div className="mtm">

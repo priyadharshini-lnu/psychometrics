@@ -63,10 +63,11 @@ const QuestionComponent = ({ filters, model, questions }) => {
 
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / (milestones.length || 1)
   const getDescStyle = results => ({ minHeight: `${FILTER_ROW_HEIGHT * results.length}px` })
-  const { fontSize, fontFamily } = model.props.style
+  const { fontSize, fontFamily, fontColor } = model.props.style
   const style = {
     fontSize,
     fontFamily,
+    color: fontColor,
   }
   if (borderColor) {
     style.borderColor = borderColor

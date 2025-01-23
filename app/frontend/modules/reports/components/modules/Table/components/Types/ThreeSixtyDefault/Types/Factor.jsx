@@ -7,11 +7,13 @@ import math from '~/modules/reports/utils/math'
 import styles from '../styles.less'
 
 const Factor = ({ model }) => {
+  const { fontFamily, fontSize, fontColor } = model.props.style
+  const styleProp = { fontFamily, fontSize, color: fontColor }
   const assessment = AppStore.getAssessmentById(model.assessment_id)
   const factor = AppStore.factors[assessment.dimensionId].find(f => f.id === model.props.factorId)
   if (!factor || !model.props.filter) return null
   return (
-    <div>
+    <div style={styleProp}>
       {model.props.filter.map(filterId => (
         <Table factor={factor} key={filterId} filterId={filterId} model={model} />
       ))}

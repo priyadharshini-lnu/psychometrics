@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import AppStore from '~/modules/reports/store/AppStore'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
@@ -75,8 +74,6 @@ class Properties extends Component {
     const List = lists[model.props.sourceType]
     return (
       <div>
-        <div>Font</div>
-        <PropertyFonts modules={modules} colors={false} />
         <div className={styles.title}>Default 360</div>
         <SourceTypeButtonGroup model={model} onChange={this.onChange} />
         <List model={model} onChange={this.onChange} questions={questions} />

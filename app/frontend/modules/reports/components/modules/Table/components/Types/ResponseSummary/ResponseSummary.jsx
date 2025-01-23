@@ -130,10 +130,12 @@ class ResponseSummary extends Component {
 
   render () {
     const { module: model } = this.props
+    const { fontSize, fontFamily, fontColor } = model.props.style
+    const styleProp = { fontSize, fontFamily, color: fontColor }
     this.prepareRows()
 
     return (
-      <div className={styles.table}>
+      <div className={styles.table} style={styleProp}>
         <Table
           module={model}
           rowsCount={this.rowData.length}

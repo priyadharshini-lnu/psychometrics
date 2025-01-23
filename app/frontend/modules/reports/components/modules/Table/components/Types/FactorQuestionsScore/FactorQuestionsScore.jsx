@@ -146,6 +146,8 @@ class ResponseSummary extends Component {
   render () {
     this.prepareData()
     const { module: model } = this.props
+    const { fontFamily, fontSize, fontColor } = model.props.style
+    const styleProp = { fontFamily, fontSize, color: fontColor }
     const factors = _.result(model.props, 'source.factors') || []
     if (!ResultStore.realResults) {
       _.each(factors, (factor) => {
@@ -162,7 +164,7 @@ class ResponseSummary extends Component {
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
     return (
-      <div className={styles.table}>
+      <div className={styles.table} style={styleProp}>
         <table>
           <thead style={{ visibility: !model.props.showHeader ? 'hidden' : 'visible' }}>
             <tr>

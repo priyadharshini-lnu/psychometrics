@@ -2725,6 +2725,9 @@ en:
         title: Title
       common:
         all_factors: All factors
+        font: Font
+        table_options: Table options
+        table_type: Table type
       factors_table:
         description: Description
         na: N/A

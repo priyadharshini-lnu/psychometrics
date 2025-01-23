@@ -373,11 +373,12 @@ class CampaignFactorsTable extends Component {
   render () {
     const { module, model } = this.props
     const { showBorder, backgroundColor } = model.props
-    const { fontSize, fontFamily } = module.props.style
+    const { fontSize, fontFamily, fontColor } = module.props.style
     const style = {
       fontSize,
       fontFamily,
       backgroundColor: backgroundColor || false,
+      color: fontColor,
     }
     this.prepareCampaignFactorTableRows()
     const hasData = this.campaignFactorsData.length > 0

@@ -59,10 +59,11 @@ class ResponseSummary extends Component {
 
   render () {
     const { module: { props }, module } = this.props
-    const { fontSize, fontFamily } = module.props.style
+    const { fontSize, fontFamily, fontColor } = module.props.style
     const style = {
       fontSize,
       fontFamily,
+      color: fontColor,
     }
     this.prepareRows()
     if (!this.occupationData) { return false }

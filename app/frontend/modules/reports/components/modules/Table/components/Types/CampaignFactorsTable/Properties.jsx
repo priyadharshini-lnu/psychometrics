@@ -8,7 +8,6 @@ import {
 import _ from 'lodash'
 import Select from 'react-select'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import { ColorPicker } from '~/glint'
 import connect from './connect'
@@ -466,8 +465,6 @@ class Properties extends Component {
             </div>
           )}
         <hr className={styles.divider} />
-        <div>Font</div>
-        <PropertyFonts modules={modules} colors={false} />
       </div>
     )
   }

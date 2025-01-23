@@ -253,11 +253,14 @@ class StrengthClusters extends Component {
   render () {
     const { module: model } = this.props
 
-    const { fontSize, fontFamily, width } = model.props.style
+    const {
+      fontSize, fontFamily, width, fontColor,
+    } = model.props.style
     const style = {
       fontSize,
       fontFamily,
       width,
+      color: fontColor,
     }
     this.prepareRows()
     return (
