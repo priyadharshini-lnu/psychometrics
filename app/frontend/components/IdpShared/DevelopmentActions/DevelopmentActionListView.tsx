@@ -14,6 +14,7 @@ import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentAct
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
 
 import styles from './DevelopmentActionListView.less'
+import { AIGeneratedDevelopmentActionsModal } from './AIGeneratedDevelopmentActionsModal'
 
 const { I18n } = window
 
@@ -39,6 +40,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   onUpdateDevelopmentActionProgress,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
+  const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null)
   const [isCreateCustomDevelopmentActionModalOpen, setIsCreateCustomDevelopmentActionModalOpen] = useState(false)
   const isTablet = useMedia({
@@ -89,6 +91,14 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     }
     setIsCreateCustomDevelopmentActionModalOpen(false)
     setSelectedSkill(null)
+  }
+
+  const handleAddAIGeneratedDevelopmentAction = (developmentAction: Partial<DevelopmentAction>) => {
+    if (developmentAction.description) {
+      handleCreateCustomDevelopmentAction(developmentAction.description)
+    }
+    setIsAddDevelopmentActionModalOpen(false)
+    setIsAIGeneratedDevelopmentActionsModalOpen(false)
   }
 
   const handleShowCustomDevelopmentAction = () => {
@@ -186,11 +196,18 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onShowCustomDevelopmentAction={handleShowCustomDevelopmentAction}
         onCancel={handleCancel}
         open={isAddDevelopmentActionModalOpen}
+        onShowAIGeneratedDevelopmentActions={() => setIsAIGeneratedDevelopmentActionsModalOpen(true)}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}
         onCreateCustomDevelopmentAction={handleCreateCustomDevelopmentAction}
         onCancel={handleCancel}
+      />
+      <AIGeneratedDevelopmentActionsModal
+        open={isAIGeneratedDevelopmentActionsModalOpen}
+        onCancel={() => setIsAIGeneratedDevelopmentActionsModalOpen(false)}
+        skill={selectedSkill}
+        onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
       />
     </>
 

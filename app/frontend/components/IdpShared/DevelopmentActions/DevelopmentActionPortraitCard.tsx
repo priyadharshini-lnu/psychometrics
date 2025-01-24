@@ -6,7 +6,7 @@ import { BoxWithShadow } from '~/glint'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionPortraitCard.less'
 import { DevelopmentActionWithSkill } from '.'
-import { Tags } from './Tags'
+import { Tags } from './Common'
 
 const { I18n } = window
 

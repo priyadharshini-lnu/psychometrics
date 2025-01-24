@@ -1989,6 +1989,7 @@ en:
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
     invalid_token: Something went wrong. Plese reload the page and try again.
+    max_regeneration_limit: Maximum regeneration limit exceeded, contact your administration.
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.
@@ -2259,6 +2260,8 @@ en:
       date_range: Start Date - End Date
       development_actions: Development Actions
       generate_by_ai: Generate by AI
+      generate_more: Generate More
+      generating_development_actions: Generating development actions...
       learning_from_the_others: Learning from the Others
       marathon: Marathon
       no_development_actions: No development actions

@@ -963,6 +963,7 @@ as: :simulation_progress_notification
         collection do
           get :user_idp_skills
           get :available_development_actions
+          post :generate_by_ai
           post :save_plan
           put :update_progress
         end

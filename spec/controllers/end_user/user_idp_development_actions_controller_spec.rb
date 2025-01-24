@@ -70,4 +70,69 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       expect(user_idp_development_action.progress).to eq(50)
     end
   end
+
+  describe 'POST generate_by_ai' do
+    subject { post :generate_by_ai, params: params }
+
+    let(:user_idp_skill) { user_idp_skills.first }
+    let(:params) do
+      {
+        skill_id: user_idp_skill.id.to_s,
+        generate_more: 'false'
+      }
+    end
+    let(:mock_service) { instance_double(DeploymentActions::GenerativeService) }
+    let(:generated_actions) do
+      [
+        {
+          'description' => 'Enroll in an online course designed to build expertise in advanced JavaScript concepts...',
+          'learning_style' => 'structured_learning'
+        },
+        {
+          'description' => "Join a team-focused activity where you review peers'...",
+          'learning_style' => 'learning_from_the_others'
+        }
+      ]
+    end
+
+    context 'when service call is successful' do
+      before do
+        allow(DeploymentActions::GenerativeService).to receive(:new).
+          with(user_idp_skill.skill, anything).
+          and_return(mock_service)
+        allow(mock_service).to receive(:call!).and_return(generated_actions)
+      end
+
+      it 'returns generated actions with 200 status' do
+        subject
+
+        expect(response).to have_http_status(:ok)
+        expect(JSON.parse(response.body)['data']).to eq(generated_actions)
+      end
+
+      it 'calls the generative service with correct parameters' do
+        expect(DeploymentActions::GenerativeService).to receive(:new).
+          with(user_idp_skill.skill, ActionController::Parameters.new(params).permit!)
+        expect(mock_service).to receive(:call!)
+
+        subject
+      end
+    end
+
+    context 'when regenerate limit is reached' do
+      before do
+        allow(DeploymentActions::GenerativeService).to receive(:new).
+          and_return(mock_service)
+        allow(mock_service).to receive(:call!).
+          and_raise(DeploymentActions::GenerativeService::RegenerateLimitReachedError.new('Limit reached'))
+      end
+
+      it 'returns error with 422 status' do
+        subject
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(JSON.parse(response.body)['errors']).to eq(['Limit reached'])
+      end
+    end
+  end
 end

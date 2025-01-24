@@ -5,7 +5,7 @@ type Props = {
 }
 
 const { I18n } = window
-export const Tags = ({ type }: Props) => {
+const Tags = ({ type }: Props) => {
   const tag = TagsData[type]
   return (
     <>
@@ -32,3 +32,5 @@ const TagsData = {
     duration: 10,
   },
 }
+
+export default Tags

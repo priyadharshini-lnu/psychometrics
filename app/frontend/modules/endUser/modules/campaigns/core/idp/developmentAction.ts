@@ -5,6 +5,7 @@ import _ from 'lodash'
 const FETCH_USER_IDP_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_USER_IDP_DEVELOPMENT_ACTIONS'
 const FETCH_USER_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_USER_IDP_SKILLS'
 const FETCH_AVAILABLE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_AVAILABLE_DEVELOPMENT_ACTIONS'
+const GENERATE_DEVELOPMENT_ACTIONS_BY_AI = 'IDP/MY_PLAN/GENERATE_DEVELOPMENT_ACTIONS_BY_AI'
 const ADD_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/ADD_DEVELOPMENT_ACTION'
 const UPDATE_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/UPDATE_DEVELOPMENT_ACTION'
 const SAVE_DEVELOPMENT_ACTIONS = 'IPD/MY_PLAN/SAVE_DEVELOPMENT_ACTIONS'
@@ -74,10 +75,21 @@ export const fetchAvailableDevelopmentActions = (userId: string) => ({
   },
 })
 
+export const generateDevelopmentActionsByAI = (skillId: number, generateMore = false, generatedActions = {}) => ({
+  type: GENERATE_DEVELOPMENT_ACTIONS_BY_AI,
+  request: {
+    url: '/user_idp_development_actions/generate_by_ai',
+    camelize: false,
+    method: 'post',
+    body: { generateMore, skillId, generatedActions },
+  },
+})
+
 export const defaultState = {
   userIdpDevelopmentActions: {},
   userIdpSkills: {},
   directReports: [],
+  AIGeneratedDevelopmentActions: [],
 }
 
 const HANDLERS = {
@@ -97,6 +109,16 @@ const HANDLERS = {
     ...state,
     availableDevelopmentActions: _.keyBy(humps.camelizeKeys(action.response.data), 'id'),
   }),
+  [GENERATE_DEVELOPMENT_ACTIONS_BY_AI]: (state, action) => {
+    const generateMoreReq = action.requestAction.request.body.generateMore || false
+    const responseData = humps.camelizeKeys(action.response.data)
+
+    return {
+      ...state,
+      AIGeneratedDevelopmentActions:
+        generateMoreReq ? [...state.AIGeneratedDevelopmentActions, ...responseData] : responseData,
+    }
+  },
   [UPDATE_DEVELOPMENT_ACTION]: (state, action) => {
     const newDevelopmentAction = action.data
     return {

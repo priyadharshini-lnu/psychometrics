@@ -2,6 +2,8 @@
 
 module EndUser
   class UserIdpDevelopmentActionsController < ApplicationController
+    before_action :load_skill!, only: %i[generate_by_ai]
+
     def index
       authorize(user, nil, policy_class: ::EndUser::UserIdpDevelopmentActionPolicy)
 
@@ -81,6 +83,14 @@ module EndUser
       end
     end
 
+    def generate_by_ai
+      generated_actions = DeploymentActions::GenerativeService.new(@skill, ai_generate_service_params).call!
+
+      render json: { data: generated_actions }, status: :ok
+    rescue DeploymentActions::GenerativeService::RegenerateLimitReachedError => e
+      render json: { errors: [e.message] }, status: 422
+    end
+
     private
 
     def validate_user_idp_development_action(user_idp_development_actions_params)
@@ -120,6 +130,18 @@ module EndUser
 
     def progress_params
       params.require(:user_idp_development_action).permit(:id, :progress)
+    end
+
+    def load_skill!
+      @skill = current_user.user_idp_skills.includes(:skill).find(params[:skill_id]).skill
+    end
+
+    def ai_generate_service_params
+      params.permit(
+        :skill_id,
+        :generate_more,
+        generated_actions: %i[description learning_style]
+      )
     end
   end
 end
