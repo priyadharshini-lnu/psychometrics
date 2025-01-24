@@ -7,15 +7,20 @@ module Api
     def index # rubocop:disable Metrics/AbcSize
       sort = @request.parse_sort_criteria(params[:sort])&.first || { field: 'email', direction: :asc }
       limit = limit_and_offset[:limit]
+      campaign_users_active_in = params.dig(:filter, :campaign_users_active_in) || 'true'
+
       query_object = CampaignUsers::CampaignUserScoresQuery.new(
         campaign_id: campaign.id,
         sort: sort,
-        limit: limit,
-        offset: limit_and_offset[:offset],
-        search_term: params.dig(:filter, :search_query)
+        filter: {
+          limit: limit,
+          offset: limit_and_offset[:offset],
+          search_term: params.dig(:filter, :search_query),
+          campaign_users_active_in: campaign_users_active_in
+        }
       )
 
-      total_records = CampaignUser.where(campaign_id: campaign.id).count
+      total_records = CampaignUser.where(active: campaign_users_active_in.split(','), campaign_id: campaign.id).count
       total_pages = (total_records.to_f / limit).ceil
 
       campaign_factor_ids = campaign.campaign_factors.pluck(:id).map(&:to_s)
@@ -34,6 +39,7 @@ module Api
             user: { id: score['user_id'].to_s, email: score['email'],
                     first_name: score['first_name'],
                     last_name: score['last_name'] },
+            active: score['active'],
             campaign_scores_calculated_date: score['campaign_scores_calculated_date'],
             campaign_scores_errors: errors ? JSON.parse(errors) : nil,
             campaign_scores_finalized: score['campaign_scores_finalized'],
@@ -108,7 +114,12 @@ module Api
 
       AdminJob.call(
         :export_campaign_scorings,
-        { campaign_id: campaign.id },
+        {
+          campaign_id: campaign.id,
+          filters: {
+            campaign_users_active_in: params.dig(:filters, :campaign_users_active_in)
+          }
+        },
         current_user
       )
       render json: :ok

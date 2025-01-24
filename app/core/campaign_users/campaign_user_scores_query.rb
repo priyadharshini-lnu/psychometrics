@@ -2,14 +2,15 @@
 
 module CampaignUsers
   class CampaignUserScoresQuery < Rectify::Query
-    private_attr_reader :campaign_id, :sort, :limit, :offset, :search_term
+    private_attr_reader :campaign_id, :sort, :limit, :offset, :search_term, :campaign_users_active_in
 
-    def initialize(campaign_id:, search_term: nil, sort: { field: 'email', direction: :asc }, limit: 25, offset: 0)
+    def initialize(campaign_id:, sort: { field: 'email', direction: :asc }, filter: {})
       @campaign_id = campaign_id
-      @search_term = search_term
+      @search_term = filter[:search_term]
       @sort = sort
-      @limit = limit.to_i
-      @offset = offset.to_i
+      @limit = (filter[:limit] || 25).to_i
+      @offset = (filter[:offset] || 0).to_i
+      @campaign_users_active_in = filter[:campaign_users_active_in] || true
     end
 
     def query
@@ -35,6 +36,7 @@ module CampaignUsers
       base_query = <<~SQL.squish
         SELECT
           cu.id,
+          cu.active,
           cu.campaign_scores_calculated_date,
           cu.campaign_scores_errors,
           cu.campaign_scores_finalized,
@@ -51,7 +53,8 @@ module CampaignUsers
       if factor_columns.present?
         base_query += "LEFT JOIN (#{crosstab_query}) AS ct ON cu.user_id = ct.user_id "
       end
-      base_query += "WHERE cu.campaign_id = #{campaign_id} #{search_condition}
+      base_query += "WHERE cu.active IN (#{campaign_users_active_in}) AND
+      cu.campaign_id = #{campaign_id} #{search_condition}
       ORDER BY #{sanitized_sort_column} #{sort[:direction]}
       LIMIT #{limit} OFFSET #{offset};"
       base_query

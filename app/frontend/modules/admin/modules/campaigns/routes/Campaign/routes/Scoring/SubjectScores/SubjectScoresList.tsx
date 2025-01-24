@@ -23,6 +23,7 @@ import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
 import { ImportExternalScoringModal } from './ImportExternalScoringModal'
+import { ExportScoringsModal } from './ExportScoringsModal'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import Modals from '~/modules/admin/components/Modals/'
@@ -45,6 +46,7 @@ enum StackRank {
 type DataType = {
   id: string;
   email: string;
+  active: string;
   campaignScoresFinalized: boolean | null;
   campaignScoresFinalizedDate: string | null;
   campaignScoresCalculatedDate: string | null;
@@ -75,6 +77,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
   const [openImportExternalScoringModal, setopenImportExternalScoringModal] = useState(false)
+  const [openExportScoringsModal, setopenExportScoringsModal] = useState(false)
 
   const {
     data: campaignFactorData,
@@ -120,6 +123,9 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
           ],
         },
         include: ['campaign_factor_values', 'user'],
+        filter: {
+          campaign_users_active_in: 'true',
+        },
       },
     },
   )
@@ -186,13 +192,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
 
   const handleToolAction = (action: string) => {
     if (action === 'export') {
-      collectionAction({
-        action: 'export_scorings',
-        method: 'get',
-        responseType: t.literal('ok'),
-      }).then(() => {
-        message.success(I18n.t('administration.scoring.subject_list.export_success'))
-      })
+      setopenExportScoringsModal(true)
     } else if (action === 'import_external_scores') {
       setopenImportExternalScoringModal(true)
     }
@@ -258,7 +258,8 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     campaignFactorData,
     handleConfirmAction,
     getSortOrder, meta,
-  ), [campaignFactorData, getSortOrder])
+    getFilteredValue,
+  ), [campaignFactorData, getSortOrder, getFilteredValue])
 
   const handleChange = (pagination, filters, sorter) => {
     handleTableChange(pagination, filters, sorter)
@@ -289,6 +290,19 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
             }}
             onClick={action => handleToolAction(action)}
           />
+          <ExportScoringsModal
+            exportScorings={params => collectionAction({
+              action: 'export_scorings',
+              method: 'get',
+              body: {
+                filters: params.filters,
+              },
+              responseType: t.literal('ok'),
+            }).then(() => { message.success(I18n.t('administration.scoring.subject_list.export_success')) })}
+            open={openExportScoringsModal}
+            close={() => setopenExportScoringsModal(false)}
+          />
+
           <ImportExternalScoringModal
             open={openImportExternalScoringModal}
             close={() => setopenImportExternalScoringModal(false)}
@@ -358,6 +372,7 @@ function createSortedTableColumns (
   campaignFactorData: CampaignFactorGroupType[],
   handleAction: (actions: string, subject)=> void,
   getSortOrder, meta,
+  getFilteredValue,
 ): ColumnsType<DataType> {
   let stackRankColumn: string | null = null
   const sortedGroupColumns: ColumnsType<DataType> = campaignFactorData?.map(group => ({
@@ -393,6 +408,18 @@ function createSortedTableColumns (
       fixed: 'left',
       sorter: true,
       sortOrder: getSortOrder('id'),
+    },
+    {
+      title: I18n.t('administration.scoring.active'),
+      dataIndex: 'active',
+      key: 'campaign_users_active',
+      width: 80,
+      fixed: 'left',
+      filters: [
+        { text: 'Active', value: true },
+        { text: 'Inactive', value: false },
+      ],
+      filteredValue: (getFilteredValue('campaign_users_active_in') || [true]),
     },
     {
       title: I18n.t('administration.scoring.subject'),
@@ -507,6 +534,7 @@ const processData = (
   const userData = {
     key: userId,
     id: userId,
+    active: valueData?.active ? 'Yes' : 'No',
     email: valueData?.user.email,
     campaignScoresFinalizedDate: valueData?.campaignScoresFinalizedDate,
     campaignScoresCalculatedDate: valueData?.campaignScoresCalculatedDate,

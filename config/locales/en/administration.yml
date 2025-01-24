@@ -1380,6 +1380,9 @@ en:
           not_started: If assessment is not started
           send_now: Send now
           specific_datetime: Send at
+        idp_template_approved: IDP Approved
+        idp_template_assigned: IDP Assigned
+        idp_template_rejected: IDP Rejected
         invitation: Invitation
         kind: Communication Types
         magic_link_email: Magic Link Email
@@ -2710,6 +2713,7 @@ en:
         resources: Resources
         subjects: Subjects
     scoring:
+      active: Active
       actual_average: Actual Average
       add_factor: Add Factor
       add_group: Add Group
