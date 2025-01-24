@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseResource
-  attributes :name, :description, :category, :created_at, :updated_at, :owner_id, :tag_list
+  attributes :name, :description, :category, :created_at, :updated_at, :project_id, :tag_list
 
-  has_one :owner
+  has_one :project
 
   add_tag_filter
 
@@ -15,8 +15,8 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     @model.decorate.updated_at
   end
 
-  def owner_id
-    @model.owner_id.to_s
+  def project_id
+    @model.project_id.to_s
   end
 
   def tag_list

@@ -5,8 +5,8 @@ require 'rails_helper'
 describe EndUser::IdpTemplateSkillsController, type: :controller do
   let(:current_password) { 'Current@Password129' }
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
-
-  let!(:skill) { create(:skill, name: 'abc') }
+  let(:project) { Project.find(user.project.id) }  # Ensure we have a proper Project instance
+  let!(:skill) { create(:skill, name: 'abc', project: project) }
   let!(:idp_template) { create(:idp_template) }
   let!(:idp_template_skill) { create(:idp_template_skill, idp_template: idp_template, skill: skill) }
   let!(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }

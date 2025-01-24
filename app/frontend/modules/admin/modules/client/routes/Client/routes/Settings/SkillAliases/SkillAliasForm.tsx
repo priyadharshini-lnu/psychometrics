@@ -9,7 +9,7 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
 import { SkillAlias } from '~/modules/admin/modules/client/core/skillAlias'
-import { Skill } from '~/modules/admin/modules/client/core/skill'
+import { Skill } from '~/modules/admin/modules/client/core/skills'
 
 const { Option } = Select
 interface Props {

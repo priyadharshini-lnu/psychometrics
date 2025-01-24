@@ -7,7 +7,7 @@ export const SkillTR = t.intersection([
     name: t.string,
     description: t.string,
     category: t.string,
-    owner: t.union([
+    project: t.union([
       t.type({
         id: t.string,
         name: t.string,
@@ -17,3 +17,13 @@ export const SkillTR = t.intersection([
   })])
 
 export type Skill = t.TypeOf<typeof SkillTR>
+
+
+export const Schema = {
+  type: 'skills',
+  relationships: {
+    project: {
+      type: 'projects',
+    },
+  },
+}

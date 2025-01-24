@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :skill_alias do
     association :client
-    association :skill
-    name { "Skill Alias #{Faker::Lorem.characters(number: 5)}" }
+    association :skill  # Let the factory accept a skill instead of creating one
+    name { Faker::Lorem.word }
   end
 end

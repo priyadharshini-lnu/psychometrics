@@ -8,9 +8,10 @@ describe Api::V2::Administration::SkillAliasesController, swagger_doc: 'v2/swagg
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
   let!(:client) { create(:tenancy) }
   let(:client_id) { client.id }
-  let(:skill) { create(:skill) }
+  let!(:project) { Project.find(create(:project, parent: client).id) }
+  let(:skill) { create(:skill, project: project) }
   let(:skill_id) { skill.id }
-  let(:skill_two) { create(:skill) }
+  let(:skill_two) { create(:skill, project: project) }
   let(:skill_id_two) { skill_two.id }
   let!(:skill_alias) { create(:skill_alias, client_id: client.id, skill_id: skill_id) }
   let(:skill_alias_id) { skill_alias.id }

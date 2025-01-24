@@ -1577,6 +1577,10 @@ en:
     document_titles:
       project_assessors: Assessors | %{project}
       project_participants: Participants | %{project}
+    download_sample_file:
+      download_example_file: Download Example File
+      download_started_successfully: Download started successfully
+      failed_to_download: failed to download
     enable: Enable
     errors:
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
@@ -2918,8 +2922,16 @@ en:
         category: Category
         description: Description
         name: Name
+        owner_placeholder: Select an Owner
+        project_placeholder: Select a Project
         title: Skill
+      import:
+        download_example_csv: Download Example csv
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+        title: Skills import
+      import_skills: Import Skills
       skills: Skills
+      tools: Tools
     sms_histories:
       columns:
         first_name: First Name
@@ -2957,7 +2969,7 @@ en:
         mobile_no: Mobile no
         title: Sms Invite
       import:
-        download_example_csv: Download Example csv
+        download_example_csv: Download Example CSV
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: SMS Invite import
       messages:

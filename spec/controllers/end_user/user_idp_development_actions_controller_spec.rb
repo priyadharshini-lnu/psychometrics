@@ -5,9 +5,10 @@ require 'rails_helper'
 RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller do
   let(:current_password) { 'Current@Password129' }
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
+  let(:project) { Project.find(user.project.id) } # Ensure we have a proper Project instance
   let(:idp_template) { create(:idp_template) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
-  let(:skills) { create_list(:skill, 3) }
+  let(:skills) { create_list(:skill, 3, project: project) }  # Create skills with project owner
   let(:development_action) { create(:development_action) }
   let(:development_action1) { create(:development_action) }
   let!(:user_idp_skills) do

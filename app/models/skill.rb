@@ -6,7 +6,7 @@ class Skill < ApplicationRecord
 
   translates :name, :description
 
-  belongs_to :owner, class_name: 'Client'
+  belongs_to :project
 
   has_many :skills_job_roles
   has_many :job_roles, through: :skills_job_roles
@@ -16,7 +16,7 @@ class Skill < ApplicationRecord
   enum category: { behavioral: 0, technical: 1, other: 2 }
 
   acts_as_taggable_on :tags
-  acts_as_taggable_tenant :owner_id
+  acts_as_taggable_tenant :project_id
 
   # Search entity by word
   scope :search_query, lambda { |query|

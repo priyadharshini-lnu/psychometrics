@@ -23,6 +23,10 @@ module Api
         @user.is?(:superadmin)
       end
 
+      def import?
+        @user.is?(:superadmin)
+      end
+
       def add_tag?
         @user.is?(:superadmin)
       end

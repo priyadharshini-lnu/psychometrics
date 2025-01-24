@@ -62,7 +62,8 @@ class AdminJob < ApplicationJob
     export_occupations: AdminJobs::ExportOccupations,
     export_user_report_events: AdminJobs::ExportUserReportEvents,
     migrate_assessment_translations: AdminJobs::MigrateAssessmentTranslations,
-    add_campaign_reports: AdminJobs::AddCampaignsReports
+    add_campaign_reports: AdminJobs::AddCampaignsReports,
+    import_skills: AdminJobs::ImportSkillsJob
   }.freeze
 
   def perform(record)
