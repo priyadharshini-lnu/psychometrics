@@ -11,7 +11,9 @@ module UserReports
 
     def call
       @users.each do |user|
-        ::ReportApproving::QcNotificationMailer.notify(@user_report, user).deliver_later
+        ::ReportApproving::QcNotificationMailer.notify(@user_report.id, user).deliver_later(
+          wait_until: 30.seconds.from_now
+        )
       end
     end
   end
