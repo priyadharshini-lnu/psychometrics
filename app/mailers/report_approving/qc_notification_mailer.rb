@@ -4,9 +4,9 @@ module ReportApproving
   class QcNotificationMailer < ApplicationMailer
     layout 'admin_email'
 
-    def notify(user_report, user)
+    def notify(user_report_id, user)
       @user = user
-      @user_report = user_report
+      @user_report = UserReport.find_by(id: user_report_id)
       send_email(
         user,
         from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
