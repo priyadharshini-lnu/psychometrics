@@ -12,7 +12,6 @@ import { connect, ConnectedProps } from 'react-redux'
 import VideoPlayer from '~/components/MediaRecorder/components/VideoPlayer'
 import { RightOutlined, RedoOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
-import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'
 import reducer, {
   initialState, updateAccess, updateUploading, updateSpeechTestText,
@@ -61,7 +60,6 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
 
   const isAccessDone = state.access === CheckListStatus.Done
   const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
-  const isUploadingDone = state.uploading === CheckListStatus.Done
 
 
   const {
@@ -181,7 +179,6 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
     }).then(() => {
       dispatch(updateUploading(CheckListStatus.Done))
-      nextStep()
     }).catch(() => {
       dispatch(updateUploading(CheckListStatus.Failed))
     })
@@ -196,6 +193,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
       mediaStreamRef.current = null
     }
+    imageUpload()
   }, [stopRecording])
 
 
@@ -242,11 +240,6 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
     }
     requestAccess()
   }
-  let progress = 0
-  if (state.access === CheckListStatus.Done) progress += 33
-  if (state.faceDetection === CheckListStatus.Done) progress += 33
-  if (state.uploading === CheckListStatus.Done) progress += 34
-
 
   const handleVideoPlay = (): void => {
     setVisualizing(true)
@@ -254,7 +247,6 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
 
   const renderProgressAndChecklist = () => (
     <div className="mt-6" style={{ alignSelf: 'stretch' }}>
-      <Progress percent={progress} title={I18n.t('checking_wizard.video_check.processing')} />
       <CheckList
         className="mt14"
         dataSource={[
@@ -274,7 +266,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
               className={styles.continueButton}
               onClick={rerun}
               icon={<RedoOutlined />}
-              disabled={isUploadingInProgress || isUploadingDone}
+              disabled={isUploadingInProgress}
             >
               {I18n.t('checking_wizard.video_check.retake')}
             </Button>
@@ -283,9 +275,8 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
             size="middle"
             type="primary"
             className={styles.continueButton}
-            onClick={imageUpload}
-            disabled={!isAccessDone}
-            loading={isUploadingInProgress}
+            onClick={nextStep}
+            disabled={isUploadingInProgress}
           >
             {I18n.t('checking_wizard.video_check.continue')}
             <RightOutlined />
