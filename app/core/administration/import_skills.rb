@@ -3,6 +3,7 @@
 module Administration
   class ImportSkills < BaseCommand
     REQUIRED_FIELDS = %w[ID Name Description Project].freeze
+    REQUIRED_VALUES = %w[Name Description].freeze
 
     def initialize(file_url, ignore_duplicates: false)
       @file_url = file_url.to_s
@@ -54,9 +55,9 @@ module Administration
       validate_headers(headers)
       return if @errors.any?
 
-      csv_data.each do |row|
+      csv_data.each.with_index(2) do |row, line_number|
         row_data = headers.zip(row).to_h
-        process_row(row_data)
+        process_row(row_data, line_number)
       end
     end
 
@@ -65,39 +66,75 @@ module Administration
       @errors << "Missing required columns: #{missing_fields.join(', ')}" if missing_fields.any?
     end
 
-    def process_row(row)
-      return if row['ID'].blank?
+    def process_row(row, line_number)
+      return unless validate_required_fields(row, line_number)
 
-      missing_fields = REQUIRED_FIELDS.select { |field| row[field].blank? }
+      validate_project(row, line_number) if row['Project'].present?
+
+      skill = initialize_skill(row)
+      assign_skill_attributes(skill, row)
+      save_skill(skill, line_number)
+    end
+
+    def validate_required_fields(row, line_number)
+      missing_fields = REQUIRED_VALUES.select { |field| row[field].blank? }
       if missing_fields.any?
-        @errors << "Missing required fields (#{missing_fields.join(', ')}) for skill ID: #{row['ID']}"
-        return
+        @errors << "Line #{line_number}: Missing required fields (#{missing_fields.join(', ')})"
+        return false
       end
+      true
+    end
 
+    def validate_project(row, line_number)
       project = Project.find_by(id: row['Project'])
       unless project
-        @errors << "Project '#{row['Project']}' not found for skill ID: #{row['ID']}"
-        return
+        @errors << "Line #{line_number}: Project '#{row['Project']}' not found"
+        return false
       end
+      @project = project
+      true
+    end
 
-      if Skill.exists?(id: row['ID']) && !@ignore_duplicates
-        @errors << "Duplicate ID found for skill ID: #{row['ID']}"
-        return
+    def initialize_skill(row)
+      if row['ID'].present?
+        Skill.find_by(id: row['ID']) || Skill.new
+      else
+        Skill.new
       end
+    end
 
-      skill = Skill.find_or_initialize_by(id: row['ID'])
-      skill.assign_attributes(
+    def assign_skill_attributes(skill, row)
+      attributes = {
         name: row['Name'],
         description: row['Description'],
-        project: project,
         category: normalize_category(row['Category'])
-      )
+      }
+      attributes[:project] = @project if @project.present? && row['Project'].present?
 
-      if row['Tag'].present?
-        skill.tag_list = row['Tag'].split(',').map(&:strip)
-      end
+      skill.assign_attributes(attributes)
+      assign_tags(skill, row)
+    end
 
+    def assign_tags(skill, row)
+      return if row['Tag'].blank?
+
+      skill.tag_list = row['Tag'].split(',').map(&:strip)
+    end
+
+    def save_skill(skill, line_number)
       skill.save!
+    rescue ActiveRecord::RecordNotUnique => e
+      handle_uniqueness_error(e, skill.name, line_number)
+    rescue ActiveRecord::RecordInvalid => e
+      @errors << "Line #{line_number}: #{e.message}"
+    end
+
+    def handle_uniqueness_error(error, skill_name, line_number)
+      @errors << if error.message.include?('index_skills_on_name')
+                   "Line #{line_number}: A skill with the name '#{skill_name}' already exists"
+                 else
+                   "Line #{line_number}: #{error.message}"
+                 end
     end
 
     def normalize_category(category)
