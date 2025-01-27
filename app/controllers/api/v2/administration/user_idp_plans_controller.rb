@@ -24,7 +24,8 @@ module Api
     private
 
     def user_idp_plan_params
-      params.require(:data).require(:attributes).permit(:user_id, :idp_template_id, :campaign_id, :creator_id)
+      params.require(:data).require(:attributes).permit(:user_id, :idp_template_id, :campaign_id, :creator_id,
+                                                        :overwrite)
     end
 
     def deactivate_existing_plans

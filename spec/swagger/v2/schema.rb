@@ -491,6 +491,12 @@ module Swagger
           ),
           FactorBenchmarkScoreBulkCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::FactorBenchmarkScore::Schema.bulk_create
+          ),
+          IdpTemplateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::IdpTemplate::Schema.single_resource_response
+          ),
+          IdpTemplateCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::IdpTemplate::Schema.create_request
           )
         }
       }

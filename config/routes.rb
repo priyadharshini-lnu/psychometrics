@@ -1119,12 +1119,13 @@ as: :simulation_progress_notification
                 end
               end
             end
-            jsonapi_resources :idp_templates, only: %i[index], controller: 'clients/idp_templates'
           end
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports
           end
           jsonapi_resources :projects, only: :show do
+            jsonapi_resources :idp_templates, only: %i[index create update destroy],
+controller: 'projects/idp_templates'
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export

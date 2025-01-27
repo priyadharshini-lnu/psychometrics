@@ -2671,17 +2671,22 @@ ALTER SEQUENCE public.idp_template_skills_id_seq OWNED BY public.idp_template_sk
 
 CREATE TABLE public.idp_templates (
     id bigint NOT NULL,
-    owner_id bigint,
     name character varying NOT NULL,
     description character varying NOT NULL,
-    level jsonb DEFAULT '[]'::jsonb NOT NULL,
-    available_skills_selection_type integer DEFAULT 0 NOT NULL,
-    available_development_actions_selection_type integer DEFAULT 0 NOT NULL,
-    suggested_development_actions_selection_type integer DEFAULT 0 NOT NULL,
-    skill_gap_datasheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    skill_gap_profile_field_names jsonb DEFAULT '[]'::jsonb NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    report_id bigint,
+    self_rating_enabled boolean DEFAULT false NOT NULL,
+    skill_gap_profile_field_names jsonb,
+    skill_gap_datasheet_columns jsonb,
+    suggested_development_actions_selection_type integer,
+    available_development_actions_selection_type integer,
+    level jsonb,
+    behavioural_global_tags jsonb DEFAULT '[]'::jsonb NOT NULL,
+    behavioural_client_tags jsonb DEFAULT '[]'::jsonb NOT NULL,
+    technical_global_tags jsonb DEFAULT '[]'::jsonb NOT NULL,
+    technical_client_tags jsonb DEFAULT '[]'::jsonb NOT NULL,
+    project_id bigint NOT NULL
 );
 
 
@@ -10814,17 +10819,17 @@ CREATE INDEX index_idp_template_skills_on_skill_id ON public.idp_template_skills
 
 
 --
--- Name: index_idp_templates_on_owner_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_idp_templates_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_idp_templates_on_owner_id ON public.idp_templates USING btree (owner_id);
+CREATE INDEX index_idp_templates_on_project_id ON public.idp_templates USING btree (project_id);
 
 
 --
--- Name: index_idp_templates_on_owner_id_and_name; Type: INDEX; Schema: public; Owner: -
+-- Name: index_idp_templates_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_idp_templates_on_owner_id_and_name ON public.idp_templates USING btree (owner_id, name);
+CREATE INDEX index_idp_templates_on_report_id ON public.idp_templates USING btree (report_id);
 
 
 --
@@ -13320,6 +13325,22 @@ ALTER TABLE ONLY public.privacy_setting_translations
 
 
 --
+-- Name: idp_templates fk_rails_4f7686052e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_4f7686052e FOREIGN KEY (report_id) REFERENCES public.reports(id);
+
+
+--
+-- Name: idp_templates fk_rails_50e8be9955; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_50e8be9955 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assessments fk_rails_516ec5451d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14128,14 +14149,6 @@ ALTER TABLE ONLY public.norms
 
 
 --
--- Name: idp_templates fk_rails_b4159a6bee; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.idp_templates
-    ADD CONSTRAINT fk_rails_b4159a6bee FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
 -- Name: privacy_links fk_rails_b70067b747; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14862,6 +14875,13 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250121155800'),
+('20250121141028'),
+('20250121130354'),
+('20250115135401'),
+('20250115134236'),
+('20250107101319'),
+('20250106151909'),
 ('20250121134222'),
 ('20250121061959'),
 ('20250113081931'),
@@ -15606,4 +15626,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
