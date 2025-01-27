@@ -8,7 +8,7 @@ module Hogan
     def initialize(user_reports, retry_count: 0)
       @user_reports = Array.wrap(user_reports)
       @credentials = @user_reports.first.user.hogan_credential
-      @hogan_group_name = @user_reports.first.project.hogan_group_name
+      @hogan_group_name = @credentials.hogan_group_name
       @retry_count = retry_count
     end
 

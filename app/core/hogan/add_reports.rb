@@ -78,7 +78,7 @@ module Hogan
     end
 
     def hogan_group_name
-      @hogan_group_name ||= user_reports.first.project.hogan_group_name
+      @hogan_group_name ||= credentials.hogan_group_name
     end
   end
 end

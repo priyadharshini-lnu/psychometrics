@@ -2404,7 +2404,8 @@ CREATE TABLE public.hogan_credentials (
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
     provider integer DEFAULT 0,
-    norm character varying
+    norm character varying,
+    hogan_group_name character varying
 );
 
 
@@ -14754,6 +14755,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250127043743'),
 ('20250121134222'),
 ('20250121061959'),
 ('20250113081931'),
