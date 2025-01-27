@@ -337,7 +337,6 @@ de:
     audio_check:
       access: Zugriff
       continue: fortfahren
-      processing: verarbeitung
     network_check:
       continue: fortfahren
       processing: verarbeitung
@@ -346,7 +345,6 @@ de:
     video_check:
       access: Zugriff
       continue: fortfahren
-      processing: verarbeitung
   common:
     actions:
       add: Hinzufügen

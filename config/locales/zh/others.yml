@@ -232,7 +232,6 @@ zh:
     audio_check:
       access: 权限
       continue: 继续
-      processing: 处理中
       record_title: 请读出并重复以下句子 3 次。
       test_message: 很高兴与你交谈
     network_check:
@@ -259,7 +258,6 @@ zh:
       access: 权限
       continue: 继续
       description: 此阶段拍摄的任何视频或照片都不会被保存或使用。它会在你的设备上本地使用，以确保摄像头在接下来可能需要录像的问题中正常工作。
-      processing: 处理中
       run_again: 再次运行
       title: 我们需要确保你的系统可以录制视频
   common:
