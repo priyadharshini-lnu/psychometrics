@@ -329,6 +329,8 @@ es-ES:
     invitations:
       edit:
         password_label: Contraseña
+    passwords:
+      invalid_email: Correo electrónico no válido
     registrations:
       communication_not_setup_error: No se ha configurado un correo electrónico para las comunicaciones. Póngase en contacto con el administrador de este proyecto.
       new:
