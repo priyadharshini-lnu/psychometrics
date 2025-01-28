@@ -236,7 +236,6 @@ zh-HK:
     audio_check:
       access: 存取
       continue: 繼續
-      processing: 處理中
       record_title: 請讀出並重複以下句子 3 次。
       test_message: 很高興與您交談
     network_check:
@@ -263,7 +262,6 @@ zh-HK:
       access: 存取
       continue: 繼續
       description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
-      processing: 處理中
       run_again: 再次執行
       title: 我們需要確保您的系統可以錄影
   common:

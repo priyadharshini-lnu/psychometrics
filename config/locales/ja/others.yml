@@ -235,7 +235,6 @@ ja:
     audio_check:
       access: アクセス
       continue: 続行
-      processing: 処理中
       record_title: 以下の文章を3回繰り返して言ってください。
       test_message: お話しできて嬉しいです
     network_check:
@@ -262,7 +261,6 @@ ja:
       access: アクセス
       continue: 続行
       description: この段階でキャプチャされたビデオや写真は、保存または使用されることはありません。ビデオ録画を必要とする可能性のある今後の質問のために、デバイスでローカルに使用してカメラが機能していることを確認します。
-      processing: 処理中
       run_again: 再実行
       title: お使いのシステムでビデオの録画をできるようにする必要があります
   common:

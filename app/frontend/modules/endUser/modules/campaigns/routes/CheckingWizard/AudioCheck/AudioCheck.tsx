@@ -1,7 +1,6 @@
 import React, {
   useReducer, useEffect, useRef,
 } from 'react'
-import _ from 'lodash'
 import {
   Button, Card,
   Flex,
@@ -19,7 +18,6 @@ import AudioWaveVisualizer from '~/components/MediaRecorder/components/AudioWave
 import { useReactMediaRecorder, StatusMessages } from '~/components/MediaRecorder/components/MediaRecorder'
 import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'
 import { CheckListStatus } from '../interfaces'
 import reducer, {
@@ -154,19 +152,9 @@ const AudioCheckComponent: React.FC<Props> = ({
     stopRecording()
   }, [stopRecording])
 
-  const getPercent = (): number => {
-    const total = [state.access, state.speechDetection].length
-    const { true: completedActions } = _.countBy([state.access, CheckListStatus.Done], s => s === CheckListStatus.Done)
-    return _.round(100 * (completedActions || 0) / total)
-  }
-
 
   const renderProgressAndChecklist = () => (
     <div className="mt-6" style={{ alignSelf: 'stretch' }}>
-      <Progress
-        percent={getPercent()}
-        title={I18n.t('checking_wizard.audio_check.processing')}
-      />
       <CheckList
         className="mt24"
         dataSource={[
@@ -179,7 +167,7 @@ const AudioCheckComponent: React.FC<Props> = ({
   const renderButtons = () => {
     if (state.access !== CheckListStatus.Failed) {
       return (
-        <Space className="m-12">
+        <Space className="m-6">
           <Button
             onClick={rerun}
             icon={<RedoOutlined />}
