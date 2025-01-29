@@ -860,6 +860,9 @@ en:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
       resume: Resume
+      saved:
+        label: Audio Saved
+      saving: Saving Audio
       start_recording: Start recording
       stop: Stop
     card_actions:
