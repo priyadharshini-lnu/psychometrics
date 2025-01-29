@@ -53,7 +53,7 @@ const AdvancedSettingsForm = ({
   const [form] = Form.useForm()
   const [showFactorsSelect, setShowFactorsSelect] = useState(false)
   const [factorsMap, setFactorsMap] = useState<Map<string, Factor>>(new Map())
-  const [checkedFactorsForFactorsTree, setCheckedFactors] = useState<string[]>([])
+  const [checkedFactorsForFactorsTree, setCheckedFactorsForFactorsTree] = useState<string[]>([])
   const [expandedKeysForFactorsTree, setExpandedKeys] = useState<string[]>([])
   const [factors, setFactors] = useState<Factor[] | null>(null)
   const [selectedFactors, setSelectedFactors] = useState<FactorForTree[]>([])
@@ -72,8 +72,12 @@ const AdvancedSettingsForm = ({
     }
   }, [campaignTemplates])
   const handleFinish = () => {
+    const factors = checkedFactorsForFactorsTree.map((factorId) => {
+      const id = factorId.split('_').pop()
+      return id ? parseInt(id, 10) : null
+    }).filter(id => id !== null)
     const data = {
-      factors: checkedFactorsForFactorsTree.map(factorId => parseInt(factorId, 10)),
+      factors,
       questions: selectedQuestions,
       campaign_template_id: `${selectedTemplate?.id}`,
     }
@@ -85,7 +89,7 @@ const AdvancedSettingsForm = ({
     setFactors(null)
     setQuestions([])
     setFactorsMap(new Map())
-    setCheckedFactors([])
+    setCheckedFactorsForFactorsTree([])
     setSelectedQuestions([])
   }
 
@@ -113,26 +117,31 @@ const AdvancedSettingsForm = ({
     const factorsAndParentFactorsMap = new Map([...factorsMap, ...getAllFactorsAndParentFactors(factors)])
     setFactorsMap(factorsAndParentFactorsMap)
     factors.map((factor) => {
-      newCheckedIds.add(`${factor.id}`)
-      const haveParentFactor = (factor.parent_factors?.length ?? 0) > 0
-      if (haveParentFactor) {
+      const isParentFactors = (factor.parent_factors?.length ?? 0) > 0
+      if (factor.parent || (!factor.parent && !isParentFactors)) {
+        newCheckedIds.add(`${factor.id}`)
+      }
+      if (isParentFactors) {
         factor.parent_factors.forEach((parentFactor) => {
           const parentFactorId = `${parentFactor.id}`
-          const parentData = modfiedDataForFactorsTree(factorsAndParentFactorsMap.get(parentFactorId))
+          const parentData = modifiedDataForFactorsTree(factorsAndParentFactorsMap.get(parentFactorId))
+          if (!factor.parent) {
+            newCheckedIds.add(`${parentFactor.id}_${factor.id}`)
+          }
           newExpandedKeys.add(parentFactorId)
           if (!updatedSelectedFactorsMap.has(parentFactorId)) {
             updatedSelectedFactorsMap.set(parentFactorId, parentData.data)
           }
         })
       } else {
-        const modifiedFactorData = modfiedDataForFactorsTree(factor)
+        const modifiedFactorData = modifiedDataForFactorsTree(factor)
         newExpandedKeys.add(modifiedFactorData.data.id)
         updatedSelectedFactorsMap.set(modifiedFactorData.data.id, modifiedFactorData.data)
       }
     })
     setSelectedFactors(Array.from(updatedSelectedFactorsMap.values()))
     const checkedIds = Array.from(newCheckedIds)
-    setCheckedFactors(checkedIds)
+    setCheckedFactorsForFactorsTree(checkedIds)
     setExpandedKeys(Array.from(newExpandedKeys))
     handleFetchQuestions(checkedIds, assessmentId)
   }
@@ -170,13 +179,21 @@ const AdvancedSettingsForm = ({
   }
 
   const handleFetchQuestions = (factorIds: string[], assessmentId: string | number | null) => {
+    const selectedFactorIds = new Set<string>()
+    factorIds.forEach((factorId) => {
+      const id = factorId.split('_').pop()
+      if (id) {
+        selectedFactorIds.add(id)
+      }
+    })
+    const selectedIds = Array.from(selectedFactorIds)
     if (assessmentId) {
       collectionAction({
         action: `${assessmentId}/factors/questions`,
         method: 'get',
         apiConfig: {
           filter: {
-            factor_ids: factorIds,
+            factor_ids: selectedIds,
           },
         },
       }).then((data: Question[]) => {
@@ -199,7 +216,7 @@ const AdvancedSettingsForm = ({
   }
 
   const handleCheckForFactorsTree = ({ checked }: {checked: Key[], halfChecked: Key[]}) => {
-    setCheckedFactors(checked as string[])
+    setCheckedFactorsForFactorsTree(checked as string[])
     handleFetchQuestions(checked as string[], selectedAssessmentId)
   }
 
@@ -208,20 +225,26 @@ const AdvancedSettingsForm = ({
   }
 
   const handleFactorChange = (value: string) => {
-    const newSelectedFactors = modfiedDataForFactorsTree(factorsMap.get(value))
+    const selectedFactor = factorsMap.get(value)
+    const newSelectedFactors = modifiedDataForFactorsTree(selectedFactor)
     form.setFieldValue('factors', null)
-    const newCheckedIds = [...checkedFactorsForFactorsTree, value, ...newSelectedFactors.subFactorsIds]
-    setCheckedFactors(newCheckedIds)
-    handleFetchQuestions(newCheckedIds, selectedAssessmentId)
-
-    const isParentFactor = (factorsMap.get(value)?.parent_factors?.length ?? 0) > 0
+    const isParentFactors = (factorsMap.get(value)?.parent_factors?.length ?? 0) > 0
     const updatedSelectedFactorsMap = new Map(selectedFactors.map(factor => [factor.id, factor]))
     const newExpandedKeys = new Set(expandedKeysForFactorsTree)
+    let newCheckedIdsSet = new Set(checkedFactorsForFactorsTree)
+    if (selectedFactor?.parent) {
+      newCheckedIdsSet = new Set([...checkedFactorsForFactorsTree, value, ...newSelectedFactors.subFactorsIds])
+    } else if (!selectedFactor?.parent && !isParentFactors) {
+      newCheckedIdsSet = new Set([...checkedFactorsForFactorsTree, value])
+    }
 
-    if (isParentFactor) {
+    if (isParentFactors) {
       const parentFactors = factorsMap.get(value)?.parent_factors
       parentFactors?.forEach((parentFactor) => {
-        const parentData = modfiedDataForFactorsTree(factorsMap.get(parentFactor.id))
+        const parentData = modifiedDataForFactorsTree(factorsMap.get(parentFactor.id))
+        if (selectedFactor && !selectedFactor.parent) {
+          newCheckedIdsSet.add(`${parentFactor.id}_${selectedFactor.id}`)
+        }
         newExpandedKeys.add(parentData.data.id)
         if (!updatedSelectedFactorsMap.has(parentFactor.id)) {
           updatedSelectedFactorsMap.set(parentFactor.id, parentData.data)
@@ -232,6 +255,9 @@ const AdvancedSettingsForm = ({
       updatedSelectedFactorsMap.set(newSelectedFactors.data.id, newSelectedFactors.data)
     }
     setExpandedKeys(Array.from(newExpandedKeys))
+    const newCheckedIds = Array.from(newCheckedIdsSet)
+    setCheckedFactorsForFactorsTree(newCheckedIds)
+    handleFetchQuestions(newCheckedIds, selectedAssessmentId)
     setSelectedFactors(Array.from(updatedSelectedFactorsMap.values()))
   }
 
@@ -272,7 +298,7 @@ const AdvancedSettingsForm = ({
     if (checked) {
       newCheckedIds = [...checkedFactorsForFactorsTree, node.id, ...node.children.map(child => child.id)]
     }
-    setCheckedFactors(newCheckedIds)
+    setCheckedFactorsForFactorsTree(newCheckedIds)
     handleFetchQuestions(newCheckedIds, selectedAssessmentId)
   }
 
@@ -471,14 +497,15 @@ const sortFactors = (factors: Factor[]) => factors.sort((a, b) => {
 })
 
 
-const modfiedDataForFactorsTree = (factor): {data: FactorForTree, subFactorsIds : string[] } => {
+const modifiedDataForFactorsTree = (factor): {data: FactorForTree, subFactorsIds : string[] } => {
   const subFactorsIds: string[] = []
   const subFactors = factor?.sub_factors?.map((subFactor) => {
-    subFactorsIds.push(subFactor.id)
+    const id = `${factor.id}_${subFactor.id}`
+    subFactorsIds.push(id)
     return ({
-      key: subFactor.id,
+      key: id,
       title: subFactor.name,
-      id: subFactor.id,
+      id,
     })
   })
   return {

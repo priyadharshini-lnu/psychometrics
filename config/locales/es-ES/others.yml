@@ -225,6 +225,9 @@ es-ES:
       completed: Completado/a
       in_progress: En curso
       not_started: Sin empezar
+  campaigns:
+    card:
+      duration: Duración
   change_password_page:
     old_password: Contraseña antigua
     password: Contraseña
@@ -315,6 +318,8 @@ es-ES:
     invitations:
       edit:
         password_label: Contraseña
+    passwords:
+      invalid_email: Correo electrónico no válido
     registrations:
       communication_not_setup_error: No se ha configurado un correo electrónico para las comunicaciones. Póngase en contacto con el administrador de este proyecto.
       new:
@@ -791,6 +796,7 @@ es-ES:
       required: Grabe y guarde el vídeo antes de continuar
     actions_still_in_progress: 'Las siguientes acciones están en curso: Si sigue adelante, perderá los datos.'
     blank: no puede estar vacío
+    character_count: 'Conteo de caracteres '
     character_range: Su respuesta debe tener al menos %{min} caracteres y no más de %{max}.
     date: Su respuesta debe ser una fecha válida (DD/MM/AAAA)
     each_group_contains: Cada grupo debe tener al menos %{min} elementos y no más de %{max}
@@ -814,3 +820,8 @@ es-ES:
     title:
       one: Hay un error, por favor revisa tus respuestas
       other: Hay %{count} errores, por favor revisa tus respuestas
+    word_count: 'Número de palabras '
+    word_range: Su respuesta debe tener al menos %{min} y no más de %{max} palabras.
+  'yes': Sí
+  your: Su
+  yourself: Tú mismo

@@ -13,7 +13,7 @@ module Api
 
       {
         field_questions: Panko::ArraySerializer.new(
-          Question.where(view: 'templates').
+          Question.where(view: 'templates', assessment_id: nil).
           where(owner_id: [nil, Client.find(params['filter']['project_id_eq']).parent.id]).
           where(type: AWAILABLE_TYPES),
           each_serializer: QuestionFieldSerializer

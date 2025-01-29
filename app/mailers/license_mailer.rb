@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LicenseMailer < ApplicationMailer
+  helper :application
+
   layout 'admin_email'
 
   def license_expire(user_id, client_id = nil)

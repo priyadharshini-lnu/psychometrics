@@ -141,7 +141,8 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
       onCancel={handleClose}
       footer={null}
       className={styles.modal}
-      classNames={{ body: styles.modalBody, header: styles.modalHeader }}
+      styles={{ header: { padding: '16px 16px 8px 16px' } }}
+      classNames={{ body: styles.modalBody }}
     >
       <Flex vertical className="h-100">
         {showAdvancedSettingsForm ? (

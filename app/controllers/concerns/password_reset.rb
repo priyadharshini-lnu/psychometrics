@@ -27,7 +27,7 @@ module PasswordReset
       respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
       set_flash_message! :alert, :invalid_email
-      redirect_to new_administration_password_path
+      redirect_to @current_project ? new_user_password_path : new_administration_password_path
     end
   end
 
