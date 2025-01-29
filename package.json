@@ -87,7 +87,7 @@
     "extendable-media-recorder-wav-encoder": "^7.0.117",
     "face-api.js": "^0.22.2",
     "fbemitter": "^2.0.2",
-    "fp-ts": "^2.11.8",
+    "fp-ts": "^2.16.5",
     "glob": "^7.1.6",
     "google-libphonenumber": "^3.2.34",
     "green-audio-player": "git+https://github.com/TheTalentEnterprise/green-audio-player.git",
