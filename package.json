@@ -96,7 +96,7 @@
     "history": "^4.10.1",
     "humps": "^2.0.1",
     "interactjs": "^1.10.27",
-    "io-ts": "^2.2.16",
+    "io-ts": "^2.2.21",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
     "js-file-download": "^0.4.12",
