@@ -38,6 +38,10 @@ describe CampaignReports::BulkDownload do
     end
   end
 
+  before(:each) do
+    allow_any_instance_of(described_class).to receive(:download_report)
+  end
+
   it 'create bulk_download record' do
     expect do
       described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
