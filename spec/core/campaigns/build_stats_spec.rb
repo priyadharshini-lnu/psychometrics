@@ -12,21 +12,49 @@ describe Campaigns::BuildStats do
     create(:campaign_user, campaign: campaign, status: :completed)
   end
 
-  let!(:user_assessment) { create(:user_assessment, campaign: campaign, assessment: assessment, status: :completed) }
+  let!(:inactive_campaign_user) do
+    create(:campaign_user, campaign: campaign, status: :completed, active: false)
+  end
+
+  let!(:user_assessment) do
+    create(
+      :user_assessment,
+      campaign: campaign,
+      assessment: assessment,
+      status: :completed,
+      evaluator_id: campaign_user.user_id,
+      subject_id: campaign_user.user_id
+    )
+  end
 
   before do
     campaign.assessments = [assessment]
   end
 
   describe 'builds proper stats' do
-    it do
-      stats = Campaigns::BuildStats.call!(campaign)
+    context 'for active users' do
+      let(:campaign_users_active_in) { [true] }
+      it do
+        stats = Campaigns::BuildStats.call!(campaign, campaign_users_active_in)
+        expect(stats[:users]['completed']).to eq 1
+        expect(stats[:users]['total']).to eq 1
+        expect(stats[:assessments]).to eq [
+          { 'id' => assessment.id,
+            'name' => assessment.name, 'not_started' => 0, 'in_progress' => 0,
+            'completed' => 1, 'interrupted' => 0, 'timed_out' => 0, 'ineligible' => 0 }
+        ]
+      end
+    end
 
-      expect(stats[:users]['completed']).to eq 1
-      expect(stats[:users]['total']).to eq 1
-      expect(stats[:assessments]).to eq [{ 'id' => assessment.id,
-                                           'name' => assessment.name, 'not_started' => 0, 'in_progress' => 0,
-                                           'completed' => 1, 'interrupted' => 0, 'timed_out' => 0, 'ineligible' => 0 }]
+    context 'for inactive users' do
+      let(:campaign_users_active_in) { [false] }
+      it do
+        stats = Campaigns::BuildStats.call!(campaign, campaign_users_active_in)
+
+        expect(stats[:users]['completed']).to eq 1
+        expect(stats[:users]['total']).to eq 1
+        expect(stats[:assessments]).to eq []
+      end
     end
   end
 end

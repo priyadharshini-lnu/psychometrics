@@ -37,7 +37,8 @@ RSpec.describe Administration::Campaigns::StatsController, type: :controller do
       it 'returns timeseries stats in days' do
         get :timeseries,
             params: {
-              new_campaign_id: campaign.id, range: ['2021-11-01T21:00:00.000Z', '2021-12-01T20:59:59.999Z']
+              new_campaign_id: campaign.id, range: ['2021-11-01T21:00:00.000Z', '2021-12-01T20:59:59.999Z'],
+              campaign_users_active_in: [true]
             }, format: :json
         parsed_response = JSON.parse(response.body)
 

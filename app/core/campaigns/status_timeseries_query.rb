@@ -2,12 +2,13 @@
 
 module Campaigns
   class StatusTimeseriesQuery < Rectify::Query
-    private_attr_reader :campaign, :date_from, :date_to
+    private_attr_reader :campaign, :date_from, :date_to, :campaign_users_active_in
 
-    def initialize(campaign, date_from, date_to)
+    def initialize(campaign, date_from, date_to, campaign_users_active_in)
       @campaign = campaign
       @date_from = date_from
       @date_to = date_to
+      @campaign_users_active_in = campaign_users_active_in
     end
 
     def sql
@@ -28,7 +29,7 @@ module Campaigns
         FROM
           campaign_users
         WHERE
-          campaign_id = :id
+          campaign_id = :id and active in (:active)
         GROUP BY
           1
       ),
@@ -40,7 +41,7 @@ module Campaigns
         FROM
           campaign_users
         WHERE
-          campaign_id = :id
+          campaign_id = :id and active in (:active)
         GROUP BY
           1
       )
@@ -60,7 +61,7 @@ module Campaigns
     end
 
     def params
-      { id: campaign.id, date_from: date_from, date_to: date_to }
+      { id: campaign.id, date_from: date_from, date_to: date_to, active: campaign_users_active_in }
     end
 
     def period

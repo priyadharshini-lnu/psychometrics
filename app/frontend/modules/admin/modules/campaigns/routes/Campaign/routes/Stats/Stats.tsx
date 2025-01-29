@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { Select } from 'antd/lib'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   getUsers, getAssessments, fetch, AssesmentStats,
@@ -29,8 +30,10 @@ const StatsComponent: React.FC<Props> = ({
   users, assessments, fetch,
 }) => {
   const { campaignId } = useParams() as {campaignId: string}
-  useEffect(() => { fetch(campaignId) }, [])
   const [statsType, setStatsType] = useState('percentage')
+  const [status, setStatus] = useState<boolean[]>([true])
+
+  useEffect(() => { fetch(campaignId, status) }, [status])
 
   const totals = _(assessments).map(a => [
     a.id, a.not_started + a.in_progress + a.completed + a.ineligible + a.interrupted + a.timed_out,
@@ -93,7 +96,20 @@ const StatsComponent: React.FC<Props> = ({
             />
           </Card>
         </Col>
-        <Timeseries campaignId={campaignId} />
+        <Col>
+          <Select
+            mode="multiple"
+            placeholder="Select Status"
+            value={status}
+            onChange={value => setStatus(value.length ? value : [true])}
+            options={[
+              { value: true, label: 'Active' },
+              { value: false, label: 'Inactive' },
+            ]}
+            className={styles.statusSelect}
+          />
+        </Col>
+        <Timeseries campaignId={campaignId} status={status} />
         <Col span={24}>
           <Row justify="space-between">
             <Col>

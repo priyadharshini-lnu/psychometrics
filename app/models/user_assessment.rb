@@ -15,6 +15,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
+  belongs_to :campaign_user, primary_key: :user_id, foreign_key: :evaluator_id, class_name: 'CampaignUser'
 
   has_one :saville_user_assessment, dependent: :destroy
   has_one :pearson_user_assessment, dependent: :destroy
