@@ -20,12 +20,22 @@ module UserAssessments
     def system_checks_required?
       extra = user_assessment.assessment.extra
       video_check = JSON.parse(cookies['checking_wizard.video'] || '{}')
+      enable_audio_check = extra['enable_audio_check'] || has_question_type?('AudioResponse')
+      enable_video_check = extra['enable_video_check'] || has_question_type?('VideoResponse')
 
-      return true if extra['enable_audio_check'] == true && !cookies['checking_wizard.audio']
-      return true if extra['enable_video_check'] == true && !video_check[user_assessment.id.to_s]
+      return true if enable_audio_check && !cookies['checking_wizard.audio']
+      return true if enable_video_check && !video_check[user_assessment.id.to_s]
       return true if extra['enable_network_check'] == true && !cookies['checking_wizard.network']
 
       false
+    end
+
+    private
+
+    def has_question_type?(type)
+      available_questions = user_assessment.assessment.questions.not_deleted.uniq { |q| q[:type] }
+
+      available_questions.any? { |q| q[:type] == type }
     end
   end
 end
