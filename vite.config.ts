@@ -9,6 +9,7 @@ import checker from 'vite-plugin-checker'
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
 import svgr from 'vite-plugin-svgr'
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { env } from 'process'
 import fs from 'fs'
 
@@ -54,6 +55,18 @@ export default defineConfig({
   server,
   clearScreen: false,
   plugins: [
+    sentryVitePlugin({
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+
+      sourcemaps: {
+        filesToDeleteAfterUpload: [
+          "./public/vite/**/*.map",
+        ]
+      },
+      debug: process.env.SENTRY_DEBUG === 'true',
+    }),
     RubyPlugin(),
     react(),
     // visualizer({open: true}),
@@ -92,7 +105,7 @@ export default defineConfig({
     sourcemap: 'external',
   },
   build: {
-    sourcemap: __DEV__,
+    sourcemap: true,
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
     cssCodeSplit: true,
@@ -110,7 +123,6 @@ export default defineConfig({
         })
       ],
       output: {
-        sourcemap: false,
         chunkFileNames: (info) => {
           if (info.name === 'vendors') {
             return 'chunks/vendors-[hash].js'

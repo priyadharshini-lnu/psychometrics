@@ -185,6 +185,7 @@
     "zustand": "^4.1.1"
   },
   "devDependencies": {
+    "@sentry/vite-plugin": "^2.22.7",
     "@testing-library/dom": "^8.2.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^11.2.7",
