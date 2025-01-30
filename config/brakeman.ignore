@@ -30,7 +30,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/serializers/assessment_serializer.rb",
-      "line": 42,
+      "line": 55,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "Arel.sql(\"position(id::text in '#{object.resources.map do\n r[\"questionId\"]\n end.join(\",\")}')\")",
       "render_path": null,
@@ -156,6 +156,25 @@
         89
       ],
       "note": ""
+    },
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 123,
+      "fingerprint": "715ee6d743a8af33c7b930d728708ce19c765fb40e2ad9d2b974db04d92dc7d1",
+      "check_name": "EOLRuby",
+      "message": "Support for Ruby 3.1.6 ends on 2025-03-31",
+      "file": ".ruby-version",
+      "line": 1,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        1104
+      ],
+      "note": "To be removed once we upgrade ruby"
     },
     {
       "warning_type": "SQL Injection",
@@ -325,7 +344,7 @@
       "check_name": "MassAssignment",
       "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
       "file": "app/controllers/concerns/administration/sheet_row_management.rb",
-      "line": 50,
+      "line": 51,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit!",
       "render_path": null,
@@ -371,7 +390,7 @@
       "check_name": "MassAssignment",
       "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
       "file": "app/controllers/concerns/agile_user_result.rb",
-      "line": 21,
+      "line": 22,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit!",
       "render_path": null,
@@ -387,14 +406,14 @@
       ],
       "note": ""
     },
-   {
+    {
       "warning_type": "Remote Code Execution",
       "warning_code": 24,
       "fingerprint": "baa92cd5b40a906f5d69d7611b810a56c294e539398ab387e5e885b679d5a66f",
       "check_name": "UnsafeReflection",
       "message": "Unsafe reflection method `constantize` called on model attribute",
       "file": "lib/imports/assessments/result_import_user_result.rb",
-      "line": 128,
+      "line": 122,
       "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
       "code": "\"Imports::Assessments::Questions::#{Question.joining do\n block\n end.not_deleted.selecting do\n [id, type, props, validation]\n end.where.has do\n (q.block.assessment_id == assessment.id)\n end.ordering do\n [block.position.asc, position.asc]\n end.group_by(&:id)[qid].first.type}\".constantize",
       "render_path": null,
@@ -407,7 +426,8 @@
       "confidence": "Medium",
       "cwe_id": [
         470
-      ]
+      ],
+      "note": ""
     },
     {
       "warning_type": "SQL Injection",
@@ -452,6 +472,29 @@
       "confidence": "Medium",
       "cwe_id": [
         915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "e6194e07fc845603e38dac915b39cf33b81700aa0d02d31a56126b3c1d3162a8",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `safe_constantize` called on model attribute",
+      "file": "app/core/users_results/calculate_scoring.rb",
+      "line": 53,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "\"::Scoring::#{Question.where(:id => FactorsScoring.includes(:factor, :question).where(:assessment_id => users_result.assessment.id, :factors => ({ :dimension_id => users_result.assessment.dimension_id })).map(&:question_id).uniq).all.group_by(&:id)[question_scoring.question_id].first.type}\".safe_constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersResults::CalculateScoring",
+        "method": "call"
+      },
+      "user_input": "Question.where(:id => FactorsScoring.includes(:factor, :question).where(:assessment_id => users_result.assessment.id, :factors => ({ :dimension_id => users_result.assessment.dimension_id })).map(&:question_id).uniq).all",
+      "confidence": "Medium",
+      "cwe_id": [
+        470
       ],
       "note": ""
     },
@@ -511,30 +554,8 @@
         79
       ],
       "note": ""
-    },
-    {
-      "warning_type": "Remote Code Execution",
-      "warning_code": 24,
-      "fingerprint": "e6194e07fc845603e38dac915b39cf33b81700aa0d02d31a56126b3c1d3162a8",
-      "check_name": "UnsafeReflection",
-      "message": "Unsafe reflection method `safe_constantize` called on model attribute",
-      "file": "app/core/users_results/calculate_scoring.rb",
-      "line": 53,
-      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
-      "code": "\"::Scoring::#{Question.where(:id => FactorsScoring.includes(:factor, :question).where(:assessment_id => users_result.assessment.id, :factors => ({ :dimension_id => users_result.assessment.dimension_id })).map(&:question_id).uniq).all.group_by(&:id)[question_scoring.question_id].first.type}\".safe_constantize",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "UsersResults::CalculateScoring",
-        "method": "call"
-      },
-      "user_input": "Question.where(:id => FactorsScoring.includes(:factor, :question).where(:assessment_id => users_result.assessment.id, :factors => ({ :dimension_id => users_result.assessment.dimension_id })).map(&:question_id).uniq).all",
-      "confidence": "Medium",
-      "cwe_id": [
-        470
-      ]
     }
   ],
-  "updated": "2024-09-19 16:15:40 +0400",
+  "updated": "2025-01-30 14:46:10 +0530",
   "brakeman_version": "6.1.2"
 }
