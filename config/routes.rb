@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
-
+  post 'extend_session', to: 'users/session_extensions#extend'
   concern :media_uploades do
     member do
       match :upload_media_url, via: %i[post get]

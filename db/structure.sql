@@ -4720,7 +4720,8 @@ CREATE TABLE public.security_settings (
     tfa_enabled boolean DEFAULT false,
     magic_link_expiry_in_seconds integer DEFAULT 604800 NOT NULL,
     magic_link_enabled boolean DEFAULT false,
-    disallow_password_login boolean DEFAULT false
+    disallow_password_login boolean DEFAULT false,
+    session_inactivity_timeout_in_seconds integer DEFAULT 7200 NOT NULL
 );
 
 
@@ -14875,6 +14876,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250113105032'),
 ('20250121155800'),
 ('20250121141028'),
 ('20250121130354'),

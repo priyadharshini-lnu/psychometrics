@@ -75,4 +75,30 @@ RSpec.describe User, type: :model do
       expect(user.owner_ids).to match_array(expected_owner_ids)
     end
   end
+
+  describe '#timeout_in' do
+    it 'returns the default session timeout for admins' do
+      super_admin = create(:superadmin)
+      client_admin = create(:client_admin)
+      project_admin = create(:project_admin)
+
+      expect(super_admin.timeout_in).to eq(15.minutes)
+      expect(client_admin.timeout_in).to eq(15.minutes)
+      expect(project_admin.timeout_in).to eq(15.minutes)
+    end
+
+    it 'returns the configured timeout for normal user' do
+      project = create(:project)
+      project.security_setting.update(session_inactivity_timeout_in_seconds: 30.minutes.in_seconds)
+      user = create(:user, project: project)
+
+      expect(user.timeout_in).to eq(1800.seconds)
+    end
+
+    it 'returns the long timeout for anonymous users' do
+      user = create(:user, is_anonym: true)
+
+      expect(user.timeout_in).to eq(24.hours)
+    end
+  end
 end

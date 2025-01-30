@@ -1,7 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import '~/modules/endUser/styles/global.less'
 import '~/styles/utils.less'
-import '~/utils/axiosInterceptException'
+import '~/utils/axiosInterceptors'
+import '~/utils/fetchRequestInterceptors'
 import initSentry from '~/libs/initSentry'
 import Campaigns from '~/modules/endUser/modules/campaigns/App'
 

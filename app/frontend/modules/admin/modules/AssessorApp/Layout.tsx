@@ -9,6 +9,8 @@ import routes from './routes'
 import settings from './settings'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
+import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
+
 
 const Main: React.FC = () => (
   <Suspense fallback={(
@@ -22,6 +24,7 @@ const Main: React.FC = () => (
     <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
     <IncorrectResponseErrorModal />
     <DisplayExceptionModal />
+    <SessionTimeoutModal />
   </Suspense>
 )
 

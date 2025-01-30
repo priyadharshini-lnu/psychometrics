@@ -1,0 +1,232 @@
+import { Modal } from 'antd'
+import {
+  FC, useEffect, useRef, useState,
+} from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { getFeatures } from '~/core/config'
+import { useLocalStorageStore, EXTEND_SESSION, extendSession } from '~/core/extendSession'
+import { isRequestInProgress } from '~/core/request'
+import { CountdownTimer } from '~/glint/components/CountdownTimer'
+import styles from './styles.less'
+import { RootState } from '~/core/reducers'
+
+const connector = connect((state: RootState) => ({
+  sessionExtending: isRequestInProgress(state, EXTEND_SESSION),
+  features: getFeatures(state),
+
+}), { extendSession })
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+const { I18n } = window
+
+const DEFAULT_SESSION_POPUP_DURATION = 120
+
+export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession, sessionExtending, features }) => {
+  const [showPopup, setShowPopup] = useState<boolean>(false)
+  const isFlashing = useRef<boolean>(false)
+  const flashInterval = useRef<NodeJS.Timeout | null>(null)
+  const originalTitle = useRef<string>(document.title)
+  const originalFavicons = useRef<string[]>([])
+  const [popupMessage, setPopupMessage] = useState<string>('')
+  const [isSessionTimedOut, setSessionTimedOut] = useState<boolean>(false)
+  const { nextTimeout } = useLocalStorageStore()
+
+  const channel = new BroadcastChannel('popup_channel')
+
+  useEffect(() => {
+    originalTitle.current = document.title
+  }, [document.title])
+
+  useEffect(() => {
+    let popupTimer: NodeJS.Timeout
+    let delayTimeoutTimer: NodeJS.Timeout
+
+    const links = document.querySelectorAll("link[rel*='icon']") as NodeListOf<HTMLLinkElement>
+    const favicons = Array.from(links).map(link => link.href)
+    originalFavicons.current = favicons
+
+    const apiTimeoutValue = nextTimeout || ''
+
+    const timeoutEpochValue = parseInt(apiTimeoutValue, 10) / 1000
+    if (isNaN(timeoutEpochValue) || timeoutEpochValue <= 0) {
+      return
+    }
+    const currentTime = Math.floor(Date.now() / 1000)
+    const delayUntilTimeout = (timeoutEpochValue - currentTime) * 1000
+    const twoMinutesBeforeTimeout = delayUntilTimeout - 2 * 60 * 1000 // 2 minutes in milliseconds
+    // Show popup 2 minutes before timeout
+    if (twoMinutesBeforeTimeout > 0) {
+      popupTimer = setTimeout(() => {
+        setShowPopup(true)
+        setPopupMessage(`${I18n.t('frontend.session_timeout_modal.message')}`)
+      }, twoMinutesBeforeTimeout)
+    }
+
+    if (delayUntilTimeout > 0) {
+      delayTimeoutTimer = setTimeout(() => {
+        setShowPopup(true)
+        setSessionTimedOut(true)
+        setPopupMessage(`${I18n.t('frontend.session_timeout_modal.message_after_timeout')}`)
+      }, delayUntilTimeout)
+    }
+
+
+    return () => {
+      clearTimeout(popupTimer)
+      clearTimeout(delayTimeoutTimer)
+    }
+  }, [nextTimeout])
+
+  const startFlashing = () => {
+    if (!isFlashing.current) {
+      isFlashing.current = true
+      updateFavicons()
+      const originalTitleValue = originalTitle.current
+      const flashTitle = `${I18n.t('frontend.session_timeout_modal.title')}`
+
+      flashInterval.current = setInterval(() => {
+        document.title = document.title === flashTitle ? originalTitleValue : flashTitle
+      }, 1000)
+    }
+  }
+
+  const stopFlashing = () => {
+    if (isFlashing.current) {
+      if (flashInterval.current) {
+        clearInterval(flashInterval.current)
+      }
+      isFlashing.current = false
+    }
+    document.title = originalTitle.current
+  }
+
+  const updateFavicons = () => {
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('2d')
+
+    const badgeSize = 8 // Size of the badge
+    const badgeOffsetX = 24 // X position of the badge
+    const badgeOffsetY = 8 // Y position of the badge
+
+    originalFavicons.current.map((faviconUrl) => {
+      const favicon = new Image()
+      favicon.src = faviconUrl
+
+      favicon.onload = () => {
+        const size = parseInt(faviconUrl.match(/(\d+)x(\d+)/)?.[0] || '32x32', 10) // Extract size from URL
+        canvas.width = size // Set canvas size
+        canvas.height = size
+
+        if (context) {
+          context.clearRect(0, 0, canvas.width, canvas.height) // Clear the canvas
+          context.drawImage(favicon, 0, 0, size, size) // Draw the existing favicon
+
+          // Draw the badge
+          context.fillStyle = 'red' // Badge color
+          context.beginPath()
+          context.arc(badgeOffsetX, badgeOffsetY, badgeSize, 0, Math.PI * 2, true) // Position and size of the badge
+          context.fill()
+
+          // Set the favicon with the badge
+          const newFavicon = canvas.toDataURL('image/png')
+          const link = document.querySelector(`link[rel*='icon'][sizes='${size}x${size}']`) as HTMLLinkElement
+
+          if (link) {
+            link.href = newFavicon // Set the new favicon
+          }
+        }
+      }
+    })
+  }
+
+  const resetFavicons = () => {
+    const links = document.querySelectorAll("link[rel*='icon']") as NodeListOf<HTMLLinkElement>
+    links.forEach((link, index) => {
+      link.href = originalFavicons.current[index]
+    })
+  }
+
+  useEffect(() => {
+    // Listen for messages from other tabs
+    channel.onmessage = (event) => {
+      if (event.data === 'close_popup') {
+        setShowPopup(false)
+        stopFlashing()
+      }
+    }
+    if (showPopup && !features?.disable_session_timeout) {
+      startFlashing()
+    } else {
+      stopFlashing()
+    }
+
+    return () => {
+      resetFavicons()
+      stopFlashing()
+    }
+  }, [showPopup, channel])
+
+  const handleOnCancel = () => {
+    if (!isSessionTimedOut) {
+      window.location.href = '/administration/sign_out'
+    }
+    setShowPopup(false)
+    stopFlashing()
+  }
+
+  const handleOnExtendSession = async () => {
+    if (isSessionTimedOut) {
+      window.location.href = '/administration/sign_out'
+      channel.postMessage('close_popup')
+      setShowPopup(false)
+      stopFlashing()
+      return
+    }
+    extendSession().then(() => {
+      // Post message to other tabs to close all popups
+      channel.postMessage('close_popup')
+      setShowPopup(false)
+      stopFlashing()
+    }).catch(() => {
+      setShowPopup(true)
+    })
+  }
+
+  if (features?.disable_session_timeout) return null
+
+  return (
+    <div>
+      <Modal
+        maskClosable={false}
+        closable={false}
+        centered
+        cancelButtonProps={{ danger: !isSessionTimedOut }}
+        cancelText={isSessionTimedOut
+          ? `${I18n.t('frontend.session_timeout_modal.buttons.close')}`
+          : `${I18n.t('frontend.session_timeout_modal.buttons.log_out')}`}
+        okText={isSessionTimedOut
+          ? `${I18n.t('frontend.session_timeout_modal.buttons.re_login')}`
+          : `${I18n.t('frontend.session_timeout_modal.buttons.stay_logged_in')}`}
+        className={styles.titleText}
+        title={`${I18n.t('frontend.session_timeout_modal.title')}`}
+        open={showPopup}
+        okButtonProps={{ loading: sessionExtending }}
+        onOk={handleOnExtendSession}
+        onCancel={handleOnCancel}
+      >
+        <p className={styles.message}>
+          {popupMessage}
+        </p>
+        <div className={styles.timer}>
+          <CountdownTimer
+            title={`${I18n.t('frontend.session_timeout_modal.time_remaining')}`}
+            seconds={DEFAULT_SESSION_POPUP_DURATION}
+          />
+        </div>
+      </Modal>
+    </div>
+  )
+}
+
+export const SessionTimeoutModal = connector(SessionTimeoutModalComponent)

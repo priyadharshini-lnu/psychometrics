@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import {
   createBrowserRouter, Navigate, Outlet, RouterProvider,
 } from 'react-router-dom'
+import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { MainMenu } from '~/components/MainMenu'
 import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
 import RouteList from '~/components/RouteList'
@@ -31,6 +32,7 @@ const Main: React.FC = () => (
     <Outlet />
     <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
     <IncorrectResponseErrorModal />
+    <SessionTimeoutModal />
     <DisplayExceptionModal />
   </Suspense>
 )

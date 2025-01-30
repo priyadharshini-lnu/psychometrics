@@ -62,6 +62,7 @@ features:
   new_video_recording_ui: <%= ENV.fetch('NEW_VIDEO_RECORDING_UI', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
+  disable_session_timeout: <%= ENV.fetch('DISABLE_SESSION_TIMEOUT', 'false') == 'true' %>
   inline_translation_enabled: <%= ENV.fetch('INLINE_TRANSLATION_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>

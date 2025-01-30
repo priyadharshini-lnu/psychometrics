@@ -239,13 +239,6 @@ class User < ApplicationRecord
     resource_class.joins(:campaign).where(campaigns: { id: campaign_ids })
   end
 
-  # Time to strong sign out
-  def timeout_in
-    return 1.year if is?(:superadmin) || is_anonym?
-
-    super
-  end
-
   def ensure_authentication_token
     self.authentication_token = generate_authentication_token if authentication_token.blank?
   end

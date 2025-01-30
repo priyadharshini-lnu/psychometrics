@@ -14,8 +14,10 @@ describe Iiht::AddAssessment do
   let(:expected_response) do
     { 'result' => { 'isSuccess' => true, 'scheduleLink' => schedule_link, 'scheduleId' => schedule_id } }
   end
+  let(:jwt_token) { 'stubbed.jwt.token' }
 
   before do
+    allow(JWT).to receive(:encode).and_return(jwt_token)
     allow_any_instance_of(described_class).to receive(:config).and_return(config)
     allow(Iiht::GetAuthToken).to receive(:call!)
     allow(Iiht::AllowAttempts).to receive(:call!)
@@ -123,7 +125,8 @@ describe Iiht::AddAssessment do
           protocol: Settings.protocol,
           port: Settings.port,
           campaign_id: user_assessment.campaign_id,
-          assessment_id: user_assessment.assessment_id
+          assessment_id: user_assessment.assessment_id,
+          jwt: jwt_token
         )
       }
     )

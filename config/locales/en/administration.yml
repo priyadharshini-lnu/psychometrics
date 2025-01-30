@@ -2834,6 +2834,7 @@ en:
       restrict_sequences: Restrict sequential and repetitive characters
       security: Security Settings
       send_unlock_email: Send unlock email
+      session_timeout_duration: Session Timeout Duration
       tfa_enabled: Enable Two Factor Authentication
     settings:
       admin_roles:

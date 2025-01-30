@@ -255,6 +255,8 @@ en:
           attributes:
             magic_link_expiry_in_seconds:
               greater_than_or_equal_to: Duration should be minimum 5 minutes
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: Duration should be minimum 60 minutes
         sheet:
           attributes:
             file:
@@ -2178,6 +2180,16 @@ en:
     restart: Restart
     restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
     saved_results: Answers successfully saved.
+    session_timeout_modal:
+      buttons:
+        close: Close
+        log_out: Log Out Now
+        re_login: Log Back In
+        stay_logged_in: Stay Logged In
+      message: Your session will time out in 2 minutes due to inactivity. Please click 'Stay Logged In' to continue your session, or you will be logged out automatically.
+      message_after_timeout: Your session has timed out , Kindly re-login.
+      time_remaining: Time Remaining
+      title: Session Timeout Warning
     skip_to_content: Skip to content
     smsInvites:
       create_success: SMS Invite was added successfully

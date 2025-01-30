@@ -1,5 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import App from '~/modules/admin/modules/AdminJob/App'
+import '~/utils/axiosInterceptors'
+import '~/utils/fetchRequestInterceptors'
 import '~/modules/admin/styles/common.less'
 import initSentry from '~/libs/initSentry'
 

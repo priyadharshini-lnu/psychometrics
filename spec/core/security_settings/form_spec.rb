@@ -20,6 +20,13 @@ describe SecuritySettings::Form do
       expect(form.errors[:magic_link_expiry_in_seconds]).to eq(['Duration should be minimum 5 minutes'])
     end
 
+    it 'validates fails when session_inactivity_timeout_in_seconds is less than 60 minutes' do
+      form = described_class.new(attributes.merge(session_inactivity_timeout_in_seconds: 30.minutes.to_i))
+
+      expect(form.valid?).to eq(false)
+      expect(form.errors[:session_inactivity_timeout_in_seconds]).to eq(['Duration should be minimum 60 minutes'])
+    end
+
     it 'passes all validation' do
       form = described_class.new(attributes)
 
