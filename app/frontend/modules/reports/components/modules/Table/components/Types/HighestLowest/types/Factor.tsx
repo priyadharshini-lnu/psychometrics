@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 
 import cs from 'classnames'
 import _ from 'lodash'
@@ -34,10 +34,11 @@ interface Props {
   hideValues: boolean
   noOfItems: number | null
   scoreCutoff: number | null
+  style?: CSSProperties & { fontColor: string }
 }
 
 const FactorType: FC<Props> = ({
-  assessment_id, filterId, factorIds, sections, tableStyle, hideValues, noOfItems, scoreCutoff,
+  assessment_id, filterId, factorIds, sections, tableStyle, hideValues, noOfItems, scoreCutoff, style,
 }) => {
   const calculateHighestLowest = (
     assessment_id: PreviewModel['assessment_id'],
@@ -73,7 +74,7 @@ const FactorType: FC<Props> = ({
     const dimensionId = AppStore.getAssessmentById(assessment_id)?.dimensionId ?? ''
     const allFactors: Array<{ id: number; name: string }> = AppStore.factors?.[dimensionId] ?? []
 
-    return factorIds.map((id, i) => ({
+    return factorIds?.map((id, i) => ({
       ...data[i],
       name: allFactors.find(factor => factor.id === id)?.name ?? '',
     }))
@@ -90,9 +91,10 @@ const FactorType: FC<Props> = ({
     filter => filter.id === filterId,
   )
   const filterName = filter ? I18nStore.tFilterName(filter) : ''
+  const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
   return (
-    <div className={cs(styles.table, styles[tableStyle])}>
+    <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
       <table>
         <tbody>
           {sections !== TableSectionsType.LOWEST && (
@@ -160,7 +162,7 @@ interface TBodyProps {
 
 const TBody: FC<TBodyProps> = ({ data, hideValues }) => (
   <>
-    {data.map((factor, index) => (
+    {data?.map((factor, index) => (
       <tr key={index} className={styles.row}>
         <td>{index + 1}</td>
         <td>{I18nStore.tFactorName(factor)}</td>

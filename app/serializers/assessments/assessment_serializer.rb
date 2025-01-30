@@ -6,7 +6,7 @@ module Assessments
                :flow, :norm_rules, :factors, :enable_back, :enable_progress, :question_recoding,
                :data_sheet_columns, :relationships, :extra, :resources, :resources_data, :options,
                :instructions, :default_norm_id, :owner_id, :linked_questions, :blocks, :default_language,
-               :campaign_factors_list
+               :campaign_factors_list, :locale, :available_translations, :translations_migrated
 
     has_one :linked_assessment, serializer: Assessments::LinkedAssessmentSerializer
 
@@ -23,7 +23,13 @@ module Assessments
 
       Panko::ArraySerializer.new(
         blocks,
-        each_serializer: Assessments::BlockSerializer
+        each_serializer: Assessments::BlockSerializer,
+        context: {
+          locale: context[:locale],
+          default_language: default_language,
+          translations_migrated: object.translations_migrated?,
+          translations: translations
+        }
       ).to_a
     end
 
@@ -31,7 +37,7 @@ module Assessments
       factors_scoring = object.factors_scoring.group_by(&:factor_id)
 
       Panko::ArraySerializer.new(
-        object.dimension.all_factors.with_attached_icon,
+        object.dimension.all_factors.includes(:translations).with_attached_icon,
         each_serializer: Assessments::FactorSerializer,
         context: {
           factors_scoring: factors_scoring
@@ -69,6 +75,41 @@ module Assessments
 
       ids = object.resources.map { |r| r['assessmentId'] }
       Question.where(assessment_id: ids, type: 'StaticContent').group_by(&:assessment_id)
+    end
+
+    def instructions
+      return object.instructions if default_language?
+
+      return object.instructions unless object.translations_migrated?
+
+      instructions = object.instructions
+      translated_content = translations.dig('instructions', 0, 'props', 'content')
+      instructions['content'] = translated_content if translated_content
+
+      instructions
+    end
+
+    def locale
+      context[:locale]
+    end
+
+    def available_translations
+      @available_translations = ::Translation.available_translation_for_assessment(id)
+    end
+
+    def translations_migrated
+      object.translations_migrated?
+    end
+
+    private
+
+    def default_language?
+      default_language == context[:locale]
+    end
+
+    def translations
+      @translations = ::Translation.to_hash_for_assessment(id, locale,
+                                                           translations_migrated: object.translations_migrated?)
     end
   end
 end

@@ -2,7 +2,6 @@ import { Component } from 'react'
 import _ from 'lodash'
 import Select from 'react-select'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
 const SELECT_OPTIONS = _.times(30, i => ({
@@ -40,9 +39,6 @@ class Properties extends Component {
           getOptionValue={opt => opt.value}
           onChange={this.changeTopPosition}
         />
-        <hr className={styles.divider} />
-        <div>Font</div>
-        <PropertyFonts modules={modules} colors={false} />
         <hr className={styles.divider} />
       </div>
     )

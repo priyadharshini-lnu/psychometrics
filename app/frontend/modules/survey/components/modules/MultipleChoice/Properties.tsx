@@ -27,9 +27,11 @@ const { I18n } = window
 
 export interface Props {
   model: PropertiesModel
+  showOnlyTranslatable: boolean
 }
 
-export const Properties: FC<Props> = ({ model }) => {
+export const Properties: FC<Props> = (props) => {
+  const { model, showOnlyTranslatable } = props
   const forceUpdate = useForceUpdate()
   const handleAnswerTypeChange = (selectedType: string) => {
     model.resetDefaultValues()
@@ -95,6 +97,14 @@ export const Properties: FC<Props> = ({ model }) => {
     imageChoiceSize,
   } = model.props
   const isSingleOrMultiAnswerType = type === 'SingleAnswer' || type === 'MultipleAnswer'
+
+  if (showOnlyTranslatable) {
+    return (
+      <div>
+        <ValidationTypes model={model} update={() => forceUpdate()} />
+      </div>
+    )
+  }
 
   return (
     <div>

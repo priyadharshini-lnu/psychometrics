@@ -14,7 +14,7 @@ module Communications
         find_each do |communication|
           workshop_subject = WorkshopSubject.find(communication.workshop_subject_id)
 
-          communication.emails.create!(
+          communication.emails.create(
             campaign_user: workshop_subject.campaign_user,
             workshop_id: workshop_subject.workshop_id,
             workshop_invite: workshop_subject.workshop_invite

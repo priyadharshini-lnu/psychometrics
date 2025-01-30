@@ -16,7 +16,8 @@ module Mettl
       result = ::JSON.parse(response.body)
 
       unless result['status'] == 'SUCCESS'
-        raise "Mettl::CreateSchedule failed for Assessment: #{assessment.id}. Error: #{result['error']['message']}"
+        raise Mettl::Exceptions::CreateScheduleFailed,
+              "Mettl::CreateSchedule failed for Assessment: #{assessment.id}. Error: #{result['error']['message']}"
       end
 
       mettl_user_assessment = save_mettl_schedule(result['createdSchedule'])

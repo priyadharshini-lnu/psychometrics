@@ -7,7 +7,6 @@ import ColorSet from '~/modules/reports/components/ColorSet'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
 import { ColorPicker } from '~/glint'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { rgba2hex } from '~/utils/color'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import QuestionList from './dataSources/QuestionList'
@@ -34,8 +33,6 @@ const Properties: FC<Props> = ({ modules }) => {
 
   return (
     <div>
-      <div>Font</div>
-      <PropertyFonts modules={modules} colors={false} />
       <div className="mt-2">Competencies</div>
       <SourceTypeButtonGroup model={model} onChange={onChange} />
       {sourceType === 'Factor' && (

@@ -36,7 +36,7 @@ const QuestionComponent = ({ filters, model, questions }) => {
         questionId,
       ], [])
       const values = _.map(answers, (answer) => {
-        const choiceAnswers = answer.filter(a => a.choice === choiceId)
+        const choiceAnswers = answer?.filter(a => a.choice === choiceId) || []
         return _.meanBy(choiceAnswers, (a) => {
           if (a.values) {
             return _.meanBy(a.values, val => val.recode_value)
@@ -63,10 +63,11 @@ const QuestionComponent = ({ filters, model, questions }) => {
 
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / (milestones.length || 1)
   const getDescStyle = results => ({ minHeight: `${FILTER_ROW_HEIGHT * results.length}px` })
-  const { fontSize, fontFamily } = model.props.style
+  const { fontSize, fontFamily, fontColor } = model.props.style
   const style = {
     fontSize,
     fontFamily,
+    color: fontColor,
   }
   if (borderColor) {
     style.borderColor = borderColor

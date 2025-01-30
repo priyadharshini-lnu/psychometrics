@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 import reduce from 'lodash/reduce'
 import meanBy from 'lodash/meanBy'
 import isEmpty from 'lodash/isEmpty'
@@ -95,6 +95,7 @@ interface Props {
   gapCutoff: number | null
   precision?: number
   showAllFactors?: boolean
+  style?: CSSProperties & { fontColor: string }
 }
 
 const Factor: FC<Props> = ({
@@ -108,6 +109,7 @@ const Factor: FC<Props> = ({
   gapCutoff,
   precision,
   showAllFactors,
+  style,
 }) => {
   const calculateGaps = (
     assessmentId: PropertiesModel['assessment_id'],
@@ -202,9 +204,10 @@ const Factor: FC<Props> = ({
   const showPositiveGapTable = gapType === GapType.ALL || gapType === GapType.POSITIVE
   const showNegativeGapTable = gapType === GapType.ALL || gapType === GapType.NEGATIVE
   const showTitle = gapType === GapType.ALL
+  const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
   return (
-    <div className={cs(styles.table, styles[tableStyle])}>
+    <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
       <table>
         <tbody>
           {showPositiveGapTable && (

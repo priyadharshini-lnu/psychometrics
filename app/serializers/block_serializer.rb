@@ -8,7 +8,9 @@ class BlockSerializer < Panko::Serializer
       object.questions_ams,
       each_serializer: QuestionSerializer,
       context: {
-        piped_text_context: context[:piped_text_context]
+        piped_text_context: context[:piped_text_context],
+        selected_locale: context[:selected_locale],
+        translations: context[:translations]
       }
     ).to_a
   end
@@ -23,6 +25,10 @@ class BlockSerializer < Panko::Serializer
 
   def props
     return object.props unless object.props && object.props['staticContent']
+
+    if (translation_props = context.dig(:translations, 'block', object.id, 'props'))
+      object.props = Utility::Hash.deep_merge(object.props, (translation_props || {}))
+    end
 
     static_content =
       object.props['staticContent'].merge(

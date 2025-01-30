@@ -504,6 +504,7 @@ Rails.application.routes.draw do
           get :participant_options
           get :report_options
           get :message_options
+          put :update_language
         end
 
         resources :email_templates do
@@ -1342,7 +1343,7 @@ as: :simulation_progress_notification
 
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
 
-          jsonapi_resources :reports do
+          jsonapi_resources :reports, concerns: :taggable do
             post :copy
             post :restore
             scope module: :reports do
@@ -1371,7 +1372,7 @@ as: :simulation_progress_notification
             end
           end
           resources :user_idp_plans, only: %i[create]
-          jsonapi_resources :skills, only: %i[index]
+          jsonapi_resources :skills, concerns: :taggable
         end
       end
     end

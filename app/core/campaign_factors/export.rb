@@ -15,20 +15,18 @@ module CampaignFactors
     end
 
     def call
-      results =
-        Axlsx::Package.new do |package|
-          package.workbook.add_worksheet(name: 'CampaignFactors') do |sheet|
-            header_style = package.workbook.styles.add_style(b: true, sz: 14)
+      package = ExcelSafe.new
+      package.add_worksheet('CampaignFactors') do |sheet|
+        header_style = sheet.workbook.styles.add_style(b: true, sz: 14)
 
-            sheet.add_row(ALLOWED_HEADERS, style: header_style)
+        sheet.add_row(ALLOWED_HEADERS, style: header_style)
 
-            campaign_factors.each do |campaign_factor|
-              sheet.add_row(campaign_factor_details(campaign_factor))
-            end
-          end
+        campaign_factors.each do |campaign_factor|
+          sheet.add_row(campaign_factor_details(campaign_factor))
         end
+      end
 
-      broadcast :ok, results
+      broadcast :ok, package
     end
 
     private

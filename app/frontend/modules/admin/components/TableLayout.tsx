@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import {
   Row, Col, Button, Empty,
+  Checkbox,
 } from 'antd'
 import { ReloadOutlined, IssuesCloseOutlined } from '@ant-design/icons'
 import { CountDisplay } from '~/components/CountDisplay'
@@ -13,12 +14,19 @@ type Props = {
   filters?: React.ReactChild
   table: React.ReactChild
   failureMsg?: string
+  selectionSetting?: {
+    selectionAllowed: boolean
+    hasSelectInAllPages: boolean
+    onSelectionChange: (val: boolean) => void
+    label: string
+  },
+  selectedCount?: number
 }
 
 const { I18n } = window
 
 export const TableLayout: FC<Props> = ({
-  recordCount, loading, filters, table, requestStatus, disableHeader, failureMsg,
+  recordCount, loading, filters, table, requestStatus, disableHeader, failureMsg, selectionSetting, selectedCount,
 }) => {
   const requestFailed = requestStatus === 'failed'
 
@@ -32,7 +40,7 @@ export const TableLayout: FC<Props> = ({
       >
         <Col>
           <CountDisplay
-            selectedCount={0}
+            selectedCount={selectedCount ?? 0}
             totalCount={requestFailed ? 0 : recordCount || 0}
             isLoading={loading}
           />
@@ -41,6 +49,31 @@ export const TableLayout: FC<Props> = ({
           {filters}
         </Col>
       </Row>
+      )}
+      {selectionSetting?.selectionAllowed && (
+        <div className="pb-4 ps-5 pe-5">
+          <Row>
+            <Col>
+              <Checkbox
+                checked={selectionSetting.hasSelectInAllPages && recordCount === selectedCount}
+                onChange={e => selectionSetting.onSelectionChange(e.target.checked)}
+                className="font-normal text-nowrap flex items-center"
+                indeterminate={selectionSetting.hasSelectInAllPages && recordCount !== selectedCount}
+              >
+                {selectionSetting.label}
+              </Checkbox>
+            </Col>
+          </Row>
+        </div>
+      )}
+      {!!selectedCount && (
+        <Row className="pb-4 ps-5">
+          <Col>
+            {selectedCount}
+            {' '}
+            {I18n.t('common.text.selected')}
+          </Col>
+        </Row>
       )}
       <Row>
         <Col span={24}>

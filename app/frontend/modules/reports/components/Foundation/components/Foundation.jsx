@@ -41,10 +41,13 @@ const Foundation = ({
 
   const mprops = module.props
 
+  const isEditPagination = !preview && module.props.pagination?.editFrame
+
   if (module.meta.hidden) { return null }
   const {
     left, top, width, height, rotation = 0,
-  } = mprops.position
+  } = isEditPagination ? module.props.pagination?.position : mprops.position
+
 
   const style = {
     width,

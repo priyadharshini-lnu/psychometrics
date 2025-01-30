@@ -19,7 +19,7 @@ module Communications
       # rubocop:enable Layout/MultilineMethodCallIndentation
 
       workshop_invited_subjects.find_each do |workshop_invited_subject|
-        communication.emails.create!(
+        communication.emails.create(
           campaign_user: workshop_invited_subject.campaign_user,
           workshop_invite_id: workshop_invited_subject.workshop_invite_id
         )

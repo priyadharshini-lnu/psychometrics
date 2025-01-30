@@ -33,7 +33,6 @@ const VIDEO_BACKGROUND_COLOR = '#E9F7F6'
 const PLACEHOLDER_BLACK = '#000'
 const PROGRESS_BAR_SUCCESS = '#009C37'
 
-const recStartCountdownTotalDuration = 10 // 10 seconds
 
 const getMediaRecorderMimeType = (): MimeType | undefined => {
   const types: MimeType[] = [
@@ -75,7 +74,7 @@ interface DeviceDetails {
 const formatDuration = (durationInSeconds: number): string => {
   const minutes = Math.floor(durationInSeconds / 60)
   const seconds = durationInSeconds % 60
-  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  return `${minutes.toString().padStart(2, '0')}m:${seconds.toString().padStart(2, '0')}s`
 }
 
 const MediaRecorderComponent: React.FC<Props> = ({
@@ -498,14 +497,14 @@ const MediaRecorderComponent: React.FC<Props> = ({
       return {
         percent: 0,
         label: `${I18n.t('assessments.video_response.recording_duration_label')} 
-        00:${recStartCountdownTotalDuration} mins`,
+        ${formatDuration(maxDuration)}`,
       }
     } if (status === 'recording') {
       return {
         percent: ((maxDuration - recStopCountdownRemainingDuration) / maxDuration) * 100,
         label: I18n.t('assessments.video_response.recording_stop_label'),
         countdownProps: getCountdownProps(recStopCountdownTime,
-          handleStopRecording, `${formatDuration(maxDuration)} mins`),
+          handleStopRecording, `${formatDuration(maxDuration)}`),
       }
     } if (isUploading) {
       return {
@@ -552,7 +551,13 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }
 
   return (
-    <Flex style={{ background: VIDEO_BACKGROUND_COLOR }} vertical justify="center" align="center" gap={4}>
+    <Flex
+      style={{ background: VIDEO_BACKGROUND_COLOR }}
+      vertical
+      justify="center"
+      align="center"
+      gap={4}
+    >
       <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
         <AudioOutlined style={{ alignSelf: 'center' }} />
         <Select
@@ -592,7 +597,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         visualizing={visualizing}
         getMediaStream={getMediaStream}
       />
-      <Flex vertical justify="center" align="center" gap={4}>
+      <Flex className={status === 'recording' ? 'mt-16' : 'unset'} vertical justify="center" align="center" gap={4}>
         <ProgressWithCountdown {...getProgressProps()} />
         {controls}
       </Flex>

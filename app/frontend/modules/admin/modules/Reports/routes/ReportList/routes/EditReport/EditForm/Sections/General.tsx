@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   Form, Button, Divider, Switch,
 } from 'antd'
+import _ from 'lodash'
 import { ColorPicker } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { Report } from '~/modules/admin/modules/client/core/reports'
@@ -44,7 +45,7 @@ export const General: React.FC<Props> = ({ report }) => {
       transformValues={
         (values) => {
           const { active, ...submittedValues } = values
-          return { ...submittedValues, disabled: !active }
+          return { ..._.omit(submittedValues, ['defaultLanguage']), disabled: !active }
         }
       }
     >

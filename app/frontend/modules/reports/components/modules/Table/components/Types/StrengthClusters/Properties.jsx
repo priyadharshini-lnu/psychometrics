@@ -4,7 +4,6 @@ import _ from 'lodash'
 import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import connect from './connect'
 
@@ -151,9 +150,6 @@ class Properties extends Component {
             </label>
           </div>
         </div>
-        <hr className={styles.divider} />
-        <div>Font</div>
-        <PropertyFonts model={model} colors={false} />
         <hr className={styles.divider} />
       </div>
     )

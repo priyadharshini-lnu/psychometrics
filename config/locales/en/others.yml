@@ -751,6 +751,7 @@ en:
         import_scoring_data: Import Scoring Data
         import_sms_invites: Import SMS Invite
         import_users: Import Users
+        migrate_assessment_translations: Assessment Translation migration
         normalize_factor_scores: Normalize Factor Scores
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
@@ -859,6 +860,9 @@ en:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
       resume: Resume
+      saved:
+        label: Audio Saved
+      saving: Saving Audio
       start_recording: Start recording
       stop: Stop
     card_actions:
@@ -879,6 +883,7 @@ en:
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
+      translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
     dictation:
@@ -1478,15 +1483,21 @@ en:
   checking_wizard:
     audio_check:
       access: Access
-      access_help: Click here for help.
-      allow: Allow
-      allow_title: Please allow to use microphone to record audio
-      continue: Continue
-      processing: Processing
+      continue: Yes, Ok to proceed
+      random_phrases:
+        eight: May your coffee be strong and your day be productive.
+        five: Life is better when you smile. Smile for the mic!
+        four: She sells seashells by the seashore.
+        nine: When in doubt, test it out this mic works!
+        one: I scream, you scream, we all scream for ice cream!
+        seven: Every day is a new beginning. Say it loud and proud!
+        six: Pizza or pasta? Decisions are hard.
+        three: Testing, one two three, the sound is clear as can be!.
+        two: The quick brown fox jumps over the lazy dog.
       record_title: Please speak and repeat the following sentence 3 times.
-      speech_detection: Speech detection
+      retake: No, I want to retake
+      run_again: Run again
       test_message: great to speak with you
-      title: We need to ensure your system can record audio.
     network_check:
       continue: Continue
       download: Download
@@ -1505,21 +1516,40 @@ en:
       start: Start assessment
       title: You have successfully completed all checks.
     system_check:
+      compatibility: System Compatibility
       continue: Continue
+      failure:
+        description: Webcam and Microphone permissions are needed for Audio/Video Questions in this Test.
+        link_text: here
+        link_text_action: Click
+        link_text_instruction: and follow the steps to provide permissions
+        refresh: Refresh Browser
+        refresh_text: Click below to refresh the browser and apply changes
+        subtitle: Quick Fixes
+        title: You cancelled Webcam and Microphone permissions
+      permissions: Webcam & Audio Permissions
       title: Before starting this assessment, your system needs to undergo some checks.
     video_check:
       access: Access
-      access_help: Click here for help.
-      allow: Allow
-      allow_title: Please allow to use camera to record Video
-      continue: Continue
-      description: Once video recording is working and detects your face, the captured photo will be saved for verification.
-      face_detection: Face detection
-      hint: The captured picture will be uploaded for verification.
-      processing: Processing
-      retake: Retake
+      camera_preview: Camera preview will appear here
+      continue: Yes, Ok to proceed
+      description: Click on Start Recording and Record yourself while reading the below passage in your own voice
+      random_phrases:
+        eight: If you can see me, the video's a success. If not, we troubleshoot!
+        five: Testing your video,don't worry, no Oscar nomination required.
+        four: Ready, set, focus! The camera is your stage.
+        nine: Big smiles and clear video,let's get this test done right!
+        one: Raise your hand if you can hear me or just wave for the camera!
+        seven: Mirror, mirror on the screen, let the video check be clean.
+        six: Lights, camera, action,this is your time to shine!
+        ten: A friendly wave makes sure everything works fine.
+        three: Say cheese! Or just test that perfect smile.
+        two: Look at the lens, smile, and pretend you're in a movie trailer.
+      rec_text: REC
+      retake: No, I want to retake
       run_again: Run again
       title: We need to ensure your system can record the video
+      upload_again: Upload again
       uploading: Uploading
   common:
     actions:
@@ -1649,7 +1679,9 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      selected: Selected
       subject: Subject
+      total: Total
       view_as: View as
     tooltips:
       hide: Hide
@@ -2617,6 +2649,7 @@ en:
         success_message: Report %{name} was restored successfully
       unarchived:
         success_message: Report %{name} was unarchived successfully
+      update_language: Update Language
       view: View Report
     active: Active
     archived: Archived
@@ -2672,6 +2705,8 @@ en:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
       none_external: None - Use report builder
+    language: Report Language
+    language_updated: Report Language was updated successfully
     modules:
       campaign_factors_table:
         add_condition: Add Condition
@@ -2691,6 +2726,9 @@ en:
         title: Title
       common:
         all_factors: All factors
+        font: Font
+        table_options: Table options
+        table_type: Table type
       factors_table:
         description: Description
         na: N/A

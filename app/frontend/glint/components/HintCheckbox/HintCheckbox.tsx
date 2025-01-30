@@ -13,12 +13,13 @@ type Props = {
   hints: [active: string, inactive: string]
   onChange: (checked: boolean) => void
   placement?: TooltipPlacement
+  disabled?: boolean
 }
 
 export const HintCheckbox: FC<Props> = ({
-  checked, onChange, label, hints, className, hintClassName, overlayClassName, placement = 'left',
+  checked, onChange, disabled, label, hints, className, hintClassName, overlayClassName, placement = 'left',
 }) => (
-  <div className={styles.container} onClick={() => onChange(!checked)}>
+  <div className={styles.container} onClick={() => !disabled && onChange(!checked)}>
     <Tooltip
       placement={placement}
       overlayClassName={cs(styles.tooltip, overlayClassName)}
@@ -33,7 +34,7 @@ export const HintCheckbox: FC<Props> = ({
         </div>
       )}
     >
-      <Checkbox checked={checked} />
+      <Checkbox disabled={disabled} checked={checked} />
       {' '}
       {label}
     </Tooltip>

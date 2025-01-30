@@ -98,10 +98,10 @@ RSpec.describe Assessment, type: :model do
     end
 
     context 'when assessment type is simulation' do
-      let(:simulation) { create(:assessment, :simulation, external_settings: { assessment_id: 'golf' }) }
+      let(:simulation) { create(:assessment, :simulation, external_settings: { assessment_id: 'mte-apply' }) }
 
       it 'returns the assessment name' do
-        expect(simulation.external_assessment_name).to eq('Golf')
+        expect(simulation.external_assessment_name).to eq('MTE Apply')
       end
     end
 
@@ -196,7 +196,7 @@ RSpec.describe Assessment, type: :model do
     end
 
     describe '#simulation_settings' do
-      let(:external_assessment_id) { 'golf-content-variations' }
+      let(:external_assessment_id) { 'mte-apply' }
       let(:assessment) do
         create(:assessment, :simulation, external_settings: { assessment_id: external_assessment_id })
       end

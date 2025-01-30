@@ -3,17 +3,33 @@
 
 .container {
   text-align: center;
-  .card {
-    margin-top: @space-12;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  p {
+    margin: 0;
   }
+
+  .warning svg {
+    height: 50px;
+    width: 50px;
+    color: red !important
+  }
+
+  .card {
+    margin-top: @space-4;
+  }
+
   .title {
     font-size: 20px;
   }
 
   .button {
-    margin-top: @space-8;
+    margin: @space-8 auto;
     text-transform: uppercase;
   }
+
   .mainIcon {
     color: @disabled-color;
     font-size: 45px;

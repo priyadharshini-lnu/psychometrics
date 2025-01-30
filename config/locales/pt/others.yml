@@ -232,15 +232,9 @@ pt:
   checking_wizard:
     audio_check:
       access: Acesso
-      access_help: Clique aqui para obter ajuda.
-      allow: Permitir
-      allow_title: Permita o uso do microfone para gravar áudio
       continue: Continuar
-      processing: A processar
       record_title: Diga e repita a seguinte frase 3 vezes.
-      speech_detection: Deteção de voz
       test_message: é ótimo falar consigo
-      title: Necessitamos de garantir que o seu sistema consegue gravar áudio.
     network_check:
       continue: Continuar
       download: Descarregar
@@ -258,13 +252,8 @@ pt:
       title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
     video_check:
       access: Acesso
-      access_help: Clique aqui para obter ajuda.
-      allow: Permitir
-      allow_title: Permita o uso da câmara para gravar vídeo
       continue: Continuar
       description: Qualquer vídeo ou foto capturado nesta fase não será guardado ou usado. É usado localmente no seu dispositivo para garantir que a câmara está a funcionar para uma pergunta futura que possa necessitar de gravação de vídeo.
-      face_detection: Deteção de rosto
-      processing: A processar
       run_again: Executar novamente
       title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
   common:

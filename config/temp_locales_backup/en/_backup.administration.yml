@@ -4240,6 +4240,7 @@ en:
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
         tools: Tools
       subjects: Subjects
+      selected: Selected
       tabs:
         settings: Settings
         subject_scores: Subject Scores

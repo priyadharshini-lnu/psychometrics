@@ -27,16 +27,13 @@ module Imports
         # Return error if form not valid
         return false unless valid?
 
-        # errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: 1))
         user_results = load_imported_items.compact
 
-        if user_results.map(&:valid?).all?
-          user_results.each(&:save!)
-        else
-          user_results.each_with_index do |user_result, index|
-            user_result.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.result.error',
-                                       row: index + SKIP_ROWS, error: message))
+        if errors.blank?
+          user_results.each do |user_result|
+            user_result.save!
+            if user_result.completed?
+              ::UsersResults::Recompute.call!(user_result, user_result.user)
             end
           end
         end
@@ -77,7 +74,7 @@ module Imports
             next
           end
 
-          user_result ||= find_user_result(data)
+          user_result ||= find_user_result(data, row: index + SKIP_ROWS)
 
           next unless user_result
 
@@ -86,18 +83,13 @@ module Imports
           completed_at = parse_date(data['completed_at'], index)
 
           validate_dates_by_status(status, started_at, completed_at, index)
-
-          next if errors.present?
-
           validate_question_and_answers(data, questions, index)
-
-          next if errors.present?
 
           completion_reason = I18n.t('activerecord.attributes.users_result.completion_reasons').
                               key(data['completion_reason'])
 
           norm_data = parse_norm_data(data['norm'], user_result.assessment_id)
-          user_result.user_assessment.update!(
+          user_result.user_assessment.assign_attributes(
             completed_at: completed_at,
             norm_id: norm_data[:id],
             status: status,
@@ -136,12 +128,6 @@ module Imports
             new_results[qid] = parsed_value if parsed_value
           end
           user_result.answers = new_results
-          if user_result.completed?
-            ::UsersResults::Recompute.call!(
-              user_result,
-              user_result.user
-            )
-          end
           user_result
         end
       # rubocop:enable Metrics/BlockLength
@@ -163,43 +149,34 @@ module Imports
 
       private
 
-      def find_user_result(data)
+      def find_user_result(data, row:) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
         subject = Users::Regular.find_by(email: data['subject_email'].to_s.downcase, project_id: campaign.project_id)
         unless subject
-          errors.add(
-            :base,
-            I18n.t('administration.imports.errors.result.user.record_not_found', email: data['subject_email'])
-          )
+          add_record_not_found_error('administration.imports.errors.result.user.record_not_found',
+                                     identifier: { email: data['subject_email'] }, row: row)
           return
         end
 
-        evaluator_email = data['evaluator_email']
-        evaluator = if data['relationship'] == 'Assessor'
-                      User.find_by(email: evaluator_email.to_s.downcase, project_id: nil)
+        evaluator_email = data['evaluator_email'].to_s.downcase
+        evaluator = if data['relationship'] == 'Assessor' && !campaign&.threesixty?
+                      User.find_by(email: evaluator_email, project_id: nil)
                     elsif data['relationship'] && evaluator_email
-                      User.find_by(email: evaluator_email.to_s.downcase, project_id: campaign&.project_id)
+                      User.find_by(email: evaluator_email, project_id: campaign&.project_id)
                     else
                       subject
                     end
 
         unless evaluator
-          errors.add(
-            :base,
-            I18n.t('administration.imports.errors.result.user.record_not_found', email: evaluator_email)
-          )
+          add_record_not_found_error('administration.imports.errors.result.user.record_not_found',
+                                     identifier: { email: evaluator_email }, row: row)
           return
         end
 
         user_assessment = find_user_assessments(subject, evaluator)
 
         unless user_assessment
-          errors.add(
-            :base,
-            I18n.t(
-              'administration.imports.errors.result.user_assessment.record_not_found',
-              assessment_id: assessment.id
-            )
-          )
+          add_record_not_found_error('administration.imports.errors.result.user_assessment.record_not_found',
+                                     identifier: { assessment_id: assessment.id }, row: row)
           return
         end
 
@@ -285,6 +262,17 @@ module Imports
       def date_error(error_key, index)
         error = I18n.t("administration.imports.errors.result.date_errors.#{error_key}")
         errors.add(:base, I18n.t('administration.imports.errors.result.invalid_date', row: index + SKIP_ROWS, error:))
+      end
+
+      def add_record_not_found_error(translation_key, identifier:, row:)
+        errors.add(
+          :base,
+          I18n.t(
+            'administration.imports.errors.result.error',
+            error: I18n.t(translation_key, **identifier),
+            row: row
+          )
+        )
       end
     end
   end

@@ -234,15 +234,9 @@ ja:
   checking_wizard:
     audio_check:
       access: アクセス
-      access_help: こちらをクリックしてヘルプをご覧ください。
-      allow: 許可
-      allow_title: 音声を録音するには、マイクの使用を許可してください
       continue: 続行
-      processing: 処理中
       record_title: 以下の文章を3回繰り返して言ってください。
-      speech_detection: 音声検出
       test_message: お話しできて嬉しいです
-      title: あなたのシステムがオーディオを録音できることを確認する必要があります。
     network_check:
       continue: 続行
       download: ダウンロード
@@ -265,13 +259,8 @@ ja:
       title: このアセスメントの開始前に、システムでいくつかのチェックを行う必要があります。
     video_check:
       access: アクセス
-      access_help: こちらをクリックしてヘルプをご覧ください。
-      allow: 許可
-      allow_title: ビデオを録画するには、カメラの使用を許可してください
       continue: 続行
       description: この段階でキャプチャされたビデオや写真は、保存または使用されることはありません。ビデオ録画を必要とする可能性のある今後の質問のために、デバイスでローカルに使用してカメラが機能していることを確認します。
-      face_detection: 顔検出
-      processing: 処理中
       run_again: 再実行
       title: お使いのシステムでビデオの録画をできるようにする必要があります
   common:

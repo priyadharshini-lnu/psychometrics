@@ -4,7 +4,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   attributes :name, :disabled, :icon_url, :type, :category, :created_at, :updated_at, :created_by,
              :modified_by, :icon_color, :description, :timing, :status, :enable_video_check, :enable_audio_check,
              :enable_network_check, :poster, :icon, :external_settings, :archived, :deleted, :extra, :default_language,
-             :tag_list
+             :tag_list, :translations_migrated
 
   ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq
                      project_id_eq owned_by_client_or_tte]
@@ -29,6 +29,12 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
     @model.updated_by_id = context[:user].id
     category = context[:params].dig(:data, :attributes, :category)
     @model.linked_assessment_id = nil if category && category != Assessment::ASSESSOR_FORM
+  end
+
+  after_update do
+    if @model.saved_change_to_translations_migrated? && @model.translations_migrated
+      AdminJob.call(:migrate_assessment_translations, { assessment_id: @model.id }, context[:user])
+    end
   end
 
   def remove

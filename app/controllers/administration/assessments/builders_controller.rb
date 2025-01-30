@@ -9,7 +9,7 @@ module Administration
       def show
         render json: ::Assessments::AssessmentSerializer.new(
           context: {
-            include: '**'
+            locale: params[:lang] || @assessment.default_language
           }
         ).serialize(@assessment)
       end
@@ -20,7 +20,7 @@ module Administration
           audit! :update, builder.assessment, payload: params.require(:builder)
           render json: { data: ::Assessments::AssessmentSerializer.new(
             context: {
-              include: '**'
+              locale: builder.selected_locale
             }
           ).serialize(@assessment) }
         else

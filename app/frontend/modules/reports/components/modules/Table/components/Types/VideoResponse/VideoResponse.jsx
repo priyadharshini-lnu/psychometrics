@@ -84,8 +84,12 @@ export default class VideoResponse extends Component {
     if (!results.length) {
       return this.renderNoResults()
     }
+    const { module } = this.props
+    const { fontFamily, fontSize, fontColor } = module.props.style
+    const styleProp = { fontFamily, fontSize, color: fontColor }
+
     return (
-      <div className={styles.container}>
+      <div className={styles.container} style={styleProp}>
         {results.map(evaluator => (
           <Evaluator key={evaluator.id} evaluator={evaluator} />
         ))}

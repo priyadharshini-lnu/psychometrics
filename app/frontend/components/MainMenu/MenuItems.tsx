@@ -10,6 +10,7 @@ type Permissions = {
     assessorDashboard?: string
     assessorWorkshops?: string
     clients?: string
+    skills?: string
     users?: string
     norms?: string
     dimensions?: string
@@ -93,6 +94,10 @@ export const getSelected = (): string => {
     return 'userAvailability'
   }
 
+  if (location.href.match(/\/admin(\/)(skills)/)) {
+    return 'skills'
+  }
+
   return 'clients'
 }
 
@@ -107,7 +112,8 @@ const Link = ({ href, children }) => {
       'profileDetails', 'auditLogs',
       'changePassword', 'clients',
       'users', 'userAvailability',
-      'reports', 'assessments', 'reportApprovals', 'campaignTemplates']
+      'reports', 'assessments', 'reportApprovals',
+      'campaignTemplates', 'skills']
     return !allowedPages.includes(selected)
   }
   if (isThreesixty || isAssessmentBuilder || isDashboard || isAllowed()) {
@@ -116,141 +122,150 @@ const Link = ({ href, children }) => {
   return <RouterLink to={href}>{children}</RouterLink>
 }
 
-export const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
-  hasSubmenu ? {
-    key: 'showSubmenu',
-    label: I18n.t('administration.navigation.show_submenu'),
-    icon: <ArrowRightOutlined />,
-  } : null,
-  permissions.dashboards ? {
-    key: 'dashboards',
-    label: <a href={permissions.dashboards}>{I18n.t('administration.navigation.dashboard')}</a>,
-    icon: <i className="fa fa-dashboard" />,
-  } : null,
-  permissions.assessorDashboard ? {
-    key: 'assessorDashboard',
-    label:
-    <a href={permissions.assessorDashboard}>
-      {I18n.t('administration.navigation.assessor_dashboard')}
-    </a>,
-    icon: <i className="fa fa-dashboard" />,
-  } : null,
-  permissions.assessorWorkshops ? {
-    key: 'assessorWorkshops',
-    label:
-    <a href={permissions.assessorWorkshops}>
-      {I18n.t('administration.navigation.assessor_workshops')}
-    </a>,
-    icon: <CalendarOutlined />,
-  } : null,
-  permissions.clients ? {
-    key: 'clients',
-    label:
-    <Link href={permissions.clients}>
-      {I18n.t('administration.navigation.clients')}
-    </Link>,
-    icon: <i className="fa fa-briefcase" />,
-  } : null,
-  permissions.users ? {
-    key: 'users',
-    label:
-    <Link href={permissions.users}>
-      {I18n.t('administration.navigation.users')}
-    </Link>,
-    icon: <i className="fa fa-users" />,
-  } : null,
-  permissions.norms ? {
-    key: 'norms',
-    label:
-    <a href={permissions.norms}>
-      {I18n.t('administration.navigation.norms')}
-    </a>,
-    icon: <MonitorOutlined />,
-  } : null,
-  permissions.dimensions ? {
-    key: 'dimensions',
-    label:
-    <a href={permissions.dimensions}>
-      {I18n.t('administration.navigation.dimensions')}
-    </a>,
-    icon: <i className="fa fa-file-text-o" />,
-  } : null,
-  permissions.assessments ? {
-    key: 'assessments',
-    label:
-    <Link href={permissions.assessments}>
-      {I18n.t('administration.navigation.assessments')}
-    </Link>,
-    icon: <i className="fa fa-universal-access" />,
-  } : null,
-  permissions.questionCenter ? {
-    key: 'questionCenter',
-    label:
-    <a href={permissions.questionCenter}>
-      {I18n.t('administration.navigation.question_center')}
-    </a>,
-    icon: <i className="fa fa-question-circle-o" />,
-  } : null,
-  permissions.libraries ? {
-    key: 'libraries',
-    label:
-    <a href={permissions.libraries}>
-      {I18n.t('administration.navigation.libraries')}
-    </a>,
-    icon: <i className="fa fa-file-image-o" />,
-  } : null,
-  permissions.communicationCenter ? {
-    key: 'communicationCenter',
-    label:
-    <a href={permissions.communicationCenter}>
-      {I18n.t('administration.navigation.communication_center')}
-    </a>,
-    icon: <i className="fa fa-envelope-o" />,
-  } : null,
-  permissions.reports ? {
-    key: 'reports',
-    label: <Link href={permissions.reports}>{I18n.t('administration.navigation.reports')}</Link>,
-    icon: <i className="fa fa-pie-chart" />,
-  } : null,
-  permissions.reportApprovals ? {
-    key: 'reportApprovals',
-    label: <Link href={permissions.reportApprovals}>{I18n.t('administration.navigation.report_approvals')}</Link>,
-    icon: <i className="fa fa-check" />,
-  } : null,
-  permissions.campaignTemplates ? {
-    key: 'campaignTemplates',
-    label: <Link href={permissions.campaignTemplates}>{I18n.t('administration.navigation.campaign_templates')}</Link>,
-    icon: <i className="fa fa-gear" />,
-  } : null,
-  {
-    key: 'userAvailability',
-    label: <Link href={permissions.userAvailability}>{I18n.t('administration.navigation.availability')}</Link>,
-    icon: <i className="fa fa-calendar" />,
-  },
-  permissions.auditLogs ? {
-    key: 'auditLogs',
-    label: <Link href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</Link>,
-    icon: <i className="fa fa-clipboard" />,
-  } : null,
-  {
-    key: 'profile',
-    label: I18n.t('administration.navigation.profile'),
-    icon: <UserOutlined />,
-    children: [
-      {
-        label: (
-          <Link href="/admin/profile/details">
-            {I18n.t('administration.navigation.profile_details')}
-          </Link>),
-        key: 'profileDetails',
-      },
-      {
-        label: (
-          <Link href="/admin/profile/change_password">
-            {I18n.t('administration.navigation.change_password')}
-          </Link>),
-        key: 'changePassword',
-      },
-    ],
-  },
-].filter(Boolean)
+export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
+  featureFlags?: Record<string, boolean>) => {
+  const idp_enabled = featureFlags?.idp_enabled
+  return [
+    hasSubmenu ? {
+      key: 'showSubmenu',
+      label: I18n.t('administration.navigation.show_submenu'),
+      icon: <ArrowRightOutlined />,
+    } : null,
+    permissions.dashboards ? {
+      key: 'dashboards',
+      label: <a href={permissions.dashboards}>{I18n.t('administration.navigation.dashboard')}</a>,
+      icon: <i className="fa fa-dashboard" />,
+    } : null,
+    permissions.assessorDashboard ? {
+      key: 'assessorDashboard',
+      label:
+      <a href={permissions.assessorDashboard}>
+        {I18n.t('administration.navigation.assessor_dashboard')}
+      </a>,
+      icon: <i className="fa fa-dashboard" />,
+    } : null,
+    permissions.assessorWorkshops ? {
+      key: 'assessorWorkshops',
+      label:
+      <a href={permissions.assessorWorkshops}>
+        {I18n.t('administration.navigation.assessor_workshops')}
+      </a>,
+      icon: <CalendarOutlined />,
+    } : null,
+    permissions.clients ? {
+      key: 'clients',
+      label:
+      <Link href={permissions.clients}>
+        {I18n.t('administration.navigation.clients')}
+      </Link>,
+      icon: <i className="fa fa-briefcase" />,
+    } : null,
+    permissions.users ? {
+      key: 'users',
+      label:
+      <Link href={permissions.users}>
+        {I18n.t('administration.navigation.users')}
+      </Link>,
+      icon: <i className="fa fa-users" />,
+    } : null,
+    permissions.skills && idp_enabled ? {
+      key: 'skills',
+      label: <Link href={permissions.skills}>{I18n.t('administration.navigation.skills')}</Link>,
+      icon: <i className="fa fa-book" />,
+    } : null,
+    permissions.norms ? {
+      key: 'norms',
+      label:
+      <a href={permissions.norms}>
+        {I18n.t('administration.navigation.norms')}
+      </a>,
+      icon: <MonitorOutlined />,
+    } : null,
+    permissions.dimensions ? {
+      key: 'dimensions',
+      label:
+      <a href={permissions.dimensions}>
+        {I18n.t('administration.navigation.dimensions')}
+      </a>,
+      icon: <i className="fa fa-file-text-o" />,
+    } : null,
+    permissions.assessments ? {
+      key: 'assessments',
+      label:
+      <Link href={permissions.assessments}>
+        {I18n.t('administration.navigation.assessments')}
+      </Link>,
+      icon: <i className="fa fa-universal-access" />,
+    } : null,
+    permissions.questionCenter ? {
+      key: 'questionCenter',
+      label:
+      <a href={permissions.questionCenter}>
+        {I18n.t('administration.navigation.question_center')}
+      </a>,
+      icon: <i className="fa fa-question-circle-o" />,
+    } : null,
+    permissions.libraries ? {
+      key: 'libraries',
+      label:
+      <a href={permissions.libraries}>
+        {I18n.t('administration.navigation.libraries')}
+      </a>,
+      icon: <i className="fa fa-file-image-o" />,
+    } : null,
+    permissions.communicationCenter ? {
+      key: 'communicationCenter',
+      label:
+      <a href={permissions.communicationCenter}>
+        {I18n.t('administration.navigation.communication_center')}
+      </a>,
+      icon: <i className="fa fa-envelope-o" />,
+    } : null,
+    permissions.reports ? {
+      key: 'reports',
+      label: <Link href={permissions.reports}>{I18n.t('administration.navigation.reports')}</Link>,
+      icon: <i className="fa fa-pie-chart" />,
+    } : null,
+    permissions.reportApprovals ? {
+      key: 'reportApprovals',
+      label: <Link href={permissions.reportApprovals}>{I18n.t('administration.navigation.report_approvals')}</Link>,
+      icon: <i className="fa fa-check" />,
+    } : null,
+    permissions.campaignTemplates ? {
+      key: 'campaignTemplates',
+      label: <Link href={permissions.campaignTemplates}>{I18n.t('administration.navigation.campaign_templates')}</Link>,
+      icon: <i className="fa fa-gear" />,
+    } : null,
+    {
+      key: 'userAvailability',
+      label: <Link href={permissions.userAvailability}>{I18n.t('administration.navigation.availability')}</Link>,
+      icon: <i className="fa fa-calendar" />,
+    },
+    permissions.auditLogs ? {
+      key: 'auditLogs',
+      label: <Link href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</Link>,
+      icon: <i className="fa fa-clipboard" />,
+    } : null,
+    {
+      key: 'profile',
+      label: I18n.t('administration.navigation.profile'),
+      icon: <UserOutlined />,
+      children: [
+        {
+          label: (
+            <Link href="/admin/profile/details">
+              {I18n.t('administration.navigation.profile_details')}
+            </Link>),
+          key: 'profileDetails',
+        },
+        {
+          label: (
+            <Link href="/admin/profile/change_password">
+              {I18n.t('administration.navigation.change_password')}
+            </Link>),
+          key: 'changePassword',
+        },
+      ],
+    },
+  ].filter(Boolean)
+}

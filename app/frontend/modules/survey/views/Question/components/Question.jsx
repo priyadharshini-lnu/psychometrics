@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
 import Confirmation from '~/modules/survey/components/Confirmation'
+import { isRtl } from '~/utils/locales'
 import styles from './Question.less'
 import Footer from './QuestionFooter'
 import Header from './QuestionHeader'
@@ -49,11 +51,30 @@ class Question extends Component {
   }
 
   render () {
-    const { model, selectedModel } = this.props
+    const {
+      model, selectedModel, assessmentDefaultLanguage, currentLocale,
+    } = this.props
     const { showDeleteConfirmation } = this.state
     const selected = selectedModel === model.id
     const style = {
       cursor: selected ? 'default' : 'pointer',
+    }
+    const hideOptions = assessmentDefaultLanguage !== currentLocale
+
+    if (hideOptions) {
+      return (
+        <div
+          ref={(ref) => { this.question = ref }}
+          onClick={this.select}
+          className={`${styles.question} ${buttons.buttons} ${selected ? styles.selected : ''}`}
+          style={style}
+        >
+          <div className={cs(styles.content, { [styles.rtlContent]: isRtl(currentLocale) })}>
+            <Header {...this.props} />
+            <QuestionRenderer {...this.props} />
+          </div>
+        </div>
+      )
     }
     return (
       <div

@@ -74,8 +74,11 @@ module AdminJobs
     def records_for_export(limit = 100, offset = 0)
       CampaignUsers::CampaignUserScoresQuery.new(
         campaign_id: campaign.id,
-        offset: offset,
-        limit: limit
+        filter: {
+          limit: limit,
+          offset: offset,
+          ** record.data['filters']
+        }.with_indifferent_access
       ).query
     end
 

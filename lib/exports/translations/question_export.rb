@@ -11,9 +11,8 @@ module Exports
       end
 
       def call
-        package = Axlsx::Package.new
-        wb = package.workbook
-        wb.add_worksheet(name: 'QuestionTranslations') do |sheet|
+        package = ExcelSafe.new
+        package.add_worksheet('QuestionTranslations') do |sheet|
           sheet.add_row ['Key', 'Default Locale / en', *(I18n.available_locales - [I18n.default_locale]).
             map { |locale| [I18n.t("languages.#{locale}"), locale].join(' / ') }]
 

@@ -28,9 +28,10 @@ const { I18n } = window
 
 interface Props {
   model: PropertiesModel
+  showOnlyTranslatable: boolean
 }
 
-export const Properties: FC<Props> = ({ model }) => {
+export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
   const forceUpdate = useForceUpdate()
 
   const {
@@ -72,6 +73,10 @@ export const Properties: FC<Props> = ({ model }) => {
     model.changeProps({
       dateFormat: selectedDateFormat,
     })
+  }
+
+  if (showOnlyTranslatable) {
+    return <ValidationTypes model={model} update={() => forceUpdate()} />
   }
 
   return (

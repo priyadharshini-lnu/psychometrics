@@ -6,7 +6,8 @@ import ValidationTypes from '~/modules/survey/components/ValidationTypes'
 
 const { I18n } = window
 
-export function Properties ({ model }) {
+export function Properties (props) {
+  const { model, showOnlyTranslatable } = props
   const forceUpdate = useForceUpdate()
   const onChange = (fieldName, val) => {
     if (fieldName === 'minFactors' && val > model.props.maxFactors) {
@@ -14,6 +15,14 @@ export function Properties ({ model }) {
     }
     model.props[fieldName] = val
     model.update()
+  }
+
+  if (showOnlyTranslatable) {
+    return (
+      <div>
+        <ValidationTypes restricted model={model} update={forceUpdate} />
+      </div>
+    )
   }
 
   return (

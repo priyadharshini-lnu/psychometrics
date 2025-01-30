@@ -17,7 +17,8 @@ module Assessments
 
       Panko::ArraySerializer.new(
         blocks,
-        each_serializer: Assessments::BlockSerializer
+        each_serializer: Assessments::BlockSerializer,
+        context: {}
       ).to_a
     end
   end

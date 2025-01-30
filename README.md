@@ -191,13 +191,40 @@ yarn run test
 ```
 Check package.json for more details
 
-# Running mock server
-Currently mock server can only run on non ssl mode. For this we would have start rails server and vite server on non ssl mode.
+# Mocking API Responses
+To mock v2 API responses, add the following to the controller:
+```
+include Api::V2::Administration::Concerns::MockedResponse
+```
 
-Run below code in terminal to run mock server
+### Mocking CRUD Actions
+
+If you want to mock CRUD actions, you can use one of the following options based on your requirements:
+
 ```
-yarn run mockApi
+mock_crud_actions
+mock_crud_actions only: %i[index]
+mock_crud_actions except: %i[index]
 ```
+
+### Mocking Custom Actions
+
+If you want to mock a custom action, add the following in the controller:
+
+```
+mock_custom_actions %i[action_name]
+```
+
+### Adding Mocked Responses
+
+You can add actual mocked responses in:
+```
+app/controllers/api/v2/administration/#{controller_name}_mocks/#{action_name}.json.
+```
+
+### Updating Routes
+
+Additionally, you need to add the routes in routes.rb as usual.
 
 # Other Development Tasks
 

@@ -39,6 +39,10 @@ export default interface Module {
     position: {width: number, height: number, top: number, left: number}
     style: any // eslint-disable-line @typescript-eslint/no-explicit-any
     question?: number
+    pagination?: {
+      enabled: boolean,
+      position: {width: number, height: number, top: number, left: number}
+    }
   }
   meta: {
     hidden?: boolean

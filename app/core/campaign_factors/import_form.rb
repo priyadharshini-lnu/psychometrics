@@ -35,6 +35,7 @@ module CampaignFactors
       return if errors.present?
 
       processed_rows.each_with_index do |row, index|
+        row.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
         form = ::CampaignFactors::ProcessedRowForm.new(row).with_context(campaign: context.campaign)
         next if form.valid?
 

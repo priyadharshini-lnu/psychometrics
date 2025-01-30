@@ -9,27 +9,25 @@ module SuperAdmin
       ].freeze
 
       def call
-        results =
-          Axlsx::Package.new do |package|
-            package.workbook.add_worksheet(name: 'ExternalResults') do |sheet|
-              header_style = package.workbook.styles.add_style(b: true, sz: 14)
-              factor_names = users_results.
-                             find_by("external_results != '{}'")&.
-                             external_results&.
-                             map { |factor| factor['name'] } || []
+        package = ExcelSafe.new
 
-              sheet.add_row(DEFAULT_HEADERS + factor_names, style: header_style)
+        package.add_worksheet('ExternalResults') do |sheet|
+          header_style = sheet.workbook.styles.add_style(b: true, sz: 14)
+          factor_names = users_results.find_by("external_results != '{}'")&.external_results&.map do |factor|
+            factor['name']
+          end || []
 
-              users_results.find_each(batch_size: 100) do |res|
-                content = factor_names.map do |factor_name|
-                  res.external_results&.find { |factors| factors['name'] == factor_name }.try(:[], 'value')
-                end
-                sheet.add_row(default_content(res) + content)
-              end
+          package.add_row(DEFAULT_HEADERS + factor_names, style: header_style)
+
+          users_results.find_each(batch_size: 100) do |res|
+            content = factor_names.map do |factor_name|
+              res.external_results&.find { |factors| factors['name'] == factor_name }.try(:[], 'value')
             end
+            package.add_row(default_content(res) + content)
           end
+        end
 
-        broadcast :ok, results
+        broadcast :ok, package
       end
 
       private

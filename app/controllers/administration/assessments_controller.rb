@@ -31,7 +31,8 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def preview
-    @translations = ::Translation.to_hash_for_assessment(resource.id, user_locale)
+    @translations = ::Translation.to_hash_for_assessment(resource.id, user_locale,
+                                                         translations_migrated: resource.translations_migrated?)
     @available_translations = ::Translation.available_translation_for_assessment(resource.id)
     render layout: 'empty'
   end
@@ -104,7 +105,7 @@ class Administration::AssessmentsController < Administration::BaseController
     params.require(:resource).permit(
       :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
       :status, :icon, :icon_color, :purge_icon, :poster, :purge_poster,
-      :enable_video_check, :enable_audio_check, :enable_network_check,
+      :enable_video_check, :enable_audio_check, :enable_network_check, :translations_migrated,
       :owner_id, :project_id, :linked_questions,
       external_settings: %i[assessment_id norm_id schedule_config],
       resources: %i[assessmentId questionId], options: {}

@@ -32,7 +32,8 @@ describe UsersResults::Scoring::AddScore do
         factor3.id.to_s => results
       }
       unrounded_score = (((2 + 3 + 4) / 3) + 5 + 2) / 3.0
-      result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                       norm: five_scale_norm })
 
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(1))
@@ -60,7 +61,9 @@ describe UsersResults::Scoring::AddScore do
           ]
         }
       }
-      result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                       norm: five_scale_norm })
+
       unrounded_score = (((2 + 3 + 3) / 3.0) + 5 + 2)
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(2))
@@ -95,8 +98,8 @@ describe UsersResults::Scoring::AddScore do
         factor3.id => { factor: factor3, sub_factor_hash: {} }
       }
       factor_ids = factor_hash.keys
-      # result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
-      result = described_class.call!(factor_hash, factor_ids, {}, five_scale_norm, {}, {})
+      result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids,
+                                       norm: five_scale_norm })
       expect(result[factor1.id.to_s]['score']).to eq(1)
       expect(result[factor2.id.to_s]['score']).to eq(1)
       expect(result[factor3.id.to_s]['score']).to eq(180)
@@ -115,7 +118,9 @@ describe UsersResults::Scoring::AddScore do
         factor2.id => { factor: factor2, sub_factor_hash: {} }
       }
       factor_ids = factor_hash.keys
-      result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                       norm: five_scale_norm })
+
       unrounded_score = 3.4569
       expect(result[factor2.id.to_s]['score']).to_not eq(unrounded_score)
       expect(result[factor2.id.to_s]['score']).to eq(unrounded_score.round(3))
@@ -149,7 +154,9 @@ describe UsersResults::Scoring::AddScore do
         factor2.id.to_s => { 'results' => [{ 'value' => [1, 2, 5], 'question_id' => 3 }] },
         factor3.id.to_s => { 'results' => [{ 'value' => [1, 4, 2], 'question_id' => 5 }] }
       }
-      result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                       norm: five_scale_norm })
+
       unrounded_score = (((8 / 3.0).round(2) * 1) + ((7 / 3.0).round(2) * 3)) / (1 + 3)
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(1))
@@ -186,7 +193,9 @@ describe UsersResults::Scoring::AddScore do
           'results' => [{ 'value' => [1, 5], 'question_id' => 5 }, { 'value' => 7, 'question_id' => 8 }]
         }
       }
-      result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                       norm: five_scale_norm })
+
       unrounded_score = (((1 + 2) / 2.0) + ((1 + 5) / 2.0) + 7) / 3.0
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(3))
@@ -217,7 +226,9 @@ describe UsersResults::Scoring::AddScore do
           'results' => [{ 'value' => [1, 5], 'question_id' => 5 }, { 'value' => 7.15, 'question_id' => 8 }]
         }
       }
-      result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+      result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                       norm: five_scale_norm })
+
       unrounded_score = (((1 + 2) / 2.0) + ((1 + 5) / 2.0) + 7.15)
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(1))
@@ -245,7 +256,8 @@ describe UsersResults::Scoring::AddScore do
       },
       factor2.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -282,7 +294,8 @@ describe UsersResults::Scoring::AddScore do
       },
       factor2.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -330,7 +343,8 @@ describe UsersResults::Scoring::AddScore do
       let(:custom_formula) { "return assessment.norm_score(#{factor1.id})" }
 
       it 'calculates lua script properly' do
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(3)
       end
@@ -339,7 +353,8 @@ describe UsersResults::Scoring::AddScore do
     describe 'when custom formula contains assessment.zscore' do
       let(:custom_formula) { "return assessment.zscore(#{factor1.id})" }
       it 'calculates lua script properly' do
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(2)
       end
@@ -353,7 +368,8 @@ describe UsersResults::Scoring::AddScore do
       end
 
       it 'calculates lua script properly' do
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(5)
       end
@@ -363,7 +379,8 @@ describe UsersResults::Scoring::AddScore do
       let(:custom_formula) { "return assessment.percentage_answered(#{factor1.id})" }
 
       it 'calculates lua script properly' do
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(90)
       end
@@ -377,7 +394,8 @@ describe UsersResults::Scoring::AddScore do
         answers['question_id'] = { 'dirty' => false,
                                    'answers' => [{ 'index' => 0, 'value' => 2.2 },
                                                  { 'index' => 1, 'value' => 'Javascript' }] }
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {}, nil, Set.new, answers)
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm, answers: answers })
 
         expect(result[factor2.id.to_s]['score']).to eq(2.2)
       end
@@ -403,7 +421,8 @@ describe UsersResults::Scoring::AddScore do
           factor4.id => { factor: factor4, sub_factor_hash: {} }
         }
 
-        result = described_class.call!(factor_hash, factor_hash.keys, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_hash.keys, scoring: scoring,
+                                         norm: five_scale_norm })
 
         factor2_score = 5
         factor3_score = factor2_score * 2
@@ -440,7 +459,8 @@ describe UsersResults::Scoring::AddScore do
           factor5.id => { factor: factor5, sub_factor_hash: {} }
         }
 
-        result = described_class.call!(factor_hash, factor_hash.keys, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_hash.keys, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(5)
         expect(result[factor3.id.to_s]['score']).to eq(nil)
@@ -452,7 +472,8 @@ describe UsersResults::Scoring::AddScore do
     describe 'when custom formula contains invalid data' do
       let(:custom_formula) { 'something' }
       it 'returns nil' do
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(nil)
       end
@@ -461,7 +482,8 @@ describe UsersResults::Scoring::AddScore do
     describe 'when custom formula contains invalid factor' do
       let(:custom_formula) { 'return assessment.zscore(111)' }
       it 'returns nil' do
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(nil)
       end
@@ -471,7 +493,8 @@ describe UsersResults::Scoring::AddScore do
       let(:custom_formula) { 'return helpers.round(2.267, 2)' }
 
       it 'it can return values rounded to specified digits' do
-        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm })
 
         expect(result[factor2.id.to_s]['score']).to eq(2.27)
       end
@@ -482,7 +505,8 @@ describe UsersResults::Scoring::AddScore do
         let(:custom_formula) { 'return helpers.average({46.66, 61, 8}, nil)' }
 
         it 'it can find avarage using average helper' do
-          result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+          result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                           norm: five_scale_norm })
 
           expect(result[factor2.id.to_s]['score']).to eq(38.553333333333335)
         end
@@ -547,7 +571,8 @@ describe UsersResults::Scoring::AddScore do
       factor5.id.to_s => { 'results' => [] },
       factor6.id.to_s => { 'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -629,7 +654,8 @@ describe UsersResults::Scoring::AddScore do
       factor5.id.to_s => { 'results' => [] },
       factor6.id.to_s => { 'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -695,7 +721,8 @@ describe UsersResults::Scoring::AddScore do
       factor4.id.to_s => { 'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }] },
       factor5.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -754,7 +781,8 @@ describe UsersResults::Scoring::AddScore do
       factor2.id => create(:factors_norm, factor: factor2, props: norm_props),
       factor3.id => create(:factors_norm, factor: factor2, props: norm_props)
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, factor_norm_hash, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm, factor_norm_hash: factor_norm_hash })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -805,7 +833,8 @@ describe UsersResults::Scoring::AddScore do
       factor3.id.to_s => { 'results' => [{ 'value' => [1, 5], 'question_id' => 5 }] },
       factor4.id.to_s => { 'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -853,7 +882,8 @@ describe UsersResults::Scoring::AddScore do
       }
     }
     result = described_class.call!(
-      factor_hash, [factor.id], scoring, five_scale_norm, { factor.id => factors_norm }, {}
+      { factor_hash: factor_hash, factor_ids: [factor.id], scoring: scoring,
+        norm: five_scale_norm, factor_norm_hash: { factor.id => factors_norm } }
     )
 
     expect(result).to eq(
@@ -883,7 +913,8 @@ describe UsersResults::Scoring::AddScore do
       }
     }
     result = described_class.call!(
-      factor_hash, [factor.id], scoring, percentile_norm, { factor.id => factors_norm }, {}
+      { factor_hash: factor_hash, factor_ids: [factor.id],
+        scoring: scoring, norm: percentile_norm, factor_norm_hash: { factor.id => factors_norm } }
     )
 
     expect(result).to eq(
@@ -932,7 +963,10 @@ describe UsersResults::Scoring::AddScore do
 
     factor_ids = factor_hash.keys
 
-    result = described_class.call!(factor_hash, factor_ids, {}, five_scale_norm, {}, external_results)
+    result = described_class.call!(
+      { factor_hash: factor_hash, factor_ids: factor_ids,
+        scoring: {}, norm: five_scale_norm, factor_norm_hash: {}, external_results: external_results }
+    )
 
     expect(result).to eq(
       factor1.id.to_s => { 'percentage' => 1.0, 'zscore' => 4.0 },
@@ -961,12 +995,13 @@ describe UsersResults::Scoring::AddScore do
       },
       factor2.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(
-      factor_hash, factor_ids, scoring, five_scale_norm, {}, {}, {
-        factor1.id => 3,
-        factor2.id => 0
-      }
-    )
+
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm,
+                                     factors_question_count: {
+                                       factor1.id => 3,
+                                       factor2.id => 0
+                                     } })
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -1015,7 +1050,8 @@ describe UsersResults::Scoring::AddScore do
       factor4.id.to_s => { 'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }] },
       factor5.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+    result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                     norm: five_scale_norm })
 
     expect(result).to eq(
       factor1.id.to_s => {

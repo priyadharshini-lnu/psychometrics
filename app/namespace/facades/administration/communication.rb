@@ -156,7 +156,8 @@ module Facades
       def fetch_memberships
         return User.none if form.end_level.blank? || !form.model.selected_recipients?
 
-        form.campaign.users
+        form.campaign.users.
+          where(campaign_users: { active: true }, users: { disabled: false })
       end
 
       def fetch_delivery_rules

@@ -6,16 +6,19 @@
   padding-inline: @space-4;
 }
 
-.siderItemsContainer, .drawerItemsContainer {
+.siderItemsContainer,
+.drawerItemsContainer {
   width: 12.5rem;
   display: flex;
   flex-direction: column;
 }
+
 .siderItemsContainer {
   min-height: calc(var(--vh, 1vh) * 100);
   border: 1px solid @border-color-base;
   position: fixed;
 }
+
 .drawerItemsContainer {
   min-height: calc((var(--vh, 1vh) * 100) - 34px - @drawer-body-padding);
   width: 100%;
@@ -46,27 +49,33 @@
   &:global(.ant-menu) {
     border-inline-end: none;
   }
+
   & :global(.ant-menu-item-selected),
   :global(.ant-menu-submenu-selected) {
     color: @text-color;
   }
+  
   &:not(:global(.ant-menu-inline-collapsed)) :global(.ant-menu-item) > :global(.ant-menu-title-content) {
     overflow: auto;
     text-overflow: initial;
   }
 }
 .page-sider--expanded {
+
   & :global(.ant-menu-item),
   & :global(.ant-menu-submenu-title) {
     padding-left: @space-4 !important;
   }
+
   & :global(.ant-menu-item-only-child) {
     padding-left: @space-11 !important;
   }
 }
+
 .page-sider--collapsed {
   width: 5rem;
 }
+
 .sidebarLogo {
   width: 100%;
   height: auto;
@@ -74,23 +83,28 @@
   max-height: 140px;
   object-fit: contain;
 }
+
 .sidebarFooter {
   display: flex;
-  flex:1;
+  flex: 1;
   align-items: flex-end;
   padding-bottom: @space-4;
 }
+
 .profileName {
   margin: 0px;
 }
+
 .sider-drawer {
   & :global(.ant-drawer-content-wrapper) {
     max-width: 20rem;
   }
+
   & :global(.ant-drawer-body) {
     padding-inline: 0px;
     padding-bottom: 0px;
   }
+
   & .sidebarLogo {
     padding-block: @space-4;
   }
@@ -100,9 +114,11 @@
   .sider-trigger {
     right: calc(12.5rem + 14px);
   }
+
   .sider-trigger--collapsed {
     right: calc(5rem + 10px);
   }
+
   .triggerIcon {
     transform: rotate(180deg);
   }

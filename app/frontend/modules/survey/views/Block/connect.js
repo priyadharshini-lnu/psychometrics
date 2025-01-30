@@ -8,7 +8,16 @@ import { setFirstBlockContentOffset } from '~/modules/survey/core/temp/propertyP
 import { unselectQuestion, moveBlockDown, moveBlockUp } from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
-  () => ({}),
+  ({
+    survey: {
+      builder: {
+        assessment,
+      },
+    },
+  }) => ({
+    currentLocale: assessment.locale,
+    assessmentDefaultLanguage: assessment.defaultLanguage,
+  }),
   {
     openRandomization: data => openModal('randomization', data),
     openSettings: data => openModal('blockSettings', data),

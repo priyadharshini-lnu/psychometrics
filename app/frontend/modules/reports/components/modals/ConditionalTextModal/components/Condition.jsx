@@ -2,6 +2,7 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import { camelizeKeys } from '~/utils/object'
 import { SOURCE_TYPES } from '~/modules/reports/models/Report'
 import styles from './Condition.less'
 import Types from './types'
@@ -180,7 +181,7 @@ const conenctor = connect(
     assessments: state.report.builder.assessments,
     filters: state.report.builder.filters,
     dataSheetColumns: state.report.builder.data_sheet_columns,
-    campaignFactors: state.report.builder.campaign_factors,
+    campaignFactors: camelizeKeys(state.report.builder.campaign_factors),
   }),
 )
 

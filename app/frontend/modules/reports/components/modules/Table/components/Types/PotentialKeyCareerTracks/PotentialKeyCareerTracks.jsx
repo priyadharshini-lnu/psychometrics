@@ -168,10 +168,11 @@ class PotentialKeyCareerTracks extends Component {
 
   render () {
     const { module: model } = this.props
-    const { fontSize, fontFamily } = model.props.style
+    const { fontSize, fontFamily, fontColor } = model.props.style
     const style = {
       fontSize,
       fontFamily,
+      color: fontColor,
     }
     this.prepareRows()
     if (!this.occupationData) { return false }

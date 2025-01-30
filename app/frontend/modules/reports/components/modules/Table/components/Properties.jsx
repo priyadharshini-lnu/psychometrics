@@ -5,6 +5,10 @@ import AppStore from '~/modules/reports/store/AppStore'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import ModuleConfigs from '~/modules/reports/consts/ModuleConfigs'
 import { PropTypes as PropertyVies } from './Types'
+import PropertyFonts from '~/modules/reports/components/PropertyFonts'
+import styles from './TableModule.less'
+
+const { I18n } = window
 
 const TABLE_TYPE_OPTIONS = [
   { value: 'SimpleTable', label: 'Simple Table' },
@@ -94,9 +98,9 @@ const Properties = ({ modules }) => {
 
   return (
     <Space size="small" direction="vertical" className="w-100">
-      <Typography.Text strong>Table options</Typography.Text>
+      <Typography.Text strong>{I18n.t('reports.modules.common.table_options')}</Typography.Text>
       <div>
-        <Typography.Text>Table type</Typography.Text>
+        <Typography.Text>{I18n.t('reports.modules.common.table_type')}</Typography.Text>
         <Select
           className="w-100"
           size="small"
@@ -109,6 +113,10 @@ const Properties = ({ modules }) => {
         assessmentId={assessment_id}
         changeAssessment={changeAssessment}
       />
+      <hr className={styles.divider} />
+      <div>{I18n.t('reports.modules.common.font')}</div>
+      <PropertyFonts modules={modules} />
+      <hr className={styles.divider} />
       {renderTypeProps()}
     </Space>
   )

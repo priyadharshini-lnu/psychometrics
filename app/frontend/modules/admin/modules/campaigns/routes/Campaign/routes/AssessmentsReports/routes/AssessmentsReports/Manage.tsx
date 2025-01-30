@@ -96,9 +96,9 @@ const Manage: React.FC<Props> = ({
     })
   }
 
-  const handleDownload = (startDate: dayjs.Dayjs, endDate: dayjs.Dayjs) => {
+  const handleDownload = (startDate: dayjs.Dayjs, endDate: dayjs.Dayjs, includeInactiveUsers: boolean) => {
     if (!startDate || !endDate) return
-    bulkDownload(parsedCampaignId, selectedIds, startDate?.toDate(), endDate?.toDate())
+    bulkDownload(parsedCampaignId, selectedIds, startDate?.toDate(), endDate?.toDate(), includeInactiveUsers)
       .then(() => {
         message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
         handleCloseDownloadModal()

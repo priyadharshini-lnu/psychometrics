@@ -13,6 +13,7 @@ module Communications
         campaign_id: user_assessment.campaign_id,
         user_id: user_assessment.user_id
       )
+
       communications.each do |communication|
         if communication.assessment_completion_status_code.present? &&
            communication.assessment_completion_status_code != user_assessment.completion_status_code

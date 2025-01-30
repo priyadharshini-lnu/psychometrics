@@ -7,12 +7,23 @@ import { unselectQuestion } from '~/modules/survey/core/builder/assessment/actio
 
 export default connect(
   (state) => {
-    const { survey: { builder: { assessment: { timestamp, propPanel } }, ui } } = state
+    const {
+      survey: {
+        builder: {
+          assessment: {
+            timestamp, propPanel, defaultLanguage, locale,
+          },
+        }, ui,
+      },
+    } = state
     return ({
       question: selectedQuestion(state.survey.builder, propPanel.question),
       offset: propPanel.offset,
       timestamp,
       firstBlockContentOffset: ui?.propertyPanel?.firstBlockContentOffset,
+      defaultLanguage,
+      currentLocale: locale,
+      blocks: state.survey.builder.blocks,
     })
   },
   {

@@ -30,10 +30,11 @@ class SimpleTable extends Component {
 
   render () {
     const { module } = this.props
-
+    const { fontFamily, fontSize, fontColor } = module.props.style
+    const styleProp = { fontFamily, fontSize, color: fontColor }
     if (!module.props.rowData) { return }
     return (
-      <div className={styles.table}>
+      <div className={styles.table} style={styleProp}>
         <Table
           module={module}
           rowsCount={module.props.rowData.length}

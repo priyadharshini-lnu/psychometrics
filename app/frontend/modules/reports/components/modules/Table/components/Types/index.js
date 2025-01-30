@@ -43,6 +43,7 @@ import PotentialKeyCareerTracks from './PotentialKeyCareerTracks/PotentialKeyCar
 import PotentialKeyCareerTracksProps from './PotentialKeyCareerTracks/Properties'
 import InnovationStyles from './InnovationStyles/InnovationStyles'
 import InnovationStylesProps from './InnovationStyles/Properties'
+import ResponseSummaryProps from './ResponseSummary/Properties'
 
 export default {
   SimpleTable,
@@ -93,4 +94,5 @@ export const PropTypes = {
   PotentialKeyCareerTracks: PotentialKeyCareerTracksProps,
   InnovationStyles: InnovationStylesProps,
   CampaignFactorsTable: CampaignFactorTableProps,
+  ResponseSummary: ResponseSummaryProps,
 }

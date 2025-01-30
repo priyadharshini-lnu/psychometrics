@@ -39,8 +39,8 @@ const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
 
       audioWaveRef.current = new SiriWave({
         container: audioContainerRef.current,
-        width: 80,
-        height: 25, // Adjust height for better visibility
+        width: 200,
+        height: 120, // Adjust height for better visibility
         style: 'ios9',
       })
 

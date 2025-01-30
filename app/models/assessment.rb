@@ -394,4 +394,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def invalidate_cache
     Rails.cache.delete(serializer_cache_key)
   end
+
+  def translations_migrated?
+    Settings.features.inline_translation_enabled && translations_migrated
+  end
 end

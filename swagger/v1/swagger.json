@@ -2597,6 +2597,10 @@
           },
           "x-nullable": true
         },
+        "project_datasheet": {
+          "$ref": "#/definitions/Datasheet",
+          "x-nullable": true
+        },
         "existing_record": {
           "type": "string",
           "enum": [
@@ -2642,6 +2646,10 @@
             "$ref": "#/definitions/NewUserCampaign"
           },
           "x-nullable": true
+        },
+        "project_datasheet": {
+          "$ref": "#/definitions/Datasheet",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2671,6 +2679,10 @@
           "items": {
             "$ref": "#/definitions/NewUserCampaign"
           },
+          "x-nullable": true
+        },
+        "project_datasheet": {
+          "$ref": "#/definitions/Datasheet",
           "x-nullable": true
         }
       }
@@ -2802,6 +2814,27 @@
         }
       }
     },
+    "Datasheet": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "description": "The key represents the name of a datasheet column, and the value is the corresponding data,\n  which can be a string, integer, or null.",
+        "x-nullable": true
+      },
+      "example": {
+        "property1": "string",
+        "property2": 1
+      }
+    },
     "NewUserCampaigns": {
       "type": "object",
       "properties": {
@@ -2856,6 +2889,10 @@
           "description": "End date and time for the campaign schedule",
           "example": null,
           "nullable": true
+        },
+        "datasheet": {
+          "$ref": "#/definitions/Datasheet",
+          "x-nullable": true
         }
       }
     },

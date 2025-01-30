@@ -23,7 +23,7 @@ const PropertyPanelComponent = (props) => {
   const {
     question, offset, addPageBreak, addSkipLogic, copyQuestion, restricted,
     openDisplayLogic, changeType, openPreview, firstBlockContentOffset, unselectQuestion,
-    allowChange,
+    allowChange, defaultLanguage, currentLocale, blocks,
   } = props
   const panelRef = useRef(null)
   const [showMenu, setShowMenu] = useState(false)
@@ -102,13 +102,17 @@ const PropertyPanelComponent = (props) => {
     <div className={styles.fieldset}>
       {!restricted && (
         <>
-          <a
-            onClick={() => addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))}
-            className={styles.menuitem}
-          >
-            <span className={`fa fa-file-o ${styles.icon}`} />
-            <span>Add Page Break</span>
-          </a>
+          {
+            blocks[question.block_id].props.randomization.type !== 'QuestionsPerPage' ? (
+              <a
+                onClick={() => addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))}
+                className={styles.menuitem}
+              >
+                <span className={`fa fa-file-o ${styles.icon}`} />
+                <span>Add Page Break</span>
+              </a>
+            ) : null
+          }
           <a
             onClick={() => openDisplayLogic({ question, logicElement: question.displayLogic || new LogicElement() })}
             className={styles.menuitem}
@@ -140,7 +144,13 @@ const PropertyPanelComponent = (props) => {
     </div>
   )
 
-  const customProperties = View ? <View model={serializedQuestion} restricted={restricted} /> : null
+  const customProperties = View ? (
+    <View
+      showOnlyTranslatable={defaultLanguage !== currentLocale}
+      model={serializedQuestion}
+      restricted={restricted}
+    />
+  ) : null
 
   const commonProperties = (
     <div className={styles.fieldset}>

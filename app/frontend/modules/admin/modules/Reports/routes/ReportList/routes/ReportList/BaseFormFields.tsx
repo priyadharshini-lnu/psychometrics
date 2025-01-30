@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import {
   Form, Input, Select, Spin, Switch,
 } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import _ from 'lodash'
+import { Tag } from 'modules/admin/core/tags'
 import { useResources } from '~/hooks/useResources'
 import { Report } from '~/modules/admin/modules/client/core/reports'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalReportFields } from './ExternalReportFields'
+import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 
 const { TextArea } = Input
 
@@ -16,6 +18,7 @@ const { I18n } = window
 
 const INTERNAL = 'internal'
 const CUSTOM_UPLOAD = 'custom_upload'
+const MAX_TAG_BATCH_SIZE = 100
 
 interface Props {
   report?: Report
@@ -29,6 +32,7 @@ type OptionsType = {
 
 export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
   const { availableLocales } = I18n
+  const isEditForm = !!report
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
@@ -41,6 +45,9 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
       },
     },
   })
+  const {
+    data: tags, fetch: fetchTags, isLoading: isTagsLoading,
+  } = useResources<Tag>('tags', { apiConfig: { query: { taggable_resource_type: TaggableResourceType.Report } } })
 
 
   const assessmentIds = Form.useWatch('assessmentIds', form)
@@ -102,6 +109,18 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
 
     return assessmentType
   }
+
+  const debouncedFetchTags = useCallback(_.debounce((value) => {
+    fetchTags({
+      apiConfig: {
+        filter: { name_cont: value },
+        fields: { tags: ['name'] },
+        page: {
+          size: MAX_TAG_BATCH_SIZE,
+        },
+      },
+    })
+  }, 300), [])
 
 
   const ExternalReportFieldsComponent = ExternalReportFields[getAssessmentType()]
@@ -187,7 +206,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
         label={I18n.t('reports.columns.default_language')}
         initialValue={report?.defaultLanguage || 'en'}
       >
-        <Select>
+        <Select disabled={isEditForm}>
           {availableLocales.map(locale => (
             <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
           ))}
@@ -197,6 +216,26 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
         <Select mode="multiple">
           {availableLocales.filter(l => l !== (report?.defaultLanguage || 'en')).map(locale => (
             <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name="tagList"
+        label={I18n.t('common.column.tags')}
+      >
+        <Select
+          mode="tags"
+          style={{ width: '100%' }}
+          placeholder={I18n.t('common.column.tags')}
+          showSearch
+          onSearch={(value) => {
+            debouncedFetchTags(value)
+          }}
+          notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
+          filterOption={false}
+        >
+          {tags.map(({ name }) => (
+            <Select.Option key={name} value={name}>{name}</Select.Option>
           ))}
         </Select>
       </Form.Item>

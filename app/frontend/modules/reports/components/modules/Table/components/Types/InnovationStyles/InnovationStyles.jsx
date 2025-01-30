@@ -62,11 +62,14 @@ class InnovationStyles extends Component {
 
   render () {
     const { module: model } = this.props
-    const { fontSize, fontFamily, width } = model.props.style
+    const {
+      fontSize, fontFamily, fontColor, width,
+    } = model.props.style
     const style = {
       fontSize,
       fontFamily,
       width,
+      color: fontColor,
     }
     const circleStyle = {
       stroke: '#C8FDFF',
