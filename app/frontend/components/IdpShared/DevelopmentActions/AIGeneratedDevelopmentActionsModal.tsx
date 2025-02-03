@@ -11,7 +11,7 @@ import { DevelopmentActionsList } from './Common'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   generateDevelopmentActionsByAI,
-} from '~/modules/endUser/modules/campaigns/core/idp/developmentAction'
+} from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 const { I18n } = window
 

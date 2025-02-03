@@ -2280,13 +2280,15 @@ en:
       on_the_job: On the Job
       other: Other
       private: Private
-      skills: Skills
+      skill: Skill
       sprint: Sprint
       structured_learning: Structured Learning
       submit_plan: Submit Plan
       write_here: Write here...
     direct_report_details: Direct Report Details
     initial_steps:
+      add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
+      add_skill_group_title: Exploring Your %{category} Skills
       add_skills: Add
       add_skills_step: Add Skills
       continue_to_rate_skills: Continue to rate skills
@@ -2299,8 +2301,6 @@ en:
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
       rate_skills_title: Rating Your Skills
       rating_column_header: Your self rating
-      role: Role
-      select_role_placeholder: Select a role
       select_skills: Select your skills
       select_skills_placeholder: Select skills
       selected_skills: Selected Skills

@@ -969,7 +969,7 @@ as: :simulation_progress_notification
         end
       end
 
-      resources :user_idp_plans, only: [] do
+      resources :user_idp_plans, param: :user_id, only: %i[show update] do
         collection do
           get :summary
         end

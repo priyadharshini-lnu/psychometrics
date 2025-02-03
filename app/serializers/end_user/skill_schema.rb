@@ -8,6 +8,7 @@ module EndUser
 
         required(:id).filled(:integer)
         required(:name).filled(:string)
+        required(:category).filled(:string)
       end
     end
   end

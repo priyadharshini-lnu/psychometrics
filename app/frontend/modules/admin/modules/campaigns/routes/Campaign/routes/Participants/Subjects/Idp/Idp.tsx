@@ -32,7 +32,7 @@ export const Idp: React.FC<{}> = () => {
   } = useResources<IdpTemplate>(
     'idp_templates',
     {
-      basePath: `clients/${projectId}`,
+      basePath: `projects/${projectId}`,
       trackUrl: true,
       responseType: IdpTemplateTR,
       apiConfig: {

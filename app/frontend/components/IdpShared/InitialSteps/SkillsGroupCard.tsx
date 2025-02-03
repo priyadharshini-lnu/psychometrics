@@ -1,40 +1,61 @@
 import { FC, useState, useContext } from 'react'
+import _ from 'lodash'
 import {
-  Space, Avatar, Typography, Button, Radio, Select, Row, Col,
+  Space, Avatar, Typography, Button, Select, Row, Col,
+  Spin,
 } from 'antd'
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons'
+import { connect } from 'react-redux'
 import { BoxWithShadow, ButtonWithArrow, MediaQueryContext } from '~/glint'
-import { type CategoryWithSkills } from '../DevelopmentActions'
+import { CategoryWithSkillsSummary } from '../DevelopmentActions'
+import {
+  fetchIdpSkills,
+} from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import styles from './SkillsGroupCard.less'
 
-// sample data
-const roleOptions = [
-  { label: 'Role 1', value: 'role1' },
-  { label: 'Role 2', value: 'role2' },
-  { label: 'Role 3', value: 'role3' },
-]
-
-const skillOptions = [
-  { label: 'Skill 1', value: 'skill1' },
-  { label: 'Skill 2', value: 'skill2' },
-  { label: 'Skill 3', value: 'skill3' },
-]
+const connector = connect((state: RootState) => ({
+  userIdpSkills: state.campaigns.idp.userIdpSkills,
+}),
+{
+  fetchIdpSkills,
+})
 
 type Props = {
-  skillCategory: CategoryWithSkills
+  skillCategory: CategoryWithSkillsSummary
   onAddSkill: (skills: { id: number; name: string }[]) => void
+  fetchIdpSkills: (filters: object) => Promise<{ response: { id: number; name: string, category: string }[]}>
 }
 
 const { I18n } = window
 const { Title, Paragraph } = Typography
 
-export const SkillsGroupCard: FC<Props> = ({ skillCategory, onAddSkill }) => {
-  const [skillType, setSkillType] = useState('role')
-  const { isMobile } = useContext(MediaQueryContext)
+const SkillsGroupCardComponent: FC<Props> = ({
+  skillCategory,
+  onAddSkill,
+  fetchIdpSkills,
+}) => {
+  const [searchResults, setSearchResults] = useState<{ id: number; name: string }[]>([])
+  const [isSearching, setIsSearching] = useState(false)
   const [selectedSkills, setSelectedSkills] = useState<{ id: number; name: string }[]>([])
-  const handleSkillTypeChange = (e) => {
-    setSkillType(e.target.value)
+  const { isMobile } = useContext(MediaQueryContext)
+
+  const handleSearch = _.debounce((value) => {
+    setIsSearching(true)
+    fetchIdpSkills({
+      filterByCategory: skillCategory.category,
+      nameCont: value,
+    }).then(({ response }) => {
+      setIsSearching(false)
+      setSearchResults(response)
+    })
+  }, 300)
+
+  const handleSelectSkills = (ids) => {
+    setSelectedSkills(
+      searchResults.filter(skill => ids.includes(skill.id)).map(skill => ({ ...skill, skillId: skill.id })),
+    )
   }
 
   return (
@@ -46,48 +67,49 @@ export const SkillsGroupCard: FC<Props> = ({ skillCategory, onAddSkill }) => {
           // src={skillCategory.iconUrl}
         />
         <div>
-          <Title className="mb-0" level={4}>{skillCategory.category}</Title>
+          <Title className="mb-0" level={4}>
+            {I18n.t('idp.initial_steps.add_skill_group_title', { category: _.capitalize(skillCategory.category) })}
+          </Title>
           <Paragraph>
             {/* API changes not available yet */}
             {/* {skillCategory.description} */}
+            {I18n.t('idp.initial_steps.add_skill_group_description')}
           </Paragraph>
         </div>
       </Space>
       <Title level={5}>{I18n.t('idp.initial_steps.select_skills')}</Title>
       <Space className="w-100" size="large" direction="vertical">
-        <Space>
+        <Space wrap>
           {skillCategory.skills.map(skill => (
-            <Button onClick={() => onAddSkill([skill])} size="small" type="primary" key={skill.id} ghost>
+            <Button onClick={() => onAddSkill([skill])} size="small" type="primary" key={skill.name} ghost>
               {skill.name}
             </Button>
           ))}
         </Space>
         <MoreSkillsContainer>
-          <Radio.Group onChange={handleSkillTypeChange} value={skillType}>
-            <Radio value="role">{I18n.t('idp.initial_steps.role')}</Radio>
-            {/* <Radio value="function">Function</Radio> */}
-          </Radio.Group>
-          {skillType === 'role' ? (
-            <Row gutter={isMobile ? [0, 16] : [0, 0]} className="mt-4">
-              <Col xs={{ span: 24 }} sm={{ span: 8 }}>
-                <Select
-                  className="w-100"
-                  placeholder={I18n.t('idp.initial_steps.select_role_placeholder')}
-                  options={roleOptions}
-                />
-              </Col>
-              <Col xs={{ span: 24 }} sm={{ span: 16 }}>
-                <Select
-                  className="w-100"
-                  placeholder={I18n.t('idp.initial_steps.select_skills_placeholder')}
-                  options={skillOptions}
-                  mode="multiple"
-                  onChange={value => setSelectedSkills(value)}
-                />
-              </Col>
-            </Row>
-
-          ) : null}
+          <Row gutter={isMobile ? [0, 16] : [0, 0]} className="mt-4">
+            <Col xs={{ span: 24 }} sm={{ span: 16 }}>
+              <Select
+                className="w-100"
+                placeholder={I18n.t('idp.initial_steps.select_skills_placeholder')}
+                showSearch
+                onSearch={handleSearch}
+                mode="multiple"
+                onChange={handleSelectSkills}
+                notFoundContent={isSearching ? <Spin size="small" /> : null}
+                filterOption={false}
+              >
+                {searchResults.map(({ id, name }) => (
+                  <Select.Option
+                    key={id}
+                    value={id}
+                  >
+                    {name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Col>
+          </Row>
           <Row justify="end">
             <ButtonWithArrow
               onClick={() => onAddSkill(selectedSkills)}
@@ -124,3 +146,5 @@ const MoreSkillsContainer = ({ children }) => {
     </Space>
   )
 }
+
+export const SkillsGroupCard = connector(SkillsGroupCardComponent)

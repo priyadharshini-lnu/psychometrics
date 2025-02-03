@@ -3,20 +3,17 @@ import {
   Card, Tag, Space, theme, Empty,
 } from 'antd'
 
-type Skill = {
-  id: number
-  name: string
-}
+import { UserIdpSkill, Skill } from '../DevelopmentActions'
 
 type Props = {
-  selectedSkills: Skill[]
-  OnRemoveSkill: (id: number) => void
+  selectedSkills: (Skill | UserIdpSkill)[]
+  onRemoveSkill: (id: number) => void
 }
 
 const { I18n } = window
 const { useToken } = theme
 
-export const SelectedSkillsCard: FC<Props> = ({ selectedSkills, OnRemoveSkill }) => {
+export const SelectedSkillsCard: FC<Props> = ({ selectedSkills, onRemoveSkill }) => {
   const { token } = useToken()
   return (
     <Card
@@ -27,10 +24,10 @@ export const SelectedSkillsCard: FC<Props> = ({ selectedSkills, OnRemoveSkill })
           {
           selectedSkills.map(skill => (
             <Tag
-              key={skill.id}
+              key={skill.name}
               color={token.colorPrimaryActive}
               closable
-              onClose={() => OnRemoveSkill(skill.id)}
+              onClose={() => onRemoveSkill(skill.id)}
             >
               {skill.name}
             </Tag>

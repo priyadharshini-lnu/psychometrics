@@ -7,6 +7,7 @@ import { PlusOutlined, ExclamationCircleOutlined, EditOutlined } from '@ant-desi
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
+import { camelizeKeys } from '~/utils/object'
 import { isRequestInProgress } from '~/core/request'
 import AssessmentsReports from './AssessmentsReports'
 import AssessmentCenter from './AssessmentCenter'
@@ -88,7 +89,7 @@ export const UserDetails: React.FC<Props> = ({
   const { modal, message } = App.useApp()
   const navigate = useNavigate()
   const [tab, setTab] = useState(paramTab || 'assessments')
-  const { idpEnabled } = features
+  const { idpEnabled } = camelizeKeys(features)
 
   useEffect(() => {
     fetchSingleUser(parsedCampaignId, parsedUserId)

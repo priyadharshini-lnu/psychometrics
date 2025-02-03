@@ -9,6 +9,7 @@ import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard
 import { BoxWithShadow } from '~/glint'
 import {
   AvailableDevelopmentActions, CategoryWithSkills, DevelopmentAction, Skill, SkillWithDevelopmentActions,
+  CategoryWithSkillsSummary,
 } from '.'
 import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
@@ -26,7 +27,7 @@ type SkillsContainerProps = {
   onShowAvailableDevelopmentAction?: () => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onAddMoreSkills: (category: CategoryWithSkills) => void;
+  onAddMoreSkills: (category: CategoryWithSkillsSummary) => void;
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({

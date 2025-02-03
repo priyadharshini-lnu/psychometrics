@@ -39,6 +39,10 @@ export type Skill = {
   finalRating: null | number;
 }
 
+export type UserIdpSkill = Omit<Skill, 'category' | 'description'> & {
+  skillId: number;
+}
+
 export type SkillWithDevelopmentActions = Skill & {
   developmentActions: DevelopmentAction[];
 }
@@ -46,6 +50,11 @@ export type SkillWithDevelopmentActions = Skill & {
 export type CategoryWithSkills = {
   category: string;
   skills: SkillWithDevelopmentActions[];
+}
+
+export type CategoryWithSkillsSummary = {
+  category: string;
+  skills: (Skill | UserIdpSkill)[];
 }
 
 export type CategoryWithDevelopmentActions = {

@@ -13,7 +13,7 @@ class UserIdpPlan < ApplicationRecord
   has_many :communication_email_resources, as: :resource
   has_many :communication_emails, through: :communication_email_resources
 
-  enum status: { draft: 0, pending_approval: 1, approved: 2, rejected: 3 }
+  enum status: { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4 }
 
   scope :active, -> { where(active: true) }
 
