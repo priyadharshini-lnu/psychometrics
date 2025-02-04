@@ -1,0 +1,70 @@
+# frozen_string_literal: true
+
+class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administration::BaseResource
+  attributes :name, :description, :category, :course_url, :course_start_date, :course_end_date,
+             :project_id, :learning_style, :image, :skill_ids, :created_at, :updated_at
+
+  has_one :project
+  has_many :skills
+
+  ransack_filters %i[
+    name_cont
+    search_query
+  ]
+
+  def created_at
+    @model.decorate.created_at
+  end
+
+  def updated_at
+    @model.decorate.updated_at
+  end
+
+  def skill_ids=(ids)
+    @model.skill_ids = ids
+  end
+
+  def image
+    @model.image_url
+  end
+
+  def self.records(opts = {})
+    super(opts).with_attached_image.includes(:project, :skills)
+  end
+
+  def course_url
+    @model.course_url.presence
+  end
+
+  def course_url=(url)
+    @model.course_url = url.presence
+  end
+
+  def course_start_date=(date)
+    return if date.blank?
+
+    @model.course_start_date = if date.is_a?(ActionController::Parameters) && date['$d'].present?
+                                 Time.zone.parse(date['$d'])
+                               else
+                                 Time.zone.parse(date.to_s)
+                               end
+  end
+
+  def course_end_date=(date)
+    return if date.blank?
+
+    @model.course_end_date = if date.is_a?(ActionController::Parameters) && date['$d'].present?
+                               Time.zone.parse(date['$d'])
+                             else
+                               Time.zone.parse(date.to_s)
+                             end
+  end
+
+  def course_start_date
+    @model.course_start_date&.strftime('%Y-%m-%d')
+  end
+
+  def course_end_date
+    @model.course_end_date&.strftime('%Y-%m-%d')
+  end
+end

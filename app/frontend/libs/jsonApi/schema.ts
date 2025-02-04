@@ -26,6 +26,8 @@ import {
 } from '~/modules/admin/modules/campaigns/core/campaignFactorGroup'
 import { Schema as CampaignTemplateSchema } from '~/modules/admin/core/types/campaignTemplates'
 import { Schema as normsSchema } from '~/modules/admin/modules/client/core/norms'
+import { Schema as developmentActionSchema } from '~/modules/admin/modules/client/core/developmentAction'
+
 import { Schema as skillsSchema } from '~/modules/admin/modules/client/core/skills'
 
 export const Schema = {
@@ -54,5 +56,6 @@ export const Schema = {
   update_positions: UpdatePositionsSchema,
   campaign_templates: CampaignTemplateSchema,
   norms: normsSchema,
+  development_actions: developmentActionSchema,
   skills: skillsSchema,
 }

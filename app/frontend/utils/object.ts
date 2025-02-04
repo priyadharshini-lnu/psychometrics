@@ -42,6 +42,9 @@ const camelizeKeysOnly = (data: object, only: string[]) => {
 export const convertEnumToObject = function<T extends Record<string | number, string | number>>
 (enumObject:T):Record<string, Array<string | number>> {
   return Object.entries(enumObject).map(([key, value]) => ([key, value])).reduce((acc, item) => {
+    if (!isNaN(Number(item[0]))) {
+      return acc
+    }
     acc[item[1]] = item
     return acc
   }, {})
