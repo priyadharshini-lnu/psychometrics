@@ -1,22 +1,28 @@
 # frozen_string_literal: true
 
-module Saville
-  class MigrateAssessment < BaseCommand
-    private_attr_reader :form, :source_campaign_user
+module Hogan
+  class CopyAssessment < BaseCommand
+    private_attr_reader :form, :row_no
 
-    def initialize(form, _row_no)
+    def initialize(form, row_no)
       @form = form
-      @source_campaign_user = CampaignUser.joins(:user).find_by(
-        campaign_id: form.from_campaign, users: { email: form.email }
-      )
+      @row_no = row_no
     end
 
     def call
+      unless source_user_credential
+        Rails.logger.info(
+          "Row #{row_no}: Skipped! Hogan Credential not present at source for user with id #{source_campaign_user.user_id}" # rubocop:disable Layout/LineLength
+        )
+        return
+      end
+
       ActiveRecord::Base.transaction do
         existing_result = find_existing_result
         user_result = create_user_result(existing_result)
+        copy_hogan_credentials(target_user_assessment)
         user_assessment = update_user_assessment(user_result)
-        create_saville_assessment(user_assessment, existing_result)
+        Hogan::HandleAssessmentCompletion.call!(user_assessment)
         ::UsersResults::RecomputeJob.perform_later(
           user_assessment.users_result,
           user_assessment.user
@@ -47,17 +53,23 @@ module Saville
       user_assessment
     end
 
-    def create_saville_assessment(user_assessment, existing_result)
-      existing_saville_user_assessment = existing_result&.saville_user_assessment
-      saville_user_assessment = user_assessment.saville_user_assessment
+    def copy_hogan_credentials(user_assessment)
+      target_subject = user_assessment.subject
 
-      saville_user_assessment.assign_attributes(
-        norm_id: existing_saville_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
-        data_seprator: existing_saville_user_assessment&.data_seprator,
-        candidate_id: existing_saville_user_assessment&.candidate_id
-      )
+      target_user_credential = target_subject.hogan_credential
 
-      saville_user_assessment.save!
+      if target_user_credential && (source_user_credential.participant_id != target_user_credential.participant_id)
+        raise "Row #{row_no}: Aborted! Hogan Credential present at target for user with id #{target_subject.id}"
+      end
+
+      credential = source_user_credential&.dup
+
+      credential.user_id = target_subject.id
+      credential.save
+    end
+
+    def target_subject
+      @target_subject ||= target_user_assessment.subject
     end
 
     def target_user_assessment
@@ -77,6 +89,16 @@ module Saville
         campaign_id: form.from_campaign,
         assessment_id: form.assessment_id,
         relationship: Relationship.self_relationship
+      )
+    end
+
+    def source_user_credential
+      @source_user_credential ||= HoganCredential.find_by(user_id: source_campaign_user.user_id)
+    end
+
+    def source_campaign_user
+      @source_campaign_user ||= CampaignUser.joins(:user).find_by(
+        campaign_id: form.from_campaign, users: { email: form.email }
       )
     end
   end

@@ -8,6 +8,6 @@ namespace :data_migration do
   task :copy_saville_user_assessments, %i[csv_url row] => [:environment] do |_, args|
     ActiveRecord::Base.logger = Rails.logger = Logger.new($stdout)
 
-    Saville::CopyAssessmentsFromCsv.call!(args[:csv_url], args[:row])
+    Assessments::DataMigration::CopyAssessmentsFromCsv.call!('saville', args[:csv_url], args[:row])
   end
 end

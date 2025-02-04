@@ -282,7 +282,7 @@ class CampaignFactorsTable extends Component {
         )
 
         return (
-          <tr data-paginatable={1} data-factor-id={campaignfactor.code} key={i}>
+          <tr data-row={1} data-factor-id={campaignfactor.code} key={i}>
             {this.canShowRank() && (
               <td className={styles.rankOrder}>
                 <span className={tableStyle !== 'compact' ? cs(styles.star, 'icon-star') : ''}>

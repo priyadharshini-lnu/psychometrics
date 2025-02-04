@@ -34,14 +34,14 @@ export const PlayerControl: React.FC<Props> = ({
         disabled={uploadState === UPLOAD_STATES.SAVING}
       >
         {uploadState === UPLOAD_STATES.SAVING
-          ? I18n.t('assessments.video_response.saving')
+          ? I18n.t('assessments.audio_response.saving')
           : I18n.t('assessments.video_response.save')}
       </Button>
     )}
 
     {uploadState === UPLOAD_STATES.SAVED && !readOnly && (
       <Button disabled>
-        {I18n.t('assessments.video_response.saved.label')}
+        {I18n.t('assessments.audio_response.saved.label')}
       </Button>
     )}
 

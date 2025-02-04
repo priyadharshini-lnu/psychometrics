@@ -862,6 +862,9 @@ en:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
       resume: Resume
+      saved:
+        label: Audio Saved
+      saving: Saving Audio
       start_recording: Start recording
       stop: Stop
     card_actions:
@@ -1483,7 +1486,6 @@ en:
     audio_check:
       access: Access
       continue: Yes, Ok to proceed
-      processing: Processing
       random_phrases:
         eight: May your coffee be strong and your day be productive.
         five: Life is better when you smile. Smile for the mic!
@@ -1534,7 +1536,6 @@ en:
       camera_preview: Camera preview will appear here
       continue: Yes, Ok to proceed
       description: Click on Start Recording and Record yourself while reading the below passage in your own voice
-      processing: Processing
       random_phrases:
         eight: If you can see me, the video's a success. If not, we troubleshoot!
         five: Testing your video,don't worry, no Oscar nomination required.
