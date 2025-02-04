@@ -72,7 +72,8 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status],
-    'idp_templates' => %w[view manage]
+    'idp_templates' => %w[view manage],
+    'skills' => %w[view manage]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -136,7 +137,8 @@ module AllowedPermissions
     'reports' => ['manage'],
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status],
-    'idp_templates' => %w[view manage]
+    'idp_templates' => %w[view manage],
+    'skills' => %w[view manage]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {

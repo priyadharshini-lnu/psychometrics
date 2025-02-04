@@ -27,6 +27,14 @@ module Api
         @user.is?(:superadmin)
       end
 
+      def search?
+        @user.has_permission?(:skills, :view) || @user.has_permission?(:skills, :manage)
+      end
+
+      def tags_search?
+        search?
+      end
+
       def add_tag?
         @user.is?(:superadmin)
       end
@@ -38,6 +46,17 @@ module Api
       class Scope < BasePolicy::Scope
         def resolve
           return scope if @user.superadmin?
+
+          accessible_project_ids = []
+          accessible_project_ids.concat(@user.client_admin_project_ids)
+          accessible_project_ids.concat(@user.project_admin_client_ids)
+          accessible_project_ids.concat(@user.campaign_admin_campaigns.map(&:project_id))
+
+          if @user.has_permission?(:skills, :view) && @user.has_permission?(:skills, :manage)
+            scope.where(project_id: [nil, *accessible_project_ids])
+          else
+            scope.where(project_id: accessible_project_ids)
+          end
         end
       end
     end

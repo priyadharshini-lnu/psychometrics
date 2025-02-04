@@ -21,6 +21,10 @@ class Skill < ApplicationRecord
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id
 
+  # Scopes
+  scope :global, ->(_value = nil) { where(project_id: nil) }
+  scope :project_id_eq, ->(project_id) { where(project_id: project_id) }
+  scope :all_skills, ->(_value = nil) { all }
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
@@ -39,14 +43,19 @@ class Skill < ApplicationRecord
   }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name]
+    %w[id name category project_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[job_roles]
+    %w[job_roles project]
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    super + %i[filter_by_category search_query]
+    %w[all_skills global by_project filter_by_category search_query]
+  end
+
+  # Custom ransacker for category enum
+  ransacker :category, formatter: proc { |v| categories[v] } do |parent|
+    parent.table[:category]
   end
 end

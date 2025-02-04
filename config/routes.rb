@@ -1376,6 +1376,7 @@ controller: 'projects/idp_templates'
           resources :user_idp_plans, only: %i[create]
           jsonapi_resources :skills, concerns: :taggable do
             post :import, on: :collection
+            get :tags_search, on: :collection
           end
         end
       end
