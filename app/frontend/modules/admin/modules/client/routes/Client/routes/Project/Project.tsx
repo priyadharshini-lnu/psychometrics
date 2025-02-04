@@ -7,6 +7,7 @@ import {
   DatabaseOutlined,
   SolutionOutlined,
   ExportOutlined,
+  CrownOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
@@ -69,6 +70,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/audit_reports')) {
       return ['audit_reports']
     }
+    if (pathname.includes('/idp')) {
+      return ['idp']
+    }
     return undefined
   }
 
@@ -103,6 +107,8 @@ const Project: FC<Props> = ({
       }
       case 'audit_reports':
         return I18n.t('administration.breadcrumbs.audit_reports')
+      case 'idp':
+        return I18n.t('administration.idp.idp')
       default:
         return ''
     }
@@ -134,6 +140,12 @@ const Project: FC<Props> = ({
     key: 'audit_reports',
     icon: <ExportOutlined />,
     label: I18n.t('administration.breadcrumbs.audit_reports'),
+  })
+
+  menuItems.push({
+    key: 'idp',
+    icon: <CrownOutlined />,
+    label: I18n.t('administration.idp.idp'),
   })
 
   return (

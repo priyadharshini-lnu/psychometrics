@@ -1696,6 +1696,27 @@ en:
           accesssheet_manage: Accesssheet Manage
           accesssheet_settings: Accesssheet Settings
           accesssheet_view: Accesssheet View
+    idp:
+      add_idp_template: Add IDP Template
+      all: All
+      behavioral_skills: Behavioral Skills
+      client_skills: Client Skills
+      enter_template_description: Description
+      enter_template_description_error: Template description is required.
+      enter_template_name: Name
+      enter_template_name_error: Template name is required
+      global_skills: Global Skills
+      idp: IDP
+      idp_template: IDP Template
+      none: None
+      rating: Enable Rating
+      select_by_tags: Select by Tags
+      select_specific_skills: Select Specific Skills
+      selected: Selected
+      tab:
+        templates: Templates
+      technical_skills: Technical Skills
+      template_details: Template Details
     import: Import
     imports:
       assessments:

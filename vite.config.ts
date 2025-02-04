@@ -52,7 +52,10 @@ const server = SSL ? {
 const brotliPromise = promisify(brotliCompress)
 
 export default defineConfig({
-  server,
+  server:{
+    ...server,
+    allowedHosts: ['.ttedev.me'],
+  },
   clearScreen: false,
   plugins: [
     sentryVitePlugin({
