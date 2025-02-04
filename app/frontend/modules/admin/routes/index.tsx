@@ -11,6 +11,7 @@ import CampaignRoutes from '~/modules/admin/modules/CampaignTemplates/routes'
 import DashboardRoutes from '~/modules/admin/modules/Dashboard/routes'
 import NormsRoutes from '~/modules/admin/modules/Norms/routes'
 import Skills from '~/modules/admin/modules/Skills/routes'
+import DevelopmentActionRoutes from '~/modules/admin/modules/DevelopmentActions/routes'
 
 const routes = [
   ...ProfileRoutes,
@@ -26,6 +27,7 @@ const routes = [
   ...DashboardRoutes,
   ...NormsRoutes,
   ...Skills,
+  ...DevelopmentActionRoutes,
 ]
 
 export default routes

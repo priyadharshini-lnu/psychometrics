@@ -58,7 +58,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
 
   return (
     <Modal
-      title={I18n.t('idp.development_actions.development_actions')}
+      title={I18n.t('idp.development_actions.heading')}
       open={open}
       onCancel={handleCancel}
       footer={null}

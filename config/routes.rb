@@ -1378,6 +1378,11 @@ controller: 'projects/idp_templates'
             post :import, on: :collection
             get :tags_search, on: :collection
           end
+          jsonapi_resources :development_actions do
+            scope module: :development_actions do
+              resource :uploads, only: [:update]
+            end
+          end
         end
       end
     end
