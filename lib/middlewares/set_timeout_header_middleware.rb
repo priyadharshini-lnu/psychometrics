@@ -7,6 +7,8 @@ module Middlewares
     end
 
     def call(env)
+      return @app.call(env) if Settings.features.disable_session_timeout
+
       status, headers, response = @app.call(env)
 
       if env['warden'].user
