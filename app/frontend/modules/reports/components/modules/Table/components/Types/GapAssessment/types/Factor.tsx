@@ -11,6 +11,7 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import Utils from '~/modules/reports/utils'
 
 import styles from './styles.less'
+import { PageData } from '../PaginationContext'
 
 type Gap = {
   name: string
@@ -95,6 +96,7 @@ interface Props {
   gapCutoff: number | null
   precision?: number
   showAllFactors?: boolean
+  paginationContext: PageData | null
   style?: CSSProperties & { fontColor: string }
 }
 
@@ -109,6 +111,7 @@ const Factor: FC<Props> = ({
   gapCutoff,
   precision,
   showAllFactors,
+  paginationContext,
   style,
 }) => {
   const calculateGaps = (
@@ -161,11 +164,11 @@ const Factor: FC<Props> = ({
 
     const positiveGaps = sortedFactors
       .filter(factor => factor.diff > 0 && factor.diff >= minGap)
-      .slice(0, itemLimit)
+      .slice(0, itemLimit).map((gap, i) => ({ ...gap, rank: i + 1 }))
     const negativeGaps = sortedFactors
       .filter(factor => factor.diff < 0 && factor.diff <= -minGap)
       .slice(-itemLimit)
-      .reverse()
+      .reverse().map((gap, i) => ({ ...gap, rank: i + 1 }))
 
     return [positiveGaps, negativeGaps]
   }
@@ -201,8 +204,10 @@ const Factor: FC<Props> = ({
     ? calculateGaps(assessment_id, leftFilter, rightFilter, providedFactorIds)
     : [mockedResult(MOCK_POSITIVE_GAPS), mockedResult(MOCK_NEGATIVE_GAPS)]
 
-  const showPositiveGapTable = gapType === GapType.ALL || gapType === GapType.POSITIVE
-  const showNegativeGapTable = gapType === GapType.ALL || gapType === GapType.NEGATIVE
+  const showPositiveGapTable = paginationContext
+    ? !!paginationContext?.rowIds?.top?.length : (gapType === GapType.ALL || gapType === GapType.POSITIVE)
+  const showNegativeGapTable = paginationContext
+    ? !!paginationContext?.rowIds?.bottom?.length : (gapType === GapType.ALL || gapType === GapType.NEGATIVE)
   const showTitle = gapType === GapType.ALL
   const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
@@ -229,6 +234,8 @@ const Factor: FC<Props> = ({
                 )}
                 hideValues={hideValues}
                 precision={precision}
+                type="top"
+                paginationContext={paginationContext}
               />
             </>
           )}
@@ -251,6 +258,8 @@ const Factor: FC<Props> = ({
                 )}
                 hideValues={hideValues}
                 precision={precision}
+                type="bottom"
+                paginationContext={paginationContext}
               />
             </>
           )}
@@ -272,13 +281,13 @@ const THeader: FC<THeaderProps> = ({
 }) => (
   <>
     {title.length !== 0 && (
-    <tr className={styles.title}>
+    <tr className={styles.title} data-header>
       <th colSpan={hideValues ? 3 : 6}>
         {title}
       </th>
     </tr>
     )}
-    <tr className={styles.headers}>
+    <tr className={styles.headers} data-header>
       <th className={styles.label}>
         {I18nStore.t('reports.modules.gap_assessment.rank')}
       </th>
@@ -303,6 +312,8 @@ interface TBodyProps {
   emptyText: string
   hideValues: boolean
   precision?: number
+  type: 'top' | 'bottom'
+  paginationContext: PageData | null
 }
 
 const TBody: FC<TBodyProps> = ({
@@ -310,10 +321,12 @@ const TBody: FC<TBodyProps> = ({
   emptyText,
   hideValues,
   precision,
+  type,
+  paginationContext,
 }) => {
   if (gaps.length === 0) {
     return (
-      <tr>
+      <tr data-row={0} data-type={type}>
         <td colSpan={5}>{emptyText}</td>
       </tr>
     )
@@ -326,12 +339,13 @@ const TBody: FC<TBodyProps> = ({
     return (diff > 0 ? '+' : '') + Utils.round(diff, precision ?? 2)
   }
 
+  const data = paginationContext ? paginationContext.rowIds[type].map(id => gaps[id]) : gaps
 
   return (
     <>
-      {gaps.map((gap, i) => (
-        <tr key={i} className={styles.row}>
-          <td>{i + 1}</td>
+      {data.map((gap, i) => (
+        <tr key={i} className={styles.row} data-row={i} data-type={type}>
+          <td>{gap.rank}</td>
           <td>{I18nStore.tFactorName(gap)}</td>
           {!hideValues && (
             <>

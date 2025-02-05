@@ -47,7 +47,6 @@ const Properties = ({ modules }) => {
       model.props.type = value
       model.props.rowData = null
       model.props.headerData = null
-
       const defaultProps = ModuleConfigs.Table.defaultProps[value] || {}
       model.props = { ...model.props, ...defaultProps }
 

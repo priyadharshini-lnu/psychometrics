@@ -58,7 +58,7 @@ export class PaginationContext {
 
       const secondLevel = filterElement.querySelectorAll("[data-paginatable='2']")
 
-      if (currentPageHeight + filterTable.height > maxHeight) {
+      if (currentPageHeight + filterTable.height > maxHeight && page.filterId.length) {
         this.needPagination = true
         secondLevel.forEach((rowElement, index) => {
           const rect = rowElement.getBoundingClientRect()

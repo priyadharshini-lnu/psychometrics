@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 
 export function useModulePagination (
-  model, elementSelector: string, PaginationContext, insertPaginationPage,
+  model, elementSelector: string, PaginationContext, insertPaginationPage, preview = false,
 ) {
   const [paginationContext, setPaginationContext] = useState(null)
 
   useEffect(() => {
     if (!model.props.pagination?.enabled) { return }
+    if (!preview) { return }
 
     if (model.pagination) {
       setPaginationContext(model.pagination)

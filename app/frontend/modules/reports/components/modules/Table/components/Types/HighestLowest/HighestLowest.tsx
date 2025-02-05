@@ -3,14 +3,18 @@ import { Empty } from 'antd'
 
 import { PreviewModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
 
+import { useModulePagination } from '~/hooks/useModulePagination'
 import QuestionType from './types/Question'
 import FactorType from './types/Factor'
+import { PaginationContext } from '../GapAssessment/PaginationContext'
 
 interface Props {
   model: PreviewModel
+  preview: boolean
+  insertPaginationPage: () => void
 }
 
-export const HighestLowest: FC<Props> = ({ model }) => {
+export const HighestLowest: FC<Props> = ({ model, insertPaginationPage, preview }) => {
   const {
     props: {
       sourceType, filter, factorIds, questionsChoices, sections = TableSectionsType.ALL,
@@ -28,9 +32,16 @@ export const HighestLowest: FC<Props> = ({ model }) => {
     )
   }
 
+
+  const { paginationContext } = useModulePagination(
+    model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage, preview,
+  )
+
+
   if (sourceType === 'Question') {
     return (
       <QuestionType
+        model={model}
         assessment_id={assessment_id}
         filterId={filter}
         questionsChoices={questionsChoices}
@@ -39,12 +50,14 @@ export const HighestLowest: FC<Props> = ({ model }) => {
         hideValues={hideValues}
         noOfItems={noOfItems}
         scoreCutoff={scoreCutoff}
+        paginationContext={paginationContext}
         style={style}
       />
     )
   }
   return (
     <FactorType
+      model={model}
       assessment_id={assessment_id}
       filterId={filter}
       factorIds={factorIds}
@@ -53,6 +66,7 @@ export const HighestLowest: FC<Props> = ({ model }) => {
       hideValues={hideValues}
       noOfItems={noOfItems}
       scoreCutoff={scoreCutoff}
+      paginationContext={paginationContext}
       style={style}
     />
   )

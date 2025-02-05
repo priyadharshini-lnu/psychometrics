@@ -8,6 +8,7 @@ import { HintCheckbox } from '~/glint'
 import { PropertiesModel, GapType, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter/components/PropertyFilter'
 import PropertyNumber from '~/modules/reports/components/PropertyNumber'
+import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'
@@ -114,6 +115,12 @@ export const Properties: FC<Props> = ({ modules }) => {
         <div>Number Prceision:</div>
         <InputNumber min={0} size="small" value={precision} onChange={val => onChange('precision', val)} />
       </div>
+      {modules.length > 1 ? null
+        : (
+          <div className="mtm">
+            <PaginationOptions module={model} onChange={onChange} />
+          </div>
+        )}
     </Space>
   )
 }
