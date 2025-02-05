@@ -2991,7 +2991,7 @@ en:
           invalid_all_value: 'must be one of: true, false'
           invalid_category: Must be a valid category
           invalid_global_value: 'must be one of: true, false'
-          query_too_short: Must be longer than 3 characters
+          query_too_short: is required and must belonger than 3 characters
       form:
         category: Category
         description: Description

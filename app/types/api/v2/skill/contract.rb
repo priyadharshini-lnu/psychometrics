@@ -9,11 +9,12 @@ module Api
 
           json do
             optional(:filter).hash do
-              required(:name_cont).filled(:string)
+              optional(:name_cont).filled(:string)
               optional(:project_id_eq).maybe(:string)
               optional(:all_skills).maybe(:string, included_in?: %w[true false])
               optional(:global).maybe(:string, included_in?: %w[true false])
               optional(:category_in).maybe(:string)
+              optional(:tagged_with).maybe(:string)
             end
           end
 
@@ -26,9 +27,9 @@ module Api
           end
 
           rule('filter.name_cont') do
-            next if values[:filter].blank?
+            next if values[:filter]&.except(:tagged_with).blank?
 
-            if value.length < MINIMUM_QUERY_LENGTH
+            if value.blank? || value.length < MINIMUM_QUERY_LENGTH
               key.failure(
                 I18n.t('administration.skills.errors.search.query_too_short')
               )
