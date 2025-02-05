@@ -31,7 +31,13 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
 
   return (
     <>
-      <title>{`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('change_password_page.title')}`}</title>
+      <title>
+        {
+          `${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('change_password_page.title')}
+          - ${I18n.t('frontend.lighthouse_app')}
+          `
+        }
+      </title>
       <GlintPageHeader />
       <Layout.Content className={styles.pageContent}>
         <Typography.Title level={1} className={styles.title}>{I18n.t('change_password_page.title')}</Typography.Title>

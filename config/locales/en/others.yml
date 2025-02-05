@@ -2154,6 +2154,7 @@ en:
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
     hogan:
       cannot_start: You can't start the hogan assessment right now. Please try after few minutes.
+    lighthouse_app: Mercer Lighthouse
     login: Login
     maintenance:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds

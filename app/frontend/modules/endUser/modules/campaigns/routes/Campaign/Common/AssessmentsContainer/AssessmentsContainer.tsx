@@ -75,7 +75,12 @@ export const AssessmentsContainer = ({
 
   return (
     <>
-      <title>{`${I18n.t('campaign.dashboard_menu.campaign')} ${I18n.t('campaign.dashboard_menu.tasks')}`}</title>
+      <title>
+        {
+          `${I18n.t('campaign.dashboard_menu.campaign')} ${I18n.t('campaign.dashboard_menu.tasks')}
+          - ${I18n.t('frontend.lighthouse_app')}`
+        }
+      </title>
       <ViewsContainer
         title={I18n.t('campaign_assessment.assessments_heading')}
         titleHeadingLevel={1}

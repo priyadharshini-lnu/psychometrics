@@ -123,7 +123,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
 
   return (
     <>
-      <title>{assessment.name}</title>
+      <title>{`${assessment.name} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       {remainingCampaignTime > 0 && (
       <GlintPageHeader>
         <Col span={16} className="ta-c">

@@ -72,7 +72,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
 
   return (
     <>
-      <title>{`${I18n.t('campaign.dashboard_menu.home')}`}</title>
+      <title>{`${I18n.t('campaign.dashboard_menu.home')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
           <Space>

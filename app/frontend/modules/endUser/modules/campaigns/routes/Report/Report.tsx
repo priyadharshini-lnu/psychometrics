@@ -108,7 +108,12 @@ const ReportComponent = ({
 
   return (
     <>
-      <title>{`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}</title>
+      <title>
+        {
+          `${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}
+          - ${I18n.t('frontend.lighthouse_app')}`
+        }
+      </title>
       <GlintPageHeader />
       <Content className={styles.pageContent}>
         <PageHeader

@@ -64,9 +64,11 @@ export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
           <DetailsCard
             title={inviteDetails.title}
             subtitle={(
-              <TimerText text={secondsToDayHoursAndMinutes(
-                inviteDetails.duration, undefined, 'hr', 'mins',
-              )}
+              <TimerText
+                textType="none"
+                text={secondsToDayHoursAndMinutes(
+                  inviteDetails.duration, undefined, 'hr', 'mins',
+                )}
               />
             )}
             description={inviteDetails.description}
