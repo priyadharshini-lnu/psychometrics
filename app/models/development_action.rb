@@ -76,4 +76,8 @@ class DevelopmentAction < ApplicationRecord
     self.course_end_date = nil
     image.purge_later
   end
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/development_actions/#{attribute_name}/#{filename}"
+  end
 end
