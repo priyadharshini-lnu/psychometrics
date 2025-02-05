@@ -6,6 +6,10 @@ RSpec.describe UsersResults::SaveScoringWithCallbacksJob, type: :job do
   let(:user_result) { create(:users_result, answers: {}) }
   let(:current_user) { create(:user) }
 
+  before do
+    allow_any_instance_of(UserAssessment).to receive(:publish_assessment_assigned_webhook)
+  end
+
   context 'when when assessment is agile' do
     before do
       allow(::UsersResults::CalculateAgileScoring).to receive(:call!).and_return({})

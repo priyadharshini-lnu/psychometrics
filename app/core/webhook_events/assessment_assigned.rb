@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module WebhookEvents
-  class AssessmentStarted < WebhookEvents::Base
+  class AssessmentAssigned < WebhookEvents::Base
     attribute :assessment, type: Hash
     attribute :evaluator, type: Hash
 
     def event_name
-      'assessment_started'
+      'assessment_assigned'
     end
 
     def prepare_payload # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity

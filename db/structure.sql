@@ -6510,7 +6510,8 @@ CREATE TABLE public.users (
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
     manager_id bigint,
-    unique_session_id character varying
+    unique_session_id character varying,
+    external_id character varying
 );
 
 
@@ -14980,6 +14981,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250123071220'),
 ('20250127090320'),
 ('20250124102224'),
 ('20250124101641'),

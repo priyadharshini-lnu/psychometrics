@@ -6,6 +6,7 @@ class Webhook < WebhookSystem::Subscription
   EVENTS = {
     assessment_started: WebhookEvents::AssessmentStarted,
     assessment_completed: WebhookEvents::AssessmentCompleted,
+    assessment_assigned: WebhookEvents::AssessmentAssigned,
     assessment_timeout: WebhookEvents::AssessmentTimeout,
     results_available: WebhookEvents::ResultsAvailable,
     report_available: WebhookEvents::ReportAvailable,

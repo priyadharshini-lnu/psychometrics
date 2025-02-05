@@ -1057,6 +1057,18 @@ as: :simulation_progress_notification
   constraints format: :json do
     namespace :api do
       namespace :v1 do
+        namespace :threesixty do
+          resources :projects, only: [] do
+            resources :campaigns, only: [] do
+              resources :users, only: [], param: :user_id do
+                member do
+                  get :assessments
+                  get :scores
+                end
+              end
+            end
+          end
+        end
         resources :projects, only: %i[show create update] do
           resources :campaigns, only: %i[show create update] do
             get :assessments_reports, on: :member, action_name: 'get_assessments_reports'
