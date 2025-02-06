@@ -34,7 +34,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 -- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track planning and execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
 
 
 --
@@ -636,16 +636,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -844,7 +844,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -865,106 +866,6 @@ CREATE SEQUENCE public.bulk_reports_id_seq
 --
 
 ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
-
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
--- Name: c_10289_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10289_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Subject Name'::text) AS "Subject Name",
-    (sheet_rows.data ->> 'Level'::text) AS "Level",
-    (sheet_rows.data ->> 'Position '::text) AS "Position ",
-    (sheet_rows.data ->> 'Organization'::text) AS "Organization",
-    (sheet_rows.data ->> 'Tenure'::text) AS "Tenure",
-    (sheet_rows.data ->> 'Success Profile'::text) AS "Success Profile",
-    (sheet_rows.data ->> 'Success Readiness 1'::text) AS "Success Readiness 1",
-    (sheet_rows.data ->> 'Success Readiness 2'::text) AS "Success Readiness 2",
-    ((sheet_rows.data ->> '1.Strategic Focus'::text))::double precision AS "1.Strategic Focus",
-    ((sheet_rows.data ->> '2.Leading Change'::text))::double precision AS "2.Leading Change",
-    ((sheet_rows.data ->> '3.Motivating & Inspiring'::text))::double precision AS "3.Motivating & Inspiring",
-    ((sheet_rows.data ->> '4.Develop And Empower People'::text))::double precision AS "4.Develop And Empower People",
-    ((sheet_rows.data ->> '5.Visioning & Alignment'::text))::double precision AS "5.Visioning & Alignment",
-    ((sheet_rows.data ->> '6.Communicating With Impact'::text))::double precision AS "6.Communicating With Impact",
-    ((sheet_rows.data ->> '7.Achieving Results'::text))::double precision AS "7.Achieving Results",
-    ((sheet_rows.data ->> '8.Commitment & Ownership'::text))::double precision AS "8.Commitment & Ownership",
-    ((sheet_rows.data ->> 'F2F Overall Score'::text))::double precision AS "F2F Overall Score",
-    ((sheet_rows.data ->> 'Leading Change'::text))::double precision AS "Leading Change",
-    ((sheet_rows.data ->> 'Commitment & Ownership'::text))::double precision AS "Commitment & Ownership",
-    ((sheet_rows.data ->> 'Communicating With Impact'::text))::double precision AS "Communicating With Impact",
-    ((sheet_rows.data ->> 'Develop And Empower People'::text))::double precision AS "Develop And Empower People",
-    ((sheet_rows.data ->> 'Strategic Focus'::text))::double precision AS "Strategic Focus",
-    ((sheet_rows.data ->> 'Visioning & Alignment'::text))::double precision AS "Visioning & Alignment",
-    ((sheet_rows.data ->> 'Achieving Results'::text))::double precision AS "Achieving Results",
-    ((sheet_rows.data ->> 'Motivating & Inspiring'::text))::double precision AS "Motivating & Inspiring",
-    ((sheet_rows.data ->> 'Social Desirability'::text))::double precision AS "Social Desirability",
-    ((sheet_rows.data ->> 'TI Overall Score'::text))::double precision AS "TI Overall Score",
-    ((sheet_rows.data ->> 'Excitable'::text))::double precision AS "Excitable",
-    ((sheet_rows.data ->> 'Skeptical'::text))::double precision AS "Skeptical",
-    ((sheet_rows.data ->> 'Cautious'::text))::double precision AS "Cautious",
-    ((sheet_rows.data ->> 'Reserved'::text))::double precision AS "Reserved",
-    ((sheet_rows.data ->> 'Leisurely'::text))::double precision AS "Leisurely",
-    ((sheet_rows.data ->> 'Bold'::text))::double precision AS "Bold",
-    ((sheet_rows.data ->> 'Mischievous'::text))::double precision AS "Mischievous",
-    ((sheet_rows.data ->> 'Colorful'::text))::double precision AS "Colorful",
-    ((sheet_rows.data ->> 'Imaginative'::text))::double precision AS "Imaginative",
-    ((sheet_rows.data ->> 'Diligent'::text))::double precision AS "Diligent",
-    ((sheet_rows.data ->> 'Dutiful'::text))::double precision AS "Dutiful",
-    ((sheet_rows.data ->> 'Qualitative_Scale'::text))::double precision AS "Qualitative_Scale",
-    ((sheet_rows.data ->> 'Quantitative_Scale'::text))::double precision AS "Quantitative_Scale",
-    ((sheet_rows.data ->> 'HBRI Overall Score'::text))::double precision AS "HBRI Overall Score",
-    ((sheet_rows.data ->> '5 point scale'::text))::double precision AS "5 point scale",
-    ((sheet_rows.data ->> 'Prospection'::text))::double precision AS "Prospection",
-    ((sheet_rows.data ->> 'Sustainability'::text))::double precision AS "Sustainability",
-    ((sheet_rows.data ->> 'Contribution'::text))::double precision AS "Contribution",
-    ((sheet_rows.data ->> 'Alignment'::text))::double precision AS "Alignment",
-    ((sheet_rows.data ->> 'Empowerment'::text))::double precision AS "Empowerment",
-    ((sheet_rows.data ->> 'Attunement'::text))::double precision AS "Attunement",
-    ((sheet_rows.data ->> 'Foresight'::text))::double precision AS "Foresight",
-    ((sheet_rows.data ->> 'Overall ACPI'::text))::double precision AS "Overall ACPI",
-    ((sheet_rows.data ->> 'Promotion & Growth'::text))::double precision AS "Promotion & Growth",
-    ((sheet_rows.data ->> 'Pay, Rewards & Benefits'::text))::double precision AS "Pay, Rewards & Benefits",
-    ((sheet_rows.data ->> 'Job Security'::text))::double precision AS "Job Security",
-    ((sheet_rows.data ->> 'Work Environment'::text))::double precision AS "Work Environment",
-    ((sheet_rows.data ->> 'Recognition'::text))::double precision AS "Recognition",
-    ((sheet_rows.data ->> 'Purpose & Meaning'::text))::double precision AS "Purpose & Meaning",
-    ((sheet_rows.data ->> 'Career Opportunities'::text))::double precision AS "Career Opportunities",
-    ((sheet_rows.data ->> 'Work Life Balance'::text))::double precision AS "Work Life Balance",
-    ((sheet_rows.data ->> 'Learning & Development'::text))::double precision AS "Learning & Development",
-    ((sheet_rows.data ->> 'Positive Relationships'::text))::double precision AS "Positive Relationships",
-    ((sheet_rows.data ->> 'Extrinsic Score'::text))::double precision AS "Extrinsic Score",
-    ((sheet_rows.data ->> 'Intrinsic Score'::text))::double precision AS "Intrinsic Score",
-    ((sheet_rows.data ->> 'Overall WPI Score'::text))::double precision AS "Overall WPI Score",
-    ((sheet_rows.data ->> 'Overall Potential'::text))::double precision AS "Overall Potential",
-    (sheet_rows.data ->> 'Talent Mapping'::text) AS "Talent Mapping",
-    ((sheet_rows.data ->> 'Performance'::text))::double precision AS "Performance",
-    (sheet_rows.data ->> 'Performance Level'::text) AS "Performance Level",
-    (sheet_rows.data ->> 'Potential'::text) AS "Potential",
-    (sheet_rows.data ->> 'Position in 9 Box'::text) AS "Position in 9 Box",
-    ((sheet_rows.data ->> 'Managers Ranks'::text))::double precision AS "Managers Ranks",
-    ((sheet_rows.data ->> 'Section Head Ranks'::text))::double precision AS "Section Head Ranks",
-    ((sheet_rows.data ->> 'Overall Rank'::text))::double precision AS "Overall Rank",
-    (sheet_rows.data ->> 'Gender'::text) AS "Gender"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 49)
-  ORDER BY sheet_rows.id;
 
 
 --
@@ -1025,9 +926,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -1231,6 +1132,39 @@ CREATE SEQUENCE public.campaign_factors_id_seq
 --
 
 ALTER SEQUENCE public.campaign_factors_id_seq OWNED BY public.campaign_factors.id;
+
+
+--
+-- Name: campaign_idps; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_idps (
+    id bigint NOT NULL,
+    automatically_assign_new boolean DEFAULT false,
+    campaign_id bigint NOT NULL,
+    idp_template_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_idps_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_idps_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_idps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_idps_id_seq OWNED BY public.campaign_idps.id;
 
 
 --
@@ -1525,9 +1459,7 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -1681,6 +1613,40 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -1962,6 +1928,76 @@ CREATE SEQUENCE public.data_geos_id_seq
 --
 
 ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
+
+
+--
+-- Name: data_report_jobs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.data_report_jobs (
+    id bigint NOT NULL,
+    data_report_id integer,
+    status integer DEFAULT 0,
+    admin_job_record_id integer,
+    created_by_id integer,
+    password character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    file character varying
+);
+
+
+--
+-- Name: data_report_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.data_report_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: data_report_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.data_report_jobs_id_seq OWNED BY public.data_report_jobs.id;
+
+
+--
+-- Name: data_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.data_reports (
+    id bigint NOT NULL,
+    name character varying,
+    configuration jsonb,
+    owner_id integer,
+    last_updated_by_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: data_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.data_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: data_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.data_reports_id_seq OWNED BY public.data_reports.id;
 
 
 --
@@ -3112,7 +3148,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -4334,12 +4370,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4351,7 +4387,7 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages jsonb DEFAULT '[]'::jsonb
+    other_languages text[] DEFAULT '{}'::text[]
 );
 
 
@@ -4816,6 +4852,21 @@ CREATE SEQUENCE public.sheet_row_data_id_seq
 --
 
 ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
 
 
 --
@@ -6437,10 +6488,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -7118,6 +7169,13 @@ ALTER TABLE ONLY public.campaign_factors ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: campaign_idps id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idps ALTER COLUMN id SET DEFAULT nextval('public.campaign_idps_id_seq'::regclass);
+
+
+--
 -- Name: campaign_option_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7195,6 +7253,13 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
+
+
+--
 -- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7241,6 +7306,20 @@ ALTER TABLE ONLY public.dashboards ALTER COLUMN id SET DEFAULT nextval('public.d
 --
 
 ALTER TABLE ONLY public.data_geos ALTER COLUMN id SET DEFAULT nextval('public.data_geos_id_seq'::regclass);
+
+
+--
+-- Name: data_report_jobs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_report_jobs ALTER COLUMN id SET DEFAULT nextval('public.data_report_jobs_id_seq'::regclass);
+
+
+--
+-- Name: data_reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_reports ALTER COLUMN id SET DEFAULT nextval('public.data_reports_id_seq'::regclass);
 
 
 --
@@ -8413,6 +8492,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 
 --
+-- Name: campaign_idps campaign_idps_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idps
+    ADD CONSTRAINT campaign_idps_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: campaign_option_translations campaign_option_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8554,6 +8641,22 @@ ALTER TABLE ONLY public.dashboards
 
 ALTER TABLE ONLY public.data_geos
     ADD CONSTRAINT data_geos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: data_report_jobs data_report_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_report_jobs
+    ADD CONSTRAINT data_report_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: data_reports data_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_reports
+    ADD CONSTRAINT data_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -10253,6 +10356,27 @@ CREATE UNIQUE INDEX index_campaign_factors_on_campaign_id_and_code ON public.cam
 --
 
 CREATE INDEX index_campaign_factors_on_factor_id ON public.campaign_factors USING btree (factor_id);
+
+
+--
+-- Name: index_campaign_idps_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_idps_on_campaign_id ON public.campaign_idps USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_idps_on_campaign_id_and_idp_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_idps_on_campaign_id_and_idp_template_id ON public.campaign_idps USING btree (campaign_id, idp_template_id);
+
+
+--
+-- Name: index_campaign_idps_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_idps_on_idp_template_id ON public.campaign_idps USING btree (idp_template_id);
 
 
 --
@@ -13023,6 +13147,14 @@ ALTER TABLE ONLY public.sms_invites
 
 
 --
+-- Name: campaign_idps fk_rails_257140097b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idps
+    ADD CONSTRAINT fk_rails_257140097b FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id);
+
+
+--
 -- Name: campaign_assessments fk_rails_26caa38e1a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14327,6 +14459,14 @@ ALTER TABLE ONLY public.smtp_settings
 
 
 --
+-- Name: campaign_idps fk_rails_c613668bf8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idps
+    ADD CONSTRAINT fk_rails_c613668bf8 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: integrations fk_rails_c64246fbe5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14957,6 +15097,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250204092029'),
 ('20250127043743'),
 ('20250124102224'),
 ('20250124101641'),
@@ -14978,6 +15119,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),
+('20241225073418'),
 ('20241224114259'),
 ('20241224114214'),
 ('20241224114112'),
@@ -15041,6 +15183,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240801093652'),
 ('20240721171706'),
 ('20240721171655'),
+('20240705073952'),
 ('20240703110220'),
 ('20240628111224'),
 ('20240621084730'),
@@ -15051,7 +15194,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240604173936'),
 ('20240603125218'),
 ('20240603082942'),
+('20240523124219'),
 ('20240523115956'),
+('20240521084702'),
 ('20240514065558'),
 ('20240510095101'),
 ('20240508075421'),

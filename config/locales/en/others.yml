@@ -718,6 +718,7 @@ en:
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Raw Results Export
         assessment_scoring_export: Scoring Results Export
+        assign_idp_to_users: Assign IDP to users
         assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
@@ -2332,9 +2333,14 @@ en:
   idp_templates:
     assign: Assign
     assign_idp_template: Assign Idp Template
+    auto_assign: Automatically assign new users
     errors:
       idp_template_not_found: IDP template not found
+    idp_template: IDP Template
+    override_exists: Override and reset exists users
     placeholder: Select a Idp Template
+    save_and_assign: Save and Assign
+    success_scheduled: The job to assign IDP has been scheduled successfully
   jobs:
     threesixty:
       bulk_downloads: Bulk Download job was scheduled successfully

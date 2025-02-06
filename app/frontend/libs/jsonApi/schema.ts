@@ -29,6 +29,7 @@ import { Schema as normsSchema } from '~/modules/admin/modules/client/core/norms
 import { Schema as developmentActionSchema } from '~/modules/admin/modules/client/core/developmentAction'
 
 import { Schema as skillsSchema } from '~/modules/admin/modules/client/core/skills'
+import { Schema as campaignIdpSchema } from '~/modules/admin/modules/campaigns/core/campaignIdp'
 
 export const Schema = {
   clients: clientSchema,
@@ -58,4 +59,5 @@ export const Schema = {
   norms: normsSchema,
   development_actions: developmentActionSchema,
   skills: skillsSchema,
+  campaign_idps: campaignIdpSchema,
 }

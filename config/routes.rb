@@ -1310,6 +1310,8 @@ controller: 'projects/idp_templates'
               end
             end
 
+            jsonapi_resources :campaign_idps, controller: 'campaigns/campaign_idps', only: %i[index create update]
+
             jsonapi_resources :campaign_factor_groups, only: %i[index create update destroy] do
               collection do
                 post :initialize_scoring
