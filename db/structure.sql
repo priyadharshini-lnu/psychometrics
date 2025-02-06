@@ -10,34 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -62,7 +34,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 -- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION pg_stat_statements IS 'track planning and execution statistics of all SQL statements executed';
 
 
 --
@@ -118,104 +90,6 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 69)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 65)
-  ORDER BY id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'First Name'::text) AS "First Name",
-    (data ->> 'full name'::text) AS "full name",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'roll number'::text) AS "roll number",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_id = 61)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 62)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 70)
-  ORDER BY id;
-
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -600,8 +474,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -766,12 +640,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -994,79 +868,103 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE VIEW public.c_10313_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department"
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
+-- Name: c_10289_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10289_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Subject Name'::text) AS "Subject Name",
+    (sheet_rows.data ->> 'Level'::text) AS "Level",
+    (sheet_rows.data ->> 'Position '::text) AS "Position ",
+    (sheet_rows.data ->> 'Organization'::text) AS "Organization",
+    (sheet_rows.data ->> 'Tenure'::text) AS "Tenure",
+    (sheet_rows.data ->> 'Success Profile'::text) AS "Success Profile",
+    (sheet_rows.data ->> 'Success Readiness 1'::text) AS "Success Readiness 1",
+    (sheet_rows.data ->> 'Success Readiness 2'::text) AS "Success Readiness 2",
+    ((sheet_rows.data ->> '1.Strategic Focus'::text))::double precision AS "1.Strategic Focus",
+    ((sheet_rows.data ->> '2.Leading Change'::text))::double precision AS "2.Leading Change",
+    ((sheet_rows.data ->> '3.Motivating & Inspiring'::text))::double precision AS "3.Motivating & Inspiring",
+    ((sheet_rows.data ->> '4.Develop And Empower People'::text))::double precision AS "4.Develop And Empower People",
+    ((sheet_rows.data ->> '5.Visioning & Alignment'::text))::double precision AS "5.Visioning & Alignment",
+    ((sheet_rows.data ->> '6.Communicating With Impact'::text))::double precision AS "6.Communicating With Impact",
+    ((sheet_rows.data ->> '7.Achieving Results'::text))::double precision AS "7.Achieving Results",
+    ((sheet_rows.data ->> '8.Commitment & Ownership'::text))::double precision AS "8.Commitment & Ownership",
+    ((sheet_rows.data ->> 'F2F Overall Score'::text))::double precision AS "F2F Overall Score",
+    ((sheet_rows.data ->> 'Leading Change'::text))::double precision AS "Leading Change",
+    ((sheet_rows.data ->> 'Commitment & Ownership'::text))::double precision AS "Commitment & Ownership",
+    ((sheet_rows.data ->> 'Communicating With Impact'::text))::double precision AS "Communicating With Impact",
+    ((sheet_rows.data ->> 'Develop And Empower People'::text))::double precision AS "Develop And Empower People",
+    ((sheet_rows.data ->> 'Strategic Focus'::text))::double precision AS "Strategic Focus",
+    ((sheet_rows.data ->> 'Visioning & Alignment'::text))::double precision AS "Visioning & Alignment",
+    ((sheet_rows.data ->> 'Achieving Results'::text))::double precision AS "Achieving Results",
+    ((sheet_rows.data ->> 'Motivating & Inspiring'::text))::double precision AS "Motivating & Inspiring",
+    ((sheet_rows.data ->> 'Social Desirability'::text))::double precision AS "Social Desirability",
+    ((sheet_rows.data ->> 'TI Overall Score'::text))::double precision AS "TI Overall Score",
+    ((sheet_rows.data ->> 'Excitable'::text))::double precision AS "Excitable",
+    ((sheet_rows.data ->> 'Skeptical'::text))::double precision AS "Skeptical",
+    ((sheet_rows.data ->> 'Cautious'::text))::double precision AS "Cautious",
+    ((sheet_rows.data ->> 'Reserved'::text))::double precision AS "Reserved",
+    ((sheet_rows.data ->> 'Leisurely'::text))::double precision AS "Leisurely",
+    ((sheet_rows.data ->> 'Bold'::text))::double precision AS "Bold",
+    ((sheet_rows.data ->> 'Mischievous'::text))::double precision AS "Mischievous",
+    ((sheet_rows.data ->> 'Colorful'::text))::double precision AS "Colorful",
+    ((sheet_rows.data ->> 'Imaginative'::text))::double precision AS "Imaginative",
+    ((sheet_rows.data ->> 'Diligent'::text))::double precision AS "Diligent",
+    ((sheet_rows.data ->> 'Dutiful'::text))::double precision AS "Dutiful",
+    ((sheet_rows.data ->> 'Qualitative_Scale'::text))::double precision AS "Qualitative_Scale",
+    ((sheet_rows.data ->> 'Quantitative_Scale'::text))::double precision AS "Quantitative_Scale",
+    ((sheet_rows.data ->> 'HBRI Overall Score'::text))::double precision AS "HBRI Overall Score",
+    ((sheet_rows.data ->> '5 point scale'::text))::double precision AS "5 point scale",
+    ((sheet_rows.data ->> 'Prospection'::text))::double precision AS "Prospection",
+    ((sheet_rows.data ->> 'Sustainability'::text))::double precision AS "Sustainability",
+    ((sheet_rows.data ->> 'Contribution'::text))::double precision AS "Contribution",
+    ((sheet_rows.data ->> 'Alignment'::text))::double precision AS "Alignment",
+    ((sheet_rows.data ->> 'Empowerment'::text))::double precision AS "Empowerment",
+    ((sheet_rows.data ->> 'Attunement'::text))::double precision AS "Attunement",
+    ((sheet_rows.data ->> 'Foresight'::text))::double precision AS "Foresight",
+    ((sheet_rows.data ->> 'Overall ACPI'::text))::double precision AS "Overall ACPI",
+    ((sheet_rows.data ->> 'Promotion & Growth'::text))::double precision AS "Promotion & Growth",
+    ((sheet_rows.data ->> 'Pay, Rewards & Benefits'::text))::double precision AS "Pay, Rewards & Benefits",
+    ((sheet_rows.data ->> 'Job Security'::text))::double precision AS "Job Security",
+    ((sheet_rows.data ->> 'Work Environment'::text))::double precision AS "Work Environment",
+    ((sheet_rows.data ->> 'Recognition'::text))::double precision AS "Recognition",
+    ((sheet_rows.data ->> 'Purpose & Meaning'::text))::double precision AS "Purpose & Meaning",
+    ((sheet_rows.data ->> 'Career Opportunities'::text))::double precision AS "Career Opportunities",
+    ((sheet_rows.data ->> 'Work Life Balance'::text))::double precision AS "Work Life Balance",
+    ((sheet_rows.data ->> 'Learning & Development'::text))::double precision AS "Learning & Development",
+    ((sheet_rows.data ->> 'Positive Relationships'::text))::double precision AS "Positive Relationships",
+    ((sheet_rows.data ->> 'Extrinsic Score'::text))::double precision AS "Extrinsic Score",
+    ((sheet_rows.data ->> 'Intrinsic Score'::text))::double precision AS "Intrinsic Score",
+    ((sheet_rows.data ->> 'Overall WPI Score'::text))::double precision AS "Overall WPI Score",
+    ((sheet_rows.data ->> 'Overall Potential'::text))::double precision AS "Overall Potential",
+    (sheet_rows.data ->> 'Talent Mapping'::text) AS "Talent Mapping",
+    ((sheet_rows.data ->> 'Performance'::text))::double precision AS "Performance",
+    (sheet_rows.data ->> 'Performance Level'::text) AS "Performance Level",
+    (sheet_rows.data ->> 'Potential'::text) AS "Potential",
+    (sheet_rows.data ->> 'Position in 9 Box'::text) AS "Position in 9 Box",
+    ((sheet_rows.data ->> 'Managers Ranks'::text))::double precision AS "Managers Ranks",
+    ((sheet_rows.data ->> 'Section Head Ranks'::text))::double precision AS "Section Head Ranks",
+    ((sheet_rows.data ->> 'Overall Rank'::text))::double precision AS "Overall Rank",
+    (sheet_rows.data ->> 'Gender'::text) AS "Gender"
    FROM public.sheet_rows
-  WHERE (sheet_id = 69)
-  ORDER BY id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 65)
-  ORDER BY id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 62)
-  ORDER BY id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 70)
-  ORDER BY id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 72)
-  ORDER BY id;
+  WHERE (sheet_rows.sheet_id = 49)
+  ORDER BY sheet_rows.id;
 
 
 --
@@ -1123,13 +1021,13 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
+    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -1554,8 +1452,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    default_idp_template_id bigint,
-    practice_campaign boolean DEFAULT false
+    practice_campaign boolean DEFAULT false,
+    default_idp_template_id bigint
 );
 
 
@@ -2067,15 +1965,6 @@ ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
 
 
 --
--- Name: data_migrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.data_migrations (
-    version character varying NOT NULL
-);
-
-
---
 -- Name: datasheet_column_preferences; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2196,14 +2085,14 @@ CREATE TABLE public.development_actions (
     learning_style integer DEFAULT 0 NOT NULL,
     name character varying NOT NULL,
     description character varying NOT NULL,
+    course_url character varying,
     course_provider character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     image character varying,
-    project_id bigint,
-    course_url character varying,
-    course_start_date date,
-    course_end_date date
+    course_start_date timestamp(6) without time zone,
+    course_end_date timestamp(6) without time zone,
+    project_id bigint
 );
 
 
@@ -2610,7 +2499,8 @@ CREATE TABLE public.hogan_credentials (
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
     provider integer DEFAULT 0,
-    norm character varying
+    norm character varying,
+    hogan_group_name character varying
 );
 
 
@@ -3502,13 +3392,13 @@ CREATE TABLE public.user_assessment_factor_scores (
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT id,
-    factor_id,
-    user_assessment_id,
-    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((scores ->> 'score'::text))::double precision AS score,
-    ((scores ->> 'zscore'::text))::double precision AS zscore,
-    ((scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -6547,10 +6437,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -8664,14 +8554,6 @@ ALTER TABLE ONLY public.dashboards
 
 ALTER TABLE ONLY public.data_geos
     ADD CONSTRAINT data_geos_pkey PRIMARY KEY (id);
-
-
---
--- Name: data_migrations data_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.data_migrations
-    ADD CONSTRAINT data_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -12432,6 +12314,13 @@ CREATE UNIQUE INDEX index_users_on_encrypted_otp_secret_key ON public.users USIN
 
 
 --
+-- Name: index_users_on_external_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_external_id ON public.users USING btree (external_id);
+
+
+--
 -- Name: index_users_on_grants; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12775,6 +12664,13 @@ CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
+-- Name: users_email_project_id_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (email, COALESCE(project_id, 0));
+
+
+--
 -- Name: sms_invites creator_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13063,6 +12959,14 @@ ALTER TABLE ONLY public.communication_email_resources
 
 
 --
+-- Name: campaign_reports fk_rails_1eecc2fd8d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_reports
+    ADD CONSTRAINT fk_rails_1eecc2fd8d FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: campaign_assessment_groups fk_rails_20a5099c5a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13196,6 +13100,14 @@ ALTER TABLE ONLY public.innovation_styles_factors
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_2f45aa472a FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: report_approval_settings fk_rails_2f5e81c8e9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_approval_settings
+    ADD CONSTRAINT fk_rails_2f5e81c8e9 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -13919,6 +13831,14 @@ ALTER TABLE ONLY public.user_profiles
 
 
 --
+-- Name: reports_accesses fk_rails_88e27a8e2d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses
+    ADD CONSTRAINT fk_rails_88e27a8e2d FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_assessments fk_rails_892b304988; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14116,6 +14036,22 @@ ALTER TABLE ONLY public.user_report_comments
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_9c1b8d7e35 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_campaigns fk_rails_9cb58b8a3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_campaigns
+    ADD CONSTRAINT fk_rails_9cb58b8a3f FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: saville_report_settings fk_rails_9dbdc763fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_report_settings
+    ADD CONSTRAINT fk_rails_9dbdc763fd FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -14351,6 +14287,14 @@ ALTER TABLE ONLY public.proctoring_sessions
 
 
 --
+-- Name: user_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reports
+    ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: user_idp_plans fk_rails_c2e94ce0f4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14435,7 +14379,7 @@ ALTER TABLE ONLY public.skills
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -14459,7 +14403,7 @@ ALTER TABLE ONLY public.assessments_clients
 --
 
 ALTER TABLE ONLY public.development_actions
-    ADD CONSTRAINT fk_rails_cc6a4ae75e FOREIGN KEY (project_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_cc6a4ae75e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -14516,6 +14460,14 @@ ALTER TABLE ONLY public.text_module_overrides
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_d2e6622e0f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: clients_reports fk_rails_d336b71b0b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.clients_reports
+    ADD CONSTRAINT fk_rails_d336b71b0b FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -14607,6 +14559,14 @@ ALTER TABLE ONLY public.assessors
 
 
 --
+-- Name: hogan_report_settings fk_rails_d77e15b1b7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_report_settings
+    ADD CONSTRAINT fk_rails_d77e15b1b7 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: idp_template_skills fk_rails_d863699667; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14695,6 +14655,14 @@ ALTER TABLE ONLY public.sheet_row_data
 
 
 --
+-- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports
+    ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: campaign_assessments fk_rails_e37db7e3eb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14772,6 +14740,14 @@ ALTER TABLE ONLY public.threesixty_evaluators
 
 ALTER TABLE ONLY public.bulk_reports
     ADD CONSTRAINT fk_rails_ea7da51ed5 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: assigns_reports fk_rails_eb27834cf2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assigns_reports
+    ADD CONSTRAINT fk_rails_eb27834cf2 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
 
 
 --
@@ -14981,16 +14957,15 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250123071220'),
-('20250127090320'),
+('20250127043743'),
 ('20250124102224'),
 ('20250124101641'),
+('20250123071220'),
 ('20250121155800'),
 ('20250121141028'),
 ('20250121134222'),
 ('20250121130354'),
 ('20250121061959'),
-('20250115201932'),
 ('20250115135401'),
 ('20250115134236'),
 ('20250113111540'),

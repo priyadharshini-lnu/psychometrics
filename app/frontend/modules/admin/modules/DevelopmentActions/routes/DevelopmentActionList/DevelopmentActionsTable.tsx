@@ -3,6 +3,7 @@ import {
   Button, MenuProps, Typography,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { TagList } from '~/modules/admin/components/Resource/TagList'
 import { DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
 import { Resource } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -36,21 +37,35 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
       sorter
     />
     <Resource.Column<DevelopmentAction>
+      title={I18n.t('common.column.skills')}
+      id="skills"
+      render={(_, developmentAction) => (
+        <>
+          <TagList
+            initialTags={developmentAction.skills?.map(s => s.name) as string[]}
+            config={{
+              editable: false,
+            }}
+          />
+        </>
+      )}
+      width={200}
+    />
+    <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.project')}
       id="project.name"
-      render={developmentAction => (
+      render={developmentAction => (developmentAction.project?.id ? (
         <Typography.Link
           copyable
-          href={`/admin/clients/${developmentAction.project?.id}`}
+          href={`/admin/projects/${developmentAction.project?.id}/new_campaigns?filters[statusEq]=active`}
           target="_blank"
         >
           {developmentAction.project?.name}
         </Typography.Link>
-      )}
+      ) : null)}
       width={200}
       sorter
     />
-
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.updated_at')}
       id="updated_at"

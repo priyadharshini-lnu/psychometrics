@@ -49,7 +49,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
   } = useResources<Client>('clients')
   const {
-    data: skills,
+    data: skillsData,
     fetch: fetchSkills,
     isLoading: isSkillsLoading,
     setData: setSkills,
@@ -90,17 +90,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     },
   })
 
-  const fetchSkillsByValue = (value: string) => fetchSkills({
-    apiConfig: {
-      filter: {
-        name_cont: value,
-        all_skills: 'true',
-      },
-      fields: { skills: ['name'] },
-      include: ['project'],
-    },
-  })
-
   const searchAvailableOwners = debounce((value) => {
     fetchOwnersByValue(value)
   }, 50)
@@ -122,7 +111,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
 
   useEffect(() => {
     fetchOwnersByValue('')
-    fetchSkillsByValue('')
   }, [])
 
   const category = Form.useWatch('category', form)
@@ -192,6 +180,8 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       },
     })
   }
+
+  const skills = developmentAction?.skills ? skillsData.concat(developmentAction.skills) : skillsData
 
   return (
     <ResourceFormModal

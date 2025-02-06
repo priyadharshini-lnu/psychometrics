@@ -40,6 +40,12 @@ export const DevelopmentActionTR = t.intersection([
     ]),
     image: t.union([t.string, t.null]),
     courseUrl: t.union([t.string, t.null]),
+    skills: t.union([
+      t.array(t.type({
+        id: t.string,
+        name: t.string,
+      })),
+      t.undefined]),
   })])
 
 export type DevelopmentAction = t.TypeOf<typeof DevelopmentActionTR>
