@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import {
-  Card, Col, Button, Typography, Progress, Row, Tooltip, Space,
+  Card, Col, Typography, Progress, Row, Tooltip, Space,
 } from 'antd'
 import cs from 'classnames'
 
-import { DirectionalArrowIcon } from '~/glint'
+import { DirectionalArrowIcon, ScrollToViewOnFocusButton } from '~/glint'
 
 import styles from './styles.less'
 
@@ -119,7 +119,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
             <Space>
               {secondaryBtnText && (
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
-                <Button
+                <ScrollToViewOnFocusButton
                   id={secondaryBtnId}
                   size="small"
                   type="primary"
@@ -131,11 +131,11 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                 >
                   {secondaryBtnText}
                   <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
-                </Button>
+                </ScrollToViewOnFocusButton>
               </ButtonWrapper>
               )}
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
-                <Button
+                <ScrollToViewOnFocusButton
                   id={buttonId}
                   loading={actionLoading}
                   type="primary"
@@ -147,7 +147,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                 >
                   {buttonText}
                   <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
-                </Button>
+                </ScrollToViewOnFocusButton>
               </ButtonWrapper>
             </Space>
           </Col>

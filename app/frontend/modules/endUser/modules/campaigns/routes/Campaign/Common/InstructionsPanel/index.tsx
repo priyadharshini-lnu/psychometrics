@@ -1,9 +1,11 @@
 import React, {
   useState, FC, useRef, useEffect,
 } from 'react'
-import { Button, Typography } from 'antd'
+import { Typography } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+
+import { ScrollToViewOnFocusButton } from '~/glint'
 
 import styles from './styles.less'
 
@@ -61,7 +63,8 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
         <div aria-hidden={showExpandLink && collapsed ? 'true' : 'false'}>{description}</div>
         {showExpandLink && (
         <div className={styles['container-button']}>
-          <Button
+          <ScrollToViewOnFocusButton
+            scrollBehavior={{ behavior: 'smooth', block: 'end' }}
             icon={collapsed ? <DownOutlined /> : <UpOutlined />}
             type="primary"
             shape="round"
@@ -72,7 +75,7 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
             {collapsed ? I18n.t('campaign.instructions.expand_link_text')
               : I18n.t('campaign.instructions.collapse_link_text')
             }
-          </Button>
+          </ScrollToViewOnFocusButton>
         </div>
         )}
       </div>

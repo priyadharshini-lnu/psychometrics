@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Typography, Space } from 'antd'
-import { GlobalOutlined } from '@ant-design/icons'
+import { GlobalOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import TimzoneSelect from '~/components/TimeZoneSelect'
 
@@ -22,12 +22,11 @@ export const InvitationTitle:FC<Props> = ({
     <Space className="w-100" direction="vertical" size="large">
       <p>{description}</p>
       <span className="text-nowrap">
-        <GlobalOutlined />
+        <GlobalOutlined className="pe-1" />
         <TimzoneSelect
           aria-description={currentTimeZone}
           value={currentTimeZone}
           onChange={onTimeZoneChange}
-          bordered={false}
           aria-label={I18n.t('glint.booking_card.aria_timezone_select')}
         />
       </span>

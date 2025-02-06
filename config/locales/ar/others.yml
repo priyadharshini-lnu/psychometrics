@@ -530,6 +530,7 @@ ar:
     change_password: تغيير كلمة السر
     delete: " حذف"
     edit: تعديل
+    lighthouse_app: ميرسر لايتهاوس
     login: تسجيل الدخول
     manage: " إدارة"
     'no': لا

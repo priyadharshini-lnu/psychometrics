@@ -1,12 +1,14 @@
-import React, { useContext, FC, useState } from 'react'
+import React, {
+  useContext, FC, useState,
+} from 'react'
 import {
-  Layout, Menu, Drawer, Button,
+  Layout, Drawer, Button,
 } from 'antd'
 import { Link } from 'react-router-dom'
 import { SelectInfo } from 'rc-menu/lib/interface'
 import cs from 'classnames'
 
-import { MediaQueryContext } from '~/glint'
+import { MediaQueryContext, AccessibleMenu } from '~/glint'
 import { MenuTriggerIcon } from '~/glint/icons'
 import styles from './styles.less'
 
@@ -65,7 +67,7 @@ export const PageSider: FC<PageSiderProps> = ({
     setDrawerOpen(!drawerOpen)
   }
   const menu = (
-    <Menu
+    <AccessibleMenu
       selectedKeys={[activeKey]}
       className={styles['sider-menu']}
       mode="inline"
