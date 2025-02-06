@@ -19,6 +19,7 @@ import I18nStore from '~/modules/reports/store/I18nStore'
 import Utils from '~/modules/reports/utils'
 
 import styles from './styles.less'
+import { PageData } from '../PaginationContext'
 
 const MOCK_POSITIVE_GAPS: Array<Gap> = [
   {
@@ -81,6 +82,8 @@ interface OwnProps {
   noOfItems: number | null
   gapCutoff: number | null
   precision?: number
+  paginationContext: PageData | null
+
   style?: CSSProperties & { fontColor: string }
 }
 
@@ -97,6 +100,7 @@ const QuestionTypeComponent: FC<Props> = ({
   noOfItems,
   gapCutoff,
   precision,
+  paginationContext,
   style,
 }) => {
   const calculateGaps = (
@@ -177,11 +181,11 @@ const QuestionTypeComponent: FC<Props> = ({
 
     const positiveGaps = sortedResults
       .filter(result => result.diff > 0 && result.diff >= minGap)
-      .slice(0, itemLimit)
+      .slice(0, itemLimit).map((gap, i) => ({ ...gap, rank: i + 1 }))
     const negativeGaps = sortedResults
       .filter(result => result.diff < 0 && result.diff <= -minGap)
       .slice(-itemLimit)
-      .reverse()
+      .reverse().map((gap, i) => ({ ...gap, rank: i + 1 }))
 
     return [positiveGaps, negativeGaps]
   }
@@ -197,8 +201,11 @@ const QuestionTypeComponent: FC<Props> = ({
     ? calculateGaps(providedQuestionChoices)
     : [MOCK_POSITIVE_GAPS, MOCK_NEGATIVE_GAPS]
 
-  const showPositiveGapTable = gapType === GapType.ALL || gapType === GapType.POSITIVE
-  const showNegativeGapsTable = gapType === GapType.ALL || gapType === GapType.NEGATIVE
+  const showPositiveGapTable = paginationContext
+    ? !!paginationContext?.rowIds?.top?.length : (gapType === GapType.ALL || gapType === GapType.POSITIVE)
+  const showNegativeGapsTable = paginationContext
+    ? !!paginationContext?.rowIds?.bottom?.length : (gapType === GapType.ALL || gapType === GapType.NEGATIVE)
+
   const showTitle = gapType === GapType.ALL
   const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
@@ -223,6 +230,9 @@ const QuestionTypeComponent: FC<Props> = ({
                   'reports.modules.gap_assessment.no_positive_gaps',
                 )}
                 hideValues={hideValues}
+                type="top"
+                paginationContext={paginationContext}
+
               />
             </>
           )}
@@ -244,6 +254,8 @@ const QuestionTypeComponent: FC<Props> = ({
                 )}
                 hideValues={hideValues}
                 precision={precision}
+                type="bottom"
+                paginationContext={paginationContext}
               />
             </>
           )}
@@ -363,13 +375,13 @@ const THeader: FC<THeaderProps> = ({
 }) => (
   <>
     {title.length === 0 && (
-      <tr className={styles.title}>
+      <tr className={styles.title} data-header>
         <th colSpan={hideValues ? 3 : 6}>
           {title}
         </th>
       </tr>
     )}
-    <tr className={styles.headers}>
+    <tr className={styles.headers} data-header>
       <th className={styles.label}>
         {I18nStore.t('reports.modules.gap_assessment.rank')}
       </th>
@@ -397,14 +409,16 @@ interface TBodyProps {
   emptyText: string
   hideValues: boolean
   precision?: number
+  type: 'top' | 'bottom'
+  paginationContext: PageData | null
 }
 
 const TBody: FC<TBodyProps> = ({
-  gaps, emptyText, hideValues, precision,
+  gaps, emptyText, hideValues, precision, type, paginationContext,
 }) => {
   if (gaps.length === 0) {
     return (
-      <tr>
+      <tr data-row={0} data-type={type}>
         <td colSpan={6}>{emptyText}</td>
       </tr>
     )
@@ -421,11 +435,13 @@ const TBody: FC<TBodyProps> = ({
     return (diff > 0 ? '+' : '') + Utils.round(diff, precision ?? 2)
   }
 
+  const data = paginationContext ? paginationContext.rowIds[type].map(id => gaps[id]) : gaps
+
   return (
     <>
-      {gaps.map((gap, i) => (
-        <tr key={i} className={styles.row}>
-          <td>{i + 1}</td>
+      {data.map((gap, i) => (
+        <tr key={i} className={styles.row} data-row={i} data-type={type}>
+          <td>{gap.rank}</td>
           <td>{gap.factorName}</td>
           <td>{gap.questionName}</td>
           {!hideValues && (

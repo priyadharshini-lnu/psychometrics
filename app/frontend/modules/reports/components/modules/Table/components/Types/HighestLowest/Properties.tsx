@@ -10,6 +10,7 @@ import PropertyNumber from '~/modules/reports/components/PropertyNumber'
 import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
+import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 
 const TABLE_SECTIONS_OPTIONS = [
   {
@@ -90,6 +91,12 @@ export const Properties: FC<Props> = ({ modules }) => {
         scoreCutoff={scoreCutoff}
         onChange={onChange}
       />
+      {modules.length > 1 ? null
+        : (
+          <div className="mtm">
+            <PaginationOptions module={model} onChange={onChange} />
+          </div>
+        )}
     </Space>
   )
 }

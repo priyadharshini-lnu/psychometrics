@@ -17,6 +17,48 @@ RSpec.describe Api::V2::Skill::Contract do
       }
     end
 
+    context 'with tagged_with parameter' do
+      it 'skips validation when only tagged_with is present' do
+        params = {
+          filter: {
+            tagged_with: 'some-tag'
+          }
+        }
+        contract = described_class::Search.new.call(params, { current_user: user, params: params })
+        expect(contract.failure?).to eq(false)
+      end
+
+      it 'still validates other parameters when tagged_with is present' do
+        params = {
+          filter: {
+            tagged_with: 'some-tag',
+            all_skills: 'invalid', # should still fail validation
+            name_cont: 'valid search term' # valid name_cont to avoid that validation
+          }
+        }
+        contract = described_class::Search.new.call(params, { current_user: user, params: params })
+        expect(contract.failure?).to eq(true)
+        expect(contract.errors.to_h).to eq(
+          filter: { all_skills: [I18n.t('administration.skills.errors.search.invalid_all_value')] }
+        )
+      end
+
+      it 'still validates category_in when tagged_with is present' do
+        params = {
+          filter: {
+            tagged_with: 'some-tag',
+            category_in: 'invalid', # should still fail validation
+            name_cont: 'valid search term' # valid name_cont to avoid that validation
+          }
+        }
+        contract = described_class::Search.new.call(params, { current_user: user, params: params })
+        expect(contract.failure?).to eq(true)
+        expect(contract.errors.to_h).to eq(
+          filter: { category_in: [I18n.t('administration.skills.errors.search.invalid_category')] }
+        )
+      end
+    end
+
     it 'passes if all params are valid' do
       contract = described_class::Search.new.call(valid_params, { current_user: user, params: valid_params })
       expect(contract.failure?).to eq(false)
@@ -37,7 +79,9 @@ RSpec.describe Api::V2::Skill::Contract do
       }
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to include(filter: { name_cont: ["can't be blank"] })
+      expect(contract.errors.to_h).to include(
+        filter: { name_cont: ['is required and must belonger than 3 characters'] }
+      )
     end
 
     it 'validates minimum length for name_cont' do

@@ -5,17 +5,26 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import PreviewStore from '~/modules/reports/store/PreviewStore'
 import math from '~/modules/reports/utils/math'
 import styles from '../styles.less'
+import { useModulePagination } from '~/hooks/useModulePagination'
+import { FactorPaginationContext } from './FactorPaginationContext'
 
-const Factor = ({ model }) => {
+const Factor = ({ model, insertPaginationPage, preview }) => {
   const { fontFamily, fontSize, fontColor } = model.props.style
   const styleProp = { fontFamily, fontSize, color: fontColor }
   const assessment = AppStore.getAssessmentById(model.assessment_id)
   const factor = AppStore.factors[assessment.dimensionId].find(f => f.id === model.props.factorId)
+
+  const { paginationContext } = useModulePagination(
+    model, `[data-table="${model.id}"]`, FactorPaginationContext, insertPaginationPage, preview,
+  )
+
   if (!factor || !model.props.filter) return null
+
+  const filters = paginationContext?.filterId?.length ? [...paginationContext?.filterId] : model.props.filter
   return (
-    <div style={styleProp}>
-      {model.props.filter.map(filterId => (
-        <Table factor={factor} key={filterId} filterId={filterId} model={model} />
+    <div style={styleProp} data-table={model.id}>
+      {filters.map(filterId => (
+        <Table paginationContext={paginationContext} factor={factor} key={filterId} filterId={filterId} model={model} />
       ))}
     </div>
   )
@@ -34,7 +43,9 @@ const MOCK_RESULTS = {
   items: 30,
 }
 
-function Table ({ filterId, model, factor }) {
+function Table ({
+  filterId, model, factor,
+}) {
   const filter = AppStore.report.filters.find(f => f.id === filterId)
 
   const displayNumber = number => (_.isNumber(number) ? _.round(number, 2) : '-')
@@ -71,7 +82,7 @@ function Table ({ filterId, model, factor }) {
   if (!results) { return null }
 
   return (
-    <table className={styles.table}>
+    <table className={styles.table} data-paginatable={1} data-filter-id={filterId}>
       <tbody>
         <tr>
           <td className={styles.label} colSpan={2}>

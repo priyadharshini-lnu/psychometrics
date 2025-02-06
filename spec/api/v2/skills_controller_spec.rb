@@ -232,16 +232,27 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
     let(:project) { Project.find(create(:project).id) }
     let!(:skill) { create(:skill, name: 'Ruby Engineering', project: project) }
     let!(:global_skill) { create(:skill, name: 'Python Engineering', project: nil) }
+    let!(:technical_skill) { create(:skill, name: 'Java Engineering', project: project, category: :technical) }
+    let!(:behavioral_skill) { create(:skill, name: 'Leadership', project: project, category: :behavioral) }
 
     before do
       sign_in project_manager
       allow_any_instance_of(Api::Administration::SkillPolicy).to receive(:tags_search?).and_return(true)
+      allow_any_instance_of(Api::Administration::SkillPolicy::Scope).to receive(:resolve).and_return(::Skill.all)
+
       ActsAsTaggableOn::Tag.create!(name: 'ruby programming')
       ActsAsTaggableOn::Tag.create!(name: 'python programming')
+      ActsAsTaggableOn::Tag.create!(name: 'java skills')
+      ActsAsTaggableOn::Tag.create!(name: 'leadership skills')
+
       skill.tag_list.add('ruby programming')
       skill.save!
       global_skill.tag_list.add('python programming')
       global_skill.save!
+      technical_skill.tag_list.add('java skills')
+      technical_skill.save!
+      behavioral_skill.tag_list.add('leadership skills')
+      behavioral_skill.save!
     end
 
     context 'with valid query' do
@@ -323,6 +334,86 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
             }
           ]
         )
+      end
+    end
+
+    context 'with category_in filter' do
+      it 'returns tags from technical skills only' do
+        get :tags_search, params: {
+          filter: {
+            category_in: 'technical',
+            name_cont: 'skills',
+            all: 'true'
+          }
+        }
+
+        expect(response).to have_http_status(:ok)
+        parsed_response = JSON.parse(response.body)
+        names = parsed_response['data'].map { |tag| tag['attributes']['name'] }
+        expect(names).to include('java skills')
+        expect(names).not_to include('leadership skills')
+      end
+
+      it 'returns tags from behavioral skills only' do
+        get :tags_search, params: {
+          filter: {
+            category_in: 'behavioral',
+            name_cont: 'skills',
+            all: 'true'
+          }
+        }
+
+        expect(response).to have_http_status(:ok)
+        parsed_response = JSON.parse(response.body)
+        names = parsed_response['data'].map { |tag| tag['attributes']['name'] }
+        expect(names).to include('leadership skills')
+        expect(names).not_to include('java skills')
+      end
+
+      it 'returns tags from multiple categories' do
+        get :tags_search, params: {
+          filter: {
+            category_in: 'technical,behavioral',
+            name_cont: 'skills',
+            all: 'true'
+          }
+        }
+
+        expect(response).to have_http_status(:ok)
+        parsed_response = JSON.parse(response.body)
+        names = parsed_response['data'].map { |tag| tag['attributes']['name'] }
+        expect(names).to include('leadership skills', 'java skills')
+      end
+
+      it 'combines category filter with project filter' do
+        get :tags_search, params: {
+          filter: {
+            category_in: 'technical',
+            project_id_eq: project.id,
+            name_cont: 'java'
+          }
+        }
+
+        expect(response).to have_http_status(:ok)
+        parsed_response = JSON.parse(response.body)
+        names = parsed_response['data'].map { |tag| tag['attributes']['name'] }
+        expect(names).to include('java skills')
+        expect(names).not_to include('python programming', 'leadership skills')
+      end
+
+      it 'returns all matching tags when all parameter is true' do
+        get :tags_search, params: {
+          filter: {
+            category_in: 'technical,behavioral',
+            all: 'true',
+            name_cont: 'skills'
+          }
+        }
+
+        expect(response).to have_http_status(:ok)
+        parsed_response = JSON.parse(response.body)
+        names = parsed_response['data'].map { |tag| tag['attributes']['name'] }
+        expect(names).to include('leadership skills', 'java skills')
       end
     end
   end

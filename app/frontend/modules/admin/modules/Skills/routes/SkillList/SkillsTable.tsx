@@ -62,7 +62,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => (
       render={skill => (skill.project?.id ? (
         <Typography.Link
           copyable
-          href={`/admin/clients/${skill.project?.id}`}
+          href={`/admin/projects/${skill.project?.id}/new_campaigns?filters[statusEq]=active`}
           target="_blank"
         >
           {skill.project?.name}

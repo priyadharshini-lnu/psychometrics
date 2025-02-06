@@ -54,7 +54,7 @@ export class PaginationContext {
       if (!factorId) { return }
 
       const maxHeight = this.pages.length > 1 ? secondPageHeight : contentHeight
-      if (page.factorIds.length && (currentPageHeight + factorRow.height > maxHeight)) {
+      if (page.factorIds.length && (currentPageHeight + factorRow.height > maxHeight) && page.factorIds.length) {
         this.needPagination = true
         page = {
           factorIds: [factorId],

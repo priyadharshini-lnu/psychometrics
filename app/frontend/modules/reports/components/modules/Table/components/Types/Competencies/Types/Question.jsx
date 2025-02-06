@@ -17,7 +17,9 @@ const connector = connect((state, { model }) => ({
   questions: getQuestions(state.report, model.assessment_id),
 }))
 
-const QuestionComponent = ({ filters, model, questions }) => {
+const QuestionComponent = ({
+  filters, model, questions, paginationContext,
+}) => {
   const { props: { questionsChoices, showAsBarChart } } = model
 
   const enhanceFiltersByValue = (questionId, choiceId) => {
@@ -73,12 +75,17 @@ const QuestionComponent = ({ filters, model, questions }) => {
     style.borderColor = borderColor
   }
 
+  const paginatedData = paginationContext?.factorIds?.length
+    ? filteredQuestionsChoices.filter(
+      s => paginationContext.factorIds.includes(`${s.questionId}_${s.choiceId}`),
+    )
+    : filteredQuestionsChoices
   return (
     <>
       <div className={styles.table} style={style}>
         <table>
           {!hideHeader && (
-            <thead>
+            <thead data-table-header>
               <tr>
                 <td
                   rowSpan={2}
@@ -110,14 +117,18 @@ const QuestionComponent = ({ filters, model, questions }) => {
             </thead>
           )}
           <tbody>
-            {filteredQuestionsChoices.map((questionChoice) => {
+            {paginatedData.map((questionChoice, i) => {
               const results = enhanceFiltersByValue(questionChoice.questionId, questionChoice.choiceId)
                 .filter(r => r.value > 0)
 
               results.forEach(r => filterIdsHavingResults.add(r.id))
               const descStyle = getDescStyle(results)
               return (
-                <tr key={`${questionChoice.questionId}_${questionChoice.choiceId}`}>
+                <tr
+                  key={`${questionChoice.questionId}_${questionChoice.choiceId}`}
+                  data-row={i}
+                  data-factor-id={`${questionChoice.questionId}_${questionChoice.choiceId}`}
+                >
                   <td width={`${DESC_COLUMN_WIDTH}%`}>
                     <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
                   </td>
