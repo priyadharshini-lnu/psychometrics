@@ -9,7 +9,7 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
 
   ransack_filters %i[
     name_cont
-    search_query
+    filterable_fields
   ]
 
   def created_at
@@ -58,6 +58,10 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
                              else
                                Time.zone.parse(date.to_s)
                              end
+  end
+
+  def self.sortable_fields(context)
+    super + %i[project.name]
   end
 
   def course_start_date

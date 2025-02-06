@@ -83,7 +83,7 @@ RSpec.describe Skill, type: :model do
   describe 'ransackable scopes' do
     it 'returns the allowed ransackable scopes' do
       expect(described_class.ransackable_scopes).
-        to match_array(%w[all_skills by_project filter_by_category global search_query])
+        to match_array(%w[all_skills by_project filter_by_category global filterable_fields])
     end
   end
 

@@ -23,6 +23,7 @@ class Campaign < ApplicationRecord
   has_one :project_datasheet, through: :project, source: :datasheet
   has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy
   has_one :dashboard
+  has_one :campaign_idp
 
   has_many :sheets, dependent: :destroy
   has_many :workshops, dependent: :destroy

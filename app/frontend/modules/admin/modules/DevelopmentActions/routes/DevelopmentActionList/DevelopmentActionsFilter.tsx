@@ -14,7 +14,7 @@ export const DevelopmentActionsFilter: React.FC<{ openModal: () => void }> = ({
   const tableLoading = resource.isLoading('fetch')
 
   return (
-    <Resource.Filter name="search_query">
+    <Resource.Filter name="filterable_fields">
 
       <Button type="primary" disabled={tableLoading} onClick={openModal}>
         <PlusOutlined />

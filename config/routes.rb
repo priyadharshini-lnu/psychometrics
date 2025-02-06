@@ -1057,6 +1057,18 @@ as: :simulation_progress_notification
   constraints format: :json do
     namespace :api do
       namespace :v1 do
+        namespace :threesixty do
+          resources :projects, only: [] do
+            resources :campaigns, only: [] do
+              resources :users, only: [], param: :user_id do
+                member do
+                  get :assessments
+                  get :scores
+                end
+              end
+            end
+          end
+        end
         resources :projects, only: %i[show create update] do
           resources :campaigns, only: %i[show create update] do
             get :assessments_reports, on: :member, action_name: 'get_assessments_reports'
@@ -1297,6 +1309,8 @@ controller: 'projects/idp_templates'
                 get :factors
               end
             end
+
+            jsonapi_resources :campaign_idps, controller: 'campaigns/campaign_idps', only: %i[index create update]
 
             jsonapi_resources :campaign_factor_groups, only: %i[index create update destroy] do
               collection do

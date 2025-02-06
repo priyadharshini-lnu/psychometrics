@@ -4,6 +4,7 @@ class DevelopmentAction < ApplicationRecord
   extend Mobility
   include ActiveStorageSync
   include ActiveStorageAttachable
+  include RansackSearchableFields
 
   translates :name, :description
 
@@ -36,21 +37,12 @@ class DevelopmentAction < ApplicationRecord
 
   before_save :clear_course_data, if: -> { category_changed? && default? }
 
-  # Proper search scope implementation
-  scope :search_query, lambda { |query|
-    where('name ILIKE ?', "%#{query}%")
-  }
-
   def self.ransackable_attributes(_auth_object = nil)
     %w[name]
   end
 
   def self.ransackable_associations(_auth_object = nil)
     %w[course_schedules image_attachment image_blob project skills skills_development_actions translations]
-  end
-
-  def self.ransackable_scopes(_auth_object = nil)
-    [:search_query]
   end
 
   # Add helper method to get human readable category names

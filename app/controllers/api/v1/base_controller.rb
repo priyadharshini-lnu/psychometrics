@@ -25,13 +25,18 @@ module Api
       attr_reader :current_user, :api_key
 
       def user
-        @user ||=
-          begin
-            u = ::Users::Regular.find_by(project_id: project_id, id: user_id)
-            raise Api::Errors::ResourceNotFound, "User with id=#{user_id} was not found" unless u
+        user_id_type = request.headers['X-USER-ID-TYPE']
+        @user ||= begin
+          u = if user_id_type == 'external_id'
+                ::Users::Regular.find_by(project_id: project_id, external_id: user_id)
+              else
+                ::Users::Regular.find_by(project_id: project_id, id: user_id)
+              end
 
-            u
-          end
+          raise Api::Errors::ResourceNotFound, "User with id=#{user_id} was not found" unless u
+
+          u
+        end
       end
 
       def project

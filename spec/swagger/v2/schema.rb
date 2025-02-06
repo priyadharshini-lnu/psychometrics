@@ -497,6 +497,15 @@ module Swagger
           ),
           IdpTemplateCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::IdpTemplate::Schema.create_request
+          ),
+          CampaignIdpListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignIdp::Schema.multiple_resource_response
+          ),
+          CampaignIdpListCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignIdp::Schema.create_request
+          ),
+          CampaignIdpListUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignIdp::Schema.update_request
           )
         }
       }

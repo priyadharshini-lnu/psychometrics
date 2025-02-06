@@ -2300,6 +2300,7 @@ en:
           topics:
             label: Events
             list:
+              assessment_assigned: Assessment Assigned
               assessment_completed: Assessment Completed
               assessment_started: Assessment Started
               assessment_timeout: Assessment Timeout

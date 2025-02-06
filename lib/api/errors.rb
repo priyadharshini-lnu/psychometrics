@@ -83,5 +83,14 @@ module Api
         @status = :unauthorized
       end
     end
+
+    class InvalidRequest < ApiError
+      def initialize(more_info = nil)
+        super(more_info)
+        @message = 'Invalid request'
+        @code = 1009
+        @status = :bad_request
+      end
+    end
   end
 end

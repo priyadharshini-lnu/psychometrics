@@ -107,6 +107,10 @@ class UserAssessment < ApplicationRecord
   after_commit -> { calculate_and_save_campaign_scoring },
                if: proc { score_calculated_previously_changed? && completed? }, on: %i[update]
 
+  after_commit :publish_assessment_started_webhook, if: -> { saved_change_to_status == %w[not_started in_progress] }
+
+  after_create_commit -> { publish_assessment_assigned_webhook }
+
   alias result users_result
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -367,6 +371,14 @@ class UserAssessment < ApplicationRecord
 
   def hogan_norm_name
     user&.hogan_credential&.norm
+  end
+
+  def publish_assessment_assigned_webhook
+    UserAssessments::Webhook.new(self).publish_assessment_assigned
+  end
+
+  def publish_assessment_started_webhook
+    UserAssessments::Webhook.new(self).publish_assessment_started
   end
 end
 # rubocop:enable Metrics/ClassLength

@@ -9,7 +9,7 @@ module WebhookEvents
       'assessment_started'
     end
 
-    def prepare_payload
+    def prepare_payload # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       ctx = self.ctx || {}
       {
         assessment: {
@@ -18,7 +18,10 @@ module WebhookEvents
         },
         evaluator: {
           id: ctx[:evaluator]&.id,
-          name: ctx[:evaluator]&.decorate&.full_name
+          name: ctx[:evaluator]&.decorate&.full_name,
+          email: ctx[:evaluator]&.email,
+          external_id: ctx[:evaluator]&.external_id,
+          campaign_user_external_id: ctx[:evaluator]&.campaign_user_external_id(ctx[:campaign]&.id)
         }
       }
     end
