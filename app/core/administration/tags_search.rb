@@ -26,7 +26,8 @@ module Administration
       tag_conditions = { taggings_taggable_id_in: matching_skills.pluck(:id) }
       tag_conditions[:name_cont] = @search_params[:name_cont] if @search_params[:name_cont].present?
 
-      ActsAsTaggableOn::Tag.joins(:taggings).
+      ActsAsTaggableOn::Tag.select('DISTINCT tags.*').
+        joins(:taggings).
         where(taggings: { taggable_type: 'Skill' }).
         ransack(tag_conditions).
         result.

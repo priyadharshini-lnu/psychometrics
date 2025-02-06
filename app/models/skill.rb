@@ -3,6 +3,7 @@
 class Skill < ApplicationRecord
   extend Mobility
   include Taggable
+  include RansackSearchableFields
 
   SAMPLES_PER_CATEGORY = 5
 
@@ -25,10 +26,6 @@ class Skill < ApplicationRecord
   scope :global, ->(_value = nil) { where(project_id: nil) }
   scope :project_id_eq, ->(project_id) { where(project_id: project_id) }
   scope :all_skills, ->(_value = nil) { all }
-  # Search entity by word
-  scope :search_query, lambda { |query|
-    where('name ILIKE ?', "%#{query}%")
-  }
 
   scope :filter_by_category, lambda { |category|
     where(category: Skill.categories[category]) if Skill.categories.key?(category)
@@ -51,7 +48,7 @@ class Skill < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %w[all_skills global by_project filter_by_category search_query]
+    %w[all_skills global by_project filter_by_category filterable_fields]
   end
 
   # Custom ransacker for category enum

@@ -93,7 +93,8 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
   const fetchSkillsByValue = (value: string) => fetchSkills({
     apiConfig: {
       filter: {
-        search_query: value,
+        name_cont: value,
+        all_skills: 'true',
       },
       fields: { skills: ['name'] },
       include: ['project'],
@@ -110,7 +111,8 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     fetchSkills({
       apiConfig: {
         filter: {
-          search_query: value,
+          name_cont: value,
+          all_skills: 'true',
         },
         fields: { skills: ['name'] },
         include: ['project'],
@@ -360,9 +362,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                   </Flex>
 
                 </>
-              ) : (
-                null
-              )
+              ) : null
           }
 
           <Form.Item
@@ -400,7 +400,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
               mode="multiple"
               notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : null}
               defaultActiveFirstOption={false}
-              showArrow
               maxTagCount="responsive"
               virtual={false}
             >

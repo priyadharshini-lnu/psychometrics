@@ -30,7 +30,7 @@ export const SkillsFilter: React.FC<Props> = ({
 
   return (
     <Resource.Filter
-      name="search_query"
+      name="filterable_fields"
       showTagFilter
       tagFilterConfig={{ taggable_resource_type: TaggableResourceType.Skill }}
     >
