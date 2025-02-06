@@ -117,9 +117,9 @@ const Link = ({ href, children }) => {
     return !allowedPages.includes(selected)
   }
   if (isThreesixty || isAssessmentBuilder || isDashboard || isAllowed()) {
-    return <a href={href}>{children}</a>
+    return <a tabIndex={-1} href={href}>{children}</a>
   }
-  return <RouterLink to={href}>{children}</RouterLink>
+  return <RouterLink tabIndex={-1} to={href}>{children}</RouterLink>
 }
 
 export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
@@ -133,13 +133,13 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     } : null,
     permissions.dashboards ? {
       key: 'dashboards',
-      label: <a href={permissions.dashboards}>{I18n.t('administration.navigation.dashboard')}</a>,
+      label: <a tabIndex={-1} href={permissions.dashboards}>{I18n.t('administration.navigation.dashboard')}</a>,
       icon: <i className="fa fa-dashboard" />,
     } : null,
     permissions.assessorDashboard ? {
       key: 'assessorDashboard',
       label:
-      <a href={permissions.assessorDashboard}>
+      <a tabIndex={-1} href={permissions.assessorDashboard}>
         {I18n.t('administration.navigation.assessor_dashboard')}
       </a>,
       icon: <i className="fa fa-dashboard" />,
@@ -147,7 +147,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     permissions.assessorWorkshops ? {
       key: 'assessorWorkshops',
       label:
-      <a href={permissions.assessorWorkshops}>
+      <a tabIndex={-1} href={permissions.assessorWorkshops}>
         {I18n.t('administration.navigation.assessor_workshops')}
       </a>,
       icon: <CalendarOutlined />,
@@ -176,7 +176,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     permissions.norms ? {
       key: 'norms',
       label:
-      <a href={permissions.norms}>
+      <a tabIndex={-1} href={permissions.norms}>
         {I18n.t('administration.navigation.norms')}
       </a>,
       icon: <MonitorOutlined />,
@@ -184,7 +184,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     permissions.dimensions ? {
       key: 'dimensions',
       label:
-      <a href={permissions.dimensions}>
+      <a tabIndex={-1} href={permissions.dimensions}>
         {I18n.t('administration.navigation.dimensions')}
       </a>,
       icon: <i className="fa fa-file-text-o" />,
@@ -200,7 +200,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     permissions.questionCenter ? {
       key: 'questionCenter',
       label:
-      <a href={permissions.questionCenter}>
+      <a tabIndex={-1} href={permissions.questionCenter}>
         {I18n.t('administration.navigation.question_center')}
       </a>,
       icon: <i className="fa fa-question-circle-o" />,
@@ -208,7 +208,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     permissions.libraries ? {
       key: 'libraries',
       label:
-      <a href={permissions.libraries}>
+      <a tabIndex={-1} href={permissions.libraries}>
         {I18n.t('administration.navigation.libraries')}
       </a>,
       icon: <i className="fa fa-file-image-o" />,
@@ -216,7 +216,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     permissions.communicationCenter ? {
       key: 'communicationCenter',
       label:
-      <a href={permissions.communicationCenter}>
+      <a tabIndex={-1} href={permissions.communicationCenter}>
         {I18n.t('administration.navigation.communication_center')}
       </a>,
       icon: <i className="fa fa-envelope-o" />,

@@ -1,7 +1,9 @@
-import { FC, useEffect, useState } from 'react'
+import {
+  FC, useEffect, useState,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Layout, Menu, Drawer,
+  Layout, Drawer,
 } from 'antd'
 import {
   MenuUnfoldOutlined,
@@ -11,7 +13,7 @@ import { useMedia } from 'use-media'
 import cs from 'classnames'
 import { useLocation } from 'react-router-dom'
 import { getFeatures } from '~/core/config'
-import { DefaultAntThemeWrapper } from '~/glint'
+import { DefaultAntThemeWrapper, AccessibleMenu } from '~/glint'
 import { Portal } from './PortalMenu'
 import styles from './MainMenu.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -58,7 +60,7 @@ const MainMenuComponent:FC<Props> = ({
   const menu = (
     <>
       <UserAvatar currentUser={currentUser} collapsed={collapsed} />
-      <Menu
+      <AccessibleMenu
         theme="light"
         selectedKeys={selected || [getSelected()]}
         mode="inline"
