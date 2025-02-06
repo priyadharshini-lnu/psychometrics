@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/rlua
-  revision: 407053732a5febf69a6a37a365e8b6b28434d39e
+  revision: 874e6f7ddcf2ddbb780fe2d77b4e796ce71ebcca
   branch: tte-master
   specs:
     rlua (1.2)
