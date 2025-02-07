@@ -1,4 +1,11 @@
 .container {
+  button {
+    appearance: none;
+    border: none;
+    background: #fff;
+    height: 50px;
+  }
+
   :global(.ant-badge-multiple-words) {
     padding: 0 5px;
   }
@@ -22,9 +29,21 @@
   }
 }
 
+
+.listBox {
+  :global(.ant-empty-description) {
+    color: var(--grey-text);
+  }
+
+  .btnText {
+    color: var(--grey-text);
+  }
+}
+
 .overlay {
   width: 'auto' !important;
   z-index: 11111 !important;
+
   :global(.ant-popover-inner-content) {
     padding: 0;
   }

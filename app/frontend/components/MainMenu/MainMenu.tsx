@@ -4,13 +4,13 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Drawer,
+  Button,
 } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons'
 import { useMedia } from 'use-media'
-import cs from 'classnames'
 import { useLocation } from 'react-router-dom'
 import { getFeatures } from '~/core/config'
 import { DefaultAntThemeWrapper, AccessibleMenu } from '~/glint'
@@ -43,6 +43,8 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux & {
     selected?: string[]
 }
+
+const { I18n } = window
 
 const MainMenuComponent:FC<Props> = ({
   currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
@@ -83,12 +85,13 @@ const MainMenuComponent:FC<Props> = ({
   return isMobile
     ? (
       <>
-        <div
+        <Button
           onClick={() => triggerCollapse()}
-          className={cs(styles.trigger, styles.mobile, { [styles.open]: !collapsed })}
-        >
-          {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-        </div>
+          className={styles.trigger}
+          aria-label={collapsed ? I18n.t('frontend.aria.expand_menu') : I18n.t('frontend.aria.collapse_menu')}
+          type="link"
+          icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+        />
         <Drawer
           closable={false}
           styles={{
@@ -113,9 +116,13 @@ const MainMenuComponent:FC<Props> = ({
         collapsedWidth={55}
         onCollapse={() => triggerCollapse()}
       >
-        <div onClick={() => triggerCollapse()} className={styles.trigger}>
-          {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-        </div>
+        <Button
+          onClick={() => triggerCollapse()}
+          className={styles.trigger}
+          aria-label={collapsed ? I18n.t('frontend.aria.expand_menu') : I18n.t('frontend.aria.collapse_menu')}
+          type="link"
+          icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+        />
         {menu}
       </Layout.Sider>
     )

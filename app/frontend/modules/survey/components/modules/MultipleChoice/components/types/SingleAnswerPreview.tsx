@@ -176,11 +176,11 @@ const TextChoices: FC<TextChoicesProps> = ({
                 aria-labelledby={`answer-desc-${choiceId}`}
                 ref={index === 0 ? firstInputRef : null}
               />
-              <div className={styles.optionDescription}>
+              <span className={styles.optionDescription}>
                 {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
                   choice: choiceId,
                 }) || defaultChoiceText(choiceId + 1)}
-              </div>
+              </span>
             </label>
           </div>
         )
