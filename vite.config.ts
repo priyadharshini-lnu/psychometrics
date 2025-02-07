@@ -1,6 +1,6 @@
 import { brotliCompress } from 'zlib'
 import { promisify } from 'util'
-import { defineConfig } from 'vite'
+import {defineConfig, ServerOptions} from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
@@ -30,7 +30,7 @@ const devPlugins = __DEV__ ? [
   dts({
     insertTypesEntry: true,
   }),
-  checker({typescript: true}),
+  checker({ typescript: true }),
 ] : []
 
 // Ignore all the files from vendor if it is big and is required just for specific entry point
@@ -42,7 +42,7 @@ const IGNORE_VENDORS = [
   '@thetalententerprise/interactive-assessments',
   'dayjs'
 ]
-const server = SSL ? {
+const server: ServerOptions = SSL ? {
   https: {
     key: fs.readFileSync(SSL_KEY || ''),
     cert: fs.readFileSync(SSL_CERT || ''),
@@ -52,7 +52,10 @@ const server = SSL ? {
 const brotliPromise = promisify(brotliCompress)
 
 export default defineConfig({
-  server,
+  server: {
+    ...server,
+    allowedHosts: [`.${process.env.APP_DOMAIN}`, '.localhost']
+  },
   clearScreen: false,
   plugins: [
     sentryVitePlugin({
@@ -131,7 +134,7 @@ export default defineConfig({
         },
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            for(let i=0;i<IGNORE_VENDORS.length;i++) {
+            for (let i = 0; i < IGNORE_VENDORS.length; i++) {
               if (id.includes(IGNORE_VENDORS[i])) {
                 return
               }
