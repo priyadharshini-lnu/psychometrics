@@ -8,6 +8,8 @@ module Threesixty
           SELF_EVALUATION = 'SelfEvaluation'
 
           def call
+            return nil unless threesixty_campaign
+
             date = path.last == SELF_EVALUATION ? self_evaluation_date : last_evaluation_date
 
             broadcast :ok, date&.strftime(params['f'])

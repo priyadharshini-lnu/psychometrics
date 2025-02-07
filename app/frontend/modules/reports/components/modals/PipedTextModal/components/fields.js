@@ -110,6 +110,10 @@ const OTHER_DATES_FORMATS = [
     name: 'Last Evaluation Date',
     path: 'Report/LastEvaluation',
   },
+  {
+    name: 'Assessment Center Attended Date',
+    path: 'AssessmentCenter/AttendedDate',
+  },
 ]
 
 const FIELDS = [
