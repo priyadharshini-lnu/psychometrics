@@ -73,6 +73,7 @@ class Assessors::UsersController < Administration::BaseController
   end
 
   def dashboard
+    @do_not_render_rails_menu = true
     @init_state ||= {}
     @init_state[:config] = {
       features: feature_flags

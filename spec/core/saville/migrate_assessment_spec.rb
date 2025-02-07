@@ -28,7 +28,7 @@ assessment_id: assessment.id, evaluator: user1)
   end
   let(:saville_user_assessment) { create(:saville_user_assessment, user_assessment_id: user_assessment1.id) }
 
-  subject(:migrate_assessment) { described_class.new(form) }
+  subject(:migrate_assessment) { described_class.new(form, 1) }
 
   before do
     allow(CampaignUser).to receive_message_chain(:joins, :find_by).and_return(campaign_user1)

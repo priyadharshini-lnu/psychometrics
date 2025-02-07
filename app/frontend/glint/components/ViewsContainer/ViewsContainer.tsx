@@ -2,13 +2,13 @@ import React, {
   FC, useEffect, useContext,
 } from 'react'
 import {
-  Row, Col, Button, Typography, Space,
+  Row, Col, Typography, Space,
 } from 'antd'
 import { TitleProps } from 'antd/es/typography/Title'
 import { UnorderedListOutlined, AppstoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { useLocalStorage } from '~/hooks/useLocalStorage'
-import { MediaQueryContext } from '~/glint'
+import { MediaQueryContext, ScrollToViewOnFocusButton } from '~/glint'
 
 import styles from './styles.less'
 
@@ -55,7 +55,7 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
           { !isMobile && (
           <Col span={12} className={styles.viewControls}>
             <Space>
-              <Button
+              <ScrollToViewOnFocusButton
                 className={gridSelected ? styles.activeButton : styles.inActiveButton}
                 id={VIEW_TYPE.grid}
                 onClick={() => setView(VIEW_TYPE.grid)}
@@ -65,7 +65,7 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
                 aria-label={I18n.t('glint.views_container.aria_grid_view')}
                 aria-description={gridSelected ? I18n.t('glint.views_container.aria_selected') : ''}
               />
-              <Button
+              <ScrollToViewOnFocusButton
                 className={listSelected ? styles.activeButton : styles.inActiveButton}
                 id={VIEW_TYPE.list}
                 shape="circle"

@@ -233,7 +233,6 @@ pt:
     audio_check:
       access: Acesso
       continue: Continuar
-      processing: A processar
       record_title: Diga e repita a seguinte frase 3 vezes.
       test_message: é ótimo falar consigo
     network_check:
@@ -255,7 +254,6 @@ pt:
       access: Acesso
       continue: Continuar
       description: Qualquer vídeo ou foto capturado nesta fase não será guardado ou usado. É usado localmente no seu dispositivo para garantir que a câmara está a funcionar para uma pergunta futura que possa necessitar de gravação de vídeo.
-      processing: A processar
       run_again: Executar novamente
       title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
   common:

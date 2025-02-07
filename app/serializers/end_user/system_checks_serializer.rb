@@ -26,8 +26,8 @@ module EndUser
 
     def checks
       {
-        video: object.assessment.extra['enable_video_check'],
-        audio: object.assessment.extra['enable_audio_check'],
+        video: object.assessment.extra['enable_video_check'] || has_question_type('VideoResponse'),
+        audio: object.assessment.extra['enable_audio_check'] || has_question_type('AudioResponse'),
         network: object.assessment.extra['enable_network_check']
       }
     end
@@ -36,6 +36,14 @@ module EndUser
       {
         network: Settings.checking_wizard.network.to_h
       }
+    end
+
+    private
+
+    def has_question_type(type)
+      available_questions = object.assessment.questions.not_deleted.uniq { |q| q[:type] }
+
+      available_questions.any? { |q| q[:type] == type }
     end
   end
 end

@@ -4,7 +4,7 @@ module Saville
   class MigrateAssessment < BaseCommand
     private_attr_reader :form, :source_campaign_user
 
-    def initialize(form)
+    def initialize(form, _row_no)
       @form = form
       @source_campaign_user = CampaignUser.joins(:user).find_by(
         campaign_id: form.from_campaign, users: { email: form.email }

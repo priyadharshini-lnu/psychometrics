@@ -32,7 +32,15 @@ module EndUser
     end
 
     def assessment_extra
-      object.assessment.extra
+      extra = object.assessment.extra
+      return extra if extra['enable_audio_check'] && extra['enable_video_check']
+
+      audio_and_video_check_data = {
+        enable_audio_check: extra['enable_audio_check'] || has_question_type('AudioResponse'),
+        enable_video_check: extra['enable_audio_check'] || has_question_type('VideoResponse')
+      }
+
+      extra.merge(audio_and_video_check_data)
     end
 
     def timing
@@ -41,6 +49,14 @@ module EndUser
 
     def assessment_category
       object.assessment.category
+    end
+
+    private
+
+    def has_question_type(type)
+      available_questions = object.assessment.questions.not_deleted.uniq { |q| q[:type] }
+
+      available_questions.any? { |q| q[:type] == type }
     end
   end
 end

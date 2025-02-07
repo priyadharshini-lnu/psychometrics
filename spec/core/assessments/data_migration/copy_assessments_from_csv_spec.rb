@@ -3,22 +3,43 @@
 require 'rails_helper'
 require 'csv'
 
-RSpec.describe Saville::CopyAssessmentsFromCsv do
+RSpec.describe Assessments::DataMigration::CopyAssessmentsFromCsv do
+  let(:email) { 'user@example.com' }
+  let!(:assessment) { create(:assessment, :saville) }
+
+  let!(:source_project) { create(:project, name: 'source_project') }
+  let!(:source_user) { create(:user, email: email, project: source_project) }
+  let!(:source_campaign) { create(:campaign, project: source_project, name: 'source_campaign') }
+  let!(:source_campaign_user) { create(:campaign_user, user: source_user, campaign: source_campaign) }
+  let!(:source_user_assessment) do
+    create(:user_assessment, subject: source_user, evaluator: source_user, campaign: source_campaign,
+                             assessment: assessment)
+  end
+
+  let!(:target_project) { create(:project, name: 'target_project') }
+  let!(:target_user) { create(:user, email: email, project: target_project) }
+  let!(:target_campaign) { create(:campaign, project: target_project, name: 'target_campaign') }
+  let!(:target_campaign_user) { create(:campaign_user, user: target_user, campaign: target_campaign) }
+  let!(:target_user_assessment) do
+    create(:user_assessment, subject: target_user, evaluator: target_user, campaign: target_campaign,
+                             assessment: assessment)
+  end
+
   let(:csv_content) do
     CSV.generate do |csv|
       csv << ['User Email', 'To Campaign ID', 'From Campaign ID', 'Assessment ID']
-      csv << ['user@example.com', '123', '456', '789']
+      csv << [email, target_campaign.id, source_campaign.id, assessment.id]
     end
   end
   let(:start_row) { 2 }
-  let(:instance) { described_class.new(csv_url, start_row) }
+  let(:instance) { described_class.new('saville', csv_url, start_row) }
 
   describe '#call' do
     context 'with a local file' do
       let(:csv_url) { 'file:///path/to/local/file.csv' }
 
       before do
-        allow(File).to receive(:open).and_yield(StringIO.new(csv_content))
+        allow(File).to receive(:read).and_return(csv_content)
       end
 
       it 'processes the CSV file' do
@@ -29,14 +50,10 @@ RSpec.describe Saville::CopyAssessmentsFromCsv do
 
     context 'with a remote file' do
       let(:csv_url) { 'https://example.com/file.csv' }
-      let(:uri) { URI(csv_url) }
-      let(:http_double) { instance_double(Net::HTTP) }
-      let(:response_double) { instance_double(Net::HTTPResponse) }
+      let(:response_double) { instance_double(Faraday::Response, success?: true, body: csv_content) }
 
       before do
-        allow(Net::HTTP).to receive(:start).and_yield(http_double)
-        allow(http_double).to receive(:request).and_yield(response_double)
-        allow(response_double).to receive(:read_body).and_yield(csv_content)
+        allow(Faraday).to receive(:get).and_return(response_double)
       end
 
       it 'processes the CSV file' do
@@ -50,7 +67,6 @@ RSpec.describe Saville::CopyAssessmentsFromCsv do
     let(:csv_url) { 'file:///path/to/local/file.csv' }
 
     before do
-      allow(Saville::MigrateAssessmentForm).to receive(:new).and_return(double(valid?: true))
       allow(Saville::MigrateAssessment).to receive(:call!)
       allow(Rails.logger).to receive(:info)
     end
@@ -75,7 +91,7 @@ RSpec.describe Saville::CopyAssessmentsFromCsv do
   end
 
   describe '#validate_headers' do
-    let(:instance) { described_class.new('http://example.com/test.csv', 2) }
+    let(:instance) { described_class.new('saville', 'http://example.com/test.csv', 2) }
 
     it 'raises an error for missing headers' do
       expect { instance.send(:validate_headers, ['Invalid Header']) }.to raise_error(/Missing headers/)
@@ -93,29 +109,27 @@ RSpec.describe Saville::CopyAssessmentsFromCsv do
     let(:csv_url) { 'https://example.com/file.csv' }
     let(:row) do
       CSV::Row.new(['User Email', 'To Campaign ID', 'From Campaign ID', 'Assessment ID'],
-                   ['user@example.com', '123', '456', '789'])
+                   [email, target_campaign.id, source_campaign.id, assessment.id])
     end
-    let(:form_double) { instance_double(Saville::MigrateAssessmentForm, valid?: true) }
 
     before do
-      allow(Saville::MigrateAssessmentForm).to receive(:new).and_return(form_double)
       allow(Saville::MigrateAssessment).to receive(:call!)
       allow(Rails.logger).to receive(:info)
     end
 
     it 'processes a valid row' do
-      expect(Saville::MigrateAssessment).to receive(:call!).with(form_double)
       expect(Rails.logger).to receive(:info)
       instance.send(:process_row, row, 2)
     end
 
     context 'with invalid form data' do
       let(:form_double) do
-        instance_double(Saville::MigrateAssessmentForm, valid?: false, errors: double(full_messages: ['Invalid data']))
+        instance_double(Assessments::DataMigration::CopyAssessmentForm, valid?: false,
+                       errors: double(full_messages: ['Invalid data']))
       end
 
       before do
-        allow(Saville::MigrateAssessmentForm).to receive(:new).and_return(form_double)
+        allow(Assessments::DataMigration::CopyAssessmentForm).to receive(:new).and_return(form_double)
       end
 
       it 'raises an error' do

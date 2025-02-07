@@ -74,7 +74,7 @@ interface DeviceDetails {
 const formatDuration = (durationInSeconds: number): string => {
   const minutes = Math.floor(durationInSeconds / 60)
   const seconds = durationInSeconds % 60
-  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  return `${minutes.toString().padStart(2, '0')}m:${seconds.toString().padStart(2, '0')}s`
 }
 
 const MediaRecorderComponent: React.FC<Props> = ({
@@ -497,14 +497,14 @@ const MediaRecorderComponent: React.FC<Props> = ({
       return {
         percent: 0,
         label: `${I18n.t('assessments.video_response.recording_duration_label')} 
-        00:${maxDuration} mins`,
+        ${formatDuration(maxDuration)}`,
       }
     } if (status === 'recording') {
       return {
         percent: ((maxDuration - recStopCountdownRemainingDuration) / maxDuration) * 100,
         label: I18n.t('assessments.video_response.recording_stop_label'),
         countdownProps: getCountdownProps(recStopCountdownTime,
-          handleStopRecording, `${formatDuration(maxDuration)} mins`),
+          handleStopRecording, `${formatDuration(maxDuration)}`),
       }
     } if (isUploading) {
       return {

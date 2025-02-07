@@ -12,6 +12,11 @@ class DeviseFailureApp < Devise::FailureApp
     super
   end
 
+  def i18n_locale
+    project = GetProjectBySubdomain.call!(request.subdomain)
+    project&.available_locales&.first || I18n.default_locale
+  end
+
   def attempted_path
     Utility::Url.remove_query_params(warden_options[:attempted_path], 'force_saml') if warden_options[:attempted_path]
   end

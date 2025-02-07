@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include Rails.application.routes.url_helpers
+
   # Defining the constant here since this is not used anywhere else
   # instead of in an initializer.
   RANDOM_BACKGROUND_IMAGES_COUNT = 7
+
+  def license_page_url(client)
+    "#{admin_url}/clients/#{client.id}/licenses"
+  end
 
   def show_dashboard?
     return false if current_user.is?(:superadmin)

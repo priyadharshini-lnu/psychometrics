@@ -1,4 +1,6 @@
-import { useLayoutEffect, useRef, FC } from 'react'
+import {
+  useLayoutEffect, useRef, FC, useState,
+} from 'react'
 import {
   Button, Popover, Space,
 } from 'antd'
@@ -18,10 +20,22 @@ type Props = {
 
 export const FontsizeModifier:FC<Props> = ({ step }) => {
   const htmlRef = useRef<HTMLHtmlElement|null>(null)
+  const [open, setOpen] = useState(false)
   const stepValue = step || DEFAULT_STEP
   useLayoutEffect(() => {
     htmlRef.current = document.querySelector('html')
-  }, [])
+    document.addEventListener('keyup', keyUphandler)
+
+    return () => {
+      document.removeEventListener('keyup', keyUphandler)
+    }
+  }, [open])
+
+  const keyUphandler = (e) => {
+    if (e.code === 'Escape' && open) {
+      setOpen(false)
+    }
+  }
 
   const increaseFontSize = () => {
     const newFontSize = getCurrentFontSize(htmlRef) + stepValue
@@ -45,36 +59,56 @@ export const FontsizeModifier:FC<Props> = ({ step }) => {
     }
   }
 
+  const handleBlur = (e) => {
+    if (!(e.relatedTarget?.dataset?.buttonId === 'font-modifier')) {
+      setOpen(false)
+    }
+  }
+
   return (
     <>
       <Popover
-        trigger={['click']}
+        trigger="click"
+        open={open}
         getPopupContainer={triggerNode => triggerNode.parentNode as HTMLElement || document.body}
         content={(
-          <Space.Compact>
-            <Button aria-label={I18n.t('glint.fontsize_modifier.increase_font')} onClick={increaseFontSize}>
+          <Space.Compact onBlur={handleBlur}>
+            <Button
+              data-button-id="font-modifier"
+              aria-label={I18n.t('glint.fontsize_modifier.increase_font')}
+              onClick={increaseFontSize}
+            >
               <PlusOutlined />
             </Button>
-            <Button aria-label={I18n.t('glint.fontsize_modifier.reset_font')} onClick={setDefaultFontSize}>
+            <Button
+              data-button-id="font-modifier"
+              aria-label={I18n.t('glint.fontsize_modifier.reset_font')}
+              onClick={setDefaultFontSize}
+            >
               A
               <span className={styles.smallFont}>A</span>
             </Button>
-            <Button aria-label={I18n.t('glint.fontsize_modifier.decrease_font')} onClick={decreaseFontSize}>
+            <Button
+              data-button-id="font-modifier"
+              aria-label={I18n.t('glint.fontsize_modifier.decrease_font')}
+              onClick={decreaseFontSize}
+            >
               <MinusOutlined />
             </Button>
           </Space.Compact>
         )}
       >
         <Button
+          data-button-id="font-modifier"
           aria-label={I18n.t('glint.fontsize_modifier.change_font')}
           type="link"
           icon={<AccessibilityIcon />}
           styles={{ icon: { verticalAlign: 'bottom' } }}
+          onClick={() => setOpen(!open)}
+          onBlur={handleBlur}
         />
       </Popover>
-
     </>
-
   )
 }
 

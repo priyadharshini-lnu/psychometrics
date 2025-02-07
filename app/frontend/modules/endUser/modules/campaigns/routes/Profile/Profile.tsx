@@ -174,7 +174,12 @@ function ProfileComponent ({
 
   return (
     <>
-      <title>{`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('campaign.details')}`}</title>
+      <title>
+        {
+          `${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('campaign.details')}
+          - ${I18n.t('frontend.lighthouse_app')}`
+        }
+      </title>
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         <div className={styles.container}>
@@ -211,11 +216,17 @@ function ProfileComponent ({
                         onChange={onChangeFile}
                         beforeUpload={() => false}
                       >
-                        <div ref={uploadRef} className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}>
+                        <div
+                          aria-labelledby="upload-photo-label"
+                          tabIndex={0}
+                          role="button"
+                          ref={uploadRef}
+                          className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}
+                        >
                           {user.photo && <img src={user.photo} className={styles.photo} />}
                           <div className={styles.controls}>
                             {user.photo ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
-                            <div className={styles.photoLabel}>
+                            <div id="upload-photo-label" className={styles.photoLabel}>
                               {user.photo
                                 ? I18n.t('profile.change_photo')
                                 : I18n.t('profile.add_photo')}
@@ -228,7 +239,8 @@ function ProfileComponent ({
                 )}
                 <Col xs={24} sm={24} md={12} lg={16}>
                   <div className="fs-14 mb-4">
-                    <span className={styles.note}>{I18n.t('profile.mandatory_fields')}</span>
+                    <span aria-hidden className={styles.requiredMark} />
+                    <span>{I18n.t('profile.mandatory_fields')}</span>
                   </div>
                   <Form
                     layout="vertical"
@@ -236,6 +248,12 @@ function ProfileComponent ({
                     onFinish={submitForm}
                     className={styles.form}
                     form={form}
+                    requiredMark={(label, { required }) => (
+                      <>
+                        {required && <span aria-hidden className={styles.requiredMark} />}
+                        {label}
+                      </>
+                    )}
                   >
                     <Row gutter={24}>
                       <Col xs={24} sm={24} md={12}>

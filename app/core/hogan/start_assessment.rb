@@ -49,7 +49,8 @@ module Hogan
           participant_id: participant_id,
           user_id: current_user.id,
           provider: project.hogan_provider,
-          norm: HoganCredential::DEFAULT_NORM
+          norm: HoganCredential::DEFAULT_NORM,
+          hogan_group_name: hogan_group_name
         )
       end
     end
