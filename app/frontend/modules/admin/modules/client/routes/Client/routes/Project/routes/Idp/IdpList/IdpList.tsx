@@ -12,7 +12,7 @@ const IdpList: React.FC = () => {
     trackUrl: true,
     responseType: IdpTR,
     apiConfig: {
-      fields: { idp_templates: ['name', 'description'] },
+      include: ['skills'],
     },
   }
 

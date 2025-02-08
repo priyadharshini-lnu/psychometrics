@@ -30,6 +30,7 @@ import { Schema as developmentActionSchema } from '~/modules/admin/modules/clien
 
 import { Schema as skillsSchema } from '~/modules/admin/modules/client/core/skills'
 import { Schema as campaignIdpSchema } from '~/modules/admin/modules/campaigns/core/campaignIdp'
+import { Schema as idpTemplateSchema } from '~/modules/admin/modules/client/core/idp'
 
 export const Schema = {
   clients: clientSchema,
@@ -60,4 +61,5 @@ export const Schema = {
   development_actions: developmentActionSchema,
   skills: skillsSchema,
   campaign_idps: campaignIdpSchema,
+  idp_templates: idpTemplateSchema,
 }

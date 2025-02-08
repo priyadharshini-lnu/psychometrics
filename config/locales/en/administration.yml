@@ -1753,10 +1753,10 @@ en:
       idp: IDP
       idp_template: IDP Template
       none: None
-      rating: Enable Rating
       select_by_tags: Select by Tags
       select_specific_skills: Select Specific Skills
       selected: Selected
+      self_rating: Enable Self Rating
       tab:
         templates: Templates
       technical_skills: Technical Skills

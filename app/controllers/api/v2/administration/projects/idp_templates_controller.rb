@@ -3,6 +3,7 @@
 module Api
   class V2::Administration::Projects::IdpTemplatesController < Api::V2::Administration::BaseController
     before_action :set_user_idp_plan, only: %i[update destroy]
+    validate_crud_requests Api::V2::IdpTemplate::Schema
 
     def update
       return super if @user_idp_plan.blank?

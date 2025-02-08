@@ -69,7 +69,10 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
                 behavioural_client_tags: %w[tag3 tag4],
                 technical_global_tags: %w[tag5 tag6],
                 technical_client_tags: %w[tag7 tag8],
-                skills: [skill1.id, skill2.id]
+                behavioral_global_skill_settings: 'selected',
+                behavioral_client_skill_settings: 'none',
+                technical_global_skill_settings: 'none',
+                technical_client_skill_settings: 'none'
               },
               relationships: {
                 project: {
@@ -83,9 +86,22 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
                     type: 'reports',
                     id: report.id.to_s
                   }
+                },
+                skills: {
+                  data: [
+                    {
+                      type: 'skills',
+                      id: skill1.id.to_s
+                    },
+                    {
+                      type: 'skills',
+                      id: skill2.id.to_s
+                    }
+                  ]
                 }
               }
-            }
+            },
+            include: 'skills'
           }
         end
 
@@ -96,6 +112,16 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
           expect(idp_template_response).to have_attribute(:name).with_value('Example Template Name')
           expect(idp_template_response['relationships']['project']['data']['id']).to eq(project_id.to_s)
           expect(idp_template_response['relationships']['report']['data']['id']).to eq(report.id.to_s)
+          expect(idp_template_response['relationships']).to have_key('skills')
+
+          expect(idp_template_response['relationships']['skills']['data']).to match_array([
+            { 'type' => 'skills', 'id' => skill1.id.to_s },
+            { 'type' => 'skills', 'id' => skill2.id.to_s }
+          ])
+          expect(idp_template_response).to have_attribute(:behavioral_global_skill_settings).with_value('selected')
+          expect(idp_template_response).to have_attribute(:behavioral_client_skill_settings).with_value('none')
+          expect(idp_template_response).to have_attribute(:technical_global_skill_settings).with_value('none')
+          expect(idp_template_response).to have_attribute(:technical_client_skill_settings).with_value('none')
         end
       end
     end

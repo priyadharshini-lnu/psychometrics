@@ -5,14 +5,13 @@ import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useResourceContext } from '~/modules/admin/components/Resource'
-import { Skill as SkillType } from '~/modules/admin/modules/client/core/skills'
 import SkillsAndTagsSelection from './SkillsAndTagsSelection'
+import { Idp } from '~/modules/admin/modules/client/core/idp'
 
 const { I18n } = window
-type Skill = Pick<SkillType, 'id' | 'name'>;
 
 const IDPTemplateForm = ({ close }) => {
-  const { resource } = useResourceContext<Skill>()
+  const { resource } = useResourceContext<Idp>()
   const [form] = Form.useForm()
   const [isModalVisible, setIsModalVisible] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
@@ -22,19 +21,14 @@ const IDPTemplateForm = ({ close }) => {
     try {
       setIsLoading(true)
       const values = await form.validateFields()
-      const updatedPayload = { ...values }
-      const skills: string[] = Object.keys(values)
+      const skills = Object.keys(values)
         .filter(key => key.endsWith('_skills'))
         .reduce((acc: string[], key: string) => {
           if (Array.isArray(values[key])) {
             acc.push(...values[key])
           }
-          delete updatedPayload[key]
           return acc
-        }, [])
-
-      updatedPayload.skills = skills
-
+        }, []).map(skill => ({ id: skill, type: 'skills' }))
       const payload = {
         name: values.name,
         self_rating_enabled: values.self_rating_enabled,
@@ -76,7 +70,7 @@ const IDPTemplateForm = ({ close }) => {
         </Button>,
       ]}
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" initialValues={{ self_rating_enabled: true }}>
         <Row gutter={[16, 16]}>
           <Col xs={24} md={8}>
             <Card title={I18n.t('administration.idp.template_details')}>
@@ -96,7 +90,7 @@ const IDPTemplateForm = ({ close }) => {
                 <Input placeholder={I18n.t('administration.idp.enter_template_description')} />
               </Form.Item>
 
-              <Form.Item name="self_rating_enabled" label={I18n.t('administration.idp.rating')}>
+              <Form.Item name="self_rating_enabled" label={I18n.t('administration.idp.self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
             </Card>

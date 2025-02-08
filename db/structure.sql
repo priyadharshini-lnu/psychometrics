@@ -2725,7 +2725,8 @@ CREATE TABLE public.idp_templates (
     behavioural_client_tags jsonb DEFAULT '[]'::jsonb NOT NULL,
     technical_global_tags jsonb DEFAULT '[]'::jsonb NOT NULL,
     technical_client_tags jsonb DEFAULT '[]'::jsonb NOT NULL,
-    project_id bigint
+    project_id bigint,
+    skill_settings jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -15097,6 +15098,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250206082916'),
 ('20250204092029'),
 ('20250127043743'),
 ('20250124102224'),
