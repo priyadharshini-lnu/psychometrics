@@ -3,6 +3,9 @@ import {
   Form, Select, Radio, FormInstance,
 } from 'antd'
 import debounce from 'lodash/debounce'
+import {
+  CategorizedSkills,
+} from 'modules/admin/modules/client/routes/Client/routes/Project/routes/Idp/IdpList/IDPTemplateForm'
 import { useResources } from '~/hooks/useResources'
 import { Skill as SkillType } from '~/modules/admin/modules/client/core/skills'
 
@@ -11,7 +14,7 @@ const { Option } = Select
 
 type Skill = Pick<SkillType, 'id' | 'name'>;
 
-const SkillsOption = {
+export const SkillsOption = {
   NONE: 'none',
   ALL: 'all',
   SELECTED: 'selected',
@@ -29,18 +32,18 @@ type Props = {
   type: 'Global' | 'Client',
   projectId?: string,
   form: FormInstance,
+  categorizedSkills:CategorizedSkills
 }
 
 const SkillsAndTagsSelection = ({
-  category, type, projectId, form,
+  category, type, projectId, form, categorizedSkills,
 }:Props) => {
   const { fetch: fetchSkillsTag, data: skillsByTagSearchData } = useResources<Skill>('tags_search',
     { basePath: 'skills' })
   const { fetch: fetchSpecificSkills, data: specificSkillsSearchData } = useResources<Skill>('skills')
-  const frmName = `${category}_${type.toLowerCase()}`
-  const nameSkillsOption = `${frmName}_value`
+  const settingPrefix = `${category}${type}`
+  const nameSkillsOption = `${settingPrefix}SkillSettings`
   const selectedSkillOption = Form.useWatch(nameSkillsOption, form)
-
   const searchSkillsHandler = useCallback(
     debounce((query, isSpecific) => {
       const filter: filterType = {
@@ -59,12 +62,15 @@ const SkillsAndTagsSelection = ({
     [category],
   )
 
+  const skills = categorizedSkills ? (specificSkillsSearchData || [])
+    .concat(categorizedSkills[`${settingPrefix}Skills`])
+    : specificSkillsSearchData
+
   return (
     <div key={type} className="mb8">
       <Form.Item
         label={I18n.t(`administration.idp.${type.toLowerCase()}_skills`)}
         name={nameSkillsOption}
-        initialValue={SkillsOption.NONE}
       >
         <Radio.Group>
           <Radio value={SkillsOption.NONE}>{I18n.t('administration.idp.none')}</Radio>
@@ -74,7 +80,7 @@ const SkillsAndTagsSelection = ({
       </Form.Item>
       {selectedSkillOption === SkillsOption.SELECTED && (
         <>
-          <Form.Item label={I18n.t('administration.idp.select_by_tags')} name={`${frmName}_tags`}>
+          <Form.Item label={I18n.t('administration.idp.select_by_tags')} name={`${settingPrefix}Tags`}>
             <Select
               mode="multiple"
               style={{ width: '100%' }}
@@ -91,7 +97,7 @@ const SkillsAndTagsSelection = ({
           </Form.Item>
           <Form.Item
             label={I18n.t('administration.idp.select_specific_skills')}
-            name={`${frmName}_skills`}
+            name={`${settingPrefix}Skills`}
           >
             <Select
               mode="multiple"
@@ -102,7 +108,7 @@ const SkillsAndTagsSelection = ({
               }}
               filterOption={false}
             >
-              {specificSkillsSearchData.map(skill => (
+              {skills?.map(skill => (
                 <Option key={skill.id} value={skill.id}>{skill.name}</Option>
               ))}
             </Select>

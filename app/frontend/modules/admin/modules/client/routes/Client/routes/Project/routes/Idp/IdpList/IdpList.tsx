@@ -12,6 +12,7 @@ const IdpList: React.FC = () => {
     trackUrl: true,
     responseType: IdpTR,
     apiConfig: {
+      fields: { skills: ['id', 'name', 'category', 'project_id'] },
       include: ['skills'],
     },
   }

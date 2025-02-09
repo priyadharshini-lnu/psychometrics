@@ -1,60 +1,148 @@
 import {
   Form, Input, Switch, Card, Col, Row, Button, Modal,
 } from 'antd'
+import _ from 'lodash'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useResourceContext } from '~/modules/admin/components/Resource'
-import SkillsAndTagsSelection from './SkillsAndTagsSelection'
-import { Idp } from '~/modules/admin/modules/client/core/idp'
+import SkillsAndTagsSelection, { SkillsOption } from './SkillsAndTagsSelection'
+import { Idp, Skill } from '~/modules/admin/modules/client/core/idp'
 
 const { I18n } = window
 
-const IDPTemplateForm = ({ close }) => {
+export type CategorizedSkills = {
+  behavioralGlobalSkills: Skill[],
+  behavioralClientSkills: Skill[],
+  technicalGlobalSkills: Skill[],
+  technicalClientSkills: Skill[],
+}
+
+type IDPTemplateFormProps = {
+  close: () => void
+  idp?: Idp,
+}
+
+const IDPTemplateForm = ({ close, idp }: IDPTemplateFormProps) => {
   const { resource } = useResourceContext<Idp>()
   const [form] = Form.useForm()
   const [isModalVisible, setIsModalVisible] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
-  const { projectId } = useParams() as {projectId: string}
+  const { projectId } = useParams() as { projectId: string }
+  const [categorizedSkills, setCategorizedSkills] = useState<CategorizedSkills>({
+    behavioralGlobalSkills: [],
+    behavioralClientSkills: [],
+    technicalGlobalSkills: [],
+    technicalClientSkills: [],
+  })
 
-  const addIdpHandler = async () => {
+  useEffect(() => {
+    if (idp) {
+      form.setFieldsValue({
+        name: idp.name,
+        description: idp.description,
+        self_rating_enabled: idp?.selfRatingEnabled ?? false,
+      })
+    }
+  }, [idp, form])
+
+  const handleSubmit = async () => {
     try {
       setIsLoading(true)
       const values = await form.validateFields()
-      const skills = Object.keys(values)
-        .filter(key => key.endsWith('_skills'))
-        .reduce((acc: string[], key: string) => {
-          if (Array.isArray(values[key])) {
-            acc.push(...values[key])
-          }
-          return acc
-        }, []).map(skill => ({ id: skill, type: 'skills' }))
+      const skills: Pick<Skill, 'id'>[] = _.flatten([
+        values.behavioralGlobalSkills || [],
+        values.behavioralClientSkills || [],
+        values.technicalGlobalSkills || [],
+        values.technicalClientSkills || [],
+      ]).map((skill: string) => ({ id: skill }))
+
       const payload = {
         name: values.name,
-        self_rating_enabled: values.self_rating_enabled,
+        selfRatingEnabled: values.selfRatingEnabled,
         description: values.description,
         skills,
-        behavioural_global_tags: values.behavioural_global_tags || [],
-        behavioural_client_tags: values.behavioural_client_tags || [],
-        technical_global_tags: values.technical_global_tags || [],
-        technical_client_tags: values.technical_client_tags || [],
+        behaviouralGlobalTags: values.behavioralGlobalTags || [],
+        behaviouralClientTags: values.behavioralGlobalTags || [],
+        technicalGlobalTags: values.behavioralGlobalTags || [],
+        technicalClientTags: values.behavioralGlobalTags || [],
+        behavioralGlobalSkillSettings: values.behavioralGlobalSkillSettings,
+        behavioralClientSkillSettings: values.behavioralGlobalSkillSettings,
+        technicalGlobalSkillSettings: values.technicalGlobalSkillSettings,
+        technicalClientSkillSettings: values.technicalClientSkillSettings,
       }
-      await resource.createResource(payload)
+
+      if (idp) {
+        await resource.updateResource({ id: idp.id, ...payload })
+      } else {
+        await resource.createResource(payload)
+      }
       setIsModalVisible(false)
     } finally {
       setIsLoading(false)
     }
   }
 
+  const initialValues = useMemo(() => {
+    const skills: Record<keyof CategorizedSkills, string[]> = {
+      behavioralGlobalSkills: [],
+      behavioralClientSkills: [],
+      technicalGlobalSkills: [],
+      technicalClientSkills: [],
+    }
+    const newCategorizedSkills = idp?.skills?.reduce((acc, skill) => {
+      if (skill.category === 'behavioral' && !skill.projectId) {
+        acc.behavioralGlobalSkills.push(skill)
+        skills.behavioralGlobalSkills.push(skill.id)
+      } else if (skill.category === 'behavioral' && skill.projectId) {
+        acc.behavioralClientSkills.push(skill)
+        skills.behavioralClientSkills.push(skill.id)
+      } else if (skill.category === 'technical' && !skill.projectId) {
+        acc.technicalGlobalSkills.push(skill)
+        skills.technicalGlobalSkills.push(skill.id)
+      } else if (skill.category === 'technical' && skill.projectId) {
+        acc.technicalClientSkills.push(skill)
+        skills.technicalClientSkills.push(skill.id)
+      }
+      return acc
+    }, categorizedSkills) || categorizedSkills
+
+    setCategorizedSkills(newCategorizedSkills)
+
+    if (idp) {
+      return {
+        name: idp.name,
+        description: idp.description,
+        selfRatingEnabled: idp?.selfRatingEnabled ?? false,
+        behavioralGlobalTags: idp.behaviouralGlobalTags,
+        behavioralClientTags: idp.behaviouralClientTags,
+        technicalGlobalTags: idp.technicalGlobalTags,
+        technicalClientTags: idp.technicalClientTags,
+        behavioralGlobalSkillSettings: idp.behavioralGlobalSkillSettings || SkillsOption.NONE,
+        behavioralClientSkillSettings: idp.behavioralClientSkillSettings || SkillsOption.NONE,
+        technicalGlobalSkillSettings: idp.technicalGlobalSkillSettings || SkillsOption.NONE,
+        technicalClientSkillSettings: idp.technicalClientSkillSettings || SkillsOption.NONE,
+        ...skills,
+      }
+    }
+    return {
+      selfRatingEnabled: true,
+      behavioralGlobalSkillSettings: SkillsOption.NONE,
+      behavioralClientSkillSettings: SkillsOption.NONE,
+      technicalGlobalSkillSettings: SkillsOption.NONE,
+      technicalClientSkillSettings: SkillsOption.NONE,
+    }
+  }, [idp])
+
   return (
     <Modal
-      title={I18n.t('administration.idp.idp_template')}
+      title={I18n.t(idp ? 'administration.idp.edit_template' : 'administration.idp.idp_template')}
       open={isModalVisible}
       onCancel={close}
-      onOk={addIdpHandler}
+      onOk={handleSubmit}
       width="80%"
       style={{ maxWidth: '1024px' }}
-      okText={I18n.t('common.actions.add')}
+      okText={I18n.t(idp ? 'common.actions.update' : 'common.actions.add')}
       cancelText={I18n.t('common.actions.cancel')}
       footer={[
         <Button key="back" onClick={close}>
@@ -63,14 +151,18 @@ const IDPTemplateForm = ({ close }) => {
         <Button
           key="submit"
           type="primary"
-          onClick={addIdpHandler}
+          onClick={handleSubmit}
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.add')}
+          {I18n.t(idp ? 'common.actions.update' : 'common.actions.add')}
         </Button>,
       ]}
     >
-      <Form form={form} layout="vertical" initialValues={{ self_rating_enabled: true }}>
+      <Form
+        form={form}
+        layout="vertical"
+        initialValues={initialValues}
+      >
         <Row gutter={[16, 16]}>
           <Col xs={24} md={8}>
             <Card title={I18n.t('administration.idp.template_details')}>
@@ -90,7 +182,7 @@ const IDPTemplateForm = ({ close }) => {
                 <Input placeholder={I18n.t('administration.idp.enter_template_description')} />
               </Form.Item>
 
-              <Form.Item name="self_rating_enabled" label={I18n.t('administration.idp.self_rating')}>
+              <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
             </Card>
@@ -98,14 +190,36 @@ const IDPTemplateForm = ({ close }) => {
 
           <Col xs={24} md={8}>
             <Card title={I18n.t('administration.idp.behavioral_skills')}>
-              <SkillsAndTagsSelection category="behavioral" type="Global" form={form} />
-              <SkillsAndTagsSelection category="behavioral" type="Client" projectId={projectId} form={form} />
+              <SkillsAndTagsSelection
+                categorizedSkills={categorizedSkills}
+                category="behavioral"
+                type="Global"
+                form={form}
+              />
+              <SkillsAndTagsSelection
+                categorizedSkills={categorizedSkills}
+                category="behavioral"
+                type="Client"
+                projectId={projectId}
+                form={form}
+              />
             </Card>
           </Col>
           <Col xs={24} md={8}>
             <Card title={I18n.t('administration.idp.technical_skills')}>
-              <SkillsAndTagsSelection category="technical" type="Global" form={form} />
-              <SkillsAndTagsSelection category="technical" type="Client" projectId={projectId} form={form} />
+              <SkillsAndTagsSelection
+                categorizedSkills={categorizedSkills}
+                category="technical"
+                type="Global"
+                form={form}
+              />
+              <SkillsAndTagsSelection
+                categorizedSkills={categorizedSkills}
+                category="technical"
+                type="Client"
+                projectId={projectId}
+                form={form}
+              />
             </Card>
           </Col>
         </Row>

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class IdpTemplate < ApplicationRecord
+  include RansackSearchableFields
+
   belongs_to :project, class_name: 'Client'
   belongs_to :report
   has_many :idp_template_skills, dependent: :destroy
