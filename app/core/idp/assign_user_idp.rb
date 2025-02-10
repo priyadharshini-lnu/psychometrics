@@ -28,10 +28,13 @@ module Idp
         current_plan.update!(active: true)
         current_plan
       else
-        # TODO: check and consume license once it is implemented + specs
-        # rise Licenses::NotEnoughError
-        user.user_idp_plans.create(idp_template_id: idp_template_id, campaign_id: campaign_id, active: true,
-                                   creator_id: creator&.id)
+        transaction do
+          campaign = Campaign.find(campaign_id)
+          idp_plan = user.user_idp_plans.create(idp_template_id: idp_template_id, campaign_id: campaign_id,
+                                                active: true, creator_id: creator&.id)
+          Licenses::IdpUse.call!(campaign, user, idp_plan)
+          idp_plan
+        end
       end
     end
   end

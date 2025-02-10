@@ -13,6 +13,8 @@ module Api
       user_plan = Idp::AssignUserIdp.call!(user, idp_template_id, campaign_id, current_user)
 
       jsonapi_render json: user_plan, status: :created
+    rescue Licenses::NotEnoughError => e
+      render json: { error: e.message }, status: :unprocessable_entity
     end
 
     private
