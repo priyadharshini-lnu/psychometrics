@@ -32,18 +32,26 @@ export const UserAvatar = ({ currentUser, collapsed }) => (
         <img alt="Lighthouse logo" src={collapsed ? logoSmall : logo} />
       </Link>
     </div>
-    <a href="/admin/profile/details">
-      <div className={styles.userName}>
-        {collapsed ? (
-          <>
-            <h1 className="sr-only">{currentUser.name}</h1>
-            <Avatar alt={currentUser.name}>
-              {shortify(currentUser.name)}
-            </Avatar>
-          </>
-        ) : <h1>{currentUser.name}</h1>}
-      </div>
-    </a>
+    <div className="ta-c">
+      {collapsed ? (
+        <a className={styles.userName} href="/admin/profile/details">
+          <span className="sr-only">
+            {`${I18n.t('administration.navigation.user_profile_details')} - ${currentUser.name}`}
+          </span>
+          <Avatar alt={currentUser.name}>
+            {shortify(currentUser.name)}
+          </Avatar>
+        </a>
+      ) : (
+        <a
+          className={styles.userName}
+          href="/admin/profile/details"
+        >
+          <span className="sr-only">{I18n.t('administration.navigation.user_profile_details')}</span>
+          {currentUser.name}
+        </a>
+      )}
+    </div>
     <div className={styles.role}>{currentUser.roleTitle}</div>
   </>
 )

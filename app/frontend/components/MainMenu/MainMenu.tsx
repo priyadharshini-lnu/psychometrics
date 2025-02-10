@@ -3,15 +3,11 @@ import {
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Layout, Drawer,
-  Button,
+  Layout, Drawer, Button,
 } from 'antd'
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from '@ant-design/icons'
 import { useMedia } from 'use-media'
 import { useLocation } from 'react-router-dom'
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getFeatures } from '~/core/config'
 import { DefaultAntThemeWrapper, AccessibleMenu } from '~/glint'
 import { Portal } from './PortalMenu'
@@ -23,6 +19,7 @@ import { openSubmenu, triggerCollapse } from '~/modules/admin/core/ui/menu'
 import { UserAvatar } from '~/components/UserAvatar'
 import { SIDEBAR_WIDTH } from '~/constants/sidebar'
 import { getSelected, menuItems } from './MenuItems'
+
 
 const connecter = connect(
   (state: RootState) => ({

@@ -95,15 +95,12 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
         onOpenChange={setVisible}
         overlayClassName={styles.overlay}
       >
-        <Badge count={unread} overflowCount={9} offset={[-10, 17]}>
-          <button>
-            <span
-              onClick={handleClick}
-              aria-label="notification icon"
-              className={`fa fa-bell ${styles.bellIcon}`}
-            />
-          </button>
-        </Badge>
+        <Button aria-label={`${I18n.t('administration.notification_bell_icon')}`} type="text" onClick={handleClick}>
+          <Badge count={unread} overflowCount={9} offset={[-10, 17]}>
+            <span className={`fa fa-bell ${styles.bellIcon}`} />
+          </Badge>
+        </Button>
+
       </Popover>
     </div>
   )

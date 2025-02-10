@@ -27,10 +27,6 @@
     td img {
       max-width: 100%;
     }
-
-    :global(.ant-empty-description) {
-      color: var(--grey-text);
-    }
   }
 }
 
@@ -83,7 +79,12 @@
   }
 }
 
-.assessorTabs :global(.ant-tabs-nav) {
-  margin-bottom: 0px;
-  padding-inline-start: 12px;
+.assessorTabs {
+  & :global(.ant-tabs-nav) {
+    margin-bottom: 0px;
+    padding-inline-start: 12px;
+  }
+  & :global(.ant-tabs-tab) {
+    padding-inline: 4px;
+  }
 }
