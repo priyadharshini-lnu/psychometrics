@@ -14,6 +14,7 @@ import {
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import styles from './SkillsGroupCard.less'
+import { renderSkillCategoryIcon } from '../utils'
 
 const connector = connect((state: RootState) => ({
   userIdpSkills: state.campaigns.idp.userIdpSkills,
@@ -26,6 +27,7 @@ type Props = {
   skillCategory: CategoryWithSkillsSummary
   onAddSkill: (skills: { id: number; name: string }[]) => void
   fetchIdpSkills: (filters: object) => Promise<{ response: { id: number; name: string, category: string }[]}>
+  onRemoveSkill: (skillId: number) => void
 }
 
 const { I18n } = window
@@ -35,6 +37,7 @@ const SkillsGroupCardComponent: FC<Props> = ({
   skillCategory,
   onAddSkill,
   fetchIdpSkills,
+  onRemoveSkill,
 }) => {
   const [searchResults, setSearchResults] = useState<{ id: number; name: string }[]>([])
   const [isSearching, setIsSearching] = useState(false)
@@ -63,6 +66,7 @@ const SkillsGroupCardComponent: FC<Props> = ({
       <Space className={`${styles.heading} w-100`}>
         <Avatar
           size={64}
+          src={renderSkillCategoryIcon(skillCategory.category)}
           // API changes not available yet
           // src={skillCategory.iconUrl}
         />
@@ -98,6 +102,7 @@ const SkillsGroupCardComponent: FC<Props> = ({
                 onChange={handleSelectSkills}
                 notFoundContent={isSearching ? <Spin size="small" /> : null}
                 filterOption={false}
+                onDeselect={skillId => onRemoveSkill(skillId)}
               >
                 {searchResults.map(({ id, name }) => (
                   <Select.Option

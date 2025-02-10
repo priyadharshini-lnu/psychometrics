@@ -54,7 +54,12 @@ export type CategoryWithSkills = {
 
 export type CategoryWithSkillsSummary = {
   category: string;
-  skills: (Skill | UserIdpSkill)[];
+  skills: Skill[];
+}
+
+export type CategoryWithUserIdpSkills = {
+  category: string;
+  skills: UserIdpSkill[];
 }
 
 export type CategoryWithDevelopmentActions = {

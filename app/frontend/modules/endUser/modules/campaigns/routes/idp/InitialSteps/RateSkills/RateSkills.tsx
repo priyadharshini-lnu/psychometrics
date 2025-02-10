@@ -9,6 +9,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
+import { RateSkillIcon } from '~/glint/icons'
 
 const { Title, Paragraph } = Typography
 const { I18n } = window
@@ -69,7 +70,7 @@ export const RateSkillsComponent = ({
     <>
       <BoxWithShadow className="mt-6 p-6">
         <Space>
-          <Avatar size={64} />
+          <Avatar size={64} src={<RateSkillIcon height="100%" width="100%" style={{ justifyContent: 'center' }} />} />
           <div>
             <Title className="mb-0" level={4}>{I18n.t('idp.initial_steps.rate_skills_title')}</Title>
             <Paragraph>

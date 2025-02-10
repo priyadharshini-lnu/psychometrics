@@ -9,13 +9,12 @@ import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard
 import { BoxWithShadow } from '~/glint'
 import {
   AvailableDevelopmentActions, CategoryWithSkills, DevelopmentAction, Skill, SkillWithDevelopmentActions,
-  CategoryWithSkillsSummary,
 } from '.'
 import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
-
 import styles from './DevelopmentActionListView.less'
 import { AIGeneratedDevelopmentActionsModal } from './AIGeneratedDevelopmentActionsModal'
+import { renderSkillCategoryIcon } from '../utils'
 
 const { I18n } = window
 
@@ -27,7 +26,7 @@ type SkillsContainerProps = {
   onShowAvailableDevelopmentAction?: () => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onAddMoreSkills: (category: CategoryWithSkillsSummary) => void;
+  onAddMoreSkills: (category: CategoryWithSkills) => void;
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
@@ -171,7 +170,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           <BoxWithShadow key={category.category} className={`${styles.p_16} ${styles.mt_8}`}>
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
-                <Avatar size={24} />
+                <Avatar size={24} src={renderSkillCategoryIcon(category.category)} />
                 <h3 className={styles.h3}>{category.category}</h3>
               </Flex>
               <Flex gap={12} vertical>

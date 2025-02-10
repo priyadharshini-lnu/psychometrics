@@ -2273,6 +2273,7 @@ en:
       add_development_action: Add Development Action
       add_skill: Add Skill
       all: All
+      approved: Approved
       board_view:
         completed: Completed
         in_progress: In Progress
@@ -2283,6 +2284,7 @@ en:
       generate_by_ai: Generate by AI
       generate_more: Generate More
       generating_development_actions: Generating development actions...
+      heading: Development Actions
       learning_from_the_others: Learning from the Others
       marathon: Marathon
       no_development_actions: No development actions
@@ -2343,6 +2345,7 @@ en:
     auto_assign: Automatically assign new users
     errors:
       idp_template_not_found: IDP template not found
+      user_idp_template_not_found: No IDP template has been assigned to you.
     idp_template: IDP Template
     override_exists: Override and reset exists users
     placeholder: Select a Idp Template

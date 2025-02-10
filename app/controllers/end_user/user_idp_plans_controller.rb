@@ -13,9 +13,13 @@ module EndUser
     def show
       authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
 
-      render json: {
-        data: EndUser::IdpPlanSerializer.new.serialize(@user_idp_plan)
-      }
+      if @user_idp_plan
+        render json: {
+          data: EndUser::IdpPlanSerializer.new.serialize(@user_idp_plan)
+        }
+      else
+        render json: { errors: [I18n.t('idp_templates.errors.user_idp_template_not_found')] }, status: :not_found
+      end
     end
 
     def update

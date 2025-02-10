@@ -7,12 +7,12 @@ import {
 import { ButtonWithArrow, BoxWithShadow, MediaQueryContext } from '~/glint'
 import { SelectedSkillsCard } from '~/components/IdpShared/InitialSteps/SelectedSkillsCard'
 import { SkillsGroupCard } from '~/components/IdpShared/InitialSteps/SkillsGroupCard'
-import { UserIdpSkill, CategoryWithSkillsSummary, Skill } from '../DevelopmentActions'
+import { UserIdpSkill, CategoryWithSkillsSummary } from '../DevelopmentActions'
 
 type AddSkillsStepProps = {
   onFinishAddSkill: () => void
   addSkillButtonText: string
-  selectedSkills: (UserIdpSkill | Skill)[]
+  selectedSkills: UserIdpSkill[]
   skillCategories: CategoryWithSkillsSummary[]
   onDeselectSkill: (id: number) => void
   onAddSkill: (skills: { id: number; name: string }[]) => void
@@ -49,6 +49,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
                   key={skillCategory.category}
                   skillCategory={{ category: skillCategory.category, skills: skillsAvailableForSelection }}
                   onAddSkill={onAddSkill}
+                  onRemoveSkill={onDeselectSkill}
                 />
               )
             })

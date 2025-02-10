@@ -29,12 +29,18 @@ const AddSkillsComponent = ({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkill[]>(([]))
 
-  const handleAddSkill = (skill) => {
-    setSelectedSkills([...selectedSkills, ...skill])
+  const handleAddSkill = (skills) => {
+    // Add skillId to skills
+    const userIdpSkill = skills.map(skill => ({
+      ...skill,
+      skillId: skill.id,
+    }))
+
+    setSelectedSkills(_.uniqBy([...selectedSkills, ...userIdpSkill], 'skillId'))
   }
 
-  const handleDeselectSkill = (id) => {
-    setSelectedSkills(selectedSkills.filter(skill => skill.id !== id))
+  const handleDeselectSkill = (skillId) => {
+    setSelectedSkills(selectedSkills.filter(userIdpSkill => userIdpSkill.skillId !== skillId))
   }
 
   const skillCategories = _.map(_.groupBy(skills, 'category'), (skills, category) => ({
@@ -43,14 +49,9 @@ const AddSkillsComponent = ({
   }))
 
   const handleFinishAddinSkill = () => {
-    // if newsly added skill, skillId is null
-    const skills = selectedSkills.map(skill => ({
-      ...skill,
-      skillId: skill.skillId ?? skill.id,
-    }))
     setIsSubmitting(true)
 
-    addUserIdpSkills(skills).then(() => {
+    addUserIdpSkills(selectedSkills).then(() => {
       setIsSubmitting(false)
       next()
     })

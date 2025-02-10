@@ -4,10 +4,11 @@ import {
 } from 'react'
 import {
   Tabs, Typography, Layout, Button, Flex, Space, theme,
+  message,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { CloseOutlined } from '@ant-design/icons'
+import { CheckCircleOutlined, CloseOutlined } from '@ant-design/icons'
 import { generate } from '@ant-design/colors'
 
 import { BoxWithShadow, MediaQueryContext, PageLoadSpinner } from '~/glint'
@@ -33,7 +34,8 @@ import {
   DevelopmentActionBoardView,
   DevelopmentAction,
   Skill,
-  type CategoryWithSkillsSummary,
+  CategoryWithSkillsSummary,
+  CategoryWithUserIdpSkills,
 } from '~/components/IdpShared/DevelopmentActions'
 import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
 import { filteredDevelopmentActions, groupDevelopmentActionsByCategory, groupSkillsByCategory } from './utils'
@@ -110,7 +112,7 @@ const MyPlanComponent = ({
   const [editMode, setEditMode] = useState(false)
   // Show skill page
   const [showAddSkill, setShowAddSkill] = useState(false)
-  const [pickedCategoryToAddMoreSkills, setPickedCategoryToAddMoreSkills] = useState<CategoryWithSkillsSummary>(
+  const [pickedCategoryToAddMoreSkills, setPickedCategoryToAddMoreSkills] = useState<CategoryWithUserIdpSkills>(
     emptySkillCategory,
   )
   const [skillCategory, setSkillCategory] = useState<CategoryWithSkillsSummary>(emptySkillCategory)
@@ -137,7 +139,10 @@ const MyPlanComponent = ({
   const colorPalette = generate(colorPrimary)
 
   useEffect(() => {
-    fetchUserIdpPlan(currentUser.id)
+    fetchUserIdpPlan(currentUser.id).catch((error) => {
+      message.error(error || I18n.t('common.errors.something_wrong'))
+      navigate('/')
+    })
   }, [])
 
   useEffect(() => {
@@ -175,30 +180,29 @@ const MyPlanComponent = ({
     fetchAvailableDevelopmentActions(currentUser.id)
   }
 
-  const handleSelectSkill = (selectedSkills) => {
+  const handleSelectSkill = (skills) => {
+    // Add skillId to skills
+    const userIdpSkill = skills.map(skill => ({
+      ...skill,
+      skillId: skill.id,
+    }))
     setPickedCategoryToAddMoreSkills({
       category: pickedCategoryToAddMoreSkills?.category || '',
-      skills: [...pickedCategoryToAddMoreSkills?.skills, ...selectedSkills],
+      skills: _.uniqBy([...pickedCategoryToAddMoreSkills?.skills, ...userIdpSkill], 'skillId'),
     })
   }
 
   const handleFinishAddSkill = () => {
-    // if newsly added skill, skillId is null
-    const skills = pickedCategoryToAddMoreSkills.skills.map(skill => ({
-      ...skill,
-      skillId: 'skillId' in skill ? skill.skillId : skill.id,
-    }))
-
-    addUserIdpSkills(skills).then(() => (
+    addUserIdpSkills(pickedCategoryToAddMoreSkills.skills).then(() => (
       setShowAddSkill(false)
     ))
   }
 
-  const handleDeselectSkill = (deselectedSkillId) => {
+  const handleDeselectSkill = (skillId) => {
     setPickedCategoryToAddMoreSkills({
       category: pickedCategoryToAddMoreSkills?.category || '',
       skills: pickedCategoryToAddMoreSkills?.skills.filter(
-        skill => skill.id !== deselectedSkillId,
+        userIdpSkill => userIdpSkill.skillId !== skillId,
       ),
     })
   }
@@ -215,30 +219,45 @@ const MyPlanComponent = ({
     updateDevelopmentActionProgressInPlan(developmentAction)
   }
 
+  const handleSubmitPlan = () => {
+    // The state is changed to approved since the approval flow is not ready
+    // TODO: Change this to PENDING_APPROVAL state once the flow for approving is ready
+    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED).then(() => {
+      setEditMode(false)
+    })
+  }
+
+  const handleAddMoreSkill = (category) => {
+    setShowAddSkill(true)
+    setPickedCategoryToAddMoreSkills(category)
+  }
+
   const operations = (
     <Flex gap={8}>
       {editMode ? (
         <Button
           type="primary"
           onClick={handleSave}
-          disabled={status === USER_IDP_PLAN_STATUS.PENDING_APPROVAL}
+          disabled={status !== USER_IDP_PLAN_STATUS.DRAFT}
         >
           {I18n.t('common.actions.save')}
         </Button>
       ) : (
         <Button
           type="primary"
-          disabled={status === USER_IDP_PLAN_STATUS.PENDING_APPROVAL}
+          disabled={status !== USER_IDP_PLAN_STATUS.DRAFT}
           onClick={() => setEditMode(true)}
         >
           {I18n.t('common.actions.edit')}
         </Button>
       )}
       <Button
-        disabled={status === USER_IDP_PLAN_STATUS.PENDING_APPROVAL}
-        onClick={() => updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL)}
+        disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
+        onClick={handleSubmitPlan}
+        icon={status === USER_IDP_PLAN_STATUS.APPROVED && <CheckCircleOutlined style={{ color: 'green' }} />}
       >
-        {I18n.t('idp.development_actions.submit_plan')}
+        {status === USER_IDP_PLAN_STATUS.APPROVED
+          ? I18n.t('idp.development_actions.approved') : I18n.t('idp.development_actions.submit_plan')}
       </Button>
     </Flex>
   )
@@ -303,10 +322,7 @@ const MyPlanComponent = ({
                   onUpdateDevelopmentActionProgress={handleUpdateDevelopmentActionProgress}
                   onUpdateDevelopmentAction={updateDevelopmentActionInPlan}
                   onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
-                  onAddMoreSkills={(category) => {
-                    setShowAddSkill(true)
-                    setPickedCategoryToAddMoreSkills(category)
-                  }}
+                  onAddMoreSkills={handleAddMoreSkill}
                 />
               </Tabs.TabPane>
               <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
