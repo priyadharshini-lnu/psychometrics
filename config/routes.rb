@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  get 'up' => 'rails/health#show'
+
   get 'oracle_dashboards', to: 'oracle_dashboards#show', as: :oracle_dashboards
 
   get '/oracle_proxy/*all' => 'oracle_proxy#all'
