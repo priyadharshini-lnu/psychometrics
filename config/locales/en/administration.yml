@@ -610,6 +610,8 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       create: Create
+      data_exports: Data Exports
+      data_reports: Data Reports
       datasheets: Datasheets
       design: Design
       dimension: Dimension
@@ -1501,13 +1503,34 @@ en:
         visual_header_visibility: Visual Header Visibility
       image_upload_failed: Image upload failed.
       none: None
-      refresh_success: Refresh of dataset was scheduled successfully.
-      visual_header_visibility_options:
-        hide_all: Hide All
-        keep_original: Keep Original (Controlled from PowerBi "Header icons" option)
-        show_all: Show All
+      refresh_success: Refresh of dataset scheduled successfully.
     data_exports_modal:
       title: Select date range
+    data_reports:
+      columns:
+        created_at: Created At
+        created_by: Created By
+        last_updated_by: Last Updated By
+        name: Name
+        owner: Owner
+        password: Password
+        status: Status
+        udpated_at: Last Updated At
+      configuration: Configuration
+      errors:
+        factor_not_found: not found in scope of assessment
+        inclusion: 'invalid type, valid types: %{values}'
+        not_found: not found
+        not_owned: not owned by client
+      form:
+        name: Data Report
+      messages:
+        runed: The data report was successfully scheduled to run
+      validations:
+        project_and_campaigns_not_allowed: project_ids and campaign_ids should not be specified together
+        project_not_related_to_client: "%{project_id} is not belongs to the client"
+        project_or_campaign_required: project_ids or campaign_ids is required
+        sections_required: sections is required
     datasheet:
       threesixty_warning: You can't upload datasheet columns for 360 report from here. For 360 report datasheet columns are loaded from the campaign to which this report is linked to
     dates:
@@ -2030,6 +2053,7 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       dashboard: Dashboard
+      data_reports: Data Reports
       development_actions: Development Actions
       dimensions: Dimensions
       factors: Factors

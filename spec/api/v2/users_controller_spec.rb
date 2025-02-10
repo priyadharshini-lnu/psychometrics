@@ -149,6 +149,7 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
               'developmentActions' => '/admin/development_actions',
               'users' => '/admin/users',
               'norms' => '/administration/norms',
+              'dataReports' => '/admin/data_reports',
               'dimensions' => '/administration/dimensions',
               'assessments' => '/admin/assessments',
               'userAvailability' => '/admin/user_availabilities',

@@ -24,6 +24,9 @@ import {
   Schema as campaignFactorGroupSchema,
   UpdatePositionsSchema, CampaignFactorsSchema,
 } from '~/modules/admin/modules/campaigns/core/campaignFactorGroup'
+import {
+  Schema as DataReportsSchema, JobSchema as DataReportJobsSchema,
+} from '~/modules/admin/modules/DataReports/core'
 import { Schema as CampaignTemplateSchema } from '~/modules/admin/core/types/campaignTemplates'
 import { Schema as normsSchema } from '~/modules/admin/modules/client/core/norms'
 import { Schema as developmentActionSchema } from '~/modules/admin/modules/client/core/developmentAction'
@@ -56,6 +59,8 @@ export const Schema = {
   campaign_factor_groups: campaignFactorGroupSchema,
   campaign_factors: CampaignFactorsSchema,
   update_positions: UpdatePositionsSchema,
+  data_reports: DataReportsSchema,
+  data_report_jobs: DataReportJobsSchema,
   campaign_templates: CampaignTemplateSchema,
   norms: normsSchema,
   development_actions: developmentActionSchema,

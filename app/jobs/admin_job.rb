@@ -47,6 +47,7 @@ class AdminJob < ApplicationJob
     export_reports_and_assessments: AdminJobs::ExportReportsAndAssessments,
     super_admin_assessment_norm_export: AdminJobs::SuperAdmin::AssessmentNormExport,
     super_admin_datasheet_export: AdminJobs::SuperAdmin::DatasheetExport,
+    data_report_export: AdminJobs::DataReportExport,
     super_admin_external_assessment_export: AdminJobs::SuperAdmin::ExternalAssessmentExport,
     export_admin_with_permissions: AdminJobs::ExportAdminsWithPermissions,
     bulk_download_user_reports: AdminJobs::BulkDownloadUserReports,
@@ -86,6 +87,7 @@ class AdminJob < ApplicationJob
 
       record.broadcast(:create)
       perform_later(record)
+      record
     end
   end
 end

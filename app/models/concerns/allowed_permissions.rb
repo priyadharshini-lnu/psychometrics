@@ -6,7 +6,7 @@ module AllowedPermissions
   extend ActiveSupport::Concern
 
   CLIENT_ADMIN_PERMISSIONS = {
-    'clients' => %w[view view_licenses],
+    'clients' => %w[view view_licenses export_data_report],
     'projects' => %w[view manage manage_admins manage_users],
     'users' => ['reset_password'],
     'project_settings' => %w[

@@ -5,7 +5,7 @@ import {
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
-  ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined,
+  ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined, DatabaseOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
@@ -72,6 +72,12 @@ export const Client: FC<Props> = ({ currentUser }) => {
     if (pathname.includes('/settings')) {
       return ['settings']
     }
+    if (pathname.includes('/data_reports')) {
+      return ['data_reports']
+    }
+    if (pathname.includes('/data_exports')) {
+      return ['data_exports']
+    }
     if (pathname.includes('/audit_reports')) {
       return ['audit_reports']
     }
@@ -95,6 +101,10 @@ export const Client: FC<Props> = ({ currentUser }) => {
         return I18n.t('administration.breadcrumbs.admins')
       case 'settings':
         return I18n.t('administration.breadcrumbs.settings')
+      case 'data_reports':
+        return I18n.t('administration.breadcrumbs.data_reports')
+      case 'data_exports':
+        return I18n.t('administration.breadcrumbs.data_exports')
       case 'audit_reports':
         return I18n.t('administration.breadcrumbs.audit_reports')
       case 'licenses':
@@ -119,6 +129,17 @@ export const Client: FC<Props> = ({ currentUser }) => {
     label: I18n.t('administration.breadcrumbs.settings'),
   })
 
+  menuItems.push({
+    key: 'data_reports',
+    icon: <DatabaseOutlined />,
+    label: I18n.t('administration.breadcrumbs.data_reports'),
+  })
+
+  client?.meta.permissions.viewDataExports && menuItems.push({
+    key: 'data_exports',
+    icon: <ExportOutlined />,
+    label: I18n.t('administration.breadcrumbs.data_exports'),
+  })
   client?.meta.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
     icon: <ExportOutlined />,

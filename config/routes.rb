@@ -1387,6 +1387,12 @@ controller: 'projects/idp_templates'
               get :search_managers
             end
           end
+          resources :data_reports do
+            post :run, on: :member
+            resources :data_report_jobs, only: %i[index] do
+              get :get_password, on: :member
+            end
+          end
           resources :user_idp_plans, only: %i[create]
           jsonapi_resources :skills, concerns: :taggable do
             post :import, on: :collection

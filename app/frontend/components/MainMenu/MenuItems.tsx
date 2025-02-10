@@ -24,6 +24,7 @@ type Permissions = {
     campaignTemplates?: string
     auditLogs?: string
     userAvailability?: string
+    dataReports?: string
 }
 
 export const getSelected = (): string => {
@@ -93,6 +94,10 @@ export const getSelected = (): string => {
 
   if (location.href.match(/\/admin(\/)(user_availabilities)/)) {
     return 'userAvailability'
+  }
+
+  if (location.href.match(/\/admin(\/)(data_reports)/)) {
+    return 'dataReports'
   }
 
   if (location.href.match(/\/admin(\/)(skills)/)) {
@@ -258,6 +263,11 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       key: 'auditLogs',
       label: <Link href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</Link>,
       icon: <i className="fa fa-clipboard" />,
+    } : null,
+    permissions.dataReports ? {
+      key: 'dataReports',
+      label: <a href={permissions.dataReports}>{I18n.t('administration.navigation.data_reports')}</a>,
+      icon: <i className="fa fa-database" />,
     } : null,
     {
       key: 'profile',

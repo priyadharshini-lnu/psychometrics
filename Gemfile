@@ -90,9 +90,9 @@ gem 'rubyzip', '~> 2.3'
 
 ### dependencies for XLS export (via templates)
 # gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
-
 gem 'caxlsx', '~> 3.2'
 gem 'caxlsx_rails', '~> 0.6'
+gem 'fast_excel', '~> 0.5.0'
 gem 'roo', '~> 2.9'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.

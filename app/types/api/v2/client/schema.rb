@@ -29,6 +29,7 @@ module Api
             required(:permissions).hash do
               required(:view_licenses).filled(:bool)
               required(:view_audit_reports).filled(:bool)
+              required(:view_data_exports).filled(:bool)
             end
           end
         end

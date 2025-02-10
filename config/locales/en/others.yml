@@ -732,6 +732,7 @@ en:
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         create_threesixty_campaign: Create Threesixty Campaign
+        data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
@@ -1578,6 +1579,7 @@ en:
       reset: Reset
       resolve: Resolve
       restore: Restore
+      run: Run
       save: Save
       schedule: Schedule
       search: Search
@@ -1994,8 +1996,11 @@ en:
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
+    invalid_session_title: Invalid Session
     invalid_token: Something went wrong. Plese reload the page and try again.
     max_regeneration_limit: Maximum regeneration limit exceeded, contact your administration.
+    messages:
+      data_report_blank: Data Report doesn not exist
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.

@@ -39,8 +39,9 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
       Administration::ClientPolicy,
       context[:user],
       @model,
-      [
-        'view_audit_reports'
+      %w[
+        view_audit_reports
+        view_data_exports
       ],
       {
         project_id: @model.id

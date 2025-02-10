@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+class Api::V2::Administration::DataReportResource < Api::V2::Administration::BaseResource
+  attributes :id, :name, :configuration, :updated_at
+
+  has_one :owner, class_name: 'Client'
+  has_one :last_updated_by, class_name: 'User'
+
+  ransack_filters %i[filterable_fields owner_id_eq]
+
+  def self.creatable_fields(_)
+    super - %i[updated_at]
+  end
+
+  def self.updatable_fields(opts)
+    creatable_fields(opts)
+  end
+end

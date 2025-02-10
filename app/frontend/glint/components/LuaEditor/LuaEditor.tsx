@@ -2,12 +2,14 @@ import React, { useEffect, useRef } from 'react'
 import { UnControlled as CodeMirrorUnControlled, Controlled as CodeMirrorControlled } from 'react-codemirror2'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/lua/lua'
+import 'codemirror/mode/javascript/javascript'
 import '@codemirror/autocomplete'
 
 type LuaEditorProps = {
   onChange?: (value: string) => void
   value?: string
   controlled?: boolean
+  mode?: string
 }
 
 type Editor = {
@@ -16,7 +18,9 @@ type Editor = {
   }
 }
 
-export const LuaEditor: React.FC<LuaEditorProps> = ({ onChange, value, controlled }) => {
+export const LuaEditor: React.FC<LuaEditorProps> = ({
+  onChange, value, controlled, mode = 'lua',
+}) => {
   const codemirrorRef = useRef(null)
 
   useEffect(() => {
@@ -31,7 +35,7 @@ export const LuaEditor: React.FC<LuaEditorProps> = ({ onChange, value, controlle
     foldGutter: true,
     lineNumbers: true,
     theme: 'default',
-    mode: 'lua',
+    mode,
     extraKeys: {
       'Ctrl-Space': 'autocomplete',
     },

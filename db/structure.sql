@@ -3047,7 +3047,9 @@ CREATE TABLE public.license_usages (
     proctoring_session_id integer,
     proctoring_credits_debited integer,
     proctoring_credits_credited integer,
-    proctoring_session_duration integer
+    proctoring_session_duration integer,
+    consumer_id bigint,
+    consumer_type character varying
 );
 
 
@@ -15098,6 +15100,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250207113529'),
 ('20250206082916'),
 ('20250204092029'),
 ('20250127043743'),
@@ -15862,3 +15865,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

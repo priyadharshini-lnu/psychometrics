@@ -8,9 +8,10 @@ class AdminJobRecord < ApplicationRecord
   include ActiveStorageAttachable
 
   belongs_to :owner, class_name: 'User'
+  has_one :data_report_job
 
   has_one_attachment :file, service: Settings.storage.private_storage_service
-  validates :file, content_type: %w[csv xlsx xls]
+  validates :file, content_type: %w[csv xlsx xls zip]
 
   def attachment_storage_path(attribute_name, filename)
     "private/admin_job/#{id}/#{attribute_name}/#{filename}"
@@ -72,7 +73,8 @@ class AdminJobRecord < ApplicationRecord
     migrate_assessment_translations: 52,
     add_campaign_reports: 53,
     import_skills: 54,
-    assign_idp_to_users: 55
+    assign_idp_to_users: 55,
+    data_report_export: 56
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
