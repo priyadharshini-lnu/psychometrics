@@ -70,6 +70,7 @@ const IDPTemplateForm = ({ close, idp }: IDPTemplateFormProps) => {
         behavioralClientSkillSettings: values.behavioralGlobalSkillSettings,
         technicalGlobalSkillSettings: values.technicalGlobalSkillSettings,
         technicalClientSkillSettings: values.technicalClientSkillSettings,
+        project: { id: projectId, type: 'projects' },
       }
 
       if (idp) {

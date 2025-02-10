@@ -36,5 +36,8 @@ export const Schema = {
     skills: {
       type: 'skills',
     },
+    project: {
+      type: 'clients',
+    },
   },
 }

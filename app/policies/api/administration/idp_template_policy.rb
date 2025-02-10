@@ -21,8 +21,6 @@ module Api
 
       class Scope < Api::Administration::BasePolicy::Scope
         def resolve
-          return scope if @user.is?(:superadmin)
-
           scope.where(project_id: project_id)
         end
       end

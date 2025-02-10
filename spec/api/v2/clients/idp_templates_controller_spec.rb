@@ -148,6 +148,14 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
                 attributes: {
                   name: 'Updated Template Name',
                   description: 'Updated description'
+                },
+                relationships: {
+                  project: {
+                    data: {
+                      type: 'clients',
+                      id: project_id.to_s
+                    }
+                  }
                 }
               }
             }
@@ -171,6 +179,14 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
                 id: idp_template.id.to_s,
                 attributes: {
                   name: 'Attempted Update Name'
+                },
+                relationships: {
+                  project: {
+                    data: {
+                      type: 'clients',
+                      id: project_id.to_s
+                    }
+                  }
                 }
               }
             }
