@@ -706,10 +706,14 @@ en:
           has_dependent_relation: This report is assinged on users
           max_assessment_count: You have reached the limit of %{max} assessments
           min_assessment_count: The minimum number of assessments is %{min}
+        skill_gap_report:
+          not_found: Skill gap report not found
         user:
           attributes:
             current_password:
               invalid: Current password is incorrect
+        user_idp_plan:
+          no_active_plan: No active IDP plan found
   admin_jobs:
     attrs:
       operations:
@@ -2004,7 +2008,11 @@ en:
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.
+    skill_gap_report:
+      not_found: Skill gap report not found
     try_again: Please try again
+    user_idp_plan:
+      no_active_plan: No active IDP plan found
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
   evaluators:

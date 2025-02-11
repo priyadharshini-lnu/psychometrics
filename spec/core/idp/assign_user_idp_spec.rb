@@ -37,6 +37,22 @@ describe Idp::AssignUserIdp do
     expect(LicenseUsage.count).to eq(2)
   end
 
+  context 'assign_skill_gap_report_to_user' do
+    let!(:report) { create(:report) }
+    let!(:report_family) { create(:report_family, reports: [report]) }
+    let!(:common_license) { create(:license, type: :common, client: campaign.client, report_family: report_family) }
+
+    it 'creates user_report for the user if report is available to template' do
+      idp_template.update!(report: report)
+
+      described_class.call!(user, idp_template.id, campaign.id, user)
+
+      user_report = UserReport.find_by(campaign: campaign, report: report, user: user)
+
+      expect(user_report).to be_present
+    end
+  end
+
   it 'shoud raise error if not enought license' do
     license.update(used_number: 100)
     expect { described_class.call!(user, idp_template.id, campaign.id) }.to raise_error(Licenses::NotEnoughError)

@@ -3,7 +3,7 @@
 module Campaigns
   module Users
     class AddReport < BaseCommand
-      private_attr_reader :campaign_user, :user, :campaign, :report, :options
+      private_attr_reader :campaign_user, :user, :campaign, :report, :options, :idp_license_usage
 
       def initialize(campaign_user, report, options = {})
         @campaign_user = campaign_user
@@ -11,10 +11,11 @@ module Campaigns
         @campaign = campaign_user.campaign
         @report = report
         @options = options
+        @idp_license_usage = options[:idp_license_usage] || false
       end
 
       def call
-        Licenses::Use.call!(campaign, user, report, options[:report_family_id])
+        Licenses::Use.call!(campaign, user, report, options[:report_family_id]) unless idp_license_usage
         user_report = UserReport.find_by(campaign: campaign, report: report, user: user)
         unless user_report
           user_report = UserReport.create!(

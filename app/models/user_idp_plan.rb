@@ -14,6 +14,8 @@ class UserIdpPlan < ApplicationRecord
   has_many :communication_emails, through: :communication_email_resources
   has_one :license_usage, as: :consumer
 
+  delegate :client, to: :campaign
+
   enum status: { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4 }
 
   scope :active, -> { where(active: true) }
@@ -23,11 +25,15 @@ class UserIdpPlan < ApplicationRecord
                if: proc { saved_change_to_status? && (approved? || rejected?) },
                on: [:update]
 
-  private
-
   def campaign_user
     CampaignUser.find_by(campaign_id: campaign_id, user_id: user_id)
   end
+
+  def skill_gap_report
+    idp_template.report
+  end
+
+  private
 
   def schedule_idp_assigned_notification
     return if communication_emails.joins(:communication).
