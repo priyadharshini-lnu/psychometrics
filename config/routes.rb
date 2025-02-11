@@ -1114,6 +1114,7 @@ as: :simulation_progress_notification
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :reports, only: %i[index], controller: 'clients/reports'
             jsonapi_resources :client_privacy_settings, only: %i[index update]
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
@@ -1139,7 +1140,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :projects, only: :show do
             jsonapi_resources :idp_templates, only: %i[index create update destroy],
-controller: 'projects/idp_templates'
+              controller: 'projects/idp_templates'
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export
