@@ -1,3 +1,9 @@
+.container {
+  position: relative;
+  margin-top: -24px;
+  padding-top: 24px;
+}
+
 .editor{
   background-color: #FFF;
   border: 2px solid #367ED6;
@@ -19,6 +25,7 @@
   color: #666;
   font-weight: normal;
   width: auto;
+  z-index: 1000;
 
   &:hover{
     background-color: #feffbc;
@@ -28,21 +35,20 @@
 .richEditBtn {
   color: #BDCEEC;
   position: absolute;
-  top: -19px;
+  top: 2px;
   width: 160px;
   font-size: 12px;
   background: #367ED6;
-  text-decoration: none;
   cursor: pointer;
   padding: 1px 5px;
   margin-right: 2px;
   border: 1px solid #1459A3;
+  z-index: 1000;
   .icon{
     margin: 0 5px;
   }
   &:hover{
     color: #fff;
-    text-decoration: none;
   }
 }
 
