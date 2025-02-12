@@ -1,7 +1,4 @@
 
-import { create } from 'zustand'
-
-
 export const EXTEND_SESSION = 'user/extend-session'
 export const extendSession = () => ({
   type: EXTEND_SESSION,
@@ -11,13 +8,3 @@ export const extendSession = () => ({
     method: 'POST',
   },
 })
-
-interface LocalStorageState {
-    nextTimeout: string | null;
-    setNextTimeoutValue: (value: string | null) => void;
-  }
-
-export const useLocalStorageStore = create<LocalStorageState>(set => ({
-  nextTimeout: null,
-  setNextTimeoutValue: value => set({ nextTimeout: value }),
-}))

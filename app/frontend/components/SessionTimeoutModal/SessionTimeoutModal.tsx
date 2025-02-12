@@ -3,14 +3,18 @@ import {
   FC, useEffect, useRef, useState,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
+import { HistoryOutlined } from '@ant-design/icons'
 import { getFeatures } from '~/core/config'
-import { useLocalStorageStore, EXTEND_SESSION, extendSession } from '~/core/extendSession'
+import { EXTEND_SESSION, extendSession } from '~/core/extendSession'
+import { get as getCurrentUser } from '~/core/currentUser'
+import { useSessionTimeoutStore } from '~/core/sessionTimeoutStore'
 import { isRequestInProgress } from '~/core/request'
 import { CountdownTimer } from '~/glint/components/CountdownTimer'
 import styles from './styles.less'
 import { RootState } from '~/core/reducers'
 
 const connector = connect((state: RootState) => ({
+  currentUser: getCurrentUser(state),
   sessionExtending: isRequestInProgress(state, EXTEND_SESSION),
   features: getFeatures(state),
 
@@ -22,15 +26,21 @@ const { I18n } = window
 
 const DEFAULT_SESSION_POPUP_DURATION = 120
 
-export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession, sessionExtending, features }) => {
+export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
+  extendSession, currentUser, sessionExtending, features,
+}) => {
   const [showPopup, setShowPopup] = useState<boolean>(false)
+  const [countdownSeconds, setCountdownSeconds] = useState(DEFAULT_SESSION_POPUP_DURATION)
   const isFlashing = useRef<boolean>(false)
   const flashInterval = useRef<NodeJS.Timeout | null>(null)
+
   const originalTitle = useRef<string>(document.title)
   const originalFavicons = useRef<string[]>([])
   const [popupMessage, setPopupMessage] = useState<string>('')
   const [isSessionTimedOut, setSessionTimedOut] = useState<boolean>(false)
-  const { nextTimeout } = useLocalStorageStore()
+  const [key, setKey] = useState(0) // To reset the Countdown component
+
+  const { nextTimeout } = useSessionTimeoutStore()
 
   const channel = new BroadcastChannel('popup_channel')
 
@@ -46,7 +56,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession
     const favicons = Array.from(links).map(link => link.href)
     originalFavicons.current = favicons
 
-    const apiTimeoutValue = nextTimeout || ''
+    const apiTimeoutValue = nextTimeout[currentUser.id] || ''
 
     const timeoutEpochValue = parseInt(apiTimeoutValue, 10) / 1000
     if (isNaN(timeoutEpochValue) || timeoutEpochValue <= 0) {
@@ -55,10 +65,13 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession
     const currentTime = Math.floor(Date.now() / 1000)
     const delayUntilTimeout = (timeoutEpochValue - currentTime) * 1000
     const twoMinutesBeforeTimeout = delayUntilTimeout - 2 * 60 * 1000 // 2 minutes in milliseconds
+
+
     // Show popup 2 minutes before timeout
     if (twoMinutesBeforeTimeout > 0) {
       popupTimer = setTimeout(() => {
         setShowPopup(true)
+        setKey(prev => prev + 1)
         setPopupMessage(`${I18n.t('frontend.session_timeout_modal.message')}`)
       }, twoMinutesBeforeTimeout)
     }
@@ -97,6 +110,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession
         clearInterval(flashInterval.current)
       }
       isFlashing.current = false
+      resetFavicons()
     }
     document.title = originalTitle.current
   }
@@ -171,6 +185,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession
     if (!isSessionTimedOut) {
       window.location.href = '/administration/sign_out'
     }
+    channel.postMessage('close_popup')
     setShowPopup(false)
     stopFlashing()
   }
@@ -187,6 +202,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession
       // Post message to other tabs to close all popups
       channel.postMessage('close_popup')
       setShowPopup(false)
+      setCountdownSeconds(DEFAULT_SESSION_POPUP_DURATION)
       stopFlashing()
     }).catch(() => {
       setShowPopup(true)
@@ -201,6 +217,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession
         maskClosable={false}
         closable={false}
         centered
+        width={500}
         cancelButtonProps={{ danger: !isSessionTimedOut }}
         cancelText={isSessionTimedOut
           ? `${I18n.t('frontend.session_timeout_modal.buttons.close')}`
@@ -208,20 +225,26 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({ extendSession
         okText={isSessionTimedOut
           ? `${I18n.t('frontend.session_timeout_modal.buttons.re_login')}`
           : `${I18n.t('frontend.session_timeout_modal.buttons.stay_logged_in')}`}
-        className={styles.titleText}
-        title={`${I18n.t('frontend.session_timeout_modal.title')}`}
+        className={styles.modalContainer}
+        title={(
+          <span className={styles.title}>
+            <HistoryOutlined />
+            {I18n.t('frontend.session_timeout_modal.title')}
+          </span>
+          )}
         open={showPopup}
         okButtonProps={{ loading: sessionExtending }}
         onOk={handleOnExtendSession}
         onCancel={handleOnCancel}
       >
-        <p className={styles.message}>
+        <span>
           {popupMessage}
-        </p>
+        </span>
         <div className={styles.timer}>
           <CountdownTimer
+            key={key}
             title={`${I18n.t('frontend.session_timeout_modal.time_remaining')}`}
-            seconds={DEFAULT_SESSION_POPUP_DURATION}
+            seconds={countdownSeconds}
           />
         </div>
       </Modal>

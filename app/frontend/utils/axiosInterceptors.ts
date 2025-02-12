@@ -1,12 +1,14 @@
 import axios from 'axios'
-import { useLocalStorageStore } from '~/core/extendSession'
+import { useSessionTimeoutStore } from '~/core/sessionTimeoutStore'
 import { useExceptionStore } from '~/core/exception'
 
 axios.interceptors.response.use(
   (response) => {
     const { headers } = response
-    const { setNextTimeoutValue } = useLocalStorageStore.getState()
-    setNextTimeoutValue(headers['x-next-timeout'])
+    const { currentUser } = window.PsyGlobalState
+
+    const { setNextTimeoutValue } = useSessionTimeoutStore.getState()
+    setNextTimeoutValue(currentUser?.id, headers['x-next-timeout'])
     return response
   },
   (error) => {

@@ -1,19 +1,46 @@
 @import '~/styles/spacing.less';
 
-.titleText :global(.ant-modal-title) {
-    color: red;
-    text-align: center;
+.modalContainer {
+    .title {
+        svg {
+            font-size: 36px;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: red;
+        text-align: center;
+    }
 }
 
-.message {
-    margin-top: @space-8;
+.modalContainer :global(.ant-modal-content) {
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContainer :global(.ant-modal-footer) {
+    margin: 0;
 }
 
 .timer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: @space-8;
+    margin: @space-8 0;
     text-align: center;
-    font-weight: 600;
+    font-weight: 400;
+}
+
+.timer :global(.ant-statistic-content) {
+    font-size: 42px;
+}
+
+.timer :global(.ant-statistic-title) {
+    color: var(--grey-text);
 }
