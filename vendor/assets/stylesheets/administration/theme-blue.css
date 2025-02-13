@@ -437,6 +437,8 @@ body.page-container-boxed .page-container {
 .x-navigation.x-navigation-horizontal {
   height: 50px;
   background: #33414e;
+  display: flex;
+  justify-content: flex-end;
 }
 .x-navigation.x-navigation-horizontal .xn-logo a {
   border-bottom: 0px;

@@ -13,6 +13,7 @@ import { get as getUserAssessments } from '~/modules/admin/modules/AssessorApp/c
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import ReportList from './ReportList'
+import styles from './styles.less'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -70,27 +71,31 @@ const UserDetails: React.FC<Props> = (
       />
       <PageHeader
         ghost={false}
-        title={user.fullName}
+        title={<h1 className="fs-32 mt-0 mb-0">{user.fullName}</h1>}
         subTitle={user.email}
       />
       <div className="pl">
         <Row justify="space-between" align="middle">
-          <Col><h3>{I18n.t('common.model.assessments')}</h3></Col>
+          <Col><h2 className="fs-24">{I18n.t('common.model.assessments')}</h2></Col>
           <Col>
             <Space>
-              <Button type="primary">
-                <a href={`/assessors/campaigns/${campaignId}/evaluations/${user.id}${status === 'completed' ? '?edit=true' : ''}`}>
-                  {status === 'completed'
-                    ? I18n.t('assessments.actions.reevaluate')
-                    : I18n.t('assessments.actions.evaluate') }
-                </a>
+              <Button
+                className={styles['assessment-buttons']}
+                href={`/assessors/campaigns/${campaignId}/evaluations/${user.id}${status === 'completed' ? '?edit=true' : ''}`}
+                type="primary"
+              >
+                {status === 'completed'
+                  ? I18n.t('assessments.actions.reevaluate')
+                  : I18n.t('assessments.actions.evaluate') }
               </Button>
               {user.assessorCanModerateScores
                 && (
-                <Button type="primary">
-                  <a href={`/assessors/campaigns/${campaignId}/moderate_scoring/${user.id}`}>
+                <Button
+                  className={styles['assessment-buttons']}
+                  href={`/assessors/campaigns/${campaignId}/moderate_scoring/${user.id}`}
+                  type="primary"
+                >
                     {I18n.t('assessments.actions.moderate')}
-                  </a>
                 </Button>
                 )
               }
@@ -125,7 +130,7 @@ const UserDetails: React.FC<Props> = (
         </Row>
       </div>
       <div className="pl">
-        <h3>{I18n.t('common.model.reports')}</h3>
+        <h2 className="fs-24">{I18n.t('common.model.reports')}</h2>
         <ReportList />
       </div>
     </>

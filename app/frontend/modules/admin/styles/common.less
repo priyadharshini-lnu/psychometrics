@@ -65,3 +65,33 @@ input::-webkit-contacts-auto-fill-button {
   width: 100%;
   height: 100%;
 }
+
+.ant-table-thead th.ant-table-column-has-sorters:focus-visible {
+  outline-offset: -6px;
+  outline: 2px solid var(--ant-primary-4);
+}
+
+.ant-table  a:focus-visible {
+  outline: 2px solid;
+  outline-offset: 2px;
+  outline-color: var(--ant-primary-4);
+}
+
+.ant-menu-light.ant-menu-root:focus-visible{
+  outline-offset: -4px;
+}
+
+.ant-empty .ant-empty-description {
+  color: var(--grey-text);
+}
+
+.ant-tabs .ant-tabs-tabpane:focus-visible:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 2px;
+  display: block;
+  width: calc(100% - 4px);
+  height: 100%;
+  border: 2px solid var(--ant-primary-4);
+}

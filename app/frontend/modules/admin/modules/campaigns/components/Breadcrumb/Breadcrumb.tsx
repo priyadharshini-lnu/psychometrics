@@ -16,6 +16,8 @@ interface Props {
   state: State
 }
 
+const { I18n } = window
+
 // FYI: if we have to add nested breadcrumbs later, we can extract `crumbs` into redux state
 // and provide two action creators: `pushCrumbs([...])`, `replaceCrumbs([...])`
 const Breadcrumb: React.FC<Props> = ({
@@ -26,15 +28,22 @@ const Breadcrumb: React.FC<Props> = ({
   }, [JSON.stringify(request)])
 
   const crumbsForTitle = crumbs.slice(-2).map(({ label }) => label(state)).reverse()
-  crumbsForTitle.push('Lighthouse')
-  useTitle({ title: crumbsForTitle.join(' » ') })
+  crumbsForTitle.push(`${I18n.t('frontend.lighthouse_app')}`)
+  useTitle({ title: crumbsForTitle.join(' - ') })
 
   return (
     <div className={styles.container} data-testid="breadcrumbs">
       <AntBreadcrumb>
         {crumbs.map((crumb, index) => (
           <AntBreadcrumb.Item key={index}>
-            {crumb.link ? <a href={crumb.link(state)}>{crumb.label(state)}</a> : crumb.label(state)}
+            {crumb.link ? (
+              <a
+                className={styles.breadcrumbLink}
+                href={crumb.link(state)}
+              >
+                {crumb.label(state)}
+              </a>
+            ) : crumb.label(state)}
           </AntBreadcrumb.Item>
         ))
       }
