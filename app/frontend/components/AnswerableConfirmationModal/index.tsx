@@ -7,7 +7,7 @@ import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 interface Props {
   confirmationTitle?: string
   confirmationMessage: string
-  warningMessage?: string
+  warningMessage?: string | ReactNode
   requiredAnswer: string
   onConfirm(): void | Promise<unknown>
   onWrongAnswer?(): void

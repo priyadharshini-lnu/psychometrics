@@ -35,6 +35,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { AssignManagerFormModal } from './AssignManagerFormModal'
 import UploadFileModal from './AssessmentsReports/UploadFileModal'
 import { getFeatures } from '~/core/config'
+import CreateHoganCredentialsModal from './CreateHoganCredentialsModal'
 
 const { I18n } = window
 
@@ -47,6 +48,7 @@ const MODALS = {
   UpdateTimeModal,
   AssignManagerFormModal,
   UploadFileModal,
+  CreateHoganCredentialsModal,
 }
 
 export const connecter = connect(
@@ -145,6 +147,10 @@ export const UserDetails: React.FC<Props> = ({
         message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email: user.email }))
       },
     })
+  }
+
+  const handleCreateHoganCredentials = () => {
+    fetchSingleUser(parsedCampaignId, parsedUserId)
   }
 
   const isFixedTime = campaign?.campaignOptions?.fixedTime || false
@@ -283,6 +289,18 @@ export const UserDetails: React.FC<Props> = ({
                   {user.hoganProvider}
                   )
                 </>
+                <Button size="small">
+                  <PlusOutlined
+                    onClick={() => openModal('CreateHoganCredentialsModal', {
+                      email: user.email,
+                      campaignId,
+                      parsedUserId,
+                      handleCreateHoganCredentials,
+                      userAssessments: user.userAssessments,
+                      userReports: user.userReports,
+                    })}
+                  />
+                </Button>
               </Descriptions.Item>
             )}
           </Descriptions>

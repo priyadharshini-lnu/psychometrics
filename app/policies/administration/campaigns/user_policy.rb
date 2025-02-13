@@ -65,6 +65,10 @@ module Administration
         )
       end
 
+      def create_hogan_credentials?
+        @user.is?(:superadmin)
+      end
+
       def export_completion_status?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id

@@ -1456,6 +1456,12 @@ en:
       last_login: Last login
       manager: Manager
       modals:
+        create_hogan_credentials:
+          assessments: 'Assessments:'
+          confirmation: Enter email given below in text box to add new hogan credential
+          reports: 'Reports:'
+          successfully: New hogan credential for user with email %{email} was added successfully.
+          warning: Creating a new Hogan credential will remove the following assessments and reports associated with the old Hogan credential for %{email}
         remove:
           successfully: User with email %{email} was removed successfully.
           title: Are you sure you want to remove this user from campaign %{campaignName}?

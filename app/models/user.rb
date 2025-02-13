@@ -116,7 +116,7 @@ class User < ApplicationRecord
   has_many :evaluation_results, through: :evaluation_assessments, source: :users_result
   has_many :campaign_users, dependent: :destroy
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
-  has_one :hogan_credential, dependent: :destroy
+  has_one :hogan_credential, -> { active }, dependent: :destroy
   has_one :oracle_credential, dependent: :destroy
   has_many  :available_client_admin_reports,
             through: :client_admin_clients,

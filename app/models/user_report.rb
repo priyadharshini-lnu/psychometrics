@@ -5,6 +5,7 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   include WorkflowActiverecord
   include ActiveStorageAttachable
+  include HoganResource
 
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
@@ -18,7 +19,6 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_one :subject, -> { where('campaign_id = threesixty_subjects.campaign_id') },
           foreign_key: :user_id, primary_key: :user_id,
           class_name: 'Threesixty::Subject'
-
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
   has_many :user_report_events
@@ -56,6 +56,12 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   after_commit :schedule_report_available_notification,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
+
+  scope :for_assessment, lambda { |assessment_id|
+                           joins(report: :assessments_reports).
+                             where(assessments_reports: { assessment_id: assessment_id })
+                         }
+
   workflow_column :approval_status
 
   workflow do # rubocop:disable Metrics/BlockLength

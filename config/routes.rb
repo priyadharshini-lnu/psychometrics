@@ -267,6 +267,7 @@ Rails.application.routes.draw do
           member do
             patch :toggle_status
             post :extend_time
+            post :create_hogan_credentials
             get :webhook_payload
           end
           collection do

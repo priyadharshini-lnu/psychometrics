@@ -41,7 +41,7 @@ class Membership < ApplicationRecord
   has_many :admin_roles, through: :memberships_admin_roles, dependent: :destroy
 
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
-  has_one :hogan_credential, dependent: :destroy
+  has_one :hogan_credential, -> { active }, dependent: :destroy
   has_one :grants, class_name: 'MembershipGrant'
 
   accepts_nested_attributes_for :grants

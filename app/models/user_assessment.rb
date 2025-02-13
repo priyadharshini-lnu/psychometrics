@@ -3,6 +3,9 @@
 # rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
   audited
+
+  include HoganResource
+
   DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
   MAX_RESET_COUNT = 3
 
@@ -36,8 +39,8 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
   enum meeting_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :meeting
 
-  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :assessor_form?, :external?, :external_settings,
-           to: :assessment
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :assessor_form?,
+           :external?, :external_settings, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true

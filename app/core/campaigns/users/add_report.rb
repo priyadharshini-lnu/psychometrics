@@ -37,6 +37,9 @@ module Campaigns
         user_assessments = assessments.map do |assessment|
           find_or_create_assessment_to_user(assessment)
         end
+
+        handle_hogan_user_assessments_creation(user_assessments, user_report)
+        recompute_user_results(user_assessments)
         set_approval_status_for_user_report(user_report)
         generate_report_pdf(user_report) unless user_report.report.hogan?
 
@@ -79,20 +82,25 @@ module Campaigns
           )
         end
 
-        if assessment.hogan? && user.hogan_credential && user_assessment.completed?
-          Hogan::HandleAssessmentCompletion.call!(user_assessment)
-        end
+        user_assessment
+      end
 
-        if options[:operation] == 'add_with_existing_response'
+      def handle_hogan_user_assessments_creation(user_assessments, user_report)
+        ::Hogan::HandleAssignHoganAssessments.call!(user, user_assessments, user_report, options)
+      end
+
+      def recompute_user_results(user_assessments)
+        return unless options[:operation] == 'add_with_existing_response'
+
+        user_assessments.each do |user_assessment|
           ::UsersResults::RecomputeJob.perform_later(user_assessment.users_result, user)
         end
-
-        user_assessment
       end
 
       def create_assessment_to_user(assessment)
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
+
         user_result = existing_result ? UsersResults::Copy.call!(existing_result) : UsersResult.create!
         campaign_assessment = CampaignAssessment.find_by(campaign: campaign, assessment: assessment)
 
@@ -175,10 +183,16 @@ module Campaigns
       def existing_user_result_to_copy(assessment)
         return if options[:operation] == 'add_and_allow_new_response'
 
-        campaign_user.evaluation_results.
-          joins(:user_assessment).
-          order(created_at: :desc).
-          find_by(user_assessments: { assessment_id: assessment.id })
+        evaluation_results = campaign_user.evaluation_results.
+                             joins(:user_assessment)
+
+        if existing_hogan_credential && assessment.hogan?
+          evaluation_results = evaluation_results.
+                               joins(user_assessment: :hogan_credential).
+                               where(hogan_credential: { id: existing_hogan_credential.id })
+        end
+
+        evaluation_results.order(created_at: :desc).find_by(user_assessments: { assessment_id: assessment.id })
       end
 
       def generate_report_pdf(user_report)
@@ -190,6 +204,10 @@ module Campaigns
 
         campaign_assessment&.external_config&.dig('content_variation_id') ||
           simulation_settings[:default_content_variation_id]
+      end
+
+      def existing_hogan_credential
+        @existing_hogan_credential ||= user.hogan_credential
       end
     end
   end

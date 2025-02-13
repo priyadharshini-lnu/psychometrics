@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -2536,7 +2543,8 @@ CREATE TABLE public.hogan_credentials (
     user_id bigint,
     provider integer DEFAULT 0,
     norm character varying,
-    hogan_group_name character varying
+    hogan_group_name character varying,
+    active boolean DEFAULT true
 );
 
 
@@ -4588,6 +4596,39 @@ CREATE SEQUENCE public.reports_pages_id_seq
 --
 
 ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
+
+
+--
+-- Name: resource_hogan_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.resource_hogan_credentials (
+    id bigint NOT NULL,
+    resource_id integer NOT NULL,
+    resource_type character varying NOT NULL,
+    hogan_credential_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: resource_hogan_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.resource_hogan_credentials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: resource_hogan_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.resource_hogan_credentials_id_seq OWNED BY public.resource_hogan_credentials.id;
 
 
 --
@@ -7816,6 +7857,13 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: resource_hogan_credentials id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.resource_hogan_credentials ALTER COLUMN id SET DEFAULT nextval('public.resource_hogan_credentials_id_seq'::regclass);
+
+
+--
 -- Name: saml_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9239,6 +9287,14 @@ ALTER TABLE ONLY public.reports
 
 
 --
+-- Name: resource_hogan_credentials resource_hogan_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.resource_hogan_credentials
+    ADD CONSTRAINT resource_hogan_credentials_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: saml_settings saml_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9855,6 +9911,13 @@ CREATE UNIQUE INDEX idx_on_idp_template_id_development_action_id_catego_bd39b965
 --
 
 CREATE UNIQUE INDEX idx_on_idp_template_id_skill_id_category_11f5232638 ON public.idp_template_skills USING btree (idp_template_id, skill_id, category);
+
+
+--
+-- Name: idx_on_resource_id_resource_type_76c375ea65; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_resource_id_resource_type_76c375ea65 ON public.resource_hogan_credentials USING btree (resource_id, resource_type);
 
 
 --
@@ -11678,6 +11741,13 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 
 
 --
+-- Name: index_resource_hogan_credentials_on_hogan_credential_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resource_hogan_credentials_on_hogan_credential_id ON public.resource_hogan_credentials USING btree (hogan_credential_id);
+
+
+--
 -- Name: index_saml_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13486,6 +13556,14 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 
 
 --
+-- Name: resource_hogan_credentials fk_rails_49693360a7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.resource_hogan_credentials
+    ADD CONSTRAINT fk_rails_49693360a7 FOREIGN KEY (hogan_credential_id) REFERENCES public.hogan_credentials(id);
+
+
+--
 -- Name: user_report_comments fk_rails_4a3b56dde9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15103,6 +15181,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250207113529'),
 ('20250206082916'),
 ('20250204092029'),
+('20250130090802'),
+('20250129060829'),
 ('20250127043743'),
 ('20250124102224'),
 ('20250124101641'),
