@@ -382,7 +382,7 @@ class FactorsTable extends Component {
         )
 
         return (
-          <tr key={i} data-paginatable={1} data-factor-id={factor.id}>
+          <tr key={i} data-row={1} data-factor-id={factor.id}>
             {this.canShowRank() && (
               <td className={styles.rankOrder}>
                 <span className={tableStyle !== 'compact' ? cs(styles.star, 'icon-star') : ''}>

@@ -119,7 +119,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   return (
 
     <>
-      <title>{ assessment.name || '' }</title>
+      <title>{`${assessment.name || ''} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">

@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react'
+import { Layout as AntdLayout } from 'antd'
 import {
   createBrowserRouter, Outlet, RouterProvider,
 } from 'react-router-dom'
@@ -18,8 +19,10 @@ const Main: React.FC = () => (
     )}
   >
     <PortalMenu />
-    <Outlet />
-    <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+    <AntdLayout.Content>
+      <Outlet />
+      <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+    </AntdLayout.Content>
     <IncorrectResponseErrorModal />
     <DisplayExceptionModal />
   </Suspense>

@@ -24,7 +24,7 @@ export const General: React.FC<Props> = ({ assessment }) => {
 
   useEffect(() => {
     if (!assessment.iconColor) {
-      form.setFieldsValue({ iconColor: '#00838A' })
+      form.setFieldsValue({ iconColor: '#04717B' })
     }
   }, [form.getFieldsValue(), assessment])
 

@@ -189,7 +189,7 @@ ar:
     closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة.
     complete_prev: " أكمل جميع التقييمات السابقة"
     continue: الإستمرار في التقييم
-    dashboard_instructions: لقد تم تكليفك بعدد من الانشطة التي عليك انجازها. يرجى التأكد من اكمالها جميعا ضمن الاطر الزمنية المحددة لها عبر جميع الحملات.
+    dashboard_instructions: لقد تم تكليفك بعدد من الأنشطة التي عليك إنجازها، يرجى التأكد من إكمالها جميعاً ضمن الفترة الزمنية المحددة لها.
     dashboard_menu:
       bookings: الحجوزات
       campaign: الحملة
@@ -453,7 +453,7 @@ ar:
       update_success: تم تحديث المجموعة بنجاح
     background_reading: قراءة الخلفية
     bookings:
-      accept_invite_msg: لقد تلقيت دعوة. يرجى حجز الفتحة الخاصة بك.
+      accept_invite_msg: لقد تلقيت دعوة، يرجى حجز الفتزة الزمنية الخاصة بك.
       add_to_calendar: إضافة إلى التقويم
       add_to_calendar_tour_description: أضف هذا الحجز إلى التقويم الخاص بك
       assessment_center_alert:
@@ -530,6 +530,7 @@ ar:
     change_password: تغيير كلمة السر
     delete: " حذف"
     edit: تعديل
+    lighthouse_app: ميرسر لايتهاوس
     login: تسجيل الدخول
     manage: " إدارة"
     'no': لا

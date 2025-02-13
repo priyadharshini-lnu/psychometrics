@@ -1,23 +1,21 @@
 /! START X-NAVIGATION VERTICAL
-ul.x-navigation.x-navigation-horizontal.x-navigation-panel
-  /! TOGGLE NAVIGATION
-  li.xn-icon-button
-    a.x-navigation-minimize href="#"
-      span.fa.fa-dedent
-  /! END TOGGLE NAVIGATION
-  /! SIGN OUT
-  li.xn-icon-button.pull-right
-    = link_to destroy_administration_session_path, method: :get, data: { confirm: { body: t('.sign_out_message.body'), title: t('.sign_out_message.title') } } do
-      span.fa.fa-sign-out
-  li.xn-icon-button.pull-right.z-index-2#admin-job-wrapper
-  /! END SIGN OUT
-/! END X-NAVIGATION VERTICAL
-/! START BREADCRUMB
-- if breadcrumbs.present?
-  ul.breadcrumb
-    - if content_for? :breadcrumbs
-      = yield :breadcrumbs
-    - else
-      = render_breadcrumbs tag: :li, separator: ''
+header
+  ul.x-navigation.x-navigation-horizontal.x-navigation-panel
+    /! TOGGLE NAVIGATION
+    /! END TOGGLE NAVIGATION
+    li.xn-icon-button.z-index-2#admin-job-wrapper
+    /! SIGN OUT
+    li.xn-icon-button
+      = link_to destroy_administration_session_path, method: :get, data: { confirm: { body: t('.sign_out_message.body'), title: t('.sign_out_message.title') } }, aria: { label: "Sign Out" } do
+        span.fa.fa-sign-out
+    /! END SIGN OUT
+  /! END X-NAVIGATION VERTICAL
+  /! START BREADCRUMB
+  - if breadcrumbs.present?
+    ul.breadcrumb
+      - if content_for? :breadcrumbs
+        = yield :breadcrumbs
+      - else
+        = render_breadcrumbs tag: :li, separator: ''
 /! END BREADCRUMB
 = vite_javascript_tag 'entrypoints/admin/admin_jobs.jsx'

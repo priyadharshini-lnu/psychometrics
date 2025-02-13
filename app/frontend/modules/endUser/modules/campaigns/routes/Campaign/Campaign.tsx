@@ -99,7 +99,7 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
   const Campaign = TYPES[campaign.type]
   return (
     <>
-      <title>{`${I18n.t('user_assessments.timer_title.campaign')}`}</title>
+      <title>{`${I18n.t('user_assessments.timer_title.campaign')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         { loaded ? <Campaign />

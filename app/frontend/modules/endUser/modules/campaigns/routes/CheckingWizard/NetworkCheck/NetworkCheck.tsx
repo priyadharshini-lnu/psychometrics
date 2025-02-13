@@ -38,7 +38,7 @@ export const NetworkCheck: React.FC<Props> = ({ nextStep, config }) => {
 
   return (
     <>
-      <title>{`${I18n.t('checking_wizard.network_check.title')}`}</title>
+      <title>{`${I18n.t('checking_wizard.network_check.title')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       <Col
         className={cardStyles.container}
         lg={{ span: 8, offset: 8 }}

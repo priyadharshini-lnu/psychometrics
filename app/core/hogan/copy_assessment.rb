@@ -58,7 +58,7 @@ module Hogan
 
       target_user_credential = target_subject.hogan_credential
 
-      if target_user_credential
+      if target_user_credential && (source_user_credential.participant_id != target_user_credential.participant_id)
         raise "Row #{row_no}: Aborted! Hogan Credential present at target for user with id #{target_subject.id}"
       end
 

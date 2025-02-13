@@ -32,9 +32,6 @@ a:hover, a:focus {
   background: -webkit-gradient(linear, left top, right top, color-stop(0, #E04B4A), color-stop(0.5, #1caf9a), color-stop(1, #95b75d));
 }
 /* EOF PREDEFINED CLASSES */
-html * {
-  outline: none !important;
-}
 html,
 body {
   min-height: 100%;
@@ -382,6 +379,8 @@ color:#fff;
 .x-navigation.x-navigation-horizontal {
   height: 50px;
   background: #fff;
+  display: flex;
+  justify-content: flex-end;
 }
 .x-navigation.x-navigation-horizontal .xn-logo a {
   border-bottom: 0px;
@@ -563,6 +562,11 @@ color:#fff;
   padding: 15px 10px;
   text-align: center;
   width: 50px;
+
+  &:focus {
+    outline-offset: -4px;
+    outline-color: #34a3a1;
+  }
 }
 .x-navigation.x-navigation-horizontal .xn-icon-button > a .fa,
 .x-navigation.x-navigation-horizontal .xn-icon-button > a .glyphicon {

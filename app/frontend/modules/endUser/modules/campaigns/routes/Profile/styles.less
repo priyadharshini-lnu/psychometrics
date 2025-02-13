@@ -48,10 +48,15 @@
   display: flex;
   flex: 1;
   align-items: center;
+  height: 100%;
   :global(.anticon) {
     font-size: @space-8;
   }
 
+  &:focus-visible {
+    outline: 4px solid var(--ant-primary-3) !important;
+    outline-offset: 2px;
+  }
   .controls {
     transition: 0.4s;
     position:absolute;
@@ -101,7 +106,7 @@
   font-size: 1.5rem;
 }
 
-.note {
+.requiredMark {
   &:before {
     display: inline-block;
     margin-inline-end: 4px;

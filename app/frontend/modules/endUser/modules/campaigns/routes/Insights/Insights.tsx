@@ -55,7 +55,11 @@ const InsightsComponent: FC<Props> = ({
 
   return (
     <>
-      <title>{`${I18n.t('campaign.dashboard_menu.insights')}`}</title>
+      <title>
+        {
+          `${I18n.t('campaign.dashboard_menu.insights')} - ${I18n.t('frontend.lighthouse_app')}`
+        }
+      </title>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
           <Space>
