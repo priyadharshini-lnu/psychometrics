@@ -1047,13 +1047,7 @@ as: :simulation_progress_notification
   get 'media_players/video', to: 'media_players#video'
   get 'evaluation_session_exists', to: 'end_user/users#dashboard'
 
-  if Rails.env.production?
-    authenticate :user, ->(u) { u.is?(:superadmin) } do
-      mount Sidekiq::Web => '/sidekiq'
-    end
-  else
-    mount Sidekiq::Web, at: '/sidekiq'
-  end
+  mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new', as: :admin_root
 

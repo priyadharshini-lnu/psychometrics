@@ -5,6 +5,7 @@ require 'rails/all'
 require_relative '../lib/middlewares/set_locale_middleware'
 require_relative '../lib/middlewares/check_session'
 require_relative '../lib/middlewares/set_timeout_header_middleware'
+require_relative '../lib/middlewares/sidekiq_auth_middleware'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -71,6 +72,7 @@ module Psychometrics
     config.middleware.use(Middlewares::SetLocaleMiddleware)
     config.middleware.use(Middlewares::CheckSession)
     config.middleware.use(Middlewares::SetTimeoutHeaderMiddleware)
+    config.middleware.use(Middlewares::SidekiqAuthMiddleware)
 
     config.action_controller.raise_on_open_redirects = false
 
