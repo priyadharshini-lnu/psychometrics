@@ -119,16 +119,16 @@ const Header = (props) => {
 
   return (
     <Space direction="vertical" className="w-100">
-      <Space className="w-100 justify-end pe-3">
-        {!showAssessmentOptions ? (
-          <Alert
-            showIcon
-            className="pt-1 pb-1 mt-3 ms-3"
-            type="warning"
-            message="Some of the options are not available since you are not editing in default language."
-          />
-        ) : null}
-        { translations_migrated ? (
+      {translations_migrated ? (
+        <Space className="w-100 justify-end pe-3">
+          {!showAssessmentOptions ? (
+            <Alert
+              showIcon
+              className="pt-1 pb-1 mt-3 ms-3"
+              type="warning"
+              message="Some of the options are not available since you are not editing in default language."
+            />
+          ) : null}
           <Select
             showSearch
             filterOption={(inputValue, option) => option.key.toLowerCase().includes(inputValue.toLowerCase())}
@@ -144,8 +144,8 @@ const Header = (props) => {
               </Select.Option>
             ))}
           </Select>
-        ) : null }
-      </Space>
+        </Space>
+      ) : null}
       <div className={`panel-heading ${styles.menu}`}>
         <Space>
           <h3 className="panel-title">
