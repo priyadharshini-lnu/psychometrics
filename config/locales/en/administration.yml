@@ -2076,6 +2076,7 @@ en:
       scheduling: Scheduling
       show_submenu: Show Sub Menu
       skills: Skills
+      user_profile_details: Profile details
       user_report_events: User Report Events
       users: Users
     no_data_found: No data found
@@ -2142,6 +2143,7 @@ en:
         successfully: Norm was updated successfully.
       update:
         successfully: Norm %{name} was updated successfully.
+    notification_bell_icon: Notification Bell Icon
     noty:
       error_408: This action takes too long. Please try to reload the page.
       error_500: Something went wrong. Contact your administrator.

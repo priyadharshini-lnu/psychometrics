@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import {
   Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button, App,
 } from 'antd'
-import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import _ from 'lodash'
+import { PlusOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { camelizeKeys } from '~/utils/object'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -53,6 +53,8 @@ function Profile ({
   useEffect(() => {
     fetchSingle({ id: currentUser.id })
   }, [currentUser.id])
+
+
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const { message } = App.useApp()
@@ -146,7 +148,12 @@ function Profile ({
                       onChange={onChangeFile}
                       beforeUpload={() => false}
                     >
-                      <div className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photoUrl })}>
+                      <div
+                        aria-labelledby="upload-photo-label"
+                        tabIndex={0}
+                        role="button"
+                        className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photoUrl }, 'h-100')}
+                      >
                         {user.photoUrl && (
                         <img
                           src={user.photoUrl}
@@ -156,7 +163,7 @@ function Profile ({
                           className={styles.photo}
                         />
                         )}
-                        <div className={styles.controls}>
+                        <div id="upload-photo-label" className={styles.controls}>
                           {user.photoUrl ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
                           <div className={styles.photoLabel}>
                             {user.photoUrl

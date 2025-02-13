@@ -440,6 +440,8 @@ background: #000;
 .x-navigation.x-navigation-horizontal {
   height: 50px;
   background: #000;
+  display: flex;
+  justify-content: flex-end;
 }
 .x-navigation.x-navigation-horizontal .xn-logo a {
   border-bottom: 0px;
