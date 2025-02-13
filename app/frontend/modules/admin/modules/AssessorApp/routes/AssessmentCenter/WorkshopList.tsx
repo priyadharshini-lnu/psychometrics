@@ -45,9 +45,6 @@ export const WorkshopList: React.FC = () => {
 
   return (
     <>
-      <title>
-        {`${I18n.t('assessments_reports.menu.assessment_center')} - ${I18n.t('frontend.lighthouse_app')}`}
-      </title>
       <Resource config={config} name="workshops">
         <Resource.Filter hideSearch placeholder="" name="" />
         <Filters />

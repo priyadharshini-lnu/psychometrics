@@ -38,9 +38,6 @@ import Icon, {
   PauseOutlined as AntdEyePauseOutlined,
   EditOutlined as AntdEditOutlined,
   ExpandOutlined as AntdExpandOutlined,
-  MonitorOutlined as AntdMonitorOutlined,
-  MenuFoldOutlined as AntdMenuFoldOutlined,
-  MenuUnfoldOutlined as AntdMenuUnfoldOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -88,6 +85,3 @@ export const CaretRightOutlined = withAccessibilityProps(AntdCaretRightOutlined)
 export const PauseOutlined = withAccessibilityProps(AntdEyePauseOutlined)
 export const EditOutlined = withAccessibilityProps(AntdEditOutlined)
 export const ExpandOutlined = withAccessibilityProps(AntdExpandOutlined)
-export const MonitorOutlined = withAccessibilityProps(AntdMonitorOutlined)
-export const MenuFoldOutlined = withAccessibilityProps(AntdMenuFoldOutlined)
-export const MenuUnfoldOutlined = withAccessibilityProps(AntdMenuUnfoldOutlined)

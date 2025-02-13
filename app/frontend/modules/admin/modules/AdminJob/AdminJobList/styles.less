@@ -1,6 +1,4 @@
 .container {
-  position: relative;
-
   :global(.ant-badge-multiple-words) {
     padding: 0 5px;
   }
@@ -12,12 +10,8 @@
     min-width: 16px;
   }
 
-   &:focus-visible {
-      outline-offset: 2px;
-      outline-color: var(--ant-primary-4);
-   }
-
   .bellIcon {
+    padding: 15px 10px;
     text-align: center;
     line-height: 22px;
     cursor: pointer;
@@ -26,34 +20,11 @@
       color: #1caf9a;
     }
   }
-
-  & > button {
-    position: absolute;
-    top: 10px;
-    right: 0px;
-
-    &:hover {
-      background: none !important;
-    }
-
-    &:focus-visible {
-      outline-width: 2px !important;
-      outline-color: var(--ant-primary-4) !important;
-   }
-  }
-}
-
-
-.listBox {
-  .btnText {
-    color: var(--grey-text);
-  }
 }
 
 .overlay {
   width: 'auto' !important;
   z-index: 11111 !important;
-
   :global(.ant-popover-inner-content) {
     padding: 0;
   }

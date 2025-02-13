@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import Select from 'react-select'
 import { camelizeKeys } from '~/utils/object'
-import DataSourceOptionsDropdown from './DataSourceOptionsDropdown'
 
 const connecter = connect(
   ({ report: { builder } }) => ({
@@ -43,11 +43,11 @@ class CampaignFactors extends Component {
   render () {
     const { singleChoice } = this.props
     return (
-      <DataSourceOptionsDropdown
+      <Select
         name="form-field-name"
         value={this.getValue()}
         options={this.getOptions()}
-        isClearable={false}
+        clearable={false}
         autoFocus={false}
         isMulti={!singleChoice}
         onChange={this.onChange}

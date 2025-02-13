@@ -23,7 +23,7 @@ import { getProject as getCurrentProject } from '~/modules/admin/core/ui/breadcr
 import styles from './styles.less'
 
 const { I18n } = window
-const DEFAULT_PRIMARY_COLOR = '#04717B'
+const DEFAULT_PRIMARY_COLOR = '#00838A'
 const DEFAULT_ERROR_COLOR = '#ff4d4f'
 const MAX_ALT_TEXT_LENGTH = 100
 

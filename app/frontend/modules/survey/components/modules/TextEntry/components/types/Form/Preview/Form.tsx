@@ -9,7 +9,6 @@ import commonStyles from '../../../styles.less'
 import inputs from './inputs'
 import { DateEntry } from './inputs/DateEntry'
 import { FormType } from '../interfaces/Question'
-import useForceUpdate from '~/hooks/useUpdate'
 
 interface Props {
   model: PreviewModel
@@ -35,11 +34,8 @@ const Form: React.FC<Props> = ({
     return formTypes[i] || INPUT_TYPE
   }
 
-  const forceUpdate = useForceUpdate()
-
   const changeAnswer = (i: number, value: string | string[] | null): void => {
     model.result.answer(i, value)
-    forceUpdate()
   }
 
   const renderInput = (i: number, inputId: string): React.ReactNode => {

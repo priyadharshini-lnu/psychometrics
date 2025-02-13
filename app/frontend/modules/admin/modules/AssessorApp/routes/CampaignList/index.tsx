@@ -61,9 +61,6 @@ const CampaignList: React.FC<Props> = (
 
   return (
     <>
-      <title>
-        {`${I18n.t('campaign.campaigns')} - ${I18n.t('frontend.lighthouse_app')}`}
-      </title>
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />

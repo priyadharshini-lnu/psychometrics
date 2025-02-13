@@ -379,8 +379,6 @@ color:#fff;
 .x-navigation.x-navigation-horizontal {
   height: 50px;
   background: #fff;
-  display: flex;
-  justify-content: flex-end;
 }
 .x-navigation.x-navigation-horizontal .xn-logo a {
   border-bottom: 0px;
@@ -562,11 +560,6 @@ color:#fff;
   padding: 15px 10px;
   text-align: center;
   width: 50px;
-
-  &:focus {
-    outline-offset: -4px;
-    outline-color: #34a3a1;
-  }
 }
 .x-navigation.x-navigation-horizontal .xn-icon-button > a .fa,
 .x-navigation.x-navigation-horizontal .xn-icon-button > a .glyphicon {

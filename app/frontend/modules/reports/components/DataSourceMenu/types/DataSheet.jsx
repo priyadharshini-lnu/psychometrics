@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Component } from 'react'
-import DataSourceOptionsDropdown from './DataSourceOptionsDropdown'
+import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
 
 class DataSheet extends Component {
@@ -37,7 +37,7 @@ class DataSheet extends Component {
   render () {
     const { singleChoice } = this.props
     return (
-      <DataSourceOptionsDropdown
+      <Select
         name="form-field-name"
         value={this.getValue()}
         options={this.getOptions()}

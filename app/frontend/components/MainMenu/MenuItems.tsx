@@ -1,7 +1,7 @@
-import { Link as RouterLink } from 'react-router-dom'
 import {
   ArrowRightOutlined, CalendarOutlined, MonitorOutlined, UserOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+} from '@ant-design/icons'
+import { Link as RouterLink } from 'react-router-dom'
 
 const { I18n } = window
 
@@ -144,7 +144,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     permissions.dashboards ? {
       key: 'dashboards',
       label: <a tabIndex={-1} href={permissions.dashboards}>{I18n.t('administration.navigation.dashboard')}</a>,
-      icon: <i aria-hidden="true" className="fa fa-dashboard" />,
+      icon: <i className="fa fa-dashboard" />,
     } : null,
     permissions.assessorDashboard ? {
       key: 'assessorDashboard',
@@ -152,7 +152,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <a tabIndex={-1} href={permissions.assessorDashboard}>
         {I18n.t('administration.navigation.assessor_dashboard')}
       </a>,
-      icon: <i aria-hidden="true" className="fa fa-dashboard" />,
+      icon: <i className="fa fa-dashboard" />,
     } : null,
     permissions.assessorWorkshops ? {
       key: 'assessorWorkshops',
@@ -160,7 +160,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <a tabIndex={-1} href={permissions.assessorWorkshops}>
         {I18n.t('administration.navigation.assessor_workshops')}
       </a>,
-      icon: <CalendarOutlined aria-hidden="true" />,
+      icon: <CalendarOutlined />,
     } : null,
     permissions.clients ? {
       key: 'clients',
@@ -168,7 +168,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <Link href={permissions.clients}>
         {I18n.t('administration.navigation.clients')}
       </Link>,
-      icon: <i aria-hidden="true" className="fa fa-briefcase" />,
+      icon: <i className="fa fa-briefcase" />,
     } : null,
     permissions.users ? {
       key: 'users',
@@ -176,12 +176,12 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <Link href={permissions.users}>
         {I18n.t('administration.navigation.users')}
       </Link>,
-      icon: <i aria-hidden aria-label="" className="fa fa-users" />,
+      icon: <i className="fa fa-users" />,
     } : null,
     permissions.skills && idp_enabled ? {
       key: 'skills',
       label: <Link href={permissions.skills}>{I18n.t('administration.navigation.skills')}</Link>,
-      icon: <i aria-hidden="true" className="fa fa-book" />,
+      icon: <i className="fa fa-book" />,
     } : null,
     permissions.developmentActions && idp_enabled ? {
       key: 'developmentActions',
@@ -197,7 +197,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <a tabIndex={-1} href={permissions.norms}>
         {I18n.t('administration.navigation.norms')}
       </a>,
-      icon: <MonitorOutlined aria-hidden="true" />,
+      icon: <MonitorOutlined />,
     } : null,
     permissions.dimensions ? {
       key: 'dimensions',
@@ -205,7 +205,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <a tabIndex={-1} href={permissions.dimensions}>
         {I18n.t('administration.navigation.dimensions')}
       </a>,
-      icon: <i aria-hidden="true" className="fa fa-file-text-o" />,
+      icon: <i className="fa fa-file-text-o" />,
     } : null,
     permissions.assessments ? {
       key: 'assessments',
@@ -213,7 +213,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <Link href={permissions.assessments}>
         {I18n.t('administration.navigation.assessments')}
       </Link>,
-      icon: <i aria-hidden="true" className="fa fa-universal-access" />,
+      icon: <i className="fa fa-universal-access" />,
     } : null,
     permissions.questionCenter ? {
       key: 'questionCenter',
@@ -221,7 +221,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <a tabIndex={-1} href={permissions.questionCenter}>
         {I18n.t('administration.navigation.question_center')}
       </a>,
-      icon: <i aria-hidden="true" className="fa fa-question-circle-o" />,
+      icon: <i className="fa fa-question-circle-o" />,
     } : null,
     permissions.libraries ? {
       key: 'libraries',
@@ -229,7 +229,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <a tabIndex={-1} href={permissions.libraries}>
         {I18n.t('administration.navigation.libraries')}
       </a>,
-      icon: <i aria-hidden="true" className="fa fa-file-image-o" />,
+      icon: <i className="fa fa-file-image-o" />,
     } : null,
     permissions.communicationCenter ? {
       key: 'communicationCenter',
@@ -237,32 +237,32 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       <a tabIndex={-1} href={permissions.communicationCenter}>
         {I18n.t('administration.navigation.communication_center')}
       </a>,
-      icon: <i aria-hidden="true" className="fa fa-envelope-o" />,
+      icon: <i className="fa fa-envelope-o" />,
     } : null,
     permissions.reports ? {
       key: 'reports',
       label: <Link href={permissions.reports}>{I18n.t('administration.navigation.reports')}</Link>,
-      icon: <i aria-hidden="true" className="fa fa-pie-chart" />,
+      icon: <i className="fa fa-pie-chart" />,
     } : null,
     permissions.reportApprovals ? {
       key: 'reportApprovals',
       label: <Link href={permissions.reportApprovals}>{I18n.t('administration.navigation.report_approvals')}</Link>,
-      icon: <i aria-hidden="true" className="fa fa-check" />,
+      icon: <i className="fa fa-check" />,
     } : null,
     permissions.campaignTemplates ? {
       key: 'campaignTemplates',
       label: <Link href={permissions.campaignTemplates}>{I18n.t('administration.navigation.campaign_templates')}</Link>,
-      icon: <i aria-hidden="true" className="fa fa-gear" />,
+      icon: <i className="fa fa-gear" />,
     } : null,
     {
       key: 'userAvailability',
       label: <Link href={permissions.userAvailability}>{I18n.t('administration.navigation.availability')}</Link>,
-      icon: <i aria-hidden="true" className="fa fa-calendar" />,
+      icon: <i className="fa fa-calendar" />,
     },
     permissions.auditLogs ? {
       key: 'auditLogs',
       label: <Link href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</Link>,
-      icon: <i aria-hidden="true" className="fa fa-clipboard" />,
+      icon: <i className="fa fa-clipboard" />,
     } : null,
     permissions.dataReports ? {
       key: 'dataReports',
@@ -272,7 +272,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
     {
       key: 'profile',
       label: I18n.t('administration.navigation.profile'),
-      icon: <UserOutlined aria-hidden="true" />,
+      icon: <UserOutlined />,
       children: [
         {
           label: (

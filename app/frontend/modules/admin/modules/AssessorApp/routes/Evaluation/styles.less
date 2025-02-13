@@ -1,13 +1,11 @@
 .card {
   border: 1px solid #e8e8e8;
   border-left: none;
-
   :global {
     .ant-card-extra {
       padding: 0;
     }
   }
-
   :global(.ant-card-head) {
     margin-bottom: 0px;
     padding: 0 12px;
@@ -18,18 +16,15 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
   margin-top: 24px;
   border-radius: 8px;
-
   .table {
     border: 1px solid #D3D3D3;
     border-radius: 8px;
     overflow: hidden;
-
     td img {
       max-width: 100%;
     }
   }
 }
-
 
 .breadcrumbs {
   padding: 5px !important;
@@ -47,7 +42,7 @@
 
 .nameContainer {
   padding: 24px;
-  background: var(--ant-primary-color);
+  background: linear-gradient(91deg, #00838A 0%, #4FDBE3 100%);
   color: #fff;
   border-radius: 8px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
@@ -64,14 +59,12 @@
 
   .photo {
     margin-right: 24px;
-
     .avatar {
       border-radius: 8px;
       font-size: 115px;
       width: 117px;
       height: 117px;
     }
-
     img {
       max-width: 117px;
       max-height: 117px;
@@ -79,12 +72,7 @@
   }
 }
 
-.assessorTabs {
-  & :global(.ant-tabs-nav) {
-    margin-bottom: 0px;
-    padding-inline-start: 12px;
-  }
-  & :global(.ant-tabs-tab) {
-    padding-inline: 4px;
-  }
+.assessorTabs :global(.ant-tabs-nav) {
+  margin-bottom: 0px;
+  padding-inline-start: 12px;
 }

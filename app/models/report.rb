@@ -67,7 +67,7 @@ class Report < ApplicationRecord
   end
 
   scope :assignable, -> { where(disabled: false, archived: false) }
-  scope :campaign_factor_dependable, -> { joins(:campaign_factors) }
+  scope :campaign_factor_dependable, -> { where.not(campaign_factors: nil) }
 
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor

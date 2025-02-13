@@ -134,7 +134,6 @@ class Page extends Component {
               defaultLanguage={defaultLanguage}
               allErrors={preview.errors}
               focusFirstError={preview.focusFirstError}
-              singleQuestionPerPage={preview.enableSingleQuestionPage}
             />
           </div>
         </div>

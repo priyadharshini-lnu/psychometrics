@@ -21,8 +21,6 @@ import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 // const ClientList = lazy(() => import('~/modules/admin/modules/client/routes/ClientList'))
 // const Client = lazy(() => import('~/modules/admin/modules/client/routes/Client'))
 
-const { I18n } = window
-
 const Main: React.FC = () => (
   <Suspense fallback={(
     <DefaultAntThemeWrapper>
@@ -30,7 +28,6 @@ const Main: React.FC = () => (
     </DefaultAntThemeWrapper>
     )}
   >
-    <title>{I18n.t('administration.meta_title')}</title>
     <MainMenu />
     <Outlet />
     <RouteList routes={routes} urlPrefix={settings.urlPrefix} />

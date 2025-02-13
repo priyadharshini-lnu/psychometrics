@@ -94,7 +94,6 @@ const SinglePage: React.FC<Props> = ({
                   readOnly
                   questions={questions}
                   backButtonPressed={false}
-                  singleQuestionPerPage={preview.enableSingleQuestionPage}
                 />
               </div>
             </div>

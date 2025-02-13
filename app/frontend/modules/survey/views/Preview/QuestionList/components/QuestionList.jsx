@@ -6,8 +6,7 @@ import styles from './QuestionList.less'
 
 
 const QuestionList = ({
-  page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en',
-  allErrors, focusFirstError, singleQuestionPerPage,
+  page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en', allErrors, focusFirstError,
 }) => {
   const questionRef = useRef(null)
   const transition = useTransition(questions, {
@@ -38,9 +37,7 @@ const QuestionList = ({
   const firstQuestionWithError = questions.find(question => allErrors[question.id])
 
   useLayoutEffect(() => {
-    if (singleQuestionPerPage) {
-      questionRef.current?.focus()
-    }
+    questionRef.current?.focus()
   }, [page])
 
   return transition((style, q) => {
