@@ -12,6 +12,7 @@ export { CountdownTimer } from './components/CountdownTimer'
 export { ConfirmationModal } from './components/ConfirmationModal'
 export { CollapseItem } from './components/CollapseItem'
 export { PageLoadSpinner } from './components/PageLoadSpinner'
+export { JSONViewCopy } from './components/JSONViewCopy'
 export {
   DirectionAwareIcon,
   DirectionalArrowIcon, DirectionalNavigateBackIcon, DirectionalBackArrowIcon, DirectionalNavigateIcon,

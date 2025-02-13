@@ -1620,6 +1620,10 @@ en:
       icon: Icon
       icon_color: Icon color
       id: Id
+      json:
+        answer: Answer JSON
+        external_result: External Result JSON
+        scoring: Scoring JSON
       key: Key
       last_name: Last Name
       linked_activities: Linked Activities
@@ -3481,8 +3485,12 @@ en:
       id: User Assessment ID
       norm_id: Norm ID
     drawer:
+      copied: "%{name} copied to clipboard."
+      copy: Copy to Clipboard
       mettl_schedule_name: Mettl Schedule Name
+      no_data: No data available
       title: Assessment Details
+      view: View
   user_assessments:
     modals:
       actions:

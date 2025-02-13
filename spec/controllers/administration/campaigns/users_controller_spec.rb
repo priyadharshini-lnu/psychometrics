@@ -187,7 +187,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'dimension_id' => assessment.dimension_id,
       'simulation_content_variation_id' => nil,
       'simuation_time_extension' => nil,
-      'simulation_content_variations' => []
+      'simulation_content_variations' => [],
+      'users_result_id' => user_assessment.users_result_id
     })
   end
 end

@@ -1406,6 +1406,8 @@ as: :simulation_progress_notification
               resource :uploads, only: [:update]
             end
           end
+
+          jsonapi_resources :users_results, only: :show
         end
       end
     end
