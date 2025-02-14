@@ -40,10 +40,7 @@ module Hogan
       status = get_status_of_user_assessment(user_assessment)
 
       if status != 'NotAssigned'
-        raise Hogan::Exceptions::NewAssessmentResponseNotAllowed,
-              I18n.t('administration.hogan.errors.new_assessment_response_not_allowed',
-                     email: user.email,
-                     assessment_name: user_assessment.assessment.name)
+        raise Hogan::Exceptions::NewAssessmentResponseNotAllowed.new(user.email, user_assessment.assessment.name)
       end
 
       user_assessment.attach_hogan_credential(existing_hogan_credential)

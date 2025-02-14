@@ -15,40 +15,47 @@ module Campaigns
       end
 
       def call
-        Licenses::Use.call!(campaign, user, report, options[:report_family_id]) unless idp_license_usage
-        user_report = UserReport.find_by(campaign: campaign, report: report, user: user)
-        unless user_report
-          user_report = UserReport.create!(
-            campaign: campaign,
-            report: report,
-            user: user,
-            user_access: options[:user_access].nil? ? get_user_access(report) : options[:user_access],
-            report_family_id: options[:report_family_id]
-          )
-          AuditLogModule.audit!(
-            :create, user_report,
-            payload: user_report.log_attributes.merge(options.slice(:user_access, :report_family_id, :operation)),
-            user: options[:current_user],
-            campaign: campaign
-          )
+        ActiveRecord::Base.transaction(requires_new: true) do
+          Licenses::Use.call!(campaign, user, report, options[:report_family_id]) unless idp_license_usage
+          user_report = UserReport.find_by(campaign: campaign, report: report, user: user)
+          user_report ||= create_user_report
+
+          unless report.data_only?
+            user_assessments = assessments.map do |assessment|
+              find_or_create_assessment_to_user(assessment)
+            end
+
+            handle_hogan_user_assessments_creation(user_assessments, user_report)
+            recompute_user_results(user_assessments)
+            set_approval_status_for_user_report(user_report)
+            generate_report_pdf(user_report) unless user_report.report.hogan?
+          end
+
+          broadcast :ok,
+                    user_report: user_report,
+                    user_assessments: user_assessments
         end
-        return broadcast :ok, user_report: user_report if report.data_only?
-
-        user_assessments = assessments.map do |assessment|
-          find_or_create_assessment_to_user(assessment)
-        end
-
-        handle_hogan_user_assessments_creation(user_assessments, user_report)
-        recompute_user_results(user_assessments)
-        set_approval_status_for_user_report(user_report)
-        generate_report_pdf(user_report) unless user_report.report.hogan?
-
-        broadcast :ok,
-                  user_report: user_report,
-                  user_assessments: user_assessments
       end
 
       private
+
+      def create_user_report
+        user_report = UserReport.create!(
+          campaign: campaign,
+          report: report,
+          user: user,
+          user_access: options[:user_access].nil? ? get_user_access(report) : options[:user_access],
+          report_family_id: options[:report_family_id]
+        )
+        AuditLogModule.audit!(
+          :create, user_report,
+          payload: user_report.log_attributes.merge(options.slice(:user_access, :report_family_id, :operation)),
+          user: options[:current_user],
+          campaign: campaign
+        )
+
+        user_report
+      end
 
       def get_user_access(report)
         campaign.campaign_reports.find_by(report_id: report.id)&.user_access || false

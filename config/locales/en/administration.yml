@@ -1765,7 +1765,9 @@ en:
           accesssheet_view: Accesssheet View
     hogan:
       errors:
-        new_assessment_response_not_allowed: New Response can't be added for hogan assessment %{assessment_name} as this assessment is already assigned and started by user %{email}. You can create new hogan account for this user and it will allow user to retake the assessment.
+        new_assessment_response_not_allowed:
+          detailed_error_message: New Response can't be added for hogan assessment %{assessment_name} as this assessment is already assigned and started by user %{email}. You can create new hogan account for this user and it will allow user to retake the assessment.
+          short_error_message: New Response can't be added for hogan assessment %{assessment_name} as this assessment is already assigned and started by user %{email}
     idp:
       actions:
         remove_confirm: Enter current template name given below in text box to remove template
