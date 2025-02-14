@@ -94,7 +94,11 @@ module AdminJobs
     end
 
     def file_name
-      "assessment-#{assessment.id}-raw-results.csv"
+      if job_record.data['export_with_labels'].present?
+        "assessment-#{assessment.id}-raw-with-labels.csv"
+      else
+        "assessment-#{assessment.id}-raw-without-labels.csv"
+      end
     end
   end
 end

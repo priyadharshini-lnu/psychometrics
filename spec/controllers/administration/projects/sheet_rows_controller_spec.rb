@@ -178,7 +178,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
       xlsx = double
       allow(xlsx).to receive_message_chain(:to_stream, :read) { data }
       expect(::Sheets::Export).to receive(:call!).with(sheet).and_return(xlsx)
-      expect(controller).to receive(:send_data).with(data, filename: "sheet-for-#{project.name}.xlsx")
+      expect(controller).to receive(:send_data).with(data, filename: "datasheet-export-for-#{project.name}.xlsx")
 
       get :export, format: 'xlsx', params: { project_id: project.id, type: 'Datasheet' }
     end

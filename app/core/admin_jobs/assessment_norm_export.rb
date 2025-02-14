@@ -46,7 +46,7 @@ module AdminJobs
     end
 
     def file_name
-      "assessment-#{assessment.id}-normed-results.csv"
+      "assessment-#{assessment.id}-normed-factor-scores.csv"
     end
   end
 end

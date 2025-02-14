@@ -221,8 +221,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       xlsx = double
       allow(xlsx).to receive_message_chain(:to_stream, :read) { data }
       expect(::Sheets::Export).to receive(:call!).with(sheet).and_return(xlsx)
-      expect(controller).to receive(:send_data).with(data, filename: "sheet-for-#{campaign.name}.xlsx")
-
+      expect(controller).to receive(:send_data).with(data, filename: "datasheet-export-for-#{campaign.name}.xlsx")
       get :export, format: 'xlsx', params: { new_campaign_id: campaign.id, type: 'Datasheet' }
     end
   end

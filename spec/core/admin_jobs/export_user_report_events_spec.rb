@@ -79,7 +79,7 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
   describe '#file_name' do
     it 'generates a valid filename' do
       file_name = job.file_name
-      expect(file_name).to match(/^user-report-events-[a-z_]+-\d+\.csv$/)
+      expect(file_name).to match(/^report-approval-logs \(\d{4}-\d{2}-\d{2} - \d{4}-\d{2}-\d{2}\)\.csv$/)
     end
   end
 
