@@ -1,7 +1,8 @@
 import { Link as RouterLink } from 'react-router-dom'
 import {
   ArrowRightOutlined, CalendarOutlined, MonitorOutlined, UserOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+} from '@ant-design/icons'
+import { camelizeKeys } from '~/utils/object'
 
 const { I18n } = window
 
@@ -134,7 +135,7 @@ const Link = ({ href, children }) => {
 
 export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
   featureFlags?: Record<string, boolean>) => {
-  const idp_enabled = featureFlags?.idp_enabled
+  const idpEnabled = camelizeKeys(featureFlags ?? {})?.idpEnabled
   return [
     hasSubmenu ? {
       key: 'showSubmenu',
@@ -178,12 +179,12 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       </Link>,
       icon: <i aria-hidden aria-label="" className="fa fa-users" />,
     } : null,
-    permissions.skills && idp_enabled ? {
+    permissions.skills && idpEnabled ? {
       key: 'skills',
       label: <Link href={permissions.skills}>{I18n.t('administration.navigation.skills')}</Link>,
       icon: <i aria-hidden="true" className="fa fa-book" />,
     } : null,
-    permissions.developmentActions && idp_enabled ? {
+    permissions.developmentActions && idpEnabled ? {
       key: 'developmentActions',
       label:
       <Link href={permissions.developmentActions}>

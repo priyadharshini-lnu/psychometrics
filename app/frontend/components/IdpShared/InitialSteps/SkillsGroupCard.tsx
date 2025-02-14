@@ -7,7 +7,7 @@ import {
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import { BoxWithShadow, ButtonWithArrow, MediaQueryContext } from '~/glint'
-import { CategoryWithSkillsSummary } from '../DevelopmentActions'
+import { CategoryWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
 import {
   fetchIdpSkills,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
@@ -28,6 +28,7 @@ type Props = {
   onAddSkill: (skills: { id: number; name: string }[]) => void
   fetchIdpSkills: (filters: object) => Promise<{ response: { id: number; name: string, category: string }[]}>
   onRemoveSkill: (skillId: number) => void
+  selectedSkills: UserIdpSkill[]
 }
 
 const { I18n } = window
@@ -38,10 +39,13 @@ const SkillsGroupCardComponent: FC<Props> = ({
   onAddSkill,
   fetchIdpSkills,
   onRemoveSkill,
+  selectedSkills,
 }) => {
   const [searchResults, setSearchResults] = useState<{ id: number; name: string }[]>([])
   const [isSearching, setIsSearching] = useState(false)
-  const [selectedSkills, setSelectedSkills] = useState<{ id: number; name: string }[]>([])
+  const [selectedCategorySkills, setSelectedCategorySkills] = useState<
+    { skillId: number; id: number; name: string; }[]
+  >([])
   const { isMobile } = useContext(MediaQueryContext)
 
   const handleSearch = _.debounce((value) => {
@@ -55,11 +59,22 @@ const SkillsGroupCardComponent: FC<Props> = ({
     })
   }, 300)
 
-  const handleSelectSkills = (ids) => {
-    setSelectedSkills(
-      searchResults.filter(skill => ids.includes(skill.id)).map(skill => ({ ...skill, skillId: skill.id })),
-    )
+  const handleSelectSkill = (skillId) => {
+    const skill = searchResults.find(({ id }) => id === skillId)
+    if (!skill) return
+
+    const userIdpSkill = { ...skill, skillId }
+
+    setSelectedCategorySkills(_.uniqBy([...selectedCategorySkills, userIdpSkill], 'skillId'))
   }
+
+  const handleDeselectSkill = (id) => {
+    setSelectedCategorySkills(selectedCategorySkills.filter(({ skillId }) => skillId !== id))
+    onRemoveSkill(id)
+  }
+
+  const isAddSelectedCategorySkillsDisabled = _.every(selectedCategorySkills,
+    categorySkill => _.includes(selectedSkills.map(skill => skill.skillId), categorySkill.skillId))
 
   return (
     <BoxWithShadow style={{ padding: '24px 24px' }}>
@@ -99,10 +114,10 @@ const SkillsGroupCardComponent: FC<Props> = ({
                 showSearch
                 onSearch={handleSearch}
                 mode="multiple"
-                onChange={handleSelectSkills}
+                onSelect={handleSelectSkill}
                 notFoundContent={isSearching ? <Spin size="small" /> : null}
                 filterOption={false}
-                onDeselect={skillId => onRemoveSkill(skillId)}
+                onDeselect={handleDeselectSkill}
               >
                 {searchResults.map(({ id, name }) => (
                   <Select.Option
@@ -117,8 +132,8 @@ const SkillsGroupCardComponent: FC<Props> = ({
           </Row>
           <Row justify="end">
             <ButtonWithArrow
-              onClick={() => onAddSkill(selectedSkills)}
-              disabled={selectedSkills.length === 0}
+              onClick={() => onAddSkill(selectedCategorySkills)}
+              disabled={isAddSelectedCategorySkillsDisabled}
               size="small"
               type="primary"
               label={I18n.t('idp.initial_steps.add_skills')}
