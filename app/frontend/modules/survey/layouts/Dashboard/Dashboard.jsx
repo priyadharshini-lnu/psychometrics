@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import Home from '~/modules/survey/views/Home'
 import Trash from '~/modules/survey/views/Trash'
 import PropertyPanel from '~/modules/survey/views/PropertyPanel'
@@ -17,10 +17,17 @@ export const Dashboard = (props) => {
   const [loadingAssessment, setLoadingAssessment] = useState(true)
 
   const [params] = useSearchParams()
+  const navigate = useNavigate()
 
   const currentLocale = params.get('lang') || defaultLocale
 
   const showOptions = defaultLocale === currentLocale
+
+  useEffect(() => {
+    if (!params.get('lang') && defaultLocale) {
+      navigate(`?lang=${defaultLocale}`)
+    }
+  }, [defaultLocale])
 
 
   useEffect(() => {

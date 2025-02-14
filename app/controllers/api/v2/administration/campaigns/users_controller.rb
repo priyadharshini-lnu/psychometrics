@@ -23,7 +23,7 @@ module Api
 
       if idp_template
         jsonapi_render json: idp_template,
-                       options: { resource: ::Api::V2::Administration::Clients::IdpTemplateResource }
+                       options: { resource: ::Api::V2::Administration::Projects::IdpTemplateResource }
       else
         render json: { error: I18n.t('idp_templates.errors.idp_template_not_found') }, status: :not_found
       end

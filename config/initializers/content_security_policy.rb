@@ -58,7 +58,7 @@ unless Rails.env.test?
       connect_src = [
         :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
         'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
-        'https://o111210.ingest.sentry.io',
+        'https://*.sentry.io',
         'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?

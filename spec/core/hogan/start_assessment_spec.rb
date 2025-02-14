@@ -3,10 +3,14 @@
 require 'rails_helper'
 
 describe Hogan::StartAssessment do
+  let(:project) { create(:project) }
+  let(:user) { create(:user, project: project) }
   let(:assessment) { create(:hogan_assessment, dimension: nil) }
+  let(:hogan_report) { create(:report, :hogan, assessments: [assessment]) }
   let(:user_assessment) { create(:user_assessment, assessment: assessment, evaluator: user, subject: user) }
-  let(:user) { create(:user) }
-  let(:project) { user_assessment.project }
+  let!(:hogan_user_report) do
+    create(:user_report, report: hogan_report, campaign: user_assessment.campaign, user: user)
+  end
 
   let(:context) { { params: { id: user_assessment.id }, current_user: user } }
 
@@ -47,7 +51,7 @@ describe Hogan::StartAssessment do
       it 'sets the norm as Global2023' do
         start_assessment.call
 
-        hogan_credential = HoganCredential.last
+        hogan_credential = user.reload.hogan_credential
 
         expect(hogan_credential.norm).to eq('Global2023')
       end
@@ -55,10 +59,26 @@ describe Hogan::StartAssessment do
       it 'creates hogan credentials' do
         start_assessment.call
 
-        hogan_credential = HoganCredential.last
+        hogan_credential = user.reload.hogan_credential
 
         expect(hogan_credential.participant_id).to eq('1')
         expect(hogan_credential.provider).to eq('phoenix')
+      end
+
+      it 'creates resource hogan credentials' do
+        start_assessment.call
+
+        hogan_credential = user.reload.hogan_credential
+        resource_hogan_credential = ResourceHoganCredential.find_by(resource: user_assessment)
+        resource_hogan_credential_of_report = ResourceHoganCredential.find_by(resource: hogan_user_report)
+
+        expect(resource_hogan_credential.hogan_credential).to eq(hogan_credential)
+        expect(resource_hogan_credential.hogan_credential.participant_id).to eq('1')
+        expect(resource_hogan_credential.hogan_credential.provider).to eq('phoenix')
+
+        expect(resource_hogan_credential_of_report.hogan_credential).to eq(hogan_credential)
+        expect(resource_hogan_credential_of_report.hogan_credential.participant_id).to eq('1')
+        expect(resource_hogan_credential_of_report.hogan_credential.provider).to eq('phoenix')
       end
 
       it 'broadcasts :ok and returns async_response' do
@@ -76,7 +96,7 @@ describe Hogan::StartAssessment do
         it 'creates hogan credentials with mercer as provider' do
           start_assessment.call
 
-          hogan_credential = HoganCredential.last
+          hogan_credential = user.reload.hogan_credential
 
           expect(hogan_credential.participant_id).to eq('1')
           expect(hogan_credential.provider).to eq('mercer')
@@ -91,7 +111,7 @@ describe Hogan::StartAssessment do
         it 'creates hogan credentials with mercer as provider' do
           start_assessment.call
 
-          hogan_credential = HoganCredential.last
+          hogan_credential = user.reload.hogan_credential
 
           expect(hogan_credential.participant_id).to eq('1')
           expect(hogan_credential.provider).to eq('mercer')

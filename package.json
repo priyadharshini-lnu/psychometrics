@@ -87,7 +87,7 @@
     "extendable-media-recorder-wav-encoder": "^7.0.117",
     "face-api.js": "^0.22.2",
     "fbemitter": "^2.0.2",
-    "fp-ts": "^2.11.8",
+    "fp-ts": "^2.16.5",
     "glob": "^7.1.6",
     "google-libphonenumber": "^3.2.34",
     "green-audio-player": "git+https://github.com/TheTalentEnterprise/green-audio-player.git",
@@ -96,7 +96,7 @@
     "history": "^4.10.1",
     "humps": "^2.0.1",
     "interactjs": "^1.10.27",
-    "io-ts": "^2.2.16",
+    "io-ts": "^2.2.21",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
     "js-file-download": "^0.4.12",
@@ -185,6 +185,7 @@
     "zustand": "^4.1.1"
   },
   "devDependencies": {
+    "@sentry/vite-plugin": "^2.22.7",
     "@testing-library/dom": "^8.2.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^11.2.7",
@@ -200,7 +201,7 @@
     "@types/react-dom": "^18.2.21",
     "@types/react-select": "4.0.15",
     "@types/ua-parser-js": "^0.7.36",
-    "@vitest/coverage-v8": "^2.1.4",
+    "@vitest/coverage-v8": "^2.1.9",
     "coveralls-next": "^4.2.0",
     "eslint": "^8.49.0",
     "eslint-plugin-react": "^7.32.1",
@@ -213,7 +214,7 @@
     "typescript": "4.7.2",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^4.3.1",
-    "vitest": "^2.1.4"
+    "vitest": "^2.1.9"
   },
   "resolutions": {
     "@types/react": "18.2.64",

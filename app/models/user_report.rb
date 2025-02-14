@@ -5,6 +5,7 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   include WorkflowActiverecord
   include ActiveStorageAttachable
+  include HoganResource
 
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
@@ -18,12 +19,12 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_one :subject, -> { where('campaign_id = threesixty_subjects.campaign_id') },
           foreign_key: :user_id, primary_key: :user_id,
           class_name: 'Threesixty::Subject'
-
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
   has_many :user_report_events
   has_many :communication_email_resources, as: :resource
   has_many :communication_emails, through: :communication_email_resources
+  has_many :user_report_pdfs, dependent: :destroy
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
@@ -46,6 +47,8 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
+  after_commit :sync_user_report_pdf, if: proc { attachment_changes.include?('pdf_file') }, on: [:update]
+
   after_commit :publish_to_webhook,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
@@ -53,6 +56,11 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   after_commit :schedule_report_available_notification,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
+
+  scope :for_assessment, lambda { |assessment_id|
+                           joins(report: :assessments_reports).
+                             where(assessments_reports: { assessment_id: assessment_id })
+                         }
 
   workflow_column :approval_status
 
@@ -85,6 +93,28 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
       update(approver_user_id: nil, approved_at: nil) if to == :change_requested
     end
+  end
+
+  def sync_user_report_pdf
+    user_report_pdf = user_report_pdfs.find_or_create_by(locale: effective_default_language)
+
+    user_report_pdf.pdf_file_attachment = ActiveStorage::Attachment.new(
+      record_id: user_report_pdf.id,
+      record_type: 'UserReportPdf',
+      blob_id: pdf_file.blob_id,
+      name: 'pdf_file'
+    )
+
+    user_report_pdf.set_generated_timestamps
+    user_report_pdf.save!
+  end
+
+  def effective_default_language
+    campaign_report&.effective_default_language || report.default_language
+  end
+
+  def campaign_report
+    @campaign_report ||= campaign.campaign_reports.find_by(report_id: report_id)
   end
 
   def other_reports_in_same_package
@@ -161,6 +191,7 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def remove_report_pdf!
     pdf_file.purge_later
+    user_report_pdfs.find_by(locale: effective_default_language)&.pdf_file&.purge_later
     self.status = :not_prepared
     self.approval_status = :not_ready if has_approval_workflow?
     save!
@@ -252,6 +283,7 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     return unless prepared?
 
     update!(purge_pdf_file: true, status: :not_prepared, approval_status: :not_ready)
+    user_report_pdfs.find_by(locale: effective_default_language)&.pdf_file&.purge_later
   end
 
   def schedule_report_available_notification

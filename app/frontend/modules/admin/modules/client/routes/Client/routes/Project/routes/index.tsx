@@ -4,6 +4,7 @@ import { Settings } from './Settings'
 import { Datasheet } from './Datasheet'
 import { Admins } from './Admins'
 import { DataExports } from './DataExports'
+import { Idp } from './Idp'
 
 export const routes = [
   { redirect: true, from: '/', to: 'new_campaigns' },
@@ -34,5 +35,9 @@ export const routes = [
   {
     path: '/audit_reports',
     component: <DataExports />,
+  },
+  {
+    path: '/idp/*',
+    component: <Idp />,
   },
 ]

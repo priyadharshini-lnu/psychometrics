@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import {
   Button,
-  Flex, Radio, Typography, Empty, Modal,
+  Flex, Radio, Modal,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { BoxWithShadow } from '~/glint'
 import { AvailableDevelopmentActions, DevelopmentAction } from '.'
-import { Tags } from './Tags'
-import styles from './AddDevelopmentActionModal.less'
+import { DevelopmentActionsList } from './Common'
 
 const { I18n } = window
 type Props = {
   data: AvailableDevelopmentActions[]
   onAddAction: (developmentAction: Partial<DevelopmentAction>) => void,
   onShowCustomDevelopmentAction: () => void,
+  onShowAIGeneratedDevelopmentActions: () => void,
   onCancel: () => void,
   open: boolean,
 }
@@ -29,6 +29,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
   data,
   onAddAction,
   onShowCustomDevelopmentAction,
+  onShowAIGeneratedDevelopmentActions,
   onCancel,
   open,
 }) => {
@@ -55,54 +56,17 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
     onCancel()
   }
 
-  const cards = availableActions.length > 0 ? (availableActions.map(developmentAction => (
-    <Flex
-      onClick={() => handleAddAction(developmentAction)}
-      className={styles.card}
-      gap={16}
-      key={developmentAction.id}
-    >
-      <Flex vertical flex={1}>
-        {developmentAction.name ? (
-          <Typography.Title
-            level={5}
-            ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-          >
-            {developmentAction.name}
-          </Typography.Title>
-        ) : null}
-        <Typography.Paragraph
-          ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-        >
-          {developmentAction.description}
-        </Typography.Paragraph>
-        <Flex>
-          <Tags type={developmentAction.learningStyle} />
-        </Flex>
-      </Flex>
-      {developmentAction.image ? (
-        <Flex>
-          <img
-            src={developmentAction.image}
-            className={styles.image}
-          />
-        </Flex>
-      ) : null}
-    </Flex>
-  ))) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-
   return (
     <Modal
-      title={I18n.t('idp.development_actions.development_actions')}
+      title={I18n.t('idp.development_actions.heading')}
       open={open}
       onCancel={handleCancel}
       footer={null}
       width={800}
-      className={styles.modal}
     >
       <Flex vertical gap={18}>
         <Flex justify="flex-end" gap={8}>
-          <Button icon={<PlusOutlined />}>
+          <Button icon={<PlusOutlined />} onClick={onShowAIGeneratedDevelopmentActions}>
             {I18n.t('idp.development_actions.generate_by_ai')}
           </Button>
           <Button icon={<PlusOutlined />} onClick={handleShowCustomDevelopmentAction}>
@@ -117,9 +81,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
           ))}
         </Radio.Group>
         <BoxWithShadow>
-          <Flex vertical className={styles.card_content}>
-            {cards}
-          </Flex>
+          <DevelopmentActionsList availableActions={availableActions} onDevelopmentActionClick={handleAddAction} />
         </BoxWithShadow>
       </Flex>
     </Modal>

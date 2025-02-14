@@ -24,7 +24,6 @@ module Pearson
     private
 
     def request_data
-      subject = user_assessment.subject
       maskable_identity = subject.maskable_identity(
         mask: user_assessment.project.mask_identity_for_pearson?
       )
@@ -69,8 +68,22 @@ module Pearson
         host: Settings.domain,
         subdomain: user_assessment.project.subdomain,
         protocol: Settings.protocol,
-        port: Settings.port
+        port: Settings.port,
+        jwt: jwt_token
       })
+    end
+
+    def jwt_token
+      JWT.encode({ 'sub' => subject.id, 'exp' => session_inactivity_timeout.from_now.to_i },
+                 Settings.secrets.encrypted_key.to_s, 'HS256')
+    end
+
+    def session_inactivity_timeout
+      subject.session_inactivity_timeout
+    end
+
+    def subject
+      @subject ||= user_assessment.subject
     end
   end
 end

@@ -14,6 +14,8 @@ export const ReportFormModal: React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext()
   const [form] = Form.useForm()
 
+  const createNewResource = data => resource.createResource(data)
+
   return (
     <ResourceFormModal
       resourceName="reports"
@@ -23,7 +25,7 @@ export const ReportFormModal: React.FC<Props> = ({ close }) => {
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 720 }}
-      request={{ createResource: resource.createResource, updateResource: resource.updateResource }}
+      request={{ createResource: createNewResource, updateResource: resource.updateResource }}
     >
       {() => (
         <>

@@ -24,8 +24,16 @@ import {
   Schema as campaignFactorGroupSchema,
   UpdatePositionsSchema, CampaignFactorsSchema,
 } from '~/modules/admin/modules/campaigns/core/campaignFactorGroup'
+import {
+  Schema as DataReportsSchema, JobSchema as DataReportJobsSchema,
+} from '~/modules/admin/modules/DataReports/core'
 import { Schema as CampaignTemplateSchema } from '~/modules/admin/core/types/campaignTemplates'
 import { Schema as normsSchema } from '~/modules/admin/modules/client/core/norms'
+import { Schema as developmentActionSchema } from '~/modules/admin/modules/client/core/developmentAction'
+
+import { Schema as skillsSchema } from '~/modules/admin/modules/client/core/skills'
+import { Schema as campaignIdpSchema } from '~/modules/admin/modules/campaigns/core/campaignIdp'
+import { Schema as idpTemplateSchema } from '~/modules/admin/modules/client/core/idp'
 
 export const Schema = {
   clients: clientSchema,
@@ -51,6 +59,12 @@ export const Schema = {
   campaign_factor_groups: campaignFactorGroupSchema,
   campaign_factors: CampaignFactorsSchema,
   update_positions: UpdatePositionsSchema,
+  data_reports: DataReportsSchema,
+  data_report_jobs: DataReportJobsSchema,
   campaign_templates: CampaignTemplateSchema,
   norms: normsSchema,
+  development_actions: developmentActionSchema,
+  skills: skillsSchema,
+  campaign_idps: campaignIdpSchema,
+  idp_templates: idpTemplateSchema,
 }

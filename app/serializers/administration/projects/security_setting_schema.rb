@@ -23,6 +23,7 @@ module Administration
           required(:magic_link_expiry_in_seconds).maybe(:int?)
           required(:magic_link_enabled).filled(:bool?)
           required(:disallow_password_login).filled(:bool?)
+          required(:session_inactivity_timeout_in_seconds).maybe(:int?)
         end
       end
     end

@@ -44,7 +44,7 @@ ApplicationRecord.transaction do
     output_type: 'numeric',
     formula: 'return 2'
   )
-  campaign_factor1 = campaign.campaign_factors.create!(
+  campaign_factor2 = campaign.campaign_factors.create!(
     campaign_factor_group: campaign_factor_group,
     name: 'Skill2 Factor',
     code: skill_2_score,
@@ -74,10 +74,9 @@ ApplicationRecord.transaction do
   skill1.job_roles.create!(name: "Job Role  #{Faker::Lorem.characters(number: 5)}",
                            description: 'Job Role 1 Description')
 
-  idp_template = client.idp_templates.create!(
+  idp_template = project.idp_templates.create!(
     name: Faker::Lorem.characters(number: 8),
     description: 'IDP Template 1 Description',
-    available_skills_selection_type: :selected,
     available_development_actions_selection_type: :selected,
     suggested_development_actions_selection_type: :all,
     skill_gap_datasheet_columns: ['Job Title', 'Department', 'Location'],
@@ -125,7 +124,7 @@ ApplicationRecord.transaction do
     password: 'Random@password1',
     project: project
   )
-  puts "Created subject email: #{subject_user.email}, password: Random@password1"
+  Rails.logger.debug { "Created subject email: #{subject_user.email}, password: Random@password1" }
 
   CampaignUser.create!(campaign: campaign, user: subject_user)
 

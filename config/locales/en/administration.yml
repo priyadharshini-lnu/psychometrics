@@ -610,6 +610,8 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       create: Create
+      data_exports: Data Exports
+      data_reports: Data Reports
       datasheets: Datasheets
       design: Design
       dimension: Dimension
@@ -716,7 +718,7 @@ en:
       errors:
         assessment_not_found_in_campaign: Assessment ID '%{assessment_id}' not found in campaign
         code_already_exists: A factor with the same code '%{code}' already exists.
-        factor_not_in_assessment_dimension: Factor id '%{factor_id}' not part of assessment’s dimension
+        factor_not_in_assessment_dimension: Factor id '%{factor_id}' not part of assessment's dimension
         invalid_lua_name: The code '%{code}' should be a valid lua variable name
         invalid_name_format: The name '%{name}' should match the expected format.
         missing_assessment_id: Assessment id is required.
@@ -1501,20 +1503,85 @@ en:
         visual_header_visibility: Visual Header Visibility
       image_upload_failed: Image upload failed.
       none: None
-      refresh_success: Refresh of dataset was scheduled successfully.
-      visual_header_visibility_options:
-        hide_all: Hide All
-        keep_original: Keep Original (Controlled from PowerBi "Header icons" option)
-        show_all: Show All
+      refresh_success: Refresh of dataset scheduled successfully.
     data_exports_modal:
       title: Select date range
+    data_reports:
+      columns:
+        created_at: Created At
+        created_by: Created By
+        last_updated_by: Last Updated By
+        name: Name
+        owner: Owner
+        password: Password
+        status: Status
+        udpated_at: Last Updated At
+      configuration: Configuration
+      errors:
+        factor_not_found: not found in scope of assessment
+        inclusion: 'invalid type, valid types: %{values}'
+        not_found: not found
+        not_owned: not owned by client
+      form:
+        name: Data Report
+      messages:
+        runed: The data report was successfully scheduled to run
+      validations:
+        project_and_campaigns_not_allowed: project_ids and campaign_ids should not be specified together
+        project_not_related_to_client: "%{project_id} is not belongs to the client"
+        project_or_campaign_required: project_ids or campaign_ids is required
+        sections_required: sections is required
     datasheet:
-      threesixty_warning: You can’t upload datasheet columns for 360 report from here. For 360 report datasheet columns are loaded from the campaign to which this report is linked to
+      threesixty_warning: You can't upload datasheet columns for 360 report from here. For 360 report datasheet columns are loaded from the campaign to which this report is linked to
     dates:
       completed: Completed At
       end: End Date
       start: Start Date
       started: Started At
+    development_actions:
+      categories:
+        course: Course
+        default: Default
+      create:
+        successfully: Development Action "%{name}" was created successfully.
+      destroy:
+        successfully: Development Action "%{name}" was deleted successfully.
+      edit:
+        header: Edit Development Action
+      form:
+        category: Category
+        course_image: Course Image
+        course_link: Course Link
+        description: Description
+        end_date: End Date
+        learning_style: Learning Style
+        name: Name
+        owner_placeholder: Select an Owner
+        project_placeholder: Select a Project
+        skills: Skills
+        skills_placeholder: Select skills
+        start_date: Start Date
+        title: Development Action
+        upload: Upload
+      heading: Development Actions
+      learning_styles:
+        learning_from_others: Learning from Others [20]
+        on_the_job: On the Job [70]
+        structured_learning: Structured Learning [10]
+      new:
+        header: New Development Action
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Are you sure you want to delete this Development Action?</p>\n"
+            title: Delete <strong>Development Action</strong> ?
+          toggle_status:
+            body: "<p>Are you sure you want to %{status} this Development Action?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: Development Action was updated successfully.
+      update:
+        successfully: Development Action "%{name}" was updated successfully.
     dimensions:
       copy_scheduled:
         successfully: Copying scheduled for dimension %{name}
@@ -1577,6 +1644,10 @@ en:
     document_titles:
       project_assessors: Assessors | %{project}
       project_participants: Participants | %{project}
+    download_sample_file:
+      download_example_file: Download Example File
+      download_started_successfully: Download started successfully
+      failed_to_download: failed to download
     enable: Enable
     errors:
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
@@ -1692,6 +1763,34 @@ en:
           accesssheet_manage: Accesssheet Manage
           accesssheet_settings: Accesssheet Settings
           accesssheet_view: Accesssheet View
+    hogan:
+      errors:
+        new_assessment_response_not_allowed: New Response can't be added for hogan assessment %{assessment_name} as this assessment is already assigned and started by user %{email}. You can create new hogan account for this user and it will allow user to retake the assessment.
+    idp:
+      actions:
+        remove_confirm: Enter current template name given below in text box to remove template
+        success: "%{idpName} was removed successfully."
+      add_idp_template: Add IDP Template
+      all: All
+      behavioral_skills: Behavioral Skills
+      client_skills: Client Skills
+      edit_template: Edit IDP Template
+      enter_template_description: Description
+      enter_template_description_error: Template description is required.
+      enter_template_name: Name
+      enter_template_name_error: Template name is required
+      global_skills: Global Skills
+      idp: IDP
+      idp_template: Add IDP Template
+      none: None
+      select_by_tags: Select by Tags
+      select_specific_skills: Select Specific Skills
+      selected: Selected
+      self_rating: Enable Self Rating
+      tab:
+        templates: Templates
+      technical_skills: Technical Skills
+      template_details: Template Details
     import: Import
     imports:
       assessments:
@@ -1957,6 +2056,8 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       dashboard: Dashboard
+      data_reports: Data Reports
+      development_actions: Development Actions
       dimensions: Dimensions
       factors: Factors
       innovation_styles: Innovation Styles
@@ -2232,6 +2333,7 @@ en:
           topics:
             label: Events
             list:
+              assessment_assigned: Assessment Assigned
               assessment_completed: Assessment Completed
               assessment_started: Assessment Started
               assessment_timeout: Assessment Timeout
@@ -2346,7 +2448,7 @@ en:
         visual_proctoring_enabled: Enable Visual Proctoring
         web_proctoring_enabled: Enable Web Proctoring
       privacy_settings:
-        disable_dp: Don’t allow further data processing
+        disable_dp: Don't allow further data processing
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent
         dp_consent_version: Policy Version
@@ -2779,7 +2881,7 @@ en:
       subject_list:
         actions: Actions
         bulk_mark_finalized: Bulk Mark Finalized
-        bulk_mark_finalized_confirm: Finalizing score for selected users will generate the report which uses campaign factor for the users. Are you sure you want to proceed?”
+        bulk_mark_finalized_confirm: Finalizing score for selected users will generate the report which uses campaign factor for the users. Are you sure you want to proceed?
         bulk_mark_not_finalized: Bulk Mark Not Finalized
         bulk_mark_not_finalized_confirm: Removing finalize from the selected users will remove the generated report which uses campaign factor for the users. Are you sure you want to proceed?
         bulk_rescore: Bulk Rescore
@@ -2792,7 +2894,7 @@ en:
         finalized_date: Finalized Date
         import_external_scores: Import External Scorings
         mark_finalized: Mark Finalized
-        mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
+        mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?
         mark_not_finalized: Mark Not Finalized
         mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
         push_webhook: Push webhooks
@@ -2832,6 +2934,7 @@ en:
       restrict_sequences: Restrict sequential and repetitive characters
       security: Security Settings
       send_unlock_email: Send unlock email
+      session_timeout_duration: Session Timeout Duration
       tfa_enabled: Enable Two Factor Authentication
     settings:
       admin_roles:
@@ -2916,12 +3019,27 @@ en:
         rows: Rows
         settings: Settings
     skills:
+      errors:
+        search:
+          all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
+          invalid_all_value: 'must be one of: true, false'
+          invalid_category: Must be a valid category
+          invalid_global_value: 'must be one of: true, false'
+          query_too_short: is required and must belonger than 3 characters
       form:
         category: Category
         description: Description
         name: Name
+        owner_placeholder: Select an Owner
+        project_placeholder: Select a Project
         title: Skill
+      import:
+        download_example_csv: Download Example csv
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+        title: Skills import
+      import_skills: Import Skills
       skills: Skills
+      tools: Tools
     sms_histories:
       columns:
         first_name: First Name
@@ -2959,7 +3077,7 @@ en:
         mobile_no: Mobile no
         title: Sms Invite
       import:
-        download_example_csv: Download Example csv
+        download_example_csv: Download Example CSV
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: SMS Invite import
       messages:

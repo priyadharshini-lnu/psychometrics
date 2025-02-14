@@ -3,13 +3,14 @@
 module Campaigns
   module Reports
     class Add < BaseCommand
-      private_attr_reader :form, :campaign, :current_user, :job_record
+      private_attr_reader :form, :campaign, :current_user, :job_record, :responses
 
       def initialize(form, campaign, current_user, job_record = nil)
         @form = form
         @campaign = campaign
         @current_user = current_user
         @job_record = job_record
+        @responses = { error_messages: [] }
       end
 
       def call
@@ -19,7 +20,7 @@ module Campaigns
             create_campaign_report(report)
           end
         end
-        broadcast :ok, nil
+        broadcast :ok, responses: responses
       rescue Licenses::NotEnoughError => e
         broadcast :error, { base: e.message }
       end
@@ -75,6 +76,9 @@ module Campaigns
           )
 
           job_record&.increment_completed_tasks!
+        rescue Hogan::Exceptions::NewAssessmentResponseNotAllowed => e
+          responses[:error_messages] << e.message
+          next
         end
       end
 

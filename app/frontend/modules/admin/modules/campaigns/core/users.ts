@@ -58,7 +58,7 @@ export const EXPORT_USERS = 'resource/campaigns/users/EXPORT_USERS'
 export const ASSIGN_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/ASSIGN_REPORTS_AND_ASSESSMENTS'
 export const EXPORT_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/EXPORT_REPORTS_AND_ASSESSMENTS'
 export const ADD_MANAGER = 'users/ADD_MANAGER'
-
+export const CREATE_HOGAN_CREDENTIAL = 'users/CREATE_HOGAN_CREDENTIAL'
 export interface ShortUser {
   firstName: string
   lastName: string
@@ -185,6 +185,15 @@ export const addManager = (projectId: number, UserId: number, managerId: number)
   },
 })
 
+export const createHoganCredentials = (campaignId: string, UserId: number): ApiAction<{}> => ({
+  type: CREATE_HOGAN_CREDENTIAL,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/users/${UserId}/create_hogan_credentials`,
+    body: {},
+  },
+})
+
 export interface UserDetails {
   id: number
   fullName: string
@@ -198,6 +207,8 @@ export interface UserDetails {
   additionalTime: number
   startedAt: string
   completedAt: string
+  userAssessments: UserAssessment[]
+  userReports: UserReport[]
   permissions: {
     addReport: boolean
     regenerateReport: boolean
@@ -311,7 +322,7 @@ export default createReducer(HANDLERS, defaultState)
 function* genSetUserDetails ({ response }: FetchSingleType) {
   yield put(
     setUserDetails(
-      _.omit(response, ['userAssessment', 'userReports']) as UserDetails,
+      _.omit(response, ['userAssessment']) as UserDetails,
     ),
   )
 }

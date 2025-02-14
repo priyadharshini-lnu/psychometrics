@@ -31,7 +31,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
     end
 
     it 'update user idp skill' do
-      put :update, params: { id: user_idp_skill.id, skill_rating: 3 }
+      put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
 
       parsed_response = JSON.parse(response.body)
 
@@ -42,7 +42,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
     end
 
     it 'update user idp skill with invalid rating' do
-      put :update, params: { id: user_idp_skill.id, skill_rating: 6 }
+      put :update, params: { id: user_idp_skill.id, initial_rating: 6 }
 
       parsed_response = JSON.parse(response.body)
 

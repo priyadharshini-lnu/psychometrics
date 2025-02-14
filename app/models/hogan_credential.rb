@@ -15,4 +15,16 @@ class HoganCredential < ApplicationRecord
   attr_encrypted :password, key: Base64.decode64(Settings.secrets.hogan[:encrypted_key])
 
   enum provider: { phoenix: 0, mentis: 1, mercer: 2 }
+
+  scope :active, -> { where(active: true) }
+
+  after_commit :deactivate_other_credentials, on: :create, if: :active?
+
+  private
+
+  def deactivate_other_credentials
+    HoganCredential.transaction do
+      HoganCredential.where(user_id: user_id, active: true).where.not(id: id).update_all(active: false)
+    end
+  end
 end

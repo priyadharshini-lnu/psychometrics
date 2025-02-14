@@ -9,7 +9,7 @@ RSpec.describe UserIdpPlan, type: :model do
     let(:campaign) { campaign_user.campaign }
     let(:communication) { create(:communication, kind: :idp_template_assigned, campaign_id: campaign.id) }
     let(:user_idp_plan) do
-      build(:user_idp_plan, user: user, campaign: campaign)
+      create(:user_idp_plan, user: user, campaign_id: campaign.id)
     end
 
     context 'when communication exists' do

@@ -12,6 +12,7 @@ declare global {
     PsyGlobalState: {
       realEnv: string,
       sentryUrl: string,
+      sentryDebug: string,
       currentUser: {
         id: string
         email: string

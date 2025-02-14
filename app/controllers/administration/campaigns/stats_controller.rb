@@ -6,13 +6,13 @@ module Administration
       skip_after_action :verify_policy_scoped
 
       def index
-        stats = ::Campaigns::BuildStats.call!(campaign)
+        stats = ::Campaigns::BuildStats.call!(campaign, params.dig(:filters, :campaign_users_active_in))
         render json: stats
       end
 
       def timeseries
         timeseries = ::Campaigns::StatusTimeseriesQuery.new(
-          campaign, params[:range].first, params[:range].last
+          campaign, params[:range].first, params[:range].last, params[:campaign_users_active_in]
         ).query.map do |item|
           { 'dt' => item['dt'], 'started' => item['started'] || 0, 'completed' => item['completed'] || 0 }
         end

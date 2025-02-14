@@ -8,6 +8,7 @@ import meanBy from 'lodash/meanBy'
 import round from 'lodash/round'
 import cs from 'classnames'
 import _ from 'lodash'
+import { PageData } from '../../GapAssessment/PaginationContext'
 
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { PreviewModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
@@ -89,6 +90,8 @@ interface OwnProps {
   hideValues: boolean
   noOfItems: number | null
   scoreCutoff: number | null
+  model: PreviewModel
+  paginationContext: PageData | null
   style?: CSSProperties & { fontColor: string }
 }
 
@@ -104,6 +107,8 @@ const QuestionTypeComponent: FC<Props> = ({
   hideValues,
   noOfItems = 5,
   scoreCutoff,
+  paginationContext,
+  model,
   style,
 }) => {
   const calculateHighestLowest = (
@@ -198,30 +203,34 @@ const QuestionTypeComponent: FC<Props> = ({
   )
 
   const filterName = filter ? I18nStore.tFilterName(filter) : ''
+  const showHighest = paginationContext
+    ? !!paginationContext?.rowIds?.top?.length : (sections !== TableSectionsType.LOWEST)
+  const showLowest = paginationContext
+    ? !!paginationContext?.rowIds?.bottom?.length : (sections !== TableSectionsType.HIGHEST)
   const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
   return (
     <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
-      <table>
+      <table data-table={model.id}>
         <tbody>
-          {sections !== TableSectionsType.LOWEST && (
+          {showHighest && (
             <>
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
                 filterName={filterName}
                 hideValues={hideValues}
               />
-              <TBody data={highestChoices} hideValues={hideValues} />
+              <TBody data={highestChoices} hideValues={hideValues} type="top" paginationContext={paginationContext} />
             </>
           )}
-          {sections !== TableSectionsType.HIGHEST && (
+          {showLowest && (
             <>
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
                 filterName={filterName}
                 hideValues={hideValues}
               />
-              <TBody data={lowestChoices} hideValues={hideValues} />
+              <TBody data={lowestChoices} hideValues={hideValues} type="bottom" paginationContext={paginationContext} />
             </>
           )}
         </tbody>
@@ -323,12 +332,12 @@ interface THeadersProps {
 
 const THeaders: FC<THeadersProps> = ({ title, filterName, hideValues }) => (
   <>
-    <tr className={styles.title}>
+    <tr className={styles.title} data-header>
       <th colSpan={hideValues ? 3 : 4}>
         {title}
       </th>
     </tr>
-    <tr className={styles.headers}>
+    <tr className={styles.headers} data-header>
       <th className={styles.label}>
         {I18nStore.t('reports.modules.highest_lowest.rank')}
       </th>
@@ -352,20 +361,33 @@ interface TBodyProps {
     value: number
   }>
   hideValues: boolean
+  type: 'top' | 'bottom'
+  paginationContext: PageData | null
 }
 
-const TBody: FC<TBodyProps> = ({ data, hideValues }) => (
-  <>
-    {data.map(({ factorName, questionName, value }, index) => (
-      <tr key={index} className={styles.row}>
-        <td>{index + 1}</td>
-        <td>{factorName}</td>
-        <td>{questionName}</td>
-        {!hideValues && <td className={styles.number}>{value.toFixed(2)}</td>}
-      </tr>
-    ))}
-  </>
-)
+const TBody: FC<TBodyProps> = ({
+  data, hideValues, type, paginationContext,
+}) => {
+  const ranks = data.reduce((acc, _, i) => ({ ...acc, [i]: i + 1 }), {})
+  const paginatedData = paginationContext
+    ? paginationContext.rowIds[type].map(id => ({ ...data[id], rank: ranks[id] })) : data
+
+  return (
+    <>
+      {paginatedData.map(({
+        factorName, questionName, value, rank,
+      }, index) => (
+        <tr key={index} className={styles.row} data-row={index} data-type={type}>
+          <td>{rank}</td>
+          <td>{factorName}</td>
+          <td>{questionName}</td>
+          {!hideValues && <td className={styles.number}>{value.toFixed(2)}</td>}
+        </tr>
+      ))}
+    </>
+  )
+}
+
 
 const QuestionType = connector(QuestionTypeComponent)
 

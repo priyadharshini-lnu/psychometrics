@@ -33,4 +33,5 @@ export default interface UserAssessment {
     updateContentVariation: boolean
     updateSimulationTimeExtension: boolean
   }
+  usersResultId: number
 }

@@ -49,7 +49,6 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
   } = useResources<Tag>('tags', { apiConfig: { query: { taggable_resource_type: TaggableResourceType.Report } } })
 
-
   const assessmentIds = Form.useWatch('assessmentIds', form)
   const provider = Form.useWatch('provider', form)
   const externalReportId = Form.useWatch(['externalSettings', 'reportId'], form)
@@ -122,6 +121,16 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
     })
   }, 300), [])
 
+  const handleLanguageChange = useCallback(
+    _.debounce((value) => {
+      const updatedOtherLanguages = (form.getFieldValue('otherLanguages') || []).filter(
+        lang => lang !== value,
+      )
+
+      form.setFieldsValue({ defaultLanguage: value, otherLanguages: updatedOtherLanguages })
+    }, 100),
+    [form],
+  )
 
   const ExternalReportFieldsComponent = ExternalReportFields[getAssessmentType()]
 
@@ -206,17 +215,26 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
         label={I18n.t('reports.columns.default_language')}
         initialValue={report?.defaultLanguage || 'en'}
       >
-        <Select disabled={isEditForm}>
+        <Select
+          disabled={isEditForm}
+          onChange={value => handleLanguageChange(value)}
+        >
           {availableLocales.map(locale => (
-            <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+            <Select.Option key={locale} value={locale}>
+              {I18n.t(`languages.${locale}`)}
+            </Select.Option>
           ))}
         </Select>
       </Form.Item>
       <Form.Item name="otherLanguages" label={I18n.t('reports.columns.other_available_languages')}>
         <Select mode="multiple">
-          {availableLocales.filter(l => l !== (report?.defaultLanguage || 'en')).map(locale => (
-            <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
-          ))}
+          {availableLocales
+            .filter(locale => locale !== form.getFieldValue('defaultLanguage'))
+            .map(locale => (
+              <Select.Option key={locale} value={locale}>
+                {I18n.t(`languages.${locale}`)}
+              </Select.Option>
+            ))}
         </Select>
       </Form.Item>
       <Form.Item

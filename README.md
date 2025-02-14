@@ -78,11 +78,11 @@ When docker container is stopped, use this command
 ```
 docker start psy_postgres
 ```
-# Installing lua 5.3
+# Installing lua 5.4
 
-To install lua 5.3 run below command
+To install lua 5.4 run below command
 ```
-brew install lua@5.3
+brew install lua@5.4
 ```
 After installation, it will prompt you to add some variables to .zshrc or .bashrc. Follow that step.
 
@@ -90,11 +90,11 @@ Once that is done, you will need to create symlinks for all the necessary compon
 
 you may create directories `/usr/local/include` and `/usr/local/lib/` if it's not present
 ```
-sudo ln -s /opt/homebrew/opt/lua@5.3/include/lua5.3 /usr/local/include/lua5.3
-sudo ln -s /opt/homebrew/opt/lua@5.3/lib/liblua5.3.dylib /usr/local/lib/liblua5.3.dylib
-sudo ln -s /opt/homebrew/opt/lua@5.3/bin/lua5.3 /usr/local/bin/lua5.3
+sudo ln -s /opt/homebrew/opt/lua@5.4/include/lua5.4 /usr/local/include/lua5.4
+sudo ln -s /opt/homebrew/opt/lua@5.4/lib/liblua5.4.dylib /usr/local/lib/liblua5.4.dylib
+sudo ln -s /opt/homebrew/opt/lua@5.4/bin/lua5.4 /usr/local/bin/lua5.4
 ```
-Please note that the path where Lua is installed might be different, so replace the above path (/opt/homebrew/opt/lua@5.3/..) with the path where Lua is installed on your machine. To check where Lua is installed, you can run `which lua`
+Please note that the path where Lua is installed might be different, so replace the above path (/opt/homebrew/opt/lua@5.4/..) with the path where Lua is installed on your machine. To check where Lua is installed, you can run `which lua`
 
 
 

@@ -43,10 +43,11 @@ module Hogan
 
     def call_hogan_api(user_report, package_id = nil, &)
       report = user_report.report
+      credentials = hogan_credential(user_report)
 
       Services::Hogan::Api::Json::AddParticipantReport.call({
-        group: hogan_group_name,
-        norm_id: hogan_norm_id(report),
+        group: credentials.hogan_group_name,
+        norm_id: hogan_norm_id(report, user_report),
         language_id: report.external_settings[:language_id],
         assessment_id: assessment_id_for_report(user_report.external_report_id, package_id),
         participant_id: credentials.participant_id,
@@ -56,11 +57,12 @@ module Hogan
       }, &)
     end
 
-    def hogan_norm_id(report)
+    def hogan_norm_id(report, user_report)
       norm_from_report = report.external_settings&.dig(:norm_id)
 
       return norm_from_report if norm_from_report.present? && norm_from_report != HoganCredential::DEFAULT_NORM
 
+      credentials = hogan_credential(user_report)
       credentials.norm
     end
 
@@ -73,12 +75,9 @@ module Hogan
       end
     end
 
-    def credentials
-      @credentials ||= user_reports.first.user.hogan_credential
-    end
-
-    def hogan_group_name
-      @hogan_group_name ||= credentials.hogan_group_name
+    def hogan_credential(user_report)
+      @hogan_credential ||= {}
+      @hogan_credential[user_report.id] ||= user_report.hogan_credential
     end
   end
 end

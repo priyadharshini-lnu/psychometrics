@@ -287,7 +287,7 @@ class FactorsTable extends Component {
   renderFactors () {
     const { model, module, assessments } = this.props
     const { fontFamily } = module.props.style
-    const benchmarkScores = assessments[model.assessment_id]?.factor_benchmark_scores || []
+    const benchmarkScores = assessments?.[model.assessment_id]?.factor_benchmark_scores || []
 
     return (
       this.factorsData.map((factor, i) => {
@@ -381,8 +381,35 @@ class FactorsTable extends Component {
           </>
         )
 
+        const renderScoreUI = () => (
+          <div
+            className={styles.scoreUiWrapper}
+            style={{
+              alignItems: (!showScore && scorePosition === 'block') ? 'flex-start' : 'center',
+              width: (
+                showScore && scorePosition === 'block' && scoreDisplay === 'circular'
+              ) ? 'fit-content' : '100%',
+            }}
+          >
+            {scoreUI}
+            {showScore && tableStyle === 'compact' && score}
+            {showLabel && (
+            <div
+              className={showScore ? styles.labelSecondary : styles.label}
+              style={{
+                backgroundColor: showScore ? 'transparent' : conditionColor,
+                width: (!showScore && scorePosition === 'inline') ? '100%' : 'fit-content',
+                minWidth: (!showScore && scorePosition === 'block') ? '6em' : 'none',
+              }}
+            >
+              {conditionLabel}
+            </div>
+            )}
+          </div>
+        )
+
         return (
-          <tr key={i} data-row={1} data-factor-id={factor.id}>
+          <tr key={i} data-row={i} data-factor-id={factor.id}>
             {this.canShowRank() && (
               <td className={styles.rankOrder}>
                 <span className={tableStyle !== 'compact' ? cs(styles.star, 'icon-star') : ''}>
@@ -404,7 +431,7 @@ class FactorsTable extends Component {
                         {_.isEmpty(conditionTitle) ? I18nStore.tFactor(factor, 'alias') : conditionTitle}
                       </div>
                     )}
-                    {scorePosition === 'block' && !showWithFilters ? scoreUI : null}
+                    {(scorePosition === 'block' && !showWithFilters) ? renderScoreUI() : null}
                     {showDescription && (
                       <ReactMarkdown className={cs(styles.text, 'mt4')}>
                         {conditionText}
@@ -424,18 +451,14 @@ class FactorsTable extends Component {
                 )}
               </td>
             )}
-            {!showWithFilters && ((showScore && scorePosition === 'inline') || (showLabel && !showScore)) ? (
+            {!showWithFilters && scorePosition === 'inline' && (showScore || showLabel) ? (
               <td className={cs({
                 [styles.score]: showScore,
                 [styles.circular]: scoreDisplay === 'circular',
                 [styles.bullet]: scoreDisplay === 'bullet',
               })}
               >
-                {scoreUI}
-                {showScore && tableStyle === 'compact' && score}
-                {!showScore && showLabel && (
-                  <div className={styles.label} style={{ backgroundColor: conditionColor }}>{conditionLabel}</div>
-                )}
+                {renderScoreUI()}
               </td>
             ) : null}
 
@@ -487,7 +510,7 @@ class FactorsTable extends Component {
           {(showIcons || showName || showDescription || showStrengthsBlindspots) ? (
             <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
           ) : null}
-          {model.props.showScore && scorePosition === 'inline' && !showWithFilters
+          {(model.props.showScore || model.props.showLabel) && scorePosition === 'inline' && !showWithFilters
             ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
           {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
             <th key={i} className={styles.filter} scope="col">{filter.name}</th>

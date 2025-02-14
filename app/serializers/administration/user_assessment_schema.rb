@@ -41,6 +41,7 @@ module Administration
         required(:schedule_time).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
         required(:dimension_id).maybe(:int?)
+        required(:users_result_id).maybe(:int?)
         required(:simulation_content_variations).maybe do
           array(SimulationContentVariationSchema.schema(_, _))
         end

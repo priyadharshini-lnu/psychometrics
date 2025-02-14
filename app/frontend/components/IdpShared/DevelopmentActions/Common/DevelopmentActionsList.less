@@ -1,0 +1,63 @@
+.card {
+  position: relative;
+  border-bottom: 1px solid #DBDBDB;
+  padding: 12px 0;
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -16px;
+    right: -16px;
+    bottom: 0;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  &.highlight:before {
+    background-color: #fffbcc;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.card_content {
+  padding: 0 16px;
+  border: 1px solid #DBDBDB;
+  max-height: 60vh;
+  overflow-y: auto;
+  position: relative;
+}
+/* RTL styles */
+[dir="rtl"] .card {
+  padding: 12px 0 12px 12px;
+}
+
+.m_none{
+  margin: 0;
+}
+
+.p_none{
+  padding: 0;
+}
+
+.image{
+  border-radius: 4px;
+  max-width: 10rem;
+  min-height: 5rem;
+  align-self: flex-end;
+  block-size: auto;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  height: 100%;
+}

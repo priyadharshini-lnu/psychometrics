@@ -5,16 +5,15 @@ require 'rails_helper'
 RSpec.describe EndUser::SavilleUserAssessmentsController, type: :controller do
   let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:user_assessment) do
-    create(:user_assessment, evaluator: user, saville_user_assessment: build(:saville_user_assessment))
+    create(:user_assessment, subject: user, evaluator: user, saville_user_assessment: build(:saville_user_assessment))
   end
   let(:campaign) { user_assessment.campaign }
   let(:async_request_uuid) { "#{uuid}|#{user.id}" }
   let(:request_params) { { id: user_assessment.id, saville_user_assessment: { id: user_assessment.id } } }
 
-  before(:each) { login_user(user) }
-  after(:each) { sign_out(user) }
-
   describe 'POST #pass' do
+    before(:each) { login_user(user) }
+    after(:each) { sign_out(user) }
     before do
       allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
       allow(AsyncRequestHandlerJob).to receive(:perform_later)
@@ -51,9 +50,20 @@ RSpec.describe EndUser::SavilleUserAssessmentsController, type: :controller do
   end
 
   describe 'GET redirect' do
+    before(:each) do
+      user.update!(project: campaign.project)
+      allow(GetProjectBySubdomain).to receive(:call!).and_return(campaign.project)
+    end
+
+    let(:jwt_token) do
+      JWT.encode({ 'sub' => user_assessment.subject.id, 'exp' => 2.hours.from_now.to_i },
+                 Settings.secrets.encrypted_key, 'HS256')
+    end
+    let(:request_params) { { id: user_assessment.id, jwt: jwt_token } }
+
     it 'mark user_assessment as completed if saville assessment is completed and redirect to campaign' do
       allow(Saville::GetAssessmentStatus).to receive(:call!).and_return('Completed')
-      get :redirect, params: { id: user_assessment.id }
+      get :redirect, params: request_params
 
       expect(user_assessment.reload.completed?).to eq(true)
       expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
@@ -61,13 +71,15 @@ RSpec.describe EndUser::SavilleUserAssessmentsController, type: :controller do
 
     it "doesn't mark user_assessment as completed if saville assessment is not completed" do
       allow(Saville::GetAssessmentStatus).to receive(:call!).and_return('InCompleted')
-      get :redirect, params: { id: user_assessment.id }
+      get :redirect, params: request_params
 
       expect(user_assessment.reload.completed?).to eq(false)
     end
 
     it 'mark user_assessment as timed_out if saville assessment is return error and redirect to campaign' do
-      get :redirect, params: { id: user_assessment.id, error: 14 }
+      request_params[:error] = 14
+
+      get :redirect, params: request_params
 
       expect(user_assessment.reload.timed_out?).to eq(true)
       expect(user_assessment.reload.completion_reason).to eq('time_out_offline')

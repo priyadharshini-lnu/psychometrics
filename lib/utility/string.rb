@@ -26,6 +26,17 @@ module Utility
       str.encode(Encoding.find('ASCII'), **encoding_options)
     end
 
+    def self.generate_strong_password(length = 0)
+      length = [12, length].max
+      password = Devise.friendly_token.first(length - 4)
+      special_chars = ['@', '#', '$', '%', '^', '&', '*']
+      password += special_chars.sample
+      password += [*'0'..'9'].sample
+      password += [*'A'..'Z'].sample
+      password += [*'a'..'z'].sample
+      password.chars.shuffle.join
+    end
+
     def self.remove_csv_injection_marker(value)
       return value unless value.is_a?(::String)
 

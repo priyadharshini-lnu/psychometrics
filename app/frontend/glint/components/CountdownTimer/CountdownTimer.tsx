@@ -56,17 +56,25 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
 
   useEffect(() => {
     if (!seconds) return
-    setCountDownValue(Date.now() + seconds * 1000)
-    setTimerFormat(getFormat(seconds))
+    const countDownValue = Date.now() + seconds * 1000
 
-    const notifications = notificationPoints.map(notificationPoint => notificationSetTimeout(
-      notificationPoint.timeRemaining, seconds, notificationPoint.type,
-    ))
+    setCountDownValue(countDownValue)
+    setTimerFormat(getFormat(seconds))
+  }, [seconds])
+
+  useEffect(() => {
+    if (!seconds) return
+
+    const notifications = notificationPoints.map(
+      notificationPoint => notificationSetTimeout(notificationPoint.timeRemaining,
+        seconds,
+        notificationPoint.type),
+    )
 
     return () => {
       notifications.forEach(notification => clearTimeout(notification))
     }
-  }, [seconds])
+  }, [seconds, notificationPoints])
 
   const handleTimerChange = (value: number) => {
     const newFormat = getFormat(value / 1000)

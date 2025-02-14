@@ -2,7 +2,7 @@
 
 module EndUser
   class UserIdpSkillsSerializer < Panko::Serializer
-    attributes :id, :name, :description, :category, :initial_rating, :final_rating
+    attributes :id, :name, :description, :category, :initial_rating, :final_rating, :skill_id
 
     delegate :name, :description, :category, to: :skill
 

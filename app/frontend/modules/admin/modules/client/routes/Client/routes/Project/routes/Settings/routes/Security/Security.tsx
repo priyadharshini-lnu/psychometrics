@@ -170,6 +170,13 @@ const securityComponent: React.FC<Props> = ({
                   <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
                 </Form.Item>
                 <Form.Item
+                  name="sessionInactivityTimeoutInSeconds"
+                  label={I18n.t('administration.security_setting.session_timeout_duration')}
+                  required
+                >
+                  <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
+                </Form.Item>
+                <Form.Item
                   name="magicLinkEnabled"
                   label={I18n.t('administration.security_setting.enable_login_with_magic_link')}
                   valuePropName="checked"

@@ -11,6 +11,7 @@ type Permissions = {
     assessorWorkshops?: string
     clients?: string
     skills?: string
+    developmentActions?: string
     users?: string
     norms?: string
     dimensions?: string
@@ -23,6 +24,7 @@ type Permissions = {
     campaignTemplates?: string
     auditLogs?: string
     userAvailability?: string
+    dataReports?: string
 }
 
 export const getSelected = (): string => {
@@ -94,8 +96,16 @@ export const getSelected = (): string => {
     return 'userAvailability'
   }
 
+  if (location.href.match(/\/admin(\/)(data_reports)/)) {
+    return 'dataReports'
+  }
+
   if (location.href.match(/\/admin(\/)(skills)/)) {
     return 'skills'
+  }
+
+  if (location.href.match(/\/admin(\/)(development_actions)/)) {
+    return 'developmentActions'
   }
 
   return 'clients'
@@ -113,7 +123,7 @@ const Link = ({ href, children }) => {
       'changePassword', 'clients',
       'users', 'userAvailability',
       'reports', 'assessments', 'reportApprovals',
-      'campaignTemplates', 'skills']
+      'campaignTemplates', 'skills', 'developmentActions']
     return !allowedPages.includes(selected)
   }
   if (isThreesixty || isAssessmentBuilder || isDashboard || isAllowed()) {
@@ -172,6 +182,14 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       key: 'skills',
       label: <Link href={permissions.skills}>{I18n.t('administration.navigation.skills')}</Link>,
       icon: <i aria-hidden="true" className="fa fa-book" />,
+    } : null,
+    permissions.developmentActions && idp_enabled ? {
+      key: 'developmentActions',
+      label:
+      <Link href={permissions.developmentActions}>
+        {I18n.t('administration.navigation.development_actions')}
+      </Link>,
+      icon: <i className="fa fa-star" />,
     } : null,
     permissions.norms ? {
       key: 'norms',
@@ -245,6 +263,11 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       key: 'auditLogs',
       label: <Link href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</Link>,
       icon: <i aria-hidden="true" className="fa fa-clipboard" />,
+    } : null,
+    permissions.dataReports ? {
+      key: 'dataReports',
+      label: <a href={permissions.dataReports}>{I18n.t('administration.navigation.data_reports')}</a>,
+      icon: <i className="fa fa-database" />,
     } : null,
     {
       key: 'profile',

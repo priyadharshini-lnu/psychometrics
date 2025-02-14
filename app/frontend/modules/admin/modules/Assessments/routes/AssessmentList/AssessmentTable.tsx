@@ -160,7 +160,7 @@ const AssessmentId = ({ assessment }: { assessment: Assessment }) => {
 
   if (assessment.type === 'common') {
     return (
-      <Button type="link" href={`/administration/assessments/${assessment.id}`}>
+      <Button type="link" href={`/administration/assessments/${assessment.id}?lang=${assessment.defaultLanguage}`}>
         {assessment.id}
       </Button>
     )

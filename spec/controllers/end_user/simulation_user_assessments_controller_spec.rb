@@ -12,10 +12,10 @@ RSpec.describe EndUser::SimulationUserAssessmentsController, type: :controller d
   let(:async_request_uuid) { "#{uuid}|#{user.id}" }
   let(:request_params) { { id: user_assessment.id, simulation_user_assessment: { id: user_assessment.id } } }
 
-  before(:each) { login_user(user) }
-  after(:each) { sign_out(user) }
-
   describe 'POST #pass' do
+    before(:each) { login_user(user) }
+    after(:each) { sign_out(user) }
+
     before do
       allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
       allow(AsyncRequestHandlerJob).to receive(:perform_later)
@@ -52,8 +52,16 @@ RSpec.describe EndUser::SimulationUserAssessmentsController, type: :controller d
   end
 
   describe 'GET #redirect' do
-    let(:jwt_token) { JWT.encode({ data: user_assessment.id }, Settings.secrets.webhook_jwt_secret, 'HS256') }
-    let(:request_params) { { id: user_assessment.id, jwt_token: jwt_token } }
+    before(:each) do
+      user.update(project: campaign.project)
+      allow(GetProjectBySubdomain).to receive(:call!).and_return(campaign.project)
+    end
+
+    let(:jwt_token) do
+      JWT.encode({ 'sub' => user_assessment.subject.id, 'exp' => 2.hours.from_now.to_i },
+                 Settings.secrets.encrypted_key, 'HS256')
+    end
+    let(:request_params) { { id: user_assessment.id, jwt: jwt_token } }
 
     context 'when user assessment is found' do
       it 'completes the user assessment and redirects to the assessment completed path' do
@@ -64,10 +72,10 @@ RSpec.describe EndUser::SimulationUserAssessmentsController, type: :controller d
       end
     end
 
-    context 'when user assessment is not found' do
-      let(:jwt_token) { JWT.encode({ data: nil }, Settings.secrets.webhook_jwt_secret, 'HS256') }
-
+    context 'when user is not found' do
       it 'redirects to the root path' do
+        request_params[:id] = 'invalid_id'
+
         get :redirect, params: request_params
 
         expect(response).to redirect_to(root_path)
@@ -77,22 +85,23 @@ RSpec.describe EndUser::SimulationUserAssessmentsController, type: :controller d
     context 'when JWT token is invalid' do
       let(:jwt_token) { 'invalid_token' }
 
-      it 'redirects to the root path' do
+      it 'redirects to the sign_in page' do
         get :redirect, params: request_params
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     context 'when JWT token is expired' do
       let(:jwt_token) do
-        JWT.encode({ data: user_assessment.id, exp: 1.hour.ago.to_i }, Settings.secrets.webhook_jwt_secret, 'HS256')
+        JWT.encode({ 'sub' => user_assessment.subject.id, exp: 1.hour.ago.to_i }, Settings.secrets.encrypted_key,
+                   'HS256')
       end
 
-      it 'redirects to the root path' do
+      it 'completes the user assessment' do
         get :redirect, params: request_params
 
-        expect(response).to redirect_to(root_path)
+        expect(user_assessment.reload).to be_completed
       end
     end
   end

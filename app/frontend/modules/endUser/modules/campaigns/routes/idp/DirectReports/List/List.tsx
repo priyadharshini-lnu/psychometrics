@@ -11,7 +11,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import {
   fetchDirectReports,
-} from '~/modules/endUser/modules/campaigns/core/idp/developmentAction'
+} from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 const { I18n } = window
 

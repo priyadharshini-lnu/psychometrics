@@ -15,6 +15,20 @@ RSpec.describe UserReport, type: :model do
     it { expect(user_report.pdf_file.attached?).to be_truthy }
   end
 
+  describe '#sync_user_report_pdf' do
+    let(:user_report) { create(:user_report, :with_pdf) }
+
+    it 'creates a UserReportPdf record with pdf_file attached with same blob_id as user_report pdf file' do
+      expect { user_report.sync_user_report_pdf }.to change(UserReportPdf, :count).by(1)
+
+      user_report_pdf = user_report.user_report_pdfs.last
+
+      expect(user_report_pdf.pdf_file.attached?).to be_truthy
+      expect(user_report.reload.pdf_file.key).to eq(user_report_pdf.pdf_file.key)
+      expect(user_report_pdf.pdf_file.blob_id).to eq(user_report.pdf_file.blob_id)
+    end
+  end
+
   describe '#attach_pdf!' do
     let(:user_report) { create(:user_report) }
 
