@@ -240,7 +240,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
         <span>
           {popupMessage}
         </span>
-        <div className={styles.timer}>
+        <div className={styles.countdownTimer}>
           <CountdownTimer
             key={key}
             title={`${I18n.t('frontend.session_timeout_modal.time_remaining')}`}
