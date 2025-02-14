@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :campaign_factor do
+    campaign_factor_group
     position { 1 }
     name { Faker::Lorem.word }
     code { Faker::Lorem.words(number: 3).join('_').underscore }
