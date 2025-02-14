@@ -24,9 +24,9 @@ export const Functions = {
 export default {
   series (results: FactorResults[], factors, model: PropertiesModel, func: 'Count' | 'Mean' = 'Count', factorsData) {
     const colors = model.props.colors.map(colorObj => colorObj.color)
-
     if (results) {
-      return results.map((res, i) => {
+      const resultsData = model.props.hideEmptyFilters ? results.filter(r => !_.isEmpty(r.results.scoring)) : results
+      return resultsData.map((res, i) => {
         const data = factors && factors.map(factor => ({
           name: I18nStore.tFactor(factor, 'name'),
           y: (Functions[func] || Functions.Count)(result(res.results.scoring[factor.id], 'results', [])),

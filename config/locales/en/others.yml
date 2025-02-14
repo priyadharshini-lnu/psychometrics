@@ -2716,6 +2716,7 @@ en:
           graphTypeHorizontal: Horizontal
           graphTypeVertical: Vertical
           hideEmptyColumns: Hide Empty Columns
+          hideEmptyFilters: Hide Empty filters
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines
