@@ -1401,6 +1401,12 @@ as: :simulation_progress_notification
               resource :uploads, only: [:update]
             end
           end
+          jsonapi_resources :development_actions, concerns: :taggable do
+            collection do
+              post :import
+              get :export
+            end
+          end
 
           jsonapi_resources :users_results, only: :show
         end

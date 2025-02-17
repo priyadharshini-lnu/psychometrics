@@ -65,6 +65,8 @@ class AdminJob < ApplicationJob
     migrate_assessment_translations: AdminJobs::MigrateAssessmentTranslations,
     add_campaign_reports: AdminJobs::AddCampaignsReports,
     import_skills: AdminJobs::ImportSkillsJob,
+    import_development_actions: AdminJobs::ImportDevelopmentActionsJob,
+    export_development_actions: AdminJobs::ExportDevelopmentActionsJob,
     assign_idp_to_users: AdminJobs::AssignIdpToUsers
   }.freeze
 

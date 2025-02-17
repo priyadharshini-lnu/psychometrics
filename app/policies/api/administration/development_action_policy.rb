@@ -23,6 +23,14 @@ module Api
         @user.is?(:superadmin)
       end
 
+      def import?
+        @user.is?(:superadmin)
+      end
+
+      def export?
+        @user.is?(:superadmin)
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           return scope if @user.superadmin?
