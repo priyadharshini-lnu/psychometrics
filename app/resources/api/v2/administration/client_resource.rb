@@ -41,7 +41,7 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
       @model,
       %w[
         view_audit_reports
-        view_data_exports
+        view_data_reports
       ],
       {
         project_id: @model.id

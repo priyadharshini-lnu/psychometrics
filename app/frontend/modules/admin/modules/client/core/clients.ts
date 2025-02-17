@@ -18,7 +18,7 @@ export const ClientTR = t.intersection([
     meta: t.type({
       permissions: t.type({
         viewLicenses: t.boolean,
-        viewDataExports: t.boolean,
+        viewDataReports: t.boolean,
         viewAuditReports: t.boolean,
       }),
     }),
