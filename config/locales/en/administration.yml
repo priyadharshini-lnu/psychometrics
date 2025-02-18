@@ -721,6 +721,7 @@ en:
         factor_not_in_assessment_dimension: Factor id '%{factor_id}' not part of assessment's dimension
         invalid_lua_name: The code '%{code}' should be a valid lua variable name
         invalid_name_format: The name '%{name}' should match the expected format.
+        max_limit_reached: No more than %{count} campaign factors can be created.
         missing_assessment_id: Assessment id is required.
         missing_assessment_score_type: Assessment score type is required.
         missing_factor_id: Factor id is required.

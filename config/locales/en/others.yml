@@ -1931,6 +1931,7 @@ en:
       campaign_factor:
         code_already_exists: A factor with the same code already exists.
         invalid_lua_name: should be valid lua variable name
+        limit_exceeded: You have reached the maximum limit of %{limit} campaign factors.
         name_already_exists: A factor with the same name already exists.
         rank_not_allowed: Only factors with an output type of numeric can be ranked.
       campaign_factor_group:
