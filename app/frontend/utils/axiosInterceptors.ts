@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useSessionTimeoutStore } from '~/core/sessionTimeoutStore'
+import { CreateSyncTimeoutChannel } from '~/utils/createSyncTimeoutChannel'
 import { useExceptionStore } from '~/core/exception'
 
 axios.interceptors.response.use(
@@ -7,8 +7,8 @@ axios.interceptors.response.use(
     const { headers } = response
     const { currentUser } = window.PsyGlobalState
 
-    const { setNextTimeoutValue } = useSessionTimeoutStore.getState()
-    setNextTimeoutValue(currentUser?.id, headers['x-next-timeout'])
+    CreateSyncTimeoutChannel.setChannel()
+    CreateSyncTimeoutChannel.channel?.postMessage({ userId: currentUser?.id, nextTimeout: headers['x-next-timeout'] })
     return response
   },
   (error) => {
