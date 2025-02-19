@@ -260,6 +260,7 @@ en:
           add_language: Add Language
           description: Description
           input_label: Add Additional Language
+          input_placeholder: Select additional language
           invitation_title: Invitation Title
           title: Invitation (%{lang})
         steps:
