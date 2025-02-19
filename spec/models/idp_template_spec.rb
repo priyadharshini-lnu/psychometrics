@@ -80,4 +80,140 @@ RSpec.describe IdpTemplate, type: :model do
       end
     end
   end
+
+  describe '#available_skills' do
+    let!(:project) { Project.find(create(:project).id) }
+    let!(:idp_template) { create(:idp_template, project: project) }
+
+    let!(:global_technical_skill) { create(:skill, category: 'technical', project: nil) }
+    let!(:global_behavioral_skill) { create(:skill, category: 'behavioral', project: nil) }
+    let!(:client_technical_skill) { create(:skill, category: 'technical', project: project) }
+    let!(:client_behavioral_skill) { create(:skill, category: 'behavioral', project: project) }
+
+    context 'when all settings are none' do
+      before do
+        idp_template.update!(
+          technical_global_skill_settings: 'none',
+          technical_client_skill_settings: 'none',
+          behavioral_global_skill_settings: 'none',
+          behavioral_client_skill_settings: 'none'
+        )
+      end
+
+      it 'returns no skills' do
+        expect(idp_template.available_skills).to be_empty
+      end
+    end
+
+    context 'when all settings are all' do
+      let!(:project2) { Project.find(create(:project).id) }
+      let!(:skill_owned_by_project2) { create(:skill, category: 'technical', project: project2) }
+
+      before do
+        idp_template.update!(
+          technical_global_skill_settings: 'all',
+          technical_client_skill_settings: 'all',
+          behavioral_global_skill_settings: 'all',
+          behavioral_client_skill_settings: 'all'
+        )
+      end
+
+      it 'returns all skills' do
+        expect(idp_template.available_skills).to match_array([
+          global_technical_skill,
+          global_behavioral_skill,
+          client_technical_skill,
+          client_behavioral_skill
+        ])
+      end
+
+      it 'does not include skills owned by other projects' do
+        expect(idp_template.available_skills).not_to include(skill_owned_by_project2)
+      end
+    end
+
+    context 'when some settings are selected' do
+      let!(:selected_global_technical_skill) { create(:skill, category: 'technical', project: nil) }
+      let!(:selected_client_behavioral_skill) { create(:skill, category: 'behavioral', project: project) }
+
+      before do
+        idp_template.skills << selected_global_technical_skill
+        idp_template.skills << selected_client_behavioral_skill
+
+        idp_template.update!(
+          technical_global_skill_settings: 'selected',
+          technical_client_skill_settings: 'none',
+          behavioral_global_skill_settings: 'none',
+          behavioral_client_skill_settings: 'selected'
+        )
+      end
+
+      it 'returns only selected skills for specified settings' do
+        expect(idp_template.available_skills).to match_array([
+          selected_global_technical_skill,
+          selected_client_behavioral_skill
+        ])
+      end
+    end
+
+    context 'when skills have tags' do
+      let!(:global_tagged_skill) { create(:skill, category: 'technical', project: nil) }
+      let!(:client_tagged_skill) { create(:skill, category: 'technical', project: project) }
+      let!(:client_tagged_behavioral_skill) { create(:skill, category: 'technical', project: project) }
+      let!(:selected_global_technical_skill) { create(:skill, category: 'technical', project: nil) }
+
+      before do
+        idp_template
+        global_tagged_skill.tag_list.add('global_tech')
+        global_tagged_skill.save!
+
+        client_tagged_skill.tag_list.add('client_tech')
+        client_tagged_skill.save!
+
+        idp_template.skills << selected_global_technical_skill
+
+        idp_template.update!(
+          technical_global_tags: ['global_tech'],
+          technical_client_tags: ['client_tech'],
+          technical_global_skill_settings: 'selected',
+          technical_client_skill_settings: 'selected',
+          behavioral_global_skill_settings: 'none',
+          behavioral_client_skill_settings: 'none'
+        )
+      end
+
+      it 'includes skills matching the tags according to the settings' do
+        expect(idp_template.available_skills).to include(global_tagged_skill,
+                                                         client_tagged_skill, selected_global_technical_skill)
+      end
+
+      it 'does not include skills matching the tags but not part of tag settings' do
+        # client_tagged_behavioral_skill is not included because behaviorat_*_tags are not set
+        expect(idp_template.available_skills).not_to include(client_tagged_behavioral_skill)
+      end
+    end
+
+    context 'with mixed settings' do
+      let!(:selected_client_technical_skill) { create(:skill, category: 'technical', project: project) }
+
+      before do
+        idp_template.skills << selected_client_technical_skill
+
+        idp_template.update!(
+          technical_global_skill_settings: 'all',
+          technical_client_skill_settings: 'selected',
+          behavioral_global_skill_settings: 'none',
+          behavioral_client_skill_settings: 'all'
+        )
+      end
+
+      it 'returns correct combination of skills' do
+        expect(idp_template.available_skills).to match_array([
+          global_technical_skill,
+          selected_client_technical_skill,
+          client_behavioral_skill
+        ])
+      end
+    end
+  end
 end
