@@ -320,7 +320,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.3.4)
+    date (3.4.1)
     date_validator (0.12.0)
       activemodel (>= 3)
       activesupport (>= 3)
@@ -616,7 +616,7 @@ GEM
     mustache (1.1.1)
     mutex_m (0.3.0)
     nenv (0.3.0)
-    net-imap (0.4.10)
+    net-imap (0.4.19)
       date
       net-protocol
     net-pop (0.1.2)
@@ -963,7 +963,7 @@ GEM
     tilt (2.0.11)
     timecop (0.9.8)
     timeliness (0.4.5)
-    timeout (0.4.2)
+    timeout (0.4.3)
     tins (1.32.1)
       sync
     trailblazer-option (0.1.2)
