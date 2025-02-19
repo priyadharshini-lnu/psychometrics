@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import styles from './QuestionCondition.less'
 
 const PREDICATE = {
+  Empty: 'Empty',
+  NotEmpty: 'Not Empty',
   EqualTo: 'Equal To',
   NotEqualTo: 'Not Equal To',
   GreaterThen: 'Greater Then',
