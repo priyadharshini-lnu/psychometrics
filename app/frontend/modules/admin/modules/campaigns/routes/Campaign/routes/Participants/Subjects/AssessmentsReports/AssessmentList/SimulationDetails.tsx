@@ -18,7 +18,7 @@ export const SimulationDetails: FC<Props> = ({
   campaignId,
   I18n,
 }) => {
-  if (!assessment) {
+  if (!assessment || assessment.category !== 'simulation') {
     return null
   }
 
