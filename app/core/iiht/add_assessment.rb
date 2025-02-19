@@ -68,16 +68,30 @@ module Iiht
             protocol: Settings.protocol,
             port: Settings.port,
             campaign_id: user_assessment.campaign_id,
-            assessment_id: user_assessment.assessment_id
+            assessment_id: user_assessment.assessment_id,
+            jwt: jwt_token
           )
         }
       )
     end
 
     def maskable_identity
-      @maskable_identity ||= user_assessment.subject.maskable_identity(
+      @maskable_identity ||= subject.maskable_identity(
         mask: user_assessment.project.mask_identity_for_iiht?
       )
+    end
+
+    def jwt_token
+      JWT.encode({ 'sub' => subject.id, 'exp' => session_inactivity_timeout.from_now.to_i },
+                 Settings.secrets.encrypted_key.to_s, 'HS256')
+    end
+
+    def session_inactivity_timeout
+      subject.session_inactivity_timeout
+    end
+
+    def subject
+      @subject ||= user_assessment.subject
     end
   end
 end

@@ -11,6 +11,7 @@ class LicenseUsage < ApplicationRecord
   belongs_to :user,              inverse_of: :license_usages
   belongs_to :registration_code, inverse_of: :license_usages
   belongs_to :status_updated_by, class_name: 'User'
+  belongs_to :consumer, polymorphic: true
 
   enum status: { active: 0, inactive: 1 }
 

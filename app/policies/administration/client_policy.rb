@@ -15,6 +15,10 @@ module Administration
         has_permission?(:audit_reports, :admin_permissions, project_id: project_id)
     end
 
+    def view_data_reports?
+      has_permission?(:clients, :export_data_report, project_id: project_id)
+    end
+
     def copy?
       if record.project? || record.campaign? || record.sub_campaign?
         record.active? && (@user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id))

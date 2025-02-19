@@ -7,43 +7,50 @@ import {
 import { ButtonWithArrow, BoxWithShadow, MediaQueryContext } from '~/glint'
 import { SelectedSkillsCard } from '~/components/IdpShared/InitialSteps/SelectedSkillsCard'
 import { SkillsGroupCard } from '~/components/IdpShared/InitialSteps/SkillsGroupCard'
-import { type Skill, type CategoryWithSkills } from '../DevelopmentActions'
+import { UserIdpSkill, CategoryWithSkillsSummary } from '../DevelopmentActions'
 
 type AddSkillsStepProps = {
   onFinishAddSkill: () => void
   addSkillButtonText: string
-  selectedSkills: Skill[]
-  skillCategories: CategoryWithSkills[]
+  selectedSkills: UserIdpSkill[]
+  skillCategories: CategoryWithSkillsSummary[]
   onDeselectSkill: (id: number) => void
   onAddSkill: (skills: { id: number; name: string }[]) => void
+  isSubmitting?: boolean
 }
 
 const { I18n } = window
 
 
 export const AddSkillsStep: FC<AddSkillsStepProps> = ({
-  onFinishAddSkill, addSkillButtonText, skillCategories, selectedSkills, onDeselectSkill, onAddSkill,
+  onFinishAddSkill, addSkillButtonText,
+  skillCategories, selectedSkills, onDeselectSkill, onAddSkill,
+  isSubmitting = false,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const [openSelectedSkillsModal, setOpenSelectedSkillsModal] = useState(false)
 
-  const selectedSkillsIds = selectedSkills.map(({ id }) => id)
+  // redux stores user_idp_skills which doesn't have same id as of skills resource
+  // Using name instead of id as name is also unique
+  const selectedSkillsNames = selectedSkills.map(({ name }) => name)
 
   return (
     <>
-      <Row gutter={[24, 24]}>
+      <Row gutter={[24, 24]} className="mt-6">
         <Col xs={{ span: 24 }} sm={{ span: 18 }}>
           <Space size={24} className="w-100" direction="vertical">
             {
             skillCategories.map((skillCategory) => {
               const skillsAvailableForSelection = skillCategory.skills.filter(
-                skill => !selectedSkillsIds.includes(skill.id),
+                skill => !selectedSkillsNames.includes(skill.name),
               )
               return (
                 <SkillsGroupCard
                   key={skillCategory.category}
                   skillCategory={{ category: skillCategory.category, skills: skillsAvailableForSelection }}
                   onAddSkill={onAddSkill}
+                  onRemoveSkill={onDeselectSkill}
+                  selectedSkills={selectedSkills}
                 />
               )
             })
@@ -54,7 +61,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
           onClose={() => setOpenSelectedSkillsModal(false)}
           openSelectedSkillsModal={openSelectedSkillsModal}
         >
-          <SelectedSkillsCard OnRemoveSkill={onDeselectSkill} selectedSkills={selectedSkills} />
+          <SelectedSkillsCard onRemoveSkill={onDeselectSkill} selectedSkills={selectedSkills} />
         </SelectedSkillsCardResponsiveWrapper>
       </Row>
       <Row justify="space-between" className="mt-6">
@@ -77,6 +84,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
             size="small"
             type="primary"
             onClick={() => onFinishAddSkill()}
+            loading={isSubmitting}
           />
         </Col>
       </Row>

@@ -3,13 +3,14 @@
 module Campaigns
   module Reports
     class Add < BaseCommand
-      private_attr_reader :form, :campaign, :current_user, :job_record
+      private_attr_reader :form, :campaign, :current_user, :job_record, :responses
 
       def initialize(form, campaign, current_user, job_record = nil)
         @form = form
         @campaign = campaign
         @current_user = current_user
         @job_record = job_record
+        @responses = { error_messages: [] }
       end
 
       def call
@@ -19,7 +20,7 @@ module Campaigns
             create_campaign_report(report)
           end
         end
-        broadcast :ok, nil
+        broadcast :ok, responses: responses
       rescue Licenses::NotEnoughError => e
         broadcast :error, { base: e.message }
       end
@@ -46,10 +47,10 @@ module Campaigns
             attrs[:mettl_schedule_record_id] = default_mettl_schedule_record_id(assessment) if assessment.mettl?
             attrs[:external_config] = default_config_for_simulation(assessment) if assessment.simulation?
 
-            camapign_assessment = campaign.campaign_assessments.
+            campaign_assessment = campaign.campaign_assessments.
                                   create_with(attrs).find_or_create_by!(assessment: assessment)
             AuditLogModule.audit!(
-              :create, camapign_assessment, payload: camapign_assessment.log_attributes, user: current_user
+              :create, campaign_assessment, payload: campaign_assessment.log_attributes, user: current_user
             )
           end
         end
@@ -75,6 +76,9 @@ module Campaigns
           )
 
           job_record&.increment_completed_tasks!
+        rescue Hogan::Exceptions::NewAssessmentResponseNotAllowed => e
+          responses[:error_messages] << e.short_message
+          next
         end
       end
 

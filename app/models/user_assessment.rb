@@ -3,6 +3,9 @@
 # rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
   audited
+
+  include HoganResource
+
   DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
   MAX_RESET_COUNT = 3
 
@@ -15,6 +18,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
+  belongs_to :campaign_user, primary_key: :user_id, foreign_key: :evaluator_id, class_name: 'CampaignUser'
 
   has_one :saville_user_assessment, dependent: :destroy
   has_one :pearson_user_assessment, dependent: :destroy
@@ -35,8 +39,8 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
   enum meeting_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :meeting
 
-  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :assessor_form?, :external?, :external_settings,
-           to: :assessment
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :assessor_form?,
+           :external?, :external_settings, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true
@@ -105,6 +109,10 @@ class UserAssessment < ApplicationRecord
 
   after_commit -> { calculate_and_save_campaign_scoring },
                if: proc { score_calculated_previously_changed? && completed? }, on: %i[update]
+
+  after_commit :publish_assessment_started_webhook, if: -> { saved_change_to_status == %w[not_started in_progress] }
+
+  after_create_commit -> { publish_assessment_assigned_webhook }
 
   alias result users_result
 
@@ -366,6 +374,14 @@ class UserAssessment < ApplicationRecord
 
   def hogan_norm_name
     user&.hogan_credential&.norm
+  end
+
+  def publish_assessment_assigned_webhook
+    UserAssessments::Webhook.new(self).publish_assessment_assigned
+  end
+
+  def publish_assessment_started_webhook
+    UserAssessments::Webhook.new(self).publish_assessment_started
   end
 end
 # rubocop:enable Metrics/ClassLength

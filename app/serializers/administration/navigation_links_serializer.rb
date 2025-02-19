@@ -21,6 +21,8 @@ module Administration
         links['assessor_workshops'] = assessors_assessment_centers_path if policy(%i[assessors workshop]).index?
         links['clients'] = "#{admin_path}/clients" if policy(%i[administration client]).index?
         links['skills'] = "#{admin_path}/skills" if policy(%i[api administration skill]).index?
+        links['development_actions'] = "#{admin_path}/development_actions" if policy(%i[api administration
+                                                                                        development_action]).index?
         links['users'] = "#{admin_path}/users" if policy(%i[administration user]).index?
         links['norms'] = administration_norms_path if policy(%i[administration norm]).index?
         links['dimensions'] = administration_dimensions_path if policy(%i[administration dimension]).index?
@@ -36,6 +38,9 @@ module Administration
         links['reports'] = "#{admin_path}/reports" if policy(%i[administration report]).index?
         if policy(%i[administration report_approval]).index?
           links['report_approvals'] = "#{admin_path}/report_approvals/my_tasks"
+        end
+        if policy(%i[administration data_reports]).index?
+          links['data_reports'] = "#{admin_path}/data_reports"
         end
         if policy(%i[administration campaign_template]).index?
           links['campaign_templates'] = "#{admin_path}/campaign_templates"

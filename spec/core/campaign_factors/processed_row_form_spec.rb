@@ -169,37 +169,55 @@ describe CampaignFactors::ProcessedRowForm do
 
   context 'validate_factor_belongs_to_assessment_dimension' do
     let!(:factor) { create(:factor, dimension: dimension, name: 'Accountability') }
-
     let!(:assessment) { create(:assessment, dimension: dimension) }
     let!(:campaign_assessment) { create(:campaign_assessment, assessment: assessment, campaign: campaign) }
 
     %w[assessment assessor_scoring].each do |type|
       context "when factor_type is #{type}" do
         it 'adds an error if factor_id is not part of assessments dimention' do
-          form = described_class.new(row.merge(factor_type: type, factor_id: 9999)).with_context(campaign: campaign)
+          form = described_class.new(
+            row.merge(
+              factor_type: type,
+              assessment_id: assessment.id,
+              factor_id: 9999
+            )
+          ).with_context(campaign: campaign)
+
           form.valid?
           errors = form.errors.full_messages
 
-          expect(errors).to include("Factor id '9999' not part of assessment’s dimension")
+          expect(errors).to include("Factor id '9999' not part of assessment's dimension")
         end
 
         it 'does not add an error if factor_id is part of assessments dimention' do
-          form = described_class.new(row.merge(factor_type: type, assessment_id: assessment.id,
-                                               factor_id: factor.id)).with_context(campaign: campaign)
-          form.valid?
+          form = described_class.new(
+            row.merge(
+              factor_type: type,
+              assessment_id: assessment.id,
+              factor_id: factor.id,
+              assessment_score_type: 'percentile'
+            )
+          ).with_context(campaign: campaign)
 
+          form.valid?
           errors = form.errors.full_messages
 
-          expect(errors).not_to include("Factor id '#{factor.id}' not part of assessment’s dimension")
+          expect(errors).not_to include("Factor id '#{factor.id}' not part of assessment's dimension")
         end
       end
     end
 
     it 'does not add an error if factor_type is not assessment or assessor_scoring' do
-      form = described_class.new(row.merge(factor_type: 'other', factor_id: nil)).with_context(campaign: campaign)
-      form.valid?
+      form = described_class.new(
+        row.merge(
+          factor_type: 'other',
+          factor_id: nil
+        )
+      ).with_context(campaign: campaign)
 
+      form.valid?
       errors = form.errors.full_messages
+
       expect(errors).not_to include('Factor id is required.')
     end
   end

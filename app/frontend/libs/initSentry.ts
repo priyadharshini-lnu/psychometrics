@@ -1,12 +1,15 @@
 import * as Sentry from '@sentry/react'
 
 const initSentry = () => {
-  const { sentryUrl, realEnv, currentUser } = window.PsyGlobalState
+  const {
+    sentryUrl, realEnv, currentUser, sentryDebug,
+  } = window.PsyGlobalState
   if (Sentry.isInitialized()) return
   Sentry.init({
     dsn: sentryUrl,
     environment: realEnv,
     normalizeDepth: 4,
+    debug: sentryDebug === 'true',
     integrations: [
       Sentry.replayIntegration({
         maskAllText: true,

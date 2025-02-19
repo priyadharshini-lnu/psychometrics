@@ -14,5 +14,6 @@ FactoryBot.define do
     auto_unlock_time { 15 }
     send_unlock_email { false }
     magic_link_expiry_in_seconds { 10.minutes.to_i }
+    session_inactivity_timeout_in_seconds { 120.minutes.to_i }
   end
 end

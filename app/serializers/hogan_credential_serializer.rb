@@ -56,6 +56,11 @@ class HoganCredentialSerializer < Panko::Serializer
   end
 
   def jwt_token
-    JWT.encode({ 'sub' => user.id, 'exp' => 2.hours.from_now.to_i }, Settings.secrets.encrypted_key.to_s, 'HS256')
+    JWT.encode({ 'sub' => user.id, 'exp' => session_inactivity_timeout.from_now.to_i },
+               Settings.secrets.encrypted_key.to_s, 'HS256')
+  end
+
+  def session_inactivity_timeout
+    user.applicable_security_setting.session_inactivity_timeout_in_seconds.seconds
   end
 end

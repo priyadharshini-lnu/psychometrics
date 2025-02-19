@@ -128,4 +128,37 @@ describe Campaigns::Users::Create do
       described_class.call!(form, campaign)
     end
   end
+
+  context 'create user and assign idp with license usage' do
+    before(:each) do
+      create(
+        :license,
+        type: :idp,
+        client: campaign.client,
+        start_date: 2.days.ago,
+        end_date: 2.days.since
+      )
+      idp_template = create(:idp_template)
+      create(:campaign_idp, campaign: campaign, idp_template: idp_template, automatically_assign_new: true)
+    end
+
+    it 'calls Idp::AssignUserIdp' do
+      expect do
+        described_class.call!(form, campaign, current_user)
+      end.to change { LicenseUsage.count }.by(1)
+    end
+  end
+
+  context 'create user and assign idp without license usage should cause error' do
+    before(:each) do
+      idp_template = create(:idp_template)
+      create(:campaign_idp, campaign: campaign, idp_template: idp_template, automatically_assign_new: true)
+    end
+
+    it 'calls Idp::AssignUserIdp' do
+      expect(described_class.call(form, campaign, current_user)[:insufficient_license]).to eq(
+        'Not enough IDP licenses, please contact administrator'
+      )
+    end
+  end
 end

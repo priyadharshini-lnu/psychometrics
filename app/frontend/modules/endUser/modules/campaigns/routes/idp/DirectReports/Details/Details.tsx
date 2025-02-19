@@ -13,7 +13,7 @@ import {
   fetchUserIdpDevelopmentActions,
   fetchUserIdpSkills,
   fetchAvailableDevelopmentActions,
-} from '~/modules/endUser/modules/campaigns/core/idp/developmentAction'
+} from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import {
   DevelopmentActionListView,
   DevelopmentActionBoardView,

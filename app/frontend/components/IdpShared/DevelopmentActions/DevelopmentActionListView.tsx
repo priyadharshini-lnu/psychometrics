@@ -12,8 +12,9 @@ import {
 } from '.'
 import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
-
 import styles from './DevelopmentActionListView.less'
+import { AIGeneratedDevelopmentActionsModal } from './AIGeneratedDevelopmentActionsModal'
+import { renderSkillCategoryIcon } from '../utils'
 
 const { I18n } = window
 
@@ -39,6 +40,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   onUpdateDevelopmentActionProgress,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
+  const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null)
   const [isCreateCustomDevelopmentActionModalOpen, setIsCreateCustomDevelopmentActionModalOpen] = useState(false)
   const isTablet = useMedia({
@@ -91,6 +93,14 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     setSelectedSkill(null)
   }
 
+  const handleAddAIGeneratedDevelopmentAction = (developmentAction: Partial<DevelopmentAction>) => {
+    if (developmentAction.description) {
+      handleCreateCustomDevelopmentAction(developmentAction.description)
+    }
+    setIsAddDevelopmentActionModalOpen(false)
+    setIsAIGeneratedDevelopmentActionsModalOpen(false)
+  }
+
   const handleShowCustomDevelopmentAction = () => {
     setIsCreateCustomDevelopmentActionModalOpen(true)
     setIsAddDevelopmentActionModalOpen(false)
@@ -123,7 +133,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
               className={`${styles.borderWithPadding} ${styles.pl_none}`}
             >
               <Typography.Text>
-                {I18n.t('idp.development_actions.development_actions')}
+                {I18n.t('idp.development_actions.heading')}
               </Typography.Text>
             </Flex>
             <Flex flex={5}>
@@ -160,7 +170,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           <BoxWithShadow key={category.category} className={`${styles.p_16} ${styles.mt_8}`}>
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
-                <Avatar size={24} />
+                <Avatar size={24} src={renderSkillCategoryIcon(category.category)} />
                 <h3 className={styles.h3}>{category.category}</h3>
               </Flex>
               <Flex gap={12} vertical>
@@ -186,11 +196,18 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onShowCustomDevelopmentAction={handleShowCustomDevelopmentAction}
         onCancel={handleCancel}
         open={isAddDevelopmentActionModalOpen}
+        onShowAIGeneratedDevelopmentActions={() => setIsAIGeneratedDevelopmentActionsModalOpen(true)}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}
         onCreateCustomDevelopmentAction={handleCreateCustomDevelopmentAction}
         onCancel={handleCancel}
+      />
+      <AIGeneratedDevelopmentActionsModal
+        open={isAIGeneratedDevelopmentActionsModalOpen}
+        onCancel={() => setIsAIGeneratedDevelopmentActionsModalOpen(false)}
+        skill={selectedSkill}
+        onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
       />
     </>
 

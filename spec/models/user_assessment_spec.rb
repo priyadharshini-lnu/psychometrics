@@ -436,4 +436,33 @@ status: :in_progress)
       expect(campaign_factor_values).to be_empty
     end
   end
+
+  describe '#publish_assessment_assigned_webhook' do
+    let(:user_assessment) { build(:user_assessment) }
+
+    context 'when a new assessment is created/assigned' do
+      it 'sends the assessment assigned webhook' do
+        webhook_instance = instance_double(UserAssessments::Webhook, publish_assessment_assigned: true)
+        allow(UserAssessments::Webhook).to receive(:new).and_return(webhook_instance)
+
+        user_assessment.save!
+
+        expect(UserAssessments::Webhook).to have_received(:new).with(user_assessment)
+        expect(webhook_instance).to have_received(:publish_assessment_assigned)
+      end
+    end
+
+    context 'when an existing assessment is updated' do
+      it 'does not send the assessment assigned webhook' do
+        webhook_instance = instance_double(UserAssessments::Webhook, publish_assessment_assigned: true)
+        allow(UserAssessments::Webhook).to receive(:new).and_return(webhook_instance)
+
+        user_assessment.save!
+        user_assessment.update!(status: 'completed')
+
+        expect(UserAssessments::Webhook).to have_received(:new).once
+        expect(webhook_instance).to have_received(:publish_assessment_assigned).once
+      end
+    end
+  end
 end

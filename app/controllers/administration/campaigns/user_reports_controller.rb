@@ -23,7 +23,9 @@ module Administration
                 }
               ).serialize(campaign_user.user)
             end
-            on(:error) { |errors| return render json: { errors: errors }, status: 422 }
+            on :insufficient_license, :new_assessment_response_not_allowed do |errors|
+              return render json: { errors: errors }, status: 422
+            end
           end
         else
           render json: { errors: form.errors.messages }, status: 422

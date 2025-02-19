@@ -23,8 +23,10 @@ describe Saville::AssessmentOrderRequest do
   let!(:user_report) { create(:user_report, report: report, user: user, campaign: campaign) }
   let(:saville_assessment_url) { 'https://saville.cc.com/assessment_id' }
   let(:saville_receipt_id) { 'receipt_id' }
+  let(:jwt_token) { 'stubbed.jwt.token' }
 
   it 'saves saville assessment url and receipt id' do
+    allow(JWT).to receive(:encode).and_return(jwt_token)
     savon.expects(:process_assessment_order_request).with(message: { xml: saville_assessment_order_request.squish }).
       returns(saville_assessment_order_response)
 
@@ -52,7 +54,8 @@ describe Saville::AssessmentOrderRequest do
       host: Settings.domain,
       subdomain: user_assessment.project.subdomain,
       protocol: Settings.protocol,
-      port: Settings.port
+      port: Settings.port,
+      jwt: jwt_token
     })
     webhook_url = webhooks_saville_url(
       host: Settings.domain,

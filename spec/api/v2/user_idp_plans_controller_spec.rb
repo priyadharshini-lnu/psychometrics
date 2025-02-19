@@ -9,7 +9,7 @@ describe Api::V2::Administration::UserIdpPlansController, swagger_doc: 'v2/swagg
   let!(:campaign) { create(:campaign) }
   let!(:superadmin) { create(:superadmin) }
   let!(:idp_template1) { create(:idp_template) }
-
+  let!(:license) { create(:license, client: campaign.client, type: :idp) }
   before(:each) do
     sign_in(superadmin)
   end

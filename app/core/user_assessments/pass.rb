@@ -14,10 +14,6 @@ module UserAssessments
 
       user_assessment.update(build_user_assessment_params)
 
-      if user_assessment.status_previously_changed?(from: :not_started, to: :in_progress)
-        UserAssessments::Webhook.new(user_assessment).publish_assessment_started
-      end
-
       broadcast :ok
     end
 

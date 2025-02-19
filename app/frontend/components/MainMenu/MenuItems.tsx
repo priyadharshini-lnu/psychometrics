@@ -1,7 +1,8 @@
 import { Link as RouterLink } from 'react-router-dom'
 import {
   ArrowRightOutlined, CalendarOutlined, MonitorOutlined, UserOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+} from '@ant-design/icons'
+import { camelizeKeys } from '~/utils/object'
 
 const { I18n } = window
 
@@ -11,6 +12,7 @@ type Permissions = {
     assessorWorkshops?: string
     clients?: string
     skills?: string
+    developmentActions?: string
     users?: string
     norms?: string
     dimensions?: string
@@ -23,6 +25,7 @@ type Permissions = {
     campaignTemplates?: string
     auditLogs?: string
     userAvailability?: string
+    dataReports?: string
 }
 
 export const getSelected = (): string => {
@@ -94,8 +97,16 @@ export const getSelected = (): string => {
     return 'userAvailability'
   }
 
+  if (location.href.match(/\/admin(\/)(data_reports)/)) {
+    return 'dataReports'
+  }
+
   if (location.href.match(/\/admin(\/)(skills)/)) {
     return 'skills'
+  }
+
+  if (location.href.match(/\/admin(\/)(development_actions)/)) {
+    return 'developmentActions'
   }
 
   return 'clients'
@@ -113,7 +124,7 @@ const Link = ({ href, children }) => {
       'changePassword', 'clients',
       'users', 'userAvailability',
       'reports', 'assessments', 'reportApprovals',
-      'campaignTemplates', 'skills']
+      'campaignTemplates', 'skills', 'developmentActions']
     return !allowedPages.includes(selected)
   }
   if (isThreesixty || isAssessmentBuilder || isDashboard || isAllowed()) {
@@ -124,7 +135,7 @@ const Link = ({ href, children }) => {
 
 export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
   featureFlags?: Record<string, boolean>) => {
-  const idp_enabled = featureFlags?.idp_enabled
+  const idpEnabled = camelizeKeys(featureFlags ?? {})?.idpEnabled
   return [
     hasSubmenu ? {
       key: 'showSubmenu',
@@ -168,10 +179,18 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       </Link>,
       icon: <i aria-hidden aria-label="" className="fa fa-users" />,
     } : null,
-    permissions.skills && idp_enabled ? {
+    permissions.skills && idpEnabled ? {
       key: 'skills',
       label: <Link href={permissions.skills}>{I18n.t('administration.navigation.skills')}</Link>,
       icon: <i aria-hidden="true" className="fa fa-book" />,
+    } : null,
+    permissions.developmentActions && idpEnabled ? {
+      key: 'developmentActions',
+      label:
+      <Link href={permissions.developmentActions}>
+        {I18n.t('administration.navigation.development_actions')}
+      </Link>,
+      icon: <i className="fa fa-star" />,
     } : null,
     permissions.norms ? {
       key: 'norms',
@@ -245,6 +264,11 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       key: 'auditLogs',
       label: <Link href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</Link>,
       icon: <i aria-hidden="true" className="fa fa-clipboard" />,
+    } : null,
+    permissions.dataReports ? {
+      key: 'dataReports',
+      label: <a href={permissions.dataReports}>{I18n.t('administration.navigation.data_reports')}</a>,
+      icon: <i className="fa fa-database" />,
     } : null,
     {
       key: 'profile',

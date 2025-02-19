@@ -6,6 +6,7 @@ import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import { setStore } from '~/modules/survey/store/StoreWatchman'
 import store from '../store'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
+import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { DefaultAntThemeWrapper } from '~/glint'
 
 class AppContainer extends Component {
@@ -34,6 +35,7 @@ class AppContainer extends Component {
         <Provider store={store}>
           <QuestionCenter />
           <DisplayExceptionModal />
+          <SessionTimeoutModal />
         </Provider>
       </DefaultAntThemeWrapper>
     )

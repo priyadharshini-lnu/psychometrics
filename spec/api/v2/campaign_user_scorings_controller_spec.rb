@@ -65,7 +65,7 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
           expect(scoring['attributes']['campaign_id']).to eq(campaign.id)
           expect(scoring['attributes']['campaign_factor_values'].
             first['campaign_factor_id'].to_i).to eq(campaign_factor.id)
-          expect(scoring['attributes']['campaign_factor_values'].first['value']).to eq('3')
+          expect(scoring['attributes']['campaign_factor_values'].first['value']).to eq(3)
         end
       end
     end
@@ -110,7 +110,7 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
           expect(scoring['attributes']['campaign_id']).to eq(campaign.id)
           expect(scoring['attributes']['campaign_factor_values'].
             first['campaign_factor_id'].to_i).to eq(campaign_factor.id)
-          expect(scoring['attributes']['campaign_factor_values'].first['value']).to eq('3')
+          expect(scoring['attributes']['campaign_factor_values'].first['value']).to eq(3)
         end
       end
     end

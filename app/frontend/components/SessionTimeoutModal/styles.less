@@ -1,0 +1,46 @@
+@import '~/styles/spacing.less';
+
+.modalContainer {
+    .title {
+        svg {
+            font-size: 36px;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: red;
+        text-align: center;
+    }
+}
+
+.modalContainer :global(.ant-modal-content) {
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContainer :global(.ant-modal-footer) {
+    margin: 0;
+}
+
+.countdownTimer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: @space-8 0;
+    text-align: center;
+    font-weight: 400;
+}
+
+.countdownTimer :global(.ant-statistic-content) {
+    font-size: 42px !important;
+}
+
+.countdownTimer :global(.ant-statistic-title) {
+    color: var(--grey-text);
+}

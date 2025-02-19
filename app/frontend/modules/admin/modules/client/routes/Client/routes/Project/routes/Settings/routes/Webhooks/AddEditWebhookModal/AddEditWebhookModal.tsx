@@ -35,6 +35,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
     'assessment_started',
     'assessment_completed',
     'assessment_timeout',
+    'assessment_assigned',
     'results_available',
     'report_available',
     'scheduling_invited',

@@ -28,7 +28,9 @@ module Campaigns
         end
         broadcast :ok, nil
       rescue Licenses::NotEnoughError => e
-        broadcast :error, { base: e.message }
+        broadcast :insufficient_license, { base: e.message }
+      rescue Hogan::Exceptions::NewAssessmentResponseNotAllowed => e
+        broadcast :new_assessment_response_not_allowed, { base: e.message }
       end
 
       private

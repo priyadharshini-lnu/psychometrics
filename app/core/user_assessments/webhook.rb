@@ -20,6 +20,16 @@ module UserAssessments
       )
     end
 
+    def publish_assessment_assigned
+      WebhookSubscriptions::Publish.call(
+        project,
+        :assessment_assigned,
+        assessment_assigned_data,
+        webhook_id: webhook_id,
+        record: user_assessment
+      )
+    end
+
     def publish_assessment_completed
       WebhookSubscriptions::Publish.call(
         project,
@@ -79,6 +89,15 @@ module UserAssessments
     end
 
     def assessment_timeout_data
+      {
+        campaign: user_assessment.campaign,
+        assessment: user_assessment.assessment,
+        evaluator: user_assessment.evaluator,
+        subject: user_assessment.subject
+      }
+    end
+
+    def assessment_assigned_data
       {
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,

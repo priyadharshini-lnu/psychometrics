@@ -12,14 +12,7 @@ module Users
       validate :validate_password_length, if: :password_required?
 
       def generate_strong_password
-        length = [12, applicable_security_setting.min_password_length].max
-        password = Devise.friendly_token.first(length - 4)
-        special_chars = ['@', '#', '$', '%', '^', '&', '*']
-        password += special_chars.sample
-        password += [*'0'..'9'].sample
-        password += [*'A'..'Z'].sample
-        password += [*'a'..'z'].sample
-        password.chars.shuffle.join
+        ::Utility::String.generate_strong_password(applicable_security_setting.min_password_length)
       end
 
       def validate_password_length
@@ -79,6 +72,10 @@ module Users
         applicable_security_setting.auto_unlock_time&.minutes || 15.minutes
       end
 
+      def session_inactivity_timeout
+        applicable_security_setting.session_inactivity_timeout_in_seconds&.seconds || 120.minutes
+      end
+
       def lock_account_enabled?
         applicable_security_setting.lock_account
       end
@@ -123,8 +120,18 @@ module Users
           auto_unlock_time: 15,
           attempts_to_lock: 3,
           password_expiration: 90,
-          send_unlock_email: true
+          send_unlock_email: true,
+          session_inactivity_timeout_in_seconds: 15.minutes
         )
+      end
+
+      # Time to strong sign out
+      def timeout_in
+        return super if Settings.features.disable_session_timeout
+
+        return 24.hours if is_anonym?
+
+        applicable_security_setting.session_inactivity_timeout_in_seconds.seconds
       end
 
       def applicable_security_setting

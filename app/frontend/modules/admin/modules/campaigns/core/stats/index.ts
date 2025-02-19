@@ -53,17 +53,22 @@ export const getAssessments = (state): Stats['assessments'] => get(state).assess
 export const FETCH = 'campaigns/stats/FETCH'
 export const FETCH_TIMESERIES = 'campaigns/stats/FETCH_TIMESERIES'
 
-export const fetch = (campaignId: string) => ({
+export const fetch = (campaignId: string, status: boolean[]) => ({
   type: FETCH,
   request: {
     method: 'get',
     debounce: 500,
     camelize: false,
     url: `/administration/new_campaigns/${campaignId}/stats`,
+    tableConfig: {
+      filters: {
+        campaign_users_active_in: status,
+      },
+    },
   },
 })
 
-export const fetchTimeseries = (campaignId: string, range: [dayjs.Dayjs, dayjs.Dayjs]) => ({
+export const fetchTimeseries = (campaignId: string, range: [dayjs.Dayjs, dayjs.Dayjs], status: boolean[]) => ({
   type: FETCH_TIMESERIES,
   request: {
     method: 'post',
@@ -72,6 +77,7 @@ export const fetchTimeseries = (campaignId: string, range: [dayjs.Dayjs, dayjs.D
     url: `/administration/new_campaigns/${campaignId}/stats/timeseries`,
     body: {
       range: range.map(r => r.toISOString()),
+      campaign_users_active_in: status,
     },
   },
 })

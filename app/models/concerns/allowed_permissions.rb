@@ -6,7 +6,7 @@ module AllowedPermissions
   extend ActiveSupport::Concern
 
   CLIENT_ADMIN_PERMISSIONS = {
-    'clients' => %w[view view_licenses],
+    'clients' => %w[view view_licenses export_data_report],
     'projects' => %w[view manage manage_admins manage_users],
     'users' => ['reset_password'],
     'project_settings' => %w[
@@ -72,7 +72,8 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status],
-    'idp_templates' => %w[view manage]
+    'idp_templates' => %w[view manage],
+    'skills' => %w[view manage]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -136,7 +137,8 @@ module AllowedPermissions
     'reports' => ['manage'],
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status],
-    'idp_templates' => %w[view manage]
+    'idp_templates' => %w[view manage],
+    'skills' => %w[view manage]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {

@@ -13,6 +13,7 @@ import { GlintProvider, withLoadingSpinner, DefaultAntThemeWrapper } from '~/gli
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 import routes from './routes'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
+import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import '~/styles/common.less'
 import RouteList from '~/components/RouteList'
 
@@ -74,6 +75,7 @@ function App () {
               </UserPageLayout>
             </StyleProvider>
             <DisplayExceptionModal />
+            <SessionTimeoutModal />
             <IncorrectResponseErrorModal />
           </Router>
         </GlintProvider>

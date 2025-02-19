@@ -545,7 +545,7 @@ const processData = (
 
   _.forEach(valueData.campaignFactorValues, (score) => {
     const factorKey = `${score.campaignFactorId}`
-    const factorValue = score.value || '-'
+    const factorValue = score.value ?? '-'
     const factorLabel = score.label ? ` (${score.label})` : ''
     userData[factorKey] = `${factorValue}${factorLabel}`
   })

@@ -12,6 +12,7 @@ import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import QuestionList from './dataSources/QuestionList'
 import FactorList from './dataSources/FactorList'
 import MilestoneList from './MilestoneList'
+import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 
 interface Props {
   modules: Module[]
@@ -154,6 +155,14 @@ const Properties: FC<Props> = ({ modules }) => {
         <ColorSet model={model} />
       </div>
       <MilestoneList model={model} />
+      <div className={styles.divider} />
+
+      {modules.length > 1 ? null
+        : (
+          <div className="mtm">
+            <PaginationOptions module={model} onChange={onChange} />
+          </div>
+        )}
     </div>
   )
 }

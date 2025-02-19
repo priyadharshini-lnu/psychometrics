@@ -33,6 +33,7 @@ export const PaginationOptions = ({ module, onChange, pageModules }) => {
   }
   const anotherModuleHasPagination = pageModules.find(m => m.id !== module.id && m.props.pagination?.enabled) || false
 
+  const repeatableModules = module.props.pagination?.repeatableModules?.filter(id => pageModules.find(m => m.id === id))
   return (
     <>
       {I18n.t('administration.report_builder.pagination.module_pagination')}
@@ -69,8 +70,10 @@ export const PaginationOptions = ({ module, onChange, pageModules }) => {
             <Select
               className="w-100"
               mode="multiple"
-              value={module.props.pagination?.repeatableModules}
-              options={pageModules.filter(m => m.id !== module.id).map(m => ({ label: m.name || m.type, value: m.id }))}
+              value={repeatableModules}
+              options={
+                pageModules.filter(m => !m.isNew && m.id !== module.id)
+                  .map(m => ({ label: m.name || m.type, value: m.id }))}
               onChange={changeRepeatableModules}
             />
           </Space>

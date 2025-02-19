@@ -4,7 +4,8 @@ module Administration
   module Campaigns
     class UsersController < Administration::Campaigns::BaseController # rubocop:disable Metrics/ClassLength
       before_action :set_resource,
-                    only: %i[update spoof show destroy toggle_status reset_password extend_time webhook_payload]
+                    only: %i[update spoof show destroy toggle_status reset_password extend_time webhook_payload
+                             create_hogan_credentials]
       skip_before_action :pundit_authorize, only: %i[spoof]
 
       def index
@@ -224,6 +225,19 @@ module Administration
             current_user: current_user
           }
         ).serialize(resource)
+      end
+
+      def create_hogan_credentials
+        ::Hogan::CreateNewHoganCredential.call!(campaign_user.user, campaign_user.campaign) do
+          on(:ok) do
+            audit! :create_hogan_credentials, campaign_user, payload: params
+
+            head :ok
+          end
+          on(:error) do |message|
+            render json: { errors: message }, status: 422
+          end
+        end
       end
 
       def webhook_payload

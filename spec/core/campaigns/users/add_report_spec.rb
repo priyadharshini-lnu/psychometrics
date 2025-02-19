@@ -8,6 +8,10 @@ describe Campaigns::Users::AddReport do
   let(:campaign) { campaign_user.campaign }
   let(:user) { campaign_user.user }
   let(:report) { create(:report, assessments: [create(:assessment)]) }
+  let!(:hogan_credential) { create(:hogan_credential, user: user) }
+  let(:participant_profile) do
+    { 'assessmentDetails' => [{ 'assessmentId' => '1', 'formId' => '2', 'status' => 'Completed' }] }
+  end
 
   before(:each) do
     allow(Licenses::Use).to receive(:call!)
@@ -212,6 +216,29 @@ data_seprator: '4-2')
       answers: answers
     )
     output = described_class.call!(campaign_user, report, assessments: report.assessments)
+    new_user_result = output[:user_assessments].first.users_result
+
+    expect(new_user_result).to_not eq(existing_user_result)
+    expect(new_user_result.answers).to eq(answers)
+  end
+
+  it 'copies users_result if user have hogan assessment of same credential and add_with_existing_response is set' do
+    allow(Services::Hogan::Api::Json::GetParticipantProfile).to receive(:call!).and_return(participant_profile)
+
+    answers = { '1' => [{ 'value' => 10 }] }
+    existing_user_result = create(
+      :users_result,
+      evaluator: campaign_user.user,
+      assessment_id: report.assessments.first.id,
+      answers: answers
+    )
+
+    report.assessments.first.update!(type: 'Assessments::Hogan')
+    create(:resource_hogan_credential, resource: existing_user_result.user_assessment,
+hogan_credential: hogan_credential)
+
+    output = described_class.call!(campaign_user, report, assessments: report.assessments,
+operation: 'add_with_existing_response')
     new_user_result = output[:user_assessments].first.users_result
 
     expect(new_user_result).to_not eq(existing_user_result)

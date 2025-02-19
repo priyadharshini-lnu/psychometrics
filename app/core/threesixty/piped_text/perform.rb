@@ -54,7 +54,8 @@ module Threesixty
             key: 'd',
             name: 'date',
             class_name: 'Threesixty::PipedText::Branches::DateTime',
-            required_context: %i[subject threesixty_campaign]
+            required_context: %i[subject],
+            optional_context: %i[threesixty_campaign campaign]
           },
           {
             key: 'sst',

@@ -18,9 +18,12 @@ module SecuritySettings
     attribute :magic_link_expiry_in_seconds, Integer
     attribute :magic_link_enabled, Boolean
     attribute :disallow_password_login, Boolean
+    attribute :session_inactivity_timeout_in_seconds, Integer
 
     validates :min_password_length, numericality: { greater_than_or_equal_to: 8, less_than_or_equal_to: 128 }
     validates :magic_link_expiry_in_seconds, presence: true
     validates :magic_link_expiry_in_seconds, numericality: { greater_than_or_equal_to: 5.minutes.to_i }
+    validates :session_inactivity_timeout_in_seconds, presence: true
+    validates :session_inactivity_timeout_in_seconds, numericality: { greater_than_or_equal_to: 60.minutes.to_i }
   end
 end

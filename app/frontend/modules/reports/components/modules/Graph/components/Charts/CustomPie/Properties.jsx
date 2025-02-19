@@ -30,6 +30,11 @@ const Properties = ({ modules }) => {
     })
   }
 
+  const hideEmptyFilters = (e) => {
+    updateAll((item) => {
+      item.props.hideEmptyFilters = e.target.checked
+    })
+  }
 
   const { chartBorderWidth, radarMax, source } = props
 
@@ -67,6 +72,13 @@ const Properties = ({ modules }) => {
           className="font-normal"
         >
           {I18n.t('reports.builder.graph.properties.showLegend')}
+        </Checkbox>
+        <Checkbox
+          checked={model.props.hideEmptyFilters || false}
+          onChange={hideEmptyFilters}
+          className="font-normal"
+        >
+          {I18n.t('reports.builder.graph.properties.hideEmptyFilters')}
         </Checkbox>
       </div>
     </div>

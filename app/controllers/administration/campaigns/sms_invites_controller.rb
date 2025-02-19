@@ -14,7 +14,7 @@ module Administration
         # rubocop:disable Metrics/BlockLength
         respond_to do |format|
           format.csv do
-            headers['Content-Disposition'] = 'attachment; filename="users.csv"'
+            headers['Content-Disposition'] = 'attachment; filename="sms-contacts.csv"'
             headers['Content-Type'] ||= 'text/csv'
             render :index, locals: {
               sms_invites: sms_invites,

@@ -55,9 +55,9 @@ export class TextEditor extends Component {
 
 
   blur = () => {
+    if (this.hover) { return }
     const { onChange } = this.props
     const { value } = this.state
-    if (this.hover) { return }
     this.setState({ edit: false })
     onChange && onChange(value.trim())
   }
@@ -124,13 +124,12 @@ export class TextEditor extends Component {
   renderEdit () {
     const { normal, value } = this.state
     return (
-      <div style={{ position: 'relative' }} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
+      <div className={styles.container} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
         {normal ? (
           <ContentEdit
             onBlur={this.blur}
             onChange={this.changeText}
             onKeyDown={this.keyup}
-            onk
             html={value}
             selectElementContents={this.selectElementContents}
           />
@@ -144,24 +143,24 @@ export class TextEditor extends Component {
               onKeyDown={this.keyup}
             />
           )}
-        <a onClick={this.openRichEditor} className={`${styles.richEditBtn} ${styles.richEditBtnFloat}`}>
+        <div onClick={this.openRichEditor} className={`${styles.richEditBtn} ${styles.richEditBtnFloat}`}>
           <span className={`fa fa-font ${styles.icon}`} />
           Rich Content Editor...
-        </a>
-        <a
+        </div>
+        <div
           onClick={this.htmlMode}
           className={`${styles.richEditBtn} ${styles.htmlEditBtn} ${normal && styles.disabled}`}
         >
           <span className={`fa fa-font ${styles.icon}`} />
           HTML View
-        </a>
-        <a
+        </div>
+        <div
           onClick={this.normalMode}
           className={`${styles.richEditBtn} ${styles.normalEditBtn} ${!normal && styles.disabled}`}
         >
           <span className={`fa fa-font ${styles.icon}`} />
           Normal View
-        </a>
+        </div>
       </div>
     )
   }

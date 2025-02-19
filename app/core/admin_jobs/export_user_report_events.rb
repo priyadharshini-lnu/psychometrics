@@ -103,7 +103,7 @@ module AdminJobs
     end
 
     def file_name
-      "user-report-events-#{entity.class.name.underscore}-#{entity.id}.csv"
+      "report-approval-logs (#{start_date.to_date} - #{end_date.to_date}).csv"
     end
 
     private

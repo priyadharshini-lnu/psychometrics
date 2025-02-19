@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  get 'up' => 'rails/health#show'
+
   get 'oracle_dashboards', to: 'oracle_dashboards#show', as: :oracle_dashboards
 
   get '/oracle_proxy/*all' => 'oracle_proxy#all'
@@ -35,7 +37,7 @@ Rails.application.routes.draw do
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
-
+  post 'extend_session', to: 'users/session_extensions#extend'
   concern :media_uploades do
     member do
       match :upload_media_url, via: %i[post get]
@@ -265,6 +267,7 @@ Rails.application.routes.draw do
           member do
             patch :toggle_status
             post :extend_time
+            post :create_hogan_credentials
             get :webhook_payload
           end
           collection do
@@ -963,12 +966,13 @@ as: :simulation_progress_notification
         collection do
           get :user_idp_skills
           get :available_development_actions
+          post :generate_by_ai
           post :save_plan
           put :update_progress
         end
       end
 
-      resources :user_idp_plans, only: [] do
+      resources :user_idp_plans, param: :user_id, only: %i[show update] do
         collection do
           get :summary
         end
@@ -1043,19 +1047,25 @@ as: :simulation_progress_notification
   get 'media_players/video', to: 'media_players#video'
   get 'evaluation_session_exists', to: 'end_user/users#dashboard'
 
-  if Rails.env.production?
-    authenticate :user, ->(u) { u.is?(:superadmin) } do
-      mount Sidekiq::Web => '/sidekiq'
-    end
-  else
-    mount Sidekiq::Web, at: '/sidekiq'
-  end
+  mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new', as: :admin_root
 
   constraints format: :json do
     namespace :api do
       namespace :v1 do
+        namespace :threesixty do
+          resources :projects, only: [] do
+            resources :campaigns, only: [] do
+              resources :users, only: [], param: :user_id do
+                member do
+                  get :assessments
+                  get :scores
+                end
+              end
+            end
+          end
+        end
         resources :projects, only: %i[show create update] do
           resources :campaigns, only: %i[show create update] do
             get :assessments_reports, on: :member, action_name: 'get_assessments_reports'
@@ -1099,6 +1109,7 @@ as: :simulation_progress_notification
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :reports, only: %i[index], controller: 'clients/reports'
             jsonapi_resources :client_privacy_settings, only: %i[index update]
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
@@ -1118,12 +1129,13 @@ as: :simulation_progress_notification
                 end
               end
             end
-            jsonapi_resources :idp_templates, only: %i[index], controller: 'clients/idp_templates'
           end
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports
           end
           jsonapi_resources :projects, only: :show do
+            jsonapi_resources :idp_templates, only: %i[index create update destroy],
+              controller: 'projects/idp_templates'
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export
@@ -1296,6 +1308,8 @@ as: :simulation_progress_notification
               end
             end
 
+            jsonapi_resources :campaign_idps, controller: 'campaigns/campaign_idps', only: %i[index create update]
+
             jsonapi_resources :campaign_factor_groups, only: %i[index create update destroy] do
               collection do
                 post :initialize_scoring
@@ -1371,8 +1385,30 @@ as: :simulation_progress_notification
               get :search_managers
             end
           end
+          resources :data_reports do
+            post :run, on: :member
+            resources :data_report_jobs, only: %i[index] do
+              get :get_password, on: :member
+            end
+          end
           resources :user_idp_plans, only: %i[create]
-          jsonapi_resources :skills, concerns: :taggable
+          jsonapi_resources :skills, concerns: :taggable do
+            post :import, on: :collection
+            get :tags_search, on: :collection
+          end
+          jsonapi_resources :development_actions do
+            scope module: :development_actions do
+              resource :uploads, only: [:update]
+            end
+          end
+          jsonapi_resources :development_actions, concerns: :taggable do
+            collection do
+              post :import
+              get :export
+            end
+          end
+
+          jsonapi_resources :users_results, only: :show
         end
       end
     end

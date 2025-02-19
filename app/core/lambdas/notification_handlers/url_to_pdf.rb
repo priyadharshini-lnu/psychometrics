@@ -29,6 +29,25 @@ module Lambdas
 
           user_report.status = :prepared
           user_report.save!
+
+          user_report_pdf = user_report.user_report_pdfs.find_or_create_by!(
+            locale: user_report.effective_default_language
+          )
+
+          user_report_pdf.pdf_file&.purge_later
+
+          pdf_file_attachment = ActiveStorage::Attachment.new(
+            record_id: user_report_pdf.id,
+            record_type: 'UserReportPdf',
+            name: 'pdf_file'
+          )
+
+          pdf_file_attachment.blob_id = blob.id
+
+          user_report_pdf.pdf_file_attachment = pdf_file_attachment
+          user_report_pdf.set_generated_timestamps
+
+          user_report_pdf.save!
         end
         update_admin_job_progress(data)
         notify_user(data, user_report) if data['notify_user_id']

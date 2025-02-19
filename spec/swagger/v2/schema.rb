@@ -465,6 +465,27 @@ module Swagger
           CampaignScoringVariableUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignScoringVariable::Schema.update_request
           ),
+          DataReportResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DataReport::Schema.single_resource_response
+          ),
+          DataReportSingleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DataReport::Schema.single_resource_response
+          ),
+          DataReportMultipleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DataReport::Schema.multiple_resource_response
+          ),
+          DataReportCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::DataReport::Schema.create_request
+          ),
+          DataReportUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::DataReport::Schema.update_request
+          ),
+          DataReporJobtMultipleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DataReportJob::Schema.multiple_resource_response
+          ),
+          DataReportPasswordResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DataReportJob::Schema.password_response
+          ),
           IdpTemplateListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::IdpTemplate::Schema.multiple_resource_response
           ),
@@ -491,6 +512,21 @@ module Swagger
           ),
           FactorBenchmarkScoreBulkCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::FactorBenchmarkScore::Schema.bulk_create
+          ),
+          IdpTemplateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::IdpTemplate::Schema.single_resource_response
+          ),
+          IdpTemplateCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::IdpTemplate::Schema.create_request
+          ),
+          CampaignIdpListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignIdp::Schema.multiple_resource_response
+          ),
+          CampaignIdpListCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignIdp::Schema.create_request
+          ),
+          CampaignIdpListUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignIdp::Schema.update_request
           )
         }
       }

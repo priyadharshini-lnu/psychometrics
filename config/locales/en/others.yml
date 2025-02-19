@@ -255,6 +255,8 @@ en:
           attributes:
             magic_link_expiry_in_seconds:
               greater_than_or_equal_to: Duration should be minimum 5 minutes
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: Duration should be minimum 60 minutes
         sheet:
           attributes:
             file:
@@ -704,10 +706,14 @@ en:
           has_dependent_relation: This report is assinged on users
           max_assessment_count: You have reached the limit of %{max} assessments
           min_assessment_count: The minimum number of assessments is %{min}
+        skill_gap_report:
+          not_found: Skill gap report not found
         user:
           attributes:
             current_password:
               invalid: Current password is incorrect
+        user_idp_plan:
+          no_active_plan: No active IDP plan found
   admin_jobs:
     attrs:
       operations:
@@ -716,6 +722,7 @@ en:
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Raw Results Export
         assessment_scoring_export: Scoring Results Export
+        assign_idp_to_users: Assign IDP to users
         assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
@@ -729,6 +736,7 @@ en:
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         create_threesixty_campaign: Create Threesixty Campaign
+        data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
@@ -749,6 +757,7 @@ en:
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
+        import_skills: Import Skills
         import_sms_invites: Import SMS Invite
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
@@ -830,7 +839,7 @@ en:
       new_response: New Response
       next_assessment: Pass To Next Assessment
       pending_tasks:
-        one: You have one 1 pending task
+        one: You have 1 pending task
         other: You have %{count} pending tasks
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
@@ -1447,6 +1456,12 @@ en:
       last_login: Last login
       manager: Manager
       modals:
+        create_hogan_credentials:
+          assessments: 'Assessments:'
+          confirmation: Enter email given below in text box to add new hogan credential
+          reports: 'Reports:'
+          successfully: New hogan credential for user with email %{email} was added successfully.
+          warning: Creating a new Hogan credential will remove the following assessments and reports associated with the old Hogan credential for %{email}
         remove:
           successfully: User with email %{email} was removed successfully.
           title: Are you sure you want to remove this user from campaign %{campaignName}?
@@ -1574,6 +1589,7 @@ en:
       reset: Reset
       resolve: Resolve
       restore: Restore
+      run: Run
       save: Save
       schedule: Schedule
       search: Search
@@ -1610,6 +1626,10 @@ en:
       icon: Icon
       icon_color: Icon color
       id: Id
+      json:
+        answer: Answer JSON
+        external_result: External Result JSON
+        scoring: Scoring JSON
       key: Key
       last_name: Last Name
       linked_activities: Linked Activities
@@ -1630,6 +1650,7 @@ en:
       responses_count: Responses Count
       schedule_time: Schedule Time
       scheduling: Scheduling
+      skills: Skills
       status: Status
       tags: Tags
       timing: Timing
@@ -1989,11 +2010,19 @@ en:
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
+    invalid_session_title: Invalid Session
     invalid_token: Something went wrong. Plese reload the page and try again.
+    max_regeneration_limit: Maximum regeneration limit exceeded, contact your administration.
+    messages:
+      data_report_blank: Data Report doesn not exist
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.
+    skill_gap_report:
+      not_found: Skill gap report not found
     try_again: Please try again
+    user_idp_plan:
+      no_active_plan: No active IDP plan found
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
   evaluators:
@@ -2179,6 +2208,16 @@ en:
     restart: Restart
     restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
     saved_results: Answers successfully saved.
+    session_timeout_modal:
+      buttons:
+        close: Close
+        log_out: Log Out Now
+        re_login: Log Back In
+        stay_logged_in: Stay Logged In
+      message: Your session will time out in 2 minutes due to inactivity. Please click 'Stay Logged In' to continue your session, or you will be logged out automatically.
+      message_after_timeout: Your session has timed out , Kindly re-login.
+      time_remaining: Time Remaining
+      title: Session Timeout Warning
     skip_to_content: Skip to content
     smsInvites:
       create_success: SMS Invite was added successfully
@@ -2252,6 +2291,7 @@ en:
       add_development_action: Add Development Action
       add_skill: Add Skill
       all: All
+      approved: Approved
       board_view:
         completed: Completed
         in_progress: In Progress
@@ -2259,21 +2299,25 @@ en:
       completion: Completion
       create_my_own: Create My Own
       date_range: Start Date - End Date
-      development_actions: Development Actions
       generate_by_ai: Generate by AI
+      generate_more: Generate More
+      generating_development_actions: Generating development actions...
+      heading: Development Actions
       learning_from_the_others: Learning from the Others
       marathon: Marathon
       no_development_actions: No development actions
       on_the_job: On the Job
       other: Other
       private: Private
-      skills: Skills
+      skill: Skill
       sprint: Sprint
       structured_learning: Structured Learning
       submit_plan: Submit Plan
       write_here: Write here...
     direct_report_details: Direct Report Details
     initial_steps:
+      add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
+      add_skill_group_title: Exploring Your %{category} Skills
       add_skills: Add
       add_skills_step: Add Skills
       continue_to_rate_skills: Continue to rate skills
@@ -2286,8 +2330,6 @@ en:
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
       rate_skills_title: Rating Your Skills
       rating_column_header: Your self rating
-      role: Role
-      select_role_placeholder: Select a role
       select_skills: Select your skills
       select_skills_placeholder: Select skills
       selected_skills: Selected Skills
@@ -2318,9 +2360,15 @@ en:
   idp_templates:
     assign: Assign
     assign_idp_template: Assign Idp Template
+    auto_assign: Automatically assign new users
     errors:
       idp_template_not_found: IDP template not found
+      user_idp_template_not_found: No IDP template has been assigned to you.
+    idp_template: IDP Template
+    override_exists: Override and reset exists users
     placeholder: Select a Idp Template
+    save_and_assign: Save and Assign
+    success_scheduled: The job to assign IDP has been scheduled successfully
   jobs:
     threesixty:
       bulk_downloads: Bulk Download job was scheduled successfully
@@ -2484,6 +2532,7 @@ en:
   licenses:
     enabled: Enabled
     end_date: End date
+    not_enough_idp_license: Not enough IDP licenses, please contact administrator
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
     not_enough_license_count: Not enough licenses, please contact administrator
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
@@ -2494,6 +2543,7 @@ en:
     type: Type
     types:
       common: Common
+      idp: IDP
       proctoring: Proctoring
       threesixty: Threesixty
     used_number: Used licenses
@@ -2666,6 +2716,7 @@ en:
           graphTypeHorizontal: Horizontal
           graphTypeVertical: Vertical
           hideEmptyColumns: Hide Empty Columns
+          hideEmptyFilters: Hide Empty filters
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines
@@ -3441,8 +3492,12 @@ en:
       id: User Assessment ID
       norm_id: Norm ID
     drawer:
+      copied: "%{name} copied to clipboard."
+      copy: Copy to Clipboard
       mettl_schedule_name: Mettl Schedule Name
+      no_data: No data available
       title: Assessment Details
+      view: View
   user_assessments:
     modals:
       actions:

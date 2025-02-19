@@ -19,6 +19,7 @@ module Campaigns
           create_or_update_campaign_user
           create_or_update_datasheet
           add_reports_and_assessments
+          assign_idp_plan
           send_invite_email
         end
         broadcast :ok, user
@@ -78,6 +79,13 @@ module Campaigns
         Campaigns::Users::AddAssignableReportsAndAssessments.call!(
           campaign, campaign_user, current_user || user, operation: form.operation
         )
+      end
+
+      def assign_idp_plan
+        return unless campaign.campaign_idp&.automatically_assign_new
+        return unless campaign.campaign_idp&.idp_template_id
+
+        Idp::AssignUserIdp.call!(user, campaign.campaign_idp.idp_template_id, campaign.id, current_user)
       end
 
       def send_invite_email

@@ -12,7 +12,7 @@ import BarChart from './BarChart'
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
 
-export default function Factor ({ model, filters }) {
+export default function Factor ({ model, filters, paginationContext }) {
   const getFactorMap = () => {
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const dimensionId = assessment && assessment.dimensionId
@@ -70,12 +70,14 @@ export default function Factor ({ model, filters }) {
     style.borderColor = borderColor
   }
 
+  const paginatedFactorIds = paginationContext?.factorIds?.length
+    ? factorIds.filter(id => paginationContext.factorIds.includes(id.toString())) : factorIds
   return (
     <>
       <div className={styles.table} style={style}>
         <table>
           {!hideHeader && (
-            <thead>
+            <thead data-table-header>
               <tr>
                 <td
                   rowSpan={2}
@@ -108,14 +110,14 @@ export default function Factor ({ model, filters }) {
             </thead>
           )}
           <tbody>
-            {factorIds.map((id) => {
+            {paginatedFactorIds.map((id, i) => {
               const factor = factorMap[id]
               if (!factor) return null
               const results = enhanceFiltersByValue(factor).filter(r => r.value > 0)
               results.forEach(r => filterIdsHavingResults.add(r.id))
               const descStyle = getDescStyle(results)
               return (
-                <tr key={id}>
+                <tr key={id} data-row={i} data-factor-id={id}>
                   <td className={styles.factorcell}>
                     <div className={styles.factor} style={{ color: secondHeaderColor }}>
                       <div className="display-flex vertical-align">

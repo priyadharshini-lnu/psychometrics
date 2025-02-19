@@ -5,7 +5,8 @@ require 'rails_helper'
 describe Hogan::SaveReportsAndScores do
   let(:assessment) { create(:hogan_assessment) }
   let(:report) { create(:report, :hogan, assessments: [assessment]) }
-  let(:user) { create(:user, hogan_credential: build(:hogan_credential, norm: 'Global')) }
+  let(:user) { create(:user) }
+  let!(:hogan_credential) { create(:hogan_credential, norm: 'Global', user: user) }
   let(:project) { create(:project) }
   let!(:users_result) { create(:users_result, without_user_assessment: true) }
   let(:campaign) { create(:campaign) }
@@ -23,6 +24,10 @@ describe Hogan::SaveReportsAndScores do
       user_id: user.id,
       external_added: true
     )
+  end
+
+  let!(:resource_hogan_credential) do
+    create(:resource_hogan_credential, resource: user_report, hogan_credential: hogan_credential)
   end
 
   it 'calls Hogan::AddReports with user report that are not externally added' do
@@ -63,7 +68,7 @@ describe Hogan::SaveReportsAndScores do
       it 'returns the norm_id from the report' do
         report.update!(external_settings: { 'norm_id' => 'GlobalTimed' })
 
-        expect(described_class.new([user_report]).hogan_norm_id(users_result)).to eq('GlobalTimed')
+        expect(described_class.new([user_report]).hogan_norm_id(users_result, user_report)).to eq('GlobalTimed')
       end
     end
 
@@ -71,7 +76,7 @@ describe Hogan::SaveReportsAndScores do
       it 'returns the credential norm' do
         report.update!(external_settings: { 'norm_id' => HoganCredential::DEFAULT_NORM })
 
-        expect(described_class.new([user_report]).hogan_norm_id(users_result)).to eq('Global')
+        expect(described_class.new([user_report]).hogan_norm_id(users_result, user_report)).to eq('Global')
       end
     end
   end

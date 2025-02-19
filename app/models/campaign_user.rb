@@ -45,6 +45,10 @@ class CampaignUser < ApplicationRecord
   delegate :proctoring_enabled?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
 
+  def campaign_factor_values
+    CampaignFactorValue.where(campaign_id: campaign_id, user_id: user_id)
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id active status completion_status started_at completed_at]
   end

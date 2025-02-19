@@ -47,6 +47,7 @@ class BaseController < ActionController::Base
     return if request.controller_class.to_s.start_with?('Assessors')
     return if request.controller_class.to_s.start_with?('Api::V1')
     return if request.controller_class.to_s.start_with?('Webhooks')
+    return if request.controller_class.to_s.start_with?('Users::SessionExtensionsController')
 
     @current_project = GetProjectBySubdomain.call!(request.subdomain)
     return render_http_locked if @current_project&.disabled?

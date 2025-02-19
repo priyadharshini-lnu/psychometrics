@@ -21,7 +21,7 @@ module Simulation
 
     def generate_jwt_token
       payload = {
-        name: user_assessment.subject.name,
+        name: subject.name,
         userId: participant_id,
         simulationId: participant_id,
         scenarioId: scenario_id,
@@ -82,12 +82,12 @@ module Simulation
       @project ||= user_assessment.project
     end
 
-    def participant_id
-      @participant_id ||= simulation_user_assessment.participant_id
+    def subject
+      @subject ||= user_assessment.subject
     end
 
-    def jwt_token
-      JWT.encode({ data: user_assessment.id, exp: 30.days.from_now.to_i }, Settings.secrets.webhook_jwt_secret)
+    def participant_id
+      @participant_id ||= simulation_user_assessment.participant_id
     end
 
     def assessment_progress_notification_url
@@ -95,7 +95,7 @@ module Simulation
         :webhooks_simulation_progress_notification_url,
         project_id: project.id,
         subdomain: project.subdomain,
-        jwt_token: jwt_token
+        jwt_token: jwt_token_for_webhook
       )
     end
 
@@ -105,8 +105,21 @@ module Simulation
         id: user_assessment.id,
         project_id: project.id,
         subdomain: project.subdomain,
-        jwt_token: jwt_token
+        jwt: jwt_token
       )
+    end
+
+    def jwt_token
+      JWT.encode({ 'sub' => subject.id, 'exp' => session_inactivity_timeout.from_now.to_i },
+                 Settings.secrets.encrypted_key.to_s, 'HS256')
+    end
+
+    def session_inactivity_timeout
+      subject.session_inactivity_timeout
+    end
+
+    def jwt_token_for_webhook
+      JWT.encode({ data: user_assessment.id, exp: 30.days.from_now.to_i }, Settings.secrets.webhook_jwt_secret)
     end
   end
 end

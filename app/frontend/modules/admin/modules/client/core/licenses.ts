@@ -19,7 +19,7 @@ export const LicenseTR = t.type({
     t.undefined]),
 })
 export const LicenseTypes = [
-  'common', 'threesixty', 'proctoring',
+  'common', 'threesixty', 'proctoring', 'idp',
 ]
 
 export type License = t.TypeOf<typeof LicenseTR>

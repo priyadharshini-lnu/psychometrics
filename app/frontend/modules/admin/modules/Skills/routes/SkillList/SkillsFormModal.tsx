@@ -2,10 +2,11 @@ import React, { useEffect, useCallback } from 'react'
 import {
   Form, Input, Select, Spin,
 } from 'antd'
-import { Skill } from 'modules/admin/modules/client/core/skill'
 import { Client } from 'modules/admin/modules/client/core/clients'
 import { Tag } from 'modules/admin/core/tags'
 import { debounce } from 'lodash'
+import { Skill } from '~/modules/admin/modules/client/core/skills'
+import { Project } from '~/modules/admin/modules/client/core/projects'
 import { useResources } from '~/hooks/useResources'
 import { convertEnumToObject } from '~/utils/object'
 import { useResourceContext } from '~/modules/admin/components/Resource'
@@ -14,6 +15,12 @@ import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFil
 import { SkillCategoryEnum } from './constants'
 
 const { Option } = Select
+
+type OptionsType = {
+  id: string
+  name: string
+}
+
 type Props = {
   close(): void
   skill?: Skill
@@ -24,7 +31,7 @@ const { I18n } = window
 const MAX_TAG_BATCH_SIZE = 100
 
 export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
-  const { resource } = useResourceContext()
+  const { resource } = useResourceContext<Skill>()
   const [form] = Form.useForm()
   const {
     data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
@@ -35,8 +42,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
   } = useResources<Tag>('tags', { apiConfig: { query: { taggable_resource_type: TaggableResourceType.Skill } } })
 
   const ownersLoading = isOwnerLoading('fetch')
-
-  const ownerOpts = skill?.owner ? owners.concat(skill.owner) : owners
 
   const fetchOwnersByValue = (value: string) => fetchOwners({
     apiConfig: {
@@ -64,6 +69,13 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     })
   }, [])
 
+  const createSkill = (data: Skill & {ownerId?: string}) => {
+    if (data.ownerId) {
+      delete data.ownerId
+    }
+    return resource.createResource(data)
+  }
+
   const debouncedFetchTags = useCallback(debounce((value) => {
     fetchTags({
       apiConfig: {
@@ -76,9 +88,36 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     })
   }, 300), [])
 
+  const ownerId = Form.useWatch(['ownerId'], form)
+  const getProjects = (): OptionsType[] => {
+    if (!skill || !skill.project) {
+      return projects
+    }
+
+    return [...projects, skill.project]
+  }
+
+  const {
+    data: projects, fetch: fetchProjects, isLoading: projectIsLoading, setData: setProjects,
+  } = useResources<Project>('projects', { basePath: `clients/${ownerId}` })
+
+  useEffect(() => {
+    setProjects([])
+    form.resetFields(['projectId'])
+  }, [ownerId])
+
+  const handleProjectSearch = (value: string) => {
+    fetchProjects({
+      apiConfig: {
+        filter: { filterable_fields: value },
+        fields: { clients: ['name'] },
+      },
+    })
+  }
+
   return (
     <ResourceFormModal
-      resourceName="skill"
+      resourceName="skills"
       resource={skill}
       readableResourceName={I18n.t('administration.skills.form.title')}
       showSuccessMessages
@@ -86,7 +125,12 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 720 }}
-      request={{ createResource: resource.createResource, updateResource: resource.updateResource }}
+      request={{ createResource: createSkill, updateResource: resource.updateResource }}
+      formProps={{
+        initialValues: {
+          category: SkillCategoryEnum.Behavioral,
+        },
+      }}
     >
       {() => (
         <>
@@ -102,33 +146,57 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           >
             <Input />
           </Form.Item>
+          {!skill && (
           <Form.Item
             name="ownerId"
-            label={I18n.t('administration.campaign_templates.form.owner')}
+            label={I18n.t('common.column.owner')}
           >
             <Select
               showSearch
               filterOption={false}
               placeholder={
-                  I18n.t('administration.campaign_templates.form.owner_placeholder')
+                  I18n.t('administration.skills.form.owner_placeholder')
                 }
               onSearch={searchAvailableOwners}
               notFoundContent={ownersLoading ? <Spin size="small" /> : null}
             >
               {
-                ownerOpts.map(({ id, name }) => (
+                owners.map(({ id, name }) => (
                   <Option key={id} value={id}>{name}</Option>
                 ))
               }
             </Select>
           </Form.Item>
+          )}
+          {(!skill || skill?.project) && (
+          <Form.Item
+            name="projectId"
+            label={I18n.t('common.column.project')}
+          >
+            <Select
+              showSearch
+              filterOption={false}
+              disabled={!!skill}
+              onSearch={handleProjectSearch}
+              options={(getProjects() || []).map(p => ({
+                value: p.id,
+                label: p.name,
+              }))}
+              placeholder={
+                  I18n.t('administration.skills.form.project_placeholder')
+                }
+              value={form.getFieldValue('projectId')}
+              notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
+            />
+          </Form.Item>
+          )}
           <Form.Item
             name="category"
             label={I18n.t('administration.skills.form.category')}
+
           >
             <Select
               filterOption={false}
-              defaultValue={skill?.category ? skill.category : SkillCategoryEnum.Behavioral}
             >
               {
                 Object.values(convertEnumToObject(SkillCategoryEnum)).map(([key, value]) => (

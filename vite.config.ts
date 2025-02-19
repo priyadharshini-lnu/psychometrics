@@ -1,6 +1,6 @@
 import { brotliCompress } from 'zlib'
 import { promisify } from 'util'
-import { defineConfig } from 'vite'
+import {defineConfig, ServerOptions} from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
@@ -9,6 +9,7 @@ import checker from 'vite-plugin-checker'
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
 import svgr from 'vite-plugin-svgr'
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { env } from 'process'
 import fs from 'fs'
 
@@ -29,7 +30,7 @@ const devPlugins = __DEV__ ? [
   dts({
     insertTypesEntry: true,
   }),
-  checker({typescript: true}),
+  checker({ typescript: true }),
 ] : []
 
 // Ignore all the files from vendor if it is big and is required just for specific entry point
@@ -41,7 +42,7 @@ const IGNORE_VENDORS = [
   '@thetalententerprise/interactive-assessments',
   'dayjs'
 ]
-const server = SSL ? {
+const server: ServerOptions = SSL ? {
   https: {
     key: fs.readFileSync(SSL_KEY || ''),
     cert: fs.readFileSync(SSL_CERT || ''),
@@ -51,9 +52,24 @@ const server = SSL ? {
 const brotliPromise = promisify(brotliCompress)
 
 export default defineConfig({
-  server,
+  server: {
+    ...server,
+    allowedHosts: [`.${process.env.APP_DOMAIN}`, '.localhost']
+  },
   clearScreen: false,
   plugins: [
+    sentryVitePlugin({
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+
+      sourcemaps: {
+        filesToDeleteAfterUpload: [
+          "./public/vite/**/*.map",
+        ]
+      },
+      debug: process.env.SENTRY_DEBUG === 'true',
+    }),
     RubyPlugin(),
     react(),
     // visualizer({open: true}),
@@ -92,7 +108,7 @@ export default defineConfig({
     sourcemap: 'external',
   },
   build: {
-    sourcemap: __DEV__,
+    sourcemap: true,
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
     cssCodeSplit: true,
@@ -110,7 +126,6 @@ export default defineConfig({
         })
       ],
       output: {
-        sourcemap: false,
         chunkFileNames: (info) => {
           if (info.name === 'vendors') {
             return 'chunks/vendors-[hash].js'
@@ -119,7 +134,7 @@ export default defineConfig({
         },
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            for(let i=0;i<IGNORE_VENDORS.length;i++) {
+            for (let i = 0; i < IGNORE_VENDORS.length; i++) {
               if (id.includes(IGNORE_VENDORS[i])) {
                 return
               }

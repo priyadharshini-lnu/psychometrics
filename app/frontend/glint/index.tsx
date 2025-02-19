@@ -12,6 +12,7 @@ export { CountdownTimer } from './components/CountdownTimer'
 export { ConfirmationModal } from './components/ConfirmationModal'
 export { CollapseItem } from './components/CollapseItem'
 export { PageLoadSpinner } from './components/PageLoadSpinner'
+export { JSONViewCopy } from './components/JSONViewCopy'
 export {
   DirectionAwareIcon,
   DirectionalArrowIcon, DirectionalNavigateBackIcon, DirectionalBackArrowIcon, DirectionalNavigateIcon,
@@ -35,6 +36,7 @@ export { MaskedText } from './components/MaskedText'
 export { UsersSelectWithTags } from './components/UsersSelectWithTags'
 export { DefaultAntThemeWrapper } from './components/DefaultAntThemeWrapper'
 export { LuaEditor } from './components/LuaEditor'
+export { SelfDestroyText } from './components/SelfDestroyText'
 export { BoxWithShadow } from './components/BoxWithShadow'
 export { ProgressBarWithCutoff } from './components/ProgressBarWithCutoff'
 export { HighChartContainer } from './components/HighChartContainer'

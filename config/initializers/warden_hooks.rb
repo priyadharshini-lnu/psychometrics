@@ -66,7 +66,7 @@ Warden::Manager.before_failure do |env, opts|
 
   if request.env[:sso].blank?
     session = request.env['action_dispatch.request.unsigned_session_cookie']
-    action = session['saml_audit'].present? ? :saml_login : :sign_in
+    action = session&.dig('saml_audit').present? ? :saml_login : :sign_in
     reason = opts[:message] ? "devise.#{opts[:message]}" : "devise.#{opts[:action]}"
     AuditLogModule.audit! action, nil,
                           record_type: 'User',

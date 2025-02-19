@@ -47,6 +47,7 @@ class AdminJob < ApplicationJob
     export_reports_and_assessments: AdminJobs::ExportReportsAndAssessments,
     super_admin_assessment_norm_export: AdminJobs::SuperAdmin::AssessmentNormExport,
     super_admin_datasheet_export: AdminJobs::SuperAdmin::DatasheetExport,
+    data_report_export: AdminJobs::DataReportExport,
     super_admin_external_assessment_export: AdminJobs::SuperAdmin::ExternalAssessmentExport,
     export_admin_with_permissions: AdminJobs::ExportAdminsWithPermissions,
     bulk_download_user_reports: AdminJobs::BulkDownloadUserReports,
@@ -62,7 +63,11 @@ class AdminJob < ApplicationJob
     export_occupations: AdminJobs::ExportOccupations,
     export_user_report_events: AdminJobs::ExportUserReportEvents,
     migrate_assessment_translations: AdminJobs::MigrateAssessmentTranslations,
-    add_campaign_reports: AdminJobs::AddCampaignsReports
+    add_campaign_reports: AdminJobs::AddCampaignsReports,
+    import_skills: AdminJobs::ImportSkillsJob,
+    import_development_actions: AdminJobs::ImportDevelopmentActionsJob,
+    export_development_actions: AdminJobs::ExportDevelopmentActionsJob,
+    assign_idp_to_users: AdminJobs::AssignIdpToUsers
   }.freeze
 
   def perform(record)
@@ -84,6 +89,7 @@ class AdminJob < ApplicationJob
 
       record.broadcast(:create)
       perform_later(record)
+      record
     end
   end
 end

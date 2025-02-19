@@ -9,6 +9,7 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 
 import styles from './styles.less'
+import { PageData } from '../../GapAssessment/PaginationContext'
 
 const MOCK_HIGHEST_DATA = [
   { avg: 5.0, name: 'Customer First' },
@@ -34,11 +35,14 @@ interface Props {
   hideValues: boolean
   noOfItems: number | null
   scoreCutoff: number | null
+  model: PreviewModel
+  paginationContext: PageData | null
   style?: CSSProperties & { fontColor: string }
 }
 
 const FactorType: FC<Props> = ({
-  assessment_id, filterId, factorIds, sections, tableStyle, hideValues, noOfItems, scoreCutoff, style,
+  assessment_id, filterId, factorIds, sections, tableStyle, hideValues, noOfItems, scoreCutoff,
+  model, paginationContext, style,
 }) => {
   const calculateHighestLowest = (
     assessment_id: PreviewModel['assessment_id'],
@@ -93,28 +97,33 @@ const FactorType: FC<Props> = ({
   const filterName = filter ? I18nStore.tFilterName(filter) : ''
   const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
 
+  const showHighest = paginationContext
+    ? !!paginationContext?.rowIds?.top?.length : (sections !== TableSectionsType.LOWEST)
+  const showLowest = paginationContext
+    ? !!paginationContext?.rowIds?.bottom?.length : (sections !== TableSectionsType.HIGHEST)
+
   return (
     <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
-      <table>
+      <table data-table={model.id}>
         <tbody>
-          {sections !== TableSectionsType.LOWEST && (
+          {showHighest && (
             <>
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
                 filterName={filterName}
                 hideValues={hideValues}
               />
-              <TBody data={highestFactors} hideValues={hideValues} />
+              <TBody data={highestFactors} hideValues={hideValues} type="top" paginationContext={paginationContext} />
             </>
           )}
-          {sections !== TableSectionsType.HIGHEST && (
+          {showLowest && (
             <>
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
                 filterName={filterName}
                 hideValues={hideValues}
               />
-              <TBody data={lowestFactors} hideValues={hideValues} />
+              <TBody data={lowestFactors} hideValues={hideValues} type="bottom" paginationContext={paginationContext} />
             </>
           )}
         </tbody>
@@ -131,12 +140,12 @@ interface THeadersProps {
 
 const THeaders: FC<THeadersProps> = ({ title, filterName, hideValues }) => (
   <>
-    <tr className={styles.title}>
+    <tr className={styles.title} data-header>
       <th colSpan={hideValues ? 2 : 3}>
         {title}
       </th>
     </tr>
-    <tr className={styles.headers}>
+    <tr className={styles.headers} data-header>
       <th className={styles.label} scope="col">
         {I18nStore.t('reports.modules.highest_lowest.rank')}
       </th>
@@ -154,24 +163,34 @@ const THeaders: FC<THeadersProps> = ({ title, filterName, hideValues }) => (
 
 interface TBodyProps {
   data: Array<{
+    id: number
     avg: number
     name: string
   }>
   hideValues: boolean
+  type: 'top' | 'bottom'
+  paginationContext: PageData | null
 }
 
-const TBody: FC<TBodyProps> = ({ data, hideValues }) => (
-  <>
-    {data?.map((factor, index) => (
-      <tr key={index} className={styles.row}>
-        <td>{index + 1}</td>
-        <td>{I18nStore.tFactorName(factor)}</td>
-        {!hideValues && (
+const TBody: FC<TBodyProps> = ({
+  data, hideValues, paginationContext, type,
+}) => {
+  const ranks = data.reduce((acc, factor, i) => ({ ...acc, [factor.id]: i + 1 }), {})
+  const paginatedData = paginationContext ? paginationContext.rowIds[type].map(id => data[id]) : data
+
+  return (
+    <>
+      {paginatedData.map((factor, index) => (
+        <tr key={index} className={styles.row} data-row={index} data-type={type}>
+          <td>{ranks[factor.id]}</td>
+          <td>{I18nStore.tFactorName(factor)}</td>
+          {!hideValues && (
           <td className={styles.number}>{factor.avg}</td>
-        )}
-      </tr>
-    ))}
-  </>
-)
+          )}
+        </tr>
+      ))}
+    </>
+  )
+}
 
 export default FactorType

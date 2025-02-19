@@ -1,6 +1,8 @@
 import { ProjectList } from './ProjectList'
 import { Admins } from './Admins'
 import { Settings } from './Settings'
+import { DataReports } from './DataReports'
+import { DataReportJobs } from './DataReports/DataReportJobs'
 import { DataExports } from './DataExports'
 import LicenseList from '../../LicenseList'
 
@@ -25,5 +27,13 @@ export const routes = [
   {
     path: '/licenses',
     component: <LicenseList />,
+  },
+  {
+    path: '/data_reports',
+    component: <DataReports />,
+  },
+  {
+    path: '/data_reports/:id',
+    component: <DataReportJobs />,
   },
 ]

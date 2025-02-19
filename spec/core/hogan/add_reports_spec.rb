@@ -15,6 +15,9 @@ describe Hogan::AddReports do
   let(:user) { create(:user) }
   let!(:hogan_credential) { create(:hogan_credential, user: user) }
   let(:user_report) { create(:user_report, user: user, report: report, report_family: report_family) }
+  let!(:resource_hogan_credential) do
+    create(:resource_hogan_credential, resource: user_report, hogan_credential: hogan_credential)
+  end
 
   context 'when we have 2 reports with same package' do
     let(:extra_report) { create(:report, :hogan, assessments: [assessment]) }
@@ -42,6 +45,9 @@ describe Hogan::AddReports do
              provider: :hogan)
     end
     let(:extra_user_report) { create(:user_report, report: extra_report) }
+    let!(:extra_resource_hogan_credential) do
+      create(:resource_hogan_credential, resource: extra_user_report, hogan_credential: hogan_credential)
+    end
 
     it 'we call Hogan Api two times' do
       expect(Services::Hogan::Api::Json::AddParticipantReport).to receive(:call).exactly(2).time

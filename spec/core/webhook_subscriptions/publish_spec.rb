@@ -39,13 +39,18 @@ describe WebhookSubscriptions::Publish do
               'name' => assessment.name
             },
             'evaluator' => {
+              'campaign_user_external_id' => evaluator.campaign_user_external_id(campaign.id),
+              'email' => evaluator.email,
+              'external_id' => evaluator.external_id,
               'id' => evaluator.id,
               'name' => evaluator.decorate.full_name
             },
             'subject' => {
+              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id),
+              'email' => subject.email,
+              'external_id' => subject.external_id,
               'id' => subject.id,
-              'name' => subject.decorate.full_name,
-              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id)
+              'name' => subject.decorate.full_name
             },
             'project' => {
               'id' => project.id,
@@ -98,13 +103,18 @@ describe WebhookSubscriptions::Publish do
               'name' => assessment.name
             },
             'evaluator' => {
+              'campaign_user_external_id' => evaluator.campaign_user_external_id(campaign.id),
+              'email' => evaluator.email,
+              'external_id' => evaluator.external_id,
               'id' => evaluator.id,
               'name' => evaluator.decorate.full_name
             },
             'subject' => {
+              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id),
+              'email' => subject.email,
+              'external_id' => subject.external_id,
               'id' => subject.id,
-              'name' => subject.decorate.full_name,
-              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id)
+              'name' => subject.decorate.full_name
             },
             'event_time' => anything
           }

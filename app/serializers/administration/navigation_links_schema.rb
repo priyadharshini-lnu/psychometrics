@@ -24,8 +24,10 @@ module Administration
           optional(:communicationCenter).filled(:str?)
           optional(:reports).filled(:str?)
           optional(:reportApprovals).filled(:str?)
+          optional(:dataReports).filled(:str?)
           optional(:campaignTemplates).filled(:str?)
           optional(:auditLogs).filled(:str?)
+          optional(:viewDataExports).filled(:str?)
         end
       end
     end

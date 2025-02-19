@@ -7,11 +7,21 @@ module Api
         @user.has_grant?(:idp_templates, :view)
       end
 
+      def create?
+        @user.has_grant?(:idp_templates, :manage)
+      end
+
+      def update?
+        @user.has_grant?(:idp_templates, :manage)
+      end
+
+      def destroy?
+        @user.has_grant?(:idp_templates, :manage)
+      end
+
       class Scope < Api::Administration::BasePolicy::Scope
         def resolve
-          return scope if @user.is?(:superadmin)
-
-          scope.where(owner_id: project_id)
+          scope.where(project_id: project_id)
         end
       end
     end

@@ -34,7 +34,7 @@ const BulletGraph: React.FC<Props> = ({
 
   const baselineScorePercentage = Utils.scaleNumber(baselineScore, min.value, max.value, 0, 100)
   return (
-    <Flex className="w-100" gap={8} justify="center" align="center">
+    <Flex className="w-100 mb-1" gap={8} justify="center" align="center">
       <div className={cs(styles.bulletGraph, 'w-100')}>
         <div className={cs(styles.bands)}>
           {scoreRanges.map((scoreRange, i) => {

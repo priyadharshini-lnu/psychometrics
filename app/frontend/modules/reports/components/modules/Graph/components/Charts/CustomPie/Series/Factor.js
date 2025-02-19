@@ -39,11 +39,12 @@ const buildForFilters = (results, factors) => results.map((result, i) => {
 
 export default {
   series (results, factors, model, strategy) {
+    const resultsData = model.props.hideEmptyFilters ? results.filter(r => !_.isEmpty(r.results.scoring)) : results
     if (strategy === STRATEGIES.SOURCES) {
-      return buildForSources(results[0].results, factors)
+      return buildForSources(resultsData[0].results, factors)
     }
     if (strategy === STRATEGIES.FILTERS) {
-      return buildForFilters(results, factors)
+      return buildForFilters(resultsData, factors)
     }
     return []
   },

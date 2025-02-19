@@ -1,19 +1,23 @@
 import { FC } from 'react'
 import { Empty } from 'antd'
 
+import { useModulePagination } from '~/hooks/useModulePagination'
 import FactorType from './types/Factor'
 import QuestionType from './types/Question'
 
 import { PropertiesModel, GapType, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
 
 import AppStore from '~/modules/reports/store/AppStore'
+import { PaginationContext } from './PaginationContext'
 
 
 interface Props {
   model: PropertiesModel
+  insertPaginationPage: () => void
+  preview: boolean
 }
 
-export const GapAssessment: FC<Props> = ({ model }) => {
+export const GapAssessment: FC<Props> = ({ model, insertPaginationPage, preview }) => {
   const {
     props: {
       sourceType, filter, factorIds, questionsChoices, gapType = GapType.ALL, hideValues = false,
@@ -38,8 +42,12 @@ export const GapAssessment: FC<Props> = ({ model }) => {
     )
   }
 
+  const { paginationContext } = useModulePagination(
+    model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage, preview,
+  )
+
   return (
-    <div>
+    <div data-table={model.id}>
       {sourceType === 'Factor' && (
         <FactorType
           assessment_id={assessment_id}
@@ -52,6 +60,7 @@ export const GapAssessment: FC<Props> = ({ model }) => {
           gapCutoff={gapCutoff}
           precision={precision}
           showAllFactors={allFactors}
+          paginationContext={paginationContext}
           style={style}
         />
       )}
@@ -66,6 +75,7 @@ export const GapAssessment: FC<Props> = ({ model }) => {
           noOfItems={noOfItems}
           gapCutoff={gapCutoff}
           precision={precision}
+          paginationContext={paginationContext}
           style={style}
         />
       )}

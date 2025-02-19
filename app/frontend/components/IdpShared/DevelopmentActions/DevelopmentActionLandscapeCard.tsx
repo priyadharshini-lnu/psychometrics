@@ -10,7 +10,7 @@ import dayjs from '~/utils/dayjs'
 
 import styles from './DevelopmentActionLandscapeCard.less'
 import { DevelopmentAction, SkillWithDevelopmentActions } from '.'
-import { Tags } from './Tags'
+import { Tags } from './Common'
 
 const { RangePicker } = DatePicker
 

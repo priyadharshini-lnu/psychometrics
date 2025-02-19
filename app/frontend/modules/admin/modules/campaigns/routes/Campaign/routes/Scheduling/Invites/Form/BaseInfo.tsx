@@ -66,6 +66,9 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
 
   const changePreferredLang = (checked) => {
     form.setFieldValue('allowLanguagePreference', checked)
+    if (!checked) {
+      form.setFieldValue('languagesAllowed', [])
+    }
     setPreferredLang(checked)
   }
   const changeNeuroDiversityOption = (checked) => {

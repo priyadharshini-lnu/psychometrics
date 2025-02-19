@@ -98,7 +98,7 @@ module Administration
       results = ::Sheets::Export.call!(sheet)
       audit! :export, sheet, **audit_resources
       respond_to do |format|
-        format.xlsx { send_data results.to_stream.read, filename: "sheet-for-#{parent_resource.name}.xlsx" }
+        format.xlsx { send_data results.to_stream.read, filename: "datasheet-export-for-#{parent_resource.name}.xlsx" }
       end
     end
 

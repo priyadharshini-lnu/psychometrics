@@ -3,9 +3,10 @@ import {
   Drawer, Row, Descriptions,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
-import { SimulationDetails } from './SimulationDetails'
 import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
+import { SimulationDetails } from './SimulationDetails'
+import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
+import RawJSON from './RawJSON'
 
 const { I18n } = window
 
@@ -94,6 +95,11 @@ export const DetailsDrawer: FC<Props> = ({
           I18n={I18n}
           assessment={assessment}
           campaignId={campaignId}
+        />
+
+        <RawJSON
+          I18n={I18n}
+          usersResultId={assessment?.usersResultId}
         />
       </Row>
     </Drawer>

@@ -6,18 +6,18 @@ import { BoxWithShadow } from '~/glint'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionPortraitCard.less'
 import { DevelopmentActionWithSkill } from '.'
-import { Tags } from './Tags'
+import { Tags } from './Common'
 
 const { I18n } = window
 
 export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill> = ({
-  name,
   description,
   progress,
   startDateTime,
   endDateTime,
   learningStyle,
   skill,
+  customAction,
 }) => (
   <BoxWithShadow className={styles.p_16}>
     <Flex vertical gap={8}>
@@ -25,7 +25,7 @@ export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill>
         <Typography.Paragraph
           ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
         >
-          {description}
+          {description ?? customAction}
         </Typography.Paragraph>
       </Flex>
       <Flex
@@ -33,13 +33,17 @@ export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill>
         gap={8}
       >
         <Flex gap={4}>
-          <span>{`${I18n.t('idp.development_actions.skills')}:`}</span>
-          <p className={styles.m_none}>{name}</p>
+          <span>{`${I18n.t('idp.development_actions.skill')}:`}</span>
+          <p className={styles.m_none}>{skill.name}</p>
         </Flex>
         <Rate disabled defaultValue={skill.finalRating || skill.initialRating} />
-        <Flex className={styles.mb_8}>
-          <Tags type={learningStyle} />
-        </Flex>
+        {
+          !!learningStyle && (
+            <Flex className={styles.mb_8}>
+              <Tags type={learningStyle} />
+            </Flex>
+          )
+        }
       </Flex>
       <Flex justify="space-between" align="flex-end" gap={4}>
         <Flex

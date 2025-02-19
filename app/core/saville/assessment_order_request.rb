@@ -51,7 +51,8 @@ module Saville
         host: Settings.domain,
         subdomain: user_assessment.project.subdomain,
         protocol: Settings.protocol,
-        port: Settings.port
+        port: Settings.port,
+        jwt: jwt_token
       })
     end
 
@@ -63,5 +64,12 @@ module Saville
         port: Settings.port
       )
     end
+
+    def jwt_token
+      JWT.encode({ 'sub' => subject.id, 'exp' => session_inactivity_timeout.from_now.to_i },
+                 Settings.secrets.encrypted_key.to_s, 'HS256')
+    end
+
+    delegate :session_inactivity_timeout, to: :subject
   end
 end

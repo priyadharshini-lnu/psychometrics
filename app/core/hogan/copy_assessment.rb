@@ -20,8 +20,9 @@ module Hogan
       ActiveRecord::Base.transaction do
         existing_result = find_existing_result
         user_result = create_user_result(existing_result)
-        copy_hogan_credentials(target_user_assessment)
+        target_user_credential = copy_hogan_credentials(target_user_assessment)
         user_assessment = update_user_assessment(user_result)
+        user_assessment.attach_hogan_credential(target_user_credential)
         Hogan::HandleAssessmentCompletion.call!(user_assessment)
         ::UsersResults::RecomputeJob.perform_later(
           user_assessment.users_result,
@@ -66,6 +67,8 @@ module Hogan
 
       credential.user_id = target_subject.id
       credential.save
+
+      credential
     end
 
     def target_subject
