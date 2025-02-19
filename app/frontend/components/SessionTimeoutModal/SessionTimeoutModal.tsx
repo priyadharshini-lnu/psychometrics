@@ -1,17 +1,17 @@
 import { Modal } from 'antd'
 import {
-  FC, useEffect, useRef, useState,
+  FC, useEffect, useRef, useState, useMemo,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { HistoryOutlined } from '@ant-design/icons'
 import { getFeatures } from '~/core/config'
 import { EXTEND_SESSION, extendSession } from '~/core/extendSession'
 import { get as getCurrentUser } from '~/core/currentUser'
-import { useSessionTimeoutStore } from '~/core/sessionTimeoutStore'
 import { isRequestInProgress } from '~/core/request'
 import { CountdownTimer } from '~/glint/components/CountdownTimer'
 import styles from './styles.less'
 import { RootState } from '~/core/reducers'
+import { SYNC_TIMEOUT_CHANNEL } from '~/constants/channelNames'
 
 const connector = connect((state: RootState) => ({
   currentUser: getCurrentUser(state),
@@ -40,9 +40,27 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
   const [isSessionTimedOut, setSessionTimedOut] = useState<boolean>(false)
   const [key, setKey] = useState(0) // To reset the Countdown component
 
-  const { nextTimeout } = useSessionTimeoutStore()
+  const [nextTimeout, setNextTimeout] = useState({})
 
-  const channel = new BroadcastChannel('popup_channel')
+  const channel = useMemo(() => new BroadcastChannel('popup_channel'), [])
+  const syncTimeoutChannel = useMemo(() => new BroadcastChannel(SYNC_TIMEOUT_CHANNEL), [])
+
+  useEffect(() => {
+    syncTimeoutChannel.addEventListener('message', (msgEvent) => {
+      const { userId, nextTimeout } = msgEvent.data
+      if (userId && (nextTimeout[userId] !== nextTimeout)) {
+        setNextTimeout(prevState => ({
+          ...prevState,
+          [userId]: nextTimeout,
+        }))
+      }
+    })
+
+    return () => {
+      syncTimeoutChannel.close()
+      channel.close()
+    }
+  }, [])
 
   useEffect(() => {
     originalTitle.current = document.title
@@ -240,7 +258,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
         <span>
           {popupMessage}
         </span>
-        <div className={styles.timer}>
+        <div className={styles.countdownTimer}>
           <CountdownTimer
             key={key}
             title={`${I18n.t('frontend.session_timeout_modal.time_remaining')}`}

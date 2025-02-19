@@ -13,7 +13,7 @@ module Hogan
         add_participant_assessment
       end
 
-      async_response.response_data = serialized_hogan_credential(hogan_credential)
+      async_response.response_data = serialized_hogan_credential(user_assessment_hogan_credential)
       broadcast(:ok, async_response)
     rescue StandardError => e
       Rails.logger.error(e)

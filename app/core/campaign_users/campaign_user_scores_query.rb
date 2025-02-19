@@ -69,9 +69,9 @@ module CampaignUsers
       else
         <<~SQL.squish
           SELECT * FROM crosstab(
-            $$SELECT cu.user_id, cfv.campaign_factor_id::text,
+            $$SELECT cu.user_id, cfv.campaign_factor_id,
               CASE
-                WHEN cf.output_type = 0 THEN json_build_object('value', cfv.numeric_value::text, 'label', cfv.label)
+                WHEN cf.output_type = 0 THEN json_build_object('value', cfv.numeric_value, 'label', cfv.label)
                 ELSE json_build_object('value', cfv.string_value, 'label', cfv.label)
               END
              FROM campaign_users cu

@@ -85,7 +85,10 @@ module Api
                with_context(campaign_user: campaign_user, campaign: campaign)
         if form.valid?
           ::Campaigns::UserReports::Add.call(form, campaign_user, current_user) do
-            on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
+            on(:new_assessment_response_not_allowed) do |error|
+              raise Api::Errors::NewAssessmentResponseNotAllowed, error
+            end
+            on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
           audit! :assessments_reports, campaign_user, payload: params, campaign: campaign_user.campaign
           render json: Api::V1::UserAssessmentsAndReportsSerializer.new.serialize(campaign_user)

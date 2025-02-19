@@ -50,6 +50,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
                   skillCategory={{ category: skillCategory.category, skills: skillsAvailableForSelection }}
                   onAddSkill={onAddSkill}
                   onRemoveSkill={onDeselectSkill}
+                  selectedSkills={selectedSkills}
                 />
               )
             })

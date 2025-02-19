@@ -15,7 +15,7 @@ module Administration
         has_permission?(:audit_reports, :admin_permissions, project_id: project_id)
     end
 
-    def view_data_exports?
+    def view_data_reports?
       has_permission?(:clients, :export_data_report, project_id: project_id)
     end
 

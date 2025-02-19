@@ -56,6 +56,7 @@ const axisDisplayOptions: AxisDisplayOptions [] = [
   { label: I18n.t('reports.builder.graph.properties.hideYAxisLine'), propName: 'yAxisLinesHide' },
   { label: I18n.t('reports.builder.graph.properties.hideXAxisTitle'), propName: 'xAxisLabelHide' },
   { label: I18n.t('reports.builder.graph.properties.hideYAxisTitle'), propName: 'yAxisLabelHide' },
+  { label: I18n.t('reports.builder.graph.properties.hideEmptyFilters'), propName: 'hideEmptyFilters' },
   { label: I18n.t('reports.builder.graph.properties.reverse'), propName: 'reverse' },
 ]
 

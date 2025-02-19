@@ -1,0 +1,111 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
+  let(:project) { Project.find(create(:project).id) }
+  let(:skill) { create(:skill, project: project) }
+  let(:global_skill) { create(:skill, project: nil) }
+  let!(:development_action) do
+    action = create(:development_action,
+                    project_id: project.id,
+                    name: 'Test Action',
+                    description: 'Test Description',
+                    learning_style: 'structured_learning',
+                    category: 'course',
+                    course_url: 'https://example.com',
+                    course_start_date: Date.new(2024, 1, 1),
+                    course_end_date: Date.new(2024, 12, 31))
+    action.skills << skill
+    action.skills << global_skill
+
+    # Attach test image
+    action.image.attach(
+      io: File.open(Rails.root.join('spec/fixtures/files/profile.png')),
+      filename: 'profile.png',
+      content_type: 'image/png'
+    )
+
+    action
+  end
+
+  let(:record) { create(:admin_job_record, data: { 'project_id' => project.id }) }
+  let(:job) { described_class.new(record) }
+
+  describe '#headers' do
+    it 'returns the correct headers for the CSV' do
+      expect(job.headers).to eq(%w[
+        ID
+        SkillID
+        Name
+        Description
+        Type
+        ProjectID
+        Category
+        CourseURL
+        CourseStartDate
+        CourseEndDate
+        CourseImage
+      ])
+    end
+  end
+
+  describe '#data_row' do
+    it 'returns formatted rows of data for csv' do
+      development_action = job.records_for_export.first
+      data_rows = job.data_row(development_action)
+
+      expect(data_rows.size).to eq(2) # One row per skill
+
+      # Check first row (project skill)
+      first_row = data_rows.first
+      expect(first_row).to eq([
+        development_action.id,
+        skill.id,
+        'Test Action',
+        'Test Description',
+        'structured_learning',
+        project.id,
+        'course',
+        'https://example.com',
+        '2024-01-01',
+        '2024-12-31',
+        development_action.image_url
+      ])
+
+      # Check second row (global skill)
+      second_row = data_rows.second
+      expect(second_row[1]).to eq(global_skill.id) # Check skill ID differs
+      expect(second_row[0]).to eq(development_action.id) # But development action ID remains same
+    end
+  end
+
+  describe '#file_name' do
+    it 'returns the correct file name' do
+      expect(job.file_name).to eq("#{project.name}-development-actions.csv")
+    end
+  end
+
+  describe '#generate_details' do
+    it 'returns an array with translated label and file link' do
+      allow(job).to receive(:file_link).and_return('link_to_file')
+      expect(job.generate_details).to eq([
+        [I18n.t('administration.development_actions.export.details'), 'link_to_file']
+      ])
+    end
+  end
+
+  describe '#records_for_export' do
+    it 'returns development actions for the specified project' do
+      expect(job.records_for_export).to include(development_action)
+    end
+
+    context 'when there are no development actions' do
+      before { development_action.destroy }
+
+      it 'returns an empty relation' do
+        expect(job.records_for_export).to be_empty
+      end
+    end
+  end
+end

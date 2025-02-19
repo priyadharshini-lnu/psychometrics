@@ -93,6 +93,11 @@ de:
   assessments:
     actions:
       goto_dashboard: zum Dashboard gehen
+    card_actions:
+      begin: Starten
+      continue: Fortfahren
+    categories:
+      redirecting: Weiterleitung der Seite
     messages:
       finish: |-
         Vielen Dank für Ihre Zeit.
@@ -117,26 +122,26 @@ de:
     begin: Beginnen Sie mit Ihren Aufgaben.
     begin_btn_msg_before_prework: Sie müssen die unten stehenden Aufgaben abschließen, bevor Sie mit der zeitgesteuerten Kampagne beginnen können.
     begin_campaign_msg: Starten Sie die Kampagne, bevor Sie mit den Bewertungen beginnen.
-    campaigns: Kampagnen
+    campaigns: Events
     closed_campaign_message: Diese Kampagne ist geschlossen. Sie können keine Bewertungen mehr innerhalb dieser Kampagne durchführen.
     code_usage_limit_reached: Code-Nutzungslimit erreicht. Bitte wenden Sie sich an den Administrator.
     complete_prev: Schließen Sie alle vorherigen Bewertungen ab.
     complete_tasks: Bitte schließen Sie die unten stehenden Aufgaben ab, bevor Sie diese Aktion durchführen.
     continue: Fahren Sie mit Ihren Aufgaben fort.
-    dashboard_instructions: Ihnen wurden mehrere Aktivitäten zugewiesen, die Sie abschließen müssen. Stellen Sie sicher, dass alle zugewiesenen Aktivitäten in allen Kampagnen abgeschlossen sind.
+    dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
     dashboard_menu:
       bookings: Buchungen
-      campaign: Kampagne
-      change_password: Kennwort ändern
+      campaign: Event
+      change_password: Passwort ändern
       development: Entwicklung
-      home: Heim
+      home: Startseite
       insights: Einblicke
       my_direct_reports: Meine direkten Berichte
       my_plan: Mein Plan
       profile: Profil
-      profile_details: Einzelheiten
+      profile_details: Details
       tasks: Aufgaben
-    details: Einzelheiten
+    details: Details
     edit_evaluation:
       body: Bitte beachten Sie, dass Sie nach dem Klicken auf "Neu bewerten" zum Beginn der Umfrage weitergeleitet werden, wo Sie die Antworten bearbeiten können. Die vorherigen Antworten sind weiterhin verfügbar, können jedoch nach Bedarf geändert werden. Nach der Bearbeitung müssen Sie die Bewertung erneut einreichen, um den Vorgang abzuschließen.
       edit: Neu bewerten
@@ -172,7 +177,7 @@ de:
       collapse_link_text: Details verbergen
       expand_aria_label: 'Weniger Informationen anzeigen: Virtuelles Lernzentrum.'
       expand_link_text: Mehr Details
-      heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
+      heading: Bitte lies die folgenden Richtlinien, bevor du beginnst. Alles Gute für dich!
     language:
       content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.
       single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
@@ -220,7 +225,7 @@ de:
       rescore: Bewertung erneut durchführen
       reset_all_nominations: Alle Nominierungen zurücksetzen
       reset_participant: Alle Teilnehmer zurücksetzen
-    assessments_heading: Ihre Aufgaben
+    assessments_heading: Deine Aufgaben
     column:
       assessment_center_activity: Aktivitäten im Assessment-Center
       assessment_name: Name des Assessments
@@ -330,9 +335,9 @@ de:
   change_password_page:
     old_password: Altes Passwort
     password: Passwort
-    password_confirmation: Password Confirmation
-    title: Kennwort ändern
-    warning_message: 'Wichtig: Wenn Sie Ihr Passwort ändern, werden Sie abgemeldet.'
+    password_confirmation: Passwort bestätigen
+    title: Passwort ändern
+    warning_message: 'Wichtig: Wenn du dein Passwort änderst, wirst du abgemeldet.'
   checking_wizard:
     audio_check:
       access: Zugriff
@@ -442,6 +447,77 @@ de:
       attempt: Bitte geben Sie das OTP ein, das Sie an Ihrer registrierten E-Mail-Adresse erhalten haben
       code_has_been_sent: Ihr neues OTP wurde an Ihre registrierte E-Mail-Adresse gesendet
   frontend:
+    bookings:
+      accept_invite_msg: Sie haben eine Einladung erhalten. Bitte reservieren Sie Ihren Platz.
+      add_to_calendar: Zum Kalender hinzufügen
+      add_to_calendar_tour_description: Fügen Sie diese Buchung Ihrem Kalender hinzu
+      add_to_google_calendar: Zum Google-Kalender hinzufügen
+      add_to_i_calendar: Zum iCalendar hinzufügen
+      add_to_msoffice_calendar: Zum Microsoft Office 365-Kalender hinzufügen
+      add_to_outlook_calendar: Zum Outlook-Kalender hinzufügen
+      add_to_yahoo_calendar: Zum Yahoo-Kalender hinzufügen
+      assessment_center_alert:
+        btn_title: Event
+        message_part1: Schließen Sie alle Vorarbeiten in dieser
+        message_part2: ab, bevor Sie einen Platz buchen.
+      assessment_center_group_name: Assessment Center
+      booking_failed_msg: 'Buchung des Platzes fehlgeschlagen: %{error}'
+      buttons:
+        book: Buchen
+        book_again: Erneut buchen
+        cancel: Cancel
+        cancel_booking: Buchung stornieren
+        confirm_booking: Buchung bestätigen
+        confirm_reschedule: Umbuchung bestätigen
+        modify: Bearbeiten
+        nevermind: Schon gut
+        no_text: Nein
+        request_cancel: Stornierung anfordern
+        request_reschedule: Umbuchung anfordern
+        reschedule: Umbuchen
+        reserve_spot: Platz reservieren
+        yes_text: Ja
+      cancel_booking_confirmation: Sind Sie sicher, dass Sie diese Buchung stornieren möchten?
+      cancellation_failed: 'Stornierung der Buchung fehlgeschlagen: %{error}'
+      cancellation_success: Buchung erfolgreich storniert
+      comments_required_msg: Bitte geben Sie Ihre Kommentare ein
+      confirm_booking_description: Bitte bestätigen Sie, dass diese Angaben korrekt sind, bevor Sie die Buchung abschließen.
+      confirm_booking_title: Diese Buchung bestätigen?
+      default_failure_msg: Ihre Anfrage konnte nicht bearbeitet werden. Bitte versuchen Sie es später erneut.
+      default_requires_msg: "%{name} ist erforderlich"
+      join_activity_meeting: An Meeting teilnehmen
+      join_workshop_meeting: An Meeting teilnehmen
+      language: Sprache
+      language_placeholder: Sprache auswählen
+      language_preference_question: Haben Sie eine Sprachpräferenz?
+      language_required_msg: Bitte wählen Sie eine Sprache aus
+      meeting_start_text: 'Das Meeting beginnt in:'
+      need_changes: Änderungen erforderlich?
+      neurodivergence_comment_aria_label: Kommentare zur Neurodivergenz
+      neurodivergence_comment_placeholder: Ihre Kommentare
+      neurodivergence_question: Benötigen Sie aufgrund besonderer Bedürfnisse oder Behinderungen Anpassungen, um vollständig am Assessment teilnehmen zu können?
+      or: oder
+      other_invite: Weitere %{count} Einladungen anzeigen
+      other_invites: Weitere %{count} Einladungen anzeigen
+      reason: Grund
+      reason_for_cancel: Grund für die Stornierung
+      reason_for_reschedule: Grund für die Umbuchung
+      request_cancellation_failed: 'Anforderung zur Stornierung fehlgeschlagen: %{error}'
+      request_cancellation_success: Stornierungsanforderung erfolgreich
+      request_reschedule_failed: 'Anforderung zur Umbuchung fehlgeschlagen: %{error}'
+      request_reschedule_success: Umbuchungsanforderung erfolgreich
+      reschedule_failed_msg: 'Umbuchung fehlgeschlagen: %{error}'
+      reschedule_reason_placeholder: Bitte geben Sie den Grund für die Umbuchung ein, um fortzufahren.
+      schedule_success: Diese Buchung ist geplant
+      schedule_success_msg: Wir haben Ihnen und den anderen Teilnehmern eine Kalendereinladung mit allen Details per E-Mail gesendet.
+      starts_at: 'Beginnt am: %{date}'
+      starts_in: 'Beginnt in:'
+      tab_label:
+        bookings: Buchungen
+        invites: Einladungen
+      what: What
+      when: When
+      workshop_start_text: Your Assessment Center will start in
     campaign:
       users:
         completion_statuses:
@@ -465,7 +541,7 @@ de:
     add_field: Feld hinzufügen
     add_photo: Foto hinzufügen
     age: Alter
-    change_password: Kennwort ändern
+    change_password: Passwort ändern
     change_photo: Foto ändern
     email: Email
     female: Weiblich
@@ -475,10 +551,11 @@ de:
     last_name: Familienname, Nachname
     locale: Bevorzugte Sprache
     male: Männlich
+    mandatory_fields: "*Pflichtfelder"
     not_disclosed: Lieber nichts preisgeben
     old_data: Ihre Profildaten sind %{months} ​​Monate alt. Bitte bestätigen Sie die Details, um fortzufahren
     password: Passwort
-    password_confirmation: Passwort Bestätigung
+    password_confirmation: Passwort bestätigen
     success_update: Profil wurde erfolgreich gespeichert
     timezone: Zeitzone
     title: Mein Profil
@@ -678,6 +755,59 @@ de:
       email: E-Mail-Addresse
       first_name: Vorname
       last_name: Nachname
+  user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: Fortschritt zurücksetzen
+          success_message: Bewertung %{name} ist bereit zur Bearbeitung
+      push_test_webhook:
+        copy_request_data_success: Anforderungspayload erfolgreich in die Zwischenablage kopiert.
+        copy_response_body_success: Antworttext erfolgreich in die Zwischenablage kopiert.
+        copy_response_headers_success: Antwortheader erfolgreich in die Zwischenablage kopiert.
+        event_name_placeholder: Ereignisname
+        response_body_title: Antworttext
+        response_header_title: Antwortheader
+      push_webhook:
+        submit_button_name: Webhook senden
+        title: Webhook senden
+      remove:
+        content: Sind Sie sicher, dass Sie die Bewertung "%{name}" entfernen möchten?
+        successfully: Bewertung "%{name}" wurde erfolgreich entfernt.
+      reset:
+        content: Sind Sie sicher, dass Sie den Fortschritt "%{name}" zurücksetzen möchten?
+      test_webhook:
+        submit_button_name: Test senden
+        title: Webhook-Ereignistest senden
+    normalize_factor_scores:
+      no_scoring_data: Die Normalisierung der Faktorergebnisse kann nicht abgeschlossen werden, da keine Bewertungsdaten verfügbar sind.
+    progress_label: Bewertungsfortschritt
+    redirect: Du wirst für diese Bewertung auf die Website eines Drittanbieters weitergeleitet. Bitte klicke auf „Weiter“, wenn du die Aufgabe starten möchtest.
+    status:
+      completed: Completed
+      in_progress: In Progress
+      ineligible: Ineligible
+      interrupted: Interrupted
+      not_started: Not Started
+      timed_out: Timed Out
+    statuses:
+      evaluator_nomination_status:
+        completed: Completed
+        declined: Declined
+        waiting: Waiting
+      manager_evaluation_status:
+        approved: Approved
+        denied: Denied
+        waiting: Waiting
+      manager_nomination_status:
+        approved: Approved
+        completed: Completed
+        declined: Declined
+        denied: Denied
+        waiting: Waiting
+    timer_title:
+      assessment: Assessment
+      campaign: Campaign
   user_reports:
     statuses:
       not_prepared: nicht Verfügung

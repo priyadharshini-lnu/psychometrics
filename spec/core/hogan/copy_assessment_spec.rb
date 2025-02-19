@@ -44,6 +44,8 @@ RSpec.describe Hogan::CopyAssessment, type: :model do
       expect(target_user_assessment.status).to eq(source_user_assessment.status)
       expect(target_user_assessment.completed_at).to eq(source_user_assessment.completed_at)
       expect(target_user_assessment.completion_reason).to eq(source_user_assessment.completion_reason)
+
+      expect(target_user_assessment.resource_hogan_credential).to be_present
     end
 
     it 'copies the Hogan credentials if they do not exist for the target user' do

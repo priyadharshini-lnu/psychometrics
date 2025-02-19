@@ -47,10 +47,10 @@ module Campaigns
             attrs[:mettl_schedule_record_id] = default_mettl_schedule_record_id(assessment) if assessment.mettl?
             attrs[:external_config] = default_config_for_simulation(assessment) if assessment.simulation?
 
-            camapign_assessment = campaign.campaign_assessments.
+            campaign_assessment = campaign.campaign_assessments.
                                   create_with(attrs).find_or_create_by!(assessment: assessment)
             AuditLogModule.audit!(
-              :create, camapign_assessment, payload: camapign_assessment.log_attributes, user: current_user
+              :create, campaign_assessment, payload: campaign_assessment.log_attributes, user: current_user
             )
           end
         end
@@ -77,7 +77,7 @@ module Campaigns
 
           job_record&.increment_completed_tasks!
         rescue Hogan::Exceptions::NewAssessmentResponseNotAllowed => e
-          responses[:error_messages] << e.message
+          responses[:error_messages] << e.short_message
           next
         end
       end

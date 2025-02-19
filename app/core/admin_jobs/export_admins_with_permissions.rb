@@ -102,7 +102,7 @@ module AdminJobs
     end
 
     def file_name
-      "admins-with-permissions-#{entity&.id}-#{record.id}.csv"
+      'admins-roles-&-permissions-export.csv'
     end
 
     def disable_data_processing?

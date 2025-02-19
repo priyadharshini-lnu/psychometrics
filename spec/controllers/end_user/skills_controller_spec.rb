@@ -17,6 +17,13 @@ describe EndUser::SkillsController, type: :controller do
 
   before(:each) do
     login_user(user)
+    idp_template.update!(
+      project: project,
+      technical_client_skill_settings: 'all',
+      behavioral_client_skill_settings: 'all',
+      behavioral_global_skill_settings: 'all',
+      technical_global_skill_settings: 'all'
+    )
   end
 
   describe 'GET index' do
@@ -61,9 +68,6 @@ describe EndUser::SkillsController, type: :controller do
       let!(:behavioral_skill1) { create(:skill, name: 'Leadership', category: 'behavioral', project: project) }
       let!(:behavioral_skill2) { create(:skill, name: 'Communication', category: 'behavioral', project: project) }
 
-      let!(:other_skill1) { create(:skill, name: 'Industry Knowledge', category: 'other', project: project) }
-      let!(:other_skill2) { create(:skill, name: 'Project Management', category: 'other', project: project) }
-
       before do
         Skill.where(project: project).find_each do |skill|
           IdpTemplateSkill.find_or_create_by!(idp_template: idp_template, skill: skill)
@@ -78,19 +82,16 @@ describe EndUser::SkillsController, type: :controller do
         expect(response).to have_http_status(:ok)
 
         categories = parsed_response.map { |s| s['category'] }.uniq
-        expect(categories).to match_array(%w[technical behavioral other])
+        expect(categories).to match_array(%w[technical behavioral])
 
         technical_skills = parsed_response.select { |s| s['category'] == 'technical' }
         behavioral_skills = parsed_response.select { |s| s['category'] == 'behavioral' }
-        other_skills = parsed_response.select { |s| s['category'] == 'other' }
 
         expect(technical_skills).not_to be_empty
         expect(behavioral_skills).not_to be_empty
-        expect(other_skills).not_to be_empty
 
         expect(technical_skills.length).to be <= Skill::SAMPLES_PER_CATEGORY
         expect(behavioral_skills.length).to be <= Skill::SAMPLES_PER_CATEGORY
-        expect(other_skills.length).to be <= Skill::SAMPLES_PER_CATEGORY
       end
     end
   end

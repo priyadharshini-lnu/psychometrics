@@ -70,6 +70,6 @@ class DevelopmentAction < ApplicationRecord
   end
 
   def attachment_storage_path(attribute_name, filename)
-    "public/development_actions/#{attribute_name}/#{filename}"
+    "public/development_action/#{id}/#{attribute_name}/#{filename}"
   end
 end

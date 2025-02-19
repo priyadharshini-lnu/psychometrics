@@ -90,8 +90,8 @@ const SkillsAndTagsSelection = ({
               }}
               filterOption={false}
             >
-              {skillsByTagSearchData.map(skill => (
-                <Option key={skill.id} value={skill.id}>{skill.name}</Option>
+              {skillsByTagSearchData.map(tag => (
+                <Option key={tag.id} value={tag.name}>{tag.name}</Option>
               ))}
             </Select>
           </Form.Item>

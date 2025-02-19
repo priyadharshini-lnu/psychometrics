@@ -432,6 +432,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "bec598a5a3ab19e8ed3cefa9f9d84c4673969025ac17454e86792b1790545f87",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/idp_template.rb",
+      "line": 48,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Skill.from(\"(#{\"#{load_setting_based_skill(technical_client_skill_settings, \"technical\", project).to_sql} UNION #{load_setting_based_skill(technical_global_skill_settings, \"technical\", nil).to_sql} UNION #{load_setting_based_skill(behavioral_client_skill_settings, \"behavioral\", project).to_sql} UNION #{load_setting_based_skill(behavioral_global_skill_settings, \"behavioral\", nil).to_sql} UNION #{skills_by_tags}\"}) AS skills\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "IdpTemplate",
+        "method": "available_skills"
+      },
+      "user_input": "skills_by_tags",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "c1645168170d21d46388e54324c6c3e22ad625f1a0af6344412ce1e47212364b",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -556,6 +579,6 @@
       "note": ""
     }
   ],
-  "updated": "2025-01-30 14:46:10 +0530",
+  "updated": "2025-02-17 17:32:36 +0530",
   "brakeman_version": "6.1.2"
 }

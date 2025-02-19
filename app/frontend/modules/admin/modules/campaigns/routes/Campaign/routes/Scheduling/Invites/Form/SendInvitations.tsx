@@ -11,7 +11,7 @@ import styles from './Form.less'
 
 const { I18n } = window
 
-const LANGS = [{ value: 'en' }, { value: 'ar' }]
+const LANGS = [{ value: 'en' }, { value: 'ar' }, { value: 'de' }]
 
 type Props = {
   form: FormInstance
@@ -25,6 +25,8 @@ type Props = {
 export const SendInvitation: FC<Props> = ({
   form, prev, submit, errors, onCancel, isLoading,
 }) => {
+  const allowedLanguages = form.getFieldValue('languagesAllowed')
+  const [selectedLang, setSelectedLang] = useState<string>('')
   const [languages, setLanguages] = useState<{
     [key:string]: {locale: string, name: string, title: string, description: string}
   }>({
@@ -41,11 +43,12 @@ export const SendInvitation: FC<Props> = ({
   }, [languages])
 
   const addLang = () => {
+    if (!selectedLang) return
     setLanguages({
       ...languages,
-      ar: {
-        locale: 'ar',
-        name: 'Arabic',
+      [selectedLang]: {
+        locale: selectedLang,
+        name: I18n.t(`languages.${selectedLang}`),
         title: '',
         description: '',
       },
@@ -101,32 +104,34 @@ export const SendInvitation: FC<Props> = ({
           )
         })}
 
-        <Panel
-          title={I18n.t('administration.assessment_center.invite.send_invites.add_language')}
-          description={I18n.t('administration.assessment_center.invite.send_invites.add_description')}
-        >
-          <Row>
-            <Col sm={24} md={12} lg={8}>
-              <Form.Item
-                name="add_lang"
-                label={I18n.t('administration.assessment_center.invite.send_invites.input_label')}
-              >
-                <Row gutter={12}>
-                  <Col flex="1">
-                    <Select
-                      defaultValue="ar"
-                      placeholder={I18n.t('administration.assessment_center.invite.send_invites.input_placeholder')}
-                      options={LANGS.map(lang => ({ value: lang.value, label: I18n.t(`languages.${lang.value}`) }))}
-                    />
-                  </Col>
-                  <Button type="primary" onClick={addLang}>
-                    {I18n.t('administration.assessment_center.invite.send_invites.add')}
-                  </Button>
-                </Row>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Panel>
+        {allowedLanguages.length > 0 ? (
+          <Panel
+            title={I18n.t('administration.assessment_center.invite.send_invites.add_language')}
+            description={I18n.t('administration.assessment_center.invite.send_invites.add_description')}
+          >
+            <Row>
+              <Col sm={24} md={12} lg={8}>
+                <Form.Item
+                  name="add_lang"
+                  label={I18n.t('administration.assessment_center.invite.send_invites.input_label')}
+                >
+                  <Row gutter={12}>
+                    <Col flex="1">
+                      <Select
+                        placeholder={I18n.t('administration.assessment_center.invite.send_invites.input_placeholder')}
+                        options={LANGS.map(lang => ({ value: lang.value, label: I18n.t(`languages.${lang.value}`) }))}
+                        onChange={value => setSelectedLang(value)}
+                      />
+                    </Col>
+                    <Button type="primary" onClick={addLang}>
+                      {I18n.t('administration.assessment_center.invite.send_invites.add')}
+                    </Button>
+                  </Row>
+                </Form.Item>
+              </Col>
+            </Row>
+          </Panel>
+        ) : null}
       </Form>
 
       <div className={styles.footer}>

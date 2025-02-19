@@ -1,5 +1,4 @@
-import { useSessionTimeoutStore } from '~/core/sessionTimeoutStore'
-
+import { CreateSyncTimeoutChannel } from '~/utils/createSyncTimeoutChannel'
 
 (function () {
   const originalFetch = window.fetch
@@ -9,8 +8,8 @@ import { useSessionTimeoutStore } from '~/core/sessionTimeoutStore'
     const { currentUser } = window.PsyGlobalState
     const nextTimeout = response.headers.get('x-next-timeout')
 
-    const { setNextTimeoutValue } = useSessionTimeoutStore.getState()
-    setNextTimeoutValue(currentUser?.id, nextTimeout)
+    CreateSyncTimeoutChannel.setChannel()
+    CreateSyncTimeoutChannel.channel?.postMessage({ userId: currentUser?.id, nextTimeout })
 
     return response
   }

@@ -260,6 +260,7 @@ en:
           add_language: Add Language
           description: Description
           input_label: Add Additional Language
+          input_placeholder: Select additional language
           invitation_title: Invitation Title
           title: Invitation (%{lang})
         steps:
@@ -1539,6 +1540,24 @@ en:
       end: End Date
       start: Start Date
       started: Started At
+    development_action_import:
+      errors:
+        blank_field: 'Row %{row}: %{field} cannot be blank'
+        csv_file_required: Must be a CSV file
+        download_failed: 'Failed to download file: %{message}'
+        image_download_failed: 'Failed to download image from %{url}: %{message}'
+        invalid_category: 'Row %{row}: Invalid category ''%{value}''. Valid categories are: %{valid_categories}'
+        invalid_csv_format: 'Invalid CSV format: %{message}'
+        invalid_date_format: 'Invalid date format: %{date}'
+        invalid_image_file: 'Invalid image file: %{message}'
+        invalid_image_url: 'Invalid image URL format: %{url}'
+        invalid_learning_style: 'Row %{row}: Invalid learning style ''%{value}''. Valid types are: %{valid_types}'
+        invalid_project_id: 'Row %{row}: Project ID must be a number'
+        invalid_url: 'Invalid URL: %{message}'
+        invalid_url_format: Invalid URL format
+        missing_columns: 'Required columns are missing: %{fields}'
+        save_failed: 'Failed to save development action: %{message}'
+        skill_not_found: 'Skill not found for ID: %{skill_id}'
     development_actions:
       categories:
         course: Course
@@ -1766,7 +1785,9 @@ en:
           accesssheet_view: Accesssheet View
     hogan:
       errors:
-        new_assessment_response_not_allowed: New Response can't be added for hogan assessment %{assessment_name} as this assessment is already assigned and started by user %{email}. You can create new hogan account for this user and it will allow user to retake the assessment.
+        new_assessment_response_not_allowed:
+          detailed_error_message: New Response can't be added for hogan assessment %{assessment_name} as this assessment is already assigned and started by user %{email}. You can create new hogan account for this user and it will allow user to retake the assessment.
+          short_error_message: New Response can't be added for hogan assessment %{assessment_name} as this assessment is already assigned and started by user %{email}
     idp:
       actions:
         remove_confirm: Enter current template name given below in text box to remove template

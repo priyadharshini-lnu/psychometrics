@@ -28,10 +28,7 @@ class CampaignFactor < ApplicationRecord
   end
 
   def set_position
-    self.position = (
-      campaign.campaign_factor_groups.
-      where(id: campaign_factor_group_id).
-      maximum('position') || 0) + 1
+    self.position = (campaign_factor_group&.campaign_factors&.maximum('position') || 0) + 1
   end
 
   def dependencies_factor_code

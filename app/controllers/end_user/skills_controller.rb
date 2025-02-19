@@ -5,11 +5,9 @@ class EndUser::SkillsController < ApplicationController
 
   def index
     skills = if params[:filters].present?
-               @idp_template.skills.ransack(params[:filters]).result.limit(10)
+               @idp_template.available_skills.ransack(params[:filters]).result.limit(10)
              else
-               Skill.joins(:idp_template_skills).
-                 where(idp_template_skills: { idp_template_id: @idp_template.id }).
-                 sample_by_categories
+               @idp_template.available_skills.sample_by_categories
              end
 
     render json: ::Panko::ArraySerializer.new(

@@ -839,7 +839,7 @@ en:
       new_response: New Response
       next_assessment: Pass To Next Assessment
       pending_tasks:
-        one: You have one 1 pending task
+        one: You have 1 pending task
         other: You have %{count} pending tasks
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
@@ -2717,6 +2717,7 @@ en:
           graphTypeHorizontal: Horizontal
           graphTypeVertical: Vertical
           hideEmptyColumns: Hide Empty Columns
+          hideEmptyFilters: Hide Empty filters
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines

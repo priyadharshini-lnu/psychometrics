@@ -55,6 +55,10 @@ ar:
       back_to_campaign: العودة إلى الحملة
       extend_time: تمديد الوقت
       goto_dashboard: اضغط هنا للأستمرار
+      pending_tasks:
+        one: لديك مهمة واحدة معلقة
+        other: لديك %{count} مهام معلقة
+        two: لديك مهمتان معلقتان
       rescore: إعادة التصحيح
     audio_response:
       permission_denied_message: الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك
@@ -537,6 +541,16 @@ ar:
     resource:
       create_success: تم إنشاؤه بنجاح %{resourceName}
       update_success: "%{resourceName} تم تحديثه بنجاح"
+    session_timeout_modal:
+      buttons:
+        close: أغلق
+        log_out: تسجيل الخروج الآن
+        re_login: تسجيل الدخول مرة أخرى
+        stay_logged_in: ابق مسجلاً للدخول
+      message: ستنفد جلستك خلال دقيقتين بسبب عدم النشاط. يرجى النقر على 'ابق مسجلاً للدخول' لمتابعة جلستك، أو سيتم تسجيل خروجك تلقائيًا.
+      message_after_timeout: انتهت جلستك، يرجى تسجيل الدخول مرة أخرى.
+      time_remaining: الوقت المتبقي
+      title: تحذير انتهاء الجلسة
     update: تحديث
     upload: تحميل
     workshop_invited_subjects:

@@ -90,7 +90,6 @@ type DropDownProps = {
     developmentAction: DevelopmentAction,
     openModal: Props['openModal']
 }
-
 const Dropdown: React.FC<DropDownProps> = ({ developmentAction, openModal }) => (
   <ConditionalDropdown
     menu={getActionsMenuProps({ developmentAction, openModal })}
