@@ -19,7 +19,7 @@ const SERIES_LIMIT = 4
 
 const getFilterName = (filterId) => {
   const filter = _.find(AppStore.report.filters, { id: filterId })
-  if (filter) return filter.name
+  if (filter) return I18nStore.tFilterName(filter)
 
   return filterId
 }
@@ -145,7 +145,7 @@ class CustomPie extends Component {
             borderWidth: model.props.chartBorderWidth,
           },
           series: {
-            animation,
+            animation: animation && !isRTL,
           },
         },
         pane: {

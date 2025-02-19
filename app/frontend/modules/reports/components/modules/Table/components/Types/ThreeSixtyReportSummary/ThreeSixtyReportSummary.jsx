@@ -109,7 +109,7 @@ function FilterRow ({ filter }) {
   return (
     <tr>
       <td className={styles.tdLabel}>
-        {filter.name}
+        {I18nStore.tFilterName(filter)}
       </td>
       <td className={styles.tdValue}>{filter.invited}</td>
       <td className={styles.tdValue}>{getCompleted()}</td>
