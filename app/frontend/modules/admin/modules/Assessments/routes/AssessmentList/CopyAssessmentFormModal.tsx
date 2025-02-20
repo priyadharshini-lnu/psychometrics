@@ -5,13 +5,21 @@ import {
   Spin,
 } from 'antd'
 
+import { connect } from 'react-redux'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+)
 
 type OptionsType = {
   id: string
@@ -23,6 +31,7 @@ const { I18n } = window
 interface Props {
   assessment: Assessment
   close(): void
+  currentUser
 }
 
 type RequestFileds = {
@@ -30,7 +39,7 @@ type RequestFileds = {
 }
 
 const CopyAssessmentFormModal: React.FC<Props> = ({
-  assessment, close,
+  assessment, close, currentUser,
 }) => {
   const { message } = App.useApp()
   const { resource } = useResourceContext<Assessment>()
@@ -98,7 +107,7 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              <Select.Option>TTE</Select.Option>
+              {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}
@@ -110,4 +119,4 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
   )
 }
 
-export default CopyAssessmentFormModal
+export default connecter(CopyAssessmentFormModal)

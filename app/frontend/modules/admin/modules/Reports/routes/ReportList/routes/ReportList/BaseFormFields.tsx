@@ -5,12 +5,15 @@ import {
 import { FormInstance } from 'antd/lib/form'
 import _ from 'lodash'
 import { Tag } from 'modules/admin/core/tags'
+import { connect } from 'react-redux'
 import { useResources } from '~/hooks/useResources'
 import { Report } from '~/modules/admin/modules/client/core/reports'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalReportFields } from './ExternalReportFields'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 const { TextArea } = Input
 
@@ -20,9 +23,16 @@ const INTERNAL = 'internal'
 const CUSTOM_UPLOAD = 'custom_upload'
 const MAX_TAG_BATCH_SIZE = 100
 
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+)
+
 interface Props {
   report?: Report
   form: FormInstance
+  currentUser
 }
 
 type OptionsType = {
@@ -30,7 +40,7 @@ type OptionsType = {
   name: string
 }
 
-export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
+const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
   const { availableLocales } = I18n
   const isEditForm = !!report
   const {
@@ -165,7 +175,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
           notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
           filterOption={false}
         >
-          <Select.Option>TTE</Select.Option>
+          {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
           {getClients().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}
@@ -260,3 +270,5 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
     </>
   )
 }
+
+export const BaseFormFields = connecter(BaseFormFieldsComp)

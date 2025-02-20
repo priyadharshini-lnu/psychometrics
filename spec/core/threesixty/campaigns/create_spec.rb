@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 describe Threesixty::Campaigns::Create do
-  let(:project) { create(:project) }
+  let(:client) { create(:tenancy) }
+  let(:project) { create(:project, parent: client) }
   let(:form) { Threesixty::Campaigns::CreateForm.new(name: 'New campaign') }
-  let!(:user) { create(:user) }
+  let!(:user) { create(:superadmin) }
 
   describe '.call' do
     it 'calls CreateEmptyCampaign when assessments are not passed' do
@@ -39,7 +40,7 @@ describe Threesixty::Campaigns::Create do
 
   describe 'Standard 360' do
     let!(:dimension) { create(:dimension, :with_factor) }
-    let!(:assessment) { create(:assessment, category: 'threesixty', dimension_id: dimension.id) }
+    let!(:assessment) { create(:assessment, owner_id: client.id, category: 'threesixty', dimension_id: dimension.id) }
     let!(:campaign_template) { create(:campaign_template, assessment: assessment) }
 
     let!(:question) { create(:question, type: 'MatrixTable', assessment: assessment) }
