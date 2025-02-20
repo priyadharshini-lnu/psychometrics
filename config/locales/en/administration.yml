@@ -2839,6 +2839,7 @@ en:
         resources: Resources
         subjects: Subjects
     scoring:
+      action_prohibited: Action Prohibited
       active: Active
       actual_average: Actual Average
       add_factor: Add Factor
@@ -2848,6 +2849,7 @@ en:
       average: Average
       campaign_scoring_variables: Campaign Scoring Variables
       code: Code
+      desc: You have exceeded the maximum limit of %{n} campaign factors. Additional factors cannot be added. Please review and manage your existing factors before proceeding.
       description: Description
       dimension: Dimension
       edit_factor: Edit Factor

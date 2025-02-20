@@ -647,6 +647,7 @@ const ScoringGroupsComponent = (props: Props) => {
                       onGroupNameChange={handleGroupNameChange}
                       groupsCount={sortedGroups.length}
                       permissions={campaignPermissions}
+                      totalFactors={campaignFactorsLocalState.length}
                     >
                       <SortableContext
                         items={getPrefixFactorIds(factors)}
@@ -686,6 +687,7 @@ const ScoringGroupsComponent = (props: Props) => {
                     addFactor={() => {}}
                     groupsCount={sortedGroups.length}
                     permissions={campaignPermissions}
+                    totalFactors={campaignFactorsLocalState.length}
                   >
                     {getFactorsByGroupId(
                       campaignFactorsLocalState, getItemIdFromSortingId(activeId).toString(),
