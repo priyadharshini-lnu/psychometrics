@@ -22,9 +22,9 @@ export const ProgressStatus: FC<ProgressStatusProps> = ({
   return (
     <Row gutter={[8, 0]} wrap={isMobile || isTablet}>
       {!isMobile && (
-      <Col span={6} className={cs(styles[theme], styles.iconColumn)}>
-        <StatusIcon className={styles.statusIcon} />
-      </Col>
+        <Col span={6} className={cs(styles[theme], styles.iconColumn)}>
+          <StatusIcon className={styles.statusIcon} />
+        </Col>
       )}
       <Col>
         <Row>

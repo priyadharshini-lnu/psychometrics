@@ -128,10 +128,10 @@ const AssessorAssessment: React.FC<Props> = ({
           {enableProgress
           && (<Progress key="1" percent={progress} style={{ width: '200px' }} />)}
           {loaded && (
-          <LangDropdownWithChangeUrl
-            currentLocale={assessorForm.result.selected_locale.code}
-            locales={assessorForm.result.available_translations}
-          />
+            <LangDropdownWithChangeUrl
+              currentLocale={assessorForm.result.selected_locale.code}
+              locales={assessorForm.result.available_translations}
+            />
           )}
         </Space>
       )}

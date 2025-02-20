@@ -100,9 +100,9 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
         />
       )}
       {hasMore && (
-      <div className={styles.more}>
-        <More expanded={expanded} onClick={() => setExpanded(!expanded)} />
-      </div>
+        <div className={styles.more}>
+          <More expanded={expanded} onClick={() => setExpanded(!expanded)} />
+        </div>
       )}
     </List.Item>
   )

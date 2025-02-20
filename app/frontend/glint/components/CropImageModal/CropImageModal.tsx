@@ -109,22 +109,22 @@ export function CropImageModal ({
         imageRestriction={ImageRestriction.stencil}
       />
       {showControls && (
-      <Row justify="center">
-        <Col>
-          <Space direction="vertical">
-            <Space.Compact>
-              <Button type="link" icon={<MinusOutlined />} onClick={() => changeScale(scale - 0.1)} />
-              <Slider style={{ width: 250 }} value={scale} min={0} onChange={changeScale} step={0.01} max={1} />
-              <Button type="link" icon={<PlusOutlined />} onClick={() => changeScale(scale + 0.1)} />
-            </Space.Compact>
-            <Space.Compact>
-              <Button type="link" icon={<UndoOutlined />} onClick={() => changeRotate(rotate - 5)} />
-              <Slider style={{ width: 250 }} value={rotate} min={-180} max={180} onChange={changeRotate} />
-              <Button type="link" icon={<RedoOutlined />} onClick={() => changeRotate(rotate + 5)} />
-            </Space.Compact>
-          </Space>
-        </Col>
-      </Row>
+        <Row justify="center">
+          <Col>
+            <Space direction="vertical">
+              <Space.Compact>
+                <Button type="link" icon={<MinusOutlined />} onClick={() => changeScale(scale - 0.1)} />
+                <Slider style={{ width: 250 }} value={scale} min={0} onChange={changeScale} step={0.01} max={1} />
+                <Button type="link" icon={<PlusOutlined />} onClick={() => changeScale(scale + 0.1)} />
+              </Space.Compact>
+              <Space.Compact>
+                <Button type="link" icon={<UndoOutlined />} onClick={() => changeRotate(rotate - 5)} />
+                <Slider style={{ width: 250 }} value={rotate} min={-180} max={180} onChange={changeRotate} />
+                <Button type="link" icon={<RedoOutlined />} onClick={() => changeRotate(rotate + 5)} />
+              </Space.Compact>
+            </Space>
+          </Col>
+        </Row>
       )}
     </Modal>
 

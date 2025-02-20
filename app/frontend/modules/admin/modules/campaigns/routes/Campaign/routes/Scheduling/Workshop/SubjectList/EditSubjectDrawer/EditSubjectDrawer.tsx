@@ -419,12 +419,12 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
                 {I18n.t('administration.scheduling.subjects.assessor_forms')}
               </Title>
               {errors?.base && errors.base.length > 0 && (
-              <Alert
-                message={errors.base.map(
-                  error => error?.title[0].assessor_forms,
-                )}
-                type="error"
-              />
+                <Alert
+                  message={errors.base.map(
+                    error => error?.title[0].assessor_forms,
+                  )}
+                  type="error"
+                />
               )}
               <AssessorAssessmentList
                 assessments={combinedAssessorAssessments}

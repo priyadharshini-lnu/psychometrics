@@ -60,17 +60,17 @@ class Block extends Component {
           </a>
         </div>
         {showQuestions && (
-        <div className={styles.questions}>
-          {_.map(block.questions, (id) => {
-            const question = _.find(questions, { id })
-            return (
-              <div key={id} className={styles.question}>
-                <span className={styles.bold}>{question.name}</span>
-                <span>{question.props.questionText}</span>
-              </div>
-            )
-          })}
-        </div>
+          <div className={styles.questions}>
+            {_.map(block.questions, (id) => {
+              const question = _.find(questions, { id })
+              return (
+                <div key={id} className={styles.question}>
+                  <span className={styles.bold}>{question.name}</span>
+                  <span>{question.props.questionText}</span>
+                </div>
+              )
+            })}
+          </div>
         )}
       </div>
     )

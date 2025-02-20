@@ -63,22 +63,22 @@ const DataSheet: React.FC<Props> = ({
         ))}
       </select>
       {condition.field && (
-      <select
-        value={condition.predicate}
-        className={`form-control ${styles.predicateSelect}`}
-        onChange={changePredicate}
-      >
-        {PREDICATE_OPTIONS.map(option => (
-          <option key={option.value} value={option.value}>{option.label}</option>
-        ))}
-      </select>
+        <select
+          value={condition.predicate}
+          className={`form-control ${styles.predicateSelect}`}
+          onChange={changePredicate}
+        >
+          {PREDICATE_OPTIONS.map(option => (
+            <option key={option.value} value={option.value}>{option.label}</option>
+          ))}
+        </select>
       )}
       {condition.field && (
-      <input
-        className={`form-control ${styles.valueInput}`}
-        value={condition.value}
-        onChange={changeValue}
-      />
+        <input
+          className={`form-control ${styles.valueInput}`}
+          value={condition.value}
+          onChange={changeValue}
+        />
       )}
     </div>
   )

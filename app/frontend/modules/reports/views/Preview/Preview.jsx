@@ -67,13 +67,13 @@ const Preview = ({
         />
       ))}
       {!pdfExport && (
-      <ModuleOverrides
-        allowEdit={allowEdit}
-        allowApprove={allowApprove}
-        pages={visiblePages}
-        rstore={rstore}
-        moduleOverrides={moduleOverrides}
-      />
+        <ModuleOverrides
+          allowEdit={allowEdit}
+          allowApprove={allowApprove}
+          pages={visiblePages}
+          rstore={rstore}
+          moduleOverrides={moduleOverrides}
+        />
       )}
     </div>
   )

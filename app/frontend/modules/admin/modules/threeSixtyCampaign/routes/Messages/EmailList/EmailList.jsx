@@ -135,12 +135,12 @@ export default function Emails ({
               onChange={(e) => { update(selectedTemplate.id, 'subject', e.target.value, leftLocale) }}
             />
             {rightLocale && (
-            <Input
-              addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
-              value={selectedRightLocale.subject}
-              readOnly
-              className="mb8"
-            />
+              <Input
+                addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
+                value={selectedRightLocale.subject}
+                readOnly
+                className="mb8"
+              />
             )}
           </div>
           <div className="display-flex">
@@ -153,9 +153,9 @@ export default function Emails ({
               handleContentChange={(value) => { update(selectedTemplate.id, 'content', value, leftLocale) }}
             />
             {rightLocale && (
-            <div className={styles.comparisonBody}>
-              <SafeHTML html={selectedRightLocale.content} className="m16" />
-            </div>
+              <div className={styles.comparisonBody}>
+                <SafeHTML html={selectedRightLocale.content} className="m16" />
+              </div>
             )}
           </div>
         </div>

@@ -63,12 +63,12 @@ export const Panel: React.FC<Props> = ({
             <>
               {additionalDetails && showSidebarForAdditionalDetails
               && (
-              <AdditionalDetails
-                className={cs({ 'me-6': removable })}
-                additionalDetails={additionalDetails}
-                layout="vertical"
-                labelStyles={additionalDetailsLabelStyle}
-              />
+                <AdditionalDetails
+                  className={cs({ 'me-6': removable })}
+                  additionalDetails={additionalDetails}
+                  layout="vertical"
+                  labelStyles={additionalDetailsLabelStyle}
+                />
               )}
               {removable ? (
                 <div

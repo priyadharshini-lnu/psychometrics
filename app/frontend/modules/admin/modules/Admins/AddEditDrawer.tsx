@@ -262,18 +262,18 @@ const AddEditDrawerComponent: FC<Props> = ({
   const buttons = (
     <Space>
       {true && (
-      <Button
-        htmlType="submit"
-        key="submit"
-        form="add_edit_admin_form"
-        type="primary"
-        onClick={() => {
-          form.submit()
-        }}
-        loading={addOrUpdateInProgress}
-      >
-        {actionButtonText}
-      </Button>
+        <Button
+          htmlType="submit"
+          key="submit"
+          form="add_edit_admin_form"
+          type="primary"
+          onClick={() => {
+            form.submit()
+          }}
+          loading={addOrUpdateInProgress}
+        >
+          {actionButtonText}
+        </Button>
       )}
       <Button
         htmlType="reset"
@@ -469,9 +469,9 @@ const AddEditDrawerComponent: FC<Props> = ({
                       <Checkbox.Group rootClassName={styles.grants_checkbox_group}>
                         {_.map(grants, grant => (
                           _.get(currentUserGrants, grantFor, [] as unknown[]).includes(grant) && (
-                          <Checkbox value={grant} key={grant as string}>
-                            {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
-                          </Checkbox>
+                            <Checkbox value={grant} key={grant as string}>
+                              {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
+                            </Checkbox>
                           )
                         ))}
                       </Checkbox.Group>

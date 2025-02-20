@@ -33,14 +33,14 @@ const ContactSelect: React.FC<Props> = ({
       <div className={styles.selectLabel}>
         <label htmlFor={`email-${type}-${model.id}`}>{I18n().t(`threesixty.question.email_type.${type}`)}</label>
         {type === TO_TYPE && (
-        <div>
-          <Button aria-expanded={ccVisible} size="small" type="link" onClick={(): void => toggleCopyField(CC_TYPE)}>
-            {I18n().t(`threesixty.question.email_type.${CC_TYPE}`)}
-          </Button>
-          <Button aria-expanded={bccVisible} size="small" type="link" onClick={(): void => toggleCopyField(BCC_TYPE)}>
-            {I18n().t(`threesixty.question.email_type.${BCC_TYPE}`)}
-          </Button>
-        </div>
+          <div>
+            <Button aria-expanded={ccVisible} size="small" type="link" onClick={(): void => toggleCopyField(CC_TYPE)}>
+              {I18n().t(`threesixty.question.email_type.${CC_TYPE}`)}
+            </Button>
+            <Button aria-expanded={bccVisible} size="small" type="link" onClick={(): void => toggleCopyField(BCC_TYPE)}>
+              {I18n().t(`threesixty.question.email_type.${BCC_TYPE}`)}
+            </Button>
+          </div>
         )}
       </div>
       <Form.Item {...error}>

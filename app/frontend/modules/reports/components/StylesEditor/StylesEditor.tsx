@@ -396,7 +396,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
               value={get('gradient')?.type || 'linear'}
               optionType="button"
             />
-              {get('gradient').type === 'linear' && (
+            {get('gradient').type === 'linear' && (
               <Space direction="vertical">
                 Gradient Degree
                 <Slider
@@ -407,40 +407,40 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
                   onChange={val => changeGradient({ degree: val })}
                 />
               </Space>
-              )}
-              {get('gradient').points.map((point, index) => (
-                <div key={index}>
-                  <div className={styles.point}>
-                    <ColorPicker
-                      swatchClassName={styles.swatch}
-                      getValueInHexFormat
-                      value={point.color}
-                      onChange={val => changeGradient({
-                        points: _.map(get('gradient').points, (p, i) => (i === index ? { ...p, color: val } : p)),
-                      })}
-                    />
-                    <Slider
-                      className="w-100"
-                      value={point.position}
-                      min={0}
-                      max={100}
-                      onChange={val => changeGradient({
-                        points: _.map(get('gradient').points, (p, i) => (i === index ? { ...p, position: val } : p)),
-                      })}
-                    />
-                    <Button
-                      onClick={() => changeGradient({
-                        points: _.filter(get('gradient').points, (p, i) => i !== index),
-                      })}
-                      disabled={index < 2}
-                      type="link"
-                      className="ms-5"
-                      size="small"
-                      icon={<DeleteOutlined />}
-                    />
-                  </div>
+            )}
+            {get('gradient').points.map((point, index) => (
+              <div key={index}>
+                <div className={styles.point}>
+                  <ColorPicker
+                    swatchClassName={styles.swatch}
+                    getValueInHexFormat
+                    value={point.color}
+                    onChange={val => changeGradient({
+                      points: _.map(get('gradient').points, (p, i) => (i === index ? { ...p, color: val } : p)),
+                    })}
+                  />
+                  <Slider
+                    className="w-100"
+                    value={point.position}
+                    min={0}
+                    max={100}
+                    onChange={val => changeGradient({
+                      points: _.map(get('gradient').points, (p, i) => (i === index ? { ...p, position: val } : p)),
+                    })}
+                  />
+                  <Button
+                    onClick={() => changeGradient({
+                      points: _.filter(get('gradient').points, (p, i) => i !== index),
+                    })}
+                    disabled={index < 2}
+                    type="link"
+                    className="ms-5"
+                    size="small"
+                    icon={<DeleteOutlined />}
+                  />
                 </div>
-              ))}
+              </div>
+            ))}
             <Button
               size="small"
               onClick={() => {

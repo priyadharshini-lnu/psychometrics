@@ -184,11 +184,11 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
       <WorkshopDatePicker />
       <Space>
         {resource.meta.permissions.create && (
-        <Button type="primary" onClick={openForm}>
-          <PlusOutlined />
-          {' '}
-          {I18n.t('administration.scheduling.add_assessment_center')}
-        </Button>
+          <Button type="primary" onClick={openForm}>
+            <PlusOutlined />
+            {' '}
+            {I18n.t('administration.scheduling.add_assessment_center')}
+          </Button>
         )}
       </Space>
     </Resource.Filter>

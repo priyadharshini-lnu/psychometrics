@@ -111,15 +111,15 @@ const EvaluationListComponent = ({
         </Tooltip>
 
         {options.global.disableAllEvaluations && (
-        <Tooltip placement="top" title={I18n.t('threesixty.evaluation_all_closed_message')}>
-          <InfoCircleOutlined />
-        </Tooltip>
+          <Tooltip placement="top" title={I18n.t('threesixty.evaluation_all_closed_message')}>
+            <InfoCircleOutlined />
+          </Tooltip>
         )}
 
         {!options.global.disableAllEvaluations && subjectEvaluationClosed && (
-        <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
-          <InfoCircleOutlined />
-        </Tooltip>
+          <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
+            <InfoCircleOutlined />
+          </Tooltip>
         )}
 
         {showDeclineEvaluationDropdown(item)
@@ -202,11 +202,11 @@ const EvaluationListComponent = ({
       )}
       {options.manager.canApprovesEvaluations && managedSubjects.length > 0
         && (
-        <ManagedList
-          key="evaluations_approve"
-          title={I18n.t('threesixty.approve_evaluations')}
-          list={managedSubjects}
-        />
+          <ManagedList
+            key="evaluations_approve"
+            title={I18n.t('threesixty.approve_evaluations')}
+            list={managedSubjects}
+          />
         )}
       <EditEvaluationModal
         show={!!editModal}

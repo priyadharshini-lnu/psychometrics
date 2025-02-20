@@ -44,9 +44,9 @@ const PDFPasswordModalComponent: React.FC<Props> = ({
     <Modal title={I18n.t('administration.campaigns.pdf_password')} open onCancel={close}>
       <Spin spinning={isPasswordLoading} />
       {pdfPassword && (
-      <Typography.Text copyable>
-        {pdfPassword}
-      </Typography.Text>
+        <Typography.Text copyable>
+          {pdfPassword}
+        </Typography.Text>
       )}
     </Modal>
   )

@@ -47,11 +47,11 @@ export const PlayerControl: React.FC<Props> = ({
 
     {(uploadState === UPLOAD_STATES.SAVING
       || uploadState === UPLOAD_STATES.SAVED) && (
-      <Progress
-        type="circle"
-        percent={uploadState === UPLOAD_STATES.SAVED ? 100 : percent}
-        width={32}
-      />
+        <Progress
+          type="circle"
+          percent={uploadState === UPLOAD_STATES.SAVED ? 100 : percent}
+          width={32}
+        />
     )}
   </Space>
 )

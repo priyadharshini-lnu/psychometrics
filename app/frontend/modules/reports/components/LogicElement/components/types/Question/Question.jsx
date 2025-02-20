@@ -54,11 +54,11 @@ export class Question extends Component {
         <div className={css.container}>
           <div className={css.questionBlock}>
             {condition.filterId && (
-            <QuestionSelect
-              questions={questions}
-              condition={condition}
-              onChange={this.change}
-            />
+              <QuestionSelect
+                questions={questions}
+                condition={condition}
+                onChange={this.change}
+              />
             )}
             <AnswerSelect
               questions={questions}

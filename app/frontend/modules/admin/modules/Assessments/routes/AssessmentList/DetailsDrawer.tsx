@@ -58,20 +58,20 @@ export const DetailsDrawer: FC<Props> = ({
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.dimension')} key="dimension" className="va-t">
             {dimension && (
-            <Space direction="vertical">
-              <Typography.Text>
-                {I18n.t('common.column.name')}
-                :
-                {' '}
-                {dimension.name}
-              </Typography.Text>
-              <Typography.Text>
-                {I18n.t('common.column.id')}
-                :
-                {' '}
-                {dimension.id}
-              </Typography.Text>
-            </Space>
+              <Space direction="vertical">
+                <Typography.Text>
+                  {I18n.t('common.column.name')}
+                  :
+                  {' '}
+                  {dimension.name}
+                </Typography.Text>
+                <Typography.Text>
+                  {I18n.t('common.column.id')}
+                  :
+                  {' '}
+                  {dimension.id}
+                </Typography.Text>
+              </Space>
             )}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.owner')} key="owner" className="va-t">

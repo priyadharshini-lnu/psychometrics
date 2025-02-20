@@ -127,24 +127,24 @@ const NominationComponent = (props) => {
         <Row justify="center">
           <Col xs={24} lg={22} xl={20} xxl={14}>
             {hasNominationPermission && evalautionCompletedForSubject && (
-            <Alert
-              message={I18n.t('threesixty.evaluation_closed_nomination_message')}
-              className="mbm"
-              type="info"
-              showIcon
-            />
+              <Alert
+                message={I18n.t('threesixty.evaluation_closed_nomination_message')}
+                className="mbm"
+                type="info"
+                showIcon
+              />
             )}
             {instruction && (
-            <Card className="mt-8">
-              <SafeHTML html={instruction.content} />
-            </Card>
+              <Card className="mt-8">
+                <SafeHTML html={instruction.content} />
+              </Card>
             )}
             {canNominate && (
-            <NominationForm
-              {...props}
-              handleAddNomination={handleAddNomination}
-              setShowPrompt={setShowPrompt}
-            />
+              <NominationForm
+                {...props}
+                handleAddNomination={handleAddNomination}
+                setShowPrompt={setShowPrompt}
+              />
             )}
             <NominationTable
               {...props}

@@ -155,13 +155,13 @@ function Profile ({
                         className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photoUrl }, 'h-100')}
                       >
                         {user.photoUrl && (
-                        <img
-                          src={user.photoUrl}
-                          alt={user.photoUrl
-                            ? I18n.t('profile.change_photo')
-                            : I18n.t('profile.add_photo')}
-                          className={styles.photo}
-                        />
+                          <img
+                            src={user.photoUrl}
+                            alt={user.photoUrl
+                              ? I18n.t('profile.change_photo')
+                              : I18n.t('profile.add_photo')}
+                            className={styles.photo}
+                          />
                         )}
                         <div id="upload-photo-label" className={styles.controls}>
                           {user.photoUrl ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}

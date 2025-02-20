@@ -120,9 +120,9 @@ export default class extends Component {
             {this.renderNotApplicableHeader()}
           </div>
           {props.totalBoxType === 'Statement' && (
-          <div className={`${styles.totalColumn} ${styles[props.totalBoxType]}`}>
-            Total
-          </div>
+            <div className={`${styles.totalColumn} ${styles[props.totalBoxType]}`}>
+              Total
+            </div>
           )}
         </div>
 
@@ -143,24 +143,24 @@ export default class extends Component {
               {this.renderNotApplicableCheckbox(choice)}
             </div>
             {props.totalBoxType === 'Statement' && (
-            <div className={styles.totalColumn}>
-              {this.renderInput(null, choice, 'total')}
-            </div>
+              <div className={styles.totalColumn}>
+                {this.renderInput(null, choice, 'total')}
+              </div>
             )}
           </div>
         ))}
         {props.totalBoxType === 'Scale Point' && (
-        <div className={`${styles.row} ${styles.totalRow}`}>
-          <div className={styles.firstColumn}>
-            Total
+          <div className={`${styles.row} ${styles.totalRow}`}>
+            <div className={styles.firstColumn}>
+              Total
+            </div>
+            <div className={styles.inputs}>
+              {_.times(props.scalePoints, j => (
+                this.renderInput(j, null, 'total')
+              ))}
+              {props.notApplicable && <div className={styles.input} />}
+            </div>
           </div>
-          <div className={styles.inputs}>
-            {_.times(props.scalePoints, j => (
-              this.renderInput(j, null, 'total')
-            ))}
-            {props.notApplicable && <div className={styles.input} />}
-          </div>
-        </div>
         )}
       </div>
     )

@@ -56,11 +56,11 @@ export const SimulationDetails: FC<Props> = ({
               <>
                 {contentVariation.name}
                 {permissions.updateContentVariation && (
-                <Button
-                  type="link"
-                  icon={<EditOutlined />}
-                  onClick={() => setIsFormVisible(!isFormVisible)}
-                />
+                  <Button
+                    type="link"
+                    icon={<EditOutlined />}
+                    onClick={() => setIsFormVisible(!isFormVisible)}
+                  />
                 )}
               </>
             ) : (

@@ -90,13 +90,13 @@ const UserDetails: React.FC<Props> = (
               </Button>
               {user.assessorCanModerateScores
                 && (
-                <Button
-                  className={styles['assessment-buttons']}
-                  href={`/assessors/campaigns/${campaignId}/moderate_scoring/${user.id}`}
-                  type="primary"
-                >
+                  <Button
+                    className={styles['assessment-buttons']}
+                    href={`/assessors/campaigns/${campaignId}/moderate_scoring/${user.id}`}
+                    type="primary"
+                  >
                     {I18n.t('assessments.actions.moderate')}
-                </Button>
+                  </Button>
                 )
               }
             </Space>

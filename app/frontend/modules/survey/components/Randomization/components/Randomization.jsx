@@ -79,12 +79,12 @@ export class Randomization extends Component {
         </Header>
         <Body>
           {enableSingleQuestionPage && (
-          <Alert
-            className="mb-2"
-            message={I18n.t('administration.assessments.randomization.single_question_page_warning')}
-            type="warning"
-            banner
-          />
+            <Alert
+              className="mb-2"
+              message={I18n.t('administration.assessments.randomization.single_question_page_warning')}
+              type="warning"
+              banner
+            />
           )}
           <label className={styles.inputLabel}>
             <input

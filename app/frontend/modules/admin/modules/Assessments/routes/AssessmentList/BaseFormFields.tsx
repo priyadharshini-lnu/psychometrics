@@ -137,11 +137,11 @@ const BaseFormFieldsComp: React.FC<Props> = ({
         </Select>
       </Form.Item>
       {ExternalAssessmentFieldsComponent && (
-      <ExternalAssessmentFieldsComponent
-        form={form}
-        assessment={assessment}
-        handleAssessmentSelect={handleAssessmentSelect}
-      />
+        <ExternalAssessmentFieldsComponent
+          form={form}
+          assessment={assessment}
+          handleAssessmentSelect={handleAssessmentSelect}
+        />
       )}
       {showTranslatableFields
         && (
