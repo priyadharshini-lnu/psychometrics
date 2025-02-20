@@ -121,7 +121,7 @@ module Users
           attempts_to_lock: 3,
           password_expiration: 90,
           send_unlock_email: true,
-          session_inactivity_timeout_in_seconds: 15.minutes
+          session_inactivity_timeout_in_seconds: 120.minutes
         )
       end
 
