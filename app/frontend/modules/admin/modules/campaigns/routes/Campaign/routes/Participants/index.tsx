@@ -54,7 +54,7 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions }) => {
         routes={[
           { redirect: true, from: '', to: 'subjects' },
           { path: '/subjects', component: <Subjects /> },
-          { path: '/subjects/:id/*', component: <UserDetails /> },
+          { path: '/subjects/:id/:tab', component: <UserDetails /> },
           { path: '/assessors', component: <Assessors /> },
           { path: '/sms/:tab', component: <SmsInvites /> },
         ]}

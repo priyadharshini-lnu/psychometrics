@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {
   App, Select, Button, Tag,
 } from 'antd'
 import _ from 'lodash'
 import { IdpTemplate, IdpTemplateTR } from '~/modules/admin/modules/campaigns/core/idp/index'
 import { useResources } from '~/hooks/useResources'
-import { UserIdpPlan } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
+import { UserIdpPlan, UserIdpPlanTR } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { User } from '~/modules/admin/modules/campaigns/core/user'
 
 const { I18n } = window
-interface SelectedIdpTemplate {
-  id: string,
-  name: string
-}
 
 export const Idp: React.FC<{}> = () => {
   const { message } = App.useApp()
   const { campaignId, id, projectId } = useParams() as { projectId: string, campaignId: string, id: string }
-  const [selectedIdpTemplate, setSelectedIdpTemplate] = useState<SelectedIdpTemplate | null>()
-  const [activeIdpTemplate, setActiveIdpTemplate] = useState<IdpTemplate | null>(null)
+  const [selectedIdpTemplate, setSelectedIdpTemplate] = useState<string | null>()
+  const [activeIdpPlan, setActiveIdpPlan] = useState<UserIdpPlan | null>(null)
+
 
   const {
     createResource,
@@ -53,24 +50,26 @@ export const Idp: React.FC<{}> = () => {
       id,
       action: 'active_idp_template',
       method: 'get',
-    }).then((response: IdpTemplate) => {
-      setActiveIdpTemplate(response)
+      responseType: UserIdpPlanTR,
+    }).then((response: UserIdpPlan) => {
+      setActiveIdpPlan(response)
     })
   }
 
-  const handleSelectChange = (selectedTemplate: SelectedIdpTemplate) => {
+  const handleSelectChange = (selectedTemplate: string) => {
     setSelectedIdpTemplate(selectedTemplate)
   }
 
   const handleSave = () => {
-    if (selectedIdpTemplate !== null) {
+    if (selectedIdpTemplate !== null && selectedIdpTemplate !== activeIdpPlan?.idpTemplateId.toString()) {
       createResource({
         userId: id,
         campaignId,
-        idpTemplateId: selectedIdpTemplate?.id,
+        idpTemplateId: selectedIdpTemplate,
         creatorId: id,
       }).then(() => {
-        message.success(`${selectedIdpTemplate?.name} assigned to user`)
+        const name = data.find(idpTemplate => idpTemplate.id === selectedIdpTemplate)?.name
+        message.success(`${name} assigned to user`)
         setSelectedIdpTemplate(null)
         getActiveIdpTemplate()
       }).catch((error) => {
@@ -91,17 +90,16 @@ export const Idp: React.FC<{}> = () => {
         showSearch
         placeholder={I18n.t('idp_templates.placeholder')}
         style={{ width: '700px' }}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onChange={(_, option: any) => {
-          handleSelectChange({ id: option.key, name: option.value })
+        onChange={(value) => {
+          handleSelectChange(value)
         }}
-        value={selectedIdpTemplate?.name || (activeIdpTemplate ? activeIdpTemplate.name : undefined)}
+        value={selectedIdpTemplate || (activeIdpPlan?.idpTemplateId.toString())}
       >
         {_.map(data, (idpTemplate: IdpTemplate) => (
-          <Select.Option key={idpTemplate.id} value={idpTemplate.name}>
+          <Select.Option key={idpTemplate.id} value={idpTemplate.id}>
             {idpTemplate.name}
             {'     '}
-            {activeIdpTemplate?.id === idpTemplate.id && <Tag color="green">Active</Tag>}
+            {activeIdpPlan?.idpTemplateId === +idpTemplate.id && <Tag color="green">Active</Tag>}
           </Select.Option>
         ))}
       </Select>
@@ -110,10 +108,18 @@ export const Idp: React.FC<{}> = () => {
         type="primary"
         onClick={handleSave}
         style={{ marginTop: '10px', marginRight: '10px' }}
-        disabled={!selectedIdpTemplate}
+        disabled={!selectedIdpTemplate || selectedIdpTemplate === activeIdpPlan?.idpTemplateId.toString()}
       >
         {I18n.t('idp_templates.assign')}
       </Button>
+      {activeIdpPlan && (
+        <Link
+          type="link"
+          to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/user_idp_reports/${activeIdpPlan.id}`}
+        >
+          {I18n.t('user_reports.preview_report')}
+        </Link>
+      )}
     </>
   )
 }

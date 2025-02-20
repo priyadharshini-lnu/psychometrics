@@ -2810,6 +2810,74 @@ ALTER SEQUENCE public.hogan_report_settings_id_seq OWNED BY public.hogan_report_
 
 
 --
+-- Name: idp_report_pdfs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_report_pdfs (
+    id bigint NOT NULL,
+    user_idp_plan_id bigint,
+    locale character varying NOT NULL,
+    first_generated_at timestamp(6) without time zone,
+    last_generated_at timestamp(6) without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: idp_report_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_report_pdfs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_report_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_report_pdfs_id_seq OWNED BY public.idp_report_pdfs.id;
+
+
+--
+-- Name: idp_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_settings (
+    id bigint NOT NULL,
+    allow_global_skills boolean DEFAULT false,
+    manager_approves_idp boolean DEFAULT false,
+    manager_can_edit_idp boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    project_id bigint
+);
+
+
+--
+-- Name: idp_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_settings_id_seq OWNED BY public.idp_settings.id;
+
+
+--
 -- Name: idp_template_development_actions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7636,6 +7704,20 @@ ALTER TABLE ONLY public.hogan_report_settings ALTER COLUMN id SET DEFAULT nextva
 
 
 --
+-- Name: idp_report_pdfs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_report_pdfs ALTER COLUMN id SET DEFAULT nextval('public.idp_report_pdfs_id_seq'::regclass);
+
+
+--
+-- Name: idp_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_settings ALTER COLUMN id SET DEFAULT nextval('public.idp_settings_id_seq'::regclass);
+
+
+--
 -- Name: idp_template_development_actions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9010,6 +9092,22 @@ ALTER TABLE ONLY public.hogan_logs
 
 ALTER TABLE ONLY public.hogan_report_settings
     ADD CONSTRAINT hogan_report_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: idp_report_pdfs idp_report_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_report_pdfs
+    ADD CONSTRAINT idp_report_pdfs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: idp_settings idp_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_settings
+    ADD CONSTRAINT idp_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -11182,6 +11280,20 @@ CREATE INDEX index_hogan_credentials_on_user_id ON public.hogan_credentials USIN
 --
 
 CREATE INDEX index_hogan_report_settings_on_report_id ON public.hogan_report_settings USING btree (report_id);
+
+
+--
+-- Name: index_idp_report_pdfs_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_report_pdfs_on_user_idp_plan_id ON public.idp_report_pdfs USING btree (user_idp_plan_id);
+
+
+--
+-- Name: index_idp_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_settings_on_project_id ON public.idp_settings USING btree (project_id);
 
 
 --
@@ -15051,6 +15163,14 @@ ALTER TABLE ONLY public.user_report_events
 
 
 --
+-- Name: idp_report_pdfs fk_rails_ec5513f5d4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_report_pdfs
+    ADD CONSTRAINT fk_rails_ec5513f5d4 FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id);
+
+
+--
 -- Name: norms fk_rails_ecfeaf1ba0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15104,6 +15224,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.idp_template_development_actions
     ADD CONSTRAINT fk_rails_f16ae884e9 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: idp_settings fk_rails_f18b32fc3c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_settings
+    ADD CONSTRAINT fk_rails_f18b32fc3c FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -15249,6 +15377,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250213113601'),
+('20250210121434'),
 ('20250211125313'),
 ('20250207113529'),
 ('20250206082916'),
@@ -16018,4 +16148,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

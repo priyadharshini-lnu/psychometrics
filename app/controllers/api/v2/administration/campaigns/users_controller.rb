@@ -22,8 +22,8 @@ module Api
       idp_template = user.active_user_idp_plan&.idp_template
 
       if idp_template
-        jsonapi_render json: idp_template,
-                       options: { resource: ::Api::V2::Administration::Projects::IdpTemplateResource }
+        jsonapi_render json: user.active_user_idp_plan,
+                       options: { resource: ::Api::V2::Administration::UserIdpPlanResource }
       else
         render json: { error: I18n.t('idp_templates.errors.idp_template_not_found') }, status: :not_found
       end

@@ -26,6 +26,8 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :communication_emails, through: :communication_email_resources
   has_many :user_report_pdfs, dependent: :destroy
 
+  alias report_pdfs user_report_pdfs
+
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, :provider_custom_upload?, to: :report

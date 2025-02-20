@@ -14,7 +14,8 @@ describe Lambdas::NotificationHandlers::UrlToPdf do
     ).with(:private_bucket).and_return('s3_private_bucket')
 
     described_class.call!({
-      'user_report_id' => user_report.id,
+      'record_id' => user_report.id,
+      'record_type' => 'UserReport',
       'file_name' => 'example.pdf',
       'update_record' => true,
       'checksum' => '0',
@@ -25,14 +26,15 @@ describe Lambdas::NotificationHandlers::UrlToPdf do
   end
 
   it "doesn't updates user_report if update_record is false" do
-    described_class.call!({ 'user_report_id' => user_report.id, 'file_name' => 'abc.pdf', 'update_record' => false })
+    described_class.call!({ 'record_type' => 'UserReport', 'record_id' => user_report.id, 'file_name' => 'abc.pdf',
+                            'update_record' => false })
 
     expect(user_report.reload.read_attribute(:pdf)).to eq(nil)
   end
 
   it 'increments completed_tasks of admin_job_record if admin_job_record_id is present' do
     described_class.call!({
-      'user_report_id' => user_report.id, 'file_name' => 'abc.pdf', 'update_record' => false,
+      'record_type' => 'UserReport', 'record_id' => user_report.id, 'file_name' => 'abc.pdf', 'update_record' => false,
       'admin_job_record_id' => admin_job_record.id
     })
 
@@ -41,7 +43,7 @@ describe Lambdas::NotificationHandlers::UrlToPdf do
 
   it "doesn't raise exception when admin_job_record_id is not present" do
     expect do
-      described_class.call!({ 'user_report_id' => user_report.id, 'file_name' => 'abc.pdf' })
+      described_class.call!({ 'record_type' => 'UserReport', 'record_id' => user_report.id, 'file_name' => 'abc.pdf' })
     end.to_not raise_exception
   end
 
@@ -63,7 +65,7 @@ describe Lambdas::NotificationHandlers::UrlToPdf do
       )
     )
     described_class.call!({
-      'user_report_id' => user_report.id, 'file_name' => 'abc.pdf', 'update_record' => true,
+      'record_type' => 'UserReport', 'record_id' => user_report.id, 'file_name' => 'abc.pdf', 'update_record' => true,
       'notify_user_id' => user_report.user_id, 'file_path' => 'upload/abc.pdf', 'checksum' => '0', 'file_size' => 0
     })
   end

@@ -107,8 +107,8 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
           active_idp_template = JSON.parse(response.body)['data']
 
           expect(active_idp_template).to have_key('id')
-          expect(active_idp_template).to have_attribute(:name).with_value(idp_template.name)
-          expect(active_idp_template).to have_attribute(:description).with_value(idp_template.description)
+          expect(active_idp_template).to have_attribute(:idp_template_id).with_value(idp_template.id)
+          expect(active_idp_template).to have_attribute(:active).with_value(true)
         end
       end
     end

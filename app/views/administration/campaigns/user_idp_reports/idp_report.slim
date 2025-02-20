@@ -1,0 +1,8 @@
+#report_preview.html_preview[data-user="#{@data[:user]}"
+  data-data="#{@data[:data]}"
+  data-pdf-export="#{@pdf_export}"
+  data-campaign="#{@data[:campaign] || {}}"
+]
+
+= vite_javascript_tag 'entrypoints/idp_pdf_report.jsx'
+= stylesheet_link_tag 'icomoon'

@@ -232,6 +232,12 @@ Rails.application.routes.draw do
             patch :toggle_main_report
           end
         end
+        resources :user_idp_reports do
+          member do
+            get :pdf_preview
+            get :download
+          end
+        end
         resources :user_reports do
           member do
             get :pdf_preview

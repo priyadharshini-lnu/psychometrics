@@ -3,6 +3,7 @@
 module UserReports
   class GeneratePdf < BaseCommand
     include Rails.application.routes.url_helpers
+    include UserReports::GeneratePdfConcern
 
     private_attr_reader :current_user, :campaign, :report, :user, :user_report, :options
     attr_reader :output
@@ -18,7 +19,7 @@ module UserReports
 
     def call
       result = if Settings.features.url_to_pdf_lambda
-                 export_pdf_using_lambda
+                 export_pdf_using_lambda(user_report)
                else
                  export_pdf_using_local_chrome
                end
@@ -27,57 +28,6 @@ module UserReports
     end
 
     private
-
-    def export_pdf_using_local_chrome
-      file_path = make_path
-      args = default_report_export_options.merge(
-        output: file_path
-      ).to_a.map do |key, value|
-        "#{key}='#{key == :url ? value : Shellwords.escape(value)}'"
-      end.join(' ')
-
-      Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
-      Kernel.system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
-      { file_path: file_path }
-    end
-
-    def export_pdf_using_lambda # rubocop:disable Metrics/AbcSize
-      file_path = if options[:file_path]
-                    "#{options[:file_path]}/#{report_file_name}"
-                  else
-                    user_report.attachment_storage_path('pdf_file', report_file_name)
-                  end
-
-      webhook_message = { user_report_id: user_report.id, file_name: report_file_name, file_path: file_path }
-      webhook_message[:notify_user_id] = current_user.id if options[:notify_user]
-      webhook_message[:update_record] = options[:update_record] != false
-      webhook_message[:admin_job_record_id] = options[:admin_job_record_id] if options[:admin_job_record_id]
-
-      lambda_option = default_report_export_options.merge(
-        output_file_path: file_path,
-        file_name: report_file_name,
-        webhook_message: webhook_message,
-        async: options[:async],
-        low_priority: options[:low_priority],
-        meta: {
-          project_id: campaign.project.id,
-          campaign_id: campaign.id,
-          report_id: report.id,
-          user_id: user.id
-        },
-        pdf_password: campaign.pdf_password
-      )
-      Rails.logger.info(
-        log_type: 'UserReports::GeneratePdf',
-        campaign_id: campaign.id,
-        report_id: report.id,
-        user_id: user.id,
-        options: options
-      )
-
-      Lambdas::UrlToPdf.call!(lambda_option)
-      { file_name: report_file_name }
-    end
 
     def default_report_export_options
       report.pdf_dimension.merge(url: report_preview_url)

@@ -2350,6 +2350,8 @@ en:
         learning_structured: Structured Learning (%{count})
         other: Other
         technical: Technical
+    pdf:
+      header: Hello
     profile_details: Profile Details
     skill_gap_report: Skill Gap Report
     status: Status
