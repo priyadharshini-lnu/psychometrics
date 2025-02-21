@@ -140,6 +140,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'custom_upload' => false,
       'report_url' => nil,
       'report_provider' => 'internal',
+      'comments_count' => 0,
+      'edits_count' => 0,
       'permissions' => {
         'download_report' => true,
         'remove' => true,

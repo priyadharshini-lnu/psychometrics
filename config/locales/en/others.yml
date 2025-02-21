@@ -3574,6 +3574,10 @@ en:
     modals:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
+        content_with_counts:
+          both: 'DANGER: Report %{userReportName} has %{commentsCount} comment(s) and %{editsCount} edit(s). If you remove the report from the user, these comment(s) and edit(s) would be lost.'
+          comments: 'DANGER: Report %{userReportName} has %{commentsCount} comment(s). If you remove the report from the user, these comment(s) would be lost.'
+          edits: 'DANGER: Report %{userReportName} has %{editsCount} edit(s). If you remove the report from the user, these edit(s) would be lost.'
         successfully: "%{userReportName} report was removed successfully"
       remove_file:
         content: Are you sure you want to remove file?
