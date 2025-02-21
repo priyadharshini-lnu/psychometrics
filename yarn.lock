@@ -3184,10 +3184,10 @@ cac@^6.7.14:
   resolved "https://registry.yarnpkg.com/cac/-/cac-6.7.14.tgz#804e1e6f506ee363cb0e3ccbb09cad5dd9870959"
   integrity sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==
 
-calendar-link@2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/calendar-link/-/calendar-link-2.5.1.tgz#a6cd6414cac4e4f81e765c3bdfa2cfc3f62707ce"
-  integrity sha512-Hyr2UXYJqwYR6D4lYbd7+byd+hTD8fO425eB2LYGOqkbCyVl9aJq3CQPvjofD46Qs+FI8KA7K0OGNXlEg4Ftqw==
+calendar-link@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/calendar-link/-/calendar-link-2.6.0.tgz#47cec3d9a2d0c13ac87f732898867e92ea423c98"
+  integrity sha512-ypgYoFBz2w0WkJV1m6LoO31i8F5te3/rsTdJp/ONacVmr+C4Ny7rHhvwmIZS3yrbG2abbcohn2D8DZbcFZvwfA==
   dependencies:
     dayjs "^1.9.3"
     query-string "^6.13.6"
