@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
@@ -7,19 +8,16 @@ import {
   Button, Modal, message, Alert, Form, Input,
 } from 'antd'
 import Event from 'interfaces/Event'
-import { importSkills } from '~/modules/admin/modules/Skills/core/skills'
+import { importDevelopmentActions } from '~/modules/admin/modules/DevelopmentActions/core/development_actions'
 import DownloadSampleFile from '~/modules/admin/components/DownloadSampleFile'
 
-
-const CSVData = `ID,Name,Description,Project,Category,Tag
-1,Leadership,Description 1,123,behavioral,"tag1,tag2"
-2,Programming,Description 2,123,technical,tag3`
-
+const CSVData = `ID,SkillID,Name,Description,Type,ProjectID,CourseURL,CourseStartDate,CourseEndDate,CourseImage
+1,11000000001,Leadership,About Leadership qualities,structured_learning,275,www.google.com,2025-01-01,2025-12-31,https://picsum.photos/200`
 
 const connecter = connect(() => ({
 }),
 {
-  importSkills,
+  importDevelopmentActions,
 })
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
@@ -31,7 +29,7 @@ interface OwnProps extends PropsFromRedux {
 
 const ImportModalComponent: React.FC<OwnProps> = ({
   close,
-  importSkills,
+  importDevelopmentActions,
 }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
@@ -45,9 +43,9 @@ const ImportModalComponent: React.FC<OwnProps> = ({
     data.append('file', file)
     setLoading(true)
 
-    importSkills(data)
+    importDevelopmentActions(data)
       .then(() => {
-        message.info(I18n.t('administration.skills.import.success_msg'))
+        message.info(I18n.t('administration.development_actions.import.success_msg'))
         close()
         form.resetFields()
       }).catch(setErrors).finally(() => {
@@ -59,7 +57,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.skills.import.title')}
+      title={I18n.t('administration.development_actions.import.title')}
       open
       onCancel={close}
       footer={[
@@ -86,7 +84,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
       <div className="mbl" style={{ fontSize: '16px' }}>
         <DownloadSampleFile
           fileData={CSVData}
-          buttonText={I18n.t('administration.skills.import.download_example_csv')}
+          buttonText={I18n.t('administration.development_actions.import.download_example_csv')}
         />
       </div>
       {errors.length ? (
@@ -115,4 +113,4 @@ const ImportModalComponent: React.FC<OwnProps> = ({
 }
 
 
-export const SkillsImportModal = connecter(ImportModalComponent)
+export const DevelopmentActionsImportModal = connecter(ImportModalComponent)

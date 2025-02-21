@@ -222,9 +222,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           <Form.Item
             name="description"
             label={I18n.t('administration.development_actions.form.description')}
-            rules={[
-              { required: true },
-            ]}
           >
             <Input />
           </Form.Item>
@@ -254,9 +251,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
             <Form.Item
               name="projectId"
               label={I18n.t('common.column.project')}
-              rules={[
-                { required: true },
-              ]}
             >
               <Select
                 showSearch

@@ -10,6 +10,8 @@ const { I18n } = window
 
 type Permissions = {
   import: boolean
+  export_global: boolean
+  export: boolean
 }
 
 type Props = {
@@ -36,12 +38,27 @@ export const ToolsDropdown: React.FC<Props> = ({
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   const menuItems:ItemType[] = []
 
-  if (permissions?.import) {
+  if (permissions.import) {
     menuItems.push({
-      key: 'import_skills',
-      label: I18n.t('administration.skills.import_skills'),
+      key: 'import_development_actions',
+      label: I18n.t('administration.development_actions.import_development_actions'),
     })
   }
+
+  if (permissions.export_global) {
+    menuItems.push({
+      key: 'export_global_development_actions',
+      label: I18n.t('administration.development_actions.export_global_development_actions'),
+    })
+  }
+
+  if (permissions.export) {
+    menuItems.push({
+      key: 'export_development_action',
+      label: I18n.t('administration.development_actions.export_development_actions'),
+    })
+  }
+
 
   const handleMenuClick = ({ key }) => {
     onClick(key)

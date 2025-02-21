@@ -740,6 +740,7 @@ en:
         export_admin_with_permissions: Export Admin With Permissions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_development_actions: Export Development Actions
         export_factor_translations: Export Factor Translations
         export_occupations: Occupations Export
         export_report_data: Export report data
@@ -752,6 +753,7 @@ en:
         import_assessors: Import Assessors
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
+        import_development_actions: Import Development Actions
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_question_translations: Import Question Translations

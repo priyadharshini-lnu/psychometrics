@@ -1410,7 +1410,7 @@ as: :simulation_progress_notification
           jsonapi_resources :development_actions, concerns: :taggable do
             collection do
               post :import
-              get :export
+              post :export
             end
           end
 
