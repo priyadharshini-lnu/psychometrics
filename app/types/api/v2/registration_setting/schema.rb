@@ -11,6 +11,7 @@ module Api
         def self.attributes(_attribute, _)
           proc do
             required(:require_mobile_number).maybe(:bool)
+            required(:hide_signup).maybe(:bool)
           end
         end
       end
