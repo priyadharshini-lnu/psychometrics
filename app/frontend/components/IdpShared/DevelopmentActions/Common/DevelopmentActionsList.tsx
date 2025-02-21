@@ -9,12 +9,14 @@ type Props = {
   availableActions: AvailableDevelopmentActions[];
   onDevelopmentActionClick: (developmentAction: Partial<AvailableDevelopmentActions>) => void;
   highlightNewlyAddedActions?: boolean;
+  selectedDevelopmentActionIds?: number[];
 };
 
 const DevelopmentActionsList: React.FC<Props> = ({
   availableActions,
   onDevelopmentActionClick,
   highlightNewlyAddedActions = false,
+  selectedDevelopmentActionIds = [],
 }) => {
   const [highlightedIdsState, setHighlightedIdsState] = useState<(string | number)[]>([])
   const previousDevelopmentActionsIdRef = useRef<Set<string | number>>(new Set())
@@ -58,6 +60,7 @@ const DevelopmentActionsList: React.FC<Props> = ({
             onClick={() => onDevelopmentActionClick(developmentAction)}
             className={cs(styles.card, {
               [styles.highlight]: highlightedIdsState.includes(developmentAction.id ?? index),
+              [styles.disabled]: selectedDevelopmentActionIds.includes(developmentAction.id),
             })}
             gap={16}
             key={developmentAction.id ?? index}

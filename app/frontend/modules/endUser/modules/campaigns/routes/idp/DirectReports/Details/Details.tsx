@@ -88,7 +88,9 @@ const DirectReportDetailsComponent: FC<Props> = ({
   }, [paramTab])
 
   const handleAddDevelopmentAction = () => {
-    fetchAvailableDevelopmentActions(userId)
+    // This action is not handled properly, should be taken care of when implementing
+    // TODO: Pass the skillId when fetching available development actions
+    fetchAvailableDevelopmentActions(userId, 0)
   }
 
   const operations = (

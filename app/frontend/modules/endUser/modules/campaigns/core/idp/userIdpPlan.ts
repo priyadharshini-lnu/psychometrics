@@ -80,10 +80,14 @@ export const fetchUserIdpSkills = (userId: string) => ({
   },
 })
 
-export const fetchAvailableDevelopmentActions = (userId: string) => ({
+export const fetchAvailableDevelopmentActions = (userId: string, skillId: number) => ({
   type: FETCH_AVAILABLE_DEVELOPMENT_ACTIONS,
   request: {
-    url: `/user_idp_development_actions/available_development_actions?user_id=${userId}`,
+    url: '/user_idp_development_actions/available_development_actions',
+    body: {
+      userId,
+      skillId,
+    },
   },
 })
 
