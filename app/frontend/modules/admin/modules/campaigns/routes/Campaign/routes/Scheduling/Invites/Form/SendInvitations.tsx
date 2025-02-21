@@ -11,8 +11,6 @@ import styles from './Form.less'
 
 const { I18n } = window
 
-const LANGS = [{ value: 'en' }, { value: 'ar' }, { value: 'de' }]
-
 type Props = {
   form: FormInstance
   prev: () => void
@@ -104,7 +102,7 @@ export const SendInvitation: FC<Props> = ({
           )
         })}
 
-        {allowedLanguages.length > 0 ? (
+        {allowedLanguages?.length > 0 ? (
           <Panel
             title={I18n.t('administration.assessment_center.invite.send_invites.add_language')}
             description={I18n.t('administration.assessment_center.invite.send_invites.add_description')}
@@ -119,7 +117,9 @@ export const SendInvitation: FC<Props> = ({
                     <Col flex="1">
                       <Select
                         placeholder={I18n.t('administration.assessment_center.invite.send_invites.input_placeholder')}
-                        options={LANGS.map(lang => ({ value: lang.value, label: I18n.t(`languages.${lang.value}`) }))}
+                        options={allowedLanguages.map(lang => (
+                          { value: lang, label: I18n.t(`languages.${lang}`) }
+                        ))}
                         onChange={value => setSelectedLang(value)}
                       />
                     </Col>
