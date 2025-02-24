@@ -162,7 +162,7 @@ module Administration
                 }
               ).serialize(user)
             end
-            on(:insufficient_license) do |errors|
+            on(:insufficient_license, :new_assessment_response_not_allowed) do |errors|
               return render json: { errors: errors.is_a?(String) ? { base: errors } : errors },
                             status: 422
             end
