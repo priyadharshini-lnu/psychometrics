@@ -3,11 +3,14 @@
 module EndUser
   class IdpPlanSchema < BaseSchema
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/BlockLength
     def self.schema(_, _)
       Dry::Schema.JSON do
         config.validate_keys = true
 
         required(:status).filled(:str?, included_in?: UserIdpPlan.statuses.keys)
+        required(:skill_gap_report_available).filled(:bool?)
+        required(:self_rating_enabled).filled(:bool?)
 
         optional(:user_idp_skills).array(:hash) do
           required(:id).filled(:int?)
@@ -36,5 +39,6 @@ module EndUser
       end
     end
     # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/BlockLength
   end
 end

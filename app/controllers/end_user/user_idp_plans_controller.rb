@@ -3,6 +3,7 @@
 module EndUser
   class UserIdpPlansController < ApplicationController
     before_action :load_user_idp_plan, only: %i[show update]
+    before_action :load_skill_gap_report_status, only: %i[show] # TODO: Should we keep this?
 
     def summary
       authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
@@ -15,7 +16,11 @@ module EndUser
 
       if @user_idp_plan
         render json: {
-          data: EndUser::IdpPlanSerializer.new.serialize(@user_idp_plan)
+          data: EndUser::IdpPlanSerializer.new(
+            context: {
+              skill_gap_report_available: @skill_gap_report_available
+            }
+          ).serialize(@user_idp_plan)
         }
       else
         render json: { errors: [I18n.t('idp_templates.errors.user_idp_template_not_found')] }, status: :not_found
@@ -43,10 +48,19 @@ module EndUser
                        association(:active_user_idp_plan).
                        scope.
                        includes(
+                         :idp_template,
                          user_idp_skills: :skill,
                          user_idp_development_actions: :development_action
                        ).
                        first
+    end
+
+    def load_skill_gap_report_status
+      @skill_gap_report_available = UserReport.find_by(
+        user_id: @user_idp_plan.user_id,
+        report_id: @user_idp_plan.idp_template.report_id,
+        campaign_id: @user_idp_plan.campaign_id
+      )&.prepared?
     end
 
     def update_params
