@@ -82,9 +82,9 @@ RSpec.describe User, type: :model do
       client_admin = create(:client_admin)
       project_admin = create(:project_admin)
 
-      expect(super_admin.timeout_in).to eq(15.minutes)
-      expect(client_admin.timeout_in).to eq(15.minutes)
-      expect(project_admin.timeout_in).to eq(15.minutes)
+      expect(super_admin.timeout_in).to eq(120.minutes)
+      expect(client_admin.timeout_in).to eq(120.minutes)
+      expect(project_admin.timeout_in).to eq(120.minutes)
     end
 
     it 'returns the configured timeout for normal user' do

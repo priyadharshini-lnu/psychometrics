@@ -20,7 +20,7 @@ module Administration
       return object.assessment.agile.translations.keys if assessment.agile?
       return simulation_settings.possible_languages if assessment.simulation?
 
-      ['en'] + ::Translation.available_translation_for_assessment(assessment.id)
+      [object.assessment.default_language] + ::Translation.available_translation_for_assessment(assessment.id)
     end
 
     def universal_link

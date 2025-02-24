@@ -14,6 +14,7 @@ interface State {
   saml_login_allowed: boolean
   saml_enforced: boolean
   require_mobile_number: boolean
+  hide_signup: boolean
   primary_color?: string
   error_color?: string,
   warning_color?: string,
@@ -32,6 +33,7 @@ export const defaultState: State = {
   login_box_position: 'auto',
   saml_login_allowed: false,
   require_mobile_number: false,
+  hide_signup: false,
   saml_enforced: false,
   background_size: 'cover',
   magic_link_enabled: false,

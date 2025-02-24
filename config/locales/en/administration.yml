@@ -2491,6 +2491,7 @@ en:
         update_in: Notify Profile Update in
         year: Year
       registration_settings:
+        hide_signup: Hide Sign up option
         require_mobile_number: Require Mobile Number
       webhook_settings:
         add: Add Webhook

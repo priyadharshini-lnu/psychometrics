@@ -10,7 +10,6 @@ import Previews from '~/modules/survey/components/modules/Previews'
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './Question.less'
 import { addListener, removeListener, sendMessage } from '~/utils/messageBus'
-import { isRtl } from '~/utils/locales'
 
 class Question extends Component {
   static propTypes = {
@@ -101,7 +100,7 @@ class Question extends Component {
 
   render () {
     const {
-      model, moduleConfig, hideHiddenQuestions, linkedQuestions, defaultLanguage,
+      model, moduleConfig, hideHiddenQuestions, linkedQuestions,
     } = this.props
 
     const { selected } = this.state
@@ -125,7 +124,7 @@ class Question extends Component {
         data-allow-content-copy={allowContentCopy ? 1 : 0}
         onClick={this.onClick}
       >
-        <div className={`${styles.content} ${isRtl(defaultLanguage) ? 'rtl' : ''}`}>
+        <div className={`${styles.content}`}>
           <div className={cs(styles.contentOuterBase,
             model.type === 'VideoResponse' ? styles.contentOuterVideoResponse : styles.contentOuter)}
           >

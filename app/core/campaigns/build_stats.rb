@@ -31,7 +31,7 @@ module Campaigns
 
     def build_assessments
       query = UserAssessment.joins(:campaign_user).select(
-        :assessment_id, :status, 'count(user_assessments.id) as status_count'
+        :assessment_id, :status, 'count(DISTINCT user_assessments.id) as status_count'
       ).group(:assessment_id, :status).
               where(campaign_id: campaign.id, campaign_users: { active: campaign_users_active_in }).to_sql
       user_assessments_count_by_status = ActiveRecord::Base.connection.execute(query).to_a.

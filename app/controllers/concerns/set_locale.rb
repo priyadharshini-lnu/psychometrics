@@ -10,10 +10,11 @@ module SetLocale
     helper_method :available_enduser_locales
   end
 
-  def user_locale
+  def user_locale # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
     @user_locale ||= begin
-      probably_locale = user_preferred_locale
       probably_locale = params[:lang] if I18n.available_locales.include?(params[:lang]&.to_sym)
+      probably_locale = ui_locale unless I18n.available_locales.include?(probably_locale&.to_sym)
+      probably_locale = user_preferred_locale unless I18n.available_locales.include?(probably_locale&.to_sym)
       probably_locale = I18n.default_locale unless I18n.available_locales.include?(probably_locale&.to_sym)
       probably_locale&.to_s
     end

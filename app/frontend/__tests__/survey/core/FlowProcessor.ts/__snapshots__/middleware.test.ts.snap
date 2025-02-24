@@ -2,9 +2,15 @@
 
 exports[`initializing base assessment > init action should init assessment data > init_assessment 1`] = `
 {
+  "config": {
+    "availableLocales": [],
+    "features": {},
+    "timezone": "",
+  },
   "connection": {
     "connected": true,
   },
+  "currentUser": null,
   "preview": {
     "activeDictationOnQuestion": 0,
     "agileAssetsUrl": undefined,
@@ -382,6 +388,14 @@ exports[`initializing base assessment > init action should init assessment data 
     "timerDuration": undefined,
     "type": "preview_assessment",
   },
+  "request": {
+    "requests": [],
+    "responseDataMismatchRequest": {
+      "data": {},
+      "errors": "",
+      "requestName": "",
+    },
+  },
   "survey": {
     "builder": {
       "assessment": {
@@ -456,9 +470,15 @@ exports[`initializing base assessment > init action should init assessment data 
 
 exports[`initializing base assessment > middleware should call next if is not NEXT_PAGE > default_store 1`] = `
 {
+  "config": {
+    "availableLocales": [],
+    "features": {},
+    "timezone": "",
+  },
   "connection": {
     "connected": true,
   },
+  "currentUser": null,
   "preview": {
     "activeDictationOnQuestion": 0,
     "allPages": {},
@@ -521,6 +541,14 @@ exports[`initializing base assessment > middleware should call next if is not NE
     "submitRequired": false,
     "timerDuration": null,
     "type": "preview_assessment",
+  },
+  "request": {
+    "requests": [],
+    "responseDataMismatchRequest": {
+      "data": {},
+      "errors": "",
+      "requestName": "",
+    },
   },
   "survey": {
     "builder": {

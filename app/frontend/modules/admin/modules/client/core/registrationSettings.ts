@@ -6,6 +6,7 @@ export const RegistrationSettingsTR = t.intersection([
   t.type({
     id: t.string,
     requireMobileNumber: t.union([t.boolean, t.undefined]),
+    hideSignup: t.union([t.boolean, t.undefined]),
     project: t.union([
       t.type({
         id: t.string,

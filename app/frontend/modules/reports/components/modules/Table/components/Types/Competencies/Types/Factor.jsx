@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import cs from 'classnames'
+import { Flex } from 'antd'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import AppStore from '~/modules/reports/store/AppStore'
@@ -103,7 +104,7 @@ export default function Factor ({ model, filters, paginationContext }) {
                     style={{ borderBottomColor: `${m.color}`, color: secondHeaderColor }}
                     width={`${milestoneColumnWidth}%`}
                   >
-                    {m.name}
+                    {I18nStore.tMilestone(model, m)}
                   </td>
                 ))}
               </tr>
@@ -120,10 +121,10 @@ export default function Factor ({ model, filters, paginationContext }) {
                 <tr key={id} data-row={i} data-factor-id={id}>
                   <td className={styles.factorcell}>
                     <div className={styles.factor} style={{ color: secondHeaderColor }}>
-                      <div className="display-flex vertical-align">
+                      <Flex align="center" gap={5}>
                         {factor.icon && <div className="vertical-align"><img src={factor.icon} /></div>}
-                        <span className="mls">{I18nStore.tFactor(factor, 'name')}</span>
-                      </div>
+                        <span>{I18nStore.tFactor(factor, 'name')}</span>
+                      </Flex>
                     </div>
                     <div className={styles.description} style={descStyle} width={`${DESC_COLUMN_WIDTH}%`}>
                       {I18nStore.tFactor(factor, 'description')}
