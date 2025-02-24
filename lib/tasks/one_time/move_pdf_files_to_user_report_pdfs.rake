@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# Remove param from below rake command if you want to start with last_processed_id from db.
+# Or replace it to specific value if you want to pass your owns tarts_with param.
+# rake 'one_time:move_pdf_files_to_user_report_pdfs[0]'
+
 namespace :one_time do
   task :move_pdf_files_to_user_report_pdfs, %i[starts_with] => %i[environment] do |_, args|
     user_report_pdfs = []
@@ -21,12 +25,14 @@ namespace :one_time do
 
       UserReport.joins(:pdf_file_attachment).preload(campaign: :campaign_reports).where(
         'user_reports.id >= ?', db_starts_with
-      ).order('user_reports.id asc').distinct.find_in_batches(batch_size: 1000) do |batch|
+      ).order('user_reports.id asc').distinct.in_batches(of: 1000) do |batch|
         campaign_reports = CampaignReport.joins(:campaign).where(
           report_id: batch.map(&:report_id), campaign: { type: ::Campaign::THREESIXTY }
         ).index_by(&:report_id)
 
-        batch.each do |user_report|
+        exclude_ids = batch.joins(user_report_pdfs: :pdf_file_attachment).select(:id)
+
+        batch.where.not(id: exclude_ids).each do |user_report|
           user_report_pdf = UserReportPdf.new(
             user_report_id: user_report.id,
             locale: campaign_reports[
@@ -46,7 +52,10 @@ namespace :one_time do
           user_report_pdfs << user_report_pdf
         end
 
-        UserReportPdf.import user_report_pdfs, recursive: true
+        UserReportPdf.import user_report_pdfs, on_duplicate_key_update: {
+          conflict_target: %i[user_report_id locale]
+        }, recursive: true
+
         ActiveRecord::Base.connection.execute(
           <<-SQL.squish
             INSERT INTO activesupport_tables_migrations (table_name, model_name, last_processed_id)
