@@ -9,6 +9,7 @@ const FETCH_USER_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_USER_IDP_SKILLS'
 const FETCH_AVAILABLE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_AVAILABLE_DEVELOPMENT_ACTIONS'
 const GENERATE_DEVELOPMENT_ACTIONS_BY_AI = 'IDP/MY_PLAN/GENERATE_DEVELOPMENT_ACTIONS_BY_AI'
 const ADD_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/ADD_DEVELOPMENT_ACTION'
+const REMOVE_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/REMOVE_DEVELOPMENT_ACTION'
 const UPDATE_DEVELOPMENT_ACTION = 'IDP/MY_PLAN/UPDATE_DEVELOPMENT_ACTION'
 const SAVE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/SAVE_DEVELOPMENT_ACTIONS'
 const FETCH_DIRECT_REPORTS = 'IDP/MY_PLAN/FETCH_DIRECT_REPORTS'
@@ -53,6 +54,12 @@ export const saveUserIdpDevelopmentActions = (userId: string, data: Partial<Deve
 
 export const addDevelopmentActionInPlan = (developmentAction: Partial<DevelopmentAction>) => ({
   type: ADD_DEVELOPMENT_ACTION,
+  data: developmentAction,
+})
+
+
+export const removeDevelopmentActionFromPlan = (developmentAction: Partial<DevelopmentAction>) => ({
+  type: REMOVE_DEVELOPMENT_ACTION,
   data: developmentAction,
 })
 
@@ -215,6 +222,17 @@ export const HANDLERS = {
         ...state.userIdpDevelopmentActions,
         [developmentAction.id]: developmentAction,
       },
+    }
+  },
+  [REMOVE_DEVELOPMENT_ACTION]: (state, action) => {
+    const developmentAction = action.data
+    const userIdpDevelopmentActions = { ...state.userIdpDevelopmentActions }
+
+    delete userIdpDevelopmentActions[developmentAction.id]
+
+    return {
+      ...state,
+      userIdpDevelopmentActions,
     }
   },
   [UPDATE_USER_IDP_PLAN]: (state, action) => ({

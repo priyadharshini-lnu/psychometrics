@@ -5,6 +5,7 @@ import {
 import { DevelopmentActionPortraitCard } from './DevelopmentActionPortraitCard'
 import styles from './DevelopmentActionBoardView.less'
 import { CategoryWithDevelopmentActions, DevelopmentActionWithSkill } from '.'
+import { renderSkillCategoryIcon } from '../utils'
 
 const { I18n } = window
 interface SkillsContainerProps {
@@ -62,7 +63,7 @@ export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({ cat
     key: category.category,
     label: (
       <Flex align="center" gap={12}>
-        <Avatar size={24} />
+        <Avatar size={24} src={renderSkillCategoryIcon(category.category)} />
         <h3 className={styles.h3}>{category.category}</h3>
       </Flex>),
     children: renderSkillBoards(category.developmentActions),
