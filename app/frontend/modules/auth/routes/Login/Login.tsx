@@ -106,13 +106,15 @@ const LoginComponent: React.FC<Props> = ({
               className={styles.submit}
               block
             />
-            <div>
-              {I18n.t('auth.login.not_member')}
-              {' '}
-              <Link to="/users/sign_up">
-                {I18n.t('auth.sign_up')}
-              </Link>
-            </div>
+            {!projectConfig.hide_signup ? (
+              <div>
+                {I18n.t('auth.login.not_member')}
+                {' '}
+                <Link to="/users/sign_up">
+                  {I18n.t('auth.sign_up')}
+                </Link>
+              </div>
+            ) : null}
           </Form>
         </>
       )}

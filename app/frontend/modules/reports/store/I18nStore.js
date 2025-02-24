@@ -16,7 +16,7 @@ if (I18n) {
 }
 const TRANSLATED_MODULES = {
   Text: true,
-  Table: ['FactorsTable', 'StrengthClusters', 'InnovationStyles'],
+  Table: ['FactorsTable', 'StrengthClusters', 'InnovationStyles', 'Competencies'],
   Graph: ['Circumplex'],
 }
 const EXTERNAL_CATEGORIES = ['hogan', 'mindmill', 'saville']
@@ -161,6 +161,15 @@ _.extend(I18nStore.prototype, {
 
   isExistTModule (module, field) {
     return !!_.result(this.locales, `reports/module.${module.id}.${field}`)
+  },
+
+  tMilestone (module, milestone) {
+    const milestoneId = milestone.id
+    const field = `milestone${milestoneId}`
+    if (this.isExistTModule(module, field)) {
+      return this.locales['reports/module'][module.id][field]
+    }
+    return milestone.name
   },
 
   tModule (module, field, extraData) {

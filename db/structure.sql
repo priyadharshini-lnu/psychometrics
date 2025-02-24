@@ -4449,7 +4449,8 @@ CREATE TABLE public.registration_settings (
     require_mobile_number boolean DEFAULT false,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    project_id bigint NOT NULL
+    project_id bigint NOT NULL,
+    hide_signup boolean DEFAULT false
 );
 
 
@@ -15377,6 +15378,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250221102354'),
 ('20250213113601'),
 ('20250210121434'),
 ('20250211125313'),

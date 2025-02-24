@@ -19,7 +19,7 @@ export class Dashboard extends Component {
   }
 
   componentWillUnmount () {
-    this.appListener.remove()
+    // this.appListener.remove()
   }
 
   disableClick = (e) => {

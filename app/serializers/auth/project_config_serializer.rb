@@ -5,7 +5,7 @@ module Auth
     attributes :id, :background_color, :login_box_position, :background, :background_overlay, :saml_login_allowed,
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number,
-               :magic_link_enabled, :disallow_password_login
+               :hide_signup, :magic_link_enabled, :disallow_password_login
 
     DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
 
@@ -44,6 +44,10 @@ module Auth
 
     def require_mobile_number
       object.registration_setting.require_mobile_number
+    end
+
+    def hide_signup
+      object.registration_setting.hide_signup
     end
 
     private

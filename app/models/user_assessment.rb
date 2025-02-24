@@ -189,7 +189,8 @@ class UserAssessment < ApplicationRecord
 
   def available_locales
     assessment_locales = assessment.agile.translations.keys if assessment.agile?
-    assessment_locales ||= ['en'] + ::Translation.available_translation_for_assessment(assessment.id)
+    assessment_locales ||= [assessment.default_language] +
+                           ::Translation.available_translation_for_assessment(assessment.id)
     campaign_assessment_locales = campaign_assessment&.available_locales
     return assessment_locales if campaign_assessment_locales.blank?
 

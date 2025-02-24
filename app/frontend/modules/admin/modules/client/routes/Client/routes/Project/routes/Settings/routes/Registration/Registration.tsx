@@ -40,7 +40,7 @@ export const Registration: React.FC<{}> = () => {
   const updateEnabledSettings = (data) => {
     setData([{
       ...registrationSettings,
-      requireMobileNumber: data.requireMobileNumber,
+      ...data,
     }])
   }
 
@@ -49,6 +49,7 @@ export const Registration: React.FC<{}> = () => {
       id: registrationSettings.id,
       ...values,
       requireMobileNumber: registrationSettings.requireMobileNumber,
+      hideSignup: registrationSettings.hideSignup,
     }).then(() => {
       message.success(I18n.t('registration.success_update'))
     })
@@ -84,6 +85,16 @@ export const Registration: React.FC<{}> = () => {
             <Checkbox
               checked={registrationSettings.requireMobileNumber}
               onChange={e => updateEnabledSettings({ requireMobileNumber: e.target.checked })}
+            />
+          </Form.Item>
+          <Form.Item
+            name="hideSignup"
+            label={I18n.t('administration.projects.registration_settings.hide_signup')}
+            valuePropName="checked"
+          >
+            <Checkbox
+              checked={registrationSettings.hideSignup}
+              onChange={e => updateEnabledSettings({ hideSignup: e.target.checked })}
             />
           </Form.Item>
           <Row className="mt-4">

@@ -110,7 +110,7 @@ const QuestionComponent = ({
                     style={{ borderBottomColor: m.color, color: secondHeaderColor }}
                     width={`${milestoneColumnWidth}%`}
                   >
-                    {m.name}
+                    {I18nStore.tMilestone(model, m)}
                   </td>
                 ))}
               </tr>
