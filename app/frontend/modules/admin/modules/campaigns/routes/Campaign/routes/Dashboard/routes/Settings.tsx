@@ -158,16 +158,16 @@ export const SettingsComponent: React.FC<Props> = ({
         </ResourceForm>
       </Col>
       {dashboard.dashboardType === 'powerbi' && (
-      <Col sm={24} md={16} xl={10}>
-        <AdditionalInfoForPowerBi
-          canBeRefreshed={canBeRefreshed}
-          handleRefresh={handleRefresh}
-          refreshRequestInProgress={refreshRequestInProgress}
-          capacityId={dashboard.capacityId}
-          workspaceId={dashboard.workspaceId}
-          message={message}
-        />
-      </Col>
+        <Col sm={24} md={16} xl={10}>
+          <AdditionalInfoForPowerBi
+            canBeRefreshed={canBeRefreshed}
+            handleRefresh={handleRefresh}
+            refreshRequestInProgress={refreshRequestInProgress}
+            capacityId={dashboard.capacityId}
+            workspaceId={dashboard.workspaceId}
+            message={message}
+          />
+        </Col>
       )}
     </Row>
   )
@@ -246,64 +246,64 @@ const AdditionalInfoForPowerBi: React.FC<AdditionalInfoForPowerBiProps> = ({
         {I18n.t('administration.dashboard.settings.details')}
         {canBeRefreshed
           && (
-          <Button
-            type="primary"
-            icon={<RedoOutlined />}
-            onClick={handleRefresh}
-            loading={refreshRequestInProgress}
-            className="float-r"
-          >
-            {I18n.t('administration.dashboard.settings.refresh')}
-          </Button>
+            <Button
+              type="primary"
+              icon={<RedoOutlined />}
+              onClick={handleRefresh}
+              loading={refreshRequestInProgress}
+              className="float-r"
+            >
+              {I18n.t('administration.dashboard.settings.refresh')}
+            </Button>
           )}
       </>
     )}
     description={(
       <Form layout="vertical" className="clear-float">
         {capacityId && (
-        <Form.Item
-          label={
+          <Form.Item
+            label={
             `${I18n.t('administration.dashboard.settings.capacity_id')}`
           }
-          initialValue={capacityId}
-          name="capacityId"
-        >
-          <Input
-            readOnly
-            suffix={(
-              <CopyToClipboard
-                text={capacityId}
-                onCopy={() => {
-                  message.info(I18n.t('common.text.copied'))
-                }}
-              >
-                <CopyOutlined />
-              </CopyToClipboard>
+            initialValue={capacityId}
+            name="capacityId"
+          >
+            <Input
+              readOnly
+              suffix={(
+                <CopyToClipboard
+                  text={capacityId}
+                  onCopy={() => {
+                    message.info(I18n.t('common.text.copied'))
+                  }}
+                >
+                  <CopyOutlined />
+                </CopyToClipboard>
             )}
-          />
-        </Form.Item>
+            />
+          </Form.Item>
         )}
 
         {workspaceId && (
-        <Form.Item
-          label={I18n.t('administration.dashboard.settings.workspace_id')}
-          initialValue={workspaceId}
-          name="workspaceId"
-        >
-          <Input
-            readOnly
-            suffix={(
-              <CopyToClipboard
-                text={workspaceId}
-                onCopy={() => {
-                  message.info(I18n.t('common.text.copied'))
-                }}
-              >
-                <CopyOutlined />
-              </CopyToClipboard>
+          <Form.Item
+            label={I18n.t('administration.dashboard.settings.workspace_id')}
+            initialValue={workspaceId}
+            name="workspaceId"
+          >
+            <Input
+              readOnly
+              suffix={(
+                <CopyToClipboard
+                  text={workspaceId}
+                  onCopy={() => {
+                    message.info(I18n.t('common.text.copied'))
+                  }}
+                >
+                  <CopyOutlined />
+                </CopyToClipboard>
             )}
-          />
-        </Form.Item>
+            />
+          </Form.Item>
         )}
       </Form>
 )}

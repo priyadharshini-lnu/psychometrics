@@ -4,10 +4,10 @@ const PREDICATE = {
   IsSameAsSubject: 'Is Same as Subject',
   EqualTo: 'Equal To',
   NotEqualTo: 'Not Equal To',
-  GreaterThen: 'Greater Then',
-  GreaterThenOrEqual: 'Greater Then Or Equal To',
-  LessThen: 'Less Then',
-  LessThenOrEqual: 'Less Then Or Equal To',
+  GreaterThen: 'Greater Than',
+  GreaterThenOrEqual: 'Greater Than Or Equal To',
+  LessThen: 'Less Than',
+  LessThenOrEqual: 'Less Than Or Equal To',
 }
 
 const EmbeddedDataPreview = ({ condition }) => (

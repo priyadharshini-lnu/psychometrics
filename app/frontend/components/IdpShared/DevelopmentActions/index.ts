@@ -6,7 +6,7 @@ export type AvailableDevelopmentActions = {
   name: string,
   description: string,
   category: string,
-  learningStyle: 'on_the_job' | 'structured_learning' | 'learning_from_the_others',
+  learningStyle: 'on_the_job' | 'structured_learning' | 'learning_from_others',
   image: string | null,
 }
 
@@ -21,7 +21,7 @@ export type DevelopmentAction = {
   startDateTime: null | string;
   endDateTime: null | string;
   private: boolean;
-  learningStyle: 'on_the_job' | 'structured_learning' | 'learning_from_the_others',
+  learningStyle: 'on_the_job' | 'structured_learning' | 'learning_from_others',
   image: string | null,
   localData?: boolean,
 }

@@ -123,11 +123,11 @@ const DescriptionComponent: React.FC<Props> = ({
             status={errors?.description ? 'error' : ''}
           />
           {rightLocale && (
-          <div className={styles.comparisonBody}>
-            <div className="m16">
-              {selectedRightLocale ? selectedRightLocale.description : ''}
+            <div className={styles.comparisonBody}>
+              <div className="m16">
+                {selectedRightLocale ? selectedRightLocale.description : ''}
+              </div>
             </div>
-          </div>
           )}
         </div>
         {errors?.description && <div><Text type="danger">{errors?.description}</Text></div>}

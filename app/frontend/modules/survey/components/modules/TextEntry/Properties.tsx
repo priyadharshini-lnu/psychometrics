@@ -103,10 +103,10 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
         />
       )}
       {type === 'DateEntry' && (
-      <DateFormatSelect
-        value={dateFormat}
-        onSelect={handleDateFormatChange}
-      />
+        <DateFormatSelect
+          value={dateFormat}
+          onSelect={handleDateFormatChange}
+        />
       )}
       {type === 'Email' && <EmailPropertyPanel model={model} />}
       {type === 'RichText' && <RichTextPropertyPanel model={model} />}

@@ -281,11 +281,11 @@ const THeader: FC<THeaderProps> = ({
 }) => (
   <>
     {title.length !== 0 && (
-    <tr className={styles.title} data-header>
-      <th colSpan={hideValues ? 3 : 6}>
-        {title}
-      </th>
-    </tr>
+      <tr className={styles.title} data-header>
+        <th colSpan={hideValues ? 3 : 6}>
+          {title}
+        </th>
+      </tr>
     )}
     <tr className={styles.headers} data-header>
       <th className={styles.label}>

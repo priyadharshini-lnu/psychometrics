@@ -15,6 +15,7 @@ module CampaignFactors
 
     validate :validate_headers
     validate :validate_rows
+    validate :validate_campaign_factors_count
 
     def validate_headers
       return if errors.present?
@@ -45,11 +46,24 @@ module CampaignFactors
       end
     end
 
+    def validate_campaign_factors_count
+      return if errors.present?
+
+      if campaign.campaign_factors.count + processed_rows.count > ::CampaignFactor::MAX_CAMPAIGN_FACTORS
+        errors.add(:base, I18n.t('administration.campaign_factor_import.errors.max_limit_reached',
+                                 count: ::CampaignFactor::MAX_CAMPAIGN_FACTORS))
+      end
+    end
+
     def processed_rows
       @processed_rows ||= Imports::ProcessRows.call!(rows)
     end
 
     private
+
+    def campaign
+      context.campaign
+    end
 
     def headers
       @headers ||= rows[0]

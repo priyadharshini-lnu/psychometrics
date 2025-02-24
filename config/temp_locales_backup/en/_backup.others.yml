@@ -2336,15 +2336,15 @@ en:
       date_range: Start Date - End Date
       development_actions: Development Actions
       generate_by_ai: Generate by AI
-      learning_from_the_others: Learning from the Others
+      learning_from_others: Learning from others
       marathon: Marathon
       no_development_actions: No development actions
-      on_the_job: On the Job
+      on_the_job: On the job
       other: Other
       private: Private
       skills: Skills
       sprint: Sprint
-      structured_learning: Structured Learning
+      structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
     direct_report_details: Direct Report Details
@@ -2377,9 +2377,9 @@ en:
         area_of_development: Area of Development
         behavioural: Behavioural
         categories: Categories
-        learning_on_job: On the Job (%{count})
+        learning_on_job: On the job (%{count})
         learning_others: Learning from the Others (%{count})
-        learning_structured: Structured Learning (%{count})
+        learning_structured: Structured learning (%{count})
         other: Other
         technical: Technical
     plan: Plan

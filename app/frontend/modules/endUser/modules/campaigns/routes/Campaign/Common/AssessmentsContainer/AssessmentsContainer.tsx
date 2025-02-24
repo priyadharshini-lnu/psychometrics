@@ -180,26 +180,26 @@ export const AssessmentsContainer = ({
                 )
               })}
               {!!ungroupedAssessments.length && (
-              <div className={styles.group}>
-                <AssessmentCardContainer>
-                  {groups.length > 0 && (
-                  <Title level={5}>{I18n.t('campaign_assessment.ungrouped_assessments_heading')}</Title>
-                  )}
-                  <Row gutter={[16, 16]}>
-                    {ungroupedAssessments.map(userAssessment => (
-                      <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
-                        <AssessmentCard
-                          view={view}
-                          userAssessment={userAssessment}
-                          disabled={userAssessment.prework ? canNotStartPrework : canNotStartAssessment}
-                          campaignNotStarted={campaignNotStarted}
-                          prevCompleted
-                        />
-                      </Col>
-                    ))}
-                  </Row>
-                </AssessmentCardContainer>
-              </div>
+                <div className={styles.group}>
+                  <AssessmentCardContainer>
+                    {groups.length > 0 && (
+                      <Title level={5}>{I18n.t('campaign_assessment.ungrouped_assessments_heading')}</Title>
+                    )}
+                    <Row gutter={[16, 16]}>
+                      {ungroupedAssessments.map(userAssessment => (
+                        <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
+                          <AssessmentCard
+                            view={view}
+                            userAssessment={userAssessment}
+                            disabled={userAssessment.prework ? canNotStartPrework : canNotStartAssessment}
+                            campaignNotStarted={campaignNotStarted}
+                            prevCompleted
+                          />
+                        </Col>
+                      ))}
+                    </Row>
+                  </AssessmentCardContainer>
+                </div>
               )}
             </>
           )

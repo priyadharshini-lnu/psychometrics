@@ -184,9 +184,9 @@ const TasksListComponent: React.FC<Props> = ({
             <>
               <div>{qcUser?.name}</div>
               {qcAt && (
-              <div>
-                {dayjs(qcAt).format('DD MM YYYY / hh:mm')}
-              </div>
+                <div>
+                  {dayjs(qcAt).format('DD MM YYYY / hh:mm')}
+                </div>
               )}
             </>
           )}
@@ -199,9 +199,9 @@ const TasksListComponent: React.FC<Props> = ({
             <>
               <div>{approverUser?.name}</div>
               {approvedAt && (
-              <div>
-                {dayjs(approvedAt).format('DD MM YYYY / hh:mm')}
-              </div>
+                <div>
+                  {dayjs(approvedAt).format('DD MM YYYY / hh:mm')}
+                </div>
               )}
             </>
           )}

@@ -129,15 +129,15 @@ const ResourceFormModal: React.FC<Props> = (props) => {
           Cancel
         </Button>,
         !hideOkButton && (
-        <Button
-          key="submit"
-          type="primary"
-          onClick={() => store.form.submit()}
-          disabled={resourceStatus === ResourceStatus.Saving}
-        >
-          {saveButtonIcon()}
-          {buttonName()}
-        </Button>
+          <Button
+            key="submit"
+            type="primary"
+            onClick={() => store.form.submit()}
+            disabled={resourceStatus === ResourceStatus.Saving}
+          >
+            {saveButtonIcon()}
+            {buttonName()}
+          </Button>
         ),
       ]}
       {...modalProps || {}}

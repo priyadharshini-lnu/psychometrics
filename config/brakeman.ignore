@@ -49,29 +49,6 @@
     {
       "warning_type": "Command Injection",
       "warning_code": 14,
-      "fingerprint": "244e2a9e51a9a97a7865af937216c04512dd8930924cbc3d0b3b56f04b6d00cc",
-      "check_name": "Execute",
-      "message": "Possible command injection",
-      "file": "app/core/user_reports/generate_pdf.rb",
-      "line": 40,
-      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
-      "code": "Kernel.system(\"$(cd #{Rails.root} && npm run export_pdf -- #{default_report_export_options.merge(:output => make_path).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")})\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "UserReports::GeneratePdf",
-        "method": "export_pdf_using_local_chrome"
-      },
-      "user_input": "default_report_export_options.merge(:output => make_path).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")",
-      "confidence": "Medium",
-      "cwe_id": [
-        77
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "Command Injection",
-      "warning_code": 14,
       "fingerprint": "35646a22b545c77325f55a7345ce5803a748f745aa8f563217dae876f1fcc5ec",
       "check_name": "Execute",
       "message": "Possible command injection",
@@ -95,25 +72,6 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "3a43273aa59aafb85fcaa0ab81e366b3b05be7d4ea16858a61a75965e2230c8b",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "config/initializers/acts_as_taggable_on_extensions.rb",
-      "line": 9,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "joins(:taggings).where(\"#{ActsAsTaggableOn.taggings_table}.tenant IN (?) OR #{ActsAsTaggableOn.taggings_table}.tenant IS NULL\", tenants.map(&:to_s))",
-      "render_path": null,
-      "location": null,
-      "user_input": "ActsAsTaggableOn.taggings_table",
-      "confidence": "Weak",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
       "fingerprint": "46d1ea83f67bb48bea1a842a7441f969111271921e07d0384b8b2d983918a5ab",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -129,29 +87,6 @@
       },
       "user_input": "flat_row_view_name",
       "confidence": "Medium",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "4bfd4c2f76d30684271b3633cff98b9edf8b003fa0ed623a94c82cd313fba977",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/core/admin_jobs/super_admin/export_admins_with_permissions.rb",
-      "line": 72,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Membership.where(\"\\n            (\\n              memberships.client_id IN (:client_ids) AND\\n              memberships.role IN (#{Membership.roles[\"project_admin\"]}, #{Membership.roles[\"client_admin\"]})\\n            )\\n            OR (memberships.campaign_id IN (:campaign_ids) AND memberships.role = #{Membership.roles[\"campaign_admin\"]})\\n          \", :client_ids => ([client.id, *client.projects.pluck(:id)]), :campaign_ids => Campaign.where(:project_id => client.projects.pluck(:id)).pluck(:id))",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "AdminJobs::SuperAdmin::ExportAdminsWithPermissions",
-        "method": "records_for_export"
-      },
-      "user_input": "Membership.roles[\"project_admin\"]",
-      "confidence": "High",
       "cwe_id": [
         89
       ],
@@ -196,6 +131,29 @@
       "confidence": "Medium",
       "cwe_id": [
         89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "8b034d3fadf768db642f3ffb81bd4fbccbed23ffe59cef65c6c395107b7c3f0d",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "app/core/user_reports/generate_pdf_concern.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "Kernel.system(\"$(cd #{Rails.root} && npm run export_pdf -- #{default_report_export_options.merge(:output => make_path).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")})\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UserReports::GeneratePdfConcern",
+        "method": "export_pdf_using_local_chrome"
+      },
+      "user_input": "default_report_export_options.merge(:output => make_path).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
       ],
       "note": ""
     },
@@ -357,29 +315,6 @@
       "confidence": "Medium",
       "cwe_id": [
         915
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "b5991424df50ca34594cfd325b3b330e4aaebfd488133cad026071c8a884e944",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/core/sheets/remove_columns.rb",
-      "line": 17,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "sheet.rows.update_all(\"data = data - ARRAY['#{columns.map do\n ActiveRecord::Base.connection.quote_string(c)\n end.join(\"','\")}']\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Sheets::RemoveColumns",
-        "method": "call"
-      },
-      "user_input": "columns.map do\n ActiveRecord::Base.connection.quote_string(c)\n end.join(\"','\")",
-      "confidence": "Weak",
-      "cwe_id": [
-        89
       ],
       "note": ""
     },

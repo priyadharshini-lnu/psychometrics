@@ -107,10 +107,10 @@ const CommonComponent: React.FC<Props> = ({
             {availableTranslations
               && availableTranslations.length > 1
               && (
-              <LangDropdownWithChangeUrl
-                currentLocale={selectedLanguage.code}
-                locales={availableTranslations || []}
-              />
+                <LangDropdownWithChangeUrl
+                  currentLocale={selectedLanguage.code}
+                  locales={availableTranslations || []}
+                />
               )
             }
           </Space>
@@ -128,12 +128,12 @@ const CommonComponent: React.FC<Props> = ({
             title={assessment.name}
             extra={enableProgress
             && (
-            <Progress
-              strokeColor="#fff"
-              className={styles.progressStatus}
-              percent={progress}
-              {...progressBarProps}
-            />
+              <Progress
+                strokeColor="#fff"
+                className={styles.progressStatus}
+                percent={progress}
+                {...progressBarProps}
+              />
             )}
           />
           <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>

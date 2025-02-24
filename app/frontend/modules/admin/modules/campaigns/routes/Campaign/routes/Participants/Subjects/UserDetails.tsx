@@ -113,7 +113,8 @@ export const UserDetails: React.FC<Props> = ({
   }
 
   const changeTab = (tab) => {
-    navigate(`${tab}`)
+    const path = location.pathname.split('/').slice(0, -1).join('/')
+    navigate(`${path}/${tab}`)
     setTab(tab)
   }
 

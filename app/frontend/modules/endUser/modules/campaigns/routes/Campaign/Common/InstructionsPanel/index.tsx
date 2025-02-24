@@ -62,21 +62,22 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
         <Title className="fs-16" level={1}>{title}</Title>
         <div aria-hidden={showExpandLink && collapsed ? 'true' : 'false'}>{description}</div>
         {showExpandLink && (
-        <div className={styles['container-button']}>
-          <ScrollToViewOnFocusButton
-            scrollBehavior={{ behavior: 'smooth', block: 'end' }}
-            icon={collapsed ? <DownOutlined /> : <UpOutlined />}
-            type="primary"
-            shape="round"
-            onClick={handleClick}
-            aria-label={collapsed
-              ? I18n.t('campaign.instructions.collapse_aria_label') : I18n.t('campaign.instructions.expand_aria_label')}
-          >
-            {collapsed ? I18n.t('campaign.instructions.expand_link_text')
-              : I18n.t('campaign.instructions.collapse_link_text')
+          <div className={styles['container-button']}>
+            <ScrollToViewOnFocusButton
+              scrollBehavior={{ behavior: 'smooth', block: 'end' }}
+              icon={collapsed ? <DownOutlined /> : <UpOutlined />}
+              type="primary"
+              shape="round"
+              onClick={handleClick}
+              aria-label={collapsed
+                ? I18n.t('campaign.instructions.collapse_aria_label')
+                : I18n.t('campaign.instructions.expand_aria_label')}
+            >
+              {collapsed ? I18n.t('campaign.instructions.expand_link_text')
+                : I18n.t('campaign.instructions.collapse_link_text')
             }
-          </ScrollToViewOnFocusButton>
-        </div>
+            </ScrollToViewOnFocusButton>
+          </div>
         )}
       </div>
 

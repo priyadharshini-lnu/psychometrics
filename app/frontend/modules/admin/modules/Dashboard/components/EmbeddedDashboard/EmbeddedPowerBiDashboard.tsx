@@ -93,11 +93,11 @@ export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
       {embedToken && !powerBiLoaded && <div className={styles.skeletonContainer}><Skeleton active /></div>}
       <div ref={embedContainer} className={styles.embedContainer}>
         {_.isNil(embedToken) && (
-        <Result
-          status="error"
-          title={I18n.t('administration.dashboard.preview.embed_token_error_title')}
-          subTitle={I18n.t('administration.dashboard.preview.embed_token_error_description')}
-        />
+          <Result
+            status="error"
+            title={I18n.t('administration.dashboard.preview.embed_token_error_title')}
+            subTitle={I18n.t('administration.dashboard.preview.embed_token_error_description')}
+          />
         )}
       </div>
     </>

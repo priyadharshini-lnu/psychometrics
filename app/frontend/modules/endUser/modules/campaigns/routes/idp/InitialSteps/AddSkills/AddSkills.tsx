@@ -2,6 +2,7 @@ import { UserIdpSkill, Skill } from 'components/IdpShared/DevelopmentActions'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { Spin } from 'antd'
 import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
 import {
   fetchIdpSkills,
@@ -28,6 +29,7 @@ const AddSkillsComponent = ({
   const [skills, setSkills] = useState<Skill[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkill[]>(([]))
+  const [isSkillsLoading, setIsSkillsLoading] = useState(true)
 
   const handleAddSkill = (skills) => {
     // Add skillId to skills
@@ -58,8 +60,11 @@ const AddSkillsComponent = ({
   }
 
   useEffect(() => {
+    setIsSkillsLoading(true)
     fetchIdpSkills().then(({ response }) => {
       setSkills(response)
+    }).finally(() => {
+      setIsSkillsLoading(false)
     })
   }, [])
 
@@ -69,7 +74,12 @@ const AddSkillsComponent = ({
     )
   }, [userIdpSkills, skills])
 
-  return (
+
+  return isSkillsLoading ? (
+    <div className="flex justify-center items-center h-100">
+      <Spin />
+    </div>
+  ) : (
     <AddSkillsStep
       addSkillButtonText={I18n.t('idp.initial_steps.continue_to_rate_skills')}
       onAddSkill={handleAddSkill}

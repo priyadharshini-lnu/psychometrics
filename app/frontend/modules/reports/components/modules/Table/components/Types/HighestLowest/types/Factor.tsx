@@ -185,7 +185,7 @@ const TBody: FC<TBodyProps> = ({
           <td>{ranks[factor.id]}</td>
           <td>{I18nStore.tFactorName(factor)}</td>
           {!hideValues && (
-          <td className={styles.number}>{factor.avg}</td>
+            <td className={styles.number}>{factor.avg}</td>
           )}
         </tr>
       ))}

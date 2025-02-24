@@ -54,15 +54,15 @@ export const ProctoringSessionList: React.FC<Props> = ({ proctoringSessions }) =
         <Space direction="vertical">
           {archiveUrl
             && (
-            <a href={archiveUrl} target="_blank" rel="noreferrer">
-              {I18n.t('administration.proctoring_sessions.links.review')}
-            </a>
+              <a href={archiveUrl} target="_blank" rel="noreferrer">
+                {I18n.t('administration.proctoring_sessions.links.review')}
+              </a>
             )}
           {reportUrl
             && (
-            <a href={reportUrl} target="_blank" rel="noreferrer">
-              {I18n.t('administration.proctoring_sessions.links.report')}
-            </a>
+              <a href={reportUrl} target="_blank" rel="noreferrer">
+                {I18n.t('administration.proctoring_sessions.links.report')}
+              </a>
             )}
         </Space>
       )}

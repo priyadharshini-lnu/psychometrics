@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import {
   Avatar, Button, Flex, Typography, Divider,
 } from 'antd'
+import _ from 'lodash'
 import { PlusOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
 import { useMedia } from 'use-media'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
 import { BoxWithShadow } from '~/glint'
 import {
-  AvailableDevelopmentActions, CategoryWithSkills, DevelopmentAction, Skill, SkillWithDevelopmentActions,
+  AvailableDevelopmentActions, CategoryWithSkills, DevelopmentAction, SkillWithDevelopmentActions,
 } from '.'
 import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
@@ -23,7 +24,7 @@ type SkillsContainerProps = {
   categories: CategoryWithSkills[]
   availableDevelopmentActions: AvailableDevelopmentActions[]
   onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onShowAvailableDevelopmentAction?: () => void
+  onShowAvailableDevelopmentAction?: (skillId: number | null) => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onAddMoreSkills: (category: CategoryWithSkills) => void;
@@ -41,20 +42,25 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
-  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null)
+  const [selectedSkill, setSelectedSkill] = useState<SkillWithDevelopmentActions | null>(null)
   const [isCreateCustomDevelopmentActionModalOpen, setIsCreateCustomDevelopmentActionModalOpen] = useState(false)
   const isTablet = useMedia({
     maxWidth: 768,
   })
+
+  const selectedDevelopmentActionIds = _.map(
+    _.filter(selectedSkill?.developmentActions ?? [], 'developmentActionId'),
+    'developmentActionId',
+  )
 
   const handleCancel = () => {
     setIsAddDevelopmentActionModalOpen(false)
     setIsCreateCustomDevelopmentActionModalOpen(false)
   }
 
-  const handleShowAvailableDevelopmentAction = (skill: Skill) => {
+  const handleShowAvailableDevelopmentAction = (skill: SkillWithDevelopmentActions) => {
     setIsAddDevelopmentActionModalOpen(true)
-    onShowAvailableDevelopmentAction?.()
+    onShowAvailableDevelopmentAction?.(skill.id)
     setSelectedSkill(skill)
   }
 
@@ -197,6 +203,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onCancel={handleCancel}
         open={isAddDevelopmentActionModalOpen}
         onShowAIGeneratedDevelopmentActions={() => setIsAIGeneratedDevelopmentActionsModalOpen(true)}
+        selectedDevelopmentActionIds={selectedDevelopmentActionIds}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}

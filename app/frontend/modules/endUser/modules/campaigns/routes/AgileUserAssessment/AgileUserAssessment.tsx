@@ -125,22 +125,22 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
     <>
       <title>{`${assessment.name} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       {remainingCampaignTime > 0 && (
-      <GlintPageHeader>
-        <Col span={16} className="ta-c">
-          <CountdownTimer
-            prefix={(
-              <>
-                {I18n.t('user_assessments.timer_title.campaign')}
-                {': '}
-                <ClockCircleOutlined />
-              </>
+        <GlintPageHeader>
+          <Col span={16} className="ta-c">
+            <CountdownTimer
+              prefix={(
+                <>
+                  {I18n.t('user_assessments.timer_title.campaign')}
+                  {': '}
+                  <ClockCircleOutlined />
+                </>
             )}
             // notificationPoints={notificationDurations}
-            notificationTemplate={notificationMessage}
-            seconds={remainingCampaignTime}
-          />
-        </Col>
-      </GlintPageHeader>
+              notificationTemplate={notificationMessage}
+              seconds={remainingCampaignTime}
+            />
+          </Col>
+        </GlintPageHeader>
       )}
       <SubHeader
         hideBackIcon={isAnonym}

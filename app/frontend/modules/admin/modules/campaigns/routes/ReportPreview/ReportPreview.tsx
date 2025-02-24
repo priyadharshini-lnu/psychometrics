@@ -261,11 +261,11 @@ export default function ReportPreview ({
             </Col>
             {userReport.requireApproval
               && (
-              <Col>
-                <Affix style={{ maxHeight: '100vh' }}>
-                  <Sidebar pages={pages} questions={normalizedReport.entities.questions} />
-                </Affix>
-              </Col>
+                <Col>
+                  <Affix style={{ maxHeight: '100vh' }}>
+                    <Sidebar pages={pages} questions={normalizedReport.entities.questions} />
+                  </Affix>
+                </Col>
               )
             }
           </Row>

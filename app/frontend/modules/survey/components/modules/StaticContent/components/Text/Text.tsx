@@ -32,12 +32,12 @@ const Text: React.FC<Props> = ({
   return (
     <>
       {!allowContentCopy && (
-      <HighlightList
-        highlight={highlight}
-        contentRef={contentRef}
-        selection={selection}
-        updateHighlight={updateHighlight}
-      />
+        <HighlightList
+          highlight={highlight}
+          contentRef={contentRef}
+          selection={selection}
+          updateHighlight={updateHighlight}
+        />
       )}
       <SafeHTML
         className={className}

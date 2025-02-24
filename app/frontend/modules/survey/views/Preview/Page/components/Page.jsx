@@ -114,10 +114,10 @@ class Page extends Component {
         className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}
       >
         {readOnly && (
-        <div className={styles.readOnly}>
-          {I18n.t('assessments.page.read_only',
-            { locale: I18n.uiLocale })}
-        </div>
+          <div className={styles.readOnly}>
+            {I18n.t('assessments.page.read_only',
+              { locale: I18n.uiLocale })}
+          </div>
         )}
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent key={blockId} />}

@@ -13,6 +13,7 @@ class UserIdpPlan < ApplicationRecord
   has_many :communication_email_resources, as: :resource
   has_many :communication_emails, through: :communication_email_resources
   has_one :license_usage, as: :consumer
+  has_many :idp_report_pdfs, dependent: :destroy
 
   delegate :client, to: :campaign
 
@@ -25,12 +26,25 @@ class UserIdpPlan < ApplicationRecord
                if: proc { saved_change_to_status? && (approved? || rejected?) },
                on: [:update]
 
+  alias report_pdfs idp_report_pdfs
+
+  def details_to_log
+    {
+      user_email: user.email,
+      user_name: user.decorate.full_name
+    }
+  end
+
   def campaign_user
     CampaignUser.find_by(campaign_id: campaign_id, user_id: user_id)
   end
 
   def skill_gap_report
     idp_template.report
+  end
+
+  def report_name_for_download
+    "#{user.email}_idp_report_#{user.id}.pdf"
   end
 
   private

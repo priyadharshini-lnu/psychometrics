@@ -21,27 +21,27 @@ const TableHeaderPreview = ({ model, I18n }) => {
         ))}
       </tr>
       {!hideHeaders && (
-      <tr className={styles.answersRow}>
-        <th className={`${styles.header} ${styles.column} ${styles.firstColumn}`} />
-        {_.times(scalePoints, i => (
-          <th key={i} className={cs(styles.column, { invisible: columnsData[i].isHeaderHidden })}>
-            {!columnsData[i].isHeaderHidden
+        <tr className={styles.answersRow}>
+          <th className={`${styles.header} ${styles.column} ${styles.firstColumn}`} />
+          {_.times(scalePoints, i => (
+            <th key={i} className={cs(styles.column, { invisible: columnsData[i].isHeaderHidden })}>
+              {!columnsData[i].isHeaderHidden
             && (
-            <Row wrap={false} className={styles.answers}>
-              {_.times(columnsData[i].answers, j => (
-                <Col span={Math.round(24 / columnsData[i].answers)} className={styles.answer} key={j}>
-                  <span>
-                    {I18n.tQuestion(model, `answersTexts${i + 1}_${j + 1}`, { answer: j, group: i })
+              <Row wrap={false} className={styles.answers}>
+                {_.times(columnsData[i].answers, j => (
+                  <Col span={Math.round(24 / columnsData[i].answers)} className={styles.answer} key={j}>
+                    <span>
+                      {I18n.tQuestion(model, `answersTexts${i + 1}_${j + 1}`, { answer: j, group: i })
                       || moduleConfig.defaultAnswerText(j + 1)}
-                  </span>
-                </Col>
-              ))}
-            </Row>
+                    </span>
+                  </Col>
+                ))}
+              </Row>
             )
           }
-          </th>
-        ))}
-      </tr>
+            </th>
+          ))}
+        </tr>
       )}
     </thead>
   )

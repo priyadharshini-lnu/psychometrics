@@ -245,13 +245,13 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
             </Upload>
           </Form.Item>
           {logo && (
-          <Form.Item
-            name="logoAltText"
-            label={I18n.t('administration.projects.design_settings.alt_text_logo')}
-            rules={getFieldRules('alt_text_logo')}
-          >
-            <Input maxLength={MAX_ALT_TEXT_LENGTH} />
-          </Form.Item>
+            <Form.Item
+              name="logoAltText"
+              label={I18n.t('administration.projects.design_settings.alt_text_logo')}
+              rules={getFieldRules('alt_text_logo')}
+            >
+              <Input maxLength={MAX_ALT_TEXT_LENGTH} />
+            </Form.Item>
           )}
           <Form.Item
             name="background"
@@ -325,13 +325,13 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
             </Upload>
           </Form.Item>
           {secondaryLogo && (
-          <Form.Item
-            name="secondaryLogoAltText"
-            label={I18n.t('administration.projects.design_settings.secondary_logo_alt_text')}
-            rules={getFieldRules('secondary_logo_alt_text')}
-          >
-            <Input maxLength={MAX_ALT_TEXT_LENGTH} />
-          </Form.Item>
+            <Form.Item
+              name="secondaryLogoAltText"
+              label={I18n.t('administration.projects.design_settings.secondary_logo_alt_text')}
+              rules={getFieldRules('secondary_logo_alt_text')}
+            >
+              <Input maxLength={MAX_ALT_TEXT_LENGTH} />
+            </Form.Item>
           )}
           <Form.Item label={I18n.t('administration.projects.design_settings.background_color')}>
             <div className={styles.colorPicker}>

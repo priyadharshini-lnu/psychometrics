@@ -124,14 +124,18 @@ describe UserReports::GeneratePdf do
           low_priority: nil,
           output_file_path: user_report.attachment_storage_path(:pdf_file, report_file_name),
           webhook_message: {
-            user_report_id: user_report.id,
+            record_id: user_report.id,
+            record_type: 'UserReport',
             file_name: report_file_name,
             file_path: user_report.attachment_storage_path(:pdf_file, report_file_name),
-            update_record: true
+            update_record: true,
+            lang: 'en'
           },
           meta: {
+            record_id: user_report.id,
+            record_type: 'UserReport',
             campaign_id: user_report.campaign_id,
-            report_id: user_report.report_id,
+            file_attribute: 'pdf_file',
             user_id: user_report.user_id,
             project_id: user_report.campaign.project_id
           },
@@ -140,7 +144,7 @@ describe UserReports::GeneratePdf do
         )
       )
 
-      described_class.call!(user_report, user)
+      described_class.call!(user_report, user, lang: 'en')
     end
   end
 end

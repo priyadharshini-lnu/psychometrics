@@ -167,16 +167,16 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
       />
       {isSuperAdmin(currentUser)
           && (
-          <Button
-            type="primary"
-            disabled={tableLoading}
-            onClick={() => {
-              openModal('ClientFormModal', { addClient: createResource, types, countries })
-            }}
-          >
-            <PlusOutlined />
-            {I18n.t('frontend.clients.actions.create.create_client')}
-          </Button>
+            <Button
+              type="primary"
+              disabled={tableLoading}
+              onClick={() => {
+                openModal('ClientFormModal', { addClient: createResource, types, countries })
+              }}
+            >
+              <PlusOutlined />
+              {I18n.t('frontend.clients.actions.create.create_client')}
+            </Button>
           )}
     </Space>
   )

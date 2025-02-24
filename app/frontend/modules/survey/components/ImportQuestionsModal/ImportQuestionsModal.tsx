@@ -80,9 +80,9 @@ export const ImportQuestionsModalComponent: React.FC<Props> = ({ assessmentId, c
       <>
         {errors && errors.length > 0
             && (
-            <div className={styles.errorContainer}>
-              <Alert message={<ul className="mb-0">{errors.map(error => <li>{error}</li>)}</ul>} type="error" />
-            </div>
+              <div className={styles.errorContainer}>
+                <Alert message={<ul className="mb-0">{errors.map(error => <li>{error}</li>)}</ul>} type="error" />
+              </div>
             )}
         <div className="mbl" style={{ fontSize: '16px' }}>
           <a

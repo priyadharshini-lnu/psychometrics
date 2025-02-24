@@ -89,17 +89,17 @@ export default class ResponseText extends Component {
         ))}
         {isList && <div>Styling</div>}
         {isList && (
-        <label className="show">
-          <input
-            disabled={showHeader}
-            checked={styled}
-            type="checkbox"
-            onChange={e => this.onChangeCheckbox(e, 'styled')}
-            value={1}
-          />
-          {' '}
-          Styled
-        </label>
+          <label className="show">
+            <input
+              disabled={showHeader}
+              checked={styled}
+              type="checkbox"
+              onChange={e => this.onChangeCheckbox(e, 'styled')}
+              value={1}
+            />
+            {' '}
+            Styled
+          </label>
         )}
         {isList && (
           <label className="show">

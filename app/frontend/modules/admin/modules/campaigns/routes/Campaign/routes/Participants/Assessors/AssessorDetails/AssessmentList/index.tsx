@@ -110,16 +110,16 @@ const AssessmentList: React.FC<Props> = ({
           <div className={styles.newReportButton}>
             <Space>
               {!isEmpty(selectedIds) && assessor && assessor.permissions.removeSubject && (
-              <Button
-                type="default"
-                danger
-                icon={<DeleteOutlined />}
-                onClick={handleBulkDelete}
-                disabled={bulkDeleteInProgress}
-                loading={bulkDeleteInProgress}
-              >
-                <span>Remove</span>
-              </Button>
+                <Button
+                  type="default"
+                  danger
+                  icon={<DeleteOutlined />}
+                  onClick={handleBulkDelete}
+                  disabled={bulkDeleteInProgress}
+                  loading={bulkDeleteInProgress}
+                >
+                  <span>Remove</span>
+                </Button>
               )}
               <Search
                 placeholder="Search"

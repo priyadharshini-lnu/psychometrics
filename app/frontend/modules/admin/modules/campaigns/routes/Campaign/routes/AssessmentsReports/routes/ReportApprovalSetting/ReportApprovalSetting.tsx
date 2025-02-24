@@ -126,12 +126,12 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
         />
         {isSuperAdmin(currentUser)
           && (
-          <Column
-            title={I18n.t('common.column.action')}
-            key="action"
-            render={reportApprovalSettings => (
-              <ConditionalDropdown
-                menu={
+            <Column
+              title={I18n.t('common.column.action')}
+              key="action"
+              render={reportApprovalSettings => (
+                <ConditionalDropdown
+                  menu={
                   getActionsMenuProps({
                     reportApprovalSettings,
                     updateResource,
@@ -140,9 +140,9 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
                     campaignId,
                   })
                 }
-              />
-            )}
-          />
+                />
+              )}
+            />
           )}
       </Table>
       <Pagination

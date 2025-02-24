@@ -26,9 +26,9 @@ export default function ResetCampaignModal ({
       onCancel={() => closeModal('ResetCampaignModal')}
     >
       { isSuperAdmin(currentUser) && (
-      <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>
-        Mark licenses as deactivated
-      </Checkbox>
+        <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>
+          Mark licenses as deactivated
+        </Checkbox>
       )
       }
     </AnswerableConfirmationModal>

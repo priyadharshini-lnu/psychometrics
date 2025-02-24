@@ -166,11 +166,11 @@ const SheetComponent: FC<Props> = ({
       <Row justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
         <Col>
           {isSheetUploaded && (
-          <CountDisplay
-            selectedCount={selectedRowKeys.length}
-            totalCount={total}
-            isLoading={isListLoading}
-          />
+            <CountDisplay
+              selectedCount={selectedRowKeys.length}
+              totalCount={total}
+              isLoading={isListLoading}
+            />
           )}
         </Col>
         <Col>

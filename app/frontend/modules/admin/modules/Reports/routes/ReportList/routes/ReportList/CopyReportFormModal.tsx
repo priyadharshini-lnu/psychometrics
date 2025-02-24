@@ -5,15 +5,23 @@ import {
   Spin,
 } from 'antd'
 
+import { connect } from 'react-redux'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 const { I18n } = window
 
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+)
 
 type OptionsType = {
   id: string
@@ -23,6 +31,7 @@ type OptionsType = {
 interface Props {
   report: Report
   close(): void
+  currentUser
 }
 
 type RequestFileds = {
@@ -30,7 +39,7 @@ type RequestFileds = {
 }
 
 const CopyReportFormModal: React.FC<Props> = ({
-  report, close,
+  report, close, currentUser,
 }) => {
   const { message } = App.useApp()
   const { resource } = useResourceContext<Report>()
@@ -95,7 +104,7 @@ const CopyReportFormModal: React.FC<Props> = ({
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              <Select.Option>TTE</Select.Option>
+              {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}
@@ -107,4 +116,4 @@ const CopyReportFormModal: React.FC<Props> = ({
   )
 }
 
-export default CopyReportFormModal
+export default connecter(CopyReportFormModal)

@@ -232,6 +232,12 @@ Rails.application.routes.draw do
             patch :toggle_main_report
           end
         end
+        resources :user_idp_reports do
+          member do
+            get :pdf_preview
+            get :download
+          end
+        end
         resources :user_reports do
           member do
             get :pdf_preview
@@ -1404,7 +1410,7 @@ as: :simulation_progress_notification
           jsonapi_resources :development_actions, concerns: :taggable do
             collection do
               post :import
-              get :export
+              post :export
             end
           end
 

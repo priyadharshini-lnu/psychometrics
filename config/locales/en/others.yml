@@ -740,6 +740,7 @@ en:
         export_admin_with_permissions: Export Admin With Permissions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_development_actions: Export Development Actions
         export_factor_translations: Export Factor Translations
         export_occupations: Occupations Export
         export_report_data: Export report data
@@ -752,6 +753,7 @@ en:
         import_assessors: Import Assessors
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
+        import_development_actions: Import Development Actions
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_question_translations: Import Question Translations
@@ -1931,6 +1933,7 @@ en:
       campaign_factor:
         code_already_exists: A factor with the same code already exists.
         invalid_lua_name: should be valid lua variable name
+        limit_exceeded: You have reached the maximum limit of %{limit} campaign factors.
         name_already_exists: A factor with the same name already exists.
         rank_not_allowed: Only factors with an output type of numeric can be ranked.
       campaign_factor_group:
@@ -2303,15 +2306,15 @@ en:
       generate_more: Generate More
       generating_development_actions: Generating development actions...
       heading: Development Actions
-      learning_from_the_others: Learning from the Others
+      learning_from_others: Learning from others
       marathon: Marathon
       no_development_actions: No development actions
-      on_the_job: On the Job
+      on_the_job: On the job
       other: Other
       private: Private
       skill: Skill
       sprint: Sprint
-      structured_learning: Structured Learning
+      structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
     direct_report_details: Direct Report Details
@@ -2344,11 +2347,13 @@ en:
         area_of_development: Area of Development
         behavioural: Behavioural
         categories: Categories
-        learning_on_job: On the Job (%{count})
-        learning_others: Learning from the Others (%{count})
-        learning_structured: Structured Learning (%{count})
+        learning_on_job: On the job (%{count})
+        learning_others: Learning from others (%{count})
+        learning_structured: Structured learning (%{count})
         other: Other
         technical: Technical
+    pdf:
+      header: Hello
     profile_details: Profile Details
     skill_gap_report: Skill Gap Report
     status: Status
@@ -3571,6 +3576,10 @@ en:
     modals:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
+        content_with_counts:
+          both: 'DANGER: Report %{userReportName} has %{commentsCount} comment(s) and %{editsCount} edit(s). If you remove the report from the user, these comment(s) and edit(s) would be lost.'
+          comments: 'DANGER: Report %{userReportName} has %{commentsCount} comment(s). If you remove the report from the user, these comment(s) would be lost.'
+          edits: 'DANGER: Report %{userReportName} has %{editsCount} edit(s). If you remove the report from the user, these edit(s) would be lost.'
         successfully: "%{userReportName} report was removed successfully"
       remove_file:
         content: Are you sure you want to remove file?

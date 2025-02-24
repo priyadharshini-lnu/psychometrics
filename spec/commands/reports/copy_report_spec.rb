@@ -4,10 +4,12 @@ require 'rails_helper'
 
 describe Reports::CopyReport do
   context '.call' do
+    let(:client) { create(:tenancy) }
+
     let(:report) do
       filters = create_list(:filter, 2)
 
-      report = build(:report)
+      report = build(:report, owner_id: client.id)
       pages = build_list(:page, 2)
       module1 = build(:module)
       module2 = build(:module, props: { filters: [filters.first.id, filters.last.id] })
@@ -30,7 +32,7 @@ describe Reports::CopyReport do
       report
     end
 
-    let(:user) { create(:user) }
+    let!(:user) { create(:client_admin, client: client) }
 
     before do
       occupation = create(:occupation)

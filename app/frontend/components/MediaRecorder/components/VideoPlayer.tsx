@@ -58,9 +58,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         onPlay={onPlay}
       />
       {!permissionGranted && !mediaUrl && (
-      <div className={styles.overlay}>
-        <p>{I18n.t('checking_wizard.video_check.camera_preview')}</p>
-      </div>
+        <div className={styles.overlay}>
+          <p>{I18n.t('checking_wizard.video_check.camera_preview')}</p>
+        </div>
       )}
       {status === 'recording' ? (
         <Flex justify="center" align="center" className={styles.recordingIndicator}>

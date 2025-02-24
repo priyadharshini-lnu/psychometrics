@@ -132,9 +132,9 @@ const FormFields: React.FC<{ form: FormInstance, showSendEmailOption: boolean}> 
     </Form.Item>
 
     {showSendEmailOption && (
-    <Form.Item name="sendPasswordEmail" valuePropName="checked">
-      <Checkbox>{I18n.t('reset_password_modal.fields.send_password_email')}</Checkbox>
-    </Form.Item>
+      <Form.Item name="sendPasswordEmail" valuePropName="checked">
+        <Checkbox>{I18n.t('reset_password_modal.fields.send_password_email')}</Checkbox>
+      </Form.Item>
     )}
   </>
 )

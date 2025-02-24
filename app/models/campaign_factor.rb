@@ -3,6 +3,8 @@
 class CampaignFactor < ApplicationRecord
   audited
 
+  MAX_CAMPAIGN_FACTORS = 300
+
   belongs_to :campaign_factor_group
   belongs_to :campaign
   belongs_to :factor

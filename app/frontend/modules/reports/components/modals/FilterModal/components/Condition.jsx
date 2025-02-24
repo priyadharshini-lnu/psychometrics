@@ -98,10 +98,10 @@ class Condition extends Component {
         {this.renderConditionTypeSelect()}
         {this.renderConditionType()}
         {false && (
-        <div className={styles.btns}>
-          {this.renderRemoveButton()}
-          <span onClick={this.add} className={`btn fa fa-plus-circle ${styles.btn}`} style={{ color: 'green' }} />
-        </div>
+          <div className={styles.btns}>
+            {this.renderRemoveButton()}
+            <span onClick={this.add} className={`btn fa fa-plus-circle ${styles.btn}`} style={{ color: 'green' }} />
+          </div>
         )}
       </div>
     )

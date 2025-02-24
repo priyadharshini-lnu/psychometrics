@@ -118,13 +118,13 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
             handleContentChange={(value) => { updateInstructions(value, leftLocale) }}
           />
           {rightLocale && (
-          <div className={styles.comparisonBody}>
-            <SafeHTML
-              html={selectedRightLocale ? selectedRightLocale.instructions : ''}
-              config="adminRichText"
-              className="m16"
-            />
-          </div>
+            <div className={styles.comparisonBody}>
+              <SafeHTML
+                html={selectedRightLocale ? selectedRightLocale.instructions : ''}
+                config="adminRichText"
+                className="m16"
+              />
+            </div>
           )}
         </div>
         <Button

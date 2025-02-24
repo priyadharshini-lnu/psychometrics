@@ -1,9 +1,11 @@
 import {
-  useContext, useState, FC, ReactNode,
+  useContext, useState, FC, ReactNode, useMemo,
 } from 'react'
 import {
   Row, Col, Space, Modal, Button,
 } from 'antd'
+import _ from 'lodash'
+import { useLocation } from 'react-router-dom'
 import { ButtonWithArrow, BoxWithShadow, MediaQueryContext } from '~/glint'
 import { SelectedSkillsCard } from '~/components/IdpShared/InitialSteps/SelectedSkillsCard'
 import { SkillsGroupCard } from '~/components/IdpShared/InitialSteps/SkillsGroupCard'
@@ -29,10 +31,17 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const [openSelectedSkillsModal, setOpenSelectedSkillsModal] = useState(false)
+  const location = useLocation()
+  const isStepsRoute = location.pathname.includes('idp/steps')
 
   // redux stores user_idp_skills which doesn't have same id as of skills resource
   // Using name instead of id as name is also unique
   const selectedSkillsNames = selectedSkills.map(({ name }) => name)
+  const initialSelectedSkillsNames = useMemo(() => selectedSkillsNames, [])
+
+  const isSelectedSkillsDirty = !_.isEqual(initialSelectedSkillsNames.sort(), selectedSkillsNames.sort())
+
+  const disableAddSkillButton = isStepsRoute ? !selectedSkillsNames.length : !isSelectedSkillsDirty
 
   return (
     <>
@@ -85,6 +94,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
             type="primary"
             onClick={() => onFinishAddSkill()}
             loading={isSubmitting}
+            disabled={disableAddSkillButton}
           />
         </Col>
       </Row>

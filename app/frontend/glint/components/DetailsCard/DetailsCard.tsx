@@ -79,19 +79,19 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   return (
     <Card className={cs({ [styles.detailsCard]: true, [styles.withFooter]: footer, [`${className}`]: className })}>
       {showStatusAtTop && (
-      <Row>
-        <Col xs={18}>{titleElement}</Col>
-        <Col xs={6} className="ta-e">
-          {status}
-        </Col>
-      </Row>
+        <Row>
+          <Col xs={18}>{titleElement}</Col>
+          <Col xs={6} className="ta-e">
+            {status}
+          </Col>
+        </Row>
       )}
       <Space direction="vertical">
         {!showStatusAtTop && (
-        <Row>
-          <Col span={24}>{titleElement}</Col>
-          <Col span={24}>{status}</Col>
-        </Row>
+          <Row>
+            <Col span={24}>{titleElement}</Col>
+            <Col span={24}>{status}</Col>
+          </Row>
         )}
         <Row align="middle">
           {subtitle}
@@ -103,10 +103,10 @@ export const DetailsCard: FC<DetailsCardProps> = ({
       <Row className={styles.cardFooter}>
         <Col lg={progressBarSpanLg} md={8} xs={progressBarSpanXs}>
           {progressPercentage !== undefined && (
-          <Progress
-            aria-label={progressLabelAria}
-            percent={progressPercentage}
-          />
+            <Progress
+              aria-label={progressLabelAria}
+              percent={progressPercentage}
+            />
           )}
         </Col>
         {buttonText && (
@@ -118,21 +118,21 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           >
             <Space>
               {secondaryBtnText && (
-              <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
-                <ScrollToViewOnFocusButton
-                  id={secondaryBtnId}
-                  size="small"
-                  type="primary"
-                  disabled={actionDisabled}
-                  ghost
-                  onClick={onSecondaryBtnClick}
-                  className={styles.actionButton}
-                  aria-labelledby={`${secondaryBtnId} ${titleId}`}
-                >
-                  {secondaryBtnText}
-                  <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
-                </ScrollToViewOnFocusButton>
-              </ButtonWrapper>
+                <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
+                  <ScrollToViewOnFocusButton
+                    id={secondaryBtnId}
+                    size="small"
+                    type="primary"
+                    disabled={actionDisabled}
+                    ghost
+                    onClick={onSecondaryBtnClick}
+                    className={styles.actionButton}
+                    aria-labelledby={`${secondaryBtnId} ${titleId}`}
+                  >
+                    {secondaryBtnText}
+                    <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
+                  </ScrollToViewOnFocusButton>
+                </ButtonWrapper>
               )}
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
                 <ScrollToViewOnFocusButton

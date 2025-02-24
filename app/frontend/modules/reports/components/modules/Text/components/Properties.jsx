@@ -248,58 +248,58 @@ const Properties = ({
         />
         {model.props.sourceType === 'ConditionalText'
             && (
-            <div
-              style={{ width: '100%' }}
-              onClick={openConditionModal}
-              className="btn btn-default"
-            >
-              Manage condition
-            </div>
+              <div
+                style={{ width: '100%' }}
+                onClick={openConditionModal}
+                className="btn btn-default"
+              >
+                Manage condition
+              </div>
             )}
         {model.props.sourceType === 'ConditionalFactorOccupationText'
             && (
-            <div
-              style={{ width: '100%' }}
-              onClick={openConditionalFactorOccupationModal}
-              className="btn btn-default"
-            >
-              Manage condition
-            </div>
+              <div
+                style={{ width: '100%' }}
+                onClick={openConditionalFactorOccupationModal}
+                className="btn btn-default"
+              >
+                Manage condition
+              </div>
             )}
         {renderResponseTextForm()}
         {renderResultTextForm()}
         {
           model.props.sourceType === 'PipedText'
           && (
-          <div style={{ width: '100%' }}>
-            <div>
-              {'{{first_name}}'}
-              {' '}
-              - First Name
+            <div style={{ width: '100%' }}>
+              <div>
+                {'{{first_name}}'}
+                {' '}
+                - First Name
+              </div>
+              <div>
+                {'{{last_name}}'}
+                {' '}
+                - Last Name
+              </div>
+              <div>
+                {'{{completed_at}}'}
+                {' '}
+                - Date of completion assessment
+              </div>
+              <div>
+                {'{{norm_used}}'}
+                {' '}
+                - Norm Used
+              </div>
+              <div>
+                {'{{locale_name}}'}
+                {' '}
+                - Locale
+              </div>
+              <br />
+              <em>{'Note: {{}} Must only be used with available Piped Text Options'}</em>
             </div>
-            <div>
-              {'{{last_name}}'}
-              {' '}
-              - Last Name
-            </div>
-            <div>
-              {'{{completed_at}}'}
-              {' '}
-              - Date of completion assessment
-            </div>
-            <div>
-              {'{{norm_used}}'}
-              {' '}
-              - Norm Used
-            </div>
-            <div>
-              {'{{locale_name}}'}
-              {' '}
-              - Locale
-            </div>
-            <br />
-            <em>{'Note: {{}} Must only be used with available Piped Text Options'}</em>
-          </div>
           )
         }
       </div>
@@ -368,13 +368,13 @@ const Properties = ({
             onChange={changeBg}
           />
           {backgroundColor && (
-          <Button
-            onClick={() => removeStyle('backgroundColor')}
-            size="small"
-            type="link"
-            danger
-            icon={<DeleteOutlined />}
-          />
+            <Button
+              onClick={() => removeStyle('backgroundColor')}
+              size="small"
+              type="link"
+              danger
+              icon={<DeleteOutlined />}
+            />
           )}
         </Space.Compact>
 
@@ -388,13 +388,13 @@ const Properties = ({
             onChange={changeBorder}
           />
           {borderColor && (
-          <Button
-            onClick={() => removeStyle('borderColor')}
-            size="small"
-            type="link"
-            danger
-            icon={<DeleteOutlined />}
-          />
+            <Button
+              onClick={() => removeStyle('borderColor')}
+              size="small"
+              type="link"
+              danger
+              icon={<DeleteOutlined />}
+            />
           )}
         </Space.Compact>
 
@@ -405,13 +405,13 @@ const Properties = ({
         <Space>
           <ChoicesInput value={borderRadius || 0} onChange={changeBorderRadius} maxValue={1000} />
           {borderRadius !== undefined && (
-          <Button
-            onClick={() => removeStyle('borderRadius')}
-            size="small"
-            type="link"
-            danger
-            icon={<DeleteOutlined />}
-          />
+            <Button
+              onClick={() => removeStyle('borderRadius')}
+              size="small"
+              type="link"
+              danger
+              icon={<DeleteOutlined />}
+            />
           )}
         </Space>
       </div>

@@ -722,6 +722,7 @@ en:
         factor_not_in_assessment_dimension: Factor id '%{factor_id}' not part of assessment's dimension
         invalid_lua_name: The code '%{code}' should be a valid lua variable name
         invalid_name_format: The name '%{name}' should match the expected format.
+        max_limit_reached: No more than %{count} campaign factors can be created.
         missing_assessment_id: Assessment id is required.
         missing_assessment_score_type: Assessment score type is required.
         missing_factor_id: Factor id is required.
@@ -1567,6 +1568,12 @@ en:
         successfully: Development Action "%{name}" was deleted successfully.
       edit:
         header: Edit Development Action
+      export:
+        details: File Details
+        success_msg: Exporting development actions in progress. Please check the status in the notifications.
+        title: Export
+      export_development_actions: Export Development Actions Based on Project
+      export_global_development_actions: Export Global Development Actions
       form:
         category: Category
         course_image: Course Image
@@ -1583,6 +1590,11 @@ en:
         title: Development Action
         upload: Upload
       heading: Development Actions
+      import:
+        download_example_csv: Download Example csv
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+        title: Development Actions import
+      import_development_actions: Import
       learning_styles:
         learning_from_others: Learning from Others [20]
         on_the_job: On the Job [70]
@@ -2839,6 +2851,7 @@ en:
         resources: Resources
         subjects: Subjects
     scoring:
+      action_prohibited: Action Prohibited
       active: Active
       actual_average: Actual Average
       add_factor: Add Factor
@@ -2848,6 +2861,7 @@ en:
       average: Average
       campaign_scoring_variables: Campaign Scoring Variables
       code: Code
+      desc: You have exceeded the maximum limit of %{n} campaign factors. Additional factors cannot be added. Please review and manage your existing factors before proceeding.
       description: Description
       dimension: Dimension
       edit_factor: Edit Factor
@@ -3061,7 +3075,6 @@ en:
         title: Skills import
       import_skills: Import Skills
       skills: Skills
-      tools: Tools
     sms_histories:
       columns:
         first_name: First Name

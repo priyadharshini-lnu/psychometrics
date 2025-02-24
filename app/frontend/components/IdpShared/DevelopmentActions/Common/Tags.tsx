@@ -1,7 +1,7 @@
 import { Tag } from 'antd'
 
 type Props = {
-  type: 'on_the_job' | 'structured_learning' | 'learning_from_the_others';
+  type: 'on_the_job' | 'structured_learning' | 'learning_from_others';
 }
 
 const { I18n } = window
@@ -26,7 +26,7 @@ const TagsData = {
     text: I18n.t('idp.development_actions.sprint'),
     duration: 20,
   },
-  learning_from_the_others: {
+  learning_from_others: {
     color: 'blue',
     text: I18n.t('idp.development_actions.other'),
     duration: 10,

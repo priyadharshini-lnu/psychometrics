@@ -48,6 +48,15 @@ module Api
             key.failure(:filled?)
           end
         end
+
+        rule(:data) do
+          campaign_id = _context[:params][:campaign_id]
+          existing_factors_count = ::CampaignFactor.where(campaign_id: campaign_id).count
+
+          if existing_factors_count >= ::CampaignFactor::MAX_CAMPAIGN_FACTORS
+            key(:data).failure(:limit_exceeded, limit: ::CampaignFactor::MAX_CAMPAIGN_FACTORS)
+          end
+        end
       end
     end
   end

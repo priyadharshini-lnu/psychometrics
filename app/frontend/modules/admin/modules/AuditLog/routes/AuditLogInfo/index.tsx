@@ -70,29 +70,29 @@ const AuditLogList: React.FC<Props> = ({
             {record.user ? `${record.user.fullName} (${record.user.email})` : record.userId}
           </Descriptions.Item>
           {record.requestUuid && (
-          <Descriptions.Item label={I18n.t('administration.audit_log.request_id')}>
-            {record.requestUuid}
-          </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('administration.audit_log.request_id')}>
+              {record.requestUuid}
+            </Descriptions.Item>
           )}
           {record.outcome && (
-          <Descriptions.Item label={I18n.t('administration.audit_log.outcome')}>
-            {record.outcome}
-          </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('administration.audit_log.outcome')}>
+              {record.outcome}
+            </Descriptions.Item>
           )}
           {record.failureReason && (
-          <Descriptions.Item label={I18n.t('administration.audit_log.failure_reason')}>
-            {record.failureReason}
-          </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('administration.audit_log.failure_reason')}>
+              {record.failureReason}
+            </Descriptions.Item>
           )}
           {record.client && (
-          <Descriptions.Item label="Client">
-            <a href={`/admin/clients/${record.client.id}/projects`}>
-              {record.client.id}
-              ,
-              {' '}
-              {record.client.name}
-            </a>
-          </Descriptions.Item>
+            <Descriptions.Item label="Client">
+              <a href={`/admin/clients/${record.client.id}/projects`}>
+                {record.client.id}
+                ,
+                {' '}
+                {record.client.name}
+              </a>
+            </Descriptions.Item>
           )}
           <Descriptions.Item label={I18n.t('administration.audit_log.interface')}>
             {record.interface}
@@ -104,24 +104,24 @@ const AuditLogList: React.FC<Props> = ({
             {record.clientIp}
           </Descriptions.Item>
           {record.project && (
-          <Descriptions.Item label={I18n.t('administration.audit_log.project')}>
-            <a href={`/admin/projects/${record.project.id}/new_campaigns`}>
-              {record.project.id}
-              ,
-              {' '}
-              {record.project.name}
+            <Descriptions.Item label={I18n.t('administration.audit_log.project')}>
+              <a href={`/admin/projects/${record.project.id}/new_campaigns`}>
+                {record.project.id}
+                ,
+                {' '}
+                {record.project.name}
 
-            </a>
-          </Descriptions.Item>
+              </a>
+            </Descriptions.Item>
           )}
           {record.campaign && (
-          <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
-            <a
-              href={`/admin/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
-            >
-              {record.campaign.name}
-            </a>
-          </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
+              <a
+                href={`/admin/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
+              >
+                {record.campaign.name}
+              </a>
+            </Descriptions.Item>
           )}
           <Descriptions.Item label={I18n.t('administration.audit_log.payload')}>
             <CodeMirror

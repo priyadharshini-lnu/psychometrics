@@ -561,6 +561,9 @@ ar:
         requested_rescheduling: لقد تم طلب إعادة الجدولة
         requested_rescheduling_rejected: لقد تم رفض طلب إعادة الجدولة
     'yes': نعم
+  idp:
+    pdf:
+      header: مرحبًا
   mailer:
     magic_link:
       body:

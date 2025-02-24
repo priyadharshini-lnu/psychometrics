@@ -38,15 +38,19 @@ class QuestionCondition extends Component {
       <div className={styles.answers}>
         {condition.subject
           && (
-          <select
-            className="form-control"
-            value={condition.answer || ''}
-            placeholder="Select Answer..."
-            onChange={e => this.changeAnswer(answers, e)}
-          >
-            <option />
-            {_.map(answers, (q, i) => <option key={i} value={q.value}>{q.label.replace(/(<([^>]+)>)/ig, '')}</option>)}
-          </select>
+            <select
+              className="form-control"
+              value={condition.answer || ''}
+              placeholder="Select Answer..."
+              onChange={e => this.changeAnswer(answers, e)}
+            >
+              <option />
+              {_.map(answers, (q, i) => (
+                <option key={i} value={q.value}>
+                  {q.label.replace(/(<([^>]+)>)/ig, '')}
+                </option>
+              ))}
+            </select>
           )}
       </div>
     )

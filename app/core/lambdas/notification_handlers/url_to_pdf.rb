@@ -3,15 +3,17 @@
 module Lambdas
   module NotificationHandlers
     class UrlToPdf < Base
-      def call
-        user_report = UserReport.find(data['user_report_id'])
+      ALLOWED_TYPES = %w[UserReport UserIdpPlan].freeze
+
+      def call # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+        record = find_record
         if data['status'] == 'failed'
           admin_job&.update!(status: :failed, error_messages: [data['error']])
           return broadcast :ok
         end
 
         if data['update_record']
-          user_report.pdf_file&.purge_later
+          record.pdf_file&.purge_later if record.respond_to?(:pdf_file)
           blob = ActiveStorage::Blob.create_before_direct_upload!(
             key: data['file_path'],
             filename: data['file_name'],
@@ -21,43 +23,52 @@ module Lambdas
             service_name: Settings.storage.private_storage_service
           )
 
-          ActiveStorage::Attachment.create!(
-            record: user_report,
-            blob: blob,
-            name: 'pdf_file'
+          if record.respond_to?(:pdf_file)
+            ActiveStorage::Attachment.create!(
+              record: record,
+              blob: blob,
+              name: data['file_attribute'] || 'pdf_file'
+            )
+            record.status = :prepared
+            record.save!
+          end
+
+          reprot_pdf = record.report_pdfs.find_or_create_by!(
+            locale: data['lang'] || I18n.locale
           )
 
-          user_report.status = :prepared
-          user_report.save!
-
-          user_report_pdf = user_report.user_report_pdfs.find_or_create_by!(
-            locale: user_report.effective_default_language
-          )
-
-          user_report_pdf.pdf_file&.purge_later
+          reprot_pdf.pdf_file&.purge_later
 
           pdf_file_attachment = ActiveStorage::Attachment.new(
-            record_id: user_report_pdf.id,
-            record_type: 'UserReportPdf',
+            record_id: reprot_pdf.id,
+            record_type: reprot_pdf.class.name,
             name: 'pdf_file'
           )
 
           pdf_file_attachment.blob_id = blob.id
 
-          user_report_pdf.pdf_file_attachment = pdf_file_attachment
-          user_report_pdf.set_generated_timestamps
+          reprot_pdf.pdf_file_attachment = pdf_file_attachment
+          reprot_pdf.set_generated_timestamps
 
-          user_report_pdf.save!
+          reprot_pdf.save!
         end
         update_admin_job_progress(data)
-        notify_user(data, user_report) if data['notify_user_id']
+        notify_user(data, record) if data['notify_user_id']
 
         broadcast :ok
       end
 
       private
 
-      def notify_user(data, user_report)
+      def find_record
+        unless ALLOWED_TYPES.include?(data['record_type'])
+          return admin_job&.update!(status: :failed, error_messages: ['Invalid record type'])
+        end
+
+        data['record_type'].constantize.find(data['record_id'])
+      end
+
+      def notify_user(data, record)
         blob = ActiveStorage::Blob.new(
           key: data['file_path'],
           filename: data['file_name'],
@@ -75,7 +86,7 @@ module Lambdas
             description: I18n.t(
               'jobs.threesixty.reports.download.description',
               url: blob.url(
-                expires_in: 10.minutes.to_i, disposition: 'attachment', filename: user_report.report_name_for_download
+                expires_in: 10.minutes.to_i, disposition: 'attachment', filename: record.report_name_for_download
               )
             )
           }

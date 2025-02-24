@@ -21,13 +21,13 @@ const Header: React.FC<Props> = ({
     <div className="display-flex justify-content-space-between">
       <div className={styles.title}>{I18n().tQuestion(model, 'title', {})}</div>
       {!readOnly && view === 'view' && (
-      <Button
-        type="primary"
-        onClick={() => setView(ViewEnum.Edit)}
-        icon={<EditOutlined />}
-      >
-        {I18n().t('threesixty.question.email_type.edit')}
-      </Button>
+        <Button
+          type="primary"
+          onClick={() => setView(ViewEnum.Edit)}
+          icon={<EditOutlined />}
+        >
+          {I18n().t('threesixty.question.email_type.edit')}
+        </Button>
       )}
     </div>
     <div className={styles.titleDescription}>{I18n().tQuestion(model, 'titleDescription', {})}</div>

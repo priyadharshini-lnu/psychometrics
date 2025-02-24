@@ -124,30 +124,30 @@ const AddAssessmentModal: React.FC<Props> = ({
             ) : null}
           </Form.Item>
           {!leadSelected && (
-          <Form.Item name="assessmentId" label={localI18n('assessment')} rules={[{ required: true }]}>
-            <Select optionFilterProp="children" showSearch>
-              {assessments.map(a => (
-                <Select.Option key={a.id} value={a.id}>
-                  {a.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
+            <Form.Item name="assessmentId" label={localI18n('assessment')} rules={[{ required: true }]}>
+              <Select optionFilterProp="children" showSearch>
+                {assessments.map(a => (
+                  <Select.Option key={a.id} value={a.id}>
+                    {a.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
           )}
           {leadSelected && leadAssessment && (
-          <Form.Item name="assessmentId" label={localI18n('assessment')} rules={[{ required: true }]}>
-            <Select
-              disabled
-              mode="multiple"
-            >
-              <Select.Option
-                key={leadAssessment.name}
-                value={leadAssessment.id}
+            <Form.Item name="assessmentId" label={localI18n('assessment')} rules={[{ required: true }]}>
+              <Select
+                disabled
+                mode="multiple"
               >
-                {leadAssessment.name}
-              </Select.Option>
-            </Select>
-          </Form.Item>
+                <Select.Option
+                  key={leadAssessment.name}
+                  value={leadAssessment.id}
+                >
+                  {leadAssessment.name}
+                </Select.Option>
+              </Select>
+            </Form.Item>
           )}
         </>
       )}

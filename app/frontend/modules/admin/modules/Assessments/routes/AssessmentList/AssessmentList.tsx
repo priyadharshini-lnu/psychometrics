@@ -48,10 +48,10 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
           />
         )}
         {!closed && (
-        <AssessmentFormModal close={() => {
-          closeModal(true)
-        }}
-        />
+          <AssessmentFormModal close={() => {
+            closeModal(true)
+          }}
+          />
         )}
       </Resource>
     </>

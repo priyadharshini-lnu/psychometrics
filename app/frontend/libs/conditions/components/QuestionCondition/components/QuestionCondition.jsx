@@ -98,14 +98,18 @@ class QuestionCondition extends Component {
       <div className={styles.answers}>
         {condition.subject
           && (
-          <select
-            className="form-control"
-            value={condition.answer || ''}
-            onChange={this.changeAnswer.bind(this, answers)}
-          >
-            <option />
-            {_.map(answers, (q, i) => <option key={i} value={q.value}>{q.label.replace(/(<([^>]+)>)/ig, '')}</option>)}
-          </select>
+            <select
+              className="form-control"
+              value={condition.answer || ''}
+              onChange={this.changeAnswer.bind(this, answers)}
+            >
+              <option />
+              {_.map(answers, (q, i) => (
+                <option key={i} value={q.value}>
+                  {q.label.replace(/(<([^>]+)>)/ig, '')}
+                </option>
+              ))}
+            </select>
           )}
       </div>
     )

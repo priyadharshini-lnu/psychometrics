@@ -103,12 +103,12 @@ const ExternalReportPreview: FC<Props> = ({
                   <Col>
                     {userReport.pdfUrl
                         && (
-                        <Suspense fallback={<Spin />}>
-                          <PDFViewer
-                            fileUrl={userReport.pdfUrl}
-                            onLoadingComplete={() => setPdfLoadingComplete(true)}
-                          />
-                        </Suspense>
+                          <Suspense fallback={<Spin />}>
+                            <PDFViewer
+                              fileUrl={userReport.pdfUrl}
+                              onLoadingComplete={() => setPdfLoadingComplete(true)}
+                            />
+                          </Suspense>
                         )}
                   </Col>
                 </Row>
