@@ -73,7 +73,12 @@ export const Idp: React.FC<{}> = () => {
         setSelectedIdpTemplate(null)
         getActiveIdpTemplate()
       }).catch((error) => {
-        message.error(error.userId.title)
+        if (error.base) {
+          message.error(error.base[0]?.title)
+        }
+        if (error.userId) {
+          message.error(error.userId?.title)
+        }
       })
     }
   }
