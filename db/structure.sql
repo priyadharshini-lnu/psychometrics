@@ -3972,6 +3972,42 @@ ALTER SEQUENCE public.pearson_user_assessments_id_seq OWNED BY public.pearson_us
 
 
 --
+-- Name: platform_exceptions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.platform_exceptions (
+    id bigint NOT NULL,
+    identifier character varying NOT NULL,
+    consecutive_failure_count integer DEFAULT 0 NOT NULL,
+    resource_type character varying,
+    resource_id bigint,
+    last_notified_at timestamp(6) without time zone,
+    meta jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: platform_exceptions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.platform_exceptions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: platform_exceptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.platform_exceptions_id_seq OWNED BY public.platform_exceptions.id;
+
+
+--
 -- Name: power_bi_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7922,6 +7958,13 @@ ALTER TABLE ONLY public.pearson_user_assessments ALTER COLUMN id SET DEFAULT nex
 
 
 --
+-- Name: platform_exceptions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.platform_exceptions ALTER COLUMN id SET DEFAULT nextval('public.platform_exceptions_id_seq'::regclass);
+
+
+--
 -- Name: power_bi_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9349,6 +9392,14 @@ ALTER TABLE ONLY public.pearson_assessments
 
 ALTER TABLE ONLY public.pearson_user_assessments
     ADD CONSTRAINT pearson_user_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: platform_exceptions platform_exceptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.platform_exceptions
+    ADD CONSTRAINT platform_exceptions_pkey PRIMARY KEY (id);
 
 
 --
@@ -11694,6 +11745,20 @@ CREATE INDEX index_password_archivable ON public.old_passwords USING btree (pass
 --
 
 CREATE INDEX index_pearson_user_assessments_on_user_assessment_id ON public.pearson_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_platform_exceptions_on_identifier; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_platform_exceptions_on_identifier ON public.platform_exceptions USING btree (identifier);
+
+
+--
+-- Name: index_platform_exceptions_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_platform_exceptions_on_resource ON public.platform_exceptions USING btree (resource_type, resource_id);
 
 
 --
@@ -15378,6 +15443,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250110050233'),
+('20250107095005'),
 ('20250221102354'),
 ('20250213113601'),
 ('20250210121434'),

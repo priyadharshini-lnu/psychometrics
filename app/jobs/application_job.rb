@@ -2,6 +2,7 @@
 
 class ApplicationJob < ActiveJob::Base
   include JobTracking
+  include ControlException
 
   def self.discard_on(exception)
     rescue_from exception do |error|

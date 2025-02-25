@@ -18,6 +18,7 @@ port: 3030
 protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
+platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 generative_ai_service: <%= ENV.fetch('GENERATIVE_AI_SERVICE', 'azure_openai') %>
 assigns:
   mindmill_prefix: <%= ENV["MINDMILL_PREFIX"] || 'TTESTAG' %> # set 'TTEPROD' in production environment variables
