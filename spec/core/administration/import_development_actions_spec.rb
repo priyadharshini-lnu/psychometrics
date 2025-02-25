@@ -94,6 +94,18 @@ RSpec.describe Administration::ImportDevelopmentActions do
     end
 
     context 'with valid data including image' do
+      let(:expected_development_action) do
+        {
+          name: 'Leadership Workshop',
+          description: 'Attend workshop',
+          learning_style: 'structured_learning',
+          course_url: 'https://example.com/course',
+          course_start_date: Date.new(2025, 1, 1),
+          course_end_date: Date.new(2025, 12, 31),
+          category: 'course'
+        }
+      end
+
       before do
         stub_request(:get, file_url).
           to_return(
@@ -114,19 +126,12 @@ RSpec.describe Administration::ImportDevelopmentActions do
       end
 
       it 'imports development action with course details and image' do
-        expect { described_class.new(file_url).call }.not_to raise_error
+        expect { described_class.new(file_url).call }.to change(DevelopmentAction, :count).by(1)
 
         development_action = DevelopmentAction.last
-        expect(development_action).to be_present
-        expect(development_action.name).to eq('Leadership Workshop')
-        expect(development_action.description).to eq('Attend workshop')
-        expect(development_action.learning_style).to eq('structured_learning')
-        expect(development_action.course_url).to eq('https://example.com/course')
-        expect(development_action.course_start_date).to eq(Date.new(2025, 1, 1))
-        expect(development_action.course_end_date).to eq(Date.new(2025, 12, 31))
+        expect(development_action).to have_attributes(expected_development_action)
         expect(development_action.image).to be_attached
         expect(development_action.skills).to include(global_skill)
-        expect(development_action.category).to eq('course')
       end
     end
 

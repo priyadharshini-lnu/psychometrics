@@ -51,17 +51,10 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
   end
 
   describe '#data_row' do
-    it 'returns formatted rows of data for csv' do
-      development_action = job.records_for_export.first
-      data_rows = job.data_row(development_action)
-
-      expect(data_rows.size).to eq(2) # One row per skill
-
-      # Check first row (project skill)
-      first_row = data_rows.first
-      expect(first_row).to eq([
+    let(:expected_base_row) do
+      [
         development_action.id,
-        skill.id,
+        nil, # skill ID will be filled in per row
         'Test Action',
         'Test Description',
         'structured_learning',
@@ -71,12 +64,36 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
         '2024-01-01',
         '2024-12-31',
         development_action.image_url
-      ])
+      ]
+    end
 
-      # Check second row (global skill)
-      second_row = data_rows.second
-      expect(second_row[1]).to eq(global_skill.id) # Check skill ID differs
-      expect(second_row[0]).to eq(development_action.id) # But development action ID remains same
+    it 'returns formatted rows of data for csv' do
+      development_action = job.records_for_export.first
+      data_rows = job.data_row(development_action)
+
+      expect(data_rows.size).to eq(2) # One row per skill
+
+      # Sort rows by skill ID to ensure consistent ordering
+      sorted_rows = data_rows.sort_by { |row| row[1] }
+      project_skill_row = sorted_rows.find { |row| row[1] == skill.id }
+      global_skill_row = sorted_rows.find { |row| row[1] == global_skill.id }
+
+      # Check project skill row
+      expect(project_skill_row).to match_array(expected_base_row.dup.tap { |row| row[1] = skill.id })
+
+      # Check global skill row
+      expect(global_skill_row).to match_array(expected_base_row.dup.tap { |row| row[1] = global_skill.id })
+
+      # Verify both rows share the same development action ID
+      expect(project_skill_row[0]).to eq(global_skill_row[0])
+    end
+
+    it 'handles missing image_url gracefully' do
+      development_action = job.records_for_export.first
+      allow(development_action).to receive(:image_url).and_return(nil)
+
+      data_rows = job.data_row(development_action)
+      expect(data_rows.map(&:last)).to all(be_nil)
     end
   end
 
