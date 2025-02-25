@@ -1,0 +1,38 @@
+head
+  css:
+    .error-details p {
+      margin: 8px 0;
+    }
+    .error-details .label {
+      font-weight: bold;
+      margin-right: 4px;
+    }
+    .spacer {
+      height: 16px;
+    }
+body
+  p The platform exception surfacing suppression limit has been exceeded for <b>#{@exception_tracker.identifier}</b> on '#{ENV['REAL_ENV']}' enviroment.
+
+  .spacer
+  .error-details
+    p
+      span.label Identifier:
+      span.value #{@exception_tracker.identifier}
+
+    p
+      span.label Error Message:
+      span.value #{@exception_tracker.meta["error_message"]}
+
+    p
+      span.label Exception Class:
+      span.value #{@exception_tracker.meta["exception_class"]}
+
+    p
+      span.label Last Occurred At:
+      span.value #{@exception_tracker.updated_at.strftime("%Y-%m-%d %H:%M:%S %Z")}
+
+    p
+      span.label Backtrace:
+      pre
+        code
+          = @exception_tracker.meta["backtrace"]

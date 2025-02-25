@@ -11,6 +11,7 @@ export const ClientAuditlogExportSettingtTR = t.type({
   s3BucketFolder: t.union([t.string, t.null]),
   s3Region: t.union([t.string, t.null]),
   s3Endpoint: t.union([t.string, t.null]),
+  platformError: t.union([t.string, t.null, t.undefined]),
 })
 
 

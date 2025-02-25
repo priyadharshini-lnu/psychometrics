@@ -13,7 +13,7 @@ const IdpList: React.FC = () => {
     responseType: IdpTR,
     apiConfig: {
       fields: { skills: ['id', 'name', 'category', 'project_id'] },
-      include: ['skills'],
+      include: ['skills', 'report'],
     },
   }
 

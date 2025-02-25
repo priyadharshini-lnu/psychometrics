@@ -8,6 +8,11 @@ const SkillTR = t.type({
   projectId: t.union([t.string, t.null, t.undefined]),
 })
 
+export const ReportTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+
 export const IdpTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
@@ -25,10 +30,15 @@ export const IdpTR = t.intersection([
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
+    report: t.union([
+      ReportTR,
+      t.undefined]),
   })])
+
 
 export type Idp = t.TypeOf<typeof IdpTR>
 export type Skill = t.TypeOf<typeof SkillTR>
+export type Report = t.TypeOf<typeof ReportTR>
 
 export const Schema = {
   type: 'idp_templates',
@@ -38,6 +48,9 @@ export const Schema = {
     },
     project: {
       type: 'clients',
+    },
+    report: {
+      type: 'reports',
     },
   },
 }

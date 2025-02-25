@@ -18,6 +18,7 @@ module AllowedPermissions
       webhooks
       assessments
       privacy_settings
+      idp
     ],
     'audit_reports' => %w[user_report_events admin_permissions],
     'registration_settings' => %w[
@@ -88,6 +89,7 @@ module AllowedPermissions
       security
       webhooks
       privacy_settings
+      idp
     ],
     'audit_reports' => %w[user_report_events admin_permissions],
     'registration_settings' => %w[

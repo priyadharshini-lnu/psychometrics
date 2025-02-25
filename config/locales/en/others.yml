@@ -1951,6 +1951,7 @@ en:
       mettl_schedule_record_create:
         uniq_schedule_name: Schedule name should be unique
       missed?: can't be blank
+      not_allowed?: not allowed to change
       not_in_the_list?: invalid value passed
       not_uniq_variable: variable '%{value}' redefined on line number %{row}
       report_approval_settings:
@@ -2312,6 +2313,7 @@ en:
       on_the_job: On the job
       other: Other
       private: Private
+      remove: Remove
       skill: Skill
       sprint: Sprint
       structured_learning: Structured learning
@@ -2355,7 +2357,9 @@ en:
     pdf:
       header: Hello
     profile_details: Profile Details
-    skill_gap_report: Skill Gap Report
+    skill_gap_report:
+      continue_to_rate_skills: Continue to rate skills
+      title: Skill Gap Report
     status: Status
     user_idp_status:
       approved: Approved
@@ -3690,6 +3694,7 @@ en:
     title:
       one: There is one error, please check your responses
       other: There are %{count} errors, please check your responses
+    user_self_skill_rating_disabled: Self rating is disabled for this template
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
   'yes': 'Yes'

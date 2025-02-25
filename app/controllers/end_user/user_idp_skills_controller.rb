@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EndUser::UserIdpSkillsController < ApplicationController
+  before_action :load_user_idp_skill, only: %i[update]
+
   def index
     user_idp_skills = current_user.user_idp_skills
     render json: ::Panko::ArraySerializer.new(
@@ -34,12 +36,14 @@ class EndUser::UserIdpSkillsController < ApplicationController
   end
 
   def update
-    user_idp_skill = current_user.user_idp_skills.find(params[:id])
+    form = Idp::UpdateUserIdpSkillForm.new(update_params).
+           with_context(user_idp_skill: @user_idp_skill, idp_template: @idp_template)
 
-    if user_idp_skill.update(initial_rating: params[:initial_rating])
-      render json: ::EndUser::UserIdpSkillSerializer.new.serialize(user_idp_skill)
+    if form.valid?
+      @user_idp_skill.update!(form.attributes)
+      render json: ::EndUser::UserIdpSkillSerializer.new.serialize(@user_idp_skill)
     else
-      render json: { errors: user_idp_skill.errors.full_messages }, status: 422
+      render json: form.errors.messages, status: 422
     end
   end
 
@@ -47,5 +51,13 @@ class EndUser::UserIdpSkillsController < ApplicationController
 
   def skills_params
     params.permit(skills: %i[skill_id])
+  end
+
+  def update_params
+    params.permit(:id, :initial_rating)
+  end
+
+  def load_user_idp_skill
+    @user_idp_skill = current_user.user_idp_skills.includes(user_idp_plan: :idp_template).find(params[:id])
   end
 end
