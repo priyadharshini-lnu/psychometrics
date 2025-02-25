@@ -17,6 +17,8 @@ export interface State {
   afterSignoutUrl: string
   assertionConsumerServiceUrl: string
   issuer: string
+  nameIdentifierFormat: string
+  emailPipetext?: string
 }
 
 const defaultState = {} as State

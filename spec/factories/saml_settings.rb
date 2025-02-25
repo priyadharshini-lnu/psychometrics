@@ -9,5 +9,7 @@ FactoryBot.define do
     sso_service_url { Faker::Internet.url }
     after_signout_url { Faker::Internet.url }
     cert { File.read(Rails.root.join('spec/fixtures/files/cert.pem')) }
+    name_identifier_format { 'email' }
+    email_pipetext { '' }
   end
 end

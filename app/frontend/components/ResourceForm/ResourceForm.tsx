@@ -217,7 +217,7 @@ const ResourceForm: React.FC<Props> = ({
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
     let foundFirstError = false
-    newFields = fields.map((field) => {
+    newFields = store.fields.map((field) => {
       const { name } = field
       const fieldNameStringFormat = typeof (name) === 'string' ? name : name.join('/')
       const displayableErrors = errors[fieldNameStringFormat] ? displayableError(errors[fieldNameStringFormat]) : []

@@ -38,8 +38,8 @@ module AdminJobs
           development_action.project_id,
           development_action.category,
           development_action.course_url,
-          development_action.course_start_date&.to_s,
-          development_action.course_end_date&.to_s,
+          development_action.course_start_date&.strftime('%Y-%m-%d'),
+          development_action.course_end_date&.strftime('%Y-%m-%d'),
           development_action.image_url
         ]
       end
