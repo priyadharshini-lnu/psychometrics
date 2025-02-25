@@ -378,7 +378,7 @@ const TBody: FC<TBodyProps> = ({
         factorName, questionName, value, rank,
       }, index) => (
         <tr key={index} className={styles.row} data-row={index} data-type={type}>
-          <td>{rank}</td>
+          <td>{paginationContext ? rank : (index + 1)}</td>
           <td>{factorName}</td>
           <td>{questionName}</td>
           {!hideValues && <td className={styles.number}>{value.toFixed(2)}</td>}

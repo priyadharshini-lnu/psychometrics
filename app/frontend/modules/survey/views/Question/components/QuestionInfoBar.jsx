@@ -194,7 +194,7 @@ class Question extends Component {
           key: 'linked_assessment',
           label: I18n.t('assessments.question_info_bar.select_linked_questions'),
           icon: <PartitionOutlined />,
-          onclick: this.linkedAssessment,
+          onClick: this.linkedAssessment,
         },
       ]
     }

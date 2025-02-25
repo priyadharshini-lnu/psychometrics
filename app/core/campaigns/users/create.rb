@@ -23,6 +23,8 @@ module Campaigns
           send_invite_email
         end
         broadcast :ok, user
+      rescue Hogan::Exceptions::NewAssessmentResponseNotAllowed => e
+        broadcast :new_assessment_response_not_allowed, e.message
       rescue Licenses::NotEnoughError => e
         broadcast :insufficient_license, e.message
       end

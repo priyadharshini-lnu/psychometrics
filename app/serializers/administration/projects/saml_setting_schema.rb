@@ -16,6 +16,8 @@ module Administration
           required(:after_signout_url).maybe(:str?)
           required(:assertion_consumer_service_url).filled(:str?)
           required(:issuer).filled(:str?)
+          required(:name_identifier_format).filled(:str?)
+          optional(:email_pipetext).maybe(:str?)
           optional(:saml_signin_url).maybe(:str?)
         end
       end
