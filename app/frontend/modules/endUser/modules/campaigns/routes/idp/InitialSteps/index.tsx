@@ -26,11 +26,12 @@ import styles from './Steps.less'
 const { I18n } = window
 
 enum STEPS {
-  getting_start = 0,
-  skill_gap_report = 1,
-  add_skills = 2,
-  rate_skills = 3,
+  getting_start = 'getting_start',
+  skill_gap_report = 'skill_gap_report',
+  add_skills = 'add_skills',
+  rate_skills = 'rate_skills',
 }
+
 
 const connector = connect((state: RootState) => ({
   status: state.campaigns.idp.status,
@@ -53,13 +54,34 @@ const InitialStepsComponent = ({
 }) => {
   const { step: paramStep } = useParams() as {step: string}
   const navigate = useNavigate()
-  const [step, setStep] = useState<number>(STEPS[paramStep] || STEPS.getting_start)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
+  const STEP_ITEMS = [
+    {
+      title: I18n.t('idp.initial_steps.getting_start'),
+      step: STEPS.getting_start,
+    },
+    {
+      title: I18n.t('idp.initial_steps.skill_gap_report'),
+      hide: !skillGapReportAvailable,
+      step: STEPS.skill_gap_report,
+    },
+    {
+      title: I18n.t('idp.initial_steps.add_skills_step'),
+      step: STEPS.add_skills,
+    },
+    {
+      title: I18n.t('idp.initial_steps.rate_skills'),
+      hide: !selfRatingEnabled,
+      step: STEPS.rate_skills,
+    },
+  ]
+
+  const visibleSteps = STEP_ITEMS.filter(item => !item.hide)
+  const currentStep = visibleSteps.findIndex(({ step }) => step === paramStep)
 
   const next = (step) => {
-    setStep(step)
     navigate(`/idp/steps/${STEPS[step]}`)
   }
 
@@ -70,6 +92,22 @@ const InitialStepsComponent = ({
     }).finally(() => {
       setIsSubmitting(false)
     })
+  }
+
+  const handleNextForGettingStartedStep = () => {
+    if (skillGapReportAvailable) {
+      next(STEPS.skill_gap_report)
+    } else {
+      next(STEPS.add_skills)
+    }
+  }
+
+  const handleNextForAddSkillsStep = () => {
+    if (selfRatingEnabled) {
+      next(STEPS.rate_skills)
+    } else {
+      handleSubmit()
+    }
   }
 
   useEffect(() => {
@@ -85,10 +123,6 @@ const InitialStepsComponent = ({
     }
   }, [status])
 
-  useEffect(() => {
-    setStep(STEPS[paramStep] || STEPS.getting_start)
-  }, [paramStep])
-
   return (
     <IdpPageLayoutWrapper>
       {isLoading ? <Flex className="h-full" align="center"><Spin size="large" /></Flex>
@@ -96,30 +130,29 @@ const InitialStepsComponent = ({
           <Layout.Content className={styles.pageContent}>
             <BoxWithShadow className={styles.steps}>
               <Steps
-                current={step}
-                items={[
-                  {
-                    title: I18n.t('idp.initial_steps.getting_start'),
-                  },
-                  {
-                    title: I18n.t('idp.initial_steps.skill_gap_report'),
-                    hide: !skillGapReportAvailable,
-                  },
-                  {
-                    title: I18n.t('idp.initial_steps.add_skills_step'),
-                  },
-                  {
-                    title: I18n.t('idp.initial_steps.rate_skills'),
-                    hide: !selfRatingEnabled,
-                  },
-                ].filter(item => !item.hide).map(({ title }) => ({ title }))}
+                current={currentStep === -1 ? 0 : currentStep}
+                items={visibleSteps.map(({ title }) => ({ title }))}
               />
             </BoxWithShadow>
-            {step === STEPS.getting_start && <GettingStart next={() => next(STEPS.skill_gap_report)} />}
-            {step === STEPS.skill_gap_report && <SkillGapReport next={() => next(STEPS.add_skills)} />}
-            {/* TODO: Set next to end if rating is disabled */}
-            {step === STEPS.add_skills && <AddSkills next={() => next(STEPS.rate_skills)} />}
-            {step === STEPS.rate_skills && <RateSkills next={handleSubmit} isSubmitting={isSubmitting} />}
+            {paramStep === STEPS.getting_start && <GettingStart next={handleNextForGettingStartedStep} />}
+            {paramStep === STEPS.skill_gap_report && (
+              <SkillGapReport
+                next={() => next(STEPS.add_skills)}
+              />
+            )}
+            {paramStep === STEPS.add_skills && (
+              <AddSkills
+                selfRatingEnabled={selfRatingEnabled}
+                next={handleNextForAddSkillsStep}
+                isSubmittingPlan={isSubmitting}
+              />
+            )}
+            {paramStep === STEPS.rate_skills && (
+              <RateSkills
+                next={handleSubmit}
+                isSubmitting={isSubmitting}
+              />
+            )}
           </Layout.Content>
         )
     }
