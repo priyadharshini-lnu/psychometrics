@@ -3693,6 +3693,7 @@ en:
     title:
       one: There is one error, please check your responses
       other: There are %{count} errors, please check your responses
+    user_self_skill_rating_disabled: Self rating is disabled for this template
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
   'yes': 'Yes'

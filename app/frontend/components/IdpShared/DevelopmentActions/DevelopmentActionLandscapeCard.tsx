@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   Rate, Progress, Popover, Button, Slider, Flex, Typography, DatePicker,
   Switch,
+  message,
   Tooltip,
 } from 'antd'
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons'
@@ -10,12 +11,14 @@ import cs from 'classnames'
 import { connect } from 'react-redux'
 import dayjs from '~/utils/dayjs'
 import {
+  updateUserIdpSkill,
   removeDevelopmentActionFromPlan,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import styles from './DevelopmentActionLandscapeCard.less'
-import { DevelopmentAction, SkillWithDevelopmentActions } from '.'
+import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from '.'
 import { Tags } from './Common'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 
 const { RangePicker } = DatePicker
 
@@ -25,29 +28,54 @@ type SkillCardProps = SkillWithDevelopmentActions & {
   onAddDevelopmentAction?: () => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => void
+  userIdpSkillId: number
+  selfRatingEnabled: boolean
+  updateUserIdpSkill: (skillId: number,
+                      data: Partial<SkillWithDevelopmentActions>) => Promise<{ response: UserIdpSkill }>
   removeDevelopmentActionFromPlan: (developmentAction: Partial<DevelopmentAction>) => void
 }
 
-const connector = connect(() => ({}),
-  {
-    removeDevelopmentActionFromPlan,
-  })
+const connector = connect((state: RootState) => ({
+  selfRatingEnabled: state.campaigns.idp.selfRatingEnabled,
+}),
+{
+  updateUserIdpSkill,
+  removeDevelopmentActionFromPlan,
+})
 
 const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   name,
   initialRating,
   finalRating,
+  userIdpSkillId,
   developmentActions,
   editMode,
   onAddDevelopmentAction,
   onUpdateDevelopmentAction,
   onUpdateDevelopmentActionProgress,
+  updateUserIdpSkill,
+  selfRatingEnabled,
   removeDevelopmentActionFromPlan,
 }) => {
+  const handleRatingChange = (rating) => {
+    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }).catch((error) => {
+      message.error(error || I18n.t('common.errors.something_wrong'))
+    })
+  }
+
   const header = (
     <>
       <h4 className={styles.m_none}>{name}</h4>
-      <Rate disabled defaultValue={finalRating || initialRating} />
+      {
+        selfRatingEnabled
+        && (
+          <Rate
+            disabled={!editMode}
+            onChange={handleRatingChange}
+            defaultValue={finalRating || initialRating}
+          />
+        )
+      }
     </>
   )
 

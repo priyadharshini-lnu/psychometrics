@@ -121,6 +121,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onAddDevelopmentAction={() => handleShowAvailableDevelopmentAction(skill)}
         onUpdateDevelopmentAction={onUpdateDevelopmentAction}
         onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
+        userIdpSkillId={skill.id}
         {...skill}
       />
     ))

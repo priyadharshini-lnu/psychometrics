@@ -29,26 +29,6 @@ describe EndUser::UserIdpSkillsController, type: :controller do
       expect(parsed_response[0]['name']).to eq(skill.name)
       expect(parsed_response[0]['initial_rating']).to eq(2)
     end
-
-    it 'update user idp skill' do
-      put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
-
-      parsed_response = JSON.parse(response.body)
-
-      expect(response.status).to eq(200)
-      expect(parsed_response['id']).to eq(user_idp_skill.id)
-      expect(parsed_response['name']).to eq(skill.name)
-      expect(parsed_response['initial_rating']).to eq(3)
-    end
-
-    it 'update user idp skill with invalid rating' do
-      put :update, params: { id: user_idp_skill.id, initial_rating: 6 }
-
-      parsed_response = JSON.parse(response.body)
-
-      expect(response.status).to eq(422)
-      expect(parsed_response['errors']).to eq(['Initial rating must be less than or equal to 5'])
-    end
   end
 
   describe 'POST create' do
@@ -64,6 +44,40 @@ describe EndUser::UserIdpSkillsController, type: :controller do
 
       expect(response.status).to eq(422)
       expect(JSON.parse(response.body)).to include({ 'skill_id' => ["can't be blank"] })
+    end
+  end
+
+  describe 'PUT update' do
+    it 'update user idp skill initial rating' do
+      put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
+
+      parsed_response = JSON.parse(response.body)
+
+      expect(response.status).to eq(200)
+      expect(parsed_response['id']).to eq(user_idp_skill.id)
+      expect(parsed_response['name']).to eq(skill.name)
+      expect(parsed_response['initial_rating']).to eq(3)
+    end
+
+    it 'throws validation error when rating is more than limit' do
+      put :update, params: { id: user_idp_skill.id, initial_rating: 6 }
+
+      parsed_response = JSON.parse(response.body)
+
+      expect(response.status).to eq(422)
+      expect(parsed_response).to include({ 'initial_rating' => ['must be less than or equal to 5'] })
+    end
+
+    it 'throws validation error when template self rating is disabled' do
+      idp_template.update!(self_rating_enabled: false)
+      put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
+
+      parsed_response = JSON.parse(response.body)
+
+      expect(response.status).to eq(422)
+      expect(parsed_response).to(
+        include({ 'initial_rating' => [I18n.t('validations.user_self_skill_rating_disabled')] })
+      )
     end
   end
 end
