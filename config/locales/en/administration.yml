@@ -1817,9 +1817,11 @@ en:
       idp_template: Add IDP Template
       none: None
       select_by_tags: Select by Tags
+      select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
       selected: Selected
       self_rating: Enable Self Rating
+      skill_gap_report: Skill Gap Report
       tab:
         templates: Templates
       technical_skills: Technical Skills

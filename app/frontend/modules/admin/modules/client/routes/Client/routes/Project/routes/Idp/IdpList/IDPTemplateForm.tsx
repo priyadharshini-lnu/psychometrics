@@ -1,13 +1,17 @@
 import {
-  Form, Input, Switch, Card, Col, Row, Button, Modal,
+  Form, Input, Switch, Card, Col, Row, Button, Modal, Select, Spin,
 } from 'antd'
 import _ from 'lodash'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import { useEffect, useMemo, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react'
+import { useResources } from '~/hooks/useResources'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import SkillsAndTagsSelection, { SkillsOption } from './SkillsAndTagsSelection'
-import { Idp, Skill } from '~/modules/admin/modules/client/core/idp'
+import {
+  Idp, Skill, Report, ReportTR,
+} from '~/modules/admin/modules/client/core/idp'
 
 const { I18n } = window
 
@@ -21,19 +25,35 @@ export type CategorizedSkills = {
 type IDPTemplateFormProps = {
   close: () => void
   idp?: Idp,
+  projectId: string,
+  clientId: string,
 }
 
-const IDPTemplateForm = ({ close, idp }: IDPTemplateFormProps) => {
+const IDPTemplateForm = ({
+  close, projectId, clientId, idp,
+}: IDPTemplateFormProps) => {
   const { resource } = useResourceContext<Idp>()
   const [form] = Form.useForm()
   const [isModalVisible, setIsModalVisible] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
-  const { projectId } = useParams() as { projectId: string }
   const [categorizedSkills, setCategorizedSkills] = useState<CategorizedSkills>({
     behavioralGlobalSkills: [],
     behavioralClientSkills: [],
     technicalGlobalSkills: [],
     technicalClientSkills: [],
+  })
+
+  const {
+    fetch: fetchAvailableReports, data: availableReports, isLoading: isReportLoading,
+  } = useResources<Report>('reports', {
+    basePath: `clients/${clientId}`,
+    responseType: ReportTR,
+    trackUrl: true,
+    apiConfig: {
+      fields: {
+        reports: ['name'],
+      },
+    },
   })
 
   useEffect(() => {
@@ -71,6 +91,7 @@ const IDPTemplateForm = ({ close, idp }: IDPTemplateFormProps) => {
         technicalGlobalSkillSettings: values.technicalGlobalSkillSettings,
         technicalClientSkillSettings: values.technicalClientSkillSettings,
         project: { id: projectId, type: 'projects' },
+        report: { id: values.reportId, type: 'reports' },
       }
 
       if (idp) {
@@ -123,6 +144,7 @@ const IDPTemplateForm = ({ close, idp }: IDPTemplateFormProps) => {
         behavioralClientSkillSettings: idp.behavioralClientSkillSettings || SkillsOption.NONE,
         technicalGlobalSkillSettings: idp.technicalGlobalSkillSettings || SkillsOption.NONE,
         technicalClientSkillSettings: idp.technicalClientSkillSettings || SkillsOption.NONE,
+        reportId: idp.report?.id,
         ...skills,
       }
     }
@@ -134,6 +156,19 @@ const IDPTemplateForm = ({ close, idp }: IDPTemplateFormProps) => {
       technicalClientSkillSettings: SkillsOption.NONE,
     }
   }, [idp])
+
+  const debouncedFetchReports = useCallback(_.debounce((value) => {
+    if (value.length >= 1) {
+      fetchAvailableReports({
+        apiConfig: {
+          filter: { name_cont: value },
+          fields: { reports: ['name'] },
+        },
+      })
+    }
+  }, 300), [])
+
+  const reports = idp?.report ? availableReports.concat(idp?.report) : availableReports
 
   return (
     <Modal
@@ -182,6 +217,24 @@ const IDPTemplateForm = ({ close, idp }: IDPTemplateFormProps) => {
               >
                 <Input placeholder={I18n.t('administration.idp.enter_template_description')} />
               </Form.Item>
+
+              <Form.Item
+                name="reportId"
+                label={I18n.t('administration.idp.skill_gap_report')}
+              >
+                <Select
+                  showSearch
+                  onSearch={debouncedFetchReports}
+                  notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : null}
+                  filterOption={false}
+                  placeholder={I18n.t('administration.idp.select_skill_gap_report')}
+                >
+                  {reports.map(({ id, name }) => (
+                    <Select.Option key={id} value={id}>{name}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+
 
               <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
