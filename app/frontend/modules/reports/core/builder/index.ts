@@ -9,6 +9,7 @@ import {
   InitType, RenameReportType, UpdateCurrentPageType, AddPageType, SelectModuleType,
   ChangeSizeType, UpdatePagePositionType, SaveDataSheetType, CopyModuleType, CopyPageType,
   ChangeSkipLogic,
+  SetReportLoading,
   SAVE_CAMPAIGN_FACTORS,
   ADD_STYLE,
   UPDATE_STYLE,
@@ -16,6 +17,7 @@ import {
   UpdateStyleType,
   REMOVE_STYLE,
   SaveCampaignFactorsType,
+  SET_REPORT_LOADING,
 } from './actions'
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 import { Style } from '../interfaces/Report'
@@ -206,6 +208,8 @@ const HANDLERS = {
   [REMOVE_STYLE]: (state: State, { style }: UpdateStyleType) => ({
     ...state, styles: _.omit(state.styles, style.id),
   }),
+  [SET_REPORT_LOADING]: (state: State, { value }: SetReportLoading) => setIn(state, ['loaded'], value),
+
 }
 
 

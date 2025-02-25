@@ -2,33 +2,45 @@
 import * as t from 'io-ts'
 import ApiAction from 'interfaces/ApiAction'
 
-const FieldTR = t.type({
-  field: t.string,
-  value: t.string,
-})
-const SkillTR = t.type({
-  id: t.number,
+
+const DefaultLanguageTR = t.type({
+  code: t.string,
+  direction: t.string,
   name: t.string,
-  category: t.string,
-  desiredRating: t.number,
-  minRating: t.number,
-  maxRating: t.number,
-  score: t.number,
 })
 
 const SkillGapTR = t.type({
   id: t.number,
-  datasheetFields: t.array(FieldTR),
-  profileFields: t.array(FieldTR),
-  idpTemplateSkills: t.array(SkillTR),
+  campaign_id: t.number,
+  is_self: t.boolean,
+  pdf: t.union([t.string, t.null]),
+  report: t.type({
+    default_language: DefaultLanguageTR,
+    available_languages: t.array(DefaultLanguageTR),
+    locales: t.type({}),
+  }),
+  report_data: t.array(t.type({})),
+  report_url: t.string,
+  results: t.type({}),
+  status: t.string,
+  user: t.type({
+    datasheet: t.any,
+    email: t.string,
+    first_name: t.string,
+    id: t.number,
+    last_name: t.string,
+    photo: t.union([t.string, t.null]),
+  }),
 })
+
 export const FETCH_SKILL_GAPS = 'skill_gaps/FETCH'
 export type FetchSkillGapsResponse = t.TypeOf<typeof SkillGapTR>
-export const fetchSkillGaps = (userId: string):ApiAction<FetchSkillGapsResponse> => ({
+export const fetchSkillGaps = (userId: string, params = {}):ApiAction<FetchSkillGapsResponse> => ({
   type: FETCH_SKILL_GAPS,
   request: {
-    typedResponse: SkillGapTR,
+    method: 'get',
+    body: params,
     url: `/skill_gap_reports/${userId}`,
-    loader: true,
+    camelize: false,
   },
 })

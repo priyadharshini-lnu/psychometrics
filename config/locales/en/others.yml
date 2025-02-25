@@ -2356,7 +2356,9 @@ en:
     pdf:
       header: Hello
     profile_details: Profile Details
-    skill_gap_report: Skill Gap Report
+    skill_gap_report:
+      continue_to_rate_skills: Continue to rate skills
+      title: Skill Gap Report
     status: Status
     user_idp_status:
       approved: Approved
