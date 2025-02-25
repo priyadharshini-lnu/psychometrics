@@ -6,7 +6,7 @@ module Administration
       include Rails.application.routes.url_helpers
 
       attributes :id, :enabled, :enforced, :entity_id, :sso_service_url, :cert, :after_signout_url,
-                 :assertion_consumer_service_url, :issuer, :saml_signin_url
+                 :assertion_consumer_service_url, :issuer, :saml_signin_url, :name_identifier_format, :email_pipetext
 
       def assertion_consumer_service_url
         saml_user_session_url(url_options)

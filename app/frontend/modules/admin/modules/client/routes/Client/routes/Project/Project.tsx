@@ -1,6 +1,6 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import { Menu } from 'antd'
+import { Flex, Menu, Spin } from 'antd'
 import {
   SettingOutlined,
   ShopOutlined,
@@ -41,9 +41,12 @@ const Project: FC<Props> = ({
   const { projectId } = useParams() as { projectId: string }
   const navigate = useNavigate()
   const { pathname } = useLocation()
+  const [isProjectLoaded, setIsProjectLoaded] = useState(false)
 
   useEffect(() => {
-    fetchProject(parseInt(projectId, 10))
+    fetchProject(parseInt(projectId, 10)).then(() => {
+      setIsProjectLoaded(true)
+    })
   }, [])
 
   const handleOnSelect = ({ key }) => {
@@ -181,10 +184,12 @@ const Project: FC<Props> = ({
         selectedKeys={getActiveMenuKey(pathname)}
         mode="horizontal"
       />
-      <RouteList
-        routes={routes}
-        urlPrefix=""
-      />
+      {isProjectLoaded ? (
+        <RouteList
+          routes={routes}
+          urlPrefix=""
+        />
+      ) : <Flex justify="center" align="middle"><Spin /></Flex>}
     </div>
   )
 }

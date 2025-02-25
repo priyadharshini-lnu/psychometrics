@@ -94,14 +94,16 @@ RSpec.describe Administration::ImportDevelopmentActions do
     end
 
     context 'with valid data including image' do
+      let(:course_start_date) { Date.new(2025, 1, 1) }
+      let(:course_end_date) { Date.new(2025, 12, 31) }
       let(:expected_development_action) do
         {
           name: 'Leadership Workshop',
           description: 'Attend workshop',
           learning_style: 'structured_learning',
           course_url: 'https://example.com/course',
-          course_start_date: Date.new(2025, 1, 1),
-          course_end_date: Date.new(2025, 12, 31),
+          course_start_date: course_start_date.beginning_of_day,
+          course_end_date: course_end_date.beginning_of_day,
           category: 'course'
         }
       end
@@ -113,7 +115,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
               ID,SkillID,Name,Description,Type,ProjectID,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
-              1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,#{project.id},course,https://example.com/course,2025-01-01,2025-12-31,#{image_url}
+              1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,#{project.id},course,https://example.com/course,#{course_start_date.to_date.strftime('%Y-%m-%d')},#{course_end_date.to_date.strftime('%Y-%m-%d')},#{image_url}
             CSV
           )
 

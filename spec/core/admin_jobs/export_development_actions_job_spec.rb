@@ -61,8 +61,8 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
         project.id,
         'course',
         'https://example.com',
-        '2024-01-01',
-        '2024-12-31',
+        development_action.course_start_date.to_date.strftime('%Y-%m-%d'),
+        development_action.course_end_date.to_date.strftime('%Y-%m-%d'),
         development_action.image_url
       ]
     end
