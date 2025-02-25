@@ -20,6 +20,9 @@ export const IdpComponent: FC = () => {
   menuItems.push({
     key: '/templates',
     label: I18n.t('administration.idp.tab.templates'),
+  }, {
+    key: '/settings',
+    label: I18n.t('administration.idp.tab.settings'),
   })
 
   return (

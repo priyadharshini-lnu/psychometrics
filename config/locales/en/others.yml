@@ -1951,6 +1951,7 @@ en:
       mettl_schedule_record_create:
         uniq_schedule_name: Schedule name should be unique
       missed?: can't be blank
+      not_allowed?: not allowed to change
       not_in_the_list?: invalid value passed
       not_uniq_variable: variable '%{value}' redefined on line number %{row}
       report_approval_settings:

@@ -1208,6 +1208,8 @@ as: :simulation_progress_notification
               resource :uploads, only: %i[update]
             end
           end
+          jsonapi_resources :idp_settings, only: %i[index update]
+
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do
               post :send_test

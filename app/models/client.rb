@@ -42,6 +42,7 @@ class Client < ApplicationRecord
   has_one :registration_setting, dependent: :destroy, foreign_key: :project_id
   has_one :power_bi_setting, dependent: :destroy, foreign_key: :project_id
   has_one :privacy_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :idp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :client_privacy_setting, dependent: :destroy
   has_many :profile_fields, through: :profile_setting
   has_many :memberships, dependent: :destroy
@@ -140,6 +141,7 @@ class Client < ApplicationRecord
   after_create :create_registration_setting, if: :project?
   after_create :create_privacy_setting, if: :project?
   after_create :create_client_privacy_setting, if: :root?
+  after_create :create_idp_setting, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
