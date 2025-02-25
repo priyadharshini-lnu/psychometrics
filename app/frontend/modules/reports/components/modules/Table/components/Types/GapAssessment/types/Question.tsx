@@ -441,7 +441,7 @@ const TBody: FC<TBodyProps> = ({
     <>
       {data.map((gap, i) => (
         <tr key={i} className={styles.row} data-row={i} data-type={type}>
-          <td>{gap.rank}</td>
+          <td>{paginationContext ? gap.rank : (i + 1)}</td>
           <td>{gap.factorName}</td>
           <td>{gap.questionName}</td>
           {!hideValues && (

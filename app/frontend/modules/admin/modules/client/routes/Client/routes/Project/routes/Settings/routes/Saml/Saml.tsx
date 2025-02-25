@@ -2,6 +2,7 @@ import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Form, Input, Button, Switch, App,
+  Select,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
@@ -35,6 +36,8 @@ const SamlComponent: React.FC<Props> = ({
   const { projectId } = useParams() as { projectId: string }
   const { message } = App.useApp()
 
+  const nameIdentifierFormat = Form.useWatch('nameIdentifierFormat', form)
+
   const handleSuccessfullSave = ({ response: { samlSigninUrl } }: ApiActionResponse<{ samlSigninUrl?: string }>) => {
     if (samlSigninUrl) {
       window.open(samlSigninUrl)
@@ -43,6 +46,9 @@ const SamlComponent: React.FC<Props> = ({
     }
   }
 
+  const samlSettingData = samlSetting.emailPipetext ? samlSetting
+    : { ...samlSetting, emailPipetext: '{{identifier}}@example.com' }
+
   return (
     <Row justify="space-between" className="pl">
       <Col sm={24} md={16} xl={12} xxl={10}>
@@ -50,7 +56,7 @@ const SamlComponent: React.FC<Props> = ({
           resourceName="samlSetting"
           requestScope="campaigns"
           resourceBaseUrl={`/administration/projects/${projectId}/saml_settings`}
-          resource={samlSetting.id ? samlSetting : undefined}
+          resource={samlSettingData}
           storeManager={{ form }}
           readableResourceName={I18n.t('administration.saml_settings.saml_setting')}
           onSuccessfulSubmission={handleSuccessfullSave}
@@ -60,7 +66,8 @@ const SamlComponent: React.FC<Props> = ({
               sm: 24, md: 10, lg: 8, xl: 8,
             },
             labelAlign: 'left',
-          }}
+          }
+        }
         >
           {() => (
             <>
@@ -110,6 +117,33 @@ const SamlComponent: React.FC<Props> = ({
               >
                 <Input />
               </Form.Item>
+
+              <Form.Item
+                name="nameIdentifierFormat"
+                initialValue="email"
+                label={I18n.t('administration.saml_settings.name_identifier_format')}
+              >
+                <Select
+                  className="mb8 width150px"
+                >
+                  {['email', 'persistent'].map(idFormat => (
+                    <Select.Option key={idFormat} value={idFormat}>
+                      {I18n.t(`administration.saml_settings.name_identifier_formats.${idFormat}`)}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+
+              {nameIdentifierFormat === 'persistent'
+                && (
+                  <Form.Item
+                    name="emailPipetext"
+                    label={I18n.t('administration.saml_settings.email_pipetext')}
+                    rules={[{ required: true }]}
+                  >
+                    <Input />
+                  </Form.Item>
+                )}
 
               <Button
                 type="primary"
