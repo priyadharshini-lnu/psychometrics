@@ -3,7 +3,7 @@
 module EndUser
   class UserIdpPlansController < ApplicationController
     before_action :load_user_idp_plan, only: %i[show update]
-    before_action :load_skill_gap_report_status, only: %i[show] # TODO: Should we keep this?
+    before_action :load_skill_gap_report_status, only: %i[show]
 
     def summary
       authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
