@@ -42,16 +42,19 @@ class UserProfile < ApplicationRecord
     ProfileFieldValue.where(user_profile_id: id, profile_field_id: profile_fields.pluck(:id))
   end
 
-  def sync_data
-    return unless custom_fields
+  def custom_fields
+    profile_field_values.includes(:profile_field).to_h { |pfv| [pfv.profile_field.question_id, pfv.value] }
+  end
 
-    custom_fields.each do |question_id, value|
-      field = profile_fields.find_by(question_id: question_id)
-      next unless field
+  def custom_fields=(values)
+    fields = values.filter_map do |question_id, value|
+      profile_field = profile_fields.find_by(question_id: question_id.to_s)
+      next unless profile_field
 
-      profile_value = ProfileFieldValue.find_or_initialize_by(profile_field_id: field.id, user_profile_id: id)
-      profile_value.value = value
-      profile_value.save!
+      field = profile_field_values.find_or_initialize_by(profile_field: profile_field)
+      field.value = value
+      field
     end
+    ProfileFieldValue.import(fields, on_duplicate_key_update: %i[id])
   end
 end

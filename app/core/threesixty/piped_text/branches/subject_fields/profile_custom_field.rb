@@ -9,7 +9,7 @@ module Threesixty
             field = context[:campaign].project.profile_setting.questions.find_by(name: path.last)
             return unless field
 
-            value = user.user_profile.custom_fields&.dig(field.id.to_s)
+            value = user.user_profile.custom_fields&.dig(field.id)
             broadcast :ok, value
           end
 
