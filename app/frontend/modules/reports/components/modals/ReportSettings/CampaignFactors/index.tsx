@@ -21,6 +21,7 @@ type Column = {
   outputType: string
   name: string
   code: string
+  key: string
 }
 
 type Props = {

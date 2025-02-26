@@ -55,6 +55,19 @@ en:
           attributes:
             file:
               invalid_format: Please upload xlsx file
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: Column '%{entity}' can't be blank at row %{index}
+              duplicate_code: Duplicate code '%{code}' at row %{index}
+              invalid_output_type: Invalid output_type '%{output_type}' at row %{index}
+              max_limit_reached: Total campaign factors exceed the maximum limit of %{count}
+              missing_headers: 'Missing required headers: %{headers}'
+              type_mismatch: Output type mismatch for code '%{code}' at row %{index}
+            file:
+              invalid_format: Please upload xlsx file
+            report:
+              must_exist: Report must exist
         campaigns_external_scores_import_form:
           attributes:
             file:

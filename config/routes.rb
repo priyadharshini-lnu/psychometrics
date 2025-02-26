@@ -721,7 +721,11 @@ Rails.application.routes.draw do
         put :remap_assessment
       end
       scope module: 'reports' do
-        resource :builders, only: %i[show update]
+        resource :builders, only: %i[show update] do
+          member do
+            post :upload_campaign_factors
+          end
+        end
       end
     end
 
