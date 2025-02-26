@@ -7,10 +7,11 @@ import {
 import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
 import * as faceapi from 'face-api.js'
-import { StopOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import {
+  StopOutlined, VideoCameraOutlined, RightOutlined, RedoOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import VideoPlayer from '~/components/MediaRecorder/components/VideoPlayer'
-import { RightOutlined, RedoOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { CheckList } from '../CheckList'
 import reducer, {

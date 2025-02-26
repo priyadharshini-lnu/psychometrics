@@ -5,8 +5,8 @@ import {
   Watermark, Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'

@@ -9,11 +9,11 @@ import {
   google, outlook, yahoo, ics, office365, CalendarEvent,
 } from 'calendar-link'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import { CheckCircleFilled } from '@ant-design/icons'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
 import Tour from '@rc-component/tour'
+import { CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import {
   GoogleCalendarIcon, YahooIcon, OutlookIcon, IcalIcon, Office365Icon,
