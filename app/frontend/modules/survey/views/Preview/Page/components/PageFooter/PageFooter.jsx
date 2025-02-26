@@ -227,7 +227,12 @@ const QuestionInProgressPopConfirm = forwardRef(({
 
   const popConfirmTitle = () => (
     <div>
-      <b ref={titleTextRef}>{I18n.t('validations.actions_still_in_progress', { locale: I18n.uiLocale })}</b>
+      <b
+        tabIndex={-1}
+        ref={titleTextRef}
+      >
+        {I18n.t('validations.actions_still_in_progress', { locale: I18n.uiLocale })}
+      </b>
       <ul className="pll">
         {inProgressQuestions.map(({ questionId, progressState }) => {
           const question = getQuestion(preview, questionId)

@@ -125,6 +125,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           <Space align="center" size="large">
             {remainingCampaignTime && (
               <CountdownTimer
+                shouldAnnounceRemainingTime
                 prefix={(
                   <>
                     {I18n.t('user_assessments.timer_title.campaign')}
@@ -140,6 +141,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             )}
             {remainingAssessmentTime && (
               <CountdownTimer
+                shouldAnnounceRemainingTime
                 prefix={(
                   <>
                     {I18n.t('user_assessments.timer_title.assessment')}

@@ -996,6 +996,12 @@ en:
       competency: Competency
       id: ID
       score: Score
+    screen_reader_announcements:
+      fifteen_seconds_left: 15 seconds left
+      five_minutes_left: 5 minutes left
+      one_minute_left: 1 minute left
+      thirty_seconds_left: 30 seconds left
+      time_is_up: Your time is up
     single_page:
       display_linked_questions: Displaying responses linked to the currently selected question.
     trash: Trash

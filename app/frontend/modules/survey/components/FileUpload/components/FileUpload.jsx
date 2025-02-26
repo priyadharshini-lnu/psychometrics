@@ -82,7 +82,7 @@ export default function FileUpload ({
       uploadSuccessRef.current.innerText = I18n.t('frontend.aria.file_uploaded')
       setTimeout(() => {
         uploadSuccessRef.current.innerText = ''
-      }, 5000)
+      }, 10000)
     }
     onSuccessUpload && onSuccessUpload(media)
   }
