@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::ReportApprovalSettingResource < Api::V2::Administration::BaseResource
   attributes :qc_user_ids, :approver_user_ids, :approval_notification_user_ids, :qcs, :approvers,
-             :approval_notification_users
+             :approval_notification_users, :approvers_can_edit, :approvers_not_required,
+             :do_not_send_notifications
 
   has_one :campaign
   has_one :report

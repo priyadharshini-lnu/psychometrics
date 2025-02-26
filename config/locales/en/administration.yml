@@ -2627,6 +2627,8 @@ en:
     report_review:
       abort_qc: Abort QC
       approve: Approve
+      approve_changes: Approve Changes
+      edit: Edit
       remove_approval: Remove Approval
       request_changes: Request Changes
       review: Review

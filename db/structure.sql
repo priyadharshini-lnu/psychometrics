@@ -640,12 +640,12 @@ CREATE TABLE public.assigns (
     evaluator_id bigint,
     subject_id bigint,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -926,9 +926,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -4377,7 +4377,10 @@ CREATE TABLE public.report_approval_settings (
     updated_at timestamp(6) without time zone NOT NULL,
     qc_user_ids bigint[] DEFAULT '{}'::bigint[],
     approver_user_ids bigint[] DEFAULT '{}'::bigint[],
-    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[]
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
+    approvers_can_edit boolean DEFAULT false,
+    approvers_not_required boolean DEFAULT false,
+    do_not_send_notifications boolean DEFAULT false
 );
 
 
@@ -5764,8 +5767,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -6633,10 +6635,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -15368,6 +15370,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250226084133'),
 ('20250224075920'),
 ('20250221102354'),
 ('20250213113601'),
@@ -16142,3 +16145,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

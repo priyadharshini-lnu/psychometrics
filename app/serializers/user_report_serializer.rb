@@ -98,7 +98,11 @@ class UserReportSerializer < Panko::Serializer
       object,
       %w[
         download
-        manage_qc
+        start_qc
+        abort_qc
+        edit_qc
+        one_level_qc
+        approvers_can_edit
         manage_approval
       ],
       {
