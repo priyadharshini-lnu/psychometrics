@@ -145,8 +145,12 @@ const defaultState: State = {
     richEditorOpened: false,
     permissions: {
       download: false,
+      startQc: false,
+      abortQc: false,
       editQc: false,
       manageApproval: false,
+      oneLevelQc: false,
+      approversCanEdit: false,
     },
     possibleWebhookEvents: [],
   },
