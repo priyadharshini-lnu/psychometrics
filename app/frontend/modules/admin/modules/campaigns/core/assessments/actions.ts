@@ -216,38 +216,41 @@ export const updateAvailableLocales = (
   },
 })
 
-export const exportRawResults = (campaignId: number, assessmentId: number, withLabels: boolean) => ({
+export const exportRawResults = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_RAW_RESULTS,
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_results`,
-    body: { withLabels },
+    body,
     loader: true,
   },
 })
 
-export const exportScoringResults = (campaignId: number, assessmentId: number) => ({
+export const exportScoringResults = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_SCORING_RESULTS,
   request: {
     method: 'get',
+    body,
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_scoring_results`,
     loader: true,
   },
 })
 
-export const exportNormedResults = (campaignId: number, assessmentId: number) => ({
+export const exportNormedResults = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_NORMED_RESULTS,
   request: {
     method: 'get',
+    body,
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_normed_results`,
     loader: true,
   },
 })
 
-export const exportRawFactorScores = (campaignId: number, assessmentId: number) => ({
+export const exportRawFactorScores = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_RAW_FACTOR_SCORES,
   request: {
     method: 'get',
+    body,
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_factor_scores`,
     loader: true,
   },

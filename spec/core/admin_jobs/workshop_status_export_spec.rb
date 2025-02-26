@@ -198,4 +198,40 @@ describe AdminJobs::WorkshopStatusExport do
       0
     ])
   end
+
+  it 'only exports active users when include_inactive_users is false' do
+    active_user = create(:user, project: project)
+    create(:campaign_user, campaign: campaign, user: active_user, active: true)
+
+    inactive_user = create(:user, project: project)
+    create(:campaign_user, campaign: campaign, user: inactive_user, active: false)
+
+    job_record.update(data: { project_id: project.id, include_inactive_users: false })
+
+    described_class.call!(job_record)
+
+    csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
+
+    expect(csv.size).to eq(2)
+    expect(csv[1][0]).to eq(active_user.id.to_s)
+  end
+
+  it 'exports both active and inactive users when include_inactive_users is true' do
+    active_user = create(:user, project: project)
+    create(:campaign_user, campaign: campaign, user: active_user, active: true)
+
+    inactive_user = create(:user, project: project)
+    create(:campaign_user, campaign: campaign, user: inactive_user, active: false)
+
+    job_record.update(data: { project_id: project.id, include_inactive_users: true })
+
+    described_class.call!(job_record)
+
+    csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
+
+    expect(csv.size).to eq(3)
+
+    user_ids_in_csv = csv[1..].map { |row| row[0] }
+    expect(user_ids_in_csv).to include(active_user.id.to_s, inactive_user.id.to_s)
+  end
 end

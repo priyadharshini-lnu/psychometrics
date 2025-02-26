@@ -23,9 +23,13 @@ export interface ActionMenuData {
   message: MessageInstance
   optionsOverrides?: Partial<Options>
   openModal(name: string, data?: {
+    ids?: [number, number],
+    action?: (campaignId: number, assessmentId: number, body?: object) => Promise<{ response: unknown }>,
+    body?: object,
+    onSuccess?: () => void,
     projectId?: number, assessment?: Assessment, update?: Assessment,
     updateExternalConfig?: AssessmentListProps['updateExternalConfig'],
-    campaignId: number, campaignAssessmentId?: number
+    campaignId?: number, campaignAssessmentId?: number
   }): void
   rescoreResponses(): void
   exportRawResults: AssessmentListProps['exportRawResults']
@@ -52,20 +56,27 @@ export const getActionsMenuProps = ({
   }
 
   const handleRawExport = (with_labels: boolean) => {
-    exportRawResults(campaignId, id, with_labels).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.raw_results_export_scheduled'))
+    openModal('UserFilterModal', {
+      ids: [campaignId, id],
+      action: exportRawResults,
+      body: { with_labels },
+      onSuccess: () => { message.success(I18n.t('campaign_assessment.messages.raw_results_export_scheduled')) },
     })
   }
 
   const handleScoringExport = () => {
-    exportScoringResults(campaignId, id).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.scoring_results_export_scheduled'))
+    openModal('UserFilterModal', {
+      ids: [campaignId, id],
+      action: exportScoringResults,
+      onSuccess: () => { message.success(I18n.t('campaign_assessment.messages.scoring_results_export_scheduled')) },
     })
   }
 
   const handleNormedResultExport = () => {
-    exportNormedResults(campaignId, id).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.norm_results_export_scheduled'))
+    openModal('UserFilterModal', {
+      ids: [campaignId, id],
+      action: exportNormedResults,
+      onSuccess: () => { message.success(I18n.t('campaign_assessment.messages.norm_results_export_scheduled')) },
     })
   }
 
@@ -76,8 +87,10 @@ export const getActionsMenuProps = ({
   }
 
   const handleRawFactorExport = () => {
-    exportRawFactorScores(campaignId, id).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.raw_factor_export_scheduled'))
+    openModal('UserFilterModal', {
+      ids: [campaignId, id],
+      action: exportRawFactorScores,
+      onSuccess: () => { message.success(I18n.t('campaign_assessment.messages.raw_factor_export_scheduled')) },
     })
   }
 
