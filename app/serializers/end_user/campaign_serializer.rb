@@ -62,8 +62,7 @@ module EndUser
       user_assessments = UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id).
                          includes(assessment: {
                            translations: [], icon_attachment: :blob, linked_assessor_form: [], agile: []
-                         }, users_result: [], campaign: [], evaluator: []).
-                         where.not(assessments: { category: :mindmill })
+                         }, users_result: [], campaign: [], evaluator: [])
 
       Panko::ArraySerializer.new(
         user_assessments,

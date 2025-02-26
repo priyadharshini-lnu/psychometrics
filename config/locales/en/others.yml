@@ -381,7 +381,6 @@ en:
           hogan: Hogan
           iiht: IIHT
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           pearson: Pearson
           psychometric: Assessment
@@ -399,7 +398,6 @@ en:
           common: TTE Assessment
           hogan: Hogan
           iiht: IIHT Assessment
-          mindmill: Mindmill Assessment
           pearson: Pearson Assessment
           saville: Saville Assessment
         updated_at: Modified Date
@@ -564,8 +562,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       report_family:
         created_at: Created Date
@@ -636,7 +632,6 @@ en:
           manager: Manager
           meeting: Meeting
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           pearson: Pearson
           project_admin: Project Admin
@@ -941,7 +936,6 @@ en:
         lead_assessor_form: Lead Assessor Form
         meeting: Meeting
         mettl: Mettl
-        mindmill: Mindmill
         organisational: Org Surveys
         pearson: Pearson
         psychometric: Psychometric
@@ -956,7 +950,6 @@ en:
         hogan: Hogan
         iiht: IIHT Assessment
         mettl: Mettl Assessment
-        mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
         simulation: Simulation Assessment
@@ -2780,7 +2773,6 @@ en:
         hogan: Hogan
         internal: Internal
         mettl: Mettl
-        mindmill: Mindmill
         pearson: Pearson
         saville: Saville
     form:
@@ -3012,7 +3004,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3034,7 +3025,6 @@ en:
           case_study: Case Studies
           hogan: Hogan
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment
           saville: Saville
@@ -3055,7 +3045,6 @@ en:
         types:
           common: TTE Assessment
           hogan: Hogan
-          mindmill: Mindmill Assessment
           saville: Saville Assessment
         updated_at: Modified Date
       block:
@@ -3194,8 +3183,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       user:
         active: Active
@@ -3226,7 +3213,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3355,7 +3341,6 @@ en:
       statuses:
         success: Success
         undelivered: Undelivered
-    mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
     more_info_evaluation_label: More information - Evaluations
     more_info_nomination_label: More information - Nominations
     my_projects: My Projects

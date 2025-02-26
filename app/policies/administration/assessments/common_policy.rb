@@ -45,12 +45,6 @@ module Administration
         ))
       end
 
-      def export_mindmill_results?
-        @record.mindmill? && (@user.is?(:superadmin) || @user.has_permission?(
-          :results, :scores, project_id: project_id, campaign_id: campaign_id
-        ))
-      end
-
       def rescore_responses?
         @user.is?(:superadmin) || @user.has_permission?(
           :results, :rescore_responses, project_id: project_id, campaign_id: campaign_id

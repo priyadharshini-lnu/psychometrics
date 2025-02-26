@@ -669,7 +669,6 @@ es-ES:
       statuses:
         success: Correcto
         undelivered: No entregado/a
-    mindmill_confirmation: Si comienza con esta evaluación, perderá los resultados de «%{assessment}». Haga clic en «Cancelar» si quiere dejar los resultados o en «De acuerdo» si quiere continuar
     my_projects: Mis proyectos
     nominate: Proponer
     nominate_evaluators: Proponer evaluadores para

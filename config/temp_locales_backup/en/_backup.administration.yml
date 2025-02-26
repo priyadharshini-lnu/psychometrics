@@ -430,7 +430,6 @@ en:
           hogan: Hogan
           iiht: IIHT
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Org Surveys
           pearson: Pearson
           psychometric: Psychometrics
@@ -452,7 +451,6 @@ en:
             hogan: Hogan
             iiht: IIHT
             meeting: Meeting
-            mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
             psychometric: Psychometrics
@@ -1088,7 +1086,6 @@ en:
             hogan: Hogan
             iiht: IIHT
             meeting: Meeting
-            mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
             psychometric: Psychometrics
@@ -1110,7 +1107,6 @@ en:
               hogan: Hogan
               iiht: IIHT
               meeting: Meeting
-              mindmill: Mindmill
               organisational: Org Surveys
               pearson: Pearson
               psychometric: Psychometrics
@@ -1158,7 +1154,6 @@ en:
             deleting: Deleting
             restoring: Restoring
           link: Link
-          mindmill_results: Mindmill
           na: N/A
           normed_results: Normed results
           png: PNG
@@ -2092,7 +2087,6 @@ en:
         edit:
           header: Edit Report Name
         form:
-          load_mindmill_report: Load from Mindmill
           none_external: None - Use report builder
           select_family: Select Report Bundle
           types:
@@ -2496,7 +2490,6 @@ en:
           edit:
             header: Edit Report Name
           form:
-            load_mindmill_report: Load from Mindmill
             none_external: None - Use report builder
             select_family: Select Report Bundle
             types:
@@ -3864,7 +3857,6 @@ en:
         header: Edit Report Name
       form:
         load_from_pearson: Load from Pearson
-        load_mindmill_report: Load from Mindmill
         none_external: None - Use report builder
         select_family: Select Report Bundle
         types:

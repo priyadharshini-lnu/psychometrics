@@ -56,7 +56,6 @@ ar:
       agile: AGILE- آجايل
       case_study: دراسة حالة
       hogan: " هوجان - Hogan"
-      mindmill: ميندميل-  Mindmill
       organisational: استقصاء
       psychometric: تقييم
     decorator:
@@ -796,7 +795,6 @@ ar:
       statuses:
         success: نجاح
         undelivered: لم يتم تسليمها
-    mindmill_confirmation: بدء هذا التقييم سوف يفقدك النتائج "%{assessment}". انقر على زر "إلغاء الأمر" إذا كنت تريد ترك النتائج، وانقر فوق "موافق" إذا كنت تريد المتابعة
     my_projects: مشاريعي
     nominate: ترشح
     nominate_evaluators: ترشيح المقيّمين إلى

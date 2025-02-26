@@ -15,7 +15,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   ORGANISATIONAL = 'organisational'
   CASE_STUDY = 'case_study'
   THREESIXTY = 'threesixty'
-  MINDMILL = 'mindmill'
   ASSESSOR_FORM = 'assessor_form'
   LEAD_ASSESSOR_FORM = 'lead_assessor_form'
   HOGAN = 'hogan'
@@ -32,7 +31,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     ORGANISATIONAL,
     CASE_STUDY,
     THREESIXTY,
-    MINDMILL,
     ASSESSOR_FORM,
     LEAD_ASSESSOR_FORM,
     HOGAN,
@@ -59,7 +57,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     organisational: ORGANISATIONAL,
     case_study: CASE_STUDY,
     threesixty: THREESIXTY,
-    mindmill: MINDMILL,
     hogan: HOGAN,
     agile: AGILE,
     assessor_form: ASSESSOR_FORM,
@@ -75,7 +72,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # Assessments constant
   TYPES = {
     common: 'Assessments::Common',
-    mindmill: 'Assessments::Mindmill',
     hogan: 'Assessments::Hogan',
     saville: 'Assessments::Saville',
     pearson: 'Assessments::Pearson',
@@ -178,7 +174,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   delegate :config, :translations, to: :agile, prefix: true
 
   # TODO: (nest):
-  # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
   # Creating scope :hogan. Overwriting existing method Assessment.hogan.
   #
   scope :common, -> { where(type: TYPES[:common]) }
@@ -188,7 +183,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :iiht, -> { where(type: TYPES[:iiht]) }
   scope :mettl, -> { where(type: TYPES[:mettl]) }
   scope :simulation, -> { where(type: TYPES[:simulation]) }
-  scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
+  scope :external, -> { where.has { type.in([TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
   scope :archived, -> { where(archived: true) }
@@ -315,12 +310,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     type == TYPES[:common]
   end
 
-  # Return true if assessmnent is Mindmill
-  #
-  def mindmill?
-    type == TYPES[:mindmill]
-  end
-
   def hogan?
     type == TYPES[:hogan]
   end
@@ -346,7 +335,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def external?
-    mindmill? || hogan? || saville? || pearson? || iiht? || mettl? || simulation?
+    hogan? || saville? || pearson? || iiht? || mettl? || simulation?
   end
 
   def internal?
@@ -371,7 +360,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
     def options_for_select
       all.map do |assessment|
-        [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }]
+        [assessment.decorate.display_name, assessment.id]
       end
     end
   end

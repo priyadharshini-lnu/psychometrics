@@ -464,7 +464,6 @@ CREATE TABLE public.assessments (
     status integer,
     owner_id integer,
     type character varying,
-    mindmill_id integer,
     enable_back boolean DEFAULT false NOT NULL,
     enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
@@ -3450,38 +3449,6 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 
 
 --
--- Name: mindmill_credentials; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.mindmill_credentials (
-    id bigint NOT NULL,
-    users_result_id bigint,
-    user_name character varying,
-    encrypted_password character varying,
-    encrypted_password_iv character varying
-);
-
-
---
--- Name: mindmill_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.mindmill_credentials_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: mindmill_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
-
-
---
 -- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4476,7 +4443,6 @@ CREATE TABLE public.reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
-    mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
     data_configuration jsonb DEFAULT '{}'::jsonb,
@@ -7741,13 +7707,6 @@ ALTER TABLE ONLY public.mettl_user_assessments ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- Name: mindmill_credentials id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials ALTER COLUMN id SET DEFAULT nextval('public.mindmill_credentials_id_seq'::regclass);
-
-
---
 -- Name: norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9158,14 +9117,6 @@ ALTER TABLE ONLY public.mettl_schedule_records
 
 ALTER TABLE ONLY public.mettl_user_assessments
     ADD CONSTRAINT mettl_user_assessments_pkey PRIMARY KEY (id);
-
-
---
--- Name: mindmill_credentials mindmill_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials
-    ADD CONSTRAINT mindmill_credentials_pkey PRIMARY KEY (id);
 
 
 --
@@ -11516,13 +11467,6 @@ CREATE INDEX index_mettl_user_assessments_on_user_assessment_id ON public.mettl_
 
 
 --
--- Name: index_mindmill_credentials_on_users_result_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_mindmill_credentials_on_users_result_id ON public.mindmill_credentials USING btree (users_result_id);
-
-
---
 -- Name: index_norms_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13127,14 +13071,6 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.campaign_factor_values
     ADD CONSTRAINT fk_rails_07fa4c59b5 FOREIGN KEY (campaign_factor_id) REFERENCES public.campaign_factors(id) ON DELETE CASCADE;
-
-
---
--- Name: mindmill_credentials fk_rails_086b8723a8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials
-    ADD CONSTRAINT fk_rails_086b8723a8 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
 
 
 --
@@ -15368,6 +15304,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250221073030'),
 ('20250224075920'),
 ('20250221102354'),
 ('20250213113601'),

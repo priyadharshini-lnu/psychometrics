@@ -442,7 +442,6 @@ spec/controllers/administration/campaigns/user_reports_controller_spec.rb:5.5334
 spec/controllers/administration/projects/integrations_controller_spec.rb:0.7388529998715967
 spec/controllers/administration/projects/new_campaigns_controller_spec.rb:0.47193300002254546
 spec/controllers/administration/projects/saml_settings_controller_spec.rb:1.053109000204131
-spec/controllers/end_user/mindmill_user_assessments_controller_spec.rb:18.265912999864668
 spec/controllers/end_user/user_reports_controller_spec.rb:3.1651289998553693
 spec/controllers/end_user/workshop_invited_subjects_controller_spec.rb:0.7215699998196214
 spec/controllers/end_user/workshop_invites_controller_spec.rb:5.742266000015661

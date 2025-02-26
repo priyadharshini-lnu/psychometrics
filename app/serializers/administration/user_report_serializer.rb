@@ -6,7 +6,7 @@ module Administration
                :report_family_name, :status, :internal, :report_url,
                :report_provider, :custom_upload, :comments_count, :edits_count
 
-    delegate :name, :mindmill, to: :report
+    delegate :name, to: :report
     delegate :provider, to: :report, prefix: true
     delegate :name, to: :report_family, prefix: true, allow_nil: true
 
