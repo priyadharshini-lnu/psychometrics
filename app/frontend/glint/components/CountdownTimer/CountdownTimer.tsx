@@ -13,6 +13,7 @@ export type Notification = {
 
 type CountdownTimerProps = StatisticProps & {
   seconds: number | null
+  shouldAnnounceRemainingTime?: boolean
   onFinish?: () => void
   notificationPoints?: Notification[]
   notificationDuration?: number
@@ -27,6 +28,17 @@ const formatData = {
   minute: { format: 'm[m] s[s]', units: SECONDS_PER_MINUTE },
   hour: { format: 'H[h] m[m] s[s]', units: SECONDS_PER_HOUR },
   day: { format: 'D[d] H[h] m[m] s[s]', units: SECONDS_PER_DAY },
+}
+
+const { I18n } = window
+
+
+const announcements = {
+  300: I18n.t('assessments.screen_reader_announcements.five_minutes_left'),
+  60: I18n.t('assessments.screen_reader_announcements.one_minute_left'),
+  30: I18n.t('assessments.screen_reader_announcements.thirty_seconds_left'),
+  15: I18n.t('assessments.screen_reader_announcements.fifteen_seconds_left'),
+  0: I18n.t('assessments.screen_reader_announcements.time_is_up'),
 }
 
 const getFormat = (seconds: number) => {
@@ -45,6 +57,7 @@ const getFormat = (seconds: number) => {
 export const CountdownTimer: FC<CountdownTimerProps> = ({
   seconds,
   onFinish,
+  shouldAnnounceRemainingTime = false,
   notificationPoints = [],
   notificationTemplate,
   notificationDuration = 15,
@@ -53,6 +66,8 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
 }) => {
   const [countDownValue, setCountDownValue] = useState<number | undefined>(undefined)
   const [timerFormat, setTimerFormat] = useState(seconds ? getFormat(seconds) : undefined)
+  const [announcement, setAnnouncement] = useState<string>('')
+
 
   useEffect(() => {
     if (!seconds) return
@@ -104,18 +119,37 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
     return undefined
   }
 
+
+  useEffect(() => {
+    if (!seconds || !countDownValue || !shouldAnnounceRemainingTime) return
+
+    const interval = setInterval(() => {
+      const currentRemainingTime = Math.floor((countDownValue - Date.now()) / 1000)
+
+      if (shouldAnnounceRemainingTime) {
+        if (currentRemainingTime in announcements) {
+          setAnnouncement(announcements[currentRemainingTime])
+        }
+      }
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [countDownValue, seconds, shouldAnnounceRemainingTime])
+
   if (seconds === null) {
     return null
   }
-
   return (
-    <Statistic.Countdown
-      className={cs(styles.timer, className)}
-      value={countDownValue}
-      onFinish={() => onFinish && onFinish()}
-      format={timerFormat}
-      onChange={handleTimerChange}
-      {...rest}
-    />
+    <>
+      <span role="alert" aria-live="assertive" className="sr-only">{announcement}</span>
+      <Statistic.Countdown
+        className={cs(styles.timer, className)}
+        value={countDownValue}
+        onFinish={() => onFinish && onFinish()}
+        format={timerFormat}
+        onChange={handleTimerChange}
+        {...rest}
+      />
+    </>
   )
 }

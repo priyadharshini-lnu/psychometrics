@@ -124,34 +124,36 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
             {remainingCampaignTime && (
-            <CountdownTimer
-              prefix={(
-                <>
-                  {I18n.t('user_assessments.timer_title.campaign')}
-                  {': '}
-                  <ClockCircleOutlined />
-                </>
+              <CountdownTimer
+                shouldAnnounceRemainingTime
+                prefix={(
+                  <>
+                    {I18n.t('user_assessments.timer_title.campaign')}
+                    {': '}
+                    <ClockCircleOutlined />
+                  </>
               )}
-              notificationPoints={notificationDurations}
-              notificationTemplate={notificationMessage}
-              seconds={remainingCampaignTime}
-              onFinish={() => markAssessmentTimedOut(preview)}
-            />
+                notificationPoints={notificationDurations}
+                notificationTemplate={notificationMessage}
+                seconds={remainingCampaignTime}
+                onFinish={() => markAssessmentTimedOut(preview)}
+              />
             )}
             {remainingAssessmentTime && (
-            <CountdownTimer
-              prefix={(
-                <>
-                  {I18n.t('user_assessments.timer_title.assessment')}
-                  {': '}
-                  <ClockCircleOutlined />
-                </>
+              <CountdownTimer
+                shouldAnnounceRemainingTime
+                prefix={(
+                  <>
+                    {I18n.t('user_assessments.timer_title.assessment')}
+                    {': '}
+                    <ClockCircleOutlined />
+                  </>
             )}
-              notificationPoints={notificationDurations}
-              notificationTemplate={notificationMessage}
-              seconds={remainingAssessmentTime}
-              onFinish={() => markAssessmentTimedOut(preview)}
-            />
+                notificationPoints={notificationDurations}
+                notificationTemplate={notificationMessage}
+                seconds={remainingAssessmentTime}
+                onFinish={() => markAssessmentTimedOut(preview)}
+              />
             )}
           </Space>
         </Col>

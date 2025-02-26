@@ -45,7 +45,7 @@ const Footer: React.FC<Props> = ({ model, choices, readOnly }) => {
         className={styles.chatInput}
         placeholder={I18n().t('threesixty.question.chat_type.input_placeholder')}
         onKeyUp={handleKeyUp}
-        aria-label={I18nTextTranslations.t('frontend.aria.write_message')}
+        title={I18nTextTranslations.t('frontend.aria.write_message')}
       />
       <Button
         aria-label={I18nTextTranslations.t('frontend.aria.send_message')}
