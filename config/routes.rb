@@ -1196,6 +1196,7 @@ as: :simulation_progress_notification
           jsonapi_resources :norms do
             post :copy
             post :editor
+            post :export
           end
           jsonapi_resources :tags
           jsonapi_resources :external_assessments

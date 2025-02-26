@@ -9,6 +9,12 @@ module Api
 
     before_action :set_resource, only: %i[copy]
 
+    def export
+      AdminJob.call(
+        :norm_export, { norm_id: params[:norm_id] }, current_user
+      )
+    end
+
     def copy
       audit! :copy, @resource, payload: { source_id: @resource.id }
       result = ::Norms::CopyNorm.call!(

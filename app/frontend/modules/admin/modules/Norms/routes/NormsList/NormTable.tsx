@@ -7,7 +7,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { Norm } from '~/modules/admin/modules/client/core/norms'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { RemoveResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import { RemoveResource, UpdateResource, MemberAction } from '~/hooks/useResources/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -38,7 +38,7 @@ type Props = PropsFromRedux
 const NormTable: React.FC<Props> = ({ openModal }) => {
   const { resource } = useResourceContext<Norm>()
   const {
-    getSortOrder, updateResource, removeResource, createResource,
+    getSortOrder, updateResource, removeResource, createResource, memberAction,
   } = resource
 
   return (
@@ -113,6 +113,7 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
                       updateResource,
                       removeResource,
                       openModal,
+                      memberAction,
                     })
                 }
             />
@@ -135,12 +136,20 @@ interface ActionMenuData {
     updateResource: UpdateResource<Norm>
     removeResource: RemoveResource
     openModal: (modalName: string, modalProps: unknown) => void
+    memberAction: MemberAction
 }
 
 const getActionMenuProps = ({
-  norm, updateResource, removeResource, openModal,
+  norm, updateResource, removeResource, openModal, memberAction,
 }: ActionMenuData): MenuProps => {
   const { id, name, meta: { permissions } } = norm
+
+  const exportNorm = (normId: string) => memberAction({
+    id: normId,
+    action: 'export',
+    method: 'post',
+    responseType: 'ok',
+  })
 
   const menuItems = [
     permissions.edit && { key: 'edit', label: I18n.t('common.actions.edit') },
@@ -170,6 +179,9 @@ const getActionMenuProps = ({
     }
     if (key === 'copy') {
       return openModal('CopyNomsFormModal', { norm })
+    }
+    if (key === 'export_norm') {
+      return exportNorm(norm.id)
     }
   }
 
