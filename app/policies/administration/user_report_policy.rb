@@ -51,10 +51,14 @@ module Administration
     end
 
     def start_qc?
+      return true if @user.is?(:superadmin)
+
       user_qc?
     end
 
     def abort_qc?
+      return true if @user.is?(:superadmin)
+
       user_qc?
     end
 
