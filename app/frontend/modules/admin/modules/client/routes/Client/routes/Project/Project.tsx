@@ -12,6 +12,8 @@ import {
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { getFeatures } from '~/core/config'
+import { camelizeKeys } from '~/utils/object'
 import {
   fetchSingle as fetchProject,
 } from '~/modules/admin/modules/client/core/projects'
@@ -26,6 +28,7 @@ const { I18n } = window
 const connecter = connect(
   (state: RootState) => ({
     currentUser: state.currentUser,
+    features: getFeatures(state),
   }),
   {
     fetchProject,
@@ -36,12 +39,13 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const Project: FC<Props> = ({
-  currentUser, fetchProject,
+  currentUser, fetchProject, features,
 }) => {
   const { projectId } = useParams() as { projectId: string }
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [isProjectLoaded, setIsProjectLoaded] = useState(false)
+  const { idpEnabled } = camelizeKeys(features)
 
   useEffect(() => {
     fetchProject(parseInt(projectId, 10)).then(() => {
@@ -145,7 +149,7 @@ const Project: FC<Props> = ({
     label: I18n.t('administration.breadcrumbs.audit_reports'),
   })
 
-  menuItems.push({
+  idpEnabled && menuItems.push({
     key: 'idp',
     icon: <CrownOutlined />,
     label: I18n.t('administration.idp.idp'),
