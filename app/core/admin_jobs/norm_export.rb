@@ -28,9 +28,9 @@ module AdminJobs
 
     def write_csv_headers(csv)
       dimension_name = norm.dimension.name # Adjust this line to get the correct dimension name
-      csv << [dimension_name]
-      csv << []
-      csv << ([nil, nil] + headers)
+      csv << ([dimension_name, 'Factors'] + headers)
+      # csv << []
+      # csv << ([nil, nil] + headers)
     end
 
     def file_name
