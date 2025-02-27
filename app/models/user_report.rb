@@ -92,8 +92,8 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     on_transition do |_from, to, _event, *_|
       unless approval_setting&.do_not_send_notifications?
         ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to) && !one_level_qc?
-        ::UserReports::NotifyApprovals.call!(self) if to == :approved && !one_level_qc?
-        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
+        ::UserReports::NotifyApprovals.call!(self) if to == :approved
+        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && !one_level_qc?
       end
 
       update(approval_status_updated_at: Time.current)
