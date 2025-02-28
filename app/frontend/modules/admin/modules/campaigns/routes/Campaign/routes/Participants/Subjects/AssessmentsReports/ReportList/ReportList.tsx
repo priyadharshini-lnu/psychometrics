@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Table, MenuProps, Row, Col, Switch, App,
+  Typography,
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
@@ -10,6 +11,7 @@ import { Link, useParams } from 'react-router-dom'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
+import UserReport from '~/modules/admin/modules/campaigns/interfaces/UserReport'
 
 const { Column } = Table
 const { I18n } = window
@@ -66,6 +68,18 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.report_name')}
             key="name"
             dataIndex="name"
+            render={(text, record: UserReport) => (
+              <>
+                {text}
+                {record.hoganParticipantId && (
+                  <Typography.Text style={{ display: 'block', fontSize: '0.8em' }}>
+                    (
+                    {record.hoganParticipantId}
+                    )
+                  </Typography.Text>
+                )}
+              </>
+            )}
           />
           <Column
             title={I18n.t('campaign_report.column.report_bundle')}

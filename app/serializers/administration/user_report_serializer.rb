@@ -4,7 +4,7 @@ module Administration
   class UserReportSerializer < Panko::Serializer
     attributes :id, :permissions, :report_id, :name, :user_access,
                :report_family_name, :status, :internal, :report_url,
-               :report_provider, :custom_upload
+               :report_provider, :custom_upload, :hogan_participant_id
 
     delegate :name, :mindmill, to: :report
     delegate :provider, to: :report, prefix: true
@@ -32,6 +32,12 @@ module Administration
 
     def user_results_exists
       object.has_user_results?
+    end
+
+    def hogan_participant_id
+      return nil unless object.hogan?
+
+      object.hogan_credential&.participant_id
     end
 
     def permissions

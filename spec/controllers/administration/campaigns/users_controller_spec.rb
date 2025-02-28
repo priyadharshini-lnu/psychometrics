@@ -140,6 +140,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'custom_upload' => false,
       'report_url' => nil,
       'report_provider' => 'internal',
+      'hogan_participant_id' => nil,
       'permissions' => {
         'download_report' => true,
         'remove' => true,
@@ -188,6 +189,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'simulation_content_variation_id' => nil,
       'simuation_time_extension' => nil,
       'simulation_content_variations' => [],
+      'hogan_participant_id' => nil,
       'users_result_id' => user_assessment.users_result_id
     })
   end
