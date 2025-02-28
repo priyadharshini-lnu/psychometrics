@@ -15,6 +15,20 @@ module Api
       )
     end
 
+    def import
+      form = ::Norms::ImportForm.new(import_params)
+
+      if form.valid?
+        AdminJob.call(
+          :import_norm, { owner_id: import_params[:owner_id] }, current_user, import_params[:file]
+        )
+
+        head :ok
+      else
+        render json: form.errors, status: 422
+      end
+    end
+
     def copy
       audit! :copy, @resource, payload: { source_id: @resource.id }
       result = ::Norms::CopyNorm.call!(

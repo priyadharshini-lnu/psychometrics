@@ -13,7 +13,7 @@ module AdminJobs
     end
 
     def data_row(factor_norm)
-      current_row = [nil, factor_norm[:name]]
+      current_row = [nil, nil, factor_norm[:name]]
       FactorsNorm::LEVELS.each do |level|
         cell = factor_norm[:factors_norms_props].find { |c| c['level'] == level }
         current_row << cell.try(:[], 'score_from')
@@ -28,7 +28,7 @@ module AdminJobs
 
     def write_csv_headers(csv)
       dimension_name = norm.dimension.name # Adjust this line to get the correct dimension name
-      csv << ([dimension_name, 'Factors'] + headers)
+      csv << ([norm.name, dimension_name, 'Factors'] + headers)
       # csv << []
       # csv << ([nil, nil] + headers)
     end
