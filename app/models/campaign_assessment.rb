@@ -19,7 +19,6 @@ class CampaignAssessment < ApplicationRecord
 
   delegate :common?,
            :hogan?,
-           :mindmill?,
            :external?,
            :saville?,
            :iiht?,

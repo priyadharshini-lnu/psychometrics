@@ -13,7 +13,6 @@ class Report < ApplicationRecord
 
   PROVIDERS = {
     internal: 0,
-    mindmill: 1,
     hogan: 2,
     saville: 3,
     pearson: 4,

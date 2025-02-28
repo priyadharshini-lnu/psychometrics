@@ -2,8 +2,8 @@ import React, {
   useState, FC, useRef, useEffect,
 } from 'react'
 import { Typography } from 'antd'
-import { DownOutlined, UpOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { DownOutlined, UpOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { ScrollToViewOnFocusButton } from '~/glint'
 

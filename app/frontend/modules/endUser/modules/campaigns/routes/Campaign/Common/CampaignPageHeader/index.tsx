@@ -3,12 +3,12 @@ import React, {
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { DownOutlined } from '@ant-design/icons'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Row, Col, Dropdown, Tag, theme, Space,
   Button,
 } from 'antd'
+import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { RootState } from '~/modules/endUser/core/rootReducers'

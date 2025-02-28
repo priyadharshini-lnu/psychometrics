@@ -134,7 +134,7 @@ const getActionsMenuProps = ({
   }
 
   const handleRawExport = (with_labels: boolean) => {
-    exportRawResults(campaignId, id, with_labels).then(() => {
+    exportRawResults(campaignId, id, { with_labels }).then(() => {
       message.success(I18n.t('campaign_assessment.messages.raw_results_export_scheduled'))
     })
   }

@@ -5,11 +5,14 @@ import {
 import humps from 'humps'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, Layout, InputNumber,
+  Col, Row, Typography, Form, Upload, Input, Layout, InputNumber, Select,
   Space, Progress, Button, message,
 } from 'antd'
 import cs from 'classnames'
 import _ from 'lodash'
+import {
+  DirectionalArrowIcon, PageHeader, FontsizeModifier,
+} from '~/glint'
 import { PlusOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { CropImageModal } from '~/glint/components/CropImageModal'
@@ -20,9 +23,9 @@ import {
   get as getUser,
   uploadPhoto,
 } from '~/core/currentUser'
-import { DirectionalArrowIcon, PageHeader, FontsizeModifier } from '~/glint'
 import array from '~/utils/array'
 import { CustomField } from './fields/CustomField'
+import { useSetAccessibilityAttributesOnSelect } from '~/hooks/useSetAccessibilityAttributesOnSelect'
 
 import styles from './styles.less'
 
@@ -87,6 +90,11 @@ function ProfileComponent ({
   const messageContainerRef = useRef<HTMLDivElement>(null)
   const [form] = Form.useForm()
   const uploadRef = useRef<HTMLDivElement | null>(null)
+  const genderSelectRef = useRef<HTMLDivElement | null>(null)
+  const localeSelectRef = useRef<HTMLDivElement | null>(null)
+
+  useSetAccessibilityAttributesOnSelect(genderSelectRef, 'enduser_profile_gender')
+  useSetAccessibilityAttributesOnSelect(localeSelectRef, 'enduser_profile_locale')
 
   useEffect(() => {
     focusFirstErrorField(errors)
@@ -305,7 +313,7 @@ function ProfileComponent ({
                         </Col>
                       )}
                       {enabledFields.gender && (
-                        <Col xs={24} sm={24} md={12}>
+                        <Col xs={24} sm={24} md={12} ref={genderSelectRef}>
                           <Form.Item
                             name="gender"
                             label={I18n.t('profile.gender')}
@@ -323,22 +331,23 @@ function ProfileComponent ({
                         </Col>
                       )}
                     </Row>
-
-                    <Form.Item
-                      name="locale"
-                      label={I18n.t('profile.locale')}
-                      hasFeedback
-                      help={errors?.locale}
-                      validateStatus={errors?.locale ? 'error' : ''}
-                      required={requiredFields.locale}
-                    >
-                      <Select
-                        virtual={false} // this is to make Select component accessibility compatible
-                        options={languageOptions}
-                        size="large"
-                        disabled={lockedFields.locale}
-                      />
-                    </Form.Item>
+                    <div ref={localeSelectRef}>
+                      <Form.Item
+                        name="locale"
+                        label={I18n.t('profile.locale')}
+                        hasFeedback
+                        help={errors?.locale}
+                        validateStatus={errors?.locale ? 'error' : ''}
+                        required={requiredFields.locale}
+                      >
+                        <Select
+                          virtual={false} // this is to make Select component accessibility compatible
+                          options={languageOptions}
+                          size="large"
+                          disabled={lockedFields.locale}
+                        />
+                      </Form.Item>
+                    </div>
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
                         <Col key={field.question_id} xs={24} sm={24} md={field.half_size ? 12 : 24}>

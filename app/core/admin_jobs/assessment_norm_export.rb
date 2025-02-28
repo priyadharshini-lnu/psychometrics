@@ -34,11 +34,16 @@ module AdminJobs
     end
 
     def records_for_export
-      UsersResult.joins(:user_assessment).
-        where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
-        merge(UserAssessment.scored).
-        includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
-        find_each(batch_size: 100)
+      users_results = UsersResult.joins(user_assessment: :campaign_user).
+                      where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
+                      merge(UserAssessment.scored).
+                      includes(:norm, :subject, :evaluator, user_assessment: %i[relationship])
+
+      unless include_inactive_users
+        users_results = users_results.where(campaign_users: { active: true })
+      end
+
+      users_results.find_each(batch_size: 100)
     end
 
     def factors
@@ -47,6 +52,10 @@ module AdminJobs
 
     def file_name
       "assessment-#{assessment.id}-normed-factor-scores.csv"
+    end
+
+    def include_inactive_users
+      record.data['include_inactive_users'] || false
     end
   end
 end

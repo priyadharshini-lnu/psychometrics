@@ -103,7 +103,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(
-      :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
+      :type, :name, :category, :description, :dimension_id, :timing,
       :status, :icon, :icon_color, :purge_icon, :poster, :purge_poster,
       :enable_video_check, :enable_audio_check, :enable_network_check, :translations_migrated,
       :owner_id, :project_id, :linked_questions,

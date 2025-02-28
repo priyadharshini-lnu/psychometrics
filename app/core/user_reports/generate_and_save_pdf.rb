@@ -22,7 +22,6 @@ module UserReports
         report = user_report.report
         user_report.update!(status: :generating) unless report.hogan?
 
-        generate_mindminl_report(user_report) if report.mindmill?
         generate_hogan_report(user_report) if report.hogan?
         generate_saville_report(user_report) if report.provider_saville?
         generate_pearson_report(user_report) if report.provider_pearson?
@@ -44,10 +43,6 @@ module UserReports
       File.open(data[:file_path]) do |file|
         user_report.attach_pdf!(file)
       end
-    end
-
-    def generate_mindminl_report(user_report)
-      Mindmill::LoadResultsJob.perform_later(user_report.user_results.first, current_user)
     end
 
     def generate_hogan_report(user_report)

@@ -34,9 +34,7 @@ module AdminJobs
     end
 
     def xlsx
-      if assessment.mindmill?
-        ::Assessments::Export::Mindmill.call!(assessment, campaign)
-      elsif assessment.hogan?
+      if assessment.hogan?
         ::Assessments::Export::Hogan.call!(assessment, campaign)
       elsif assessment.saville?
         ::Assessments::Export::Saville.call!(assessment, campaign)
