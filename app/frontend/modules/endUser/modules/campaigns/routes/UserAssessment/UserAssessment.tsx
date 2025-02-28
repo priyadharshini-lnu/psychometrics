@@ -92,7 +92,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
 
-  if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
+  if (isMobile) { progressBarProps = { type: 'circle', style: { width: '80vw' } } }
 
   const needsProctoring = proctoringEnabled && !prework && !isProctored()
   if (needsProctoring) {
