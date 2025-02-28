@@ -55,6 +55,27 @@ export const convertSecondsToMMSS = (totalSeconds: number): string => {
   return `${minutesFormatted}:${secondsFormatted}/10:00`
 }
 
+// TODO: Generalize if possible
+export const countdownAlertInMinutes = (totalSeconds: number): string => {
+  const minutes = Math.floor(totalSeconds / 60)
+
+  switch (minutes) {
+    case 1: return '9 minutes left'
+    case 5: return '5 minutes left'
+    case 8: return '2 minutes left'
+    case 9: return '1 minute left'
+    default: return ''
+  }
+}
+// TODO: Generalize if possible
+export const countdownAlertInSeconds = (totalSeconds: number): string => {
+  switch (totalSeconds) {
+    case 4: return '4'
+    case 8: return '8'
+    default: return ''
+  }
+}
+
 export const mergeDateAndTime = (
   date: dayjs.Dayjs, time: dayjs.Dayjs | null, timezone: string| undefined = undefined,
 ) => {
