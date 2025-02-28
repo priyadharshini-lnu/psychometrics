@@ -248,6 +248,7 @@ export default {
         showLabel: false,
         showBorder: false,
         mode: 'topFactors',
+        tableStyle: 'default',
       },
       CampaignFactorsTable: {
         precision: null,
