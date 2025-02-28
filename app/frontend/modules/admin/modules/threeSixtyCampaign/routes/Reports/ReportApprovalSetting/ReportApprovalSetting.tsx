@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Space, Pagination, Button, MenuProps,
+  Table, Space, Button, MenuProps,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -43,16 +43,19 @@ type Params = {
 }
 type Props = PropsFromRedux
 
+interface Meta extends BaseMeta {
+  campaignId: number
+  reportId: number
+}
+
 const ReportApprovalSettingComponent: React.FC<Props> = ({
   openModal,
   currentUser,
 }) => {
   const { campaignId } = useParams() as Params
-  const isThreesixty = location.pathname.includes('threesixty_campaign')
   const {
-    data, meta, createResource, fetch, isLoading, changePage,
-    currentPage, pageSize, updateResource, removeResource, requests,
-  } = useResources<ReportApprovalSettings, BaseMeta>(
+    data, meta, createResource, fetch, isLoading, updateResource, removeResource, requests,
+  } = useResources<ReportApprovalSettings, Meta>(
     'report_approval_settings',
     {
       basePath: `campaigns/${campaignId}/`,
@@ -62,16 +65,18 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
         fields: {
           reports: ['name'],
         },
+        query: { is_threesixty: true },
       },
     },
   )
   useEffect(() => {
     fetch({
       apiConfig: {
-        query: { is_threesixty: isThreesixty },
+        query: { is_threesixty: true },
       },
     })
   }, [])
+
   const tableLoading = isLoading('fetch')
 
   const ApprovalSettingsTable = (
@@ -142,7 +147,8 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
                     updateResource,
                     removeResource,
                     openModal,
-                    campaignId,
+                    campaignId: meta.campaignId,
+                    reportId: meta.reportId,
                   })
                 }
                 />
@@ -150,32 +156,27 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
             />
           )}
       </Table>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={meta.recordCount}
-        onChange={changePage}
-        className="pl"
-      />
     </>
   )
 
   const filter = (
     <Button
       type="primary"
-      disabled={tableLoading}
+      disabled={tableLoading || !!data[0]}
       onClick={() => {
         openModal(
           'ReportApprovalFormModal', {
             addReportApprovalSetting: createResource,
-            campaignId,
+            campaignId: meta.campaignId,
+            reportId: meta.reportId,
           },
         )
       }}
     >
       <PlusOutlined />
       {' '}
-      {I18n.t('assessments_reports.report_approval.add_settings')}
+      {I18n.t('assessments_reports.report_approval.create_seetings')}
+
     </Button>
   )
 
@@ -197,15 +198,15 @@ interface ActionMenuData {
   reportApprovalSettings: ReportApprovalSettings
   updateResource: UpdateResource<ReportApprovalSettings>
   removeResource: RemoveResource
-  campaignId: string,
+  campaignId: number,
+  reportId: number,
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
 const getActionsMenuProps = ({
-  reportApprovalSettings, updateResource, removeResource, openModal, campaignId,
+  reportApprovalSettings, updateResource, removeResource, openModal, campaignId, reportId,
 }: ActionMenuData): MenuProps => {
   const { id } = reportApprovalSettings
-  const reportId = reportApprovalSettings.report.id
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
     { key: 'remove', label: I18n.t('common.actions.remove') },
@@ -217,6 +218,7 @@ const getActionsMenuProps = ({
           reportApprovalSettings,
           updateReportApprovalSetting: updateResource,
           campaignId,
+          reportId,
         },
       )
     }

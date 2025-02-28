@@ -3,7 +3,6 @@ import {
   Form, Select, Space, Spin, Switch,
 } from 'antd'
 import _ from 'lodash'
-import { Report, ReportTR } from '~/modules/admin/modules/campaigns/core/reportList'
 import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -18,6 +17,7 @@ interface Props {
   addReportApprovalSetting: CreateResource<ReportApprovalSettings>
   updateReportApprovalSetting: UpdateResource<ReportApprovalSettings>
   campaignId: string
+  reportId: number
   close(): void
 }
 
@@ -44,12 +44,10 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
   addReportApprovalSetting,
   updateReportApprovalSetting,
   campaignId,
+  reportId,
   close,
 }) => {
   const [form] = Form.useForm()
-  const {
-    data: reports, fetch: fetchReports, isLoading: isReportsLoading,
-  } = useResources<Report>('reports', { responseType: ReportTR })
   const {
     data: qcUsers, fetch: fetchQcUsers, isLoading: isQcUsersLoading,
   } = useResources<User>('users', { responseType: UserTR })
@@ -67,7 +65,6 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     approvalNotificationUserIds: getUserIds(reportApprovalSettings.approvalNotificationUsers),
   } : reportApprovalSettings
 
-  const reportOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'report', reports)
   const qcUserOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'qcs', qcUsers)
   const approversOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'approvers', approverUsers)
   const notificationUserOpts = getOptionsFromApprovalSettings(
@@ -94,39 +91,18 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
 
         return {
           ...formValuesObj,
-          approvalNotificationUserIds: (approvalNotificationUserIds || []).map(stringToNumber),
-          approverUserIds: (approverUserIds || []).map(stringToNumber),
-          qcUserIds: qcUserIds.map(stringToNumber),
           approversNotRequired: formValuesObj.approversNotRequired || false,
           approversCanEdit: formValuesObj.approversCanEdit || false,
           doNotSendNotifications: formValuesObj.doNotSendNotifications || false,
+          approvalNotificationUserIds: (approvalNotificationUserIds || []).map(stringToNumber),
+          approverUserIds: (approverUserIds || []).map(stringToNumber),
+          qcUserIds: qcUserIds.map(stringToNumber),
+          reportId,
         }
       }}
     >
       {() => (
         <>
-          <Form.Item
-            name="reportId"
-            label="Report"
-            rules={[{ required: true }]}
-          >
-            <Select
-              showSearch
-              onSearch={(value) => {
-                fetchReports({
-                  apiConfig: { filter: { name_cont: value } },
-                })
-              }}
-              notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
-            >
-              {reportOpts.map(({ id, name }) => (
-                <Option key={id} value={id}>
-                  {name}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
           <Collapse
             className="mb24"
             items={[{
