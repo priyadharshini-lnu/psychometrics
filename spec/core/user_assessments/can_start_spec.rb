@@ -23,7 +23,7 @@ describe UserAssessments::CanStart do
     expect(described_class.call!(user_assessment, user, {})).to eq(true)
   end
 
-  xit 'returns true if system checks required' do
+  it 'returns true if system checks required' do
     assessment.extra = { enable_audio_check: true }
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
@@ -31,7 +31,7 @@ describe UserAssessments::CanStart do
     expect(described_class.call!(user_assessment, user, {})).to eq(true)
   end
 
-  xit 'returns false if system checks passed' do
+  it 'returns false if system checks passed' do
     assessment.extra = { enable_audio_check: true }
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
