@@ -22,7 +22,7 @@ class UserReportSchema < BaseSchema
       required(:report_data).maybe(:array?)
       required(:permissions).hash do
         required(:download).filled(:bool?)
-        required(:manage_qc).filled(:bool?)
+        required(:edit_qc).filled(:bool?)
         required(:manage_approval).filled(:bool?)
       end
       required(:comments).array(UserReportCommentSchema.schema(_, _))

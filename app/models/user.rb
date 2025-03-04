@@ -166,6 +166,10 @@ class User < ApplicationRecord
   delegate :age, :gender, :timezone, :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
   delegate :email, to: :manager, prefix: true, allow_nil: true
 
+  def skip_session_limitable?
+    Rails.env.development?
+  end
+
   def accessible_client_ids
     client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids
   end

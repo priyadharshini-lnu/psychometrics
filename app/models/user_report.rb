@@ -74,20 +74,24 @@ class UserReport < ApplicationRecord
     end
     state :qc_completed do
       event :approve, transitions_to: :approved
-      event :request_changes, transitions_to: :change_requested
+      event :request_changes, transitions_to: :qc_in_progress, if: ->(ua) { ua.one_level_qc? }
+      event :request_changes, transitions_to: :change_requested, if: ->(ua) { !ua.one_level_qc? }
     end
     state :change_requested do
       event :start_qc, transitions_to: :qc_in_progress
     end
     state :approved do
-      event :remove_approval, transitions_to: :change_requested
+      event :remove_approval, transitions_to: :qc_in_progress, if: ->(ua) { ua.one_level_qc? }
+      event :remove_approval, transitions_to: :change_requested, if: ->(ua) { !ua.one_level_qc? }
     end
     on_transition do |_from, to, _event, *_|
-      ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
-      ::UserReports::NotifyApprovals.call!(self) if to == :approved
-      ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
-      update(approval_status_updated_at: Time.current)
+      unless approval_setting&.do_not_send_notifications?
+        ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to) && !one_level_qc?
+        ::UserReports::NotifyApprovals.call!(self) if to == :approved
+        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && !one_level_qc?
+      end
 
+      update(approval_status_updated_at: Time.current)
       update(approver_user_id: nil, approved_at: nil) if to == :change_requested
     end
   end
@@ -122,6 +126,14 @@ class UserReport < ApplicationRecord
 
   def approval_settings
     campaign.report_approval_settings.where(report_id: report_id)
+  end
+
+  def approval_setting
+    approval_settings.first
+  end
+
+  def one_level_qc?
+    approval_setting&.approvers_not_required? || approval_setting&.approvers_can_edit?
   end
 
   def threesixty_subject
