@@ -58,7 +58,7 @@ RSpec.describe UserReport, type: :model do
       end
 
       context 'when string is not url' do
-        let(:data) { Base64.encode64(File.read(Rails.root.join('spec/fixtures/files/reports/test.pdf'))) }
+        let(:data) { Base64.encode64(Rails.root.join('spec/fixtures/files/reports/test.pdf').read) }
         let(:attachment) { { io: StringIO.new(data), filename: 'test', content_type: 'application/pdf' } }
 
         before do
@@ -76,7 +76,7 @@ RSpec.describe UserReport, type: :model do
     end
 
     context 'when data is a File' do
-      let(:data) { File.open(Rails.root.join('spec/fixtures/files/reports/test.pdf')) }
+      let(:data) { Rails.root.join('spec/fixtures/files/reports/test.pdf').open }
 
       it 'attaches the PDF from the file' do
         user_report.attach_pdf!(data)

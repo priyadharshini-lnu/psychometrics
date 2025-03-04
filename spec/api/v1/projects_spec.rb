@@ -7,7 +7,7 @@ describe 'Projects' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 

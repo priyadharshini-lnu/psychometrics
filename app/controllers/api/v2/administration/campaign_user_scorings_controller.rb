@@ -26,7 +26,7 @@ module Api
       campaign_factor_ids = campaign.campaign_factors.pluck(:id).map(&:to_s)
       campaign_user_scores = query_object.query
       modified_scores = campaign_user_scores.map do |score|
-        campaign_factor_values = score.select { |key, _value| campaign_factor_ids.include?(key) }.
+        campaign_factor_values = score.slice(*campaign_factor_ids).
                                  map do |key, value|
           parsed_value = value ? JSON.parse(value) : {}
           { campaign_factor_id: key.to_i, value: parsed_value['value'], label: parsed_value['label'] }

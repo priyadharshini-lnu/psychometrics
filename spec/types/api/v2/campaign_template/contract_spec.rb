@@ -38,7 +38,7 @@ RSpec.describe Api::V2::CampaignTemplate::Contract do
 
     expect(contract.failure?).to eq(true)
     error_message = I18n.t('administration.campaign_templates.errors.owner_invalid')
-    expect(contract.errors.to_h.dig(:data, :relationships, :owner)).to include(error_message)
+    expect(contract.errors.to_hash.dig(:data, :relationships, :owner)).to include(error_message)
   end
 
   it 'validates no error when owners match' do

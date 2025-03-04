@@ -47,7 +47,7 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
   end
 
-  enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
+  enum :status, { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
   after_commit :sync_user_report_pdf, if: proc { attachment_changes.include?('pdf_file') }, on: [:update]
 
@@ -132,7 +132,7 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def start_approval!
-    return ready! if not_ready? && has_approval_workflow?
+    ready! if not_ready? && has_approval_workflow?
   end
 
   def has_approval_workflow?

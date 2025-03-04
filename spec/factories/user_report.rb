@@ -9,7 +9,7 @@ FactoryBot.define do
     trait :with_pdf do
       after(:create) do |user_report|
         user_report.pdf_file.attach(
-          io: File.open(Rails.root.join('spec/fixtures/files/reports/test.pdf')),
+          io: Rails.root.join('spec/fixtures/files/reports/test.pdf').open,
           filename: 'test.pdf',
           content_type: 'application/pdf'
         )

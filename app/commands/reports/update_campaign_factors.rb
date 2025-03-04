@@ -88,7 +88,7 @@ module Reports
     end
 
     def new_factor_codes
-      @new_factor_codes ||= campaign_factors_params.map { |f| f['code'] }
+      @new_factor_codes ||= campaign_factors_params.pluck('code')
     end
   end
 end

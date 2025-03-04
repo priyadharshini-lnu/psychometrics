@@ -69,7 +69,7 @@ RSpec.describe Mettl::ResetCandidateAssessment, type: :service do
                                                                    schedule_name: retry_schedule_name,
                                                                    secure_browser_enabled: false
                                                                  })
-        expect(::Mettl::CreateSchedule).to receive(:call!).with(assessment, schedule_request).
+        expect(Mettl::CreateSchedule).to receive(:call!).with(assessment, schedule_request).
           and_return(@new_mettl_schedule_record)
 
         expect(subject).to receive(:broadcast).with(:ok)

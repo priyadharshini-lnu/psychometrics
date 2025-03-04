@@ -4,7 +4,7 @@ require 'axlsx'
 
 class ExcelSafe < Axlsx::Package
   def initialize
-    super()
+    super
     @workbook = workbook
   end
 

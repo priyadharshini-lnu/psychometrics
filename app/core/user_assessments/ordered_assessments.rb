@@ -20,7 +20,6 @@ module UserAssessments
     private
 
     def campaign_ordered_user_assessments(campaign) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      ordered_user_assessments = []
       groups = campaign.campaign_assessment_groups.sort_by(&:position)
       ungrouped_assessment_ids = campaign.campaign_assessments.select { |ca| ca.campaign_assessment_group_id.nil? }.
                                  sort_by(&:position).map(&:assessment_id)
@@ -29,8 +28,8 @@ module UserAssessments
       end
       all_campaigns_assessment_ids = grouped_assessment_ids + ungrouped_assessment_ids
 
-      all_campaigns_assessment_ids.each do |assessment_id|
-        ordered_user_assessments << indexed_user_assessments[[campaign.id, assessment_id]]
+      ordered_user_assessments = all_campaigns_assessment_ids.map do |assessment_id|
+        indexed_user_assessments[[campaign.id, assessment_id]]
       end
       ordered_user_assessments += user_assessments.reject do |ua|
         ua.campaign_id != campaign.id || all_campaigns_assessment_ids.include?(ua.assessment_id)

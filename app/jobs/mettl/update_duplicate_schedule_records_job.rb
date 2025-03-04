@@ -5,7 +5,7 @@ module Mettl
     def perform(mettl_schedule_record, mettl_schedule_record_params)
       assessment = mettl_schedule_record.assessment
 
-      MettlScheduleRecord.where(duplicated_from_id: mettl_schedule_record.id).each do |duplicate_schedule_record|
+      MettlScheduleRecord.where(duplicated_from_id: mettl_schedule_record.id).find_each do |duplicate_schedule_record|
         mettl_schedule_record_params[:schedule_name] = duplicate_schedule_record.schedule_name
 
         schedule_request = Mettl::BuildScheduleRequestBody.call!(attributes: mettl_schedule_record_params,

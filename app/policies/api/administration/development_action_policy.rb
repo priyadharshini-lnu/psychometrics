@@ -33,7 +33,7 @@ module Api
 
       class Scope < BasePolicy::Scope
         def resolve
-          return scope if @user.superadmin?
+          scope if @user.superadmin?
         end
       end
     end

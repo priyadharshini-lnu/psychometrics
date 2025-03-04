@@ -107,7 +107,7 @@ module Users
       end
 
       def lock_strategy_enabled?(type)
-        security_setting ? security_setting&.lock_account : super(type)
+        security_setting ? security_setting&.lock_account : super
       end
 
       def security_setting_for_admin

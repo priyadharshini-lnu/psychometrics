@@ -29,7 +29,7 @@ RSpec.describe Administration::Projects::SamlSettingsController, type: :controll
         resource: saml_setting_attributes
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(response.status).to eq(422)
       expect(parsed_response).to eq({ 'errors' => { 'entity_id' => ["can't be blank"] } })
     end
@@ -48,7 +48,7 @@ RSpec.describe Administration::Projects::SamlSettingsController, type: :controll
       }, format: :json
       saml_setting.reload
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(response.status).to eq(200)
       expect(parsed_response['enabled']).to eq(true)
     end
@@ -63,7 +63,7 @@ RSpec.describe Administration::Projects::SamlSettingsController, type: :controll
       }, format: :json
       saml_setting.reload
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(response.status).to eq(422)
       expect(parsed_response).to eq({ 'errors' => { 'entity_id' => ["can't be blank"] } })
     end

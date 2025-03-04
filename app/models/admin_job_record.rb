@@ -17,7 +17,7 @@ class AdminJobRecord < ApplicationRecord
     "private/admin_job/#{id}/#{attribute_name}/#{filename}"
   end
 
-  enum operation: {
+  enum :operation, {
     import_users: 0,
     rescore_assessment: 1,
     rescore_user_assessment: 2,
@@ -79,7 +79,7 @@ class AdminJobRecord < ApplicationRecord
     export_development_actions: 58
   }
 
-  enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
+  enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
 
   after_commit -> { broadcast(:update) }, if: proc { status_previously_changed? || completed_tasks_previously_changed? }
 

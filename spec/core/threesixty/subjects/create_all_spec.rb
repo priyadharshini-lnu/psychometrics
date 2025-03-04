@@ -38,7 +38,7 @@ describe Threesixty::Subjects::CreateAll do
 
       expect do
         described_class.call!([{ email: 'daniel@cc.com', first_name: 'Dan' }], threesixty_campaign)
-      end.to_not change(::Threesixty::Subject, :count)
+      end.to_not change(Threesixty::Subject, :count)
     end
 
     it "doesn't create participants if already exists" do
@@ -53,7 +53,7 @@ describe Threesixty::Subjects::CreateAll do
 
       expect do
         described_class.call!([{ email: 'daniel@cc.com', first_name: 'Dan' }], threesixty_campaign)
-      end.to_not change(::Threesixty::Participant, :count)
+      end.to_not change(Threesixty::Participant, :count)
     end
 
     it 'saves new user with the provides password' do

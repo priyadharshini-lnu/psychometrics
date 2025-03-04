@@ -174,7 +174,7 @@ RSpec.describe Webhooks::MettlController, type: :controller do
     end
 
     it 'sets user_assessment as completed and saves scores' do
-      expect(::Mettl::SaveScoresAndReport).to receive(:call!).with(user_assessment, JSON.parse(json_payload))
+      expect(Mettl::SaveScoresAndReport).to receive(:call!).with(user_assessment, JSON.parse(json_payload))
 
       post :results, params: { project_id: 1 }, body: json_payload
 

@@ -103,7 +103,7 @@ module EndUser
       return unless object.fixed_time?
       return current_campaign_user.additional_time / 60 if current_campaign_user.interrupted_campaign?
 
-      return object.fixed_time_duration / 60 if current_campaign_user.not_started_campaign?
+      object.fixed_time_duration / 60 if current_campaign_user.not_started_campaign?
     end
 
     private

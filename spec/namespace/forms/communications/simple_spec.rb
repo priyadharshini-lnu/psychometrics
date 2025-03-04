@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe ::Forms::Communications::Simple do
-  let(:form) { ::Forms::Communications::Simple.new(Communication.new(recipients: nil)) }
+RSpec.describe Forms::Communications::Simple do
+  let(:form) { Forms::Communications::Simple.new(Communication.new(recipients: nil)) }
   let(:superadmin) { create(:superadmin) }
   let(:client_admin) { create(:client_admin) }
   let(:project_admin) { create(:project_admin) }
@@ -103,11 +103,11 @@ RSpec.describe ::Forms::Communications::Simple do
 
   describe 'prepopulate!' do
     let(:form_with_campaign_id_end) do
-      ::Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))
+      Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))
     end
 
     context 'current_user is superadmin' do
-      let(:form_with_owner_id) { ::Forms::Communications::Simple.new(Communication.new(owner_id: 5)) }
+      let(:form_with_owner_id) { Forms::Communications::Simple.new(Communication.new(owner_id: 5)) }
 
       it 'assign client_id from owner_id' do
         form_with_owner_id.prepopulate!(current_user: superadmin)
@@ -124,13 +124,13 @@ RSpec.describe ::Forms::Communications::Simple do
 
     context 'current_user is project_admin' do
       let(:form_campaign_id_end) do
-        ::Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))
+        Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))
       end
       let(:form_project_id_end) do
-        ::Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15))
+        Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15))
       end
       let(:form_client_id_end) do
-        ::Forms::Communications::Simple.new(Communication.new(client_id: 10))
+        Forms::Communications::Simple.new(Communication.new(client_id: 10))
       end
 
       it 'assign owner_id from client_id' do

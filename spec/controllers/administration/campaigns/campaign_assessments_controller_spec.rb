@@ -20,7 +20,7 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentsController, type: :
       resource: { campaign_assessment_group_id: campaign_assessment_group.id, position: 4 }
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response['campaign_assessment_group_id']).to eq campaign_assessment_group.id
     expect(parsed_response['position']).to eq 4

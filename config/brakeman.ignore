@@ -24,6 +24,30 @@
       "note": ""
     },
     {
+      "warning_type": "Dangerous Eval",
+      "warning_code": 13,
+      "fingerprint": "1a11fd006a80b3182bb8d5a7c44c3e5a33a9de99e8c8e2e00755a2a477d85b30",
+      "check_name": "Evaluation",
+      "message": "Dynamic code evaluation",
+      "file": "app/core/users_results/scoring/add_score_by_strategy/custom_formula.rb",
+      "line": 72,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_eval/",
+      "code": "LuaEvaluator.eval(script, lua)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersResults::Scoring::AddScoreByStrategy::CustomFormula",
+        "method": "eval_lua"
+      },
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        913,
+        95
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "232b84c99824e2e769ebb980ddeebbed5def2c3778c8b6b674f790e97a25c1f0",
@@ -114,6 +138,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "4bfd4c2f76d30684271b3633cff98b9edf8b003fa0ed623a94c82cd313fba977",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/admin_jobs/super_admin/export_admins_with_permissions.rb",
+      "line": 72,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Membership.where(\"\\n            (\\n              memberships.client_id IN (:client_ids) AND\\n              memberships.role IN (#{Membership.roles[\"project_admin\"]}, #{Membership.roles[\"client_admin\"]})\\n            )\\n            OR (memberships.campaign_id IN (:campaign_ids) AND memberships.role = #{Membership.roles[\"campaign_admin\"]})\\n          \", :client_ids => ([client.id, *client.projects.pluck(:id)]), :campaign_ids => Campaign.where(:project_id => client.projects.pluck(:id)).pluck(:id))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AdminJobs::SuperAdmin::ExportAdminsWithPermissions",
+        "method": "records_for_export"
+      },
+      "user_input": "Membership.roles[\"project_admin\"]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "71796fd5efbff53104a2f27525ec8d9550ce8bd44678100a51d25557f5a48e56",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -175,6 +222,29 @@
       },
       "user_input": "reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name",
       "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "a9405a4fa45d9aa452571eb3edd5cc330103f4f8d6cc096829ed86f3a78078b8",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/serializers/assessment_serializer.rb",
+      "line": 53,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Arel.sql(\"position(id::text in '#{object.resources.pluck(\"questionId\").join(\",\")}')\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AssessmentSerializer",
+        "method": "resources_content"
+      },
+      "user_input": "object.resources.pluck(\"questionId\").join(\",\")",
+      "confidence": "Medium",
       "cwe_id": [
         89
       ],
@@ -292,6 +362,30 @@
       "confidence": "Medium",
       "cwe_id": [
         915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Dangerous Eval",
+      "warning_code": 13,
+      "fingerprint": "b0e9a813c2ff262f32c8d8d8beae19a83a896113441b7b0afbd87dace4c5881e",
+      "check_name": "Evaluation",
+      "message": "Dynamic string evaluated as code",
+      "file": "app/core/campaign_scoring/calculate.rb",
+      "line": 122,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_eval/",
+      "code": "LuaEvaluator.eval(\"\\n        #{campaign_scoring_variables_as_lua_table}\\n        #{dependencies_as_lua_variable(campaign_factor)}\\n        #{campaign_factor.formula}\\n      \", Lua::State.new)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "CampaignScoring::Calculate",
+        "method": "compute_formula"
+      },
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        913,
+        95
       ],
       "note": ""
     },
@@ -480,6 +574,29 @@
       "note": ""
     },
     {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "f862da6def1806e2f0842c0cc40aee42e3af063995dd87211531d86305878cf5",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/serializers/assessment_serializer.rb",
+      "line": 54,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Arel.sql(\"array_position(ARRAY[#{object.resources.pluck(\"questionId\").join(\",\")}]::bigint[], id)\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AssessmentSerializer",
+        "method": "resources_content"
+      },
+      "user_input": "object.resources.pluck(\"questionId\").join(\",\")",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 2,
       "fingerprint": "f9ef89b1338f08971a9b5842795f50e2515ab2b0e884520eb62020dc150080cc",
@@ -494,7 +611,7 @@
           "type": "controller",
           "class": "Administration::CommunicationsController",
           "method": "show",
-          "line": 99,
+          "line": 31,
           "file": "app/controllers/administration/communications_controller.rb",
           "rendered": {
             "name": "administration/communications/show",
@@ -515,5 +632,5 @@
     }
   ],
   "updated": "2025-03-03 12:37:51 +0530",
-  "brakeman_version": "6.1.2"
+  "brakeman_version": "7.0.0"
 }

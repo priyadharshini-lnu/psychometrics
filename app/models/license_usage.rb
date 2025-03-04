@@ -13,7 +13,7 @@ class LicenseUsage < ApplicationRecord
   belongs_to :status_updated_by, class_name: 'User'
   belongs_to :consumer, polymorphic: true
 
-  enum status: { active: 0, inactive: 1 }
+  enum :status, { active: 0, inactive: 1 }
 
   after_create :increase_license_used_number, unless: -> { license.type_proctoring? }
 

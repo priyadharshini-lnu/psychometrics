@@ -94,7 +94,7 @@ FactoryBot.define do
         )
 
         user.user_profile.photo.attach(
-          io: File.open(Rails.root.join('spec/fixtures/files/profile.png')),
+          io: Rails.root.join('spec/fixtures/files/profile.png').open,
           filename: 'profile.png',
           content_type: 'image/png'
         )

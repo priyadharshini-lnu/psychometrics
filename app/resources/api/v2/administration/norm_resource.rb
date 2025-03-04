@@ -33,7 +33,7 @@ class Api::V2::Administration::NormResource < Api::V2::Administration::BaseResou
   def self.apply_sort(records, order_options, context = {})
     order_options.each do |field, direction|
       records = if field.to_s == 'updated_by.name'
-                  records.joins(:updated_by).merge(User.send("sort_by_full_name_#{direction}"))
+                  records.joins(:updated_by).merge(User.send(:"sort_by_full_name_#{direction}"))
                 else
                   super(records, { field => direction }, context)
                 end

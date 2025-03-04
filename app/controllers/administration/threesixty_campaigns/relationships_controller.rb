@@ -28,15 +28,15 @@ module Administration
         ).to_a
       end
 
-      def destroy
-        form = ::Threesixty::Relationships::DestroyForm.from_params(params)
-        if form.valid?
-          relationship.destroy!
-          audit!(:destroy, relationship, campaign: threesixty_campaign.campaign, payload: params)
-          render json: params[:id]
-        else
-          render json: { errors: form.errors.messages }, status: 400
-        end
+      def create
+        relationship = Relationship.create!(campaign_id: threesixty_campaign.campaign_id, type: :campaign)
+        audit!(:create, relationship, campaign: threesixty_campaign.campaign)
+
+        render json: RelationshipWithUsageSerializer.new(
+          context: {
+            counters: {}
+          }
+        ).serialize(relationship)
       end
 
       def update
@@ -50,15 +50,15 @@ module Administration
         ).serialize(relationship)
       end
 
-      def create
-        relationship = Relationship.create!(campaign_id: threesixty_campaign.campaign_id, type: :campaign)
-        audit!(:create, relationship, campaign: threesixty_campaign.campaign)
-
-        render json: RelationshipWithUsageSerializer.new(
-          context: {
-            counters: {}
-          }
-        ).serialize(relationship)
+      def destroy
+        form = ::Threesixty::Relationships::DestroyForm.from_params(params)
+        if form.valid?
+          relationship.destroy!
+          audit!(:destroy, relationship, campaign: threesixty_campaign.campaign, payload: params)
+          render json: params[:id]
+        else
+          render json: { errors: form.errors.messages }, status: 400
+        end
       end
 
       private

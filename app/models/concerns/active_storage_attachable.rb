@@ -81,7 +81,7 @@ module ActiveStorageAttachable
         attach_variants(attachable, variants)
       end
 
-      define_method "#{attribute}_url" do |variant = nil|
+      define_method :"#{attribute}_url" do |variant = nil|
         attachment_url(attribute, variant)
       end
 
@@ -91,20 +91,20 @@ module ActiveStorageAttachable
       # setting folder to store attachment on the storage
       generate_attachment_key_for attribute
 
-      define_method "#{attribute}_url" do |variant = nil|
+      define_method :"#{attribute}_url" do |variant = nil|
         attachment_url(attribute, variant)
       end
 
-      define_method "purge_#{attribute}=" do |value|
-        instance_variable_set("@purge_#{attribute}", value)
+      define_method :"purge_#{attribute}=" do |value|
+        instance_variable_set(:"@purge_#{attribute}", value)
       end
 
-      define_method "purge_#{attribute}?" do
-        instance_variable_get("@purge_#{attribute}")
+      define_method :"purge_#{attribute}?" do
+        instance_variable_get(:"@purge_#{attribute}")
       end
 
       after_update lambda {
-        if send("purge_#{attribute}?") && send(attribute).attached?
+        if send(:"purge_#{attribute}?") && send(attribute).attached?
           send(attribute).purge_later
         end
       }
@@ -125,20 +125,20 @@ module ActiveStorageAttachable
       # setting folder to store attachment on the storage
       generate_attachment_key_for attribute
 
-      define_method "#{attribute}_url" do |variant = nil|
+      define_method :"#{attribute}_url" do |variant = nil|
         attachment_url(attribute, variant)
       end
 
-      define_method "purge_#{attribute}=" do |value|
-        instance_variable_set("@purge_#{attribute}", value)
+      define_method :"purge_#{attribute}=" do |value|
+        instance_variable_set(:"@purge_#{attribute}", value)
       end
 
-      define_method "purge_#{attribute}?" do
-        instance_variable_get("@purge_#{attribute}")
+      define_method :"purge_#{attribute}?" do
+        instance_variable_get(:"@purge_#{attribute}")
       end
 
       after_update lambda {
-        if send("purge_#{attribute}?") && send(attribute).attached?
+        if send(:"purge_#{attribute}?") && send(attribute).attached?
           send(attribute).purge_later
         end
       }
@@ -184,8 +184,8 @@ module ActiveStorageAttachable
     end
 
     def generate_attachment_key_for(attribute)
-      define_method "#{attribute}=" do |attachable|
-        action = super attachable
+      define_method :"#{attribute}=" do |attachable|
+        action = super(attachable)
 
         return action unless action.is_a? ActiveStorage::Attached::Changes::CreateOne
         return action if disk_service?(action.blob)
@@ -203,8 +203,8 @@ module ActiveStorageAttachable
     end
 
     def generate_attachments_keys_for(attribute)
-      define_method "#{attribute}=" do |attachable|
-        action = super attachable
+      define_method :"#{attribute}=" do |attachable|
+        action = super(attachable)
 
         return action unless action.is_a? ActiveStorage::Attached::Changes::CreateMany
         return action if action.blobs.any? { |blob| disk_service?(blob) }

@@ -12,10 +12,10 @@ module Threesixty
       def call
         remove_all_participants
 
-        user.user_reports.where(campaign_id: campaign.id).each(&:destroy!)
-        user.campaign_users.where(campaign_id: campaign.id).each(&:destroy!)
-        campaign.subjects.where(user_id: user.id).each(&:destroy!)
-        campaign.evaluators.where(user_id: user.id).each(&:destroy!)
+        user.user_reports.where(campaign_id: campaign.id).find_each(&:destroy!)
+        user.campaign_users.where(campaign_id: campaign.id).find_each(&:destroy!)
+        campaign.subjects.where(user_id: user.id).find_each(&:destroy!)
+        campaign.evaluators.where(user_id: user.id).find_each(&:destroy!)
       end
 
       private

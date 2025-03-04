@@ -117,7 +117,7 @@ describe UserReports::GeneratePdf do
       report_file_name = 'abc.pdf'
       allow_any_instance_of(described_class).to receive(:report_preview_url).and_return(report_url)
       allow_any_instance_of(described_class).to receive(:report_file_name).and_return(report_file_name)
-      expect(::Lambdas::UrlToPdf).to receive(:call!).with(
+      expect(Lambdas::UrlToPdf).to receive(:call!).with(
         report.pdf_dimension.merge(
           file_name: report_file_name,
           url: report_url,

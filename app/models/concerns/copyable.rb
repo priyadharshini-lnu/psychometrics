@@ -8,7 +8,7 @@ module Copyable
 
     number = send(attr).scan(/\((\d+)\)$/).flatten.join.to_i
     if number.zero?
-      send("#{attr}=", "#{name} (1)")
+      send(:"#{attr}=", "#{name} (1)")
     else
       send(attr).gsub!(/\((\d+)\)$/, "(#{number + 1})")
     end

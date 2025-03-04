@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationController < ::BaseController
+class ApplicationController < BaseController
   include AuthenticateAnonymousUser
   include ActiveStorage::SetCurrent
   layout :layout_by_resource

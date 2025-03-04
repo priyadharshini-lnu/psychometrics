@@ -9,7 +9,7 @@ describe Api::V2::Administration::ProjectAssessmentsController, swagger_doc: 'v2
   let!(:project_id) { project.id }
   let!(:project_assessment_id) { project_assessment.id }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

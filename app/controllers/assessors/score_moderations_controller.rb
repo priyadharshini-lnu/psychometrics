@@ -63,9 +63,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
       reports: Panko::ArraySerializer.new(
         user_reports,
         each_serializer: ShortUserReportSerializer,
-        context: {
-
-        }
+        context: {}
       ).to_a,
       main_report_id: main_user_report_id
     }

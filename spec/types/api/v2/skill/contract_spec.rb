@@ -38,7 +38,7 @@ RSpec.describe Api::V2::Skill::Contract do
         }
         contract = described_class::Search.new.call(params, { current_user: user, params: params })
         expect(contract.failure?).to eq(true)
-        expect(contract.errors.to_h).to eq(
+        expect(contract.errors.to_hash).to eq(
           filter: { all_skills: [I18n.t('administration.skills.errors.search.invalid_all_value')] }
         )
       end
@@ -53,7 +53,7 @@ RSpec.describe Api::V2::Skill::Contract do
         }
         contract = described_class::Search.new.call(params, { current_user: user, params: params })
         expect(contract.failure?).to eq(true)
-        expect(contract.errors.to_h).to eq(
+        expect(contract.errors.to_hash).to eq(
           filter: { category_in: [I18n.t('administration.skills.errors.search.invalid_category')] }
         )
       end
@@ -79,7 +79,7 @@ RSpec.describe Api::V2::Skill::Contract do
       }
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to include(
+      expect(contract.errors.to_hash).to include(
         filter: { name_cont: ['is required and must belonger than 3 characters'] }
       )
     end
@@ -88,7 +88,7 @@ RSpec.describe Api::V2::Skill::Contract do
       params = valid_params.deep_merge(filter: { name_cont: 'ab' })
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to eq(
+      expect(contract.errors.to_hash).to eq(
         filter: { name_cont: [I18n.t('administration.skills.errors.search.query_too_short')] }
       )
     end
@@ -97,7 +97,7 @@ RSpec.describe Api::V2::Skill::Contract do
       params = valid_params.deep_merge(filter: { category_in: '5' })
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to eq(
+      expect(contract.errors.to_hash).to eq(
         filter: { category_in: [I18n.t('administration.skills.errors.search.invalid_category')] }
       )
     end
@@ -110,7 +110,7 @@ RSpec.describe Api::V2::Skill::Contract do
       })
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h[:filter]).to include(
+      expect(contract.errors.to_hash[:filter]).to include(
         I18n.t('administration.skills.errors.search.all_and_project_id_mutually_exclusive')
       )
     end
@@ -119,7 +119,7 @@ RSpec.describe Api::V2::Skill::Contract do
       params = valid_params.deep_merge(filter: { all_skills: 'invalid' })
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to eq(
+      expect(contract.errors.to_hash).to eq(
         filter: { all_skills: [I18n.t('administration.skills.errors.search.invalid_all_value')] }
       )
     end
@@ -128,7 +128,7 @@ RSpec.describe Api::V2::Skill::Contract do
       params = valid_params.deep_merge(filter: { global: 'invalid' })
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to eq(
+      expect(contract.errors.to_hash).to eq(
         filter: { global: [I18n.t('administration.skills.errors.search.invalid_global_value')] }
       )
     end
@@ -166,7 +166,7 @@ RSpec.describe Api::V2::Skill::Contract do
       contract = described_class::TagsSearch.new.call(params, { current_user: user, params: params })
 
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to eq(
+      expect(contract.errors.to_hash).to eq(
         filter: { category_in: [I18n.t('administration.skills.errors.search.invalid_category')] }
       )
     end
@@ -176,7 +176,7 @@ RSpec.describe Api::V2::Skill::Contract do
       contract = described_class::TagsSearch.new.call(params, { current_user: user, params: params })
 
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h).to eq(
+      expect(contract.errors.to_hash).to eq(
         filter: { category_in: [I18n.t('administration.skills.errors.search.invalid_category')] }
       )
     end
@@ -206,7 +206,7 @@ RSpec.describe Api::V2::Skill::Contract do
       contract = described_class::TagsSearch.new.call(params, { current_user: user, params: params })
 
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h[:filter]).to include(
+      expect(contract.errors.to_hash[:filter]).to include(
         I18n.t('administration.skills.errors.search.all_and_project_id_mutually_exclusive')
       )
     end
@@ -228,7 +228,7 @@ RSpec.describe Api::V2::Skill::Contract do
       contract = described_class::TagsSearch.new.call(params, { current_user: user, params: params })
 
       expect(contract.failure?).to eq(true)
-      expect(contract.errors.to_h[:filter][:all]).to include('must be one of: true, false')
+      expect(contract.errors.to_hash[:filter][:all]).to include('must be one of: true, false')
     end
   end
 end

@@ -13,9 +13,8 @@ module AdminJobs
     end
 
     def data_row(user_result)
-      norm_scores = []
-      factors.each do |factor|
-        norm_scores << user_result.scoring&.dig(factor.id.to_s, 'norm_score')
+      norm_scores = factors.map do |factor|
+        user_result.scoring&.dig(factor.id.to_s, 'norm_score')
       end
       [
         user_result.encoded_id,

@@ -9,7 +9,7 @@ module Campaigns
 
       def decode(token)
         body = JWT.decode(token, Settings.secrets.campaign_join_secret_token)
-        HashWithIndifferentAccess.new body.first
+        ActiveSupport::HashWithIndifferentAccess.new body.first
       rescue JWT::ExpiredSignature
         nil
       rescue JWT::DecodeError, JWT::VerificationError => e

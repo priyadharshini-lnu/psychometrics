@@ -47,7 +47,7 @@ module Reports
           header_position = cells_range.last + 1
         end
 
-        users_results.includes(:subject).group_by(&:subject_id).each do |_, results|
+        users_results.includes(:subject).group_by(&:subject_id).each_value do |results|
           results = ::Reports::BuildResults.call(report, results, resources)[:ok].flatten
           sheet.add_row(results.pluck(:value), style: content_style)
         end

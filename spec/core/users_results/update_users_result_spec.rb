@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::UpdateUsersResult do
+describe UsersResults::UpdateUsersResult do
   let(:threesixty_campaign) { double('threesixty_campaign', id: 1) }
   let(:users_result) do
     double('users_result', subject: 'subject', evaluator: 'evaluator', threesixty_campaign: threesixty_campaign,
@@ -71,7 +71,7 @@ describe ::UsersResults::UpdateUsersResult do
     let(:user_assessment) { create(:user_assessment, status: 'completed') }
 
     before do
-      allow(::UsersResults::SaveScoringWithCallbacksJob).to receive(:perform_later)
+      allow(UsersResults::SaveScoringWithCallbacksJob).to receive(:perform_later)
     end
 
     it 'updates completed_at and norm_id' do
@@ -88,8 +88,8 @@ describe ::UsersResults::UpdateUsersResult do
 
       described_class.call(form, users_result, evaluator_user)
 
-      expect(::UsersResults::SaveScoringWithCallbacksJob).to have_received(:perform_later).with(users_result,
-                                                                                                evaluator_user)
+      expect(UsersResults::SaveScoringWithCallbacksJob).to have_received(:perform_later).with(users_result,
+                                                                                              evaluator_user)
     end
   end
 
@@ -136,14 +136,14 @@ describe ::UsersResults::UpdateUsersResult do
       context 'users_result is completed' do
         before do
           allow(users_result.user_assessment).to receive(:completed?).and_return(true)
-          allow(::UsersResults::SaveScoringWithCallbacksJob).to receive(:perform_later)
+          allow(UsersResults::SaveScoringWithCallbacksJob).to receive(:perform_later)
         end
 
         it 'enqueues SaveScoringWithCallbacksJob' do
           described_class.call(form, users_result, evaluator_user)
 
-          expect(::UsersResults::SaveScoringWithCallbacksJob).to have_received(:perform_later).with(users_result,
-                                                                                                    evaluator_user)
+          expect(UsersResults::SaveScoringWithCallbacksJob).to have_received(:perform_later).with(users_result,
+                                                                                                  evaluator_user)
         end
       end
     end

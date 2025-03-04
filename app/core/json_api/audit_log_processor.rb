@@ -144,7 +144,7 @@ module JsonApi
 
       return params[:parent_key] if params[:parent_key]
 
-      return params[:resource_id] if params[:resource_id]
+      params[:resource_id] if params[:resource_id]
     end
 
     def parent_resource_detail

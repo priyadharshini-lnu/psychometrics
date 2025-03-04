@@ -41,7 +41,7 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def self.records(opts)
-    super(opts).with_attached_icon.with_attached_poster.includes(:assessments, :owner)
+    super.with_attached_icon.with_attached_poster.includes(:assessments, :owner)
   end
 
   def icon_url
@@ -52,9 +52,7 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
     @model.deleted?
   end
 
-  def external_settings
-    @model.external_settings
-  end
+  delegate :external_settings, to: :@model
 
   def external_report
     @model.external_report?
@@ -105,8 +103,7 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
           context[:user],
           @model,
           %w[manage],
-          {
-          }
+          {}
         )
       }
     }

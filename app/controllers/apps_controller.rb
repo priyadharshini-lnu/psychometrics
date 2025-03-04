@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AppsController < ::BaseController
+class AppsController < BaseController
   include AuthenticateAnonymousUser
 
   prepend_before_action :authenticate_anonymous_user!

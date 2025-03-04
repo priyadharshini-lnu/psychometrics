@@ -36,7 +36,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         resource: { report_family_id: report_family.id, report_ids: [report.id], operation: 'skip_existing' }
       }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       check_campaign_reports_and_assesment_response(parsed_response)
     end
@@ -69,7 +69,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         new_campaign_id: campaign_report.campaign_id,
         id: campaign_report.id
       }
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['user_access']).to be_truthy
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
       get :assessments_and_reports, params: { project_id: campaign.project_id, new_campaign_id: campaign.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       check_campaign_reports_and_assesment_response(parsed_response)
     end
   end
@@ -131,7 +131,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
       get :report_families, params: { project_id: campaign.project_id, new_campaign_id: campaign.id }
 
-      report_family_response = JSON.parse(response.body).first
+      report_family_response = response.parsed_body.first
       expect(report_family_response.keys).to eq(%w[id name reports])
       expect(report_family_response).to include({
         'id' => report_family.id,

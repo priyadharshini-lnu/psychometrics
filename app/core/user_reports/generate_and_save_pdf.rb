@@ -50,13 +50,13 @@ module UserReports
     end
 
     def generate_saville_report(user_report)
-      user_report.user_results.includes(:user_assessment).each do |ur|
+      user_report.user_results.includes(:user_assessment).find_each do |ur|
         Saville::AssessmentOrderRequest.call!(ur.user_assessment)
       end
     end
 
     def generate_pearson_report(user_report)
-      user_report.user_results.includes(:user_assessment).each do |ur|
+      user_report.user_results.includes(:user_assessment).find_each do |ur|
         Pearson::SaveScoresAndReports.call!(ur.user_assessment)
       end
     end

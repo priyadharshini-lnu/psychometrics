@@ -22,7 +22,7 @@ class Membership < ApplicationRecord
 
   include ::Facades::Administration::EmailDelivery
 
-  enum role: MEMBERSHIP_ROLES
+  enum :role, MEMBERSHIP_ROLES
 
   delegate :is_anonym?, to: :user
 

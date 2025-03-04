@@ -32,7 +32,7 @@ module Hogan
         user_reports.
         joins(:report).
         where(report: { provider: :hogan }, campaign_id: campaign.id).
-        each(&:destroy!)
+        find_each(&:destroy!)
     end
 
     def delete_hogan_user_assessments

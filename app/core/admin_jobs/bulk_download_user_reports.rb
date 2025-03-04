@@ -14,7 +14,7 @@ module AdminJobs
 
       bulk_report = result[:ok]
 
-      if bulk_report&.dig(:error_messages)&.present?
+      if bulk_report&.dig(:error_messages).present?
         return broadcast :ok, { error_messages: bulk_report[:error_messages] }
       end
 

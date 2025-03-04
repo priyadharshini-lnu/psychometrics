@@ -14,7 +14,7 @@ module Imports
         # }
         def self.build_answers(data, question, duration, _use_scoring = false, _assign)
           answers = []
-          data.each_slice(2).each_with_index do |batch, choice|
+          data.each_slice(2).with_index do |batch, choice|
             scale, values = batch # contain scale and values
             next if scale.nil?
 

@@ -7,8 +7,8 @@ class SmtpSetting < ApplicationRecord
 
   attr_encrypted :password, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
 
-  enum encryption: { none: 0, ssl: 1, tls: 2 }, _prefix: true
-  enum authentication_type: { plain: 0, login: 1, cram_md5: 2 }
+  enum :encryption, { none: 0, ssl: 1, tls: 2 }, prefix: true
+  enum :authentication_type, { plain: 0, login: 1, cram_md5: 2 }
 
   def from_name_and_email
     no_reply_email = "no-reply@#{Settings.domain}"

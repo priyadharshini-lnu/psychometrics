@@ -11,7 +11,7 @@ describe Api::V2::Administration::PrivacySettingsController, swagger_doc: 'v2/sw
   end
   let!(:project_membership) { create(:project_admin_membership, client: project) }
   let!(:project_id) { privacy_setting_recotrd.project_id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(project_membership.user) }
 

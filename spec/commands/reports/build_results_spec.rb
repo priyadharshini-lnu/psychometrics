@@ -166,7 +166,7 @@ describe Reports::BuildResults do
 
     context 'NormedFactor' do
       before(:each) do
-        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+        allow(Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
       end
 
@@ -192,7 +192,7 @@ describe Reports::BuildResults do
 
     context 'CampaignFactor' do
       before(:each) do
-        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+        allow(Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ campaign_factor_codes: ['cognitive_score'] })
       end
 
@@ -385,7 +385,7 @@ describe Reports::BuildResults do
       subject { Reports::ResultTypes::MappedValue.call(build_results_command, data) }
 
       it do
-        expect(::Reports::GetDataConfigurationResources).to receive(:call!).
+        expect(Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
         is_expected.to eq(
           key: 'overall_aspiration_score',
@@ -422,7 +422,7 @@ describe Reports::BuildResults do
 
       let(:report) { create(:report, data_configuration: data_configuration) }
       before(:each) do
-        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+        allow(Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ factor_names: { 1 => 'Test factor1' } })
       end
 
@@ -471,7 +471,7 @@ describe Reports::BuildResults do
       subject { described_class.call!(report, [user_result]) }
 
       it 'resolves to the zscore' do
-        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+        allow(Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
 
         is_expected.to eq([
@@ -525,7 +525,7 @@ describe Reports::BuildResults do
       subject { described_class.call!(report, [user_result]) }
 
       it 'resolves zscore to percentile' do
-        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+        allow(Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ factor_names: { 1 => 'Test factor1' } })
 
         is_expected.to eq([

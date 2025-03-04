@@ -32,7 +32,7 @@ class Api::V2::Administration::ReportFamiliesReportResource < Api::V2::Administr
   end
 
   def self.records(opts)
-    super(opts).includes(:report, :report_family).where(report_family: opts[:context][:params][:report_family_id])
+    super.includes(:report, :report_family).where(report_family: opts[:context][:params][:report_family_id])
   end
 
   def meta_details
@@ -43,8 +43,7 @@ class Api::V2::Administration::ReportFamiliesReportResource < Api::V2::Administr
           context[:user],
           @model,
           %w[manage],
-          {
-          }
+          {}
         )
       }
     }

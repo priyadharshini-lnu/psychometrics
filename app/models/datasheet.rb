@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class Datasheet < ::Sheet
+class Datasheet < Sheet
 end

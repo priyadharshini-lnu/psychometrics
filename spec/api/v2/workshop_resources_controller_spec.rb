@@ -11,7 +11,7 @@ describe Api::V2::Administration::WorkshopResourcesController, swagger_doc: 'v2/
   let(:workshop_id) { workshop.id }
   let!(:resource) { create(:workshop_resource, workshop: workshop) }
   let(:resource_id) { resource.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

@@ -7,7 +7,7 @@ module CachingSerializer
 
   included do
     class_attribute :cache_exclusions, default: []
-    class_attribute :cache_key_proc, default: ->(object) { object.serializer_cache_key }
+    class_attribute :cache_key_proc, default: lambda(&:serializer_cache_key)
   end
 
   class_methods do
@@ -30,12 +30,12 @@ module CachingSerializer
         cached_result.merge!(dynamic_attributes)
         cached_result
       else
-        serialized_result = super(object)
+        serialized_result = super
         Rails.cache.write(cache_key, Oj.dump(serialized_result))
         serialized_result
       end
     else
-      serialized_result = super(object)
+      serialized_result = super
     end
     serialized_result
   end

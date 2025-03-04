@@ -115,7 +115,7 @@ module Imports
           flatten(1).
           flat_map { |scene| scene.dig('data', 'blocks') }.
           flat_map { |blocks| blocks['questions'] }.
-          collect { |question| question['id'] }
+          pluck('id')
       end
 
       def find_user_result(email)

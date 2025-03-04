@@ -6,7 +6,7 @@ module Api
       attributes :user_data, :assessments, :computed_scores, :campaign_id
 
       def initialize(object)
-        super(object)
+        super
         @assessments = {}
       end
 

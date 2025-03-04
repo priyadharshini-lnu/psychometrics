@@ -8,7 +8,7 @@ describe Api::V2::Administration::ThreesixtyCampaignsController, swagger_doc: 'v
   let!(:project) { create(:project, client: client) }
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
   let!(:dimension) { create(:dimension, :with_factor) }
   let!(:assessment) { create(:assessment, category: 'threesixty', dimension_id: dimension.id) }
   let!(:campaign_template) { create(:campaign_template, assessment: assessment) }

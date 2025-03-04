@@ -24,7 +24,6 @@
 //= require administration/actions
 //= require filterrific/filterrific-jquery
 //= require administration/overrides/filterrific
-//= require js-routes
 
 //= require cable
 

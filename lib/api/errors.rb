@@ -13,7 +13,7 @@ module Api
 
     class InvalidAuthentication < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'Invalid authentication'
         @code = 1000
         @status = :unauthorized
@@ -22,7 +22,7 @@ module Api
 
     class ValidationFailed < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'Validation error'
         @code = 1002
         @status = :bad_request
@@ -31,7 +31,7 @@ module Api
 
     class NotEnoughLicences < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'Not enough licenses'
         @code = 1003
         @status = :forbidden
@@ -40,7 +40,7 @@ module Api
 
     class AssessmentsNotCompleted < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'Assessment not completed'
         @code = 1004
         @status = :forbidden
@@ -49,7 +49,7 @@ module Api
 
     class ResourceNotFound < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'Resource not found'
         @code = 1005
         @status = :not_found
@@ -58,7 +58,7 @@ module Api
 
     class EmailExists < ApiError
       def initialize(more_info = nil, meta = nil)
-        super(more_info, meta)
+        super
         @message = 'User with this email exists'
         @code = 1006
         @status = :bad_request
@@ -67,7 +67,7 @@ module Api
 
     class ResourceNotConfigured < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
 
         @message = 'Resource not configured.'
         @code = 1007
@@ -77,7 +77,7 @@ module Api
 
     class Unauthorized < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'User not authorized to perform this action'
         @code = 1008
         @status = :unauthorized
@@ -86,7 +86,7 @@ module Api
 
     class InvalidRequest < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'Invalid request'
         @code = 1009
         @status = :bad_request
@@ -95,7 +95,7 @@ module Api
 
     class NewAssessmentResponseNotAllowed < ApiError
       def initialize(more_info = nil)
-        super(more_info)
+        super
         @message = 'New Assessment Response Not Allowed'
         @code = 1010
         @status = :forbidden

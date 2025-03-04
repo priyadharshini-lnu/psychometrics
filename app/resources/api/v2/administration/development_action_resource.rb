@@ -20,16 +20,14 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
     @model.decorate.updated_at
   end
 
-  def skill_ids=(ids)
-    @model.skill_ids = ids
-  end
+  delegate :skill_ids=, to: :@model
 
   def image
     @model.image_url
   end
 
   def self.records(opts = {})
-    super(opts).with_attached_image.includes(:project, :skills)
+    super.with_attached_image.includes(:project, :skills)
   end
 
   def course_url

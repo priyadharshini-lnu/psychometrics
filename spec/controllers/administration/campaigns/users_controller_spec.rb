@@ -35,7 +35,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
 
       get :show, params: { new_campaign_id: campaign.id, id: user.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       check_user_response(parsed_response.except('user_assessments', 'user_reports'))
       check_report_response(parsed_response['user_reports'].first, user_report)
       check_assessment_response(parsed_response['user_assessments'].first, user_assessment)
@@ -76,7 +76,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     create(:campaign_user, campaign: campaign, user: u)
     post :search, params: { new_campaign_id: campaign.id, q: 'atanych' }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
     expect(parsed_response.length).to eq(1)
     expect(parsed_response.first['email']).to eq('atanych@gmail.com')
   end

@@ -22,7 +22,7 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
   audit_log_for :destroy, payload: ->(_, record) { record.log_attribute_for_delete }
 
   def self.records(opts)
-    super(opts).includes(:admin_roles)
+    super.includes(:admin_roles)
   end
 
   def set_user_as_admin

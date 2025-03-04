@@ -92,8 +92,8 @@ class Report < ApplicationRecord
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
   after_save :delete_assessments_reports, if: :assessment_not_applicable?
 
-  enum category: { common: 0, threesixty: 1 }, _prefix: :category
-  enum provider: PROVIDERS, _prefix: :provider
+  enum :category, { common: 0, threesixty: 1 }, prefix: :category
+  enum :provider, PROVIDERS, prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
   serialize :external_settings, coder: PsyJsonbSerializer
@@ -293,7 +293,7 @@ class Report < ApplicationRecord
   end
 
   def set_assessment
-    self.assessment = assessments.sort_by(&:name)&.first
+    self.assessment = assessments.min_by(&:name)
   end
 
   def add_factors_aliases(assessment)

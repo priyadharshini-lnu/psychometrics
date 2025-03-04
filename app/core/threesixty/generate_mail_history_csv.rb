@@ -16,7 +16,7 @@ module Threesixty
       csv_file = CSVSafe.generate(headers: true) do |csv|
         csv << headers
 
-        email_schedule.email_histories.includes(:subject, :evaluator).each do |email_history|
+        email_schedule.email_histories.includes(:subject, :evaluator).find_each do |email_history|
           csv << data(email_history)
         end
       end

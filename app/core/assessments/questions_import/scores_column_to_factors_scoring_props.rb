@@ -14,7 +14,7 @@ module Assessments
       def call
         return broadcast :ok, multiple_choice_scores if question.type == 'MultipleChoice'
 
-        return broadcast :ok, matrix_table_scores if question.type == 'MatrixTable'
+        broadcast :ok, matrix_table_scores if question.type == 'MatrixTable'
       end
 
       private
