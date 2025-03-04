@@ -7,7 +7,7 @@ module AdminJobs
 
     def call
       result = ::CampaignReports::BulkDownload.call(
-        user_reports: user_reports.joins(:pdf_file_attachment),
+        user_reports: user_reports.with_pdf_attachments,
         current_user: owner,
         job_record: record
       )

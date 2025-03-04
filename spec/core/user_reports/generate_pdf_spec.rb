@@ -6,7 +6,8 @@ describe UserReports::GeneratePdf do
   include Rails.application.routes.url_helpers
 
   let(:user) { create(:user, :with_project_membership) }
-  let(:user_report) { create(:user_report, :with_pdf, user: user) }
+  let(:user_report) { create(:user_report, user: user) }
+  let(:user_report_pdf) { create(:user_report_pdf, user_report: user_report) }
   let(:report) { user_report.report }
   let(:current_user) { create(:superadmin) }
 
@@ -122,12 +123,12 @@ describe UserReports::GeneratePdf do
           file_name: report_file_name,
           url: report_url,
           low_priority: nil,
-          output_file_path: user_report.attachment_storage_path(:pdf_file, report_file_name),
+          output_file_path: user_report_pdf.attachment_storage_path(:pdf_file, report_file_name),
           webhook_message: {
             record_id: user_report.id,
             record_type: 'UserReport',
             file_name: report_file_name,
-            file_path: user_report.attachment_storage_path(:pdf_file, report_file_name),
+            file_path: user_report_pdf.attachment_storage_path(:pdf_file, report_file_name),
             update_record: true,
             lang: 'en'
           },

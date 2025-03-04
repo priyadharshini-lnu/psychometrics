@@ -67,9 +67,11 @@ module EndUser
                          piped_text_context: piped_text_context, current_user: current_user, include: '**' }
             ).serialize(user_dashboard_report)
           end
-          user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true).includes(
+          user_reports = @campaign.user_reports.where(
+            user_id: current_user, user_access: true
+          ).preload_pdf_attachments.includes(
             report: { poster_attachment: :blob }
-          ).with_attached_pdf_file.filter_map do |ur|
+          ).filter_map do |ur|
             unless ur == user_dashboard_report
               ::EndUser::UserReportSerializer.new(context: { user_report: ur }).serialize(ur)
             end

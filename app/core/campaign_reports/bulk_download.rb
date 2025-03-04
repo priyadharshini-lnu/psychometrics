@@ -33,7 +33,7 @@ module CampaignReports
     def bulk_download_with_lambda
       file_details = user_reports_with_pdf.each_with_object([]) do |ur, acc|
         acc << {
-          s3FilePath: ur.pdf_file.key,
+          s3FilePath: ur.pdf_path,
           zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize(preserve_case: true)}-#{ur.campaign_id}.pdf" # rubocop:disable Layout/LineLength
         }
       end
@@ -76,7 +76,7 @@ module CampaignReports
     end
 
     def download_report(user_report)
-      url = URI(user_report.pdf_file.url)
+      url = URI(user_report.pdf_url)
       IO.copy_stream(URI(url.to_s).open, download_path(user_report))
     rescue OpenURI::HTTPError
       Rails.logger.error "Download failed for UserReport with id #{user_report.id}"

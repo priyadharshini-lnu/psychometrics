@@ -147,7 +147,7 @@ RSpec.describe Mettl::SaveScoresAndReport do
       subject.call
 
       expect(user_report.status).to eq('prepared')
-      expect(user_report.reload.pdf_file.url).to be_present
+      expect(user_report.user_report_pdf.pdf_file.url).to be_present
     end
 
     it 'broadcasts :ok if pdfReport URL is blank' do
