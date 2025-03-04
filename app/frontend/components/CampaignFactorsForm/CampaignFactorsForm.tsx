@@ -86,7 +86,7 @@ export const CampaignFactorsForm: FC<Props> = ({
     const validateFields = (
       fieldValues: string[],
       fieldName: keyof CampaignFactor,
-    ): FieldError[] => fieldValues.map((value, index) => validateField(value, index, fieldName))
+    ): FieldError[] => fieldValues?.map((value, index) => validateField(value, index, fieldName))
 
     const nameErrors: FieldError[] = validateFields(values.items?.map(column => column.name), 'name')
     const codeErrors: FieldError[] = validateFields(values.items?.map(column => column.code), 'code')

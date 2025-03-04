@@ -880,6 +880,10 @@ as: :simulation_progress_notification
         get :token, on: :member
       end
 
+      resources :assessment_system_checks, only: [] do
+        post :step_completed, on: :collection
+      end
+
       resources :workshop_invites, only: [] do
         member do
           post :book

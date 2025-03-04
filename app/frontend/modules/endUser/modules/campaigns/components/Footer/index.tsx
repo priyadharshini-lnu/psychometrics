@@ -58,7 +58,7 @@ const FooterComponent: FC<PropsFromRedux> = ({
           secondaryLogoAltText={secondaryLogoAltText}
           projectName={projectName}
         />
-)}
+      )}
     />
   )
 }
