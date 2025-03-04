@@ -180,7 +180,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_in_progress' do
         user_report.ready!
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
@@ -188,7 +188,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_complete' do
         user_report.update(approval_status: 'qc_in_progress')
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
@@ -196,7 +196,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status from change_requested to qc_in_progress' do
         user_report.update(approval_status: 'change_requested')
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
@@ -224,7 +224,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to approved' do
         user_report.update(approval_status: 'qc_completed')
         patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('approved')
         expect(response).to have_http_status(:success)
       end
@@ -232,7 +232,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to approved' do
         user_report.update(approval_status: 'qc_completed')
         patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('change_requested')
         expect(response).to have_http_status(:success)
       end
@@ -240,7 +240,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'remove_approval status status to qc_in_progress' do
         user_report.update(approval_status: 'approved')
         patch :remove_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('change_requested')
         expect(response).to have_http_status(:success)
       end
@@ -264,7 +264,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_in_progress' do
         user_report.ready!
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
@@ -272,7 +272,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_complete' do
         user_report.update(approval_status: 'qc_in_progress')
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
@@ -280,7 +280,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status from change_requested to qc_in_progress' do
         user_report.update(approval_status: 'change_requested')
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
@@ -289,7 +289,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         user_report.update(approval_status: 'qc_completed')
         patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('approved')
         expect(response).to have_http_status(:success)
       end
@@ -298,7 +298,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         user_report.update(approval_status: 'qc_completed')
         patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
@@ -323,7 +323,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_in_progress' do
         user_report.ready!
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
@@ -331,7 +331,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_complete' do
         user_report.update(approval_status: 'qc_in_progress')
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
@@ -339,7 +339,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status from change_requested to qc_in_progress' do
         user_report.update(approval_status: 'change_requested')
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
@@ -375,34 +375,34 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_complete' do
         user_report.update(approval_status: 'qc_in_progress')
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
 
       it 'approve changes approval status to approved' do
         user_report.update(approval_status: 'qc_completed')
-        expect(::UserReports::NotifyApprovals).to receive(:call!)
+        expect(UserReports::NotifyApprovals).to receive(:call!)
         patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('approved')
         expect(response).to have_http_status(:success)
       end
 
       it 'request_changes chagne status to qc_in_progress' do
         user_report.update(approval_status: 'qc_completed')
-        expect(::UserReports::NotifyQc).to_not receive(:call!)
+        expect(UserReports::NotifyQc).to_not receive(:call!)
         patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
 
       it 'send_for_approval change approval status to qc_completed' do
         user_report.update(approval_status: 'qc_in_progress')
-        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        expect(UserReports::NotifyApprovers).to_not receive(:call!)
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
@@ -422,46 +422,46 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     end
     describe 'QC flow' do
       it 'change approval status to qc_in_progress' do
-        expect(::UserReports::NotifyQc).to receive(:call!)
+        expect(UserReports::NotifyQc).to receive(:call!)
         user_report.ready!
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
 
       it 'change approval status to qc_complete' do
         user_report.update(approval_status: 'qc_in_progress')
-        expect(::UserReports::NotifyApprovers).to receive(:call!)
+        expect(UserReports::NotifyApprovers).to receive(:call!)
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
 
       it 'change approval status to change_requested' do
         user_report.update(approval_status: 'qc_completed')
-        expect(::UserReports::NotifyQc).to receive(:call!)
+        expect(UserReports::NotifyQc).to receive(:call!)
         patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('change_requested')
         expect(response).to have_http_status(:success)
       end
       it 'change approval status to change_requested' do
         user_report.update(approval_status: 'approved')
-        expect(::UserReports::NotifyQc).to receive(:call!)
+        expect(UserReports::NotifyQc).to receive(:call!)
         patch :remove_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('change_requested')
         expect(response).to have_http_status(:success)
       end
 
       it 'change approval status to approved' do
         user_report.update(approval_status: 'qc_completed')
-        expect(::UserReports::NotifyApprovals).to receive(:call!)
+        expect(UserReports::NotifyApprovals).to receive(:call!)
         patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('approved')
         expect(response).to have_http_status(:success)
       end
@@ -482,57 +482,57 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     describe 'QC flow' do
       it 'change approval status to qc_in_progress' do
         user_report.ready!
-        expect(::UserReports::NotifyQc).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        expect(UserReports::NotifyQc).to_not receive(:call!)
+        expect(UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(UserReports::NotifyApprovers).to_not receive(:call!)
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
 
       it 'change approval status to qc_complete' do
         user_report.update(approval_status: 'qc_in_progress')
-        expect(::UserReports::NotifyQc).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        expect(UserReports::NotifyQc).to_not receive(:call!)
+        expect(UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(UserReports::NotifyApprovers).to_not receive(:call!)
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
 
       it 'change approval status from change_requested to qc_in_progress' do
         user_report.update(approval_status: 'change_requested')
-        expect(::UserReports::NotifyQc).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        expect(UserReports::NotifyQc).to_not receive(:call!)
+        expect(UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(UserReports::NotifyApprovers).to_not receive(:call!)
         patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_in_progress')
         expect(response).to have_http_status(:success)
       end
 
       it 'change approval status to approved' do
         user_report.update(approval_status: 'qc_completed')
-        expect(::UserReports::NotifyQc).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        expect(UserReports::NotifyQc).to_not receive(:call!)
+        expect(UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(UserReports::NotifyApprovers).to_not receive(:call!)
         patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('approved')
         expect(response).to have_http_status(:success)
       end
 
       it 'change approval status to qc_in_progres' do
         user_report.update(approval_status: 'qc_completed')
-        expect(::UserReports::NotifyQc).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
-        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        expect(UserReports::NotifyQc).to_not receive(:call!)
+        expect(UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(UserReports::NotifyApprovers).to_not receive(:call!)
         patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('change_requested')
         expect(response).to have_http_status(:success)
       end
