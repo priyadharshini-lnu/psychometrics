@@ -17,7 +17,7 @@ describe Api::V2::Administration::Campaigns::DimensionsController, swagger_doc: 
     create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
   end
 
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

@@ -3,7 +3,7 @@
 module Threesixty
   module NominationRequirements
     class SaveAllForm < Rectify::Form
-      attribute :nomination_requirements, Array[SaveForm]
+      attribute :nomination_requirements, [SaveForm]
     end
   end
 end

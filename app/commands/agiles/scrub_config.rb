@@ -41,7 +41,7 @@ module Agiles
           random_sets.add q['randomSet']
         end
         # Retain previous set if exists in block
-        random_set = random_sets.include?(random_set) ? random_set : random_sets.to_a.sample(random: @seedrandom)
+        random_set = random_sets.to_a.sample(random: @seedrandom) unless random_sets.include?(random_set)
         questions.select! { |q| q['randomSet'] == random_set }
         questions.shuffle!(random: @seedrandom) if block['randomise']
         questions.slice!(block['maxItems']..-1) if block['maxItems']

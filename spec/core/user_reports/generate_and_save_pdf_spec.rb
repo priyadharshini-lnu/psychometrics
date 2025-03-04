@@ -27,10 +27,10 @@ describe UserReports::GenerateAndSavePdf do
 
     described_class.call!(user_report, current_user)
 
-    expect(user_report.reload.pdf_file.filename).to eq('test.pdf')
-    expect(user_report.reload.pdf_file.content_type).to eq('application/pdf')
-    expect(user_report.reload.pdf_file.attached?).to be_truthy
-    expect(rails_blob_path(user_report.reload.pdf_file, only_path: true)).to be_present
+    expect(user_report.user_report_pdf.pdf_file.filename).to eq('test.pdf')
+    expect(user_report.user_report_pdf.pdf_file.content_type).to eq('application/pdf')
+    expect(user_report.user_report_pdf.pdf_file.attached?).to be_truthy
+    expect(rails_blob_path(user_report.user_report_pdf.pdf_file, only_path: true)).to be_present
   end
 
   it "doesn't save pdf in user_report if report can't be generated" do

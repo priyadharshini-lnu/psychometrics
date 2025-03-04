@@ -30,9 +30,7 @@ module Threesixty
       def read_yaml
         YAML.safe_load(
           ERB.new(
-            File.read(
-              Rails.root.join('config/threesixty/email_templates.yml')
-            )
+            Rails.root.join('config/threesixty/email_templates.yml').read
           ).result
         )
       end

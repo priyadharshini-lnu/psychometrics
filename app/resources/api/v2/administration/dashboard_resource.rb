@@ -16,7 +16,7 @@ class Api::V2::Administration::DashboardResource < Api::V2::Administration::Base
   audit_log_for :update, payload: '*'
 
   def self.records(options = {})
-    super(options).includes(:project)
+    super.includes(:project)
   end
 
   def fetchable_fields

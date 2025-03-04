@@ -16,7 +16,7 @@ RSpec.describe Administration::ProjectsController, type: :controller do
       q: 'atanych'
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response.first['email']).to eq('atanych@gmail.com')
     expect(parsed_response.first['locale']).to eq('en')

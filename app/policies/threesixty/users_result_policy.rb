@@ -6,9 +6,7 @@ class Threesixty::UsersResultPolicy < Threesixty::BasePolicy
       superadmin?
   end
 
-  def superadmin?
-    @current_user.superadmin?
-  end
+  delegate :superadmin?, to: :@current_user
 
   def upload_media_url?
     update?

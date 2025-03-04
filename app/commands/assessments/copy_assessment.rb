@@ -45,7 +45,7 @@ module Assessments
           # Loop questions to save for the new block
           block_question_ids = block.questions.pluck(:id)
 
-          next if (block_question_ids & question_ids).size.zero?
+          next unless block_question_ids.intersect?(question_ids)
 
           @new_block = make_copy(block, new_assessment)
           @new_block.save!
@@ -55,7 +55,7 @@ module Assessments
           # Replace original Block Id to New Block Id
           flow = update_id_in_json_config(flow, block.id, @blocks_mapping, 'current')
 
-          block.questions.where(id: block_question_ids & question_ids).each do |question|
+          block.questions.where(id: block_question_ids & question_ids).find_each do |question|
             new_question = make_copy(question, new_assessment)
             new_question.save!
             @questions_mapping[question.id] = new_question.id

@@ -18,7 +18,7 @@ RSpec.describe Administration::Projects::SecuritySettingsController, type: :cont
       }, format: :json
       security_setting.reload
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expected_response = security_setting.slice(
         :id, :project_id, :enforce_strong_password, :min_password_length,
         :enforce_password_policy, :disable_password_reuse, :password_expiration, :send_unlock_email,

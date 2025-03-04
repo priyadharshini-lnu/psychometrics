@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '3.1.6'
+ruby '3.4.2'
 gem 'bundler',                    '~> 2.3.17'
 gem 'rack',                       '~> 2.2.11'
 
@@ -12,7 +12,7 @@ gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
 # gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
-gem 'panko_serializer', '~> 0.8.1'
+gem 'panko_serializer', '~> 0.8.3'
 gem 'pg',                         '~> 1.4'
 gem 'puma',                       '~> 5.6.9'
 gem 'rails',                      '~> 7.1.2'
@@ -130,7 +130,7 @@ gem 'remotipart', '~> 1.3.1'
 
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
-gem 'rectify', '~> 0.13.0'
+gem 'rectify', git: 'https://github.com/TheTalentEnterprise/rectify.git', branch: 'tte-master'
 gem 'sidekiq', '~> 6.5.12'
 
 gem 'hashids', '~> 1.0.5'
@@ -146,7 +146,8 @@ gem 'virtus', '~> 1.0.5'
 gem 'csv-safe'
 
 # SOAP client
-gem 'savon', '~> 2.12.1'
+gem 'nkf'
+gem 'savon', '~> 2.14.0'
 # Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
@@ -162,11 +163,10 @@ gem 'brakeman'
 gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
-gem 'js-routes', '~> 1.4.4'
 gem 'rlua', git: 'https://github.com/TheTalentEnterprise/rlua', branch: 'tte-master'
 gem 'rswag-api', '~> 2.11.0'
 gem 'rswag-ui', '~> 2.11.0'
-gem 'tty-progressbar', '~> 0.16.0', require: false
+gem 'tty-progressbar', '~> 0.10.1', require: false
 
 gem 'activerecord-import', '~> 1.5.0'
 gem 'possessive', '~> 1.0.1'
@@ -188,15 +188,15 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'hirb'
   gem 'parallel_tests', '~> 4.2'
-  gem 'pry-byebug', '~> 3.9.0'
-  gem 'pry-rails', '~> 0.3.4'
+  gem 'pry-byebug', '~> 3.10.1'
+  gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 6.1'
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'i18n-tasks', '~> 1.0'
+  gem 'i18n-tasks', '~> 1.0.12'
   gem 'rswag-specs', '~> 2.11'
-  gem 'rubocop', '~>  1.31.2', require: false
+  gem 'rubocop', '~> 1.72', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -248,3 +248,11 @@ gem 'xml-simple', '~> 1.1.5'
 gem 'sidekiq_alive', '~> 2.1.4'
 
 gem 'psych', '3.3.2'
+
+gem 'pry', '~> 0.14.2'
+
+gem 'ostruct', '~> 0.6.1'
+
+gem 'statistics', '~> 1.0'
+gem 'syslog'
+gem 'syslog-logger', '~> 1.6'

@@ -16,6 +16,10 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def index; end
 
+  def show
+    add_breadcrumb resource.decorate.display_name
+  end
+
   def update
     resource.updated_by = current_user
 
@@ -49,10 +53,6 @@ class Administration::AssessmentsController < Administration::BaseController
     render json: resource.questions.where(type: 'StaticContent').pluck(:id, :name, :props).map { |id, name, props|
       { id: id, name: name, props: props }
     }
-  end
-
-  def show
-    add_breadcrumb resource.decorate.display_name
   end
 
   def factors

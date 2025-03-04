@@ -47,9 +47,7 @@ class Administration::DimensionsController < Administration::BaseController
   def toggle_status
     resource.toggle(:disabled).save
     audit! :toggle_status, resource, payload: { disabled: resource.disabled }
-    respond_to do |format|
-      format.js
-    end
+    respond_to(&:js)
   end
 
   def update

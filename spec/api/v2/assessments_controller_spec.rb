@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 require 'swagger_helper'
-require_relative './concerns/taggable_api_endpoints_shared_examples'
+require_relative 'concerns/taggable_api_endpoints_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:assessment) { create(:assessment, category: 'psychometric') }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

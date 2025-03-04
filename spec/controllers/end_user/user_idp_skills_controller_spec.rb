@@ -21,7 +21,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
     it 'returns user idp skills' do
       get :index
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
       expect(parsed_response.count).to eq(2)
@@ -43,7 +43,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
       post :create, params: { skills: [{ skill_id: nil }] }
 
       expect(response.status).to eq(422)
-      expect(JSON.parse(response.body)).to include({ 'skill_id' => ["can't be blank"] })
+      expect(response.parsed_body).to include({ 'skill_id' => ["can't be blank"] })
     end
   end
 
@@ -51,7 +51,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
     it 'update user idp skill initial rating' do
       put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
       expect(parsed_response['id']).to eq(user_idp_skill.id)
@@ -62,7 +62,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
     it 'throws validation error when rating is more than limit' do
       put :update, params: { id: user_idp_skill.id, initial_rating: 6 }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_response).to include({ 'initial_rating' => ['must be less than or equal to 5'] })
@@ -72,7 +72,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
       idp_template.update!(self_rating_enabled: false)
       put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_response).to(

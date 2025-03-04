@@ -10,7 +10,7 @@ module Administration
     # rubocop:disable Metrics/PerceivedComplexity
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/BlockLength:
+    # rubocop:disable Metrics/BlockLength -- This block needs to be long due to the complex navigation structure
     def links
       {}.tap do |links|
         links['dashboards'] = "#{admin_path}/dashboards" if show_dashboard?

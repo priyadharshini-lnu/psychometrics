@@ -7,7 +7,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
   let!(:superadmin) { create(:superadmin) }
   let(:campaign) { create(:campaign) }
   let!(:campaign_id) { campaign.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

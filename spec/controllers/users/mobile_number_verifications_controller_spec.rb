@@ -51,7 +51,7 @@ describe Users::MobileNumberVerificationsController, type: :controller do
         post :send_verification_code, params: params, format: :json
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)['errors'][0]).to eq('Registration code is invalid')
+        expect(response.parsed_body['errors'][0]).to eq('Registration code is invalid')
 
         check_audit_log(mobile_number: mobile_number, code_type: 'registration_code',
                         code: registration_code.code, outcome: 'failed',
@@ -78,7 +78,7 @@ describe Users::MobileNumberVerificationsController, type: :controller do
         post :send_verification_code, params: params, format: :json
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)['errors'][0]).to eq('SMS Invite code is invalid')
+        expect(response.parsed_body['errors'][0]).to eq('SMS Invite code is invalid')
 
         check_audit_log(mobile_number: mobile_number,
                         code_type: 'sms_invite_code', code: 'abc', outcome: 'failed',

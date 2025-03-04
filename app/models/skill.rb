@@ -17,7 +17,7 @@ class Skill < ApplicationRecord
   has_many :development_actions, through: :skills_development_actions
   has_many :idp_template_skills # added for sample_by_categories being used through template
 
-  enum category: { behavioral: 0, technical: 1, other: 2 }
+  enum :category, { behavioral: 0, technical: 1, other: 2 }
 
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id

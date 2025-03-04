@@ -7,9 +7,7 @@ module Administration
     append_before_action :pundit_authorize
 
     def new
-      respond_to do |format|
-        format.js
-      end
+      respond_to(&:js)
     end
 
     def create
@@ -18,9 +16,7 @@ module Administration
                                                    export_params[:start_date], export_params[:end_date])
       if reports.any?
         ::BulkReports::ExportAllJob.perform_later(export_params)
-        respond_to do |format|
-          format.js
-        end
+        respond_to(&:js)
       else
         flash.now[:error] = t('.no_data')
         respond_to do |format|

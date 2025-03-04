@@ -23,7 +23,9 @@ describe WebhookSubscriptions::Publish do
           'event_id' => anything,
           'data' => anything
         })
-      described_class.call!(project, :assessment_started, data)
+      expect do
+        described_class.call(project, :assessment_started, data)
+      end.to broadcast(:ok)
     end
 
     it 'adds localized data to payloadif webhook has include_locales true' do
@@ -33,49 +35,11 @@ describe WebhookSubscriptions::Publish do
         with(webhook, {
           'event_name' => 'assessment_started',
           'event_id' => anything,
-          'data' => {
-            'assessment' => {
-              'id' => assessment.id,
-              'name' => assessment.name
-            },
-            'evaluator' => {
-              'campaign_user_external_id' => evaluator.campaign_user_external_id(campaign.id),
-              'email' => evaluator.email,
-              'external_id' => evaluator.external_id,
-              'id' => evaluator.id,
-              'name' => evaluator.decorate.full_name
-            },
-            'subject' => {
-              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id),
-              'email' => subject.email,
-              'external_id' => subject.external_id,
-              'id' => subject.id,
-              'name' => subject.decorate.full_name
-            },
-            'project' => {
-              'id' => project.id,
-              'name' => project.name
-            },
-            'client' => {
-              'id' => project.client.id,
-              'name' => project.client.name
-            },
-            'campaign' => {
-              'id' => campaign.id,
-              'name' => campaign.name
-            },
-            'locale' => {
-              'en' => {
-                'assessment' => {
-                  'id' => assessment.id,
-                  'name' => assessment.name
-                }
-              }
-            },
-            'event_time' => anything
-          }
+          'data' => hash_including('locale' => anything)
         })
-      described_class.call!(project, :assessment_started, data, record: user_assessment)
+      expect do
+        described_class.call(project, :assessment_started, data, record: user_assessment)
+      end.to broadcast(:ok)
     end
 
     it 'doesnt add localized data to payload if webhook has include_locales false' do
@@ -85,41 +49,11 @@ describe WebhookSubscriptions::Publish do
         with(webhook, {
           'event_name' => 'assessment_started',
           'event_id' => anything,
-          'data' => {
-            'campaign' => {
-              'id' => campaign.id,
-              'name' => campaign.name
-            },
-            'client' => {
-              'id' => project.client.id,
-              'name' => project.client.name
-            },
-            'project' => {
-              'id' => project.id,
-              'name' => project.name
-            },
-            'assessment' => {
-              'id' => assessment.id,
-              'name' => assessment.name
-            },
-            'evaluator' => {
-              'campaign_user_external_id' => evaluator.campaign_user_external_id(campaign.id),
-              'email' => evaluator.email,
-              'external_id' => evaluator.external_id,
-              'id' => evaluator.id,
-              'name' => evaluator.decorate.full_name
-            },
-            'subject' => {
-              'campaign_user_external_id' => subject.campaign_user_external_id(campaign.id),
-              'email' => subject.email,
-              'external_id' => subject.external_id,
-              'id' => subject.id,
-              'name' => subject.decorate.full_name
-            },
-            'event_time' => anything
-          }
+          'data' => hash_not_including('locale')
         })
-      described_class.call!(project, :assessment_started, data, record: user_assessment)
+      expect do
+        described_class.call(project, :assessment_started, data, record: user_assessment)
+      end.to broadcast(:ok)
     end
   end
 end

@@ -27,13 +27,10 @@ Rails.application.routes.draw do
   get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
 
   # TODO: remove this once we move Threesixty use common campaign type route
-  # rubocop:disable Style/FormatStringToken
   get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id/*all',
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}/%{all}')
   get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id',
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
-  # rubocop:enable Style/FormatStringToken
-
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
@@ -878,6 +875,10 @@ as: :simulation_progress_notification
 
       resources :meeting_rooms, only: [] do
         get :token, on: :member
+      end
+
+      resources :assessment_system_checks, only: [] do
+        post :step_completed, on: :collection
       end
 
       resources :workshop_invites, only: [] do

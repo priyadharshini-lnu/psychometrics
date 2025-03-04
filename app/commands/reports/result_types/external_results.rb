@@ -6,7 +6,7 @@ module Reports
       def call
         user_result = context.find_user_result_by(data['assessmentId'])
         if user_result&.assessment_id == data['assessmentId']
-          value =  user_result.external_results.try(:[], data['key'])
+          value = user_result.external_results.try(:[], data['key'])
         end
         {
           key: data['key'],

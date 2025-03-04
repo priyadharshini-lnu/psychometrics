@@ -34,7 +34,7 @@ development_action: on_the_job, progress: 90)
   describe 'GET summary' do
     it 'get user idp plan summary' do
       get :summary, params: { user_id: user.id }
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(parsed_result).to eq({
         'skills_by_category_count' => { 'behavioral' => 1, 'technical' => 2, 'other' => 1 },

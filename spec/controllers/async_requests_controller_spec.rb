@@ -25,7 +25,7 @@ RSpec.describe AsyncRequestsController, type: :controller do
       get :status, params: { async_request_uuid: async_request_uuid }
 
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to eq({
+      expect(response.parsed_body).to eq({
         'status' => 'in_progress',
         'response' => {
           'processing_status' => 'in_progress',

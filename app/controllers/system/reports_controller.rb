@@ -6,9 +6,7 @@ module System
       form = policy_scope(Report).ransack(params[:q])
       @resources = form.result
 
-      respond_to do |format|
-        format.json
-      end
+      respond_to(&:json)
     end
   end
 end

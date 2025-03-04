@@ -26,7 +26,7 @@ RSpec.describe Administration::Campaigns::TextModuleOverridesController, type: :
         module_id: 1,
         content: 'qqqqqqq'
       }
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(response).to have_http_status(200)
       expect(parsed_response['approved']).to eq(false)
       expect(parsed_response['content']).to eq('qqqqqqq')
@@ -56,7 +56,7 @@ RSpec.describe Administration::Campaigns::TextModuleOverridesController, type: :
         user_report_id: user_report.id,
         module_id: 1
       }
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(response).to have_http_status(200)
       expect(parsed_response['content']).to eq(nil)
       expect(parsed_response['approved']).to eq(true)
@@ -72,7 +72,7 @@ RSpec.describe Administration::Campaigns::TextModuleOverridesController, type: :
         user_report_id: user_report.id,
         module_id: 1
       }
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['content']).to eq(module_override.content)
       expect(parsed_response['approved']).to eq(true)
       expect(user_report.approved).to eq(true)

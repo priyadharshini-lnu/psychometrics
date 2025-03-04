@@ -37,7 +37,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
     it 'returns the workshop invite' do
       get :fetch_invite, params: { id: workshop_invite.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
       expect(parsed_response['id']).to eq(workshop_invite.id)
@@ -66,10 +66,10 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
 
       get :fetch_booking, params: { id: workshop_invite.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
-      expect(JSON.parse(response.body)['id']).to eq(workshop_invite.id)
+      expect(response.parsed_body['id']).to eq(workshop_invite.id)
       expect(parsed_response['title']).to eq(workshop_invite.title)
       expect(parsed_response['description']).to eq(workshop_invite.description)
       expect(parsed_response['status']).to eq(workshop_invited_subject.status)
@@ -115,7 +115,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       }
 
       expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['errors']).to eq(
+      expect(response.parsed_body['errors']).to eq(
         [I18n.t('administration.bookings.errors.seats_not_available')]
       )
     end
@@ -136,7 +136,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       }
 
       expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['errors']).to eq(
+      expect(response.parsed_body['errors']).to eq(
         [I18n.t('administration.bookings.errors.already_booked')]
       )
     end
@@ -159,7 +159,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       }
 
       expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['errors']).to eq(
+      expect(response.parsed_body['errors']).to eq(
         [I18n.t('administration.bookings.errors.booking_deadline_passed')]
       )
     end
@@ -185,7 +185,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       }
 
       expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['errors']).to eq(
+      expect(response.parsed_body['errors']).to eq(
         [I18n.t('administration.bookings.errors.cancelled_and_rebook_deadline_passed')]
       )
     end
@@ -205,7 +205,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq('ok')
+        expect(response.parsed_body).to eq('ok')
       end
     end
   end
@@ -224,7 +224,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }, as: :json
 
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq('ok')
+        expect(response.parsed_body).to eq('ok')
         expect(workshop_invited_subject.reload.status).to eq('cancelled')
       end
 
@@ -244,7 +244,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(400)
-        expect(JSON.parse(response.body)['errors']).to eq(
+        expect(response.parsed_body['errors']).to eq(
           [I18n.t('administration.bookings.errors.cancellation_deadline_passed')]
         )
       end
@@ -264,7 +264,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq('ok')
+        expect(response.parsed_body).to eq('ok')
         expect(workshop_invited_subject.reload.status).to eq('requested_cancellation')
         expect(workshop_invited_subject.reload.reason).to eq('test')
       end
@@ -286,7 +286,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(400)
-        expect(JSON.parse(response.body)['errors']).to eq(
+        expect(response.parsed_body['errors']).to eq(
           [I18n.t('administration.bookings.errors.late_cancellation_not_allowed')]
         )
       end
@@ -309,7 +309,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq('ok')
+        expect(response.parsed_body).to eq('ok')
         expect(workshop_invited_subject.reload.status).to eq('requested_cancellation')
         expect(workshop_invited_subject.reload.reason).to eq('test')
         expect(workshop_subject.reload.workshop_id).to eq(workshop.id)
@@ -339,7 +339,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
           }
         }
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq('ok')
+        expect(response.parsed_body).to eq('ok')
         expect(workshop_invited_subject.reload.status).to eq('rescheduled')
       end
 
@@ -366,7 +366,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(400)
-        expect(JSON.parse(response.body)['errors']).to eq(
+        expect(response.parsed_body['errors']).to eq(
           [I18n.t('administration.bookings.errors.reschedule_deadline_passed')]
         )
       end
@@ -391,7 +391,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(400)
-        expect(JSON.parse(response.body)['errors']).to eq(
+        expect(response.parsed_body['errors']).to eq(
           [I18n.t('administration.bookings.errors.late_rescheduling_not_allowed')]
         )
       end
@@ -417,7 +417,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq('ok')
+        expect(response.parsed_body).to eq('ok')
         expect(workshop_invited_subject.reload.status).to eq('requested_rescheduling')
         expect(workshop_invited_subject.reload.reason).to eq('test')
         expect(workshop_subject.reload.workshop_id).to eq(workshop.id)

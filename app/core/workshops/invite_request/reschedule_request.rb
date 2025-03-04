@@ -6,7 +6,7 @@ module Workshops
       private_attr_accessor :workshop, :subject_id, :reschedule_workshop_id
 
       def initialize(params, current_user)
-        super(params, current_user)
+        super
 
         @workshop = Workshop.find(@workshop_invited_subject.workshop_subject.workshop_id)
         @subject_id = @workshop_invited_subject.user_id

@@ -16,7 +16,7 @@ class AuditLog < ApplicationRecord
 
   validates :action, presence: true
 
-  enum outcome: { failed: 0, successful: 1 }
+  enum :outcome, { failed: 0, successful: 1 }
 
   before_save :initialize_payload_request
 
@@ -24,7 +24,7 @@ class AuditLog < ApplicationRecord
   add_searchable_assoc_scope :project
   add_searchable_assoc_scope :campaign
 
-  enum :interface, %i[api browser]
+  enum :interface, { :api => 0, :browser => 1 }
 
   scope :user_search, lambda { |search_term|
     table_alias = 'users'

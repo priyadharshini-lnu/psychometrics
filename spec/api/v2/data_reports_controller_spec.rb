@@ -9,7 +9,7 @@ describe Api::V2::Administration::DataReportsController, swagger_doc: 'v2/swagge
   let!(:campaign) { create(:campaign, project: project) }
   let(:data_report) { create(:data_report, owner: project.client) }
   let(:data_report_id) { data_report.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   describe 'as superadmin' do
     before do

@@ -14,7 +14,7 @@ module UsersResults
     def call
       return broadcast(:invalid) if user_result.answers.blank?
 
-      @results = user_result.answers.map { |hash| hash['answers'] }.reduce(&:merge)
+      @results = user_result.answers.pluck('answers').reduce(&:merge)
 
       if user_result.norm_id
         @norm = Norm.

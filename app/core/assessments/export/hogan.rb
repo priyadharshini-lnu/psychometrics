@@ -65,15 +65,12 @@ module Assessments
         sample = users_results.merge(UserAssessment.completed).find_by("external_results != '{}'")
         return [] unless sample
 
-        (sample.external_results&.dig('scores', score[:score_type], score[:scale_type]) || []).map do |item|
-          item[score[:factor_field]]
-        end
+        (sample.external_results&.dig('scores', score[:score_type],
+                                      score[:scale_type]) || []).pluck(score[:factor_field])
       end
 
       def build_data(res, score)
-        (res.external_results&.dig('scores', score[:score_type], score[:scale_type]) || []).map do |item|
-          item[score[:value_field]]
-        end
+        (res.external_results&.dig('scores', score[:score_type], score[:scale_type]) || []).pluck(score[:value_field])
       end
 
       def default_content(res)

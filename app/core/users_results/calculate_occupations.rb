@@ -16,11 +16,11 @@ module UsersResults
 
     def calculate_occupations # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       users_result.assessment&.
-             dimension&.
-             occupations&.
-             includes(occupations_factors: :factor)&.
-             each_with_object([]) do |occupation, mem|
-        # Fetchs a valid factor ids
+        dimension&.
+        occupations&.
+        includes(occupations_factors: :factor)&.
+        each_with_object([]) do |occupation, mem|
+        # Fetch a valid factor ids
         valid_factors = []
         next if occupation.occupations_factors.empty?
 

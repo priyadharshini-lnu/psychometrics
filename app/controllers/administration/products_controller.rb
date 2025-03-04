@@ -22,6 +22,13 @@ module Administration
       Settings.currencies.each { |currency| resource.prices.build(price_currency: currency) }
     end
 
+    def edit
+      resource_currencies = resource.prices.map(&:price_currency)
+      Settings.currencies.each do |currency|
+        resource.prices.build(price_currency: currency) unless resource_currencies.include?(currency)
+      end
+    end
+
     def create
       @_resource = resource_class.new(resource_params)
 
@@ -37,13 +44,6 @@ module Administration
 
           format.js { render :new }
         end
-      end
-    end
-
-    def edit
-      resource_currencies = resource.prices.map(&:price_currency)
-      Settings.currencies.each do |currency|
-        resource.prices.build(price_currency: currency) unless resource_currencies.include?(currency)
       end
     end
 

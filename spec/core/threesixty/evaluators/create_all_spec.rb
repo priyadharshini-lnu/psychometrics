@@ -78,7 +78,7 @@ describe Threesixty::Evaluators::CreateAll do
         subject_email: 'smith@cc.com',
         relationship: relationship
       }], threesixty_campaign)
-    end.to_not change(::Threesixty::Evaluator, :count)
+    end.to_not change(Threesixty::Evaluator, :count)
   end
 
   it "doesn't create participants if already exists" do
@@ -100,7 +100,7 @@ describe Threesixty::Evaluators::CreateAll do
         subject_email: 'smith@cc.com',
         relationship: relationship
       }], threesixty_campaign)
-    end.to_not change(::Threesixty::Participant, :count)
+    end.to_not change(Threesixty::Participant, :count)
   end
 
   it 'updates user details if existing used is added as evalautor' do

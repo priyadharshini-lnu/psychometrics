@@ -9,26 +9,6 @@ RSpec.describe UserReport, type: :model do
 
   it { should define_enum_for(:status).with_values(not_prepared: 0, generating: 1, failed: 2, prepared: 3) }
 
-  context 'with :pdf_file attribute' do
-    let(:user_report) { create(:user_report, :with_pdf) }
-
-    it { expect(user_report.pdf_file.attached?).to be_truthy }
-  end
-
-  describe '#sync_user_report_pdf' do
-    let(:user_report) { create(:user_report, :with_pdf) }
-
-    it 'creates a UserReportPdf record with pdf_file attached with same blob_id as user_report pdf file' do
-      expect { user_report.sync_user_report_pdf }.to change(UserReportPdf, :count).by(1)
-
-      user_report_pdf = user_report.user_report_pdfs.last
-
-      expect(user_report_pdf.pdf_file.attached?).to be_truthy
-      expect(user_report.reload.pdf_file.key).to eq(user_report_pdf.pdf_file.key)
-      expect(user_report_pdf.pdf_file.blob_id).to eq(user_report.pdf_file.blob_id)
-    end
-  end
-
   describe '#attach_pdf!' do
     let(:user_report) { create(:user_report) }
 
@@ -50,15 +30,15 @@ RSpec.describe UserReport, type: :model do
 
         it 'attaches the PDF from the URL' do
           user_report.attach_pdf!(data)
-          expect(user_report.pdf_file).to be_attached
-          expect(user_report.pdf_file.key).to match(
-            %r{private/projects/#{user_report.project.id}/user_report/#{user_report.id}/pdf_file/\w+_test.pdf}
+          expect(user_report.user_report_pdf.pdf_file).to be_attached
+          expect(user_report.user_report_pdf.pdf_file.key).to match(
+            %r{private/projects/#{user_report.project.id}/user_reports/#{user_report.id}/#{user_report.effective_default_language}/user_report_pdf/#{user_report.user_report_pdf.id}/pdf_file/\w+_test.pdf} # rubocop:disable Layout/LineLength
           )
         end
       end
 
       context 'when string is not url' do
-        let(:data) { Base64.encode64(File.read(Rails.root.join('spec/fixtures/files/reports/test.pdf'))) }
+        let(:data) { Base64.encode64(Rails.root.join('spec/fixtures/files/reports/test.pdf').read) }
         let(:attachment) { { io: StringIO.new(data), filename: 'test', content_type: 'application/pdf' } }
 
         before do
@@ -67,22 +47,22 @@ RSpec.describe UserReport, type: :model do
 
         it 'attaches the PDF from the base64 string' do
           user_report.attach_pdf!(data, 'test.pdf')
-          expect(user_report.pdf_file).to be_attached
-          expect(user_report.pdf_file.key).to match(
-            %r{private/projects/#{user_report.project.id}/user_report/#{user_report.id}/pdf_file/\w+_test.pdf}
+          expect(user_report.user_report_pdf.pdf_file).to be_attached
+          expect(user_report.user_report_pdf.pdf_file.key).to match(
+            %r{private/projects/#{user_report.project.id}/user_reports/#{user_report.id}/#{user_report.effective_default_language}/user_report_pdf/#{user_report.user_report_pdf.id}/pdf_file/\w+_test.pdf} # rubocop:disable Layout/LineLength
           )
         end
       end
     end
 
     context 'when data is a File' do
-      let(:data) { File.open(Rails.root.join('spec/fixtures/files/reports/test.pdf')) }
+      let(:data) { Rails.root.join('spec/fixtures/files/reports/test.pdf').open }
 
       it 'attaches the PDF from the file' do
         user_report.attach_pdf!(data)
-        expect(user_report.pdf_file).to be_attached
-        expect(user_report.pdf_file.key).to match(
-          %r{private/projects/#{user_report.project.id}/user_report/#{user_report.id}/pdf_file/\w+_test.pdf}
+        expect(user_report.user_report_pdf.pdf_file).to be_attached
+        expect(user_report.user_report_pdf.pdf_file.key).to match(
+          %r{private/projects/#{user_report.project.id}/user_reports/#{user_report.id}/#{user_report.effective_default_language}/user_report_pdf/#{user_report.user_report_pdf.id}/pdf_file/\w+_test.pdf} # rubocop:disable Layout/LineLength
         )
       end
     end

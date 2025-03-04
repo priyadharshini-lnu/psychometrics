@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::Assessors::ParseImportData do
+describe Assessors::ParseImportData do
   it '.call' do
     file = Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/assessors_export.csv'), 'text/csv')
     data = described_class.call!(file)

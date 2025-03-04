@@ -12,7 +12,7 @@ class Api::V2::Administration::MettlScheduleRecordResource < Api::V2::Administra
   audit_log_for :update, payload: '*'
 
   def self.records(opts = {})
-    super(opts).where(project_id: opts[:context][:project].id).parent_schedules
+    super.where(project_id: opts[:context][:project].id).parent_schedules
   end
 
   def created_at

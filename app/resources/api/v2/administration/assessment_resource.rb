@@ -48,7 +48,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def self.records(opts)
-    super(opts).with_attached_icon.with_attached_poster.includes(:dimension, :owner)
+    super.with_attached_icon.with_attached_poster.includes(:dimension, :owner)
   end
 
   def icon_url
@@ -63,9 +63,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
     Assessment::TYPES.key(@model.type)
   end
 
-  def category
-    @model.category
-  end
+  delegate :category, to: :@model
 
   def external_settings
     return {} if @model.common?
@@ -83,9 +81,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
     )
   end
 
-  def extra
-    @model.extra
-  end
+  delegate :extra, to: :@model
 
   def type=(value)
     @model.type = Assessment::TYPES[value.to_sym]

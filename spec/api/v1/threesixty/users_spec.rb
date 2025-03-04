@@ -35,7 +35,7 @@ describe Api::V1::Threesixty::UsersController, swagger_doc: 'v1/swagger.json', t
       assessment.users_result.update!(scoring: { dimension.id.to_s => { 'score' => 4.0 } })
     end
   end
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before do
     create(:api_key, token: 'token', key: 'key', user: membership.user)

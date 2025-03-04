@@ -8,7 +8,7 @@ module DimensionHelper
     return '' if attributes.none?
 
     links = attributes.map do |k, _v|
-      key = k.gsub(/_enabled/, '')
+      key = k.gsub('_enabled', '')
       link_to key, [:administration, resource, key.to_sym]
     end
 

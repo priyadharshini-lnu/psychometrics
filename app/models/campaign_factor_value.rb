@@ -7,7 +7,7 @@ class CampaignFactorValue < ApplicationRecord
   belongs_to :user
   belongs_to :campaign_factor
 
-  enum calculation_type: { auto: 0, manual: 1 }
+  enum :calculation_type, { auto: 0, manual: 1 }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id user_id]

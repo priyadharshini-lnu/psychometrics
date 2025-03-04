@@ -105,7 +105,7 @@ describe Threesixty::PipedText::Perform do
       allow(Settings).to receive(:port).and_return(8181)
       allow(Settings).to receive(:domain).and_return('tte.test')
 
-      token = ::Campaigns::JwtTokenizer.encode(
+      token = Campaigns::JwtTokenizer.encode(
         { subject_id: user.id, campaign_id: '1', exp: Time.current.to_i + 60 }
       )
 

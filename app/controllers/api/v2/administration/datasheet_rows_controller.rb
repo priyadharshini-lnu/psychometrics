@@ -1,4 +1,4 @@
-# Frozen_string_literal: true
+# frozen_string_literal: true
 
 module Api
   class V2::Administration::DatasheetRowsController < Api::V2::Administration::BaseController

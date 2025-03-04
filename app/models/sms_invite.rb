@@ -10,7 +10,7 @@ class SmsInvite < ApplicationRecord
   has_one :project, through: :campaign
   has_many :sms_histories
 
-  enum status: { not_invited: 0, invited: 1, registered: 2, failed: 3 }
+  enum :status, { not_invited: 0, invited: 1, registered: 2, failed: 3 }
 
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
     parent.table[:status]

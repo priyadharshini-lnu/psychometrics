@@ -154,8 +154,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   serialize :external_settings, coder: PsyJsonbSerializer
 
-  enum category: CATEGORIES
-  enum status: STATUSES
+  enum :category, CATEGORIES
+  enum :status, STATUSES
 
   store_accessor :extra, %i[timer icon_color enable_video_check enable_audio_check enable_network_check]
 
@@ -201,11 +201,11 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def self.ransackable_scopes(_)
-    super.concat(%i[owned_by_client_or_tte])
+    super.push(:owned_by_client_or_tte)
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    super.concat(%i[owner])
+    super.push(:owner)
   end
 
   after_commit :sync_translated_columns, on: %i[update create]

@@ -2,9 +2,9 @@
 
 module AdminJobs
   class MettlResultExport < BaseExportAssessment
-    private
-
     RESULT_HEADERS_DATA = %w[maxMarks percentile totalMarks attemptTime].freeze
+
+    private
 
     def headers
       [

@@ -12,7 +12,7 @@ RSpec.describe AppsController, type: :controller do
     it 'returns global config' do
       get :global_config
 
-      response_body = JSON.parse(response.body)
+      response_body = response.parsed_body
 
       expect(response).to have_http_status(:success)
       expect(response_body).to include('feature_flags')

@@ -12,13 +12,14 @@ module SoftDelete
     scope :with_resource_state, lambda { |state|
       return archived.not_deleted if state == 'archived'
       return unarchived.not_deleted if state == 'active'
-      return deleted if state == 'deleted'
+
+      deleted if state == 'deleted'
     }
   end
 
   class_methods do
     def ransackable_scopes(_auth_object = nil)
-      super.concat(%i[with_resource_state])
+      super.push(:with_resource_state)
     end
   end
 

@@ -47,11 +47,11 @@ module UserAssessments
         report_id: user_assessment.assessment.report_ids,
         user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
-      ).each(&:remove_report_pdf!)
+      ).find_each(&:remove_report_pdf!)
     end
 
     def set_answers_as_dirty
-      user_result.answers&.each { |_, r| r['dirty'] = true }
+      user_result.answers&.each_value { |r| r['dirty'] = true }
     end
   end
 end

@@ -28,7 +28,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
     create(:sheet_row, sheet: sheet, email: 'james@cc.com')
   end
   let!(:sheet_row_data) do
-    ::SheetRows::UpsertData.call(sheet, sheet_row.email, {
+    SheetRows::UpsertData.call(sheet, sheet_row.email, {
       'Email' => 'james@cc.com', 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1'
     })
   end
@@ -39,12 +39,12 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
   describe 'GET index' do
     it 'renders sheet_row json without HTML and Markdown type on json request' do
       sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com')
-      ::SheetRows::UpsertData.call(sheet, sheet_row2.email, {
+      SheetRows::UpsertData.call(sheet, sheet_row2.email, {
         'Email' => 'smith@cc.com', 'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1'
       })
 
       get :index, params: { project_id: project.id }, format: :json
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['columns']).to match_array(
         [
@@ -71,7 +71,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
   describe 'GET show' do
     it 'returns data_sheet record with all types' do
       get :show, params: { id: sheet_row.id, project_id: project.id }, format: :json
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response[0]['type']).to eq('project')
       expect(parsed_response[0]['columns']).to match_array(
@@ -101,7 +101,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
 
       sheet_row = sheet.rows.find_by(email: 'mark@cc.com')
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({
         'id' => sheet_row.id, 'Email' => 'mark@cc.com', 'Name' => 'Mark'
       })
@@ -112,7 +112,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
         project_id: project.id, 'Name' => 'Mark', 'Company' => 'Abctech'
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({ 'errors' => { 'email' => ["Email can't be blank"] } })
     end
   end
@@ -123,7 +123,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
         project_id: project.id, id: sheet_row.id, 'Name' => 'James Smith', 'Company' => 'Abctech'
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({
         'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James Smith',
         'Description' => 'J1', 'Profile' => 'Software Engineer'
@@ -154,7 +154,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
         project_id: project.id,
         file: file
       }
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['errors']).to eq(['File does not contain Email column'])
     end
@@ -177,7 +177,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
       data = 'data'
       xlsx = double
       allow(xlsx).to receive_message_chain(:to_stream, :read) { data }
-      expect(::Sheets::Export).to receive(:call!).with(sheet).and_return(xlsx)
+      expect(Sheets::Export).to receive(:call!).with(sheet).and_return(xlsx)
       expect(controller).to receive(:send_data).with(data, filename: "datasheet-export-for-#{project.name}.xlsx")
 
       get :export, format: 'xlsx', params: { project_id: project.id, type: 'Datasheet' }

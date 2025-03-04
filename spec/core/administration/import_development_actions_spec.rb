@@ -123,7 +123,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
           to_return(
             status: 200,
             headers: { 'Content-Type' => 'image/png' },
-            body: File.read(Rails.root.join('spec/fixtures/files/profile.png'))
+            body: Rails.root.join('spec/fixtures/files/profile.png').read
           )
       end
 

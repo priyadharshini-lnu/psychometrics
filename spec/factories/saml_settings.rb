@@ -8,7 +8,7 @@ FactoryBot.define do
     entity_id { Faker::Lorem.characters(number: 5) }
     sso_service_url { Faker::Internet.url }
     after_signout_url { Faker::Internet.url }
-    cert { File.read(Rails.root.join('spec/fixtures/files/cert.pem')) }
+    cert { Rails.root.join('spec/fixtures/files/cert.pem').read }
     name_identifier_format { 'email' }
     email_pipetext { '' }
   end

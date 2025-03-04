@@ -8,7 +8,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
   let(:project) { Project.find(user.project.id) } # Ensure we have a proper Project instance
   let(:idp_template) { create(:idp_template) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
-  let(:skills) { create_list(:skill, 3, project: project) }  # Create skills with project owner
+  let(:skills) { create_list(:skill, 3, project: project) } # Create skills with project owner
   let(:development_action) { create(:development_action) }
   let!(:user_idp_skills) do
     skills.map { |skill| create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill) }
@@ -25,7 +25,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
   describe 'GET index' do
     it 'get user idp development action' do
       get :index, params: { user_id: user.id }
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
       expect(parsed_result.keys).to include('meta')
       expect(parsed_result['meta']['record_count']).to eq(1)
       expect(parsed_result['data'][0]['id']).to eq(user_idp_development_action.id)
@@ -41,7 +41,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
 
     it 'get development actions available for the skill' do
       get :available_development_actions, params: { user_id: user.id, skill_id: skill_for_development_action.id }
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
       expect(parsed_result['meta']['record_count']).to eq(2)
       expect(parsed_result['data'].map do |action|
                action['id']
@@ -55,7 +55,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
   describe 'GET user_idp_skills' do
     it 'get user idp skills' do
       get :user_idp_skills, params: { user_id: user.id }
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
       expect(parsed_result['meta']['record_count']).to eq(3)
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
         subject
 
         expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body)['data']).to eq(generated_actions)
+        expect(response.parsed_body['data']).to eq(generated_actions)
       end
 
       it 'calls the generative service with correct parameters' do
@@ -130,7 +130,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
         subject
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)['errors']).to eq(['Limit reached'])
+        expect(response.parsed_body['errors']).to eq(['Limit reached'])
       end
     end
   end

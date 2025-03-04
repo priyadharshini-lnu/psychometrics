@@ -8,7 +8,7 @@ class PrivacyConsent < ApplicationRecord
 
   before_save :set_policy_type
 
-  enum policy_type: { default: 0, custom: 1 }
+  enum :policy_type, { default: 0, custom: 1 }
 
   private
 

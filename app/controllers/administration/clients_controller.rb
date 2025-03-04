@@ -10,12 +10,12 @@ module Administration
     append_before_action :init_collections, only: %i[new create edit update]
     before_action :skip_policy_scope, only: [:index]
 
-    def new
-      @_resource = resource_class.new
-    end
-
     def show
       redirect_to administration_client_users_path(resource.id)
+    end
+
+    def new
+      @_resource = resource_class.new
     end
 
     def create

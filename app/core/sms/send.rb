@@ -12,11 +12,9 @@ module Sms
 
     def call
       message = Sms::TwilioClient.get.messages.create(
-        **options.merge(
-          from: Settings.secrets.twilio[:from_mobile_no],
-          to: to_mobile_no,
-          body: body
-        )
+        **options, from: Settings.secrets.twilio[:from_mobile_no],
+                   to: to_mobile_no,
+                   body: body
       )
 
       broadcast :ok, message

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::ExpandAnswersByRecoding do
+describe UsersResults::ExpandAnswersByRecoding do
   let(:answers) do
     {
       '17159' => {

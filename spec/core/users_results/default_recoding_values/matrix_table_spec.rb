@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::DefaultRecodingValues::MatrixTable do
+describe UsersResults::DefaultRecodingValues::MatrixTable do
   let(:question) { create(:question, type: 'MatrixTable', props: { 'choices' => 3, 'scalePoints' => 2 }) }
 
   it do

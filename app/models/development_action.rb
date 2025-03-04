@@ -13,12 +13,12 @@ class DevelopmentAction < ApplicationRecord
   has_many :skills, through: :skills_development_actions
   has_many :course_schedules, dependent: :destroy
 
-  enum category: {
+  enum :category, {
     course: 0,
     default: 1
   }
 
-  enum learning_style: {
+  enum :learning_style, {
     on_the_job: 0,
     learning_from_others: 1,
     structured_learning: 2

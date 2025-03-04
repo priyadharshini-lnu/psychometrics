@@ -26,7 +26,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
     create(:sheet_row, sheet: sheet, email: 'james@cc.com')
   end
   let!(:sheet_row_data) do
-    ::SheetRows::UpsertData.call(sheet, sheet_row.email, {
+    SheetRows::UpsertData.call(sheet, sheet_row.email, {
       'Email' => 'james@cc.com', 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1'
     })
   end
@@ -38,12 +38,12 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
     it 'renders sheet_row json without HTML and Markdown type on json request' do
       sheet_row2 = create(:sheet_row, sheet: sheet, email: 'smith@cc.com')
 
-      ::SheetRows::UpsertData.call(sheet, sheet_row2.email, {
+      SheetRows::UpsertData.call(sheet, sheet_row2.email, {
         'Email' => 'smith@cc.com', 'Name' => 'Smith', 'Profile' => 'Carpenter', 'Description' => 'S1'
       })
 
       get :index, params: { new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['columns']).to match_array(
         [
@@ -81,12 +81,12 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
       project_sheet_row = create(:sheet_row, sheet: project_sheet, email: sheet_row.email)
 
-      ::SheetRows::UpsertData.call(project_sheet, project_sheet_row.email, {
+      SheetRows::UpsertData.call(project_sheet, project_sheet_row.email, {
         'Email' => 'james@cc.com', 'Name' => 'James S'
       })
 
       get :show, params: { id: sheet_row.id, new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       # Campaign sheet record assertions
 
       expect(parsed_response[0]['type']).to eq('new_campaign')
@@ -132,7 +132,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
       sheet_row = sheet.rows.find_by(email: 'mark@cc.com')
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({
         'id' => sheet_row.id, 'Email' => 'mark@cc.com', 'Name' => 'Mark'
       })
@@ -145,7 +145,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
         type: 'Datasheet'
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({ 'errors' => { 'email' => ["Email can't be blank"] } })
     end
   end
@@ -157,7 +157,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
         type: 'Datasheet'
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({
         'id' => sheet_row.id, 'Name' => 'James Smith', 'Email' => 'james@cc.com',
         'Description' => 'J1', 'Profile' => 'Software Engineer'
@@ -192,7 +192,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
         file: file,
         type: 'Datasheet'
       }
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['errors']).to include('File does not contain Email column')
       expect(parsed_response['errors']).to include(
@@ -220,7 +220,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       data = 'data'
       xlsx = double
       allow(xlsx).to receive_message_chain(:to_stream, :read) { data }
-      expect(::Sheets::Export).to receive(:call!).with(sheet).and_return(xlsx)
+      expect(Sheets::Export).to receive(:call!).with(sheet).and_return(xlsx)
       expect(controller).to receive(:send_data).with(data, filename: "datasheet-export-for-#{campaign.name}.xlsx")
       get :export, format: 'xlsx', params: { new_campaign_id: campaign.id, type: 'Datasheet' }
     end

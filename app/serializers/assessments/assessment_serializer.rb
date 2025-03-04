@@ -73,7 +73,7 @@ module Assessments
     def resources_data
       return {} unless object.resources
 
-      ids = object.resources.map { |r| r['assessmentId'] }
+      ids = object.resources.pluck('assessmentId')
       Question.where(assessment_id: ids, type: 'StaticContent').group_by(&:assessment_id)
     end
 

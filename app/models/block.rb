@@ -24,7 +24,7 @@ class Block < ApplicationRecord
   after_commit :invalidate_assessment_cache
 
   acts_as_list scope: :assessment_id
-  enum view: { assessments: 0, templates: 1 }
+  enum :view, { assessments: 0, templates: 1 }
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   # Search entity by word

@@ -22,8 +22,7 @@ class Api::V2::Administration::ReportFamilyResource < Api::V2::Administration::B
           context[:user],
           @model,
           %w[manage],
-          {
-          }
+          {}
         )
       }
     }

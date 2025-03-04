@@ -9,7 +9,7 @@ describe Api::V2::Administration::CampaignScoringVariablesController, swagger_do
   let(:campaign_id) { campaign.id }
   let!(:campaign_options) { campaign.campaign_options }
   let(:campaign_option_id) { campaign_options.id.to_s }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before do
     campaign_options.update(campaign_scoring_variables: 'test = 1')

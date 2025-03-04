@@ -3,6 +3,7 @@ import {
   Form, Select, Space, Spin, Switch,
 } from 'antd'
 import _ from 'lodash'
+import { useCallback } from 'react'
 import { Report, ReportTR } from '~/modules/admin/modules/campaigns/core/reportList'
 import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
@@ -12,6 +13,7 @@ import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 
 const { Option } = Select
+const { I18n } = window
 
 interface Props {
   reportApprovalSettings: AdditionRelationshipAttribute<ReportApprovalSettings>
@@ -74,6 +76,30 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     reportApprovalSettings, 'approvalNotificationUsers', notificationUsers,
   )
 
+  const fetchReportDebounce = useCallback(_.debounce((value) => {
+    fetchReports({
+      apiConfig: { filter: { name_cont: value } },
+    })
+  }, 300), [])
+
+  const fetchQcDebounce = useCallback(_.debounce((value) => {
+    fetchQcUsers({
+      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
+    })
+  }, 300), [])
+
+  const fetchApproverDebounce = useCallback(_.debounce((value) => {
+    fetchApproverUsers({
+      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
+    })
+  }, 300), [])
+
+  const fetchNotificationDebounce = useCallback(_.debounce((value) => {
+    fetchNotificationUsers({
+      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
+    })
+  }, 300), [])
+
   return (
     <ResourceFormModal
       resourceName="report_approval_settings"
@@ -112,11 +138,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           >
             <Select
               showSearch
-              onSearch={(value) => {
-                fetchReports({
-                  apiConfig: { filter: { name_cont: value } },
-                })
-              }}
+              onSearch={fetchReportDebounce}
               notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
@@ -143,7 +165,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch />
                     </Form.Item>
                     <div className="weight-600">
-                      Approvers Not Required
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_not_required')}
                     </div>
                   </Space>
                   {!form.getFieldValue('approversNotRequired') && (
@@ -157,7 +179,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                           <Switch />
                         </Form.Item>
                         <div className="weight-600">
-                          Approvers Can Edit
+                          {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_can_edit')}
                         </div>
                       </Space>
                     </>
@@ -171,7 +193,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch />
                     </Form.Item>
                     <div className="weight-600">
-                      Do Not Send Notifications
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.do_not_send_notifications')}
                     </div>
                   </Space>
                 </Space>),
@@ -186,14 +208,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             <Select
               mode="multiple"
               showSearch
-              onSearch={(value) => {
-                fetchQcUsers({
-                  apiConfig: {
-                    filter: { with_access_to_campaign: campaignId, search_query: value },
-                    query: { is_threesixty: true },
-                  },
-                })
-              }}
+              onSearch={fetchQcDebounce}
               notFoundContent={isQcUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
@@ -218,11 +233,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               <Select
                 mode="multiple"
                 showSearch
-                onSearch={(value) => {
-                  fetchApproverUsers({
-                    apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-                  })
-                }}
+                onSearch={fetchApproverDebounce}
                 notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
                 filterOption={false}
               >
@@ -247,11 +258,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               <Select
                 mode="multiple"
                 showSearch
-                onSearch={(value) => {
-                  fetchNotificationUsers({
-                    apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-                  })
-                }}
+                onSearch={fetchNotificationDebounce}
                 notFoundContent={isNotificationUsersLoading('fetch') ? <Spin size="small" /> : null}
                 filterOption={false}
               >

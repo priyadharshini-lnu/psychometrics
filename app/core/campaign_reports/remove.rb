@@ -11,7 +11,7 @@ module CampaignReports
     end
 
     def call
-      campaign.user_reports.where(report_id: campaign_report.report_id).each(&:destroy!) if remove_user_reports
+      campaign.user_reports.where(report_id: campaign_report.report_id).find_each(&:destroy!) if remove_user_reports
       campaign_report.destroy!
     end
   end

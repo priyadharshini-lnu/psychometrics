@@ -82,8 +82,8 @@ class Campaign < ApplicationRecord
   delegate :client, to: :project
   THREESIXTY = 'threesixty'
 
-  enum type: { common: 0, threesixty: 1 }
-  enum status: { active: 0, closed: 1, inactive: 2, archived: 3 }
+  enum :type, { common: 0, threesixty: 1 }
+  enum :status, { active: 0, closed: 1, inactive: 2, archived: 3 }
 
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
     parent.table[:status]
@@ -128,7 +128,7 @@ class Campaign < ApplicationRecord
   end
 
   def datasheet_column_names
-    datasheet_columns.map { |c| c['name'] }
+    datasheet_columns.pluck('name')
   end
 
   def datasheet_columns

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require_relative './../concerns/filter_by_tags_shared_examples'
+require_relative '../concerns/filter_by_tags_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
@@ -26,7 +26,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
              ]
            })
   end
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before(:each) { login_user(superadmin) }
   after(:each) { sign_out(superadmin) }
@@ -172,8 +172,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
               type: 'pearson',
               category: 'pearson',
               description: 'asd',
-              external_settings: {
-              }
+              external_settings: {}
             },
             relationships: {
               dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },

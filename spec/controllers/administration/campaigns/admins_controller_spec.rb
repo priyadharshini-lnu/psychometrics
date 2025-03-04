@@ -59,7 +59,7 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
       project_id: campaign.project_id
     }, format: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response['total']).to eq(1)
 
@@ -73,7 +73,7 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
       project_id: campaign.project_id
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response).to eq(expected_reponse_with_grants_and_permissions(campaign_admin_membership))
   end
@@ -85,7 +85,7 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
       project_id: campaign.project_id
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response).to eq({ 'id' => campaign_admin_membership.id })
 
@@ -95,7 +95,7 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
   it 'create' do
     post :create, params: resource_params
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     membership = Membership.joins(:user).where(
       'users.email = (?)', resource_params['resource']['user_attributes']['email']

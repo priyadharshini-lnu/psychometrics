@@ -31,14 +31,14 @@ describe EndUser::CampaignsController, type: :controller do
 
   describe 'join with token' do
     it 'should join campaign' do
-      token = ::Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: user.id })
+      token = Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: user.id })
       get :join_with_token, params: { token: token }
 
       expect(campaign.campaign_users.exists?(user_id: user.id)).to be_truthy
     end
 
     it 'should not join campaign if subject id not match' do
-      token = ::Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: user2.id })
+      token = Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: user2.id })
       get :join_with_token, params: { token: token }
 
       expect(campaign.campaign_users.exists?(user_id: user.id)).to be_falsey

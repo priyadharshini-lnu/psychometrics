@@ -66,7 +66,7 @@ module AdminJobs
         user_result.user_assessment.started_at.to_s,
         user_result.completed_at.to_s,
         user_result.completion_status_code,
-        user_result.norm ? user_result.norm.name : nil,
+        user_result.norm&.name,
         I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
         completion_reason,
         *answers
