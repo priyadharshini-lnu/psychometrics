@@ -142,7 +142,7 @@ interface ActionMenuData {
 const getActionMenuProps = ({
   norm, updateResource, removeResource, openModal, memberAction,
 }: ActionMenuData): MenuProps => {
-  const { id, name, meta: { permissions } } = norm
+  const { id, name, meta: { permissions }, normType } = norm
 
   const exportNorm = (normId: string) => memberAction({
     id: normId,
@@ -155,7 +155,9 @@ const getActionMenuProps = ({
     permissions.edit && { key: 'edit', label: I18n.t('common.actions.edit') },
     permissions.delete && { key: 'remove', label: I18n.t('common.actions.remove') },
     permissions.copy && { key: 'copy', label: I18n.t('common.actions.copy') },
-    permissions.export && { key: 'export_norm', label: I18n.t('administration.norms.sidebar.export') },
+    permissions.export && normType === "five_scale" && {
+      key: 'export_norm', label: I18n.t('administration.norms.sidebar.export')
+    },
     permissions.editor && {
       key: 'norm_editor',
       label: (

@@ -68,7 +68,8 @@ class AdminJob < ApplicationJob
     import_development_actions: AdminJobs::ImportDevelopmentActionsJob,
     export_development_actions: AdminJobs::ExportDevelopmentActionsJob,
     assign_idp_to_users: AdminJobs::AssignIdpToUsers,
-    norm_export: AdminJobs::NormExport
+    norm_export: AdminJobs::NormExport,
+    import_norm: AdminJobs::ImportNorm
   }.freeze
 
   def perform(record)

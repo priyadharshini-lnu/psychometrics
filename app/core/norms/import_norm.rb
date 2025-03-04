@@ -2,20 +2,23 @@
 
 module Norms
   class ImportNorm < BaseCommand
-    private_attr_reader :rows, :job_record, :headers
+    private_attr_reader :rows, :job_record, :headers, :dimension_name, :norm_name, :owner, :importer, :norm
 
     def initialize(rows, owner_id, importer)
       @headers  = rows.headers
       @rows     = rows
       @owner    = Client.find_by(id: owner_id)
       @importer = importer
+      @norm_name = headers[0]
+      @dimension_name = headers[1]
     end
 
     def call
+      create_norm
       import_factors
       broadcast :ok
-    rescue Errors::ImportError => e
-      broadcast :error, e.message
+    rescue ActiveRecord::RecordInvalid => e
+      raise Errors::ImportError, "[#{e.record.model_name}] #{e.record.errors.full_messages[0]}"
     end
 
     def import_factors
@@ -25,7 +28,7 @@ module Norms
 
         factor = Factor.find_by(dimension_id: dimension.id, name: factor_name)
 
-        raise Errors::ImportError, "Factor #{factor_name} not found" unless factor
+        raise Errors::ImportError, "Dimension #{dimension_name} does not have factor #{factor_name}" unless factor
 
         import_factor_norms(factor, row)
       end
@@ -37,7 +40,7 @@ module Norms
         factor_norm.props = []
         FactorsNorm::LEVELS.each do |level|
           score_from = row[level]
-          score_to = row[(headers[level] + 1)]
+          score_to = row[(headers.index(level) + 1)]
 
           factor_norm.props << { level: level, score_from: score_from, score_to: score_to }
         end
@@ -49,15 +52,13 @@ module Norms
       @dimension ||= Dimension.find_by(name: headers[1])
     end
 
-    def norm
-      norm_name = headers[0]
+    def create_norm
       @norm = Norm.new(
         name: norm_name, dimension_id: dimension.id,
         created_by: @importer, updated_by: @importer, owner: @owner
       )
       @norm.gen_uniq_name if Norm.exists?(name: @norm.name)
       @norm.save!
-      @norm
     end
   end
 end

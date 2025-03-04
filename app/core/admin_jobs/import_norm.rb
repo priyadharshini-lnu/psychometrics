@@ -1,25 +1,30 @@
 # frozen_string_literal: true
 
 module AdminJobs
-  class ImportNormJob < AdminJobs::Base
+  class ImportNorm < AdminJobs::Base
     def call
-      rows = process_csv_file(record.file)
-      result = Norms::ImportNorm.call(
-        rows, record.data['owner_id'], owner
+      form = Administration::Norms::ImportForm.new(file: record.file, owner_id: record.data['owner_id'])
+
+      return broadcast :ok, { error_messages: form.errors.full_messages } unless form.valid?
+
+      Norms::ImportNorm.call(
+        form.rows, record.data['owner_id'], owner
       )
-      if result.success?
-        broadcast :ok
-      else
-        broadcast :error, result.error
-      end
+
+      broadcast :ok
+    rescue Errors::ImportError => e
+      broadcast :ok, { error_messages: [e.message] }
     end
 
-    def process_csv_file(file)
-      if file.is_a?(ActionDispatch::Http::UploadedFile) || file.is_a?(Rack::Test::UploadedFile)
-        CSV.read(file.path, encoding: 'bom|utf-8')
-      else
-        CSV.new(URI(file.url).open, headers: true).read
-      end
+    def generate_title_link
+      {
+        href: '/admin/norms',
+        lable: 'Norms'
+      }
+    end
+
+    def generate_details
+      []
     end
   end
 end
