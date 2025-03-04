@@ -3,9 +3,9 @@ import {
   Layout, Col, ConfigProvider, Progress, Watermark, Space,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ClockCircleOutlined } from '@ant-design/icons'
-
 import { ProgressProps } from 'antd/lib/progress'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'

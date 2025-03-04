@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import {
   Modal, Progress, Tooltip, Typography, Row, Button,
 } from 'antd'
-import { QuestionCircleOutlined, CheckCircleFilled } from '@ant-design/icons'
 import { connect } from 'react-redux'
+import { QuestionCircleOutlined, CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import userPresenter from '~/presenters/user'
 import { getSubjectReport, getApprovalReports } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'

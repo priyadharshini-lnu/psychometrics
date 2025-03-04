@@ -3,7 +3,7 @@ import {
   Row, Col, Space, Avatar, Typography,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 
 import { RootState } from '~/modules/admin/core/rootReducers'

@@ -83,7 +83,7 @@ export const AssessmentCard: React.FC<Props> = ({
 
   const iconUrl = assessmentIconUrl
   const assessmentIcon = iconUrl ? (
-    <Avatar src={iconUrl} alt={assessmentName} />
+    <Avatar src={iconUrl} alt="" />
   ) : (
     <Avatar
       style={{ backgroundColor: token.colorPrimary }}

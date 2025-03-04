@@ -3,6 +3,7 @@ import Icon, {
   InfoCircleOutlined as AntdInfoCircleOutlined,
   PlayCircleOutlined as AntdPlayCircleOutlined,
   ClockCircleOutlined as AntdClockCircleOutlined,
+  ClockCircleFilled as AntdClockCircleFilled,
   CheckCircleOutlined as AntdCheckCircleOutlined,
   ReloadOutlined as AntdReloadOutlined,
   LoadingOutlined as AntdLoadingOutlined,
@@ -13,6 +14,7 @@ import Icon, {
   PlusOutlined as AntdPlusOutlined,
   MinusOutlined as AntdMinusOutlined,
   DownOutlined as AntdDownOutlined,
+  UpOutlined as AntdUpOutlined,
   TeamOutlined as AntdTeamOutlined,
   CloseOutlined as AntdCloseOutlined,
   DeleteOutlined as AntdDeleteOutlined,
@@ -41,6 +43,11 @@ import Icon, {
   MonitorOutlined as AntdMonitorOutlined,
   MenuFoldOutlined as AntdMenuFoldOutlined,
   MenuUnfoldOutlined as AntdMenuUnfoldOutlined,
+  LaptopOutlined as AntdLaptopOutlined,
+  AudioOutlined as AntdAudioOutlined,
+  VideoCameraOutlined as AntdVideoCameraOutlined,
+  StopOutlined as AntdStopOutlined,
+  WarningOutlined as AntdWarningOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -53,6 +60,7 @@ const withAccessibilityProps = (AntIcon: typeof Icon) => {
 export const InfoCircleOutlined = withAccessibilityProps(AntdInfoCircleOutlined)
 export const PlayCircleOutlined = withAccessibilityProps(AntdPlayCircleOutlined)
 export const ClockCircleOutlined = withAccessibilityProps(AntdClockCircleOutlined)
+export const ClockCircleFilled = withAccessibilityProps(AntdClockCircleFilled)
 export const CheckCircleOutlined = withAccessibilityProps(AntdCheckCircleOutlined)
 export const ReloadOutlined = withAccessibilityProps(AntdReloadOutlined)
 export const LoadingOutlined = withAccessibilityProps(AntdLoadingOutlined)
@@ -63,6 +71,7 @@ export const ReadOutlined = withAccessibilityProps(AntdReadOutlined)
 export const PlusOutlined = withAccessibilityProps(AntdPlusOutlined)
 export const MinusOutlined = withAccessibilityProps(AntdMinusOutlined)
 export const DownOutlined = withAccessibilityProps(AntdDownOutlined)
+export const UpOutlined = withAccessibilityProps(AntdUpOutlined)
 export const TeamOutlined = withAccessibilityProps(AntdTeamOutlined)
 export const CloseOutlined = withAccessibilityProps(AntdCloseOutlined)
 export const DeleteOutlined = withAccessibilityProps(AntdDeleteOutlined)
@@ -91,3 +100,8 @@ export const ExpandOutlined = withAccessibilityProps(AntdExpandOutlined)
 export const MonitorOutlined = withAccessibilityProps(AntdMonitorOutlined)
 export const MenuFoldOutlined = withAccessibilityProps(AntdMenuFoldOutlined)
 export const MenuUnfoldOutlined = withAccessibilityProps(AntdMenuUnfoldOutlined)
+export const LaptopOutlined = withAccessibilityProps(AntdLaptopOutlined)
+export const AudioOutlined = withAccessibilityProps(AntdAudioOutlined)
+export const VideoCameraOutlined = withAccessibilityProps(AntdVideoCameraOutlined)
+export const StopOutlined = withAccessibilityProps(AntdStopOutlined)
+export const WarningOutlined = withAccessibilityProps(AntdWarningOutlined)

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Col, Space } from 'antd'
-import { ClockCircleFilled } from '@ant-design/icons'
+import { ClockCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { DetailsCard } from '~/glint'
 import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'

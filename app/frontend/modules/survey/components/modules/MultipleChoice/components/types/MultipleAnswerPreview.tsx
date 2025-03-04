@@ -169,7 +169,6 @@ const TextChoices: FC<TextChoicesProps> = ({
                 value={choiceId}
                 checked={choiceAnswer}
                 onChange={handleChoiceChange}
-                aria-labelledby={`answer-desc-${choiceId}`}
                 ref={index === 0 ? firstInputRef : null}
               />
               <div className={styles.optionDescription}>
