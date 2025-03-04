@@ -23,12 +23,18 @@ module Norms
 
     def import_factors
       rows.each do |row|
+        row.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
+
         factor_name = row['Factors']
         break unless factor_name
 
         factor = Factor.find_by(dimension_id: dimension.id, name: factor_name)
 
-        raise Errors::ImportError, "Dimension #{dimension_name} does not have factor #{factor_name}" unless factor
+        unless factor
+          raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factor_mismatch',
+                                            factor_name: factor_name,
+                                            dimension_name: dimension_name)
+        end
 
         import_factor_norms(factor, row)
       end
