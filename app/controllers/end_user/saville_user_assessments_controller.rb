@@ -18,7 +18,7 @@ class EndUser::SavilleUserAssessmentsController < ApplicationController
 
     if params[:error]
       Saville::HandleErrorCode.call!(params[:error], @user_assessment)
-    elsif assessment_completed?
+    else
       @user_assessment.update!(status: :completed, completed_at: Time.current)
     end
 
@@ -27,10 +27,6 @@ class EndUser::SavilleUserAssessmentsController < ApplicationController
   end
 
   private
-
-  def assessment_completed?
-    Saville::GetAssessmentStatus.call!(@user_assessment) == 'Completed'
-  end
 
   def error_message
     if params[:error] == Saville::HandleErrorCode::ALREADY_STARTED_ERROR_CODE
