@@ -2,7 +2,7 @@
 
 if Object.const_defined?('RuboCop::Cop::Cop')
   module CustomRubocops
-    class AvoidActiveRecordInMigrations < RuboCop::Cop::Cop
+    class AvoidActiveRecordInMigrations < RuboCop::Cop::Base
       MSG = 'Avoid using Active Record models in migrations.'
 
       def on_send(node)

@@ -2,7 +2,7 @@
 
 if Object.const_defined?('RuboCop::Cop::Cop')
   module CustomRubocops
-    class AvoidUsingMemoizationInSerializers < RuboCop::Cop::Cop
+    class AvoidUsingMemoizationInSerializers < RuboCop::Cop::Base
       MSG = 'Avoid using @(Memoized variables) inside panko serializers. https://github.com/yosiat/panko_serializer/issues/59'
 
       def on_or_asgn(node)
