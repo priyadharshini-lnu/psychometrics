@@ -1065,14 +1065,12 @@ as: :simulation_progress_notification
   constraints format: :json do
     namespace :api do
       namespace :v1 do
-        namespace :threesixty do
-          resources :projects, only: [] do
-            resources :campaigns, only: [] do
-              resources :users, only: [], param: :user_id do
-                member do
-                  get :assessments
-                  get :scores
-                end
+        resources :projects, only: [] do
+          resources :campaigns, path: 'threesixty_campaigns', only: [], module: 'threesixty_campaigns' do
+            resources :users, only: [], param: :user_id do
+              member do
+                get :assessments
+                get :scores
               end
             end
           end

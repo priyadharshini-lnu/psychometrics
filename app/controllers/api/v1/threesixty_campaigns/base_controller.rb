@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    module Threesixty
+    module ThreesixtyCampaigns
       class BaseController < Api::V1::BaseController
         before_action :ensure_campaign
         before_action :ensure_threesixty_campaign

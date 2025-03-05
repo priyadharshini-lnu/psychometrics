@@ -2162,7 +2162,7 @@
         }
       }
     },
-    "/threesixty/projects/{project_id}/campaigns/{campaign_id}/users/{user_id}/assessments": {
+    "/projects/{project_id}/threesixty_campaigns/{campaign_id}/users/{user_id}/assessments": {
       "get": {
         "summary": "List 360 evaluations",
         "operationId": "getThreesixtyEvaluations",
@@ -2220,7 +2220,7 @@
         }
       }
     },
-    "/threesixty/projects/{project_id}/campaigns/{campaign_id}/users/{user_id}/scores": {
+    "/projects/{project_id}/threesixty_campaigns/{campaign_id}/users/{user_id}/scores": {
       "get": {
         "summary": "Fetch 360 scores for a user",
         "operationId": "getThreesixtyScores",
@@ -3305,6 +3305,7 @@
               "de",
               "en",
               "es-ES",
+              "en-US",
               "pl",
               "pt",
               "zh",
@@ -3387,6 +3388,7 @@
               "de",
               "en",
               "es-ES",
+              "en-US",
               "pl",
               "pt",
               "zh",
