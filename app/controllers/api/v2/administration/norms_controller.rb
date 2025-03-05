@@ -11,8 +11,10 @@ module Api
 
     def export
       AdminJob.call(
-        :norm_export, { norm_id: params[:norm_id] }, current_user
+        :export_norm, { norm_id: params[:norm_id] }, current_user
       )
+
+      render json: :ok
     end
 
     def import

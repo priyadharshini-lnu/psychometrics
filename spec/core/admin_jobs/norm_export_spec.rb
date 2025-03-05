@@ -7,7 +7,7 @@ RSpec.describe AdminJobs::NormExport, type: :job do
   let(:factor_norms) { create_list(:factors_norm, 3, norm: norm) }
 
   let(:job_record) do
-    create(:admin_job_record, operation: :norm_export, data: { norm_id: norm.id })
+    create(:admin_job_record, operation: :export_norm, data: { norm_id: norm.id })
   end
   let(:job) { described_class.new(job_record) }
 

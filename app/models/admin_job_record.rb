@@ -77,7 +77,7 @@ class AdminJobRecord < ApplicationRecord
     data_report_export: 56,
     import_development_actions: 57,
     export_development_actions: 58,
-    norm_export: 59,
+    export_norm: 59,
     import_norm: 60
   }
 
