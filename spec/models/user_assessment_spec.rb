@@ -465,4 +465,77 @@ status: :in_progress)
       end
     end
   end
+
+  describe '#send_workshop_invite_email' do
+    let(:campaign) { create(:campaign) }
+    let(:user) { create(:user, project: campaign.project) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+    let(:workshop) { create(:workshop, campaign_id: campaign.id) }
+    let!(:workshop_invite) { create(:workshop_invite, workshops: [workshop], campaign: campaign) }
+
+    let!(:prework_user_assessment) do
+      create(:user_assessment,
+             campaign: campaign,
+             subject: user,
+             evaluator: user,
+             status: 'not_started')
+    end
+
+    let!(:campaign_assessment) do
+      create(:campaign_assessment,
+             assessment: prework_user_assessment.assessment,
+             campaign: campaign,
+             prework: true,
+             workshop_activity: true)
+    end
+
+    let!(:communication) do
+      create(:communication, kind: :workshop_invite,
+        campaign_id: campaign.id, project_id: campaign.project.id, client_id: campaign.project.parent.id)
+    end
+
+    context 'when prework completion is not required' do
+      it 'mails are not sent if workshop_invite_requires_prework_completion is false' do
+        prework_user_assessment.update!(status: 'completed')
+        expect(communication.emails.count).to eq(0)
+      end
+    end
+
+    context 'when prework completion is required' do
+      before do
+        campaign.campaign_options.update(workshop_invite_requires_prework_completion: true)
+      end
+
+      it 'sends mails only for workshop invited subjects without existing communication emails' do
+        create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite)
+
+        prework_user_assessment.update!(status: 'in_progress')
+        expect(communication.emails.count).to eq(0)
+
+        prework_user_assessment.update!(status: 'completed')
+
+        expect(communication.emails.count).to eq(1)
+      end
+
+      it 'does not send duplicate mails' do
+        workshop_invite2 = create(:workshop_invite, workshops: [workshop], campaign: campaign, title: 'Workshop 2')
+        workshop_invite3 = create(:workshop_invite, workshops: [workshop], campaign: campaign, title: 'Workshop 3')
+
+        create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite)
+        create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite2)
+        create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite3)
+
+        # mails are sent for workshop invite1 and workshop invite2
+        create(:communication_email, sent_at: 20.hours.ago, campaign_user: campaign_user,
+        communication: communication, workshop_invite: workshop_invite)
+        create(:communication_email, sent_at: 20.hours.ago, campaign_user: campaign_user,
+        communication: communication, workshop_invite: workshop_invite2)
+
+        prework_user_assessment.update!(status: 'completed') # pending invite email for workshop invite3 is sent
+
+        expect(communication.reload.emails.count).to eq(3)
+        expect(communication.emails.last.workshop_invite.title).to eq('Workshop 3')
+      end
+    end
+  end
 end

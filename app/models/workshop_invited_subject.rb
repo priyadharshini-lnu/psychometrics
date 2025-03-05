@@ -43,10 +43,7 @@ class WorkshopInvitedSubject < ApplicationRecord
   end
 
   def send_workshop_invite_email
-    communication = campaign.communications.workshop_invite.last
-    return unless communication
-
-    communication.emails.create(campaign_user: campaign_user, workshop_invite: workshop_invite)
+    WorkshopInvites::SendEmail.call!(self)
   end
 
   def scheduled_workshop_subject
@@ -67,5 +64,15 @@ class WorkshopInvitedSubject < ApplicationRecord
 
   def rejectable?
     requested_cancellation? || requested_rescheduling?
+  end
+
+  def wait_for_prework_completion?
+    return false unless invite_requires_prework_completion?
+
+    !campaign_user.all_prework_completed?
+  end
+
+  def invite_requires_prework_completion?
+    campaign.campaign_options.workshop_invite_requires_prework_completion?
   end
 end
