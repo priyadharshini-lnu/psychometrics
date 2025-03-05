@@ -16,7 +16,7 @@ module Api
     end
 
     def import
-      form = ::Norms::ImportForm.new(import_params)
+      form = ::Administration::Norms::ImportForm.new(import_params)
 
       if form.valid?
         AdminJob.call(
@@ -47,6 +47,10 @@ module Api
       @resource = Api::Administration::NormPolicy::Scope.new(
         current_user, Norm
       ).resolve.find(params[:norm_id])
+    end
+
+    def import_params
+      params.permit(:owner_id, :file)
     end
   end
 end

@@ -63,6 +63,7 @@ Rails.application.routes.draw do
 
   concern :sheet_row_management do
     collection do
+
       delete :bulk_delete
       put :import
       get :export
@@ -1198,6 +1199,9 @@ as: :simulation_progress_notification
             post :copy
             post :editor
             post :export
+            collection do
+              post :import
+            end
           end
           jsonapi_resources :tags
           jsonapi_resources :external_assessments

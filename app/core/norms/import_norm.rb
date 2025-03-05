@@ -23,8 +23,6 @@ module Norms
 
     def import_factors
       rows.each do |row|
-        row.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
-
         factor_name = row['Factors']
         break unless factor_name
 
