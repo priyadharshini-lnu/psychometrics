@@ -21,7 +21,7 @@ module Threesixty
     end
 
     def user_report
-      user.user_reports.find_by!(campaign_id: campaign_id)
+      user.user_reports.find_by(campaign_id: campaign_id)
     end
 
     # Removing report here to generate a new report on completion because
