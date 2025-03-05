@@ -3,7 +3,7 @@ import { EventEmitter } from 'fbemitter'
 import { perform } from '~/modules/reports/core/temp/socket'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import {
-  PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE, SAVILLE,
+  PSYCHOMETRIC, HOGAN, THREESIXTY, AGILE, SAVILLE,
   ORG_SURVEYS, CASE_STUDIES, PEARSON,
   ASSESSOR_FORM,
 } from '~/modules/reports/models/Assessment'
@@ -52,11 +52,6 @@ export const SOURCE_TYPES = {
     { value: 'Question', label: 'Question', condition: false },
     { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
     { value: 'Factor', label: 'Factors', condition: true },
-  ],
-  [MINDMILL]: [
-    { value: 'Count', label: 'Count', condition: true },
-    { value: 'Score', label: 'Score', condition: true },
-    { value: 'Stability', label: 'Stability', condition: true },
   ],
   [HOGAN]: [
     { value: 'PercentileScale', label: 'Percentile Scale', condition: true },

@@ -147,8 +147,8 @@ class Client < ApplicationRecord
 
   # Type of client.
   # Retail - is client who bought some product
-  enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
-  enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
+  enum :type, { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
+  enum :applicable_level, { project: 0, campaign: 1, sub_campaign: 2 }, suffix: :level
 
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
@@ -157,7 +157,7 @@ class Client < ApplicationRecord
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
            :mask_identity_for_mettl?, :custom_privacy_consent, to: :privacy_setting
 
-  scope :enabled, -> { where.not(disabled: true, archived: true) }
+  scope :enabled, -> { where('NOT (disabled = ? AND archived = ?)', true, true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
   scope :resource_disabled, ->(value) { where(disabled: value) }
   scope :not_archived, -> { where.not(archived: true) }

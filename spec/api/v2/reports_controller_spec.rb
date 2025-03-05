@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 require 'swagger_helper'
-require_relative './concerns/taggable_api_endpoints_shared_examples'
+require_relative 'concerns/taggable_api_endpoints_shared_examples'
 
 describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:assessment) { create(:hogan_assessment, external_settings: { assessment_id: 'HPI' }) }
   let!(:report) { create(:report, name: 'First Report') }
   let!(:deleted_report) { create(:report, name: 'First Report', deleted_at: Time.zone.now) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

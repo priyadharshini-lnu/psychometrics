@@ -49,7 +49,6 @@ module Reports
     end
 
     def external_scoring
-      return object.external_results if object.assessment.mindmill?
       return object.external_results['scores'] || [] if object.assessment.saville?
 
       if object.assessment.hogan?

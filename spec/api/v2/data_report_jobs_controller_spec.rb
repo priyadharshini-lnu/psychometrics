@@ -11,7 +11,7 @@ describe Api::V2::Administration::DataReportJobsController, swagger_doc: 'v2/swa
   let(:data_report_id) { data_report.id }
   let!(:data_report_job) { create(:data_report_job, data_report: data_report, created_by: client_admin) }
   let(:data_report_job_id) { data_report_job.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   describe 'as client admin' do
     before do

@@ -38,7 +38,7 @@ describe EndUser::AnonymsController, type: :controller do
         get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key }
 
         expect(response).to have_http_status(:success)
-        expect(JSON.parse(response.body)).to include('assessment')
+        expect(response.parsed_body).to include('assessment')
       end
 
       context 'when lang parameter is provided' do

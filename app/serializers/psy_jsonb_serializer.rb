@@ -6,6 +6,6 @@ class PsyJsonbSerializer
   end
 
   def self.load(hash)
-    HashWithIndifferentAccess.new(hash.is_a?(String) ? JSON.parse(hash) : hash)
+    ActiveSupport::HashWithIndifferentAccess.new(hash.is_a?(String) ? JSON.parse(hash) : hash)
   end
 end

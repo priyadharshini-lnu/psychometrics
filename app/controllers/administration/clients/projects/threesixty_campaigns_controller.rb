@@ -11,6 +11,23 @@ module Administration
         before_action :set_campaign_template_and_assessments, only: %i[new create]
         wrap_parameters :threesixty_campaign
 
+        def index
+          @filter_term = params.dig(:q, :filterable_fields)
+          @_filter_form = project.project_campaigns.
+                          where(type: 'threesixty').
+                          includes(
+                            :threesixty_campaign,
+                            threesixty_campaign: %i[assessment report]
+                          ).
+                          ransack(params[:q])
+          @_resources = filter_form.result.page(params[:page])
+
+          respond_to do |format|
+            format.html
+            format.js { render :index, formats: [:js] }
+          end
+        end
+
         def show
           @init_state ||= {}
           @init_state.merge!({
@@ -42,23 +59,6 @@ module Administration
               parentResource: { type: 'new_campaign', id: resource.campaign_id }
             }
           })
-        end
-
-        def index
-          @filter_term = params.dig(:q, :filterable_fields)
-          @_filter_form = project.project_campaigns.
-                          where(type: 'threesixty').
-                          includes(
-                            :threesixty_campaign,
-                            threesixty_campaign: %i[assessment report]
-                          ).
-                          ransack(params[:q])
-          @_resources = filter_form.result.page(params[:page])
-
-          respond_to do |format|
-            format.html
-            format.js { render :index, formats: [:js] }
-          end
         end
 
         def new
@@ -101,9 +101,7 @@ module Administration
             on(:error) { |errors| @campaign.errors.add(:base, errors) }
           end
           @_resource = @campaign
-          respond_to do |format|
-            format.js
-          end
+          respond_to(&:js)
         end
 
         def i18n

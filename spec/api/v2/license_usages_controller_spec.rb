@@ -13,7 +13,7 @@ describe Api::V2::Administration::LicenseUsagesController, swagger_doc: 'v2/swag
   let(:license_id) { license.id.to_s }
   let(:license_usage_id) { usage.id }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

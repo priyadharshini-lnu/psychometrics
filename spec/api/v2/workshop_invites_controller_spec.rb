@@ -12,7 +12,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
   let!(:workshop2) { create(:workshop, campaign: campaign) }
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
   let!(:user1) { create(:user, email: 'user1@test.test') }
 
   before do

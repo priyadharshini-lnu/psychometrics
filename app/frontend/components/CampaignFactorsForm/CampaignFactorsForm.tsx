@@ -86,12 +86,12 @@ export const CampaignFactorsForm: FC<Props> = ({
     const validateFields = (
       fieldValues: string[],
       fieldName: keyof CampaignFactor,
-    ): FieldError[] => fieldValues.map((value, index) => validateField(value, index, fieldName))
+    ): FieldError[] => fieldValues?.map((value, index) => validateField(value, index, fieldName))
 
-    const nameErrors: FieldError[] = validateFields(values.items.map(column => column.name), 'name')
-    const codeErrors: FieldError[] = validateFields(values.items.map(column => column.code), 'code')
+    const nameErrors: FieldError[] = validateFields(values.items?.map(column => column.name), 'name')
+    const codeErrors: FieldError[] = validateFields(values.items?.map(column => column.code), 'code')
     const setFields = (errors: FieldError[], fieldName: keyof CampaignFactor) => form.setFields(
-      errors.map((error, index) => ({
+      errors?.map((error, index) => ({
         name: ['items', index, fieldName],
         errors: error[fieldName] ? [error[fieldName]] : undefined,
       })),
@@ -100,7 +100,7 @@ export const CampaignFactorsForm: FC<Props> = ({
     setFields(nameErrors, 'name')
     setFields(codeErrors, 'code')
 
-    const hasNoErrors = (errors: FieldError[], key: string) => errors.every(error => error[key] === '')
+    const hasNoErrors = (errors: FieldError[], key: string) => errors?.every(error => error[key] === '')
     if (hasNoErrors(nameErrors, 'name') && hasNoErrors(codeErrors, 'code')) {
       saveCampaignFactors(values.items)
       message.config({

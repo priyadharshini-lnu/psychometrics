@@ -1,4 +1,4 @@
-FROM ruby:3.1.6-slim as ruby-base
+FROM ruby:3.4.2-slim as ruby-base
 
 # Default env vars (applies to containers made from this image)
 # Can be overriden at run-time with -e
@@ -16,7 +16,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # This example installs the PostgreSQL and SQLite libraries (two commonly used databases in Rails apps).
 #
 # We're also installing the latest nodejs and lua
-RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 \
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev \
     && curl -sL https://deb.nodesource.com/setup_18.x | bash \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
@@ -136,7 +136,7 @@ RUN bundle exec rake i18n:js:export \
     && DISABLE_COVERAGE=1 bundle exec rails assets:precompile \
     && rm -rf tmp/ && rm -rf node_modules
 
-FROM ruby:3.1.6-slim
+FROM ruby:3.4.2-slim
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"

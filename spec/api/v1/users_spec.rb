@@ -28,7 +28,7 @@ describe 'Users' do
     )
   end
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   path '/projects/{project_id}/users/{user_id}/sso' do
     post 'Create authenticated SSO URL' do

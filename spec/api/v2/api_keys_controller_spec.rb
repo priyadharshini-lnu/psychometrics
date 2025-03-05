@@ -8,7 +8,7 @@ describe Api::V2::Administration::ApiKeysController, swagger_doc: 'v2/swagger.js
   let!(:user) { create(:client_admin) }
   let!(:api_key) { create(:api_key, user: user) }
   let(:user_id) { user.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

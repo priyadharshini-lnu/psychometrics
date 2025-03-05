@@ -29,7 +29,7 @@ module Exports
           # Where 1 - choice, 2 - scale, 100 - scoring value
           parsed_result = []
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['scale']}"] = s['value']; }
+                            each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['scale']}"] = s['value'] }
 
           question.props['choices'].to_i.times do |choice|
             parsed_result << (answers || []).

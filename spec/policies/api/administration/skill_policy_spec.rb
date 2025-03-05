@@ -48,8 +48,8 @@ RSpec.describe Api::Administration::SkillPolicy do
   end
 
   describe 'Scope' do
-    let(:superadmin_scope) { described_class::Scope.new(superadmin, ::Skill.all) }
-    let(:user_scope) { described_class::Scope.new(user, ::Skill.all) }
+    let(:superadmin_scope) { described_class::Scope.new(superadmin, Skill.all) }
+    let(:user_scope) { described_class::Scope.new(user, Skill.all) }
 
     context 'for superadmin user' do
       before do

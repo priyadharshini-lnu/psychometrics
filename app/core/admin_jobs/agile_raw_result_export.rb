@@ -59,16 +59,21 @@ module AdminJobs
         user_result.started_at.to_s,
         user_result.completed_at.to_s,
         user_result.meta_data['completed_groups']&.join(','),
-        user_result.norm ? user_result.norm.name : nil,
+        user_result.norm&.name,
         *answer_values
       ]
     end
 
     def records_for_export
-      UsersResult.includes(:user_assessment, :subject).
-        where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id }).
-        where.not(user_assessments: { status: :not_started }).
-        find_each(batch_size: 100)
+      users_results = UsersResult.includes(:subject, user_assessment: :campaign_user).
+                      where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id }).
+                      where.not(user_assessments: { status: :not_started })
+
+      unless include_inactive_users
+        users_results = users_results.where(campaign_users: { active: true })
+      end
+
+      users_results.find_each(batch_size: 100)
     end
 
     def questions
@@ -82,7 +87,7 @@ module AdminJobs
                    flatten(1).
                    flat_map { |scene| scene.dig('data', 'blocks') }.
                    flat_map { |blocks| blocks['questions'] }.
-                   collect { |question| question['id'] }
+                   pluck('id')
     end
 
     def readable_date(timestamp)
@@ -99,6 +104,10 @@ module AdminJobs
       else
         "assessment-#{assessment.id}-raw-without-labels.csv"
       end
+    end
+
+    def include_inactive_users
+      record.data['include_inactive_users'] || false
     end
   end
 end

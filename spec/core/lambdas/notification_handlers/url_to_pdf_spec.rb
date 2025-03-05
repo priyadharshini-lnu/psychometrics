@@ -6,6 +6,7 @@ describe Lambdas::NotificationHandlers::UrlToPdf do
   let(:project) { create(:project) }
   let(:campaign) { create(:campaign, project: project) }
   let(:user_report) { create(:user_report, campaign: campaign) }
+  let!(:user_report_pdf) { create(:user_report_pdf, user_report: user_report) }
   let(:admin_job_record) { create(:admin_job_record, completed_tasks: 0) }
 
   it 'updates user_report if update_record is true' do
@@ -22,7 +23,7 @@ describe Lambdas::NotificationHandlers::UrlToPdf do
       'file_size' => 0
     })
 
-    expect(user_report.reload.pdf_file.filename.to_s).to eq('example.pdf')
+    expect(user_report.user_report_pdf.pdf_file.filename.to_s).to eq('example.pdf')
   end
 
   it "doesn't updates user_report if update_record is false" do

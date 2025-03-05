@@ -669,7 +669,6 @@ zh-HK:
       statuses:
         success: 成功
         undelivered: 未送達
-    mindmill_confirmation: 開始此評估時，您將失去結果「%{assessment}」。如要離開結果，請點擊「取消」；如要繼續，請點擊「確定」
     my_projects: 我的項目
     nominate: 提名
     nominate_evaluators: 提名評估者至

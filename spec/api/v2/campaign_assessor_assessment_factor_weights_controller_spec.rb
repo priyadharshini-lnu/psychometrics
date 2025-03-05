@@ -8,7 +8,7 @@ describe Api::V2::Administration::CampaignAssessorAssessmentFactorWeightsControl
   let!(:campaign_assessor_assessment_factor_weight) { create(:campaign_assessor_assessment_factor_weight) }
   let!(:campaign_id) { campaign_assessor_assessment_factor_weight.campaign_id }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

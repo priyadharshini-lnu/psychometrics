@@ -7,7 +7,7 @@ describe Api::V2::Administration::UserReportCommentsController, swagger_doc: 'v2
   let!(:superadmin) { create(:superadmin) }
   let(:user_report) { create(:user_report) }
   let!(:user_report_id) { user_report.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

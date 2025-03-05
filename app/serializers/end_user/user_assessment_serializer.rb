@@ -68,7 +68,8 @@ module EndUser
       return 0 if total.nil? || total.zero?
 
       progress = (100 * answered) / total
-      99 if progress > 99
+      return 99 if progress > 99
+
       progress
     end
 

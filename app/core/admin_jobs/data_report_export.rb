@@ -18,7 +18,7 @@ module AdminJobs
     }.freeze
 
     def initialize(record)
-      super(record)
+      super
       unless data_report_job
         @data_report_job = data_report.data_report_jobs.create(created_by_id: record.owner_id,
                                                                admin_job_record_id: record.id)
@@ -63,9 +63,9 @@ module AdminJobs
     end
 
     def write_rows(worksheet, _workbook)
-      columns = config['sections'].map { |s| s['columns'] }.flatten
+      columns = config['sections'].pluck('columns').flatten
 
-      worksheet.write_row(1, columns.map { |c| c['name'] })
+      worksheet.write_row(1, columns.pluck('name'))
 
       row_number = 2
       campaigns.each do |campaign|
@@ -90,7 +90,7 @@ module AdminJobs
     end
 
     def build_context(campaign_users, offset, campaign)
-      columns = config['sections'].map { |s| s['columns'] }.flatten
+      columns = config['sections'].pluck('columns').flatten
       context = {
         campaign: campaign
       }

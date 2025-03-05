@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe MediaResponse, type: :model do
   let!(:tenancy) { create(:tenancy) }
   let!(:license) { create(:license, client: tenancy, used_number: 0) }
-  let!(:assessment) { create(:assessment, type: ::Assessments::Common) }
+  let!(:assessment) { create(:assessment, type: Assessments::Common) }
   let!(:block) { create(:block, assessment: assessment) }
   let!(:question) { create(:question, assessment: assessment, block: block) }
   let!(:users_result) { create(:users_result) }

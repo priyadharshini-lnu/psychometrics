@@ -124,14 +124,14 @@ describe UsersResults::Recompute do
 
     it 'call ::UsersResults::CalculateScoring' do
       allow(user_assessment).to receive(:completed?).and_return(true)
-      expect(::UsersResults::CalculateScoring).to receive(:call!).with(user_assessment.users_result)
+      expect(UsersResults::CalculateScoring).to receive(:call!).with(user_assessment.users_result)
 
       described_class.call!(user_assessment.users_result, user_assessment.user)
     end
 
     it "doesn't call ::UsersResults::CalculateScoring if assessment is not_started" do
       allow(user_assessment).to receive(:not_started?).and_return(true)
-      expect(::UsersResults::CalculateScoring).to_not receive(:call!)
+      expect(UsersResults::CalculateScoring).to_not receive(:call!)
 
       described_class.call!(user_assessment.users_result, user_assessment.user)
     end

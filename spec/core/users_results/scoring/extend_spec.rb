@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::Scoring::Extend do
+describe UsersResults::Scoring::Extend do
   let(:dimension) { create(:dimension) }
   let(:norm) { create(:norm, with_factors_norm: false) }
   let(:norm_props) do
@@ -38,7 +38,7 @@ describe ::UsersResults::Scoring::Extend do
       factor3.id => { results: [{ value: [1, 5], question_id: 5 }] },
       factor4.id => { results: [] }
     }
-    expect(::UsersResults::Scoring::Extend.call!({
+    expect(UsersResults::Scoring::Extend.call!({
       dimension: dimension,
       scoring: scoring, norm_data: norm_data,
       external_results: {}

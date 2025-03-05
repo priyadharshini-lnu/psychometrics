@@ -94,9 +94,9 @@ describe Threesixty::Campaigns::Create do
     end
 
     it 'create campaign' do
-      form = ::Threesixty::Campaigns::CreateForm.from_params(params[:data][:attributes])
+      form = Threesixty::Campaigns::CreateForm.from_params(params[:data][:attributes])
 
-      campaign = ::Threesixty::Campaigns::Create.call!(project, form, user)
+      campaign = Threesixty::Campaigns::Create.call!(project, form, user)
       a = Assessment.find(campaign.assessment_id)
       expect(a.name).to eq('new campaign')
       expect(a.questions.size).to eq(2)

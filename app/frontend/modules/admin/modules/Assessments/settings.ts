@@ -13,7 +13,6 @@ const settings = {
     'saville',
     'pearson',
     'iiht',
-    'mindmill',
     'mettl',
     'simulation',
   ],

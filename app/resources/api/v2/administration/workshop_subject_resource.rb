@@ -85,30 +85,26 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   private
 
   def assessors
-    [].tap do |assessors|
-      @model.workshop.workshop_assessors.each do |assessor|
-        assessors << {
-          id: assessor.id.to_s,
-          user_id: assessor.user.id.to_s,
-          name: assessor.user.name,
-          photo_url: assessor.user.photo_url
-        }
-      end
+    @model.workshop.workshop_assessors.map do |assessor|
+      {
+        id: assessor.id.to_s,
+        user_id: assessor.user.id.to_s,
+        name: assessor.user.name,
+        photo_url: assessor.user.photo_url
+      }
     end
   end
 
   def campaigns_assessor_assessments
-    [].tap do |assessments|
-      @model.campaign.campaign_assessor_assessments.each do |campaign_assessor_assessment|
-        assessments << {
-          id: campaign_assessor_assessment.id,
-          name: campaign_assessor_assessment.assessment.name,
-          assessment_id: campaign_assessor_assessment.assessment_id,
-          subject_linked_activity_present: subject_assessor_assessments[
-            campaign_assessor_assessment.assessment&.linked_assessment_id
-          ].present?
-        }
-      end
+    @model.campaign.campaign_assessor_assessments.map do |campaign_assessor_assessment|
+      {
+        id: campaign_assessor_assessment.id,
+        name: campaign_assessor_assessment.assessment.name,
+        assessment_id: campaign_assessor_assessment.assessment_id,
+        subject_linked_activity_present: subject_assessor_assessments[
+          campaign_assessor_assessment.assessment&.linked_assessment_id
+        ].present?
+      }
     end
   end
 

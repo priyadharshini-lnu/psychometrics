@@ -10,7 +10,7 @@ module Users
       validate :validate_communication_email
 
       def registration_code=(code)
-        super code&.strip
+        super(code&.strip)
       end
 
       private

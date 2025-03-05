@@ -364,7 +364,6 @@ en:
           hogan: Hogan
           iiht: IIHT
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           pearson: Pearson
           psychometric: Assessment
@@ -382,7 +381,6 @@ en:
           common: TTE Assessment
           hogan: Hogan
           iiht: IIHT Assessment
-          mindmill: Mindmill Assessment
           pearson: Pearson Assessment
           saville: Saville Assessment
         updated_at: Modified Date
@@ -547,8 +545,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       report_family:
         created_at: Created Date
@@ -619,7 +615,6 @@ en:
           manager: Manager
           meeting: Meeting
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           pearson: Pearson
           project_admin: Project Admin
@@ -883,7 +878,6 @@ en:
       case_study: Case Study
       hogan: Hogan
       meeting: Meeting
-      mindmill: Mindmill
       organisational: Survey
       psychometric: Assessment
       redirecting: Redirecting
@@ -931,7 +925,6 @@ en:
         iiht: IIHT
         lead_assessor_form: Lead Assessor Form
         meeting: Meeting
-        mindmill: Mindmill
         organisational: Org Surveys
         pearson: Pearson
         psychometric: Psychometric
@@ -944,7 +937,6 @@ en:
         common: TTE Assessment
         hogan: Hogan
         iiht: IIHT Assessment
-        mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
     file_upload:
@@ -1102,7 +1094,6 @@ en:
         text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
         title: Data processing consent
       assigned: Assigned %{date}
-      mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
       questions:
         one: 1 Question
         other: "%{count} Questions"
@@ -1136,7 +1127,6 @@ en:
         text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
         title: Data processing consent
       assigned: Assigned %{date}
-      mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
       questions:
         one: 1 Question
         other: "%{count} Questions"
@@ -2717,11 +2707,6 @@ en:
     users:
       index:
         title: Company Relationships
-  mindmill:
-    assigns:
-      results:
-        not_completed: Mindmill Assessment not completed
-        successfully: Mindmill Assessment was successfully pass
   my: My
   myself: Myself
   na: NA
@@ -2897,7 +2882,6 @@ en:
         custom_upload: Custom Upload
         hogan: Hogan
         internal: Internal
-        mindmill: Mindmill
         pearson: Pearson
         saville: Saville
     form:
@@ -3143,7 +3127,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3165,7 +3148,6 @@ en:
           case_study: Case Studies
           hogan: Hogan
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment
           saville: Saville
@@ -3186,7 +3168,6 @@ en:
         types:
           common: TTE Assessment
           hogan: Hogan
-          mindmill: Mindmill Assessment
           saville: Saville Assessment
         updated_at: Modified Date
       block:
@@ -3325,8 +3306,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       user:
         active: Active
@@ -3357,7 +3336,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3504,7 +3482,6 @@ en:
       statuses:
         success: Success
         undelivered: Undelivered
-    mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
     my_projects: My Projects
     name_label: Name
     nominate: Nominate

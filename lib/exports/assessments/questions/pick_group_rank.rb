@@ -18,7 +18,7 @@ module Exports
           parsed_result = []
 
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value'] }
 
           question.props['scalePoints'].to_i.times do |s|
             parsed_result << (answers || []).

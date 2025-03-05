@@ -10,7 +10,7 @@ module Threesixty
 
         return nomination_requirements_complete[user.id] if criteria['value'] == 'completed'
 
-        return !nomination_requirements_complete[user.id] if criteria['value'] == 'not_completed'
+        !nomination_requirements_complete[user.id] if criteria['value'] == 'not_completed'
       end
 
       def nomination_requirements_complete

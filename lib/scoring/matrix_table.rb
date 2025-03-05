@@ -25,9 +25,9 @@ module Scoring
       }
     end
 
-    def calculate_max_score(question, scoring_template, result) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+    def calculate_max_score(question, scoring_template, result) # rubocop:disable Metrics/PerceivedComplexity
       scoring_template_by_choice = scoring_template.group_by { |template| template['choice'] }
-      answered_choices = result['answers'].map { |answer| answer['choice'] }.uniq
+      answered_choices = result['answers'].pluck('choice').uniq
 
       max_values = scoring_template_by_choice.map do |choice, templates|
         next if question.props['choices'] <= choice.to_i

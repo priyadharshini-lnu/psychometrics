@@ -38,7 +38,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           resource: valid_params
         }, format: :json
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         integration = project.reload.integrations.iiht.first
         expected_response = integration.attributes.slice('id', 'name', 'active').merge(
           integration.config.except('password'),
@@ -67,7 +67,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           resource: valid_params.merge(user: '')
         }, format: :json
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(response.status).to eq(422)
         expect(parsed_response).to eq({ 'errors' => { 'user' => ["can't be blank"] } })
       end
@@ -88,7 +88,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           resource: valid_params
         }, format: :json
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         integration = project.reload.integrations.hogan.first
         expected_response = integration.attributes.slice('id', 'name', 'active').merge(
           'provider' => 'phoenix',
@@ -111,7 +111,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           resource: valid_params.merge(provider: '')
         }, format: :json
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(response.status).to eq(422)
         expect(parsed_response).to eq({ 'errors' => { 'provider' => ["can't be blank"] } })
       end
@@ -142,7 +142,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           resource: mettl_valid_params.merge(public_key: '')
         }, format: :json
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(response.status).to eq(422)
         expect(parsed_response).to eq({ 'errors' => { 'public_key' => ["can't be blank"] } })
       end
@@ -155,7 +155,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           resource: mettl_valid_params
         }, format: :json
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(response.status).to eq(422)
         expect(parsed_response).to eq(
           { 'errors' => { 'name' => ['This integration is already present for this project'] } }
@@ -177,7 +177,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         resource: valid_params.merge(tenant_id: update_tenant_id)
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
       expect(parsed_response['tenant_id']).to eq(update_tenant_id)
@@ -192,7 +192,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         resource: valid_params.merge(tenant_id: update_tenant_id, tenancy_name: '')
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(response.status).to eq(422)
       expect(parsed_response).to eq({ 'errors' => { 'tenancy_name' => ["can't be blank"] } })
     end

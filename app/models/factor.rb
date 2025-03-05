@@ -36,7 +36,7 @@ class Factor < ApplicationRecord
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
   after_commit :invalidate_assessment_cache
 
-  enum scoring_strategy: {
+  enum :scoring_strategy, {
     questions: 0,
     sub_factor_questions: 1,
     sub_factors_average: 2,
@@ -47,7 +47,7 @@ class Factor < ApplicationRecord
     questions_percentage: 7,
     sub_factors_sum: 8,
     custom_formula: 9
-  }, _suffix: :strategy
+  }, suffix: :strategy
 
   has_one_image_attachment :icon, variants: %i[icon medium]
 

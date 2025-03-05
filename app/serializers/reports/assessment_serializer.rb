@@ -47,10 +47,6 @@ module Reports
         )
       end
 
-      if object.mindmill?
-        external_assessment = Settings.providers.mindmill.assessments.detect { |a| a.id == object.mindmill_id }
-        return external_assessment.factors.flatten
-      end
       if object.hogan?
         external_assessment = Settings.providers.hogan.assessments.
                               detect { |a| a.id == object.external_settings[:assessment_id] }

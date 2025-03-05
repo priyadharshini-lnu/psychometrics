@@ -20,7 +20,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
       }, format: :json
       smtp_setting.reload
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expected_response = smtp_setting.slice(
         :id, :authentication_type, :enabled, :encryption, :from_name, :from_email,
         :host, :user_name, :port, :use_sender_verification
@@ -55,7 +55,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
       }, format: :json
       smtp_setting.reload
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expected_response = { 'errors' => { 'port' => ["can't be blank"] } }
       expect(parsed_response).to eq(expected_response)
       expect(smtp_setting.host).to_not eq('gmail.com')
@@ -81,7 +81,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
         resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '').attributes
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expected_response = { 'errors' => { 'port' => ["can't be blank"] } }
       expect(parsed_response).to eq(expected_response)
       expect(smtp_setting.host).to_not eq('gmail.com')
@@ -111,7 +111,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
         to_email: 'abc'
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expected_response = { 'errors' => ['Email is invalid'] }
       expect(parsed_response).to eq(expected_response)
       expect(response.status).to eq(422)

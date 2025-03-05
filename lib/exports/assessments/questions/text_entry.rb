@@ -32,7 +32,7 @@ module Exports
           else
             remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
             factors_scoring = question.detect_specified_scoring.
-                              each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
+                              each_with_object({}) { |s, sum| sum[s['index']] = s['value'] }
             (answers || []).map { |a| (scoring && factors_scoring[a['value']]) || a['value'] }
           end
         end

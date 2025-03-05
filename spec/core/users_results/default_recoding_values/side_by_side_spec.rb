@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::DefaultRecodingValues::SideBySide do
+describe UsersResults::DefaultRecodingValues::SideBySide do
   let(:question) do
     create(:question, type: 'SideBySide', props: { 'choices' => 5, 'scalePoints' => 3, 'columnsData' => [
       { 'answers' => 2 },

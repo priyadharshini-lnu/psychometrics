@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::Users::CreateOrModifyGlobalAssessor do
+describe Users::CreateOrModifyGlobalAssessor do
   describe '#call' do
     let(:current_user) { create(:user) }
     let(:resource_params) do

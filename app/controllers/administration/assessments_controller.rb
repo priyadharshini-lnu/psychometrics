@@ -16,6 +16,10 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def index; end
 
+  def show
+    add_breadcrumb resource.decorate.display_name
+  end
+
   def update
     resource.updated_by = current_user
 
@@ -49,10 +53,6 @@ class Administration::AssessmentsController < Administration::BaseController
     render json: resource.questions.where(type: 'StaticContent').pluck(:id, :name, :props).map { |id, name, props|
       { id: id, name: name, props: props }
     }
-  end
-
-  def show
-    add_breadcrumb resource.decorate.display_name
   end
 
   def factors
@@ -103,7 +103,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(
-      :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
+      :type, :name, :category, :description, :dimension_id, :timing,
       :status, :icon, :icon_color, :purge_icon, :poster, :purge_poster,
       :enable_video_check, :enable_audio_check, :enable_network_check, :translations_migrated,
       :owner_id, :project_id, :linked_questions,

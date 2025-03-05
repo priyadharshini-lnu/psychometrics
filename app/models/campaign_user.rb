@@ -3,8 +3,8 @@
 class CampaignUser < ApplicationRecord
   audited
 
-  enum completion_status: { not_started: 0, in_progress: 1, completed: 2 }
-  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }, _suffix: :campaign
+  enum :completion_status, { not_started: 0, in_progress: 1, completed: 2 }
+  enum :status, { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }, suffix: :campaign
 
   belongs_to :user
   belongs_to :campaign

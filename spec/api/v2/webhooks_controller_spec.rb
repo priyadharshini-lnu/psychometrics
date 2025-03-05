@@ -9,7 +9,7 @@ describe Api::V2::Administration::WebhooksController, swagger_doc: 'v2/swagger.j
   let!(:webhook_id) { webhook.id }
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

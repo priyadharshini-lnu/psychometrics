@@ -35,6 +35,7 @@ import {
 } from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
 import { WorkshopActivityDurationFormModal } from './AssessmentList/WorkshopActivityDurationFormModal'
 import { SchedulingCampaignAssessmentModal } from './AssessmentList/SchedulingCampaignAssessmentModal'
+import { UserFilterModal } from '../../../Participants/Subjects/UserFilterModal'
 
 const MODALS = {
   AddReportModal,
@@ -51,6 +52,7 @@ const MODALS = {
   AddAssessorAssessmentModal,
   WorkshopActivityDurationFormModal,
   SchedulingCampaignAssessmentModal,
+  UserFilterModal,
 }
 
 const { I18n } = window

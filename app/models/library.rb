@@ -11,7 +11,7 @@ class Library < ApplicationRecord
   belongs_to :updated_by, class_name: 'User'
   has_ancestry
 
-  enum type: { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
+  enum :type, { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
 
   has_one_attachment :file,
                      content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls pptx ppt], variants: [:icon]

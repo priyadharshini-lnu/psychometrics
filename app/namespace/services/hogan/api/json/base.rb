@@ -90,7 +90,7 @@ module Services
 
           def post(endpoint:, provider:, request: {})
             client = endpoint == TOKEN_ENDPOINT ? client_without_auth : client_with_auth(provider)
-            request = client.headers['Content-Type'] == 'application/json' ? ::JSON.generate(request) : request
+            request = ::JSON.generate(request) if client.headers['Content-Type'] == 'application/json'
             response = client.post(Addressable::URI.encode(endpoint), request)
             { body: ::JSON.parse(response.body), status: response.status }
           end

@@ -6,7 +6,7 @@ module Assessors
     attribute :assessor_last_name, String
     attribute :assessor_email, String
     attribute :assessor_password, String
-    attribute :assessment_ids, Array[Integer]
+    attribute :assessment_ids, [Integer]
     attribute :subject_email, String
 
     validates :assessor_email, :subject_email, format: { with: Devise.email_regexp }

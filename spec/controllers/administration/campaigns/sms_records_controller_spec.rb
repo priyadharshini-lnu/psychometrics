@@ -29,7 +29,7 @@ RSpec.describe Administration::Campaigns::SmsRecordsController, type: :controlle
       expect(AdminJob).to_not receive(:call)
       post :create, params: { new_campaign_id: campaign.id, resource: { link_expiry: DateTime.now } }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(campaign.sms_records.exists?).to eq(false)
       expect(response.status).to eq(422)
       expect(parsed_response).to eq({ 'errors' => { 'message' => ["can't be blank"] } })

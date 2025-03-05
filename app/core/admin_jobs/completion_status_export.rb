@@ -25,9 +25,15 @@ module AdminJobs
     end
 
     def records_for_export
-      UserAssessment.where(campaign_id: record.data['campaign_id']).
-        includes(:users_result, :evaluator, :assessment).
-        find_each(batch_size: 1000)
+      user_assessments = UserAssessment.where(campaign_id: record.data['campaign_id']).
+                         includes(:users_result, :evaluator, :assessment)
+
+      unless include_inactive_users
+        user_assessments = user_assessments.joins(:campaign_user).
+                           where(campaign_users: { active: true })
+      end
+
+      user_assessments.find_each(batch_size: 1000)
     end
 
     def data_row(user_assessment)
@@ -49,6 +55,10 @@ module AdminJobs
 
     def file_name
       'detailed-completion-statuses.csv'
+    end
+
+    def include_inactive_users
+      record.data['include_inactive_users'] || false
     end
   end
 end

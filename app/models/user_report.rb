@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
+class UserReport < ApplicationRecord
   audited
 
   include WorkflowActiverecord
   include ActiveStorageAttachable
   include HoganResource
+  include UserReportPdfHelper
 
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
@@ -39,17 +40,11 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
                      service: Settings.storage.private_storage_service,
                      content_type: %w[application/pdf]
 
-  has_one_attachment :translated_pdf_file,
-                     service: Settings.storage.private_storage_service,
-                     content_type: %w[application/pdf]
-
   def attachment_storage_path(attribute_name, filename)
     "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
   end
 
-  enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
-
-  after_commit :sync_user_report_pdf, if: proc { attachment_changes.include?('pdf_file') }, on: [:update]
+  enum :status, { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
   after_commit :publish_to_webhook,
                if: proc { status_previously_changed? && status == 'prepared' },
@@ -79,40 +74,30 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     end
     state :qc_completed do
       event :approve, transitions_to: :approved
-      event :request_changes, transitions_to: :change_requested
+      event :request_changes, transitions_to: :qc_in_progress, if: ->(ua) { ua.one_level_qc? }
+      event :request_changes, transitions_to: :change_requested, if: ->(ua) { !ua.one_level_qc? }
     end
     state :change_requested do
       event :start_qc, transitions_to: :qc_in_progress
     end
     state :approved do
-      event :remove_approval, transitions_to: :change_requested
+      event :remove_approval, transitions_to: :qc_in_progress, if: ->(ua) { ua.one_level_qc? }
+      event :remove_approval, transitions_to: :change_requested, if: ->(ua) { !ua.one_level_qc? }
     end
     on_transition do |_from, to, _event, *_|
-      ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
-      ::UserReports::NotifyApprovals.call!(self) if to == :approved
-      ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
-      update(approval_status_updated_at: Time.current)
+      unless approval_setting&.do_not_send_notifications?
+        ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to) && !one_level_qc?
+        ::UserReports::NotifyApprovals.call!(self) if to == :approved
+        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && !one_level_qc?
+      end
 
+      update(approval_status_updated_at: Time.current)
       update(approver_user_id: nil, approved_at: nil) if to == :change_requested
     end
   end
 
-  def sync_user_report_pdf
-    user_report_pdf = user_report_pdfs.find_or_create_by(locale: effective_default_language)
-
-    user_report_pdf.pdf_file_attachment = ActiveStorage::Attachment.new(
-      record_id: user_report_pdf.id,
-      record_type: 'UserReportPdf',
-      blob_id: pdf_file.blob_id,
-      name: 'pdf_file'
-    )
-
-    user_report_pdf.set_generated_timestamps
-    user_report_pdf.save!
-  end
-
   def effective_default_language
-    campaign_report&.effective_default_language || report.default_language
+    @effective_default_language ||= campaign_report&.effective_default_language || report.default_language
   end
 
   def campaign_report
@@ -132,7 +117,7 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def start_approval!
-    return ready! if not_ready? && has_approval_workflow?
+    ready! if not_ready? && has_approval_workflow?
   end
 
   def has_approval_workflow?
@@ -143,6 +128,14 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
     campaign.report_approval_settings.where(report_id: report_id)
   end
 
+  def approval_setting
+    approval_settings.first
+  end
+
+  def one_level_qc?
+    approval_setting&.approvers_not_required? || approval_setting&.approvers_can_edit?
+  end
+
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)
   end
@@ -150,53 +143,6 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def self.assessor_report_for_campaign(campaign_id)
     accessible_report_ids = CampaignReport.where(campaign_id: campaign_id, assessor_access: true).pluck(:report_id)
     where(campaign_id: campaign_id, report_id: accessible_report_ids)
-  end
-
-  def attach_pdf!(data, filename = nil, translated = false)
-    storage_target = translated ? translated_pdf_file : pdf_file
-
-    case data
-      when String
-        if data.start_with?('http://', 'https://')
-          url = URI.parse(data)
-          file = URI(data).open
-
-          storage_target.attach(
-            io: file,
-            filename: filename || File.basename(url.path),
-            content_type: 'application/pdf'
-          )
-        else
-          data_to_attach = ActiveStorageSupport::Base64Attach.attachment_from_data({
-            data: "data:application/pdf;base64,[#{data}]"
-          })
-          data_to_attach[:filename] = filename if filename
-          storage_target.attach(data_to_attach)
-        end
-      when File, ActionDispatch::Http::UploadedFile
-        storage_target.attach(
-          io: data,
-          filename: filename || File.basename(data),
-          content_type: 'application/pdf'
-        )
-      else
-        return false
-    end
-
-    self.status = :prepared
-    save!
-  end
-
-  def pdf_exists?(translated = false)
-    translated ? translated_pdf_file.attached? : pdf_file.attached?
-  end
-
-  def remove_report_pdf!
-    pdf_file.purge_later
-    user_report_pdfs.find_by(locale: effective_default_language)&.pdf_file&.purge_later
-    self.status = :not_prepared
-    self.approval_status = :not_ready if has_approval_workflow?
-    save!
   end
 
   def user_results(view_report_as = nil)
@@ -267,25 +213,6 @@ class UserReport < ApplicationRecord # rubocop:disable Metrics/ClassLength
       evaluator: user,
       campaign: campaign
     }
-  end
-
-  def report_name_for_download
-    report_name = Utility::String.remove_non_ascii_chars(report.name).strip.presence || 'report'
-    "#{user.decorate.full_name}-#{report_name}-#{user.id}.pdf"
-  end
-
-  def pdf_download_url(translated = false)
-    return unless pdf_exists?(translated)
-
-    storage_target = translated ? translated_pdf_file : pdf_file
-    storage_target.url(disposition: 'attachment', filename: report_name_for_download)
-  end
-
-  def remove_pdf_and_update_status!
-    return unless prepared?
-
-    update!(purge_pdf_file: true, status: :not_prepared, approval_status: :not_ready)
-    user_report_pdfs.find_by(locale: effective_default_language)&.pdf_file&.purge_later
   end
 
   def schedule_report_available_notification

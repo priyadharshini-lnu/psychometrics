@@ -9,10 +9,10 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
+import { Buffer } from 'buffer'
 import {
   RedoOutlined, RightOutlined, StopOutlined, VideoCameraOutlined,
-} from '@ant-design/icons'
-import { Buffer } from 'buffer'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { CountdownTimer } from '~/glint/components/CountdownTimer'
 import AudioWaveVisualizer from '~/components/MediaRecorder/components/AudioWaveVisualizer'
 import { useReactMediaRecorder, StatusMessages } from '~/components/MediaRecorder/components/MediaRecorder'

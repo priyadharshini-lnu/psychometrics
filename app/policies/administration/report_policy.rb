@@ -34,8 +34,6 @@ module Administration
       @user.has_permission?(:reports, :manage, project_id: @record.owner_id)
     end
 
-    # Can preview Report
-    # true if it's not Mindmill report and user is Superadmin
     def preview?
       @user.has_permission?(:reports, :view, project_id: project_id)
     end

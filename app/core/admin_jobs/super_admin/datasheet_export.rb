@@ -116,7 +116,7 @@ module AdminJobs
         datasheets_types = datasheets.map(&:sheet_columns).each_with_object({}) do |columns, types|
           columns.each do |column|
             types[column.name] ||= []
-            types[column.name] << column.column_type == 'number' ? 'number' : 'string'
+            types[column.name] << (column.column_type == 'number' ? 'number' : 'string')
           end
         end
         datasheets_types.each do |column_name, column_types|

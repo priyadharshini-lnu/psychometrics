@@ -5,12 +5,11 @@ import {
   Flex,
 } from 'antd'
 import qs from 'qs'
-import Cookies from 'js-cookie'
 import { connect, ConnectedProps } from 'react-redux'
-import { LaptopOutlined, AudioOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { useLocation } from 'react-router-dom'
+import { LaptopOutlined, AudioOutlined, VideoCameraOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { fetch } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
+import { fetch, setCookies } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { Checks, Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { MediaQueryContext, PageHeader as GlintPageHeader, FontsizeModifier } from '~/glint'
@@ -28,14 +27,13 @@ const connector = connect(({ checkingWizard }: RootState) => ({
   url: checkingWizard.url,
 }), {
   fetch,
+  setCookies,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
-
 const { Step } = Steps
 const { I18n } = window
-
 const { Content } = Layout
 
 const STEPS = [
@@ -79,7 +77,7 @@ interface OwnProps {
 type Props = OwnProps & PropsFromRedux
 
 const CheckingWizardComponent: React.FC<Props> = ({
-  url, checks, config, fetch, assessmentId, userAssessmentId,
+  url, checks, config, fetch, setCookies, assessmentId, userAssessmentId,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const { search } = useLocation()
@@ -103,18 +101,11 @@ const CheckingWizardComponent: React.FC<Props> = ({
 
   const getSteps = () => STEPS.filter(step => step.when(checks))
 
-  const nextStep = () => {
+  const nextStep = async () => {
     const steps = getSteps()
-    if (steps[currentStep].key === 'video') {
-      const data = JSON.parse(Cookies.get(`checking_wizard.${steps[currentStep].key}`) || '{}')
-      Cookies.set(
-        `checking_wizard.${steps[currentStep].key}`,
-        JSON.stringify({ ...data, [userAssessmentId]: true }), { expires: 1 / 24 },
-      )
-      Cookies.set('checking_wizard.audio', true, { expires: 4 / 24 })
-    } else {
-      Cookies.set(`checking_wizard.${steps[currentStep].key}`, true, { expires: 4 / 24 })
-    }
+    const currentStepKey = steps[currentStep].key
+
+    await setCookies(userAssessmentId, currentStepKey)
 
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1)
@@ -148,7 +139,6 @@ const CheckingWizardComponent: React.FC<Props> = ({
                 <Finish onFinish={onFinish} />
               </Row>
             </Col>
-
           </Row>
         </Content>
       )

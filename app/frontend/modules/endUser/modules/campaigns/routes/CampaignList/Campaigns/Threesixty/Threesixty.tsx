@@ -25,6 +25,7 @@ export const Threesixty = ({
     <Col lg={12} xs={24} sm={24} className={styles.campaignCard}>
       <DetailsCard
         title={<TruncatedTitle id={titleId} title={campaign.assessmentName} />}
+        titleHeadingLevel={3}
         titleId={titleId}
         subtitle={
           <StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} scheduledForFuture={scheduledForFuture} />

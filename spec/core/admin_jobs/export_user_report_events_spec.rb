@@ -4,7 +4,10 @@ require 'rails_helper'
 
 RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
   let!(:superadmin) { create(:superadmin) }
-  let!(:user_report) { create(:user_report, user: superadmin) }
+  let!(:module1) { create(:module, name: 'Module 1', props: { 'text' => 'Module 1 Content' }) }
+  let!(:report) { create(:report) }
+  let!(:page) { create(:page, modules: [module1], report: report) }
+  let!(:user_report) { create(:user_report, user: superadmin, report: report) }
   let!(:user_report_event) do
     create(
       :user_report_event,
@@ -12,7 +15,7 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
       event_type: 'status_changed',
       initiator: superadmin,
       user_report: user_report,
-      details: { 'to' => 'Change Requested', 'from' => 'Approved' },
+      details: { 'to' => 'Change Requested', 'from' => 'Approved', 'module' => module1.id },
       created_at: 2.days.ago
     )
   end
@@ -33,7 +36,6 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
       it 'returns a formatted row of data for csv' do
         row = job.records_for_export.first
         data_row = job.data_row(row)
-
         expect(data_row[0]).to eq(user_report_event.id)
         expect(data_row[1]).to eq(user_report.campaign.project_id)
         expect(data_row[2]).to eq(user_report.campaign.project.name)
@@ -45,13 +47,14 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
         expect(data_row[8]).to eq(superadmin.first_name)
         expect(data_row[9]).to eq(superadmin.last_name)
         expect(data_row[10]).to eq(superadmin.email)
-        expect(data_row[11]).to eq(user_report.report.id)
-        expect(data_row[12]).to eq(nil)
-        expect(data_row[13]).to eq(nil)
-        expect(data_row[14]).to eq(I18n.l(user_report_event.created_at, format: :short))
-        expect(data_row[15]).to eq(user_report_event.event_type)
-        expect(data_row[16]).to eq(nil)
-        expect(data_row[17]).to eq('Approved')
+        expect(data_row[11]).to eq(report.id)
+        expect(data_row[12]).to eq(module1.id)
+        expect(data_row[13]).to eq(module1.name)
+        expect(data_row[14]).to eq(module1.props['text'])
+        expect(data_row[15]).to eq(I18n.l(user_report_event.created_at, format: :short))
+        expect(data_row[16]).to eq(user_report_event.event_type)
+        expect(data_row[17]).to eq(nil)
+        expect(data_row[18]).to eq('Approved')
       end
     end
 
@@ -71,7 +74,7 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
       it 'includes and strips HTML from comment text' do
         row = job.records_for_export.find { |r| r.id == comment_event.id }
         data_row = job.data_row(row)
-        expect(data_row[16]).to eq(long_text)
+        expect(data_row[17]).to eq(long_text)
       end
     end
   end

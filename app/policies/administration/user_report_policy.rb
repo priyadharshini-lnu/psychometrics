@@ -51,15 +51,19 @@ module Administration
     end
 
     def start_qc?
-      manage_qc?
+      return true if @user.is?(:superadmin)
+
+      user_qc?
     end
 
     def abort_qc?
-      manage_qc?
+      return true if @user.is?(:superadmin)
+
+      user_qc?
     end
 
     def send_for_approval?
-      manage_qc?
+      (manage_approval? && approvers_can_edit?) || edit_qc?
     end
 
     def request_changes?
@@ -110,16 +114,38 @@ module Administration
       has_permission?(:dashboards, :view)
     end
 
-    def manage_qc?
+    def edit_qc?
       return true if @user.is?(:superadmin)
 
-      ReportApprovalSetting.qcs(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
+      user_qc? || approvers_can_edit?
     end
 
     def manage_approval?
       return true if @user.is?(:superadmin)
 
+      one_level_qc? || user_approver?
+    end
+
+    def one_level_qc?
+      approval_setting = ReportApprovalSetting.find_by(campaign_id: @record.campaign.id, report_id: @record.report_id)
+
+      user_qc? && approval_setting.approvers_not_required?
+    end
+
+    def approvers_can_edit?
+      approval_setting = ReportApprovalSetting.find_by(campaign_id: @record.campaign.id, report_id: @record.report_id)
+
+      user_approver? && approval_setting.approvers_can_edit?
+    end
+
+    private
+
+    def user_approver?
       ReportApprovalSetting.approvers(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
+    end
+
+    def user_qc?
+      ReportApprovalSetting.qcs(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
     end
   end
 end

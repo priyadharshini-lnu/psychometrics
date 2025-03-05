@@ -16,7 +16,7 @@ module Threesixty
         return if schedule_email.scheduled_date.nil? || schedule_email.scheduled_date > Time.zone.now
 
         schedule_email.update(processing_started_at: Time.zone.now)
-        User.where(id: schedule_email.recipient_ids).each do |recipient|
+        User.where(id: schedule_email.recipient_ids).find_each do |recipient|
           send_email(recipient)
         end
         schedule_email.update(delivered_at: Time.zone.now)
@@ -41,7 +41,7 @@ module Threesixty
             Threesixty::ScheduleEmailMailer.send_scheduled_email(schedule_email, context).
               deliver_later(queue: 'mailers_low_priority')
           else
-            User.where(id: user_ids).each do |user|
+            User.where(id: user_ids).find_each do |user|
               context[other_participator_type] = user
               Threesixty::ScheduleEmailMailer.send_scheduled_email(schedule_email, context).
                 deliver_later(queue: 'mailers_low_priority')
@@ -79,7 +79,7 @@ module Threesixty
       end
 
       def create_email_histories(user_ids, context)
-        User.where(id: user_ids).each do |user|
+        User.where(id: user_ids).find_each do |user|
           context[other_participator_type] = user
           create_email_history(context)
         end
@@ -102,7 +102,7 @@ module Threesixty
         relationship_id = threesixty_campaign.
                           participants.
                           find_by(subject_id: context[:subject]&.id, evaluator_id: context[:evaluator]&.id)&.
-          relationship_id
+                          relationship_id
 
         { relationship_id: relationship_id }
       end

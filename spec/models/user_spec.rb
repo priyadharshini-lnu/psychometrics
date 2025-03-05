@@ -44,6 +44,7 @@ RSpec.describe User, type: :model do
       user = create(:client_admin)
       password = user.generate_strong_password
       user.password = password
+      user.password_confirmation = password
 
       expect(password.length).to eql(12)
       expect(user.valid?).to eq(true)

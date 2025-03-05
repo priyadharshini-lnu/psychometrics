@@ -9,9 +9,7 @@ class AssessmentSerializer < Panko::Serializer
              :extra, :linked_questions, :allow_multiple_responses, :default_language, :campaign_factors_list
 
   cache_serializer except: %i[relationships data_sheet_columns allow_multiple_responses],
-                   cache_key: lambda { |object|
-                     object.serializer_cache_key
-                   }
+                   cache_key: lambda(&:serializer_cache_key)
 
   def blocks
     blocks = object.blocks.selecting do
@@ -48,11 +46,14 @@ class AssessmentSerializer < Panko::Serializer
   end
 
   def resources_content
-    ids = object.resources&.map { |r| r['questionId'] }
+    ids = object.resources&.pluck('questionId')
     return [] unless ids
 
-    # Brakmen:ignore
-    questions = Question.where(id: ids).order(Arel.sql("position(id::text in '#{ids.join(',')}')"))
+    questions = Question.where(id: ids).order(
+      Arel.sql(
+        "array_position(ARRAY[#{ids.join(',')}]::bigint[], id)"
+      )
+    )
     Panko::ArraySerializer.new(
       questions,
       each_serializer: QuestionSerializer,
@@ -65,7 +66,7 @@ class AssessmentSerializer < Panko::Serializer
   end
 
   def resources_translations
-    ids = object.resources&.map { |r| r['questionId'] }
+    ids = object.resources&.pluck('questionId')
     return {} unless ids
 
     Translation.to_hash_for_questions(ids, context[:selected_locale])

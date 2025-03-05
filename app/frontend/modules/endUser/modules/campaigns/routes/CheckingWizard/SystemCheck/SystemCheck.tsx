@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import { Button, Card, Flex } from 'antd'
-import { RightOutlined, WarningOutlined } from '@ant-design/icons'
+import { RightOutlined, WarningOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
 import { BROWSER_NAME, checkBrowserSupportForFeature } from '~/utils/uaParser'
 import reducer, {

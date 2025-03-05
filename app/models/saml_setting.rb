@@ -7,7 +7,7 @@ class SamlSetting < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
 
-  enum name_identifier_format: { email: 0, persistent: 1 }, _suffix: :name_identifier
+  enum :name_identifier_format, { email: 0, persistent: 1 }, suffix: :name_identifier
 
   def details(setting_type)
     url_options = {

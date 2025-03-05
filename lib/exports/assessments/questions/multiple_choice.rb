@@ -34,7 +34,7 @@ module Exports
 
         def self.retrive_answers(answers, question, scoring, export_with_labels)
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value'] }
 
           (answers || []).map do |answer|
             next factors_scoring[answer['index']] if scoring

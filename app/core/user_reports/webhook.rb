@@ -14,7 +14,7 @@ module UserReports
     def publish_report_available
       return if user_result.nil?
 
-      WebhookSubscriptions::Publish.call!(
+      WebhookSubscriptions::Publish.call(
         project,
         :report_available,
         report_available_data,
@@ -45,7 +45,7 @@ module UserReports
     end
 
     def result_available_data
-      built_results = ::Reports::BuildResults.call!(user_report.report, user_report.user_results)
+      built_results = ::Reports::BuildResults.call(user_report.report, user_report.user_results)
 
       {
         campaign: user_report.campaign,

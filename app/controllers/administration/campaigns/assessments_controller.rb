@@ -10,7 +10,8 @@ module Administration
         with_labels = params[:with_labels] == 'true'
         AdminJob.call(
           :assessment_raw_result_export,
-          { assessment_id: assessment.id, campaign_id: campaign.id, export_with_labels: with_labels },
+          { assessment_id: assessment.id, campaign_id: campaign.id,
+            export_with_labels: with_labels, include_inactive_users: include_inactive_users },
           current_user
         )
 
@@ -30,7 +31,7 @@ module Administration
       def export_scoring_results
         AdminJob.call(
           :assessment_scoring_export,
-          { assessment_id: assessment.id, campaign_id: campaign.id },
+          { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
           current_user
         )
 
@@ -40,7 +41,7 @@ module Administration
       def export_normed_results
         AdminJob.call(
           :assessment_norm_export,
-          { assessment_id: assessment.id, campaign_id: campaign.id },
+          { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
           current_user
         )
 
@@ -50,7 +51,7 @@ module Administration
       def export_raw_factor_scores
         AdminJob.call(
           :assessment_raw_factor_export,
-          { assessment_id: assessment.id, campaign_id: campaign.id },
+          { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
           current_user
         )
 
@@ -276,6 +277,10 @@ module Administration
 
       def import_params
         params.permit(:file, :scoring)
+      end
+
+      def include_inactive_users
+        params[:include_inactive_users] == 'true'
       end
     end
   end

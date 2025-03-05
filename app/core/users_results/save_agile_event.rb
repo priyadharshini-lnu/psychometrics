@@ -49,8 +49,9 @@ module UsersResults
     end
 
     def norm_attributes
-      norm_id = user_assessment.applicable_norm_id
-      norm_id ||= Norm.find_by(id: user_result&.agile&.config&.dig('normId'))&.id
+      agile_config = user_result&.agile&.config
+      norm_id = agile_config&.dig('normId')
+      norm_id ||= Norm.find_by(id: norm_id)&.id
       return {} unless norm_id
 
       { norm_id: norm_id }

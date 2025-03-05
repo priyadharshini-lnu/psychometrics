@@ -11,7 +11,7 @@ module Api
     def workshop_status_export
       AdminJob.call(
         :workshop_status_export,
-        { project_id: project_id },
+        { project_id: project_id, include_inactive_users: include_inactive_users },
         current_user
       )
 
@@ -46,6 +46,10 @@ module Api
     end
 
     private
+
+    def include_inactive_users
+      params[:include_inactive_users] == 'true'
+    end
 
     def client
       client_id = params[:client_id] || Project.find_by(id: params[:id]).ancestry

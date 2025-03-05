@@ -21,7 +21,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::InstructionTemplatesControll
       id: template.id
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(response.status).to eq(200)
     expect(parsed_response['list']).to eq([

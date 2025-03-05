@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Builders::AssessmentTranslationBuilder do
-  let!(:assessment) { create(:assessment, type: ::Assessments::Common) }
+  let!(:assessment) { create(:assessment, type: Assessments::Common) }
   let!(:block) { create(:block, assessment: assessment) }
   let!(:question) { create(:question, type: 'GapAnalysis', assessment: assessment, block: block) }
   let(:assessment_params) do

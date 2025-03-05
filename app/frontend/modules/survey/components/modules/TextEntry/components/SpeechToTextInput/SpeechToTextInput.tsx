@@ -1,5 +1,5 @@
 import {
-  FC, useEffect, useState, ReactElement, useRef,
+  FC, useEffect, useState, ReactElement, useRef, useMemo,
 } from 'react'
 import {
   Button,
@@ -19,7 +19,9 @@ import {
   OnTranscribe,
   OnTranscribeError,
 } from '~/libs/amazon-transcribe-websocket-static'
-import { convertSecondsToMMSS, secondsToDayHoursAndMinutes } from '~/utils/time'
+import {
+  convertSecondsToMMSS, secondsToDayHoursAndMinutes, countdownAlertInMinutes, countdownAlertInSeconds,
+} from '~/utils/time'
 
 import styles from './styles.less'
 
@@ -73,6 +75,8 @@ export const SpeechToTextInput: FC<Props> = ({
   const [analyzerLevel, setAnalyzerLevel] = useState(0)
   const tooltipContainerRef = useRef(null)
   const screenReaderNotificationRef = useRef<HTMLSpanElement>(null)
+
+  const recordingTimeCountDownForScreenReader = useMemo(() => countdownAlertInMinutes(countdownTimer), [countdownTimer])
 
   useEffect(() => {
     if (
@@ -315,7 +319,6 @@ export const SpeechToTextInput: FC<Props> = ({
           <Tooltip
             getPopupContainer={() => tooltipContainerRef.current || document.body}
             trigger={['focus', 'hover']}
-            id={tooltipId}
             title={tooltipText}
           >
             <InfoCircleOutlined aria-describedby={tooltipId} tabIndex={0} aria-label="Information: Dictation" />
@@ -351,7 +354,7 @@ export const SpeechToTextInput: FC<Props> = ({
               </Col>
               <Col flex="auto">
                 <Space>
-                  <Typography.Text className="ps-4">
+                  <Typography.Text role="alert" aria-live="polite" className="ps-4">
                     {I18n.t('assessments.dictation.listening')}
                   </Typography.Text>
                   <Typography.Text
@@ -359,7 +362,15 @@ export const SpeechToTextInput: FC<Props> = ({
                     type={countdownTimerTextType}
                   >
                     {convertSecondsToMMSS(countdownTimer)}
+                    <span
+                      aria-live="polite"
+                      className="sr-only"
+                    >
+                      {recordingTimeCountDownForScreenReader
+                        && recordingTimeCountDownForScreenReader}
+                    </span>
                   </Typography.Text>
+
                 </Space>
               </Col>
             </Row>
@@ -375,7 +386,10 @@ export const SpeechToTextInput: FC<Props> = ({
         className="sr-only"
         ref={screenReaderNotificationRef}
       />
-      <div ref={tooltipContainerRef} role="tooltip" id={tooltipId} />
+      <div ref={tooltipContainerRef}>
+        {/* This is to make tooltip content available by default in DOM for screenreader only */}
+        <p id={tooltipId} className="sr-only" aria-hidden="true">{tooltipText}</p>
+      </div>
     </>
   )
 }
@@ -389,20 +403,24 @@ const AutoStopperAlert: FC<AutoStopperAlertProps> = ({
 }) => {
   const shouldShow = autoSilenceCutoffTimer >= AUTO_SILENCE_CUTOFF_TIME_IN_SECONDS - 9
   const reverseCountdown = AUTO_SILENCE_CUTOFF_TIME_IN_SECONDS - autoSilenceCutoffTimer
+  const autoStopCountDownForScreenReader = useMemo(() => countdownAlertInSeconds(reverseCountdown), [reverseCountdown])
 
   return (
     <div>
       {shouldShow ? (
-        <Typography.Text className="ps-4" type="danger">
-          {I18n.t('assessments.dictation.autostopping_in', { reverseCountdown })}
-        </Typography.Text>
+        <>
+          <Typography.Text className="ps-4" type="danger">
+            {I18n.t('assessments.dictation.autostopping_in', { reverseCountdown })}
+          </Typography.Text>
+          <span
+            aria-live="polite"
+            className="sr-only"
+          >
+            {autoStopCountDownForScreenReader && I18n.t('assessments.dictation.autostopping_in',
+              { reverseCountdown: autoStopCountDownForScreenReader })}
+          </span>
+        </>
       ) : null}
-      <span
-        aria-live="polite"
-        className="sr-only"
-      >
-        {shouldShow && I18n.t('assessments.dictation.autostopping_in', { reverseCountdown })}
-      </span>
     </div>
   )
 }

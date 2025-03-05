@@ -1,5 +1,7 @@
 import videojs from 'videojs'
 
+const { I18n } = window
+
 class RemainingTime extends videojs.getComponent('Component') {
   constructor (player, options = {}) {
     super(player, options)
@@ -49,6 +51,7 @@ class RemainingTime extends videojs.getComponent('Component') {
   }
 
   updateTextNode (time = 0) {
+    const timeLeftInSeconds = time
     time = this.formatTime(time)
     if (this.formattedTime === time) {
       return
@@ -72,6 +75,21 @@ class RemainingTime extends videojs.getComponent('Component') {
         this.contentEl.replaceChild(this.textNode, oldNode)
       } else {
         this.contentEl.appendChild(this.textNode)
+      }
+
+      if (!this.timeAlertNode) {
+        const screenReaderAlertEle = document.createElement('span')
+        screenReaderAlertEle.className = 'sr-only'
+        screenReaderAlertEle.setAttribute('role', 'alert')
+        screenReaderAlertEle.setAttribute('aria-live', 'polite')
+        this.timeAlertNode = screenReaderAlertEle
+        this.contentEl.appendChild(this.timeAlertNode)
+      }
+
+      if (timeLeftInSeconds % 10 === 0) {
+        this.timeAlertNode.innerText = timeLeftInSeconds
+          ? I18n.t('assessments.screen_reader_announcements.seconds_left', { seconds: timeLeftInSeconds })
+          : I18n.t('assessments.screen_reader_announcements.time_is_up_for_recording')
       }
     })
   }

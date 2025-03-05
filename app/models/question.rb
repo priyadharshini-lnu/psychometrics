@@ -23,7 +23,7 @@ class Question < ApplicationRecord
   has_many :translations, as: :translateable, dependent: :destroy
   has_many :media_responses, dependent: :nullify
 
-  enum view: { assessments: 0, templates: 1, blocks: 2 }
+  enum :view, { assessments: 0, templates: 1, blocks: 2 }
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   scope :not_deleted, -> { where(deleted_at: nil) }

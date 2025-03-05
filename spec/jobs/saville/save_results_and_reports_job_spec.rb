@@ -99,7 +99,7 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
       described_class.new.perform(response)
       user_report.reload
       expect(user_report.status).to eq('prepared')
-      expect(user_report.reload.pdf_file.content_type).to eq('application/pdf')
+      expect(user_report.user_report_pdf.pdf_file.content_type).to eq('application/pdf')
     end
 
     it 'saves scores' do

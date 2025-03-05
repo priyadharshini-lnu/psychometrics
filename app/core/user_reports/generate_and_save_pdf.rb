@@ -22,7 +22,6 @@ module UserReports
         report = user_report.report
         user_report.update!(status: :generating) unless report.hogan?
 
-        generate_mindminl_report(user_report) if report.mindmill?
         generate_hogan_report(user_report) if report.hogan?
         generate_saville_report(user_report) if report.provider_saville?
         generate_pearson_report(user_report) if report.provider_pearson?
@@ -46,22 +45,18 @@ module UserReports
       end
     end
 
-    def generate_mindminl_report(user_report)
-      Mindmill::LoadResultsJob.perform_later(user_report.user_results.first, current_user)
-    end
-
     def generate_hogan_report(user_report)
       Hogan::SaveReportsAndScoresJob.perform_later(user_report)
     end
 
     def generate_saville_report(user_report)
-      user_report.user_results.includes(:user_assessment).each do |ur|
+      user_report.user_results.includes(:user_assessment).find_each do |ur|
         Saville::AssessmentOrderRequest.call!(ur.user_assessment)
       end
     end
 
     def generate_pearson_report(user_report)
-      user_report.user_results.includes(:user_assessment).each do |ur|
+      user_report.user_results.includes(:user_assessment).find_each do |ur|
         Pearson::SaveScoresAndReports.call!(ur.user_assessment)
       end
     end

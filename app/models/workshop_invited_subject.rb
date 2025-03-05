@@ -12,7 +12,7 @@ class WorkshopInvitedSubject < ApplicationRecord
   has_many :workshops, through: :workshop_invite
   has_one :campaign, through: :workshop_invite
 
-  enum status: {
+  enum :status, {
     pending: 0,
     accepted: 1,
     cancelled: 2,

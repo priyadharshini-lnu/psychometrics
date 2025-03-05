@@ -3,10 +3,10 @@ import {
   Col,
   Layout,
 } from 'antd'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { get as getConfig } from '~/modules/endUser/core/config'

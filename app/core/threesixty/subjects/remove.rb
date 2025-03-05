@@ -14,7 +14,7 @@ module Threesixty
       end
 
       def call
-        subject.user_reports.where(campaign_id: campaign.id).each(&:destroy!)
+        subject.user_reports.where(campaign_id: campaign.id).find_each(&:destroy!)
         remove_all_participants
 
         if remove_license_usage

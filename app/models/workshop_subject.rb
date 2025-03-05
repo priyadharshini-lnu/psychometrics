@@ -9,8 +9,8 @@ class WorkshopSubject < ApplicationRecord
   belongs_to :workshop_invited_subject
   has_one :workshop_invite, through: :workshop_invited_subject
 
-  enum scheduling_status: { scheduled: 0, rescheduled: 1, cancelled: 2, late_rescheduled: 3, late_cancelled: 4 }
-  enum attendance_status: { no_status: 0, on_time: 1, late: 2, no_show: 3, dropped_out: 4 }
+  enum :scheduling_status, { scheduled: 0, rescheduled: 1, cancelled: 2, late_rescheduled: 3, late_cancelled: 4 }
+  enum :attendance_status, { no_status: 0, on_time: 1, late: 2, no_show: 3, dropped_out: 4 }
 
   after_commit :send_workshop_booked_email, on: %i[create]
   after_commit :send_workshop_cancelled_email, on: %i[update],

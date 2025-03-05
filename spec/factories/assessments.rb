@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :assessment, class: ::Assessments::Common do
+  factory :assessment, class: Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
     description { Faker::Lorem.characters(number: 5) }
     dimension
-    type { ::Assessments::Common }
+    type { Assessments::Common }
     extra { { icon_color: '#845EC2' } }
 
     trait :with_report do
@@ -24,37 +24,37 @@ FactoryBot.define do
 
     factory :hogan_assessment, class: '::Assessments::Hogan' do
       category { Assessment::CATEGORIES[:hogan] }
-      type { ::Assessments::Hogan }
+      type { Assessments::Hogan }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :iiht do
       category { Assessment::CATEGORIES[:iiht] }
-      type { ::Assessments::Iiht }
+      type { Assessments::Iiht }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :saville do
       category { Assessment::CATEGORIES[:saville] }
-      type { ::Assessments::Saville }
+      type { Assessments::Saville }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :pearson do
       category { Assessment::CATEGORIES[:pearson] }
-      type { ::Assessments::Pearson }
+      type { Assessments::Pearson }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :mettl do
       category { Assessment::CATEGORIES[:mettl] }
-      type { ::Assessments::Mettl }
+      type { Assessments::Mettl }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :simulation do
       category { Assessment::CATEGORIES[:simulation] }
-      type { ::Assessments::Simulation }
+      type { Assessments::Simulation }
       external_settings { { assessment_id: 'assessmentId' } }
     end
   end

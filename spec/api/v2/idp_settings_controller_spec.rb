@@ -8,7 +8,7 @@ describe Api::V2::Administration::IdpSettingsController, swagger_doc: 'v2/swagge
   let!(:idp_setting) { project.idp_setting }
   let!(:superadmin) { create(:superadmin) }
   let!(:client_admin) { create(:client_admin, client: project.client) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::DefaultRecodingValues::MultipleChoice do
+describe UsersResults::DefaultRecodingValues::MultipleChoice do
   let(:question) { create(:question, type: 'MultipleChoice', props: { 'choices' => 4 }) }
 
   it do

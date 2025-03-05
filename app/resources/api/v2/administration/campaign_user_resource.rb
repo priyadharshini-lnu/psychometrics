@@ -14,8 +14,8 @@ class Api::V2::Administration::CampaignUserResource < Api::V2::Administration::B
       value = factor_values[factor.id]
       {
         campaign_factor_id: factor.id,
-        value: value ? value.value : nil,
-        label: value ? value.label : nil
+        value: value&.value,
+        label: value&.label
       }
     end
   end

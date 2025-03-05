@@ -2,8 +2,6 @@ domain: ttedev.me
 subdomain: www
 port: <%= 31338 + ENV['TEST_ENV_NUMBER'].to_i %>
 protocol: 'http'
-assigns:
-  mindmill_prefix: TTETEST
 features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   smtp_enabled: true
