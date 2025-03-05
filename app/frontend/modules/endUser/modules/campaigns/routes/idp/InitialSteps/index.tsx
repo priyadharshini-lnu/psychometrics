@@ -26,10 +26,10 @@ import styles from './Steps.less'
 const { I18n } = window
 
 enum STEPS {
-  getting_start = 'getting_start',
-  skill_gap_report = 'skill_gap_report',
-  add_skills = 'add_skills',
-  rate_skills = 'rate_skills',
+  gettingStarted = 'getting_started',
+  skillGapReport = 'skill_gap_report',
+  addSkills = 'add_skills',
+  rateSkills = 'rate_skills',
 }
 
 
@@ -59,22 +59,22 @@ const InitialStepsComponent = ({
 
   const STEP_ITEMS = [
     {
-      title: I18n.t('idp.initial_steps.getting_start'),
-      step: STEPS.getting_start,
+      title: I18n.t('idp.initial_steps.getting_started'),
+      step: STEPS.gettingStarted,
     },
     {
       title: I18n.t('idp.initial_steps.skill_gap_report'),
       hide: !skillGapReportAvailable,
-      step: STEPS.skill_gap_report,
+      step: STEPS.skillGapReport,
     },
     {
       title: I18n.t('idp.initial_steps.add_skills_step'),
-      step: STEPS.add_skills,
+      step: STEPS.addSkills,
     },
     {
       title: I18n.t('idp.initial_steps.rate_skills'),
       hide: !selfRatingEnabled,
-      step: STEPS.rate_skills,
+      step: STEPS.rateSkills,
     },
   ]
 
@@ -82,7 +82,7 @@ const InitialStepsComponent = ({
   const currentStep = visibleSteps.findIndex(({ step }) => step === paramStep)
 
   const next = (step) => {
-    navigate(`/idp/steps/${STEPS[step]}`)
+    navigate(`/idp/steps/${step}`)
   }
 
   const handleSubmit = () => {
@@ -96,15 +96,15 @@ const InitialStepsComponent = ({
 
   const handleNextForGettingStartedStep = () => {
     if (skillGapReportAvailable) {
-      next(STEPS.skill_gap_report)
+      next(STEPS.skillGapReport)
     } else {
-      next(STEPS.add_skills)
+      next(STEPS.addSkills)
     }
   }
 
   const handleNextForAddSkillsStep = () => {
     if (selfRatingEnabled) {
-      next(STEPS.rate_skills)
+      next(STEPS.rateSkills)
     } else {
       handleSubmit()
     }
@@ -134,23 +134,23 @@ const InitialStepsComponent = ({
                 items={visibleSteps.map(({ title }) => ({ title }))}
               />
             </BoxWithShadow>
-            {paramStep === STEPS.getting_start && <GettingStart next={handleNextForGettingStartedStep} />}
-            {paramStep === STEPS.skill_gap_report && (
+            {paramStep === STEPS.gettingStarted && <GettingStart next={handleNextForGettingStartedStep} />}
+            {paramStep === STEPS.skillGapReport && (
               <SkillGapReport
-                next={() => next(STEPS.add_skills)}
+                next={() => next(STEPS.addSkills)}
               />
             )}
-            {paramStep === STEPS.add_skills && (
+            {paramStep === STEPS.addSkills && (
               <AddSkills
                 selfRatingEnabled={selfRatingEnabled}
                 next={handleNextForAddSkillsStep}
                 isSubmittingPlan={isSubmitting}
               />
             )}
-            {paramStep === STEPS.rate_skills && (
+            {paramStep === STEPS.rateSkills && (
               <RateSkills
                 next={handleSubmit}
-                isSubmitting={isSubmitting}
+                isSubmittingPlan={isSubmitting}
               />
             )}
           </Layout.Content>
