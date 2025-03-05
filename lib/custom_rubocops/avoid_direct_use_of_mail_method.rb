@@ -2,7 +2,7 @@
 
 if Object.const_defined?('RuboCop::Cop::Cop')
   module CustomRubocops
-    class AvoidDirectUseOfMailMethod < RuboCop::Cop::Cop
+    class AvoidDirectUseOfMailMethod < RuboCop::Cop::Base
       MSG = "Use send_email method instead. It won't send emails to user who shouldn't receive communication"
       RESTRICT_ON_SEND = %i[mail].freeze
 
