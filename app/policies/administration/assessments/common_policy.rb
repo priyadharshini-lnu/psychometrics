@@ -22,13 +22,13 @@ module Administration
       end
 
       def export_normed_results?
-        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(
+        @record.dimension.present? && (@user.is?(:superadmin) || @user.has_permission?(
           :results, :scores, project_id: project_id, campaign_id: campaign_id
         ))
       end
 
       def export_raw_factor_scores?
-        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(
+        @record.dimension.present? && (@user.is?(:superadmin) || @user.has_permission?(
           :results, :scores, project_id: project_id, campaign_id: campaign_id
         ))
       end
