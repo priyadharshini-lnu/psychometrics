@@ -1,6 +1,7 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
+require:
   - ./lib/custom_rubocops/avoid_direct_use_of_mail_method.rb
   - ./lib/custom_rubocops/avoid_using_memoization_in_serializers.rb
   - ./lib/custom_rubocops/avoid_active_record_in_migrations.rb
