@@ -6,7 +6,7 @@ require 'swagger_helper'
 describe Api::V2::Administration::ReportFamiliesController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:report_family) { create(:report_family, name: 'Report Family') }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

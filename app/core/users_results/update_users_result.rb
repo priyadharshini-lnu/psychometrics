@@ -35,7 +35,7 @@ module UsersResults
       attributes = form.attributes_with_values
       if user_assessment.progress_reseted?
         attributes = attributes.merge(current_element: nil, current_page: nil,
-                                      answers: attributes[:answers]&.each { |_, r| r['dirty'] = true },
+                                      answers: attributes[:answers]&.each_value { |r| r['dirty'] = true },
                                       progress_reseted: false)
       end
       users_result.update!(attributes.except(*user_assessment_attribute_names))

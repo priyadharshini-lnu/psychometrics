@@ -34,11 +34,11 @@ module Psychometrics
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = Settings.timezone
-    config.eager_load_paths += Dir[Rails.root.join('lib')]
+    config.eager_load_paths += Rails.root.glob('lib')
 
     # Load all translates inside folders
     #
-    config.i18n.load_path += Dir.glob(Rails.root.join('config/locales/**/*.{rb,yml}'))
+    config.i18n.load_path += Rails.root.glob('config/locales/**/*.{rb,yml}')
     config.i18n.available_locales = %i[en ar bg bs ca cn cs cy da de el en-GB en-US eo es es-ES et fa fr gu he hi hr
                                        hu id it ja km ko
                                        lt lv mk mn ms my nl no pl pt-BR pt ro ru sk sl sr-Cyrl sr-Latn sv sw ta th tl
@@ -58,7 +58,7 @@ module Psychometrics
     ).to_s
 
     config.to_prepare do
-      ActiveStorage::Attachment.prepend ActiveStorageCreateVariant
+      ActiveSupport.on_load(:active_storage_attachment) { prepend ActiveStorageCreateVariant }
 
       Devise::Mailer.layout 'mailer/layouts/end_user_email'
 

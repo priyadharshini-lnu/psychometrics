@@ -13,7 +13,7 @@ module Exports
         #   [12, ...]
         def self.result(user_result, question, _scoring = false, _export_with_labels = false)
           answers = get_answers(user_result, question)
-          answers = (answers || []).map { |a| a['value'] }
+          answers = (answers || []).pluck('value')
           answers = Array.new(question_headers_except_duration_size(question)) { '' } if answers.empty?
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))

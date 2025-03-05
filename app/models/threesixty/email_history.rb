@@ -8,5 +8,5 @@ class Threesixty::EmailHistory < ApplicationRecord
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
 
-  enum status: { success: 0, bounce: 1 }
+  enum :status, { success: 0, bounce: 1 }
 end

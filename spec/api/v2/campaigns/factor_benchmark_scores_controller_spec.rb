@@ -19,7 +19,7 @@ type: :request do
     create(:factor_benchmark_score, campaign_id: campaign_id, assessment_id: assessment_id, factor_id: factor.id)
     create(:factor_benchmark_score, campaign_id: campaign_id, assessment_id: assessment_id, factor_id: factor3.id)
   end
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

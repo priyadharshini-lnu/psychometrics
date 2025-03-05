@@ -662,7 +662,6 @@ pt:
       statuses:
         success: Êxito
         undelivered: Não entregue
-    mindmill_confirmation: Ao iniciar esta avaliação, perderá os resultados "%{assessment}". Clique em "Cancelar" se pretender abandonar os resultados e clique em "Ok" se pretender continuar
     my_projects: Os meus projetos
     nominate: Nomear
     nominate_evaluators: Nomear avaliadores para

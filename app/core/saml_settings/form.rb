@@ -10,10 +10,13 @@ module SamlSettings
     attribute :sso_service_url, String
     attribute :cert, String
     attribute :after_signout_url, String
+    attribute :name_identifier_format, String
+    attribute :email_pipetext, String
 
     validates :entity_id, :sso_service_url, :cert, presence: true, unless: :clear_saml_setting?
     validates :after_signout_url, http_url: { presence: false }
     validate :certificate_invalid, if: -> { cert.present? }
+    validates :email_pipetext, presence: true, if: -> { name_identifier_format == 'persistent' }
 
     def certificate_invalid
       OpenSSL::X509::Certificate.new(cert)

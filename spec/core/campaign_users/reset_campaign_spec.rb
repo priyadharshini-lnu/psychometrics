@@ -40,7 +40,7 @@ describe CampaignUsers::ResetCampaign do
     users_result.user_assessment
   end
   let(:user_report) do
-    create(:user_report, :with_pdf, report: report, user: user, campaign: campaign, status: :prepared)
+    create(:user_report, report: report, user: user, campaign: campaign, status: :prepared)
   end
   let!(:campaign_user) do
     create(

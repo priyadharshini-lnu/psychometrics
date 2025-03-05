@@ -96,7 +96,7 @@ const DateEntryPreview: FC<Props> = ({
         aria-invalid={!!errors.length}
         aria-describedby={`error-for-question-${questionId}`}
         aria-labelledby={`${questionTextId} ${dataFormatLabelId}`}
-        suffixIcon={<CalendarOutlined className="grey-border" />}
+        suffixIcon={<CalendarOutlined aria-label="calendar" className="grey-border" />}
         panelRender={originalPanel => (
           <div
             className={cs({ [styles.noDateSelected]: !dateValue })}

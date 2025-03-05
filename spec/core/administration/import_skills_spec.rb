@@ -21,7 +21,7 @@ RSpec.describe Administration::ImportSkills do
       let(:unique_id) { rand(100_000..999_999) }
 
       before do
-        Skill.where(id: unique_id).delete_all  # Ensure no skill exists with this ID
+        Skill.where(id: unique_id).delete_all # Ensure no skill exists with this ID
 
         stub_request(:get, file_url).
           to_return(

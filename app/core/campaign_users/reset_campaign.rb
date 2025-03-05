@@ -38,7 +38,7 @@ module CampaignUsers
     def reset_internal_user_assessments
       campaign.user_assessments.joins(:assessment).where(
         assessments: { type: Assessment::TYPES[:common] }
-      ).each do |user_assessment|
+      ).find_each do |user_assessment|
         UsersResults::Reset.call(user_assessment)
       end
     end

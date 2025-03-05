@@ -19,7 +19,7 @@ module Imports
           answers = []
 
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['value']] = s['index']; }
+                            each_with_object({}) { |s, sum| sum[s['value']] = s['index'] }
 
           # Shift only group data column (Example: ['1,2,3', '4,5'])
           groups = data.shift(question.props['scalePoints'].to_i)

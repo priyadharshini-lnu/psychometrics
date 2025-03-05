@@ -5,7 +5,7 @@ class DataReportJob < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :admin_job_record, dependent: :destroy
 
-  enum status: { in_progress: 0, completed: 1, completed_with_errors: 2 }
+  enum :status, { in_progress: 0, completed: 1, completed_with_errors: 2 }
 
   before_create :create_password
 

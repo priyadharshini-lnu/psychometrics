@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::Scoring::GetZscoreForFactor do
+describe UsersResults::Scoring::GetZscoreForFactor do
   it 'percentile norm' do
     factor = create(:factor, scoring_strategy: :questions)
     factors_norm = create(:factors_norm, factor: factor,

@@ -55,6 +55,19 @@ en:
           attributes:
             file:
               invalid_format: Please upload xlsx file
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: Column '%{entity}' can't be blank at row %{index}
+              duplicate_code: Duplicate code '%{code}' at row %{index}
+              invalid_output_type: Invalid output_type '%{output_type}' at row %{index}
+              max_limit_reached: Total campaign factors exceed the maximum limit of %{count}
+              missing_headers: 'Missing required headers: %{headers}'
+              type_mismatch: Output type mismatch for code '%{code}' at row %{index}
+            file:
+              invalid_format: Please upload xlsx file
+            report:
+              must_exist: Report must exist
         campaigns_external_scores_import_form:
           attributes:
             file:
@@ -368,7 +381,6 @@ en:
           hogan: Hogan
           iiht: IIHT
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           pearson: Pearson
           psychometric: Assessment
@@ -386,7 +398,6 @@ en:
           common: TTE Assessment
           hogan: Hogan
           iiht: IIHT Assessment
-          mindmill: Mindmill Assessment
           pearson: Pearson Assessment
           saville: Saville Assessment
         updated_at: Modified Date
@@ -551,8 +562,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       report_family:
         created_at: Created Date
@@ -623,7 +632,6 @@ en:
           manager: Manager
           meeting: Meeting
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           pearson: Pearson
           project_admin: Project Admin
@@ -928,7 +936,6 @@ en:
         lead_assessor_form: Lead Assessor Form
         meeting: Meeting
         mettl: Mettl
-        mindmill: Mindmill
         organisational: Org Surveys
         pearson: Pearson
         psychometric: Psychometric
@@ -943,7 +950,6 @@ en:
         hogan: Hogan
         iiht: IIHT Assessment
         mettl: Mettl Assessment
-        mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
         simulation: Simulation Assessment
@@ -996,6 +1002,14 @@ en:
       competency: Competency
       id: ID
       score: Score
+    screen_reader_announcements:
+      fifteen_seconds_left: 15 seconds left
+      five_minutes_left: 5 minutes left
+      one_minute_left: 1 minute left
+      seconds_left: "%{seconds} seconds left"
+      thirty_seconds_left: 30 seconds left
+      time_is_up: Your time is up
+      time_is_up_for_recording: Time is up and recording will stop now
     single_page:
       display_linked_questions: Displaying responses linked to the currently selected question.
     trash: Trash
@@ -2763,7 +2777,6 @@ en:
         hogan: Hogan
         internal: Internal
         mettl: Mettl
-        mindmill: Mindmill
         pearson: Pearson
         saville: Saville
     form:
@@ -2995,7 +3008,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3017,7 +3029,6 @@ en:
           case_study: Case Studies
           hogan: Hogan
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment
           saville: Saville
@@ -3038,7 +3049,6 @@ en:
         types:
           common: TTE Assessment
           hogan: Hogan
-          mindmill: Mindmill Assessment
           saville: Saville Assessment
         updated_at: Modified Date
       block:
@@ -3177,8 +3187,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       user:
         active: Active
@@ -3209,7 +3217,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3338,7 +3345,6 @@ en:
       statuses:
         success: Success
         undelivered: Undelivered
-    mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
     more_info_evaluation_label: More information - Evaluations
     more_info_nomination_label: More information - Nominations
     my_projects: My Projects

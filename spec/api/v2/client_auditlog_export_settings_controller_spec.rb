@@ -9,7 +9,7 @@ describe Api::V2::Administration::ClientAuditlogExportSettingsController, type: 
   let(:settings) do
     create(:client_auditlog_export_setting, s3_secret_access_key: 'secret', description: 'desc', client: client)
   end
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

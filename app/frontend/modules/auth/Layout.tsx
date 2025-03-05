@@ -68,7 +68,7 @@ export const LayoutComponent = ({ config }) => {
           <Layout className={styles.main}>
             <Layout.Header className={styles.header}>
               <div className={styles.logoWrapper}>
-                <img src={config.client_logo || logo} className={styles.logo} />
+                <img alt={config.logo_alt_text} src={config.client_logo || logo} className={styles.logo} />
               </div>
               {config.id && <LangDropdownWithChangeUrl />}
             </Layout.Header>

@@ -231,3 +231,15 @@ Rails/RedundantPresenceValidationOnBelongsTo:
 # NOTE: this cop is raised by :update_column, _columns, _all and some other methods where we skip validations
 Rails/SkipsModelValidations:
   Enabled: false
+
+# NOTE: disabling as we want to allow boolean columns without null: false constraint
+Rails/ThreeStateBooleanColumn:
+  Enabled: false
+
+# NOTE: It was decided that the new format is difficult to read and we will stick with manual construction
+Rails/WhereRange:
+  Enabled: false
+
+# NOTE: It was decided that we will allow longer safe navigation chains
+Style/SafeNavigationChainLength:
+  Enabled: false

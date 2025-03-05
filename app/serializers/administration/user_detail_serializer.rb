@@ -48,21 +48,21 @@ module Administration
         :norm,
         :pearson_user_assessment,
         :saville_user_assessment,
-        assessment: %i[dimension norms]
+        :simulation_user_assessment,
+        assessment: [:norms]
       )
-      if current_user.has_permission?(:assessors, :view, campaign_id: campaign.id)
-        query
-      else
-        query = query.where.not(relationship_id: Relationship.assessor_relationship.id)
+
+      unless current_user.has_permission?(
+        :assessors, :view, campaign_id: campaign.id
+      )
+        query = query.where.not(
+          relationship_id: Relationship.assessor_relationship.id
+        )
       end
-      Panko::ArraySerializer.new(
-        query,
-        each_serializer: Administration::UserAssessmentSerializer,
-        context: {
-          current_user: current_user,
-          campaign: campaign
-        }
-      ).to_a
+
+      query.map do |ua|
+        UserAssessmentSerializer.new(context: { current_user: current_user, campaign: campaign }).serialize(ua)
+      end
     end
 
     def user_reports

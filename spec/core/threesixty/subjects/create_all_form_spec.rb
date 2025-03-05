@@ -34,7 +34,7 @@ describe Threesixty::Subjects::CreateAllForm do
     it 'validates each subject using single_subject_form class passed' do
       campaign = create(:campaign)
       form = described_class.new(subjects: [subject_attributes.merge(password: 'a')]).
-             with_context(campaign: campaign, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
+             with_context(campaign: campaign, single_subject_form: Threesixty::Subjects::ImportOneForm)
       form.validate
 
       expect(form.errors.messages[:subjects].first).to include('Password is too short. Minimum 8 character required')

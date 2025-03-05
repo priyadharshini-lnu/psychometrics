@@ -46,7 +46,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       norm_id: norm.id
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     users_result.reload
 
@@ -61,7 +61,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       additional_time: 10
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
     user_assessment.reload
 
     expect(user_assessment.additional_time).to eq(600)
@@ -90,7 +90,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       new_campaign_id: campaign.id
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
     expect(parsed_response.dig('user_assessments', 0, 'id')).to eq(user_assessment.id)
     expect(parsed_response['id']).to eq(user.id)
     expect(parsed_response['user_reports'].class).to be(Array)
@@ -104,7 +104,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
           id: user_assessment.id
         }
       end.to change(UserAssessment, :count).by(-1)
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['user_assessments']).to be_empty
       expect(parsed_response['id']).to eq(user.id)
@@ -306,7 +306,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       }, format: :json
 
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(JSON.parse(response.body)).to eq(
+      expect(response.parsed_body).to eq(
         'errors' => [I18n.t('user_assessments.normalize_factor_scores.no_scoring_data')]
       )
     end

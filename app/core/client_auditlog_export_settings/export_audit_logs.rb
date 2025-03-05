@@ -13,7 +13,7 @@ module ClientAuditlogExportSettings
     def call
       query = audit_logs_query
 
-      if query.empty?
+      unless query.exists?
         settings.update!(last_exported_at: current_time)
         return broadcast :ok, :noop
       end

@@ -54,13 +54,14 @@ describe UserAssessments::ResetProgress do
   it 'removes report pdf' do
     assessment = create(:assessment, :with_report)
     user_assessment = create(:user_assessment, assessment: assessment)
-    user_report = create(:user_report, :with_pdf, report: assessment.reports.first,
+    user_report = create(:user_report, report: assessment.reports.first,
       user_id: user_assessment.subject_id, campaign_id: user_assessment.campaign_id, status: :prepared)
+    create(:user_report_pdf, :with_pdf, user_report: user_report)
 
     user_assessment.completed!
     described_class.call!(user_assessment)
 
-    expect(user_report.reload.pdf_file.attached?).to be_falsey
-    expect(user_report.status).to eq('not_prepared')
+    expect(user_report.user_report_pdf.pdf_file.attached?).to be_falsey
+    expect(user_report.reload.status).to eq('not_prepared')
   end
 end

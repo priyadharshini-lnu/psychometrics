@@ -21,7 +21,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
     it 'returns users which assessor have access to' do
       get :index, params: { campaign_id: assessors_campaign.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['total']).to eq(1)
       expect(parsed_response['list']).to eq([{
         'id' => assessors_user.id,
@@ -46,7 +46,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
     it 'returns users details' do
       get :show, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['user']).to eq({
         'id' => subject_user.id,
         'full_name' => subject_user.decorate.full_name,
@@ -68,7 +68,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
     it 'returns userAssessment details' do
       get :show, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['user_assessments']).to eq([{
         'id' => assessors_user_assessment.id,
         'assessment_name' => assessors_user_assessment.assessment.name,
@@ -88,7 +88,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
 
       get :show, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['user_reports']).to eq([{
         'id' => user_report1.id,
         'name' => reports[0].name,

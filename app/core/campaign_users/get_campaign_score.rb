@@ -14,7 +14,7 @@ module CampaignUsers
       scores = CampaignFactorValue.includes(:campaign_factor).
                where(user_id: user.id, campaign_id: campaign.id).
                where(campaign_factors: { code: only_campaign_factor_codes }).
-               each.with_object({}) do |factor_value, score|
+               find_each.with_object({}) do |factor_value, score|
         score[factor_value.campaign_factor] = factor_value.value
       end
       broadcast :ok, scores

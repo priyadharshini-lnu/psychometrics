@@ -41,7 +41,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         }
       }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       check_report_response(parsed_response['user_reports'].first)
       check_assessment_response(parsed_response['user_assessments'].first)
       expect(parsed_response['id']).to eq(user.id)
@@ -56,7 +56,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         delete :destroy, params: { new_campaign_id: user_report.campaign_id, id: user_report.id }
       end.to change(UserReport, :count).by(-1)
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['user_reports']).to be_empty
       expect(parsed_response['id']).to eq(user.id)
       expect(parsed_response['user_assessments'].class).to be(Array)
@@ -68,7 +68,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     it 'renders json response' do
       get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
 
-      parsed_reponse = JSON.parse(response.body)
+      parsed_reponse = response.parsed_body
 
       expect(parsed_reponse.keys).to include('report', 'results', 'status', 'user')
     end
@@ -105,7 +105,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     it 'change approval status to start_qc' do
       user_report.ready!
       patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response['status']).to eq('qc_in_progress')
       expect(response).to have_http_status(:success)
     end
@@ -116,7 +116,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to qc_completed' do
         user_report.update(approval_status: 'qc_in_progress')
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
       end
@@ -126,7 +126,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to pending_qc' do
         user_report.update(approval_status: 'qc_in_progress')
         patch :abort_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('pending_qc')
         expect(response).to have_http_status(:success)
       end
@@ -136,7 +136,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to appove' do
         user_report.update(approval_status: 'qc_completed')
         patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('approved')
         expect(response).to have_http_status(:success)
       end
@@ -146,7 +146,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to change_requested' do
         user_report.update(approval_status: 'approved')
         patch :remove_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('change_requested')
         expect(response).to have_http_status(:success)
       end
@@ -156,6 +156,382 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       it 'change approval status to change_requested' do
         user_report.update(approval_status: 'qc_completed')
         patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = response.parsed_body
+        expect(parsed_response['status']).to eq('change_requested')
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  describe 'workflow with qc and approver' do
+    let!(:qc_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:approver_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:report_approval_setting) do
+      create(:report_approval_setting,
+             report_id: user_report.report_id,
+             campaign: campaign,
+             qc_user_ids: [qc_user.id],
+             approver_user_ids: [approver_user.id])
+    end
+    describe 'QC flow' do
+      before do
+        login_user(qc_user)
+      end
+      it 'change approval status to qc_in_progress' do
+        user_report.ready!
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to qc_complete' do
+        user_report.update(approval_status: 'qc_in_progress')
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status from change_requested to qc_in_progress' do
+        user_report.update(approval_status: 'change_requested')
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'should not allow to change approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+        expect(user_report.reload.approval_status).to eq('qc_completed')
+        expect(response.body).to eq('You do not have access to this page')
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+    describe 'Approver flow' do
+      before do
+        login_user(approver_user)
+      end
+      it 'change approval status to qc_in_progress' do
+        user_report.ready!
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        expect(response.body).to eq('You do not have access to this page')
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it 'change approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('approved')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('change_requested')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'remove_approval status status to qc_in_progress' do
+        user_report.update(approval_status: 'approved')
+        patch :remove_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('change_requested')
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  describe 'workflow with qc and approver with one level QC flow' do
+    let!(:qc_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:report_approval_setting) do
+      create(:report_approval_setting,
+             report_id: user_report.report_id,
+             campaign: campaign,
+             qc_user_ids: [qc_user.id],
+             approver_user_ids: [],
+             approvers_not_required: true)
+    end
+    describe 'QC flow' do
+      before do
+        login_user(qc_user)
+      end
+      it 'change approval status to qc_in_progress' do
+        user_report.ready!
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to qc_complete' do
+        user_report.update(approval_status: 'qc_in_progress')
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status from change_requested to qc_in_progress' do
+        user_report.update(approval_status: 'change_requested')
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('approved')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to qc_in_progres' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  describe 'workflow with approver can edit' do
+    let!(:qc_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:approver_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:report_approval_setting) do
+      create(:report_approval_setting,
+             report_id: user_report.report_id,
+             campaign: campaign,
+             qc_user_ids: [qc_user.id],
+             approver_user_ids: [approver_user.id],
+             approvers_can_edit: true)
+    end
+    describe 'QC flow' do
+      before do
+        login_user(qc_user)
+      end
+      it 'change approval status to qc_in_progress' do
+        user_report.ready!
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to qc_complete' do
+        user_report.update(approval_status: 'qc_in_progress')
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status from change_requested to qc_in_progress' do
+        user_report.update(approval_status: 'change_requested')
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+        expect(response.body).to eq('You do not have access to this page')
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it 'change approval status to qc_in_progres' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+        expect(response.body).to eq('You do not have access to this page')
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    describe 'approver flow' do
+      before do
+        login_user(approver_user)
+      end
+      it 'not allowed to start qc for approver' do
+        user_report.ready!
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        expect(response.body).to eq('You do not have access to this page')
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it 'change approval status to qc_complete' do
+        user_report.update(approval_status: 'qc_in_progress')
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'approve changes approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        expect(::UserReports::NotifyApprovals).to receive(:call!)
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('approved')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'request_changes chagne status to qc_in_progress' do
+        user_report.update(approval_status: 'qc_completed')
+        expect(::UserReports::NotifyQc).to_not receive(:call!)
+        patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'send_for_approval change approval status to qc_completed' do
+        user_report.update(approval_status: 'qc_in_progress')
+        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  describe 'send notification' do
+    let!(:qc_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:approver_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:report_approval_setting) do
+      create(:report_approval_setting,
+             report_id: user_report.report_id,
+             campaign: campaign,
+             qc_user_ids: [qc_user.id],
+             approver_user_ids: [approver_user.id],
+             do_not_send_notifications: false)
+    end
+    describe 'QC flow' do
+      it 'change approval status to qc_in_progress' do
+        expect(::UserReports::NotifyQc).to receive(:call!)
+        user_report.ready!
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to qc_complete' do
+        user_report.update(approval_status: 'qc_in_progress')
+        expect(::UserReports::NotifyApprovers).to receive(:call!)
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to change_requested' do
+        user_report.update(approval_status: 'qc_completed')
+        expect(::UserReports::NotifyQc).to receive(:call!)
+        patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('change_requested')
+        expect(response).to have_http_status(:success)
+      end
+      it 'change approval status to change_requested' do
+        user_report.update(approval_status: 'approved')
+        expect(::UserReports::NotifyQc).to receive(:call!)
+        patch :remove_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('change_requested')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        expect(::UserReports::NotifyApprovals).to receive(:call!)
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('approved')
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  describe 'do not send any notification' do
+    let!(:qc_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:approver_user) { create(:campaign_admin, campaign: campaign) }
+    let!(:report_approval_setting) do
+      create(:report_approval_setting,
+             report_id: user_report.report_id,
+             campaign: campaign,
+             qc_user_ids: [qc_user.id],
+             approver_user_ids: [approver_user.id],
+             do_not_send_notifications: true)
+    end
+    describe 'QC flow' do
+      it 'change approval status to qc_in_progress' do
+        user_report.ready!
+        expect(::UserReports::NotifyQc).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to qc_complete' do
+        user_report.update(approval_status: 'qc_in_progress')
+        expect(::UserReports::NotifyQc).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status from change_requested to qc_in_progress' do
+        user_report.update(approval_status: 'change_requested')
+        expect(::UserReports::NotifyQc).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_in_progress')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to approved' do
+        user_report.update(approval_status: 'qc_completed')
+        expect(::UserReports::NotifyQc).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('approved')
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'change approval status to qc_in_progres' do
+        user_report.update(approval_status: 'qc_completed')
+        expect(::UserReports::NotifyQc).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovals).to_not receive(:call!)
+        expect(::UserReports::NotifyApprovers).to_not receive(:call!)
+        patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+
         parsed_response = JSON.parse(response.body)
         expect(parsed_response['status']).to eq('change_requested')
         expect(response).to have_http_status(:success)
@@ -183,7 +559,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     end
 
     it 'returns 404 if there user do not have a dashboard report' do
-      campaign_report = create(:campaign_report,  user_dashboard: true)
+      campaign_report = create(:campaign_report, user_dashboard: true)
       campaign = campaign_report.campaign
       campaign_user = create(:campaign_user, campaign: campaign)
 
@@ -193,12 +569,13 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     end
 
     it 'renders html template for html request' do
-      campaign_report = create(:campaign_report,  user_dashboard: true)
+      campaign_report = create(:campaign_report, user_dashboard: true)
       campaign = campaign_report.campaign
       campaign_user = create(:campaign_user, campaign: campaign)
       user = campaign_user.user
       create(:user_report, campaign_id: campaign.id, report_id: campaign_report.report_id, user_id: user.id)
 
+      mock_vite_assets
       get :dashboard, params: { new_campaign_id: campaign.id, email: user.email }, format: :html
 
       expect(response).to render_template('dashboard')
@@ -213,7 +590,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
       get :dashboard, params: { new_campaign_id: campaign.id, email: user.email }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response.keys).to include('report', 'results', 'status', 'user')
     end
   end

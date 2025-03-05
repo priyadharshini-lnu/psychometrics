@@ -54,7 +54,10 @@ describe AdminJobs::AssessmentRawExport do
     end
 
     it 'csv contains each user result as separate row' do
-      create_list(:users_result, 2, assessment: assessment, campaign: campaign, status: :in_progress)
+      create_list(:users_result, 2, assessment: assessment, campaign: campaign, status: :in_progress).each do |result|
+        create(:campaign_user, campaign: campaign, user: result.user, active: true)
+      end
+
       described_class.call!(job_record)
       csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
 
@@ -66,6 +69,7 @@ describe AdminJobs::AssessmentRawExport do
         questions[0].id.to_s => { 'answers' => [{ 'index' => 1, 'value' => true }], 'duration' => 30 },
         questions[1].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }], 'duration' => nil }
       })
+      create(:campaign_user, campaign: campaign, user: res.user, active: true)
 
       described_class.call!(job_record)
       csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
@@ -153,6 +157,7 @@ describe AdminJobs::AssessmentRawExport do
           }, 'duration' => 120
         }
       })
+      create(:campaign_user, campaign: campaign, user: res.user, active: true)
 
       described_class.call!(job_record)
       csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
@@ -230,6 +235,7 @@ describe AdminJobs::AssessmentRawExport do
             { 'index' => 3, 'value' => 'Hi' }
           ], 'duration' => 120 }
       })
+      create(:campaign_user, campaign: campaign, user: res.user, active: true)
 
       described_class.call!(job_record)
       csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
@@ -252,6 +258,73 @@ describe AdminJobs::AssessmentRawExport do
       ]
 
       expect(actual_result_row).to eq(expected_result_row)
+    end
+  end
+
+  context 'when handling active/inactive users' do
+    let!(:questions) { create_list(:question, 2, assessment: assessment) }
+    let(:active_user) { create(:user) }
+    let(:inactive_user) { create(:user) }
+    let!(:active_campaign_user) { create(:campaign_user, campaign: campaign, user: active_user, active: true) }
+    let!(:inactive_campaign_user) { create(:campaign_user, campaign: campaign, user: inactive_user, active: false) }
+
+    let!(:active_user_result) do
+      create(:users_result,
+             assessment: assessment,
+             campaign: campaign,
+             status: :completed,
+             subject: active_user,
+             evaluator: active_user,
+             answers: {
+               questions[0].id.to_s => { 'answers' => [{ 'index' => 1, 'value' => true }], 'duration' => 30 }
+             })
+    end
+
+    let!(:inactive_user_result) do
+      create(:users_result,
+             assessment: assessment,
+             campaign: campaign,
+             status: :completed,
+             subject: inactive_user,
+             evaluator: inactive_user,
+             answers: {
+               questions[0].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }], 'duration' => 40 }
+             })
+    end
+
+    context 'when include_inactive_users is false' do
+      before do
+        job_record.update(data: job_record.data.merge(include_inactive_users: false))
+      end
+
+      it 'only exports results for active users' do
+        described_class.call!(job_record)
+
+        csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
+
+        result_rows = (4..csv.last_row).map { |i| csv.row(i) }
+
+        result_ids = result_rows.map(&:first)
+        expect(result_ids).to include(active_user_result.encoded_id)
+        expect(result_ids).not_to include(inactive_user_result.encoded_id)
+      end
+    end
+
+    context 'when include_inactive_users is true' do
+      before do
+        job_record.update(data: job_record.data.merge(include_inactive_users: true))
+      end
+
+      it 'exports results for both active and inactive users' do
+        described_class.call!(job_record)
+
+        csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
+
+        result_rows = (4..csv.last_row).map { |i| csv.row(i) }
+
+        result_ids = result_rows.map(&:first)
+        expect(result_ids).to include(active_user_result.encoded_id, inactive_user_result.encoded_id)
+      end
     end
   end
 end

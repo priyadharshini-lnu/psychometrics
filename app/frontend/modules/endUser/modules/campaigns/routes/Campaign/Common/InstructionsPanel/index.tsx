@@ -2,15 +2,15 @@ import React, {
   useState, FC, useRef, useEffect,
 } from 'react'
 import { Typography } from 'antd'
-import { DownOutlined, UpOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { DownOutlined, UpOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { ScrollToViewOnFocusButton } from '~/glint'
 
 import styles from './styles.less'
 
 const { I18n } = window
-const { Title } = Typography
+const { Text } = Typography
 const DEFAULT_HEIGHT_LIMIT = 500
 
 type InstructionsPanelProps = {
@@ -59,7 +59,7 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
       })}
     >
       <div className={styles.instructionsContent}>
-        <Title className="fs-16" level={1}>{title}</Title>
+        <Text className="fs-16" strong>{title}</Text>
         <div aria-hidden={showExpandLink && collapsed ? 'true' : 'false'}>{description}</div>
         {showExpandLink && (
           <div className={styles['container-button']}>

@@ -198,8 +198,11 @@ ar:
       bookings: الحجوزات
       campaign: الحملة
       change_password: تغيير كلمة المرور
+      development: تطوير
       home: الصفحة الرئيسية
       insights: البصائر
+      my_direct_reports: تقاريري المباشرة
+      my_plan: خطتي
       profile: تفاصيلي
       profile_details: تفاصيل
       tasks: مهامي
@@ -564,6 +567,9 @@ ar:
   idp:
     pdf:
       header: مرحبًا
+  idp_templates:
+    errors:
+      user_idp_template_not_found: لم يتم تخصيص أي قالب IDP لك.
   mailer:
     magic_link:
       body:
@@ -789,7 +795,6 @@ ar:
       statuses:
         success: نجاح
         undelivered: لم يتم تسليمها
-    mindmill_confirmation: بدء هذا التقييم سوف يفقدك النتائج "%{assessment}". انقر على زر "إلغاء الأمر" إذا كنت تريد ترك النتائج، وانقر فوق "موافق" إذا كنت تريد المتابعة
     my_projects: مشاريعي
     nominate: ترشح
     nominate_evaluators: ترشيح المقيّمين إلى

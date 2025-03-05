@@ -21,11 +21,11 @@ module PankoOverride
     end
 
     def schema_class(serializer_class = self.class)
-      @schema_class if defined?(@schema_class)
+      return @schema_class if defined?(@schema_class)
 
       nested_class = serializer_class.name.split('::')
       schema_class_name = nested_class.last.gsub('Serializer', 'Schema')
-      nested_schema_class_name = nested_class[0...-1].concat([schema_class_name]).join('::')
+      nested_schema_class_name = nested_class[0...-1].push(schema_class_name).join('::')
 
       @schema_class = nested_schema_class_name.safe_constantize
     end

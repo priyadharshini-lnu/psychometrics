@@ -35,9 +35,7 @@ module Administration
 
     def preview
       add_breadcrumb resource.decorate.display_name, action: :show, id: resource
-      respond_to do |format|
-        format.html
-      end
+      respond_to(&:html)
     end
 
     private

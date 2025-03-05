@@ -23,9 +23,8 @@ module Imports
         end
 
         def self.decode_media_ids(media_ids)
-          decoded_media_ids = []
-          media_ids.split(', ').each do |media_id|
-            decoded_media_ids << MediaResponse.decode_id(media_id)
+          decoded_media_ids = media_ids.split(', ').map do |media_id|
+            MediaResponse.decode_id(media_id)
           end
           decoded_media_ids.flatten
         end

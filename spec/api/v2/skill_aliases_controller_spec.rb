@@ -5,7 +5,7 @@ require 'swagger_helper'
 
 describe Api::V2::Administration::SkillAliasesController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
   let!(:client) { create(:tenancy) }
   let(:client_id) { client.id }
   let!(:project) { Project.find(create(:project, parent: client).id) }

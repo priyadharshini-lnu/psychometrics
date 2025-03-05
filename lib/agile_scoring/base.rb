@@ -3,7 +3,7 @@
 module AgileScoring
   class Base
     def calculate(question, answer, factor_scoring)
-      (question['answers'] & [answer['answers']]).empty? ? 0 : factor_scoring['itemScore']
+      question['answers'].intersect?([answer['answers']]) ? factor_scoring['itemScore'] : 0
     end
   end
 end

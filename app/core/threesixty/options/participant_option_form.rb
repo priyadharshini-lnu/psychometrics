@@ -38,7 +38,7 @@ module Threesixty
       def add_errors_from_nested(key, form)
         form.validate
         form.errors.messages.values.first.each { |error| errors.add(key, error) } if form.invalid?
-        public_send("#{key}=", form.attributes)
+        public_send(:"#{key}=", form.attributes)
       end
     end
   end

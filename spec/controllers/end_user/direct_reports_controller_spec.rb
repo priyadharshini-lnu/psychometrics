@@ -17,7 +17,7 @@ RSpec.describe EndUser::DirectReportsController, type: :controller do
   describe 'GET summary' do
     it 'get user idp plan summary' do
       get :index
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(parsed_result).to eq({
         data: [

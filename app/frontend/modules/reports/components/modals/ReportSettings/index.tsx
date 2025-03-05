@@ -18,7 +18,6 @@ export const ReportSettingsComponent = ({ close }) => (
     <Tabs
       defaultActiveKey="page_settings"
       tabPosition="left"
-      style={{ height: 400 }}
       items={[
         {
           label: 'Page Settings',

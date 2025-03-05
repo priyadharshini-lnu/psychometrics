@@ -34,7 +34,7 @@ module Imports
             # hash['1-100'] = 2
             # Where 1 - choice, 2 - scale, 100 - scoring value
             factors_scoring = question.detect_specified_scoring.
-                              each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['value']}"] = s['scale']; }
+                              each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['value']}"] = s['scale'] }
             data.each_with_index do |scales, choice|
               next not_applicable[choice.to_s] = true if not_applicable_data?(question, scales)
 

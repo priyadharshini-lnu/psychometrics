@@ -3,9 +3,9 @@ import _ from 'lodash'
 import {
   Tabs, Row, Col, Space, Typography, Layout, Spin,
 } from 'antd'
-import { CalendarOutlined, LoadingOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { CalendarOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 
 import { DetailsCard, FullWidthSkeleton } from '~/glint'

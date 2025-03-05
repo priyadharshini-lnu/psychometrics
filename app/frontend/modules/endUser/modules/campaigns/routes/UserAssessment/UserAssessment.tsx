@@ -5,8 +5,8 @@ import {
   Watermark, Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
@@ -92,7 +92,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
 
-  if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
+  if (isMobile) { progressBarProps = { type: 'circle', style: { width: '80vw' } } }
 
   const needsProctoring = proctoringEnabled && !prework && !isProctored()
   if (needsProctoring) {
@@ -125,6 +125,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           <Space align="center" size="large">
             {remainingCampaignTime && (
               <CountdownTimer
+                shouldAnnounceRemainingTime
                 prefix={(
                   <>
                     {I18n.t('user_assessments.timer_title.campaign')}
@@ -140,6 +141,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             )}
             {remainingAssessmentTime && (
               <CountdownTimer
+                shouldAnnounceRemainingTime
                 prefix={(
                   <>
                     {I18n.t('user_assessments.timer_title.assessment')}

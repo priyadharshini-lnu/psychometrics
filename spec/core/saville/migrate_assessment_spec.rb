@@ -57,7 +57,7 @@ assessment_id: assessment.id, evaluator: user1)
     end
 
     it 'recomputes users results' do
-      expect(::UsersResults::RecomputeJob).to receive(:perform_later)
+      expect(UsersResults::RecomputeJob).to receive(:perform_later)
       migrate_assessment.call
     end
   end

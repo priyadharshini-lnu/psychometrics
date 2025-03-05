@@ -140,7 +140,7 @@ class UsersResultSerializer < Panko::Serializer
 
   def highlights
     ids = [object.assessment_id]
-    ids += object.assessment.resources.map { |r| r['assessmentId'] } if object.assessment.resources
+    ids += object.assessment.resources.pluck('assessmentId') if object.assessment.resources
     highlights = Highlight.where(assessment_id: ids, user_id: user_id)
     Panko::ArraySerializer.new(
       highlights,

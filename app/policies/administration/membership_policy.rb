@@ -75,7 +75,7 @@ module Administration
     def manage_grants_for_actions?(resource, actions, project: nil, client: nil)
       return true if @user.is?(:superadmin)
 
-      related_memberships(project, client).any? { |m| ((m.grants&.data.try(:[], resource) || []) & actions).any? }
+      related_memberships(project, client).any? { |m| (m.grants&.data.try(:[], resource) || []).intersect?(actions) }
     end
 
     def overview_assigns?

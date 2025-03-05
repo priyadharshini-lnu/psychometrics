@@ -27,7 +27,7 @@ describe EndUser::UsersController, type: :controller do
         format: :json,
         user: { id: user.id, first_name: 'Elliot', last_name: 'Alderson' }
       }
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
       expect(response).to have_http_status(:success)
 
       expected_array = %w[id email first_name last_name full_name
@@ -58,7 +58,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: 'wrong_password', password: new_password, password_confirmation: new_password
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'current_password')).to include('Current password is incorrect')
@@ -70,7 +70,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: current_password, password: '', password_confirmation: new_password
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include("can't be blank")
@@ -82,7 +82,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: current_password, password: new_password, password_confirmation: 'non_matching'
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password_confirmation')).to include("doesn't match Password")
@@ -94,7 +94,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: current_password, password: current_password, password_confirmation: current_password
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include('must be different than the current password.')
@@ -111,7 +111,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: current_password, password: old_password, password_confirmation: old_password
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include('must not be same as any previously used password.')
@@ -124,7 +124,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: current_password, password: new_password, password_confirmation: new_password
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include('is too short (minimum is 20 characters)')
@@ -137,7 +137,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: current_password, password: 'aaaaaaa111111', password_confirmation: 'aaaaaaa111111'
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include('Password must not contain repeats')
@@ -150,7 +150,7 @@ describe EndUser::UsersController, type: :controller do
         current_password: current_password, password: 'Without_digit', password_confirmation: 'Without_digit'
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include('must contain at least one digit')
@@ -165,7 +165,7 @@ describe EndUser::UsersController, type: :controller do
         password_confirmation: 'WithoutSpecialChar1'
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include('must contain at least one punctuation mark or symbol')
@@ -180,7 +180,7 @@ describe EndUser::UsersController, type: :controller do
         password_confirmation: 'without_upper_case1'
       }
 
-      parsed_result = JSON.parse(response.body)
+      parsed_result = response.parsed_body
 
       expect(response.status).to eq(422)
       expect(parsed_result.dig('errors', 'password')).to include('must contain at least one upper-case letter')

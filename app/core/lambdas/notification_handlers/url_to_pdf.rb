@@ -5,7 +5,7 @@ module Lambdas
     class UrlToPdf < Base
       ALLOWED_TYPES = %w[UserReport UserIdpPlan].freeze
 
-      def call # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+      def call
         record = find_record
         if data['status'] == 'failed'
           admin_job&.update!(status: :failed, error_messages: [data['error']])
@@ -13,7 +13,6 @@ module Lambdas
         end
 
         if data['update_record']
-          record.pdf_file&.purge_later if record.respond_to?(:pdf_file)
           blob = ActiveStorage::Blob.create_before_direct_upload!(
             key: data['file_path'],
             filename: data['file_name'],
@@ -22,16 +21,6 @@ module Lambdas
             content_type: 'application/pdf',
             service_name: Settings.storage.private_storage_service
           )
-
-          if record.respond_to?(:pdf_file)
-            ActiveStorage::Attachment.create!(
-              record: record,
-              blob: blob,
-              name: data['file_attribute'] || 'pdf_file'
-            )
-            record.status = :prepared
-            record.save!
-          end
 
           reprot_pdf = record.report_pdfs.find_or_create_by!(
             locale: data['lang'] || I18n.locale
@@ -51,6 +40,8 @@ module Lambdas
           reprot_pdf.set_generated_timestamps
 
           reprot_pdf.save!
+
+          record.update(status: :prepared) if record.is_a?(UserReport)
         end
         update_admin_job_progress(data)
         notify_user(data, record) if data['notify_user_id']

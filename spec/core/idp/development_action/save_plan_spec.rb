@@ -42,8 +42,13 @@ describe Idp::DevelopmentAction::SavePlan do
         ]
 
       described_class.call!(user_idp_plan, body_params)
-      user_idp_development_action = UserIdpDevelopmentAction.find(available_development_action.id)
+      user_idp_development_action = UserIdpDevelopmentAction.find_by(
+        development_action_id: available_development_action.id,
+        user_idp_skill_id: user_idp_skills.first.id
+      )
       expect(user_idp_development_action).to be_present
+      expect(user_idp_development_action.progress).to eq(77)
+      expect(user_idp_development_action.private).to eq(false)
     end
 
     it 'updates user idp development action on passing user idp development action id' do

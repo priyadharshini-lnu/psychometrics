@@ -7,7 +7,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
   let!(:superadmin) { create(:superadmin) }
   let(:campaign) { create(:campaign) }
   let!(:campaign_id) { campaign.id }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 
@@ -133,7 +133,10 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
             'report_approval_settings',
             {
               qc_user_ids: [admins[0].id], approver_user_ids: [admins[1].id],
-              approval_notification_user_ids: [admins[2].id, admins[3].id]
+              approval_notification_user_ids: [admins[2].id, admins[3].id],
+              approvers_can_edit: false,
+              approvers_not_required: false,
+              do_not_send_notifications: false
             },
             {
               report: { id: report.id.to_s, type: 'reports' }

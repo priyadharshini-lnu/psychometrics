@@ -26,6 +26,10 @@ module Administration
       end
     end
 
+    def show
+      @communication = policy_scope(resource_class).find(params[:id])
+    end
+
     def new
       @_resource = resource_class.new
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
@@ -53,9 +57,7 @@ module Administration
     def toggle_status
       resource.toggle(:disabled).save
       audit! :toggle_status, resource, payload: { disabled: resource.disabled }
-      respond_to do |format|
-        format.js
-      end
+      respond_to(&:js)
     end
 
     # DELETE /administration/resources/1
@@ -92,10 +94,6 @@ module Administration
       respond_to do |format|
         format.js { render :new }
       end
-    end
-
-    def show
-      @communication = policy_scope(resource_class).find(params[:id])
     end
 
     private

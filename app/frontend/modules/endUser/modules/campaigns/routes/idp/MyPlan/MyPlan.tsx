@@ -8,8 +8,8 @@ import {
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { CheckCircleOutlined, CloseOutlined } from '@ant-design/icons'
 import { generate } from '@ant-design/colors'
+import { CheckCircleOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { BoxWithShadow, MediaQueryContext, PageLoadSpinner } from '~/glint'
 import { IdpPageLayoutWrapper } from '../components/IdpPageLayoutWrapper/IdpPageLayoutWrapper'

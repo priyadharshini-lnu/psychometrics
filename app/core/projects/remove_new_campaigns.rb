@@ -57,8 +57,7 @@ module Projects
     def delete_user_reports(campaign)
       user_reports = UserReport.where(campaign_id: campaign.id)
       user_reports.each do |user_report|
-        user_report.pdf_file&.purge_later
-        user_report.user_report_pdfs.each { |user_report_pdf| user_report_pdf.pdf_file&.purge_later }
+        user_report.user_report_pdfs.destroy_all
       end
       user_reports.delete_all
     end

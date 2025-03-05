@@ -16,10 +16,8 @@ module Administration
       export_results?
     end
 
-    # Don't allow to export Normed Results if Assessment is mindmill
-    #
     def export_normed_results?
-      @user.is?(:superadmin) && @record.mindmill_id.nil?
+      @user.is?(:superadmin)
     end
 
     def export_hogan_results?

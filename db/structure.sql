@@ -10,34 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -118,104 +90,6 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 69)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 65)
-  ORDER BY id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'First Name'::text) AS "First Name",
-    (data ->> 'full name'::text) AS "full name",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'roll number'::text) AS "roll number",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_id = 61)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 62)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 70)
-  ORDER BY id;
-
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -590,7 +464,6 @@ CREATE TABLE public.assessments (
     status integer,
     owner_id integer,
     type character varying,
-    mindmill_id integer,
     enable_back boolean DEFAULT false NOT NULL,
     enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
@@ -600,8 +473,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -762,10 +635,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
@@ -970,7 +843,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -991,82 +865,6 @@ CREATE SEQUENCE public.bulk_reports_id_seq
 --
 
 ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
-
-
---
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10313_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 69)
-  ORDER BY id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 65)
-  ORDER BY id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 62)
-  ORDER BY id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade",
-    (data ->> 'Position'::text) AS "Position",
-    (data ->> 'Last Name'::text) AS "Last Name",
-    (data ->> 'Department'::text) AS "Department",
-    (data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 70)
-  ORDER BY id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 72)
-  ORDER BY id;
 
 
 --
@@ -1123,8 +921,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -1587,8 +1385,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    default_idp_template_id bigint,
-    practice_campaign boolean DEFAULT false
+    practice_campaign boolean DEFAULT false,
+    default_idp_template_id bigint
 );
 
 
@@ -1660,9 +1458,7 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -1816,6 +1612,40 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -2100,15 +1930,6 @@ ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
 
 
 --
--- Name: data_migrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.data_migrations (
-    version character varying NOT NULL
-);
-
-
---
 -- Name: data_report_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2299,14 +2120,14 @@ CREATE TABLE public.development_actions (
     learning_style integer DEFAULT 0 NOT NULL,
     name character varying NOT NULL,
     description character varying NOT NULL,
+    course_url character varying,
     course_provider character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     image character varying,
-    project_id bigint,
-    course_url character varying,
-    course_start_date date,
-    course_end_date date
+    course_start_date timestamp(6) without time zone,
+    course_end_date timestamp(6) without time zone,
+    project_id bigint
 );
 
 
@@ -3398,7 +3219,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3628,38 +3449,6 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 
 
 --
--- Name: mindmill_credentials; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.mindmill_credentials (
-    id bigint NOT NULL,
-    users_result_id bigint,
-    user_name character varying,
-    encrypted_password character varying,
-    encrypted_password_iv character varying
-);
-
-
---
--- Name: mindmill_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.mindmill_credentials_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: mindmill_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
-
-
---
 -- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3678,13 +3467,13 @@ CREATE TABLE public.user_assessment_factor_scores (
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT id,
-    factor_id,
-    user_assessment_id,
-    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((scores ->> 'score'::text))::double precision AS score,
-    ((scores ->> 'zscore'::text))::double precision AS zscore,
-    ((scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -4555,7 +4344,10 @@ CREATE TABLE public.report_approval_settings (
     updated_at timestamp(6) without time zone NOT NULL,
     qc_user_ids bigint[] DEFAULT '{}'::bigint[],
     approver_user_ids bigint[] DEFAULT '{}'::bigint[],
-    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[]
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
+    approvers_can_edit boolean DEFAULT false,
+    approvers_not_required boolean DEFAULT false,
+    do_not_send_notifications boolean DEFAULT false
 );
 
 
@@ -4654,15 +4446,14 @@ CREATE TABLE public.reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
-    mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4674,7 +4465,7 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages jsonb DEFAULT '[]'::jsonb
+    other_languages text[] DEFAULT '{}'::text[]
 );
 
 
@@ -4923,7 +4714,9 @@ CREATE TABLE public.saml_settings (
     test_settings jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    project_id bigint NOT NULL
+    project_id bigint NOT NULL,
+    name_identifier_format integer DEFAULT 0,
+    email_pipetext character varying
 );
 
 
@@ -5172,6 +4965,21 @@ CREATE SEQUENCE public.sheet_row_data_id_seq
 --
 
 ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
 
 
 --
@@ -6453,8 +6261,7 @@ CREATE TABLE public.user_idp_plans (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     campaign_id bigint NOT NULL,
-    active boolean DEFAULT true,
-    end_date date
+    active boolean DEFAULT true
 );
 
 
@@ -7559,6 +7366,13 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
+
+
+--
 -- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7892,13 +7706,6 @@ ALTER TABLE ONLY public.mettl_schedule_records ALTER COLUMN id SET DEFAULT nextv
 --
 
 ALTER TABLE ONLY public.mettl_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.mettl_user_assessments_id_seq'::regclass);
-
-
---
--- Name: mindmill_credentials id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials ALTER COLUMN id SET DEFAULT nextval('public.mindmill_credentials_id_seq'::regclass);
 
 
 --
@@ -8971,14 +8778,6 @@ ALTER TABLE ONLY public.data_geos
 
 
 --
--- Name: data_migrations data_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.data_migrations
-    ADD CONSTRAINT data_migrations_pkey PRIMARY KEY (version);
-
-
---
 -- Name: data_report_jobs data_report_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9320,14 +9119,6 @@ ALTER TABLE ONLY public.mettl_schedule_records
 
 ALTER TABLE ONLY public.mettl_user_assessments
     ADD CONSTRAINT mettl_user_assessments_pkey PRIMARY KEY (id);
-
-
---
--- Name: mindmill_credentials mindmill_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials
-    ADD CONSTRAINT mindmill_credentials_pkey PRIMARY KEY (id);
 
 
 --
@@ -11678,13 +11469,6 @@ CREATE INDEX index_mettl_user_assessments_on_user_assessment_id ON public.mettl_
 
 
 --
--- Name: index_mindmill_credentials_on_users_result_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_mindmill_credentials_on_users_result_id ON public.mindmill_credentials USING btree (users_result_id);
-
-
---
 -- Name: index_norms_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13197,6 +12981,13 @@ CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
+-- Name: users_email_project_id_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (email, COALESCE(project_id, 0));
+
+
+--
 -- Name: sms_invites creator_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13282,14 +13073,6 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.campaign_factor_values
     ADD CONSTRAINT fk_rails_07fa4c59b5 FOREIGN KEY (campaign_factor_id) REFERENCES public.campaign_factors(id) ON DELETE CASCADE;
-
-
---
--- Name: mindmill_credentials fk_rails_086b8723a8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials
-    ADD CONSTRAINT fk_rails_086b8723a8 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
 
 
 --
@@ -13485,6 +13268,14 @@ ALTER TABLE ONLY public.communication_email_resources
 
 
 --
+-- Name: campaign_reports fk_rails_1eecc2fd8d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_reports
+    ADD CONSTRAINT fk_rails_1eecc2fd8d FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: campaign_assessment_groups fk_rails_20a5099c5a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13626,6 +13417,14 @@ ALTER TABLE ONLY public.innovation_styles_factors
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_2f45aa472a FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: report_approval_settings fk_rails_2f5e81c8e9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_approval_settings
+    ADD CONSTRAINT fk_rails_2f5e81c8e9 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -14357,6 +14156,14 @@ ALTER TABLE ONLY public.user_profiles
 
 
 --
+-- Name: reports_accesses fk_rails_88e27a8e2d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses
+    ADD CONSTRAINT fk_rails_88e27a8e2d FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_assessments fk_rails_892b304988; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14554,6 +14361,22 @@ ALTER TABLE ONLY public.user_report_comments
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_9c1b8d7e35 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_campaigns fk_rails_9cb58b8a3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_campaigns
+    ADD CONSTRAINT fk_rails_9cb58b8a3f FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: saville_report_settings fk_rails_9dbdc763fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_report_settings
+    ADD CONSTRAINT fk_rails_9dbdc763fd FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -14789,6 +14612,14 @@ ALTER TABLE ONLY public.proctoring_sessions
 
 
 --
+-- Name: user_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reports
+    ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: user_idp_plans fk_rails_c2e94ce0f4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14881,7 +14712,7 @@ ALTER TABLE ONLY public.skills
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -14905,7 +14736,7 @@ ALTER TABLE ONLY public.assessments_clients
 --
 
 ALTER TABLE ONLY public.development_actions
-    ADD CONSTRAINT fk_rails_cc6a4ae75e FOREIGN KEY (project_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_cc6a4ae75e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -14962,6 +14793,14 @@ ALTER TABLE ONLY public.text_module_overrides
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_d2e6622e0f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: clients_reports fk_rails_d336b71b0b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.clients_reports
+    ADD CONSTRAINT fk_rails_d336b71b0b FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -15053,6 +14892,14 @@ ALTER TABLE ONLY public.assessors
 
 
 --
+-- Name: hogan_report_settings fk_rails_d77e15b1b7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_report_settings
+    ADD CONSTRAINT fk_rails_d77e15b1b7 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: idp_template_skills fk_rails_d863699667; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15141,6 +14988,14 @@ ALTER TABLE ONLY public.sheet_row_data
 
 
 --
+-- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports
+    ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: campaign_assessments fk_rails_e37db7e3eb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15218,6 +15073,14 @@ ALTER TABLE ONLY public.threesixty_evaluators
 
 ALTER TABLE ONLY public.bulk_reports
     ADD CONSTRAINT fk_rails_ea7da51ed5 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: assigns_reports fk_rails_eb27834cf2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assigns_reports
+    ADD CONSTRAINT fk_rails_eb27834cf2 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
 
 
 --
@@ -15443,12 +15306,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250110050233'),
-('20250107095005'),
+('20250226084133'),
+('20250221073030'),
+('20250224075920'),
 ('20250221102354'),
 ('20250213113601'),
 ('20250210121434'),
-('20250211125313'),
 ('20250207113529'),
 ('20250206082916'),
 ('20250204092029'),
@@ -15464,19 +15327,21 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250121134222'),
 ('20250121130354'),
 ('20250121061959'),
-('20250115201932'),
 ('20250115135401'),
 ('20250115134236'),
 ('20250113111540'),
 ('20250113105032'),
 ('20250113081931'),
 ('20250113070808'),
+('20250110050233'),
 ('20250109001045'),
 ('20250107101319'),
+('20250107095005'),
 ('20250106151909'),
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),
+('20241225073418'),
 ('20241224114259'),
 ('20241224114214'),
 ('20241224114112'),

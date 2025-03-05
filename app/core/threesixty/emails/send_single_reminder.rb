@@ -36,7 +36,7 @@ module Threesixty
       end
 
       def user_eligible_for_reminder?(reminder_history, days, times)
-        return if reminder_history.sent_count >= times
+        return false if reminder_history.sent_count >= times
 
         Time.zone.today == reminder_history.last_sent_at.to_date.advance(days: days)
       end

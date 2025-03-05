@@ -14,7 +14,7 @@ module Exports
         def self.result(user_result, question, scoring = false, _export_with_labels = false) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
           answers = get_answers(user_result, question) || []
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value'] }
           not_applicable = get_not_applicable(user_result, question) || {}
           na_label = question.props['notApplicableLabel'] || NOT_APPLICABLE_PLACEHOLDER
 
@@ -25,7 +25,7 @@ module Exports
             if a['value'].is_a?(Numeric)
               ((scoring && factors_scoring[a['index']]) || 1) * a['value']
             else
-              (a['value'] || '')
+              a['value'] || ''
             end
           end
 

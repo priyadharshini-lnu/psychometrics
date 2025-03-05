@@ -9,7 +9,7 @@ describe Api::V2::Administration::ExternalReportsController, swagger_doc: 'v2/sw
   let!(:saville_assessment) do
     create(:assessment, :saville, external_settings: { assessment_id: 'a830e4ab-bc66-4238-92e0-6e6fd3fd1edf' })
   end
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

@@ -33,7 +33,7 @@ module AdminJobs
       membership_client = membership.client
       campaign = membership.campaign
       project = membership_client.project? ? membership_client : nil
-      project ||= campaign ? campaign.project : nil
+      project ||= campaign&.project
       client = membership_client.tenancy? ? membership_client : project&.client
       [
         membership.id,

@@ -24,6 +24,9 @@ module Api
               attribute[:approvers].array(admin_schema)
               attribute[:approval_notification_users].array(admin_schema)
             end
+            attribute[:approvers_can_edit].filled(:bool?)
+            attribute[:approvers_not_required].filled(:bool?)
+            attribute[:do_not_send_notifications].filled(:bool?)
           end
         end
 

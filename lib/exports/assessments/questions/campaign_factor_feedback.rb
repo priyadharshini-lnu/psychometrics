@@ -13,9 +13,9 @@ module Exports
           question.props['maxFactors'].times do |i|
             answer = answers[i]
             if answer
-              all_answers.concat([answer['code'], answer['value']])
+              all_answers.push(answer['code'], answer['value'])
             else
-              all_answers.concat(['', ''])
+              all_answers.push('', '')
             end
           end
 
@@ -25,8 +25,8 @@ module Exports
         def self.question_id_header(question)
           fields = []
           question.props['maxFactors'].times do |i|
-            fields.concat(["QID#{question.id}_campaign_factor_code_#{i + 1}",
-                           "QID#{question.id}_campaign_factor_feedback_#{i + 1}"])
+            fields.push("QID#{question.id}_campaign_factor_code_#{i + 1}",
+                        "QID#{question.id}_campaign_factor_feedback_#{i + 1}")
           end
 
           [*fields, duration_header(question)]

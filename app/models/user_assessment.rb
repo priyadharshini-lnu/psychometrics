@@ -32,12 +32,12 @@ class UserAssessment < ApplicationRecord
   has_many :user_assessment_factor_scores, dependent: :destroy
   has_many :user_assessment_verification_images, dependent: :destroy
 
-  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
-  enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
-  enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
-  enum evaluator_nomination_status: { waiting: 0, completed: 1, declined: 2 }, _prefix: :evaluator_nomination
-  enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
-  enum meeting_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :meeting
+  enum :status, { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
+  enum :completion_reason, { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
+  enum :manager_nomination_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_nomination
+  enum :evaluator_nomination_status, { waiting: 0, completed: 1, declined: 2 }, prefix: :evaluator_nomination
+  enum :manager_evaluation_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_evaluation
+  enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :assessor_form?,
            :external?, :external_settings, to: :assessment

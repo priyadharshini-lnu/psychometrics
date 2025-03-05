@@ -19,10 +19,12 @@ module UserReports::GeneratePdfConcern
   end
 
   def export_pdf_using_lambda(record) # rubocop:disable Metrics/AbcSize
+    report_pdf = record.report_pdfs.find_or_create_by!(locale: options[:lang])
+
     file_path = if options[:file_path]
                   "#{options[:file_path]}/#{report_file_name}"
                 else
-                  record.attachment_storage_path('pdf_file', report_file_name)
+                  report_pdf.attachment_storage_path('pdf_file', report_file_name)
                 end
 
     webhook_message = { record_id: record.id, record_type: record.class.name, file_name: report_file_name,

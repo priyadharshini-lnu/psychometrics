@@ -5,7 +5,7 @@ require 'rails_helper'
 describe EndUser::IdpTemplateSkillsController, type: :controller do
   let(:current_password) { 'Current@Password129' }
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
-  let(:project) { Project.find(user.project.id) }  # Ensure we have a proper Project instance
+  let(:project) { Project.find(user.project.id) } # Ensure we have a proper Project instance
   let!(:skill) { create(:skill, name: 'abc', project: project) }
   let!(:idp_template) { create(:idp_template) }
   let!(:idp_template_skill) { create(:idp_template_skill, idp_template: idp_template, skill: skill) }
@@ -19,7 +19,7 @@ describe EndUser::IdpTemplateSkillsController, type: :controller do
     it 'returns idp_template_skills' do
       get :index
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
       expect(parsed_response.count).to eq(1)

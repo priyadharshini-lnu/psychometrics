@@ -5,7 +5,7 @@ require 'swagger_helper'
 
 describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

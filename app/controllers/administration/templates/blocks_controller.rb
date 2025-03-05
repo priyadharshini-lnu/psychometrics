@@ -24,6 +24,11 @@ module Administration
         @_resource = resource_class.new
       end
 
+      # GET /administration/resources/1/edit
+      def edit
+        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
+      end
+
       def create
         @_resource = resource_class.new(resource_params)
         resource.assign_attributes(view: :templates)
@@ -36,11 +41,6 @@ module Administration
             format.js { render :new }
           end
         end
-      end
-
-      # GET /administration/resources/1/edit
-      def edit
-        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1

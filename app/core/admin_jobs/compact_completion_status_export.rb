@@ -49,18 +49,24 @@ module AdminJobs
       Campaigns::CompactCompletionStatusQuery.new(
         campaign.id,
         limit: limit,
-        offset: offset
+        offset: offset,
+        include_inactive_users: include_inactive_users
       ).query.to_a
     end
 
     def record_count
       @record_count ||= Campaigns::CompactCompletionStatusQuery.new(
-        campaign.id
+        campaign.id,
+        include_inactive_users: include_inactive_users
       ).query.count
     end
 
     def data_row(record)
       record.values
+    end
+
+    def include_inactive_users
+      record.data['include_inactive_users'] || false
     end
 
     def file_name

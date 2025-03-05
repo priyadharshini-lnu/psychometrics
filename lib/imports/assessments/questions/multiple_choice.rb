@@ -17,7 +17,7 @@ module Imports
           return nil if data.compact.blank?
 
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['value']] = s['index']; }
+                            each_with_object({}) { |s, sum| sum[s['value']] = s['index'] }
           answers = []
 
           not_applicable = false

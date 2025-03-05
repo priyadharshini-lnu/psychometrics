@@ -105,7 +105,7 @@ RSpec.describe Mettl::SaveScoresAndReport do
 
   before do
     allow(user_assessment).to receive(:users_result).and_return(users_result)
-    allow(::UsersResults::GenerateReports).to receive(:call)
+    allow(UsersResults::GenerateReports).to receive(:call)
   end
 
   describe '#call' do
@@ -135,7 +135,7 @@ RSpec.describe Mettl::SaveScoresAndReport do
         completed_at: DateTime.parse('Fri, 16 Aug 2024 13:14:21 UTC').in_time_zone('UTC')
       )
 
-      expect(::UsersResults::GenerateReports).to receive(:call).with(users_result, user_assessment.user)
+      expect(UsersResults::GenerateReports).to receive(:call).with(users_result, user_assessment.user)
 
       subject.call
     end
@@ -147,7 +147,7 @@ RSpec.describe Mettl::SaveScoresAndReport do
       subject.call
 
       expect(user_report.status).to eq('prepared')
-      expect(user_report.reload.pdf_file.url).to be_present
+      expect(user_report.user_report_pdf.pdf_file.url).to be_present
     end
 
     it 'broadcasts :ok if pdfReport URL is blank' do

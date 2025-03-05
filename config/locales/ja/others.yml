@@ -668,7 +668,6 @@ ja:
       statuses:
         success: 成功
         undelivered: 未配信
-    mindmill_confirmation: このアセスメントを開始すると、「%{assessment}」の結果が失われます。結果を残す場合は「キャンセル」をクリックし、続行する場合は「OK」をクリックしてください
     my_projects: マイプロジェクト
     nominate: 推薦する
     nominate_evaluators: 評価者の推薦先：

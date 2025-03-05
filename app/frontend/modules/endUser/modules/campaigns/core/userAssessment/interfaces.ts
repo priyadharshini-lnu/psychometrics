@@ -7,8 +7,6 @@ export interface UserAssessment {
   timing: string
   completionPercent: number | null
   completionReason: string | null
-  mindmill: boolean
-  mindmillUrl: string
   url: string
   status: string
   needConfirm: boolean

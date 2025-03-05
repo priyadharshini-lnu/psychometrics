@@ -8,7 +8,7 @@ describe 'Campaigns' do
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, project: project) }
   let(:campaign_two) { create(:campaign, project: project) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 
@@ -594,7 +594,7 @@ assessments and reports.'
         let(:project_id) { project.id }
         let(:campaign_id) { campaign.id }
         let(:assessment_id) { assessment.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
 
         schema '$ref' => '#/definitions/ApiError'
 
@@ -668,7 +668,7 @@ assessments and reports.'
         let(:project_id) { project.id }
         let(:campaign_id) { campaign.id }
         let(:assessment_id) { assessment.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
 
         schema '$ref' => '#/definitions/ApiError'
 
@@ -764,7 +764,7 @@ assessments and reports.'
         let(:project_id) { project.id }
         let(:campaign_id) { campaign.id }
         let(:report_id) { report.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
 
         schema '$ref' => '#/definitions/ApiError'
 
@@ -838,7 +838,7 @@ assessments and reports.'
         let(:project_id) { project.id }
         let(:campaign_id) { campaign.id }
         let(:report_id) { report.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
 
         schema '$ref' => '#/definitions/ApiError'
 

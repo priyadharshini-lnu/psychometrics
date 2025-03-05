@@ -33,7 +33,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         norm_id: norm.id
       }, as: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       campaign_assessment.reload
 
@@ -53,7 +53,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         norm_id: norm.id
       }, as: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response).to eq('norm_name' => 'Norm')
     end
@@ -68,7 +68,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       require_scheduling: true
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(campaign_assessment.reload.require_scheduling).to eq(true)
     expect(parsed_response).to match(hash_including('require_scheduling' => true))
@@ -84,7 +84,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       assessor_form_id: assessor_form.id
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     campaign_assessment.reload
 
@@ -127,7 +127,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       prework: false
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(campaign_assessment.reload.prework).to eq(false)
     expect(parsed_response).to match(hash_including('prework' => false))
@@ -142,7 +142,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       workshop_activity_duration: 4
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(campaign_assessment.reload.workshop_activity).to eq(true)
     expect(parsed_response).to match(hash_including('workshop_activity' => true))
@@ -169,7 +169,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         mettl_schedule_record_id: mettl_schedule_record.id
       }, as: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       campaign_assessment.reload
 
@@ -186,7 +186,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         mettl_schedule_record_id: mettl_schedule_record.id
       }, as: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       campaign_assessment.reload
 
@@ -227,7 +227,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         external_config: { 'content_variation_id' => 'starWars' }.to_json
       }, as: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       campaign_assessment.reload
 
@@ -243,7 +243,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         external_config: { 'content_variation_id' => 'starWars' }.to_json
       }, as: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       campaign_assessment.reload
 

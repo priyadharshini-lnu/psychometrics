@@ -42,7 +42,7 @@ module UserRoles
             [current_role] + memberships.map { |m| m.role.to_sym }
           end
     arr << :assessor if global_assessor? || assessors.exists?
-    (arr & roles).any?
+    arr.intersect?(roles)
   end
 
   # Return devise scope
@@ -60,7 +60,7 @@ module UserRoles
 
   # Return list of roles, that can manage
   def can_manage
-    (USER_ROLES_HIERARCHY[USER_ROLES.key(role)] || [])
+    USER_ROLES_HIERARCHY[USER_ROLES.key(role)] || []
   end
 
   def has_grant?(scope, grant)

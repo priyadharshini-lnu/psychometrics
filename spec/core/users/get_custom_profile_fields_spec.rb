@@ -9,13 +9,10 @@ describe Users::GetCustomProfileFields do
 
     user = create(:user, :with_project_membership)
     profile_setting = user.project.profile_setting
-    create(:profile_field, profile_setting: profile_setting, question: question1, position: 2)
-    create(:profile_field, profile_setting: profile_setting, question: question2, position: 1)
-
-    custom_fields = {}
-    custom_fields[question1.id.to_s] = 'Q1 Answer'
-    custom_fields[question2.id.to_s] = 'Q2 Answer'
-    user.user_profile.update(custom_fields: custom_fields)
+    f1 = create(:profile_field, profile_setting: profile_setting, question: question1, position: 2)
+    f2 = create(:profile_field, profile_setting: profile_setting, question: question2, position: 1)
+    create(:profile_field_value, profile_field: f1, user_profile: user.user_profile, string_value: 'Q1 Answer')
+    create(:profile_field_value, profile_field: f2, user_profile: user.user_profile, string_value: 'Q2 Answer')
 
     result = described_class.call!(user)
 

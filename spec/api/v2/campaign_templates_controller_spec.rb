@@ -9,7 +9,7 @@ describe Api::V2::Administration::CampaignTemplatesController, swagger_doc: 'v2/
   let!(:assessment) { create(:assessment, :with_same_owner_dimension, owner:, created_by: superadmin) }
   let(:report) { create(:report, assessments: [assessment], owner:, created_by: superadmin) }
   let!(:campaign_template) { create(:campaign_template, assessment: assessment, report: report, owner: owner) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

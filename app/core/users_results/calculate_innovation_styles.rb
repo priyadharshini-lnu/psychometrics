@@ -15,11 +15,10 @@ module UsersResults
     attr_reader :users_result
 
     def calculate_innovation_styles # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      users_result.assessment&.
-             dimension&.
-             innovation_styles&.
-             includes(innovation_styles_factors: :factor)&.
-             each_with_object([]) do |innovation_style, mem|
+      assessment = users_result.assessment
+      dimension = assessment&.dimension
+      innovation_styles = dimension&.innovation_styles
+      innovation_styles&.includes(innovation_styles_factors: :factor)&.each_with_object([]) do |innovation_style, mem|
         # Fetchs a valid factor ids
         valid_factors = []
         next if innovation_style.innovation_styles_factors.empty?

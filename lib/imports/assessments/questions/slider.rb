@@ -15,7 +15,7 @@ module Imports
           return nil if data.compact.blank?
 
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value'] }
           answers = []
           not_applicable = {}
           na_label = question.props['notApplicableLabel'] || NOT_APPLICABLE_PLACEHOLDER

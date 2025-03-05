@@ -36,7 +36,7 @@ module DataReports::FieldHandlers
       return unless custom_field
 
       user_profile = cu.user.user_profile
-      user_profile.custom_fields[custom_field.id.to_s] if user_profile.custom_fields
+      user_profile.custom_fields[custom_field.id] if user_profile.custom_fields
     end
   end
 end

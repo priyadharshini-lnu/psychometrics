@@ -63,7 +63,7 @@ RSpec.describe EndUser::IihtUserAssessmentsController, type: :controller do
     let(:request_params) { { campaign_id: campaign.id, assessment_id: user_assessment.assessment_id, jwt: jwt_token } }
 
     it 'calls Iiht::SaveScoresJob, marks user_assessment as completed and redirects to assessment complete path' do
-      expect(::Iiht::SaveScoresJob).to receive(:perform_later).with(user_assessment)
+      expect(Iiht::SaveScoresJob).to receive(:perform_later).with(user_assessment)
       get :redirect, params: request_params
 
       expect(user_assessment.reload.completed?).to eq(true)

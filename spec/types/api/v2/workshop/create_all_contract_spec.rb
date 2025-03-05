@@ -54,14 +54,14 @@ RSpec.describe Api::V2::Workshop::CreateAllContract, type: :contract do
       response = described_class.new.call(params)
 
       expect(
-        response.errors.to_h.dig(:data, :attributes, :workshops, 0, :workshop_resources, 0, :name)
+        response.errors.to_hash.dig(:data, :attributes, :workshops, 0, :workshop_resources, 0, :name)
       ).to include('can\'t be blank')
     end
 
     it 'does not add errors for valid resource names' do
       response = described_class.new.call(params)
 
-      expect(response.errors.to_h.dig(:data, :attributes, :workshops, 0, :workshop_resources, 0, :name)).to be_nil
+      expect(response.errors.to_hash.dig(:data, :attributes, :workshops, 0, :workshop_resources, 0, :name)).to be_nil
     end
   end
 
@@ -70,16 +70,16 @@ RSpec.describe Api::V2::Workshop::CreateAllContract, type: :contract do
 
     it 'validates the format of resource URLs' do
       expect(
-        subject.errors.to_h.dig(:data, :attributes, :workshops, 1, :workshop_resources, 1, :url)
+        subject.errors.to_hash.dig(:data, :attributes, :workshops, 1, :workshop_resources, 1, :url)
       ).to include(I18n.t('activerecord.errors.messages.invalid_http_url'))
     end
 
     it 'does not add errors for valid resource URLs' do
-      expect(subject.errors.to_h.dig(:data, :attributes, :workshops, 0, :workshop_resources, 0, :url)).to be_nil
+      expect(subject.errors.to_hash.dig(:data, :attributes, :workshops, 0, :workshop_resources, 0, :url)).to be_nil
     end
 
     it 'does not add errors for valid workshops' do
-      expect(subject.errors.to_h.dig(:data, :attributes, :workshops, 0)).to be_nil
+      expect(subject.errors.to_hash.dig(:data, :attributes, :workshops, 0)).to be_nil
     end
   end
 end

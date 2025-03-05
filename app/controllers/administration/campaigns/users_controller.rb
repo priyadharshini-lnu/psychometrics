@@ -69,7 +69,7 @@ module Administration
         audit! :export_completion_status, campaign, campaign: campaign
         AdminJob.call(
           :completion_status_export,
-          { campaign_id: campaign.id },
+          { campaign_id: campaign.id, include_inactive_users: include_inactive_users },
           current_user
         )
         head :ok
@@ -79,7 +79,7 @@ module Administration
         audit! :export_compact_completion_status, campaign, campaign: campaign
         AdminJob.call(
           :compact_completion_status_export,
-          { campaign_id: campaign.id },
+          { campaign_id: campaign.id, include_inactive_users: include_inactive_users },
           current_user
         )
         head :ok
@@ -162,7 +162,7 @@ module Administration
                 }
               ).serialize(user)
             end
-            on(:insufficient_license) do |errors|
+            on(:insufficient_license, :new_assessment_response_not_allowed) do |errors|
               return render json: { errors: errors.is_a?(String) ? { base: errors } : errors },
                             status: 422
             end
@@ -264,6 +264,10 @@ module Administration
           campaign_id: campaign.id,
           policy_class: Campaigns::UserPolicy
         )
+      end
+
+      def include_inactive_users
+        params[:include_inactive_users] == 'true'
       end
 
       def resource_class

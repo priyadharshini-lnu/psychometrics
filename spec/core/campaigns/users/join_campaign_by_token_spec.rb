@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Campaigns::Users::JoinCampaignByToken do
   let!(:current_user) { create(:user, :with_project_membership) }
   let!(:campaign) { create(:campaign, project: current_user.project) }
-  let!(:token) { ::Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: current_user.id }) }
+  let!(:token) { Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: current_user.id }) }
 
   before(:each) do
     allow(Licenses::Use).to receive(:call!)

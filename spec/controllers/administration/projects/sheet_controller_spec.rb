@@ -31,7 +31,7 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
 
       expect(sheet.reload.sheet_columns.map(&:name)).to eq(%w[Email test])
       last_id = sheet.reload.sheet_columns.last.id
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq([
         { 'id' => column1.id, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
           'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
@@ -46,7 +46,7 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
         column: { name: 'E' * 65, type: 'WrongType', accessor_access: true, dashboard_use: true, visible_in_list: true }
       }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({ 'errors' => { 'name' => ['is too long (maximum is 64 characters)'],
                                                     'column_type' => ['is not included in the list'] } })
     end
@@ -64,7 +64,7 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
 
       expect(column1.reload.accessor_access).to eq(false)
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq([
         { 'id' => column1.id, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => false,
           'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 }

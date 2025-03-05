@@ -7,7 +7,7 @@ module Workshops
         broadcast(:invalid) unless workshop_invited_subject.rejectable?
 
         WorkshopInvitedSubject.transaction do
-          workshop_invited_subject.public_send("#{status}!")
+          workshop_invited_subject.public_send(:"#{status}!")
           create_workshop_invite_log(status)
         end
 
