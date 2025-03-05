@@ -48,7 +48,6 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
   currentUser,
 }) => {
   const { campaignId } = useParams() as Params
-  const isThreesixty = location.pathname.includes('threesixty_campaign')
   const {
     data, meta, createResource, fetch, isLoading, changePage,
     currentPage, pageSize, updateResource, removeResource, requests,
@@ -66,11 +65,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
     },
   )
   useEffect(() => {
-    fetch({
-      apiConfig: {
-        query: { is_threesixty: isThreesixty },
-      },
-    })
+    fetch()
   }, [])
   const tableLoading = isLoading('fetch')
 
