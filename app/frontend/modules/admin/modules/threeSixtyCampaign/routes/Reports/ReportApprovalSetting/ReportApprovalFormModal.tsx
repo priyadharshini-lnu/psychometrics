@@ -137,6 +137,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             items={[{
               key: '1',
               label: 'Settings',
+              forceRender: true,
               children: (
                 <Space direction="vertical" size="middle">
                   <Space align="center">
