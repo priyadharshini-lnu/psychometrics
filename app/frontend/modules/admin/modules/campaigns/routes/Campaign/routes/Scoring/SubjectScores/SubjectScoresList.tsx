@@ -203,7 +203,11 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
       collectionAction({
         action: 'change_finalized_campaign_score_bulk',
         method: 'post',
-        body: { userIds: selectedKeys, finalized: true },
+        body: {
+          userIds: isAllSelected ? excludedKeys : selectedKeys,
+          finalized: true,
+          exclude: isAllSelected,
+        },
         responseType: t.literal('ok'),
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
