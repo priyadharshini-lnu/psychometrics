@@ -1383,6 +1383,7 @@ as: :simulation_progress_notification
               get :search_campaign
               get :search_report
               get :search_user
+              get :metadata_for_filters
             end
           end
           resources :user_report_events, only: %i[index] do
