@@ -10,7 +10,7 @@ class UserReportPolicy < BasePolicy
   end
 
   def update_status?
-    manager_approves_reports? && manager?
+    manager_approves_reports? && manager? && @record.approved?
   end
 
   private
