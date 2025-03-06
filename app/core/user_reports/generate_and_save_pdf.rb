@@ -36,7 +36,9 @@ module UserReports
       data = UserReports::GeneratePdf.call!(
         user_report,
         current_user,
-        options.merge(async: true, admin_job_record_id: job_record&.id)
+        options.reverse_merge(
+          lang: user_report.effective_default_language
+        ).merge(async: true, admin_job_record_id: job_record&.id)
       )
       return unless data[:file_path]
 
