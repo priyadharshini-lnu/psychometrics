@@ -31,7 +31,7 @@ class UserReport < ApplicationRecord
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
-  delegate :external_report?, :provider_custom_upload?, to: :report
+  delegate :external_report?, :provider_custom_upload?, :hogan?, to: :report
   delegate :external_package_id, to: :report_families_report, allow_nil: true
 
   # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts

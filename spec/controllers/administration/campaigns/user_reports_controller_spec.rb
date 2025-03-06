@@ -601,7 +601,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     expect(report_response.keys).to contain_exactly(
       *%w[id permissions report_id name user_access report_family_name
           status internal report_url custom_upload report_provider
-          comments_count edits_count]
+          comments_count edits_count hogan_participant_id]
     )
     expect(report_response).to include({
       'report_id' => report.id,
@@ -612,7 +612,8 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       'status' => 'not_prepared',
       'internal' => true,
       'custom_upload' => false,
-      'report_url' => nil
+      'report_url' => nil,
+      'hogan_participant_id' => nil
     })
   end
 
@@ -622,7 +623,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         id permissions assessment_id name category norm_name status norms norm_id
         additional_time is_expired is_external has_external_norm schedule_time require_scheduling
         mettl_schedule_name mettl_schedule_record_id dimension_id simulation_content_variation_id
-        simulation_content_variations simuation_time_extension users_result_id
+        simulation_content_variations hogan_participant_id simuation_time_extension users_result_id
       ]
     )
     expect(assessment_response).to include({

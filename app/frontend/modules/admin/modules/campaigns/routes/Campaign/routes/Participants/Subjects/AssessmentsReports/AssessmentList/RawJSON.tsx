@@ -101,7 +101,7 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
     <>
       <Descriptions
         layout="horizontal"
-        rootClassName="w-100 mb-6 mt-6"
+        rootClassName="w-100"
         bordered
         column={1}
       >

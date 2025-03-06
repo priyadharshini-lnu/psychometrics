@@ -10,7 +10,9 @@ import { PaginationContext } from './PaginationContext'
 import styles from '../styles.less'
 import { useModulePagination } from '~/hooks/useModulePagination'
 
-const Question = ({ model, questions, insertPaginationPage }) => {
+const Question = ({
+  model, questions, insertPaginationPage, preview,
+}) => {
   if (!model.props.filter) return null
   const question = _.find(questions, q => q.id === model.props.questionId)
   if (!question) return null
@@ -18,7 +20,7 @@ const Question = ({ model, questions, insertPaginationPage }) => {
   const styleProp = { fontSize, fontFamily, color: fontColor }
 
   const { paginationContext } = useModulePagination(
-    model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage,
+    model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage, preview,
   )
 
   const filters = paginationContext?.filterId?.length ? [...paginationContext?.filterId] : model.props.filter

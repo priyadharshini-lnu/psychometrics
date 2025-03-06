@@ -20,6 +20,7 @@ export default interface UserAssessment {
   simulationContentVariations?: SimulationContentVariation[]
   simulationContentVariationId: string | null
   simuationTimeExtension: number | null
+  hoganParticipantId: string | null
   permissions: {
     updateAdditionalTime: boolean
     resetResults: boolean
