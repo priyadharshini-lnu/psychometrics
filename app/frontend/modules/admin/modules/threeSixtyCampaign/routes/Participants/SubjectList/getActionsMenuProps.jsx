@@ -161,7 +161,6 @@ export const getActionsMenuProps = ({
     permissions.viewReport && {
       key: 'view_report',
       label: (
-        //
         <a href={`/admin/projects/${projectId}/new_campaigns/${currentCampaignId}/user_reports/${userReportId}`}>
           {I18n.t('threesixty.participant_list.actions.view_report')}
         </a>),

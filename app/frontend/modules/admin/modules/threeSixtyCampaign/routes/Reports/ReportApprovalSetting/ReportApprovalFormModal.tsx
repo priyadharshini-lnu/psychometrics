@@ -12,6 +12,7 @@ import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 
 const { Option } = Select
+const { I18n } = window
 
 interface Props {
   reportApprovalSettings: AdditionRelationshipAttribute<ReportApprovalSettings>
@@ -149,7 +150,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch />
                     </Form.Item>
                     <div className="weight-600">
-                      Approvers Not Required
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_not_required')}
                     </div>
                   </Space>
                   {!form.getFieldValue('approversNotRequired') && (
@@ -163,7 +164,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                           <Switch />
                         </Form.Item>
                         <div className="weight-600">
-                          Approvers Can Edit
+                          {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_can_edit')}
                         </div>
                       </Space>
                     </>
@@ -177,7 +178,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch />
                     </Form.Item>
                     <div className="weight-600">
-                      Do Not Send Notifications
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.do_not_send_notifications')}
                     </div>
                   </Space>
                 </Space>),
