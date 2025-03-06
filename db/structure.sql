@@ -1224,7 +1224,8 @@ CREATE TABLE public.campaign_options (
     campaign_scoring_variables text,
     proctoring_type integer DEFAULT 0 NOT NULL,
     show_watermark boolean DEFAULT false,
-    watermark_content character varying DEFAULT ''::character varying
+    watermark_content character varying DEFAULT ''::character varying,
+    workshop_invite_requires_prework_completion boolean DEFAULT false
 );
 
 
@@ -15306,6 +15307,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250304060832'),
 ('20250226084133'),
 ('20250221073030'),
 ('20250224075920'),

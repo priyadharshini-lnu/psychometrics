@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    module Threesixty
+    module ThreesixtyCampaigns
       class UsersController < BaseController
         def assessments
           evaluations = user_assessments.map do |assessment|

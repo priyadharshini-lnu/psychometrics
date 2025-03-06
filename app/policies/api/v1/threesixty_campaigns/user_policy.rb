@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    module Threesixty
+    module ThreesixtyCampaigns
       class UserPolicy < ::Api::Administration::BasePolicy
         def assessments?
           has_permission?(:campaigns, :manage)

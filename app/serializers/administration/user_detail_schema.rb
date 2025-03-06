@@ -48,6 +48,7 @@ module Administration
               required(:proctoring_type).filled(:str?)
               required(:proctoring_trial).filled(:bool?)
               required(:workshop_booking_requires_prework_completion).filled(:bool?)
+              required(:workshop_invite_requires_prework_completion).filled(:bool?)
               required(:campaign_scoring_variables).maybe(:str?)
               optional(:proctoring_type).value { str? | int? }
               optional(:show_watermark).filled(:bool?)

@@ -858,6 +858,7 @@ en:
           enable: Enable instructions
           save: Save Instructions
         prework_required: Do not allow center booking if preworks are not completed
+        prework_required_for_invite: Send invite email only when Pre-Work is completed
         proctoring:
           enable: Enable Proctoring
           identification: Identification

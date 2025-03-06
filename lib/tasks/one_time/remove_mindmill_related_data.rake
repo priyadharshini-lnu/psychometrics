@@ -9,7 +9,8 @@ namespace :one_time do
     assigns_table_exists = conn.data_source_exists?('assigns')
     assigns_reports_table_exists = conn.data_source_exists?('assigns_reports')
 
-    reports = Report.where(provider: :mindmill).includes(:user_reports, :campaign_reports)
+    report_ids = conn.select_values('SELECT id FROM reports WHERE provider = 1')
+    reports = Report.where(id: report_ids).includes(:user_reports, :campaign_reports)
 
     if reports.exists?
       puts "Found #{reports.count} Mindmill reports"
@@ -20,6 +21,7 @@ namespace :one_time do
 
           puts "Destroying report ID: #{report.id}"
           puts 'Destroying associated records...'
+
           report.user_reports.destroy_all
           report.campaign_reports.destroy_all
 
@@ -39,40 +41,39 @@ namespace :one_time do
       puts 'No Mindmill reports found.'
     end
 
-    assessments = Assessment.mindmill.includes(
-      :users_results, :user_assessments, :campaign_assessments,
-      :assessor_campaign_assessments, :assessments_reports,
-      :assessments_clients, :campaign_factors
-    )
+    assessment_ids = conn.select_values("SELECT id FROM assessments WHERE type = 'Assessments::Mindmill'")
 
-    if assessments.exists?
-      puts "Found #{assessments.count} Mindmill assessments"
+    if assessment_ids.any?
+      puts "Found #{assessment_ids.count} Mindmill assessments"
 
-      assessments.find_each do |assessment|
+      assessment_ids.each do |assessment_id|
         ActiveRecord::Base.transaction do
-          log_counts(assessment, assigns_table_exists, assigns_reports_table_exists)
+          # log_counts(assessment, assigns_table_exists, assigns_reports_table_exists)
           next if dry_run
 
-          puts "Destroying assessment ID: #{assessment.id}"
+          puts "Destroying assessment ID: #{assessment_id}"
 
-          puts 'Destroying associated records...'
-          assessment.users_results.destroy_all
-          assessment.user_assessments.destroy_all
-          assessment.campaign_assessments.destroy_all
-          assessment.assessor_campaign_assessments.destroy_all
-          assessment.assessments_reports.destroy_all
-          assessment.assessments_clients.destroy_all
-          assessment.campaign_factors.destroy_all
+          users_result_ids = conn.select_values("SELECT users_result_id FROM user_assessments
+          WHERE assessment_id = #{assessment_id}")
+          if users_result_ids.any?
+            conn.execute("DELETE FROM users_results WHERE id IN (#{users_result_ids.join(',')})")
+          end
+
+          conn.execute("DELETE FROM user_assessments WHERE assessment_id = #{assessment_id}")
+          conn.execute("DELETE FROM campaign_assessments WHERE assessment_id = #{assessment_id}")
+          conn.execute("DELETE FROM campaign_assessments WHERE assessor_form_id = #{assessment_id}")
+          conn.execute("DELETE FROM assessments_reports WHERE assessment_id = #{assessment_id}")
+          conn.execute("DELETE FROM assessments_clients WHERE assessment_id = #{assessment_id}")
+          conn.execute("DELETE FROM campaign_factors WHERE assessment_id = #{assessment_id}")
 
           if assigns_table_exists
             puts 'Destroying assigns records...'
-            conn.execute("DELETE FROM assigns WHERE assessment_id = #{assessment.id}")
+            conn.execute("DELETE FROM assigns WHERE assessment_id = #{assessment_id}")
           end
 
-          puts 'Destroying assessment...'
-          Assessment.without_auditing { assessment.destroy! }
+          conn.execute("DELETE FROM assessments WHERE id = #{assessment_id}")
         rescue StandardError => e
-          puts "Error deleting assessment #{assessment.id}: #{e.message}"
+          puts "Error deleting assessment #{assessment_id}: #{e.message}"
           raise ActiveRecord::Rollback
         end
       end

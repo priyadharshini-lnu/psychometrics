@@ -89,6 +89,16 @@ const CampaignOptions: React.FC<Props> = ({
     ),
   })
 
+  const parametersForWorkshopInviteRequiresPreworkCompletionField = () => ({
+    value: options?.workshopInviteRequiresPreworkCompletion || false,
+    onChange: (value: boolean) => update(
+      parsedProjectId, parsedCampaignId, {
+        ...options,
+        workshopInviteRequiresPreworkCompletion: value,
+      },
+    ),
+  })
+
   const parametersForWorkshopBookingRequiresPreworkCompletionField = () => ({
     value: (options || {}).workshopBookingRequiresPreworkCompletion,
     onChange: (value: boolean) => update(
@@ -320,7 +330,10 @@ const CampaignOptions: React.FC<Props> = ({
           label={I18n.t('administration.campaigns.options.prework_required')}
           {...parametersForWorkshopBookingRequiresPreworkCompletionField()}
         />
-
+        <Option
+          label={I18n.t('administration.campaigns.options.prework_required_for_invite')}
+          {...parametersForWorkshopInviteRequiresPreworkCompletionField()}
+        />
         <Option
           label={I18n.t('administration.campaigns.options.show_watermark')}
           {...parametersForShowWatermark()}

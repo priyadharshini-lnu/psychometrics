@@ -88,7 +88,8 @@ module Api
         campaign: campaign,
         user_ids: params[:data][:attributes][:user_ids],
         current_user: current_user,
-        campaign_score_finalized: params[:data][:attributes][:finalized]
+        campaign_score_finalized: params[:data][:attributes][:finalized],
+        exclude: params[:data][:attributes][:exclude]
       )
 
       render json: :ok

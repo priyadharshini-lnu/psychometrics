@@ -1,6 +1,7 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
+require:
   - ./lib/custom_rubocops/avoid_direct_use_of_mail_method.rb
   - ./lib/custom_rubocops/avoid_using_memoization_in_serializers.rb
   - ./lib/custom_rubocops/avoid_active_record_in_migrations.rb
@@ -20,7 +21,15 @@ AllCops:
     - db/migrate/20240808093057_add_score_calculated_to_user_assessment.rb
     - db/migrate/20240808093057_add_score_calculated_to_user_assessment.rb
     - db/migrate/20240806160845_add_show_watermark_to_campaign_options.rb
-
+    # Exclude existing migrations before rubocop upgrade
+    - db/migrate/20241007113728_add_columns_to_dashboard.rb
+    - db/migrate/20241126112602_add_logo_alt_text_to_design_settings.rb
+    - db/migrate/20250102114258_add_default_language_and_available_languages_to_campaign_reports.rb
+    - db/migrate/20250124101641_add_course_start_date_and_course_end_date_to_development_actions.rb
+    - db/migrate/20250127090320_add_columns_to_development_actions.rb
+    - db/migrate/20250207113529_add_consumer_to_license_usages.rb
+    - db/migrate/20250224075920_add_columns_to_saml_setting.rb
+    - db/migrate/20250226084133_add_qc_level_settings_to_report_approval_settings.rb
 
   UseCache: true
   CacheRootDirectory: tmp

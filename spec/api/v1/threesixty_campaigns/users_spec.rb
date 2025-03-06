@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'swagger_helper'
 
-describe Api::V1::Threesixty::UsersController, swagger_doc: 'v1/swagger.json', type: :request do
+describe Api::V1::ThreesixtyCampaigns::UsersController, swagger_doc: 'v1/swagger.json', type: :request do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let!(:campaign) { create(:campaign, :threesixty, project: project) }
@@ -41,7 +41,7 @@ describe Api::V1::Threesixty::UsersController, swagger_doc: 'v1/swagger.json', t
     create(:api_key, token: 'token', key: 'key', user: membership.user)
   end
 
-  path '/threesixty/projects/{project_id}/campaigns/{campaign_id}/users/{user_id}/assessments' do
+  path '/projects/{project_id}/threesixty_campaigns/{campaign_id}/users/{user_id}/assessments' do
     get 'List 360 evaluations' do
       operationId 'getThreesixtyEvaluations'
       description 'Fetches 360 evaluations for an evaluator'
@@ -106,7 +106,7 @@ describe Api::V1::Threesixty::UsersController, swagger_doc: 'v1/swagger.json', t
     end
   end
 
-  path '/threesixty/projects/{project_id}/campaigns/{campaign_id}/users/{user_id}/scores' do
+  path '/projects/{project_id}/threesixty_campaigns/{campaign_id}/users/{user_id}/scores' do
     get 'Fetch 360 scores for a user' do
       operationId 'getThreesixtyScores'
       description 'Fetches 360 scores and gaps for a specific user in a campaign'
