@@ -4,7 +4,7 @@ module Administration
   class UserReportSerializer < Panko::Serializer
     attributes :id, :permissions, :report_id, :name, :user_access,
                :report_family_name, :status, :internal, :report_url,
-               :report_provider, :custom_upload, :comments_count, :edits_count
+               :report_provider, :custom_upload, :comments_count, :edits_count,
                :hogan_participant_id
 
     delegate :name, to: :report
