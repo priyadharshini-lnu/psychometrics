@@ -3493,6 +3493,8 @@ en:
           title: Participants
         report:
           menu:
+            report_approval:
+              title: Report Approval Settings
             report_options:
               title: Report Options
           title: Report

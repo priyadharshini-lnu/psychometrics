@@ -20,6 +20,10 @@ module Threesixty
       participants.includes(:relationship, :subject, :evaluator).where(campaign_id: campaign_id)
     end
 
+    def user_report
+      user.user_reports.find_by(campaign_id: campaign_id)
+    end
+
     # Removing report here to generate a new report on completion because
     # it's possible that a report was generated previously by admin and few evaluations are done after that.
     def remove_report_pdf

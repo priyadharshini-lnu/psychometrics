@@ -1233,6 +1233,7 @@ as: :simulation_progress_notification
               end
             end
             jsonapi_resources :threesixty_campaigns do
+              jsonapi_resource :report_approval_setting, only: %i[index create update destroy]
               post :create_campaign, on: :collection
             end
           end

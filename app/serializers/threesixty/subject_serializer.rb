@@ -2,7 +2,7 @@
 
 module Threesixty
   class SubjectSerializer < Panko::Serializer
-    attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions
+    attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions, :user_report_id
 
     has_one :user, serializer: UserSerializer
 
@@ -13,6 +13,10 @@ module Threesixty
         counters,
         context[:subject_evaluator_counters]&.dig(object.user_id, :all) || {}
       )
+    end
+
+    def user_report_id
+      object.user_report&.id
     end
 
     def report_status

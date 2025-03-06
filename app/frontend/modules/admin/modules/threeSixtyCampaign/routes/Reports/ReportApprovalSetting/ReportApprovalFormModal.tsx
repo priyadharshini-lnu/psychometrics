@@ -4,7 +4,6 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Report, ReportTR } from '~/modules/admin/modules/campaigns/core/reportList'
 import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -20,6 +19,7 @@ interface Props {
   addReportApprovalSetting: CreateResource<ReportApprovalSettings>
   updateReportApprovalSetting: UpdateResource<ReportApprovalSettings>
   campaignId: string
+  reportId: number
   close(): void
 }
 
@@ -46,12 +46,10 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
   addReportApprovalSetting,
   updateReportApprovalSetting,
   campaignId,
+  reportId,
   close,
 }) => {
   const [form] = Form.useForm()
-  const {
-    data: reports, fetch: fetchReports, isLoading: isReportsLoading,
-  } = useResources<Report>('reports', { responseType: ReportTR })
   const {
     data: qcUsers, fetch: fetchQcUsers, isLoading: isQcUsersLoading,
   } = useResources<User>('users', { responseType: UserTR })
@@ -62,6 +60,34 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     data: notificationUsers, fetch: fetchNotificationUsers, isLoading: isNotificationUsersLoading,
   } = useResources<User>('users', { responseType: UserTR })
 
+  const fetchQcDebounce = useCallback(_.debounce((value) => {
+    fetchQcUsers({
+      apiConfig: {
+        filter: { with_access_to_campaign: campaignId, search_query: value },
+        query: { is_threesixty: true },
+      },
+    })
+  }, 300), [])
+
+  const fetchApproverDebounce = useCallback(_.debounce((value) => {
+    fetchApproverUsers({
+      apiConfig: {
+        filter: { with_access_to_campaign: campaignId, search_query: value },
+        query: { is_threesixty: true },
+      },
+    })
+  }, 300), [])
+
+  const fetchNotificationDebounce = useCallback(_.debounce((value) => {
+    fetchNotificationUsers({
+      apiConfig: {
+        filter: { with_access_to_campaign: campaignId, search_query: value },
+        query: { is_threesixty: true },
+      },
+    })
+  }, 300), [])
+
+
   const reportApprovalSettingsFormData = reportApprovalSettings ? {
     ...reportApprovalSettings,
     qcUserIds: getUserIds(reportApprovalSettings.qcs),
@@ -69,36 +95,11 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     approvalNotificationUserIds: getUserIds(reportApprovalSettings.approvalNotificationUsers),
   } : reportApprovalSettings
 
-  const reportOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'report', reports)
   const qcUserOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'qcs', qcUsers)
   const approversOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'approvers', approverUsers)
   const notificationUserOpts = getOptionsFromApprovalSettings(
     reportApprovalSettings, 'approvalNotificationUsers', notificationUsers,
   )
-
-  const fetchReportDebounce = useCallback(_.debounce((value) => {
-    fetchReports({
-      apiConfig: { filter: { name_cont: value } },
-    })
-  }, 300), [])
-
-  const fetchQcDebounce = useCallback(_.debounce((value) => {
-    fetchQcUsers({
-      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-    })
-  }, 300), [])
-
-  const fetchApproverDebounce = useCallback(_.debounce((value) => {
-    fetchApproverUsers({
-      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-    })
-  }, 300), [])
-
-  const fetchNotificationDebounce = useCallback(_.debounce((value) => {
-    fetchNotificationUsers({
-      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-    })
-  }, 300), [])
 
   return (
     <ResourceFormModal
@@ -120,40 +121,24 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
 
         return {
           ...formValuesObj,
-          approvalNotificationUserIds: (approvalNotificationUserIds || []).map(stringToNumber),
-          approverUserIds: (approverUserIds || []).map(stringToNumber),
-          qcUserIds: qcUserIds.map(stringToNumber),
           approversNotRequired: formValuesObj.approversNotRequired || false,
           approversCanEdit: formValuesObj.approversCanEdit || false,
           doNotSendNotifications: formValuesObj.doNotSendNotifications || false,
+          approvalNotificationUserIds: (approvalNotificationUserIds || []).map(stringToNumber),
+          approverUserIds: (approverUserIds || []).map(stringToNumber),
+          qcUserIds: qcUserIds.map(stringToNumber),
+          reportId,
         }
       }}
     >
       {() => (
         <>
-          <Form.Item
-            name="reportId"
-            label="Report"
-            rules={[{ required: true }]}
-          >
-            <Select
-              showSearch
-              onSearch={fetchReportDebounce}
-              notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
-            >
-              {reportOpts.map(({ id, name }) => (
-                <Option key={id} value={id}>
-                  {name}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
           <Collapse
             className="mb24"
             items={[{
               key: '1',
               label: 'Settings',
+              forceRender: true,
               children: (
                 <Space direction="vertical" size="middle">
                   <Space align="center">
