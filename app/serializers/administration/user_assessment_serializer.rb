@@ -5,7 +5,7 @@ module Administration
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
                :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id, :simulation_content_variations,
-               :simulation_content_variation_id, :simuation_time_extension, :users_result_id
+               :simulation_content_variation_id, :simuation_time_extension, :users_result_id, :hogan_participant_id
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -35,6 +35,12 @@ module Administration
       return nil unless object.simulation?
 
       object.simulation_user_assessment&.time_extension
+    end
+
+    def hogan_participant_id
+      return nil unless object.hogan?
+
+      object.hogan_credential&.participant_id
     end
 
     def is_expired

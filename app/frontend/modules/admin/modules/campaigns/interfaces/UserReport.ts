@@ -5,6 +5,7 @@ export default interface UserReport {
   userAccess: boolean
   reportFamilyName: string
   reportProvider: string
+  hoganParticipantId: string | null
   approvalStatus: 'not_ready' | 'pending_qc' | 'qc_in_progress' | 'qc_completed' | 'change_requested' | 'approved'
   permissions: {
     downloadReport: boolean

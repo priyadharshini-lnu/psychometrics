@@ -47,6 +47,7 @@ module Administration
         end
         required(:simulation_content_variation_id).maybe(:str?)
         required(:simuation_time_extension).maybe(:float?)
+        required(:hogan_participant_id).maybe(:str?)
       end
     end
   end
