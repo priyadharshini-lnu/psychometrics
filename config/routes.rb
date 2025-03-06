@@ -63,7 +63,6 @@ Rails.application.routes.draw do
 
   concern :sheet_row_management do
     collection do
-
       delete :bulk_delete
       put :import
       get :export

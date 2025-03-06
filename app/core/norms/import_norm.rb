@@ -14,8 +14,10 @@ module Norms
     end
 
     def call
-      create_norm
-      import_factors
+      transaction do
+        create_norm
+        import_factors
+      end
       broadcast :ok
     rescue ActiveRecord::RecordInvalid => e
       raise Errors::ImportError, "[#{e.record.model_name}] #{e.record.errors.full_messages[0]}"
@@ -23,8 +25,6 @@ module Norms
 
     def import_factors
       rows.each do |row|
-        row.each { |key, value| row[key] = Utility::String.remove_csv_injection_marker(value) }
-
         factor_name = row['Factors']
         break unless factor_name
 
@@ -41,17 +41,15 @@ module Norms
     end
 
     def import_factor_norms(factor, row)
-      FactorsNorm.transaction do
-        factor_norm = factor.factors_norms.find_or_initialize_by(norm_id: norm.id)
-        factor_norm.props = []
-        FactorsNorm::LEVELS.each do |level|
-          score_from = row[level]
-          score_to = row[(headers.index(level) + 1)]
+      factor_norm = factor.factors_norms.find_or_initialize_by(norm_id: norm.id)
+      factor_norm.props = []
+      FactorsNorm::LEVELS.each do |level|
+        score_from = row[level]
+        score_to = row[(headers.index(level) + 1)]
 
-          factor_norm.props << { level: level, score_from: score_from, score_to: score_to }
-        end
-        factor_norm.save!
+        factor_norm.props << { level: level, score_from: score_from, score_to: score_to }
       end
+      factor_norm.save!
     end
 
     def dimension
