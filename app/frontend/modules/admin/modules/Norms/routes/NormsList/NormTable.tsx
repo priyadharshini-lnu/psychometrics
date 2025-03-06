@@ -15,6 +15,7 @@ import { RemoveNormModal } from './RemoveNormModal'
 import { NormsFormModal } from './NormsFormModal'
 import CopyNomsFormModal from './CopyNormsFormModal'
 import NormFilter from './NormFilter'
+import { NormImportModal } from './NormImportModal'
 
 const { I18n } = window
 
@@ -22,6 +23,7 @@ const MODALS = {
   NormsFormModal,
   RemoveNormModal,
   CopyNomsFormModal,
+  NormImportModal,
 }
 
 const connecter = connect(
@@ -43,7 +45,10 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
 
   return (
     <>
-      <NormFilter openModal={() => openModal('NormsFormModal', { addNorm: createResource })} />
+      <NormFilter
+        openModal={() => openModal('NormsFormModal', { addNorm: createResource })}
+        openModalForImport={() => openModal('NormImportModal')}
+      />
       <Resource.Table pagination>
         <Resource.Column<Norm>
           title={I18n.t('common.column.id')}
