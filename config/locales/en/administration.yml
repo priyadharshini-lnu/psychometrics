@@ -124,6 +124,7 @@ en:
             report_options: Report Options
             reset_nominations: Reset Nominations
             view: View
+            view_factor_benchmark_scores: View Factor Benchmark Scores
             view_stats: View Stats
           clients:
             manage: Manage

@@ -39,6 +39,8 @@ module AllowedPermissions
       report_options
       manage_report_approvals
       view_stats
+      manage_factor_benchmark_scores
+      view_factor_benchmark_scores
     ],
     'campaign_factors' => %w[view manage],
     'messages' => %w[email instructions options],
@@ -107,6 +109,8 @@ module AllowedPermissions
       report_options
       manage_report_approvals
       view_stats
+      manage_factor_benchmark_scores
+      view_factor_benchmark_scores
     ],
     'campaign_factors' => %w[view manage],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
@@ -136,7 +140,7 @@ module AllowedPermissions
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
     'assessors' => %w[view manage],
-    'reports' => ['manage'],
+    'reports' => %w[view manage],
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
