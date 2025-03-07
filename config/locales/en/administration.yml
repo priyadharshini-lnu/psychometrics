@@ -2143,7 +2143,7 @@ en:
         inplace_title: Enter value
         title: Norm Editor
       import:
-        download_example_csv: Download Example csv
+        download_example_csv: Sample Norms CSV
         select_file_validation: Please select an owner and a file before submitting.
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: Norms import

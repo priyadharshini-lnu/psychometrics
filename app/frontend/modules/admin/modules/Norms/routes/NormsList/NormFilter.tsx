@@ -6,7 +6,12 @@ import { Norm } from '~/modules/admin/modules/client/core/norms'
 
 const { I18n } = window
 
-export const NormFilter: React.FC<{ openModal: () => void, openModalForImport: () => void }> = ({
+type Props = {
+  openModal: () => void,
+  openModalForImport: () => void 
+  }
+
+export const NormFilter: React.FC<Props> = ({
   openModal,
   openModalForImport,
 }) => {
