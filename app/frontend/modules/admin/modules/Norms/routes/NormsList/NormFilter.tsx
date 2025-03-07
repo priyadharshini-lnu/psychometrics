@@ -8,7 +8,7 @@ const { I18n } = window
 
 type Props = {
   openModal: () => void,
-  openModalForImport: () => void 
+  openModalForImport: () => void
   }
 
 export const NormFilter: React.FC<Props> = ({

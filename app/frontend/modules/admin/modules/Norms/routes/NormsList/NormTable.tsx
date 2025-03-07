@@ -40,13 +40,13 @@ type Props = PropsFromRedux
 const NormTable: React.FC<Props> = ({ openModal }) => {
   const { resource } = useResourceContext<Norm>()
   const {
-    getSortOrder, updateResource, removeResource, createResource, memberAction,
+    getSortOrder, updateResource, removeResource, memberAction,
   } = resource
 
   return (
     <>
       <NormFilter
-        openModal={() => openModal('NormsFormModal', { addNorm: createResource })}
+        openModal={() => openModal('NormsFormModal')}
         openModalForImport={() => openModal('NormImportModal')}
       />
       <Resource.Table pagination>
@@ -115,7 +115,6 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
               menu={
                     getActionMenuProps({
                       norm,
-                      updateResource,
                       removeResource,
                       openModal,
                       memberAction,
@@ -138,14 +137,13 @@ const ActiveSwitch: React.FC<{ norm: Norm, updateResource: UpdateResource<Norm> 
 )
 interface ActionMenuData {
     norm: Norm
-    updateResource: UpdateResource<Norm>
     removeResource: RemoveResource
     openModal: (modalName: string, modalProps: unknown) => void
     memberAction: MemberAction
 }
 
 const getActionMenuProps = ({
-  norm, updateResource, removeResource, openModal, memberAction,
+  norm, removeResource, openModal, memberAction,
 }: ActionMenuData): MenuProps => {
   const {
     id, name, meta: { permissions }, normType,
@@ -177,9 +175,7 @@ const getActionMenuProps = ({
 
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
-      return openModal('NormsFormModal', {
-        updateNorm: updateResource, norm,
-      })
+      return openModal('NormsFormModal', { norm })
     }
     if (key === 'remove') {
       return openModal('RemoveNormModal', {
