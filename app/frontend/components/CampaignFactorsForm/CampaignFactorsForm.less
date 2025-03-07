@@ -1,59 +1,32 @@
-.headerContainer {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-  padding: 0 12px;
-  border: 1px solid #ddd;
-  border-bottom: unset;
-  border-radius: 4px 4px 0 0;
-}
-
-.main {
-  max-height: 400px;
-  overflow: scroll;
-}
-
-.header {
-  display: flex;
-  padding: 8px;
-}
-
-.headerItem {
-  flex: 1;
-  font-weight: bold;
-}
-
-.columnContainer {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ddd;
-  border-radius: 0 0 4px 4px;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 12px;
-  gap: 12px  ;
-  &:nth-child(even){
-    background-color: #fcfafa;
-  }
-  &:last-child {
-    border-bottom: unset;
-  }
-}
-
-.formItem{
+.formItem {
   flex: 1;
   margin-bottom: unset;
 }
+
 .footer {
   display: flex;
   justify-content: space-between;
   padding-top: 8px;
 }
 
-.selectOptions{
+.selectOptions {
   z-index: 10000 !important;
+}
+
+.table {
+  border-radius: 12px;
+}
+
+.formItem {
+  margin-bottom: 0;
+}
+
+.fileInput {
+  padding: 12px;
+}
+
+.row {
+  margin-bottom: 16px;
+  justify-content: flex-end;
+  gap: 12px;
 }

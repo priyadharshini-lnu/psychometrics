@@ -6,7 +6,7 @@ module Assessments
     attribute :translations, Hash
 
     def attributes
-      super.select { |_, v| v.present? }
+      super.compact_blank
     end
   end
 end

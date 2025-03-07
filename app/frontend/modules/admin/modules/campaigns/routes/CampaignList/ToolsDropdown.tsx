@@ -20,9 +20,11 @@ const connector = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-type Props = PropsFromRedux
+type Props = PropsFromRedux & {
+  openModal(name: string, data: object): void
+}
 
-const ToolsDropdown: FC<Props> = ({ permissions }) => {
+const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
   const { projectId } = useParams() as { projectId: string }
   const { memberAction } = useResources('projects')
 
@@ -31,14 +33,21 @@ const ToolsDropdown: FC<Props> = ({ permissions }) => {
     key: 'workshopStatusExport',
     label: I18n.t('administration.project.tools.workshop_status_export'),
   })
+
+  const exportWorkshopStatus = (id, body): Promise<unknown> => memberAction({
+    id,
+    action: 'workshop_status_export',
+    body,
+    method: 'get',
+  })
+
+
   const handleMenuClick = ({ key }) => {
     if (key === 'workshopStatusExport') {
-      memberAction({
+      openModal('UserFilterModal', {
         id: projectId,
-        action: 'workshop_status_export',
-        method: 'get',
-      }).then(() => {
-        message.success(I18n.t('administration.project.tools.workshop_status_export_success'))
+        action: exportWorkshopStatus,
+        onSuccess: () => { message.success(I18n.t('administration.project.tools.workshop_status_export_success')) },
       })
     }
   }

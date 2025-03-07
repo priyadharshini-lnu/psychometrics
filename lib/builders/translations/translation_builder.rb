@@ -44,7 +44,7 @@ module Builders
       def filter_allowed_props
         filtered_props = {}
 
-        ALLOWED_TRANSLATION_PATHS.each do |_type, paths|
+        ALLOWED_TRANSLATION_PATHS.each_value do |paths|
           paths.each do |path|
             json_path = JsonPath.new(path)
             extracted_values = json_path.on(question_params)

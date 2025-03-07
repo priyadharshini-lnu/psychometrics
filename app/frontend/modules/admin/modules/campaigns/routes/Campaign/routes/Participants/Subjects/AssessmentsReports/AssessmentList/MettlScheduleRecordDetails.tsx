@@ -28,7 +28,7 @@ export const MettlScheduleRecordDetails: FC<Props> = ({
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
 }) => {
-  if (!assessment) {
+  if (!assessment || assessment.category !== 'mettl') {
     return null
   }
 

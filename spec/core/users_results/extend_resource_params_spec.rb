@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::ExtendResourceParams do
+describe UsersResults::ExtendResourceParams do
   let(:users_result) do
     create(:users_result,
            status: 'in_progress',
@@ -29,7 +29,7 @@ describe ::UsersResults::ExtendResourceParams do
 
   it 'question_ids exist' do
     allow(Time).to receive(:current).and_return(Time.zone.local(2019, 10, 8, 0, 1, 15))
-    expect(::UsersResults::ExtendResourceParams.call!(resource_params, [1, 2], user_assessment)).to eq(
+    expect(UsersResults::ExtendResourceParams.call!(resource_params, [1, 2], user_assessment)).to eq(
       'answers' => {
         '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 37_500,
                  'dirty' => false },
@@ -51,7 +51,7 @@ describe ::UsersResults::ExtendResourceParams do
   it 'question_ids exist and result is expired' do
     allow(Time).to receive(:current).and_return(Time.zone.local(2019, 10, 8, 0, 1, 15))
     users_result.user_assessment.update!(expiry_date: 1.minute.ago)
-    expect(::UsersResults::ExtendResourceParams.call!(resource_params, [1, 2], user_assessment)).to eq(
+    expect(UsersResults::ExtendResourceParams.call!(resource_params, [1, 2], user_assessment)).to eq(
       'answers' => {
         '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 37_500,
                  'dirty' => false },
@@ -73,7 +73,7 @@ describe ::UsersResults::ExtendResourceParams do
 
   it 'question_ids not exist' do
     allow(Time).to receive(:current).and_return(Time.zone.local(2019, 10, 8, 0, 1, 15))
-    expect(::UsersResults::ExtendResourceParams.call!(resource_params, nil, user_assessment)).to eq(
+    expect(UsersResults::ExtendResourceParams.call!(resource_params, nil, user_assessment)).to eq(
       'answers' => {
         '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 1234 },
         '2' => { 'answers' => [{ 'index' => 1, 'value' => 0 }], 'question_id' => 2, 'not_applicable' => nil },
@@ -87,7 +87,7 @@ describe ::UsersResults::ExtendResourceParams do
 
   it 'blank resource_params' do
     allow(Time).to receive(:current).and_return(Time.zone.local(2019, 10, 8, 0, 1, 15))
-    expect(::UsersResults::ExtendResourceParams.call!({}, nil, user_assessment)).to eq(
+    expect(UsersResults::ExtendResourceParams.call!({}, nil, user_assessment)).to eq(
       'last_activity_at' => Time.zone.local(2019, 10, 8, 0, 1, 15),
       status: nil
     )

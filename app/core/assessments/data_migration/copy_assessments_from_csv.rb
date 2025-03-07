@@ -24,7 +24,7 @@ module Assessments
 
       def call
         uri = URI(csv_url)
-        content = if uri.scheme == 'https' || uri.scheme == 'http'
+        content = if %w[https http].include?(uri.scheme)
                     fetch_remote_file(uri)
                   else
                     read_local_file(uri.path)

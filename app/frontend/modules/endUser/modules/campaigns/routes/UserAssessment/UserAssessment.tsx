@@ -5,8 +5,8 @@ import {
   Watermark, Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
@@ -92,7 +92,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
 
-  if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
+  if (isMobile) { progressBarProps = { type: 'circle', style: { width: '80vw' } } }
 
   const needsProctoring = proctoringEnabled && !prework && !isProctored()
   if (needsProctoring) {
@@ -124,34 +124,36 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
             {remainingCampaignTime && (
-            <CountdownTimer
-              prefix={(
-                <>
-                  {I18n.t('user_assessments.timer_title.campaign')}
-                  {': '}
-                  <ClockCircleOutlined />
-                </>
+              <CountdownTimer
+                shouldAnnounceRemainingTime
+                prefix={(
+                  <>
+                    {I18n.t('user_assessments.timer_title.campaign')}
+                    {': '}
+                    <ClockCircleOutlined />
+                  </>
               )}
-              notificationPoints={notificationDurations}
-              notificationTemplate={notificationMessage}
-              seconds={remainingCampaignTime}
-              onFinish={() => markAssessmentTimedOut(preview)}
-            />
+                notificationPoints={notificationDurations}
+                notificationTemplate={notificationMessage}
+                seconds={remainingCampaignTime}
+                onFinish={() => markAssessmentTimedOut(preview)}
+              />
             )}
             {remainingAssessmentTime && (
-            <CountdownTimer
-              prefix={(
-                <>
-                  {I18n.t('user_assessments.timer_title.assessment')}
-                  {': '}
-                  <ClockCircleOutlined />
-                </>
+              <CountdownTimer
+                shouldAnnounceRemainingTime
+                prefix={(
+                  <>
+                    {I18n.t('user_assessments.timer_title.assessment')}
+                    {': '}
+                    <ClockCircleOutlined />
+                  </>
             )}
-              notificationPoints={notificationDurations}
-              notificationTemplate={notificationMessage}
-              seconds={remainingAssessmentTime}
-              onFinish={() => markAssessmentTimedOut(preview)}
-            />
+                notificationPoints={notificationDurations}
+                notificationTemplate={notificationMessage}
+                seconds={remainingAssessmentTime}
+                onFinish={() => markAssessmentTimedOut(preview)}
+              />
             )}
           </Space>
         </Col>
@@ -161,10 +163,10 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             {availableTranslations
               && availableTranslations.length > 1
               && (
-              <LangDropdownWithChangeUrl
-                currentLocale={selectedLanguage.code}
-                locales={availableTranslations || []}
-              />
+                <LangDropdownWithChangeUrl
+                  currentLocale={selectedLanguage.code}
+                  locales={availableTranslations || []}
+                />
               )
             }
           </Space>
@@ -187,15 +189,15 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <Space>
                     {enableBackButton
                       && (
-                      <Button
-                        onClick={handleBackToAssessmentList}
-                        size="small"
-                        type="text"
-                        ghost
-                        aria-label={I18n.t('frontend.aria.back_to_tasks')}
-                      >
-                        <DirectionalNavigateBackIcon className={styles.backIcon} />
-                      </Button>
+                        <Button
+                          onClick={handleBackToAssessmentList}
+                          size="small"
+                          type="text"
+                          ghost
+                          aria-label={I18n.t('frontend.aria.back_to_tasks')}
+                        >
+                          <DirectionalNavigateBackIcon className={styles.backIcon} />
+                        </Button>
                       )}
                     <h1 className={styles.campaignDropdown}>
                       {assessment.name}
@@ -203,51 +205,51 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   </Space>
               )}
                 extra={type !== 'preview_block' && enableProgress && started && (
-                <Progress
-                  strokeColor="#fff"
-                  className={styles.progressStatus}
-                  key="3"
-                  percent={progress}
-                  aria-label={I18n.t('user_assessments.progress_label')}
-                  {...progressBarProps}
-                />
+                  <Progress
+                    strokeColor="#fff"
+                    className={styles.progressStatus}
+                    key="3"
+                    percent={progress}
+                    aria-label={I18n.t('user_assessments.progress_label')}
+                    {...progressBarProps}
+                  />
                 )}
               />
               <div className={styles.assessmentContainer}>
                 {showInvalidSession && (
-                <Modal
-                  title={I18n.t('errors.invalid_session_title')}
-                  open={showInvalidSession}
-                  cancelText={I18n.t('common.actions.close')}
-                  okText={I18n.t('common.actions.back_to_dashboard')}
-                  closable={false}
-                  maskClosable={false}
-                  onCancel={() => {
-                    setShowInvalidSession(false)
-                  }}
-                  onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
-                  centered
-                >
-                  {I18n.t('assessments.page.invalid_session.description')}
-                </Modal>
+                  <Modal
+                    title={I18n.t('errors.invalid_session_title')}
+                    open={showInvalidSession}
+                    cancelText={I18n.t('common.actions.close')}
+                    okText={I18n.t('common.actions.back_to_dashboard')}
+                    closable={false}
+                    maskClosable={false}
+                    onCancel={() => {
+                      setShowInvalidSession(false)
+                    }}
+                    onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
+                    centered
+                  >
+                    {I18n.t('assessments.page.invalid_session.description')}
+                  </Modal>
                 )}
                 {loaded && !error && (
-                <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-                  <PassAssessment
-                    id="pass_assessment"
-                    type="pass_assessment"
-                    initialized={initialized}
-                    data={assessment}
-                    result={results}
-                    locales={translations}
-                    dashboardUrl={`/assessment_completed/${campaignId}`}
-                    resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                    selectedLocale={selectedLanguage && selectedLanguage.code}
-                    rstore={store}
-                    valuationSessionId={evaluationSessionId}
-                    renderedByEnduser
-                  />
-                </ResourcesTabs>
+                  <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                    <PassAssessment
+                      id="pass_assessment"
+                      type="pass_assessment"
+                      initialized={initialized}
+                      data={assessment}
+                      result={results}
+                      locales={translations}
+                      dashboardUrl={`/assessment_completed/${campaignId}`}
+                      resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                      selectedLocale={selectedLanguage && selectedLanguage.code}
+                      rstore={store}
+                      valuationSessionId={evaluationSessionId}
+                      renderedByEnduser
+                    />
+                  </ResourcesTabs>
                 )}
               </div>
             </>

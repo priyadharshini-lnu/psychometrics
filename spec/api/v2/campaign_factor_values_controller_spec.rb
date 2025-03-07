@@ -43,7 +43,7 @@ describe Api::V2::Administration::CampaignFactorValuesController, swagger_doc: '
            relationship: Relationship.assessor_relationship)
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(assessor) }
 

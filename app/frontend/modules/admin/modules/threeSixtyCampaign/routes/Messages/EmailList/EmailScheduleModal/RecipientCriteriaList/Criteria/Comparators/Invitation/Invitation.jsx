@@ -25,14 +25,14 @@ export default function Invitation ({
         <Select.Option key={INVITATION_VALUES.RECEIVED_AFTER}>Received After</Select.Option>
       </Select>
       {subField === INVITATION_VALUES.RECEIVED_AFTER && (
-      <DatePicker
-        showTime={{ format: 'hh:mm a' }}
-        format="MMMM Do YYYY, hh:mm a"
-        value={date}
-        onChange={date => update('value', date && date.format())}
-        className={styles.datePicker}
-        placeholder="Scheduled date"
-      />
+        <DatePicker
+          showTime={{ format: 'hh:mm a' }}
+          format="MMMM Do YYYY, hh:mm a"
+          value={date}
+          onChange={date => update('value', date && date.format())}
+          className={styles.datePicker}
+          placeholder="Scheduled date"
+        />
       )}
     </div>
   )

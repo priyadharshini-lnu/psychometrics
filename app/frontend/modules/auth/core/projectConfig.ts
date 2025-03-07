@@ -6,6 +6,7 @@ type BackgroundSize = 'cover' | 'contain'
 interface State {
   id?: number
   client_logo: null | string,
+  logo_alt_text: string,
   secondary_logo: null | string,
   background: null | string,
   background_overlay: null | string,
@@ -27,6 +28,7 @@ interface State {
 
 export const defaultState: State = {
   client_logo: null,
+  logo_alt_text: '',
   secondary_logo: null,
   background: null,
   background_overlay: null,

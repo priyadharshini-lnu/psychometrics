@@ -7,6 +7,8 @@ class OwnerPermissionValidator < ActiveModel::EachValidator
     project_id = resource_name == :communications ? record.project_id : value
     campaign_id = resource_name == :communications ? record.campaign_id : nil
 
+    return true if user.nil? || user.is?(:superadmin) || record.skip_owner_validation
+
     unless user.has_permission?(resource_name, :manage, project_id: project_id, campaign_id: campaign_id)
       record.errors.add(
         attribute,
@@ -14,7 +16,7 @@ class OwnerPermissionValidator < ActiveModel::EachValidator
           'administration.assessments.errors.owner_validation',
           resource_name: resource_name,
           permission: 'manage',
-          client_name: record.owner.name
+          client_name: record.owner&.name || 'TTE'
         )
       )
     end

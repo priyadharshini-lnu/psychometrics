@@ -29,7 +29,7 @@ describe EndUser::WorkshopInvitedSubjectsController, type: :controller do
     it 'returns invites' do
       get :invites, params: { type: 'invites' }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
       expect(parsed_response['list'].count).to eq(1)
@@ -44,7 +44,7 @@ describe EndUser::WorkshopInvitedSubjectsController, type: :controller do
 
       get :bookings, params: { type: 'bookings' }
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
       expect(parsed_response['list'].count).to eq(1)

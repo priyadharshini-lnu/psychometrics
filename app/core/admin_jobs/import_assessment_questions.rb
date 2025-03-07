@@ -18,7 +18,7 @@ module AdminJobs
     end
 
     def add_factor_scoring(question, row)
-      scoring =  row['scoring']
+      scoring = row['scoring']
       return if scoring.blank?
 
       scoring.each do |factor_name, comma_separated_scores|

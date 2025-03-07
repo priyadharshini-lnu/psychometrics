@@ -65,15 +65,15 @@ export default function StaticContent (props) {
         </div>
       </div>
       {opened && (
-      <div ref={editorRef} className={styles.editorContainer}>
-        <Editor
-          content={model.props.staticContent.value}
-          handleContentChange={handleContentChange}
-          className={styles.editor}
-          withPipedText
-        />
-        <PropertyPanel {...props} />
-      </div>
+        <div ref={editorRef} className={styles.editorContainer}>
+          <Editor
+            content={model.props.staticContent.value}
+            handleContentChange={handleContentChange}
+            className={styles.editor}
+            withPipedText
+          />
+          <PropertyPanel {...props} />
+        </div>
       )}
     </>
   )

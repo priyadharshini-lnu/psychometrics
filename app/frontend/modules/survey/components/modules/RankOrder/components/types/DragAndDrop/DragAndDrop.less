@@ -20,6 +20,7 @@
 .icon:global(.ant-btn) {
   font-size: 1.5em;
   color: var(--grey-border);
+
   &:focus-visible {
     outline-offset: 3px;
     outline: 4px solid var(--ant-primary-3) !important;
@@ -55,12 +56,14 @@
     }
 
     &:hover {
-        background: rgba(0, 0, 0, .05);
-      }
+      background: rgba(0, 0, 0, .05);
+    }
   }
+
   &.dragging {
     .item {
       background: white;
+      outline: 4px solid var(--ant-primary-3) !important;
     }
   }
 }

@@ -18,7 +18,7 @@ export const SimulationDetails: FC<Props> = ({
   campaignId,
   I18n,
 }) => {
-  if (!assessment) {
+  if (!assessment || assessment.category !== 'simulation') {
     return null
   }
 
@@ -40,7 +40,7 @@ export const SimulationDetails: FC<Props> = ({
     <>
       <Descriptions
         layout="horizontal"
-        rootClassName="mb-6 w-100"
+        rootClassName="w-100"
         bordered
         column={1}
       >

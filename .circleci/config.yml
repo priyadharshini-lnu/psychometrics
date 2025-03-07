@@ -4,7 +4,7 @@ executors:
   tte-executor-full:
     docker:
       - &docker_image
-        image: talententerprise/tte:ruby-3.1.6-node-18.16.1-lua-5.4
+        image: talententerprise/tte:ruby-3.4.2-node-18.16.1-lua-5.4
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -618,7 +618,7 @@ workflows:
             branches:
               only:
                 - develop
-                - update-ruby-3-1-6
+                - 1171475-ruby-upgrade
       - heroku_release:
           name: heroku_release_develop
           app-name: tte-lighthouse-develop

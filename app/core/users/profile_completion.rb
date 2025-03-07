@@ -22,7 +22,7 @@ module Users
 
       custom_fields = user.user_profile.custom_fields || {}
       required_custom_fields.each do |field|
-        filled += 1 if custom_fields[field.question_id.to_s].present?
+        filled += 1 if custom_fields[field.question_id].present?
       end
 
       broadcast :ok, (filled / total * 100).to_i

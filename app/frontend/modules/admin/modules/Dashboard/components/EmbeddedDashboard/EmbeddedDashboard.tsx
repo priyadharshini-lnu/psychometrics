@@ -51,13 +51,13 @@ export const EmbeddedDashboard: React.FC<Props> = ({
           title={dashboard.name}
           extra={[
             isPowerBiDashboard && (
-            <Button
-              ref={fitToWidthButtonRef}
-              type={fitToWidth ? 'primary' : 'default'}
-              ghost={fitToWidth}
-              onClick={() => setFitToWidth(!fitToWidth)}
-              icon={<ColumnWidthOutlined />}
-            />
+              <Button
+                ref={fitToWidthButtonRef}
+                type={fitToWidth ? 'primary' : 'default'}
+                ghost={fitToWidth}
+                onClick={() => setFitToWidth(!fitToWidth)}
+                icon={<ColumnWidthOutlined />}
+              />
             ),
           ]}
         />

@@ -14,6 +14,7 @@ module Threesixty
     has_one :project_datasheet, through: :campaign
     has_one :campaign_datasheet, through: :campaign, class_name: 'Datasheet'
     has_one :campaign_options, through: :campaign
+    has_one :report_approval_setting, primary_key: :campaign_id, dependent: :destroy
 
     has_many :nomination_requirements, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :participants, through: :campaign

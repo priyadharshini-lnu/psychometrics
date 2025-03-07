@@ -125,16 +125,16 @@ export class Properties extends Component {
         {this.renderDescriptionCheckbox()}
         <hr className={styles.divider} />
         {!restricted && (
-        <RequiredValidations
-          model={model}
-          update={() => this.forceUpdate()}
-        />
+          <RequiredValidations
+            model={model}
+            update={() => this.forceUpdate()}
+          />
         )}
         {!restricted && (
-        <ValidationTypes
-          model={model}
-          update={() => this.forceUpdate()}
-        />
+          <ValidationTypes
+            model={model}
+            update={() => this.forceUpdate()}
+          />
         )}
       </div>
     )

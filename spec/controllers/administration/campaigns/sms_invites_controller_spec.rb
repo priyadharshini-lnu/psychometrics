@@ -14,7 +14,7 @@ RSpec.describe Administration::Campaigns::SmsInvitesController, type: :controlle
       sms_invites = create_list(:sms_invite, 2, campaign: campaign)
 
       get :index, params: { new_campaign_id: campaign.id }, format: :json
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['total']).to eq(2)
       expect(parsed_response['permissions']).to eq({
@@ -38,7 +38,7 @@ RSpec.describe Administration::Campaigns::SmsInvitesController, type: :controlle
       create(:sms_invite, campaign: campaign, first_name: 'Danny')
 
       get :index, params: { new_campaign_id: campaign.id, filters: { filterable_fields: 'Jan' } }, format: :json
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['total']).to eq(1)
       expect(parsed_response['list']).to match_array([expected_sms_invite_response(sms_invite1)])
@@ -50,7 +50,7 @@ RSpec.describe Administration::Campaigns::SmsInvitesController, type: :controlle
       get :index, format: 'csv', params: { new_campaign_id: campaign.id }
       parsed_response = CSV.parse(response.body)
       expect(parsed_response.length).to eq(3)
-      expect(parsed_response[0]).to eq(::SmsInvites::ImportForm::VALID_HEADERS)
+      expect(parsed_response[0]).to eq(SmsInvites::ImportForm::VALID_HEADERS)
       expect(parsed_response[1..]).to match_array([
         expected_sms_invite_export(sms_invites[0]),
         expected_sms_invite_export(sms_invites[1])

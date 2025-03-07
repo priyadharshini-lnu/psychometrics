@@ -10,10 +10,10 @@ class IdpTemplate < ApplicationRecord
   has_many :skills, through: :idp_template_skills, dependent: :destroy
   has_many :development_actions, through: :idp_template_development_actions, dependent: :destroy
 
-  enum available_development_actions_selection_type: { none: 0, all: 1, selected: 2 },
-       _prefix: :available_development_actions
-  enum suggested_development_actions_selection_type: { none: 0, all: 1, selected: 2 },
-       _prefix: :suggested_development_actions
+  enum :available_development_actions_selection_type, { none: 0, all: 1, selected: 2 },
+       prefix: :available_development_actions
+  enum :suggested_development_actions_selection_type, { none: 0, all: 1, selected: 2 },
+       prefix: :suggested_development_actions
 
   store_accessor :skill_settings, %i[behavioral_global behavioral_client], suffix: true
   store_accessor :skill_settings, %i[technical_global technical_client], suffix: true

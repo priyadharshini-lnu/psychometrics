@@ -3,7 +3,7 @@ import {
   Row, Col, Space, Avatar, Typography,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -33,13 +33,13 @@ const ProfileCardTitleComponent: FC<Props> = ({ currentUser }) => (
       </Space>
     </Col>
     {currentUser.lastSignInAt && (
-    <Col flex="auto" className={styles.lastLogin}>
-      <Text>
-        {I18n.t('campaign.profile.last_login_text')}
-        {' '}
-        {dayjs(currentUser.lastSignInAt).format('ll')}
-      </Text>
-    </Col>
+      <Col flex="auto" className={styles.lastLogin}>
+        <Text>
+          {I18n.t('campaign.profile.last_login_text')}
+          {' '}
+          {dayjs(currentUser.lastSignInAt).format('ll')}
+        </Text>
+      </Col>
     )}
   </Row>
 )

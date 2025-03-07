@@ -5,6 +5,7 @@ module DeploymentActions
     class ServiceNotConfiguredError < StandardError; end
     class UnsupportedServiceError < StandardError; end
     class RegenerateLimitReachedError < StandardError; end
+    class GenerativeServiceError < StandardError; end
 
     MAX_REGENERATIONS = 5
 
@@ -28,6 +29,8 @@ module DeploymentActions
       # TODO(sritabh): When multiple services are added, ensure level abstraction to suffice the prompt requirements
       user_prompt = build_prompt(@skill)
       service.new(system_prompt, user_prompt).generate!
+    rescue Faraday::Error => e
+      raise GenerativeServiceError, e.message
     end
 
     private
@@ -35,7 +38,7 @@ module DeploymentActions
     def build_prompt(skill)
       # We have skill variable, skill.name and skill.description should be used to build the prompt
       # Result of the prompt should be array of objects with keys description and learning_style
-      # learning_style can be one of the following structured_learning, learning_from_the_others, on_the_job
+      # learning_style can be one of the following structured_learning, learning_from_others, on_the_job
       # Few examples are
       # {
       #   description: 'Work alongside a senior developer to gain hands-on experience in solving real-world problems,
@@ -50,7 +53,7 @@ module DeploymentActions
       # {
       #   description: "Join a team-focused activity where you review peers' code, identify potential improvements,
       #                 and learn alternative approaches to writing efficient and clean code.",
-      #   learning_style: 'learning_from_the_others',
+      #   learning_style: 'learning_from_others',
       # },
       # {
       #   description: 'Prepare for and complete a professional certification in React, mastering key concepts such
@@ -67,7 +70,7 @@ module DeploymentActions
 
         For each recommendation, provide:
         1. A detailed description of the learning activity
-        2. The appropriate learning style (structured_learning, learning_from_the_others, or on_the_job)
+        2. The appropriate learning style (structured_learning, learning_from_others, or on_the_job)
 
         Requirements:
         - Include at least 2 recommendations for each learning style
@@ -95,7 +98,7 @@ module DeploymentActions
 
         For each skill, you will provide several learning approaches across three distinct learning styles:
         1. structured_learning - Formal education methods like courses, certifications, and structured programs
-        2. learning_from_the_others - Collaborative and peer-based learning opportunities
+        2. learning_from_others - Collaborative and peer-based learning opportunities
         3. on_the_job - Practical, hands-on experience in real work situations
 
         Each recommendation should be specific, actionable, and directly related to the skill being developed. Your responses should be formatted as an array of objects, each containing a detailed description and the corresponding learning_style.

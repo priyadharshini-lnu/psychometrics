@@ -174,13 +174,13 @@ const OverrideComponent: FC<Props> = ({
           ) : (
             <>
               {override?.content && (allowEdit || allowApprove) && (
-              <Checkbox
-                className={cs(styles.checkbox)}
-                checked={showDiff}
-                onChange={() => setShowDiff(!showDiff)}
-              >
-                Show diff
-              </Checkbox>
+                <Checkbox
+                  className={cs(styles.checkbox)}
+                  checked={showDiff}
+                  onChange={() => setShowDiff(!showDiff)}
+                >
+                  Show diff
+                </Checkbox>
               )}
               {allowEdit && (
                 <Button

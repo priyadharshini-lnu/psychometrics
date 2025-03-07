@@ -44,6 +44,7 @@ module Administration
             edit_dimension
             manage_relationships
             manage_factor_benchmark_scores
+            view_factor_benchmark_scores
             regenerate_report
             manage_admins
           ],

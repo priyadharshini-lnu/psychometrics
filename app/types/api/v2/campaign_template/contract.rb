@@ -10,7 +10,7 @@ module Api
           assessment_id = values.dig(:data, :relationships, :assessment, :data, :id)
           report_id = values.dig(:data, :relationships, :report, :data, :id)
           template_owner_id = values.dig(:data, :relationships, :owner, :data, :id)
-          template_owner_id = template_owner_id.nil? ? nil : template_owner_id.to_i
+          template_owner_id = template_owner_id&.to_i
 
           assessment = ::Assessment.find(assessment_id)
           report = ::Report.find(report_id)

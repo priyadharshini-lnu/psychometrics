@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require_relative './../concerns/filter_by_tags_shared_examples'
+require_relative '../concerns/filter_by_tags_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
@@ -13,7 +13,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
   let(:assessments_response) do
     [{ 'assessmentIdNumber' => 'fake_id', 'name' => 'testName', 'description' => 'description1' }]
   end
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
   let(:relations) do
     {
       dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
@@ -127,8 +127,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
               type: 'iiht',
               category: 'iiht',
               description: 'asd',
-              external_settings: {
-              }
+              external_settings: {}
             },
             relationships: relations
           }

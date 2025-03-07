@@ -33,8 +33,8 @@ describe Simulation::StartAssessment do
   let(:client) { double('Client') }
 
   before do
-    allow_any_instance_of(::Simulation::RegisterParticipant).to receive(:client).and_return(client)
-    allow(::Simulation::GetAssessmentUrl).to receive(:call).and_return({ ok: simulation_assessment_url })
+    allow_any_instance_of(Simulation::RegisterParticipant).to receive(:client).and_return(client)
+    allow(Simulation::GetAssessmentUrl).to receive(:call).and_return({ ok: simulation_assessment_url })
   end
 
   describe '#call' do

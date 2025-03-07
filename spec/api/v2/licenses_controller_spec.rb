@@ -11,7 +11,7 @@ describe Api::V2::Administration::LicensesController, swagger_doc: 'v2/swagger.j
   let(:client_id) { client.id.to_s }
   let(:license_id) { license.id.to_s }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

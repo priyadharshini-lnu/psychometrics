@@ -39,7 +39,7 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
            relationship: Relationship.assessor_relationship, status: :completed, score_calculated: true)
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(assessor) }
 
@@ -107,8 +107,8 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
           active_idp_template = JSON.parse(response.body)['data']
 
           expect(active_idp_template).to have_key('id')
-          expect(active_idp_template).to have_attribute(:name).with_value(idp_template.name)
-          expect(active_idp_template).to have_attribute(:description).with_value(idp_template.description)
+          expect(active_idp_template).to have_attribute(:idp_template_id).with_value(idp_template.id)
+          expect(active_idp_template).to have_attribute(:active).with_value(true)
         end
       end
     end

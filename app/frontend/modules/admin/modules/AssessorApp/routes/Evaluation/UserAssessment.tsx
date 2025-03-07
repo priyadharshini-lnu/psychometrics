@@ -60,16 +60,16 @@ const UserAssessment: React.FC<Props> = ({
       bodyStyle={bodyStyles}
       className={styles.card}
       extra={loaded && (
-      <div>
-        <div><b>{`${subjectForm.result.user.first_name} ${subjectForm.result.user.last_name}`}</b></div>
-        {_.get(subjectForm.result, 'completed_at') && (
         <div>
-          {I18n.t('administration.assessor.completed_at')}
-          {': '}
-          <b>{dayjs(subjectForm.result.completed_at).format('DD MMM YYYY')}</b>
+          <div><b>{`${subjectForm.result.user.first_name} ${subjectForm.result.user.last_name}`}</b></div>
+          {_.get(subjectForm.result, 'completed_at') && (
+            <div>
+              {I18n.t('administration.assessor.completed_at')}
+              {': '}
+              <b>{dayjs(subjectForm.result.completed_at).format('DD MMM YYYY')}</b>
+            </div>
+          )}
         </div>
-        )}
-      </div>
       )}
     >
       <Content className="fluid-container">

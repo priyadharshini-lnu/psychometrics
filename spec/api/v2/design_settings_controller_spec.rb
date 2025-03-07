@@ -7,7 +7,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
   let!(:project) { create(:project) }
   let!(:design_setting) { project.design_setting }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

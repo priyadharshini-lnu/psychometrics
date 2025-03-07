@@ -1,14 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import Modals from '~/modules/admin/components/Modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
 import { DevelopmentActionTR, DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
 import { Resource } from '~/modules/admin/components/Resource'
 import { DevelopmentActionsBreadcrumb } from './DevelopmentActionsBreadcrumb'
 import { DevelopmentActionsFormModal } from './DevelopmentActionsFormModal'
+import { DevelopmentActionsExportModal } from './DevelopmentActionsExportModal'
 import { DevelopmentActionsTable } from './DevelopmentActionsTable'
 import { DevelopmentActionsFilter } from './DevelopmentActionsFilter'
+import { DevelopmentActionsImportModal } from './DevelopmentActionsImportModal'
 
-const DevelopmentActionList: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedDevelopmentAction, setSelectedDevelopmentAction] = useState<DevelopmentAction>()
+const connecter = connect(
+  () => ({
+  }),
+  {
+    openModal,
+  },
+)
+
+type PropsFromRedux = ConnectedProps<typeof connecter>
+
+const MODALS = {
+  DevelopmentActionsImportModal,
+  DevelopmentActionsFormModal,
+  DevelopmentActionsExportModal,
+}
+
+const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
   const config = {
     trackUrl: true,
     responseType: DevelopmentActionTR,
@@ -16,28 +35,20 @@ const DevelopmentActionList: React.FC = () => {
       include: ['project', 'skills'],
     },
   }
-  const openModal = (developmentAction: DevelopmentAction) => {
-    setSelectedDevelopmentAction(developmentAction)
-    setIsModalOpen(true)
+  const handleOpenModal = (developmentAction?: DevelopmentAction) => {
+    openModal('DevelopmentActionsFormModal', { developmentAction })
   }
+
   return (
     <>
       <Resource config={config} name="development_actions">
         <DevelopmentActionsBreadcrumb />
-        <DevelopmentActionsFilter openModal={() => setIsModalOpen(true)} />
-        <DevelopmentActionsTable openModal={openModal} />
-        {isModalOpen && (
-          <DevelopmentActionsFormModal
-            developmentAction={selectedDevelopmentAction}
-            close={() => {
-              setSelectedDevelopmentAction(undefined)
-              setIsModalOpen(false)
-            }}
-          />
-        )}
+        <DevelopmentActionsFilter openModal={openModal} />
+        <DevelopmentActionsTable openModal={handleOpenModal} />
+        <Modals modals={MODALS} />
       </Resource>
     </>
   )
 }
 
-export default DevelopmentActionList
+export default connecter(DevelopmentActionList)

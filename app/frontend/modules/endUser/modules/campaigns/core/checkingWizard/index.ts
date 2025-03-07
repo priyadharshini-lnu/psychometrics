@@ -6,13 +6,13 @@ import { createReducer } from '~/utils/redux'
 import { Config, Checks } from './interfaces'
 
 interface State {
- checks: Checks
- config: Config
- preSignedUrl: string | null
- campaignId?: number
- id?: number
- url?: string
- transcribeSupportedLocales?: string[]
+  checks: Checks
+  config: Config
+  preSignedUrl: string | null
+  campaignId?: number
+  id?: number
+  url?: string
+  transcribeSupportedLocales?: string[]
 }
 
 export const defaultState: State = {
@@ -31,30 +31,44 @@ export const defaultState: State = {
 }
 
 export const FETCH = 'temp/checkingWizard/FETCH'
+export const SET_COOKIES = 'temp/checkingWizard/SET_COOKIES'
 export const PRE_SIGN_URL = 'temp/checkingWizard/PRE_SIGN_URL'
 
 export const fetch = (assessmentId: number, id: number, type?: string): ApiAction<State> => ({
   type: FETCH,
   request:
-    {
-      method: 'get',
-      url: `/system_checks/${assessmentId}/${id}`,
-      body: { type },
-    },
+  {
+    method: 'get',
+    url: `/system_checks/${assessmentId}/${id}`,
+    body: { type },
+  },
   userAssessmentId: id,
+})
+
+export const setCookies = (userAssessmentId: number, stepKey: string): ApiAction<State> => ({
+  type: SET_COOKIES,
+  request: {
+    method: 'post',
+    url: '/assessment_system_checks/step_completed',
+    body: {
+      user_assessment_id: userAssessmentId,
+      step_key: stepKey,
+    },
+  },
+  userAssessmentId,
 })
 
 export const preSignUrl = () => ({
   type: PRE_SIGN_URL,
   request:
-    {
-      method: 'get',
-      url: '/transcribe/pre_sign_url',
-    },
+  {
+    method: 'get',
+    url: '/transcribe/pre_sign_url',
+  },
 })
 
 type FetchType = ReturnType<typeof fetch>
-type PageSignType = ApiActionResponse<{url: string}>
+type PageSignType = ApiActionResponse<{ url: string }>
 
 const HANDLERS = {
   [FETCH]: (state: State, request: FetchType) => {

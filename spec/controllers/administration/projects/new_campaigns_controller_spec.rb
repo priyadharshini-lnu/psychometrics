@@ -35,7 +35,7 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
       get :fetch_descriptions,
           params: { id: campaign.id, project_id: campaign.project_id, locales: %w[en ar] }
 
-      parsed_body = JSON.parse(response.body)
+      parsed_body = response.parsed_body
 
       expect(parsed_body).to eq(
         {

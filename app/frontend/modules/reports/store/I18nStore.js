@@ -19,7 +19,7 @@ const TRANSLATED_MODULES = {
   Table: ['FactorsTable', 'StrengthClusters', 'InnovationStyles', 'Competencies'],
   Graph: ['Circumplex'],
 }
-const EXTERNAL_CATEGORIES = ['hogan', 'mindmill', 'saville']
+const EXTERNAL_CATEGORIES = ['hogan', 'saville']
 // Template Structure
 // {
 //  question: {

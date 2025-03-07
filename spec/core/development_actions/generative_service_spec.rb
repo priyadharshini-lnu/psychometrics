@@ -12,7 +12,7 @@ describe DeploymentActions::GenerativeService do
       },
       {
         'description' => "Join a team-focused activity where you review peers'...",
-        'learning_style' => 'learning_from_the_others'
+        'learning_style' => 'learning_from_others'
       }
     ]
   end

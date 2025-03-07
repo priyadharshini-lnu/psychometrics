@@ -4,9 +4,10 @@ module Administration
   class UserReportSerializer < Panko::Serializer
     attributes :id, :permissions, :report_id, :name, :user_access,
                :report_family_name, :status, :internal, :report_url,
-               :report_provider, :custom_upload
+               :report_provider, :custom_upload, :comments_count, :edits_count,
+               :hogan_participant_id
 
-    delegate :name, :mindmill, to: :report
+    delegate :name, to: :report
     delegate :provider, to: :report, prefix: true
     delegate :name, to: :report_family, prefix: true, allow_nil: true
 
@@ -34,6 +35,12 @@ module Administration
       object.has_user_results?
     end
 
+    def hogan_participant_id
+      return nil unless object.hogan?
+
+      object.hogan_credential&.participant_id
+    end
+
     def permissions
       GetPermissionsHash.call!(
         Administration::UserReportPolicy,
@@ -53,6 +60,14 @@ module Administration
           campaign_id: campaign.id
         }
       )
+    end
+
+    def comments_count
+      object.user_report_comments&.count
+    end
+
+    def edits_count
+      object.text_module_overrides&.count
     end
 
     private

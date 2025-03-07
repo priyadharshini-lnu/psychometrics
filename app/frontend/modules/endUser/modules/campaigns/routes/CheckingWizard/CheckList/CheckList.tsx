@@ -1,7 +1,7 @@
 import React from 'react'
 import { List } from 'antd'
-import { CheckCircleFilled, LoadingOutlined, CloseCircleFilled } from '@ant-design/icons'
 import cs from 'classnames'
+import { CheckCircleFilled, LoadingOutlined, CloseCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './CheckList.less'
 import { CheckListItem } from '../interfaces'
 

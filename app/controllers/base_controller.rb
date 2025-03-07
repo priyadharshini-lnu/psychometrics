@@ -106,7 +106,8 @@ class BaseController < ActionController::Base
     sign_in(user, skip_session_limitable: skip_session_limitable)
 
     return redirect_to(url_without_spoof) if found_by == :spoof
-    return redirect_to(url_without_jwt) if found_by == :jwt
+
+    redirect_to(url_without_jwt) if found_by == :jwt
   end
 
   def send_tmp_file(file_path, options = {})

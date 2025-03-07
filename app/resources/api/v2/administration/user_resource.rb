@@ -26,9 +26,7 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
     @user_profile_data = data.permit(:locale, :timezone)
   end
 
-  def photo_url
-    @model.photo_url
-  end
+  delegate :photo_url, to: :@model
 
   def name
     @model.decorate.display_name

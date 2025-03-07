@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::Sheets::DatasheetColumnForm do
+describe Sheets::DatasheetColumnForm do
   context 'Validation' do
     let!(:sheet) do
       create(:sheet, columns: [

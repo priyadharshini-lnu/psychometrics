@@ -1,5 +1,6 @@
 ---
 :concurrency: 5
+:max_retries: 16
 # :pidfile: ./tmp/pids/sidekiq.pid
 staging:
   :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 2 %>

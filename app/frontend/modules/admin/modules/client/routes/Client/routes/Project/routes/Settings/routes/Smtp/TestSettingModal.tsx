@@ -70,13 +70,13 @@ const TestSettingModalComponent: React.FC<Props> = ({
       ]}
     >
       {!isEmpty(errors) && (
-      <Alert
-        description={errors}
-        type="error"
-        className="mbm"
-        showIcon
-        message={null}
-      />
+        <Alert
+          description={errors}
+          type="error"
+          className="mbm"
+          showIcon
+          message={null}
+        />
       )}
       <Input
         placeholder="Enter email address"

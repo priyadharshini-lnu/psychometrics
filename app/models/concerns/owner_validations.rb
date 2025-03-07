@@ -7,6 +7,6 @@ module OwnerValidations
     attr_accessor :skip_owner_validation
 
     validates :owner_id, owner_permission: true,
-      on: %i[create update], if: -> { owner_id_changed? && !skip_owner_validation }
+      on: %i[create update], if: -> { (owner_id_changed? || owner_id.nil?) && !skip_owner_validation }
   end
 end

@@ -107,12 +107,12 @@ export const WorkshopPage: FC = () => {
           }}
           extra={
             workshop.meta?.permissions?.update && (
-            <Button
-              icon={<EditOutlined />}
-              onClick={() => setShowForm(true)}
-              size="large"
-              type="link"
-            />
+              <Button
+                icon={<EditOutlined />}
+                onClick={() => setShowForm(true)}
+                size="large"
+                type="link"
+              />
             )
           }
           contentStyle={{ paddingInlineEnd: '5px' }}
@@ -230,11 +230,11 @@ export const WorkshopPage: FC = () => {
       )}
       {openChangeStatusModal
         && (
-        <ChangeStatusModal
-          close={() => setOpenChangeStatusModal(false)}
-          memberAction={memberAction}
-          workshop={workshop}
-        />
+          <ChangeStatusModal
+            close={() => setOpenChangeStatusModal(false)}
+            memberAction={memberAction}
+            workshop={workshop}
+          />
         )}
     </>
   )

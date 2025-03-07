@@ -103,35 +103,39 @@ export default function Form (props) {
           <AntForm.Item label="Scale Max" name="scale_max">
             <InputNumber />
           </AntForm.Item>
-            {errors.scale_min?.length && <Alert message={errors.scale_min.join(', ')} type="error" />}
+          {errors.scale_min?.length && <Alert message={errors.scale_min.join(', ')} type="error" />}
         </AntForm>
       )}
       {(resource.scoring_strategy === 'sub_factor_questions_sum' || resource.scoring_strategy === 'questions_sum')
         && (
-        <div className="mtm mbm">
-          <Checkbox
-            name="use_percentage"
-            onChange={({ target }) => onChange({ currentTarget: { name: target.name, value: target.checked ? 1 : 0 } })}
-            checked={resource.use_percentage}
-          >
-            Use percentage of correct answers
-            <br />
-            <small>(If normed score not present)</small>
-          </Checkbox>
-        </div>
+          <div className="mtm mbm">
+            <Checkbox
+              name="use_percentage"
+              onChange={({ target }) => onChange({
+                currentTarget: { name: target.name, value: target.checked ? 1 : 0 },
+              })}
+              checked={resource.use_percentage}
+            >
+              Use percentage of correct answers
+              <br />
+              <small>(If normed score not present)</small>
+            </Checkbox>
+          </div>
         )
       }
       {['sub_factors_average', 'sub_factors_conditional_average', 'sub_factors_sum'].includes(resource.scoring_strategy)
         && (
-        <div className="mtm mbm">
-          <Checkbox
-            name="use_sub_factor_norm_score"
-            onChange={({ target }) => onChange({ currentTarget: { name: target.name, value: target.checked ? 1 : 0 } })}
-            checked={resource.use_sub_factor_norm_score}
-          >
-            {I18n.t('administration.factors.form.use_sub_factor_norm_score')}
-          </Checkbox>
-        </div>
+          <div className="mtm mbm">
+            <Checkbox
+              name="use_sub_factor_norm_score"
+              onChange={({ target }) => onChange({
+                currentTarget: { name: target.name, value: target.checked ? 1 : 0 },
+              })}
+              checked={resource.use_sub_factor_norm_score}
+            >
+              {I18n.t('administration.factors.form.use_sub_factor_norm_score')}
+            </Checkbox>
+          </div>
         )
       }
       {resource.scoring_strategy.startsWith('sub_factor')
@@ -140,19 +144,19 @@ export default function Form (props) {
         && <ExternalList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
       {resource.scoring_strategy === 'custom_formula'
         && (
-        <AntForm
-          layout="vertical"
-          onValuesChange={onValuesChange}
-          initialValues={{ custom_formula: resource.custom_formula }}
-        >
-          <AntForm.Item
-            label={I18n.t('administration.factors.form.scoring_strategies.custom_formula')}
-            name="custom_formula"
-            className="mtm"
+          <AntForm
+            layout="vertical"
+            onValuesChange={onValuesChange}
+            initialValues={{ custom_formula: resource.custom_formula }}
           >
-            <LuaEditor />
-          </AntForm.Item>
-        </AntForm>
+            <AntForm.Item
+              label={I18n.t('administration.factors.form.scoring_strategies.custom_formula')}
+              name="custom_formula"
+              className="mtm"
+            >
+              <LuaEditor />
+            </AntForm.Item>
+          </AntForm>
         )
       }
       <div className="ant-form-vertical">

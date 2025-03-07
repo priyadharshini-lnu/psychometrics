@@ -3,9 +3,9 @@ import {
   Layout, Col, ConfigProvider, Progress, Watermark, Space,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ClockCircleOutlined } from '@ant-design/icons'
-
 import { ProgressProps } from 'antd/lib/progress'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
@@ -107,10 +107,10 @@ const CommonComponent: React.FC<Props> = ({
             {availableTranslations
               && availableTranslations.length > 1
               && (
-              <LangDropdownWithChangeUrl
-                currentLocale={selectedLanguage.code}
-                locales={availableTranslations || []}
-              />
+                <LangDropdownWithChangeUrl
+                  currentLocale={selectedLanguage.code}
+                  locales={availableTranslations || []}
+                />
               )
             }
           </Space>
@@ -128,12 +128,12 @@ const CommonComponent: React.FC<Props> = ({
             title={assessment.name}
             extra={enableProgress
             && (
-            <Progress
-              strokeColor="#fff"
-              className={styles.progressStatus}
-              percent={progress}
-              {...progressBarProps}
-            />
+              <Progress
+                strokeColor="#fff"
+                className={styles.progressStatus}
+                percent={progress}
+                {...progressBarProps}
+              />
             )}
           />
           <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>

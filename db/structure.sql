@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -471,7 +464,6 @@ CREATE TABLE public.assessments (
     status integer,
     owner_id integer,
     type character varying,
-    mindmill_id integer,
     enable_back boolean DEFAULT false NOT NULL,
     enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
@@ -643,16 +635,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -851,7 +843,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -932,9 +925,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -1231,7 +1224,8 @@ CREATE TABLE public.campaign_options (
     campaign_scoring_variables text,
     proctoring_type integer DEFAULT 0 NOT NULL,
     show_watermark boolean DEFAULT false,
-    watermark_content character varying DEFAULT ''::character varying
+    watermark_content character varying DEFAULT ''::character varying,
+    workshop_invite_requires_prework_completion boolean DEFAULT false
 );
 
 
@@ -1465,9 +1459,7 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -1621,6 +1613,40 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -2606,6 +2632,74 @@ ALTER SEQUENCE public.hogan_report_settings_id_seq OWNED BY public.hogan_report_
 
 
 --
+-- Name: idp_report_pdfs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_report_pdfs (
+    id bigint NOT NULL,
+    user_idp_plan_id bigint,
+    locale character varying NOT NULL,
+    first_generated_at timestamp(6) without time zone,
+    last_generated_at timestamp(6) without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: idp_report_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_report_pdfs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_report_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_report_pdfs_id_seq OWNED BY public.idp_report_pdfs.id;
+
+
+--
+-- Name: idp_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_settings (
+    id bigint NOT NULL,
+    allow_global_skills boolean DEFAULT false,
+    manager_approves_idp boolean DEFAULT false,
+    manager_can_edit_idp boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    project_id bigint
+);
+
+
+--
+-- Name: idp_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_settings_id_seq OWNED BY public.idp_settings.id;
+
+
+--
 -- Name: idp_template_development_actions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3126,7 +3220,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3353,38 +3447,6 @@ CREATE SEQUENCE public.mettl_user_assessments_id_seq
 --
 
 ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_assessments.id;
-
-
---
--- Name: mindmill_credentials; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.mindmill_credentials (
-    id bigint NOT NULL,
-    users_result_id bigint,
-    user_name character varying,
-    encrypted_password character varying,
-    encrypted_password_iv character varying
-);
-
-
---
--- Name: mindmill_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.mindmill_credentials_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: mindmill_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
 
 
 --
@@ -3697,6 +3759,42 @@ CREATE SEQUENCE public.pearson_user_assessments_id_seq
 --
 
 ALTER SEQUENCE public.pearson_user_assessments_id_seq OWNED BY public.pearson_user_assessments.id;
+
+
+--
+-- Name: platform_exceptions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.platform_exceptions (
+    id bigint NOT NULL,
+    identifier character varying NOT NULL,
+    consecutive_failure_count integer DEFAULT 0 NOT NULL,
+    resource_type character varying,
+    resource_id bigint,
+    last_notified_at timestamp(6) without time zone,
+    meta jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: platform_exceptions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.platform_exceptions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: platform_exceptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.platform_exceptions_id_seq OWNED BY public.platform_exceptions.id;
 
 
 --
@@ -4247,7 +4345,10 @@ CREATE TABLE public.report_approval_settings (
     updated_at timestamp(6) without time zone NOT NULL,
     qc_user_ids bigint[] DEFAULT '{}'::bigint[],
     approver_user_ids bigint[] DEFAULT '{}'::bigint[],
-    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[]
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
+    approvers_can_edit boolean DEFAULT false,
+    approvers_not_required boolean DEFAULT false,
+    do_not_send_notifications boolean DEFAULT false
 );
 
 
@@ -4346,15 +4447,14 @@ CREATE TABLE public.reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
-    mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4366,7 +4466,7 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages jsonb DEFAULT '[]'::jsonb
+    other_languages text[] DEFAULT '{}'::text[]
 );
 
 
@@ -5634,8 +5734,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -6503,10 +6602,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -7268,6 +7367,13 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
+
+
+--
 -- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7450,6 +7556,20 @@ ALTER TABLE ONLY public.hogan_report_settings ALTER COLUMN id SET DEFAULT nextva
 
 
 --
+-- Name: idp_report_pdfs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_report_pdfs ALTER COLUMN id SET DEFAULT nextval('public.idp_report_pdfs_id_seq'::regclass);
+
+
+--
+-- Name: idp_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_settings ALTER COLUMN id SET DEFAULT nextval('public.idp_settings_id_seq'::regclass);
+
+
+--
 -- Name: idp_template_development_actions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7590,13 +7710,6 @@ ALTER TABLE ONLY public.mettl_user_assessments ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- Name: mindmill_credentials id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials ALTER COLUMN id SET DEFAULT nextval('public.mindmill_credentials_id_seq'::regclass);
-
-
---
 -- Name: norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7650,6 +7763,13 @@ ALTER TABLE ONLY public.pearson_assessments ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.pearson_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.pearson_user_assessments_id_seq'::regclass);
+
+
+--
+-- Name: platform_exceptions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.platform_exceptions ALTER COLUMN id SET DEFAULT nextval('public.platform_exceptions_id_seq'::regclass);
 
 
 --
@@ -8819,6 +8939,22 @@ ALTER TABLE ONLY public.hogan_report_settings
 
 
 --
+-- Name: idp_report_pdfs idp_report_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_report_pdfs
+    ADD CONSTRAINT idp_report_pdfs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: idp_settings idp_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_settings
+    ADD CONSTRAINT idp_settings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: idp_template_development_actions idp_template_development_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8987,14 +9123,6 @@ ALTER TABLE ONLY public.mettl_user_assessments
 
 
 --
--- Name: mindmill_credentials mindmill_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials
-    ADD CONSTRAINT mindmill_credentials_pkey PRIMARY KEY (id);
-
-
---
 -- Name: norms norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9056,6 +9184,14 @@ ALTER TABLE ONLY public.pearson_assessments
 
 ALTER TABLE ONLY public.pearson_user_assessments
     ADD CONSTRAINT pearson_user_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: platform_exceptions platform_exceptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.platform_exceptions
+    ADD CONSTRAINT platform_exceptions_pkey PRIMARY KEY (id);
 
 
 --
@@ -10991,6 +11127,20 @@ CREATE INDEX index_hogan_report_settings_on_report_id ON public.hogan_report_set
 
 
 --
+-- Name: index_idp_report_pdfs_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_report_pdfs_on_user_idp_plan_id ON public.idp_report_pdfs USING btree (user_idp_plan_id);
+
+
+--
+-- Name: index_idp_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_settings_on_project_id ON public.idp_settings USING btree (project_id);
+
+
+--
 -- Name: index_idp_template_development_actions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11320,13 +11470,6 @@ CREATE INDEX index_mettl_user_assessments_on_user_assessment_id ON public.mettl_
 
 
 --
--- Name: index_mindmill_credentials_on_users_result_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_mindmill_credentials_on_users_result_id ON public.mindmill_credentials USING btree (users_result_id);
-
-
---
 -- Name: index_norms_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11387,6 +11530,20 @@ CREATE INDEX index_password_archivable ON public.old_passwords USING btree (pass
 --
 
 CREATE INDEX index_pearson_user_assessments_on_user_assessment_id ON public.pearson_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_platform_exceptions_on_identifier; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_platform_exceptions_on_identifier ON public.platform_exceptions USING btree (identifier);
+
+
+--
+-- Name: index_platform_exceptions_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_platform_exceptions_on_resource ON public.platform_exceptions USING btree (resource_type, resource_id);
 
 
 --
@@ -12917,14 +13074,6 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.campaign_factor_values
     ADD CONSTRAINT fk_rails_07fa4c59b5 FOREIGN KEY (campaign_factor_id) REFERENCES public.campaign_factors(id) ON DELETE CASCADE;
-
-
---
--- Name: mindmill_credentials fk_rails_086b8723a8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.mindmill_credentials
-    ADD CONSTRAINT fk_rails_086b8723a8 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
 
 
 --
@@ -14944,6 +15093,14 @@ ALTER TABLE ONLY public.user_report_events
 
 
 --
+-- Name: idp_report_pdfs fk_rails_ec5513f5d4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_report_pdfs
+    ADD CONSTRAINT fk_rails_ec5513f5d4 FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id);
+
+
+--
 -- Name: norms fk_rails_ecfeaf1ba0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14997,6 +15154,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.idp_template_development_actions
     ADD CONSTRAINT fk_rails_f16ae884e9 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: idp_settings fk_rails_f18b32fc3c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_settings
+    ADD CONSTRAINT fk_rails_f18b32fc3c FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -15142,8 +15307,13 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250304060832'),
+('20250226084133'),
+('20250221073030'),
 ('20250224075920'),
 ('20250221102354'),
+('20250213113601'),
+('20250210121434'),
 ('20250207113529'),
 ('20250206082916'),
 ('20250204092029'),
@@ -15165,12 +15335,15 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250113105032'),
 ('20250113081931'),
 ('20250113070808'),
+('20250110050233'),
 ('20250109001045'),
 ('20250107101319'),
+('20250107095005'),
 ('20250106151909'),
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),
+('20241225073418'),
 ('20241224114259'),
 ('20241224114214'),
 ('20241224114112'),
@@ -15911,4 +16084,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

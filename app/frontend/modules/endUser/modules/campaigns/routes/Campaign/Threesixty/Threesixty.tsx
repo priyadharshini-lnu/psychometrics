@@ -74,17 +74,17 @@ const ThreesixtyComponent = ({
         )}
       />
       {camapaignClosed && (
-      <div>
-        <Alert message={I18n.t('threesixty.closed_campaign_message')} type="info" showIcon />
-      </div>
+        <div>
+          <Alert message={I18n.t('threesixty.closed_campaign_message')} type="info" showIcon />
+        </div>
       )}
       <Row justify="center" className={styles.listContainer}>
         <Col xs={24} lg={22} xl={20} xxl={14}>
           <>
             {welcomeMessage && (
-            <Card>
-              <SafeHTML html={welcomeMessage.content} config="adminRichText" />
-            </Card>
+              <Card>
+                <SafeHTML html={welcomeMessage.content} config="adminRichText" />
+              </Card>
             )}
             <Row gutter={16} wrap={isMobile}>
               {nominationsCounters.totalNominations !== 0 && !camapaignClosed

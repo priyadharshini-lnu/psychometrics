@@ -68,7 +68,7 @@ module AdminJobs
           user_result.started_at.to_s,
           user_result.completed_at.to_s,
           user_result.meta_data['completed_groups']&.join(','),
-          user_result.norm ? user_result.norm.name : nil,
+          user_result.norm&.name,
           *answer_values
         ]
       end
@@ -95,7 +95,7 @@ module AdminJobs
                      flatten(1).
                      flat_map { |scene| scene.dig('data', 'blocks') }.
                      flat_map { |blocks| blocks['questions'] }.
-                     collect { |question| question['id'] }
+                     pluck('id')
       end
 
       def readable_date(timestamp)

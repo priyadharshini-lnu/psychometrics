@@ -1,15 +1,15 @@
 import { FC } from 'react'
 import {
   Card, Tag, Space, theme, Empty,
+  Typography,
 } from 'antd'
-
 import { UserIdpSkill } from '../DevelopmentActions'
 
 type Props = {
   selectedSkills: (UserIdpSkill)[]
   onRemoveSkill: (skillId: number) => void
 }
-
+const { Text } = Typography
 const { I18n } = window
 const { useToken } = theme
 
@@ -28,8 +28,15 @@ export const SelectedSkillsCard: FC<Props> = ({ selectedSkills, onRemoveSkill })
               color={token.colorPrimaryActive}
               closable
               onClose={() => onRemoveSkill(userIdpSkill.skillId)}
+              style={{ alignItems: 'center', display: 'flex', width: 'min-content' }}
             >
-              {userIdpSkill.name}
+              <Text
+                key={userIdpSkill.skillId}
+                style={{ maxWidth: 150, color: 'inherit' }}
+                ellipsis={{ tooltip: userIdpSkill.name }}
+              >
+                {userIdpSkill.name}
+              </Text>
             </Tag>
           ))
         }

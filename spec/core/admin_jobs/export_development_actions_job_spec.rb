@@ -21,7 +21,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
 
     # Attach test image
     action.image.attach(
-      io: File.open(Rails.root.join('spec/fixtures/files/profile.png')),
+      io: Rails.root.join('spec/fixtures/files/profile.png').open,
       filename: 'profile.png',
       content_type: 'image/png'
     )
@@ -63,12 +63,13 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
         'https://example.com',
         development_action.course_start_date.to_date.strftime('%Y-%m-%d'),
         development_action.course_end_date.to_date.strftime('%Y-%m-%d'),
-        development_action.image_url
+        'http://example.com/test-image.png' # Use a fixed URL for testing
       ]
     end
 
     it 'returns formatted rows of data for csv' do
       development_action = job.records_for_export.first
+      allow(development_action).to receive(:image_url).and_return('http://example.com/test-image.png')
       data_rows = job.data_row(development_action)
 
       expect(data_rows.size).to eq(2) # One row per skill

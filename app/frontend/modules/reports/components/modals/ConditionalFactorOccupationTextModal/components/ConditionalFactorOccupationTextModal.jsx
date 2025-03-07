@@ -153,13 +153,13 @@ export class ConditionalTextModal extends Component {
         <Footer>
           {props.basedOn === 'factor'
             && (
-            <button
-              className="btn btn-default"
-              style={{ float: 'left' }}
-              onClick={this.addCollection}
-            >
-              Add Conditional Subfactor
-            </button>
+              <button
+                className="btn btn-default"
+                style={{ float: 'left' }}
+                onClick={this.addCollection}
+              >
+                Add Conditional Subfactor
+              </button>
             )}
           <button className="btn btn-success" onClick={this.save}>Save</button>
           <button className="btn btn-danger" onClick={close}>Cancel</button>

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import {
   Modal, Progress, Tooltip, Typography, Row, Button,
 } from 'antd'
-import { QuestionCircleOutlined, CheckCircleFilled } from '@ant-design/icons'
 import { connect } from 'react-redux'
+import { QuestionCircleOutlined, CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import userPresenter from '~/presenters/user'
 import { getSubjectReport, getApprovalReports } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
@@ -91,44 +91,44 @@ const ReportListComponent = ({
         </Row>
         {subjectReport
           && (
-          <Button
-            type="link"
-            onClick={() => showReport(subjectReport)}
-            className="ps-0"
-          >
-            <span className={styles.subjectLabel}>{I18n.t('threesixty.view_my_report')}</span>
-            {!subjectReport.approved ? <CheckCircleFilled className={styles.completed} /> : null }
-          </Button>
+            <Button
+              type="link"
+              onClick={() => showReport(subjectReport)}
+              className="ps-0"
+            >
+              <span className={styles.subjectLabel}>{I18n.t('threesixty.view_my_report')}</span>
+              {!subjectReport.approved ? <CheckCircleFilled className={styles.completed} /> : null }
+            </Button>
           )}
 
         {approvalReports.length > 0
           && (
-          <CollapseItem
-            title={managerApprovesReports ? I18n.t('threesixty.approve_reports') : I18n.t('threesixty.view_reports')}
-            list={approvalReports}
-          >
-            {item => (
-              <ReportItem
-                item={item}
-                showReport={() => showReport(item)}
-                managerApprovesReports={managerApprovesReports}
-              />
-            )}
-          </CollapseItem>
+            <CollapseItem
+              title={managerApprovesReports ? I18n.t('threesixty.approve_reports') : I18n.t('threesixty.view_reports')}
+              list={approvalReports}
+            >
+              {item => (
+                <ReportItem
+                  item={item}
+                  showReport={() => showReport(item)}
+                  managerApprovesReports={managerApprovesReports}
+                />
+              )}
+            </CollapseItem>
           )}
         {reportHelp && (
-        <Modal
-          title={(
-            <>
-              {I18n.t('threesixty.reports_help_modal.title')}
-            </>
+          <Modal
+            title={(
+              <>
+                {I18n.t('threesixty.reports_help_modal.title')}
+              </>
           )}
-          open={showHelp}
-          onCancel={() => setShowHelp(false)}
-          footer={null}
-        >
-          <SafeHTML html={reportHelp.content} config="adminRichText" />
-        </Modal>
+            open={showHelp}
+            onCancel={() => setShowHelp(false)}
+            footer={null}
+          >
+            <SafeHTML html={reportHelp.content} config="adminRichText" />
+          </Modal>
         )}
       </ThreesixtyCard>
     </>

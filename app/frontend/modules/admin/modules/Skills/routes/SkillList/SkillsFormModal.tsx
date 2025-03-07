@@ -137,58 +137,60 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           <Form.Item
             name="name"
             label={I18n.t('administration.skills.form.name')}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="description"
             label={I18n.t('administration.skills.form.description')}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           {!skill && (
-          <Form.Item
-            name="ownerId"
-            label={I18n.t('common.column.owner')}
-          >
-            <Select
-              showSearch
-              filterOption={false}
-              placeholder={
+            <Form.Item
+              name="ownerId"
+              label={I18n.t('common.column.owner')}
+            >
+              <Select
+                showSearch
+                filterOption={false}
+                placeholder={
                   I18n.t('administration.skills.form.owner_placeholder')
                 }
-              onSearch={searchAvailableOwners}
-              notFoundContent={ownersLoading ? <Spin size="small" /> : null}
-            >
-              {
+                onSearch={searchAvailableOwners}
+                notFoundContent={ownersLoading ? <Spin size="small" /> : null}
+              >
+                {
                 owners.map(({ id, name }) => (
                   <Option key={id} value={id}>{name}</Option>
                 ))
               }
-            </Select>
-          </Form.Item>
+              </Select>
+            </Form.Item>
           )}
           {(!skill || skill?.project) && (
-          <Form.Item
-            name="projectId"
-            label={I18n.t('common.column.project')}
-          >
-            <Select
-              showSearch
-              filterOption={false}
-              disabled={!!skill}
-              onSearch={handleProjectSearch}
-              options={(getProjects() || []).map(p => ({
-                value: p.id,
-                label: p.name,
-              }))}
-              placeholder={
+            <Form.Item
+              name="projectId"
+              label={I18n.t('common.column.project')}
+            >
+              <Select
+                showSearch
+                filterOption={false}
+                disabled={!!skill}
+                onSearch={handleProjectSearch}
+                options={(getProjects() || []).map(p => ({
+                  value: p.id,
+                  label: p.name,
+                }))}
+                placeholder={
                   I18n.t('administration.skills.form.project_placeholder')
                 }
-              value={form.getFieldValue('projectId')}
-              notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-            />
-          </Form.Item>
+                value={form.getFieldValue('projectId')}
+                notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
+              />
+            </Form.Item>
           )}
           <Form.Item
             name="category"

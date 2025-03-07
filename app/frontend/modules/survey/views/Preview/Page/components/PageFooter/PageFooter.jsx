@@ -113,14 +113,14 @@ class PageFooter extends Component {
       <div className={styles.overlay}>
         {submissionFailed
         && (
-        <div>
-          <Alert
-            message={I18n.t('assessments.page.submissionFailedAlert.title')}
-            description={I18n.t('assessments.page.submissionFailedAlert.description')}
-            type="error"
-            showIcon
-          />
-        </div>
+          <div>
+            <Alert
+              message={I18n.t('assessments.page.submissionFailedAlert.title')}
+              description={I18n.t('assessments.page.submissionFailedAlert.description')}
+              type="error"
+              showIcon
+            />
+          </div>
         )
       }
         {invalidSession && (
@@ -135,26 +135,26 @@ class PageFooter extends Component {
         )}
         <div className={cs(styles.footer, rtl ? 'rtl' : 'ltr')}>
           {enableBack && hasPrevPage && (
-          <QuestionInProgressPopConfirm
-            preview={preview}
-            open={popConfirmVisibleFor === BACK}
-            hidePopConfirm={this.hidePopConfirm}
-            onConfirm={this.moveToPreviousPage}
-            popUpContainerRef={this.popUpContainerRef}
-            popUpTriggerRef={this.popUpTriggerRef}
-          >
-            <FixedWidthButton
-              size="large"
-              type="default"
-              disabled={disableActionableButtons}
-              loading={submissionInProgress && backButtonPressed}
-              onClick={e => this.handlePreviousClick(e)}
-              className="mrs"
+            <QuestionInProgressPopConfirm
+              preview={preview}
+              open={popConfirmVisibleFor === BACK}
+              hidePopConfirm={this.hidePopConfirm}
+              onConfirm={this.moveToPreviousPage}
+              popUpContainerRef={this.popUpContainerRef}
+              popUpTriggerRef={this.popUpTriggerRef}
             >
-              <span className="mrs mls fa fa-chevron-left rtl-flip" />
-              { page.prevBtn || I18n.t('assessments.page.back', { locale: I18n.uiLocale }) }
-            </FixedWidthButton>
-          </QuestionInProgressPopConfirm>
+              <FixedWidthButton
+                size="large"
+                type="default"
+                disabled={disableActionableButtons}
+                loading={submissionInProgress && backButtonPressed}
+                onClick={e => this.handlePreviousClick(e)}
+                className="mrs"
+              >
+                <span className="mrs mls fa fa-chevron-left rtl-flip" />
+                { page.prevBtn || I18n.t('assessments.page.back', { locale: I18n.uiLocale }) }
+              </FixedWidthButton>
+            </QuestionInProgressPopConfirm>
           )}
           <QuestionInProgressPopConfirm
             preview={preview}
@@ -227,7 +227,12 @@ const QuestionInProgressPopConfirm = forwardRef(({
 
   const popConfirmTitle = () => (
     <div>
-      <b ref={titleTextRef}>{I18n.t('validations.actions_still_in_progress', { locale: I18n.uiLocale })}</b>
+      <b
+        tabIndex={-1}
+        ref={titleTextRef}
+      >
+        {I18n.t('validations.actions_still_in_progress', { locale: I18n.uiLocale })}
+      </b>
       <ul className="pll">
         {inProgressQuestions.map(({ questionId, progressState }) => {
           const question = getQuestion(preview, questionId)

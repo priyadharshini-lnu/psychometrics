@@ -25,7 +25,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
       sign_in project_manager
       create(:membership, user: project_manager, client: client, role: 'client_admin')
       allow_any_instance_of(Api::Administration::SkillPolicy).to receive(:index?).and_return(true)
-      allow_any_instance_of(Api::Administration::SkillPolicy::Scope).to receive(:resolve).and_return(::Skill.all)
+      allow_any_instance_of(Api::Administration::SkillPolicy::Scope).to receive(:resolve).and_return(Skill.all)
     end
 
     context 'with name_cont filter' do
@@ -213,7 +213,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         sign_in limited_user
         create(:membership, user: limited_user, client: client, role: 'client_admin')
         allow_any_instance_of(Api::Administration::SkillPolicy::Scope).to receive(:resolve).
-          and_return(::Skill.where(project_id: [nil, accessible_project.id]))
+          and_return(Skill.where(project_id: [nil, accessible_project.id]))
       end
 
       it 'returns only accessible skills' do
@@ -238,7 +238,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
     before do
       sign_in project_manager
       allow_any_instance_of(Api::Administration::SkillPolicy).to receive(:tags_search?).and_return(true)
-      allow_any_instance_of(Api::Administration::SkillPolicy::Scope).to receive(:resolve).and_return(::Skill.all)
+      allow_any_instance_of(Api::Administration::SkillPolicy::Scope).to receive(:resolve).and_return(Skill.all)
 
       ActsAsTaggableOn::Tag.create!(name: 'ruby programming')
       ActsAsTaggableOn::Tag.create!(name: 'python programming')

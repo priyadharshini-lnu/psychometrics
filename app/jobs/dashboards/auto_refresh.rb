@@ -3,6 +3,9 @@
 module Dashboards
   class AutoRefresh < ApplicationJob
     queue_as :default
+    sidekiq_options retry: 3
+
+    track_exceptions exception_classes: [JSON::ParserError]
 
     def perform
       Dashboard.auto_refressable.

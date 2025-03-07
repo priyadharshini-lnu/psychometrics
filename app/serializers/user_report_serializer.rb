@@ -20,7 +20,7 @@ class UserReportSerializer < Panko::Serializer
 
   def pdf
     {
-      url: object.pdf_download_url
+      url: object.pdf_download_url(locale: context[:lang])
     }
   end
 
@@ -35,9 +35,7 @@ class UserReportSerializer < Panko::Serializer
     ).to_a
   end
 
-  def campaign_id
-    object.campaign.threesixty_campaign&.id || object.campaign_id
-  end
+  delegate :campaign_id, to: :object
 
   def is_self
     object.user_id == current_user.id
@@ -98,7 +96,11 @@ class UserReportSerializer < Panko::Serializer
       object,
       %w[
         download
-        manage_qc
+        start_qc
+        abort_qc
+        edit_qc
+        one_level_qc
+        approvers_can_edit
         manage_approval
       ],
       {

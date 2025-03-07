@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Table, MenuProps, Row, Col, App, Button, Switch,
+  Table, MenuProps, Row, Col, App, Button, Switch, Typography,
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
@@ -71,7 +71,18 @@ const AssessmentList: React.FC<Props> = ({
             key="name"
             dataIndex="name"
             render={(text, record: UserAssessment) => (
-              <a onClick={() => setDrawerAssessment(record)}>{text}</a>
+              <>
+                <a onClick={() => setDrawerAssessment(record)}>
+                  {text}
+                </a>
+                {record.hoganParticipantId && (
+                  <Typography.Text style={{ display: 'block', fontSize: '0.8em' }}>
+                    (
+                    {record.hoganParticipantId}
+                    )
+                  </Typography.Text>
+                )}
+              </>
             )}
           />
           <Column

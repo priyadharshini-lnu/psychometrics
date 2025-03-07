@@ -7,7 +7,7 @@ RSpec.describe Api::V2::Administration::UserReportEventsController, swagger_doc:
   let!(:superadmin) { create(:superadmin) }
   let!(:normal_user) { create(:user) }
   let!(:campaign) { create(:campaign) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

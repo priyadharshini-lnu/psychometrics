@@ -2,29 +2,36 @@
 
 module Campaigns
   class CompactCompletionStatusQuery < Rectify::Query
-    private_attr_reader :campaign_id, :limit, :offset
+    private_attr_reader :campaign_id, :limit, :offset, :include_inactive_users
 
     DEFAULT_COLUMN_NAMES = ['Email', 'First Name', 'Last Name'].freeze
 
-    def initialize(campaign_id, limit: nil, offset: nil)
+    def initialize(campaign_id, limit: nil, offset: nil, include_inactive_users: false)
       @campaign_id = campaign_id
       @limit = limit
       @offset = offset
+      @include_inactive_users = include_inactive_users
     end
 
     def query
       sql = <<-SQL.squish
-            SELECT * FROM crosstab(
-              'SELECT DISTINCT u.email "Email", u.first_name "First Name", u.last_name "Last Name", a."name" "Assessment",
-                CASE
-                  #{status_case_statement_sql}
-                END
-                "Status" from user_assessments ua INNER JOIN assessments a ON a.id = ua.assessment_id INNER JOIN users u ON ua.subject_id = u.id
-                WHERE campaign_id = #{campaign_id} AND ua.subject_id = ua.evaluator_id',
-                '#{assessment_names_query.to_sql}'
-            ) As (
-              #{column_names}
-            )
+        SELECT * FROM crosstab(
+          'SELECT DISTINCT u.email "Email", u.first_name "First Name", u.last_name "Last Name", a."name" "Assessment",
+            CASE
+              #{status_case_statement_sql}
+            END
+            "Status"
+          FROM user_assessments ua
+          INNER JOIN assessments a ON a.id = ua.assessment_id
+          INNER JOIN users u ON ua.subject_id = u.id
+          INNER JOIN campaign_users cu ON cu.user_id = u.id AND cu.campaign_id = ua.campaign_id
+          WHERE ua.campaign_id = #{campaign_id} AND ua.subject_id = ua.evaluator_id
+          #{'AND cu.active = true' unless include_inactive_users}
+          ',
+          '#{assessment_names_query.to_sql}'
+        ) AS (
+          #{column_names}
+        )
       SQL
 
       if limit && offset

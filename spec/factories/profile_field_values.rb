@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :profile_field_value do
-    numeric_value { 1.5 }
-    string_value { 'MyString' }
+    numeric_value { nil }
+    string_value { nil }
   end
 end

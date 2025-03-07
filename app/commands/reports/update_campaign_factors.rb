@@ -3,6 +3,9 @@
 module Reports
   class UpdateCampaignFactors < BaseCommand
     class InvalidFactorParams < StandardError; end
+    class TooManyCampaignFactors < StandardError; end
+
+    MAX_CAMPAIGN_FACTORS = 300
 
     private_attr_reader :report, :campaign_factors_params
 
@@ -11,12 +14,15 @@ module Reports
       @campaign_factors_params = campaign_factors_params
 
       validate_params!
+      validate_campaign_factors_limit!
     end
 
     def call
-      remove_unused_factors
-      update_campaign_factors!
-      clean_module_references
+      ActiveRecord::Base.transaction do
+        remove_unused_factors
+        update_campaign_factors!
+        clean_module_references
+      end
     end
 
     private
@@ -25,7 +31,15 @@ module Reports
       return if campaign_factors_params.is_a?(Array) &&
                 campaign_factors_params.all? { |f| valid_factor?(f) }
 
-      raise InvalidFactorParams, 'Invalid campaign factors parameters format'
+      raise InvalidFactorParams, I18n.t('administration.report_builder.campaign_factors.invalid_factor_params')
+    end
+
+    def validate_campaign_factors_limit!
+      total_factors = new_factor_codes.size
+      return if total_factors <= MAX_CAMPAIGN_FACTORS
+
+      raise TooManyCampaignFactors,
+            I18n.t('administration.report_builder.campaign_factors.too_many_factors', count: MAX_CAMPAIGN_FACTORS)
     end
 
     def valid_factor?(factor)
@@ -39,20 +53,19 @@ module Reports
     end
 
     def update_campaign_factors!
-      campaign_factors_params.each do |factor_params|
-        update_campaign_factor(factor_params)
+      factors = campaign_factors_params.map do |factor_params|
+        {
+          code: factor_params['code'],
+          name: factor_params['name'],
+          output_type: factor_params['output_type'],
+          report_id: report.id
+        }
       end
-    end
 
-    def update_campaign_factor(factor_params)
-      factor_attrs = {
-        code: factor_params['code'],
-        name: factor_params['name'],
-        output_type: factor_params['output_type']
-      }
-
-      factor = report.campaign_factors.find_or_initialize_by(code: factor_params['code'])
-      factor.update!(factor_attrs)
+      CampaignFactor.import(
+        factors,
+        on_duplicate_key_update: { conflict_target: %i[code report_id], columns: %i[name output_type] }
+      )
     end
 
     def clean_module_references
@@ -75,7 +88,7 @@ module Reports
     end
 
     def new_factor_codes
-      @new_factor_codes ||= campaign_factors_params.map { |f| f['code'] }
+      @new_factor_codes ||= campaign_factors_params.pluck('code')
     end
   end
 end

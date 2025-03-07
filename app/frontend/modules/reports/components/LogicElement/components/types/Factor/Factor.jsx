@@ -53,11 +53,11 @@ export default class Factor extends Component {
         <div className={css.container}>
           <div className={css.factorBlock}>
             {condition.filterId && (
-            <FactorSelect
-              factors={factors}
-              condition={condition}
-              onChange={this.change}
-            />
+              <FactorSelect
+                factors={factors}
+                condition={condition}
+                onChange={this.change}
+              />
             )}
           </div>
           <ConditionSelect condition={condition} onChange={this.change} />

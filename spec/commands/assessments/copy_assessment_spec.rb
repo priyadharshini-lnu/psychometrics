@@ -4,12 +4,13 @@ require 'rails_helper'
 
 describe Assessments::CopyAssessment do
   describe '.process!' do
-    let(:assessment) { create(:assessment) }
+    let(:client) { create(:tenancy) }
+    let(:assessment) { create(:assessment, owner_id: client.id) }
     let(:block) { create(:block, assessment: assessment) }
     let(:factor) { create(:factor) }
 
     let(:copied_assessment) { double(:assessment) }
-    let(:user) { create(:user) }
+    let!(:user) { create(:client_admin, client: client) }
 
     before do
       questions = create_list(:question, 3, block: block)
@@ -72,7 +73,7 @@ describe Assessments::CopyAssessment do
     end
 
     it 'saves passed assessment name' do
-      assessment = create(:assessment)
+      assessment = create(:assessment, owner_id: client.id)
       assessment_name = Faker::Name.name
       assessment = described_class.call!(assessment.id, user, new_assessment_name: assessment_name)[:assessment]
 

@@ -62,7 +62,7 @@ export default function Criteria ({
         <Select dropdownMatchSelectWidth={false} size="small" value={field} onChange={value => update('field', value)}>
           {OPTIONS.map(
             option => (!option.condition || option.condition({ emailName })) && (
-            <Select.Option key={option.key}>{option.name}</Select.Option>
+              <Select.Option key={option.key}>{option.name}</Select.Option>
             ),
           )}
         </Select>

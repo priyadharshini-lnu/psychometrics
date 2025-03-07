@@ -6,11 +6,11 @@ describe Administration::Assessments::BuildExternalSettings do
   subject { described_class.call!(assessment, external_settings) }
 
   let(:assessment) { create(:assessment, type: type) }
-  let(:type) { ::Assessments::Common }
+  let(:type) { Assessments::Common }
   let(:external_settings) { {} }
 
   context 'when the assessment is common' do
-    let(:type) { ::Assessments::Common }
+    let(:type) { Assessments::Common }
     let(:external_settings) { { assessment_id: 'HDS' } }
     it 'returns empty external_settings' do
       expect(subject).to eql({})
@@ -18,7 +18,7 @@ describe Administration::Assessments::BuildExternalSettings do
   end
 
   context 'when the assessment is hogan' do
-    let(:type) { ::Assessments::Hogan }
+    let(:type) { Assessments::Hogan }
     let(:external_settings) { { assessment_id: 'HDS' } }
     it 'returns valid external_settings' do
       expect(subject).to eql(form_id: 5, assessment_id: 'HDS')
@@ -26,7 +26,7 @@ describe Administration::Assessments::BuildExternalSettings do
   end
 
   context 'when the assessment is saville' do
-    let(:type) { ::Assessments::Saville }
+    let(:type) { Assessments::Saville }
     let(:external_settings) { { assessment_id: '1fed08da-44ba-46b6-9be5-2c3b7aec066a' } }
     it 'returns valid external_settings' do
       expect(subject).to eql(
@@ -36,7 +36,7 @@ describe Administration::Assessments::BuildExternalSettings do
   end
 
   context 'when the assessment is pearson' do
-    let(:type) { ::Assessments::Pearson }
+    let(:type) { Assessments::Pearson }
     let(:external_settings) { { assessment_id: 'person_id', norm_id: 'n1' } }
     before do
       create(:pearson_assessment,
@@ -64,7 +64,7 @@ describe Administration::Assessments::BuildExternalSettings do
   end
 
   context 'when the assessment is mettl' do
-    let(:type) { ::Assessments::Mettl }
+    let(:type) { Assessments::Mettl }
     let(:external_settings) { { assessment_id: 'mettl_assessment_id' } }
 
     it 'returns valid external_settings' do

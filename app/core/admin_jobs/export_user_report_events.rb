@@ -17,6 +17,7 @@ module AdminJobs
       'Report ID',
       'Module ID',
       'Module Name',
+      'Module Content',
       'Event Created At',
       'Event Type',
       'Content',
@@ -59,7 +60,8 @@ module AdminJobs
                 'initiators_user_report_events.last_name AS initiator_last_name',
                 'initiators_user_report_events.email AS initiator_email',
                 'reports.id AS report_id',
-                'reports_modules.name AS module_name'
+                'reports_modules.name AS module_name',
+                'reports_modules.props ->> \'text\' AS module_content'
               )
 
       scope_by_parent_filters(scope).
@@ -95,6 +97,7 @@ module AdminJobs
         user_report_event.report_id,
         user_report_event.details['module'],
         user_report_event.module_name,
+        module_content(user_report_event),
         I18n.l(user_report_event.created_at, format: :short),
         user_report_event.event_type,
         extract_content(user_report_event),
@@ -120,6 +123,10 @@ module AdminJobs
                 end
 
       ActionController::Base.helpers.strip_tags(content)
+    end
+
+    def module_content(user_report_event)
+      UserReports::FetchModuleContent.new(user_report_event).call
     end
 
     def status_changes(event)

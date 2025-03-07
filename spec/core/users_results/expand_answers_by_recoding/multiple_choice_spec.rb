@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::ExpandAnswersByRecoding do
+describe UsersResults::ExpandAnswersByRecoding do
   let(:answers) do
     {
       '17158' => { 'answers' => [{ 'index' => 0, 'value' => true }], 'question_id' => 17_158 }

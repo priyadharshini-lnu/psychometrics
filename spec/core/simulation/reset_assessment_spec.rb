@@ -11,7 +11,7 @@ RSpec.describe Simulation::ResetAssessment, type: :service do
   let(:service) { described_class.new(user_assessment) }
 
   before do
-    allow_any_instance_of(::Simulation::RegisterParticipant).to receive(:client).and_return(client)
+    allow_any_instance_of(Simulation::RegisterParticipant).to receive(:client).and_return(client)
   end
 
   describe '#call' do

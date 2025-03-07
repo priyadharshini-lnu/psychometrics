@@ -15,17 +15,18 @@ describe CampaignReports::BulkDownload do
     create_list(
       :user_report,
       2,
-      :with_pdf,
       campaign: campaign,
       report: report1,
       status: 'prepared'
     ).each do |user_report|
       create(:campaign_user, user: user_report.user, campaign: user_report.campaign, active: true)
+      create(:user_report_pdf, :with_pdf, user_report: user_report)
     end
   end
   let!(:inactive_user_report_with_pdf) do
-    create(:user_report, :with_pdf, campaign: campaign, report: report1, status: 'prepared').tap do |user_report|
+    create(:user_report, campaign: campaign, report: report1, status: 'prepared').tap do |user_report|
       create(:campaign_user, user: user_report.user, campaign: user_report.campaign, active: false)
+      create(:user_report_pdf, :with_pdf, user_report: user_report)
     end
   end
   let!(:assessments) do

@@ -56,7 +56,7 @@ const SamlComponent: React.FC<Props> = ({
           resourceName="samlSetting"
           requestScope="campaigns"
           resourceBaseUrl={`/administration/projects/${projectId}/saml_settings`}
-          resource={samlSettingData}
+          resource={samlSetting.id ? samlSettingData : undefined}
           storeManager={{ form }}
           readableResourceName={I18n.t('administration.saml_settings.saml_setting')}
           onSuccessfulSubmission={handleSuccessfullSave}
@@ -66,6 +66,7 @@ const SamlComponent: React.FC<Props> = ({
               sm: 24, md: 10, lg: 8, xl: 8,
             },
             labelAlign: 'left',
+            initialValues: { emailPipetext: '{{identifier}}@example.com' },
           }
         }
         >

@@ -4,13 +4,15 @@ import React, {
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import {
-  Card, Space, Button, Typography,
+  Card, Space, Button, Typography, App,
 } from 'antd'
 import {
   DragOutlined, PlusOutlined, DeleteOutlined, EditOutlined,
 } from '@ant-design/icons'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 import { GroupForm } from './AddGroupForm'
+
+export const FACTORS_LIMIT = 300
 
 export type CampaignFactorGroup = {
   id: string
@@ -37,6 +39,7 @@ type Props = {
   children?: React.ReactNode
   groupsCount: number
   permissions: Permissions
+  totalFactors: number
 }
 
 const { I18n } = window
@@ -45,15 +48,30 @@ export const GroupCard = React.forwardRef(
   (
     {
       group, attributes, listeners, dragStyle, style, removeGroup, children, hasFactors, addFactor, onGroupNameChange,
-      groupsCount, permissions,
+      groupsCount, permissions, totalFactors,
     }: Props, ref:RefObject<HTMLDivElement>,
   ) => {
     const [editName, setEditName] = React.useState(false)
+    const { modal } = App.useApp()
     const handleFormFinish = () => {
       setEditName(false)
     }
     const handleBlur = (form) => {
       form.submit()
+    }
+
+    const handleAddFactor = () => {
+      if (totalFactors < FACTORS_LIMIT) {
+        addFactor(group.id)
+      } else {
+        modal.error({
+          title: I18n.t('administration.scoring.action_prohibited'),
+          content: <p className="">{I18n.t('administration.scoring.desc', { n: FACTORS_LIMIT })}</p>,
+          footer: (_, { OkBtn }) => (
+            <OkBtn />
+          ),
+        })
+      }
     }
 
     const titleElement = (
@@ -96,7 +114,7 @@ export const GroupCard = React.forwardRef(
               <Button
                 className="ps-3 pe-3"
                 icon={<PlusOutlined />}
-                onClick={() => addFactor(group.id)}
+                onClick={handleAddFactor}
                 type="link"
                 ghost
               >
@@ -122,10 +140,12 @@ type GroupCardSortableProps = {
   onGroupNameChange?: (value: string, group: CampaignFactorGroup) => void
   groupsCount: number
   permissions: Permissions
+  totalFactors: number
 }
 
 export const GroupCardSortable:FC<GroupCardSortableProps> = ({
-  group, children, sortId, items, removeGroup, hasFactors, addFactor, onGroupNameChange, groupsCount, permissions,
+  group, children, sortId, items, removeGroup, hasFactors, addFactor, onGroupNameChange,
+  groupsCount, permissions, totalFactors,
 }) => {
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging,
@@ -159,6 +179,7 @@ export const GroupCardSortable:FC<GroupCardSortableProps> = ({
       onGroupNameChange={onGroupNameChange}
       groupsCount={groupsCount}
       permissions={permissions}
+      totalFactors={totalFactors}
     >
       {children}
     </GroupCard>

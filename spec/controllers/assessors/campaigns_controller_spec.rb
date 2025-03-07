@@ -14,7 +14,7 @@ RSpec.describe Assessors::CampaignsController, type: :controller do
     it 'returns campaigns which assessor have access to' do
       get :index
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       campaign_details = parsed_response['list'][0]
 
       expect(parsed_response['total']).to eq(1)

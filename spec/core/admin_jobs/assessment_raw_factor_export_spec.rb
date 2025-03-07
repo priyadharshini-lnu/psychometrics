@@ -10,7 +10,7 @@ describe AdminJobs::AssessmentRawFactorExport do
 
   let!(:assessment) { create(:assessment, :agile, dimension_id: dimension.id) }
   let(:user) { create(:user) }
-
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user, active: true) }
   let(:users_result) do
     scoring = {}
     scoring[factor.id.to_s] = { 'norm_score' => 1, 'score' => 2, 'zscore' => 3.3, 'percentage' => 4 }
@@ -87,6 +87,70 @@ describe AdminJobs::AssessmentRawFactorExport do
       ]
 
       expect(actual_second_row).to eq(expected_second_row.flatten)
+    end
+  end
+
+  context 'when handling active/inactive users' do
+    let(:inactive_user) { create(:user) }
+    let!(:inactive_campaign_user) { create(:campaign_user, campaign: campaign, user: inactive_user, active: false) }
+
+    let(:inactive_users_result) do
+      scoring = {}
+      scoring[factor.id.to_s] = { 'norm_score' => 1, 'score' => 3, 'zscore' => 2.2, 'percentage' => 5 }
+
+      create(
+        :users_result,
+        subject: inactive_user,
+        evaluator: inactive_user,
+        campaign: campaign,
+        assessment: assessment,
+        scoring: scoring,
+        status: :completed,
+        score_calculated: true
+      )
+    end
+
+    let!(:inactive_user_assessment) do
+      create(:user_assessment,
+             subject: inactive_user,
+             campaign: campaign,
+             users_result: inactive_users_result,
+             status: :completed,
+             score_calculated: true,
+             score_calculated_at: Time.zone.now)
+    end
+
+    context 'when include_inactive_users is false' do
+      before do
+        job_record.update(data: job_record.data.merge(include_inactive_users: false))
+      end
+
+      it 'only exports results for active users' do
+        described_class.call!(job_record)
+
+        csv = Roo::CSV.new(active_storage_file_path(job_record.file))
+        result_rows = (2..csv.last_row).map { |i| csv.row(i) }
+
+        result_ids = result_rows.map(&:first)
+        expect(result_ids).to include(users_result.encoded_id)
+        expect(result_ids).not_to include(inactive_users_result.encoded_id)
+      end
+    end
+
+    context 'when include_inactive_users is true' do
+      before do
+        job_record.update(data: job_record.data.merge(include_inactive_users: true))
+      end
+
+      it 'exports results for both active and inactive users' do
+        described_class.call!(job_record)
+
+        csv = Roo::CSV.new(active_storage_file_path(job_record.file))
+        result_rows = (2..csv.last_row).map { |i| csv.row(i) }
+
+        result_ids = result_rows.map(&:first)
+        expect(result_ids).to include(users_result.encoded_id, inactive_users_result.encoded_id)
+      end
     end
   end
 end

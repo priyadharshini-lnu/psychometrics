@@ -43,11 +43,11 @@ describe Client, type: :model do
         project_manager_id: user_two.id)
       id = nil
       client = Client.ransack(filterable_fields: id).result
-      expect(client.length).to eq(Client.all.count)
+      expect(client.length).to eq(Client.count)
 
       name = ''
       client = Client.ransack(filterable_fields: name).result
-      expect(client.length).to eq(Client.all.count)
+      expect(client.length).to eq(Client.count)
 
       random_string = 'this possibly cant be a client name'
       client = Client.ransack(filterable_fields: random_string).result

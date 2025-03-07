@@ -28,7 +28,7 @@ interface BenchmarkScore {
 }
 
 export default function FactorBenchmarkScoreModal ({
-  campaignId, dimensionId,
+  campaignId, dimensionId, currentUser,
   close,
 }) {
   const [benchmarks, setBenchmarks] = useState({})
@@ -40,6 +40,8 @@ export default function FactorBenchmarkScoreModal ({
       filter: { dimension_id_eq: dimensionId },
     },
   })
+
+  const canManage = currentUser.permissions.manageFactorBenchmarkScores
 
   const {
     fetch: fetchScores, collectionAction, isLoading: scoresLoading,
@@ -64,6 +66,8 @@ export default function FactorBenchmarkScoreModal ({
   }
 
   const handleSave = () => {
+    if (!canManage) return
+
     collectionAction({
       action: 'bulk_create',
       method: 'post',
@@ -100,7 +104,7 @@ export default function FactorBenchmarkScoreModal ({
       title={I18n.t('campaign_assessment.actions.factor_benchmark_score')}
       open
       onCancel={handleOnCancel}
-      footer={[
+      footer={canManage && [
         <Button key="back" onClick={handleOnCancel}>
           {I18n.t('threesixty.cancel')}
         </Button>,
@@ -137,15 +141,20 @@ export default function FactorBenchmarkScoreModal ({
                     className="w-100"
                     value={benchmarks[factor.id]?.value}
                     onChange={val => change(factor, val)}
+                    disabled={!canManage}
                   />
-                  <Button
-                    disabled={!benchmarks[factor.id]?.value}
-                    type="link"
-                    danger
-                    size="small"
-                    icon={<DeleteOutlined />}
-                    onClick={() => remove(factor)}
-                  />
+                  {canManage
+                  && (
+                    <Button
+                      disabled={!benchmarks[factor.id]?.value}
+                      type="link"
+                      danger
+                      size="small"
+                      icon={<DeleteOutlined />}
+                      onClick={() => remove(factor)}
+                    />
+                  )
+}
                 </Flex>
               </Form.Item>
             ))}

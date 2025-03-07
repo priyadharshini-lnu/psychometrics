@@ -26,7 +26,6 @@ class UsersResult < ApplicationRecord
     end
   }
 
-  scope :mindmill, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:mindmill] }) }
   scope :agile, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:agile] }) }
 
   delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,

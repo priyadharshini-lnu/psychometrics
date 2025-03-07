@@ -123,12 +123,12 @@ const SettingsModalComponent = ({
         </Col>
 
         {!isThreeSixtyAssessment && (
-        <Col span={24}>
-          <Space>
-            <Switch checked={assessment.instructions.enabled} onChange={toggleInstructions} />
-            {I18n.t('administration.assessments.settings.instructions')}
-          </Space>
-        </Col>
+          <Col span={24}>
+            <Space>
+              <Switch checked={assessment.instructions.enabled} onChange={toggleInstructions} />
+              {I18n.t('administration.assessments.settings.instructions')}
+            </Space>
+          </Col>
         )}
         <Col span={24}>
           <Space>

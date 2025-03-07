@@ -25,7 +25,7 @@ export const ToolsDropdown: React.FC<Props> = ({
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.skills.tools')}</span>
+        <span>{I18n.t('administration.tools')}</span>
         <DownOutlined />
       </Button>
       )}

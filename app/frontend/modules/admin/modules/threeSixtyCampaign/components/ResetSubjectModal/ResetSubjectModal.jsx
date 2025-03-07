@@ -27,9 +27,9 @@ export default function ResetSubjectModal ({
       open={open}
     >
       { isSuperAdmin(currentUser) && (
-      <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>
-        Mark license as deactivated
-      </Checkbox>
+        <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>
+          Mark license as deactivated
+        </Checkbox>
       )
       }
     </ConfirmationModal>

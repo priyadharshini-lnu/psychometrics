@@ -3,10 +3,10 @@ import {
   Col,
   Layout,
 } from 'antd'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { get as getConfig } from '~/modules/endUser/core/config'
@@ -125,22 +125,22 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
     <>
       <title>{`${assessment.name} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       {remainingCampaignTime > 0 && (
-      <GlintPageHeader>
-        <Col span={16} className="ta-c">
-          <CountdownTimer
-            prefix={(
-              <>
-                {I18n.t('user_assessments.timer_title.campaign')}
-                {': '}
-                <ClockCircleOutlined />
-              </>
+        <GlintPageHeader>
+          <Col span={16} className="ta-c">
+            <CountdownTimer
+              prefix={(
+                <>
+                  {I18n.t('user_assessments.timer_title.campaign')}
+                  {': '}
+                  <ClockCircleOutlined />
+                </>
             )}
             // notificationPoints={notificationDurations}
-            notificationTemplate={notificationMessage}
-            seconds={remainingCampaignTime}
-          />
-        </Col>
-      </GlintPageHeader>
+              notificationTemplate={notificationMessage}
+              seconds={remainingCampaignTime}
+            />
+          </Col>
+        </GlintPageHeader>
       )}
       <SubHeader
         hideBackIcon={isAnonym}

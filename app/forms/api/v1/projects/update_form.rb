@@ -7,7 +7,7 @@ module Api
         attribute :name, String
         attribute :subdomain, String
         attribute :client_reference, String
-        attribute :locales, Array[String]
+        attribute :locales, [String]
         attribute :data_processing_consent, Boolean
         attribute :enable_strong_password, Boolean
         attribute :enable_2factor_auth, Boolean

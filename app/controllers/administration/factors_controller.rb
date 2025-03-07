@@ -28,6 +28,11 @@ class Administration::FactorsController < Administration::BaseController
     set_init_state
   end
 
+  def edit
+    @form = Factors::SaveForm.from_model(resource)
+    set_init_state
+  end
+
   def create
     @_resource = @dimension.factors.new(resource_params)
     @form = Factors::SaveForm.new(resource_params)
@@ -38,11 +43,6 @@ class Administration::FactorsController < Administration::BaseController
       set_init_state
       render :new
     end
-  end
-
-  def edit
-    @form = Factors::SaveForm.from_model(resource)
-    set_init_state
   end
 
   def update
@@ -78,7 +78,7 @@ class Administration::FactorsController < Administration::BaseController
         audit! :copy, @cloned_resource, payload: { source: resource.id }
         format.js
       else
-        format.js { render :error, locals: { message: t('administration.factors.copy.error', id: resource.id) } }
+        format.js { render :error, locals: { message: t('.error', id: resource.id) } }
       end
     end
   end
@@ -87,9 +87,7 @@ class Administration::FactorsController < Administration::BaseController
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     resource.toggle(:disabled).save
     audit! :toggle_status, resource, payload: { disabled: resource.disabled }
-    respond_to do |format|
-      format.js
-    end
+    respond_to(&:js)
   end
 
   private

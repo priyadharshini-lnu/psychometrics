@@ -2,7 +2,7 @@
 
 module EndUser
   class UserIdpDevelopmentActionsController < ApplicationController
-    before_action :load_skill!, only: %i[generate_by_ai]
+    before_action :load_skill!, only: %i[generate_by_ai available_development_actions]
 
     def index
       authorize(user, nil, policy_class: ::EndUser::UserIdpDevelopmentActionPolicy)
@@ -45,12 +45,8 @@ module EndUser
     end
 
     def available_development_actions
-      available_development_actions = user_idp_plan.idp_template.development_actions
-      selected_action_ids = user_idp_plan.user_idp_development_actions.pluck(:development_action_id)
-      available_development_actions = available_development_actions.where.not(id: selected_action_ids)
-
       serialized_avaialable_development_actions = Panko::ArraySerializer.new(
-        available_development_actions,
+        @skill.development_actions,
         each_serializer: EndUser::AvailableDevelopmentActionSerializer
       ).to_a
 
@@ -74,7 +70,7 @@ module EndUser
     end
 
     def update_progress
-      user_idp_development_action = current_user.user_idp_development_actions.find(progress_params[:id])
+      user_idp_development_action = user.user_idp_development_actions.find(progress_params[:id])
 
       if user_idp_development_action.update!(progress: progress_params[:progress])
         render json: user_idp_development_action, status: :ok
@@ -89,6 +85,9 @@ module EndUser
       render json: { data: generated_actions }, status: :ok
     rescue DeploymentActions::GenerativeService::RegenerateLimitReachedError => e
       render json: { errors: [e.message] }, status: 422
+    rescue DeploymentActions::GenerativeService::GenerativeServiceError => e
+      Rails.logger.error(e.message) # logging because this shouldn't concern end user
+      render json: { errors: [I18n.t('common.errors.something_wrong')] }, status: 422
     end
 
     private
@@ -110,7 +109,8 @@ module EndUser
     end
 
     def user
-      User.find(params[:user_id])
+      # TODO: Ensure that user is loaded with proper permission when using it for admin side
+      @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
     end
 
     def user_idp_development_actions_params
@@ -133,7 +133,7 @@ module EndUser
     end
 
     def load_skill!
-      @skill = current_user.user_idp_skills.includes(:skill).find(params[:skill_id]).skill
+      @skill = user.user_idp_skills.includes(:skill).find(params[:skill_id]).skill
     end
 
     def ai_generate_service_params

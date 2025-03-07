@@ -66,6 +66,18 @@ describe CampaignFactors::ImportForm do
     expect(form.valid?).to eq(true)
   end
 
+  it 'validates campaign factors count' do
+    create_list(:campaign_factor, (CampaignFactor::MAX_CAMPAIGN_FACTORS - 2), campaign: campaign)
+    file = Rack::Test::UploadedFile.new(
+      Rails.root.join('spec/fixtures/files/import_campaign_factors/valid_file.xlsx'),
+      'application/xlsx'
+    )
+
+    form = described_class.new(file: file).with_context(campaign: campaign)
+    expect(form.valid?).to be false # 298 + 3 new factors in the file
+    expect(form.errors[:base]).to include(/No more than 300 campaign factors can be created./)
+  end
+
   it 'return processed rows' do
     file = Rack::Test::UploadedFile.new(
       Rails.root.join('spec/fixtures/files/import_campaign_factors/valid_file.xlsx'),

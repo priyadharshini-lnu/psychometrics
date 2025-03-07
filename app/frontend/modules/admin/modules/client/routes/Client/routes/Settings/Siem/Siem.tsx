@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Row, Col, Form, Input, Button, Switch, Space, Typography, Select, App,
+  Row, Col, Form, Input, Button, Switch, Space, Typography, Select, App, Alert,
 } from 'antd'
 import { MailOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
@@ -39,12 +39,16 @@ export const Siem: React.FC<Props> = () => {
 
   const handleUpdate = (values: ClientAuditlogExportSetting) => {
     setIsLoading(true)
+    delete values.platformError
 
     const { s3SecretAccessKey, ...valuesWithoutEncrypted } = values
 
     return updateResource(
       s3SecretAccessKey && s3SecretAccessKey !== FILTERED_DATA ? values : valuesWithoutEncrypted,
-    ).then(() => setIsLoading(false))
+    ).then((settings: ClientAuditlogExportSetting) => {
+      setSettings(settings)
+      setIsLoading(false)
+    })
   }
 
 
@@ -56,6 +60,7 @@ export const Siem: React.FC<Props> = () => {
   return (
     <Row justify="space-between" className="pl">
       <Col xs={24} md={16} xl={12} xxl={10}>
+        {settings.platformError && <Alert message={settings.platformError} type="error" />}
         <ResourceForm
           resourceName="clientAuditlogExportSetting"
           readableResourceName={I18n.t('administration.settings.siem.readable_resource_name')}

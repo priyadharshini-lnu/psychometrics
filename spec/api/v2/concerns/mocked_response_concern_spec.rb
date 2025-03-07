@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::Concerns::MockedResponse, type: :controller do
-  controller(::Api::V2::Administration::NormsController) do
+  controller(Api::V2::Administration::NormsController) do
     include Api::V2::Administration::Concerns::MockedResponse
 
     def permitted_params

@@ -161,33 +161,33 @@ const MobileNumberRegistrationForm: React.FC<Props> = ({
         />
         <>
           { (verificationToken) && (
-          <Button type="link" style={{ padding: 5, marginTop: '30px' }}>
-            <CheckCircleOutlined style={{ color: 'green' }} />
-          </Button>
+            <Button type="link" style={{ padding: 5, marginTop: '30px' }}>
+              <CheckCircleOutlined style={{ color: 'green' }} />
+            </Button>
           ) }
 
           { (verificationToken || otpVerificationFormVisible) && (
-          <Button
-            type="link"
-            onClick={handleMobileNumberEdit}
-            style={{ padding: 5, marginTop: '30px' }}
-          >
-            <EditOutlined />
-            {I18n.t('common.actions.edit')}
-          </Button>
+            <Button
+              type="link"
+              onClick={handleMobileNumberEdit}
+              style={{ padding: 5, marginTop: '30px' }}
+            >
+              <EditOutlined />
+              {I18n.t('common.actions.edit')}
+            </Button>
           ) }
         </>
 
         {(!verificationToken && !otpVerificationFormVisible) && (
-        <Button
-          disabled={!isPhoneNumberValid}
-          type="link"
-          loading={resentOtpLoading}
-          onClick={handleOpenOtpVerificationModal}
-          style={{ marginTop: '30px' }}
-        >
-          {I18n.t('common.actions.verify')}
-        </Button>
+          <Button
+            disabled={!isPhoneNumberValid}
+            type="link"
+            loading={resentOtpLoading}
+            onClick={handleOpenOtpVerificationModal}
+            style={{ marginTop: '30px' }}
+          >
+            {I18n.t('common.actions.verify')}
+          </Button>
         )}
       </div>
 

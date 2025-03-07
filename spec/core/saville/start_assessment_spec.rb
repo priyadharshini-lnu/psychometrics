@@ -44,7 +44,7 @@ describe Saville::StartAssessment do
 
     context 'when user assessment is not completed' do
       before(:each) do
-        expect(::Saville::MakeRequest).to receive(:call!).and_return({
+        expect(Saville::MakeRequest).to receive(:call!).and_return({
           'AssessmentOrderAcknowledgement' => {
             'AccessPoint' => { 'InternetWebAddress' => saville_assessment_url }
           }

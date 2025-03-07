@@ -34,7 +34,7 @@ module Api
           raise Api::Errors::AssessmentsNotCompleted, "Scorings for report #{report.id} are not calculated yet"
         end
 
-        if @user_report.report.data_only? && report_user_results.length.zero?
+        if @user_report.report.data_only? && report_user_results.empty?
           raise Api::Errors::AssessmentsNotCompleted, "Assessments for report #{report.id} are not completed"
         end
 

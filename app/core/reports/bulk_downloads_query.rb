@@ -15,8 +15,8 @@ module Reports
       start_date_parsed = DateTime.parse(start_date) if start_date
       end_date_parsed = DateTime.parse(end_date) if end_date
 
-      user_reports = UserReport.
-                     joins(:report, :user, :pdf_file_attachment).
+      user_reports = UserReport.with_pdf_attachments.
+                     joins(:report, :user).
                      joins('INNER JOIN assessments_reports ON assessments_reports.report_id = reports.id').
                      joins('INNER JOIN assessments ON assessments.id = assessments_reports.assessment_id').
                      joins('INNER JOIN user_assessments ON

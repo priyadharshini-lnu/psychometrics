@@ -49,7 +49,7 @@ RSpec.describe Assessment, type: :model do
   end
 
   describe '#external?' do
-    external_types = %i[mindmill hogan saville pearson iiht mettl simulation]
+    external_types = %i[hogan saville pearson iiht mettl simulation]
 
     external_types.each do |type|
       it "returns true for #{type} assessment" do

@@ -21,7 +21,7 @@ describe DataReports::FieldHandlers::DatasheetValueHandler do
 
   it '.call' do
     context = {
-      datasheets: ::Campaigns::GetDatasheetData.call!(campaign, campaign.users.pluck(:email))
+      datasheets: Campaigns::GetDatasheetData.call!(campaign, campaign.users.pluck(:email))
     }
 
     expect(described_class.call!(field, campaign_user: campaign_user, ctx: context)).to eq('test string')

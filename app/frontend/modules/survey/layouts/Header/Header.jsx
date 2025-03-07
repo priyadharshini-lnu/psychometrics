@@ -182,17 +182,17 @@ const Header = (props) => {
           {showAssessmentOptions ? (
             <>
               {assessment && (
-              <li>
-                <div>
-                  <Button
-                    href={`/admin/reports/active?filter[assessments_id_in]=${assessment.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {I18n.t('administration.assessments.reports')}
-                  </Button>
-                </div>
-              </li>
+                <li>
+                  <div>
+                    <Button
+                      href={`/admin/reports/active?filter[assessments_id_in]=${assessment.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {I18n.t('administration.assessments.reports')}
+                    </Button>
+                  </div>
+                </li>
               )}
               <li>
                 <Dropdown

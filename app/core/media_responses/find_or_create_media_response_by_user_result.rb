@@ -22,7 +22,11 @@ module  MediaResponses
     private
 
     def media_belongs_to_same_project?
-      media_record&.users_result&.subject&.project_id == user_result.subject&.project_id
+      users_result = media_record&.users_result
+      subject = users_result&.subject
+      media_project_id = subject&.project_id
+      user_project_id = user_result.subject&.project_id
+      media_project_id == user_project_id
     end
 
     def same_question_and_user_result?

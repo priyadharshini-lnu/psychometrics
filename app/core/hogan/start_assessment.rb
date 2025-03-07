@@ -23,9 +23,8 @@ module Hogan
     private
 
     def add_hogan_participant
-      return if user_assessment_hogan_credential.present?
+      ::Hogan::CreateHoganParticipant.call!(current_user) if user_hogan_credential.nil?
 
-      ::Hogan::CreateHoganParticipant.call!(current_user)
       create_resource_hogan_credential
     end
 

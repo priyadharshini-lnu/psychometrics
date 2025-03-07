@@ -9,7 +9,7 @@ module Examus
 
       def decode(token)
         body = JWT.decode(token, Settings.secrets.examus[:jwt_secret])
-        HashWithIndifferentAccess.new body
+        ActiveSupport::HashWithIndifferentAccess.new body
       rescue JWT::DecodeError, JWT::VerificationError => e
         raise Errors::JwtAuthError, e.message
       end

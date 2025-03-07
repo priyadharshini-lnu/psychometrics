@@ -255,27 +255,27 @@ class CampaignFactorsTable extends Component {
           <>
             {showScore && (
               tableStyle === 'default' && scoreDisplay === 'circular' && (
-              <PieGraph
-                strokeWidth="10"
-                text={_.isNil(precision) ? score : _.round(score, precision)}
-                percent={Math.min(percent, 100)}
-                progressColor={scoreProgressColor}
-                backgroundColor={scoreBackgroundColor}
-              />
+                <PieGraph
+                  strokeWidth="10"
+                  text={_.isNil(precision) ? score : _.round(score, precision)}
+                  percent={Math.min(percent, 100)}
+                  progressColor={scoreProgressColor}
+                  backgroundColor={scoreBackgroundColor}
+                />
               )
             )}
             {showScore && (
               tableStyle === 'default' && scoreDisplay === 'bullet' && (
-              <BulletGraph
-                scoreRanges={scoreRanges}
-                baselineScore={conditionBaselineScore}
-                scorePercentage={percent}
-                lineColor={scoreLineColor}
-                bulletColor={scoreBulletColor}
-                showScoreText={showScoreText}
-                score={score}
-                scoreBulletGraphHeight={scoreBulletGraphHeight}
-              />
+                <BulletGraph
+                  scoreRanges={scoreRanges}
+                  baselineScore={conditionBaselineScore}
+                  scorePercentage={percent}
+                  lineColor={scoreLineColor}
+                  bulletColor={scoreBulletColor}
+                  showScoreText={showScoreText}
+                  score={score}
+                  scoreBulletGraphHeight={scoreBulletGraphHeight}
+                />
               )
             )}
           </>

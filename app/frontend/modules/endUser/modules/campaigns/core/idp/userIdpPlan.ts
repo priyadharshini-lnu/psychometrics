@@ -9,6 +9,7 @@ const FETCH_USER_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_USER_IDP_SKILLS'
 const FETCH_AVAILABLE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_AVAILABLE_DEVELOPMENT_ACTIONS'
 const GENERATE_DEVELOPMENT_ACTIONS_BY_AI = 'IDP/MY_PLAN/GENERATE_DEVELOPMENT_ACTIONS_BY_AI'
 const ADD_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/ADD_DEVELOPMENT_ACTION'
+const REMOVE_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/REMOVE_DEVELOPMENT_ACTION'
 const UPDATE_DEVELOPMENT_ACTION = 'IDP/MY_PLAN/UPDATE_DEVELOPMENT_ACTION'
 const SAVE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/SAVE_DEVELOPMENT_ACTIONS'
 const FETCH_DIRECT_REPORTS = 'IDP/MY_PLAN/FETCH_DIRECT_REPORTS'
@@ -19,6 +20,7 @@ const FETCH_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_IDP_SKILLS'
 
 interface UserIdpPlan {
   status: string | null;
+  selfRatingEnabled: boolean;
   userIdpSkills: Skill[];
   userIdpDevelopmentActions: DevelopmentAction[];
   directReports: object[];
@@ -56,6 +58,12 @@ export const addDevelopmentActionInPlan = (developmentAction: Partial<Developmen
   data: developmentAction,
 })
 
+
+export const removeDevelopmentActionFromPlan = (developmentAction: Partial<DevelopmentAction>) => ({
+  type: REMOVE_DEVELOPMENT_ACTION,
+  data: developmentAction,
+})
+
 export const updateDevelopmentActionInPlan = (developmentAction: Partial<DevelopmentAction>) => ({
   type: UPDATE_DEVELOPMENT_ACTION,
   data: developmentAction,
@@ -80,10 +88,14 @@ export const fetchUserIdpSkills = (userId: string) => ({
   },
 })
 
-export const fetchAvailableDevelopmentActions = (userId: string) => ({
+export const fetchAvailableDevelopmentActions = (userId: string, skillId: number) => ({
   type: FETCH_AVAILABLE_DEVELOPMENT_ACTIONS,
   request: {
-    url: `/user_idp_development_actions/available_development_actions?user_id=${userId}`,
+    url: '/user_idp_development_actions/available_development_actions',
+    body: {
+      userId,
+      skillId,
+    },
   },
 })
 
@@ -149,6 +161,7 @@ export const HANDLERS = {
       userIdpDevelopmentActions,
       userIdpSkills,
       status: userIdpPlan.status,
+      selfRatingEnabled: userIdpPlan.selfRatingEnabled,
     }
   },
   [FETCH_DIRECT_REPORTS]: (state, action) => ({
@@ -213,6 +226,17 @@ export const HANDLERS = {
       },
     }
   },
+  [REMOVE_DEVELOPMENT_ACTION]: (state, action) => {
+    const developmentAction = action.data
+    const userIdpDevelopmentActions = { ...state.userIdpDevelopmentActions }
+
+    delete userIdpDevelopmentActions[developmentAction.id]
+
+    return {
+      ...state,
+      userIdpDevelopmentActions,
+    }
+  },
   [UPDATE_USER_IDP_PLAN]: (state, action) => ({
     ...state,
     status: action.response.status,
@@ -241,6 +265,7 @@ export const defaultState: UserIdpPlan = {
   directReports: [],
   AIGeneratedDevelopmentActions: [],
   status: null,
+  selfRatingEnabled: false,
   userIdpDevelopmentActions: [],
   userIdpSkills: [],
   skills: [],

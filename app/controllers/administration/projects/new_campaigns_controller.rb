@@ -63,16 +63,6 @@ module Administration
         )
       end
 
-      def destroy
-        ::Campaigns::Remove.call(@campaign) do
-          on(:ok) do
-            audit! :delete, @campaign, payload: @campaign.log_attribute_for_delete, campaign: @campaign
-            render json: @campaign.id
-          end
-          on(:error) { |errors| return render json: { errors: errors }, status: 422 }
-        end
-      end
-
       def show
         @do_not_render_rails_menu = true
         respond_to do |format|
@@ -107,6 +97,16 @@ module Administration
           ).serialize(@campaign)
         else
           render json: { errors: form.errors.messages }, status: 422
+        end
+      end
+
+      def destroy
+        ::Campaigns::Remove.call(@campaign) do
+          on(:ok) do
+            audit! :delete, @campaign, payload: @campaign.log_attribute_for_delete, campaign: @campaign
+            render json: @campaign.id
+          end
+          on(:error) { |errors| return render json: { errors: errors }, status: 422 }
         end
       end
 
@@ -233,6 +233,7 @@ module Administration
           :fixed_time, :fixed_time_duration, :workshop_booking_requires_prework_completion, :show_watermark, :time_zone,
           :instructions_enabled, :instructions, :proctoring_enabled, :proctoring_trial, :watermark_content,
           :identification, :description, :integration_type, :proctoring_type,
+          :workshop_invite_requires_prework_completion,
           rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
                      allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
                      allow_to_use_messengers allow_wrong_gaze_direction

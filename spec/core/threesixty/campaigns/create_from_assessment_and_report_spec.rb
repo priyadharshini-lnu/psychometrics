@@ -3,12 +3,13 @@
 require 'rails_helper'
 
 describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
-  let(:project) { create(:project) }
+  let(:client) { create(:tenancy) }
+  let(:project) { create(:project, parent: client) }
   let!(:campaign_name) { Faker::Name.name }
   let(:form) { Threesixty::Campaigns::CreateForm.new(name: campaign_name) }
   let(:assessment) { create(:assessment) }
-  let(:report) { create(:report) }
-  let!(:user) { create(:user) }
+  let(:report) { create(:report, owner_id: client.id) }
+  let!(:user) { create(:client_admin, client: client) }
 
   describe '.call' do
     it 'creates a Threesixty::Campaign record' do

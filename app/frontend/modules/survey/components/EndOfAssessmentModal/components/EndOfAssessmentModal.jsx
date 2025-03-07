@@ -81,13 +81,13 @@ export class EndOfAssessmentModal extends Component {
               <Radio value="Custom">{I18n.t('assessments.flow.end_assessment_modal.custom_message')}</Radio>
             </Radio.Group>
             {messageType === 'Custom' && (
-            <div className="mtm">
-              <Input.TextArea
-                value={message}
-                className={styles.messageTextArea}
-                onChange={e => this.setState({ message: e.currentTarget.value })}
-              />
-            </div>
+              <div className="mtm">
+                <Input.TextArea
+                  value={message}
+                  className={styles.messageTextArea}
+                  onChange={e => this.setState({ message: e.currentTarget.value })}
+                />
+              </div>
             )}
           </div>
         </Body>

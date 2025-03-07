@@ -14,7 +14,7 @@ describe Api::V2::Administration::Campaigns::SmsHistoriesController, swagger_doc
 
   let!(:campaign_admin) { create(:campaign_admin, campaign: campaign) }
 
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(campaign_admin) }
 

@@ -13,7 +13,7 @@ describe Api::V2::Administration::Campaigns::CampaignIdpsController, swagger_doc
   let(:campaign_id) { campaign.id }
   let(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
 
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

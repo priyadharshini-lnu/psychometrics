@@ -32,11 +32,11 @@ export default function SubjectCondtions ({
     subjectConditions.map((subCondition, parentIndex) => (
       <div className="mbs" key={parentIndex}>
         {subjectConditions.length > 1 && (
-        <Operator
-          operator={subCondition.operator}
-          addNewLogicalSetCondition={() => addNewLogicalSetCondition({ field: datasheetFields[0], operator: 'and' })}
-          update={value => update(parentIndex, null, 'operator', value)}
-        />
+          <Operator
+            operator={subCondition.operator}
+            addNewLogicalSetCondition={() => addNewLogicalSetCondition({ field: datasheetFields[0], operator: 'and' })}
+            update={value => update(parentIndex, null, 'operator', value)}
+          />
         )}
         <div className="mlm">
           {subCondition.conditions.map((condition, childIndex) => (

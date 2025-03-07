@@ -73,7 +73,7 @@ RSpec.describe Hogan::CopyAssessment, type: :model do
     end
 
     it 'recomputes the user results' do
-      expect(::UsersResults::RecomputeJob).to receive(:perform_later).with(anything, target_user)
+      expect(UsersResults::RecomputeJob).to receive(:perform_later).with(anything, target_user)
       subject.call
     end
   end

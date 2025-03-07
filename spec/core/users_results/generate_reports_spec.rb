@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::GenerateReports do
+describe UsersResults::GenerateReports do
   it 'calls GenerateAndSavePdfJob for each report which is dependent on user_result' do
     user = create(:user, :with_project_membership)
     assessment = create(:assessment, :with_report)

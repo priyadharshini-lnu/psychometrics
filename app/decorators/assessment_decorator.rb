@@ -6,7 +6,7 @@ class AssessmentDecorator < BaseDecorator
   end
 
   def dashboard_category
-    if [Assessment::MINDMILL, Assessment::HOGAN].include?(object.category)
+    if [Assessment::HOGAN].include?(object.category)
       Assessment::PSYCHOMETRIC
     else
       object.category

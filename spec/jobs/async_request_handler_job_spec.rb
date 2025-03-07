@@ -27,7 +27,7 @@ describe AsyncRequestHandlerJob, type: :job do
       expect(AsyncResponseRequest::SetAsyncResponse).to receive(:call!).
         with(async_response: in_progress_async_response)
 
-      described_class.new.perform(context: context, handler: ::Saville::StartAssessment)
+      described_class.new.perform(context: context, handler: Saville::StartAssessment)
     end
 
     context 'when an error occurs' do
@@ -40,12 +40,12 @@ describe AsyncRequestHandlerJob, type: :job do
           instance_of(StandardError),
           extra: {
             async_request_uuid: async_request_uuid,
-            handler: ::Saville::StartAssessment,
+            handler: Saville::StartAssessment,
             params: context
           }
         )
 
-        described_class.new.perform(context: context, handler: ::Saville::StartAssessment)
+        described_class.new.perform(context: context, handler: Saville::StartAssessment)
       end
     end
   end

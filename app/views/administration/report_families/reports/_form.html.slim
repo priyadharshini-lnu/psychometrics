@@ -9,7 +9,7 @@
                   class: 'form-control',
                   include_blank: false,
                   input_html: { data: { live_search: true, behavior: 'communication-changeable' } },
-                  wrapper_html: { class: 'internal mindmill hogan saville pearson iiht' }
+                  wrapper_html: { class: 'internal hogan saville pearson iiht' }
         = f.input :external_package_id,
                   as: :select,
                   collection: Settings.providers.hogan.report_packages.map { |a| [a.name, a.id] },

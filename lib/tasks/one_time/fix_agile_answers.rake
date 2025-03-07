@@ -39,7 +39,7 @@ namespace :one_time do
     answers_updated = false
     # pp answers
     answers.each do |group|
-      group['answers'].each do |_qid, question_answer|
+      group['answers'].each_value do |question_answer|
         question = questions[question_answer['id']]
         next if question.blank?
         next unless ['edg-', 'ftp-'].any? { |prefix| question['id'].starts_with?(prefix) }
@@ -47,7 +47,7 @@ namespace :one_time do
 
         next unless has_positive_score?(scoring, question['id'])
 
-        next unless (question['answers'] & [question_answer['answers']]).empty?
+        next if question['answers'].intersect?([question_answer['answers']])
 
         question_answer['answers'] = question['answers'].first
         answers_updated = true

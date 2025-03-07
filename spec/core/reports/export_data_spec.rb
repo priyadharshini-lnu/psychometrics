@@ -38,7 +38,7 @@ describe Reports::ExportData do
       end
 
       it do
-        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+        allow(Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
         allow_any_instance_of(described_class).to receive(:users_results).
           and_return(UsersResult.where(id: user_result.id))

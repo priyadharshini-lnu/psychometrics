@@ -253,11 +253,11 @@ const CommonComponent: FC<CommonComponentProps> = ({
                   />
                 ) : (
                   instructionsEnabled && (
-                  <InstructionsPanel
-                    description={<SafeHTML html={instructions} config="adminRichText" />}
-                    title={I18n.t('campaign.instructions.heading')}
-                    heightLimit={200}
-                  />
+                    <InstructionsPanel
+                      description={<SafeHTML html={instructions} config="adminRichText" />}
+                      title={I18n.t('campaign.instructions.heading')}
+                      heightLimit={200}
+                    />
                   )
                 )}
               </Col>
@@ -265,11 +265,11 @@ const CommonComponent: FC<CommonComponentProps> = ({
             <Row>
               <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
                 {campaignClosedForUser && (
-                <div className="mvm font-bold">
-                  <AssessmentCardContainer>
-                    <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
-                  </AssessmentCardContainer>
-                </div>
+                  <div className="mvm font-bold">
+                    <AssessmentCardContainer>
+                      <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
+                    </AssessmentCardContainer>
+                  </div>
                 )}
                 <div className={styles.tasksContainer}>
                   <AssessmentCardContainer>
@@ -327,14 +327,14 @@ const CommonComponent: FC<CommonComponentProps> = ({
                           </>
                         )}
                         {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
-                        <div className="mt-1">
-                          <Space>
-                            <InfoCircleOutlined />
-                            <Typography.Text type="secondary">
-                              {I18n.t('campaign.begin_btn_msg_before_prework')}
-                            </Typography.Text>
-                          </Space>
-                        </div>
+                          <div className="mt-1">
+                            <Space>
+                              <InfoCircleOutlined />
+                              <Typography.Text type="secondary">
+                                {I18n.t('campaign.begin_btn_msg_before_prework')}
+                              </Typography.Text>
+                            </Space>
+                          </div>
                         )}
                       </Col>
                     </Row>

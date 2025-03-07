@@ -5,10 +5,10 @@ import conditionStyles from '../../Condition.less'
 const PREDICATE_OPTIONS = [
   { value: 'EqualTo', label: 'Equal To' },
   { value: 'NotEqualTo', label: 'Not Equal To' },
-  { value: 'GreaterThen', label: 'Greater Then' },
-  { value: 'GreaterThenOrEqual', label: 'Greater Then Or Equal To' },
-  { value: 'LessThen', label: 'Less Then' },
-  { value: 'LessThenOrEqual', label: 'Less Then Or Equal To' },
+  { value: 'GreaterThen', label: 'Greater Than' },
+  { value: 'GreaterThenOrEqual', label: 'Greater Than Or Equal To' },
+  { value: 'LessThen', label: 'Less Than' },
+  { value: 'LessThenOrEqual', label: 'Less Than Or Equal To' },
   { value: 'Contains', label: 'Contains' },
   { value: 'DoesNotContains', label: 'Does Not Contains' },
   { value: 'MatchesRegexp', label: 'Matches Regexp' },
@@ -63,22 +63,22 @@ const DataSheet: React.FC<Props> = ({
         ))}
       </select>
       {condition.field && (
-      <select
-        value={condition.predicate}
-        className={`form-control ${styles.predicateSelect}`}
-        onChange={changePredicate}
-      >
-        {PREDICATE_OPTIONS.map(option => (
-          <option key={option.value} value={option.value}>{option.label}</option>
-        ))}
-      </select>
+        <select
+          value={condition.predicate}
+          className={`form-control ${styles.predicateSelect}`}
+          onChange={changePredicate}
+        >
+          {PREDICATE_OPTIONS.map(option => (
+            <option key={option.value} value={option.value}>{option.label}</option>
+          ))}
+        </select>
       )}
       {condition.field && (
-      <input
-        className={`form-control ${styles.valueInput}`}
-        value={condition.value}
-        onChange={changeValue}
-      />
+        <input
+          className={`form-control ${styles.valueInput}`}
+          value={condition.value}
+          onChange={changeValue}
+        />
       )}
     </div>
   )

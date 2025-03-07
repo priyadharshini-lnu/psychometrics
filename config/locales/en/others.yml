@@ -55,6 +55,19 @@ en:
           attributes:
             file:
               invalid_format: Please upload xlsx file
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: Column '%{entity}' can't be blank at row %{index}
+              duplicate_code: Duplicate code '%{code}' at row %{index}
+              invalid_output_type: Invalid output_type '%{output_type}' at row %{index}
+              max_limit_reached: Total campaign factors exceed the maximum limit of %{count}
+              missing_headers: 'Missing required headers: %{headers}'
+              type_mismatch: Output type mismatch for code '%{code}' at row %{index}
+            file:
+              invalid_format: Please upload xlsx file
+            report:
+              must_exist: Report must exist
         campaigns_external_scores_import_form:
           attributes:
             file:
@@ -368,7 +381,6 @@ en:
           hogan: Hogan
           iiht: IIHT
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           pearson: Pearson
           psychometric: Assessment
@@ -386,7 +398,6 @@ en:
           common: TTE Assessment
           hogan: Hogan
           iiht: IIHT Assessment
-          mindmill: Mindmill Assessment
           pearson: Pearson Assessment
           saville: Saville Assessment
         updated_at: Modified Date
@@ -551,8 +562,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       report_family:
         created_at: Created Date
@@ -623,7 +632,6 @@ en:
           manager: Manager
           meeting: Meeting
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           pearson: Pearson
           project_admin: Project Admin
@@ -740,6 +748,7 @@ en:
         export_admin_with_permissions: Export Admin With Permissions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_development_actions: Export Development Actions
         export_factor_translations: Export Factor Translations
         export_occupations: Occupations Export
         export_report_data: Export report data
@@ -752,6 +761,7 @@ en:
         import_assessors: Import Assessors
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
+        import_development_actions: Import Development Actions
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_question_translations: Import Question Translations
@@ -926,7 +936,6 @@ en:
         lead_assessor_form: Lead Assessor Form
         meeting: Meeting
         mettl: Mettl
-        mindmill: Mindmill
         organisational: Org Surveys
         pearson: Pearson
         psychometric: Psychometric
@@ -941,7 +950,6 @@ en:
         hogan: Hogan
         iiht: IIHT Assessment
         mettl: Mettl Assessment
-        mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
         simulation: Simulation Assessment
@@ -994,6 +1002,14 @@ en:
       competency: Competency
       id: ID
       score: Score
+    screen_reader_announcements:
+      fifteen_seconds_left: 15 seconds left
+      five_minutes_left: 5 minutes left
+      one_minute_left: 1 minute left
+      seconds_left: "%{seconds} seconds left"
+      thirty_seconds_left: 30 seconds left
+      time_is_up: Your time is up
+      time_is_up_for_recording: Time is up and recording will stop now
     single_page:
       display_linked_questions: Displaying responses linked to the currently selected question.
     trash: Trash
@@ -1041,6 +1057,7 @@ en:
       sequencing: Sequencing
     report_approval:
       add_settings: Add Setting
+      create_seetings: Create Settings
     sequencing:
       add_assessment_center: Add assessment center
       add_group: Add group
@@ -1931,6 +1948,7 @@ en:
       campaign_factor:
         code_already_exists: A factor with the same code already exists.
         invalid_lua_name: should be valid lua variable name
+        limit_exceeded: You have reached the maximum limit of %{limit} campaign factors.
         name_already_exists: A factor with the same name already exists.
         rank_not_allowed: Only factors with an output type of numeric can be ranked.
       campaign_factor_group:
@@ -1948,6 +1966,7 @@ en:
       mettl_schedule_record_create:
         uniq_schedule_name: Schedule name should be unique
       missed?: can't be blank
+      not_allowed?: not allowed to change
       not_in_the_list?: invalid value passed
       not_uniq_variable: variable '%{value}' redefined on line number %{row}
       report_approval_settings:
@@ -2303,15 +2322,16 @@ en:
       generate_more: Generate More
       generating_development_actions: Generating development actions...
       heading: Development Actions
-      learning_from_the_others: Learning from the Others
+      learning_from_others: Learning from others
       marathon: Marathon
       no_development_actions: No development actions
-      on_the_job: On the Job
+      on_the_job: On the job
       other: Other
       private: Private
+      remove: Remove
       skill: Skill
       sprint: Sprint
-      structured_learning: Structured Learning
+      structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
     direct_report_details: Direct Report Details
@@ -2344,13 +2364,17 @@ en:
         area_of_development: Area of Development
         behavioural: Behavioural
         categories: Categories
-        learning_on_job: On the Job (%{count})
-        learning_others: Learning from the Others (%{count})
-        learning_structured: Structured Learning (%{count})
+        learning_on_job: On the job (%{count})
+        learning_others: Learning from others (%{count})
+        learning_structured: Structured learning (%{count})
         other: Other
         technical: Technical
+    pdf:
+      header: Hello
     profile_details: Profile Details
-    skill_gap_report: Skill Gap Report
+    skill_gap_report:
+      continue_to_rate_skills: Continue to rate skills
+      title: Skill Gap Report
     status: Status
     user_idp_status:
       approved: Approved
@@ -2752,7 +2776,6 @@ en:
         hogan: Hogan
         internal: Internal
         mettl: Mettl
-        mindmill: Mindmill
         pearson: Pearson
         saville: Saville
     form:
@@ -2984,7 +3007,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3006,7 +3028,6 @@ en:
           case_study: Case Studies
           hogan: Hogan
           meeting: Meeting
-          mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment
           saville: Saville
@@ -3027,7 +3048,6 @@ en:
         types:
           common: TTE Assessment
           hogan: Hogan
-          mindmill: Mindmill Assessment
           saville: Saville Assessment
         updated_at: Modified Date
       block:
@@ -3166,8 +3186,6 @@ en:
       report:
         created_at: Created Date
         id: ID
-        mindmill: Load report from Mindmill
-        mindmill_report: Mindmill report
         updated_at: Modified Date
       user:
         active: Active
@@ -3198,7 +3216,6 @@ en:
           hogan: Hogan
           manager: Manager
           member: User
-          mindmill: Mindmill
           organisational: Organisational
           project_admin: Project Admin
           psychometric: Psychometric
@@ -3327,7 +3344,6 @@ en:
       statuses:
         success: Success
         undelivered: Undelivered
-    mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
     more_info_evaluation_label: More information - Evaluations
     more_info_nomination_label: More information - Nominations
     my_projects: My Projects
@@ -3571,6 +3587,10 @@ en:
     modals:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
+        content_with_counts:
+          both: 'DANGER: Report %{userReportName} has %{commentsCount} comment(s) and %{editsCount} edit(s). If you remove the report from the user, these comment(s) and edit(s) would be lost.'
+          comments: 'DANGER: Report %{userReportName} has %{commentsCount} comment(s). If you remove the report from the user, these comment(s) would be lost.'
+          edits: 'DANGER: Report %{userReportName} has %{editsCount} edit(s). If you remove the report from the user, these edit(s) would be lost.'
         successfully: "%{userReportName} report was removed successfully"
       remove_file:
         content: Are you sure you want to remove file?
@@ -3681,6 +3701,7 @@ en:
     title:
       one: There is one error, please check your responses
       other: There are %{count} errors, please check your responses
+    user_self_skill_rating_disabled: Self rating is disabled for this template
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
   'yes': 'Yes'

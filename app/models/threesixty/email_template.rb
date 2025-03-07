@@ -10,6 +10,6 @@ module Threesixty
 
     translates :subject, :content
 
-    enum category: { invitations: 0, reminders: 1, report_ready: 2, approvals: 3 }
+    enum :category, { invitations: 0, reminders: 1, report_ready: 2, approvals: 3 }
   end
 end

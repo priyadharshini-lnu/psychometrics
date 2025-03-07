@@ -86,16 +86,16 @@ export const PreviewComponent: FC<Props> = ({
             />
           </legend>
           {type === 'SingleAnswer' && (
-          <SingleAnswerPreview {...answerTypeProps} />
+            <SingleAnswerPreview {...answerTypeProps} />
           )}
           {type === 'MultipleAnswer' && (
-          <MultipleAnswerPreview {...answerTypeProps} />
+            <MultipleAnswerPreview {...answerTypeProps} />
           )}
           {type === 'Dropdown' && <DropdownPreview {...answerTypeProps} />}
           {showQuestionScoring && scores && size(scores) !== 0 && (
-          <div>
-            <ScoringTable factors={factors} scoring={scores} I18n={I18n} />
-          </div>
+            <div>
+              <ScoringTable factors={factors} scoring={scores} I18n={I18n} />
+            </div>
           )}
         </fieldset>
       </Suspense>

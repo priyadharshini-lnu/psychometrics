@@ -33,22 +33,22 @@ export const TableLayout: FC<Props> = ({
   return (
     <>
       {!disableHeader && (
-      <Row
-        justify="space-between"
-        align="middle"
-        className="pt-4 pb-4 ps-4 pe-4"
-      >
-        <Col>
-          <CountDisplay
-            selectedCount={selectedCount ?? 0}
-            totalCount={requestFailed ? 0 : recordCount || 0}
-            isLoading={loading}
-          />
-        </Col>
-        <Col>
-          {filters}
-        </Col>
-      </Row>
+        <Row
+          justify="space-between"
+          align="middle"
+          className="pt-4 pb-4 ps-4 pe-4"
+        >
+          <Col>
+            <CountDisplay
+              selectedCount={selectedCount ?? 0}
+              totalCount={requestFailed ? 0 : recordCount || 0}
+              isLoading={loading}
+            />
+          </Col>
+          <Col>
+            {filters}
+          </Col>
+        </Row>
       )}
       {selectionSetting?.selectionAllowed && (
         <div className="pb-4 ps-5 pe-5">

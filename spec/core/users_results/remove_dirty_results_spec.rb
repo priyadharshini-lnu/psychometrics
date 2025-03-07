@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::RemoveDirtyResults do
+describe UsersResults::RemoveDirtyResults do
   let(:answers) do
     {
       '17288' => {

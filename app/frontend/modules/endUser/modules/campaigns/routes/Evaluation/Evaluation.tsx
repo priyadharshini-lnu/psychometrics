@@ -184,10 +184,10 @@ const EvaluationComponent = ({
             {availableTranslations
               && availableTranslations.length > 1
               && (
-              <LangDropdownWithChangeUrl
-                currentLocale={selectedLanguage.code}
-                locales={availableTranslations || []}
-              />
+                <LangDropdownWithChangeUrl
+                  currentLocale={selectedLanguage.code}
+                  locales={availableTranslations || []}
+                />
               )
             }
           </Space>
@@ -229,59 +229,59 @@ const EvaluationComponent = ({
             extra={[
               type !== 'preview_block' && enableProgress
                 && (
-                <Progress
-                  key="1"
-                  className={styles.progressBar}
-                  strokeColor="#fff"
-                  percent={progress}
-                  style={{ width: '200px' }}
-                />
+                  <Progress
+                    key="1"
+                    className={styles.progressBar}
+                    strokeColor="#fff"
+                    percent={progress}
+                    style={{ width: '200px' }}
+                  />
                 ),
             ]}
           />
           {!error && (
-          <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-            {showInvalidSession && (
-            <Modal
-              title={I18n.t('errors.invalid_session_title')}
-              open={showInvalidSession}
-              cancelText={I18n.t('common.actions.close')}
-              okText={I18n.t('common.actions.back_to_dashboard')}
-              closable={false}
-              maskClosable={false}
-              onCancel={() => {
-                setShowInvalidSession(false)
-              }}
-              onOk={() => { window.location.href = '/assessors' }}
-              centered
-            >
-              {I18n.t('assessments.page.invalid_session.description')}
-            </Modal>
-            )}
-            <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-              <Row justify="end" className={styles.dropdownRow}>
-                <Col className={styles.dropdownCol}>
-                  <StatusDropdown />
-                </Col>
-              </Row>
-              <PassAssessment
-                ref={assessmentRef}
-                id="pass_assessment"
-                initialized={initialized}
-                type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
-                isThreesixty="true"
-                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
-                data={assessment}
-                result={results}
-                dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}
-                locales={translations}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                notAnEndPage={approve_evaluation || edit === 'true'}
-                rstore={store}
-                renderedByEnduser
-              />
-            </ResourcesTabs>
-          </ConfigProvider>
+            <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+              {showInvalidSession && (
+                <Modal
+                  title={I18n.t('errors.invalid_session_title')}
+                  open={showInvalidSession}
+                  cancelText={I18n.t('common.actions.close')}
+                  okText={I18n.t('common.actions.back_to_dashboard')}
+                  closable={false}
+                  maskClosable={false}
+                  onCancel={() => {
+                    setShowInvalidSession(false)
+                  }}
+                  onOk={() => { window.location.href = '/assessors' }}
+                  centered
+                >
+                  {I18n.t('assessments.page.invalid_session.description')}
+                </Modal>
+              )}
+              <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                <Row justify="end" className={styles.dropdownRow}>
+                  <Col className={styles.dropdownCol}>
+                    <StatusDropdown />
+                  </Col>
+                </Row>
+                <PassAssessment
+                  ref={assessmentRef}
+                  id="pass_assessment"
+                  initialized={initialized}
+                  type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
+                  isThreesixty="true"
+                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
+                  data={assessment}
+                  result={results}
+                  dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}
+                  locales={translations}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                  notAnEndPage={approve_evaluation || edit === 'true'}
+                  rstore={store}
+                  renderedByEnduser
+                />
+              </ResourcesTabs>
+            </ConfigProvider>
           )}
         </Watermark>
       </Content>

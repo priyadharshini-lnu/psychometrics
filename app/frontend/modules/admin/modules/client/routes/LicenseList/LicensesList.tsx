@@ -54,16 +54,16 @@ const LicenseList: React.FC<Props> = ({
         <Resource.Filter placeholder="Search" name="report_family_name_cont">
           {isSuperAdmin(currentUser)
               && (
-              <Button
-                type="primary"
-                disabled={false}
-                onClick={() => {
-                  openModal('LicenseFormModal')
-                }}
-              >
-                <PlusOutlined />
-                {I18n.t('frontend.clients.actions.create.create_license')}
-              </Button>
+                <Button
+                  type="primary"
+                  disabled={false}
+                  onClick={() => {
+                    openModal('LicenseFormModal')
+                  }}
+                >
+                  <PlusOutlined />
+                  {I18n.t('frontend.clients.actions.create.create_license')}
+                </Button>
               )}
         </Resource.Filter>
         <ClientLicensesTable />

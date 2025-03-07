@@ -113,38 +113,38 @@ const NominationListComponent = ({
       </Row>
       {nominationsForSetup.length > 0
         && (
-        <CollapseItem title={I18n.t('threesixty.setup_nominations')} list={nominationsForSetup}>
-          {item => <NominationItem key={item.id} item={item} />}
-        </CollapseItem>
+          <CollapseItem title={I18n.t('threesixty.setup_nominations')} list={nominationsForSetup}>
+            {item => <NominationItem key={item.id} item={item} />}
+          </CollapseItem>
         )}
       {viewableNominations.length > 0
         && (
-        <CollapseItem title={I18n.t('threesixty.view_nominations')} list={viewableNominations}>
-          {item => <NominationItem key={item.id} item={item} />}
-        </CollapseItem>
+          <CollapseItem title={I18n.t('threesixty.view_nominations')} list={viewableNominations}>
+            {item => <NominationItem key={item.id} item={item} />}
+          </CollapseItem>
         )}
       {approvableNominations.length > 0
         && (
-        <CollapseItem
-          title={I18n.t('threesixty.approve_nominations')}
-          list={approvableNominations}
-        >
-          {item => <NominationItem key={item.id} item={item} />}
-        </CollapseItem>
+          <CollapseItem
+            title={I18n.t('threesixty.approve_nominations')}
+            list={approvableNominations}
+          >
+            {item => <NominationItem key={item.id} item={item} />}
+          </CollapseItem>
         )}
       {nominationHelp && (
-      <Modal
-        title={(
-          <>
-            {I18n.t('threesixty.nomination_help_modal.title')}
-          </>
+        <Modal
+          title={(
+            <>
+              {I18n.t('threesixty.nomination_help_modal.title')}
+            </>
         )}
-        open={showHelp}
-        onCancel={() => setShowHelp(false)}
-        footer={null}
-      >
-        <SafeHTML html={nominationHelp.content} config="adminRichText" />
-      </Modal>
+          open={showHelp}
+          onCancel={() => setShowHelp(false)}
+          footer={null}
+        >
+          <SafeHTML html={nominationHelp.content} config="adminRichText" />
+        </Modal>
       )}
     </ThreesixtyCard>
   )

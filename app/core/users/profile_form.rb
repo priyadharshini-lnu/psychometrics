@@ -21,7 +21,7 @@ module Users
       allow_blank: true
 
     def validate_project_fields
-      project.profile_setting.profile_fields.includes(:question).each do |field|
+      project.profile_setting.profile_fields.includes(:question).find_each do |field|
         if field.required && custom_fields[field.question_id.to_s.to_sym].blank?
           errors.add(field.question.name, 'required')
         end
@@ -37,7 +37,7 @@ module Users
     end
 
     def question_center_validations
-      project.profile_setting.profile_fields.includes(:question).each do |field|
+      project.profile_setting.profile_fields.includes(:question).find_each do |field|
         question = field.question
         validation_errors = Questions::Validation.call!(question, custom_fields[field.question_id.to_s.to_sym],
                                                         I18n.locale)

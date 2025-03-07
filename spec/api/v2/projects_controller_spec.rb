@@ -6,7 +6,7 @@ require 'swagger_helper'
 describe Api::V2::Administration::ProjectsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project_admin) { create(:user, project: project, role: 'Users::Admin') }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
   let!(:campaign) { create(:campaign) }
   let!(:project) { campaign.project }
   let!(:client) { project.client }

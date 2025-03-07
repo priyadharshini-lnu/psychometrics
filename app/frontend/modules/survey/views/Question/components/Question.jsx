@@ -90,13 +90,13 @@ class Question extends Component {
           <Footer {...this.props} />
         </div>
         {model.templateId && (
-        <Confirmation
-          show={showDeleteConfirmation}
-          onConfirm={this.remove}
-          onCancel={this.onCancelConfirm}
-        >
-          <p>Are you sure you want to remove? (with template)</p>
-        </Confirmation>
+          <Confirmation
+            show={showDeleteConfirmation}
+            onConfirm={this.remove}
+            onCancel={this.onCancelConfirm}
+          >
+            <p>Are you sure you want to remove? (with template)</p>
+          </Confirmation>
         )}
         <Buttons {...this.props} selected={selected} remove={model.templateId ? this.openConfirmation : this.remove} />
       </div>
