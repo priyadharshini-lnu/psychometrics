@@ -6507,6 +6507,41 @@ ALTER SEQUENCE public.user_reports_id_seq OWNED BY public.user_reports.id;
 
 
 --
+-- Name: user_saved_filters; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_saved_filters (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    user_id bigint NOT NULL,
+    resource_type character varying NOT NULL,
+    filter_params jsonb DEFAULT '{}'::jsonb NOT NULL,
+    favorite boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_saved_filters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_saved_filters_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_saved_filters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_saved_filters_id_seq OWNED BY public.user_saved_filters.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8298,6 +8333,13 @@ ALTER TABLE ONLY public.user_reports ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: user_saved_filters id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_saved_filters ALTER COLUMN id SET DEFAULT nextval('public.user_saved_filters_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9800,6 +9842,14 @@ ALTER TABLE ONLY public.user_report_pdfs
 
 ALTER TABLE ONLY public.user_reports
     ADD CONSTRAINT user_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_saved_filters user_saved_filters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_saved_filters
+    ADD CONSTRAINT user_saved_filters_pkey PRIMARY KEY (id);
 
 
 --
@@ -12604,6 +12654,34 @@ CREATE INDEX index_user_reports_on_user_id ON public.user_reports USING btree (u
 
 
 --
+-- Name: index_user_saved_filters_on_filter_params; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_saved_filters_on_filter_params ON public.user_saved_filters USING gin (filter_params);
+
+
+--
+-- Name: index_user_saved_filters_on_name_and_user_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_saved_filters_on_name_and_user_id_and_resource_type ON public.user_saved_filters USING btree (name, user_id, resource_type);
+
+
+--
+-- Name: index_user_saved_filters_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_saved_filters_on_user_id ON public.user_saved_filters USING btree (user_id);
+
+
+--
+-- Name: index_user_saved_filters_on_user_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_saved_filters_on_user_id_and_resource_type ON public.user_saved_filters USING btree (user_id, resource_type);
+
+
+--
 -- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14989,6 +15067,14 @@ ALTER TABLE ONLY public.sheet_row_data
 
 
 --
+-- Name: user_saved_filters fk_rails_e25c5bac06; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_saved_filters
+    ADD CONSTRAINT fk_rails_e25c5bac06 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15307,12 +15393,15 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250224095420'),
+('20250213113601'),
+('20250211125313'),
+('20250304084629'),
 ('20250304060832'),
 ('20250226084133'),
 ('20250221073030'),
 ('20250224075920'),
 ('20250221102354'),
-('20250213113601'),
 ('20250210121434'),
 ('20250207113529'),
 ('20250206082916'),

@@ -133,6 +133,7 @@ class User < ApplicationRecord
   has_many :user_bookings
   has_many :campaign_factor_values, dependent: :destroy
   has_many :bulk_reports
+  has_many :user_saved_filters
 
   has_one :security_setting, through: :project
   has_one :user_profile

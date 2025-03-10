@@ -5,6 +5,8 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import SearchOutlined from '@ant-design/icons/SearchOutlined'
+import { ResourceType } from '~/modules/admin/components/UserSavedFilters/core'
+import { useSavedFilter } from '~/modules/admin/components/UserSavedFilters'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import dayjs from '~/utils/dayjs'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
@@ -15,6 +17,7 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import { Campaign } from '../core'
 import { Tabs } from './Tabs'
 import styles from './TasksList.less'
+
 
 const { Column } = Table
 const { I18n } = window
@@ -40,12 +43,35 @@ const searchFilters = ['user_full_name_cont', 'user_email_cont']
 
 const TasksListComponent: React.FC<Props> = ({
   data, meta, isLoading, getSortOrder, handleTableChange, changePage,
-  currentPage, pageSize, changeFilter, getFilteredValue, requests,
+  currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery,
 }) => {
   const tableLoading = isLoading('fetch')
   const { collectionAction: search } = useResources<Campaign>('report_approvals')
 
   const [filterOptions, setFilterOptions] = useState<FilterOptions>()
+
+  const currentPathName = window.location.pathname
+
+  function getResourceTypeFromPathname (pathname: string): ResourceType {
+    switch (pathname) {
+      case '/admin/report_approvals/all':
+        return ResourceType.ReportApprovalAll
+      case '/admin/report_approvals/my_tasks':
+        return ResourceType.ReportApprovalMyTasks
+      case '/admin/report_approvals/approved':
+        return ResourceType.ReportApprovalApproved
+      default:
+        return ResourceType.ReportApprovalAll
+    }
+  }
+
+  const resourceType = getResourceTypeFromPathname(currentPathName)
+
+  const {
+    handleFilterChange,
+    FilterComponent,
+  } = useSavedFilter(changeFilter, changeUrlQuery, resourceType)
+
 
   useEffect(() => {
     if (!filterOptions) {
@@ -91,15 +117,20 @@ const TasksListComponent: React.FC<Props> = ({
       const filterOk = (close) => {
         if (searchQuery && searchFilters.includes(filter)) {
           changeFilter(filter, searchQuery)
+          handleFilterChange(filter, searchQuery)
         } else {
           changeFilter(filter, selectedKeys.length ? selectedKeys : null)
+          handleFilterChange(filter, selectedKeys.length ? selectedKeys : null)
         }
         close()
       }
 
-      const filterReset = () => {
+      const filterReset = (close) => {
+        changeFilter(filter, null)
+        handleFilterChange(filter, null)
         setSearchQuery('')
         setSelectedKeys([])
+        close()
       }
 
       const handleSearch = (value: string) => {
@@ -152,7 +183,7 @@ const TasksListComponent: React.FC<Props> = ({
               type="link"
               size="small"
               disabled={getResetDisabled()}
-              onClick={filterReset}
+              onClick={() => filterReset(close)}
             >
               {I18n.t('common.actions.reset')}
             </Button>
@@ -174,6 +205,7 @@ const TasksListComponent: React.FC<Props> = ({
 
   const TasksTable = (
     <>
+      <FilterComponent />
       <Table
         rowKey={row => row?.id ?? -1}
         dataSource={data}

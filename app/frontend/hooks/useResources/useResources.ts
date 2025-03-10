@@ -577,6 +577,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     currentPage: queryState?.page?.number ? parseInt(queryState?.page?.number as unknown as string, 10) : 1,
     changePage,
     changeFilter,
+    changeUrlQuery,
     removeFilter,
     getFilteredValue,
     handleTableChange,
