@@ -32,7 +32,7 @@ module Administration
       end
 
       def spoof?
-        user.is?(:superadmin)
+        @user.is?(:superadmin) && !@record&.user&.superadmin?
       end
 
       def allow_results_delete?
