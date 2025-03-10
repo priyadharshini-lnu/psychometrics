@@ -2,22 +2,22 @@
 
 require 'rails_helper'
 
-describe DeploymentActions::GenerativeService do
+describe DevelopmentActions::GenerativeService do
   let(:skill) { create(:skill) }
   let(:generated_actions) do
     [
       {
-        'description' => 'Enroll in an online course designed to build expertise in advanced JavaScript concepts...',
-        'learning_style' => 'structured_learning'
+        description: 'Enroll in an online course designed to build expertise in advanced JavaScript concepts...',
+        learning_style: 'structured_learning'
       },
       {
-        'description' => "Join a team-focused activity where you review peers'...",
-        'learning_style' => 'learning_from_others'
+        description: "Join a team-focused activity where you review peers'...",
+        learning_style: 'learning_from_others'
       }
     ]
   end
 
-  let(:service_instance) { instance_double(DeploymentActions::Services::AzureOpenai) }
+  let(:service_instance) { instance_double(DevelopmentActions::Services::AzureOpenai) }
   let(:options) { {} }
 
   before do
@@ -28,7 +28,7 @@ describe DeploymentActions::GenerativeService do
     context 'when service is configured' do
       it 'initializes with valid service' do
         service = described_class.new(skill, options)
-        expect(service.service).to eq(DeploymentActions::Services::AzureOpenai)
+        expect(service.service).to eq(DevelopmentActions::Services::AzureOpenai)
       end
     end
 
@@ -39,7 +39,7 @@ describe DeploymentActions::GenerativeService do
 
       it 'raises ServiceNotConfiguredError' do
         expect { described_class.new(skill, options) }.to raise_error(
-          DeploymentActions::GenerativeService::ServiceNotConfiguredError,
+          DevelopmentActions::GenerativeService::ServiceNotConfiguredError,
           'Generative AI service not configured'
         )
       end
@@ -52,7 +52,7 @@ describe DeploymentActions::GenerativeService do
 
       it 'raises UnsupportedServiceError' do
         expect { described_class.new(skill, options) }.to raise_error(
-          DeploymentActions::GenerativeService::UnsupportedServiceError,
+          DevelopmentActions::GenerativeService::UnsupportedServiceError,
           'Unsupported service: unsupported_service'
         )
       end
@@ -63,20 +63,20 @@ describe DeploymentActions::GenerativeService do
     let(:service) { described_class.new(skill, options) }
 
     before do
-      allow(DeploymentActions::Services::AzureOpenai).to receive(:new).and_return(service_instance)
-      allow(service_instance).to receive(:generate!).and_return('Generated content')
+      allow(DevelopmentActions::Services::AzureOpenai).to receive(:new).and_return(service_instance)
+      allow(service_instance).to receive(:generate!).and_return([{ description: 'Generated content' }])
       allow(service).to receive(:system_prompt).and_return('System prompt')
       allow(service).to receive(:build_prompt).and_return('User prompt')
     end
 
     context 'when generating for the first time' do
       it 'calls the service with correct prompts' do
-        expect(DeploymentActions::Services::AzureOpenai).to receive(:new).with('System prompt', 'User prompt')
+        expect(DevelopmentActions::Services::AzureOpenai).to receive(:new).with('System prompt', 'User prompt')
         service.call!
       end
 
       it 'returns generated content' do
-        expect(service.call!).to eq('Generated content')
+        expect(service.call!).to eq([{ description: 'Generated content', skill_id: skill.id }])
       end
     end
 
@@ -84,8 +84,10 @@ describe DeploymentActions::GenerativeService do
       let(:options) { { generate_more: true, generated_actions: generated_actions } }
 
       context 'when within regeneration limit' do
-        it 'generates new content' do
-          expect(service.call!).to eq('Generated content')
+        it 'generates new content and sends combined as response' do
+          expected_response = generated_actions + [{ description: 'Generated content' }]
+
+          expect(service.call!).to eq(expected_response.map! { |action| action.merge(skill_id: skill.id) })
         end
       end
 
@@ -100,7 +102,7 @@ describe DeploymentActions::GenerativeService do
 
         it 'raises RegenerateLimitReachedError' do
           expect { service.call! }.to raise_error(
-            DeploymentActions::GenerativeService::RegenerateLimitReachedError
+            DevelopmentActions::GenerativeService::RegenerateLimitReachedError
           )
         end
       end

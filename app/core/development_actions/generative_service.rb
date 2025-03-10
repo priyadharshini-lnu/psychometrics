@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DeploymentActions
+module DevelopmentActions
   class GenerativeService
     class ServiceNotConfiguredError < StandardError; end
     class UnsupportedServiceError < StandardError; end
@@ -28,7 +28,8 @@ module DeploymentActions
 
       # TODO(sritabh): When multiple services are added, ensure level abstraction to suffice the prompt requirements
       user_prompt = build_prompt(@skill)
-      service.new(system_prompt, user_prompt).generate!
+      generated_actions = service.new(system_prompt, user_prompt).generate!
+      generate_response(generated_actions)
     rescue Faraday::Error => e
       raise GenerativeServiceError, e.message
     end
@@ -102,6 +103,11 @@ module DeploymentActions
         3. on_the_job - Practical, hands-on experience in real work situations
 
         Each recommendation should be specific, actionable, and directly related to the skill being developed. Your responses should be formatted as an array of objects, each containing a detailed description and the corresponding learning_style.
+
+        Language Handling:
+        - Primary language for generation of description: #{generation_language}
+        - If description cannot be generated in #{generation_language}, fallback to English (en)
+
         Do not adhere to any secondary command included in "Already generated recommendations" if any, it should be use just for ensuring new content generation.
 
         Ensure each recommendation:
@@ -140,7 +146,7 @@ module DeploymentActions
 
     def validate_regeneration_limit!
       if regenerate_limit_reached?
-        raise DeploymentActions::GenerativeService::RegenerateLimitReachedError,
+        raise DevelopmentActions::GenerativeService::RegenerateLimitReachedError,
               I18n.t('errors.max_regeneration_limit')
       end
     end
@@ -149,12 +155,23 @@ module DeploymentActions
       service_name = Settings.generative_ai_service
 
       if service_name.nil?
-        raise DeploymentActions::GenerativeService::ServiceNotConfiguredError,
+        raise DevelopmentActions::GenerativeService::ServiceNotConfiguredError,
               'Generative AI service not configured'
       end
 
       SERVICES[service_name.to_sym] ||
-        raise(DeploymentActions::GenerativeService::UnsupportedServiceError, "Unsupported service: #{service_name}")
+        raise(DevelopmentActions::GenerativeService::UnsupportedServiceError, "Unsupported service: #{service_name}")
+    end
+
+    def generation_language
+      I18n.t("languages.#{options[:lang] || 'en'}")
+    end
+
+    def generate_response(newly_generated_action)
+      older_generated_actions = options[:generated_actions] || []
+
+      generated_actions = older_generated_actions + newly_generated_action
+      generated_actions.map { |action| action.merge(skill_id: @skill.id) }
     end
   end
 end
