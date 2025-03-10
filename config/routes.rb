@@ -1422,6 +1422,8 @@ as: :simulation_progress_notification
           end
 
           jsonapi_resources :users_results, only: :show
+
+          jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
         end
       end
     end

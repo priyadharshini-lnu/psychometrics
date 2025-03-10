@@ -1990,6 +1990,9 @@ en:
         start_time_should_be_less: Start time should be less than end time
       user_idp_plan:
         idp_template_already_assigned_to_user: This Idp Template is already assiged to this user and is active
+      user_saved_filters:
+        limit_exceeded: You can only have %{limit} saved filters, kindly delete saved filters to add more.
+        unique_name: A filter with the same name already exists.
       workshop_invited_subject_create:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:

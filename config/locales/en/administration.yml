@@ -2563,6 +2563,23 @@ en:
       download: Download
       report_approvals: Report Approvals
       review: Review
+      saving_filters:
+        actions:
+          clear_filters: Clear Filters
+          delete_filter: Delete Filter
+          save_filter: Save
+          save_new_filter: Save as new Filter
+          saved_filters: Saved Filters
+        delete_saved_filters: Filter Deleted
+        edit_filter_name: Filter Name saved
+        error_while_deleting: Error While deleting
+        error_while_editing: Error while editing
+        error_while_fetching: Something went wrong , try again
+        error_while_saving: Error while saving filter
+        filter_updated: Filter updated
+        no_saved_filters: There are no saved filters
+        save_filter: Filter Saved
+        set_favorite: Filter has been set as favorite
     report_builder:
       campaign_factors:
         add_field: Add Field
