@@ -6566,7 +6566,8 @@ CREATE TABLE public.users (
     mobile_verified boolean DEFAULT false,
     manager_id bigint,
     unique_session_id character varying,
-    external_id character varying
+    external_id character varying,
+    disabled_at timestamp(6) without time zone
 );
 
 
@@ -15307,6 +15308,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250304084629'),
 ('20250304060832'),
 ('20250226084133'),
 ('20250221073030'),

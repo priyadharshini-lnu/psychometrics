@@ -2603,6 +2603,9 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
+    users:
+      account_disable: Your account has been disabled due to inactivity
+      warning: Your account will be disabled soon due to inactivity
   maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   my: My
