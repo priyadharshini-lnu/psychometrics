@@ -46,8 +46,7 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
   return (
     <>
       <NormFilter
-        openModal={() => openModal('NormsFormModal')}
-        openModalForImport={() => openModal('NormImportModal')}
+        openModal={openModal}
       />
       <Resource.Table pagination>
         <Resource.Column<Norm>

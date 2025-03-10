@@ -7,13 +7,11 @@ import { Norm } from '~/modules/admin/modules/client/core/norms'
 const { I18n } = window
 
 type Props = {
-  openModal: () => void,
-  openModalForImport: () => void
+  openModal: (modalName: string, modalProps?: unknown) => void
   }
 
 export const NormFilter: React.FC<Props> = ({
   openModal,
-  openModalForImport,
 }) => {
   const { resource } = useResourceContext<Norm>()
 
@@ -21,7 +19,7 @@ export const NormFilter: React.FC<Props> = ({
 
   const handleMenuClick = ({ key }) => {
     if (key === 'import') {
-      openModalForImport()
+      openModal('NormImportModal')
     }
   }
 
@@ -55,7 +53,7 @@ export const NormFilter: React.FC<Props> = ({
         <Button
           type="primary"
           disabled={tableLoading}
-          onClick={openModal}
+          onClick={() => openModal('NormsFormModal')}
         >
           <PlusOutlined />
           {I18n.t('common.actions.create')}
