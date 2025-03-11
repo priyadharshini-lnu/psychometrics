@@ -53,13 +53,13 @@ export const CampaignFactorsForm: FC<Props> = ({
 
   useEffect(() => {
     if (formData.length) return
-    const initializedData = factors.map(factor => ({
+    const initializedData = factors?.map(factor => ({
       ...factor,
       outputType: factor.outputType || CAMPAIGN_FACTORS_TYPES[0],
       key: factor.key || uuidv4(),
     }))
-    setFormData(initializedData)
-    form.setFieldsValue({ items: initializedData })
+    setFormData(initializedData ?? [])
+    form.setFieldsValue({ items: initializedData ?? [] })
   }, [factors])
 
   useEffect(() => {
@@ -79,34 +79,42 @@ export const CampaignFactorsForm: FC<Props> = ({
   }
 
   const onFinish = (values: { items: CampaignFactor[] }) => {
-    const validateField = (value: string, index: number, fieldName: keyof CampaignFactor): FieldError => ({
-      [fieldName]: isFieldUnique(value, index, fieldName, values.items) ? '' : `${fieldName}s must be unique`,
-    })
+    const newCampaignFactors = values.items || []
+    let save = false
 
-    const validateFields = (
-      fieldValues: string[],
-      fieldName: keyof CampaignFactor,
-    ): FieldError[] => fieldValues?.map((value, index) => validateField(value, index, fieldName))
+    if (newCampaignFactors.length) {
+      const validateField = (value: string, index: number, fieldName: keyof CampaignFactor): FieldError => ({
+        [fieldName]: isFieldUnique(value, index, fieldName, newCampaignFactors) ? '' : `${fieldName}s must be unique`,
+      })
 
-    const nameErrors: FieldError[] = validateFields(values.items?.map(column => column.name), 'name')
-    const codeErrors: FieldError[] = validateFields(values.items?.map(column => column.code), 'code')
-    const setFields = (errors: FieldError[], fieldName: keyof CampaignFactor) => form.setFields(
-      errors?.map((error, index) => ({
-        name: ['items', index, fieldName],
-        errors: error[fieldName] ? [error[fieldName]] : undefined,
-      })),
-    )
+      const validateFields = (
+        fieldValues: string[],
+        fieldName: keyof CampaignFactor,
+      ): FieldError[] => fieldValues?.map((value, index) => validateField(value, index, fieldName))
 
-    setFields(nameErrors, 'name')
-    setFields(codeErrors, 'code')
+      const nameErrors: FieldError[] = validateFields(newCampaignFactors?.map(column => column.name), 'name')
+      const codeErrors: FieldError[] = validateFields(newCampaignFactors?.map(column => column.code), 'code')
+      const setFields = (errors: FieldError[], fieldName: keyof CampaignFactor) => form.setFields(
+        errors?.map((error, index) => ({
+          name: ['items', index, fieldName],
+          errors: error[fieldName] ? [error[fieldName]] : undefined,
+        })),
+      )
 
-    const hasNoErrors = (errors: FieldError[], key: string) => errors?.every(error => error[key] === '')
-    if (hasNoErrors(nameErrors, 'name') && hasNoErrors(codeErrors, 'code')) {
-      saveCampaignFactors(values.items)
+      setFields(nameErrors, 'name')
+      setFields(codeErrors, 'code')
+
+      const hasNoErrors = (errors: FieldError[], key: string) => errors.every(error => error[key] === '')
+      if (hasNoErrors(nameErrors, 'name') && hasNoErrors(codeErrors, 'code')) {
+        save = true
+      }
+    }
+    if (!newCampaignFactors.length || save) {
+      saveCampaignFactors(newCampaignFactors)
       message.config({
         getContainer: () => document.getElementById('fixed_header') || document.body,
       })
-      onSaveCampaignFactors && onSaveCampaignFactors(values.items)
+      onSaveCampaignFactors && onSaveCampaignFactors(newCampaignFactors)
       message.success('Campaign factors updated successfully')
     }
   }
