@@ -232,7 +232,8 @@ export const useSavedFilter = (
                 <Button
                   type="link"
                   icon={<DeleteOutlined />}
-                  onClick={() => deleteFilter(selectedFilterId).then(() => {
+                  onClick={e => deleteFilter(selectedFilterId).then(() => {
+                    e.stopPropagation()
                     handleDeleteFilter()
                   })}
                 />
