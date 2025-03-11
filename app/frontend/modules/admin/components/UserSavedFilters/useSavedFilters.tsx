@@ -123,7 +123,7 @@ export const useSavedFilter = (
         changeUrlQuery(finalQuery)
       }
     })
-  }, [])
+  }, [resourceType, queryState])
 
   useEffect(() => {
     const name = getFilterName(selectedFilterId)
@@ -194,6 +194,13 @@ export const useSavedFilter = (
     return generateSmartFilterName(selectedFilters)
   }
 
+  const handleDeleteFilter = () => {
+    setSelectedFilterId('')
+    handleClearFilters()
+    setSelectedFilters({})
+    fetchFilters(resourceType).then(setSavedFilters)
+  }
+
   return {
     handleFilterChange,
     FilterComponent: () => (
@@ -208,30 +215,31 @@ export const useSavedFilter = (
         selectedFilterId={selectedFilterId}
         getFilterName={getFilterName}
         EditAndDeleteControls={() => (
-          (Object.keys(selectedFilters).length !== 0) ? (
-            <>
-              <Button type="link" icon={<EditOutlined />} onClick={() => setEditFilterName(true)} />
-              <Button
-                type="link"
-                icon={savedFilters?.find(f => f.id === selectedFilterId)?.favorite
-                  ? <StarFilled /> : <StarOutlined />}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  updateFilter(selectedFilterId, 'setFavorite', { favorite: true }, 'set_favorite')
-                    .then(() => fetchFilters(resourceType).then(setSavedFilters))
-                }}
-              />
-              <Button
-                type="link"
-                icon={<DeleteOutlined />}
-                onClick={() => deleteFilter(selectedFilterId).then(() => {
-                  setSelectedFilterId('')
-                  setSelectedFilters({})
-                  fetchFilters(resourceType).then(setSavedFilters)
-                })}
-              />
-            </>
-          ) : null
+          <>
+            {savedFilters?.some(f => f.id === selectedFilterId) && Object.keys(selectedFilters).length !== 0 && (
+              <>
+                <Button type="link" icon={<EditOutlined />} onClick={() => setEditFilterName(true)} />
+                <Button
+                  type="link"
+                  icon={savedFilters?.find(f => f.id === selectedFilterId)?.favorite
+                    ? <StarFilled /> : <StarOutlined />}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    updateFilter(selectedFilterId, 'setFavorite', { favorite: true }, 'set_favorite')
+                      .then(() => fetchFilters(resourceType).then(setSavedFilters))
+                  }}
+                />
+                <Button
+                  type="link"
+                  icon={<DeleteOutlined />}
+                  onClick={e => deleteFilter(selectedFilterId).then(() => {
+                    e.stopPropagation()
+                    handleDeleteFilter()
+                  })}
+                />
+              </>
+            )}
+          </>
         )}
         RenderTags={() => <RenderTags selectedFilters={selectedFilters} handleFilterChange={handleFilterChange} />}
         selectedFilters={selectedFilters}
@@ -253,8 +261,7 @@ export const useSavedFilter = (
               <Button
                 icon={<DeleteOutlined />}
                 onClick={() => deleteFilter(selectedFilterId).then(() => {
-                  handleClearFilters()
-                  fetchFilters(resourceType).then(setSavedFilters)
+                  handleDeleteFilter()
                 })}
               >
                 {I18n.t('administration.report_approval.saving_filters.actions.delete_filter')}
