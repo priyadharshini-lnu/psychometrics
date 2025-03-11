@@ -9,6 +9,7 @@ module EndUser
         config.validate_keys = true
 
         required(:status).filled(:str?, included_in?: UserIdpPlan.statuses.keys)
+        required(:skill_gap_report_available).filled(:bool?)
         required(:self_rating_enabled).filled(:bool?)
 
         optional(:user_idp_skills).array(:hash) do

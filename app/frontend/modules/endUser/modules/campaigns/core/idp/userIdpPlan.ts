@@ -21,6 +21,7 @@ const FETCH_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_IDP_SKILLS'
 interface UserIdpPlan {
   status: string | null;
   selfRatingEnabled: boolean;
+  skillGapReportAvailable: boolean | null;
   userIdpSkills: Skill[];
   userIdpDevelopmentActions: DevelopmentAction[];
   directReports: object[];
@@ -168,6 +169,7 @@ export const HANDLERS = {
       userIdpDevelopmentActions,
       userIdpSkills,
       status: userIdpPlan.status,
+      skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
     }
   },
@@ -271,6 +273,7 @@ export const defaultState: UserIdpPlan = {
   AIGeneratedDevelopmentActions: {},
   status: null,
   selfRatingEnabled: false,
+  skillGapReportAvailable: null,
   userIdpDevelopmentActions: [],
   userIdpSkills: [],
   skills: [],
