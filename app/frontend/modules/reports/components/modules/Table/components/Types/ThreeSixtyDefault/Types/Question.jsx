@@ -111,7 +111,9 @@ const Results = ({ results, filterId, paginationContext }) => {
     return (
       paginationContext.resultIndexes[filterId].map(i => (
         <tr>
-          <td key={i} className={styles.answer}>{results[i]}</td>
+          <td key={i} className={styles.answer}>
+            <SafeHTML html={results[i]} />
+          </td>
         </tr>
       ))
     )
