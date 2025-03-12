@@ -86,7 +86,7 @@ function FilterTable ({
 
   return (
     <tbody data-paginatable={1} data-filter-id={filter.id}>
-      <tr>
+      <tr data-filter-header>
         <td className={styles.filter}>
           {I18nStore.tFilterName(filter)}
         </td>
