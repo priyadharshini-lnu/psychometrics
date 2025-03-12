@@ -6,7 +6,7 @@ describe EndUser::SkillsController, type: :controller do
   let(:current_password) { 'Current@Password129' }
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
   let!(:user_idp_plan) { create(:user_idp_plan, user: user, active: true) }
-  let(:project) { Project.find(user.project.id) }  # Ensure we have a proper Project instance
+  let(:project) { Project.find(user.project.id) } # Ensure we have a proper Project instance
   let!(:idp_template) { user_idp_plan.idp_template }
   let!(:skill) { create(:skill, name: 'abc', project: project) }
   let!(:skill2) { create(:skill, name: 'cde', project: project) }
@@ -31,7 +31,7 @@ describe EndUser::SkillsController, type: :controller do
       it 'returns skills by search query' do
         get :index, params: { filters: { name_cont: 'ab', job_roles_id_eq: job_role.id } }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
 
         expect(response.status).to eq(200)
         expect(parsed_response.count).to eq(1)
@@ -42,7 +42,7 @@ describe EndUser::SkillsController, type: :controller do
       it 'returns skills by search query' do
         get :index, params: { filters: { name_cont: 'c', job_roles_id_eq: job_role2.id } }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
 
         expect(response.status).to eq(200)
         expect(parsed_response.count).to eq(1)
@@ -53,7 +53,7 @@ describe EndUser::SkillsController, type: :controller do
       it 'returns all skills' do
         get :index, params: { filters: { name_cont: 'c' } }
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
 
         expect(response.status).to eq(200)
         expect(parsed_response.count).to eq(2)
@@ -77,7 +77,7 @@ describe EndUser::SkillsController, type: :controller do
       it 'returns sample skills from each category' do
         get :index
 
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
 
         expect(response).to have_http_status(:ok)
 

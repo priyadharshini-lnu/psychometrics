@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::SheetRows::UpsertData do
+describe SheetRows::UpsertData do
   let(:email) { Faker::Internet.email }
   let(:data) { { 'Name' => 'John' } }
   let(:campaign) { create(:campaign) }

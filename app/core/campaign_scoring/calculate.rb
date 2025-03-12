@@ -2,6 +2,8 @@
 
 module CampaignScoring
   class Calculate < BaseCommand
+    PERMITTED_USER_FIELDS_IN_FORMULA = %w[first_name last_name email age gender timezone photo locale].freeze
+
     private_attr_reader :campaign, :user, :user_assessments, :campaign_user,
                         :existing_campaign_factor_values
 
@@ -23,7 +25,7 @@ module CampaignScoring
       @factor_values = CampaignFactors::CalculateAssessorScoringFactor.call!(campaign, user)
 
       campaign_user.update(campaign_scores_errors: nil) if campaign_user.campaign_scores_errors.present?
-      campaign_factors_sorted_by_formula_factors_at_end.each do |cf, _acc|
+      campaign_factors_sorted_by_formula_factors_at_end.each do |cf|
         calculate_campaign_factor_value(cf)
       rescue StandardError, SyntaxError => e
         @factor_values[cf] = CampaignScoring::FactorValue.new(nil, e)
@@ -242,7 +244,5 @@ module CampaignScoring
         [profile.profile_field.id.to_s, profile.value]
       end
     end
-
-    PERMITTED_USER_FIELDS_IN_FORMULA = %w[first_name last_name email age gender timezone photo locale].freeze
   end
 end

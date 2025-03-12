@@ -10,7 +10,7 @@ FactoryBot.define do
     type { :common }
 
     trait :threesixty do
-      type { ::Campaign::THREESIXTY }
+      type { Campaign::THREESIXTY }
     end
 
     trait :with_subjects do

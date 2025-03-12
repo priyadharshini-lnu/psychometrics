@@ -19,7 +19,7 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentGroupsController, ty
       new_campaign_id: campaign.id
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response['groups'].first['name']).to eq 'Group'
     expect(parsed_response['assessments'].length).to eq 3
@@ -33,7 +33,7 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentGroupsController, ty
       resource: { name: 'Group1', previous_assessments_required: true, previous_group_required: true }
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response['name']).to eq 'Group1'
     expect(parsed_response['campaign_id']).to eq campaign.id
@@ -48,7 +48,7 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentGroupsController, ty
       resource: { name: 'Group2', position: 4 }
     }
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response['name']).to eq 'Group2'
     expect(parsed_response['position']).to eq 4

@@ -22,7 +22,7 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
     create(:webhook, :with_topics, project_id: campaign.project_id, names: ['campaign_results_available'])
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(campaign_admin) }
 

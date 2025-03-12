@@ -28,7 +28,7 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
     it 'returns assesor details' do
       get :index, params: { new_campaign_id: assessor.campaign_id }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['total']).to eq(1)
       expect(parsed_response['list']).to eq([{
@@ -59,7 +59,7 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
       new_campaign_id: campaign.id
     }, as: :json
 
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response).to eq(
       [{ 'id' => assessment1.id, 'name' => 'A 1' }, { 'id' => assessment2.id, 'name' => 'A 2' }]
@@ -79,7 +79,7 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
         }
       ]
     }
-    parsed_response = JSON.parse(response.body)
+    parsed_response = response.parsed_body
 
     expect(parsed_response).to eq('ok')
   end
@@ -88,7 +88,7 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
     it 'renders assessor user details' do
       get :show, params: { new_campaign_id: assessor.campaign_id, id: assessor.id }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
       expect(parsed_response).to eq({
         'id' => assessor.user_id,
         'email' => assessor.user.email,

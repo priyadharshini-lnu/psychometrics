@@ -28,13 +28,13 @@ module Administration
     def simulation_content_variation_id
       return nil unless object.simulation?
 
-      object.simulation_user_assessment.content_variation_id
+      object.simulation_user_assessment&.content_variation_id
     end
 
     def simuation_time_extension
       return nil unless object.simulation?
 
-      object.simulation_user_assessment.time_extension
+      object.simulation_user_assessment&.time_extension
     end
 
     def hogan_participant_id
@@ -61,6 +61,13 @@ module Administration
 
     def is_external
       assessment.external?
+    end
+
+    def norm_name
+      return nil if object.norm_id.nil?
+      return assessment.external_norm_name if assessment.has_external_norm?
+
+      object.norm&.name
     end
 
     def permissions

@@ -42,6 +42,7 @@ class Client < ApplicationRecord
   has_one :registration_setting, dependent: :destroy, foreign_key: :project_id
   has_one :power_bi_setting, dependent: :destroy, foreign_key: :project_id
   has_one :privacy_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :idp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :client_privacy_setting, dependent: :destroy
   has_many :profile_fields, through: :profile_setting
   has_many :memberships, dependent: :destroy
@@ -140,13 +141,14 @@ class Client < ApplicationRecord
   after_create :create_registration_setting, if: :project?
   after_create :create_privacy_setting, if: :project?
   after_create :create_client_privacy_setting, if: :root?
+  after_create :create_idp_setting, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
   # Type of client.
   # Retail - is client who bought some product
-  enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
-  enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
+  enum :type, { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
+  enum :applicable_level, { project: 0, campaign: 1, sub_campaign: 2 }, suffix: :level
 
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
@@ -155,7 +157,7 @@ class Client < ApplicationRecord
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
            :mask_identity_for_mettl?, :custom_privacy_consent, to: :privacy_setting
 
-  scope :enabled, -> { where.not(disabled: true, archived: true) }
+  scope :enabled, -> { where('NOT (disabled = ? AND archived = ?)', true, true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
   scope :resource_disabled, ->(value) { where(disabled: value) }
   scope :not_archived, -> { where.not(archived: true) }

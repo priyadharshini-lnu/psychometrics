@@ -11,9 +11,8 @@ RSpec::Matchers.define :have_jsonapi_relationship_error do
     if no_relationships?
       'Expected data/relationships to be present'
     else
-      errors = []
-      relationship_with_errors.each do |k, v|
-        errors << "Expected relationship '#{k}' to be have errors #{v[:expected_error]} but it was #{v[:actual_error] || 'empty'}" # rubocop:disable Layout/LineLength
+      errors = relationship_with_errors.map do |k, v|
+        "Expected relationship '#{k}' to be have errors #{v[:expected_error]} but it was #{v[:actual_error] || 'empty'}"
       end
       errors.join("\n")
     end
@@ -21,15 +20,15 @@ RSpec::Matchers.define :have_jsonapi_relationship_error do
 
   def no_relationships?
     @no_relationships ||=
-      actual.errors.find { |error| error.path == [:data] || error.path == %i[data relationships] }.present?
+      actual.errors.find { |error| [[:data], %i[data relationships]].include?(error.path) }.present?
   end
 
   def relationship_with_errors
-    errors = actual.errors.to_h
+    errors = actual.errors.to_hash
 
     @relationship_with_errors ||= expected.each_with_object({}) do |(relationship, expected_error), acc|
       actual_error = errors.dig(:data, :relationships, relationship)
-      actual_error = actual_error.is_a?(Hash) || actual_error.nil? ? actual_error[:data] : actual_error
+      actual_error = actual_error[:data] if actual_error.is_a?(Hash) || actual_error.nil?
 
       if actual_error != expected_error
         acc[relationship] = { expected_error: expected_error, actual_error: actual_error }

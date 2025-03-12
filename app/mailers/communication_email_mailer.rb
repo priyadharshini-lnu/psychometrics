@@ -6,6 +6,7 @@ class CommunicationEmailMailer < ApplicationMailer
   def create(email_id)
     @communication_email = CommunicationEmail.preload(:communication, :communication_email_resources).find(email_id)
     @resource = recipient
+    attach_ical
     data = recipient.slice(:first_name, :last_name, :email)
     data[:user_link] = accept_invitation_link
     data[:user_url] = accept_invitation_url
@@ -33,6 +34,17 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   private
+
+  def attach_ical
+    if workshop
+      ical = Workshops::GenerateIcal.call!(workshop, recipient, type: :booking)
+      attachments['event.ics'] = { mime_type: 'text/calendar', content: ical }
+    end
+  end
+
+  def workshop
+    @workshop ||= @communication_email.workshop
+  end
 
   def replace_new_piped_texts
     Communications::PipedText::Perform.call!(

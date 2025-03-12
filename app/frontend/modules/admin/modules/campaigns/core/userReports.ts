@@ -108,8 +108,12 @@ interface UserReportDetails {
   campaignId?: number
   permissions: {
     download: boolean
-    manageQc: boolean
+    startQc: boolean
+    abortQc: boolean
+    editQc: boolean
     manageApproval: boolean
+    oneLevelQc: boolean
+    approversCanEdit: boolean
   }
   possibleWebhookEvents?: string[]
 }
@@ -141,8 +145,12 @@ const defaultState: State = {
     richEditorOpened: false,
     permissions: {
       download: false,
-      manageQc: false,
+      startQc: false,
+      abortQc: false,
+      editQc: false,
       manageApproval: false,
+      oneLevelQc: false,
+      approversCanEdit: false,
     },
     possibleWebhookEvents: [],
   },

@@ -16,13 +16,14 @@ type Props = {
   onShowAIGeneratedDevelopmentActions: () => void,
   onCancel: () => void,
   open: boolean,
+  selectedDevelopmentActionIds: (number)[],
 }
 
 const tabs = [
   { key: 'all', label: I18n.t('idp.development_actions.all') },
   { key: 'on_the_job', label: I18n.t('idp.development_actions.on_the_job') },
   { key: 'structured_learning', label: I18n.t('idp.development_actions.structured_learning') },
-  { key: 'learning_from_the_others', label: I18n.t('idp.development_actions.learning_from_the_others') },
+  { key: 'learning_from_others', label: I18n.t('idp.development_actions.learning_from_others') },
 ]
 
 export const AddDevelopmentActionModal: React.FC<Props> = ({
@@ -32,10 +33,13 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
   onShowAIGeneratedDevelopmentActions,
   onCancel,
   open,
+  selectedDevelopmentActionIds,
 }) => {
   const [selectedTab, setSelectedTab] = useState('all')
   const [availableActions, setAvailableActions] = useState(data)
   const handleAddAction = (developmentAction: Partial<DevelopmentAction>) => {
+    if (developmentAction.id && selectedDevelopmentActionIds.includes(developmentAction.id)) return
+
     onAddAction(developmentAction)
   }
 
@@ -81,7 +85,11 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
           ))}
         </Radio.Group>
         <BoxWithShadow>
-          <DevelopmentActionsList availableActions={availableActions} onDevelopmentActionClick={handleAddAction} />
+          <DevelopmentActionsList
+            availableActions={availableActions}
+            onDevelopmentActionClick={handleAddAction}
+            selectedDevelopmentActionIds={selectedDevelopmentActionIds}
+          />
         </BoxWithShadow>
       </Flex>
     </Modal>

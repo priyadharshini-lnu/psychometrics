@@ -14,8 +14,8 @@ module AdminJobs
 
       content = content_tag(:div, I18n.t('user.modals.import.imported_users', number: imported_users.size))
 
-      content =
-        if users_those_pwd_not_changed.present?
+      if users_those_pwd_not_changed.present?
+        content =
           [
             content,
             content_tag(:div, I18n.t('user.modals.import.user_with_unchanged_passwords')),
@@ -25,9 +25,7 @@ module AdminJobs
               end.join.html_safe
             end
           ].join.html_safe
-        else
-          content
-        end
+      end
       broadcast :ok, { content: content }
     end
 

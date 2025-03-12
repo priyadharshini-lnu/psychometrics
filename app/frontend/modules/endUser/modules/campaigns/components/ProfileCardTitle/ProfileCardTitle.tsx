@@ -33,13 +33,13 @@ const ProfileCardTitleComponent: FC<Props> = ({ currentUser }) => (
       </Space>
     </Col>
     {currentUser.lastSignInAt && (
-    <Col flex="auto" className={styles.lastLogin}>
-      <Text>
-        {I18n.t('campaign.profile.last_login_text')}
-        {' '}
-        {dayjs(currentUser.lastSignInAt).format('ll')}
-      </Text>
-    </Col>
+      <Col flex="auto" className={styles.lastLogin}>
+        <Text>
+          {I18n.t('campaign.profile.last_login_text')}
+          {' '}
+          {dayjs(currentUser.lastSignInAt).format('ll')}
+        </Text>
+      </Col>
     )}
   </Row>
 )

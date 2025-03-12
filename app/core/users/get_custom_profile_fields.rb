@@ -16,7 +16,7 @@ module Users
         question = questions[qid]
         array << {
           name: ActionController::Base.helpers.strip_tags(question.props['questionText']),
-          value: user.user_profile.custom_fields&.dig(qid.to_s)
+          value: user.user_profile.custom_fields[qid]
         }
       end
 

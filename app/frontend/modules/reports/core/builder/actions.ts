@@ -28,6 +28,7 @@ export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const SAVE_CAMPAIGN_FACTORS = 'report/SAVE_CAMPAIGN_FACTORS'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
+export const SET_REPORT_LOADING = 'report/SET_REPORT_LOADING'
 export const IMPORT_TRANSLATIONS = 'report/IMPORT_TRANSLATIONS'
 export const ADD_STYLE = 'report/ADD_STYLE'
 export const UPDATE_STYLE = 'report/UPDATE_STYLE'
@@ -113,6 +114,8 @@ export const selectModule = (moduleType: SelectedTypes, id: number) => ({
 export const unselectModules = () => ({ type: UNSELECT_MODULES })
 export const changeSize = (size: {width: number, height: number}) => ({ type: CHANGE_SIZE, size })
 export const changeSkipLogic = value => ({ type: CHANGE_SKIP_LOGIC, value })
+export const setReportLoading = value => ({ type: SET_REPORT_LOADING, value })
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
 export const save = (report: any) => {
   const builder = {
@@ -156,3 +159,4 @@ export type UpdatePagePositionType = ReturnType<typeof updatePagePositions>
 export type SetPagePositionType = ReturnType<typeof setPagePositions>
 export type SaveDataSheetType = ApiActionResponse<{data: {}}>
 export type SaveCampaignFactorsType = ApiActionResponse<{data: {}}>
+export type SetReportLoading = ReturnType<typeof setReportLoading>

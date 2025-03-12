@@ -49,12 +49,14 @@ import CreateCampaignDropdown from './CreateCampaignDropdown'
 import { PDFPasswordModal } from './PDFPasswordModal'
 import ToolsDropdown from './ToolsDropdown'
 import { useWindowSize } from '~/hooks/useWindowSize'
+import { UserFilterModal } from '../Campaign/routes/Participants/Subjects/UserFilterModal'
 
 const MODALS = {
   CommonCampaignFormModal,
   ThreesixtyCampaignFormModal,
   RemoveCampaignModal,
   PDFPasswordModal,
+  UserFilterModal,
 }
 
 const { I18n } = window
@@ -131,7 +133,7 @@ const CampaignListComponent: React.FC<Props> = ({
               value={filters.filterableFields}
               onChange={e => changeFilter('filterableFields', e.target.value)}
             />
-            <ToolsDropdown />
+            <ToolsDropdown openModal={openModal} />
             {permissions.create && (
               <CreateCampaignDropdown
                 openModal={openModal}

@@ -21,7 +21,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   def resend_code
     resource.reset_second_factor_attempts_counter!
     resource.send_new_otp
-    redirect_to send("#{resource_name}_two_factor_authentication_path"), flash: {
+    redirect_to send(:"#{resource_name}_two_factor_authentication_path"), flash: {
       resent: I18n.t('devise.two_factor_authentication.code_has_been_sent')
     }
   end
@@ -52,7 +52,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   def set_remember_two_factor_cookie(resource)
     expires_seconds = resource.class.remember_otp_session_for_seconds
 
-    if expires_seconds && expires_seconds&.positive?
+    if expires_seconds&.positive?
       cookies.signed[TwoFactorAuthentication::REMEMBER_TFA_COOKIE_NAME] = {
         value: "#{resource.class}-#{resource.public_send(Devise.second_factor_resource_id)}",
         expires: expires_seconds.seconds.from_now
@@ -80,7 +80,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   end
 
   def authenticate_scope!
-    self.resource = send("current_#{resource_name}")
+    self.resource = send(:"current_#{resource_name}")
   end
 
   def prepare_and_validate

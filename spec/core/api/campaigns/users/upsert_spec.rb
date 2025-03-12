@@ -41,7 +41,7 @@ describe Api::Campaigns::Users::Upsert do
     )
     # rubocop:enable all
 
-    expect(::Campaigns::Users::Create).to receive(:call).with(
+    expect(Campaigns::Users::Create).to receive(:call).with(
       struct, campaign, current_user, user: nil
     ).and_return(ok: User.last)
 
@@ -67,7 +67,7 @@ describe Api::Campaigns::Users::Upsert do
     )
     # rubocop:enable all
 
-    expect(::Campaigns::Users::Create).to receive(:call).with(
+    expect(Campaigns::Users::Create).to receive(:call).with(
       struct, campaign, current_user, user: user
     ).and_return(ok: user)
 

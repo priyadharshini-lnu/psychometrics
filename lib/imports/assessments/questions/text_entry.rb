@@ -68,7 +68,7 @@ module Imports
 
         def self.build_other_answers(data, question, use_scoring)
           factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['value']] = s['index']; }
+                            each_with_object({}) { |s, sum| sum[s['value']] = s['index'] }
           answers = []
           data.each_with_index do |value, index|
             answers << {

@@ -124,6 +124,7 @@ en:
             report_options: Report Options
             reset_nominations: Reset Nominations
             view: View
+            view_factor_benchmark_scores: View Factor Benchmark Scores
             view_stats: View Stats
           clients:
             manage: Manage
@@ -722,6 +723,7 @@ en:
         factor_not_in_assessment_dimension: Factor id '%{factor_id}' not part of assessment's dimension
         invalid_lua_name: The code '%{code}' should be a valid lua variable name
         invalid_name_format: The name '%{name}' should match the expected format.
+        max_limit_reached: No more than %{count} campaign factors can be created.
         missing_assessment_id: Assessment id is required.
         missing_assessment_score_type: Assessment score type is required.
         missing_factor_id: Factor id is required.
@@ -796,6 +798,9 @@ en:
       actions: Manage
       assessment_reports:
         report_approval:
+          approvers_can_edit: Approvers Can Edit
+          approvers_not_required: Approvers Not Required
+          do_not_send_notifications: Do Not Send Notifications
           modal_title: Report Approval Settings
           remove_modal_success: 'Approval setting for report id: %{reportId} was deleted successfully '
           remove_modal_text: 'Are you sure you want to delete this setting for report id: %{reportId}?'
@@ -854,6 +859,7 @@ en:
           enable: Enable instructions
           save: Save Instructions
         prework_required: Do not allow center booking if preworks are not completed
+        prework_required_for_invite: Send invite email only when Pre-Work is completed
         proctoring:
           enable: Enable Proctoring
           identification: Identification
@@ -1567,6 +1573,12 @@ en:
         successfully: Development Action "%{name}" was deleted successfully.
       edit:
         header: Edit Development Action
+      export:
+        details: File Details
+        success_msg: Exporting development actions in progress. Please check the status in the notifications.
+        title: Export
+      export_development_actions: Export Development Actions Based on Project
+      export_global_development_actions: Export Global Development Actions
       form:
         category: Category
         course_image: Course Image
@@ -1583,6 +1595,11 @@ en:
         title: Development Action
         upload: Upload
       heading: Development Actions
+      import:
+        download_example_csv: Download Example csv
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+        title: Development Actions import
+      import_development_actions: Import
       learning_styles:
         learning_from_others: Learning from Others [20]
         on_the_job: On the Job [70]
@@ -1805,13 +1822,20 @@ en:
       idp_template: Add IDP Template
       none: None
       select_by_tags: Select by Tags
+      select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
       selected: Selected
       self_rating: Enable Self Rating
+      skill_gap_report: Skill Gap Report
       tab:
+        settings: Settings
         templates: Templates
       technical_skills: Technical Skills
       template_details: Template Details
+    idp_setting:
+      allow_global_skills: Allow Global Skills
+      manager_approves_idp: Manager approves IDP
+      manager_can_edit_idp: Manager can edit IDP
     import: Import
     imports:
       assessments:
@@ -2539,7 +2563,36 @@ en:
       download: Download
       report_approvals: Report Approvals
       review: Review
+      saving_filters:
+        actions:
+          clear_filters: Clear Filters
+          delete_filter: Delete Filter
+          save_filter: Save
+          save_new_filter: Save as new Filter
+          saved_filters: Saved Filters
+        delete_saved_filters: Filter Deleted
+        edit_filter_name: Filter Name saved
+        error_while_deleting: Error While deleting
+        error_while_editing: Error while editing
+        error_while_fetching: Something went wrong , try again
+        error_while_saving: Error while saving filter
+        filter_updated: Filter updated
+        no_saved_filters: There are no saved filters
+        save_filter: Filter Saved
+        set_favorite: Filter has been set as favorite
     report_builder:
+      campaign_factors:
+        add_field: Add Field
+        code: Code
+        code_constraint: Code must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
+        delete: Delete
+        import_factors: Import Factors
+        invalid_factor_params: Invalid campaign factors parameters format
+        name: Name
+        no_boundary_space: Name cannot start or end with a space
+        too_many_factors: Cannot create more than %{count} campaign factors
+        tools: Tools
+        type: Type
       pagination:
         edit_frame: Edit Pagination Frame
         hints:
@@ -2596,6 +2649,8 @@ en:
     report_review:
       abort_qc: Abort QC
       approve: Approve
+      approve_changes: Approve Changes
+      edit: Edit
       remove_approval: Remove Approval
       request_changes: Request Changes
       review: Review
@@ -2608,6 +2663,11 @@ en:
         qc_completed: QC Completed
         qc_in_progress: QC in Progress
     reports:
+      bulk_upload:
+        choose_file: Choose File
+        no_file_selected: No file selected
+        title: Bulk Upload Campaign Factors
+        upload_success: Uploaded successfully
       copy:
         copy: copy
         copy_report: Copy Report
@@ -2844,6 +2904,7 @@ en:
         resources: Resources
         subjects: Subjects
     scoring:
+      action_prohibited: Action Prohibited
       active: Active
       actual_average: Actual Average
       add_factor: Add Factor
@@ -2853,6 +2914,7 @@ en:
       average: Average
       campaign_scoring_variables: Campaign Scoring Variables
       code: Code
+      desc: You have exceeded the maximum limit of %{n} campaign factors. Additional factors cannot be added. Please review and manage your existing factors before proceeding.
       description: Description
       dimension: Dimension
       edit_factor: Edit Factor
@@ -3066,7 +3128,6 @@ en:
         title: Skills import
       import_skills: Import Skills
       skills: Skills
-      tools: Tools
     sms_histories:
       columns:
         first_name: First Name
@@ -3450,6 +3511,8 @@ en:
           title: Participants
         report:
           menu:
+            report_approval:
+              title: Report Approval Settings
             report_options:
               title: Report Options
           title: Report

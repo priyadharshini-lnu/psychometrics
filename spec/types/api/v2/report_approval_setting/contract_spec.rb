@@ -17,7 +17,10 @@ RSpec.describe Api::V2::ReportApprovalSetting::Contract do
         id: '100',
         qc_user_ids: [admin.id],
         approver_user_ids: [admin.id],
-        approval_notification_user_ids: [admin.id]
+        approval_notification_user_ids: [admin.id],
+        approvers_can_edit: false,
+        approvers_not_required: false,
+        do_not_send_notifications: false
       },
       { report: { id: '1', type: 'reports' } }
     )

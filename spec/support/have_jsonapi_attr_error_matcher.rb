@@ -11,10 +11,8 @@ RSpec::Matchers.define :have_jsonapi_attr_error do
     if no_attributes?
       'Expected data/attributes to be present'
     else
-      errors = []
-      attribute_with_errors.each do |k, v|
-        errors <<
-          "Expected attribute '#{k}' to be have errors #{v[:expected_error]} but it was #{v[:actual_error] || 'empty'}"
+      errors = attribute_with_errors.map do |k, v|
+        "Expected attribute '#{k}' to be have errors #{v[:expected_error]} but it was #{v[:actual_error] || 'empty'}"
       end
       errors.join("\n")
     end
@@ -22,11 +20,11 @@ RSpec::Matchers.define :have_jsonapi_attr_error do
 
   def no_attributes?
     @no_attributes ||=
-      actual.errors.find { |error| error.path == [:data] || error.path == %i[data attributes] }.present?
+      actual.errors.find { |error| [[:data], %i[data attributes]].include?(error.path) }.present?
   end
 
   def attribute_with_errors
-    errors = actual.errors.to_h
+    errors = actual.errors.to_hash
     @attribute_with_errors ||= expected.each_with_object({}) do |(attr, error), acc|
       actual_error = errors.dig(:data, :attributes, attr)
       expected_error = error

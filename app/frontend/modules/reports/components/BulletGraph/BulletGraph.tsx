@@ -68,9 +68,9 @@ const BulletGraph: React.FC<Props> = ({
         ) : null}
       </div>
       {showScoreText && (
-      <div className={styles.scoreText}>
-        {score}
-      </div>
+        <div className={styles.scoreText}>
+          {score}
+        </div>
       )}
     </Flex>
   )

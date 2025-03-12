@@ -399,23 +399,23 @@ const AdvancedSettingsForm = ({
               />
             </Form.Item>
             {showFactorsSelect && (
-            <Form.Item
-              name="factors"
-              label="Factors"
-            >
-              <Select
-                onSearch={handleSearch}
-                showSearch
-                suffixIcon={<SearchOutlined />}
-                filterOption={false}
-                notFoundContent={factorsSelectDropdownEmptyState}
-                onChange={handleFactorChange}
-                options={(factors || []).map(f => ({
-                  value: f.id,
-                  label: f.parent ? <b>{f.name}</b> : f.name,
-                }))}
-              />
-            </Form.Item>
+              <Form.Item
+                name="factors"
+                label="Factors"
+              >
+                <Select
+                  onSearch={handleSearch}
+                  showSearch
+                  suffixIcon={<SearchOutlined />}
+                  filterOption={false}
+                  notFoundContent={factorsSelectDropdownEmptyState}
+                  onChange={handleFactorChange}
+                  options={(factors || []).map(f => ({
+                    value: f.id,
+                    label: f.parent ? <b>{f.name}</b> : f.name,
+                  }))}
+                />
+              </Form.Item>
             )}
             <Tree
               checkable

@@ -5,7 +5,7 @@ require 'swagger_helper'
 
 describe Api::V2::Administration::UserAvailabilityDatesController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:user) { create(:client_admin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(user) }
 

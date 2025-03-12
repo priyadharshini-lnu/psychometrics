@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 require Rails.root.join('spec/fixtures/models/base_resource.rb')
-Dir[Rails.root.join('spec/fixtures/**/*.rb')].each { |file| require file }
+Rails.root.glob('spec/fixtures/**/*.rb').each { |file| require file }
 
 describe JsonApi::AuditLogProcessor do
   let(:conn) { ActiveRecord::Base.connection }

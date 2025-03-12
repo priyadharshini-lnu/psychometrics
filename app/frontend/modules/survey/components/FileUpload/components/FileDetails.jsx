@@ -28,15 +28,15 @@ export default function FileDetails ({
         </a>
       </div>
       {!readOnly && (
-      <div className={styles.removeFileButton}>
-        <Button
-          aria-label={I18n.t('frontend.aria.remove_file')}
-          size="small"
-          icon={<DeleteOutlined className={styles.deleteIcon} />}
-          type="text"
-          onClick={removeFile}
-        />
-      </div>
+        <div className={styles.removeFileButton}>
+          <Button
+            aria-label={I18n.t('frontend.aria.remove_file')}
+            size="small"
+            icon={<DeleteOutlined className={styles.deleteIcon} />}
+            type="text"
+            onClick={removeFile}
+          />
+        </div>
       )}
     </div>
   )

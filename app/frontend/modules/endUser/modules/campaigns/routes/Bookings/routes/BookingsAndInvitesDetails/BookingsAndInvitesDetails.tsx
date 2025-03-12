@@ -244,14 +244,14 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
                 />
                 {selectedDateTime
                   && (
-                  <div className="flex mt-6 justify-end">
-                    <ButtonWithArrow
-                      label={I18n.t('frontend.bookings.buttons.book')}
-                      type="primary"
-                      onClick={handleBook}
-                      aria-description={selectedDateTime.date.format('D, MMMM, YYYY, hh:mm A')}
-                    />
-                  </div>
+                    <div className="flex mt-6 justify-end">
+                      <ButtonWithArrow
+                        label={I18n.t('frontend.bookings.buttons.book')}
+                        type="primary"
+                        onClick={handleBook}
+                        aria-description={selectedDateTime.date.format('D, MMMM, YYYY, hh:mm A')}
+                      />
+                    </div>
                   )}
               </div>
             )}

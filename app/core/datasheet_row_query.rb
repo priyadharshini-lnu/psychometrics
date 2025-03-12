@@ -89,13 +89,14 @@ class DatasheetRowQuery < Rectify::Query
   def sheet_rows_data_columns_for_select
     datasheet_column_names.map do |column_name|
       quote_escaped_column = ActiveRecord::Base.connection.quote_string(column_name)
-      column_name = DEFAULT_COLUMN_NAMES.include?(column_name) ? "#{column_name}_1" : column_name
+      column_name = "#{column_name}_1" if DEFAULT_COLUMN_NAMES.include?(column_name)
       "sheet_data.\"#{quote_escaped_column}\" as \"#{column_name.gsub('"', '""')}\""
     end.join(', ')
   end
 
   def datasheet_column_names
-    @datasheet_column_names if defined?(@datasheet_column_names)
+    return @datasheet_column_names if defined?(@datasheet_column_names)
+
     @datasheet_column_names = datasheets.map(&:sheet_columns).map do |columns|
       columns.map do |column|
         next if column.name == 'Email'

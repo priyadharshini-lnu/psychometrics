@@ -23,7 +23,7 @@ module Api::V2::DataReport
     validate :validate_by_type, if: :valid_type?
 
     def initialize(attributes = {})
-      super(attributes)
+      super
       @params = attributes
     end
 

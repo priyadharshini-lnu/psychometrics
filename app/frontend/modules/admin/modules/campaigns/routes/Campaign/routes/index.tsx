@@ -12,6 +12,7 @@ import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
 import AssessorsDetails from './Participants/Assessors/AssessorDetails'
 import { DataExports } from './DataExports'
+import IdpReportPreview from './IdpReportPreview'
 
 const routes = [
   { redirect: true, from: '', to: 'participants' },
@@ -33,6 +34,8 @@ const routes = [
   { path: '/admins', component: <Admins /> },
   { path: '/options', component: <CampaignOptions /> },
   { path: '/audit_reports', component: <DataExports /> },
+  { path: '/audit_reports', component: <DataExports /> },
+  { path: '/user_idp_reports/:id', component: <IdpReportPreview /> },
 ]
 
 export default routes

@@ -177,7 +177,7 @@ describe Api::Base::Schema do
     context 'has_one' do
       it 'validates presence of data key in params' do
         schema = TestSchema.send(method_name, :has_one_required_false).call({})
-        expect(schema.errors.to_h).to eq({
+        expect(schema.errors.to_hash).to eq({
           data: ["can't be blank"]
         })
       end
@@ -187,7 +187,7 @@ describe Api::Base::Schema do
           data: { type: '', id: '' }
         })
 
-        expect(schema.errors.to_h).to eq({
+        expect(schema.errors.to_hash).to eq({
           data: { type: ["can't be blank"], id: ["can't be blank"] }
         })
       end
@@ -196,7 +196,7 @@ describe Api::Base::Schema do
     context 'has_many' do
       it 'validates presence of data key in params' do
         schema = TestSchema.send(method_name, :has_many_required_false).call({})
-        expect(schema.errors.to_h).to eq({
+        expect(schema.errors.to_hash).to eq({
           data: ["can't be blank"]
         })
       end
@@ -206,7 +206,7 @@ describe Api::Base::Schema do
           data: { type: 'users', id: '1' }
         })
 
-        expect(schema.errors.to_h).to eq({
+        expect(schema.errors.to_hash).to eq({
           data: ['must be an array']
         })
       end

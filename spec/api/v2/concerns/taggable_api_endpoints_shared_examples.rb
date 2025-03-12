@@ -15,11 +15,11 @@ RSpec.shared_examples 'taggable API endpoints' do |model_class|
       description "Add a tag to an #{model_class.to_s.underscore}"
       consumes 'application/vnd.api+json'
       security [basic: []]
-      parameter name: "#{model_class.to_s.underscore}_id".to_sym, in: :path, type: :string
+      parameter name: :"#{model_class.to_s.underscore}_id", in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/AddTagRequest' }, required: true
 
       response '200', 'Tag added successfully' do
-        let("#{model_class.to_s.underscore}_id".to_sym) { resource.id }
+        let(:"#{model_class.to_s.underscore}_id") { resource.id }
         let(:tag) { 'example_tag' }
 
         let(:body) do
@@ -48,11 +48,11 @@ RSpec.shared_examples 'taggable API endpoints' do |model_class|
       description "Remove a tag from an #{model_class.to_s.underscore}"
       consumes 'application/vnd.api+json'
       security [basic: []]
-      parameter name: "#{model_class.to_s.underscore}_id".to_sym, in: :path, type: :string
+      parameter name: :"#{model_class.to_s.underscore}_id", in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/RemoveTagRequest' }, required: true
 
       response '200', 'Tag removed successfully' do
-        let("#{model_class.to_s.underscore}_id".to_sym) { resource.id }
+        let(:"#{model_class.to_s.underscore}_id") { resource.id }
         let(:tag) { 'example_tag' }
 
         let(:body) do

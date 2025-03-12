@@ -2,17 +2,21 @@
 
 module CampaignUsers
   class ChangeCampaignScoreFinalized < BaseCommand
-    private_attr_reader :campaign, :user_ids, :current_user, :campaign_score_finalized
+    private_attr_reader :campaign, :user_ids, :current_user, :campaign_score_finalized, :exclude
 
-    def initialize(campaign:, user_ids:, current_user:, campaign_score_finalized:)
+    def initialize(campaign:, user_ids:, current_user:, campaign_score_finalized:, exclude:)
       @campaign = campaign
       @user_ids = user_ids
       @current_user = current_user
       @campaign_score_finalized = campaign_score_finalized == true
+      @exclude = exclude
     end
 
     def call
-      campaign_users = ::CampaignUser.where(campaign_id: campaign.id, user_id: user_ids)
+      campaign_users = ::CampaignUser.where(campaign_id: campaign.id)
+      if user_ids.present?
+        campaign_users = exclude ? campaign_users.where.not(user_id: user_ids) : campaign_users.where(user_id: user_ids)
+      end
       campaign_users.update_all(
         campaign_scores_finalized: campaign_score_finalized,
         campaign_scores_finalized_date: campaign_score_finalized ? Time.current : nil
@@ -29,8 +33,11 @@ module CampaignUsers
     private
 
     def campaign_factor_dependent_user_reports
-      UserReport.joins(:report).merge(Report.campaign_factor_dependable).
-        where(campaign_id: campaign.id, user_id: user_ids)
+      user_reports = UserReport.joins(:report).merge(Report.campaign_factor_dependable).where(campaign_id: campaign.id)
+      if user_ids.present?
+        user_reports = exclude ? user_reports.where.not(user_id: user_ids) : user_reports.where(user_id: user_ids)
+      end
+      user_reports
     end
   end
 end

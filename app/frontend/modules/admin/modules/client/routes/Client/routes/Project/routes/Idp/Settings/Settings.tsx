@@ -1,0 +1,94 @@
+import React, { useState, useEffect } from 'react'
+import {
+  Row, Col, Form, Switch, Button,
+} from 'antd'
+import { useParams } from 'react-router-dom'
+import { IdpSettings, IdpSettingsTR } from '~/modules/admin/modules/client/core/idpSettings'
+import { useResources } from '~/hooks/useResources/useResources'
+import ResourceForm from '~/components/ResourceForm'
+
+const { I18n } = window
+
+export const Settings: React.FC = () => {
+  const { projectId } = useParams() as { projectId: string }
+  const [isLoading, setIsLoading] = useState(false)
+  const {
+    data, updateResource, fetch, meta,
+  } = useResources<IdpSettings>('idp_settings', {
+    responseType: IdpSettingsTR,
+  })
+  const [form] = Form.useForm()
+  const [idpSettings] = data
+
+  useEffect(() => {
+    if (idpSettings) {
+      form.setFieldsValue(idpSettings)
+      setIsLoading(false)
+    }
+  }, [idpSettings])
+
+  useEffect(() => {
+    fetch({
+      apiConfig: {
+        filter: { project_id_eq: projectId },
+        include_meta: ['permissions'],
+      },
+    })
+  }, [])
+
+  return (
+    <Row justify="space-between" className="pl" gutter={16}>
+      <Col sm={24} md={16} xl={12} xxl={10}>
+        <ResourceForm
+          resourceName="idp_setting"
+          readableResourceName="IDP Settings"
+          resource={idpSettings}
+          showSuccessMessages
+          storeManager={{ form }}
+          formProps={{
+            layout: 'horizontal',
+            labelCol: {
+              sm: 24, md: 12, lg: 12, xl: 12,
+            },
+            labelAlign: 'left',
+          }}
+          request={{
+            updateResource,
+          }}
+          scrollToFirstError
+        >
+          {() => (
+            <>
+              {meta?.permissions?.manageGlobalSkills && (
+                <Form.Item
+                  name="allowGlobalSkills"
+                  label={I18n.t('administration.idp_setting.allow_global_skills')}
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+              )}
+              <Form.Item
+                name="managerApprovesIdp"
+                label={I18n.t('administration.idp_setting.manager_approves_idp')}
+                valuePropName="checked"
+              >
+                <Switch />
+              </Form.Item>
+              <Form.Item
+                name="managerCanEditIdp"
+                label={I18n.t('administration.idp_setting.manager_can_edit_idp')}
+                valuePropName="checked"
+              >
+                <Switch />
+              </Form.Item>
+              <Button type="primary" htmlType="submit" className="mb-16" loading={isLoading}>
+                {I18n.t('administration.save')}
+              </Button>
+            </>
+          )}
+        </ResourceForm>
+      </Col>
+    </Row>
+  )
+}

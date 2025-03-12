@@ -11,7 +11,7 @@ class DeploymentMailer < ApplicationMailer
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       to: emails,
       subject: 'Deployment tasks to complete',
-      template_path: 'mailer/deployment',
+      template_path: 'mailer/platform',
       template_name: 'send_deployment_tasks'
     )
     # rubocop:enable CustomRubocops/AvoidDirectUseOfMailMethod

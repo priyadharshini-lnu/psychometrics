@@ -23,38 +23,95 @@ module Utility
       feTile feTurbulence
     ].freeze
 
-    ALLOWED_ATTRIBUTES = %w[
-      accept action align alt autocapitalize autocomplete autopictureinpicture autoplay background bgcolor border
-      capture cellpadding cellspacing checked cite class clear color cols colspan controls controlslist coords
-      crossorigin datetime decoding default dir disabled disablepictureinpicture disableremoteplayback download
-      draggable enctype enterkeyhint face for headers height hidden high href hreflang id inputmode integrity
-      ismap kind label lang list loading loop low max maxlength media method min minlength multiple muted name
-      nonce noshade novalidate nowrap open optimum pattern placeholder playsinline poster preload pubdate radiogroup
-      readonly rel required rev reversed role rows rowspan spellcheck scope selected shape size sizes span srclang
-      start src srcset step style summary tabindex title translate type usemap valign value width xmlns slot
-      accent-height accumulate additive alignment-baseline ascent attributename attributetype azimuth basefrequency
-      baseline-shift begin bias by class clip clippathunits clip-path clip-rule color color-interpolation
-      color-interpolation-filters color-profile color-rendering cx cy d dx dy diffuseconstant direction display
-      divisor dur edgemode elevation end fill fill-opacity fill-rule filter filterunits flood-color flood-opacity
-      font-family font-size font-size-adjust font-stretch font-style font-variant font-weight fx fy g1 g2 glyph-name
-      glyphref gradientunits gradienttransform height href id image-rendering in in2 k k1 k2 k3 k4 kerning keypoints
-      keysplines keytimes lang lengthadjust letter-spacing kernelmatrix kernelunitlength lighting-color local
-      marker-end marker-mid marker-start markerheight markerunits markerwidth maskcontentunits maskunits max mask
-      media method mode min name numoctaves offset operator opacity order orient orientation origin overflow
-      paint-order path pathlength patterncontentunits patterntransform patternunits points preservealpha
-      preserveaspectratio primitiveunits r rx ry radius refx refy repeatcount repeatdur restart result rotate scale
-      seed shape-rendering specularconstant specularexponent spreadmethod startoffset stddeviation stitchtiles
-      stop-color stop-opacity stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin stroke-miterlimit
-      stroke-opacity stroke stroke-width style surfacescale systemlanguage tabindex targetx targety transform
-      transform-origin text-anchor text-decoration text-rendering textlength type u1 u2 unicode values viewbox
-      visibility version vert-adv-y vert-origin-x vert-origin-y width word-spacing wrap writing-mode xchannelselector
-      ychannelselector x x1 x2 xmlns y y1 y2 z zoomandpan accent accentunder align bevelled close columnsalign
-      columnlines columnspan denomalign depth dir display displaystyle encoding fence frame height href id largeop
-      length linethickness lspace lquote mathbackground mathcolor mathsize mathvariant maxsize minsize movablelimits
-      notation numalign open rowalign rowlines rowspacing rowspan rspace rquote scriptlevel scriptminsize
-      scriptsizemultiplier selection separator separators stretchy subscriptshift supscriptshift symmetric
-      voffset width xmlns
+    # Basic HTML/Accessibility Attributes
+    BASIC_ATTRIBUTES = %w[
+      autopictureinpicture cite default ismap kind label lang list media method
+      nonce noshade nowrap open optimum pubdate radiogroup rel rev reversed
+      role spellcheck selected shape sizes span srclang summary xmlns
+      slot accent-height accumulate additive alignment-baseline ascent attributename
+      attributetype azimuth basefrequency baseline-shift begin bias clip
+      clippathunits clip-path clip-rule colorinterpolation
     ].freeze
+
+    # SVG Core Attributes
+    SVG_CORE_ATTRIBUTES = %w[
+      color-interpolation color-interpolation-filters color-profile color-rendering
+      cx cy d dx dy diffuseconstant direction display divisor dur edgemode
+      elevation end fill fill-opacity fill-rule filter filterunits flood-color
+      flood-opacity font-family font-size font-size-adjust font-stretch font-style
+      font-variant font-weight fx fy g1 g2 glyph-name glyphref gradientunits
+      gradienttransform image-rendering in in2
+    ].freeze
+
+    # SVG Transform and Effects
+    SVG_TRANSFORM_ATTRIBUTES = %w[
+      k k1 k2 k3 k4 kerning keypoints keysplines keytimes lengthadjust
+      letter-spacing kernelmatrix kernelunitlength lighting-color local marker-end
+      marker-mid marker-start markerheight markerunits markerwidth maskcontentunits
+      maskunits mask mode numoctaves offset operator opacity order
+      orient orientation origin overflow paint-order path pathlength
+    ].freeze
+
+    # SVG Pattern and Rendering
+    SVG_PATTERN_ATTRIBUTES = %w[
+      patterncontentunits patterntransform patternunits points preservealpha
+      preserveaspectratio primitiveunits r rx ry radius refx refy repeatcount
+      repeatdur restart result rotate scale seed shape-rendering specularconstant
+      specularexponent spreadmethod startoffset stddeviation stitchtiles stop-color
+      stop-opacity stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin
+      stroke-miterlimit stroke-opacity stroke stroke-width surfacescale systemlanguage
+    ].freeze
+
+    # MathML and Additional SVG
+    MATHML_SVG_ATTRIBUTES = %w[
+      targetx targety transform transform-origin text-anchor text-decoration
+      text-rendering textlength u1 u2 unicode values viewbox visibility version
+      vert-adv-y vert-origin-x vert-origin-y word-spacing wrap writing-mode
+      xchannelselector ychannelselector x x1 x2 y y1 y2 z zoomandpan accent
+      accentunder bevelled close columnsalign columnlines columnspan denomalign depth
+    ].freeze
+
+    # MathML Specific
+    MATHML_SPECIFIC_ATTRIBUTES = %w[
+      displaystyle encoding fence frame largeop length linethickness lspace lquote
+      mathbackground mathcolor mathsize mathvariant maxsize minsize movablelimits
+      notation numalign open rowalign rowlines rowspacing rspace rquote scriptlevel
+      scriptminsize scriptsizemultiplier selection separator separators stretchy
+      subscriptshift supscriptshift symmetric voffset
+    ].freeze
+
+    # Form and input attributes
+    FORM_ATTRIBUTES = %w[
+      accept action autocomplete autocapitalize capture checked disabled download enctype for hidden high inputmode
+      integrity low max maxlength min minlength multiple name novalidate pattern placeholder readonly required size
+      step value
+    ].freeze
+
+    # Presentation attributes
+    PRESENTATION_ATTRIBUTES = %w[
+      align background bgcolor border cellpadding cellspacing class clear color cols colspan coords dir face headers
+      height rows rowspan scope style valign width colorconnect tabindex
+    ].freeze
+
+    # Media attributes
+    MEDIA_ATTRIBUTES = %w[
+      alt autoplay controls controlslist crossorigin datetime decoding disablepictureinpicture
+      disableremoteplayback draggable enterkeyhint href hreflang id loading loop muted playsinline poster preload
+      src srcdoc srcset start target title translate usemap type
+    ].freeze
+
+    # Combined allowed attributes
+    ALLOWED_ATTRIBUTES = (
+      FORM_ATTRIBUTES +
+        PRESENTATION_ATTRIBUTES +
+        MEDIA_ATTRIBUTES +
+        BASIC_ATTRIBUTES +
+        SVG_CORE_ATTRIBUTES +
+        SVG_TRANSFORM_ATTRIBUTES +
+        SVG_PATTERN_ATTRIBUTES +
+        MATHML_SVG_ATTRIBUTES +
+        MATHML_SPECIFIC_ATTRIBUTES
+    ).freeze
 
     def self.process(html)
       new.sanitize(html, tags: ALLOWED_TAGS.dup, attributes: ALLOWED_ATTRIBUTES.dup)

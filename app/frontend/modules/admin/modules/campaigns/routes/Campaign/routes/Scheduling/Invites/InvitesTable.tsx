@@ -104,11 +104,11 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
   return (
     <Resource.Filter placeholder="Search" name="title_cont">
       {resource.meta.permissions.create && (
-      <Button type="primary" onClick={openForm}>
-        <PlusOutlined />
-        {' '}
-        {I18n.t('administration.assessment_center.invite.add_invite')}
-      </Button>
+        <Button type="primary" onClick={openForm}>
+          <PlusOutlined />
+          {' '}
+          {I18n.t('administration.assessment_center.invite.add_invite')}
+        </Button>
       )}
     </Resource.Filter>
   )

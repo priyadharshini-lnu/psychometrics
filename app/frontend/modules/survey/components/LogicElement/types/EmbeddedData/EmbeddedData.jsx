@@ -43,10 +43,10 @@ export default class EmbeddedData extends Component {
         >
           <option value="EqualTo">Equal To</option>
           <option value="NotEqualTo">Not Equal To</option>
-          <option value="GreaterThen">Greater Then</option>
-          <option value="GreaterThenOrEqual">Greater Then Or Equal To</option>
-          <option value="LessThen">Less Then</option>
-          <option value="LessThenOrEqual">Less Then Or Equal To</option>
+          <option value="GreaterThen">Greater Than</option>
+          <option value="GreaterThenOrEqual">Greater Than Or Equal To</option>
+          <option value="LessThen">Less Than</option>
+          <option value="LessThenOrEqual">Less Than Or Equal To</option>
           <option value="Empty">Empty</option>
           <option value="NotEmpty">Not Empty</option>
           <option value="Contains">Contains</option>

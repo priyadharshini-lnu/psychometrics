@@ -12,9 +12,9 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def change_password?
-    (@user.is?(:superadmin) || @user.has_permission?(
+    @user.is?(:superadmin) || @user.has_permission?(
       :projects, :manage_users, project_id: project_id
-    ))
+    )
   end
 
   def new?
@@ -106,7 +106,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   def manage_grants_for_actions?(resource, actions)
     return true if @user.is?(:superadmin)
 
-    (@user.grants || {}).key?(resource) && (@user.grants[resource] & actions).any?
+    (@user.grants || {}).key?(resource) && @user.grants[resource].intersect?(actions)
   end
 
   class Scope < Administration::BasePolicy::Scope

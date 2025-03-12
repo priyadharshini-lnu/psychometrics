@@ -53,30 +53,30 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
             </Title>
           </Col>
           { !isMobile && (
-          <Col span={12} className={styles.viewControls}>
-            <Space>
-              <ScrollToViewOnFocusButton
-                className={gridSelected ? styles.activeButton : styles.inActiveButton}
-                id={VIEW_TYPE.grid}
-                onClick={() => setView(VIEW_TYPE.grid)}
-                shape="circle"
-                icon={<AppstoreOutlined aria-label="" />}
-                size="middle"
-                aria-label={I18n.t('glint.views_container.aria_grid_view')}
-                aria-description={gridSelected ? I18n.t('glint.views_container.aria_selected') : ''}
-              />
-              <ScrollToViewOnFocusButton
-                className={listSelected ? styles.activeButton : styles.inActiveButton}
-                id={VIEW_TYPE.list}
-                shape="circle"
-                onClick={() => setView(VIEW_TYPE.list)}
-                icon={<UnorderedListOutlined aria-label="" />}
-                size="middle"
-                aria-label={I18n.t('glint.views_container.aria_list_view')}
-                aria-description={listSelected ? I18n.t('glint.views_container.aria_selected') : ''}
-              />
-            </Space>
-          </Col>
+            <Col span={12} className={styles.viewControls}>
+              <Space>
+                <ScrollToViewOnFocusButton
+                  className={gridSelected ? styles.activeButton : styles.inActiveButton}
+                  id={VIEW_TYPE.grid}
+                  onClick={() => setView(VIEW_TYPE.grid)}
+                  shape="circle"
+                  icon={<AppstoreOutlined aria-label="" />}
+                  size="middle"
+                  aria-label={I18n.t('glint.views_container.aria_grid_view')}
+                  aria-description={gridSelected ? I18n.t('glint.views_container.aria_selected') : ''}
+                />
+                <ScrollToViewOnFocusButton
+                  className={listSelected ? styles.activeButton : styles.inActiveButton}
+                  id={VIEW_TYPE.list}
+                  shape="circle"
+                  onClick={() => setView(VIEW_TYPE.list)}
+                  icon={<UnorderedListOutlined aria-label="" />}
+                  size="middle"
+                  aria-label={I18n.t('glint.views_container.aria_list_view')}
+                  aria-description={listSelected ? I18n.t('glint.views_container.aria_selected') : ''}
+                />
+              </Space>
+            </Col>
           )}
         </Row>
       </div>

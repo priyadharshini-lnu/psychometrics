@@ -26,6 +26,7 @@ import ToolsDropdown from './ToolsDropdown'
 import { useWindowSize } from '~/hooks/useWindowSize'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
+import { UserFilterModal } from './UserFilterModal'
 
 const MODALS = {
   UserFormModal,
@@ -34,6 +35,7 @@ const MODALS = {
   ExportUsersModal,
   ImportReportsAndAssessmentsModal,
   PushWebhookModal,
+  UserFilterModal,
 }
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',

@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Threesixty::Emails::GetLastEmailSentAtForUser do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let!(:threesixty_email_schedule) do
-    create(:threesixty_email_schedule, name: ::Threesixty::Emails::Name::REQUEST_APPROVAL,
+    create(:threesixty_email_schedule, name: Threesixty::Emails::Name::REQUEST_APPROVAL,
             threesixty_campaign_id: threesixty_campaign.id)
   end
   let(:user) { create(:user) }
@@ -15,7 +15,7 @@ describe Threesixty::Emails::GetLastEmailSentAtForUser do
     create(:threesixty_email_history, threesixty_email_schedule_id: threesixty_email_schedule.id,
       subject_id: user.id, created_at: last_sent_at)
 
-    result = described_class.call!(threesixty_campaign, ::Threesixty::Emails::Name::REQUEST_APPROVAL, user.id)
+    result = described_class.call!(threesixty_campaign, Threesixty::Emails::Name::REQUEST_APPROVAL, user.id)
 
     expect(result).to eq(last_sent_at)
   end
@@ -25,7 +25,7 @@ describe Threesixty::Emails::GetLastEmailSentAtForUser do
     create(:threesixty_email_history, threesixty_email_schedule_id: threesixty_email_schedule.id,
       subject_id: user.id, created_at: last_sent_at)
 
-    result = described_class.call!(threesixty_campaign, ::Threesixty::Emails::Name::EVALUATOR_INVITE, user.id)
+    result = described_class.call!(threesixty_campaign, Threesixty::Emails::Name::EVALUATOR_INVITE, user.id)
 
     expect(result).to eq(nil)
   end
@@ -35,7 +35,7 @@ describe Threesixty::Emails::GetLastEmailSentAtForUser do
     create(:threesixty_email_history, threesixty_email_schedule_id: threesixty_email_schedule.id,
       subject_id: create(:user).id, created_at: last_sent_at)
 
-    result = described_class.call!(threesixty_campaign, ::Threesixty::Emails::Name::EVALUATOR_INVITE, user.id)
+    result = described_class.call!(threesixty_campaign, Threesixty::Emails::Name::EVALUATOR_INVITE, user.id)
 
     expect(result).to eq(nil)
   end

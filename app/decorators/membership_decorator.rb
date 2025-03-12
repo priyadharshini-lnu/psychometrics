@@ -20,7 +20,8 @@ class MembershipDecorator < BaseDecorator
     return 'Self' if object.id == current_membership.id
     return 'Direct Report' if object.parent_id == current_membership.id
     return 'Peer' if object.parent_id == current_membership.parent_id
-    return 'Manager' if object.id == current_membership.parent_id
+
+    'Manager' if object.id == current_membership.parent_id
   end
 
   def change_password_confirmation

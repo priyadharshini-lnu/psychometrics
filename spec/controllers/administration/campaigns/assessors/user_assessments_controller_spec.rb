@@ -15,7 +15,7 @@ RSpec.describe Administration::Campaigns::Assessors::UserAssessmentsController, 
     it 'lists user_assessment' do
       get :index, params: { new_campaign_id: assessor.campaign_id, assessor_id: assessor.id }, format: :json
 
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(parsed_response['total']).to eq(1)
       expect(parsed_response['list']).to eq([{
@@ -43,7 +43,7 @@ RSpec.describe Administration::Campaigns::Assessors::UserAssessmentsController, 
       }, format: :json
 
       user_assessment = assessor.user_assessments.find_by(campaign: campaign.id, subject: subject)
-      parsed_response = JSON.parse(response.body)
+      parsed_response = response.parsed_body
 
       expect(user_assessment).to eq(nil)
       expect(response.status).to eq(422)
@@ -91,7 +91,7 @@ RSpec.describe Administration::Campaigns::Assessors::UserAssessmentsController, 
 
   describe 'PUT reset' do
     it 'calls ::UsersResults::Reset' do
-      expect(::UsersResults::Reset).to receive(:call!).with(user_assessment)
+      expect(UsersResults::Reset).to receive(:call!).with(user_assessment)
 
       get :reset, params: {
         new_campaign_id: assessor.campaign_id,

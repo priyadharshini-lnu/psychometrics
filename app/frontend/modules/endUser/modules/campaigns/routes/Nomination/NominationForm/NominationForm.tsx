@@ -117,12 +117,12 @@ export const NominationForm = (props) => {
               <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
               {relationshipWithoutSelf(relationships, options).map(relation => (
                 canAddEvaluators(relation) && (
-                <Option
-                  key={relation.id}
-                  value={relation.id}
-                >
-                  {relation.name}
-                </Option>
+                  <Option
+                    key={relation.id}
+                    value={relation.id}
+                  >
+                    {relation.name}
+                  </Option>
                 )
               ))}
             </Select>
@@ -136,49 +136,49 @@ export const NominationForm = (props) => {
       )}
       <div>
         {hasEvaluations && (
-        <Row className={styles.btnRow} justify="end" gutter={[8, 8]}>
-          {isSelf && canSendRequestApprovalEmail && (
-          <Col>
-            <Button type="link" onClick={handleRequestApproval} disabled={requestApprovalButtonDisabled}>
-              <TeamOutlined />
-              {I18n.t('threesixty.email_approve_request')}
-            </Button>
-          </Col>
-          )}
-          {options.messages.subjectCanSendReminder && (
-          <Col>
-            <Button type="primary" onClick={handleSendEvaluatorReminder}>
-              <TeamOutlined />
-              {I18n.t('threesixty.remind_all')}
-            </Button>
-          </Col>
-          )}
-          {isSelf || !options.participants.manager.canApproveNominations || (
-          <Fragment>
-            <div className="divider" />
-            <Col>
-              <Button type="primary" onClick={handleApproveAll}>
-                {I18n.t('threesixty.approve_all')}
-              </Button>
-            </Col>
-            <Col>
-              <Button type="primary" danger onClick={handleDenyAll}>
-                {I18n.t('threesixty.deny_all')}
-              </Button>
-            </Col>
-          </Fragment>
-          )}
-        </Row>
+          <Row className={styles.btnRow} justify="end" gutter={[8, 8]}>
+            {isSelf && canSendRequestApprovalEmail && (
+              <Col>
+                <Button type="link" onClick={handleRequestApproval} disabled={requestApprovalButtonDisabled}>
+                  <TeamOutlined />
+                  {I18n.t('threesixty.email_approve_request')}
+                </Button>
+              </Col>
+            )}
+            {options.messages.subjectCanSendReminder && (
+              <Col>
+                <Button type="primary" onClick={handleSendEvaluatorReminder}>
+                  <TeamOutlined />
+                  {I18n.t('threesixty.remind_all')}
+                </Button>
+              </Col>
+            )}
+            {isSelf || !options.participants.manager.canApproveNominations || (
+              <Fragment>
+                <div className="divider" />
+                <Col>
+                  <Button type="primary" onClick={handleApproveAll}>
+                    {I18n.t('threesixty.approve_all')}
+                  </Button>
+                </Col>
+                <Col>
+                  <Button type="primary" danger onClick={handleDenyAll}>
+                    {I18n.t('threesixty.deny_all')}
+                  </Button>
+                </Col>
+              </Fragment>
+            )}
+          </Row>
         )}
       </div>
       {_.some(errors) && (
-      <Alert
-        message={I18n.t('threesixty.validation_errors')}
-        description={_.map(errors, error => (
-          <div>{error.join(' ')}</div>
-        ))}
-        type="error"
-      />
+        <Alert
+          message={I18n.t('threesixty.validation_errors')}
+          description={_.map(errors, error => (
+            <div>{error.join(' ')}</div>
+          ))}
+          type="error"
+        />
       )}
 
     </>

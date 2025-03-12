@@ -80,7 +80,7 @@ module DeploymentActions
       end
 
       def validate_learning_style(style)
-        valid_styles = %w[structured_learning learning_from_the_others on_the_job]
+        valid_styles = %w[structured_learning learning_from_others on_the_job]
         valid_styles.include?(style) ? style : 'structured_learning'
       end
     end

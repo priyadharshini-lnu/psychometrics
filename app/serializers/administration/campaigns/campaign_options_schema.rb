@@ -31,6 +31,7 @@ module Administration
           required(:proctoring_type).filled(:str?)
           required(:proctoring_trial).filled(:bool?)
           required(:workshop_booking_requires_prework_completion).filled(:bool?)
+          required(:workshop_invite_requires_prework_completion).filled(:bool?)
           required(:show_watermark).filled(:bool?)
           required(:watermark_content).maybe(:str?)
         end

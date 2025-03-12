@@ -26,7 +26,20 @@ module Administration
             }
           ).serialize(@report) }
         else
-          render json: { error: true }, status: 400
+          render json: { error: true, message: builder.errors.flatten }, status: 400
+        end
+      end
+
+      def upload_campaign_factors
+        form = ::Administration::Reports::CampaignFactorsImportForm.new(
+          file: params[:file],
+          report_id: params[:report_id]
+        )
+
+        if form.valid?
+          render json: form.processed_data, status: :ok
+        else
+          render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
         end
       end
 

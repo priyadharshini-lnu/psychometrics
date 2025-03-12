@@ -13,7 +13,7 @@ class UserSkillGapReportSchema < BaseSchema
       required(:is_self).filled(:bool?)
       required(:results).maybe(:hash?)
       required(:report_data).maybe(:array?)
-      required(:report_url).filled(:str?)
+      required(:report_url).maybe(:str?)
       required(:report).hash(ReportSchema.schema(_, _))
       required(:user).hash(::Reports::UserSchema.schema(_, _))
     end

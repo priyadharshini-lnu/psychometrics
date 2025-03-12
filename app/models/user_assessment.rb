@@ -32,12 +32,12 @@ class UserAssessment < ApplicationRecord
   has_many :user_assessment_factor_scores, dependent: :destroy
   has_many :user_assessment_verification_images, dependent: :destroy
 
-  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
-  enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
-  enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
-  enum evaluator_nomination_status: { waiting: 0, completed: 1, declined: 2 }, _prefix: :evaluator_nomination
-  enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
-  enum meeting_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :meeting
+  enum :status, { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
+  enum :completion_reason, { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
+  enum :manager_nomination_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_nomination
+  enum :evaluator_nomination_status, { waiting: 0, completed: 1, declined: 2 }, prefix: :evaluator_nomination
+  enum :manager_evaluation_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_evaluation
+  enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :assessor_form?,
            :external?, :external_settings, to: :assessment
@@ -113,6 +113,7 @@ class UserAssessment < ApplicationRecord
   after_commit :publish_assessment_started_webhook, if: -> { saved_change_to_status == %w[not_started in_progress] }
 
   after_create_commit -> { publish_assessment_assigned_webhook }
+  after_commit :send_workshop_invite_email, if: :should_send_workshop_invite_email?, on: %i[update]
 
   alias result users_result
 
@@ -383,6 +384,23 @@ class UserAssessment < ApplicationRecord
 
   def publish_assessment_started_webhook
     UserAssessments::Webhook.new(self).publish_assessment_started
+  end
+
+  def should_send_workshop_invite_email?
+    prework? &&
+      status_previously_changed? && completed? &&
+      campaign.campaign_options.workshop_invite_requires_prework_completion?
+  end
+
+  def send_workshop_invite_email
+    WorkshopInvitedSubject.
+      joins(:workshop_invite).
+      where(user_id: subject_id, status: 'pending').
+      where(workshop_invites: { campaign_id: campaign_id }).
+      includes(:workshop_invite).
+      find_each do |invited_subject|
+      WorkshopInvites::SendEmail.call!(invited_subject)
+    end
   end
 end
 # rubocop:enable Metrics/ClassLength

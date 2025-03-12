@@ -18,12 +18,12 @@ module UsersResults
 
       factor_score_with_difference = {}
       saved_scoring&.each do |factor_id, scores|
-        unless score_equal?(new_scoring[factor_id], scores)
-          factor_score_with_difference[factor_id] = {
-            saved_scoring: scores,
-            new_scoring: new_scoring[factor_id]
-          }
-        end
+        next if score_equal?(new_scoring[factor_id], scores)
+
+        factor_score_with_difference[factor_id] = {
+          saved_scoring: scores,
+          new_scoring: new_scoring[factor_id]
+        }
       end
 
       broadcast :ok, factor_score_with_difference.presence

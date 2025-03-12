@@ -100,8 +100,13 @@ const InitialStepsComponent = ({
             ]}
           />
         </BoxWithShadow>
+
         {step === STEPS.getting_start && <GettingStart next={() => next(STEPS.skill_gap_report)} />}
-        {step === STEPS.skill_gap_report && <SkillGapReport next={() => next(STEPS.add_skills)} />}
+        {step === STEPS.skill_gap_report && (
+          <div className={styles.skillGapReportParent}>
+            <SkillGapReport next={() => next(STEPS.add_skills)} />
+          </div>
+        )}
         {step === STEPS.add_skills && <AddSkills next={() => next(STEPS.rate_skills)} />}
         {step === STEPS.rate_skills && <RateSkills next={handleSubmit} isSubmitting={isSubmitting} />}
       </Layout.Content>

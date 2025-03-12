@@ -71,7 +71,7 @@ const Project: FC<Props> = ({
     if (pathname.includes('/datasheet')) {
       return ['datasheet']
     }
-    if (pathname.includes('/settings')) {
+    if (pathname.includes('/settings/')) {
       return ['settings']
     }
     if (pathname.includes('/audit_reports')) {

@@ -3,12 +3,12 @@ import cs from 'classnames'
 import { connect } from 'react-redux'
 import AppStore from '~/modules/reports/store/AppStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
-import Utils from '~/modules/reports/utils'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { PaginationContext } from './PaginationContext'
 import styles from '../styles.less'
 import { useModulePagination } from '~/hooks/useModulePagination'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const Question = ({
   model, questions, insertPaginationPage, preview,
@@ -30,7 +30,7 @@ const Question = ({
         <thead data-table-header>
           <tr>
             <td className={styles.question}>
-              {Utils.stripHTML(I18nStore.tQuestion(question, 'questionText'))}
+              <SafeHTML html={I18nStore.tQuestion(question, 'questionText')} />
             </td>
           </tr>
         </thead>
@@ -111,7 +111,9 @@ const Results = ({ results, filterId, paginationContext }) => {
     return (
       paginationContext.resultIndexes[filterId].map(i => (
         <tr>
-          <td key={i} className={styles.answer}>{results[i]}</td>
+          <td key={i} className={styles.answer}>
+            <SafeHTML html={results[i]} />
+          </td>
         </tr>
       ))
     )
@@ -119,7 +121,9 @@ const Results = ({ results, filterId, paginationContext }) => {
 
   return results.map((r, i) => (
     <tr key={i} data-index={i} data-paginatable={2}>
-      <td className={styles.answer}>{r}</td>
+      <td className={styles.answer}>
+        <SafeHTML html={r} />
+      </td>
     </tr>
   ))
 }

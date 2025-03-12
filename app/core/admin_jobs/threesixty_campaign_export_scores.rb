@@ -73,7 +73,7 @@ module AdminJobs
             }
           end
 
-          factors.each do |id, _factor_name|
+          factors.each_key do |id|
             collected_score = factor_scores.find do |score|
               score[:id] == id.to_s
             end&.fetch(:score, nil)
@@ -91,8 +91,8 @@ module AdminJobs
     # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     def append_row_values(row_values, factors, relationships, scores_by_factor_relationships)
-      factors.each do |id, _factor_name|
-        relationships.each do |relationship_id, _relationship|
+      factors.each_key do |id|
+        relationships.each_key do |relationship_id|
           collected_scores = scores_by_factor_relationships[id][relationship_id]
           average_score = collected_scores.sum / collected_scores.size.to_f if collected_scores.any?
           row_values << (average_score&.round(2) || '')

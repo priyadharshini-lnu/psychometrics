@@ -263,18 +263,18 @@ export class Properties extends Component {
             Enable Labels
           </label>
           {model.props.enableLabels && (
-          <input
-            value={model.props.labelLow}
-            placeholder="Low Label"
-            onChange={({ currentTarget }) => this.updateProps(currentTarget.value, 'labelLow')}
-          />
+            <input
+              value={model.props.labelLow}
+              placeholder="Low Label"
+              onChange={({ currentTarget }) => this.updateProps(currentTarget.value, 'labelLow')}
+            />
           )}
           {model.props.enableLabels && (
-          <input
-            value={model.props.labelHigh}
-            placeholder="High Label"
-            onChange={({ currentTarget }) => this.updateProps(currentTarget.value, 'labelHigh')}
-          />
+            <input
+              value={model.props.labelHigh}
+              placeholder="High Label"
+              onChange={({ currentTarget }) => this.updateProps(currentTarget.value, 'labelHigh')}
+            />
           )}
         </div>
       </div>

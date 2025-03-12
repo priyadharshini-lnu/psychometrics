@@ -161,13 +161,13 @@ export const ScheduleDay:FC<Props> = ({
                     </Col>
                   </Row>
                   {errors.base && (
-                  <Row className="mb-3" style={{ marginTop: '-8px' }}>
-                    <Col span={20}>
-                      <Typography.Text type="danger">
-                        {errors.base}
-                      </Typography.Text>
-                    </Col>
-                  </Row>
+                    <Row className="mb-3" style={{ marginTop: '-8px' }}>
+                      <Col span={20}>
+                        <Typography.Text type="danger">
+                          {errors.base}
+                        </Typography.Text>
+                      </Col>
+                    </Row>
                   )}
                 </>
               )
@@ -201,11 +201,11 @@ export const ScheduleDay:FC<Props> = ({
         )}
       </Form.List>
       {errorMessages?.base && (
-      <Row className="mb-3" style={{ marginTop: '-8px' }}>
-        <Col span={18} offset={6}>
-          <Typography.Text type="danger">{errorMessages.base as unknown as string}</Typography.Text>
-        </Col>
-      </Row>
+        <Row className="mb-3" style={{ marginTop: '-8px' }}>
+          <Col span={18} offset={6}>
+            <Typography.Text type="danger">{errorMessages.base as unknown as string}</Typography.Text>
+          </Col>
+        </Row>
       )}
     </>
   )

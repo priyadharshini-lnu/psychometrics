@@ -25,6 +25,8 @@ module Administration
         required(:custom_upload).filled(:bool?)
         required(:report_url).maybe(:str?)
         required(:report_provider).maybe(:str?)
+        required(:comments_count).filled(:int?)
+        required(:edits_count).filled(:int?)
         required(:hogan_participant_id).maybe(:str?)
       end
     end

@@ -6,6 +6,7 @@ import cs from 'classnames'
 import { FormInstance } from 'antd/lib/form'
 import { Tag } from 'modules/admin/core/tags'
 import _ from 'lodash'
+import { connect } from 'react-redux'
 import { useResources } from '~/hooks/useResources'
 import {
   Assessment, LinkedAssessment, UPDATABLE_CATEGORIES, CREATABLE_CATEGORIES,
@@ -14,6 +15,8 @@ import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalAssessmentFields } from './ExternalAssessmentFields'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 const { TextArea } = Input
 
@@ -21,11 +24,18 @@ const { I18n } = window
 
 const MAX_TAG_BATCH_SIZE = 100
 
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+)
+
 interface Props {
   assessment?: Assessment
   form: FormInstance
   showTranslatableFields?: boolean
   handleAssessmentSelect?(value: string) : void
+  currentUser
 }
 
 type OptionsType = {
@@ -33,8 +43,8 @@ type OptionsType = {
   name: string
 }
 
-export const BaseFormFields: React.FC<Props> = ({
-  assessment, form, showTranslatableFields, handleAssessmentSelect,
+const BaseFormFieldsComp: React.FC<Props> = ({
+  assessment, form, showTranslatableFields, handleAssessmentSelect, currentUser,
 }) => {
   const { availableLocales } = I18n
   const {
@@ -120,18 +130,18 @@ export const BaseFormFields: React.FC<Props> = ({
           notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
           filterOption={false}
         >
-          <Select.Option>TTE</Select.Option>
+          {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
           {getClients().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}
         </Select>
       </Form.Item>
       {ExternalAssessmentFieldsComponent && (
-      <ExternalAssessmentFieldsComponent
-        form={form}
-        assessment={assessment}
-        handleAssessmentSelect={handleAssessmentSelect}
-      />
+        <ExternalAssessmentFieldsComponent
+          form={form}
+          assessment={assessment}
+          handleAssessmentSelect={handleAssessmentSelect}
+        />
       )}
       {showTranslatableFields
         && (
@@ -250,3 +260,5 @@ export const BaseFormFields: React.FC<Props> = ({
     </>
   )
 }
+
+export const BaseFormFields = connecter(BaseFormFieldsComp)

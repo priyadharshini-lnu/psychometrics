@@ -55,14 +55,14 @@ const StaticContent = ({
         style={GetBackgroundStyles.run(staticContent)}
       >
         {!shouldEnableContentCopy && (
-        <HighlightList
-          highlight={highlight}
-          contentRef={contentRef}
-          selection={selection}
-          updateHighlight={updateHighlight}
-          preview={preview}
-          staticContent={staticContent}
-        />
+          <HighlightList
+            highlight={highlight}
+            contentRef={contentRef}
+            selection={selection}
+            updateHighlight={updateHighlight}
+            preview={preview}
+            staticContent={staticContent}
+          />
         )}
         <SafeHTML
           className={`${styles.content} highlight-container`}

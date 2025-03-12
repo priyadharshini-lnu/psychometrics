@@ -76,7 +76,7 @@ class Administration::NormsController < Administration::BaseController
         audit! :copy, resource, payload: { source_id: resource.id }
         format.js
       else
-        format.js { render :error, locals: { message: t('administration.norms.copy.error', id: resource.id) } }
+        format.js { render :error, locals: { message: t('.error', id: resource.id) } }
       end
     end
   end
@@ -84,9 +84,7 @@ class Administration::NormsController < Administration::BaseController
   def toggle_status
     resource.toggle(:disabled).save
     audit! :toggle_status, resource, payload: { disabled: resource.disabled }
-    respond_to do |format|
-      format.js
-    end
+    respond_to(&:js)
   end
 
   def export

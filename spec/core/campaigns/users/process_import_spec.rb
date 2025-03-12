@@ -185,7 +185,7 @@ describe Campaigns::Users::ProcessImport do
       expect(imported_users.size).to eq(3)
       expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
       expect(fedor_user.user_profile).to have_attributes(age: 32)
-      expect(fedor_user.user_profile).to have_attributes(custom_fields: { question.id.to_s => '1111' })
+      expect(fedor_user.user_profile).to have_attributes(custom_fields: { question.id => '1111' })
       expect(vlad_user.user_profile).to have_attributes(age: 35)
     end
   end

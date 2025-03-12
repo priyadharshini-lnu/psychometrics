@@ -166,16 +166,16 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
             key="actions"
             render={({ status, subject, evaluator }) => (
               (currentUser.id.toString() === evaluator.id && subject.id !== evaluator.id) && (
-              <Button
-                href={`/assessors/campaigns/${campaignId}/users/${subject.id}`}
-                type="link"
-                className="ps-0"
-                target="_blank"
-              >
-                {status === 'not_started' && I18n.t('common.actions.start')}
-                {status === 'in_progress' && I18n.t('common.actions.continue')}
-                {status === 'completed' && I18n.t('common.actions.view')}
-              </Button>
+                <Button
+                  href={`/assessors/campaigns/${campaignId}/users/${subject.id}`}
+                  type="link"
+                  className="ps-0"
+                  target="_blank"
+                >
+                  {status === 'not_started' && I18n.t('common.actions.start')}
+                  {status === 'in_progress' && I18n.t('common.actions.continue')}
+                  {status === 'completed' && I18n.t('common.actions.view')}
+                </Button>
               )
             )}
           />

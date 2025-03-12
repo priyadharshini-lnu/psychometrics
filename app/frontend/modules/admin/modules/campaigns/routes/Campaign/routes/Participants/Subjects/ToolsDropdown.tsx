@@ -4,9 +4,8 @@ import {
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { ExportUsers, exportUsers } from '~/modules/admin/modules/campaigns/core/users'
+import { ExportUsers } from '~/modules/admin/modules/campaigns/core/users'
 
 const { I18n } = window
 
@@ -77,11 +76,10 @@ const getMenuProps = ({
 
 interface Props {
   campaignId: number
-  openModal(name: string, data?: {
-    campaignId: number, user?: User, exportUsers: ExportUsers, permissions: { exportSignInUrl: boolean} }): void
-  exportCompletionStatuses(campaignId: number): Promise<void>
+  openModal(name: string, data?: object): void
+  exportCompletionStatuses(campaignId: number, body: object): Promise<void>
   exportUsers: ExportUsers
-  exportCompactCompletionStatuses(campaignId: number): Promise<void>
+  exportCompactCompletionStatuses(campaignId: number, body: object): Promise<void>
   exportReportsAndAssessments(campaignId: number): Promise<void>
   permissions: {
     exportUsers: boolean,
@@ -96,8 +94,10 @@ const ToolsDropdown: React.FC<Props> = ({
   exportReportsAndAssessments,
 }) => {
   const onExport = () => {
-    exportCompletionStatuses(campaignId).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled'))
+    openModal('UserFilterModal', {
+      id: campaignId,
+      action: exportCompletionStatuses,
+      onSuccess: () => { message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled')) },
     })
   }
 
@@ -114,8 +114,10 @@ const ToolsDropdown: React.FC<Props> = ({
   }
 
   const onCompactExport = () => {
-    exportCompactCompletionStatuses(campaignId).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled'))
+    openModal('UserFilterModal', {
+      id: campaignId,
+      action: exportCompactCompletionStatuses,
+      onSuccess: () => { message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled')) },
     })
   }
 

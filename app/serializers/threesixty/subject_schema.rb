@@ -12,6 +12,7 @@ module Threesixty
 
         required(:id).filled(:int?)
         required(:status).filled(:str?)
+        required(:user_report_id).filled(:int?)
         required(:report_status).filled(:str?)
         required(:evaluators).filled(:str?)
         required(:evaluations).filled(:str?)

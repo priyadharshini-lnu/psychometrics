@@ -10,7 +10,7 @@ class Api::V2::Administration::CampaignTemplateResource < Api::V2::Administratio
   ransack_filters %i[filterable_fields]
 
   def self.records(opts)
-    super(opts).includes(
+    super.includes(
       assessment: { icon_attachment: :blob, poster_attachment: :blob },
       report: { icon_attachment: :blob, poster_attachment: :blob }
     )

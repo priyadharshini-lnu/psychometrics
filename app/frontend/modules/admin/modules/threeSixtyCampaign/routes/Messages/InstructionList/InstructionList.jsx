@@ -116,9 +116,9 @@ export default function InstructionList ({
               withPipedText
             />
             {rightLocale && (
-            <div className={styles.comparisonBody}>
-              <SafeHTML html={selectedRightLocale.content} className="m16" config="adminRichText" />
-            </div>
+              <div className={styles.comparisonBody}>
+                <SafeHTML html={selectedRightLocale.content} className="m16" config="adminRichText" />
+              </div>
             )}
           </div>
         </div>

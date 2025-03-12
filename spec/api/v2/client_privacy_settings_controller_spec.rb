@@ -7,7 +7,7 @@ describe Api::V2::Administration::ClientPrivacySettingsController, swagger_doc: 
   let!(:client) { create(:tenancy) }
   let!(:client_privacy_setting) { create(:client_privacy_setting, client: client) }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

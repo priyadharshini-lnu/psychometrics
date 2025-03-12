@@ -117,18 +117,20 @@ export const exportReportsAndAssessments = (campaignId: number): ApiAction<{}> =
   },
 })
 
-export const exportCompletionStatuses = (campaignId: number): ApiAction<{}> => ({
+export const exportCompletionStatuses = (campaignId: number, body = {}): ApiAction<{}> => ({
   type: EXPORT_COMPLETION_STATUSES,
   request: {
     method: 'get',
+    body,
     url: `/administration/new_campaigns/${campaignId}/users/export_completion_status`,
   },
 })
 
-export const exportCompactCompletionStatuses = (campaignId: number): ApiAction<{}> => ({
+export const exportCompactCompletionStatuses = (campaignId: number, body = {}): ApiAction<{}> => ({
   type: EXPORT_COMPACT_COMPLETION_STATUSES,
   request: {
     method: 'get',
+    body,
     url: `/administration/new_campaigns/${campaignId}/users/export_compact_completion_status`,
   },
 })

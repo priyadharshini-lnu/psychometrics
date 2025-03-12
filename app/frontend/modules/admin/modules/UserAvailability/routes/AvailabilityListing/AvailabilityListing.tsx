@@ -125,15 +125,15 @@ const AvailabilityListing = () => {
         <Row className="p-10">
           <Col lg={24} xxl={18}>
             {showNewScheduleForm && (
-            <ScheduleAvailability
-              id="new"
-              onFormSubmit={data => handleCreate(data)}
-              className="mb-10"
-              collapsed={false}
-              removable={userAvailabilityDates.length > 0}
-              onRemove={() => setShowNewScheduleForm(false)}
-              errorMessages={errors?.newForm}
-            />
+              <ScheduleAvailability
+                id="new"
+                onFormSubmit={data => handleCreate(data)}
+                className="mb-10"
+                collapsed={false}
+                removable={userAvailabilityDates.length > 0}
+                onRemove={() => setShowNewScheduleForm(false)}
+                errorMessages={errors?.newForm}
+              />
             )}
             {userAvailabilityDates.map((userAvailabilityDate, index) => (
               <ScheduleAvailability

@@ -439,24 +439,24 @@ class Properties extends Component {
           )
         )}
         {showScore && (
-        <div className={styles.block}>
-          Score Position
-          <div className={styles.flexRow}>
-            <Radio.Group
-              onChange={({ target: { value } }) => {
-                this.onChangeColor('scorePosition', value)
-              }}
-              defaultValue={model.props.scorePosition || 'inline'}
-            >
-              <Radio value="inline" className={styles.radioLabel}>
-                Inline
-              </Radio>
-              <Radio value="block" className={styles.radioLabel}>
-                Block
-              </Radio>
-            </Radio.Group>
+          <div className={styles.block}>
+            Score Position
+            <div className={styles.flexRow}>
+              <Radio.Group
+                onChange={({ target: { value } }) => {
+                  this.onChangeColor('scorePosition', value)
+                }}
+                defaultValue={model.props.scorePosition || 'inline'}
+              >
+                <Radio value="inline" className={styles.radioLabel}>
+                  Inline
+                </Radio>
+                <Radio value="block" className={styles.radioLabel}>
+                  Block
+                </Radio>
+              </Radio.Group>
+            </div>
           </div>
-        </div>
         )}
         {modules.length > 1 ? null
           : (

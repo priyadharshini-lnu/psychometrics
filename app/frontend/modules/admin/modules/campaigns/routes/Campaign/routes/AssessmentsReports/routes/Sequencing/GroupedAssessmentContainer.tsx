@@ -181,10 +181,10 @@ export const GroupedAssessmentContainer = React.forwardRef(
             </>
           )}
           {group.groupType === 'assessment_center' && (
-          <Result
-            icon={<FolderOutlined className={styles.iconSecondaryColor} />}
-            subTitle={I18n.t('assessments_reports.sequencing.assessment_center_message')}
-          />
+            <Result
+              icon={<FolderOutlined className={styles.iconSecondaryColor} />}
+              subTitle={I18n.t('assessments_reports.sequencing.assessment_center_message')}
+            />
           )}
         </Card>
       </div>

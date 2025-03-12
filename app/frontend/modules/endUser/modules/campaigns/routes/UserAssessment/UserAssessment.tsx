@@ -163,10 +163,10 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             {availableTranslations
               && availableTranslations.length > 1
               && (
-              <LangDropdownWithChangeUrl
-                currentLocale={selectedLanguage.code}
-                locales={availableTranslations || []}
-              />
+                <LangDropdownWithChangeUrl
+                  currentLocale={selectedLanguage.code}
+                  locales={availableTranslations || []}
+                />
               )
             }
           </Space>
@@ -189,15 +189,15 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <Space>
                     {enableBackButton
                       && (
-                      <Button
-                        onClick={handleBackToAssessmentList}
-                        size="small"
-                        type="text"
-                        ghost
-                        aria-label={I18n.t('frontend.aria.back_to_tasks')}
-                      >
-                        <DirectionalNavigateBackIcon className={styles.backIcon} />
-                      </Button>
+                        <Button
+                          onClick={handleBackToAssessmentList}
+                          size="small"
+                          type="text"
+                          ghost
+                          aria-label={I18n.t('frontend.aria.back_to_tasks')}
+                        >
+                          <DirectionalNavigateBackIcon className={styles.backIcon} />
+                        </Button>
                       )}
                     <h1 className={styles.campaignDropdown}>
                       {assessment.name}
@@ -205,51 +205,51 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   </Space>
               )}
                 extra={type !== 'preview_block' && enableProgress && started && (
-                <Progress
-                  strokeColor="#fff"
-                  className={styles.progressStatus}
-                  key="3"
-                  percent={progress}
-                  aria-label={I18n.t('user_assessments.progress_label')}
-                  {...progressBarProps}
-                />
+                  <Progress
+                    strokeColor="#fff"
+                    className={styles.progressStatus}
+                    key="3"
+                    percent={progress}
+                    aria-label={I18n.t('user_assessments.progress_label')}
+                    {...progressBarProps}
+                  />
                 )}
               />
               <div className={styles.assessmentContainer}>
                 {showInvalidSession && (
-                <Modal
-                  title={I18n.t('errors.invalid_session_title')}
-                  open={showInvalidSession}
-                  cancelText={I18n.t('common.actions.close')}
-                  okText={I18n.t('common.actions.back_to_dashboard')}
-                  closable={false}
-                  maskClosable={false}
-                  onCancel={() => {
-                    setShowInvalidSession(false)
-                  }}
-                  onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
-                  centered
-                >
-                  {I18n.t('assessments.page.invalid_session.description')}
-                </Modal>
+                  <Modal
+                    title={I18n.t('errors.invalid_session_title')}
+                    open={showInvalidSession}
+                    cancelText={I18n.t('common.actions.close')}
+                    okText={I18n.t('common.actions.back_to_dashboard')}
+                    closable={false}
+                    maskClosable={false}
+                    onCancel={() => {
+                      setShowInvalidSession(false)
+                    }}
+                    onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
+                    centered
+                  >
+                    {I18n.t('assessments.page.invalid_session.description')}
+                  </Modal>
                 )}
                 {loaded && !error && (
-                <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-                  <PassAssessment
-                    id="pass_assessment"
-                    type="pass_assessment"
-                    initialized={initialized}
-                    data={assessment}
-                    result={results}
-                    locales={translations}
-                    dashboardUrl={`/assessment_completed/${campaignId}`}
-                    resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                    selectedLocale={selectedLanguage && selectedLanguage.code}
-                    rstore={store}
-                    valuationSessionId={evaluationSessionId}
-                    renderedByEnduser
-                  />
-                </ResourcesTabs>
+                  <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                    <PassAssessment
+                      id="pass_assessment"
+                      type="pass_assessment"
+                      initialized={initialized}
+                      data={assessment}
+                      result={results}
+                      locales={translations}
+                      dashboardUrl={`/assessment_completed/${campaignId}`}
+                      resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                      selectedLocale={selectedLanguage && selectedLanguage.code}
+                      rstore={store}
+                      valuationSessionId={evaluationSessionId}
+                      renderedByEnduser
+                    />
+                  </ResourcesTabs>
                 )}
               </div>
             </>

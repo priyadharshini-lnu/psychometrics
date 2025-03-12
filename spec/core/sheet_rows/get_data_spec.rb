@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::SheetRows::GetData do
+describe SheetRows::GetData do
   let(:sheet) do
     create(:sheet, columns: [{ name: 'Email', type: 'String' },
                              { name: 'Name', type: 'String' },

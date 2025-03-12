@@ -38,9 +38,14 @@ module AdminJobs
     end
 
     def records_for_export
-      CampaignUser.includes(:campaign, :user, :workshop_subjects, :workshop_invited_subjects).
-        where(campaigns: { project_id: project.id }).
-        find_each(batch_size: 1000)
+      campaign_users = CampaignUser.includes(:campaign, :user, :workshop_subjects, :workshop_invited_subjects).
+                       where(campaigns: { project_id: project.id })
+
+      unless include_inactive_users
+        campaign_users = campaign_users.where(active: true)
+      end
+
+      campaign_users.find_each(batch_size: 1000)
     end
 
     def data_row(campaign_user) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
@@ -105,6 +110,10 @@ module AdminJobs
 
     def file_name
       "assessment-center-export-#{project.name.parameterize}.csv"
+    end
+
+    def include_inactive_users
+      record.data['include_inactive_users'] || false
     end
   end
 end

@@ -83,7 +83,7 @@ export default function ReportPreview ({
         selectedLocale={defaultLanguage}
         userReport={userReport}
         allowEdit={userReport.approvalStatus === ApprovalStatuses.QCInProgress
-          && userReport.permissions.manageQc}
+          && userReport.permissions.editQc}
         allowApprove={userReport.approvalStatus === ApprovalStatuses.QCCompleted
           && userReport.permissions.manageApproval}
         skipLogic={skipLogic}
@@ -126,7 +126,7 @@ export default function ReportPreview ({
     if (userReport.requireApproval) {
       if ((userReport.approvalStatus === ApprovalStatuses.PendingQC
           || userReport.approvalStatus === ApprovalStatuses.ChangeRequested)
-          && userReport.permissions.manageQc) {
+          && userReport.permissions.startQc) {
         actionList.unshift(
           <Button
             type="primary"
@@ -136,16 +136,23 @@ export default function ReportPreview ({
           </Button>,
         )
       }
-      if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.manageQc) {
-        actionList.unshift(...[
-          <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
-            {I18n.t('administration.report_review.send_for_approve')}
-          </Button>,
+      if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.abortQc) {
+        actionList.unshift(
           <Button type="default" onClick={() => abortQC(userReport.campaignId, userReport.id)}>
             {I18n.t('administration.report_review.abort_qc')}
           </Button>,
-        ])
+        )
       }
+      if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.editQc) {
+        actionList.unshift(
+          <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
+            {(userReport.permissions.oneLevelQc || userReport.permissions.approversCanEdit)
+              ? I18n.t('administration.report_review.approve_changes')
+              : I18n.t('administration.report_review.send_for_approve')}
+          </Button>,
+        )
+      }
+
       if (userReport.approvalStatus === ApprovalStatuses.QCCompleted && userReport.permissions.manageApproval) {
         const pageModules = lookUpModules(userReport.report, pages)
         const approved = userReport.moduleOverrides.filter(m => m.approved).length
@@ -160,7 +167,9 @@ export default function ReportPreview ({
             {I18n.t('administration.report_review.approve')}
           </Button>,
           <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
-            {I18n.t('administration.report_review.request_changes')}
+            {(userReport.permissions.oneLevelQc || userReport.permissions.approversCanEdit)
+              ? I18n.t('administration.report_review.edit')
+              : I18n.t('administration.report_review.request_changes')}
           </Button>,
         ])
       }
@@ -261,11 +270,11 @@ export default function ReportPreview ({
             </Col>
             {userReport.requireApproval
               && (
-              <Col>
-                <Affix style={{ maxHeight: '100vh' }}>
-                  <Sidebar pages={pages} questions={normalizedReport.entities.questions} />
-                </Affix>
-              </Col>
+                <Col>
+                  <Affix style={{ maxHeight: '100vh' }}>
+                    <Sidebar pages={pages} questions={normalizedReport.entities.questions} />
+                  </Affix>
+                </Col>
               )
             }
           </Row>

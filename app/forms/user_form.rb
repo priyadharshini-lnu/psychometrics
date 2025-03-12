@@ -29,7 +29,8 @@ class UserForm < BaseForm
   end
 
   def save
-    (persist! && return) if valid?
+    persist! && return if valid?
+
     false
   end
 

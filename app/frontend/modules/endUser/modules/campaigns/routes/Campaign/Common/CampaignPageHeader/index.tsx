@@ -73,9 +73,9 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
             <Col>{campaignName}</Col>
             <Col flex="auto" className="ta-e">
               {campaign.progressStatus && (
-              <Tag color={STATUSES[campaign.progressStatus].color}>
-                {STATUSES[campaign.progressStatus].text}
-              </Tag>
+                <Tag color={STATUSES[campaign.progressStatus].color}>
+                  {STATUSES[campaign.progressStatus].text}
+                </Tag>
               )}
             </Col>
           </Row>

@@ -9,7 +9,7 @@ describe Api::V2::Administration::CampaignAssessorAssessmentsController, swagger
   let!(:campaign_id) { campaign_assessor_assessment.campaign_id }
   let!(:assessment_id) { campaign_assessor_assessment.assessment_id.to_s }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

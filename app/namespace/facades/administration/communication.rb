@@ -106,7 +106,7 @@ module Facades
       end
 
       def show_inputs_for_date_and_time?
-        return if %w[invitation other].exclude?(form.kind)
+        return false if %w[invitation other].exclude?(form.kind)
 
         form.delivery_rule == 'specific_datetime'
       end

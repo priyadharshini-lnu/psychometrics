@@ -8,7 +8,7 @@ import {
 } from 'antd'
 import Event from 'interfaces/Event'
 import { importSkills } from '~/modules/admin/modules/Skills/core/skills'
-import DownloadSampleFile from './DownloadSampleFile'
+import DownloadSampleFile from '~/modules/admin/components/DownloadSampleFile'
 
 
 const CSVData = `ID,Name,Description,Project,Category,Tag

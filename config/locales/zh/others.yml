@@ -665,7 +665,6 @@ zh:
       statuses:
         success: 成功
         undelivered: 未送达
-    mindmill_confirmation: 开始此评估后，你将丢失结果“%{assessment}”。如果要退出结果，请点击“取消”，如果要继续，请点击“确定”
     my_projects: 我的项目
     nominate: 提名
     nominate_evaluators: 提名评估者至

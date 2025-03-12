@@ -25,7 +25,7 @@ module Hogan
           )
         end
 
-        user_report.user_results.where("external_results::text = '{}'").each do |user_result|
+        user_report.user_results.where("external_results::text = '{}'").find_each do |user_result|
           add_external_results(user_result, user_report)
         end
       end
@@ -55,7 +55,7 @@ module Hogan
       return rerun_save_report_and_score(user_report) if participant_score.blank?
 
       user_result.update!(external_results: participant_score)
-      user_result.user_reports(:internal).where(status: :not_prepared).each do |ur|
+      user_result.user_reports(:internal).where(status: :not_prepared).find_each do |ur|
         UserReports::GenerateAndSavePdfJob.perform_later(ur, user_result.user)
       end
     end

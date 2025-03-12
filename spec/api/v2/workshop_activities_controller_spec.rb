@@ -11,7 +11,7 @@ describe Api::V2::Administration::WorkshopActivitiesController, swagger_doc: 'v2
   let(:workshop_id) { workshop.id }
   let!(:subject) { create(:workshop_subject, workshop: workshop) }
   let!(:assessor) { create(:assessor, campaign: campaign) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before do
     completed = create(:user_assessment, campaign: campaign, subject: subject.user,

@@ -19,7 +19,10 @@ module Threesixty
         threesixty_campaign.participants.
           where(relationship_id: Relationship.manager_relationship.id).
           where(evaluator_id: user.id).
-          where.not(subject_id: user.id, manager_nomination_status: :denied).
+          where(
+            'NOT (subject_id = ? AND manager_nomination_status = ?)',
+            user.id, Threesixty::Participant.manager_nomination_statuses[:denied]
+          ).
           pluck(:subject_id)
       end
     end

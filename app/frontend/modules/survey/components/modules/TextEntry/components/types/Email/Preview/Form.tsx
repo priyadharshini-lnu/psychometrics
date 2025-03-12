@@ -131,9 +131,9 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
         </Form.Item>
         {maxLength
          && (
-         <small aria-live="polite">
-           {I18n().t('threesixty.question.email_type.max_length_warning', { x: remainingLength })}
-         </small>
+           <small aria-live="polite">
+             {I18n().t('threesixty.question.email_type.max_length_warning', { x: remainingLength })}
+           </small>
          )
          }
       </div>

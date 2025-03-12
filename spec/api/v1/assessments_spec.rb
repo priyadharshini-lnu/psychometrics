@@ -8,7 +8,7 @@ describe 'Assessments' do
   let(:campaign) { create(:campaign, project: project) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 
@@ -79,7 +79,7 @@ describe 'Assessments' do
       response '401', 'Auth error' do
         let(:project_id) { project.id }
         let(:user_id) { user.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
 
         schema '$ref' => '#/definitions/ApiError'
 
@@ -200,7 +200,7 @@ describe 'Assessments' do
         let(:project_id) { project.id }
         let(:user_id) { user.id }
         let(:assessment_id) { @assessment.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
 
         schema '$ref' => '#/definitions/ApiError'
 

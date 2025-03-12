@@ -9,7 +9,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let(:dimension) { create(:dimension) }
   let(:client) { create(:tenancy) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before(:each) { login_user(superadmin) }
   after(:each) { sign_out(superadmin) }
@@ -83,8 +83,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
               name: 'name',
               provider: 'saville',
               description: 'asd',
-              external_settings: {
-              },
+              external_settings: {},
               icon_color: 'color'
             },
             relationships: {

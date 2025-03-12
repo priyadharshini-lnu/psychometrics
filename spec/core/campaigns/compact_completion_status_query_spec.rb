@@ -5,8 +5,11 @@ require 'rails_helper'
 describe Campaigns::CompactCompletionStatusQuery do
   let!(:campaign) { create(:campaign) }
   let!(:user) { create(:user, email: 'andrew@email.com', first_name: 'Andrew', last_name: 'Wok') }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user, active: true) }
   let!(:user_one) { create(:user, email: 'james@email.com', first_name: 'James', last_name: 'Bond') }
+  let!(:campaign_user_one) { create(:campaign_user, campaign: campaign, user: user_one, active: true) }
   let!(:user_two) { create(:user, email: 'bob@email.com', first_name: 'Bob', last_name: 'Jobs') }
+  let!(:campaign_user_two) { create(:campaign_user, campaign: campaign, user: user_two, active: true) }
   let!(:assessment) { create(:assessment, name: 'Assessment') }
   let!(:minor_assessment) { create(:assessment, name: 'Minor Assessment') }
   let!(:super_assessment) { create(:assessment, name: 'Super Assessment') }

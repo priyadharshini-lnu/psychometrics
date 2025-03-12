@@ -91,13 +91,13 @@ const EndPage: FC<Props> = ({
           <Space direction="vertical" align="center">
             {!showScoringOnEndPage && !isAnonymousAssessment && !extra.disable_continue_to_dashboard && (
               <>
-                  {otherPendingAssessmentCount > 0 && (
+                {otherPendingAssessmentCount > 0 && (
                   <Typography.Title className="fs-20" level={2}>
                     {I18n.t('assessments.actions.pending_tasks',
                       { count: otherPendingAssessmentCount, locale: I18n.uiLocale })
                  }
                   </Typography.Title>
-                  )}
+                )}
                 <a href={`${dashboardUrl}?user_assessment_id=${userAssessmentId}`}>
                   {I18n.t('assessments.actions.goto_dashboard', { locale: I18n.uiLocale })}
                 </a>

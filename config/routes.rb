@@ -27,13 +27,10 @@ Rails.application.routes.draw do
   get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
 
   # TODO: remove this once we move Threesixty use common campaign type route
-  # rubocop:disable Style/FormatStringToken
   get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id/*all',
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}/%{all}')
   get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id',
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
-  # rubocop:enable Style/FormatStringToken
-
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
@@ -230,6 +227,12 @@ Rails.application.routes.draw do
             patch :toggle_auto_assign
             patch :toggle_user_dashboard
             patch :toggle_main_report
+          end
+        end
+        resources :user_idp_reports do
+          member do
+            get :pdf_preview
+            get :download
           end
         end
         resources :user_reports do
@@ -715,7 +718,11 @@ Rails.application.routes.draw do
         put :remap_assessment
       end
       scope module: 'reports' do
-        resource :builders, only: %i[show update]
+        resource :builders, only: %i[show update] do
+          member do
+            post :upload_campaign_factors
+          end
+        end
       end
     end
 
@@ -868,6 +875,10 @@ as: :simulation_progress_notification
 
       resources :meeting_rooms, only: [] do
         get :token, on: :member
+      end
+
+      resources :assessment_system_checks, only: [] do
+        post :step_completed, on: :collection
       end
 
       resources :workshop_invites, only: [] do
@@ -1054,14 +1065,12 @@ as: :simulation_progress_notification
   constraints format: :json do
     namespace :api do
       namespace :v1 do
-        namespace :threesixty do
-          resources :projects, only: [] do
-            resources :campaigns, only: [] do
-              resources :users, only: [], param: :user_id do
-                member do
-                  get :assessments
-                  get :scores
-                end
+        resources :projects, only: [] do
+          resources :campaigns, path: 'threesixty_campaigns', only: [], module: 'threesixty_campaigns' do
+            resources :users, only: [], param: :user_id do
+              member do
+                get :assessments
+                get :scores
               end
             end
           end
@@ -1202,6 +1211,8 @@ as: :simulation_progress_notification
               resource :uploads, only: %i[update]
             end
           end
+          jsonapi_resources :idp_settings, only: %i[index update]
+
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do
               post :send_test
@@ -1222,6 +1233,7 @@ as: :simulation_progress_notification
               end
             end
             jsonapi_resources :threesixty_campaigns do
+              jsonapi_resource :report_approval_setting, only: %i[index create update destroy]
               post :create_campaign, on: :collection
             end
           end
@@ -1372,6 +1384,7 @@ as: :simulation_progress_notification
               get :search_campaign
               get :search_report
               get :search_user
+              get :metadata_for_filters
             end
           end
           resources :user_report_events, only: %i[index] do
@@ -1404,11 +1417,13 @@ as: :simulation_progress_notification
           jsonapi_resources :development_actions, concerns: :taggable do
             collection do
               post :import
-              get :export
+              post :export
             end
           end
 
           jsonapi_resources :users_results, only: :show
+
+          jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
         end
       end
     end

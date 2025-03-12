@@ -7,7 +7,7 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
   let!(:superadmin) { create(:superadmin) }
   let(:report_family) { create(:report_family, name: 'bundle name') }
   let(:report_families_report) { create(:report_families_report, report_family:, report: create(:report)) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

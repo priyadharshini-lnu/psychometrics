@@ -40,7 +40,7 @@ class DatetimepickerInput < SimpleForm::Inputs::Base
   end
 
   def fetch_value
-    value = object ? object.public_send(attribute_name) : nil
+    value = object&.public_send(attribute_name)
     value ||= DateTime.current if options[:initialize_time_now]
     value
   end

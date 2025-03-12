@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
 import { MenuProps } from 'antd'
 import { RemoveResource } from 'hooks/useResources/interfaces'
+import { useParams } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Idp } from '~/modules/admin/modules/client/core/idp'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -12,6 +13,7 @@ import IDPTemplateForm from './IDPTemplateForm'
 import Modals from '~/modules/admin/components/Modals'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import RemoveIdTemplate from './RemoveIdpTemplateModal'
+import { getClientId } from '~/modules/admin/modules/client/core/projects'
 
 const { I18n } = window
 
@@ -22,7 +24,7 @@ const MODALS = {
 
 const connector = connect(
   (state: RootState) => ({
-    currentUser: state.currentUser,
+    clientId: getClientId(state),
   }),
   {
     openModal,
@@ -32,13 +34,14 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux;
 
-const IdpTable: React.FC<Props> = ({ openModal }) => {
+const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
   const { resource } = useResourceContext<Idp>()
   const { getSortOrder, removeResource } = resource
+  const { projectId } = useParams() as { projectId: string }
 
   return (
     <>
-      <IdpFilter openModal={() => openModal('IDPTemplateForm')} />
+      <IdpFilter openModal={() => openModal('IDPTemplateForm', { projectId, clientId })} />
       <Resource.Table pagination>
         <Resource.Column<Idp>
           title={I18n.t('common.column.id')}
@@ -63,6 +66,12 @@ const IdpTable: React.FC<Props> = ({ openModal }) => {
         />
 
         <Resource.Column<Idp>
+          title={`${I18n.t('administration.idp.skill_gap_report')}`}
+          id="description"
+          render={item => item?.report?.name}
+        />
+
+        <Resource.Column<Idp>
           title={I18n.t('common.column.action')}
           id="action"
           width={100}
@@ -73,6 +82,8 @@ const IdpTable: React.FC<Props> = ({ openModal }) => {
                   openModal,
                   idp,
                   removeResource,
+                  projectId,
+                  clientId,
                 })
               }
             />
@@ -88,12 +99,16 @@ interface ActionMenuData {
   idp: Idp,
   openModal: (modalName: string, modalProps: unknown) => void,
   removeResource: RemoveResource,
+  projectId: string,
+  clientId: string,
 }
 
 const getActionMenuProps = ({
   idp,
   openModal,
   removeResource,
+  projectId,
+  clientId,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
@@ -102,7 +117,7 @@ const getActionMenuProps = ({
 
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
-      return openModal('IDPTemplateForm', { idp })
+      return openModal('IDPTemplateForm', { idp, projectId, clientId })
     }
     if (key === 'remove') {
       return openModal('RemoveIdTemplate', { idp, removeIdp: removeResource })

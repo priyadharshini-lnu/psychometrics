@@ -14,7 +14,7 @@ class HoganCredential < ApplicationRecord
 
   attr_encrypted :password, key: Base64.decode64(Settings.secrets.hogan[:encrypted_key])
 
-  enum provider: { phoenix: 0, mentis: 1, mercer: 2 }
+  enum :provider, { phoenix: 0, mentis: 1, mercer: 2 }
 
   scope :active, -> { where(active: true) }
 

@@ -12,7 +12,7 @@ module Factors
 
     def call
       old_to_new_factor_mapping[factor.id] ||= get_cloned_factor(factor)
-      factor.ancestors.where(id: factors_to_copy).each do |parent_factor|
+      factor.ancestors.where(id: factors_to_copy).find_each do |parent_factor|
         unless old_to_new_factor_mapping[parent_factor.id]
           new_factor = get_cloned_factor(parent_factor)
           old_to_new_factor_mapping[parent_factor.id] = new_factor

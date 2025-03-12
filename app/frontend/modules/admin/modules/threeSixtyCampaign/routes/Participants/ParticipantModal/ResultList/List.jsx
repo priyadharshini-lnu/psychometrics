@@ -69,20 +69,20 @@ export default function List ({
         )}
       />
       {canApproveEvaluations() && (
-      <Table.Column
-        title="Approved"
-        key="managerEvaluationStatus"
-        render={({ managerEvaluationStatus, id, relationship }) => (
-          <StatusSelect
-            disabled={relationship.assignType === ASSIGN_TYPES.AUTOMATIC}
-            availableStatuses={MANAGER_STATUSES}
-            id={id}
-            name="managerEvaluationStatus"
-            onChange={updateParticipant}
-            status={managerEvaluationStatus}
-          />
-        )}
-      />
+        <Table.Column
+          title="Approved"
+          key="managerEvaluationStatus"
+          render={({ managerEvaluationStatus, id, relationship }) => (
+            <StatusSelect
+              disabled={relationship.assignType === ASSIGN_TYPES.AUTOMATIC}
+              availableStatuses={MANAGER_STATUSES}
+              id={id}
+              name="managerEvaluationStatus"
+              onChange={updateParticipant}
+              status={managerEvaluationStatus}
+            />
+          )}
+        />
       )}
       <Table.Column
         title="Start Time"

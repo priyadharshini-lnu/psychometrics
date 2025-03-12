@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::Sheets::SheetForm do
+describe Sheets::SheetForm do
   context 'Validation' do
     let(:file) { double('file', content_type: 'application/xlsx') }
     let(:parsed_file) { [{ 'Email' => nil }, { 'Email' => 'String' }, { 'Email' => 'test@email.com' }] }

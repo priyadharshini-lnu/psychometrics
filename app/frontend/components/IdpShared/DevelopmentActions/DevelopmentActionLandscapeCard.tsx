@@ -2,15 +2,23 @@ import React, { useState } from 'react'
 import {
   Rate, Progress, Popover, Button, Slider, Flex, Typography, DatePicker,
   Switch,
+  message,
+  Tooltip,
 } from 'antd'
-import { EditOutlined, PlusOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons'
 import useMedia from 'use-media'
 import cs from 'classnames'
+import { connect } from 'react-redux'
 import dayjs from '~/utils/dayjs'
+import {
+  updateUserIdpSkill,
+  removeDevelopmentActionFromPlan,
+} from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import styles from './DevelopmentActionLandscapeCard.less'
-import { DevelopmentAction, SkillWithDevelopmentActions } from '.'
+import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from '.'
 import { Tags } from './Common'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 
 const { RangePicker } = DatePicker
 
@@ -20,22 +28,54 @@ type SkillCardProps = SkillWithDevelopmentActions & {
   onAddDevelopmentAction?: () => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => void
+  userIdpSkillId: number
+  selfRatingEnabled: boolean
+  updateUserIdpSkill: (skillId: number,
+                      data: Partial<SkillWithDevelopmentActions>) => Promise<{ response: UserIdpSkill }>
+  removeDevelopmentActionFromPlan: (developmentAction: Partial<DevelopmentAction>) => void
 }
 
-export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
+const connector = connect((state: RootState) => ({
+  selfRatingEnabled: state.campaigns.idp.selfRatingEnabled,
+}),
+{
+  updateUserIdpSkill,
+  removeDevelopmentActionFromPlan,
+})
+
+const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   name,
   initialRating,
   finalRating,
+  userIdpSkillId,
   developmentActions,
   editMode,
   onAddDevelopmentAction,
   onUpdateDevelopmentAction,
   onUpdateDevelopmentActionProgress,
+  updateUserIdpSkill,
+  selfRatingEnabled,
+  removeDevelopmentActionFromPlan,
 }) => {
+  const handleRatingChange = (rating) => {
+    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }).catch((error) => {
+      message.error(error || I18n.t('common.errors.something_wrong'))
+    })
+  }
+
   const header = (
     <>
       <h4 className={styles.m_none}>{name}</h4>
-      <Rate disabled defaultValue={finalRating || initialRating} />
+      {
+        selfRatingEnabled
+        && (
+          <Rate
+            disabled={!editMode}
+            onChange={handleRatingChange}
+            defaultValue={finalRating || initialRating}
+          />
+        )
+      }
     </>
   )
 
@@ -46,6 +86,7 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
       developmentAction={developmentAction}
       onUpdateDevelopmentAction={onUpdateDevelopmentAction}
       onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
+      onRemoveDevelopmentAction={removeDevelopmentActionFromPlan}
     />
   ))
 
@@ -97,7 +138,7 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
     return (
       <Flex flex={1}>
         <Typography.Text>
-          {`${dayjs(startDateTime).format('DD MMM YYYY')} - 
+          {`${dayjs(startDateTime).format('DD MMM YYYY')} -
       ${dayjs(endDateTime).format('DD MMM YYYY')}`}
         </Typography.Text>
       </Flex>
@@ -112,6 +153,7 @@ const Card = ({
   onUpdateDevelopmentAction,
   onUpdateDevelopmentActionProgress,
   editMode,
+  onRemoveDevelopmentAction,
 }) => {
   const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
@@ -235,7 +277,6 @@ const Card = ({
         vertical={isTablet}
       >
         <Flex
-          vertical
           flex={5}
           className={cs(
             {
@@ -245,21 +286,38 @@ const Card = ({
               [styles.pb_8]: isTablet,
             },
           )}
+          justify="space-between"
+          align="center"
         >
-          <Typography.Title
-            level={5}
-            ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-          >
-            {developmentAction.name}
-          </Typography.Title>
-          <Typography.Paragraph
-            ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-          >
-            {developmentAction.description || developmentAction.customAction}
-          </Typography.Paragraph>
-          <Flex className={styles.mb_8}>
-            {developmentAction.learningStyle ? <Tags type={developmentAction.learningStyle} /> : null}
-          </Flex>
+          <div>
+            <Typography.Title
+              level={5}
+              ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+            >
+              {developmentAction.name}
+            </Typography.Title>
+            <Typography.Paragraph
+              ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+            >
+              {developmentAction.description || developmentAction.customAction}
+            </Typography.Paragraph>
+            <Flex className={styles.mb_8}>
+              {developmentAction.learningStyle ? <Tags type={developmentAction.learningStyle} /> : null}
+            </Flex>
+          </div>
+          {
+            editMode && (
+              <Tooltip title={I18n.t('idp.development_actions.remove')}>
+                <Button
+                  onClick={() => onRemoveDevelopmentAction(developmentAction)}
+                  type="default"
+                  shape="circle"
+                  icon={<DeleteOutlined />}
+                  danger
+                />
+              </Tooltip>
+            )
+          }
         </Flex>
         <Flex flex={5} vertical={isTablet}>
           <Flex
@@ -319,3 +377,5 @@ const Card = ({
     </Flex>
   )
 }
+
+export const DevelopmentActionLandscapeCard = connector(DevelopmentActionLandscapeCardComponent)

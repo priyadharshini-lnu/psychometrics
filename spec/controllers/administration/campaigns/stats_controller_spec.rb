@@ -14,8 +14,8 @@ RSpec.describe Administration::Campaigns::StatsController, type: :controller do
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
 
   let!(:campaign_user) do
-    create(:campaign_user, campaign: campaign, started_at: '2021-11-02 00:00:00'.to_time,
-   completed_at: '2021-11-03 00:00:00'.to_time, status: :completed)
+    create(:campaign_user, campaign: campaign, started_at: Time.zone.parse('2021-11-02 00:00:00'),
+   completed_at: Time.zone.parse('2021-11-03 00:00:00'), status: :completed)
   end
 
   let!(:user_assessment) { create(:user_assessment, campaign: campaign, assessment: assessment, status: :completed) }
@@ -40,7 +40,7 @@ RSpec.describe Administration::Campaigns::StatsController, type: :controller do
               new_campaign_id: campaign.id, range: ['2021-11-01T21:00:00.000Z', '2021-12-01T20:59:59.999Z'],
               campaign_users_active_in: [true]
             }, format: :json
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
 
         expect(parsed_response.first).to eq({ 'dt' => '2021-11-01T20:00:00.000Z', 'started' => 1, 'completed' => 0 })
         expect(parsed_response.second).to eq({ 'dt' => '2021-11-02T20:00:00.000Z', 'started' => 0, 'completed' => 1 })
@@ -54,7 +54,7 @@ RSpec.describe Administration::Campaigns::StatsController, type: :controller do
             params: {
               new_campaign_id: campaign.id, range: ['2021-11-01T00:00:00.000Z', '2021-11-01T23:59:59.999Z']
             }, format: :json
-        parsed_response = JSON.parse(response.body)
+        parsed_response = response.parsed_body
 
         expect(parsed_response.first).to eq({ 'dt' => '2021-11-01T00:00:00.000Z', 'started' => 0, 'completed' => 0 })
         expect(parsed_response.last).to eq({ 'dt' => '2021-11-01T23:00:00.000Z', 'started' => 0, 'completed' => 0 })

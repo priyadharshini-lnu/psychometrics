@@ -12,7 +12,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
   let!(:workshop_subject) { create(:workshop_subject, workshop: workshop) }
   let!(:user1) { create(:user, email: 'user1@test.test') }
   let!(:user2) { create(:user, email: 'user2@test.test') }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
   let!(:manager) { workshop.workshop_managers.first }
   let!(:assessor) { workshop.workshop_assessors.first }
   let!(:campaign_admin) { create(:user, role: User::ADMIN_ROLE) }

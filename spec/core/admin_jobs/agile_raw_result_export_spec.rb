@@ -7,6 +7,7 @@ describe AdminJobs::AgileRawResultExport do
   let(:campaign) { create(:campaign) }
   let!(:assessment) { create(:assessment, :agile) }
   let(:user) { create(:user) }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user, active: true) }
   let(:users_result) do
     create(
       :users_result,

@@ -225,13 +225,13 @@ const AudioCheckComponent: React.FC<Props> = ({
       </Flex>
       {mediaBlobUrl
      && (
-     <audio
-       preload="metadata"
-       className={styles.audioElement}
-       ref={audioRef}
-       src={mediaBlobUrl}
-       controls={!!mediaBlobUrl}
-     />
+       <audio
+         preload="metadata"
+         className={styles.audioElement}
+         ref={audioRef}
+         src={mediaBlobUrl}
+         controls={!!mediaBlobUrl}
+       />
      )
      }
 

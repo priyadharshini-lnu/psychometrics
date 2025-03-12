@@ -30,6 +30,16 @@ module Administration
         render json: { email_schedules: email_schedules, total: total }
       end
 
+      def show
+        email_schedule = threesixty_campaign.email_schedules.find(params[:id])
+
+        recipients = Panko::ArraySerializer.
+                     new(email_schedule.recipients, each_serializer: UserSerializer).
+                     as_json
+
+        render json: { email_schedule: email_schedule, recipients: recipients }
+      end
+
       def create
         template_id = params[:email_schedule][:id]
         template = threesixty_campaign.email_templates.find_by(id: template_id)
@@ -43,16 +53,6 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 400
         end
-      end
-
-      def show
-        email_schedule = threesixty_campaign.email_schedules.find(params[:id])
-
-        recipients = Panko::ArraySerializer.
-                     new(email_schedule.recipients, each_serializer: UserSerializer).
-                     as_json
-
-        render json: { email_schedule: email_schedule, recipients: recipients }
       end
 
       def update

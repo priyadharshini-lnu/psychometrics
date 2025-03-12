@@ -43,14 +43,14 @@ const Message: React.FC<Props> = ({
           )}
         </div>
         {isAnswer && !readOnly && (
-        <Button
-          className={commonStyles.deleteIconContainer}
-          onClick={deleteMessage}
-          shape="circle"
-          size="small"
-          aria-label={I18nTextTranslations.t('frontend.aria.delete_message')}
-          icon={<CloseOutlined className={commonStyles.deleteIcon} />}
-        />
+          <Button
+            className={commonStyles.deleteIconContainer}
+            onClick={deleteMessage}
+            shape="circle"
+            size="small"
+            aria-label={I18nTextTranslations.t('frontend.aria.delete_message')}
+            icon={<CloseOutlined className={commonStyles.deleteIcon} />}
+          />
         )}
       </div>
     </div>

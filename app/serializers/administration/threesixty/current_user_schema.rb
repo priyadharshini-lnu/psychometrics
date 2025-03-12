@@ -31,6 +31,7 @@ module Administration
             required(:regenerateReport).filled(:bool?)
             required(:manageAdmins).filled(:bool?)
             required(:manageFactorBenchmarkScores).filled(:bool?)
+            required(:viewFactorBenchmarkScores).filled(:bool?)
           end
           optional(:photo)
           required(:timezone).maybe(:str?)

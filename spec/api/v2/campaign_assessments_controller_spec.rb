@@ -10,7 +10,7 @@ describe Api::V2::Administration::CampaignAssessmentsController, swagger_doc: 'v
   let!(:workshop) { create(:workshop, :with_managers, :with_assessors, campaign_id: campaign_id) }
   let!(:workshop_id) { workshop.id }
   let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign) }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 

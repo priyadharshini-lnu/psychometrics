@@ -115,6 +115,8 @@ const ReportList: React.FC<Props> = ({
                     campaignId: parsedCampaignId,
                     userReportId: userReport.id,
                     userReportName: userReport.name,
+                    commentsCount: userReport.commentsCount,
+                    editsCount: userReport.editsCount,
                     remove: () => remove(parsedCampaignId, userReport.id),
                     removeFile: () => removeFile(parsedCampaignId, userReport.id),
                     internal: userReport.internal,
@@ -148,6 +150,8 @@ interface ActionMenuData {
   internal: boolean
   customUpload: boolean
   reportUrl: string
+  commentsCount: number
+  editsCount: number
   remove(): void
   removeFile(): void
   permissions: {
@@ -170,7 +174,7 @@ interface ActionMenuData {
 }
 
 const getActionsMenuProps = ({
-  campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl,
+  campaignId, userReportId, projectId, userReportName, editsCount, commentsCount, remove, internal, reportUrl,
   permissions, openModal, modal, message, removeFile, customUpload,
 }:ActionMenuData):MenuProps => {
   const previewUrl = () => {
@@ -186,7 +190,32 @@ const getActionsMenuProps = ({
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('user_reports.modals.remove.content', { userReportName }),
+      content: (
+        <span style={{ fontWeight: 'bold', color: 'red' }}>
+          {(() => {
+            if (commentsCount > 0 && editsCount > 0) {
+              return I18n.t('user_reports.modals.remove.content_with_counts.both', {
+                userReportName,
+                commentsCount,
+                editsCount,
+              })
+            } if (commentsCount > 0) {
+              return I18n.t('user_reports.modals.remove.content_with_counts.comments', {
+                userReportName,
+                commentsCount,
+              })
+            } if (editsCount > 0) {
+              return I18n.t('user_reports.modals.remove.content_with_counts.edits', {
+                userReportName,
+                editsCount,
+              })
+            }
+            return I18n.t('user_reports.modals.remove.content', {
+              userReportName,
+            })
+          })()}
+        </span>
+      ),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {

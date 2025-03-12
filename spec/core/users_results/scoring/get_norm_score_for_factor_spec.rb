@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::UsersResults::Scoring::GetNormScoreForFactor do
+describe UsersResults::Scoring::GetNormScoreForFactor do
   let(:five_scale_norm) { create(:norm, with_factors_norm: false, norm_type: :five_scale) }
   let(:percentile_norm) { create(:norm, with_factors_norm: false, norm_type: :percentile) }
   let(:norm_props) do

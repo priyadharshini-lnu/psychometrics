@@ -1,4 +1,5 @@
 import IdpList from './IdpList'
+import Settings from './Settings'
 
 export const routes = [
   {
@@ -9,5 +10,9 @@ export const routes = [
   {
     path: '/templates',
     component: <IdpList />,
+  },
+  {
+    path: '/settings',
+    component: <Settings />,
   },
 ]

@@ -25,14 +25,16 @@ module Threesixty
       # Generates PDF file and placed it into TMP folder
       #
       def save_report
-        if !user_report.pdf_exists? || !subject.evaluation_status_completed? || !options[:report_in_default_language]
+        if !user_report.pdf_exists?(locale: options[:lang]) || !subject.evaluation_status_completed?
           data = ::UserReports::GeneratePdf.call!(
             user_report,
             current_user,
             options.merge(async: true, notify_user: true)
           )
           if data[:file_path]
-            user_report.attach_pdf!(File.open(data[:file_path]), nil, !options[:report_in_default_language])
+            user_report.attach_pdf!(
+              File.open(data[:file_path]), nil, locale: options[:lang]
+            )
             notify_user
           end
         else
@@ -50,7 +52,7 @@ module Threesixty
             message: I18n.t('jobs.threesixty.reports.download.message'),
             description: I18n.t(
               'jobs.threesixty.reports.download.description',
-              url: user_report.pdf_download_url(!options[:report_in_default_language])
+              url: user_report.pdf_download_url(locale: options[:lang])
             )
           }
       end

@@ -176,8 +176,8 @@ const MyPlanComponent = ({
     addDevelopmentActionInPlan(developmentAction)
   }
 
-  const handleShowAvailableDevelopmentAction = () => {
-    fetchAvailableDevelopmentActions(currentUser.id)
+  const handleShowAvailableDevelopmentAction = (skillId) => {
+    fetchAvailableDevelopmentActions(currentUser.id, skillId)
   }
 
   const handleSelectSkill = (skills) => {

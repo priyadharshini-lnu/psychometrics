@@ -18,9 +18,9 @@ module Threesixty
       def subject_datasheet_rows
         subject_emails = evaluators_subjects.values.flatten
         @subject_datasheet_rows ||= threesixty_campaign.datasheet&.
-          rows&.
-          where(email: subject_emails)&.
-          index_by(&:email) || {}
+                                    rows&.
+                                    where(email: subject_emails)&.
+                                    index_by(&:email) || {}
       end
 
       def evaluators_subjects

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::SheetRows::Form do
+describe SheetRows::Form do
   it 'validates uniqueness of email is sheet is of type Datasheet' do
     email = Faker::Internet.email
     datasheet = create(:datasheet)

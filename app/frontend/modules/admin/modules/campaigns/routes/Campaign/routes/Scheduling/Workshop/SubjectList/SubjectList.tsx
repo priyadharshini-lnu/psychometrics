@@ -191,10 +191,10 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
             <Space>
               {!UNACTIONABLE_SCHEDULING_STATUSES.includes(subject.schedulingStatus)
                 && resource.meta.permissions?.manage && (
-                <Checkbox
-                  checked={selectedSubjects.includes(subject)}
-                  onChange={e => toggleSelectedSubject(e.target.checked, subject)}
-                />
+                  <Checkbox
+                    checked={selectedSubjects.includes(subject)}
+                    onChange={e => toggleSelectedSubject(e.target.checked, subject)}
+                  />
               )}
               {subject.id}
             </Space>

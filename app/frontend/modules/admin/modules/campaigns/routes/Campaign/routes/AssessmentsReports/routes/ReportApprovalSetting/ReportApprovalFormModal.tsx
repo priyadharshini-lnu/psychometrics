@@ -1,6 +1,9 @@
-import React from 'react'
-import { Form, Select, Spin } from 'antd'
+import {
+  Collapse,
+  Form, Select, Space, Spin, Switch,
+} from 'antd'
 import _ from 'lodash'
+import { useCallback } from 'react'
 import { Report, ReportTR } from '~/modules/admin/modules/campaigns/core/reportList'
 import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
@@ -10,6 +13,7 @@ import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 
 const { Option } = Select
+const { I18n } = window
 
 interface Props {
   reportApprovalSettings: AdditionRelationshipAttribute<ReportApprovalSettings>
@@ -24,6 +28,9 @@ type FormValueObj = {
   approverUserIds: string[],
   qcUserIds: string[],
   reportId: string,
+  approversNotRequired: boolean,
+  approversCanEdit: boolean,
+  doNotSendNotifications: boolean,
 }
 
 const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetchedData) => (
@@ -41,6 +48,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
   campaignId,
   close,
 }) => {
+  const [form] = Form.useForm()
   const {
     data: reports, fetch: fetchReports, isLoading: isReportsLoading,
   } = useResources<Report>('reports', { responseType: ReportTR })
@@ -68,6 +76,30 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     reportApprovalSettings, 'approvalNotificationUsers', notificationUsers,
   )
 
+  const fetchReportDebounce = useCallback(_.debounce((value) => {
+    fetchReports({
+      apiConfig: { filter: { name_cont: value } },
+    })
+  }, 300), [])
+
+  const fetchQcDebounce = useCallback(_.debounce((value) => {
+    fetchQcUsers({
+      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
+    })
+  }, 300), [])
+
+  const fetchApproverDebounce = useCallback(_.debounce((value) => {
+    fetchApproverUsers({
+      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
+    })
+  }, 300), [])
+
+  const fetchNotificationDebounce = useCallback(_.debounce((value) => {
+    fetchNotificationUsers({
+      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
+    })
+  }, 300), [])
+
   return (
     <ResourceFormModal
       resourceName="report_approval_settings"
@@ -77,6 +109,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
       close={close}
       scrollToFirstError
       modalProps={{ width: 620 }}
+      storeManager={{ form }}
       request={{
         createResource: addReportApprovalSetting,
         updateResource: updateReportApprovalSetting,
@@ -87,9 +120,12 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
 
         return {
           ...formValuesObj,
-          approvalNotificationUserIds: approvalNotificationUserIds.map(stringToNumber),
-          approverUserIds: approverUserIds.map(stringToNumber),
+          approvalNotificationUserIds: (approvalNotificationUserIds || []).map(stringToNumber),
+          approverUserIds: (approverUserIds || []).map(stringToNumber),
           qcUserIds: qcUserIds.map(stringToNumber),
+          approversNotRequired: formValuesObj.approversNotRequired || false,
+          approversCanEdit: formValuesObj.approversCanEdit || false,
+          doNotSendNotifications: formValuesObj.doNotSendNotifications || false,
         }
       }}
     >
@@ -102,11 +138,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           >
             <Select
               showSearch
-              onSearch={(value) => {
-                fetchReports({
-                  apiConfig: { filter: { name_cont: value } },
-                })
-              }}
+              onSearch={fetchReportDebounce}
               notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
@@ -117,6 +149,57 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               ))}
             </Select>
           </Form.Item>
+          <Collapse
+            className="mb24"
+            items={[{
+              key: '1',
+              label: 'Settings',
+              children: (
+                <Space direction="vertical" size="middle">
+                  <Space align="center">
+                    <Form.Item
+                      name="approversNotRequired"
+                      valuePropName="checked"
+                      noStyle
+                    >
+                      <Switch />
+                    </Form.Item>
+                    <div className="weight-600">
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_not_required')}
+                    </div>
+                  </Space>
+                  {!form.getFieldValue('approversNotRequired') && (
+                    <>
+                      <Space align="center">
+                        <Form.Item
+                          name="approversCanEdit"
+                          valuePropName="checked"
+                          noStyle
+                        >
+                          <Switch />
+                        </Form.Item>
+                        <div className="weight-600">
+                          {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_can_edit')}
+                        </div>
+                      </Space>
+                    </>
+                  )}
+                  <Space align="center">
+                    <Form.Item
+                      name="doNotSendNotifications"
+                      valuePropName="checked"
+                      noStyle
+                    >
+                      <Switch />
+                    </Form.Item>
+                    <div className="weight-600">
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.do_not_send_notifications')}
+                    </div>
+                  </Space>
+                </Space>),
+            }]}
+          />
+
           <Form.Item
             name="qcUserIds"
             label="QC Users"
@@ -125,11 +208,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             <Select
               mode="multiple"
               showSearch
-              onSearch={(value) => {
-                fetchQcUsers({
-                  apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-                })
-              }}
+              onSearch={fetchQcDebounce}
               notFoundContent={isQcUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
@@ -144,60 +223,58 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item
-            name="approverUserIds"
-            label="Approvers"
-            rules={[{ required: true }]}
-          >
-            <Select
-              mode="multiple"
-              showSearch
-              onSearch={(value) => {
-                fetchApproverUsers({
-                  apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-                })
-              }}
-              notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+
+          {!form.getFieldValue('approversNotRequired') && (
+            <Form.Item
+              name="approverUserIds"
+              label="Approvers"
+              rules={[{ required: true }]}
             >
-              {approversOpts.map(({ id, name, email }) => (
-                <Option key={`approvers_${id}`} value={id}>
-                  {name}
-                  {' '}
-                  (
-                  {email}
-                  )
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="approvalNotificationUserIds"
-            label="Approval Notification Users"
-            rules={[{ required: true }]}
-          >
-            <Select
-              mode="multiple"
-              showSearch
-              onSearch={(value) => {
-                fetchNotificationUsers({
-                  apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-                })
-              }}
-              notFoundContent={isNotificationUsersLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              <Select
+                mode="multiple"
+                showSearch
+                onSearch={fetchApproverDebounce}
+                notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
+                filterOption={false}
+              >
+                {approversOpts.map(({ id, name, email }) => (
+                  <Option key={`approvers_${id}`} value={id}>
+                    {name}
+                    {' '}
+                    (
+                    {email}
+                    )
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          )}
+          {!form.getFieldValue('doNotSendNotifications') && (
+            <Form.Item
+              name="approvalNotificationUserIds"
+              label="Approval Notification Users"
+              rules={[{ required: true }]}
             >
-              {notificationUserOpts.map(({ id, name, email }) => (
-                <Option key={`notiification_user_${id}`} value={id}>
-                  {name}
-                  {' '}
-                  (
-                  {email}
-                  )
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
+              <Select
+                mode="multiple"
+                showSearch
+                onSearch={fetchNotificationDebounce}
+                notFoundContent={isNotificationUsersLoading('fetch') ? <Spin size="small" /> : null}
+                filterOption={false}
+              >
+                {notificationUserOpts.map(({ id, name, email }) => (
+                  <Option key={`notiification_user_${id}`} value={id}>
+                    {name}
+                    {' '}
+                    (
+                    {email}
+                    )
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          )}
+
         </>
       )}
     </ResourceFormModal>

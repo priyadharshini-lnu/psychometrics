@@ -6,9 +6,16 @@ describe DataReports::FieldHandlers::UserDetailHandler do
   let!(:campaign) { create(:campaign) }
   let!(:project) { campaign.project }
   let!(:assessment) { create(:assessment) }
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, :with_project_membership, project: project) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let!(:question) { create(:question, name: 'emirates_id') }
+  let!(:profile_field_setting) do
+    create(:profile_field, profile_setting: project.profile_setting, question: question)
+  end
+  let!(:profile_value) do
+    create(:profile_field_value, profile_field: profile_field_setting, user_profile: user.user_profile,
+            string_value: '12345')
+  end
 
   let!(:field) { { 'field_name' => 'email' } }
   let!(:profile_field) { { 'field_name' => 'age' } }

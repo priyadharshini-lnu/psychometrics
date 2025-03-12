@@ -11,7 +11,7 @@ describe 'Reports' do
   let(:dimension) { create(:dimension, :with_multiple_occupations) }
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment', dimension: dimension) }
   let(:report) { assessment.reports.first }
-  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   let!(:user_assessment) do
     campaign_user = create(:campaign_user, campaign: campaign, user: user)
@@ -588,7 +588,7 @@ describe 'Reports' do
         let(:project_id) { project.id }
         let(:user_id) { user.id }
         let(:report_id) { report.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
 
         schema '$ref' => '#/definitions/ApiError'
 

@@ -11,8 +11,8 @@ class Relationship < ApplicationRecord
   belongs_to :campaign
   has_many :user_assessments, dependent: :restrict_with_exception
 
-  enum type: { global: 0, campaign: 1 }
-  enum assign_type: { manual: 0, automatic: 1 }
+  enum :type, { global: 0, campaign: 1 }
+  enum :assign_type, { manual: 0, automatic: 1 }
 
   def self.self_relationship
     Relationship.find_by(name: SELF, type: :global)

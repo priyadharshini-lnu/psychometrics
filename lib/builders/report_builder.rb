@@ -27,11 +27,13 @@ module Builders
     end
 
     attr_accessor :current_user, :report, :report_params
+    attr_reader :errors
 
     def initialize(report, params, current_user)
       @current_user = current_user
       @report = report
       @report_params = params.require(:report).permit!
+      @errors = []
     end
 
     def save
@@ -59,6 +61,7 @@ module Builders
       # TODO: remove StandardError??
       rescue ActiveRecord::RecordInvalid, StandardError => e
         Rails.logger.info(e)
+        @errors << e.message
 
         false
       end

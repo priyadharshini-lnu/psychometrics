@@ -19,7 +19,7 @@ module Threesixty
       attr_reader :report, :old_to_new_factor_mapping
 
       def remap_multiple_factors_in_source
-        report.modules.where("reports_modules.props -> 'source' ->>  'factors' IS NOT NULL").each do |m|
+        report.modules.where("reports_modules.props -> 'source' ->>  'factors' IS NOT NULL").find_each do |m|
           m.props['source']['factors'] = m.props['source']['factors'].filter_map do |factor|
             old_factor_id = factor['id']
             new_factor =  old_to_new_factor_mapping[old_factor_id]
@@ -38,7 +38,7 @@ module Threesixty
       end
 
       def remap_multiple_factors
-        report.modules.where("reports_modules.props ->> 'factorIds' IS NOT NULL").each do |m|
+        report.modules.where("reports_modules.props ->> 'factorIds' IS NOT NULL").find_each do |m|
           new_factor_ids = m.props['factorIds'].map do |old_factor_id|
             new_factor = old_to_new_factor_mapping[old_factor_id]
             next nil unless new_factor
@@ -51,7 +51,7 @@ module Threesixty
       end
 
       def remap_single_factor
-        report.modules.where("reports_modules.props ->> 'factorId' IS NOT NULL").each do |m|
+        report.modules.where("reports_modules.props ->> 'factorId' IS NOT NULL").find_each do |m|
           old_factor_id = m.props['factorId']
           m.props['factorId'] = old_to_new_factor_mapping[old_factor_id]&.id
           m.save!
