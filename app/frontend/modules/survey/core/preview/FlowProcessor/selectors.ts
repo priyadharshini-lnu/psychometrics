@@ -31,7 +31,13 @@ export const getAllAnsweredQuestions = (state): Question[] => {
   return _.reduce(
     pages, (res, block) => {
       const questions = _.flatten(_.map(
-        block, page => getQuestions(state, page.questions).filter(q => state.results[q.id]),
+        block, page => getQuestions(state, page.questions).filter((question) => {
+          const resultAvailableForQuestion = !!state.results[question.id]
+          if (!resultAvailableForQuestion && question.type === 'VideoResponse') {
+            return !!getMediaResponseByQuestionId(state, question.id)
+          }
+          return resultAvailableForQuestion
+        }),
       ))
 
       return [...res, ...questions]
