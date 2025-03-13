@@ -127,6 +127,7 @@ en:
             view_factor_benchmark_scores: View Factor Benchmark Scores
             view_stats: View Stats
           clients:
+            export_data_report: Export Data Report
             manage: Manage
             view: View
             view_licenses: View Licenses
@@ -160,6 +161,7 @@ en:
           projectSettings:
             assessments: Assessments
             design: Design
+            idp: IDP
             integrations: Integrations
             privacy_settings: Privacy Settings
             saml: SAML
@@ -202,6 +204,9 @@ en:
             scores: Scores
             view_report: View Report
             view_stats: View Stats
+          skills:
+            manage: Manage
+            view: View
           smsHistories:
             manage: Manage
             view: View
@@ -1511,6 +1516,10 @@ en:
       image_upload_failed: Image upload failed.
       none: None
       refresh_success: Refresh of dataset scheduled successfully.
+      visual_header_visibility_options:
+        hide_all: Hide All
+        keep_original: Keep Original
+        show_all: Show All
     data_exports_modal:
       title: Select date range
     data_reports:
