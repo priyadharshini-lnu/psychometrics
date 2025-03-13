@@ -1,4 +1,3 @@
-
 import { Button } from 'antd'
 import { PlusOutlined, ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -7,12 +6,22 @@ import { Norm } from '~/modules/admin/modules/client/core/norms'
 
 const { I18n } = window
 
-export const NormFilter: React.FC<{ openModal: () => void }> = ({
+type Props = {
+  openModal: (modalName: string, modalProps?: unknown) => void
+  }
+
+export const NormFilter: React.FC<Props> = ({
   openModal,
 }) => {
   const { resource } = useResourceContext<Norm>()
 
   const tableLoading = resource.isLoading('fetch')
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'import') {
+      openModal('NormImportModal')
+    }
+  }
 
   return (
     <>
@@ -30,6 +39,7 @@ export const NormFilter: React.FC<{ openModal: () => void }> = ({
                 </a>
               ),
             }],
+            onClick: handleMenuClick,
           }}
           hideForEmptyMenu
           innerElement={(
@@ -37,13 +47,13 @@ export const NormFilter: React.FC<{ openModal: () => void }> = ({
               <ToolOutlined />
               <DownOutlined />
             </Button>
-                    )}
+          )}
         />
 
         <Button
           type="primary"
           disabled={tableLoading}
-          onClick={openModal}
+          onClick={() => openModal('NormsFormModal')}
         >
           <PlusOutlined />
           {I18n.t('common.actions.create')}

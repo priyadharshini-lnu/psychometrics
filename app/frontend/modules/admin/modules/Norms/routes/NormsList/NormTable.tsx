@@ -15,6 +15,7 @@ import { RemoveNormModal } from './RemoveNormModal'
 import { NormsFormModal } from './NormsFormModal'
 import CopyNomsFormModal from './CopyNormsFormModal'
 import NormFilter from './NormFilter'
+import { NormImportModal } from './NormImportModal'
 
 const { I18n } = window
 
@@ -22,6 +23,7 @@ const MODALS = {
   NormsFormModal,
   RemoveNormModal,
   CopyNomsFormModal,
+  NormImportModal,
 }
 
 const connecter = connect(
@@ -38,12 +40,14 @@ type Props = PropsFromRedux
 const NormTable: React.FC<Props> = ({ openModal }) => {
   const { resource } = useResourceContext<Norm>()
   const {
-    getSortOrder, updateResource, removeResource, createResource, memberAction,
+    getSortOrder, updateResource, removeResource, memberAction,
   } = resource
 
   return (
     <>
-      <NormFilter openModal={() => openModal('NormsFormModal', { addNorm: createResource })} />
+      <NormFilter
+        openModal={openModal}
+      />
       <Resource.Table pagination>
         <Resource.Column<Norm>
           title={I18n.t('common.column.id')}
@@ -110,7 +114,6 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
               menu={
                     getActionMenuProps({
                       norm,
-                      updateResource,
                       removeResource,
                       openModal,
                       memberAction,
@@ -133,14 +136,13 @@ const ActiveSwitch: React.FC<{ norm: Norm, updateResource: UpdateResource<Norm> 
 )
 interface ActionMenuData {
     norm: Norm
-    updateResource: UpdateResource<Norm>
     removeResource: RemoveResource
     openModal: (modalName: string, modalProps: unknown) => void
     memberAction: MemberAction
 }
 
 const getActionMenuProps = ({
-  norm, updateResource, removeResource, openModal, memberAction,
+  norm, removeResource, openModal, memberAction,
 }: ActionMenuData): MenuProps => {
   const {
     id, name, meta: { permissions }, normType,
@@ -172,9 +174,7 @@ const getActionMenuProps = ({
 
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
-      return openModal('NormsFormModal', {
-        updateNorm: updateResource, norm,
-      })
+      return openModal('NormsFormModal', { norm })
     }
     if (key === 'remove') {
       return openModal('RemoveNormModal', {
