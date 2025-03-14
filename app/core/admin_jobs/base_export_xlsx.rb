@@ -22,7 +22,7 @@ module AdminJobs
     end
 
     def export_name
-      self.class.name.underscore
+      self.class.name.snakecase
     end
 
     def file_link

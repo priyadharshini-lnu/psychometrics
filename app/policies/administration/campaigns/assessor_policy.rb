@@ -57,7 +57,7 @@ module Administration
       end
 
       def spoof?
-        @user.is?(:superadmin) && !@record&.user&.superadmin?
+        @user.is?(:superadmin)
       end
 
       def reset_evaluation?

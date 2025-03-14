@@ -45,7 +45,7 @@ module UserReports::PdfGeneration
 
   def download
     options = {
-      lang: params[:lang] || resource.effective_default_language,
+      lang: params[:lang],
       file_path: Settings.aws.s3.one_day_expiry_folder,
       async: true,
       notify_user: true,

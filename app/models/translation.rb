@@ -51,17 +51,11 @@ class Translation < ApplicationRecord
       for_assessment(assessment_id).group(:locale).pluck(:locale)
     end
 
-    def to_hash_for_report(report_id, assessment_ids, locale)
+    def to_hash_for_report(report_id, assessment_id, locale)
       results = {}
-      migration_status = Assessment.where(id: assessment_ids).pluck(:id, :translations_migrated).to_h
-
-      for_report(report_id).or(for_assessment(assessment_ids)).where(locale: locale).find_each do |t|
+      for_report(report_id).or(for_assessment(assessment_id)).where(locale: locale).find_each do |t|
         results[t.translateable_type.underscore] ||= {}
-        results[t.translateable_type.underscore][t.translateable_id] ||= if migration_status[t.resource_id]
-                                                                           t.data['props']
-                                                                         else
-                                                                           t.props
-                                                                         end
+        results[t.translateable_type.underscore][t.translateable_id] ||= t.props
       end
       results
     end

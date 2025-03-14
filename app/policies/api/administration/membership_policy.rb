@@ -46,7 +46,7 @@ module Api
       end
 
       def spoof?
-        @user.is?(:superadmin) && !@record&.user&.superadmin?
+        @user.is?(:superadmin)
       end
 
       def available_permissions?

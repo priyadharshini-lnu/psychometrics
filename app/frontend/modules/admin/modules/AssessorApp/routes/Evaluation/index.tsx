@@ -104,15 +104,6 @@ const Evaluation: FC<Props> = ({
     changeSubjectAssessment(id)
   }
 
-  const sortedAssessorAssesments = _.sortBy(
-    _.map(assessorAssessments, (assessments, id) => ({ id, assessments })), ({ assessments }) => {
-      const { name, completed_at } = _.last<AssessorAssessmentType>(assessments) || {}
-      // splitting list in two groups completed ant not completed sorted by name
-      // ÿ - last ascii character puts completed assessments to the right group
-      return completed_at ? `ÿ${name}` : name
-    },
-  )
-
   return (
     <div>
       <Breadcrumb
@@ -144,7 +135,7 @@ const Evaluation: FC<Props> = ({
             <TabPane tab="Overview" key="overview">
               <Overview userInfo={userInfo} />
             </TabPane>
-            {_.map(sortedAssessorAssesments, ({ assessments, id }) => {
+            {_.map(assessorAssessments, (assessments, id) => {
               const assessment = _.last<AssessorAssessmentType>(assessments)
               return assessment && (
                 <TabPane destroyInactiveTabPane tab={assessment.name} key={id}>

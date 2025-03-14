@@ -55,6 +55,6 @@ class UserProfile < ApplicationRecord
       field.value = value
       field
     end
-    ProfileFieldValue.import(fields, on_duplicate_key_update: %i[string_value numeric_value])
+    ProfileFieldValue.import(fields, on_duplicate_key_update: %i[id])
   end
 end
