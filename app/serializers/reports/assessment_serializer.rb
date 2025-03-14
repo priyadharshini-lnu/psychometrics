@@ -20,11 +20,7 @@ module Reports
         blocks,
         each_serializer: BlockSerializer,
         context: {
-          piped_text_context: context[:piped_text_context],
-          locale: context[:locale],
-          default_language: object.default_language,
-          translations_migrated: object.translations_migrated?,
-          translations: translations
+          piped_text_context: context[:piped_text_context]
         }
       ).to_a
     end
@@ -57,15 +53,6 @@ module Reports
         return external_assessment.factors.flatten.map(&:to_h)
       end
       []
-    end
-
-    def locale
-      context[:locale]
-    end
-
-    def translations
-      @translations = ::Translation.to_hash_for_assessment(id, locale,
-                                                           translations_migrated: object.translations_migrated?)
     end
   end
 end

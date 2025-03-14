@@ -74,16 +74,13 @@ module AdminJobs
     end
 
     def records_for_export
-      users_results = UsersResult.joins(:user_assessment).
+      users_results = UsersResult.joins(user_assessment: :campaign_user).
                       where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
                       where.not(user_assessments: { status: :not_started }).
                       includes(:norm, :subject, :evaluator, user_assessment: [:relationship])
 
       unless include_inactive_users
-        users_results = users_results.joins(
-          'INNER JOIN campaign_users ON campaign_users.user_id = user_assessments.subject_id AND
-           campaign_users.campaign_id = user_assessments.campaign_id'
-        ).where(campaign_users: { active: true })
+        users_results = users_results.where(campaign_users: { active: true })
       end
 
       users_results.find_each(batch_size: 100)

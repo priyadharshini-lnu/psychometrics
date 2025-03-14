@@ -56,7 +56,7 @@ module Administration
       end
 
       def spoof?
-        @user.is?(:superadmin) && !@record.is?(:superadmin)
+        @user.is?(:superadmin)
       end
 
       def extend_time?
