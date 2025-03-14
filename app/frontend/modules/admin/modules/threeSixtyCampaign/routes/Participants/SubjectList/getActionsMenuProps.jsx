@@ -1,8 +1,8 @@
 export const getActionsMenuProps = ({
   subjectId,
-  projectId,
+  // projectId,
+  // userReportId,
   campaignId,
-  userReportId,
   update,
   user,
   remove,
@@ -161,7 +161,9 @@ export const getActionsMenuProps = ({
     permissions.viewReport && {
       key: 'view_report',
       label: (
-        <a href={`/admin/projects/${projectId}/new_campaigns/${currentCampaignId}/user_reports/${userReportId}`}>
+        // TODO: uncomment after fix data loading issue
+        // <a href={`/admin/projects/${projectId}/new_campaigns/${currentCampaignId}/user_reports/${userReportId}`}>
+        <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
           {I18n.t('threesixty.participant_list.actions.view_report')}
         </a>),
     },
