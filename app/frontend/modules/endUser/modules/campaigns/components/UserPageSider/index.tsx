@@ -117,7 +117,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   }, [pathname])
   const handleMenuSelect = (menu) => {
     if (menu.key === 'steps') { // TODO: remove after implementation
-      return navigate('/idp/steps/getting_start')
+      return navigate('/idp/steps/getting_started')
     }
     if (menu.key === 'my_plan') {
       return navigate('/idp/my_plan')

@@ -6601,7 +6601,8 @@ CREATE TABLE public.users (
     mobile_verified boolean DEFAULT false,
     manager_id bigint,
     unique_session_id character varying,
-    external_id character varying
+    external_id character varying,
+    disabled_at timestamp(6) without time zone
 );
 
 

@@ -2343,11 +2343,13 @@ en:
       add_skill_group_title: Exploring Your %{category} Skills
       add_skills: Add
       add_skills_step: Add Skills
+      continue_to_add_skills: Continue to add skills
       continue_to_rate_skills: Continue to rate skills
-      getting_start: Getting Started
+      getting_started: Getting Started
       getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
       less_skills: Show less skills
       more_skills: Explore more skills
+      next: Next
       no_skills_selected: No skills selected.
       rate_skills: Rate Skills
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
@@ -2606,6 +2608,9 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
+    users:
+      account_disable: Your account has been disabled due to inactivity
+      warning: Your account will be disabled soon due to inactivity
   maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   my: My

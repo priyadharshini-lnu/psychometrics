@@ -261,7 +261,8 @@ export const useSavedFilter = (
               <Button
                 icon={<DeleteOutlined />}
                 onClick={() => deleteFilter(selectedFilterId).then(() => {
-                  handleDeleteFilter()
+                  handleClearFilters()
+                  fetchFilters(resourceType).then(setSavedFilters)
                 })}
               >
                 {I18n.t('administration.report_approval.saving_filters.actions.delete_filter')}
