@@ -27,7 +27,7 @@ module Api
     end
 
     def metadata_for_filters
-      response = ReportApprovals::ReportApprovalMetadataFetcher.call!(current_user)
+      response = ReportApprovals::ReportApprovalMetadataFetcher.call!(current_user, filter: params[:filter])
 
       render json: response
     end

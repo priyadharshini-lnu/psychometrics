@@ -29,7 +29,7 @@ const connecter = connect(
   {},
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = PropsFromRedux & Omit<ReturnType<typeof useResources>, 'fetch'>
+type Props = PropsFromRedux & Omit<ReturnType<typeof useResources>, 'fetch'> & {type?: 'myTasks' | 'approved'}
 
 type FilterOption = {id: string, name: string}
 type FilterOptions = {
@@ -42,7 +42,7 @@ type FilterOptions = {
 const searchFilters = ['user_full_name_cont', 'user_email_cont']
 
 const TasksListComponent: React.FC<Props> = ({
-  data, meta, isLoading, getSortOrder, handleTableChange, changePage,
+  data, meta, isLoading, getSortOrder, handleTableChange, changePage, type,
   currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery,
 }) => {
   const tableLoading = isLoading('fetch')
@@ -50,22 +50,18 @@ const TasksListComponent: React.FC<Props> = ({
 
   const [filterOptions, setFilterOptions] = useState<FilterOptions>()
 
-  const currentPathName = window.location.pathname
-
-  function getResourceTypeFromPathname (pathname: string): ResourceType {
-    switch (pathname) {
-      case '/admin/report_approvals/all':
-        return ResourceType.ReportApprovalAll
-      case '/admin/report_approvals/my_tasks':
+  function getResourceTypeFromPathname (type?: string): ResourceType {
+    switch (type) {
+      case 'myTasks':
         return ResourceType.ReportApprovalMyTasks
-      case '/admin/report_approvals/approved':
+      case 'approved':
         return ResourceType.ReportApprovalApproved
       default:
         return ResourceType.ReportApprovalAll
     }
   }
 
-  const resourceType = getResourceTypeFromPathname(currentPathName)
+  const resourceType = getResourceTypeFromPathname(type)
 
   const {
     handleFilterChange,
@@ -74,15 +70,26 @@ const TasksListComponent: React.FC<Props> = ({
 
 
   useEffect(() => {
+    const metadataFilters: { [key: string]: string } = {}
+
+    if (type === 'myTasks') {
+      metadataFilters.my_tasks = 'true'
+    } else if (type === 'approved') {
+      metadataFilters.approval_status_in = 'approved'
+    }
+
     if (!filterOptions) {
       search({
         action: 'metadata_for_filters',
         method: 'get',
+        apiConfig: {
+          filter: metadataFilters,
+        },
       }).then((data: FilterOptions) => {
         setFilterOptions(data)
       })
     }
-  }, [search])
+  }, [search, filterOptions, type])
 
   const filterProps = (
     resource:string, query:string, filter: string, val: string | string[] = '', values?: FilterOption[],
