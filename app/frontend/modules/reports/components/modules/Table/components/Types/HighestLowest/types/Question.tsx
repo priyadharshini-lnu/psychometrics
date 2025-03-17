@@ -13,6 +13,7 @@ import { PageData } from '../../GapAssessment/PaginationContext'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { PreviewModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
 import { BasePreviewModel as BaseQuestionModelInPreview } from '~/modules/survey/interfaces/questions/Base'
+import { ColumnData, ColumnsHeaderData } from '~/modules/reports/core/interfaces/TableColumn'
 
 import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
@@ -111,6 +112,23 @@ const QuestionTypeComponent: FC<Props> = ({
   model,
   style,
 }) => {
+  const tableColumns = _.get(model, 'props.tableColumns.Question')
+    || _.get(model, 'props.defaultTableColumns.Question') || {} as ColumnData
+
+  const columnsHeaderData: ColumnsHeaderData = {
+    rank: {
+      label: I18nStore.tTableColumns(model, 'Question', 'rank.label'),
+      hide: _.get(tableColumns, 'rank.hide'),
+    },
+    indicator: {
+      label: I18nStore.tTableColumns(model, 'Question', 'indicator.label'),
+      hide: _.get(tableColumns, 'indicator.hide'),
+    },
+    competency: {
+      label: I18nStore.tTableColumns(model, 'Question', 'competency.label'),
+      hide: _.get(tableColumns, 'competency.hide'),
+    },
+  }
   const calculateHighestLowest = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
   ) => {
@@ -216,21 +234,35 @@ const QuestionTypeComponent: FC<Props> = ({
           {showHighest && (
             <>
               <THeaders
-                title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
+                title={I18nStore.tTableColumns(model, 'Question', 'highest.label')}
                 filterName={filterName}
                 hideValues={hideValues}
+                columnsHeaderData={columnsHeaderData}
               />
-              <TBody data={highestChoices} hideValues={hideValues} type="top" paginationContext={paginationContext} />
+              <TBody
+                data={highestChoices}
+                columnsHeaderData={columnsHeaderData}
+                hideValues={hideValues}
+                type="top"
+                paginationContext={paginationContext}
+              />
             </>
           )}
           {showLowest && (
             <>
               <THeaders
-                title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
+                title={I18nStore.tTableColumns(model, 'Question', 'lowest.label')}
                 filterName={filterName}
                 hideValues={hideValues}
+                columnsHeaderData={columnsHeaderData}
               />
-              <TBody data={lowestChoices} hideValues={hideValues} type="bottom" paginationContext={paginationContext} />
+              <TBody
+                data={lowestChoices}
+                columnsHeaderData={columnsHeaderData}
+                hideValues={hideValues}
+                type="bottom"
+                paginationContext={paginationContext}
+              />
             </>
           )}
         </tbody>
@@ -328,9 +360,12 @@ interface THeadersProps {
   title: string
   filterName: string
   hideValues: boolean
+  columnsHeaderData: ColumnsHeaderData
 }
 
-const THeaders: FC<THeadersProps> = ({ title, filterName, hideValues }) => (
+const THeaders: FC<THeadersProps> = ({
+  title, filterName, hideValues, columnsHeaderData,
+}) => (
   <>
     <tr className={styles.title} data-header>
       <th colSpan={hideValues ? 3 : 4}>
@@ -338,15 +373,21 @@ const THeaders: FC<THeadersProps> = ({ title, filterName, hideValues }) => (
       </th>
     </tr>
     <tr className={styles.headers} data-header>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.highest_lowest.rank')}
-      </th>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.highest_lowest.scoring_category')}
-      </th>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.highest_lowest.item')}
-      </th>
+      {!columnsHeaderData.rank.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.rank.label}
+        </th>
+      )}
+      {!columnsHeaderData.competency.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.competency.label}
+        </th>
+      )}
+      {!columnsHeaderData.indicator.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.indicator.label}
+        </th>
+      )}
       {!hideValues && <th className={cs(styles.label, styles.number)}>{filterName}</th>}
     </tr>
   </>
@@ -363,10 +404,11 @@ interface TBodyProps {
   hideValues: boolean
   type: 'top' | 'bottom'
   paginationContext: PageData | null
+  columnsHeaderData: ColumnsHeaderData
 }
 
 const TBody: FC<TBodyProps> = ({
-  data, hideValues, type, paginationContext,
+  data, hideValues, type, paginationContext, columnsHeaderData,
 }) => {
   const ranks = data.reduce((acc, _, i) => ({ ...acc, [i]: i + 1 }), {})
   const paginatedData = paginationContext
@@ -378,9 +420,9 @@ const TBody: FC<TBodyProps> = ({
         factorName, questionName, value, rank,
       }, index) => (
         <tr key={index} className={styles.row} data-row={index} data-type={type}>
-          <td>{paginationContext ? rank : (index + 1)}</td>
-          <td>{factorName}</td>
-          <td>{questionName}</td>
+          {!columnsHeaderData.rank.hide && <td>{paginationContext ? rank : (index + 1)}</td>}
+          {!columnsHeaderData.competency.hide && <td>{factorName}</td>}
+          {!columnsHeaderData.indicator.hide && <td>{questionName}</td>}
           {!hideValues && <td className={styles.number}>{value.toFixed(2)}</td>}
         </tr>
       ))}

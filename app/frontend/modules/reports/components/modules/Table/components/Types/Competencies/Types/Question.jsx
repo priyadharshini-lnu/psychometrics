@@ -21,6 +21,15 @@ const QuestionComponent = ({
   filters, model, questions, paginationContext,
 }) => {
   const { props: { questionsChoices, showAsBarChart } } = model
+  const tableColumns = _.get(model, 'props.tableColumns.Question')
+      || _.get(model, 'props.defaultTableColumns.Question') || {}
+  const showQuestions = !_.get(tableColumns, 'questions.hide')
+  const showDevelopmentalRating = !_.get(tableColumns, 'developmental_rating.hide')
+
+  const columnLabelData = {
+    questions: I18nStore.tTableColumns(model, 'Question', 'questions.label'),
+    developmental_rating: I18nStore.tTableColumns(model, 'Question', 'developmental_rating.label'),
+  }
 
   const enhanceFiltersByValue = (questionId, choiceId) => {
     if (!ResultStore.realResults) {
@@ -64,6 +73,7 @@ const QuestionComponent = ({
   const filteredQuestionsChoices = questionChoicesToTableValues(questionsChoices, questions)
 
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / (milestones.length || 1)
+  const getMinDataCellHeight = results => `${FILTER_ROW_HEIGHT * results.length}px`
   const getDescStyle = results => ({ minHeight: `${FILTER_ROW_HEIGHT * results.length}px` })
   const { fontSize, fontFamily, fontColor } = model.props.style
   const style = {
@@ -87,33 +97,39 @@ const QuestionComponent = ({
           {!hideHeader && (
             <thead data-table-header>
               <tr>
-                <td
-                  rowSpan={2}
-                  className={cs(styles.label, styles.competencyLabel)}
-                  style={{ color: mainHeaderColor }}
-                >
-                  {I18nStore.t('reports.modules.single_value_cluster.questions')}
-                </td>
-                <td
-                  colSpan={milestones.length}
-                  className={cs(styles.label, styles.questionLabel)}
-                  style={{ color: mainHeaderColor }}
-                >
-                  {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
-                </td>
-              </tr>
-              <tr>
-                {milestones.map(m => (
+                {showQuestions && (
                   <td
-                    key={m.id}
-                    className={cs(styles.label, styles.milestoneLabel)}
-                    style={{ borderBottomColor: m.color, color: secondHeaderColor }}
-                    width={`${milestoneColumnWidth}%`}
+                    rowSpan={2}
+                    className={cs(styles.label, styles.competencyLabel)}
+                    style={{ color: mainHeaderColor }}
                   >
-                    {I18nStore.tMilestone(model, m)}
+                    {columnLabelData.questions}
                   </td>
-                ))}
+                )}
+                {showDevelopmentalRating && (
+                  <td
+                    colSpan={milestones.length}
+                    className={cs(styles.label, styles.questionLabel)}
+                    style={{ color: mainHeaderColor }}
+                  >
+                    {columnLabelData.developmental_rating}
+                  </td>
+                )}
               </tr>
+              { showDevelopmentalRating && (
+                <tr>
+                  {milestones.map(m => (
+                    <td
+                      key={m.id}
+                      className={cs(styles.label, styles.milestoneLabel)}
+                      style={{ borderBottomColor: m.color, color: secondHeaderColor }}
+                      width={`${milestoneColumnWidth}%`}
+                    >
+                      {I18nStore.tMilestone(model, m)}
+                    </td>
+                  ))}
+                </tr>
+              )}
             </thead>
           )}
           <tbody>
@@ -123,16 +139,21 @@ const QuestionComponent = ({
 
               results.forEach(r => filterIdsHavingResults.add(r.id))
               const descStyle = getDescStyle(results)
+              const minDataCellHeight = !showQuestions
+                ? getMinDataCellHeight(results) : 'auto'
+
               return (
                 <tr
                   key={`${questionChoice.questionId}_${questionChoice.choiceId}`}
                   data-row={i}
                   data-factor-id={`${questionChoice.questionId}_${questionChoice.choiceId}`}
                 >
-                  <td width={`${DESC_COLUMN_WIDTH}%`}>
-                    <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
-                  </td>
-                  {showAsBarChart
+                  {showQuestions && (
+                    <td width={`${DESC_COLUMN_WIDTH}%`}>
+                      <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
+                    </td>
+                  )}
+                  {showDevelopmentalRating && (showAsBarChart
                     ? <BarChart filters={results} model={model} milestones={milestones} />
                     : milestones.map((m, i) => (
                       <MilestoneTd
@@ -142,8 +163,9 @@ const QuestionComponent = ({
                         key={m.id}
                         milestone={m}
                         model={model}
+                        dataCellHeight={minDataCellHeight}
                       />
-                    ))
+                    )))
                   }
                 </tr>
               )
