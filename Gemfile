@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '3.4.2'
 gem 'bundler',                    '~> 2.3.17'
-gem 'rack',                       '~> 2.2.11'
+gem 'rack',                       '~> 2.2.13'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'bootsnap', '>= 1.12.0', require: false

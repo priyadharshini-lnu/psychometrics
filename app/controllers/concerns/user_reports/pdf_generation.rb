@@ -30,7 +30,7 @@ module UserReports::PdfGeneration
         render json: ::UserReportSerializer.new(
           context: {
             report: resource.report,
-            results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as),
+            results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
             piped_text_context: resource.piped_text_context,
             user_results: resource.user_results(view_report_as),
             view_report_as: view_report_as,
@@ -45,7 +45,7 @@ module UserReports::PdfGeneration
 
   def download
     options = {
-      lang: params[:lang],
+      lang: params[:lang] || resource.effective_default_language,
       file_path: Settings.aws.s3.one_day_expiry_folder,
       async: true,
       notify_user: true,

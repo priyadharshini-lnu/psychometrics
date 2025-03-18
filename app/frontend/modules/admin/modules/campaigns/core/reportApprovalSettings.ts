@@ -12,6 +12,9 @@ export const ReportApprovalSettingsTR = t.intersection([
     qcs: t.array(UserDataTR),
     approvers: t.array(UserDataTR),
     approvalNotificationUsers: t.array(UserDataTR),
+    approversNotRequired: t.boolean,
+    approversCanEdit: t.boolean,
+    doNotSendNotifications: t.boolean,
     campaign: t.type({
       id: t.string,
       type: t.string,

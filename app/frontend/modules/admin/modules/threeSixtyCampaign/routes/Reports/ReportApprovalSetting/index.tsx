@@ -1,0 +1,1 @@
+export { ReportApprovalSetting } from './ReportApprovalSetting'

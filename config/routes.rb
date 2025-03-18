@@ -1237,6 +1237,7 @@ as: :simulation_progress_notification
               end
             end
             jsonapi_resources :threesixty_campaigns do
+              jsonapi_resource :report_approval_setting, only: %i[index create update destroy]
               post :create_campaign, on: :collection
             end
           end
@@ -1387,6 +1388,7 @@ as: :simulation_progress_notification
               get :search_campaign
               get :search_report
               get :search_user
+              get :metadata_for_filters
             end
           end
           resources :user_report_events, only: %i[index] do
@@ -1424,6 +1426,8 @@ as: :simulation_progress_notification
           end
 
           jsonapi_resources :users_results, only: :show
+
+          jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
         end
       end
     end

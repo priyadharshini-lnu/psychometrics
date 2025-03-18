@@ -91,7 +91,9 @@ module Campaigns
       end
 
       def send_invite_email
-        communication = Communication.new_users_recipients.order(created_at: :desc).find_by(campaign: campaign)
+        communication = Communication.new_users_recipients.
+                        order(created_at: :desc).
+                        find_by(campaign: campaign, kind: :invitation)
         return communication.emails.create(campaign_user_id: campaign_user.id) if communication
 
         if through_registration?

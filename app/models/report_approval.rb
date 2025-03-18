@@ -16,7 +16,7 @@ class ReportApproval < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id approval_status campaign_id report_id user_id]
+    %w[id approval_status campaign_id report_id user_id qc_user_id approver_user_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)

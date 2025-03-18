@@ -37,7 +37,8 @@ export default function SubjectList ({
   editUser,
   currentCampaignId,
 }) {
-  const { campaignId } = useParams()
+  const { projectId, campaignId } = useParams()
+
   const [params] = useSearchParams()
   const page = params.get('page') || 1
   const { message } = App.useApp()
@@ -55,7 +56,6 @@ export default function SubjectList ({
       onClose: () => fetchSubjects(campaignId, page, searchTerm),
     })
   }
-
   const onUserUpdate = () => fetchSubjects(campaignId, page)
 
   return (
@@ -135,7 +135,7 @@ export default function SubjectList ({
               fixed={windowWidth > 800 ? 'right' : undefined}
               title="Action"
               render={({
-                id, user: { email }, user, permissions,
+                id, user: { email }, user, permissions, userReportId,
               }) => (
                 <ConditionalDropdown
                   menu={
@@ -143,7 +143,9 @@ export default function SubjectList ({
                       subjectId: id,
                       email,
                       user,
+                      projectId,
                       campaignId,
+                      userReportId,
                       update,
                       remove,
                       removeUser,

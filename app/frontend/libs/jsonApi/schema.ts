@@ -1,3 +1,4 @@
+import { Schema as userSavedFilterSchema } from '~/modules/admin/components/UserSavedFilters/core'
 import { Schema as activitiesSchema } from '~/modules/admin/modules/campaigns/core/workshopActivity'
 import { Schema as clientSchema } from '~/modules/admin/modules/client/core/clients'
 import { Schema as assessmentSchema } from '~/modules/admin/modules/client/core/assessments'
@@ -67,4 +68,5 @@ export const Schema = {
   skills: skillsSchema,
   campaign_idps: campaignIdpSchema,
   idp_templates: idpTemplateSchema,
+  user_saved_filters: userSavedFilterSchema,
 }

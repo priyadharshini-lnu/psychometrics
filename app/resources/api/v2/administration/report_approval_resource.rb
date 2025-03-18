@@ -13,9 +13,9 @@ class Api::V2::Administration::ReportApprovalResource < Api::V2::Administration:
   has_one :approver_user, class_name: 'User'
   has_one :qc_user, class_name: 'User'
 
-  ransack_filters %i[campaign_id_eq report_id_eq user_id_eq campaign_name_cont
+  ransack_filters %i[campaign_id_eq report_id_eq campaign_id_in report_id_in user_id_eq campaign_name_cont
                      report_name_cont user_email_cont user_full_name_cont
-                     user_email_cont approval_status_in]
+                     user_email_cont approval_status_in qc_user_id_in approver_user_id_in]
 
   filter :my_tasks, apply: lambda { |records, _, options|
     records.merge(ReportApprovalSetting.user_tasks(options[:context][:user]))

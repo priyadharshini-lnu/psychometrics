@@ -2,15 +2,20 @@
 
 module UserReports
   class GroupedResultsByAssessment < BaseCommand
-    private_attr_reader :user_report, :campaign, :view_report_as
+    private_attr_reader :user_report, :campaign, :view_report_as, :current_user
 
-    def initialize(user_report, view_report_as)
+    def initialize(user_report, view_report_as, current_user = nil)
       @user_report = user_report
       @campaign = user_report.campaign
       @view_report_as = view_report_as
+      @current_user = current_user
     end
 
     def call
+      if user_report.report.category_threesixty?
+        return broadcast(:ok, Threesixty::Reports::ResultsForSubject.call!(user_report, current_user))
+      end
+
       serialized_result = user_report.
                           user_results(view_report_as).
                           map do |user_result|

@@ -25,5 +25,11 @@ module Api
 
       render json: users.map { |u| u.slice(:id, :email).merge(name: u.decorate.display_name) }
     end
+
+    def metadata_for_filters
+      response = ReportApprovals::ReportApprovalMetadataFetcher.call!(current_user, filter: params[:filter])
+
+      render json: response
+    end
   end
 end

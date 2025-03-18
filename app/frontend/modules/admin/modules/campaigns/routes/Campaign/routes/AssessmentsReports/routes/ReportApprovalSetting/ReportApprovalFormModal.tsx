@@ -28,6 +28,9 @@ type FormValueObj = {
   approverUserIds: string[],
   qcUserIds: string[],
   reportId: string,
+  approversNotRequired: boolean,
+  approversCanEdit: boolean,
+  doNotSendNotifications: boolean,
 }
 
 const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetchedData) => (
@@ -120,6 +123,9 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           approvalNotificationUserIds: (approvalNotificationUserIds || []).map(stringToNumber),
           approverUserIds: (approverUserIds || []).map(stringToNumber),
           qcUserIds: qcUserIds.map(stringToNumber),
+          approversNotRequired: formValuesObj.approversNotRequired || false,
+          approversCanEdit: formValuesObj.approversCanEdit || false,
+          doNotSendNotifications: formValuesObj.doNotSendNotifications || false,
         }
       }}
     >

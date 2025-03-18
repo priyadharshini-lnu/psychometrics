@@ -498,7 +498,7 @@ es-ES:
       factors_table:
         description: Descripción
         no_data: No hay información disponible para esta sección.
-        rank: Clasificación
+        rank: Puesto
         score: Puntuación
       gap_assessment:
         gap: Diferencia
@@ -507,7 +507,7 @@ es-ES:
         no_negative_gaps: No hay diferencias negativas
         no_positive_gaps: No hay diferencias positivas
         positive_gap: Diferencias positivas
-        rank: Clasificación
+        rank: Puesto
         scoring_category: Competencia
       highest_lowest:
         bottom_5: ÚLTIMOS/AS 5
@@ -516,7 +516,7 @@ es-ES:
         item: Indicador
         lowest_scores: Puntuaciones más bajas
         mean_score: Puntuación media
-        rank: Clasificación
+        rank: Puesto
         scoring_category: Competencia
         sub_competenties: Subcompetencias
         top_5: PRIMEROS/AS 5
@@ -535,7 +535,7 @@ es-ES:
         question_name: Preguntas
       single_value_cluster:
         competency: Competencia
-        developmental_rating: Calificación del desarrollo
+        developmental_rating: Valoración de desarrollo
         questions: Preguntas
       strength_clusters:
         index_sub_factors_considered: Subfactores del Thriving Index («Índice de progreso») que se han tenido en cuenta para otorgarle su puntuación final para el entorno laboral %{workstyle}
@@ -557,9 +557,9 @@ es-ES:
         statistic: Estadísticas
         value: Valor
       three_sixty_report_summary:
-        completed: Completado/a
-        footnote: "* Se excluye por el requisito de umbral mínimo"
-        invited: Invitado/a
+        completed: Evaluación completada
+        footnote: "*Excluido debido al requisito de umbral mínimo"
+        invited: Invitados
         relationships: Relaciones
         total: Total
       video_response:

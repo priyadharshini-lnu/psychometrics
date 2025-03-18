@@ -124,8 +124,10 @@ en:
             report_options: Report Options
             reset_nominations: Reset Nominations
             view: View
+            view_factor_benchmark_scores: View Factor Benchmark Scores
             view_stats: View Stats
           clients:
+            export_data_report: Export Data Report
             manage: Manage
             view: View
             view_licenses: View Licenses
@@ -159,6 +161,7 @@ en:
           projectSettings:
             assessments: Assessments
             design: Design
+            idp: IDP
             integrations: Integrations
             privacy_settings: Privacy Settings
             saml: SAML
@@ -201,6 +204,9 @@ en:
             scores: Scores
             view_report: View Report
             view_stats: View Stats
+          skills:
+            manage: Manage
+            view: View
           smsHistories:
             manage: Manage
             view: View
@@ -1510,6 +1516,10 @@ en:
       image_upload_failed: Image upload failed.
       none: None
       refresh_success: Refresh of dataset scheduled successfully.
+      visual_header_visibility_options:
+        hide_all: Hide All
+        keep_original: Keep Original
+        show_all: Show All
     data_exports_modal:
       title: Select date range
     data_reports:
@@ -2571,6 +2581,23 @@ en:
       download: Download
       report_approvals: Report Approvals
       review: Review
+      saving_filters:
+        actions:
+          clear_filters: Clear Filters
+          delete_filter: Delete Filter
+          save_filter: Save
+          save_new_filter: Save as new Filter
+          saved_filters: Saved Filters
+        delete_saved_filters: Filter Deleted
+        edit_filter_name: Filter Name saved
+        error_while_deleting: Error While deleting
+        error_while_editing: Error while editing
+        error_while_fetching: Something went wrong , try again
+        error_while_saving: Error while saving filter
+        filter_updated: Filter updated
+        no_saved_filters: There are no saved filters
+        save_filter: Filter Saved
+        set_favorite: Filter has been set as favorite
     report_builder:
       campaign_factors:
         add_field: Add Field
@@ -3502,6 +3529,8 @@ en:
           title: Participants
         report:
           menu:
+            report_approval:
+              title: Report Approval Settings
             report_options:
               title: Report Options
           title: Report

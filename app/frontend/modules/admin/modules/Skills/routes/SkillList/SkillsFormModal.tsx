@@ -137,12 +137,14 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           <Form.Item
             name="name"
             label={I18n.t('administration.skills.form.name')}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="description"
             label={I18n.t('administration.skills.form.description')}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>

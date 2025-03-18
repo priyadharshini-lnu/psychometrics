@@ -21,11 +21,19 @@ const FETCH_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_IDP_SKILLS'
 interface UserIdpPlan {
   status: string | null;
   selfRatingEnabled: boolean;
+  skillGapReportAvailable: boolean | null;
   userIdpSkills: Skill[];
   userIdpDevelopmentActions: DevelopmentAction[];
   directReports: object[];
-  AIGeneratedDevelopmentActions: DevelopmentAction[];
+  AIGeneratedDevelopmentActions: Record<number, Pick<DevelopmentAction, 'description' | 'learningStyle'>[]>;
   skills: Skill[]
+}
+
+interface GenerateDevelopmentActionsByAIPayload {
+  userIdpSkillId: number;
+  generateMore: boolean;
+  generatedActions: DevelopmentAction[];
+  lang?: string;
 }
 
 type UserIdpPlanStatus = typeof USER_IDP_PLAN_STATUS[keyof typeof USER_IDP_PLAN_STATUS];
@@ -88,13 +96,13 @@ export const fetchUserIdpSkills = (userId: string) => ({
   },
 })
 
-export const fetchAvailableDevelopmentActions = (userId: string, skillId: number) => ({
+export const fetchAvailableDevelopmentActions = (userId: string, userIdpSkillId: number) => ({
   type: FETCH_AVAILABLE_DEVELOPMENT_ACTIONS,
   request: {
     url: '/user_idp_development_actions/available_development_actions',
     body: {
       userId,
-      skillId,
+      userIdpSkillId,
     },
   },
 })
@@ -115,12 +123,12 @@ export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus) => 
   },
 })
 
-export const generateDevelopmentActionsByAI = (skillId: number, generateMore = false, generatedActions = {}) => ({
+export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActionsByAIPayload) => ({
   type: GENERATE_DEVELOPMENT_ACTIONS_BY_AI,
   request: {
     url: '/user_idp_development_actions/generate_by_ai',
     method: 'post',
-    body: { generateMore, skillId, generatedActions },
+    body: payload,
   },
 })
 
@@ -161,6 +169,7 @@ export const HANDLERS = {
       userIdpDevelopmentActions,
       userIdpSkills,
       status: userIdpPlan.status,
+      skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
     }
   },
@@ -181,13 +190,11 @@ export const HANDLERS = {
     availableDevelopmentActions: _.keyBy(action.response.data, 'id'),
   }),
   [GENERATE_DEVELOPMENT_ACTIONS_BY_AI]: (state, action) => {
-    const generateMoreReq = action.requestAction.request.body.generateMore || false
-    const responseData = action.response.data
+    const generatedDevelopmentActions = _.groupBy(action.response.data, 'skillId')
 
     return {
       ...state,
-      AIGeneratedDevelopmentActions:
-        generateMoreReq ? [...state.AIGeneratedDevelopmentActions, ...responseData] : responseData,
+      AIGeneratedDevelopmentActions: { ...state.AIGeneratedDevelopmentActions, ...generatedDevelopmentActions },
     }
   },
   [UPDATE_DEVELOPMENT_ACTION]: (state, action) => {
@@ -263,9 +270,10 @@ export const HANDLERS = {
 
 export const defaultState: UserIdpPlan = {
   directReports: [],
-  AIGeneratedDevelopmentActions: [],
+  AIGeneratedDevelopmentActions: {},
   status: null,
   selfRatingEnabled: false,
+  skillGapReportAvailable: null,
   userIdpDevelopmentActions: [],
   userIdpSkills: [],
   skills: [],

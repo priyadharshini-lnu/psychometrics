@@ -96,11 +96,10 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
         overlayClassName={styles.overlay}
       >
         <Button aria-label={`${I18n.t('administration.notification_bell_icon')}`} type="text" onClick={handleClick}>
-          <Badge count={unread} overflowCount={9} offset={[-10, 17]}>
+          <Badge count={unread} overflowCount={9}>
             <span className={`fa fa-bell ${styles.bellIcon}`} />
           </Badge>
         </Button>
-
       </Popover>
     </div>
   )

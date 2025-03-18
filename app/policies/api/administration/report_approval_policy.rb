@@ -19,6 +19,10 @@ module Api
         can_manage_report_approval?
       end
 
+      def metadata_for_filters?
+        can_manage_report_approval?
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           ::ReportApprovalSetting.report_approvals(user)

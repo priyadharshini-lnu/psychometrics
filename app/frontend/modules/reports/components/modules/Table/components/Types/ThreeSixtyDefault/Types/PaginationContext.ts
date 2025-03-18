@@ -31,7 +31,7 @@ export class PaginationContext {
     const containerHeight = this.module.props.position.height
     const headerheight = this.root.querySelector('[data-table-header]')?.getBoundingClientRect()?.height || 0
 
-    const secondPageHeight = this.module.props.pagination?.position?.height || 1000
+    const secondPageHeight = (this.module.props.pagination?.position?.height || 1000) - headerheight
 
     const contentHeight = containerHeight - headerheight
 
@@ -54,19 +54,21 @@ export class PaginationContext {
       const filterTable = filterElement.getBoundingClientRect()
       const filterId = parseInt(filterElement.getAttribute('data-filter-id') || '', 10)
 
-      const maxHeight = this.pages.length > 1 ? secondPageHeight : contentHeight
+      const maxHeight = (this.pages.length > 1 ? secondPageHeight : contentHeight)
 
       const secondLevel = filterElement.querySelectorAll("[data-paginatable='2']")
-
-      if (currentPageHeight + filterTable.height > maxHeight && page.filterId.length) {
+      const filterHeight = filterElement.querySelector('[data-filter-header]')?.getBoundingClientRect()?.height || 0
+      if (currentPageHeight + filterTable.height > maxHeight) {
         this.needPagination = true
         secondLevel.forEach((rowElement, index) => {
+          const maxHeight = (this.pages.length > 1 ? secondPageHeight : contentHeight)
+
           const rect = rowElement.getBoundingClientRect()
           const expectedHeight = currentPageHeight + rect.height
           if (_.isEmpty(page.resultIndexes)) {
             page.filterId = [filterId]
             page.resultIndexes = { [filterId]: [index] }
-            currentPageHeight = rect.height
+            currentPageHeight = filterHeight + rect.height
             return
           }
           if (expectedHeight > maxHeight) {
@@ -77,7 +79,7 @@ export class PaginationContext {
             }
             this.pages.push(page)
 
-            currentPageHeight = rect.height
+            currentPageHeight = filterHeight + rect.height
           } else {
             if (!page.filterId.includes(filterId)) {
               page.filterId.push(filterId)

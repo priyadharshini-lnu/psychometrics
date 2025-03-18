@@ -94,7 +94,7 @@ const getMenuProps = ({
       label: I18n.t('administration.threesixty_campaigns.manage.manage_relationships'),
     },
     { type: 'divider' },
-    currentUser.permissions.manageFactorBenchmarkScores && {
+    (currentUser.permissions.manageFactorBenchmarkScores || currentUser.permissions.viewFactorBenchmarkScores) && {
       key: 'factor_benchmark_score',
       label: I18n.t('campaign_assessment.actions.factor_benchmark_score'),
     },
@@ -105,7 +105,7 @@ const getMenuProps = ({
       openModal('ManageRelationshipsModal')
     }
     if (key === 'factor_benchmark_score') {
-      return openModal('FactorBenchmarkScoreModal', { campaignId, dimensionId })
+      return openModal('FactorBenchmarkScoreModal', { campaignId, dimensionId, currentUser })
     }
   }
 

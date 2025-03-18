@@ -25,6 +25,8 @@ const AddSkillsComponent = ({
   fetchIdpSkills,
   addUserIdpSkills,
   userIdpSkills,
+  selfRatingEnabled,
+  isSubmittingPlan = false,
 }) => {
   const [skills, setSkills] = useState<Skill[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -81,13 +83,14 @@ const AddSkillsComponent = ({
     </div>
   ) : (
     <AddSkillsStep
-      addSkillButtonText={I18n.t('idp.initial_steps.continue_to_rate_skills')}
+      addSkillButtonText={
+        selfRatingEnabled ? I18n.t('idp.initial_steps.continue_to_rate_skills') : I18n.t('idp.initial_steps.next')}
       onAddSkill={handleAddSkill}
       selectedSkills={selectedSkills}
       skillCategories={skillCategories}
       onDeselectSkill={handleDeselectSkill}
       onFinishAddSkill={handleFinishAddinSkill}
-      isSubmitting={isSubmitting}
+      isSubmitting={isSubmittingPlan || isSubmitting}
     />
   )
 }

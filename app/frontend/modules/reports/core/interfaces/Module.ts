@@ -1,5 +1,6 @@
 import { RgbaColor } from 'react-colorful'
 import { Factor } from '~/modules/reports/core/interfaces/Factor'
+import { TableColumn } from '~/modules/reports/core/interfaces/TableColumn'
 
 export default interface Module {
   id: number
@@ -39,6 +40,7 @@ export default interface Module {
     position: {width: number, height: number, top: number, left: number}
     style: any // eslint-disable-line @typescript-eslint/no-explicit-any
     question?: number
+    tableColumns?: TableColumn
     pagination?: {
       enabled: boolean,
       position: {width: number, height: number, top: number, left: number}

@@ -153,7 +153,7 @@ const MyPlanComponent = ({
 
   useEffect(() => {
     if (status && status === USER_IDP_PLAN_STATUS.NOT_STARTED) {
-      navigate('/idp/steps/getting_start')
+      navigate('/idp/steps/getting_started')
     }
   }, [status])
 

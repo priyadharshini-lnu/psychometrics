@@ -133,6 +133,7 @@ class User < ApplicationRecord
   has_many :user_bookings
   has_many :campaign_factor_values, dependent: :destroy
   has_many :bulk_reports
+  has_many :user_saved_filters
 
   has_one :security_setting, through: :project
   has_one :user_profile
@@ -157,6 +158,7 @@ class User < ApplicationRecord
   end
 
   after_create :create_user_profile
+  after_commit :update_disabled_at, on: :update
 
   has_one_time_password(encrypted: true)
 
@@ -297,6 +299,12 @@ class User < ApplicationRecord
 
   def email_validation
     URI::MailTo::EMAIL_REGEXP
+  end
+
+  def update_disabled_at
+    return unless saved_change_to_disabled?
+
+    update_column(:disabled_at, disabled? ? Time.current : nil)
   end
 
   def generate_invitation_token

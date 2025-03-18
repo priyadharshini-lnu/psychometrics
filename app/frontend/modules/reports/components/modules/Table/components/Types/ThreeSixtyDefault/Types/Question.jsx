@@ -3,14 +3,16 @@ import cs from 'classnames'
 import { connect } from 'react-redux'
 import AppStore from '~/modules/reports/store/AppStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
-import Utils from '~/modules/reports/utils'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { PaginationContext } from './PaginationContext'
 import styles from '../styles.less'
 import { useModulePagination } from '~/hooks/useModulePagination'
+import { SafeHTML } from '~/components/SafeHTML'
 
-const Question = ({ model, questions, insertPaginationPage }) => {
+const Question = ({
+  model, questions, insertPaginationPage, preview,
+}) => {
   if (!model.props.filter) return null
   const question = _.find(questions, q => q.id === model.props.questionId)
   if (!question) return null
@@ -18,7 +20,7 @@ const Question = ({ model, questions, insertPaginationPage }) => {
   const styleProp = { fontSize, fontFamily, color: fontColor }
 
   const { paginationContext } = useModulePagination(
-    model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage,
+    model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage, preview,
   )
 
   const filters = paginationContext?.filterId?.length ? [...paginationContext?.filterId] : model.props.filter
@@ -28,7 +30,7 @@ const Question = ({ model, questions, insertPaginationPage }) => {
         <thead data-table-header>
           <tr>
             <td className={styles.question}>
-              {Utils.stripHTML(I18nStore.tQuestion(question, 'questionText'))}
+              <SafeHTML html={I18nStore.tQuestion(question, 'questionText')} />
             </td>
           </tr>
         </thead>
@@ -84,7 +86,7 @@ function FilterTable ({
 
   return (
     <tbody data-paginatable={1} data-filter-id={filter.id}>
-      <tr>
+      <tr data-filter-header>
         <td className={styles.filter}>
           {I18nStore.tFilterName(filter)}
         </td>
@@ -109,7 +111,9 @@ const Results = ({ results, filterId, paginationContext }) => {
     return (
       paginationContext.resultIndexes[filterId].map(i => (
         <tr>
-          <td key={i} className={styles.answer}>{results[i]}</td>
+          <td key={i} className={styles.answer}>
+            <SafeHTML html={results[i]} />
+          </td>
         </tr>
       ))
     )
@@ -117,7 +121,9 @@ const Results = ({ results, filterId, paginationContext }) => {
 
   return results.map((r, i) => (
     <tr key={i} data-index={i} data-paginatable={2}>
-      <td className={styles.answer}>{r}</td>
+      <td className={styles.answer}>
+        <SafeHTML html={r} />
+      </td>
     </tr>
   ))
 }

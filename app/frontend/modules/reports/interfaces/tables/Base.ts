@@ -1,7 +1,9 @@
 import { BaseProps } from '../Base'
 
 export interface BasePreviewModel<Props = {}, Type = ''>
-  extends BaseModel<Props, Type> {}
+  extends BaseModel<Props, Type> {
+    update: () => void
+  }
 
 export interface BasePropertiesModel<Props = {}, Type = ''>
   extends BaseModel<Props, Type> {

@@ -8,9 +8,23 @@ describe Reports::GetTranslationWithPipetextReplaced do
   let(:assessment) { report.assessments.first }
   let!(:question) { create(:question, assessment: assessment) }
 
-  it 'returns assessment transalations with pipetext values' do
+  it 'returns assessment transalations with pipetext values when translations_migrated is false' do
+    assessment.update!(translations_migrated: false)
     create(:translation, resource_id: assessment.id, resource_type: 'Assessments::Common',
       translateable: question, locale: 'fr', props: { questionText: 'salut {{subject/FirstName}}' })
+    expect(Threesixty::PipedText::Perform).to receive(:call!).
+      with('salut {{subject/FirstName}}', {}).and_return('salut John')
+
+    result = described_class.call!(report, locale: 'fr', piped_text_context: {})
+    text = result.dig('question', question.id, 'questionText')
+
+    expect(text).to eq('salut John')
+  end
+
+  it 'returns assessment transalations with pipetext values when translations_migrated' do
+    assessment.update!(translations_migrated: true)
+    create(:translation, resource_id: assessment.id, resource_type: 'Assessments::Common',
+      translateable: question, locale: 'fr', data: { props: { questionText: 'salut {{subject/FirstName}}' } })
     expect(Threesixty::PipedText::Perform).to receive(:call!).
       with('salut {{subject/FirstName}}', {}).and_return('salut John')
 
