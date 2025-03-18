@@ -211,7 +211,8 @@ class UserReport < ApplicationRecord
     {
       subject: user,
       evaluator: user,
-      campaign: campaign
+      campaign: campaign,
+      threesixty_campaign: threesixty_campaign
     }
   end
 
