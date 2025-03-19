@@ -402,6 +402,7 @@ en:
         disable_nav_btn: Disable Navigation Back Button
         enable_back: Enable back button
         enable_progress: Enable progress bar
+        enable_save: Enable save button
         enable_single_question_page: Show one question per page
         enable_single_question_page_confirm: This will update block randomization per page to 1. Are you sure?
         enable_timer: Enable timer
