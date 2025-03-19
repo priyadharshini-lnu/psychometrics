@@ -5,12 +5,16 @@ module Norms
     private_attr_reader :rows, :job_record, :headers, :dimension_name, :norm_name, :owner, :importer, :norm
 
     def initialize(rows, owner_id, importer)
-      @headers  = rows.headers
       @rows     = rows
+      @headers  = sanitized_headers
       @owner    = Client.find_by(id: owner_id)
       @importer = importer
       @norm_name = headers[0]
       @dimension_name = headers[1]
+    end
+
+    def sanitized_headers
+      rows.headers.map! { |value| Utility::String.remove_csv_injection_marker(value) }
     end
 
     def call
@@ -44,8 +48,8 @@ module Norms
       factor_norm = factor.factors_norms.find_or_initialize_by(norm_id: norm.id)
       factor_norm.props = []
       FactorsNorm::LEVELS.each do |level|
-        score_from = row[level]
-        score_to = row[(headers.index(level) + 1)]
+        score_from = Utility::String.remove_csv_injection_marker(row[level])
+        score_to = Utility::String.remove_csv_injection_marker(row[headers.index(level) + 1])
 
         factor_norm.props << { level: level, score_from: score_from, score_to: score_to }
       end

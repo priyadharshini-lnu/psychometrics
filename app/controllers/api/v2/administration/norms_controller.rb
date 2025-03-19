@@ -25,7 +25,7 @@ module Api
           :import_norm, { owner_id: import_params[:owner_id] }, current_user, import_params[:file]
         )
 
-        head :ok
+        render json: :ok
       else
         render json: form.errors, status: 422
       end

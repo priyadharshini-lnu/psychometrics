@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
-import { MenuProps, Switch } from 'antd'
+import * as t from 'io-ts'
+import { MenuProps, Switch, message } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -152,7 +153,9 @@ const getActionMenuProps = ({
     id: normId,
     action: 'export',
     method: 'post',
-    responseType: 'ok',
+    responseType: t.literal('ok'),
+  }).then(() => {
+    message.success(I18n.t('administration.norms.export.success_msg'))
   })
 
   const menuItems = [

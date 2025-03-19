@@ -35,7 +35,7 @@ export const NormFilter: React.FC<Props> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {I18n.t('sheet.menu.import')}
+                  {I18n.t('administration.norms.index.import')}
                 </a>
               ),
             }],

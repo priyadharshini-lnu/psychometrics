@@ -26,6 +26,7 @@ describe AdminJobs::ImportNorm do
 
   context 'Import Norm' do
     it 'creates norm' do
+      create(:factor, name: 'Factor 1', dimension: dimension)
       described_class.call!(job_record)
 
       expect(Norm.count).to eq(1)
@@ -40,7 +41,7 @@ describe AdminJobs::ImportNorm do
       expect(FactorsNorm.count).to eq(0)
     end
 
-    it 'returns error if factor does not exist' do
+    it 'create or update factor_norms props' do
       create(:factor, name: 'Factor 1', dimension: dimension)
       described_class.call!(job_record)
 

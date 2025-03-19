@@ -17,6 +17,7 @@ RSpec.describe AdminJobs::NormExport, type: :job do
     actual_first_row = csv[0]
 
     expected_first_row = [
+      norm.name,
       norm.dimension.name,
       'Factors',
       'Very Low',
@@ -41,6 +42,7 @@ RSpec.describe AdminJobs::NormExport, type: :job do
     factor_norm = norm.factors_norms.order(id: :asc).first
 
     expected_factor_norm_row = [
+      nil,
       nil,
       factor_norm.factor.name,
       factor_norm.props[0]['score_from'].to_s,
