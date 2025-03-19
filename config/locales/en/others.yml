@@ -2311,7 +2311,6 @@ en:
       action_private: 'Yes'
       action_public: 'No'
       add_development_action: Add Development Action
-      add_skill: Add Skill
       all: All
       approved: Approved
       board_view:
@@ -2326,6 +2325,7 @@ en:
       generating_development_actions: Generating development actions...
       heading: Development Actions
       learning_from_others: Learning from others
+      manage_skills: Manage Skills
       marathon: Marathon
       no_development_actions: No development actions
       on_the_job: On the job
@@ -2363,7 +2363,6 @@ en:
     list: List
     my_direct_reports: My Direct Reports
     my_plan:
-      add_skill: Add Skill
       development_plan: Development Plan
       graphs:
         area_of_development: Area of Development
@@ -2374,6 +2373,7 @@ en:
         learning_structured: Structured learning (%{count})
         other: Other
         technical: Technical
+      save_skills: Save Skills
     pdf:
       header: Hello
     profile_details: Profile Details
@@ -3689,6 +3689,7 @@ en:
       BadRequest: File was not uploaded as last request failed. This might be due to your internet is not working. If your internet is working please contact administrator
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
+    invalid: is invalid
     issue: Issue
     least: Please answer at least %{min} choice(s).
     least_hotspot: Please answer at least %{min} choice(s).
