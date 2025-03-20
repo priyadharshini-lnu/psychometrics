@@ -45,7 +45,7 @@ module UserReports
     end
 
     def result_available_data
-      built_results = ::Reports::BuildResults.call(user_report.report, user_report.user_results)
+      built_results = ::Reports::BuildResults.call!(user_report.report, user_report.user_results)
 
       {
         campaign: user_report.campaign,
