@@ -612,8 +612,10 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :translations
+        get :factors_modal
         post :export_translations
         post :import_translations
+        post :import_factors
       end
       ### FACTORS
       resources :factors do

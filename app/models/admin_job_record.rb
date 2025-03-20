@@ -76,7 +76,8 @@ class AdminJobRecord < ApplicationRecord
     assign_idp_to_users: 55,
     data_report_export: 56,
     import_development_actions: 57,
-    export_development_actions: 58
+    export_development_actions: 58,
+    import_factors: 59
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

@@ -1,0 +1,6 @@
+$('#modal-container .modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+$('#modal-container').empty();
+
+noty({text: '<%= t("administration.dimensions.import_factors.successfully", name: resource.decorate.display_name) %>', type: 'success'});

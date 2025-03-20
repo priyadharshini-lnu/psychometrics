@@ -155,6 +155,17 @@ en:
             to_email:
               blank: Email field can't be blank
               invalid: Email is invalid
+        factor_import_form:
+          attributes:
+            base:
+              code_length: Code must be at least 3 characters long at row %{index}.
+              code_required: Factor code is required at row %{index}
+              invalid_scoring_strategy: Invalid scoring strategy '%{strategy}' at row %{index}. Allowed strategies are %{allowed}.
+              missing_headers: 'Missing required headers: %{headers}'
+              name_required: Factor name is required at row %{index}
+              scoring_strategy_required: Scoring strategy is required at row %{index}
+            file:
+              invalid_format: Please upload CSV file
         hogan:
           attributes:
             name:
@@ -764,6 +775,7 @@ en:
         import_development_actions: Import Development Actions
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
+        import_factors: Import Factors
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data

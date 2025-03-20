@@ -3,7 +3,7 @@
 class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar
-                                        export_translations import_translations]
+                                        export_translations import_translations import_factors]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -95,6 +95,24 @@ class Administration::DimensionsController < Administration::BaseController
   def copy
     audit! :copy, resource, payload: { source_id: resource.id }
     AdminJob.call(:copy_dimension, { dimension_id: resource.id }, current_user)
+  end
+
+  def import_factors
+    @error_msgs = []
+    form = ::Factors::ImportForm.new(file: params.dig(:dimension, :file)).with_context(dimension: resource)
+
+    if form.valid?
+      audit! :import_factors, resource, payload: { source_id: resource.id }
+      AdminJob.call(:import_factors, { dimension_id: resource.id }, current_user, params[:dimension][:file])
+      respond_to do |format|
+        format.js { render :import_factor_success }
+      end
+    else
+      @error_msgs = form.errors.full_messages
+      respond_to do |format|
+        format.js { render :factors_modal }
+      end
+    end
   end
 
   private

@@ -1,0 +1,23 @@
+$(function () {
+  $('.modal').modal('hide');
+  $('.modal-backdrop').remove();
+  $('body').removeClass('modal-open');
+
+  var $modalContainer = $('#modal-container');
+
+  $modalContainer.empty();
+
+  $modalContainer.html('<%= j render(partial: "modal", locals: { form: "import_factors", header: t("administration.#{i18n || resource_class.model_name.plural}.import_factors.title") }) %>');
+  var $modalBox = $modalContainer.find(".modal");
+
+  $modalBox.modal('show');
+
+  $modalBox.on('hidden.bs.modal', function (e) {
+    $(this).remove();
+    $('.modal-backdrop').remove();
+    $('body').removeClass('modal-open');
+  });
+
+  // Reinit all plugins
+  $(document).trigger('initPlugins');
+});

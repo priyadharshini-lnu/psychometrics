@@ -1642,6 +1642,10 @@ en:
       form:
         enable_innovation_styles: Enable Innovation Styles
         enable_occupations: Enable Occupations
+      import_factors:
+        import: Import
+        successfully: Import factors job scheduled for dimension %{name}.
+        title: Import Factors
       import_translations:
         error: Error while importing translations for dimension %{name}.
         successfully: Import translations scheduled for dimension %{name}.
