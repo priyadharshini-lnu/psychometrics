@@ -56,6 +56,7 @@ describe AdminJobs::AssessmentRawExport do
     it 'csv contains each user result as separate row' do
       create_list(:users_result, 2, assessment: assessment, campaign: campaign, status: :in_progress).each do |result|
         create(:campaign_user, campaign: campaign, user: result.user, active: true)
+        result.user_assessment.update!(subject_id: result.user.id)
       end
 
       described_class.call!(job_record)
@@ -70,6 +71,7 @@ describe AdminJobs::AssessmentRawExport do
         questions[1].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }], 'duration' => nil }
       })
       create(:campaign_user, campaign: campaign, user: res.user, active: true)
+      res.user_assessment.update!(subject_id: res.user.id)
 
       described_class.call!(job_record)
       csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
@@ -157,6 +159,8 @@ describe AdminJobs::AssessmentRawExport do
           }, 'duration' => 120
         }
       })
+
+      res.user_assessment.update!(subject_id: res.user.id)
       create(:campaign_user, campaign: campaign, user: res.user, active: true)
 
       described_class.call!(job_record)
@@ -236,6 +240,7 @@ describe AdminJobs::AssessmentRawExport do
           ], 'duration' => 120 }
       })
       create(:campaign_user, campaign: campaign, user: res.user, active: true)
+      res.user_assessment.update!(subject_id: res.user.id)
 
       described_class.call!(job_record)
       csv = Roo::CSV.new(active_storage_file_path(job_record.file), csv_options: { converters: [:numeric] })
