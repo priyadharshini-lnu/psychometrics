@@ -10,7 +10,7 @@ DeviseSamlAuthenticatable::SamlConfig.class_eval do
               else
                 Devise.idp_settings_adapter
               end
-    adapter.new(request.subdomain, cookies[:saml_setting_type])
+    adapter.new(request.subdomain)
   end
 end
 

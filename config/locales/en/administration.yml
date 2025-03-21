@@ -2753,9 +2753,9 @@ en:
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
       saml: SAML
       saml_setting: SAML Setting
+      save: Save Setting
       sso_service_url: SSO Service Url
-      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
-      verify_and_save: Verify & Save Setting
+      successfully_saved_msg: SAML Setting was saved successfully.
     save: Save
     scheduling:
       add_activity: Add Activity

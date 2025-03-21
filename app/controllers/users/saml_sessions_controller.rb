@@ -1,14 +1,9 @@
 # frozen_string_literal: true
 
 class Users::SamlSessionsController < Devise::SamlSessionsController
-  before_action :set_saml_cookie, only: [:new]
   before_action :set_saml_audit_session, only: [:new]
   after_action :reset_saml_audit_session, only: [:create]
   after_action :after_saml_login, only: [:create]
-
-  def set_saml_cookie
-    add_cookie(:saml_setting_type, params[:saml_setting_type])
-  end
 
   def set_saml_audit_session
     session['saml_audit'] = true
@@ -25,7 +20,6 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
       merge(email: current_user.email),
     outcome: 'successful'
     session[:saml_login] = true
-    @current_project.saml_setting.make_test_setting_permanent! if cookies[:saml_setting_type] == 'test'
   end
 
   def auth_options
