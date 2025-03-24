@@ -163,7 +163,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       valuePropName="checked"
                       noStyle
                     >
-                      <Switch />
+                      <Switch disabled={form.getFieldValue('approverUserIds')?.length > 0} />
                     </Form.Item>
                     <div className="weight-600">
                       {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_not_required')}
@@ -191,7 +191,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       valuePropName="checked"
                       noStyle
                     >
-                      <Switch />
+                      <Switch disabled={form.getFieldValue('approvalNotificationUserIds')?.length > 0} />
                     </Form.Item>
                     <div className="weight-600">
                       {I18n.t('administration.campaigns.assessment_reports.report_approval.do_not_send_notifications')}
