@@ -32,7 +32,7 @@ export const UserAvatar = ({ currentUser, collapsed }) => (
         <img alt="Lighthouse logo" src={collapsed ? logoSmall : logo} />
       </Link>
     </div>
-    <div className="ta-c">
+    <div className={styles.avatarContainer}>
       {collapsed ? (
         <a className={styles.userName} href="/admin/profile/details">
           <span className="sr-only">

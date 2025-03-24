@@ -18,7 +18,6 @@ module Administration
           required(:issuer).filled(:str?)
           required(:name_identifier_format).filled(:str?)
           optional(:email_pipetext).maybe(:str?)
-          optional(:saml_signin_url).maybe(:str?)
         end
       end
     end

@@ -47,10 +47,12 @@ class ReportApprovalSetting < ApplicationRecord
     report_approvals(user).where(
       %{
         (qc_user_ids @> :user_id AND approval_status IN (:qc_statuses)) OR
-        (approver_user_ids @> :user_id AND approval_status = 'qc_completed')
+        (approver_user_ids @> :user_id AND approval_status = 'qc_completed') OR
+        (approvers_not_required = true AND approval_status IN (:all_statuses))
       },
       user_id: "{#{user.id}}",
-      qc_statuses: %i[pending_qc qc_in_progress change_requested]
+      qc_statuses: %i[pending_qc qc_in_progress change_requested],
+      all_statuses: %i[pending_qc qc_in_progress change_requested qc_completed]
     )
   end
 end

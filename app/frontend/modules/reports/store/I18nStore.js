@@ -16,7 +16,9 @@ if (I18n) {
 }
 const TRANSLATED_MODULES = {
   Text: true,
-  Table: ['FactorsTable', 'StrengthClusters', 'InnovationStyles', 'Competencies'],
+  Table: [
+    'FactorsTable', 'StrengthClusters', 'InnovationStyles', 'HighestLowest',
+    'ThreeSixtyReportSummary', 'Competencies', 'GapAssessment'],
   Graph: ['Circumplex'],
 }
 const EXTERNAL_CATEGORIES = ['hogan', 'saville']
@@ -126,6 +128,23 @@ _.extend(I18nStore.prototype, {
       return this.locales.factor[factor.id][key]
     }
     return factor[key]
+  },
+
+  tTableColumns (module, sourceType, key) {
+    const translationPathKey = key.replaceAll('.', '-')
+    const translationPath = sourceType ? `tableColumns-${sourceType}-${translationPathKey}`
+      : `tableColumns-${translationPathKey}`
+    const translatedValue = _.get(this, `locales.reports/module.${module.id}.${translationPath}`)
+    if (translatedValue) {
+      return translatedValue
+    }
+
+    const tableColumnsDataPath = sourceType ? `props.tableColumns.${sourceType}` : 'props.tableColumns'
+    const defaultTableColumnsDataPath = sourceType ? `props.defaultTableColumns.${sourceType}`
+      : 'props.defaultTableColumns'
+    const tableColumns = _.get(module, tableColumnsDataPath)
+        || _.get(module, defaultTableColumnsDataPath) || {}
+    return _.get(tableColumns, key) || ''
   },
 
   tExternalFactorName (assessmentId, factor) {

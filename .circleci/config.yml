@@ -456,7 +456,7 @@ jobs:
           image: psychometrics
           tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM'
           use-buildkit: true
-          extra_build_args: '--build-arg BUILDKIT_INLINE_CACHE=1'
+          extra_build_args: '--build-arg BUILDKIT_INLINE_CACHE=1 --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_ORG=$SENTRY_ORG --build-arg SENTRY_PROJECT=$SENTRY_PROJECT --build-arg SENTRY_DEBUG=$SENTRY_DEBUG'
           registry: lhcontregistry.azurecr.io
       - aws-cli/setup:
           profile_name: default

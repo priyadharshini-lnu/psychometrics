@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import cs from 'classnames'
 import _ from 'lodash'
 import { getIn } from '~/utils/immutable'
@@ -9,6 +10,29 @@ import styles from './styles.less'
 export default function ThreeSixtyReportSummary ({ model }) {
   const { fontFamily, fontSize, fontColor } = model.props.style
   const styleProp = { fontFamily, fontSize, color: fontColor }
+
+  useEffect(() => {
+    const defaultTableColumns = {
+      relationships: {
+        label: I18nStore.t('reports.modules.three_sixty_report_summary.relationships'),
+        hide: false,
+        allowHide: true,
+      },
+      invited: {
+        label: I18nStore.t('reports.modules.three_sixty_report_summary.invited'),
+        hide: false,
+        allowHide: true,
+      },
+      completed: {
+        label: I18nStore.t('reports.modules.three_sixty_report_summary.completed'),
+        hide: false,
+        allowHide: true,
+      },
+    }
+
+    model.props.defaultTableColumns = defaultTableColumns
+    model.update()
+  }, [])
 
   const buildResults = (filters) => {
     const evaluatorsByFilter = filters.reduce((res, filter) => {
@@ -46,6 +70,11 @@ export default function ThreeSixtyReportSummary ({ model }) {
     return evaluators.length || 0
   }
 
+  const tableColumns = _.get(model, 'props.tableColumns')
+      || _.get(model, 'props.defaultTableColumns') || {}
+  const showRelationships = !_.get(tableColumns, 'relationships.hide')
+  const showInvited = !_.get(tableColumns, 'invited.hide')
+  const showCompleted = !_.get(tableColumns, 'completed.hide')
 
   let filters = (Array.isArray(model.props.filter) ? model.props.filter : [])
     .map(id => _.find(AppStore.report.filters, { id }))
@@ -61,29 +90,43 @@ export default function ThreeSixtyReportSummary ({ model }) {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th className={cs(styles.label, styles.tdLeft)}>
-              {I18nStore.t('reports.modules.three_sixty_report_summary.relationships')}
-            </th>
-            <th className={cs(styles.label, styles.tdRight)}>
-              {I18nStore.t('reports.modules.three_sixty_report_summary.invited')}
-            </th>
-            <th className={cs(styles.label, styles.tdRight)}>
-              {I18nStore.t('reports.modules.three_sixty_report_summary.completed')}
-            </th>
+            {showRelationships && (
+              <th className={cs(styles.label, styles.tdLeft)}>
+                {I18nStore.tTableColumns(model, '', 'relationships.label')}
+              </th>
+            )}
+            {showInvited && (
+              <th className={cs(styles.label, styles.tdRight)}>
+                {I18nStore.tTableColumns(model, '', 'invited.label')}
+              </th>
+            )}
+            {showCompleted && (
+              <th className={cs(styles.label, styles.tdRight)}>
+                {I18nStore.tTableColumns(model, '', 'completed.label')}
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
           {results.map(result => (
-            <FilterRow key={result.id} filter={result} model={model} />
+            <FilterRow
+              key={result.id}
+              filter={result}
+              showRelationships={showRelationships}
+              showInvited={showInvited}
+              showCompleted={showCompleted}
+            />
           ))}
         </tbody>
         <tfoot>
           <tr>
-            <td className={styles.tdLabel}>
-              {I18nStore.t('reports.modules.three_sixty_report_summary.total')}
-            </td>
-            <td className={styles.tdValue}>{total.invited}</td>
-            <td className={styles.tdValue}>{total.completed}</td>
+            { showRelationships && (
+              <td className={styles.tdLabel}>
+                {I18nStore.t('reports.modules.three_sixty_report_summary.total')}
+              </td>
+            )}
+            {showInvited && <td className={styles.tdValue}>{total.invited}</td>}
+            { showCompleted && <td className={styles.tdValue}>{total.completed}</td>}
           </tr>
         </tfoot>
       </table>
@@ -92,7 +135,9 @@ export default function ThreeSixtyReportSummary ({ model }) {
   )
 }
 
-function FilterRow ({ filter }) {
+function FilterRow ({
+  filter, showRelationships, showInvited, showCompleted,
+}) {
   const getCompleted = () => {
     if (filter.minRequiredResponses > filter.completed && filter.completed > 0) {
       return (
@@ -108,11 +153,13 @@ function FilterRow ({ filter }) {
 
   return (
     <tr>
-      <td className={styles.tdLabel}>
-        {I18nStore.tFilterName(filter)}
-      </td>
-      <td className={styles.tdValue}>{filter.invited}</td>
-      <td className={styles.tdValue}>{getCompleted()}</td>
+      {showRelationships && (
+        <td className={styles.tdLabel}>
+          {I18nStore.tFilterName(filter)}
+        </td>
+      )}
+      {showInvited && <td className={styles.tdValue}>{filter.invited}</td>}
+      {showCompleted && <td className={styles.tdValue}>{getCompleted()}</td>}
     </tr>
   )
 }

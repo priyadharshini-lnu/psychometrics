@@ -127,6 +127,7 @@ en:
             view_factor_benchmark_scores: View Factor Benchmark Scores
             view_stats: View Stats
           clients:
+            export_data_report: Export Data Report
             manage: Manage
             view: View
             view_licenses: View Licenses
@@ -139,6 +140,17 @@ en:
             accesssheet_view: Accesssheet View
             view: View
           datasheets:
+            manage: Manage
+            view: View
+          developmentActions:
+            export: Export
+            export_global: Export Global
+            export_global_translations: Export Global Translations
+            export_translations: Export Translations
+            import: Import
+            import_global: Import Global
+            import_global_translations: Import Global Translations
+            import_translations: Import Translations
             manage: Manage
             view: View
           dimensions:
@@ -160,6 +172,7 @@ en:
           projectSettings:
             assessments: Assessments
             design: Design
+            idp: IDP
             integrations: Integrations
             privacy_settings: Privacy Settings
             saml: SAML
@@ -202,6 +215,9 @@ en:
             scores: Scores
             view_report: View Report
             view_stats: View Stats
+          skills:
+            manage: Manage
+            view: View
           smsHistories:
             manage: Manage
             view: View
@@ -397,6 +413,7 @@ en:
         disable_nav_btn: Disable Navigation Back Button
         enable_back: Enable back button
         enable_progress: Enable progress bar
+        enable_save: Enable save button
         enable_single_question_page: Show one question per page
         enable_single_question_page_confirm: This will update block randomization per page to 1. Are you sure?
         enable_timer: Enable timer
@@ -798,6 +815,8 @@ en:
       actions: Manage
       assessment_reports:
         report_approval:
+          allow_bulk_approve: Allow Bulk Approve
+          allow_qc_bulk_submit: Allow QC Bulk Submit
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
           do_not_send_notifications: Do Not Send Notifications
@@ -1511,6 +1530,10 @@ en:
       image_upload_failed: Image upload failed.
       none: None
       refresh_success: Refresh of dataset scheduled successfully.
+      visual_header_visibility_options:
+        hide_all: Hide All
+        keep_original: Keep Original
+        show_all: Show All
     data_exports_modal:
       title: Select date range
     data_reports:
@@ -1557,12 +1580,25 @@ en:
         invalid_image_file: 'Invalid image file: %{message}'
         invalid_image_url: 'Invalid image URL format: %{url}'
         invalid_learning_style: 'Row %{row}: Invalid learning style ''%{value}''. Valid types are: %{valid_types}'
-        invalid_project_id: 'Row %{row}: Project ID must be a number'
         invalid_url: 'Invalid URL: %{message}'
-        invalid_url_format: Invalid URL format
         missing_columns: 'Required columns are missing: %{fields}'
-        save_failed: 'Failed to save development action: %{message}'
         skill_not_found: 'Skill not found for ID: %{skill_id}'
+    development_action_translations:
+      import:
+        errors:
+          blank_description: 'Row %{row}: Description cannot be blank'
+          blank_id: 'Row %{row}: ID cannot be blank'
+          blank_locale: 'Row %{row}: Locale cannot be blank'
+          blank_name: 'Row %{row}: Name cannot be blank'
+          development_action_not_found: Development Action not found
+          download_failed: 'Failed to download file: %{message}'
+          invalid_csv_format: 'Invalid CSV format: %{message}'
+          invalid_file_format: File must be a CSV file
+          invalid_id: 'Row %{row}: ID must be a number'
+          invalid_locale: 'Row %{row}: Invalid locale ''%{locale}'''
+          invalid_url: 'Invalid URL: %{message}'
+          invalid_url_format: Invalid URL format
+          missing_columns: 'Missing required columns: %{fields}'
     development_actions:
       categories:
         course: Course
@@ -1575,10 +1611,17 @@ en:
         header: Edit Development Action
       export:
         details: File Details
+        failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress. Please check the status in the notifications.
         title: Export
-      export_development_actions: Export Development Actions Based on Project
-      export_global_development_actions: Export Global Development Actions
+        translation_details: Details
+      export_actions:
+        development_action_translations_title: Export Development Actions Translations
+        development_actions_title: Export Development Actions
+      export_development_action_translations: Development Action Translations based on Project
+      export_development_actions: Development Actions Based on Project
+      export_global_development_actions: Global Development Actions
+      export_global_development_actions_translations: Global Development Action Translations
       form:
         category: Category
         course_image: Course Image
@@ -1597,9 +1640,13 @@ en:
       heading: Development Actions
       import:
         download_example_csv: Download Example csv
-        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
-        title: Development Actions import
-      import_development_actions: Import
+        failure_msg: Error while importing file.
+        info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        development_actions_title: Import Development Actions
+        development_actions_translations_title: Import Development Actions Translations
+      import_development_actions: Development Actions
+      import_development_actions_translations: Development Actions Translations
       learning_styles:
         learning_from_others: Learning from Others [20]
         on_the_job: On the Job [70]
@@ -1632,6 +1679,10 @@ en:
       form:
         enable_innovation_styles: Enable Innovation Styles
         enable_occupations: Enable Occupations
+      import_factors:
+        import: Import
+        successfully: Import factors job scheduled for dimension %{name}.
+        title: Import Factors
       import_translations:
         error: Error while importing translations for dimension %{name}.
         successfully: Import translations scheduled for dimension %{name}.
@@ -1847,6 +1898,10 @@ en:
           import: Import
       errors:
         invalid_format: Invalid File format
+        norm:
+          dimension_not_found: Dimension %{dimension_name} for %{client_name} was not found
+          factor_mismatch: Dimension %{dimension_name} does not have factor %{factor_name}
+          not_set_dimension: The name of the Dimension should be written in second cell of the first row
         result:
           answer_invalid: "[Row %{row}] Answer for qid %{question_id} is invalid: %{error}"
           date_errors:
@@ -2144,6 +2199,13 @@ en:
         factors: Factors
         inplace_title: Enter value
         title: Norm Editor
+      export:
+        success_msg: Norm export job scheduled successfully. Please check the status in the notifications.
+      import:
+        download_example_csv: Sample Norms CSV
+        select_file_validation: Please select an owner and a file before submitting.
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+        title: Norms import
       index:
         import: Import
         new: Add
@@ -2555,6 +2617,7 @@ en:
       toggle_status:
         successfully: Updated successfully.
     report_approval:
+      bulk_approve_success: "%{sent_for_approval} sent for approval. %{approved} reports approved. %{ignored} reports require manual approval due to QC changes/comments."
       columns:
         actions: Actions
         approval_status: Approval Status
@@ -2744,9 +2807,9 @@ en:
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
       saml: SAML
       saml_setting: SAML Setting
+      save: Save Setting
       sso_service_url: SSO Service Url
-      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
-      verify_and_save: Verify & Save Setting
+      successfully_saved_msg: SAML Setting was saved successfully.
     save: Save
     scheduling:
       add_activity: Add Activity

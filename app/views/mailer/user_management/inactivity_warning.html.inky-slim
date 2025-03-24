@@ -1,0 +1,5 @@
+p Dear #{@user.decorate.full_name}
+
+<p>Your account has been inactive for an extended period. If no action is taken, your account will be disabled after 10 days.</p>
+
+<p>Please log in to your account to keep it active.</p>

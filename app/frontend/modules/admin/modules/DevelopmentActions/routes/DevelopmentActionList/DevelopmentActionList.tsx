@@ -22,8 +22,8 @@ const connecter = connect(
 type PropsFromRedux = ConnectedProps<typeof connecter>
 
 const MODALS = {
-  DevelopmentActionsImportModal,
   DevelopmentActionsFormModal,
+  DevelopmentActionsImportModal,
   DevelopmentActionsExportModal,
 }
 
@@ -33,6 +33,7 @@ const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
     responseType: DevelopmentActionTR,
     apiConfig: {
       include: ['project', 'skills'],
+      include_meta: ['permissions'],
     },
   }
   const handleOpenModal = (developmentAction?: DevelopmentAction) => {

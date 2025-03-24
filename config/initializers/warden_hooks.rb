@@ -2,7 +2,7 @@
 
 Warden::Manager.after_authentication do |user, env, _opts|
   request = Rack::Request.new(env.request.env)
-  if request.env['action_dispatch.request.unsigned_session_cookie']['saml_audit'].blank?
+  if request.env['action_dispatch.request.unsigned_session_cookie']['saml_auth'].blank?
     AuditLogModule.audit! :sign_in,
                           user,
                           user: user,
@@ -66,7 +66,7 @@ Warden::Manager.before_failure do |env, opts|
 
   if request.env[:sso].blank?
     session = request.env['action_dispatch.request.unsigned_session_cookie']
-    action = session&.dig('saml_audit').present? ? :saml_login : :sign_in
+    action = session&.dig('saml_auth').present? ? :saml_login : :sign_in
     reason = opts[:message] ? "devise.#{opts[:message]}" : "devise.#{opts[:action]}"
     AuditLogModule.audit! action, nil,
                           record_type: 'User',

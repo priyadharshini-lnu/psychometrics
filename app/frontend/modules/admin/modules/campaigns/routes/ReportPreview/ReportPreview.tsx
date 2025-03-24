@@ -8,6 +8,7 @@ import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import Report from '~/modules/reports/report'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { ApprovalStatuses } from '~/modules/admin/modules/campaigns/core/userReports'
@@ -182,6 +183,16 @@ export default function ReportPreview ({
       }
     }
 
+    if (userReport.report.available_languages.length > 1) {
+      actionList.push(
+        <LangDropdownWithChangeUrl
+          locales={userReport.report.available_languages.map(l => l.code)}
+          currentLocale={lang}
+          key="lang"
+        />,
+      )
+    }
+
     if (userReport.permissions.download) {
       actionList.push(
         <Button
@@ -204,7 +215,8 @@ export default function ReportPreview ({
   }
 
   const normalizedReport = useMemo(() => normalize(userReport.report, schema), [userReport])
-
+  const isThreesixty = useMemo(() => userReport.report.category === 'threesixty', [userReport])
+  const threesixtyCampaignId = useMemo(() => userReport.threesixtyCampaignId, [userReport])
   return (
     <Layout>
       <Content className={cs('fluid-container', styles.container)}>
@@ -222,13 +234,16 @@ export default function ReportPreview ({
             link: state => `/admin/clients/${state.client.id}/projects`,
             label: state => state.client.name,
           }, {
-            link: state => `/admin/projects/${state.project.id}/new_campaigns`,
+            link: state => (`/admin/projects/${state.project.id}/new_campaigns`),
             label: state => state.project.name,
           }, {
-            link: state => `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
+            link: state => (isThreesixty
+              // eslint-disable-next-line max-len
+              ? `/administration/clients/${state.client.id}/projects/${state.project.id}/threesixty_campaigns/${threesixtyCampaignId}/participants/subjects`
+              : `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}`),
             label: state => state.campaign?.name,
           }, {
-            link: state => (reportIsLoaded()
+            link: state => (reportIsLoaded() && !threesixtyCampaignId
               // eslint-disable-next-line max-len
               ? `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/subjects/${userReport.user.id}`
               : ''),

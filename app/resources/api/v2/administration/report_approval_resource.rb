@@ -4,7 +4,7 @@ class Api::V2::Administration::ReportApprovalResource < Api::V2::Administration:
   model_name 'ReportApproval'
 
   attributes :approval_status, :qc_user_ids, :approver_user_ids, :project_id, :pdf_url, :approval_status_updated_at,
-             :qc_at, :approved_at
+             :qc_at, :approved_at, :allow_qc_bulk_submit, :allow_bulk_approve
 
   has_one :report
   has_one :campaign
@@ -27,11 +27,19 @@ class Api::V2::Administration::ReportApprovalResource < Api::V2::Administration:
     end
   end
 
+  def allow_bulk_approve
+    @model.allow_bulk_approve && @model.allow_approve?
+  end
+
+  def allow_qc_bulk_submit
+    @model.allow_qc_bulk_submit && %i[pending_qc qc_in_progress change_requested].include?(@model.approval_status)
+  end
+
   def project_id
     @model.campaign.project_id
   end
 
   def self.records(_)
-    super.select('user_reports.*', 'qc_user_ids', 'approver_user_ids')
+    super.select('user_reports.*', 'qc_user_ids', 'approver_user_ids', 'allow_qc_bulk_submit', 'allow_bulk_approve')
   end
 end

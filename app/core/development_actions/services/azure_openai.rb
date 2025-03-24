@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DeploymentActions
+module DevelopmentActions
   module Services
     class AzureOpenai
       attr_reader :system_prompt, :user_prompt

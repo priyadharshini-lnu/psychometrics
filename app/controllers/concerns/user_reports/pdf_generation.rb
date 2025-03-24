@@ -9,11 +9,11 @@ module UserReports::PdfGeneration
     prepend_before_action :authenticate_by_token!, only: %i[pdf_preview]
   end
 
-  def show
+  def show # rubocop:disable Metrics/AbcSize
     @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
     @selected_locale = params[:lang] || resource.report.default_language
 
-    respond_to do |format|
+    respond_to do |format| # rubocop:disable Metrics/BlockLength
       format.html do
         audit! :view_report, resource, campaign: resource.campaign,
           payload: params.merge(resource.details_to_log)
@@ -30,12 +30,14 @@ module UserReports::PdfGeneration
         render json: ::UserReportSerializer.new(
           context: {
             report: resource.report,
-            results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as),
+            results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
             piped_text_context: resource.piped_text_context,
             user_results: resource.user_results(view_report_as),
             view_report_as: view_report_as,
             current_user: current_user,
             campaign: resource.campaign,
+            threesixty_campaign: resource.threesixty_campaign,
+            options: resource.threesixty_campaign&.option,
             lang: params[:lang]
           }
         ).serialize(resource)

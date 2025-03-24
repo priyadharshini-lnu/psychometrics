@@ -139,5 +139,7 @@ export default {
     },
     zIndex: 3000,
     showOnAllPages: false,
+    defaultTableColumns: null,
+    tableColumns: null,
   },
 }

@@ -4,7 +4,7 @@ module Api
   module Administration
     class DevelopmentActionPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin)
+        has_permission?('development_actions', 'view', project_id: project_id)
       end
 
       def create?
@@ -24,16 +24,54 @@ module Api
       end
 
       def import?
-        @user.is?(:superadmin)
+        has_permission?('development_actions', 'import', project_id: project_id)
       end
 
       def export?
+        has_permission?('development_actions', 'export', project_id: project_id)
+      end
+
+      def import_translations?
+        has_permission?('development_actions', 'import_translations', project_id: project_id)
+      end
+
+      def export_translations?
+        has_permission?('development_actions', 'export_translations', project_id: project_id)
+      end
+
+      def import_global?
+        @user.is?(:superadmin)
+      end
+
+      def export_global?
+        @user.is?(:superadmin)
+      end
+
+      def import_global_translations?
+        @user.is?(:superadmin)
+      end
+
+      def export_global_translations?
         @user.is?(:superadmin)
       end
 
       class Scope < BasePolicy::Scope
         def resolve
-          scope if @user.superadmin?
+          return scope if user.is?(:superadmin)
+
+          # Collect project IDs where the user has view permission for development actions
+          permitted_client_admin_project_ids = @user.client_admin_client_ids.select do |client_id|
+            @user.has_permission?('development_actions', 'view', project_id: client_id)
+          end
+
+          permitted_project_admin_project_ids = @user.project_admin_client_ids.select do |project_id|
+            @user.has_permission?('development_actions', 'view', project_id: project_id)
+          end
+          # Combine all permitted project IDs
+          all_permitted_project_ids = permitted_client_admin_project_ids +
+                                      permitted_project_admin_project_ids
+
+          scope.where(project_id: all_permitted_project_ids)
         end
       end
     end

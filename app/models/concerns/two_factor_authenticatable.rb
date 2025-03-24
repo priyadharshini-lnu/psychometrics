@@ -12,7 +12,8 @@ module TwoFactorAuthenticatable
 
     # By default, two factor authentication is required for each user.
     # Override here to change that.
-    def need_two_factor_authentication?(_)
+    def need_two_factor_authentication?(request)
+      return false if request&.session&.dig(:saml_auth) # Skip 2FA if logging in via SAML
       return false unless Settings.features.two_factor_enabled
       return false unless enable_2fa?
 

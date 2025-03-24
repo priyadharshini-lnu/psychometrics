@@ -155,6 +155,17 @@ en:
             to_email:
               blank: Email field can't be blank
               invalid: Email is invalid
+        factor_import_form:
+          attributes:
+            base:
+              code_length: Code must be at least 3 characters long at row %{index}.
+              code_required: Factor code is required at row %{index}
+              invalid_scoring_strategy: Invalid scoring strategy '%{strategy}' at row %{index}. Allowed strategies are %{allowed}.
+              missing_headers: 'Missing required headers: %{headers}'
+              name_required: Factor name is required at row %{index}
+              scoring_strategy_required: Scoring strategy is required at row %{index}
+            file:
+              invalid_format: Please upload CSV file
         hogan:
           attributes:
             name:
@@ -748,8 +759,10 @@ en:
         export_admin_with_permissions: Export Admin With Permissions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
         export_factor_translations: Export Factor Translations
+        export_norm: Export Norm
         export_occupations: Occupations Export
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
@@ -761,9 +774,12 @@ en:
         import_assessors: Import Assessors
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
+        import_development_action_translations: Import Development Action Translations
         import_development_actions: Import Development Actions
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
+        import_factors: Import Factors
+        import_norm: Import Norm
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
@@ -1108,6 +1124,7 @@ en:
       title: Renew your password
     lighthouse_logo_alt_text: Lighthouse logo
     login:
+      continue_btn: Continue
       description: Please login with your personal account information
       forgot_password: Forgot Password?
       hide_password: Hide password
@@ -2311,7 +2328,6 @@ en:
       action_private: 'Yes'
       action_public: 'No'
       add_development_action: Add Development Action
-      add_skill: Add Skill
       all: All
       approved: Approved
       board_view:
@@ -2326,6 +2342,7 @@ en:
       generating_development_actions: Generating development actions...
       heading: Development Actions
       learning_from_others: Learning from others
+      manage_skills: Manage Skills
       marathon: Marathon
       no_development_actions: No development actions
       on_the_job: On the job
@@ -2343,11 +2360,13 @@ en:
       add_skill_group_title: Exploring Your %{category} Skills
       add_skills: Add
       add_skills_step: Add Skills
+      continue_to_add_skills: Continue to add skills
       continue_to_rate_skills: Continue to rate skills
-      getting_start: Getting Started
+      getting_started: Getting Started
       getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
       less_skills: Show less skills
       more_skills: Explore more skills
+      next: Next
       no_skills_selected: No skills selected.
       rate_skills: Rate Skills
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
@@ -2361,7 +2380,6 @@ en:
     list: List
     my_direct_reports: My Direct Reports
     my_plan:
-      add_skill: Add Skill
       development_plan: Development Plan
       graphs:
         area_of_development: Area of Development
@@ -2372,6 +2390,7 @@ en:
         learning_structured: Structured learning (%{count})
         other: Other
         technical: Technical
+      save_skills: Save Skills
     pdf:
       header: Hello
     profile_details: Profile Details
@@ -2606,6 +2625,9 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
+    users:
+      account_disable: Your account has been disabled due to inactivity
+      warning: Your account will be disabled soon due to inactivity
   maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   my: My
@@ -3684,6 +3706,7 @@ en:
       BadRequest: File was not uploaded as last request failed. This might be due to your internet is not working. If your internet is working please contact administrator
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
+    invalid: is invalid
     issue: Issue
     least: Please answer at least %{min} choice(s).
     least_hotspot: Please answer at least %{min} choice(s).

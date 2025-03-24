@@ -35,12 +35,14 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
 
   describe 'GET available_development_actions' do
     let!(:skill_for_development_action) { skills.first }
+    let!(:user_idp_skill) { user_idp_skills.find { |uis| uis.skill == skill_for_development_action } }
     let!(:development_action1) { create(:development_action, skills: [skill_for_development_action]) }
     let!(:development_action2) { create(:development_action, skills: [skill_for_development_action]) }
     let!(:development_action_with_different_skill) { create(:development_action) }
 
     it 'get development actions available for the skill' do
-      get :available_development_actions, params: { user_id: user.id, skill_id: skill_for_development_action.id }
+      get :available_development_actions,
+          params: { user_id: user.id, user_idp_skill_id: skill_for_development_action.id }
       parsed_result = response.parsed_body
       expect(parsed_result['meta']['record_count']).to eq(2)
       expect(parsed_result['data'].map do |action|
@@ -76,11 +78,11 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
     let(:user_idp_skill) { user_idp_skills.first }
     let(:params) do
       {
-        skill_id: user_idp_skill.id.to_s,
+        user_idp_skill_id: user_idp_skill.id.to_s,
         generate_more: 'false'
       }
     end
-    let(:mock_service) { instance_double(DeploymentActions::GenerativeService) }
+    let(:mock_service) { instance_double(DevelopmentActions::GenerativeService) }
     let(:generated_actions) do
       [
         {
@@ -96,7 +98,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
 
     context 'when service call is successful' do
       before do
-        allow(DeploymentActions::GenerativeService).to receive(:new).
+        allow(DevelopmentActions::GenerativeService).to receive(:new).
           with(user_idp_skill.skill, anything).
           and_return(mock_service)
         allow(mock_service).to receive(:call!).and_return(generated_actions)
@@ -110,7 +112,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       end
 
       it 'calls the generative service with correct parameters' do
-        expect(DeploymentActions::GenerativeService).to receive(:new).
+        expect(DevelopmentActions::GenerativeService).to receive(:new).
           with(user_idp_skill.skill, ActionController::Parameters.new(params).permit!)
         expect(mock_service).to receive(:call!)
 
@@ -120,10 +122,10 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
 
     context 'when regenerate limit is reached' do
       before do
-        allow(DeploymentActions::GenerativeService).to receive(:new).
+        allow(DevelopmentActions::GenerativeService).to receive(:new).
           and_return(mock_service)
         allow(mock_service).to receive(:call!).
-          and_raise(DeploymentActions::GenerativeService::RegenerateLimitReachedError.new('Limit reached'))
+          and_raise(DevelopmentActions::GenerativeService::RegenerateLimitReachedError.new('Limit reached'))
       end
 
       it 'returns error with 422 status' do

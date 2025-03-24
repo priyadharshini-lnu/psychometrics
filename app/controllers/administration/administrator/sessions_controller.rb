@@ -3,8 +3,26 @@
 module Administration
   module Administrator
     class SessionsController < Devise::SessionsController
+      before_action :ensure_redirect_superadmin_to_saml, only: [:create]
+
       helper_method :resource_nam, :devise_mapping
       layout 'administration/devise'
+
+      def authenticate_user
+        user = User.find_by(email: params[:user][:email])
+
+        if user
+          if user.superadmin?
+            redirect_to new_saml_user_session_url
+          else
+            session[:user_email] = user.email
+            redirect_to new_administration_session_path
+          end
+        else
+          flash[:alert] = I18n.t('devise.failure.not_found_in_database')
+          redirect_to new_administration_session_path
+        end
+      end
 
       def resource_name
         :user
@@ -28,6 +46,15 @@ module Administration
 
       def after_sign_out_path_for(_resource)
         root_path
+      end
+
+      def ensure_redirect_superadmin_to_saml
+        return unless Settings.features.enable_okta_login_for_admins
+
+        user = User.find_by(email: params[:user][:email])
+        if user&.superadmin?
+          redirect_to new_saml_user_session_url and return
+        end
       end
     end
   end

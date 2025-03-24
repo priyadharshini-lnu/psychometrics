@@ -6,11 +6,11 @@ module Api
       class DevelopmentActionImportForm
         include ActiveModel::Model
 
-        REQUIRED_FIELDS = %w[ID SkillID Name Description Type Category].freeze
-        OPTIONAL_FIELDS = %w[ProjectID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
+        REQUIRED_FIELDS = %w[SkillID Name Description Type Category].freeze
+        OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
         VALID_CATEGORIES = %w[course default].freeze
 
-        attr_accessor :file, :ignore_duplicates
+        attr_accessor :file
 
         validates :file, presence: true
         validate :validate_file_format
@@ -73,7 +73,6 @@ module Api
           validate_required_fields(row, row_number)
           validate_learning_style(row, row_number)
           validate_dates(row, row_number)
-          validate_project_id(row, row_number)
           validate_category(row, row_number)
         end
 
@@ -107,15 +106,6 @@ module Api
               errors.add(:base, I18n.t('administration.development_action_import.errors.invalid_date_format',
                                        row: row_number, field: date_field))
             end
-          end
-        end
-
-        def validate_project_id(row, row_number)
-          return if row['ProjectID'].blank?
-
-          unless row['ProjectID'].to_s.match?(/\A\d+\z/)
-            errors.add(:base, I18n.t('administration.development_action_import.errors.invalid_project_id',
-                                     row: row_number))
           end
         end
 

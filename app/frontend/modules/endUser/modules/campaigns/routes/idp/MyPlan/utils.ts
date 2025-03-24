@@ -15,6 +15,10 @@ function addDevelopmentActionsToSkills (
   const groupedSkills = _.groupBy(developmentActions, 'userIdpSkillId')
   return _.map(skills, skill => ({
     ...skill,
+    // skill here can be either Skill or UserIdpSkill, it's important to maintain skillId if present
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    skillId: skill?.skillId || skill.id,
     developmentActions: groupedSkills[skill.id] || [],
   }))
 }
