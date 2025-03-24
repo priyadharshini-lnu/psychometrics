@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class Users::SamlSessionsController < Devise::SamlSessionsController
-  before_action :set_saml_audit_session, only: [:new]
-  after_action :reset_saml_audit_session, only: [:create]
+  before_action :set_saml_auth_session, only: [:new]
+  after_action :reset_saml_auth_session, only: [:create]
   after_action :after_saml_login, only: [:create]
 
-  def set_saml_audit_session
-    session['saml_audit'] = true
+  def set_saml_auth_session
+    session['saml_auth'] = true
   end
 
-  def reset_saml_audit_session
-    session['saml_audit'] = nil
+  def reset_saml_auth_session
+    session['saml_auth'] = nil
   end
 
   def after_saml_login
