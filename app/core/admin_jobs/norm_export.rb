@@ -32,7 +32,7 @@ module AdminJobs
     end
 
     def file_name
-      "norm-#{norm.id}.#{Time.zone.today}.csv"
+      "#{norm.name}-#{Time.zone.today}.csv"
     end
 
     def norm
