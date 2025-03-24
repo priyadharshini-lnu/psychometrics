@@ -18,7 +18,7 @@ module Campaigns
         @imported_users = []
       end
 
-      def call # rubocop:disable Metrics/AbcSize
+      def call # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
         profile_fields = @campaign.project.profile_setting.profile_fields.includes(:question)
         custom_fields = profile_fields.map { |pf| pf.question.name.to_sym }
 
@@ -50,7 +50,7 @@ module Campaigns
                 raise ActiveRecord::Rollback
               end
               user.user_profile.update!(profile_data.merge(
-                                          custom_fields: (user.user_profile.custom_fields || {}).
+                                          custom_fields: (user.user_profile.custom_fields || {}).transform_keys(&:to_s).
                                           merge(custom_fields_data)
                                         ))
             else
@@ -61,7 +61,7 @@ module Campaigns
                 end
                 on(:ok) do |u|
                   u.user_profile.update!(profile_data.merge(
-                                           custom_fields: (u.user_profile.custom_fields || {}).
+                                           custom_fields: (u.user_profile.custom_fields || {}).transform_keys(&:to_s).
                                            merge(custom_fields_data)
                                          ))
                   imported_users << u

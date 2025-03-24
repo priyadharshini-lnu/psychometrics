@@ -5,7 +5,6 @@ import {
   Select,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get as getSamlSetting,
@@ -38,12 +37,8 @@ const SamlComponent: React.FC<Props> = ({
 
   const nameIdentifierFormat = Form.useWatch('nameIdentifierFormat', form)
 
-  const handleSuccessfullSave = ({ response: { samlSigninUrl } }: ApiActionResponse<{ samlSigninUrl?: string }>) => {
-    if (samlSigninUrl) {
-      window.open(samlSigninUrl)
-    } else {
-      message.success(I18n.t('administration.saml_settings.successfully_saved_msg'), 6)
-    }
+  const handleSuccessfullSave = () => {
+    message.success(I18n.t('administration.saml_settings.successfully_saved_msg'), 6)
   }
 
   const samlSettingData = samlSetting.emailPipetext ? samlSetting
@@ -152,7 +147,7 @@ const SamlComponent: React.FC<Props> = ({
                 loading={isSaving}
                 className="mb-16"
               >
-                {I18n.t('administration.saml_settings.verify_and_save')}
+                {I18n.t('administration.saml_settings.save')}
               </Button>
             </>
           )}

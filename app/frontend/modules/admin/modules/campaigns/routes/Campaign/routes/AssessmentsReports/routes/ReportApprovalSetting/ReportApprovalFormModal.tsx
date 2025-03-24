@@ -138,6 +138,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           >
             <Select
               showSearch
+              disabled={!!reportApprovalSettings}
               onSearch={fetchReportDebounce}
               notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
@@ -194,6 +195,30 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                     </Form.Item>
                     <div className="weight-600">
                       {I18n.t('administration.campaigns.assessment_reports.report_approval.do_not_send_notifications')}
+                    </div>
+                  </Space>
+                  <Space align="center">
+                    <Form.Item
+                      name="allowQcBulkSubmit"
+                      valuePropName="checked"
+                      noStyle
+                    >
+                      <Switch />
+                    </Form.Item>
+                    <div className="weight-600">
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.allow_qc_bulk_submit')}
+                    </div>
+                  </Space>
+                  <Space align="center">
+                    <Form.Item
+                      name="allowBulkApprove"
+                      valuePropName="checked"
+                      noStyle
+                    >
+                      <Switch />
+                    </Form.Item>
+                    <div className="weight-600">
+                      {I18n.t('administration.campaigns.assessment_reports.report_approval.allow_bulk_approve')}
                     </div>
                   </Space>
                 </Space>),

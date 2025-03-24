@@ -15,7 +15,7 @@ const SAVE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/SAVE_DEVELOPMENT_ACTIONS'
 const FETCH_DIRECT_REPORTS = 'IDP/MY_PLAN/FETCH_DIRECT_REPORTS'
 const UPDATE_DEVELOPMENT_ACTION_PROGRESS = 'IPD/MY_PLAN/UPDATE_DEVELOPMENT_ACTION_PROGRESS'
 const UPDATE_USER_IDP_SKILL = 'IDP/MY_PLAN/UPDATE_USER_IDP_SKILL'
-const ADD_USER_IDP_SKILLS = 'IDP/MY_PLAN/ADD_USER_IDP_SKILLS'
+const SAVE_USER_IDP_SKILLS = 'IDP/MY_PLAN/SAVE_USER_IDP_SKILLS'
 const FETCH_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_IDP_SKILLS'
 
 interface UserIdpPlan {
@@ -132,12 +132,12 @@ export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActio
   },
 })
 
-export const addUserIdpSkills = skills => ({
-  type: ADD_USER_IDP_SKILLS,
+export const saveUserIdpSkills = (skills, category: string | null = null) => ({
+  type: SAVE_USER_IDP_SKILLS,
   request: {
-    url: '/user_idp_skills',
+    url: '/user_idp_skills/save_skills',
     method: 'post',
-    body: { skills },
+    body: { skills, category },
   },
 })
 
@@ -248,12 +248,26 @@ export const HANDLERS = {
     ...state,
     status: action.response.status,
   }),
-  [ADD_USER_IDP_SKILLS]: (state, action) => {
-    const addedUserIdpSkills = _.keyBy(action.response.data, 'id')
+  [SAVE_USER_IDP_SKILLS]: (state, action) => {
+    const { category: requestedCategory, data: skills } = action.response
+
+    const { userIdpDevelopmentActions, userIdpSkills } = state
+
+    // userIdpSkills which are not part of the requested category, they should be kept as is
+    // only when requestedCategory is null, all userIdpSkills should be kept as is
+    const userIdpSkillsUnmodified = _.pickBy(userIdpSkills,
+      ({ category: cat }) => !requestedCategory || cat !== requestedCategory)
+
+    const updatedUserIdpSkills = _.keyBy(skills, 'id')
+
+    // keep only those userIdpDevelopmentActions which are part of the updated userIdpSkills list
+    const updatedUserIdpDevelopmentActions = _.pickBy(userIdpDevelopmentActions,
+      ({ userIdpSkillId }) => userIdpSkillsUnmodified[userIdpSkillId] || updatedUserIdpSkills[userIdpSkillId])
 
     return {
       ...state,
-      userIdpSkills: { ...state.userIdpSkills, ...addedUserIdpSkills },
+      userIdpSkills: { ...userIdpSkillsUnmodified, ...updatedUserIdpSkills },
+      userIdpDevelopmentActions: updatedUserIdpDevelopmentActions,
     }
   },
   [UPDATE_USER_IDP_SKILL]: (state, action) => {

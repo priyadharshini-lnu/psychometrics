@@ -31,19 +31,33 @@ describe EndUser::UserIdpSkillsController, type: :controller do
     end
   end
 
-  describe 'POST create' do
-    it 'creates user idp skills' do
-      post :create, params: { skills: [{ skill_id: skill.id }, { skill_id: skill2.id }] }
+  describe 'POST save_skills' do
+    it 'saves selected idp skills for the plan' do
+      post :save_skills, params: { skills: [{ skill_id: skill.id }, { skill_id: skill2.id }] }
 
       expect(response.status).to eq(200)
       expect(user.user_idp_skills.count).to eq(2)
     end
 
     it 'returns error if skill is invalid' do
-      post :create, params: { skills: [{ skill_id: nil }] }
+      post :save_skills, params: { skills: [{ skill_id: nil }] }
 
       expect(response.status).to eq(422)
       expect(response.parsed_body).to include({ 'skill_id' => ["can't be blank"] })
+    end
+
+    it 'returns error if category is invalid' do
+      post :save_skills, params: { skills: [{ skill_id: skill.id }], category: 'invalid' }
+
+      expect(response.status).to eq(422)
+      expect(response.parsed_body).to include({ 'category' => ['is invalid'] })
+    end
+
+    it 'removes skills not included in the request' do
+      post :save_skills, params: { skills: [{ skill_id: skill.id }] }
+
+      expect(user.user_idp_skills.count).to eq(1)
+      expect(user.user_idp_skills.first.skill_id).to eq(skill.id)
     end
   end
 

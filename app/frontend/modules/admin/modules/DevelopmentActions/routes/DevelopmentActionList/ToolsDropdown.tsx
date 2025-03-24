@@ -8,15 +8,9 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
-type Permissions = {
-  import: boolean
-  export_global: boolean
-  export: boolean
-}
-
 type Props = {
   onClick: (action: string) => void,
-  permissions: Permissions,
+  permissions: { [key: string]: boolean; } | undefined,
 }
 
 export const ToolsDropdown: React.FC<Props> = ({
@@ -38,27 +32,70 @@ export const ToolsDropdown: React.FC<Props> = ({
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   const menuItems:ItemType[] = []
 
-  if (permissions.import) {
-    menuItems.push({
+  const importMenuItems:ItemType[] = []
+
+  if (permissions?.import) {
+    importMenuItems.push({
       key: 'import_development_actions',
       label: I18n.t('administration.development_actions.import_development_actions'),
     })
   }
 
-  if (permissions.export_global) {
-    menuItems.push({
-      key: 'export_global_development_actions',
-      label: I18n.t('administration.development_actions.export_global_development_actions'),
+  if (permissions?.importTranslations) {
+    importMenuItems.push({
+      key: 'import_translations',
+      label: I18n.t('administration.development_actions.import_development_actions_translations'),
     })
   }
 
-  if (permissions.export) {
-    menuItems.push({
+  const exportMenuItems:ItemType[] = []
+
+  if (permissions?.export) {
+    exportMenuItems.push({
       key: 'export_development_action',
       label: I18n.t('administration.development_actions.export_development_actions'),
     })
   }
 
+
+  if (permissions?.exportTranslations) {
+    exportMenuItems.push({
+      key: 'export_development_action_translations',
+      label: I18n.t('administration.development_actions.export_development_action_translations'),
+    })
+  }
+
+  if (permissions?.exportGlobal) {
+    exportMenuItems.push({
+      key: 'export_global_development_actions',
+      label: I18n.t('administration.development_actions.export_global_development_actions'),
+    })
+  }
+
+  if (permissions?.exportGlobalTranslations) {
+    exportMenuItems.push({
+      key: 'export_global_development_actions_translations',
+      label: I18n.t('administration.development_actions.export_global_development_actions_translations'),
+    })
+  }
+
+  if (permissions?.import) {
+    menuItems.push({
+      type: 'group',
+      key: 'import_group',
+      label: I18n.t('common.actions.import'),
+      children: importMenuItems,
+    })
+  }
+
+  if (permissions?.export) {
+    menuItems.push({
+      type: 'group',
+      key: 'export_group',
+      label: I18n.t('common.actions.export'),
+      children: exportMenuItems,
+    })
+  }
 
   const handleMenuClick = ({ key }) => {
     onClick(key)

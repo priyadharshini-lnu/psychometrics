@@ -5,11 +5,11 @@ export const CLEAR_FLASH_MESSAGE = 'CLEAR_FLASH_MESSAGE'
 export const clearFlashMessage = () => ({
   type: CLEAR_FLASH_MESSAGE,
 })
-
 interface Flash {
   type: string
   value: string
 }
+
 type State = Flash[]
 
 export const defaultState: State = []

@@ -1,0 +1,4 @@
+"Name","Code","Scoring Strategy","Description","Precision","Disabled","Use Percentage"
+"Quality Assurance","QAC","questions","Quality assurance factors","1","false","false"
+"Performance","PERF","questions_sum","Performance evaluation factors","2","false","true"
+"Security","SEC","questions_percentage","Security assessment factors","1","false","true"

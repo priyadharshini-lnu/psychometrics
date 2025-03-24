@@ -11,6 +11,12 @@
             = link_to [:new, :administration, :dimension, resource_class.model_name.singular.to_sym], remote: true, class: 'btn btn-default'
               span.fa.fa-plus
               = t('.new')
+          = link_to factors_modal_administration_dimension_path(params[:dimension_id]),
+                    remote: true,
+                    class: 'btn btn-default',
+                    id: 'import-factors-btn' do
+            span.fa.fa-upload
+            = 'Import Factors'
 
           = link_to translations_administration_dimension_path(params[:dimension_id]), remote: true, class: 'btn btn-default'
             ' Translations

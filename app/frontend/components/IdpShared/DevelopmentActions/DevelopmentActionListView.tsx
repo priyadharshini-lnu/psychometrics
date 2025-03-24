@@ -3,7 +3,7 @@ import {
   Avatar, Button, Flex, Typography, Divider,
 } from 'antd'
 import _ from 'lodash'
-import { PlusOutlined } from '@ant-design/icons'
+import { EditOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
 import { useMedia } from 'use-media'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
@@ -187,10 +187,8 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
             {editMode ? (
               <>
                 <Divider className="mt-4" />
-                <Button onClick={() => onAddMoreSkills(category)} className="ps-0" type="link">
-                  <PlusOutlined />
-                  {' '}
-                  {I18n.t('idp.development_actions.add_skill')}
+                <Button onClick={() => onAddMoreSkills(category)} icon={<EditOutlined />} className="ps-0" type="link">
+                  {I18n.t('idp.development_actions.manage_skills')}
                 </Button>
               </>
             ) : null}

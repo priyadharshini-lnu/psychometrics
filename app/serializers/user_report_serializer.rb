@@ -3,7 +3,7 @@
 class UserReportSerializer < Panko::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
              :report_data, :permissions, :comments, :require_approval, :campaign_factor_results, :module_overrides,
-             :user_report_events, :user, :options
+             :user_report_events, :user, :options, :threesixty_campaign_id
 
   has_one :report, serializer: ReportSerializer
 
@@ -49,6 +49,10 @@ class UserReportSerializer < Panko::Serializer
         user_report: object
       }
     ).serialize(context[:threesixty_campaign])
+  end
+
+  def threesixty_campaign_id
+    object.threesixty_campaign&.id
   end
 
   def results

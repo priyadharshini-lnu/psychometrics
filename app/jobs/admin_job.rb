@@ -59,6 +59,7 @@ class AdminJob < ApplicationJob
     import_external_campaign_scoring: AdminJobs::ImportExternalCampaignScoring,
     export_factor_translations: AdminJobs::ExportFactorTranslations,
     import_factor_translations: AdminJobs::ImportFactorTranslations,
+    import_factors: AdminJobs::ImportFactors,
     normalize_factor_scores: AdminJobs::NormalizeFactorScores,
     export_occupations: AdminJobs::ExportOccupations,
     export_user_report_events: AdminJobs::ExportUserReportEvents,
@@ -69,7 +70,9 @@ class AdminJob < ApplicationJob
     export_development_actions: AdminJobs::ExportDevelopmentActionsJob,
     assign_idp_to_users: AdminJobs::AssignIdpToUsers,
     export_norm: AdminJobs::NormExport,
-    import_norm: AdminJobs::ImportNorm
+    import_norm: AdminJobs::ImportNorm,
+    import_development_action_translations: AdminJobs::ImportDevelopmentActionTranslationsJob,
+    export_development_action_translations: AdminJobs::ExportDevelopmentActionTranslationsJob
   }.freeze
 
   def perform(record)

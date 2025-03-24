@@ -10,7 +10,7 @@ import { closeModal, getData } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import {
   toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage, saveAssessment, updateExtra,
-  toggleInstructions,
+  toggleInstructions, toggleEnableSave,
 } from '~/modules/survey/core/builder/assessment/actions'
 import { updateBlocks } from '~/modules/survey/core/builder/assessment/block/actions'
 import { TYPES as CAMPAIGN_TYPES } from '~/constants/campaign'
@@ -32,12 +32,13 @@ const connecter = connect(
     updateExtra,
     toggleInstructions,
     updateBlocks,
+    toggleEnableSave,
   },
 )
 
 const SettingsModalComponent = ({
   assessment, close, toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage,
-  updateExtra, toggleInstructions, blocks, updateBlocks,
+  updateExtra, toggleInstructions, blocks, updateBlocks, toggleEnableSave,
 }) => {
   const { extra } = assessment
   const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
@@ -94,6 +95,12 @@ const SettingsModalComponent = ({
           <Space>
             <Switch checked={assessment.enable_back} onChange={toggleEnableBack} />
             {I18n.t('administration.assessments.settings.enable_back')}
+          </Space>
+        </Col>
+        <Col span={24}>
+          <Space>
+            <Switch checked={assessment?.options?.enable_save} onChange={toggleEnableSave} />
+            {I18n.t('administration.assessments.settings.enable_save')}
           </Space>
         </Col>
 

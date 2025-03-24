@@ -152,6 +152,7 @@ Rails.application.routes.draw do
       resource :sessions, only: %i[new create], path: '',
                path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
         get 'sign_out', to: 'sessions#destroy', as: :destroy
+        post 'authenticate_user', to: 'sessions#authenticate_user'
       end
       resource :passwords, as: :password
       resource :invitations, only: [:update], as: :invitation do
@@ -612,8 +613,10 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :translations
+        get :factors_modal
         post :export_translations
         post :import_translations
+        post :import_factors
       end
       ### FACTORS
       resources :factors do
@@ -1031,7 +1034,9 @@ as: :simulation_progress_notification
     resources :skills, only: %i[index], controller: 'end_user/skills'
     resources :idp_template_skills, only: %i[index], controller: 'end_user/idp_template_skills'
     resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
-    resources :user_idp_skills, only: %i[index create update], controller: 'end_user/user_idp_skills'
+    resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills' do
+      post :save_skills, on: :collection
+    end
     resources :direct_reports, only: %i[index], controller: 'end_user/direct_reports' do
       put :update_status, on: :member
     end
@@ -1385,6 +1390,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :report_approvals, only: %i[index] do
             collection do
+              post :bulk_approve
               get :search_campaign
               get :search_report
               get :search_user
@@ -1422,6 +1428,12 @@ as: :simulation_progress_notification
             collection do
               post :import
               post :export
+              post :import_translations
+              post :export_translations
+              post :import_global
+              post :import_global_translations
+              post :export_global
+              post :export_global_translations
             end
           end
 
