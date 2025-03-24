@@ -6,6 +6,7 @@ export const NormTR = t.type({
   disabled: t.boolean,
   createdAt: t.string,
   updatedAt: t.string,
+  normType: t.string,
   meta: t.type({
     permissions: t.type({
       edit: t.boolean,

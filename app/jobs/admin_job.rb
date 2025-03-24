@@ -69,6 +69,8 @@ class AdminJob < ApplicationJob
     import_development_actions: AdminJobs::ImportDevelopmentActionsJob,
     export_development_actions: AdminJobs::ExportDevelopmentActionsJob,
     assign_idp_to_users: AdminJobs::AssignIdpToUsers,
+    export_norm: AdminJobs::NormExport,
+    import_norm: AdminJobs::ImportNorm,
     import_development_action_translations: AdminJobs::ImportDevelopmentActionTranslationsJob,
     export_development_action_translations: AdminJobs::ExportDevelopmentActionTranslationsJob
   }.freeze

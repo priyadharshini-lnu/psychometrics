@@ -1200,6 +1200,10 @@ as: :simulation_progress_notification
           jsonapi_resources :norms do
             post :copy
             post :editor
+            post :export
+            collection do
+              post :import
+            end
           end
           jsonapi_resources :tags
           jsonapi_resources :external_assessments

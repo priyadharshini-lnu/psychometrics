@@ -1,13 +1,14 @@
 import React from 'react'
 import _ from 'lodash'
-import { MenuProps, Switch } from 'antd'
+import * as t from 'io-ts'
+import { MenuProps, Switch, message } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Norm } from '~/modules/admin/modules/client/core/norms'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { RemoveResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import { RemoveResource, UpdateResource, MemberAction } from '~/hooks/useResources/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -15,6 +16,7 @@ import { RemoveNormModal } from './RemoveNormModal'
 import { NormsFormModal } from './NormsFormModal'
 import CopyNomsFormModal from './CopyNormsFormModal'
 import NormFilter from './NormFilter'
+import { NormImportModal } from './NormImportModal'
 
 const { I18n } = window
 
@@ -22,6 +24,7 @@ const MODALS = {
   NormsFormModal,
   RemoveNormModal,
   CopyNomsFormModal,
+  NormImportModal,
 }
 
 const connecter = connect(
@@ -38,12 +41,14 @@ type Props = PropsFromRedux
 const NormTable: React.FC<Props> = ({ openModal }) => {
   const { resource } = useResourceContext<Norm>()
   const {
-    getSortOrder, updateResource, removeResource, createResource,
+    getSortOrder, updateResource, removeResource, memberAction,
   } = resource
 
   return (
     <>
-      <NormFilter openModal={() => openModal('NormsFormModal', { addNorm: createResource })} />
+      <NormFilter
+        openModal={openModal}
+      />
       <Resource.Table pagination>
         <Resource.Column<Norm>
           title={I18n.t('common.column.id')}
@@ -110,9 +115,9 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
               menu={
                     getActionMenuProps({
                       norm,
-                      updateResource,
                       removeResource,
                       openModal,
+                      memberAction,
                     })
                 }
             />
@@ -132,21 +137,34 @@ const ActiveSwitch: React.FC<{ norm: Norm, updateResource: UpdateResource<Norm> 
 )
 interface ActionMenuData {
     norm: Norm
-    updateResource: UpdateResource<Norm>
     removeResource: RemoveResource
     openModal: (modalName: string, modalProps: unknown) => void
+    memberAction: MemberAction
 }
 
 const getActionMenuProps = ({
-  norm, updateResource, removeResource, openModal,
+  norm, removeResource, openModal, memberAction,
 }: ActionMenuData): MenuProps => {
-  const { id, name, meta: { permissions } } = norm
+  const {
+    id, name, meta: { permissions }, normType,
+  } = norm
+
+  const exportNorm = (normId: string) => memberAction({
+    id: normId,
+    action: 'export',
+    method: 'post',
+    responseType: t.literal('ok'),
+  }).then(() => {
+    message.success(I18n.t('administration.norms.export.success_msg'))
+  })
 
   const menuItems = [
     permissions.edit && { key: 'edit', label: I18n.t('common.actions.edit') },
     permissions.delete && { key: 'remove', label: I18n.t('common.actions.remove') },
     permissions.copy && { key: 'copy', label: I18n.t('common.actions.copy') },
-    permissions.export && { key: 'export_norm', label: I18n.t('administration.norms.sidebar.export') },
+    permissions.export && normType === 'five_scale' && {
+      key: 'export_norm', label: I18n.t('administration.norms.sidebar.export'),
+    },
     permissions.editor && {
       key: 'norm_editor',
       label: (
@@ -159,9 +177,7 @@ const getActionMenuProps = ({
 
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
-      return openModal('NormsFormModal', {
-        updateNorm: updateResource, norm,
-      })
+      return openModal('NormsFormModal', { norm })
     }
     if (key === 'remove') {
       return openModal('RemoveNormModal', {
@@ -170,6 +186,9 @@ const getActionMenuProps = ({
     }
     if (key === 'copy') {
       return openModal('CopyNomsFormModal', { norm })
+    }
+    if (key === 'export_norm') {
+      return exportNorm(norm.id)
     }
   }
 
