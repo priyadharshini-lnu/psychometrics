@@ -36,7 +36,7 @@ module AdminJobs
       end
 
       profile_custom_fields.each do |field|
-        row << (user.user_profile.custom_fields || {})[field.question_id.to_s]
+        row << (user.user_profile.custom_fields || {})[field.question_id]
       end
 
       row << user.authenticated_sign_in_url if export_sign_in_url?
