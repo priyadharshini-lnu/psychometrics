@@ -38,8 +38,9 @@ module AdminJobs
     end
 
     def records_for_export
-      campaign_users = CampaignUser.includes(:campaign, :user, :workshop_subjects, :workshop_invited_subjects).
-                       where(campaigns: { project_id: project.id })
+      campaign_users = CampaignUser.
+                       preload(:workshop_subjects, :workshop_invited_subjects).
+                       includes(:campaign, :user).where(campaigns: { project_id: project.id })
 
       unless include_inactive_users
         campaign_users = campaign_users.where(active: true)
