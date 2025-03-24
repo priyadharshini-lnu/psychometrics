@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Form, Input, Select, Spin,
 } from 'antd'
+import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import ResourceFormModal from '~/components/ResourceFormModal'
-import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
 import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { Norm } from '~/modules/admin/modules/client/core/norms'
@@ -14,6 +14,8 @@ const { I18n } = window
 
 interface Props {
   norm: AdditionRelationshipAttribute<Norm>
+  addNorm: CreateResource<Norm>
+  updateNorm: UpdateResource<Norm>
   close(): void
 }
 
@@ -24,6 +26,8 @@ type OptionsType = {
 
 export const NormsFormModal: React.FC<Props> = ({
   norm,
+  addNorm,
+  updateNorm,
   close,
 }) => {
   const {
@@ -33,8 +37,6 @@ export const NormsFormModal: React.FC<Props> = ({
   const {
     data: dimensions, fetch: fetchDimensions, isLoading: isDimensionsLoading,
   } = useResources<Dimension>('dimensions')
-
-  const { resource } = useResourceContext<Norm>()
 
   const getClients = (): OptionsType[] => {
     if (!norm || !norm.owner || clients.find(d => norm?.owner?.id === d.id)) {
@@ -61,8 +63,8 @@ export const NormsFormModal: React.FC<Props> = ({
       scrollToFirstError
       modalProps={{ width: 620 }}
       request={{
-        createResource: resource.createResource,
-        updateResource: resource.updateResource,
+        createResource: addNorm,
+        updateResource: updateNorm,
       }}
     >
       {() => (

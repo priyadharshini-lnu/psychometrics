@@ -1,3 +1,4 @@
+
 import { Button } from 'antd'
 import { PlusOutlined, ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -6,22 +7,12 @@ import { Norm } from '~/modules/admin/modules/client/core/norms'
 
 const { I18n } = window
 
-type Props = {
-  openModal: (modalName: string, modalProps?: unknown) => void
-  }
-
-export const NormFilter: React.FC<Props> = ({
+export const NormFilter: React.FC<{ openModal: () => void }> = ({
   openModal,
 }) => {
   const { resource } = useResourceContext<Norm>()
 
   const tableLoading = resource.isLoading('fetch')
-
-  const handleMenuClick = ({ key }) => {
-    if (key === 'import') {
-      openModal('NormImportModal')
-    }
-  }
 
   return (
     <>
@@ -35,11 +26,10 @@ export const NormFilter: React.FC<Props> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {I18n.t('administration.norms.index.import')}
+                  {I18n.t('sheet.menu.import')}
                 </a>
               ),
             }],
-            onClick: handleMenuClick,
           }}
           hideForEmptyMenu
           innerElement={(
@@ -47,13 +37,13 @@ export const NormFilter: React.FC<Props> = ({
               <ToolOutlined />
               <DownOutlined />
             </Button>
-          )}
+                    )}
         />
 
         <Button
           type="primary"
           disabled={tableLoading}
-          onClick={() => openModal('NormsFormModal')}
+          onClick={openModal}
         >
           <PlusOutlined />
           {I18n.t('common.actions.create')}

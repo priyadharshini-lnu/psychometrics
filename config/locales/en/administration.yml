@@ -1898,10 +1898,6 @@ en:
           import: Import
       errors:
         invalid_format: Invalid File format
-        norm:
-          dimension_not_found: Dimension %{dimension_name} for %{client_name} was not found
-          factor_mismatch: Dimension %{dimension_name} does not have factor %{factor_name}
-          not_set_dimension: The name of the Dimension should be written in second cell of the first row
         result:
           answer_invalid: "[Row %{row}] Answer for qid %{question_id} is invalid: %{error}"
           date_errors:
@@ -2194,13 +2190,6 @@ en:
         factors: Factors
         inplace_title: Enter value
         title: Norm Editor
-      export:
-        success_msg: Norm export job scheduled successfully. Please check the status in the notifications.
-      import:
-        download_example_csv: Sample Norms CSV
-        select_file_validation: Please select an owner and a file before submitting.
-        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
-        title: Norms import
       index:
         import: Import
         new: Add

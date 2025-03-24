@@ -762,7 +762,6 @@ en:
         export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
         export_factor_translations: Export Factor Translations
-        export_norm: Export Norm
         export_occupations: Occupations Export
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
@@ -779,7 +778,6 @@ en:
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_factors: Import Factors
-        import_norm: Import Norm
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
