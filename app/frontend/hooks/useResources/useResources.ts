@@ -1,5 +1,6 @@
 import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
+import { message } from 'antd'
 import _ from 'lodash'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
@@ -263,6 +264,26 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       setRequestStatus(requestKey, formattedErrors)
     })
   }
+
+  const uploadFileAction = (action: string, body: FormData) => new Promise(async (resolve, reject) => {
+    try {
+      const response = await window.fetch(`${resourceUrl}/${action}`, {
+        method: 'post',
+        body,
+      })
+
+      const result = await response.json()
+      if (result === 'ok') {
+        resolve(result)
+      } else {
+        const { error, errors } = result
+        reject(errors || error)
+      }
+    } catch (error) {
+      message.error(error.message)
+      reject(error.message)
+    }
+  })
 
   const updateMultipleRecord = (camelizedResponse: R[]) => {
     setState((previousState: ResourceState<R[], M>) => {
@@ -587,5 +608,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     memberAction,
     collectionAction,
     addRelationships,
+    uploadFileAction,
   }
 }

@@ -1423,6 +1423,12 @@ as: :simulation_progress_notification
             collection do
               post :import
               post :export
+              post :import_translations
+              post :export_translations
+              post :import_global
+              post :import_global_translations
+              post :export_global
+              post :export_global_translations
             end
           end
 

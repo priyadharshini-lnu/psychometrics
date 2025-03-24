@@ -77,7 +77,9 @@ class AdminJobRecord < ApplicationRecord
     data_report_export: 56,
     import_development_actions: 57,
     export_development_actions: 58,
-    import_factors: 59
+    import_factors: 59,
+    import_development_action_translations: 60,
+    export_development_action_translations: 61
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
