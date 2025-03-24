@@ -10,7 +10,10 @@ DeviseSamlAuthenticatable::SamlConfig.class_eval do
               else
                 Devise.idp_settings_adapter
               end
-    adapter.new(request.subdomain)
+
+    project_subdomain = request.subdomain
+    project_subdomain = request.subdomain.gsub(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
+    adapter.new(project_subdomain)
   end
 end
 
