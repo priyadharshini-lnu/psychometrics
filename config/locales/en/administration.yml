@@ -2055,10 +2055,15 @@ en:
           tenant_id: Tenant ID
           user: User
         mettl:
+          apiBaseUrl: API Endpoint
+          apiBaseUrlRequired: API Endpoint is required.
           privateKey: Private Key
           privateKeyRequired: Private key is required.
           publicKey: Public Key
           publicKeyRequired: Public key is required.
+          servers:
+            mettl_eu: Europe
+            mettl_india: India
       names:
         hogan: HOGAN
         iiht: IIHT

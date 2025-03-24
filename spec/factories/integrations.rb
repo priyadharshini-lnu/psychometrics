@@ -14,6 +14,7 @@ FactoryBot.define do
       name { 'mettl' }
       config do
         {
+          api_base_url: 'https://api.mettl.com',
           public_key: Base64.encode64(Encryptor.encrypt('public_key_sample')),
           private_key: Base64.encode64(Encryptor.encrypt('public_key_sample'))
         }

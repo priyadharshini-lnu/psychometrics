@@ -47,7 +47,7 @@ module Mettl
     end
 
     def api_endpoint
-      "#{Settings.mettl.base_api_url}/v2/schedules/#{access_key}/candidates/#{mettl_user_assessment.email}"
+      "#{api_base_url}/v2/schedules/#{access_key}/candidates/#{mettl_user_assessment.email}"
     end
 
     def mettl_user_assessment

@@ -40,8 +40,6 @@ storage:
 iiht:
   token_api_url: <%= ENV.fetch('IIHT_TOKEN_API_URL', nil) %>
   base_api_url: <%= ENV.fetch('IIHT_BASE_API_URL', nil) %>
-mettl:
-  base_api_url: <%= ENV.fetch('METTL_BASE_API_URL', nil) %>
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>

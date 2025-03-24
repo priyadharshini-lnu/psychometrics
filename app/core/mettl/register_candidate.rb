@@ -84,7 +84,7 @@ module Mettl
     end
 
     def api_endpoint
-      "#{Settings.mettl.base_api_url}/v2/schedules/#{access_key}/candidates"
+      "#{api_base_url}/v2/schedules/#{access_key}/candidates"
     end
 
     def access_key

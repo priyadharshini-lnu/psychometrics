@@ -29,6 +29,7 @@ module Administration
           optional(:provider).maybe(:str?)
           optional(:public_key).maybe(:str?)
           optional(:private_key).maybe(:str?)
+          optional(:api_base_url).maybe(:str?)
         end
       end
     end
