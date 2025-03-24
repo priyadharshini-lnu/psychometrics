@@ -6,6 +6,7 @@ describe Integrations::MettlForm do
   let(:attributes) do
     {
       name: 'mettl',
+      api_base_url: 'https://api.mettl.com',
       active: true,
       private_key: 'private_key_sample',
       public_key: 'public_key_sample'
@@ -28,6 +29,7 @@ describe Integrations::MettlForm do
         name: 'mettl',
         active: true,
         config: {
+          api_base_url: 'https://api.mettl.com',
           private_key: Base64.encode64(Encryptor.encrypt(attributes[:private_key])),
           public_key: Base64.encode64(Encryptor.encrypt(attributes[:public_key]))
         }
