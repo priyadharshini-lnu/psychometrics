@@ -36,5 +36,9 @@ module Mettl
     def public_key
       config['public_key']
     end
+
+    def api_base_url
+      config['api_base_url']
+    end
   end
 end

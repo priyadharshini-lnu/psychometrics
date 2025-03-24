@@ -62,7 +62,7 @@ module Mettl
     end
 
     def api_endpoint
-      "#{Settings.mettl.base_api_url}/v2/assessments"
+      "#{api_base_url}/v2/assessments"
     end
   end
 end

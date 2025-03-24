@@ -6,7 +6,7 @@ module Administration
       include Rails.application.routes.url_helpers
 
       attributes :id, :name, :active, :details, :user, :tenant_id, :tenancy_name, :provider,
-                 :private_key, :public_key
+                 :private_key, :public_key, :api_base_url
 
       def details
         if object.iiht?
@@ -61,6 +61,10 @@ module Administration
 
       def private_key
         object.mettl_config['private_key']
+      end
+
+      def api_base_url
+        object.mettl_config['api_base_url']
       end
     end
   end

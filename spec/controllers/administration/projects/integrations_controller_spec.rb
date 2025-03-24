@@ -24,6 +24,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
   let(:mettl_valid_params) do
     {
       name: 'mettl',
+      api_base_url: 'https://api.mettl.com',
       active: true,
       public_key: 'public_key',
       private_key: 'private_key'
@@ -44,7 +45,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           integration.config.except('password'),
           'provider' => nil,
           'public_key' => nil,
-          'private_key' => nil
+          'private_key' => nil,
+          'api_base_url' => nil
         ).merge(
           'details' => {
             'webhook_url' => webhooks_iiht_url(
@@ -95,6 +97,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'tenant_id' => nil,
           'tenancy_name' => nil,
           'user' => nil,
+          'api_base_url' => nil,
           'public_key' => nil,
           'private_key' => nil
         ).merge(
@@ -130,6 +133,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
 
         integration = project.reload.integrations.find_by(name: 'mettl')
         expect(integration).not_to be_nil
+        expect(integration.mettl_config['api_base_url']).to eq('https://api.mettl.com')
         expect(integration.mettl_config['public_key']).to eq('public_key')
         expect(integration.mettl_config['private_key']).to eq('private_key')
         expect(integration.active).to be(true)
