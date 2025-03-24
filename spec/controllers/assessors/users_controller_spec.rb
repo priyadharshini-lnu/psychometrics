@@ -43,6 +43,12 @@ RSpec.describe Assessors::UsersController, type: :controller do
   end
 
   describe 'show' do
+    before do
+      allow_any_instance_of(ActiveStorage::Current).to receive(:url_options).and_return(
+        { host: 'localhost', port: 3000 }
+      )
+    end
+
     it 'returns users details' do
       get :show, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
 
@@ -84,6 +90,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
       create(:campaign_report, campaign: assessors_campaign, report: reports[1], assessor_access: false)
 
       user_report1 = create(:user_report, campaign: assessors_campaign, user: subject_user, report: reports[0])
+      create(:user_report_pdf, :with_pdf, user_report: user_report1)
       create(:user_report, campaign: assessors_campaign, user: subject_user, report: reports[1])
 
       get :show, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
@@ -93,7 +100,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'id' => user_report1.id,
         'name' => reports[0].name,
         'internal' => true,
-        'report_url' => nil,
+        'report_url' => user_report1.pdf_download_url,
         'status' => 'not_prepared'
       }])
     end
