@@ -7,6 +7,10 @@ module Api
         can_manage_report_approval?
       end
 
+      def bulk_approve?
+        can_manage_report_approval?
+      end
+
       def search_campaign?
         can_manage_report_approval?
       end

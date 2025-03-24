@@ -241,7 +241,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           { url: resourceUrl },
         )
       }
-      const { data: responseData, error, errors } = response
+      const {
+        data: responseData, error, errors, meta,
+      } = response
+
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
         captureSchemaValidationError(data)
@@ -251,6 +254,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
         } else {
           const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
           resolve(camelizedData)
+          camelizedData.meta = meta // hack to get around the fact that the meta is not being passed
           if (args.updateStore && args.responseType === responseType) {
             updateIndividualRecord(camelizedData)
           } else if (args.updateStore) {

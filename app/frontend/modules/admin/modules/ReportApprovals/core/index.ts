@@ -11,6 +11,8 @@ export const TaskTR = t.type({
   approvalStatusUpdatedAt: t.union([t.string, t.null]),
   qcAt: t.union([t.string, t.null]),
   approvedAt: t.union([t.string, t.null]),
+  allowQcBulkSubmit: t.boolean,
+  allowBulkApprove: t.boolean,
   campaign: t.type({
     id: t.string,
   }),
@@ -28,6 +30,7 @@ export const TaskTR = t.type({
   }), t.undefined]),
 })
 
+export const TasksTR = t.array(TaskTR)
 
 export const CampaignTR = t.type({
   id: t.string,

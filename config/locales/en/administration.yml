@@ -815,6 +815,8 @@ en:
       actions: Manage
       assessment_reports:
         report_approval:
+          allow_bulk_approve: Allow Bulk Approve
+          allow_qc_bulk_submit: Allow QC Bulk Submit
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
           do_not_send_notifications: Do Not Send Notifications
@@ -2599,6 +2601,7 @@ en:
       toggle_status:
         successfully: Updated successfully.
     report_approval:
+      bulk_approve_success: "%{sent_for_approval} sent for approval. %{approved} reports approved. %{ignored} reports require manual approval due to QC changes/comments."
       columns:
         actions: Actions
         approval_status: Approval Status

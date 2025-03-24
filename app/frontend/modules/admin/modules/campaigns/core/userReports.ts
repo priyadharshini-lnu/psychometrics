@@ -90,10 +90,12 @@ interface UserReportDetails {
     email?: string
   }
   report: {
-    default_language?: string,
+    available_languages: {code: string}[]
+    default_language?: {code: string},
     name?: string,
     locales?: object,
-    loaded: boolean
+    loaded: boolean,
+    category?: string
   }
   options: {
     reports: {approval: {}}
@@ -106,6 +108,7 @@ interface UserReportDetails {
   userReportEvents: UserReportEvent[]
   richEditorOpened: boolean
   campaignId?: number
+  threesixtyCampaignId?: number
   permissions: {
     download: boolean
     startQc: boolean
@@ -136,6 +139,7 @@ const defaultState: State = {
     options: { reports: { approval: {} } },
     report: {
       loaded: false,
+      available_languages: [],
     },
     requireApproval: false,
     results: [],

@@ -1386,6 +1386,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :report_approvals, only: %i[index] do
             collection do
+              post :bulk_approve
               get :search_campaign
               get :search_report
               get :search_user

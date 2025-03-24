@@ -4527,7 +4527,9 @@ CREATE TABLE public.report_approval_settings (
     approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
     approvers_can_edit boolean DEFAULT false,
     approvers_not_required boolean DEFAULT false,
-    do_not_send_notifications boolean DEFAULT false
+    do_not_send_notifications boolean DEFAULT false,
+    allow_bulk_approve boolean DEFAULT false,
+    allow_qc_bulk_submit boolean DEFAULT false
 );
 
 
@@ -15163,6 +15165,14 @@ ALTER TABLE ONLY public.sheet_row_data
 
 
 --
+-- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports
+    ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_saved_filters fk_rails_e25c5bac06; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15473,8 +15483,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250318075204'),
 ('20250304084629'),
 ('20250304060832'),
+('20250228123228'),
 ('20250228060708'),
 ('20250226084133'),
 ('20250224095420'),
@@ -16254,4 +16266,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

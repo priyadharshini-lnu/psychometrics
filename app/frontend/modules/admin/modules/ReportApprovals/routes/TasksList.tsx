@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
-  Table, Space, Pagination, Button, Checkbox, Menu, Input,
+  Table, Space, Pagination, Button, Checkbox, Menu, Input, Flex,
+  message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -14,7 +15,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { get as getCurrentUser } from '~/core/currentUser'
-import { Campaign } from '../core'
+import { Campaign, Task, TasksTR } from '../core'
 import { Tabs } from './Tabs'
 import styles from './TasksList.less'
 
@@ -29,7 +30,7 @@ const connecter = connect(
   {},
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = PropsFromRedux & Omit<ReturnType<typeof useResources>, 'fetch'> & {type?: 'myTasks' | 'approved'}
+type Props = PropsFromRedux & Omit<ReturnType<typeof useResources<Task>>, 'fetch'> & { type?: 'myTasks' | 'approved' }
 
 type FilterOption = {id: string, name: string}
 type FilterOptions = {
@@ -42,8 +43,8 @@ type FilterOptions = {
 const searchFilters = ['user_full_name_cont', 'user_email_cont']
 
 const TasksListComponent: React.FC<Props> = ({
-  data, meta, isLoading, getSortOrder, handleTableChange, changePage, type,
-  currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery,
+  data, setData, meta, isLoading, getSortOrder, handleTableChange, changePage, type,
+  currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery, collectionAction,
 }) => {
   const tableLoading = isLoading('fetch')
   const { collectionAction: search } = useResources<Campaign>('report_approvals')
@@ -209,10 +210,59 @@ const TasksListComponent: React.FC<Props> = ({
     filterIcon: searchFilters.includes(filter) ? <SearchOutlined /> : null,
   })
 
+  const [selected, setSelected] = useState<string[]>([])
+
+  const selectAll = (checked) => {
+    if (!checked) { return setSelected([]) }
+
+    const ids = data.filter(({ allowQcBulkSubmit, allowBulkApprove }) => (
+      (type === 'myTasks' && allowQcBulkSubmit) || (type === 'approved' && allowBulkApprove)
+    )).map(({ id }) => id)
+    setSelected(ids)
+  }
+
+  const select = (id) => {
+    setSelected([...selected, id])
+  }
+
+  const unselect = (id) => {
+    setSelected(selected.filter(i => i !== id))
+  }
+
+  const submitAll = () => {
+    collectionAction({
+      action: 'bulk_approve',
+      method: 'post',
+      body: { ids: selected },
+      responseType: TasksTR,
+      apiConfig: {
+        include: ['campaign', 'report', 'user', 'approver_user', 'qc_user'],
+        fields: {
+          users: ['name', 'email'],
+          campaigns: ['name'],
+          reports: ['name'],
+        },
+      },
+    }).then((response: (Task[] & {meta: { approved: number, ignored: number, qc_completed: number } })) => {
+      const newData = data.map(reportApproval => response.find(ra => ra.id === reportApproval.id) || reportApproval)
+        .filter(reportApproval => reportApproval.approvalStatus !== 'approved')
+      setData(newData)
+      const { meta } = response
+      message.success(I18n.t('administration.report_approval.bulk_approve_success',
+        { approved: meta.approved, ignored: meta.ignored, sent_for_approval: meta.qc_completed }))
+
+      setSelected([])
+    })
+  }
 
   const TasksTable = (
     <>
       <FilterComponent />
+      {type === 'myTasks' && (
+        <Flex justify="end" align="center" className="m-5">
+          <Button type="primary" onClick={submitAll} disabled={!selected.length}>Submit or Approve All</Button>
+        </Flex>
+      )}
       <Table
         rowKey={row => row?.id ?? -1}
         dataSource={data}
@@ -221,6 +271,23 @@ const TasksListComponent: React.FC<Props> = ({
         onChange={handleTableChange}
         scroll={{ x: true }}
       >
+        {type === 'myTasks' && (
+          <Column
+            title={<Checkbox onChange={e => selectAll(e.target.checked)} />}
+            fixed="left"
+            render={({ id, allowQcBulkSubmit, allowBulkApprove }) => {
+              if (allowQcBulkSubmit || allowBulkApprove) {
+                return (
+                  <Checkbox
+                    checked={selected.includes(id)}
+                    onChange={e => (e.target.checked ? select(id) : unselect(id))}
+                  />
+                )
+              }
+              return null
+            }}
+          />
+        )}
         <Column
           title={I18n.t('common.column.id')}
           dataIndex="id"

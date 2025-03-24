@@ -2,6 +2,15 @@
 
 module Api
   class V2::Administration::ReportApprovalsController < Api::V2::Administration::BaseController
+    def bulk_approve
+      report_approvals, meta = ReportApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
+
+      json = serialize_resources(report_approvals, ::Api::V2::Administration::ReportApprovalResource)
+      json[:meta] = meta
+
+      render json: json
+    end
+
     def search_campaign
       campaings = Campaign.joins(:report_approvals).merge(
         ::ReportApprovalSetting.report_approvals(current_user)
