@@ -376,12 +376,12 @@
     "@babel/helper-plugin-utils" "^7.25.9"
 
 "@babel/runtime-corejs2@^7.0.0":
-  version "7.22.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.22.5.tgz#2d71228a9287e6fe07ce2e8743699ab79e549ac0"
-  integrity sha512-GdiGeK5z8VKeJhqSQBgZr3xCMjAdborh5Ppn/0jQ0gtzw11UiZZAwDFZi0ZKvZ76ULooLqJn/OlrfcGZv7Pmzg==
+  version "7.26.10"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.26.10.tgz#46c1289c6f181391235fb00af13e6c246cb5c8ae"
+  integrity sha512-JfoPiD7f/vvd/PaOfu5cr9CyzwDMPg4T0nX3MQr6IgTq49DhjvUcmjmjA7j6+xih1Evq+QKZnge1SoIlYozv/Q==
   dependencies:
     core-js "^2.6.12"
-    regenerator-runtime "^0.13.11"
+    regenerator-runtime "^0.14.0"
 
 "@babel/runtime-corejs3@^7.10.2":
   version "7.26.10"
