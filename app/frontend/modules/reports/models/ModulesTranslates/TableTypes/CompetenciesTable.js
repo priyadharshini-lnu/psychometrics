@@ -5,7 +5,8 @@ class Module extends BaseTableTranslate {
   textFields = ['name']
 
   exportLocales () {
-    const result = {}
+    const columnTranslationKeys = super.exportTableColumnLocales()
+    const result = { ...columnTranslationKeys }
     if (this.module.props.milestones) {
       _.each(this.module.props.milestones, (condition) => {
         this.textFields.forEach((field) => {
