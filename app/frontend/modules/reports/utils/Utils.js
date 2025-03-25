@@ -46,6 +46,8 @@ export default {
   },
 
   removeTags (html) {
+    if (!html) { return '' }
+
     const div = document.createElement('div')
     div.innerHTML = html.replace(/<br>|(<\/(?:p|li|div|ul|ol)>)/g, '$1 ')
     return div.innerText
