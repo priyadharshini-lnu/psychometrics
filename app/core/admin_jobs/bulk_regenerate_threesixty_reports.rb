@@ -4,14 +4,12 @@ module AdminJobs
   class BulkRegenerateThreesixtyReports < AdminJobs::Base
     def call
       campaign_options = threesixty_campaign.option
-
       user_reports = threesixty_campaign.campaign.user_reports
 
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         user_reports.pluck(:user_id),
         threesixty_campaign
       )
-
       user_reports_ids = user_reports.includes(:subject).find_each(batch_size: 100).
                          with_object([]) do |user_report, ids|
         ids << user_report.id if Threesixty::Subjects::IsReportAvailable.call!(
@@ -21,7 +19,6 @@ module AdminJobs
         )
         ids
       end
-
       record.update(data: record.data.merge(user_reports_ids: user_reports_ids))
 
       user_reports = campaign.user_reports.where(id: user_reports_ids)
@@ -70,7 +67,8 @@ module AdminJobs
 
     def options
       {
-        lang: campaign_report.effective_default_language
+        locales: record.data['locales'] || [campaign_report.effective_default_language],
+        force_regenerate: record.data['force_regenerate']
       }
     end
   end

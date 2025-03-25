@@ -1313,7 +1313,7 @@ en:
       factor_benchmark_score: Factor Benchmark Score
       import_raw: Raw
       import_scoring: Scoring
-      regenerate: Regenerate Reports
+      regenerate: Generate Reports
       rescore: Rescore Assessment
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
@@ -1443,7 +1443,7 @@ en:
       bulk_download: Bulk Download
       export_data: Export Data
     bulk_download:
-      error: Bulk download is limited to 1000 report files. Current selection has %{count} report files. Please adjust the start and end dates to reduce number of report files to download
+      error: Bulk download is limited to 1000 report files. Current selection has %{count} report files. Please adjust the start and end dates to reduce number of report files to download.
     column:
       assessor_access: Assessor Access
       auto_assign: Auto Assign
@@ -1461,6 +1461,7 @@ en:
       report: Report
       report_bundle_placeholder: Select a report bundle
     messages:
+      bulk_download_error: Bulk download is limited to 1000 report files. If you have selected many langauges, please reduce it.
       bulk_download_successful: Bulk report download job was scheduled successfully
       export_report_data_scheduled: Report data export job was scheduled successfully
     modals:
@@ -3399,7 +3400,7 @@ en:
         hold_report: Hold report
         login: Login
         mark_as_done: Mark as done
-        regenerate_report: Regenerate report
+        regenerate_report: Generate Report
         release_report: Release report
         remove_campaign: Remove from campaign
         remove_report_approval: Remove report approval

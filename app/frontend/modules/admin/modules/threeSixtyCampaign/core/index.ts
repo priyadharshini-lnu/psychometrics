@@ -40,19 +40,23 @@ export const rescoreAssessment = (campaignId: number) => ({
   },
 })
 
-export const regenerateReports = (campaignId: number) => ({
+export const regenerateReports = (
+  campaignId: number, selectedLocales: string[], forceRegenerate: boolean,
+) => ({
   type: REGENERATE_REPORTS,
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/regenerate_reports`,
+    body: { selectedLocales, forceRegenerate },
   },
 })
 
-export const bulkDownloads = (campaignId: number) => ({
+export const bulkDownloads = (campaignId: number, selectedLocales: string[]) => ({
   type: BULK_DOWNLOADS,
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/bulk_download`,
+    body: { selectedLocales },
   },
 })
 

@@ -109,18 +109,27 @@ export const update = (campaignId: number, subjectId: number, data: UpdateData) 
   },
 })
 
-export const downloadReport = (campaignId: number, subjectId: number) => ({
+export const downloadReport = (campaignId: number, subjectId: number, lang: string) => ({
   type: DOWNLOAD_REPORT,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports/download`,
+    body: {
+      lang,
+    },
   },
 })
 
-export const regenerateReport = (campaignId: number, subjectId: number) => ({
+export const regenerateReport = (
+  campaignId: number, subjectId: number, selectedLocales: string[], forceRegenerate: boolean,
+) => ({
   type: REGENERATE_REPORT,
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports/regenerate`,
+    body: {
+      selectedLocales,
+      forceRegenerate,
+    },
   },
 })
 
@@ -157,7 +166,14 @@ type UpdateType = ApiActionResponse<Subject>
 type RemoveType = ApiActionResponse<Subject>
 
 const HANDLERS = {
-  [FETCH_SUBJECTS]: (state: State, { response: { subjects, permissions, total } }: FetchSubjectsType) => ({
+  [FETCH_SUBJECTS]: (
+    state: State,
+    {
+      response: {
+        subjects, permissions, total,
+      },
+    }: FetchSubjectsType,
+  ) => ({
     ...state, list: subjects, permissions, total,
   }),
   [FILL_SUBJECTS]: (state: State, { subjects }: FillSubjectsType) => setIn(state, ['form', 'attrs'], subjects),

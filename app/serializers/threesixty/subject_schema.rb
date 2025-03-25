@@ -8,7 +8,7 @@ module Threesixty
   class SubjectSchema < BaseSchema
     def self.schema(_, _)
       Dry::Schema.JSON do
-        config.validate_keys = true
+        config.validate_keys = false
 
         required(:id).filled(:int?)
         required(:status).filled(:str?)
@@ -35,6 +35,7 @@ module Threesixty
           required(:regenerate_report).filled(:bool?)
           required(:reset_password).filled(:bool?)
         end
+        required(:report_download_url).maybe(:hash?)
         required(:user).hash(UserSchema.schema(_, _))
       end
     end

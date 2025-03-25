@@ -21,7 +21,11 @@ module Administration
           query.page(params[:page]), threesixty_campaign, current_user
         )
         total = query.count
-        render json: { subjects: subjects, total: total, permissions: permissions }
+        render json: {
+          subjects: subjects,
+          total: total,
+          permissions: permissions
+        }
       end
 
       def search

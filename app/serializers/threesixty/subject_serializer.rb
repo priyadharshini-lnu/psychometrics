@@ -2,7 +2,8 @@
 
 module Threesixty
   class SubjectSerializer < Panko::Serializer
-    attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions, :user_report_id
+    attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions, :user_report_id,
+               :report_download_url
 
     has_one :user, serializer: UserSerializer
 
@@ -67,6 +68,18 @@ module Threesixty
           campaign_id: campaign_id
         }
       )
+    end
+
+    def report_download_url
+      campaign = ::Threesixty::Campaign.find_by(campaign_id: campaign_id)
+      campaign_report = campaign&.campaign_report
+      return {} unless campaign_report
+
+      expected_locales = [campaign_report.default_language, *campaign_report.available_languages].uniq
+      user_report = object.user_reports.find_by(campaign_id: campaign_id)
+      expected_locales.index_with do |locale|
+        user_report&.pdf_download_url(locale: locale)
+      end
     end
 
     private

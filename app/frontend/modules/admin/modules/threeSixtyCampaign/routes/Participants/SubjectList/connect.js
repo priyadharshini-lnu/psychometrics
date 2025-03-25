@@ -14,16 +14,25 @@ import routeUtils from '~/utils/route'
 export default connect(
   ({
     threeSixtyCampaign: {
-      subjects: { list, total, permissions },
-      campaignDetails: { campaignId: currentCampaignId },
+      subjects: {
+        list, total, permissions,
+      },
+      campaignDetails: {
+        campaignId: currentCampaignId, reportAvailableLanguages, reportDefaultLanguage,
+        reportIcon, reportName,
+      },
     },
   }) => ({
     subjects: list,
     total,
     permissions,
+    reportAvailableLanguages,
+    reportDefaultLanguage,
     page: routeUtils.getPage(),
     searchTerm: routeUtils.getSearchTerm(),
     currentCampaignId,
+    reportIcon,
+    reportName,
   }),
   dispatch => ({
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),
@@ -31,8 +40,10 @@ export default connect(
     update: (campaignId, subjectId, data) => dispatch(update(campaignId, subjectId, data)),
     remove: (campaignId, subjectId, removeLicenceUsage) => dispatch(remove(campaignId, subjectId, removeLicenceUsage)),
     removeUser: (campaignId, userId) => dispatch(removeUser(campaignId, userId)),
-    downloadReport: (campaignId, subjectId) => dispatch(downloadReport(campaignId, subjectId)),
-    regenerateReport: (campaignId, subjectId) => dispatch(regenerateReport(campaignId, subjectId)),
+    downloadReport: (campaignId, subjectId, lang) => dispatch(downloadReport(campaignId, subjectId, lang)),
+    regenerateReport: (campaignId, subjectId, selectedLocales, forceRegenerate) => dispatch(
+      regenerateReport(campaignId, subjectId, selectedLocales, forceRegenerate),
+    ),
     editUser: user => dispatch(editUser(user)),
   }),
 )

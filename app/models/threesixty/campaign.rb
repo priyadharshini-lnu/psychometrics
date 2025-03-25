@@ -51,5 +51,13 @@ module Threesixty
     def available_relationships
       Relationship.where(campaign_id: [campaign.id, nil]).where.not(name: 'Assessor')
     end
+
+    def campaign_report
+      @campaign_report ||= CampaignReport.includes(:report).find_by!(report_id: report_id, campaign_id: campaign_id)
+    end
+
+    def campaign_report_default_locale
+      campaign_report.effective_default_language
+    end
   end
 end

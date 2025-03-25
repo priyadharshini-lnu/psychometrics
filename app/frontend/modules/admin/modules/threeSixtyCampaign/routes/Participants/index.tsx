@@ -23,11 +23,16 @@ import FactorBenchmarkScoreModal from '~/modules/admin/modules/threeSixtyCampaig
 
 import styles from './styles.less'
 import ImportRawModal from './ImportRawModal'
-
+import BulkDownloadModal from '../../components/BulkDownloadModal'
+import RegenerateReportModal from '../../components/RegenerateReportModal'
+import DownloadReportModal from '../../components/DownloadReportModal'
 
 const MODALS = {
   FactorBenchmarkScoreModal,
   ImportRawModal,
+  BulkDownloadModal,
+  RegenerateReportModal,
+  DownloadReportModal,
 }
 
 const routes = [

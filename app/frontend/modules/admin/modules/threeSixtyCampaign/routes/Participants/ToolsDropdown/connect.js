@@ -8,9 +8,13 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 export default connect(
   ({
     threeSixtyCampaign: {
-      campaignDetails: { dimensionId },
+      campaignDetails: {
+        dimensionId, reportAvailableLanguages, reportDefaultLanguage, reportName, reportIcon,
+      },
     },
-  }) => ({ dimensionId }),
+  }) => ({
+    dimensionId, reportAvailableLanguages, reportDefaultLanguage, reportName, reportIcon,
+  }),
   {
     resetCampaign,
     resetAllNominations,

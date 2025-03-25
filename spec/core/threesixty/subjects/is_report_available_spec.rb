@@ -9,7 +9,7 @@ describe Threesixty::Subjects::IsReportAvailable do
 
   it 'returns true if report is available' do
     allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
-      with(threesixty_subject, option, subject_evaluator_counters).
+      with(threesixty_subject, option, subject_evaluator_counters, false).
       and_return(Threesixty::Participants::GetReportStatus::RELEASED)
 
     result = described_class.call!(threesixty_subject, option, subject_evaluator_counters)
@@ -19,7 +19,7 @@ describe Threesixty::Subjects::IsReportAvailable do
 
   it 'returns false if report is not available' do
     allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
-      with(threesixty_subject, option, subject_evaluator_counters).
+      with(threesixty_subject, option, subject_evaluator_counters, false).
       and_return(Threesixty::Participants::GetReportStatus::ON_HOLD)
 
     result = described_class.call!(threesixty_subject, option, subject_evaluator_counters)
