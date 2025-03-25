@@ -303,15 +303,18 @@ assessments and reports.'
         let(:project_id) { project.id }
         let(:user_id) { user.id }
         before do
-          campaign = create(:campaign, project: project, name: 'Super campaign', id: 1111)
-          create(:campaign_user, campaign: campaign, user: user)
+          @user_campaign = create(:campaign, project: project, name: 'Super campaign', id: 1111)
+          @other_campaign = create(:campaign, project: project, name: 'Other campaign', id: 2222)
+          create(:campaign_user, campaign: @user_campaign, user: user)
         end
         run_test! do |response|
           campaigns = JSON.parse(response.body)
+          expect(campaigns.length).to eq(1)
           expect(campaigns.first['name']).to eq 'Super campaign'
           expect(campaigns.first['id']).to eq 1111
           expect(campaigns.first).to have_key('created_at')
           expect(campaigns.first).to have_key('updated_at')
+          expect(campaigns.map { |c| c['id'] }).not_to include(@other_campaign.id)
         end
       end
     end

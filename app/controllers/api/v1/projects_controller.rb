@@ -3,10 +3,21 @@
 module Api
   module V1
     class ProjectsController < Api::V1::BaseController
-      skip_before_action :ensure_project, only: [:create]
+      skip_before_action :ensure_project, only: %i[create index]
       DESIGN_ATTRIBUTES = %i[logo background secondary_logo login_box_position background_color
                              logo_alt_text secondary_logo_alt_text].freeze
       SECURITY_SETTINGS = %i[enforce_strong_password tfa_enabled].freeze
+
+      def index
+        client = Client.find_by(id: params[:client_id])
+
+        projects = client.projects
+        render json: Panko::ArraySerializer.new(
+          projects,
+          each_serializer: Api::V1::ProjectSerializer
+        ).to_a
+      end
+
       def show
         render json: Api::V1::ProjectSerializer.new.serialize(project)
       end

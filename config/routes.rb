@@ -1080,6 +1080,15 @@ as: :simulation_progress_notification
             end
           end
         end
+
+        # Add the new project campaigns route
+        resources :projects, only: [] do
+          resources :campaigns, only: [:index], module: 'projects'
+        end
+
+        resources :clients, only: [] do
+          resources :projects, only: [:index]
+        end
         resources :projects, only: %i[show create update] do
           resources :campaigns, only: %i[show create update] do
             get :assessments_reports, on: :member, action_name: 'get_assessments_reports'
