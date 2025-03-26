@@ -40,7 +40,6 @@ import Icon, {
   PauseOutlined as AntdEyePauseOutlined,
   EditOutlined as AntdEditOutlined,
   ExpandOutlined as AntdExpandOutlined,
-  SettingOutlined as AntdSettingsOutlined,
   MonitorOutlined as AntdMonitorOutlined,
   MenuFoldOutlined as AntdMenuFoldOutlined,
   MenuUnfoldOutlined as AntdMenuUnfoldOutlined,
@@ -98,7 +97,6 @@ export const CaretRightOutlined = withAccessibilityProps(AntdCaretRightOutlined)
 export const PauseOutlined = withAccessibilityProps(AntdEyePauseOutlined)
 export const EditOutlined = withAccessibilityProps(AntdEditOutlined)
 export const ExpandOutlined = withAccessibilityProps(AntdExpandOutlined)
-export const SettingsOutlined = withAccessibilityProps(AntdSettingsOutlined)
 export const MonitorOutlined = withAccessibilityProps(AntdMonitorOutlined)
 export const MenuFoldOutlined = withAccessibilityProps(AntdMenuFoldOutlined)
 export const MenuUnfoldOutlined = withAccessibilityProps(AntdMenuUnfoldOutlined)

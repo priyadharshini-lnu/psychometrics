@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 class BaseTranslateTranslate {
   constructor (module) {
     this.module = module
@@ -13,20 +11,6 @@ class BaseTranslateTranslate {
   exportLocales () {
     // eslint-disable-next-line no-console
     console.error('should be implemented')
-  }
-
-  exportTableColumnLocales () {
-    const { sourceType } = this.module.props
-    const tableColumnsDataPath = sourceType ? `tableColumns.${sourceType}` : 'tableColumns'
-    const result = {}
-    if (this.module.props.tableColumns) {
-      _.each(_.get(this.module.props, tableColumnsDataPath), (tableColumn, key) => {
-        const exportKeyPath = sourceType ? `tableColumns-${sourceType}-${key}-label` : `tableColumns-${key}-label`
-        result[exportKeyPath] = tableColumn.label
-      })
-    }
-
-    return result
   }
 }
 

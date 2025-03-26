@@ -1,5 +1,3 @@
-import { TableColumn } from '../core/interfaces/TableColumn'
-
 export interface BaseProps<Type = ''> {
   type: Type extends 'Table'
     ? TypeTables
@@ -20,8 +18,6 @@ export interface BaseProps<Type = ''> {
     width: string
   }
   colors: Array<{ id: number; color: string }>
-  tableColumns?: TableColumn
-  defaultTableColumns?: TableColumn
 }
 export interface Factor {
   id: number

@@ -271,8 +271,6 @@ export default {
       },
       HighestLowest: {
         sourceType: 'Question',
-        defaultTableColumns: null,
-        tableColumns: null,
       },
       ThreeSixtyDefault: {
         sourceType: 'Factor',
@@ -283,8 +281,6 @@ export default {
         sourceType: 'Factor',
         factorIds: [],
         questionsChoices: [],
-        defaultTableColumns: null,
-        tableColumns: null,
       },
       SingleValue: {
         sourceType: 'Factor',
@@ -329,16 +325,9 @@ export default {
             name: 'Range 2',
           },
         ],
-        defaultTableColumns: null,
-        tableColumns: null,
       },
       VideoResponse: {
         filter: [],
-      },
-      ThreeSixtyReportSummary: {
-        defaultTableColumns: null,
-        tableColumns: null,
-        sourceType: null,
       },
     },
   },

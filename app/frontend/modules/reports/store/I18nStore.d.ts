@@ -24,8 +24,6 @@ declare class I18nStore {
   tSavilleFactorName (assessment_id: number, factor: { name: string, id: string }): string
 
   exportReport(): any // eslint-disable-line  @typescript-eslint/no-explicit-any
-
-  tTableColumns (moduleId, sourceType, key): string
 }
 
 export = new I18nStore()
