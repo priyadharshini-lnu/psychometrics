@@ -47,7 +47,7 @@ const Preview = ({
     forceUpdate()
   }
 
-  if (!loaded) { return null }
+  if (!loaded || !visiblePagesRef.current) { return null }
   const visiblePages = visiblePagesRef.current
 
   return (

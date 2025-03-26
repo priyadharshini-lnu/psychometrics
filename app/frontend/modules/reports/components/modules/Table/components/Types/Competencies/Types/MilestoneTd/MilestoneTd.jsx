@@ -5,7 +5,7 @@ import styles from './styles.less'
 import FilterAvatar from '../../FilterAvatar'
 
 export default function MilestoneTd ({
-  milestoneIndex, milestone: { min, max }, model, filters, columnWidth,
+  milestoneIndex, milestone: { min, max }, model, filters, columnWidth, dataCellHeight,
 }) {
   const { showLines, scoreBackgroundColor } = model.props
   const filteredResults = filters.filter(
@@ -19,7 +19,7 @@ export default function MilestoneTd ({
   const locale = I18nStore.locale || 'en'
   const direction = locale === 'ar' ? 'right' : 'left'
   return (
-    <td className={styles.td} width={`${columnWidth}%`}>
+    <td className={styles.td} width={`${columnWidth}%`} style={{ height: dataCellHeight }}>
       <div className={styles.filters}>
         {filters.map((filter) => {
           const result = _.get(keyedResults, filter.id, false)
