@@ -12,7 +12,7 @@ module Administration
         user = User.find_by(email: params[:user][:email])
 
         if user
-          if user.superadmin?
+          if user.saml_enforced_for_admins?
             redirect_to new_saml_user_session_url
           else
             session[:user_email] = user.email
@@ -49,7 +49,7 @@ module Administration
       end
 
       def ensure_redirect_superadmin_to_saml
-        return unless Settings.features.enable_okta_login_for_admins
+        return if Settings.features.disable_saml_for_admins
 
         user = User.find_by(email: params[:user][:email])
         if user&.superadmin?

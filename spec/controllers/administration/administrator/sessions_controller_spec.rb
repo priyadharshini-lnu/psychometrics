@@ -9,6 +9,7 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
 
     context 'when user is found and is a superadmin' do
       before do
+        allow(Settings.features).to receive(:disable_saml_for_admins).and_return(false)
         post :authenticate_user, params: { user: { email: superadmin.email } }
       end
 

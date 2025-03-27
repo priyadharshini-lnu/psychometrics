@@ -47,6 +47,8 @@ aws:
 hashids_length:
   anonym: 8
   default: 6
+saml_enforced_email_domains:
+  - mercer.com
 features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>
@@ -62,7 +64,7 @@ features:
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
   disable_session_timeout: <%= ENV.fetch('DISABLE_SESSION_TIMEOUT', 'false') == 'true' %>
   inline_translation_enabled: <%= ENV.fetch('INLINE_TRANSLATION_ENABLED', 'false') == 'true' %>
-  enable_okta_login_for_admins: <%= ENV.fetch('ENABLE_OKTA_LOGIN_FOR_ADMINS', 'false') == 'true' %>
+  disable_saml_for_admins: <%= ENV.fetch('DISABLE_SAML_FOR_ADMINS', 'false') == 'true' %>
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>

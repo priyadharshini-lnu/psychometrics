@@ -15483,6 +15483,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250326104351'),
 ('20250324124118'),
 ('20250318075204'),
 ('20250304084629'),
@@ -16267,3 +16268,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
