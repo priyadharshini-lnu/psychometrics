@@ -160,4 +160,73 @@ describe CampaignUser, type: :model do
       end
     end
   end
+
+  describe 'Associations' do
+    describe '#workshop_invited_subjects' do
+      let(:campaign) { create(:campaign) }
+      let(:other_campaign) { create(:campaign) }
+      let(:user) { create(:user) }
+      let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+      let!(:other_campaign_user) { create(:campaign_user, campaign: other_campaign, user: user) }
+
+      it 'only includes workshop_invited_subjects from the current campaign' do
+        # Create an invite in the current campaign
+        current_invite = create(:workshop_invite, campaign: campaign)
+        current_subject = create(:workshop_invited_subject, workshop_invite: current_invite, user: user)
+
+        # Create an invite in a different campaign
+        other_invite = create(:workshop_invite, campaign: other_campaign)
+        other_subject = create(:workshop_invited_subject, workshop_invite: other_invite, user: user)
+
+        # Verify only the current campaign's subject is included
+        expect(campaign_user.workshop_invited_subjects).to include(current_subject)
+        expect(campaign_user.workshop_invited_subjects).not_to include(other_subject)
+
+        # Verify the other campaign user only sees their invites
+        expect(other_campaign_user.workshop_invited_subjects).to include(other_subject)
+        expect(other_campaign_user.workshop_invited_subjects).not_to include(current_subject)
+      end
+
+      it 'returns empty when user is in campaign but not invited' do
+        # Create an invite in the other campaign only
+        other_invite = create(:workshop_invite, campaign: other_campaign)
+        create(:workshop_invited_subject, workshop_invite: other_invite, user: user)
+
+        # Verify the current campaign user sees no invites
+        expect(campaign_user.workshop_invited_subjects).to be_empty
+      end
+    end
+
+    describe '#workshop_subjects' do
+      let(:campaign) { create(:campaign) }
+      let(:other_campaign) { create(:campaign) }
+      let(:user) { create(:user) }
+      let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+      let!(:other_campaign_user) { create(:campaign_user, campaign: other_campaign, user: user) }
+
+      it 'only includes workshop_subjects from the current campaign' do
+        # Create a workshop subject in the current campaign
+        current_subject = create(:workshop_subject, campaign: campaign, user: user)
+
+        # Create a workshop subject in a different campaign
+        other_subject = create(:workshop_subject, campaign: other_campaign, user: user)
+
+        # Verify only the current campaign's subject is included
+        expect(campaign_user.workshop_subjects).to include(current_subject)
+        expect(campaign_user.workshop_subjects).not_to include(other_subject)
+
+        # Verify the other campaign user only sees their subjects
+        expect(other_campaign_user.workshop_subjects).to include(other_subject)
+        expect(other_campaign_user.workshop_subjects).not_to include(current_subject)
+      end
+
+      it 'returns empty when user is in campaign but has no workshop subjects' do
+        # Create a workshop subject only in the other campaign
+        create(:workshop_subject, campaign: other_campaign, user: user)
+
+        # Verify the current campaign user sees no subjects
+        expect(campaign_user.workshop_subjects).to be_empty
+      end
+    end
+  end
 end

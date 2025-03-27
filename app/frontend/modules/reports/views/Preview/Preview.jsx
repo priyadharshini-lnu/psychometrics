@@ -40,14 +40,14 @@ const Preview = ({
     visiblePagesRef.current = ((skipLogic
       ? PageList.list
       : _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))))
+    forceUpdate()
   }, [])
 
   const insertPaginationPage = (module, pagination) => {
     visiblePagesRef.current = (applyPagination(visiblePagesRef.current, module, pagination))
     forceUpdate()
   }
-
-  if (!loaded) { return null }
+  if (!loaded || !visiblePagesRef.current) { return null }
   const visiblePages = visiblePagesRef.current
 
   return (
