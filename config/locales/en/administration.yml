@@ -2396,6 +2396,7 @@ en:
         column:
           name: Name
           normalize_factor_scores: Normalize Factor Scores
+          user_result_validity_in_days: Result Validity
         delete:
           content: Are you sure you want to delete assessment '%{name}'?
           success: Assessment '%{name}' was deleted successfully.
@@ -2404,6 +2405,7 @@ en:
           assessment_placeholder: Select Assessment
           assessment_required: Assessment is required
           normalize_factor_scores: Normalize Factor Scores
+          user_result_validity_in_days: Result Validity in Days
       design: Design
       general: General
       privacy: Privacy

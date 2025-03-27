@@ -4303,7 +4303,8 @@ CREATE TABLE public.project_assessments (
     project_id bigint NOT NULL,
     normalize_factor_scores boolean DEFAULT false,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_result_validity_in_days integer
 );
 
 
@@ -15486,6 +15487,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250326104351'),
 ('20250324124118'),
 ('20250318075204'),
+('20250320091944'),
 ('20250304084629'),
 ('20250304060832'),
 ('20250228123228'),

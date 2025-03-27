@@ -26,6 +26,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   MEETING = 'meeting'
   SIMULATION = 'simulation'
 
+  DEFAULT_SCORE_VALIDITY_PERIOD = 18.months.in_days
+
   CATEGORIES_TYPES = [
     PSYCHOMETRIC,
     ORGANISATIONAL,
@@ -386,5 +388,12 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def translations_migrated?
     Settings.features.inline_translation_enabled && translations_migrated
+  end
+
+  def score_validity_period(project_id: nil)
+    return nil if hogan?
+    return DEFAULT_SCORE_VALIDITY_PERIOD unless project_id
+
+    project_assessments.find_by(project_id: project_id)&.user_result_validity_in_days || DEFAULT_SCORE_VALIDITY_PERIOD
   end
 end
