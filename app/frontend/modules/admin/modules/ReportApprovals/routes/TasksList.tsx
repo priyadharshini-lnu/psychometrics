@@ -243,13 +243,17 @@ const TasksListComponent: React.FC<Props> = ({
           reports: ['name'],
         },
       },
-    }).then((response: (Task[] & {meta: { approved: number, ignored: number, qc_completed: number } })) => {
+    }).then((response: (Task[] & {responseMeta: { approved: number, ignored: number, qc_completed: number } })) => {
       const newData = data.map(reportApproval => response.find(ra => ra.id === reportApproval.id) || reportApproval)
         .filter(reportApproval => reportApproval.approvalStatus !== 'approved')
       setData(newData)
-      const { meta } = response
+      const { responseMeta } = response
       message.success(I18n.t('administration.report_approval.bulk_approve_success',
-        { approved: meta.approved, ignored: meta.ignored, sent_for_approval: meta.qc_completed }))
+        {
+          approved: responseMeta.approved,
+          ignored: responseMeta.ignored,
+          sent_for_approval: responseMeta.qc_completed,
+        }))
 
       setSelected([])
     })
