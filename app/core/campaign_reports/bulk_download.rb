@@ -31,11 +31,15 @@ module CampaignReports
     private
 
     def bulk_download_with_lambda
-      file_details = user_reports_with_pdf.each_with_object([]) do |ur, acc|
-        acc << {
-          s3FilePath: ur.pdf_path,
-          zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize(preserve_case: true)}-#{ur.campaign_id}.pdf" # rubocop:disable Layout/LineLength
-        }
+      file_details = user_reports_with_pdf.preload_pdf_attachments.each_with_object([]) do |ur, acc|
+        effective_locales = job_record.data['locales'] || [ur.effective_default_language]
+        effective_locales.each do |locale|
+          pdf_path = ur.pdf_path(locale: locale)
+          pdf_path && (acc << {
+            s3FilePath: pdf_path,
+            zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize(preserve_case: true)}-#{ur.campaign_id}-lan-#{locale}.pdf" # rubocop:disable Layout/LineLength
+          })
+        end
       end
       file_name = "bulk-report-#{Time.zone.today.strftime('%F')}"
       webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
@@ -68,34 +72,58 @@ module CampaignReports
     end
 
     def download_user_reports_from_s3
-      job_record.update!(total_tasks: user_reports_with_pdf.length)
-      user_reports_with_pdf.each do |user_report|
-        download_report(user_report)
-        job_record.increment_completed_tasks!
+      user_reports_with_pdf.preload_pdf_attachments.each do |user_report|
+        effective_locales = job_record.data['locales'] || [user_report.effective_default_language]
+        effective_locales.each do |locale|
+          pdf_url = user_report.pdf_url(locale: locale)
+          next unless pdf_url
+
+          download_report(pdf_url, user_report, locale)
+          job_record.increment_completed_tasks!
+        end
       end
     end
 
-    def download_report(user_report)
-      url = URI(user_report.pdf_url)
-      IO.copy_stream(URI(url.to_s).open, download_path(user_report))
+    def download_report(pdf_url, user_report, locale)
+      url = URI(pdf_url)
+      IO.copy_stream(URI(url.to_s).open, download_path(user_report, locale))
     rescue OpenURI::HTTPError
-      Rails.logger.error "Download failed for UserReport with id #{user_report.id}"
+      Rails.logger.error "Download failed for UserReport with id #{user_report.id} and locale #{locale}"
     end
 
-    def download_path(user_report)
+    def download_path(user_report, locale)
       user = user_report.user
       report = user_report.report
+
       dir = bulk_report.input_dir
       dir = File.join(dir, user.email)
-      filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
-
+      filename = "#{user.email}_" \
+                 "#{report.decorate.display_name.parameterize}_" \
+                 "#{Time.zone.today.strftime('%F')}_lan-#{locale}.pdf"
       FileUtils.mkdir_p(dir)
       File.join(dir, filename)
     end
 
     def user_reports_with_pdf
       if job_record.data['is_threesixty'] || user_reports.present?
-        user_reports.where(status: 'prepared').includes(:user, :report)
+        subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+          user_reports.pluck(:user_id),
+          threesixty_campaign
+        )
+        user_report_ids = user_reports.includes(:subject).select do |user_report|
+          (user_report.subject&.evaluation_status == 'completed') &&
+            Threesixty::Subjects::IsReportAvailable.call!(
+              user_report.subject,
+              threesixty_campaign.option,
+              subject_evaluator_counters.dig(user_report.user_id, :completed) || {},
+              job_record.data['is_bulk_action']
+            )
+        end.map(&:id)
+
+        UserReport.with_pdf_attachments.
+          includes(:user, :report).
+          where(id: user_report_ids).
+          where(user_report_pdfs: { locale: job_record.data['locales'] })
       else
         start_date = job_record.data['start_date']
         end_date = job_record.data['end_date']
@@ -109,11 +137,14 @@ module CampaignReports
             include_inactive_users: include_inactive_users
           }
         ).query.pluck(:id)
-
         UserReport.
           includes(:user, :report).
           where(id: user_report_ids)
       end
+    end
+
+    def threesixty_campaign
+      @threesixty_campaign ||= ::Threesixty::Campaign.find_by(campaign_id: job_record.data['campaign_id'])
     end
   end
 end

@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '3.4.2'
 gem 'bundler',                    '~> 2.3.17'
-gem 'rack',                       '~> 2.2.11'
+gem 'rack',                       '~> 2.2.13'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'bootsnap', '>= 1.12.0', require: false
@@ -215,7 +215,7 @@ group :development do
   # TODO: We have forket the gem to just increase the version dependent gem.
   # We can remove this fork and use original gem once the next version of gem is released.
   gem 'meta_request', '~> 0.8.2'
-  gem 'ruby-lsp-rails', '~> 0.2.8'
+  gem 'ruby-lsp-rails', '~> 0.4.0'
   gem 'solargraph', '~>0.45.0'
 end
 group :test do

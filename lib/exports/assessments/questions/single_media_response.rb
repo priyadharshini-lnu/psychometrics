@@ -7,7 +7,7 @@ module Exports
         include ImportExportConst
 
         def self.result(user_result, question, _scoring = false, _export_with_labels = false)
-          media_response = user_result.media_responses.find_by(question: question)
+          media_response = user_result.media_responses.where(question: question).last
           return Utility::Array.ensure_size([], question_header_size(question)) if media_response.nil?
 
           duration = get_duration(user_result, question)

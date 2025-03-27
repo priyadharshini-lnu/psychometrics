@@ -20,6 +20,7 @@ module Api
         campaigns = CampaignUser.includes(:campaign).
                     where(campaign_id: project_campaign_ids, user_id: user.id).
                     map(&:campaign)
+
         render json: Panko::ArraySerializer.new(
           campaigns,
           each_serializer: Api::V1::CampaignSerializer

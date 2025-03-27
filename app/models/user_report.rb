@@ -60,7 +60,6 @@ class UserReport < ApplicationRecord
                          }
 
   workflow_column :approval_status
-
   workflow do # rubocop:disable Metrics/BlockLength
     state :not_ready do
       event :ready, transitions_to: :pending_qc
@@ -211,7 +210,8 @@ class UserReport < ApplicationRecord
     {
       subject: user,
       evaluator: user,
-      campaign: campaign
+      campaign: campaign,
+      threesixty_campaign: threesixty_campaign
     }
   end
 

@@ -9,7 +9,7 @@ class SamlSetting < ApplicationRecord
 
   enum :name_identifier_format, { email: 0, persistent: 1 }, suffix: :name_identifier
 
-  def details(setting_type)
+  def details
     url_options = {
       host: Settings.domain,
       subdomain: project.subdomain,
@@ -17,7 +17,6 @@ class SamlSetting < ApplicationRecord
       port: Settings.port
     }
     setting = attributes.slice('entity_id', 'sso_service_url', 'cert')
-    setting.merge!(test_settings) if setting_type == :test
 
     {
       assertion_consumer_service_url: saml_user_session_url(url_options),
@@ -38,12 +37,8 @@ class SamlSetting < ApplicationRecord
     end
   end
 
-  def make_test_setting_permanent!
-    update!(test_settings.merge(verified: true))
-  end
-
   def saml_login_allowed?
-    verified? && enabled?
+    enabled?
   end
 
   def saml_enforced?

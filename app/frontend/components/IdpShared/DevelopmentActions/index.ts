@@ -43,7 +43,7 @@ export type UserIdpSkill = Omit<Skill, 'category' | 'description'> & {
   skillId: number;
 }
 
-export type SkillWithDevelopmentActions = Skill & {
+export type SkillWithDevelopmentActions = UserIdpSkill & {
   developmentActions: DevelopmentAction[];
 }
 

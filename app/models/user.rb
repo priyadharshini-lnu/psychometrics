@@ -158,6 +158,7 @@ class User < ApplicationRecord
   end
 
   after_create :create_user_profile
+  after_commit :update_disabled_at, on: :update
 
   has_one_time_password(encrypted: true)
 
@@ -298,6 +299,12 @@ class User < ApplicationRecord
 
   def email_validation
     URI::MailTo::EMAIL_REGEXP
+  end
+
+  def update_disabled_at
+    return unless saved_change_to_disabled?
+
+    update_column(:disabled_at, disabled? ? Time.current : nil)
   end
 
   def generate_invitation_token

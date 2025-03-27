@@ -11,27 +11,22 @@ class EndUser::UserIdpSkillsController < ApplicationController
     ).to_a
   end
 
-  def create
-    form = ::Idp::CreateSkillsForm.new(skills_params).with_context(user: current_user)
+  def save_skills
+    skills_form = ::Idp::SaveUserIdpSkillsForm.new(skills_params).with_context(user: current_user)
 
-    skills = []
-    if form.valid?
-      UserIdpSkill.transaction do
-        form.skills.each do |skill|
-          skills << UserIdpSkill.find_or_create_by!(
-            user_idp_plan_id: current_user.active_user_idp_plan.id, skill_id: skill['skill_id']
-          )
-        end
+    ::Idp::SaveUserIdpSkills.call(current_user.active_user_idp_plan, skills_form) do
+      on(:ok) do |skills|
+        render json: {
+          data: ::Panko::ArraySerializer.new(
+            skills,
+            each_serializer: ::EndUser::UserIdpSkillSerializer
+          ).to_a,
+          category: skills_form.category
+        }
       end
-
-      render json: {
-        data: ::Panko::ArraySerializer.new(
-          skills,
-          each_serializer: ::EndUser::UserIdpSkillSerializer
-        ).to_a
-      }
-    else
-      render json: form.errors.messages, status: 422
+      on(:error) do |form|
+        render json: form.errors.messages, status: 422
+      end
     end
   end
 
@@ -50,7 +45,7 @@ class EndUser::UserIdpSkillsController < ApplicationController
   private
 
   def skills_params
-    params.permit(skills: %i[skill_id])
+    params.permit(:category, skills: %i[skill_id])
   end
 
   def update_params

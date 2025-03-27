@@ -15,17 +15,25 @@ const SAVE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/SAVE_DEVELOPMENT_ACTIONS'
 const FETCH_DIRECT_REPORTS = 'IDP/MY_PLAN/FETCH_DIRECT_REPORTS'
 const UPDATE_DEVELOPMENT_ACTION_PROGRESS = 'IPD/MY_PLAN/UPDATE_DEVELOPMENT_ACTION_PROGRESS'
 const UPDATE_USER_IDP_SKILL = 'IDP/MY_PLAN/UPDATE_USER_IDP_SKILL'
-const ADD_USER_IDP_SKILLS = 'IDP/MY_PLAN/ADD_USER_IDP_SKILLS'
+const SAVE_USER_IDP_SKILLS = 'IDP/MY_PLAN/SAVE_USER_IDP_SKILLS'
 const FETCH_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_IDP_SKILLS'
 
 interface UserIdpPlan {
   status: string | null;
   selfRatingEnabled: boolean;
+  skillGapReportAvailable: boolean | null;
   userIdpSkills: Skill[];
   userIdpDevelopmentActions: DevelopmentAction[];
   directReports: object[];
-  AIGeneratedDevelopmentActions: DevelopmentAction[];
+  AIGeneratedDevelopmentActions: Record<number, Pick<DevelopmentAction, 'description' | 'learningStyle'>[]>;
   skills: Skill[]
+}
+
+interface GenerateDevelopmentActionsByAIPayload {
+  userIdpSkillId: number;
+  generateMore: boolean;
+  generatedActions: DevelopmentAction[];
+  lang?: string;
 }
 
 type UserIdpPlanStatus = typeof USER_IDP_PLAN_STATUS[keyof typeof USER_IDP_PLAN_STATUS];
@@ -88,13 +96,13 @@ export const fetchUserIdpSkills = (userId: string) => ({
   },
 })
 
-export const fetchAvailableDevelopmentActions = (userId: string, skillId: number) => ({
+export const fetchAvailableDevelopmentActions = (userId: string, userIdpSkillId: number) => ({
   type: FETCH_AVAILABLE_DEVELOPMENT_ACTIONS,
   request: {
     url: '/user_idp_development_actions/available_development_actions',
     body: {
       userId,
-      skillId,
+      userIdpSkillId,
     },
   },
 })
@@ -115,21 +123,21 @@ export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus) => 
   },
 })
 
-export const generateDevelopmentActionsByAI = (skillId: number, generateMore = false, generatedActions = {}) => ({
+export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActionsByAIPayload) => ({
   type: GENERATE_DEVELOPMENT_ACTIONS_BY_AI,
   request: {
     url: '/user_idp_development_actions/generate_by_ai',
     method: 'post',
-    body: { generateMore, skillId, generatedActions },
+    body: payload,
   },
 })
 
-export const addUserIdpSkills = skills => ({
-  type: ADD_USER_IDP_SKILLS,
+export const saveUserIdpSkills = (skills, category: string | null = null) => ({
+  type: SAVE_USER_IDP_SKILLS,
   request: {
-    url: '/user_idp_skills',
+    url: '/user_idp_skills/save_skills',
     method: 'post',
-    body: { skills },
+    body: { skills, category },
   },
 })
 
@@ -161,6 +169,7 @@ export const HANDLERS = {
       userIdpDevelopmentActions,
       userIdpSkills,
       status: userIdpPlan.status,
+      skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
     }
   },
@@ -181,13 +190,11 @@ export const HANDLERS = {
     availableDevelopmentActions: _.keyBy(action.response.data, 'id'),
   }),
   [GENERATE_DEVELOPMENT_ACTIONS_BY_AI]: (state, action) => {
-    const generateMoreReq = action.requestAction.request.body.generateMore || false
-    const responseData = action.response.data
+    const generatedDevelopmentActions = _.groupBy(action.response.data, 'skillId')
 
     return {
       ...state,
-      AIGeneratedDevelopmentActions:
-        generateMoreReq ? [...state.AIGeneratedDevelopmentActions, ...responseData] : responseData,
+      AIGeneratedDevelopmentActions: { ...state.AIGeneratedDevelopmentActions, ...generatedDevelopmentActions },
     }
   },
   [UPDATE_DEVELOPMENT_ACTION]: (state, action) => {
@@ -241,12 +248,26 @@ export const HANDLERS = {
     ...state,
     status: action.response.status,
   }),
-  [ADD_USER_IDP_SKILLS]: (state, action) => {
-    const addedUserIdpSkills = _.keyBy(action.response.data, 'id')
+  [SAVE_USER_IDP_SKILLS]: (state, action) => {
+    const { category: requestedCategory, data: skills } = action.response
+
+    const { userIdpDevelopmentActions, userIdpSkills } = state
+
+    // userIdpSkills which are not part of the requested category, they should be kept as is
+    // only when requestedCategory is null, all userIdpSkills should be kept as is
+    const userIdpSkillsUnmodified = _.pickBy(userIdpSkills,
+      ({ category: cat }) => !requestedCategory || cat !== requestedCategory)
+
+    const updatedUserIdpSkills = _.keyBy(skills, 'id')
+
+    // keep only those userIdpDevelopmentActions which are part of the updated userIdpSkills list
+    const updatedUserIdpDevelopmentActions = _.pickBy(userIdpDevelopmentActions,
+      ({ userIdpSkillId }) => userIdpSkillsUnmodified[userIdpSkillId] || updatedUserIdpSkills[userIdpSkillId])
 
     return {
       ...state,
-      userIdpSkills: { ...state.userIdpSkills, ...addedUserIdpSkills },
+      userIdpSkills: { ...userIdpSkillsUnmodified, ...updatedUserIdpSkills },
+      userIdpDevelopmentActions: updatedUserIdpDevelopmentActions,
     }
   },
   [UPDATE_USER_IDP_SKILL]: (state, action) => {
@@ -263,9 +284,10 @@ export const HANDLERS = {
 
 export const defaultState: UserIdpPlan = {
   directReports: [],
-  AIGeneratedDevelopmentActions: [],
+  AIGeneratedDevelopmentActions: {},
   status: null,
   selfRatingEnabled: false,
+  skillGapReportAvailable: null,
   userIdpDevelopmentActions: [],
   userIdpSkills: [],
   skills: [],

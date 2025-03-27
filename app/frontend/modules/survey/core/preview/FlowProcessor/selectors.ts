@@ -31,7 +31,9 @@ export const getAllAnsweredQuestions = (state): Question[] => {
   return _.reduce(
     pages, (res, block) => {
       const questions = _.flatten(_.map(
-        block, page => getQuestions(state, page.questions).filter(q => state.results[q.id]),
+        block, page => getQuestions(state, page.questions).filter(
+          question => state.results[question.id] || getMediaResponseByQuestionId(state, question.id),
+        ),
       ))
 
       return [...res, ...questions]

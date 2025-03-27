@@ -116,6 +116,15 @@ module Api
       jsonapi_render_errors error
     end
 
+    def serialize_resources(data, resource, options = {})
+      options = options.merge({
+        fields: @request.fields,
+        include_directives: @request.include_directives
+      })
+      JSONAPI::ResourceSerializer.new(resource, options).
+        serialize_to_hash(data.map { |d| resource.new(d, context) })
+    end
+
     def serialize_user(user)
       JSONAPI::ResourceSerializer.new(Api::V2::UserResource).
         serialize_to_hash(Api::V2::UserResource.new(user, nil))

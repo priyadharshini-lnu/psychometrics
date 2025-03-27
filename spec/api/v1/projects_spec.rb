@@ -294,4 +294,85 @@ describe 'Projects' do
       end
     end
   end
+
+  path '/clients/{client_id}/projects' do
+    get 'Get projects for a client' do
+      operationId 'GetClientProjects'
+      description 'Get projects associated with a client'
+      tags 'Projects'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :client_id, in: :path, type: :string
+
+      response '200', 'Success' do
+        schema type: 'array', items: { '$ref' => '#/definitions/Project' }
+        examples 'application/json' => [
+          {
+            id: 367,
+            name: 'Project 1',
+            subdomain: 'xyz',
+            client_reference: 'XYZ 001',
+            created_at: '2018-02-11T10:55:25.569+04:00',
+            updated_at: '2018-02-11T10:55:25.569+04:00'
+          }
+        ]
+
+        let!(:client_id) { membership.client.id }
+        let!(:client_project) { create(:project, parent: membership.client) }
+        let!(:other_project) { create(:project) }
+
+        run_test! do |response|
+          projects = JSON.parse(response.body)
+          expect(projects.length).to eq(2)
+          expect(projects.map { |p| p['id'] }).to match_array([client_project.id, project.id])
+          expect(projects.map { |p| p['id'] }).not_to include(other_project.id)
+        end
+      end
+
+      response '401', 'Authentication error' do
+        let(:client_id) { '1' }
+        let(:Authorization) { "Basic #{Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+        examples 'application/json' => {
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => nil,
+            'meta' => nil
+          )
+        end
+      end
+
+      response '404', 'Client not found' do
+        let(:client_id) { 'invalid' }
+
+        schema '$ref' => '#/definitions/ApiError'
+        examples 'application/json' => {
+          code: 1005,
+          message: 'Resource not found',
+          more_info: 'Client with id=invalid is not found',
+          meta: nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1005,
+            'message' => 'Resource not found',
+            'more_info' => 'Client with id=invalid is not found',
+            'meta' => nil
+          )
+        end
+      end
+    end
+  end
 end

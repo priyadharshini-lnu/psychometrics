@@ -74,8 +74,8 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
         </SelectedSkillsCardResponsiveWrapper>
       </Row>
       <Row justify="space-between" className="mt-6">
-        <Col span={12}>
-          {isMobile ? (
+        {isMobile ? (
+          <Col span={12}>
             <Button
               size="small"
               onClick={() => setOpenSelectedSkillsModal(true)}
@@ -85,17 +85,19 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
             >
               {`${I18n.t('idp.initial_steps.selected_skills')} (${selectedSkills.length})`}
             </Button>
-          ) : null}
-        </Col>
-        <Col>
-          <ButtonWithArrow
-            label={addSkillButtonText}
-            size="small"
-            type="primary"
-            onClick={() => onFinishAddSkill()}
-            loading={isSubmitting}
-            disabled={disableAddSkillButton}
-          />
+          </Col>
+        ) : null}
+        <Col span={isMobile ? 12 : 24}>
+          <div className="flex justify-center">
+            <ButtonWithArrow
+              label={addSkillButtonText}
+              size="small"
+              type="primary"
+              onClick={() => onFinishAddSkill()}
+              loading={isSubmitting}
+              disabled={disableAddSkillButton}
+            />
+          </div>
         </Col>
       </Row>
     </>

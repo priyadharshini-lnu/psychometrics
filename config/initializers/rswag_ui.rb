@@ -21,7 +21,7 @@ module Rswag
           img-src 'self' data: *;
           font-src 'self' https://fonts.gstatic.com;
           style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-          script-src 'self' 'unsafe-inline' https://unpkg.com;
+          script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
         POLICY
       end
     end

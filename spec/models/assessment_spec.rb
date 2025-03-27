@@ -209,3 +209,41 @@ RSpec.describe Assessment, type: :model do
     end
   end
 end
+
+describe '#score_validity_period' do
+  let(:assessment) { create(:assessment) }
+  let(:project) { create(:project) }
+
+  context 'when hogan' do
+    it 'returns validity period nil' do
+      hogan_assessment = build(:assessment, :hogan, type: Assessment::TYPES[:hogan])
+
+      expect(hogan_assessment.score_validity_period).to eq(nil)
+    end
+  end
+
+  context 'when project_id is nil' do
+    it 'returns the default score validity period' do
+      expect(assessment.score_validity_period).to eq(Assessment::DEFAULT_SCORE_VALIDITY_PERIOD)
+    end
+  end
+
+  context 'when project_id is provided' do
+    context 'and project_assessment exists with user_result_validity_in_days' do
+      let!(:project_assessment) do
+        create(:project_assessment, assessment: assessment, project: project, user_result_validity_in_days: 30.days)
+      end
+
+      it 'returns the user_result_validity_in_days from project_assessment' do
+        expect(assessment.score_validity_period(project_id: project.id)).to eq(30.days)
+      end
+    end
+
+    context 'and project_assessment does not exist' do
+      it 'returns the default score validity period' do
+        expect(assessment.score_validity_period(project_id: project.id)).
+          to eq(Assessment::DEFAULT_SCORE_VALIDITY_PERIOD)
+      end
+    end
+  end
+end

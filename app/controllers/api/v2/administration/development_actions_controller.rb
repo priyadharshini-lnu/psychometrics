@@ -7,15 +7,21 @@ module Api
       {
         permissions: lambda {
           GetPermissionsHash.call!(
-            Administration::SkillPolicy,
+            Administration::DevelopmentActionPolicy,
             context[:user],
             @model,
             %w[
               index
               import
               export
+              import_translations
+              export_translations
+              import_global
+              export_global
+              import_global_translations
+              export_global_translations
             ],
-            { project_id: context[:client_id] }
+            { project_id: context[:project_id] }
           )
         }
       }
@@ -23,19 +29,37 @@ module Api
 
     def import
       form = Api::V2::Administration::DevelopmentActionImportForm.new(
-        file: params[:file],
-        ignore_duplicates: params[:ignore_duplicates].present?
+        file: params[:file]
       )
 
       if form.valid?
         AdminJob.call(
           :import_development_actions,
-          { ignore_duplicates: form.ignore_duplicates },
+          { project_id: project.id },
           current_user,
           form.processed_file
         )
 
-        head :ok
+        render json: :ok
+      else
+        render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+
+    def import_global
+      form = Api::V2::Administration::DevelopmentActionImportForm.new(
+        file: params[:file]
+      )
+
+      if form.valid?
+        AdminJob.call(
+          :import_development_actions,
+          { project_id: nil },
+          current_user,
+          form.processed_file
+        )
+
+        render json: :ok
       else
         render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
       end
@@ -44,11 +68,79 @@ module Api
     def export
       AdminJob.call(
         :export_development_actions,
-        { project_id: params[:project_id] },
+        { project_id: project.id },
         current_user
       )
 
-      head :ok
+      render json: :ok
+    end
+
+    def export_global
+      AdminJob.call(
+        :export_development_actions,
+        { project_id: nil },
+        current_user
+      )
+
+      render json: :ok
+    end
+
+    def import_translations
+      form = Api::V2::Administration::DevelopmentActionTranslationImportForm.new(
+        file: params[:file]
+      )
+
+      if form.valid?
+        AdminJob.call(
+          :import_development_action_translations,
+          { project_id: project.id },
+          current_user,
+          form.processed_file
+        )
+
+        render json: :ok
+      else
+        render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+
+    def import_global_translations
+      form = Api::V2::Administration::DevelopmentActionTranslationImportForm.new(
+        file: params[:file]
+      )
+
+      if form.valid?
+        AdminJob.call(
+          :import_development_action_translations,
+          { project_id: nil },
+          current_user,
+          form.processed_file
+        )
+
+        render json: :ok
+      else
+        render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+
+    def export_translations
+      AdminJob.call(
+        :export_development_action_translations,
+        { project_id: project.id },
+        current_user
+      )
+
+      render json: :ok
+    end
+
+    def export_global_translations
+      AdminJob.call(
+        :export_development_action_translations,
+        { project_id: nil },
+        current_user
+      )
+
+      render json: :ok
     end
   end
 end

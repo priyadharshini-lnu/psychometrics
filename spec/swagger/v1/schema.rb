@@ -265,6 +265,9 @@ module Swagger
           type: 'object',
           properties: {
             name: { type: 'string' }
+          },
+          example: {
+            name: 'Promotion'
           }
         },
         Datasheet: {
@@ -290,10 +293,28 @@ module Swagger
               type: 'array',
               items: { type: 'integer' },
               'x-nullable': true,
-              description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
-, "campaigns" will be used'
+              description:
+                'deprecated, use "campaigns".' \
+                'In case both "campaigns" and "campaign_ids" are provided, "campaigns" will be used'
             },
             campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
+          },
+          example: {
+            campaigns: [
+              {
+                id: 510,
+                active: true,
+                external_id: 'ext123',
+                existing_record: 'new_evaluation',
+                schedule_start_date: '2023-03-05T10:56:53.349+04:00',
+                schedule_end_date: '2023-04-05T10:56:53.349+04:00',
+                datasheet: {
+                  'Current Position': 'Manager',
+                  Department: 'HR',
+                  Location: 'London'
+                }
+              }
+            ]
           }
         },
         NewUserCampaign: {
@@ -340,6 +361,17 @@ module Swagger
             enable_instructions: { type: 'boolean', 'x-nullable': true },
             instructions: { type: 'string', 'x-nullable': true },
             description: { type: 'string', 'x-nullable': true }
+          },
+          example: {
+            name: 'camp1',
+            status: 'active',
+            start_date: '2019-03-05T10:56:53.349+04:00',
+            end_date: '2019-04-05T10:56:53.349+04:00',
+            fixed_time: true,
+            duration: 111,
+            enable_instructions: true,
+            instructions: 'My Instructions',
+            description: 'Campaign Description'
           }
         },
         UpdatedCampaign: {
@@ -354,6 +386,17 @@ module Swagger
             enable_instructions: { type: 'boolean', 'x-nullable': true },
             instructions: { type: 'string', 'x-nullable': true },
             description: { type: 'string', 'x-nullable': true }
+          },
+          example: {
+            name: 'upd_camp1',
+            status: 'inactive',
+            start_date: '2019-03-05T10:56:53.349+04:00',
+            end_date: '2019-04-05T10:56:53.349+04:00',
+            fixed_time: true,
+            duration: 111,
+            enable_instructions: true,
+            instructions: 'New Instructions',
+            description: 'New Description'
           }
         },
         UpdatedCampaignUser: {
@@ -388,6 +431,20 @@ module Swagger
             created_at: { type: 'string', 'x-nullable': true },
             updated_at: { type: 'string', 'x-nullable': true },
             description: { type: 'string', 'x-nullable': true }
+          },
+          example: {
+            id: 770,
+            name: 'Sales Executive Recruitment May 2020',
+            status: 'active',
+            start_date: '2019-03-05T10:56:53.349+04:00',
+            end_date: '2020-03-05T10:56:53.349+04:00',
+            fixed_time: true,
+            duration: 111,
+            enable_instructions: true,
+            instructions: 'Campaign Instructions',
+            description: 'Campaign Description',
+            created_at: '2019-03-05T10:56:53.349+04:00',
+            updated_at: '2019-03-05T10:56:53.349+04:00'
           }
         },
         UserCampaign: {
@@ -397,6 +454,12 @@ module Swagger
             name: { type: 'string' },
             created_at: { type: 'string' },
             updated_at: { type: 'string' }
+          },
+          example: {
+            id: 1111,
+            name: 'Super campaign',
+            created_at: '2018-02-11T10:55:25.569+04:00',
+            updated_at: '2018-02-11T10:55:25.569+04:00'
           }
         },
         UpdatedReport: {
@@ -405,6 +468,11 @@ module Swagger
             id: { type: 'integer' },
             user_access: { type: 'boolean' },
             report_bundle_id: { type: 'integer' }
+          },
+          example: {
+            id: 1,
+            user_access: true,
+            report_bundle_id: 123
           }
         },
         UpdatedAssessment: {
@@ -412,6 +480,10 @@ module Swagger
           properties: {
             id: { type: 'integer' },
             norm_id: { type: 'integer', 'x-nullable': true }
+          },
+          example: {
+            id: 1,
+            norm_id: 456
           }
         },
         UpdatedCampaignAssessmentsAndReports: {
@@ -419,6 +491,21 @@ module Swagger
           properties: {
             reports: { type: 'array', items: { '$ref' => '#/definitions/UpdatedReport' } },
             assessments: { type: 'array', items: { '$ref' => '#/definitions/UpdatedAssessment' } }
+          },
+          example: {
+            reports: [
+              {
+                id: 1,
+                user_access: true,
+                report_bundle_id: 123
+              }
+            ],
+            assessments: [
+              {
+                id: 1,
+                norm_id: 456
+              }
+            ]
           }
         },
         AssessmentsAndReports: {
@@ -426,6 +513,21 @@ module Swagger
           properties: {
             reports: { type: 'array', items: { '$ref' => '#/definitions/CampaignOrUserReport' } },
             assessments: { type: 'array', items: { '$ref' => '#/definitions/CampaignOrUserAssessment' } }
+          },
+          example: {
+            reports: [
+              {
+                id: 1,
+                user_access: true,
+                report_bundle_id: 123
+              }
+            ],
+            assessments: [
+              {
+                id: 1,
+                norm_id: 456
+              }
+            ]
           }
         },
         CampaignOrUserReport: {
@@ -434,6 +536,11 @@ module Swagger
             id: { type: 'integer' },
             user_access: { type: 'boolean' },
             report_bundle_id: { type: 'integer' }
+          },
+          example: {
+            id: 1,
+            user_access: true,
+            report_bundle_id: 123
           }
         },
         CampaignOrUserAssessment: {
@@ -441,67 +548,10 @@ module Swagger
           properties: {
             id: { type: 'integer' },
             norm_id: { type: 'integer', 'x-nullable': true }
-          }
-        },
-        NewProject: {
-          type: 'object',
-          properties: {
-            name: { type: 'string' },
-            subdomain: { type: 'string' },
-            client_id: { type: 'integer' },
-            client_reference: { type: 'string', 'x-nullable': true },
-            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
-            data_processing_consent: { type: 'boolean' },
-            enable_strong_password: { type: 'boolean', 'x-nullable': true },
-            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
-            project_logo: { type: 'string', 'x-nullable': true },
-            partner_logo: { type: 'string', 'x-nullable': true },
-            webhook: { type: 'string', 'x-nullable': true },
-            background_image: { type: 'string', 'x-nullable': true },
-            background_color: { type: 'string', 'x-nullable': true },
-            login_box_position: { type: 'string', 'x-nullable': true },
-            logo_alt_text: {
-              type: 'string',
-              maxLength: 100,
-              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
-              'x-nullable': true
-            },
-            secondary_logo_alt_text: {
-              type: 'string',
-              maxLength: 100,
-              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
-              'x-nullable': true
-            }
-          }
-        },
-        UpdatedProject: {
-          type: 'object',
-          properties: {
-            name: { type: 'string', 'x-nullable': true },
-            subdomain: { type: 'string', 'x-nullable': true },
-            client_reference: { type: 'string', 'x-nullable': true },
-            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
-            data_processing_consent: { type: 'boolean', 'x-nullable': true },
-            enable_strong_password: { type: 'boolean', 'x-nullable': true },
-            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
-            project_logo: { type: 'string', 'x-nullable': true },
-            partner_logo: { type: 'string', 'x-nullable': true },
-            background_image: { type: 'string', 'x-nullable': true },
-            background_color: { type: 'string', 'x-nullable': true },
-            webhook: { type: 'string', 'x-nullable': true },
-            login_box_position: { type: 'string', 'x-nullable': true },
-            logo_alt_text: {
-              type: 'string',
-              'x-nullable': true,
-              maxLength: 100,
-              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
-            },
-            secondary_logo_alt_text: {
-              type: 'string',
-              'x-nullable': true,
-              maxLength: 100,
-              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
-            }
+          },
+          example: {
+            id: 1,
+            norm_id: 456
           }
         },
         Project: {
@@ -515,10 +565,9 @@ module Swagger
             locales: { type: 'array', items: { type: 'string' } },
             enable_strong_password: { type: 'boolean', 'x-nullable': true },
             enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
-
-            project_logo: { type: 'string', 'x-nullable': true },
-            partner_logo: { type: 'string', 'x-nullable': true },
-            background_image: { type: 'string', 'x-nullable': true },
+            project_logo_url: { type: 'string', 'x-nullable': true },
+            partner_logo_url: { type: 'string', 'x-nullable': true },
+            background_image_url: { type: 'string', 'x-nullable': true },
             background_color: { type: 'string', 'x-nullable': true },
             login_box_position: { type: 'string', 'x-nullable': true },
             logo_alt_text: {
@@ -536,6 +585,146 @@ module Swagger
             webhook: { type: 'string', 'x-nullable': true },
             created_at: { type: 'string' },
             updated_at: { type: 'string' }
+          },
+          example: {
+            id: 770,
+            client_id: 1,
+            name: 'Project 1',
+            subdomain: 'xyz',
+            client_reference: 'XYZ 001',
+            locales: %w[en ar],
+            enable_strong_password: true,
+            enable_2factor_auth: true,
+            project_logo_url: 'https://example.com/logo.png',
+            partner_logo_url: 'https://example.com/partner-logo.png',
+            background_image_url: 'https://example.com/bg.png',
+            background_color: '#ffffff',
+            login_box_position: 'left',
+            logo_alt_text: 'Company Logo',
+            secondary_logo_alt_text: 'Partner Logo',
+            webhook: 'https://my.site.com/webhook',
+            created_at: '2019-03-05T10:56:53.349+04:00',
+            updated_at: '2019-03-05T10:56:53.349+04:00'
+          }
+        },
+        NewProject: {
+          type: 'object',
+          properties: {
+            name: { type: 'string' },
+            subdomain: { type: 'string' },
+            client_id: { type: 'integer' },
+            client_reference: { type: 'string', 'x-nullable': true },
+            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
+            data_processing_consent: { type: 'boolean' },
+            enable_strong_password: { type: 'boolean', 'x-nullable': true },
+            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
+            project_logo: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Base64 encoded image data for the project logo'
+            },
+            partner_logo: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Base64 encoded image data for the partner/secondary logo'
+            },
+            webhook: { type: 'string', 'x-nullable': true },
+            background_image: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Base64 encoded image data for the background image'
+            },
+            background_color: { type: 'string', 'x-nullable': true },
+            login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
+              'x-nullable': true
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$",
+              'x-nullable': true
+            }
+          },
+          example: {
+            name: 'New Project',
+            subdomain: 'newproject',
+            client_id: 1,
+            client_reference: 'PRJ-001',
+            locales: ['en'],
+            data_processing_consent: true,
+            enable_strong_password: true,
+            enable_2factor_auth: true,
+            project_logo: 'data:image/png;base64,<base64_encoded_data>',
+            partner_logo: 'data:image/png;base64,<base64_encoded_data>',
+            background_image: 'data:image/png;base64,<base64_encoded_data>',
+            background_color: '#ffffff',
+            login_box_position: 'left',
+            logo_alt_text: 'Company Logo',
+            secondary_logo_alt_text: 'Partner Logo',
+            webhook: 'https://my.site.com/webhook'
+          }
+        },
+        UpdatedProject: {
+          type: 'object',
+          properties: {
+            name: { type: 'string', 'x-nullable': true },
+            subdomain: { type: 'string', 'x-nullable': true },
+            client_reference: { type: 'string', 'x-nullable': true },
+            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
+            data_processing_consent: { type: 'boolean', 'x-nullable': true },
+            enable_strong_password: { type: 'boolean', 'x-nullable': true },
+            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
+            project_logo: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Base64 encoded image data for the project logo'
+            },
+            partner_logo: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Base64 encoded image data for the partner/secondary logo'
+            },
+            background_image: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Base64 encoded image data for the background image'
+            },
+            background_color: { type: 'string', 'x-nullable': true },
+            webhook: { type: 'string', 'x-nullable': true },
+            login_box_position: { type: 'string', 'x-nullable': true },
+            logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            },
+            secondary_logo_alt_text: {
+              type: 'string',
+              'x-nullable': true,
+              maxLength: 100,
+              pattern: "^[a-zA-Z0-9\\s\\-.,()&']+$"
+            }
+          },
+          example: {
+            name: 'Updated Project Name',
+            subdomain: 'updatedproject',
+            client_reference: 'PRJ-002',
+            locales: %w[en fr],
+            data_processing_consent: true,
+            enable_strong_password: true,
+            enable_2factor_auth: true,
+            project_logo: 'data:image/png;base64,<base64_encoded_data>',
+            partner_logo: 'data:image/png;base64,<base64_encoded_data>',
+            background_image: 'data:image/png;base64,<base64_encoded_data>',
+            background_color: '#f5f5f5',
+            login_box_position: 'right',
+            logo_alt_text: 'Updated Company Logo',
+            secondary_logo_alt_text: 'Updated Partner Logo',
+            webhook: 'https://my.site.com/webhook'
           }
         },
         User: {

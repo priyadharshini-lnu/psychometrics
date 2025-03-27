@@ -91,8 +91,7 @@ module UserReportPdfHelper
 
   def user_report_pdf(locale: nil)
     locale ||= effective_default_language
-
-    @user_report_pdf ||= user_report_pdfs.find_by(locale: locale)
+    @user_report_pdf = user_report_pdfs.find_by(locale: locale)
   end
 
   def pdf_path(locale: nil)

@@ -17,6 +17,7 @@ html.body-full-height lang="#{I18n.locale}"
       div style="color: #fff;width: 100%;padding: 10px;font-size: 14px;background: #fa8c16; text-align: center;"
         = t('maintenance_message', **maintenance_time_frame)
     = render 'devise/shared/locales'
+    - resource.email = session.delete(:user_email) if session[:user_email].present?
 
     javascript [nonce=content_security_policy_nonce]:
       __INITIAL_STATE__ = {

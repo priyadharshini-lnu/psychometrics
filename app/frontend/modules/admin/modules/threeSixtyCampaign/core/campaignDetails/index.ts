@@ -11,6 +11,10 @@ export const getCurrentAssessmentId = (state: RootState) => get(state).assessmen
 export const getCurrentDimensionId = (state: RootState) => get(state).dimensionId
 export const getCurrentCampaignName = (state: RootState) => get(state).name
 export const getCampaignId = (state: RootState) => get(state).campaignId
+export const getReportAvailableLanguages = (state: RootState) => get(state).reportAvailableLanguages
+export const getReportDefaultLanguage = (state: RootState) => get(state).reportDefaultLanguage
+export const getReportName = (state: RootState) => get(state).reportName
+export const getReportIcon = (state: RootState) => get(state).reportIcon
 
 type CampaignReportPermissions = {
   editSubjectReport: boolean,
@@ -24,11 +28,15 @@ interface State {
   id?: number
   campaignId?: number
   reportId?: number
+  reportName?: string
+  reportIcon?: string
   campaignReportPermissions?: CampaignReportPermissions,
   campaignAssessmentPermissions?: CampaignAssessmentPermissions
   assessmentId?: number
   dimensionId?: number
   name?: string
+  reportAvailableLanguages?: string[]
+  reportDefaultLanguage?: string
 }
 
 const defaultState: State = {}

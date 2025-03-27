@@ -6,7 +6,7 @@ import { Spin } from 'antd'
 import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
 import {
   fetchIdpSkills,
-  addUserIdpSkills,
+  saveUserIdpSkills,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
@@ -15,7 +15,7 @@ const connector = connect((state: RootState) => ({
 }),
 {
   fetchIdpSkills,
-  addUserIdpSkills,
+  saveUserIdpSkills,
 })
 
 const { I18n } = window
@@ -23,8 +23,10 @@ const { I18n } = window
 const AddSkillsComponent = ({
   next,
   fetchIdpSkills,
-  addUserIdpSkills,
+  saveUserIdpSkills,
   userIdpSkills,
+  selfRatingEnabled,
+  isSubmittingPlan = false,
 }) => {
   const [skills, setSkills] = useState<Skill[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -53,7 +55,7 @@ const AddSkillsComponent = ({
   const handleFinishAddinSkill = () => {
     setIsSubmitting(true)
 
-    addUserIdpSkills(selectedSkills).then(() => {
+    saveUserIdpSkills(selectedSkills).then(() => {
       setIsSubmitting(false)
       next()
     })
@@ -81,13 +83,14 @@ const AddSkillsComponent = ({
     </div>
   ) : (
     <AddSkillsStep
-      addSkillButtonText={I18n.t('idp.initial_steps.continue_to_rate_skills')}
+      addSkillButtonText={
+        selfRatingEnabled ? I18n.t('idp.initial_steps.continue_to_rate_skills') : I18n.t('idp.initial_steps.next')}
       onAddSkill={handleAddSkill}
       selectedSkills={selectedSkills}
       skillCategories={skillCategories}
       onDeselectSkill={handleDeselectSkill}
       onFinishAddSkill={handleFinishAddinSkill}
-      isSubmitting={isSubmitting}
+      isSubmitting={isSubmittingPlan || isSubmitting}
     />
   )
 }

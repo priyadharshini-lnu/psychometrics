@@ -41,6 +41,10 @@ module Administration
                 name: resource.name,
                 campaignId: resource.campaign_id,
                 reportId: resource.report_id,
+                reportName: resource.report.name,
+                reportIcon: resource.report.icon&.url,
+                reportAvailableLanguages: resource.campaign_report.available_languages,
+                reportDefaultLanguage: resource.campaign_report_default_locale,
                 assessmentId: resource.assessment_id,
                 dimensionId: resource.assessment.dimension_id,
                 options: {

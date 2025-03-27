@@ -1,33 +1,27 @@
 import React, { useEffect } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
 import { Client } from 'modules/admin/modules/client/core/clients'
 import { debounce } from 'lodash'
 import {
-  Button, Modal, message, Form, Select,
+  Button, Modal, Form, Select,
 } from 'antd'
 import { Project } from '~/modules/admin/modules/client/core/projects'
 
 import { useResources } from '~/hooks/useResources'
-import { exportDevelopmentActions } from '~/modules/admin/modules/DevelopmentActions/core/development_actions'
 
 const { Option } = Select
 
-const connecter = connect(() => ({
-}),
-{
-  exportDevelopmentActions,
-})
-export type PropsFromRedux = ConnectedProps<typeof connecter>
-
 const { I18n } = window
 
-interface OwnProps extends PropsFromRedux {
-  close(): void
+interface OwnProps {
+  close(): void,
+  handleExport: (projectId:number) => void
+  title: string
 }
 
-const ExportModalComponent: React.FC<OwnProps> = ({
+export const DevelopmentActionsExportModal: React.FC<OwnProps> = ({
   close,
-  exportDevelopmentActions,
+  handleExport,
+  title,
 }) => {
   const [form] = Form.useForm()
   const {
@@ -54,25 +48,17 @@ const ExportModalComponent: React.FC<OwnProps> = ({
     fetchOwnersByValue(value)
   }, 50)
 
-
-  const handleExport = () => {
-    exportDevelopmentActions(projectId).then(() => {
-      message.info(I18n.t('administration.development_actions.export.success_msg'))
-      close()
-      form.resetFields()
-    })
-  }
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.development_actions.export_development_actions')}
+      title={title}
       open
       onCancel={close}
       footer={[
         <Button
           key="submit"
           type="primary"
-          onClick={handleExport}
+          onClick={() => { handleExport(projectId); close() }}
           disabled={!projectId}
         >
           {I18n.t('administration.development_actions.export.title')}
@@ -90,15 +76,15 @@ const ExportModalComponent: React.FC<OwnProps> = ({
             showSearch
             filterOption={false}
             placeholder={
-                  I18n.t('administration.development_actions.form.owner_placeholder')
-                }
+              I18n.t('administration.development_actions.form.owner_placeholder')
+            }
             onSearch={searchAvailableOwners}
           >
             {
-                owners.map(({ id, name }) => (
-                  <Option key={id} value={id}>{name}</Option>
-                ))
-              }
+              owners.map(({ id, name }) => (
+                <Option key={id} value={id}>{name}</Option>
+              ))
+            }
           </Select>
         </Form.Item>
         <ProjectDropdown form={form} owner={ownerOption} />
@@ -148,5 +134,3 @@ const ProjectDropdown = ({ form, owner }) => {
     </Form.Item>
   )
 }
-
-export const DevelopmentActionsExportModal = connecter(ExportModalComponent)

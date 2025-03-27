@@ -28,7 +28,7 @@ const Approved: React.FC = () => {
 
   return (
     <div>
-      <TasksList {...args} />
+      <TasksList {...args} type="approved" />
     </div>
   )
 }

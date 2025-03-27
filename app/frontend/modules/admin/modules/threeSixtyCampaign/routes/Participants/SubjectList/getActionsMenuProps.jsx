@@ -1,7 +1,7 @@
 export const getActionsMenuProps = ({
   subjectId,
-  // projectId,
-  // userReportId,
+  projectId,
+  userReportId,
   campaignId,
   update,
   user,
@@ -16,7 +16,14 @@ export const getActionsMenuProps = ({
   message,
   setShowResetSubjectModal,
   currentCampaignId,
+  reportAvailableLanguages,
+  reportDefaultLanguage,
+  reportName,
+  reportIcon,
+  subjects,
 }) => {
+  const subjectData = subjects.find(subject => subject.id === subjectId)
+  const reportDownloadUrl = subjectData?.reportDownloadUrl || {}
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
     if (confirm(cofirmationMessage)) update(campaignId, subjectId, data)
@@ -85,15 +92,8 @@ export const getActionsMenuProps = ({
     )
   }
 
-  const removeSubject = (subjectId) => {
-    openModal('ResetSubjectModal', {
-      onConfirm: removeLicenceUsage => remove(campaignId, subjectId, removeLicenceUsage),
-      open: true,
-    })
-  }
-
-  const requestDownloadReport = (campaignId, subjectId) => {
-    downloadReport(campaignId, subjectId)
+  const requestDownloadReport = (campaignId, subjectId, locale) => {
+    downloadReport(campaignId, subjectId, locale)
       .then(({ response }) => {
         if (response.success) {
           message.success(
@@ -104,8 +104,29 @@ export const getActionsMenuProps = ({
       })
   }
 
-  const requestRegenerateReport = (campaignId, subjectId) => {
-    regenerateReport(campaignId, subjectId)
+  const openDownloadReportModal = (reportName, reportIcon, reportDownloadUrl) => {
+    if (reportAvailableLanguages.length === 0) {
+      return requestDownloadReport(campaignId, subjectId, [reportDefaultLanguage])
+    }
+    openModal('DownloadReportModal', {
+      visible: true,
+      onClose: () => {},
+      allLocales: reportAvailableLanguages,
+      reportName,
+      reportIcon,
+      reportDownloadUrl,
+      defaultLocale: reportDefaultLanguage,
+      requestDownloadReport,
+      onConfirm: (selectedLocales) => {
+        requestRegenerateReport(campaignId, subjectId, selectedLocales)
+      },
+      subjectId,
+      campaignId,
+    })
+  }
+
+  const requestRegenerateReport = (campaignId, subjectId, selectedLocales, forceRegenerate) => {
+    regenerateReport(campaignId, subjectId, selectedLocales, forceRegenerate)
       .then(({ response }) => {
         if (response === 'ok') {
           message.success(
@@ -115,6 +136,31 @@ export const getActionsMenuProps = ({
         }
       })
   }
+
+  const openRegerateReportModal = () => {
+    if (reportAvailableLanguages.length === 0) {
+      return requestRegenerateReport(campaignId, subjectId, [], false)
+    }
+    openModal('RegenerateReportModal', {
+      visible: true,
+      onClose: () => {},
+      allLocales: reportAvailableLanguages,
+      defaultLocale: reportDefaultLanguage,
+      onConfirm: (selectedLocales, forceRegenerate) => {
+        requestRegenerateReport(campaignId, subjectId, selectedLocales, forceRegenerate)
+      },
+      subjectId,
+      campaignId,
+    })
+  }
+
+  const removeSubject = (subjectId) => {
+    openModal('ResetSubjectModal', {
+      onConfirm: removeLicenceUsage => remove(campaignId, subjectId, removeLicenceUsage),
+      open: true,
+    })
+  }
+
   const openResultsModal = () => {
     openModal('ParticipantModal', {
       user,
@@ -161,9 +207,7 @@ export const getActionsMenuProps = ({
     permissions.viewReport && {
       key: 'view_report',
       label: (
-        // TODO: uncomment after fix data loading issue
-        // <a href={`/admin/projects/${projectId}/new_campaigns/${currentCampaignId}/user_reports/${userReportId}`}>
-        <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
+        <a href={`/admin/projects/${projectId}/new_campaigns/${currentCampaignId}/user_reports/${userReportId}`}>
           {I18n.t('threesixty.participant_list.actions.view_report')}
         </a>),
     },
@@ -227,10 +271,10 @@ export const getActionsMenuProps = ({
       return openUserEditModal()
     }
     if (key === 'download_report') {
-      return requestDownloadReport(campaignId, subjectId)
+      return openDownloadReportModal(reportName, reportIcon, reportDownloadUrl)
     }
     if (key === 'regenerate_report') {
-      return requestRegenerateReport(campaignId, subjectId)
+      return openRegerateReportModal()
     }
     if (key === 'view_responses') {
       return openResultsModal()
