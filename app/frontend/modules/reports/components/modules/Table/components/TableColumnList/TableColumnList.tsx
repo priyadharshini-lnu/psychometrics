@@ -4,6 +4,8 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import Module from '~/modules/reports/core/interfaces/Module'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
+import I18nStore from '~/modules/reports/store/I18nStore'
 
 type ModelProps = Pick<Module['props'], 'tableColumns' | 'sourceType'| 'type'>
 
@@ -22,9 +24,11 @@ export const TableColumnList:FC<Props> = ({ model }) => {
   const tableType = model.props?.type || ''
   const sourceType = model.props?.sourceType
   const tableColumnsDataPath = sourceType ? `tableColumns.${sourceType}` : 'tableColumns'
-  const defaultTableColumnsDataPath = sourceType ? `defaultTableColumns.${sourceType}` : 'defaultTableColumns'
+  const defaultTableColumnnsData = DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore)
+  const defaultTableColumns = sourceType ? _.get(defaultTableColumnnsData, sourceType)
+    : defaultTableColumnnsData
   const tableColumnDataOfCurrentSource = _.get(model.props, tableColumnsDataPath)
-    || _.get(model.props, defaultTableColumnsDataPath) || {}
+    || defaultTableColumns || {}
 
   const handleColumnChage = (updatedColumnData) => {
     const changedColumnData = sourceType ? { [sourceType]: { ...tableColumnDataOfCurrentSource, ...updatedColumnData } }

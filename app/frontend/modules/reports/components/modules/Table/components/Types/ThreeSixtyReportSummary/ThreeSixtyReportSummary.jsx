@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import cs from 'classnames'
 import _ from 'lodash'
 import { getIn } from '~/utils/immutable'
@@ -6,33 +5,11 @@ import I18nStore from '~/modules/reports/store/I18nStore'
 import AppStore from '~/modules/reports/store/AppStore'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import styles from './styles.less'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 export default function ThreeSixtyReportSummary ({ model }) {
   const { fontFamily, fontSize, fontColor } = model.props.style
   const styleProp = { fontFamily, fontSize, color: fontColor }
-
-  useEffect(() => {
-    const defaultTableColumns = {
-      relationships: {
-        label: I18nStore.t('reports.modules.three_sixty_report_summary.relationships'),
-        hide: false,
-        allowHide: true,
-      },
-      invited: {
-        label: I18nStore.t('reports.modules.three_sixty_report_summary.invited'),
-        hide: false,
-        allowHide: true,
-      },
-      completed: {
-        label: I18nStore.t('reports.modules.three_sixty_report_summary.completed'),
-        hide: false,
-        allowHide: true,
-      },
-    }
-
-    model.props.defaultTableColumns = defaultTableColumns
-    model.update()
-  }, [])
 
   const buildResults = (filters) => {
     const evaluatorsByFilter = filters.reduce((res, filter) => {
@@ -71,7 +48,7 @@ export default function ThreeSixtyReportSummary ({ model }) {
   }
 
   const tableColumns = _.get(model, 'props.tableColumns')
-      || _.get(model, 'props.defaultTableColumns') || {}
+      || DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore) || {}
   const showRelationships = !_.get(tableColumns, 'relationships.hide')
   const showInvited = !_.get(tableColumns, 'invited.hide')
   const showCompleted = !_.get(tableColumns, 'completed.hide')

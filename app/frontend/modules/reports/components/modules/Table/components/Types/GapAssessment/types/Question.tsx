@@ -24,6 +24,7 @@ import { ColumnData, ColumnsHeaderData } from '~/modules/reports/core/interfaces
 
 import styles from './styles.less'
 import { PageData } from '../PaginationContext'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 const MOCK_POSITIVE_GAPS: Array<Gap> = [
   {
@@ -111,7 +112,7 @@ const QuestionTypeComponent: FC<Props> = ({
   style,
 }) => {
   const tableColumns = _.get(model, 'props.tableColumns.Question')
-    || _.get(model, 'props.defaultTableColumns.Question') || {} as ColumnData
+    || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Question') || {} as ColumnData
 
   const columnsHeaderData: ColumnsHeaderData = {
     rank: {
@@ -125,6 +126,10 @@ const QuestionTypeComponent: FC<Props> = ({
     competency: {
       label: I18nStore.tTableColumns(model, 'Question', 'competency.label'),
       hide: _.get(tableColumns, 'competency.hide'),
+    },
+    gap: {
+      label: I18nStore.tTableColumns(model, 'Question', 'gap.label'),
+      hide: _.get(tableColumns, 'gap.hide'),
     },
   }
   const calculateGaps = (
@@ -241,7 +246,7 @@ const QuestionTypeComponent: FC<Props> = ({
             <>
               <THeader
                 title={(showTitle && !_.get(tableColumns, 'positive_gaps.hide'))
-                  ? I18nStore.tTableColumns(module, 'Question', 'positive_gaps.label') : ''}
+                  ? I18nStore.tTableColumns(model, 'Question', 'positive_gaps.label') : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
                 hideValues={hideValues}
@@ -264,7 +269,7 @@ const QuestionTypeComponent: FC<Props> = ({
             <>
               <THeader
                 title={(showTitle && !_.get(tableColumns, 'nagative_gaps.hide'))
-                  ? I18nStore.tTableColumns(module, 'Question', 'negative_gaps.label') : ''}
+                  ? I18nStore.tTableColumns(model, 'Question', 'negative_gaps.label') : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
                 hideValues={hideValues}

@@ -9,13 +9,14 @@ import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
 import Legend from '../Legend'
 import BarChart from './BarChart'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
 
 export default function Factor ({ model, filters, paginationContext }) {
   const tableColumns = _.get(model, 'props.tableColumns.Factor')
-    || _.get(model, 'props.defaultTableColumns.Factor') || {}
+    || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Factor') || {}
   const showCompetency = !_.get(tableColumns, 'competency.hide')
   const showDevelopmentalRating = !_.get(tableColumns, 'developmental_rating.hide')
   const getFactorMap = () => {
