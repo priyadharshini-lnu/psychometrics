@@ -106,10 +106,10 @@ export default function ReportPreview ({
 
   const onReportDownloadClick = () => {
     if (features.url_to_pdf_lambda) {
-      asyncDownload(parsedCampaignId, parsedId)
+      asyncDownload(parsedCampaignId, parsedId, { lang })
       message.success(I18n.t('user_reports.messages.async_generation'))
     } else {
-      download(parsedCampaignId, parsedId, { skipLogic })
+      download(parsedCampaignId, parsedId, { skipLogic, lang })
     }
   }
 
