@@ -14,8 +14,10 @@ import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { ApprovalStatuses } from '~/modules/admin/modules/campaigns/core/userReports'
 import { PropsFromRedux } from './connect'
 import Sidebar, { lookUpModules } from './Sidebar'
-import styles from './styles.less'
 import schema from '~/modules/reports/store/schema'
+import { isRtl } from '~/utils/locales'
+
+import styles from './styles.less'
 
 const { Content } = Layout
 const { I18n } = window
@@ -46,7 +48,6 @@ export default function ReportPreview ({
   const navigate = useNavigate()
   const { campaignId, id } = useParams() as Params
   const { message } = App.useApp()
-
   const params = new URLSearchParams(location.search)
 
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -74,6 +75,11 @@ export default function ReportPreview ({
       }, report, results, user, campaign,
     } = userReport
 
+    const selectedLanguage = lang ? {
+      code: lang,
+      direction: isRtl(lang) ? 'rtl' : 'ltr',
+    } : defaultLanguage
+
     return (
       <Report
         data={report}
@@ -81,7 +87,7 @@ export default function ReportPreview ({
         campaign={JSON.stringify(campaign)}
         user={JSON.stringify(user)}
         locales={locales}
-        selectedLocale={defaultLanguage}
+        selectedLocale={selectedLanguage}
         userReport={userReport}
         allowEdit={userReport.approvalStatus === ApprovalStatuses.QCInProgress
           && userReport.permissions.editQc}
