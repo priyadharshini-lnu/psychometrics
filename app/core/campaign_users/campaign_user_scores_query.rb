@@ -58,7 +58,12 @@ module CampaignUsers
       base_query += "WHERE cu.active IN (#{campaign_users_active_in})"
       base_query += " AND cu.campaign_id = #{campaign_id} #{search_condition}"
       base_query += " AND cu.id in(#{campaign_user_ids.join(',')})" if campaign_user_ids.present?
-      base_query += " ORDER BY #{sanitized_sort_column} #{sort[:direction]} LIMIT #{limit} OFFSET #{offset};"
+      base_query += if campaign_factor_ids.include?(sort[:field].to_i)
+                      " ORDER BY #{sanitized_sort_column}::json->>'value' #{sort[:direction]}"
+                    else
+                      " ORDER BY #{sanitized_sort_column} #{sort[:direction]}"
+                    end
+      base_query += " LIMIT #{limit} OFFSET #{offset};"
       base_query
     end
 
@@ -98,7 +103,7 @@ module CampaignUsers
 
     def dynamic_factor_columns
       factor_ids = campaign_factor_ids
-      factor_ids.map { |id| "\"#{id}\" TEXT" }.join(', ')
+      factor_ids.map { |id| "\"#{id}\" JSON" }.join(', ')
     end
 
     def params
