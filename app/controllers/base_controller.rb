@@ -123,7 +123,7 @@ class BaseController < ActionController::Base
   private
 
   def ignore_password_expire?
-    session[:spoofed] || session[:login_via_magic_link]
+    session[:spoofed] || session[:login_via_magic_link] || session[:saml_login]
   end
 
   def redirect_for_password_change(scope)
