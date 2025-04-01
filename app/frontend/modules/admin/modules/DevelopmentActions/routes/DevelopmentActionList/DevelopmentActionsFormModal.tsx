@@ -123,10 +123,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     })
   }, 300)
 
-  useEffect(() => {
-    fetchOwnersByValue('')
-  }, [])
-
   const category = Form.useWatch('category', form)
 
   const imageField = Form.useWatch('image', form)

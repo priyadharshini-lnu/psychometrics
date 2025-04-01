@@ -73,10 +73,6 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   })
 
   useEffect(() => {
-    fetchOwnersByValue('')
-  }, [])
-
-  useEffect(() => {
     form.resetFields(['ownerId'])
   }, [globalImportSwitch])
 

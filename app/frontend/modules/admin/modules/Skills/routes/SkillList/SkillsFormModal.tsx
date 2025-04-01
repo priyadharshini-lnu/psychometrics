@@ -55,20 +55,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     fetchOwnersByValue(value)
   }, 50)
 
-
-  useEffect(() => {
-    fetchOwnersByValue('')
-    fetchTags({
-      apiConfig: {
-        filter: { name_cont: '' },
-        fields: { tags: ['name'] },
-        page: {
-          size: MAX_TAG_BATCH_SIZE,
-        },
-      },
-    })
-  }, [])
-
   const createSkill = (data: Skill & {ownerId?: string}) => {
     if (data.ownerId) {
       delete data.ownerId

@@ -40,10 +40,6 @@ export const DevelopmentActionsExportModal: React.FC<OwnProps> = ({
     },
   })
 
-  useEffect(() => {
-    fetchOwnersByValue('')
-  }, [])
-
   const searchAvailableOwners = debounce((value) => {
     fetchOwnersByValue(value)
   }, 50)
