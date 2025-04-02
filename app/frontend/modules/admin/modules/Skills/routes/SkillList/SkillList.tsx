@@ -31,6 +31,7 @@ const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
     responseType: SkillTR,
     apiConfig: {
       include: ['project'],
+      fields: { projects: ['name'] },
     },
   }
 
