@@ -14,6 +14,7 @@ describe CampaignUsers::CanAutoFinalizeCampaignScores do
   end
 
   let(:assessor_assessment) { create(:assessment, category: :assessor_form) }
+  let!(:question) { create(:question, assessment_id: assessor_assessment.id) }
 
   let!(:assessor_user_assessment) do
     create(:user_assessment, campaign: campaign, subject: user,
@@ -53,6 +54,13 @@ describe CampaignUsers::CanAutoFinalizeCampaignScores do
   end
 
   it 'should return true if assessor assessments completed' do
+    expect(described_class.call!(campaign, campaign_user, user)).to eq(true)
+  end
+
+  it 'should return true if assessor assessments doesnt have any questions' do
+    second_assessor_user_assessment.update(status: :in_progress)
+    assessor_assessment.questions.destroy_all
+
     expect(described_class.call!(campaign, campaign_user, user)).to eq(true)
   end
 
