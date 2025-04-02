@@ -57,7 +57,7 @@ class VideoRecorder extends Component {
   componentDidMount () {
     const { mediaResponse, recordingAllowed } = this.props
 
-    if (mediaResponse) {
+    if (mediaResponse && mediaResponse.url) {
       this.initPlayer()
     } else {
       this.initRecorder()
