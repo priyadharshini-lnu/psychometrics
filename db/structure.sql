@@ -6393,7 +6393,8 @@ CREATE TABLE public.user_idp_development_actions (
     progress integer DEFAULT 0 NOT NULL,
     start_date_time timestamp(6) without time zone,
     end_date_time timestamp(6) without time zone,
-    private boolean DEFAULT false
+    private boolean DEFAULT false,
+    custom_action_learning_style integer
 );
 
 
@@ -15488,6 +15489,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250324124118'),
 ('20250318075204'),
 ('20250320091944'),
+('20250305105355'),
 ('20250304084629'),
 ('20250304060832'),
 ('20250228123228'),
@@ -15495,6 +15497,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250226084133'),
 ('20250224095420'),
 ('20250224075920'),
+('20250219224132'),
 ('20250221102354'),
 ('20250221073030'),
 ('20250213113601'),

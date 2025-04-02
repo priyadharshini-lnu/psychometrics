@@ -6,7 +6,7 @@ import {
 import { SyncOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { BoxWithShadow } from '~/glint'
-import { DevelopmentAction, UserIdpSkill } from '.'
+import { DevelopmentAction, UserIdpSkill } from './Types'
 import { DevelopmentActionsList } from './Common'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {

@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { DevelopmentActionPortraitCard } from './DevelopmentActionPortraitCard'
 import styles from './DevelopmentActionBoardView.less'
-import { CategoryWithDevelopmentActions, DevelopmentActionWithSkill } from '.'
+import { CategoryWithDevelopmentActions, DevelopmentActionWithSkill } from './Types'
 import { renderSkillCategoryIcon } from '../utils'
 
 const { I18n } = window

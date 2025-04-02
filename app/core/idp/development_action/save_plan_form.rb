@@ -2,8 +2,11 @@
 
 module Idp::DevelopmentAction
   class SavePlanForm < Rectify::Form
+    VALID_LEARNING_STYLES = %w[on_the_job structured_learning learning_from_others].freeze
+
     attribute :user_idp_skill_id, Integer
     attribute :custom_action, String
+    attribute :custom_action_learning_style, String
     attribute :start_date_time, String
     attribute :end_date_time, String
     attribute :private, Boolean
@@ -18,6 +21,7 @@ module Idp::DevelopmentAction
     validates :private, inclusion: [true, false], allow_blank: true
     validates :user_idp_skill_id, presence: true
     validate :skill_not_exist_in_user_idp_plan
+    validate :validate_learning_style_for_custom_action
 
     def skill_not_exist_in_user_idp_plan
       return if user_idp_plan.user_idp_skills.exists?(id: user_idp_skill_id)
@@ -26,6 +30,22 @@ module Idp::DevelopmentAction
     end
 
     private
+
+    def validate_learning_style_for_custom_action
+      return if custom_action.blank?
+
+      if custom_action_learning_style.blank?
+        errors.add(
+          :custom_action_learning_style,
+          I18n.t('administration.development_actions.learning_styles.cannot_be_blank')
+        )
+      elsif VALID_LEARNING_STYLES.exclude?(custom_action_learning_style)
+        errors.add(
+          :custom_action_learning_style,
+          I18n.t('administration.development_actions.learning_styles.invalid')
+        )
+      end
+    end
 
     def user_idp_plan
       context

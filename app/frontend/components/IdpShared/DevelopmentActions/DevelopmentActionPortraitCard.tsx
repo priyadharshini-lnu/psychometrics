@@ -5,7 +5,7 @@ import {
 import { BoxWithShadow } from '~/glint'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionPortraitCard.less'
-import { DevelopmentActionWithSkill } from '.'
+import { DevelopmentActionWithSkill } from './Types'
 import { Tags } from './Common'
 
 const { I18n } = window
@@ -16,6 +16,7 @@ export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill>
   startDateTime,
   endDateTime,
   learningStyle,
+  customActionLearningStyle,
   skill,
   customAction,
 }) => (
@@ -38,11 +39,12 @@ export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill>
         </Flex>
         <Rate disabled defaultValue={skill.finalRating || skill.initialRating} />
         {
-          !!learningStyle && (
+          (learningStyle || customActionLearningStyle) ? (
             <Flex className={styles.mb_8}>
-              <Tags type={learningStyle} />
+              {learningStyle ? <Tags type={learningStyle} /> : null}
+              {customActionLearningStyle ? <Tags type={customActionLearningStyle} /> : null}
             </Flex>
-          )
+          ) : null
         }
       </Flex>
       <Flex justify="space-between" align="flex-end" gap={4}>
