@@ -4,7 +4,7 @@ module Threesixty
   class UserReportSerializer < Panko::Serializer
     attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status,
                :evalaution_completed_for_subject, :report_data, :permissions, :campaign, :module_overrides, :options,
-               :user
+               :user, :qc_approval_status
 
     has_one :report, serializer: ReportSerializer
 
@@ -18,6 +18,10 @@ module Threesixty
 
     def is_self
       object.user_id == current_user.id
+    end
+
+    def qc_approval_status
+      object.approval_status
     end
 
     def approval_status

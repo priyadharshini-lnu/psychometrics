@@ -17,7 +17,7 @@ module Threesixty
                               subject_id: user_ids
                             ).pluck(:subject_id).uniq
 
-      UserReport.where(campaign_id: @campaign.campaign_id, user_id: user_ids_for_report)
+      UserReport.where(approval_status: :approved, campaign_id: @campaign.campaign_id, user_id: user_ids_for_report)
     end
 
     private
