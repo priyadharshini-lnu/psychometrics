@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/eslint-plugin": "^7.14.5",
     "@storybook/addon-essentials": "^8.6.4",
-    "@storybook/addon-interactions": "^8.3.5",
+    "@storybook/addon-interactions": "^8.6.4",
     "@storybook/addon-links": "^8.6.4",
     "@storybook/blocks": "^8.3.5",
     "@storybook/builder-vite": "^8.3.5",
