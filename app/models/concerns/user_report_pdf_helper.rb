@@ -55,7 +55,9 @@ module UserReportPdfHelper
   def remove_report_pdf!(locale: nil)
     remove_pdf_async(locale: locale)
     self.status = :not_prepared
-    self.approval_status = :not_ready if has_approval_workflow?
+    if !threesixty? && has_approval_workflow?
+      self.approval_status = :not_ready
+    end
     save!
   end
 

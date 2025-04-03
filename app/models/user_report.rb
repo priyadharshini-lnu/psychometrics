@@ -139,6 +139,12 @@ class UserReport < ApplicationRecord
     campaign.subjects.find_by(user_id: user_id)
   end
 
+  def threesixty?
+    return false unless threesixty_campaign
+
+    threesixty_campaign.subjects.exists?(user_id: user_id)
+  end
+
   def self.assessor_report_for_campaign(campaign_id)
     accessible_report_ids = CampaignReport.where(campaign_id: campaign_id, assessor_access: true).pluck(:report_id)
     where(campaign_id: campaign_id, report_id: accessible_report_ids)
