@@ -1,7 +1,7 @@
 export { DevelopmentActionListView } from './DevelopmentActionListView'
 export { DevelopmentActionBoardView } from './DevelopmentActionBoardView'
 
-export {
+export type {
   AvailableDevelopmentActions,
   DevelopmentActionLearningStyle,
   DevelopmentAction,
