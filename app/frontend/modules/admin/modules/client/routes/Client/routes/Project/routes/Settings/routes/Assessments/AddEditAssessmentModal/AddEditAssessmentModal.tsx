@@ -110,6 +110,7 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
               <Form.Item
                 name="userResultValidityInDays"
                 label={I18n.t('administration.project_tabs.assessments.form.user_result_validity_in_days')}
+                normalize={value => (value ? parseInt(value, 10) : null)}
               >
                 <Input type="number" defaultValue={projectAssessment?.userResultValidityInDays || ''} />
               </Form.Item>
