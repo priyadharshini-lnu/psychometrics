@@ -268,7 +268,7 @@ const QuestionTypeComponent: FC<Props> = ({
           {showNegativeGapsTable && (
             <>
               <THeader
-                title={(showTitle && !_.get(tableColumns, 'nagative_gaps.hide'))
+                title={(showTitle && !_.get(tableColumns, 'negative_gaps.hide'))
                   ? I18nStore.tTableColumns(model, 'Question', 'negative_gaps.label') : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}

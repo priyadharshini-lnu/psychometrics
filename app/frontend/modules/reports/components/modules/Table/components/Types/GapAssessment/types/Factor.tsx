@@ -269,8 +269,8 @@ const Factor: FC<Props> = ({
             <>
               <THeader
                 title={
-                  (showTitle && !_.get(tableColumns, 'nagative_gaps.hide'))
-                    ? I18nStore.tTableColumns(model, 'Factor', 'nagative_gaps.label')
+                  (showTitle && !_.get(tableColumns, 'negative_gaps.hide'))
+                    ? I18nStore.tTableColumns(model, 'Factor', 'negative_gaps.label')
                     : ''
                 }
                 leftFilter={leftFilter}

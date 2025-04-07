@@ -55,7 +55,7 @@ export default {
           hide: false,
           allowHide: true,
         },
-        nagative_gaps: {
+        negative_gaps: {
           label: I18nStore.t('reports.modules.gap_assessment.negative_gap'),
           hide: false,
           allowHide: true,
