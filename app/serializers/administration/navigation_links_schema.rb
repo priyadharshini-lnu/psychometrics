@@ -2,8 +2,8 @@
 
 module Administration
   class NavigationLinksSchema < BaseSchema
-    def self.schema(_, _)
-      Dry::Schema.JSON do
+    def self.schema(_, _) # rubocop:disable Metrics/AbcSize
+      Dry::Schema.JSON do # rubocop:disable Metrics/BlockLength
         config.validate_keys = true
 
         required(:links).hash do
@@ -28,6 +28,8 @@ module Administration
           optional(:campaignTemplates).filled(:str?)
           optional(:auditLogs).filled(:str?)
           optional(:viewDataExports).filled(:str?)
+          optional(:skills).filled(:str?)
+          optional(:developmentActions).filled(:str?)
         end
       end
     end
