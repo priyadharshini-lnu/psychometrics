@@ -39,6 +39,7 @@ export default function RegenerateReportModal ({
           onClick={() => {
             handleRegenerateReport()
           }}
+          disabled={selectedLocales.length === 0}
         >
           Regenerate
         </Button>,
@@ -62,10 +63,16 @@ export default function RegenerateReportModal ({
           </Option>
         ))}
       </Select>
+      {selectedLocales.length === 0 && (
+        <div style={{ color: '#ff4d4f', marginTop: 4 }}>
+          {I18n.t('common.validations.select_locale')}
+        </div>
+      )}
       <Checkbox
         className="mt-5"
         checked={forceRegenerate}
         onChange={e => setForceRegenerate(e.target.checked)}
+        disabled={selectedLocales.length === 0}
       >
         Force Regenerate
       </Checkbox>
