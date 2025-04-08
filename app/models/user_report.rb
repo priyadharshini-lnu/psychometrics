@@ -85,9 +85,9 @@ class UserReport < ApplicationRecord
     end
     on_transition do |_from, to, _event, *_|
       unless approval_setting&.do_not_send_notifications?
-        ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to) && !one_level_qc?
+        ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
         ::UserReports::NotifyApprovals.call!(self) if to == :approved
-        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && !one_level_qc?
+        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && send_approver_email?
       end
 
       update(approval_status_updated_at: Time.current)
@@ -129,6 +129,10 @@ class UserReport < ApplicationRecord
 
   def approval_setting
     approval_settings.first
+  end
+
+  def send_approver_email?
+    !approval_setting&.approvers_not_required?
   end
 
   def one_level_qc?
