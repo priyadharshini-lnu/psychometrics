@@ -166,7 +166,7 @@ export default function ToolsDropdown ({
         onConfirm: async (selectedLocales, forceRegenerate) => {
           try {
             await regenerateReports(campaignId, selectedLocales, forceRegenerate)
-            message.success(I18n.t('campaign_assessment.modals.regenerate.successfully'))
+            message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
           }

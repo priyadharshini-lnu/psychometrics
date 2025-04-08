@@ -1301,6 +1301,7 @@ en:
   campaign_assessment:
     actions:
       bulk_download: Bulk Download
+      download: Download Reports
       export_completion_status: Export Completion Status
       export_external: External
       export_normed: Normed Factor Scores
@@ -1311,6 +1312,7 @@ en:
       export_scores: Scores
       export_scoring: Scoring
       factor_benchmark_score: Factor Benchmark Score
+      force_generate: Force Generate
       import_raw: Raw
       import_scoring: Scoring
       regenerate: Generate Reports
@@ -3602,6 +3604,7 @@ en:
     actions:
       add: Add Report
       download: Download
+      generate: Generate
       regenerate: Regenerate
     approval_statuses:
       approved: Approved
