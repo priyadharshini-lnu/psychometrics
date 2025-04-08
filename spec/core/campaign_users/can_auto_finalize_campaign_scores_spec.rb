@@ -69,4 +69,11 @@ describe CampaignUsers::CanAutoFinalizeCampaignScores do
 
     expect(described_class.call!(campaign, campaign_user, user)).to eq(false)
   end
+
+  it 'should ignore soft-deleted questions when checking for incomplete assessments' do
+    question.update(deleted_at: Time.current)
+    second_assessor_user_assessment.update(status: :in_progress)
+
+    expect(described_class.call!(campaign, campaign_user, user)).to eq(true)
+  end
 end

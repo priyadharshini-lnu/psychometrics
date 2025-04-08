@@ -21,6 +21,10 @@ module CampaignUsers
     end
 
     def non_completed_assessor_assessments_exist?
+      non_completed_assessor_assessments.exists?
+    end
+
+    def non_completed_assessor_assessments
       campaign.user_assessments.
         joins(:assessment).
         joins('LEFT JOIN questions ON questions.assessment_id = assessments.id').
@@ -28,7 +32,7 @@ module CampaignUsers
         where(assessments: { category: [Assessment::CATEGORIES[:assessor_form]] }).
         where.not(user_assessments: { status: :completed }).
         where.not(questions: { id: nil }).
-        exists?
+        where(questions: { deleted_at: nil })
     end
   end
 end
