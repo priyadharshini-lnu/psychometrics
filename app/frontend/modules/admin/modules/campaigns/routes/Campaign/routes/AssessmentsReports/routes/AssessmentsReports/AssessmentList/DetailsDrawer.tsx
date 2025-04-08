@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { SimulationDetails } from './SimulationDetails'
 import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
+import { PearsonVariationForm } from './PearsonVariationForm'
 
 const { I18n } = window
 
@@ -16,7 +17,8 @@ interface Props {
   updateMettlSchedule: (
     campaignId: number, assessmentId: number, body: { assessment: { id: string } }
   ) => Promise<{ response: unknown }>
-  loadingUpdateMettlSchedule: boolean
+  loadingUpdateMettlSchedule: boolean,
+  updatePearsonVariation: (campaignId: string, assessmentId: number, body: object) => Promise<{ response: unknown }>
 }
 
 export const DetailsDrawer: FC<Props> = ({
@@ -25,6 +27,7 @@ export const DetailsDrawer: FC<Props> = ({
   campaignId,
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
+  updatePearsonVariation,
 }) => {
   if (!assessment) {
     return null
@@ -94,6 +97,13 @@ export const DetailsDrawer: FC<Props> = ({
           I18n={I18n}
           assessment={assessment}
           campaignId={campaignId}
+        />
+
+        <PearsonVariationForm
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+          updatePearsonVariation={updatePearsonVariation}
         />
       </Row>
     </Drawer>

@@ -189,6 +189,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         mettl_schedule_record_id
         dimension_id
         simulation_content_variations
+        pearson_variations
       ]
     )
     expect(assessment_response).to include({

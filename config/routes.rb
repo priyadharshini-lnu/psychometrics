@@ -329,6 +329,7 @@ Rails.application.routes.draw do
             post :update_norm
             post :update_mettl_schedule
             put :update_content_variation
+            put :update_pearson_variation
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses

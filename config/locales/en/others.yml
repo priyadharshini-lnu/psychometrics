@@ -1328,6 +1328,7 @@ en:
       locales: Locales
       norm: Norm
       norm_id: Norm ID
+      pearson_variation: Pearson Variation
       prework: Prework
       simuation_time_extension: Simulation Time Extension
       simulation_content_variation: Simulation Content Variation
@@ -1417,6 +1418,11 @@ en:
     normalize_factor_scores:
       normalization_not_allowed: The normalization of factor scores is currently disabled for this assessment in the project settings. Please enable it to proceed.
       success: Normalization of factor scores completed successfully
+    pearson_variation_form:
+      apply_to_existing_users: Apply this change to existing users in this campaign
+      select: Select variation
+      update: Update
+      update_success: Pearson variation updated successfully
     scheduled_successfully: Assessment was scheduled successfully
     scheduling:
       update_exists: Override existing schedule

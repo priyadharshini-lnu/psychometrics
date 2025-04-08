@@ -187,6 +187,16 @@ export const updateContentVariation = (campaignId: string, assessmentId: number,
   },
 })
 
+export const updatePearsonVariation = (campaignId: string, assessmentId: number, body) => ({
+  type: 'campaigns/assessments/UPDATE_PEARSON_VARIATION',
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_pearson_variation`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
+
 
 const UpdateAssessorFormTR = t.type({
   assessorFormName: t.union([t.string, t.null]),
