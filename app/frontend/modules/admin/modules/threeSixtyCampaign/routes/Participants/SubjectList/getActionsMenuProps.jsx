@@ -106,7 +106,7 @@ export const getActionsMenuProps = ({
 
   const openDownloadReportModal = (reportName, reportIcon, reportDownloadUrl) => {
     if (reportAvailableLanguages.length === 0) {
-      return requestDownloadReport(campaignId, subjectId, [reportDefaultLanguage])
+      return requestDownloadReport(campaignId, subjectId, reportDefaultLanguage)
     }
     openModal('DownloadReportModal', {
       visible: true,
