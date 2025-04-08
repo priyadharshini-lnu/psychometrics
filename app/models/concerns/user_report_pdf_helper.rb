@@ -76,13 +76,13 @@ module UserReportPdfHelper
     return unless pdf_exists?(locale: locale)
 
     user_report_pdf(locale: locale)&.pdf_file&.url(
-      disposition: 'attachment', filename: report_name_for_download
+      disposition: 'attachment', filename: report_name_for_download(locale: locale)
     )
   end
 
-  def report_name_for_download
+  def report_name_for_download(locale: nil)
     report_name = Utility::String.remove_non_ascii_chars(report.name).strip.presence || 'report'
-    "#{user.decorate.full_name}-#{report_name}-#{user.id}.pdf"
+    "#{user.decorate.full_name}-#{report_name}-#{user.id}_lan_#{locale}.pdf"
   end
 
   def find_or_create_user_report_pdf(locale: nil)
