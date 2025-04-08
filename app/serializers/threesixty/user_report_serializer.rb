@@ -84,7 +84,7 @@ module Threesixty
           results: results,
           piped_text_context: context[:piped_text_context]
         }
-      ).serialize(context[:report])
+      ).serialize(context[:report] || object.report)
     end
 
     def current_user
