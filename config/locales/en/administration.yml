@@ -1901,6 +1901,7 @@ en:
         norm:
           dimension_not_found: Dimension %{dimension_name} for %{client_name} was not found
           factor_mismatch: Dimension %{dimension_name} does not have factor %{factor_name}
+          factors_mismatch: "[#%{coords}] dimension %{dimension} does not have factor %{factor}"
           not_set_dimension: The name of the Dimension should be written in second cell of the first row
         result:
           answer_invalid: "[Row %{row}] Answer for qid %{question_id} is invalid: %{error}"
