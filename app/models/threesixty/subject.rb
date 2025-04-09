@@ -28,6 +28,7 @@ module Threesixty
     # it's possible that a report was generated previously by admin and few evaluations are done after that.
     def remove_report_pdf
       user.user_reports.find_by!(campaign_id: campaign_id).remove_report_pdf!
+      user_report.start_approval!
     end
   end
 end

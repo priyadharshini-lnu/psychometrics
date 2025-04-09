@@ -85,7 +85,7 @@ class UserReport < ApplicationRecord
     end
     on_transition do |_from, to, _event, *_|
       unless approval_setting&.do_not_send_notifications?
-        ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
+        ::UserReports::NotifyQc.call!(self, to) if %i[change_requested pending_qc].include?(to)
         ::UserReports::NotifyApprovals.call!(self) if to == :approved
         ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && send_approver_email?
       end
