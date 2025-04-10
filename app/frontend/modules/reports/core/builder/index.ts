@@ -164,7 +164,7 @@ const HANDLERS = {
       blocks: data.entities.blocks,
       questions: data.entities.questions,
       loaded: true,
-      currentPage: state.currentPage || report.pages[0],
+      currentPage: report.pages[0],
       campaignId,
     }
   },
