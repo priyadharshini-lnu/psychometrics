@@ -11,7 +11,8 @@ class AdminJobRecord < ApplicationRecord
   has_one :data_report_job
 
   has_one_attachment :file, service: Settings.storage.private_storage_service
-  validates :file, content_type: %w[csv xlsx xls zip]
+
+  validates :file, content_type: %w[csv xlsx xls zip json]
 
   def attachment_storage_path(attribute_name, filename)
     "private/admin_job/#{id}/#{attribute_name}/#{filename}"
@@ -81,7 +82,9 @@ class AdminJobRecord < ApplicationRecord
     import_development_action_translations: 60,
     export_development_action_translations: 61,
     export_norm: 62,
-    import_norm: 63
+    import_norm: 63,
+    export_dimension_as_json: 64,
+    import_dimension_from_json: 65
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

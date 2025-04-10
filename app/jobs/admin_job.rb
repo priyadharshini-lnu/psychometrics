@@ -72,7 +72,9 @@ class AdminJob < ApplicationJob
     import_development_action_translations: AdminJobs::ImportDevelopmentActionTranslationsJob,
     export_development_action_translations: AdminJobs::ExportDevelopmentActionTranslationsJob,
     export_norm: AdminJobs::NormExport,
-    import_norm: AdminJobs::ImportNorm
+    import_norm: AdminJobs::ImportNorm,
+    export_dimension_as_json: AdminJobs::ExportDimensionAsJson,
+    import_dimension_from_json: AdminJobs::ImportDimensionFromJson
   }.freeze
 
   def perform(record)

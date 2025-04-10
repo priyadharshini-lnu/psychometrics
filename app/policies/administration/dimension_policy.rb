@@ -49,6 +49,18 @@ class Administration::DimensionPolicy < Administration::BasePolicy
     edit? & copy? & destroy?
   end
 
+  def export_json?
+    @user.is?(:superadmin)
+  end
+
+  def import?
+    @user.is?(:superadmin)
+  end
+
+  def validate_import?
+    @user.is?(:superadmin)
+  end
+
   class Scope < Scope
     def resolve
       scope = super

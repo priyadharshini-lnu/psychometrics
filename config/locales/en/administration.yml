@@ -1677,6 +1677,8 @@ en:
         successfully: Dimension %{name} was deleted successfully.
       edit:
         header: Edit Dimension Name
+      export_json:
+        successfully: Exporting JSON scheduled for dimension %{name}.
       export_translations_scheduled:
         successfully: Export translations scheduled for dimension %{name}.
       form:
@@ -1686,10 +1688,17 @@ en:
         import: Import
         successfully: Import factors job scheduled for dimension %{name}.
         title: Import Factors
+      import_modal:
+        cancel: Cancel
+        continue: Continue
+        import: Import
+        import_dimension: Import Dimension
       import_translations:
         error: Error while importing translations for dimension %{name}.
         successfully: Import translations scheduled for dimension %{name}.
       index:
+        create_dimension: Create Dimension
+        import_dimension: Import Dimension
         new: Add
         owner: Owner
         title: Dimensions
@@ -1716,6 +1725,7 @@ en:
           copy: Copy Dimension
           delete: Delete Dimension
           edit: Edit Dimension Name
+          export_json: Export JSON to import in other platform
       sidebar:
         copy: Copy Dimension
         destroy: Delete Dimension

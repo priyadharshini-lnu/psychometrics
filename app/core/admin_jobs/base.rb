@@ -2,6 +2,9 @@
 
 module AdminJobs
   class Base < BaseCommand
+    include ActionView::Helpers::TagHelper
+    include ActionView::Context
+
     private_attr_reader :record, :owner
 
     def initialize(record)
@@ -28,6 +31,24 @@ module AdminJobs
 
     def valid?
       true
+    end
+
+    def file_link
+      content_tag(:a, record.file.filename.to_s, href: record.file.url) if record.file.present?
+    end
+
+    class << self
+      def generate_title_link(record)
+        new(record).generate_title_link
+      end
+
+      def generate_details(record)
+        new(record).generate_details
+      end
+
+      def valid?(record)
+        new(record).valid?
+      end
     end
 
     private

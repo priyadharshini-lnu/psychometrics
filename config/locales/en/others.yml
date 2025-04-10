@@ -761,6 +761,7 @@ en:
         export_campaign_scorings: Export Campaign Scorings
         export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
+        export_dimension_as_json: Export Dimension JSON
         export_factor_translations: Export Factor Translations
         export_norm: Export Norm
         export_occupations: Occupations Export
@@ -776,6 +777,7 @@ en:
         import_datasheet: Import Datasheet
         import_development_action_translations: Import Development Action Translations
         import_development_actions: Import Development Actions
+        import_dimension_from_json: Import Dimension from JSON
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_factors: Import Factors
@@ -1735,6 +1737,7 @@ en:
       copied: Copied to clipboard
       default: Default
       download: Download
+      file: File
       minutes: Minutes
       na: N/A
       none: None

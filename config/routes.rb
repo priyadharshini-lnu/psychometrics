@@ -619,6 +619,13 @@ Rails.application.routes.draw do
         post :export_translations
         post :import_translations
         post :import_factors
+        get :export_json
+      end
+
+      collection do
+        post :validate_import
+        post :import
+        get :import
       end
       ### FACTORS
       resources :factors do
