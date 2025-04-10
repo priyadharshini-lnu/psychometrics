@@ -43,6 +43,13 @@ module Communications
             name: 'UserReport',
             class_name: 'Communications::PipedText::Branches::UserReport',
             required_context: %i[user_report]
+          },
+          {
+            key: 'p',
+            name: 'Project',
+            class_name: 'Communications::PipedText::Branches::Project',
+            required_context: %i[campaign],
+            allow_html: true
           }
         ].freeze
       end
