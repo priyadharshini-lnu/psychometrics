@@ -826,6 +826,7 @@ en:
       assessors:
         spoof:
           successfully: You was successfully login as %{name}
+      copy: Copy Campaign
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name

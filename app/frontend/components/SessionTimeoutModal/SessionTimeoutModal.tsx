@@ -226,7 +226,6 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
       setShowPopup(true)
     })
   }
-
   if (features?.disable_session_timeout) return null
 
   return (

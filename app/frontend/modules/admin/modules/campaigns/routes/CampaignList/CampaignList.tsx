@@ -44,6 +44,7 @@ import { isRequestInProgress } from '~/core/request'
 import { get as getCurrentUser } from '~/core/currentUser'
 import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
 import RemoveCampaignModal from './RemoveCampaignModal'
+import CopyCampaignModal from './CopyCampaignModal'
 import CommonCampaignFormModal from './CommonCampaignFormModal'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import { PDFPasswordModal } from './PDFPasswordModal'
@@ -56,6 +57,7 @@ const MODALS = {
   ThreesixtyCampaignFormModal,
   RemoveCampaignModal,
   PDFPasswordModal,
+  CopyCampaignModal,
   UserFilterModal,
 }
 
@@ -248,6 +250,12 @@ const CampaignListComponent: React.FC<Props> = ({
                           campaign,
                         })
                       },
+                      onCopy: () => {
+                        openModal('CopyCampaignModal', {
+                          projectId,
+                          campaign,
+                        })
+                      },
                       showPDFPasswordModal,
                       campaign,
                     })
@@ -304,6 +312,7 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
 interface ActionMenuData {
   onEdit(): void
   onDelete(): void
+  onCopy(): void
   campaign: Campaign
   showPDFPasswordModal: (campaignId: number) => void
 }
@@ -311,6 +320,7 @@ interface ActionMenuData {
 const getActionsMenuProps = ({
   onEdit,
   onDelete,
+  onCopy,
   campaign,
   showPDFPasswordModal,
 }: ActionMenuData): MenuProps => {
@@ -321,7 +331,7 @@ const getActionsMenuProps = ({
     key: 'edit',
     label: 'Edit',
   })
-  permissions.copy && menuItems.push({
+  permissions.copy && !campaign.isThreesixty && menuItems.push({
     key: 'copy',
     label: 'Copy',
   })
@@ -338,6 +348,9 @@ const getActionsMenuProps = ({
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return onEdit()
+    }
+    if (key === 'copy') {
+      return onCopy()
     }
     if (key === 'delete') {
       return onDelete()

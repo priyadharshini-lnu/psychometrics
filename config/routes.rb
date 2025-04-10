@@ -416,6 +416,7 @@ Rails.application.routes.draw do
           get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
 
           member do
+            post :copy
             get :fetch_campaign_options
             get :fetch_campaign_instructions
             get :fetch_descriptions

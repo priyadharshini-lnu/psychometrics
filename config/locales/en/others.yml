@@ -2194,6 +2194,8 @@ en:
     break_time: Break Time
     campaign:
       actions:
+        copy:
+          success: "%{campaignName} was copied successfully."
         remove:
           confirmation: Enter current campaign name given below in text box to remove campaign
           success: "%{campaignName} was removed successfully."
