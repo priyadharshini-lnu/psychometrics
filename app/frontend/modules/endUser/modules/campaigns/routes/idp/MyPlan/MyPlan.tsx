@@ -24,7 +24,7 @@ import {
   updateDevelopmentActionProgressInPlan,
   fetchUserIdpPlan,
   updateUserIdpPlan,
-  addUserIdpSkills,
+  saveUserIdpSkills,
   fetchIdpSkills,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
@@ -79,7 +79,7 @@ const connector = connect((state: RootState) => ({
   updateDevelopmentActionProgressInPlan,
   fetchUserIdpPlan,
   updateUserIdpPlan,
-  addUserIdpSkills,
+  saveUserIdpSkills,
   fetchIdpSkills,
 })
 
@@ -104,7 +104,7 @@ const MyPlanComponent = ({
   status,
   fetchUserIdpPlan,
   updateUserIdpPlan,
-  addUserIdpSkills,
+  saveUserIdpSkills,
   fetchIdpSkills,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
@@ -153,7 +153,7 @@ const MyPlanComponent = ({
 
   useEffect(() => {
     if (status && status === USER_IDP_PLAN_STATUS.NOT_STARTED) {
-      navigate('/idp/steps/getting_start')
+      navigate('/idp/steps/getting_started')
     }
   }, [status])
 
@@ -193,7 +193,7 @@ const MyPlanComponent = ({
   }
 
   const handleFinishAddSkill = () => {
-    addUserIdpSkills(pickedCategoryToAddMoreSkills.skills).then(() => (
+    saveUserIdpSkills(pickedCategoryToAddMoreSkills.skills, pickedCategoryToAddMoreSkills.category).then(() => (
       setShowAddSkill(false)
     ))
   }
@@ -278,7 +278,7 @@ const MyPlanComponent = ({
               onClick={() => setShowAddSkill(false)}
             />
             <AddSkillsStep
-              addSkillButtonText={I18n.t('idp.my_plan.add_skill')}
+              addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
               skillCategories={[skillCategory]}
               onFinishAddSkill={handleFinishAddSkill}
               selectedSkills={pickedCategoryToAddMoreSkills?.skills || []}

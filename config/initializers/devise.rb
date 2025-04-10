@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/devise_failure_app'
-require_relative '../../lib/saml/get_idp_settings'
+require_relative '../../lib/saml/get_identity_provider_settings'
 require_relative '../../lib/saml/resource_locator'
 require_relative '../../lib/saml/failed_callback_handler'
 
@@ -10,7 +10,7 @@ require_relative '../../lib/saml/failed_callback_handler'
 # rubocop:disable Metrics/BlockLength
 Devise.setup do |config|
   config.saml_default_user_key = :email
-  config.idp_settings_adapter = Saml::GetIdpSettings
+  config.idp_settings_adapter = Saml::GetIdentityProviderSettings
   config.saml_resource_locator = Saml::ResourceLocator
   config.saml_failed_callback = Saml::FailedCallbackHandler
   config.saml_use_subject = true

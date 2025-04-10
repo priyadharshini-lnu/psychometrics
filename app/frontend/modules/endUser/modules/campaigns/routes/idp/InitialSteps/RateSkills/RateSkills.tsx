@@ -32,7 +32,7 @@ export const RateSkillsComponent = ({
   next,
   selectedSkills,
   updateUserIdpSkill,
-  isSubmitting = false,
+  isSubmittingPlan = false,
 }) => {
   const [skillsToBeRated, setSkillsToBeRated] = useState<SkillType[]>(Object.values(selectedSkills))
   const { isMobile } = useContext(MediaQueryContext)
@@ -86,7 +86,7 @@ export const RateSkillsComponent = ({
         />
       </BoxWithShadow>
       <div className="flex justify-end mt-6">
-        <ButtonWithArrow loading={isSubmitting} label="Next" size="small" type="primary" onClick={next} />
+        <ButtonWithArrow loading={isSubmittingPlan} label="Next" size="small" type="primary" onClick={next} />
       </div>
     </>
   )

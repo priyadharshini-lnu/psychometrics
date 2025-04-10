@@ -190,16 +190,7 @@ module Campaigns
       def existing_user_result_to_copy(assessment)
         return if options[:operation] == 'add_and_allow_new_response'
 
-        evaluation_results = campaign_user.evaluation_results.
-                             joins(:user_assessment)
-
-        if existing_hogan_credential && assessment.hogan?
-          evaluation_results = evaluation_results.
-                               joins(user_assessment: :hogan_credential).
-                               where(hogan_credential: { id: existing_hogan_credential.id })
-        end
-
-        evaluation_results.order(created_at: :desc).find_by(user_assessments: { assessment_id: assessment.id })
+        CampaignUsers::GetExistingUserResult.call!(campaign_user, assessment, campaign.project_id)
       end
 
       def generate_report_pdf(user_report)
@@ -211,10 +202,6 @@ module Campaigns
 
         campaign_assessment&.external_config&.dig('content_variation_id') ||
           simulation_settings[:default_content_variation_id]
-      end
-
-      def existing_hogan_credential
-        @existing_hogan_credential ||= user.hogan_credential
       end
     end
   end

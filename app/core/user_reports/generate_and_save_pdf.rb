@@ -33,6 +33,24 @@ module UserReports
     end
 
     def generate_internal_report(user_report)
+      return generate_and_attach_internal_report_pdf(user_report) if options[:locales].blank?
+
+      options[:locales].each do |locale|
+        generate_pdf_for_language(user_report, locale, options[:force_regenerate])
+      end
+    end
+
+    def generate_pdf_for_language(user_report, locale, force_regenerate)
+      if !force_regenerate && user_report.user_report_pdf(locale: locale)&.pdf_file&.attached?
+        job_record&.increment_completed_tasks!
+      else
+        generate_and_attach_internal_report_pdf(user_report, locale)
+      end
+    end
+
+    def generate_and_attach_internal_report_pdf(user_report, locale = nil)
+      options[:lang] = locale if locale
+
       data = UserReports::GeneratePdf.call!(
         user_report,
         current_user,
@@ -40,10 +58,11 @@ module UserReports
           lang: user_report.effective_default_language
         ).merge(async: true, admin_job_record_id: job_record&.id)
       )
+
       return unless data[:file_path]
 
       File.open(data[:file_path]) do |file|
-        user_report.attach_pdf!(file)
+        user_report.attach_pdf!(file, locale: locale)
       end
     end
 

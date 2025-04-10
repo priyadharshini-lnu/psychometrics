@@ -1,9 +1,13 @@
+import _ from 'lodash'
 import { CSSProperties, FC } from 'react'
 import reduce from 'lodash/reduce'
 import meanBy from 'lodash/meanBy'
 import isEmpty from 'lodash/isEmpty'
 import cs from 'classnames'
-import { GapType, PropertiesModel, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
+import { ColumnData, ColumnsHeaderData } from '~/modules/reports/core/interfaces/TableColumn'
+import {
+  GapType, PropertiesModel, TableStyleType, PreviewModel,
+} from '~/modules/reports/interfaces/tables/Gap'
 
 import AppStore from '~/modules/reports/store/AppStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
@@ -12,6 +16,7 @@ import Utils from '~/modules/reports/utils'
 
 import styles from './styles.less'
 import { PageData } from '../PaginationContext'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 type Gap = {
   name: string
@@ -96,6 +101,7 @@ interface Props {
   gapCutoff: number | null
   precision?: number
   showAllFactors?: boolean
+  model: PreviewModel
   paginationContext: PageData | null
   style?: CSSProperties & { fontColor: string }
 }
@@ -111,9 +117,27 @@ const Factor: FC<Props> = ({
   gapCutoff,
   precision,
   showAllFactors,
+  model,
   paginationContext,
   style,
 }) => {
+  const tableColumns = _.get(model, 'props.tableColumns.Factor')
+  || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Factor') || {} as ColumnData
+
+  const columnsHeaderData: ColumnsHeaderData = {
+    rank: {
+      label: I18nStore.tTableColumns(model, 'Factor', 'rank.label'),
+      hide: _.get(tableColumns, 'rank.hide'),
+    },
+    indicator: {
+      label: I18nStore.tTableColumns(model, 'Factor', 'indicator.label'),
+      hide: _.get(tableColumns, 'indicator.hide'),
+    },
+    gap: {
+      label: I18nStore.tTableColumns(model, 'Factor', 'gap.label'),
+      hide: _.get(tableColumns, 'gap.hide'),
+    },
+  }
   const calculateGaps = (
     assessmentId: PropertiesModel['assessment_id'],
     leftFilter: typeof AppStore.report.filters[0],
@@ -219,13 +243,14 @@ const Factor: FC<Props> = ({
             <>
               <THeader
                 title={
-                showTitle
-                  ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
-                  : ''
-              }
+                  (showTitle && !_.get(tableColumns, 'positive_gaps.hide'))
+                    ? I18nStore.tTableColumns(model, 'Factor', 'positive_gaps.label')
+                    : ''
+                }
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
                 hideValues={hideValues}
+                columnsHeaderData={columnsHeaderData}
               />
               <TBody
                 gaps={positiveGaps}
@@ -234,6 +259,7 @@ const Factor: FC<Props> = ({
                 )}
                 hideValues={hideValues}
                 precision={precision}
+                columnsHeaderData={columnsHeaderData}
                 type="top"
                 paginationContext={paginationContext}
               />
@@ -243,13 +269,14 @@ const Factor: FC<Props> = ({
             <>
               <THeader
                 title={
-                  showTitle
-                    ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
+                  (showTitle && !_.get(tableColumns, 'negative_gaps.hide'))
+                    ? I18nStore.tTableColumns(model, 'Factor', 'negative_gaps.label')
                     : ''
                 }
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
                 hideValues={hideValues}
+                columnsHeaderData={columnsHeaderData}
               />
               <TBody
                 gaps={negativeGaps}
@@ -258,6 +285,7 @@ const Factor: FC<Props> = ({
                 )}
                 hideValues={hideValues}
                 precision={precision}
+                columnsHeaderData={columnsHeaderData}
                 type="bottom"
                 paginationContext={paginationContext}
               />
@@ -274,10 +302,11 @@ interface THeaderProps {
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
   hideValues: boolean
+  columnsHeaderData: ColumnsHeaderData
 }
 
 const THeader: FC<THeaderProps> = ({
-  leftFilter, rightFilter, title, hideValues,
+  leftFilter, rightFilter, title, hideValues, columnsHeaderData,
 }) => (
   <>
     {title.length !== 0 && (
@@ -288,19 +317,25 @@ const THeader: FC<THeaderProps> = ({
       </tr>
     )}
     <tr className={styles.headers} data-header>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.gap_assessment.rank')}
-      </th>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.gap_assessment.item')}
-      </th>
+      {!columnsHeaderData.rank.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.rank.label}
+        </th>
+      )}
+      {!columnsHeaderData.indicator.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.indicator.label}
+        </th>
+      )}
       {!hideValues && (
         <>
           <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
           <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
-          <th className={styles.label}>
-            {I18nStore.t('reports.modules.gap_assessment.gap')}
-          </th>
+          {!columnsHeaderData.indicator.hide && (
+            <th className={styles.label}>
+              {columnsHeaderData.gap.label}
+            </th>
+          )}
         </>
       )}
     </tr>
@@ -312,6 +347,7 @@ interface TBodyProps {
   emptyText: string
   hideValues: boolean
   precision?: number
+  columnsHeaderData: ColumnsHeaderData
   type: 'top' | 'bottom'
   paginationContext: PageData | null
 }
@@ -321,6 +357,7 @@ const TBody: FC<TBodyProps> = ({
   emptyText,
   hideValues,
   precision,
+  columnsHeaderData,
   type,
   paginationContext,
 }) => {
@@ -345,13 +382,13 @@ const TBody: FC<TBodyProps> = ({
     <>
       {data.map((gap, i) => (
         <tr key={i} className={styles.row} data-row={i} data-type={type}>
-          <td>{paginationContext ? gap.rank : (i + 1)}</td>
-          <td>{I18nStore.tFactorName(gap)}</td>
+          {!columnsHeaderData.rank.hide && <td>{paginationContext ? gap.rank : (i + 1)}</td>}
+          {!columnsHeaderData.indicator.hide && <td>{I18nStore.tFactorName(gap)}</td>}
           {!hideValues && (
             <>
               <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>
               <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>
-              <td dir="ltr">{gapValue(gap.diff)}</td>
+              {!columnsHeaderData.gap.hide && <td dir="ltr">{gapValue(gap.diff)}</td>}
             </>
           )}
         </tr>

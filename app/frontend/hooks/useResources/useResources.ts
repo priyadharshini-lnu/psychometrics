@@ -1,5 +1,6 @@
 import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
+import { message } from 'antd'
 import _ from 'lodash'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
@@ -240,7 +241,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           { url: resourceUrl },
         )
       }
-      const { data: responseData, error, errors } = response
+      const {
+        data: responseData, error, errors, meta,
+      } = response
+
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
         captureSchemaValidationError(data)
@@ -248,7 +252,13 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           responseTypeValidation(memberResponseType, response)
           resolve(response)
         } else {
+          // eslint-disable-next-line max-len
+          // TODO: camelize whole response - https://dev.azure.com/mmctech/Mercer-Career-Lighthouse/_workitems/edit/1254018
+          // remove below hack after implmenting this
           const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
+          if (typeof camelizedData === 'object') {
+            camelizedData.responseMeta = meta // hack to get around the fact that the meta is not being passed
+          }
           resolve(camelizedData)
           if (args.updateStore && args.responseType === responseType) {
             updateIndividualRecord(camelizedData)
@@ -263,6 +273,26 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       setRequestStatus(requestKey, formattedErrors)
     })
   }
+
+  const uploadFileAction = (action: string, body: FormData) => new Promise(async (resolve, reject) => {
+    try {
+      const response = await window.fetch(`${resourceUrl}/${action}`, {
+        method: 'post',
+        body,
+      })
+
+      const result = await response.json()
+      if (result === 'ok') {
+        resolve(result)
+      } else {
+        const { error, errors } = result
+        reject(errors || error)
+      }
+    } catch (error) {
+      message.error(error.message)
+      reject(error.message)
+    }
+  })
 
   const updateMultipleRecord = (camelizedResponse: R[]) => {
     setState((previousState: ResourceState<R[], M>) => {
@@ -587,5 +617,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     memberAction,
     collectionAction,
     addRelationships,
+    uploadFileAction,
   }
 }

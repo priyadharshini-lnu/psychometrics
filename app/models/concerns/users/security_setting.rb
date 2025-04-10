@@ -110,6 +110,17 @@ module Users
         security_setting ? security_setting&.lock_account : super
       end
 
+      def saml_enforced_for_admins?
+        return false if Settings.features.disable_saml_for_admins
+        return false unless admin?
+        return true if superadmin?
+
+        email_domain = email.split('@').last
+        sso_email_enforced = Settings.saml_enforced_email_domains.include?(email_domain)
+
+        sso_email_enforced && admin?
+      end
+
       def security_setting_for_admin
         ::SecuritySetting.new(
           enforce_strong_password: true,

@@ -44,7 +44,7 @@ describe Idp::DevelopmentAction::SavePlan do
       described_class.call!(user_idp_plan, body_params)
       user_idp_development_action = UserIdpDevelopmentAction.find_by(
         development_action_id: available_development_action.id,
-        user_idp_skill_id: user_idp_skills.first.id
+        user_idp_plan: user_idp_plan
       )
       expect(user_idp_development_action).to be_present
       expect(user_idp_development_action.progress).to eq(77)
@@ -81,24 +81,18 @@ describe Idp::DevelopmentAction::SavePlan do
     end
 
     it 'destroy removed development actions from payload' do
-      body_params =
-        [
-          {
-            'id' => @user_idp_development_action.id,
-            'development_action_id' => @development_action.id,
-            'user_idp_skill_id' => user_idp_skills.first.id,
-            'custom_action' => @user_idp_development_action.custom_action,
-            'progress' => @user_idp_development_action.progress,
-            'start_date_time' => @user_idp_development_action.start_date_time,
-            'end_date_time' => @user_idp_development_action.end_date_time,
-            'private' => @user_idp_development_action.private
-          }
-        ]
+      # Send an empty payload to trigger removal of all existing actions
+      body_params = []
 
-      development_action_count = user_idp_plan.user_idp_development_actions.count
+      expect(user_idp_plan.user_idp_development_actions.count).to be > 0
       described_class.call!(user_idp_plan, body_params)
-      expect(user_idp_plan.user_idp_development_actions.count).to be(development_action_count - 1)
-      expect(user_idp_plan.user_idp_development_actions.ids).not_to include(development_action.id)
+
+      # Reload the plan to ensure we have fresh data
+      user_idp_plan.reload
+
+      # Expect all development actions to be removed when payload is empty
+      expect(user_idp_plan.user_idp_development_actions.count).to eq(0)
+      expect(UserIdpDevelopmentAction.exists?(@user_idp_development_action.id)).to be false
     end
   end
 

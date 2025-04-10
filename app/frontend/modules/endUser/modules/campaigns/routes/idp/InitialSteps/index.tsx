@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Steps, Layout } from 'antd'
+import {
+  Steps, Layout, Spin, Flex,
+} from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { GettingStart } from './GettingStart'
@@ -24,14 +26,17 @@ import styles from './Steps.less'
 const { I18n } = window
 
 enum STEPS {
-  getting_start = 0,
-  skill_gap_report = 1,
-  add_skills = 2,
-  rate_skills = 3,
+  gettingStarted = 'getting_started',
+  skillGapReport = 'skill_gap_report',
+  addSkills = 'add_skills',
+  rateSkills = 'rate_skills',
 }
+
 
 const connector = connect((state: RootState) => ({
   status: state.campaigns.idp.status,
+  skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
+  selfRatingEnabled: state.campaigns.idp.selfRatingEnabled,
   currentUser: state.currentUser,
 }),
 {
@@ -44,15 +49,40 @@ const InitialStepsComponent = ({
   fetchUserIdpPlan,
   currentUser,
   updateUserIdpPlan,
+  skillGapReportAvailable,
+  selfRatingEnabled,
 }) => {
   const { step: paramStep } = useParams() as {step: string}
   const navigate = useNavigate()
-  const [step, setStep] = useState<number>(STEPS[paramStep] || STEPS.getting_start)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const STEP_ITEMS = [
+    {
+      title: I18n.t('idp.initial_steps.getting_started'),
+      step: STEPS.gettingStarted,
+    },
+    {
+      title: I18n.t('idp.initial_steps.skill_gap_report'),
+      hide: !skillGapReportAvailable,
+      step: STEPS.skillGapReport,
+    },
+    {
+      title: I18n.t('idp.initial_steps.add_skills_step'),
+      step: STEPS.addSkills,
+    },
+    {
+      title: I18n.t('idp.initial_steps.rate_skills'),
+      hide: !selfRatingEnabled,
+      step: STEPS.rateSkills,
+    },
+  ]
+
+  const visibleSteps = STEP_ITEMS.filter(item => !item.hide)
+  const currentStep = visibleSteps.findIndex(({ step }) => step === paramStep)
 
   const next = (step) => {
-    setStep(step)
-    navigate(`/idp/steps/${STEPS[step]}`)
+    navigate(`/idp/steps/${step}`)
   }
 
   const handleSubmit = () => {
@@ -64,8 +94,27 @@ const InitialStepsComponent = ({
     })
   }
 
+  const handleNextForGettingStartedStep = () => {
+    if (skillGapReportAvailable) {
+      next(STEPS.skillGapReport)
+    } else {
+      next(STEPS.addSkills)
+    }
+  }
+
+  const handleNextForAddSkillsStep = () => {
+    if (selfRatingEnabled) {
+      next(STEPS.rateSkills)
+    } else {
+      handleSubmit()
+    }
+  }
+
   useEffect(() => {
-    fetchUserIdpPlan(currentUser.id)
+    setIsLoading(true)
+    fetchUserIdpPlan(currentUser.id).finally(() => {
+      setIsLoading(false)
+    })
   }, [])
 
   useEffect(() => {
@@ -74,42 +123,39 @@ const InitialStepsComponent = ({
     }
   }, [status])
 
-  useEffect(() => {
-    setStep(STEPS[paramStep] || STEPS.getting_start)
-  }, [paramStep])
-
   return (
     <IdpPageLayoutWrapper>
-      <Layout.Content className={styles.pageContent}>
-        <BoxWithShadow className={styles.steps}>
-          <Steps
-            current={step}
-            items={[
-              {
-                title: I18n.t('idp.initial_steps.getting_start'),
-              },
-              {
-                title: I18n.t('idp.initial_steps.skill_gap_report'),
-              },
-              {
-                title: I18n.t('idp.initial_steps.add_skills_step'),
-              },
-              {
-                title: I18n.t('idp.initial_steps.rate_skills'),
-              },
-            ]}
-          />
-        </BoxWithShadow>
-
-        {step === STEPS.getting_start && <GettingStart next={() => next(STEPS.skill_gap_report)} />}
-        {step === STEPS.skill_gap_report && (
-          <div className={styles.skillGapReportParent}>
-            <SkillGapReport next={() => next(STEPS.add_skills)} />
-          </div>
-        )}
-        {step === STEPS.add_skills && <AddSkills next={() => next(STEPS.rate_skills)} />}
-        {step === STEPS.rate_skills && <RateSkills next={handleSubmit} isSubmitting={isSubmitting} />}
-      </Layout.Content>
+      {isLoading ? <Flex className="h-full" align="center"><Spin size="large" /></Flex>
+        : (
+          <Layout.Content className={styles.pageContent}>
+            <BoxWithShadow className={styles.steps}>
+              <Steps
+                current={currentStep === -1 ? 0 : currentStep}
+                items={visibleSteps.map(({ title }) => ({ title }))}
+              />
+            </BoxWithShadow>
+            {paramStep === STEPS.gettingStarted && <GettingStart next={handleNextForGettingStartedStep} />}
+            {paramStep === STEPS.skillGapReport && (
+              <SkillGapReport
+                next={() => next(STEPS.addSkills)}
+              />
+            )}
+            {paramStep === STEPS.addSkills && (
+              <AddSkills
+                selfRatingEnabled={selfRatingEnabled}
+                next={handleNextForAddSkillsStep}
+                isSubmittingPlan={isSubmitting}
+              />
+            )}
+            {paramStep === STEPS.rateSkills && (
+              <RateSkills
+                next={handleSubmit}
+                isSubmittingPlan={isSubmitting}
+              />
+            )}
+          </Layout.Content>
+        )
+    }
     </IdpPageLayoutWrapper>
 
   )

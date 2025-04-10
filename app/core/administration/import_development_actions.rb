@@ -2,11 +2,12 @@
 
 module Administration
   class ImportDevelopmentActions < BaseCommand
-    REQUIRED_FIELDS = %w[ID SkillID Name Description Type Category].freeze
-    OPTIONAL_FIELDS = %w[ProjectID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
+    REQUIRED_FIELDS = %w[SkillID Name Description Type Category].freeze
+    OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
 
-    def initialize(file_url)
+    def initialize(file_url, project_id)
       @file_url = file_url.to_s
+      @project_id = project_id
       @errors = []
     end
 
@@ -68,16 +69,14 @@ module Administration
 
     def find_or_create_development_action(row_data)
       id = row_data['ID']
-      skill = Skill.where(id: row_data['SkillID']).
-              where('project_id = ? OR project_id IS NULL', row_data['ProjectID']).
-              first
+
+      skill = Skill.where(id: row_data['SkillID']).where('project_id = ? OR project_id IS NULL', @project_id).first
       return nil if skill.nil?
 
       development_action = DevelopmentAction.find_or_initialize_by(id: id)
       skill_ids = development_action.skill_ids
-
       development_action.assign_attributes(
-        project_id: row_data['ProjectID'].presence&.to_i,
+        project_id: @project_id,
         learning_style: row_data['Type'].downcase,
         category: row_data['Category'].downcase
       )

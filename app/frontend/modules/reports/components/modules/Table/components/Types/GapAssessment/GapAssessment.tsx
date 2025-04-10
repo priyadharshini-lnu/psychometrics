@@ -60,6 +60,7 @@ export const GapAssessment: FC<Props> = ({ model, insertPaginationPage, preview 
           gapCutoff={gapCutoff}
           precision={precision}
           showAllFactors={allFactors}
+          model={model}
           paginationContext={paginationContext}
           style={style}
         />
@@ -75,6 +76,7 @@ export const GapAssessment: FC<Props> = ({ model, insertPaginationPage, preview 
           noOfItems={noOfItems}
           gapCutoff={gapCutoff}
           precision={precision}
+          model={model}
           paginationContext={paginationContext}
           style={style}
         />

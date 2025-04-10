@@ -2,8 +2,9 @@
 
 module ReportApprovals
   class ReportApprovalMetadataFetcher < BaseCommand
-    def initialize(current_user)
+    def initialize(current_user, filter: nil)
       @current_user = current_user
+      @filter = filter
     end
 
     def call
@@ -50,7 +51,19 @@ module ReportApprovals
     end
 
     def report_approvals
-      @report_approvals ||= ::ReportApprovalSetting.report_approvals(current_user)
+      @report_approvals ||= begin
+        @report_approvals = if @filter && @filter[:my_tasks] == 'true'
+                              ::ReportApprovalSetting.user_tasks(current_user)
+                            else
+                              ::ReportApprovalSetting.report_approvals(current_user)
+                            end
+
+        if @filter && @filter[:approval_status_in] == 'approved'
+          @report_approvals = @report_approvals.where(approval_status: 'approved')
+        end
+
+        @report_approvals
+      end
     end
 
     def slice_campaign_data(campaign)
@@ -65,6 +78,6 @@ module ReportApprovals
       user.slice(:id).merge(name: user.decorate.display_name)
     end
 
-    attr_reader :current_user
+    attr_reader :current_user, :filter
   end
 end

@@ -6,7 +6,7 @@ import {
 import { SyncOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { BoxWithShadow } from '~/glint'
-import { DevelopmentAction, Skill } from '.'
+import { DevelopmentAction, UserIdpSkill } from '.'
 import { DevelopmentActionsList } from './Common'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
@@ -19,13 +19,13 @@ type ManualProps = {
   onAddDevelopmentAction: (developmentAction: Partial<DevelopmentAction>) => void,
   onCancel: () => void,
   open: boolean,
-  skill: Skill | null
+  skill: UserIdpSkill | null
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & ManualProps
 
 const connector = connect((state: RootState) => ({
-  developmentActions: state.campaigns.idp.AIGeneratedDevelopmentActions,
+  generatedDevelopmentActions: state.campaigns.idp.AIGeneratedDevelopmentActions,
 }),
 {
   generateDevelopmentActionsByAI,
@@ -35,16 +35,22 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
   onAddDevelopmentAction,
   onCancel,
   open,
-  developmentActions,
+  generatedDevelopmentActions,
   generateDevelopmentActionsByAI,
   skill,
 }) => {
   const [isLoading, setIsLoading] = useState(false)
+  const developmentActions = skill?.skillId ? generatedDevelopmentActions[skill.skillId] ?? [] : []
 
   const fetchAIGeneratedDevelopmentActions = (generateMore = false) => {
     if (skill) {
       setIsLoading(true)
-      generateDevelopmentActionsByAI(skill.id, generateMore, developmentActions).catch((error) => {
+      generateDevelopmentActionsByAI({
+        userIdpSkillId: skill.id,
+        generateMore,
+        generatedActions: developmentActions,
+        lang: I18n.locale,
+      }).catch((error) => {
         message.error(error || I18n.t('common.errors.something_wrong'))
       }).finally(() => {
         setIsLoading(false)

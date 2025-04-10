@@ -53,4 +53,60 @@ describe UserReports::GenerateAndSavePdf do
       described_class.call!(user_report, current_user)
     end
   end
+
+  context 'when force regenerate is true' do
+    let!(:user_report_pdf) { create(:user_report_pdf, :with_pdf, user_report: user_report, locale: 'en') }
+
+    before do
+      allow(UserReports::GeneratePdf).to receive(:call!).and_return(file_path: 'spec/fixtures/files/reports/test.pdf')
+      allow(user_report).to receive(:generatable?).and_return(true)
+    end
+
+    it 'regenerates report' do
+      expect(UserReports::GeneratePdf).to receive(:call!).with(
+        user_report,
+        current_user,
+        hash_including(lang: 'en')
+      )
+
+      described_class.call!(user_report, current_user, locales: ['en'], force_regenerate: true)
+      expect(user_report.user_report_pdf.pdf_file.attached?).to be_truthy
+      expect(user_report.user_report_pdf.last_generated_at).to be_present
+    end
+  end
+
+  context 'when force regenerate is false' do
+    let!(:user_report_pdf) { create(:user_report_pdf, :with_pdf, user_report: user_report, locale: 'en') }
+
+    before do
+      allow(UserReports::GeneratePdf).to receive(:call!).and_return(file_path: 'spec/fixtures/files/reports/test.pdf')
+      allow(user_report).to receive(:generatable?).and_return(true)
+    end
+
+    it 'does not regenerate report if already attached' do
+      expect(UserReports::GeneratePdf).to_not receive(:call!).with(
+        user_report,
+        current_user,
+        hash_including(lang: 'en')
+      )
+
+      described_class.call!(user_report, current_user, locales: ['en'], force_regenerate: false)
+      expect(user_report.user_report_pdf.pdf_file.attached?).to be_truthy
+      expect(user_report.user_report_pdf.last_generated_at).to be_nil
+    end
+
+    it 'generates pdf if not attached' do
+      user_report_pdf.update!(pdf_file: nil)
+
+      expect(UserReports::GeneratePdf).to receive(:call!).with(
+        user_report,
+        current_user,
+        hash_including(lang: 'en')
+      )
+
+      described_class.call!(user_report, current_user, locales: ['en'], force_regenerate: false)
+      expect(user_report.user_report_pdf.pdf_file.attached?).to be_truthy
+      expect(user_report.user_report_pdf.last_generated_at).to be_present
+    end
+  end
 end

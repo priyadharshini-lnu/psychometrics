@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { CSSProperties, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import keyBy from 'lodash/keyBy'
@@ -10,16 +11,20 @@ import meanBy from 'lodash/meanBy'
 
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
-import { GapType, PropertiesModel, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
+import {
+  GapType, PropertiesModel, TableStyleType, PreviewModel,
+} from '~/modules/reports/interfaces/tables/Gap'
 import { BasePropertiesModel as BaseQuestionModelInProperties } from '~/modules/survey/interfaces/questions/Base'
 
 import ResultStore from '~/modules/reports/store/ResultStore'
 import AppStore from '~/modules/reports/store/AppStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import Utils from '~/modules/reports/utils'
+import { ColumnData, ColumnsHeaderData } from '~/modules/reports/core/interfaces/TableColumn'
 
 import styles from './styles.less'
 import { PageData } from '../PaginationContext'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 const MOCK_POSITIVE_GAPS: Array<Gap> = [
   {
@@ -63,6 +68,7 @@ const MOCK_POSITIVE_GAPS: Array<Gap> = [
     factor: {},
   },
 ]
+
 const MOCK_NEGATIVE_GAPS: Array<Gap> = []
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
 
@@ -82,6 +88,7 @@ interface OwnProps {
   noOfItems: number | null
   gapCutoff: number | null
   precision?: number
+  model: PreviewModel
   paginationContext: PageData | null
 
   style?: CSSProperties & { fontColor: string }
@@ -100,9 +107,31 @@ const QuestionTypeComponent: FC<Props> = ({
   noOfItems,
   gapCutoff,
   precision,
+  model,
   paginationContext,
   style,
 }) => {
+  const tableColumns = _.get(model, 'props.tableColumns.Question')
+    || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Question') || {} as ColumnData
+
+  const columnsHeaderData: ColumnsHeaderData = {
+    rank: {
+      label: I18nStore.tTableColumns(model, 'Question', 'rank.label'),
+      hide: _.get(tableColumns, 'rank.hide'),
+    },
+    indicator: {
+      label: I18nStore.tTableColumns(model, 'Question', 'indicator.label'),
+      hide: _.get(tableColumns, 'indicator.hide'),
+    },
+    competency: {
+      label: I18nStore.tTableColumns(model, 'Question', 'competency.label'),
+      hide: _.get(tableColumns, 'competency.hide'),
+    },
+    gap: {
+      label: I18nStore.tTableColumns(model, 'Question', 'gap.label'),
+      hide: _.get(tableColumns, 'gap.hide'),
+    },
+  }
   const calculateGaps = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
   ): Array<Array<Gap>> => {
@@ -216,13 +245,12 @@ const QuestionTypeComponent: FC<Props> = ({
           {showPositiveGapTable && (
             <>
               <THeader
-                title={
-                showTitle
-                  ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
-                  : ''}
+                title={(showTitle && !_.get(tableColumns, 'positive_gaps.hide'))
+                  ? I18nStore.tTableColumns(model, 'Question', 'positive_gaps.label') : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
                 hideValues={hideValues}
+                columnsHeaderData={columnsHeaderData}
               />
               <TBody
                 gaps={positiveGaps}
@@ -230,6 +258,7 @@ const QuestionTypeComponent: FC<Props> = ({
                   'reports.modules.gap_assessment.no_positive_gaps',
                 )}
                 hideValues={hideValues}
+                columnsHeaderData={columnsHeaderData}
                 type="top"
                 paginationContext={paginationContext}
 
@@ -239,13 +268,12 @@ const QuestionTypeComponent: FC<Props> = ({
           {showNegativeGapsTable && (
             <>
               <THeader
-                title={
-                showTitle
-                  ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
-                  : ''}
+                title={(showTitle && !_.get(tableColumns, 'negative_gaps.hide'))
+                  ? I18nStore.tTableColumns(model, 'Question', 'negative_gaps.label') : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
                 hideValues={hideValues}
+                columnsHeaderData={columnsHeaderData}
               />
               <TBody
                 gaps={negativeGaps}
@@ -254,6 +282,7 @@ const QuestionTypeComponent: FC<Props> = ({
                 )}
                 hideValues={hideValues}
                 precision={precision}
+                columnsHeaderData={columnsHeaderData}
                 type="bottom"
                 paginationContext={paginationContext}
               />
@@ -368,13 +397,14 @@ interface THeaderProps {
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
   hideValues: boolean
+  columnsHeaderData: ColumnsHeaderData
 }
 
 const THeader: FC<THeaderProps> = ({
-  title, leftFilter, rightFilter, hideValues,
+  title, leftFilter, rightFilter, hideValues, columnsHeaderData,
 }) => (
   <>
-    {title.length === 0 && (
+    {title.length !== 0 && (
       <tr className={styles.title} data-header>
         <th colSpan={hideValues ? 3 : 6}>
           {title}
@@ -382,22 +412,30 @@ const THeader: FC<THeaderProps> = ({
       </tr>
     )}
     <tr className={styles.headers} data-header>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.gap_assessment.rank')}
-      </th>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.gap_assessment.scoring_category')}
-      </th>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.gap_assessment.item')}
-      </th>
+      {!columnsHeaderData.rank.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.rank.label}
+        </th>
+      )}
+      {!columnsHeaderData.competency.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.competency.label}
+        </th>
+      )}
+      {!columnsHeaderData.indicator.hide && (
+        <th className={styles.label}>
+          {columnsHeaderData.indicator.label}
+        </th>
+      )}
       {!hideValues && (
         <>
           <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
           <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
-          <th className={styles.label}>
-            {I18nStore.t('reports.modules.gap_assessment.gap')}
-          </th>
+          {!columnsHeaderData.gap.hide && (
+            <th className={styles.label}>
+              {columnsHeaderData.gap.label}
+            </th>
+          )}
         </>
       )}
     </tr>
@@ -411,10 +449,11 @@ interface TBodyProps {
   precision?: number
   type: 'top' | 'bottom'
   paginationContext: PageData | null
+  columnsHeaderData: ColumnsHeaderData
 }
 
 const TBody: FC<TBodyProps> = ({
-  gaps, emptyText, hideValues, precision, type, paginationContext,
+  gaps, emptyText, hideValues, precision, type, paginationContext, columnsHeaderData,
 }) => {
   if (gaps.length === 0) {
     return (
@@ -441,16 +480,18 @@ const TBody: FC<TBodyProps> = ({
     <>
       {data.map((gap, i) => (
         <tr key={i} className={styles.row} data-row={i} data-type={type}>
-          <td>{paginationContext ? gap.rank : (i + 1)}</td>
-          <td>{gap.factorName}</td>
-          <td>{gap.questionName}</td>
+          {!columnsHeaderData.rank.hide && <td>{paginationContext ? gap.rank : (i + 1)}</td>}
+          {!columnsHeaderData.competency.hide && <td>{gap.factorName}</td>}
+          {!columnsHeaderData.indicator.hide && <td>{gap.questionName}</td>}
           {!hideValues && (
             <>
               <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>
               <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>
-              <td dir="ltr" className={gapStyle(gap.diff)}>
-                {gapValue(gap.diff)}
-              </td>
+              { !columnsHeaderData.gap.hide && (
+                <td dir="ltr" className={gapStyle(gap.diff)}>
+                  {gapValue(gap.diff)}
+                </td>
+              )}
             </>
           )}
         </tr>

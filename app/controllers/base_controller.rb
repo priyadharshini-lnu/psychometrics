@@ -54,6 +54,8 @@ class BaseController < ActionController::Base
 
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
     return if @current_project.nil? && request.controller_class.to_s == 'Users::UnlocksController'
+    return if @current_project.nil? && request.controller_class.to_s == 'Users::SamlSessionsController'
+
     unless @current_project
       return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
     end
@@ -121,7 +123,7 @@ class BaseController < ActionController::Base
   private
 
   def ignore_password_expire?
-    session[:spoofed] || session[:login_via_magic_link]
+    session[:spoofed] || session[:login_via_magic_link] || session[:saml_login]
   end
 
   def redirect_for_password_change(scope)

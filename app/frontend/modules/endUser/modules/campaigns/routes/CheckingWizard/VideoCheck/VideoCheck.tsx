@@ -125,8 +125,23 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   }
 
 
-  const track = async () => {
-    if (!videoRef.current) return
+  const createBlobFromCanvas = (canvas: HTMLCanvasElement): Promise<Blob> => new Promise((resolve, reject) => {
+    try {
+      canvas.toBlob((blob) => {
+        if (blob !== null) {
+          resolve(blob)
+        } else {
+          reject(new Error('Failed to create blob from canvas'))
+        }
+      }, 'image/jpeg', 0.95)
+    } catch (err) {
+      reject(err)
+    }
+  })
+
+
+  const track = async (): Promise<Blob | null> => {
+    if (!videoRef.current) return null
 
     try {
       const canvas = document.createElement('canvas')
@@ -139,16 +154,22 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       ctx?.scale(-1, 1)
       ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
 
-      canvas.toBlob(async (blob) => {
-        setImg(blob)
-      }, 'image/jpeg', 0.95)
+      // wait for the blob to be created with latest video frame received
+      const blob = await createBlobFromCanvas(canvas)
+      setImg(blob)
+      return blob
     } catch (err) {
       handleStopRecording()
+      return null
     }
   }
 
 
   const imageUpload = async () => {
+    if (!img) {
+      dispatch(updateUploading(CheckListStatus.Failed))
+      return
+    }
     const upload = new DirectUpload(
       img,
       `${location.pathname}/upload_user_verification_image_url`,
@@ -185,18 +206,23 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
     })
   }
 
-
-  const handleStopRecording = React.useCallback((): void => {
-    stopRecording()
-    // stopTranscription()
-    setVisualizing(false)
-    if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach(track => track.stop())
-      mediaStreamRef.current = null
+  const handleStopRecording = React.useCallback(async (): Promise<void> => {
+    try {
+      // awaiting for the image blob to be created with latest video frame before we make an API call
+      const blob = await track()
+      if (blob) {
+        stopRecording()
+        setVisualizing(false)
+        if (mediaStreamRef.current) {
+          mediaStreamRef.current.getTracks().forEach(track => track.stop())
+          mediaStreamRef.current = null
+        }
+        imageUpload()
+      }
+    } catch (e) {
+      console.error('Error in final frame capture:', e)
     }
-    imageUpload()
   }, [stopRecording])
-
 
   const renderActionButton = () => {
     if (status === 'recording') {

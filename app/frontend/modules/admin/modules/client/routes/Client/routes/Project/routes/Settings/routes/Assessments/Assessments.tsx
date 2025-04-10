@@ -126,6 +126,12 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
           )}
         />
         <Column
+          title={I18n.t('administration.project_tabs.assessments.column.user_result_validity_in_days')}
+          dataIndex="userResultValidityInDays"
+          key="userResultValidityInDays"
+          render={value => (value === null ? 'N/A' : `${value} days`)}
+        />
+        <Column
           title={I18n.t('administration.project_tabs.assessments.column.name')}
           dataIndex={['assessment', 'name']}
           key="assessment.name"

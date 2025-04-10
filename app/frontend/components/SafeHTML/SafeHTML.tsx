@@ -28,7 +28,8 @@ const sanitizeConfig: SanitizeConfig = {
   default: { ADD_ATTR: ['target'] },
   adminRichText: {
     ADD_TAGS: ['iframe', 'ins', 'del', 'object'],
-    ADD_ATTR: ['target', 'data', 'title', 'allowfullscreen'],
+    ADD_ATTR: ['target', 'data', 'title', 'allowfullscreen', 'role'],
+    ALLOW_ARIA_ATTR: true,
   },
   label: {
     ALLOWED_TAGS: ['span', 'br', 'nobr', 'small', 'strong', 'em'],

@@ -60,7 +60,6 @@ class UserReport < ApplicationRecord
                          }
 
   workflow_column :approval_status
-
   workflow do # rubocop:disable Metrics/BlockLength
     state :not_ready do
       event :ready, transitions_to: :pending_qc
@@ -86,9 +85,9 @@ class UserReport < ApplicationRecord
     end
     on_transition do |_from, to, _event, *_|
       unless approval_setting&.do_not_send_notifications?
-        ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to) && !one_level_qc?
+        ::UserReports::NotifyQc.call!(self, to) if %i[change_requested pending_qc].include?(to)
         ::UserReports::NotifyApprovals.call!(self) if to == :approved
-        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && !one_level_qc?
+        ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed && send_approver_email?
       end
 
       update(approval_status_updated_at: Time.current)
@@ -132,12 +131,22 @@ class UserReport < ApplicationRecord
     approval_settings.first
   end
 
+  def send_approver_email?
+    !approval_setting&.approvers_not_required?
+  end
+
   def one_level_qc?
     approval_setting&.approvers_not_required? || approval_setting&.approvers_can_edit?
   end
 
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)
+  end
+
+  def threesixty?
+    return false unless threesixty_campaign
+
+    threesixty_campaign.subjects.exists?(user_id: user_id)
   end
 
   def self.assessor_report_for_campaign(campaign_id)
@@ -211,7 +220,8 @@ class UserReport < ApplicationRecord
     {
       subject: user,
       evaluator: user,
-      campaign: campaign
+      campaign: campaign,
+      threesixty_campaign: threesixty_campaign
     }
   end
 

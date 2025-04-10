@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  Form, Select, Switch,
+  Form, Select, Switch, Input,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
@@ -12,7 +12,7 @@ import { useResources } from '~/hooks/useResources/useResources'
 const { I18n } = window
 
 interface Props {
-  addAssessment: CreateResource<Assessment | {projectIdId: string }>
+  addAssessment: CreateResource<Assessment | { projectId: string }>
   updateAssessment: UpdateResource<ProjectAssessment>
   projectAssessment: ProjectAssessment
   clientId: number
@@ -31,11 +31,21 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
   interface Assessment {
     id: string,
     name: string,
+    type: string,
   }
+
+  const [selectedAssessmentType, setSelectedAssessmentType] = useState<string | null>(
+    projectAssessment?.type || null,
+  )
 
   const {
     data: assessments, fetch: fetchAssessments,
   } = useResources<Assessment>('assessments')
+
+  const handleAssessmentChange = (value: number) => {
+    const selectedAssessment = assessments.find(assessment => parseInt(assessment.id, 10) === value)
+    setSelectedAssessmentType(selectedAssessment?.type || null)
+  }
 
   return (
     <>
@@ -74,11 +84,12 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
                         owned_by_client_or_tte: `${clientId}`,
                       },
                       fields: {
-                        assessments: ['name'],
+                        assessments: ['name', 'type'],
                       },
                     },
                   })
                 }}
+                onChange={handleAssessmentChange}
               >
                 {assessments.length ? assessments.map(({ id, name }) => (
                   <Select.Option key={id} value={parseInt(id, 10)}>
@@ -95,6 +106,15 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
                   )}
               </Select>
             </Form.Item>
+            {selectedAssessmentType !== 'hogan' && (
+              <Form.Item
+                name="userResultValidityInDays"
+                label={I18n.t('administration.project_tabs.assessments.form.user_result_validity_in_days')}
+                normalize={value => (value ? parseInt(value, 10) : null)}
+              >
+                <Input type="number" defaultValue={projectAssessment?.userResultValidityInDays || ''} />
+              </Form.Item>
+            )}
             <Form.Item
               name="normalizeFactorScores"
               label={I18n.t('administration.project_tabs.assessments.form.normalize_factor_scores')}

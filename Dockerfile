@@ -130,6 +130,12 @@ ARG S3_COMPATIBLE_STORAGE_PUBLIC_BUCKET="dummy"
 ARG S3_COMPATIBLE_STORAGE_PRIVATE_BUCKET="dummy"
 ARG S3_COMPATIBLE_STORAGE_PROVIDER="aws"
 
+# For sentry source maps upload after build
+ARG SENTRY_AUTH_TOKEN="dummy"
+ARG SENTRY_ORG="dummy"
+ARG SENTRY_PROJECT="tte"
+ARG SENTRY_DEBUG="true"
+
 COPY config/database.yml.sample config/database.yml
 
 RUN bundle exec rake i18n:js:export \

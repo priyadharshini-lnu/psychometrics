@@ -28,7 +28,7 @@ const MyTasks: React.FC = () => {
 
   return (
     <div>
-      <TasksList {...args} />
+      <TasksList {...args} type="myTasks" />
     </div>
   )
 }

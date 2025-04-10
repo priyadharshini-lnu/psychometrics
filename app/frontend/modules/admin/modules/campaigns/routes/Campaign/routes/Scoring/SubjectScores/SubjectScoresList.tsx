@@ -105,6 +105,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     handleTableChange,
     changeFilter,
     getFilteredValue,
+    isLoading,
   } = useResources<CampaignScores>(
     'campaign_user_scorings',
     {
@@ -343,6 +344,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
                 bordered
                 pagination={false}
                 scroll={{ x: 'max-content' }}
+                loading={isLoading('fetch')}
               />
               )}
             disableHeader

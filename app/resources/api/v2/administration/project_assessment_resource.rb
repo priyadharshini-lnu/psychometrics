@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ProjectAssessmentResource < Api::V2::Administration::BaseResource
-  attributes :assessment_id, :project_id, :normalize_factor_scores, :created_at, :updated_at
+  attributes :assessment_id, :project_id, :normalize_factor_scores, :user_result_validity_in_days,
+             :created_at, :updated_at, :type
 
   ransack_filters %i[filterable_fields]
 
@@ -27,6 +28,10 @@ class Api::V2::Administration::ProjectAssessmentResource < Api::V2::Administrati
 
   def updated_at
     @model.decorate.updated_at
+  end
+
+  def type
+    Assessment::TYPES.key(@model.assessment.type)
   end
 
   def self.records(opts = {})

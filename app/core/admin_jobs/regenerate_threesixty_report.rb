@@ -67,7 +67,8 @@ module AdminJobs
 
     def options
       {
-        lang: campaign_report.effective_default_language
+        locales: record.data['locales'] || [campaign_report.effective_default_language],
+        force_regenerate: record.data['force_regenerate']
       }
     end
   end

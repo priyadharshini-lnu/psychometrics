@@ -23,6 +23,7 @@ export const HighestLowest: FC<Props> = ({ model, insertPaginationPage, preview 
     assessment_id,
   } = model
 
+
   if (filter === 0) {
     return (
       <Empty

@@ -6,6 +6,7 @@ import { PaginationContext } from '../FactorsTable/PaginationContext'
 export default function Competencies ({ model, insertPaginationPage, preview }) {
   const Type = Types[model.props.sourceType]
 
+
   const { paginationContext } = useModulePagination(
     model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage, preview,
   )

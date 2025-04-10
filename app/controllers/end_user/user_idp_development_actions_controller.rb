@@ -80,12 +80,12 @@ module EndUser
     end
 
     def generate_by_ai
-      generated_actions = DeploymentActions::GenerativeService.new(@skill, ai_generate_service_params).call!
+      generated_actions = DevelopmentActions::GenerativeService.new(@skill, ai_generate_service_params).call!
 
       render json: { data: generated_actions }, status: :ok
-    rescue DeploymentActions::GenerativeService::RegenerateLimitReachedError => e
+    rescue DevelopmentActions::GenerativeService::RegenerateLimitReachedError => e
       render json: { errors: [e.message] }, status: 422
-    rescue DeploymentActions::GenerativeService::GenerativeServiceError => e
+    rescue DevelopmentActions::GenerativeService::GenerativeServiceError => e
       Rails.logger.error(e.message) # logging because this shouldn't concern end user
       render json: { errors: [I18n.t('common.errors.something_wrong')] }, status: 422
     end
@@ -114,6 +114,8 @@ module EndUser
     end
 
     def user_idp_development_actions_params
+      return [] if params[:user_idp_development_action].empty?
+
       params.require(:user_idp_development_action).map do |params|
         params.permit(
           :id,
@@ -133,14 +135,15 @@ module EndUser
     end
 
     def load_skill!
-      @skill = user.user_idp_skills.includes(:skill).find(params[:skill_id]).skill
+      @skill = user.user_idp_skills.includes(:skill).find(params[:user_idp_skill_id]).skill
     end
 
     def ai_generate_service_params
       params.permit(
-        :skill_id,
+        :user_idp_skill_id,
+        :lang,
         :generate_more,
-        generated_actions: %i[description learning_style]
+        generated_actions: %i[description learning_style skill_id]
       )
     end
   end

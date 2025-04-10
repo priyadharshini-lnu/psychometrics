@@ -4,8 +4,10 @@ require 'rails_helper'
 
 describe CampaignReports::BulkDownload do
   let(:campaign) { create(:campaign) }
+  let!(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
+  let!(:threesixty_option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
   let(:current_user) { create(:user) }
-  let(:job_record) { create(:admin_job_record) }
+  let(:job_record) { create(:admin_job_record, data: { campaign_id: campaign.id }) }
   let(:report1) { create(:report) }
   let(:report2) { create(:report) }
   let!(:campaign_report1) { create(:campaign_report, campaign: campaign, report: report1) }
@@ -91,18 +93,45 @@ describe CampaignReports::BulkDownload do
     job_record.data['start_date'] = start_date
     job_record.data['end_date'] = end_date
     job_record.save!
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[0].pdf_url,
+      user_reports_with_pdf[0],
+      user_reports_with_pdf[0].report.default_language
+    )
 
-    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[0])
-    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[1])
-    expect_any_instance_of(described_class).to_not receive(:download_report).with(user_report_without_pdf)
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[1].pdf_url,
+      user_reports_with_pdf[1],
+      user_reports_with_pdf[1].report.default_language
+    )
+
+    expect_any_instance_of(described_class).to_not receive(:download_report).with(
+      user_report_without_pdf.pdf_url,
+      user_report_without_pdf,
+      user_report_without_pdf.report.default_language
+    )
 
     described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
   end
 
   it 'ignores inactive users user_report by default' do
-    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[0])
-    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[1])
-    expect_any_instance_of(described_class).to_not receive(:download_report).with(inactive_user_report_with_pdf)
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[0].pdf_url,
+      user_reports_with_pdf[0],
+      user_reports_with_pdf[0].report.default_language
+    )
+
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[1].pdf_url,
+      user_reports_with_pdf[1],
+      user_reports_with_pdf[1].report.default_language
+    )
+
+    expect_any_instance_of(described_class).to_not receive(:download_report).with(
+      inactive_user_report_with_pdf.pdf_url,
+      inactive_user_report_with_pdf,
+      inactive_user_report_with_pdf.report.default_language
+    )
 
     described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
   end
@@ -110,11 +139,22 @@ describe CampaignReports::BulkDownload do
   it 'includes inactive users user_report when include_inactive_users param is true' do
     job_record.data['include_inactive_users'] = true
     job_record.save!
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[0].pdf_url,
+      user_reports_with_pdf[0],
+      user_reports_with_pdf[0].report.default_language
+    )
 
-    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[0])
-    expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[1])
-    expect_any_instance_of(described_class).to receive(:download_report).with(inactive_user_report_with_pdf)
-
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[1].pdf_url,
+      user_reports_with_pdf[1],
+      user_reports_with_pdf[1].report.default_language
+    )
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      inactive_user_report_with_pdf.pdf_url,
+      inactive_user_report_with_pdf,
+      inactive_user_report_with_pdf.report.default_language
+    )
     described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
   end
 end

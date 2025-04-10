@@ -75,7 +75,8 @@ describe Api::V2::Administration::ProjectAssessmentsController, swagger_doc: 'v2
             attributes: {
               project_id: '1',
               assessment_id: '1',
-              normalize_factor_scores: false
+              normalize_factor_scores: false,
+              user_result_validity_in_days: nil
             }
           }
         }
@@ -87,7 +88,8 @@ describe Api::V2::Administration::ProjectAssessmentsController, swagger_doc: 'v2
               attributes: {
                 project_id: project_id.to_s,
                 assessment_id: project_assessment.assessment_id,
-                normalize_factor_scores: project_assessment.normalize_factor_scores
+                normalize_factor_scores: project_assessment.normalize_factor_scores,
+                user_result_validity_in_days: 180
               }
             }
           }
@@ -101,6 +103,7 @@ describe Api::V2::Administration::ProjectAssessmentsController, swagger_doc: 'v2
           expect(assessment['data']['attributes']['normalize_factor_scores']).to eq(
             project_assessment.normalize_factor_scores
           )
+          expect(assessment['data']['attributes']['user_result_validity_in_days']).to eq(180)
           expect(assessment['data']['attributes']['created_at']).to eq(project_assessment.decorate.created_at)
           expect(assessment['data']['attributes']['updated_at']).to eq(project_assessment.decorate.updated_at)
         end

@@ -70,6 +70,7 @@ export default {
     'fr-highlighted': 'Highlighted',
     'fr-thick': 'Thick',
   },
+  htmlAllowedAttrs: [...FroalaEditor.DEFAULTS.htmlAllowedAttrs, 'aria-.*', 'role'],
   imageStyles: {
     'zoom-image': 'Zoom Image',
   },

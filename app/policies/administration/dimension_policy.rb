@@ -37,6 +37,14 @@ class Administration::DimensionPolicy < Administration::BasePolicy
     @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
   end
 
+  def import_factors?
+    create?
+  end
+
+  def factors_modal?
+    import_factors?
+  end
+
   def actions?
     edit? & copy? & destroy?
   end

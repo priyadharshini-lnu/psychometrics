@@ -3,6 +3,7 @@ import { EventEmitter } from 'fbemitter'
 import PageList from '~/modules/reports/store/PageList'
 import AppStore from '~/modules/reports/store/AppStore'
 import Utils from '~/modules/reports/utils/Utils'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 let { I18n } = window
 if (I18n) {
@@ -16,7 +17,9 @@ if (I18n) {
 }
 const TRANSLATED_MODULES = {
   Text: true,
-  Table: ['FactorsTable', 'StrengthClusters', 'InnovationStyles', 'Competencies'],
+  Table: [
+    'FactorsTable', 'StrengthClusters', 'InnovationStyles', 'HighestLowest',
+    'ThreeSixtyReportSummary', 'Competencies', 'GapAssessment'],
   Graph: ['Circumplex'],
 }
 const EXTERNAL_CATEGORIES = ['hogan', 'saville']
@@ -126,6 +129,24 @@ _.extend(I18nStore.prototype, {
       return this.locales.factor[factor.id][key]
     }
     return factor[key]
+  },
+
+  tTableColumns (module, sourceType, key) {
+    const translationPathKey = key.replaceAll('.', '-')
+    const translationPath = sourceType ? `tableColumns-${sourceType}-${translationPathKey}`
+      : `tableColumns-${translationPathKey}`
+    const translatedValue = _.get(this, `locales.reports/module.${module.id}.${translationPath}`)
+    if (translatedValue) {
+      return translatedValue
+    }
+
+    const tableColumnsDataPath = sourceType ? `props.tableColumns.${sourceType}` : 'props.tableColumns'
+    const defaultTableColumnnsData = DefaultTableColumns[module.props.type]?.defaultTableColumns(this)
+    const defaultTableColumns = sourceType ? _.get(defaultTableColumnnsData, sourceType)
+      : defaultTableColumnnsData
+    const tableColumns = _.get(module, tableColumnsDataPath)
+        || defaultTableColumns || {}
+    return _.get(tableColumns, key) || ''
   },
 
   tExternalFactorName (assessmentId, factor) {

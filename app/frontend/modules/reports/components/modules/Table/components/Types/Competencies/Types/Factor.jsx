@@ -9,11 +9,16 @@ import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
 import Legend from '../Legend'
 import BarChart from './BarChart'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
 
 export default function Factor ({ model, filters, paginationContext }) {
+  const tableColumns = _.get(model, 'props.tableColumns.Factor')
+    || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Factor') || {}
+  const showCompetency = !_.get(tableColumns, 'competency.hide')
+  const showDevelopmentalRating = !_.get(tableColumns, 'developmental_rating.hide')
   const getFactorMap = () => {
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const dimensionId = assessment && assessment.dimensionId
@@ -60,6 +65,7 @@ export default function Factor ({ model, filters, paginationContext }) {
   const filtersHavingResults = () => filters.filter(f => filterIdsHavingResults.has(f.id))
   const factorMap = getFactorMap()
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / milestones.length
+  const getMinDataCellHeightForDevelopmentalRating = results => `${(FILTER_ROW_HEIGHT * results.length) + 34}px`
   const getDescStyle = results => ({ minHeight: `${FILTER_ROW_HEIGHT * results.length}px` })
   const { fontSize, fontFamily, fontColor } = model.props.style
   const style = {
@@ -80,34 +86,40 @@ export default function Factor ({ model, filters, paginationContext }) {
           {!hideHeader && (
             <thead data-table-header>
               <tr>
-                <td
-                  rowSpan={2}
-                  className={cs(styles.label, styles.competencyLabel)}
-                  width={`${DESC_COLUMN_WIDTH}%`}
-                  style={{ color: mainHeaderColor }}
-                >
-                  {I18nStore.t('reports.modules.single_value_cluster.competency')}
-                </td>
-                <td
-                  colSpan={milestones.length}
-                  className={cs(styles.label, styles.factorLabel)}
-                  style={{ color: mainHeaderColor }}
-                >
-                  {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
-                </td>
-              </tr>
-              <tr>
-                {milestones.map(m => (
+                {showCompetency && (
                   <td
-                    key={m.id}
-                    className={cs(styles.label, styles.milestoneLabel)}
-                    style={{ borderBottomColor: `${m.color}`, color: secondHeaderColor }}
-                    width={`${milestoneColumnWidth}%`}
+                    rowSpan={2}
+                    className={cs(styles.label, styles.competencyLabel)}
+                    width={`${DESC_COLUMN_WIDTH}%`}
+                    style={{ color: mainHeaderColor }}
                   >
-                    {I18nStore.tMilestone(model, m)}
+                    {I18nStore.tTableColumns(model, 'Factor', 'competency.label')}
                   </td>
-                ))}
+                )}
+                {showDevelopmentalRating && (
+                  <td
+                    colSpan={milestones.length}
+                    className={cs(styles.label, styles.factorLabel)}
+                    style={{ color: mainHeaderColor }}
+                  >
+                    {I18nStore.tTableColumns(model, 'Factor', 'developmental_rating.label')}
+                  </td>
+                )}
               </tr>
+              { showDevelopmentalRating && (
+                <tr>
+                  {milestones.map(m => (
+                    <td
+                      key={m.id}
+                      className={cs(styles.label, styles.milestoneLabel)}
+                      style={{ borderBottomColor: `${m.color}`, color: secondHeaderColor }}
+                      width={`${milestoneColumnWidth}%`}
+                    >
+                      {I18nStore.tMilestone(model, m)}
+                    </td>
+                  ))}
+                </tr>
+              )}
             </thead>
           )}
           <tbody>
@@ -117,20 +129,24 @@ export default function Factor ({ model, filters, paginationContext }) {
               const results = enhanceFiltersByValue(factor).filter(r => r.value > 0)
               results.forEach(r => filterIdsHavingResults.add(r.id))
               const descStyle = getDescStyle(results)
+              const minDataCellHeight = !showCompetency
+                ? getMinDataCellHeightForDevelopmentalRating(results) : 'auto'
               return (
                 <tr key={id} data-row={i} data-factor-id={id}>
-                  <td className={styles.factorcell}>
-                    <div className={styles.factor} style={{ color: secondHeaderColor }}>
-                      <Flex align="center" gap={5}>
-                        {factor.icon && <div className="vertical-align"><img src={factor.icon} /></div>}
-                        <span>{I18nStore.tFactor(factor, 'name')}</span>
-                      </Flex>
-                    </div>
-                    <div className={styles.description} style={descStyle} width={`${DESC_COLUMN_WIDTH}%`}>
-                      {I18nStore.tFactor(factor, 'description')}
-                    </div>
-                  </td>
-                  {showAsBarChart
+                  {showCompetency && (
+                    <td className={styles.factorcell}>
+                      <div className={styles.factor} style={{ color: secondHeaderColor }}>
+                        <Flex align="center" gap={5}>
+                          {factor.icon && <div className="vertical-align"><img src={factor.icon} /></div>}
+                          <span>{I18nStore.tFactor(factor, 'name')}</span>
+                        </Flex>
+                      </div>
+                      <div className={styles.description} style={descStyle} width={`${DESC_COLUMN_WIDTH}%`}>
+                        {I18nStore.tFactor(factor, 'description')}
+                      </div>
+                    </td>
+                  )}
+                  {showDevelopmentalRating && (showAsBarChart
                     ? (
                       <BarChart filters={results} model={model} milestones={milestones} />
                     )
@@ -142,8 +158,9 @@ export default function Factor ({ model, filters, paginationContext }) {
                         key={m.id}
                         model={model}
                         milestone={m}
+                        dataCellHeight={minDataCellHeight}
                       />
-                    ))}
+                    )))}
                 </tr>
               )
             })}

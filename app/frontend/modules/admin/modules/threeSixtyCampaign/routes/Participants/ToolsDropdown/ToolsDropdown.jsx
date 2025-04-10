@@ -108,6 +108,7 @@ const getCustomMenuProps = ({
 export default function ToolsDropdown ({
   dimensionId, resetCampaign, resetAllNominations, openModal, rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
+  reportAvailableLanguages, reportDefaultLanguage,
 }) {
   const { projectId, campaignId } = useParams()
   const resetCampaignWithConfirmation = (campaignId) => {
@@ -137,32 +138,72 @@ export default function ToolsDropdown ({
     })
   }
 
-
   const handleRegenerateReports = (campaignId) => {
-    modal.confirm({
-      title: I18n.t('campaign_assessment.modals.regenerate.title'),
-      icon: <ExclamationCircleOutlined />,
-      centered: true,
-      width: 650,
-      content: I18n.t('campaign_assessment.modals.regenerate.content'),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
-      onOk: async () => {
-        try {
-          await regenerateReports(campaignId)
-          message.success(I18n.t('user_reports.messages.regenerate_successful'))
-        } catch (error) {
-          message.error(error, 5)
-        }
-      },
-    })
+    if (reportAvailableLanguages.length === 0) {
+      modal.confirm({
+        title: I18n.t('campaign_assessment.modals.regenerate.title'),
+        icon: <ExclamationCircleOutlined />,
+        centered: true,
+        width: 650,
+        content: I18n.t('campaign_assessment.modals.regenerate.content'),
+        okText: I18n.t('common.text.ok'),
+        cancelText: I18n.t('common.text.cancel'),
+        onOk: async () => {
+          try {
+            await regenerateReports(campaignId, [reportDefaultLanguage], true)
+            message.success(I18n.t('user_reports.messages.regenerate_successful'))
+          } catch (error) {
+            message.error(error, 5)
+          }
+        },
+      })
+    } else {
+      openModal('RegenerateReportModal', {
+        visible: true,
+        onClose: () => {},
+        allLocales: reportAvailableLanguages,
+        defaultLocale: reportDefaultLanguage,
+        onConfirm: async (selectedLocales, forceRegenerate) => {
+          try {
+            await regenerateReports(campaignId, selectedLocales, forceRegenerate)
+            message.success(I18n.t('user_reports.messages.regenerate_successful'))
+          } catch (error) {
+            message.error(error, 5)
+          }
+        },
+      })
+    }
   }
 
   const handleBulkDownloads = () => {
-    bulkDownloads(campaignId).then(() => {
-      message.success(I18n.t('jobs.threesixty.bulk_downloads'))
-    })
+    if (reportAvailableLanguages.length === 0) {
+      bulkDownloads(campaignId, [reportDefaultLanguage])
+        .then(() => {
+          message.success(I18n.t('jobs.threesixty.bulk_downloads'))
+        })
+        .catch((error) => {
+          message.error(error)
+        })
+    } else {
+      openModal('BulkDownloadModal', {
+        visible: true,
+        onClose: () => {},
+        allLocales: reportAvailableLanguages,
+        defaultLocale: reportDefaultLanguage,
+        onConfirm: (selectedLocales) => {
+          bulkDownloads(campaignId, selectedLocales)
+            .then(() => {
+              message.success(I18n.t('jobs.threesixty.bulk_downloads'))
+            })
+            .catch((error) => {
+              message.error(error)
+            })
+        },
+      })
+    }
   }
+
+
   const resetAllNominationsWithConfirmation = (campaignId) => {
     openModal('CampaignNameConfirmationModal', {
       onConfirm: () => resetAllNominations(campaignId),

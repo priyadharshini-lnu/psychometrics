@@ -102,4 +102,42 @@ RSpec.describe User, type: :model do
       expect(user.timeout_in).to eq(24.hours)
     end
   end
+
+  describe '#saml_enforced_for_admins?' do
+    let(:superadmin) { create(:superadmin) }
+    let(:client_admin) { create(:client_admin, email: 'admin@mercer.com') }
+    let(:project_admin) { create(:project_admin, email: 'user@mercer.com') }
+    let(:regular_user) { create(:user, email: 'user@example.com', project: create(:project)) }
+
+    before do
+      allow(Settings.features).to receive(:disable_saml_for_admins).and_return(false)
+      allow(Settings).to receive(:saml_enforced_email_domains).and_return(['mercer.com'])
+    end
+
+    it 'returns true for superadmin' do
+      expect(superadmin.saml_enforced_for_admins?).to eq(true)
+    end
+
+    it 'returns true for client admin with SSO-enforced email domain' do
+      expect(client_admin.saml_enforced_for_admins?).to eq(true)
+    end
+
+    it 'returns true for project admin with SSO-enforced email domain' do
+      expect(project_admin.saml_enforced_for_admins?).to eq(true)
+    end
+
+    it 'returns false for regular user without SSO-enforced email domain' do
+      expect(regular_user.saml_enforced_for_admins?).to eq(false)
+    end
+
+    it 'returns false for admin with non-SSO-enforced email domain' do
+      client_admin.update!(email: 'admin@example.com')
+      expect(client_admin.saml_enforced_for_admins?).to eq(false)
+    end
+
+    it 'returns false for non-admin user with SSO-enforced email domain' do
+      regular_user.update!(email: 'regular_user@mercer.com')
+      expect(regular_user.saml_enforced_for_admins?).to eq(false)
+    end
+  end
 end

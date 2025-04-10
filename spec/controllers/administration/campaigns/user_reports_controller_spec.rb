@@ -400,7 +400,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
       it 'send_for_approval change approval status to qc_completed' do
         user_report.update(approval_status: 'qc_in_progress')
-        expect(UserReports::NotifyApprovers).to_not receive(:call!)
+        expect(UserReports::NotifyApprovers).to receive(:call!)
         patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
         parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')

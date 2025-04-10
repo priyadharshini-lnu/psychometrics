@@ -35,9 +35,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -159,9 +157,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -253,9 +249,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -327,9 +321,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -397,9 +389,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -501,9 +491,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -568,9 +556,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -629,9 +615,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -682,9 +666,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -733,6 +715,104 @@
             }
           }
         }
+      },
+      "get": {
+        "summary": "Get all campaigns for a project",
+        "operationId": "GetProjectCampaigns",
+        "description": "Get all campaigns associated with a project",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "Filter campaigns by status (comma-separated for multiple)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success with multiple status filter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Campaign"
+              }
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "id": 367,
+                        "name": "Employee Engagement",
+                        "created_at": "2018-02-11T10:55:25.569+04:00",
+                        "updated_at": "2018-02-11T10:55:25.569+04:00"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status parameter",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1002,
+                      "message": "Validation error",
+                      "more_info": "Status The following status parameters are invalid: invalid_status. Valid statuses are: active, closed, inactive, archived",
+                      "meta": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": null,
+                      "meta": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/projects/{project_id}/campaigns/{campaign_id}/assessments_reports": {
@@ -748,9 +828,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -811,9 +889,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -884,9 +960,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -969,9 +1043,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1037,9 +1109,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1123,9 +1193,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1191,9 +1259,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1259,9 +1325,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1367,9 +1431,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1433,9 +1495,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1519,9 +1579,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1636,6 +1694,101 @@
         }
       }
     },
+    "/clients/{client_id}/projects": {
+      "get": {
+        "summary": "Get projects for a client",
+        "operationId": "GetClientProjects",
+        "description": "Get projects associated with a client",
+        "tags": [
+          "Projects"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Project"
+              }
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "id": 367,
+                        "name": "Project 1",
+                        "subdomain": "xyz",
+                        "client_reference": "XYZ 001",
+                        "created_at": "2018-02-11T10:55:25.569+04:00",
+                        "updated_at": "2018-02-11T10:55:25.569+04:00"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": null,
+                      "meta": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Client not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1005,
+                      "message": "Resource not found",
+                      "more_info": "Client with id=invalid is not found",
+                      "meta": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/users/{user_id}/reports": {
       "get": {
         "summary": "Get user reports",
@@ -1649,9 +1802,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1763,9 +1914,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1833,17 +1982,13 @@
                                 "key": 2,
                                 "rank": 1,
                                 "name": "Occupation 2",
-                                "normed_factors": [
-
-                                ]
+                                "normed_factors": []
                               },
                               {
                                 "key": 1,
                                 "rank": 2,
                                 "name": "Occupation 1",
-                                "normed_factors": [
-
-                                ]
+                                "normed_factors": []
                               }
                             ]
                           }
@@ -1891,9 +2036,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -1959,9 +2102,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -2081,9 +2222,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -2172,9 +2311,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "consumes": [
@@ -2230,9 +2367,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "consumes": [
@@ -2291,9 +2426,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -2355,9 +2488,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -2424,9 +2555,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -2503,9 +2632,7 @@
         ],
         "security": [
           {
-            "basic": [
-
-            ]
+            "basic": []
           }
         ],
         "parameters": [
@@ -2541,9 +2668,7 @@
   },
   "security": [
     {
-      "basic": [
-
-      ]
+      "basic": []
     }
   ],
   "basePath": "/api/v1",
@@ -2928,6 +3053,9 @@
         "name": {
           "type": "string"
         }
+      },
+      "example": {
+        "name": "Promotion"
       }
     },
     "Datasheet": {
@@ -2960,7 +3088,7 @@
             "type": "integer"
           },
           "x-nullable": true,
-          "description": "deprecated, use \"campaigns\". In case both \"campaigns\"  and \"campaign_ids\" are provided\n, \"campaigns\" will be used"
+          "description": "deprecated, use \"campaigns\".In case both \"campaigns\" and \"campaign_ids\" are provided, \"campaigns\" will be used"
         },
         "campaigns": {
           "type": "array",
@@ -2969,6 +3097,23 @@
           },
           "x-nullable": true
         }
+      },
+      "example": {
+        "campaigns": [
+          {
+            "id": 510,
+            "active": true,
+            "external_id": "ext123",
+            "existing_record": "new_evaluation",
+            "schedule_start_date": "2023-03-05T10:56:53.349+04:00",
+            "schedule_end_date": "2023-04-05T10:56:53.349+04:00",
+            "datasheet": {
+              "Current Position": "Manager",
+              "Department": "HR",
+              "Location": "London"
+            }
+          }
+        ]
       }
     },
     "NewUserCampaign": {
@@ -3055,6 +3200,17 @@
           "type": "string",
           "x-nullable": true
         }
+      },
+      "example": {
+        "name": "camp1",
+        "status": "active",
+        "start_date": "2019-03-05T10:56:53.349+04:00",
+        "end_date": "2019-04-05T10:56:53.349+04:00",
+        "fixed_time": true,
+        "duration": 111,
+        "enable_instructions": true,
+        "instructions": "My Instructions",
+        "description": "Campaign Description"
       }
     },
     "UpdatedCampaign": {
@@ -3102,6 +3258,17 @@
           "type": "string",
           "x-nullable": true
         }
+      },
+      "example": {
+        "name": "upd_camp1",
+        "status": "inactive",
+        "start_date": "2019-03-05T10:56:53.349+04:00",
+        "end_date": "2019-04-05T10:56:53.349+04:00",
+        "fixed_time": true,
+        "duration": 111,
+        "enable_instructions": true,
+        "instructions": "New Instructions",
+        "description": "New Description"
       }
     },
     "UpdatedCampaignUser": {
@@ -3175,6 +3342,20 @@
           "type": "string",
           "x-nullable": true
         }
+      },
+      "example": {
+        "id": 770,
+        "name": "Sales Executive Recruitment May 2020",
+        "status": "active",
+        "start_date": "2019-03-05T10:56:53.349+04:00",
+        "end_date": "2020-03-05T10:56:53.349+04:00",
+        "fixed_time": true,
+        "duration": 111,
+        "enable_instructions": true,
+        "instructions": "Campaign Instructions",
+        "description": "Campaign Description",
+        "created_at": "2019-03-05T10:56:53.349+04:00",
+        "updated_at": "2019-03-05T10:56:53.349+04:00"
       }
     },
     "UserCampaign": {
@@ -3192,6 +3373,12 @@
         "updated_at": {
           "type": "string"
         }
+      },
+      "example": {
+        "id": 1111,
+        "name": "Super campaign",
+        "created_at": "2018-02-11T10:55:25.569+04:00",
+        "updated_at": "2018-02-11T10:55:25.569+04:00"
       }
     },
     "UpdatedReport": {
@@ -3206,6 +3393,11 @@
         "report_bundle_id": {
           "type": "integer"
         }
+      },
+      "example": {
+        "id": 1,
+        "user_access": true,
+        "report_bundle_id": 123
       }
     },
     "UpdatedAssessment": {
@@ -3218,6 +3410,10 @@
           "type": "integer",
           "x-nullable": true
         }
+      },
+      "example": {
+        "id": 1,
+        "norm_id": 456
       }
     },
     "UpdatedCampaignAssessmentsAndReports": {
@@ -3235,6 +3431,21 @@
             "$ref": "#/definitions/UpdatedAssessment"
           }
         }
+      },
+      "example": {
+        "reports": [
+          {
+            "id": 1,
+            "user_access": true,
+            "report_bundle_id": 123
+          }
+        ],
+        "assessments": [
+          {
+            "id": 1,
+            "norm_id": 456
+          }
+        ]
       }
     },
     "AssessmentsAndReports": {
@@ -3252,6 +3463,21 @@
             "$ref": "#/definitions/CampaignOrUserAssessment"
           }
         }
+      },
+      "example": {
+        "reports": [
+          {
+            "id": 1,
+            "user_access": true,
+            "report_bundle_id": 123
+          }
+        ],
+        "assessments": [
+          {
+            "id": 1,
+            "norm_id": 456
+          }
+        ]
       }
     },
     "CampaignOrUserReport": {
@@ -3266,6 +3492,11 @@
         "report_bundle_id": {
           "type": "integer"
         }
+      },
+      "example": {
+        "id": 1,
+        "user_access": true,
+        "report_bundle_id": 123
       }
     },
     "CampaignOrUserAssessment": {
@@ -3278,6 +3509,110 @@
           "type": "integer",
           "x-nullable": true
         }
+      },
+      "example": {
+        "id": 1,
+        "norm_id": 456
+      }
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "client_id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subdomain": {
+          "type": "string"
+        },
+        "client_reference": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "locales": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enable_strong_password": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "enable_2factor_auth": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "project_logo_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "partner_logo_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "background_image_url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "background_color": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "login_box_position": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "logo_alt_text": {
+          "type": "string",
+          "x-nullable": true,
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
+        },
+        "secondary_logo_alt_text": {
+          "type": "string",
+          "x-nullable": true,
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
+        },
+        "webhook": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "id": 770,
+        "client_id": 1,
+        "name": "Project 1",
+        "subdomain": "xyz",
+        "client_reference": "XYZ 001",
+        "locales": [
+          "en",
+          "ar"
+        ],
+        "enable_strong_password": true,
+        "enable_2factor_auth": true,
+        "project_logo_url": "https://example.com/logo.png",
+        "partner_logo_url": "https://example.com/partner-logo.png",
+        "background_image_url": "https://example.com/bg.png",
+        "background_color": "#ffffff",
+        "login_box_position": "left",
+        "logo_alt_text": "Company Logo",
+        "secondary_logo_alt_text": "Partner Logo",
+        "webhook": "https://my.site.com/webhook",
+        "created_at": "2019-03-05T10:56:53.349+04:00",
+        "updated_at": "2019-03-05T10:56:53.349+04:00"
       }
     },
     "NewProject": {
@@ -3328,11 +3663,13 @@
         },
         "project_logo": {
           "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "description": "Base64 encoded image data for the project logo"
         },
         "partner_logo": {
           "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "description": "Base64 encoded image data for the partner/secondary logo"
         },
         "webhook": {
           "type": "string",
@@ -3340,7 +3677,8 @@
         },
         "background_image": {
           "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "description": "Base64 encoded image data for the background image"
         },
         "background_color": {
           "type": "string",
@@ -3362,6 +3700,26 @@
           "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$",
           "x-nullable": true
         }
+      },
+      "example": {
+        "name": "New Project",
+        "subdomain": "newproject",
+        "client_id": 1,
+        "client_reference": "PRJ-001",
+        "locales": [
+          "en"
+        ],
+        "data_processing_consent": true,
+        "enable_strong_password": true,
+        "enable_2factor_auth": true,
+        "project_logo": "data:image/png;base64,<base64_encoded_data>",
+        "partner_logo": "data:image/png;base64,<base64_encoded_data>",
+        "background_image": "data:image/png;base64,<base64_encoded_data>",
+        "background_color": "#ffffff",
+        "login_box_position": "left",
+        "logo_alt_text": "Company Logo",
+        "secondary_logo_alt_text": "Partner Logo",
+        "webhook": "https://my.site.com/webhook"
       }
     },
     "UpdatedProject": {
@@ -3412,15 +3770,18 @@
         },
         "project_logo": {
           "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "description": "Base64 encoded image data for the project logo"
         },
         "partner_logo": {
           "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "description": "Base64 encoded image data for the partner/secondary logo"
         },
         "background_image": {
           "type": "string",
-          "x-nullable": true
+          "x-nullable": true,
+          "description": "Base64 encoded image data for the background image"
         },
         "background_color": {
           "type": "string",
@@ -3446,83 +3807,26 @@
           "maxLength": 100,
           "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
         }
-      }
-    },
-    "Project": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "client_id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "subdomain": {
-          "type": "string"
-        },
-        "client_reference": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "locales": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "enable_strong_password": {
-          "type": "boolean",
-          "x-nullable": true
-        },
-        "enable_2factor_auth": {
-          "type": "boolean",
-          "x-nullable": true
-        },
-        "project_logo": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "partner_logo": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "background_image": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "background_color": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "login_box_position": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "logo_alt_text": {
-          "type": "string",
-          "x-nullable": true,
-          "maxLength": 100,
-          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
-        },
-        "secondary_logo_alt_text": {
-          "type": "string",
-          "x-nullable": true,
-          "maxLength": 100,
-          "pattern": "^[a-zA-Z0-9\\s\\-.,()&']+$"
-        },
-        "webhook": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string"
-        }
+      },
+      "example": {
+        "name": "Updated Project Name",
+        "subdomain": "updatedproject",
+        "client_reference": "PRJ-002",
+        "locales": [
+          "en",
+          "fr"
+        ],
+        "data_processing_consent": true,
+        "enable_strong_password": true,
+        "enable_2factor_auth": true,
+        "project_logo": "data:image/png;base64,<base64_encoded_data>",
+        "partner_logo": "data:image/png;base64,<base64_encoded_data>",
+        "background_image": "data:image/png;base64,<base64_encoded_data>",
+        "background_color": "#f5f5f5",
+        "login_box_position": "right",
+        "logo_alt_text": "Updated Company Logo",
+        "secondary_logo_alt_text": "Updated Partner Logo",
+        "webhook": "https://my.site.com/webhook"
       }
     },
     "User": {

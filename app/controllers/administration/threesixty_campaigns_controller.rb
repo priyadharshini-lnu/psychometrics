@@ -73,17 +73,28 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def regenerate_reports
     AdminJob.call(
-      :bulk_regenerate_threesixty_reports, { campaign_id: resource.id }, current_user
+      :bulk_regenerate_threesixty_reports,
+      { campaign_id: resource.id, locales: params[:selected_locales], force_regenerate: params[:force_regenerate] },
+      current_user
     )
     render json: :ok
   end
 
   def bulk_download
-    AdminJob.call(:bulk_download_user_reports,
-                  { campaign_id: resource.campaign_id, is_threesixty: true },
-                  current_user)
-    audit! :bulk_download, nil, record_type: 'UserReport', payload: {}, campaign: campaign
-    head :ok
+    user_report_ids = resource.campaign.user_reports.pluck(:id)
+    report_count = UserReportPdf.where(user_report_id: user_report_ids,
+                                       locale: params[:selected_locales]).joins(:pdf_file_attachment).count
+    if report_count > 1000
+      render json: { errors: I18n.t('campaign_report.messages.bulk_download_error', count: report_count) },
+             status: :unprocessable_entity
+    else
+      AdminJob.call(:bulk_download_user_reports,
+                    { campaign_id: resource.campaign_id, is_threesixty: true, locales: params[:selected_locales],
+                      is_bulk_action: true },
+                    current_user)
+      audit! :bulk_download, nil, record_type: 'UserReport', payload: {}, campaign: campaign
+      head :ok
+    end
   end
 
   def destroy

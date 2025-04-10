@@ -55,7 +55,9 @@ module UserReportPdfHelper
   def remove_report_pdf!(locale: nil)
     remove_pdf_async(locale: locale)
     self.status = :not_prepared
-    self.approval_status = :not_ready if has_approval_workflow?
+    if !threesixty? && has_approval_workflow?
+      self.approval_status = :not_ready
+    end
     save!
   end
 
@@ -74,13 +76,13 @@ module UserReportPdfHelper
     return unless pdf_exists?(locale: locale)
 
     user_report_pdf(locale: locale)&.pdf_file&.url(
-      disposition: 'attachment', filename: report_name_for_download
+      disposition: 'attachment', filename: report_name_for_download(locale: locale)
     )
   end
 
-  def report_name_for_download
+  def report_name_for_download(locale: nil)
     report_name = Utility::String.remove_non_ascii_chars(report.name).strip.presence || 'report'
-    "#{user.decorate.full_name}-#{report_name}-#{user.id}.pdf"
+    "#{user.decorate.full_name}-#{report_name}-#{user.id}_lan_#{locale}.pdf"
   end
 
   def find_or_create_user_report_pdf(locale: nil)
@@ -91,8 +93,7 @@ module UserReportPdfHelper
 
   def user_report_pdf(locale: nil)
     locale ||= effective_default_language
-
-    @user_report_pdf ||= user_report_pdfs.find_by(locale: locale)
+    @user_report_pdf = user_report_pdfs.find_by(locale: locale)
   end
 
   def pdf_path(locale: nil)

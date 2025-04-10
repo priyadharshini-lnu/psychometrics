@@ -10,6 +10,7 @@ const initSentry = () => {
     environment: realEnv,
     normalizeDepth: 4,
     debug: sentryDebug === 'true',
+    replaysOnErrorSampleRate: 1.0,
     integrations: [
       Sentry.replayIntegration({
         maskAllText: true,
