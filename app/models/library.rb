@@ -14,7 +14,8 @@ class Library < ApplicationRecord
   enum :type, { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
 
   has_one_attachment :file,
-                     content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls pptx ppt], variants: [:icon]
+                     content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls pptx ppt docx doc],
+                     variants: [:icon]
 
   def attachment_storage_path(attribute_name, filename)
     "public/library/#{id}/#{attribute_name}/#{filename}"
