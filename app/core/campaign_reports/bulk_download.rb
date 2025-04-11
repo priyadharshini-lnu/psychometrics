@@ -104,8 +104,9 @@ module CampaignReports
       File.join(dir, filename)
     end
 
+    # rubocop:disable Metrics/AbcSize
     def user_reports_with_pdf
-      if job_record.data['is_threesixty'] || user_reports.present?
+      if job_record.data['is_threesixty']
         subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
           user_reports.pluck(:user_id),
           threesixty_campaign
@@ -124,6 +125,8 @@ module CampaignReports
           includes(:user, :report).
           where(id: user_report_ids).
           where(user_report_pdfs: { locale: job_record.data['locales'] })
+      elsif user_reports.present?
+        user_reports.where(status: 'prepared').includes(:user, :report)
       else
         start_date = job_record.data['start_date']
         end_date = job_record.data['end_date']
@@ -142,6 +145,7 @@ module CampaignReports
           where(id: user_report_ids)
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
     def threesixty_campaign
       @threesixty_campaign ||= ::Threesixty::Campaign.find_by(campaign_id: job_record.data['campaign_id'])
