@@ -78,7 +78,7 @@ export const pasteModule = (pageId: number, module: ModuleInterface) => ({
 export const saveDataSheet = (data: object[]) => ({ type: SAVE_DATA_SHEET, data })
 export const saveCampaignFactors = (data: object[]) => ({ type: SAVE_CAMPAIGN_FACTORS, data })
 
-export const uploadDataSheet = (id: number, body: { file: File }) => ({
+export const uploadDataSheet = (id: number, body: FormData) => ({
   type: UPLOAD_DATA_SHEET,
   request: {
     method: 'post',
