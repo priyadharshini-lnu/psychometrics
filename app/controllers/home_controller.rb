@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: %I[identify upgrade]
+  skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement]
+  skip_before_action :set_client_by_subdomain, only: %i[privacy_statement]
 
   def survey_instructions
     render layout: 'users_new'
@@ -51,6 +52,11 @@ class HomeController < ApplicationController
     redirect_to root_path and return if @browser_detections.supported_browser?
 
     render layout: 'upgrade'
+  end
+
+  def privacy_statement
+    I18n.locale = %w[en fr].include?(params[:lang]) ? params[:lang] : I18n.default_locale
+    render html: nil, layout: 'policy'
   end
 
   private
