@@ -39,22 +39,19 @@ module Campaigns
 
       def create_or_update_user
         if user
-          if form.first_name.present? && form.last_name && (
-            @user.first_name != form.first_name || @user.last_name != form.last_name
-          )
-            @user.update!(first_name: form.first_name, last_name: form.last_name, modifier: current_user)
-          end
+          update_user_if_changed
         else
           ActiveRecord::Base.transaction do
             user_attributes = form.to_h.except(
               :operation, :campaign_ids, :active, :locale,
-              :schedule_start_date, :schedule_start_date, :schedule_end_date, :external_id,
-              :datasheet
+              :schedule_start_date, :schedule_start_date, :schedule_end_date, :user_external_id,
+              :campaign_user_external_id, :datasheet
             ).merge(
               project: project,
               create_by_invite: true,
               creator: current_user,
-              modifier: current_user
+              modifier: current_user,
+              external_id: form.try(:user_external_id)
             )
             @user = User.create!(user_attributes)
             @user.user_profile.update(locale: form.locale)
@@ -72,7 +69,7 @@ module Campaigns
           schedule_start_date: form.schedule_start_date,
           schedule_end_date: form.schedule_end_date
         }
-        attributes[:external_id] = form.external_id if form.respond_to?(:external_id)
+        attributes[:external_id] = form.campaign_user_external_id if form.respond_to?(:campaign_user_external_id)
         campaign_user.assign_attributes(attributes)
         campaign_user.save!
       end
@@ -81,6 +78,19 @@ module Campaigns
         Campaigns::Users::AddAssignableReportsAndAssessments.call!(
           campaign, campaign_user, current_user || user, operation: form.operation
         )
+      end
+
+      def update_user_if_changed
+        return if form.first_name.blank? || form.last_name.blank?
+
+        changes = { first_name: form.first_name, last_name: form.last_name }
+        changes[:external_id] = form.user_external_id if form.respond_to?(:user_external_id)
+        @user.assign_attributes(changes)
+        if @user.changed?
+          @user.modifier = current_user
+          @user.save!
+          AuditLogModule.audit!(:update, @user, user: current_user, campaign: campaign, payload: changes)
+        end
       end
 
       def assign_idp_plan

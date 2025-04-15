@@ -32,7 +32,7 @@ module WebhookEvents
           name: ctx[:subject]&.decorate&.full_name,
           email: ctx[:subject]&.email,
           campaign_user_external_id: ctx[:subject]&.campaign_user_external_id(ctx[:campaign]&.id),
-          external_id: ctx[:subject]&.external_id
+          user_external_id: ctx[:subject]&.external_id
         },
         project: {
           id: ctx[:project]&.id,

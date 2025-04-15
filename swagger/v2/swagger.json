@@ -9,8 +9,8 @@
       "altText": "Lighthouse"
     },
     "contact": {
-      "name": "MTE Support",
-      "email": "mte.support@mercer.com",
+      "name": "TTE Support",
+      "email": "support@thetalententerprise.com",
       "url": "https://thetalententerprise.com"
     },
     "termsOfService": "https://thetalententerprise.com/privacy-statement/",
@@ -5704,7 +5704,8 @@
                         "attributes": {
                           "project_id": "1",
                           "assessment_id": "1",
-                          "normalize_factor_scores": false
+                          "normalize_factor_scores": false,
+                          "user_result_validity_in_days": null
                         }
                       }
                     }
@@ -19104,6 +19105,10 @@
                       "type": "boolean",
                       "nullable": false
                     },
+                    "user_result_validity_in_days": {
+                      "type": "integer",
+                      "nullable": true
+                    },
                     "created_at": {
                       "type": "string",
                       "nullable": true
@@ -19181,6 +19186,10 @@
                     "type": "boolean",
                     "nullable": false
                   },
+                  "user_result_validity_in_days": {
+                    "type": "integer",
+                    "nullable": true
+                  },
                   "created_at": {
                     "type": "string",
                     "nullable": true
@@ -19252,6 +19261,10 @@
                     "type": "boolean",
                     "nullable": false
                   },
+                  "user_result_validity_in_days": {
+                    "type": "integer",
+                    "nullable": true
+                  },
                   "created_at": {
                     "type": "string",
                     "nullable": true
@@ -19311,6 +19324,10 @@
                   "normalize_factor_scores": {
                     "type": "boolean",
                     "nullable": false
+                  },
+                  "user_result_validity_in_days": {
+                    "type": "integer",
+                    "nullable": true
                   },
                   "created_at": {
                     "type": "string",
