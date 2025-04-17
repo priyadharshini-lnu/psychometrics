@@ -3,6 +3,7 @@
 module Api
   class V2::Administration::DevelopmentActionsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::DevelopmentAction::Schema
+
     def meta_details
       {
         permissions: lambda {

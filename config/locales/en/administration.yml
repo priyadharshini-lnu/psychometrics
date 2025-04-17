@@ -1625,19 +1625,20 @@ en:
       export_global_development_actions_translations: Global Development Action Translations
       form:
         category: Category
+        client_placeholder: Select a Client
         course_image: Course Image
         course_link: Course Link
         description: Description
         end_date: End Date
         learning_style: Learning Style
         name: Name
-        owner_placeholder: Select an Owner
         project_placeholder: Select a Project
         skills: Skills
         skills_placeholder: Select skills
         start_date: Start Date
         title: Development Action
         upload: Upload
+      global: Is Global Development Action?
       heading: Development Actions
       import:
         download_example_csv: Download Example csv
@@ -1892,6 +1893,7 @@ en:
       self_rating: Enable Self Rating
       skill_gap_report: Skill Gap Report
       tab:
+        development_actions: Development Actions
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills

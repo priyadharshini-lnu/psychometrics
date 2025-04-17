@@ -1656,6 +1656,7 @@ en:
       assessments: Assessments
       assessor: Assessor
       category: Category
+      client: Client
       created_at: Created At
       created_by: Created By
       created_date: Created Date
@@ -1738,6 +1739,7 @@ en:
       default: Default
       download: Download
       file: File
+      global_import: Is Global Import?
       minutes: Minutes
       na: N/A
       none: None

@@ -23,6 +23,9 @@ export const DevelopmentActionTR = t.intersection([
         id: t.string,
         name: t.string,
       }),
+      t.type({
+        id: t.string,
+      }),
       t.undefined]),
     category: t.union([
       t.keyof(DevelopmentActionCategory),

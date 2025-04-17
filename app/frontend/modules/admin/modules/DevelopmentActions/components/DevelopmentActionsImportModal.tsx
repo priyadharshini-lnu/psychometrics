@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { debounce } from 'lodash'
+import { useParams } from 'react-router'
 import { Client } from 'modules/admin/modules/client/core/clients'
 
 import {
@@ -33,6 +34,7 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   csvData, title,
   allowGlobalImport,
 }) => {
+  const params = useParams()
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
   const [errors, setErrors] = useState([])
@@ -44,7 +46,7 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
     const data = new FormData()
     data.append('file', file)
     setLoading(true)
-    handleImport(data, projectId, () => {
+    handleImport(data, params.projectId || projectId, () => {
       form.resetFields()
       close()
       setLoading(false)
@@ -81,6 +83,51 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   }, 50)
 
 
+  const renderProjectSelector = () => {
+    if (globalImportSwitch) {
+      return null
+    }
+    return (
+      <>
+        <Form.Item
+          name="ownerId"
+          label={`${I18n.t('common.column.client')} `}
+        >
+          <Select
+            showSearch
+            filterOption={false}
+            placeholder={I18n.t('administration.development_actions.form.client_placeholder')}
+            onSearch={searchAvailableOwners}
+            style={{ marginLeft: '8px', maxWidth: '98.5%' }}
+          >
+            {owners.map(({ id, name }) => (
+              <Option key={id} value={id}>{name}</Option>
+            ))
+            }
+          </Select>
+        </Form.Item>
+        <ProjectDropdown form={form} owner={ownerOption} />
+      </>
+    )
+  }
+
+  const renderScopeSelector = () => {
+    if (!allowGlobalImport) {
+      return null
+    }
+    return (
+      <>
+        <Form.Item
+          name="globalImportSwitch"
+          label={I18n.t('common.text.global_import')}
+        >
+          <Switch />
+        </Form.Item>
+        {renderProjectSelector()}
+      </>
+    )
+  }
+
   return (
     <Modal
       width={700}
@@ -100,8 +147,7 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
           disabled={!file}
           onClick={() => {
             form.submit()
-          }
-          }
+          }}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
           {I18n.t('common.actions.update')}
@@ -127,43 +173,7 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
         form={form}
         onFinish={handleUpload}
       >
-        {allowGlobalImport && (
-          <>
-
-            <Form.Item
-              name="globalImportSwitch"
-              label="Is Global Import?"
-            >
-              <Switch />
-            </Form.Item>
-            {!globalImportSwitch && (
-              <>
-                <Form.Item
-                  name="ownerId"
-                  label={I18n.t('common.column.owner')}
-                  rules={[{ required: true }]}
-                >
-                  <Select
-                    showSearch
-                    filterOption={false}
-                    placeholder={
-              I18n.t('administration.development_actions.form.owner_placeholder')
-            }
-                    onSearch={searchAvailableOwners}
-                  >
-                    {
-              owners.map(({ id, name }) => (
-                <Option key={id} value={id}>{name}</Option>
-              ))
-            }
-                  </Select>
-                </Form.Item>
-                <ProjectDropdown form={form} owner={ownerOption} />
-              </>
-            )}
-
-          </>
-        )}
+        {!params.projectId && renderScopeSelector()}
         <Form.Item name="importData">
           <Input
             type="file"
@@ -201,7 +211,6 @@ const ProjectDropdown = ({ form, owner }) => {
     <Form.Item
       name="projectId"
       label={I18n.t('common.column.project')}
-      rules={[{ required: true }]}
     >
       <Select
         disabled={!owner}

@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Button, MenuProps,
 } from 'antd'
+import { useParams } from 'react-router'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -30,6 +31,8 @@ export const ToolsDropdown: React.FC<Props> = ({
 )
 
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
+  const params = useParams()
+
   const menuItems:ItemType[] = []
 
   const importMenuItems:ItemType[] = []
@@ -65,14 +68,14 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
     })
   }
 
-  if (permissions?.exportGlobal) {
+  if (permissions?.exportGlobal && !params.projectId) {
     exportMenuItems.push({
       key: 'export_global_development_actions',
       label: I18n.t('administration.development_actions.export_global_development_actions'),
     })
   }
 
-  if (permissions?.exportGlobalTranslations) {
+  if (permissions?.exportGlobalTranslations && !params.projectId) {
     exportMenuItems.push({
       key: 'export_global_development_actions_translations',
       label: I18n.t('administration.development_actions.export_global_development_actions_translations'),

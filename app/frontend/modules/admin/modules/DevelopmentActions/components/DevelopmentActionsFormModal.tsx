@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import {
   Form, Input, Select, Spin, Upload, Button, DatePicker, Flex, Switch,
 } from 'antd'
+import { useParams } from 'react-router'
 import { DevelopmentAction } from 'modules/admin/modules/client/core/developmentAction'
 import { Client } from 'modules/admin/modules/client/core/clients'
-import { debounce } from 'lodash'
+import { debounce, uniqBy } from 'lodash'
 import { UploadOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import { useDispatch } from 'react-redux'
@@ -43,6 +44,8 @@ const { I18n } = window
 export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmentAction }) => {
   const { resource } = useResourceContext<DevelopmentAction>()
   const dispatch = useDispatch()
+
+  const { projectId: projectIdParam } = useParams()
 
   const [form] = Form.useForm()
   const {
@@ -115,7 +118,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       apiConfig: {
         filter: {
           name_cont: value,
-          project_id_eq: projectIdFilter,
+          project_id_eq: projectIdParam || projectIdFilter,
         },
         fields: { skills: ['name'] },
         include: ['project'],
@@ -151,7 +154,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       return projects
     }
 
-    return [...projects, developmentAction.project]
+    return [...projects, developmentAction.project] as OptionsType[]
   }
 
   const createDevelopmentAction = (data: Omit<DevelopmentAction, 'image'>
@@ -163,6 +166,10 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     // eslint-disable-next-line no-prototype-builtins
     if (data.hasOwnProperty('global')) {
       delete data.global
+    }
+
+    if (projectIdParam) {
+      data.project = { id: projectIdParam } as {id: string}
     }
 
     const { image, ...dataWithoutImage } = data
@@ -183,6 +190,11 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       delete data.ownerId
     }
 
+    if (projectIdParam) {
+      data.project = {
+        id: projectIdParam,
+      }
+    }
 
     const { image, ...dataWithoutImage } = data
     return resource.updateResource({
@@ -210,7 +222,73 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     })
   }
 
-  const skills = developmentAction?.skills ? skillsData.concat(developmentAction.skills) : skillsData
+  const skills = developmentAction?.skills ? uniqBy(skillsData.concat(developmentAction.skills), 'id') : skillsData
+
+  const renderClientSelector = () => {
+    if (global) {
+      return null
+    }
+    return (
+      // if new DA and it is not global is being added
+      <Form.Item
+        name="ownerId"
+        label={I18n.t('common.column.client')}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select
+          showSearch
+          filterOption={false}
+          placeholder={I18n.t('administration.development_actions.form.client_placeholder')}
+          onSearch={searchAvailableOwners}
+          notFoundContent={ownersLoading ? <Spin size="small" /> : null}
+        >
+          {
+            owners.map(({ id, name }) => (
+              <Option key={id} value={id}>{name}</Option>
+            ))
+          }
+        </Select>
+      </Form.Item>
+    )
+  }
+
+  const renderProjectSelector = () => {
+    // if global DA, return null
+    if (global) { return null }
+
+    // if already existing DA and doesn't have project, return null
+    if (developmentAction && !developmentAction?.project) { return null }
+
+    return (
+      <Form.Item
+        name="projectId"
+        label={I18n.t('common.column.project')}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select
+          showSearch
+          filterOption={false}
+          disabled={!!developmentAction}
+          onSearch={handleProjectSearch}
+          options={(getProjects() || []).map(p => ({
+            value: p.id,
+            label: p.name,
+          }))}
+          placeholder={I18n.t('administration.development_actions.form.project_placeholder')}
+          value={form.getFieldValue('projectId')}
+          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
+        />
+      </Form.Item>
+    )
+  }
 
   return (
     <ResourceFormModal
@@ -254,60 +332,21 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           >
             <Input />
           </Form.Item>
-          {!developmentAction && (
+          {!projectIdParam && (
             <>
-              <Form.Item
-                name="global"
-                label="Is Global Development Action?"
-              >
-                <Switch />
-              </Form.Item>
-
-              {!global && (
-                <Form.Item
-                  name="ownerId"
-                  label={I18n.t('common.column.owner')}
-                >
-                  <Select
-                    showSearch
-                    filterOption={false}
-                    placeholder={
-                  I18n.t('administration.development_actions.form.owner_placeholder')
-                }
-                    onSearch={searchAvailableOwners}
-                    notFoundContent={ownersLoading ? <Spin size="small" /> : null}
+              {!developmentAction && (
+                <>
+                  <Form.Item
+                    name="global"
+                    label={I18n.t('administration.development_actions.global')}
                   >
-                    {
-                owners.map(({ id, name }) => (
-                  <Option key={id} value={id}>{name}</Option>
-                ))
-              }
-                  </Select>
-                </Form.Item>
+                    <Switch />
+                  </Form.Item>
+                  {renderClientSelector()}
+                </>
               )}
+              {renderProjectSelector()}
             </>
-          )}
-          {((!developmentAction && !global) || developmentAction?.project) && (
-            <Form.Item
-              name="projectId"
-              label={I18n.t('common.column.project')}
-            >
-              <Select
-                showSearch
-                filterOption={false}
-                disabled={!!developmentAction}
-                onSearch={handleProjectSearch}
-                options={(getProjects() || []).map(p => ({
-                  value: p.id,
-                  label: p.name,
-                }))}
-                placeholder={
-                  I18n.t('administration.development_actions.form.project_placeholder')
-                }
-                value={form.getFieldValue('projectId')}
-                notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-              />
-            </Form.Item>
           )}
           <Form.Item
             name="category"
@@ -362,7 +401,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                   >
                     <Input />
                   </Form.Item>
-
                   <Flex flex={1} gap={4}>
                     <Form.Item
                       name="course_start_date"
@@ -384,11 +422,9 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                       />
                     </Form.Item>
                   </Flex>
-
                 </>
               ) : null
           }
-
           <Form.Item
             name="learning_style"
             label={I18n.t('administration.development_actions.form.learning_style')}
@@ -409,13 +445,10 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
               }
             </Select>
           </Form.Item>
-
-
           <Form.Item
             name="skillIds"
             label={I18n.t('administration.development_actions.form.skills')}
             rules={[{ required: true }]}
-
           >
             <Select
               showSearch
@@ -427,7 +460,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
               defaultActiveFirstOption={false}
               maxTagCount="responsive"
               virtual={false}
-              disabled={!global && !projectId}
+              disabled={!projectIdParam && !global && (!developmentAction && !projectId)}
             >
               {skills.map(({ id, name }) => (
                 <Option key={id} value={id}>{name}</Option>

@@ -72,7 +72,7 @@ export const DevelopmentActionsExportModal: React.FC<OwnProps> = ({
             showSearch
             filterOption={false}
             placeholder={
-              I18n.t('administration.development_actions.form.owner_placeholder')
+              I18n.t('administration.development_actions.form.client_placeholder')
             }
             onSearch={searchAvailableOwners}
           >

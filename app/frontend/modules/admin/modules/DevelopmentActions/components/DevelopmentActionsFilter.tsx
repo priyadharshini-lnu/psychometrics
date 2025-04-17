@@ -2,6 +2,7 @@
 import React from 'react'
 import { PlusOutlined } from '@ant-design/icons'
 import { Button, message } from 'antd'
+import { useParams } from 'react-router'
 import * as t from 'io-ts'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ToolsDropdown } from './ToolsDropdown'
@@ -22,6 +23,7 @@ const CSVDevelopmentActionTranslations = `ID,Locale,Name,Description
 export const DevelopmentActionsFilter: React.FC<Props> = ({
   openModal,
 }) => {
+  const { projectId: projectIdParam } = useParams()
   const { resource } = useResourceContext<User>()
 
   const tableLoading = resource.isLoading('fetch')
@@ -97,17 +99,25 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
 
 
     if (action === 'export_development_action') {
-      openModal('DevelopmentActionsExportModal', {
-        handleExport: handleDevelopmentActionExport,
-        title: I18n.t('administration.development_actions.export_actions.development_actions_title'),
-      })
+      if (projectIdParam) {
+        handleDevelopmentActionExport(Number(projectIdParam))
+      } else {
+        openModal('DevelopmentActionsExportModal', {
+          handleExport: handleDevelopmentActionExport,
+          title: I18n.t('administration.development_actions.export_actions.development_actions_title'),
+        })
+      }
     }
 
     if (action === 'export_development_action_translations') {
-      openModal('DevelopmentActionsExportModal', {
-        handleExport: handleDevelopmentActionTranslationExport,
-        title: I18n.t('administration.development_actions.export_actions.development_action_translations_title'),
-      })
+      if (projectIdParam) {
+        handleDevelopmentActionTranslationExport(Number(projectIdParam))
+      } else {
+        openModal('DevelopmentActionsExportModal', {
+          handleExport: handleDevelopmentActionTranslationExport,
+          title: I18n.t('administration.development_actions.export_actions.development_action_translations_title'),
+        })
+      }
     }
 
     if (action === 'export_global_development_actions') {
@@ -144,7 +154,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
   }
 
   return (
-    <Resource.Filter name="filterable_fields">
+    <Resource.Filter name="name_cont">
       <ToolsDropdown
         onClick={handleToolAction}
         permissions={resource.meta.permissions}

@@ -23,6 +23,9 @@ export const IdpComponent: FC = () => {
   }, {
     key: '/settings',
     label: I18n.t('administration.idp.tab.settings'),
+  }, {
+    key: '/development_actions',
+    label: I18n.t('administration.idp.tab.development_actions'),
   })
 
   return (
