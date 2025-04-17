@@ -40,7 +40,9 @@ module UsersResults
         manager_evaluation_status: :waiting,
         evaluator_nomination_status: :waiting,
         completion_status_code: nil,
-        evaluation_session_id: nil
+        evaluation_session_id: nil,
+        score_calculated: false,
+        score_calculated_at: nil
       )
       users_result.generate_randomseed
       users_result.update!(

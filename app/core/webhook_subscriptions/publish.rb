@@ -7,6 +7,7 @@ module WebhookSubscriptions
     EVENT_TO_WEBHOOK_MAPPING = {
       assessment_started: UserAssessments::Webhook,
       assessment_completed: UserAssessments::Webhook,
+      assessment_timeout: UserAssessments::Webhook,
       assessment_assigned: UserAssessments::Webhook,
       scheduling_scheduled: WorkshopSubjects::Webhook,
       scheduling_cancelled: WorkshopSubjects::Webhook,

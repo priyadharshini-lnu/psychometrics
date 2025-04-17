@@ -96,6 +96,12 @@ module UserReportPdfHelper
     @user_report_pdf = user_report_pdfs.find_by(locale: locale)
   end
 
+  def last_pdf_generated_at(locale: nil)
+    locale ||= effective_default_language
+
+    user_report_pdf(locale: locale)&.last_generated_at || updated_at
+  end
+
   def pdf_path(locale: nil)
     user_report_pdf(locale: locale)&.pdf_file&.key
   end
