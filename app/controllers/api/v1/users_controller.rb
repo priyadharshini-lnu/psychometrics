@@ -28,7 +28,7 @@ module Api
 
         if form.valid?
           Api::Campaigns::Users::Upsert.call(
-            form, current_user, campaigns: normalized_params[:campaigns], project: project
+            form, current_user, params: normalized_params, project: project
           ) do
             on(:ok) do |user|
               audit! :api_create, user, payload: params, project: project
@@ -51,7 +51,7 @@ module Api
 
         if form.valid?
           Api::Campaigns::Users::Upsert.call(
-            form, current_user, campaigns: normalized_params[:campaigns], project: project, user: user
+            form, current_user, params: normalized_params, project: project, user: user
           ) do
             on(:ok) { |user| audit! :api_update, user, payload: params, project: project }
             on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }

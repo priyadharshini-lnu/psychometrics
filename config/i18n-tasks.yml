@@ -35,6 +35,7 @@ data:
     # - config/locales/%{locale}.yml
     - ['administration.*', 'config/locales/%{locale}/administration.yml']
     - ['privacy_policy.*', 'config/locales/%{locale}/policy.yml']
+    - ['privacy_notice', 'config/locales/%{locale}/privacy_notice.yml']
     - config/locales/%{locale}/others.yml
 
   ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.

@@ -13,6 +13,7 @@ module Api
             attribute[:assessment_id].filled(:integer)
             attribute[:project_id].maybe(:string)
             attribute[:normalize_factor_scores].filled(:bool)
+            optional(:user_result_validity_in_days).maybe(:integer)
             optional(:created_at).maybe(:string)
             optional(:updated_at).maybe(:string)
           end

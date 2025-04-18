@@ -1,10 +1,9 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Empty } from 'antd'
 
 import { useModulePagination } from '~/hooks/useModulePagination'
 import FactorType from './types/Factor'
 import QuestionType from './types/Question'
-import I18nStore from '~/modules/reports/store/I18nStore'
 
 import { PropertiesModel, GapType, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
 
@@ -19,49 +18,6 @@ interface Props {
 }
 
 export const GapAssessment: FC<Props> = ({ model, insertPaginationPage, preview }) => {
-  useEffect(() => {
-    const factorTableColumns = {
-      rank: {
-        label: I18nStore.t('reports.modules.gap_assessment.rank'),
-        hide: false,
-        allowHide: true,
-      },
-      indicator: {
-        label: I18nStore.t('reports.modules.gap_assessment.item'),
-        hide: false,
-        allowHide: true,
-      },
-      gap: {
-        label: I18nStore.t('reports.modules.gap_assessment.gap'),
-        hide: false,
-        allowHide: true,
-      },
-      positive_gaps: {
-        label: I18nStore.t('reports.modules.gap_assessment.positive_gap'),
-        hide: false,
-        allowHide: true,
-      },
-      nagative_gaps: {
-        label: I18nStore.t('reports.modules.gap_assessment.negative_gap'),
-        hide: false,
-        allowHide: true,
-      },
-
-    }
-    const defaultTableColumns = {
-      Question: {
-        competency: {
-          label: I18nStore.t('reports.modules.gap_assessment.scoring_category'),
-          hide: false,
-          allowHide: true,
-        },
-        ...factorTableColumns,
-      },
-      Factor: { ...factorTableColumns },
-    }
-    model.props.defaultTableColumns = defaultTableColumns
-    model.update()
-  }, [])
   const {
     props: {
       sourceType, filter, factorIds, questionsChoices, gapType = GapType.ALL, hideValues = false,

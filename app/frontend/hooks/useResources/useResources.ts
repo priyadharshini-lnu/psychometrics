@@ -256,7 +256,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           // TODO: camelize whole response - https://dev.azure.com/mmctech/Mercer-Career-Lighthouse/_workitems/edit/1254018
           // remove below hack after implmenting this
           const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
-          camelizedData.responseMeta = meta // hack to get around the fact that the meta is not being passed
+          if (typeof camelizedData === 'object') {
+            camelizedData.responseMeta = meta // hack to get around the fact that the meta is not being passed
+          }
           resolve(camelizedData)
           if (args.updateStore && args.responseType === responseType) {
             updateIndividualRecord(camelizedData)

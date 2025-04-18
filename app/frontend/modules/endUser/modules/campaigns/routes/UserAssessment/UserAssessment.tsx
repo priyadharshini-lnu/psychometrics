@@ -76,6 +76,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   },
   preview,
   markAssessmentTimedOut,
+  validateSession,
   progress,
 }) => {
   const params = useParams() as Params

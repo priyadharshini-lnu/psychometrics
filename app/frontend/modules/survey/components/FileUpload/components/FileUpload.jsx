@@ -34,6 +34,7 @@ export default function FileUpload ({
   const [state, dispatch] = useReducer(reducer, initialState)
   const uploadRef = useRef(null)
   const uploadSuccessRef = useRef(null)
+  const setTimeoutClearMessageIdRef = useRef(null)
 
   useEffect(() => {
     if (mediaResponse && mediaResponse.url) {
@@ -46,6 +47,12 @@ export default function FileUpload ({
     if (uploadRef.current?.parentNode) {
       uploadRef.current.parentNode.tabIndex = -1
       uploadRef.current.parentNode.role = 'none'
+    }
+
+    return () => {
+      if (setTimeoutClearMessageIdRef.current) {
+        clearTimeout(setTimeoutClearMessageIdRef.current)
+      }
     }
   }, [])
 
@@ -80,8 +87,10 @@ export default function FileUpload ({
     removeQuestionInProgress(model.id)
     if (uploadSuccessRef.current) {
       uploadSuccessRef.current.innerText = I18n.t('frontend.aria.file_uploaded')
-      setTimeout(() => {
-        uploadSuccessRef.current.innerText = ''
+      setTimeoutClearMessageIdRef.current = setTimeout(() => {
+        if (uploadSuccessRef.current) {
+          uploadSuccessRef.current.innerText = ''
+        }
       }, 10000)
     }
     onSuccessUpload && onSuccessUpload(media)

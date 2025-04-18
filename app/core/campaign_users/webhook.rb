@@ -28,7 +28,8 @@ module CampaignUsers
       {
         campaign: campaign_user.campaign,
         subject: campaign_user.user,
-        status: campaign_user.status
+        status: campaign_user.status,
+        event_time: campaign_user.updated_at
       }
     end
 
@@ -36,7 +37,8 @@ module CampaignUsers
       {
         campaign: campaign_user.campaign,
         subject: campaign_user.user,
-        results: CampaignUsers::Results.call!(campaign_user)
+        results: CampaignUsers::Results.call!(campaign_user),
+        event_time: campaign_user.campaign_scores_finalized_date
       }
     end
   end

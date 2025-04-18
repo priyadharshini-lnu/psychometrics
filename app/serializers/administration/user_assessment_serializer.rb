@@ -63,13 +63,6 @@ module Administration
       assessment.external?
     end
 
-    def norm_name
-      return nil if object.norm_id.nil?
-      return assessment.external_norm_name if assessment.has_external_norm?
-
-      object.norm&.name
-    end
-
     def permissions
       GetPermissionsHash.call!(
         Administration::UserAssessmentPolicy,

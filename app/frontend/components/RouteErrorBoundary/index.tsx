@@ -49,11 +49,11 @@ class RouteErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryStat
       return (
         <Result
           status="error"
-          title={I18n.t('administration.errors.error_msg')}
+          title={I18n.t('errors.error_msg')}
           subTitle={error ? error.message : ''}
           extra={[
             <Button type="primary" key="refresh" onClick={() => window.location.reload()}>
-              {I18n.t('administration.dashboard.settings.refresh')}
+              {I18n.t('frontend.request_failed_message_box.refresh')}
             </Button>,
             <Link to="/">{I18n.t('campaign.dashboard_menu.home')}</Link>,
           ]}

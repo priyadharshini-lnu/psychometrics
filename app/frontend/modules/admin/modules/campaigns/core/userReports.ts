@@ -373,10 +373,11 @@ export const removeApproval = (campaignId?: number, id?: number) => ({
   },
 })
 
-export const asyncDownload = (campaignId: number, id: number) => ({
+export const asyncDownload = (campaignId: number, id: number, params = {}) => ({
   type: ASYNC_DOWNLOAD,
   request: {
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/download`,
+    body: params,
   },
 })
 

@@ -19,6 +19,7 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import AppStore from '~/modules/reports/store/AppStore'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 import styles from './styles.less'
 
@@ -113,7 +114,7 @@ const QuestionTypeComponent: FC<Props> = ({
   style,
 }) => {
   const tableColumns = _.get(model, 'props.tableColumns.Question')
-    || _.get(model, 'props.defaultTableColumns.Question') || {} as ColumnData
+    || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Question') || {} as ColumnData
 
   const columnsHeaderData: ColumnsHeaderData = {
     rank: {

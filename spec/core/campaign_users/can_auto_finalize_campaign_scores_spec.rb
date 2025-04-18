@@ -14,6 +14,7 @@ describe CampaignUsers::CanAutoFinalizeCampaignScores do
   end
 
   let(:assessor_assessment) { create(:assessment, category: :assessor_form) }
+  let!(:question) { create(:question, assessment_id: assessor_assessment.id) }
 
   let!(:assessor_user_assessment) do
     create(:user_assessment, campaign: campaign, subject: user,
@@ -56,9 +57,23 @@ describe CampaignUsers::CanAutoFinalizeCampaignScores do
     expect(described_class.call!(campaign, campaign_user, user)).to eq(true)
   end
 
+  it 'should return true if assessor assessments doesnt have any questions' do
+    second_assessor_user_assessment.update(status: :in_progress)
+    assessor_assessment.questions.destroy_all
+
+    expect(described_class.call!(campaign, campaign_user, user)).to eq(true)
+  end
+
   it 'should return false if campaign_factor_value is not calculated' do
     campaign_factor.campaign_factor_values.destroy_all
 
     expect(described_class.call!(campaign, campaign_user, user)).to eq(false)
+  end
+
+  it 'should ignore soft-deleted questions when checking for incomplete assessments' do
+    question.update(deleted_at: Time.current)
+    second_assessor_user_assessment.update(status: :in_progress)
+
+    expect(described_class.call!(campaign, campaign_user, user)).to eq(true)
   end
 end

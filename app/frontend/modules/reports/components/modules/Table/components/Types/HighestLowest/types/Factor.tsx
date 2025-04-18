@@ -11,6 +11,7 @@ import I18nStore from '~/modules/reports/store/I18nStore'
 
 import styles from './styles.less'
 import { PageData } from '../../GapAssessment/PaginationContext'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 const MOCK_HIGHEST_DATA = [
   { avg: 5.0, name: 'Customer First' },
@@ -46,7 +47,7 @@ const FactorType: FC<Props> = ({
   model, paginationContext, style,
 }) => {
   const tableColumns = _.get(model, 'props.tableColumns.Factor')
-      || _.get(model, 'props.defaultTableColumns.Factor') || {} as ColumnData
+      || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Factor') || {} as ColumnData
 
   const columnsHeaderData: ColumnsHeaderData = {
     rank: {
@@ -211,12 +212,12 @@ interface TBodyProps {
 const TBody: FC<TBodyProps> = ({
   data, hideValues, paginationContext, type, columnsHeaderData,
 }) => {
-  const ranks = data.reduce((acc, factor, i) => ({ ...acc, [factor.id]: i + 1 }), {})
+  const ranks = (data || []).reduce((acc, factor, i) => ({ ...acc, [factor.id]: i + 1 }), {})
   const paginatedData = paginationContext ? paginationContext.rowIds[type].map(id => data[id]) : data
 
   return (
     <>
-      {paginatedData.map((factor, index) => (
+      {(paginatedData || []).map((factor, index) => (
         <tr key={index} className={styles.row} data-row={index} data-type={type}>
           {!columnsHeaderData.rank.hide && <td>{ranks[factor.id]}</td>}
           {!columnsHeaderData.category.hide && <td>{I18nStore.tFactorName(factor)}</td>}

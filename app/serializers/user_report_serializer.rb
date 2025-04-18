@@ -3,7 +3,7 @@
 class UserReportSerializer < Panko::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
              :report_data, :permissions, :comments, :require_approval, :campaign_factor_results, :module_overrides,
-             :user_report_events, :user, :options, :threesixty_campaign_id
+             :user_report_events, :user, :options, :threesixty_campaign_id, :campaign
 
   has_one :report, serializer: ReportSerializer
 

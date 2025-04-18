@@ -25,14 +25,14 @@ module Exports
         end
 
         def self.user_selected_url(media_responses)
-          media_responses.find(&:user_selected?)&.asset&.url
+          media_responses.find(&:user_selected?)&.asset&.url(expires_in: 1.week)
         end
 
         def self.all_takes_urls(media_responses)
           media_responses.each_with_object([]) do |media_response, data|
             next if media_response.user_selected?
 
-            data << media_response&.asset&.url
+            data << media_response&.asset&.url(expires_in: 1.week)
           end.join("\r\n")
         end
 

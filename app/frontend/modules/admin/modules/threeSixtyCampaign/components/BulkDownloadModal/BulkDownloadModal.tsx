@@ -28,7 +28,7 @@ export default function BulkDownloadModal ({
   return (
     <Modal
       width={650}
-      title="Bulk Download Reports"
+      title={I18n.t('admin_jobs.attrs.operations.bulk_download_reports')}
       open={visible}
       onCancel={close}
       footer={[
@@ -39,7 +39,7 @@ export default function BulkDownloadModal ({
             handleBulkDownload()
           }}
         >
-          Download
+          {I18n.t('user_reports.actions.download')}
         </Button>,
       ]}
     >

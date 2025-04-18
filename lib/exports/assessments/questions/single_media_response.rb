@@ -17,7 +17,7 @@ module Exports
 
         def self.media_response_answers(media_response, duration)
           [
-            media_response.asset.url,
+            media_response.asset.url(expires_in: 1.week),
             media_response.encoded_id,
             duration
           ]

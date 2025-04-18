@@ -9,6 +9,7 @@ import MilestoneTd from './MilestoneTd'
 import BarChart from './BarChart'
 import buildFakeData from '../buildFakeData'
 import Legend from '../Legend'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
@@ -22,7 +23,7 @@ const QuestionComponent = ({
 }) => {
   const { props: { questionsChoices, showAsBarChart } } = model
   const tableColumns = _.get(model, 'props.tableColumns.Question')
-      || _.get(model, 'props.defaultTableColumns.Question') || {}
+      || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Question') || {}
   const showQuestions = !_.get(tableColumns, 'questions.hide')
   const showDevelopmentalRating = !_.get(tableColumns, 'developmental_rating.hide')
 

@@ -150,7 +150,7 @@ export default function ToolsDropdown ({
         cancelText: I18n.t('common.text.cancel'),
         onOk: async () => {
           try {
-            await regenerateReports(campaignId)
+            await regenerateReports(campaignId, [reportDefaultLanguage], true)
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -166,7 +166,7 @@ export default function ToolsDropdown ({
         onConfirm: async (selectedLocales, forceRegenerate) => {
           try {
             await regenerateReports(campaignId, selectedLocales, forceRegenerate)
-            message.success(I18n.t('campaign_assessment.modals.regenerate.successfully'))
+            message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
           }

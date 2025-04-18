@@ -4,14 +4,16 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import Module from '~/modules/reports/core/interfaces/Module'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
+import I18nStore from '~/modules/reports/store/I18nStore'
 
 type ModelProps = Pick<Module['props'], 'tableColumns' | 'sourceType'| 'type'>
 
 const allowedTablesForColumnEditing = {
-  HighestLowest: 'Highest/Lowest',
-  ThreeSixtyReportSummary: '360 Report Summary',
-  Competencies: 'Competencies',
-  GapAssessment: 'Gap Assessment',
+  HighestLowest: { label: 'Highest/Lowest', hasSourceType: true },
+  ThreeSixtyReportSummary: { label: '360 Report Summary', hasSourceType: false },
+  Competencies: { label: 'Competencies', hasSourceType: true },
+  GapAssessment: { label: 'Gap Assessment', hasSourceType: true },
 }
 
 type Props = {
@@ -20,11 +22,13 @@ type Props = {
 
 export const TableColumnList:FC<Props> = ({ model }) => {
   const tableType = model.props?.type || ''
-  const sourceType = model.props?.sourceType
+  const sourceType = allowedTablesForColumnEditing[tableType]?.hasSourceType ? model.props?.sourceType : ''
   const tableColumnsDataPath = sourceType ? `tableColumns.${sourceType}` : 'tableColumns'
-  const defaultTableColumnsDataPath = sourceType ? `defaultTableColumns.${sourceType}` : 'defaultTableColumns'
+  const defaultTableColumnnsData = DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore)
+  const defaultTableColumns = sourceType ? _.get(defaultTableColumnnsData, sourceType)
+    : defaultTableColumnnsData
   const tableColumnDataOfCurrentSource = _.get(model.props, tableColumnsDataPath)
-    || _.get(model.props, defaultTableColumnsDataPath) || {}
+    || defaultTableColumns || {}
 
   const handleColumnChage = (updatedColumnData) => {
     const changedColumnData = sourceType ? { [sourceType]: { ...tableColumnDataOfCurrentSource, ...updatedColumnData } }
@@ -45,7 +49,7 @@ export const TableColumnList:FC<Props> = ({ model }) => {
           type="info"
         />
         <ul className="ps-6">
-          {_.map(allowedTablesForColumnEditing, (tableType, key) => <li key={key}>{tableType}</li>)}
+          {_.map(allowedTablesForColumnEditing, (tableInfo, key) => <li key={key}>{tableInfo.label}</li>)}
         </ul>
       </Space>
     )

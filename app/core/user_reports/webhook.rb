@@ -31,7 +31,8 @@ module UserReports
         campaign: campaign,
         subject: user_result.subject,
         report: user_report.report,
-        user_report: user_report
+        user_report: user_report,
+        event_time: user_report.last_pdf_generated_at
       }
     end
 
@@ -51,7 +52,8 @@ module UserReports
         campaign: user_report.campaign,
         subject: user_result.subject,
         report: user_report.report,
-        results: Api::V1::ResultSerializer.new(context: { user_report: user_report }).serialize(built_results)
+        results: Api::V1::ResultSerializer.new(context: { user_report: user_report }).serialize(built_results),
+        event_time: user_report.last_assessment_completed_at
       }
     end
   end

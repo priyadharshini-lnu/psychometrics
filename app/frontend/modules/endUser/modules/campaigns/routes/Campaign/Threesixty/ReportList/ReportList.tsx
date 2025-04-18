@@ -95,12 +95,12 @@ const ReportListComponent = ({
               type="link"
               onClick={() => showReport(subjectReport)}
               className="ps-0"
+              disabled={subjectReport.qcApprovalStatus !== 'approved'}
             >
               <span className={styles.subjectLabel}>{I18n.t('threesixty.view_my_report')}</span>
               {!subjectReport.approved ? <CheckCircleFilled className={styles.completed} /> : null }
             </Button>
           )}
-
         {approvalReports.length > 0
           && (
             <CollapseItem
@@ -140,6 +140,7 @@ const ReportItem = ({ item, showReport, managerApprovesReports }) => (
     <Button
       type="link"
       onClick={showReport}
+      disabled={item.qcApprovalStatus !== 'approved'}
     >
       <span className={styles.subjectLabel}>{userPresenter.selfUserName(item)}</span>
       {!managerApprovesReports || item.approvalStatus === 'approved'

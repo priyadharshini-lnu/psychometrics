@@ -71,7 +71,7 @@ module Administration
           resource || resource_class,
           nil,
           project_id: campaign.project_id,
-          user_report_id: params[:user_report_id]
+          user_report_id: params[:user_report_id] || resource.user_report_id
         )
       end
 

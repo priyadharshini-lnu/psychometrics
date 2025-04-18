@@ -16,7 +16,7 @@ module Api
         end
 
         def admins_for_campaign(campaign_id)
-          @admins_for_campaign ||= ::User.with_access_to_campaign(campaign_id).pluck(:id)
+          ::User.with_access_to_campaign(campaign_id).pluck(:id)
         end
       end
     end

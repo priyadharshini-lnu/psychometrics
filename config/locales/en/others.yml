@@ -1303,6 +1303,7 @@ en:
   campaign_assessment:
     actions:
       bulk_download: Bulk Download
+      download: Download Reports
       export_completion_status: Export Completion Status
       export_external: External
       export_normed: Normed Factor Scores
@@ -1313,6 +1314,7 @@ en:
       export_scores: Scores
       export_scoring: Scoring
       factor_benchmark_score: Factor Benchmark Score
+      force_generate: Force Generate
       import_raw: Raw
       import_scoring: Scoring
       regenerate: Generate Reports
@@ -1614,6 +1616,7 @@ en:
       add: Add
       approve: Approve
       archive: Archive
+      back_to_dashboard: Back to Dashboard
       back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
@@ -1754,6 +1757,7 @@ en:
       hide: Hide
       view: View
     validations:
+      select_locale: Please Select Some locale(s)
       should_be_whole_number: should be a whole number
   confirmation:
     delete_comment: Are you sure you want to delete this comment?
@@ -1998,6 +2002,8 @@ en:
       not_allowed?: not allowed to change
       not_in_the_list?: invalid value passed
       not_uniq_variable: variable '%{value}' redefined on line number %{row}
+      project_assessments:
+        should_be_greater_than_zero: Result validity should be greater than 0 days
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
@@ -2059,6 +2065,7 @@ en:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     error: Error
     error_500: Something went wrong. Contact your administrator.
+    error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
     invalid_session_title: Invalid Session
@@ -3612,6 +3619,7 @@ en:
     actions:
       add: Add Report
       download: Download
+      generate: Generate
       regenerate: Regenerate
     approval_statuses:
       approved: Approved
