@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Api::Campaigns::Users::Upsert do
   let!(:campaign) { create(:campaign) }
+  let!(:current_user) { create(:user) }
   let(:form) do
     Api::V1::Users::UpdateForm.new(
       first_name: 'John', last_name: 'Doe', email: Faker::Internet.email, operation: 'add_and
@@ -12,16 +13,15 @@ describe Api::Campaigns::Users::Upsert do
       campaigns: [
         {
           id: campaign.id,
-          external_id: '123',
+          campaign_user_external_id: '123',
           existing_record: 'add_and_allow_new_response',
           active: true,
           schedule_start_date: 1.day.from_now,
           schedule_end_date: 2.days.from_now
         }
       ]
-    )
+    ).with_context(user: current_user)
   end
-  let!(:current_user) { create(:user) }
 
   before(:each) do
     allow(Licenses::Use).to receive(:call!)
@@ -33,7 +33,8 @@ describe Api::Campaigns::Users::Upsert do
       email: form.email,
       first_name: form.first_name,
       last_name: form.last_name,
-      external_id: form.campaigns.first[:external_id],
+      campaign_user_external_id: form.campaigns.first[:campaign_user_external_id],
+      user_external_id: nil,
       operation: form.campaigns.first[:existing_record],
       active: form.campaigns.first[:active],
       schedule_start_date: form.campaigns.first[:schedule_start_date],
@@ -45,7 +46,7 @@ describe Api::Campaigns::Users::Upsert do
       struct, campaign, current_user, user: nil
     ).and_return(ok: User.last)
 
-    response = described_class.call(form, current_user, campaigns: form.campaigns, project: campaign.project)
+    response = described_class.call(form, current_user, params: form.attributes, project: campaign.project)
 
     expect(response[:ok]).to be_a(User)
   end
@@ -59,7 +60,8 @@ describe Api::Campaigns::Users::Upsert do
       email: form.email,
       first_name: form.first_name,
       last_name: form.last_name,
-      external_id: form.campaigns.first[:external_id],
+      campaign_user_external_id: form.campaigns.first[:campaign_user_external_id],
+      user_external_id: nil,
       operation: form.campaigns.first[:existing_record],
       active: form.campaigns.first[:active],
       schedule_start_date: form.campaigns.first[:schedule_start_date],
@@ -72,7 +74,7 @@ describe Api::Campaigns::Users::Upsert do
     ).and_return(ok: user)
 
     response = described_class.call(
-      form, current_user, campaigns: form.campaigns, project: campaign.project, user: user
+      form, current_user, params: form.attributes, project: campaign.project, user: user
     )
 
     expect(response[:ok]).to eq(user)
@@ -85,7 +87,7 @@ describe Api::Campaigns::Users::Upsert do
     form.campaigns = [
       {
         id: campaign.id,
-        external_id: '123',
+        campaign_user_external_id: '123',
         existing_record: 'add_and_allow_new_response',
         active: true,
         schedule_start_date: 1.day.from_now,
@@ -98,7 +100,7 @@ describe Api::Campaigns::Users::Upsert do
     form.last_name = 'Doe'
 
     expect do
-      described_class.call!(form, current_user, campaigns: form.campaigns, project: campaign.project, user: user)
+      described_class.call!(form, current_user, params: form.attributes, project: campaign.project, user: user)
     end.to_not change(User, :count)
 
     user.reload
@@ -113,7 +115,7 @@ describe Api::Campaigns::Users::Upsert do
   it 'creates user if user is not passed and user with email doesnt exists in system' do
     form.email = Faker::Internet.email
     expect do
-      described_class.call!(form, current_user, campaigns: form.campaigns, project: campaign.project)
+      described_class.call!(form, current_user, params: form.attributes, project: campaign.project)
     end.to change { User.count }.by(1)
 
     user = User.find_by(email: form.email)
@@ -126,5 +128,28 @@ describe Api::Campaigns::Users::Upsert do
     expect(campaign_user.external_id).to eq('123')
     expect(campaign_user.active).to be_truthy
     expect(user.user_profile).to be_present
+  end
+
+  it 'create user with external_id if user_external_id is provided' do
+    form.user_external_id = Faker::Internet.uuid
+    expect do
+      described_class.call!(form, current_user, params: form.attributes, project: campaign.project)
+    end.to change { User.count }.by(1)
+
+    user = User.find_by(email: form.email)
+    expect(user.external_id).to eq(form.user_external_id)
+  end
+
+  it "updates user's external_id if user_external_id is provided" do
+    user = create(:user, project: campaign.project, external_id: 'old_external_id')
+    form.user_external_id = Faker::Internet.uuid
+    form.email = user.email
+
+    expect do
+      described_class.call!(form, current_user, params: form.attributes, project: campaign.project, user: user)
+    end.to_not(change { User.count })
+
+    user.reload
+    expect(user.external_id).to eq(form.user_external_id)
   end
 end

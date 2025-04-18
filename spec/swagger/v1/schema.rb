@@ -163,6 +163,11 @@ module Swagger
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string' },
+            user_external_id: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'External ID for the user. Maximum 128 characters supported'
+            },
             campaign_ids: {
               type: 'array',
               items: { type: 'integer' },
@@ -304,7 +309,7 @@ module Swagger
               {
                 id: 510,
                 active: true,
-                external_id: 'ext123',
+                campaign_user_external_id: 'ext123',
                 existing_record: 'new_evaluation',
                 schedule_start_date: '2023-03-05T10:56:53.349+04:00',
                 schedule_end_date: '2023-04-05T10:56:53.349+04:00',
@@ -322,7 +327,11 @@ module Swagger
           properties: {
             id: { type: 'integer' },
             active: { type: 'boolean' },
-            external_id: { type: 'string', 'x-nullable': true },
+            campaign_user_external_id: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'External ID for the campaign user. Maximum 128 characters supported'
+            },
             existing_record: {
               type: 'string',
               enum: %w[copy_evaluation new_evaluation],

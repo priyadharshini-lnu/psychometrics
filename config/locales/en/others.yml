@@ -1608,6 +1608,7 @@ en:
       add: Add
       approve: Approve
       archive: Archive
+      back_to_dashboard: Back to Dashboard
       back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
@@ -2053,6 +2054,7 @@ en:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     error: Error
     error_500: Something went wrong. Contact your administrator.
+    error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
     invalid_session_title: Invalid Session

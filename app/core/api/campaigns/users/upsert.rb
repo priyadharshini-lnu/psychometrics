@@ -4,23 +4,25 @@ module Api
   module Campaigns
     module Users
       class Upsert < BaseCommand
-        private_attr_reader :user, :form, :current_user, :campaigns, :project
+        private_attr_reader :user, :form, :current_user, :params, :project
 
-        def initialize(form, current_user, campaigns:, project:, user: nil)
+        def initialize(form, current_user, params:, project:, user: nil)
           @form = form
           @current_user = current_user
-          @campaigns = campaigns
+          @params = params
+          @campaigns = params[:campaigns]
           @project = project
           @user = user
         end
 
+        # rubocop:disable Metrics/BlockLength
         def call
           transaction do
             update_user if user
             create_or_update_project_datasheet
 
-            if campaigns.present?
-              @user = campaigns.map do |campaign_attrs|
+            if params[:campaigns].present?
+              @user = params[:campaigns].map do |campaign_attrs|
                 campaign = Campaign.find(campaign_attrs[:id])
 
                 # rubocop:disable Style/OpenStructUse
@@ -34,7 +36,11 @@ module Api
                   schedule_end_date: campaign_attrs[:schedule_end_date]
                 )
 
-                struct[:external_id] = campaign_attrs[:external_id] if campaign_attrs.key?(:external_id)
+                struct[:user_external_id] = form.user_external_id if params.key?(:user_external_id)
+
+                if campaign_attrs.key?(:campaign_user_external_id)
+                  struct[:campaign_user_external_id] = campaign_attrs[:campaign_user_external_id]
+                end
                 struct[:datasheet] = campaign_attrs[:datasheet] if campaign_attrs.key?(:datasheet)
                 # rubocop:enable all
 
@@ -62,7 +68,8 @@ module Api
           user.update!(
             first_name: form.first_name,
             last_name: form.last_name,
-            email: form.email
+            email: form.email,
+            external_id: form.try(:user_external_id) || user.external_id
           )
         end
 

@@ -238,4 +238,10 @@ class UserReport < ApplicationRecord
       self
     )
   end
+
+  def last_assessment_completed_at
+    user_results.joins(:user_assessment).
+      order('user_assessments.completed_at DESC').
+      pick('user_assessments.completed_at')
+  end
 end

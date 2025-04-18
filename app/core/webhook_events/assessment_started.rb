@@ -20,7 +20,7 @@ module WebhookEvents
           id: ctx[:evaluator]&.id,
           name: ctx[:evaluator]&.decorate&.full_name,
           email: ctx[:evaluator]&.email,
-          external_id: ctx[:evaluator]&.external_id,
+          user_external_id: ctx[:evaluator]&.external_id,
           campaign_user_external_id: ctx[:evaluator]&.campaign_user_external_id(ctx[:campaign]&.id)
         }
       }

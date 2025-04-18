@@ -7,7 +7,7 @@ describe Api::V1::Campaigns::ValidateForm do
     {
       id: 1,
       active: true,
-      external_id: nil,
+      campaign_user_external_id: nil,
       existing_record: 'add_with_existing_response'
     }
   end
@@ -42,18 +42,18 @@ describe Api::V1::Campaigns::ValidateForm do
     expect(form.valid?).to eq(true)
   end
 
-  it 'validates external_id is already taken by another user in same campaign' do
+  it 'validates campaign_user_external_id is already taken by another user in same campaign' do
     user1 = create(:user)
     create(:campaign_user, campaign: campaign, external_id: 'external_id', user: user)
     form = described_class.new(
       valid_attributes.merge(
         id: campaign.id,
-        external_id: 'external_id'
+        campaign_user_external_id: 'external_id'
       )
     ).with_context(user: user1)
 
     expect(form.valid?).to eq(false)
-    expect(form.errors[:external_id]).to include(
+    expect(form.errors[:campaign_user_external_id]).to include(
       I18n.t(
         'administration.api.campaigns.validate_form.external_id_taken',
         external_id: 'external_id'

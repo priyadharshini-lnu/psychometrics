@@ -22,6 +22,8 @@ module Api
             errors.add(:campaigns, "[Campaign #{index + 1}] #{form.errors.full_messages}") if form.invalid?
           end
         end
+
+        delegate :user, to: :context
       end
     end
   end

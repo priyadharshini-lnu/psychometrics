@@ -17,7 +17,8 @@ RSpec.describe CampaignUsers::Webhook do
       campaign_user_status_data = {
         campaign: campaign_user.campaign,
         subject: campaign_user.user,
-        status: campaign_user.status
+        status: campaign_user.status,
+        event_time: campaign_user.updated_at
       }
 
       expect(WebhookSubscriptions::Publish).to receive(:call).with(
@@ -29,6 +30,7 @@ RSpec.describe CampaignUsers::Webhook do
 
   describe '#publish_campaign_results_available' do
     it 'publishes campaign results available' do
+      campaign_user.update!(campaign_scores_finalized_date: Time.current)
       campaign_results_available_data = {
         campaign: campaign_user.campaign,
         subject: campaign_user.user,
@@ -39,7 +41,8 @@ RSpec.describe CampaignUsers::Webhook do
             value: campaign_factor_value.value,
             value_type: campaign_factor_value.campaign_factor.output_type
           }
-        ]
+        ],
+        event_time: campaign_user.campaign_scores_finalized_date
       }
 
       expect(WebhookSubscriptions::Publish).to receive(:call).with(

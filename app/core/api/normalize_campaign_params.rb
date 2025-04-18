@@ -39,6 +39,7 @@ module Api
         :first_name,
         :last_name,
         :email,
+        :user_external_id,
         :existing_record,
         :project_id,
         project_datasheet: {},
@@ -51,7 +52,7 @@ module Api
         campaigns: [
           :id,
           :active,
-          :external_id,
+          :campaign_user_external_id,
           :existing_record,
           :schedule_start_date,
           :schedule_end_date,

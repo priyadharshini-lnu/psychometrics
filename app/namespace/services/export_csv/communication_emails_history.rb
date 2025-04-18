@@ -12,9 +12,10 @@ module Services
       HEADERS = ['First Name', 'Last Name', 'Email', 'Sent At'].freeze
 
       def call
-        data = @communication.emails.sent.joins(:user).pluck(
-          'users.first_name', 'users.last_name', 'users.email', :sent_at
-        )
+        query = @communication.emails.sent
+        query = @communication.campaign_id? ? query.joins(campaign_user: :user) : query.joins(:user)
+        data = query.pluck('users.first_name', 'users.last_name', 'users.email', :sent_at)
+
         context.result = generate_csv(data)
       end
 

@@ -234,10 +234,11 @@ en:
     api:
       campaigns:
         validate_form:
-          external_id_taken: External Id '%{external_id}' is already taken'
+          external_id_taken: Campaign User External Id '%{external_id}' is already taken'
       users:
         form:
           campaign_ids_not_existing: Not all campaign ids are existing
+          external_id_taken: User External ID '%{external_id}' is already taken
     api_keys:
       form:
         description: Description

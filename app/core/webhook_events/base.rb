@@ -7,7 +7,7 @@ module WebhookEvents
     attribute :client, type: Hash
     attribute :campaign, type: Hash
     attribute :ctx, type: Hash
-    attribute :event_time, type: DateTime
+    attribute :event_time, type: ActiveSupport::TimeWithZone
     attribute :locale, type: Hash
 
     def self.call(ctx)
@@ -32,7 +32,7 @@ module WebhookEvents
           name: ctx[:subject]&.decorate&.full_name,
           email: ctx[:subject]&.email,
           campaign_user_external_id: ctx[:subject]&.campaign_user_external_id(ctx[:campaign]&.id),
-          external_id: ctx[:subject]&.external_id
+          user_external_id: ctx[:subject]&.external_id
         },
         project: {
           id: ctx[:project]&.id,
@@ -47,7 +47,7 @@ module WebhookEvents
           name: ctx[:campaign]&.name
         },
         locale: ctx[:locale],
-        event_time: DateTime.now
+        event_time: ctx[:event_time] || Time.current
       }
     end
 

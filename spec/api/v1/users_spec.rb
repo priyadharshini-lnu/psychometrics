@@ -124,16 +124,18 @@ the campaign\'s default assessments and reports.'
         let(:last_name) { 'Holloway' }
         let(:email) { 'max@example.com' }
         let(:project_id) { project.id }
-        let(:external_id) { '123' }
+        let(:campaign_user_external_id) { Faker::Internet.uuid }
+        let(:user_external_id) { Faker::Internet.uuid }
         let(:body) do
           {
             email: email,
             first_name: first_name,
             last_name: last_name,
+            user_external_id: user_external_id,
             campaigns: [{
               id: campaign.id,
               active: true,
-              external_id: external_id,
+              campaign_user_external_id: campaign_user_external_id,
               existing_record: 'new_evaluation',
               datasheet: {
                 'Current Position' => 'Manager',
@@ -155,8 +157,10 @@ the campaign\'s default assessments and reports.'
           expect(user['id']).to be
           expect(user['first_name']).to eq first_name
           expect(user['last_name']).to eq last_name
+          expect(user['user_external_id']).to eq user_external_id
           expect(user['email']).to eq email
           expect(user['campaigns'][0]['id']).to eq campaign.id
+          expect(user['campaigns'][0]['campaign_user_external_id']).to eq campaign_user_external_id
           expect(user['campaigns'][0]['datasheet']).to eq(
             {
               'Current Position' => 'Manager',
@@ -171,7 +175,7 @@ the campaign\'s default assessments and reports.'
           )
 
           expect(campaign_user.active).to eq true
-          expect(campaign_user.external_id).to eq external_id
+          expect(campaign_user.external_id).to eq campaign_user_external_id
           expect(campaign_user.schedule_start_date).to eq nil
           expect(campaign_user.schedule_end_date).to eq nil
           expect(campaign_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
@@ -403,13 +407,17 @@ enough licenses for '#{report.name}'",
         let(:email) { 'ortega@example.com' }
         let(:project_id) { project.id }
         let(:user_id) { user.id }
-        let(:body) { { email: email, first_name: first_name, last_name: last_name } }
+        let(:user_external_id) { Faker::Internet.uuid }
+        let(:body) do
+          { email: email, first_name: first_name, last_name: last_name, user_external_id: user_external_id }
+        end
 
         run_test! do |response|
           user = JSON.parse(response.body)
           expect(user['first_name']).to eq first_name
           expect(user['last_name']).to eq last_name
           expect(user['email']).to eq email
+          expect(user['user_external_id']).to eq user_external_id
         end
       end
     end
