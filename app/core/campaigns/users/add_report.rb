@@ -116,7 +116,7 @@ module Campaigns
           campaign: campaign,
           assessment_id: assessment.id,
           subject: user,
-          norm_id: norm_assessment[:norm_id],
+          norm_id: norm_assessment[:norm_id] || campaign_assessment&.norm_id,
           fixed_norm: norm_assessment[:norm_id].present?,
           evaluator: user,
           relationship: Relationship.self_relationship,

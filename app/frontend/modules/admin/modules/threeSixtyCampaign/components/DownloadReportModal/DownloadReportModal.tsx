@@ -25,7 +25,7 @@ export default function DownloadReportModal ({
   return (
     <Modal
       width={650}
-      title="Download Reports"
+      title={I18n.t('campaign_assessment.actions.download')}
       open={visible}
       onCancel={close}
       footer={[
@@ -90,7 +90,7 @@ export default function DownloadReportModal ({
                     downloadUrl ? window.open(downloadUrl, '_blank') : handleRegenerateReport(locale)
                   }}
                 >
-                  {downloadUrl ? 'Download' : 'Regenerate'}
+                  {downloadUrl ? I18n.t('user_reports.actions.download') : I18n.t('user_reports.actions.generate')}
                 </a>
               </div>
             )

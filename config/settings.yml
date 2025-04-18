@@ -970,6 +970,8 @@ providers:
     v2_assessments:
       - id: prd:bmct-ii:c916dfd8-d922-4fe3-b08f-6fead3c787c4
         report_id: rep:7c02d463-5885-404d-8375-29619655d5b8
+      - id: prd:ravens-adaptive:6c94b388-835c-4448-bd64-959a4a54cae0
+        report_id: rep:a4cfa98f-1a6e-4aac-90d6-9e45801740ee
     products:
       - id: prd:ravens-adaptive:6c94b388-835c-4448-bd64-959a4a54cae0
         variations:

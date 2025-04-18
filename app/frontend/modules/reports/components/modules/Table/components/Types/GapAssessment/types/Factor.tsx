@@ -16,6 +16,7 @@ import Utils from '~/modules/reports/utils'
 
 import styles from './styles.less'
 import { PageData } from '../PaginationContext'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 type Gap = {
   name: string
@@ -121,7 +122,7 @@ const Factor: FC<Props> = ({
   style,
 }) => {
   const tableColumns = _.get(model, 'props.tableColumns.Factor')
-  || _.get(model, 'props.defaultTableColumns.Factor') || {} as ColumnData
+  || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Factor') || {} as ColumnData
 
   const columnsHeaderData: ColumnsHeaderData = {
     rank: {
@@ -268,8 +269,8 @@ const Factor: FC<Props> = ({
             <>
               <THeader
                 title={
-                  (showTitle && !_.get(tableColumns, 'nagative_gaps.hide'))
-                    ? I18nStore.tTableColumns(model, 'Factor', 'nagative_gaps.label')
+                  (showTitle && !_.get(tableColumns, 'negative_gaps.hide'))
+                    ? I18nStore.tTableColumns(model, 'Factor', 'negative_gaps.label')
                     : ''
                 }
                 leftFilter={leftFilter}

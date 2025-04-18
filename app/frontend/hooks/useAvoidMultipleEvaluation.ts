@@ -20,7 +20,7 @@ const useAvoidMultipleEvaluation = (assessmentId, result, validateSession) => {
               evaluationSessionIdCheckChannel.close()
             }
           })
-      }, 30000)
+      }, 15000)
 
       evaluationSessionIdCheckChannel.addEventListener('message', (e) => {
         if (e.data.type === 'DuplicateEvaluationSessionIdFound' && e.data.evaluationSessionId === evaluationSessionId) {

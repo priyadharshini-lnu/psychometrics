@@ -12,6 +12,7 @@ module Api
           required(:id).filled(:int?)
           required(:first_name).filled(:str?)
           required(:last_name).filled(:str?)
+          required(:user_external_id).maybe(:str?)
           required(:email).filled(:str?)
           required(:created_at).filled(:str?)
           required(:updated_at).filled(:str?)

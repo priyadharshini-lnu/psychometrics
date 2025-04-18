@@ -7,28 +7,29 @@ module Api
         attribute :existing_record, String
         attribute :id, Integer
         attribute :active, Boolean
-        attribute :external_id, String, default: nil
+        attribute :campaign_user_external_id, String, default: nil
         attribute :datasheet, Hash, default: {}
         validates :existing_record, inclusion: { in: %w[add_with_existing_response add_and_allow_new_response] }
         validates :id, presence: true
         validates_inclusion_of :active, in: [true, false]
 
-        validate :validate_external_id
+        validate :validate_campaign_user_external_id
         validate :validate_sheet_exists, if: -> { datasheet.present? }
         validate :validate_datasheet_data, if: -> { datasheet.present? && sheet }
+        validates :campaign_user_external_id, length: { maximum: 128 }, allow_blank: true
 
-        def validate_external_id
-          return if external_id.nil?
+        def validate_campaign_user_external_id
+          return if campaign_user_external_id.nil?
 
-          query = ::CampaignUser.where(campaign_id: id, external_id: external_id)
+          query = ::CampaignUser.where(campaign_id: id, external_id: campaign_user_external_id)
           query = query.where.not(user_id: context.user.id) if context&.user
 
           if query.exists?
             errors.add(
-              :external_id,
+              :campaign_user_external_id,
               I18n.t(
                 'administration.api.campaigns.validate_form.external_id_taken',
-                external_id: external_id
+                external_id: campaign_user_external_id
               )
             )
           end

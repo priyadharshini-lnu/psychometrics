@@ -3,6 +3,7 @@ import { EventEmitter } from 'fbemitter'
 import PageList from '~/modules/reports/store/PageList'
 import AppStore from '~/modules/reports/store/AppStore'
 import Utils from '~/modules/reports/utils/Utils'
+import DefaultTableColumns from '~/modules/reports/consts/DefaultTableColumns'
 
 let { I18n } = window
 if (I18n) {
@@ -140,10 +141,11 @@ _.extend(I18nStore.prototype, {
     }
 
     const tableColumnsDataPath = sourceType ? `props.tableColumns.${sourceType}` : 'props.tableColumns'
-    const defaultTableColumnsDataPath = sourceType ? `props.defaultTableColumns.${sourceType}`
-      : 'props.defaultTableColumns'
+    const defaultTableColumnnsData = DefaultTableColumns[module.props.type]?.defaultTableColumns(this)
+    const defaultTableColumns = sourceType ? _.get(defaultTableColumnnsData, sourceType)
+      : defaultTableColumnnsData
     const tableColumns = _.get(module, tableColumnsDataPath)
-        || _.get(module, defaultTableColumnsDataPath) || {}
+        || defaultTableColumns || {}
     return _.get(tableColumns, key) || ''
   },
 

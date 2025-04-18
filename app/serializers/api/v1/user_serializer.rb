@@ -4,7 +4,11 @@ module Api
   module V1
     class UserSerializer < Panko::Serializer
       attributes :id, :first_name, :last_name, :email, :created_at, :updated_at, :campaigns, :campaign_ids,
-                 :project_datasheet
+                 :project_datasheet, :user_external_id
+
+      def user_external_id
+        object.external_id
+      end
 
       def campaigns
         options = {

@@ -41,9 +41,11 @@ module UserReports
     end
 
     def generate_pdf_for_language(user_report, locale, force_regenerate)
-      return if !force_regenerate && user_report.user_report_pdf(locale: locale)&.pdf_file&.attached?
-
-      generate_and_attach_internal_report_pdf(user_report, locale)
+      if !force_regenerate && user_report.user_report_pdf(locale: locale)&.pdf_file&.attached?
+        job_record&.increment_completed_tasks!
+      else
+        generate_and_attach_internal_report_pdf(user_report, locale)
+      end
     end
 
     def generate_and_attach_internal_report_pdf(user_report, locale = nil)

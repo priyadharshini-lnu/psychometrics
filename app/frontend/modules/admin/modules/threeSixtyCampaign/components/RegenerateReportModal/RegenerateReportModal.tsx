@@ -29,7 +29,7 @@ export default function RegenerateReportModal ({
   return (
     <Modal
       width={650}
-      title="Regenerate Report"
+      title={I18n.t('campaign_assessment.actions.regenerate')}
       open={visible}
       onCancel={close}
       footer={[
@@ -39,8 +39,9 @@ export default function RegenerateReportModal ({
           onClick={() => {
             handleRegenerateReport()
           }}
+          disabled={selectedLocales.length === 0}
         >
-          Regenerate
+          {I18n.t('user_reports.actions.generate')}
         </Button>,
       ]}
     >
@@ -62,12 +63,18 @@ export default function RegenerateReportModal ({
           </Option>
         ))}
       </Select>
+      {selectedLocales.length === 0 && (
+        <div style={{ color: '#ff4d4f', marginTop: 4 }}>
+          {I18n.t('common.validations.select_locale')}
+        </div>
+      )}
       <Checkbox
         className="mt-5"
         checked={forceRegenerate}
         onChange={e => setForceRegenerate(e.target.checked)}
+        disabled={selectedLocales.length === 0}
       >
-        Force Regenerate
+        {I18n.t('campaign_assessment.actions.force_generate')}
       </Checkbox>
     </Modal>
   )

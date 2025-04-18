@@ -40,16 +40,15 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
   const [isSessionTimedOut, setSessionTimedOut] = useState<boolean>(false)
   const [key, setKey] = useState(0) // To reset the Countdown component
 
-  const [nextTimeout, setNextTimeout] = useState({})
-
+  const [currentNextTimeout, setCurrentNextTimeout] = useState({})
   const channel = useMemo(() => new BroadcastChannel('popup_channel'), [])
   const syncTimeoutChannel = useMemo(() => new BroadcastChannel(SYNC_TIMEOUT_CHANNEL), [])
 
   useEffect(() => {
     syncTimeoutChannel.addEventListener('message', (msgEvent) => {
       const { userId, nextTimeout } = msgEvent.data
-      if (userId && (nextTimeout[userId] !== nextTimeout)) {
-        setNextTimeout(prevState => ({
+      if (userId && nextTimeout && (currentNextTimeout[userId] !== nextTimeout)) {
+        setCurrentNextTimeout(prevState => ({
           ...prevState,
           [userId]: nextTimeout,
         }))
@@ -74,7 +73,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
     const favicons = Array.from(links).map(link => link.href)
     originalFavicons.current = favicons
 
-    const apiTimeoutValue = nextTimeout[currentUser.id] || ''
+    const apiTimeoutValue = currentNextTimeout[currentUser.id] || ''
 
     const timeoutEpochValue = parseInt(apiTimeoutValue, 10) / 1000
     if (isNaN(timeoutEpochValue) || timeoutEpochValue <= 0) {
@@ -107,7 +106,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
       clearTimeout(popupTimer)
       clearTimeout(delayTimeoutTimer)
     }
-  }, [nextTimeout])
+  }, [currentNextTimeout])
 
   const startFlashing = () => {
     if (!isFlashing.current) {

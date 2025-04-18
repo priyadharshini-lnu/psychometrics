@@ -75,7 +75,8 @@ module UserAssessments
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,
         evaluator: user_assessment.evaluator,
-        subject: user_assessment.subject
+        subject: user_assessment.subject,
+        event_time: user_assessment.started_at
       }
     end
 
@@ -84,7 +85,8 @@ module UserAssessments
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,
         evaluator: user_assessment.evaluator,
-        subject: user_assessment.subject
+        subject: user_assessment.subject,
+        event_time: user_assessment.completed_at
       }
     end
 
@@ -93,7 +95,8 @@ module UserAssessments
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,
         evaluator: user_assessment.evaluator,
-        subject: user_assessment.subject
+        subject: user_assessment.subject,
+        event_time: user_assessment.last_activity_at
       }
     end
 
@@ -102,7 +105,8 @@ module UserAssessments
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,
         evaluator: user_assessment.evaluator,
-        subject: user_assessment.subject
+        subject: user_assessment.subject,
+        event_time: user_assessment.created_at
       }
     end
   end

@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 describe Campaigns::Users::Create do
+  let(:user_external_id) { Faker::Internet.uuid }
   let(:form) do
     Campaigns::Users::CreateForm.new(
       first_name: 'John', last_name: 'Doe', email: Faker::Internet.email, operation: 'add_and_allow_new_response',

@@ -112,6 +112,8 @@ class UserAssessment < ApplicationRecord
 
   after_commit :publish_assessment_started_webhook, if: -> { saved_change_to_status == %w[not_started in_progress] }
 
+  after_commit :publish_assessment_timeout_webhook, if: -> { status_previously_changed? && timed_out? }
+
   after_create_commit -> { publish_assessment_assigned_webhook }
   after_commit :send_workshop_invite_email, if: :should_send_workshop_invite_email?, on: %i[update]
 
@@ -384,6 +386,10 @@ class UserAssessment < ApplicationRecord
 
   def publish_assessment_started_webhook
     UserAssessments::Webhook.new(self).publish_assessment_started
+  end
+
+  def publish_assessment_timeout_webhook
+    UserAssessments::Webhook.new(self).publish_assessment_timeout
   end
 
   def should_send_workshop_invite_email?

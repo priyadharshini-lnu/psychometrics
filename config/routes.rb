@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
   post 'extend_session', to: 'users/session_extensions#extend'
+  get 'privacy-statement', to: 'home#privacy_statement'
+  get 'privacy-statement/:lang', to: 'home#privacy_statement'
+
   concern :media_uploades do
     member do
       match :upload_media_url, via: %i[post get]

@@ -2,15 +2,19 @@
 
 module Reports
   class BulkDownloadsQuery < Rectify::Query
+    attr_reader :campaign_reports, :params, :start_date, :end_date, :include_inactive_users
+
     def initialize(campaign_reports, params)
       @campaign_reports = campaign_reports
       @params = params
+
+      @start_date = params[:start_date].presence
+      @end_date = params[:end_date].presence
+      @include_inactive_users = params[:include_inactive_users] || false
     end
 
     def query
-      start_date = @params[:start_date].presence
-      end_date = @params[:end_date].presence
-      include_inactive_users = @params[:include_inactive_users] || false
+      return UserReport.none if @campaign_reports.blank?
 
       start_date_parsed = DateTime.parse(start_date) if start_date
       end_date_parsed = DateTime.parse(end_date) if end_date

@@ -13,7 +13,7 @@ module Threesixty
           hash do
             required(:relationship).filled(:str?)
             required(:manager_evaluation_status).filled(:str?)
-            required(:status).maybe(:bool?)
+            required(:status).maybe(:str?)
           end
         end
       end
