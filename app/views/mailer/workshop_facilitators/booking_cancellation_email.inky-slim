@@ -3,7 +3,7 @@ container.email-container
     columns.email-content
       p
         | You booked for Assessment center has been cancelled 
-        = link_to 'View details', administration_project_new_campaign_url(@workshop&.campaign&.project, @workshop&.campaign) + "/workshops/#{@workshop.id}"
+        = link_to 'View details', administration_project_new_campaign_url(@workshop&.campaign&.project, @workshop&.campaign) + "/scheduling/assessment_center/#{@workshop.id}"
       p
        | Start time: #{@workshop.formatted_start_time}
 
