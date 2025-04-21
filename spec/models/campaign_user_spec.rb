@@ -24,6 +24,33 @@ describe CampaignUser, type: :model do
         campaign_user.update(campaign_scores_finalized: false)
       end
     end
+
+    context '#publish_campaign_user_status' do
+      let(:campaign) { create(:campaign) }
+      let(:user) { create(:user) }
+
+      it 'publishes campaign_user_status webhook event when user is created' do
+        expect_any_instance_of(CampaignUsers::Webhook).to receive(:publish_campaign_user_status)
+
+        create(:campaign_user, campaign: campaign, user: user, status: :not_started)
+      end
+
+      it 'publishes campaign_user_status webhook event when status changes' do
+        campaign_user = create(:campaign_user, campaign: campaign, user: user, status: :not_started)
+
+        expect_any_instance_of(CampaignUsers::Webhook).to receive(:publish_campaign_user_status)
+
+        campaign_user.update(status: :in_progress)
+      end
+
+      it 'does not publish campaign_user_status webhook when status does not change' do
+        campaign_user = create(:campaign_user, campaign: campaign, user: user, status: :not_started)
+
+        expect_any_instance_of(CampaignUsers::Webhook).not_to receive(:publish_campaign_user_status)
+
+        campaign_user.update(active: false)
+      end
+    end
   end
 
   describe 'scheduled_at' do
