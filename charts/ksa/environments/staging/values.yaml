@@ -1,0 +1,163 @@
+# Default values for lighthouse
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# Overrides the image tag whose default is the chart appVersion.
+image:
+  repository: lhcontregistry.azurecr.io/psychometrics
+  tag: 'replaceme'
+  pullPolicy: IfNotPresent
+
+web:
+  replica: 2
+worker:
+  replica: 1
+
+domain: lh-staging-sa.com
+
+services:
+  name: lhksa-staging
+  internlPort: 3030
+  targetPort: 3030
+  type: ClusterIP
+  annotations: {}
+
+imagePullSecrets:
+  - name: pullsecret
+nameOverride: "staging"
+fullnameOverride: ""
+
+rollme:
+  enabled: true
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+
+oracle:
+  region: me-jeddah-1
+  vaultOcid: ocid1.vault.oc1.me-jeddah-1.fvuabk6zaag4m.abvgkljrpe7wwtqgrgheip3w5v3rpcya54vnkotpkxkweez5v6mikuzh776q
+  compartmentOcid: ocid1.compartment.oc1..aaaaaaaatmhmy6dr5cvcg677ow7g4q3pypknodz2meyepqqdaddxqoevnpua
+  masterEncryptionKeyOcid: ocid1.key.oc1.me-jeddah-1.fvuabk6zaag4m.abvgkljrl7bjga7gvxlrfx3cjc66klhruqla74gpwjos4vuo35xkew2o4l2q
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+objectStorageProxy:
+  enabled: true
+  vHost: "axkwa67qeaun.compat.objectstorage.me-jeddah-1.oraclecloud.com"
+  ingress:
+    tls:
+      - secretName: wildcard-cert-tls-prod
+        hosts:
+          - "object-storage.lh-staging-sa.com"
+    hosts:
+      - host: "object-storage.lh-staging-sa.com"
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lhksa-staging-obj-st-rp
+                port:
+                  number: 443
+
+
+cert-manager:
+  installCRDs: true
+issuer:
+  enabled: false
+certificate:
+  name: wildcard-cert-tls-prod
+  issuerName: letsencrypt-prod-wildcard
+  secretName: wildcard-cert-tls-prod
+
+
+ingress:
+  enabled: true
+  host: "lh-staging-sa.com"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod-wildcard
+    nginx.ingress.kubernetes.io/proxy-body-size: 16m
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 8k
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host = 'lh-staging-sa.com' ) {
+        rewrite ^ https://www.lh-staging-sa.com$request_uri permanent;
+      }
+  tls:
+    - secretName: wildcard-cert-tls-prod
+      hosts:
+        - "lh-staging-sa.com"
+        - "*.lh-staging-sa.com"
+  hosts:
+    - host: "*.lh-staging-sa.com"
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: lhksa-staging
+              port:
+                number: 3030
+    - host: "lh-staging-sa.com"
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: lhksa-staging
+              port:
+                number: 3030
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Provide affinity for hooks if needed
+hooks:
+  affinity: {}
+  migrate:
+    env: []
+    resources:
+      limits:
+        memory: 3000Mi
+      requests:
+        memory: 2000Mi
+    # Defaults to performing the DB migration job after the install/upgrade.
+    # Can be overridden to "pre-install,pre-upgrade" with caution to perform migrations that are sometimes required for the deployment to become healthy
+    hookAnnotation: "pre-install,pre-upgrade"
+
+# ENVIRONMENT VARIABLES
+env: {}

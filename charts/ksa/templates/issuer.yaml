@@ -1,0 +1,54 @@
+{{- if and (.Capabilities.APIVersions.Has "cert-manager.io/v1") (.Values.issuer.enabled) -}}
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ .Values.issuer.prod.name }}
+spec:
+  acme:
+    # The ACME production api URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: {{ .Values.issuer.email }}
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: {{ .Values.issuer.prod.privateKeySecretName }}
+    solvers:
+    - selector:
+        dnsZones:
+          - "{{ .Values.domain }}"
+      dns01:
+        cnameStrategy: Follow
+        route53:
+          region: eu-west-1
+          hostedZoneID: {{ .Values.issuer.route53.hostedZoneID }}
+          accessKeyID: {{ .Values.issuer.route53.accessKeyId }}
+          secretAccessKeySecretRef:
+            name: aws-route53-secret
+            key: secret
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ .Values.issuer.staging.name }}
+spec:
+  acme:
+    # The ACME staging api URL
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: {{ .Values.issuer.email }}
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: {{ .Values.issuer.staging.privateKeySecretName }}
+    solvers:
+    - selector:
+        dnsZones:
+          - "{{ .Values.domain }}"
+      dns01:
+        route53:
+          region: eu-west-1
+          accessKeyID: {{ .Values.issuer.route53.accessKeyId }}
+          secretAccessKeySecretRef:
+            name: aws-route53-secret
+            key: secret
+{{- end -}}
+

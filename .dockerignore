@@ -93,3 +93,8 @@ app/assets/javascripts/i18n/translations.js
 /.yalc
 /support
 /.git
+/charts
+/.circleci
+/.github
+/.idea
+/.vscode
