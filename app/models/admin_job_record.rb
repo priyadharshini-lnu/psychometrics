@@ -84,7 +84,8 @@ class AdminJobRecord < ApplicationRecord
     export_norm: 62,
     import_norm: 63,
     export_dimension_as_json: 64,
-    import_dimension_from_json: 65
+    import_dimension_from_json: 65,
+    export_assessment_questions: 66
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

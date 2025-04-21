@@ -757,6 +757,7 @@ en:
         create_threesixty_campaign: Create Threesixty Campaign
         data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
+        export_assessment_questions: Export Assessment Questions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_development_action_translations: Export Development Action Translations

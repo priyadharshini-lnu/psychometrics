@@ -594,6 +594,7 @@ Rails.application.routes.draw do
         delete :soft_delete
         put :restore
         post :import_questions
+        post :export_questions
         get :import_questions_sample_file
       end
 

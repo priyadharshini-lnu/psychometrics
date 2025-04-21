@@ -345,6 +345,7 @@ en:
       errors:
         doesnt_have_header: "'%{sub_header}' does not have header"
         invalid_headers: 'Following headers are invalid: %{headers}'
+        invalid_question: Question with id %{question_id} does not exist
         invalid_scores: Scores for factor %{factor_name} are invalid. Scores should be comma separated numeric values
         invalid_sub_header: "'%{sub_header}' is not a valid subheader for header '%{header}'"
         scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
@@ -368,12 +369,16 @@ en:
         header: Assessment Settings
       errors:
         owner_validation: You don't have %{resource_name} %{permission} permission for %{client_name}
+      export:
+        questions: Export Questions
+      export_questions_toastr: Questions Export Job was scheduled successfully
       flow: Flow
       linkedAssessment:
         assessment_title: Select Questions from %{name}
         title: Select Linked Questions
       map_norms: Map Norms
       menu:
+        export_questions: Export Questions
         import_questions: Import Questions
         managage_campaign_factors: Manage Campaign Factors
       new:

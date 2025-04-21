@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage, saveAssessment, updateExtra,
-  toggleInstructions,
+  toggleInstructions, exportQuestions,
 } from '~/modules/survey/core/builder/assessment/actions'
 import { createBlock } from '~/modules/survey/core/builder/assessment/block/actions'
 import { trashItems, blocksWithQuestions } from '~/modules/survey/core/builder/assessment/selectors'
@@ -33,5 +33,6 @@ export default connect(
     updateExtra,
     toggleInstructions,
     openCampaignFactorsModal: data => openModal('campaignFactorsModal', data),
+    exportQuestions,
   },
 )

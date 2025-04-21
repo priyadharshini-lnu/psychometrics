@@ -73,6 +73,7 @@ class AdminJob < ApplicationJob
     export_development_action_translations: AdminJobs::ExportDevelopmentActionTranslationsJob,
     export_norm: AdminJobs::NormExport,
     import_norm: AdminJobs::ImportNorm,
+    export_assessment_questions: AdminJobs::ExportAssessmentQuestions,
     export_dimension_as_json: AdminJobs::ExportDimensionAsJson,
     import_dimension_from_json: AdminJobs::ImportDimensionFromJson
   }.freeze

@@ -87,7 +87,7 @@ module Assessments
       def allowed_sub_headers_for_header
         @allowed_sub_headers_for_header ||= {
           'Block' => %w[Name],
-          'Question' => %w[Name Type],
+          'Question' => %w[ID Name Type],
           'Question Property' => [
             'type', 'questionText', 'answersType', 'choicesTexts', 'scalePointsTexts', 'randomization.type',
             'randomization.questions', 'notApplicable', 'notApplicableLabel'

@@ -23,6 +23,8 @@ module Assessments
       validate :validate_required_validation
       validate :validate_scoring
 
+      delegate :assessment, to: :context
+
       private
 
       def validate_block
@@ -33,6 +35,13 @@ module Assessments
       def validate_question
         form = Assessments::QuestionsImport::QuestionForm.new(question)
         add_errors_from_child_form(form)
+
+        if question['id'].present? && !assessment.questions.exists?(id: question['id'])
+          errors.add(:base, I18n.t(
+                              'administration.assessment_question_import.errors.invalid_question',
+                              question_id: question['id']
+                            ))
+        end
       end
 
       def validate_question_property
