@@ -1,37 +1,35 @@
-import React, { useState } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-
-
+import React, { useState, useEffect } from 'react'
+import ApiAction from 'interfaces/ApiAction'
+import { debounce } from 'lodash'
+import { Client } from 'modules/admin/modules/client/core/clients'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
-  Button, Modal, message, Alert, Form, Input,
+  Button, Modal, Alert, Form, Input, Select, Switch,
 } from 'antd'
 import Event from 'interfaces/Event'
-import { importSkills } from '~/modules/admin/modules/Skills/core/skills'
+import { Project } from '~/modules/admin/modules/client/core/projects'
 import DownloadSampleFile from '~/modules/admin/components/DownloadSampleFile'
+import { useResources } from '~/hooks/useResources'
 
-
-const CSVData = `ID,Name,Description,Project,Category,Tag
-1,Leadership,Description 1,123,behavioral,"tag1,tag2"
-2,Programming,Description 2,123,technical,tag3`
-
-
-const connecter = connect(() => ({
-}),
-{
-  importSkills,
-})
-export type PropsFromRedux = ConnectedProps<typeof connecter>
+const { Option } = Select
 
 const { I18n } = window
 
-interface OwnProps extends PropsFromRedux {
-  close(): void
+interface OwnProps {
+  close(): void,
+  handleImport: (data: FormData,
+    projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
+  csvData: string,
+  title: string,
+  allowGlobalImport: boolean
 }
 
-const ImportModalComponent: React.FC<OwnProps> = ({
+export const SkillsImportModal: React.FC<OwnProps> = ({
   close,
-  importSkills,
+  handleImport,
+  csvData,
+  title,
+  allowGlobalImport,
 }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
@@ -45,21 +43,47 @@ const ImportModalComponent: React.FC<OwnProps> = ({
     data.append('file', file)
     setLoading(true)
 
-    importSkills(data)
-      .then(() => {
-        message.info(I18n.t('administration.skills.import.success_msg'))
-        close()
-        form.resetFields()
-      }).catch(setErrors).finally(() => {
-        setLoading(false)
-      })
+    handleImport(data, projectId, () => {
+      form.resetFields()
+      close()
+      setLoading(false)
+    }, (error) => {
+      setErrors(error)
+      setLoading(false)
+    })
   }
+  const {
+    data: owners, fetch: fetchOwners,
+  } = useResources<Client>('clients')
+
+  const ownerOption = Form.useWatch('ownerId', form)
+
+  const projectId = Form.useWatch('projectId', form)
+
+  const globalImportSwitch = Form.useWatch('globalImportSwitch', form)
+
+  const fetchOwnersByValue = (value: string) => fetchOwners({
+    apiConfig: {
+      filter: {
+        filterable_fields: value,
+      },
+    },
+  })
+
+
+  useEffect(() => {
+    form.resetFields(['ownerId'])
+  }, [globalImportSwitch])
+
+  const searchAvailableOwners = debounce((value) => {
+    fetchOwnersByValue(value)
+  }, 300)
 
 
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.skills.import.title')}
+      title={title}
       open
       onCancel={close}
       footer={[
@@ -85,7 +109,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
     >
       <div className="mbl" style={{ fontSize: '16px' }}>
         <DownloadSampleFile
-          fileData={CSVData}
+          fileData={csvData}
           buttonText={I18n.t('administration.skills.import.download_example_csv')}
         />
       </div>
@@ -102,6 +126,40 @@ const ImportModalComponent: React.FC<OwnProps> = ({
         form={form}
         onFinish={handleUpload}
       >
+        {allowGlobalImport && (
+          <>
+            <Form.Item
+              name="globalImportSwitch"
+              label={I18n.t('common.text.global_import')}
+            >
+              <Switch />
+            </Form.Item>
+            {!globalImportSwitch && (
+              <>
+                <Form.Item
+                  name="ownerId"
+                  label={I18n.t('common.column.client')}
+                  rules={[{ required: true }]}
+                >
+                  <Select
+                    showSearch
+                    filterOption={false}
+                    placeholder={I18n.t('administration.skills.form.client_placeholder')}
+                    onSearch={searchAvailableOwners}
+                  >
+                    {
+                      owners.map(({ id, name }) => (
+                        <Option key={id} value={id}>{name}</Option>
+                      ))
+                    }
+                  </Select>
+                </Form.Item>
+                <ProjectDropdown form={form} owner={ownerOption} />
+              </>
+            )}
+
+          </>
+        )}
         <Form.Item name="importData">
           <Input
             type="file"
@@ -114,5 +172,49 @@ const ImportModalComponent: React.FC<OwnProps> = ({
   )
 }
 
+const ProjectDropdown = ({ form, owner }) => {
+  const {
+    data: projects, fetch: fetchProjects, setData: setProjects,
+  } = useResources<Project>('projects', { basePath: `clients/${owner}` })
 
-export const SkillsImportModal = connecter(ImportModalComponent)
+  const handleProjectSearch = (value: string) => {
+    fetchProjects({
+      apiConfig: {
+        filter: { filterable_fields: value },
+        fields: { clients: ['name'] },
+      },
+    })
+  }
+
+  useEffect(() => {
+    setProjects([])
+    form.resetFields(['projectId'])
+    if (owner) fetchProjects()
+  }, [owner])
+
+  const searchProjects = debounce((value) => {
+    handleProjectSearch(value)
+  }, 300)
+
+
+  return (
+    <Form.Item
+      name="projectId"
+      label={I18n.t('common.column.project')}
+      rules={[{ required: true }]}
+    >
+      <Select
+        disabled={!owner}
+        showSearch
+        filterOption={false}
+        key={owner}
+        onSearch={searchProjects}
+        options={projects.map(p => ({
+          value: p.id,
+          label: p.name,
+        }))}
+        placeholder={I18n.t('administration.development_actions.form.project_placeholder')}
+      />
+    </Form.Item>
+  )
+}

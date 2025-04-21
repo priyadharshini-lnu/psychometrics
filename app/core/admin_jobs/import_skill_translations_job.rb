@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 module AdminJobs
-  class ImportSkillsJob < AdminJobs::Base
+  class ImportSkillTranslationsJob < AdminJobs::Base
     def call
-      result = Administration::ImportSkills.new(
-        record.file.url,
-        record.data['project_id']
+      project_id = record.data['project_id']
+
+      result = Administration::ImportSkillTranslations.new(
+        record.file_url,
+        project_id
       ).call
 
       if result == true

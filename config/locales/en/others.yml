@@ -768,6 +768,8 @@ en:
         export_occupations: Occupations Export
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
+        export_skill_translations: Export Skills Translations
+        export_skills: Export Skills
         export_user_report_events: Export User Report Events
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
@@ -786,6 +788,7 @@ en:
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
+        import_skill_translations: Import Skills Translations
         import_skills: Import Skills
         import_sms_invites: Import SMS Invite
         import_users: Import Users

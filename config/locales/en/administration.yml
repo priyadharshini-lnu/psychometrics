@@ -3207,19 +3207,48 @@ en:
           invalid_category: Must be a valid category
           invalid_global_value: 'must be one of: true, false'
           query_too_short: is required and must belonger than 3 characters
+      export:
+        details: Details
+        failure_msg: Error while exporting translations
+        success_msg: Exporting development actions in progress.
+        translations:
+          details: Skill Translations
+      export_action:
+        skills_title: Export Skills
+        skills_translations_title: Export Skills Translations
       form:
         category: Category
+        client_placeholder: Select a Client
         description: Description
         name: Name
-        owner_placeholder: Select an Owner
         project_placeholder: Select a Project
         title: Skill
+      global: Is Global Skill?
+      global_skills: Global Skills
+      global_translations: Global Skills Translations
       import:
         download_example_csv: Download Example csv
-        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
-        title: Skills import
-      import_skills: Import Skills
+        info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        skills_title: Import Skills
+        skills_translations_title: Import Skills Translations
+      skill_translations: Skills Translations
       skills: Skills
+      title: Skills
+      translations:
+        import:
+          errors:
+            download_failed: Failed to download file
+            invalid_csv_format: 'Invalid CSV format: %{message}'
+            invalid_url: Invalid URL
+            missing_required_columns: 'Missing required columns: %{columns}'
+            row_description_blank: 'Row %{row}: Description cannot be blank'
+            row_id_blank: 'Row %{row}: ID cannot be blank'
+            row_locale_blank: 'Row %{row}: Locale cannot be blank'
+            row_locale_invalid: 'Row %{row}: Invalid locale ''%{locale}'''
+            row_name_blank: 'Row %{row}: Name cannot be blank'
+            save_failed: 'Error processing Skill ID %{id}: %{message}'
+            skill_not_found: Skill with ID %{id} not found
     sms_histories:
       columns:
         first_name: First Name

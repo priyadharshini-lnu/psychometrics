@@ -1439,7 +1439,14 @@ as: :simulation_progress_notification
           resources :user_idp_plans, only: %i[create]
           jsonapi_resources :skills, concerns: :taggable do
             post :import, on: :collection
+            post :export, on: :collection
             get :tags_search, on: :collection
+            post :import_translations, on: :collection
+            post :export_translations, on: :collection
+            post :import_global, on: :collection
+            post :export_global, on: :collection
+            post :import_global_translations, on: :collection
+            post :export_global_translations, on: :collection
           end
           jsonapi_resources :development_actions do
             scope module: :development_actions do

@@ -8,13 +8,9 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
-type Permissions = {
-  import: boolean
-}
-
 type Props = {
   onClick: (action: string) => void,
-  permissions: Permissions,
+  permissions:{ [key: string]: boolean; } | undefined,
 }
 
 export const ToolsDropdown: React.FC<Props> = ({
@@ -36,12 +32,67 @@ export const ToolsDropdown: React.FC<Props> = ({
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   const menuItems:ItemType[] = []
 
+  const importMenuItems:ItemType[] = []
+
   if (permissions?.import) {
-    menuItems.push({
+    importMenuItems.push({
       key: 'import_skills',
-      label: I18n.t('administration.skills.import_skills'),
+      label: I18n.t('administration.skills.title'),
     })
   }
+
+  if (permissions?.importTranslations) {
+    importMenuItems.push({
+      key: 'import_translations',
+      label: I18n.t('administration.skills.skill_translations'),
+    })
+  }
+
+  const exportMenuItems:ItemType[] = []
+
+  if (permissions?.export) {
+    exportMenuItems.push({
+      key: 'export_skills',
+      label: I18n.t('administration.skills.title'),
+    })
+  }
+
+
+  if (permissions?.exportTranslations) {
+    exportMenuItems.push({
+      key: 'export_skills_translations',
+      label: I18n.t('administration.skills.skill_translations'),
+    })
+  }
+
+  if (permissions?.exportGlobal) {
+    exportMenuItems.push({
+      key: 'export_global_skills',
+      label: I18n.t('administration.skills.global_skills'),
+    })
+  }
+
+  if (permissions?.exportGlobalTranslations) {
+    exportMenuItems.push({
+      key: 'export_global_skills_translations',
+      label: I18n.t('administration.skills.global_translations'),
+    })
+  }
+
+  menuItems.push({
+    type: 'group',
+    key: 'import_group',
+    label: I18n.t('common.actions.import'),
+    children: importMenuItems,
+  })
+
+  menuItems.push({
+    type: 'group',
+    key: 'export_group',
+    label: I18n.t('common.actions.export'),
+    children: exportMenuItems,
+  })
+
 
   const handleMenuClick = ({ key }) => {
     onClick(key)

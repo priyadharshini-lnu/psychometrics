@@ -9,10 +9,12 @@ import { SkillsFormModal } from './SkillsFormModal'
 import { SkillsTable } from './SkillsTable'
 import { SkillsFilter } from './SkillsFilter'
 import { SkillsImportModal } from './SkillsImportModal'
+import { SkillsExportModal } from './SkillsExportModal'
 
 const MODALS = {
   SkillsImportModal,
   SkillsFormModal,
+  SkillsExportModal,
 }
 
 const connecter = connect(
@@ -31,6 +33,7 @@ const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
     responseType: SkillTR,
     apiConfig: {
       include: ['project'],
+      include_meta: ['permissions'],
       fields: { projects: ['name'] },
     },
   }

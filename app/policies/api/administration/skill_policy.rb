@@ -4,31 +4,27 @@ module Api
   module Administration
     class SkillPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin)
+        has_permission?('skills', 'view', project_id: project_id)
       end
 
       def create?
-        @user.is?(:superadmin)
+        has_permission?('skills', 'manage', project_id: project_id)
       end
 
       def update?
-        @user.is?(:superadmin)
+        has_permission?('skills', 'manage', project_id: project_id)
       end
 
       def destroy?
-        @user.is?(:superadmin)
+        has_permission?('skills', 'manage', project_id: project_id)
       end
 
       def show?
-        @user.is?(:superadmin)
-      end
-
-      def import?
-        @user.is?(:superadmin)
+        has_permission?('skills', 'view', project_id: project_id)
       end
 
       def search?
-        @user.has_permission?(:skills, :view) || @user.has_permission?(:skills, :manage)
+        has_permission?('skills', 'view', project_id: project_id)
       end
 
       def tags_search?
@@ -36,10 +32,42 @@ module Api
       end
 
       def add_tag?
-        @user.is?(:superadmin)
+        has_permission?('skills', 'manage', project_id: project_id)
       end
 
       def remove_tag?
+        has_permission?('skills', 'manage', project_id: project_id)
+      end
+
+      def import?
+        has_permission?('skills', 'import', project_id: project_id)
+      end
+
+      def import_translations?
+        has_permission?('skills', 'import_translations', project_id: project_id)
+      end
+
+      def export_translations?
+        has_permission?('skills', 'export_translations', project_id: project_id)
+      end
+
+      def export?
+        has_permission?('skills', 'export', project_id: project_id)
+      end
+
+      def import_global?
+        @user.is?(:superadmin)
+      end
+
+      def export_global?
+        @user.is?(:superadmin)
+      end
+
+      def import_global_translations?
+        @user.is?(:superadmin)
+      end
+
+      def export_global_translations?
         @user.is?(:superadmin)
       end
 

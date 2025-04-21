@@ -15493,14 +15493,6 @@ ALTER TABLE ONLY public.sheet_row_data
 
 
 --
--- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessments_reports
-    ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
-
-
---
 -- Name: user_saved_filters fk_rails_e25c5bac06; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15845,6 +15837,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250305105355'),
 ('20250304084629'),
 ('20250304060832'),
+('20250228060708'),
 ('20250226084133'),
 ('20250224095420'),
 ('20250224075920'),

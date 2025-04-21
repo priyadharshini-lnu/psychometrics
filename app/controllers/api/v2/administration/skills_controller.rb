@@ -28,33 +28,140 @@ module Api
         def import
           form = Api::V2::Administration::SkillImportForm.new(
             file: params[:file],
-            ignore_duplicates: params[:ignore_duplicates].present?
+            project_id: project&.id
           )
 
           if form.valid?
             AdminJob.call(
               :import_skills,
-              { ignore_duplicates: form.ignore_duplicates },
+              { project_id: project&.id },
               current_user,
               form.processed_file
             )
 
-            render json: { message: 'Skills import job has been queued' }
+            render json: :ok
           else
             render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
           end
+        end
+
+        def export
+          AdminJob.call(
+            :export_skills,
+            { project_id: project.id },
+            current_user
+          )
+
+          render json: :ok
+        end
+
+        def import_translations
+          form = Api::V2::Administration::SkillTranslationImportForm.new(
+            file: params[:file],
+            project_id: project.id
+          )
+
+          if form.valid?
+            AdminJob.call(
+              :import_skill_translations,
+              { project_id: project.id },
+              current_user,
+              form.processed_file
+            )
+
+            render json: :ok
+          else
+            render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+          end
+        end
+
+        def export_translations
+          AdminJob.call(
+            :export_skill_translations,
+            { project_id: project.id },
+            current_user
+          )
+
+          render json: :ok
+        end
+
+        def import_global
+          form = Api::V2::Administration::SkillImportForm.new(
+            file: params[:file],
+            project_id: nil
+          )
+
+          if form.valid?
+            AdminJob.call(
+              :import_skills,
+              { project_id: nil },
+              current_user,
+              form.processed_file
+            )
+
+            render json: :ok
+          else
+            render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+          end
+        end
+
+        def export_global
+          AdminJob.call(
+            :export_skills,
+            { project_id: nil },
+            current_user
+          )
+
+          render json: :ok
+        end
+
+        def import_global_translations
+          form = Api::V2::Administration::SkillTranslationImportForm.new(
+            file: params[:file],
+            project_id: nil
+          )
+
+          if form.valid?
+            AdminJob.call(
+              :import_skill_translations,
+              { project_id: nil },
+              current_user,
+              form.processed_file
+            )
+
+            render json: :ok
+          else
+            render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+          end
+        end
+
+        def export_global_translations
+          AdminJob.call(
+            :export_skill_translations,
+            { project_id: nil },
+            current_user
+          )
+
+          render json: :ok
         end
 
         def meta_details
           {
             permissions: lambda {
               GetPermissionsHash.call!(
-                Administration::SkillPolicy,
+                ::Api::Administration::SkillPolicy,
                 context[:user],
                 @model,
                 %w[
                   index
                   import
+                  export
+                  import_translations
+                  export_translations
+                  import_global
+                  export_global
+                  import_global_translations
+                  export_global_translations
                 ],
                 { project_id: context[:project_id] }
               )
