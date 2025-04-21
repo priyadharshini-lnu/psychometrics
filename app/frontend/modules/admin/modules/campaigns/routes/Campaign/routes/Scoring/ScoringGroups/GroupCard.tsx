@@ -116,7 +116,6 @@ export const GroupCard = React.forwardRef(
                 icon={<PlusOutlined />}
                 onClick={handleAddFactor}
                 type="link"
-                ghost
               >
                 {I18n.t('administration.scoring.add_factor')}
               </Button>
