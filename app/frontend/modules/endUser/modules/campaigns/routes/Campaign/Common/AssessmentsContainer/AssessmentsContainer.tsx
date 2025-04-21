@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import {
-  Col, Row, Typography, Space,
+  Col, Row, Typography, Space, Alert,
 } from 'antd'
 import cs from 'classnames'
 import { AssessmentCard } from '../AssessmentCard'
@@ -10,6 +10,7 @@ import { BreakCard } from './BreakCard'
 import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import { ViewsContainer } from '~/glint'
 import styles from './AssessmentsContainer.less'
+import { isProctored } from '~/utils/isProctored'
 
 const { Title } = Typography
 const { I18n } = window
@@ -53,6 +54,7 @@ export const AssessmentsContainer = ({
   ungrouped,
   groups,
   canNotStartAssessment,
+  canNotStartWorkshopActivity,
   campaign,
   campaignNotStarted,
   canNotStartPrework,
@@ -111,7 +113,11 @@ export const AssessmentsContainer = ({
                 }
                 prevGroup = group
                 let userAssessments: UserAssessment[] = []
+                let proctoringMsgOnWorkshop = ''
                 if (isAssessmentCenter) {
+                  proctoringMsgOnWorkshop = getProctoringMsgOnWorkshop(
+                    campaign.campaignOptions || {}, canNotStartWorkshopActivity,
+                  )
                   if (workshop?.closed) return
                   userAssessments = workshopCompleted ? [] : workshopActivities
                 } else {
@@ -136,9 +142,13 @@ export const AssessmentsContainer = ({
                         {isAssessmentCenter ? (
                           <InviteDeatilsContainer inviteDetails={inviteDetails} bookingDetails={workshop} />
                         ) : null}
+                        {proctoringMsgOnWorkshop && <Alert message={proctoringMsgOnWorkshop} showIcon />}
                         <Row gutter={[16, 16]}>
                           {userAssessments.map((userAssessment, index) => {
                             let isDisabled = userAssessment.prework ? canNotStartPrework : canNotStartAssessment
+                            if (isAssessmentCenter) {
+                              isDisabled = canNotStartWorkshopActivity
+                            }
                             isDisabled = isDisabled || !prevCompleted
                             if (!isDisabled && group.previousAssessmentsRequired) {
                               prevCompleted = prevAssessmentsCompleted(userAssessments, userAssessment)
@@ -207,4 +217,18 @@ export const AssessmentsContainer = ({
       </ViewsContainer>
     </>
   )
+}
+
+const getProctoringMsgOnWorkshop = (campaignOptions, canNotStartWorkshopActivity) => {
+  if (!campaignOptions.proctoringEnabled) return null
+
+  if (!campaignOptions.proctoringEnabledOnWorkshopActivity) {
+    if (isProctored()) {
+      return I18n.t('campaign_assessment.not_allow_msg_proctoring_workshop_activity')
+    } if (!canNotStartWorkshopActivity) {
+      return I18n.t('campaign_assessment.allow_msg_proctoring_workshop_activity')
+    }
+  }
+
+  return ''
 }

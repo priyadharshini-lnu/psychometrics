@@ -45,6 +45,7 @@ class Campaign < ApplicationRecord
            :instructions_enabled,
            :instructions,
            :proctoring_enabled?,
+           :proctoring_enabled_on_workshop_activity?,
            :identification,
            :rules,
            :campaign_scoring_variables,

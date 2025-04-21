@@ -222,6 +222,12 @@ const CampaignOptions: React.FC<Props> = ({
                   label={I18n.t('administration.campaigns.options.proctoring.enable')}
                   {...parametersForField('proctoringEnabled')}
                 />
+                {options.proctoringEnabled && (
+                  <Option
+                    label={I18n.t('administration.campaigns.options.proctoring.allow_on_assessment_center')}
+                    {...parametersForField('proctoringEnabledOnWorkshopActivity')}
+                  />
+                )}
 
                 {options.proctoringEnabled && (
                   <>

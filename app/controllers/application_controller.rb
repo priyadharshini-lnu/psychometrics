@@ -15,7 +15,7 @@ class ApplicationController < BaseController
   DOMAIN_REGEXP = %r{^(https?://.+\.)com}
 
   content_security_policy do |policy|
-    policy.frame_ancestors allowed_domains
+    policy.frame_ancestors(*allowed_domains)
   end
 
   # Sets particular layout in depends of conditions
@@ -110,6 +110,6 @@ class ApplicationController < BaseController
   end
 
   def allowed_domains
-    inside_sso_iframe? ? '*.maialearning.com' : '*.proctor.alemira.com'
+    inside_sso_iframe? ? ['*.maialearning.com'] : ['*.proctor.constructor.app', '*.proctor.alemira.com']
   end
 end

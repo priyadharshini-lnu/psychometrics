@@ -881,6 +881,7 @@ en:
         prework_required: Do not allow center booking if preworks are not completed
         prework_required_for_invite: Send invite email only when Pre-Work is completed
         proctoring:
+          allow_on_assessment_center: Allow proctoring on assessment center
           enable: Enable Proctoring
           identification: Identification
           identifications:

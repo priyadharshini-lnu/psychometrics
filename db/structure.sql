@@ -1426,7 +1426,8 @@ CREATE TABLE public.campaign_options (
     proctoring_type integer DEFAULT 0 NOT NULL,
     show_watermark boolean DEFAULT false,
     watermark_content character varying DEFAULT ''::character varying,
-    workshop_invite_requires_prework_completion boolean DEFAULT false
+    workshop_invite_requires_prework_completion boolean DEFAULT false,
+    proctoring_enabled_on_workshop_activity boolean DEFAULT true
 );
 
 
@@ -15484,6 +15485,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250416102558'),
 ('20250326104351'),
 ('20250324124118'),
 ('20250318075204'),
@@ -16270,4 +16272,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
