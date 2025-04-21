@@ -11,6 +11,12 @@ module EndUser
       Settings.features.proctoring && object.proctoring_enabled
     end
 
+    def proctoring_enabled_on_workshop_activity
+      return false unless proctoring_enabled
+
+      object.proctoring_enabled_on_workshop_activity
+    end
+
     def watermark_content
       return unless object.show_watermark
       return current_user.email if object.watermark_content.blank?
