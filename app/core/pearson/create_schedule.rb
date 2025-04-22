@@ -33,7 +33,7 @@ module Pearson
       }
       unless user_assessment.assessment.v2_pearson_assessment?
         norm_id = user_assessment.pearson_norm_id
-        product = product.merge(norms: [norm_id]) if norm_id
+        product = product.merge(norms: [norm_id]) if norm_id.present?
       end
       pearson_assessment_language = user_assessment.pearson_assessment_language
       product = product.merge(languageCode: pearson_assessment_language) if pearson_assessment_language
