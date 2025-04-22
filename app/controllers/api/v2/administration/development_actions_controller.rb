@@ -28,6 +28,10 @@ module Api
       }
     end
 
+    def project_id
+      params[:project_id] || project&.id || params.dig(:filter, :project_id_eq)
+    end
+
     def import
       form = Api::V2::Administration::DevelopmentActionImportForm.new(
         file: params[:file]
