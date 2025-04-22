@@ -8,26 +8,25 @@ image:
   pullPolicy: IfNotPresent
 
 web:
-  replica: 2
+  replica: 4
 worker:
-  replica: 1
-
-domain: lh-staging-sa.com
+  replica: 2
 
 services:
-  name: lhksa-staging
+  name: lighthouse
   internlPort: 3030
   targetPort: 3030
   type: ClusterIP
   annotations: {}
+    # For example
+    #  service.beta.kubernetes.io/aws-load-balancer-type: external
+    #  service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    #  service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
 
 imagePullSecrets:
   - name: pullsecret
-nameOverride: "staging"
+nameOverride: ""
 fullnameOverride: ""
-
-rollme:
-  enabled: true
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -38,85 +37,41 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-
-oracle:
-  region: me-jeddah-1
-  vaultOcid: ocid1.vault.oc1.me-jeddah-1.fvuabk6zaag4m.abvgkljrpe7wwtqgrgheip3w5v3rpcya54vnkotpkxkweez5v6mikuzh776q
-  compartmentOcid: ocid1.compartment.oc1..aaaaaaaatmhmy6dr5cvcg677ow7g4q3pypknodz2meyepqqdaddxqoevnpua
-  masterEncryptionKeyOcid: ocid1.key.oc1.me-jeddah-1.fvuabk6zaag4m.abvgkljrl7bjga7gvxlrfx3cjc66klhruqla74gpwjos4vuo35xkew2o4l2q
-
 podAnnotations: {}
 
 podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
 service:
   type: ClusterIP
   port: 80
 
-objectStorageProxy:
-  enabled: true
-  vHost: "axkwa67qeaun.compat.objectstorage.me-jeddah-1.oraclecloud.com"
-  ingress:
-    tls:
-      - secretName: wildcard-cert-tls-prod
-        hosts:
-          - "object-storage.lh-staging-sa.com"
-    hosts:
-      - host: "object-storage.lh-staging-sa.com"
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: lhksa-staging-obj-st-rp
-                port:
-                  number: 443
-
-
-cert-manager:
-  installCRDs: true
-issuer:
-  enabled: false
-certificate:
-  name: wildcard-cert-tls-prod
-  issuerName: letsencrypt-prod-wildcard
-  secretName: wildcard-cert-tls-prod
-
-
 ingress:
   enabled: true
-  host: "lh-staging-sa.com"
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod-wildcard
-    nginx.ingress.kubernetes.io/proxy-body-size: 16m
-    nginx.ingress.kubernetes.io/proxy-buffer-size: 8k
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($host = 'lh-staging-sa.com' ) {
-        rewrite ^ https://www.lh-staging-sa.com$request_uri permanent;
-      }
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: "lhprodsslcert"
+    appgw.ingress.kubernetes.io/ssl-redirect: "false"
   tls:
-    - secretName: wildcard-cert-tls-prod
+    - secretName: aks-ingress-tls
       hosts:
-        - "lh-staging-sa.com"
-        - "*.lh-staging-sa.com"
+        - "*.tte-lighthouse.ae"
   hosts:
-    - host: "*.lh-staging-sa.com"
+    - host: "*.tte-lighthouse.ae"
       paths:
         - path: /
           pathType: Prefix
           backend:
             service:
-              name: lhksa-staging
-              port:
-                number: 3030
-    - host: "lh-staging-sa.com"
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: lhksa-staging
+              name: lighthouse
               port:
                 number: 3030
 

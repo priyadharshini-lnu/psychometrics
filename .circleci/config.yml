@@ -521,6 +521,40 @@ jobs:
             -n << parameters.namespace >> \
             --values << parameters.values-file >> --values << parameters.values-env-file >> \
             --set image.tag=$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}
+  azure_aks_deploy:
+    docker:
+      - image: cimg/base:stable
+    parameters:
+      release-name:
+        type: string
+      values-file:
+        type: string
+      values-env-file:
+        type: string
+      chart-folder:
+        type: string
+      namespace:
+        type: string
+        default: default
+    steps:
+      - checkout
+      - kubernetes/install_kubectl
+      - helm/install_helm_client
+      - azure-cli/install
+      - azure-cli/login-with-user-or-service-principal
+      - run:
+          name: Get aks credentials
+          command: |
+            az aks get-credentials --name lhProdAKSCluster --resource-group lhProdResGroup
+      - run:
+          name: Run helm install
+          working_directory: << parameters.chart-folder >>
+          command: |
+            helm upgrade --install << parameters.release-name >> . \
+            -n << parameters.namespace >> \
+            --values << parameters.values-file >> --values << parameters.values-env-file >> \
+            --set image.tag=$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}
+
   i18n_unused_key_checks:
     executor: tte-executor
     resource_class: medium
@@ -699,6 +733,25 @@ workflows:
           context: lhksa-prod
           requires:
             - approve_sami
+          filters:
+            branches:
+              only:
+                - master
+      - hold:
+          name: approve_uae_production
+          type: approval
+          requires:
+            - deploy_lhksa_staging
+      - azure_aks_deploy:
+          name: deploy_aks_uae_production
+          release-name: lighthouse
+          values-file: values.prod.yaml
+          values-env-file: values.prod.env.yaml
+          chart-folder: ~/project/charts/uae
+          namespace: default
+          context: aks-prod
+          requires:
+            - approve_uae_production
           filters:
             branches:
               only:
