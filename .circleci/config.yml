@@ -388,7 +388,6 @@ jobs:
           condition:
             or:
               - equal: [ master, << pipeline.git.branch >> ]
-              - equal: [ ci-deploy, << pipeline.git.branch >> ]
           steps:
             - azure-cli/install
             - azure-cli/login-with-user-or-service-principal
@@ -416,7 +415,6 @@ jobs:
           condition:
             or:
               - equal: [ master, << pipeline.git.branch >> ]
-              - equal: [ ci-deploy, << pipeline.git.branch >> ]
           steps:
             - docker/push:
                 step-name: Push Docker image - latest
@@ -507,6 +505,9 @@ jobs:
         type: string
       chart-folder:
         type: string
+      namespace:
+        type: string
+        default: default
     steps:
       - checkout
       - kubernetes/install_kubectl
@@ -517,6 +518,7 @@ jobs:
           working_directory: << parameters.chart-folder >>
           command: |
             helm upgrade --install << parameters.release-name >> . \
+            -n << parameters.namespace >> \
             --values << parameters.values-file >> --values << parameters.values-env-file >> \
             --set image.tag=$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}
   i18n_unused_key_checks:
@@ -626,7 +628,6 @@ workflows:
             branches:
               only:
                 - master
-                - ci-deploy
       - heroku_release:
           name: heroku_release_staging
           app-name: tte-lighthouse-staging
@@ -679,6 +680,25 @@ workflows:
           context: lhksa-prod
           requires:
             - approve_ksa_production
+          filters:
+            branches:
+              only:
+                - master
+      - hold:
+          name: approve_sami
+          type: approval
+          requires:
+            - deploy_lhksa_staging
+      - oci_oke_deploy:
+          name: deploy_sami
+          release-name: sami
+          values-file: environments/sami/values.yaml
+          values-env-file: environments/sami/env.yaml
+          chart-folder: /home/circleci/project/charts/ksa
+          namespace: sami
+          context: lhksa-prod
+          requires:
+            - approve_sami
           filters:
             branches:
               only:
