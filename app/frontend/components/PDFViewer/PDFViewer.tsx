@@ -1,11 +1,13 @@
 import { FC, useState } from 'react'
 import { Button, InputNumber, Skeleton } from 'antd'
-import { Document, Page } from 'react-pdf'
+import { pdfjs, Document, Page } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.js?url'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
 import styles from './styles.less'
 
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
 
 interface Props {
   fileUrl: string
@@ -68,7 +70,7 @@ export const PDFViewer: FC<Props> = ({ fileUrl, onLoadingComplete }) => {
       />
       <Document
         file={fileUrl}
-        onLoad={onDocumentLoadSuccess}
+        onLoadSuccess={onDocumentLoadSuccess}
         onLoadProgress={handleLoading}
         loading=""
         className={styles.document}

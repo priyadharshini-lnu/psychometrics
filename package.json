@@ -145,7 +145,7 @@
     "react-international-phone": "^4.3.0",
     "react-markdown": "^5.0.3",
     "react-overlays": "^0.9.3",
-    "react-pdf": "^9.2.1",
+    "react-pdf": "^8.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.23.1",
     "react-select": "^5.7.1",
