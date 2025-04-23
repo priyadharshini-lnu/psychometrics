@@ -12,6 +12,7 @@ const Scoring = function (attrs = {}, factorId) {
   this.props = attrs.props || []
   this.factorId = factorId
   this.type = attrs.type || 'factor'
+  this.scoring_strategy = attrs.scoring_strategy
 }
 
 Scoring.prototype = new EventEmitter()
@@ -23,6 +24,7 @@ _.extend(Scoring.prototype, {
       factor_id: this.factorId || null,
       question_id: this.question_id,
       props: this.props,
+      scoring_strategy: this.scoring_strategy,
     }
   },
 
@@ -79,6 +81,11 @@ _.extend(Scoring.prototype, {
 
   setTemplate (...args) {
     this.engine.setTemplate.apply(this.engine, args)
+    this.update()
+  },
+
+  updateScoringStrategy (scoringStrategy) {
+    this.engine.changeScoringStrategy(scoringStrategy)
     this.update()
   },
 

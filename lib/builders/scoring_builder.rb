@@ -34,21 +34,24 @@ module Builders
       rows = []
       scoring_list.each do |scoring|
         existing_scoring = factor_scoring_map[[scoring[:factor_id], scoring[:question_id]]]
-        next if existing_scoring && existing_scoring.props == scoring[:props].map(&:to_h)
+        next if existing_scoring &&
+                existing_scoring.props == scoring[:props].map(&:to_h) &&
+                existing_scoring.scoring_strategy == scoring[:scoring_strategy]
         next if scoring[:props].empty? && !existing_scoring
 
         factors_scoring = {
           factor_id: scoring[:factor_id],
           question_id: scoring[:question_id],
           assessment_id: assessment.id,
-          props: scoring[:props].map(&:to_h)
+          props: scoring[:props].map(&:to_h),
+          scoring_strategy: scoring[:scoring_strategy]
         }
         rows << factors_scoring
       end
       # TODO: Remove this by fixing duplicate scoring on frontend
       rows.uniq! { |r| "#{r[:factor_id]}-#{r[:question_id]}" }
       FactorsScoring.import rows, on_duplicate_key_update: {
-        conflict_target: %i[factor_id question_id assessment_id], columns: [:props]
+        conflict_target: %i[factor_id question_id assessment_id], columns: %i[props scoring_strategy]
       }
       FactorsScoring.where("props::text = '[]'").delete_all
     end

@@ -414,6 +414,10 @@ en:
             title: "<strong>%{status}</strong> %{name}?"
       restore:
         successfully: Assessment %{name} was restored successfully.
+      scoring_strategy:
+        average: Average
+        sum: Sum
+        title: Scoring Strategy
       settings:
         disable_continue_to_dashboard: Disable "Continue to Dashboard" Button
         disable_nav_btn: Disable Navigation Back Button

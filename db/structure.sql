@@ -2650,7 +2650,8 @@ CREATE TABLE public.factors_scoring (
     props json,
     factor_id integer,
     assessment_id integer,
-    question_id integer
+    question_id integer,
+    scoring_strategy integer DEFAULT 0
 );
 
 
@@ -15835,6 +15836,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250415070851'),
+('20250410170845'),
 ('20250411120337'),
 ('20250410065159'),
 ('20250404115157'),

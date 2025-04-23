@@ -29,13 +29,13 @@ RSpec.describe Scoring::SideBySide do
             { 'scale' => 1, 'choice' => 2, 'values' => [
               { 'index' => 0, 'value' => true }, { 'index' => 1, 'value' => true }
             ] }
-          ] }, template_data)[:value]
+          ] }, factors_scoring(template_data))[:value]
           expect(result).to eq(3)
         end
       end
       context 'when no answer' do
         it 'returns nil' do
-          result = side_by_side.calculate(Question.new, { 'answers' => [] }, template_data)[:value]
+          result = side_by_side.calculate(Question.new, { 'answers' => [] }, factors_scoring(template_data))[:value]
           expect(result).to be_nil
         end
       end
@@ -43,10 +43,14 @@ RSpec.describe Scoring::SideBySide do
         it 'returns nil' do
           result = side_by_side.calculate(Question.new,
                                           { 'answers' => [{ 'scale' => 1, 'choice' => 1, 'values' => [] }] },
-                                          template_data)[:value]
+                                          factors_scoring(template_data))[:value]
           expect(result).to be_nil
         end
       end
     end
+  end
+
+  def factors_scoring(props, strategy: nil)
+    FactorsScoring.new(props: props, scoring_strategy: strategy)
   end
 end

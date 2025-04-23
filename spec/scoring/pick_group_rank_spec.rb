@@ -25,7 +25,7 @@ RSpec.describe Scoring::PickGroupRank do
                                { 'scale' => 0, 'choice' => 0 },
                                { 'scale' => 0, 'choice' => 3 },
                                { 'scale' => 1, 'choice' => 1 }, { 'scale' => 2, 'choice' => 2 }
-                             ] }, template_data)[:value]
+                             ] }, factors_scoring(template_data))[:value]
           expect(result).to eq([3, 3, 4])
         end
       end
@@ -33,16 +33,20 @@ RSpec.describe Scoring::PickGroupRank do
         it 'returns [0, 0, 2]' do
           result = pick_group_rank.
                    calculate(question,
-                             { 'answers' => [{ 'scale' => 2, 'choice' => 0 }] }, template_data)[:value]
+                             { 'answers' => [{ 'scale' => 2, 'choice' => 0 }] }, factors_scoring(template_data))[:value]
           expect(result).to eq([0, 0, 2])
         end
       end
       context 'when no answer' do
         it 'returns [0, 0, 0]' do
-          result = pick_group_rank.calculate(question, { 'answers' => [] }, template_data)[:value]
+          result = pick_group_rank.calculate(question, { 'answers' => [] }, factors_scoring(template_data))[:value]
           expect(result).to eq([0, 0, 0])
         end
       end
     end
+  end
+
+  def factors_scoring(props, strategy: nil)
+    FactorsScoring.new(props: props, scoring_strategy: strategy)
   end
 end
