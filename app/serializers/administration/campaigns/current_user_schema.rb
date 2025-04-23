@@ -63,6 +63,8 @@ module Administration
             required(:workshopStatusExport).filled(:bool?)
             required(:manageProjectAssessments).filled(:bool?)
             required(:viewAuditReports).filled(:bool?)
+            required(:accessProjectDevelopmentActions).filled(:bool?)
+            required(:accessIdpTemplates).filled(:bool?)
           end
           required(:name).filled(:str?)
         end

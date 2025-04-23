@@ -2,7 +2,7 @@
 
 module Api
   module Administration
-    class DevelopmentActionPolicy < Administration::BasePolicy
+    class DevelopmentActionPolicy < ::Api::Administration::BasePolicy
       def index?
         has_permission?('development_actions', 'view', project_id: project_id)
       end

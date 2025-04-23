@@ -22,6 +22,7 @@ import settings from '~/modules/admin/modules/client/routes/Client/routes/Projec
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { routes } from './routes'
+import { isSuperAdmin } from '~/core/currentUser'
 
 const { I18n } = window
 
@@ -129,6 +130,15 @@ const Project: FC<Props> = ({
     return some(permissions, permission => currentUser.permissions[permission])
   }
 
+  const canShowIdpTab = () => {
+    if (isSuperAdmin(currentUser)) return true
+
+    const permissions = [
+      'accessProjectDevelopmentActions', 'accessIdpTemplates',
+    ]
+    return some(permissions, permission => currentUser.permissions[permission])
+  }
+
   const menuItems: ItemType[] = [
     { key: 'new_campaigns', icon: <ShopOutlined />, label: I18n.t('common.model.campaigns') },
     { key: 'datasheet', icon: <DatabaseOutlined />, label: I18n.t('common.model.datasheet') },
@@ -149,7 +159,7 @@ const Project: FC<Props> = ({
     label: I18n.t('administration.breadcrumbs.audit_reports'),
   })
 
-  idpEnabled && menuItems.push({
+  idpEnabled && canShowIdpTab() && menuItems.push({
     key: 'idp',
     icon: <CrownOutlined />,
     label: I18n.t('administration.idp.idp'),
