@@ -13,7 +13,7 @@ module CampaignScoring
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
       @user_assessments = campaign.user_assessments.includes(:users_result).where(
         subject_id: user.id
-      ).scored.group_by(&:assessment_id).transform_values do |assessments|
+      ).completed.group_by(&:assessment_id).transform_values do |assessments|
         assessments.group_by(&:relationship_id)
       end
 
