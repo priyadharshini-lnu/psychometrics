@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# Form for importing campaign factors in both Assessments and Reports builder.
 module Administration
-  module Reports
-    class CampaignFactorsImportForm < Rectify::Form
+  module CampaignFactors
+    class ImportForm < Rectify::Form
       mimic :campaign_factors_import_form
 
       FIRST_DATA_ROW = 2
@@ -10,20 +11,22 @@ module Administration
       MAX_CAMPAIGN_FACTORS = 300
 
       attribute :file, Object
-      attribute :report_id, Integer
+      attribute :resource_class, String
+      attribute :resource_id, Integer
 
-      validates :report_id, presence: true
+      validates :resource_class, :resource_id, presence: true
       validates :file, presence: true,
-      file_content_type: {
-        allow: [
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-          'application/xlsx'
-        ],
-        message: :invalid_format
-      }
-      validate :validate_report_exists
+        file_content_type: {
+          allow: [
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/xlsx'
+          ],
+          message: :invalid_format
+        }
+
+      validate :validate_resource_exists
       validate :validate_headers
-      validate :validate_campaign_factors_count, if: :report
+      validate :validate_campaign_factors_count, if: :resource
       validate :validate_file_content
 
       def processed_data
@@ -39,20 +42,17 @@ module Administration
 
       private
 
-      def validate_report_exists
-        return if report.present?
+      def validate_resource_exists
+        return if resource.present?
 
-        errors.add(:report, :must_exist)
+        errors.add(:resource, :must_exist, resource: resource_class.humanize)
       end
 
       def validate_campaign_factors_count
         return if data_rows.blank?
 
-        new_code_count = data_rows.count do |row|
-          !existing_campaign_factors_by_code[row['Code']]
-        end
-
-        total_factors = report.campaign_factors.count + new_code_count
+        new_code_count = data_rows.count { |row| !existing_campaign_factors_by_code[row['Code']] }
+        total_factors = existing_campaign_factors_by_code.size + new_code_count
 
         if total_factors > MAX_CAMPAIGN_FACTORS
           errors.add(:base, :max_limit_reached, count: MAX_CAMPAIGN_FACTORS)
@@ -107,26 +107,38 @@ module Administration
         end
 
         existing_factor = existing_campaign_factors_by_code[code]
+        current_output_type = get_output_type(existing_factor)
 
-        if existing_factor
-          if existing_factor.output_type != output_type
-            errors.add(:base, :type_mismatch, code: code, index: row_number(index))
-          end
+        if current_output_type.present? && current_output_type != output_type
+          errors.add(:base, :type_mismatch, code: code, index: row_number(index))
         elsif data_rows[0...index].any? { |r| r['Code'] == code }
           errors.add(:base, :duplicate_code, code: code, index: row_number(index))
         end
+      end
+
+      def get_output_type(factor)
+        return unless factor
+
+        factor.respond_to?(:output_type) ? factor.output_type : factor['outputType']
       end
 
       def row_number(index)
         FIRST_DATA_ROW + index
       end
 
-      def existing_campaign_factors_by_code
-        @existing_campaign_factors_by_code ||= report.campaign_factors.index_by(&:code)
+      def resource
+        @resource ||= resource_class.safe_constantize&.find_by(id: resource_id)
       end
 
-      def report
-        @report ||= ::Report.find_by(id: report_id)
+      def existing_campaign_factors_by_code
+        @existing_campaign_factors_by_code ||= case resource_class
+                                                 when 'Report'
+                                                   resource.campaign_factors.index_by(&:code)
+                                                 when 'Assessment'
+                                                   (resource.campaign_factors_list || []).index_by { |f| f['code'] }
+                                                 else
+                                                   {}
+                                               end
       end
 
       def data_rows

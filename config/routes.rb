@@ -605,7 +605,11 @@ Rails.application.routes.draw do
       end
 
       scope module: 'assessments' do
-        resource :builders, only: %i[show update]
+        resource :builders, only: %i[show update] do
+          member do
+            post :upload_campaign_factors
+          end
+        end
         resource :scoring, only: [:update], controller: :scoring
         resource :agiles, only: %i[show update]
       end
