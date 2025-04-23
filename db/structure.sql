@@ -10370,6 +10370,13 @@ CREATE INDEX idx_on_user_assessment_id_cb9cc55a9e ON public.user_assessment_veri
 
 
 --
+-- Name: idx_user_assessments_status_expiry_users_result_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_user_assessments_status_expiry_users_result_id ON public.user_assessments USING btree (status, expiry_date) INCLUDE (users_result_id);
+
+
+--
 -- Name: index_53a664e244a4bc3ce19609177c48692ee2fa83fa; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15829,6 +15836,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250415070851'),
 ('20250411120337'),
+('20250410065159'),
 ('20250404115157'),
 ('20250326104351'),
 ('20250324124118'),
