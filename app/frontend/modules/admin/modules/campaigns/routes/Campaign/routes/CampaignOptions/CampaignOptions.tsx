@@ -85,6 +85,7 @@ const CampaignOptions: React.FC<Props> = ({
         ...options,
         fixedTime: value,
         proctoringEnabled: value ? options.proctoringEnabled : false,
+        proctoringEnabledOnWorkshopActivity: value ? options.proctoringEnabledOnWorkshopActivity : false,
       },
     ),
   })
@@ -168,6 +169,18 @@ const CampaignOptions: React.FC<Props> = ({
     update(parsedProjectId, parsedCampaignId, { ...options, integrationType: value })
   }
 
+  const parametersForEnableProctoring = name => ({
+    value: (options || {})[name],
+    onChange: (value: string | number) => update(
+      parsedProjectId, parsedCampaignId,
+      {
+        ...options,
+        [name]: value,
+        proctoringEnabledOnWorkshopActivity: value ? options.proctoringEnabledOnWorkshopActivity : false,
+      },
+    ),
+  })
+
   return (
     <div className="pt-4 pb-4 ps-4 pe-4">
       <Section>
@@ -220,8 +233,14 @@ const CampaignOptions: React.FC<Props> = ({
               <>
                 <Option
                   label={I18n.t('administration.campaigns.options.proctoring.enable')}
-                  {...parametersForField('proctoringEnabled')}
+                  {...parametersForEnableProctoring('proctoringEnabled')}
                 />
+                {options.proctoringEnabled && (
+                  <Option
+                    label={I18n.t('administration.campaigns.options.proctoring.allow_on_assessment_center')}
+                    {...parametersForField('proctoringEnabledOnWorkshopActivity')}
+                  />
+                )}
 
                 {options.proctoringEnabled && (
                   <>

@@ -12,6 +12,7 @@ module EndUser
         required(:instructions_enabled).filled(:bool?)
         required(:instructions).maybe(:str?)
         required(:proctoring_enabled).filled(:bool?)
+        required(:proctoring_enabled_on_workshop_activity).filled(:bool?)
         required(:identification).filled(:str?)
         required(:rules).hash do
           optional(:allow_voices).maybe(:bool?)

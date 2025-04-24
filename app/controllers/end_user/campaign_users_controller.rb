@@ -29,7 +29,7 @@ class EndUser::CampaignUsersController < ApplicationController
   end
 
   def begin_campaign
-    if @campaign_user.proctoring_enabled?
+    if @campaign_user.proctoring_enabled? && !params[:continue_without_proctoring]
       begin_campaign_with_proctoring
     else
       CampaignUsers::BeginCampaign.call!(@campaign_user)
@@ -40,7 +40,7 @@ class EndUser::CampaignUsersController < ApplicationController
   end
 
   def continue_campaign
-    if @campaign_user.proctoring_enabled?
+    if @campaign_user.proctoring_enabled? && !params[:continue_without_proctoring]
       continue_campaign_with_proctoring
     else
       CampaignUsers::ContinueCampaign.call!(@campaign_user)

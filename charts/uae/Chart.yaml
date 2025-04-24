@@ -1,0 +1,21 @@
+apiVersion: v2
+name: lighthouse
+description: Lighthouse assessment platform
+type: application
+dependencies: []
+keywords:
+  - lighthouse
+maintainers:
+  - name: shuja-shabandri
+    email: shuja@thetalententerprise.com
+# home: https://github.com/lighthouse/charts
+# icon: https://lighthouse-public-assets.s3.amazonaws.com/logo/square.png
+# sources:
+#   - https://github.com/lighthouse/lighthouse
+#   - http://www.lighthouse.com
+
+# This is the chart version.
+version: 0.7.2
+
+# This is the application version.
+appVersion: "v1.21.6"

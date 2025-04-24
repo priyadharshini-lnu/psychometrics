@@ -47,7 +47,7 @@ class CampaignUser < ApplicationRecord
                if: proc { status_previously_changed? || saved_change_to_id? },
                on: %i[create update]
 
-  delegate :proctoring_enabled?, to: :campaign
+  delegate :proctoring_enabled?, :proctoring_enabled_on_workshop_activity?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
 
   def campaign_factor_values
@@ -141,13 +141,33 @@ class CampaignUser < ApplicationRecord
     [real_expiry_date - Time.zone.now, 0].max
   end
 
+  def prework_assessment_ids
+    campaign_assessments.preworks.pluck(:assessment_id)
+  end
+
   def prework_user_assessments
-    assessment_ids = campaign_assessments.preworks.pluck(:assessment_id)
-    campaign_user_assessments.self_assessment.where(assessment_id: assessment_ids)
+    campaign_user_assessments.self_assessment.where(assessment_id: prework_assessment_ids)
   end
 
   def all_prework_completed?
     !prework_user_assessments.pending_assessments.exists?
+  end
+
+  def workshop_assessment_ids
+    campaign_assessments.workshop_activities.pluck(:assessment_id)
+  end
+
+  def all_proctored_assessments
+    return UserAssessment.none unless proctoring_enabled?
+
+    query = campaign_user_assessments.self_assessment.where.not(assessment_id: prework_assessment_ids)
+    query = query.where.not(assessment_id: workshop_assessment_ids) unless proctoring_enabled_on_workshop_activity?
+
+    query
+  end
+
+  def all_proctored_assessments_completed?
+    !all_proctored_assessments.pending_assessments.exists?
   end
 
   def scheduled_at

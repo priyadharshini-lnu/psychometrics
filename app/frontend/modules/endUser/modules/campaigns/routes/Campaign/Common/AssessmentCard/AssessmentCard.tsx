@@ -1,18 +1,33 @@
 import React, { FC, useState } from 'react'
 import {
-  Avatar, Row, Col, Button, Space, theme,
+  Avatar, Row, Col, Button, Space, theme, App, Typography,
 } from 'antd'
+import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 import { secondsToDayHoursAndMinutes, SECONDS_IN_HOUR } from '~/utils/time'
 import dayjs from '~/utils/dayjs'
 import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { SafeHTML } from '~/components/SafeHTML'
 import { shortify } from '~/utils/string'
+import {
+  reset as resetCampaign,
+  resetPracticeCampaign,
+  setCampaignUser,
+} from '~/modules/endUser/modules/campaigns/core/campaign'
+import { STATUSES } from '~/constants/campaign'
+import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
+import {
+  AsyncRequestResponseTR,
+  AsyncRequestResponse,
+} from '~/modules/admin/modules/client/core/asyncRequestResponse'
 import { CountdownTimer, DetailsCard, DirectionalArrowIcon } from '~/glint'
 
 import styles from './styles.less'
+import { isProctored } from '~/utils/isProctored'
 
 const { I18n } = window
 const { useToken } = theme
@@ -27,7 +42,24 @@ interface Props {
   workshopAttended?: boolean
 }
 
-export const AssessmentCard: React.FC<Props> = ({
+const connector = connect(
+  (state: RootState) => ({
+    loaded: state.campaigns.campaign.loaded,
+    campaign: state.campaigns.campaign,
+    instructions: state.campaigns.campaign.instructions,
+    currentUser: state.currentUser,
+    privacyConsentRequired: state.campaigns.campaign?.privacyConsentRequired,
+  }),
+  {
+    resetCampaign,
+    resetPracticeCampaign,
+  },
+)
+
+ type PropsFromRedux = ConnectedProps<typeof connector>
+ type CommonComponentProps = PropsFromRedux & Props
+
+const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   userAssessment,
   view,
   disabled,
@@ -35,9 +67,16 @@ export const AssessmentCard: React.FC<Props> = ({
   campaignNotStarted,
   workshopBooked,
   workshopAttended,
+  campaign,
+  campaign: {
+    campaignUser, isTimedCampaign, fixedTimed, campaignTime,
+    campaignOptions: {
+      proctoringEnabledOnWorkshopActivity,
+    },
+  },
 }) => {
   const {
-    status, assessmentIconUrl, assessmentName, completionPercent, completionReason,
+    status, assessmentIconUrl, assessmentName, completionPercent, completionReason, id,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
     requireScheduling, assessmentCategory,
   } = userAssessment
@@ -50,8 +89,24 @@ export const AssessmentCard: React.FC<Props> = ({
     scheduleTime ? currentTime.isSameOrAfter(scheduleTimeMomentObj) : false,
   )
   const navigate = useNavigate()
+  const { modal, message } = App.useApp()
+  const dispatch = useDispatch()
   const isWorkshopActivity = userAssessment.workshopActivity
   const titleId = `assessment-card-title-${userAssessment.id}`
+  const hasStartedCampaign = !!campaignUser.startedAt && campaignUser.status !== 'not_started'
+  const campaignUserTimedOut = campaignUser.status === 'timed_out'
+  const isCampaignInterrupted = campaignUser.status === 'interrupted'
+  const campaignClosed = campaign.status === STATUSES.CLOSED
+  const campaignClosedForUser = campaignClosed
+    || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
+  const hasNoExpiryDateForTimedCampaign = isTimedCampaign && !campaignUser?.expiryDate
+    && campaignUser.status === 'in_progress'
+
+  const canBeginCampaign = !campaignClosedForUser && !hasStartedCampaign
+    && fixedTimed && !isCampaignInterrupted
+  // eslint-disable-next-line max-len
+  const canContinueCampaign = (isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
+    && !campaignClosedForUser && !campaignUserTimedOut && fixedTimed
 
   let disableActionButton = disabled
   if (isWorkshopActivity) {
@@ -76,9 +131,65 @@ export const AssessmentCard: React.FC<Props> = ({
     interrupted: I18n.t('assessments.card_actions.continue'),
   }
 
-  const loadAssessment = ({ id }) => {
+  const campaignStartInstruction = () => {
+    const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
+
+    messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
+
+    return (
+      messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
+    )
+  }
+
+  const asyncUrl = canBeginCampaign
+    ? `/campaign_users/${campaignUser.id}/begin_campaign`
+    : `/campaign_users/${campaignUser.id}/continue_campaign`
+
+  const {
+    makeAsyncRequest,
+  } = useAsyncRequestResponse<AsyncRequestResponse>({
+    url: asyncUrl,
+    data: { id: campaignUser.id, continue_without_proctoring: true },
+    responseType: AsyncRequestResponseTR,
+  })
+
+  const navigateToAssessment = () => {
     setLoading(true)
     navigate(`/user_assessments/${id}`)
+  }
+
+  const startCampaignActivities = async () => {
+    try {
+      const { responseData } = await makeAsyncRequest()
+      dispatch(setCampaignUser(responseData))
+      navigateToAssessment()
+    } catch (error) {
+      message.error(error)
+    }
+  }
+
+  const handleStartCampaignActivities = () => {
+    const needToBeginOrContinueCampaign = canBeginCampaign || canContinueCampaign
+    if (
+      (proctoringEnabledOnWorkshopActivity && isProctored()) || !isWorkshopActivity || !needToBeginOrContinueCampaign
+    ) {
+      return navigateToAssessment()
+    }
+    if (!fixedTimed) { return startCampaignActivities() }
+
+    modal.info({
+      icon: false,
+      title: null,
+      content: campaignStartInstruction(),
+      okText: I18n.t('common.actions.start'),
+      closable: true,
+      width: 600,
+      onOk () {
+        startCampaignActivities()
+      },
+    })
+
+    return null
   }
 
   const iconUrl = assessmentIconUrl
@@ -147,7 +258,7 @@ export const AssessmentCard: React.FC<Props> = ({
         actionDisabled={disableActionButton}
         actionLoading={loading}
         actionDisabledText={actionDisabledText}
-        onButtonClick={() => loadAssessment(userAssessment)}
+        onButtonClick={handleStartCampaignActivities}
         subtitle={subtitleElement}
         footer={footerElement}
       />
@@ -220,3 +331,5 @@ const MeetingInfo: FC<MeetingInfoProps> = ({ meetingLink, meetingTime }) => {
     </>
   )
 }
+
+export const AssessmentCard = connector(AssessmentCardComponent)

@@ -1,0 +1,28 @@
+apiVersion: v2
+name: lighthouse
+description: Lighthouse assessment platform
+type: application
+dependencies: []
+  # - name: cert-manager
+  #   version: v1.10.1
+  #   repository: https://charts.jetstack.io
+  #   alias: cert-manager
+  # - name: ingress-nginx
+  #   version: "4.4.0"
+  #   repository: https://kubernetes.github.io/ingress-nginx
+keywords:
+  - lighthouse
+maintainers:
+  - name: shuja-shabandri
+    email: shuja@thetalententerprise.com
+# home: https://github.com/lighthouse/charts
+# icon: https://lighthouse-public-assets.s3.amazonaws.com/logo/square.png
+# sources:
+#   - https://github.com/lighthouse/lighthouse
+#   - http://www.lighthouse.com
+
+# This is the chart version.
+version: 0.7.6
+
+# This is the application version.
+appVersion: "v1.21.11"
