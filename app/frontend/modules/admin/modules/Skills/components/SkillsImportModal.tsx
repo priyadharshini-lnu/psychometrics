@@ -6,6 +6,7 @@ import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Modal, Alert, Form, Input, Select, Switch,
 } from 'antd'
+import { useParams } from 'react-router'
 import Event from 'interfaces/Event'
 import { Project } from '~/modules/admin/modules/client/core/projects'
 import DownloadSampleFile from '~/modules/admin/components/DownloadSampleFile'
@@ -36,6 +37,8 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
 
+  const params = useParams()
+
   const handleUpload = () => {
     if (!file) return
 
@@ -43,7 +46,7 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
     data.append('file', file)
     setLoading(true)
 
-    handleImport(data, projectId, () => {
+    handleImport(data, params.projectId || projectId, () => {
       form.resetFields()
       close()
       setLoading(false)
@@ -79,6 +82,50 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
     fetchOwnersByValue(value)
   }, 300)
 
+  const renderProjectSelector = () => {
+    if (globalImportSwitch) {
+      return null
+    }
+    return (
+      <>
+        <Form.Item
+          name="ownerId"
+          label={I18n.t('common.column.client')}
+          rules={[{ required: true }]}
+        >
+          <Select
+            showSearch
+            filterOption={false}
+            placeholder={I18n.t('administration.skills.form.client_placeholder')}
+            onSearch={searchAvailableOwners}
+            style={{ marginLeft: '8px', maxWidth: '98.5%' }}
+          >
+            {
+              owners.map(({ id, name }) => (
+                <Option key={id} value={id}>{name}</Option>
+              ))
+            }
+          </Select>
+        </Form.Item>
+        <ProjectDropdown form={form} owner={ownerOption} />
+      </>
+    )
+  }
+
+  const renderScopeSelector = () => {
+    if (!allowGlobalImport) { return null }
+    return (
+      <>
+        <Form.Item
+          name="globalImportSwitch"
+          label={I18n.t('common.text.global_import')}
+        >
+          <Switch />
+        </Form.Item>
+        {renderProjectSelector()}
+      </>
+    )
+  }
 
   return (
     <Modal
@@ -126,40 +173,7 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         form={form}
         onFinish={handleUpload}
       >
-        {allowGlobalImport && (
-          <>
-            <Form.Item
-              name="globalImportSwitch"
-              label={I18n.t('common.text.global_import')}
-            >
-              <Switch />
-            </Form.Item>
-            {!globalImportSwitch && (
-              <>
-                <Form.Item
-                  name="ownerId"
-                  label={I18n.t('common.column.client')}
-                  rules={[{ required: true }]}
-                >
-                  <Select
-                    showSearch
-                    filterOption={false}
-                    placeholder={I18n.t('administration.skills.form.client_placeholder')}
-                    onSearch={searchAvailableOwners}
-                  >
-                    {
-                      owners.map(({ id, name }) => (
-                        <Option key={id} value={id}>{name}</Option>
-                      ))
-                    }
-                  </Select>
-                </Form.Item>
-                <ProjectDropdown form={form} owner={ownerOption} />
-              </>
-            )}
-
-          </>
-        )}
+        {!params.projectId && renderScopeSelector()}
         <Form.Item name="importData">
           <Input
             type="file"
@@ -213,7 +227,7 @@ const ProjectDropdown = ({ form, owner }) => {
           value: p.id,
           label: p.name,
         }))}
-        placeholder={I18n.t('administration.development_actions.form.project_placeholder')}
+        placeholder={I18n.t('administration.skills.form.project_placeholder')}
       />
     </Form.Item>
   )

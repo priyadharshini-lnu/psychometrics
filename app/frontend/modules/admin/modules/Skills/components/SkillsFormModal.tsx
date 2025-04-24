@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react'
 import {
   Form, Input, Select, Spin, Switch,
 } from 'antd'
+import { useParams } from 'react-router'
 import { Client } from 'modules/admin/modules/client/core/clients'
 import { Tag } from 'modules/admin/core/tags'
 import { debounce } from 'lodash'
@@ -12,7 +13,7 @@ import { convertEnumToObject } from '~/utils/object'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
-import { SkillCategoryEnum } from './constants'
+import { SkillCategoryEnum } from '../constants'
 
 const { Option } = Select
 
@@ -40,6 +41,8 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
   const {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
   } = useResources<Tag>('tags', { apiConfig: { query: { taggable_resource_type: TaggableResourceType.Skill } } })
+
+  const params = useParams()
 
   const ownersLoading = isOwnerLoading('fetch')
 
@@ -72,6 +75,10 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       delete data.global
     }
 
+    if (params.projectId) {
+      data.project = { id: params.projectId } as {id: string}
+    }
+
     return resource.createResource(data)
   }
 
@@ -93,7 +100,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       return projects
     }
 
-    return [...projects, skill.project]
+    return [...projects, skill.project] as OptionsType[]
   }
 
   const {
@@ -105,7 +112,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     form.resetFields(['projectId'])
   }, [ownerId])
 
-
   const handleProjectSearch = debounce((value) => {
     fetchProjects({
       apiConfig: {
@@ -114,6 +120,65 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       },
     })
   }, 300)
+
+  const renderClientSelector = () => {
+    if (global) return null
+    return (
+      <Form.Item
+        name="ownerId"
+        label={I18n.t('common.column.client')}
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          filterOption={false}
+          placeholder={I18n.t('administration.skills.form.client_placeholder')}
+          onSearch={searchAvailableOwners}
+          notFoundContent={ownersLoading ? <Spin size="small" /> : null}
+        >
+          {
+            owners.map(({ id, name }) => (
+              <Option key={id} value={id}>{name}</Option>
+            ))
+          }
+        </Select>
+      </Form.Item>
+    )
+  }
+
+  const renderProjectSelector = () => {
+    // if already existing Skill and doesn't have project, return null
+    if (skill && !skill?.project) {
+      return null
+    }
+
+    // if global skill, return null
+    if (global) {
+      return null
+    }
+
+    return (
+      <Form.Item
+        name="projectId"
+        label={I18n.t('common.column.project')}
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          filterOption={false}
+          disabled={!!skill}
+          onSearch={handleProjectSearch}
+          options={(getProjects() || []).map(p => ({
+            value: p.id,
+            label: p.name,
+          }))}
+          placeholder={I18n.t('administration.skills.form.project_placeholder')}
+          value={form.getFieldValue('projectId')}
+          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
+        />
+      </Form.Item>
+    )
+  }
 
   return (
     <ResourceFormModal
@@ -148,68 +213,25 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           >
             <Input />
           </Form.Item>
-          {!skill && (
+          {!params.projectId && (
             <>
-              <Form.Item
-                name="global"
-                label={I18n.t('administration.skills.global')}
-              >
-                <Switch />
-              </Form.Item>
-
-              {!global && (
-                <Form.Item
-                  name="ownerId"
-                  label={I18n.t('common.column.client')}
-                  rules={[{ required: true }]}
-                >
-                  <Select
-                    showSearch
-                    filterOption={false}
-                    placeholder={
-                  I18n.t('administration.skills.form.client_placeholder')
-                }
-                    onSearch={searchAvailableOwners}
-                    notFoundContent={ownersLoading ? <Spin size="small" /> : null}
+              {!skill && (
+                <>
+                  <Form.Item
+                    name="global"
+                    label={I18n.t('administration.skills.global')}
                   >
-                    {
-                owners.map(({ id, name }) => (
-                  <Option key={id} value={id}>{name}</Option>
-                ))
-              }
-                  </Select>
-                </Form.Item>
+                    <Switch />
+                  </Form.Item>
+                  {renderClientSelector()}
+                </>
               )}
+              {renderProjectSelector()}
             </>
-
-          )}
-          {((!skill && !global) || skill?.project) && (
-            <Form.Item
-              name="projectId"
-              label={I18n.t('common.column.project')}
-              rules={[{ required: true }]}
-            >
-              <Select
-                showSearch
-                filterOption={false}
-                disabled={!!skill}
-                onSearch={handleProjectSearch}
-                options={(getProjects() || []).map(p => ({
-                  value: p.id,
-                  label: p.name,
-                }))}
-                placeholder={
-                  I18n.t('administration.skills.form.project_placeholder')
-                }
-                value={form.getFieldValue('projectId')}
-                notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-              />
-            </Form.Item>
           )}
           <Form.Item
             name="category"
             label={I18n.t('administration.skills.form.category')}
-
           >
             <Select
               filterOption={false}

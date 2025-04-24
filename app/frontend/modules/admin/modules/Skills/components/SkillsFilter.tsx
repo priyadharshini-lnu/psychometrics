@@ -2,6 +2,7 @@ import React from 'react'
 import { PlusOutlined } from '@ant-design/icons'
 import * as t from 'io-ts'
 import { Button, message } from 'antd'
+import { useParams } from 'react-router'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
@@ -16,6 +17,7 @@ export const SkillsFilter: React.FC<Props> = ({
   openModal,
 }) => {
   const { resource } = useResourceContext<User>()
+  const params = useParams()
 
   const tableLoading = resource.isLoading('fetch')
 
@@ -99,17 +101,25 @@ export const SkillsFilter: React.FC<Props> = ({
 
 
     if (action === 'export_skills') {
-      openModal('SkillsExportModal', {
-        handleExport: handleSkillsExport,
-        title: I18n.t('administration.skills.export_action.skills_title'),
-      })
+      if (params.projectId) {
+        handleSkillsExport(Number(params.projectId))
+      } else {
+        openModal('SkillsExportModal', {
+          handleExport: handleSkillsExport,
+          title: I18n.t('administration.skills.export_action.skills_title'),
+        })
+      }
     }
 
     if (action === 'export_skills_translations') {
-      openModal('SkillsExportModal', {
-        handleExport: handleSkillsTranslationExport,
-        title: I18n.t('administration.skills.export_action.skills_translations_title'),
-      })
+      if (params.projectId) {
+        handleSkillsTranslationExport(Number(params.projectId))
+      } else {
+        openModal('SkillsExportModal', {
+          handleExport: handleSkillsTranslationExport,
+          title: I18n.t('administration.skills.export_action.skills_translations_title'),
+        })
+      }
     }
 
     if (action === 'export_global_skills') {
@@ -147,7 +157,7 @@ export const SkillsFilter: React.FC<Props> = ({
 
   return (
     <Resource.Filter
-      name="filterable_fields"
+      name="name_cont"
       showTagFilter
       tagFilterConfig={{ taggable_resource_type: TaggableResourceType.Skill }}
     >

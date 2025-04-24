@@ -57,8 +57,7 @@ export const SkillsExportModal: React.FC<OwnProps> = ({
           onClick={() => { handleExport(projectId); close() }}
           disabled={!projectId}
         >
-          {'Export'// I18n.t('administration.development_actions.export.title')
-          }
+          {I18n.t('administration.skills.export.title')}
         </Button>,
       ]}
     >

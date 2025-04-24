@@ -3216,6 +3216,7 @@ en:
         details: Details
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress.
+        title: Export
         translations:
           details: Skill Translations
       export_action:
@@ -3462,6 +3463,9 @@ en:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
       more_actions: More actions
+    taxonomy:
+      skills: Skills
+      title: Taxonomy
     templates:
       blocks:
         copy:

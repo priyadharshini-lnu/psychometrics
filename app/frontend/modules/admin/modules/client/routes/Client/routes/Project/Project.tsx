@@ -8,6 +8,7 @@ import {
   SolutionOutlined,
   ExportOutlined,
   CrownOutlined,
+  ApartmentOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
@@ -81,6 +82,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/idp')) {
       return ['idp']
     }
+    if (pathname.includes('/taxonomy')) {
+      return ['taxonomy']
+    }
     return undefined
   }
 
@@ -117,6 +121,8 @@ const Project: FC<Props> = ({
         return I18n.t('administration.breadcrumbs.audit_reports')
       case 'idp':
         return I18n.t('administration.idp.idp')
+      case 'taxonomy':
+        return I18n.t('administration.taxonomy.title')
       default:
         return ''
     }
@@ -164,6 +170,15 @@ const Project: FC<Props> = ({
     icon: <CrownOutlined />,
     label: I18n.t('administration.idp.idp'),
   })
+
+  menuItems.push(
+    {
+      key: 'taxonomy',
+      icon: <ApartmentOutlined />,
+      label: I18n.t('administration.taxonomy.title'),
+    },
+  )
+
 
   return (
     <div>
