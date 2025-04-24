@@ -116,6 +116,8 @@ class UserAssessment < ApplicationRecord
 
   after_create_commit -> { publish_assessment_assigned_webhook }
   after_commit :send_workshop_invite_email, if: :should_send_workshop_invite_email?, on: %i[update]
+  after_commit -> { finish_proctoring_session },
+               if: proc { status_previously_changed? && deemed_completed? }, on: %i[update]
 
   alias result users_result
 
@@ -125,6 +127,13 @@ class UserAssessment < ApplicationRecord
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment preworks workshop_activities]
+  end
+
+  def finish_proctoring_session
+    return unless campaign_user
+    return unless campaign_user.proctoring_enabled?
+
+    campaign_user.finish_proctoring_session if campaign_user.all_proctored_assessments_completed?
   end
 
   def calculate_and_save_campaign_scoring

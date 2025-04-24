@@ -1325,6 +1325,7 @@ en:
       rescore: Rescore Assessment
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
+    allow_msg_proctoring_workshop_activity: Assessment center activities are not proctored.
     assessments_heading: Your Tasks
     column:
       assessment_center_activity: Assessment Center Activity
@@ -1431,6 +1432,7 @@ en:
       select: Select variation
       update: Update
       update_success: Pearson variation updated successfully
+    not_allow_msg_proctoring_workshop_activity: You cannot do assessment center activities since you are inside a proctoring window. To do this activities you need to exit from proctoring window.
     scheduled_successfully: Assessment was scheduled successfully
     scheduling:
       update_exists: Override existing schedule

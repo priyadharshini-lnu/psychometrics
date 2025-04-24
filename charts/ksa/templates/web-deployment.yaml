@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "lighthouse.fullname" . }}-web
+  creationTimestamp: null
+  labels:
+    app: {{ template "lighthouse.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ int .Values.web.replica }}
+  selector:
+    matchLabels:
+      app: {{ template "lighthouse.fullname" . }}
+      release: "{{ .Release.Name }}"
+      role: web
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ template "lighthouse.fullname" . }}
+        release: "{{ .Release.Name }}"
+        imageTag: "{{ .Values.image.tag }}"
+        role: web
+        pdb: include
+      annotations:
+        rollme: {{ template "rollme" . }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - args:
+            - exec
+            - rails
+            - s
+            - -p
+            - {{ .Values.services.internlPort | quote}}
+            - -b
+            - 0.0.0.0
+          command:
+            - bundle
+          envFrom:
+            - configMapRef:
+                name: {{ template "lighthouse.fullname" . }}-env
+            - secretRef:
+                name: {{ template "lighthouse.fullname" . }}-eso-secrets
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          name: {{ .Chart.Name }}-web
+          ports:
+            - containerPort: {{ int .Values.services.internlPort }}
+          livenessProbe:
+            initialDelaySeconds: 35
+            httpGet:
+              path: /
+              port: {{ int .Values.services.internlPort }}
+              httpHeaders:
+              - name: Host
+                value: "{{ .Values.env.APP_SUB_DOMAIN }}.{{ .Values.env.APP_DOMAIN }}"
+          readinessProbe:
+            initialDelaySeconds: 35
+            httpGet:
+              path: /
+              port: {{ int .Values.services.internlPort }}
+              httpHeaders:
+              - name: Host
+                value: "{{ .Values.env.APP_SUB_DOMAIN }}.{{ .Values.env.APP_DOMAIN }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "sleep 10"]
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+      terminationGracePeriodSeconds: 30
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: {{ template "lighthouse.fullname" . }}
+              release: "{{ .Release.Name }}"
+              imageTag: "{{ .Values.image.tag }}"
+              role: web
+          matchLabelKeys:
+            - pod-template-hash
+
+status: {}

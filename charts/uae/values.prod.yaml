@@ -1,0 +1,118 @@
+# Default values for lighthouse
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# Overrides the image tag whose default is the chart appVersion.
+image:
+  repository: lhcontregistry.azurecr.io/psychometrics
+  tag: 'replaceme'
+  pullPolicy: IfNotPresent
+
+web:
+  replica: 4
+worker:
+  replica: 2
+
+services:
+  name: lighthouse
+  internlPort: 3030
+  targetPort: 3030
+  type: ClusterIP
+  annotations: {}
+    # For example
+    #  service.beta.kubernetes.io/aws-load-balancer-type: external
+    #  service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    #  service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+
+imagePullSecrets:
+  - name: pullsecret
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: "lhprodsslcert"
+    appgw.ingress.kubernetes.io/ssl-redirect: "false"
+  tls:
+    - secretName: aks-ingress-tls
+      hosts:
+        - "*.tte-lighthouse.ae"
+  hosts:
+    - host: "*.tte-lighthouse.ae"
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: lighthouse
+              port:
+                number: 3030
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Provide affinity for hooks if needed
+hooks:
+  affinity: {}
+  migrate:
+    env: []
+    resources:
+      limits:
+        memory: 3000Mi
+      requests:
+        memory: 2000Mi
+    # Defaults to performing the DB migration job after the install/upgrade.
+    # Can be overridden to "pre-install,pre-upgrade" with caution to perform migrations that are sometimes required for the deployment to become healthy
+    hookAnnotation: "post-install,post-upgrade"
+
+# ENVIRONMENT VARIABLES
+env: {}

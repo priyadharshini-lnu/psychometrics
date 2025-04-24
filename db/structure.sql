@@ -1426,7 +1426,8 @@ CREATE TABLE public.campaign_options (
     proctoring_type integer DEFAULT 0 NOT NULL,
     show_watermark boolean DEFAULT false,
     watermark_content character varying DEFAULT ''::character varying,
-    workshop_invite_requires_prework_completion boolean DEFAULT false
+    workshop_invite_requires_prework_completion boolean DEFAULT false,
+    proctoring_enabled_on_workshop_activity boolean DEFAULT true
 );
 
 
@@ -15840,6 +15841,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250411120337'),
 ('20250410065159'),
 ('20250404115157'),
+('20250423114951'),
+('20250416102558'),
 ('20250326104351'),
 ('20250324124118'),
 ('20250320091944'),
@@ -16625,4 +16628,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

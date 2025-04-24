@@ -4,10 +4,17 @@ module EndUser
   class CampaignOptionsSerializer < Panko::Serializer
     attributes :fixed_time, :time_zone, :fixed_time_duration, :instructions_enabled, :instructions,
                :proctoring_enabled, :identification, :rules, :integration_type,
-               :workshop_booking_requires_prework_completion, :show_watermark, :watermark_content
+               :workshop_booking_requires_prework_completion, :show_watermark, :watermark_content,
+               :proctoring_enabled_on_workshop_activity
 
     def proctoring_enabled
       Settings.features.proctoring && object.proctoring_enabled
+    end
+
+    def proctoring_enabled_on_workshop_activity
+      return false unless proctoring_enabled
+
+      object.proctoring_enabled_on_workshop_activity
     end
 
     def watermark_content

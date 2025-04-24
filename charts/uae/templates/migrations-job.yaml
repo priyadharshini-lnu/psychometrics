@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-migrate"
+  labels:
+    app: {{ template "lighthouse.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": {{ .Values.hooks.migrate.hookAnnotation }}
+    "helm.sh/hook-delete-policy": "hook-succeeded,before-hook-creation"
+    "helm.sh/hook-weight": "-1"
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: "db-migrate-job"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        args:
+        - exec
+        - rails
+        - db:migrate
+        command:
+        - bundle
+        envFrom:
+          - configMapRef:
+              name: {{ template "lighthouse.fullname" . }}-env
+          - secretRef:
+              name: {{ template "lighthouse.fullname" . }}-eso-secrets
+        imagePullPolicy: {{ .Values.image.pullPolicy }}

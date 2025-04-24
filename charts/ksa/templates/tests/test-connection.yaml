@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "lighthouse.fullname" . }}-test-connection"
+  labels:
+    app: {{ template "lighthouse.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: ['wget']
+      args: ['{{ include "lighthouse.fullname" . }}:{{ .Values.services.targetPort }}']
+  restartPolicy: Never
