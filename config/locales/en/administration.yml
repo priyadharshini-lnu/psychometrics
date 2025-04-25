@@ -2795,6 +2795,7 @@ en:
       bulk_upload:
         choose_file: Choose File
         no_file_selected: No file selected
+        sample_file: Sample File
         title: Bulk Upload Campaign Factors
         upload_success: Uploaded successfully
       copy:
