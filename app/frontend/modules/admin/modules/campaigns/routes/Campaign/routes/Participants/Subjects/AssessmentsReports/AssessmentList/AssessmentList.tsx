@@ -9,6 +9,7 @@ import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { isSuperAdmin } from '~/core/currentUser'
 import { State as UserAssessmentState } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
@@ -48,6 +49,7 @@ const AssessmentList: React.FC<Props> = ({
   updateMettlSchedule,
   normalizeFactorScores,
   loadingUpdateMettlSchedule,
+  currentUser,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<UserAssessment | undefined>()
 
@@ -196,6 +198,7 @@ const AssessmentList: React.FC<Props> = ({
             campaignId={campaignId}
             updateMettlSchedule={updateMettlSchedule}
             loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
+            isSuperAdmin={isSuperAdmin(currentUser)}
           />
         ) : null}
       </Col>

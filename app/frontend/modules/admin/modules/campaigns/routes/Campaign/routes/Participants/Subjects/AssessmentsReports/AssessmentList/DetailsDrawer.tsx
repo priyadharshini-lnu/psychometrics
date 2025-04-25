@@ -18,6 +18,7 @@ interface Props {
     campaignId: number, campaignAssessmentId: number, body: {assessment: {id: string}}
   ) => Promise<{ response: unknown; }>
   loadingUpdateMettlSchedule: boolean
+  isSuperAdmin: boolean
 }
 
 export const DetailsDrawer: FC<Props> = ({
@@ -26,6 +27,7 @@ export const DetailsDrawer: FC<Props> = ({
   campaignId,
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
+  isSuperAdmin,
 }) => {
   if (!assessment) {
     return null
@@ -97,10 +99,12 @@ export const DetailsDrawer: FC<Props> = ({
           campaignId={campaignId}
         />
 
-        <RawJSON
-          I18n={I18n}
-          usersResultId={assessment?.usersResultId}
-        />
+        {isSuperAdmin && (
+          <RawJSON
+            I18n={I18n}
+            usersResultId={assessment?.usersResultId}
+          />
+        )}
       </Row>
     </Drawer>
   )
