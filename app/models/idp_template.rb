@@ -2,6 +2,7 @@
 
 class IdpTemplate < ApplicationRecord
   include RansackSearchableFields
+  include ActiveStorageAttachable
 
   belongs_to :project, class_name: 'Client'
   belongs_to :report
@@ -17,6 +18,15 @@ class IdpTemplate < ApplicationRecord
 
   store_accessor :skill_settings, %i[behavioral_global behavioral_client], suffix: true
   store_accessor :skill_settings, %i[technical_global technical_client], suffix: true
+
+  has_one_image_attachment :client_logo, variants: [:thumb]
+  has_one_image_attachment :background, variants: [:thumb]
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/projects/#{project.id}/idp_templates/#{id}/#{attribute_name}/#{filename}"
+  end
+
+  enum :logo_type, { none: 0, mercer_only: 1, client_only: 2, both: 3 }, prefix: true
 
   VALID_SKILL_SETTINGS = %w[none all selected].freeze
 

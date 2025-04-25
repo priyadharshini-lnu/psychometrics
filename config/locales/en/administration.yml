@@ -1892,6 +1892,9 @@ en:
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
       all: All
+      appearance: Appearance
+      appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
+      background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
       edit_template: Edit IDP Template
@@ -1899,22 +1902,45 @@ en:
       enter_template_description_error: Template description is required.
       enter_template_name: Name
       enter_template_name_error: Template name is required
+      errors:
+        update: Update not allowed because the IDP template is already associated with a user IDP plan. Appearance changes has been saved.
+      fields:
+        assigned_data: Assigned Data
+        completion_date: Completion Date
+        division: Division
+        name: Name
+        publish_date: Publish Date
+        review_date: Review Date
+        role: Current Role
+      fields_label: Fields
       global_skills: Global Skills
       idp: IDP
       idp_template: Add IDP Template
+      logo_image: Logo image
+      logo_type:
+        both: Mercer and Client logos
+        client_only: Client logo only
+        mercer_only: Mercer logo only
+        none: Without logos
+      logo_type_label: Logo Type
       none: None
+      remove: Remove
       select_by_tags: Select by Tags
       select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
       selected: Selected
       self_rating: Enable Self Rating
+      show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
+      skills: Skills
+      subtitle_text: Subtitle text
       tab:
         development_actions: Development Actions
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills
       template_details: Template Details
+      title_text: Title text
     idp_setting:
       allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP

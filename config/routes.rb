@@ -1175,7 +1175,9 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :projects, only: :show do
             jsonapi_resources :idp_templates, only: %i[index create update destroy],
-              controller: 'projects/idp_templates'
+              controller: 'projects/idp_templates' do
+                post :uploads, on: :member
+              end
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export

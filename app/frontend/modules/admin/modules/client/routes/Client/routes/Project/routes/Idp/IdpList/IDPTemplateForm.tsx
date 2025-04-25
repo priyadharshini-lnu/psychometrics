@@ -1,8 +1,11 @@
 import {
-  Form, Input, Switch, Card, Col, Row, Button, Modal, Select, Spin,
+  Form, Input, Switch, Card, Col, Row, Button, Modal, Select, Spin, Radio,
+  Tabs, Flex, Checkbox, Upload, Image,
+  message,
+  Tooltip,
 } from 'antd'
 import _ from 'lodash'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined, UploadOutlined } from '@ant-design/icons'
 import {
   useCallback, useEffect, useMemo, useState,
 } from 'react'
@@ -21,6 +24,23 @@ export type CategorizedSkills = {
   technicalGlobalSkills: Skill[],
   technicalClientSkills: Skill[],
 }
+
+const LOGO_TYPE = {
+  both: 'both',
+  mercer_only: 'mercer_only',
+  client_only: 'client_only',
+  none: 'none',
+}
+
+const FIELDS = [
+  'name',
+  'role',
+  'assigned_data',
+  'division',
+  'review_date',
+  'publish_date',
+  'completion_date',
+]
 
 type IDPTemplateFormProps = {
   close: () => void
@@ -92,14 +112,48 @@ const IDPTemplateForm = ({
         technicalClientSkillSettings: values.technicalClientSkillSettings,
         project: { id: projectId, type: 'projects' },
         report: { id: values.reportId, type: 'reports' },
+        titleText: values.titleText,
+        subtitleText: values.subtitleText,
+        logoType: values.logoType,
+        fields: values.fields,
+        showReflections: values.showReflections,
       }
 
-      if (idp) {
-        await resource.updateResource({ id: idp.id, ...payload })
-      } else {
-        await resource.createResource(payload)
+      let hasError = false
+      try {
+        if (idp) {
+          await resource.updateResource({ id: idp.id, ...payload })
+        } else {
+          await resource.createResource(payload)
+        }
+      } catch (e) {
+        if (e?.base?.[0]) {
+          hasError = true
+          message.error(e?.base?.[0]?.title)
+        }
       }
-      setIsModalVisible(false)
+
+      if (idp && (values.background || values.clientLogo || values.removeBackground || values.removeClientLogo)) {
+        const data = new FormData()
+        if (values.background && values.background.file) {
+          data.append('background', values.background.file)
+        }
+        if (values.clientLogo && values.clientLogo.file) {
+          data.append('client_logo', values.clientLogo.file)
+        }
+        if (values.removeBackground) {
+          data.append('purge_background', 'true')
+        }
+        if (values.removeClientLogo) {
+          data.append('purge_client_logo', values.removeClientLogo)
+        }
+        try {
+          await resource.uploadFileAction(`idp_templates/${idp.id}/uploads`, data)
+        } catch (e) { /* empty */ }
+      }
+
+      setIsModalVisible(hasError)
+      resource.fetch()
     } finally {
       setIsLoading(false)
     }
@@ -145,6 +199,11 @@ const IDPTemplateForm = ({
         technicalGlobalSkillSettings: idp.technicalGlobalSkillSettings || SkillsOption.NONE,
         technicalClientSkillSettings: idp.technicalClientSkillSettings || SkillsOption.NONE,
         reportId: idp.report?.id,
+        titleText: idp.titleText,
+        subtitleText: idp.subtitleText,
+        fields: idp.fields,
+        showReflections: idp.showReflections,
+        logoType: idp.logoType,
         ...skills,
       }
     }
@@ -154,6 +213,7 @@ const IDPTemplateForm = ({
       behavioralClientSkillSettings: SkillsOption.NONE,
       technicalGlobalSkillSettings: SkillsOption.NONE,
       technicalClientSkillSettings: SkillsOption.NONE,
+      fields: [],
     }
   }, [idp])
 
@@ -241,40 +301,170 @@ const IDPTemplateForm = ({
               </Form.Item>
             </Card>
           </Col>
+          <Col xs={24} md={16}>
+            <Tabs
+              defaultActiveKey="skills"
+              items={[
+                {
+                  label: I18n.t('administration.idp.skills'),
+                  key: 'skills',
+                  forceRender: true,
+                  children: (
+                    <Row gutter={16}>
+                      <Col xs={24} md={12}>
+                        <Card title={I18n.t('administration.idp.behavioral_skills')}>
+                          <SkillsAndTagsSelection
+                            categorizedSkills={categorizedSkills}
+                            category="behavioral"
+                            type="Global"
+                            form={form}
+                          />
+                          <SkillsAndTagsSelection
+                            categorizedSkills={categorizedSkills}
+                            category="behavioral"
+                            type="Client"
+                            projectId={projectId}
+                            form={form}
+                          />
+                        </Card>
+                      </Col>
+                      <Col xs={24} md={12}>
+                        <Card title={I18n.t('administration.idp.technical_skills')}>
+                          <SkillsAndTagsSelection
+                            categorizedSkills={categorizedSkills}
+                            category="technical"
+                            type="Global"
+                            form={form}
+                          />
+                          <SkillsAndTagsSelection
+                            categorizedSkills={categorizedSkills}
+                            category="technical"
+                            type="Client"
+                            projectId={projectId}
+                            form={form}
+                          />
+                        </Card>
+                      </Col>
+                    </Row>
+                  ),
+                },
+                {
+                  label: idp
+                    ? I18n.t('administration.idp.appearance')
+                    : (
+                      <Tooltip title={I18n.t('administration.idp.appearance_hint')}>
+                        {I18n.t('administration.idp.appearance')}
+                      </Tooltip>
+                    ),
+                  forceRender: true,
+                  key: 'appearance',
+                  disabled: !idp,
+                  children: (
+                    <Row gutter={16}>
+                      <Col xs={24} md={12}>
+                        <Form.Item name="logoType" label={I18n.t('administration.idp.logo_type_label')}>
+                          <Radio.Group>
+                            <Flex vertical>
+                              {_.map(LOGO_TYPE, (type, key) => (
+                                <Radio key={key} value={type}>
+                                  {I18n.t(`administration.idp.logo_type.${key}`)}
+                                </Radio>
+                              ))}
+                            </Flex>
+                          </Radio.Group>
+                        </Form.Item>
+                        <Card className="p-4" bodyStyle={{ padding: 0 }}>
 
-          <Col xs={24} md={8}>
-            <Card title={I18n.t('administration.idp.behavioral_skills')}>
-              <SkillsAndTagsSelection
-                categorizedSkills={categorizedSkills}
-                category="behavioral"
-                type="Global"
-                form={form}
-              />
-              <SkillsAndTagsSelection
-                categorizedSkills={categorizedSkills}
-                category="behavioral"
-                type="Client"
-                projectId={projectId}
-                form={form}
-              />
-            </Card>
-          </Col>
-          <Col xs={24} md={8}>
-            <Card title={I18n.t('administration.idp.technical_skills')}>
-              <SkillsAndTagsSelection
-                categorizedSkills={categorizedSkills}
-                category="technical"
-                type="Global"
-                form={form}
-              />
-              <SkillsAndTagsSelection
-                categorizedSkills={categorizedSkills}
-                category="technical"
-                type="Client"
-                projectId={projectId}
-                form={form}
-              />
-            </Card>
+                          <Form.Item
+                            name="background"
+                            label={I18n.t('administration.idp.background_image')}
+                          >
+                            <Upload
+                              listType="picture"
+                              maxCount={1}
+                              accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
+                              beforeUpload={() => false}
+                            >
+                              <Button icon={<UploadOutlined />}>
+                                {I18n.t('administration.projects.design_settings.logo_upload')}
+                              </Button>
+                            </Upload>
+                            {idp?.background && <Image className="mt-4" height={100} src={idp?.background} />}
+                          </Form.Item>
+                          {idp?.background && (
+                            <Form.Item
+                              name="removeBackground"
+                              valuePropName="checked"
+                              noStyle
+                            >
+                              <Checkbox disabled={!idp?.background}>
+                                {I18n.t('administration.idp.remove')}
+                              </Checkbox>
+                            </Form.Item>
+                          )}
+                        </Card>
+                        <Card className="p-4" bodyStyle={{ padding: 0 }}>
+                          <Form.Item
+                            name="clientLogo"
+                            label={I18n.t('administration.idp.logo_image')}
+                          >
+                            <Upload
+                              listType="picture"
+                              maxCount={1}
+                              accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
+                              beforeUpload={() => false}
+                            >
+                              <Button icon={<UploadOutlined />}>
+                                {I18n.t('administration.projects.design_settings.logo_upload')}
+                              </Button>
+                            </Upload>
+                            {idp?.clientLogo && <Image className="mt-4" height={100} src={idp?.clientLogo} />}
+                          </Form.Item>
+                          {idp?.clientLogo && (
+                            <Form.Item
+                              name="removeClientLogo"
+                              valuePropName="checked"
+                              noStyle
+                            >
+                              <Checkbox disabled={!idp?.clientLogo}>
+                                {I18n.t('administration.idp.remove')}
+                              </Checkbox>
+                            </Form.Item>
+                          )}
+                        </Card>
+                      </Col>
+                      <Col xs={24} md={12}>
+                        <Form.Item name="titleText" label={I18n.t('administration.idp.title_text')}>
+                          <Input />
+                        </Form.Item>
+                        <Form.Item name="subtitleText" label={I18n.t('administration.idp.subtitle_text')}>
+                          <Input />
+                        </Form.Item>
+
+                        <Form.Item name="fields" label={I18n.t('administration.idp.fields_label')}>
+                          <Checkbox.Group>
+                            <Row>
+                              {FIELDS.map(field => (
+                                <Col xs={12} key={field}>
+                                  <Checkbox value={field}>
+                                    {I18n.t(`administration.idp.fields.${field}`)}
+                                  </Checkbox>
+                                </Col>
+                              ))}
+                            </Row>
+                          </Checkbox.Group>
+                        </Form.Item>
+                        <Form.Item name="showReflections" valuePropName="checked">
+                          <Checkbox>
+                            {I18n.t('administration.idp.show_reflections')}
+                          </Checkbox>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                  ),
+                },
+              ]}
+            />
           </Col>
         </Row>
       </Form>

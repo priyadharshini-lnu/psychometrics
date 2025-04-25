@@ -27,6 +27,13 @@ export const IdpTR = t.intersection([
     behavioralClientSkillSettings: t.union([t.string, t.null]),
     technicalGlobalSkillSettings: t.union([t.string, t.null]),
     technicalClientSkillSettings: t.union([t.string, t.null]),
+    titleText: t.union([t.string, t.null]),
+    subtitleText: t.union([t.string, t.null]),
+    fields: t.array(t.string),
+    background: t.union([t.string, t.null]),
+    clientLogo: t.union([t.string, t.null]),
+    logoType: t.string,
+    showReflections: t.boolean,
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
