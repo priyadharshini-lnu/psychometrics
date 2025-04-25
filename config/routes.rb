@@ -1203,6 +1203,7 @@ as: :simulation_progress_notification
               post :create_global_assessor
               post :change_password
               get :current_user_details
+              post :change_locale
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end

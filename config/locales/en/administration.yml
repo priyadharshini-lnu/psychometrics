@@ -356,6 +356,7 @@ en:
       successfully_scheduled: Question Import was scheduled successfully.
     assessments:
       assessment: Assessment
+      assessment_report: Assessments
       copy:
         copy: copy
         copy_assessment: Copy Assessment
@@ -927,9 +928,14 @@ en:
         common: Common
         threesixty: Multi Rater
       users:
+        add_user: Add User
         completion_status: Completion Status
         created_by: Created By
         email: Email
+        filters:
+          all: All
+          anonymous: Anonymous
+          identified: Identified
         id: Id
         is_active: Active
         name: Name
@@ -3709,6 +3715,8 @@ en:
         successfully: User %{name} was updated successfully.
       toggle_status:
         successfully: User %{name} was updated successfully.
+      toolbar:
+        title: Tools
       update:
         successfully: User %{name} was updated successfully.
       user: User

@@ -40,16 +40,65 @@ es-ES:
     restart: Reiniciar
   assessments:
     actions:
-      back_to_campaign: Volver a la campaña
-      extend_time: Ampliar el tiempo
-      goto_dashboard: Haga clic aquí para continuar
-      rescore: Reevaluar
+      add_tag:
+        success_message: La etiqueta se agregó con éxito
+      archived:
+        success_message: La evaluación "%{name}" se archivó con éxito.
+      assessment_cache:
+        remove_cache: Eliminar Caché
+        success_message: La caché se eliminó con éxito
+      back_to_campaign: Volver a la Campaña
+      back_to_dashboard: Volver al Panel de Control
+      copy:
+        success_message: La evaluación "%{name}" se copió con éxito.
+      details: Detalles
+      download_csv: Descargar CSV
+      edit: Editar
+      evaluate: Evaluar
+      export_normed: Puntuaciones Normalizadas de Factores
+      export_raw_labels: Sin Procesar (con etiquetas)
+      export_raw_scores: Puntuaciones Sin Procesar
+      export_raw_without_labels: Sin Procesar (sin etiquetas)
+      extend_time: Extender tiempo
+      external_scores_export: Puntuaciones Externas
+      goto_dashboard: Haz clic aquí para continuar
+      manage_mettl_schedule: Administrar Horario de Mettl
+      moderate: Moderar Puntuaciones
+      new_response: Nueva Respuesta
+      next_assessment: Pasar a la Siguiente Evaluación
+      pending_tasks:
+        one: Tienes 1 tarea pendiente
+        other: Tienes %{count} tareas pendientes
+      re_evaluate: Haz clic aquí para Re-evaluar
+      reevaluate: Re-evaluar
+      remove:
+        confirm_message: ¿Estás seguro de que deseas eliminar la evaluación "%{name}"?
+        confirm_title: Confirmación Requerida
+        success_message: La evaluación %{name} se eliminó con éxito
+      remove_tag:
+        success_message: La etiqueta se eliminó con éxito
+      rescore: Recalcular
+      restore:
+        success_message: La evaluación "%{name}" se restauró con éxito
+      show_usage: Mostrar Uso
+      submit_another_response: Enviar otra respuesta
+      submit_evaluation: Enviar Evaluación
+      translations:
+        success_message: Las traducciones de la evaluación se actualizaron con éxito
+      unarchived:
+        success_message: La evaluación "%{name}" se desarchivó con éxito
+      view: Ver
+    active: Activo
+    archived: Archivado
+    assessment: Evaluación
+    assessments: Evaluaciones
     audio_response:
       permission_denied_message: Habilite los permisos del micrófono en su navegador para grabar la respuesta
       permission_text: Permita el uso del micrófono para grabar audio
     card_actions:
       begin: Empezar
       continue: Continuar
+    create: Crear
     instructions:
       begin_assessment: Empezar
       cancel: Cancelar
@@ -72,6 +121,7 @@ es-ES:
     pickgrouprank:
       items: Elementos
     proceed: Proceder de todas maneras
+    trash: Papelera
     unknown_error: Se ha producido un error desconocido.
     video_response:
       device: Permitir
@@ -90,6 +140,37 @@ es-ES:
         frame: Procure que su cara esté alineada con el marco
         ready: Cuando esté listo/a para grabar, puse el botón «Grabar»
     wait: Esperar
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: Las evaluaciones deben ejecutarse en el siguiente orden
+      previous_group_required: Se requiere la finalización del grupo anterior
+    menu:
+      assessment_center: Centro de Evaluación
+      assessments_and_reports: Evaluaciones e Informes
+      idp: IDP
+      manage: Administrar
+      report_approval: Configuración de Aprobación de Informes
+      sequencing: Secuenciación
+    report_approval:
+      add_settings: Agregar Configuración
+      create_seetings: Crear Configuración
+    sequencing:
+      add_assessment_center: Agregar centro de evaluación
+      add_group: Agregar grupo
+      assessment_center_message: Las evaluaciones en este grupo son gestionadas por el centro de evaluación
+      assessments: Evaluaciones
+      delete_group: Eliminar grupo
+      edit_group_name: Editar nombre del grupo
+      modal:
+        delete:
+          cancel: Cancelar
+          failed: No se pudo eliminar el grupo "%{name}", por favor contacta al administrador
+          ok: Sí, eliminar
+          text: ¿Estás seguro de que deseas eliminar el grupo "%{name}"?
+          title: Eliminar Grupo
+      no_assessments: Arrastra y suelta las evaluaciones
+      no_ungrouped_assessments: Arrastra y suelta las evaluaciones aquí para desagruparlas
+      ungrouped_assessments: Evaluaciones sin agrupar
   auth:
     current_password: Contraseña actual
     current_password_placeholder: Introduzca la contraseña actual
@@ -146,88 +227,321 @@ es-ES:
     sign_up: Registrarse
     terms_link: <a href="%{terms_url}">Términos y declaración de privacidad</a>
   campaign:
-    all_activities_are_completed: Ha completado todas las actividades.
-    all_activities_are_completed_multiple: Ha completado todas las actividades de esta campaña. Acceda al panel de control y compruebe si se le han asignado otras actividades.
-    begin: Comenzar sus tareas
+    all_activities_are_completed: Todas las actividades están completas.
+    all_activities_are_completed_multiple: Todas las actividades de esta campaña están completas. Por favor, dirígete al Panel de Control y verifica si tienes otras actividades asignadas.
+    already_joined: Ya te has unido a esta campaña.
+    begin: Comienza tus tareas.
+    begin_btn_msg_before_prework: Debes completar las tareas a continuación antes de comenzar la campaña cronometrada.
+    begin_campaign_msg: Inicia la campaña antes de realizar las evaluaciones.
     campaigns: Campañas
-    closed_campaign_message: Esta campaña se ha cerrado. No puede realizar ninguna evaluación de esta campaña.
-    complete_prev: Complete todas las evaluaciones previas
-    continue: Continúe con sus tareas
-    dashboard_instructions: Se le han asignado varias actividades que debe completar. No olvide comprobar si ha completado todas las actividades asignadas de todas las campañas.
+    closed_campaign_message: Esta campaña está cerrada. No puedes realizar ninguna evaluación dentro de esta campaña.
+    code_usage_limit_reached: Se alcanzó el límite de uso del código, por favor contacta al administrador.
+    complete_prev: Completa todas las evaluaciones anteriores.
+    complete_tasks: Por favor, completa las tareas a continuación antes de realizar esta acción.
+    continue: Continúa con tus tareas.
+    dashboard_instructions: Es posible que se te hayan asignado múltiples actividades que necesitas completar. Por favor, asegúrate de verificar que todas las actividades asignadas se hayan completado en todas las campañas.
     dashboard_menu:
       bookings: Reservas
       campaign: Campaña
-      change_password: Cambiar contraseña
+      change_password: Cambiar Contraseña
+      development: Desarrollo
       home: Inicio
-      insights: Información
+      insights: Perspectivas
+      my_direct_reports: Mis Informes Directos
+      my_plan: Mi Plan
       profile: Perfil
-      profile_details: Datos
+      profile_details: Detalles
       tasks: Tareas
-    details: Datos
+    details: Detalles
     edit_evaluation:
-      body: Sepa que, si hace clic en «Volver a evaluar», se le redirigirá al inicio de la encuesta, donde podrá editar las respuestas. Las respuestas anteriores seguirán estando disponibles, pero podrá cambiarlas después de leerlas atentamente. Después de editarlas, tendrá que volver a enviar la evaluación para completar el proceso.
-      edit: Volver a evaluar
+      body: Ten en cuenta que una vez que hagas clic en Re-evaluar, serás dirigido al inicio de la encuesta donde podrás editar las respuestas. Las respuestas anteriores seguirán estando disponibles, pero puedes cambiarlas según lo consideres necesario. Al editar, deberás volver a enviar la evaluación para completar el proceso.
+      edit: Re-evaluar
       title: Confirmar
-      view: Ver evaluación
-    goto_dashboard: Ir al panel de control
-    inactive_campaign_message: En este momento, no tiene ninguna actividad asignada.
-    insights_reports: Información e informes
+      view: Ver Evaluación
+    errors:
+      invalid_status: Estado de campaña no válido.
+    goto_dashboard: Ir al Panel de Control
+    inactive_campaign_message: Actualmente, no se te han asignado actividades.
+    insights_reports: Perspectivas e Informes
     instruction_modal:
       campaign_start_final_instructions: |
         <p>
-          Recuerde que el temporizador no puede pararse ni pausarse. El temporizador de la campaña seguirá avanzando aunque cierre el navegador, así que no debe dejar las tareas a medias para hacer otra cosa. Procure que no haya nada que le distraiga durante las tareas. Busque un lugar tranquilo, desactive las notificaciones de sus dispositivos y evite realizar varias tareas a la vez. Mantenga la concentración y no se disperse. Cuando el temporizador de la campaña llegue a cero, no podrá continuar. Si ya ha leído las instrucciones anteriores, haga clic en «Iniciar» para continuar con las tareas asignadas.
+          Ten en cuenta que no hay forma de detener o pausar el temporizador. El temporizador de la campaña seguirá funcionando incluso si cierras el navegador, por lo que en ningún momento deberías pensar en dejar las tareas a medias para hacer otra cosa. Asegúrate de minimizar las distracciones durante las tareas. Encuentra un entorno tranquilo, apaga las notificaciones en tus dispositivos y evita realizar múltiples tareas. Mantén tu concentración y permanece enfocado. Una vez que el temporizador de la campaña se agote, no podrás continuar. Si has leído las instrucciones anteriores, haz clic en iniciar para continuar con las tareas asignadas.
         </p>
       campaign_start_instruction: |
-        <h4>Lea con atención las siguientes instrucciones.</h4>
+        <h4>Por favor, lee las siguientes instrucciones cuidadosamente.</h4>
         <p>
-        La(s) tarea(s) que está a punto de comenzar tiene(n) un límite de tiempo. Cuando haga clic en «Iniciar», se activará automáticamente el temporizador de la campaña. Tendrá %{minutes} minutos para completar todas las actividades. Intente completar las tareas en el plazo de tiempo establecido y administre bien el tiempo para evitar las prisas en el proceso de evaluación. Procure completar las tareas de una vez. Si necesita tomarse un descanso, hágalo ahora.
+          Las tareas que estás a punto de comenzar están cronometradas. Una vez que hagas clic en "Iniciar", el temporizador de la campaña comenzará automáticamente. Tienes %{minutes} minutos para completar todas las actividades. Por favor, intenta completar las tareas dentro del tiempo designado y administra el tiempo de manera efectiva para evitar apresurarte en el proceso de evaluación. Asegúrate de completar las tareas de una sola vez, por lo que si necesitas tomar un descanso, ahora es el momento.
         </p>
       common_proctoring_instructions: |
-        <h4>Evaluación remota</h4>
+        <h4>Supervisión</h4>
         <p>
-          En cuanto haga clic en el botón «Iniciar», se le redirigirá a nuestro sistema de evaluación remota. Controlará la cámara, el micrófono y la pantalla durante su sesión. Estas sesiones las evalúa automáticamente y de forma remota nuestro sofisticado sistema de IA, por lo que disfrutará de una experiencia de usuario fluida y sin interrupciones. En cualquier caso, cabe la posibilidad de que las sesiones las evalúen humanos de forma remota. Se registrará cualquier señal de conducta indebida o irregularidades. Hacemos esto para impedir que se intente hacer trampas. Si hay algo sospechoso, su(s) tarea(s) quedará(n) cancelada(s).
+          Al hacer clic en el botón Iniciar, serás redirigido a nuestro sistema de supervisión. Este monitoreará tu cámara, micrófono y pantalla durante tu sesión. Estas sesiones son supervisadas automáticamente por nuestro sofisticado sistema de IA, proporcionando una experiencia de usuario ininterrumpida y fluida. Sin embargo, las sesiones también pueden ser revisadas por supervisores humanos. Cualquier signo de mala conducta o irregularidades será señalado. Esto se hace para garantizar que no se realicen intentos de trampa. Si se encuentran sospechas, tus tareas serán canceladas.
         </p>
       lockdown_browser_instruction: |
-        <h4>Navegador para la evaluación remota</h4>
+        <h4>Navegador de supervisión</h4>
         <p>
-          Se le pedirá que descargue e instale un navegador especial para completar las tareas evaluadas de forma remota. Siga las instrucciones de la pantalla siguiente. Podrá desinstalarlo cuando complete las actividades asignadas.
+          Se te pedirá que descargues e instales un navegador especial para completar las tareas supervisadas. Por favor, sigue las instrucciones en la siguiente pantalla. Puedes desinstalarlo después de completar todas las actividades requeridas.
         </p>
     instructions:
+      collapse_aria_label: 'Mostrar más información arriba: Centro de Aprendizaje Virtual'
       collapse_link_text: Mostrar menos
+      expand_aria_label: 'Mostrar menos información arriba: Centro de Aprendizaje Virtual'
       expand_link_text: Mostrar más
-      heading: Consulte las directrices a continuación antes de empezar. Le deseamos los mejores resultados.
+      heading: Por favor, revisa las pautas a continuación antes de comenzar. ¡Te deseamos lo mejor!
     language:
-      content: Esta tarea no está disponible en el idioma que ha seleccionado. Seleccione uno de los idiomas disponibles para proceder.
-      single_lang: Esta tarea solo está disponible en %{lang}. Haga clic en «Proceder» para continuar.
+      content: Esta tarea no está disponible en el idioma seleccionado actualmente. Por favor, selecciona uno de los idiomas disponibles para continuar.
+      single_lang: Esta tarea está disponible solo en %{lang}. Haz clic en "Continuar" para proceder.
       title: Seleccionar idioma
     panels:
+      dashboard: Panel de Control
       reports: Informes
     profile:
-      complete_heading: Ha completado su perfil
-      complete_profile_label: Completar ahora
-      edit_profile_label: Editar perfil
-      incomplete_heading: Complete su perfil
-      last_login_text: 'Fecha del último inicio de sesión:'
-      last_updated_text: 'Fecha de la última actualización del perfil:'
-      sub_heading: Complete la información de su perfil
-      welcome_text: 'Le damos la bienvenida:'
-    thank_you_for_time: Gracias por su tiempo
+      complete_heading: Tu Perfil está Completo
+      complete_profile_label: Completar Ahora
+      edit_profile_label: Editar Perfil
+      incomplete_heading: Completa tu Perfil
+      last_login_text: 'Último inicio de sesión:'
+      last_updated_text: 'El perfil fue actualizado por última vez el:'
+      sub_heading: Completa toda la información de tu perfil
+      welcome_text: Bienvenido,
+    reset_warning: Solo puedes reiniciar la campaña marcada como campaña de práctica.
+    restart_practice: Reiniciar Práctica
+    restart_practice_confirmation: "¿Estás seguro de que deseas reiniciar la práctica?"
+    restart_practice_success: La práctica se reinició con éxito.
+    thank_you_for_time: Gracias por tu tiempo.
     time_left:
       cancel: Cancelar
       continue: Continuar
-      notification: El tiempo asignado para la tarea «%{assessmentName}» era de %{totalAssessmentTime}. Teniendo en cuenta el tiempo total que ha consumido, ahora solo le queda(n) %{remainingCampaignTime} para completar esta tarea.
+      notification: El tiempo asignado para esta tarea "%{assessmentName}" fue %{totalAssessmentTime}. Debido al tiempo transcurrido, ahora solo tienes %{remainingCampaignTime} como tiempo ajustado para completar esta tarea.
     timer:
-      notification_hours: Te quedan %{hours} hora
-      notification_minutes: Tiene %{minutes} minuto(s)  para completar la tarea
+      notification_hours: Te queda %{hours} hora
+      notification_minutes: Te quedan %{minutes} minutos
   campaign_assessment:
-    assessments_heading: Sus tareas
+    actions:
+      bulk_download: Descarga Masiva
+      export_completion_status: Exportar Estado de Finalización
+      export_external: Externo
+      export_normed: Puntuaciones Normalizadas de Factores
+      export_occupations: Ocupaciones
+      export_raw_labels: Sin Procesar (con etiquetas)
+      export_raw_scores: Puntuaciones Sin Procesar
+      export_raw_without_labels: Sin Procesar (sin etiquetas)
+      export_scores: Puntuaciones
+      export_scoring: Puntuación
+      factor_benchmark_score: Puntuación de Referencia de Factores
+      import_raw: Sin Procesar
+      import_scoring: Puntuación
+      regenerate: Regenerar Informes
+      rescore: Recalcular Evaluación
+      reset_all_nominations: Restablecer Todas las Nominaciones
+      reset_participant: Restablecer Todos los Participantes
+    assessments_heading: Tus Tareas
+    column:
+      assessment_center_activity: Actividad del Centro de Evaluación
+      assessment_name: Nombre de la Evaluación
+      assessor_form: Formulario del Evaluador
+      auto_assign: Asignación Automática
+      dimension_id: ID de Dimensión
+      id: ID de Evaluación de la Campaña
+      locales: Idiomas
+      norm: Norma
+      norm_id: ID de Norma
+      prework: Trabajo Previo
+      simuation_time_extension: Extensión de Tiempo de Simulación
+      simulation_content_variation: Variación de Contenido de Simulación
+      universal_link: Enlace Universal
+    drawer:
+      mettl_schedule_name: Nombre del Horario de Mettl
+      title: Detalles de la Evaluación
+    messages:
+      export_completion_statuses_scheduled: La tarea de exportación de estados de finalización se programó con éxito
+      export_occupations_job_scheduled: La tarea de exportación de ocupaciones se programó con éxito
+      export_reports_and_assessments_statuses_scheduled: La tarea de exportación de informes y evaluaciones se programó con éxito
+      external_results_export_scheduled: La tarea de exportación de evaluaciones externas se programó con éxito
+      norm_results_export_scheduled: La tarea de exportación de resultados normalizados se programó con éxito
+      normalize_factor_scores_scheduled: La tarea de normalización de puntuaciones de factores se programó con éxito
+      raw_factor_export_scheduled: La tarea de exportación de factores sin procesar se programó con éxito
+      raw_results_export_scheduled: La tarea de exportación de resultados sin procesar se programó con éxito
+      scoring_results_export_scheduled: La tarea de exportación de resultados de puntuación se programó con éxito
+    modals:
+      import_raw:
+        body: Consulta la funcionalidad de Exportar para extraer una plantilla que se pueda usar para Importar aquí.
+        success_msg: La importación se cargó con éxito
+        title: Importar Datos de Resultados Sin Procesar
+        upload: Subir
+      import_scoring:
+        body: Consulta la funcionalidad de Exportar para extraer una plantilla que se pueda usar para Importar aquí.
+        success_msg: La importación se cargó con éxito
+        title: Importar Datos de Puntuación
+        upload: Subir
+      regenerate:
+        content: "¿Estás seguro de que deseas regenerar los informes disponibles?"
+        title: "¿Regenerar informes?"
+      remove:
+        helper_text: 'PELIGRO: Seleccionar esto eliminará todas las respuestas de los usuarios a esta evaluación en esta campaña.'
+        msg_text: Estás intentando eliminar la evaluación <strong>"%{name}"</strong>
+        successfully: La evaluación "%{name}" se eliminó con éxito.
+        title: "¿Eliminar evaluación?"
+      rescore:
+        content: "¿Estás seguro de que deseas recalcular la evaluación?"
+        successfully: La evaluación se recalculó con éxito.
+        title: "¿Recalcular Evaluación?"
+      rescore_response:
+        message: Recalcular programado para la evaluación "%{name}"
+        title: Recalcular Respuestas
+      reset:
+        content: "¿Estás seguro de que deseas restablecer el resultado?"
+        successfully: Los datos del resultado se restablecieron con éxito.
+        title: "¿Restablecer Resultado para la evaluación %{name}?"
+      update_assessor_form:
+        select_assessor: Seleccionar Formulario del Evaluador
+        success_msg: El formulario del evaluador se cargó con éxito
+        title: Actualizar Formulario del Evaluador
+        update: Actualizar
+      update_content_variation:
+        select_schedule: Seleccionar Variación de Contenido
+        success_msg: La variación de contenido de simulación se actualizó con éxito
+        update: Actualizar
+      update_external_config:
+        text_placeholder: Configuración JSON externa
+        title: Actualizar Configuración Externa
+      update_locales:
+        select_locales: Seleccionar Idiomas
+        success_msg: Los idiomas se actualizaron con éxito
+        title: Actualizar Idiomas Disponibles
+      update_mettl_schedule:
+        select_schedule: Seleccionar Horario
+        success_msg: El horario de Mettl se actualizó con éxito
+        update: Actualizar
+      update_norm:
+        apply: Aplicar este cambio a los usuarios existentes en esta campaña
+        cannot_remove_norm: No se puede eliminar la norma para la evaluación completada.
+        select_norm: Seleccionar Norma
+        success_msg: Las normas se actualizaron con éxito
+        title: Actualizar Norma
+        update: Actualizar
+      update_simulation_time_extension:
+        success_msg: La extensión de tiempo de simulación se actualizó con éxito
+        title: Extensión de Tiempo
+        tooltip: Extensión de tiempo como un factor (por ejemplo, 1.5 para un 50% más de tiempo)
+        update: Actualizar
+      update_time:
+        additional_time: Tiempo (min)
+        title: Extender Tiempo
+      workshop_activity_duration:
+        form:
+          duration: Duración en minutos
+        title: Duración de la actividad del taller
+    normalize_factor_scores:
+      normalization_not_allowed: La normalización de puntuaciones de factores está actualmente deshabilitada para esta evaluación en la configuración del proyecto. Por favor, habilítala para continuar.
+      success: La normalización de puntuaciones de factores se completó con éxito
+    scheduled_successfully: La evaluación se programó con éxito
+    scheduling:
+      update_exists: Sobrescribir horario existente
+    scheduling_time: Programar tiempo de evaluación
     statuses:
-      completed: Completado/a
-      in_progress: En curso
-      not_started: Sin empezar
+      completed: Completado
+      in_progress: En Progreso
+      ineligible: No Elegible
+      interrupted: Interrumpido
+      not_started: No Iniciado
+      timed_out: Tiempo Agotado
+      universal_link: Enlace Universal
+    ungrouped_assessments_heading: Sin Agrupar
+  campaign_join_token:
+    campaign_id: ID de la Campaña
+    expire_in: Expira en (seg)
+    invalid_token: Token inválido
+    text: Texto
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: La tarea para agregar informes se encoló con éxito
+        success_message: Los informes se agregaron con éxito
+      bulk_download: Descarga Masiva
+      export_data: Exportar Datos
+    bulk_download:
+      error: La descarga masiva está limitada a 1000 archivos de informe. La selección actual tiene %{count} archivos de informe. Por favor, ajusta las fechas de inicio y fin para reducir el número de archivos de informe a descargar.
+    column:
+      assessor_access: Acceso del Evaluador
+      auto_assign: Asignación Automática
+      main_report: Informe Principal
+      report_bundle: Paquete de Informes
+      report_name: Nombre del Informe
+      user_access: Acceso del Usuario
+      user_dashboard: Panel del Usuario
+    form:
+      operation: Operación
+      operation_options:
+        add_and_allow_new_response: Agregar informe al usuario existente y permitir nueva respuesta
+        add_with_existing_response: Agregar informe al usuario existente y mantener la respuesta existente
+        skip_existing: Omitir usuario existente
+      report: Informe
+      report_bundle_placeholder: Seleccionar un paquete de informes
+    messages:
+      bulk_download_successful: La tarea de descarga masiva de informes se programó con éxito
+      export_report_data_scheduled: La tarea de exportación de datos de informes se programó con éxito
+    modals:
+      remove:
+        apply: Aplicar estos cambios a los usuarios existentes en esta campaña.
+        msg_text: Estás intentando eliminar el informe <strong>"%{reportName}"</strong>
+        title: "¿Eliminar Informe?"
+      user_access:
+        apply: Aplicar estos cambios a los usuarios existentes en esta campaña.
+        title:
+          disable: Deshabilitar Acceso de Usuario
+          enable: Habilitar Acceso de Usuario
+  campaign_users:
+    actions:
+      add_manager: Agregar Gerente
+      extend_time: Extender Tiempo
+      search_user: Buscar Usuario
+    assessments:
+      progress: Progreso
+    details:
+      additional_time: Tiempo Adicional
+      assessment_center: Centro de Evaluación
+      assessment_center_invites: Invitaciones al Centro de Evaluación
+      completed_at: Completado En
+      completion_status: Estado de Finalización
+      hogan_id: ID de Hogan
+      last_login: Último Inicio de Sesión
+      manager: Gerente
+      modals:
+        create_hogan_credentials:
+          assessments: 'Evaluaciones:'
+          confirmation: Ingresa el correo electrónico a continuación en el cuadro de texto para agregar una nueva credencial de Hogan
+          reports: 'Informes:'
+          successfully: Nueva credencial de Hogan para el usuario con correo electrónico %{email} se agregó con éxito.
+          warning: Crear una nueva credencial de Hogan eliminará las siguientes evaluaciones e informes asociados con la credencial anterior de Hogan para %{email}
+        remove:
+          successfully: El usuario con correo electrónico %{email} se eliminó con éxito.
+          title: "¿Estás seguro de que deseas eliminar a este usuario de la campaña %{campaignName}?"
+      not_completed_yet: Aún no completado
+      not_logged_in_yet: Aún no ha iniciado sesión
+      not_started_yet: Aún no iniciado
+      started_at: Iniciado En
+      statuses:
+        completed: Completado
+        in_progress: En Progreso
+        ineligible: No Elegible
+        interrupted: Interrumpido
+        not_started: No Iniciado
+        timed_out: Tiempo Agotado
+    modals:
+      remove: "¿Estás seguro de que deseas eliminar al usuario con correo electrónico '%{email}' de esta campaña?"
   campaigns:
+    assessments_and_reports:
+      assessor_assessments: Evaluaciones del Evaluador
+      other_assessments: Otras Evaluaciones
+      other_assessor_assessments: Otras Evaluaciones del Evaluador
+      other_reports: Otros Informes
     card:
       duration: Duración
+      starts_in: 'Comienza en:'
+      starts_on: Comienza el %{date}
+      will_start_shortly: La campaña comenzará en breve. Por favor, espera.
   change_password_page:
     old_password: Contraseña antigua
     password: Contraseña
@@ -263,31 +577,96 @@ es-ES:
       title: Tenemos que comprobar si su sistema puede grabar vídeo
   common:
     actions:
-      add: Añadir
+      add: Agregar
+      approve: Aprobar
       archive: Archivar
+      back_to_responses: Volver a Respuestas
       cancel: Cancelar
+      change: Cambiar
       close: Cerrar
+      continue: Continuar
       copy: Copiar
-      delete: Borrar
+      create: Crear
+      delete: Eliminar
       edit: Editar
+      export: Exportar
+      filter_by_tags: Filtrar por etiquetas
+      import: Importar
+      insert: Insertar
+      ok: OK
       remove: Eliminar
       reset: Restablecer
       resolve: Resolver
       restore: Restaurar
+      run: Ejecutar
       save: Guardar
+      schedule: Programar
       search: Buscar
       send: Enviar
       start: Iniciar
-      unarchive: Sacar del archivo
-      unresolve: Deshacer la resolución
+      unarchive: Desarchivar
+      unresolve: Sin resolver
       update: Actualizar
       upload: Subir
+      upload_file: Subir Archivo
+      verify: Verificar
+      view: Ver
     column:
       action: Acción
+      active: Activo
+      allow_multiple_responses: Permitir múltiples respuestas
+      approval_notification_list: Lista de Usuarios de Notificación de Aprobación
+      approvers_list: Lista de Aprobadores
+      assessment: Evaluación
+      assessment_name: Nombre de la Evaluación
+      assessments: Evaluaciones
+      assessor: Evaluador
       category: Categoría
-      created_at: Creado/a el
-      id: ID
+      created_at: Creado En
+      created_by: Creado Por
+      created_date: Fecha de Creación
+      default_language: Idioma Predeterminado
+      description: Descripción
+      details: Detalles
+      dimension: Dimensión
+      email: Correo Electrónico
+      external_report_id: ID de Informe Externo
+      first_name: Nombre
+      icon: Ícono
+      icon_color: Color del Ícono
+      id: Id
+      json:
+        answer: Respuesta JSON
+        external_result: Resultado Externo JSON
+        scoring: Puntuación JSON
+      key: Clave
+      last_name: Apellido
+      linked_activities: Actividades Vinculadas
+      linked_assessment: Evaluación Vinculada
+      meeting_link: Enlace de Reunión
+      modified_by: Modificado Por
+      modified_date: Fecha de Modificación
+      name: Nombre
+      owner: Propietario
+      package_id: ID del Paquete
+      poster: Cartel
+      project: Proyecto
+      provider: Proveedor
+      qc_user_list: Lista de Usuarios de QC
+      report: Informe
+      report_id: ID del Informe
+      require_scheduling: Requiere Programación
+      responses_count: Conteo de Respuestas
+      schedule_time: Hora Programada
+      scheduling: Programación
+      skills: Habilidades
       status: Estado
+      tags: Etiquetas
+      timing: Tiempo
+      token: Token
+      type: Tipo
+      unschedule: Desprogramar
+      updated_at: Última Actualización
     model:
       assessments: Evaluaciones
       campaigns: Campañas
@@ -436,6 +815,21 @@ es-ES:
           in_progress: En curso
           not_started: Sin empezar
     change_password: Cambiar contraseña
+    clients:
+      actions:
+        create:
+          create_client: Crear Cliente
+          create_license: Agregar licencia
+        menus:
+          view_licenses: Ver Licencias
+        remove:
+          confirmation: Introduzca el nombre del cliente actual en el cuadro de texto a continuación para eliminar al cliente
+          success: El cliente con el nombre '%{clientName}' se eliminó con éxito
+      projects:
+        actions:
+          remove:
+            confirmation: Introduzca el nombre del proyecto actual en el cuadro de texto a continuación para eliminar el proyecto
+            success: El proyecto con el nombre '%{projectName}' se eliminó con éxito
     delete: Borrar
     edit: Editar
     login: Iniciar sesión
@@ -473,108 +867,221 @@ es-ES:
     timezone: Zona horaria
     title: Mi perfil
     update: Actualizar
+  report_approvals:
+    events:
+      approved_text: texto aprobado
+      comment_added: comentario agregado <i>%{text}</i>
+      comment_removed: comentario eliminado
+      comment_resolved: comentario resuelto
+      comment_unresolved: comentario no resuelto
+      comment_updated: comentario cambiado de <s>%{oldText}</s> a <i>%{newText}</i>
+      created_text: texto agregado
+      disapproved_text: texto desaprobado
+      removed_text: texto eliminado
+      status_changed: estado cambiado de <i>%{from}</i> a <i>%{to}</i>
+      updated_text: texto actualizado
+    tabs:
+      all: Todos
+      approved: Aprobado
+      my_tasks: Mis Tareas
   reports:
     actions:
-      add: Añadir informe
+      add: Agregar Informe
+      archived:
+        success_message: El informe "%{name}" se archivó con éxito.
+      back_to_campaign: Volver a la Campaña
+      copy:
+        success_message: El informe "%{name}" se copió con éxito.
+      details: Detalles
       download: Descargar informe
-      view: Ver informe
+      download_csv: Descargar CSV
+      edit: Editar
+      evaluate: Evaluar
+      extend_time: Extender tiempo
+      goto_dashboard: Haz clic aquí para continuar
+      re_evaluate: Haz clic aquí para Re-evaluar
+      reevaluate: Re-evaluar
+      remove:
+        confirm_message: ¿Estás seguro de que deseas eliminar el informe "%{name}"?
+        confirm_title: Confirmación Requerida
+        success_message: El informe %{name} se eliminó con éxito
+      rescore: Recalcular
+      restore:
+        success_message: El informe %{name} se restauró con éxito
+      unarchived:
+        success_message: El informe %{name} se desarchivó con éxito
+      update_language: Actualizar Idioma
+      view: Ver Informe
+    active: Activo
+    archived: Archivado
+    builder:
+      graph:
+        properties:
+          barBorderRadius: Radio de Borde de la Barra
+          barWeight: Peso de la Barra
+          dataFormat: Formato de Datos
+          graphOption3D: 3D
+          graphOptionStandard: Estándar
+          graphSubType: Subtipo de Gráfico
+          graphTypeHorizontal: Horizontal
+          graphTypeVertical: Vertical
+          hideEmptyColumns: Ocultar Columnas Vacías
+          hideEmptyFilters: Ocultar Filtros Vacíos
+          hideXAxisLine: Ocultar Líneas de la Eje X
+          hideXAxisTitle: Ocultar Título de la Eje X
+          hideYAxisLine: Ocultar Líneas de la Eje Y
+          hideYAxisTitle: Ocultar Título de la Eje Y
+          hideZeroValueColumns: Ocultar Columnas con Valor Cero
+          legendPosition: Posición de la Leyenda
+          maxValueLabel: Valor Máximo (número)
+          maxValueLabelPlaceholder: Valor Máximo
+          positionBottomLeft: Inferior Izquierda
+          positionBottomMiddle: Inferior Centro
+          positionBottomRight: Inferior Derecha
+          positionTopLeft: Superior Izquierda
+          positionTopMiddle: Superior Centro
+          positionTopRight: Superior Derecha
+          reverse: Invertir
+          showLegend: Mostrar Leyenda
+    columns:
+      data_only: Solo Datos
+      default_language: Idioma Predeterminado
+      external_settings:
+        hogan_report_id: ID del Informe Hogan
+        saville_report_id: ID del Informe Saville
+      other_available_languages: Otros Idiomas Disponibles
+    create: Crear
+    dashboard: Panel de Control
+    drawer:
+      title: Detalles del Informe
+    fields:
+      provider:
+        custom_upload: Carga Personalizada
+        hogan: Hogan
+        internal: Interno
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+    form:
+      load_from_mettl: Cargar desde Mettl
+      load_from_pearson: Cargar desde Pearson
+      none_external: Ninguno - Usar el creador de informes
+    language: Idioma del Informe
+    language_updated: El idioma del informe se actualizó con éxito
     modules:
       campaign_factors_table:
-        add_condition: Agregar condición
-        baseline_score: Puntuación inicial
-        blindspots: Puntos ciegos
-        campaign_factor_conditions: BlindspCondiciones del factor de campañaots
+        add_condition: Agregar Condición
+        baseline_score: Puntuación Base
+        blindspots: Áreas Ciegas
+        campaign_factor_conditions: Condiciones de Factores de la Campaña
         cancel: Cancelar
         color: Color
-        delete: Borrar
+        delete: Eliminar
         description: Descripción
         if: Si
         label: Etiqueta
         no_conditions: Sin condiciones
-        save: Ahorrar
+        save: Guardar
         strengths: Fortalezas
-        then: Luego muestra el siguiente texto.
+        then: Entonces muestra el siguiente texto
         title: Título
+      common:
+        all_factors: Todos los factores
+        font: Fuente
+        table_options: Opciones de Tabla
+        table_type: Tipo de Tabla
       factors_table:
         description: Descripción
-        no_data: No hay información disponible para esta sección.
-        rank: Puesto
+        na: N/A
+        no_data: No hay datos disponibles para esta sección.
+        rank: Rango
         score: Puntuación
       gap_assessment:
-        gap: Diferencia
+        gap: Brecha
         item: Indicador
-        negative_gap: Diferencias negativas
-        no_negative_gaps: No hay diferencias negativas
-        no_positive_gaps: No hay diferencias positivas
-        positive_gap: Diferencias positivas
-        rank: Puesto
+        negative_gap: Brechas Negativas
+        no_negative_gaps: No hay Brechas Negativas
+        no_positive_gaps: No hay Brechas Positivas
+        positive_gap: Brechas Positivas
+        rank: Rango
         scoring_category: Competencia
       highest_lowest:
-        bottom_5: ÚLTIMOS/AS 5
+        bottom_5: INFERIOR 5
         category: Categoría
-        highest_scores: Puntuaciones más altas
+        highest_scores: Puntuaciones Más Altas
         item: Indicador
-        lowest_scores: Puntuaciones más bajas
-        mean_score: Puntuación media
-        rank: Puesto
+        lowest_scores: Puntuaciones Más Bajas
+        mean_score: Puntuación Media
+        rank: Rango
         scoring_category: Competencia
-        sub_competenties: Subcompetencias
-        top_5: PRIMEROS/AS 5
+        sub_competenties: Sub-Competencias
+        top_5: SUPERIOR 5
       potential_career_full:
-        career_strengths_and_results: Fortalezas profesionales y sus resultados
-        career_sub_tracks: Subespecializaciones profesionales
-        key_career_tracks_within: A continuación, tiene una lista de posibles trabajos relacionados con cada especialización profesional. Recuerde que se trata de una lista indicativa, no es la lista completa. Los trabajos en cursiva requieren niveles académicos más altos o más experiencia.
-        potential_areas_of_study: Posibles áreas de estudio
-        strength_high: Mayor fortaleza
-        strength_low: Fortaleza en desarrollo
-        strength_moderate: Posible fortaleza
-        work_environment: Entorno laboral
-        your_suitability: Su idoneidad
+        career_strengths_and_results: Fortalezas de Carrera y Tus Resultados
+        career_sub_tracks: Sub-rutas de Carrera
+        key_career_tracks_within: A continuación, se muestra una lista de posibles roles laborales para cada una de las rutas de carrera. Recuerda que esta lista es solo indicativa y no exhaustiva. Ten en cuenta que los roles en cursiva requieren niveles más altos de educación y/o experiencia.
+        potential_areas_of_study: Áreas de Estudio Potenciales
+        strength_high: Fortaleza Principal
+        strength_low: Fortaleza en Desarrollo
+        strength_moderate: Fortaleza Potencial
+        work_environment: Entorno de Trabajo
+        your_suitability: Tu Idoneidad
       single_value:
-        factor_name: Categoría de puntuación
+        factor_name: Categoría de Puntuación
         question_name: Preguntas
       single_value_cluster:
         competency: Competencia
-        developmental_rating: Valoración de desarrollo
+        developmental_rating: Calificación de Desarrollo
         questions: Preguntas
       strength_clusters:
-        index_sub_factors_considered: Subfactores del Thriving Index («Índice de progreso») que se han tenido en cuenta para otorgarle su puntuación final para el entorno laboral %{workstyle}
-        possible_roles: Posibles trabajos
-        work_environments: Entornos laborales previstos
+        index_sub_factors_considered: Sub-factores del Índice de Crecimiento considerados para proporcionar tu puntuación final para el entorno de trabajo %{workstyle}
+        possible_roles: Roles Posibles
+        work_environments: Entornos de Trabajo Esperados
       three_sixty_default:
         factor:
           items: Elementos
-          max: Valor máx.
+          max: Valor Máximo
           mean: Media
-          min: Valor mín.
-          standardDeviation: Desviación estándar
+          min: Valor Mínimo
+          standardDeviation: Desviación Estándar
           sum: Suma
-          totalResponses: Respuestas totales
-          variance: Variación
-          weightedMean: Media ponderada
+          totalResponses: Total de Respuestas
+          variance: Varianza
+          weightedMean: Media Ponderada
         question:
-          no_response: No hay respuestas disponibles
-        statistic: Estadísticas
+          no_response: No hay respuesta disponible
+        statistic: Estadística
         value: Valor
       three_sixty_report_summary:
-        completed: Evaluación completada
-        footnote: "*Excluido debido al requisito de umbral mínimo"
-        invited: Invitados
+        completed: Completado
+        footnote: "* Excluido debido al requisito de umbral mínimo"
+        invited: Invitado
         relationships: Relaciones
         total: Total
       video_response:
-        no_results: No se han grabado vídeos
+        no_results: No se grabaron videos
+    pages:
+      edit:
+        assets: Recursos
+        general_settings: Configuración General
+        translations: Traducciones
+    report: Informe
+    reports: Informes
+    reset: Restablecer
     show:
       export_pdf: Exportar a PDF
       header: Informe
     statuses:
-      approved: Aprobado/a
+      approved: Aprobado
       available: Disponible
-      denied: Denegado/a
-      incomplete: Incompleto/a
+      denied: Denegado
+      incomplete: Incompleto
       not_available: No disponible
-      on_hold: Retenido/a
-      released: Desbloqueado/a
+      on_hold: En espera
+      released: Liberado
+    trash: Papelera
+    update: Actualizar
+    upload: Subir
   shared:
     filters:
       clear: Quitar filtros
@@ -751,24 +1258,84 @@ es-ES:
     you: Usted
     yourself: Usted mismo/a
   user:
+    datasheet:
+      attribute: Atributo
+      value: Valor
     fields:
-      email: Correo electrónico
+      email: Dirección de Correo Electrónico
       first_name: Nombre
       last_name: Apellido(s)
-  user_reports:
-    actions:
-      regenerate: Volver a generar
-    messages:
-      regenerate_successful: La tarea para volver a generar el informe se ha programado correctamente
+    form:
+      email: Correo Electrónico
+      first_name: Nombre
+      last_name: Apellido(s)
+      locale: Idioma
+      operation: Operación
+      operation_options:
+        add_and_allow_new_response: Agregar usuario y permitir nueva respuesta
+        add_with_existing_response: Agregar usuario con respuesta existente
+        skip_existing: Omitir usuario existente
     modals:
+      exports:
+        export_sign_in_url: Exportar con URL mágica de inicio de sesión
+        include_inactive_users: Exportar con usuarios inactivos
+        title: Exportar Usuarios
+      import:
+        body: Consulta la funcionalidad de Exportar para extraer una plantilla que se pueda usar para Importar aquí.
+        imported_reports: Los informes y evaluaciones fueron importados
+        imported_users: 'El número de usuarios importados: %{number}'
+        success_msg: El archivo cargado ha sido puesto en cola para la importación. Por favor, revisa el estado en las notificaciones
+        title: Importar Usuarios
+        user_with_unchanged_passwords: La lista de usuarios cuyas contraseñas no fueron cambiadas
+      import_reports:
+        body: Consulta el archivo de ejemplo para extraer una plantilla que se pueda usar para Importar aquí.
+        title: Asignar Informes y Evaluaciones
+    toolbar:
+      export: Exportar Usuarios
+      export_compact_completion_status: Compacto
+      export_detailed_completion_status: Detallado
+      export_reports_and_assessments: Exportar Informes y Evaluaciones
+      import: Importar Usuarios
+      import_reports: Importar Informes y Evaluaciones
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: La autenticación de 2 factores está deshabilitada
+          enabled: La autenticación de 2 factores está habilitada
+        option_to_disable: Deshabilitar 2FA
+        option_to_enable: Habilitar 2FA
       remove:
-        content: "¿Seguro que quiere eliminar el informe %{userReportName}?"
-        successfully: El informe %{userReportName} se ha eliminado correctamente
-    preview_report: Vista previa del informe
-    statuses:
-      generating: Generando
-      not_prepared: No disponible
-      prepared: Disponible
+        confirm_message: "¿Estás seguro de que deseas eliminar al usuario con el correo electrónico '%{email}'?"
+        confirm_title: Confirmación Requerida
+        error_message: No se pudo eliminar al usuario debido al error - %{error}
+        success_message: "%{email} ha sido eliminado"
+        system_error_message: No se pudo eliminar al usuario, por favor intenta nuevamente más tarde o contacta al soporte.
+      reset_password:
+        option: Restablecer Contraseña
+      unlock_user_access:
+        message: El acceso del usuario con el correo electrónico %{email} ha sido desbloqueado con éxito.
+        title: Desbloquear Acceso de Usuario
+        tooltip: Esta cuenta de usuario está bloqueada
+    admins: Administradores
+    create_global_assessor: Crear Evaluador Global
+    create_superadmin: Crear Super Administrador
+    dashboard: Panel de Control
+    drawer:
+      link: Enlace
+      role: Rol
+      title: Detalles del Usuario
+    global_assessors: Evaluadores Globales
+    password_change_success: La contraseña se cambió con éxito. Por favor, inicia sesión con tu nueva contraseña.
+    roles:
+      campaign_admin: Administrador de Campaña
+      campaign_assessor: Evaluador de Campaña
+      campaign_user: Usuario de Campaña
+      client_admin: Administrador del Cliente
+      project_admin: Administrador del Proyecto
+      superadmin: Super Administrador
+    superadmins: Super Administradores
+    users: Usuarios
   validations:
     AudioResponse:
       in_progress:

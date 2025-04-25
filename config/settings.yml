@@ -6,11 +6,14 @@ enduser_locales:
   - en
   - es-ES
   - en-US
+  - it
+  - fr
   - pl
   - pt
   - zh
   - zh-HK
   - ja
+admin_user_locales:  <%= ENV["ADMIN_LOCALES"]%>
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
 subdomain: <%= ENV["APP_SUB_DOMAIN"] %> # subdomain
@@ -67,6 +70,7 @@ features:
   inline_translation_enabled: <%= ENV.fetch('INLINE_TRANSLATION_ENABLED', 'false') == 'true' %>
   disable_saml_for_admins: <%= ENV.fetch('DISABLE_SAML_FOR_ADMINS', 'false') == 'true' %>
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
+  enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:

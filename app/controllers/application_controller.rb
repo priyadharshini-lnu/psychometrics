@@ -37,18 +37,6 @@ class ApplicationController < BaseController
 
   protected
 
-  def add_cookie(name, value, expires: nil)
-    secure = Settings.protocol == 'https'
-    cookie_options = {
-      value: value,
-      httponly: true,
-      secure: secure,
-      same_site: secure ? 'None' : 'Lax'
-    }
-    cookie_options[:expires] = expires if expires
-    cookies[name] = cookie_options
-  end
-
   def inside_sso_iframe?
     session[:sso].try(:[], 'display') == 'iframe'
   end

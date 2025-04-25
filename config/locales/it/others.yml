@@ -1,0 +1,1353 @@
+---
+it:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Tutte le risposte
+      numeric_comparator:
+        enter_value: Inserisci valore
+        select_data: Seleziona dati
+      scoring:
+        select_comparison: Scegli il tipo di confronto
+        select_factors: Seleziona fattori
+        select_operation: Seleziona operazione
+  activerecord:
+    attributes:
+      membership:
+        first_name: Nome
+        last_name: Cognome
+      user:
+        email: Email
+        first_name: Nome
+        last_name: Cognome
+      user_form:
+        email: Email
+        first_name: Nome
+        last_name: Cognome
+        password: Password
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: La password attuale non è corretta
+  anonym:
+    continue: Continua
+    notifications:
+      restart:
+        copy: Hai già iniziato a rispondere a questo sondaggio. Puoi scegliere «Continua» o «Riavvia».
+        title: Vuoi continuare?
+    restart: Riavvia
+  assessments:
+    actions:
+      add_tag:
+        success_message: Il tag è stato aggiunto con successo
+      archived:
+        success_message: La valutazione "%{name}" è stata archiviata con successo.
+      assessment_cache:
+        remove_cache: Rimuovi Cache
+        success_message: La cache è stata rimossa con successo
+      back_to_campaign: Torna alla Campagna
+      back_to_dashboard: Torna alla Dashboard
+      copy:
+        success_message: La valutazione "%{name}" è stata copiata con successo.
+      details: Dettagli
+      download_csv: Scarica CSV
+      edit: Modifica
+      evaluate: Valuta
+      export_normed: Punteggi Normalizzati dei Fattori
+      export_raw_labels: Non Elaborati (con etichette)
+      export_raw_scores: Punteggi Non Elaborati
+      export_raw_without_labels: Non Elaborati (senza etichette)
+      extend_time: Estendi tempo
+      external_scores_export: Punteggi Esterni
+      goto_dashboard: Clicca qui per continuare
+      manage_mettl_schedule: Gestisci Pianificazione Mettl
+      moderate: Modera Punteggi
+      new_response: Nuova Risposta
+      next_assessment: Passa alla Valutazione Successiva
+      pending_tasks:
+        one: Hai 1 attività in sospeso
+        other: Hai %{count} attività in sospeso
+      re_evaluate: Clicca qui per Rivalutare
+      reevaluate: Rivaluta
+      remove:
+        confirm_message: Sei sicuro di voler eliminare la valutazione "%{name}"?
+        confirm_title: Conferma Richiesta
+        success_message: La valutazione %{name} è stata eliminata con successo
+      remove_tag:
+        success_message: Il tag è stato rimosso con successo
+      rescore: Ricalcola
+      restore:
+        success_message: La valutazione "%{name}" è stata ripristinata con successo
+      show_usage: Mostra Utilizzo
+      submit_another_response: Invia un'altra risposta
+      submit_evaluation: Invia Valutazione
+      translations:
+        success_message: Le traduzioni della valutazione sono state aggiornate con successo
+      unarchived:
+        success_message: La valutazione "%{name}" è stata ripristinata con successo
+      view: Visualizza
+    active: Attivo
+    archived: Archiviato
+    assessment: Valutazione
+    assessments: Valutazioni
+    audio_response:
+      permission_denied_message: Abilita i permessi del microfono nel tuo browser per registrare la risposta
+      permission_text: Consenti l''uso del microfono per registrare l''audio
+    card_actions:
+      begin: Inizia
+      continue: Continua
+    create: Crea
+    instructions:
+      begin_assessment: Inizia
+      cancel: Annulla
+      default: 'Questa è un''attività a tempo: una volta cliccato su «Inizia la valutazione», avrai %{time} minuti per completarla.'
+      title: Istruzioni
+    messages:
+      finish: |-
+        Grazie mille per il tuo tempo.
+        Le tue risposte sono state registrate.
+    page:
+      back: Indietro
+      confirm_message: |-
+        ## Dopo questo, le tue risposte saranno inviate e non potrai modificarle.
+
+        Clicca su Indietro per rivedere le tue risposte un''ultima volta o su Invia se hai terminato.
+      next: Avanti
+      read_only: Sei in modalità «solo lettura», non puoi modificare alcun risultato.
+      save: Salva
+      submit: Invia
+    pickgrouprank:
+      items: Elementi
+    proceed: Procedi comunque
+    trash: Cestino
+    unknown_error: Si è verificato un errore sconosciuto.
+    video_response:
+      device: Consenti
+      discard: Scarta
+      media_recorder:
+        failure: Il tuo browser non supporta la registrazione video. Usa Chrome o Firefox per registrare video.
+        success: Consenti l'uso della fotocamera e del microfono per registrare audio e video
+      save: Salva
+      saved:
+        label: Salvato/a
+      saving: Salvataggio in corso...
+      start_recording: Inizia a registrare
+      tracker:
+        backward: Sei troppo vicino allo schermo. Allontanati un po'
+        forward: Sei troppo lontano dallo schermo. Avvicinati un po'
+        frame: Assicurati che il tuo viso sia allineato con il riquadro
+        ready: Quando sei pronto/a per registrare, premi il pulsante «Registra»
+    wait: Attendi
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: Le valutazioni devono essere eseguite nel seguente ordine
+      previous_group_required: È richiesta la conclusione del gruppo precedente
+    menu:
+      assessment_center: Centro di Valutazione
+      assessments_and_reports: Valutazioni e Rapporti
+      idp: IDP
+      manage: Gestisci
+      report_approval: Configurazione Approvazione Rapporti
+      sequencing: Sequenziamento
+    report_approval:
+      add_settings: Aggiungi Configurazione
+      create_seetings: Crea Configurazione
+    sequencing:
+      add_assessment_center: Aggiungi centro di valutazione
+      add_group: Aggiungi gruppo
+      assessment_center_message: Le valutazioni in questo gruppo sono gestite dal centro di valutazione
+      assessments: Valutazioni
+      delete_group: Elimina gruppo
+      edit_group_name: Modifica nome del gruppo
+      modal:
+        delete:
+          cancel: Annulla
+          failed: Non è stato possibile eliminare il gruppo "%{name}", contatta l'amministratore
+          ok: Sì, elimina
+          text: Sei sicuro di voler eliminare il gruppo "%{name}"?
+          title: Elimina Gruppo
+      no_assessments: Trascina e rilascia le valutazioni
+      no_ungrouped_assessments: Trascina e rilascia le valutazioni qui per rimuoverle dal gruppo
+      ungrouped_assessments: Valutazioni non raggruppate
+  auth:
+    current_password: Password attuale
+    current_password_placeholder: Inserisci la password attuale
+    email: Email
+    email_placeholder: Inserisci l'email
+    expired_password:
+      description: Compila tutti i campi per creare una nuova password
+      submit: Invia
+      title: Aggiorna la tua password
+    login:
+      description: Accedi con le informazioni del tuo account personale
+      forgot_password: Hai dimenticato la password?
+      login_btn: Accedi
+      not_member: Non sei un membro?
+      or: Oppure
+      sso_btn: Accedi con Single Sign-On
+      title: Benvenuto!
+    logout: Esci
+    new_password: Nuova password
+    otp:
+      code: Codice
+      code_placeholder: Password monouso
+      description: Inserisci la password monouso che ti è stata inviata al tuo indirizzo email registrato.
+      resend: Invia nuovamente la password monouso
+      submit: Verifica
+      title: Password monouso
+    password: Password
+    password_confirmation: Conferma password
+    password_confirmation_placeholder: Inserisci la conferma della password
+    password_placeholder: Inserisci la password
+    registration:
+      description: Inserisci le informazioni richieste per registrarti e creare un nuovo account
+      email_hint: Rispettiamo la tua privacy e non tolleriamo lo spam. Non condivideremo mai le tue informazioni con terze parti
+      first_name: Nome
+      first_name_placeholder: Inserisci il tuo nome
+      have_account: Hai già un account?
+      last_name: Cognome
+      last_name_placeholder: Inserisci il tuo cognome
+      login_now: Accedi ora
+      registration_code: Codice di registrazione
+      registration_code_placeholder: Inserisci il codice di registrazione
+      terms_notice: Registrandoti, accetti i nostri <a href="%{terms_url}">«Termini di servizio» e la nostra «Informativa sulla privacy»</a>
+      title: Registrati
+    reset_password:
+      back_to_sign_in: Torna al login
+      description: Inserisci l'email associata al tuo account
+      submit: Reimposta password
+      title: Hai dimenticato la password?
+    set_password:
+      description: Per creare una nuova password, inserisci la nuova password nei campi sottostanti
+      submit: Invia
+      title: Crea password
+    sign_out: Accedi come un altro utente
+    sign_up: Registrati
+    terms_link: <a href="%{terms_url}">Termini e Informativa sulla privacy</a>
+  campaign:
+    all_activities_are_completed: Tutte le attività sono completate.
+    all_activities_are_completed_multiple: Tutte le attività di questa campagna sono completate. Per favore, vai al Pannello di Controllo e verifica se hai altre attività assegnate.
+    already_joined: Ti sei già unito a questa campagna.
+    begin: Inizia le tue attività.
+    begin_btn_msg_before_prework: Devi completare le attività seguenti prima di iniziare la campagna cronometrata.
+    begin_campaign_msg: Inizia la campagna prima di effettuare le valutazioni.
+    campaigns: Campagne
+    closed_campaign_message: Questa campagna è chiusa. Non puoi effettuare alcuna valutazione all'interno di questa campagna.
+    code_usage_limit_reached: È stato raggiunto il limite di utilizzo del codice, contatta l'amministratore.
+    complete_prev: Completa tutte le valutazioni precedenti.
+    complete_tasks: Per favore, completa le attività seguenti prima di effettuare questa azione.
+    continue: Continua con le tue attività.
+    dashboard_instructions: Potrebbero esserti state assegnate più attività che devi completare. Per favore, assicurati di verificare che tutte le attività assegnate siano state completate in tutte le campagne.
+    dashboard_menu:
+      bookings: Prenotazioni
+      campaign: Campagna
+      change_password: Cambia Password
+      development: Sviluppo
+      home: Home
+      insights: Approfondimenti
+      my_direct_reports: I Miei Report Diretti
+      my_plan: Il Mio Piano
+      profile: Profilo
+      profile_details: Dettagli
+      tasks: Attività
+    details: Dettagli
+    edit_evaluation:
+      body: Tieni presente che una volta cliccato su Rivaluta, sarai reindirizzato all'inizio del sondaggio dove potrai modificare le risposte. Le risposte precedenti rimarranno disponibili, ma potrai cambiarle come ritieni necessario. Dopo aver modificato, dovrai inviare nuovamente la valutazione per completare il processo.
+      edit: Rivaluta
+      title: Conferma
+      view: Visualizza Valutazione
+    errors:
+      invalid_status: Stato della campagna non valido.
+    goto_dashboard: Vai al Pannello di Controllo
+    inactive_campaign_message: Attualmente, non ti sono state assegnate attività.
+    insights_reports: Approfondimenti e Rapporti
+    instruction_modal:
+      campaign_start_final_instructions: |
+        <p>
+          Tieni presente che non c'è modo di fermare o mettere in pausa il timer. Il timer della campagna continuerà a funzionare anche se chiudi il browser, quindi in nessun momento dovresti pensare di lasciare le attività a metà per fare altro. Assicurati di minimizzare le distrazioni durante le attività. Trova un ambiente tranquillo, disattiva le notifiche sui tuoi dispositivi ed evita di fare multitasking. Mantieni la concentrazione e rimani focalizzato. Una volta che il timer della campagna scade, non potrai continuare. Se hai letto le istruzioni precedenti, clicca su Inizia per continuare con le attività assegnate.
+        </p>
+      campaign_start_instruction: |
+        <h4>Per favore, leggi attentamente le seguenti istruzioni.</h4>
+        <p>
+          Le attività che stai per iniziare sono cronometrate. Una volta cliccato su "Inizia", il timer della campagna inizierà automaticamente. Hai %{minutes} minuti per completare tutte le attività. Per favore, cerca di completare le attività entro il tempo designato e gestisci il tempo in modo efficace per evitare di affrettarti nel processo di valutazione. Assicurati di completare le attività in una sola volta, quindi se hai bisogno di fare una pausa, fallo ora.
+        </p>
+      common_proctoring_instructions: |
+        <h4>Supervisione</h4>
+        <p>
+          Cliccando sul pulsante Inizia, sarai reindirizzato al nostro sistema di supervisione. Questo monitorerà la tua fotocamera, il microfono e lo schermo durante la sessione. Queste sessioni sono supervisionate automaticamente dal nostro sofisticato sistema di IA, fornendo un'esperienza utente fluida e senza interruzioni. Tuttavia, le sessioni possono anche essere riviste da supervisori umani. Qualsiasi segno di cattiva condotta o irregolarità sarà segnalato. Questo viene fatto per garantire che non vengano effettuati tentativi di imbroglio. Se vengono rilevati sospetti, le tue attività saranno annullate.
+        </p>
+      lockdown_browser_instruction: |
+        <h4>Browser di Supervisione</h4>
+        <p>
+          Ti verrà richiesto di scaricare e installare un browser speciale per completare le attività supervisionate. Per favore, segui le istruzioni nella schermata successiva. Puoi disinstallarlo dopo aver completato tutte le attività richieste.
+        </p>
+    instructions:
+      collapse_aria_label: 'Mostra più informazioni sopra: Centro di Apprendimento Virtuale'
+      collapse_link_text: Mostra meno
+      expand_aria_label: 'Mostra meno informazioni sopra: Centro di Apprendimento Virtuale'
+      expand_link_text: Mostra di più
+      heading: Per favore, rivedi le linee guida qui sotto prima di iniziare. Ti auguriamo il meglio!
+    language:
+      content: Questa attività non è disponibile nella lingua attualmente selezionata. Per favore, seleziona una delle lingue disponibili per continuare.
+      single_lang: Questa attività è disponibile solo in %{lang}. Clicca su "Continua" per procedere.
+      title: Seleziona lingua
+    panels:
+      dashboard: Pannello di Controllo
+      reports: Rapporti
+    profile:
+      complete_heading: Il tuo Profilo è Completo
+      complete_profile_label: Completa Ora
+      edit_profile_label: Modifica Profilo
+      incomplete_heading: Completa il tuo Profilo
+      last_login_text: 'Ultimo accesso:'
+      last_updated_text: 'Il profilo è stato aggiornato l''ultima volta il:'
+      sub_heading: Completa tutte le informazioni del tuo profilo
+      welcome_text: Benvenuto,
+    reset_warning: Puoi riavviare solo la campagna contrassegnata come campagna di pratica.
+    restart_practice: Riavvia Pratica
+    restart_practice_confirmation: Sei sicuro di voler riavviare la pratica?
+    restart_practice_success: La pratica è stata riavviata con successo.
+    thank_you_for_time: Grazie per il tuo tempo.
+    time_left:
+      cancel: Annulla
+      continue: Continua
+      notification: Il tempo assegnato per questa attività "%{assessmentName}" era %{totalAssessmentTime}. A causa del tempo trascorso, ora hai solo %{remainingCampaignTime} come tempo regolato per completare questa attività.
+    timer:
+      notification_hours: Ti resta %{hours} ora
+      notification_minutes: Ti restano %{minutes} minuti
+  campaign_assessment:
+    actions:
+      bulk_download: Scarica in blocco
+      export_completion_status: Esporta Stato di Completamento
+      export_external: Esterno
+      export_normed: Punteggi Normalizzati dei Fattori
+      export_occupations: Occupazioni
+      export_raw_labels: Non Elaborati (con etichette)
+      export_raw_scores: Punteggi Non Elaborati
+      export_raw_without_labels: Non Elaborati (senza etichette)
+      export_scores: Punteggi
+      export_scoring: Punteggio
+      factor_benchmark_score: Punteggio di Riferimento dei Fattori
+      import_raw: Non Elaborati
+      import_scoring: Punteggio
+      regenerate: Rigenera Rapporti
+      rescore: Ricalcola Valutazione
+      reset_all_nominations: Reimposta Tutte le Nomine
+      reset_participant: Reimposta Tutti i Partecipanti
+    assessments_heading: Le Tue Attività
+    column:
+      assessment_center_activity: Attività del Centro di Valutazione
+      assessment_name: Nome della Valutazione
+      assessor_form: Modulo del Valutatore
+      auto_assign: Assegnazione Automatica
+      dimension_id: ID della Dimensione
+      id: ID della Valutazione della Campagna
+      locales: Lingue
+      norm: Norma
+      norm_id: ID della Norma
+      prework: Lavoro Preliminare
+      simuation_time_extension: Estensione del Tempo di Simulazione
+      simulation_content_variation: Variazione del Contenuto della Simulazione
+      universal_link: Link Universale
+    drawer:
+      mettl_schedule_name: Nome della Pianificazione Mettl
+      title: Dettagli della Valutazione
+    messages:
+      export_completion_statuses_scheduled: L'attività di esportazione degli stati di completamento è stata pianificata con successo
+      export_occupations_job_scheduled: L'attività di esportazione delle occupazioni è stata pianificata con successo
+      export_reports_and_assessments_statuses_scheduled: L'attività di esportazione dei rapporti e delle valutazioni è stata pianificata con successo
+      external_results_export_scheduled: L'attività di esportazione delle valutazioni esterne è stata pianificata con successo
+      norm_results_export_scheduled: L'attività di esportazione dei risultati normalizzati è stata pianificata con successo
+      normalize_factor_scores_scheduled: L'attività di normalizzazione dei punteggi dei fattori è stata pianificata con successo
+      raw_factor_export_scheduled: L'attività di esportazione dei fattori non elaborati è stata pianificata con successo
+      raw_results_export_scheduled: L'attività di esportazione dei risultati non elaborati è stata pianificata con successo
+      scoring_results_export_scheduled: L'attività di esportazione dei risultati di punteggio è stata pianificata con successo
+    modals:
+      import_raw:
+        body: Consulta la funzionalità di Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
+        success_msg: L'importazione è stata caricata con successo
+        title: Importa Dati dei Risultati Non Elaborati
+        upload: Carica
+      import_scoring:
+        body: Consulta la funzionalità di Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
+        success_msg: L'importazione è stata caricata con successo
+        title: Importa Dati di Punteggio
+        upload: Carica
+      regenerate:
+        content: Sei sicuro di voler rigenerare i rapporti disponibili?
+        title: Rigenerare rapporti?
+      remove:
+        helper_text: 'ATTENZIONE: Selezionando questa opzione verranno eliminate tutte le risposte degli utenti a questa valutazione in questa campagna.'
+        msg_text: Stai tentando di eliminare la valutazione <strong>"%{name}"</strong>
+        successfully: La valutazione "%{name}" è stata eliminata con successo.
+        title: Eliminare Valutazione?
+      rescore:
+        content: Sei sicuro di voler ricalcolare la valutazione?
+        successfully: La valutazione è stata ricalcolata con successo.
+        title: Ricalcolare Valutazione?
+      rescore_response:
+        message: Ricalcolo pianificato per la valutazione "%{name}"
+        title: Ricalcola Risposte
+      reset:
+        content: Sei sicuro di voler reimpostare il risultato?
+        successfully: I dati del risultato sono stati reimpostati con successo.
+        title: Reimpostare Risultato per la valutazione %{name}?
+      update_assessor_form:
+        select_assessor: Seleziona Modulo del Valutatore
+        success_msg: Il modulo del valutatore è stato caricato con successo
+        title: Aggiorna Modulo del Valutatore
+        update: Aggiorna
+      update_content_variation:
+        select_schedule: Seleziona Variazione del Contenuto
+        success_msg: La variazione del contenuto della simulazione è stata aggiornata con successo
+        update: Aggiorna
+      update_external_config:
+        text_placeholder: Configurazione JSON esterna
+        title: Aggiorna Configurazione Esterna
+      update_locales:
+        select_locales: Seleziona Lingue
+        success_msg: Le lingue sono state aggiornate con successo
+        title: Aggiorna Lingue Disponibili
+      update_mettl_schedule:
+        select_schedule: Seleziona Pianificazione
+        success_msg: La pianificazione di Mettl è stata aggiornata con successo
+        update: Aggiorna
+      update_norm:
+        apply: Applica questa modifica agli utenti esistenti in questa campagna
+        cannot_remove_norm: Non è possibile rimuovere la norma per la valutazione completata.
+        select_norm: Seleziona Norma
+        success_msg: Le norme sono state aggiornate con successo
+        title: Aggiorna Norma
+        update: Aggiorna
+      update_simulation_time_extension:
+        success_msg: L'estensione del tempo di simulazione è stata aggiornata con successo
+        title: Estensione del Tempo
+        tooltip: Estensione del tempo come un fattore (ad esempio, 1.5 per un 50% di tempo in più)
+        update: Aggiorna
+      update_time:
+        additional_time: Tempo (min)
+        title: Estendi Tempo
+      workshop_activity_duration:
+        form:
+          duration: Durata in minuti
+        title: Durata dell'attività del workshop
+    normalize_factor_scores:
+      normalization_not_allowed: La normalizzazione dei punteggi dei fattori è attualmente disabilitata per questa valutazione nella configurazione del progetto. Per favore, abilitala per continuare.
+      success: La normalizzazione dei punteggi dei fattori è stata completata con successo
+    scheduled_successfully: La valutazione è stata pianificata con successo
+    scheduling:
+      update_exists: Sovrascrivi pianificazione esistente
+    scheduling_time: Pianifica tempo di valutazione
+    statuses:
+      completed: Completato
+      in_progress: In Corso
+      ineligible: Non Idoneo
+      interrupted: Interrotto
+      not_started: Non Iniziato
+      timed_out: Tempo Scaduto
+      universal_link: Link Universale
+    ungrouped_assessments_heading: Non Raggruppato
+  campaign_join_token:
+    campaign_id: ID della Campagna
+    expire_in: Scade in (sec)
+    invalid_token: Token non valido
+    text: Testo
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: L'attività per aggiungere i rapporti è stata messa in coda con successo
+        success_message: I rapporti sono stati aggiunti con successo
+      bulk_download: Scarica in blocco
+      export_data: Esporta Dati
+    bulk_download:
+      error: Il download in blocco è limitato a 1000 file di rapporti. La selezione attuale contiene %{count} file di rapporti. Per favore, regola le date di inizio e fine per ridurre il numero di file da scaricare.
+    column:
+      assessor_access: Accesso del Valutatore
+      auto_assign: Assegnazione Automatica
+      main_report: Rapporto Principale
+      report_bundle: Pacchetto di Rapporti
+      report_name: Nome del Rapporto
+      user_access: Accesso Utente
+      user_dashboard: Dashboard Utente
+    form:
+      operation: Operazione
+      operation_options:
+        add_and_allow_new_response: Aggiungi rapporto all'utente esistente e consenti una nuova risposta
+        add_with_existing_response: Aggiungi rapporto all'utente esistente e mantieni la risposta esistente
+        skip_existing: Salta utente esistente
+      report: Rapporto
+      report_bundle_placeholder: Seleziona un pacchetto di rapporti
+    messages:
+      bulk_download_successful: L'attività di download in blocco dei rapporti è stata pianificata con successo
+      export_report_data_scheduled: L'attività di esportazione dei dati dei rapporti è stata pianificata con successo
+    modals:
+      remove:
+        apply: Applica queste modifiche agli utenti esistenti in questa campagna.
+        msg_text: Stai tentando di eliminare il rapporto <strong>"%{reportName}"</strong>
+        title: Eliminare Rapporto?
+      user_access:
+        apply: Applica queste modifiche agli utenti esistenti in questa campagna.
+        title:
+          disable: Disabilita Accesso Utente
+          enable: Abilita Accesso Utente
+  campaign_users:
+    actions:
+      add_manager: Aggiungi Manager
+      extend_time: Estendi Tempo
+      search_user: Cerca Utente
+    assessments:
+      progress: Progresso
+    details:
+      additional_time: Tempo Aggiuntivo
+      assessment_center: Centro di Valutazione
+      assessment_center_invites: Inviti al Centro di Valutazione
+      completed_at: Completato il
+      completion_status: Stato di Completamento
+      hogan_id: ID Hogan
+      last_login: Ultimo Accesso
+      manager: Manager
+      modals:
+        create_hogan_credentials:
+          assessments: 'Valutazioni:'
+          confirmation: Inserisci l'email qui sotto nel campo di testo per aggiungere una nuova credenziale Hogan
+          reports: 'Rapporti:'
+          successfully: Nuova credenziale Hogan per l'utente con email %{email} aggiunta con successo.
+          warning: Creare una nuova credenziale Hogan eliminerà le seguenti valutazioni e rapporti associati alla precedente credenziale Hogan per %{email}
+        remove:
+          successfully: L'utente con email %{email} è stato eliminato con successo.
+          title: Sei sicuro di voler eliminare questo utente dalla campagna %{campaignName}?
+      not_completed_yet: Non ancora completato
+      not_logged_in_yet: Non ha ancora effettuato l'accesso
+      not_started_yet: Non ancora iniziato
+      started_at: Iniziato il
+      statuses:
+        completed: Completato
+        in_progress: In Corso
+        ineligible: Non Idoneo
+        interrupted: Interrotto
+        not_started: Non Iniziato
+        timed_out: Tempo Scaduto
+    modals:
+      remove: Sei sicuro di voler eliminare l'utente con email '%{email}' da questa campagna?
+  campaigns:
+    assessments_and_reports:
+      assessor_assessments: Valutazioni del Valutatore
+      other_assessments: Altre Valutazioni
+      other_assessor_assessments: Altre Valutazioni del Valutatore
+      other_reports: Altri Rapporti
+    card:
+      duration: Durata
+      starts_in: 'Inizia tra:'
+      starts_on: Inizia il %{date}
+      will_start_shortly: La campagna inizierà a breve. Per favore, attendi.
+  change_password_page:
+    old_password: Vecchia Password
+    password: Password
+    password_confirmation: Conferma Password
+    title: Cambia Password
+    warning_message: 'Importante: cambiare la password terminerà la tua sessione.'
+  checking_wizard:
+    audio_check:
+      access: Accedi
+      continue: Continua
+      record_title: Parla e ripeti 3 volte le seguenti frasi.
+      test_message: è un piacere parlare con te
+    network_check:
+      continue: Continua
+      download: Scarica
+      please_check_connection: Controlla la tua connessione a internet
+      processing: Elaborazione
+      run_again: Esegui di nuovo
+      run_again_title: Esegui di nuovo questo test
+      title: Clicca su «Avvia» per iniziare il test di velocità della connessione internet.
+      upload: Carica
+    success:
+      start: Inizia la valutazione
+      title: Hai completato con successo tutti i controlli.
+    system_check:
+      continue: Continua
+      title: Prima di iniziare questa valutazione, è necessario eseguire alcuni controlli sul tuo dispositivo.
+    video_check:
+      access: Accedi
+      continue: Continua
+      description: I video o le foto registrati in questa fase non saranno salvati né utilizzati. Saranno usati localmente sul tuo dispositivo per verificare che la fotocamera funzioni nel caso in cui una domanda richieda la registrazione di un video.
+      run_again: Esegui di nuovo
+      title: Dobbiamo verificare se il tuo sistema può registrare video
+  common:
+    actions:
+      add: Aggiungi
+      approve: Approva
+      archive: Archivia
+      back_to_responses: Torna alle Risposte
+      cancel: Annulla
+      change: Cambia
+      close: Chiudi
+      continue: Continua
+      copy: Copia
+      create: Crea
+      delete: Elimina
+      edit: Modifica
+      export: Esporta
+      filter_by_tags: Filtra per etichette
+      import: Importa
+      insert: Inserisci
+      ok: OK
+      remove: Rimuovi
+      reset: Reimposta
+      resolve: Risolvi
+      restore: Ripristina
+      run: Esegui
+      save: Salva
+      schedule: Pianifica
+      search: Cerca
+      send: Invia
+      start: Inizia
+      unarchive: Disarchivia
+      unresolve: Non risolto
+      update: Aggiorna
+      upload: Carica
+      upload_file: Carica File
+      verify: Verifica
+      view: Visualizza
+    column:
+      action: Azione
+      active: Attivo
+      allow_multiple_responses: Consenti risposte multiple
+      approval_notification_list: Elenco Utenti Notifica di Approvazione
+      approvers_list: Elenco degli Approvatori
+      assessment: Valutazione
+      assessment_name: Nome della Valutazione
+      assessments: Valutazioni
+      assessor: Valutatore
+      category: Categoria
+      created_at: Creato il
+      created_by: Creato da
+      created_date: Data di Creazione
+      default_language: Lingua Predefinita
+      description: Descrizione
+      details: Dettagli
+      dimension: Dimensione
+      email: Email
+      external_report_id: ID del Rapporto Esterno
+      first_name: Nome
+      icon: Icona
+      icon_color: Colore dell'Icona
+      id: Id
+      json:
+        answer: Risposta JSON
+        external_result: Risultato Esterno JSON
+        scoring: Punteggio JSON
+      key: Chiave
+      last_name: Cognome
+      linked_activities: Attività Collegate
+      linked_assessment: Valutazione Collegata
+      meeting_link: Link della Riunione
+      modified_by: Modificato da
+      modified_date: Data di Modifica
+      name: Nome
+      owner: Proprietario
+      package_id: ID del Pacchetto
+      poster: Poster
+      project: Progetto
+      provider: Fornitore
+      qc_user_list: Elenco Utenti QC
+      report: Rapporto
+      report_id: ID del Rapporto
+      require_scheduling: Richiede Pianificazione
+      responses_count: Conteggio Risposte
+      schedule_time: Ora Pianificata
+      scheduling: Pianificazione
+      skills: Competenze
+      status: Stato
+      tags: Etichette
+      timing: Tempo
+      token: Token
+      type: Tipo
+      unschedule: Annulla Pianificazione
+      updated_at: Ultimo Aggiornamento
+    model:
+      assessments: Valutazioni
+      campaigns: Campagne
+      reports: Rapporti
+    text:
+      cancel: Annulla
+      confirm: Conferma
+      continue: Continua
+      default: Predefinito
+      download: Scarica
+      na: N/A
+      ok: D'accordo
+      response: Risposta
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Accedi
+    failure:
+      already_authenticated: Hai già effettuato l'accesso.
+      inactive: Il tuo account non è ancora stato attivato.
+      invalid: L'email o la password non sono validi.
+      invited: Hai un invito in sospeso; accettalo per completare la creazione del tuo account.
+      magic_link_invalid: Il link di accesso non è valido o è scaduto.
+      not_found_in_database: L'email o la password non sono validi.
+      timeout: La tua sessione è scaduta. Effettua nuovamente l'accesso per continuare.
+      unauthenticated: Devi accedere o registrarti prima di continuare.
+    invitations:
+      edit:
+        password_label: Password
+    passwords:
+      invalid_email: Email non valida
+    registrations:
+      communication_not_setup_error: Non è stata configurata un'email per le comunicazioni. Contatta l'amministratore di questo progetto.
+      new:
+        email: Email
+        first_name: Nome
+        instruction: Inserisci qui sotto le informazioni necessarie per registrarti e creare un nuovo account
+        last_name: Cognome
+        privacy_notice: Rispettiamo la tua privacy e non tolleriamo lo spam. Non condivideremo mai le tue informazioni con terze parti.
+        registration_code: Codice di registrazione
+        submit: Registrati
+        tabs:
+          register: Registrati
+          sign_in: Accedi
+        terms_notice: Registrandoti, accetti i nostri <a href="%{terms_url}">«Termini di servizio» e la nostra «Informativa sulla privacy»</a>
+        title: Registrati ora
+      success:
+        actions:
+          sign_in: Accedi
+    sessions:
+      new:
+        email: Email
+        forgot_password: Hai dimenticato la password?
+        instruction: Accedi con le informazioni del tuo account personale
+        password_placeholder: Password
+        submit: Accedi
+        tabs:
+          register: Registrati
+          sign_in: Accedi
+        title: Benvenuto!
+    two_factor_authentication:
+      attempt: Inserisci la password monouso che hai ricevuto nella tua email registrata
+      code_has_been_sent: La tua nuova password monouso è stata inviata alla tua email registrata
+  frontend:
+    activate: Attiva
+    are_you_sure: Sei sicuro?
+    assessment: Valutazione
+    assessment_groups:
+      create_success: Il gruppo è stato creato con successo
+      update_success: Il gruppo è stato aggiornato con successo
+    background_reading: Letture preparatorie
+    bookings:
+      accept_invite_msg: Hai ricevuto un invito. Prenota il tuo posto.
+      add_to_calendar: Aggiungi al calendario
+      add_to_calendar_tour_description: Aggiungi questa prenotazione al tuo calendario
+      assessment_center_alert:
+        btn_title: Campagna
+        message_part1: Completa tutti i lavori preliminari in questa/o
+        message_part2: prima di prenotare un posto.
+      assessment_center_group_name: Centro di Valutazione
+      booking_failed_msg: 'Non è stato possibile prenotare un posto: %{error}'
+      buttons:
+        book: Prenota
+        book_again: Prenota di nuovo
+        cancel: Annulla
+        cancel_booking: Annulla la prenotazione
+        confirm_booking: Conferma la prenotazione
+        confirm_reschedule: Conferma il cambio di data/ora
+        modify: Modifica
+        nevermind: Non importa
+        no_text: false
+        request_cancel: Richiedi annullamento
+        request_reschedule: Richiedi un cambio di data/ora
+        reschedule: Cambia data/ora
+        reserve_spot: Prenota il tuo posto
+        yes_text: Sì
+      cancel_booking_confirmation: Sei sicuro di voler annullare questa prenotazione?
+      cancellation_failed: 'Non è stato possibile annullare la prenotazione: %{error}'
+      cancellation_success: La prenotazione è stata annullata con successo
+      comments_required_msg: Aggiungi i tuoi commenti
+      confirm_booking_description: Conferma che i dati siano corretti prima di finalizzare la prenotazione.
+      confirm_booking_title: Vuoi confermare questa prenotazione?
+      default_failure_msg: Non è stato possibile elaborare la tua richiesta. Riprova più tardi.
+      default_requires_msg: Il campo %{name} è obbligatorio
+      join_activity_meeting: Unisciti alla riunione
+      join_workshop_meeting: Unisciti alla riunione
+      language: Lingua
+      language_placeholder: Seleziona una lingua
+      language_preference_question: Hai qualche preferenza riguardo alla lingua?
+      language_required_msg: Seleziona una lingua
+      meeting_start_text: 'La riunione inizierà tra:'
+      need_changes: Hai bisogno di cambiare qualcosa?
+      neurodivergence_comment_placeholder: I tuoi commenti
+      neurodivergence_question: Hai bisogno di adattamenti o aggiustamenti per partecipare alla valutazione a causa di esigenze speciali o di una disabilità?
+      other_invite: Visualizza %{count} altro invito
+      other_invites: Visualizza %{count} altri inviti
+      reason: Motivo
+      reason_for_cancel: Motivo della cancellazione
+      reason_for_reschedule: Motivo del cambio di data/ora
+      request_cancellation_failed: 'Non è stato possibile richiedere la cancellazione: %{error}'
+      request_cancellation_success: La cancellazione è stata richiesta con successo
+      request_reschedule_failed: 'Non è stato possibile richiedere il cambio di data/ora: %{error}'
+      request_reschedule_success: Il cambio di data/ora è stato richiesto con successo
+      reschedule_failed_msg: 'Non è stato possibile cambiare la data/l''ora: %{error}'
+      reschedule_reason_placeholder: Per continuare, inserisci un motivo per il cambio di data/ora.
+      schedule_success: Questa prenotazione ha già una data e un'ora
+      schedule_success_msg: Abbiamo inviato a te e agli altri partecipanti un invito con il calendario e tutti i dettagli.
+      starts_at: 'Inizia il: %{date}'
+      starts_in: 'Inizia tra:'
+      tab_label:
+        bookings: Prenotazioni
+        invites: Inviti
+      what: Cosa
+      when: Quando
+      workshop_start_text: Il tuo Centro di Valutazione inizierà tra
+    break_time: Pausa
+    campaign:
+      actions:
+        remove:
+          confirmation: Inserisci nel campo di testo il nome della campagna fornito sopra per eliminarla
+          success: La campagna %{campaignName} è stata eliminata con successo.
+      users:
+        completion_statuses:
+          completed: Completato/a
+          in_progress: In corso
+          not_started: Non iniziato
+    change_password: Cambia password
+    clients:
+      actions:
+        create:
+          create_client: Crea Cliente
+          create_license: Aggiungi licenza
+        menus:
+          view_licenses: Visualizza Licenze
+        remove:
+          confirmation: Inserisci il nome del cliente attuale nel campo di testo qui sotto per eliminare il cliente
+          success: Il cliente con il nome '%{clientName}' è stato eliminato con successo
+      projects:
+        actions:
+          remove:
+            confirmation: Inserisci il nome del progetto attuale nel campo di testo qui sotto per eliminare il progetto
+            success: Il progetto con il nome '%{projectName}' è stato eliminato con successo
+    delete: Elimina
+    edit: Modifica
+    login: Accedi
+    manage: Gestisci
+    'no': false
+    resource:
+      create_success: "%{readableResourceName} è stato aggiunto con successo"
+      update_success: "%{readableResourceName} è stato aggiornato con successo"
+    update: Aggiorna
+    upload: Carica
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Annullato/a
+        requested_cancellation: Annullamento richiesto
+        requested_rescheduling: Cambio di data/ora richiesto
+    'yes': Sì
+  navigation:
+    logout: Esci
+  profile:
+    add_photo: Aggiungi foto
+    age: Età
+    change_password: Cambia password
+    change_photo: Cambia foto
+    email: Email
+    female: Donna
+    first_name: Nome
+    gender: Sesso
+    last_name: Cognome
+    locale: Lingua preferita
+    male: Uomo
+    not_disclosed: Preferisco non dirlo
+    password: Password
+    password_confirmation: Conferma password
+    success_update: Il profilo è stato salvato con successo
+    timezone: Fuso orario
+    title: Il mio profilo
+    update: Aggiorna
+  report_approvals:
+    events:
+      approved_text: testo approvato
+      comment_added: commento aggiunto <i>%{text}</i>
+      comment_removed: commento eliminato
+      comment_resolved: commento risolto
+      comment_unresolved: commento non risolto
+      comment_updated: commento cambiato da <s>%{oldText}</s> a <i>%{newText}</i>
+      created_text: testo aggiunto
+      disapproved_text: testo non approvato
+      removed_text: testo eliminato
+      status_changed: stato cambiato da <i>%{from}</i> a <i>%{to}</i>
+      updated_text: testo aggiornato
+    tabs:
+      all: Tutti
+      approved: Approvato
+      my_tasks: Le Mie Attività
+  reports:
+    actions:
+      add: Aggiungi Rapporto
+      archived:
+        success_message: Il rapporto "%{name}" è stato archiviato con successo.
+      back_to_campaign: Torna alla Campagna
+      copy:
+        success_message: Il rapporto "%{name}" è stato copiato con successo.
+      details: Dettagli
+      download: Scarica rapporto
+      download_csv: Scarica CSV
+      edit: Modifica
+      evaluate: Valuta
+      extend_time: Estendi tempo
+      goto_dashboard: Clicca qui per continuare
+      re_evaluate: Clicca qui per Rivalutare
+      reevaluate: Rivaluta
+      remove:
+        confirm_message: Sei sicuro di voler eliminare il rapporto "%{name}"?
+        confirm_title: Conferma Richiesta
+        success_message: Il rapporto %{name} è stato eliminato con successo
+      rescore: Ricalcola
+      restore:
+        success_message: Il rapporto %{name} è stato ripristinato con successo
+      unarchived:
+        success_message: Il rapporto %{name} è stato disarchiviato con successo
+      update_language: Aggiorna Lingua
+      view: Visualizza Rapporto
+    active: Attivo
+    archived: Archiviato
+    builder:
+      graph:
+        properties:
+          barBorderRadius: Raggio del Bordo della Barra
+          barWeight: Peso della Barra
+          dataFormat: Formato dei Dati
+          graphOption3D: 3D
+          graphOptionStandard: Standard
+          graphSubType: Sottotipo di Grafico
+          graphTypeHorizontal: Orizzontale
+          graphTypeVertical: Verticale
+          hideEmptyColumns: Nascondi Colonne Vuote
+          hideEmptyFilters: Nascondi Filtri Vuoti
+          hideXAxisLine: Nascondi Linee dell'Asse X
+          hideXAxisTitle: Nascondi Titolo dell'Asse X
+          hideYAxisLine: Nascondi Linee dell'Asse Y
+          hideYAxisTitle: Nascondi Titolo dell'Asse Y
+          hideZeroValueColumns: Nascondi Colonne con Valore Zero
+          legendPosition: Posizione della Legenda
+          maxValueLabel: Valore Massimo (numero)
+          maxValueLabelPlaceholder: Valore Massimo
+          positionBottomLeft: Inferiore Sinistra
+          positionBottomMiddle: Inferiore Centro
+          positionBottomRight: Inferiore Destra
+          positionTopLeft: Superiore Sinistra
+          positionTopMiddle: Superiore Centro
+          positionTopRight: Superiore Destra
+          reverse: Inverti
+          showLegend: Mostra Legenda
+    columns:
+      data_only: Solo Dati
+      default_language: Lingua Predefinita
+      external_settings:
+        hogan_report_id: ID del Rapporto Hogan
+        saville_report_id: ID del Rapporto Saville
+      other_available_languages: Altre Lingue Disponibili
+    create: Crea
+    dashboard: Pannello di Controllo
+    drawer:
+      title: Dettagli del Rapporto
+    fields:
+      provider:
+        custom_upload: Caricamento Personalizzato
+        hogan: Hogan
+        internal: Interno
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+    form:
+      load_from_mettl: Carica da Mettl
+      load_from_pearson: Carica da Pearson
+      none_external: Nessuno - Usa il creatore di rapporti
+    language: Lingua del Rapporto
+    language_updated: La lingua del rapporto è stata aggiornata con successo
+    modules:
+      campaign_factors_table:
+        add_condition: Aggiungi Condizione
+        baseline_score: Punteggio Base
+        blindspots: Aree Cieche
+        campaign_factor_conditions: Condizioni dei Fattori della Campagna
+        cancel: Annulla
+        color: Colore
+        delete: Elimina
+        description: Descrizione
+        if: Se
+        label: Etichetta
+        no_conditions: Nessuna condizione
+        save: Salva
+        strengths: Punti di Forza
+        then: Allora mostra il seguente testo
+        title: Titolo
+      common:
+        all_factors: Tutti i fattori
+        font: Font
+        table_options: Opzioni della Tabella
+        table_type: Tipo di Tabella
+      factors_table:
+        description: Descrizione
+        na: N/A
+        no_data: Non ci sono dati disponibili per questa sezione.
+        rank: Posizione
+        score: Punteggio
+      gap_assessment:
+        gap: Divario
+        item: Indicatore
+        negative_gap: Divari Negativi
+        no_negative_gaps: Non ci sono Divari Negativi
+        no_positive_gaps: Non ci sono Divari Positivi
+        positive_gap: Divari Positivi
+        rank: Posizione
+        scoring_category: Competenza
+      highest_lowest:
+        bottom_5: INFERIORE 5
+        category: Categoria
+        highest_scores: Punteggi Più Alti
+        item: Indicatore
+        lowest_scores: Punteggi Più Bassi
+        mean_score: Punteggio Medio
+        rank: Rango
+        scoring_category: Competenza
+        sub_competenties: Sotto-Competenze
+        top_5: SUPERIORE 5
+      potential_career_full:
+        career_strengths_and_results: Punti di Forza della Carriera e i Tuoi Risultati
+        career_sub_tracks: Sotto-percorsi di Carriera
+        key_career_tracks_within: Di seguito è riportato un elenco di possibili ruoli lavorativi per ciascuno dei percorsi di carriera. Ricorda che questo elenco è solo indicativo e non esaustivo. Tieni presente che i ruoli in corsivo richiedono livelli più alti di istruzione e/o esperienza.
+        potential_areas_of_study: Aree di Studio Potenziali
+        strength_high: Punto di Forza Principale
+        strength_low: Punto di Forza in Sviluppo
+        strength_moderate: Punto di Forza Potenziale
+        work_environment: Ambiente di Lavoro
+        your_suitability: La Tua Idoneità
+      single_value:
+        factor_name: Categoria di Punteggio
+        question_name: Domande
+      single_value_cluster:
+        competency: Competenza
+        developmental_rating: Valutazione dello Sviluppo
+        questions: Domande
+      strength_clusters:
+        index_sub_factors_considered: Sotto-fattori dell'Indice di Crescita considerati per fornire il tuo punteggio finale per l'ambiente di lavoro %{workstyle}
+        possible_roles: Ruoli Possibili
+        work_environments: Ambienti di Lavoro Previsti
+      three_sixty_default:
+        factor:
+          items: Elementi
+          max: Valore Massimo
+          mean: Media
+          min: Valore Minimo
+          standardDeviation: Deviazione Standard
+          sum: Somma
+          totalResponses: Totale Risposte
+          variance: Varianza
+          weightedMean: Media Ponderata
+        question:
+          no_response: Nessuna risposta disponibile
+        statistic: Statistica
+        value: Valore
+      three_sixty_report_summary:
+        completed: Completato
+        footnote: "* Escluso a causa del requisito della soglia minima"
+        invited: Invitato
+        relationships: Relazioni
+        total: Totale
+      video_response:
+        no_results: Non sono stati registrati video
+    pages:
+      edit:
+        assets: Risorse
+        general_settings: Impostazioni Generali
+        translations: Traduzioni
+    report: Rapporto
+    reports: Rapporti
+    reset: Reimposta
+    show:
+      export_pdf: Esporta in PDF
+      header: Rapporto
+    statuses:
+      approved: Approvato
+      available: Disponibile
+      denied: Negato
+      incomplete: Incompleto
+      not_available: Non disponibile
+      on_hold: In attesa
+      released: Rilasciato
+    trash: Cestino
+    update: Aggiorna
+    upload: Carica
+  shared:
+    filters:
+      clear: Rimuovi filtri
+    internet_disconnected_message: Tentativo di riconnessione. Controlla la tua connessione a internet.
+    terms_conditions_privacy: Dichiarazione sulla privacy
+    tte_terms_and_condition: Termini e privacy
+  simple_form:
+    placeholders:
+      administrator:
+        email: Email
+        last_name: Cognome
+      memebrship:
+        last_name: Cognome
+      user:
+        email: Email
+        first_name: Nome
+        last_name: Cognome
+        password: Password
+      user_form:
+        email: Email
+        first_name: Nome
+        last_name: Cognome
+        password: Password
+  subjects:
+    statuses:
+      completed: Completato/a
+      declined: Rifiutato/a
+      denied: Negato/a
+      done: Fatto
+      not_completed: Non completato/a
+      waiting: In attesa
+  threesixty:
+    accept_privacy_modal:
+      accept: Accetta
+      checkbox: Ho letto e compreso la «Politica sulla privacy» sopra menzionata
+      title: Consenso per il trattamento dei dati
+    add: Aggiungi
+    and: E
+    approve_all: Approva tutto
+    approve_all_successful: Tutte le proposte sono state approvate
+    approve_evaluations: Approva valutazioni
+    approve_nominations: Approva proposte
+    approve_reports: Approva rapporti
+    approved: Approvato/a
+    approving_mail_sent: È stata inviata un'email agli amministratori per approvare la proposta
+    as_my: come mio/mia
+    assessment: Valutazione
+    back_to_tasks: Torna alle attività
+    begin: Inizia
+    cancel: Annulla
+    close_evaluation_modal:
+      message: Se leggi il rapporto, %{pronoun_or_name} non potrà ricevere ulteriori valutazioni
+      title: Sei sicuro di voler leggere il rapporto?
+    closed_campaign_message: Questa campagna 360 è stata chiusa. Non puoi proporre né valutare nessuno per questa campagna.
+    completed: Completato/a
+    confirm: Sei sicuro?
+    confirmation_for_nomination_removal: Sei sicuro di voler eliminare la proposta?
+    confirmation_required: È richiesta la conferma
+    confirmation_text_incorrect: Il testo di conferma non è corretto
+    confirmation_text_placeholder: Inserisci qui il testo di conferma
+    continue: Continua
+    dashboard_title: Benvenuto, %{name}.
+    decline: Rifiuta
+    decline_invite: Rifiuta l'invito
+    denied: Negato/a
+    deny_all: Nega tutto
+    deny_all_successful: Tutte le proposte sono state negate
+    download_pdf: Scarica PDF
+    download_report: Scarica rapporto
+    download_reports: Scarica rapporti
+    edit_user: Modifica utente
+    email_approve_request: Richiesta di approvazione via email
+    email_schedules:
+      delete_successful: La pianificazione dell'email è stata eliminata con successo
+    evaluate: Valuta
+    evaluation: Valutazione
+    evaluation_all_closed_message: Al momento, tutte le proposte sono in attesa di approvazione
+    evaluation_closed_nomination_message: Non puoi effettuare una proposta per questo argomento, poiché la valutazione per questo argomento è chiusa
+    evaluation_help_modal:
+      title: Aiuto con la valutazione
+    evaluations: Valutazioni
+    evaluator: Valutatore
+    export_pdf: Esporta PDF
+    first_name: Nome
+    first_name_error: Inserisci il nome
+    help: Aiuto
+    language: Lingua
+    last_name: Cognome
+    last_name_error: Inserisci il cognome
+    load_results: Carica risultati
+    mail_history:
+      statuses:
+        success: Corretto
+        undelivered: Non consegnato/a
+    my_projects: I miei progetti
+    nominate: Proponi
+    nominate_evaluators: Proponi valutatori per
+    nomination: Proposta
+    nomination_help_modal:
+      title: Aiuto con la proposta
+    nominations: Proposte
+    options:
+      global:
+        cannot_re_edit: I partecipanti non possono modificare le valutazioni
+    or: O
+    page_title: Revisione 360° di Signify (livello di richiesta)
+    participant_list:
+      actions:
+        approve_report: Approva rapporto
+        download_report: Scarica rapporto
+        edit: Modifica
+        hold_report: Trattieni rapporto
+        login: Accedi
+        mark_as_done: Segna come completato/a
+        release_report: Rilascia rapporto
+        remove_campaign: Rimuovi dalla campagna
+        remove_report_approval: Rimuovi approvazione del rapporto
+        remove_report_hold_release_report: Rimuovi trattenimento/rilascio del rapporto
+        remove_subject: Rimuovi argomento
+        unmark_as_done: Deseleziona come completato/a
+        view_report: Visualizza rapporto
+        view_responses: Visualizza risposte
+      confirmation_messages:
+        approve_report: Sei sicuro di voler approvare il rapporto?
+        hold_report: Sei sicuro di voler trattenere il rapporto?
+        mark_evaluation_done: Sei sicuro di voler segnare la valutazione come completata? La valutazione per questo argomento sarà chiusa.
+        release_report: Sei sicuro di voler rilasciare il rapporto?
+        remove_from_campaign: Sei sicuro di voler rimuovere l'utente dalla campagna?
+        remove_release_hold: Sei sicuro di voler rimuovere lo stato di rilascio/trattenimento?
+        remove_report_approval: Sei sicuro di voler rimuovere l'approvazione del rapporto?
+        remove_subject: Sei sicuro di voler rimuovere l'argomento con l'email dalla campagna?
+        umark_evaluation_as_complete: Sei sicuro di voler deselezionare la valutazione come completata?
+      report_generation_message: Il rapporto è in fase di generazione. Ti informeremo quando sarà pronto.
+    processing: Elaborazione
+    processing_report: Elaborazione del rapporto
+    progress_text: "%{completed} di %{total}"
+    question:
+      chat_type:
+        input_placeholder: Scrivi il tuo messaggio...
+      email_type:
+        bcc: 'Ccn:'
+        cc: 'Cc:'
+        edit: Modifica
+        max_length_warning: "%{x} caratteri rimanenti"
+        message: Il tuo messaggio
+        send: Invia
+        subject: Soggetta
+        successful_message: L'email è stata inviata con successo
+        to: 'A:'
+    remind_all: Ricorda a tutti
+    remind_mail_sent: Sono stati inviati promemoria ai valutatori che non hanno completato la valutazione
+    report_for: Rapporto di
+    report_generation_in_progress: Il rapporto è in fase di generazione. Ti informeremo quando sarà pronto.
+    reports: Rapporti
+    reports_help_modal:
+      title: I report aiutano
+    reset_campaign_confirmation: Inserisci nel campo di testo il nome della campagna fornito sopra per reimpostare tutti i partecipanti
+    reset_nomination_confirmation: Inserisci nel campo di testo il nome della campagna fornito sopra per reimpostare tutte le proposte
+    save: Salva
+    select_relationnship: Seleziona relazione
+    select_relationship: Seleziona relazione
+    self: Me stesso/a
+    set_name_for_evaluator: Definisci un nome per il valutatore
+    setup_nominations: Definisci le proposte
+    subject: Argomento
+    submit: Invia
+    total_progress: Progresso totale
+    user_name_input_placeholder: inserisci il nome o l'email...
+    validation_errors: Errori di validazione
+    view_my_report: Visualizza il mio rapporto
+    view_nominations: Visualizza proposte
+    view_reports: Visualizza rapporti
+    waiting: In attesa
+    you: Tu
+    yourself: Te stesso/a
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: L'autenticazione a 2 fattori è disabilitata
+          enabled: L'autenticazione a 2 fattori è abilitata
+        option_to_disable: Disabilita 2FA
+        option_to_enable: Abilita 2FA
+      remove:
+        confirm_message: Sei sicuro di voler eliminare l'utente con l'email '%{email}'?
+        confirm_title: Conferma Richiesta
+        error_message: Non è stato possibile eliminare l'utente a causa dell'errore - %{error}
+        success_message: "%{email} è stato eliminato"
+        system_error_message: Non è stato possibile eliminare l'utente, riprova più tardi o contatta il supporto.
+      reset_password:
+        option: Reimposta Password
+      unlock_user_access:
+        message: L'accesso dell'utente con l'email %{email} è stato sbloccato con successo.
+        title: Sblocca Accesso Utente
+        tooltip: Questo account utente è bloccato
+    admins: Amministratori
+    create_global_assessor: Crea Valutatore Globale
+    create_superadmin: Crea Super Amministratore
+    dashboard: Pannello di Controllo
+    drawer:
+      link: Link
+      role: Ruolo
+      title: Dettagli Utente
+    global_assessors: Valutatori Globali
+    password_change_success: La password è stata cambiata con successo. Accedi con la tua nuova password.
+    roles:
+      campaign_admin: Amministratore della Campagna
+      campaign_assessor: Valutatore della Campagna
+      campaign_user: Utente della Campagna
+      client_admin: Amministratore del Cliente
+      project_admin: Amministratore del Progetto
+      superadmin: Super Amministratore
+    superadmins: Super Amministratori
+    users: Utenti
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: L'audio è stato registrato, ma non è stato salvato
+        RECORDING: Registrazione audio in corso
+        SAVING: Caricamento della registrazione audio in corso
+      required: Registra e salva l'audio prima di continuare
+    FileUpload:
+      in_progress:
+        SAVING: Caricamento del file in corso
+      required: Carica il file
+    TextEntry:
+      Email:
+        character_range: Il messaggio email deve avere almeno %{min} caratteri e non più di %{max}.
+        subject:
+          min_length: Il campo dell'oggetto deve avere almeno 10 caratteri
+        to:
+          required: Il campo «A» è obbligatorio
+    VideoResponse:
+      in_progress:
+        recorded: Il video è stato registrato, ma non è stato salvato
+        recording: Registrazione video in corso
+        saving: Caricamento della registrazione video in corso
+      required: Registra e salva il video prima di continuare
+    actions_still_in_progress: 'Le seguenti azioni sono in corso: Se procedi, perderai i dati.'
+    blank: non può essere vuoto
+    character_count: 'Conteggio caratteri '
+    character_range: La tua risposta deve avere almeno %{min} caratteri e non più di %{max}.
+    date: La tua risposta deve essere una data valida (GG/MM/AAAA)
+    each_group_contains: Ogni gruppo deve avere almeno %{min} elementi e non più di %{max}
+    email: La tua risposta deve essere un'email valida
+    file_upload:
+      EntityTooLarge: La dimensione del file non deve superare %{maxFileSize} MB
+      WrongFileType: 'Il file deve essere di uno di questi tipi: %{allowedFileTypes}'
+    issue: Problema
+    least: Rispondi ad almeno %{min} opzione/i.
+    least_hotspot: Rispondi ad almeno %{min} opzione/i.
+    max_character: La tua risposta non deve avere più di %{max} caratteri.
+    max_word: La tua risposta non deve avere più di %{max} parole.
+    min_character: La tua risposta deve contenere almeno %{min} caratteri.
+    min_word: La tua risposta deve essere di almeno %{min} parole
+    must_rank_between: Assegna un valore tra %{min} e %{max} a ogni elemento. I valori non devono essere ripetuti.
+    must_select: Seleziona tra %{min} e %{max} opzioni
+    number: La tua risposta deve essere un numero
+    range: Rispondi ad almeno %{min} opzione/i e non più di %{max}.
+    required: Rispondi a questa domanda
+    text: La tua risposta non deve contenere numeri
+    title:
+      one: C'è un errore, per favore controlla le tue risposte
+      other: Ci sono %{count} errori, per favore controlla le tue risposte
+    word_count: 'Conteggio parole '
+    word_range: La tua risposta deve avere almeno %{min} e non più di %{max} parole.
+  'yes': Sì
+  your: Il tuo
+  yourself: Te stesso

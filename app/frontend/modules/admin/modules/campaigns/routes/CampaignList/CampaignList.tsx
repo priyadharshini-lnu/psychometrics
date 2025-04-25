@@ -329,15 +329,15 @@ const getActionsMenuProps = ({
   const menuItems: ItemType[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
-    label: 'Edit',
+    label: I18n.t('administration.campaigns.edit'),
   })
   permissions.copy && !campaign.isThreesixty && menuItems.push({
     key: 'copy',
-    label: 'Copy',
+    label: I18n.t('administration.campaigns.copy'),
   })
   permissions.delete && menuItems.push({
     key: 'delete',
-    label: 'Delete',
+    label: I18n.t('administration.campaigns.delete'),
   })
 
   permissions.pdfPassword && menuItems.push({

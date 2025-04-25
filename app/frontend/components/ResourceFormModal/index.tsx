@@ -54,6 +54,8 @@ interface Request {
   submit(values: object): Promise<unknown>
 }
 
+const { I18n } = window
+
 const ResourceFormModal: React.FC<Props> = (props) => {
   const {
     title,
@@ -95,7 +97,8 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const getTitle = () => {
     if (title) { return title }
 
-    return `${isEdit() ? 'Edit' : 'Add'} ${readableResourceName || resourceName}`
+    return `${isEdit() ? I18n.t('common.actions.edit') : I18n.t('common.actions.add')}
+     ${readableResourceName || resourceName}`
   }
 
   const renderTitle = () => {
@@ -115,7 +118,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const buttonName = (): string => {
     if (submitButtonName) return submitButtonName
 
-    return isEdit() ? 'Update' : 'Add'
+    return isEdit() ? I18n.t('common.actions.update') : I18n.t('common.actions.add')
   }
 
   return (
@@ -126,7 +129,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>
-          Cancel
+          {I18n.t('common.actions.cancel')}
         </Button>,
         !hideOkButton && (
           <Button

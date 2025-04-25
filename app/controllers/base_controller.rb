@@ -3,6 +3,7 @@
 class BaseController < ActionController::Base
   include Pundit
   include SetLocale
+  include AddCookie
   prepend AuditLogModule::ControllerHelper
 
   protect_from_forgery with: :exception
