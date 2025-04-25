@@ -25,7 +25,7 @@ FactoryBot.define do
     factory :hogan_assessment, class: '::Assessments::Hogan' do
       category { Assessment::CATEGORIES[:hogan] }
       type { Assessments::Hogan }
-      external_settings { { assessment_id: 'assessmentId' } }
+      external_settings { { assessment_id: 'HDS' } }
     end
 
     trait :iiht do
