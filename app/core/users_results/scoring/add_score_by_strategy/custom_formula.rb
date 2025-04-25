@@ -24,7 +24,7 @@ module UsersResults
             'answer' => proc { |json_path| answer_from_json_path(json_path) }
           }
           lua.helpers = {
-            'round' => proc { |value, precision = 0| value.round(precision) },
+            'round' => proc { |value, precision = 0| value&.round(precision) },
             'percentile' => proc { |value| Ztable.percentile(value) },
             'average' => proc { |values, precision = nil| calculate_average(values, precision) }
           }

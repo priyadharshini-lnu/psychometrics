@@ -16,7 +16,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import styles from './DevelopmentActionLandscapeCard.less'
-import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from '.'
+import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from './Types'
 import { Tags } from './Common'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
@@ -302,7 +302,9 @@ const Card = ({
               {developmentAction.description || developmentAction.customAction}
             </Typography.Paragraph>
             <Flex className={styles.mb_8}>
-              {developmentAction.learningStyle ? <Tags type={developmentAction.learningStyle} /> : null}
+              {developmentAction.learningStyle || developmentAction.customActionLearningStyle
+                ? <Tags type={developmentAction.learningStyle || developmentAction.customActionLearningStyle} />
+                : null}
             </Flex>
           </div>
           {

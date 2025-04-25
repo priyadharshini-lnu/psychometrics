@@ -18,8 +18,11 @@ class CommunicationEmailMailer < ApplicationMailer
       data[:schedule_end_date] = format_date(campaign_user&.schedule_end_date, time_zone)
     end
 
-    @body = Mustache.render(replace_new_piped_texts, data)
-    subject = Mustache.render(@communication_email.communication.subject, data.slice(:first_name, :last_name))
+    @body = Mustache.render(replace_new_piped_texts(@communication_email.communication.body), data)
+    subject = Mustache.render(
+      replace_new_piped_texts(@communication_email.communication.subject),
+      data.slice(:first_name, :last_name)
+    )
 
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
     smtp_setting = recipient.project.smtp_setting
@@ -46,9 +49,9 @@ class CommunicationEmailMailer < ApplicationMailer
     @workshop ||= @communication_email.workshop
   end
 
-  def replace_new_piped_texts
+  def replace_new_piped_texts(content)
     Communications::PipedText::Perform.call!(
-      @communication_email.communication.body,
+      content,
       {
         workshop: @communication_email.workshop,
         workshop_invite: @communication_email.workshop_invite,

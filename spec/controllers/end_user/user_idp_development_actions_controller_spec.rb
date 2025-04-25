@@ -19,6 +19,14 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
         user_idp_skill: user_idp_skills.first, development_action: development_action)
   end
 
+  let!(:custom_action) do
+    create(:user_idp_development_action,
+           user_idp_plan: user_idp_plan,
+           user_idp_skill: user_idp_skills.first,
+           custom_action: 'Custom Development Task',
+           custom_action_learning_style: 'on_the_job')
+  end
+
   before(:each) { login_user(user) }
   after(:each) { sign_out(user) }
 
@@ -27,9 +35,16 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       get :index, params: { user_id: user.id }
       parsed_result = response.parsed_body
       expect(parsed_result.keys).to include('meta')
-      expect(parsed_result['meta']['record_count']).to eq(1)
-      expect(parsed_result['data'][0]['id']).to eq(user_idp_development_action.id)
-      expect(parsed_result['data'][0]['name']).to eq(user_idp_development_action.development_action.name)
+      expect(parsed_result['meta']['record_count']).to eq(2)
+
+      regular_action = parsed_result['data'].find { |a| a['id'] == user_idp_development_action.id }
+      expect(regular_action['name']).to eq(user_idp_development_action.development_action.name)
+      expect(regular_action['learning_style']).to eq(user_idp_development_action.development_action.learning_style)
+
+      custom = parsed_result['data'].find { |a| a['id'] == custom_action.id }
+      expect(custom['custom_action']).to eq('Custom Development Task')
+      expect(custom['learning_style']).to be_nil
+      expect(custom['custom_action_learning_style']).to eq('on_the_job')
     end
   end
 
@@ -45,12 +60,12 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
           params: { user_id: user.id, user_idp_skill_id: skill_for_development_action.id }
       parsed_result = response.parsed_body
       expect(parsed_result['meta']['record_count']).to eq(2)
-      expect(parsed_result['data'].map do |action|
-               action['id']
-             end).to contain_exactly(development_action1.id, development_action2.id)
-      expect(parsed_result['data'].map do |action|
-               action['name']
-             end).to contain_exactly(development_action1.name, development_action2.name)
+
+      available_actions = parsed_result['data']
+      expect(available_actions.map { |a| a['id'] }).to match_array([development_action1.id, development_action2.id])
+      expect(available_actions.first['name']).to eq(development_action1.name)
+      expect(available_actions.first['description']).to eq(development_action1.description)
+      expect(available_actions.first['learning_style']).to eq(development_action1.learning_style)
     end
   end
 
@@ -133,6 +148,84 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.parsed_body['errors']).to eq(['Limit reached'])
+      end
+    end
+  end
+
+  describe 'POST save_plan' do
+    context 'with custom actions' do
+      let(:valid_params) do
+        {
+          user_id: user.id,
+          user_idp_development_action: [{
+            id: nil,
+            development_action_id: nil,
+            user_idp_skill_id: user_idp_skills.first.id,
+            custom_action: 'New custom action',
+            custom_action_learning_style: 'on_the_job',
+            progress: 0,
+            start_date_time: '2024-03-28 15:45',
+            end_date_time: '2024-03-30 15:45',
+            private: false
+          }]
+        }
+      end
+
+      it 'creates custom action with learning style' do
+        post :save_plan, params: valid_params
+        expect(response).to have_http_status(:ok)
+
+        action = UserIdpDevelopmentAction.last
+        expect(action.custom_action).to eq('New custom action')
+        expect(action.custom_action_learning_style).to eq('on_the_job')
+      end
+
+      it 'requires learning_style for custom actions' do
+        params = {
+          user_id: user.id,
+          user_idp_development_action: [{
+            id: nil,
+            development_action_id: nil,
+            user_idp_skill_id: user_idp_skills.first.id,
+            custom_action: 'New custom action',
+            custom_action_learning_style: nil,
+            progress: 0,
+            start_date_time: '2024-03-28 15:45',
+            end_date_time: '2024-03-30 15:45',
+            private: false
+          }]
+        }
+
+        post :save_plan, params: params
+        expect(response).to have_http_status(:unprocessable_entity)
+        parsed_response = response.parsed_body
+        expect(
+          parsed_response['errors']['1']['custom_action_learning_style']
+        ).to include(I18n.t('administration.development_actions.learning_styles.cannot_be_blank'))
+      end
+
+      it 'validates learning_style values' do
+        params = {
+          user_id: user.id,
+          user_idp_development_action: [{
+            id: nil,
+            development_action_id: nil,
+            user_idp_skill_id: user_idp_skills.first.id,
+            custom_action: 'New custom action',
+            custom_action_learning_style: 'not_valid_learning_style',
+            progress: 0,
+            start_date_time: '2024-03-28 15:45',
+            end_date_time: '2024-03-30 15:45',
+            private: false
+          }]
+        }
+
+        post :save_plan, params: params
+        expect(response).to have_http_status(:unprocessable_entity)
+        parsed_response = response.parsed_body
+        expect(
+          parsed_response['errors']['1']['custom_action_learning_style']
+        ).to include(I18n.t('administration.development_actions.learning_styles.invalid'))
       end
     end
   end

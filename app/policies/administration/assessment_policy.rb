@@ -163,6 +163,10 @@ module Administration
       import_questions?
     end
 
+    def export_questions?
+      has_permission?(:assessments, :manage, project_id: record.owner_id)
+    end
+
     private
 
     def can_manage_asssessment?

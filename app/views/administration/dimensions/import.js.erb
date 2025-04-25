@@ -1,0 +1,15 @@
+$(function () {
+  // Make sure the modal container exists
+  if (!document.getElementById('modal-container')) {
+    const container = document.createElement('div');
+    container.id = 'modal-container';
+    document.body.appendChild(container);
+  }
+  
+  // Call the global render function
+  if (typeof window.renderDimensionImportModal === 'function') {
+    window.renderDimensionImportModal('modal-container');
+  } else {
+    console.error("renderDimensionImportModal function not found. Make sure the JavaScript bundle is loaded.");
+  }
+});

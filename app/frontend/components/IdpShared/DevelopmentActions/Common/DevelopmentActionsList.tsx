@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Flex, Typography, Empty } from 'antd'
 import cs from 'classnames'
-import { AvailableDevelopmentActions } from '..'
+import { AvailableDevelopmentActions } from '../Types'
 import Tags from './Tags'
 import styles from './DevelopmentActionsList.less'
 

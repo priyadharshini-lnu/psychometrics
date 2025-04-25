@@ -1,10 +1,12 @@
 import Norm from './Norm'
 import SimulationContentVariation from './SimulationContentVariation'
+import PearsonVariation from './PearsonVariation'
 
 interface ExternalConfig {
   duration: number
   passPercentage: number
   contentVariationId: string | null
+  variation: string
 }
 
 export default interface Assessment {
@@ -24,6 +26,7 @@ export default interface Assessment {
   universalLink: string | null
   norms?: Norm[]
   simulationContentVariations?: SimulationContentVariation[]
+  pearsonVariations?: PearsonVariation[]
   iconUrl: string | null
   iconColor: string | null
   permissions: {
@@ -43,6 +46,7 @@ export default interface Assessment {
     normalizeFactorScores: boolean
     updateContentVariation: boolean
     updateAvailableLocales: boolean
+    updatePearsonVariation: boolean
   },
   externalConfig: ExternalConfig,
   campaignAssessmentId: number

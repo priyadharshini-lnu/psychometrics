@@ -1,7 +1,8 @@
 import { Tag } from 'antd'
+import { DevelopmentActionLearningStyle } from '../Types'
 
 type Props = {
-  type: 'on_the_job' | 'structured_learning' | 'learning_from_others';
+  type: DevelopmentActionLearningStyle
 }
 
 const { I18n } = window

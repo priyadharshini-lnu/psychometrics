@@ -31,9 +31,10 @@ module Administration
       end
 
       def upload_campaign_factors
-        form = ::Administration::Reports::CampaignFactorsImportForm.new(
+        form = ::Administration::CampaignFactors::ImportForm.new(
           file: params[:file],
-          report_id: params[:report_id]
+          resource_id: params[:report_id],
+          resource_class: 'Report'
         )
 
         if form.valid?

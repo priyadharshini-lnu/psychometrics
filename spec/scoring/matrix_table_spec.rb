@@ -28,7 +28,7 @@ RSpec.describe Scoring::MatrixTable do
               { 'scale' => 0, 'choice' => 0, 'value' => true },
               { 'scale' => 1, 'choice' => 1, 'value' => true },
               { 'scale' => 1, 'choice' => 2, 'value' => true }
-            ] }, template_data
+            ] }, factors_scoring(template_data)
           )[:value]
           expect(result).to eq(5 / 3.to_f)
         end
@@ -37,7 +37,7 @@ RSpec.describe Scoring::MatrixTable do
         it 'returns nil' do
           result = matrix_table.calculate(
             Question.new(props: { 'choices' => 3, 'scalePoints' => 3 }),
-            { 'answers' => [] }, template_data
+            { 'answers' => [] }, factors_scoring(template_data)
           )[:value]
           expect(result).to be_nil
         end
@@ -46,7 +46,7 @@ RSpec.describe Scoring::MatrixTable do
         it 'returns nil' do
           result = matrix_table.calculate(
             Question.new(props: { 'choices' => 1, 'scalePoints' => 1 }),
-            { 'answers' => [{ 'scale' => 1, 'choice' => 1, 'value' => false }] }, template_data
+            { 'answers' => [{ 'scale' => 1, 'choice' => 1, 'value' => false }] }, factors_scoring(template_data)
           )[:value]
           expect(result).to be_nil
         end
@@ -61,7 +61,7 @@ RSpec.describe Scoring::MatrixTable do
             { 'answers' => [
               { 'scale' => 0, 'choice' => 0, 'value' => true },
               { 'scale' => 1, 'choice' => 2, 'value' => true }
-            ], 'not_applicable' => { '1' => true } }, template_data
+            ], 'not_applicable' => { '1' => true } }, factors_scoring(template_data)
           )
           expect(result[:value]).to eq(3 / 2.0)
           expect(result[:max_value]).to eq(4)
@@ -71,7 +71,7 @@ RSpec.describe Scoring::MatrixTable do
         result = matrix_table.calculate(
           Question.new(props: { 'choices' => 1, 'scalePoints' => 1 }),
           { 'answers' => [], 'not_applicable' => { '0' => true, '1' => true, '2' => true } },
-          template_data
+          factors_scoring(template_data)
         )
         expect(result[:value]).to be_nil
         expect(result[:max_value]).to be_nil
@@ -83,11 +83,15 @@ RSpec.describe Scoring::MatrixTable do
             { 'scale' => 1, 'choice' => 0, 'value' => true },
             { 'scale' => 1, 'choice' => 1, 'value' => true }
           ], 'not_applicable' => false },
-          template_data
+          factors_scoring(template_data)
         )
         expect(result[:value]).to eq(2)
         expect(result[:max_value]).to eq(5)
       end
     end
+  end
+
+  def factors_scoring(props, strategy: nil)
+    FactorsScoring.new(props: props, scoring_strategy: strategy)
   end
 end

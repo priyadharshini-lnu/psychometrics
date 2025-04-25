@@ -36,8 +36,20 @@ const LOCALES = [
     value: 'ar',
   },
 ]
+interface FieldItem {
+  name: string;
+  type: string;
+  items?: () => { key: string; value: string }[];
+  getValue?: (item?: { key?: string } | string, arg2?: string, arg3?: string) => string;
+  value?: string;
+}
 
-const FIELDS = [
+interface FieldConfig {
+  branch: string;
+  supportedCommunicationKind?: string[];
+  fields: FieldItem[];
+}
+const FIELDS: FieldConfig[] = [
   {
     branch: 'Assessment Center',
     supportedCommunicationKind: [
@@ -48,13 +60,13 @@ const FIELDS = [
         name: 'Start time',
         type: 'dropdown',
         items: () => _.map(DATE_FORMATS, f => ({ key: f.format, value: f.name })),
-        getValue: ({ key }) => `\${w://Workshop/Field/StartTime?format=${key}}`,
+        getValue: (item?: { key?: string }) => `\${w://Workshop/Field/StartTime?format=${item?.key}}`,
       },
       {
         name: 'End time',
         type: 'dropdown',
         items: () => _.map(DATE_FORMATS, f => ({ key: f.format, value: f.name })),
-        getValue: ({ key }) => `\${w://Workshop/Field/EndTime?format=${key}}`,
+        getValue: (item?: { key?: string }) => `\${w://Workshop/Field/EndTime?format=${item?.key}}`,
       },
       {
         name: 'Duration',
@@ -74,13 +86,13 @@ const FIELDS = [
         name: 'Title',
         type: 'dropdown',
         items: () => _.map(LOCALES, f => ({ key: f.value, value: f.name })),
-        getValue: ({ key }) => `\${wi://WorkshopInvite/Field/Title?locale=${key}}`,
+        getValue: (item?: { key?: string }) => `\${wi://WorkshopInvite/Field/Title?locale=${item?.key}}`,
       },
       {
         name: 'Description',
         type: 'dropdown',
         items: () => _.map(LOCALES, f => ({ key: f.value, value: f.name })),
-        getValue: ({ key }) => `\${wi://WorkshopInvite/Field/Description?locale=${key}}`,
+        getValue: (item?: { key?: string }) => `\${wi://WorkshopInvite/Field/Description?locale=${item?.key}}`,
       },
     ],
   },
@@ -114,6 +126,21 @@ const FIELDS = [
         getValue: (campaignId, expire, text) => (
           `\${c://Campaign/JoinLink?campaign_id=${campaignId}&text=${text}&expiry=${expire}}`
         ),
+      },
+      {
+        name: 'Campaign Name',
+        type: 'link',
+        value: '${c://Campaign/Field}',
+      },
+    ],
+  },
+  {
+    branch: 'Projects',
+    fields: [
+      {
+        name: 'Project Name',
+        type: 'link',
+        value: '${p://Project/Field}',
       },
     ],
   },

@@ -78,12 +78,14 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   }, [seconds])
 
   useEffect(() => {
-    if (!seconds) return
+    if (!seconds || !countDownValue) return
 
     const notifications = notificationPoints.map(
-      notificationPoint => notificationSetTimeout(notificationPoint.timeRemaining,
-        seconds,
-        notificationPoint.type),
+      notificationPoint => notificationSetTimeout(
+        notificationPoint.timeRemaining,
+        countDownValue,
+        notificationPoint.type,
+      ),
     )
 
     return () => {
@@ -101,10 +103,11 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
     totalSeconds: number,
     type: Notification['type'],
   ) => {
-    const remainingTimeInMilliseconds = totalSeconds * 1000
-    const notificationTimeInMilliseconds = timeRemaining * 1000
+    const now = Date.now()
+    const fireAt = totalSeconds - (timeRemaining * 1000)
+    const delay = fireAt - now
 
-    if (remainingTimeInMilliseconds - notificationTimeInMilliseconds > 0) {
+    if (delay > 0) {
       const minutes = Math.floor(timeRemaining / 60)
       return setTimeout(() => {
         if (notificationPoints.length) {
@@ -113,7 +116,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
             duration: notificationDuration,
           })
         }
-      }, remainingTimeInMilliseconds - notificationTimeInMilliseconds)
+      }, delay)
     }
 
     return undefined

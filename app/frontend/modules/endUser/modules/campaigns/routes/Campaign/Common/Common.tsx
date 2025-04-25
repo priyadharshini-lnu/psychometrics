@@ -73,7 +73,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     fixedTimed,
     campaignsCount,
     campaignOptions: {
-      instructionsEnabled, instructions, proctoringEnabled, integrationType,
+      instructionsEnabled, instructions, proctoringEnabled, integrationType, proctoringEnabledOnWorkshopActivity,
     },
     campaignTime,
   } = campaign
@@ -84,19 +84,28 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const counters = _.countBy(campaign.userAssessments, 'status')
   // TODO: We can check completion_status here. Also need to take care for assessment timed_out status when we add it
   const allAssessmentsComplete = counters.completed === campaign.userAssessments.length
+  const hasAssessments = !!campaign.userAssessments.length
+
+  let allAssessmentCompleteBasedOnWorkshopProctoringSetting = allAssessmentsComplete
+  if (!proctoringEnabledOnWorkshopActivity && !allAssessmentsComplete && hasAssessments) {
+    allAssessmentCompleteBasedOnWorkshopProctoringSetting = campaign.userAssessments.every(
+      ua => (ua.workshopActivity ? true : ua.status === 'completed'),
+    )
+  }
   const allPreworkIsComplete = _.find(
     campaign.userAssessments, ua => ua.prework && ua.status !== 'completed',
   ) === undefined
   let ungrouped = _.compact(
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
-  const hasAssessments = !!campaign.userAssessments.length
   const hasStartedCampaign = !!campaignUser.startedAt && campaignUser.status !== 'not_started'
   const campaignUserTimedOut = campaignUser.status === 'timed_out'
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
   const hasNoExpiryDateForTimedCampaign = isTimedCampaign && !expiryDate && campaignUser.status === 'in_progress'
   const campaignClosedForUser = campaignClosed
-  || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
+    || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
+  const disableWorkshopActivityBasedOnProctoringSetting = proctoringEnabledOnWorkshopActivity
+    ? needsProctoring : isProctored()
 
   const canNotStartPrework = campaignClosedForUser || campaignUser.status === 'completed'
   const canNotStartAssessment = needsProctoring
@@ -106,12 +115,18 @@ const CommonComponent: FC<CommonComponentProps> = ({
     || isCampaignInterrupted
     || campaignUserTimedOut
     || hasNoExpiryDateForTimedCampaign
-  const canBeginCampaign = !campaignClosedForUser && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
+  const canNotStartWorkshopActivity = campaignUser.status === 'completed'
+    || campaignClosedForUser
+    || disableWorkshopActivityBasedOnProctoringSetting
+    || campaignUserTimedOut
+    || !allPreworkIsComplete
+  const canBeginCampaign = !campaignClosedForUser && hasAssessments && !hasStartedCampaign
+    && !allAssessmentCompleteBasedOnWorkshopProctoringSetting
     && fixedTimed && !isCampaignInterrupted
   // eslint-disable-next-line max-len
   const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
-    && !campaignClosedForUser && !allAssessmentsComplete && !campaignUserTimedOut && fixedTimed
-
+    && !campaignClosedForUser && !allAssessmentCompleteBasedOnWorkshopProctoringSetting
+    && !campaignUserTimedOut && fixedTimed
 
   const allCampaignLevelAssessmentIds = _.flatten([
     ...groups.map(g => g.campaignAssessmentIds),
@@ -345,6 +360,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                     campaign={campaign}
                     canNotStartPrework={canNotStartPrework}
                     canNotStartAssessment={canNotStartAssessment}
+                    canNotStartWorkshopActivity={canNotStartWorkshopActivity}
                     campaignNotStarted={canBeginCampaign || canContinueCampaign}
                   />
                 </div>

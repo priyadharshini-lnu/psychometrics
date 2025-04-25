@@ -13,5 +13,10 @@ FactoryBot.define do
       development_action { nil }
       custom_action { Faker::Lorem.characters(number: 5) }
     end
+
+    trait :with_custom_development_action do
+      custom_action { 'Custom Development Task' }
+      learning_style { 'on_the_job' }
+    end
   end
 end

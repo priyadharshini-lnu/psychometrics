@@ -69,10 +69,16 @@ class AdminJob < ApplicationJob
     import_development_actions: AdminJobs::ImportDevelopmentActionsJob,
     export_development_actions: AdminJobs::ExportDevelopmentActionsJob,
     assign_idp_to_users: AdminJobs::AssignIdpToUsers,
+    export_skill_translations: AdminJobs::ExportSkillTranslationsJob,
+    import_skill_translations: AdminJobs::ImportSkillTranslationsJob,
+    export_skills: AdminJobs::ExportSkillsJob,
     import_development_action_translations: AdminJobs::ImportDevelopmentActionTranslationsJob,
     export_development_action_translations: AdminJobs::ExportDevelopmentActionTranslationsJob,
     export_norm: AdminJobs::NormExport,
-    import_norm: AdminJobs::ImportNorm
+    import_norm: AdminJobs::ImportNorm,
+    export_assessment_questions: AdminJobs::ExportAssessmentQuestions,
+    export_dimension_as_json: AdminJobs::ExportDimensionAsJson,
+    import_dimension_from_json: AdminJobs::ImportDimensionFromJson
   }.freeze
 
   def perform(record)

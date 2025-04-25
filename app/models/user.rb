@@ -169,7 +169,7 @@ class User < ApplicationRecord
   delegate :email, to: :manager, prefix: true, allow_nil: true
 
   def skip_session_limitable?
-    Rails.env.development?
+    Settings.features.skip_session_limitable
   end
 
   def accessible_client_ids

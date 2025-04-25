@@ -24,6 +24,8 @@ module Auth
         required(:success_color).maybe(:str?)
         required(:info_color).maybe(:str?)
         required(:background_size).maybe(:str?)
+        required(:hide_signup).filled(:boolean?)
+        required(:logo_alt_text).maybe(:str?)
       end
     end
   end

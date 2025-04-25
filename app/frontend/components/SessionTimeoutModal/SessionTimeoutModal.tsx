@@ -136,27 +136,29 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
     const canvas = document.createElement('canvas')
     const context = canvas.getContext('2d')
 
-    const badgeSize = 8 // Size of the badge
-    const badgeOffsetX = 24 // X position of the badge
-    const badgeOffsetY = 8 // Y position of the badge
+    const badgeSize = 8
+    const badgeOffsetX = 24
+    const badgeOffsetY = 8
 
     originalFavicons.current.map((faviconUrl) => {
       const favicon = new Image()
+      favicon.crossOrigin = 'anonymous' // Adding it for security restrictions which restricts cross-origin image access
       favicon.src = faviconUrl
+
 
       favicon.onload = () => {
         const size = parseInt(faviconUrl.match(/(\d+)x(\d+)/)?.[0] || '32x32', 10) // Extract size from URL
-        canvas.width = size // Set canvas size
+        canvas.width = size
         canvas.height = size
 
         if (context) {
-          context.clearRect(0, 0, canvas.width, canvas.height) // Clear the canvas
-          context.drawImage(favicon, 0, 0, size, size) // Draw the existing favicon
+          context.clearRect(0, 0, canvas.width, canvas.height)
+          context.drawImage(favicon, 0, 0, size, size)
 
           // Draw the badge
-          context.fillStyle = 'red' // Badge color
+          context.fillStyle = 'red'
           context.beginPath()
-          context.arc(badgeOffsetX, badgeOffsetY, badgeSize, 0, Math.PI * 2, true) // Position and size of the badge
+          context.arc(badgeOffsetX, badgeOffsetY, badgeSize, 0, Math.PI * 2, true)
           context.fill()
 
           // Set the favicon with the badge
@@ -164,9 +166,12 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
           const link = document.querySelector(`link[rel*='icon'][sizes='${size}x${size}']`) as HTMLLinkElement
 
           if (link) {
-            link.href = newFavicon // Set the new favicon
+            link.href = newFavicon
           }
         }
+      }
+      favicon.onerror = () => {
+        console.error(`Failed to load favicon: ${faviconUrl}`)
       }
     })
   }
@@ -225,7 +230,6 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
       setShowPopup(true)
     })
   }
-
   if (features?.disable_session_timeout) return null
 
   return (

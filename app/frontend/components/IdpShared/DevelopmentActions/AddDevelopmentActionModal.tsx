@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { BoxWithShadow } from '~/glint'
-import { AvailableDevelopmentActions, DevelopmentAction } from '.'
+import { AvailableDevelopmentActions, DevelopmentAction } from './Types'
 import { DevelopmentActionsList } from './Common'
 
 const { I18n } = window

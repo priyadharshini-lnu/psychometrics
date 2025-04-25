@@ -82,7 +82,7 @@ const AssessmentList: React.FC<Props> = () => {
               key="id"
             />
             <Column
-              title={I18n.t('campaign_assessment.column.assessment_name')}
+              title={I18n.t('common.column.assessment_name')}
               key="name"
               dataIndex="assessmentName"
             />

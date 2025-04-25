@@ -2,9 +2,11 @@
 
 module Scoring
   class MatrixTable
-    def calculate(question, result, scoring_template)
+    def calculate(question, result, question_scoring)
       values = []
       options = []
+      scoring_template = question_scoring.props
+
       result['answers'].each do |answer|
         next unless answer['value'] && not_applicable?(result, answer['choice']) != true
 

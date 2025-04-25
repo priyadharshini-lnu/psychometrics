@@ -244,6 +244,14 @@ module Administration
         render json: { content_variation_id: campaign_assessment.external_config['content_variation_id'] }
       end
 
+      def update_pearson_variation
+        campaign_assessment.update_pearson_variation!(params[:external_config], params[:apply])
+
+        audit! :update_pearson_variation, assessment, campaign: campaign
+
+        render json: { variation: campaign_assessment.external_config['variation'] }
+      end
+
       private
 
       def assessment

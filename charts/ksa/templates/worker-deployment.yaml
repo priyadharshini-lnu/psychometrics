@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "lighthouse.fullname" . }}-worker
+  creationTimestamp: null
+  labels:
+    app: {{ template "lighthouse.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ int .Values.worker.replica }}
+  selector:
+    matchLabels:
+      app: {{ template "lighthouse.fullname" . }}
+      release: "{{ .Release.Name }}"
+      role: worker
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ template "lighthouse.fullname" . }}
+        release: "{{ .Release.Name }}"
+        role: worker
+        pdb: include
+      annotations:
+        rollme: {{ template "rollme" . }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - args:
+            - exec
+            - sidekiq
+            - -C
+            - config/sidekiq.yml
+          command:
+            - bundle
+          envFrom:
+            - configMapRef:
+                name: {{ template "lighthouse.fullname" . }}-env
+            - secretRef:
+                name: {{ template "lighthouse.fullname" . }}-eso-secrets
+          env:
+            - name: DB_POOL
+              value: "$(SIDEKIQ_CONCURRENCY)"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          name: {{ .Chart.Name }}-workers
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          - containerPort: 7433
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 7433
+              scheme: "HTTP"
+            initialDelaySeconds: 30 # app specific. Time your sidekiq takes to start processing.
+            timeoutSeconds: 5 # can be much less
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 7433
+              scheme: "HTTP"
+            initialDelaySeconds: 30 # app specific
+            timeoutSeconds: 5 # can be much less
+          lifecycle:
+            preStop:
+              exec:
+                # SIGTERM triggers a quick exit; gracefully terminate instead
+                command: ['bundle', 'exec', 'sidekiqctl', 'quiet']
+      terminationGracePeriodSeconds: 60 # put your longest Job time here plus security time.
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: {{ template "lighthouse.fullname" . }}
+              release: "{{ .Release.Name }}"
+              imageTag: "{{ .Values.image.tag }}"
+              role: worker
+          matchLabelKeys:
+            - pod-template-hash
+
+status: {}
+

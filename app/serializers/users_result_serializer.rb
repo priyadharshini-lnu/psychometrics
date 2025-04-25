@@ -13,7 +13,8 @@ class UsersResultSerializer < Panko::Serializer
 
   has_one :subject, serializer: UserSerializer
 
-  delegate :reset_count, :started_at, :prework, :other_pending_assessments_count, to: :user_assessment
+  delegate :reset_count, :started_at, :prework, :other_pending_assessments_count, :workshop_activity?,
+           to: :user_assessment
   delegate :remaining_campaign_time, to: :current_campaign_user, allow_nil: true
 
   def evaluation_session_id
@@ -39,7 +40,10 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def proctoring_enabled
-    current_campaign_user&.proctoring_enabled?
+    return false unless current_campaign_user&.proctoring_enabled?
+    return current_campaign_user.proctoring_enabled_on_workshop_activity? if workshop_activity?
+
+    current_campaign_user.proctoring_enabled?
   end
 
   def remaining_assessment_time

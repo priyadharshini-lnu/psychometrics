@@ -10,6 +10,10 @@ module Administration
       def update?
         @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
       end
+
+      def upload_campaign_factors?
+        @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+      end
     end
   end
 end

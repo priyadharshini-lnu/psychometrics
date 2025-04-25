@@ -5,6 +5,7 @@ import {
 import humps from 'humps'
 import { CheckOutlined } from '@ant-design/icons'
 import InfiniteScroll from 'react-infinite-scroller'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 import AdminJob from './AdminJob'
@@ -16,6 +17,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
 }) => {
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState<boolean>(false) // State to control Popover visibility
+  const { features, adminLocales } = window.PsyGlobalState
 
   useEffect(() => {
     fetch(adminJobs.length)
@@ -86,22 +88,32 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
   )
 
   return (
-    <div className={styles.container}>
-      <Popover
-        placement="bottomRight"
-        content={content}
-        trigger="click"
-        open={visible}
-        onOpenChange={setVisible}
-        overlayClassName={styles.overlay}
-      >
-        <Button aria-label={`${I18n.t('administration.notification_bell_icon')}`} type="text" onClick={handleClick}>
-          <Badge count={unread} overflowCount={9}>
-            <span className={`fa fa-bell ${styles.bellIcon}`} />
-          </Badge>
-        </Button>
-      </Popover>
-    </div>
+    <>
+      <div className={styles.container}>
+        {
+          features.enable_intl_for_admins
+        && (
+          <div className={styles.langDropdown}>
+            <LangDropdownWithChangeLocale locales={adminLocales.split(',')} />
+          </div>
+        )
+        }
+        <Popover
+          placement="bottomRight"
+          content={content}
+          trigger="click"
+          open={visible}
+          onOpenChange={setVisible}
+          overlayClassName={styles.overlay}
+        >
+          <Button aria-label={`${I18n.t('administration.notification_bell_icon')}`} type="text" onClick={handleClick}>
+            <Badge count={unread} overflowCount={9}>
+              <span className={`fa fa-bell ${styles.bellIcon}`} />
+            </Badge>
+          </Button>
+        </Popover>
+      </div>
+    </>
   )
 }
 

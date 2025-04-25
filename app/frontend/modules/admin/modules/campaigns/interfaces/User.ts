@@ -22,5 +22,7 @@ export default interface User {
     viewDatasheets: boolean
     stats: boolean
     pushWebhook: boolean
+    accessProjectDevelopmentActions: boolean
+    accessIdpTemplates: boolean
   }
 }

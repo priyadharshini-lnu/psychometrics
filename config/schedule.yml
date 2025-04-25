@@ -66,10 +66,10 @@ remove_soft_deleted_resources:
   class: RemoveSoftDeletedResources
   queue_as: cron_tasks
 
-fetch_iiht_assessments:
-  cron: "0 6 */1 * *" # At 06:00 on every day-of-month
-  class: Iiht::FetchAssessmentsJob
-  queue_as: cron_tasks
+# fetch_iiht_assessments:
+#   cron: "0 6 */1 * *" # At 06:00 on every day-of-month
+#   class: Iiht::FetchAssessmentsJob
+#   queue_as: cron_tasks
 
 load_pearson_assessments_to_table:
   cron: "0 6 */1 * *" # At 06:00 on every day-of-month

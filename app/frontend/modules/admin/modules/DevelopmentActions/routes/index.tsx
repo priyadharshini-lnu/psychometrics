@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import RouteList from '~/components/RouteList'
 
-const DevelopmentActionList = lazy(() => import('./DevelopmentActionList/DevelopmentActionList'))
+const DevelopmentActionList = lazy(() => import('../components/DevelopmentActionList/DevelopmentActionList'))
 
 export const routes = [
   {

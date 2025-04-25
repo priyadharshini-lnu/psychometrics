@@ -4,10 +4,13 @@
       .panel-heading
         h3.panel-title = t '.title'
         .pull-right
-          - if policy(resource_class).create?
-            = link_to [:new, :administration, resource_class.model_name.singular.to_sym], remote: true, class: 'btn btn-default'
-              span.fa.fa-plus
-              = t('.new')
+          .dropdown
+            button.btn.btn-default.btn-info.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false"
+              = t('.new') 
+              i.fa.fa-caret-down.ml-2
+            ul.dropdown-menu.dropdown-menu-right
+              li = link_to t('.create_dimension'), new_administration_dimension_path, remote: true, class: "dropdown-item"
+              li = link_to t('.import_dimension'), import_administration_dimensions_path, remote: true, class: "dropdown-item", data: { toggle: "modal-container" }
         = search_form_for(filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
@@ -21,3 +24,6 @@
       .panel-body
         #filterrific_results
           = render partial: 'list'
+= vite_javascript_tag 'entrypoints/admin/dimension_import_app.jsx'
+
+#modal-container

@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import {
   EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined, DownOutlined,
-  TranslationOutlined, PlusOutlined, CopyOutlined, TableOutlined, ImportOutlined, EditOutlined,
+  TranslationOutlined, PlusOutlined, CopyOutlined, TableOutlined, ImportOutlined, EditOutlined, ExportOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
@@ -35,6 +35,7 @@ const Header = (props) => {
     blocksWithQuestions, instructions, openCampaignFactorsModal,
     saveAssessment, builder, openMapNorms, openCreateByTemplate,
     openDataSheetModal, openImportQuestionsModal, openSettings, openFlow, createBlock,
+    exportQuestions,
     assessment, assessment: {
       extra, saving, defaultLanguage, translations_migrated,
     },
@@ -114,6 +115,12 @@ const Header = (props) => {
 
   const changeLocale = (value) => {
     navigate(`/administration/assessments/${id}?lang=${value}`)
+  }
+
+  const handleQuestionsExport = () => {
+    exportQuestions(assessment.id).then(() => {
+      NotificationDispatcher.notify({ message: I18n.t('administration.assessments.export_questions_toastr') })
+    })
   }
 
 
@@ -259,6 +266,12 @@ const Header = (props) => {
                         icon: <ImportOutlined />,
                         label: I18n.t('administration.assessments.menu.import_questions'),
                         onClick: handleOpenImportQuestionsModal,
+                      },
+                      {
+                        key: 'export-questions',
+                        icon: <ExportOutlined />,
+                        label: I18n.t('administration.assessments.menu.export_questions'),
+                        onClick: handleQuestionsExport,
                       },
                       {
                         key: 'campaign-factors',

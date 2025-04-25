@@ -281,6 +281,12 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     end
   end
 
+  def pearson_variations
+    Settings.providers.pearson.products.find do |p|
+      external_assessment_id.end_with?(p.id)
+    end&.variations
+  end
+
   def external_assessment_id
     external_settings[:assessment_id]
   end

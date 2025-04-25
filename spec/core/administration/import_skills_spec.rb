@@ -28,33 +28,35 @@ RSpec.describe Administration::ImportSkills do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,Name,Description,Project,Category,Tag
-              #{unique_id},Skill 1,Description 1,#{project.id},behavioral,"tag1,tag2"
-              ,Skill 2,Description 2,#{project.id},technical,tag3
+              ID,Name,Description,Category,Tag
+              #{unique_id},Skill 1,Description 1,behavioral,"tag1,tag2"
+              ,Skill 2,Description 2,technical,tag3
             CSV
           )
       end
 
       it 'imports skills with and without IDs' do
-        result = described_class.new(file_url).call
+        result = described_class.new(file_url, project.id).call
         expect(result).to eq true
 
         skill1 = Skill.find_by(name: 'Skill 1')
         expect(skill1).to be_present
         expect(skill1.description).to eq('Description 1')
         expect(skill1.tag_list).to match_array(%w[tag1 tag2])
+        expect(skill1.project_id).to eq(project.id)
 
         skill2 = Skill.find_by(name: 'Skill 2')
         expect(skill2).to be_present
         expect(skill2.description).to eq('Description 2')
         expect(skill2.tag_list).to match_array(['tag3'])
+        expect(skill2.project_id).to eq(project.id)
       end
 
       context 'when updating existing skills' do
         let!(:existing_skill) { create(:skill, id: unique_id, name: 'Old Name', project: project) }
 
         it 'updates existing skill when ID matches' do
-          result = described_class.new(file_url).call
+          result = described_class.new(file_url, project.id).call
           expect(result).to eq true
 
           existing_skill.reload
@@ -71,19 +73,19 @@ RSpec.describe Administration::ImportSkills do
         stub_request(:get, file_url).to_return(
           status: 200,
           body: <<~CSV
-            ID,Name,Description,Project,Category,Tag
-            ,Programming,Description 1,#{project.id},technical,tag1
+            ID,Name,Description,Category,Tag
+            ,Programming,Description 1,technical,tag1
           CSV
         )
       end
 
       it 'returns error for duplicate skill name' do
-        result = described_class.new(file_url).call
+        result = described_class.new(file_url, project.id).call
         expect(result).to include("Line 2: A skill with the name 'Programming' already exists")
       end
 
       it 'does not create or update any skills when there is a duplicate' do
-        expect { described_class.new(file_url).call }.not_to change(Skill, :count)
+        expect { described_class.new(file_url, project.id).call }.not_to change(Skill, :count)
         expect(existing_skill.reload.description).not_to eq('Description 1')
       end
     end
@@ -93,36 +95,20 @@ RSpec.describe Administration::ImportSkills do
         stub_request(:get, file_url).to_return(
           status: 200,
           body: <<~CSV
-            ID,Name,Description,Project,Category,Tag
-            ,Skill 1,Description 1,#{project.id},behavioral,
+            ID,Name,Description,Category,Tag
+            ,Skill 1,Description 1,behavioral,
           CSV
         )
       end
 
       it 'imports skills without tags' do
-        result = described_class.new(file_url).call
+        result = described_class.new(file_url, project.id).call
 
         expect(result).to eq true
         skill = Skill.find_by(name: 'Skill 1')
         expect(skill).to be_present
         expect(skill.tag_list).to be_empty
-      end
-    end
-
-    context 'with invalid project ID' do
-      before do
-        stub_request(:get, file_url).to_return(
-          status: 200,
-          body: <<~CSV
-            ID,Name,Description,Project,Tag
-            ,Skill 1,Description 1,999999,tag1
-          CSV
-        )
-      end
-
-      it 'returns error for non-existent project' do
-        result = described_class.new(file_url).call
-        expect(result).to include("Line 2: Project '999999' not found")
+        expect(skill.project_id).to eq(project.id)
       end
     end
 
@@ -131,14 +117,14 @@ RSpec.describe Administration::ImportSkills do
         stub_request(:get, file_url).to_return(
           status: 200,
           body: <<~CSV
-            ID,Name,Description,Project,Tag
-            1,,Description 1,#{project.id},tag1
+            ID,Name,Description,Tag
+            1,,Description 1,tag1
           CSV
         )
       end
 
       it 'returns error for missing required fields' do
-        result = described_class.new(file_url).call
+        result = described_class.new(file_url, project.id).call
         expect(result).to include('Line 2: Missing required fields (Name)')
       end
     end
@@ -148,18 +134,18 @@ RSpec.describe Administration::ImportSkills do
         stub_request(:get, file_url).to_return(
           status: 200,
           body: <<~CSV
-            ID,Name,Description,Project,Category,Tag
-            1,Leadership,Description 1,#{project.id},behavioral,tag1
-            ,Programming,Description 2,#{project.id},technical,tag2
-            ,Other Skill,Description 3,#{project.id},other,tag3
-            ,Default Skill,Description 4,#{project.id},,tag4
-            ,Invalid Cat,Description 5,#{project.id},invalid_category,tag5
+            ID,Name,Description,Category,Tag
+            1,Leadership,Description 1,behavioral,tag1
+            ,Programming,Description 2,technical,tag2
+            ,Other Skill,Description 3,other,tag3
+            ,Default Skill,Description 4,,tag4
+            ,Invalid Cat,Description 5,invalid_category,tag5
           CSV
         )
       end
 
       it 'imports skills with correct categories' do
-        result = described_class.new(file_url).call
+        result = described_class.new(file_url, project.id).call
         expect(result).to eq true
 
         expect(Skill.find_by(name: 'Leadership').category).to eq('behavioral')
@@ -175,7 +161,7 @@ RSpec.describe Administration::ImportSkills do
         let(:file_url) { 'not-a-valid-url' }
 
         it 'returns error for invalid URL' do
-          result = described_class.new(file_url).call
+          result = described_class.new(file_url, project.id).call
           expect(result.first).to start_with('Invalid URL:')
         end
       end
@@ -188,25 +174,25 @@ RSpec.describe Administration::ImportSkills do
         end
 
         it 'returns error for failed download' do
-          result = described_class.new(file_url).call
+          result = described_class.new(file_url, project.id).call
           expect(result.first).to start_with('Failed to download file:')
         end
       end
     end
 
-    context 'with empty project' do
+    context 'with nil project_id parameter' do
       before do
         stub_request(:get, file_url).to_return(
           status: 200,
           body: <<~CSV
-            ID,Name,Description,Project,Category,Tag
-            ,Global Skill,Global Description,,behavioral,tag1
+            ID,Name,Description,Category,Tag
+            ,Global Skill,Global Description,behavioral,tag1
           CSV
         )
       end
 
       it 'creates skill without project association' do
-        result = described_class.new(file_url).call
+        result = described_class.new(file_url, nil).call
         expect(result).to eq true
 
         skill = Skill.find_by(name: 'Global Skill')
@@ -218,29 +204,44 @@ RSpec.describe Administration::ImportSkills do
       end
     end
 
-    context 'with mix of project and non-project skills' do
+    context 'with different project_id parameters' do
+      let(:another_project) { create(:project, client: client) }
+
       before do
         stub_request(:get, file_url).to_return(
           status: 200,
           body: <<~CSV
-            ID,Name,Description,Project,Category,Tag
-            ,Project Skill,Project Description,#{project.id},behavioral,tag1
-            ,Global Skill,Global Description,,technical,tag2
+            ID,Name,Description,Category,Tag
+            ,Project Skill,Project Description,behavioral,tag1
           CSV
         )
       end
 
-      it 'creates both project and non-project skills' do
-        result = described_class.new(file_url).call
-        expect(result).to eq true
+      it 'assigns skills to the specified project' do
+        # First import with one project
+        result1 = described_class.new(file_url, project.id).call
+        expect(result1).to eq true
+
+        # Change the skill name to avoid uniqueness constraint
+        stub_request(:get, file_url).to_return(
+          status: 200,
+          body: <<~CSV
+            ID,Name,Description,Category,Tag
+            ,Another Project Skill,Project Description,behavioral,tag1
+          CSV
+        )
+
+        # Then import with another project
+        result2 = described_class.new(file_url, another_project.id).call
+        expect(result2).to eq true
 
         project_skill = Skill.find_by(name: 'Project Skill')
         expect(project_skill).to be_present
-        expect(project_skill.project).to eq(project)
+        expect(project_skill.project_id).to eq(project.id)
 
-        global_skill = Skill.find_by(name: 'Global Skill')
-        expect(global_skill).to be_present
-        expect(global_skill.project).to be_nil
+        another_project_skill = Skill.find_by(name: 'Another Project Skill')
+        expect(another_project_skill).to be_present
+        expect(another_project_skill.project_id).to eq(another_project.id)
       end
     end
   end

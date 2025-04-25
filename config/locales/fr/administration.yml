@@ -1,0 +1,3707 @@
+---
+fr:
+  administration:
+    actions: Actions
+    active_record_audits:
+      action: Action
+      audit_id: Identité d'audit
+      auditable_id: Id d'enregistrement
+      auditable_type: Type d'enregistrement
+      audited_changes: Changements audités
+      new_diff:
+        parse_error: Échec de l'analyse du JSON avec les nouveaux changements
+      old_diff:
+        parse_error: Échec de l'analyse du JSON avec les anciens changements
+      title: Changements audités
+    administrator:
+      sessions:
+        new:
+          forgot_password: Vous avez oublié votre mot de passe ?
+          instruction: Veuillez vous connecter avec les informations de votre compte personnel
+          password_placeholder: Mot de passe
+          title: Bienvenue !
+      shared:
+        simple_design:
+          design: Conception
+          or: Ou
+    administrators:
+      drawers:
+        edit:
+          admin_role_select: Sélectionner le rôle d'administrateur
+          admin_roles: Rôles administratifs
+          create_success: L'administrateur '%{nom}' a été créé avec succès
+          email: Courriel
+          first_name: Prénom
+          first_name_required: Le prénom est obligatoire
+          last_name: Nom de famille
+          last_name_required: Le nom de famille est obligatoire
+          no_edit_permission: Vous n'avez pas la permission de modifier l'admin '%{nom}'
+          save: Économiser
+          update: Mise à jour
+          update_success: L'administrateur '%{nom}' a été mis à jour avec succès
+        notes:
+          threesixty_permission: Permissions spécifiques aux campagnes 360
+          title: Notes
+        view:
+          add_campaign_admin: Ajouter un administrateur de campagne
+          add_client_admin: Ajouter un administrateur client
+          add_project_admin: Ajouter un administrateur de projet
+          add_threesixty_campaign_admin: Ajouter un administrateur de campagne
+          edit_campaign_admin: Modifier l'administration de la campagne
+          edit_client_admin: Modifier l'administration du client
+          edit_project_admin: Modifier l'administration du projet
+          edit_threesixty_campaign_admin: Modifier l'administration de la campagne
+          first_name: Prénom
+          last_name: Nom de famille
+          project_admin: Administrateur du projet
+          project_list: Liste des projets
+          role: Administrateur de la campagne
+          title:
+            campaign_admin: Administrateur de la campagne
+            client_admin: Administration des clients
+            project_admin: Administrateur du projet
+      list:
+        actions:
+          api_keys: Clés API
+          cancel_text: Annuler
+          change_password: Réinitialiser le mot de passe
+          edit: Editer
+          export_admins_with_permissions: Exportation des rôles et permissions des administrateurs
+          export_success: La tâche d'exportation administrative a été programmée avec succès. Veuillez consulter votre notification pour connaître l'état d'avancement.
+          login: Connexion
+          send_email: Envoyer un courriel
+          spoof:
+            login_successful: Connexion réussie.
+          user_report_events: Rapport Journaux d'approbation
+        columns:
+          actions: Actions
+          created_at: Créé à
+          email: Courriel
+          id: Id
+          name: Nom
+        header:
+          add_admin: Ajouter un administrateur
+          search_admins: Recherche d'administrateurs
+        toolbar:
+          export_admins_with_permissions: Exportation des rôles et permissions des administrateurs
+      modals:
+        delete:
+          cancelText: Annuler
+          content: Êtes-vous sûr de vouloir supprimer l'utilisateur administrateur dont l'adresse électronique est "%{email}" ?
+          okText: Ok
+          onSuccess: L'administrateur dont l'adresse électronique est '%{email}' a été supprimé avec succès
+          title: Confirmer
+      permissions:
+        labels:
+          apiKeys:
+            manage: Gérer
+            view: Voir
+          assessments:
+            manage: Gérer
+            view: Voir
+          assessors:
+            manage: Gérer
+            view: Voir
+          auditLogs:
+            view: Voir
+          auditReports:
+            admin_permissions: Exportation des rôles et permissions des administrateurs
+            user_report_events: Rapport Journaux d'approbation
+          campaignFactors:
+            manage: Gérer
+            view: Voir
+          campaigns:
+            bulk_download: Téléchargement en masse
+            bulk_regenerate_reports: Régénération en bloc des rapports
+            manage: Gérer
+            manage_admins: Gérer les administrateurs
+            manage_factor_benchmark_scores: Gérer les scores de référence des facteurs
+            manage_messages: Gérer les messages
+            manage_options: Gérer les options
+            manage_report_approvals: Gérer les approbations des rapports
+            manage_users: Gérer les utilisateurs
+            participant_options: Options pour les participants
+            report_options: Options du rapport
+            reset_nominations: Réinitialiser les nominations
+            view: Voir
+            view_factor_benchmark_scores: Voir les notes d'évaluation des facteurs
+            view_stats: Voir les statistiques
+          clients:
+            export_data_report: Rapport d'exportation de données
+            manage: Gérer
+            view: Voir
+            view_licenses: Voir les licences
+          communications:
+            manage: Gérer
+            view: Voir
+          dashboards:
+            accesssheet_manage: Feuille d'accès Gérer
+            accesssheet_settings: Paramètres de la feuille d'accès
+            accesssheet_view: Vue de la feuille d'accès
+            view: Voir
+          datasheets:
+            manage: Gérer
+            view: Voir
+          developmentActions:
+            export: Exportation
+            export_global: Exportation mondiale
+            export_global_translations: Export Global Translations
+            export_translations: Traductions pour l'exportation
+            import: Importation
+            import_global: Importation mondiale
+            import_global_translations: Importer Global Translations
+            import_translations: Traductions des importations
+            manage: Gérer
+            view: Voir
+          dimensions:
+            manage: Gérer
+            view: Voir
+          idpTemplates:
+            manage: Gérer
+            view: Voir
+          mediaLibraries:
+            manage: Gérer
+            view: Voir
+          messages:
+            email: Courriel
+            instructions: Instructions
+            options: Options
+          norms:
+            manage: Gérer
+            view: Voir
+          projectSettings:
+            assessments: Évaluations
+            design: Conception
+            idp: PDI
+            integrations: Intégrations
+            privacy_settings: Paramètres de confidentialité
+            saml: SAML
+            security: Sécurité
+            smtp: SMTP
+            webhooks: Crochets Web
+          projects:
+            manage: Gérer
+            manage_admins: Gérer les administrateurs
+            manage_users: Gérer les utilisateurs
+            view: Voir
+          questions:
+            manage: Gérer
+            view: Voir
+          registrationCodes:
+            manage: Gérer
+            view: Voir
+          registrationSettings:
+            manage: Gérer
+          reports:
+            manage: Gérer
+            view: Voir
+          results:
+            approve_report: Approuver le rapport
+            bulk_download: Téléchargement en masse
+            bulk_regenerate_reports: Régénération en bloc des rapports
+            download_report: Télécharger le rapport
+            edit_report: Modifier le rapport
+            export_occupations: Métiers de l'exportation
+            external_score_import: Importation d'un score externe
+            finalize_scores: Finaliser les notes
+            normalize_factor_scores: Normaliser les scores des facteurs
+            raw_responses: Réponses brutes
+            regenerate_report: Rapport sur la régénération
+            report_data: Données du rapport
+            report_file_upload: Téléchargement du fichier de rapport
+            rescore_responses: Réponses à la réinitialisation
+            reset_progress: Réinitialiser la progression
+            reset_responses: Réponses à la réinitialisation
+            scores: Scores
+            view_report: Voir le rapport
+            view_stats: Voir les statistiques
+          skills:
+            manage: Gérer
+            view: Voir
+          smsHistories:
+            manage: Gérer
+            view: Voir
+          smsInvites:
+            manage: Gérer
+            view: Voir
+          users:
+            reset_password: Réinitialiser le mot de passe
+          workshops:
+            export_status: Statut de l'exportation
+            manage: Gérer
+            view: Voir
+    any: " - Tous - "
+    api:
+      campaigns:
+        validate_form:
+          external_id_taken: L'identifiant externe "%{external_id}" est déjà pris"
+      users:
+        form:
+          campaign_ids_not_existing: Les identifiants de campagne ne sont pas tous existants
+    api_keys:
+      form:
+        description: Description
+        title: clé api
+    assessment_center:
+      cancel_confirmation:
+        message: Êtes-vous sûr de vouloir supprimer la progression du formulaire ?
+        title: Formulaire de mise au rebut Progrès
+      current: Actuel
+      invite:
+        add_invite: Ajouter une invitation
+        assessment_center: Centre d'évaluation
+        back: Retour
+        basic_info:
+          allow_preferred_language: Autoriser la langue préférée
+          assessment_centers: Centres d'évaluation
+          assessment_centers_hint: 'Exemple de recherche : "10 août 2023, 20:06"'
+          assessment_centers_placeholder: Sélectionner les centres d'évaluation
+          description: Lancer des invitations aux candidats en sélectionnant plusieurs centres d'évaluation. Les candidats choisiront ensuite un seul centre parmi ceux qui sont disponibles.
+          neurodiversity: Inclure la question de la neurodiversité
+          preferred_language: Langues autorisées
+          required_error: Ne peut être vide
+          title: Informations de base
+        confirm_message: Êtes-vous sûr de vouloir supprimer une invitation ?
+        confirm_message_with_title: Êtes-vous sûr de vouloir supprimer l'invitation dont le titre est "%{invite_title}" ?
+        confirm_title: Confirmer
+        exceeded_subjects_count: La campagne a %{utilisateurs} sujets. Vous ne pouvez ajouter que %{count} sujets par invitation
+        id: ID
+        invites: Invitations
+        next: Suivant
+        not_selected: Non sélectionné
+        requests: Demandes
+        save: Sauvegarder et envoyer
+        send_invites:
+          add: Ajouter
+          add_description: Vous pouvez traduire le titre et la description de l'invitation dans plusieurs langues
+          add_language: Ajouter une langue
+          description: Description
+          input_label: Ajouter une langue supplémentaire
+          input_placeholder: Sélection d'une langue supplémentaire
+          invitation_title: Titre de l'invitation
+          title: Invitation (%{lang})
+        steps:
+          add_subjects: Ajouter des sujets
+          basic_info: Informations de base
+          has_errors: contient des erreurs
+          send_invitation: Envoyer l'invitation
+        subjects:
+          cancel: Annuler
+          count: "%{count} Sujets"
+          csv_error: 'Row%{index} : l''utilisateur avec l''email %{email} n''est pas dans cette campagne'
+          csv_imported: "%{count} sujets importés"
+          description: Vous pouvez ajouter des sujets individuellement en effectuant une recherche ou en téléchargeant en masse un fichier csv.
+          download: Télécharger
+          file_example: Renvoi au fichier d'exemple pour télécharger les informations relatives aux sujets.
+          import_from_campaign: Ajouter tous les éléments de la campagne
+          import_title: Sujets d'importation
+          import_users: Importer des utilisateurs
+          search_user: Thèmes de recherche
+          title: Thèmes
+          upload: Télécharger
+          upload_csv: Télécharger le CSV
+        subjects_count_added: Sujets ajoutés avec succès
+        success:
+          continue: Continuer
+          message: L'envoi des invitations a été mis en file d'attente ; les utilisateurs les recevront sous peu.
+        success_message: L'invitation a été retirée avec succès.
+        success_message_with_title: L'invitation avec le titre '%{invite_title}' a été supprimée avec succès.
+        title: Titre
+        workshop:
+          title: Centres d'évaluation
+        workshop_list:
+          add: Ajouter
+          name: Nom
+          remove_confirm:
+            content: Êtes-vous sûr de vouloir supprimer le centre d'évaluation portant le nom "%{nom}" ?
+            success: Assessment Center a été supprimé avec succès.
+            title: Confirmer
+      invite_request:
+        accept: Accepter
+        reason: Raison
+        reject: Rejeter
+        remove_confirm:
+          content: Êtes-vous sûr de vouloir %{action} %{état} de %{nom du sujet} ?
+          success: "%{status} de %{subjectName} a été %{action} avec succès."
+          title: "%{action} %{état}"
+        status: Statut
+        subject_name: Nom du sujet
+        workshop_time: Temps d'atelier
+      past: Passé
+      steps:
+        basic_information: Informations de base
+        facilitators: Facilitateurs
+        invite_options: Options d'invitation
+        invite_subjects: Inviter les sujets
+        send_invitations: Envoyer des invitations
+      success:
+        call_send_invitation: Souhaitez-vous envoyer les invitations ?
+        ok: Oui
+        skip: Sauter pour l'instant
+        title: Création de centres d'évaluation
+      upcoming: À venir
+    assessment_question_import:
+      errors:
+        doesnt_have_header: "'%{sub_header}' n'a pas d'en-tête"
+        invalid_headers: 'Les en-têtes suivants ne sont pas valides : %{headers}'
+        invalid_scores: Les scores pour le facteur %{nom_du_facteur} ne sont pas valides. Les scores doivent être des valeurs numériques séparées par des virgules
+        invalid_sub_header: "'%{sub_header}' n'est pas un sous-en-tête valide pour l'en-tête '%{header}'"
+        scores_not_allowed: Les scores ne peuvent être ajoutés que pour les questions à choix multiples et les questions matricielles
+        unavailable_factors: les facteurs %{unavailable_factor_names} ne sont pas présents dans une dimension
+      modal:
+        download_xls: Télécharger l'exemple de fichier XLSX
+        title: Questions sur les importations
+      successfully_scheduled: Question L'importation a été programmée avec succès.
+    assessments:
+      assessment: L'évaluation
+      copy:
+        copy: copie
+        copy_assessment: Évaluation de la copie
+        name: Nom
+        successfully: L'évaluation "%{nom}" a été copiée avec succès.
+      create:
+        successfully: L'évaluation "%{nom}" a été créée avec succès.
+      destroy:
+        successfully: L'évaluation "%{nom}" a été supprimée avec succès.
+      edit:
+        header: Paramètres d'évaluation
+      errors:
+        owner_validation: Vous n'avez pas %{nom_de_la_ressource} %{permission} pour %{nom_du_client}
+      flow: Débit
+      linkedAssessment:
+        assessment_title: Sélectionner les questions de %{nom}
+        title: Sélectionner les questions liées
+      map_norms: Normes cartographiques
+      menu:
+        import_questions: Questions sur les importations
+        managage_campaign_factors: Gérer les facteurs de la campagne
+      new:
+        header: Nouvelle évaluation
+      preview: Aperçu de l'évaluation
+      randomization:
+        cancel: Annuler
+        no_randomization: Pas de randomisation
+        no_randomization_order_all: Randomiser l'ordre de tous les
+        of_total: du total
+        per_page: par page
+        plural:
+          block: blocs
+          question: questions
+        present_only: Présent uniquement
+        question_per_factor_and_show: questions par facteur et spectacle
+        save: Économiser
+        select: Sélectionner
+        select_only: Sélectionner uniquement
+        single_question_page_warning: L'évaluation actuelle est configurée pour afficher une question par page. Le fait de définir plus d'une question par page ici désactivera automatiquement le paramètre "Une seule question par page".
+        title: Randomisation
+      reports: Rapports
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette évaluation ?</p>\n"
+            title: Supprimer l'<strong>évaluation</strong>?
+          soft_delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette évaluation ?</p>\n"
+            title: Suppression progressive de l'<strong>évaluation</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cette évaluation ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+      restore:
+        successfully: L'évaluation %{nom} a été restaurée avec succès.
+      settings:
+        disable_continue_to_dashboard: Désactiver le bouton "Continuer vers le tableau de bord
+        disable_nav_btn: Désactiver le bouton de navigation arrière
+        enable_back: Activer le bouton de retour
+        enable_progress: Activer la barre de progression
+        enable_save: Activer le bouton d'enregistrement
+        enable_single_question_page: Afficher une question par page
+        enable_single_question_page_confirm: Cela mettra à jour la randomisation des blocs par page à 1. Êtes-vous sûr ?
+        enable_timer: Activation de la minuterie
+        has_randomized_block_warning: L'évaluation actuelle comporte des blocs randomisés avec plus d'une question par page. L'activation de l'option "Afficher une question par page" remplacera toutes les configurations de randomisation pour n'avoir qu'une seule question par page.
+        instructions: Instructions de validation
+        title: Paramètres d'évaluation
+      soft_delete:
+        successfully: L'évaluation %{nom} a été déplacée vers la corbeille avec succès.
+      toggle_archive:
+        successfully: L'évaluation %{nom} a été %{état} avec succès.
+      toggle_status:
+        successfully: L'évaluation %{nom} a été mise à jour avec succès.
+      update:
+        successfully: L'évaluation %{nom} a été mise à jour avec succès.
+    assessor:
+      add_subject_modal:
+        assessment: L'évaluation
+        mark_as_lead_assessor: Marquer comme assesseur principal pour le sujet ci-dessus
+        subject: Sujet
+        subject_placeholder: Sujet de recherche...
+        title: Ajouter un sujet
+      assessments:
+        actions:
+          add_subject: Ajouter un sujet
+          rescore: Reprise
+          reset: Évaluation de la réinitialisation
+          reset_progress: Réinitialiser la progression
+        bulk_delete_confirmation: Êtes-vous sûr de vouloir supprimer les enregistrements sélectionnés ?
+        bulk_delete_successful: Les évaluations de l'évaluateur ont été supprimées avec succès
+        reset_confirmation: Êtes-vous sûr de vouloir réinitialiser l'évaluation de l'objet avec l'e-mail "%{subjectEmail}" ?
+        reset_progress_confirmation: Êtes-vous sûr de vouloir réinitialiser la progression pour le sujet avec l'email "%{subjectEmail}" ?
+        reset_progress_successfully: La réinitialisation de l'objet de l'e-mail "%{subjectEmail}" a été effectuée avec succès.
+        reset_successfully: L'évaluation de la réinitialisation de l'objet de l'e-mail "%{subjectEmail}" a été effectuée avec succès.
+        subject_email: Objet Courriel
+        subject_name: Nom du sujet
+      completed_at: Terminé le
+      count: "%{count} Évaluateurs"
+      evaluations: Évaluations
+      mailer:
+        subject: Nouveaux sujets ajoutés pour votre évaluation
+      modals:
+        create_assessor:
+          add: Ajouter
+          cancel: Annuler
+          form:
+            add: Ajouter
+            add_lead_assessor: Ajouter en tant qu'évaluateur principal
+            add_lead_assessor_hint: Veuillez ajouter le formulaire de l'évaluateur principal en premier
+            assessments: Évaluations
+            assessor: Assesseur
+            assessor_placeholder: Recherche Assesseur...
+            lead_assessment: Évaluation du plomb
+            subject: Sujet
+            subject_placeholder: Sujet de recherche...
+          sheet:
+            assessments: Évaluations
+            assessments_placeholder: Sélectionner
+            assessor_email: Courriel de l'évaluateur
+            assessor_first_name: Prénom de l'évaluateur
+            assessor_last_name: Nom de famille de l'évaluateur
+            subject_email: Courriel du sujet
+          title: Ajouter un assesseur
+        import:
+          body: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
+          title: Évaluateurs des importations
+      moderate_score:
+        assessor_evaluations: Évaluations des évaluateurs
+        main_report: Rapport principal
+        no_completed_assessments: Il n'y a pas encore d'évaluations terminées
+        no_results: Il n'y a pas de réponse aux questions
+        other_reports: Autres rapports
+        overall_scoring: Note globale
+        refresh: Rafraîchir
+        reports: Rapports
+        reports_count: "%{count} Rapports"
+      remove_confirmation: Êtes-vous sûr de vouloir supprimer de cette campagne l'évaluateur dont l'adresse électronique est %{email} ?
+      statuses:
+        completed: Terminé
+        not_completed: Non achevé
+      toolbar:
+        export: Évaluateurs des exportations
+        import: Évaluateurs des importations
+        tools: Outils
+    assessor_assessment:
+      add: Ajouter
+      modals:
+        add_assessor_assessment:
+          assessment_placeholder: Sélectionner une évaluation
+      name: Assesseur Évaluation
+    assessor_campaigns:
+      statuses:
+        completed: Terminé
+        in_progress: En cours
+        not_started: Pas commencé
+    assessor_subjects:
+      statuses:
+        completed: Terminé
+        in_progress: En cours
+        not_started: Pas commencé
+    assigns:
+      create:
+        successfully: Une nouvelle affectation à l'évaluation a été créée avec succès
+      destroy:
+        successfully: L'affectation à l'évaluation a été supprimée avec succès
+      new:
+        header: Attribuer l'évaluation et les rapports
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette affectation ?</p>"
+            title: Supprimer <strong>%{nom}</strong>?
+    assigns_reports:
+      edit:
+        header: Modifier l'affectation du rapport
+    attention: Attention
+    audit_log:
+      action: Action
+      audit_logs: Journaux d'audit
+      campaign: Campagne
+      client: Client
+      client_ip: Client Ip
+      collapse_filters: Réduire les filtres
+      dashboard: Tableau de bord
+      date_presets:
+        last_30_days: 30 derniers jours
+        last_7_days: 7 derniers jours
+        last_month: Le mois dernier
+        last_week: La semaine dernière
+        today: Aujourd'hui
+        yesterday: Hier
+      date_range: Plage de dates
+      expand_filters: Développer les filtres
+      failure_reason: Raison de l'échec
+      interface: Interface
+      log_date: Date du journal
+      outcome: Résultats
+      payload: Charge utile
+      project: Projet
+      record_id: Id d'enregistrement
+      request_id: Id de la demande
+      reset: Remise à zéro
+      search: Recherche
+      search_campaign: Recherche par campagne
+      search_client: Recherche par client
+      search_project: Recherche par projet
+      search_record: Recherche par ID d'enregistrement
+      search_user: Recherche par utilisateur
+      title: Informations sur le journal d'audit
+      type: Type d'enregistrement
+      user: Utilisateur
+      user_agent: Agent utilisateur
+    back: Retour
+    base:
+      top_sidebar:
+        sign_out_message:
+          body: "<p>Êtes-vous sûr de vouloir vous déconnecter ?</p> <p>Appuyez sur Non si vous voulez continuer à travailler. Appuyez sur Oui pour déconnecter l'utilisateur actuel.</p>"
+          title: "<strong>Se déconnecter</strong>?"
+    block_settings:
+      modal:
+        add_layer: Ajouter un calque
+        background_color: Couleur de fond
+        background_image: Image de fond
+        base_offse_speed: Base Offset Speed
+        confirm_msg: Êtes-vous sûr de vouloir supprimer ce calque ?
+        confirm_title: Supprimer le calque
+        layers: Couches
+        main_background_color: Couleur d'arrière-plan principale
+        select_from_lib: Sélectionner dans la bibliothèque
+        speed: Vitesse
+        title: Réglages des blocs
+    blocks:
+      copy:
+        successfully: Le bloc %{nom} a été copié avec succès.
+      create:
+        successfully: Le bloc %{nom} a été créé avec succès.
+      destroy:
+        successfully: Le bloc %{nom} a été supprimé avec succès.
+      edit:
+        header: Bloc d'édition
+      new:
+        header: Nouveau bloc
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce bloc ?</p>\n"
+            title: Supprimer le <strong>bloc</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} ce bloc ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+    bookings:
+      errors:
+        already_booked: Vous avez déjà réservé une place.
+        booking_deadline_passed: Cette date n'est plus disponible, veuillez sélectionner une autre date à partir de l'écran précédent.
+        cancellation_deadline_passed: Le délai d'annulation est dépassé.
+        cancelled_and_rebook_deadline_passed: Annulé et délai dépassé pour une nouvelle réservation.
+        late_cancellation_not_allowed: Les annulations tardives ne sont pas autorisées.
+        late_rescheduling_not_allowed: La reprogrammation tardive n'est pas autorisée.
+        prework_not_completed: Veuillez effectuer toutes les activités préalables avant de réserver un créneau pour le centre d'évaluation.
+        reschedule_deadline_passed: Le délai de reprogrammation est dépassé.
+        seats_not_available: Sièges non disponibles.
+    breadcrumbs:
+      admins: Administrateurs
+      assessments: Évaluations
+      assessor_dashboard: Tableau de bord de l'évaluateur
+      assessors: Évaluateurs
+      audit_log_info: Informations sur le journal d'audit
+      audit_logs: Journaux d'audit
+      audit_reports: Rapports d'audit
+      campaign_templates: Modèles de campagne
+      campaigns: Campagnes
+      client: Location par le client
+      clientAdmins: Administrateurs clients
+      client_admins: Administrateurs clients
+      clients: Baux des clients
+      communication_center: Centre de communication
+      create: Créer
+      data_exports: Exportations de données
+      data_reports: Rapports de données
+      datasheets: Fiches techniques
+      design: Conception
+      dimension: Dimension
+      dimensions: Dimensions
+      factors: Facteurs
+      home: Tableau de bord
+      innovation_styles: Styles d'innovation
+      innovation_styles_factors: Facteurs
+      libraries: Bibliothèque des médias
+      license_usages: Utilisation des licences
+      licenses: Licences
+      new_campaign: Nouvelle campagne
+      norm: Norme
+      norms: Normes
+      norms_editor: Rédacteur en chef
+      occupations: Professions
+      occupations_factors: Facteurs
+      participants: Les participants
+      products: Produits
+      project_admins: Administrateurs de projets
+      projects: Projets
+      psychometrics: Psychométrie
+      question_center: Centre de questions
+      registration_codes: Codes d'enregistrement
+      report_families: Ensembles de rapports
+      reports: Rapports
+      settings: Paramètres
+      smtp_settings: Paramètres SMTP
+      statistics: Statistiques
+      sub_campaigns: Sous-campagnes
+      sub_factors: Sous-facteurs
+      survey: Enquête
+      surveys: Enquêtes
+      users: Utilisateurs
+      users_add: Ajouter un nouveau
+      users_import: Importation
+    bulk_reports:
+      create:
+        no_data: Pas de données
+        successfully: Les rapports sont en cours de création et vous serez informés par courrier électronique lorsqu'ils seront prêts
+      download:
+        removed: Supprimé
+      form:
+        end_date: Date de fin
+        start_date: Date de début
+      mailer:
+        subject: Télécharger des rapports en masse
+      new:
+        header: Téléchargement en masse
+      reports_unavailable: Pour le moment, aucun rapport n'est disponible au téléchargement. Veuillez confirmer que les rapports que vous souhaitez télécharger sont disponibles.
+    cable:
+      notification:
+        assessment_factors: Les facteurs sont recherchés
+        assessment_update: L'évaluation est mise à jour
+        block_clone: Le bloc est copié
+        block_create: Le bloc %{nom} est créé
+        block_create_by_template: Le bloc a été chargé à partir d'un modèle
+        block_destroy: Le bloc a été supprimé
+        block_move_down: Le bloc %{nom} est déplacé vers le bas
+        block_move_up: Le bloc %{nom} est déplacé vers le haut
+        block_permanent_destroy: Le bloc est définitivement supprimé
+        block_rename: Le bloc est renommé
+        block_restore: Le bloc est restauré
+        block_save_as_template: Bloc enregistré comme modèle
+        block_unlink_template: Le bloc a été dissocié
+        block_update: Le bloc est mis à jour
+        comment_create: Le commentaire est créé
+        comment_destroy: Le commentaire a été supprimé
+        geo_filter: Données filtrées
+        module_create: Le module %{nom} est créé
+        module_destroy: Le module a été supprimé
+        module_insert_after: Le module est inséré après
+        module_insert_before: Le module est inséré avant
+        module_move_down: Le module est déplacé vers le bas
+        module_move_up: Le module est déplacé vers le haut
+        module_rename: Le module est renommé
+        module_update: Le module est mis à jour
+        page_create: La page %{nom} est créée
+        page_destroy: La page a été supprimée
+        page_move_down: La page %{nom} est déplacée vers le bas
+        page_move_up: La page %{nom} est déplacée vers le haut
+        page_rename: La page est renommée
+        page_update: La page est mise à jour
+        question_clone: La question est copiée
+        question_create: La question %{nom} est créée
+        question_create_by_template: La question a été chargée à partir d'un modèle
+        question_create_from_template: La question est créée à partir d'un modèle
+        question_destroy: La question a été supprimée
+        question_insert_after: La question est insérée après
+        question_insert_before: La question est insérée avant
+        question_move_down: La question est déplacée vers le bas
+        question_move_up: La question est déplacée vers le haut
+        question_permanent_destroy: La question est définitivement supprimée
+        question_rename: La question est renommée
+        question_restore: La question est rétablie
+        question_save_as_template: Question enregistrée comme modèle
+        question_unlink_template: La question n'a pas été liée
+        question_update: La question est mise à jour
+        report_change_aliases: Les alias sont mis à jour
+        report_change_campaign_factors: Les facteurs de campagne sont mis à jour
+        report_change_data_configuration: La configuration du rapport de données a été mise à jour avec succès
+        report_change_filters: Les filtres sont mis à jour
+        report_update: Le rapport est mis à jour
+        scoring_update: La notation est mise à jour
+        trash_empty: Corbeille Commentaire vide
+    campaign_factor_import:
+      errors:
+        assessment_not_found_in_campaign: L'identifiant d'évaluation "%{assessment_id}" n'a pas été trouvé dans la campagne
+        code_already_exists: Un facteur portant le même code "%{code}" existe déjà.
+        factor_not_in_assessment_dimension: L'identifiant du facteur "%{factor_id}" ne fait pas partie de la dimension de l'évaluation
+        invalid_lua_name: Le code '%{code}' doit être un nom de variable lua valide
+        invalid_name_format: Le nom "%{nom}" doit correspondre au format attendu.
+        max_limit_reached: Il n'est pas possible de créer plus de %{count} facteurs de campagne.
+        missing_assessment_id: L'identifiant de l'évaluation est requis.
+        missing_assessment_score_type: Le type de score d'évaluation est requis.
+        missing_factor_id: L'identifiant du facteur est requis.
+        name_already_exists: Un facteur portant le même nom "%{nom}" existe déjà.
+        name_size_exceded: Le nom ne doit pas dépasser %{taille} caractères.
+    campaign_factors:
+      delete:
+        confirm_message:
+          assessor_scoring: Vous êtes sur le point de supprimer la notation de l'évaluateur. Vous perdrez toutes les notes modérées de l'évaluateur pour ce facteur "%{nom_du_facteur}". Êtes-vous sûr de vouloir continuer ?
+          default: Êtes-vous sûr de vouloir supprimer le facteur de campagne "%{nom_du_facteur}" ?
+          external_score: Vous êtes sur le point de supprimer la notation externe. Vous allez perdre les notes externes associées à ce facteur "%{nom_du_facteur}". Êtes-vous sûr de vouloir continuer ?
+    campaign_factors_import:
+      errors:
+        invalid_headers: 'Les en-têtes suivants ne sont pas valides : %{headers}'
+    campaign_templates:
+      campaign_templates: Modèles de campagne
+      column:
+        assessment: L'évaluation
+        owner: Propriétaire
+        report: Rapport
+      copy:
+        successfully: Le contrat de location %{nom} a été copié avec succès.
+      create:
+        successfully: Le contrat de location %{nom} a été créé avec succès.
+      destroy:
+        successfully: Le contrat de location %{nom} a été supprimé avec succès.
+      edit:
+        header: Modifier le client
+      errors:
+        owner_invalid: Le propriétaire du modèle doit être le même que les propriétaires de l'évaluation, du rapport et de la dimension
+      form:
+        assessment: L'évaluation
+        assessment_placeholder: Sélectionner une évaluation
+        name: Nom
+        name_placeholder: Saisir le nom
+        owner: Propriétaire
+        report: rapport
+        report_placeholder: Sélectionner un rapport
+        title: Modèle de campagne
+      image_fields:
+        remove: Retirer
+      index:
+        new: Ajouter
+        title: Modèles de campagne
+      list:
+        admin: Client admin
+        client_admins: Administrateurs clients
+        created_at: Date de création
+        name: Nom
+        report_bundle: Rapport sur la liasse
+        updated_at: Date de mise à jour
+      new:
+        header: Nouveau client
+      remove_confirm:
+        content: Êtes-vous sûr de vouloir supprimer le modèle de campagne "%{nom}" ?
+        success: Le modèle de campagne "%{nom}" a été supprimé avec succès.
+        title: Supprimer le modèle de campagne
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce modèle de campagne ?</p>\n"
+            title: Supprimer <strong>%{nom}</strong>?
+        in_progress:
+          deleting: Suppression
+        tooltips:
+          delete: Supprimer le client
+          edit: Modifier le client
+      toggle_status:
+        successfully: Le bail du client %{nom} a été mis à jour avec succès.
+      update:
+        successfully: Le bail du client %{nom} a été mis à jour avec succès.
+    campaigns:
+      actions: Gérer
+      assessment_reports:
+        report_approval:
+          allow_bulk_approve: Autoriser Approuver en bloc
+          allow_qc_bulk_submit: Autoriser la soumission en bloc au CQ
+          approvers_can_edit: Les approbateurs peuvent modifier
+          approvers_not_required: Approbateurs non requis
+          do_not_send_notifications: Ne pas envoyer de notifications
+          modal_title: Paramètres d'approbation des rapports
+          remove_modal_success: 'Le paramètre d''approbation du rapport : %{reportId} a été supprimé avec succès '
+          remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant du rapport : %{reportId} ?'
+      assessors:
+        spoof:
+          successfully: Vous vous êtes connecté avec succès en tant que %{nom}
+      copy: Copie
+      delete: Supprimer
+      edit: Editer
+      extend_time_success_message: Le délai de la campagne est prolongé jusqu'à %{minutes} minutes
+      form:
+        name: Nom
+        practice_campaign: Campagne d'entraînement
+        status: Statut
+      listing:
+        assessments: Évaluations
+        id: Id
+        name: Nom
+        reports: Rapports
+        status: Statut
+        type: Type
+      menus:
+        add_common_campaign: Ajouter une campagne commune
+        add_multi_rater_campaign: Ajouter une campagne multi-évaluateurs
+      modals:
+        create_threesixity:
+          close:
+            content: Êtes-vous sûr de vouloir fermer le Créateur de campagne à évaluateurs multiples ? Tout travail de personnalisation non sauvegardé sera perdu. Veuillez confirmer votre décision.
+            title: Fermer Créateur de campagne multi-évaluateurs ?
+          instructions_creation:
+            empty: 'Vide : Commencez par une enquête vierge et personnalisez-la en fonction de vos besoins spécifiques.'
+            previous: 'Précédent : sélectionner une évaluation précédente comme point de départ et y apporter des modifications.'
+            standard: 'Norme : Utiliser un modèle prédéfini avec des questions et des indicateurs couramment utilisés.'
+            sub_title: Veuillez sélectionner le type de campagne que vous souhaitez créer.
+            title: Bienvenue sur le site du créateur de campagne à évaluation multiple !
+          instructions_customization:
+            sub_title: Sélectionnez le modèle et les facteurs à inclure dans l'évaluation.
+            title: Personnalisez votre évaluation !
+          no_factors:
+            description: Veuillez essayer d'autres mots-clés de recherche.
+            title: Aucun facteur n'a été trouvé
+          questions:
+            select_all: Sélectionner tout
+            title: Questions et indicateurs
+          search_factors:
+            description: Veuillez saisir au moins 3 caractères pour trouver les facteurs que vous recherchez.
+            title: Commencez votre recherche
+          success: La campagne multi-évaluateurs a été créée avec succès.
+          success_job: Le travail de création de la campagne multi-évaluateurs a été programmé avec succès.
+      options:
+        description:
+          name: Description
+          save: Enregistrer la description
+          save_success: Description enregistrée avec succès
+        fixed_time: Temps fixe
+        instructions:
+          actions:
+            saved: Instructions enregistrées avec succès
+          enable: Activer les instructions
+          save: Enregistrer les instructions
+        prework_required: Ne pas autoriser la réservation d'un centre si les travaux préliminaires ne sont pas terminés
+        prework_required_for_invite: Envoyer un courriel d'invitation uniquement lorsque le travail préliminaire est terminé
+        proctoring:
+          enable: Permettre l'examen
+          identification: Identification
+          identifications:
+            face: Visage
+            face_and_passport: Visage et passeport
+            passport: Passeport
+          integration_type: Intégration
+          integration_types:
+            iframe: IFrame
+            ldb: Navigateur verrouillé
+          proctoring_types:
+            offline: Hors ligne
+            online: En ligne
+          rule_types:
+            allow_absence_in_frame: Autoriser les absences dans le cadre
+            allow_to_use_books: Permettre l'utilisation des livres
+            allow_to_use_calculator: Permettre l'utilisation de la calculatrice
+            allow_to_use_excel: Permettre l'utilisation d'Excel
+            allow_to_use_human_assistant: Permettre l'utilisation d'un assistant humain
+            allow_to_use_messengers: Permettre l'utilisation de messagers
+            allow_to_use_paper: Permettre l'utilisation du papier
+            allow_to_use_websites: Permettre l'utilisation de sites web
+            allow_voices: Autoriser les voix
+            allow_wrong_gaze_direction: Autoriser une mauvaise direction du regard
+          rules: Règles
+          trial: Essai de contrôle
+          type: Type
+        show_watermark: Afficher le filigrane
+        watermark_content: Contenu en filigrane
+        watermark_info: Si vous n'ajoutez pas de contenu, l'email de l'utilisateur apparaîtra par défaut en filigrane. Vous pouvez utiliser l'un des éléments suivants pipetext -<br/> {{id}} - Identifiant du participant </br>{{first_name}} - Prénom du participant </br>{{last_name}} - Nom de famille du participant </br>{{email}} - Courriel du participant
+      pdf_password: Mot de passe PDF
+      types:
+        common: Communs
+        threesixty: Évaluateurs multiples
+      users:
+        add_user: Ajouter un utilisateur
+        completion_status: État d'avancement
+        created_by: Créé par
+        email: Courriel
+        filters:
+          all: Tous
+          anonymous: Anonyme
+          identified: Identifié
+        id: Id
+        is_active: Actif
+        name: Nom
+        no_permission_message: Vous n'avez pas le droit de modifier
+        updated_by: Mise à jour par
+      validations:
+        dates:
+          end: doit être postérieure à la date de début
+    campaigns_external_scores_import:
+      errors:
+        invalid_campaign_factor_codes: 'Les codes de facteur de campagne suivants ne sont pas valides : %{codes}'
+        missing_headers: En-têtes manquants
+        missing_users: 'Les courriels suivants n''existent pas : %{courriels}'
+      import:
+        example_csv: Télécharger l'exemple csv
+        success_msg: L'importation a été téléchargée avec succès
+      modal:
+        title: Importer des scores de campagnes externes
+    clients:
+      api_keys:
+        init_breadcrumbs:
+          breadcrumb: Fil d'Ariane
+      archive:
+        successfully: Avec succès
+      base:
+        active: Actif
+        archived: Archivé
+        disable: Archives
+        enable: Désarchiver
+      columns:
+        country: Pays
+        project_manager: Chef de projet
+        type: Type
+        year: Année
+      copy:
+        successfully: Le bail du client "%{nom}" a été copié avec succès.
+      create:
+        successfully: Le contrat de location "%{nom}" a été créé avec succès.
+      destroy:
+        successfully: Le contrat de location %{nom} a été supprimé avec succès.
+      edit:
+        header: Modifier le client
+      licenses:
+        resource:
+          confirmations:
+            toggle_status:
+              body: "<p>Êtes-vous sûr de vouloir %{status} cette licence ?</p>\n"
+              title: "<strong>%{status}</strong> Licence pour %{nom} ?"
+        show:
+          used_out_of: "%{nombre_utilisé} sur %{nombre}"
+      new:
+        header: Nouveau client
+      projects:
+        actions:
+          archive: Archives
+          unarchive: Désarchiver
+        archive:
+          content: Êtes-vous sûr de vouloir archiver "%{nom_du_projet}" ?
+          success: Le projet '%{nom_du_projet}' a été archivé avec succès.
+          title: Projet d'archives
+        assign_assessments:
+          add_assessment: Ajouter une évaluation
+          assessments: Évaluations
+        assign_reports:
+          add_report: Ajouter un rapport
+        campaigns:
+          archive:
+            successfully: La campagne "%{nom}" a été archivée avec succès.
+          copy:
+            error: La campagne '%{nom}' n'a pas été copiée.
+            successfully: La campagne "%{nom}" a été copiée avec succès.
+          create:
+            successfully: La campagne '%{nom}' a été créée avec succès.
+          destroy:
+            successfully: La campagne "%{nom}" a été supprimée avec succès.
+          edit:
+            header: Modifier la campagne
+          export:
+            assessments: Évaluations
+            assigned_user: Utilisateurs assignés
+            completed_user: Utilisateurs terminés
+            created_at: Date de création
+            header:
+              actions: Actions
+              actual_usage: Utilisation réelle
+              assessments: Évaluations
+              campaigns: Campagnes
+              name: Nom
+              reports: Rapports
+              sub_campaigns: Sous-campagnes
+              tests_allocated: Tests attribués
+              users: Utilisateurs
+            id: Id
+            name: Nom de la campagne
+            reports: Rapports
+            updated_at: Date de mise à jour
+          index:
+            export: Exportation
+            new: Ajouter
+            title: Campagnes
+          list:
+            assessments: Évaluations
+            assigned_user: Utilisateurs assignés
+            completed_user: Utilisateurs terminés
+            created_at: Date de création
+            header:
+              actions: Actions
+              actual_usage: Utilisation réelle
+              assessments: Évaluations
+              campaigns: Campagnes
+              name: Nom
+              reports: Rapports
+              sub_campaigns: Sous-campagnes
+              tests_allocated: Tests attribués
+              users: Utilisateurs
+            id: Id
+            name: Nom de la campagne
+            reports: Rapports
+            updated_at: Date de mise à jour
+          new:
+            header: Nouvelle campagne
+          resource:
+            sub_campaign:
+              create: Créer une nouvelle sous-campagne
+            tooltips:
+              copy: Campagne de copie
+              create_report: Ajouter un nouveau rapport
+              create_user: Ajouter un nouvel utilisateur
+              delete: Supprimer la campagne
+              edit: Modifier la campagne
+              export: Exportation
+          sidebar:
+            archive: Campagne d'archivage
+            copy: Campagne de copie
+            destroy: Supprimer la campagne
+            disable: Désactiver
+            edit: Editer la campagne
+            enable: Activer
+            new: Nouvelle campagne
+            title: Options de la campagne
+            view_licenses: Voir les licences
+          sub_campaigns:
+            archive:
+              successfully: La sous-campagne %{nom} a été archivée avec succès.
+            copy:
+              error: La sous-campagne %{nom} n'a pas été copiée.
+              successfully: La sous-campagne %{nom} a été copiée avec succès.
+            create:
+              successfully: La sous-campagne %{nom} a été créée avec succès.
+            destroy:
+              successfully: La sous-campagne %{nom} a été supprimée avec succès.
+            edit:
+              header: Modifier la sous-campagne
+            export:
+              assessments: Évaluations
+              assigned_user: Utilisateurs assignés
+              completed_user: Utilisateurs terminés
+              created_at: Date de création
+              header:
+                actions: Actions
+                actual_usage: Utilisation réelle
+                archive_status: Statut de l'archive
+                name: Nom
+                sub_campaign: Sous-campagnes
+                tests_allocated: Tests alloués
+                users: Utilisateurs
+              id: Id
+              name: Nom de la sous-campagne
+              reports: Rapports
+              updated_at: Date de mise à jour
+            header:
+              actions: Actions
+            index:
+              export: Exportation
+              new: Ajouter
+              title: Sous-campagnes
+            list:
+              assessments: Évaluations
+              assigned_user: Utilisateurs assignés
+              completed_user: Utilisateurs terminés
+              created_at: Date de création
+              header:
+                actions: Actions
+                actual_usage: Utilisation réelle
+                archive_status: Statut de l'archive
+                name: Nom
+                sub_campaign: Sous-campagnes
+                tests_allocated: Tests alloués
+                users: Utilisateurs
+              id: Id
+              name: Nom de la sous-campagne
+              reports: Rapports
+              updated_at: Date de mise à jour
+            new:
+              header: Nouvelle sous-campagne
+            resource:
+              tooltips:
+                copy: Copie de la sous-campagne
+                create_report: Ajouter un nouveau rapport
+                create_user: Ajouter un nouvel utilisateur
+                delete: Supprimer une sous-campagne
+                edit: Modifier la sous-campagne
+            sidebar:
+              archive: Sous-campagne d'archivage
+              copy: Copier la sous-campagne
+              destroy: Supprimer une sous-campagne
+              disable: Désactiver
+              edit: Modifier la sous-campagne
+              enable: Activer
+              new: Nouvelle sous-campagne
+              title: Options de la sous-campagne
+              view_licenses: Voir les licences
+            toggle_status:
+              successfully: La sous-campagne %{nom} a été mise à jour avec succès.
+            update:
+              successfully: La sous-campagne %{nom} a été mise à jour avec succès.
+          toggle_status:
+            successfully: La campagne %{nom} a été mise à jour avec succès.
+          update:
+            successfully: La campagne %{nom} a été mise à jour avec succès.
+        copy:
+          error: Le projet %{nom} n'a pas été copié.
+          successfully: Le projet %{nom} a été copié avec succès.
+        create:
+          successfully: Le projet %{nom} a été créé avec succès.
+        destroy:
+          successfully: Le projet %{nom} a été supprimé avec succès.
+        edit:
+          header: Editer le projet
+        export:
+          2fa_enabled: 2FA activé
+          actual_usage: Utilisation réelle
+          admin: Client admin
+          applicable_level: Niveau applicable
+          archive_status: Statut
+          assessments: Évaluations
+          assigned_user: Utilisateurs assignés
+          completed_user: Utilisateurs terminés
+          created_at: Date de création
+          id: Id
+          name: Nom du projet
+          number: Nombre
+          project_admin: Administrateurs de projets
+          reports: Rapports
+          tests_allocated: Tests alloués
+          tte_admin: Chef de projet TTE
+          updated_at: Date de modification
+          url: URL
+          users_count: Nombre d'utilisateurs
+        form:
+          2fa: authentification à 2 facteurs
+          2fa_enable: Activer l'authentification à 2 facteurs
+          applicable_levels:
+            campaign: Niveau de fin de campagne
+            project: Niveau de fin de projet
+            sub_campaign: Niveau de fin de sous-campagne
+          data_privacy: Confidentialité des données
+          enable_live_chat: Activer le Live Chat
+          enable_privacy_links: Activer le lien de confidentialité
+          live_chat_token: Token Live Chat
+          optional: En option
+          other_settings: Autres paramètres
+          privacy_link: Lien vers la vie privée
+          privacy_text: Texte sur la protection de la vie privée
+          project_number: Numéro du projet
+          webhook: Crochet Web
+          webhook_auth_enabled: Activer l'authentification du webhook
+          webhook_password: Mot de passe
+          webhook_username: Nom d'utilisateur
+        header:
+          actions: Actions
+        index:
+          export: Exportation
+          new: Ajouter
+          title: Projets
+          tooltips:
+            create: Créer
+            export: Exportation
+        list:
+          2fa_enabled: 2FA activé
+          actual_usage: Utilisation réelle
+          admin: Client admin
+          applicable_level: Niveau applicable
+          archive_status: Statut
+          assessments: Évaluations
+          assigned_user: Utilisateurs assignés
+          completed_user: Utilisateurs terminés
+          created_at: Date de création
+          id: Id
+          name: Nom du projet
+          number: Nombre
+          project_admin: Administrateurs de projets
+          reports: Rapports
+          tests_allocated: Tests alloués
+          tte_admin: Chef de projet TTE
+          updated_at: Date de modification
+          url: URL
+          users_count: Nombre d'utilisateurs
+        new:
+          header: Nouveau projet
+        resource:
+          add_assessment: Ajouter une évaluation
+          add_report: Ajouter un rapport
+          assessments: Évaluations
+          tooltips:
+            copy: Projet de copie
+            create_admin: Créer une administration de projet
+            create_report: Ajouter un nouveau rapport
+            create_user: Ajouter un nouvel utilisateur
+            delete: Supprimer un projet
+            edit: Editer le projet
+        sidebar:
+          admins: Administrateurs de projets
+          archive: Projet d'archives
+          copy: Projet de copie
+          design: Modifier la conception
+          destroy: Supprimer un projet
+          disable: Désactiver
+          edit: Editer le projet
+          enable: Activer
+          new: Nouveau projet
+          title: Options du projet
+          view_licenses: Voir les licences
+        status:
+          active: Actif
+          archived: Archivé
+        threesixty_campaigns:
+          base:
+            active: Actif
+            archived: Archivé
+            disable: Archives
+            enable: Désarchiver
+          completion_statuses:
+            approved: Approuvé
+            completed: Terminé
+            denied: Refusé
+            in_progress: En cours
+            not_started: Pas commencé
+          copy:
+            error: Le bail du client '%{nom}' n'a pas été copié.
+            successfully: Le bail du client "%{nom}" a été copié avec succès.
+          create:
+            successfully: Le contrat de location "%{nom}" a été créé avec succès.
+          designs:
+            form:
+              no_background: Pas encore d'arrière-plan
+              no_logo: Pas encore de logo
+          destroy:
+            error: Impossible de supprimer '%{nom}' car il existe des associations dépendantes de sujets ou d'évaluateurs.
+            successfully: Le contrat de location du client '%{nom}' a été supprimé avec succès.
+          edit:
+            header: Modifier la campagne 360
+          export:
+            admin: Administration des clients
+            assessment: Assement
+            client_admins: Administrateurs clients
+            created_at: Créé à
+            id: Id
+            name: Nom
+            report: Rapport
+            report_bundle: L'ensemble des rapports
+            status: Statut
+          index:
+            export: Exportation
+            new: Ajouter une campagne 360
+            title: campagnes 360
+          license:
+            header: "%{nom} - Modifier la licence"
+          licenses:
+            update:
+              duplicate_licenses: Vous avez des licences en double
+              successfully: Les licences ont été mises à jour avec succès
+          list:
+            admin: Administration des clients
+            assessment: Assement
+            client_admins: Administrateurs clients
+            created_at: Créé à
+            id: Id
+            name: Nom
+            report: Rapport
+            report_bundle: L'ensemble des rapports
+            status: Statut
+            updated_at: Date de mise à jour
+          new:
+            header: Nouvelle campagne 360
+          resource:
+            confirmations:
+              delete:
+                body: "<p>Êtes-vous sûr de vouloir supprimer ?</p> <p>Cette action ne peut pas être annulée. La campagne <strong>%{nom}</strong>, les sous-campagnes et toutes les associations seront définitivement supprimées.</p> <p>Veuillez taper <strong>%{nom}</strong> pour confirmer.</p>"
+                title: Supprimer <strong>%{nom}</strong>?
+              disable:
+                body:
+                  '0': "<p>Êtes-vous sûr de vouloir archiver ?</p> <p>Toutes les campagnes, sous-campagnes et utilisateurs seront également archivés</p>"
+                  '1': "<p>Êtes-vous sûr de vouloir archiver ?</p> <p>Toutes les sous-campagnes et tous les utilisateurs seront également archivés</p>"
+                  '2': "<p>Êtes-vous sûr de vouloir archiver ?</p> <p>Tous les utilisateurs seront également archivés</p>"
+                  '3': "<p>Êtes-vous sûr de vouloir archiver ?</p> <p>Tous les utilisateurs seront également archivés</p>"
+                title: Archive <strong>%{nom}</strong>?
+              enable:
+                body:
+                  '0': "<p>Êtes-vous sûr de vouloir désarchiver ?</p>"
+                  '1': "<p>Êtes-vous sûr de vouloir désarchiver ?</p>"
+                  '2': "<p>Êtes-vous sûr de vouloir désarchiver ?</p>"
+                  '3': "<p>Êtes-vous sûr de vouloir désarchiver ?</p>"
+                title: Désarchiver <strong>%{nom}</strong>?
+            export_results: Exporter les résultats
+            raw_results: Résultats bruts
+            tooltips:
+              campaigns:
+                delete: Supprimer la campagne
+              copy: Copie du client
+              create_admin: Créer un client Admin
+              delete: Supprimer le client
+              disable: Désactiver le client
+              edit: Modifier le client
+              enable: Activer le client
+          statistics:
+            index:
+              all_assessments: Toutes les évaluations
+              assessment_type: Type d'évaluation
+              title: Statistiques
+          toggle_status:
+            successfully: Le bail du client %{nom} a été mis à jour avec succès.
+          update:
+            successfully: Le bail du client %{nom} a été mis à jour avec succès.
+          url: Url
+        toggle_status:
+          successfully: Le projet %{nom} a été mis à jour avec succès.
+        unarchive:
+          content: Êtes-vous sûr de vouloir désarchiver '%{nom_du_projet}' ?
+          success: Le projet "%{nom_du_projet}" a été désarchivé avec succès.
+          title: Projet Unarchive
+        update:
+          successfully: Le projet %{nom} a été mis à jour avec succès.
+      registration_codes:
+        errors:
+          count_invalid: ne peut pas être inférieure à la valeur utilisée = %{compte_utilisé}
+          criteria: ne peut contenir que des caractères alphanumériques, le trait d'union (-) et le trait de soulignement (_)
+          duplicate_code: essayez-en un autre.
+          incorrect_domain: Format de domaine incorrect.
+          invalid_end_date: doit être supérieure à la date de début
+          license_issue: Pas assez de licences.
+      resource:
+        confirmations:
+          delete:
+            title: Supprimer <strong>%{nom}</strong>?
+          disable:
+            title: Archive <strong>%{nom}</strong>?
+          enable:
+            title: Désarchiver <strong>%{nom}</strong>?
+      tenancies: Baux des clients
+      threesixty_campaign: Campagne Threesixty
+      toggle_status:
+        successfully: Le bail du client %{nom} a été mis à jour avec succès.
+      update:
+        successfully: Le bail du client %{nom} a été mis à jour avec succès.
+    close: Fermer
+    common:
+      add: Ajouter
+      back: Retour
+      cancel: Annuler
+      disabled: Diasbled
+      enabled: Activé
+      next: Suivant
+      reset: Remise à zéro
+      save: Économiser
+      select_all: Tout sélectionner
+      unselect_all: Désélectionner tout
+    communications:
+      create:
+        successfully: La communication a été établie avec succès.
+      destroy:
+        successfully: La communication %{nom} a été supprimée avec succès.
+      edit:
+        header: Editer la communication
+      form:
+        all: Tous
+        assessment_completion_status_code: Code du statut d'achèvement de l'évaluation
+        assessment_completion_status_code_hint: Si un code d'achèvement est spécifié, il ne sera envoyé que si l'évaluation de l'utilisateur a ce code d'achèvement.
+        body_mustache: "{{{user_link}}} - Lien vers la plateforme pour les utilisateurs existants ou un lien unique pour définir un mot de passe pour les nouveaux utilisateurs {{user_url}} - Identique à user_link mais uniquement l'URL au lieu d'un hyperlien {{user_link_qrcode}}} - Intégrer le code QR généré par user_link {{first_name}} - Prénom du destinataire {{last_name}} - Nom du destinataire {{email}} - Courriel du destinataire {{schedule_start_date}} - Date de début de la programmation {{schedule_end_date}} - Date de fin de la programmation\n"
+        completion: Achèvement
+        delivery_at: Livraison à (GST)
+        delivery_delay_hours: Délai de livraison (heures)
+        delivery_rules:
+          in_progress: Si l'évaluation est en cours
+          not_competed: Si l'évaluation n'est pas terminée
+          not_started: Si l'évaluation n'est pas entamée
+          send_now: Envoyer
+          specific_datetime: Envoyer à
+        idp_template_approved: PDI approuvé
+        idp_template_assigned: IDP assigné
+        idp_template_rejected: PDI Rejeté
+        invitation: Invitation
+        kind: Types de communication
+        magic_link_email: Magic Link Email
+        new_assignment: Nouvelle affectation
+        new_users: Nouveaux utilisateurs
+        other: Autres
+        reminder: Rappel
+        report_available: Rapport disponible
+        selected: Sélectionné
+        selected_cc_recipients: Bénéficiaires de la CC sélectionnés
+        selected_recipients: Bénéficiaires sélectionnés
+        stop_reminder: Ne plus envoyer de rappels
+        stop_reminder_datetime: Date de fin des rappels (TPS)
+        workshop_booked: Confirmation de réservation du centre d'évaluation
+        workshop_cancelled: Centre d'évaluation annulé
+        workshop_completed: Centre d'évaluation terminé
+        workshop_invite: Invitation au centre d'évaluation
+        workshop_invite_reminder: Rappel d'invitation au centre d'évaluation
+        workshop_upcoming_reminder: Rappel du prochain centre d'évaluation
+      index:
+        clients: Clients
+        new: Ajouter
+        title: Centre de communication
+        type: Type
+      list:
+        actions: Actions
+        author: Créé par
+        campaign: Campagne
+        client_name: Client
+        created_at: Date de création
+        creator_first_name: Créé par
+        delivery_rule: Livraison
+        kind: Type de communication
+        project: Projet
+        recipients: Bénéficiaires
+        sub_campaign: Sous-campagne
+        subject: Sujet de la communication
+        updated_at: Date de modification
+      new:
+        header: Nouvelle communication
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette communication ?</p>\n"
+            title: Supprimer la <strong>communication</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cette communication ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+        in_progress:
+          copying: Copie
+          deleting: Suppression
+        tooltips:
+          copy: Communication par copie
+          delete: Supprimer la communication
+          download: Télécharger l'histoire de la communication
+          view: Voir la communication
+      show:
+        assessment: 'Évaluation :'
+        back: Retour
+        body: 'Le corps :'
+        campaign: 'Campagne :'
+        client: 'Client :'
+        communication_type: 'Type de communication :'
+        delivery_rule: 'Règle de livraison :'
+        every_interval: Tous les %{intervalles}
+        owner: 'Propriétaire :'
+        project: 'Projet :'
+        recipients: 'Récipiendaires :'
+        specific_datetime: 'Envoyer à :'
+        stop_reminder_datetime: Date de fin des rappels (TPS)
+        sub_campaign: 'Sous-campagne :'
+        subject: 'Sujet :'
+        users: 'Utilisateurs :'
+      sidebar:
+        copy: Communication par copie
+        destroy: Supprimer la communication
+        download: Télécharger l'histoire de la communication
+        title: Options de communication
+        view: Voir la communication
+      toggle_status:
+        successfully: La communication a été mise à jour avec succès.
+    components:
+      input_duration:
+        placeholder: Saisir comme "1j 2h 3m"
+    create: Créer
+    dashboard:
+      capacity_name: Nom de la capacité
+      dashboard_types:
+        oracle_analytics: Oracle Analytics
+        powerbi: PowerBi
+      dashboards: Tableaux de bord
+      get_started: Commencer
+      initialize_msg: Initialiser un tableau de bord pour cette campagne
+      loading_failed: Le chargement du tableau de bord a échoué.
+      preview:
+        embed_token_error_description: Veuillez vérifier si l'ensemble de données et l'identifiant du rapport sont corrects dans les paramètres.
+        embed_token_error_title: Impossible de générer un jeton intégré.
+      settings:
+        capacity_id: Capacité Id
+        details: Détails
+        refresh: Rafraîchir
+        workspace_id: Identifiant de l'espace de travail
+      tabs:
+        accesssheet: Fiche d'accès
+        accesssheet_setting: Paramètres de la feuille d'accès
+        dashboard: Tableau de bord
+        settings: Paramètres
+    dashboard_form:
+      fields:
+        dataset_id: Id de l'ensemble de données
+        enabled: Activé
+        image: Image
+        project_path: Trajectoire du projet
+        refresh_interval: Intervalle de rafraîchissement (minutes)
+        report_id: Rapport Id
+        visual_header_visibility: Visibilité de l'en-tête
+      image_upload_failed: Le téléchargement de l'image a échoué.
+      none: Aucun
+      refresh_success: L'actualisation de l'ensemble des données a été programmée avec succès.
+      visual_header_visibility_options:
+        hide_all: Cacher tout
+        keep_original: Garder l'original
+        show_all: Tout afficher
+    data_exports_modal:
+      title: Sélectionner une plage de dates
+    data_reports:
+      columns:
+        created_at: Créé à
+        created_by: Créé par
+        last_updated_by: Dernière mise à jour
+        name: Nom
+        owner: Propriétaire
+        password: Mot de passe
+        status: Statut
+        udpated_at: Dernière mise à jour le
+      configuration: Configuration
+      errors:
+        factor_not_found: ne figure pas dans le champ de l'évaluation
+        inclusion: 'type non valide, types valides : %{valeurs}'
+        not_found: non trouvé
+        not_owned: n'appartient pas au client
+      form:
+        name: Rapport de données
+      messages:
+        runed: L'exécution du rapport de données a été programmée avec succès
+      validations:
+        project_and_campaigns_not_allowed: les project_ids et les campaign_ids ne doivent pas être spécifiés ensemble
+        project_not_related_to_client: "%{project_id} n'appartient pas au client"
+        project_or_campaign_required: project_ids ou campaign_ids est nécessaire
+        sections_required: sections est nécessaire
+    datasheet:
+      threesixty_warning: Pour les rapports 360, les colonnes de la feuille de données sont chargées à partir de la campagne à laquelle ce rapport est lié
+    dates:
+      completed: Terminé le
+      end: Date de fin
+      start: Date de début
+      started: Commencé à
+    development_action_import:
+      errors:
+        blank_field: 'Ligne %{row} : %{field} ne peut pas être vide'
+        csv_file_required: Doit être un fichier CSV
+        download_failed: 'Le téléchargement du fichier a échoué : %{message}'
+        image_download_failed: 'Échec du téléchargement de l''image de %{url} : %{message}'
+        invalid_category: 'Rangée %{rangée} : catégorie "%{valeur}" non valide. Les catégories valides sont : %{catégories_valides}'
+        invalid_csv_format: 'Format CSV non valide : %{message}'
+        invalid_date_format: 'Format de date non valide : %{date}'
+        invalid_image_file: 'Fichier image non valide : %{message}'
+        invalid_image_url: 'Format d''URL d''image non valide : %{url}'
+        invalid_learning_style: 'Rangée %{rangée} : Style d''apprentissage non valide ''%{valeur}'' Les types valides sont : %{types_valides}'
+        invalid_url: 'URL non valide : %{message}'
+        invalid_url_format: Format URL non valide
+        missing_columns: 'Les colonnes requises sont manquantes : %{fields}'
+        save_failed: 'Récupération de l''action de développement manquée : %{message}'
+        skill_not_found: 'Compétence non trouvée pour l''ID : %{skill_id}'
+    development_action_translations:
+      import:
+        errors:
+          blank_description: 'Ligne %{row} : la description ne peut pas être vide'
+          blank_id: 'Ligne %{row} : l''ID ne peut pas être vide'
+          blank_locale: 'Row %{row} : Locale cannot be blank'
+          blank_name: 'Ligne %{row} : le nom ne peut pas être vide'
+          development_action_not_found: Action de développement introuvable
+          download_failed: 'Le téléchargement du fichier a échoué : %{message}'
+          invalid_csv_format: 'Format CSV non valide : %{message}'
+          invalid_file_format: Le fichier doit être un fichier CSV
+          invalid_id: 'Ligne %{row} : l''ID doit être un nombre'
+          invalid_locale: 'Ligne %{row} : locale invalide ''%{locale}'''
+          invalid_url: 'URL non valide : %{message}'
+          invalid_url_format: Format d'URL non valide
+          missing_columns: 'Colonnes obligatoires manquantes : %{fields}'
+          save_failed: Échec de la sauvegarde
+    development_actions:
+      categories:
+        course: Cours
+        default: Défaut
+      create:
+        successfully: L'action de développement "%{nom}" a été créée avec succès.
+      destroy:
+        successfully: L'action de développement "%{nom}" a été supprimée avec succès.
+      edit:
+        header: Editer l'action de développement
+      export:
+        details: Détails du dossier
+        failure_msg: Erreur lors de l'exportation des traductions
+        success_msg: L'exportation des actions de développement est en cours. Veuillez vérifier l'état d'avancement dans les notifications.
+        title: Exportation
+        translation_details: Détails
+      export_actions:
+        development_action_translations_title: Actions de développement des exportations Traductions
+        development_actions_title: Actions de développement des exportations
+      export_development_action_translations: Action de développement Traductions basées sur le projet
+      export_development_actions: Actions de développement basées sur le projet
+      export_global_development_actions: Actions de développement global
+      export_global_development_actions_translations: Action mondiale pour le développement Traductions
+      form:
+        category: Catégorie
+        course_image: Image du cours
+        course_link: Lien vers le cours
+        description: Description
+        end_date: Date de fin
+        learning_style: Style d'apprentissage
+        name: Nom
+        project_placeholder: Sélectionner un projet
+        skills: Compétences
+        skills_placeholder: Sélectionner les compétences
+        start_date: Date de début
+        title: Action de développement
+        upload: Télécharger
+      heading: Actions de développement
+      import:
+        download_example_csv: Télécharger l'exemple csv
+        failure_msg: Erreur lors de l'importation du fichier.
+        info_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
+      import_action:
+        development_actions_title: Actions de développement des importations
+        development_actions_translations_title: Importation Développement Actions Traductions
+      import_development_actions: Actions de développement
+      import_development_actions_translations: Actions de développement Traductions
+      learning_styles:
+        cannot_be_blank: Ne peut être vide
+        invalid: 'Doit être l''un des éléments suivants : sur le lieu de travail, apprentissage structuré, apprentissage par les autres'
+        learning_from_others: Apprendre des autres [20]
+        on_the_job: Au travail [70]
+        structured_learning: Apprentissage structuré [10]
+      new:
+        header: Nouvelle action de développement
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette action de développement ?</p>\n"
+            title: Supprimer l'<strong>action de développement</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cette action de développement ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+      toggle_status:
+        successfully: L'action de développement a été mise à jour avec succès.
+      update:
+        successfully: L'action de développement "%{nom}" a été mise à jour avec succès.
+    dimensions:
+      copy_scheduled:
+        successfully: Copie prévue pour la dimension %{nom}
+      create:
+        successfully: la dimension %{nom} a été créée avec succès
+      destroy:
+        successfully: La dimension %{nom} a été supprimée avec succès.
+      edit:
+        header: Modifier le nom de la dimension
+      export_translations_scheduled:
+        successfully: Exportations de traductions prévues pour la dimension %{nom}.
+      form:
+        enable_innovation_styles: Favoriser les styles d'innovation
+        enable_occupations: Activer les professions
+      import_factors:
+        import: Importation
+        successfully: Importation de facteurs prévue pour la dimension %{nom}.
+        title: Facteurs d'importation
+      import_translations:
+        error: Erreur lors de l'importation des traductions pour la dimension %{nom}.
+        successfully: Importation de traductions prévue pour la dimension %{nom}.
+      import_translations_scheduled:
+        error: Erreur
+      index:
+        new: Ajouter
+        owner: Propriétaire
+        title: Dimensions
+      list:
+        active: Actif
+        created_at: Date de création
+        id: Id
+        name: Nom
+        updated_at: Date de modification
+      new:
+        header: Nouvelle dimension
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette dimension ?</p>\n"
+            title: Supprimer une <strong>dimension</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cette dimension ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+        in_progress:
+          copying: Copie
+          deleting: Suppression
+        tooltips:
+          copy: Copier la dimension
+          delete: Supprimer la dimension
+          edit: Modifier le nom de la dimension
+      sidebar:
+        copy: Copier la dimension
+        destroy: Supprimer la dimension
+        edit: Modifier le nom de la dimension
+        title: Options de dimensionnement
+        view: Voir la dimension
+      toggle_status:
+        successfully: La dimension a été mise à jour avec succès.
+      translations:
+        export: Exporter tout
+        header: Traductions des facteurs
+        import: Importation
+      update:
+        successfully: la dimension %{nom} a été mise à jour avec succès
+    disable: Désactiver
+    document_titles:
+      project_assessors: Évaluateurs | %{projet}
+      project_participants: Participants | %{projet}
+    download_sample_file:
+      download_example_file: Télécharger le fichier d'exemple
+      download_started_successfully: Le téléchargement a commencé avec succès
+      failed_to_download: le téléchargement a échoué
+    enable: Activer
+    errors:
+      error_msg: Veuillez actualiser la page et si le problème persiste, contactez votre administrateur
+    errror_msg: Message d'erreur
+    factors:
+      copy:
+        error: le facteur '%{nom}' n'a pas été copié
+        successfully: Le facteur "%{nom}" a été copié avec succès.
+      create:
+        successfully: le facteur %{nom} a été créé avec succès.
+      destroy:
+        successfully: Le facteur "%{nom}" a été supprimé avec succès.
+      edit:
+        header: Modifier le nom du facteur
+      form:
+        components:
+          ExternalList:
+            add: Ajouter
+            table:
+              actions: Actions
+              jsonpath: Chemin JSON
+              type: Type
+              types:
+                norm_score: Score normalisé
+                percentage: Pourcentage
+                percentile: Score de percentile
+                score: Score
+                zscore: Score Z
+            title: Chemins JSON pour les notes
+        scoring_strategies:
+          custom_formula: Formule personnalisée
+          external_score: Score externe
+          questions: Questions (moyenne)
+          questions_percentage: Questions (SUM / MAX Total)
+          questions_sum: Questions (SOMME)
+          sub_factor_questions: Questions sur d'autres facteurs (moyenne)
+          sub_factor_questions_sum: Questions sur les autres facteurs (SUM)
+          sub_factors_average: Moyenne pondérée des facteurs
+          sub_factors_conditional_average: Moyenne pondérée conditionnelle des facteurs
+          sub_factors_sum: Somme pondérée des facteurs
+        scoring_strategies_tip: "<strong>questions (moyenne) :</strong> cette méthode est similaire à la méthode de notation actuelle lorsqu'il y a des questions liées à un facteur. <br /> <br /><strong>questions (SOMME) :</strong> Cette méthode est identique à celle des questions (moyenne), mais utilise la SOMME <br /> <br /><strong>questions d'autres facteurs (moyenne) :</strong> cette méthode est identique à la méthode de notation actuelle lorsqu'il existe des sous-facteurs pour un facteur, le seul changement étant l'ajout d'un poids. <br /> <br /><strong>questions d'autres facteurs (SOMME) :</strong> cette méthode est identique à celle des autres facteurs (moyenne), mais elle utilise la SOMME <br /> <br /><strong>somme pondérée des facteurs :</strong> les scores des autres facteurs sélectionnés sont multipliés par leur poids et additionnés."
+        scoring_strategy: Stratégie de notation
+        use_sub_factor_norm_score: Utilisation du score normalisé des facteurs
+      index:
+        icon: Icône
+        new: Ajouter
+        scoring_strategies:
+          custom_formula: Formule personnalisée
+          external_score: Score externe
+          questions: Questions (moyenne)
+          questions_percentage: Questions (SUM / MAX Total)
+          questions_sum: Questions (SOMME)
+          sub_factor_questions: Questions sur d'autres facteurs (moyenne)
+          sub_factor_questions_sum: Questions sur les autres facteurs (SUM)
+          sub_factors_average: Moyenne pondérée des facteurs
+          sub_factors_conditional_average: Moyenne pondérée conditionnelle des facteurs
+          sub_factors_sum: Somme pondérée des facteurs
+        scoring_strategy: Stratégie de notation
+        sub_factors: Sous-facteurs
+        title: Facteurs
+      list:
+        active: Actif
+        created_at: Date de création
+        id: Id
+        name: Nom
+        updated_at: Date de modification
+      new:
+        header: Nouveau facteur
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce facteur ?</p>\n"
+            title: "<strong>Facteur de</strong> suppression ?"
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} ce facteur ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+        in_progress:
+          copying: Copie
+          deleting: Suppression
+        scoring_strategies:
+          custom_formula: Formule personnalisée
+          external_score: Score externe
+          questions: Questions (moyenne)
+          questions_percentage: Questions (SUM / MAX Total)
+          questions_sum: Questions (SOMME)
+          sub_factor_questions: Questions sur d'autres facteurs (moyenne)
+          sub_factor_questions_sum: Questions sur les autres facteurs (SUM)
+          sub_factors_average: Moyenne pondérée des facteurs
+          sub_factors_conditional_average: Moyenne pondérée conditionnelle des facteurs
+          sub_factors_sum: Somme pondérée des facteurs
+        tooltips:
+          copy: Facteur de copie
+          delete: Supprimer le facteur
+          edit: Facteur d'édition
+      sidebar:
+        copy: Facteur de copie
+        destroy: Supprimer le facteur
+        edit: Facteur d'édition
+        title: Options du facteur
+      toggle_status:
+        successfully: Le facteur a été mis à jour avec succès.
+      update:
+        successfully: le facteur %{nom} a été mis à jour avec succès
+    genders:
+      female: Femme
+      male: Homme
+      not_set: Non défini
+    grants:
+      common:
+        view: Voir
+      dashboard:
+        name: Tableau de bord
+        permissions:
+          accesssheet_manage: Feuille d'accès Gérer
+          accesssheet_settings: Paramètres de la feuille d'accès
+          accesssheet_view: Vue de la feuille d'accès
+    hogan:
+      errors:
+        new_assessment_response_not_allowed:
+          detailed_error_message: Il n'est pas possible d'ajouter une nouvelle réponse pour l'évaluation hogan %{nom_de_l'évaluation} car cette évaluation a déjà été attribuée et commencée par l'utilisateur %{email}. Vous pouvez créer un nouveau compte hogan pour cet utilisateur et cela lui permettra de repasser l'évaluation.
+          short_error_message: Il n'est pas possible d'ajouter une nouvelle réponse pour l'évaluation hogan %{nom_de_l'évaluation} car cette évaluation a déjà été attribuée et démarrée par l'utilisateur %{email}
+    idp:
+      actions:
+        remove_confirm: Saisir le nom du modèle actuel indiqué ci-dessous dans la zone de texte pour supprimer le modèle
+        success: "%{idpName} a été supprimé avec succès."
+      add_idp_template: Ajouter un modèle de PDI
+      all: Tous
+      behavioral_skills: Compétences comportementales
+      client_skills: Compétences des clients
+      edit_template: Modifier le modèle de PDI
+      enter_template_description: Description
+      enter_template_description_error: La description du modèle est obligatoire.
+      enter_template_name: Nom
+      enter_template_name_error: Le nom du modèle est obligatoire
+      global_skills: Compétences globales
+      idp: PDI
+      idp_template: Ajouter un modèle de PDI
+      none: Aucun
+      select_by_tags: Sélectionner par Tags
+      select_skill_gap_report: Sélectionner le rapport sur les déficits de compétences
+      select_specific_skills: Sélectionner des compétences spécifiques
+      selected: Sélectionné
+      self_rating: Activer l'auto-évaluation
+      skill_gap_report: Rapport sur les lacunes en matière de compétences
+      tab:
+        settings: Paramètres
+        templates: Modèles
+      technical_skills: Compétences techniques
+      template_details: Détails du modèle
+    idp_setting:
+      allow_global_skills: Permettre des compétences globales
+      manager_approves_idp: Le gestionnaire approuve le PDI
+      manager_can_edit_idp: Le gestionnaire peut modifier l'IDP
+    import: Importation
+    imports:
+      assessments:
+        results:
+          form:
+            import: Importation
+      base:
+        form:
+          import: Importation
+      errors:
+        invalid_format: Format de fichier invalide
+        norm:
+          dimension_not_found: La dimension %{nom_de_la_dimension} pour %{nom_du_client} n'a pas été trouvée
+          factor_mismatch: La dimension %{nom_de_la_dimension} n'a pas le facteur %{nom_du_facteur}
+          not_set_dimension: Le nom de la dimension doit être inscrit dans la deuxième cellule de la première ligne
+        result:
+          answer_invalid: "[Rangée %{row}] La réponse à la qid %{question_id} n'est pas valide : %{error}"
+          date_errors:
+            both_dates_required: L'état "achevé" nécessite à la fois "start_at" et "completed_at"
+            completed_at_should_be_after_started_at: completed_at doit se situer après started_at pour que l'état soit complet
+            completed_at_should_be_empty: completed_at doit être vide pour le statut in_progress
+            dates_not_in_future: Les dates ne doivent pas se situer dans le futur
+            dates_should_be_empty: Les dates doivent être vides pour le statut not_started
+            started_at_required: Une date de début valide est requise pour l'état in_progress
+          error: "[Ligne %{row}] %{error}"
+          invalid_assign: "[Si vous souhaitez créer un nouveau résultat, veuillez laisser la colonne Result ID vide"
+          invalid_date: "[Ligne %{row}] %{error}"
+          question_invalid: "[Ligne %{row}] La question %{question_id} n'est pas valide"
+          user:
+            record_not_found: Impossible de trouver un utilisateur existant avec l'adresse électronique %{email}.
+          user_assessment:
+            record_not_found: Impossible de trouver l'enregistrement de l'évaluation avec l'identifiant %{assessment_id} attribué à l'utilisateur.
+        translation:
+          error: "[Traduction %{id}] %{erreur}"
+          invalid_format: Format de fichier invalide
+        unknown_type: 'Type de fichier inconnu : %{nom du fichier}'
+      form:
+        description: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
+        import: Importation
+      hris:
+        form:
+          import: Importation
+      new:
+        header: Importation
+      users:
+        existing_users_whose_password_not_changed_modal_dialog:
+          header: La liste des utilisateurs dont les mots de passe ne seront pas modifiés
+        form:
+          description: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
+          import: Importation
+    imports_assessments_result_imports:
+      create:
+        successfully: Les données brutes des résultats ont été importées avec succès
+      modal:
+        header:
+          raw: Importer des données brutes
+          scoring: Importer les données des résultats de notation
+      new:
+        header: Nouveau
+    imports_hris_imports:
+      create:
+        successfully: Les données du SIRH ont été importées avec succès
+      new:
+        header: Importer les données du SIRH
+    imports_user_imports:
+      create:
+        successfully: Les utilisateurs ont été importés avec succès
+      new:
+        header: Importer des utilisateurs
+    individual_invite:
+      tabs:
+        assessment_center: Centre d'évaluation
+        subjects: Thèmes
+    innovation_styles:
+      create:
+        successfully: Le style d'innovation %{nom} a été créé avec succès.
+      destroy:
+        successfully: Innovation Style %{nom} a été supprimé avec succès.
+      edit:
+        header: Éditer le style de l'innovation
+      form:
+        no_icon: Pas d'icône
+      index:
+        new: Ajouter
+        title: Styles d'innovation
+      list:
+        created_at: Date de création
+        id: Id
+        name: Nom
+        position: Position
+        updated_at: Date de modification
+      new:
+        header: Nouveau style d'innovation
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce style d'innovation ?</p>\n"
+            title: Supprimer le <strong>style d'innovation</strong>?
+        tooltips:
+          delete: Supprimer le style d'innovation
+          edit: Éditer le style de l'innovation
+      sidebar:
+        copy: Copier le style de l'innovation
+        edit: Editer
+        title: Options d'Innovation Style
+      toggle_status:
+        successfully: Innovation Style a été mis à jour avec succès.
+    innovation_styles_factors:
+      create:
+        successfully: Le facteur %{nom} a été créé avec succès.
+      destroy:
+        successfully: Le facteur %{nom} a été détaché avec succès.
+      edit:
+        header: Facteur d'édition
+      index:
+        new: Ajouter
+        title: Facteurs
+      list:
+        condition: Condition
+        created_at: Date de création
+        id: Id
+        name: Nom
+        position: Position
+        updated_at: Date de modification
+        weight: Poids
+      new:
+        header: Joindre les facteurs
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce facteur ?</p>"
+            title: "<strong>Facteur de</strong> suppression ?"
+        tooltips:
+          delete: Supprimer le facteur
+          edit: Facteur d'édition
+      sidebar:
+        destroy: Détruire
+        edit: Editer
+        title: Options du facteur
+      toggle_status:
+        successfully: Le facteur a été mis à jour avec succès.
+    integrations:
+      actions:
+        add: Intégrations
+        back: Retour à Intégrations
+        load_mettl_catalog: Catalogue d'évaluation de Load Mettl
+      columns:
+        active: Actif
+        details: Détails
+        name: Nom de l'intégration
+      details:
+        provider: Nom du prestataire
+        webhookUrl: URL du webhook
+        webhookUrls: URL des webhooks
+      integrations: Intégrations
+      load_mettl_success: Le travail d'évaluation des métriques de charge a été mis en file d'attente avec succès
+      modal:
+        hogan:
+          provider: Fournisseur
+          providers:
+            mercer: Mercer
+            phoenix: Phoenix
+        iiht:
+          password: Mot de passe
+          tenancy_name: Nom du locataire
+          tenant_id: ID du locataire
+          user: Utilisateur
+        mettl:
+          apiBaseUrl: Point final de l'API
+          apiBaseUrlRequired: Le point de terminaison de l'API est requis.
+          privateKey: Clé privée
+          privateKeyRequired: La clé privée est nécessaire.
+          publicKey: Clé publique
+          publicKeyRequired: La clé publique est requise.
+          servers:
+            mettl_eu: L'Europe
+            mettl_india: Inde
+      names:
+        hogan: HOGAN
+        iiht: IIHT
+        mettl: METTL
+      validations:
+        iiht:
+          tenancy_name_present: Le nom du bail est déjà présent dans un autre projet
+          tenant_id_present: L'identifiant du locataire est déjà présent dans un autre projet
+        mettl:
+          public_key_present: La clé publique est déjà présente dans un autre projet
+      view_all_schedules: Voir tous les horaires de Mettl
+    invited_subject:
+      add_btn: Ajouter un sujet
+      assessment_center: 'Centre d''évaluation :'
+      booked_at: 'Réservé à :'
+      column:
+        participant: Participant
+      remove_confirm:
+        content: Êtes-vous sûr de vouloir supprimer l'objet avec l'e-mail "%{subjectEmail}" ?
+        success: Le sujet avec l'email '%{subjectEmail}'' a été supprimé avec succès.
+        title: Supprimer le sujet
+      statuses:
+        accepted: Accepté
+        cancelled: Annulé
+        pending: En attente
+        requested_cancellation: Annulation demandée
+        requested_cancellation_rejected: Annulation Rejetée
+        requested_rescheduling: Report demandé
+        requested_rescheduling_rejected: Reprogrammation Rejeté
+        rescheduled: Reporté
+      subject: Sujet
+    libraries:
+      create:
+        successfully: L'élément %{nom} a été créé avec succès.
+      destroy:
+        successfully: L'élément %{nom} a été supprimé avec succès.
+      edit:
+        header: Editer
+      index:
+        new_folder: Nouveau dossier
+        owner: Propriétaire
+        title: Médiathèque
+        upload: Télécharger
+      list:
+        created_at: Date de création
+        name: Nom
+        new_folder: Nouveau dossier
+        root: Médiathèque
+        type: Type
+        updated_at: Date de modification
+        upload: Télécharger un nouveau fichier
+      new:
+        header: Nouveau dossier
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer %{nom} ?</p>\n"
+            title: Supprimer <strong>%{nom}</strong>?
+        tooltips:
+          delete: Supprimer
+          edit: Editer
+      update:
+        successfully: L'élément %{nom} a été mis à jour avec succès.
+    memberships:
+      admin_chosen:
+        successfully: Les utilisateurs administrateurs ont été mis à jour avec succès.
+      create:
+        successfully: L'utilisateur %{nom} a été créé avec succès.
+      destroy:
+        successfully: L'utilisateur %{nom} a été supprimé avec succès.
+      new:
+        header: Nouvel utilisateur
+      reset_password:
+        successfully: L'utilisateur %{nom} recevra dans quelques minutes un courriel contenant des instructions sur la manière de réinitialiser son mot de passe.
+      spoof:
+        successfully: Vous vous êtes connecté avec succès en tant que %{nom}
+      toggle_membership_status:
+        successfully: L'adhésion de %{nom} a été mise à jour avec succès.
+      toggle_status:
+        successfully: L'utilisateur %{nom} a été mis à jour avec succès.
+      update:
+        successfully: L'utilisateur %{nom} a été mis à jour avec succès.
+    meta_title: Panneau d'administration
+    navigation:
+      assessments: Évaluations
+      assessments_reports: Évaluations et rapports
+      assessor_dashboard: Tableau de bord de l'évaluateur
+      assessor_workshops: Centre d'évaluation
+      audit_logs: Journaux d'audit
+      availability: Disponibilité
+      back_to_main: Menu principal
+      campaign_templates: Modèles de campagne
+      change_password: Modifier le mot de passe
+      client_admins: Administrateurs clients
+      clients: Baux des clients
+      communication_center: Centre de communication
+      dashboard: Tableau de bord
+      data_reports: Rapports de données
+      development_actions: Actions de développement
+      dimensions: Dimensions
+      factors: Facteurs
+      innovation_styles: Styles d'innovation
+      libraries: Bibliothèque des médias
+      norms: Normes
+      occupations: Professions
+      options: Options
+      participants: Les participants
+      profile: Profil
+      profile_details: Détails
+      project_admins: Administrateurs de projets
+      question_center: Centre de questions
+      registration_codes: Codes d'enregistrement
+      report_approvals: Approbation des rapports
+      reports: Rapports
+      scheduling: Programmation
+      show_submenu: Afficher le sous-menu
+      skills: Compétences
+      user_profile_details: Détails du profil
+      user_report_events: Rapport de l'utilisateur Événements
+      users: Utilisateurs
+    no_data_found: Aucune donnée n'a été trouvée
+    norms:
+      copy:
+        error: 'La norme #%{id} n''a pas été copiée.'
+        successfully: La norme "%{nom}" a été copiée avec succès.
+      create:
+        successfully: La norme "%{nom}" a été créée avec succès.
+      destroy:
+        successfully: La norme "%{nom}" a été supprimée avec succès.
+      edit:
+        header: Renommer la norme
+      editor:
+        factors: Facteurs
+        inplace_title: Saisir la valeur
+        title: Rédacteur en chef
+      export:
+        success_msg: Le travail d'exportation de la norme a été programmé avec succès. Veuillez vérifier le statut dans les notifications.
+      import:
+        download_example_csv: Exemple de normes CSV
+        select_file_validation: Veuillez sélectionner un propriétaire et un dossier avant de soumettre votre demande.
+        success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
+        title: Importation de normes
+      index:
+        import: Importation
+        new: Ajouter
+        owner: Propriétaire
+        title: Normes
+      list:
+        active: Actif
+        created_at: Date de création
+        dimension_id: Dimension Id
+        id: Id
+        name: Nom
+        updated_at: Date de modification
+        updated_by: Mise à jour par
+      new:
+        header: Nouvelle norme
+      norms: Normes
+      remove:
+        confirm: Entrez le nom de la norme dans la zone de texte pour confirmer
+        warning: Êtes-vous sûr de vouloir supprimer la norme "%{nom}" ?
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette norme ?</p>\n"
+            title: Supprimer <strong>Norm</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cette norme ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+        in_progress:
+          copying: Copie
+          deleting: Suppression
+        tooltips:
+          copy: Copier la norme
+          delete: Supprimer la norme
+          edit: Renommer la norme
+      score_types:
+        five_scale: Échelle de cinq
+        norm_type: Type de norme
+        percentage: Pourcentage
+      sidebar:
+        copy: Copier la norme
+        destroy: Supprimer la norme
+        edit: Renommer la norme
+        editor: Rédacteur en chef
+        export: Norme d'exportation
+        title: Les options de Norm
+      toggle_status:
+        successfully: Norm a été mis à jour avec succès.
+      update:
+        successfully: La norme %{nom} a été mise à jour avec succès.
+    notification_bell_icon: Icône de cloche de notification
+    noty:
+      error_408: Cette action prend trop de temps. Essayez de recharger la page.
+      error_500: Contactez votre administrateur.
+    occupations:
+      create:
+        successfully: La profession %{nom} a été créée avec succès.
+      destroy:
+        successfully: L'occupation %{nom} a été supprimée avec succès.
+      edit:
+        header: Editer l'occupation
+      form:
+        hint:
+          key_career_tracks: '"+" - liste, "*" - gras. Exemple : + *Biologie* - une description...'
+        no_icon: Pas d'icône
+      index:
+        new: Ajouter
+        title: Professions
+      list:
+        created_at: Date de création
+        id: Id
+        name: Nom
+        updated_at: Date de modification
+      new:
+        header: Nouvelle occupation
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette occupation ?</p>\n"
+            title: Supprimer la <strong>profession</strong>?
+        tooltips:
+          delete: Supprimer la profession
+          edit: Modifier la profession
+      sidebar:
+        copy: Copie de la profession
+        edit: Editer
+        title: Options de la profession
+      toggle_status:
+        successfully: La profession a été mise à jour avec succès.
+    occupations_factors:
+      create:
+        successfully: Le facteur %{nom} a été créé avec succès.
+      destroy:
+        successfully: Le facteur %{nom} a été détaché avec succès.
+      edit:
+        header: Facteur d'édition
+      index:
+        new: Ajouter
+        title: Facteurs
+      list:
+        condition: Condition
+        created_at: Date de création
+        id: Id
+        name: Nom
+        position: Position
+        updated_at: Date de modification
+        weight: Poids
+      new:
+        header: Joindre les facteurs
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce facteur ?</p>"
+            title: "<strong>Facteur de</strong> suppression ?"
+        tooltips:
+          delete: Supprimer le facteur
+          edit: Facteur d'édition
+      sidebar:
+        destroy: Facteur de destruction
+        edit: Editer
+        title: Options du facteur
+      toggle_status:
+        successfully: Le facteur a été mis à jour avec succès.
+      update:
+        successfully: Le facteur %{nom} a été mis à jour avec succès.
+    participants:
+      tabs:
+        assessors: Évaluateurs
+        sms_contacts: Contacts SMS
+        subjects: Thèmes
+    piped_text_modal:
+      assessment_id: ID de l'évaluation
+      campaign_id: ID de la campagne
+      insight_page_link: Lien vers la page Insight
+      insight_page_url: URL de la page Insight
+      join_link: Lien d'adhésion
+      magic_link: Lien magique
+      magic_url: URL magique
+      profile_custom_field: Champ personnalisé du profil
+      report_name: Nom du rapport
+      text: Texte
+      title: Ajout d'un texte en pointillé
+    proctoring_sessions:
+      columns:
+        comment: Commentaire
+        completed_at: Terminé à
+        conclusion: Conclusion
+        links: Liens
+        score: Score
+        session_id: Identité de la session
+        started_at: Commencé à
+      links:
+        report: Rapport
+        review: Révision
+      resource_name: Sessions d'examen
+    products:
+      copy:
+        error: Erreur
+      destroy:
+        successfully: Avec succès
+      toggle_status:
+        successfully: Avec succès
+    profile:
+      change_password: Modifier le mot de passe
+      details: Détails
+      profile: Profil
+    profiles:
+      edit:
+        success: Le profil a été mis à jour avec succès.
+        title: Editeur de profil
+      update:
+        edit:
+          success: Succès
+    project:
+      tools:
+        workshop_status_export: Exportation du statut de l'atelier
+        workshop_status_export_success: Statut de l'atelier L'exportation a été programmée avec succès.
+    project_participants:
+      cancel: Annuler
+      column_actions: Actions
+      column_campaigns: Campagnes
+      column_createdAt: Créé à
+      column_created_at: Créé à
+      column_email: Courriel
+      column_id: Id
+      column_name: Nom
+      delete: Supprimer
+      edit: Editer
+      edit_participant: Modifier le participant
+      filter_campaigns: Pas de campagnes
+      form_first_name: Prénom
+      form_last_name: Nom de famille
+      reset_password: Réinitialiser le mot de passe
+      save: Économiser
+      search_user: Recherche d'un utilisateur
+      send_email: Envoyer un courriel
+    project_tabs:
+      assessments:
+        column:
+          name: Nom
+          normalize_factor_scores: Normaliser les scores des facteurs
+          user_result_validity_in_days: Validité des résultats
+        delete:
+          content: Êtes-vous sûr de vouloir supprimer l'évaluation "%{nom}" ?
+          success: L'évaluation "%{nom}" a été supprimée avec succès.
+          title: Supprimer l'évaluation
+        form:
+          assessment_placeholder: Sélectionner l'évaluation
+          assessment_required: Une évaluation est nécessaire
+          normalize_factor_scores: Normaliser les scores des facteurs
+          user_result_validity_in_days: Validité du résultat en jours
+      design: Conception
+      general: Général
+      privacy: Vie privée
+      profile: Profil
+      registration: Inscription
+      webhooks:
+        actions:
+          delete:
+            key: supprimer
+            label: Supprimer
+          edit:
+            key: éditer
+            label: Editer
+          send_test:
+            key: envoyer_tester
+            label: Envoyer le test
+        form:
+          active:
+            label: Actif
+            name: actif
+          auth_type:
+            basic:
+              label: De base
+              value: basic_auth
+            label: Type d'authentification
+            name: type_d'authentification
+            no_auth:
+              label: Aucun
+              value: no_auth
+          description:
+            label: Description
+            name: description
+          include_locales:
+            label: Inclure les traductions
+            name: include_locales
+          password:
+            label: Mot de passe
+            name: mot de passe
+          topics:
+            label: Evénements
+            list:
+              assessment_assigned: Évaluation attribuée
+              assessment_completed: Évaluation terminée
+              assessment_started: Début de l'évaluation
+              assessment_timeout: Délai d'évaluation
+              campaign_results_available: Résultats de la campagne disponibles
+              campaign_user_status: Statut de l'utilisateur de la campagne
+              report_available: Rapport disponible
+              results_available: Résultats disponibles
+              scheduling_cancelled: Programmation annulée
+              scheduling_invited: Programmation Invités
+              scheduling_rescheduled: Programmation Reprogrammée
+              scheduling_scheduled: Programmation Programmation
+            name: thèmes
+          url:
+            label: Url
+            name: url
+          username:
+            label: Nom de l'utilisateur
+            name: nom d'utilisateur
+        remove_webhook:
+          content: Supprimer %{description} ?
+          title: Supprimer
+        title: Crochets Web
+    project_users:
+      cancel: Annuler
+      change_password: Modifier le mot de passe
+      column_actions: Actions
+      column_campaigns: Campagnes
+      column_created_at: Créé à
+      column_email: Courriel
+      column_id: Id
+      column_name: Nom
+      confirm_delete: Oui, supprimer
+      confirm_send: Oui, envoyer
+      delete: Supprimer
+      delete_error: Impossible de supprimer l'évaluateur '%{nom}', veuillez contacter votre administrateur.
+      delete_success: L'évaluateur '%{nom}' a été supprimé avec succès.
+      edit: Editer
+      edit_assessor: Editer l'évaluateur
+      filter_campaigns: Sans campagne
+      form_first_name: Prénom
+      form_last_name: Nom de famille
+      modal_delete_content: Êtes-vous sûr de vouloir supprimer l'évaluateur "%{nom}" ?
+      modal_delete_title: Supprimer l'évaluateur
+      modal_reset_email_content: Êtes-vous sûr de vouloir envoyer le lien de réinitialisation du mot de passe à "%{email}" ?
+      model_reset_email: Réinitialiser le mot de passe de l'évaluateur
+      no_edit_permission: Vous n'avez pas le droit de modifier l'évaluateur "%{nom}"
+      reset_mail_error: Impossible d'envoyer le lien de réinitialisation du mot de passe à '%{email}'. Veuillez contacter votre administrateur.
+      reset_mail_success: Le lien de réinitialisation du mot de passe a été envoyé avec succès à "%{email}"
+      save: Économiser
+      search_accessor: Accesseurs de recherche
+      send_email: Envoyer un courriel
+    projects:
+      addProject: Ajouter un projet
+      assessment_settings:
+        search: Recherche d'évaluation
+      clients:
+        confirmations:
+          detach_from_project:
+            body: Corps
+            title: Titre
+      columns:
+        project_number: Numéro du projet
+      design_settings:
+        alt_text_invalid: Le texte Alt contient des caractères non pris en charge.
+        alt_text_logo: Alt-Text du logo
+        alt_text_logo_required: Le logo Alt-Text est requis
+        alt_text_long: Dépasse la limite maximale de 100 caractères.
+        background_color: Couleur de fond
+        background_label: Contexte
+        background_overlay_label: Incrustation d'arrière-plan
+        background_size: Taille de l'arrière-plan
+        background_size_contain: Contenir
+        background_size_cover: Couverture
+        bg_upload: Télécharger
+        client_logo_label: Logo du client
+        contrast_ratio_warning: 'Remarque : l''utilisation de cette couleur primaire peut ne pas respecter le rapport de contraste requis pour la lisibilité du texte.'
+        contrast_ratio_warning_lighter_color: 'Note : L''utilisation de cette couleur %{nom} peut ne pas respecter le rapport de contraste requis pour la lisibilité du texte. Essayez d''utiliser une couleur plus foncée.'
+        error_color: Couleur de l'erreur
+        info_color: Info Couleur
+        logo_upload: Télécharger
+        position_auto: Auto
+        position_label: Position de la boîte de connexion
+        position_left: Gauche
+        position_right: Droit
+        primary_color: Couleur primaire
+        reset: Remise à zéro
+        sec_logo_label: Logo secondaire
+        sec_logo_upload: Télécharger
+        secondary_logo_alt_text: Alt-Text du logo secondaire
+        secondary_logo_alt_text_required: Le logo secondaire Alt-Text est requis
+        success_color: Couleur du succès
+        success_update: Les paramètres de conception ont été sauvegardés avec succès
+        warning_color: Couleur d'avertissement
+      general_settings:
+        live_chat: Activer le Live Chat
+        locales_label: Localités
+        name_label: Nom
+        project_number_label: Numéro du projet
+        save_changes: Enregistrer les modifications
+        sub_domain_label: Sous-domaine
+      mettl_schedule_records:
+        actions:
+          edit: Editer
+        add: Ajouter un calendrier
+        assessment_id: ID de l'évaluation
+        assessment_name: Nom de l'évaluation
+        candidate_authorization: Activer l'autorisation des candidats
+        candidate_screen_capture: Activer la capture d'écran du candidat
+        count: Nombre de tolérances de navigation
+        created_at: Créé à
+        schedule_id: ID de l'horaire
+        schedule_name: Nom du programme
+        search: Recherche
+        secure_browser_enabled: Activer le navigateur sécurisé
+        settings: Paramètres
+        show_remaining_counts: Activer l'affichage du décompte restant
+        visual_proctoring_enabled: Permettre l'examen visuel
+        web_proctoring_enabled: Activer le Web Proctoring
+      privacy_settings:
+        disable_dp: Ne pas autoriser le traitement ultérieur des données
+        dp_consent: Autoriser le consentement au traitement des données
+        dp_consent_custom: Personnaliser le consentement au traitement des données
+        dp_consent_version: Version de la politique
+        errors:
+          policy_version_format: Seuls les nombres entiers sont autorisés
+        mask_identity_for_examus: Données sur les masques pour Examus Proctoring
+        mask_identity_for_hogan: Données sur les masques pour Hogan
+        mask_identity_for_iiht: Données de masque pour l'IIHT
+        mask_identity_for_mettl: Données de masque pour METTL
+        mask_identity_for_pearson: Données sur les masques pour Pearson
+        mask_identity_for_saville: Données sur les masques pour Saville
+        privacy_link: Activer le lien de confidentialité
+        privacy_link_label: Lien vers la vie privée
+        privacy_link_placeholder: Entrer le lien de confidentialité
+        privacy_text: Texte sur la protection de la vie privée
+        privacy_text_placeholder: Saisir le texte sur la protection de la vie privée
+      profile_settings:
+        month: Mois
+        never: Jamais
+        update_in: Notifier la mise à jour du profil en
+        year: Année
+      registration_settings:
+        hide_signup: Cacher l'option d'inscription
+        require_mobile_number: Numéro de téléphone mobile requis
+      users:
+        confirmations:
+          detach_from_project:
+            body: Corps
+            title: Titre
+      webhook_settings:
+        add: Ajouter un Webhook
+        column_active: Actif
+        column_created_date: Date de création
+        column_description: Description
+        column_manage: Gérer
+        column_updated_date: Date de modification
+        column_url: URL
+        search: Recherche sur Webhoook
+    questions:
+      copy:
+        successfully: La question "%{nom}" a été copiée avec succès.
+      create:
+        successfully: La question "%{nom}" a été créée avec succès.
+      destroy:
+        successfully: La question "%{nom}" a été supprimée avec succès.
+      edit:
+        header: Modifier la question
+      index:
+        owner: Propriétaire
+      new:
+        header: Nouvelle question
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cette question ?</p>\n"
+            title: Supprimer la <strong>question</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cette question ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+      toggle_status:
+        successfully: Mise à jour réussie.
+    report_approval:
+      bulk_approve_success: "%{sent_for_approval} envoyé pour approbation. %{approved} rapports approuvés. %{ignored} rapports nécessitant une approbation manuelle en raison de modifications/commentaires CQ."
+      columns:
+        actions: Actions
+        approval_status: Statut d'approbation
+        approved_by: Approuvé par
+        campaign_name: Nom de la campagne
+        qc_by: QC Par
+        report_name: Nom du rapport
+        user_email: Courriel de l'utilisateur
+        user_name: Nom de l'utilisateur
+      dashboard: Tableau de bord
+      download: Télécharger
+      report_approvals: Approbation des rapports
+      review: Révision
+      saving_filters:
+        actions:
+          clear_filters: Effacer les filtres
+          delete_filter: Supprimer le filtre
+          save_filter: Économiser
+          save_new_filter: Enregistrer comme nouveau filtre
+          saved_filters: Filtres enregistrés
+        delete_saved_filters: Filtre supprimé
+        edit_filter_name: Nom du filtre enregistré
+        error_while_deleting: Erreur lors de la suppression
+        error_while_editing: Erreur lors de l'édition
+        error_while_fetching: Quelque chose s'est mal passé, essayez à nouveau
+        error_while_saving: Erreur lors de l'enregistrement du filtre
+        filter_updated: Mise à jour du filtre
+        no_saved_filters: Il n'y a pas de filtres enregistrés
+        save_filter: Filtre sauvegardé
+        set_favorite: Le filtre a été défini comme favori
+    report_builder:
+      campaign_factors:
+        add_field: Ajouter un champ
+        code: Code
+        code_constraint: Le code doit commencer par une lettre minuscule et ne peut contenir que des lettres minuscules, des chiffres et des traits de soulignement
+        delete: Supprimer
+        import_factors: Facteurs d'importation
+        invalid_factor_params: Format des paramètres des facteurs de campagne non valide
+        name: Nom
+        no_boundary_space: Le nom ne peut pas commencer ou se terminer par un espace
+        too_many_factors: Impossible de créer plus de %{count} facteurs de campagne
+        tools: Outils
+        type: Type
+      pagination:
+        edit_frame: Modifier le cadre de pagination
+        hints:
+          frame_settings_off: Désactivation des paramètres du cadre de pagination, le module fonctionne comme d'habitude
+          frame_settings_on: Activer les paramètres du cadre de pagination pour définir les dimensions de la page suivante pour le module (le cadre est mis en évidence par une couleur orange)
+          pagination_disabled: La pagination du module n'est pas disponible pour le module. Une seule pagination de module est autorisée par page
+          pagination_off: La pagination du module est désactivée
+          pagination_on: La pagination du module est activée. Le contenu qui ne correspond pas aux dimensions du module sera inséré dans une ou plusieurs pages supplémentaires
+          repeat_modules: Les modules sélectionnés seront répétés sur les pages insérées dans l'exta, en référence au nom du module
+        module_pagination: Module Pagination
+        repeat_modules: Répétition des modules
+    report_families:
+      create:
+        successfully: L'ensemble de rapports %{nom} a été créé avec succès.
+      destroy:
+        successfully: L'ensemble de rapports %{nom} a été supprimé avec succès.
+      edit:
+        header: Modifier le nom de l'ensemble de rapports
+      index:
+        add: Ajouter
+        title: Ensembles de rapports
+      new:
+        header: Nouvelle série de rapports
+      reports:
+        destroy:
+          successfully: Le rapport a été supprimé avec succès de la liasse de rapports
+        index:
+          add: Ajouter un nouveau rapport
+          title: Rapports dans l'offre groupée
+        resource:
+          confirmations:
+            delete:
+              body: "<p>Êtes-vous sûr de vouloir supprimer ce rapport de l'offre groupée ?</p>\n"
+              title: Supprimer un <strong>rapport de</strong> l'offre groupée ?
+          tooltips:
+            delete: Supprimer le rapport de l'ensemble
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cet ensemble de rapports ?</p>\n"
+            title: Supprimer le <strong>rapport</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cet ensemble de rapports ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+        tooltips:
+          delete: Supprimer l'ensemble de rapports
+          edit: Modifier l'ensemble de rapports
+      sidebar:
+        destroy: Supprimer l'ensemble de rapports
+        edit: Modifier l'ensemble de rapports
+        title: Options de l'offre groupée de rapports
+      update:
+        successfully: L'ensemble de rapports %{nom} a été mis à jour avec succès.
+    report_review:
+      abort_qc: Abandonner le CQ
+      approve: Approuver
+      approve_changes: Approuver les modifications
+      edit: Editer
+      remove_approval: Supprimer l'approbation
+      request_changes: Demande de modifications
+      review: Révision
+      send_for_approve: Envoyer pour approbation
+      statuses:
+        approved: Approuvé
+        change_requested: Modifications demandées
+        not_ready: Pas prêt
+        pending_qc: En attente de QC
+        qc_completed: CQ achevé
+        qc_in_progress: CQ en cours
+    reports:
+      bulk_upload:
+        choose_file: Choisir un fichier
+        no_file_selected: Aucun fichier sélectionné
+        title: Facteurs de la campagne Bulk Upload
+        upload_success: Téléchargé avec succès
+      copy:
+        copy: copie
+        copy_report: Rapport de copie
+        name: Nom
+        successfully: Le rapport '%{nom}' a été copié avec succès.
+      create:
+        successfully: Le rapport "%{nom}" a été créé avec succès.
+      destroy:
+        successfully: Le rapport '%{nom}' a été supprimé avec succès.
+      edit:
+        header: Modifier le nom du rapport
+      modals:
+        remap_assessment:
+          new_assessment_name: Nouveau nom de l'évaluation
+          old_assessment_name: Ancien nom de l'évaluation
+          success_message: Le remodelage de l'évaluation a été programmé, veuillez actualiser après un certain temps. Ne modifiez pas le rapport et n'enregistrez pas de nouveaux changements tant que le remodelage n'a pas été effectué.
+      name: Rapports
+      new:
+        header: Sélectionner un rapport
+      preview:
+        title: Avant-première
+      regenerate:
+        successfully: Rapport envoyé avec succès pour régénération
+      regenerated: Régénéré
+      regenerated_count: Rapports régénérés
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce rapport ?</p>\n"
+            title: Supprimer le <strong>rapport</strong>?
+          detach:
+            body: "<p>Êtes-vous sûr de vouloir détacher ce rapport ?</p>\n"
+            title: Détacher le <strong>rapport</strong>?
+          soft_delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce rapport ?</p>\n"
+            title: Suppression progressive du <strong>rapport</strong>?
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} ce rapport ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+      restore:
+        successfully: Le rapport %{nom} a été restauré avec succès.
+      soft_delete:
+        successfully: Le rapport %{nom} a été déplacé vers la corbeille avec succès.
+      toggle_archive:
+        successfully: L'évaluation %{nom} a été %{état} avec succès.
+      toggle_status:
+        successfully: Le rapport a été mis à jour avec succès.
+      update:
+        successfully: Le rapport %{nom} a été mis à jour avec succès.
+    resource:
+      remove_confirm:
+        message: Êtes-vous sûr de vouloir supprimer cette ressource ?
+        title: Supprimer la ressource
+    saml_settings:
+      after_signout_url: Url après signature
+      cert: Certificat
+      config_details:
+        acs_url: URL du service consommateur d'assertions
+        copied: Copié %{element}
+        issuer: Identité de l'entité/émetteur
+        title: Configurer Idp avec les informations suivantes
+      email_pipetext: Envoyer un courriel à Pipetext
+      enabled: Activé
+      enforced: Appliquer SAML
+      entity_id: ID de l'entité/émetteur
+      name_identifier_format: Nom Identificateur
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml: SAML
+      saml_setting: Paramètres SAML
+      save: Sauvegarder le réglage
+      sso_service_url: Url du service SSO
+      successfully_saved_msg: La configuration SAML a été sauvegardée avec succès.
+    save: Économiser
+    scheduling:
+      add_activity: Ajouter une activité
+      add_assessment_center: Ajouter un centre d'évaluation
+      add_assessor_form:
+        assessment: L'évaluation
+        assessor: Assesseur
+        schedule_time: Horaire
+      add_subject: Ajouter un sujet
+      assessment_center_form:
+        allow_late_cancellation_and_scheduling: Permettre l'annulation et la programmation tardives
+        assessor_ids_label: Évaluateurs
+        back: Retour
+        basic_info_panel:
+          description: Vous pouvez également sélectionner plusieurs dates pour créer plusieurs centres d'évaluation.
+          title: Informations de base
+        cancellation_lead_time_label: Délai d'annulation
+        copy_hint: Copie la configuration des places, des responsables de centre, des évaluateurs et des réunions et ressources ci-dessus dans les centres d'évaluation suivants. Après la copie, vous pouvez apporter d'autres modifications aux centres d'évaluation individuels avant de poursuivre.
+        copy_to_all: Copie à d'autres centres d'évaluation
+        create: Créer
+        dates_label: Dates
+        duration_label: Durée de l'accord
+        duration_max_error: Ne peut être supérieur à 16 heures
+        duration_min_error: La durée ne peut être inférieure à 15 minutes
+        duration_placeholder: Par exemple, 4h 30m
+        manager_ids_label: Gestionnaires de centre
+        meetings_and_resources: Réunions et ressources
+        name_label: Nom
+        next: Suivant
+        required_error: Exigée
+        reschedule_duration_max_error: Ne peut être supérieur à 30 jours
+        reschedule_duration_min_error: La durée ne peut être inférieure à 1 minute
+        resources_panel:
+          description: Ajoutez les liens vers les ressources auxquelles vous souhaitez que les animateurs aient accès.
+          resource_name_placeholder: Nom de la ressource
+          resource_url_placeholder: Lien vers les ressources
+          title: Ressources
+          validation_error: Saisir le nom et l'URL ou supprimer la ressource
+        scheduling_lead_time_label: Délai de programmation
+        seats_label: Sièges
+        time_label: L'heure
+        timezone_label: Fuseau horaire
+        video_call_type:
+          custom: Sur mesure
+          internal: Interne
+          none: Aucun
+        video_call_type_label: Ajouter un appel vidéo
+      attendance_status:
+        column_name: Statut d'assiduité
+        dropped_out: Abandon
+        late: En retard
+        no_show: Pas de spectacle
+        no_status: Pas de statut
+        on_time: A l'heure
+      attended:
+        attended: Présents
+        not_attended: Pas de participation
+      campaign_participants: Participants à la campagne
+      columns:
+        activity: Activité
+        assessor: Assesseur
+        assessors: Évaluateurs
+        attendance: Présence
+        attended: Présents
+        booked_at: Réservé à
+        campaign_name: Nom de la campagne
+        duration: La durée
+        managers: Gestionnaires
+        meeting_link: Lien vers la réunion
+        name: Nom
+        participants: Les participants
+        prework: Prétravail
+        resource_link: Lien
+        resource_name: Nom
+        schedule_time: Horaire
+        scheduling_status: État de la programmation
+        seats: Sièges
+        start_time: Date et heure
+        subject: Sujet
+        title: Titre
+      errors:
+        assessor_already_assigned: L'évaluateur est déjà affecté à cette évaluation. Veuillez sélectionner une autre évaluation ou un autre évaluateur.
+        date_required: Veuillez sélectionner une date
+        invalid_url: Format d'URL non valide
+        meeting_link_https: Le lien de la réunion doit commencer par "https://"
+      id: ID
+      info:
+        allowed: Autorisé
+        assessors: Évaluateurs
+        booked: Sièges réservés
+        cancellation_lead_time: Délai d'annulation
+        cancellation_tooltip: L'utilisateur pourra annuler la réservation jusqu'à %{date}
+        date: Date et heure
+        duration: La durée
+        join_meeting: Salle de réunion
+        late_cancellation_and_scheduling: Annulation tardive et programmation
+        link: Lien de la réunion
+        managers: Gestionnaires de centre
+        none: Aucun
+        not_allowed: Non autorisé
+        remaining: Sièges restants
+        scheduling_lead_time: Délai de programmation
+        scheduling_tooltip: L'utilisateur pourra réserver un créneau jusqu'à %{date}
+        search_placehoder: Recherche par identifiant, courriel ou nom
+        timezone: Fuseau horaire
+        total_seats: Total des sièges
+      resources:
+        confirm_message: Êtes-vous sûr de vouloir supprimer la ressource "%{nom_de_la_ressource}" ?
+        confirm_title: Confirmation requise
+        create: Créer une ressource
+        invalid_url: URL non valide. Indiquez l'URL complète avec le protocole http ou https.
+        resource: Ressources
+        successful_remove: La ressource du centre d'évaluation %{nom_de_la_ressource} a été supprimée avec succès.
+      schedule_assessments: Planifier les évaluations
+      scheduling_statuses:
+        cancelled: Annulé
+        late_cancelled: Annulé tardivement
+        late_rescheduled: Retard Reprogrammé
+        rescheduled: Reporté
+        scheduled: Prévu
+      search_participant: Recherche de participants à la campagne
+      status:
+        completed: Terminé
+        dropped_out: Abandon
+        in_progress: En cours
+        late: En retard
+        no_show: Pas de spectacle
+        not_started: Pas commencé
+      status_change_modal:
+        content: Une fois le centre d'évaluation fermé, les participants ne pourront plus prendre part aux activités du centre.
+        title: Modifier le statut du centre d'évaluation
+      subjects:
+        activities: Activités
+        add_assessor_form: Ajouter un formulaire pour l'évaluateur
+        assessments: Évaluations
+        assessor_forms: Formulaires de l'évaluateur
+        confirm_message: 'Êtes-vous sûr de vouloir annuler la participation du sujet dont l''adresse électronique est "%{subject_email}" ?<br />une fois marqué comme annulé, ce sujet ne pourra plus participer à l''assessment center.
+
+          '
+        confirm_title: Confirmation requise
+        edit_assessor_form: Modifier le formulaire de l'évaluateur
+        form_title: Planifier les évaluations
+        language: Langue
+        language_not_selected: Non sélectionné
+        mark_cancel_success: Participation annulée du sujet avec l'email %{subject_email}.
+        meeting_link_custom: Sur mesure
+        meeting_link_internal: Interne
+        meeting_link_none: Aucun
+        meeting_link_title: Lien vers la réunion
+        no_change: Pas de changement
+        override_existing: Remplacer les horaires existants pour les sujets
+        preworks: Prétravail
+        schedule: Calendrier
+        unschedule: Déprogrammation
+      tabs:
+        activities: Activités
+        assessment_center: Centre d'évaluation
+        invites: Invitations
+        resources: Ressources
+        subjects: Thèmes
+    scoring:
+      action_prohibited: Action interdite
+      active: Actif
+      actual_average: Réel Moyenne
+      add_factor: Ajouter un facteur
+      add_group: Ajouter un groupe
+      assessment: L'évaluation
+      assessment_scoring_type: Type de notation de l'évaluation
+      average: Moyenne
+      campaign_scoring_variables: Variables d'évaluation de la campagne
+      code: Code
+      desc: Vous avez dépassé la limite maximale de %{n} facteurs de campagne. Il n'est pas possible d'ajouter des facteurs supplémentaires. Veuillez vérifier et gérer vos facteurs existants avant de continuer.
+      description: Description
+      dimension: Dimension
+      edit_factor: Facteur d'édition
+      export:
+        details: Scores de la campagne
+        factors: Facteurs de la campagne d'exportation
+      factor: Facteur
+      factor_group_removed_successfully: Le groupe de facteurs de campagne a été supprimé avec succès
+      factor_removal_confirmation: Saisir le nom du facteur indiqué ci-dessous dans la zone de texte pour confirmer
+      factor_removed_successfully: Campaign Factor a été supprimé avec succès
+      factors_exported_successfully: Le travail d'exportation des facteurs de campagne a été planifié avec succès
+      factors_imported_successfully: La tâche d'importation des facteurs de campagne a été programmée avec succès
+      final: Finale
+      final_score_updated_successfully: Le score final a été mis à jour avec succès
+      formula: Formule
+      get_started: Commencer
+      id: Id
+      import:
+        factors: Facteurs de la campagne d'importation
+      name: Nom
+      no_groups: Aucun groupe présent
+      output_type: Type de sortie
+      pattern_error: Seuls les caractères alphanumériques, les espaces et les tirets sont autorisés.
+      profile:
+        years: Années
+      public: Public
+      ranked: Classé
+      remove_all_campaign_factors:
+        confirmation: Saisir le nom de la campagne actuelle indiqué ci-dessous dans la zone de texte pour confirmer
+        error: Échec de la campagne de suppression des facteurs
+        success: Facteurs de campagne supprimés avec succès
+        title: Supprimer les facteurs de campagne
+        warning: Vous êtes sur le point de supprimer tous les facteurs de campagne et tous les scores associés pour les utilisateurs. Êtes-vous sûr de vouloir effectuer cette action ?
+      remove_factor_group_confirmation_content: Êtes-vous sûr de vouloir supprimer le groupe de facteurs "%{nom_du_groupe}" ?
+      remove_factor_group_confirmation_title: Supprimer le groupe de facteurs
+      required_error: Ne peut être vide
+      save: Économiser
+      save_all: Sauvegarder tout
+      score_range: Fourchette de scores
+      score_types:
+        norm_score: Score normal
+        percentage: Pourcentage
+        percentile: Pourcentage
+        score: Score
+        zscore: Score Z
+      scoring: Notation
+      scoring_description: L'évaluation des campagnes permet d'établir des rapports sur l'ensemble des évaluations
+      select_all: Sélectionner tous les %{n} sujets
+      select_assessment_first: Sélectionner d'abord l'évaluation
+      select_factor: Facteur de sélection
+      show_weightages: Afficher les pondérations
+      subject: Sujet
+      subject_list:
+        actions: Actions
+        bulk_mark_finalized: Finalisation du marquage en vrac
+        bulk_mark_finalized_confirm: La finalisation du score pour les utilisateurs sélectionnés génèrera le rapport qui utilise le facteur de campagne pour les utilisateurs. Êtes-vous sûr de vouloir continuer ?
+        bulk_mark_not_finalized: La marque en vrac n'est pas finalisée
+        bulk_mark_not_finalized_confirm: En supprimant la fonction "finaliser" pour les utilisateurs sélectionnés, vous supprimez le rapport généré qui utilise le facteur de campagne pour les utilisateurs. Êtes-vous sûr de vouloir continuer ?
+        bulk_rescore: Reprise en bloc
+        bulk_rescore_confirm: Rescorer les utilisateurs sélectionnés. Êtes-vous sûr de vouloir continuer ?
+        calculated_date: Date calculée
+        calculation_errors: Erreurs de calcul
+        export: Scorings à l'exportation
+        export_success: Le travail d'exportation des partitions a été programmé avec succès
+        finalized: Finalisé
+        finalized_date: Date finalisée
+        import_external_scores: Importer des scorings externes
+        mark_finalized: Marque finalisée
+        mark_finalized_confirm: La finalisation du score pour l'utilisateur '%{email}' générera le rapport qui utilise le facteur de campagne pour l'utilisateur. Êtes-vous sûr de vouloir continuer ?
+        mark_not_finalized: Marque non finalisée
+        mark_not_finalized_confirm: La suppression de la finalisation de l'utilisateur '%{email}' supprimera le rapport généré qui utilise le facteur de campagne pour l'utilisateur. Êtes-vous sûr de vouloir continuer ?
+        push_webhook: Pousser des webhooks
+        rank: Rang
+        rescore: Reprise
+        rescore_confirm: Rescorer l'utilisateur '%{email}'. Êtes-vous sûr de vouloir continuer ?
+        tools: Outils
+      tabs:
+        settings: Paramètres
+        subject_scores: Notes du sujet
+      type: Type
+      variables: Variables
+      weightages:
+        assessorForms: Formulaires de l'évaluateur
+        successful_update: Les coefficients correcteurs ont été mis à jour avec succès
+        tools: Outils
+        weightages: Poids
+      weighted_average: Moyenne pondérée
+    search: Recherche
+    security_setting:
+      180_days: 180 jours
+      30_days: 30 jours
+      365_days: 365 jours
+      90_days: 90 jours
+      attempts_to_lock: Tentatives de verrouillage
+      auto_unlock_time: Temps de déverrouillage automatique
+      disable_password_reuse: Désactiver la réutilisation du mot de passe
+      disallow_password_login: Interdire la connexion par mot de passe
+      enable_login_with_magic_link: Activer la connexion par lien magique
+      enforce_password_policy: Appliquer la politique de mot de passe lors de la prochaine connexion
+      enforce_strong: Appliquer un mot de passe fort
+      expiration: Expiration du mot de passe
+      lock_account: Verrouiller le compte
+      magic_link_expiry_duration: Durée d'expiration du lien magique
+      min_length: Longueur minimale du mot de passe
+      never: Jamais
+      restrict_sequences: Limiter les caractères séquentiels et répétitifs
+      security: Paramètres de sécurité
+      send_unlock_email: Envoyer un courriel de déverrouillage
+      session_timeout_duration: Durée du délai d'attente de la session
+      tfa_enabled: Activer l'authentification à deux facteurs
+    security_settings:
+      security_setting: Paramètres de sécurité
+    settings:
+      admin_roles:
+        admin_role_single: Rôle de l'administrateur
+        confirm_message: Êtes-vous sûr de vouloir supprimer le rôle d'administrateur "%{nom_de_rôle}" ?
+        create: Ajouter un rôle d'administrateur
+        description: Description
+        name: Nom
+        successful_remove: Le rôle d'administrateur '%{nom_de_rôle}' a été supprimé avec succès.
+      siem:
+        description: Description
+        destination_type: Type de destination
+        destination_types:
+          s3: S3
+          s3_compatible: Compatible S3
+        enabled: Activé
+        readable_resource_name: Paramètres SIEM
+        s3_access_key_id: ID de la clé d'accès
+        s3_bucket_folder: Dossier S3 Bucket
+        s3_bucket_name: Nom de la base de données S3
+        s3_endpoint: Point final S3
+        s3_region: Région S3
+        s3_secret_access_key: Clé d'accès secrète
+        send_test_log: Envoyer le journal des tests
+        send_test_log_error_message: Le journal de test n'a pas été envoyé à votre bucket, vérifiez vos paramètres
+        send_test_log_success_message: Le journal du test a été envoyé avec succès à votre panier
+      skill_aliases:
+        alias: Alias
+        confirm_message: Êtes-vous sûr de vouloir supprimer l'alias de compétence "%{skill_alias}" ?
+        create: Ajouter un alias de compétence
+        select_skill: Sélectionner une compétence
+        skill: Compétence
+        skill_alias: Alias de compétence
+        successful_remove: L'alias de compétence '%{alias_de_compétences}' a été supprimé avec succès.
+      tabs:
+        admin_roles: Rôles des administrateurs
+        siem: SIEM
+        skill_aliases: Alias de compétences
+    sheets:
+      column:
+        add_column: Ajouter une colonne
+        not_allowed_for_dashboard_use: Pour que la colonne soit utilisée dans le tableau de bord, elle doit comporter moins de 64 caractères
+        reorder: Réorganiser
+        save_order: Sauvegarder la commande
+      drawers:
+        add_edit:
+          cancelText: Annuler
+          markdown:
+            preview: Avant-première
+            title: Markdown
+          save: Économiser
+          saving: Économiser
+          success_message_add: Ajout d'un nouvel enregistrement
+          success_message_edit: Mise à jour de l'enregistrement
+          title_add: Ajouter un enregistrement de feuille
+          title_edit: Modifier l'enregistrement de la ligne de feuille
+          validations:
+            required_email: Veuillez saisir l'adresse électronique
+        view:
+          campaign_title: Enregistrement au niveau de la campagne
+          edit_button: Editer
+          project_title: Enregistrement au niveau du projet
+          title: Détails de l'enregistrement de la ligne de feuille
+      list:
+        header:
+          add_record: Ajouter un enregistrement
+          search_record: Recherche de documents
+      modals:
+        delete_records:
+          cancelText: Annuler
+          content: Êtes-vous sûr de vouloir supprimer les enregistrements {{count}} sélectionnés ?
+          okText: Oui, supprimer
+          successMessage: les enregistrements {{count}} ont été supprimés avec succès.
+          title: Supprimer les enregistrements {{count}}
+        remove_columns:
+          cancelText: Annuler
+          content: La suppression d'une colonne ({{colonnes}}) entraîne la suppression des données de cette colonne pour toutes les lignes
+          okText: Oui, supprimer
+          successMessage: "{{count}} enregistrements supprimés"
+          title: Supprimer des colonnes
+      tabs:
+        rows: Rangs
+        settings: Paramètres
+    skills:
+      errors:
+        search:
+          all_and_project_id_mutually_exclusive: Tout ne peut pas être vrai lorsque project_id_eq est fourni
+          invalid_all_value: 'doit être l''un de : true, false'
+          invalid_category: Doit être une catégorie valide
+          invalid_global_value: 'doit être l''un de : true, false'
+          query_too_short: est obligatoire et doit appartenir à plus de 3 caractères
+      form:
+        category: Catégorie
+        description: Description
+        name: Nom
+        project_placeholder: Sélectionner un projet
+        title: Compétence
+      import:
+        download_example_csv: Télécharger l'exemple csv
+        success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
+      skills: Compétences
+    sms_histories:
+      columns:
+        first_name: Prénom
+        last_name: Nom de famille
+        mobile_no: Numéro de téléphone mobile
+        price: Prix
+        segment_length: Longueur du segment
+        sent_at: Envoyé à
+      drawer:
+        title: Détails du SMS
+      history: L'histoire
+      statuses:
+        accepted: Accepté
+        delivered: Livré
+        failed: Échec
+        queued: En attente
+        scheduled: Prévu
+        sent: Envoyé
+        undelivered: Non délivré
+    sms_invites:
+      actions:
+        add: Ajouter un contact SMS
+      columns:
+        created_at: Créé à
+        created_by: Créé par
+        email: Courriel
+        first_name: Prénom
+        last_name: Nom de famille
+        mobile_no: Numéro de téléphone mobile
+      contacts: Contacts
+      form_modal:
+        first_name: Prénom
+        last_name: Nom de famille
+        locale: Localité
+        mobile_no: Numéro de téléphone portable
+        title: Invitation par SMS
+      import:
+        download_example_csv: Télécharger l'exemple CSV
+        success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
+        title: Importation d'invitations par SMS
+      messages:
+        delete_confirm_text: Êtes-vous sûr de vouloir supprimer l'invitation par SMS avec le numéro de mobile %{mobile_no} ?
+        delete_success: L'invitation par SMS a été supprimée avec succès
+        failed_to_sent_invite: Échec de l'envoi de l'invitation au numéro de mobile %{mobile_no}
+      send_sms:
+        fields:
+          link_expiry: Expiration du lien
+          locale: Localité
+          message: Message
+          statuses: Statuts
+          users: Utilisateurs
+        modal:
+          btn_name: Envoyer un SMS
+          title: Envoyer un SMS
+        pipetext_details: "{{{first_name}}} - Prénom du destinataire<br />{{{last_name}} - Nom de famille du destinataire<br />{{{invite_url}}} - Lien d'inscription\n"
+        segment_length_msg: Le nombre estimé de segments pour ce message est %{segment_length}.
+        segment_length_range_msg: Le nombre estimé de segments pour ce message est compris entre %{min_segment_length} et %{max_segment_length}.
+      statuses:
+        all: Tous
+        failed: Échec
+        invited: Sur invitation
+        not_invited: Non invité
+        registered: Enregistré
+      tools:
+        export: Exporter des contacts SMS
+        import: Importer des contacts SMS
+        send_sms: Envoyer un SMS
+    sms_records:
+      columns:
+        id: Id
+        message: Message
+    smtp_settings:
+      authentication: Authentification
+      authentication_type: Type d'authentification
+      authentication_types:
+        cram_md5: cram md5
+        login: Connexion
+        plain: Plaine
+      enabled: Activé
+      encryption: Cryptage
+      encryption_types:
+        none: Aucun
+        ssl: SSL
+        tls: TLS
+      errors:
+        authentication_failed: Le nom d'utilisateur ou le mot de passe est incorrect
+        host_unreachable: Impossible de se connecter à l'hôte. L'hôte, le port ou le cryptage sont incorrects
+      from_email: De l'email
+      from_name: Du nom
+      host: Hôte
+      password: Mot de passe
+      port: Port
+      send_test_email: Envoyer un courriel de test
+      smtp: SMTP
+      test_email_modal:
+        input_hint: Vos paramètres d'e-mail ne seront pas sauvegardés tant que l'e-mail de test n'aura pas été envoyé avec succès.
+        input_placeholder: ID de l'email de test
+        title: Identité électronique du test
+      test_modal:
+        success_message: Test Email envoyé à %{email_id}.
+        title: Tester les paramètres SMTP
+      update_success_msg: Le paramètre SMTP a été mis à jour avec succès.
+      use_sender_verification: Utiliser la vérification de l'expéditeur
+      user_name: Nom de l'utilisateur
+    stats:
+      assessments:
+        columns:
+          assessment_name: Nom de l'évaluation
+          completed: Terminé
+          id: ID
+          in_progress: En cours
+          ineligible: Inéligible
+          interrupted: Interrompu
+          not_started: Pas commencé
+          timed_out: Délai d'attente
+        title: Évaluations
+      title: Statistiques
+      top_metrics:
+        completed: Terminé
+        in_progress: En cours
+        interrupted: Interrompu
+        not_started: Pas commencé
+        timed_out: Délai d'attente
+        users: Utilisateurs
+      users:
+        date_presets:
+          last_30_days: 30 derniers jours
+          last_7_days: 7 derniers jours
+          last_month: Le mois dernier
+          last_week: La semaine dernière
+          today: Aujourd'hui
+          yesterday: Hier
+        y_title: Nombre d'utilisateurs
+    sub_factors:
+      destroy:
+        successfully: Le sous-facteur %{nom} a été supprimé avec succès.
+      edit:
+        header: Modifier le nom du sous-facteur
+      new:
+        header: Nouveau sous-facteur
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer ce sous-facteur ?</p>\n"
+            title: Supprimer le <strong>sous-facteur</strong>?
+      toggle_status:
+        successfully: Le sous-facteur a été mis à jour avec succès.
+    survey_builder:
+      builder_area:
+        options: Options
+      property_panel:
+        add_n_a_option: Ajouter l'option N/A
+        allow_content_copy: Autoriser la copie de contenu
+        answer_type: Type de réponse
+        cant_change_type: Le type ne peut pas être modifié pour une question enregistrée
+        date_format: Format de la date
+        date_format_options:
+          dd_mm_yyy: JJ-MM-AAAA
+          mm_yyyy: MM-AAAA
+          yyyy: YYYY
+          yyyy_mm: YYYY-MM
+          yyyy_mm_dd: YYYY-MM-DD
+        duration_options:
+          '10': 10s
+          '120': 2min
+          '180': 3min
+          '30': 30s
+          '300': 5 minutes
+          '60': 1min
+          '600': 10 minutes
+        image_multi_choice_properties:
+          enable: Avec des images
+          preview: Prévisualisation au clic
+          size:
+            large: L
+            medium: M
+            small: S
+            title: Taille de la grille
+            x-small: XS
+            xx-small: XXS
+        max_duration: Durée maximale
+        multiple_choice_types:
+          dropdown: Liste déroulante
+          multi_answer: Plusieurs réponses
+          single_answer: Réponse unique
+        no_of_choices: Nombre de choix
+        orientation:
+          horizontal: Horizontal
+          title: Orientation
+          vertical: Vertical
+        question_description: Description des lignes
+        validation_response_type: Type de réponse de validation
+        voice_dictation: Dictée vocale
+    table:
+      entries:
+        selected:
+          many:
+          one: 1 ligne sélectionnée
+          other: ''
+        total:
+          many:
+          one: 'Total : 1'
+          other: ''
+      more_actions: Plus d'actions
+    templates:
+      blocks:
+        copy:
+          error: Bloc \N
+        destroy:
+          successfully: Le bloc %{nom} a été supprimé avec succès.
+        edit:
+          header: Bloc d'édition
+        index:
+          new: Ajouter
+          templates:
+            blocks: Blocs
+            questions: Questions
+          title: Blocs
+          tooltips:
+            create: Créer
+        list:
+          active: Actif
+          created_at: Date de création
+          linked_assessments: Évaluations liées
+          name: Nom
+          updated_at: Date de modification
+        new:
+          header: Nouveau bloc
+        new_assign:
+          header: Attribuer un bloc aux évaluations
+        resource:
+          in_progress:
+            copying: Copie
+            deleting: Suppression
+          tooltips:
+            copy: Bloc de copies
+            delete: Supprimer le bloc
+            edit: Bloc d'édition
+        sidebar:
+          destroy: Supprimer le bloc
+          disable: Désactiver
+          edit: Bloc d'édition
+          enable: Activer
+          new: Nouveau bloc
+          new_assign: Attribuer un bloc
+          title: Options du bloc
+        toggle_status:
+          successfully: Avec succès
+      questions:
+        copy:
+          error: Question
+        destroy:
+          successfully: La question %{nom} a été supprimée avec succès.
+        edit:
+          header: Modifier la question
+        index:
+          new: Ajouter
+          templates:
+            blocks: Blocs
+            questions: Questions
+          title: Questions
+          tooltips:
+            create: Créer
+        list:
+          active: Actif
+          created_at: Date de création
+          linked_assessments: Évaluations liées
+          name: Nom
+          updated_at: Date de modification
+        new:
+          header: Nouvelle question
+        new_assign:
+          header: Affecter une question aux évaluations
+        resource:
+          in_progress:
+            copying: Copie
+            deleting: Suppression
+          tooltips:
+            copy: Question de copie
+            delete: Supprimer la question
+            edit: Modifier la question
+        sidebar:
+          destroy: Supprimer la question
+          disable: Désactiver
+          edit: Modifier la question
+          enable: Activer
+          new: Nouvelle question
+          new_assign: Attribuer une question
+          title: Options de la question
+        toggle_status:
+          successfully: Avec succès
+    threesixty_campaigns:
+      email_templates:
+        approve_nomination:
+          description: Ce message est envoyé à un responsable lorsqu'une nomination, faite par un subordonné direct, doit être approuvée
+          name: Approuver la nomination
+        approve_report:
+          description: Ce message est envoyé au responsable d'un sujet pour l'informer que le rapport du sujet est prêt à être approuvé
+          name: Approuver le rapport
+        categories:
+          approvals: Agréments
+          invitations: Invitations
+          reminders: Rappels
+          report_ready: Le rapport est prêt
+        custom_message:
+          description: Ce message peut être envoyé à toute personne participant à l'évaluation
+          name: Message personnalisé
+        days_repeated: jours, répétées
+        evaluator_invite:
+          description: Ce message sera envoyé à tous les participants qui sont des évaluateurs
+          name: Invitation de l'évaluateur
+        evaluator_reminder:
+          description: Ce message sera envoyé pour rappeler aux évaluateurs de terminer les évaluations en cours
+          name: Rappel pour l'évaluateur
+          rule_description: Définir des règles pour la planification automatique lorsqu'une invitation est planifiée
+          rule_name: Règles de rappel pour les évaluateurs
+        from: De
+        manager_report_ready:
+          description: Ce message est envoyé au responsable d'un sujet lorsque le rapport du sujet est prêt
+          name: Le rapport du gestionnaire est prêt
+        nomination_denied:
+          description: Ce message est envoyé aux sujets lorsqu'une candidature est refusée
+          name: Nomination refusée
+        reply_to_email: Répondre à l'e-mail
+        request_approval:
+          description: Ce message est envoyé aux gestionnaires lorsqu'un sujet demande une approbation
+          name: Demande d'approbation
+        schedule_email: Calendrier des courriels
+        schedule_time: Horaire
+        send_test_email: Envoyer un courriel de test
+        subject: Sujet
+        subject_invite:
+          description: Ce message sera envoyé pour inviter les sujets à participer à l'évaluation
+          name: Sujet Invitation
+        subject_reminder:
+          description: Message envoyé à chaque participant pour lui rappeler de participer à l'évaluation
+          name: Rappel du sujet
+          rule_description: Spécifier des règles pour la planification automatique lorsqu'une invitation est planifiée
+          rule_name: Règles de rappel des sujets
+        subject_report_ready:
+          description: Ce message est envoyé à un sujet lorsque son rapport est prêt
+          name: Le rapport sur le sujet est prêt
+        times: fois
+      instruction_templates:
+        evaluate_others:
+          description: Ce message s'affiche lorsque les participants évaluent d'autres personnes à partir du portail
+          name: Évaluer les autres
+        evaluate_self:
+          description: Ce message sera affiché aux sujets lorsqu'ils commenceront leur auto-évaluation
+          name: Evaluateur Self
+        evaluation_help:
+          description: Texte d'aide affiché sur la carte d'évaluation du tableau de bord de l'utilisateur
+          name: Aide à l'évaluation
+        evaluator_welcome:
+          description: Ce message remplacera le "message de bienvenue" et s'affichera uniquement pour les participants qui sont en train de participer en tant qu'évaluateurs.
+          name: Accueil des évaluateurs
+        invite_evaluators:
+          description: Ce message sera affiché aux sujets lorsqu'ils commenceront à nommer des évaluateurs
+          name: Inviter les évaluateurs
+        nomination_help:
+          description: Texte d'aide affiché sur la carte de nomination dans le tableau de bord de l'utilisateur
+          name: Aide à la nomination
+        report_help:
+          description: Texte d'aide affiché sur la fiche de rapport dans le tableau de bord de l'utilisateur
+          name: Aide aux rapports
+        welcome_message:
+          description: Ce message sera affiché aux sujets lorsqu'ils se connecteront pour commencer l'évaluation ou pour consulter leur liste de tâches
+          name: Message de bienvenue
+      manage:
+        assessment: L'évaluation
+        dimension: Dimensions
+        manage_relationships: Gérer les relations...
+        report: Rapport
+        title: Gérer
+      menu:
+        datasheet:
+          title: Fiche technique
+        messages:
+          title: Messages
+        participants:
+          title: Les participants
+        report:
+          menu:
+            report_approval:
+              title: Paramètres d'approbation des rapports
+            report_options:
+              title: Options du rapport
+          title: Rapport
+      messages:
+        email_messages: Messages électroniques
+        factor_benchmark_scores_updated: Les scores de référence des facteurs ont été mis à jour avec succès
+        instruction_messages: Messages d'instruction
+        mail_history: Historique du courrier
+        options: Options
+      reports:
+        show:
+          title: Rapport sur le sujet
+    time_zone: Fuseau horaire
+    tools: Outils
+    translations:
+      assessments:
+        new:
+          header: Traductions des importations
+      import:
+        successfully: Les traductions ont été importées avec succès
+      reports:
+        export: Traductions pour l'exportation
+        import: Traductions des importations
+        import_descr: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
+    tte: TTE
+    update: Mise à jour
+    users:
+      create:
+        successfully: L'utilisateur %{nom} a été créé avec succès.
+      destroy:
+        successfully: L'utilisateur %{nom} a été supprimé avec succès.
+      list:
+        email: Courriel
+      new:
+        header: Nouvel utilisateur
+      reset_password:
+        successfully: L'utilisateur %{nom} recevra dans quelques minutes un courriel contenant des instructions sur la manière de réinitialiser son mot de passe.
+      resource:
+        confirmations:
+          change_password:
+            body: "<p>Êtes-vous sûr de vouloir envoyer des instructions avec un lien pour changer de mot de passe ?</p>\n"
+            title: Modifier le mot de passe <strong>%{nom}</strong>?
+          delete:
+            body: "<p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>\n"
+            title: Supprimer <strong>%{nom}</strong>?
+          membership:
+            delete:
+              body: "<p>Êtes-vous sûr de vouloir effacer ?</p>\n"
+              title: Supprimer <strong>%{nom}</strong> de %{nom_du_client} du bail du client ?
+            toggle_status:
+              body: "<p>Êtes-vous sûr de vouloir %{status} cette adhésion ?</p>\n"
+              title: adhésion de <strong>%{statut}</strong> %{nom} ?
+          toggle_enable_2fa:
+            body: "<p>Êtes-vous sûr de vouloir %{status} 2FA pour %{nom} ?</p>\n"
+            title: "<strong>%{état}</strong> 2FA"
+          toggle_status:
+            body: "<p>Êtes-vous sûr de vouloir %{status} cet utilisateur ?</p>\n"
+            title: "<strong>%{status}</strong> %{name} ?"
+      spoof:
+        successfully: Vous vous êtes connecté avec succès en tant que %{nom}
+      toggle_enable_2fa:
+        disable: Désactiver 2FA
+        enable: Activer 2FA
+        successfully: L'utilisateur %{nom} a été mis à jour avec succès.
+      toggle_status:
+        successfully: L'utilisateur %{nom} a été mis à jour avec succès.
+      update:
+        successfully: L'utilisateur %{nom} a été mis à jour avec succès.
+      user: Utilisateur
+    webhook:
+      connection_failure: Impossible de se connecter à l'url du webhook. Veuillez vérifier si l'url du webhook est correcte.
+      delete_success: Les paramètres du webhook ont été supprimés avec succès
+      request_failure: La demande a échoué avec le code d'état %{http_status_code}.
+    workshop:
+      actions:
+        remove_workshop: L'atelier a été supprimé avec succès
+      errors:
+        remove_workshop_failure: L'atelier que vous essayez de supprimer a des sujets programmés. Vous pouvez supprimer l'atelier en marquant tous les sujets comme annulés
+      statuses:
+        closed: Fermé
+        open: Ouvrir
+    workshop_subjects:
+      errors:
+        update_assessor_for_failure: Les détails de la réunion ne peuvent pas être ajoutés car il n'y a pas d'activité liée au sujet.
+    years: Années

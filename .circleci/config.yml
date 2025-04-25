@@ -19,7 +19,7 @@ executors:
       NODE_ENV: test
       REDIS_HOST: localhost
       REDIS_URL: 'redis://localhost:6379/1'
-      NODE_OPTIONS: '--max_old_space_size=7168'
+      NODE_OPTIONS: '--max_old_space_size=8192'
       BUNDLER_VERSION: 2.3.17
       PARALLEL_TEST_PROCESSORS: '7'
       WEB_CONCURRENCY: '1'
@@ -377,63 +377,6 @@ jobs:
           name: Coveralls Final
           command: curl -k https://coveralls.io/webhook?repo_token=$COVERALLS_REPO_TOKEN -d "payload[build_num]=$CIRCLE_WORKFLOW_ID&payload[status]=done"
 
-  heroku_deploy:
-    executor: tte-executor-deploy
-    resource_class: xlarge
-    parameters:
-      app-name:
-        type: string
-      asset-host:
-        type: string
-        default: ""
-    steps:
-      - checkout
-      - bundle_restore
-      - yarn_restore:
-          node-env: production
-      - assets_files:
-          node-env: production
-      - restore_assets_compile_cache:
-          node-env: production
-      - run:
-          name: Export I18n
-          command: bundle exec rake i18n:js:export
-      - run:
-          name: Assets precompile
-          no_output_timeout: 15m
-          command: |
-            if [ -n "<< parameters.asset-host >>" ]; then
-              ASSET_HOST=<< parameters.asset-host >> bundle exec rails assets:precompile
-            else
-              bundle exec rails assets:precompile
-            fi
-      - save_assets_cache:
-          node-env: production
-      - run:
-          name: Commit assets
-          command: |
-            cp config/database.yml.sample config/database.yml
-            git config --global user.email "shuja@shabandri.com"
-            git config --global user.name "Shuja Shabandri"
-            git config http.postBuffer 524288000
-            git add -f public/vite
-            git add -f public/assets
-            git add -f config/database.yml
-            git commit -m "ci compiled assets" --no-verify
-      - heroku_cli_install
-      - heroku/deploy-via-git:
-          force: true
-          app-name: << parameters.app-name >>
-      - run:
-          name: Check if deployment is successful
-          command: |
-            result=$(heroku releases -n 1 -a << parameters.app-name >>)
-            echo $result
-            if [[ $result == *"failed"* ]]; then
-                echo "Deployment failed"
-                exit 1
-            fi
-
   build_docker_image:
     executor: tte-docker-build
     parameters:
@@ -454,7 +397,7 @@ jobs:
       - docker/build:
           step-name: Build Docker image - latest
           image: psychometrics
-          tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM'
+          tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}'
           use-buildkit: true
           extra_build_args: '--build-arg BUILDKIT_INLINE_CACHE=1 --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_ORG=$SENTRY_ORG --build-arg SENTRY_PROJECT=$SENTRY_PROJECT --build-arg SENTRY_DEBUG=$SENTRY_DEBUG'
           registry: lhcontregistry.azurecr.io
@@ -476,7 +419,7 @@ jobs:
             - docker/push:
                 step-name: Push Docker image - latest
                 image: psychometrics
-                tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM'
+                tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}'
                 registry: lhcontregistry.azurecr.io
       - run:
           name: Tag Docker image for heroku
@@ -550,6 +493,68 @@ jobs:
             docker push registry.heroku.com/<< parameters.target-app-name >>/worker
             docker push registry.heroku.com/<< parameters.target-app-name >>/release
             heroku container:release web worker release -a << parameters.target-app-name >>
+  oci_oke_deploy:
+    docker:
+      - image: cimg/base:stable
+    parameters:
+      release-name:
+        type: string
+      values-file:
+        type: string
+      values-env-file:
+        type: string
+      chart-folder:
+        type: string
+      namespace:
+        type: string
+        default: default
+    steps:
+      - checkout
+      - kubernetes/install_kubectl
+      - kubernetes/install_kubeconfig
+      - helm/install_helm_client
+      - run:
+          name: Run helm install
+          working_directory: << parameters.chart-folder >>
+          command: |
+            helm upgrade --install << parameters.release-name >> . \
+            -n << parameters.namespace >> \
+            --values << parameters.values-file >> --values << parameters.values-env-file >> \
+            --set image.tag=$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}
+  azure_aks_deploy:
+    docker:
+      - image: cimg/base:stable
+    parameters:
+      release-name:
+        type: string
+      values-file:
+        type: string
+      values-env-file:
+        type: string
+      chart-folder:
+        type: string
+      namespace:
+        type: string
+        default: default
+    steps:
+      - checkout
+      - kubernetes/install_kubectl
+      - helm/install_helm_client
+      - azure-cli/install
+      - azure-cli/login-with-user-or-service-principal
+      - run:
+          name: Get aks credentials
+          command: |
+            az aks get-credentials --name lhProdAKSCluster --resource-group lhProdResGroup
+      - run:
+          name: Run helm install
+          working_directory: << parameters.chart-folder >>
+          command: |
+            helm upgrade --install << parameters.release-name >> . \
+            -n << parameters.namespace >> \
+            --values << parameters.values-file >> --values << parameters.values-env-file >> \
+            --set image.tag=$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}
+
   i18n_unused_key_checks:
     executor: tte-executor
     resource_class: medium
@@ -567,6 +572,8 @@ orbs:
   docker: circleci/docker@2.4.0
   jira: circleci/jira@1.3.1
   node: circleci/node@7.0.0
+  kubernetes: circleci/kubernetes@2.0.0
+  helm: circleci/helm@3.1.0
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
@@ -667,7 +674,7 @@ workflows:
               only:
                 - master
       - hold:
-          name: approve_production
+          name: approve_heroku_production
           type: approval
           requires:
             - heroku_release_staging
@@ -677,4 +684,75 @@ workflows:
           target-app-name: tte-lighthouse-prod
           context: psychometrics-prod-deployment
           requires:
-            - approve_production
+            - approve_heroku_production
+      - oci_oke_deploy:
+          name: deploy_lhksa_staging
+          release-name: lhksa
+          values-file: environments/staging/values.yaml
+          values-env-file: environments/staging/env.yaml
+          chart-folder: /home/circleci/project/charts/ksa
+          context: lhksa-staging
+          requires:
+            - build_image_staging
+            - vitest
+            - rspec
+          filters:
+            branches:
+              only:
+                - master
+      - hold:
+          name: approve_ksa_production
+          type: approval
+          requires:
+            - deploy_lhksa_staging
+      - oci_oke_deploy:
+          name: deploy_lhksa_production
+          release-name: lhksa
+          values-file: environments/production/values.yaml
+          values-env-file: environments/production/env.yaml
+          chart-folder: /home/circleci/project/charts/ksa
+          context: lhksa-prod
+          requires:
+            - approve_ksa_production
+          filters:
+            branches:
+              only:
+                - master
+      - hold:
+          name: approve_sami
+          type: approval
+          requires:
+            - deploy_lhksa_staging
+      - oci_oke_deploy:
+          name: deploy_sami
+          release-name: sami
+          values-file: environments/sami/values.yaml
+          values-env-file: environments/sami/env.yaml
+          chart-folder: /home/circleci/project/charts/ksa
+          namespace: sami
+          context: lhksa-prod
+          requires:
+            - approve_sami
+          filters:
+            branches:
+              only:
+                - master
+      - hold:
+          name: approve_uae_production
+          type: approval
+          requires:
+            - deploy_lhksa_staging
+      - azure_aks_deploy:
+          name: deploy_aks_uae_production
+          release-name: lighthouse
+          values-file: values.prod.yaml
+          values-env-file: values.prod.env.yaml
+          chart-folder: ~/project/charts/uae
+          namespace: default
+          context: aks-prod
+          requires:
+            - approve_uae_production
+          filters:
+            branches:
+              only:
+                - master

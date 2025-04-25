@@ -9,7 +9,7 @@ module Api
 
           json do
             optional(:filter).hash do
-              optional(:name_cont).filled(:string)
+              optional(:name_cont).maybe(:string)
               optional(:project_id_eq).maybe(:string)
               optional(:all_skills).maybe(:string, included_in?: %w[true false])
               optional(:global).maybe(:string, included_in?: %w[true false])
@@ -28,6 +28,8 @@ module Api
 
           rule('filter.name_cont') do
             next if values[:filter]&.except(:tagged_with).blank?
+
+            next if values[:filter][:project_id_eq].present?
 
             if value.blank? || value.length < MINIMUM_QUERY_LENGTH
               key.failure(

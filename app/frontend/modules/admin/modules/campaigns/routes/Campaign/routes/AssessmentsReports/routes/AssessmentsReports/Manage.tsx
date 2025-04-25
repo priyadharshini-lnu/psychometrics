@@ -135,7 +135,7 @@ const Manage: React.FC<Props> = ({
     <div>
       <Row justify="space-between">
         <Col span={4} className="pls">
-          <h3>Reports</h3>
+          <h3>{I18n.t('administration.reports.name')}</h3>
         </Col>
         <div>
           <div className={styles.newReportButton}>
@@ -180,7 +180,7 @@ const Manage: React.FC<Props> = ({
                   }
                 >
                   <PlusOutlined />
-                  <span>Add Report</span>
+                  <span>{I18n.t('reports.actions.add')}</span>
                 </Button>
               )}
             </Space>
@@ -190,7 +190,7 @@ const Manage: React.FC<Props> = ({
       <div>
         <ReportList />
         <div className={styles.tableDivider} />
-        <h3>Assessments</h3>
+        <h3>{I18n.t('administration.assessments.assessment_report')}</h3>
         <AssessmentList />
 
         <div className={styles.tableDivider} />

@@ -18,7 +18,7 @@ RSpec.describe Scoring::MultipleChoice do
           result = multiple_choice.calculate(
             Question.new(props: { 'choices' => 3 }),
             { 'answers' => [{ 'index' => 0, 'value' => true }] },
-            template_data
+            factors_scoring(template_data)
           )[:value]
           expect(result).to eq(2)
         end
@@ -30,7 +30,7 @@ RSpec.describe Scoring::MultipleChoice do
             {
               'answers' => [{ 'index' => 0, 'value' => true }, { 'index' => 2, 'value' => true }]
             },
-            template_data
+            factors_scoring(template_data)
           )[:value]
           expect(result).to eq(3)
         end
@@ -40,7 +40,7 @@ RSpec.describe Scoring::MultipleChoice do
           result = multiple_choice.calculate(
             Question.new(props: { 'choices' => 3 }),
             { 'answers' => [] },
-            template_data
+            factors_scoring(template_data)
           )[:value]
           expect(result).to be_nil
         end
@@ -50,7 +50,7 @@ RSpec.describe Scoring::MultipleChoice do
           result = multiple_choice.calculate(
             Question.new(props: { 'choices' => 1 }),
             { 'answers' => [{ 'index' => 0, 'value' => false }] },
-            template_data
+            factors_scoring(template_data)
           )[:value]
           expect(result).to be_nil
         end
@@ -62,7 +62,7 @@ RSpec.describe Scoring::MultipleChoice do
         result = multiple_choice.calculate(
           Question.new(props: { 'choices' => 3 }),
           { 'answers' => [{ 'index' => 0, 'value' => true }], 'not_applicable' => false },
-          template_data
+          factors_scoring(template_data)
         )[:value]
         expect(result).to eq(2)
       end
@@ -71,10 +71,26 @@ RSpec.describe Scoring::MultipleChoice do
         result = multiple_choice.calculate(
           Question.new(props: { 'choices' => 1 }),
           { 'answers' => [{ 'index' => 0, 'value' => true }], 'not_applicable' => true },
-          template_data
+          factors_scoring(template_data)
         )[:value]
         expect(result).to be_nil
       end
     end
+
+    context 'with strategy = answers_sum' do
+      it 'returns 6 for answers #1 and #3' do
+        result = multiple_choice.calculate(
+          Question.new(props: { 'choices' => 3 }),
+          { 'answers' => [{ 'index' => 0, 'value' => true }, { 'index' => 2, 'value' => true }] },
+          factors_scoring(template_data, strategy: 'answers_sum')
+        )[:value]
+
+        expect(result).to eq(6) # 2 + 4
+      end
+    end
+  end
+
+  def factors_scoring(props, strategy: nil)
+    FactorsScoring.new(props: props, scoring_strategy: strategy)
   end
 end

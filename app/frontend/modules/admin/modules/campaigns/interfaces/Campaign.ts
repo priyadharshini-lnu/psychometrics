@@ -11,6 +11,7 @@ export default interface Campaign {
   assessments: Entity[]
   reports: Entity[]
   isFixedTime: boolean
+  isThreesixty: boolean
   permissions: {
     edit: boolean
     delete: boolean
@@ -62,6 +63,7 @@ export interface CampaignOptions {
   instructionsEnabled: boolean
   instructionsWithLocales: InstructionsWithLocale[]
   proctoringEnabled: boolean
+  proctoringEnabledOnWorkshopActivity: boolean
   rules: object
   identification: string
   proctoringType: string

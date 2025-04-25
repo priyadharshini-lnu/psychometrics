@@ -1,0 +1,15 @@
+{{- if .Values.objectStorageProxy.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "lighthouse.fullname" . }}-obj-st-rp
+  labels:
+    app: {{ template "lighthouse.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+
+spec:
+  externalName: {{ .Values.objectStorageProxy.vHost }}
+  type: ExternalName
+{{- end -}}

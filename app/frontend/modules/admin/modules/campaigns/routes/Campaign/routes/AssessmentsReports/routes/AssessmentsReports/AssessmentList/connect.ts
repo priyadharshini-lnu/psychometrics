@@ -5,6 +5,7 @@ import {
   exportNormedResults, exportRawFactorScores, enableUniversalLink, exportExternalResults, updateExternalConfig,
   updatePrework, updateWorkshopActivity, toggleRequireScheduling, toggleAutoAssign, updateMettlSchedule,
   normalizeFactorScores, updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE,
+  updatePearsonVariation,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -37,6 +38,7 @@ const connecter = connect(
     toggleAutoAssign,
     updateMettlSchedule,
     normalizeFactorScores,
+    updatePearsonVariation,
   },
 )
 

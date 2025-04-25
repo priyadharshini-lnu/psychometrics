@@ -2,10 +2,16 @@ container.email-container
   row
     columns.email-content
       p
-        | You have been booked for Assessment center
+        | You have been booked for Assessment center 
+        = link_to 'View details', administration_project_new_campaign_url(@workshop&.campaign&.project, @workshop&.campaign) + "/scheduling/assessment_center/#{@workshop.id}"
 
       p
        | Start time: #{@workshop.formatted_start_time}
 
       p
         | End time:#{@workshop.formatted_end_time}
+
+      p
+        | Project: #{@workshop&.campaign&.project&.name}
+      p
+        | Campaign: #{@workshop&.campaign&.name}

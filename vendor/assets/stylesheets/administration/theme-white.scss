@@ -277,12 +277,12 @@ body.page-container-boxed .page-container {
   /* END NAV INFORMER */
 }
 .x-navigation > li {
-  float: left;
   display: block;
   width: 100%;
-  padding: 0px;
-  margin: 0px;
-  position: relative;
+  padding-inline: 0px;
+  margin-inline: 0px;
+  flex-basis: 40px;
+  float: inline-start;
 }
 .x-navigation > li > a {
   display: block;

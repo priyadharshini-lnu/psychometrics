@@ -15,7 +15,7 @@ class ApplicationController < BaseController
   DOMAIN_REGEXP = %r{^(https?://.+\.)com}
 
   content_security_policy do |policy|
-    policy.frame_ancestors allowed_domains
+    policy.frame_ancestors(*allowed_domains)
   end
 
   # Sets particular layout in depends of conditions
@@ -36,18 +36,6 @@ class ApplicationController < BaseController
   end
 
   protected
-
-  def add_cookie(name, value, expires: nil)
-    secure = Settings.protocol == 'https'
-    cookie_options = {
-      value: value,
-      httponly: true,
-      secure: secure,
-      same_site: secure ? 'None' : 'Lax'
-    }
-    cookie_options[:expires] = expires if expires
-    cookies[name] = cookie_options
-  end
 
   def inside_sso_iframe?
     session[:sso].try(:[], 'display') == 'iframe'
@@ -110,6 +98,6 @@ class ApplicationController < BaseController
   end
 
   def allowed_domains
-    inside_sso_iframe? ? '*.maialearning.com' : '*.proctor.alemira.com'
+    inside_sso_iframe? ? ['*.maialearning.com'] : ['*.proctor.constructor.app', '*.proctor.alemira.com']
   end
 end

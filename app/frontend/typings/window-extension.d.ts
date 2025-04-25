@@ -11,6 +11,7 @@ declare global {
     antdLocale: Locale
     PsyGlobalState: {
       realEnv: string,
+      adminLocales:string,
       sentryUrl: string,
       sentryDebug: string,
       currentUser: {

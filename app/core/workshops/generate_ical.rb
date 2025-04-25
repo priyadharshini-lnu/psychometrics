@@ -24,7 +24,8 @@ module Workshops
         e.dtend = Icalendar::Values::DateTime.new(end_time, 'tzid' => tzid)
         e.organizer = Icalendar::Values::CalAddress.new("mailto:#{user.email}", cn: user.decorate.full_name,
                                                         role: 'REQ-PARTICIPANT')
-        e.summary = "Booked for center on #{I18n.l(start_time, format: :workshop_date)}"
+        e.summary = "Booked for center on #{I18n.l(start_time, format: :workshop_date)} " \
+                    "for campaign #{workshop.campaign.name} and project #{workshop.campaign.project.name}"
       end
       type == :booking ? cal.publish : cal.cancel
 

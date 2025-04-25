@@ -23,6 +23,10 @@ module Api
         true
       end
 
+      def change_locale?
+        true
+      end
+
       def create_global_assessor?
         @user.is?(:superadmin)
       end

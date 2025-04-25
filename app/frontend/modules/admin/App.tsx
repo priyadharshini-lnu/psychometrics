@@ -13,9 +13,17 @@ const client = new ApiClient({
   schema: humps.decamelizeKeys(Schema),
 })
 
+const { antdLocale, I18n } = window
+
+const { locale } = document.body.dataset
+I18n.locale = locale || I18n.defaultLocale
+
 function App () {
   return (
-    <DefaultAntThemeWrapper>
+    <DefaultAntThemeWrapper
+      locale={antdLocale}
+      direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}
+    >
       <div style={{ background: 'white' }}>
         {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <Provider store={store as any}>

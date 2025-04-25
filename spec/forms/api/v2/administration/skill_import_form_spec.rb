@@ -96,20 +96,9 @@ RSpec.describe Api::V2::Administration::SkillImportForm do
     end
   end
 
-  describe '#ignore_duplicates' do
-    it 'can be set and retrieved' do
-      form.ignore_duplicates = true
-      expect(form.ignore_duplicates).to be true
-    end
-
-    it 'defaults to nil' do
-      expect(form.ignore_duplicates).to be_nil
-    end
-  end
-
   describe 'REQUIRED_FIELDS constant' do
     it 'contains the expected fields' do
-      expect(described_class::REQUIRED_FIELDS).to eq(%w[ID Name Description Project])
+      expect(described_class::REQUIRED_FIELDS).to eq(%w[ID Name Description])
     end
 
     it 'is frozen' do

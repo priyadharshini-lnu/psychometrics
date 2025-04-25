@@ -12,6 +12,9 @@ export const SkillTR = t.intersection([
         id: t.string,
         name: t.string,
       }),
+      t.type({
+        id: t.string,
+      }),
       t.undefined]),
     tagList: t.union([t.array(t.string), t.undefined]),
   })])
