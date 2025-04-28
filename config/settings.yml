@@ -324,7 +324,7 @@ providers:
         norm_id: Global2023
         language_id: en
         assessment_ids:
-          - JUDCOMBINED
+          - JUDC
     assessments:
       - id: HPI
         name: HPI
@@ -959,7 +959,7 @@ providers:
             - id: '04'
               name: Completion_Time
               type: Percentile Scale
-      - id: JUDCOMBINED # This is not a real hogan assessment id, we are using this to avoid changing our integration drastically
+      - id: JUDC # This id is used for pulling the report and is not sent with AddParticipantAssessment request.
         name: Judgement Assessment
         assessments:
           - id: JUDC
