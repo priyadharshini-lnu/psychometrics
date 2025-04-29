@@ -11,10 +11,100 @@ pl:
         select_comparison: Wybierz typ porównania
         select_factors: Wybierz Czynniki
         select_operation: Wybierz opcję Operacja
+  activerecord:
+    attributes:
+      membership:
+        first_name: Imię
+        last_name: Nazwisko
+      user:
+        email: Adres e-mail
+        first_name: Imię
+        last_name: Nazwisko
+      user_form:
+        email: Adres e-mail
+        first_name: Imię
+        last_name: Nazwisko
+        password: Hasło
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: Wymagany jest numer telefonu komórkowego
+              invalid: Numer telefonu komórkowego jest nieprawidłowy
+              verification_expired: Kod weryfikacyjny wygasł, możesz spróbować zweryfikować go ponownie.
+        user:
+          attributes:
+            current_password:
+              invalid: Bieżące hasło jest nieprawidłowe
+  anonym:
+    close: Zamknij
+    continue: Kontynuuj
+    notifications:
+      restart:
+        copy: Ankieta została już rozpoczęta, możesz wybrać opcję Kontynuuj lub Uruchom ponownie.
+        title: Kontynuować?
+      retake:
+        copy: Ukończyłeś już tę ankietę. Aby ponownie wziąć w niej udział, kliknij przycisk Ponów poniżej.
+        title: Powtórka?
+    restart: Restart
+    retake: Retake
   assessments:
+    actions:
+      back_to_campaign: Powrót do kampanii
+      extend_time: Wydłużenie czasu
+      goto_dashboard: Kliknij tutaj, aby kontynuować
+      rescore: Rescore
+    audio_response:
+      permission_denied_message: Włącz uprawnienia mikrofonu w przeglądarce, aby nagrać odpowiedź
+      permission_text: Zezwól na używanie mikrofonu do nagrywania dźwięku
     card_actions:
       begin: Zaczynać
       continue: Dalej
+    instructions:
+      begin_assessment: Początek
+      cancel: Anuluj
+      default: Jest to aktywność czasowa, po kliknięciu przycisku Rozpocznij ocenę będziesz mieć %{czas} minut na jej ukończenie.
+      title: Instrukcje
+    messages:
+      finish: Dziękujemy za poświęcony czas, odpowiedzi zostały zapisane.
+    page:
+      back: Powrót
+      confirm_message: "## Twoje odpowiedzi zostaną przesłane i nie będzie można ich później zmienić. Kliknij **Back**, aby przejrzeć swoje odpowiedzi po raz ostatni lub kliknij **Submit**, jeśli skończyłeś."
+      next: Następny
+      read_only: Jest to tryb tylko do odczytu, nie można zmienić żadnych wyników.
+      save: Zapisz
+      submit: Prześlij
+    pickgrouprank:
+      items: Przedmioty
+    proceed: Kontynuuj mimo wszystko
+    unknown_error: Wystąpił nieznany błąd.
+    video_response:
+      device: Zezwalaj
+      device_selection:
+        camera: Kamera
+        mic: Mikrofon
+      discard: Odrzucić
+      discard_record_again: Odrzuć i nagraj ponownie
+      media_recorder:
+        failure: Ta przeglądarka nie obsługuje nagrywania wideo. Do nagrywania wideo użyj przeglądarki Chrome lub Firefox
+        success: Zezwól na używanie kamery i mikrofonu do nagrywania dźwięku i wideo
+      recording_duration_label: Maksymalny czas nagrywania
+      recording_stop_label: Nagrywanie zostanie zatrzymane w
+      requesting_permission: Prośba o pozwolenie...
+      response_recorded: Zarejestrowana odpowiedź
+      save: Zapisz
+      saved:
+        label: Zapisane wideo
+      saving: Zapisywanie wideo...
+      start_recording: Rozpocznij nagrywanie
+      stop_recording: Zatrzymaj nagrywanie
+      tracker:
+        backward: Jesteś zbyt blisko ekranu, odsuń się trochę
+        forward: Jesteś zbyt daleko od ekranu. Przysuń się trochę bliżej
+        frame: Upewnij się, że Twoja twarz pasuje do ramki
+        ready: Naciśnij przycisk nagrywania, gdy będziesz gotowy do nagrywania
+    wait: Czekaj
   auth:
     current_password: Aktualne hasło
     current_password_placeholder: Wprowadź bieżące hasło
@@ -28,17 +118,28 @@ pl:
       description: Proszę zalogować się przy użyciu danych swojego konta osobistego
       forgot_password: Zapomniałeś hasła?
       login_btn: Zaloguj Się
+      magic_link_btn: Wyślij mi link logowania
       not_member: Nie masz konta?
       or: albo
       sso_btn: Zaloguj się za pomocą pojedynczego logowania
       title: Witamy!
     logout: Wyloguj
+    magic_link:
+      description: Wprowadź swój adres e-mail, aby otrzymać link do logowania
+      login_with_password: Zaloguj się przy użyciu hasła
+      send_me_login_link: Wyślij mi link do logowania
+      success: Link do logowania został wysłany na adres '%{email}'. Kliknij link w otrzymanej wiadomości e-mail, aby się zalogować
+    mobile_number: Numer telefonu komórkowego
     new_password: Nowe hasło
+    new_password_placeholder: Wprowadź nowe hasło
     otp:
       code: Kod
       code_placeholder: Jednorazowe hasło
       description: Wprowadź hasło jednorazowe wysłane na Twój zarejestrowany adres e-mail.
       resend: Wyślij ponownie hasło jednorazowe
+      resend_in: Wyślij ponownie za %{timestamp} sekund
+      resend_success: OTP jest wysyłany na numer telefonu komórkowego
+      sms_description: Wprowadź OTP, który został wysłany na Twój numer telefonu komórkowego.
       submit: Zweryfikować
       title: Jednorazowe hasło
     password: Hasło
@@ -70,8 +171,15 @@ pl:
     sign_out: Zaloguj się jako inny użytkownik
     sign_up: Zapisz się
     terms_link: <a href="%{terms_url}">Warunki i oświadczenie o ochronie prywatności</a>
+    verify_mobile_number:
+      error:
+        blocked: Ten numer jest zablokowany z powodu zbyt wielu prób.
+        invalid_code: Nieprawidłowy kod
+        invalid_number: Numer telefonu komórkowego jest nieprawidłowy, sprawdź go ponownie
+        max_attempts_reached: Zbyt wiele prób. Odczekaj 10 minut przed ponowną próbą.
   campaign:
     all_activities_are_completed: Wszystkie działania zostały już zakończone.
+    all_activities_are_completed_multiple: Wszystkie działania dla tej kampanii zostały zakończone. Przejdź do Panelu i sprawdź, czy masz przypisane inne działania.
     begin: Rozpocznij swoje zadania
     begin_btn_msg_before_prework: Przed rozpoczęciem kampanii czasowej musisz wykonać poniższe zadania
     begin_campaign_msg: Rozpocznij kampanię przed przystąpieniem do oceny
@@ -82,10 +190,14 @@ pl:
     continue: Kontynuuj swoje zadania
     dashboard_instructions: Przydzielono Ci wiele działań, które musisz wykonać. Upewnij się, że wszystkie przypisane działania zostały wykonane we wszystkich kampaniach.
     dashboard_menu:
+      bookings: Rezerwacje
       campaign: Kampania
       change_password: Zmień hasło
+      development: Rozwój
       home: Dom
       insights: Insights
+      my_direct_reports: Moi bezpośredni podwładni
+      my_plan: Mój plan
       profile: Profil
       profile_details: Detale
       tasks: Zadania
@@ -101,18 +213,18 @@ pl:
     inactive_campaign_message: Obecnie nie przydzielono Ci żadnych działań.
     insights_reports: Spostrzeżenia i raporty
     instruction_modal:
-      campaign_start_final_instructions: |-
+      campaign_start_final_instructions: |
         <p>  Należy pamiętać, że nie ma możliwości zatrzymania lub wstrzymania timera. Licznik czasu kampanii będzie odliczany nawet po zamknięciu przeglądarki, więc w żadnym momencie nie myśl o pozostawieniu zadań pomiędzy nimi i zajęciu się czymś innym. Pamiętaj, aby zminimalizować czynniki rozpraszające podczas wykonywania zadań. Znajdź ciche otoczenie, wyłącz powiadomienia na swoich urządzeniach i unikaj wielozadaniowości. Utrzymuj koncentrację i bądź skupiony. Gdy skończy się czas kampanii, nie będziesz mógł kontynuować. Jeśli zapoznałeś się z powyższą instrukcją, kliknij przycisk start, aby kontynuować przydzielone zadania.
         </p>
-      campaign_start_instruction: |-
+      campaign_start_instruction: |
         <h4>Przeczytaj dokładnie poniższe instrukcje.</h4>
         <p>  Zadania, które zaraz rozpoczniesz, mają określony czas. Po kliknięciu „Start” licznik kampanii rozpocznie się automatycznie. Masz %{minutes} minut na wykonanie wszystkich czynności. Staraj się realizować zadania w wyznaczonym terminie i efektywnie zarządzać czasem, aby uniknąć pośpiechu w procesie oceny. Pamiętaj, aby wykonać zadania za jednym razem, więc jeśli chcesz zrobić sobie przerwę, teraz jest na to czas.
         </p>
-      common_proctoring_instructions: |-
+      common_proctoring_instructions: |
         <h4>Opieka</h4>
         <p>  Po kliknięciu przycisku Start zostaniesz przekierowany do naszego systemu nadzorującego. Będzie monitorować kamerę, mikrofon i ekran podczas sesji. Sesje te są automatycznie nadzorowane przez nasz wyrafinowany system sztucznej inteligencji, zapewniający nieprzerwaną i płynną obsługę użytkownika. Jednakże sesje mogą być również przeglądane przez osoby nadzorujące. Wszelkie oznaki niewłaściwego postępowania lub nieprawidłowości będą sygnalizowane. Ma to na celu zapewnienie, że nie będą podejmowane żadne próby oszustwa. Jeśli zostaną znalezione podejrzenia, Twoje zadania zostaną anulowane.
         </p>
-      lockdown_browser_instruction: |-
+      lockdown_browser_instruction: |
         <h4>Przeglądarka kontrolująca</h4>
         <p>  Aby wykonać nadzorowane zadania, będziesz musiał pobrać i zainstalować specjalną przeglądarkę. Postępuj zgodnie z instrukcjami na następnym ekranie. Możesz to odinstalować po wykonaniu wszystkich wymaganych czynności.
         </p>
@@ -166,23 +278,315 @@ pl:
     password_confirmation: Potwierdzenie hasła
     title: Zmień hasło
     warning_message: 'Ważne: zmiana hasła spowoduje wylogowanie.'
+  checking_wizard:
+    audio_check:
+      access: Dostęp
+      continue: Tak, można kontynuować
+      random_phrases:
+        eight: Niech Twoja kawa będzie mocna, a dzień produktywny.
+        five: Życie jest lepsze, gdy się uśmiechasz. Uśmiechnij się do mikrofonu!
+        four: Sprzedaje muszelki nad brzegiem morza.
+        nine: W razie wątpliwości przetestuj ten mikrofon!
+        one: Ja krzyczę, ty krzyczysz, wszyscy krzyczymy o lody!
+        seven: Każdy dzień to nowy początek - powiedz to głośno i z dumą!
+        six: Pizza czy makaron? Decyzje są trudne.
+        three: Testowanie, raz dwa trzy, dźwięk jest czysty jak może być!
+        two: Szybki brązowy lis przeskakuje leniwego psa.
+      record_title: Wypowiedz i powtórz poniższe zdanie 3 razy.
+      retake: Nie, chcę powtórzyć
+      run_again: Uruchom ponownie
+      test_message: świetnie się z tobą rozmawia
+    network_check:
+      continue: Kontynuuj
+      download: Pobierz
+      please_check_connection: Sprawdź połączenie internetowe
+      processing: Przetwarzanie
+      run_again: Uruchom ponownie
+      run_again_title: I uruchom ten test ponownie
+      title: Kliknij przycisk Start, aby rozpocząć test prędkości Internetu.
+      upload: Przesyłanie
+    steps:
+      audio_check: Test mikrofonu
+      network_check: Test prędkości Internetu
+      system_check: Kontrola systemu
+      video_check: Test kamery wideo
+    success:
+      start: Rozpoczęcie oceny
+      title: Pomyślnie ukończyłeś wszystkie kontrole.
+    system_check:
+      compatibility: Kompatybilność systemu
+      continue: Kontynuuj
+      failure:
+        description: Uprawnienia do korzystania z kamery internetowej i mikrofonu są wymagane w przypadku pytań audio/wideo w tym teście.
+        link_text: tutaj
+        link_text_action: Kliknij
+        link_text_instruction: i postępuj zgodnie z instrukcjami, aby nadać uprawnienia
+        refresh: Odśwież przeglądarkę
+        refresh_text: Kliknij poniżej, aby odświeżyć przeglądarkę i zastosować zmiany
+        subtitle: Szybkie poprawki
+        title: Uprawnienia do kamery internetowej i mikrofonu zostały anulowane
+      permissions: Uprawnienia do kamery internetowej i dźwięku
+      title: Przed rozpoczęciem tej oceny system musi przejść kilka testów.
+    video_check:
+      access: Dostęp
+      camera_preview: Podgląd kamery pojawi się tutaj
+      continue: Tak, można kontynuować
+      description: Kliknij przycisk Rozpocznij nagrywanie i nagraj siebie, czytając poniższy fragment własnym głosem
+      random_phrases:
+        eight: Jeśli mnie widzisz, wideo jest udane. Jeśli nie, rozwiążemy problem!
+        five: Testowanie wideo, bez obaw, nie wymaga nominacji do Oscara.
+        four: Kamera to twoja scena.
+        nine: Wielkie uśmiechy i wyraźne wideo, zróbmy ten test dobrze!
+        one: Podnieś rękę, jeśli mnie słyszysz lub po prostu pomachaj do kamery!
+        seven: Lustro, lustro na ekranie, niech kontrola wideo będzie czysta.
+        six: Światła, kamera, akcja, nadszedł czas, aby zabłysnąć!
+        ten: Przyjazna fala upewnia się, że wszystko działa poprawnie.
+        three: Powiedz ser! Lub po prostu przetestuj ten idealny uśmiech.
+        two: Spójrz w obiektyw, uśmiechnij się i udawaj, że jesteś w zwiastunie filmowym.
+      rec_text: REC
+      retake: Nie, chcę powtórzyć
+      run_again: Uruchom ponownie
+      title: Musimy upewnić się, że system może nagrywać wideo
+      uploading: Przesyłanie
   common:
     actions:
       add: Dodaj
       archive: Archiwum
       cancel: Anuluj
+      close: Zamknij
+      copy: Kopia
       delete: Kasować
       edit: Edytować
       remove: Usunąć
       reset: Nastawić
       resolve: Rozwiązać
+      restore: Przywracanie
       save: Zapisać
       search: Szukaj
       send: Wysłać
       start: Początek
+      unarchive: Unarchive
       unresolve: Nierozwiązany
       update: Aktualizacja
       upload: Przekazać plik
+      verify: Weryfikacja
+    column:
+      action: Działanie
+      category: Kategoria
+      created_at: Utworzono w
+      id: Id
+      status: Status
+    model:
+      assessments: Oceny
+      campaigns: Kampanie
+      reports: Raporty
+    text:
+      cancel: Anuluj
+      confirm: Potwierdzenie
+      continue: Kontynuuj
+      default: Domyślne
+      download: Pobierz
+      na: NIE DOTYCZY
+      ok: Ok
+      response: Odpowiedź
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Logowanie
+    failure:
+      already_authenticated: Jesteś już zalogowany.
+      inactive: Twoje konto nie zostało jeszcze aktywowane.
+      invalid: Nieprawidłowy adres e-mail lub hasło.
+      invited: Masz oczekujące zaproszenie, zaakceptuj je, aby dokończyć tworzenie konta.
+      magic_link_invalid: Nieprawidłowy lub wygasły link logowania.
+      not_found_in_database: Nieprawidłowy adres e-mail lub hasło.
+      timeout: Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować.
+      unauthenticated: Przed kontynuowaniem musisz się zalogować lub zarejestrować.
+    invitations:
+      edit:
+        password_label: Hasło
+    passwords:
+      invalid_email: Nieprawidłowy adres e-mail
+    registrations:
+      communication_not_setup_error: Komunikacja e-mail przy rejestracji nie jest skonfigurowana, prosimy o kontakt z administratorem tego projektu.
+      new:
+        email: Adres e-mail
+        first_name: Imię
+        instruction: Wypełnij poniższe dane, aby zarejestrować się i utworzyć nowe konto
+        last_name: Nazwisko
+        privacy_notice: Szanujemy Twoją prywatność i nie tolerujemy spamu. Nigdy nie przekażemy Twoich danych osobom trzecim.
+        registration_code: Kod rejestracyjny
+        submit: Rejestr
+        tabs:
+          register: Rejestr
+          sign_in: Zaloguj się
+        terms_notice: Rejestrując się, wyrażasz zgodę na nasze <a href="%{terms_url}">Warunki korzystania z usługi i Politykę prywatności</a>
+        title: Zarejestruj się teraz
+      success:
+        actions:
+          sign_in: Zaloguj się
+    sessions:
+      new:
+        email: Adres e-mail
+        forgot_password: Zapomniałeś hasła?
+        instruction: Zaloguj się przy użyciu danych konta osobistego
+        password_placeholder: Hasło
+        submit: Logowanie
+        tabs:
+          register: Rejestr
+          sign_in: Logowanie
+        title: Witamy!
+    two_factor_authentication:
+      attempt: Wprowadź kod OTP otrzymany na zarejestrowany adres e-mail
+      code_has_been_sent: Nowy kod OTP został wysłany na zarejestrowany adres e-mail
+  emails:
+    subject_relationship_table:
+      subject_email: Przedmiot E-mail
+      subject_name: Nazwa przedmiotu
+      subject_relationship: Związek przedmiotowy
+  errors:
+    assessments:
+      timed_out: Nie będziesz mógł wziąć udziału w ocenie %{assessment_name}, ponieważ upłynął limit czasu.
+    error: Błąd
+    error_500: Coś poszło nie tak, skontaktuj się z administratorem.
+    forbidden: Nie masz dostępu do tej strony
+    forbidden_action: Nie masz uprawnień do tej akcji
+    invalid_token: Coś poszło nie tak. Przeładuj stronę i spróbuj ponownie.
+    module_error: Coś poszło nie tak z tym modułem, prosimy o kontakt z administracją.
+    module_error_editor: Coś poszło nie tak z tym modułem, sprawdź ustawienia modułu.
+    module_props_error: Coś poszło nie tak z tym modułem.
+    try_again: Spróbuj ponownie
+  factors:
+    description: Opis
+    factor: Czynnik
+  frontend:
+    activate: Aktywuj
+    are_you_sure: Jesteś pewien?
+    assessment: Ocena
+    assessment_groups:
+      create_success: Grupa została utworzona pomyślnie
+      update_success: Grupa została pomyślnie zaktualizowana
+    background_reading: Podstawowe informacje
+    bookings:
+      accept_invite_msg: Otrzymałeś zaproszenie, zarezerwuj swój slot.
+      add_to_calendar: Dodaj do kalendarza
+      add_to_calendar_tour_description: Dodaj tę rezerwację do swojego kalendarza
+      assessment_center_alert:
+        btn_title: Kampania
+        message_part1: Ukończ wszystkie zadania wstępne w tym
+        message_part2: przed dokonaniem rezerwacji.
+      assessment_center_group_name: Centrum oceny
+      booking_failed_msg: 'Nie udało się zarezerwować slotu: %{error}'
+      buttons:
+        book: Książka
+        book_again: Zarezerwuj ponownie
+        cancel: Anuluj
+        cancel_booking: Anuluj rezerwację
+        confirm_booking: Potwierdź rezerwację
+        confirm_reschedule: Potwierdź Zmień harmonogram
+        modify: Modyfikacja
+        nevermind: Nevermind
+        no_text: Nie
+        request_cancel: Wniosek o anulowanie
+        request_reschedule: Wniosek o zmianę terminu
+        reschedule: Zmiana harmonogramu
+        reserve_spot: Zarezerwuj swoje miejsce
+        yes_text: Tak
+      cancel_booking_confirmation: Czy na pewno chcesz anulować tę rezerwację?
+      cancellation_failed: 'Nie udało się anulować rezerwacji: %{error}'
+      cancellation_success: Pomyślnie anulowano rezerwację
+      comments_required_msg: Wprowadź swoje komentarze
+      confirm_booking_description: Prosimy o potwierdzenie poprawności tych danych przed sfinalizowaniem rezerwacji.
+      confirm_booking_title: Potwierdzić rezerwację?
+      default_failure_msg: Nie można przetworzyć żądania. Spróbuj ponownie później.
+      default_requires_msg: "%{nazwa} jest wymagana"
+      join_activity_meeting: Dołącz do spotkania
+      join_workshop_meeting: Dołącz do spotkania
+      language: Język
+      language_placeholder: Wybierz język
+      language_preference_question: Czy masz preferencje językowe?
+      language_required_msg: Wybierz język
+      meeting_start_text: 'Spotkanie rozpocznie się w:'
+      need_changes: Potrzebujesz wprowadzić zmiany?
+      neurodivergence_comment_placeholder: Twój komentarz
+      neurodivergence_question: Czy ze względu na specjalne potrzeby lub niepełnosprawność potrzebujesz racjonalnych udogodnień lub dostosowań, aby w pełni uczestniczyć w ocenie?
+      other_invite: Zobacz %{count} więcej zaproszeń
+      other_invites: Zobacz %{count} więcej zaproszeń
+      reason: Powód
+      reason_for_cancel: Powód anulowania
+      reason_for_reschedule: Powód zmiany harmonogramu
+      request_cancellation_failed: 'Żądanie anulowania nie powiodło się: %{error}'
+      request_cancellation_success: Pomyślnie złożono wniosek o anulowanie
+      request_reschedule_failed: 'Żądanie zmiany harmonogramu nie powiodło się: %{error}'
+      request_reschedule_success: Pomyślnie złożono wniosek o zmianę harmonogramu
+      reschedule_failed_msg: 'Zmiana harmonogramu nie powiodła się: %{error}'
+      reschedule_reason_placeholder: Aby kontynuować, wprowadź powód zmiany harmonogramu.
+      schedule_success: Ta rezerwacja jest zaplanowana
+      schedule_success_msg: Wysłaliśmy Tobie i innym uczestnikom zaproszenie do kalendarza ze wszystkimi szczegółami.
+      starts_at: 'Początek: %{data}'
+      starts_in: 'Zaczyna się w:'
+      tab_label:
+        bookings: Rezerwacje
+        invites: Zaproszenia
+      what: Co
+      when: Kiedy
+      workshop_start_text: Assessment Center rozpocznie się w
+    break_time: Czas przerwy
+    campaign:
+      actions:
+        remove:
+          confirmation: Wprowadź aktualną nazwę kampanii podaną poniżej w polu tekstowym, aby usunąć kampanię
+          success: "%{campaignName} został pomyślnie usunięty."
+      users:
+        completion_statuses:
+          completed: Zakończono
+          in_progress: W toku
+          not_started: Nie uruchomiono
+    change_password: Zmiana hasła
+    delete: Usuń
+    edit: Edytuj
+    lighthouse_app: Latarnia morska Mercer
+    login: Logowanie
+    manage: Zarządzanie
+    'no': Nie
+    resource:
+      create_success: "%{readableResourceName} został dodany pomyślnie"
+      update_success: "%{readableResourceName} został pomyślnie zaktualizowany"
+    session_timeout_modal:
+      buttons:
+        close: Zamknij
+        log_out: Wyloguj się teraz
+        re_login: Zaloguj się ponownie
+        stay_logged_in: Pozostań zalogowany
+      message: Twoja sesja zakończy się za 2 minuty z powodu braku aktywności. Kliknij "Pozostań zalogowany", aby kontynuować sesję, w przeciwnym razie zostaniesz automatycznie wylogowany.
+      message_after_timeout: Uprzejmie prosimy o ponowne zalogowanie się.
+      time_remaining: Pozostały czas
+      title: Ostrzeżenie o przekroczeniu limitu czasu sesji
+    update: Aktualizacja
+    upload: Przesyłanie
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Anulowane
+        requested_cancellation: Żądane anulowanie
+        requested_cancellation_rejected: Żądane anulowanie Odrzucono
+        requested_rescheduling: Wnioskowana zmiana harmonogramu
+        requested_rescheduling_rejected: Wnioskowana zmiana harmonogramu Odrzucona
+    'yes': Tak
+  idp:
+    pdf:
+      header: Witam
+  idp_templates:
+    errors:
+      user_idp_template_not_found: Nie przypisano do ciebie żadnego szablonu IDP.
+  mailer:
+    magic_link:
+      body:
+        dear: Drogi %{imię},
+        greetings: Pozdrowienia na cały dzień!
+        instructions: Kliknij poniższy link, aby zalogować się do lighthouse.
+        signin_link: Link do logowania
+      subject: Łącze logowania do Lighthouse
   navigation:
     logout: Wyloguj
   profile:
@@ -208,6 +612,131 @@ pl:
     title: Mój profil
     update: Aktualizacja
     update_required: Wymagane aktualizacje profilu
+  reports:
+    actions:
+      add: Dodaj raport
+      download: Pobierz raport
+      view: Wyświetl raport
+    modules:
+      campaign_factors_table:
+        add_condition: Dodaj warunek
+        baseline_score: Wynik wyjściowy
+        blindspots: Blindspots
+        campaign_factor_conditions: Warunki czynników kampanii
+        cancel: Anuluj
+        color: Kolor
+        delete: Usuń
+        description: Opis
+        if: Jeśli
+        label: Etykieta
+        no_conditions: Brak warunków
+        save: Zapisz
+        strengths: Mocne strony
+        then: Następnie wyświetl następujący tekst
+        title: Tytuł
+      factors_table:
+        description: Opis
+        no_data: Brak dostępnych danych dla tej sekcji.
+        rank: Ranga
+        score: Wynik
+      gap_assessment:
+        gap: Gap
+        item: Wskaźnik
+        negative_gap: Luki ujemne
+        no_negative_gaps: Nie ma żadnych negatywnych luk
+        no_positive_gaps: Nie ma żadnych pozytywnych luk
+        positive_gap: Pozytywne luki
+        rank: Ranga
+        scoring_category: Kompetencje
+      highest_lowest:
+        bottom_5: DÓŁ 5
+        category: Kategoria
+        highest_scores: Najwyższe wyniki
+        item: Wskaźnik
+        lowest_scores: Najniższe wyniki
+        mean_score: Średni wynik
+        rank: Ranga
+        scoring_category: Kompetencje
+        sub_competenties: Podkompetencje
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: Mocne strony kariery i wyniki
+        career_sub_tracks: Podścieżki kariery
+        key_career_tracks_within: Poniżej znajduje się lista potencjalnych stanowisk dla każdej ze ścieżek kariery. Pamiętaj, że lista ta ma jedynie charakter orientacyjny i nie jest wyczerpująca. Zwróć uwagę, że stanowiska zaznaczone kursywą wymagają wyższego poziomu wykształcenia i/lub doświadczenia.
+        potential_areas_of_study: Potencjalne obszary badań
+        strength_high: Signature Strength
+        strength_low: Siła rozwoju
+        strength_moderate: Potencjalna siła
+        work_environment: Środowisko pracy
+        your_suitability: Przydatność
+      single_value:
+        factor_name: Kategoria punktacji
+        question_name: Pytania
+      single_value_cluster:
+        competency: Kompetencje
+        developmental_rating: Ocena rozwoju
+        questions: Pytania
+      strength_clusters:
+        index_sub_factors_considered: Podczynniki Thriving Index, które zostały uwzględnione w celu uzyskania ostatecznego wyniku dla środowiska pracy %{styl pracy}
+        possible_roles: Możliwe role
+        work_environments: Oczekiwane środowisko pracy
+      three_sixty_default:
+        factor:
+          items: Przedmioty
+          max: Wartość maksymalna
+          mean: Średnia
+          min: Wartość minimalna
+          standardDeviation: Odchylenie standardowe
+          sum: Suma
+          totalResponses: Łączna liczba odpowiedzi
+          variance: Wariancja
+          weightedMean: Średnia ważona
+        question:
+          no_response: Brak dostępnej odpowiedzi
+        statistic: Statystyka
+        value: Wartość
+      three_sixty_report_summary:
+        completed: Zakończono
+        footnote: "* Wyłączone ze względu na wymóg minimalnego progu"
+        invited: Zaproszeni
+        relationships: Relacje
+        total: Łącznie
+      video_response:
+        no_results: Nie nagrano żadnych filmów
+    show:
+      export_pdf: Eksport do PDF
+      header: Raport
+    statuses:
+      approved: Zatwierdzony
+      available: Dostępne
+      denied: Odmowa
+      incomplete: Niekompletny
+      not_available: Niedostępne
+      on_hold: Wstrzymane
+      released: Zwolniony
+  shared:
+    filters:
+      clear: Wyczyść filtry
+    internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
+    terms_conditions_privacy: Oświadczenie o ochronie prywatności
+    tte_terms_and_condition: Warunki i prywatność
+  simple_form:
+    placeholders:
+      administrator:
+        email: Adres e-mail
+        last_name: Nazwisko
+      memebrship:
+        last_name: Nazwisko
+      user:
+        email: Adres e-mail
+        first_name: Imię
+        last_name: Nazwisko
+        password: Hasło
+      user_form:
+        email: Adres e-mail
+        first_name: Imię
+        last_name: Nazwisko
+        password: Hasło
   subjects:
     approval_statuses:
       approved: Zatwierdzony
@@ -239,24 +768,225 @@ pl:
       not_completed: Nie skończone
       waiting: Czekanie
   threesixty:
+    accept_privacy_modal:
+      accept: Akceptuj
+      checkbox: Przeczytałem i zrozumiałem Politykę prywatności, o której mowa powyżej
+      title: Zgoda na przetwarzanie danych
     action: Akcja
+    add: Dodaj
+    and: I
+    approve_all: Zatwierdź wszystko
+    approve_all_successful: Zatwierdzono wszystkie nominacje
+    approve_evaluations: Zatwierdzanie ocen
+    approve_nominations: Zatwierdzenie nominacji
+    approve_reports: Zatwierdzanie raportów
+    approved: Zatwierdzony
+    approving_mail_sent: Mail z prośbą o zatwierdzenie nominacji został wysłany do menedżerów
     as_my: jako mój
+    assessment: Ocena
+    back_to_tasks: Powrót do zadań
+    begin: Początek
+    cancel: Anuluj
+    close_evaluation_modal:
+      message: Po wyświetleniu raportu %{pronoun_or_name} nie będzie mógł otrzymywać dalszych ocen
+      title: Czy na pewno chcesz wyświetlić raport?
+    closed_campaign_message: Ta kampania 360 jest zamknięta. Nie możesz nominować ani oceniać nikogo w tej kampanii.
+    completed: Zakończono
+    confirm: Jesteś pewien?
+    confirmation_for_nomination_removal: Czy na pewno chcesz usunąć nominację?
+    confirmation_required: Wymagane potwierdzenie
+    confirmation_text_incorrect: Tekst potwierdzenia jest nieprawidłowy
+    confirmation_text_placeholder: Tekst potwierdzenia tutaj
+    continue: Kontynuuj
+    dashboard_title: Witamy %{nazwa}
+    decline: Spadek
+    decline_invite: Odrzuć zaproszenie
+    denied: Odmowa
+    deny_all: Odmów wszystkim
+    deny_all_successful: Odrzucono wszystkie nominacje
+    download_pdf: Pobierz PDF
+    download_report: Pobierz raport
+    download_reports: Pobieranie raportów
+    edit_user: Edytuj użytkownika
+    email_approve_request: Żądanie zatwierdzenia przez e-mail
+    email_schedules:
+      delete_successful: Harmonogram wiadomości e-mail został pomyślnie usunięty
+    evaluate: Ocena
     evaluation: Ocena
+    evaluation_all_closed_message: Obecnie wszystkie nominacje oczekują na zatwierdzenie
+    evaluation_closed_nomination_message: Nie możesz nominować w tym temacie, ponieważ ocena w tym temacie jest zamknięta
+    evaluation_help_modal:
+      title: Pomoc w ocenie
     evaluations: Oceny
+    evaluator: Oceniający
+    export_pdf: Eksportuj PDF
+    first_name: Imię
+    first_name_error: Wprowadź imię
+    help: Pomoc
+    language: Język
+    last_name: Nazwisko
+    last_name_error: Wprowadź nazwisko
+    load_results: Wyniki ładowania
+    mail_history:
+      statuses:
+        success: Sukces
+        undelivered: Niedostarczone
+    my_projects: Moje projekty
     name_label: Imię
     nominate: Mianować
     nominate_evaluators: Nominuj oceniających do
     nomination: Nominacja
+    nomination_help_modal:
+      title: Pomoc w nominacji
     nomination_predicates:
       atleast: Przynajmniej %{count}
       atmost: Co najwyżej %{count}
       exactly: Dokładnie %{count}
     nominations: Nominacje
+    options:
+      global:
+        cannot_re_edit: Uczestnicy nie mogą edytować ocen
+    or: Lub
+    page_title: Signify 360° Review - Poziom aplikacji
+    participant_list:
+      actions:
+        approve_report: Zatwierdzenie raportu
+        download_report: Pobierz raport
+        edit: Edytuj
+        hold_report: Raport wstrzymania
+        login: Logowanie
+        mark_as_done: Oznacz jako wykonane
+        release_report: Raport wydania
+        remove_campaign: Usuń z kampanii
+        remove_report_approval: Usuń zatwierdzenie raportu
+        remove_report_hold_release_report: Usuń wstrzymanie/zwolnienie raportu
+        remove_subject: Usuń temat
+        unmark_as_done: Odznacz jako wykonane
+        view_report: Wyświetl raport
+        view_responses: Wyświetlanie odpowiedzi
+      confirmation_messages:
+        approve_report: Czy na pewno chcesz zatwierdzić raport?
+        hold_report: Czy na pewno chcesz zatrzymać raport?
+        mark_evaluation_done: Czy na pewno chcesz oznaczyć ocenę jako zakończoną? Ocena zostanie zamknięta dla tego przedmiotu.
+        release_report: Czy na pewno chcesz opublikować raport?
+        remove_from_campaign: Czy na pewno chcesz usunąć użytkownika z kampanii?
+        remove_release_hold: Czy na pewno chcesz usunąć status Release/Hold?
+        remove_report_approval: Czy na pewno chcesz usunąć zatwierdzenie raportu?
+        remove_subject: Czy na pewno chcesz usunąć temat wiadomości e-mail z kampanii?
+        umark_evaluation_as_complete: Czy na pewno chcesz odznaczyć ocenę jako wykonaną?
+      report_generation_message: Raport jest w trakcie generowania. Poinformujemy Cię, gdy raport będzie gotowy.
+    processing: Przetwarzanie
+    processing_report: Raport z przetwarzania
     progress_text: " %{completed} z %{total}"
+    question:
+      chat_type:
+        input_placeholder: Napisz wiadomość...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Edytuj
+        max_length_warning: "%{x} pozostałych znaków"
+        message: Twoja wiadomość
+        send: Wyślij
+        subject: Przedmiot
+        successful_message: Wysłanie wiadomości e-mail powiodło się
+        to: Do
     remind_all: Przypomnij wszystkim
     remind_mail_sent: Przypomnienia wysyłane do oceniających, którzy nie ukończyli oceny
+    report_for: Raport dla
+    report_generation_in_progress: Raport jest w trakcie generowania. Poinformujemy Cię, gdy raport będzie gotowy.
+    reports: Raporty
+    reports_help_modal:
+      title: Pomoc w raportach
+    reset_campaign_confirmation: Wprowadź aktualną nazwę kampanii podaną poniżej w polu tekstowym, aby zresetować wszystkich uczestników
+    reset_nomination_confirmation: Wprowadź aktualną nazwę kampanii podaną poniżej w polu tekstowym, aby zresetować wszystkie nominacje
+    save: Zapisz
     select_relationnship: Wybierz opcję Relacja
     select_relationship: Wybierz opcję Relacja
+    self: Self
+    set_name_for_evaluator: Ustaw nazwę dla Evaluator
     setup_nominations: Ustaw nominacje
+    subject: Przedmiot
+    submit: Prześlij
+    total_progress: Całkowity postęp
     user_name_input_placeholder: wpisz imię i nazwisko lub e-mail...
+    validation_errors: Błędy walidacji
+    view_my_report: Wyświetl mój raport
+    view_nominations: Wyświetl nominacje
+    view_reports: Wyświetlanie raportów
+    waiting: Oczekiwanie
+    you: Ty
     yourself: Sie
+  user:
+    fields:
+      email: Adres e-mail
+      first_name: Imię
+      last_name: Nazwisko
+  user_assessments:
+    redirect: Zostaniesz przekierowany do witryny innej firmy w celu przeprowadzenia tej oceny. Kliknij Kontynuuj, jeśli chcesz rozpocząć ocenę.
+  user_reports:
+    actions:
+      regenerate: Regeneracja
+    messages:
+      regenerate_successful: Zadanie regeneracji raportu zostało zaplanowane pomyślnie
+    modals:
+      remove:
+        content: Czy na pewno chcesz usunąć raport %{userReportName}?
+        successfully: raport %{userReportName} został pomyślnie usunięty
+    preview_report: Raport z podglądu
+    statuses:
+      generating: Generowanie
+      not_prepared: Niedostępne
+      prepared: Dostępne
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Dźwięk jest nagrywany, ale nie zapisywany
+        RECORDING: Trwa nagrywanie dźwięku
+        SAVING: Trwa przesyłanie nagranego dźwięku
+      required: Przed kontynuowaniem nagraj i zapisz dźwięk
+    FileUpload:
+      in_progress:
+        SAVING: Trwa przesyłanie pliku
+      required: Prześlij plik
+    TextEntry:
+      Email:
+        character_range: Wprowadzona wiadomość e-mail musi zawierać co najmniej %{min} i nie więcej niż %{max} znaków.
+        subject:
+          min_length: Pole tematu powinno zawierać co najmniej 10 znaków
+        to:
+          required: Pole To jest wymagane
+    VideoResponse:
+      in_progress:
+        recorded: Wideo jest nagrywane, ale nie jest zapisywane
+        recording: Nagrywanie wideo jest w toku
+        saving: Trwa przesyłanie nagranego wideo
+      required: Przed kontynuowaniem nagraj i zapisz wideo
+    actions_still_in_progress: Poniższe działania są w toku, a ich kontynuowanie spowoduje utratę tych danych.
+    blank: nie może być pusty
+    character_count: 'Liczba znaków '
+    character_range: Odpowiedź musi mieć co najmniej %{min} i nie więcej niż %{max} znaków.
+    date: Odpowiedź musi zawierać prawidłową datę (mm/dd/rrrr)
+    each_group_contains: Każda grupa musi zawierać nie mniej niż %{min} i nie więcej niż %{max} elementów
+    email: Odpowiedź musi być prawidłową wiadomością e-mail
+    file_upload:
+      EntityTooLarge: Rozmiar pliku powinien być mniejszy niż %{maxFileSize} MB
+      WrongFileType: Typ pliku powinien być jednym z następujących %{allowedFileTypes}
+    issue: Problem
+    least: Odpowiedz na co najmniej %{min} wyborów.
+    least_hotspot: Odpowiedz na co najmniej %{min} wyborów.
+    max_character: Odpowiedź nie może zawierać więcej niż %{max} znaków.
+    max_word: Odpowiedź nie może zawierać więcej niż %{max} słów.
+    min_character: Odpowiedź musi zawierać co najmniej %{min} znaków.
+    min_word: Twoja odpowiedź musi zawierać co najmniej %{min} słów
+    must_rank_between: Przypisz wartość od %{min} do %{max} dla każdego elementu. Wartości nie mogą się powtarzać.
+    must_select: Wybierz spośród opcji od %{min} do %{max}
+    number: Twoja odpowiedź musi być liczbą
+    range: Prosimy o udzielenie odpowiedzi na co najmniej %{min} i nie więcej niż %{max} wyborów.
+    required: Proszę o odpowiedź na to pytanie
+    text: Odpowiedź nie może zawierać liczb
+    word_count: 'Liczba słów '
+    word_range: Odpowiedź musi zawierać co najmniej %{min} i nie więcej niż %{max} słów.
+  'yes': Tak
+  your: Twój
+  yourself: Ty sam

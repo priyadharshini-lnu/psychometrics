@@ -51,7 +51,7 @@
     "@tensorflow-models/face-landmarks-detection": "^1.0.5",
     "@tensorflow/tfjs-converter": "^4.20.0",
     "@tensorflow/tfjs-core": "^4.20.0",
-    "@thetalententerprise/interactive-assessments": "1.9.13",
+    "@thetalententerprise/interactive-assessments": "1.9.14",
     "@thetalententerprise/jsonapi-react": "0.0.31",
     "@types/actioncable": "^5.2.11",
     "@types/lodash": "^4.14.184",

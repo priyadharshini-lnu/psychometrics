@@ -11,65 +11,6 @@ de:
         select_comparison: Wählen Sie Vergleichstyp
         select_factors: Wählen Sie Faktoren aus
         select_operation: Wählen Sie Operation aus
-    errors:
-      models:
-        admin_edit:
-          attributes:
-            first_name:
-              blank: Der Vorname darf nicht leer sein
-            last_name:
-              blank: Nachname darf nicht leer sein
-        create_one:
-          attributes:
-            evaluator_first_name:
-              blank: Der Vorname des Bewerter darf nicht leer sein
-            evaluator_last_name:
-              blank: Der Nachname des Bewerter darf nicht leer sein
-            first_name:
-              blank: Der Vorname darf nicht leer sein
-            last_name:
-              blank: Nachname darf nicht leer sein
-        import_one:
-          attributes:
-            first_name:
-              blank: Der Vorname darf nicht leer sein
-            last_name:
-              blank: Nachname darf nicht leer sein
-        password_reset:
-          attributes:
-            email:
-              wrong_email: Wir konnten keinen Benutzer mit der von Ihnen angegebenen E-Mail finden.
-        profile:
-          attributes:
-            first_name:
-              blank: Der Vorname darf nicht leer sein
-            last_name:
-              blank: Nachname darf nicht leer sein
-            password:
-              too_short: Das Passwort ist zu kurz. Mindestens %{count} Zeichen erforderlich
-              too_weak: 'Das Passwort muss enthalten: Mindestens 8 Zeichen, 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Zahl und 1 Sonderzeichen.'
-        register:
-          attributes:
-            email:
-              blank: Die E-Mail-Adresse muss ausgefüllt werden
-              in_use: Diese E-Mail-Adresse wird verwendet. Wenn Sie bereits ein Konto haben, melden Sie sich bitte an
-              invalid: E-mail Adresse ist nicht korrekt
-              too_long: E-Mail-Adresse ist zu lang
-            first_name:
-              blank: Der Vorname muss ausgefüllt werden
-              too_long: Vorname ist zu lang
-            last_name:
-              blank: Nachname muss ausgefüllt werden
-              too_long: Nachname ist zu lang
-            registration_code:
-              blank: Registrierungscode ist erforderlich
-              invalid: Der Registrierungscode ist ungültig
-        super_admin_edit:
-          attributes:
-            first_name:
-              blank: Der Vorname darf nicht leer sein
-            last_name:
-              blank: Nachname darf nicht leer sein
   activerecord:
     attributes:
       membership:
@@ -79,25 +20,53 @@ de:
         email: E-Mail-Addresse
         first_name: Vorname
         last_name: Nachname
-        password: Passwort
       user_form:
         email: E-Mail-Addresse
         first_name: Vorname
         last_name: Nachname
         password: Passwort
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: Handynummer ist erforderlich
+              invalid: Handynummer ist ungültig
+              verification_expired: Der Verifizierungscode ist abgelaufen. Sie können die Verifizierung erneut versuchen.
+        user:
+          attributes:
+            current_password:
+              invalid: Aktuelles Passwort ist falsch
   administration:
   anonym:
+    close: Schließen Sie
+    continue: Weiter
     notifications:
       restart:
+        copy: Sie hatten diese Umfrage bereits gestartet und können nun zwischen Fortsetzen und Neu starten wählen.
         title: fortfahren?
+      retake:
+        copy: Sie haben diese Umfrage bereits abgeschlossen. Um sie zu wiederholen, klicken Sie bitte unten auf die Schaltfläche Wiederholen.
+        title: Wiederholung?
+    restart: Neustart
+    retake: Wiederholung
   assessments:
     actions:
+      back_to_campaign: Zurück zu den Kampagnen
+      extend_time: Zeit verlängern
       goto_dashboard: zum Dashboard gehen
+      rescore: Neubewertung
+    audio_response:
+      permission_denied_message: Bitte aktivieren Sie die Mikrofonerlaubnis in Ihrem Browser, um die Antwort aufzuzeichnen
+      permission_text: Bitte erlauben Sie die Verwendung eines Mikrofons für Audioaufnahmen
     card_actions:
       begin: Starten
       continue: Fortfahren
-    categories:
-      redirecting: Weiterleitung der Seite
+    instructions:
+      begin_assessment: Beginnen Sie
+      cancel: Abbrechen
+      default: Dies ist eine zeitlich begrenzte Aktivität. Sobald Sie auf Bewertung beginnen klicken, haben Sie %{Zeit} Minuten Zeit, um sie abzuschließen.
+      title: Anweisungen
     messages:
       finish: |-
         Vielen Dank für Ihre Zeit.
@@ -109,24 +78,121 @@ de:
 
         Klicken Sie auf **Zurück**, um Ihre Antworten ein letztes Mal zu überprüfen, oder klicken Sie auf **Senden**, wenn Sie fertig sind.
       next: weiter
+      read_only: Ist nur im Lesemodus, Sie können keine Ergebnisse ändern.
+      save: Speichern Sie
       submit: einreichen
     pickgrouprank:
       items: Elemente
+    proceed: Trotzdem fortfahren
+    unknown_error: Unbekannter Fehler aufgetreten.
     video_response:
+      device: Erlauben Sie
+      device_selection:
+        camera: Kamera
+        mic: Mikrofon
+      discard: Ablegen
+      discard_record_again: Verwerfen und neu aufnehmen
+      media_recorder:
+        failure: Dieser Browser unterstützt keine Videoaufzeichnung. Bitte verwenden Sie Chrome oder Firefox für Videoaufzeichnungen
+        success: Bitte erlauben Sie die Verwendung von Kamera und Mikrofon für Audio- und Videoaufnahmen
+      recording_duration_label: Maximale Dauer der Aufzeichnung
+      recording_stop_label: Die Aufnahme stoppt in
+      requesting_permission: Bitte um Erlaubnis...
+      response_recorded: Aufgezeichnete Antwort
       save: speich
+      saved:
+        label: Video gerettet
+      saving: Speichern von Video...
+      start_recording: Aufnahme starten
+      stop_recording: Aufnahme stoppen
+      tracker:
+        backward: Sie sind zu nah am Bildschirm, bitte gehen Sie ein Stück zurück
+        forward: Sie sind zu weit vom Bildschirm entfernt, bitte gehen Sie etwas näher ran
+        frame: Bitte achten Sie darauf, dass Ihr Gesicht mit dem Rahmen übereinstimmt
+        ready: Drücken Sie die Aufnahmetaste, wenn Sie bereit für die Aufnahme sind
     wait: wart
+  auth:
+    current_password: Aktuelles Passwort
+    current_password_placeholder: Aktuelles Passwort eingeben
+    email: E-Mail
+    email_placeholder: E-Mail Adresse eingeben
+    expired_password:
+      description: Bitte füllen Sie alle Felder aus, um ein neues Passwort zu erstellen
+      submit: Einreichen
+      title: Erneuern Sie Ihr Passwort
+    login:
+      description: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
+      forgot_password: Passwort vergessen?
+      login_btn: Anmeldung
+      magic_link_btn: Login-Link per E-Mail
+      not_member: Sie sind kein Mitglied?
+      or: OR
+      sso_btn: Anmeldung mit Single Sign-On
+      title: Herzlich willkommen!
+    logout: Abmeldung
+    magic_link:
+      description: Bitte geben Sie Ihre E-Mail-Adresse ein, um einen Login-Link zu erhalten
+      login_with_password: Anmeldung mit Passwort
+      send_me_login_link: Senden Sie mir den Anmeldelink
+      success: Wir haben Ihnen einen Anmeldelink an '%{email}' geschickt. Klicken Sie auf den Link in der E-Mail, die Sie erhalten haben, um sich anzumelden
+    mobile_number: Handynummer
+    new_password: Neues Passwort
+    new_password_placeholder: Geben Sie das neue Passwort ein
+    otp:
+      code: Code
+      code_placeholder: Einmaliges Passwort
+      description: Bitte geben Sie das OTP ein, das an Ihre registrierte E-Mail-Adresse gesendet wurde.
+      resend: OTP erneut senden
+      resend_in: Erneut senden in %{Zeitstempel} Sekunden
+      resend_success: OTP wird an Ihre Handynummer gesendet
+      sms_description: Bitte geben Sie das OTP ein, das an Ihre Handynummer gesendet wurde.
+      submit: Überprüfen Sie
+      title: Einmaliges Passwort
+    password: Passwort
+    password_confirmation: Bestätigen Sie Ihr Passwort
+    password_confirmation_placeholder: Passwortbestätigung eingeben
+    password_placeholder: Passwort eingeben
+    registration:
+      description: Füllen Sie die nachstehenden Angaben aus, um sich zu registrieren und ein neues Konto zu erstellen
+      email_hint: Wir respektieren Ihre Privatsphäre und tolerieren keinen Spam. Wir werden Ihre Daten niemals an Dritte weitergeben
+      first_name: Vorname
+      first_name_placeholder: Vornamen eingeben
+      have_account: Sie haben bereits ein Konto?
+      last_name: Nachname
+      last_name_placeholder: Nachname eingeben
+      login_now: Jetzt anmelden!
+      registration_code: Registrierungscode
+      registration_code_placeholder: Registrierungscode eingeben
+      terms_notice: Mit der Registrierung erklären Sie sich mit unseren <a href="%{terms_url}">Nutzungsbedingungen und unserer Datenschutzrichtlinie</a> einverstanden
+      title: Anmeldung
+    reset_password:
+      back_to_sign_in: Zurück zu Sign In
+      description: Geben Sie die mit Ihrem Konto verbundene E-Mail ein
+      submit: Passwort zurücksetzen
+      title: Passwort vergessen?
+    set_password:
+      description: Um ein neues Passwort zu erstellen, geben Sie bitte Ihr neues Passwort in die unten stehenden Felder ein
+      submit: Einreichen
+      title: Passwort erstellen
+    sign_out: Anmeldung als anderer Benutzer
+    sign_up: Anmeldung
+    terms_link: <a href="%{terms_url}">Bedingungen und Datenschutzbestimmungen</a>
+    verify_mobile_number:
+      error:
+        blocked: Diese Nummer ist wegen zu vieler Versuche gesperrt.
+        invalid_code: Ungültiger Code
+        invalid_number: Die Handynummer ist falsch. Bitte überprüfen Sie Ihre Nummer erneut
+        max_attempts_reached: Zu viele Versuche, bitte warten Sie 10 Minuten, bevor Sie es erneut versuchen.
   campaign:
     all_activities_are_completed: Alle Aktivitäten sind abgeschlossen.
     all_activities_are_completed_multiple: Alle Aktivitäten für diese Kampagne sind abgeschlossen. Bitte gehen Sie zum Dashboard und überprüfen Sie, ob Ihnen weitere Aktivitäten zugewiesen wurden.
-    already_joined: Sie haben sich bereits dieser Kampagne angeschlossen.
     begin: Beginnen Sie mit Ihren Aufgaben.
-    begin_btn_msg_before_prework: Sie müssen die unten stehenden Aufgaben abschließen, bevor Sie mit der zeitgesteuerten Kampagne beginnen können.
-    begin_campaign_msg: Starten Sie die Kampagne, bevor Sie mit den Bewertungen beginnen.
+    begin_btn_msg_before_prework: Bevor Sie die zeitlich begrenzte Kampagne starten, müssen Sie die folgenden Aufgaben erledigen
+    begin_campaign_msg: Starten Sie die Kampagne, bevor Sie Bewertungen vornehmen
     campaigns: Events
     closed_campaign_message: Diese Kampagne ist geschlossen. Sie können keine Bewertungen mehr innerhalb dieser Kampagne durchführen.
-    code_usage_limit_reached: Code-Nutzungslimit erreicht. Bitte wenden Sie sich an den Administrator.
     complete_prev: Schließen Sie alle vorherigen Bewertungen ab.
-    complete_tasks: Bitte schließen Sie die unten stehenden Aufgaben ab, bevor Sie diese Aktion durchführen.
+    complete_tasks: Bitte erledigen Sie die folgenden Aufgaben, bevor Sie diese Maßnahme ergreifen.
     continue: Fahren Sie mit Ihren Aufgaben fort.
     dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
     dashboard_menu:
@@ -148,7 +214,7 @@ de:
       title: Bestätigen
       view: Aussicht
     errors:
-      invalid_status: Ungültiger Kampagnenstatus.
+      invalid_status: Ungültiger Status der Kampagne
     goto_dashboard: Zum Dashboard gehen.
     inactive_campaign_message: Derzeit wurden Ihnen keine Aktivitäten zugewiesen.
     insights_reports: Erkenntnisse und Berichte
@@ -173,9 +239,7 @@ de:
           Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
         </p>
     instructions:
-      collapse_aria_label: 'Mehr Informationen anzeigen: Virtuelles Lernzentrum.'
       collapse_link_text: Details verbergen
-      expand_aria_label: 'Weniger Informationen anzeigen: Virtuelles Lernzentrum.'
       expand_link_text: Mehr Details
       heading: Bitte lies die folgenden Richtlinien, bevor du beginnst. Alles Gute für dich!
     language:
@@ -194,10 +258,6 @@ de:
       last_updated_text: 'Profil zuletzt aktualisiert am:'
       sub_heading: Vervollständigen Sie Ihre vollständigen Profilinformationen.
       welcome_text: Willkommen,
-    reset_warning: Sie können eine Kampagne nur neu starten, wenn sie als Übungskampagne markiert ist.
-    restart_practice: Übung neu starten
-    restart_practice_confirmation: Möchten Sie die Übung wirklich neu starten?
-    restart_practice_success: Übung erfolgreich neu gestartet.
     thank_you_for_time: Vielen Dank für Ihre Zeit.
     time_left:
       cancel: Abbrechen
@@ -207,131 +267,21 @@ de:
       notification_hours: Sie haben noch %{hours} Stunde(n).
       notification_minutes: Sie haben noch %{minutes} Minute(n).
   campaign_assessment:
-    actions:
-      bulk_download: Massendownload
-      export_completion_status: Abschlussstatus exportieren
-      export_external: Extern
-      export_normed: Normierte Faktorergebnisse
-      export_occupations: Berufe
-      export_raw_labels: Rohdaten (mit Labels)
-      export_raw_scores: Rohdaten (Faktorergebnisse)
-      export_raw_without_labels: Rohdaten (ohne Labels)
-      export_scores: Ergebnisse
-      export_scoring: Bewertung
-      factor_benchmark_score: Faktor-Benchmark-Score
-      import_raw: Rohdaten importieren
-      import_scoring: Bewertung importieren
-      regenerate: Berichte neu generieren
-      rescore: Bewertung erneut durchführen
-      reset_all_nominations: Alle Nominierungen zurücksetzen
-      reset_participant: Alle Teilnehmer zurücksetzen
     assessments_heading: Deine Aufgaben
-    column:
-      assessment_center_activity: Aktivitäten im Assessment-Center
-      assessment_name: Name des Assessments
-      assessor_form: Assessor-Formular
-      auto_assign: Automatisch zuweisen
-      dimension_id: Dimensions-ID
-      id: Kampagnen-Assessment-ID
-      locales: Lokalisierungen
-      norm: Norm
-      norm_id: Norm-ID
-      prework: Vorbereitungsarbeit
-      simulation_content_variation: Simulationsinhaltsvariante
-      universal_link: Universeller Link
-    drawer:
-      mettl_schedule_name: Mettl-Planungsname
-      title: Assessment-Details
-    messages:
-      export_completion_statuses_scheduled: Der Exportjob für Abschlussstatus wurde erfolgreich geplant.
-      export_occupations_job_scheduled: Der Exportjob für Berufe wurde erfolgreich geplant.
-      export_reports_and_assessments_statuses_scheduled: Der Exportjob für Berichte und Bewertungen wurde erfolgreich geplant.
-      external_results_export_scheduled: Der Exportjob für externe Bewertungen wurde erfolgreich geplant.
-      norm_results_export_scheduled: Der Exportjob für normierte Ergebnisse wurde erfolgreich geplant.
-      normalize_factor_scores_scheduled: Der Normalisierungsjob für Faktorergebnisse wurde erfolgreich geplant.
-      raw_factor_export_scheduled: Der Exportjob für Rohdaten-Faktorergebnisse wurde erfolgreich geplant.
-      raw_results_export_scheduled: Der Exportjob für Rohdaten-Ergebnisse wurde erfolgreich geplant.
-      scoring_results_export_scheduled: Der Exportjob für Bewertungsergebnisse wurde erfolgreich geplant.
-    modals:
-      import_raw:
-        body: Nutzen Sie die Exportfunktion, um eine Vorlage zu extrahieren, die hier importiert werden kann.
-        success_msg: Der Import wurde erfolgreich hochgeladen.
-        title: Rohdaten importieren
-        upload: Hochladen
-      import_scoring:
-        body: Nutzen Sie die Exportfunktion, um eine Vorlage zu extrahieren, die hier importiert werden kann.
-        success_msg: Der Import wurde erfolgreich hochgeladen.
-        title: Bewertungsergebnisse importieren
-        upload: Hochladen
-      regenerate:
-        content: Möchten Sie wirklich die verfügbaren Berichte neu generieren?
-        title: Berichte neu generieren?
-      remove:
-        helper_text: 'WARNUNG: Diese Auswahl entfernt alle Benutzerantworten auf dieses Assessment in dieser Kampagne.'
-        msg_text: Sie versuchen, das Assessment <strong>"%{name}"</strong> zu löschen.
-        successfully: "%{name} Assessment wurde erfolgreich entfernt."
-        title: Assessment entfernen?
-      rescore:
-        content: Möchten Sie die Bewertung wirklich erneut durchführen?
-        successfully: Die Bewertung wurde erfolgreich erneut durchgeführt.
-        title: Bewertung erneut durchführen?
-      rescore_response:
-        message: Die erneute Bewertung wurde für das Assessment "%{name}" geplant.
-        title: Antworten neu bewerten
-      reset:
-        content: Möchten Sie die Ergebnisse wirklich zurücksetzen?
-        successfully: Die Ergebnisdaten wurden erfolgreich zurückgesetzt.
-        title: Ergebnisse für Assessment %{name} zurücksetzen?
-      update_assessor_form:
-        select_assessor: Assessor-Formular auswählen
-        success_msg: Das Assessor-Formular wurde erfolgreich hochgeladen.
-        title: Assessor-Formular aktualisieren
-        update: Aktualisieren
-      update_content_variation:
-        select_schedule: Inhaltsvariante auswählen
-        success_msg: Die Simulationsinhaltsvariante wurde erfolgreich aktualisiert.
-        update: Aktualisieren
-      update_external_config:
-        text_placeholder: Externe JSON-Konfiguration
-        title: Externe Konfiguration aktualisieren
-      update_locales:
-        select_locales: Lokalisierungen auswählen
-        success_msg: Lokalisierungen wurden erfolgreich aktualisiert.
-        title: Verfügbare Lokalisierungen aktualisieren
-      update_mettl_schedule:
-        select_schedule: Zeitplan auswählen
-        success_msg: Mettl-Zeitplan wurde erfolgreich aktualisiert.
-        update: Aktualisieren
-      update_norm:
-        apply: Diese Änderung auf bestehende Benutzer in dieser Kampagne anwenden
-        cannot_remove_norm: Norm kann für abgeschlossene Assessments nicht entfernt werden.
-        select_norm: Norm auswählen
-        success_msg: Normen wurden erfolgreich aktualisiert.
-        title: Norm aktualisieren
-        update: Aktualisieren
-      update_time:
-        additional_time: Zeit (Minuten)
-        title: Zeit verlängern
-      workshop_activity_duration:
-        form:
-          duration: Dauer in Minuten
-        title: Dauer für die Workshop-Aktivität
-    normalize_factor_scores:
-      normalization_not_allowed: Die Normalisierung von Faktorergebnissen ist für dieses Assessment in den Projekteinstellungen deaktiviert. Bitte aktivieren Sie diese, um fortzufahren.
-      success: Die Normalisierung der Faktorergebnisse wurde erfolgreich abgeschlossen.
-    scheduled_successfully: Das Assessment wurde erfolgreich geplant.
-    scheduling:
-      update_exists: Vorhandenen Zeitplan überschreiben
-    scheduling_time: Assessment-Zeitplan
     statuses:
       completed: Abgeschlossen
       in_progress: In Bearbeitung
-      ineligible: Nicht berechtigt
+      ineligible: Nicht förderfähig
       interrupted: Unterbrochen
       not_started: Nicht gestartet
-      timed_out: Abgelaufen
+      timed_out: Zeitüberschreitung
       universal_link: Universeller Link
-    ungrouped_assessments_heading: Ungruppiert
+  campaigns:
+    card:
+      duration: Dauer
+      starts_in: 'Beginnt in:'
+      starts_on: Beginnt am %{Datum}
+      will_start_shortly: Die Kampagne wird in Kürze beginnen. Bitte warten Sie
   change_password_page:
     old_password: Altes Passwort
     password: Passwort
@@ -342,19 +292,78 @@ de:
     audio_check:
       access: Zugriff
       continue: fortfahren
+      random_phrases:
+        eight: Möge Ihr Kaffee stark und Ihr Tag produktiv sein.
+        five: Das Leben ist besser, wenn du lächelst. Lächle für das Mikrofon!
+        four: Sie verkauft Muscheln am Meeresufer.
+        nine: Im Zweifelsfall einfach ausprobieren, ob dieses Mikrofon funktioniert!
+        one: Ich schreie, du schreist, wir alle schreien nach Eiscreme!
+        seven: Jeder Tag ist ein neuer Anfang, sagen Sie es laut und stolz!
+        six: Pizza oder Pasta? Die Entscheidung fällt schwer.
+        three: Test, eins, zwei, drei, der Ton ist so klar wie nur möglich!
+        two: Der schnelle braune Fuchs springt über den faulen Hund.
+      record_title: Bitte sprechen Sie und wiederholen Sie den folgenden Satz 3 Mal.
+      retake: Nein, ich möchte die Wiederholung
+      run_again: Wieder laufen
+      test_message: schön, mit Ihnen zu sprechen
     network_check:
       continue: fortfahren
+      download: Herunterladen
+      please_check_connection: Bitte überprüfen Sie Ihre Internetverbindung
       processing: verarbeitung
+      run_again: Wieder laufen
+      run_again_title: Und führen Sie diesen Test erneut durch
+      title: Klicken Sie auf Start, um den Internet-Geschwindigkeitstest zu starten.
+      upload: Hochladen
+    steps:
+      audio_check: Mikrofon-Test
+      network_check: Internet-Geschwindigkeitstest
+      system_check: Systemprüfung
+      video_check: Videokamera-Test
+    success:
+      start: Bewertung starten
+      title: Sie haben alle Prüfungen erfolgreich abgeschlossen.
     system_check:
+      compatibility: System-Kompatibilität
       continue: fortfahren
+      failure:
+        description: Für die Audio-/Video-Fragen in diesem Test sind Webcam- und Mikrofon-Berechtigungen erforderlich.
+        link_text: hier
+        link_text_action: Klicken Sie auf
+        link_text_instruction: und befolgen Sie die Schritte zur Erteilung von Genehmigungen
+        refresh: Browser aktualisieren
+        refresh_text: Klicken Sie unten, um den Browser zu aktualisieren und die Änderungen zu übernehmen
+        subtitle: Quick Fixes
+        title: Sie haben die Berechtigungen für Webcam und Mikrofon aufgehoben
+      permissions: Webcam &amp; Audio Berechtigungen
+      title: Bevor Sie mit dieser Bewertung beginnen, muss Ihr System einigen Prüfungen unterzogen werden.
     video_check:
       access: Zugriff
+      camera_preview: Die Kamera-Vorschau wird hier angezeigt
       continue: fortfahren
+      description: Klicken Sie auf Aufnahme starten und nehmen Sie sich selbst auf, während Sie den folgenden Text mit Ihrer eigenen Stimme lesen
+      random_phrases:
+        eight: Wenn Sie mich sehen können, ist das Video ein Erfolg, wenn nicht, suchen wir nach Problemen!
+        five: Testen Sie Ihr Video, keine Sorge, eine Oscar-Nominierung ist nicht erforderlich.
+        four: Auf die Plätze, fertig, los! Die Kamera ist deine Bühne.
+        nine: Ein breites Lächeln und ein klares Video, damit wir diesen Test richtig durchführen können!
+        one: Heben Sie die Hand, wenn Sie mich hören können, oder winken Sie einfach in die Kamera!
+        seven: Spieglein, Spieglein auf dem Bildschirm, lass die Videokontrolle sauber sein.
+        six: Licht, Kamera, Action, das ist deine Zeit zu glänzen!
+        ten: Ein freundliches Winken stellt sicher, dass alles gut funktioniert.
+        three: Sagen Sie "Cheese" oder testen Sie einfach das perfekte Lächeln.
+        two: Schauen Sie in die Linse, lächeln Sie und tun Sie so, als ob Sie in einem Filmtrailer wären.
+      rec_text: REC
+      retake: Nein, ich möchte die Wiederholung
+      run_again: Wieder laufen
+      title: Wir müssen sicherstellen, dass Ihr System das Video aufzeichnen kann
+      uploading: Hochladen
   common:
     actions:
       add: Hinzufügen
       archive: Archiv
       cancel: Stornieren
+      close: Schließen Sie
       copy: Kopieren
       delete: lösch
       edit: Bearbeiten
@@ -370,16 +379,25 @@ de:
       unresolve: Unresolve
       update: Aktualisieren
       upload: Hochladen
+      verify: Überprüfen Sie
     column:
       action: Aktion
       category: Kategorie
+      created_at: Erstellt am
+      id: Id
       status: Status
     model:
+      assessments: Beurteilungen
+      campaigns: Kampagnen
       reports: Berichte
     text:
+      cancel: Abbrechen
       confirm: bestätigen
       continue: fortfahren
+      default: Standard
       download: Herunterladen
+      na: K.A
+      ok: Ok
       response: Antwort
   devise:
     administrators:
@@ -391,30 +409,17 @@ de:
       inactive: Dein Benutzerkonto ist noch nicht aktiviert.
       invalid: Ungültige E-Mail-Adresse oder ungültiges Passwort
       invited: Sie haben eine ausstehende Einladung. Bitte akzeptieren Sie diese, um die Erstellung Ihres Kontos abzuschließen.
-      last_attempt: Sie haben noch einen Versuch, bevor Ihr Konto gesperrt wird.
-      locked: Ihr Konto ist gesperrt.
+      magic_link_invalid: Ungültiger oder abgelaufener Login-Link.
       not_found_in_database: Ungültige E-Mail-Adresse oder ungültiges Passwort
       timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an, um fortzufahren.
       unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
-      unconfirmed: Sie müssen Ihre E-Mail-Adresse bestätigen, bevor Sie fortfahren können.
     invitations:
       edit:
         password_label: Passwort
-    mailer:
-      reset_password_instructions:
-        body: |
-          Hallo %{name}!
-
-          Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Sie können dies über den unten stehenden Link tun.
-
-          <a href="%{change_password_link}">Passwort ändern</a>
-
-          Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren. Ihr Passwort ändert sich erst, wenn Sie auf den obigen Link zugreifen und ein neues erstellen.
-
-          Grüße,
-          Lighthouse-Team
-        subject: Anweisungen zum Zurücksetzen Ihres Passworts
+    passwords:
+      invalid_email: Ungültige E-Mail
     registrations:
+      communication_not_setup_error: Die E-Mail-Kommunikation für die Registrierung ist nicht eingerichtet. Bitte wenden Sie sich an den Administrator dieses Projekts.
       new:
         email: E-Mail-Addresse
         first_name: Vorname
@@ -428,7 +433,6 @@ de:
           sign_in: Anmelden
         terms_notice: Mit Ihrer Registrierung stimmen Sie unseren <a href="%{terms_url}"> Nutzungsbedingungen und Datenschutzbestimmungen </a> zu
         title: Jetzt registrieren
-      signed_up: Herzlich willkommen!
       success:
         actions:
           sign_in: Anmelden
@@ -446,16 +450,38 @@ de:
     two_factor_authentication:
       attempt: Bitte geben Sie das OTP ein, das Sie an Ihrer registrierten E-Mail-Adresse erhalten haben
       code_has_been_sent: Ihr neues OTP wurde an Ihre registrierte E-Mail-Adresse gesendet
+  emails:
+    subject_relationship_table:
+      subject_email: Betreff E-Mail
+      subject_name: Thema Name
+      subject_relationship: Thema Beziehung
+  errors:
+    assessments:
+      timed_out: Sie können an der Bewertung %{assessment_name} nicht mehr teilnehmen, da die Zeit abgelaufen ist.
+    error: Fehler
+    error_500: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
+    forbidden: Sie haben keinen Zugriff auf diese Seite
+    forbidden_action: Sie haben keine Berechtigung für diese Aktion
+    invalid_token: Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.
+    module_error: Bei diesem Modul ist ein Fehler aufgetreten. Bitte kontaktieren Sie die Administration.
+    module_error_editor: Bei diesem Modul ist etwas schief gelaufen, bitte überprüfen Sie die Moduleinstellungen.
+    module_props_error: Bei diesem Modul ist etwas schief gelaufen.
+    try_again: Bitte versuchen Sie es erneut
+  factors:
+    description: Beschreibung
+    factor: Faktor
   frontend:
+    activate: Aktivieren Sie
+    are_you_sure: Sind Sie sicher?
+    assessment: Bewertung
+    assessment_groups:
+      create_success: Die Gruppe wurde erfolgreich erstellt
+      update_success: Die Gruppe wurde erfolgreich aktualisiert
+    background_reading: Hintergrundlektüre
     bookings:
       accept_invite_msg: Sie haben eine Einladung erhalten. Bitte reservieren Sie Ihren Platz.
       add_to_calendar: Zum Kalender hinzufügen
       add_to_calendar_tour_description: Fügen Sie diese Buchung Ihrem Kalender hinzu
-      add_to_google_calendar: Zum Google-Kalender hinzufügen
-      add_to_i_calendar: Zum iCalendar hinzufügen
-      add_to_msoffice_calendar: Zum Microsoft Office 365-Kalender hinzufügen
-      add_to_outlook_calendar: Zum Outlook-Kalender hinzufügen
-      add_to_yahoo_calendar: Zum Yahoo-Kalender hinzufügen
       assessment_center_alert:
         btn_title: Event
         message_part1: Schließen Sie alle Vorarbeiten in dieser
@@ -493,10 +519,8 @@ de:
       language_required_msg: Bitte wählen Sie eine Sprache aus
       meeting_start_text: 'Das Meeting beginnt in:'
       need_changes: Änderungen erforderlich?
-      neurodivergence_comment_aria_label: Kommentare zur Neurodivergenz
       neurodivergence_comment_placeholder: Ihre Kommentare
       neurodivergence_question: Benötigen Sie aufgrund besonderer Bedürfnisse oder Behinderungen Anpassungen, um vollständig am Assessment teilnehmen zu können?
-      or: oder
       other_invite: Weitere %{count} Einladungen anzeigen
       other_invites: Weitere %{count} Einladungen anzeigen
       reason: Grund
@@ -518,23 +542,61 @@ de:
       what: What
       when: When
       workshop_start_text: Your Assessment Center will start in
+    break_time: Pausenzeit
     campaign:
+      actions:
+        remove:
+          confirmation: Geben Sie den unten angegebenen Namen der aktuellen Kampagne in das Textfeld ein, um die Kampagne zu entfernen
+          success: "%{Kampagnenname} wurde erfolgreich entfernt."
       users:
         completion_statuses:
           completed: abgeschlossen
+          in_progress: In Arbeit
+          not_started: Nicht begonnen
     change_password: Veränderung Passwort
     delete: lösch
+    edit: Bearbeiten
+    lighthouse_app: Mercer-Leuchtturm
     login: Anmelden
+    manage: Verwalten Sie
+    'no': Nein
+    resource:
+      create_success: "%{readableResourceName} wurde erfolgreich hinzugefügt"
+      update_success: "%{readableResourceName} wurde erfolgreich aktualisiert"
+    session_timeout_modal:
+      buttons:
+        close: Schließen Sie
+        log_out: Jetzt abmelden
+        re_login: Wieder anmelden
+        stay_logged_in: Eingeloggt bleiben
+      message: Ihre Sitzung wird aufgrund von Inaktivität in 2 Minuten beendet. Bitte klicken Sie auf 'Angemeldet bleiben', um Ihre Sitzung fortzusetzen, oder Sie werden automatisch abgemeldet.
+      message_after_timeout: Ihre Sitzung wurde unterbrochen, bitte loggen Sie sich erneut ein.
+      time_remaining: Verbleibende Zeit
+      title: Warnung vor Sitzungszeitüberschreitung
     update: aktualisieren
+    upload: Hochladen
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Abgesagt
+        requested_cancellation: Beantragte Annullierung
+        requested_cancellation_rejected: Beantragte Annullierung Abgelehnt
+        requested_rescheduling: Gewünschte Umterminierung
+        requested_rescheduling_rejected: Beantragt Umterminierung Abgelehnt
     'yes': Ja
-  jobs:
-    threesixty:
-      reports:
-        download:
-          description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Herunterladen</a>'
-          error: Ein Fehler ist aufgetreten
-          error_description: Die Berichterstellung ist fehlgeschlagen. Bitte wenden Sie sich an den Administrator oder versuchen Sie erneut, <strong> herunterzuladen </strong>.
-          message: Bericht ist fertig
+  idp:
+    pdf:
+      header: Hallo
+  idp_templates:
+    errors:
+      user_idp_template_not_found: Es wurde Ihnen keine IDP-Vorlage zugewiesen.
+  mailer:
+    magic_link:
+      body:
+        dear: Lieber %{Name},
+        greetings: Grüße für den Tag!
+        instructions: Klicken Sie auf den unten stehenden Link, um sich bei Lighthouse anzumelden.
+        signin_link: Anmeldung Link
+      subject: Anmeldelink für Lighthouse
   navigation:
     logout: Ausloggen
   profile:
@@ -551,9 +613,8 @@ de:
     last_name: Familienname, Nachname
     locale: Bevorzugte Sprache
     male: Männlich
-    mandatory_fields: "*Pflichtfelder"
     not_disclosed: Lieber nichts preisgeben
-    old_data: Ihre Profildaten sind %{months} ​​Monate alt. Bitte bestätigen Sie die Details, um fortzufahren
+    old_data: Ihre Profildaten sind %{Monate} Monate alt. Bitte bestätigen Sie Ihre Angaben, um fortzufahren
     password: Passwort
     password_confirmation: Passwort bestätigen
     success_update: Profil wurde erfolgreich gespeichert
@@ -564,6 +625,7 @@ de:
   reports:
     actions:
       add: hinzufügen Bericht
+      download: Bericht herunterladen
       view: Ansicht Bericht
     modules:
       campaign_factors_table:
@@ -582,59 +644,98 @@ de:
         strengths: Sterke punten
         then: Laat dan de volgende tekst zien
         title: Titel
+      factors_table:
+        description: Beschreibung
+        no_data: Für diesen Abschnitt liegen keine Daten vor.
+        rank: Rang
+        score: Ergebnis
       gap_assessment:
         gap: lück
+        item: Indikator
         negative_gap: negativ lücken
+        no_negative_gaps: Es gibt keine negativen Lücken
+        no_positive_gaps: Es gibt keine positiven Lücken
         positive_gap: positiv lücken
+        rank: Rang
         scoring_category: KOMPETENZ
       highest_lowest:
+        bottom_5: UNTEN 5
         category: Kategorie
+        highest_scores: Höchste Punktzahl
+        item: Indikator
+        lowest_scores: Niedrigste Punktzahlen
+        mean_score: Mittlere Punktzahl
+        rank: Rang
         scoring_category: KOMPETENZ
+        sub_competenties: Teilkompetenzen
+        top_5: TOP 5
       potential_career_full:
         career_strengths_and_results: Karriere Stärken und Ihr Ergebnisse
+        career_sub_tracks: Karriere-Teilbereiche
+        key_career_tracks_within: Nachfolgend finden Sie eine Liste möglicher Aufgaben für die einzelnen Laufbahnen. Bitte beachten Sie, dass diese Liste nur Richtwerte enthält und nicht vollständig ist. Beachten Sie, dass die kursiv gedruckten Aufgaben ein höheres Maß an Ausbildung und/oder Erfahrung erfordern.
+        potential_areas_of_study: Mögliche Studienbereiche
+        strength_high: Unterschrift Stärke
         strength_low: ENTWICKLUNGSBEZOGENE STÄRKE
         strength_moderate: potenzieller Stärke
         work_environment: Arbeitsumfeld
+        your_suitability: Ihre Eignung
       single_value:
+        factor_name: Kategorie der Punktevergabe
         question_name: FRAGEN
       single_value_cluster:
         competency: KOMPETENZ
         developmental_rating: ENTWICKLUNGSBEZOGENE EINSTUFUNG
         questions: FRAGEN
       strength_clusters:
+        index_sub_factors_considered: Subfaktoren des Thriving-Index, die berücksichtigt wurden, um Ihre endgültige Punktzahl für das Arbeitsumfeld %{workstyle} zu ermitteln
         possible_roles: möglich Rolle
+        work_environments: Erwartete Arbeitsumgebungen
       three_sixty_default:
         factor:
           items: Elemente
           max: Max Wert
           mean: bedeute
           min: Mindestwert
+          standardDeviation: Standardabweichung
+          sum: Summe
           totalResponses: Gesamtantwort
+          variance: Abweichung
+          weightedMean: Gewichteter Mittelwert
+        question:
+          no_response: Keine Antwort verfügbar
+        statistic: Statistik
         value: Wert
       three_sixty_report_summary:
         completed: abgeschlossen
+        footnote: "* Ausgeschlossen aufgrund der Mindestschwellenanforderungen"
         invited: einladen
         relationships: Beziehungen
         total: Gesamt
+      video_response:
+        no_results: Keine Videos aufgenommen
     show:
+      export_pdf: In PDF exportieren
       header: Bericht
     statuses:
       approved: genehmigt
       available: Verfügung
       denied: verweigert
+      incomplete: Unvollständig
       not_available: nicht Verfügung
+      on_hold: In der Warteschleife
+      released: Freigegeben
   shared:
+    filters:
+      clear: Filter löschen
+    internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
     terms_conditions_privacy: Datenschutzerklärung
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
   simple_form:
     placeholders:
       administrator:
         email: E-Mail-Addresse
-        first_name: Vorname
         last_name: Nachname
-        password: Passwort
       memebrship:
-        first_name: Vorname
         last_name: Nachname
       user:
         email: E-Mail-Addresse
@@ -648,102 +749,178 @@ de:
         password: Passwort
   subjects:
     approval_statuses:
-      approved: genehmigt
-      denied: verweigert
-      waiting: eine Genehmigung brauchen
+      approved: Genehmigt
+      denied: Verweigert
+      waiting: Benötigt Genehmigung
+    report_approval_status:
+      approved: Genehmigt
+      denied: Verweigert
+      waiting: Warten
+    report_release_status:
+      on_hold: In der Warteschleife
+      released: Freigegeben
+      waiting: Warten
     report_statuses:
-      failed: Gescheitert
-      generating: Derzeit wird generiert
+      approved: Genehmigt
+      available: Verfügbar
+      denied: Verweigert
+      incomplete: Unvollständig
+      not_available: Nicht verfügbar
       not_prepared: Nicht bereit
-      prepared: Bereit
+      on_hold: In der Warteschleife
+      prepared: Erledigt
+      released: Freigegeben
     statuses:
       completed: abgeschlossen
+      declined: Abgelehnt
       denied: verweigert
+      done: Erledigt
       not_completed: nicht abgeschlossen
       waiting: warten
   threesixty:
     accept_privacy_modal:
       accept: Annehmen
+      checkbox: Ich habe die oben genannten Datenschutzbestimmungen gelesen und verstanden
       title: Einwilligung zur Datenverarbeitung
+    action: Aktion
     add: hinzufügen
     and: und
-    approve: Genehmigen
     approve_all: Alle genehmigen
     approve_all_successful: Alle genehmigen Benennungen
     approve_evaluations: genehmigen Bewertungen
     approve_nominations: BENENNUNGEN GENEHMIGEN
     approve_reports: genehmige Berichten
     approved: genehmigt
+    approving_mail_sent: Die Mail zur Genehmigung der Nominierung wurde an die Manager verschickt
     as_my: als meinen
+    assessment: Bewertung
     back_to_tasks: zurück zu den Aufgaben
     begin: beginnen
+    cancel: Abbrechen
     close_evaluation_modal:
       message: Sobald Sie den Bericht angezeigt haben, kann %{pronoun_or_name} keine weiteren Bewertungen erhalten
       title: Möchten Sie den Bericht wirklich anzeigen?
+    closed_campaign_message: Diese 360-Kampagne ist geschlossen. Sie können niemanden für diese Kampagne nominieren oder bewerten.
     completed: abgeschlossen
+    confirm: Sind Sie sicher?
     confirmation_for_nomination_removal: Möchten Sie die Nominierung wirklich entfernen?
+    confirmation_required: Bestätigung erforderlich
+    confirmation_text_incorrect: Bestätigungstext ist falsch
+    confirmation_text_placeholder: Bestätigungstext hier
     continue: fortfahren
     dashboard_title: Willkommen %{name}
+    decline: Rückgang
     decline_invite: Einladung ablehnen
     denied: verweigert
-    deny: Ablehnen
     deny_all: Alle ablehnen
     deny_all_successful: Abgelehnt alle Benennung
     download_pdf: PDF Herunterladen
+    download_report: Bericht herunterladen
+    download_reports: Berichte herunterladen
+    edit_user: Benutzer bearbeiten
     email_approve_request: E-Mail-Genehmigungsanfrage
+    email_schedules:
+      delete_successful: E-Mail-Plan wurde erfolgreich gelöscht
     evaluate: bewerten
     evaluation: Bewertu
-    evaluation_closed_message: Die Bewertung ist für dieses Thema geschlossen
+    evaluation_all_closed_message: Derzeit warten alle Nominierungen auf ihre Genehmigung
     evaluation_closed_nomination_message: Sie können für diese Person keine Nominierung vornehmen, da die Überprüfung für diese Person geschlossen ist
+    evaluation_help_modal:
+      title: Hilfe zur Bewertung
     evaluations: Bewertungen
     evaluator: Bewerter
+    export_pdf: PDF exportieren
     first_name: Vorname
     first_name_error: Bitte geben Sie den Vornamen ein
     help: helfen
+    language: Sprache
     last_name: Nachname
     last_name_error: Bitte geben Sie einen Nachnamen ein
+    load_results: Ergebnisse laden
     mail_history:
       statuses:
         success: Erfolg
+        undelivered: Nicht zugestellt
     my_projects: Mein projekten
+    name_label: Name
     nominate: Nominieren
     nominate_evaluators: Nominiere nominieren für
     nomination: Benennung
+    nomination_help_modal:
+      title: Hilfe bei der Nominierung
     nomination_predicates:
       atleast: Mindestens %{count}
       atmost: Höchstens %{count}
       exactly: Genau %{count}
     nominations: Benennungen
+    options:
+      global:
+        cannot_re_edit: Teilnehmer können keine Bewertungen bearbeiten
     or: oder
+    page_title: Signify 360° Review - Stufe anwenden
     participant_list:
       actions:
         approve_report: Bericht genehmigen
+        download_report: Bericht herunterladen
+        edit: Bearbeiten
+        hold_report: Bericht halten
         login: Anmelden
+        mark_as_done: Als erledigt markieren
+        release_report: Freigabebericht
+        remove_campaign: Aus der Kampagne entfernen
         remove_report_approval: Entfernen Bericht Genehmigung
+        remove_report_hold_release_report: Bericht halten/freigeben entfernen
         remove_subject: Entfernen Betreff
+        unmark_as_done: Unmark as done
         view_report: Ansicht Bericht
         view_responses: Ansicht Antworten
+      confirmation_messages:
+        approve_report: Sind Sie sicher, dass Sie den Bericht genehmigen wollen?
+        hold_report: Sind Sie sicher, dass Sie den Bericht halten wollen?
+        mark_evaluation_done: Sind Sie sicher, dass Sie die Bewertung als erledigt markieren wollen? Die Bewertung wird für dieses Thema geschlossen.
+        release_report: Sind Sie sicher, dass Sie den Bericht veröffentlichen wollen?
+        remove_from_campaign: Sind Sie sicher, dass Sie den Benutzer aus der Kampagne entfernen möchten?
+        remove_release_hold: Sind Sie sicher, dass Sie den Status Freigeben/Halten aufheben wollen?
+        remove_report_approval: Sind Sie sicher, dass Sie die Berichtsgenehmigung aufheben wollen?
+        remove_subject: Sind Sie sicher, dass Sie den Betreff mit der E-Mail aus der Kampagne entfernen möchten?
+        umark_evaluation_as_complete: Sind Sie sicher, dass Sie die Bewertung als erledigt markieren wollen?
       report_generation_message: Bericht wird generiert. Wir werden Sie informieren, wenn der Bericht fertig ist.
     processing: verarbeitung
     processing_report: verarbeitung Bericht
+    progress_text: "%{erledigt} von %{Gesamt}"
     question:
+      chat_type:
+        input_placeholder: Schreiben Sie Ihre Nachricht...
       email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Bearbeiten
+        max_length_warning: "%{x} verbleibende Zeichen"
+        message: Ihre Nachricht
         send: gesenden
         subject: Betreff
+        successful_message: Sie haben die E-Mail erfolgreich gesendet
         to: zu
     remind_all: alle erinnern
     remind_mail_sent: Erinnerungen wurden an Prüfer gesendet, die die Prüfung noch nicht abgeschlossen haben
     report_for: Bericht für
     report_generation_in_progress: Bericht wird generiert. Wir werden Sie informieren, wenn der Bericht fertig ist.
     reports: Berichte
+    reports_help_modal:
+      title: Berichte helfen
+    reset_campaign_confirmation: Geben Sie den unten angegebenen Namen der aktuellen Kampagne in das Textfeld ein, um alle Teilnehmer zurückzusetzen
+    reset_nomination_confirmation: Geben Sie den aktuellen Namen der Kampagne in das unten stehende Textfeld ein, um alle Nominierungen zurückzusetzen
     save: speich
     select_relationnship: wählen Beziehung
     select_relationship: wählen Beziehung
     self: Selbst
+    set_name_for_evaluator: Name für Auswerter festlegen
     setup_nominations: BENENNUNGEN FESTLEGEN
     subject: Betreff
+    submit: Einreichen
     total_progress: Gesamtfortschritt
     user_name_input_placeholder: geben Sie Namen oder E-Mail…
+    validation_errors: Fehler bei der Validierung
     view_my_report: Ansicht Mein Bericht
     view_nominations: Ansicht Benennungen
     view_reports: Ansicht Bericht
@@ -756,80 +933,70 @@ de:
       first_name: Vorname
       last_name: Nachname
   user_assessments:
-    modals:
-      actions:
-        reset_progress:
-          name: Fortschritt zurücksetzen
-          success_message: Bewertung %{name} ist bereit zur Bearbeitung
-      push_test_webhook:
-        copy_request_data_success: Anforderungspayload erfolgreich in die Zwischenablage kopiert.
-        copy_response_body_success: Antworttext erfolgreich in die Zwischenablage kopiert.
-        copy_response_headers_success: Antwortheader erfolgreich in die Zwischenablage kopiert.
-        event_name_placeholder: Ereignisname
-        response_body_title: Antworttext
-        response_header_title: Antwortheader
-      push_webhook:
-        submit_button_name: Webhook senden
-        title: Webhook senden
-      remove:
-        content: Sind Sie sicher, dass Sie die Bewertung "%{name}" entfernen möchten?
-        successfully: Bewertung "%{name}" wurde erfolgreich entfernt.
-      reset:
-        content: Sind Sie sicher, dass Sie den Fortschritt "%{name}" zurücksetzen möchten?
-      test_webhook:
-        submit_button_name: Test senden
-        title: Webhook-Ereignistest senden
-    normalize_factor_scores:
-      no_scoring_data: Die Normalisierung der Faktorergebnisse kann nicht abgeschlossen werden, da keine Bewertungsdaten verfügbar sind.
-    progress_label: Bewertungsfortschritt
     redirect: Du wirst für diese Bewertung auf die Website eines Drittanbieters weitergeleitet. Bitte klicke auf „Weiter“, wenn du die Aufgabe starten möchtest.
-    status:
-      completed: Completed
-      in_progress: In Progress
-      ineligible: Ineligible
-      interrupted: Interrupted
-      not_started: Not Started
-      timed_out: Timed Out
-    statuses:
-      evaluator_nomination_status:
-        completed: Completed
-        declined: Declined
-        waiting: Waiting
-      manager_evaluation_status:
-        approved: Approved
-        denied: Denied
-        waiting: Waiting
-      manager_nomination_status:
-        approved: Approved
-        completed: Completed
-        declined: Declined
-        denied: Denied
-        waiting: Waiting
-    timer_title:
-      assessment: Assessment
-      campaign: Campaign
   user_reports:
+    actions:
+      regenerate: Regenerieren Sie
+    messages:
+      regenerate_successful: Berichtserneuerungsauftrag wurde erfolgreich geplant
+    modals:
+      remove:
+        content: Sind Sie sicher, dass Sie den Bericht %{userReportName} entfernen möchten?
+        successfully: bericht %{userReportName} wurde erfolgreich entfernt
+    preview_report: Vorschau Bericht
     statuses:
+      generating: Erzeugen von
       not_prepared: nicht Verfügung
       prepared: Verfügung
   validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Audio wird aufgezeichnet, aber nicht gespeichert
+        RECORDING: Die Audioaufnahme ist im Gange
+        SAVING: Das Hochladen der Audioaufnahmen ist im Gange
+      required: Bitte nehmen Sie den Ton auf und speichern Sie ihn, bevor Sie fortfahren
+    FileUpload:
+      in_progress:
+        SAVING: Das Hochladen der Datei ist im Gange
+      required: Bitte laden Sie die Datei hoch
+    TextEntry:
+      Email:
+        character_range: Die eingegebene E-Mail-Nachricht muss mindestens %{min} und darf höchstens %{max} Zeichen lang sein.
+        subject:
+          min_length: Das Betreff-Feld sollte mindestens 10 Zeichen lang sein
+        to:
+          required: Das Feld bis ist erforderlich
     VideoResponse:
+      in_progress:
+        recorded: Video wird aufgezeichnet, aber nicht gespeichert
+        recording: Die Videoaufzeichnung ist im Gange
+        saving: Hochladen des aufgezeichneten Videos ist im Gange
       required: Bitte nehmen Sie das Video auf und speichern Sie es, bevor Sie fortfahren
+    actions_still_in_progress: Wenn Sie fortfahren, werden Sie diese Daten verlieren.
+    blank: kann nicht leer sein
+    character_count: 'Zeichen zählen '
     character_range: Ihre Antwort muss mindestens %{min} und darf nicht mehr als %{max} Zeichen enthalten.
     date: Ihre Antwort muss ein gültiges Datum sein (TT/MM/JJJJ)
     each_group_contains: Jede Gruppe darf nicht weniger als %{min} und nicht mehr als %{max} Elemente enthalten
     email: Ihre Antwort muss eine gültige E-Mail-Adresse sein
+    file_upload:
+      EntityTooLarge: Die Dateigröße sollte weniger als %{maxFileSize} MB betragen
+      WrongFileType: Der Dateityp sollte einer der folgenden %{allowedFileTypes} sein
     issue: Problem
     least: Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).
     least_hotspot: Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).
     max_character: Ihre Antwort darf nicht mehr als %{max} Zeichen enthalten.
+    max_word: Ihre Antwort darf nicht mehr als %{max} Wörter umfassen.
     min_character: Ihre Antwort muss mindestens %{min} Zeichen enthalten.
+    min_word: Ihre Antwort muss mindestens %{min} Wörter umfassen
     must_rank_between: Bitte weisen Sie für jedes Element einen Wert von %{min} bis %{max} zu. Die Werte dürfen nicht mehrfach vergeben werden.
     must_select: Bitte wählen Sie von %{min} bis %{max} Auswahlmöglichkeiten
     number: Ihre Antwort muss eine Zahl sein
     range: Bitte wählen Sie mindestens %{min} und nicht mehr als %{max} Auswahlmöglichkeit(en).
     required: Bitte beantworten Sie diese Frage
     text: Ihre Antwort darf keine Zahlen enthalten
-    title:
-      one: Es gibt einen Fehler, bitte überprüfen Sie Ihre Antworten
-      other: Es gibt %{count} Fehler, bitte überprüfen Sie Ihre Antworten
+    word_count: 'Wortzahl '
+    word_range: Ihre Antwort muss mindestens %{min} und darf höchstens %{max} Wörter umfassen.
+  'yes': Ja
+  your: Ihr
+  yourself: Sie selbst

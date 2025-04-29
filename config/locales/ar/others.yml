@@ -189,9 +189,12 @@ ar:
     all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
     begin: ابدأ مهامك
+    begin_btn_msg_before_prework: يجب عليك إكمال المهام التالية قبل بدء الحملة الموقوتة
+    begin_campaign_msg: بدء الحملة قبل إجراء التقييمات
     campaigns: الحملات
     closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة.
     complete_prev: " أكمل جميع التقييمات السابقة"
+    complete_tasks: يرجى إكمال المهام أدناه قبل اتخاذ هذا الإجراء.
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بعدد من الأنشطة التي عليك إنجازها، يرجى التأكد من إكمالها جميعاً ضمن الفترة الزمنية المحددة لها.
     dashboard_menu:
@@ -212,6 +215,8 @@ ar:
       edit: إعادة التقييم
       title: يتأكد
       view: عرض الإجابات
+    errors:
+      invalid_status: حالة الحملة غير صالحة
     goto_dashboard: الذهاب الى لوحة التعليمات
     inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
     insights_reports: رؤى وتقارير
@@ -244,6 +249,7 @@ ar:
       single_lang: يتوفر هذا التقييم فقط باللغة ال %{lang}، وهو مختلف عن اللغة التي اخترتها
       title: إختار اللغة
     panels:
+      dashboard: لوحة التحكم
       reports: تقارير
     profile:
       complete_heading: ملف التعريف الخاص بك مكتمل
@@ -267,10 +273,17 @@ ar:
     statuses:
       completed: تم اكماله
       in_progress: قيد التنفيذ
+      ineligible: غير مؤهل
+      interrupted: مقاطعة
       not_started: لم يبدأ بعد
+      timed_out: انتهت المهلة
+      universal_link: رابط عالمي
   campaigns:
     card:
       duration: المدة الزمنية
+      starts_in: 'يبدأ في:'
+      starts_on: يبدأ في %{التاريخ}
+      will_start_shortly: ستبدأ الحملة قريباً. يرجى الانتظار
   change_password_page:
     old_password: كلمة المرور القديمة
     password: كلمة المرور
@@ -304,6 +317,11 @@ ar:
       run_again_title: وتشغيل هذا الاختبار مرة أخرى
       title: انقر فوق زر ابدأ، لبدء اختبار سرعة الإنترنت
       upload: تحميل
+    steps:
+      audio_check: اختبار الميكروفون
+      network_check: اختبار سرعة الإنترنت
+      system_check: فحص النظام
+      video_check: اختبار كاميرا الفيديو
     success:
       start: ابدأ التقييم
       title: 'قد أكملت جميع ال....؟؟  بنجاح '
@@ -347,6 +365,7 @@ ar:
       add: إضافة
       archive: أرشيف
       cancel: إلغاء
+      close: إغلاق
       copy: نسخ
       delete: حذف
       edit: تعديل
@@ -399,6 +418,8 @@ ar:
     invitations:
       edit:
         password_label: كلمه السر
+    passwords:
+      invalid_email: بريد إلكتروني غير صالح
     registrations:
       communication_not_setup_error: لم يتم إعداد مراسلة البريد الإلكتروني للتسجيل ، يرجى الاتصال بمسؤول هذا المشروع.
       new:
@@ -581,6 +602,7 @@ ar:
   navigation:
     logout: تسجيل خروج
   profile:
+    add_field: إضافة حقل
     add_photo: أضف صورتك
     age: عمرك
     change_password: غيّر كلمة المرور
@@ -589,16 +611,19 @@ ar:
     female: إناثا
     first_name: الاسم الاول
     gender: جنس
+    incomplete: تفاصيل ملفك الشخصي غير مكتملة. يرجى إكمال تفاصيل ملفك الشخصي
     last_name: إسم العائلة
     locale: لغة
     male: رجل
     not_disclosed: أنا أفضل عدم الإفصاح
+    old_data: بيانات ملفك الشخصي هي %{شهور} من العمر. يرجى تأكيد التفاصيل للمتابعة
     password: كلمة المرور
     password_confirmation: تأكيد كلمة المرور
     success_update: تم حفظ التفاصيل الخاصة بك بنجاح
     timezone: المنطقة الزمنية
     title: تفاصيلي
     update: حفظ
+    update_required: تحديثات الملف الشخصي المطلوبة
   reports:
     actions:
       add: إضافة تقرير
@@ -725,6 +750,28 @@ ar:
         last_name: إسم العائلة
         password: كلمه السر
   subjects:
+    approval_statuses:
+      approved: معتمد
+      denied: مرفوض
+      waiting: يحتاج إلى موافقة
+    report_approval_status:
+      approved: معتمد
+      denied: مرفوض
+      waiting: الانتظار
+    report_release_status:
+      on_hold: قيد الانتظار
+      released: تم الإصدار
+      waiting: الانتظار
+    report_statuses:
+      approved: معتمد
+      available: متوفرة
+      denied: مرفوض
+      incomplete: غير مكتمل
+      not_available: غير متوفر
+      not_prepared: غير جاهز
+      on_hold: قيد الانتظار
+      prepared: تم
+      released: تم الإصدار
     statuses:
       completed: تم اكماله
       declined: رُفض
@@ -737,6 +784,7 @@ ar:
       accept: اقبل
       checkbox: لقد قرأت وفهمت سياسة الخصوصية المذكورة أعلاه.
       title: موافقة معالجة البيانات
+    action: الإجراء
     add: اضافة
     and: و
     approve_all: الموافقة على جميع ما سبق
@@ -796,11 +844,16 @@ ar:
         success: نجاح
         undelivered: لم يتم تسليمها
     my_projects: مشاريعي
+    name_label: الاسم
     nominate: ترشح
     nominate_evaluators: ترشيح المقيّمين إلى
     nomination: ترشيح
     nomination_help_modal:
       title: مساعدة الترشيح
+    nomination_predicates:
+      atleast: ما لا يقل عن %{عدد}
+      atmost: على الأكثر %{عدد}
+      exactly: بالضبط %{العدد}
     nominations: الترشيحات
     options:
       global:
@@ -923,6 +976,7 @@ ar:
       required: الرجاء تسجيل الفيديو وحفظه قبل المتابعة
     actions_still_in_progress: الإجراءات أدناه على قيد التنفيذ. إذا تابعت فستفقد هذه البيانات.
     blank: لا يمكن أن تكون فارغة
+    character_count: 'عدد الأحرف '
     character_range: يجب على اجابتك أن تكون  %{min} حرف على الأقل و أن لا تزيد عن %{max} حرف.
     date: يجب أن يكون تاريخ صالح (mm/dd/y)
     each_group_contains: يجب أن تحتوي كل مجموعة على ما لا يقل عن %{min} عنصر ولا تزيد عن %{max} عنصر
@@ -955,3 +1009,8 @@ ar:
       one: هناك إجابة مفقودة، يرجى التحقق من إجابتك
       other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
       two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك
+    word_count: 'عدد الكلمات '
+    word_range: يجب ألا تقل إجابتك عن %{دقيقة} ولا تزيد عن %{حد أقصى} من الكلمات.
+  'yes': نعم
+  your: أنت
+  yourself: نفسك
