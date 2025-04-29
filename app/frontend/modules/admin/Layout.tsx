@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import {
   createBrowserRouter, Navigate, Outlet, RouterProvider,
 } from 'react-router-dom'
+import ErrorModal from '~/components/ErrorModal'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { MainMenu } from '~/components/MainMenu'
 import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
@@ -37,6 +38,7 @@ const Main: React.FC = () => (
     <IncorrectResponseErrorModal />
     <SessionTimeoutModal />
     <DisplayExceptionModal />
+    <ErrorModal />
   </Suspense>
 )
 

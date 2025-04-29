@@ -8,6 +8,7 @@ import store from '../store'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { DefaultAntThemeWrapper } from '~/glint'
+import ErrorModal from '~/components/ErrorModal'
 
 class AppContainer extends Component {
   componentDidMount () {
@@ -36,6 +37,7 @@ class AppContainer extends Component {
           <QuestionCenter />
           <DisplayExceptionModal />
           <SessionTimeoutModal />
+          <ErrorModal />
         </Provider>
       </DefaultAntThemeWrapper>
     )

@@ -1634,6 +1634,7 @@ en:
       edit: Edit
       export: Export
       filter_by_tags: Filter by tags
+      go_back: Go Back
       import: Import
       insert: Insert
       ok: OK
@@ -1641,11 +1642,13 @@ en:
       reset: Reset
       resolve: Resolve
       restore: Restore
+      return_to_home: Return to Home
       run: Run
       save: Save
       schedule: Schedule
       search: Search
       send: Send
+      sign_in: Sign In
       start: Start
       unarchive: Unarchive
       unresolve: Unresolve
@@ -2070,6 +2073,8 @@ en:
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     error: Error
+    error_401: You are not authorized to access this resource. Please sign in.
+    error_403: You do not have permission to view this resource.
     error_500: Something went wrong. Contact your administrator.
     error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     forbidden: You do not have access to this page

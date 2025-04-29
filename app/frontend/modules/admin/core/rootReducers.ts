@@ -44,6 +44,7 @@ import assessorsReducers from '../modules/AssessorApp/core'
 import sheetReducers from '../modules/SheetManagement/core'
 import { reducer as integrationsReducer } from '../modules/client/core/integrations'
 import auditLogs from '../modules/AuditLog/core'
+import errors from '~/core/errors'
 
 const createRootReducer = () => combineReducers({
   socket,
@@ -88,6 +89,7 @@ const createRootReducer = () => combineReducers({
   current,
   config,
   request,
+  errors,
   tables,
   campaigns: campaignReducers,
   assessors: assessorsReducers,
