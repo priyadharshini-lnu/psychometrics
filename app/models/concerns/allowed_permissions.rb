@@ -69,6 +69,7 @@ module AllowedPermissions
       normalize_factor_scores
       export_occupations
       bulk_download
+      bulk_update_evaluation_status
     ],
     'assessors' => %w[view manage],
     'registration_codes' => %w[view manage],
@@ -137,6 +138,7 @@ module AllowedPermissions
       normalize_factor_scores
       export_occupations
       bulk_download
+      bulk_update_evaluation_status
     ],
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
@@ -185,6 +187,7 @@ module AllowedPermissions
       normalize_factor_scores
       export_occupations
       bulk_download
+      bulk_update_evaluation_status
     ],
     'workshops' => %w[view manage],
     'idp_templates' => %w[view manage],
@@ -215,6 +218,7 @@ module AllowedPermissions
       report_file_upload
       normalize_factor_scores
       export_occupations
+      bulk_update_evaluation_status
     ]
   }.freeze
 

@@ -8,7 +8,8 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const getCustomMenuProps = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
-  handleExportThreeSixtyScores, handleBulkDownloads, openModal,
+  handleExportThreeSixtyScores, handleBulkDownloads, openModal, isBulk, handleBulkMarkAsDone,
+  selectedKeys, excludedKeys, isAllSelected,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {
@@ -40,6 +41,9 @@ const getCustomMenuProps = ({
     }
     if (key === 'bulk_downloads') {
       return handleBulkDownloads(campaignId)
+    }
+    if (key === 'completed' || key === 'in_progress') {
+      return handleBulkMarkAsDone(campaignId, key, isAllSelected, selectedKeys, excludedKeys)
     }
   }
 
@@ -102,13 +106,25 @@ const getCustomMenuProps = ({
       label: I18n.t('campaign_assessment.actions.bulk_download'),
     },
   ]
-  return { items: menuItems, onClick: handleMenuClick }
+
+  const bulkActionItems = [
+    permissions.bulkUpdateEvaluationStatus && {
+      key: 'completed',
+      label: I18n.t('campaign_assessment.actions.bulk_update_evaluation_as_done'),
+    },
+    permissions.bulkUpdateEvaluationStatus && {
+      key: 'in_progress',
+      label: I18n.t('campaign_assessment.actions.bulk_update_evaluation_as_undone'),
+    },
+  ]
+
+  return { items: isBulk ? bulkActionItems : menuItems, onClick: handleMenuClick }
 }
 
 export default function ToolsDropdown ({
   dimensionId, resetCampaign, resetAllNominations, openModal, rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
-  reportAvailableLanguages, reportDefaultLanguage,
+  reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys, excludedKeys, title, isAllSelected,
 }) {
   const { projectId, campaignId } = useParams()
   const resetCampaignWithConfirmation = (campaignId) => {
@@ -203,6 +219,30 @@ export default function ToolsDropdown ({
     }
   }
 
+  const handleBulkMarkAsDone = (campaignId, status_key, isAllSelected, selectedKeys, excludedKeys) => {
+    const status = status_key === 'completed' ? 'done' : 'undone'
+
+    modal.confirm({
+      title: I18n.t('campaign_assessment.modals.bulk_update_evaluation.title', { status }),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('campaign_assessment.modals.bulk_update_evaluation.content', { status }),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: async () => {
+        try {
+          await markAsDone(campaignId, status_key, isAllSelected, selectedKeys, excludedKeys)
+          message.success(
+            I18n.t('campaign_assessment.modals.bulk_update_evaluation.successfully', { status }),
+          )
+        } catch (error) {
+          message.error(error, 5)
+        }
+      },
+    })
+  }
+
 
   const resetAllNominationsWithConfirmation = (campaignId) => {
     openModal('CampaignNameConfirmationModal', {
@@ -246,6 +286,11 @@ export default function ToolsDropdown ({
           handleExportRawResults,
           handleExportThreeSixtyScores,
           handleBulkDownloads,
+          handleBulkMarkAsDone,
+          isBulk,
+          selectedKeys,
+          excludedKeys,
+          isAllSelected,
         })
       }
       className="mrm"
@@ -253,7 +298,7 @@ export default function ToolsDropdown ({
       innerElement={(
         <Button>
           <ToolOutlined />
-          <span>Tools</span>
+          <span>{title || 'Tools'}</span>
           <DownOutlined />
         </Button>
       )}

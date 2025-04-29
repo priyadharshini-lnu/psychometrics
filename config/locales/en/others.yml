@@ -751,6 +751,7 @@ en:
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
         bulk_rescore_campaign_factors: Bulk Rescore Campaign Factors
+        bulk_update_evaluation_status: Bulk Update Evaluation Status
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
@@ -1307,6 +1308,8 @@ en:
   campaign_assessment:
     actions:
       bulk_download: Bulk Download
+      bulk_update_evaluation_as_done: Mark as Done
+      bulk_update_evaluation_as_undone: Unmark as Done
       download: Download Reports
       export_completion_status: Export Completion Status
       export_external: External
@@ -1356,6 +1359,10 @@ en:
       raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
       scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully
     modals:
+      bulk_update_evaluation:
+        content: Are you sure you want to mark all selected subjects as %{status}?
+        successfully: Successfully marked as %{status}.
+        title: Bulk Mark as %{status}?
       import_raw:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
         success_msg: Import was uploaded successfully

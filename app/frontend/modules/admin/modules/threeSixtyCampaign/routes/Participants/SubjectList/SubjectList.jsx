@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Row, Col, App,
+  Table, Row, Col, App, Checkbox,
 } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
 import { useParams, useSearchParams } from 'react-router-dom'
+import { CountDisplay } from '~/components/CountDisplay'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
@@ -18,6 +18,7 @@ import SubjectImportModal from './SubjectImportModal'
 import Pagination from '../../../components/Pagination'
 import SearchInput from '../SearchInput'
 import { useWindowSize } from '~/hooks/useWindowSize'
+import { useSelectAll } from '~/hooks/useSelectAll'
 
 const { Column } = Table
 
@@ -41,15 +42,34 @@ export default function SubjectList ({
   reportName,
 }) {
   const { projectId, campaignId } = useParams()
-
   const [params] = useSearchParams()
   const page = params.get('page') || 1
   const { message } = App.useApp()
   const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
   const { width: windowWidth } = useWindowSize()
+
+  const {
+    isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
+  } = useSelectAll(false, subjects)
+
+  const [selectedCount, setSelectedCount] = useState(0)
+
   useEffect(() => {
     fetchSubjects(campaignId, page, searchTerm)
   }, [page, searchTerm])
+
+  useEffect(() => {
+    // Dynamically update the selected count whenever selection changes
+    const count = isAllSelected ? total - excludedKeys.length : selectedKeys.length
+    setSelectedCount(count)
+  }, [isAllSelected, excludedKeys, selectedKeys, total])
+
+  const rowSelection = {
+    selectedRowKeys: selectedKeys,
+    onChange: onSelectionChange,
+    preserveSelectedRowKeys: true,
+  }
+
   const curriedFetchSubjects = _.curry(fetchSubjects)
 
   const openParticipantModal = (user) => {
@@ -63,10 +83,16 @@ export default function SubjectList ({
 
   return (
     <>
-      <Row>
-        <Col span={4} className="pll">
-          <UserOutlined />
-          <span className="mlm">{`${total} Subjects`}</span>
+      <Row
+        justify="space-between"
+        align="middle"
+        className="pb-4 ps-3 pe-5"
+      >
+        <Col>
+          <CountDisplay
+            selectedCount={selectedCount ?? 0}
+            totalCount={total}
+          />
         </Col>
         <Col span={20} className="text-align-r">
           <SearchInput
@@ -79,8 +105,30 @@ export default function SubjectList ({
           {permissions.addSubject && (
             <CreateSubjectsDropdown />
           )}
+          <ToolsDropdown
+            isBulk
+            title="Actions"
+            permissions={permissions}
+            selectedKeys={selectedKeys}
+            excludedKeys={excludedKeys}
+            isAllSelected={isAllSelected}
+          />
         </Col>
       </Row>
+      <div className="pb-4 ps-3 pe-5">
+        <Row>
+          <Col>
+            <Checkbox
+              checked={isAllSelected && total === selectedCount}
+              onChange={e => onAllSelect(e.target.checked)}
+              className="font-normal text-nowrap flex items-center"
+              indeterminate={isAllSelected && total !== selectedCount}
+            >
+              {I18n.t('administration.scoring.select_all', { n: total ?? 0 })}
+            </Checkbox>
+          </Col>
+        </Row>
+      </div>
       <Row>
         <Col span={24}>
           <Table
@@ -89,6 +137,7 @@ export default function SubjectList ({
             dataSource={subjects}
             pagination={false}
             scroll={{ x: 'max-content' }}
+            rowSelection={rowSelection}
           >
             <Column
               title="Name"

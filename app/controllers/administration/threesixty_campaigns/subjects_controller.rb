@@ -36,6 +36,19 @@ module Administration
         render json: users
       end
 
+      def bulk_update_evaluation_status
+        audit! :bulk_update_evaluation_status, threesixty_campaign, campaign: threesixty_campaign.campaign,
+              payload: evaluation_status_params.merge({ 'threesixty_campaign_id' => threesixty_campaign.id })
+
+        AdminJob.call(
+          :bulk_update_evaluation_status, {
+            threesixty_id: threesixty_campaign.id,
+            evaluation_status_params: evaluation_status_params
+          }, current_user
+        )
+        render json: :ok
+      end
+
       def update
         resource.update!(resource_params)
         if resource_params[:report_release_status] == 'released' ||
@@ -119,7 +132,8 @@ module Administration
             'reset_all_participants',
             'reset_all_nominations',
             'edit_user',
-            'allow_results_delete'
+            'allow_results_delete',
+            'bulk_update_evaluation_status'
           ],
           {
             project_id: threesixty_campaign.campaign.project_id,
@@ -150,6 +164,10 @@ module Administration
       # Set model
       def set_resource_class
         @_resource_class ||= ::Threesixty::Subject # rubocop:disable Naming/MemoizedInstanceVariableName
+      end
+
+      def evaluation_status_params
+        params.require(:subject).permit(:status, selected_ids: [], excluded_ids: [])
       end
 
       def resource_params

@@ -487,6 +487,7 @@ Rails.application.routes.draw do
             post :create_all
             post :search
             post :import
+            patch :bulk_update_evaluation_status
           end
           member do
             get :preview_report

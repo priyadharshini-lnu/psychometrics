@@ -199,6 +199,7 @@ en:
             approve_report: Approve Report
             bulk_download: Bulk Download
             bulk_regenerate_reports: Bulk Regenerate Reports
+            bulk_update_evaluation_status: Bulk Update Evaluation Status
             download_report: Download Report
             edit_report: Edit Report
             export_occupations: Export occupations
@@ -2792,6 +2793,7 @@ en:
         qc_completed: QC Completed
         qc_in_progress: QC in Progress
     reports:
+      bulk_marked_as_done: Bulk Marked as Done
       bulk_upload:
         choose_file: Choose File
         no_file_selected: No file selected
