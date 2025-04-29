@@ -517,8 +517,12 @@ describe UsersResults::Scoring::AddScore do
 
         it 'it raise error when precision is not passed in average helper' do
           expect do
-            described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
-          end.to raise_error
+            described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                    norm: five_scale_norm })
+          end.to raise_error(
+            RuntimeError,
+            'helpers.average: First parameter must be a Lua table, and second parameter is precision (integer)'
+          )
         end
       end
     end

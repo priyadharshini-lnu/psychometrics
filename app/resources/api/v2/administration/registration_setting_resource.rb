@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::RegistrationSettingResource < Api::V2::Administration::BaseResource
-  attributes :id, :require_mobile_number, :hide_signup
+  attributes :require_mobile_number, :hide_signup
 
   has_one :project
 

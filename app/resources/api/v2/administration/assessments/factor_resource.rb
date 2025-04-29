@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Assessments::FactorResource < Api::V2::Administration::BaseResource
-  attributes :id, :name, :scoring_strategy, :parent
+  attributes :name, :scoring_strategy, :parent
 
   has_many :sub_factors
   has_many :parent_factors
