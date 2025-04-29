@@ -10,6 +10,34 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10313;
+
+
+--
+-- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10463;
+
+
+--
+-- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10501;
+
+
+--
+-- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10542;
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -360,78 +388,6 @@ ALTER SEQUENCE public.agiles_id_seq OWNED BY public.agiles.id;
 
 
 --
--- Name: ai_assistant_configs; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.ai_assistant_configs (
-    id bigint NOT NULL,
-    name character varying NOT NULL,
-    model character varying NOT NULL,
-    endpoint character varying NOT NULL,
-    api_key character varying NOT NULL,
-    hourly_rate_limit integer,
-    ai_assistant_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: ai_assistant_configs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.ai_assistant_configs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: ai_assistant_configs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.ai_assistant_configs_id_seq OWNED BY public.ai_assistant_configs.id;
-
-
---
--- Name: ai_assistant_prompts; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.ai_assistant_prompts (
-    id bigint NOT NULL,
-    user_prompt text NOT NULL,
-    system_prompt text NOT NULL,
-    owner_id bigint,
-    last_modified_by_id bigint,
-    ai_assistant_id bigint,
-    is_default boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: ai_assistant_prompts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.ai_assistant_prompts_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: ai_assistant_prompts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.ai_assistant_prompts_id_seq OWNED BY public.ai_assistant_prompts.id;
-
-
---
 -- Name: ai_assistant_requests; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -440,7 +396,6 @@ CREATE TABLE public.ai_assistant_requests (
     input_tokens bigint,
     output_tokens bigint,
     total_tokens bigint,
-    ai_assistant_usage_id bigint NOT NULL,
     request_body_checksum character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
@@ -467,50 +422,18 @@ ALTER SEQUENCE public.ai_assistant_requests_id_seq OWNED BY public.ai_assistant_
 
 
 --
--- Name: ai_assistant_usages; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.ai_assistant_usages (
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    ai_assistant_id bigint,
-    total_token_usage bigint DEFAULT 0 NOT NULL,
-    license_usage_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: ai_assistant_usages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.ai_assistant_usages_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: ai_assistant_usages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.ai_assistant_usages_id_seq OWNED BY public.ai_assistant_usages.id;
-
-
---
 -- Name: ai_assistants; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.ai_assistants (
     id bigint NOT NULL,
     name character varying NOT NULL,
-    action character varying NOT NULL,
     description character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    action integer,
+    model integer,
+    hourly_rate_limit integer
 );
 
 
@@ -809,16 +732,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -1017,8 +940,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -1099,9 +1021,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
+    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -1667,7 +1589,9 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1821,40 +1745,6 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
-
-
---
--- Name: comments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.comments (
-    id integer NOT NULL,
-    text character varying,
-    created_by integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
-    commentable_type character varying
-);
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -3434,7 +3324,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -4667,12 +4557,12 @@ CREATE TABLE public.reports (
     owner_id integer,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4684,7 +4574,7 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages text[] DEFAULT '{}'::text[]
+    other_languages jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -5952,7 +5842,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -6857,10 +6748,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -7405,31 +7296,10 @@ ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agile
 
 
 --
--- Name: ai_assistant_configs id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_configs ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_configs_id_seq'::regclass);
-
-
---
--- Name: ai_assistant_prompts id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_prompts ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_prompts_id_seq'::regclass);
-
-
---
 -- Name: ai_assistant_requests id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_requests ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_requests_id_seq'::regclass);
-
-
---
--- Name: ai_assistant_usages id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_usages ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_usages_id_seq'::regclass);
 
 
 --
@@ -7661,13 +7531,6 @@ ALTER TABLE ONLY public.clients ALTER COLUMN id SET DEFAULT nextval('public.clie
 --
 
 ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('public.clients_reports_id_seq'::regclass);
-
-
---
--- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
 
 
 --
@@ -8771,35 +8634,11 @@ ALTER TABLE ONLY public.agiles
 
 
 --
--- Name: ai_assistant_configs ai_assistant_configs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_configs
-    ADD CONSTRAINT ai_assistant_configs_pkey PRIMARY KEY (id);
-
-
---
--- Name: ai_assistant_prompts ai_assistant_prompts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_prompts
-    ADD CONSTRAINT ai_assistant_prompts_pkey PRIMARY KEY (id);
-
-
---
 -- Name: ai_assistant_requests ai_assistant_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_requests
     ADD CONSTRAINT ai_assistant_requests_pkey PRIMARY KEY (id);
-
-
---
--- Name: ai_assistant_usages ai_assistant_usages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_usages
-    ADD CONSTRAINT ai_assistant_usages_pkey PRIMARY KEY (id);
 
 
 --
@@ -10497,62 +10336,6 @@ CREATE INDEX index_agile_events_on_users_result_id ON public.agile_events USING 
 --
 
 CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessment_id);
-
-
---
--- Name: index_ai_assistant_configs_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_configs_on_ai_assistant_id ON public.ai_assistant_configs USING btree (ai_assistant_id);
-
-
---
--- Name: index_ai_assistant_prompts_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_prompts_on_ai_assistant_id ON public.ai_assistant_prompts USING btree (ai_assistant_id);
-
-
---
--- Name: index_ai_assistant_prompts_on_last_modified_by_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_prompts_on_last_modified_by_id ON public.ai_assistant_prompts USING btree (last_modified_by_id);
-
-
---
--- Name: index_ai_assistant_prompts_on_owner_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_prompts_on_owner_id ON public.ai_assistant_prompts USING btree (owner_id);
-
-
---
--- Name: index_ai_assistant_requests_on_ai_assistant_usage_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_requests_on_ai_assistant_usage_id ON public.ai_assistant_requests USING btree (ai_assistant_usage_id);
-
-
---
--- Name: index_ai_assistant_usages_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_usages_on_ai_assistant_id ON public.ai_assistant_usages USING btree (ai_assistant_id);
-
-
---
--- Name: index_ai_assistant_usages_on_license_usage_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_usages_on_license_usage_id ON public.ai_assistant_usages USING btree (license_usage_id);
-
-
---
--- Name: index_ai_assistant_usages_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assistant_usages_on_user_id ON public.ai_assistant_usages USING btree (user_id);
 
 
 --
@@ -13534,14 +13317,6 @@ ALTER TABLE ONLY public.assigns
 
 
 --
--- Name: ai_assistant_requests fk_rails_0755f5af2d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_requests
-    ADD CONSTRAINT fk_rails_0755f5af2d FOREIGN KEY (ai_assistant_usage_id) REFERENCES public.ai_assistant_usages(id);
-
-
---
 -- Name: campaign_factor_values fk_rails_07fa4c59b5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14162,7 +13937,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -14243,14 +14018,6 @@ ALTER TABLE ONLY public.sms_records
 
 ALTER TABLE ONLY public.workshop_invited_subjects
     ADD CONSTRAINT fk_rails_592e1c2e7f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
-
-
---
--- Name: ai_assistant_prompts fk_rails_5979fb5916; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_prompts
-    ADD CONSTRAINT fk_rails_5979fb5916 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -14382,14 +14149,6 @@ ALTER TABLE ONLY public.webhook_subscriptions
 
 
 --
--- Name: ai_assistant_usages fk_rails_69541cf25f; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_usages
-    ADD CONSTRAINT fk_rails_69541cf25f FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
---
 -- Name: pearson_user_assessments fk_rails_6974a21fca; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14499,14 +14258,6 @@ ALTER TABLE ONLY public.skills_development_actions
 
 ALTER TABLE ONLY public.user_assessment_factor_scores
     ADD CONSTRAINT fk_rails_71d3d729a1 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
-
-
---
--- Name: ai_assistant_prompts fk_rails_7412c7adf4; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_prompts
-    ADD CONSTRAINT fk_rails_7412c7adf4 FOREIGN KEY (owner_id) REFERENCES public.clients(id);
 
 
 --
@@ -14715,14 +14466,6 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.design_settings
     ADD CONSTRAINT fk_rails_8c47501b9a FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
--- Name: ai_assistant_usages fk_rails_8e53fac24a; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_usages
-    ADD CONSTRAINT fk_rails_8e53fac24a FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -15030,14 +14773,6 @@ ALTER TABLE ONLY public.factor_benchmark_scores
 
 
 --
--- Name: ai_assistant_prompts fk_rails_b05b069135; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_prompts
-    ADD CONSTRAINT fk_rails_b05b069135 FOREIGN KEY (last_modified_by_id) REFERENCES public.users(id);
-
-
---
 -- Name: innovation_styles_factors fk_rails_b0b768b7ef; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15059,14 +14794,6 @@ ALTER TABLE ONLY public.threesixty_evaluators
 
 ALTER TABLE ONLY public.question_recoding
     ADD CONSTRAINT fk_rails_b15be6b218 FOREIGN KEY (question_id) REFERENCES public.questions(id) ON DELETE CASCADE;
-
-
---
--- Name: ai_assistant_configs fk_rails_b3d52970c8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_configs
-    ADD CONSTRAINT fk_rails_b3d52970c8 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -15606,14 +15333,6 @@ ALTER TABLE ONLY public.threesixty_evaluators
 
 
 --
--- Name: ai_assistant_usages fk_rails_e9dfc22dc0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assistant_usages
-    ADD CONSTRAINT fk_rails_e9dfc22dc0 FOREIGN KEY (license_usage_id) REFERENCES public.license_usages(id);
-
-
---
 -- Name: bulk_reports fk_rails_ea7da51ed5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15860,15 +15579,17 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250427174443'),
 ('20250423120813'),
+('20250423114951'),
+('20250416102558'),
+('20250415120228'),
 ('20250415070851'),
 ('20250415064739'),
 ('20250411120337'),
 ('20250410170845'),
 ('20250410065159'),
 ('20250404115157'),
-('20250423114951'),
-('20250416102558'),
 ('20250326104351'),
 ('20250324124118'),
 ('20250320091944'),
@@ -15876,7 +15597,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250305105355'),
 ('20250304084629'),
 ('20250304060832'),
-('20250228123228'),
 ('20250226084133'),
 ('20250224095420'),
 ('20250224075920'),
@@ -15914,7 +15634,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),
-('20241225073418'),
 ('20241224114259'),
 ('20241224114214'),
 ('20241224114112'),
@@ -16655,3 +16374,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
