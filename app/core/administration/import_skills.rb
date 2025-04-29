@@ -118,8 +118,10 @@ module Administration
     end
 
     def handle_uniqueness_error(error, skill_name, line_number)
-      @errors << if error.message.include?('index_skills_on_name')
-                   "Line #{line_number}: A skill with the name '#{skill_name}' already exists"
+      @errors << if error.message.include?('index_skills_on_project_id_and_name')
+                   I18n.t(
+                     'administration.skills.errors.import.duplicate_skill', name: skill_name, line_number: line_number
+                   )
                  else
                    "Line #{line_number}: #{error.message}"
                  end

@@ -5,6 +5,7 @@ module Api
     module Administration
       class SkillsController < Api::V2::Administration::BaseController
         validate_crud_requests Api::V2::Skill::Schema
+        validates_request_schema :create, Api::V2::Skill::CreateContract.new
         validates_request_schema :index, Api::V2::Skill::Contract::Search.new
         validates_request_schema :tags_search, Api::V2::Skill::Contract::TagsSearch.new
         include Api::V2::Administration::Concerns::Taggable

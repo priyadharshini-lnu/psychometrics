@@ -2026,6 +2026,8 @@ en:
       report_families_reports:
         report_exists: This Report is already a part of Report Bundle
       size?: size should be less %{size}
+      skill:
+        already_added: Skill with the same name already added.
       skill_alias:
         unique_alias: Alias should be unique
         unique_skill: Skill should be unique

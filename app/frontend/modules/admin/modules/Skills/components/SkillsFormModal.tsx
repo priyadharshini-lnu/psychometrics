@@ -65,23 +65,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     form.resetFields(['ownerId'])
   }, [global])
 
-  const createSkill = (data: Skill & {ownerId?: string, global?: boolean}) => {
-    if (data.ownerId) {
-      delete data.ownerId
-    }
-
-    // eslint-disable-next-line no-prototype-builtins
-    if (data.hasOwnProperty('global')) {
-      delete data.global
-    }
-
-    if (params.projectId) {
-      data.project = { id: params.projectId } as {id: string}
-    }
-
-    return resource.createResource(data)
-  }
-
   const debouncedFetchTags = useCallback(debounce((value) => {
     fetchTags({
       apiConfig: {
@@ -180,6 +163,13 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     )
   }
 
+  const transformValues = (values) => {
+    delete values.ownerId
+    return {
+      ...values,
+    }
+  }
+
   return (
     <ResourceFormModal
       resourceName="skills"
@@ -190,7 +180,8 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 720 }}
-      request={{ createResource: createSkill, updateResource: resource.updateResource }}
+      request={{ createResource: resource.createResource, updateResource: resource.updateResource }}
+      transformValues={transformValues}
       formProps={{
         initialValues: {
           category: SkillCategoryEnum.Behavioral,

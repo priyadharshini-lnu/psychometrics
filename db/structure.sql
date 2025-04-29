@@ -10,34 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -428,12 +400,10 @@ ALTER SEQUENCE public.ai_assistant_requests_id_seq OWNED BY public.ai_assistant_
 CREATE TABLE public.ai_assistants (
     id bigint NOT NULL,
     name character varying NOT NULL,
+    action character varying NOT NULL,
     description character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    action integer,
-    model integer,
-    hourly_rate_limit integer
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -732,16 +702,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -940,7 +910,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -1021,9 +992,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -3324,7 +3295,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -4557,12 +4528,12 @@ CREATE TABLE public.reports (
     owner_id integer,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -5842,8 +5813,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -6748,10 +6718,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -12257,17 +12227,17 @@ CREATE INDEX index_skills_job_roles_on_skill_id ON public.skills_job_roles USING
 
 
 --
--- Name: index_skills_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_skills_on_name ON public.skills USING btree (name);
-
-
---
 -- Name: index_skills_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_skills_on_project_id ON public.skills USING btree (project_id);
+
+
+--
+-- Name: index_skills_on_project_id_and_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skills_on_project_id_and_name ON public.skills USING btree (project_id, name);
 
 
 --
@@ -13937,7 +13907,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -15580,10 +15550,10 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250427174443'),
+('20250425102837'),
 ('20250423120813'),
 ('20250423114951'),
 ('20250416102558'),
-('20250415120228'),
 ('20250415070851'),
 ('20250415064739'),
 ('20250411120337'),

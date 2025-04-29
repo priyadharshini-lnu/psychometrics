@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseResource
-  attributes :name, :description, :category, :created_at, :updated_at, :project_id, :tag_list
+  attributes :name, :description, :category, :created_at, :updated_at, :project_id, :tag_list, :global
 
   has_one :project
 
@@ -9,6 +9,14 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
 
   def created_at
     @model.decorate.created_at
+  end
+
+  def global
+    @model.project_id.nil?
+  end
+
+  def global=(value)
+    @model.project_id = nil if value
   end
 
   def updated_at
