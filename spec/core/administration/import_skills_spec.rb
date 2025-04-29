@@ -81,7 +81,7 @@ RSpec.describe Administration::ImportSkills do
 
       it 'returns error for duplicate skill name' do
         result = described_class.new(file_url, project.id).call
-        expect(result).to include("Line 2: Skill with name 'Programming' already exists in project.")
+        expect(result).to include("Line 2: Failed to save skill 'Programming': Name has already been taken")
       end
 
       it 'does not create or update any skills when there is a duplicate' do
