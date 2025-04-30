@@ -37,7 +37,6 @@ es-ES:
           attributes:
             current_password:
               invalid: La contraseña actual no es correcta
-  administration: Administración
   anonym:
     close: Cerrar
     continue: Continuar

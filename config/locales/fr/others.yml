@@ -37,7 +37,6 @@ fr:
           attributes:
             current_password:
               invalid: Le mot de passe actuel est incorrect
-  administration: Administration
   anonym:
     close: Fermer
     continue: Continuer
