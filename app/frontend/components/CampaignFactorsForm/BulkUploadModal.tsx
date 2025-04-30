@@ -15,7 +15,7 @@ const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
-    assessmentId: state.survey.builder.assessment.id,
+    assessmentId: state.survey?.builder.assessment.id,
   }), {
     importCampaignFactors, importAssessmentCFs,
   },
