@@ -4,6 +4,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Descriptions, Collapse } from 'antd'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
 import { useParams } from 'react-router-dom'
+import dayjs from 'dayjs'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getCurrent, fetchCurrent } from '~/modules/admin/modules/AuditLog/core'
 import styles from './styles.less'
@@ -65,6 +66,9 @@ const AuditLogList: React.FC<Props> = ({
         <Descriptions title={I18n.t('administration.audit_log.title')} bordered column={1}>
           <Descriptions.Item label={I18n.t('administration.audit_log.action')}>{record.action}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.audit_log.type')}>{record.recordType}</Descriptions.Item>
+          <Descriptions.Item label={I18n.t('administration.audit_log.log_date')}>
+            {dayjs(record.createdAt).format('lll')}
+          </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.audit_log.record_id')}>{record.recordId}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.audit_log.user')}>
             {record.user ? `${record.user.fullName} (${record.user.email})` : record.userId}
