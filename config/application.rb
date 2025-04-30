@@ -42,7 +42,7 @@ module Psychometrics
     config.i18n.available_locales = %i[en ar bg bs ca cn cs cy da de el en-GB en-US eo es es-ES et fa fr gu he hi hr
                                        hu id it ja km ko
                                        lt lv mk mn ms my nl no pl pt-BR pt ro ru sk sl sr-Cyrl sr-Latn sv sw ta th tl
-                                       tr uk ur vi zh zh-TW zh-HK]
+                                       tr uk ur vi zh zh-TW zh-HK zh-Hant]
 
     config.i18n.default_locale = :en
     config.i18n.locale = :en
