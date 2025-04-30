@@ -6833,7 +6833,10 @@ CREATE TABLE public.webhook_subscriptions (
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
     auth_type integer DEFAULT 0,
-    include_locales boolean DEFAULT false
+    include_locales boolean DEFAULT false,
+    encrypted_api_key character varying,
+    encrypted_api_key_iv character varying,
+    api_key_header character varying
 );
 
 
@@ -15549,6 +15552,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250429125102'),
 ('20250427174443'),
 ('20250425102837'),
 ('20250423120813'),

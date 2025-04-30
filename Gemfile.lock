@@ -47,7 +47,7 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/webhook_system.git
-  revision: 8a1f458deb95cba2b44f9b4a4189b29cc6ef5a2e
+  revision: f7708711889d662930c6d918fbd7a312385644c1
   branch: tte-master
   specs:
     webhook_system (2.2.0)

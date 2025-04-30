@@ -129,8 +129,16 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                 >
                   {I18n.t('administration.project_tabs.webhooks.form.auth_type.basic.label')}
                 </Radio>
+                <Radio
+                  value={
+                    I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.value')
+                  }
+                >
+                  {I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.label')}
+                </Radio>
               </Radio.Group>
             </Form.Item>
+
             {authType === I18n.t('administration.project_tabs.webhooks.form.auth_type.basic.value') && (
               <>
                 <Form.Item
@@ -142,6 +150,31 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                 <Form.Item
                   name={I18n.t('administration.project_tabs.webhooks.form.password.name')}
                   label={I18n.t('administration.project_tabs.webhooks.form.password.label')}
+                >
+                  <Input.Password />
+                </Form.Item>
+              </>
+            )}
+
+            {authType === I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.value') && (
+              <>
+                <Form.Item
+                  name={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key_header.name')}
+                  label={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key_header.label')}
+                  rules={[
+                    {
+                      pattern: /^[a-zA-Z0-9_-]+$/,
+                      message: I18n.t(
+                        'administration.project_tabs.webhooks.form.auth_type.api_key_header.format_error',
+                      ),
+                    },
+                  ]}
+                >
+                  <Input placeholder="X-API-KEY" />
+                </Form.Item>
+                <Form.Item
+                  name={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.name')}
+                  label={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.label')}
                 >
                   <Input.Password />
                 </Form.Item>

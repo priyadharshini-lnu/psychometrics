@@ -2487,6 +2487,14 @@ en:
             label: Active
             name: active
           auth_type:
+            api_key:
+              label: API Key
+              name: api_key
+              value: api_key_auth
+            api_key_header:
+              format_error: Only letters, numbers, underscores and hyphens are allowed
+              label: API Key Header
+              name: apiKeyHeader
             basic:
               label: Basic
               value: basic_auth

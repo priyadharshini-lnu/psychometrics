@@ -4,7 +4,7 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
   model_name 'Webhook'
 
   attributes :url, :description, :created_at, :updated_at, :topics, :username,
-             :project_id, :auth_type, :active, :password, :include_locales
+             :project_id, :auth_type, :active, :password, :api_key, :api_key_header, :include_locales
 
   ransack_filters %i[filterable_fields active_true]
 
@@ -46,7 +46,7 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
   end
 
   def fetchable_fields
-    super - [:password]
+    super - %i[password api_key]
   end
 
   def self.records(opts = {})
