@@ -3,9 +3,14 @@
 module AdminJobs
   class BulkRescoreCampaignFactors < AdminJobs::Base
     def call
-      users.find_each do |user|
+      record.update(total_tasks: users.count)
+
+      users.find_each(batch_size: 200) do |user|
+        record.increment_completed_tasks!
         ::CampaignScoring::Rescore.call!(campaign, user)
       end
+
+      GC.start
 
       broadcast :ok
     end
