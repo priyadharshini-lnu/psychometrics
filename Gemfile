@@ -215,8 +215,9 @@ group :development do
   # TODO: We have forket the gem to just increase the version dependent gem.
   # We can remove this fork and use original gem once the next version of gem is released.
   gem 'meta_request', '~> 0.8.2'
+  gem 'observer', '~> 0.1.1'
   gem 'ruby-lsp-rails', '~> 0.4.0'
-  gem 'solargraph', '~>0.45.0'
+  gem 'solargraph', '~>0.54.0'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
