@@ -156,6 +156,7 @@ const AuditLogList: React.FC<Props> = (
                 <Select
                   placeholder={I18n.t('administration.audit_log.type')}
                   showSearch
+                  allowClear
                 >
                   {types.map(type => (
                     <Select.Option key={type} value={type}>{type}</Select.Option>
@@ -210,6 +211,7 @@ const AuditLogList: React.FC<Props> = (
                     <Select
                       placeholder={I18n.t('administration.audit_log.action')}
                       showSearch
+                      allowClear
                     >
                       {(actions || []).map(action => (
                         <Select.Option key={action} value={action}>{action}</Select.Option>
