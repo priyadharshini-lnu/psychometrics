@@ -1322,33 +1322,6 @@ es-ES:
       last_name: Apellido(s)
   user_assessments:
     redirect: Si desea iniciar la evaluación, haga clic en Continuar.
-  user_reports:
-    actions:
-      regenerate: Volver a generar
-    messages:
-      regenerate_successful: La tarea para volver a generar el informe se ha programado correctamente
-    modals:
-      exports:
-        export_sign_in_url: Exportar con URL mágica de inicio de sesión
-        include_inactive_users: Exportar con usuarios inactivos
-        title: Exportar Usuarios
-      import:
-        body: Consulta la funcionalidad de Exportar para extraer una plantilla que se pueda usar para Importar aquí.
-        imported_reports: Los informes y evaluaciones fueron importados
-        imported_users: 'El número de usuarios importados: %{number}'
-        success_msg: El archivo cargado ha sido puesto en cola para la importación. Por favor, revisa el estado en las notificaciones
-        title: Importar Usuarios
-        user_with_unchanged_passwords: La lista de usuarios cuyas contraseñas no fueron cambiadas
-      import_reports:
-        body: Consulta el archivo de ejemplo para extraer una plantilla que se pueda usar para Importar aquí.
-        title: Asignar Informes y Evaluaciones
-    toolbar:
-      export: Exportar Usuarios
-      export_compact_completion_status: Compacto
-      export_detailed_completion_status: Detallado
-      export_reports_and_assessments: Exportar Informes y Evaluaciones
-      import: Importar Usuarios
-      import_reports: Importar Informes y Evaluaciones
   users:
     actions:
       2fa:
