@@ -135,7 +135,7 @@ class Administration::NormsController < Administration::BaseController
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), "#{admin_path}/norms"
   end
 
   def resource_params
