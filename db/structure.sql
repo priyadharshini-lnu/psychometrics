@@ -6342,7 +6342,8 @@ CREATE TABLE public.user_idp_plans (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     campaign_id bigint NOT NULL,
-    active boolean DEFAULT true
+    active boolean DEFAULT true,
+    end_date date
 );
 
 
@@ -15578,6 +15579,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250221073030'),
 ('20250219224132'),
 ('20250213113601'),
+('20250211125313'),
 ('20250210121434'),
 ('20250207113529'),
 ('20250206082916'),
