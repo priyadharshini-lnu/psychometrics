@@ -190,7 +190,7 @@
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^11.2.7",
     "@testing-library/react-hooks": "^8.0.1",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^14.5.2",
     "@types/browserslist": "^4.15.0",
     "@types/caniuse-lite": "^1.0.5",
     "@types/classnames": "^2.3.1",
