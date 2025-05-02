@@ -2,10 +2,11 @@
 
 module UserReports
   class Webhook
-    private_attr_reader :user_report, :project, :webhook_id, :user_result
+    private_attr_reader :user_report, :project, :webhook_id, :user_result, :locale
 
-    def initialize(user_report, webhook_id = nil)
+    def initialize(user_report, locale = nil, webhook_id = nil)
       @user_report = user_report
+      @locale = locale
       @project = user_report.campaign.project
       @webhook_id = webhook_id
       @user_result = user_report.user_results.first
@@ -32,6 +33,7 @@ module UserReports
         subject: user_result.subject,
         report: user_report.report,
         user_report: user_report,
+        locale: locale,
         event_time: user_report.last_pdf_generated_at
       }
     end

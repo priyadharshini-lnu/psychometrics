@@ -12,7 +12,6 @@ module UserReportPdfHelper
 
   def attach_pdf!(data, filename = nil, locale: nil)
     user_report_pdf = find_or_create_user_report_pdf(locale: locale)
-
     case data
       when String
         if data.start_with?('http://', 'https://')
@@ -40,11 +39,13 @@ module UserReportPdfHelper
       else
         return false
     end
-
     user_report_pdf.set_generated_timestamps
     user_report_pdf.save!
     self.status = :prepared
     save!
+    if user_report_pdf.pdf_file.attached? && user_report_pdf.persisted?
+      UserReports::Webhook.new(UserReport.find(user_report_pdf.user_report_id), locale).publish_report_available
+    end
   end
 
   def pdf_exists?(locale: nil)

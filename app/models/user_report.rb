@@ -46,10 +46,6 @@ class UserReport < ApplicationRecord
 
   enum :status, { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
-  after_commit :publish_to_webhook,
-               if: proc { status_previously_changed? && status == 'prepared' },
-               on: [:update]
-
   after_commit :schedule_report_available_notification,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
@@ -194,10 +190,6 @@ class UserReport < ApplicationRecord
 
   def log_attributes
     slice(:campaign_id, :report_id, :user_id, :status)
-  end
-
-  def publish_to_webhook
-    UserReports::Webhook.new(self).publish_report_available
   end
 
   def report_families_report
