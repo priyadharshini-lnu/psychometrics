@@ -40,6 +40,9 @@ module Administration
               optional(:libraries).maybe(:array).each(:str?)
               optional(:sms_histories).maybe(:array).each(:str?)
               optional(:registration_settings).maybe(:array).each(:str?)
+              optional(:skills).maybe(:array).each(:str?)
+              optional(:development_actions).maybe(:array).each(:str?)
+              optional(:response_meta).maybe(:array).each(:str?)
             end
           end
           required(:role).filled(:str?)
@@ -60,6 +63,8 @@ module Administration
             required(:workshopStatusExport).filled(:bool?)
             required(:manageProjectAssessments).filled(:bool?)
             required(:viewAuditReports).filled(:bool?)
+            required(:accessProjectDevelopmentActions).filled(:bool?)
+            required(:accessIdpTemplates).filled(:bool?)
           end
           required(:name).filled(:str?)
         end

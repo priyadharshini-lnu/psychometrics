@@ -144,9 +144,9 @@ const UserList: React.FC<Props> = ({
             className={styles.userTypeFilter}
             onChange={handleUserTypeFilterChange}
           >
-            <Option value="All" key="All">All</Option>
-            <Option value="true" key="true">Anonymous</Option>
-            <Option value="false" key="false">Identified</Option>
+            <Option value="All" key="All">{I18n.t('administration.campaigns.users.filters.all')}</Option>
+            <Option value="true" key="true">{I18n.t('administration.campaigns.users.filters.anonymous')}</Option>
+            <Option value="false" key="false">{I18n.t('administration.campaigns.users.filters.identified')}</Option>
           </Select>
           <Search
             placeholder="Search"
@@ -158,7 +158,7 @@ const UserList: React.FC<Props> = ({
             <div className={styles.newUserButton}>
               <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
                 <PlusOutlined />
-                <span>Add User</span>
+                <span>{I18n.t('administration.campaigns.users.add_user')}</span>
               </Button>
             </div>
           )}

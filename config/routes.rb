@@ -332,6 +332,7 @@ Rails.application.routes.draw do
             post :update_norm
             post :update_mettl_schedule
             put :update_content_variation
+            put :update_pearson_variation
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -418,6 +419,7 @@ Rails.application.routes.draw do
           get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
 
           member do
+            post :copy
             get :fetch_campaign_options
             get :fetch_campaign_instructions
             get :fetch_descriptions
@@ -592,6 +594,7 @@ Rails.application.routes.draw do
         delete :soft_delete
         put :restore
         post :import_questions
+        post :export_questions
         get :import_questions_sample_file
       end
 
@@ -602,7 +605,11 @@ Rails.application.routes.draw do
       end
 
       scope module: 'assessments' do
-        resource :builders, only: %i[show update]
+        resource :builders, only: %i[show update] do
+          member do
+            post :upload_campaign_factors
+          end
+        end
         resource :scoring, only: [:update], controller: :scoring
         resource :agiles, only: %i[show update]
       end
@@ -620,6 +627,13 @@ Rails.application.routes.draw do
         post :export_translations
         post :import_translations
         post :import_factors
+        get :export_json
+      end
+
+      collection do
+        post :validate_import
+        post :import
+        get :import
       end
       ### FACTORS
       resources :factors do
@@ -1189,6 +1203,7 @@ as: :simulation_progress_notification
               post :create_global_assessor
               post :change_password
               get :current_user_details
+              post :change_locale
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end
@@ -1429,7 +1444,14 @@ as: :simulation_progress_notification
           resources :user_idp_plans, only: %i[create]
           jsonapi_resources :skills, concerns: :taggable do
             post :import, on: :collection
+            post :export, on: :collection
             get :tags_search, on: :collection
+            post :import_translations, on: :collection
+            post :export_translations, on: :collection
+            post :import_global, on: :collection
+            post :export_global, on: :collection
+            post :import_global_translations, on: :collection
+            post :export_global_translations, on: :collection
           end
           jsonapi_resources :development_actions do
             scope module: :development_actions do

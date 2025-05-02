@@ -2,7 +2,7 @@ import _ from 'lodash'
 import humps from 'humps'
 import { StringMap } from '@thetalententerprise/jsonapi-react'
 import { devtools } from 'zustand/middleware'
-import create from 'zustand'
+import { create } from 'zustand'
 import {
   BaseMeta, ResourceState, StateManager, Requests, RequestType,
 } from './interfaces'

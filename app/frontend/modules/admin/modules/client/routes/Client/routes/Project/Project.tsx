@@ -8,6 +8,7 @@ import {
   SolutionOutlined,
   ExportOutlined,
   CrownOutlined,
+  ApartmentOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
@@ -22,6 +23,7 @@ import settings from '~/modules/admin/modules/client/routes/Client/routes/Projec
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { routes } from './routes'
+import { isSuperAdmin } from '~/core/currentUser'
 
 const { I18n } = window
 
@@ -80,6 +82,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/idp')) {
       return ['idp']
     }
+    if (pathname.includes('/taxonomy')) {
+      return ['taxonomy']
+    }
     return undefined
   }
 
@@ -116,6 +121,8 @@ const Project: FC<Props> = ({
         return I18n.t('administration.breadcrumbs.audit_reports')
       case 'idp':
         return I18n.t('administration.idp.idp')
+      case 'taxonomy':
+        return I18n.t('administration.taxonomy.title')
       default:
         return ''
     }
@@ -125,6 +132,15 @@ const Project: FC<Props> = ({
     const permissions = [
       'manageProjectSmtpSettings', 'manageProjectSamlSetting', 'manageProjectIntegrations', 'manageProjectWebhooks',
       'manageProjectSecuritySettings', 'manageProjectGeneralSettings',
+    ]
+    return some(permissions, permission => currentUser.permissions[permission])
+  }
+
+  const canShowIdpTab = () => {
+    if (isSuperAdmin(currentUser)) return true
+
+    const permissions = [
+      'accessProjectDevelopmentActions', 'accessIdpTemplates',
     ]
     return some(permissions, permission => currentUser.permissions[permission])
   }
@@ -149,11 +165,20 @@ const Project: FC<Props> = ({
     label: I18n.t('administration.breadcrumbs.audit_reports'),
   })
 
-  idpEnabled && menuItems.push({
+  idpEnabled && canShowIdpTab() && menuItems.push({
     key: 'idp',
     icon: <CrownOutlined />,
     label: I18n.t('administration.idp.idp'),
   })
+
+  idpEnabled && menuItems.push(
+    {
+      key: 'taxonomy',
+      icon: <ApartmentOutlined />,
+      label: I18n.t('administration.taxonomy.title'),
+    },
+  )
+
 
   return (
     <div>

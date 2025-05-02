@@ -10,7 +10,8 @@ import styles from './styles.less'
 
 const { I18n } = window
 const defaultLocales = I18n.availableLocales
-const defaultCurrentLocale = I18n.locale
+const { locale } = document.body.dataset
+const defaultCurrentLocale = locale || I18n.locale
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

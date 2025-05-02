@@ -37,7 +37,6 @@ ar:
           attributes:
             current_password:
               invalid: كلمة المرور الحالية غير صحيحة
-  administration:
   anonym:
     close: يغلق
     continue: استمرار
@@ -387,6 +386,7 @@ ar:
       category: فئة
       created_at: تم إنشاؤها في
       id: الهوية
+      name: اسم
       status: حالة
     model:
       assessments: التقييمات
@@ -556,6 +556,21 @@ ar:
           in_progress: " على قيد التقدم"
           not_started: لم يبدأ بعد
     change_password: تغيير كلمة السر
+    clients:
+      actions:
+        create:
+          create_client: إنشاء عميل
+          create_license: إضافة ترخيص
+        menus:
+          view_licenses: عرض التراخيص
+        remove:
+          confirmation: أدخل اسم العميل الحالي الموضح أدناه في مربع النص لإزالة العميل
+          success: تم إزالة العميل باسم '%{clientName}' بنجاح
+      projects:
+        actions:
+          remove:
+            confirmation: أدخل اسم المشروع الحالي الموضح أدناه في مربع النص لإزالة المشروع
+            success: تم إزالة المشروع باسم '%{projectName}' بنجاح
     delete: " حذف"
     edit: تعديل
     lighthouse_app: ميرسر لايتهاوس

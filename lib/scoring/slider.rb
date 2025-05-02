@@ -2,10 +2,12 @@
 
 module Scoring
   class Slider
-    def calculate(question, result, scoring_template)
+    def calculate(question, result, question_scoring)
       min_value = question.props['minValue'].to_i
       max_value = question.props['maxValue'].to_i
       values = []
+      scoring_template = question_scoring.props
+
       result['answers'].each do |answer|
         next unless answer['value']
         next if result.dig('not_applicable', answer['index'].to_s)

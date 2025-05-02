@@ -60,6 +60,7 @@ module Idp::DevelopmentAction
         end_date_time: user_idp_development_action_params['end_date_time'],
         private: user_idp_development_action_params['private'],
         custom_action: user_idp_development_action_params['custom_action'],
+        custom_action_learning_style: user_idp_development_action_params['custom_action_learning_style'],
         user_idp_skill_id: user_idp_development_action_params['user_idp_skill_id'],
         user_idp_plan_id: @user_idp_plan.id
       }

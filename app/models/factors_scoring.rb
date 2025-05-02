@@ -6,6 +6,11 @@ class FactorsScoring < ApplicationRecord
   include Copyable
   self.table_name = :factors_scoring
 
+  enum :scoring_strategy, {
+    answers_average: 0,
+    answers_sum: 1
+  }
+
   belongs_to :assessment
   belongs_to :factor
   belongs_to :question

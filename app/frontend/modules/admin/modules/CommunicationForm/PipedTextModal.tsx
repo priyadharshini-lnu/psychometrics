@@ -10,28 +10,52 @@ interface Props {
   close: () => void
   editorRef: any // eslint-disable-line @typescript-eslint/no-explicit-any
   communicationKind: string
+  targetField?: 'editor' | 'subject'
+  onInsert?: (value: string) => void
+  open: boolean
 }
 
 const { I18n } = window
 
-export const PipedTextModal: React.FC<Props> = ({ close, editorRef, communicationKind }) => {
+export const PipedTextModal: React.FC<Props> = ({
+  close,
+  editorRef,
+  communicationKind,
+  targetField = 'editor',
+  onInsert,
+  open = true,
+}) => {
   const modalContainerRef = useRef(null)
-  useEffect(() => editorRef.selection.save(), [])
+
+  useEffect(() => {
+    if (targetField === 'editor' && editorRef) {
+      editorRef.selection.save()
+    }
+  }, [])
 
   const handleClose = () => {
     close()
-    editorRef.selection.restore()
+    if (targetField === 'editor' && editorRef) {
+      editorRef.selection.restore()
+    }
   }
 
   const insert = (value) => {
     handleClose()
-    editorRef.html.insert(value)
+    if (onInsert) {
+      onInsert(value)
+    } else if (targetField === 'editor' && editorRef) {
+      editorRef.html.insert(value)
+    }
   }
 
-  const applicationFields = () => FIELDS.filter(
-    field => (
-      field.supportedCommunicationKind === undefined || field.supportedCommunicationKind.includes(communicationKind)
-    ),
+  const applicationFields = () => FIELDS.filter(field => (targetField === 'subject'
+    ? field.branch === 'Campaigns' || field.branch === 'Projects'
+    : field.supportedCommunicationKind === undefined
+      || field.supportedCommunicationKind.includes(communicationKind))).map(
+    field => (targetField === 'subject' && field.branch === 'Campaigns'
+      ? { ...field, fields: field.fields.filter(f => f.name !== 'Join Link') }
+      : field),
   )
 
   return (
@@ -39,7 +63,7 @@ export const PipedTextModal: React.FC<Props> = ({ close, editorRef, communicatio
       <div ref={modalContainerRef} />
       <Modal
         width={900}
-        open
+        open={open}
         title={I18n.t('administration.piped_text_modal.title')}
         onCancel={handleClose}
         footer={[

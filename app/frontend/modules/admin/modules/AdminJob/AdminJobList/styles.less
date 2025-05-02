@@ -42,6 +42,18 @@
       outline-color: var(--ant-primary-4) !important;
    }
   }
+
+  .langDropdown{
+    position: absolute;
+    top: 15px;
+    width: max-content;
+    :global(body.ltr) & {
+      right: 50px;
+    }
+    :global(body.rtl) & {
+      left: 50px;
+    }
+  }
 }
 
 

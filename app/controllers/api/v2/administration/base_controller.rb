@@ -8,6 +8,7 @@ module Api
     include JSONAPI::Utils
     include V2::Administration::Concerns::ApiController
     include Pundit
+    include AddCookie
 
     ACTION_TO_SCHEMA_NAME = {
       create: :create_request, update: :update_request, create_relationship:

@@ -207,7 +207,6 @@ const EvaluationComponent = ({
               <Space>
                 <Button
                   onClick={handleBackButtonClick}
-                  ghost
                   type="text"
                   size="small"
                   aria-label={I18n.t('frontend.aria.back_to_tasks')}

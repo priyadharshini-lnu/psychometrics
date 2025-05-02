@@ -52,6 +52,12 @@ module Administration
         permissions['workshop_status_export'] = Api::Administration::ProjectPolicy.new(
           object, Project, project_id: context[:project_id]
         ).workshop_status_export?
+        permissions['access_project_development_actions'] = Api::Administration::DevelopmentActionPolicy.new(
+          object, DevelopmentAction, project_id: context[:project_id]
+        ).index?
+        permissions['access_idp_templates'] = Api::Administration::IdpTemplatePolicy.new(
+          object, IdpTemplate, project_id: context[:project_id]
+        ).index?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
 

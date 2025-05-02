@@ -2,25 +2,25 @@
 
 module Api
   module Administration
-    class DevelopmentActionPolicy < Administration::BasePolicy
+    class DevelopmentActionPolicy < ::Api::Administration::BasePolicy
       def index?
         has_permission?('development_actions', 'view', project_id: project_id)
       end
 
       def create?
-        @user.is?(:superadmin)
+        has_permission?('development_actions', 'manage', project_id: project_id)
       end
 
       def update?
-        @user.is?(:superadmin)
+        has_permission?('development_actions', 'manage', project_id: project_id)
       end
 
       def destroy?
-        @user.is?(:superadmin)
+        has_permission?('development_actions', 'manage', project_id: project_id)
       end
 
       def show?
-        @user.is?(:superadmin)
+        has_permission?('development_actions', 'view', project_id: project_id)
       end
 
       def import?
@@ -59,15 +59,14 @@ module Api
         def resolve
           return scope if user.is?(:superadmin)
 
-          # Collect project IDs where the user has view permission for development actions
-          permitted_client_admin_project_ids = @user.client_admin_client_ids.select do |client_id|
-            @user.has_permission?('development_actions', 'view', project_id: client_id)
-          end
+          permitted_client_admin_project_ids = @user.client_admin_clients.select do |client|
+            @user.has_permission?('development_actions', 'view', project_id: client.id)
+          end.flat_map(&:project_ids)
 
           permitted_project_admin_project_ids = @user.project_admin_client_ids.select do |project_id|
             @user.has_permission?('development_actions', 'view', project_id: project_id)
           end
-          # Combine all permitted project IDs
+
           all_permitted_project_ids = permitted_client_admin_project_ids +
                                       permitted_project_admin_project_ids
 

@@ -3,7 +3,7 @@
 module Administration
   module Assessments
     class BuildersController < Administration::BaseController
-      before_action :set_assessment
+      before_action :set_assessment, except: %i[upload_campaign_factors]
       append_before_action :pundit_authorize
 
       def show
@@ -25,6 +25,20 @@ module Administration
           ).serialize(@assessment) }
         else
           render json: { error: true }, status: 400
+        end
+      end
+
+      def upload_campaign_factors
+        form = ::Administration::CampaignFactors::ImportForm.new(
+          file: params[:file],
+          resource_id: params[:assessment_id],
+          resource_class: 'Assessment'
+        )
+
+        if form.valid?
+          render json: form.processed_data, status: :ok
+        else
+          render json: { errors: form.errors.messages.values.flatten }, status: :unprocessable_entity
         end
       end
 

@@ -9,8 +9,12 @@ import { useMedia } from 'use-media'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
 import { BoxWithShadow } from '~/glint'
 import {
-  AvailableDevelopmentActions, CategoryWithSkills, DevelopmentAction, SkillWithDevelopmentActions,
-} from '.'
+  AvailableDevelopmentActions,
+  CategoryWithSkills,
+  DevelopmentAction,
+  DevelopmentActionLearningStyle,
+  SkillWithDevelopmentActions,
+} from './Types'
 import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
 import styles from './DevelopmentActionListView.less'
@@ -82,11 +86,15 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     setSelectedSkill(null)
   }
 
-  const handleCreateCustomDevelopmentAction = (customAction: string) => {
+  const handleCreateCustomDevelopmentAction = (
+    customAction: string,
+    customActionLearningStyle: DevelopmentActionLearningStyle,
+  ) => {
     if (selectedSkill) {
       const uniqueId = uuidv4()
       const action = {
         customAction,
+        customActionLearningStyle,
         id: uniqueId,
         userIdpSkillId: selectedSkill.id,
         progress: 0,
@@ -100,8 +108,8 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   }
 
   const handleAddAIGeneratedDevelopmentAction = (developmentAction: Partial<DevelopmentAction>) => {
-    if (developmentAction.description) {
-      handleCreateCustomDevelopmentAction(developmentAction.description)
+    if (developmentAction.description && developmentAction.learningStyle) {
+      handleCreateCustomDevelopmentAction(developmentAction.description, developmentAction.learningStyle)
     }
     setIsAddDevelopmentActionModalOpen(false)
     setIsAIGeneratedDevelopmentActionsModalOpen(false)

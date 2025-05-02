@@ -345,6 +345,7 @@ en:
       errors:
         doesnt_have_header: "'%{sub_header}' does not have header"
         invalid_headers: 'Following headers are invalid: %{headers}'
+        invalid_question: Question with id %{question_id} does not exist
         invalid_scores: Scores for factor %{factor_name} are invalid. Scores should be comma separated numeric values
         invalid_sub_header: "'%{sub_header}' is not a valid subheader for header '%{header}'"
         scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
@@ -355,6 +356,7 @@ en:
       successfully_scheduled: Question Import was scheduled successfully.
     assessments:
       assessment: Assessment
+      assessment_report: Assessments
       copy:
         copy: copy
         copy_assessment: Copy Assessment
@@ -368,12 +370,16 @@ en:
         header: Assessment Settings
       errors:
         owner_validation: You don't have %{resource_name} %{permission} permission for %{client_name}
+      export:
+        questions: Export Questions
+      export_questions_toastr: Questions Export Job was scheduled successfully
       flow: Flow
       linkedAssessment:
         assessment_title: Select Questions from %{name}
         title: Select Linked Questions
       map_norms: Map Norms
       menu:
+        export_questions: Export Questions
         import_questions: Import Questions
         managage_campaign_factors: Manage Campaign Factors
       new:
@@ -409,6 +415,10 @@ en:
             title: "<strong>%{status}</strong> %{name}?"
       restore:
         successfully: Assessment %{name} was restored successfully.
+      scoring_strategy:
+        average: Average
+        sum: Sum
+        title: Scoring Strategy
       settings:
         disable_continue_to_dashboard: Disable "Continue to Dashboard" Button
         disable_nav_btn: Disable Navigation Back Button
@@ -827,6 +837,9 @@ en:
       assessors:
         spoof:
           successfully: You was successfully login as %{name}
+      copy: Copy Campaign
+      delete: Delete
+      edit: Edit
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name
@@ -917,9 +930,14 @@ en:
         common: Common
         threesixty: Multi Rater
       users:
+        add_user: Add User
         completion_status: Completion Status
         created_by: Created By
         email: Email
+        filters:
+          all: All
+          anonymous: Anonymous
+          identified: Identified
         id: Id
         is_active: Active
         name: Name
@@ -1626,19 +1644,20 @@ en:
       export_global_development_actions_translations: Global Development Action Translations
       form:
         category: Category
+        client_placeholder: Select a Client
         course_image: Course Image
         course_link: Course Link
         description: Description
         end_date: End Date
         learning_style: Learning Style
         name: Name
-        owner_placeholder: Select an Owner
         project_placeholder: Select a Project
         skills: Skills
         skills_placeholder: Select skills
         start_date: Start Date
         title: Development Action
         upload: Upload
+      global: Is Global Development Action?
       heading: Development Actions
       import:
         download_example_csv: Download Example csv
@@ -1650,6 +1669,8 @@ en:
       import_development_actions: Development Actions
       import_development_actions_translations: Development Actions Translations
       learning_styles:
+        cannot_be_blank: Cannot be blank
+        invalid: Must be one of on_the_job, structured_learning, learning_from_others
         learning_from_others: Learning from Others [20]
         on_the_job: On the Job [70]
         structured_learning: Structured Learning [10]
@@ -1676,6 +1697,8 @@ en:
         successfully: Dimension %{name} was deleted successfully.
       edit:
         header: Edit Dimension Name
+      export_json:
+        successfully: Exporting JSON scheduled for dimension %{name}.
       export_translations_scheduled:
         successfully: Export translations scheduled for dimension %{name}.
       form:
@@ -1685,10 +1708,17 @@ en:
         import: Import
         successfully: Import factors job scheduled for dimension %{name}.
         title: Import Factors
+      import_modal:
+        cancel: Cancel
+        continue: Continue
+        import: Import
+        import_dimension: Import Dimension
       import_translations:
         error: Error while importing translations for dimension %{name}.
         successfully: Import translations scheduled for dimension %{name}.
       index:
+        create_dimension: Create Dimension
+        import_dimension: Import Dimension
         new: Add
         owner: Owner
         title: Dimensions
@@ -1715,6 +1745,7 @@ en:
           copy: Copy Dimension
           delete: Delete Dimension
           edit: Edit Dimension Name
+          export_json: Export JSON to import in other platform
       sidebar:
         copy: Copy Dimension
         destroy: Delete Dimension
@@ -1881,6 +1912,7 @@ en:
       self_rating: Enable Self Rating
       skill_gap_report: Skill Gap Report
       tab:
+        development_actions: Development Actions
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills
@@ -3188,19 +3220,49 @@ en:
           invalid_category: Must be a valid category
           invalid_global_value: 'must be one of: true, false'
           query_too_short: is required and must belonger than 3 characters
+      export:
+        details: Details
+        failure_msg: Error while exporting translations
+        success_msg: Exporting development actions in progress.
+        title: Export
+        translations:
+          details: Skill Translations
+      export_action:
+        skills_title: Export Skills
+        skills_translations_title: Export Skills Translations
       form:
         category: Category
+        client_placeholder: Select a Client
         description: Description
         name: Name
-        owner_placeholder: Select an Owner
         project_placeholder: Select a Project
         title: Skill
+      global: Is Global Skill?
+      global_skills: Global Skills
+      global_translations: Global Skills Translations
       import:
         download_example_csv: Download Example csv
-        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
-        title: Skills import
-      import_skills: Import Skills
+        info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        skills_title: Import Skills
+        skills_translations_title: Import Skills Translations
+      skill_translations: Skills Translations
       skills: Skills
+      title: Skills
+      translations:
+        import:
+          errors:
+            download_failed: Failed to download file
+            invalid_csv_format: 'Invalid CSV format: %{message}'
+            invalid_url: Invalid URL
+            missing_required_columns: 'Missing required columns: %{columns}'
+            row_description_blank: 'Row %{row}: Description cannot be blank'
+            row_id_blank: 'Row %{row}: ID cannot be blank'
+            row_locale_blank: 'Row %{row}: Locale cannot be blank'
+            row_locale_invalid: 'Row %{row}: Invalid locale ''%{locale}'''
+            row_name_blank: 'Row %{row}: Name cannot be blank'
+            save_failed: 'Error processing Skill ID %{id}: %{message}'
+            skill_not_found: Skill with ID %{id} not found
     sms_histories:
       columns:
         first_name: First Name
@@ -3409,6 +3471,9 @@ en:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
       more_actions: More actions
+    taxonomy:
+      skills: Skills
+      title: Taxonomy
     templates:
       blocks:
         copy:
@@ -3652,6 +3717,8 @@ en:
         successfully: User %{name} was updated successfully.
       toggle_status:
         successfully: User %{name} was updated successfully.
+      toolbar:
+        title: Tools
       update:
         successfully: User %{name} was updated successfully.
       user: User

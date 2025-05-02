@@ -78,6 +78,16 @@ module Api
       jsonapi_render json: current_user, options: { resource: Api::V2::Administration::CurrentUserResource }
     end
 
+    def change_locale
+      locale = params[:locale]
+      if I18n.available_locales.map(&:to_s).include?(locale)
+        add_cookie('locale', locale)
+        render json: :ok
+      else
+        render json: :bad_request, status: :bad_request
+      end
+    end
+
     private
 
     def campaign_id

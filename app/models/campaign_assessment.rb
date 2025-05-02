@@ -28,6 +28,7 @@ class CampaignAssessment < ApplicationRecord
            :external_assessment_id,
            :assessor_form?,
            :dimension,
+           :pearson?,
            to: :assessment
 
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true
@@ -106,6 +107,18 @@ class CampaignAssessment < ApplicationRecord
 
       SimulationUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
         content_variation_id: self.external_config['content_variation_id']
+      )
+    end
+  end
+
+  def update_pearson_variation!(external_config, apply_to_existing_users = false)
+    return unless pearson?
+
+    if update!(external_config: external_config) && apply_to_existing_users
+      not_started_assessments = user_assessments.where(status: :not_started).pluck(:id)
+
+      PearsonUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
+        variation: self.external_config['variation']
       )
     end
   end

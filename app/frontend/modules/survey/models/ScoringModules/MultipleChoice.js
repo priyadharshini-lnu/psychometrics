@@ -30,6 +30,10 @@ class MultipleChoice extends BaseScoringModule {
       this.scoring.props.push({ index, value: '1' })
     }
   }
+
+  changeScoringStrategy (scoringStrategy) {
+    _.set(this.scoring, 'scoring_strategy', scoringStrategy)
+  }
 }
 
 export default MultipleChoice

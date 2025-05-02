@@ -15,6 +15,7 @@ enduser_locales:
   - zh
   - zh-Hant
   - zh-HK
+admin_user_locales:  <%= ENV["ADMIN_LOCALES"]%>
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
 subdomain: <%= ENV["APP_SUB_DOMAIN"] %> # subdomain
@@ -66,10 +67,12 @@ features:
   new_video_recording_ui: <%= ENV.fetch('NEW_VIDEO_RECORDING_UI', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
+  skip_session_limitable: <%= ENV.fetch('SKIP_SESSION_LIMITABLE', 'false') == 'true' %>
   disable_session_timeout: <%= ENV.fetch('DISABLE_SESSION_TIMEOUT', 'false') == 'true' %>
   inline_translation_enabled: <%= ENV.fetch('INLINE_TRANSLATION_ENABLED', 'false') == 'true' %>
   disable_saml_for_admins: <%= ENV.fetch('DISABLE_SAML_FOR_ADMINS', 'false') == 'true' %>
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
+  enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -318,6 +321,12 @@ providers:
         assessment_ids:
           - HPI
           - MVPI
+      - id: EcJUDCJUDVJUDAJR
+        name: Judgement Report
+        norm_id: Global2023
+        language_id: en
+        assessment_ids:
+          - JUDC
     assessments:
       - id: HPI
         name: HPI
@@ -952,6 +961,18 @@ providers:
             - id: '04'
               name: Completion_Time
               type: Percentile Scale
+      - id: JUDC # This id is used for pulling the report and is not sent with AddParticipantAssessment request.
+        name: Judgement Assessment
+        assessments:
+          - id: JUDC
+            name: JUDC
+            form_id: 1
+          - id: JUDA
+            name: JUDA
+            form_id: 1
+          - id: JUDV
+            name: JUDV
+            form_id: 1
   simulation:
     assessments:
       - id: mte-apply
@@ -975,6 +996,25 @@ providers:
         report_id: rep:7c02d463-5885-404d-8375-29619655d5b8
       - id: prd:ravens-adaptive:6c94b388-835c-4448-bd64-959a4a54cae0
         report_id: rep:a4cfa98f-1a6e-4aac-90d6-9e45801740ee
+    products:
+      - id: prd:ravens-adaptive:6c94b388-835c-4448-bd64-959a4a54cae0
+        variations:
+          - code: 20_items_untimed
+            name: 20 items untimed
+            configuration:
+              enable_timers: false
+              change_items_count: 33
+            default: true
+          - code: 20_items_timed
+            name: 20 items timed
+            configuration:
+              enable_timers: true
+              change_items_count: 33
+          - code: 15_items_timed
+            name: 15 items timed
+            configuration:
+              enable_timers: true
+              change_items_count: 0
   saville:
     assessments:
       - id: A830E4AB-BC66-4238-92E0-6E6FD3FD1EDF

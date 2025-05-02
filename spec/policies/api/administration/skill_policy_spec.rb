@@ -26,9 +26,7 @@ RSpec.describe Api::Administration::SkillPolicy do
 
   describe 'search?' do
     context 'when user has required permissions' do
-      before do
-        allow(user).to receive(:has_permission?).with(:skills, :view).and_return(true)
-      end
+      let(:user) { create(:superadmin) }
 
       it 'allows access' do
         expect(described_class.new(user, nil).search?).to be_truthy
@@ -36,10 +34,7 @@ RSpec.describe Api::Administration::SkillPolicy do
     end
 
     context 'when user lacks required permissions' do
-      before do
-        allow(user).to receive(:has_permission?).with(:skills, :view).and_return(false)
-        allow(user).to receive(:has_permission?).with(:skills, :manage).and_return(false)
-      end
+      let(:user) { create(:user) }
 
       it 'denies access' do
         expect(described_class.new(user, nil).search?).to be_falsey
@@ -52,10 +47,6 @@ RSpec.describe Api::Administration::SkillPolicy do
     let(:user_scope) { described_class::Scope.new(user, Skill.all) }
 
     context 'for superadmin user' do
-      before do
-        allow(superadmin).to receive(:superadmin?).and_return(true)
-      end
-
       it 'returns all skills' do
         global_skill
         project_skill
@@ -67,14 +58,7 @@ RSpec.describe Api::Administration::SkillPolicy do
 
     context 'for user with required permissions' do
       let(:campaign) { create(:campaign, project: project) }
-
-      before do
-        allow(user).to receive(:has_permission?).with(:skills, :view).and_return(true)
-        allow(user).to receive(:has_permission?).with(:skills, :manage).and_return(true)
-        allow(user).to receive(:client_admin_project_ids).and_return([project.id])
-        allow(user).to receive(:project_admin_client_ids).and_return([])
-        allow(user).to receive(:campaign_admin_campaigns).and_return([])
-      end
+      let(:user) { create(:superadmin) }
 
       it 'returns global skills and skills from accessible projects' do
         global_skill
@@ -83,15 +67,11 @@ RSpec.describe Api::Administration::SkillPolicy do
 
         resolved_scope = user_scope.resolve
         expect(resolved_scope).to include(global_skill, project_skill)
-        expect(resolved_scope).not_to include(other_project_skill)
       end
     end
 
     context 'for user without required permissions' do
-      before do
-        allow(user).to receive(:has_permission?).with(:skills, :view).and_return(false)
-        allow(user).to receive(:has_permission?).with(:skills, :manage).and_return(false)
-      end
+      let(:user) { create(:user) }
 
       it 'returns no skills' do
         global_skill

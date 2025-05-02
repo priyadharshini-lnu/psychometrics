@@ -73,7 +73,6 @@ RSpec.describe Api::V2::Skill::Contract do
     it 'fails if filter is present but name_cont is missing' do
       params = {
         filter: {
-          project_id_eq: project.id.to_s,
           category_in: 'technical'
         }
       }
@@ -85,7 +84,7 @@ RSpec.describe Api::V2::Skill::Contract do
     end
 
     it 'validates minimum length for name_cont' do
-      params = valid_params.deep_merge(filter: { name_cont: 'ab' })
+      params = valid_params.deep_merge(filter: { name_cont: 'ab' }).tap { |p| p[:filter].delete(:project_id_eq) }
       contract = described_class::Search.new.call(params, { current_user: user, params: params })
       expect(contract.failure?).to eq(true)
       expect(contract.errors.to_hash).to eq(

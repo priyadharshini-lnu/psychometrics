@@ -40,6 +40,7 @@ const AssessmentList: React.FC<Props> = ({
   toggleAutoAssign,
   normalizeFactorScores,
   loadingUpdateMettlSchedule,
+  updatePearsonVariation,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
 
@@ -260,6 +261,7 @@ const AssessmentList: React.FC<Props> = ({
             campaignId={campaignId}
             updateMettlSchedule={updateMettlSchedule}
             loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
+            updatePearsonVariation={updatePearsonVariation}
           />
         ) : null}
       </Col>

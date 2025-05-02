@@ -31,6 +31,13 @@ module Pearson
         productId: user_assessment.assessment.external_assessment_id,
         canOverrideLanguage: true
       }
+      if variation
+        config = variation.configuration.to_h.symbolize_keys
+        product[:tags] = [
+          { key: 'Tal::Queries::EnableTimers', value: config[:enable_timers] },
+          { key: 'Tal::Queries::ChangeItemsCount', value: config[:change_items_count] }
+        ]
+      end
       unless user_assessment.assessment.v2_pearson_assessment?
         norm_id = user_assessment.pearson_norm_id
         product = product.merge(norms: [norm_id]) if norm_id.present?
@@ -61,6 +68,15 @@ module Pearson
           }
         ]
       }
+    end
+
+    def variation
+      variations = user_assessment.assessment.pearson_variations || []
+      variations.find { |v| v.code == variation_code }
+    end
+
+    def variation_code
+      user_assessment.pearson_user_assessment.variation
     end
 
     def redirect_url

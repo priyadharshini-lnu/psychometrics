@@ -6,6 +6,7 @@ class Administration::AssessmentsController < Administration::BaseController
   before_action :set_resource, only: %i[
     show edit update destroy toggle_status sidebar copy import_questions
     import_questions_sample_file preview export toggle_archive questions soft_delete restore
+    export_questions
   ]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -76,6 +77,12 @@ class Administration::AssessmentsController < Administration::BaseController
 
     AdminJob.call(:import_assessment_questions, { assessment_id: resource.id }, current_user, params[:file])
 
+    head :ok
+  end
+
+  def export_questions
+    audit! :export_assessment_questions, resource, payload: { source_id: resource.id }
+    AdminJob.call(:export_assessment_questions, { assessment_id: resource.id }, current_user)
     head :ok
   end
 

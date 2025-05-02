@@ -110,7 +110,7 @@ module CampaignScoring
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
       }
       lua.helpers = {
-        'round' => proc { |value, precision = 0| value.round(precision) },
+        'round' => proc { |value, precision = 0| value&.round(precision) },
         'percentile' => proc { |value| Ztable.percentile(value) },
         'average' => proc { |values, precision = nil| calculate_average(values, precision) }
       }

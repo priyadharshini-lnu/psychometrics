@@ -1,15 +1,21 @@
-import { Flex, Input, Modal } from 'antd'
+import {
+  Flex, Input, Modal, Select,
+} from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { useState } from 'react'
+import { DEVELOPMENT_ACTION_LEARNING_STYLE } from './Constants'
+
 
 const { TextArea } = Input
 
 const { I18n } = window
 
+const { Option } = Select
+
 type Props = {
   open: boolean
   onCancel: () => void
-  onCreateCustomDevelopmentAction: (data: string) => void
+  onCreateCustomDevelopmentAction: (customAction: string, customActionLearningStyle: string) => void
 }
 export const CreateCustomDevelopmentActionModal = ({
   open,
@@ -17,8 +23,9 @@ export const CreateCustomDevelopmentActionModal = ({
   onCreateCustomDevelopmentAction,
 }: Props) => {
   const [textValue, setTextValue] = useState('')
+  const [customActionLearningStyle, setCustomActionLearningStyle] = useState(DEVELOPMENT_ACTION_LEARNING_STYLE[0])
   const handleCreateCustomDevelopmentAction = () => {
-    onCreateCustomDevelopmentAction(textValue)
+    onCreateCustomDevelopmentAction(textValue, customActionLearningStyle)
     setTextValue('')
   }
 
@@ -33,7 +40,22 @@ export const CreateCustomDevelopmentActionModal = ({
       cancelText={I18n.t('common.actions.cancel')}
       width={800}
     >
-      <Flex>
+      <Flex vertical gap={8}>
+        <Select
+          defaultValue={customActionLearningStyle}
+          onChange={e => setCustomActionLearningStyle(e)}
+        >
+          {
+            DEVELOPMENT_ACTION_LEARNING_STYLE
+              .map(style => (
+                <Option key={style} value={style}>
+                  {I18n.t(
+                    `idp.development_actions.${style}`,
+                  )}
+                </Option>
+              ))
+          }
+        </Select>
         <TextArea
           value={textValue}
           onChange={e => setTextValue(e.target.value)}

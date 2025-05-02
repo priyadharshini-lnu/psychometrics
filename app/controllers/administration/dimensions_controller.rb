@@ -3,7 +3,8 @@
 class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar
-                                        export_translations import_translations import_factors]
+                                        export_translations import_translations import_factors export_json]
+
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -115,6 +116,45 @@ class Administration::DimensionsController < Administration::BaseController
     end
   end
 
+  def export_json
+    AdminJob.call(
+      :export_dimension_as_json,
+      { dimension_id: resource.id },
+      current_user
+    )
+  end
+
+  def validate_import
+    form = PortableData::Imports::Form.new(json_file_content: import_params[:json_file_content])
+
+    if form.valid?
+      render json: {
+        change_logs: form.change_logs
+      }
+    else
+      render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def import
+    if request.get? || request.head?
+      respond_to do |format|
+        format.js { render 'import' }
+      end
+    else
+      form = PortableData::Imports::Form.new(json_file_content: import_params[:json_file_content])
+      if form.valid?
+        AdminJob.call(
+          :import_dimension_from_json,
+          import_params.merge(deleted_records: form.deleted_records),
+          current_user
+        )
+      else
+        render json: { error: form.errors.full_messages.join(', ') }, status: :unprocessable_entity
+      end
+    end
+  end
+
   private
 
   def pundit_authorize
@@ -138,5 +178,9 @@ class Administration::DimensionsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(:name, :owner_id, :occupations_enabled, :innovation_styles_enabled)
+  end
+
+  def import_params
+    params.permit(:json_file_content, mappable_values: {})
   end
 end

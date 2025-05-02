@@ -1,27 +1,27 @@
 import _ from 'lodash'
-import { Component } from 'react'
+import { useSelector } from 'react-redux'
 import DataSourceOptionsDropdown from './DataSourceOptionsDropdown'
-import AppStore from '~/modules/reports/store/AppStore'
 
-class DataSheet extends Component {
-  onChange = (data) => {
-    const { modules, singleChoice, onSelect } = this.props
+const DataSheet = ({
+  modules, singleChoice, onSelect, onlyNumbers,
+}) => {
+  const columns = useSelector(state => state.report.builder.data_sheet_columns)
+
+  const onChange = (data) => {
     const model = modules[0]
     model.props.source.columns = singleChoice ? [data.value] : data.map(dataObject => dataObject.value)
     onSelect()
   }
 
-  getOptions = () => {
-    const { onlyNumbers } = this.props
+  const getOptions = () => {
     if (onlyNumbers) {
-      return AppStore.report.dataSheetColumns.filter(column => column.type === 'Number')
+      return columns.filter(column => column.type === 'Number')
         .map(d => ({ label: d.name, value: d.name }))
     }
-    return AppStore.report.dataSheetColumns.map(d => ({ label: d.name, value: d.name }))
+    return columns.map(d => ({ label: d.name, value: d.name }))
   }
 
-  getValue () {
-    const { modules, singleChoice } = this.props
+  const getValue = () => {
     const model = modules[0]
     if (singleChoice) {
       const resultingValue = _.result(model, 'props.source.columns', [])[0]
@@ -34,21 +34,18 @@ class DataSheet extends Component {
     return _.result(model, 'props.source.columns', []).map(value => ({ label: value, value }))
   }
 
-  render () {
-    const { singleChoice } = this.props
-    return (
-      <DataSourceOptionsDropdown
-        name="form-field-name"
-        value={this.getValue()}
-        options={this.getOptions()}
-        clearable={false}
-        autoFocus={false}
-        isMulti={!singleChoice}
-        onChange={this.onChange}
-        placeholder={singleChoice ? 'Choose Column' : 'Choose Columns'}
-      />
-    )
-  }
+  return (
+    <DataSourceOptionsDropdown
+      name="form-field-name"
+      value={getValue()}
+      options={getOptions()}
+      clearable={false}
+      autoFocus={false}
+      isMulti={!singleChoice}
+      onChange={onChange}
+      placeholder={singleChoice ? 'Choose Column' : 'Choose Columns'}
+    />
+  )
 }
 
 export default DataSheet

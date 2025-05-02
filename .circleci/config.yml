@@ -19,7 +19,7 @@ executors:
       NODE_ENV: test
       REDIS_HOST: localhost
       REDIS_URL: 'redis://localhost:6379/1'
-      NODE_OPTIONS: '--max_old_space_size=7168'
+      NODE_OPTIONS: '--max_old_space_size=8192'
       BUNDLER_VERSION: 2.3.17
       PARALLEL_TEST_PROCESSORS: '7'
       WEB_CONCURRENCY: '1'

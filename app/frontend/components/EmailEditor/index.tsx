@@ -105,7 +105,9 @@ export const EmailEditor: React.FC<Props> = ({
   const ref = useRef<any>(null)
 
   useEffect(() => {
-    ref.current.editor.opts.saveParams = { type, details }
+    if (ref.current?.editor?.opts) {
+      ref.current.editor.opts.saveParams = { type, details }
+    }
   }, [type, details])
 
   return (

@@ -55,7 +55,7 @@ module UsersResults
           result = users_result.answers[question&.id&.to_s]
           result_present = result && (result['answers'].present? || result['not_applicable'].present?)
           if scoring_class && result_present && question && !question_scoring.props.empty?
-            scoring_result = scoring_class.new.calculate(question, result, question_scoring.props)
+            scoring_result = scoring_class.new.calculate(question, result, question_scoring)
             scoring_point = scoring_result[:value]
             scoring_point ||= 0 if result['answers'].present?
             scoring[factor_id][:results] << {

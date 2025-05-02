@@ -3,7 +3,7 @@
 class ApplicationMailer < ActionMailer::Base
   default from: "#{I18n.t('mailer.from')} <no-reply@#{Settings.domain}>"
   layout 'mailer'
-
+  helper :mailer
   def send_email(user, details, &)
     unless user.can_receives_communication?
       Rails.logger.info "Unable to send email to disabled user with id '#{user.id}' and email #{user.email}."

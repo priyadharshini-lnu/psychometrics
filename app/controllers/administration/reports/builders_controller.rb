@@ -31,15 +31,16 @@ module Administration
       end
 
       def upload_campaign_factors
-        form = ::Administration::Reports::CampaignFactorsImportForm.new(
+        form = ::Administration::CampaignFactors::ImportForm.new(
           file: params[:file],
-          report_id: params[:report_id]
+          resource_id: params[:report_id],
+          resource_class: 'Report'
         )
 
         if form.valid?
           render json: form.processed_data, status: :ok
         else
-          render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+          render json: { errors: form.errors.messages.values.flatten }, status: :unprocessable_entity
         end
       end
 

@@ -2,9 +2,11 @@
 
 module Scoring
   class SideBySide
-    def calculate(_question, result, scoring_template) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    def calculate(_question, result, question_scoring) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       values = []
       options = []
+      scoring_template = question_scoring.props
+
       result['answers'].each do |answer|
         next if answer['values'].blank?
 

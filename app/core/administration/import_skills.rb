@@ -2,13 +2,13 @@
 
 module Administration
   class ImportSkills < BaseCommand
-    REQUIRED_FIELDS = %w[ID Name Description Project].freeze
+    REQUIRED_FIELDS = %w[ID Name Description].freeze
     REQUIRED_VALUES = %w[Name Description].freeze
 
-    def initialize(file_url, ignore_duplicates: false)
+    def initialize(file_url, project_id)
       @file_url = file_url.to_s
       @errors = []
-      @ignore_duplicates = ignore_duplicates
+      @project_id = project_id
     end
 
     def call
@@ -69,8 +69,6 @@ module Administration
     def process_row(row, line_number)
       return unless validate_required_fields(row, line_number)
 
-      validate_project(row, line_number) if row['Project'].present?
-
       skill = initialize_skill(row)
       assign_skill_attributes(skill, row)
       save_skill(skill, line_number)
@@ -82,16 +80,6 @@ module Administration
         @errors << "Line #{line_number}: Missing required fields (#{missing_fields.join(', ')})"
         return false
       end
-      true
-    end
-
-    def validate_project(row, line_number)
-      project = Project.find_by(id: row['Project'])
-      unless project
-        @errors << "Line #{line_number}: Project '#{row['Project']}' not found"
-        return false
-      end
-      @project = project
       true
     end
 
@@ -109,7 +97,7 @@ module Administration
         description: row['Description'],
         category: normalize_category(row['Category'])
       }
-      attributes[:project] = @project if @project.present? && row['Project'].present?
+      attributes[:project_id] = @project_id if @project_id.present?
 
       skill.assign_attributes(attributes)
       assign_tags(skill, row)

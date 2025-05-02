@@ -76,7 +76,7 @@ module AllowedPermissions
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
-    'skills' => %w[view manage],
+    'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations]
   }.freeze
 
@@ -145,7 +145,7 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
-    'skills' => %w[view manage],
+    'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations]
   }.freeze
 
@@ -187,7 +187,8 @@ module AllowedPermissions
       bulk_download
     ],
     'workshops' => %w[view manage],
-    'idp_templates' => %w[view manage]
+    'idp_templates' => %w[view manage],
+    'skills' => %w[view]
   }.freeze
 
   THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS = {

@@ -5,6 +5,7 @@ import { Datasheet } from './Datasheet'
 import { Admins } from './Admins'
 import { DataExports } from './DataExports'
 import { Idp } from './Idp'
+import { Taxonomy } from './Taxonomy'
 
 export const routes = [
   { redirect: true, from: '/', to: 'new_campaigns' },
@@ -39,5 +40,13 @@ export const routes = [
   {
     path: '/idp/*',
     component: <Idp />,
+  },
+  {
+    path: '/taxonomy',
+    component: <Taxonomy />,
+  },
+  {
+    path: '/taxonomy/*',
+    component: <Taxonomy />,
   },
 ]

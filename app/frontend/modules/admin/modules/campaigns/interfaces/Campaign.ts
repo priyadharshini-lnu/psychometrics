@@ -11,6 +11,7 @@ export default interface Campaign {
   assessments: Entity[]
   reports: Entity[]
   isFixedTime: boolean
+  isThreesixty: boolean
   permissions: {
     edit: boolean
     delete: boolean

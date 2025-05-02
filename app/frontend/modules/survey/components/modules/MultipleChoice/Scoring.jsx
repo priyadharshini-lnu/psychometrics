@@ -1,13 +1,15 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Space } from 'antd'
+import { Radio, Space } from 'antd'
 import FillingScoring from '~/modules/survey/components/FillingScoring'
 import ScoringCell from '~/modules/survey/components/ScoringCell'
 import ScoringLabel from '~/modules/survey/components/ScoringLabel'
 import Utils from '~/modules/survey/utils'
 import styles from './styles.less'
 import { MultilineScoring } from '~/modules/survey/components/MultilineEdit'
+
+const { I18n } = window
 
 export class Scoring extends Component {
   static propTypes = {
@@ -39,6 +41,11 @@ export class Scoring extends Component {
     this.forceUpdate()
   }
 
+  changeScoringStrategy = (scoringStrategy) => {
+    const { scoring } = this.props
+    scoring.updateScoringStrategy(scoringStrategy)
+  }
+
   handleMultilineChange = (values) => {
     const { scoring } = this.props
     values.map((value, index) => {
@@ -58,6 +65,31 @@ export class Scoring extends Component {
 
     return (
       <div>
+        {
+          props.type === 'MultipleAnswer' ? (
+            <div className={styles.scoringStrategy}>
+              <Space direction="horizontal" size="small" wrap>
+                <span className="inline font-bold">{I18n.t('administration.assessments.scoring_strategy.title')}</span>
+                <Radio.Group
+                  className="font-neutral"
+                  defaultValue={scoring.scoring_strategy || 'answers_average'}
+                  onChange={e => this.changeScoringStrategy(e.target.value)}
+                >
+                  <Radio value="answers_average" checked={scoring.scoring_strategy === 'answers_average'}>
+                    <span className="font-normal">
+                      {I18n.t('administration.assessments.scoring_strategy.average')}
+                    </span>
+                  </Radio>
+                  <Radio value="answers_sum" checked={scoring.scoring_strategy === 'answers_sum'}>
+                    <span className="font-normal">
+                      {I18n.t('administration.assessments.scoring_strategy.sum')}
+                    </span>
+                  </Radio>
+                </Radio.Group>
+              </Space>
+            </div>
+          ) : null
+        }
         <Space>
           <FillingScoring scoring={scoring} onChange={this.fillScoring} />
           <MultilineScoring

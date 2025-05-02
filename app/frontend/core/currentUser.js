@@ -22,11 +22,14 @@ export function hasGrant (user, scope, action) {
 
 export const defaultState = null
 
+
+const isAdmin = window.location.pathname.includes('admin') || window.location.pathname.includes('administration')
+
 export const changeLocale = locale => ({
   type: CHANGE_LOCALE,
   request: {
     method: 'post',
-    url: '/users/change_locale',
+    url: isAdmin ? '/api/v2/administration/users/change_locale' : '/users/change_locale',
     body: {
       locale,
     },

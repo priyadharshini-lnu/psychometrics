@@ -275,10 +275,24 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     end
   end
 
+  def combined_hogan_assessment?
+    return false unless hogan?
+
+    settings = Settings.providers.hogan.assessments.find { |a| a.id.casecmp?(external_assessment_id) }
+
+    settings.assessments.present? && settings.assessments.is_a?(Array)
+  end
+
   def simulation_settings
     Settings.providers.simulation.assessments.find do |a|
       a.id == external_assessment_id
     end
+  end
+
+  def pearson_variations
+    Settings.providers.pearson.products.find do |p|
+      external_assessment_id.end_with?(p.id)
+    end&.variations
   end
 
   def external_assessment_id

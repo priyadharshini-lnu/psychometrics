@@ -115,3 +115,11 @@ export const importQuestions = (assessmentId, body) => ({
     contentType: 'multipart/form-data;',
   },
 })
+
+export const exportQuestions = assessmentId => ({
+  type: 'builder/assessment/EXPORT_QUESTIONS',
+  request: {
+    url: `/administration/assessments/${assessmentId}/export_questions`,
+    method: 'post',
+  },
+})

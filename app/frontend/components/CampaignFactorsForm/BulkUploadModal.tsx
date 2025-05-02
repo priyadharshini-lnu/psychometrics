@@ -7,12 +7,19 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useCallback, useState } from 'react'
 import { CheckOutlined, LoadingOutlined, UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './CampaignFactorsForm.less'
-import { importCampaignFactors } from '~/modules/admin/modules/campaigns/core/campaignFactors'
+import { importAssessmentCFs, importCampaignFactors } from '~/modules/admin/modules/campaigns/core/campaignFactors'
 import AppStore from '~/modules/reports/store/AppStore'
+import { RootState } from '~/modules/survey/core/rootReducers'
 
 const { I18n } = window
 
-const connector = connect(null, { importCampaignFactors })
+const connector = connect(
+  (state: RootState) => ({
+    assessmentId: state.survey?.builder.assessment.id,
+  }), {
+    importCampaignFactors, importAssessmentCFs,
+  },
+)
 
 interface props extends ConnectedProps<typeof connector> {
   close(): void
@@ -21,7 +28,7 @@ interface props extends ConnectedProps<typeof connector> {
 }
 
 const BulkUploadModal: React.FC<props> = ({
-  close, open, handleBulkUpload, importCampaignFactors,
+  close, open, handleBulkUpload, importCampaignFactors, importAssessmentCFs, assessmentId,
 }) => {
   const [files, setFiles] = useState<UploadFile[]>([])
   const [errors, setErrors] = useState([])
@@ -49,23 +56,39 @@ const BulkUploadModal: React.FC<props> = ({
               return
             }
             const data = new FormData()
-            const reportId = (AppStore.report as unknown as { id: number }).id
-            data.append('report_id', reportId.toString())
             data.append('file', files[0].originFileObj as Blob, files[0].name)
-            setLoading(true)
-            importCampaignFactors(reportId, data)
-              .then((res) => {
-                handleBulkUpload(res.response)
-                message.info(I18n.t('administration.reports.bulk_upload.upload_success'))
-                close()
-              })
-              .catch((err) => {
-                setErrors(err)
-                message.error(I18n.t('common.errors.something_wrong'))
-              })
-              .finally(() => {
-                setLoading(false)
-              })
+            const reportId = (AppStore.report as unknown as { id: number }).id
+            if (reportId) {
+              data.append('report_id', reportId.toString())
+              setLoading(true)
+              importCampaignFactors(reportId, data)
+                .then((res) => {
+                  handleBulkUpload(res.response)
+                  message.info(I18n.t('administration.reports.bulk_upload.upload_success'))
+                  close()
+                })
+                .catch((err) => {
+                  setErrors(err)
+                })
+                .finally(() => {
+                  setLoading(false)
+                })
+            } else if (assessmentId) {
+              data.append('assessment_id', assessmentId)
+              setLoading(true)
+              importAssessmentCFs(assessmentId, data)
+                .then((res) => {
+                  handleBulkUpload(res.response)
+                  message.info(I18n.t('administration.reports.bulk_upload.upload_success'))
+                  close()
+                })
+                .catch((err) => {
+                  setErrors(err)
+                })
+                .finally(() => {
+                  setLoading(false)
+                })
+            }
           }}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}

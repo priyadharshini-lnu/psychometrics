@@ -9,7 +9,7 @@ module AdminJobs
       Assessment.transaction do
         form.processed_rows.each do |row|
           block = find_or_create_block(row['block'])
-          question = create_question(block, row)
+          question = create_or_update_question!(block, row)
           add_factor_scoring(question, row)
         end
       end
@@ -23,15 +23,33 @@ module AdminJobs
 
       scoring.each do |factor_name, comma_separated_scores|
         props = Assessments::QuestionsImport::ScoresColumnToFactorsScoringProps.call!(question, comma_separated_scores)
-        FactorsScoring.create!(question_id: question.id, factor_id: factors_index_by_name[factor_name].id, props: props)
+        factor = factors_index_by_name[factor_name]
+
+        next unless factor
+
+        factor_scoring = FactorsScoring.find_or_initialize_by(
+          question_id: question.id,
+          factor_id: factor.id,
+          assessment_id: question.assessment_id
+        )
+
+        factor_scoring.props = props
+        factor_scoring.save!
       end
     end
 
-    def create_question(block, row)
+    def create_or_update_question!(block, row)
+      question_id = row.dig('question', 'id')
       attributes = Assessments::QuestionsImport::QuestionForm.new(row['question']).attributes
       attributes['props'] = process_question_props(row)
       attributes['required_validation'] = process_required_validation(row['required_validation'])
-      block.questions.create!(attributes)
+      if question_id
+        existing_question = assessment.questions.find_by(id: question_id)
+        existing_question.update!(attributes)
+        existing_question
+      else
+        block.questions.create!(attributes)
+      end
     end
 
     def process_question_props(row)

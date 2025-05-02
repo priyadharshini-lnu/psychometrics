@@ -141,7 +141,7 @@ const ToolsDropdown: React.FC<Props> = ({
       innerElement={(
         <Button>
           <ToolOutlined />
-          <span>Tools</span>
+          <span>{I18n.t('administration.users.toolbar.title')}</span>
           <DownOutlined />
         </Button>
     )}

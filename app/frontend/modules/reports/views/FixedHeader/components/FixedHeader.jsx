@@ -207,6 +207,7 @@ export class FixedHeader extends Component {
     save(report).then(({ response: { data } }) => {
       target.removeAttribute('disabled')
       const normalizedData = normalize(data, schema)
+      unselectModules()
       AppStore.init(data.data)
       store.dispatch({ type: INIT, data: normalizedData })
       message.success('Report successfully saved')

@@ -20,6 +20,7 @@ export const CREATE = 'resource/campaign/CREATE'
 export const ADD_IN_REDUX_STORE = 'resource/campaign/ADD_IN_REDUX_STORE'
 export const UPDATE = 'resource/campaign/UPDATE'
 export const REMOVE = 'resource/campaign/REMOVE'
+export const COPY = 'resource/campaign/COPY'
 export const FETCH_TEMPLATES_AND_ASSESSMENTS = 'campaigns/FETCH_TEMPLATES_AND_ASSESSMENTS'
 export const PDF_PASSWORD = 'campaigns/FETCH_PDF_PASSWORD'
 
@@ -75,6 +76,15 @@ export const addInReduxStore = (data: Campaign) => ({
   type: ADD_IN_REDUX_STORE,
   payload: {
     data,
+  },
+})
+
+export const copy = (campaignId: number, projectId: number, data) => ({
+  type: REMOVE,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/copy`,
+    body: data,
   },
 })
 

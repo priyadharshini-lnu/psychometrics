@@ -6,4 +6,18 @@ class UserIdpDevelopmentAction < ApplicationRecord
   belongs_to :user_idp_skill
   has_one :skill, through: :user_idp_skill
   has_one :user, through: :user_idp_plan
+
+  enum :custom_action_learning_style, {
+    on_the_job: 0,
+    learning_from_others: 1,
+    structured_learning: 2
+  }
+
+  validates :custom_action_learning_style, presence: true, if: :custom_action?
+
+  def learning_style
+    return nil if custom_action?
+
+    development_action&.learning_style
+  end
 end

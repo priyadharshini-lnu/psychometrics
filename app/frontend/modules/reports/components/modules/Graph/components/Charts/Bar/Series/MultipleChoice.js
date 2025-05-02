@@ -29,9 +29,14 @@ export const Functions = {
 export default {
   series (results, question, model, func = 'Count') {
     const colors = _.map(model.props.colors, 'color')
-    if (Array.isArray(results)) {
+    const resultsData = model.props.hideEmptyFilters
+      ? results.filter((r) => {
+        const v = r.results.scoring
+        return !!(typeof v !== 'object' || Object.keys(v).length)
+      }) : results
+    if (Array.isArray(resultsData)) {
       func = Functions[func] ? Functions[func] : Functions.Count
-      return _.map(results, (res, i) => {
+      return _.map(resultsData, (res, i) => {
         const commonData = _.map(question.props.choicesTexts, (label, i) => {
           label = I18nStore.tQuestion(question, `choicesTexts${i + 1}`, { choice: i })
           const data = func(res.results.questions?.[question.id], i)

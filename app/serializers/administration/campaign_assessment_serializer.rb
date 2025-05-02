@@ -7,7 +7,7 @@ module Administration
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
                :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
                :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id,
-               :simulation_content_variations
+               :simulation_content_variations, :pearson_variations
 
     delegate :id, :name, :dimension_id, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
@@ -37,6 +37,12 @@ module Administration
       return [] unless assessment.simulation?
 
       assessment.simulation_settings&.content_variations || []
+    end
+
+    def pearson_variations
+      return [] unless assessment.pearson?
+
+      assessment.pearson_variations&.map { |v| v.to_h.except(:configuration, :default) }
     end
 
     def external_config
@@ -80,7 +86,8 @@ module Administration
           'update_mettl_schedule',
           'normalize_factor_scores',
           'update_content_variation',
-          'update_available_locales'
+          'update_available_locales',
+          'update_pearson_variation'
         ],
         {
           project_id: context[:project_id],

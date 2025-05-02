@@ -194,7 +194,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                           onClick={handleBackToAssessmentList}
                           size="small"
                           type="text"
-                          ghost
                           aria-label={I18n.t('frontend.aria.back_to_tasks')}
                         >
                           <DirectionalNavigateBackIcon className={styles.backIcon} />

@@ -2,8 +2,10 @@
 
 module Scoring
   class TextEntry
-    def calculate(_question, result, scoring_template)
+    def calculate(_question, result, question_scoring)
       values = []
+      scoring_template = question_scoring.props
+
       result['answers'].each do |answer|
         if answer['value']
           object = scoring_template.find { |template| template['index'] == answer['value'] }

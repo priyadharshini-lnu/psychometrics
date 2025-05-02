@@ -104,7 +104,13 @@
                   label: t('.stop_reminder_datetime'),
                   min_date: date_without_seconds_and_timezone
       h3 Message
-      = f.input :subject
+      .form-group.clearfix
+        = f.label :subject, style: 'float: left; margin-right: 10px;'
+        #subject_piped_text_button style='float: left; margin-top: -3px;'
+        .clearfix
+        .input-control
+          = f.input :subject, label: false
+          .input-group-append
       = f.input :body, as: :hidden, input_html: { id: 'body_value' }
       #froala_editor
       - if f.object.errors[:body].any?

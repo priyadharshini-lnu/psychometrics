@@ -38,6 +38,7 @@ module Administration
           required(:update_mettl_schedule).filled(:bool?)
           optional(:normalize_factor_scores).maybe(:bool?)
           required(:update_content_variation).filled(:bool?)
+          required(:update_pearson_variation).filled(:bool?)
           required(:update_available_locales).filled(:bool?)
           optional(:export_occupations).filled(:bool?)
         end
@@ -48,6 +49,7 @@ module Administration
           optional(:duration).maybe(:int?)
           optional(:passPercentage).maybe(:int?)
           optional(:content_variation_id).maybe(:str?)
+          optional(:variation).maybe(:str?)
         end
         required(:campaign_assessment_id).filled(:int?)
         required(:prework).filled(:bool?)
@@ -61,6 +63,9 @@ module Administration
         required(:dimension_id).maybe(:int?)
         required(:simulation_content_variations).maybe do
           array(SimulationContentVariationSchema.schema(_, _))
+        end
+        required(:pearson_variations).maybe do
+          array(PearsonVariationSchema.schema(_, _))
         end
       end
     end

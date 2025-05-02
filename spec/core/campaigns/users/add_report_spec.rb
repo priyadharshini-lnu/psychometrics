@@ -160,6 +160,7 @@ data_seprator: '4-2')
   it 'create pearson_user_assessment if assessment is of type pearson' do
     assessment = create(:assessment, :pearson)
     report = create(:report, assessments: [assessment])
+    create(:campaign_assessment, campaign: campaign, assessment: assessment)
     described_class.call!(campaign_user, report, assessments: report.assessments)
     pearson_user_assessment = assessment.pearson_user_assessments.first
 

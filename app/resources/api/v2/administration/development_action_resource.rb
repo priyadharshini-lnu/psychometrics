@@ -9,6 +9,7 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
 
   ransack_filters %i[
     name_cont
+    project_id_eq
     filterable_fields
   ]
 

@@ -43,7 +43,9 @@ class CampaignUser < ApplicationRecord
   after_commit :publish_campaign_results_available,
                if: proc { campaign_scores_finalized_previously_changed? && campaign_scores_finalized? },
                 on: [:update]
-  after_commit :publish_campaign_user_status, if: proc { status_previously_changed? }, on: [:update]
+  after_commit :publish_campaign_user_status,
+               if: proc { status_previously_changed? || saved_change_to_id? },
+               on: %i[create update]
 
   delegate :proctoring_enabled?, :proctoring_enabled_on_workshop_activity?, to: :campaign
   delegate :pending_assessments, to: :user_assessments

@@ -1,6 +1,7 @@
 javascript [nonce=content_security_policy_nonce]:
   var PsyGlobalState = {
     realEnv: "#{ENV['REAL_ENV']}",
+    adminLocales: "#{ENV['ADMIN_LOCALES']}",
     currentUser: #{(current_user || {}).to_json(only: [:id, :email]).html_safe},
     sentryUrl: "#{ENV['SENTRY_URL']}",
     sentryDebug: "#{ENV['SENTRY_DEBUG']}",

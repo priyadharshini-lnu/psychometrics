@@ -5,7 +5,7 @@ module AdminJobs
     def call
       result = Administration::ImportSkills.new(
         record.file.url,
-        ignore_duplicates: record.data['ignore_duplicates']
+        record.data['project_id']
       ).call
 
       if result == true

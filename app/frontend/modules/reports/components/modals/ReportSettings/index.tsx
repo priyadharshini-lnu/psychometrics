@@ -5,8 +5,15 @@ import { closeModal, getData } from '~/modules/admin/core/ui/modals'
 import { PageSettings } from './PageSettings'
 import { Translations } from './Translations'
 import { CampaignFactors } from './CampaignFactors'
+import { DataSheets } from './DataSheets'
 
-export const ReportSettingsComponent = ({ close }) => (
+interface ReportSettingsComponentProps {
+  close: () => void;
+}
+
+export const ReportSettingsComponent = ({
+  close,
+}: ReportSettingsComponentProps) => (
   <Modal
     title="Report Settings"
     open
@@ -34,6 +41,11 @@ export const ReportSettingsComponent = ({ close }) => (
           key: 'campaign_factors',
           children: <CampaignFactors />,
         },
+        {
+          label: 'Data Sheets',
+          key: 'data_sheets',
+          children: <DataSheets />,
+        },
       ]}
     />
   </Modal>
@@ -42,6 +54,8 @@ export const ReportSettingsComponent = ({ close }) => (
 export const ReportSettings = connect(
   (state:RootState) => ({
     ...getData(state.report).reportSettings,
+    reportSettings: getData(state.report).reportSettings,
+    reportId: getData(state.report).reportId,
   }),
   {
     close: () => closeModal('reportSettings'),
