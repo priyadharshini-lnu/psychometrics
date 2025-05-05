@@ -15,7 +15,7 @@ const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
-    assessmentId: state.survey.builder.assessment.id,
+    assessmentId: state.survey?.builder.assessment.id,
   }), {
     importCampaignFactors, importAssessmentCFs,
   },
@@ -69,7 +69,6 @@ const BulkUploadModal: React.FC<props> = ({
                 })
                 .catch((err) => {
                   setErrors(err)
-                  message.error(I18n.t('common.errors.something_wrong'))
                 })
                 .finally(() => {
                   setLoading(false)
@@ -85,7 +84,6 @@ const BulkUploadModal: React.FC<props> = ({
                 })
                 .catch((err) => {
                   setErrors(err)
-                  message.error(I18n.t('common.errors.something_wrong'))
                 })
                 .finally(() => {
                   setLoading(false)

@@ -14,12 +14,7 @@ module Services
                 ClientUserId: get_client_user_id(context.provider),
                 groupName: context.group,
                 participantId: context.participant_id,
-                assessments: [
-                  {
-                    assessmentId: context.assessment_id,
-                    formId: context.form_id
-                  }
-                ]
+                assessments: context.assessments
               },
               provider: context.provider
             )
