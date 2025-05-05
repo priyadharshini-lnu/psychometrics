@@ -87,6 +87,7 @@ export const SkillsFilter: React.FC<Props> = ({
         csvData: CSVSkills,
         title: I18n.t('administration.skills.import_action.skills_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
+        fileName: 'skills-sample.csv',
       })
     }
 
@@ -96,6 +97,7 @@ export const SkillsFilter: React.FC<Props> = ({
         csvData: CSVSkillsTranslations,
         title: I18n.t('administration.skills.import_action.skills_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
+        fileName: 'skills-translations-sample.csv',
       })
     }
 

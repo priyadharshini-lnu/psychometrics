@@ -2401,7 +2401,6 @@ en:
       add_skill_group_title: Exploring Your %{category} Skills
       add_skills: Add
       add_skills_step: Add Skills
-      continue_to_add_skills: Continue to add skills
       continue_to_rate_skills: Continue to rate skills
       getting_started: Getting Started
       getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
@@ -2423,14 +2422,7 @@ en:
     my_plan:
       development_plan: Development Plan
       graphs:
-        area_of_development: Area of Development
-        behavioural: Behavioural
         categories: Categories
-        learning_on_job: On the job (%{count})
-        learning_others: Learning from others (%{count})
-        learning_structured: Structured learning (%{count})
-        other: Other
-        technical: Technical
       save_skills: Save Skills
     pdf:
       header: Hello

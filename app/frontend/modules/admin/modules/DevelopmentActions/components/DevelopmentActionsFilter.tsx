@@ -85,6 +85,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
         csvData: CSVDevelopmentAction,
         title: I18n.t('administration.development_actions.import_action.development_actions_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
+        fileName: 'development-actions-sample.csv',
       })
     }
 
@@ -94,6 +95,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
         csvData: CSVDevelopmentActionTranslations,
         title: I18n.t('administration.development_actions.import_action.development_actions_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
+        fileName: 'development-actions-translations-sample.csv',
       })
     }
 

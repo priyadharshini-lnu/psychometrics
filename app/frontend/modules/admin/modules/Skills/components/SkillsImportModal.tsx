@@ -22,7 +22,8 @@ interface OwnProps {
     projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
   csvData: string,
   title: string,
-  allowGlobalImport: boolean
+  allowGlobalImport: boolean,
+  fileName: string
 }
 
 export const SkillsImportModal: React.FC<OwnProps> = ({
@@ -31,6 +32,7 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
   csvData,
   title,
   allowGlobalImport,
+  fileName,
 }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
@@ -158,6 +160,7 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         <DownloadSampleFile
           fileData={csvData}
           buttonText={I18n.t('administration.skills.import.download_example_csv')}
+          filename={fileName}
         />
       </div>
       {errors.length ? (
@@ -215,7 +218,6 @@ const ProjectDropdown = ({ form, owner }) => {
     <Form.Item
       name="projectId"
       label={I18n.t('common.column.project')}
-      rules={[{ required: true }]}
     >
       <Select
         disabled={!owner}

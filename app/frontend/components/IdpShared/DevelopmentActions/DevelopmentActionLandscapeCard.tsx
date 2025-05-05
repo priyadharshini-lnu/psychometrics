@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import {
   Rate, Progress, Popover, Button, Slider, Flex, Typography, DatePicker,
-  Switch,
   message,
   Tooltip,
 } from 'antd'
@@ -147,7 +146,6 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
   return (<Flex flex={1}>-</Flex>)
 }
 
-
 const Card = ({
   developmentAction,
   onUpdateDevelopmentAction,
@@ -170,14 +168,6 @@ const Card = ({
       endDateTime: end ? dayjs(end).format('YYYY-MM-DD HH:mm') : null,
     })
   }
-
-  const handlePrivacyChange = (checked: boolean) => {
-    onUpdateDevelopmentAction?.({
-      ...developmentAction,
-      private: checked,
-    })
-  }
-
 
   const handleEditClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.stopPropagation()
@@ -343,35 +333,6 @@ const Card = ({
               developmentAction={developmentAction}
               editMode={editMode}
             />
-          </Flex>
-          <Flex
-            flex={3}
-            className={cs(
-              {
-                [styles.border_r_1]: !isTablet,
-                [styles.p_12]: !isTablet,
-                [styles.pb_8]: isTablet,
-              },
-            )}
-          >
-            {isTablet ? (
-              <Flex flex={1} className={styles.label}>
-                {I18n.t('idp.development_actions.private')}
-              </Flex>
-            ) : null}
-            <Flex flex={1}>
-              {!editMode && (developmentAction.private
-                ? (<Typography.Text>{I18n.t('idp.development_actions.action_private')}</Typography.Text>)
-                : (<Typography.Text>{I18n.t('idp.development_actions.action_public')}</Typography.Text>)
-              )}
-            </Flex>
-            {editMode ? (
-              <Switch
-                defaultChecked={developmentAction.private}
-                size="small"
-                onChange={handlePrivacyChange}
-              />
-            ) : null}
           </Flex>
           {progress}
         </Flex>

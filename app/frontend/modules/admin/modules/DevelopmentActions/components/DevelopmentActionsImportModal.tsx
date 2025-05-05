@@ -26,6 +26,7 @@ interface OwnProps {
   csvData: string,
   title: string,
   allowGlobalImport: boolean
+  fileName: string
 }
 
 export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
@@ -33,6 +34,7 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   handleImport,
   csvData, title,
   allowGlobalImport,
+  fileName,
 }) => {
   const params = useParams()
   const [form] = Form.useForm()
@@ -157,6 +159,7 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
       <div className="mbl" style={{ fontSize: '16px' }}>
         <DownloadSampleFile
           fileData={csvData}
+          filename={fileName}
           buttonText={I18n.t('administration.development_actions.import.download_example_csv')}
         />
       </div>

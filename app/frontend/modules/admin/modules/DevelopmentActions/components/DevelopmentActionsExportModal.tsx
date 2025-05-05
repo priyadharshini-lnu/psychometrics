@@ -66,7 +66,7 @@ export const DevelopmentActionsExportModal: React.FC<OwnProps> = ({
       >
         <Form.Item
           name="ownerId"
-          label={I18n.t('common.column.owner')}
+          label={I18n.t('common.column.client')}
         >
           <Select
             showSearch

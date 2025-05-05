@@ -103,7 +103,7 @@ const IDPTemplateForm = ({
         description: values.description,
         skills,
         behaviouralGlobalTags: values.behavioralGlobalTags || [],
-        behaviouralClientTags: values.behaviouralClientTags || [],
+        behaviouralClientTags: values.behavioralClientTags || [],
         technicalGlobalTags: values.technicalGlobalTags || [],
         technicalClientTags: values.technicalClientTags || [],
         behavioralGlobalSkillSettings: values.behavioralGlobalSkillSettings,

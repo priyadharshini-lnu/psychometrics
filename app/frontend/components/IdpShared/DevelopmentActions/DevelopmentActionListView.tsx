@@ -161,14 +161,6 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
                 </Typography.Text>
               </Flex>
               <Flex
-                flex={3}
-                className={styles.borderWithPadding}
-              >
-                <Typography.Text>
-                  {I18n.t('idp.development_actions.private')}
-                </Typography.Text>
-              </Flex>
-              <Flex
                 flex={6}
                 className={styles.borderWithPadding}
               >
