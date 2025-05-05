@@ -111,7 +111,7 @@ const IDPTemplateForm = ({
         technicalGlobalSkillSettings: values.technicalGlobalSkillSettings,
         technicalClientSkillSettings: values.technicalClientSkillSettings,
         project: { id: projectId, type: 'projects' },
-        report: { id: values.reportId, type: 'reports' },
+        report: values.reportId ? { id: values.reportId, type: 'reports' } : undefined,
         titleText: values.titleText,
         subtitleText: values.subtitleText,
         logoType: values.logoType,
