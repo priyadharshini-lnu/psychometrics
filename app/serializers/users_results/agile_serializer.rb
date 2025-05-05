@@ -23,12 +23,21 @@ module UsersResults
     end
 
     def locale
-      locales = object.available_locales
+      filtered_locales = context[:filtered_locales]
+      selected_locale = user_assessment.selected_locale
+      default_locale = I18n.default_locale.to_s
+      available_locales = object.available_locales
+      available_translations = if filtered_locales
+                                 translations.slice(*available_locales & [selected_locale, default_locale])
+                               else
+                                 translations.slice(*available_locales)
+                               end
+
       {
-        selected: user_assessment.selected_locale,
-        defaultLocale: I18n.default_locale,
-        available: locales,
-        translations: translations.slice(*locales)
+        selected: selected_locale,
+        defaultLocale: default_locale,
+        available: available_locales,
+        translations: available_translations
       }
     end
 

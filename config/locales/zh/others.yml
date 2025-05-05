@@ -27,24 +27,36 @@ zh:
         password: 密码
     errors:
       models:
+        register:
+          attributes:
+            mobile_number:
+              blank: 名字不能为空
+              invalid: 电子邮件无效
+              verification_expired: 验证码已过期，您可以尝试重新验证。
         user:
           attributes:
             current_password:
               invalid: 当前密码不正确
+  administration: 行政部门
   anonym:
+    close: 关闭
     continue: 继续
     notifications:
       restart:
         copy: 你已开始填写此问卷调查。你可以选择“继续”或“重新开始”。
         title: 是否继续？
+      retake:
+        copy: 您已完成本调查，如需重试，请点击下方的重试按钮。
+        title: 重考？
     restart: 重新开始
+    retake: 重考
   assessments:
     actions:
       back_to_campaign: 返回至推广活动
       extend_time: 延长时间
       goto_dashboard: 点击此处继续
       pending_tasks:
-        other: 你有一个待处理任务
+        other: 您有 1 项待处理任务
       rescore: 重新评分
     audio_response:
       permission_denied_message: 请在浏览器中启用麦克风权限，以便记录回答内容
@@ -75,15 +87,24 @@ zh:
     unknown_error: 遇到未知错误。
     video_response:
       device: 允许
+      device_selection:
+        camera: 照相机
+        mic: 麦克风
       discard: 放弃
+      discard_record_again: 丢弃并重新记录
       media_recorder:
         failure: 此浏览器不支持视频录制。请使用 Chrome 或 Firefox 进行视频录制
         success: 请允许使用摄像头和麦克风来录制音频和视频
+      recording_duration_label: 最长记录时间
+      recording_stop_label: 录音将在
+      requesting_permission: 请求许可...
+      response_recorded: 记录的答复
       save: 保存
       saved:
         label: 已保存
       saving: 保存中…
       start_recording: 开始录制
+      stop_recording: 停止录制
       tracker:
         backward: 你离屏幕太近了。请靠后一点
         forward: 你离屏幕太远了。请靠近一点
@@ -103,17 +124,28 @@ zh:
       description: 请使用你的个人账户信息登录
       forgot_password: 忘记了密码？
       login_btn: 登录
+      magic_link_btn: 通过电子邮件发送登录链接
       not_member: 还不是会员？
       or: 或者
       sso_btn: 使用单点登录
       title: 欢迎！
     logout: 退出登录
+    magic_link:
+      description: 请输入您的电子邮件地址以接收登录链接
+      login_with_password: 使用密码登录
+      send_me_login_link: 给我发送登录链接
+      success: 我们已向"%{email}"发送了登录链接，请点击电子邮件中的链接登录。
+    mobile_number: 手机号码
     new_password: 新密码
+    new_password_placeholder: 输入新密码
     otp:
       code: 代码
       code_placeholder: 一次性密码
       description: 请输入发送至你注册电子邮箱地址的一次性密码。
       resend: 重新发送一次性密码
+      resend_in: 在 %{timestamp} 秒后重新发送
+      resend_success: OTP 将发送至您的手机号码
+      sms_description: 请输入发送到您手机号码上的 OTP。
       submit: 验证
       title: 一次性密码
     password: 密码
@@ -145,21 +177,33 @@ zh:
     sign_out: 以其他用户身份登录
     sign_up: 注册
     terms_link: <a href="%{terms_url}">条款和隐私声明</a>
+    verify_mobile_number:
+      error:
+        blocked: 该号码因尝试次数过多而被阻止。
+        invalid_code: 无效代码
+        invalid_number: 手机号码不正确，请重新检查您的号码
+        max_attempts_reached: 尝试次数过多，请等待 10 分钟后再试。
   campaign:
     all_activities_are_completed: 所有活动现已完成。
     all_activities_are_completed_multiple: 此推广活动的所有活动现已完成。请前往仪表板，检查是否有其他活动分配给你。
     begin: 开始你的任务
+    begin_btn_msg_before_prework: 在开始计时活动之前，您必须完成以下任务
+    begin_campaign_msg: 在接受评估前启动活动
     campaigns: 推广活动
     closed_campaign_message: 此推广活动已关闭。你无法参加此推广活动中的任何评估。
     complete_prev: 完成所有先前的评估
+    complete_tasks: 请在执行此操作前完成以下任务。
     continue: 继续你的任务
     dashboard_instructions: 你被分配了多个需要完成的活动。请确保所有推广活动中的所有已分配活动都已完成。
     dashboard_menu:
       bookings: 预订
       campaign: 推广活动
       change_password: 更改密码
+      development: 发展
       home: 首页
       insights: 见解
+      my_direct_reports: 我的直接报告人
+      my_plan: 我的计划
       profile: 个人资料
       profile_details: 详情
       tasks: 任务
@@ -169,6 +213,8 @@ zh:
       edit: 重新评估
       title: 确认
       view: 查看评估
+    errors:
+      invalid_status: 活动状态无效
     goto_dashboard: 前往仪表板
     inactive_campaign_message: 你目前尚未被分配任何活动。
     insights_reports: 见解和报告
@@ -199,6 +245,7 @@ zh:
       single_lang: 此任务仅支持%{lang}。点击“继续”按钮以继续。
       title: 选择语言
     panels:
+      dashboard: 仪表板
       reports: 报告
     profile:
       complete_heading: 你的个人资料已完成
@@ -222,17 +269,40 @@ zh:
     statuses:
       completed: 已完成
       in_progress: 进行中
+      ineligible: 不符合条件
+      interrupted: 中断
       not_started: 未开始
+      timed_out: 超时
+      universal_link: 通用链接
+  campaigns:
+    card:
+      duration: 持续时间
+      starts_in: 开始于
+      starts_on: 从 %{ 日期}开始
+      will_start_shortly: 活动即将开始，请稍候
   change_password_page:
     old_password: 旧密码
     password: 密码
     password_confirmation: 密码确认
     title: 更改密码
+    warning_message: 重要： 更改密码将退出登录。
   checking_wizard:
     audio_check:
       access: 权限
       continue: 继续
+      random_phrases:
+        eight: 愿你的咖啡香浓，愿你的一天富有成效。
+        five: 笑一笑，生活会更美好！
+        four: 她在海边卖贝壳。
+        nine: 如果有疑问，请测试一下这个麦克风是否有效！
+        one: 我尖叫，你尖叫，我们都为冰淇淋尖叫！
+        seven: 每一天都是新的开始，大声说出来，自豪地说出来！
+        six: 披萨还是意大利面？
+        three: 测试，一二三，声音清晰无比
+        two: 敏捷的棕狐狸跳过了懒惰的狗。
       record_title: 请读出并重复以下句子 3 次。
+      retake: 不，我想重考
+      run_again: 再跑一次
       test_message: 很高兴与你交谈
     network_check:
       continue: 继续
@@ -252,19 +322,46 @@ zh:
       start: 开始评估
       title: 你已成功完成所有检查。
     system_check:
+      compatibility: 系统兼容性
       continue: 继续
+      failure:
+        description: 本测试中的音频/视频问题需要摄像头和麦克风权限。
+        link_text: 这里
+        link_text_action: 点击
+        link_text_instruction: 并按照以下步骤提供权限
+        refresh: 刷新浏览器
+        refresh_text: 点击以下链接刷新浏览器并应用更改
+        subtitle: 快速修复
+        title: 您取消了摄像头和麦克风权限
+      permissions: 摄像头和音频权限
       title: 在开始此评估之前，你的系统需要进行一些检查。
     video_check:
       access: 权限
+      camera_preview: 此处将显示相机预览
       continue: 继续
       description: 此阶段拍摄的任何视频或照片都不会被保存或使用。它会在你的设备上本地使用，以确保摄像头在接下来可能需要录像的问题中正常工作。
+      random_phrases:
+        eight: 如果你能看到我，视频就成功了。 如果看不到，我们就得排除故障！
+        five: 测试您的视频，别担心，无需奥斯卡提名。
+        four: 准备、就位、对焦！摄像机就是你的舞台。
+        nine: 灿烂的笑容和清晰的视频，让我们把这次测试做好！
+        one: 能听到我说话的请举手，或者对着镜头挥挥手！
+        seven: 镜子，屏幕上的镜子，让视频检查干净利落。
+        six: 灯光、镜头、动作，这是你大显身手的时刻！
+        ten: 友好地挥挥手，确保一切正常。
+        three: 说 "茄子"！或者试探性地露出完美的微笑。
+        two: 看着镜头，面带微笑，假装自己在拍电影预告片。
+      rec_text: REC
+      retake: 不，我想重考
       run_again: 再次运行
       title: 我们需要确保你的系统可以录制视频
+      uploading: 上传
   common:
     actions:
       add: 添加
       archive: 存档
       cancel: 取消
+      close: 关闭
       copy: 复制
       delete: 删除
       edit: 编辑
@@ -280,6 +377,7 @@ zh:
       unresolve: 取消解决
       update: 更新
       upload: 上传
+      verify: 验证
     column:
       action: 操作
       category: 类别
@@ -316,6 +414,8 @@ zh:
     invitations:
       edit:
         password_label: 密码
+    passwords:
+      invalid_email: 无效电子邮件
     registrations:
       communication_not_setup_error: 未设置注册电子邮件通信，请联系此项目的管理员。
       new:
@@ -348,6 +448,26 @@ zh:
     two_factor_authentication:
       attempt: 请输入你在注册电子邮箱地址中收到的一次性密码
       code_has_been_sent: 新的一次性密码已发送至你的注册电子邮箱地址
+  emails:
+    subject_relationship_table:
+      subject_email: 主题电子邮件
+      subject_name: 科目名称
+      subject_relationship: 主题关系
+  errors:
+    assessments:
+      timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该测评。
+    error: 错误
+    error_500: 出错了，请联系管理员。
+    forbidden: 您没有访问该页面的权限
+    forbidden_action: 您没有此操作的权限
+    invalid_token: 出错了，请重新加载页面再试。
+    module_error: 此模块出错，请联系管理部门。
+    module_error_editor: 此模块出错，请检查模块设置。
+    module_props_error: 这个模块出了问题。
+    try_again: 请重试
+  factors:
+    description: 说明
+    factor: 系数
   frontend:
     activate: 激活
     are_you_sure: 你确定吗？
@@ -434,23 +554,51 @@ zh:
     change_password: 更改密码
     delete: 删除
     edit: 编辑
+    lighthouse_app: 默瑟灯塔
     login: 登录
     manage: 管理
     'no': 否
     resource:
       create_success: 已成功添加 %{readableResourceName}
       update_success: 已成功更新 %{readableResourceName}
+    session_timeout_modal:
+      buttons:
+        close: 关闭
+        log_out: 立即退出登录
+        re_login: 重新登录
+        stay_logged_in: 保持登录状态
+      message: 由于您未登录，您的会话将在 2 分钟后超时，请单击 "保持登录 "继续您的会话，否则您将自动注销。
+      message_after_timeout: 您的会话已超时，请重新登录。
+      time_remaining: 剩余时间
+      title: 会话超时警告
     update: 更新
     upload: 上传
     workshop_invited_subjects:
       statuses:
         cancelled: 已取消
         requested_cancellation: 已申请的取消
+        requested_cancellation_rejected: 请求取消 拒绝
         requested_rescheduling: 已申请的改期
+        requested_rescheduling_rejected: 请求改期 拒绝
     'yes': 是
+  idp:
+    pdf:
+      header: 您好
+  idp_templates:
+    errors:
+      user_idp_template_not_found: 没有为您分配 IDP 模板。
+  mailer:
+    magic_link:
+      body:
+        dear: 亲爱的 %{name}、
+        greetings: 今天的问候
+        instructions: 点击以下链接登录灯塔。
+        signin_link: 登录链接
+      subject: 灯塔登录链接
   navigation:
     logout: 退出登录
   profile:
+    add_field: 添加字段
     add_photo: 添加照片
     age: 年龄
     change_password: 更改密码
@@ -459,16 +607,19 @@ zh:
     female: 女
     first_name: 名
     gender: 性别
+    incomplete: 您的个人资料不完整，请补充完整。
     last_name: 姓
     locale: 偏好的语言
     male: 男
     not_disclosed: 不愿透露
+    old_data: 您的个人资料数据已经过了 %{months} 个月，请确认详细信息以便继续操作
     password: 密码
     password_confirmation: 密码确认
     success_update: 个人资料已成功保存
     timezone: 时区
     title: 我的个人资料
     update: 更新
+    update_required: 需要更新个人资料
   reports:
     actions:
       add: 添加报告
@@ -595,6 +746,28 @@ zh:
         last_name: 姓
         password: 密码
   subjects:
+    approval_statuses:
+      approved: 批准
+      denied: 拒绝
+      waiting: 需要批准
+    report_approval_status:
+      approved: 批准
+      denied: 拒绝
+      waiting: 等待
+    report_release_status:
+      on_hold: 搁置
+      released: 已发布
+      waiting: 等待
+    report_statuses:
+      approved: 批准
+      available: 可用
+      denied: 拒绝
+      incomplete: 不完整
+      not_available: 不详
+      not_prepared: 未准备好
+      on_hold: 搁置
+      prepared: 已完成
+      released: 已发布
     statuses:
       completed: 已完成
       declined: 已拒绝
@@ -607,6 +780,7 @@ zh:
       accept: 接受
       checkbox: 我已阅读并理解上述隐私政策
       title: 数据处理同意书
+    action: 行动
     add: 添加
     and: 和
     approve_all: 批准全部
@@ -666,11 +840,16 @@ zh:
         success: 成功
         undelivered: 未送达
     my_projects: 我的项目
+    name_label: 名称
     nominate: 提名
     nominate_evaluators: 提名评估者至
     nomination: 提名
     nomination_help_modal:
       title: 提名帮助
+    nomination_predicates:
+      atleast: 至少 %{count}
+      atmost: 最多 %{count}
+      exactly: 正是 %{count}
     nominations: 提名
     options:
       global:
@@ -751,6 +930,8 @@ zh:
       email: 电子邮箱地址
       first_name: 名
       last_name: 姓
+  user_assessments:
+    redirect: 如果您想开始评估，请点击继续。
   user_reports:
     actions:
       regenerate: 重新生成
@@ -791,11 +972,11 @@ zh:
       required: 继续之前，请录制并保存视频
     actions_still_in_progress: 以下操作正在进行中。 如果继续，你将丢失这些数据。
     blank: 不能为空
+    character_count: '字符数 '
     character_range: 你的回答不得少于 %{min} 或超过 %{max} 个字符。
     date: 你的回答必须是有效日期（年/月/日）
     each_group_contains: 每组需要包含不少于 %{min} 或不多于 %{max} 项
     email: 你的回答必须是有效的邮箱
-    exact: 请准确选择 %{count} 个选项
     file_upload:
       EntityTooLarge: 文件大小应小于 %{maxFileSize} MB
       WrongFileType: 文件类型应为以下之一 %{allowedFileTypes}
@@ -806,7 +987,6 @@ zh:
     max_word: 你的回答不得超过 %{max} 个字。
     min_character: 你的回答不得少于 %{min} 个字符。
     min_word: 你的回答不得少于 %{min} 字
-    most: 请最多选择 %{max} 个选项
     must_rank_between: 请为每个项目分配从 %{min} 到 %{max} 的值。值不得重复。
     must_select: 请从 %{min} 到 %{max} 个选项中选择
     number: 你的回答必须是数字
@@ -814,4 +994,9 @@ zh:
     required: 请回答此问题
     text: 你的回答不得包含数字
     title:
-      other: 有一个错误，请检查你的回答
+      other: 有一个错误，请检查您的答复
+    word_count: '字数 '
+    word_range: 您的回复字数必须至少 %{min}，不超过 %{max}。
+  'yes': 是
+  your: 您的
+  yourself: 你自己

@@ -15,7 +15,7 @@ const HoganDataTR = t.type({
   uniqueId: t.string,
   firstName: t.string,
   lastName: t.string,
-  directAssessmentId: t.string,
+  directAssessmentId: t.union([t.string, t.null]),
   displayInformedConsent: t.string,
   returnUrl: t.string,
   languageId: t.string,
