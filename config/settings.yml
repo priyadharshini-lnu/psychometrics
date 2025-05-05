@@ -2,19 +2,17 @@ project_name: Psychometrics
 privacy_policy_version: <%= ENV.fetch('PRIVACY_POLICY_VERSION', '3').to_i %>
 enduser_locales:
   - ar
-  - cs
   - de
   - en
-  - en-US
   - es-ES
-  - fr
+  - en-US
   - it
-  - ja
+  - fr
   - pl
   - pt
   - zh
-  - zh-Hant
   - zh-HK
+  - ja
 admin_user_locales:  <%= ENV["ADMIN_LOCALES"]%>
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
@@ -321,12 +319,6 @@ providers:
         assessment_ids:
           - HPI
           - MVPI
-      - id: EcJUDCJUDVJUDAJR
-        name: Judgement Report
-        norm_id: Global2023
-        language_id: en
-        assessment_ids:
-          - JUDC
     assessments:
       - id: HPI
         name: HPI
@@ -961,18 +953,6 @@ providers:
             - id: '04'
               name: Completion_Time
               type: Percentile Scale
-      - id: JUDC # This id is used for pulling the report and is not sent with AddParticipantAssessment request.
-        name: Judgement Assessment
-        assessments:
-          - id: JUDC
-            name: JUDC
-            form_id: 1
-          - id: JUDA
-            name: JUDA
-            form_id: 1
-          - id: JUDV
-            name: JUDV
-            form_id: 1
   simulation:
     assessments:
       - id: mte-apply

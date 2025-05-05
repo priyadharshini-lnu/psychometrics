@@ -29,8 +29,6 @@ class HoganCredentialSerializer < Panko::Serializer
   end
 
   def direct_assessment_id
-    return nil if object.combined_hogan_assessment?
-
     object.assessment.external_settings[:assessment_id]
   end
 

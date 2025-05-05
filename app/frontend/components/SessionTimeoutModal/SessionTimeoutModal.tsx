@@ -239,7 +239,10 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
         closable={false}
         centered
         width={500}
-        cancelButtonProps={{ style: { display: 'none' } }}
+        cancelButtonProps={{ danger: !isSessionTimedOut }}
+        cancelText={isSessionTimedOut
+          ? `${I18n.t('frontend.session_timeout_modal.buttons.close')}`
+          : `${I18n.t('frontend.session_timeout_modal.buttons.log_out')}`}
         okText={isSessionTimedOut
           ? `${I18n.t('frontend.session_timeout_modal.buttons.re_login')}`
           : `${I18n.t('frontend.session_timeout_modal.buttons.stay_logged_in')}`}
@@ -258,17 +261,13 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
         <span>
           {popupMessage}
         </span>
-        {
-          !isSessionTimedOut && (
-            <div className={styles.countdownTimer}>
-              <CountdownTimer
-                key={key}
-                title={`${I18n.t('frontend.session_timeout_modal.time_remaining')}`}
-                seconds={countdownSeconds}
-              />
-            </div>
-          )
-        }
+        <div className={styles.countdownTimer}>
+          <CountdownTimer
+            key={key}
+            title={`${I18n.t('frontend.session_timeout_modal.time_remaining')}`}
+            seconds={countdownSeconds}
+          />
+        </div>
       </Modal>
     </div>
   )

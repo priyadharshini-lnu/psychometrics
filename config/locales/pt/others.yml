@@ -27,29 +27,17 @@ pt:
         password: Palavra-passe
     errors:
       models:
-        register:
-          attributes:
-            mobile_number:
-              blank: É necessário um número de telemóvel
-              invalid: O número de telemóvel é inválido
-              verification_expired: O código de verificação expirou. Pode tentar verificar novamente.
         user:
           attributes:
             current_password:
               invalid: A palavra-passe atual está incorreta
-  administration: Administração
   anonym:
-    close: Fechar
     continue: Continuar
     notifications:
       restart:
         copy: Já iniciou este inquérito. Pode escolher Continuar ou Reiniciar.
         title: Continuar?
-      retake:
-        copy: Já completou este inquérito. Para o refazer, clique no botão Refazer abaixo.
-        title: Retomar?
     restart: Reiniciar
-    retake: Retomar
   assessments:
     actions:
       back_to_campaign: Voltar à Campanha
@@ -85,24 +73,15 @@ pt:
     unknown_error: Ocorreu um erro desconhecido.
     video_response:
       device: Permitir
-      device_selection:
-        camera: Câmara
-        mic: Microfone
       discard: Eliminar
-      discard_record_again: Descartar e gravar novamente
       media_recorder:
         failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
         success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
-      recording_duration_label: Duração máxima do registo
-      recording_stop_label: A gravação pára em
-      requesting_permission: Pedido de autorização...
-      response_recorded: Resposta registada
       save: Guardar
       saved:
         label: Guardado
       saving: A guardar...
       start_recording: Iniciar gravação
-      stop_recording: Parar a gravação
       tracker:
         backward: Está muito próximo do ecrã. Afaste-se um pouco.
         forward: Está muito longe do ecrã. Aproxime-se um pouco.
@@ -122,28 +101,17 @@ pt:
       description: Inicie sessão com as informações da sua conta pessoal
       forgot_password: Esqueceu-se da palavra-passe?
       login_btn: Iniciar sessão
-      magic_link_btn: Enviar-me por correio eletrónico a ligação de acesso
       not_member: Não é membro?
       or: OU
       sso_btn: Iniciar sessão usando o Início de sessão única
       title: Damos-lhe as boas-vindas!
     logout: Terminar sessão
-    magic_link:
-      description: Introduza o seu endereço de correio eletrónico para receber uma ligação de acesso
-      login_with_password: Iniciar sessão com a palavra-passe
-      send_me_login_link: Enviar-me a ligação de acesso
-      success: Enviámos-lhe uma ligação de início de sessão para "%{email}". Clique na ligação na mensagem de correio eletrónico que recebeu para iniciar sessão
-    mobile_number: Número de telemóvel
     new_password: Nova palavra-passe
-    new_password_placeholder: Introduzir a nova palavra-passe
     otp:
       code: Código
       code_placeholder: Palavra-passe de uso único
       description: Insira a OTP que foi enviado para o seu endereço de e-mail registado.
       resend: Reenviar OTP
-      resend_in: Reenviar em %{timestamp} segundos
-      resend_success: A OTP é enviada para o seu número de telemóvel
-      sms_description: Introduza a OTP que foi enviada para o seu número de telemóvel.
       submit: Verificar
       title: Palavra-passe de uso único
     password: Palavra-passe
@@ -175,33 +143,21 @@ pt:
     sign_out: Iniciar sessão como utilizador diferente
     sign_up: Registar-se
     terms_link: <a href="%{terms_url}">Termos e Declaração de Privacidade</a>
-    verify_mobile_number:
-      error:
-        blocked: Este número está bloqueado devido a demasiadas tentativas.
-        invalid_code: Código inválido
-        invalid_number: O número de telemóvel está incorreto. Verifique novamente o seu número
-        max_attempts_reached: Demasiadas tentativas. Aguarde 10 minutos antes de tentar novamente.
   campaign:
     all_activities_are_completed: Todas as atividades estão agora concluídas.
     all_activities_are_completed_multiple: Todas as atividades desta campanha estão agora concluídas. Aceda ao Painel e verifique se tem alguma outra atividade atribuída.
     begin: Comece as suas tarefas
-    begin_btn_msg_before_prework: Tens de completar as tarefas abaixo indicadas antes de iniciares a campanha cronometrada
-    begin_campaign_msg: Iniciar a campanha antes de efetuar as avaliações
     campaigns: Campanhas
     closed_campaign_message: Esta campanha está fechada. Não pode realizar nenhuma avaliação nesta campanha.
     complete_prev: Conclua todas as avaliações anteriores
-    complete_tasks: Antes de efetuar esta ação, complete as tarefas abaixo indicadas.
     continue: Continue as suas tarefas
     dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Certifique-se de que verifica se todas as atividades atribuídas foram concluídas em todas as campanhas.
     dashboard_menu:
       bookings: Reservas
       campaign: Campanha
       change_password: Alterar a palavra-passe
-      development: Desenvolvimento
       home: Início
       insights: Informações
-      my_direct_reports: Os meus subordinados diretos
-      my_plan: O meu plano
       profile: Perfil
       profile_details: Detalhes
       tasks: Tarefas
@@ -211,8 +167,6 @@ pt:
       edit: Reavaliar
       title: Confirmar
       view: Ver avaliação
-    errors:
-      invalid_status: Estado da campanha inválido
     goto_dashboard: Aceder ao Painel
     inactive_campaign_message: Atualmente, não tem nenhuma atividade atribuída.
     insights_reports: Informações e relatórios
@@ -245,7 +199,6 @@ pt:
       single_lang: Esta tarefa está disponível apenas em %{lang}. Clique em "Prosseguir" para continuar.
       title: Selecionar idioma
     panels:
-      dashboard: Painel de controlo
       reports: Relatórios
     profile:
       complete_heading: O seu perfil está completo
@@ -269,17 +222,7 @@ pt:
     statuses:
       completed: Concluído
       in_progress: Em curso
-      ineligible: Não elegível
-      interrupted: Interrompido
       not_started: Não iniciado
-      timed_out: Temporizada
-      universal_link: Ligação universal
-  campaigns:
-    card:
-      duration: Duração
-      starts_in: 'Começa em:'
-      starts_on: Começa em %{data}
-      will_start_shortly: A campanha terá início em breve. Aguarde
   change_password_page:
     old_password: Palavra-passe antiga
     password: Palavra-passe
@@ -290,19 +233,7 @@ pt:
     audio_check:
       access: Acesso
       continue: Continuar
-      random_phrases:
-        eight: Que o vosso café seja forte e que o vosso dia seja produtivo.
-        five: A vida é melhor quando se sorri. Sorria para o microfone!
-        four: Ela vende conchas à beira-mar.
-        nine: Em caso de dúvida, teste-o. Este microfone funciona!
-        one: Eu grito, tu gritas, todos nós gritamos por gelado!
-        seven: Cada dia é um novo começo, digam-no alto e bom som!
-        six: Pizza ou massa? As decisões são difíceis.
-        three: Testando, um, dois, três, o som é claro como pode ser!
-        two: A rápida raposa castanha salta sobre o cão preguiçoso.
       record_title: Diga e repita a seguinte frase 3 vezes.
-      retake: Não, quero repetir
-      run_again: Voltar a correr
       test_message: é ótimo falar consigo
     network_check:
       continue: Continuar
@@ -313,49 +244,18 @@ pt:
       run_again_title: E execute este teste novamente
       title: Clique em Iniciar para começar o teste de velocidade da Internet.
       upload: Carregar
-    steps:
-      audio_check: Teste do microfone
-      network_check: Teste de velocidade da Internet
-      system_check: Verificação do sistema
-      video_check: Teste de câmara de vídeo
     success:
       start: Iniciar avaliação
       title: Concluiu todas as verificações com êxito.
     system_check:
-      compatibility: Compatibilidade do sistema
       continue: Continuar
-      failure:
-        description: São necessárias permissões de Webcam e Microfone para as perguntas de Áudio/Vídeo deste Teste.
-        link_text: aqui
-        link_text_action: Clicar
-        link_text_instruction: e siga os passos para fornecer permissões
-        refresh: Atualizar o navegador
-        refresh_text: Clique em baixo para atualizar o browser e aplicar as alterações
-        subtitle: Correcções rápidas
-        title: Cancelou as permissões de Webcam e Microfone
-      permissions: Permissões de câmara Web e áudio
       title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
     video_check:
       access: Acesso
-      camera_preview: A pré-visualização da câmara aparecerá aqui
       continue: Continuar
       description: Qualquer vídeo ou foto capturado nesta fase não será guardado ou usado. É usado localmente no seu dispositivo para garantir que a câmara está a funcionar para uma pergunta futura que possa necessitar de gravação de vídeo.
-      random_phrases:
-        eight: Se me conseguirem ver, o vídeo é um sucesso. Se não, resolvemos o problema!
-        five: Testar o seu vídeo, não se preocupe, não é necessária uma nomeação para os Óscares.
-        four: Preparar, preparar, focar! A câmara é o seu palco.
-        nine: Grandes sorrisos e vídeo nítido, vamos fazer este teste bem feito!
-        one: Levantem a mão se me conseguem ouvir ou acenem para a câmara!
-        seven: Espelho, espelho no ecrã, que o controlo de vídeo seja limpo.
-        six: Luzes, câmara, ação, este é o seu tempo para brilhar!
-        ten: Um aceno amigável garante que tudo funciona bem.
-        three: Dizer "queijo"! Ou testar aquele sorriso perfeito.
-        two: Olhe para a lente, sorria e finja que está num trailer de um filme.
-      rec_text: REC
-      retake: Não, quero repetir
       run_again: Executar novamente
       title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
-      uploading: Carregamento
   common:
     actions:
       add: Adicionar
@@ -377,7 +277,6 @@ pt:
       unresolve: Reabrir
       update: Atualizar
       upload: Carregar
-      verify: Verificar
     column:
       action: Ação
       category: Categoria
@@ -414,8 +313,6 @@ pt:
     invitations:
       edit:
         password_label: Palavra-passe
-    passwords:
-      invalid_email: E-mail inválido
     registrations:
       communication_not_setup_error: A comunicação por e-mail de registo não está configurada, contacte o administrador deste projeto.
       new:
@@ -448,26 +345,6 @@ pt:
     two_factor_authentication:
       attempt: Insira a OTP que recebeu no seu endereço de e-mail registado
       code_has_been_sent: A sua nova OTP foi enviada para o seu e-mail registado
-  emails:
-    subject_relationship_table:
-      subject_email: Assunto Email
-      subject_name: Nome do sujeito
-      subject_relationship: Assunto Relação
-  errors:
-    assessments:
-      timed_out: Não é possível efetuar a avaliação %{assessment_name} porque o tempo limite foi ultrapassado.
-    error: Erro
-    error_500: Algo correu mal. Contacte o seu administrador.
-    forbidden: Não tem acesso a esta página
-    forbidden_action: Não tem permissões para esta ação
-    invalid_token: Alguma coisa correu mal. Por favor, recarregue a página e tente novamente.
-    module_error: Algo correu mal com este módulo, contacte a administração.
-    module_error_editor: Algo correu mal com este módulo, verifique as definições do módulo.
-    module_props_error: Algo correu mal com este módulo.
-    try_again: Tente novamente
-  factors:
-    description: Descrição
-    factor: Fator
   frontend:
     activate: Ativar
     are_you_sure: Tem certeza?
@@ -554,51 +431,23 @@ pt:
     change_password: Alterar palavra-passe
     delete: Eliminar
     edit: Editar
-    lighthouse_app: Farol de Mercer
     login: Iniciar sessão
     manage: Gerir
     'no': Não
     resource:
       create_success: "%{readableResourceName} adicionado com êxito"
       update_success: "%{readableResourceName} atualizado com êxito"
-    session_timeout_modal:
-      buttons:
-        close: Fechar
-        log_out: Sair agora
-        re_login: Voltar a entrar
-        stay_logged_in: Manter-se ligado
-      message: A sua sessão será encerrada dentro de 2 minutos devido a inatividade. Clique em "Manter sessão iniciada" para continuar a sessão ou será automaticamente encerrada.
-      message_after_timeout: A sua sessão expirou, por favor volte a iniciar sessão.
-      time_remaining: Tempo restante
-      title: Aviso de tempo limite da sessão
     update: Atualizar
     upload: Carregar
     workshop_invited_subjects:
       statuses:
         cancelled: Cancelado
         requested_cancellation: Solicitou cancelamento
-        requested_cancellation_rejected: Pedido de cancelamento Rejeitado
         requested_rescheduling: Solicitou reagendamento
-        requested_rescheduling_rejected: Solicitado Reagendamento Rejeitado
     'yes': Sim
-  idp:
-    pdf:
-      header: Olá
-  idp_templates:
-    errors:
-      user_idp_template_not_found: Não lhe foi atribuído nenhum modelo de PDI.
-  mailer:
-    magic_link:
-      body:
-        dear: Caro %{nome},
-        greetings: Saudações do dia!
-        instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
-        signin_link: Ligação de registo
-      subject: Ligação de início de sessão para o Lighthouse
   navigation:
     logout: Terminar sessão
   profile:
-    add_field: Adicionar campo
     add_photo: Adicionar fotografia
     age: Idade
     change_password: Alterar a palavra-passe
@@ -607,19 +456,16 @@ pt:
     female: Feminino
     first_name: Nome próprio
     gender: Género
-    incomplete: Os dados do seu perfil estão incompletos. Por favor, complete os dados do seu perfil
     last_name: Apelido
     locale: Idioma preferencial
     male: Masculino
     not_disclosed: Prefiro não revelar
-    old_data: Os dados do seu perfil têm %{meses} meses. Confirme os dados para prosseguir
     password: Palavra-passe
     password_confirmation: Confirmação da palavra-passe
     success_update: Perfil guardado com êxito
     timezone: Fuso horário
     title: O meu perfil
     update: Atualizar
-    update_required: Actualizações de perfil necessárias
   reports:
     actions:
       add: Adicionar relatório
@@ -746,28 +592,6 @@ pt:
         last_name: Apelido
         password: Palavra-passe
   subjects:
-    approval_statuses:
-      approved: Aprovado
-      denied: Recusado
-      waiting: Necessita de aprovação
-    report_approval_status:
-      approved: Aprovado
-      denied: Recusado
-      waiting: Em espera
-    report_release_status:
-      on_hold: Em espera
-      released: Lançado
-      waiting: Em espera
-    report_statuses:
-      approved: Aprovado
-      available: Disponível
-      denied: Recusado
-      incomplete: Incompleto
-      not_available: Não disponível
-      not_prepared: Não está pronto
-      on_hold: Em espera
-      prepared: Feito
-      released: Lançado
     statuses:
       completed: Concluído
       declined: Declinado
@@ -780,7 +604,6 @@ pt:
       accept: Aceitar
       checkbox: Li e compreendi a Política de Privacidade acima mencionada
       title: Consentimento para o tratamento de dados
-    action: Ação
     add: Adicionar
     and: E
     approve_all: Aprovar tudo
@@ -840,16 +663,11 @@ pt:
         success: Êxito
         undelivered: Não entregue
     my_projects: Os meus projetos
-    name_label: Nome
     nominate: Nomear
     nominate_evaluators: Nomear avaliadores para
     nomination: Nomeação
     nomination_help_modal:
       title: Ajuda para nomeações
-    nomination_predicates:
-      atleast: Pelo menos %{count}
-      atmost: No máximo %{count}
-      exactly: Exatamente %{count}
     nominations: Nomeações
     options:
       global:
@@ -930,8 +748,6 @@ pt:
       email: Endereço de e-mail
       first_name: Nome próprio
       last_name: Apelido
-  user_assessments:
-    redirect: Será redireccionado para um sítio de terceiros para esta avaliação. Clique em continuar se pretender iniciar a avaliação.
   user_reports:
     actions:
       regenerate: Regenerar
@@ -972,7 +788,6 @@ pt:
       required: Grave e guarde o vídeo antes de continuar
     actions_still_in_progress: Estão em curso as ações abaixo. Se prosseguir, vai perder estes dados.
     blank: não pode ficar em branco
-    character_count: 'Contagem de caracteres '
     character_range: A sua resposta deve ter, pelo menos, %{min} e não mais do que %{max} caracteres.
     date: A sua resposta tem de ser uma data válida (mm/dd/aaaa)
     each_group_contains: Cada grupo tem de conter, no mínimo, %{min} e, no máximo, %{max} itens
@@ -993,8 +808,7 @@ pt:
     range: Responda pelo menos %{min} e não mais do que %{max} opção(ões).
     required: Responda a esta questão
     text: A sua resposta não pode conter números
-    word_count: 'Contagem de palavras '
-    word_range: A sua resposta deve ter pelo menos %{min} e não mais do que %{max} palavras.
-  'yes': Sim
-  your: O seu
-  yourself: A si próprio
+    title:
+      one: Há um erro, por favor verifique as suas respostas
+      other: Existem %{count} erros, por favor verifique as suas respostas
+      two: Há 2 erros, por favor verifique as suas respostas

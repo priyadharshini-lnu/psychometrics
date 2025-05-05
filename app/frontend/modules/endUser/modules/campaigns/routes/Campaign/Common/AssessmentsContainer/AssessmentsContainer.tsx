@@ -23,14 +23,14 @@ const prevAssessmentsCompleted = (userAssessments: UserAssessment[], userAssessm
   return (prevs.length === 0) || _.every(prevs, ua => ua.status === 'completed')
 }
 
-const prevGroupIsCompleted = (userAssessments, group) => {
+const prevGroupIsCompleted = (campaign, group) => {
   if (!group) {
     return true
   }
+  const userAssessments = _
+    .filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
   return _.every(userAssessments, ua => ua.status === 'completed')
 }
-
-const isAnAssessmentCenterGroup = group => group?.groupType === 'assessment_center'
 
 const isAnyAssessmentInPreviousGroupInEligible = (campaign, group) => {
   if (!group) {
@@ -103,16 +103,10 @@ export const AssessmentsContainer = ({
               {assessmentGroups.map((group) => {
                 let prevCompleted = true
                 let previousAssessmentIsIneligible = false
-                const isAssessmentCenter = isAnAssessmentCenterGroup(group)
-                const isPreviousGroupAnAssessmentCenter = isAnAssessmentCenterGroup(prevGroup)
+                const isAssessmentCenter = group.groupType === 'assessment_center'
 
                 if (group.previousGroupRequired) {
-                  const userAssessments: UserAssessment[] = isPreviousGroupAnAssessmentCenter ? workshopActivities : _
-                    .filter(
-                      campaign.userAssessments,
-                      ua => _.includes(prevGroup?.campaignAssessmentIds, ua.assessmentId),
-                    )
-                  prevCompleted = prevGroupIsCompleted(userAssessments, prevGroup)
+                  prevCompleted = prevGroupIsCompleted(campaign, prevGroup)
                   if (isAnyAssessmentInPreviousGroupInEligible(campaign, prevGroup)) {
                     return null
                   }

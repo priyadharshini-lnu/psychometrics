@@ -40,7 +40,7 @@ class UserAssessment < ApplicationRecord
   enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :assessor_form?,
-           :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
+           :external?, :external_settings, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true

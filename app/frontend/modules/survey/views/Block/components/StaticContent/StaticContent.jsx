@@ -23,23 +23,19 @@ export default function StaticContent (props) {
 
   const [opened, setOpened] = useState(true)
   const editorRef = useRef(null)
-  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     pipedText(store)
-    setIsMounted(true)
   }, [])
 
   useEffect(() => {
-    if (!isMounted) return
-
     const editorView = getEditorView()
     if (editorView) {
       setEditorStyles(editorView)
     } else {
       setTimeout(() => setEditorStyles(), 250)
     }
-  }, [backgroundColor, backgroundImage, backgroundImageOptions, isMounted])
+  }, [backgroundColor, backgroundImage, backgroundImageOptions])
 
   const setEditorStyles = (editorView) => {
     editorView = editorView || getEditorView()
@@ -53,14 +49,13 @@ export default function StaticContent (props) {
     }
   }
 
-  const getEditorView = () => editorRef.current?.getElementsByClassName('fr-view')[0]
+  const getEditorView = () => editorRef.current.getElementsByClassName('fr-view')[0]
 
   const handleContentChange = (value) => {
     updateBlockProps(model, { staticContent: { ...staticContent, value } })
   }
 
   const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
-
   return (
     <>
       <div className={styles.header}>
@@ -71,14 +66,12 @@ export default function StaticContent (props) {
       </div>
       {opened && (
         <div ref={editorRef} className={styles.editorContainer}>
-          {isMounted ? (
-            <Editor
-              content={model.props.staticContent.value}
-              handleContentChange={handleContentChange}
-              className={styles.editor}
-              withPipedText
-            />
-          ) : null}
+          <Editor
+            content={model.props.staticContent.value}
+            handleContentChange={handleContentChange}
+            className={styles.editor}
+            withPipedText
+          />
           <PropertyPanel {...props} />
         </div>
       )}

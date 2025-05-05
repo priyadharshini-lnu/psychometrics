@@ -839,8 +839,6 @@ en:
         spoof:
           successfully: You was successfully login as %{name}
       copy: Copy Campaign
-      delete: Delete
-      edit: Edit
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name

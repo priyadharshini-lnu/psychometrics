@@ -32,28 +32,10 @@ module Hogan
       Services::Hogan::Api::Json::AddParticipantAssessment.call!(
         participant_id: user_assessment_hogan_credential.participant_id,
         group: user_assessment_hogan_credential.hogan_group_name,
-        assessments: assessment_details,
+        assessment_id: user_assessment.assessment.external_settings[:assessment_id],
+        form_id: user_assessment.assessment.external_settings[:form_id],
         provider: hogan_provider
       )
-    end
-
-    def assessment_details
-      external_assessment_id = user_assessment.assessment.external_settings[:assessment_id]
-      settings = Settings.providers.hogan.assessments.find { |a| a.id.casecmp?(external_assessment_id) }
-
-      if user_assessment.combined_hogan_assessment?
-        settings.assessments.map do |assessment|
-          {
-            assessmentId: assessment.id,
-            formId: assessment.form_id
-          }
-        end
-      else
-        [{
-          assessmentId: external_assessment_id,
-          formId: user_assessment.assessment.external_settings[:form_id]
-        }]
-      end
     end
 
     def create_resource_hogan_credential

@@ -27,36 +27,24 @@ ja:
         password: パスワード
     errors:
       models:
-        register:
-          attributes:
-            mobile_number:
-              blank: 携帯電話番号は必須
-              invalid: 携帯電話番号が無効です
-              verification_expired: 認証コードの有効期限が切れています。 再度認証をお試しください。
         user:
           attributes:
             current_password:
               invalid: パスワードが間違っています
-  administration: 管理部門
   anonym:
-    close: 閉じる
     continue: 続行
     notifications:
       restart:
         copy: このアンケートはすでに開始されています。続行または再スタートを選択してください。
         title: 続行しますか？
-      retake:
-        copy: このアンケートはすでに完了しています。 このアンケートを再受験するには、下の再受験ボタンをクリックしてください。
-        title: リテイク？
     restart: 再スタート
-    retake: リテイク
   assessments:
     actions:
       back_to_campaign: キャンペーンに戻る
       extend_time: 時間を延長する
       goto_dashboard: こちらをクリックして続行する
       pending_tasks:
-        other: 保留中のタスクが1つあります
+        other: 保留中のタスクが1件あります
       rescore: 再得点する
     audio_response:
       permission_denied_message: 回答を録音するには、ブラウザでマイクへのアクセスを許可してください
@@ -89,24 +77,15 @@ ja:
     unknown_error: 不明なエラーが発生しました。
     video_response:
       device: 許可
-      device_selection:
-        camera: カメラ
-        mic: マイク
       discard: 破棄
-      discard_record_again: 破棄して再び記録する
       media_recorder:
         failure: このブラウザはビデオ録画をサポートしていません。ビデオ録画にはChromeまたはFirefoxをお使いください
         success: 音声付きビデオを録画するには、カメラとマイクの使用を許可してください
-      recording_duration_label: 最大録画時間
-      recording_stop_label: で録音が停止します。
-      requesting_permission: 許可を求める...
-      response_recorded: 応答記録
       save: 保存
       saved:
         label: 保存済み
       saving: 保存中...
       start_recording: 録画を開始
-      stop_recording: 録音停止
       tracker:
         backward: 画面に近づきすぎています。少し後ろに下がってください
         forward: 画面から離れすぎています。少し近づいてください
@@ -126,28 +105,17 @@ ja:
       description: 個人アカウント情報でログインしてください
       forgot_password: パスワードをお忘れですか？
       login_btn: ログイン
-      magic_link_btn: ログインリンクをメールする
       not_member: メンバーではありませんか？
       or: または
       sso_btn: シングルサインオンでログイン
       title: ようこそ！
     logout: ログアウト
-    magic_link:
-      description: ログインリンクを受け取るには、Eメールアドレスを入力してください。
-      login_with_password: パスワードでログイン
-      send_me_login_link: ログインリンクを送ってください
-      success: メールに記載されているリンクをクリックしてログインしてください。
-    mobile_number: 携帯電話番号
     new_password: 新しいパスワード
-    new_password_placeholder: 新しいパスワードを入力する
     otp:
       code: コード
       code_placeholder: ワンタイムパスワード
       description: ご登録のメールアドレスに送信されたOTPを入力してください。
       resend: OTPを再送信
-      resend_in: タイムスタンプ}秒後に再送信
-      resend_success: 携帯電話番号にOTPが送信される
-      sms_description: あなたの携帯電話番号に送信されたOTPを入力してください。
       submit: 認証する
       title: ワンタイムパスワード
     password: パスワード
@@ -179,33 +147,21 @@ ja:
     sign_out: 別のユーザーでログイン
     sign_up: 新規登録
     terms_link: <a href="%{terms_url}">利用規約とプライバシーに関する声明</a>
-    verify_mobile_number:
-      error:
-        blocked: この番号は試行回数が多すぎるためブロックされています。
-        invalid_code: 無効なコード
-        invalid_number: 携帯電話番号が正しくありません。
-        max_attempts_reached: 試行回数が多すぎます。 再試行する前に10分間お待ちください。
   campaign:
     all_activities_are_completed: これですべてのアクティビティが完了しました。
     all_activities_are_completed_multiple: これでこのキャンペーンのアクティビティはすべて完了しました。ダッシュボードに進み、その他のアクティビティが割り当てられているかどうかを確認してください。
     begin: タスクを開始してください
-    begin_btn_msg_before_prework: タイムドキャンペーンを開始する前に、以下のタスクを完了する必要がある。
-    begin_campaign_msg: 査定を受ける前にキャンペーンを開始する
     campaigns: キャンペーン
     closed_campaign_message: このキャンペーンは終了しました。このキャンペーン内のアセスメントを受けることはできません。
     complete_prev: 以前のアセスメントをすべて完了する
-    complete_tasks: このアクションを起こす前に、以下のタスクを完了させてください。
     continue: タスクを続行してください
     dashboard_instructions: 完了すべき複数のアクティビティが割り当てられています。すべてのキャンペーンで割り当てられたアクティビティがすべて完了していることを確認してください。
     dashboard_menu:
       bookings: 予約
       campaign: キャンペーン
       change_password: パスワードを変更
-      development: 開発
       home: ホーム
       insights: インサイト
-      my_direct_reports: 私の直属の部下
-      my_plan: 私の計画
       profile: プロフィール
       profile_details: 詳細
       tasks: タスク
@@ -215,8 +171,6 @@ ja:
       edit: 再評価
       title: 確認
       view: アセスメントを表示
-    errors:
-      invalid_status: 無効なキャンペーンステータス
     goto_dashboard: ダッシュボードに移動
     inactive_campaign_message: 現在、割り当てられたアクティビティはありません。
     insights_reports: インサイトとレポート
@@ -248,7 +202,6 @@ ja:
       single_lang: このタスクは%{lang}でのみご利用いただけます。「続行」をクリックして次に進みます。
       title: 言語の選択
     panels:
-      dashboard: ダッシュボード
       reports: レポート
     profile:
       complete_heading: プロフィール登録は完了しています
@@ -272,40 +225,17 @@ ja:
     statuses:
       completed: 完了
       in_progress: 進行中
-      ineligible: 不適格
-      interrupted: 中断
       not_started: 開始していません
-      timed_out: タイムアウト
-      universal_link: ユニバーサルリンク
-  campaigns:
-    card:
-      duration: 期間
-      starts_in: で始まる：
-      starts_on: 開始日
-      will_start_shortly: キャンペーンはまもなく開始されます。
   change_password_page:
     old_password: 古いパスワード
     password: パスワード
     password_confirmation: パスワード確認
     title: パスワードを変更
-    warning_message: 重要：パスワードを変更するとログアウトされます。
   checking_wizard:
     audio_check:
       access: アクセス
       continue: 続行
-      random_phrases:
-        eight: あなたのコーヒーが濃く、あなたの一日が生産的でありますように。
-        five: 笑顔でいれば人生はうまくいく。 マイクに向かって笑顔で！
-        four: 彼女は海辺で貝殻を売っている。
-        nine: 迷ったら、このマイクを試してみてください！
-        one: 私は叫ぶ、あなたも叫ぶ、私たちは皆アイスクリームを求めて叫ぶ！
-        seven: 毎日が新たな始まりだ。 大きな声で、誇らしげに！
-        six: ピザかパスタか、決断は難しい。
-        three: テスト、ワン・ツー・スリー、音は限りなくクリアだ！」。
-        two: 素早い茶色の狐は怠け者の犬を飛び越える。
       record_title: 以下の文章を3回繰り返して言ってください。
-      retake: いや、再受験したい
-      run_again: もう一度走る
       test_message: お話しできて嬉しいです
     network_check:
       continue: 続行
@@ -325,46 +255,19 @@ ja:
       start: アセスメントを開始
       title: すべてのチェックを正常に完了しました。
     system_check:
-      compatibility: システム互換性
       continue: 続行
-      failure:
-        description: このテストのオーディオ/ビデオ問題では、ウェブカメラとマイクの許可が必要です。
-        link_text: これ
-        link_text_action: クリック
-        link_text_instruction: そして、許可を与えるための手順に従ってください。
-        refresh: ブラウザの更新
-        refresh_text: 以下をクリックしてブラウザを更新し、変更を適用する。
-        subtitle: クイックフィックス
-        title: ウェブカメラとマイクの使用許可をキャンセルしました。
-      permissions: ウェブカメラとオーディオの許可
       title: このアセスメントの開始前に、システムでいくつかのチェックを行う必要があります。
     video_check:
       access: アクセス
-      camera_preview: カメラのプレビューはここに表示されます
       continue: 続行
       description: この段階でキャプチャされたビデオや写真は、保存または使用されることはありません。ビデオ録画を必要とする可能性のある今後の質問のために、デバイスでローカルに使用してカメラが機能していることを確認します。
-      random_phrases:
-        eight: 私が映っていればビデオは成功、映っていなければトラブルシューティング！
-        five: あなたのビデオをテストしても、オスカーにノミネートされる必要はありません。
-        four: レディ、セット、フォーカス！ カメラはあなたのステージです。
-        nine: 満面の笑みと鮮明な映像で、このテストを成功させよう！
-        one: 私の声が聞こえたら手を挙げるか、カメラに向かって手を振ってください！
-        seven: 鏡よ、スクリーンの鏡よ、ビデオチェックをクリーンにしよう。
-        six: ライト、カメラ、アクション、今が輝くときだ！
-        ten: 親しげに手を振って、すべてがうまく機能していることを確認する。
-        three: チーズを言う！ あるいは、完璧な笑顔を試す。
-        two: レンズを見て微笑み、映画の予告編の中にいるふりをする。
-      rec_text: REC
-      retake: いや、再受験したい
       run_again: 再実行
       title: お使いのシステムでビデオの録画をできるようにする必要があります
-      uploading: アップロード
   common:
     actions:
       add: 追加
       archive: アーカイブ
       cancel: キャンセル
-      close: 閉じる
       copy: コピー
       delete: 削除
       edit: 編集
@@ -380,7 +283,6 @@ ja:
       unresolve: 未解決にする
       update: 更新
       upload: アップロード
-      verify: ベリファイ
     column:
       action: アクション
       category: カテゴリー
@@ -417,8 +319,6 @@ ja:
     invitations:
       edit:
         password_label: パスワード
-    passwords:
-      invalid_email: 無効な電子メール
     registrations:
       communication_not_setup_error: 登録メールの通信が設定されていません。このプロジェクトの管理者にお問い合わせください。
       new:
@@ -451,26 +351,6 @@ ja:
     two_factor_authentication:
       attempt: ご登録のメールアドレス宛てに届いたOTPを入力してください
       code_has_been_sent: ご登録のメールアドレス宛てに新しいOTPが送信されました
-  emails:
-    subject_relationship_table:
-      subject_email: 件名 電子メール
-      subject_name: 件名
-      subject_relationship: 主題関係
-  errors:
-    assessments:
-      timed_out: アセスメント名}のアセスメントがタイムアウトしたため、アセスメントを受けることができません。
-    error: エラー
-    error_500: 管理者に連絡してください。
-    forbidden: このページにアクセスできません
-    forbidden_action: このアクションの権限がありません
-    invalid_token: ページを再読み込みしてやり直してください。
-    module_error: このモジュールに何か問題が発生しました。
-    module_error_editor: モジュールの設定を確認してください。
-    module_props_error: このモジュールに何か問題があったようだ。
-    try_again: もう一度お試しください
-  factors:
-    description: 説明
-    factor: ファクター
   frontend:
     activate: 有効にする
     are_you_sure: 本当によろしいですか？
@@ -557,51 +437,23 @@ ja:
     change_password: パスワードを変更
     delete: 削除
     edit: 編集
-    lighthouse_app: マーサー灯台
     login: ログイン
     manage: 管理
     'no': いいえ
     resource:
       create_success: "%{readableResourceName}が正常に追加されました"
       update_success: "%{readableResourceName}が正常に更新されました"
-    session_timeout_modal:
-      buttons:
-        close: 閉じる
-        log_out: ログアウト
-        re_login: ログイン
-        stay_logged_in: ログイン状態を維持する
-      message: 非アクティブのため、セッションは2分でタイムアウトします。 セッションを続けるには「ログインしたまま」をクリックしてください。
-      message_after_timeout: セッションがタイムアウトしました、再ログインしてください。
-      time_remaining: 残り時間
-      title: セッションタイムアウト警告
     update: 更新
     upload: アップロード
     workshop_invited_subjects:
       statuses:
         cancelled: キャンセル済み
         requested_cancellation: キャンセルをリクエスト済み
-        requested_cancellation_rejected: キャンセル依頼却下
         requested_rescheduling: スケジュール変更をリクエスト済み
-        requested_rescheduling_rejected: 予約変更依頼却下
     'yes': はい
-  idp:
-    pdf:
-      header: こんにちは
-  idp_templates:
-    errors:
-      user_idp_template_not_found: IDPテンプレートが割り当てられていません。
-  mailer:
-    magic_link:
-      body:
-        dear: 名前}様、
-        greetings: 今日の挨拶
-        instructions: 以下のリンクをクリックして、Lighthouseにサインインしてください。
-        signin_link: サインインリンク
-      subject: Lighthouseへのサインインリンク
   navigation:
     logout: ログアウト
   profile:
-    add_field: フィールドの追加
     add_photo: 写真を追加
     age: 年齢
     change_password: パスワードを変更
@@ -610,19 +462,16 @@ ja:
     female: 女性
     first_name: 名
     gender: 性別
-    incomplete: プロフィールの詳細が不完全です。 プロフィールの詳細を入力してください。
     last_name: 姓
     locale: 希望言語
     male: 男性
     not_disclosed: 開示したくない
-    old_data: あなたのプロフィールデータは、%{月}ヶ月前のものです。 先に進むには、詳細を確認してください。
     password: パスワード
     password_confirmation: パスワード確認
     success_update: プロフィールが正常に保存されました
     timezone: タイムゾーン
     title: マイプロフィール
     update: 更新
-    update_required: プロフィールの更新が必要
   reports:
     actions:
       add: レポートを追加
@@ -749,28 +598,6 @@ ja:
         last_name: 姓
         password: パスワード
   subjects:
-    approval_statuses:
-      approved: 承認済み
-      denied: 却下
-      waiting: 承認が必要
-    report_approval_status:
-      approved: 承認済み
-      denied: 却下
-      waiting: 待機中
-    report_release_status:
-      on_hold: 保留中
-      released: リリース
-      waiting: 待機中
-    report_statuses:
-      approved: 承認済み
-      available: 利用可能
-      denied: 却下
-      incomplete: 未完成
-      not_available: 入手不可
-      not_prepared: 準備不足
-      on_hold: 保留中
-      prepared: 完了
-      released: リリース
     statuses:
       completed: 完了済み
       declined: 辞退済み
@@ -783,7 +610,6 @@ ja:
       accept: 同意する
       checkbox: 私は上記のプライバシーポリシーを読み、理解しました
       title: データ処理に関する同意
-    action: アクション
     add: 追加
     and: および
     approve_all: すべて承認する
@@ -843,16 +669,11 @@ ja:
         success: 成功
         undelivered: 未配信
     my_projects: マイプロジェクト
-    name_label: 名称
     nominate: 推薦する
     nominate_evaluators: 評価者の推薦先：
     nomination: 推薦
     nomination_help_modal:
       title: 推薦のヘルプ
-    nomination_predicates:
-      atleast: 少なくとも
-      atmost: 最大でも%{カウント}である。
-      exactly: 正確に %{カウント}。
     nominations: 推薦
     options:
       global:
@@ -933,8 +754,6 @@ ja:
       email: メールアドレス
       first_name: 名
       last_name: 姓
-  user_assessments:
-    redirect: アセスメントを開始する場合は、続けるをクリックしてください。
   user_reports:
     actions:
       regenerate: 再生成
@@ -975,11 +794,11 @@ ja:
       required: ビデオを録画し、保存してから続行してください
     actions_still_in_progress: 以下のアクションが進行中です。続行すると、これらのデータは失われます。
     blank: 必須項目です
-    character_count: '文字数 '
     character_range: 回答は、%{min}文字以上%{max}文字以下にしてください。
     date: 回答は有効な日付（MM/DD/YYYY）にしてください
     each_group_contains: 各グループには、%{min}以上%{max}以下の項目が含まれている必要があります
     email: 回答は有効なメールアドレスにしてください
+    exact: 選択肢を正確に%{count}個選んでください
     file_upload:
       EntityTooLarge: ファイルサイズは%{maxFileSize}MB未満にしてください
       WrongFileType: ファイルタイプは次のいずれかにしてください：%{allowedFileTypes}
@@ -990,6 +809,7 @@ ja:
     max_word: 回答は、%{max}語以下にしてください。
     min_character: 回答は、%{min}文字以上にしてください。
     min_word: 回答は、%{min}語以上にしてください
+    most: 選択肢を最大%{max}個まで選んでください
     must_rank_between: 各項目に%{min}から%{max}までの値を割り当ててください。値を繰り返すことはできません。
     must_select: "%{min}～%{max}個の選択肢を選んでください"
     number: 回答は数字にしてください
@@ -997,9 +817,4 @@ ja:
     required: この質問に答えてください
     text: 回答に数字を含めることはできません
     title:
-      other: エラーが1つあります。
-    word_count: '単語数 '
-    word_range: 回答は少なくとも%{分}、%{最大}語以内でなければなりません。
-  'yes': はい
-  your: あなたの
-  yourself: あなた自身
+      other: エラーが1つあります。回答を確認してください

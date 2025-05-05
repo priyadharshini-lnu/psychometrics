@@ -80,11 +80,7 @@ export const HoganStep: FC<Props> = ({
               <Input type="hidden" name="FirstName" value={hoganData.firstName} />
               <Input type="hidden" name="LastName" value={hoganData.lastName} />
               <Input type="hidden" name="LanguageID" value={hoganData.languageId} />
-              <Input
-                type="hidden"
-                name="DirectAssessmentID"
-                value={hoganData.directAssessmentId === null ? undefined : hoganData.directAssessmentId}
-              />
+              <Input type="hidden" name="DirectAssessmentID" value={hoganData.directAssessmentId} />
               <Input type="hidden" name="DisplayInformedConsent" value={hoganData.displayInformedConsent} />
               <Input type="hidden" name="ReturnURL" value={hoganData.returnUrl} />
             </form>

@@ -8,7 +8,6 @@ import { CountDisplay } from '~/components/CountDisplay'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
-import ResetPasswordModal from '~/modules/admin/modules/threeSixtyCampaign/routes/Participants/ResetPasswordModal'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
@@ -233,7 +232,6 @@ export default function SubjectList ({
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />
-      <ResetPasswordModal />
     </>
   )
 }

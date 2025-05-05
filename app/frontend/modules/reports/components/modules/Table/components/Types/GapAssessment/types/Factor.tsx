@@ -331,7 +331,7 @@ const THeader: FC<THeaderProps> = ({
         <>
           <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
           <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
-          {!columnsHeaderData.gap.hide && (
+          {!columnsHeaderData.indicator.hide && (
             <th className={styles.label}>
               {columnsHeaderData.gap.label}
             </th>

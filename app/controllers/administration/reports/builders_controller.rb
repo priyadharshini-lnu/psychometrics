@@ -40,7 +40,7 @@ module Administration
         if form.valid?
           render json: form.processed_data, status: :ok
         else
-          render json: { errors: form.errors.messages.values.flatten }, status: :unprocessable_entity
+          render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
         end
       end
 

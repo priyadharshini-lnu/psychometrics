@@ -12,11 +12,7 @@ module AgileUserResult
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
       format.json do
-        render json: UsersResults::AgileSerializer.new(
-          context: {
-            filtered_locales: params[:filtered_locales] || false
-          }
-        ).serialize(user_result).
+        render json: UsersResults::AgileSerializer.new.serialize(user_result).
           transform_keys { |k| k.to_s.camelcase(:lower) }
       end
     end
@@ -33,8 +29,8 @@ module AgileUserResult
 
   def set_language
     user_assessment.update!(selected_locale: params[:locale])
-    translations = user_assessment.assessment.agile.translations[params[:locale]]
-    render json: { translations: translations }, status: :ok
+
+    head :ok
   end
 
   def events

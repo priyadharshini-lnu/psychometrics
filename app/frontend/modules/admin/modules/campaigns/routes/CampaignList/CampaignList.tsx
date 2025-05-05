@@ -331,10 +331,10 @@ const getActionsMenuProps = ({
     key: 'edit',
     label: I18n.t('administration.campaigns.edit'),
   })
-  // permissions.copy && !campaign.isThreesixty && menuItems.push({
-  //   key: 'copy',
-  //   label: I18n.t('administration.campaigns.copy'),
-  // })
+  permissions.copy && !campaign.isThreesixty && menuItems.push({
+    key: 'copy',
+    label: I18n.t('administration.campaigns.copy'),
+  })
   permissions.delete && menuItems.push({
     key: 'delete',
     label: I18n.t('administration.campaigns.delete'),

@@ -27,36 +27,24 @@ zh-HK:
         password: 密碼
     errors:
       models:
-        register:
-          attributes:
-            mobile_number:
-              blank: 需要手機號碼
-              invalid: 手機號碼無效
-              verification_expired: 驗證碼已過期，您可以嘗試重新驗證。
         user:
           attributes:
             current_password:
               invalid: 目前密碼不正確
-  administration: 行政管理
   anonym:
-    close: 關閉
     continue: 繼續
     notifications:
       restart:
         copy: 您已開始此問卷調查。您可以選擇「繼續」或「重新開始」。
         title: 繼續 ？
-      retake:
-        copy: 您已完成此調查問卷，若要重新進行，請按一下下方的「重新進行」按鈕。
-        title: 重拍？
     restart: 重新開始
-    retake: 重考
   assessments:
     actions:
       back_to_campaign: 返回市場推廣
       extend_time: 延長時間
       goto_dashboard: 點擊此處繼續
       pending_tasks:
-        other: 您有 1 個待處理的任務
+        other: 您有一個待處理任務
       rescore: 重新安排
     audio_response:
       permission_denied_message: 請在瀏覽器中啟用咪高峰權限以錄製您的回答。
@@ -89,24 +77,15 @@ zh-HK:
     unknown_error: 發生未知錯誤。
     video_response:
       device: 允許
-      device_selection:
-        camera: 攝影機
-        mic: 麥克風
       discard: 放棄
-      discard_record_again: 丟棄與重新記錄
       media_recorder:
         failure: 此瀏覽器不支援錄影。請使用 Chrome 或 Firefox 錄影
         success: 請允許使用相機和咪高峰錄音及錄影
-      recording_duration_label: 最長錄影時間
-      recording_stop_label: 錄製會在
-      requesting_permission: 請求許可...
-      response_recorded: 記錄的回應
       save: 儲存
       saved:
         label: 已儲存
       saving: 正在儲存......
       start_recording: 開始錄影
-      stop_recording: 停止錄影
       tracker:
         backward: 您距離螢幕太近。請後退一點
         forward: 您距離螢幕太遠。請靠近一點
@@ -126,28 +105,17 @@ zh-HK:
       description: 請使用您的個人帳戶資料登入
       forgot_password: 忘記密碼？
       login_btn: 登入
-      magic_link_btn: 將登入連結電郵給我
       not_member: 還不是會員？
       or: 或
       sso_btn: 使用單次登入
       title: 歡迎！
     logout: 登出
-    magic_link:
-      description: 請輸入您的電子郵件地址以接收登入連結
-      login_with_password: 使用密碼登入
-      send_me_login_link: 傳送登入連結給我
-      success: 我們已寄送登入連結到'%{email}'，點選您收到的電子郵件中的連結即可登入。
-    mobile_number: 行動電話號碼
     new_password: 新密碼
-    new_password_placeholder: 輸入新密碼
     otp:
       code: 代碼
       code_placeholder: 單次密碼
       description: 請輸入發送至您註冊電郵地址的單次密碼。
       resend: 重新傳送單次密碼
-      resend_in: 在 %{timestamp} 秒後重新傳送
-      resend_success: OTP 會傳送至您的行動電話
-      sms_description: 請輸入傳送到您手機號碼的 OTP。
       submit: 驗證
       title: 單次密碼
     password: 密碼
@@ -179,33 +147,21 @@ zh-HK:
     sign_out: 以其他用戶登入
     sign_up: 註冊
     terms_link: <a href="%{terms_url}">條款和私隱聲明</a>
-    verify_mobile_number:
-      error:
-        blocked: 由於嘗試太多，此號碼已被攔截。
-        invalid_code: 無效代碼
-        invalid_number: 行動電話號碼不正確，請重新檢查您的號碼
-        max_attempts_reached: 嘗試太多，請等待 10 分鐘再試。
   campaign:
     all_activities_are_completed: 所有活動現已完成。
     all_activities_are_completed_multiple: 此活動的所有市場推廣已完成。請前往管理台，查看您是否獲分配其他活動。
     begin: 開始您的任務
-    begin_btn_msg_before_prework: 開始計時競賽前，您必須完成下列任務
-    begin_campaign_msg: 在接受評估前開始活動
     campaigns: 市場推廣
     closed_campaign_message: 此活動已結束。您無法參加此活動的任何評估。
     complete_prev: 完成所有先前的評估
-    complete_tasks: 請在採取此行動前完成下列任務。
     continue: 繼續您的任務
     dashboard_instructions: 您有多個需要完成的活動。請確保所有活動中的分配任務都已完成。
     dashboard_menu:
       bookings: 訂單
       campaign: 市場推廣
       change_password: 更改密碼
-      development: 發展
       home: 主頁
       insights: 分析
-      my_direct_reports: 我的直接報告
-      my_plan: 我的計劃
       profile: 個人資料
       profile_details: 詳情
       tasks: 任務
@@ -215,8 +171,6 @@ zh-HK:
       edit: 重新評估
       title: 確認
       view: 查看評估
-    errors:
-      invalid_status: 無效的活動狀態
     goto_dashboard: 前往管理台
     inactive_campaign_message: 您目前尚未被分配任何活動。
     insights_reports: 分析和報告
@@ -249,7 +203,6 @@ zh-HK:
       single_lang: 此任務僅能使用%{lang}。點擊「繼續」以繼續。
       title: 選擇語言
     panels:
-      dashboard: 儀表板
       reports: 報告
     profile:
       complete_heading: 您的個人資料已完成
@@ -273,40 +226,17 @@ zh-HK:
     statuses:
       completed: 已完成
       in_progress: 進行中
-      ineligible: 不符合資格
-      interrupted: 中斷
       not_started: 未開始
-      timed_out: 超時
-      universal_link: 通用連結
-  campaigns:
-    card:
-      duration: 時間長度
-      starts_in: 開始於
-      starts_on: 從 %{ 日期}開始
-      will_start_shortly: 活動即將開始，請稍候
   change_password_page:
     old_password: 舊密碼
     password: 密碼
     password_confirmation: 密碼確認
     title: 更改密碼
-    warning_message: 重要事項：變更密碼將會登出。
   checking_wizard:
     audio_check:
       access: 存取
       continue: 繼續
-      random_phrases:
-        eight: 祝您咖啡香濃，工作順利。
-        five: 笑一笑，人生更美好。 笑一笑，麥克風！
-        four: 她在海邊賣貝殼。
-        nine: 有疑問時，請測試一下這個麥克風是否有效！
-        one: 我尖叫，你尖叫，我們都為冰淇淋尖叫！
-        seven: 每天都是新的開始，大聲自豪地說出來！
-        six: 披薩還是義大利麵？
-        three: 測試，一二三，聲音清晰可辨！。
-        two: 敏捷的棕狐跳過了懶狗。
       record_title: 請讀出並重複以下句子 3 次。
-      retake: 不，我要重考
-      run_again: 再跑一次
       test_message: 很高興與您交談
     network_check:
       continue: 繼續
@@ -326,46 +256,19 @@ zh-HK:
       start: 開始評估
       title: 您已成功完成所有檢查。
     system_check:
-      compatibility: 系統相容性
       continue: 繼續
-      failure:
-        description: 本測驗中的音訊/視訊問題需要網路攝影機和麥克風權限。
-        link_text: 這裡
-        link_text_action: 按一下
-        link_text_instruction: 並依照步驟提供權限
-        refresh: 刷新瀏覽器
-        refresh_text: 按一下下方以刷新瀏覽器並應用變更
-        subtitle: 快速修復
-        title: 您取消了網路攝影機和麥克風的權限
-      permissions: 網路攝影機與音訊權限
       title: 在開始此評估之前，您的系統需要進行一些檢查。
     video_check:
       access: 存取
-      camera_preview: 相機預覽將在此出現
       continue: 繼續
       description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
-      random_phrases:
-        eight: 如果你能看到我，視訊就成功了；如果看不到，我們就得排除故障！
-        five: 測試您的影片，別擔心，不需要奧斯卡提名。
-        four: 準備、就位、對焦！ 攝影機就是你的舞台。
-        nine: 燦爛的笑容和清晰的視訊，讓我們把測試做好！
-        one: 能聽到我說話的請舉手，或對著鏡頭揮手！
-        seven: 鏡子，鏡子上的屏幕，讓視頻檢查是乾淨的。
-        six: 燈光、攝影機、動作，這是您大放異彩的時刻！
-        ten: 友善的招手，確保一切運作正常。
-        three: 說起司！或者只是測試一下完美的笑容。
-        two: 看著鏡頭，微笑，假裝你在電影預告片中。
-      rec_text: REC
-      retake: 不，我要重考
       run_again: 再次執行
       title: 我們需要確保您的系統可以錄影
-      uploading: 上傳
   common:
     actions:
       add: 添加
       archive: 存檔
       cancel: 取消
-      close: 關閉
       copy: 複製
       delete: 刪除
       edit: 編輯
@@ -381,7 +284,6 @@ zh-HK:
       unresolve: 未解決
       update: 更新
       upload: 上載
-      verify: 驗證
     column:
       action: 操作
       category: 類別
@@ -418,8 +320,6 @@ zh-HK:
     invitations:
       edit:
         password_label: 密碼
-    passwords:
-      invalid_email: 無效電子郵件
     registrations:
       communication_not_setup_error: 註冊電郵通訊尚未設定，請聯絡此項目的管理員。
       new:
@@ -452,26 +352,6 @@ zh-HK:
     two_factor_authentication:
       attempt: 請輸入您在已註冊電郵地址收到的單次密碼
       code_has_been_sent: 您的新單次密碼已發送至您已註冊的電郵地址
-  emails:
-    subject_relationship_table:
-      subject_email: 主題電子郵件
-      subject_name: 學科名稱
-      subject_relationship: 主題關係
-  errors:
-    assessments:
-      timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
-    error: 錯誤
-    error_500: 出錯了，請聯絡您的管理員。
-    forbidden: 您無法存取此頁面
-    forbidden_action: 您沒有此動作的權限
-    invalid_token: 出錯了，請重新載入頁面再試一次。
-    module_error: 此模組出錯，請聯絡管理員。
-    module_error_editor: 此模組出錯，請檢查模組設定。
-    module_props_error: 這個模組出了問題。
-    try_again: 請再試一次
-  factors:
-    description: 說明
-    factor: 因子
   frontend:
     activate: 啟用
     are_you_sure: 您確定嗎？
@@ -558,51 +438,23 @@ zh-HK:
     change_password: 更改密碼
     delete: 刪除
     edit: 編輯
-    lighthouse_app: 默瑟燈塔
     login: 登入
     manage: 管理
     'no': 否
     resource:
       create_success: 已成功添加%{readableResourceName}
       update_success: 已成功更新%{readableResourceName}
-    session_timeout_modal:
-      buttons:
-        close: 關閉
-        log_out: 立即登出
-        re_login: 重新登入
-        stay_logged_in: 保持登入狀態
-      message: 由於您沒有活動，您的會話將於 2 分鐘後逾時，請按一下「保持登入」繼續您的會話，否則您將自動登出。
-      message_after_timeout: 您的會話已超時，請重新登入。
-      time_remaining: 剩餘時間
-      title: 會話超時警告
     update: 更新
     upload: 上載
     workshop_invited_subjects:
       statuses:
         cancelled: 已取消
         requested_cancellation: 已申請取消
-        requested_cancellation_rejected: 要求取消 拒絕
         requested_rescheduling: 已申請改期
-        requested_rescheduling_rejected: 要求重新安排時間 拒絕
     'yes': 是
-  idp:
-    pdf:
-      header: 您好
-  idp_templates:
-    errors:
-      user_idp_template_not_found: 尚未為您指定 IDP 模版。
-  mailer:
-    magic_link:
-      body:
-        dear: 親愛的 %{name}、
-        greetings: 今天的問候
-        instructions: 點選以下連結登入 lighthouse。
-        signin_link: 登入連結
-      subject: Lighthouse 的登入連結
   navigation:
     logout: 登出
   profile:
-    add_field: 新增欄位
     add_photo: 新增相片
     age: 年齡
     change_password: 更改密碼
@@ -611,19 +463,16 @@ zh-HK:
     female: 女性
     first_name: 名字
     gender: 性別
-    incomplete: 您的個人資料不完整，請填寫您的個人資料
     last_name: 姓氏
     locale: 首選語言
     male: 男性
     not_disclosed: 不願透露
-    old_data: 您的個人資料已過了 %{months} 個月，請確認詳細資料，以便繼續操作。
     password: 密碼
     password_confirmation: 密碼確認
     success_update: 已成功儲存個人資料
     timezone: 時區
     title: 我的個人資料
     update: 更新
-    update_required: 需要更新個人資料
   reports:
     actions:
       add: 添加報告
@@ -750,28 +599,6 @@ zh-HK:
         last_name: 姓氏
         password: 密碼
   subjects:
-    approval_statuses:
-      approved: 已核准
-      denied: 拒絕
-      waiting: 需要批准
-    report_approval_status:
-      approved: 已核准
-      denied: 拒絕
-      waiting: 等待
-    report_release_status:
-      on_hold: 暫停
-      released: 已發行
-      waiting: 等待
-    report_statuses:
-      approved: 已核准
-      available: 可用
-      denied: 拒絕
-      incomplete: 不完整
-      not_available: 不可用
-      not_prepared: 未就緒
-      on_hold: 暫停
-      prepared: 完成
-      released: 已發行
     statuses:
       completed: 已完成
       declined: 已拒絕
@@ -784,7 +611,6 @@ zh-HK:
       accept: 接受
       checkbox: 我已閱讀並理解上述私隱政策
       title: 數據處理同意書
-    action: 行動
     add: 添加
     and: 及
     approve_all: 全部批准
@@ -844,16 +670,11 @@ zh-HK:
         success: 成功
         undelivered: 未送達
     my_projects: 我的項目
-    name_label: 名稱
     nominate: 提名
     nominate_evaluators: 提名評估者至
     nomination: 提名
     nomination_help_modal:
       title: 提名幫助
-    nomination_predicates:
-      atleast: 至少 %{count}
-      atmost: 最多 %{count}
-      exactly: 正是 %{count}
     nominations: 提名
     options:
       global:
@@ -934,8 +755,6 @@ zh-HK:
       email: 電郵地址
       first_name: 名字
       last_name: 姓氏
-  user_assessments:
-    redirect: 您會被重新導向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
   user_reports:
     actions:
       regenerate: 重新生成
@@ -976,11 +795,11 @@ zh-HK:
       required: 繼續之前，請錄影並儲存影片
     actions_still_in_progress: 以下操作正在進行。如果繼續，您將丟失這些數據。
     blank: 不能空白
-    character_count: '字元數 '
     character_range: 您的回覆不得少於 %{min} 或超過 %{max} 個字元。
     date: 您的回覆必須是有效日期 （月／日／年）
     each_group_contains: 每組需要包含不少於 %{min} 或不多於 %{max} 個項目
     email: 您的回覆必須是有效的電郵
+    exact: 請準確選擇 %{count} 個選項
     file_upload:
       EntityTooLarge: 檔案大小應小於 %{maxFileSize}MB
       WrongFileType: 檔案類型應為以下其中一種 %{allowedFileTypes}
@@ -991,6 +810,7 @@ zh-HK:
     max_word: 您的回覆不得超過 %{max} 字數。
     min_character: 您的回覆必須至少 %{min} 個字元。
     min_word: 您的回覆不得少於 %{min} 個字
+    most: 請選擇最多 %{max} 個選項
     must_rank_between: 請為每個項目分配從 %{min} 到 %{max} 的值。不得重複數值。
     must_select: 請從 %{min} 到 %{max} 個選項中選擇
     number: 您的回覆必須是數字
@@ -999,8 +819,3 @@ zh-HK:
     text: 您的回覆不得包含數字
     title:
       other: 有一個錯誤，請檢查您的回覆
-    word_count: '字數 '
-    word_range: 您的回應字數必須至少 %{min}，且不超過 %{max}。
-  'yes': 是
-  your: 您的
-  yourself: 您自己

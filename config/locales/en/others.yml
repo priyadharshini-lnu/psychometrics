@@ -2527,8 +2527,9 @@ en:
     zh: Chinese Simplified
     zh-CN: Chinese (PRC)
     zh-HK: Chinese (Hong Kong)
-    zh-Hant: Chinese - Traditional
     zh-TW: Chinese (Taiwan)
+    zh_CN: Chinese (Simplified, People's Republic of China)
+    zh_TW: Chinese - Traditional
   languages_localized:
     af: Afrikaans
     ar: عربي
@@ -2544,10 +2545,10 @@ en:
     de: Deutsch
     el: Ελληνικά
     en: English
-    en-GB: English (UK)
-    en-US: English (US)
+    en-GB: English - UK
+    en-US: English - US
     eo: Esperanto
-    es: Español
+    es: Español (latinoamerica)
     es-ES: Español (españa)
     et: Estonian
     fa: Persian
@@ -2559,7 +2560,7 @@ en:
     hr: Croatian
     hu: Hungarian
     id: Bahasa Indonesia
-    it: italiano
+    it: Italian
     ja: 日本語
     km: Khmer
     ko: Korean
@@ -2572,11 +2573,11 @@ en:
     nb: Norwegian Bokmål
     nl: Dutch
     'no': Norwegian
-    pl: Polski
+    pl: Polish
     pt: Português
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brasil)
+    pt-BR: Brazilian Portuguese
+    pt-PT: Portuguese (Portugal)
+    pt_BR: Portuguese (Brazil)
     ro: Romanian
     ru: Russian
     sk: Slovak
@@ -2596,8 +2597,9 @@ en:
     zh: 简体中文
     zh-CN: 简体中文
     zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
     zh-TW: 漢語
+    zh_CN: 简体中文
+    zh_TW: Chinese (Traditional)
   license_usage:
     active: Active
     campaign_name: Campaign name
