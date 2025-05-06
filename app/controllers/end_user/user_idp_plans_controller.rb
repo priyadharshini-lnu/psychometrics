@@ -62,11 +62,14 @@ module EndUser
     end
 
     def load_skill_gap_report_status
-      @skill_gap_report_available = UserReport.find_by(
+      return unless @user_idp_plan
+
+      @skill_gap_report_available = UserReport.exists?(
         user_id: @user_idp_plan.user_id,
         report_id: @user_idp_plan.idp_template.report_id,
-        campaign_id: @user_idp_plan.campaign_id
-      )&.prepared?
+        campaign_id: @user_idp_plan.campaign_id,
+        status: 'prepared'
+      )
     end
 
     def update_params
