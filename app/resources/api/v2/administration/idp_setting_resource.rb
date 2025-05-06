@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::IdpSettingResource < Api::V2::Administration::BaseResource
-  attributes :allow_global_skills, :manager_approves_idp, :manager_can_edit_idp
+  attributes :id, :allow_global_skills, :manager_approves_idp, :manager_can_edit_idp,
+             :require_all_development_actions_complete
 
   has_one :project
 

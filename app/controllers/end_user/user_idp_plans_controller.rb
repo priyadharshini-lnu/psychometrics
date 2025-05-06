@@ -30,7 +30,13 @@ module EndUser
     def update
       authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
 
-      @user_idp_plan.update!(update_params)
+      if update_params[:status] == 'completed'
+        @user_idp_plan.update!(status: 'completed', completed_at: Time.current)
+      elsif update_params[:status] == 'in_progress'
+        @user_idp_plan.update!(status: 'in_progress', started_at: Time.current)
+      else
+        @user_idp_plan.update!(update_params)
+      end
 
       render json: {
         status: @user_idp_plan.status

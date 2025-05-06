@@ -4,11 +4,11 @@ import {
 } from 'react'
 import {
   Tabs, Typography, Layout, Button, Flex,
-  message,
+  message, Modal,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
-import { connect, ConnectedProps } from 'react-redux'
-import { CheckCircleOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { connect, ConnectedProps, useSelector } from 'react-redux'
+import { CloseOutlined } from '@ant-design/icons'
 
 import { PageLoadSpinner } from '~/glint'
 import { IdpPageLayoutWrapper } from '../components/IdpPageLayoutWrapper/IdpPageLayoutWrapper'
@@ -132,6 +132,8 @@ const MyPlanComponent = ({
     navigate(`/idp/my_plan/${tab}`)
   }
 
+  const config = useSelector((state: RootState) => state.config)
+
   useEffect(() => {
     fetchUserIdpPlan(currentUser.id).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
@@ -213,10 +215,42 @@ const MyPlanComponent = ({
     updateDevelopmentActionProgressInPlan(developmentAction)
   }
 
+  const handleCompletion = () => {
+    const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
+    if (hasIncompleteDAs && config.idp.requireAllDevelopmentActionsComplete) {
+      Modal.error({
+        title: I18n.t('idp.development_actions.incomplete_error'),
+        content: I18n.t('idp.development_actions.incomplete_error_message'),
+      })
+      return
+    }
+
+    if (hasIncompleteDAs) {
+      Modal.confirm({
+        title: I18n.t('idp.development_actions.incomplete_warning'),
+        content: I18n.t('idp.development_actions.incomplete_warning_message'),
+        onOk: () => {
+          updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
+            setEditMode(false)
+          })
+        },
+      })
+    } else {
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
+        setEditMode(false)
+      })
+    }
+  }
+
   const handleSubmitPlan = () => {
-    // The state is changed to approved since the approval flow is not ready
-    // TODO: Change this to PENDING_APPROVAL state once the flow for approving is ready
+    // TODO: This should update to PENDING_APPROVAL and onec manager approves should update to APPROVED
     updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED).then(() => {
+      setEditMode(false)
+    })
+  }
+
+  const handleStartPlan = () => {
+    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS).then(() => {
       setEditMode(false)
     })
   }
@@ -225,6 +259,7 @@ const MyPlanComponent = ({
     setShowAddSkill(true)
     setPickedCategoryToAddMoreSkills(category)
   }
+
 
   const operations = (
     <Flex gap={8}>
@@ -245,14 +280,33 @@ const MyPlanComponent = ({
           {I18n.t('common.actions.edit')}
         </Button>
       )}
-      <Button
-        disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
-        onClick={handleSubmitPlan}
-        icon={status === USER_IDP_PLAN_STATUS.APPROVED && <CheckCircleOutlined style={{ color: 'green' }} />}
-      >
-        {status === USER_IDP_PLAN_STATUS.APPROVED
-          ? I18n.t('idp.development_actions.approved') : I18n.t('idp.development_actions.submit_plan')}
-      </Button>
+
+      {(status === USER_IDP_PLAN_STATUS.NOT_STARTED || status === USER_IDP_PLAN_STATUS.DRAFT) && (
+        <Button
+          // disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
+          onClick={handleSubmitPlan}
+        >
+          {I18n.t('idp.development_actions.submit_plan')}
+        </Button>
+      )}
+
+      {status === USER_IDP_PLAN_STATUS.APPROVED && (
+        <Button
+          // disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
+          onClick={handleStartPlan}
+        >
+          {I18n.t('idp.development_actions.start_plan')}
+        </Button>
+      )}
+
+      {status === USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS && (
+        <Button
+          disabled={status !== USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS}
+          onClick={handleCompletion}
+        >
+          {I18n.t('idp.development_actions.mark_as_complete')}
+        </Button>
+      )}
     </Flex>
   )
 

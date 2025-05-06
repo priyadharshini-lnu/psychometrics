@@ -2382,9 +2382,14 @@ en:
       generate_more: Generate More
       generating_development_actions: Generating development actions...
       heading: Development Actions
+      incomplete_error: Incomplete Development Actions
+      incomplete_error_message: Some development actions are incomplete. Please complete them before submitting your IDP.
+      incomplete_warning: Incomplete Development Actions
+      incomplete_warning_message: Some development actions are incomplete. Are you sure you want to mark your IDP complete?
       learning_from_others: Learning from others
       manage_skills: Manage Skills
       marathon: Marathon
+      mark_as_complete: Mark as Complete
       no_development_actions: No development actions
       on_the_job: On the job
       other: Other
@@ -2392,6 +2397,7 @@ en:
       remove: Remove
       skill: Skill
       sprint: Sprint
+      start_plan: Start Plan
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...

@@ -82,6 +82,13 @@ export const Settings: React.FC = () => {
               >
                 <Switch />
               </Form.Item>
+              <Form.Item
+                name="requireAllDevelopmentActionsComplete"
+                label={I18n.t('administration.idp_setting.require_all_development_actions_complete')}
+                valuePropName="checked"
+              >
+                <Switch />
+              </Form.Item>
               <Button type="primary" htmlType="submit" className="mb-16" loading={isLoading}>
                 {I18n.t('administration.save')}
               </Button>

@@ -17,7 +17,8 @@ class UserIdpPlan < ApplicationRecord
 
   delegate :client, to: :campaign
 
-  enum :status, { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4 }
+  enum :status,
+       { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4, in_progress: 5, completed: 6 }
 
   scope :active, -> { where(active: true) }
 

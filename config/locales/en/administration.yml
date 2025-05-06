@@ -1948,6 +1948,7 @@ en:
       allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
       manager_can_edit_idp: Manager can edit IDP
+      require_all_development_actions_complete: Require all development actions complete
     import: Import
     imports:
       assessments:

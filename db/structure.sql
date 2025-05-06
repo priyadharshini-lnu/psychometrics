@@ -2750,7 +2750,8 @@ CREATE TABLE public.idp_settings (
     manager_can_edit_idp boolean DEFAULT false,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    project_id bigint
+    project_id bigint,
+    require_all_development_actions_complete boolean DEFAULT false
 );
 
 
@@ -3547,13 +3548,13 @@ CREATE TABLE public.user_assessment_factor_scores (
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -6347,7 +6348,9 @@ CREATE TABLE public.user_idp_plans (
     updated_at timestamp(6) without time zone NOT NULL,
     campaign_id bigint NOT NULL,
     active boolean DEFAULT true,
-    end_date date
+    end_date date,
+    completed_at timestamp(6) without time zone,
+    started_at timestamp(6) without time zone
 );
 
 
@@ -15588,6 +15591,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250504102702'),
+('20250430135151'),
 ('20250429125102'),
 ('20250427174443'),
 ('20250425102837'),
@@ -15607,6 +15611,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250305105355'),
 ('20250304084629'),
 ('20250304060832'),
+('20250228060708'),
 ('20250226084133'),
 ('20250224095420'),
 ('20250224075920'),
