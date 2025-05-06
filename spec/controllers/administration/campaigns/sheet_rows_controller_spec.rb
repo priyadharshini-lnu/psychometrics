@@ -45,18 +45,10 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       get :index, params: { new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
       parsed_response = response.parsed_body
 
-      expect(parsed_response['columns']).to match_array(
-        [
-          { 'id' => 1, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
-          { 'id' => 2, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1  },
-          { 'id' => 3, 'name' => 'Profile', 'column_type' => 'markdown', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 2  },
-          { 'id' => 4, 'name' => 'Description', 'column_type' => 'html', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 3  }
-        ]
-      )
+      expected_columns = sheet.sheet_columns.map do |column|
+        column.slice(:id, :name, :column_type, :accessor_access, :dashboard_use, :visible_in_list, :position)
+      end
+      expect(parsed_response['columns']).to match_array(expected_columns)
       expect(parsed_response['total']).to eq(2)
       expect(parsed_response['list'][0]).to eq({
         'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James'
@@ -89,34 +81,22 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       parsed_response = response.parsed_body
       # Campaign sheet record assertions
 
+      campaign_expected_columns = sheet.sheet_columns.map do |column|
+        column.slice(:id, :name, :column_type, :accessor_access, :dashboard_use, :visible_in_list, :position)
+      end
       expect(parsed_response[0]['type']).to eq('new_campaign')
-      expect(parsed_response[0]['columns']).to match_array(
-        [
-          { 'id' => 5, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
-          { 'id' => 6, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1  },
-          { 'id' => 7, 'name' => 'Profile', 'column_type' => 'markdown', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 2  },
-          { 'id' => 8, 'name' => 'Description', 'column_type' => 'html', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 3  }
-        ]
-      )
+      expect(parsed_response[0]['columns']).to match_array(campaign_expected_columns)
       expect(parsed_response[0]['record']).to eq({
         'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James', 'Profile' => 'Software Engineer',
         'Description' => 'J1'
       })
 
       # Project sheet record assertions
+      project_expected_columns = project_sheet.sheet_columns.map do |column|
+        column.slice(:id, :name, :column_type, :accessor_access, :dashboard_use, :visible_in_list, :position)
+      end
       expect(parsed_response[1]['type']).to eq('project')
-      expect(parsed_response[1]['columns']).to match_array(
-        [
-          { 'id' => 9, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
-          { 'id' => 10, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1 }
-        ]
-      )
+      expect(parsed_response[1]['columns']).to match_array(project_expected_columns)
       expect(parsed_response[1]['record']).to eq({
         'id' => project_sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James S'
       })

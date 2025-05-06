@@ -480,7 +480,7 @@ describe UsersResults::Scoring::AddScore do
     end
 
     describe 'when custom formula contains invalid factor' do
-      let(:custom_formula) { 'return assessment.zscore(111)' }
+      let(:custom_formula) { 'return assessment.zscore(11100000000)' }
       it 'returns nil' do
         result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                          norm: five_scale_norm })
