@@ -50,7 +50,7 @@ module Campaigns
     end
 
     def copy_datasheet_columns(new_campaign)
-      return unless campaign.datasheet
+      return unless campaign.campaign_datasheet
 
       new_campaign.create_campaign_datasheet
       campaign.campaign_datasheet.sheet_columns.each do |column|
