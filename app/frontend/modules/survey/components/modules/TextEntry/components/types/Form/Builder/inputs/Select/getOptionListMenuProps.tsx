@@ -5,7 +5,7 @@ import {
   MenuProps, Input, InputRef, Row,
 } from 'antd'
 
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import Utils from '~/modules/survey/utils/Utils'
 import { useInputFocus } from '~/hooks/useInputFocus'
 import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
@@ -88,7 +88,7 @@ export const getOptionListMenuProps = ({
       val: { ...type, optionList: options.map(o => o.text) },
     }, false)
   }
-  let menuItems: ItemType[] = options.map((option, i) => (
+  let menuItems: MenuItem[] = options.map((option, i) => (
     {
       key: option.id,
       label: (

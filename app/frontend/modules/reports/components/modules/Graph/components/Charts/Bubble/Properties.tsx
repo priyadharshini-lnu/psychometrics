@@ -379,7 +379,8 @@ const FactorsSelect: FC<FactorsSelectProps> = ({
     className="w-100"
     popupClassName="ps-2"
     showSearch
-    filterOption={(searchInput, option) => option?.title?.toLowerCase()?.indexOf(searchInput.toLowerCase()) >= 0}
+    filterOption={(searchInput, option) => (
+      option?.title?.toLowerCase()?.indexOf(searchInput.toLowerCase()) || -1) >= 0}
     onChange={onChange}
     placeholder={placeholder}
     value={value !== 0 ? value : undefined}

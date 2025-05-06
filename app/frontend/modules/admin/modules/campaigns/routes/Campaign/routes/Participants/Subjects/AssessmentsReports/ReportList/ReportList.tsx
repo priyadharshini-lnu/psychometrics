@@ -5,9 +5,9 @@ import {
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { Link, useParams } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
@@ -241,7 +241,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.viewReport && (internal || reportUrl) && menuItems.push({
     key: 'viewReport',
     label: (

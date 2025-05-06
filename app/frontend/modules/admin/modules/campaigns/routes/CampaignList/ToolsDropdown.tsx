@@ -4,8 +4,8 @@ import {
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useParams } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import { getPermissions } from '~/core/currentUser'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { useResources } from '~/hooks/useResources/useResources'
@@ -28,7 +28,7 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
   const { projectId } = useParams() as { projectId: string }
   const { memberAction } = useResources('projects')
 
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
   permissions.workshopStatusExport && menuItems.push({
     key: 'workshopStatusExport',
     label: I18n.t('administration.project.tools.workshop_status_export'),

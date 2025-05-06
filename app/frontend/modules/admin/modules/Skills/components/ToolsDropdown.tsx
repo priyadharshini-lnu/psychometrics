@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
@@ -33,9 +33,9 @@ export const ToolsDropdown: React.FC<Props> = ({
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   const params = useParams()
 
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
 
-  const importMenuItems:ItemType[] = []
+  const importMenuItems:MenuItem[] = []
 
   if (permissions?.import) {
     importMenuItems.push({
@@ -51,7 +51,7 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
     })
   }
 
-  const exportMenuItems:ItemType[] = []
+  const exportMenuItems:MenuItem[] = []
 
   if (permissions?.export) {
     exportMenuItems.push({

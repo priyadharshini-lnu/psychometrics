@@ -4,8 +4,8 @@ import { Menu } from 'antd'
 import {
   ShopOutlined,
 } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
+import { MenuItem } from '~/interfaces/Antd'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import settings from '../../settings'
@@ -26,7 +26,7 @@ const TabsComponent: React.FC<Props> = ({ currentUser }) => {
     navigate(`${settings.urlPrefix}/${key}`)
   }
 
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     { key: 'users', icon: <ShopOutlined />, label: I18n.t('users.users') },
   ]
 

@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { getFeatures } from '~/core/config'
 import { camelizeKeys } from '~/utils/object'
 import {
@@ -145,7 +145,7 @@ const Project: FC<Props> = ({
     return some(permissions, permission => currentUser.permissions[permission])
   }
 
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     { key: 'new_campaigns', icon: <ShopOutlined />, label: I18n.t('common.model.campaigns') },
     { key: 'datasheet', icon: <DatabaseOutlined />, label: I18n.t('common.model.datasheet') },
   ]

@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Button, MenuProps, Typography,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useParams } from 'react-router'
+import { MenuItem } from '~/interfaces/Antd'
 import { getLabelForEnumValue } from '~/utils/object'
 import { Skill } from '~/modules/admin/modules/client/core/skills'
 import { Resource } from '~/modules/admin/components/Resource'
@@ -127,7 +127,7 @@ const getActionsMenuProps = ({ skill, openModal }: ActionMenuData):MenuProps => 
           {I18n.t('common.actions.edit')}
         </Button>),
     },
-  ].filter(m => m) as ItemType[]
+  ].filter(m => m) as MenuItem[]
 
   return ({ items: menuItems })
 }

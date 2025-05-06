@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Menu } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useNavigate, useParams } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import RouteList from '~/components/RouteList'
 import routeUtils from '~/utils/route'
 import SkillList from '~/modules/admin/modules/Skills/components/SkillList'
@@ -23,7 +23,7 @@ export const Taxonomy: FC = () => {
   const onSelect = ({ key }) => {
     navigate(`/admin/projects/${projectId}/taxonomy${key}`)
   }
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
 
   menuItems.push({
     key: '/skills',

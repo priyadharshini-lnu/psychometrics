@@ -1,8 +1,8 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useNavigate } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
@@ -29,7 +29,7 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const navigate = useNavigate()
   const prefix = `${settings.urlPrefix}/:campaignId`
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
-  const menuItems: ItemType[] = [{
+  const menuItems: MenuItem[] = [{
     key: '/participants/subjects',
     label: I18n.t('administration.participants.tabs.subjects'),
   }]

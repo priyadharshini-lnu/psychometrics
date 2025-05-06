@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import { RangeValue } from 'rc-picker/lib/interface'
+import { RangeValueType } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import {
   get as getLogs, fetch, fetchActions, FETCH,
@@ -82,7 +82,7 @@ const AuditLogList: React.FC<Props> = (
   const today = dayjs()
   const initialRange: [dayjs.Dayjs, dayjs.Dayjs] = [today.startOf('day'), today.endOf('day')]
 
-  const [range, setRange] = useState<RangeValue<dayjs.Dayjs> | null>(initialRange)
+  const [range, setRange] = useState<RangeValueType<dayjs.Dayjs> | null>(initialRange)
 
   const [form] = Form.useForm()
   const [isExpanded, setIsExpanded] = useState(false)

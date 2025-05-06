@@ -5,10 +5,10 @@ import {
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import { isSuperAdmin } from '~/core/currentUser'
 import { State as UserAssessmentState } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -307,7 +307,7 @@ const getActionsMenuProps = ({
     label: I18n.t('assessments.actions.rescore'),
   })
 
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     {
       type: 'group',
       key: 'response',

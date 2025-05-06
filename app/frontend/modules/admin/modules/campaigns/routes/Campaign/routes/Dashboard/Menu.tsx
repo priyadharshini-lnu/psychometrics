@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Menu as AntMenu } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
@@ -25,7 +25,7 @@ export const Menu: React.FC<Props> = ({
   const onSelect = ({ key }) => {
     routeUtils.moveTo(navigate, `${settings.urlPrefix}/${campaignId}/dashboard`, key)
   }
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   !dashboardInitialized && campaignPermissions.viewDashboard && menuItems.push({
     key: '/initialize',
     label: I18n.t('administration.dashboard.tabs.dashboard'),

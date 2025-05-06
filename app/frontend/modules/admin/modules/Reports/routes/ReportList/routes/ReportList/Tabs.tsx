@@ -4,7 +4,7 @@ import { Menu } from 'antd'
 import {
   DeleteOutlined, CheckCircleOutlined, FolderOutlined,
 } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import settings from '../../../../settings'
 
 const { I18n } = window
@@ -16,7 +16,7 @@ export const Tabs: React.FC = () => {
     navigate(`${settings.urlPrefix}/reports/${key}`)
   }
 
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     { key: 'active', icon: <CheckCircleOutlined />, label: I18n.t('reports.active') },
     { key: 'archived', icon: <FolderOutlined />, label: I18n.t('reports.archived') },
     { key: 'trash', icon: <DeleteOutlined />, label: I18n.t('reports.trash') },

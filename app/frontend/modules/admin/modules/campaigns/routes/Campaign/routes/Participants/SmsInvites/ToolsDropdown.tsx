@@ -3,7 +3,7 @@ import {
   Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { State as SmsInvites } from '~/modules/admin/modules/campaigns/core/smsInvites'
 
@@ -39,7 +39,7 @@ const getMenuProps = ({
   openModal,
   permissions,
 }): MenuProps => {
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
   permissions.export && menuItems.push({
     key: 'export',
     label: (

@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { Assessor } from '~/modules/admin/modules/client/core/assessors'
 
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -73,7 +73,7 @@ const getMenuDropdownProps = ({
   handleResetPassword,
   handleDelete,
 }: MenuData):MenuProps => {
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
     label: I18n.t('administration.project_users.edit'),

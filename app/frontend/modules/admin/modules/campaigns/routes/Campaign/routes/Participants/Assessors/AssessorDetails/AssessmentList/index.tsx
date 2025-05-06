@@ -10,7 +10,7 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import { useParams } from 'react-router-dom'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
   get as getAssessorAssessments, fetch, reset, resetProgress, selectRecords, getSelectedIds, bulkDelete, BULK_DELETE,
@@ -267,7 +267,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   const resetEvaluationMenuItems = [
     { key: 'reset', label: I18n.t('administration.assessor.assessments.actions.reset') },
     { key: 'resetProgress', label: I18n.t('administration.assessor.assessments.actions.reset_progress') },

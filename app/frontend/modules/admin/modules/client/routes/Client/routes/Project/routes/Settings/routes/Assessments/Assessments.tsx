@@ -5,7 +5,7 @@ import {
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { PlusOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { UpdateResource, BaseMeta } from '~/hooks/useResources/interfaces'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
@@ -229,7 +229,7 @@ interface ActionMenuData {
 const getActionMenuProps = ({
   projectAssessment, removeAssessment, updateAssessment, openModal, clientId,
 }:ActionMenuData):MenuProps => {
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     {
       key: 'edit',
       label: I18n.t('common.actions.edit'),

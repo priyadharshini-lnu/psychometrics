@@ -11,10 +11,10 @@ import {
   Avatar,
   Space,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined } from '@ant-design/icons'
 import capitalize from 'lodash/capitalize'
 import map from 'lodash/map'
+import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import { ResourceAvatar } from '~/glint'
 
@@ -326,7 +326,7 @@ const getActionsMenuProps = ({
 }: ActionMenuData): MenuProps => {
   const { permissions } = campaign
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
     label: I18n.t('administration.campaigns.edit'),

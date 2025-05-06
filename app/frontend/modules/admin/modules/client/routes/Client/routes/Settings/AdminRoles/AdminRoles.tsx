@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom'
 import {
   Button, message, MenuProps, Space, Checkbox, App,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { PlusOutlined } from '@ant-design/icons'
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
+import { MenuItem } from '~/interfaces/Antd'
 import { AdminRole, AdminRoleTR } from '~/modules/admin/modules/client/core/adminRole'
 import { AdminRolesForm } from './AdminRolesForm'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -141,7 +141,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   resource.meta.permissions?.edit && menuItems.push({
     key: 'edit',
     label: (

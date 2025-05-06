@@ -4,8 +4,8 @@ import { Menu } from 'antd'
 import {
   FileOutlined, FolderOpenOutlined,
 } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useSelector } from 'react-redux'
+import { MenuItem } from '~/interfaces/Antd'
 import { isSuperAdmin, get as getCurrentUser } from '~/core/currentUser'
 import settings from '../../settings'
 
@@ -20,7 +20,7 @@ export const FirstLevelTabs: React.FC = () => {
 
   const currentUser = useSelector(getCurrentUser)
 
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     { key: 'reports', icon: <FileOutlined />, label: I18n.t('reports.reports') },
   ]
 

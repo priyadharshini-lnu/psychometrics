@@ -6,10 +6,10 @@ import {
   message,
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { CopyOutlined, PlusOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { MenuItem } from '~/interfaces/Antd'
 import { ConfirmationModal } from '~/glint'
 
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -133,7 +133,7 @@ const getActionsMenuProps = ({
     message.error(I18n.t('common.errors.something_wrong'))
   })
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   resource.meta.permissions?.edit && menuItems.push({
     key: 'edit',
     label: (

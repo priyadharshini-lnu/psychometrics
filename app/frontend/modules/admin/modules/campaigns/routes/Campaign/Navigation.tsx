@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import type { MenuProps } from 'antd'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import {
   UserOutlined,
@@ -17,8 +16,8 @@ import {
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
 import { Subnavigation } from '~/components/Subnavigation'
+import { MenuItem } from '~/interfaces/Antd'
 
-type MenuItem = Required<MenuProps>['items'][number];
 
 const { I18n } = window
 

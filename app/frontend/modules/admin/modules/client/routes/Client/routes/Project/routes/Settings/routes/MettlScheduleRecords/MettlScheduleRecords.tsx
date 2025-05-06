@@ -5,7 +5,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useResources } from '~/hooks/useResources/useResources'
 import {
@@ -200,7 +200,7 @@ const getActionsMenuProps = (
     mettlScheduleRecord, openModal, updateMettlScheduleRecord,
   }:ActionMenuData,
 ):MenuProps => {
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     {
       key: 'edit',
       label: I18n.t('administration.projects.mettl_schedule_records.actions.edit'),

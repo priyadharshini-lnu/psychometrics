@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useNavigate, useParams } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import RouteList from '~/components/RouteList'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
 import routeUtils from '~/utils/route'
@@ -48,7 +48,7 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
   const onSelect = ({ key }) => {
     routeUtils.moveTo(navigate, prefix, key)
   }
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
 
   permissions.manageProjectGeneralSettings && menuItems.push({
     key: '/general',
