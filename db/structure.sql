@@ -403,7 +403,11 @@ CREATE TABLE public.ai_assistants (
     action character varying NOT NULL,
     description character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_prompt text,
+    system_prompt text,
+    owner_id bigint,
+    last_modified_by_id bigint
 );
 
 
@@ -10313,6 +10317,20 @@ CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessm
 
 
 --
+-- Name: index_ai_assistants_on_last_modified_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistants_on_last_modified_by_id ON public.ai_assistants USING btree (last_modified_by_id);
+
+
+--
+-- Name: index_ai_assistants_on_owner_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistants_on_owner_id ON public.ai_assistants USING btree (owner_id);
+
+
+--
 -- Name: index_api_keys_on_created_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13995,6 +14013,14 @@ ALTER TABLE ONLY public.workshop_invited_subjects
 
 
 --
+-- Name: ai_assistants fk_rails_5b2628499c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistants
+    ADD CONSTRAINT fk_rails_5b2628499c FOREIGN KEY (last_modified_by_id) REFERENCES public.users(id);
+
+
+--
 -- Name: questions fk_rails_5b54a08d0b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15387,6 +15413,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: ai_assistants fk_rails_f14e9d0301; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistants
+    ADD CONSTRAINT fk_rails_f14e9d0301 FOREIGN KEY (owner_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: idp_template_development_actions fk_rails_f16ae884e9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15553,6 +15587,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250504102702'),
 ('20250429125102'),
 ('20250427174443'),
 ('20250425102837'),
