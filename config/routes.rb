@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}/%{all}')
   get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id',
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
+  get '/admin/clients/:client_id/*all', to: 'administration/app#dashboard'
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
