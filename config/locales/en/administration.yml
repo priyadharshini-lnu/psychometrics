@@ -2651,6 +2651,7 @@ en:
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
       profile_settings:
+        month: Month %{count}
         never: Never
         update_in: Notify Profile Update in
         year: Year

@@ -227,7 +227,7 @@ en-US:
       heading: Please review the guidelines below before you get started. We wish you all the best!
     language:
       content: This task is not available in the currently selected language. Please select one of the available languages to proceed.
-      single_lang: This task is available only in %{lang}. Click "Proceed" to continue.
+      single_lang: This task is available only in %{lang}. Click "Continue" to proceed.
       title: Select language
     panels:
       dashboard: Dashboard
