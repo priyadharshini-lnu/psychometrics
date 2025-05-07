@@ -81,6 +81,8 @@ class Communication < ApplicationRecord
   end
 
   def selected_campaign_users
+    return CampaignUser.none if project_campaign.blank?
+
     communication_users = project_campaign.campaign_users.joins(:user).where(users: { disabled: false }, active: true)
     return communication_users.where(user_id: user_ids) if selected_recipients?
 
