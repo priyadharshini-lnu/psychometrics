@@ -37,6 +37,9 @@ module Campaigns
       campaign.campaign_reports.each do |cr|
         new_campaign.campaign_reports << cr.dup
       end
+      campaign.campaign_assessor_assessments.each do |caa|
+        new_campaign.campaign_assessor_assessments << caa.dup
+      end
     end
 
     def copy_sequencing(new_campaign)
