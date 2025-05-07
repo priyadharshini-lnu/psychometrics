@@ -155,7 +155,7 @@ module Campaigns
 
       def create_pearson_assessment(user_assessment, existing_result, campaign_assessment)
         existing_pearson_user_assessment = existing_result&.pearson_user_assessment
-        variation = pearson_variation_code(campaign_assessment)
+        variation = pearson_variation_code(campaign_assessment, user_assessment)
         user_assessment.create_pearson_user_assessment(
           norm_id: existing_pearson_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
           schedule_id: existing_pearson_user_assessment&.schedule_id,
@@ -206,9 +206,10 @@ module Campaigns
           simulation_settings[:default_content_variation_id]
       end
 
-      def pearson_variation_code(campaign_assessment)
-        campaign_assessment.external_config&.dig('variation') ||
-          campaign_assessment.assessment.pearson_variations&.find(&:default)&.code
+      def pearson_variation_code(campaign_assessment, user_assessment)
+        assessment = user_assessment.assessment
+        campaign_assessment&.external_config&.dig('variation') ||
+          assessment.pearson_variations&.find(&:default)&.code
       end
     end
   end
