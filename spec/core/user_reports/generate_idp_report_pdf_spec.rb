@@ -73,7 +73,7 @@ describe UserReports::GenerateIdpReportPdf do
       allow_any_instance_of(described_class).to receive(:report_preview_url).and_return(report_url)
       allow_any_instance_of(described_class).to receive(:report_file_name).and_return(report_file_name)
       expect(Lambdas::UrlToPdf).to receive(:call!).with(
-        { width: '849px', height: '1100px' }.merge(
+        { width: '1122px', height: '793px' }.merge(
           file_name: report_file_name,
           url: report_url,
           low_priority: nil,

@@ -30,7 +30,7 @@ module UserReports
 
     def default_report_export_options
       # TODO: update page format once verify requirements
-      { width: '849px', height: '1100px' }.merge(url: report_preview_url)
+      { width: '1122px', height: '793px' }.merge(url: report_preview_url)
     end
 
     def report_preview_url

@@ -582,8 +582,183 @@ zh:
         requested_rescheduling_rejected: 请求改期 拒绝
     'yes': 是
   idp:
+    actions: 操作
+    board: 看板
+    details: 详情
+    development_actions:
+      action_private: 是
+      action_public: 否
+      add_development_action: 添加发展行动
+      all: 全部
+      approved: 已批准
+      board_view:
+        completed: 已完成
+        in_progress: 进行中
+        not_started: 未开始
+      completion: 完成度
+      create_my_own: 创建我自己的
+      date_range: 开始日期 - 结束日期
+      generate_by_ai: 通过AI生成
+      generate_more: 生成更多
+      generating_development_actions: 正在生成发展行动...
+      heading: 发展行动
+      learning_from_others: 向他人学习
+      manage_skills: 管理技能
+      marathon: 马拉松
+      no_development_actions: 没有发展行动
+      on_the_job: 在职学习
+      other: 其他
+      private: 私人
+      remove: 移除
+      skill: 技能
+      sprint: 冲刺
+      structured_learning: 结构化学习
+      submit_plan: 提交计划
+      write_here: 在此处写入...
+    direct_report_details: 直属下属详情
+    initial_steps:
+      add_skill_group_description: 基于你的评估结果，以下是你的一些优势和发展领域。选择你想作为发展计划一部分进一步发展的技能。
+      add_skill_group_title: 探索你的%{category}技能
+      add_skills: 添加
+      add_skills_step: 添加技能
+      continue_to_rate_skills: 继续评定技能
+      getting_started: 入门
+      getting_started_info: 欢迎使用你的个人发展计划(IDP)创建器。此计划将帮助你识别、管理和跟踪你的专业和个人目标，以及实现这些目标所需采取的步骤。你的专业目标可能包括行为、领导力以及技术领域的发展。你的个人发展计划是支持你职业发展和技能提升的重要工具。
+      less_skills: 显示更少技能
+      more_skills: 探索更多技能
+      next: 下一步
+      no_skills_selected: 未选择技能。
+      rate_skills: 评定技能
+      rate_skills_description: 现在你已选择了发展重点，请对以下每项进行自我评定。记住根据你当前的水平进行评定，而不是基于过去或期望的水平。
+      rate_skills_title: 评定你的技能
+      rating_column_header: 你的自我评定
+      select_skills: 选择你的技能
+      select_skills_placeholder: 选择技能
+      selected_skills: 已选技能
+      skill_column_header: 技能
+      skill_gap_report: 技能差距报告
+    list: 列表
+    my_direct_reports: 我的直属下属
+    my_plan:
+      development_plan: 发展计划
+      graphs:
+        categories: 类别
+      save_skills: 保存技能
     pdf:
-      header: 您好
+      approval_status: 审批状态
+      cover:
+        fields:
+          assigned_data: 分配日期
+          completion_date: 完成日期
+          division: 部门
+          name: 姓名
+          publish_date: 发布日期
+          review_date: 审核日期
+          role: 当前角色
+      guidelines:
+        cards:
+          c1:
+            content: 包括需要发展的技能、知识和能力。确保它们是具体的、可衡量的、可实现的、现实的，并且能够在所提到的时间线内合理完成。
+            title: 发展目标
+          c2:
+            content: 这是基于评估经验需要发展的能力。
+            title: 能力
+          c3:
+            content: 本部分包括基于下面列出的70-20-10学习模型的发展行动。建议你选择三个要素的组合，以确保多样化的学习和发展方法。
+            title: 活动
+          c4:
+            content: 确保你的时间线是现实的，基于目标何时可以完成。在适当的时候进行修改。
+            title: 时间线
+          c5:
+            content: 使用进展部分支持已确定轨道上的进展。
+            title: 进展
+        chart:
+          collaboration: "<strong>20%</strong>协作式<br />学习"
+          job: "<strong>70%</strong>在职<br />学习"
+          learn: "<strong>10%</strong>正式学习"
+        content:
+          list:
+            r1: 请注意，此列表仅供参考，根据个人愿望、管理者的建议以及组织业务优先事项，可能会为你考虑额外的发展路径。
+            r2: 请注意，这些发展路径中的一些启动将取决于组织范围的教育和学习策略。
+            r3: 在制定个人发展计划时，请考虑以下推荐的路径。
+          main: 本部分包括所有发展路径的累积列表，考虑到最佳学习实践，即70-20-10指南，它提供了结合课堂学习、辅导和在职学习的渐进式旅程。基于领导力发展经验和业务优先事项的成果，已推荐可能的发展路径，可以考虑用于你的发展。
+        learn_cards:
+          collaboration:
+            list:
+            - 提供给他人指导或导师服务
+            - 请求领域专家作为你的导师
+            - 获得一位教练支持你的发展
+            - 建立一个协作工作组，讨论业务中的持续挑战
+            - 从他人那里正式和非正式地获取反馈
+            - 在行业协会和网络中发挥积极作用
+            - 建立自己的外部网络
+            title: 协作学习(20%)<br/>通过他人发展
+          job:
+            list:
+            - 在利益相关者或管理委员会中担任领导职位
+            - 自愿领导组织的变革管理项目
+            - 考虑承担有挑战性的任务
+            - 与其他职能部门跨部门协作
+            - 考虑领导组织外的项目
+            - 与外部行业专家在联合项目上密切合作
+            title: 在职学习(70%)<br/>通过经验发展
+          learn:
+            list:
+            - 在利益相关者或管理委员会中担任领导职位
+            - 自愿领导组织的变革管理项目
+            - 考虑承担有挑战性的任务
+            - 与其他职能部门跨部门协作
+            - 考虑领导组织外的项目
+            - 与外部行业专家在联合项目上密切合作
+            title: 正式学习(10%)<br/>通过结构化学习发展
+        title: 指导你的IDP的指南
+      idp:
+        end_date: 结束日期
+        self_rating: 自我评定
+        start_date: 开始日期
+        subtitle:
+          behavioural: 行为
+          technical: 技术
+        title: 个人发展计划
+      last:
+        end_report: 报告结束
+      reflections:
+        subtitle: 整体专业发展问题
+        title: 指导你的IDP的思考
+      skill_categories:
+        behavioral: 行为
+        technical: 技术
+      statuses:
+        approved: 已审核并批准
+        completed: 已完成
+        not_reviewed: 未审核
+        pending_approval: 审核中
+      summary:
+        ai_count: 生成式AI
+        collaborative_learn: 协作学习
+        created_by: 创建者
+        current_status: IDP当前状态
+        custom: 自定义
+        custom_count: 自定义
+        da_count: 发展行动数量
+        formal_learn: 正式学习
+        generated_ai: 生成式AI
+        learn_on_job: 在职学习
+        learn_pathway: 学习路径
+        lib_count: IDP库
+        library: IDP库
+        skills_count: 技能数量
+        title: 报告摘要
+    profile_details: 个人资料详情
+    skill_gap_report:
+      continue_to_rate_skills: 继续评定技能
+      title: 技能差距报告
+    status: 状态
+    user_idp_status:
+      approved: 已批准
+      draft: 草稿
+      pending_approval: 待批准
+    users: 用户
   idp_templates:
     errors:
       user_idp_template_not_found: 没有为您分配 IDP 模板。

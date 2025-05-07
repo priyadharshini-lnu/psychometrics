@@ -582,8 +582,183 @@ pt:
         requested_rescheduling_rejected: Solicitado Reagendamento Rejeitado
     'yes': Sim
   idp:
+    actions: Ações
+    board: Quadro
+    details: Detalhes
+    development_actions:
+      action_private: Sim
+      action_public: Não
+      add_development_action: Adicionar Ação de Desenvolvimento
+      all: Todos
+      approved: Aprovado
+      board_view:
+        completed: Concluído
+        in_progress: Em Progresso
+        not_started: Não Iniciado
+      completion: Conclusão
+      create_my_own: Criar o Meu Próprio
+      date_range: Data de Início - Data de Fim
+      generate_by_ai: Gerar por IA
+      generate_more: Gerar Mais
+      generating_development_actions: A gerar ações de desenvolvimento...
+      heading: Ações de Desenvolvimento
+      learning_from_others: Aprendizagem com outros
+      manage_skills: Gerir Competências
+      marathon: Maratona
+      no_development_actions: Sem ações de desenvolvimento
+      on_the_job: No trabalho
+      other: Outro
+      private: Privado
+      remove: Remover
+      skill: Competência
+      sprint: Sprint
+      structured_learning: Aprendizagem estruturada
+      submit_plan: Submeter Plano
+      write_here: Escreva aqui...
+    direct_report_details: Detalhes do Relatório Direto
+    initial_steps:
+      add_skill_group_description: Com base nos seus resultados de avaliação, aqui estão algumas das áreas de força e desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
+      add_skill_group_title: A Explorar as Suas Competências de %{category}
+      add_skills: Adicionar
+      add_skills_step: Adicionar Competências
+      continue_to_rate_skills: Continuar a avaliar competências
+      getting_started: Começar
+      getting_started_info: Bem-vindo ao seu criador de Plano de Desenvolvimento Individual (PDI). Este plano irá ajudá-lo a identificar, gerir e acompanhar os seus objetivos profissionais e pessoais, bem como os passos necessários para alcançar esses objetivos. Os seus objetivos profissionais podem incluir áreas de desenvolvimento comportamental, de liderança e técnico. O seu PDI é uma ferramenta essencial para apoiar o desenvolvimento da sua carreira e o aprimoramento das suas competências.
+      less_skills: Mostrar menos competências
+      more_skills: Explorar mais competências
+      next: Próximo
+      no_skills_selected: Nenhuma competência selecionada.
+      rate_skills: Avaliar Competências
+      rate_skills_description: Agora que selecionou as suas prioridades de desenvolvimento, por favor, avalie-se em cada uma das seguintes. Lembre-se de se avaliar com base no seu nível atual e não no seu nível passado ou desejado.
+      rate_skills_title: A Avaliar as Suas Competências
+      rating_column_header: A sua autoavaliação
+      select_skills: Selecione as suas competências
+      select_skills_placeholder: Selecionar competências
+      selected_skills: Competências Selecionadas
+      skill_column_header: Competência
+      skill_gap_report: Relatório de Lacunas de Competências
+    list: Lista
+    my_direct_reports: Os Meus Relatórios Diretos
+    my_plan:
+      development_plan: Plano de Desenvolvimento
+      graphs:
+        categories: Categorias
+      save_skills: Guardar Competências
     pdf:
-      header: Olá
+      approval_status: Estado de Aprovação
+      cover:
+        fields:
+          assigned_data: Data Atribuída
+          completion_date: Data de Conclusão
+          division: Divisão
+          name: Nome
+          publish_date: Data de Publicação
+          review_date: Data de Revisão
+          role: Função Atual
+      guidelines:
+        cards:
+          c1:
+            content: Inclui competências, conhecimentos e capacidades que precisam de ser desenvolvidos. Certifique-se de que são específicos, mensuráveis, alcançáveis, realistas e razoavelmente capazes de serem cumpridos nos prazos mencionados.
+            title: Objetivos de Desenvolvimento
+          c2:
+            content: Isto baseia-se na competência a ser desenvolvida com base na experiência de avaliação.
+            title: Competência
+          c3:
+            content: Esta secção inclui as suas ações de desenvolvimento baseadas no modelo de aprendizagem 70-20-10 listado abaixo. Aconselha-se a selecionar uma combinação de cada um dos três elementos para garantir uma abordagem variada de aprendizagem e desenvolvimento.
+            title: Atividade
+          c4:
+            content: Certifique-se de que os seus prazos são realistas com base em quando o objetivo pode ser concluído. Altere quando e se for apropriado.
+            title: Cronograma
+          c5:
+            content: Utilize a secção de progresso para apoiar a progressão nas vias identificadas.
+            title: Progresso
+        chart:
+          collaboration: "<strong>20%</strong>Aprendizagem <br /> Colaborativa"
+          job: "<strong>70%</strong>Aprendizagem <br />no Trabalho"
+          learn: "<strong>10%</strong>Aprendizagem Formal"
+        content:
+          list:
+            r1: Note que esta lista é apenas indicativa, e percursos de desenvolvimento adicionais podem ser considerados para si com base em aspirações individuais, recomendações do seu gestor, bem como prioridades organizacionais de negócios.
+            r2: Note que o lançamento de alguns destes percursos de desenvolvimento dependerá da estratégia de educação e aprendizagem de toda a organização.
+            r3: Por favor, considere os percursos recomendados como cruzados abaixo, ao desenvolver o seu Plano de Desenvolvimento Individual.
+          main: Esta secção inclui uma lista cumulativa de todos os percursos de desenvolvimento, tendo em mente a melhor prática de aprendizagem, ou seja, a diretriz 70-20-10, que fornece uma jornada progressiva combinando aprendizagem em sala de aula, coaching e aprendizagem no trabalho. Com base nos resultados da experiência de desenvolvimento de liderança e prioridades de negócios, percursos de desenvolvimento possíveis foram recomendados, que podem ser considerados para o seu desenvolvimento.
+        learn_cards:
+          collaboration:
+            list:
+            - Ofereça-se para orientar ou mentorizar outros
+            - Solicite ser orientado por um especialista na sua área
+            - Obtenha um coach para apoiar o seu desenvolvimento
+            - Configure um grupo de trabalho colaborativo para discutir desafios contínuos no negócio
+            - Obtenha feedback formal e informalmente de outros
+            - Desempenhe um papel ativo em associações e redes da indústria
+            - Construa as suas próprias redes externas
+            title: Aprendizagem Colaborativa (20%) <br/> Desenvolvimento através de outros
+          job:
+            list:
+            - Assuma posições de liderança em comitês de partes interessadas ou de gestão
+            - Voluntarie-se para liderar projetos de gestão de mudança para a organização
+            - Considere assumir tarefas desafiadoras
+            - Trabalhe de forma colaborativa com outras funções
+            - Considere liderar projetos fora da sua organização
+            - Trabalhe em estreita colaboração com especialistas da indústria externa em projetos conjuntos
+            title: Aprendizagem no Trabalho (70%) <br/> Desenvolvimento através da experiência
+          learn:
+            list:
+            - Assuma posições de liderança em comitês de partes interessadas ou de gestão
+            - Voluntarie-se para liderar projetos de gestão de mudança para a organização
+            - Considere assumir tarefas desafiadoras
+            - Trabalhe de forma colaborativa com outras funções
+            - Considere liderar projetos fora da sua organização
+            - Trabalhe em estreita colaboração com especialistas da indústria externa em projetos conjuntos
+            title: Aprendizagem Formal (10%) <br/> Desenvolvimento através da aprendizagem estruturada
+        title: Diretrizes para Orientar o seu PDI
+      idp:
+        end_date: Data de Fim
+        self_rating: Autoavaliação
+        start_date: Data de Início
+        subtitle:
+          behavioural: Comportamental
+          technical: Técnico
+        title: Plano de Desenvolvimento Individual
+      last:
+        end_report: Fim do Relatório
+      reflections:
+        subtitle: Questões para o Desenvolvimento Profissional Geral
+        title: Reflexões para Orientar o seu PDI
+      skill_categories:
+        behavioral: Comportamental
+        technical: Técnico
+      statuses:
+        approved: Revisto e Aprovado
+        completed: Concluído
+        not_reviewed: Não Revisto
+        pending_approval: Em Revisão
+      summary:
+        ai_count: IA Generativa
+        collaborative_learn: Aprendizagem Colaborativa
+        created_by: Criado por
+        current_status: Estado Atual do PDI
+        custom: Personalizado
+        custom_count: Personalizado
+        da_count: Contagem de Ações de Desenvolvimento
+        formal_learn: Aprendizagem Formal
+        generated_ai: IA Generativa
+        learn_on_job: Aprendizagem no trabalho
+        learn_pathway: Percurso de Aprendizagem
+        lib_count: Biblioteca PDI
+        library: Biblioteca PDI
+        skills_count: Contagem de Competências
+        title: Resumo do Relatório
+    profile_details: Detalhes do Perfil
+    skill_gap_report:
+      continue_to_rate_skills: Continuar a avaliar competências
+      title: Relatório de Lacunas de Competências
+    status: Estado
+    user_idp_status:
+      approved: Aprovado
+      draft: Rascunho
+      pending_approval: Pendente
+    users: Utilizadores
   idp_templates:
     errors:
       user_idp_template_not_found: Não lhe foi atribuído nenhum modelo de PDI.

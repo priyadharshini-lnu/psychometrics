@@ -1638,6 +1638,7 @@ en:
       copy: Copy
       create: Create
       delete: Delete
+      download: Download
       edit: Edit
       export: Export
       filter_by_tags: Filter by tags
@@ -2431,7 +2432,110 @@ en:
         categories: Categories
       save_skills: Save Skills
     pdf:
-      header: Hello
+      approval_status: Approval Status
+      cover:
+        fields:
+          assigned_data: Assigned Date
+          completion_date: Completion Date
+          division: Division
+          name: Name
+          publish_date: Publish Date
+          review_date: Review Date
+          role: Current Role
+      guidelines:
+        cards:
+          c1:
+            content: Include skills, knowledge and capabilities that need to be developed. Ensure they are specific, measurable, achievable, realistic and reasonably able to be accomplished in the timelines mentioned.
+            title: Development Objectives
+          c2:
+            content: This is based on the competency to be developed based on the assessment experience.
+            title: Competency
+          c3:
+            content: This section includes your development actions based on the 70-20-10 learning model listed below. It is advised that you select a combination of each of the three elements to ensure a varied learning and development approach.
+            title: Activity
+          c4:
+            content: Ensure your timelines are realistic based on when the objective can be complete. Do amend this as and when appropriate.
+            title: Timeline
+          c5:
+            content: Use the progress section to support progression on the identified tracks.
+            title: Progress
+        chart:
+          collaboration: "<strong>20%</strong>Collaborative <br /> Learning"
+          job: "<strong>70%</strong>Learning <br />on the Job"
+          learn: "<strong>10%</strong>Formal Learning"
+        content:
+          list:
+            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organisational business priorities.
+            r2: Please note that the launch of some of these development pathways will depend on the organisational wide education and learning strategy.
+            r3: Please consider the recommended pathways as crossed below, when developing your Individual Development Plan.
+          main: This section includes a cumulative list of all the development pathways, keeping in mind best practice learning i.e., 70-20-10 guideline, which provides a progressive journey combining classroom learning, coaching and on-the job learning. Based on the outcomes from the leadership development experience and business priorities, possible development pathways have been recommended, which can be considered for your development.
+        learn_cards:
+          collaboration:
+            list:
+            - Offer to coach or mentor others
+            - Request to be mentored by an expert in your field
+            - Attain a coach to support your development
+            - Set-up a collaborative working group to discuss on going challenges in the business
+            - Get feedback formally and informally from others
+            - Play an active role in industry associations and networks
+            - Build your own external networks
+            title: Collaborative Learning (20%) <br/> Developing through others
+          job:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Learning On the Job (70%) <br/> Developing through experience
+          learn:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Formal Learning (10%) <br/> Developing through structured learning
+        title: Guidelines to Guide your IDP
+      idp:
+        end_date: End Date
+        self_rating: Self Rating
+        start_date: Start Date
+        subtitle:
+          behavioural: Behavioural
+          technical: Technical
+        title: Individual Development Plan
+      last:
+        end_report: End of Report
+      reflections:
+        subtitle: Questions for Overall Professional Development
+        title: Reflections to Guide your IDP
+      skill_categories:
+        behavioral: Behavioural
+        technical: Technical
+      statuses:
+        approved: Reviewed and Approved
+        completed: Completed
+        not_reviewed: Not Reviewed
+        pending_approval: In Review
+      summary:
+        ai_count: Generative AI
+        collaborative_learn: Collaborative Learning
+        created_by: Created by
+        current_status: IDP Current Status
+        custom: Custom
+        custom_count: Custom
+        da_count: Development Action Count
+        formal_learn: Formal Learning
+        generated_ai: Generative AI
+        learn_on_job: Learning on the job
+        learn_pathway: Learning Pathway
+        lib_count: IDP Library
+        library: IDP Library
+        skills_count: Skills Count
+        title: Report Summary
     profile_details: Profile Details
     skill_gap_report:
       continue_to_rate_skills: Continue to rate skills

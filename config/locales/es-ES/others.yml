@@ -873,8 +873,183 @@ es-ES:
         requested_rescheduling_rejected: Solicitado Reprogramado Rechazado
     'yes': Sí
   idp:
+    actions: Acciones
+    board: Tablero
+    details: Detalles
+    development_actions:
+      action_private: Sí
+      action_public: 'No'
+      add_development_action: Añadir Acción de Desarrollo
+      all: Todos
+      approved: Aprobado
+      board_view:
+        completed: Completado
+        in_progress: En Progreso
+        not_started: No Iniciado
+      completion: Finalización
+      create_my_own: Crear Mi Propio
+      date_range: Fecha de Inicio - Fecha de Finalización
+      generate_by_ai: Generar por IA
+      generate_more: Generar Más
+      generating_development_actions: Generando acciones de desarrollo...
+      heading: Acciones de Desarrollo
+      learning_from_others: Aprendiendo de otros
+      manage_skills: Gestionar Habilidades
+      marathon: Maratón
+      no_development_actions: No hay acciones de desarrollo
+      on_the_job: En el trabajo
+      other: Otro
+      private: Privado
+      remove: Eliminar
+      skill: Habilidad
+      sprint: Sprint
+      structured_learning: Aprendizaje estructurado
+      submit_plan: Enviar Plan
+      write_here: Escriba aquí...
+    direct_report_details: Detalles del Informe Directo
+    initial_steps:
+      add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
+      add_skill_group_title: Explorando Sus Habilidades de %{category}
+      add_skills: Añadir
+      add_skills_step: Añadir Habilidades
+      continue_to_rate_skills: Continuar para evaluar habilidades
+      getting_started: Comenzando
+      getting_started_info: Bienvenido/a a su creador de Plan de Desarrollo Individual (PDI). Este plan le ayudará a identificar, gestionar y seguir sus objetivos profesionales y personales, así como los pasos que debe dar para lograrlos. Sus objetivos profesionales pueden incluir áreas de desarrollo conductual, liderazgo y técnico. Su PDI es una herramienta esencial para apoyar el desarrollo de su carrera y la mejora de habilidades.
+      less_skills: Mostrar menos habilidades
+      more_skills: Explorar más habilidades
+      next: Siguiente
+      no_skills_selected: No hay habilidades seleccionadas.
+      rate_skills: Evaluar Habilidades
+      rate_skills_description: Ahora que ha seleccionado sus prioridades de desarrollo, por favor evalúese en cada una de las siguientes. Recuerde evaluarse según su nivel actual y no en su nivel pasado o deseado.
+      rate_skills_title: Evaluando Sus Habilidades
+      rating_column_header: Su autoevaluación
+      select_skills: Seleccione sus habilidades
+      select_skills_placeholder: Seleccionar habilidades
+      selected_skills: Habilidades Seleccionadas
+      skill_column_header: Habilidad
+      skill_gap_report: Informe de Brecha de Habilidades
+    list: Lista
+    my_direct_reports: Mis Informes Directos
+    my_plan:
+      development_plan: Plan de Desarrollo
+      graphs:
+        categories: Categorías
+      save_skills: Guardar Habilidades
     pdf:
-      header: Hola
+      approval_status: Estado de Aprobación
+      cover:
+        fields:
+          assigned_data: Fecha Asignada
+          completion_date: Fecha de Finalización
+          division: División
+          name: Nombre
+          publish_date: Fecha de Publicación
+          review_date: Fecha de Revisión
+          role: Rol Actual
+      guidelines:
+        cards:
+          c1:
+            content: Incluya habilidades, conocimientos y capacidades que necesitan ser desarrolladas. Asegúrese de que sean específicas, medibles, alcanzables, realistas y razonablemente posibles de lograr en los plazos mencionados.
+            title: Objetivos de Desarrollo
+          c2:
+            content: Esto se basa en la competencia a desarrollar según la experiencia de evaluación.
+            title: Competencia
+          c3:
+            content: Esta sección incluye sus acciones de desarrollo basadas en el modelo de aprendizaje 70-20-10 que se detalla a continuación. Se recomienda que seleccione una combinación de cada uno de los tres elementos para garantizar un enfoque variado de aprendizaje y desarrollo.
+            title: Actividad
+          c4:
+            content: Asegúrese de que sus plazos sean realistas en función de cuándo se puede completar el objetivo. Modifique esto según corresponda.
+            title: Cronograma
+          c5:
+            content: Utilice la sección de progreso para apoyar la progresión en las vías identificadas.
+            title: Progreso
+        chart:
+          collaboration: "<strong>20%</strong>Aprendizaje <br /> Colaborativo"
+          job: "<strong>70%</strong>Aprendizaje <br />en el Trabajo"
+          learn: "<strong>10%</strong>Aprendizaje Formal"
+        content:
+          list:
+            r1: Tenga en cuenta que esta lista es solo indicativa, y se pueden considerar vías de desarrollo adicionales para usted según aspiraciones individuales, recomendaciones de su gerente, así como prioridades comerciales organizacionales.
+            r2: Tenga en cuenta que el lanzamiento de algunas de estas vías de desarrollo dependerá de la estrategia de educación y aprendizaje a nivel organizacional.
+            r3: Por favor, considere las vías recomendadas como se indica a continuación, al desarrollar su Plan de Desarrollo Individual.
+          main: Esta sección incluye una lista acumulativa de todas las vías de desarrollo, teniendo en cuenta las mejores prácticas de aprendizaje, es decir, la directriz 70-20-10, que proporciona un recorrido progresivo que combina el aprendizaje en el aula, el coaching y el aprendizaje en el trabajo. Basado en los resultados de la experiencia de desarrollo de liderazgo y las prioridades comerciales, se han recomendado posibles vías de desarrollo, que pueden considerarse para su desarrollo.
+        learn_cards:
+          collaboration:
+            list:
+            - Ofrezca entrenar o ser mentor de otros
+            - Solicite ser mentorizado por un experto en su campo
+            - Consiga un coach para apoyar su desarrollo
+            - Establezca un grupo de trabajo colaborativo para discutir los desafíos actuales en el negocio
+            - Obtenga retroalimentación formal e informalmente de otros
+            - Desempeñe un papel activo en asociaciones y redes de la industria
+            - Construya sus propias redes externas
+            title: Aprendizaje Colaborativo (20%) <br/> Desarrollándose a través de otros
+          job:
+            list:
+            - Asuma posiciones de liderazgo en comités de partes interesadas o de gestión
+            - Ofrezca liderar proyectos de gestión de cambio para la organización
+            - Considere asumir tareas desafiantes
+            - Trabaje de forma colaborativa con otras funciones
+            - Considere liderar proyectos fuera de su organización
+            - Trabaje estrechamente con expertos externos de la industria en proyectos conjuntos
+            title: Aprendizaje en el Trabajo (70%) <br/> Desarrollándose a través de la experiencia
+          learn:
+            list:
+            - Asuma posiciones de liderazgo en comités de partes interesadas o de gestión
+            - Ofrezca liderar proyectos de gestión de cambio para la organización
+            - Considere asumir tareas desafiantes
+            - Trabaje de forma colaborativa con otras funciones
+            - Considere liderar proyectos fuera de su organización
+            - Trabaje estrechamente con expertos externos de la industria en proyectos conjuntos
+            title: Aprendizaje Formal (10%) <br/> Desarrollándose a través del aprendizaje estructurado
+        title: Directrices para Guiar su PDI
+      idp:
+        end_date: Fecha de Finalización
+        self_rating: Autoevaluación
+        start_date: Fecha de Inicio
+        subtitle:
+          behavioural: Conductual
+          technical: Técnico
+        title: Plan de Desarrollo Individual
+      last:
+        end_report: Fin del Informe
+      reflections:
+        subtitle: Preguntas para el Desarrollo Profesional General
+        title: Reflexiones para Guiar su PDI
+      skill_categories:
+        behavioral: Conductual
+        technical: Técnico
+      statuses:
+        approved: Revisado y Aprobado
+        completed: Completado
+        not_reviewed: No Revisado
+        pending_approval: En Revisión
+      summary:
+        ai_count: IA Generativa
+        collaborative_learn: Aprendizaje Colaborativo
+        created_by: Creado por
+        current_status: Estado Actual del PDI
+        custom: Personalizado
+        custom_count: Personalizado
+        da_count: Recuento de Acciones de Desarrollo
+        formal_learn: Aprendizaje Formal
+        generated_ai: IA Generativa
+        learn_on_job: Aprendizaje en el trabajo
+        learn_pathway: Vía de Aprendizaje
+        lib_count: Biblioteca PDI
+        library: Biblioteca PDI
+        skills_count: Recuento de Habilidades
+        title: Resumen del Informe
+    profile_details: Detalles del Perfil
+    skill_gap_report:
+      continue_to_rate_skills: Continuar para evaluar habilidades
+      title: Informe de Brecha de Habilidades
+    status: Estado
+    user_idp_status:
+      approved: Aprobado
+      draft: Borrador
+      pending_approval: Pendiente
+    users: Usuarios
   idp_templates:
     errors:
       user_idp_template_not_found: No se le ha asignado ninguna plantilla IDP.

@@ -11,10 +11,13 @@ module Administration
 
       def show
         @selected_locale = params[:lang]
-
+        @data = {
+          template: IdpTemplateSerializer.new.serialize(resource.idp_template),
+          user_idp: UserIdpPlanSerializer.new.serialize(resource)
+        }
         respond_to do |format|
           format.json do
-            render json: {} # TODO: unimplemented fetching report data
+            render json: @data
           end
         end
       end
@@ -30,6 +33,7 @@ module Administration
         data = ::UserReports::GenerateIdpReportPdf.call!(resource, current_user, options)
         audit! :download_idp_report, resource, campaign: resource.campaign,
           payload: params.merge(resource.details_to_log)
+
         respond_to do |format|
           format.pdf do
             send_tmp_file data[:file_path], type: 'application/pdf'
@@ -42,7 +46,10 @@ module Administration
       # This action is used to generate pdf by puppeter
       def pdf_preview
         @selected_locale = params[:lang]
-        @data = {}
+        @data = {
+          template: IdpTemplateSerializer.new.serialize(resource.idp_template),
+          user_idp: UserIdpPlanSerializer.new.serialize(resource)
+        }
         @pdf_export = true
 
         render 'administration/campaigns/user_idp_reports/idp_report', layout: 'pdf'
