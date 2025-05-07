@@ -7,6 +7,7 @@ module Builders
     class TranslationBuilder
       ALLOWED_TRANSLATION_PATHS = {
         props: [
+          'content',
           'staticContent',
           'questionText',
           'notApplicableLabel',
