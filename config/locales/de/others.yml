@@ -450,6 +450,10 @@ de:
     two_factor_authentication:
       attempt: Bitte geben Sie das OTP ein, das Sie an Ihrer registrierten E-Mail-Adresse erhalten haben
       code_has_been_sent: Ihr neues OTP wurde an Ihre registrierte E-Mail-Adresse gesendet
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
   emails:
     subject_relationship_table:
       subject_email: Betreff E-Mail

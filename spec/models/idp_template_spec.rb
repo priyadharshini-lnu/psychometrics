@@ -63,18 +63,29 @@ RSpec.describe IdpTemplate, type: :model do
         expect(idp_template).to be_valid
       end
 
-      it 'is invalid without skills when any skill setting is selected' do
+      it 'is invalid without skills and tags when any skill setting is selected' do
         idp_template.behavioral_global_skill_settings = 'selected'
         idp_template.skills = []
+        idp_template.behavioural_global_tags = []
 
         expect(idp_template).not_to be_valid
-        expect(idp_template.errors[:skills]).to include('must be present if any skill setting is selected')
+        expect(idp_template.errors[:behavioral_global_skill_settings]).to include(
+          I18n.t('dry_errors.errors.idp_template.tag_or_skill_required')
+        )
       end
 
       it 'is valid with skills when a skill setting is selected' do
-        skill = create(:skill)
+        skill = create(:skill, category: 'behavioral', project: nil)
         idp_template.behavioral_global_skill_settings = 'selected'
+        idp_template.behavioural_global_tags = []
         idp_template.skills << skill
+
+        expect(idp_template).to be_valid
+      end
+
+      it 'is valid with tags when a skill setting is selected' do
+        idp_template.behavioral_global_skill_settings = 'selected'
+        idp_template.behavioural_global_tags = %w[tag1 tag2]
 
         expect(idp_template).to be_valid
       end

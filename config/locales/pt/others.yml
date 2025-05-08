@@ -448,6 +448,10 @@ pt:
     two_factor_authentication:
       attempt: Insira a OTP que recebeu no seu endereço de e-mail registado
       code_has_been_sent: A sua nova OTP foi enviada para o seu e-mail registado
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: Selecione uma etiqueta ou uma habilidade quando a opção "Selecionado" for escolhida.
   emails:
     subject_relationship_table:
       subject_email: Assunto Email

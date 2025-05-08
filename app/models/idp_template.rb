@@ -35,7 +35,7 @@ class IdpTemplate < ApplicationRecord
   validates :technical_global_skill_settings, inclusion: VALID_SKILL_SETTINGS, allow_blank: true
   validates :technical_client_skill_settings, inclusion: VALID_SKILL_SETTINGS, allow_blank: true
 
-  validate :skills_must_be_present_if_selected
+  validate :skills_or_tags_must_be_present_if_selected
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name]
@@ -100,10 +100,17 @@ class IdpTemplate < ApplicationRecord
     end
   end
 
-  def skills_must_be_present_if_selected
-    if [behavioral_global_skill_settings, behavioral_client_skill_settings, technical_global_skill_settings,
-        technical_client_skill_settings].include?('selected') && skills.empty?
-      errors.add(:skills, 'must be present if any skill setting is selected')
+  def skills_or_tags_must_be_present_if_selected
+    result = IdpTemplates::SkillsOrTagsPresenceValidator.call(
+      self,
+      skills,
+      project_id
+    )
+
+    if result[:errors].present?
+      result[:errors].each do |attribute, error|
+        errors.add(attribute, error)
+      end
     end
   end
 end

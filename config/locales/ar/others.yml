@@ -452,6 +452,10 @@ ar:
     two_factor_authentication:
       attempt: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
   emails:
     subject_relationship_table:
       subject_email: ايميل المشارك

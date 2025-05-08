@@ -4,6 +4,20 @@ module Api
   class V2::Administration::Projects::IdpTemplatesController < Api::V2::Administration::BaseController
     before_action :set_user_idp_plan, only: %i[update destroy uploads]
     validate_crud_requests Api::V2::IdpTemplate::Schema
+    validates_request_schema :create, :create_request_contract_and_schema
+    validates_request_schema :update, :update_request_contract_and_schema
+
+    def create_request_contract_and_schema
+      Api::V2::IdpTemplate::Contract.new(
+        schema: Api::V2::IdpTemplate::Schema.create_request
+      )
+    end
+
+    def update_request_contract_and_schema
+      Api::V2::IdpTemplate::Contract.new(
+        schema: Api::V2::IdpTemplate::Schema.update_request
+      )
+    end
 
     def update
       return super if @user_idp_plan.blank?

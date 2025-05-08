@@ -435,6 +435,10 @@ it:
     two_factor_authentication:
       attempt: Inserire l'OTP ricevuto all'indirizzo e-mail registrato
       code_has_been_sent: Il nuovo OTP è stato inviato all'indirizzo e-mail registrato
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
   emails:
     subject_relationship_table:
       subject_email: Oggetto Email

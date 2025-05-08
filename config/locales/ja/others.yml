@@ -451,6 +451,10 @@ ja:
     two_factor_authentication:
       attempt: ご登録のメールアドレス宛てに届いたOTPを入力してください
       code_has_been_sent: ご登録のメールアドレス宛てに新しいOTPが送信されました
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: "「選択済み」オプションを選択した場合は、タグまたはスキルのいずれかを選択してください。"
   emails:
     subject_relationship_table:
       subject_email: 件名 電子メール

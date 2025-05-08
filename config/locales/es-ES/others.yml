@@ -724,6 +724,10 @@ es-ES:
     two_factor_authentication:
       attempt: Introduzca la contraseña de un solo uso que ha recibido en su correo electrónico registrado
       code_has_been_sent: Su nueva contraseña de un solo uso se ha enviado a su correo electrónico registrado
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: Seleccione una etiqueta o una habilidad cuando se elija la opción "Seleccionado".
   emails:
     subject_relationship_table:
       subject_email: Asunto Correo electrónico

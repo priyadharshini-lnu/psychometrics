@@ -448,6 +448,10 @@ zh:
     two_factor_authentication:
       attempt: 请输入你在注册电子邮箱地址中收到的一次性密码
       code_has_been_sent: 新的一次性密码已发送至你的注册电子邮箱地址
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
   emails:
     subject_relationship_table:
       subject_email: 主题电子邮件

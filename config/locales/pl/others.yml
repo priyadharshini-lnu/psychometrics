@@ -440,6 +440,10 @@ pl:
     two_factor_authentication:
       attempt: Wprowadź kod OTP otrzymany na zarejestrowany adres e-mail
       code_has_been_sent: Nowy kod OTP został wysłany na zarejestrowany adres e-mail
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane”, wybierz tag lub umiejętność.
   emails:
     subject_relationship_table:
       subject_email: Przedmiot E-mail
