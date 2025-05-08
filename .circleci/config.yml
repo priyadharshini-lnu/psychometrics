@@ -289,6 +289,8 @@ jobs:
   rubocop:
     executor: tte-executor
     resource_class: medium
+    environment:
+      DATABASE_URL: "postgres://user:pass@localhost/dbname" # dummy db link for rubocop
     steps:
       - checkout
       - restore_cache:
