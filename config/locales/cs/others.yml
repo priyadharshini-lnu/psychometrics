@@ -760,8 +760,17 @@ cs:
       continue_to_rate_skills: Pokračovat k hodnocení dovedností
       title: Zpráva o mezerách v dovednostech
   idp_templates:
+    assign: Přiřadit
+    assign_idp_template: Přiřadit šablonu Idp
+    auto_assign: Automaticky přiřazovat nové uživatele
     errors:
+      idp_template_not_found: Šablona IDP nebyla nalezena
       user_idp_template_not_found: Nebyla vám přiřazena žádná šablona IDP.
+    idp_template: Šablona IDP
+    override_exists: Přepíše a resetuje existující uživatele
+    placeholder: Vyberte šablonu Idp
+    save_and_assign: Uložit a přiřadit
+    success_scheduled: Úloha pro přiřazení IDP byla úspěšně naplánována
   mailer:
     magic_link:
       body:

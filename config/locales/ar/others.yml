@@ -365,6 +365,7 @@ ar:
       archive: أرشيف
       cancel: إلغاء
       close: إغلاق
+      continue: استمرار
       copy: نسخ
       delete: حذف
       edit: تعديل
@@ -605,6 +606,74 @@ ar:
         requested_rescheduling_rejected: لقد تم رفض طلب إعادة الجدولة
     'yes': نعم
   idp:
+    actions: الإجراءات
+    board: اللوحة
+    details: التفاصيل
+    development_actions:
+      action_private: نعم
+      action_public: لا
+      add_development_action: إضافة إجراء تطويري
+      all: الكل
+      approved: موافق عليه
+      board_view:
+        completed: مكتمل
+        in_progress: قيد التنفيذ
+        not_started: لم يبدأ بعد
+      completion: الإنجاز
+      create_my_own: إنشاء خاص بي
+      date_range: تاريخ البداية - تاريخ النهاية
+      generate_by_ai: توليد بواسطة الذكاء الاصطناعي
+      generate_more: توليد المزيد
+      generating_development_actions: جاري توليد إجراءات التطوير...
+      heading: إجراءات التطوير
+      incomplete_error: إجراءات تطويرية غير مكتملة
+      incomplete_error_message: بعض إجراءات التطوير غير مكتملة. يرجى إكمالها قبل تقديم خطة التطوير الفردية الخاصة بك.
+      incomplete_warning: إجراءات تطويرية غير مكتملة
+      incomplete_warning_message: بعض إجراءات التطوير غير مكتملة. هل أنت متأكد من أنك تريد وضع علامة اكتمال على خطة التطوير الفردية الخاصة بك؟
+      learning_from_others: التعلم من الآخرين
+      manage_skills: إدارة المهارات
+      marathon: ماراثون
+      mark_as_complete: وضع علامة مكتمل
+      no_development_actions: لا توجد إجراءات تطويرية
+      on_the_job: في العمل
+      other: أخرى
+      private: خاص
+      remove: إزالة
+      skill: مهارة
+      sprint: سباق قصير
+      start_plan: بدء الخطة
+      structured_learning: تعلم منظم
+      submit_plan: تقديم الخطة
+      write_here: اكتب هنا...
+    direct_report_details: تفاصيل التقرير المباشر
+    initial_steps:
+      add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
+      add_skill_group_title: استكشاف مهاراتك في %{category}
+      add_skills: إضافة
+      add_skills_step: إضافة مهارات
+      continue_to_rate_skills: متابعة لتقييم المهارات
+      getting_started: البدء
+      getting_started_info: مرحبًا بك في منشئ خطة التطوير الفردية الخاصة بك. ستساعدك هذه الخطة في تحديد وإدارة وتتبع أهدافك المهنية والشخصية وكذلك الخطوات التي يجب اتخاذها لتحقيق تلك الأهداف. قد تتضمن أهدافك المهنية مجالات سلوكية وقيادية وكذلك مجالات تقنية للتطوير. خطة التطوير الفردية الخاصة بك هي أداة أساسية لدعم تطويرك المهني وتعزيز مهاراتك.
+      less_skills: عرض مهارات أقل
+      more_skills: استكشاف المزيد من المهارات
+      next: التالي
+      no_skills_selected: لم يتم تحديد مهارات.
+      rate_skills: تقييم المهارات
+      rate_skills_description: بعد أن حددت أولويات التطوير الخاصة بك، يرجى تقييم نفسك في كل مما يلي. تذكر أن تقيم نفسك بناءً على مستواك الحالي وليس على مستواك السابق أو المرغوب.
+      rate_skills_title: تقييم مهاراتك
+      rating_column_header: تقييمك الذاتي
+      select_skills: حدد مهاراتك
+      select_skills_placeholder: حدد المهارات
+      selected_skills: المهارات المحددة
+      skill_column_header: المهارة
+      skill_gap_report: تقرير فجوة المهارات
+    list: قائمة
+    my_direct_reports: تقاريري المباشرة
+    my_plan:
+      development_plan: خطة التطوير
+      graphs:
+        categories: الفئات
+      save_skills: حفظ المهارات
     pdf:
       approval_status: حالة الموافقة
       cover:
@@ -710,9 +779,28 @@ ar:
         library: مكتبة خطة التطوير الفردية
         skills_count: عدد المهارات
         title: ملخص التقرير
+    profile_details: تفاصيل الملف الشخصي
+    skill_gap_report:
+      continue_to_rate_skills: استمر في تقييم المهارات
+      title: تقرير فجوة المهارات
+    status: الحالة
+    user_idp_status:
+      approved: تمت الموافقة
+      draft: مسودة
+      pending_approval: قيد الموافقة
+    users: المستخدمون
   idp_templates:
+    assign: تعيين
+    assign_idp_template: تعيين قالب خطة التطوير الفردية
+    auto_assign: تعيين المستخدمين الجدد تلقائيًا
     errors:
+      idp_template_not_found: لم يتم العثور على قالب IDP
       user_idp_template_not_found: لم يتم تخصيص أي قالب IDP لك.
+    idp_template: قالب خطة التطوير الفردية
+    override_exists: تجاوز وإعادة تعيين المستخدمين الحاليين
+    placeholder: اختر قالب خطة التطوير الفردية
+    save_and_assign: حفظ وتعيين
+    success_scheduled: تم جدولة مهمة تعيين خطة التطوير الفردية بنجاح
   mailer:
     magic_link:
       body:

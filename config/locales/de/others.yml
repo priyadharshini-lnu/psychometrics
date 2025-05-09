@@ -766,8 +766,17 @@ de:
       pending_approval: Ausstehend
     users: Benutzer
   idp_templates:
+    assign: Zuweisen
+    assign_idp_template: IDP-Vorlage zuweisen
+    auto_assign: Neue Benutzer automatisch zuweisen
     errors:
+      idp_template_not_found: IDP-Vorlage nicht gefunden
       user_idp_template_not_found: Es wurde Ihnen keine IDP-Vorlage zugewiesen.
+    idp_template: IDP-Vorlage
+    override_exists: Vorhandene Benutzer überschreiben und zurücksetzen
+    placeholder: IDP-Vorlage auswählen
+    save_and_assign: Speichern und zuweisen
+    success_scheduled: Der Auftrag zur IDP-Zuweisung wurde erfolgreich geplant
   jobs:
     threesixty:
       reports:
