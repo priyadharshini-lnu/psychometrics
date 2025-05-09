@@ -24,19 +24,19 @@ module Administration
 
       def download
         options = {
-          lang: params[:lang],
+          lang: params[:lang] || resource.campaign.project.available_locales.first,
           file_path: Settings.aws.s3.one_day_expiry_folder,
           async: true,
           notify_user: true,
           update_record: false
         }
-        data = ::UserReports::GenerateIdpReportPdf.call!(resource, current_user, options)
+        ::UserReports::GenerateIdpReportPdf.call!(resource, current_user, options)
         audit! :download_idp_report, resource, campaign: resource.campaign,
           payload: params.merge(resource.details_to_log)
 
         respond_to do |format|
-          format.pdf do
-            send_tmp_file data[:file_path], type: 'application/pdf'
+          format.html do
+            redirect_to "/admin/projects/#{resource.campaign.project_id}/new_campaigns/#{resource.campaign_id}/user_idp_reports/#{resource.id}?lang=#{params[:lang]}" # rubocop:disable Layout/LineLength
           end
 
           format.json { head :ok }

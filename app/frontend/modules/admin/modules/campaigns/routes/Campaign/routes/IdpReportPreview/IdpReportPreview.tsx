@@ -16,7 +16,7 @@ export const IdpReportPreview = () => {
       <Space>
         <LangDropdownWithChangeUrl locales={['en', 'ar']} currentLocale={lang} />
         <Button
-          href={`/administration/new_campaigns/${campaignId}/user_idp_reports/${id}/download.pdf`}
+          href={`/administration/new_campaigns/${campaignId}/user_idp_reports/${id}/download?lang=${lang}`}
           type="primary"
         >
           {I18n.t('common.actions.download')}
