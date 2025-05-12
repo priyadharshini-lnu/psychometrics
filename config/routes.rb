@@ -803,7 +803,7 @@ Rails.application.routes.draw do
     end
 
     resources :campaign_templates
-    root to: 'clients#index'
+    root to: redirect('admin')
   end
   #
   # END: Administration panel

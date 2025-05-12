@@ -254,6 +254,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
         okButtonProps={{ loading: sessionExtending }}
         onOk={handleOnExtendSession}
         onCancel={handleOnCancel}
+        zIndex={9999}
       >
         <span>
           {popupMessage}
