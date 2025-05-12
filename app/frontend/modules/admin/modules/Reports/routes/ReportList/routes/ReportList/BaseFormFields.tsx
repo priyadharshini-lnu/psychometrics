@@ -200,6 +200,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
           <Form.Item
             name="assessmentIds"
             label={I18n.t('common.column.assessments')}
+            rules={[{ required: true }]}
           >
             <Select
               showSearch
