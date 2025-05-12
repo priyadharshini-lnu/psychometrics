@@ -2220,7 +2220,7 @@ fr:
       export:
         success_msg: Le travail d'exportation de la norme a été programmé avec succès. Veuillez vérifier le statut dans les notifications.
       import:
-        download_example_csv: Exemple de normes CSV
+        download_example_csv: Télécharger un exemple csv
         select_file_validation: Veuillez sélectionner un propriétaire et un dossier avant de soumettre votre demande.
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
         title: Importation de normes

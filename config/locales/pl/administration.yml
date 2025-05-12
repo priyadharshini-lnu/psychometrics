@@ -2,3 +2,6 @@
 pl:
   administration:
     actions: Actions
+    norms:
+      import:
+        download_example_csv: Pobierz przykładowy plik csv

@@ -37,7 +37,6 @@ zh:
           attributes:
             current_password:
               invalid: 当前密码不正确
-  administration: 行政部门
   anonym:
     close: 关闭
     continue: 继续

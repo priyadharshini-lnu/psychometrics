@@ -1,34 +1,28 @@
 import React, { useCallback, useState } from 'react'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
   Button, Modal, Alert, Form, Input, Select, Spin, message,
 } from 'antd'
 import Event from 'interfaces/Event'
-import { connect, ConnectedProps } from 'react-redux'
 import { debounce } from 'lodash'
-import DownloadSampleFile from '~/modules/admin/components/DownloadSampleFile'
 import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'
-import { importNorms } from '~/modules/admin/modules/Norms/core/norms'
-
-const CSVData = `Norm 1,Dimension 1,Factors,Very Low,,Low,,Average,,High,,Very High,
-,,Factor 1,0.1,1,1.1,2,2.1,3,3.1,4,4.1,5`
+import { Norm } from '~/modules/admin/modules/client/core/norms'
+import { useResourceContext } from '~/modules/admin/components/Resource'
 
 const { I18n } = window
 
-const connecter = connect(() => ({}), { importNorms })
-export type PropsFromRedux = ConnectedProps<typeof connecter>
-
-interface OwnProps extends PropsFromRedux {
+interface OwnProps {
     close(): void
 }
 
-export const ImportModalComponent: React.FC<OwnProps> = ({ close, importNorms }) => {
+export const NormImportModal: React.FC<OwnProps> = ({ close }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
   const [ownerId, setOwnerId] = useState<string | null>(null)
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
+  const { resource } = useResourceContext<Norm>()
 
   const { data: clients, fetch: fetchClients, isLoading: isClientsLoading } = useResources<Client>('clients')
 
@@ -41,24 +35,38 @@ export const ImportModalComponent: React.FC<OwnProps> = ({ close, importNorms })
     [],
   )
 
+  const handleImport = (data:FormData, successCallback:()=>void, failureCallback:(error)=>void) => {
+    const action = 'norms/import'
+
+    resource.uploadFileAction(action, data).then(() => {
+      successCallback()
+      message.info(I18n.t('administration.norms.import.success_msg'))
+    })
+      .catch((error) => {
+        message.error(I18n.t('administration.common.import.failure_msg'))
+        failureCallback(error)
+      })
+  }
+
   const handleUpload = () => {
-    if (!file || !ownerId) {
+    if (!file) {
       message.error(I18n.t('administration.norms.import.select_file_validation'))
       return
     }
-
     const data = new FormData()
     data.append('file', file)
-    data.append('owner_id', ownerId)
+    if (ownerId) {
+      data.append('owner_id', ownerId)
+    }
     setLoading(true)
-    importNorms(data)
-      .then(() => {
-        message.info(I18n.t('administration.norms.import.success_msg'))
-        close()
-        form.resetFields()
-      }).catch(setErrors).finally(() => {
-        setLoading(false)
-      })
+    handleImport(data, () => {
+      form.resetFields()
+      close()
+      setLoading(false)
+    }, (error) => {
+      setErrors(error)
+      setLoading(false)
+    })
   }
 
   return (
@@ -74,7 +82,7 @@ export const ImportModalComponent: React.FC<OwnProps> = ({ close, importNorms })
         <Button
           key="submit"
           type="primary"
-          disabled={!file || !ownerId}
+          disabled={!file}
           onClick={() => form.submit()}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
@@ -84,10 +92,12 @@ export const ImportModalComponent: React.FC<OwnProps> = ({ close, importNorms })
       ]}
     >
       <div className="mbl" style={{ fontSize: '16px' }}>
-        <DownloadSampleFile
-          fileData={CSVData}
-          buttonText={I18n.t('administration.norms.import.download_example_csv')}
-        />
+        <a href="/example_csv/import_norm_sample_file.csv">
+          <CloudDownloadOutlined />
+          <span className="mls">
+            {I18n.t('administration.norms.import.download_example_csv')}
+          </span>
+        </a>
       </div>
       {errors.length > 0 && (
         <Alert
@@ -98,6 +108,13 @@ export const ImportModalComponent: React.FC<OwnProps> = ({ close, importNorms })
         />
       )}
       <Form layout="vertical" form={form} onFinish={handleUpload}>
+        <Form.Item name="importData">
+          <Input
+            type="file"
+            accept=".csv"
+            onChange={({ target: { files } }: Event<HTMLInputElement>) => setFile(files && files[0])}
+          />
+        </Form.Item>
         <Form.Item name="ownerId" label={I18n.t('common.column.owner')}>
           <Select
             showSearch
@@ -112,16 +129,7 @@ export const ImportModalComponent: React.FC<OwnProps> = ({ close, importNorms })
             ))}
           </Select>
         </Form.Item>
-        <Form.Item name="importData">
-          <Input
-            type="file"
-            accept=".csv"
-            onChange={({ target: { files } }: Event<HTMLInputElement>) => setFile(files && files[0])}
-          />
-        </Form.Item>
       </Form>
     </Modal>
   )
 }
-
-export const NormImportModal = connecter(ImportModalComponent)

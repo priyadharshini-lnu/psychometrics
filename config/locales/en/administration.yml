@@ -1395,6 +1395,8 @@ en:
       cancel: Cancel
       disabled: Diasbled
       enabled: Enabled
+      import:
+        failure_msg: Error while importing file.
       next: Next
       reset: Reset
       save: Save
@@ -2265,7 +2267,7 @@ en:
       export:
         success_msg: Norm export job scheduled successfully. Please check the status in the notifications.
       import:
-        download_example_csv: Sample Norms CSV
+        download_example_csv: Download Example csv
         select_file_validation: Please select an owner and a file before submitting.
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: Norms import

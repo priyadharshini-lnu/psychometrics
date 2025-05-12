@@ -27,7 +27,7 @@ module Api
 
         render json: :ok
       else
-        render json: form.errors, status: 422
+        render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
       end
     end
 

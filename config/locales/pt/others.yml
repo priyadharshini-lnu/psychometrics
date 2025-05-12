@@ -37,7 +37,6 @@ pt:
           attributes:
             current_password:
               invalid: A palavra-passe atual está incorreta
-  administration: Administração
   anonym:
     close: Fechar
     continue: Continuar

@@ -2150,6 +2150,8 @@ ar:
         factors: Factors
         inplace_title: Enter value
         title: Norm Editor
+      import:
+        download_example_csv: تنزيل مثال csv
       index:
         import: Import
         new: Add

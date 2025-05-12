@@ -2147,6 +2147,8 @@ it:
         factors: Fattori
         inplace_title: Inserisci valore
         title: Editor Norme
+      import:
+        download_example_csv: Scarica l'esempio csv
       index:
         import: Importa
         new: Aggiungi

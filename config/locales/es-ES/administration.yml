@@ -2158,6 +2158,8 @@ es-ES:
         factors: Factores
         inplace_title: Introducir valor
         title: Editor de normas
+      import:
+        download_example_csv: Descargar ejemplo csv
       index:
         import: Importar
         new: Agregar

@@ -1,3 +1,6 @@
 ---
 de:
   administration:
+    norms:
+      import:
+        download_example_csv: Beispiel-CSV herunterladen

@@ -37,7 +37,6 @@ zh-HK:
           attributes:
             current_password:
               invalid: 目前密碼不正確
-  administration: 行政管理
   anonym:
     close: 關閉
     continue: 繼續

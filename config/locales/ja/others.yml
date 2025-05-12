@@ -37,7 +37,6 @@ ja:
           attributes:
             current_password:
               invalid: パスワードが間違っています
-  administration: 管理部門
   anonym:
     close: 閉じる
     continue: 続行

@@ -37,7 +37,6 @@ de:
           attributes:
             current_password:
               invalid: Aktuelles Passwort ist falsch
-  administration:
   anonym:
     close: Schließen Sie
     continue: Weiter

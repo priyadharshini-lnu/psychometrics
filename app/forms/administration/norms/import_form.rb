@@ -45,6 +45,10 @@ module Administration
         @rows ||= process_csv_file
       end
 
+      def owner
+        @owner ||= Client.find_by(id: owner_id)
+      end
+
       def headers
         @headers ||= rows.headers
       end
