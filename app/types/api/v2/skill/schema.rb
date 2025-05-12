@@ -16,6 +16,7 @@ module Api
               attribute[:name].filled(:string)
               attribute[:category].filled(:string)
               attribute[:description].filled(:string)
+              attribute[:default_language].filled(:string)
               optional(:global).maybe(:bool)
             end
           end

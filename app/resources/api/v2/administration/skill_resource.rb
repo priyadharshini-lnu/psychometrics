@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseResource
-  attributes :name, :description, :category, :created_at, :updated_at, :project_id, :tag_list, :global
+  attributes :name, :description, :category, :created_at, :updated_at, :project_id, :tag_list, :global,
+             :default_language
 
   has_one :project
 

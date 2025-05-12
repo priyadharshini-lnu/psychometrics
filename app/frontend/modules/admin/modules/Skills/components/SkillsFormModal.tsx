@@ -37,6 +37,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
   const {
     data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
   } = useResources<Client>('clients')
+  const { availableLocales } = I18n
 
   const {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
@@ -232,6 +233,17 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
                   <Option key={value} value={value}>{key}</Option>
                 ))
               }
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="defaultLanguage"
+            label={I18n.t('common.column.default_language')}
+            initialValue="en"
+          >
+            <Select>
+              {availableLocales.map(locale => (
+                <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item

@@ -11,7 +11,8 @@ RSpec.describe Api::V2::Skill::CreateContract do
       {
         name: 'Skill Name',
         category: 'Skill Category',
-        description: 'Skill Description'
+        description: 'Skill Description',
+        default_language: 'en'
       },
       { project: { id: project.id.to_s, type: 'projects' } }
     )
