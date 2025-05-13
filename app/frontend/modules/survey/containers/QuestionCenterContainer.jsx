@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import '~/modules/survey/styles/globals.less'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 import QuestionCenter from '~/modules/survey/layouts/QuestionCenter'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import { setStore } from '~/modules/survey/store/StoreWatchman'
@@ -32,14 +33,16 @@ class AppContainer extends Component {
 
   render () {
     return (
-      <DefaultAntThemeWrapper>
-        <Provider store={store}>
-          <QuestionCenter />
-          <DisplayExceptionModal />
-          <SessionTimeoutModal />
-          <ErrorModal />
-        </Provider>
-      </DefaultAntThemeWrapper>
+      <Router>
+        <DefaultAntThemeWrapper>
+          <Provider store={store}>
+            <QuestionCenter />
+            <DisplayExceptionModal />
+            <SessionTimeoutModal />
+            <ErrorModal />
+          </Provider>
+        </DefaultAntThemeWrapper>
+      </Router>
     )
   }
 }

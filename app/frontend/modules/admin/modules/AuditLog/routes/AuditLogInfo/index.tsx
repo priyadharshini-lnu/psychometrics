@@ -66,10 +66,10 @@ const AuditLogList: React.FC<Props> = ({
         <Descriptions title={I18n.t('administration.audit_log.title')} bordered column={1}>
           <Descriptions.Item label={I18n.t('administration.audit_log.action')}>{record.action}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.audit_log.type')}>{record.recordType}</Descriptions.Item>
+          <Descriptions.Item label={I18n.t('administration.audit_log.record_id')}>{record.recordId}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.audit_log.log_date')}>
             {dayjs(record.createdAt).format('lll')}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.audit_log.record_id')}>{record.recordId}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.audit_log.user')}>
             {record.user ? `${record.user.fullName} (${record.user.email})` : record.userId}
           </Descriptions.Item>
