@@ -3643,15 +3643,19 @@
             "type": "string",
             "enum": [
               "ar",
+              "cs",
               "de",
               "en",
-              "es-ES",
               "en-US",
+              "es-ES",
+              "fr",
+              "it",
+              "ja",
               "pl",
               "pt",
               "zh",
-              "zh-HK",
-              "ja"
+              "zh-Hant",
+              "zh-HK"
             ]
           },
           "x-nullable": true
@@ -3749,15 +3753,19 @@
             "type": "string",
             "enum": [
               "ar",
+              "cs",
               "de",
               "en",
-              "es-ES",
               "en-US",
+              "es-ES",
+              "fr",
+              "it",
+              "ja",
               "pl",
               "pt",
               "zh",
-              "zh-HK",
-              "ja"
+              "zh-Hant",
+              "zh-HK"
             ]
           },
           "x-nullable": true

@@ -542,6 +542,18 @@ module Swagger
         ),
         IdpSettingUpdateResponse: Api::Base::GenerateSwagger.call!(
           Api::V2::IdpSetting::Schema.single_resource_response
+        ),
+        AssistantsMultipleResponse: Api::Base::GenerateSwagger.call!(
+          Api::V2::AI::Assistant::Schema.multiple_resource_response
+        ),
+        AssistantResponse: Api::Base::GenerateSwagger.call!(
+          Api::V2::AI::Assistant::Schema.single_resource_response
+        ),
+        AssistantCreateRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::AI::Assistant::Schema.create_request
+        ),
+        AssistantUpdateRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::AI::Assistant::Schema.update_request
         )
       }
     end

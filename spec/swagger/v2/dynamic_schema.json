@@ -16618,5 +16618,454 @@
     "required": [
       "data"
     ]
+  },
+  "AssistantsMultipleResponse": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "nullable": false
+            },
+            "type": {
+              "type": "string",
+              "description": "Must be equal to assistants",
+              "nullable": false
+            },
+            "relationships": {
+              "type": "object",
+              "properties": {
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "description": "Must be equal to clients",
+                          "nullable": false
+                        },
+                        "id": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [],
+                      "nullable": true
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "nullable": false
+                    },
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "related": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [],
+                  "nullable": false
+                },
+                "last_modified_by": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "description": "Must be equal to users",
+                          "nullable": false
+                        },
+                        "id": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [],
+                      "nullable": true
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "nullable": false
+                    },
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "related": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [],
+                  "nullable": false
+                }
+              },
+              "required": [],
+              "nullable": false
+            },
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string",
+                  "nullable": false
+                }
+              },
+              "required": [
+                "self"
+              ],
+              "nullable": false
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "system_prompt": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "user_prompt": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "action": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "created_at": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "updated_at": {
+                  "type": "string",
+                  "nullable": false
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "system_prompt",
+                "user_prompt",
+                "action",
+                "created_at",
+                "updated_at"
+              ],
+              "nullable": false
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "links",
+            "attributes"
+          ],
+          "nullable": false
+        },
+        "nullable": false
+      },
+      "meta": {
+        "type": "object",
+        "properties": {
+          "record_count": {
+            "type": "integer",
+            "nullable": false
+          },
+          "page_count": {
+            "type": "integer",
+            "nullable": false
+          }
+        },
+        "required": [
+          "record_count",
+          "page_count"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data",
+      "meta"
+    ]
+  },
+  "AssistantResponse": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false
+          },
+          "type": {
+            "type": "string",
+            "description": "Must be equal to assistants",
+            "nullable": false
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "owner": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Must be equal to clients",
+                        "nullable": false
+                      },
+                      "id": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [],
+                    "nullable": true
+                  },
+                  "links": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "nullable": false
+                  },
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "related": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
+              "last_modified_by": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Must be equal to users",
+                        "nullable": false
+                      },
+                      "id": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [],
+                    "nullable": true
+                  },
+                  "links": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "nullable": false
+                  },
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "related": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [],
+                "nullable": false
+              }
+            },
+            "required": [],
+            "nullable": false
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "nullable": false
+              }
+            },
+            "required": [
+              "self"
+            ],
+            "nullable": false
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "nullable": false
+              },
+              "description": {
+                "type": "string",
+                "nullable": false
+              },
+              "system_prompt": {
+                "type": "string",
+                "nullable": false
+              },
+              "user_prompt": {
+                "type": "string",
+                "nullable": false
+              },
+              "action": {
+                "type": "string",
+                "nullable": false
+              },
+              "created_at": {
+                "type": "string",
+                "nullable": false
+              },
+              "updated_at": {
+                "type": "string",
+                "nullable": false
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "system_prompt",
+              "user_prompt",
+              "action",
+              "created_at",
+              "updated_at"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "links",
+          "attributes"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "AssistantCreateRequest": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "nullable": false
+              },
+              "description": {
+                "type": "string",
+                "nullable": false
+              },
+              "system_prompt": {
+                "type": "string",
+                "nullable": false
+              },
+              "user_prompt": {
+                "type": "string",
+                "nullable": false
+              },
+              "action": {
+                "type": "string",
+                "nullable": false
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "system_prompt",
+              "user_prompt",
+              "action"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "attributes"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "AssistantUpdateRequest": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "nullable": false
+              },
+              "description": {
+                "type": "string",
+                "nullable": false
+              },
+              "system_prompt": {
+                "type": "string",
+                "nullable": false
+              },
+              "user_prompt": {
+                "type": "string",
+                "nullable": false
+              },
+              "action": {
+                "type": "string",
+                "nullable": false
+              }
+            },
+            "required": [],
+            "nullable": false
+          }
+        },
+        "required": [
+          "attributes"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data"
+    ]
   }
 }

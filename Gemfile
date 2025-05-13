@@ -213,7 +213,7 @@ group :development do
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.18.0'
-  # TODO: We have forket the gem to just increase the version dependent gem.
+  # TODO: We have forked the gem to just increase the version dependent gem.
   # We can remove this fork and use original gem once the next version of gem is released.
   gem 'meta_request', '~> 0.8.2'
   gem 'ruby-lsp-rails', '~> 0.4.0'

@@ -1456,6 +1456,7 @@ as: :simulation_progress_notification
             post :import_global_translations, on: :collection
             post :export_global_translations, on: :collection
           end
+
           jsonapi_resources :development_actions do
             scope module: :development_actions do
               resource :uploads, only: [:update]
@@ -1477,6 +1478,10 @@ as: :simulation_progress_notification
           jsonapi_resources :users_results, only: :show
 
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
+
+          namespace :ai do
+            jsonapi_resources :assistants, relationships: false
+          end
         end
       end
     end
