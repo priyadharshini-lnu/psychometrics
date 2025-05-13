@@ -73,6 +73,7 @@ features:
   disable_saml_for_admins: <%= ENV.fetch('DISABLE_SAML_FOR_ADMINS', 'false') == 'true' %>
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
   enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
+  ai_assistant_enabled: <%= ENV['AI_ASSISTANT_ENABLED'] %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
