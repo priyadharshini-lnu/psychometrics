@@ -263,7 +263,7 @@ module Administration
         params[:resource].permit(
           :report_family_id,
           :operation,
-          :report_access,
+          report_access: {},
           report_ids: []
         )
       end
