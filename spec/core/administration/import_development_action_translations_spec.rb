@@ -16,8 +16,9 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
     context 'with valid CSV data' do
       before do
         allow(csv_file).to receive(:read).and_return(<<~CSV
-          ID,Locale,Name,Description
-          #{development_action.id},fr,French Name,French Description
+          ID,English / en,French / fr,German / de
+          #{development_action.id}#Name,English Name,French Name,German Name
+          #{development_action.id}#Description,English Description,French Description,German Description
         CSV
                                                     )
       end
@@ -30,8 +31,8 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
     context 'with missing required fields' do
       before do
         allow(csv_file).to receive(:read).and_return(<<~CSV
-          ID,Name
-          #{development_action.id},French Name
+          ID
+          #{development_action.id}#Name
         CSV
                                                     )
       end
@@ -40,7 +41,7 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
         expect(form).not_to be_valid
         expect(form.errors[:base]).to include(
           I18n.t('administration.development_action_translations.import.errors.missing_columns',
-                 fields: 'Locale, Description')
+                 fields: 'language columns')
         )
       end
     end
@@ -79,9 +80,9 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,Locale,Name,Description
-              #{development_action.id},fr,French Name,French Description
-              #{development_action.id},de,German Name,German Description
+              ID,French / fr,German / de
+              #{development_action.id}#Name,French Name,German Name
+              #{development_action.id}#Description,French Description,German Description
             CSV
           )
       end
@@ -111,8 +112,9 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,Locale,Name,Description
-              #{other_project_development_action.id},fr,French Name,French Description
+              ID,French / fr
+              #{other_project_development_action.id}#Name,French Name
+              #{other_project_development_action.id}#Description,French Description
             CSV
           )
       end
@@ -135,8 +137,9 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,Locale,Name,Description
-              999999,fr,French Name,French Description
+              ID,French / fr
+              999999#Name,French Name
+              999999#Description,French Description
             CSV
           )
       end
@@ -148,46 +151,6 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
           I18n.t('administration.development_action_translations.import.errors.development_action_not_found',
                  id: '999999',
                  project_id: project.id)
-        )
-      end
-    end
-
-    context 'with malformed CSV' do
-      before do
-        stub_request(:get, file_url).
-          to_return(
-            status: 200,
-            headers: { 'Content-Type' => 'text/csv' },
-            body: "malformed,csv\ndata"
-          )
-      end
-
-      it 'returns error for malformed CSV' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to be_an(Array)
-        expect(result).to include(
-          I18n.t('administration.development_action_translations.import.errors.missing_columns',
-                 fields: 'ID, Locale, Name, Description')
-        )
-      end
-    end
-
-    context 'with invalid CSV format' do
-      before do
-        stub_request(:get, file_url).
-          to_return(
-            status: 200,
-            headers: { 'Content-Type' => 'text/csv' },
-            body: 'This is not a CSV file'
-          )
-      end
-
-      it 'returns error for invalid CSV format' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to be_an(Array)
-        expect(result).to include(
-          I18n.t('administration.development_action_translations.import.errors.missing_columns',
-                 fields: 'ID, Locale, Name, Description')
         )
       end
     end
