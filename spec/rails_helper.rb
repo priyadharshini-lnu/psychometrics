@@ -28,7 +28,8 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-ActiveRecord::Migration.maintain_test_schema!
+ActiveRecord::Migration.maintain_test_schema! if ENV.fetch('CI_RUN', 'false') == 'false'
+
 Psychometrics::Application.load_tasks
 # Needs for able to stub methods inside FactoryBot
 FactoryBot::SyntaxRunner.class_eval do
@@ -82,6 +83,7 @@ RSpec.configure do |config|
 
   config.after(:suite) do
     DummyTables.drop
+    DummyTables.create
   end
 
   config.after(:suite) do
@@ -89,11 +91,7 @@ RSpec.configure do |config|
   end
 
   config.around(:each) do |example|
-    if self.class.metadata[:clean] == false
-      example.run
-    else
-      DatabaseCleaner.cleaning { example.run }
-    end
+    DatabaseCleaner.cleaning { example.run }
   end
 
   %i[controller view request].each do |type|

@@ -397,11 +397,11 @@ jobs:
             current_groups=$(seq -s, $seq_start $seq_end | sed 's/,$//')
             echo "Running tests in groups: $current_groups"
             bundle exec spring start
-            EAGER_LOAD=1  bundle exec spring parallel_test spec -t rspec -n $groups --only-group $current_groups  --runtime-log support/parallel_runtime_rspec.log --group-by runtime || echo " RSPEC_FAILED=1" >> $BASH_ENV
+            EAGER_LOAD=1 CI_RUN=true bundle exec spring parallel_test spec -t rspec -n $groups --only-group $current_groups  --runtime-log support/parallel_runtime_rspec.log --group-by runtime || echo " RSPEC_FAILED=1" >> $BASH_ENV
             source "$BASH_ENV"
             if [ "$RSPEC_FAILED" -eq 1 ]; then
               echo "Re-running failed tests"
-              EAGER_LOAD=1 DISABLE_COVERAGE=1 PARALLEL_TEST_PROCESSORS=1 bundle exec spring parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--only-failures'
+              EAGER_LOAD=1 CI_RUN=true DISABLE_COVERAGE=1 PARALLEL_TEST_PROCESSORS=1 bundle exec spring parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--only-failures'
             fi
       - run:
           name: Save RSpec cacheflag
