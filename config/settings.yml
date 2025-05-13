@@ -980,7 +980,9 @@ providers:
         name: MTE Apply
         possible_languages:
           - en
-          - ar
+          - de
+          - fr
+          - it
       - id: mte-shape
         name: MTE Shape
         possible_languages:
