@@ -22,18 +22,15 @@ const { I18n } = window
 interface OwnProps {
   close(): void
   handleImport: (data: FormData, projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
-  csvData: string,
   title: string,
   allowGlobalImport: boolean
-  fileName: string
 }
 
 export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   close,
   handleImport,
-  csvData, title,
+  title,
   allowGlobalImport,
-  fileName,
 }) => {
   const params = useParams()
   const [form] = Form.useForm()

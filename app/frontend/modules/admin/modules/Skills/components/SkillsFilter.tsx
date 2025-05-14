@@ -21,13 +21,6 @@ export const SkillsFilter: React.FC<Props> = ({
 
   const tableLoading = resource.isLoading('fetch')
 
-  const CSVSkills = `ID,Name,Description,Category,Tag
-1,Leadership,Description 1,behavioral,"tag1,tag2"
-2,Programming,Description 2,technical,tag3`
-
-  const CSVSkillsTranslations = `ID,Locale,Name,Description
-      1,en,Test Skill,Test Description`
-
   const handleSkillsImport = (data:FormData,
     projectId: number|null, successCallback:()=>void, failureCallback:(error)=>void) => {
     const action = projectId ? `skills/import?project_id=${projectId}` : 'skills/import_global'
@@ -84,20 +77,16 @@ export const SkillsFilter: React.FC<Props> = ({
     if (action === 'import_skills') {
       openModal('SkillsImportModal', {
         handleImport: handleSkillsImport,
-        csvData: CSVSkills,
         title: I18n.t('administration.skills.import_action.skills_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
-        fileName: 'skills-sample.csv',
       })
     }
 
     if (action === 'import_translations') {
       openModal('SkillsImportModal', {
         handleImport: handleSkillsTranslationsImport,
-        csvData: CSVSkillsTranslations,
         title: I18n.t('administration.skills.import_action.skills_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
-        fileName: 'skills-translations-sample.csv',
       })
     }
 

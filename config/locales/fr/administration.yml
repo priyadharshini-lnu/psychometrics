@@ -1744,10 +1744,6 @@ fr:
     document_titles:
       project_assessors: Évaluateurs | %{projet}
       project_participants: Participants | %{projet}
-    download_sample_file:
-      download_example_file: Télécharger le fichier d'exemple
-      download_started_successfully: Le téléchargement a commencé avec succès
-      failed_to_download: le téléchargement a échoué
     enable: Activer
     errors:
       error_msg: Veuillez actualiser la page et si le problème persiste, contactez votre administrateur

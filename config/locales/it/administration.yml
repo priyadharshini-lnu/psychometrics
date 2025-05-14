@@ -1688,10 +1688,6 @@ it:
     document_titles:
       project_assessors: Valutatori | %{project}
       project_participants: Partecipanti | %{project}
-    download_sample_file:
-      download_example_file: Scarica File di Esempio
-      download_started_successfully: Download avviato con successo.
-      failed_to_download: Download fallito.
     enable: Abilita
     errors:
       error_msg: Qualcosa è andato storto. Aggiorna la pagina e, se il problema persiste, contatta il tuo amministratore.

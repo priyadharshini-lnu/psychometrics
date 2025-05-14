@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ApiAction from 'interfaces/ApiAction'
 import { debounce } from 'lodash'
 import { Client } from 'modules/admin/modules/client/core/clients'
-import {LoadingOutlined, CheckOutlined, CloudDownloadOutlined} from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
   Button, Modal, Alert, Form, Input, Select, Switch,
 } from 'antd'
@@ -19,19 +19,15 @@ interface OwnProps {
   close(): void,
   handleImport: (data: FormData,
     projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
-  csvData: string,
   title: string,
   allowGlobalImport: boolean,
-  fileName: string
 }
 
 export const SkillsImportModal: React.FC<OwnProps> = ({
   close,
   handleImport,
-  csvData,
   title,
   allowGlobalImport,
-  fileName,
 }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
@@ -92,7 +88,6 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         <Form.Item
           name="ownerId"
           label={I18n.t('common.column.client')}
-          rules={[{ required: true }]}
         >
           <Select
             showSearch
@@ -155,9 +150,9 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         </Button>,
       ]}
     >
-      <div className="mbl" style={{fontSize: '16px'}}>
+      <div className="mbl" style={{ fontSize: '16px' }}>
         <a href="/example_csv/sample-skill-translations.csv">
-          <CloudDownloadOutlined/>
+          <CloudDownloadOutlined />
           <span className="mls">
             {I18n.t('administration.skills.import.download_example_csv')}
           </span>

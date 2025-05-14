@@ -67,6 +67,7 @@ export const DevelopmentActionsExportModal: React.FC<OwnProps> = ({
         <Form.Item
           name="ownerId"
           label={I18n.t('common.column.client')}
+          style={{ marginLeft: '8px', maxWidth: '98.5%' }}
         >
           <Select
             showSearch
