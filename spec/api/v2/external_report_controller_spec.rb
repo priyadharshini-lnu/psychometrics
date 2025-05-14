@@ -73,7 +73,7 @@ describe Api::V2::Administration::ExternalReportsController, swagger_doc: 'v2/sw
 
         run_test! do |response|
           parsed_response = JSON.parse(response.body)['data']
-          expect(parsed_response.length).to eq(15)
+          expect(parsed_response.length).to eq(16)
           expect(parsed_response.first).to have_key('id')
           expect(parsed_response.first).to have_attribute(:name).
             with_value('Wave Focus Styles Building Resilient Agility Report V4')
