@@ -5,6 +5,9 @@ import {
 } from 'antd'
 import Event from 'interfaces/Event'
 import { debounce } from 'lodash'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from 'modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { Norm } from '~/modules/admin/modules/client/core/norms'
@@ -12,11 +15,21 @@ import { useResourceContext } from '~/modules/admin/components/Resource'
 
 const { I18n } = window
 
+const connector = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
 interface OwnProps {
     close(): void
 }
 
-export const NormImportModal: React.FC<OwnProps> = ({ close }) => {
+type Props = PropsFromRedux & OwnProps
+
+export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
   const [ownerId, setOwnerId] = useState<string | null>(null)
@@ -115,7 +128,11 @@ export const NormImportModal: React.FC<OwnProps> = ({ close }) => {
             onChange={({ target: { files } }: Event<HTMLInputElement>) => setFile(files && files[0])}
           />
         </Form.Item>
-        <Form.Item name="ownerId" label={I18n.t('common.column.owner')}>
+        <Form.Item
+          name="ownerId"
+          label={I18n.t('common.column.owner')}
+          initialValue={null}
+        >
           <Select
             showSearch
             onSearch={debouncedFetchClients}
@@ -124,6 +141,7 @@ export const NormImportModal: React.FC<OwnProps> = ({ close }) => {
             filterOption={false}
             placeholder="Select an Owner"
           >
+            {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('administration.tte')}</Select.Option>}
             {clients.map(({ id, name }) => (
               <Select.Option key={id} value={id}>{name}</Select.Option>
             ))}
@@ -133,3 +151,5 @@ export const NormImportModal: React.FC<OwnProps> = ({ close }) => {
     </Modal>
   )
 }
+
+export const NormImportModal = connector(NormImportModalComponent)

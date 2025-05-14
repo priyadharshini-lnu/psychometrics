@@ -2,6 +2,9 @@ import React from 'react'
 import {
   Form, Input, Select, Spin,
 } from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from 'modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
@@ -12,19 +15,30 @@ import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 
 const { I18n } = window
 
-interface Props {
+const connector = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+interface OwnProps {
   norm: AdditionRelationshipAttribute<Norm>
   close(): void
 }
+
+type Props = PropsFromRedux & OwnProps
 
 type OptionsType = {
   id: string
   name: string
 }
 
-export const NormsFormModal: React.FC<Props> = ({
+export const NormsFormModalComponent: React.FC<Props> = ({
   norm,
   close,
+  currentUser,
 }) => {
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
@@ -90,7 +104,7 @@ export const NormsFormModal: React.FC<Props> = ({
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              <Select.Option>{I18n.t('administration.tte')}</Select.Option>
+              {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('administration.tte')}</Select.Option>}
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}
@@ -141,3 +155,5 @@ export const NormsFormModal: React.FC<Props> = ({
     </ResourceFormModal>
   )
 }
+
+export const NormsFormModal = connector(NormsFormModalComponent)
