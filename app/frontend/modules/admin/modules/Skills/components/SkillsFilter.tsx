@@ -77,6 +77,7 @@ export const SkillsFilter: React.FC<Props> = ({
     if (action === 'import_skills') {
       openModal('SkillsImportModal', {
         handleImport: handleSkillsImport,
+        csvFilePath: '/example_csv/skills-sample.csv',
         title: I18n.t('administration.skills.import_action.skills_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
       })
@@ -85,6 +86,7 @@ export const SkillsFilter: React.FC<Props> = ({
     if (action === 'import_translations') {
       openModal('SkillsImportModal', {
         handleImport: handleSkillsTranslationsImport,
+        csvFilePath: '/example_csv/skills-translations-sample.csv',
         title: I18n.t('administration.skills.import_action.skills_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })

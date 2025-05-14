@@ -76,6 +76,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
     if (action === 'import_development_actions') {
       openModal('DevelopmentActionsImportModal', {
         handleImport: handleDevelopmentActionImport,
+        csvFilePath: '/example_csv/development-actions-sample.csv',
         title: I18n.t('administration.development_actions.import_action.development_actions_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
       })
@@ -84,6 +85,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
     if (action === 'import_translations') {
       openModal('DevelopmentActionsImportModal', {
         handleImport: handleDevelopmentActionTranslationsImport,
+        csvFilePath: '/example_csv/development-action-translations-sample.csv',
         title: I18n.t('administration.development_actions.import_action.development_actions_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })

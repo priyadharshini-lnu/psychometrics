@@ -22,6 +22,7 @@ const { I18n } = window
 interface OwnProps {
   close(): void
   handleImport: (data: FormData, projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
+  csvFilePath: string,
   title: string,
   allowGlobalImport: boolean
 }
@@ -29,6 +30,7 @@ interface OwnProps {
 export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   close,
   handleImport,
+  csvFilePath,
   title,
   allowGlobalImport,
 }) => {
@@ -153,7 +155,7 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
       ]}
     >
       <div className="mbl" style={{ fontSize: '16px' }}>
-        <a href="/example_csv/sample-development-action-translations.csv">
+        <a href={csvFilePath}>
           <CloudDownloadOutlined />
           <span className="mls">
             {I18n.t('administration.development_actions.import.download_example_csv')}
