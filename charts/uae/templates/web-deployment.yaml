@@ -55,7 +55,7 @@ spec:
           ports:
             - containerPort: {{ int .Values.services.internlPort }}
           livenessProbe:
-            initialDelaySeconds: 15
+            initialDelaySeconds: 35
             httpGet:
               path: /
               port: {{ int .Values.services.internlPort }}
@@ -63,7 +63,7 @@ spec:
               - name: Host
                 value: "{{ .Values.env.APP_SUB_DOMAIN }}.{{ .Values.env.APP_DOMAIN }}"
           readinessProbe:
-            initialDelaySeconds: 15
+            initialDelaySeconds: 35
             httpGet:
               path: /
               port: {{ int .Values.services.internlPort }}

@@ -63,7 +63,7 @@ module Imports
 
               if assessment&.translations_migrated?
                 default_props = if branch == 'instructions'
-                                  assessment.instructions
+                                  { props: assessment.instructions }
                                 else
                                   default_props(branch, id)
                                 end

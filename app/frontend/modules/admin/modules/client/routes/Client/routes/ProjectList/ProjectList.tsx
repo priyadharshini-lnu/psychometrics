@@ -32,11 +32,10 @@ import { Project, ProjectTR } from '~/modules/admin/modules/client/core/projects
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { get as getCurrentUser } from '~/core/currentUser'
-import { RootState } from '~/modules/admin/core/rootReducers'
 import { CreateProjectModal } from './CreateProjectModal'
 import styles from './styles.less'
 import { useWindowSize } from '~/hooks/useWindowSize'
+import { useClientContext } from '../../ClientContext'
 
 const { I18n } = window
 
@@ -48,9 +47,7 @@ const { Column } = Table
 const { Search } = Input
 
 const connector = connect(
-  (state: RootState) => ({
-    currentUser: getCurrentUser(state),
-  }),
+  () => ({}),
   {
     openModal,
   },
@@ -59,7 +56,7 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & TableProps
 
-const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
+const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
   const { clientId } = useParams() as { clientId: string }
   const { modal, message } = App.useApp()
   const { width: windowWidth } = useWindowSize()
@@ -85,6 +82,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   useEffect(() => {
     fetch()
   }, [])
+
 
   const tableLoading = isLoading('fetch')
 
@@ -112,6 +110,8 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const handleProjectStatusChange = (e) => {
     changeFilter('disabled_true', e.target.value)
   }
+
+  const client = useClientContext()
 
   const ProjectTable = (
     <>
@@ -228,7 +228,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           sortOrder={getSortOrder('updated_at')}
         />
 
-        {currentUser.permissions.canManageProject && (
+        {client?.meta?.permissions?.canManageProject && (
           <Column
             title={I18n.t('common.column.action')}
             key="action"
@@ -274,7 +274,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         value={getFilteredValue('filterable_fields')}
         onChange={e => changeFilter('filterable_fields', e.target.value)}
       />
-      {currentUser.permissions.canManageProject
+      {client?.meta?.permissions?.canManageProject
         && (
           <Button
             type="primary"

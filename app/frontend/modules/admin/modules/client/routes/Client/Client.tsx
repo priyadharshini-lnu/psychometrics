@@ -17,6 +17,7 @@ import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from '~/modules/admin/modules/client/settings'
 import RouteList from '~/components/RouteList'
 import { routes } from './routes'
+import { ClientContext } from './ClientContext'
 
 const { I18n } = window
 
@@ -52,7 +53,6 @@ export const Client: FC<Props> = ({ currentUser }) => {
   )
 
   const client = getResource(clientId)
-
 
   useEffect(() => {
     fetchSingle({ id: clientId, responseType: ClientTR, apiConfig: baseApiConfig })
@@ -172,10 +172,12 @@ export const Client: FC<Props> = ({ currentUser }) => {
         selectedKeys={getActiveMenuKey(pathname)}
         mode="horizontal"
       />
-      <RouteList
-        routes={routes}
-        urlPrefix=""
-      />
+      <ClientContext.Provider value={{ client }}>
+        <RouteList
+          routes={routes}
+          urlPrefix=""
+        />
+      </ClientContext.Provider>
     </div>
   )
 }

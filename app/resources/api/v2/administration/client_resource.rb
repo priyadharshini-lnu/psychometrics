@@ -13,7 +13,11 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
   def meta_details
     {
       permissions: lambda {
-        license_permissions.merge(client_permissions)
+        {}.merge(
+          license_permissions,
+          client_permissions,
+          project_permissions
+        )
       }
     }
   end
@@ -42,6 +46,27 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
       %w[
         view_audit_reports
         view_data_reports
+      ],
+      {
+        project_id: @model.id
+      }
+    )
+  end
+
+  def project_permissions
+    GetPermissionsHash.call!(
+      Administration::ProjectPolicy,
+      context[:user],
+      @model,
+      [
+        'can_manage_project',
+        'manage_project_admins',
+        'manage_project_smtp_settings',
+        'manage_project_webhooks',
+        %w[manage_project_general_settings update],
+        'manage_project_privacy_setting',
+        'manage_project_assessments',
+        'view_audit_reports'
       ],
       {
         project_id: @model.id

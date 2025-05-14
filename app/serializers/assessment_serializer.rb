@@ -110,7 +110,7 @@ class AssessmentSerializer < Panko::Serializer
 
     audio_and_video_check_data = {
       enable_audio_check: object.extra['enable_audio_check'] || has_question_type('AudioResponse'),
-      enable_video_check: object.extra['enable_audio_check'] || has_question_type('VideoResponse')
+      enable_video_check: object.extra['enable_video_check'] || has_question_type('VideoResponse')
     }
 
     object.extra.merge(audio_and_video_check_data)
