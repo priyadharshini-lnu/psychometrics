@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   post '/faas_notifications/url_to_pdf'
   post '/faas_notifications/zip_s3_files'
 
+  # TODO: Can be removed once we update the SNS
+  post '/lambda_notifications/url_to_pdf', to: 'faas_notifications#url_to_pdf'
+  post '/lambda_notifications/zip_s3_files', to: 'faas_notifications#zip_s3_files'
+
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
   get '/admin', to: 'administration/app#dashboard', as: :admin
