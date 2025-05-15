@@ -27,14 +27,16 @@ export class Preview extends Component {
   render () {
     const { model, I18n } = this.props
     return (
-      <div>
-        <SafeHTML
-          className={styles.questionTextPreview}
-          html={I18n.tQuestion(model, 'questionText')}
-          config="adminRichText"
-        />
+      <fieldset>
+        <legend className="mb-0 border-none">
+          <SafeHTML
+            className={styles.questionTextPreview}
+            html={I18n.tQuestion(model, 'questionText')}
+            config="adminRichText"
+          />
+        </legend>
         {this.renderAnswersType()}
-      </div>
+      </fieldset>
     )
   }
 }

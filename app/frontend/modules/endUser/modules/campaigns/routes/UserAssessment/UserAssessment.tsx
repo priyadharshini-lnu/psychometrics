@@ -158,7 +158,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             )}
           </Space>
         </Col>
-        <Col span={4} className="ta-e">
+        <Col span={4} className="ta-e text-nowrap">
           <Space>
             <FontsizeModifier />
             {availableTranslations

@@ -106,6 +106,7 @@ export const FontsizeModifier:FC<Props> = ({ step }) => {
           styles={{ icon: { verticalAlign: 'bottom' } }}
           onClick={() => setOpen(!open)}
           onBlur={handleBlur}
+          aria-expanded={open}
         />
       </Popover>
     </>

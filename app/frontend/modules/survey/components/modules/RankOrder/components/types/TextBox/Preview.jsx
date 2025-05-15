@@ -17,7 +17,9 @@ export default class extends Component {
 
   render () {
     const {
-      readOnly, model, model: { props, result, moduleConfig }, I18n,
+      readOnly, model, model: {
+        id, props, result, moduleConfig,
+      }, I18n,
     } = this.props
     return (
       <div className={styles.table}>
@@ -27,6 +29,7 @@ export default class extends Component {
             <div key={i} className={styles.row}>
               <div className={styles.item}>
                 <input
+                  id={`${id}-choice-${i}`}
                   key={i}
                   disabled={readOnly}
                   type="text"
@@ -36,10 +39,10 @@ export default class extends Component {
                 />
                 <div className={styles.item}>
                   <div>
-                    <span>
+                    <label htmlFor={`${id}-choice-${i}`} className="font-normal mb-0">
                       {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                       || moduleConfig.defaultChoiceText(i + 1)}
-                    </span>
+                    </label>
                     {props.showDescription && (
                       <DescriptionPreview
                         description={I18n.tQuestion(model, `descriptionTexts${i + 1}`, { choice: i })}
