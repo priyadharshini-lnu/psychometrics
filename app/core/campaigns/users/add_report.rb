@@ -28,7 +28,7 @@ module Campaigns
             handle_hogan_user_assessments_creation(user_assessments, user_report)
             recompute_user_results(user_assessments)
             set_approval_status_for_user_report(user_report)
-            generate_report_pdf(user_report) unless user_report.report.hogan?
+            generate_report_pdf(user_report) if !user_report.report.hogan? && !user_report.prepared?
           end
 
           broadcast :ok,
