@@ -29,7 +29,7 @@ module Threesixty
           data = ::UserReports::GeneratePdf.call!(
             user_report,
             current_user,
-            options.merge(async: true, notify_user: true)
+            options.merge(notify_user: true)
           )
           if data[:file_path]
             user_report.attach_pdf!(

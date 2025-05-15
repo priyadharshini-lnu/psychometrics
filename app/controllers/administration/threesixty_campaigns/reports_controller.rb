@@ -46,7 +46,6 @@ module Administration
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
           update_record: false,
-          async: true,
           skip_logic: params[:skip_logic]
         }
         audit! :download_report_pdf, user_report, campaign: threesixty_campaign.campaign,

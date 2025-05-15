@@ -257,3 +257,9 @@ gem 'ostruct', '~> 0.6.1'
 gem 'statistics', '~> 1.0'
 gem 'syslog'
 gem 'syslog-logger', '~> 1.6'
+
+# TO handle authentication with Oracle
+gem 'oci', '~> 2.20.0'
+
+# Sidekiq queue concurrency control
+gem 'sidekiq-throttled', '~> 1.5.2'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Lambdas
+module Faas
   module NotificationHandlers
     class ZipS3Files < Base
       include ActionView::Helpers::TagHelper

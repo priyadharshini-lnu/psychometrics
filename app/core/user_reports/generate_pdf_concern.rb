@@ -18,7 +18,7 @@ module UserReports::GeneratePdfConcern
     { file_path: file_path }
   end
 
-  def export_pdf_using_lambda(record) # rubocop:disable Metrics/AbcSize
+  def export_pdf_using_faas(record) # rubocop:disable Metrics/AbcSize
     report_pdf = record.report_pdfs.find_or_create_by!(locale: options[:lang])
 
     file_path = if options[:file_path]
@@ -33,11 +33,10 @@ module UserReports::GeneratePdfConcern
     webhook_message[:update_record] = true # options[:update_record] != false
     webhook_message[:admin_job_record_id] = options[:admin_job_record_id] if options[:admin_job_record_id]
 
-    lambda_option = default_report_export_options.merge(
+    faas_option = default_report_export_options.merge(
       output_file_path: file_path,
       file_name: report_file_name,
       webhook_message: webhook_message,
-      async: options[:async],
       low_priority: options[:low_priority],
       meta: {
         project_id: campaign.project.id,
@@ -58,7 +57,7 @@ module UserReports::GeneratePdfConcern
       options: options
     )
 
-    Lambdas::UrlToPdf.call!(lambda_option)
+    Faas::UrlToPdf.call!(faas_option)
     { file_name: report_file_name }
   end
 

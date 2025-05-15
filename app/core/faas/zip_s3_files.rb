@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-module Lambdas
+module Faas
   class ZipS3Files < Base
     def call
-      make_request_to_lambda
+      make_request
 
       broadcast :ok
     end
 
     private
 
-    def lambda_details
-      @lambda_details ||= Settings.secrets.aws.dig(:lambda, :zip_s3_files)
+    def function_name
+      :zip_s3_files
     end
 
     def request_body
@@ -20,12 +20,12 @@ module Lambdas
         fileDetails: Base64.encode64(compressed_details),
         zipFileKey: options[:zip_file_key],
         webhookMessage: webhook_message,
-        webhookUrl: lambda_notifications_url
+        webhookUrl: function_notifications_url
       }
     end
 
-    def lambda_notifications_url
-      lambda_notifications_zip_s3_files_url(
+    def function_notifications_url
+      faas_notifications_zip_s3_files_url(
         host: Settings.domain,
         subdomain: Settings.subdomain,
         port: Settings.port,

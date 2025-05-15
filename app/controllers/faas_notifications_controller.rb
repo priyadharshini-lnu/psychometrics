@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-class LambdaNotificationsController < ActionController::Base
+class FaasNotificationsController < ActionController::Base
   skip_before_action :verify_authenticity_token
   before_action :log_subscription_confirmation_details
 
   def url_to_pdf
-    Lambdas::NotificationHandlers::UrlToPdf.call!(get_message)
+    Faas::NotificationHandlers::UrlToPdf.call!(get_message)
 
     head :ok
   end
 
   def zip_s3_files
-    Lambdas::NotificationHandlers::ZipS3Files.call!(get_message)
+    Faas::NotificationHandlers::ZipS3Files.call!(get_message)
 
     head :ok
   end
@@ -27,7 +27,7 @@ class LambdaNotificationsController < ActionController::Base
   end
 
   def get_message
-    hash, = JWT.decode(request.raw_post, Settings.secrets.aws.dig(:lambda, :signing_secret), 'HS256')
+    hash, = JWT.decode(request.raw_post, Settings.secrets.faas[:signing_secret], 'HS256')
     hash['data']
   end
 end

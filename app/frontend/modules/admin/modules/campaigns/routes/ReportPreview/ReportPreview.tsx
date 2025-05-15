@@ -14,6 +14,7 @@ import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { ApprovalStatuses } from '~/modules/admin/modules/campaigns/core/userReports'
 import { PropsFromRedux } from './connect'
 import Sidebar, { lookUpModules } from './Sidebar'
+import { camelizeKeys } from '~/utils/object'
 import schema from '~/modules/reports/store/schema'
 import { isRtl } from '~/utils/locales'
 
@@ -53,6 +54,7 @@ export default function ReportPreview ({
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
   const skipLogic = params.get('skip_logic') === 'true'
+  const { urlToPdfFaas: isUrlToPdfFaasFeatureEnabled } = camelizeKeys(features)
 
   const lang = new URLSearchParams(location.search).get('lang') || undefined
   useEffect(() => {
@@ -105,7 +107,7 @@ export default function ReportPreview ({
   }
 
   const onReportDownloadClick = () => {
-    if (features.url_to_pdf_lambda) {
+    if (isUrlToPdfFaasFeatureEnabled) {
       asyncDownload(parsedCampaignId, parsedId, { lang })
       message.success(I18n.t('user_reports.messages.async_generation'))
     } else {

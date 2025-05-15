@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'cron_jobs_loader'
+require 'sidekiq/throttled/web'
 
 ssl_params = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
 redis_connection = if Rails.env.development?

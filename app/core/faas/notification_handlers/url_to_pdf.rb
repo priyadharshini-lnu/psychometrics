@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Lambdas
+module Faas
   module NotificationHandlers
     class UrlToPdf < Base
       ALLOWED_TYPES = %w[UserReport UserIdpPlan].freeze

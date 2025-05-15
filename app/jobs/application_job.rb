@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationJob < ActiveJob::Base
+  include Sidekiq::Throttled::Job
   include JobTracking
   include ControlException
 

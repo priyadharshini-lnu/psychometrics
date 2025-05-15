@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Lambdas
+module Faas
   class UrlToPdf < Base
     private_attr_reader :options
 
@@ -9,15 +9,15 @@ module Lambdas
     end
 
     def call
-      make_request_to_lambda
+      make_request
 
       broadcast :ok
     end
 
     private
 
-    def lambda_details
-      @lambda_details ||= Settings.secrets.aws.dig(:lambda, :url_to_pdf)
+    def function_name
+      :url_to_pdf
     end
 
     def request_body
@@ -27,13 +27,12 @@ module Lambdas
                webhookMessage: webhook_message,
                pdfPassword: options[:pdf_password]
              )
-      return body unless options[:async]
 
-      body.merge(webhookUrl: lambda_notifications_url)
+      body.merge(webhookUrl: function_notifications_url)
     end
 
-    def lambda_notifications_url
-      lambda_notifications_url_to_pdf_url(
+    def function_notifications_url
+      faas_notifications_url_to_pdf_url(
         host: Settings.domain,
         subdomain: Settings.subdomain,
         port: Settings.port,

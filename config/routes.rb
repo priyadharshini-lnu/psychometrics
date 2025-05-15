@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   put '/oracle_proxy/*all' => 'oracle_proxy#all'
 
   get '/s/:id' => 'shortener/shortened_urls#show', as: :shortened
-  post '/lambda_notifications/url_to_pdf'
-  post '/lambda_notifications/zip_s3_files'
+  post '/faas_notifications/url_to_pdf'
+  post '/faas_notifications/zip_s3_files'
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 

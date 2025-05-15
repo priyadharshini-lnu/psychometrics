@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Lambdas::NotificationHandlers::ZipS3Files do
+describe Faas::NotificationHandlers::ZipS3Files do
   include Rails.application.routes.url_helpers
 
   let(:bulk_report) { create(:bulk_report, :with_attached_file) }

@@ -26,7 +26,6 @@ module Administration
         options = {
           lang: params[:lang] || resource.campaign.project.available_locales.first,
           file_path: Settings.aws.s3.one_day_expiry_folder,
-          async: true,
           notify_user: true,
           update_record: false
         }

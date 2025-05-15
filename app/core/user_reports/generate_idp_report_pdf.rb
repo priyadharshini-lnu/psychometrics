@@ -17,8 +17,8 @@ module UserReports
     end
 
     def call
-      result = if Settings.features.url_to_pdf_lambda
-                 export_pdf_using_lambda(user_idp_plan)
+      result = if Settings.features.url_to_pdf_faas
+                 export_pdf_using_faas(user_idp_plan)
                else
                  export_pdf_using_local_chrome
                end

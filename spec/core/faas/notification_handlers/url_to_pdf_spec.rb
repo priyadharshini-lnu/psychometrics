@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Lambdas::NotificationHandlers::UrlToPdf do
+describe Faas::NotificationHandlers::UrlToPdf do
   let(:project) { create(:project) }
   let(:campaign) { create(:campaign, project: project) }
   let(:user_report) { create(:user_report, campaign: campaign) }
