@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/rectify.git
-  revision: 350f6eb47f6af46d365a383efe6da668738579dc
+  revision: 5053eac2233ff388f42393c868ac501b3ce4f2de
   branch: tte-master
   specs:
     rectify (0.14.0)
@@ -305,7 +305,7 @@ GEM
     config (5.1.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
-    connection_pool (2.5.0)
+    connection_pool (2.5.3)
     coveralls_reborn (0.28.0)
       simplecov (~> 0.22.0)
       term-ansicolor (~> 1.7)
@@ -592,7 +592,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.6)
+    logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
