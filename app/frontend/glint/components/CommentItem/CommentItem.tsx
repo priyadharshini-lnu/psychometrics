@@ -6,8 +6,8 @@ import {
   MoreOutlined, UserOutlined, ExclamationCircleOutlined, CheckOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import _ from 'lodash'
+import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import styles from './CommentItem.less'
 
@@ -43,7 +43,7 @@ export const CommentItem: FC<Props> = ({
 }) => {
   const [commentText, setCommentText] = useState(comment.text)
   const [editComment, setEditComment] = useState(false)
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     canEdit ? { key: 'edit', label: I18n.t('common.actions.edit') } : null,
     canRemove ? { key: 'remove', label: I18n.t('common.actions.remove') } : null,
     canResolve && comment.resolved ? { key: 'resolve', label: I18n.t('common.actions.unresolve') } : null,

@@ -18,6 +18,7 @@ import anonym from '../modules/campaigns/core/anonym'
 import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
 import config from './config'
 import flash from '~/core/flash'
+import errors from '~/core/errors'
 
 const rootReducer = () => combineReducers({
   campaigns: combineReducers({
@@ -35,6 +36,7 @@ const rootReducer = () => combineReducers({
     autocomplete,
   }),
   request,
+  errors,
   anonym,
   project,
   currentUser,

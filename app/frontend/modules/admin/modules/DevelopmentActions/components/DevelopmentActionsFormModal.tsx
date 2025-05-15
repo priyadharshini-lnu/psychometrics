@@ -41,6 +41,8 @@ type ImageFile = {
 
 const { I18n } = window
 
+const { availableLocales } = I18n
+
 export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmentAction }) => {
   const { resource } = useResourceContext<DevelopmentAction>()
   const dispatch = useDispatch()
@@ -310,6 +312,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           course_start_date: developmentAction?.courseStartDate ? dayjs(developmentAction.courseStartDate) : null,
           course_end_date: developmentAction?.courseEndDate ? dayjs(developmentAction.courseEndDate) : null,
           image: developmentAction?.image,
+          defaultLanguage: developmentAction?.defaultLanguage || 'en',
         },
       }}
     >
@@ -443,6 +446,16 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                     </Option>
                   ))
               }
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="defaultLanguage"
+            label={I18n.t('common.column.default_language')}
+          >
+            <Select>
+              {availableLocales.map(locale => (
+                <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item

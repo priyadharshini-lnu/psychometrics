@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Button, MenuProps, Typography, App,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { CampaignTemplate } from '~/modules/admin/core/types/campaignTemplates'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -159,7 +159,7 @@ const getActionsMenuProps = ({ campaignTemplate, openModal, removeCampaignTempla
           {I18n.t('common.actions.remove')}
         </Button>),
     },
-  ].filter(m => m) as ItemType[]
+  ].filter(m => m) as MenuItem[]
 
   return ({ items: menuItems })
 }

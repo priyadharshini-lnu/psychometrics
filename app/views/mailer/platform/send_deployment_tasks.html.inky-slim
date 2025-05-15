@@ -4,4 +4,4 @@
   p="You need to complete following tasks on '#{ENV['REAL_ENV']}' enviroment"
   ul
     - @tasks.each do |task|
-      li.list= task
+      li.list= simple_format(task)

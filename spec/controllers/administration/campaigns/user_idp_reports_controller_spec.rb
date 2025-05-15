@@ -31,13 +31,23 @@ RSpec.describe Administration::Campaigns::UserIdpReportsController, type: :contr
   end
 
   describe 'GET download' do
-    it 'sends pdf file for download' do
-      file_path = 'tmp/reports/user.pdf'
+    it 'redirects to the user IDP report page after initiating download' do
+      expect(UserReports::GenerateIdpReportPdf).to receive(:call!)
 
-      expect(UserReports::GenerateIdpReportPdf).to receive(:call!).and_return(file_path: file_path)
-      expect(controller).to receive(:send_tmp_file).with(file_path, type: 'application/pdf')
+      lang = 'en'
 
-      get :download, params: { new_campaign_id: campaign.id, id: user_idp_plan.id }, format: :pdf
+      get :download, params: { new_campaign_id: campaign.id, id: user_idp_plan.id, lang: lang }, format: :html
+
+      expected_url = "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/user_idp_reports/#{user_idp_plan.id}?lang=#{lang}" # rubocop:disable Layout/LineLength
+      expect(response).to redirect_to(expected_url)
+    end
+
+    it 'returns http ok for json format' do
+      expect(UserReports::GenerateIdpReportPdf).to receive(:call!)
+
+      get :download, params: { new_campaign_id: campaign.id, id: user_idp_plan.id }, format: :json
+
+      expect(response).to have_http_status(:ok)
     end
   end
 end

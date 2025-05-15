@@ -14,4 +14,4 @@ p You are receiving this email as you are added as a QC for above report which r
 
 p You can access the report via the following link.
 
-= link_to 'Report', administration_project_new_campaign_url(@user_report.project, @user_report.campaign) + "/user_reports/#{@user_report.id}"
+= link_to 'Report', administration_to_admin_url(@url)

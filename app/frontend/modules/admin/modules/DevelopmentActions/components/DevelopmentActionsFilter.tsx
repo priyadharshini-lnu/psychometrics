@@ -14,12 +14,6 @@ type Props = {
   openModal: (modalName: string, modalProps?: unknown) => void
 }
 
-const CSVDevelopmentAction = `ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
-1,11000000001,Leadership,About Leadership qualities,structured_learning,Course,www.google.com,2025-01-01,2025-12-31,https://picsum.photos/200`
-
-const CSVDevelopmentActionTranslations = `ID,Locale,Name,Description
-1,fr,French Name,French Description`
-
 export const DevelopmentActionsFilter: React.FC<Props> = ({
   openModal,
 }) => {
@@ -82,7 +76,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
     if (action === 'import_development_actions') {
       openModal('DevelopmentActionsImportModal', {
         handleImport: handleDevelopmentActionImport,
-        csvData: CSVDevelopmentAction,
+        csvFilePath: '/example_csv/development-actions-sample.csv',
         title: I18n.t('administration.development_actions.import_action.development_actions_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
       })
@@ -91,7 +85,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
     if (action === 'import_translations') {
       openModal('DevelopmentActionsImportModal', {
         handleImport: handleDevelopmentActionTranslationsImport,
-        csvData: CSVDevelopmentActionTranslations,
+        csvFilePath: '/example_csv/development-action-translations-sample.csv',
         title: I18n.t('administration.development_actions.import_action.development_actions_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })

@@ -1,8 +1,12 @@
-#report_preview.html_preview[data-user="#{@data[:user]}"
-  data-data="#{@data[:data]}"
-  data-pdf-export="#{@pdf_export}"
-  data-campaign="#{@data[:campaign] || {}}"
-]
+#report_preview.html_preview
+
+javascript:
+  window.__INITIAL_STATE__ = {
+    idp: {
+      template: JSON.parse('#{escape_javascript((@data[:template] || {}).to_json).html_safe}'),
+      userIdp:  JSON.parse('#{escape_javascript((@data[:user_idp] || {}).to_json).html_safe}'),
+    }
+  }
 
 = vite_javascript_tag 'entrypoints/idp_pdf_report.jsx'
 = stylesheet_link_tag 'icomoon'

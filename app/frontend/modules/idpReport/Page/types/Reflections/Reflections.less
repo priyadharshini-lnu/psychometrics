@@ -1,0 +1,47 @@
+@import "../colors.less";
+
+.content {
+  flex: 1;
+}
+.content {
+  flex: 1;
+  background-size: contain;
+  position: relative;
+  padding: 45px;
+  color: @primary-black;
+}
+
+
+.header {
+  .title {
+    margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: bold;
+
+  }
+  .subtitle {
+    color: @primary-gray;
+    font-size: 15px;
+  }
+}
+.reflections {
+  background: @background-gray;
+  padding: 30px;
+  .reflection {
+    padding-bottom: 20px;
+    border-bottom: 1px solid @light-gray;
+    flex: 1 1 40%;
+    max-width: 50%;
+    min-height: 136px;
+  }
+  .title {
+    color: @primary-black;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .text {
+    color: @primary-gray;
+    line-height: 1.5;
+    flex: 1;
+  }
+}

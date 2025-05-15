@@ -37,6 +37,9 @@ module Campaigns
       campaign.campaign_reports.each do |cr|
         new_campaign.campaign_reports << cr.dup
       end
+      campaign.campaign_assessor_assessments.each do |caa|
+        new_campaign.campaign_assessor_assessments << caa.dup
+      end
     end
 
     def copy_sequencing(new_campaign)
@@ -50,7 +53,7 @@ module Campaigns
     end
 
     def copy_datasheet_columns(new_campaign)
-      return unless campaign.datasheet
+      return unless campaign.campaign_datasheet
 
       new_campaign.create_campaign_datasheet
       campaign.campaign_datasheet.sheet_columns.each do |column|

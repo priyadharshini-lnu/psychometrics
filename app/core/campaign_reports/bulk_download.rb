@@ -19,18 +19,18 @@ module CampaignReports
         return broadcast :ok, { error_messages: [I18n.t('administration.bulk_reports.reports_unavailable')] }
       end
 
-      if Settings.features.zip_s3_files_lambda
-        bulk_download_with_lambda
+      if Settings.features.zip_s3_files_faas
+        bulk_download_with_faas
         broadcast :waiting
       else
-        bulk_download_without_lambda
+        bulk_download_without_faas
         broadcast :ok, bulk_report
       end
     end
 
     private
 
-    def bulk_download_with_lambda
+    def bulk_download_with_faas
       file_details = user_reports_with_pdf.preload_pdf_attachments.each_with_object([]) do |ur, acc|
         effective_locales = job_record.data['locales'] || [ur.effective_default_language]
         effective_locales.each do |locale|
@@ -44,14 +44,14 @@ module CampaignReports
       file_name = "bulk-report-#{Time.zone.today.strftime('%F')}"
       webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
       job_record.update!(total_tasks: file_details.length)
-      Lambdas::ZipS3Files.call!(
+      Faas::ZipS3Files.call!(
         file_details: file_details,
         zip_file_key: bulk_report.attachment_storage_path('files', "#{file_name}.zip"),
         webhook_message: webhook_message
       )
     end
 
-    def bulk_download_without_lambda
+    def bulk_download_without_faas
       create_input_directory
       download_user_reports_from_s3
 

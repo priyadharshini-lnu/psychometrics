@@ -19,6 +19,12 @@ export const defaultState = {
     lockedFields: {},
     enabledFields: {},
   },
+  idp: {
+    allowGlobalSkills: false,
+    managerApprovesIdp: false,
+    managerCanEditIdp: false,
+    requireAllDevelopmentActionsComplete: false,
+  },
 }
 
 export default function reducer (state = defaultState) {

@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import {
   Button, message, MenuProps, App,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { PlusOutlined } from '@ant-design/icons'
 import { ConnectedProps, connect } from 'react-redux'
+import { MenuItem } from '~/interfaces/Antd'
 import { SkillAliasForm } from './SkillAliasForm'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import Modals from '~/modules/admin/components/Modals'
@@ -124,7 +124,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   resource.meta.permissions?.edit && menuItems.push({
     key: 'edit',
     label: (

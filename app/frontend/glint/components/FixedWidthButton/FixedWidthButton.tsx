@@ -5,7 +5,7 @@ import { Button, ButtonProps } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 
 export const FixedWidthButton: FC<ButtonProps> = ({ children, loading, ...props }) => {
-  const buttonWidthRef = useRef<HTMLDivElement>(null)
+  const buttonWidthRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
   const [style, setStyle] = useState({})
 
   useEffect(() => {

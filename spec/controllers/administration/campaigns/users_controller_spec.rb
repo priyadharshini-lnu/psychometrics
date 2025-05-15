@@ -188,10 +188,11 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'mettl_schedule_name' => nil,
       'mettl_schedule_record_id' => nil,
       'dimension_id' => assessment.dimension_id,
-      'simulation_content_variation_id' => nil,
-      'simuation_time_extension' => nil,
       'simulation_content_variations' => [],
       'hogan_participant_id' => nil,
+      'pearson_user_assessment_details' => nil,
+      'simulation_user_assessment_details' => nil,
+      'saville_user_assessment_details' => nil,
       'users_result_id' => user_assessment.users_result_id
     })
   end

@@ -82,7 +82,7 @@ describe UserReports::GeneratePdf do
 
   context 'using local puppeter' do
     before(:each) do
-      allow(Settings).to receive_message_chain(:features, :url_to_pdf_lambda) { false }
+      allow(Settings).to receive_message_chain(:features, :url_to_pdf_faas) { false }
       frozen_time = Time.zone.local(2020, 1, 1, 12, 0, 0)
       allow(Time.zone).to receive(:now).and_return(frozen_time)
     end
@@ -108,17 +108,17 @@ describe UserReports::GeneratePdf do
     end
   end
 
-  context 'using lambda' do
+  context 'using Faas' do
     before(:each) do
-      allow(Settings).to receive_message_chain(:features, :url_to_pdf_lambda) { true }
+      allow(Settings).to receive_message_chain(:features, :url_to_pdf_faas) { true }
     end
 
-    it 'calls Lambdas::UrlToPdf ' do
+    it 'calls Faas::UrlToPdf ' do
       report_url = 'https://cc.com/abc.pdf'
       report_file_name = 'abc.pdf'
       allow_any_instance_of(described_class).to receive(:report_preview_url).and_return(report_url)
       allow_any_instance_of(described_class).to receive(:report_file_name).and_return(report_file_name)
-      expect(Lambdas::UrlToPdf).to receive(:call!).with(
+      expect(Faas::UrlToPdf).to receive(:call!).with(
         report.pdf_dimension.merge(
           file_name: report_file_name,
           url: report_url,
@@ -140,7 +140,6 @@ describe UserReports::GeneratePdf do
             user_id: user_report.user_id,
             project_id: user_report.campaign.project_id
           },
-          async: nil,
           pdf_password: user_report.campaign.pdf_password
         )
       )

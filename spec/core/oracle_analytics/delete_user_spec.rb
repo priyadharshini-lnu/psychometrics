@@ -12,7 +12,9 @@ RSpec.describe OracleAnalytics::DeleteUser do
   before do
     allow(service).to receive(:client).and_return(client)
     allow(service).to receive(:broadcast)
-    allow(oracle_credential).to receive(:destroy)
+    if oracle_credential
+      allow(oracle_credential).to receive(:destroy)
+    end
   end
 
   describe '#call' do

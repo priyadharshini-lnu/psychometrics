@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::NormResource < Api::V2::Administration::BaseResource
-  attributes :id, :name, :disabled, :created_at, :updated_at, :norm_type
+  attributes :name, :disabled, :created_at, :updated_at, :norm_type
 
   has_one :dimension
   has_one :owner, class_name: 'Client'

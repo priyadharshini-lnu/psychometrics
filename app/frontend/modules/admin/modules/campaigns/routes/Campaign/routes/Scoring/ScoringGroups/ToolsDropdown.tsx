@@ -3,8 +3,8 @@ import {
   Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { Link } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
@@ -29,7 +29,7 @@ export const ToolsDropdown: React.FC<ToolsDropdownProps> = ({ onClick }) => (
 )
 
 const getMenuProps = (onClick): MenuProps => {
-  const menuItems:ItemType[] = [
+  const menuItems:MenuItem[] = [
     {
       key: 'weightages',
       label: <Link to="weightages">{I18n.t('administration.scoring.weightages.weightages')}</Link>,

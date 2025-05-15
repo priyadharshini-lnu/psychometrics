@@ -157,7 +157,7 @@ class Client < ApplicationRecord
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
            :mask_identity_for_mettl?, :custom_privacy_consent, to: :privacy_setting
 
-  scope :enabled, -> { where('NOT (disabled = ? AND archived = ?)', true, true) }
+  scope :enabled, -> { where('NOT (clients.disabled = ? AND archived = ?)', true, true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
   scope :resource_disabled, ->(value) { where(disabled: value) }
   scope :not_archived, -> { where.not(archived: true) }

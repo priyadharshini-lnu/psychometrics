@@ -10,8 +10,8 @@ import {
 } from '@ant-design/icons'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useParams } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
@@ -259,7 +259,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
     label: 'Edit',

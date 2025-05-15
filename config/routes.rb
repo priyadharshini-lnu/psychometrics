@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   put '/oracle_proxy/*all' => 'oracle_proxy#all'
 
   get '/s/:id' => 'shortener/shortened_urls#show', as: :shortened
-  post '/lambda_notifications/url_to_pdf'
-  post '/lambda_notifications/zip_s3_files'
+  post '/faas_notifications/url_to_pdf'
+  post '/faas_notifications/zip_s3_files'
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}/%{all}')
   get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id',
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
+  get '/admin/clients/:client_id/*all', to: 'administration/app#dashboard'
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
@@ -487,6 +488,7 @@ Rails.application.routes.draw do
             post :create_all
             post :search
             post :import
+            patch :bulk_update_evaluation_status
           end
           member do
             get :preview_report
@@ -802,7 +804,7 @@ Rails.application.routes.draw do
     end
 
     resources :campaign_templates
-    root to: 'clients#index'
+    root to: redirect('admin')
   end
   #
   # END: Administration panel
@@ -1175,7 +1177,9 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :projects, only: :show do
             jsonapi_resources :idp_templates, only: %i[index create update destroy],
-              controller: 'projects/idp_templates'
+              controller: 'projects/idp_templates' do
+                post :uploads, on: :member
+              end
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export
@@ -1453,6 +1457,7 @@ as: :simulation_progress_notification
             post :import_global_translations, on: :collection
             post :export_global_translations, on: :collection
           end
+
           jsonapi_resources :development_actions do
             scope module: :development_actions do
               resource :uploads, only: [:update]
@@ -1474,6 +1479,10 @@ as: :simulation_progress_notification
           jsonapi_resources :users_results, only: :show
 
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
+
+          namespace :ai do
+            jsonapi_resources :assistants, relationships: false
+          end
         end
       end
     end

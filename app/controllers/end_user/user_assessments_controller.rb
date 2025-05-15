@@ -84,7 +84,7 @@ class EndUser::UserAssessmentsController < ApplicationController
     media = @user_assessment.user_assessment_verification_images.find(params[:media_id])
     media.file = params[:asset_key]
     if media.save
-      render json: 'ok'
+      render json: :ok
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy

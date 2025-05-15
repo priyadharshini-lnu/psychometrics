@@ -5,7 +5,7 @@ import {
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import pluralize from 'pluralize'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ParentResourceType } from '../interfaces'
@@ -43,7 +43,7 @@ const ToolsDropdown: FC<Props> = ({
       e.preventDefault()
     }
   }
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
   permissions.import && menuItems.push({
     key: 'import',
     label: I18n.t('sheet.menu.import'),

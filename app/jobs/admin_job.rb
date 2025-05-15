@@ -36,6 +36,7 @@ class AdminJob < ApplicationJob
     import_question_translations: AdminJobs::ImportQuestionTranslations,
     regenerate_threesixty_report: AdminJobs::RegenerateThreesixtyReport,
     bulk_regenerate_threesixty_reports: AdminJobs::BulkRegenerateThreesixtyReports,
+    bulk_update_evaluation_status: AdminJobs::BulkUpdateEvaluationStatus,
     bulk_create_workshop_invites: AdminJobs::BulkCreateWorkshopInvites,
     super_admin_assessment_raw_result_export: AdminJobs::SuperAdmin::AssessmentRawResultExport,
     super_admin_assessment_raw_factor_export: AdminJobs::SuperAdmin::AssessmentRawFactorExport,

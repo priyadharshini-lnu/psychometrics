@@ -71,7 +71,15 @@ module Administration
 
       skill = initialize_skill(row)
       assign_skill_attributes(skill, row)
-      save_skill(skill, line_number)
+
+      unless skill.save
+        @errors << I18n.t(
+          'administration.skills.errors.import.save_failed',
+          line_number: line_number,
+          name: row['Name'],
+          message: skill.errors.full_messages.join(', ')
+        )
+      end
     end
 
     def validate_required_fields(row, line_number)
@@ -107,22 +115,6 @@ module Administration
       return if row['Tag'].blank?
 
       skill.tag_list = row['Tag'].split(',').map(&:strip)
-    end
-
-    def save_skill(skill, line_number)
-      skill.save!
-    rescue ActiveRecord::RecordNotUnique => e
-      handle_uniqueness_error(e, skill.name, line_number)
-    rescue ActiveRecord::RecordInvalid => e
-      @errors << "Line #{line_number}: #{e.message}"
-    end
-
-    def handle_uniqueness_error(error, skill_name, line_number)
-      @errors << if error.message.include?('index_skills_on_name')
-                   "Line #{line_number}: A skill with the name '#{skill_name}' already exists"
-                 else
-                   "Line #{line_number}: #{error.message}"
-                 end
     end
 
     def normalize_category(category)

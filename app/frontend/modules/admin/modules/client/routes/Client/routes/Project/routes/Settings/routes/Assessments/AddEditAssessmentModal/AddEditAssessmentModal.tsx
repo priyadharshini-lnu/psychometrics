@@ -35,7 +35,7 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
   }
 
   const [selectedAssessmentType, setSelectedAssessmentType] = useState<string | null>(
-    projectAssessment?.type || null,
+    projectAssessment?.assessmentType || null,
   )
 
   const {

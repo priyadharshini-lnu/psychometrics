@@ -4,19 +4,23 @@ module Api
   module Administration
     class IdpTemplatePolicy < ::Api::Administration::BasePolicy
       def index?
-        @user.has_grant?(:idp_templates, :view)
+        has_permission?(:idp_templates, :view)
       end
 
       def create?
-        @user.has_grant?(:idp_templates, :manage)
+        has_permission?(:idp_templates, :manage)
       end
 
       def update?
-        @user.has_grant?(:idp_templates, :manage)
+        has_permission?(:idp_templates, :manage)
       end
 
       def destroy?
-        @user.has_grant?(:idp_templates, :manage)
+        has_permission?(:idp_templates, :manage)
+      end
+
+      def uploads?
+        has_permission?(:idp_templates, :manage)
       end
 
       class Scope < Api::Administration::BasePolicy::Scope

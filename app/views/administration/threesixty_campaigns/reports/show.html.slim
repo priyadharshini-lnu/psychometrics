@@ -1,7 +1,7 @@
 
-- uses_lambda = Settings.features.url_to_pdf_lambda
+- uses_faas = Settings.features.url_to_pdf_faas
 - download_url = download_administration_threesixty_campaign_subject_reports_path(@user_report.threesixty_campaign,
-    @user_report.threesixty_subject, format: Settings.features.url_to_pdf_lambda ? nil : :pdf, lang: params[:lang], export: true,
+    @user_report.threesixty_subject, format: Settings.features.url_to_pdf_faas ? nil : :pdf, lang: params[:lang], export: true,
     skip_logic: params[:skip_logic])
 .row
   .col-md-12
@@ -11,8 +11,8 @@
         / = render partial: 'application/lang', locals: { with_confirm: false, locales: @available_translations }
         = render partial: 'lang', locals: { with_confirm: false, locales: @available_languages }
         - if policy(@user_report, { campaign_id: @user_report.campaign_id }).download?
-          = link_to(download_url, class: 'mrl pull-right', data: { behavior:  'export-pdf', uses_lambda:  uses_lambda })
-            button class="btn btn-default #{uses_lambda ? nil : 'ladda-button'}" type="button" data-style="zoom-out" data-spinner-color="#000000"
+          = link_to(download_url, class: 'mrl pull-right', data: { behavior:  'export-pdf', uses_faas:  uses_faas })
+            button class="btn btn-default #{uses_faas ? nil : 'ladda-button'}" type="button" data-style="zoom-out" data-spinner-color="#000000"
               span.fa.fa-file-pdf-o
               = t('threesixty.export_pdf')
 

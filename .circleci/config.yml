@@ -1,5 +1,13 @@
 version: 2.1 # Use 2.1 to enable using orbs and other features.
 
+parameters:
+  rspec_containers:
+    type: integer
+    default: 4
+  rspec_parallel_processors:
+    type: integer
+    default: 7
+
 executors:
   tte-executor-full:
     docker:
@@ -21,7 +29,7 @@ executors:
       REDIS_URL: 'redis://localhost:6379/1'
       NODE_OPTIONS: '--max_old_space_size=8192'
       BUNDLER_VERSION: 2.3.17
-      PARALLEL_TEST_PROCESSORS: '7'
+      PARALLEL_TEST_PROCESSORS: '<< pipeline.parameters.rspec_parallel_processors >>'
       WEB_CONCURRENCY: '1'
       RAILS_MAX_THREADS: '5'
       PARALLEL_TEST_FIRST_IS_1: '1'
@@ -216,7 +224,6 @@ commands:
           command: |
             npm install -g heroku@9.5.1
 
-
 jobs:
   bundle:
     executor: tte-executor
@@ -282,6 +289,8 @@ jobs:
   rubocop:
     executor: tte-executor
     resource_class: medium
+    environment:
+      DATABASE_URL: "postgres://user:pass@localhost/dbname" # dummy db link for rubocop
     steps:
       - checkout
       - restore_cache:
@@ -292,7 +301,7 @@ jobs:
       - run:
           name: Rubocop
           command: |
-            (find tmp/rubocop_cache -type f -mtime +30 -delete) || echo "No old cache files to prune"
+            (find tmp/rubocop_cache -type f -mtime +15 -delete) || echo "No old cache files to prune"
             bundle exec rubocop --parallel
       - save_cache:
           key: rubocop-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".rubocop.yml" }}-{{ .Branch }}
@@ -314,13 +323,14 @@ jobs:
           command: |
             cp config/database.yml.sample config/database.yml
             cp config/application.yml.sample  config/application.yml
-            (find tmp/cache/vite tmp/cache/assets/sprockets -type f -mtime +30 -delete) || echo "No old cache files to prune"
+            (find tmp/cache/vite tmp/cache/assets/sprockets -type f -mtime +15 -delete) || echo "No old cache files to prune"
             bundle exec rails assets:precompile
       - save_assets_cache
 
   vitest:
     executor: tte-executor
-    resource_class: large
+    resource_class: xlarge
+    parallelism: 2
     steps:
       - checkout
       - assets_files
@@ -349,8 +359,8 @@ jobs:
           command: |
             cp config/database.yml.sample config/database.yml
             bundle exec rake i18n:js:export
-            (find tmp/cache/vitest -type f -mtime +30 -delete) || echo "No old cache files to prune"
-            yarn test --coverage --maxWorkers 3 --minWorkers 1 && yarn run coveralls < coverage/lcov.info
+            (find tmp/cache/vitest -type f -mtime +15 -delete) || echo "No old cache files to prune"
+            yarn test --coverage --maxWorkers 7 --minWorkers 5 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=8 && yarn run coveralls < coverage/lcov.info
       - run:
           name: Vitest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.vitest.flag
@@ -367,6 +377,7 @@ jobs:
   rspec:
     executor: tte-executor-full
     resource_class: xlarge
+    parallelism: << pipeline.parameters.rspec_containers >>
     steps:
       - checkout
       - bundle_restore
@@ -374,18 +385,24 @@ jobs:
       - assets_files
       - abort_on_rspec_cache_flag
       - setup_db:
-          processes: 7
-      - run:
-          name: Zeitwerk check
-          command: bundle exec rake zeitwerk:check
+          processes: << pipeline.parameters.rspec_parallel_processors >>
       - run:
           name: RSpec
           command: |
-            EAGER_LOAD=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--failure-exit-code=0'
-      - run:
-          name: RSpec re-run failed tests
-          command: |
-            EAGER_LOAD=1 DISABLE_COVERAGE=1 PARALLEL_TEST_PROCESSORS=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--only-failures'
+            echo "RSPEC_FAILED=0" >> $BASH_ENV
+            source "$BASH_ENV"
+            groups=$((CIRCLE_NODE_TOTAL * << pipeline.parameters.rspec_parallel_processors >>))
+            seq_start=$((CIRCLE_NODE_INDEX * << pipeline.parameters.rspec_parallel_processors >> + 1))
+            seq_end=$((seq_start + << pipeline.parameters.rspec_parallel_processors >> - 1))
+            current_groups=$(seq -s, $seq_start $seq_end | sed 's/,$//')
+            echo "Running tests in groups: $current_groups"
+            bundle exec spring start
+            EAGER_LOAD=1 CI_RUN=true bundle exec spring parallel_test spec -t rspec -n $groups --only-group $current_groups  --runtime-log support/parallel_runtime_rspec.log --group-by runtime || echo " RSPEC_FAILED=1" >> $BASH_ENV
+            source "$BASH_ENV"
+            if [ "$RSPEC_FAILED" -eq 1 ]; then
+              echo "Re-running failed tests"
+              EAGER_LOAD=1 CI_RUN=true DISABLE_COVERAGE=1 PARALLEL_TEST_PROCESSORS=1 bundle exec spring parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--only-failures'
+            fi
       - run:
           name: Save RSpec cacheflag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.rspec.flag
@@ -393,8 +410,7 @@ jobs:
           key: rspec-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
           paths:
             - ~/cachedflags/job.rspec.flag
-      - store_artifacts:
-          path: /home/circleci/project/tmp/capybara
+
   coveralls:
     docker:
       - image: cimg/base:current
@@ -582,16 +598,23 @@ jobs:
             --values << parameters.values-file >> --values << parameters.values-env-file >> \
             --set image.tag=$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}
 
-  i18n_unused_key_checks:
-    executor: tte-executor
+  other_checks:
+    executor: tte-executor-full
     resource_class: medium
     steps:
       - checkout
       - bundle_restore
+      - setup_db:
+          processes: 1
       - run:
           name: Check for unused translation keys
           command: |
             bundle exec i18n-tasks unused
+      - run:
+          name: Zeitwerk check
+          command: |
+            bundle exec rake zeitwerk:check
+
 orbs:
   aws-cli: circleci/aws-cli@4.1.2
   heroku: circleci/heroku@2.0.0
@@ -631,7 +654,7 @@ workflows:
             - brakeman
             - eslint
             - typescript
-      - i18n_unused_key_checks:
+      - other_checks:
           requires:
             - bundle_assets
       - rspec:

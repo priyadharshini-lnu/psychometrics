@@ -17,8 +17,8 @@ module UserReports
     end
 
     def call
-      result = if Settings.features.url_to_pdf_lambda
-                 export_pdf_using_lambda(user_idp_plan)
+      result = if Settings.features.url_to_pdf_faas
+                 export_pdf_using_faas(user_idp_plan)
                else
                  export_pdf_using_local_chrome
                end
@@ -30,7 +30,7 @@ module UserReports
 
     def default_report_export_options
       # TODO: update page format once verify requirements
-      { width: '849px', height: '1100px' }.merge(url: report_preview_url)
+      { width: '1122px', height: '793px' }.merge(url: report_preview_url)
     end
 
     def report_preview_url

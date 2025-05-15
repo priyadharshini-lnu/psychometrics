@@ -43,6 +43,7 @@ describe CampaignReports::BulkDownload do
 
   before(:each) do
     allow_any_instance_of(described_class).to receive(:download_report)
+    allow(BulkReports::CompressJob).to receive(:perform_now)
   end
 
   it 'create bulk_download record' do
@@ -54,7 +55,6 @@ describe CampaignReports::BulkDownload do
   it 'creates input directory' do
     input_dir = 'tmp/reports'
     allow_any_instance_of(BulkReport).to receive(:input_dir).and_return(input_dir)
-    allow(BulkReports::CompressJob).to receive(:perform_now)
     expect(FileUtils).to receive(:mkdir_p).with(input_dir)
 
     described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)

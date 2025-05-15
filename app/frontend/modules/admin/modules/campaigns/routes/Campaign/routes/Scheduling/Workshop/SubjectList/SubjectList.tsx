@@ -6,9 +6,9 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { PlusOutlined } from '@ant-design/icons'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { MessageInstance } from 'antd/es/message/interface'
+import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
@@ -331,7 +331,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
 
   resource.meta.permissions?.remove && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
     subject.schedulingStatus,

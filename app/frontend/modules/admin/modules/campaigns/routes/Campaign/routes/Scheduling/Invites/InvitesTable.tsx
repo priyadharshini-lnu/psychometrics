@@ -3,12 +3,12 @@ import {
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import {
   useParams, useLocation, useNavigate, Link,
 } from 'react-router-dom'
 import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
 import { PlusOutlined } from '@ant-design/icons'
+import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { formatWorkshopDate } from '~/utils/workshop'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -145,7 +145,7 @@ const getActionsMenuProps = ({ invite, modal, message }: ActionMenuData): MenuPr
     })
   }
 
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
 
   resource.meta.permissions?.remove && menuItems.push({
     key: 'remove',

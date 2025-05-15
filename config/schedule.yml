@@ -101,6 +101,11 @@ send_assessor_notifications:
   class: SendAssessorNotificationsJob
   queue_as: cron_tasks
 
+idp_deadline_notification_job:
+  cron: "0 9 */1 * *" # Run at 9:00 AM every day
+  class: Idp::DeadlineNotificationJob
+  queue_as: cron_tasks
+
 disable_inactive_users:
   cron: "0 5 * * *"  # Runs daily at 5 AM
   class: DisableInactiveUsersJob

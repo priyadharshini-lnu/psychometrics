@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::MettlScheduleRecordResource < Api::V2::Administration::BaseResource
-  attributes :id, :schedule_id, :schedule_name, :created_at, :assessment_id, :assessment_name,
+  attributes :schedule_id, :schedule_name, :created_at, :assessment_id, :assessment_name,
              :secure_browser_enabled, :visual_proctoring_settings, :web_proctoring_settings
 
   has_one :assessment

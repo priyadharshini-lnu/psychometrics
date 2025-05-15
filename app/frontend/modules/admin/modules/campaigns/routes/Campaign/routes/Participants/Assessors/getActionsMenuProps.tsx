@@ -2,7 +2,7 @@ import {
   MenuProps, App,
 } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 
 const { I18n } = window
 
@@ -37,7 +37,7 @@ export const getActionsMenuProps = ({
     })
   }
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.remove && menuItems.push({
     key: 'remove',
     label: I18n.t('common.actions.remove'),

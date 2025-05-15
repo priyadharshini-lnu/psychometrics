@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
+import { Spin } from 'antd'
 import Home from '~/modules/survey/views/Home'
 import Trash from '~/modules/survey/views/Trash'
 import PropertyPanel from '~/modules/survey/views/PropertyPanel'
@@ -12,7 +13,7 @@ import '~/modules/survey/styles/globals.less'
 
 export const Dashboard = (props) => {
   const {
-    disabled, fetch, init, subscribeSocket, socketInitialized, defaultLocale,
+    disabled, fetch, init, subscribeSocket, socketInitialized, defaultLocale, isLoading,
   } = props
   const [loadingAssessment, setLoadingAssessment] = useState(true)
 
@@ -71,19 +72,12 @@ export const Dashboard = (props) => {
     </div>
   )
 
-  const loading = (
-    <div onKeyDown={disableKey} onClick={disableClick} className={styles.loading}>
-      <i className={`fa fa-refresh fa-spin fa-fw ${styles.icon}`} />
-      <span className={styles.loadingLabel}>Loading...</span>
-    </div>
-  )
 
   return (
-    <div className="col-md-12">
+    <Container loadingAssessment={isLoading}>
       <div className="panel panel-default">
         <Header {...props} />
         <div className={`panel-body ${styles.mainContainer}`}>
-          {loadingAssessment && loading}
           {disabled && overlay}
           <Home />
           <PropertyPanel />
@@ -93,6 +87,21 @@ export const Dashboard = (props) => {
         </div>
       </div>
       <div className="clearfix" />
+    </Container>
+  )
+}
+
+const Container = ({ loadingAssessment, children }) => {
+  if (loadingAssessment) {
+    return (
+      <Spin size="large" className="col-md-12">
+        {children}
+      </Spin>
+    )
+  }
+  return (
+    <div className="col-md-12">
+      {children}
     </div>
   )
 }

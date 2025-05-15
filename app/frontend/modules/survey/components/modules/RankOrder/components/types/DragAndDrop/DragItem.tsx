@@ -5,6 +5,7 @@ import { Button, Space } from 'antd'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
+import { ButtonColorType } from '~/interfaces/Antd'
 import styles from './DragAndDrop.less'
 
 import DescriptionPreview from '../../DescriptionPreview'
@@ -17,10 +18,14 @@ type CommonProps = {
   id?: string
 }
 
+type ButtonAttributes = {
+  color?: ButtonColorType,
+} & Omit<React.HTMLAttributes<HTMLElement>, 'color'>
+
 export type Props = CommonProps & {
   style: CSSProperties,
   dragStyle: CSSProperties,
-  attributes: React.HTMLAttributes<HTMLElement>,
+  attributes: ButtonAttributes,
   listeners: DraggableSyntheticListeners,
 }
 

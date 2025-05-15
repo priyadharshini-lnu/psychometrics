@@ -1,20 +1,17 @@
 import _ from 'lodash'
 import {
-  useEffect, useState, useContext, useMemo,
+  useEffect, useState, useMemo,
 } from 'react'
 import {
-  Tabs, Typography, Layout, Button, Flex, Space, theme,
-  message,
+  Tabs, Typography, Layout, Button, Flex,
+  message, Modal,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
-import { connect, ConnectedProps } from 'react-redux'
-import { generate } from '@ant-design/colors'
-import { CheckCircleOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { connect, ConnectedProps, useSelector } from 'react-redux'
+import { CloseOutlined } from '@ant-design/icons'
 
-import { BoxWithShadow, MediaQueryContext, PageLoadSpinner } from '~/glint'
+import { PageLoadSpinner } from '~/glint'
 import { IdpPageLayoutWrapper } from '../components/IdpPageLayoutWrapper/IdpPageLayoutWrapper'
-import { PieChart } from '../components/Graphs/PieChart'
-import { KpiChart } from '../components/Graphs/KpiChart'
 
 import {
   fetchAvailableDevelopmentActions,
@@ -44,25 +41,27 @@ import { USER_IDP_PLAN_STATUS } from '../constants'
 import styles from './MyPlan.less'
 
 const { I18n } = window
-const { useToken } = theme
 
-const categoryChartData = [
-  { label: I18n.t('idp.my_plan.graphs.behavioural'), value: 45 },
-  { label: I18n.t('idp.my_plan.graphs.technical'), value: 30 },
-  { label: I18n.t('idp.my_plan.graphs.other'), value: 20 },
-]
+// Commenting Chart data as can be used later as per requirement
+// const { useToken } = theme
 
-const learningChartData = [
-  { label: I18n.t('idp.my_plan.graphs.learning_structured', { count: 10 }), value: 10 },
-  { label: I18n.t('idp.my_plan.graphs.learning_others', { count: 20 }), value: 20 },
-  { label: I18n.t('idp.my_plan.graphs.learning_on_job', { count: 70 }), value: 70 },
-]
+// const categoryChartData = [
+//   { label: I18n.t('idp.my_plan.graphs.behavioural'), value: 45 },
+//   { label: I18n.t('idp.my_plan.graphs.technical'), value: 30 },
+//   { label: I18n.t('idp.my_plan.graphs.other'), value: 20 },
+// ]
 
-const kpiChartData = {
-  behavioural: { label: I18n.t('idp.my_plan.graphs.behavioural'), value: 85 },
-  technical: { label: I18n.t('idp.my_plan.graphs.technical'), value: 60 },
-  other: { label: I18n.t('idp.my_plan.graphs.other'), value: 40 },
-}
+// const learningChartData = [
+//   { label: I18n.t('idp.my_plan.graphs.learning_structured', { count: 10 }), value: 10 },
+//   { label: I18n.t('idp.my_plan.graphs.learning_others', { count: 20 }), value: 20 },
+//   { label: I18n.t('idp.my_plan.graphs.learning_on_job', { count: 70 }), value: 70 },
+// ]
+
+// const kpiChartData = {
+//   behavioural: { label: I18n.t('idp.my_plan.graphs.behavioural'), value: 85 },
+//   technical: { label: I18n.t('idp.my_plan.graphs.technical'), value: 60 },
+//   other: { label: I18n.t('idp.my_plan.graphs.other'), value: 40 },
+// }
 
 const connector = connect((state: RootState) => ({
   idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
@@ -127,16 +126,13 @@ const MyPlanComponent = ({
     [availableDevelopmentActions])
 
   const navigate = useNavigate()
-  const { isMobile } = useContext(MediaQueryContext)
 
   const changeTab = (tab: string) => {
     setTab(tab)
     navigate(`/idp/my_plan/${tab}`)
   }
-  const { token } = useToken()
-  const { colorPrimary } = token
 
-  const colorPalette = generate(colorPrimary)
+  const config = useSelector((state: RootState) => state.config)
 
   useEffect(() => {
     fetchUserIdpPlan(currentUser.id).catch((error) => {
@@ -219,10 +215,42 @@ const MyPlanComponent = ({
     updateDevelopmentActionProgressInPlan(developmentAction)
   }
 
+  const handleCompletion = () => {
+    const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
+    if (hasIncompleteDAs && config.idp.requireAllDevelopmentActionsComplete) {
+      Modal.error({
+        title: I18n.t('idp.development_actions.incomplete_error'),
+        content: I18n.t('idp.development_actions.incomplete_error_message'),
+      })
+      return
+    }
+
+    if (hasIncompleteDAs) {
+      Modal.confirm({
+        title: I18n.t('idp.development_actions.incomplete_warning'),
+        content: I18n.t('idp.development_actions.incomplete_warning_message'),
+        onOk: () => {
+          updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
+            setEditMode(false)
+          })
+        },
+      })
+    } else {
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
+        setEditMode(false)
+      })
+    }
+  }
+
   const handleSubmitPlan = () => {
-    // The state is changed to approved since the approval flow is not ready
-    // TODO: Change this to PENDING_APPROVAL state once the flow for approving is ready
+    // TODO: This should update to PENDING_APPROVAL and onec manager approves should update to APPROVED
     updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED).then(() => {
+      setEditMode(false)
+    })
+  }
+
+  const handleStartPlan = () => {
+    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS).then(() => {
       setEditMode(false)
     })
   }
@@ -231,6 +259,7 @@ const MyPlanComponent = ({
     setShowAddSkill(true)
     setPickedCategoryToAddMoreSkills(category)
   }
+
 
   const operations = (
     <Flex gap={8}>
@@ -251,14 +280,33 @@ const MyPlanComponent = ({
           {I18n.t('common.actions.edit')}
         </Button>
       )}
-      <Button
-        disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
-        onClick={handleSubmitPlan}
-        icon={status === USER_IDP_PLAN_STATUS.APPROVED && <CheckCircleOutlined style={{ color: 'green' }} />}
-      >
-        {status === USER_IDP_PLAN_STATUS.APPROVED
-          ? I18n.t('idp.development_actions.approved') : I18n.t('idp.development_actions.submit_plan')}
-      </Button>
+
+      {(status === USER_IDP_PLAN_STATUS.NOT_STARTED || status === USER_IDP_PLAN_STATUS.DRAFT) && (
+        <Button
+          // disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
+          onClick={handleSubmitPlan}
+        >
+          {I18n.t('idp.development_actions.submit_plan')}
+        </Button>
+      )}
+
+      {status === USER_IDP_PLAN_STATUS.APPROVED && (
+        <Button
+          // disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
+          onClick={handleStartPlan}
+        >
+          {I18n.t('idp.development_actions.start_plan')}
+        </Button>
+      )}
+
+      {status === USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS && (
+        <Button
+          disabled={status !== USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS}
+          onClick={handleCompletion}
+        >
+          {I18n.t('idp.development_actions.mark_as_complete')}
+        </Button>
+      )}
     </Flex>
   )
 
@@ -289,29 +337,6 @@ const MyPlanComponent = ({
         ) : (
           <>
             <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
-            <Space direction={isMobile ? 'vertical' : 'horizontal'}>
-              <BoxWithShadow className={styles.chart}>
-                <PieChart
-                  chartSeriesData={categoryChartData}
-                  title={I18n.t('idp.my_plan.graphs.categories')}
-                  colors={[colorPrimary, '#CB4525', '#232323']}
-                />
-              </BoxWithShadow>
-              <BoxWithShadow className={styles.chart}>
-                <PieChart
-                  title=""
-                  chartSeriesData={learningChartData}
-                  colors={[colorPalette[1], colorPalette[3], colorPalette[5]]}
-                />
-              </BoxWithShadow>
-              <BoxWithShadow className={styles.chart}>
-                <KpiChart
-                  chartSeriesData={kpiChartData}
-                  title={I18n.t('idp.my_plan.graphs.area_of_development')}
-                  colors={[colorPrimary, '#CB4525', '#232323']}
-                />
-              </BoxWithShadow>
-            </Space>
             <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
               <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
                 <DevelopmentActionListView

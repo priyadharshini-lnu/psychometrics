@@ -27,11 +27,12 @@ class Webhook < WebhookSystem::Subscription
 
   validates :url, http_url: { presence: true }
   validates :description, :auth_type, presence: true
+  validates :api_key_header, format: { with: /\A[a-zA-Z0-9_-]+\z/ }, allow_blank: true
 
   scope :active, -> { where(active: true) }
   scope :webhooks_of, ->(project_id) { where(project_id: project_id) }
 
-  enum :auth_type, { no_auth: 0, basic_auth: 1 }
+  enum :auth_type, { no_auth: 0, basic_auth: 1, api_key_auth: 2 }
 
   def self.ransackable_scopes(_)
     %i[filterable_fields]

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Button, MenuProps, Switch, Typography,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { APIKey } from '~/modules/admin/modules/client/core/apiKeys'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -110,7 +110,7 @@ const getActionsMenuProps = ({ apiKey, openModal }: ActionMenuData):MenuProps =>
           {I18n.t('common.actions.edit')}
         </Button>),
     },
-  ].filter(m => m) as ItemType[]
+  ].filter(m => m) as MenuItem[]
 
   return ({ items: menuItems })
 }

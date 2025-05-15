@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Menu } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { MenuItem } from '~/interfaces/Antd'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import routeUtils from '~/utils/route'
@@ -28,7 +28,7 @@ const IdpComponent: FC<PropsFromRedux> = ({ currentUser }) => {
   const onSelect = ({ key }) => {
     navigate(`/admin/projects/${projectId}/idp${key}`)
   }
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
 
   currentUser.permissions.accessIdpTemplates && menuItems.push({
     key: '/templates',

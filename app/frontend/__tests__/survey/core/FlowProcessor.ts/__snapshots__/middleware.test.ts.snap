@@ -11,6 +11,9 @@ exports[`initializing base assessment > init action should init assessment data 
     "connected": true,
   },
   "currentUser": null,
+  "errors": {
+    "errors": [],
+  },
   "preview": {
     "activeDictationOnQuestion": 0,
     "agileAssetsUrl": undefined,
@@ -479,6 +482,9 @@ exports[`initializing base assessment > middleware should call next if is not NE
     "connected": true,
   },
   "currentUser": null,
+  "errors": {
+    "errors": [],
+  },
   "preview": {
     "activeDictationOnQuestion": 0,
     "allPages": {},

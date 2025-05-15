@@ -309,6 +309,270 @@
         }
       }
     },
+    "/ai/assistants": {
+      "get": {
+        "summary": "Fetch Assistants",
+        "operationId": "FetchAssistants",
+        "description": "Fetch AI Assistants",
+        "tags": [
+          "AI Assistants"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched Assistants",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "assistants",
+                          "attributes": {
+                            "name": "Sample Assistant",
+                            "description": "A sample AI assistant",
+                            "system_prompt": "You are a helpful assistant",
+                            "user_prompt": "How can I help you?",
+                            "action": "assist",
+                            "created_at": "2023-01-01T00:00:00Z",
+                            "updated_at": "2023-01-01T00:00:00Z"
+                          },
+                          "relationships": {
+                            "owner": {
+                              "data": {
+                                "type": "clients",
+                                "id": 1
+                              }
+                            },
+                            "last_modified_by": {
+                              "data": {
+                                "type": "users",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AssistantsMultipleResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Assistant",
+        "operationId": "CreateAssistant",
+        "description": "Create a new AI Assistant",
+        "tags": [
+          "AI Assistants"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Assistant created"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "assistants"
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "New Assistant"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "A new AI assistant"
+                          },
+                          "system_prompt": {
+                            "type": "string",
+                            "example": "You are a helpful assistant"
+                          },
+                          "user_prompt": {
+                            "type": "string",
+                            "example": "How can I help you?"
+                          },
+                          "action": {
+                            "type": "string",
+                            "example": "assist"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "description",
+                          "system_prompt",
+                          "user_prompt",
+                          "action"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/assistants/{id}": {
+      "get": {
+        "summary": "Get Assistant",
+        "operationId": "GetAssistant",
+        "description": "Get a specific AI Assistant",
+        "tags": [
+          "AI Assistants"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assistant found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Assistant",
+        "operationId": "UpdateAssistant",
+        "description": "Update an AI Assistant",
+        "tags": [
+          "AI Assistants"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assistant updated"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "assistants"
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "Updated Assistant"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "An updated AI assistant"
+                          },
+                          "system_prompt": {
+                            "type": "string"
+                          },
+                          "user_prompt": {
+                            "type": "string"
+                          },
+                          "action": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Assistant",
+        "operationId": "DeleteAssistant",
+        "description": "Delete an AI Assistant",
+        "tags": [
+          "AI Assistants"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Assistant deleted"
+          }
+        }
+      }
+    },
     "/users/{user_id}/api_keys/": {
       "get": {
         "summary": "API Keys List",

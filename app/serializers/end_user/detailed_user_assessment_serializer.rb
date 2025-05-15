@@ -37,7 +37,7 @@ module EndUser
 
       audio_and_video_check_data = {
         enable_audio_check: extra['enable_audio_check'] || has_question_type('AudioResponse'),
-        enable_video_check: extra['enable_audio_check'] || has_question_type('VideoResponse')
+        enable_video_check: extra['enable_video_check'] || has_question_type('VideoResponse')
       }
 
       extra.merge(audio_and_video_check_data)

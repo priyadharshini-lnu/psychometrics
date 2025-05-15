@@ -23,13 +23,15 @@ export const SimulationDetails: FC<Props> = ({
   }
 
   const [contentVariation, setContentVariation] = useState<SimulationContentVariation>()
-  const [timeExtension, setTimeExtension] = useState<number|undefined>(assessment.simuationTimeExtension ?? undefined)
+  const [timeExtension, setTimeExtension] = useState<number|undefined>(
+    assessment.simulationUserAssessmentDetails?.timeExtension ?? undefined,
+  )
   const [isFormVisible, setIsFormVisible] = useState(false)
   const [isUpdateTimeExtensionFormVisible, setIsUpdateTimeExtensionFormVisible] = useState(false)
   const { permissions } = assessment
 
   useEffect(() => {
-    const contentVariationId = assessment.simulationContentVariationId
+    const contentVariationId = assessment.simulationUserAssessmentDetails?.contentVariationId
     const foundVariation = (assessment.simulationContentVariations ?? []).find(
       variation => variation.id === contentVariationId,
     )
@@ -79,8 +81,8 @@ export const SimulationDetails: FC<Props> = ({
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
-          label={I18n.t('campaign_assessment.column.simuation_time_extension')}
-          key="simuation_time_extension"
+          label={I18n.t('campaign_assessment.column.simulation_time_extension')}
+          key="simulation_time_extension"
         >
           {!isUpdateTimeExtensionFormVisible ? (
             <>
@@ -104,6 +106,15 @@ export const SimulationDetails: FC<Props> = ({
               setTimeExtension={setTimeExtension}
             />
           )}
+        </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('campaign_assessment.column.simulation_participant_id')}
+          key="simulation_participant_id"
+        >
+          {assessment.simulationUserAssessmentDetails?.participantId ?? ''}
         </Descriptions.Item>
       </Descriptions>
     </>

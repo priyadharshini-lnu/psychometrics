@@ -1,0 +1,1167 @@
+---
+en-US:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: All Responses
+      numeric_comparator:
+        enter_value: Enter Value
+        select_data: Select Data
+      scoring:
+        select_comparison: Choose Comparison Type
+        select_factors: Select Factors
+        select_operation: Select Operation
+  activerecord:
+    attributes:
+      membership:
+        first_name: First Name
+        last_name: Last Name
+      user:
+        email: Email Address
+        first_name: First Name
+        last_name: Last Name
+      user_form:
+        email: Email Address
+        first_name: First Name
+        last_name: Last Name
+        password: Password
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: Mobile number is required
+              invalid: Mobile number is invalid
+              verification_expired: The verification code has expired. You can try verifying again.
+        user:
+          attributes:
+            current_password:
+              invalid: Current password is incorrect
+  administration: Administration
+  anonym:
+    close: Close
+    continue: Continue
+    notifications:
+      restart:
+        copy: You had already started this survey. You can choose to Continue or Restart.
+        title: Continue?
+      retake:
+        copy: You have already completed this survey. To retake it, please click the Retake button below.
+        title: Retake?
+    restart: Restart
+    retake: Retake
+  assessments:
+    actions:
+      back_to_campaign: Back to Campaign
+      extend_time: Extend time
+      goto_dashboard: Click here to continue
+      pending_tasks:
+        one: You have 1 pending task
+        other: You have %{count} pending tasks
+      rescore: Rescore
+    audio_response:
+      permission_denied_message: Please enable microphone permission in your browser to record the answer
+      permission_text: Please allow to use microphone to record audio
+    card_actions:
+      begin: Begin
+      continue: Continue
+    instructions:
+      begin_assessment: Begin
+      cancel: Cancel
+      default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
+      title: Instructions
+    messages:
+      finish: Thank you for your time.
+    page:
+      back: Back
+      confirm_message: "## Your responses will be submitted and cannot be changed after this."
+      next: Next
+      read_only: Is read only mode, you can not change any results.
+      save: Save
+      submit: Submit
+    pickgrouprank:
+      items: Items
+    proceed: Proceed Anyway
+    unknown_error: Unknown error occurred.
+    video_response:
+      device: Allow
+      device_selection:
+        camera: Camera
+        mic: Mic
+      discard: Discard
+      discard_record_again: Discard & Record Again
+      media_recorder:
+        failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
+        success: Please allow to use camera and microphone to record audio and Video
+      recording_duration_label: Maximum duration of recording
+      recording_stop_label: Recording will stop in
+      requesting_permission: Requesting Permission...
+      response_recorded: Response Recorded
+      save: Save
+      saved:
+        label: Video Saved
+      saving: Saving Video...
+      start_recording: Start recording
+      stop_recording: Stop recording
+      tracker:
+        backward: You are too close to the screen. Please move a bit back
+        forward: You are too far away from the screen. Please move a bit closer
+        frame: Please make sure that your face aligns with the frame
+        ready: Press the Record button when ready to record
+    wait: Wait
+  auth:
+    current_password: Current Password
+    current_password_placeholder: Enter Current Password
+    email: Email
+    email_placeholder: Enter Email Address
+    expired_password:
+      description: Please fill all fields to create a new password
+      submit: Submit
+      title: Renew your password
+    login:
+      description: Please login with your personal account information
+      forgot_password: Forgot Password?
+      login_btn: Login
+      magic_link_btn: Email me login link
+      not_member: Not a member?
+      or: OR
+      sso_btn: Login with Single Sign-On
+      title: Welcome!
+    logout: Logout
+    magic_link:
+      description: Please enter your email address to receive a login link
+      login_with_password: Login with password
+      send_me_login_link: Send me the login link
+      success: We have send you a login link to '%{email}'. Click the link in the email that you would have received to login
+    mobile_number: Mobile Number
+    new_password: New Password
+    new_password_placeholder: Enter the new password
+    otp:
+      code: Code
+      code_placeholder: One Time Password
+      description: Please enter the OTP that was sent to your registered email address.
+      resend: Resend OTP
+      resend_in: Resend in %{timestamp} seconds
+      resend_success: OTP is sent to your mobile number
+      sms_description: Please enter the OTP that was sent to your mobile number.
+      submit: Verify
+      title: One-Time Password
+    password: Password
+    password_confirmation: Confirm Password
+    password_confirmation_placeholder: Enter Password Confirmation
+    password_placeholder: Enter Password
+    registration:
+      description: Fill in the details below to register and create a new account
+      email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
+      first_name: First Name
+      first_name_placeholder: Enter First Name
+      have_account: Already have an account?
+      last_name: Last Name
+      last_name_placeholder: Enter Last Name
+      login_now: Login Now!
+      registration_code: Registration Code
+      registration_code_placeholder: Enter Registration Code
+      terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service and Privacy Policy</a>
+      title: Sign Up
+    reset_password:
+      back_to_sign_in: Back to Sign In
+      description: Enter the email associated with your account
+      submit: Reset Password
+      title: Forgot Password?
+    set_password:
+      description: To create a new password, please enter your new password in the boxes below
+      submit: Submit
+      title: Create Password
+    sign_out: Login as different user
+    sign_up: Sign Up
+    terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
+    verify_mobile_number:
+      error:
+        blocked: This number is blocked due to too many attempts.
+        invalid_code: Invalid code
+        invalid_number: Mobile number is incorrect. Please recheck your number
+        max_attempts_reached: Too many attempts. Please wait for 10 minutes before trying again.
+  campaign:
+    all_activities_are_completed: All activities are now complete.
+    all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
+    begin: Begin your tasks
+    begin_btn_msg_before_prework: You have to complete the below tasks before starting the timed campaign
+    begin_campaign_msg: Start campaign before taking assessments
+    campaigns: Campaigns
+    closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
+    complete_prev: Complete all previous assessments
+    complete_tasks: Please complete tasks below before taking this action.
+    continue: Continue your tasks
+    dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
+    dashboard_menu:
+      bookings: Bookings
+      campaign: Campaign
+      change_password: Change Password
+      development: Development
+      home: Home
+      insights: Insights
+      my_direct_reports: My Direct Reports
+      my_plan: My Plan
+      profile: Profile
+      profile_details: Details
+      tasks: Tasks
+    details: Details
+    edit_evaluation:
+      body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
+      edit: Re-evaluate
+      title: Confirm
+      view: View Assessment
+    errors:
+      invalid_status: Invalid campaign status
+    goto_dashboard: Go to the Dashboard
+    inactive_campaign_message: Currently, you have not been assigned any activities.
+    insights_reports: Insights & Reports
+    instruction_modal:
+      campaign_start_final_instructions: "<p>\n"
+      campaign_start_instruction: "<h4>Please read the following instructions properly.</h4>\n"
+      common_proctoring_instructions: "<h4>Proctoring</h4>\n"
+      lockdown_browser_instruction: "<h4>Proctoring browser</h4>\n"
+    instructions:
+      collapse_link_text: Show less
+      expand_link_text: Show more
+      heading: Please review the guidelines below before you get started. We wish you all the best!
+    language:
+      content: This task is not available in the currently selected language. Please select one of the available languages to proceed.
+      single_lang: This task is available only in %{lang}. Click "Continue" to proceed.
+      title: Select language
+    panels:
+      dashboard: Dashboard
+      reports: Reports
+    profile:
+      complete_heading: Your Profile is Complete
+      complete_profile_label: Complete Now
+      edit_profile_label: Edit Profile
+      incomplete_heading: Complete your Profile
+      last_login_text: 'Last login on :'
+      last_updated_text: 'Profile was last updated on:'
+      sub_heading: Complete your full profile information
+      welcome_text: Welcome,
+    thank_you_for_time: Thank you for your time
+    time_left:
+      cancel: Cancel
+      continue: Continue
+      notification: Your allocated time for this task "%{assessmentName}" was %{totalAssessmentTime}. Due to the overall elapsed time, you now have only %{remainingCampaignTime} as your adjusted time to complete this task.
+    timer:
+      notification_hours: You have %{hours} hour left
+      notification_minutes: you have %{minutes} minutes left
+  campaign_assessment:
+    assessments_heading: Your Tasks
+    statuses:
+      completed: Completed
+      in_progress: In Progress
+      ineligible: Ineligible
+      interrupted: Interrupted
+      not_started: Not Started
+      timed_out: Timed Out
+      universal_link: Universal link
+  campaigns:
+    card:
+      duration: Duration
+      starts_in: 'Starts in:'
+      starts_on: Starts on %{date}
+      will_start_shortly: Campaign will start shortly. Please wait
+  change_password_page:
+    old_password: Old Password
+    password: Password
+    password_confirmation: Password Confirmation
+    title: Change Password
+    warning_message: 'Important: Changing your password will log you out.'
+  checking_wizard:
+    audio_check:
+      access: Access
+      continue: Yes, Ok to proceed
+      random_phrases:
+        eight: May your coffee be strong and your day be productive.
+        five: Life is better when you smile. Smile for the mic!
+        four: She sells seashells by the seashore.
+        nine: When in doubt, test it out this mic works!
+        one: I scream, you scream, we all scream for ice cream!
+        seven: Every day is a new beginning. Say it loud and proud!
+        six: Pizza or pasta? Decisions are hard.
+        three: Testing, one two three, the sound is clear as can be!.
+        two: The quick brown fox jumps over the lazy dog.
+      record_title: Please speak and repeat the following sentence 3 times.
+      retake: No, I want to retake
+      run_again: Run again
+      test_message: great to speak with you
+    network_check:
+      continue: Continue
+      download: Download
+      please_check_connection: Please check your Internet Connection
+      processing: Processing
+      run_again: Run again
+      run_again_title: And run this test again
+      title: Click start to begin internet speed test.
+      upload: Upload
+    steps:
+      audio_check: Microphone Test
+      network_check: Internet Speed Test
+      system_check: System Check
+      video_check: Video Camera Test
+    success:
+      start: Start assessment
+      title: You have successfully completed all checks.
+    system_check:
+      compatibility: System Compatibility
+      continue: Continue
+      failure:
+        description: Webcam and Microphone permissions are needed for Audio/Video Questions in this Test.
+        link_text: here
+        link_text_action: Click
+        link_text_instruction: and follow the steps to provide permissions
+        refresh: Refresh Browser
+        refresh_text: Click below to refresh the browser and apply changes
+        subtitle: Quick Fixes
+        title: You cancelled Webcam and Microphone permissions
+      permissions: Webcam & Audio Permissions
+      title: Before starting this assessment, your system needs to undergo some checks.
+    video_check:
+      access: Access
+      camera_preview: Camera preview will appear here
+      continue: Yes, Ok to proceed
+      description: Click on Start Recording and Record yourself while reading the below passage in your own voice
+      random_phrases:
+        eight: If you can see me, the video's a success. If not, we troubleshoot!
+        five: Testing your video,don't worry, no Oscar nomination required.
+        four: Ready, set, focus! The camera is your stage.
+        nine: Big smiles and clear video,let's get this test done right!
+        one: Raise your hand if you can hear me or just wave for the camera!
+        seven: Mirror, mirror on the screen, let the video check be clean.
+        six: Lights, camera, action,this is your time to shine!
+        ten: A friendly wave makes sure everything works fine.
+        three: Say cheese! Or just test that perfect smile.
+        two: Look at the lens, smile, and pretend you're in a movie trailer.
+      rec_text: REC
+      retake: No, I want to retake
+      run_again: Run again
+      title: We need to ensure your system can record the video
+      uploading: Uploading
+  common:
+    actions:
+      add: Add
+      archive: Archive
+      cancel: Cancel
+      close: Close
+      copy: Copy
+      delete: Delete
+      edit: Edit
+      remove: Remove
+      reset: Reset
+      resolve: Resolve
+      restore: Restore
+      save: Save
+      search: Search
+      send: Send
+      start: Start
+      unarchive: Unarchive
+      unresolve: Unresolve
+      update: Update
+      upload: Upload
+      verify: Verify
+    column:
+      action: Action
+      category: Category
+      created_at: Created At
+      id: Id
+      status: Status
+    model:
+      assessments: Assessments
+      campaigns: Campaigns
+      reports: Reports
+    text:
+      cancel: Cancel
+      confirm: Confirm
+      continue: Continue
+      default: Default
+      download: Download
+      na: N/A
+      ok: Ok
+      response: Response
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Login
+    failure:
+      already_authenticated: You are already signed in.
+      inactive: Your account is not activated yet.
+      invalid: Invalid email or password.
+      invited: You have a pending invitation; accept it to finish creating your account.
+      magic_link_invalid: Invalid or expired login link.
+      not_found_in_database: Invalid email or password.
+      timeout: Your session expired. Please login again to continue.
+      unauthenticated: You need to login or register before continuing.
+    invitations:
+      edit:
+        password_label: Password
+    passwords:
+      invalid_email: Invalid Email
+    registrations:
+      communication_not_setup_error: Registration email communication is not setup, please contact the administrator of this project.
+      new:
+        email: Email Address
+        first_name: First Name
+        instruction: Fill in the details below to register and create a new account
+        last_name: Last Name
+        privacy_notice: We respect your privacy and do not tolerate spam. We will never give away your information to any third party.
+        registration_code: Registration Code
+        submit: Register
+        tabs:
+          register: Register
+          sign_in: Sign In
+        terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service and Privacy Policy</a>
+        title: Register Now
+      success:
+        actions:
+          sign_in: Sign In
+    sessions:
+      new:
+        email: Email Address
+        forgot_password: Forgot password?
+        instruction: Please login with your personal account information
+        password_placeholder: Password
+        submit: Login
+        tabs:
+          register: Register
+          sign_in: Login
+        title: Welcome!
+    two_factor_authentication:
+      attempt: Please enter the OTP, you have received at your registered email address
+      code_has_been_sent: Your new OTP has been sent to your registered email address
+  emails:
+    subject_relationship_table:
+      subject_email: Subject Email
+      subject_name: Subject Name
+      subject_relationship: Subject Relationship
+  errors:
+    assessments:
+      timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
+    error: Error
+    error_500: Something went wrong. Contact your administrator.
+    forbidden: You do not have access to this page
+    forbidden_action: You do not have permissions to this action
+    invalid_token: Something went wrong. Plese reload the page and try again.
+    module_error: Something went wrong with this module, please contact administration.
+    module_error_editor: Something went wrong with this module, please check module settings.
+    module_props_error: Something went wrong with this module.
+    try_again: Please try again
+  factors:
+    description: Description
+    factor: Factor
+  frontend:
+    activate: Activate
+    are_you_sure: Are you sure?
+    assessment: Assessment
+    assessment_groups:
+      create_success: The group was created successfully
+      update_success: The group was updated successfully
+    background_reading: Background Reading
+    bookings:
+      accept_invite_msg: You have received an invite. Please reserve your slot.
+      add_to_calendar: Add To Calendar
+      add_to_calendar_tour_description: Add this booking to your calendar
+      assessment_center_alert:
+        btn_title: Campaign
+        message_part1: Complete all the preworks in this
+        message_part2: before booking a slot.
+      assessment_center_group_name: Assessment Center
+      booking_failed_msg: 'Failed to book slot: %{error}'
+      buttons:
+        book: Book
+        book_again: Book Again
+        cancel: Cancel
+        cancel_booking: Cancel Booking
+        confirm_booking: Confirm Booking
+        confirm_reschedule: Confirm Reschedule
+        modify: Modify
+        nevermind: Nevermind
+        no_text: false
+        request_cancel: Request cancellation
+        request_reschedule: Request for Reschedule
+        reschedule: Reschedule
+        reserve_spot: Reserve your spot
+        yes_text: true
+      cancel_booking_confirmation: Are you sure you want to cancel this booking?
+      cancellation_failed: 'Failed to cancel the booking: %{error}'
+      cancellation_success: Successfully canceled the booking
+      comments_required_msg: Please enter your comments
+      confirm_booking_description: Please confirm that these details are correct before finalizing the booking.
+      confirm_booking_title: Confirm this booking?
+      default_failure_msg: Unable to process your request. Please try again later.
+      default_requires_msg: "%{name} is required"
+      join_activity_meeting: Join the Meeting
+      join_workshop_meeting: Join the Meeting
+      language: Language
+      language_placeholder: Select a Language
+      language_preference_question: Do you have a language preference?
+      language_required_msg: Please select a Language
+      meeting_start_text: 'Meeting will start in:'
+      need_changes: Need to make the changes?
+      neurodivergence_comment_placeholder: Your comments
+      neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
+      other_invite: See %{count} more invite
+      other_invites: See %{count} more invites
+      reason: Reason
+      reason_for_cancel: Reason for Cancellation
+      reason_for_reschedule: Reason for Rescheduling
+      request_cancellation_failed: 'Failed to request for cancellation: %{error}'
+      request_cancellation_success: Successfully requested for cancellation
+      request_reschedule_failed: 'Failed to request for rescheduling: %{error}'
+      request_reschedule_success: Successfully requested for rescheduling
+      reschedule_failed_msg: 'Failed to reschedule: %{error}'
+      reschedule_reason_placeholder: To continue, please enter the reason for rescheduling.
+      schedule_success: This booking is scheduled
+      schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
+      starts_at: 'Starts at: %{date}'
+      starts_in: 'Starts in:'
+      tab_label:
+        bookings: Bookings
+        invites: Invites
+      what: What
+      when: When
+      workshop_start_text: Your Assessment Center will start in
+    break_time: Break Time
+    campaign:
+      actions:
+        remove:
+          confirmation: Enter current campaign name given below in text box to remove campaign
+          success: "%{campaignName} was removed successfully."
+      users:
+        completion_statuses:
+          completed: Completed
+          in_progress: In Progress
+          not_started: Not Started
+    change_password: Change password
+    delete: Delete
+    edit: Edit
+    lighthouse_app: Mercer Lighthouse
+    login: Login
+    manage: Manage
+    'no': false
+    resource:
+      create_success: "%{readableResourceName} was added successfully"
+      update_success: "%{readableResourceName} was updated successfully"
+    session_timeout_modal:
+      buttons:
+        close: Close
+        log_out: Log Out Now
+        re_login: Log Back In
+        stay_logged_in: Stay Logged In
+      message: Your session will time out in 2 minutes due to inactivity. Please click 'Stay Logged In' to continue your session, or you will be logged out automatically.
+      message_after_timeout: Your session has timed out , Kindly re-login.
+      time_remaining: Time Remaining
+      title: Session Timeout Warning
+    update: Update
+    upload: Upload
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Cancelled
+        requested_cancellation: Requested Cancellation
+        requested_cancellation_rejected: Requested Cancellation Rejected
+        requested_rescheduling: Requested Rescheduling
+        requested_rescheduling_rejected: Requested Rescheduling Rejected
+    'yes': true
+  idp:
+    actions: Actions
+    board: Board
+    details: Details
+    development_actions:
+      action_private: 'Yes'
+      action_public: 'No'
+      add_development_action: Add Development Action
+      all: All
+      approved: Approved
+      board_view:
+        completed: Completed
+        in_progress: In Progress
+        not_started: Not Started
+      completion: Completion
+      create_my_own: Create My Own
+      date_range: Start Date - End Date
+      generate_by_ai: Generate by AI
+      generate_more: Generate More
+      generating_development_actions: Generating development actions...
+      heading: Development Actions
+      incomplete_error: Incomplete Development Actions
+      incomplete_error_message: Some development actions are incomplete. Please complete them before submitting your IDP.
+      incomplete_warning: Incomplete Development Actions
+      incomplete_warning_message: Some development actions are incomplete. Are you sure you want to mark your IDP complete?
+      learning_from_others: Learning from others
+      manage_skills: Manage Skills
+      marathon: Marathon
+      mark_as_complete: Mark as Complete
+      no_development_actions: No development actions
+      on_the_job: On the job
+      other: Other
+      private: Private
+      remove: Remove
+      skill: Skill
+      sprint: Sprint
+      start_plan: Start Plan
+      structured_learning: Structured learning
+      submit_plan: Submit Plan
+      write_here: Write here...
+    direct_report_details: Direct Report Details
+    initial_steps:
+      add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
+      add_skill_group_title: Exploring Your %{category} Skills
+      add_skills: Add
+      add_skills_step: Add Skills
+      continue_to_rate_skills: Continue to rate skills
+      getting_started: Getting Started
+      getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
+      less_skills: Show less skills
+      more_skills: Explore more skills
+      next: Next
+      no_skills_selected: No skills selected.
+      rate_skills: Rate Skills
+      rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
+      rate_skills_title: Rating Your Skills
+      rating_column_header: Your self rating
+      select_skills: Select your skills
+      select_skills_placeholder: Select skills
+      selected_skills: Selected Skills
+      skill_column_header: Skill
+      skill_gap_report: Skill Gap Report
+    list: List
+    my_direct_reports: My Direct Reports
+    my_plan:
+      development_plan: Development Plan
+      graphs:
+        categories: Categories
+      save_skills: Save Skills
+    pdf:
+      approval_status: Approval Status
+      cover:
+        fields:
+          assigned_data: Assigned Date
+          completion_date: Completion Date
+          division: Division
+          name: Name
+          publish_date: Publish Date
+          review_date: Review Date
+          role: Current Role
+      guidelines:
+        cards:
+          c1:
+            content: Include skills, knowledge and capabilities that need to be developed. Ensure they are specific, measurable, achievable, realistic and reasonably able to be accomplished in the timelines mentioned.
+            title: Development Objectives
+          c2:
+            content: This is based on the competency to be developed based on the assessment experience.
+            title: Competency
+          c3:
+            content: This section includes your development actions based on the 70-20-10 learning model listed below. It is advised that you select a combination of each of the three elements to ensure a varied learning and development approach.
+            title: Activity
+          c4:
+            content: Ensure your timelines are realistic based on when the objective can be complete. Do amend this as and when appropriate.
+            title: Timeline
+          c5:
+            content: Use the progress section to support progression on the identified tracks.
+            title: Progress
+        chart:
+          collaboration: "<strong>20%</strong>Collaborative <br /> Learning"
+          job: "<strong>70%</strong>Learning <br />on the Job"
+          learn: "<strong>10%</strong>Formal Learning"
+        content:
+          list:
+            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organisational business priorities.
+            r2: Please note that the launch of some of these development pathways will depend on the organisational wide education and learning strategy.
+            r3: Please consider the recommended pathways as crossed below, when developing your Individual Development Plan.
+          main: This section includes a cumulative list of all the development pathways, keeping in mind best practice learning i.e., 70-20-10 guideline, which provides a progressive journey combining classroom learning, coaching and on-the job learning. Based on the outcomes from the leadership development experience and business priorities, possible development pathways have been recommended, which can be considered for your development.
+        learn_cards:
+          collaboration:
+            list:
+            - Offer to coach or mentor others
+            - Request to be mentored by an expert in your field
+            - Attain a coach to support your development
+            - Set-up a collaborative working group to discuss on going challenges in the business
+            - Get feedback formally and informally from others
+            - Play an active role in industry associations and networks
+            - Build your own external networks
+            title: Collaborative Learning (20%) <br/> Developing through others
+          job:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Learning On the Job (70%) <br/> Developing through experience
+          learn:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Formal Learning (10%) <br/> Developing through structured learning
+        title: Guidelines to Guide your IDP
+      idp:
+        end_date: End Date
+        self_rating: Self Rating
+        start_date: Start Date
+        subtitle:
+          behavioural: Behavioural
+          technical: Technical
+        title: Individual Development Plan
+      last:
+        end_report: End of Report
+      reflections:
+        subtitle: Questions for Overall Professional Development
+        title: Reflections to Guide your IDP
+      skill_categories:
+        behavioral: Behavioural
+        technical: Technical
+      statuses:
+        approved: Reviewed and Approved
+        completed: Completed
+        not_reviewed: Not Reviewed
+        pending_approval: In Review
+      summary:
+        ai_count: Generative AI
+        collaborative_learn: Collaborative Learning
+        created_by: Created by
+        current_status: IDP Current Status
+        custom: Custom
+        custom_count: Custom
+        da_count: Development Action Count
+        formal_learn: Formal Learning
+        generated_ai: Generative AI
+        learn_on_job: Learning on the job
+        learn_pathway: Learning Pathway
+        lib_count: IDP Library
+        library: IDP Library
+        skills_count: Skills Count
+        title: Report Summary
+    profile_details: Profile Details
+    skill_gap_report:
+      continue_to_rate_skills: Continue to rate skills
+      title: Skill Gap Report
+  idp_templates:
+    errors:
+      user_idp_template_not_found: No IDP template has been assigned to you.
+  mailer:
+    magic_link:
+      body:
+        dear: Dear %{name},
+        greetings: Greetings for the day!
+        instructions: Click below link to signin to lighthouse.
+        signin_link: Sign-in Link
+      subject: Sign-in link for Lighthouse
+  navigation:
+    logout: Log out
+  profile:
+    add_field: Add Field
+    add_photo: Add Photo
+    age: Age
+    change_password: Change Password
+    change_photo: Change Photo
+    email: Email
+    female: Female
+    first_name: First Name
+    gender: Gender
+    incomplete: Your profile details is incomplete. Please complete your profile details
+    last_name: Last Name
+    locale: Preferred Language
+    male: Male
+    not_disclosed: Prefer not to disclose
+    old_data: Your profile data is %{months} months old. Please confirm details to proceed further
+    password: Password
+    password_confirmation: Password Confirmation
+    success_update: Profile was saved successfully
+    timezone: Timezone
+    title: My Profile
+    update: Update
+    update_required: Profile updates required
+  reports:
+    actions:
+      add: Add Report
+      download: Download report
+      view: View Report
+    modules:
+      campaign_factors_table:
+        add_condition: Add Condition
+        baseline_score: Baseline Score
+        blindspots: Blindspots
+        campaign_factor_conditions: Campaign Factor Conditions
+        cancel: Cancel
+        color: Color
+        delete: Delete
+        description: Description
+        if: If
+        label: Label
+        no_conditions: No conditions
+        save: Save
+        strengths: Strengths
+        then: Then show the following text
+        title: Title
+      factors_table:
+        description: Description
+        no_data: There is no data available for this section.
+        rank: Rank
+        score: Score
+      gap_assessment:
+        gap: Gap
+        item: Indicator
+        negative_gap: Negative Gaps
+        no_negative_gaps: There are no Negative Gaps
+        no_positive_gaps: There are no Positive Gaps
+        positive_gap: Positive Gaps
+        rank: Rank
+        scoring_category: Competency
+      highest_lowest:
+        bottom_5: BOTTOM 5
+        category: Category
+        highest_scores: Highest Scores
+        item: Indicator
+        lowest_scores: Lowest scores
+        mean_score: Mean Score
+        rank: Rank
+        scoring_category: Competency
+        sub_competenties: Sub-Competencies
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: Career Strengths and Your Results
+        career_sub_tracks: Career Sub-tracks
+        key_career_tracks_within: Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.
+        potential_areas_of_study: Potential Areas of Study
+        strength_high: Signature Strength
+        strength_low: Developmental Strength
+        strength_moderate: Potential Strength
+        work_environment: Work Environment
+        your_suitability: Your Suitability
+      single_value:
+        factor_name: Scoring Category
+        question_name: Questions
+      single_value_cluster:
+        competency: Competency
+        developmental_rating: Developmental Rating
+        questions: Questions
+      strength_clusters:
+        index_sub_factors_considered: Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment
+        possible_roles: Possible Roles
+        work_environments: Expected Work Environments
+      three_sixty_default:
+        factor:
+          items: Items
+          max: Max Value
+          mean: Mean
+          min: Min Value
+          standardDeviation: Standard Deviation
+          sum: Sum
+          totalResponses: Total Responses
+          variance: Variance
+          weightedMean: Weighted Mean
+        question:
+          no_response: No response available
+        statistic: Statistic
+        value: Value
+      three_sixty_report_summary:
+        completed: Completed
+        footnote: "* Excluded due to minimum threshold requirement"
+        invited: Invited
+        relationships: Relationships
+        total: Total
+      video_response:
+        no_results: No videos recorded
+    show:
+      export_pdf: Export to PDF
+      header: Report
+    statuses:
+      approved: Approved
+      available: Available
+      denied: Denied
+      incomplete: Incomplete
+      not_available: Not available
+      on_hold: On hold
+      released: Released
+  shared:
+    filters:
+      clear: Clear Filters
+    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    terms_conditions_privacy: Privacy Statement
+    tte_terms_and_condition: Terms & Privacy
+  simple_form:
+    placeholders:
+      administrator:
+        email: Email Address
+        last_name: Last Name
+      memebrship:
+        last_name: Last Name
+      user:
+        email: Email Address
+        first_name: First Name
+        last_name: Last Name
+        password: Password
+      user_form:
+        email: Email Address
+        first_name: First Name
+        last_name: Last Name
+        password: Password
+  subjects:
+    approval_statuses:
+      approved: Approved
+      denied: Denied
+      waiting: Needs Approval
+    report_approval_status:
+      approved: Approved
+      denied: Denied
+      waiting: Waiting
+    report_release_status:
+      on_hold: On Hold
+      released: Released
+      waiting: Waiting
+    report_statuses:
+      approved: Approved
+      available: Available
+      denied: Denied
+      incomplete: Incomplete
+      not_available: Not Available
+      not_prepared: Not Ready
+      on_hold: On Hold
+      prepared: Done
+      released: Released
+    statuses:
+      completed: Completed
+      declined: Declined
+      denied: Denied
+      done: Done
+      not_completed: Not Completed
+      waiting: Waiting
+  threesixty:
+    accept_privacy_modal:
+      accept: Accept
+      checkbox: I have read and understood Privacy Policy mentioned above
+      title: Data processing consent
+    action: Action
+    add: Add
+    and: And
+    approve_all: Approve All
+    approve_all_successful: Approved all nominations
+    approve_evaluations: Approve Evaluations
+    approve_nominations: Approve Nominations
+    approve_reports: Approve Reports
+    approved: Approved
+    approving_mail_sent: Mail for approving nomination has been sent to managers
+    as_my: as my
+    assessment: Assessment
+    back_to_tasks: Back to tasks
+    begin: Begin
+    cancel: Cancel
+    close_evaluation_modal:
+      message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
+      title: Are you sure you want to view the report?
+    closed_campaign_message: This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.
+    completed: Completed
+    confirm: Are you sure?
+    confirmation_for_nomination_removal: Are you sure you want to remove the nomination
+    confirmation_required: Confirmation required
+    confirmation_text_incorrect: Confirmation text is incorrect
+    confirmation_text_placeholder: Confirmation text here
+    continue: Continue
+    dashboard_title: Welcome %{name}
+    decline: Decline
+    decline_invite: Decline Invite
+    denied: Denied
+    deny_all: Deny All
+    deny_all_successful: Denied all nominations
+    download_pdf: Download PDF
+    download_report: Download Report
+    download_reports: Download Reports
+    edit_user: Edit User
+    email_approve_request: Email Approval Request
+    email_schedules:
+      delete_successful: Email schedule was deleted successfully
+    evaluate: Evaluate
+    evaluation: Evaluation
+    evaluation_all_closed_message: Currently all the nominations are awaiting approval
+    evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
+    evaluation_help_modal:
+      title: Evaluation help
+    evaluations: Evaluations
+    evaluator: Evaluator
+    export_pdf: Export PDF
+    first_name: First Name
+    first_name_error: Please input First Name
+    help: Help
+    language: Language
+    last_name: Last Name
+    last_name_error: Please input Last Name
+    load_results: Load Results
+    mail_history:
+      statuses:
+        success: Success
+        undelivered: Undelivered
+    my_projects: My Projects
+    name_label: Name
+    nominate: Nominate
+    nominate_evaluators: Nominate Evaluators to
+    nomination: Nomination
+    nomination_help_modal:
+      title: Nomination help
+    nomination_predicates:
+      atleast: At least %{count}
+      atmost: At most %{count}
+      exactly: Exactly %{count}
+    nominations: Nominations
+    options:
+      global:
+        cannot_re_edit: Participants cannot edit evaluations
+    or: Or
+    page_title: Signify 360° Review - Apply Level
+    participant_list:
+      actions:
+        approve_report: Approve Report
+        download_report: Download Report
+        edit: Edit
+        hold_report: Hold report
+        login: Login
+        mark_as_done: Mark as done
+        release_report: Release report
+        remove_campaign: Remove from campaign
+        remove_report_approval: Remove report approval
+        remove_report_hold_release_report: Remove Report Hold/Release
+        remove_subject: Remove subject
+        unmark_as_done: Unmark as done
+        view_report: View Report
+        view_responses: View Responses
+      confirmation_messages:
+        approve_report: Are you sure you want to approve report?
+        hold_report: Are you sure you want to hold report?
+        mark_evaluation_done: Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.
+        release_report: Are you sure you want to release report?
+        remove_from_campaign: Are you sure you want to remove user from the campaign?
+        remove_release_hold: Are you sure you want to remove Release/Hold status?
+        remove_report_approval: Are you sure you want to remove report approval?
+        remove_subject: Are you sure you want to remove subject with email from campaign?
+        umark_evaluation_as_complete: Are you sure you want to unmark evaluation as done?
+      report_generation_message: Report is being generated. We will let you know when the report is ready.
+    processing: Processing
+    processing_report: Processing Report
+    progress_text: "%{completed} of %{total}"
+    question:
+      chat_type:
+        input_placeholder: Write your Message...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Edit
+        max_length_warning: "%{x} characters remaining"
+        message: Your Message
+        send: Send
+        subject: Subject
+        successful_message: You have successfully sent the email
+        to: To
+    remind_all: Remind All
+    remind_mail_sent: Reminders sent to evaluators who haven't completed the evaluation
+    report_for: Report for
+    report_generation_in_progress: Report is being generated. We will let you know when the report is ready.
+    reports: Reports
+    reports_help_modal:
+      title: Reports help
+    reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
+    reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations
+    save: Save
+    select_relationnship: Select Relationship
+    select_relationship: Select Relationship
+    self: Self
+    set_name_for_evaluator: Set name for Evaluator
+    setup_nominations: Set up nominations
+    subject: Subject
+    submit: Submit
+    total_progress: Total progress
+    user_name_input_placeholder: type name or email...
+    validation_errors: Validation Errors
+    view_my_report: View My Report
+    view_nominations: View nominations
+    view_reports: View Reports
+    waiting: Waiting
+    you: You
+    yourself: Yourself
+  user:
+    fields:
+      email: Email Address
+      first_name: First Name
+      last_name: Last Name
+  user_assessments:
+    redirect: You would be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
+  user_reports:
+    actions:
+      regenerate: Regenerate
+    messages:
+      regenerate_successful: Report regeneration job was scheduled successfully
+    modals:
+      remove:
+        content: Are you sure you want to remove report %{userReportName}?
+        successfully: "%{userReportName} report was removed successfully"
+    preview_report: Preview Report
+    statuses:
+      generating: Generating
+      not_prepared: Not Available
+      prepared: Available
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Audio is recorded but not saved
+        RECORDING: Audio recording is in progress
+        SAVING: Recorded audio upload is in progress
+      required: Please record and save the audio before you continue
+    FileUpload:
+      in_progress:
+        SAVING: File upload is in progress
+      required: Please upload the file
+    TextEntry:
+      Email:
+        character_range: Email message entered must be at least %{min} and no more than %{max} characters.
+        subject:
+          min_length: Subject field should have minimum of 10 characters
+        to:
+          required: To field is required
+    VideoResponse:
+      in_progress:
+        recorded: Video is recorded but not saved
+        recording: Video recording is in progress
+        saving: Recorded video upload is in progress
+      required: Please record and save the video before you continue
+    actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
+    blank: can't be blank
+    character_count: 'Characters count '
+    character_range: Your response must be at least %{min} and no more than %{max} characters long.
+    date: Your response must be a valid date (mm/dd/yyyy)
+    each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
+    email: Your response must be a valid email
+    exact:
+      one: Please select exactly %{count} choice(s)
+    file_upload:
+      EntityTooLarge: File size should be less than %{maxFileSize} MB
+      WrongFileType: File type should be one of the following %{allowedFileTypes}
+    issue: Issue
+    least: Please answer at least %{min} choice(s).
+    least_hotspot: Please answer at least %{min} choice(s).
+    max_character: Your response must be no more than %{max} characters.
+    max_word: Your response must not be more than %{max} words.
+    min_character: Your response must contain at least %{min} characters.
+    min_word: Your response must be atleast %{min} words
+    most:
+      one: Please select at most %{max} choice(s)
+    must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
+    must_select: Please select from %{min} to %{max} choices
+    number: Your response must be a number
+    range: Please answer at least %{min} and no more than %{max} choice(s).
+    required: Please answer this question
+    text: Your response must not contain a numbers
+    title:
+      one: There is one error, please check your responses
+      other: There are %{count} errors, please check your responses
+    word_count: 'Word count '
+    word_range: Your response must be at least %{min} and no more than %{max} words.
+  'yes': true
+  your: Your
+  yourself: Yourself

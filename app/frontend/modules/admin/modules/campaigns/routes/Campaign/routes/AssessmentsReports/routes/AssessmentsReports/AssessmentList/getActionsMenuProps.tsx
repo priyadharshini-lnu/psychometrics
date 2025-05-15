@@ -1,7 +1,7 @@
 import { MenuProps } from 'antd'
 import { MenuItemType } from 'rc-menu/lib/interface'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
+import { MenuItem } from '~/interfaces/Antd'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { Props as AssessmentListProps } from './AssessmentList'
 
@@ -143,22 +143,22 @@ export const getActionsMenuProps = ({
     { key: 'import_scoring', label: I18n.t('campaign_assessment.actions.import_scoring') },
   ]
 
-  const rescoreMenuItems:ItemType[] = [
+  const rescoreMenuItems:MenuItem[] = [
     { type: 'divider', key: 'rescore_divider' },
     { key: 'rescoring', label: I18n.t('campaign_assessment.modals.rescore_response.title') },
   ]
 
-  const removeMenuItems:ItemType[] = [
+  const removeMenuItems:MenuItem[] = [
     { key: 'remove', label: I18n.t('common.actions.remove') },
   ]
 
-  const configMenuItems:ItemType[] = [
+  const configMenuItems:MenuItem[] = [
     { key: 'updateExternalConfig', label: I18n.t('campaign_assessment.modals.update_external_config.title') },
     { type: 'divider' },
   ]
 
 
-  const menuItems: ItemType[] = [{
+  const menuItems: MenuItem[] = [{
     type: 'group', key: 'export', label: 'Export', children: exportGroupItems,
   }]
   permissions.importResults && menuItems.push({

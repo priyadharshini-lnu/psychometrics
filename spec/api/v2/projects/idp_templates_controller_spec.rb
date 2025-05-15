@@ -196,7 +196,7 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
             expect(response.status).to eq(400)
             json_response = JSON.parse(response.body)
             expect(json_response['error']).to eq(
-              'Update not allowed because the IDP template is already associated with a user IDP plan.'
+              'Update not allowed because the IDP template is already associated with a user IDP plan. Appearance changes has been saved.' # rubocop:disable Layout/LineLength
             )
           end
         end
