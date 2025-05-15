@@ -908,7 +908,7 @@ it:
       start_recording: Avvio della registrazione
       stop: Fermarsi
     card_actions:
-      begin: Iniziare
+      begin: Inizia
       continue: Continua
     categories:
       redirecting: Reindirizzamento
@@ -983,7 +983,7 @@ it:
         mark_as_ineligible: Contrassegnare come non ammissibile
         show_uniq_identifier: Mostrare l'identificativo univoco ai rispondenti (per i sondaggi anonimi)
     instructions:
-      begin_assessment: Iniziare
+      begin_assessment: Inizia
       cancel: Annullamento
       default: Si tratta di un'attività a tempo; una volta fatto clic su Inizia la valutazione, si avrà a disposizione %{tempo} minuti per completarla.
       title: Istruzioni
@@ -1129,7 +1129,7 @@ it:
     lighthouse_logo_alt_text: Logo del faro
     login:
       continue_btn: Continua
-      description: Effettuare il login con i dati del proprio account personale
+      description: Effettua l'accesso con le credenziali del tuo account personale
       forgot_password: Hai dimenticato la password?
       hide_password: Nascondere la password
       login_btn: Accesso
@@ -1138,7 +1138,7 @@ it:
       or: O
       show_password: Mostra password
       sso_btn: Accesso con Single Sign-On
-      title: Benvenuti!
+      title: Benvenuto/a!
     logout: Disconnessione
     magic_link:
       description: Inserisci il tuo indirizzo e-mail per ricevere un link di accesso
@@ -1224,7 +1224,7 @@ it:
     complete_prev: Completare tutte le valutazioni precedenti
     complete_tasks: Prima di intraprendere questa azione, completare le operazioni indicate di seguito.
     continue: Continuare a svolgere i propri compiti
-    dashboard_instructions: È possibile che vi siano state assegnate più attività da completare. Assicuratevi di controllare che tutte le attività assegnate siano state completate in tutte le campagne.
+    dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le campagne.
     dashboard_menu:
       bookings: Prenotazioni
       campaign: Campagna
@@ -1236,7 +1236,7 @@ it:
       my_plan: Il mio piano
       profile: Profilo
       profile_details: Dettagli
-      tasks: Compiti
+      tasks: Attività
     details: Dettagli
     edit_evaluation:
       body: Vi informiamo che una volta cliccato su Rivaluta, verrete indirizzati all'inizio del sondaggio, dove potrete modificare le risposte. Le risposte precedenti saranno ancora disponibili, ma potrete modificarle a vostro piacimento. Dopo la modifica, dovrete inviare nuovamente la valutazione per completare il processo.
@@ -1264,7 +1264,7 @@ it:
       collapse_link_text: Mostra meno
       expand_aria_label: 'Mostra meno informazioni sopra: Centro di apprendimento virtuale'
       expand_link_text: Mostra di più
-      heading: Prima di iniziare, vi invitiamo a prendere visione delle linee guida riportate di seguito. Vi auguriamo il meglio!
+      heading: Ti invitiamo a leggere le indicazioni qui sotto prima di iniziare. Ti auguriamo il meglio!
     language:
       content: Questa attività non è disponibile nella lingua attualmente selezionata. Selezionare una delle lingue disponibili per procedere.
       single_lang: Questa attività è disponibile solo in %{lang}. Fare clic su "Procedi" per continuare.
@@ -1315,7 +1315,7 @@ it:
       reset_all_nominations: Azzeramento di tutte le nomine
       reset_participant: Azzeramento di tutti i partecipanti
     allow_msg_proctoring_workshop_activity: Le attività dell'Assessment Center non vengono verificate.
-    assessments_heading: I vostri compiti
+    assessments_heading: Le tue Attività
     column:
       assessment_center_activity: Attività del Centro di valutazione
       assessment_name: Nome della valutazione
@@ -1916,7 +1916,7 @@ it:
       new:
         email: Indirizzo e-mail
         forgot_password: Hai dimenticato la password?
-        instruction: Effettuare il login con i dati del proprio account personale
+        instruction: Effettua l'accesso con le credenziali del tuo account personale
         keep_sign_in: Sì, mantenetemi registrato
         login_with_sso: Accesso con Single Sign-On
         password_placeholder: Password
@@ -1924,7 +1924,7 @@ it:
         tabs:
           register: Registro
           sign_in: Accesso
-        title: Benvenuti!
+        title: Benvenuto/a!
       signed_in: L'accesso è stato effettuato con successo!
       signed_in_time: L'ultimo accesso è stato effettuato il %{date_time}
       signed_out: La firma è stata apposta con successo.
@@ -3325,7 +3325,7 @@ it:
     as_my: come il mio
     assessment: Valutazione
     back_to_tasks: Torna alle attività
-    begin: Iniziare
+    begin: Inizia
     cancel: Annullamento
     close_evaluation_modal:
       message: Una volta visualizzato il rapporto, %{pronoun_or_name} non potrà ricevere ulteriori valutazioni

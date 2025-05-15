@@ -5,7 +5,13 @@ module AgileUserResult
 
   def show
     if user_assessment.not_started?
-      user_assessment.update!(started_at: Time.zone.now, status: :in_progress)
+      user_assessment_locale = user_assessment.selected_locale
+      if params[:lang].present? &&
+         user_assessment_locale.nil? &&
+         user_assessment.available_locales.include?(params[:lang])
+        user_assessment_locale = params[:lang]
+      end
+      user_assessment.update!(started_at: Time.zone.now, status: :in_progress, selected_locale: user_assessment_locale)
       UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment
     end
 

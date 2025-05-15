@@ -1129,7 +1129,7 @@ fr:
     lighthouse_logo_alt_text: Logo du phare
     login:
       continue_btn: Continuer
-      description: Veuillez vous connecter avec les informations de votre compte personnel
+      description: Veuillez vous connecter avec vos identifiants personnels 
       forgot_password: Mot de passe oublié ?
       hide_password: Cacher le mot de passe
       login_btn: Connexion
@@ -1138,7 +1138,7 @@ fr:
       or: OU
       show_password: Afficher le mot de passe
       sso_btn: Se connecter avec l'authentification unique
-      title: Bienvenue !
+      title: Bienvenue!
     logout: Déconnexion
     magic_link:
       description: Veuillez saisir votre adresse électronique pour recevoir un lien de connexion
@@ -1224,7 +1224,7 @@ fr:
     complete_prev: Compléter toutes les évaluations précédentes
     complete_tasks: Veuillez effectuer les tâches ci-dessous avant de prendre cette mesure.
     continue: Poursuivre vos tâches
-    dashboard_instructions: Il se peut que plusieurs activités vous aient été assignées et que vous deviez les mener à bien. Assurez-vous que toutes les activités assignées ont été menées à bien dans toutes les campagnes.
+    dashboard_instructions: Il se peut que plusieurs activités vous aient été attribuées. Veuillez vérifier que toutes les activités attribuées ont bien été complétées dans l’ensemble des campagnes
     dashboard_menu:
       bookings: Réservations
       campaign: Campagne
@@ -1264,7 +1264,7 @@ fr:
       collapse_link_text: Montrer moins
       expand_aria_label: 'Montrer moins d''informations ci-dessus : Centre d''apprentissage virtuel'
       expand_link_text: Afficher plus
-      heading: Avant de commencer, veuillez lire les lignes directrices ci-dessous. Nous vous souhaitons bonne chance !
+      heading: Veuillez lire les consignes ci-dessous avant de commencer. Nous vous souhaitons bonne chance !
     language:
       content: Cette tâche n'est pas disponible dans la langue sélectionnée. Veuillez sélectionner une des langues disponibles pour continuer.
       single_lang: Cette tâche n'est disponible qu'en %{lang}. Cliquez sur "Continuer" pour poursuivre.
@@ -1916,7 +1916,7 @@ fr:
       new:
         email: Adresse électronique
         forgot_password: Mot de passe oublié ?
-        instruction: Veuillez vous connecter avec les informations de votre compte personnel
+        instruction: Veuillez vous connecter avec vos identifiants personnels 
         keep_sign_in: Oui, je reste connecté
         login_with_sso: Se connecter avec l'authentification unique
         password_placeholder: Mot de passe
@@ -1924,7 +1924,7 @@ fr:
         tabs:
           register: Registre
           sign_in: Connexion
-        title: Bienvenue !
+        title: Bienvenue!
       signed_in: Vous vous êtes connecté avec succès !
       signed_in_time: Votre dernière connexion a eu lieu le %{date_heure}
       signed_out: Signature réussie.
