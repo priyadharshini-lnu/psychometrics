@@ -5,6 +5,8 @@ import {
 import { useParams } from 'react-router-dom'
 import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
 import { SimulationDetails } from './SimulationDetails'
+import { SavilleDetails } from './SavilleDetails'
+import { PearsonDetails } from './PearsonDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import RawJSON from './RawJSON'
 
@@ -100,10 +102,21 @@ export const DetailsDrawer: FC<Props> = ({
         />
 
         {isSuperAdmin && (
-          <RawJSON
-            I18n={I18n}
-            usersResultId={assessment?.usersResultId}
-          />
+          <>
+            <SavilleDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
+
+            <PearsonDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
+            <RawJSON
+              I18n={I18n}
+              usersResultId={assessment?.usersResultId}
+            />
+          </>
         )}
       </Row>
     </Drawer>

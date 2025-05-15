@@ -1340,10 +1340,15 @@ en:
       locales: Locales
       norm: Norm
       norm_id: Norm ID
+      pearson_norm_id: Pearson Norm ID
+      pearson_schedule_id: Pearson Schedule ID
       pearson_variation: Pearson Variation
       prework: Prework
-      simuation_time_extension: Simulation Time Extension
+      saville_candidate_id: Candidate ID
+      saville_data_separator: Saville Data Separator
       simulation_content_variation: Simulation Content Variation
+      simulation_participant_id: Simulation Participant ID
+      simulation_time_extension: Simulation Time Extension
       universal_link: Universal link
     drawer:
       mettl_schedule_name: Mettl Schedule Name

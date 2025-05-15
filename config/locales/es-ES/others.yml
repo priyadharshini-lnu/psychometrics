@@ -383,8 +383,8 @@ es-ES:
       norm: Norma
       norm_id: ID de Norma
       prework: Trabajo Previo
-      simuation_time_extension: Extensión de Tiempo de Simulación
       simulation_content_variation: Variación de Contenido de Simulación
+      simulation_time_extension: Extensión de Tiempo de Simulación
       universal_link: Enlace Universal
     drawer:
       mettl_schedule_name: Nombre del Horario de Mettl

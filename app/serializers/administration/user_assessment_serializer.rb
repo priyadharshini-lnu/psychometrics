@@ -5,7 +5,8 @@ module Administration
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
                :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id, :simulation_content_variations,
-               :simulation_content_variation_id, :simuation_time_extension, :users_result_id, :hogan_participant_id
+               :users_result_id, :hogan_participant_id,
+               :saville_user_assessment_details, :simulation_user_assessment_details, :pearson_user_assessment_details
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -23,18 +24,6 @@ module Administration
 
     def simulation_content_variations
       assessment.simulation_settings&.content_variations || []
-    end
-
-    def simulation_content_variation_id
-      return nil unless object.simulation?
-
-      object.simulation_user_assessment&.content_variation_id
-    end
-
-    def simuation_time_extension
-      return nil unless object.simulation?
-
-      object.simulation_user_assessment&.time_extension
     end
 
     def hogan_participant_id
@@ -61,6 +50,24 @@ module Administration
 
     def is_external
       assessment.external?
+    end
+
+    def saville_user_assessment_details
+      return nil unless object.saville?
+
+      Administration::SavilleUserAssessmentSerializer.new.serialize(object.saville_user_assessment)
+    end
+
+    def simulation_user_assessment_details
+      return nil unless object.simulation?
+
+      Administration::SimulationUserAssessmentSerializer.new.serialize(object.simulation_user_assessment)
+    end
+
+    def pearson_user_assessment_details
+      return nil unless object.pearson?
+
+      Administration::PearsonUserAssessmentSerializer.new.serialize(object.pearson_user_assessment)
     end
 
     def permissions
