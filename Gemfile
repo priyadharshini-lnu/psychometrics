@@ -192,8 +192,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1'
   # A fake data generator
   ### Generate schema in each model
+  gem 'deepl-rb'
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'i18n-tasks', '~> 1.0.12'
+  gem 'i18n-tasks', '~> 1.0.15'
   gem 'rswag-specs', '~> 2.11'
   gem 'rubocop', '~> 1.72', require: false
   gem 'rubocop-performance'
