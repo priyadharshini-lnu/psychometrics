@@ -24,5 +24,6 @@ export default interface User {
     pushWebhook: boolean
     accessProjectDevelopmentActions: boolean
     accessIdpTemplates: boolean
+    accessProjectTaxonomy: boolean
   }
 }

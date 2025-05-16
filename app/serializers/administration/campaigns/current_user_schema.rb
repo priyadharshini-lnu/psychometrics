@@ -65,6 +65,7 @@ module Administration
             required(:viewAuditReports).filled(:bool?)
             required(:accessProjectDevelopmentActions).filled(:bool?)
             required(:accessIdpTemplates).filled(:bool?)
+            required(:accessProjectTaxonomy).filled(:bool?)
           end
           required(:name).filled(:str?)
         end

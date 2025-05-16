@@ -47,6 +47,10 @@ module Administration
         has_permission?(:audit_reports, :admin_permissions, project_id: project_id)
     end
 
+    def access_project_taxonomy?
+      has_permission?(:skills, :view, project_id: project_id)
+    end
+
     private
 
     def can_manage_project?

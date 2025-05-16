@@ -170,6 +170,10 @@ module Api
           }
         end
 
+        def project_id
+          super || params.dig(:filter, :project_id_eq)
+        end
+
         private
 
         def search_params

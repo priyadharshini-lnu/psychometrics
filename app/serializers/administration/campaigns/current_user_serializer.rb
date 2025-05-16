@@ -26,7 +26,8 @@ module Administration
             %w[manage_project_general_settings update],
             'manage_project_privacy_setting',
             'manage_project_assessments',
-            'view_audit_reports'
+            'view_audit_reports',
+            'access_project_taxonomy'
           ],
           {
             project_id: context[:project_id],
