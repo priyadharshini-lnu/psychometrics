@@ -1129,7 +1129,7 @@ it:
     lighthouse_logo_alt_text: Logo del faro
     login:
       continue_btn: Continua
-      description: Effettuare il login con i dati del proprio account personale
+      description: Effettua l'accesso con le credenziali del tuo account personale
       forgot_password: Hai dimenticato la password?
       hide_password: Nascondere la password
       login_btn: Accesso
@@ -1315,7 +1315,7 @@ it:
       reset_all_nominations: Azzeramento di tutte le nomine
       reset_participant: Azzeramento di tutti i partecipanti
     allow_msg_proctoring_workshop_activity: Le attività dell'Assessment Center non vengono verificate.
-    assessments_heading: I vostri compiti
+    assessments_heading: Le tue Attività
     column:
       assessment_center_activity: Attività del Centro di valutazione
       assessment_name: Nome della valutazione
@@ -1916,7 +1916,7 @@ it:
       new:
         email: Indirizzo e-mail
         forgot_password: Hai dimenticato la password?
-        instruction: Effettuare il login con i dati del proprio account personale
+        instruction: Effettua l'accesso con le credenziali del tuo account personale
         keep_sign_in: Sì, mantenetemi registrato
         login_with_sso: Accesso con Single Sign-On
         password_placeholder: Password
@@ -1924,7 +1924,7 @@ it:
         tabs:
           register: Registro
           sign_in: Accesso
-        title: Benvenuti!
+        title: Benvenuto/a!
       signed_in: L'accesso è stato effettuato con successo!
       signed_in_time: L'ultimo accesso è stato effettuato il %{date_time}
       signed_out: La firma è stata apposta con successo.
