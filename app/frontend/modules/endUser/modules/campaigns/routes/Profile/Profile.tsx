@@ -210,39 +210,44 @@ function ProfileComponent ({
               <Row gutter={64}>
                 {enabledFields.photo && (
                   <Col xs={24} sm={24} md={12} lg={8}>
-                    <Form.Item
-                      help={errors?.photo}
-                      validateStatus={errors?.photo ? 'error' : ''}
-                      required={requiredFields.photo}
-                    >
-                      <Upload
-                        listType="picture-card"
-                        accept=".jpg, .jpeg, |image/*"
-                        showUploadList={false}
-                        maxCount={1}
-                        className={cs(styles.upload, { [styles.error]: errors?.photo })}
-                        onChange={onChangeFile}
-                        beforeUpload={() => false}
+                    <Form form={form}>
+                      <Form.Item
+                        help={errors?.photo}
+                        validateStatus={errors?.photo ? 'error' : ''}
+                        name="photo"
+                        rules={[
+                          { required: requiredFields.photo, message: I18n.t('simple_form.required.text') },
+                        ]}
                       >
-                        <div
-                          aria-labelledby="upload-photo-label"
-                          tabIndex={0}
-                          role="button"
-                          ref={uploadRef}
-                          className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}
+                        <Upload
+                          listType="picture-card"
+                          accept=".jpg, .jpeg, |image/*"
+                          showUploadList={false}
+                          maxCount={1}
+                          className={cs(styles.upload, { [styles.error]: errors?.photo })}
+                          onChange={onChangeFile}
+                          beforeUpload={() => false}
                         >
-                          {user.photo && <img src={user.photo} className={styles.photo} />}
-                          <div className={styles.controls}>
-                            {user.photo ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
-                            <div id="upload-photo-label" className={styles.photoLabel}>
-                              {user.photo
-                                ? I18n.t('profile.change_photo')
-                                : I18n.t('profile.add_photo')}
+                          <div
+                            aria-labelledby="upload-photo-label"
+                            tabIndex={0}
+                            role="button"
+                            ref={uploadRef}
+                            className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}
+                          >
+                            {user.photo && <img src={user.photo} className={styles.photo} />}
+                            <div className={styles.controls}>
+                              {user.photo ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
+                              <div id="upload-photo-label" className={styles.photoLabel}>
+                                {user.photo
+                                  ? I18n.t('profile.change_photo')
+                                  : I18n.t('profile.add_photo')}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </Upload>
-                    </Form.Item>
+                        </Upload>
+                      </Form.Item>
+                    </Form>
                   </Col>
                 )}
                 <Col xs={24} sm={24} md={12} lg={16}>
@@ -271,7 +276,9 @@ function ProfileComponent ({
                           hasFeedback
                           help={errors?.first_name}
                           validateStatus={errors?.first_name ? 'error' : ''}
-                          required
+                          rules={[
+                            { required: true, message: I18n.t('validations.required') },
+                          ]}
                         >
                           <Input autoComplete="tte-profile-firstname" size="large" disabled={lockedFields.first_name} />
                         </Form.Item>
@@ -283,7 +290,9 @@ function ProfileComponent ({
                           hasFeedback
                           help={errors?.last_name}
                           validateStatus={errors?.last_name ? 'error' : ''}
-                          required
+                          rules={[
+                            { required: true, message: I18n.t('validations.required') },
+                          ]}
                         >
                           <Input autoComplete="tte-profile-lastname" size="large" disabled={lockedFields.last_name} />
                         </Form.Item>
@@ -299,9 +308,9 @@ function ProfileComponent ({
                             name="age"
                             label={I18n.t('profile.age')}
                             help={errors?.age}
-                            required={requiredFields.age}
                             validateStatus={errors?.age ? 'error' : ''}
-                            rules={[{ pattern: /^\d*$/, message: I18n.t('common.validations.should_be_whole_number') }]}
+                            rules={[{ pattern: /^\d*$/, message: I18n.t('common.validations.should_be_whole_number') },
+                              { required: requiredFields.age, message: I18n.t('validations.required') }]}
                           >
                             <InputNumber
                               className={styles.numberInput}
@@ -318,7 +327,9 @@ function ProfileComponent ({
                             name="gender"
                             label={I18n.t('profile.gender')}
                             hasFeedback
-                            required={requiredFields.gender}
+                            rules={[
+                              { required: requiredFields.gender, message: I18n.t('validations.required') },
+                            ]}
                           >
                             <Select
                               options={genderOptions}
@@ -338,7 +349,9 @@ function ProfileComponent ({
                         hasFeedback
                         help={errors?.locale}
                         validateStatus={errors?.locale ? 'error' : ''}
-                        required={requiredFields.locale}
+                        rules={[
+                          { required: requiredFields.locale, message: I18n.t('validations.required') },
+                        ]}
                       >
                         <Select
                           virtual={false} // this is to make Select component accessibility compatible
@@ -358,9 +371,11 @@ function ProfileComponent ({
                               : errors?.[field.name]}
                             validateStatus={errors?.[field.name] ? 'error' : ''}
                             name={`field_${field.question_id}`}
+                            rules={[
+                              { required: field.required, message: I18n.t('validations.required') },
+                            ]}
                             label={Utils.stripHTML(field.translations.questionText
                               || field.question.props.questionText)}
-                            required={field.required}
                           >
                             <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />
                           </Form.Item>

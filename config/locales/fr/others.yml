@@ -1129,7 +1129,7 @@ fr:
     lighthouse_logo_alt_text: Logo du phare
     login:
       continue_btn: Continuer
-      description: Veuillez vous connecter avec vos identifiants personnels 
+      description: Veuillez vous connecter avec les informations de votre compte personnel
       forgot_password: Mot de passe oublié ?
       hide_password: Cacher le mot de passe
       login_btn: Connexion
@@ -1916,7 +1916,7 @@ fr:
       new:
         email: Adresse électronique
         forgot_password: Mot de passe oublié ?
-        instruction: Veuillez vous connecter avec vos identifiants personnels 
+        instruction: Veuillez vous connecter avec les informations de votre compte personnel
         keep_sign_in: Oui, je reste connecté
         login_with_sso: Se connecter avec l'authentification unique
         password_placeholder: Mot de passe
@@ -1924,7 +1924,7 @@ fr:
         tabs:
           register: Registre
           sign_in: Connexion
-        title: Bienvenue!
+        title: Bienvenue !
       signed_in: Vous vous êtes connecté avec succès !
       signed_in_time: Votre dernière connexion a eu lieu le %{date_heure}
       signed_out: Signature réussie.
