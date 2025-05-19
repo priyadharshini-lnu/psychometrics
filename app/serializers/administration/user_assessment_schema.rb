@@ -46,13 +46,13 @@ module Administration
           array(SimulationContentVariationSchema.schema(_, _))
         end
         required(:simulation_user_assessment_details).maybe do
-          Administration::SimulationUserAssessmentSchema.schema(_, _)
+          hash(Administration::SimulationUserAssessmentSchema.schema(_, _))
         end
         required(:saville_user_assessment_details).maybe do
-          Administration::SavilleUserAssessmentSchema.schema(_, _)
+          hash(Administration::SavilleUserAssessmentSchema.schema(_, _))
         end
         required(:pearson_user_assessment_details).maybe do
-          Administration::PearsonUserAssessmentSchema.schema(_, _)
+          hash(Administration::PearsonUserAssessmentSchema.schema(_, _))
         end
         required(:hogan_participant_id).maybe(:str?)
       end

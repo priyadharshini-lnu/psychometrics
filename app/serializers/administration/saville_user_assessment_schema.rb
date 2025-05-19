@@ -7,8 +7,7 @@ module Administration
         config.validate_keys = true
 
         required(:data_seprator).maybe(:str?)
-        required(:candidate_id).maybe(:str?)
-        required(:participant_id).maybe(:str?)
+        required(:candidate_id).maybe(:int?)
       end
     end
   end
