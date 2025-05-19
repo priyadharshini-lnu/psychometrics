@@ -1394,6 +1394,7 @@ en:
       back: Back
       cancel: Cancel
       disabled: Diasbled
+      download_sample_file: Download Sample File
       enabled: Enabled
       import:
         failure_msg: Error while importing file.
@@ -1768,7 +1769,13 @@ en:
       project_participants: Participants | %{project}
     enable: Enable
     errors:
+      csv_file_required: File must be a CSV file
+      download_failed: 'Failed to download file: %{message}'
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
+      invalid_csv_format: 'Invalid CSV format: %{message}'
+      invalid_url: 'Invalid URL: %{message}'
+      invalid_url_format: Invalid URL format
+      missing_columns: 'Missing required columns: %{fields}'
     factors:
       copy:
         error: "'%{name}' factor was not copied"
@@ -1923,9 +1930,14 @@ en:
         mercer_only: Mercer logo only
         none: Without logos
       logo_type_label: Logo Type
+      no_reflection_questions_selected: No Reflection Questions selected
       none: None
+      reflection_questions: Reflection Questions
+      reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.
+      reflection_questions_updated: Reflection Questions updated successfully.
       remove: Remove
       select_by_tags: Select by Tags
+      select_reflection_question: Start typing to search and select question
       select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
       selected: Selected
@@ -1936,11 +1948,13 @@ en:
       subtitle_text: Subtitle text
       tab:
         development_actions: Development Actions
+        reflection_questions: Reflection Questions
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills
       template_details: Template Details
       title_text: Title text
+      update_reflection_questions: Update Reflection Questions
     idp_setting:
       allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
@@ -2687,6 +2701,30 @@ en:
             title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Updated successfully.
+    reflection_questions:
+      delete_confirmation: Are you sure you want to delete this Reflection Question?
+      export:
+        action: Export Reflection Questions
+        details: File Details
+        failure_msg: Error while exporting file.
+        success_msg: Exporting Reflection Questions in progress. Please check the status in the notifications.
+      form:
+        mandatory: Mandatory
+        max_words: Maximum words
+        min_words: Minimum words
+        question: Question
+        title: Reflection Question
+      import:
+        action: Import Reflection Questions
+        errors:
+          invalid_max_words_column_format: Invalid Maximum Words column value format %{row}
+          invalid_min_words_column_format: Invalid Minimum Words column value format %{row}
+          invalid_required_column_format: Invalid Mandatory column value format %{row}
+          missing_eng_question: Missing English question content %{row}
+          save_failed: Save failed %{message}
+        failure_msg: Error while importing file.
+        success_msg: Importing Reflection Questions in progress. Please check the status in the notifications.
+      question: Question
     report_approval:
       bulk_approve_success: "%{sent_for_approval} sent for approval. %{approved} reports approved. %{ignored} reports require manual approval due to QC changes/comments."
       columns:

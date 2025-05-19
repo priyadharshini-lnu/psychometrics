@@ -59,6 +59,9 @@ module Administration
         permissions['access_idp_templates'] = Api::Administration::IdpTemplatePolicy.new(
           object, IdpTemplate, project_id: context[:project_id]
         ).index?
+        permissions['accessReflectionQuestions'] = Api::Administration::ReflectionQuestionPolicy.new(
+          object, ReflectionQuestion, project_id: context[:project_id]
+        ).index?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
 

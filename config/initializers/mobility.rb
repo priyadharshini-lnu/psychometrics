@@ -104,7 +104,7 @@ Mobility.configure do
     # locale_accessors
     #
     # Or define specific defaults by uncommenting line below
-    locale_accessors %i[en ar]
+    locale_accessors I18n.available_locales
 
     # Attribute Methods
     #

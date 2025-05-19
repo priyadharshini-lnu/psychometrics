@@ -767,6 +767,7 @@ en:
         export_factor_translations: Export Factor Translations
         export_norm: Export Norm
         export_occupations: Occupations Export
+        export_reflection_questions: Export Reflection Questions
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
         export_skill_translations: Export Skills Translations
@@ -788,6 +789,7 @@ en:
         import_norm: Import Norm
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
+        import_reflection_questions: Import Reflection Questions
         import_scoring_data: Import Scoring Data
         import_skill_translations: Import Skills Translations
         import_skills: Import Skills
@@ -2009,6 +2011,7 @@ en:
       campaign_factor_group:
         group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
+      cant_be_deleted: This record can't be deleted
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite

@@ -10,6 +10,8 @@ class IdpTemplate < ApplicationRecord
   has_many :idp_template_development_actions, dependent: :destroy
   has_many :skills, through: :idp_template_skills, dependent: :destroy
   has_many :development_actions, through: :idp_template_development_actions, dependent: :destroy
+  has_many :idp_template_reflection_questions, dependent: :destroy
+  has_many :reflection_questions, through: :idp_template_reflection_questions
 
   enum :available_development_actions_selection_type, { none: 0, all: 1, selected: 2 },
        prefix: :available_development_actions

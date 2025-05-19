@@ -74,7 +74,6 @@ module Psychometrics
     config.middleware.use(Middlewares::CheckSession)
     config.middleware.use(Middlewares::SetTimeoutHeaderMiddleware)
     config.middleware.use(Middlewares::SidekiqAuthMiddleware)
-
     config.action_controller.raise_on_open_redirects = false
 
     # Settings in config/environments/* take precedence over those specified here.

@@ -89,7 +89,9 @@ class AdminJobRecord < ApplicationRecord
     export_skill_translations: 67,
     import_skill_translations: 68,
     export_skills: 69,
-    bulk_update_evaluation_status: 70
+    bulk_update_evaluation_status: 70,
+    export_reflection_questions: 71,
+    import_reflection_questions: 72
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

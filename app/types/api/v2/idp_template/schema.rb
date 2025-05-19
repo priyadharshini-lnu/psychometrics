@@ -17,10 +17,27 @@ module Api
             attribute[:technical_global_tags].array(:string)
             attribute[:technical_client_tags].array(:string)
             attribute[:self_rating_enabled].filled(:bool)
+            optional(:reflection_questions).array(:hash) do
+              required(:reflection_question_id).filled(:string)
+              required(:mandatory).filled(:bool)
+              optional(:min_words).maybe(:integer)
+              optional(:max_words).maybe(:integer)
+            end
             optional(:behavioral_global_skill_settings).maybe(:string)
             optional(:behavioral_client_skill_settings).maybe(:string)
             optional(:technical_global_skill_settings).maybe(:string)
             optional(:technical_client_skill_settings).maybe(:string)
+          end
+        end
+
+        def self.update_reflection_questions_request
+          json_api_attributes do
+            required(:reflection_questions).array(:hash) do
+              required(:id).filled(:string)
+              required(:mandatory).filled(:bool)
+              optional(:min_words).maybe(:integer)
+              optional(:max_words).maybe(:integer)
+            end
           end
         end
 

@@ -70,7 +70,6 @@ RSpec.describe Api::V2::IdpTemplate::Contract do
         params[:data][:relationships][:skills][:data] = []
 
         schema = contract.call(params, { idp_template: idp_template })
-
         expect(schema.failure?).to eq(false)
       end
     end

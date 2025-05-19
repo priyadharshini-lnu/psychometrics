@@ -554,6 +554,21 @@ module Swagger
         ),
         AssistantUpdateRequest: Api::Base::GenerateSwagger.call!(
           Api::V2::AI::Assistant::Schema.update_request
+        ),
+        ReflectionQuestionsListResponse: Api::Base::GenerateSwagger.call!(
+          Api::V2::ReflectionQuestion::Schema.multiple_resource_response
+        ),
+        ReflectionQuestionResponse: Api::Base::GenerateSwagger.call!(
+          Api::V2::ReflectionQuestion::Schema.single_resource_response
+        ),
+        ReflectionQuestionCreateRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::ReflectionQuestion::Schema.create_request
+        ),
+        ReflectionQuestionUpdateRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::ReflectionQuestion::Schema.update_request
+        ),
+        IdpTemplateUpdateReflectionQuestionsRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::IdpTemplate::Schema.update_reflection_questions_request
         )
       }
     end

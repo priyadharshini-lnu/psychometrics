@@ -78,7 +78,8 @@ module AllowedPermissions
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
     'skills' => %w[view manage import export import_translations export_translations],
-    'development_actions' => %w[view manage import export import_translations export_translations]
+    'development_actions' => %w[view manage import export import_translations export_translations],
+    'reflection_questions' => %w[view manage import export]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -148,7 +149,8 @@ module AllowedPermissions
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
     'skills' => %w[view manage import export import_translations export_translations],
-    'development_actions' => %w[view manage import export import_translations export_translations]
+    'development_actions' => %w[view manage import export import_translations export_translations],
+    'reflection_questions' => %w[view manage import export]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {
