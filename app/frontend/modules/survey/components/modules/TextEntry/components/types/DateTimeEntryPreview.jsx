@@ -20,7 +20,6 @@ export default class DateTimeEntryPreview extends Component {
       <DatePicker
         value={value ? dayjs(value, FORMAT) : null}
         format={FORMAT}
-        disabledTime={false}
         onChange={this.changeAnswer}
         showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
         aria-invalid={!!errors.length}
