@@ -14,8 +14,8 @@ module Campaigns
 
       new_campaign = transaction do
         new_campaign = copy_campaign(@campaign)
-        copy_sequencing(new_campaign)
         copy_assessments_and_reports(new_campaign)
+        copy_sequencing(new_campaign)
         copy_datasheet_columns(new_campaign)
         new_campaign
       end
