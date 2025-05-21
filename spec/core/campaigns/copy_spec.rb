@@ -6,9 +6,11 @@ describe Campaigns::Copy do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let!(:campaign) { create(:campaign, project: project, name: 'Campaign') }
-  let!(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
+  let!(:assessment) { create(:assessment, :with_report, name: 'Assessment') }
+  let!(:assessment2) { create(:assessment, :with_report, name: 'Assessment2') }
   let!(:report) { assessment.reports.first }
   let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign, assessment: assessment) }
+  let!(:campaign_assessment2) { create(:campaign_assessment, campaign: campaign, assessment: assessment2) }
   let!(:campaign_report) { create(:campaign_report, campaign: campaign, report: report) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign) }
   let!(:user_assessment) { create(:user_assessment, campaign: campaign, assessment: assessment) }
@@ -22,13 +24,18 @@ describe Campaigns::Copy do
 
   describe 'broadcast ok' do
     it do
+      campaign_assessment.update(position: 2)
+      campaign_assessment2.update(position: 1)
+
       form = Campaigns::CopyForm.from_params(campaign.attributes.merge(name: "Copy - #{campaign.name}"))
       new_campaign = described_class.call!(form, campaign)
-
       expect(new_campaign.name).to eq 'Copy - Campaign'
       expect(new_campaign.assessments.first.id).to eq assessment.id
       expect(new_campaign.assessments.first.name).to eq assessment.name
       expect(new_campaign.campaign_assessments.first).to_not eq campaign_assessment
+      expect(new_campaign.campaign_assessments.find_by(assessment_id: assessment.id).position).to eq 2
+      expect(new_campaign.campaign_assessments.find_by(assessment_id: assessment2.id).position).to eq 1
+
       expect(new_campaign.reports.first.id).to eq report.id
       expect(new_campaign.reports.first.name).to eq report.name
       expect(new_campaign.campaign_reports.first).to_not eq campaign_report

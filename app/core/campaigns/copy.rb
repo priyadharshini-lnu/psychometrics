@@ -32,7 +32,9 @@ module Campaigns
 
     def copy_assessments_and_reports(new_campaign)
       campaign.campaign_assessments.each do |ca|
-        new_campaign.campaign_assessments << ca.dup
+        new_ca = ca.dup
+        new_ca.skip_set_position = true
+        new_campaign.campaign_assessments << new_ca
       end
       campaign.campaign_reports.each do |cr|
         new_campaign.campaign_reports << cr.dup

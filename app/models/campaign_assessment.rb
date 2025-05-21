@@ -15,7 +15,9 @@ class CampaignAssessment < ApplicationRecord
   validate :validate_external_config
   before_save :parse_external_config
 
-  before_create :set_position
+  attr_accessor :skip_set_position
+
+  before_create :set_position, unless: :skip_set_position
 
   delegate :common?,
            :hogan?,
