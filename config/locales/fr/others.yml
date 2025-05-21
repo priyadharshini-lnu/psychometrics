@@ -1328,7 +1328,6 @@ fr:
       norm_id: ID de la norme
       pearson_variation: Variation de Pearson
       prework: Prétravail
-      simuation_time_extension: Prolongation du temps de simulation
       simulation_content_variation: Variation du contenu de la simulation
       universal_link: Lien universel
     drawer:
