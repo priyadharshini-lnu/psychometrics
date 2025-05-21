@@ -2282,6 +2282,50 @@ it:
         requested_rescheduling: Riprogrammazione richiesta
         requested_rescheduling_rejected: Richiesto Riprogrammazione Rifiutato
     'yes': Sì
+  glint:
+    booking_card:
+      aria_available_time: tempo disponibile
+      aria_back_to_time_selection: torna alla selezione del tempo
+      aria_desc_current_month: Attualmente il %{nome mese} %{anno}
+      aria_label_next_month: Vai al prossimo mese
+      aria_label_previous_month: Vai al mese precedente
+      aria_timezone_select: Selezionare il fuso orario
+    color_picker:
+      copy_success_msg: Copia dell'hexcode negli appunti.
+      recent_colors: 'Utilizzato di recente:'
+      recommended_colors: 'Consigliato:'
+    datepicker_with_ranges:
+      all_time: Per tutto il tempo
+      current_month: Mese corrente
+      current_week: Settimana corrente
+      last_month: Ultimo mese
+      last_week: La scorsa settimana
+      today: Oggi
+      yesterday: Ieri
+    fontsize_modifier:
+      change_font: Modifica della dimensione dei caratteri
+      decrease_font: Diminuire la dimensione dei caratteri
+      increase_font: Aumentare la dimensione dei caratteri
+      reset_font: Azzeramento delle dimensioni dei caratteri
+    input_duration:
+      max_duration: La durata massima è %{duration}
+    schedule_availability:
+      copy_to_all: Copia a tutti
+      end_date: Data di fine
+      from: Da
+      new_schedule: Aggiungere un nuovo programma
+      new_schedule_description: L'ora di inizio deve essere precedente all'ora di fine
+      no_slots: Nessuna slot aggiunta
+      required_error: non può essere vuoto
+      save: Risparmiare
+      saved_schedule_description: Programma di disponibilità salvato dell'utente
+      start_date: Data di inizio
+      timezone_label: Fuso orario
+      to: A
+    views_container:
+      aria_grid_view: Vista griglia
+      aria_list_view: Vista elenco
+      aria_selected: Selezionato
   idp:
     actions: Azioni
     board: Bacheca

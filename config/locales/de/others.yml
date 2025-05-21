@@ -1962,8 +1962,6 @@ de:
       unlocked: Ihr Konto wurde erfolgreich freigeschaltet. Bitte melden Sie sich an, um fortzufahren.
       unprocessable_entity: Ihr Konto konnte mit diesem Link nicht freigeschaltet werden. Bitte kontaktieren Sie den Support.
   dry_errors:
-    idp_template:
-      tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
     errors:
       add_edit_project:
         invalid_subdomain_format: Falsches Format der Subdomain.
@@ -2037,6 +2035,8 @@ de:
       workshops:
         no_available_assessor_slots: Keine freien Slots für Assessor %{assessor}
         no_available_manager_slots: Keine freien Slots für Manager %{manager}
+    idp_template:
+      tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
     users:
       registrations:
         new:
@@ -2298,6 +2298,50 @@ de:
         requested_rescheduling: Gewünschte Umterminierung
         requested_rescheduling_rejected: Beantragt Umterminierung Abgelehnt
     'yes': Ja
+  glint:
+    booking_card:
+      aria_available_time: verfügbare Zeit
+      aria_back_to_time_selection: zurück zur Zeitauswahl
+      aria_desc_current_month: Derzeit am %{Monatsname} %{Jahr}
+      aria_label_next_month: Weiter zum nächsten Monat
+      aria_label_previous_month: Zum vorherigen Monat gehen
+      aria_timezone_select: Zeitzone auswählen
+    color_picker:
+      copy_success_msg: Hexcode in die Zwischenablage kopiert.
+      recent_colors: 'Kürzlich verwendet:'
+      recommended_colors: 'Empfohlen:'
+    datepicker_with_ranges:
+      all_time: Alle Zeiten
+      current_month: Aktueller Monat
+      current_week: Aktuelle Woche
+      last_month: Letzter Monat
+      last_week: Letzte Woche
+      today: Heute
+      yesterday: Gestern
+    fontsize_modifier:
+      change_font: Schriftgröße ändern
+      decrease_font: Schriftgröße verkleinern
+      increase_font: Schriftgröße erhöhen
+      reset_font: Schriftgröße zurücksetzen
+    input_duration:
+      max_duration: Die maximale Dauer beträgt %{duration}
+    schedule_availability:
+      copy_to_all: Kopie an alle
+      end_date: Enddatum
+      from: Von
+      new_schedule: Neuen Zeitplan hinzufügen
+      new_schedule_description: Die Startzeit muss vor der Endzeit liegen
+      no_slots: Keine Steckplätze hinzugefügt
+      required_error: kann nicht leer sein
+      save: Speichern Sie
+      saved_schedule_description: Gespeicherter Verfügbarkeitsplan des Benutzers
+      start_date: Datum des Beginns
+      timezone_label: ZeitZone
+      to: An
+    views_container:
+      aria_grid_view: Gitternetz-Ansicht
+      aria_list_view: Listenansicht
+      aria_selected: Ausgewählte
   idp:
     actions: Aktionen
     board: Board

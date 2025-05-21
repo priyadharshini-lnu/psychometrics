@@ -2021,6 +2021,8 @@ fr:
       workshops:
         no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assesseur}
         no_available_manager_slots: Aucun emplacement disponible pour le manager %{manager}
+    idp_template:
+      tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
     users:
       registrations:
         new:
@@ -2282,6 +2284,50 @@ fr:
         requested_rescheduling: Report demandé
         requested_rescheduling_rejected: Demandé Reprogrammé Rejeté
     'yes': Oui
+  glint:
+    booking_card:
+      aria_available_time: temps disponible
+      aria_back_to_time_selection: retour à la sélection de l'heure
+      aria_desc_current_month: Actuellement le %{nom du mois} %{année}
+      aria_label_next_month: Aller au mois suivant
+      aria_label_previous_month: Aller au mois précédent
+      aria_timezone_select: Sélectionner le fuseau horaire
+    color_picker:
+      copy_success_msg: Copie du code hexagonal dans le presse-papiers.
+      recent_colors: 'Récemment utilisé :'
+      recommended_colors: 'Recommandé :'
+    datepicker_with_ranges:
+      all_time: Tout le temps
+      current_month: Mois en cours
+      current_week: Semaine en cours
+      last_month: Le mois dernier
+      last_week: La semaine dernière
+      today: Aujourd'hui
+      yesterday: Hier
+    fontsize_modifier:
+      change_font: Modifier la taille de la police
+      decrease_font: Diminuer la taille de la police
+      increase_font: Augmenter la taille de la police
+      reset_font: Réinitialiser la taille de la police
+    input_duration:
+      max_duration: La durée maximale est de %{durée}
+    schedule_availability:
+      copy_to_all: Copie à tous
+      end_date: Date de fin
+      from: De
+      new_schedule: Ajouter un nouvel horaire
+      new_schedule_description: L'heure de début doit être antérieure à l'heure de fin
+      no_slots: Pas de créneaux ajoutés
+      required_error: ne peut être vide
+      save: Économiser
+      saved_schedule_description: Horaire de disponibilité sauvegardé de l'utilisateur
+      start_date: Date de début
+      timezone_label: Fuseau horaire
+      to: Pour
+    views_container:
+      aria_grid_view: Vue en grille
+      aria_list_view: Vue de la liste
+      aria_selected: Sélectionné
   idp:
     actions: Actions
     board: Tableau
