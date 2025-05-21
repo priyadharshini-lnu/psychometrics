@@ -67,6 +67,7 @@ export const SkillsExportModal: React.FC<OwnProps> = ({
         <Form.Item
           name="ownerId"
           label={I18n.t('common.column.client')}
+          style={{ marginLeft: '8px', maxWidth: '98.5%' }}
         >
           <Select
             showSearch
@@ -75,6 +76,7 @@ export const SkillsExportModal: React.FC<OwnProps> = ({
               I18n.t('administration.skills.form.client_placeholder')
             }
             onSearch={searchAvailableOwners}
+
           >
             {
               owners.map(({ id, name }) => (

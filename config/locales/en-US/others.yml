@@ -227,7 +227,7 @@ en-US:
       heading: Please review the guidelines below before you get started. We wish you all the best!
     language:
       content: This task is not available in the currently selected language. Please select one of the available languages to proceed.
-      single_lang: This task is available only in %{lang}. Click "Proceed" to continue.
+      single_lang: This task is available only in %{lang}. Click "Continue" to proceed.
       title: Select language
     panels:
       dashboard: Dashboard
@@ -567,8 +567,183 @@ en-US:
         requested_rescheduling_rejected: Requested Rescheduling Rejected
     'yes': true
   idp:
+    actions: Actions
+    board: Board
+    details: Details
+    development_actions:
+      action_private: 'Yes'
+      action_public: 'No'
+      add_development_action: Add Development Action
+      all: All
+      approved: Approved
+      board_view:
+        completed: Completed
+        in_progress: In Progress
+        not_started: Not Started
+      completion: Completion
+      create_my_own: Create My Own
+      date_range: Start Date - End Date
+      generate_by_ai: Generate by AI
+      generate_more: Generate More
+      generating_development_actions: Generating development actions...
+      heading: Development Actions
+      incomplete_error: Incomplete Development Actions
+      incomplete_error_message: Some development actions are incomplete. Please complete them before submitting your IDP.
+      incomplete_warning: Incomplete Development Actions
+      incomplete_warning_message: Some development actions are incomplete. Are you sure you want to mark your IDP complete?
+      learning_from_others: Learning from others
+      manage_skills: Manage Skills
+      marathon: Marathon
+      mark_as_complete: Mark as Complete
+      no_development_actions: No development actions
+      on_the_job: On the job
+      other: Other
+      private: Private
+      remove: Remove
+      skill: Skill
+      sprint: Sprint
+      start_plan: Start Plan
+      structured_learning: Structured learning
+      submit_plan: Submit Plan
+      write_here: Write here...
+    direct_report_details: Direct Report Details
+    initial_steps:
+      add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
+      add_skill_group_title: Exploring Your %{category} Skills
+      add_skills: Add
+      add_skills_step: Add Skills
+      continue_to_rate_skills: Continue to rate skills
+      getting_started: Getting Started
+      getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
+      less_skills: Show less skills
+      more_skills: Explore more skills
+      next: Next
+      no_skills_selected: No skills selected.
+      rate_skills: Rate Skills
+      rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
+      rate_skills_title: Rating Your Skills
+      rating_column_header: Your self rating
+      select_skills: Select your skills
+      select_skills_placeholder: Select skills
+      selected_skills: Selected Skills
+      skill_column_header: Skill
+      skill_gap_report: Skill Gap Report
+    list: List
+    my_direct_reports: My Direct Reports
+    my_plan:
+      development_plan: Development Plan
+      graphs:
+        categories: Categories
+      save_skills: Save Skills
     pdf:
-      header: Hello
+      approval_status: Approval Status
+      cover:
+        fields:
+          assigned_data: Assigned Date
+          completion_date: Completion Date
+          division: Division
+          name: Name
+          publish_date: Publish Date
+          review_date: Review Date
+          role: Current Role
+      guidelines:
+        cards:
+          c1:
+            content: Include skills, knowledge and capabilities that need to be developed. Ensure they are specific, measurable, achievable, realistic and reasonably able to be accomplished in the timelines mentioned.
+            title: Development Objectives
+          c2:
+            content: This is based on the competency to be developed based on the assessment experience.
+            title: Competency
+          c3:
+            content: This section includes your development actions based on the 70-20-10 learning model listed below. It is advised that you select a combination of each of the three elements to ensure a varied learning and development approach.
+            title: Activity
+          c4:
+            content: Ensure your timelines are realistic based on when the objective can be complete. Do amend this as and when appropriate.
+            title: Timeline
+          c5:
+            content: Use the progress section to support progression on the identified tracks.
+            title: Progress
+        chart:
+          collaboration: "<strong>20%</strong>Collaborative <br /> Learning"
+          job: "<strong>70%</strong>Learning <br />on the Job"
+          learn: "<strong>10%</strong>Formal Learning"
+        content:
+          list:
+            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organisational business priorities.
+            r2: Please note that the launch of some of these development pathways will depend on the organisational wide education and learning strategy.
+            r3: Please consider the recommended pathways as crossed below, when developing your Individual Development Plan.
+          main: This section includes a cumulative list of all the development pathways, keeping in mind best practice learning i.e., 70-20-10 guideline, which provides a progressive journey combining classroom learning, coaching and on-the job learning. Based on the outcomes from the leadership development experience and business priorities, possible development pathways have been recommended, which can be considered for your development.
+        learn_cards:
+          collaboration:
+            list:
+            - Offer to coach or mentor others
+            - Request to be mentored by an expert in your field
+            - Attain a coach to support your development
+            - Set-up a collaborative working group to discuss on going challenges in the business
+            - Get feedback formally and informally from others
+            - Play an active role in industry associations and networks
+            - Build your own external networks
+            title: Collaborative Learning (20%) <br/> Developing through others
+          job:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Learning On the Job (70%) <br/> Developing through experience
+          learn:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Formal Learning (10%) <br/> Developing through structured learning
+        title: Guidelines to Guide your IDP
+      idp:
+        end_date: End Date
+        self_rating: Self Rating
+        start_date: Start Date
+        subtitle:
+          behavioural: Behavioural
+          technical: Technical
+        title: Individual Development Plan
+      last:
+        end_report: End of Report
+      reflections:
+        subtitle: Questions for Overall Professional Development
+        title: Reflections to Guide your IDP
+      skill_categories:
+        behavioral: Behavioural
+        technical: Technical
+      statuses:
+        approved: Reviewed and Approved
+        completed: Completed
+        not_reviewed: Not Reviewed
+        pending_approval: In Review
+      summary:
+        ai_count: Generative AI
+        collaborative_learn: Collaborative Learning
+        created_by: Created by
+        current_status: IDP Current Status
+        custom: Custom
+        custom_count: Custom
+        da_count: Development Action Count
+        formal_learn: Formal Learning
+        generated_ai: Generative AI
+        learn_on_job: Learning on the job
+        learn_pathway: Learning Pathway
+        lib_count: IDP Library
+        library: IDP Library
+        skills_count: Skills Count
+        title: Report Summary
+    profile_details: Profile Details
+    skill_gap_report:
+      continue_to_rate_skills: Continue to rate skills
+      title: Skill Gap Report
   idp_templates:
     errors:
       user_idp_template_not_found: No IDP template has been assigned to you.

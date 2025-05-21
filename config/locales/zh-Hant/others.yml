@@ -37,7 +37,6 @@ zh-Hant:
           attributes:
             current_password:
               invalid: 目前的密碼不正確
-  administration: 行政管理
   anonym:
     close: 關閉
     continue: 繼續
@@ -571,9 +570,6 @@ zh-Hant:
         requested_rescheduling: 要求重新安排
         requested_rescheduling_rejected: 要求重新安排時間 拒絕
     'yes': 是
-  idp:
-    pdf:
-      header: 您好
   idp_templates:
     errors:
       user_idp_template_not_found: 尚未為您指定 IDP 模版。

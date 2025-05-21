@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignUserScoringResource < Api::V2::Administration::BaseResource
+  model_name 'CampaignUser'
+
   attributes :campaign_scores_finalized, :campaign_scores_finalized_date, :campaign_scores_calculated_date,
              :campaign_scores_errors
 

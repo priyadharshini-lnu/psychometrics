@@ -7,8 +7,8 @@ import { Menu } from 'antd'
 import {
   ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined, DatabaseOutlined,
 } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
+import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { Client as ClientType, ClientTR } from '~/modules/admin/modules/client/core/clients'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
@@ -108,7 +108,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
         return ''
     }
   }
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     { key: 'projects', icon: <ShopOutlined />, label: I18n.t('administration.breadcrumbs.projects') },
   ]
 

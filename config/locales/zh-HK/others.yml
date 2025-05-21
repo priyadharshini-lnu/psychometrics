@@ -37,7 +37,6 @@ zh-HK:
           attributes:
             current_password:
               invalid: 目前密碼不正確
-  administration: 行政管理
   anonym:
     close: 關閉
     continue: 繼續
@@ -452,6 +451,10 @@ zh-HK:
     two_factor_authentication:
       attempt: 請輸入您在已註冊電郵地址收到的單次密碼
       code_has_been_sent: 您的新單次密碼已發送至您已註冊的電郵地址
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
   emails:
     subject_relationship_table:
       subject_email: 主題電子郵件
@@ -586,8 +589,183 @@ zh-HK:
         requested_rescheduling_rejected: 要求重新安排時間 拒絕
     'yes': 是
   idp:
+    actions: 操作
+    board: 看板
+    details: 詳情
+    development_actions:
+      action_private: 是
+      action_public: 否
+      add_development_action: 添加發展行動
+      all: 全部
+      approved: 已批准
+      board_view:
+        completed: 已完成
+        in_progress: 進行中
+        not_started: 未開始
+      completion: 完成度
+      create_my_own: 建立我自己的
+      date_range: 開始日期 - 結束日期
+      generate_by_ai: 通過AI生成
+      generate_more: 生成更多
+      generating_development_actions: 正在生成發展行動...
+      heading: 發展行動
+      learning_from_others: 向他人學習
+      manage_skills: 管理技能
+      marathon: 馬拉松
+      no_development_actions: 沒有發展行動
+      on_the_job: 在職學習
+      other: 其他
+      private: 私人
+      remove: 移除
+      skill: 技能
+      sprint: 衝刺
+      structured_learning: 結構化學習
+      submit_plan: 提交計劃
+      write_here: 在此處寫入...
+    direct_report_details: 直屬下屬詳情
+    initial_steps:
+      add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
+      add_skill_group_title: 探索你的%{category}技能
+      add_skills: 添加
+      add_skills_step: 添加技能
+      continue_to_rate_skills: 繼續評定技能
+      getting_started: 入門
+      getting_started_info: 歡迎使用你的個人發展計劃(IDP)創建器。此計劃將幫助你識別、管理和跟蹤你的專業和個人目標，以及實現這些目標所需採取的步驟。你的專業目標可能包括行為、領導力以及技術領域的發展。你的個人發展計劃是支持你職業發展和技能提升的重要工具。
+      less_skills: 顯示較少技能
+      more_skills: 探索更多技能
+      next: 下一步
+      no_skills_selected: 未選擇技能。
+      rate_skills: 評定技能
+      rate_skills_description: 現在你已選擇了發展重點，請對以下每項進行自我評定。記住根據你當前的水平進行評定，而不是基於過去或期望的水平。
+      rate_skills_title: 評定你的技能
+      rating_column_header: 你的自我評定
+      select_skills: 選擇你的技能
+      select_skills_placeholder: 選擇技能
+      selected_skills: 已選技能
+      skill_column_header: 技能
+      skill_gap_report: 技能差距報告
+    list: 列表
+    my_direct_reports: 我的直屬下屬
+    my_plan:
+      development_plan: 發展計劃
+      graphs:
+        categories: 類別
+      save_skills: 保存技能
     pdf:
-      header: 您好
+      approval_status: 審批狀態
+      cover:
+        fields:
+          assigned_data: 分配日期
+          completion_date: 完成日期
+          division: 部門
+          name: 姓名
+          publish_date: 發佈日期
+          review_date: 審核日期
+          role: 當前角色
+      guidelines:
+        cards:
+          c1:
+            content: 包括需要發展的技能、知識和能力。確保它們是具體的、可衡量的、可實現的、現實的，並且能夠在所提到的時間線內合理完成。
+            title: 發展目標
+          c2:
+            content: 這是基於評估經驗需要發展的能力。
+            title: 能力
+          c3:
+            content: 本部分包括基於下面列出的70-20-10學習模型的發展行動。建議你選擇三個要素的組合，以確保多樣化的學習和發展方法。
+            title: 活動
+          c4:
+            content: 確保你的時間線是現實的，基於目標何時可以完成。在適當的時候進行修改。
+            title: 時間線
+          c5:
+            content: 使用進度部分支持已確定軌道上的進展。
+            title: 進展
+        chart:
+          collaboration: "<strong>20%</strong>協作式<br />學習"
+          job: "<strong>70%</strong>在職<br />學習"
+          learn: "<strong>10%</strong>正式學習"
+        content:
+          list:
+            r1: 請注意，此列表僅供參考，根據個人願望、管理者的建議以及組織業務優先事項，可能會為你考慮額外的發展路徑。
+            r2: 請注意，這些發展路徑中的一些啟動將取決於組織範圍的教育和學習策略。
+            r3: 在制定個人發展計劃時，請考慮以下推薦的路徑。
+          main: 本部分包括所有發展路徑的累積列表，考慮到最佳學習實踐，即70-20-10指南，它提供了結合課堂學習、輔導和在職學習的漸進式旅程。基於領導力發展經驗和業務優先事項的成果，已推薦可能的發展路徑，可以考慮用於你的發展。
+        learn_cards:
+          collaboration:
+            list:
+            - 提供給他人指導或導師服務
+            - 請求領域專家作為你的導師
+            - 獲得一位教練支持你的發展
+            - 建立一個協作工作組，討論業務中的持續挑戰
+            - 從他人那裡正式和非正式地獲取反饋
+            - 在行業協會和網絡中發揮積極作用
+            - 建立自己的外部網絡
+            title: 協作學習(20%)<br/>通過他人發展
+          job:
+            list:
+            - 在利益相關者或管理委員會中擔任領導職位
+            - 自願領導組織的變革管理項目
+            - 考慮承擔有挑戰性的任務
+            - 與其他職能部門跨部門協作
+            - 考慮領導組織外的項目
+            - 與外部行業專家在聯合項目上密切合作
+            title: 在職學習(70%)<br/>通過經驗發展
+          learn:
+            list:
+            - 在利益相關者或管理委員會中擔任領導職位
+            - 自願領導組織的變革管理項目
+            - 考慮承擔有挑戰性的任務
+            - 與其他職能部門跨部門協作
+            - 考慮領導組織外的項目
+            - 與外部行業專家在聯合項目上密切合作
+            title: 正式學習(10%)<br/>通過結構化學習發展
+        title: 指導你的IDP的指南
+      idp:
+        end_date: 結束日期
+        self_rating: 自我評定
+        start_date: 開始日期
+        subtitle:
+          behavioural: 行為
+          technical: 技術
+        title: 個人發展計劃
+      last:
+        end_report: 報告結束
+      reflections:
+        subtitle: 整體專業發展問題
+        title: 指導你的IDP的思考
+      skill_categories:
+        behavioral: 行為
+        technical: 技術
+      statuses:
+        approved: 已審核並批准
+        completed: 已完成
+        not_reviewed: 未審核
+        pending_approval: 審核中
+      summary:
+        ai_count: 生成式AI
+        collaborative_learn: 協作學習
+        created_by: 創建者
+        current_status: IDP當前狀態
+        custom: 自定義
+        custom_count: 自定義
+        da_count: 發展行動數量
+        formal_learn: 正式學習
+        generated_ai: 生成式AI
+        learn_on_job: 在職學習
+        learn_pathway: 學習路徑
+        lib_count: IDP庫
+        library: IDP庫
+        skills_count: 技能數量
+        title: 報告摘要
+    profile_details: 個人資料詳情
+    skill_gap_report:
+      continue_to_rate_skills: 繼續評定技能
+      title: 技能差距報告
+    status: 狀態
+    user_idp_status:
+      approved: 已批准
+      draft: 草稿
+      pending_approval: 待批准
+    users: 用戶
   idp_templates:
     errors:
       user_idp_template_not_found: 尚未為您指定 IDP 模版。

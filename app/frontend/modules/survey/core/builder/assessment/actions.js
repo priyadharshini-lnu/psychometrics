@@ -40,6 +40,7 @@ export const fetch = (assessmentId, currentLocale) => ({
       lang: currentLocale,
     },
     camelize: false,
+    loader: true,
   },
 })
 
@@ -83,6 +84,7 @@ export const saveAssessment = (data, currentLocale) => {
       body: { builder },
       camelize: false,
       decamelize: false,
+      loader: true,
     },
   }
 }

@@ -17,9 +17,9 @@ RSpec.describe Administration::ImportSkillTranslations do
 
   let(:valid_csv_content) do
     <<~CSV
-      ID,Locale,Name,Description
-      #{skill.id},en,Updated Name,Updated Description
-      #{skill.id},es,Nombre Actualizado,Descripción Actualizada
+      ID,English / en,Spanish / es
+      #{skill.id}#Name,Updated Name,Nombre Actualizado
+      #{skill.id}#Description,Updated Description,Descripción Actualizada
     CSV
   end
 
@@ -55,15 +55,16 @@ RSpec.describe Administration::ImportSkillTranslations do
     context 'with invalid skill ID' do
       let(:valid_csv_content) do
         <<~CSV
-          ID,Locale,Name,Description
-          999999,en,Invalid Skill,Invalid Description
+          ID,English / en
+          999999#Name,Invalid Skill
+          999999#Description,Invalid Description
         CSV
       end
 
       it 'returns error message' do
         result = described_class.new(file_url, project.id).call
         expect(result).to include(I18n.t('administration.skills.translations.import.errors.skill_not_found',
-                                         id: 999_999))
+                                         id: '999999'))
       end
     end
 
@@ -81,30 +82,31 @@ RSpec.describe Administration::ImportSkillTranslations do
 
       let(:valid_csv_content) do
         <<~CSV
-          ID,Locale,Name,Description
-          #{other_skill.id},en,Updated Name,Updated Description
+          ID,English / en
+          #{other_skill.id}#Name,Updated Name
+          #{other_skill.id}#Description,Updated Description
         CSV
       end
 
       it 'returns error message' do
         result = described_class.new(file_url, project.id).call
         expect(result).to include(I18n.t('administration.skills.translations.import.errors.skill_not_found',
-                                         id: other_skill.id))
+                                         id: other_skill.id.to_s))
       end
     end
 
     context 'with missing required fields' do
       let(:valid_csv_content) do
         <<~CSV
-          ID,Locale,Name
-          #{skill.id},en,Updated Name
+          Name,English / en
+          Test,Updated Name
         CSV
       end
 
       it 'returns error message' do
         result = described_class.new(file_url, project.id).call
         expect(result).to include(I18n.t('administration.skills.translations.import.errors.missing_columns',
-                                         fields: 'Description'))
+                                         columns: 'ID'))
       end
     end
 
@@ -135,8 +137,9 @@ RSpec.describe Administration::ImportSkillTranslations do
 
       let(:valid_csv_content) do
         <<~CSV
-          ID,Locale,Name,Description
-          #{global_skill.id},en,Updated Global Name,Updated Global Description
+          ID,English / en
+          #{global_skill.id}#Name,Updated Global Name
+          #{global_skill.id}#Description,Updated Global Description
         CSV
       end
 
@@ -149,6 +152,23 @@ RSpec.describe Administration::ImportSkillTranslations do
           expect(global_skill.name).to eq('Updated Global Name')
           expect(global_skill.description).to eq('Updated Global Description')
         end
+      end
+    end
+
+    context 'with CSV format error' do
+      before do
+        stub_request(:get, file_url).
+          to_return(
+            status: 200,
+            headers: { 'Content-Type' => 'text/csv' },
+            body: "ID,\"Unclosed quote
+          "
+          )
+      end
+
+      it 'returns error for malformed CSV' do
+        result = described_class.new(file_url, project.id).call
+        expect(result.first).to include('Invalid CSV format')
       end
     end
   end

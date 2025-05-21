@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::UsersResultResource < Api::V2::Administration::BaseResource
-  attributes :id, :answers, :scoring, :external_results
+  attributes :answers, :scoring, :external_results
 
   def meta_details
     {

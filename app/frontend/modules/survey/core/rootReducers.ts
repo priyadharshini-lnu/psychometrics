@@ -6,6 +6,7 @@ import preview from './preview'
 import request from '~/core/request'
 import currentUser from '~/core/currentUser'
 import config from '~/core/config'
+import errors from '~/core/errors'
 
 const rootReducers = combineReducers({
   survey: combineReducers({
@@ -17,6 +18,7 @@ const rootReducers = combineReducers({
   request,
   currentUser,
   config,
+  errors,
 })
 
 export type RootState = ReturnType<typeof rootReducers>

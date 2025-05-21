@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignAssessorAssessmentFactorWeightResource < Api::V2::Administration::BaseResource
-  attributes :id, :weight
+  attributes :weight
 
   has_one :assessment
   has_one :factor

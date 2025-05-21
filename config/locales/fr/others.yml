@@ -2282,59 +2282,15 @@ fr:
         requested_rescheduling: Report demandé
         requested_rescheduling_rejected: Demandé Reprogrammé Rejeté
     'yes': Oui
-  glint:
-    booking_card:
-      aria_available_time: temps disponible
-      aria_back_to_time_selection: retour à la sélection de l'heure
-      aria_desc_current_month: Actuellement le %{nom du mois} %{année}
-      aria_label_next_month: Aller au mois suivant
-      aria_label_previous_month: Aller au mois précédent
-      aria_timezone_select: Sélectionner le fuseau horaire
-    color_picker:
-      copy_success_msg: Copie du code hexagonal dans le presse-papiers.
-      recent_colors: 'Récemment utilisé :'
-      recommended_colors: 'Recommandé :'
-    datepicker_with_ranges:
-      all_time: Tout le temps
-      current_month: Mois en cours
-      current_week: Semaine en cours
-      last_month: Le mois dernier
-      last_week: La semaine dernière
-      today: Aujourd'hui
-      yesterday: Hier
-    fontsize_modifier:
-      change_font: Modifier la taille de la police
-      decrease_font: Diminuer la taille de la police
-      increase_font: Augmenter la taille de la police
-      reset_font: Réinitialiser la taille de la police
-    input_duration:
-      max_duration: La durée maximale est de %{durée}
-    schedule_availability:
-      copy_to_all: Copie à tous
-      end_date: Date de fin
-      from: De
-      new_schedule: Ajouter un nouvel horaire
-      new_schedule_description: L'heure de début doit être antérieure à l'heure de fin
-      no_slots: Pas de créneaux ajoutés
-      required_error: ne peut être vide
-      save: Économiser
-      saved_schedule_description: Horaire de disponibilité sauvegardé de l'utilisateur
-      start_date: Date de début
-      timezone_label: Fuseau horaire
-      to: Pour
-    views_container:
-      aria_grid_view: Vue en grille
-      aria_list_view: Vue de la liste
-      aria_selected: Sélectionné
   idp:
     actions: Actions
-    board: Conseil d'administration
+    board: Tableau
     details: Détails
     development_actions:
       action_private: Oui
       action_public: Non
       add_development_action: Ajouter une action de développement
-      all: Tous
+      all: Tout
       approved: Approuvé
       board_view:
         completed: Terminé
@@ -2343,72 +2299,167 @@ fr:
       completion: Achèvement
       create_my_own: Créer le mien
       date_range: Date de début - Date de fin
-      generate_by_ai: Générer par l'IA
+      generate_by_ai: Générer par IA
       generate_more: Générer plus
-      generating_development_actions: Générer des actions de développement...
+      generating_development_actions: Génération d'actions de développement...
       heading: Actions de développement
-      learning_from_others: Apprendre des autres
+      incomplete_error: Actions de développement incomplètes
+      incomplete_error_message: Certaines actions de développement sont incomplètes. Veuillez les compléter avant de soumettre votre PDI.
+      incomplete_warning: Actions de développement incomplètes
+      incomplete_warning_message: Certaines actions de développement sont incomplètes. Êtes-vous sûr de vouloir marquer votre PDI comme complet ?
+      learning_from_others: Apprentissage par les autres
       manage_skills: Gérer les compétences
       marathon: Marathon
+      mark_as_complete: Marquer comme terminé
       no_development_actions: Aucune action de développement
-      on_the_job: Au travail
-      other: Autres
+      on_the_job: Sur le terrain
+      other: Autre
       private: Privé
-      remove: Retirer
+      remove: Supprimer
       skill: Compétence
       sprint: Sprint
+      start_plan: Démarrer le plan
       structured_learning: Apprentissage structuré
       submit_plan: Soumettre le plan
-      write_here: Écrire ici...
-    direct_report_details: Détails du rapport direct
+      write_here: Écrivez ici...
+    direct_report_details: Détails des subordonnés directs
     initial_steps:
-      add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
-      add_skill_group_title: Explorer vos compétences %{catégorie}
+      add_skill_group_description: Sur la base de vos résultats d'évaluation, voici quelques domaines de forces et de développement pour vous. Choisissez les compétences que vous souhaitez développer davantage dans le cadre de votre plan de développement.
+      add_skill_group_title: Exploration de vos compétences en %{category}
       add_skills: Ajouter
       add_skills_step: Ajouter des compétences
-      continue_to_add_skills: Continuer à ajouter des compétences
       continue_to_rate_skills: Continuer à évaluer les compétences
-      getting_started: Pour commencer
-      getting_started_info: Bienvenue sur le site du créateur de votre plan de développement individuel (PDI). Ce plan vous aidera à identifier, gérer et suivre vos objectifs professionnels et personnels ainsi que les étapes à franchir pour atteindre ces objectifs. Vos objectifs professionnels peuvent inclure des domaines de développement comportementaux, techniques et de leadership. Votre PDI est un outil essentiel pour soutenir votre développement de carrière et l'amélioration de vos compétences.
-      less_skills: Montrer moins de compétences
-      more_skills: Explorer d'autres compétences
+      getting_started: Premiers pas
+      getting_started_info: Bienvenue dans votre créateur de Plan de Développement Individuel (PDI). Ce plan vous aidera à identifier, gérer et suivre vos objectifs professionnels et personnels ainsi que les étapes nécessaires pour les atteindre. Vos objectifs professionnels peuvent inclure des domaines de développement comportemental, de leadership ainsi que technique. Votre PDI est un outil essentiel pour soutenir votre développement de carrière et l'amélioration de vos compétences.
+      less_skills: Afficher moins de compétences
+      more_skills: Explorer plus de compétences
       next: Suivant
       no_skills_selected: Aucune compétence sélectionnée.
-      rate_skills: Compétences tarifaires
-      rate_skills_description: Maintenant que vous avez choisi vos priorités de développement, veuillez vous évaluer sur chacun des points suivants. N'oubliez pas de vous évaluer sur la base de votre niveau actuel et non sur la base de votre niveau passé ou souhaité.
-      rate_skills_title: Évaluer ses compétences
+      rate_skills: Évaluer les compétences
+      rate_skills_description: Maintenant que vous avez sélectionné vos priorités de développement, veuillez vous auto-évaluer sur chacune des compétences suivantes. N'oubliez pas de vous évaluer en fonction de votre niveau actuel et non de votre niveau passé ou souhaité.
+      rate_skills_title: Évaluation de vos compétences
       rating_column_header: Votre auto-évaluation
-      select_skills: Sélectionnez vos compétences
+      select_skills: Sélectionner vos compétences
       select_skills_placeholder: Sélectionner les compétences
       selected_skills: Compétences sélectionnées
       skill_column_header: Compétence
-      skill_gap_report: Rapport sur les lacunes en matière de compétences
+      skill_gap_report: Rapport d'écart de compétences
     list: Liste
     my_direct_reports: Mes subordonnés directs
     my_plan:
       development_plan: Plan de développement
       graphs:
-        area_of_development: Domaine de développement
-        behavioural: Comportementale
         categories: Catégories
-        learning_on_job: Au travail (%{count})
-        learning_others: Apprendre des autres (%{count})
-        learning_structured: Apprentissage structuré (%{count})
-        other: Autres
-        technical: Technique
       save_skills: Sauvegarder les compétences
     pdf:
-      header: Bonjour
+      approval_status: Statut d'approbation
+      cover:
+        fields:
+          assigned_data: Date d'attribution
+          completion_date: Date d'achèvement
+          division: Division
+          name: Nom
+          publish_date: Date de publication
+          review_date: Date de révision
+          role: Rôle actuel
+      guidelines:
+        cards:
+          c1:
+            content: Incluez les compétences, connaissances et capacités qui doivent être développées. Assurez-vous qu'elles sont spécifiques, mesurables, réalisables, réalistes et raisonnablement réalisables dans les délais mentionnés.
+            title: Objectifs de développement
+          c2:
+            content: Ceci est basé sur la compétence à développer en fonction de l'expérience d'évaluation.
+            title: Compétence
+          c3:
+            content: Cette section comprend vos actions de développement basées sur le modèle d'apprentissage 70-20-10 listé ci-dessous. Il est conseillé de sélectionner une combinaison de chacun des trois éléments pour assurer une approche variée d'apprentissage et de développement.
+            title: Activité
+          c4:
+            content: Assurez-vous que vos délais sont réalistes en fonction du moment où l'objectif peut être atteint. Modifiez-les au besoin et lorsque cela est approprié.
+            title: Calendrier
+          c5:
+            content: Utilisez la section progression pour soutenir l'avancement sur les pistes identifiées.
+            title: Progression
+        chart:
+          collaboration: "<strong>20%</strong>Apprentissage <br /> collaboratif"
+          job: "<strong>70%</strong>Apprentissage <br />sur le terrain"
+          learn: "<strong>10%</strong>Apprentissage formel"
+        content:
+          list:
+            r1: Veuillez noter que cette liste est uniquement indicative, et des voies de développement supplémentaires peuvent être envisagées pour vous en fonction des aspirations individuelles, des recommandations de votre manager ainsi que des priorités organisationnelles.
+            r2: Veuillez noter que le lancement de certaines de ces voies de développement dépendra de la stratégie d'éducation et d'apprentissage à l'échelle de l'organisation.
+            r3: Veuillez considérer les parcours recommandés comme indiqués ci-dessous, lors de l'élaboration de votre Plan de Développement Individuel.
+          main: Cette section comprend une liste cumulative de toutes les voies de développement, en gardant à l'esprit les meilleures pratiques d'apprentissage, c'est-à-dire la directive 70-20-10, qui fournit un parcours progressif combinant l'apprentissage en classe, le coaching et l'apprentissage sur le terrain. Sur la base des résultats de l'expérience de développement du leadership et des priorités commerciales, des voies de développement possibles ont été recommandées, qui peuvent être envisagées pour votre développement.
+        learn_cards:
+          collaboration:
+            list:
+            - Proposer de coacher ou de mentorer d'autres personnes
+            - Demander à être mentoré par un expert dans votre domaine
+            - Obtenir un coach pour soutenir votre développement
+            - Mettre en place un groupe de travail collaboratif pour discuter des défis en cours dans l'entreprise
+            - Obtenir des retours formels et informels des autres
+            - Jouer un rôle actif dans les associations et réseaux professionnels
+            - Construire vos propres réseaux externes
+            title: Apprentissage collaboratif (20%) <br/> Se développer grâce aux autres
+          job:
+            list:
+            - Assumer des positions de leadership dans des comités de parties prenantes ou de direction
+            - Se porter volontaire pour diriger des projets de gestion du changement pour l'organisation
+            - Envisager de prendre des missions stimulantes
+            - Travailler en collaboration avec d'autres fonctions
+            - Envisager de diriger des projets en dehors de votre organisation
+            - Travailler en étroite collaboration avec des experts externes de l'industrie sur des projets conjoints
+            title: Apprentissage sur le terrain (70%) <br/> Se développer par l'expérience
+          learn:
+            list:
+            - Assumer des positions de leadership dans des comités de parties prenantes ou de direction
+            - Se porter volontaire pour diriger des projets de gestion du changement pour l'organisation
+            - Envisager de prendre des missions stimulantes
+            - Travailler en collaboration avec d'autres fonctions
+            - Envisager de diriger des projets en dehors de votre organisation
+            - Travailler en étroite collaboration avec des experts externes de l'industrie sur des projets conjoints
+            title: Apprentissage formel (10%) <br/> Se développer par un apprentissage structuré
+        title: Directives pour guider votre PDI
+      idp:
+        end_date: Date de fin
+        self_rating: Auto-évaluation
+        start_date: Date de début
+        subtitle:
+          behavioural: Comportemental
+          technical: Technique
+        title: Plan de Développement Individuel
+      last:
+        end_report: Fin du rapport
+      reflections:
+        subtitle: Questions pour le développement professionnel global
+        title: Réflexions pour guider votre PDI
+      skill_categories:
+        behavioral: Comportemental
+        technical: Technique
+      statuses:
+        approved: Revu et approuvé
+        completed: Terminé
+        not_reviewed: Non revu
+        pending_approval: En cours de révision
+      summary:
+        ai_count: IA générative
+        collaborative_learn: Apprentissage collaboratif
+        created_by: Créé par
+        current_status: Statut actuel du PDI
+        custom: Personnalisé
+        custom_count: Personnalisé
+        da_count: Nombre d'actions de développement
+        formal_learn: Apprentissage formel
+        generated_ai: IA générative
+        learn_on_job: Apprentissage sur le terrain
+        learn_pathway: Parcours d'apprentissage
+        lib_count: Bibliothèque PDI
+        library: Bibliothèque PDI
+        skills_count: Nombre de compétences
+        title: Résumé du rapport
     profile_details: Détails du profil
     skill_gap_report:
       continue_to_rate_skills: Continuer à évaluer les compétences
-      title: Rapport sur les lacunes en matière de compétences
-    status: Statut
-    user_idp_status:
-      approved: Approuvé
-      draft: Projet
-      pending_approval: En attente
-    users: Utilisateurs
+      title: Rapport d'écart de compétences
   idp_templates:
     assign: Attribuer
     assign_idp_template: Attribuer un modèle Idp

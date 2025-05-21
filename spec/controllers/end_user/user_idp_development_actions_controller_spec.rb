@@ -57,7 +57,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
 
     it 'get development actions available for the skill' do
       get :available_development_actions,
-          params: { user_id: user.id, user_idp_skill_id: skill_for_development_action.id }
+          params: { user_id: user.id, user_idp_skill_id: user_idp_skill.id }
       parsed_result = response.parsed_body
       expect(parsed_result['meta']['record_count']).to eq(2)
 

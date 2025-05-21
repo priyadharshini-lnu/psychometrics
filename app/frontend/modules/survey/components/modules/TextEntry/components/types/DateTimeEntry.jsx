@@ -6,7 +6,6 @@ export default function DateTimeEntry () {
     <DatePicker
       size="default"
       format="YYYY-MM-DD HH:mm:ss"
-      disabledTime={false}
       showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
     />
   )

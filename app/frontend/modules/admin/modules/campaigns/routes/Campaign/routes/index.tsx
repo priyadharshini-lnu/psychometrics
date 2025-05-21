@@ -35,7 +35,7 @@ const routes = [
   { path: '/options', component: <CampaignOptions /> },
   { path: '/audit_reports', component: <DataExports /> },
   { path: '/audit_reports', component: <DataExports /> },
-  { path: '/user_idp_reports/:id', component: <IdpReportPreview /> },
+  { path: '/user_idp_reports/:id/*', component: <IdpReportPreview /> },
 ]
 
 export default routes

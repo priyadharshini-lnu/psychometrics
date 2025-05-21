@@ -48,18 +48,19 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
               {I18n.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
                   || moduleConfig.defaultChoiceText(choice + 1)}
             </div>
-            <Space size={8} direction="vertical">
+            <Space role="group" aria-labelledby={`${result.questionId}-choice-${choice}`} size={8} direction="vertical">
               {_.times(props.scalePoints, (scale) => {
                 const object = _.find(result.answers, { scale, choice }) || {}
                 return (
                   <div key={scale}>
                     <Space size={0}>
                       <InputComponent
+                        name={choice}
                         disabled={readOnly}
                         checked={object.value || false}
                         onChange={e => changeValue(scale, choice, e)}
                         // eslint-disable-next-line max-len
-                        aria-labelledby={`${result.questionId}-choice-${choice} ${result.questionId}-scalepoint-${scale}`}
+                        aria-labelledby={`${result.questionId}-scalepoint-${scale}`}
                       />
                       <span
                         aria-hidden="true"
@@ -75,6 +76,7 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
               })}
               <Space size={0}>
                 <NotApplicableCheckbox
+                  name={choice}
                   result={result}
                   choice={choice}
                   answersType={answersType}
@@ -117,7 +119,7 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
       </div>
 
       {_.times(props.choices, choice => (
-        <div key={choice} className={styles.row}>
+        <div role="group" aria-labelledby={`${result.questionId}-choice-${choice}`} key={choice} className={styles.row}>
           <div className={styles.firstColumn}>
             <div className={styles.item}>
               <div key={choice} id={`${result.questionId}-choice-${choice}`}>
@@ -131,12 +133,12 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
               const object = _.find(result.answers, { scale, choice }) || {}
               return (
                 <InputComponent
+                  name={choice}
                   disabled={readOnly}
                   key={scale}
                   checked={object.value || false}
                   onChange={e => changeValue(scale, choice, e)}
-                  // eslint-disable-next-line max-len
-                  aria-labelledby={`${result.questionId}-choice-${choice} ${result.questionId}-label-${scale} ${result.questionId}-scalepoint-${scale}`}
+                  aria-labelledby={`${result.questionId}-scalepoint-${scale}`}
                 />
               )
             })}
@@ -164,6 +166,7 @@ const NotApplicableCheckbox = ({
   return (
     <div>
       <InputComponent
+        name={choice}
         disabled={readOnly}
         onChange={e => changeNotApplicable(choice, e)}
         checked={checked || false}

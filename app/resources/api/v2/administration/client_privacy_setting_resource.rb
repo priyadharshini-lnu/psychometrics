@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ClientPrivacySettingResource < Api::V2::Administration::BaseResource
-  attributes :id, :disable_data_processing
+  attributes :disable_data_processing
 
   has_one :client
 

@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import ApiAction from 'interfaces/ApiAction'
 import { debounce } from 'lodash'
 import { Client } from 'modules/admin/modules/client/core/clients'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
   Button, Modal, Alert, Form, Input, Select, Switch,
 } from 'antd'
 import { useParams } from 'react-router'
 import Event from 'interfaces/Event'
 import { Project } from '~/modules/admin/modules/client/core/projects'
-import DownloadSampleFile from '~/modules/admin/components/DownloadSampleFile'
 import { useResources } from '~/hooks/useResources'
 
 const { Option } = Select
@@ -20,15 +19,15 @@ interface OwnProps {
   close(): void,
   handleImport: (data: FormData,
     projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
-  csvData: string,
+  csvFilePath: string,
   title: string,
-  allowGlobalImport: boolean
+  allowGlobalImport: boolean,
 }
 
 export const SkillsImportModal: React.FC<OwnProps> = ({
   close,
   handleImport,
-  csvData,
+  csvFilePath,
   title,
   allowGlobalImport,
 }) => {
@@ -91,7 +90,6 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         <Form.Item
           name="ownerId"
           label={I18n.t('common.column.client')}
-          rules={[{ required: true }]}
         >
           <Select
             showSearch
@@ -155,10 +153,12 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
       ]}
     >
       <div className="mbl" style={{ fontSize: '16px' }}>
-        <DownloadSampleFile
-          fileData={csvData}
-          buttonText={I18n.t('administration.skills.import.download_example_csv')}
-        />
+        <a href={csvFilePath}>
+          <CloudDownloadOutlined />
+          <span className="mls">
+            {I18n.t('administration.skills.import.download_example_csv')}
+          </span>
+        </a>
       </div>
       {errors.length ? (
         <Alert
@@ -215,7 +215,6 @@ const ProjectDropdown = ({ form, owner }) => {
     <Form.Item
       name="projectId"
       label={I18n.t('common.column.project')}
-      rules={[{ required: true }]}
     >
       <Select
         disabled={!owner}

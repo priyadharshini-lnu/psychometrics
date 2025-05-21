@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Button, MenuProps, Typography,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useParams } from 'react-router'
+import { MenuItem } from '~/interfaces/Antd'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
 import { DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
 import { Resource } from '~/modules/admin/components/Resource'
@@ -123,7 +123,7 @@ const getActionsMenuProps = ({ developmentAction, openModal }: ActionMenuData):M
           {I18n.t('common.actions.edit')}
         </Button>),
     },
-  ].filter(m => m) as ItemType[]
+  ].filter(m => m) as MenuItem[]
 
   return ({ items: menuItems })
 }

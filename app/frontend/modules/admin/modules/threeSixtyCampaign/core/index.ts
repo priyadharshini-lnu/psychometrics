@@ -10,6 +10,7 @@ const RESET_NOMINATIONS = 'threeSixty/RESET_NOMINATIONS'
 const RESCORE_ASSESSMENT = 'threeSixty/RESCORE_ASSESSMENT'
 const REGENERATE_REPORTS = 'threeSixty/REGENERATE_REPORTS'
 const BULK_DOWNLOADS = 'threeSixty/BULK_DOWNLOADS'
+const BULK_MARK_AS_DONE = 'threeSixty/BULK_MARK_AS_DONE'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 const EXPORT_COMPLETION_STATUSES = 'threeSixty/EXPORT_COMPLETION_STATUSES'
 const EXPORT_RAW_RESULTS = 'threeSixty/EXPORT_RAW_RESULT'
@@ -59,6 +60,27 @@ export const bulkDownloads = (campaignId: number, selectedLocales: string[]) => 
     body: { selectedLocales },
   },
 })
+
+export const markAsDone = (
+  campaignId: number,
+  status: string,
+  isAllSelected: boolean,
+  selectedKeys: string[],
+  excludedKeys: string[],
+) => {
+  const body = isAllSelected
+    ? { excluded_ids: excludedKeys, status }
+    : { selected_ids: selectedKeys, status }
+
+  return {
+    type: BULK_MARK_AS_DONE,
+    request: {
+      method: 'patch',
+      url: `/administration/threesixty_campaigns/${campaignId}/subjects/bulk_update_evaluation_status`,
+      body,
+    },
+  }
+}
 
 
 export const exportCompletionStatuses = (campaignId: number) => ({

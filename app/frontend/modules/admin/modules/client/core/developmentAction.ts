@@ -18,6 +18,7 @@ export const DevelopmentActionTR = t.intersection([
   t.type({
     name: t.string,
     description: t.string,
+    defaultLanguage: t.string,
     project: t.union([
       t.type({
         id: t.string,

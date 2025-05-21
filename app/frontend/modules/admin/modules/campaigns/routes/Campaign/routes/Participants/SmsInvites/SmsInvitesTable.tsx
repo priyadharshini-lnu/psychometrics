@@ -7,7 +7,7 @@ import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import settings from '~/modules/admin/settings'
 import Modals from '~/modules/admin/components/Modals/'
@@ -239,7 +239,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
 
 
 const getActionsMenuProps = ({ onEdit, onRemove, permissions }): MenuProps => {
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
   permissions.update && menuItems.push({
     key: 'edit',
     label: I18n.t('common.actions.edit'),

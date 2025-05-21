@@ -2,8 +2,6 @@
 
 module Administration
   class ImportDevelopmentActionTranslations < BaseCommand
-    REQUIRED_FIELDS = %w[ID Locale Name Description].freeze
-
     def initialize(file_url, project_id)
       @file_url = file_url.to_s
       @project_id = project_id
@@ -48,44 +46,64 @@ module Administration
     end
 
     def process_csv_data(csv_data)
-      validate_headers(csv_data.headers)
-      return if @errors.any?
+      process_by_rows(csv_data)
+    end
+
+    def process_by_rows(csv_data)
+      grouped_rows = {}
 
       csv_data.each do |row|
-        process_row(row)
+        row_hash = row.to_h
+        id_with_field = row_hash['ID'].to_s
+        next unless id_with_field.include?('#')
+
+        id, field = id_with_field.split('#', 2)
+        grouped_rows[id] ||= {}
+        grouped_rows[id][field] = row_hash.except('ID')
+      end
+
+      grouped_rows.each do |id, fields|
+        process_development_action(id, fields)
       end
     end
 
-    def validate_headers(headers)
-      missing_fields = REQUIRED_FIELDS - headers
-      if missing_fields.any?
-        @errors << I18n.t('administration.development_action_translations.import.errors.missing_columns',
-                          fields: missing_fields.join(', '))
-      end
-    end
-
-    def process_row(row)
-      row_data = row.to_h.transform_values do |value|
-        Utility::String.remove_csv_injection_marker(value.to_s.strip)
-      end
-
-      process_translation(row_data)
-    end
-
-    def process_translation(row_data)
-      development_action = DevelopmentAction.find_by(id: row_data['ID'], project_id: @project_id)
+    def process_development_action(id, fields)
+      development_action = DevelopmentAction.find_by(id: id, project_id: @project_id)
       unless development_action
         @errors << I18n.t('administration.development_action_translations.import.errors.development_action_not_found',
-                          id: row_data['ID'],
+                          id: id,
                           project_id: @project_id)
         return
       end
 
-      locale = row_data['Locale'].to_sym
+      name_fields = fields['Name'] || {}
+      description_fields = fields['Description'] || {}
+
+      name_fields.each do |header, value|
+        locale = extract_locale_from_header(header)
+        next unless locale
+
+        update_translation(development_action, locale, value, description_fields[header])
+      end
+    end
+
+    def extract_locale_from_header(header)
+      # Headers are in format "Language Name / locale_code"
+      header.split(' / ').last&.to_sym
+    rescue StandardError
+      nil
+    end
+
+    def update_translation(development_action, locale, name, description)
+      return if name.blank? && description.blank?
+
+      cleaned_name = Utility::String.remove_csv_injection_marker(name.to_s.strip)
+      cleaned_description = Utility::String.remove_csv_injection_marker(description.to_s.strip) if description
+
       Mobility.with_locale(locale) do
         development_action.update!(
-          name: row_data['Name'],
-          description: row_data['Description']
+          name: cleaned_name.presence || development_action.name,
+          description: cleaned_description.presence || development_action.description
         )
       end
     rescue ActiveRecord::RecordInvalid => e

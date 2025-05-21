@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::DataReportResource < Api::V2::Administration::BaseResource
-  attributes :id, :name, :configuration, :updated_at
+  attributes :name, :configuration, :updated_at
 
   has_one :owner, class_name: 'Client'
   has_one :last_updated_by, class_name: 'User'

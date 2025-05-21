@@ -5,6 +5,8 @@ import {
 import { useParams } from 'react-router-dom'
 import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
 import { SimulationDetails } from './SimulationDetails'
+import { SavilleDetails } from './SavilleDetails'
+import { PearsonDetails } from './PearsonDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import RawJSON from './RawJSON'
 
@@ -18,6 +20,7 @@ interface Props {
     campaignId: number, campaignAssessmentId: number, body: {assessment: {id: string}}
   ) => Promise<{ response: unknown; }>
   loadingUpdateMettlSchedule: boolean
+  isSuperAdmin: boolean
 }
 
 export const DetailsDrawer: FC<Props> = ({
@@ -26,6 +29,7 @@ export const DetailsDrawer: FC<Props> = ({
   campaignId,
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
+  isSuperAdmin,
 }) => {
   if (!assessment) {
     return null
@@ -97,10 +101,23 @@ export const DetailsDrawer: FC<Props> = ({
           campaignId={campaignId}
         />
 
-        <RawJSON
-          I18n={I18n}
-          usersResultId={assessment?.usersResultId}
-        />
+        {isSuperAdmin && (
+          <>
+            <SavilleDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
+
+            <PearsonDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
+            <RawJSON
+              I18n={I18n}
+              usersResultId={assessment?.usersResultId}
+            />
+          </>
+        )}
       </Row>
     </Drawer>
   )

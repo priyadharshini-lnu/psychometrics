@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Button, MenuProps, message,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Report } from '~/modules/admin/modules/client/core/reports'
 import { ReportBundleReport } from '~/modules/admin/modules/client/core/reportBundleReports'
@@ -103,7 +103,7 @@ const getActionsMenuProps = ({
         </>
       ),
     },
-  ].filter(m => m) as ItemType[]
+  ].filter(m => m) as MenuItem[]
 
   return ({ items: menuItems })
 }

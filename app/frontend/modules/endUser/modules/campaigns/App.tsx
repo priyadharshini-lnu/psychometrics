@@ -16,6 +16,7 @@ import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import '~/styles/common.less'
 import RouteList from '~/components/RouteList'
+import ErrorModal from '~/components/ErrorModal'
 
 const { antdLocale, I18n } = window
 const { useToken } = theme
@@ -77,6 +78,7 @@ function App () {
             <DisplayExceptionModal />
             <SessionTimeoutModal />
             <IncorrectResponseErrorModal />
+            <ErrorModal />
           </Router>
         </GlintProvider>
       </DefaultAntThemeWrapper>

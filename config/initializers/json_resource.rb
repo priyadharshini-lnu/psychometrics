@@ -34,4 +34,5 @@ JSONAPI.configure do |config|
 
   config.always_include_to_one_linkage_data = true
   config.whitelist_all_exceptions = true
+  config.warn_on_missing_routes = false
 end

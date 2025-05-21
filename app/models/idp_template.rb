@@ -2,6 +2,7 @@
 
 class IdpTemplate < ApplicationRecord
   include RansackSearchableFields
+  include ActiveStorageAttachable
 
   belongs_to :project, class_name: 'Client'
   belongs_to :report
@@ -18,6 +19,15 @@ class IdpTemplate < ApplicationRecord
   store_accessor :skill_settings, %i[behavioral_global behavioral_client], suffix: true
   store_accessor :skill_settings, %i[technical_global technical_client], suffix: true
 
+  has_one_image_attachment :client_logo, variants: [:thumb]
+  has_one_image_attachment :background, variants: [:thumb]
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/projects/#{project.id}/idp_templates/#{id}/#{attribute_name}/#{filename}"
+  end
+
+  enum :logo_type, { none: 0, mercer_only: 1, client_only: 2, both: 3 }, prefix: true
+
   VALID_SKILL_SETTINGS = %w[none all selected].freeze
 
   validates :behavioral_global_skill_settings, inclusion: VALID_SKILL_SETTINGS, allow_blank: true
@@ -25,7 +35,7 @@ class IdpTemplate < ApplicationRecord
   validates :technical_global_skill_settings, inclusion: VALID_SKILL_SETTINGS, allow_blank: true
   validates :technical_client_skill_settings, inclusion: VALID_SKILL_SETTINGS, allow_blank: true
 
-  validate :skills_must_be_present_if_selected
+  validate :skills_or_tags_must_be_present_if_selected
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name]
@@ -90,10 +100,17 @@ class IdpTemplate < ApplicationRecord
     end
   end
 
-  def skills_must_be_present_if_selected
-    if [behavioral_global_skill_settings, behavioral_client_skill_settings, technical_global_skill_settings,
-        technical_client_skill_settings].include?('selected') && skills.empty?
-      errors.add(:skills, 'must be present if any skill setting is selected')
+  def skills_or_tags_must_be_present_if_selected
+    result = IdpTemplates::SkillsOrTagsPresenceValidator.call(
+      self,
+      skills,
+      project_id
+    )
+
+    if result[:errors].present?
+      result[:errors].each do |attribute, error|
+        errors.add(attribute, error)
+      end
     end
   end
 end

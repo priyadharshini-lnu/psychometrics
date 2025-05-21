@@ -55,6 +55,10 @@ module Administration
         has_permission?(:campaigns, :manage)
       end
 
+      def bulk_update_evaluation_status?
+        has_permission?(:results, :bulk_update_evaluation_status)
+      end
+
       def unmark_as_done?
         has_permission?(:campaigns, :manage)
       end

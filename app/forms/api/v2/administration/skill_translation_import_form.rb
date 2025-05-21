@@ -6,7 +6,7 @@ module Api
       class SkillTranslationImportForm
         include ActiveModel::Model
 
-        REQUIRED_FIELDS = %w[ID Locale Name Description].freeze
+        REQUIRED_FIELDS = %w[ID].freeze
 
         attr_accessor :file, :project_id
         attr_reader :processed_file
@@ -25,31 +25,22 @@ module Api
           errors.add(:file, I18n.t('administration.skills.import.file.must_be_csv'))
         end
 
-        # rubocop:disable Metrics/CyclomaticComplexity
-        # rubocop:disable Metrics/PerceivedComplexity
         def validate_file_content
           return if file.blank?
           return unless file.content_type.in?(%w[text/csv application/csv])
 
           begin
             file.rewind if file.respond_to?(:rewind)
-            csv_data = CSVSafe.parse(file.read)
-            headers = csv_data.first&.map { |h| Utility::String.remove_csv_injection_marker(h) } || []
+            csv_data = CSVSafe.parse(file.read, headers: true)
 
             # Check for required fields
-            missing_fields = REQUIRED_FIELDS - headers
-            if missing_fields.any?
-              errors.add(:base, I18n.t('administration.skills.translations.import.errors.missing_required_columns',
-                                       columns: missing_fields.join(', ')))
+            validate_headers(csv_data.headers)
+            if errors.present?
               return
             end
 
-            # Validate each row
-            csv_data[1..]&.each_with_index do |row, index|
-              row_number = index + 2
-              sanitized_row = row.map { |cell| Utility::String.remove_csv_injection_marker(cell) }
-              validate_row(sanitized_row, headers, row_number)
-            end
+            # Validate CSV structure
+            validate_row_format(csv_data)
           rescue CSV::MalformedCSVError => e
             errors.add(:base, I18n.t('administration.skills.translations.import.errors.invalid_csv_format',
                                      message: e.message))
@@ -58,37 +49,41 @@ module Api
           end
         end
 
-        def validate_row(row, headers, row_number)
-          return if row.blank?
-
-          row_data = headers.zip(row).to_h
-
-          # Validate ID
-          if row_data['ID'].blank?
-            errors.add(:base, I18n.t('administration.skills.translations.import.errors.row_id_blank',
-                                     row: row_number))
-
+        def validate_headers(headers)
+          sanitized_headers = headers&.map { |h| Utility::String.remove_csv_injection_marker(h) } || []
+          missing_fields = REQUIRED_FIELDS - sanitized_headers
+          if missing_fields.any?
+            errors.add(:base, I18n.t('administration.skills.translations.import.errors.missing_columns',
+                                     columns: missing_fields.join(', ')))
           end
+        end
 
-          # Validate Locale
-          if row_data['Locale'].blank?
-            errors.add(:base, I18n.t('administration.skills.translations.import.errors.row_locale_blank',
-                                     row: row_number))
-          elsif I18n.available_locales.exclude?(row_data['Locale'].to_sym)
-            errors.add(:base, I18n.t('administration.skills.translations.import.errors.row_locale_invalid',
-                                     row: row_number, locale: row_data['Locale']))
-          end
+        def validate_row_format(csv_data)
+          csv_data.each_with_index do |row, index|
+            row_number = index + 2
+            row_data = row.to_h.transform_values do |value|
+              Utility::String.remove_csv_injection_marker(value.to_s.strip)
+            end
 
-          # Validate Name
-          if row_data['Name'].blank?
-            errors.add(:base, I18n.t('administration.skills.translations.import.errors.row_name_blank',
-                                     row: row_number))
-          end
+            id_field = row_data['ID']
+            next if id_field.blank?
 
-          # Validate Description
-          if row_data['Description'].blank?
-            errors.add(:base, I18n.t('administration.skills.translations.import.errors.row_description_blank',
-                                     row: row_number))
+            # Format is expected to be like "123#Name" or "123#Description"
+            parts = id_field.split('#')
+            unless parts.size == 2
+              errors.add(:base, I18n.t('administration.skills.translations.import.errors.invalid_id_format',
+                                       row: row_number, id: id_field))
+              next
+            end
+
+            parts[0]
+            field_type = parts[1]
+
+            # Validate field_type is either 'Name' or 'Description'
+            unless %w[Name Description].include?(field_type)
+              errors.add(:base, I18n.t('administration.skills.translations.import.errors.invalid_field_type',
+                                       row: row_number, field_type: field_type))
+            end
           end
         end
 
@@ -102,5 +97,3 @@ module Api
     end
   end
 end
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/PerceivedComplexity

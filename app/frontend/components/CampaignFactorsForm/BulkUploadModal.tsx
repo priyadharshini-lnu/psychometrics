@@ -97,6 +97,11 @@ const BulkUploadModal: React.FC<props> = ({
       ]}
     >
       <div className={styles.modalBody}>
+        <p>
+          <a target="_blank" href="/example_csv/import_campaign_factors_sample_file.xlsx">
+            {I18n.t('administration.reports.bulk_upload.sample_file')}
+          </a>
+        </p>
         <Upload.Dragger
           accept=".xlsx, .xls"
           action=""

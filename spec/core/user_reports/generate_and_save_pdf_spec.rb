@@ -15,6 +15,7 @@ describe UserReports::GenerateAndSavePdf do
              subject: user,
              evaluator: user })
   end
+
   let(:user_report) { create(:user_report, user: user, report: report) }
   let(:assessment) { create(:assessment) }
   let(:report) { create(:report, assessments: [assessment]) }

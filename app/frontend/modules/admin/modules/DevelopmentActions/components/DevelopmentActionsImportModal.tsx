@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import { debounce } from 'lodash'
 import { useParams } from 'react-router'
 import { Client } from 'modules/admin/modules/client/core/clients'
@@ -12,7 +12,6 @@ import {
 import Event from 'interfaces/Event'
 import ApiAction from 'interfaces/ApiAction'
 import { Project } from '~/modules/admin/modules/client/core/projects'
-import DownloadSampleFile from '~/modules/admin/components/DownloadSampleFile'
 
 import { useResources } from '~/hooks/useResources'
 
@@ -23,7 +22,7 @@ const { I18n } = window
 interface OwnProps {
   close(): void
   handleImport: (data: FormData, projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
-  csvData: string,
+  csvFilePath: string,
   title: string,
   allowGlobalImport: boolean
 }
@@ -31,7 +30,8 @@ interface OwnProps {
 export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   close,
   handleImport,
-  csvData, title,
+  csvFilePath,
+  title,
   allowGlobalImport,
 }) => {
   const params = useParams()
@@ -155,10 +155,12 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
       ]}
     >
       <div className="mbl" style={{ fontSize: '16px' }}>
-        <DownloadSampleFile
-          fileData={csvData}
-          buttonText={I18n.t('administration.development_actions.import.download_example_csv')}
-        />
+        <a href={csvFilePath}>
+          <CloudDownloadOutlined />
+          <span className="mls">
+            {I18n.t('administration.development_actions.import.download_example_csv')}
+          </span>
+        </a>
       </div>
       {errors.length ? (
         <Alert

@@ -4,8 +4,8 @@ import {
   message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import SearchOutlined from '@ant-design/icons/SearchOutlined'
+import { MenuItem } from '~/interfaces/Antd'
 import { ResourceType } from '~/modules/admin/components/UserSavedFilters/core'
 import { useSavedFilter } from '~/modules/admin/components/UserSavedFilters'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
@@ -96,7 +96,7 @@ const TasksListComponent: React.FC<Props> = ({
     resource:string, query:string, filter: string, val: string | string[] = '', values?: FilterOption[],
   ) => ({
     filterDropdown: ({ close, setSelectedKeys, selectedKeys }) => {
-      const [items, setItems] = useState<ItemType[]>([])
+      const [items, setItems] = useState<MenuItem[]>([])
       const [searchQuery, setSearchQuery] = useState<string>('')
 
       const initItems = useCallback((payload?: FilterOption[]) => {

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useNavigate } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import { Weightages } from './Weigthages'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -38,7 +38,7 @@ const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const navigate = useNavigate()
   const prefix = `${settings.urlPrefix}/:campaignId/scoring`
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     ...(campaignPermissions.viewCampaignScoring ? [{
       key: '/subject_scores',
       label: I18n.t('administration.scoring.tabs.subject_scores'),

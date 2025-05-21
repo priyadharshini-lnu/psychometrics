@@ -9,9 +9,12 @@ module Threesixty::InitialState
     end
   end
 
-  def set_init_state # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
+  def set_init_state
     @current_project ||= GetProjectBySubdomain.call!(request.subdomain)
-
+    @idp_setting ||= @current_project.idp_setting
     @init_state = {
       campaigns: {
         project: {
@@ -54,7 +57,13 @@ module Threesixty::InitialState
         lighthousePrivacyUrl: Settings.privacy_url,
         privacyPolicyVersion: @current_project.current_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text,
-        showBookings: show_bookings?
+        showBookings: show_bookings?,
+        idp: {
+          allowGlobalSkills: @idp_setting&.allow_global_skills || false,
+          managerApprovesIdp: @idp_setting&.manager_approves_idp || false,
+          managerCanEditIdp: @idp_setting&.manager_can_edit_idp || false,
+          requireAllDevelopmentActionsComplete: @idp_setting&.require_all_development_actions_complete || false
+        }
       },
       currentUser: serialized_current_user,
       liveChat: {
@@ -96,3 +105,6 @@ module Threesixty::InitialState
     (ENV['MAINTENANCE_START_DATETIME'].to_time - Time.zone.now).to_i if ENV['MAINTENANCE_START_DATETIME']
   end
 end
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity

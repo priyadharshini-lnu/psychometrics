@@ -28,7 +28,7 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
-    add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), administration_assessments_path
+    add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), "#{admin_path}/assessments"
   end
 
   def set_resource

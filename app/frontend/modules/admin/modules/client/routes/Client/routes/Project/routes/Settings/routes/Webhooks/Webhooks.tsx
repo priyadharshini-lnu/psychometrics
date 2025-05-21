@@ -5,7 +5,7 @@ import {
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { PlusOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { UpdateResource, BaseMeta } from '~/hooks/useResources/interfaces'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
@@ -241,7 +241,7 @@ interface ActionMenuData {
 const getActionsMenuProps = ({
   webhook, removeWebhook, openModal, updateWebhook,
 }:ActionMenuData):MenuProps => {
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     {
       key: I18n.t('administration.project_tabs.webhooks.actions.edit.key'),
       label: I18n.t('administration.project_tabs.webhooks.actions.edit.label'),

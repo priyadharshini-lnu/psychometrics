@@ -35,11 +35,18 @@ export const LangDropdown: React.FC<Props> = ({
     onChange(key)
   }
 
-  const menuItems = _.map(locales, locale => (
-    locale !== currentLocale ? (
-      { key: locale, label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span> }
-    ) : null
-  ))
+  const menuItems = _.map(locales, (locale) => {
+    const localeItem = { key: locale, label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span> }
+
+    if (isMobile) {
+      return localeItem
+    }
+    return (
+      locale !== currentLocale ? (
+        localeItem
+      ) : null
+    )
+  })
 
   if (locales && locales?.length <= 1) return null
 

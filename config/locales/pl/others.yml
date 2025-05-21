@@ -440,6 +440,10 @@ pl:
     two_factor_authentication:
       attempt: Wprowadź kod OTP otrzymany na zarejestrowany adres e-mail
       code_has_been_sent: Nowy kod OTP został wysłany na zarejestrowany adres e-mail
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane”, wybierz tag lub umiejętność.
   emails:
     subject_relationship_table:
       subject_email: Przedmiot E-mail
@@ -574,8 +578,183 @@ pl:
         requested_rescheduling_rejected: Wnioskowana zmiana harmonogramu Odrzucona
     'yes': Tak
   idp:
+    actions: Działania
+    board: Tablica
+    details: Szczegóły
+    development_actions:
+      action_private: Tak
+      action_public: Nie
+      add_development_action: Dodaj działanie rozwojowe
+      all: Wszystkie
+      approved: Zatwierdzone
+      board_view:
+        completed: Ukończone
+        in_progress: W trakcie
+        not_started: Nie rozpoczęte
+      completion: Ukończenie
+      create_my_own: Utwórz własne
+      date_range: Data rozpoczęcia - Data zakończenia
+      generate_by_ai: Wygeneruj przez AI
+      generate_more: Wygeneruj więcej
+      generating_development_actions: Generowanie działań rozwojowych...
+      heading: Działania rozwojowe
+      incomplete_error: Niekompletne działania rozwojowe
+      incomplete_error_message: Niektóre działania rozwojowe są niekompletne. Uzupełnij je przed przesłaniem swojego IDP.
+      incomplete_warning: Niekompletne działania rozwojowe
+      incomplete_warning_message: Niektóre działania rozwojowe są niekompletne. Czy na pewno chcesz oznaczyć swój IDP jako ukończony?
+      learning_from_others: Uczenie się od innych
+      manage_skills: Zarządzaj umiejętnościami
+      marathon: Maraton
+      mark_as_complete: Oznacz jako ukończone
+      no_development_actions: Brak działań rozwojowych
+      on_the_job: W trakcie pracy
+      other: Inne
+      private: Prywatne
+      remove: Usuń
+      skill: Umiejętność
+      sprint: Sprint
+      start_plan: Rozpocznij plan
+      structured_learning: Zorganizowane uczenie się
+      submit_plan: Prześlij plan
+      write_here: Pisz tutaj...
+    direct_report_details: Szczegóły bezpośrednich podwładnych
+    initial_steps:
+      add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
+      add_skill_group_title: Eksploracja Twoich umiejętności %{category}
+      add_skills: Dodaj
+      add_skills_step: Dodaj umiejętności
+      continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
+      getting_started: Rozpoczęcie
+      getting_started_info: Witamy w kreatorze Indywidualnego Planu Rozwoju (IDP). Ten plan pomoże Ci zidentyfikować, zarządzać i śledzić Twoje zawodowe i osobiste cele, a także kroki, które musisz podjąć, aby je osiągnąć. Twoje cele zawodowe mogą obejmować behawioralne, przywódcze, a także techniczne obszary rozwoju. Twój IDP jest istotnym narzędziem wspierającym rozwój kariery i doskonalenie umiejętności.
+      less_skills: Pokaż mniej umiejętności
+      more_skills: Odkryj więcej umiejętności
+      next: Dalej
+      no_skills_selected: Nie wybrano umiejętności.
+      rate_skills: Oceń umiejętności
+      rate_skills_description: Teraz, gdy wybrałeś swoje priorytety rozwojowe, oceń siebie w każdym z następujących obszarów. Pamiętaj, aby oceniać siebie na podstawie swojego obecnego poziomu, a nie przeszłego lub pożądanego.
+      rate_skills_title: Ocena Twoich umiejętności
+      rating_column_header: Twoja samoocena
+      select_skills: Wybierz swoje umiejętności
+      select_skills_placeholder: Wybierz umiejętności
+      selected_skills: Wybrane umiejętności
+      skill_column_header: Umiejętność
+      skill_gap_report: Raport luk w umiejętnościach
+    list: Lista
+    my_direct_reports: Moi bezpośredni podwładni
+    my_plan:
+      development_plan: Plan rozwoju
+      graphs:
+        categories: Kategorie
+      save_skills: Zapisz umiejętności
     pdf:
-      header: Witam
+      approval_status: Status zatwierdzenia
+      cover:
+        fields:
+          assigned_data: Data przydzielenia
+          completion_date: Data ukończenia
+          division: Dział
+          name: Imię i nazwisko
+          publish_date: Data publikacji
+          review_date: Data przeglądu
+          role: Obecna rola
+      guidelines:
+        cards:
+          c1:
+            content: Uwzględnij umiejętności, wiedzę i zdolności, które wymagają rozwoju. Upewnij się, że są one konkretne, mierzalne, osiągalne, realistyczne i możliwe do zrealizowania w wymienionych terminach.
+            title: Cele rozwojowe
+          c2:
+            content: Jest to oparte na kompetencji, która ma zostać rozwinięta na podstawie doświadczenia z oceny.
+            title: Kompetencja
+          c3:
+            content: Ta sekcja zawiera Twoje działania rozwojowe oparte na modelu uczenia się 70-20-10 wymienionym poniżej. Zaleca się wybór kombinacji każdego z trzech elementów, aby zapewnić zróżnicowane podejście do nauki i rozwoju.
+            title: Aktywność
+          c4:
+            content: Upewnij się, że Twoje terminy są realistyczne w oparciu o to, kiedy cel może zostać zrealizowany. W razie potrzeby wprowadź odpowiednie poprawki.
+            title: Harmonogram
+          c5:
+            content: Użyj sekcji postępu, aby wesprzeć rozwój na zidentyfikowanych ścieżkach.
+            title: Postęp
+        chart:
+          collaboration: "<strong>20%</strong>Nauka <br /> współpracy"
+          job: "<strong>70%</strong>Nauka <br />w pracy"
+          learn: "<strong>10%</strong>Formalna nauka"
+        content:
+          list:
+            r1: Pamiętaj, że ta lista jest jedynie orientacyjna, a dodatkowe ścieżki rozwoju mogą być rozważane na podstawie indywidualnych aspiracji, zaleceń Twojego menedżera, a także priorytetów biznesowych organizacji.
+            r2: Pamiętaj, że uruchomienie niektórych z tych ścieżek rozwoju będzie zależeć od ogólnoorganizacyjnej strategii edukacji i uczenia się.
+            r3: Rozważ zalecane ścieżki zaznaczone poniżej podczas opracowywania swojego Indywidualnego Planu Rozwoju.
+          main: Ta sekcja zawiera zbiorczą listę wszystkich ścieżek rozwoju, mając na uwadze najlepsze praktyki uczenia się, tj. wytyczne 70-20-10, które zapewniają progresywną podróż łączącą naukę w klasie, coaching i naukę w pracy. Na podstawie wyników doświadczenia w rozwoju przywództwa i priorytetów biznesowych, zalecane zostały możliwe ścieżki rozwoju, które można rozważyć w swoim rozwoju.
+        learn_cards:
+          collaboration:
+            list:
+            - Zaoferuj coaching lub mentoring innym
+            - Poproś o mentoring eksperta w swojej dziedzinie
+            - Zdobądź coacha, który wesprze Twój rozwój
+            - Utwórz grupę współpracy do omawiania bieżących wyzwań w biznesie
+            - Uzyskaj formalną i nieformalną informację zwrotną od innych
+            - Aktywnie uczestnictwo w stowarzyszeniach i sieciach branżowych
+            - Buduj własne sieci zewnętrzne
+            title: Nauka współpracy (20%) <br/> Rozwój poprzez innych
+          job:
+            list:
+            - Przyjmij stanowiska kierownicze w komitetach interesariuszy lub zarządzających
+            - Zgłoś się na ochotnika do prowadzenia projektów zarządzania zmianą dla organizacji
+            - Rozważ podejmowanie wymagających zadań
+            - Współpracuj z innymi działami
+            - Rozważ prowadzenie projektów poza swoją organizacją
+            - Ściśle współpracuj z zewnętrznymi ekspertami branżowymi przy wspólnych projektach
+            title: Nauka w pracy (70%) <br/> Rozwój poprzez doświadczenie
+          learn:
+            list:
+            - Przyjmij stanowiska kierownicze w komitetach interesariuszy lub zarządzających
+            - Zgłoś się na ochotnika do prowadzenia projektów zarządzania zmianą dla organizacji
+            - Rozważ podejmowanie wymagających zadań
+            - Współpracuj z innymi działami
+            - Rozważ prowadzenie projektów poza swoją organizacją
+            - Ściśle współpracuj z zewnętrznymi ekspertami branżowymi przy wspólnych projektach
+            title: Formalna nauka (10%) <br/> Rozwój poprzez zorganizowaną naukę
+        title: Wytyczne do Twojego IDP
+      idp:
+        end_date: Data zakończenia
+        self_rating: Samoocena
+        start_date: Data rozpoczęcia
+        subtitle:
+          behavioural: Behawioralne
+          technical: Techniczne
+        title: Indywidualny Plan Rozwoju
+      last:
+        end_report: Koniec raportu
+      reflections:
+        subtitle: Pytania dotyczące ogólnego rozwoju zawodowego
+        title: Refleksje do Twojego IDP
+      skill_categories:
+        behavioral: Behawioralne
+        technical: Techniczne
+      statuses:
+        approved: Przejrzane i zatwierdzone
+        completed: Ukończone
+        not_reviewed: Nieprzejrzane
+        pending_approval: W trakcie przeglądu
+      summary:
+        ai_count: Generatywna AI
+        collaborative_learn: Nauka współpracy
+        created_by: Utworzone przez
+        current_status: Aktualny status IDP
+        custom: Niestandardowe
+        custom_count: Niestandardowe
+        da_count: Liczba działań rozwojowych
+        formal_learn: Formalna nauka
+        generated_ai: Generatywna AI
+        learn_on_job: Nauka w pracy
+        learn_pathway: Ścieżka nauki
+        lib_count: Biblioteka IDP
+        library: Biblioteka IDP
+        skills_count: Liczba umiejętności
+        title: Podsumowanie raportu
+    profile_details: Szczegóły profilu
+    skill_gap_report:
+      continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
+      title: Raport luk w umiejętnościach
   idp_templates:
     errors:
       user_idp_template_not_found: Nie przypisano do ciebie żadnego szablonu IDP.

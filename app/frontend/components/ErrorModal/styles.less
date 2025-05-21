@@ -1,0 +1,40 @@
+.modalContainer {
+  .title {
+    svg {
+      font-size: 36px;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgb(255, 51, 51);
+    text-align: center;
+  }
+}
+
+.modalContainer :global(.ant-modal-content) {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContainer :global(.ant-modal-footer) {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+}

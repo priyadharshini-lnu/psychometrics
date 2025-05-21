@@ -15,6 +15,7 @@ module Api
             attribute[:description].filled(:string)
             attribute[:category].filled(:string)
             attribute[:learning_style].filled(:string)
+            attribute[:default_language].filled(:string)
 
             # Optional fields - only validated if present
             optional(:course_url).maybe(:str?)

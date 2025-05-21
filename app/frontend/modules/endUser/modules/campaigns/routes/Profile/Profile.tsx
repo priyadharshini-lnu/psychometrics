@@ -92,9 +92,11 @@ function ProfileComponent ({
   const uploadRef = useRef<HTMLDivElement | null>(null)
   const genderSelectRef = useRef<HTMLDivElement | null>(null)
   const localeSelectRef = useRef<HTMLDivElement | null>(null)
+  const selectedGender = Form.useWatch('gender', form)
+  const selectedLocale = Form.useWatch('locale', form)
 
-  useSetAccessibilityAttributesOnSelect(genderSelectRef, 'enduser_profile_gender')
-  useSetAccessibilityAttributesOnSelect(localeSelectRef, 'enduser_profile_locale')
+  useSetAccessibilityAttributesOnSelect(genderSelectRef, 'enduser_profile_gender', selectedGender)
+  useSetAccessibilityAttributesOnSelect(localeSelectRef, 'enduser_profile_locale', selectedLocale)
 
   useEffect(() => {
     focusFirstErrorField(errors)

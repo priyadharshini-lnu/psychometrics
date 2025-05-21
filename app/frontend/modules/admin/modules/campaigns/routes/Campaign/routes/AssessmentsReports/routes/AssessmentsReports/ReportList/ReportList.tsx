@@ -3,8 +3,8 @@ import {
   Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useParams } from 'react-router-dom'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 
@@ -167,7 +167,7 @@ interface ActionMenuData {
 const getActionsMenuProps = ({
   campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData,
 }: ActionMenuData): MenuProps => {
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.export && menuItems.push({
     key: 'export',
     label: I18n.t('campaign_report.actions.export_data'),

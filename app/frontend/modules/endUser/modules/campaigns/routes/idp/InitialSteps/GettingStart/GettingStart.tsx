@@ -26,7 +26,12 @@ export const GettingStart = ({ next }) => (
         </Typography.Text>
         <VideoPlayerContainer mediaResponse={mediaResponse} />
         <div className="flex justify-center">
-          <ButtonWithArrow label="Continue" size="small" type="primary" onClick={() => next()} />
+          <ButtonWithArrow
+            label={I18n.t('common.actions.continue')}
+            size="small"
+            type="primary"
+            onClick={() => next()}
+          />
         </div>
       </Space>
     </BoxWithShadow>

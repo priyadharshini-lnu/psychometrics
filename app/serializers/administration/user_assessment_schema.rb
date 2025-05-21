@@ -45,8 +45,15 @@ module Administration
         required(:simulation_content_variations).maybe do
           array(SimulationContentVariationSchema.schema(_, _))
         end
-        required(:simulation_content_variation_id).maybe(:str?)
-        required(:simuation_time_extension).maybe(:float?)
+        required(:simulation_user_assessment_details).maybe do
+          hash(Administration::SimulationUserAssessmentSchema.schema(_, _))
+        end
+        required(:saville_user_assessment_details).maybe do
+          hash(Administration::SavilleUserAssessmentSchema.schema(_, _))
+        end
+        required(:pearson_user_assessment_details).maybe do
+          hash(Administration::PearsonUserAssessmentSchema.schema(_, _))
+        end
         required(:hogan_participant_id).maybe(:str?)
       end
     end

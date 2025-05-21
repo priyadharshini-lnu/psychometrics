@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Campaigns::SmsHistoryResource < Api::V2::Administration::BaseResource
-  attributes :id, :mobile_no, :first_name, :last_name, :segment_length, :price, :created_at, :status
+  attributes :mobile_no, :first_name, :last_name, :segment_length, :price, :created_at, :status
 
-  belongs_to :sms_record
+  has_one :sms_record
 
   ransack_filters %i[filterable_fields]
 

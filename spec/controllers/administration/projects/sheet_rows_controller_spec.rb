@@ -128,8 +128,11 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
         'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James Smith',
         'Description' => 'J1', 'Profile' => 'Software Engineer'
       })
-      expect(sheet_row.sheet_row_data[0].string_value).to eq('james@cc.com')
-      expect(sheet_row.sheet_row_data[1].string_value).to eq('James Smith')
+      name = sheet_row.sheet_row_data.find { |s| s.sheet_column.name == 'Name' }.string_value
+      email = sheet_row.sheet_row_data.find { |s| s.sheet_column.name == 'Email' }.string_value
+
+      expect(email).to eq('james@cc.com')
+      expect(name).to eq('James Smith')
     end
   end
 

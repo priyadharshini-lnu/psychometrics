@@ -56,7 +56,7 @@ module UserReports
         current_user,
         options.reverse_merge(
           lang: user_report.effective_default_language
-        ).merge(async: true, admin_job_record_id: job_record&.id)
+        ).merge(admin_job_record_id: job_record&.id)
       )
 
       return unless data[:file_path]
@@ -83,7 +83,7 @@ module UserReports
     end
 
     def async_report_generation?(report)
-      Settings.features.url_to_pdf_lambda && report.provider_internal?
+      Settings.features.url_to_pdf_faas && report.provider_internal?
     end
   end
 end

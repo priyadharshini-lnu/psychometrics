@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button, MenuProps } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { Resource } from '~/modules/admin/components/Resource'
 import {
@@ -131,7 +131,7 @@ const getActionsMenuProps = ({ smsHistory, openDrawer }: ActionMenuProps): MenuP
           {I18n.t('reports.actions.details')}
         </Button>),
     },
-  ].filter(m => m) as ItemType[]
+  ].filter(m => m) as MenuItem[]
 
   return ({ items: menuItems })
 }

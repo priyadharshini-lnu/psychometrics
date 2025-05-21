@@ -1,6 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, MutableRefObject } from 'react'
 
-export const useSetAccessibilityAttributesOnSelect = (containerRef, id) => {
+export const useSetAccessibilityAttributesOnSelect = (
+  containerRef: MutableRefObject<HTMLDivElement|null>, id:string, selectedValue:string,
+) => {
+  useEffect(() => {
+    if (!containerRef.current) { return }
+    const inputElement = containerRef.current.querySelector('input')
+
+    if (inputElement) {
+      inputElement.removeAttribute('readonly')
+      inputElement.removeAttribute('unselectable')
+    }
+  }, [])
+
   useEffect(() => {
     if (!containerRef.current) { return }
     const selectedLabel = containerRef.current.querySelector('.ant-select-selection-item')
@@ -10,10 +22,8 @@ export const useSetAccessibilityAttributesOnSelect = (containerRef, id) => {
       selectedLabel.setAttribute('id', id)
     }
     if (inputElement) {
-      inputElement.removeAttribute('readonly')
-      inputElement.removeAttribute('unselectable')
       const inputId = inputElement.getAttribute('id')
       inputElement.setAttribute('aria-labelledby', `${id} ${inputId}`)
     }
-  }, [])
+  }, [selectedValue])
 }
