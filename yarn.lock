@@ -1928,10 +1928,10 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.4.3.tgz#af975e367743fa91989cd666666aec31a8f50591"
   integrity sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==
 
-"@thetalententerprise/interactive-assessments@1.9.17":
-  version "1.9.17"
-  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.9.17/b2f7730d2ab1d38b54c70cdea29b45a461ebaf4a#b2f7730d2ab1d38b54c70cdea29b45a461ebaf4a"
-  integrity sha512-aeC5Kf9gY0HFMFFyjbmpqC3IacwJGfecIzdafj8ErnU42K8ICADrKrtCbbmQ0W98koy5QfF4viISJ8lr7j+CMg==
+"@thetalententerprise/interactive-assessments@1.9.18":
+  version "1.9.18"
+  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.9.18/62e77e9e4a96e1b410dd04bfd6944c0e7e454c9a#62e77e9e4a96e1b410dd04bfd6944c0e7e454c9a"
+  integrity sha512-QLJ7xHCmA7T3jVp086gxVRKuEGtcR1y1lNi1xyYk+H0uGANez6G214CT4Qxc7nr2S2W3Eev/zNRbtVhFUekeYg==
   dependencies:
     javascript-obfuscator "^4.0.2"
 
