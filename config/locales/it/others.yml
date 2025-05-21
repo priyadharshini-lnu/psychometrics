@@ -759,7 +759,7 @@ it:
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
         export_campaign_factors: Fattori della campagna di esportazione
-        export_campaign_scorings: Esportazione delle campagne
+        export_campaign_scorings: Esportazione delle Attività
         export_development_action_translations: Azione di sviluppo delle esportazioni Traduzioni
         export_development_actions: Azioni di sviluppo delle esportazioni
         export_dimension_as_json: Esportazione della dimensione JSON
@@ -984,7 +984,7 @@ it:
         show_uniq_identifier: Mostrare l'identificativo univoco ai rispondenti (per i sondaggi anonimi)
     instructions:
       begin_assessment: Inizia
-      cancel: Annullamento
+      cancel: Annulla
       default: Si tratta di un'attività a tempo; una volta fatto clic su Inizia la valutazione, si avrà a disposizione %{tempo} minuti per completarla.
       title: Istruzioni
     messages:
@@ -1001,7 +1001,7 @@ it:
         title: Ultima richiesta fallita
       next: Avanti
       read_only: È in modalità di sola lettura, non è possibile modificare alcun risultato.
-      save: Risparmiare
+      save: Salva
       submissionFailedAlert:
         description: Impossibile connettersi al server. Si prega di aggiornare la pagina e riprovare. Se non funziona, si prega di contattare il supporto tramite live chat o mte.surveys@mercer.com
         title: Ultima richiesta fallita
@@ -1051,7 +1051,7 @@ it:
       recording_stop_label: La registrazione si interromperà in
       requesting_permission: Richiesta di autorizzazione...
       response_recorded: Risposta registrata
-      save: Risparmiare
+      save: Salva
       saved:
         label: Video salvato
       saving: Salvataggio dei video...
@@ -1087,7 +1087,7 @@ it:
       edit_group_name: Modifica del nome del gruppo
       modal:
         delete:
-          cancel: Annullamento
+          cancel: Annulla
           failed: Impossibile eliminare il gruppo "%{nome}", contattare l'amministratore
           ok: Sì, eliminare
           text: Si è sicuri di voler eliminare il gruppo "%{nome}"?
@@ -1218,19 +1218,19 @@ it:
     begin: Iniziare le attività
     begin_btn_msg_before_prework: Prima di iniziare la campagna a tempo, è necessario completare le seguenti attività
     begin_campaign_msg: Avviare la campagna prima di effettuare le valutazioni
-    campaigns: Campagne
+    campaigns: Attività
     closed_campaign_message: Questa campagna è chiusa. Non è possibile eseguire alcuna valutazione all'interno di questa campagna.
     code_usage_limit_reached: Limite di utilizzo del codice raggiunto, contattare l'amministratore
     complete_prev: Completare tutte le valutazioni precedenti
     complete_tasks: Prima di intraprendere questa azione, completare le operazioni indicate di seguito.
     continue: Continuare a svolgere i propri compiti
-    dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le campagne.
+    dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Attività.
     dashboard_menu:
       bookings: Prenotazioni
       campaign: Campagna
       change_password: Modifica della password
       development: Sviluppo
-      home: Casa
+      home: Home
       insights: Approfondimenti
       my_direct_reports: I miei rapporti diretti
       my_plan: Il mio piano
@@ -1273,22 +1273,22 @@ it:
       dashboard: Cruscotto
       reports: Rapporti
     profile:
-      complete_heading: Il vostro profilo è completo
+      complete_heading: Il Tuo profilo è completo
       complete_profile_label: Completa ora
       edit_profile_label: Modifica profilo
-      incomplete_heading: Completate il vostro profilo
+      incomplete_heading: Completate il Tuo profilo
       last_login_text: 'Ultimo accesso il :'
       last_updated_text: 'Il profilo è stato aggiornato l''ultima volta il:'
-      sub_heading: Completate le informazioni del vostro profilo
-      welcome_text: Benvenuti,
+      sub_heading: Completate le informazioni del Tuo profilo
+      welcome_text: Benvenuta,
     reset_warning: È possibile riavviare solo la campagna contrassegnata come campagna di esercitazione.
     restart_practice: Riavviare la pratica
     restart_practice_confirmation: È sicuro di voler riavviare la pratica?
     restart_practice_success: La pratica è stata riavviata con successo
     thank_you_for_time: Grazie per il vostro tempo
     time_left:
-      cancel: Annullamento
-      continue: Continua
+      cancel: Annulla
+      continue: Procedi
       notification: Il tempo assegnato per questo compito "%{nomevalutazione}" era %{totalAssessmentTime}. A causa del tempo complessivo trascorso, ora si ha solo %{remainingCampaignTime} come tempo adattato per completare questo compito.
     timer:
       notification_hours: Ti rimane %{ore} un'ora
@@ -1427,11 +1427,11 @@ it:
       update_exists: Sovrascrivere il programma esistente
     scheduling_time: Programmare l'orario di valutazione
     statuses:
-      completed: Completato
+      completed: Completati
       in_progress: In corso
       ineligible: Non ammissibile
       interrupted: Interrotto
-      not_started: Non iniziato
+      not_started: Da iniziare
       timed_out: Timed Out
       universal_link: Collegamento universale
     ungrouped_assessments_heading: Non raggruppati
@@ -1613,7 +1613,7 @@ it:
       archive: Archivio
       back_to_dashboard: Torna al cruscotto
       back_to_responses: Torna alle risposte
-      cancel: Annullamento
+      cancel: Annulla
       change: Cambiamento
       close: Chiudere
       continue: Continua
@@ -1631,7 +1631,7 @@ it:
       resolve: Risolvere
       restore: Ripristino
       run: Correre
-      save: Risparmiare
+      save: Salva
       schedule: Programma
       search: Ricerca
       send: Inviare
@@ -1709,7 +1709,7 @@ it:
       admins: Amministratori
       assessment: Valutazione
       assessments: Valutazioni
-      campaigns: Campagne
+      campaigns: Attività
       completion_statuses: Stati di completamento
       datasheet: Scheda tecnica
       projects: Progetti
@@ -1730,7 +1730,7 @@ it:
     text:
       accepted: Accettato
       all_pages: Tutte le pagine
-      cancel: Annullamento
+      cancel: Annulla
       confirm: Confermare
       continue: Continua
       copied: Copiato negli appunti
@@ -2135,8 +2135,8 @@ it:
       buttons:
         book: Libro
         book_again: Prenota di nuovo
-        cancel: Annullamento
-        cancel_booking: Annullamento della prenotazione
+        cancel: Annulla
+        cancel_booking: Annulla della prenotazione
         confirm_booking: Confermare la prenotazione
         confirm_reschedule: Confermare Riprogrammare
         modify: Modificare
@@ -2228,7 +2228,7 @@ it:
     error_warning: Oops, qualcosa è andato storto con la valutazione. Si prega di contattare il supporto.
     hogan:
       cannot_start: Non è possibile avviare la valutazione delle hogan in questo momento. Provare dopo qualche minuto.
-    lighthouse_app: Faro di Mercer
+    lighthouse_app: Mercer Lighthouse
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
@@ -2317,7 +2317,7 @@ it:
       new_schedule_description: L'ora di inizio deve essere precedente all'ora di fine
       no_slots: Nessuna slot aggiunta
       required_error: non può essere vuoto
-      save: Risparmiare
+      save: Salva
       saved_schedule_description: Programma di disponibilità salvato dell'utente
       start_date: Data di inizio
       timezone_label: Fuso orario
@@ -2417,7 +2417,7 @@ it:
       idp_template_not_found: Modello IDP non trovato
       user_idp_template_not_found: Non è stato assegnato alcun modello IDP.
     idp_template: Modello di IDP
-    override_exists: Annullamento e ripristino di utenti esistenti
+    override_exists: Annulla e ripristino di utenti esistenti
     placeholder: Selezionare un modello Idp
     save_and_assign: Salvare e assegnare
     success_scheduled: Il lavoro di assegnazione dell'IDP è stato pianificato con successo
@@ -2532,7 +2532,7 @@ it:
     hr: Croato
     hu: Ungherese
     id: Bahasa Indonesia
-    it: italiano
+    it: Italiano
     ja: 日本語
     km: Khmer
     ko: Coreano
@@ -2637,7 +2637,7 @@ it:
   my: Il mio
   myself: Io stesso
   navigation:
-    logout: Disconnettersi
+    logout: Esci
   'no': 'false'
   nominations:
     approval_email_error: L'ultima e-mail di approvazione è stata inviata a %{last_sent_at}. È possibile inviare la prossima e-mail di promemoria in %{wait_time}
@@ -2819,14 +2819,14 @@ it:
         baseline_score: Punteggio di base
         blindspots: Punti ciechi
         campaign_factor_conditions: Condizioni del Fattore Campagna
-        cancel: Annullamento
+        cancel: Annulla
         color: Colore
         delete: Cancellare
         description: Descrizione
         if: Se
         label: Etichetta
         no_conditions: Nessuna condizione
-        save: Risparmiare
+        save: Salva
         strengths: Punti di forza
         then: Mostrare quindi il seguente testo
         title: Titolo
@@ -3308,7 +3308,7 @@ it:
       waiting: In attesa
   threesixty:
     accept_privacy_modal:
-      accept: Accettare
+      accept: Accetta
       checkbox: Ho letto e compreso l'informativa sulla privacy di cui sopra
       title: Consenso al trattamento dei dati
     action: Azione
@@ -3326,7 +3326,7 @@ it:
     assessment: Valutazione
     back_to_tasks: Torna alle attività
     begin: Inizia
-    cancel: Annullamento
+    cancel: Annulla
     close_evaluation_modal:
       message: Una volta visualizzato il rapporto, %{pronoun_or_name} non potrà ricevere ulteriori valutazioni
       title: Siete sicuri di voler visualizzare il rapporto?
@@ -3449,7 +3449,7 @@ it:
       title: Aiuto per i rapporti
     reset_campaign_confirmation: Immettere il nome della campagna attuale indicato di seguito nella casella di testo per resettare tutti i partecipanti
     reset_nomination_confirmation: Immettere il nome della campagna attuale indicato di seguito nella casella di testo per azzerare tutte le candidature
-    save: Risparmiare
+    save: Salva
     select_relationnship: Selezionare la relazione
     select_relationship: Selezionare la relazione
     self: Auto
@@ -3572,7 +3572,7 @@ it:
     normalize_factor_scores:
       no_scoring_data: La normalizzazione dei punteggi dei fattori non può essere completata in quanto non sono disponibili dati di punteggio.
     progress_label: Progressi nella valutazione
-    redirect: Si viene reindirizzati al sito di terzi per questa valutazione. Fare clic su continua se si desidera avviare la valutazione.
+    redirect: Verrai reindirizzato a un sito esterno per questa valutazione. Fare clic su continua se si desidera avviare la valutazione.
     status:
       completed: Completato
       in_progress: In corso
@@ -3597,7 +3597,7 @@ it:
         waiting: In attesa
     timer_title:
       assessment: Valutazione
-      campaign: Campagna
+      campaign: Attività
   user_reports:
     actions:
       add: Aggiungi rapporto
