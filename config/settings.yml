@@ -1054,6 +1054,7 @@ providers:
           - CFFDD90D-AFA7-4139-A1A0-016D5B075B22
           - 35DD5253-3CD7-415B-97F3-1CDB06CF06C1
           - 12DCED83-0237-4A07-8B1F-B252C19137FD
+          - 148278F0-D30D-4239-8CB1-988E2D7FBE15
       - id: 62827908-1916-4E58-8F03-6B9DF8C7C6A5
         name: Swift Analysis Aptitude-Rx (IA)
         default_norm_id: 7432E71D-AF60-4628-A7B8-6711B396D81E
@@ -2226,6 +2227,8 @@ providers:
         name: Emirates Group Corporate Focus Styles Interview Guide
       - id: 12DCED83-0237-4A07-8B1F-B252C19137FD
         name: Emirates Group Grade 10 Focus Styles Line Manager Report
+      - id: 148278F0-D30D-4239-8CB1-988E2D7FBE15
+        name: Career Guidance Report
 
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>
