@@ -6,6 +6,8 @@ module AdminJobs
       [[I18n.t('administration.skills.export.details'), file_link]]
     end
 
+    private
+
     def headers
       %w[ID Name Description]
     end
@@ -21,8 +23,6 @@ module AdminJobs
     def file_name
       project&.name ? "#{project.name}-skills.csv" : 'skills.csv'
     end
-
-    private
 
     def project
       @project ||= Project.find_by(id: record.data['project_id'])

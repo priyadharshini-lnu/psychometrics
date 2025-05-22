@@ -9,11 +9,15 @@ module ReflectionQuestions
     def initialize(file, project_id)
       @file = file
       @project_id = project_id
-      @errors = []
     end
 
     def call
-      csv_data = download_file
+      begin
+        csv_data = CsvFileParser.call!(file, headers: true)
+      rescue Errors::DownloadFailedError => e
+        raise Errors::ImportError, e.message
+      end
+
       ActiveRecord::Base.transaction do
         process_csv_data(csv_data)
       end
@@ -21,25 +25,6 @@ module ReflectionQuestions
     end
 
     private
-
-    def download_file
-      uri = URI.parse(file.url)
-      unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
-        raise Errors::ImportError,
-              I18n.t('administration.errors.invalid_url_format')
-      end
-
-      content = uri.open.read
-      # Remove UTF-8 BOM if present (EF BB BF)
-      content = content.force_encoding('UTF-8').sub("\xEF\xBB\xBF", '')
-      CSV.parse(content, headers: true)
-    rescue URI::InvalidURIError => e
-      raise Errors::ImportError,
-            I18n.t('administration.errors.invalid_url', message: e.message)
-    rescue OpenURI::HTTPError => e
-      raise Errors::ImportError,
-            I18n.t('administration.errors.download_failed', message: e.message)
-    end
 
     def process_csv_data(csv_data)
       csv_data.each do |row|

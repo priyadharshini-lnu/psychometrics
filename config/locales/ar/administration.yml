@@ -1558,7 +1558,6 @@ ar:
       errors:
         blank_field: 'الصف %{row}: %{field} لا يمكن أن يكون فارغًا'
         csv_file_required: يجب أن يكون ملف CSV
-        download_failed: 'فشل تنزيل الملف: %{message}'
         image_download_failed: 'فشل تنزيل الصورة من %{url}: %{message}'
         invalid_category: 'الصف %{row}: فئة غير صالحة ''%{value}''. الفئات الصالحة هي: %{valid_categories}'
         invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
@@ -1566,8 +1565,6 @@ ar:
         invalid_image_file: 'ملف الصورة غير صالح: %{message}'
         invalid_image_url: 'تنسيق عنوان URL للصورة غير صالح: %{url}'
         invalid_learning_style: 'الصف %{row}: نمط تعلم غير صالح ''%{value}''. الأنواع الصالحة هي: %{valid_types}'
-        invalid_url: 'عنوان URL غير صالح: %{message}'
-        invalid_url_format: تنسيق عنوان URL غير صالح
         missing_columns: 'الأعمدة المطلوبة مفقودة: %{fields}'
         save_failed: 'فشل حفظ إجراء التطوير: %{message}'
         skill_not_found: 'لم يتم العثور على المهارة للمعرف: %{skill_id}'

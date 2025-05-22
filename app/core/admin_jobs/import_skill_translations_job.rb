@@ -6,7 +6,7 @@ module AdminJobs
       project_id = record.data['project_id']
 
       result = Administration::ImportSkillTranslations.new(
-        record.file_url,
+        record.file,
         project_id
       ).call
 

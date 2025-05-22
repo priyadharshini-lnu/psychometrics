@@ -16,12 +16,6 @@ module Api
         validate :validate_file_format
         validate :validate_file_content
 
-        def processed_file
-          return nil unless valid?
-
-          file
-        end
-
         private
 
         def validate_file_format
@@ -37,7 +31,7 @@ module Api
 
           begin
             file.rewind if file.respond_to?(:rewind)
-            @csv_data = CSVSafe.parse(file.read)
+            @csv_data = ::CsvFileParser.call!(file)
             validate_headers
             validate_data
           rescue CSV::MalformedCSVError => e

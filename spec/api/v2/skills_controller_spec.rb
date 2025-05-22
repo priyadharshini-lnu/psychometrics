@@ -455,7 +455,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
           allow(AdminJob).to receive(:call).and_return(true)
           # Mock the form to be valid and return the processed file
           allow_any_instance_of(Api::V2::Administration::SkillImportForm).to receive(:valid?).and_return(true)
-          allow_any_instance_of(Api::V2::Administration::SkillImportForm).to receive(:processed_file).
+          allow_any_instance_of(Api::V2::Administration::SkillImportForm).to receive(:file).
             and_return(csv_file)
         end
 

@@ -1598,7 +1598,6 @@ en:
       errors:
         blank_field: 'Row %{row}: %{field} cannot be blank'
         csv_file_required: Must be a CSV file
-        download_failed: 'Failed to download file: %{message}'
         image_download_failed: 'Failed to download image from %{url}: %{message}'
         invalid_category: 'Row %{row}: Invalid category ''%{value}''. Valid categories are: %{valid_categories}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
@@ -1606,7 +1605,6 @@ en:
         invalid_image_file: 'Invalid image file: %{message}'
         invalid_image_url: 'Invalid image URL format: %{url}'
         invalid_learning_style: 'Row %{row}: Invalid learning style ''%{value}''. Valid types are: %{valid_types}'
-        invalid_url: 'Invalid URL: %{message}'
         missing_columns: 'Required columns are missing: %{fields}'
         skill_not_found: 'Skill not found for ID: %{skill_id}'
     development_action_translations:
@@ -1614,14 +1612,11 @@ en:
         errors:
           blank_id: 'Row %{row}: ID cannot be blank'
           development_action_not_found: Development Action not found
-          download_failed: 'Failed to download file: %{message}'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_field: 'Row %{row}: Invalid field "%{field}", must be "Name" or "Description"'
           invalid_file_format: File must be a CSV file
           invalid_id: 'Row %{row}: ID must be a number'
           invalid_id_format: 'Row %{row}: ID must be in the format "id#field"'
-          invalid_url: 'Invalid URL: %{message}'
-          invalid_url_format: Invalid URL format
           missing_columns: 'Missing required columns: %{fields}'
           save_failed: 'Failed to save: %{message}'
     development_actions:
@@ -3291,6 +3286,7 @@ en:
     skills:
       errors:
         import:
+          missing_fields_data: 'Line %{line_number}: Missing required fields: %{fields}'
           save_failed: 'Line %{line_number}: Failed to save skill ''%{name}'': %{message}'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
@@ -3330,9 +3326,7 @@ en:
       translations:
         import:
           errors:
-            download_failed: Failed to download file
             invalid_csv_format: 'Invalid CSV format: %{message}'
-            invalid_url: Invalid URL
             missing_columns: 'Missing required columns: %{columns}'
             save_failed: 'Error processing Skill ID %{id}: %{message}'
             skill_not_found: Skill with ID %{id} not found

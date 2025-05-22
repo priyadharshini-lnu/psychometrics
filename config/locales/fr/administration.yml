@@ -1583,7 +1583,6 @@ fr:
       errors:
         blank_field: 'Ligne %{row} : %{field} ne peut pas être vide'
         csv_file_required: Doit être un fichier CSV
-        download_failed: 'Le téléchargement du fichier a échoué : %{message}'
         image_download_failed: 'Échec du téléchargement de l''image de %{url} : %{message}'
         invalid_category: 'Rangée %{rangée} : catégorie "%{valeur}" non valide. Les catégories valides sont : %{catégories_valides}'
         invalid_csv_format: 'Format CSV non valide : %{message}'
@@ -1591,8 +1590,6 @@ fr:
         invalid_image_file: 'Fichier image non valide : %{message}'
         invalid_image_url: 'Format d''URL d''image non valide : %{url}'
         invalid_learning_style: 'Rangée %{rangée} : Style d''apprentissage non valide ''%{valeur}'' Les types valides sont : %{types_valides}'
-        invalid_url: 'URL non valide : %{message}'
-        invalid_url_format: Format URL non valide
         missing_columns: 'Les colonnes requises sont manquantes : %{fields}'
         save_failed: 'Récupération de l''action de développement manquée : %{message}'
         skill_not_found: 'Compétence non trouvée pour l''ID : %{skill_id}'
@@ -1601,12 +1598,9 @@ fr:
         errors:
           blank_id: 'Ligne %{row} : l''ID ne peut pas être vide'
           development_action_not_found: Action de développement introuvable
-          download_failed: 'Le téléchargement du fichier a échoué : %{message}'
           invalid_csv_format: 'Format CSV non valide : %{message}'
           invalid_file_format: Le fichier doit être un fichier CSV
           invalid_id: 'Ligne %{row} : l''ID doit être un nombre'
-          invalid_url: 'URL non valide : %{message}'
-          invalid_url_format: Format d'URL non valide
           missing_columns: 'Colonnes obligatoires manquantes : %{fields}'
           save_failed: Échec de la sauvegarde
     development_actions:

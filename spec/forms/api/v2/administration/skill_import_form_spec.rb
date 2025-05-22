@@ -38,7 +38,9 @@ RSpec.describe Api::V2::Administration::SkillImportForm do
 
       it 'is invalid' do
         expect(form).not_to be_valid
-        expect(form.errors[:file]).to include('must be a CSV file')
+        expect(form.errors[:file]).to include(
+          I18n.t('administration.errors.csv_file_required')
+        )
       end
     end
 
@@ -49,13 +51,18 @@ RSpec.describe Api::V2::Administration::SkillImportForm do
 
       it 'is invalid' do
         expect(form).not_to be_valid
-        expect(form.errors[:base]).to include(match(/Missing required columns/))
+        expect(form.errors[:base]).to include(
+          I18n.t(
+            'administration.skills.import.errors.missing_columns',
+            fields: 'ID, Name, Description'
+          )
+        )
       end
     end
 
     context 'when CSV file has malformed content' do
       before do
-        allow(CSV).to receive(:parse).and_raise(CSV::MalformedCSVError.new('Invalid CSV format', 1))
+        allow(CSVSafe).to receive(:read).and_raise(CSV::MalformedCSVError.new('Invalid CSV format', 1))
         form.file = valid_csv_file
       end
 
@@ -67,7 +74,7 @@ RSpec.describe Api::V2::Administration::SkillImportForm do
 
     context 'when file is valid' do
       before do
-        allow(CSV).to receive(:parse).and_return([described_class::REQUIRED_FIELDS])
+        allow(CSVSafe).to receive(:read).and_return([described_class::REQUIRED_FIELDS])
         form.file = valid_csv_file
       end
 
@@ -78,20 +85,37 @@ RSpec.describe Api::V2::Administration::SkillImportForm do
   end
 
   describe '#processed_file' do
-    context 'when form is invalid' do
-      it 'returns nil' do
-        expect(form.processed_file).to be_nil
-      end
-    end
-
     context 'when form is valid' do
       before do
-        allow(CSV).to receive(:parse).and_return([described_class::REQUIRED_FIELDS])
+        allow(CSVSafe).to receive(:read).and_return([described_class::REQUIRED_FIELDS])
         form.file = valid_csv_file
       end
 
       it 'returns the file' do
-        expect(form.processed_file).to eq(valid_csv_file)
+        expect(form.file).to eq(valid_csv_file)
+      end
+    end
+
+    context 'missing required fields' do
+      before do
+        form.file = valid_csv_file
+        allow(File).to receive(:read).with(valid_csv_file, encoding: 'bom|utf-8').and_return('csv content')
+      end
+
+      it 'returns error for missing required fields' do
+        allow(CSVSafe).to receive(:read).and_return([
+          ['ID', 'Name', 'Description'],
+          ['1', '', 'Description 1']
+        ])
+
+        form.valid?
+        expect(form.errors[:base]).to include(
+          I18n.t(
+            'administration.skills.errors.import.missing_fields_data',
+            fields: 'Name',
+            line_number: 2
+          )
+        )
       end
     end
   end

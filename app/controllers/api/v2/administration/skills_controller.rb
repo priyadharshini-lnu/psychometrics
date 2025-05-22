@@ -37,7 +37,7 @@ module Api
               :import_skills,
               { project_id: project&.id },
               current_user,
-              form.processed_file
+              form.file
             )
 
             render json: :ok
@@ -67,7 +67,7 @@ module Api
               :import_skill_translations,
               { project_id: project.id },
               current_user,
-              form.processed_file
+              form.file
             )
 
             render json: :ok
@@ -97,7 +97,7 @@ module Api
               :import_skills,
               { project_id: nil },
               current_user,
-              form.processed_file
+              form.file
             )
 
             render json: :ok

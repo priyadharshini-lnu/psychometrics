@@ -39,7 +39,10 @@ describe ReflectionQuestions::ImportForm do
       end
 
       it 'validates mandatory field format' do
-        allow(CSVSafe).to receive(:parse).and_return([
+        allow(CSVSafe).to receive(:read).with(
+          invalid_data_csv.path,
+          encoding: 'bom|utf-8'
+        ).and_return([
           ['ID', 'Mandatory', 'MinWords', 'MaxWords', 'English / en'],
           ['1', 'invalid', '10', '100', 'Question text']
         ])
@@ -48,7 +51,7 @@ describe ReflectionQuestions::ImportForm do
       end
 
       it 'validates MinWords field format' do
-        allow(CSVSafe).to receive(:parse).and_return([
+        allow(CSVSafe).to receive(:read).and_return([
           ['ID', 'Mandatory', 'MinWords', 'MaxWords', 'English / en'],
           ['1', 'yes', 'abc', '100', 'Question text']
         ])
@@ -57,7 +60,7 @@ describe ReflectionQuestions::ImportForm do
       end
 
       it 'validates MaxWords field format' do
-        allow(CSVSafe).to receive(:parse).and_return([
+        allow(CSVSafe).to receive(:read).and_return([
           ['ID', 'Mandatory', 'MinWords', 'MaxWords', 'English / en'],
           ['1', 'yes', '10', 'abc', 'Question text']
         ])
@@ -72,7 +75,7 @@ describe ReflectionQuestions::ImportForm do
         valid_headers = ['ID', 'Mandatory', 'MinWords', 'MaxWords', 'English / en']
         valid_data = ['1', 'yes', '10', '100', 'Question text']
         allow(File).to receive(:read).with(csv_file, encoding: 'bom|utf-8').and_return('csv content')
-        allow(CSVSafe).to receive(:parse).and_return([valid_headers, valid_data])
+        allow(CSVSafe).to receive(:read).and_return([valid_headers, valid_data])
       end
 
       it 'is valid' do

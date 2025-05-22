@@ -1561,7 +1561,6 @@ it:
       errors:
         blank_field: 'Riga %{row}: %{field} non può essere vuoto'
         csv_file_required: Deve essere un file CSV
-        download_failed: 'Download del file fallito: %{message}'
         image_download_failed: 'Download immagine fallito da %{url}: %{message}'
         invalid_category: 'Riga %{row}: Categoria non valida %{value} . Categorie valide sono: %{valid_categories}'
         invalid_csv_format: 'Formato CSV non valido: %{message}'
@@ -1569,8 +1568,6 @@ it:
         invalid_image_file: 'File immagine non valido: %{message}'
         invalid_image_url: 'Formato URL immagine non valido: %{url}'
         invalid_learning_style: 'Riga %{row}: Stile di apprendimento non valido ''%{value}''. Tipi validi sono: %{valid_types}'
-        invalid_url: 'URL non valido: %{message}'
-        invalid_url_format: Formato URL non valido
         missing_columns: 'Colonne richieste mancanti: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Competenza non trovata per ID: %{skill_id}'

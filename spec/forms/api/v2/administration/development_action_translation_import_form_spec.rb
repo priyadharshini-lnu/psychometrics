@@ -94,17 +94,4 @@ RSpec.describe Api::V2::Administration::DevelopmentActionTranslationImportForm d
       expect(form.errors[:base]).to include('Row 2: Invalid field "InvalidField", must be "Name" or "Description"')
     end
   end
-
-  describe '#processed_file' do
-    it 'returns file when valid' do
-      form = described_class.new(file: valid_csv)
-      expect(form).to be_valid
-      expect(form.processed_file).to eq(valid_csv)
-    end
-
-    it 'returns nil when invalid' do
-      form = described_class.new(file: invalid_format_file)
-      expect(form.processed_file).to be_nil
-    end
-  end
 end

@@ -1566,7 +1566,6 @@ es-ES:
       errors:
         blank_field: 'Fila %{row}: %{field} no puede estar en blanco'
         csv_file_required: Debe ser un archivo CSV
-        download_failed: 'Error al descargar el archivo: %{message}'
         image_download_failed: 'Error al descargar la imagen desde %{url}: %{message}'
         invalid_category: 'Fila %{row}: Categoría inválida ''%{value}''. Las categorías válidas son: %{valid_categories}'
         invalid_csv_format: 'Formato CSV inválido: %{message}'
@@ -1574,8 +1573,6 @@ es-ES:
         invalid_image_file: 'Archivo de imagen inválido: %{message}'
         invalid_image_url: 'Formato de URL de imagen inválido: %{url}'
         invalid_learning_style: 'Fila %{row}: Estilo de aprendizaje inválido ''%{value}''. Los tipos válidos son: %{valid_types}'
-        invalid_url: 'URL inválida: %{message}'
-        invalid_url_format: Formato de URL inválido
         missing_columns: 'Faltan columnas obligatorias: %{fields}'
         save_failed: 'Error al guardar la acción de desarrollo: %{message}'
         skill_not_found: 'Habilidad no encontrada para el ID: %{skill_id}'

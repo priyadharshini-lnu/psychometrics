@@ -27,7 +27,7 @@ module ReflectionQuestions
 
       begin
         file.rewind if file.respond_to?(:rewind)
-        @csv_data = CSVSafe.parse(File.read(file, encoding: 'bom|utf-8'), encoding: 'utf-8')
+        @csv_data = CsvFileParser.call!(file)
         validate_headers
         validate_data
       rescue CSV::MalformedCSVError => e
