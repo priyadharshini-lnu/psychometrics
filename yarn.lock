@@ -10079,10 +10079,10 @@ use-debounce@^9.0.4:
   resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-9.0.4.tgz#51d25d856fbdfeb537553972ce3943b897f1ac85"
   integrity sha512-6X8H/mikbrt0XE8e+JXRtZ8yYVvKkdYRfmIhWZYsP8rcNs9hk3APV8Ua2mFkKRLcJKVdnX2/Vwrmg2GWKUQEaQ==
 
-use-eye-dropper@^1.4.4:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/use-eye-dropper/-/use-eye-dropper-1.4.5.tgz#be127f18a2ce306c23ba690ae8f4cbd458a821a7"
-  integrity sha512-gS0thGreuOq0OL8RVRkYUjGWZuMl1mxDrE4tNzs1yNbl0OVNRlAgiFgvgOv6hxADAILF2/THw+9e1QoyIdjGHw==
+use-eye-dropper@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/use-eye-dropper/-/use-eye-dropper-1.6.1.tgz#8565d16d2db14bade57b0d2bb3ef724e62524ec8"
+  integrity sha512-1JcsrufvhUMJpZb3hlx1/gJyfOPf+obZsi82C/3/spvi3M8hqLz+FeRwJIezNSbfZ+Ru3DXVDej7fv7UfrHMFA==
 
 use-isomorphic-layout-effect@^1.1.2:
   version "1.1.2"
