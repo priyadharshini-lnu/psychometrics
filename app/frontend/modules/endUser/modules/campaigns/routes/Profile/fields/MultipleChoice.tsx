@@ -20,6 +20,8 @@ interface Props {
   onChange: (value:string | string[]) => void
 }
 
+const { I18n } = window
+
 const MultipleOptions = ({
   field, value, onChange, defaultValue, locked, translations,
 }) => {
@@ -114,7 +116,7 @@ export const MultipleChoice: FC<Props> = ({
         onChange={value => onChange(value)}
         value={`${value ?? defaultValue ?? ''}`}
       >
-        <Select.Option value="">Select...</Select.Option>
+        <Select.Option value="">{I18n.t('common.text.select')}</Select.Option>
         {_.times(choices, choiceId => (
           <Select.Option key={choiceId} value={field.props.choicesTexts[choiceId]}>
             {translations[`choicesTexts${choiceId + 1}`] || field.props.choicesTexts[choiceId]}

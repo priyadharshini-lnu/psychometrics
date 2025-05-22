@@ -1773,6 +1773,7 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      select: Select
       selected: Selected
       subject: Subject
       total: Total
@@ -2679,7 +2680,7 @@ en:
     hr: Croatian
     hu: Hungarian
     id: Bahasa Indonesia
-    it: italiano
+    it: Italiano
     ja: 日本語
     km: Khmer
     ko: Korean

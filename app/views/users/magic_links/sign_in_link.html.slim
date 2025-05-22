@@ -1,2 +1,4 @@
 javascript [nonce=content_security_policy_nonce]:
-  window.location.href = "#{@magic_link_url}"
+  setTimeout(function() {
+    window.location.href = "#{@magic_link_url}"
+  }, 3000)

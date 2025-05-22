@@ -14,12 +14,15 @@ module Pearson
       scores_and_report = ::JSON.parse(response.body).dig('data', 'candidates', 0, 'products', 0, 'results')
       scores = scores_and_report.dig('scores', 'items')
       report_items = scores_and_report.dig('reports', 'items').select { |item| item['type'].casecmp('pdf').zero? }
-      raise StandardError, 'Pearson assessment scores not available' if scores.blank?
 
-      user_result = user_assessment.users_result
-      user_result.update(external_results: scores)
-      user_assessment.update!(status: :completed, completed_at: Time.current) unless user_assessment.completed?
-      generate_internal_reports
+      raise StandardError, 'Pearson assessment scores and reports not available' if scores.blank? && report_items.blank?
+
+      if scores.present?
+        user_result = user_assessment.users_result
+        user_result.update(external_results: scores)
+        user_assessment.update!(status: :completed, completed_at: Time.current) unless user_assessment.completed?
+        generate_internal_reports
+      end
 
       return broadcast :ok if report_items.blank?
 

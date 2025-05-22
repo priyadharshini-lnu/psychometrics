@@ -283,7 +283,11 @@ export const getI18n = ({ locales, instructions }): I18nInterface => ({
     return _.get(locales, ['question', question.id, `customValidationText_${uuid}`], message)
   },
   tInstructions () {
-    return instructions?.enabled ? _.get(locales, ['instructions', 0, 'content']) || instructions?.content : null
+    return instructions?.enabled
+      ? _.get(locales, ['instructions', 0, 'props', 'content'])
+      || _.get(locales, ['instructions', 0, 'content'])
+      || instructions?.content
+      : null
   },
   uiLocale: I18n.uiLocale,
 })

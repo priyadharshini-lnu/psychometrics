@@ -1432,6 +1432,8 @@ en:
           not_started: If assessment is not started
           send_now: Send now
           specific_datetime: Send at
+        development_action_deadline_missed: Development Action Deadline Missed
+        idp_deadline_missed: IDP Deadline Missed
         idp_template_approved: IDP Approved
         idp_template_assigned: IDP Assigned
         idp_template_rejected: IDP Rejected
