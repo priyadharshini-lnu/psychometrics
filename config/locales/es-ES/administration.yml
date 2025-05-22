@@ -1699,10 +1699,6 @@ es-ES:
     document_titles:
       project_assessors: Evaluadores | %{project}
       project_participants: Participantes | %{project}
-    download_sample_file:
-      download_example_file: Descargar archivo de ejemplo
-      download_started_successfully: Descarga iniciada con éxito
-      failed_to_download: Error al descargar
     enable: Habilitar
     errors:
       error_msg: Algo salió mal. Por favor, actualiza la página y si el problema persiste, contacta a tu administrador
@@ -2158,6 +2154,8 @@ es-ES:
         factors: Factores
         inplace_title: Introducir valor
         title: Editor de normas
+      import:
+        download_example_csv: Descargar ejemplo csv
       index:
         import: Importar
         new: Agregar

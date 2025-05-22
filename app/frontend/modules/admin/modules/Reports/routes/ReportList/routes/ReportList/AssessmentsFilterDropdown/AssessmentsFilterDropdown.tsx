@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import SearchOutlined from '@ant-design/icons/SearchOutlined'
 import { FilterDropdownProps } from 'antd/lib/table/interface'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { useResources } from '~/hooks/useResources'
 import styles from './AssessmentsFilterDropdown.less'
@@ -40,7 +40,7 @@ export const AssessmentsFilterDropdown: React.FC<FilterDropdownProps> = (props) 
     setOpenKeys(keys)
   }
 
-  const [items, setItems] = useState<ItemType[]>([{
+  const [items, setItems] = useState<MenuItem[]>([{
     key: 'key',
     label: (
       <>
@@ -90,7 +90,7 @@ export const AssessmentsFilterDropdown: React.FC<FilterDropdownProps> = (props) 
           />
         )}
       <div className={styles.buttons}>
-        <Button type="link" size="small" disabled={getResetDisabled()} onClick={clearFilters}>
+        <Button type="link" size="small" disabled={getResetDisabled()} onClick={() => clearFilters && clearFilters()}>
           {I18n.t('common.actions.reset')}
         </Button>
         <Button type="primary" size="small" onClick={handleConfirm}>

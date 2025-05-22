@@ -3,7 +3,7 @@ import {
   Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
@@ -14,7 +14,7 @@ const getMenuProps = ({
   openModal,
   permissions,
 }): MenuProps => {
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.import && menuItems.push({
     key: 'import',
     label: I18n.t('administration.assessor.toolbar.import'),

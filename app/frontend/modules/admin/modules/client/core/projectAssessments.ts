@@ -8,7 +8,7 @@ export const ProjectAssessmentTR = t.type({
   userResultValidityInDays: t.union([t.number, t.null]),
   createdAt: t.string,
   updatedAt: t.string,
-  type: t.string,
+  assessmentType: t.string,
   assessment: t.type({
     id: t.string,
     name: t.string,

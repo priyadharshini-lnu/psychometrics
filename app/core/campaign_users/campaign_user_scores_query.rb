@@ -22,7 +22,6 @@ module CampaignUsers
     private
 
     def sql
-      sanitized_sort_column = ActiveRecord::Base.connection.quote_column_name(sort[:field])
       factor_columns = dynamic_factor_columns
       rank_column = find_rank_by_column
       ranking_sql = if rank_column
@@ -58,11 +57,7 @@ module CampaignUsers
       base_query += "WHERE cu.active IN (#{campaign_users_active_in})"
       base_query += " AND cu.campaign_id = #{campaign_id} #{search_condition}"
       base_query += " AND cu.id in(#{campaign_user_ids.join(',')})" if campaign_user_ids.present?
-      base_query += if campaign_factor_ids.include?(sort[:field].to_i)
-                      " ORDER BY #{sanitized_sort_column}::json->>'value' #{sort[:direction]}"
-                    else
-                      " ORDER BY #{sanitized_sort_column} #{sort[:direction]}"
-                    end
+      base_query += sort_condition
       base_query += " LIMIT #{limit} OFFSET #{offset};"
       base_query
     end
@@ -90,15 +85,28 @@ module CampaignUsers
       end
     end
 
+    def sort_condition
+      sanitized_sort_column = ActiveRecord::Base.connection.quote_column_name(sort[:field])
+
+      if campaign_factor_ids.include?(sort[:field].to_i) && campaign_factor_types[sort[:field].to_i] == 'numeric'
+        " ORDER BY (#{sanitized_sort_column}::json->>'value')::float #{sort[:direction]}"
+      elsif campaign_factor_ids.include?(sort[:field].to_i) && campaign_factor_types[sort[:field].to_i] == 'string'
+        " ORDER BY (#{sanitized_sort_column}::json->>'value')::text #{sort[:direction]}"
+      else
+        " ORDER BY #{sanitized_sort_column} #{sort[:direction]}"
+      end
+    end
+
     def campaign_factor_ids_query
-      CampaignFactor.where(campaign_id: campaign_id).
-        select(:id).
-        distinct.
-        order(:id)
+      CampaignFactor.where(campaign_id: campaign_id).select(:id).distinct.order(:id)
     end
 
     def campaign_factor_ids
       @campaign_factor_ids ||= campaign_factor_ids_query.pluck(:id)
+    end
+
+    def campaign_factor_types
+      @campaign_factor_types ||= campaign_factor_ids_query.pluck(:id, :output_type).to_h
     end
 
     def dynamic_factor_columns

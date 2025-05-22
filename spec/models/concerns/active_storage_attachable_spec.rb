@@ -55,10 +55,6 @@ describe ActiveStorageAttachable do
         r.photo.attach(image) if r.respond_to?(:photo)
         r.asset.attach(image) if r.respond_to?(:asset)
       end
-
-      perform_enqueued_jobs
-      clear_enqueued_jobs
-      subject_records.each(&:reload)
     end
 
     it 'stores correct attachment key' do

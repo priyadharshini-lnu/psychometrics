@@ -4,7 +4,7 @@ import { Menu } from 'antd'
 import {
   ShopOutlined,
 } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import settings from '../../settings'
 
 const { I18n } = window
@@ -16,7 +16,7 @@ export const Tabs: React.FC = () => {
     navigate(`${settings.urlPrefix}/${key}`)
   }
 
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     { key: 'active', icon: <ShopOutlined />, label: I18n.t('assessments.active') },
     { key: 'archived', icon: <ShopOutlined />, label: I18n.t('assessments.archived') },
     { key: 'trash', icon: <ShopOutlined />, label: I18n.t('assessments.trash') },

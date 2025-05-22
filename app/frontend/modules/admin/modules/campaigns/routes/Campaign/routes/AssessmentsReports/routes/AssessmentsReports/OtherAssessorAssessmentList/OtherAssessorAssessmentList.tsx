@@ -4,10 +4,10 @@ import {
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { MenuItemType } from 'rc-menu/lib/interface'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MessageInstance } from 'antd/es/message/interface'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import {
@@ -194,12 +194,12 @@ const getActionsMenuProps = ({
     { key: 'import_scoring', label: 'Scoring' },
   ]
 
-  const rescoreMenuItems:ItemType[] = [
+  const rescoreMenuItems:MenuItem[] = [
     { type: 'divider' },
     { key: 'rescoring', label: I18n.t('campaign_assessment.modals.rescore_response.title') },
   ]
 
-  const menuItems: ItemType[] = [{
+  const menuItems: MenuItem[] = [{
     type: 'group', key: 'export', label: 'Export', children: exportGroupItems,
   }]
   permissions.importResults && menuItems.push({

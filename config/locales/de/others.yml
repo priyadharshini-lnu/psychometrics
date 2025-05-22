@@ -1342,7 +1342,6 @@ de:
       norm_id: Norm-ID
       pearson_variation: Pearson-Variation
       prework: Vorarbeit
-      simuation_time_extension: Verlängerung der Simulationszeit
       simulation_content_variation: Simulation Inhaltsvariation
       universal_link: Universeller Link
     drawer:
@@ -2035,6 +2034,8 @@ de:
       workshops:
         no_available_assessor_slots: Keine freien Slots für Assessor %{assessor}
         no_available_manager_slots: Keine freien Slots für Manager %{manager}
+    idp_template:
+      tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
     users:
       registrations:
         new:
@@ -2342,8 +2343,8 @@ de:
       aria_selected: Ausgewählte
   idp:
     actions: Aktionen
-    board: Vorstand
-    details: Einzelheiten
+    board: Board
+    details: Details
     development_actions:
       action_private: Ja
       action_public: Nein
@@ -2352,76 +2353,171 @@ de:
       approved: Genehmigt
       board_view:
         completed: Abgeschlossen
-        in_progress: In Arbeit
-        not_started: Nicht begonnen
-      completion: Fertigstellung
+        in_progress: In Bearbeitung
+        not_started: Nicht gestartet
+      completion: Abschluss
       create_my_own: Eigene erstellen
       date_range: Startdatum - Enddatum
-      generate_by_ai: Generieren durch AI
+      generate_by_ai: Mit KI generieren
       generate_more: Mehr generieren
-      generating_development_actions: Generierung von Entwicklungsmaßnahmen...
-      heading: Entwicklungspolitische Maßnahmen
+      generating_development_actions: Entwicklungsmaßnahmen werden generiert...
+      heading: Entwicklungsmaßnahmen
       learning_from_others: Von anderen lernen
-      manage_skills: Fertigkeiten managen
+      manage_skills: Kompetenzen verwalten
       marathon: Marathon
       no_development_actions: Keine Entwicklungsmaßnahmen
-      on_the_job: Bei der Arbeit
-      other: Andere
+      on_the_job: Am Arbeitsplatz
+      other: Sonstiges
       private: Privat
       remove: Entfernen
-      skill: Fertigkeit
+      skill: Kompetenz
       sprint: Sprint
       structured_learning: Strukturiertes Lernen
       submit_plan: Plan einreichen
-      write_here: Schreiben Sie hier...
-    direct_report_details: Direktbericht Details
+      write_here: Hier schreiben...
+    direct_report_details: Details zu direkten Mitarbeitern
     initial_steps:
-      add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
-      add_skill_group_title: Erkunden Sie Ihre %{Kategorie}-Fähigkeiten
+      add_skill_group_description: Basierend auf Ihren Bewertungsergebnissen sind hier einige Ihrer Stärken und Entwicklungsbereiche. Wählen Sie die Kompetenzen aus, die Sie als Teil Ihres Entwicklungsplans weiterentwickeln möchten.
+      add_skill_group_title: Entdecken Sie Ihre %{category} Kompetenzen
       add_skills: Hinzufügen
-      add_skills_step: Fertigkeiten hinzufügen
-      continue_to_add_skills: Fähigkeiten weiter ausbauen
-      continue_to_rate_skills: Fähigkeiten weiter bewerten
+      add_skills_step: Kompetenzen hinzufügen
+      continue_to_rate_skills: Fahren Sie mit der Bewertung der Kompetenzen fort
       getting_started: Erste Schritte
-      getting_started_info: Willkommen bei der Erstellung Ihres individuellen Entwicklungsplans (IDP). Dieser Plan wird Ihnen helfen, Ihre beruflichen und persönlichen Ziele zu identifizieren, zu verwalten und zu verfolgen, sowie die Schritte, die Sie unternehmen müssen, um diese Ziele zu erreichen. Ihre beruflichen Ziele können sowohl verhaltensbezogene, führungsbezogene als auch technische Entwicklungsbereiche umfassen. Ihr IDP ist ein wichtiges Instrument zur Unterstützung Ihrer beruflichen Entwicklung und zur Verbesserung Ihrer Fähigkeiten.
-      less_skills: Weniger Fähigkeiten zeigen
-      more_skills: Mehr Kompetenzen erkunden
+      getting_started_info: Willkommen bei Ihrem individuellen Entwicklungsplan (IDP). Dieser Plan hilft Ihnen, Ihre beruflichen und persönlichen Ziele zu identifizieren, zu verwalten und zu verfolgen sowie die Schritte zu planen, die Sie zur Erreichung dieser Ziele unternehmen müssen. Ihre beruflichen Ziele können verhaltensbezogene, Führungs- sowie technische Entwicklungsbereiche umfassen. Ihr IDP ist ein wesentliches Instrument zur Unterstützung Ihrer Karriereentwicklung und Kompetenzverbesserung.
+      less_skills: Weniger Kompetenzen anzeigen
+      more_skills: Mehr Kompetenzen entdecken
       next: Weiter
-      no_skills_selected: Keine Fähigkeiten ausgewählt.
-      rate_skills: Fähigkeiten bewerten
-      rate_skills_description: Nachdem Sie nun Ihre Entwicklungsprioritäten ausgewählt haben, bewerten Sie sich bitte selbst zu jedem der folgenden Punkte. Denken Sie daran, dass Sie sich selbst auf der Grundlage Ihres derzeitigen Niveaus bewerten und nicht auf der Grundlage Ihres früheren oder gewünschten Niveaus.
-      rate_skills_title: Bewertung Ihrer Fertigkeiten
-      rating_column_header: Ihre Selbsteinschätzung
-      select_skills: Wählen Sie Ihre Fähigkeiten
-      select_skills_placeholder: Fähigkeiten auswählen
-      selected_skills: Ausgewählte Fertigkeiten
-      skill_column_header: Fertigkeit
-      skill_gap_report: Bericht über das Qualifikationsdefizit
+      no_skills_selected: Keine Kompetenzen ausgewählt.
+      rate_skills: Kompetenzen bewerten
+      rate_skills_description: Nachdem Sie Ihre Entwicklungsprioritäten ausgewählt haben, bewerten Sie sich bitte bei jeder der folgenden Kompetenzen. Denken Sie daran, sich basierend auf Ihrem aktuellen Niveau zu bewerten und nicht auf Ihrem vergangenen oder gewünschten Niveau.
+      rate_skills_title: Bewertung Ihrer Kompetenzen
+      rating_column_header: Ihre Selbstbewertung
+      select_skills: Wählen Sie Ihre Kompetenzen
+      select_skills_placeholder: Kompetenzen auswählen
+      selected_skills: Ausgewählte Kompetenzen
+      skill_column_header: Kompetenz
+      skill_gap_report: Kompetenzlückenbericht
     list: Liste
-    my_direct_reports: Meine direkten Berichte
+    my_direct_reports: Meine direkten Mitarbeiter
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
-        area_of_development: Bereich der Entwicklung
-        behavioural: Verhaltensweisen
         categories: Kategorien
-        learning_on_job: Bei der Arbeit (%{count})
-        learning_others: Von anderen lernen (%{count})
-        learning_structured: Strukturiertes Lernen (%{Auszählung})
-        other: Andere
-        technical: Technisch
-      save_skills: Fertigkeiten speichern
+      save_skills: Kompetenzen speichern
     pdf:
-      header: Hallo
-    profile_details: Profil-Details
+      approval_status: Genehmigungsstatus
+      cover:
+        fields:
+          assigned_data: Zuweisungsdatum
+          completion_date: Abschlussdatum
+          division: Abteilung
+          name: Name
+          publish_date: Veröffentlichungsdatum
+          review_date: Überprüfungsdatum
+          role: Aktuelle Position
+      guidelines:
+        cards:
+          c1:
+            content: Fügen Sie Kompetenzen, Kenntnisse und Fähigkeiten ein, die entwickelt werden müssen. Stellen Sie sicher, dass sie spezifisch, messbar, erreichbar, realistisch und innerhalb der genannten Zeiträume angemessen zu erreichen sind.
+            title: Entwicklungsziele
+          c2:
+            content: Dies basiert auf der zu entwickelnden Kompetenz, die auf der Bewertungserfahrung basiert.
+            title: Kompetenz
+          c3:
+            content: Dieser Abschnitt enthält Ihre Entwicklungsmaßnahmen basierend auf dem unten aufgeführten 70-20-10-Lernmodell. Es wird empfohlen, eine Kombination aus allen drei Elementen zu wählen, um einen vielfältigen Lern- und Entwicklungsansatz zu gewährleisten.
+            title: Aktivität
+          c4:
+            content: Stellen Sie sicher, dass Ihre Zeitpläne realistisch sind, basierend darauf, wann das Ziel erreicht werden kann. Ändern Sie diese bei Bedarf entsprechend.
+            title: Zeitrahmen
+          c5:
+            content: Nutzen Sie den Fortschrittsbereich, um die Entwicklung auf den identifizierten Bahnen zu unterstützen.
+            title: Fortschritt
+        chart:
+          collaboration: "<strong>20%</strong>Kollaboratives <br /> Lernen"
+          job: "<strong>70%</strong>Lernen <br />am Arbeitsplatz"
+          learn: "<strong>10%</strong>Formelles Lernen"
+        content:
+          list:
+            r1: Bitte beachten Sie, dass diese Liste nur indikativ ist und zusätzliche Entwicklungswege für Sie basierend auf individuellen Bestrebungen, Empfehlungen Ihres Vorgesetzten sowie organisatorischen Geschäftsprioritäten in Betracht gezogen werden können.
+            r2: Bitte beachten Sie, dass die Einführung einiger dieser Entwicklungswege von der organisationsweiten Bildungs- und Lernstrategie abhängt.
+            r3: Bitte berücksichtigen Sie die unten angekreuzten empfohlenen Wege bei der Entwicklung Ihres individuellen Entwicklungsplans.
+          main: Dieser Abschnitt enthält eine umfassende Liste aller Entwicklungswege unter Berücksichtigung bewährter Lernpraktiken, d.h. der 70-20-10-Richtlinie, die eine progressive Reise bietet, die Klassenraumlernen, Coaching und On-the-Job-Lernen kombiniert. Basierend auf den Ergebnissen der Führungsentwicklungserfahrung und den Geschäftsprioritäten wurden mögliche Entwicklungswege empfohlen, die für Ihre Entwicklung in Betracht gezogen werden können.
+        learn_cards:
+          collaboration:
+            list:
+            - Bieten Sie an, andere zu coachen oder zu mentorieren
+            - Bitten Sie darum, von einem Experten auf Ihrem Gebiet mentoriert zu werden
+            - Engagieren Sie einen Coach zur Unterstützung Ihrer Entwicklung
+            - Richten Sie eine kollaborative Arbeitsgruppe ein, um laufende Herausforderungen im Unternehmen zu diskutieren
+            - Holen Sie sich formelles und informelles Feedback von anderen
+            - Spielen Sie eine aktive Rolle in Branchenverbänden und Netzwerken
+            - Bauen Sie Ihre eigenen externen Netzwerke auf
+            title: Kollaboratives Lernen (20%) <br/> Entwicklung durch andere
+          job:
+            list:
+            - Übernehmen Sie Führungspositionen in Stakeholder- oder Managementausschüssen
+            - Melden Sie sich freiwillig, um Veränderungsmanagementprojekte für die Organisation zu leiten
+            - Ziehen Sie in Betracht, herausfordernde Aufgaben zu übernehmen
+            - Arbeiten Sie funktionsübergreifend zusammen
+            - Erwägen Sie, Projekte außerhalb Ihrer Organisation zu leiten
+            - Arbeiten Sie eng mit externen Branchenexperten an gemeinsamen Projekten
+            title: Lernen am Arbeitsplatz (70%) <br/> Entwicklung durch Erfahrung
+          learn:
+            list:
+            - Übernehmen Sie Führungspositionen in Stakeholder- oder Managementausschüssen
+            - Melden Sie sich freiwillig, um Veränderungsmanagementprojekte für die Organisation zu leiten
+            - Ziehen Sie in Betracht, herausfordernde Aufgaben zu übernehmen
+            - Arbeiten Sie funktionsübergreifend zusammen
+            - Erwägen Sie, Projekte außerhalb Ihrer Organisation zu leiten
+            - Arbeiten Sie eng mit externen Branchenexperten an gemeinsamen Projekten
+            title: Formelles Lernen (10%) <br/> Entwicklung durch strukturiertes Lernen
+        title: Richtlinien für Ihren IDP
+      idp:
+        end_date: Enddatum
+        self_rating: Selbstbewertung
+        start_date: Startdatum
+        subtitle:
+          behavioural: Verhaltensorientiert
+          technical: Technisch
+        title: Individueller Entwicklungsplan
+      last:
+        end_report: Ende des Berichts
+      reflections:
+        subtitle: Fragen zur allgemeinen beruflichen Entwicklung
+        title: Reflexionen zur Gestaltung Ihres IDP
+      skill_categories:
+        behavioral: Verhaltensorientiert
+        technical: Technisch
+      statuses:
+        approved: Überprüft und genehmigt
+        completed: Abgeschlossen
+        not_reviewed: Nicht überprüft
+        pending_approval: In Überprüfung
+      summary:
+        ai_count: Generative KI
+        collaborative_learn: Kollaboratives Lernen
+        created_by: Erstellt von
+        current_status: Aktueller IDP-Status
+        custom: Benutzerdefiniert
+        custom_count: Benutzerdefiniert
+        da_count: Anzahl der Entwicklungsmaßnahmen
+        formal_learn: Formelles Lernen
+        generated_ai: Generative KI
+        learn_on_job: Lernen am Arbeitsplatz
+        learn_pathway: Lernweg
+        lib_count: IDP-Bibliothek
+        library: IDP-Bibliothek
+        skills_count: Anzahl der Kompetenzen
+        title: Berichtszusammenfassung
+    profile_details: Profildetails
     skill_gap_report:
-      continue_to_rate_skills: Fähigkeiten weiter bewerten
-      title: Bericht über das Qualifikationsdefizit
+      continue_to_rate_skills: Fahren Sie mit der Bewertung der Kompetenzen fort
+      title: Kompetenzlückenbericht
     status: Status
     user_idp_status:
       approved: Genehmigt
       draft: Entwurf
-      pending_approval: Anhängig
+      pending_approval: Ausstehend
     users: Benutzer
   idp_templates:
     assign: Zuweisen

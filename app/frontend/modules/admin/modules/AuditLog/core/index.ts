@@ -44,6 +44,7 @@ const LogTR = t.type({
   interface: t.union([t.string, t.null, t.undefined]),
   userAgent: t.union([t.string, t.null, t.undefined]),
   userId: t.union([t.number, t.undefined, t.null]),
+  createdAt: t.union([t.string, t.null, t.undefined]),
 })
 
 const ActionsTR = t.array(t.union([t.string, t.null]))

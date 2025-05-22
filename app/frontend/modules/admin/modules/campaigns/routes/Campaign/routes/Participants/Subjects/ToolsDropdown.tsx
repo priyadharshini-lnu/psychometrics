@@ -3,7 +3,7 @@ import {
   Button, MenuProps, message,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ExportUsers } from '~/modules/admin/modules/campaigns/core/users'
 
@@ -18,7 +18,7 @@ const getMenuProps = ({
   onCompactExport,
   onExportReportsAndAssessments,
 }): MenuProps => {
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   const exportMenuItems = [
     { key: 'export_completion', label: I18n.t('user.toolbar.export_detailed_completion_status') },
     { key: 'export_compact_completion', label: I18n.t('user.toolbar.export_compact_completion_status') },

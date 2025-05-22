@@ -199,6 +199,7 @@ en:
             approve_report: Approve Report
             bulk_download: Bulk Download
             bulk_regenerate_reports: Bulk Regenerate Reports
+            bulk_update_evaluation_status: Bulk Update Evaluation Status
             download_report: Download Report
             edit_report: Edit Report
             export_occupations: Export occupations
@@ -1394,6 +1395,8 @@ en:
       cancel: Cancel
       disabled: Diasbled
       enabled: Enabled
+      import:
+        failure_msg: Error while importing file.
       next: Next
       reset: Reset
       save: Save
@@ -1428,6 +1431,8 @@ en:
           not_started: If assessment is not started
           send_now: Send now
           specific_datetime: Send at
+        development_action_deadline_missed: Development Action Deadline Missed
+        idp_deadline_missed: IDP Deadline Missed
         idp_template_approved: IDP Approved
         idp_template_assigned: IDP Assigned
         idp_template_rejected: IDP Rejected
@@ -1606,19 +1611,18 @@ en:
     development_action_translations:
       import:
         errors:
-          blank_description: 'Row %{row}: Description cannot be blank'
           blank_id: 'Row %{row}: ID cannot be blank'
-          blank_locale: 'Row %{row}: Locale cannot be blank'
-          blank_name: 'Row %{row}: Name cannot be blank'
           development_action_not_found: Development Action not found
           download_failed: 'Failed to download file: %{message}'
           invalid_csv_format: 'Invalid CSV format: %{message}'
+          invalid_field: 'Row %{row}: Invalid field "%{field}", must be "Name" or "Description"'
           invalid_file_format: File must be a CSV file
           invalid_id: 'Row %{row}: ID must be a number'
-          invalid_locale: 'Row %{row}: Invalid locale ''%{locale}'''
+          invalid_id_format: 'Row %{row}: ID must be in the format "id#field"'
           invalid_url: 'Invalid URL: %{message}'
           invalid_url_format: Invalid URL format
           missing_columns: 'Missing required columns: %{fields}'
+          save_failed: 'Failed to save: %{message}'
     development_actions:
       categories:
         course: Course
@@ -1764,10 +1768,6 @@ en:
     document_titles:
       project_assessors: Assessors | %{project}
       project_participants: Participants | %{project}
-    download_sample_file:
-      download_example_file: Download Example File
-      download_started_successfully: Download started successfully
-      failed_to_download: failed to download
     enable: Enable
     errors:
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
@@ -1894,6 +1894,9 @@ en:
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
       all: All
+      appearance: Appearance
+      appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
+      background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
       edit_template: Edit IDP Template
@@ -1901,26 +1904,50 @@ en:
       enter_template_description_error: Template description is required.
       enter_template_name: Name
       enter_template_name_error: Template name is required
+      errors:
+        update: Update not allowed because the IDP template is already associated with a user IDP plan. Appearance changes has been saved.
+      fields:
+        assigned_data: Assigned Data
+        completion_date: Completion Date
+        division: Division
+        name: Name
+        publish_date: Publish Date
+        review_date: Review Date
+        role: Current Role
+      fields_label: Fields
       global_skills: Global Skills
       idp: IDP
       idp_template: Add IDP Template
+      logo_image: Logo image
+      logo_type:
+        both: Mercer and Client logos
+        client_only: Client logo only
+        mercer_only: Mercer logo only
+        none: Without logos
+      logo_type_label: Logo Type
       none: None
+      remove: Remove
       select_by_tags: Select by Tags
       select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
       selected: Selected
       self_rating: Enable Self Rating
+      show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
+      skills: Skills
+      subtitle_text: Subtitle text
       tab:
         development_actions: Development Actions
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills
       template_details: Template Details
+      title_text: Title text
     idp_setting:
       allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
       manager_can_edit_idp: Manager can edit IDP
+      require_all_development_actions_complete: Require all development actions complete
     import: Import
     imports:
       assessments:
@@ -2237,7 +2264,7 @@ en:
       export:
         success_msg: Norm export job scheduled successfully. Please check the status in the notifications.
       import:
-        download_example_csv: Sample Norms CSV
+        download_example_csv: Download Example csv
         select_file_validation: Please select an owner and a file before submitting.
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: Norms import
@@ -2623,6 +2650,7 @@ en:
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
       profile_settings:
+        month: Month %{count}
         never: Never
         update_in: Notify Profile Update in
         year: Year
@@ -2776,9 +2804,11 @@ en:
         qc_completed: QC Completed
         qc_in_progress: QC in Progress
     reports:
+      bulk_marked_as_done: Bulk Marked as Done
       bulk_upload:
         choose_file: Choose File
         no_file_selected: No file selected
+        sample_file: Sample File
         title: Bulk Upload Campaign Factors
         upload_success: Uploaded successfully
       copy:
@@ -3222,6 +3252,8 @@ en:
         settings: Settings
     skills:
       errors:
+        import:
+          save_failed: 'Line %{line_number}: Failed to save skill ''%{name}'': %{message}'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
@@ -3263,12 +3295,7 @@ en:
             download_failed: Failed to download file
             invalid_csv_format: 'Invalid CSV format: %{message}'
             invalid_url: Invalid URL
-            missing_required_columns: 'Missing required columns: %{columns}'
-            row_description_blank: 'Row %{row}: Description cannot be blank'
-            row_id_blank: 'Row %{row}: ID cannot be blank'
-            row_locale_blank: 'Row %{row}: Locale cannot be blank'
-            row_locale_invalid: 'Row %{row}: Invalid locale ''%{locale}'''
-            row_name_blank: 'Row %{row}: Name cannot be blank'
+            missing_columns: 'Missing required columns: %{columns}'
             save_failed: 'Error processing Skill ID %{id}: %{message}'
             skill_not_found: Skill with ID %{id} not found
     sms_histories:

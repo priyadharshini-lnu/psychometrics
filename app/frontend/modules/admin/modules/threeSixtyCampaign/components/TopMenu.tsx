@@ -10,7 +10,7 @@ import {
   SolutionOutlined,
 } from '@ant-design/icons'
 
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
 
@@ -55,7 +55,7 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     }
     return undefined
   }
-  const menuItems: ItemType[] = [{
+  const menuItems: MenuItem[] = [{
     key: 'participants',
     icon: <UserOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.participants.title'),

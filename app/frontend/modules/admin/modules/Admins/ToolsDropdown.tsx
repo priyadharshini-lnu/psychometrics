@@ -3,7 +3,7 @@ import {
   Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
@@ -12,7 +12,7 @@ const getMenuProps = ({
   onExportAdminsWithPermissions,
   permissions,
 }): MenuProps => {
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   const exportMenuItems = [
     {
       key: 'export_admins_with_permission',

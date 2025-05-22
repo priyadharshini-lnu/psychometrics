@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '3.4.2'
 gem 'bundler',                    '~> 2.3.17'
-gem 'rack',                       '~> 2.2.13'
+gem 'rack',                       '~> 2.2.14'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'bootsnap', '>= 1.12.0', require: false
@@ -38,8 +38,7 @@ gem 'icalendar', '~> 2.9.0'
 gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
   branch: 'fix_deprecated_methods'
 # rubocop:enable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
-# Issue link : https://github.com/devise-security/devise-security/issues/448
-gem 'devise-security', '~> 0.17.0' # don't upgrade this to 0.18.0 until we have fix for issue mentioned in above comment
+gem 'devise-security', '~> 0.18.0'
 
 gem 'pundit', '~> 2.1.1'
 
@@ -201,27 +200,29 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'stackprof', '~> 0.2.12'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring', '~> 4.1.1'
+  gem 'spring-commands-parallel-tests'
 end
 
 group :development do
   gem 'bullet', '~> 7.1.3'
   gem 'listen', '~> 3.7.1'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 4.1.1'
   gem 'spring-watcher-listen', '~> 2.1.0'
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.18.0'
-  # TODO: We have forket the gem to just increase the version dependent gem.
+  # TODO: We have forked the gem to just increase the version dependent gem.
   # We can remove this fork and use original gem once the next version of gem is released.
   gem 'meta_request', '~> 0.8.2'
   gem 'ruby-lsp-rails', '~> 0.4.0'
-  gem 'solargraph', '~>0.45.0'
+  gem 'solargraph', '~>0.54.0'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.37.1'
-  gem 'coveralls_reborn', '~> 0.24.0', require: false
+  gem 'coveralls_reborn', '~> 0.28.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 2.21'
   gem 'jsonapi-rspec', '~> 0.0.11'
@@ -229,7 +230,7 @@ group :test do
   gem 'rspec-retry', '~> 0.6.1'
   gem 'rubocop-faker'
   gem 'shoulda-matchers', '~> 4.3.0'
-  gem 'simplecov', '~> 0.21.2'
+  gem 'simplecov', '~> 0.22.0'
   gem 'timecop', '~> 0.9.1'
   gem 'webmock', '~> 3.14.0'
   gem 'wisper-rspec', '~> 1.1.0', require: false
@@ -256,3 +257,9 @@ gem 'ostruct', '~> 0.6.1'
 gem 'statistics', '~> 1.0'
 gem 'syslog'
 gem 'syslog-logger', '~> 1.6'
+
+# TO handle authentication with Oracle
+gem 'oci', '~> 2.20.0'
+
+# Sidekiq queue concurrency control
+gem 'sidekiq-throttled', '~> 1.5.2'

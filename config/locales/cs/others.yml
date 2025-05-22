@@ -550,7 +550,7 @@ cs:
         completion_statuses:
           completed: Dokončeno
           in_progress: Probíhající
-          not_started: Nezahájené
+          not_started: Nezahájeno
     change_password: Změnit heslo
     delete: Smazat
     edit: Upravit
@@ -582,11 +582,195 @@ cs:
         requested_rescheduling_rejected: Požadované přeložení termínu bylo zamítnuto
     'yes': Ano
   idp:
+    actions: Akce
+    board: Přehled
+    details: Podrobnosti
+    development_actions:
+      action_private: Ano
+      action_public: Ne
+      add_development_action: Přidat rozvojovou akci
+      all: Vše
+      approved: Schváleno
+      board_view:
+        completed: Dokončeno
+        in_progress: Probíhající
+        not_started: Nezahájeno
+      completion: Dokončení
+      create_my_own: Vytvořit vlastní
+      date_range: Datum zahájení - Datum ukončení
+      generate_by_ai: Vygenerovat pomocí AI
+      generate_more: Vygenerovat více
+      generating_development_actions: Generování rozvojových akcí...
+      heading: Rozvojové akce
+      incomplete_error: Nedokončené rozvojové akce
+      incomplete_error_message: Některé rozvojové akce jsou neúplné. Dokončete je prosím před odesláním vašeho IDP.
+      incomplete_warning: Nedokončené rozvojové akce
+      incomplete_warning_message: Některé rozvojové akce jsou neúplné. Opravdu chcete označit váš IDP jako dokončený?
+      learning_from_others: Učení od ostatních
+      manage_skills: Spravovat dovednosti
+      marathon: Maraton
+      mark_as_complete: Označit jako dokončené
+      no_development_actions: Žádné rozvojové akce
+      on_the_job: Při práci
+      other: Jiné
+      private: Soukromé
+      remove: Odstranit
+      skill: Dovednost
+      sprint: Sprint
+      start_plan: Zahájit plán
+      structured_learning: Strukturované učení
+      submit_plan: Odeslat plán
+      write_here: Pište zde...
+    direct_report_details: Podrobnosti o přímých podřízených
+    initial_steps:
+      add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
+      add_skill_group_title: Prozkoumání vašich %{category} dovedností
+      add_skills: Přidat
+      add_skills_step: Přidat dovednosti
+      continue_to_rate_skills: Pokračovat k hodnocení dovedností
+      getting_started: Začínáme
+      getting_started_info: Vítejte v tvůrci individuálního rozvojového plánu (IDP). Tento plán vám pomůže identifikovat, řídit a sledovat vaše profesní a osobní cíle, stejně jako kroky, které je třeba učinit k jejich dosažení. Vaše profesní cíle mohou zahrnovat behaviorální, vůdčí i technické oblasti rozvoje. Váš IDP je základním nástrojem pro podporu vašeho kariérního rozvoje a zlepšování dovedností.
+      less_skills: Zobrazit méně dovedností
+      more_skills: Prozkoumat více dovedností
+      next: Další
+      no_skills_selected: Nebyly vybrány žádné dovednosti.
+      rate_skills: Ohodnotit dovednosti
+      rate_skills_description: Nyní, když jste vybrali své rozvojové priority, ohodnoťte se prosím v každé z následujících oblastí. Pamatujte, že se máte hodnotit na základě své současné úrovně, nikoli na základě minulé nebo požadované úrovně.
+      rate_skills_title: Hodnocení vašich dovedností
+      rating_column_header: Vaše sebehodnocení
+      select_skills: Vyberte své dovednosti
+      select_skills_placeholder: Vyberte dovednosti
+      selected_skills: Vybrané dovednosti
+      skill_column_header: Dovednost
+      skill_gap_report: Zpráva o mezerách v dovednostech
+    list: Seznam
+    my_direct_reports: Moji přímí podřízení
+    my_plan:
+      development_plan: Rozvojový plán
+      graphs:
+        categories: Kategorie
+      save_skills: Uložit dovednosti
     pdf:
-      header: Dobrý den,
+      approval_status: Stav schválení
+      cover:
+        fields:
+          assigned_data: Datum přiřazení
+          completion_date: Datum dokončení
+          division: Oddělení
+          name: Jméno
+          publish_date: Datum publikace
+          review_date: Datum kontroly
+          role: Současná role
+      guidelines:
+        cards:
+          c1:
+            content: Zahrňte dovednosti, znalosti a schopnosti, které je třeba rozvíjet. Ujistěte se, že jsou konkrétní, měřitelné, dosažitelné, realistické a přiměřeně splnitelné v uvedených časových rámcích.
+            title: Rozvojové cíle
+          c2:
+            content: Toto je založeno na kompetenci, která má být rozvíjena na základě zkušenosti s hodnocením.
+            title: Kompetence
+          c3:
+            content: Tato část obsahuje vaše rozvojové akce založené na učebním modelu 70-20-10 uvedeném níže. Doporučuje se, abyste vybrali kombinaci všech tří prvků, abyste zajistili různorodý přístup k učení a rozvoji.
+            title: Aktivita
+          c4:
+            content: Ujistěte se, že vaše časové rámce jsou realistické, a to na základě toho, kdy může být cíl splněn. V případě potřeby je vhodným způsobem upravte.
+            title: Časový rámec
+          c5:
+            content: Použijte sekci postupu k podpoře progrese na identifikovaných trasách.
+            title: Pokrok
+        chart:
+          collaboration: "<strong>20%</strong>Kolaborativní <br /> učení"
+          job: "<strong>70%</strong>Učení <br />při práci"
+          learn: "<strong>10%</strong>Formální učení"
+        content:
+          list:
+            r1: Upozorňujeme, že tento seznam je pouze orientační a na základě individuálních aspirací, doporučení vašeho manažera a také obchodních priorit organizace mohou být zváženy další rozvojové cesty.
+            r2: Upozorňujeme, že zahájení některých těchto rozvojových cest bude záviset na organizační vzdělávací a učební strategii.
+            r3: Při vypracování svého individuálního rozvojového plánu prosím zvažte doporučené cesty, které jsou níže označeny křížkem.
+          main: Tato část obsahuje kumulativní seznam všech rozvojových cest s ohledem na osvědčené postupy učení, tj. směrnici 70-20-10, která poskytuje progresivní cestu kombinující výukové učení, koučování a učení při práci. Na základě výsledků zkušeností s rozvojem vedení a obchodních priorit byly doporučeny možné rozvojové cesty, které lze zvážit pro váš rozvoj.
+        learn_cards:
+          collaboration:
+            list:
+            - Nabídněte koučování nebo mentorování ostatním
+            - Požádejte o mentorování odborníkem ve svém oboru
+            - Zajistěte si kouče na podporu vašeho rozvoje
+            - Vytvořte kolaborativní pracovní skupinu k diskusi o probíhajících problémech v podnikání
+            - Získávejte zpětnou vazbu formálně i neformálně od ostatních
+            - Hrajte aktivní roli v průmyslových sdruženích a sítích
+            - Budujte vlastní externí sítě
+            title: Kolaborativní učení (20%) <br/> Rozvoj prostřednictvím ostatních
+          job:
+            list:
+            - Převezměte vedoucí pozice ve výborech zainteresovaných stran nebo managementu
+            - Nabídněte se k vedení projektů změnového řízení pro organizaci
+            - Zvažte převzetí náročnějších úkolů
+            - Pracujte napříč funkcemi v rámci spolupráce
+            - Zvažte vedení projektů mimo vaši organizaci
+            - Úzce spolupracujte s externími odborníky z oboru na společných projektech
+            title: Učení při práci (70%) <br/> Rozvoj prostřednictvím zkušeností
+          learn:
+            list:
+            - Převezměte vedoucí pozice ve výborech zainteresovaných stran nebo managementu
+            - Nabídněte se k vedení projektů změnového řízení pro organizaci
+            - Zvažte převzetí náročnějších úkolů
+            - Pracujte napříč funkcemi v rámci spolupráce
+            - Zvažte vedení projektů mimo vaši organizaci
+            - Úzce spolupracujte s externími odborníky z oboru na společných projektech
+            title: Formální učení (10%) <br/> Rozvoj prostřednictvím strukturovaného učení
+        title: Pokyny k tvorbě vašeho IDP
+      idp:
+        end_date: Datum ukončení
+        self_rating: Sebehodnocení
+        start_date: Datum zahájení
+        subtitle:
+          behavioural: Behaviorální
+          technical: Technické
+        title: Individuální rozvojový plán
+      last:
+        end_report: Konec zprávy
+      reflections:
+        subtitle: Otázky pro celkový profesní rozvoj
+        title: Reflexe pro váš IDP
+      skill_categories:
+        behavioral: Behaviorální
+        technical: Technické
+      statuses:
+        approved: Zkontrolováno a schváleno
+        completed: Dokončeno
+        not_reviewed: Nezkontrolováno
+        pending_approval: V kontrole
+      summary:
+        ai_count: Generativní AI
+        collaborative_learn: Kolaborativní učení
+        created_by: Vytvořil
+        current_status: Aktuální stav IDP
+        custom: Vlastní
+        custom_count: Vlastní
+        da_count: Počet rozvojových akcí
+        formal_learn: Formální učení
+        generated_ai: Generativní AI
+        learn_on_job: Učení při práci
+        learn_pathway: Učební cesta
+        lib_count: Knihovna IDP
+        library: Knihovna IDP
+        skills_count: Počet dovedností
+        title: Shrnutí zprávy
+    profile_details: Podrobnosti profilu
+    skill_gap_report:
+      continue_to_rate_skills: Pokračovat k hodnocení dovedností
+      title: Zpráva o mezerách v dovednostech
   idp_templates:
+    assign: Přiřadit
+    assign_idp_template: Přiřadit šablonu Idp
+    auto_assign: Automaticky přiřazovat nové uživatele
     errors:
+      idp_template_not_found: Šablona IDP nebyla nalezena
       user_idp_template_not_found: Nebyla vám přiřazena žádná šablona IDP.
+    idp_template: Šablona IDP
+    override_exists: Přepíše a resetuje existující uživatele
+    placeholder: Vyberte šablonu Idp
+    save_and_assign: Uložit a přiřadit
+    success_scheduled: Úloha pro přiřazení IDP byla úspěšně naplánována
   mailer:
     magic_link:
       body:

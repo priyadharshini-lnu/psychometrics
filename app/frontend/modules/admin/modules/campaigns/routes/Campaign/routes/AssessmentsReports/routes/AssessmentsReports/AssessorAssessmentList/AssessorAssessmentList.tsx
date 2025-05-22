@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import {
@@ -132,7 +132,7 @@ interface ActionMenuData {
 const getActionsMenuProps = ({
   assessorAssessment, removeAssessorAssessment,
 }: ActionMenuData): MenuProps => {
-  const menuItems: ItemType[] = [
+  const menuItems: MenuItem[] = [
     {
       key: I18n.t('administration.project_tabs.webhooks.actions.delete.key'),
       label: I18n.t('administration.project_tabs.webhooks.actions.delete.label'),

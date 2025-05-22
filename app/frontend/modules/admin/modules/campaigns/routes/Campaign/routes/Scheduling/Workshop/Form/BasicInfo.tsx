@@ -37,10 +37,11 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
 
   const sortDates = (dates: dayjs.Dayjs[]) => dates.sort((a, b) => a.valueOf() - b.valueOf())
 
-  const handleDateChange = (date: dayjs.Dayjs | null) => {
+  const handleDateChange = (date: dayjs.Dayjs) => {
     if (!date) {
       return
     }
+
     const existingIndex = selectedDates.map(d => d.format('YYYY MM DD')).indexOf(date.format('YYYY MM DD'))
     if (existingIndex >= 0) {
       const newDates = selectedDates.filter(d => d.format('YYYY MM DD') !== date.format('YYYY MM DD'))
@@ -93,7 +94,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <DatePicker
               format="DD/MM/YYYY"
               value={null}
-              onSelect={date => handleDateChange(date)}
+              onCalendarChange={handleDateChange}
               disabledDate={current => current && current.isBefore(dayjs().startOf('day'))}
               dateRender={(current) => {
                 const style: React.CSSProperties = {}

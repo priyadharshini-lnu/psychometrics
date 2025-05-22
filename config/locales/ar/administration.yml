@@ -1691,10 +1691,6 @@ ar:
     document_titles:
       project_assessors: Assessors | %{project}
       project_participants: Participants | %{project}
-    download_sample_file:
-      download_example_file: Download Example File
-      download_started_successfully: Download started successfully
-      failed_to_download: failed to download
     enable: Enable
     errors:
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
@@ -2150,6 +2146,8 @@ ar:
         factors: Factors
         inplace_title: Enter value
         title: Norm Editor
+      import:
+        download_example_csv: تنزيل مثال csv
       index:
         import: Import
         new: Add

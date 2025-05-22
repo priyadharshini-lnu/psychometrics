@@ -20,7 +20,7 @@ import {
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 
@@ -315,7 +315,7 @@ const getActionsMenuProps = ({
 }: ActionMenuData): MenuProps => {
   const { disabled } = project
 
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
 
   if (disabled) {
     menuItems.push({

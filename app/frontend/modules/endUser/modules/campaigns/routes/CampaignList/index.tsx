@@ -23,6 +23,7 @@ import { PageHeader, MediaQueryContext, FontsizeModifier } from '~/glint'
 import Campaigns from './Campaigns'
 
 import styles from './styles.less'
+import { hasErrorsToHandle } from '~/components/ErrorModal/ErrorModal'
 
 const { Title, Text } = Typography
 const { I18n } = window
@@ -33,6 +34,7 @@ const mapStateToProps = (state: RootState) => ({
   profileCompletionPercentage: state.currentUser.profileCompletionPercentage,
   profileLastUpdatedAt: state.currentUser.updatedAt,
   isLoading: isRequestInProgress(state, FETCH),
+  errors: state.errors,
 })
 
 const mapDispatchToProps = {
@@ -48,10 +50,12 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   profileCompletionPercentage,
   profileLastUpdatedAt,
   isLoading,
+  errors,
 }) => {
   const [error, setError] = useState(false)
   const navigate = useNavigate()
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
+  const handledErrorStatusCode = hasErrorsToHandle(errors.errors)?.statusCode
 
   useEffect(() => {
     fetchCampaigns().catch(() => {
@@ -104,9 +108,9 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
             </Col>
             <Col span={24}>
               <Title level={2} className={cs(styles['campaign-title'], 'fs-20')}>
-                {error ? I18n.t('errors.error') : I18n.t('campaign.campaigns')}
+                {(error && !handledErrorStatusCode) ? I18n.t('errors.error') : I18n.t('campaign.campaigns')}
               </Title>
-              {error
+              {(error && !handledErrorStatusCode)
                 ? (
                   <Text className={styles['campaign-instruction']}>
                     {I18n.t('errors.error_500')}

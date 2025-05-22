@@ -4,8 +4,8 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { MoreOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
   fetchOtherReports,
@@ -141,7 +141,7 @@ interface ActionMenuData {
 const getActionsMenuProps = ({
   campaignId, id, permissions, exportData,
 }: ActionMenuData):MenuProps => {
-  const menuItems: ItemType[] = []
+  const menuItems: MenuItem[] = []
   permissions.export && menuItems.push({
     key: 'export',
     label: I18n.t('campaign_report.actions.export_data'),

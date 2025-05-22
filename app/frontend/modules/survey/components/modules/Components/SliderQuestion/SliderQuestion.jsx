@@ -216,7 +216,9 @@ export const SliderQuestion = ({
               <Col className={styles.sliderContainer} span={hideValue ? 24 : 21}>
                 <AntSlider
                   classNames={{ handle: antdSliderClassname }}
-                  onAfterChange={value => onChangeSlider(choiceId, value, true)}
+                  onChangeComplete={(value) => {
+                    onChangeSlider(choiceId, value, true)
+                  }}
                   onChange={(value) => {
                     onChangeSlider(choiceId, value)
                   }}
@@ -231,6 +233,7 @@ export const SliderQuestion = ({
                   tooltip={{
                     formatter: hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>,
                   }}
+                  step={100 / (gridLines * (numberOfDecimals ? (numberOfDecimals * 10) : 1))}
                 />
               </Col>
               {!hideValue && (

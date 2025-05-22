@@ -81,13 +81,13 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
           title={`${I18n.t('administration.campaigns.users.updated_by')}`}
           id="updated_by.name"
           render={(_, { updatedBy }) => updatedBy?.name}
-          width={300}
+          width={200}
           sorter
         />
         <Resource.Column<Norm>
           title={`${I18n.t('common.column.owner')}`}
           id="owner.name"
-          width={300}
+          width={200}
           sorter
           render={(_, { owner }) => owner?.id && (
             <Link to={`/admin/clients/${owner.id}/projects`}>{owner.name}</Link>
@@ -96,7 +96,7 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<Norm>
           title={`${I18n.t('common.column.created_at')}`}
           id="createdAt"
-          width={300}
+          width={150}
           sorter
           render={(_, { createdAt }) => createdAt}
         />
@@ -104,7 +104,7 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
           title={`${I18n.t('common.column.updated_at')}`}
           id="updatedAt"
           sorter
-          width={300}
+          width={150}
           render={(_, { updatedAt }) => updatedAt}
         />
         <Resource.Column<Norm>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignUserResource < Api::V2::Administration::BaseResource
-  attributes :id, :active, :campaign_scores_finalized, :campaign_scores_finalized_date,
+  attributes :active, :campaign_scores_finalized, :campaign_scores_finalized_date,
              :campaign_scores_calculated_date, :campaign_scores_errors, :campaign_factor_values
 
   has_one :user

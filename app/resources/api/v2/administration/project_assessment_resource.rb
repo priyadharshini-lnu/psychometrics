@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::ProjectAssessmentResource < Api::V2::Administration::BaseResource
   attributes :assessment_id, :project_id, :normalize_factor_scores, :user_result_validity_in_days,
-             :created_at, :updated_at, :type
+             :created_at, :updated_at, :assessment_type
 
   ransack_filters %i[filterable_fields]
 
@@ -30,7 +30,7 @@ class Api::V2::Administration::ProjectAssessmentResource < Api::V2::Administrati
     @model.decorate.updated_at
   end
 
-  def type
+  def assessment_type
     Assessment::TYPES.key(@model.assessment.type)
   end
 

@@ -1,0 +1,105 @@
+.content {
+  flex: 1;
+
+  background-size: contain;
+  position: relative;
+  .background {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    z-index: 0;
+
+    &.flipped {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.mercerLogo {
+  position: absolute;
+  margin-block-start: 33px;
+  margin-inline-start: 45px;
+  max-height: 34px;
+  height: 34px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.clientLogo {
+  position: absolute;
+  margin-inline-start: calc(100% - 120px);
+
+  // right: 45px;
+  max-width: 78px;
+  height: 116px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+
+.title {
+  padding: 20px 40px;
+  margin-top: -60px;
+  color: #fff;
+  font-size: 6rem;
+  font-weight: bold;
+  width: 70%;
+  text-align: start;
+  white-space: break-spaces;
+  word-wrap: break-word;
+}
+
+.subtitle {
+  padding: 0 45px;
+  color: #fff;
+  font-size: 2.5rem;
+  text-align: start;
+}
+
+.main {
+  position: relative;
+}
+
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 45px;
+
+  .divider {
+    width: 1px;
+    height: 100px;
+    background-color: #dadada;
+    margin: 0 20px;
+  }
+  .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+
+  .item {
+    color: #fff;
+    text-align: start;
+
+    .label {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .value {
+      font-size: 16px;
+    }
+  }
+}

@@ -37,7 +37,6 @@ ja:
           attributes:
             current_password:
               invalid: パスワードが間違っています
-  administration: 管理部門
   anonym:
     close: 閉じる
     continue: 続行
@@ -451,6 +450,10 @@ ja:
     two_factor_authentication:
       attempt: ご登録のメールアドレス宛てに届いたOTPを入力してください
       code_has_been_sent: ご登録のメールアドレス宛てに新しいOTPが送信されました
+  dry_errors:
+    errors:
+      idp_template:
+        tag_or_skill_required: "「選択済み」オプションを選択した場合は、タグまたはスキルのいずれかを選択してください。"
   emails:
     subject_relationship_table:
       subject_email: 件名 電子メール
@@ -585,8 +588,183 @@ ja:
         requested_rescheduling_rejected: 予約変更依頼却下
     'yes': はい
   idp:
+    actions: アクション
+    board: ボード
+    details: 詳細
+    development_actions:
+      action_private: はい
+      action_public: いいえ
+      add_development_action: 開発アクションを追加
+      all: すべて
+      approved: 承認済み
+      board_view:
+        completed: 完了
+        in_progress: 進行中
+        not_started: 未開始
+      completion: 完了
+      create_my_own: 自分で作成
+      date_range: 開始日 - 終了日
+      generate_by_ai: AIで生成
+      generate_more: さらに生成
+      generating_development_actions: 開発アクションを生成中...
+      heading: 開発アクション
+      learning_from_others: 他者からの学習
+      manage_skills: スキルを管理
+      marathon: マラソン
+      no_development_actions: 開発アクションがありません
+      on_the_job: 業務上
+      other: その他
+      private: プライベート
+      remove: 削除
+      skill: スキル
+      sprint: スプリント
+      structured_learning: 体系的学習
+      submit_plan: プランを提出
+      write_here: ここに記入してください...
+    direct_report_details: 直属の部下の詳細
+    initial_steps:
+      add_skill_group_description: あなたの評価結果に基づき、あなたの強みと開発すべき領域のいくつかを紹介します。開発計画の一部として、さらに伸ばしたいスキルを選択してください。
+      add_skill_group_title: あなたの%{category}スキルを探る
+      add_skills: 追加
+      add_skills_step: スキルを追加
+      continue_to_rate_skills: スキル評価を続ける
+      getting_started: はじめに
+      getting_started_info: 個人開発計画（IDP）作成ツールへようこそ。このプランは、専門的および個人的な目標を特定、管理、追跡するのに役立ちます。また、それらの目標を達成するために必要なステップも含まれています。専門的な目標には、行動、リーダーシップ、技術的な領域の開発が含まれることがあります。IDPはキャリア開発とスキル向上を支援する重要なツールです。
+      less_skills: スキルを減らして表示
+      more_skills: さらにスキルを探る
+      next: 次へ
+      no_skills_selected: スキルが選択されていません。
+      rate_skills: スキルを評価
+      rate_skills_description: 開発の優先事項を選択したので、以下のそれぞれについて自己評価をしてください。過去や希望するレベルではなく、現在のレベルに基づいて評価することを忘れないでください。
+      rate_skills_title: スキルの評価
+      rating_column_header: あなたの自己評価
+      select_skills: スキルを選択
+      select_skills_placeholder: スキルを選択
+      selected_skills: 選択したスキル
+      skill_column_header: スキル
+      skill_gap_report: スキルギャップレポート
+    list: リスト
+    my_direct_reports: 私の直属の部下
+    my_plan:
+      development_plan: 開発計画
+      graphs:
+        categories: カテゴリー
+      save_skills: スキルを保存
     pdf:
-      header: こんにちは
+      approval_status: 承認状況
+      cover:
+        fields:
+          assigned_data: 割り当て日
+          completion_date: 完了日
+          division: 部門
+          name: 名前
+          publish_date: 公開日
+          review_date: レビュー日
+          role: 現在の役割
+      guidelines:
+        cards:
+          c1:
+            content: 開発すべきスキル、知識、能力を含めてください。それらが具体的で、測定可能で、達成可能で、現実的で、記載されたタイムラインで合理的に達成できることを確認してください。
+            title: 開発目標
+          c2:
+            content: これは評価経験に基づいて開発されるべきコンピテンシーに基づいています。
+            title: コンピテンシー
+          c3:
+            content: このセクションには、以下に記載されている70-20-10学習モデルに基づいた開発アクションが含まれています。多様な学習と開発アプローチを確保するために、三つの要素の組み合わせを選択することをお勧めします。
+            title: 活動
+          c4:
+            content: 目標がいつ完了できるかに基づいて、現実的なタイムラインを設定してください。必要に応じて適宜修正してください。
+            title: タイムライン
+          c5:
+            content: 進捗セクションを使用して、特定されたトラックの進行をサポートしてください。
+            title: 進捗
+        chart:
+          collaboration: "<strong>20%</strong>協調的な<br />学習"
+          job: "<strong>70%</strong>業務上の<br />学習"
+          learn: "<strong>10%</strong>公式な学習"
+        content:
+          list:
+            r1: このリストは参考用であり、個人の希望、マネージャーからの推奨事項、組織のビジネス優先事項に基づいて、追加の開発経路が検討される場合があることにご注意ください。
+            r2: これらの開発経路の一部の開始は、組織全体の教育・学習戦略に依存する場合があることにご注意ください。
+            r3: 個人開発計画を作成する際には、以下に示された推奨経路を検討してください。
+          main: このセクションには、ベストプラクティスの学習、つまり70-20-10のガイドラインを念頭に置いた、すべての開発経路の累積リストが含まれています。これは、教室での学習、コーチング、業務上の学習を組み合わせた進歩的な旅を提供します。リーダーシップ開発経験とビジネスの優先事項の結果に基づいて、あなたの開発のために検討できる可能な開発経路が推奨されています。
+        learn_cards:
+          collaboration:
+            list:
+            - 他者へのコーチングやメンタリングを提供する
+            - 専門分野の専門家からメンタリングを受ける
+            - 開発をサポートするコーチを獲得する
+            - ビジネスの継続的な課題について議論するための協力的なワーキンググループを設立する
+            - 他者から正式および非公式にフィードバックを得る
+            - 業界団体やネットワークで積極的な役割を果たす
+            - 自分の外部ネットワークを構築する
+            title: 協調学習（20%）<br/>他者を通じた開発
+          job:
+            list:
+            - ステークホルダーや管理委員会でリーダーシップの地位を引き受ける
+            - 組織の変更管理プロジェクトをリードするボランティアをする
+            - 挑戦的な任務を引き受けることを検討する
+            - 他の機能と横断的に協力する
+            - 組織外のプロジェクトをリードすることを検討する
+            - 共同プロジェクトで外部の業界専門家と密接に協力する
+            title: 業務上の学習（70%）<br/>経験を通じた開発
+          learn:
+            list:
+            - ステークホルダーや管理委員会でリーダーシップの地位を引き受ける
+            - 組織の変更管理プロジェクトをリードするボランティアをする
+            - 挑戦的な任務を引き受けることを検討する
+            - 他の機能と横断的に協力する
+            - 組織外のプロジェクトをリードすることを検討する
+            - 共同プロジェクトで外部の業界専門家と密接に協力する
+            title: 公式学習（10%）<br/>体系的な学習を通じた開発
+        title: IDPを導くためのガイドライン
+      idp:
+        end_date: 終了日
+        self_rating: 自己評価
+        start_date: 開始日
+        subtitle:
+          behavioural: 行動的
+          technical: 技術的
+        title: 個人開発計画
+      last:
+        end_report: レポート終了
+      reflections:
+        subtitle: 全体的な専門能力開発のための質問
+        title: IDPを導くための考察
+      skill_categories:
+        behavioral: 行動的
+        technical: 技術的
+      statuses:
+        approved: レビュー済み・承認済み
+        completed: 完了
+        not_reviewed: 未レビュー
+        pending_approval: レビュー中
+      summary:
+        ai_count: 生成型AI
+        collaborative_learn: 協調学習
+        created_by: 作成者
+        current_status: IDP現在のステータス
+        custom: カスタム
+        custom_count: カスタム
+        da_count: 開発アクション数
+        formal_learn: 公式学習
+        generated_ai: 生成型AI
+        learn_on_job: 業務上の学習
+        learn_pathway: 学習経路
+        lib_count: IDPライブラリ
+        library: IDPライブラリ
+        skills_count: スキル数
+        title: レポート概要
+    profile_details: プロフィール詳細
+    skill_gap_report:
+      continue_to_rate_skills: スキル評価を続ける
+      title: スキルギャップレポート
+    status: ステータス
+    user_idp_status:
+      approved: 承認済み
+      draft: 下書き
+      pending_approval: 承認待ち
+    users: ユーザー
   idp_templates:
     errors:
       user_idp_template_not_found: IDPテンプレートが割り当てられていません。

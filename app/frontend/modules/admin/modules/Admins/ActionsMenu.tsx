@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Button, Tooltip, MenuProps } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined } from '@ant-design/icons'
+import { MenuItem } from '~/interfaces/Antd'
 
 import { isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
@@ -100,7 +100,7 @@ const getActionMenuProps = ({
   handleDelete,
   handleEdit,
 }: ActionMenuData): MenuProps => {
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
   permissions.loginAs && menuItems.push(
     {
       key: 'loginAs',

@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import {
   Button, Switch, MenuProps, App,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
 import { useNavigate } from 'react-router-dom'
 import { ConnectedProps, connect } from 'react-redux'
+import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -454,7 +454,7 @@ const getActionsMenuProps = ({
         </Button>
       ),
     },
-  ].filter(m => m) as ItemType[]
+  ].filter(m => m) as MenuItem[]
 
   return ({ items: menuItems, onClick: handleMenuClick })
 }

@@ -7,12 +7,17 @@ import {
 } from '@ant-design/icons'
 import cs from 'classnames'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
+import { ButtonColorType } from '~/interfaces/Antd'
 
 import { CampaignAssessmentGroup } from '~/modules/admin/modules/campaigns/core/assessmentGroups'
 
 import styles from './styles.less'
 
 const { I18n } = window
+
+type ButtonAttributes = {
+  color?: ButtonColorType,
+} & Omit<React.HTMLAttributes<HTMLElement>, 'color'>
 
 interface Props {
   group: CampaignAssessmentGroup
@@ -24,7 +29,7 @@ interface Props {
   modifyGroup?: (groupdId: number, data: Partial<CampaignAssessmentGroup>) => void
   sortId?: string
   dragStyle?: CSSProperties
-  attributes?: React.HTMLAttributes<HTMLElement>
+  attributes?: ButtonAttributes
   listeners?: DraggableSyntheticListeners
   ref: LegacyRef<HTMLDivElement>
   style?: CSSProperties

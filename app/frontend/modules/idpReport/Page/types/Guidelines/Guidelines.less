@@ -1,0 +1,116 @@
+@import "../colors.less";
+
+.content {
+  flex: 1;
+  background-size: contain;
+  position: relative;
+  padding: 45px;
+  color: @primary-black;
+}
+
+.header {
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.card {
+  margin-inline-start: 16px;
+  &:first-child {
+    margin-inline-start: 0;
+  }
+  flex: 1;
+  .title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+}
+
+.text {
+  font-size: 11px;
+  font-weight: 200;
+  line-height: 1.3;
+  color: @primary-gray;
+  line-height: 1.2;
+}
+
+.list {
+  li {
+    list-style-type: initial;
+    margin-inline-start: 15px;
+  }
+}
+
+.learnCard {
+  flex: 1;
+  margin-inline-start: 20px;
+  &:first-child {
+    margin-inline-start: 0;
+  }
+  .title {
+    background: @light-pink;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+}
+
+.graphic {
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  .panel {
+    background-image: repeating-linear-gradient(
+      30deg,
+      transparent,
+      transparent 4px,
+      rgba(0, 0, 0, 0.1) 5px
+    );
+  }
+
+  .job {
+    height: 100%;
+    width: 60%;
+    background-color: @blue;
+  }
+
+  .collaborative {
+    height: 100%;
+    width: 25%;
+    background-color: @green;
+    background-position-y: 2px;
+  }
+
+  .learning {
+    height: 100%;
+    width: 15%;
+    background-color: @primary-gray;
+  }
+
+  .cont {
+    padding: 10px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    .icon {
+      width: 50px;
+      height: 50px;
+      margin-inline-end: 10px;
+    }
+    .label {
+      color: @white;
+      font-size: 14px;
+      strong {
+        font-size: 1.5em;
+        line-height: 1.5;
+        font-weight: bold;
+        display: block;
+      }
+    }
+  }
+}

@@ -4,7 +4,16 @@ import {
   Checkbox,
 } from 'antd'
 import { ReloadOutlined, IssuesCloseOutlined } from '@ant-design/icons'
+import { connect, ConnectedProps } from 'react-redux'
 import { CountDisplay } from '~/components/CountDisplay'
+import { hasErrorsToHandle } from '~/components/ErrorModal/ErrorModal'
+import { getRequestErrors } from '~/core/errors'
+
+const connector = connect(state => ({
+  ...getRequestErrors(state),
+}))
+
+type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = {
   recordCount?: number
@@ -25,10 +34,15 @@ type Props = {
 
 const { I18n } = window
 
-export const TableLayout: FC<Props> = ({
-  recordCount, loading, filters, table, requestStatus, disableHeader, failureMsg, selectionSetting, selectedCount,
+const TableLayout1: FC<Props & PropsFromRedux> = ({
+  recordCount, loading, filters, table, requestStatus,
+  disableHeader, failureMsg, selectionSetting, selectedCount, errors,
 }) => {
   const requestFailed = requestStatus === 'failed'
+
+  if (hasErrorsToHandle(errors.errors)?.statusCode) {
+    return null
+  }
 
   return (
     <>
@@ -100,3 +114,5 @@ const RequestFailedMessage = ({ failureMsg }) => (
     </Empty>
   </div>
 )
+
+export const TableLayout = connector(TableLayout1)

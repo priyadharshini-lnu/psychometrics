@@ -6,8 +6,9 @@
 
 HASHIDS_SALT: 'fake_salt'
 # ENCRYPTED_KEY:
-# SECRET_KEY_BASE:
 # SECRET_TOKEN_FOR_GENERATE:
+# SECRET_KEY_BASE: 'dummy_key'
+DEVISE_SECRET_KEY: 'dummy_key'
 
 MAIL_USERNAME: 'fake_username'
 MAIL_PASSWORD: 'fake_password'
@@ -46,10 +47,10 @@ PRIVATE_BUCKET_STORAGE_SERVICE_KEY: s3_private_bucket
 PUBLIC_BUCKET_STORAGE_SERVICE_KEY: s3_public_bucket
 
 REAL_ENV: development
-AWS_ACCESS_KEY_ID: dummy_key
-AWS_SECRET_ACCESS_KEY: dummy_secret
-AWS_REGION: eu-west-1
-AWS_S3_BUCKET: dummy_bucket
+# AWS_ACCESS_KEY_ID: dummy_key
+# AWS_SECRET_ACCESS_KEY: dummy_secret
+# AWS_REGION: eu-west-1
+# AWS_S3_BUCKET: dummy_bucket
 
 S3_COMPATIBLE_STORAGE_ACCESS_KEY_ID: aws_access_key #replace with actual key from minio
 S3_COMPATIBLE_STORAGE_SECRET_ACCESS_KEY: aws_secret_key #replace with actual secret from minio
@@ -65,7 +66,7 @@ UAE_DATA_MIGRATION_SUBDOMAINS: ccd,adsg,adeo,xzy
 
 PK_ID_START: '1'
 
-DISABLE_SAML_FOR_ADMINS: true
+DISABLE_SAML_FOR_ADMINS: 'true'
 SAML_ASSERTION_CONSUMER_SERVICE_URL:
 SAML_ISSUER:
 SAML_IDP_ENTITY_ID:

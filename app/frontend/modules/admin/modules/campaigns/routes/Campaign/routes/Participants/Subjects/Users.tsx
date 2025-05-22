@@ -8,8 +8,8 @@ import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
 import { Link, useParams } from 'react-router-dom'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { FilterValue } from 'antd/lib/table/interface'
+import { MenuItem } from '~/interfaces/Antd'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
@@ -382,7 +382,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
     label: I18n.t('frontend.edit'),

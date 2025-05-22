@@ -751,6 +751,7 @@ en:
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
         bulk_rescore_campaign_factors: Bulk Rescore Campaign Factors
+        bulk_update_evaluation_status: Bulk Update Evaluation Status
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
@@ -1278,7 +1279,7 @@ en:
       heading: Please review the guidelines below before you get started. We wish you all the best!
     language:
       content: This task is not available in the currently selected language. Please select one of the available languages to proceed.
-      single_lang: This task is available only in %{lang}. Click "Proceed" to continue.
+      single_lang: This task is available only in %{lang}. Click "Continue" to proceed.
       title: Select language
     panels:
       dashboard: Dashboard
@@ -1307,6 +1308,8 @@ en:
   campaign_assessment:
     actions:
       bulk_download: Bulk Download
+      bulk_update_evaluation_as_done: Mark as Done
+      bulk_update_evaluation_as_undone: Unmark as Done
       download: Download Reports
       export_completion_status: Export Completion Status
       export_external: External
@@ -1337,10 +1340,15 @@ en:
       locales: Locales
       norm: Norm
       norm_id: Norm ID
+      pearson_norm_id: Pearson Norm ID
+      pearson_schedule_id: Pearson Schedule ID
       pearson_variation: Pearson Variation
       prework: Prework
-      simuation_time_extension: Simulation Time Extension
+      saville_candidate_id: Candidate ID
+      saville_data_separator: Saville Data Separator
       simulation_content_variation: Simulation Content Variation
+      simulation_participant_id: Simulation Participant ID
+      simulation_time_extension: Simulation Time Extension
       universal_link: Universal link
     drawer:
       mettl_schedule_name: Mettl Schedule Name
@@ -1356,6 +1364,10 @@ en:
       raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
       scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully
     modals:
+      bulk_update_evaluation:
+        content: Are you sure you want to mark all selected subjects as %{status}?
+        successfully: Successfully marked as %{status}.
+        title: Bulk Mark as %{status}?
       import_raw:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
         success_msg: Import was uploaded successfully
@@ -1631,9 +1643,11 @@ en:
       copy: Copy
       create: Create
       delete: Delete
+      download: Download
       edit: Edit
       export: Export
       filter_by_tags: Filter by tags
+      go_back: Go Back
       import: Import
       insert: Insert
       ok: OK
@@ -1641,11 +1655,13 @@ en:
       reset: Reset
       resolve: Resolve
       restore: Restore
+      return_to_home: Return to Home
       run: Run
       save: Save
       schedule: Schedule
       search: Search
       send: Send
+      sign_in: Sign In
       start: Start
       unarchive: Unarchive
       unresolve: Unresolve
@@ -1998,6 +2014,8 @@ en:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
+      idp_template:
+        tag_or_skill_required: Please select either a tag or a skill when the "Selected" option is chosen.
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
       invalid_value: invalid statement '%{value}' on line number %{row}
       json?: Should be valid JSON
@@ -2017,6 +2035,8 @@ en:
       report_families_reports:
         report_exists: This Report is already a part of Report Bundle
       size?: size should be less %{size}
+      skill:
+        already_added: Skill with the same name already added.
       skill_alias:
         unique_alias: Alias should be unique
         unique_skill: Skill should be unique
@@ -2071,6 +2091,8 @@ en:
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     error: Error
+    error_401: You are not authorized to access this resource. Please sign in.
+    error_403: You do not have permission to view this resource.
     error_500: Something went wrong. Contact your administrator.
     error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     forbidden: You do not have access to this page
@@ -2369,9 +2391,14 @@ en:
       generate_more: Generate More
       generating_development_actions: Generating development actions...
       heading: Development Actions
+      incomplete_error: Incomplete Development Actions
+      incomplete_error_message: Some development actions are incomplete. Please complete them before submitting your IDP.
+      incomplete_warning: Incomplete Development Actions
+      incomplete_warning_message: Some development actions are incomplete. Are you sure you want to mark your IDP complete?
       learning_from_others: Learning from others
       manage_skills: Manage Skills
       marathon: Marathon
+      mark_as_complete: Mark as Complete
       no_development_actions: No development actions
       on_the_job: On the job
       other: Other
@@ -2379,6 +2406,7 @@ en:
       remove: Remove
       skill: Skill
       sprint: Sprint
+      start_plan: Start Plan
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
@@ -2388,7 +2416,6 @@ en:
       add_skill_group_title: Exploring Your %{category} Skills
       add_skills: Add
       add_skills_step: Add Skills
-      continue_to_add_skills: Continue to add skills
       continue_to_rate_skills: Continue to rate skills
       getting_started: Getting Started
       getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
@@ -2410,17 +2437,113 @@ en:
     my_plan:
       development_plan: Development Plan
       graphs:
-        area_of_development: Area of Development
-        behavioural: Behavioural
         categories: Categories
-        learning_on_job: On the job (%{count})
-        learning_others: Learning from others (%{count})
-        learning_structured: Structured learning (%{count})
-        other: Other
-        technical: Technical
       save_skills: Save Skills
     pdf:
-      header: Hello
+      approval_status: Approval Status
+      cover:
+        fields:
+          assigned_data: Assigned Date
+          completion_date: Completion Date
+          division: Division
+          name: Name
+          publish_date: Publish Date
+          review_date: Review Date
+          role: Current Role
+      guidelines:
+        cards:
+          c1:
+            content: Include skills, knowledge and capabilities that need to be developed. Ensure they are specific, measurable, achievable, realistic and reasonably able to be accomplished in the timelines mentioned.
+            title: Development Objectives
+          c2:
+            content: This is based on the competency to be developed based on the assessment experience.
+            title: Competency
+          c3:
+            content: This section includes your development actions based on the 70-20-10 learning model listed below. It is advised that you select a combination of each of the three elements to ensure a varied learning and development approach.
+            title: Activity
+          c4:
+            content: Ensure your timelines are realistic based on when the objective can be complete. Do amend this as and when appropriate.
+            title: Timeline
+          c5:
+            content: Use the progress section to support progression on the identified tracks.
+            title: Progress
+        chart:
+          collaboration: "<strong>20%</strong>Collaborative <br /> Learning"
+          job: "<strong>70%</strong>Learning <br />on the Job"
+          learn: "<strong>10%</strong>Formal Learning"
+        content:
+          list:
+            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organisational business priorities.
+            r2: Please note that the launch of some of these development pathways will depend on the organisational wide education and learning strategy.
+            r3: Please consider the recommended pathways as crossed below, when developing your Individual Development Plan.
+          main: This section includes a cumulative list of all the development pathways, keeping in mind best practice learning i.e., 70-20-10 guideline, which provides a progressive journey combining classroom learning, coaching and on-the job learning. Based on the outcomes from the leadership development experience and business priorities, possible development pathways have been recommended, which can be considered for your development.
+        learn_cards:
+          collaboration:
+            list:
+            - Offer to coach or mentor others
+            - Request to be mentored by an expert in your field
+            - Attain a coach to support your development
+            - Set-up a collaborative working group to discuss on going challenges in the business
+            - Get feedback formally and informally from others
+            - Play an active role in industry associations and networks
+            - Build your own external networks
+            title: Collaborative Learning (20%) <br/> Developing through others
+          job:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Learning On the Job (70%) <br/> Developing through experience
+          learn:
+            list:
+            - Assume leadership positions in stakeholder or management committees
+            - Volunteer to lead change management projects for the organization
+            - Consider taking on stretching assignments
+            - Work cross-collaboratively with other functions
+            - Consider leading projects outside your organization
+            - Work closely with external industry experts on joint-projects
+            title: Formal Learning (10%) <br/> Developing through structured learning
+        title: Guidelines to Guide your IDP
+      idp:
+        end_date: End Date
+        self_rating: Self Rating
+        start_date: Start Date
+        subtitle:
+          behavioural: Behavioural
+          technical: Technical
+        title: Individual Development Plan
+      last:
+        end_report: End of Report
+      reflections:
+        subtitle: Questions for Overall Professional Development
+        title: Reflections to Guide your IDP
+      skill_categories:
+        behavioral: Behavioural
+        technical: Technical
+      statuses:
+        approved: Reviewed and Approved
+        completed: Completed
+        not_reviewed: Not Reviewed
+        pending_approval: In Review
+      summary:
+        ai_count: Generative AI
+        collaborative_learn: Collaborative Learning
+        created_by: Created by
+        current_status: IDP Current Status
+        custom: Custom
+        custom_count: Custom
+        da_count: Development Action Count
+        formal_learn: Formal Learning
+        generated_ai: Generative AI
+        learn_on_job: Learning on the job
+        learn_pathway: Learning Pathway
+        lib_count: IDP Library
+        library: IDP Library
+        skills_count: Skills Count
+        title: Report Summary
     profile_details: Profile Details
     skill_gap_report:
       continue_to_rate_skills: Continue to rate skills

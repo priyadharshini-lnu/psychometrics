@@ -1,0 +1,54 @@
+# frozen_string_literal: true
+
+module Api
+  module V2
+    module AI
+      module Assistant
+        class Schema < Api::Base::Schema
+          def self.resource
+            'assistants'
+          end
+
+          def self.attributes(attribute, _)
+            proc do
+              attribute[:name].filled(:string)
+              attribute[:description].maybe(:string)
+              attribute[:system_prompt].maybe(:string)
+              attribute[:user_prompt].maybe(:string)
+              attribute[:action].maybe(:string)
+              attribute[:created_at].filled(:string)
+              attribute[:updated_at].filled(:string)
+            end
+          end
+
+          def self.create_request
+            json_api_attributes do
+              required(:name).filled(:string)
+              required(:description).filled(:string)
+              required(:system_prompt).filled(:string)
+              required(:user_prompt).filled(:string)
+              required(:action).filled(:string)
+            end
+          end
+
+          def self.update_request
+            json_api_attributes do
+              optional(:name).filled(:string)
+              optional(:description).maybe(:string)
+              optional(:system_prompt).maybe(:string)
+              optional(:user_prompt).maybe(:string)
+              optional(:action).maybe(:string)
+            end
+          end
+
+          def self.relationships(_)
+            [
+              { name: :owner, resource: :clients, relationship: :one, required: false, allowed_blank: true },
+              { name: :last_modified_by, resource: :users, relationship: :one, required: false, allowed_blank: true }
+            ]
+          end
+        end
+      end
+    end
+  end
+end

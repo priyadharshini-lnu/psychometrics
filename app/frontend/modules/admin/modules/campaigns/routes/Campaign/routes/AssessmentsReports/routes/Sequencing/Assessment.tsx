@@ -4,13 +4,17 @@ import {
 } from 'antd'
 import { MenuOutlined } from '@ant-design/icons'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
+import { ButtonColorType } from '~/interfaces/Antd'
 
 import { CampaignAssessment } from '~/modules/admin/modules/campaigns/core/assessmentGroups'
 
+type ButtonAttributes = {
+  color?: ButtonColorType,
+} & Omit<React.HTMLAttributes<HTMLElement>, 'color'>
 interface Props {
   assessment?: CampaignAssessment
   dragStyles?: CSSProperties
-  attributes?: React.HTMLAttributes<HTMLElement>
+  attributes?: ButtonAttributes
   listeners?: DraggableSyntheticListeners
   style?: CSSProperties
   span?: number

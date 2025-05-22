@@ -6,21 +6,22 @@ RSpec.describe Api::V2::Administration::SkillTranslationImportForm do
   let(:valid_csv_content) do
     <<~CSV
       ID,Locale,Name,Description
-      1,en,Test Skill,Test Description
+      1#Name,en,Test Skill,Test Description
+      1#Description,en,,Test Description
     CSV
   end
 
   let(:invalid_csv_content) do
     <<~CSV
-      ID,Name,Description
-      1,Test Skill,Test Description
+      Name,Description
+      Test Skill,Test Description
     CSV
   end
 
-  let(:invalid_locale_content) do
+  let(:invalid_format_content) do
     <<~CSV
       ID,Locale,Name,Description
-      1,xx,Test Skill,Test Description
+      1,en,Test Skill,Test Description
     CSV
   end
 
@@ -40,11 +41,11 @@ RSpec.describe Api::V2::Administration::SkillTranslationImportForm do
     )
   end
 
-  let(:invalid_locale_file) do
+  let(:invalid_format_file) do
     Rack::Test::UploadedFile.new(
-      StringIO.new(invalid_locale_content),
+      StringIO.new(invalid_format_content),
       'text/csv',
-      original_filename: 'invalid_locale.csv'
+      original_filename: 'invalid_format.csv'
     )
   end
 
@@ -73,7 +74,16 @@ RSpec.describe Api::V2::Administration::SkillTranslationImportForm do
     it 'is invalid when required columns are missing' do
       form = described_class.new(file: invalid_file)
       expect(form).not_to be_valid
-      expect(form.errors[:base]).to include('Missing required columns: Locale')
+      expect(form.errors[:base]).to include('Missing required columns: ID')
+    end
+
+    it 'is invalid when ID format is incorrect' do
+      allow(I18n).to receive(:t).with('administration.skills.translations.import.errors.invalid_id_format',
+                                      any_args).and_return('Invalid ID format')
+
+      form = described_class.new(file: invalid_format_file)
+      expect(form).not_to be_valid
+      expect(form.errors[:base]).to include('Invalid ID format')
     end
   end
 end

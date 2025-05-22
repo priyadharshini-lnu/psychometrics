@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
 describe Api::V2::Administration::BaseResource do
   let!(:superadmin) { create(:superadmin) }

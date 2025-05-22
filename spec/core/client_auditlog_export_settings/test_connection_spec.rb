@@ -16,6 +16,8 @@ last_exported_at:)
 
   context 'when the AWS connection is invalid' do
     it 'returns the error :invalid_aws_connection' do
+      allow(ClientAuditlogExportSettings::S3::BuildObject).to receive(:call).and_raise(Aws::Errors::ServiceError)
+
       result = described_class.call(client_auditlog_export_setting)
       expect(result[:error]).to eq(:invalid_aws_connection)
     end

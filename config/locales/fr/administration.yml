@@ -1599,16 +1599,12 @@ fr:
     development_action_translations:
       import:
         errors:
-          blank_description: 'Ligne %{row} : la description ne peut pas être vide'
           blank_id: 'Ligne %{row} : l''ID ne peut pas être vide'
-          blank_locale: 'Row %{row} : Locale cannot be blank'
-          blank_name: 'Ligne %{row} : le nom ne peut pas être vide'
           development_action_not_found: Action de développement introuvable
           download_failed: 'Le téléchargement du fichier a échoué : %{message}'
           invalid_csv_format: 'Format CSV non valide : %{message}'
           invalid_file_format: Le fichier doit être un fichier CSV
           invalid_id: 'Ligne %{row} : l''ID doit être un nombre'
-          invalid_locale: 'Ligne %{row} : locale invalide ''%{locale}'''
           invalid_url: 'URL non valide : %{message}'
           invalid_url_format: Format d'URL non valide
           missing_columns: 'Colonnes obligatoires manquantes : %{fields}'
@@ -1748,10 +1744,6 @@ fr:
     document_titles:
       project_assessors: Évaluateurs | %{projet}
       project_participants: Participants | %{projet}
-    download_sample_file:
-      download_example_file: Télécharger le fichier d'exemple
-      download_started_successfully: Le téléchargement a commencé avec succès
-      failed_to_download: le téléchargement a échoué
     enable: Activer
     errors:
       error_msg: Veuillez actualiser la page et si le problème persiste, contactez votre administrateur
@@ -2220,7 +2212,7 @@ fr:
       export:
         success_msg: Le travail d'exportation de la norme a été programmé avec succès. Veuillez vérifier le statut dans les notifications.
       import:
-        download_example_csv: Exemple de normes CSV
+        download_example_csv: Télécharger un exemple csv
         select_file_validation: Veuillez sélectionner un propriétaire et un dossier avant de soumettre votre demande.
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
         title: Importation de normes

@@ -5,7 +5,7 @@ module Api
     module Administration
       module Clients
         class ReportResource < Api::V2::Administration::BaseResource
-          attributes :id, :name
+          attributes :name
 
           ransack_filters %i[name_cont id_eq]
 

@@ -1328,7 +1328,6 @@ it:
       norm_id: ID norma
       pearson_variation: Variazione Pearson
       prework: Prelavoro
-      simuation_time_extension: Estensione del tempo di simulazione
       simulation_content_variation: Variazione del contenuto della simulazione
       universal_link: Collegamento universale
     drawer:
@@ -2328,86 +2327,181 @@ it:
       aria_selected: Selezionato
   idp:
     actions: Azioni
-    board: Consiglio di amministrazione
+    board: Bacheca
     details: Dettagli
     development_actions:
       action_private: Sì
-      action_public: 'false'
-      add_development_action: Aggiungi azione di sviluppo
+      action_public: 'No'
+      add_development_action: Aggiungi Azione di Sviluppo
       all: Tutti
       approved: Approvato
       board_view:
         completed: Completato
-        in_progress: In corso
-        not_started: Non iniziato
+        in_progress: In Corso
+        not_started: Non Iniziato
       completion: Completamento
-      create_my_own: Creare il mio personale
-      date_range: Data di inizio - Data di fine
-      generate_by_ai: Generati dall'intelligenza artificiale
-      generate_more: Generare di più
-      generating_development_actions: Generare azioni di sviluppo...
-      heading: Azioni di sviluppo
-      learning_from_others: Imparare dagli altri
-      manage_skills: Gestire le competenze
+      create_my_own: Crea il Mio
+      date_range: Data di Inizio - Data di Fine
+      generate_by_ai: Genera con IA
+      generate_more: Genera Altro
+      generating_development_actions: Generazione delle azioni di sviluppo...
+      heading: Azioni di Sviluppo
+      learning_from_others: Apprendimento dagli altri
+      manage_skills: Gestisci Competenze
       marathon: Maratona
       no_development_actions: Nessuna azione di sviluppo
       on_the_job: Sul lavoro
       other: Altro
       private: Privato
-      remove: Rimuovere
-      skill: Abilità
+      remove: Rimuovi
+      skill: Competenza
       sprint: Sprint
       structured_learning: Apprendimento strutturato
-      submit_plan: Invia il piano
+      submit_plan: Invia Piano
       write_here: Scrivi qui...
-    direct_report_details: Dettagli del rapporto diretto
+    direct_report_details: Dettagli Report Diretto
     initial_steps:
-      add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
-      add_skill_group_title: Esplorare le proprie capacità di %{categoria}
+      add_skill_group_description: In base ai risultati della tua valutazione, ecco alcune delle aree di forza e di sviluppo per te. Scegli le competenze che desideri sviluppare ulteriormente come parte del tuo piano di sviluppo.
+      add_skill_group_title: Esplorazione delle Tue Competenze %{category}
       add_skills: Aggiungi
-      add_skills_step: Aggiungi competenze
-      continue_to_add_skills: Continuare ad aggiungere competenze
-      continue_to_rate_skills: Continuare a valutare le competenze
-      getting_started: Come iniziare
-      getting_started_info: Benvenuti nel creatore del vostro Piano di Sviluppo Individuale (IDP), che vi aiuterà a identificare, gestire e monitorare i vostri obiettivi professionali e personali, nonché i passi da compiere per raggiungerli. I vostri obiettivi professionali possono includere aree di sviluppo comportamentali, di leadership e tecniche. Il vostro IDP è uno strumento essenziale per supportare lo sviluppo della vostra carriera e il miglioramento delle vostre competenze.
+      add_skills_step: Aggiungi Competenze
+      continue_to_rate_skills: Continua a valutare le competenze
+      getting_started: Iniziamo
+      getting_started_info: Benvenuto nel tuo creatore di Piano di Sviluppo Individuale (PSI). Questo piano ti aiuterà a identificare, gestire e tracciare i tuoi obiettivi professionali e personali, nonché i passi necessari per raggiungerli. I tuoi obiettivi professionali possono includere aree di sviluppo comportamentali, di leadership e tecniche. Il tuo PSI è uno strumento essenziale per supportare lo sviluppo della tua carriera e il miglioramento delle tue competenze.
       less_skills: Mostra meno competenze
-      more_skills: Esplora altre competenze
+      more_skills: Esplora più competenze
       next: Avanti
-      no_skills_selected: Nessuna abilità selezionata.
-      rate_skills: Competenze tariffarie
-      rate_skills_description: Ora che avete selezionato le vostre priorità di sviluppo, valutate voi stessi su ciascuno dei seguenti aspetti. Ricordate di valutare voi stessi in base al vostro livello attuale e non in base al vostro livello passato o desiderato.
-      rate_skills_title: Valutazione delle competenze
-      rating_column_header: La vostra autovalutazione
+      no_skills_selected: Nessuna competenza selezionata.
+      rate_skills: Valuta Competenze
+      rate_skills_description: Ora che hai selezionato le tue priorità di sviluppo, valuta te stesso su ciascuna delle seguenti. Ricorda di valutarti in base al tuo livello attuale e non al tuo livello passato o desiderato.
+      rate_skills_title: Valutazione delle Tue Competenze
+      rating_column_header: La tua autovalutazione
       select_skills: Seleziona le tue competenze
-      select_skills_placeholder: Selezionare le competenze
-      selected_skills: Competenze selezionate
-      skill_column_header: Abilità
-      skill_gap_report: Rapporto sul divario di competenze
-    list: Elenco
-    my_direct_reports: I miei rapporti diretti
+      select_skills_placeholder: Seleziona competenze
+      selected_skills: Competenze Selezionate
+      skill_column_header: Competenza
+      skill_gap_report: Report sul Divario di Competenze
+    list: Lista
+    my_direct_reports: I Miei Report Diretti
     my_plan:
-      development_plan: Piano di sviluppo
+      development_plan: Piano di Sviluppo
       graphs:
-        area_of_development: Area di sviluppo
-        behavioural: Comportamentale
         categories: Categorie
-        learning_on_job: Sul lavoro (%{count})
-        learning_others: Imparare dagli altri (%{count})
-        learning_structured: Apprendimento strutturato (%{count})
-        other: Altro
-        technical: Tecnica
-      save_skills: Salvataggio delle competenze
+      save_skills: Salva Competenze
     pdf:
-      header: Ciao
-    profile_details: Dettagli del profilo
+      approval_status: Stato di Approvazione
+      cover:
+        fields:
+          assigned_data: Data di Assegnazione
+          completion_date: Data di Completamento
+          division: Divisione
+          name: Nome
+          publish_date: Data di Pubblicazione
+          review_date: Data di Revisione
+          role: Ruolo Attuale
+      guidelines:
+        cards:
+          c1:
+            content: Includi competenze, conoscenze e capacità che devono essere sviluppate. Assicurati che siano specifiche, misurabili, realizzabili, realistiche e ragionevolmente attuabili nei tempi indicati.
+            title: Obiettivi di Sviluppo
+          c2:
+            content: Questo si basa sulla competenza da sviluppare in base all'esperienza di valutazione.
+            title: Competenza
+          c3:
+            content: Questa sezione include le tue azioni di sviluppo basate sul modello di apprendimento 70-20-10 elencato di seguito. Si consiglia di selezionare una combinazione di ciascuno dei tre elementi per garantire un approccio di apprendimento e sviluppo variegato.
+            title: Attività
+          c4:
+            content: Assicurati che le tue tempistiche siano realistiche in base a quando l'obiettivo può essere completato. Modificale quando e se appropriato.
+            title: Tempistica
+          c5:
+            content: Usa la sezione progresso per supportare l'avanzamento sui percorsi identificati.
+            title: Progresso
+        chart:
+          collaboration: "<strong>20%</strong>Apprendimento <br /> Collaborativo"
+          job: "<strong>70%</strong>Apprendimento <br />sul Lavoro"
+          learn: "<strong>10%</strong>Apprendimento Formale"
+        content:
+          list:
+            r1: Si noti che questo elenco è solo indicativo, e ulteriori percorsi di sviluppo possono essere considerati per te in base ad aspirazioni individuali, raccomandazioni del tuo manager e priorità aziendali organizzative.
+            r2: Si noti che il lancio di alcuni di questi percorsi di sviluppo dipenderà dalla strategia educativa e di apprendimento dell'intera organizzazione.
+            r3: Si prega di considerare i percorsi raccomandati come indicati di seguito, durante lo sviluppo del tuo Piano di Sviluppo Individuale.
+          main: Questa sezione include un elenco cumulativo di tutti i percorsi di sviluppo, tenendo presente le migliori pratiche di apprendimento, ovvero la linea guida 70-20-10, che fornisce un percorso progressivo che combina apprendimento in aula, coaching e apprendimento sul lavoro. In base ai risultati dell'esperienza di sviluppo della leadership e alle priorità aziendali, sono stati raccomandati possibili percorsi di sviluppo, che possono essere considerati per il tuo sviluppo.
+        learn_cards:
+          collaboration:
+            list:
+            - Offriti di fare da coach o mentore ad altri
+            - Chiedi di essere mentorizzato da un esperto nel tuo campo
+            - Ottieni un coach per supportare il tuo sviluppo
+            - Crea un gruppo di lavoro collaborativo per discutere delle sfide in corso nell'azienda
+            - Ottieni feedback in modo formale e informale dagli altri
+            - Svolgi un ruolo attivo nelle associazioni e reti di settore
+            - Costruisci le tue reti esterne
+            title: Apprendimento Collaborativo (20%) <br/> Sviluppo attraverso gli altri
+          job:
+            list:
+            - Assumi posizioni di leadership nei comitati di stakeholder o di gestione
+            - Offriti volontario per guidare progetti di gestione del cambiamento per l'organizzazione
+            - Considera di assumere incarichi stimolanti
+            - Lavora in modo collaborativo con altre funzioni
+            - Considera di guidare progetti al di fuori della tua organizzazione
+            - Lavora a stretto contatto con esperti esterni del settore su progetti congiunti
+            title: Apprendimento Sul Lavoro (70%) <br/> Sviluppo attraverso l'esperienza
+          learn:
+            list:
+            - Assumi posizioni di leadership nei comitati di stakeholder o di gestione
+            - Offriti volontario per guidare progetti di gestione del cambiamento per l'organizzazione
+            - Considera di assumere incarichi stimolanti
+            - Lavora in modo collaborativo con altre funzioni
+            - Considera di guidare progetti al di fuori della tua organizzazione
+            - Lavora a stretto contatto con esperti esterni del settore su progetti congiunti
+            title: Apprendimento Formale (10%) <br/> Sviluppo attraverso l'apprendimento strutturato
+        title: Linee Guida per il Tuo PSI
+      idp:
+        end_date: Data di Fine
+        self_rating: Autovalutazione
+        start_date: Data di Inizio
+        subtitle:
+          behavioural: Comportamentale
+          technical: Tecnico
+        title: Piano di Sviluppo Individuale
+      last:
+        end_report: Fine del Report
+      reflections:
+        subtitle: Domande per lo Sviluppo Professionale Generale
+        title: Riflessioni per Guidare il Tuo PSI
+      skill_categories:
+        behavioral: Comportamentale
+        technical: Tecnico
+      statuses:
+        approved: Rivisto e Approvato
+        completed: Completato
+        not_reviewed: Non Rivisto
+        pending_approval: In Revisione
+      summary:
+        ai_count: IA Generativa
+        collaborative_learn: Apprendimento Collaborativo
+        created_by: Creato da
+        current_status: Stato Attuale del PSI
+        custom: Personalizzato
+        custom_count: Personalizzato
+        da_count: Conteggio Azioni di Sviluppo
+        formal_learn: Apprendimento Formale
+        generated_ai: Generato da IA
+        learn_on_job: Apprendimento sul lavoro
+        learn_pathway: Percorso di Apprendimento
+        lib_count: Libreria PSI
+        library: Libreria PSI
+        skills_count: Conteggio Competenze
+        title: Riepilogo del Report
+    profile_details: Dettagli del Profilo
     skill_gap_report:
-      continue_to_rate_skills: Continuare a valutare le competenze
-      title: Rapporto sul divario di competenze
+      continue_to_rate_skills: Continua a valutare le competenze
+      title: Report sul Divario di Competenze
     status: Stato
     user_idp_status:
       approved: Approvato
       draft: Bozza
-      pending_approval: In attesa
+      pending_approval: In Attesa di Approvazione
     users: Utenti
   idp_templates:
     assign: Assegnazione

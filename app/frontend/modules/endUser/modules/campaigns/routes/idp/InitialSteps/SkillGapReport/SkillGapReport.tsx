@@ -114,7 +114,7 @@ const SkillGapReportComponent: FC<SkillGapReportProps> = ({ next, currentUser, f
       </Content>
       <Flex justify="center" className="mt-5 mb-5">
         <ButtonWithArrow
-          label={I18n.t('idp.initial_steps.continue_to_add_skills')}
+          label={I18n.t('idp.initial_steps.add_skills_step')}
           size="small"
           type="primary"
           onClick={() => next()}

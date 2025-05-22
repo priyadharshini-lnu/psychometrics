@@ -3,7 +3,7 @@ import {
   Modal, DatePicker, Button, Checkbox,
   Space,
 } from 'antd'
-import type { RangeValue } from 'rc-picker/lib/interface'
+import { RangeValueType } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 
 interface Props {
@@ -13,8 +13,8 @@ interface Props {
   dateFormat?: string
   modalTitle?:string
   showTime?: boolean
-  disabledDate?: (current: dayjs.Dayjs, range: (dayjs.Dayjs | null)[]) => boolean
-  initialRange?: RangeValue<dayjs.Dayjs>
+  disabledDate?: (current: dayjs.Dayjs, range: RangeValueType<dayjs.Dayjs>) => boolean
+  initialRange?: RangeValueType<dayjs.Dayjs>
 }
 
 const { I18n } = window
@@ -23,7 +23,7 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
   open, onCancel, onDownload, dateFormat = 'YYYY-MM-DD HH:mm', modalTitle, showTime,
   disabledDate, initialRange,
 }) => {
-  const [dateRange, setDateRange] = useState<(dayjs.Dayjs | null)[]>(initialRange || [null, null])
+  const [dateRange, setDateRange] = useState<RangeValueType<dayjs.Dayjs>>(initialRange || [null, null])
   const [includeInactiveUsers, setIncludeInactiveUsers] = useState(false)
 
   const handleDownload = () => {

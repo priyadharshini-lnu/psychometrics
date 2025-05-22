@@ -11,6 +11,7 @@ import settings from './settings'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
+import ErrorModal from '~/components/ErrorModal'
 
 
 const Main: React.FC = () => (
@@ -28,6 +29,7 @@ const Main: React.FC = () => (
     <IncorrectResponseErrorModal />
     <DisplayExceptionModal />
     <SessionTimeoutModal />
+    <ErrorModal />
   </Suspense>
 )
 

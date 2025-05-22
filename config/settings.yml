@@ -25,6 +25,7 @@ asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 generative_ai_service: <%= ENV.fetch('GENERATIVE_AI_SERVICE', 'azure_openai') %>
+cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
 timezone_tip: ' (GST)'
 react_dev:
   reports: false
@@ -58,8 +59,8 @@ features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>
   proctoring: <%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
-  url_to_pdf_lambda: <%= ENV.fetch('URL_TO_PDF_LAMBDA_ENABLED', 'false') == 'true' %>
-  zip_s3_files_lambda: <%= ENV.fetch('ZIP_S3_FILES_LAMBDA_ENABLED', 'false') == 'true' %>
+  url_to_pdf_faas: <%= ENV.fetch('URL_TO_PDF_FAAS_ENABLED', 'false') == 'true' %>
+  zip_s3_files_faas: <%= ENV.fetch('ZIP_S3_FILES_FAAS_ENABLED', 'false') == 'true' %>
   smtp_enabled: <%= ENV.fetch('SMTP_ENABLED', 'false') == 'true' %>
   webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
   react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
@@ -73,6 +74,7 @@ features:
   disable_saml_for_admins: <%= ENV.fetch('DISABLE_SAML_FOR_ADMINS', 'false') == 'true' %>
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
   enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
+  ai_assistant_enabled: <%= ENV['AI_ASSISTANT_ENABLED'] %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:

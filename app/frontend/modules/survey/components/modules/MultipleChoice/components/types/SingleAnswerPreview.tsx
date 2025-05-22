@@ -1,5 +1,5 @@
 import {
-  ChangeEvent, FC, lazy, Suspense, useRef,
+  ChangeEvent, FC, lazy, Suspense, useRef, MouseEvent,
 } from 'react'
 import { Spin } from 'antd'
 import cs from 'classnames'
@@ -40,15 +40,16 @@ export const SingleAnswerPreview: FC<Props> = ({
     },
   } = model
 
-  const handleChoiceChange = (event?: ChangeEvent<HTMLInputElement>) => {
+  const handleChoiceChange = (event?: ChangeEvent<HTMLInputElement> & MouseEvent) => {
     const value = event?.target?.value ?? ''
+    const isMouseClick = event?.nativeEvent?.x && event?.nativeEvent?.y
 
     result.notApplicable = false
 
     if (value.length !== 0) {
       result.answer(parseInt(value, 10))
     }
-    if (singleQuestionFlow) {
+    if (singleQuestionFlow && isMouseClick) {
       nextPage()
     }
     forceUpdate()
@@ -116,7 +117,7 @@ interface TextChoicesProps {
   readOnly: boolean
   I18n: I18nInterface
   model: PreviewModel
-  handleChoiceChange(event: ChangeEvent<HTMLInputElement>): void
+  handleChoiceChange(event: ChangeEvent<HTMLInputElement> & MouseEvent): void
   handleNotApplicableChange(): void
   focusFirstInput: boolean
 }

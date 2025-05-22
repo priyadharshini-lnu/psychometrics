@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react'
-import type { MenuProps } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Layout, Menu, Drawer } from 'antd'
 import {
@@ -17,8 +16,8 @@ import {
 import { camelizeKeys } from '~/utils/object'
 import { BACKQUOTE } from '~/utils/keyCodes'
 import { SIDEBAR_WIDTH } from '~/constants/sidebar'
+import { MenuItem } from '~/interfaces/Antd'
 
-type MenuItem = Required<MenuProps>['items'][number];
 
 const { I18n } = window
 

@@ -3,7 +3,7 @@ import {
   Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined, MoreOutlined } from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
@@ -48,7 +48,7 @@ export const ToolsDropdown: React.FC<Props> = ({
 }
 
 const getMenuProps = ({ onClick, persmission }: Props): MenuProps => {
-  const menuItems:ItemType[] = []
+  const menuItems:MenuItem[] = []
   if (persmission?.changeFinalizedCampaignScore) {
     menuItems.push({
       key: 'mark_finalized',

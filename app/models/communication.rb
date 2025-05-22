@@ -44,7 +44,8 @@ class Communication < ApplicationRecord
     invitation: 0, reminder: 1, completion: 2, other: 3,
     workshop_invite: 4, workshop_invite_reminder: 5,  workshop_booked: 6, workshop_upcoming_reminder: 7,
     workshop_cancelled: 8, workshop_completed: 9, magic_link_email: 10, report_available: 11, idp_template_assigned: 12,
-    idp_template_approved: 13, idp_template_rejected: 14
+    idp_template_approved: 13, idp_template_rejected: 14, development_action_deadline_missed: 15,
+    idp_deadline_missed: 16
   }
 
   enum :delivery_rule, { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
@@ -80,6 +81,8 @@ class Communication < ApplicationRecord
   end
 
   def selected_campaign_users
+    return CampaignUser.none if project_campaign.blank?
+
     communication_users = project_campaign.campaign_users.joins(:user).where(users: { disabled: false }, active: true)
     return communication_users.where(user_id: user_ids) if selected_recipients?
 

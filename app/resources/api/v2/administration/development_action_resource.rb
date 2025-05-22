@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :category, :course_url, :course_start_date, :course_end_date,
-             :project_id, :learning_style, :image, :skill_ids, :created_at, :updated_at
+             :project_id, :learning_style, :image, :skill_ids, :created_at, :updated_at,
+             :default_language
 
   has_one :project
   has_many :skills

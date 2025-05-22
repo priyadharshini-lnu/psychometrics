@@ -14,9 +14,17 @@ module EndUser
     private
 
     def skill_gap_report_available
-      context[:skill_gap_report_available] || UserReport.find_by(
-        user_id: object.user_id, report_id: idp_template.report_id, campaign_id: object.campaign_id
-      )&.prepared?
+      return context[:skill_gap_report_available] if context.key?(:skill_gap_report_available)
+
+      idp_template_report_id = idp_template&.report_id
+      return false if idp_template_report_id.blank?
+
+      UserReport.exists?(
+        user_id: object.user_id,
+        report_id: idp_template_report_id,
+        campaign_id: object.campaign_id,
+        status: 'prepared'
+      )
     end
 
     def idp_template

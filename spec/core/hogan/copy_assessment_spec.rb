@@ -66,10 +66,7 @@ RSpec.describe Hogan::CopyAssessment, type: :model do
 
     it 'allow copy the Hogan credentials if they already exist for the target user and same as source credentials' do
       create(:hogan_credential, user: target_user, participant_id: source_user.hogan_credential.participant_id)
-      expect { subject.call }.not_to raise_error(
-        RuntimeError,
-        "Row 1: Aborted! Hogan Credential present at target for user with id #{target_user.id}"
-      )
+      expect { subject.call }.not_to raise_error
     end
 
     it 'recomputes the user results' do

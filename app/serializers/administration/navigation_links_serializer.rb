@@ -24,7 +24,7 @@ module Administration
         links['development_actions'] = "#{admin_path}/development_actions" if policy(%i[api administration
                                                                                         development_action]).index?
         links['users'] = "#{admin_path}/users" if policy(%i[administration user]).index?
-        links['norms'] = administration_norms_path if policy(%i[administration norm]).index?
+        links['norms'] = "#{admin_path}/norms" if policy(%i[administration norm]).index?
         links['dimensions'] = administration_dimensions_path if policy(%i[administration dimension]).index?
         links['assessments'] = "#{admin_path}/assessments" if policy(%i[administration assessment]).index?
         links['user_availability'] = "#{admin_path}/user_availabilities"

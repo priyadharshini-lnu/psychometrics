@@ -49,21 +49,25 @@ module UserReports::PdfGeneration
     options = {
       lang: params[:lang] || resource.effective_default_language,
       file_path: Settings.aws.s3.one_day_expiry_folder,
-      async: true,
       notify_user: true,
       update_record: false,
       skip_logic: params[:skip_logic],
       view_report_as: view_report_as
     }
-    data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
     audit! :download_report, resource, campaign: resource.campaign,
       payload: params.merge(resource.details_to_log)
     respond_to do |format|
+      format.json do
+        ::UserReports::GeneratePdfJob.perform_later(
+          resource, current_user, options
+        )
+
+        render json: { success: true }
+      end
       format.pdf do
+        data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
         send_tmp_file data[:file_path], type: 'application/pdf'
       end
-
-      format.json { head :ok }
     end
   end
 
