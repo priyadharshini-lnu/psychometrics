@@ -1082,7 +1082,7 @@ es-ES:
     locale: Idioma preferido
     male: Hombre
     not_disclosed: Prefiero no decirlo
-    old_data: Los datos de su perfil tienen %{meses} meses de antigüedad. Confirme los detalles para continuar
+    old_data: Los datos de su perfil tienen %{months} meses de antigüedad. Confirme los detalles para continuar
     password: Contraseña
     password_confirmation: Confirmación de la contraseña
     success_update: El perfil se ha guardado correctamente
