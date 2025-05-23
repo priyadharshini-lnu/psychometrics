@@ -160,6 +160,7 @@ en:
             base:
               code_length: Code must be at least 3 characters long at row %{index}.
               code_required: Factor code is required at row %{index}
+              invalid_csv: Invalid Csv %{error_message}
               invalid_scoring_strategy: Invalid scoring strategy '%{strategy}' at row %{index}. Allowed strategies are %{allowed}.
               missing_headers: 'Missing required headers: %{headers}'
               name_required: Factor name is required at row %{index}

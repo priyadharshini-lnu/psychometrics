@@ -1706,6 +1706,7 @@ en:
         enable_occupations: Enable Occupations
       import_factors:
         import: Import
+        sample_file: Sample File
         successfully: Import factors job scheduled for dimension %{name}.
         title: Import Factors
       import_modal:
