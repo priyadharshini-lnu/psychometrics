@@ -217,6 +217,10 @@ en:
             view_report: View Report
             view_stats: View Stats
           skills:
+            export: Export
+            export_translations: Export translation
+            import: Import
+            import_translations: Import translation
             manage: Manage
             view: View
           smsHistories:
