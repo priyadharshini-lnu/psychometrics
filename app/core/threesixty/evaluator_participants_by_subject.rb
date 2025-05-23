@@ -13,8 +13,7 @@ module Threesixty
         joins(:evaluator).
         selecting { ['*', 'users.email as evaluator_email'] }.
         active.
-        where(subject_id: subject_id, campaign_id: campaign_id).
-        includes(:relationship, :users_result)
+        where(subject_id: subject_id, campaign_id: campaign_id).includes(:relationship, :users_result)
     end
 
     private
