@@ -11,6 +11,8 @@ module EndUser
     has_many :user_idp_development_actions,
              serializer: EndUser::UserIdpDevelopmentActionsSerializer
 
+    has_one :user, serializer: ::IdpUserSerializer
+
     private
 
     def skill_gap_report_available

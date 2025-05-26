@@ -203,7 +203,7 @@ ar:
       development: تطوير
       home: الصفحة الرئيسية
       insights: البصائر
-      my_direct_reports: تقاريري المباشرة
+      my_direct_reportees: تقاريري المباشرة
       my_plan: خطتي
       profile: تفاصيلي
       profile_details: تفاصيل
@@ -645,7 +645,7 @@ ar:
       structured_learning: تعلم منظم
       submit_plan: تقديم الخطة
       write_here: اكتب هنا...
-    direct_report_details: تفاصيل التقرير المباشر
+    direct_reportee_details: تفاصيل التقرير المباشر
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
       add_skill_group_title: استكشاف مهاراتك في %{category}
@@ -668,7 +668,7 @@ ar:
       skill_column_header: المهارة
       skill_gap_report: تقرير فجوة المهارات
     list: قائمة
-    my_direct_reports: تقاريري المباشرة
+    my_direct_reportees: تقاريري المباشرة
     my_plan:
       development_plan: خطة التطوير
       graphs:
@@ -779,7 +779,6 @@ ar:
         library: مكتبة خطة التطوير الفردية
         skills_count: عدد المهارات
         title: ملخص التقرير
-    profile_details: تفاصيل الملف الشخصي
     skill_gap_report:
       continue_to_rate_skills: استمر في تقييم المهارات
       title: تقرير فجوة المهارات

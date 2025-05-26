@@ -18,23 +18,29 @@ type SkillGap = {
   minRating: number
 }
 type Field = {
-  field: string
+  name: string
   value: string
 }
 type SkillGapReportStepProps = {
   next: () => void,
-  currentUser: Record<string, string>,
+  idpUser: {
+    id: string
+    name: string
+    email: string
+    role: string
+    photo?: string
+    fields?: Field[]
+  }
   skillGapData: Record<string, SkillGap[]> | null
-  fields: Field[]
 }
 
 
 export const SkillGapReportStep: FC<SkillGapReportStepProps> = ({
-  next, currentUser, skillGapData, fields,
+  next, idpUser, skillGapData,
 }) => (
   <>
     <Typography.Title className={styles.title} level={3}>{I18n.t('idp.skill_gap_report')}</Typography.Title>
-    <IdpUserProfileCard fields={fields || []} currentUser={currentUser} />
+    <IdpUserProfileCard idpUser={idpUser} />
     {skillGapData && Object.keys(skillGapData).map(category => (
       <BoxWithShadow key={category} className={styles.skillGapBox}>
         <Typography.Title level={4}>{category}</Typography.Title>

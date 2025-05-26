@@ -4,13 +4,14 @@ module EndUser
   class IdpPlanSchema < BaseSchema
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/BlockLength
-    def self.schema(_, _)
+    def self.schema(context, options)
       Dry::Schema.JSON do
         config.validate_keys = true
 
         required(:status).filled(:str?, included_in?: UserIdpPlan.statuses.keys)
         required(:skill_gap_report_available).filled(:bool?)
         required(:self_rating_enabled).filled(:bool?)
+        required(:user).hash(IdpUserSchema.schema(context, options))
 
         optional(:user_idp_skills).array(:hash) do
           required(:id).filled(:int?)
@@ -28,6 +29,7 @@ module EndUser
           required(:name).maybe(:str?)
           required(:description).maybe(:str?)
           required(:learning_style).maybe(:str?)
+          required(:custom_action_learning_style).maybe(:str?)
           required(:image).maybe(:str?)
           required(:user_idp_skill_id).filled(:int?)
           required(:custom_action).maybe(:str?)

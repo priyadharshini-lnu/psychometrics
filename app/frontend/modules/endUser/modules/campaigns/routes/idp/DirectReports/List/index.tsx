@@ -1,1 +1,0 @@
-export { DirectReportsList } from './List'

@@ -196,7 +196,7 @@ pl:
       development: Rozwój
       home: Dom
       insights: Insights
-      my_direct_reports: Moi bezpośredni podwładni
+      my_direct_reportees: Moi bezpośredni podwładni
       my_plan: Mój plan
       profile: Profil
       profile_details: Detale
@@ -617,7 +617,7 @@ pl:
       structured_learning: Zorganizowane uczenie się
       submit_plan: Prześlij plan
       write_here: Pisz tutaj...
-    direct_report_details: Szczegóły bezpośrednich podwładnych
+    direct_reportee_details: Szczegóły bezpośrednich podwładnych
     initial_steps:
       add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
       add_skill_group_title: Eksploracja Twoich umiejętności %{category}
@@ -640,7 +640,7 @@ pl:
       skill_column_header: Umiejętność
       skill_gap_report: Raport luk w umiejętnościach
     list: Lista
-    my_direct_reports: Moi bezpośredni podwładni
+    my_direct_reportees: Moi bezpośredni podwładni
     my_plan:
       development_plan: Plan rozwoju
       graphs:
@@ -751,7 +751,6 @@ pl:
         library: Biblioteka IDP
         skills_count: Liczba umiejętności
         title: Podsumowanie raportu
-    profile_details: Szczegóły profilu
     skill_gap_report:
       continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
       title: Raport luk w umiejętnościach

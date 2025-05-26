@@ -4,13 +4,13 @@ import {
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import { GettingStart } from './GettingStart'
 import { SkillGapReport } from './SkillGapReport'
 import { AddSkills } from './AddSkills'
 import { RateSkills } from './RateSkills'
 import { BoxWithShadow } from '~/glint'
-import { IdpPageLayoutWrapper } from '../components/IdpPageLayoutWrapper/IdpPageLayoutWrapper'
-import { USER_IDP_PLAN_STATUS } from '../constants'
+import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 
 
 import {

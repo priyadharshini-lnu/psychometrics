@@ -282,7 +282,7 @@ es-ES:
       development: Desarrollo
       home: Inicio
       insights: Información
-      my_direct_reports: Mis informes directos
+      my_direct_reportees: Mis informes directos
       my_plan: Mi plan
       profile: Perfil
       profile_details: Detalles
@@ -910,7 +910,7 @@ es-ES:
       structured_learning: Aprendizaje estructurado
       submit_plan: Enviar Plan
       write_here: Escriba aquí...
-    direct_report_details: Detalles del Informe Directo
+    direct_reportee_details: Detalles del Informe Directo
     initial_steps:
       add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
       add_skill_group_title: Explorando Sus Habilidades de %{category}
@@ -933,7 +933,7 @@ es-ES:
       skill_column_header: Habilidad
       skill_gap_report: Informe de Brecha de Habilidades
     list: Lista
-    my_direct_reports: Mis Informes Directos
+    my_direct_reportees: Mis Informes Directos
     my_plan:
       development_plan: Plan de Desarrollo
       graphs:
@@ -1044,7 +1044,6 @@ es-ES:
         library: Biblioteca PDI
         skills_count: Recuento de Habilidades
         title: Resumen del Informe
-    profile_details: Detalles del Perfil
     skill_gap_report:
       continue_to_rate_skills: Continuar para evaluar habilidades
       title: Informe de Brecha de Habilidades

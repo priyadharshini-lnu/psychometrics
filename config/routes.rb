@@ -1060,9 +1060,7 @@ as: :simulation_progress_notification
     resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills' do
       post :save_skills, on: :collection
     end
-    resources :direct_reports, only: %i[index], controller: 'end_user/direct_reports' do
-      put :update_status, on: :member
-    end
+    resources :direct_reportees, only: %i[index], controller: 'end_user/direct_reportees'
 
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'

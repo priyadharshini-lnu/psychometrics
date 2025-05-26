@@ -12,7 +12,7 @@ module EndUser
     end
 
     def show
-      authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+      authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
 
       if @user_idp_plan
         render json: {
@@ -28,29 +28,26 @@ module EndUser
     end
 
     def update
-      authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+      authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
 
-      if update_params[:status] == 'completed'
-        @user_idp_plan.update!(status: 'completed', completed_at: Time.current)
-      elsif update_params[:status] == 'in_progress'
-        @user_idp_plan.update!(status: 'in_progress', started_at: Time.current)
+      form = ::Idp::UpdateStatusForm.from_params(update_params).
+             with_context(current_user: current_user, user_idp_plan: @user_idp_plan)
+
+      if form.save!
+        render json: { status: @user_idp_plan.status }
       else
-        @user_idp_plan.update!(update_params)
+        render json: { errors: form.errors.full_messages }, status: 422
       end
-
-      render json: {
-        status: @user_idp_plan.status
-      }
     end
 
     private
 
     def user
-      User.find(params[:user_id])
+      @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
     end
 
     def load_user_idp_plan
-      @user_idp_plan = current_user.
+      @user_idp_plan = user.
                        association(:active_user_idp_plan).
                        scope.
                        includes(

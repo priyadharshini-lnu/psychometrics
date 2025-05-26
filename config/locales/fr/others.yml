@@ -1232,7 +1232,7 @@ fr:
       development: Développement
       home: Accueil
       insights: Perspectives
-      my_direct_reports: Mes subordonnés directs
+      my_direct_reportees: Mes subordonnés directs
       my_plan: Mon plan
       profile: Profil
       profile_details: Détails
@@ -2367,7 +2367,7 @@ fr:
       structured_learning: Apprentissage structuré
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
-    direct_report_details: Détails des subordonnés directs
+    direct_reportee_details: Détails des subordonnés directs
     initial_steps:
       add_skill_group_description: Sur la base de vos résultats d'évaluation, voici quelques domaines de forces et de développement pour vous. Choisissez les compétences que vous souhaitez développer davantage dans le cadre de votre plan de développement.
       add_skill_group_title: Exploration de vos compétences en %{category}
@@ -2390,7 +2390,7 @@ fr:
       skill_column_header: Compétence
       skill_gap_report: Rapport d'écart de compétences
     list: Liste
-    my_direct_reports: Mes subordonnés directs
+    my_direct_reportees: Mes subordonnés directs
     my_plan:
       development_plan: Plan de développement
       graphs:
@@ -2501,7 +2501,6 @@ fr:
         library: Bibliothèque PDI
         skills_count: Nombre de compétences
         title: Résumé du rapport
-    profile_details: Détails du profil
     skill_gap_report:
       continue_to_rate_skills: Continuer à évaluer les compétences
       title: Rapport d'écart de compétences

@@ -1,6 +1,6 @@
+import { USER_IDP_PLAN_STATUS } from 'components/IdpShared/constants'
 import { Skill, DevelopmentAction } from 'components/IdpShared/DevelopmentActions'
 import _ from 'lodash'
-import { USER_IDP_PLAN_STATUS } from '~/modules/endUser/modules/campaigns/routes/idp/constants'
 
 const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
 const UPDATE_USER_IDP_PLAN = 'IDP/MY_PLAN/UPDATE_USER_IDP_PLAN'
@@ -24,9 +24,10 @@ interface UserIdpPlan {
   skillGapReportAvailable: boolean | null;
   userIdpSkills: Skill[];
   userIdpDevelopmentActions: DevelopmentAction[];
-  directReports: object[];
+  directReportees: object[];
   AIGeneratedDevelopmentActions: Record<number, Pick<DevelopmentAction, 'description' | 'learningStyle'>[]>;
-  skills: Skill[]
+  skills: Skill[];
+  user: object;
 }
 
 interface GenerateDevelopmentActionsByAIPayload {
@@ -38,10 +39,11 @@ interface GenerateDevelopmentActionsByAIPayload {
 
 type UserIdpPlanStatus = typeof USER_IDP_PLAN_STATUS[keyof typeof USER_IDP_PLAN_STATUS];
 
-export const fetchDirectReports = () => ({
+export const fetchDirectReportees = (payload: object) => ({
   type: FETCH_DIRECT_REPORTS,
   request: {
-    url: '/direct_reports',
+    url: '/direct_reportees',
+    body: payload,
   },
 })
 
@@ -79,16 +81,18 @@ export const updateDevelopmentActionInPlan = (developmentAction: Partial<Develop
 
 export const updateDevelopmentActionProgressInPlan = (
   developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>,
+  userId: string,
 ) => ({
   type: UPDATE_DEVELOPMENT_ACTION_PROGRESS,
   request: {
-    url: '/user_idp_development_actions/update_progress',
+    url: `/user_idp_development_actions/update_progress?user_id=${userId}`,
     camelize: false,
     method: 'put',
     body: developmentAction,
   },
 })
 
+// TODO: Remove if not being used
 export const fetchUserIdpSkills = (userId: string) => ({
   type: FETCH_USER_IDP_SKILLS,
   request: {
@@ -132,21 +136,25 @@ export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActio
   },
 })
 
-export const saveUserIdpSkills = (skills, category: string | null = null) => ({
+export const saveUserIdpSkills = (skills, category: string | null = null, userId: string | null = null) => ({
   type: SAVE_USER_IDP_SKILLS,
   request: {
     url: '/user_idp_skills/save_skills',
     method: 'post',
-    body: { skills, category },
+    body: { skills, category, userId },
   },
 })
 
-export const updateUserIdpSkill = (userIdpSkillId: number, payload: { initialRating: number }) => ({
+export const updateUserIdpSkill = (
+  userIdpSkillId: number,
+  payload: { initialRating: number },
+  userId: number | null = null,
+) => ({
   type: UPDATE_USER_IDP_SKILL,
   request: {
     url: `/user_idp_skills/${userIdpSkillId}`,
     method: 'put',
-    body: { ...payload },
+    body: { ...payload, userId },
   },
 })
 
@@ -171,11 +179,13 @@ export const HANDLERS = {
       status: userIdpPlan.status,
       skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
+      user: userIdpPlan.user,
     }
   },
   [FETCH_DIRECT_REPORTS]: (state, action) => ({
     ...state,
-    directReports: action.response.data,
+    directReportees: action.response.data,
+    directReporteesTotalCount: action.response.meta.count,
   }),
   [FETCH_USER_IDP_DEVELOPMENT_ACTIONS]: (state, action) => ({
     ...state,
@@ -264,9 +274,12 @@ export const HANDLERS = {
     const updatedUserIdpDevelopmentActions = _.pickBy(userIdpDevelopmentActions,
       ({ userIdpSkillId }) => userIdpSkillsUnmodified[userIdpSkillId] || updatedUserIdpSkills[userIdpSkillId])
 
+    const newUserIdpSkillsList = !requestedCategory
+      ? updatedUserIdpSkills : { ...userIdpSkillsUnmodified, ...updatedUserIdpSkills }
+
     return {
       ...state,
-      userIdpSkills: { ...userIdpSkillsUnmodified, ...updatedUserIdpSkills },
+      userIdpSkills: newUserIdpSkillsList,
       userIdpDevelopmentActions: updatedUserIdpDevelopmentActions,
     }
   },
@@ -283,7 +296,7 @@ export const HANDLERS = {
 }
 
 export const defaultState: UserIdpPlan = {
-  directReports: [],
+  directReportees: [],
   AIGeneratedDevelopmentActions: {},
   status: null,
   selfRatingEnabled: false,
@@ -291,6 +304,7 @@ export const defaultState: UserIdpPlan = {
   userIdpDevelopmentActions: [],
   userIdpSkills: [],
   skills: [],
+  user: {},
 }
 
 export default function reducer (state = defaultState, action) {

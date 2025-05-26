@@ -2,7 +2,7 @@
 
 # rubocop:disable Lint/UnderscorePrefixedVariableName
 module EndUser
-  class DirectReportSchema < BaseSchema
+  class DirectReporteeSchema < BaseSchema
     def self.schema(_, _)
       Dry::Schema.JSON do
         config.validate_keys = true

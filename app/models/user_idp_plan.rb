@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserIdpPlan < ApplicationRecord
+  include WorkflowActiverecord
+
   belongs_to :user
   belongs_to :campaign
   belongs_to :idp_template
@@ -16,6 +18,7 @@ class UserIdpPlan < ApplicationRecord
   has_many :idp_report_pdfs, dependent: :destroy
 
   delegate :client, to: :campaign
+  delegate :project, to: :campaign
 
   enum :status,
        { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4, in_progress: 5, completed: 6 }
@@ -28,6 +31,38 @@ class UserIdpPlan < ApplicationRecord
                on: [:update]
 
   alias report_pdfs idp_report_pdfs
+
+  workflow_column :status
+
+  workflow do # rubocop:disable Metrics/BlockLength
+    state :draft do
+      event :submit_for_approval, transitions_to: :pending_approval
+      event :approve, transitions_to: :approved
+    end
+    state :pending_approval do
+      event :approve, transitions_to: :approved
+      event :reject, transitions_to: :rejected
+    end
+    state :approved do
+      event :start, transitions_to: :in_progress
+      event :reject, transitions_to: :rejected
+    end
+    state :rejected do
+      event :approve, transitions_to: :approved
+    end
+    state :in_progress do
+      event :complete, transitions_to: :completed
+    end
+    state :completed
+    state :not_started do
+      event :draft, transitions_to: :draft
+    end
+
+    on_transition do |_from, to, _event, *_|
+      update(completed_at: Time.current) if to == :completed
+      update(started_at: Time.current) if to == :in_progress
+    end
+  end # rubocop:enable Metrics/BlockLength
 
   def details_to_log
     {

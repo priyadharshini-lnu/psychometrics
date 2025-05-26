@@ -2,53 +2,61 @@ import { FC, useContext } from 'react'
 import {
   Space, Avatar, Typography, Row, Col,
 } from 'antd'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BoxWithShadow, MediaQueryContext } from '~/glint'
 
 import styles from './IdpUserProfileCard.less'
 
-const { I18n } = window
-
 type Field = {
-  field: string
+  name: string
   value: string
 }
 
 type IdpUserProfileCardProps = {
-  fields: Field[] | []
-  currentUser: Record<string, string>
+  idpUser: {
+    id: string
+    name: string
+    email: string
+    role: string
+    photo?: string
+    fields?: Field[]
+  }
 }
 
-export const IdpUserProfileCard: FC<IdpUserProfileCardProps> = ({ fields, currentUser }) => {
+export const IdpUserProfileCard: FC<IdpUserProfileCardProps> = ({ idpUser }) => {
   const { isMobile } = useContext(MediaQueryContext)
   return (
-    <BoxWithShadow style={{ padding: '12px', marginTop: 16 }}>
-      <Typography.Title level={5}>{I18n.t('idp.profile_details')}</Typography.Title>
-      <Row gutter={[20, 20]}>
-        <Col xs={{ span: 24 }} sm={{ span: 4 }}>
-          <Space direction={isMobile ? 'horizontal' : 'vertical'}>
-            <Avatar size="large" src={currentUser.photo} />
-            <Space size={0} direction="vertical">
-              <Typography.Title level={5}>{currentUser.fullName}</Typography.Title>
-              {currentUser.role}
-            </Space>
+    <BoxWithShadow className={styles.idpUserProfileCard}>
+      <Row gutter={[20, 20]} align="middle" justify="center" wrap>
+        <Col xs={24} sm={6}>
+          <Space direction={isMobile ? 'vertical' : 'horizontal'}>
+            <Avatar
+              size={64}
+              src={idpUser.photo}
+              icon={<UserOutlined />}
+              className={styles.avatar}
+            />
+            <div className={styles.userInfo}>
+              <Typography.Title level={5} style={{ margin: 0 }}>{idpUser.name}</Typography.Title>
+              <Typography.Text>{idpUser.email}</Typography.Text>
+              <Typography.Text type="secondary">{idpUser.role}</Typography.Text>
+            </div>
           </Space>
         </Col>
-        {getPairedFields(fields).map(fieldPair => (
-          <>
-            <Col flex="auto" className={styles.fieldContainer}>
-              <Space direction="vertical" size="large">
-                {fieldPair.map(fieldObj => (
-                  <Space direction="vertical">
-                    <Typography.Text>
-                      {fieldObj.field}
-                      :
-                    </Typography.Text>
-                    <Typography.Text>{fieldObj.value}</Typography.Text>
-                  </Space>
-                ))}
-              </Space>
-            </Col>
-          </>
+        {getPairedFields(idpUser.fields ?? []).map((fieldPair, i) => (
+          <Col flex="auto" className={styles.fieldContainer} key={i}>
+            <Space direction="vertical" size="large">
+              {fieldPair.map(fieldObj => (
+                <Space direction="vertical">
+                  <Typography.Text type="secondary">
+                    {fieldObj.name}
+                    :
+                  </Typography.Text>
+                  <Typography.Text>{fieldObj.value}</Typography.Text>
+                </Space>
+              ))}
+            </Space>
+          </Col>
         ))}
       </Row>
     </BoxWithShadow>
@@ -56,9 +64,8 @@ export const IdpUserProfileCard: FC<IdpUserProfileCardProps> = ({ fields, curren
 }
 
 const getPairedFields = (fields: Field[]) => {
-  const newLength = Math.ceil(fields.length / 2)
   const pairedFields: Array<Field[]> = []
-  for (let i = 0; i < newLength; i += 2) {
+  for (let i = 0; i < fields.length; i += 2) {
     const fieldsPair = fields[i + 1] ? [fields[i], fields[i + 1]] : [fields[i]]
     pairedFields.push(fieldsPair)
   }

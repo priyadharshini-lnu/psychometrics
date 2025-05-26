@@ -203,7 +203,7 @@ zh-HK:
       development: 發展
       home: 主頁
       insights: 分析
-      my_direct_reports: 我的直接報告
+      my_direct_reportees: 我的直接報告
       my_plan: 我的計劃
       profile: 個人資料
       profile_details: 詳情
@@ -622,7 +622,7 @@ zh-HK:
       structured_learning: 結構化學習
       submit_plan: 提交計劃
       write_here: 在此處寫入...
-    direct_report_details: 直屬下屬詳情
+    direct_reportee_details: 直屬下屬詳情
     initial_steps:
       add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
       add_skill_group_title: 探索你的%{category}技能
@@ -645,7 +645,7 @@ zh-HK:
       skill_column_header: 技能
       skill_gap_report: 技能差距報告
     list: 列表
-    my_direct_reports: 我的直屬下屬
+    my_direct_reportees: 我的直屬下屬
     my_plan:
       development_plan: 發展計劃
       graphs:
@@ -756,7 +756,6 @@ zh-HK:
         library: IDP庫
         skills_count: 技能數量
         title: 報告摘要
-    profile_details: 個人資料詳情
     skill_gap_report:
       continue_to_rate_skills: 繼續評定技能
       title: 技能差距報告

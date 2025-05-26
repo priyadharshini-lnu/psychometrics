@@ -201,7 +201,7 @@ zh:
       development: 发展
       home: 首页
       insights: 见解
-      my_direct_reports: 我的直接报告人
+      my_direct_reportees: 我的直接报告人
       my_plan: 我的计划
       profile: 个人资料
       profile_details: 详情
@@ -618,7 +618,7 @@ zh:
       structured_learning: 结构化学习
       submit_plan: 提交计划
       write_here: 在此处写入...
-    direct_report_details: 直属下属详情
+    direct_reportee_details: 直属下属详情
     initial_steps:
       add_skill_group_description: 基于你的评估结果，以下是你的一些优势和发展领域。选择你想作为发展计划一部分进一步发展的技能。
       add_skill_group_title: 探索你的%{category}技能
@@ -641,7 +641,7 @@ zh:
       skill_column_header: 技能
       skill_gap_report: 技能差距报告
     list: 列表
-    my_direct_reports: 我的直属下属
+    my_direct_reportees: 我的直属下属
     my_plan:
       development_plan: 发展计划
       graphs:
@@ -752,7 +752,6 @@ zh:
         library: IDP库
         skills_count: 技能数量
         title: 报告摘要
-    profile_details: 个人资料详情
     skill_gap_report:
       continue_to_rate_skills: 继续评定技能
       title: 技能差距报告

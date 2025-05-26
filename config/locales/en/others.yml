@@ -1238,7 +1238,7 @@ en:
       development: Development
       home: Home
       insights: Insights
-      my_direct_reports: My Direct Reports
+      my_direct_reportees: My Direct Reportees
       my_plan: My Plan
       profile: Profile
       profile_details: Details
@@ -1654,6 +1654,7 @@ en:
       import: Import
       insert: Insert
       ok: OK
+      reject: Reject
       remove: Remove
       reset: Reset
       resolve: Resolve
@@ -2414,7 +2415,8 @@ en:
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
-    direct_report_details: Direct Report Details
+    direct_reportee_details: My Direct Reportee Details
+    edit_plan: Edit Plan
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -2437,7 +2439,7 @@ en:
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
-    my_direct_reports: My Direct Reports
+    my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
       graphs:
@@ -2548,15 +2550,19 @@ en:
         library: IDP Library
         skills_count: Skills Count
         title: Report Summary
-    profile_details: Profile Details
+    plan: Plan
+    reflective_questions: Reflective Qustions
     skill_gap_report:
       continue_to_rate_skills: Continue to rate skills
       title: Skill Gap Report
     status: Status
     user_idp_status:
       approved: Approved
+      completed: Completed
       draft: Draft
-      pending_approval: Pending
+      in_progress: In Progress
+      pending_approval: Pending Approval
+      rejected: Rejected
     users: Users
   idp_templates:
     assign: Assign
@@ -3860,6 +3866,9 @@ en:
       BadRequest: File was not uploaded as last request failed. This might be due to your internet is not working. If your internet is working please contact administrator
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
+    idp:
+      status_not_permitted: is not permitted by the user.
+      status_not_permitted_by_manager: Manager cannot update status when plan is in '%{status}' state.
     invalid: is invalid
     issue: Issue
     least: Please answer at least %{min} choice(s).

@@ -200,7 +200,7 @@ cs:
       development: Vývoj
       home: Domov
       insights: Poznatky
-      my_direct_reports: Moji přímí podřízení
+      my_direct_reportees: Moji přímí podřízení
       my_plan: Můj plán
       profile: Profil
       profile_details: Detaily
@@ -621,7 +621,7 @@ cs:
       structured_learning: Strukturované učení
       submit_plan: Odeslat plán
       write_here: Pište zde...
-    direct_report_details: Podrobnosti o přímých podřízených
+    direct_reportee_details: Podrobnosti o přímých podřízených
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -644,7 +644,7 @@ cs:
       skill_column_header: Dovednost
       skill_gap_report: Zpráva o mezerách v dovednostech
     list: Seznam
-    my_direct_reports: Moji přímí podřízení
+    my_direct_reportees: Moji přímí podřízení
     my_plan:
       development_plan: Rozvojový plán
       graphs:
@@ -755,7 +755,6 @@ cs:
         library: Knihovna IDP
         skills_count: Počet dovedností
         title: Shrnutí zprávy
-    profile_details: Podrobnosti profilu
     skill_gap_report:
       continue_to_rate_skills: Pokračovat k hodnocení dovedností
       title: Zpráva o mezerách v dovednostech

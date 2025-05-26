@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const IdpPageLayoutWrapper: FC<Props> = ({ children }) => (
+const IdpPageLayoutWrapper: FC<Props> = ({ children }) => (
   <>
     <GlintPageHeader>
       <Col flex="auto" span={24} className="ta-e">
@@ -22,3 +22,5 @@ export const IdpPageLayoutWrapper: FC<Props> = ({ children }) => (
     </Layout.Content>
   </>
 )
+
+export default IdpPageLayoutWrapper

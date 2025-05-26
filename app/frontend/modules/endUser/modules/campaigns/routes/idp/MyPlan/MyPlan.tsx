@@ -1,44 +1,26 @@
-import _ from 'lodash'
 import {
-  useEffect, useState, useMemo,
-} from 'react'
-import {
-  Tabs, Typography, Layout, Button, Flex,
-  message, Modal,
+  Button, Flex, Layout, Modal,
 } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
-import { connect, ConnectedProps, useSelector } from 'react-redux'
-import { CloseOutlined } from '@ant-design/icons'
+import _ from 'lodash'
+import { connect, ConnectedProps } from 'react-redux'
+import { useState } from 'react'
+import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
+import { getIdpSettings } from '~/modules/endUser/core/config'
+import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 
-import { PageLoadSpinner } from '~/glint'
-import { IdpPageLayoutWrapper } from '../components/IdpPageLayoutWrapper/IdpPageLayoutWrapper'
-
-import {
-  fetchAvailableDevelopmentActions,
-  addDevelopmentActionInPlan,
-  saveUserIdpDevelopmentActions,
-  updateDevelopmentActionInPlan,
-  updateDevelopmentActionProgressInPlan,
-  fetchUserIdpPlan,
-  updateUserIdpPlan,
-  saveUserIdpSkills,
-  fetchIdpSkills,
-} from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
+import UserDevelopmentPlan from '~/components/IdpShared/UserDevelopmentPlan'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
+
 import {
-  DevelopmentActionListView,
-  DevelopmentActionBoardView,
-  DevelopmentAction,
-  Skill,
-  CategoryWithSkillsSummary,
-  CategoryWithUserIdpSkills,
-} from '~/components/IdpShared/DevelopmentActions'
-import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
-import { filteredDevelopmentActions, groupDevelopmentActionsByCategory, groupSkillsByCategory } from './utils'
-import { USER_IDP_PLAN_STATUS } from '../constants'
+  updateUserIdpPlan,
+  fetchUserIdpPlan,
+  saveUserIdpDevelopmentActions,
+} from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import styles from './MyPlan.less'
+import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { filteredDevelopmentActions } from '~/components/IdpShared/UserDevelopmentPlan/utils'
 
 const { I18n } = window
 
@@ -64,160 +46,36 @@ const { I18n } = window
 // }
 
 const connector = connect((state: RootState) => ({
-  idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
-  idpSkills: state.campaigns.idp.userIdpSkills,
-  availableDevelopmentActions: state.campaigns.idp.availableDevelopmentActions,
   currentUser: state.currentUser,
   status: state.campaigns.idp.status,
+  idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
+  idpConfig: getIdpSettings(state),
 }),
 {
-  fetchAvailableDevelopmentActions,
-  addDevelopmentActionInPlan,
-  saveUserIdpDevelopmentActions,
-  updateDevelopmentActionInPlan,
-  updateDevelopmentActionProgressInPlan,
-  fetchUserIdpPlan,
   updateUserIdpPlan,
-  saveUserIdpSkills,
-  fetchIdpSkills,
+  fetchUserIdpPlan,
+  saveUserIdpDevelopmentActions,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
-const emptySkillCategory = {
-  category: '',
-  skills: [],
-}
-
 const MyPlanComponent = ({
-  fetchAvailableDevelopmentActions,
-  addDevelopmentActionInPlan,
-  saveUserIdpDevelopmentActions,
-  updateDevelopmentActionInPlan,
-  updateDevelopmentActionProgressInPlan,
   idpDevelopmentActions,
-  idpSkills,
-  availableDevelopmentActions,
   currentUser,
   status,
-  fetchUserIdpPlan,
+  idpConfig,
   updateUserIdpPlan,
-  saveUserIdpSkills,
-  fetchIdpSkills,
+  fetchUserIdpPlan,
+  saveUserIdpDevelopmentActions,
 }: Props) => {
-  const { tab: paramTab } = useParams() as {tab: string}
-  const [tab, setTab] = useState(paramTab || 'list')
   const [editMode, setEditMode] = useState(false)
-  // Show skill page
-  const [showAddSkill, setShowAddSkill] = useState(false)
-  const [pickedCategoryToAddMoreSkills, setPickedCategoryToAddMoreSkills] = useState<CategoryWithUserIdpSkills>(
-    emptySkillCategory,
-  )
-  const [skillCategory, setSkillCategory] = useState<CategoryWithSkillsSummary>(emptySkillCategory)
 
-  const listData = useMemo(() => groupSkillsByCategory(idpSkills, idpDevelopmentActions),
-    [idpSkills, idpDevelopmentActions])
-
-  const boardData = useMemo(() => groupDevelopmentActionsByCategory(idpDevelopmentActions, idpSkills),
-    [idpDevelopmentActions, idpSkills])
-
-  const availableDevelopmentActionsData = useMemo(() => _.values(availableDevelopmentActions),
-    [availableDevelopmentActions])
-
-  const navigate = useNavigate()
-
-  const changeTab = (tab: string) => {
-    setTab(tab)
-    navigate(`/idp/my_plan/${tab}`)
-  }
-
-  const config = useSelector((state: RootState) => state.config)
-
-  useEffect(() => {
-    fetchUserIdpPlan(currentUser.id).catch((error) => {
-      message.error(error || I18n.t('common.errors.something_wrong'))
-      navigate('/')
-    })
-  }, [])
-
-  useEffect(() => {
-    if (paramTab !== tab) {
-      setTab(paramTab || 'list')
-    }
-  }, [paramTab])
-
-  useEffect(() => {
-    if (status && status === USER_IDP_PLAN_STATUS.NOT_STARTED) {
-      navigate('/idp/steps/getting_started')
-    }
-  }, [status])
-
-  useEffect(() => {
-    if (showAddSkill) {
-      fetchIdpSkills({
-        filterByCategory: pickedCategoryToAddMoreSkills?.category,
-      }).then(({ response }) => {
-        setSkillCategory({
-          category: pickedCategoryToAddMoreSkills?.category || '',
-          skills: response as Skill[],
-        })
-      })
-    } else {
-      setSkillCategory(emptySkillCategory)
-    }
-  }, [showAddSkill])
-
-  const handleAddDevelopmentAction = (developmentAction: DevelopmentAction) => {
-    addDevelopmentActionInPlan(developmentAction)
-  }
-
-  const handleShowAvailableDevelopmentAction = (skillId) => {
-    fetchAvailableDevelopmentActions(currentUser.id, skillId)
-  }
-
-  const handleSelectSkill = (skills) => {
-    // Add skillId to skills
-    const userIdpSkill = skills.map(skill => ({
-      ...skill,
-      skillId: skill.id,
-    }))
-    setPickedCategoryToAddMoreSkills({
-      category: pickedCategoryToAddMoreSkills?.category || '',
-      skills: _.uniqBy([...pickedCategoryToAddMoreSkills?.skills, ...userIdpSkill], 'skillId'),
-    })
-  }
-
-  const handleFinishAddSkill = () => {
-    saveUserIdpSkills(pickedCategoryToAddMoreSkills.skills, pickedCategoryToAddMoreSkills.category).then(() => (
-      setShowAddSkill(false)
-    ))
-  }
-
-  const handleDeselectSkill = (skillId) => {
-    setPickedCategoryToAddMoreSkills({
-      category: pickedCategoryToAddMoreSkills?.category || '',
-      skills: pickedCategoryToAddMoreSkills?.skills.filter(
-        userIdpSkill => userIdpSkill.skillId !== skillId,
-      ),
-    })
-  }
-
-  const handleSave = () => {
-    setEditMode(false)
-    const actionsArray = _.values(filteredDevelopmentActions(idpDevelopmentActions))
-    saveUserIdpDevelopmentActions(currentUser.id, actionsArray).then(() => (
-      fetchUserIdpPlan(currentUser.id)
-    ))
-  }
-
-  const handleUpdateDevelopmentActionProgress = (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => {
-    updateDevelopmentActionProgressInPlan(developmentAction)
-  }
+  const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
 
   const handleCompletion = () => {
     const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
-    if (hasIncompleteDAs && config.idp.requireAllDevelopmentActionsComplete) {
+    if (hasIncompleteDAs && requireAllDevelopmentActionsComplete) {
       Modal.error({
         title: I18n.t('idp.development_actions.incomplete_error'),
         content: I18n.t('idp.development_actions.incomplete_error_message'),
@@ -230,36 +88,33 @@ const MyPlanComponent = ({
         title: I18n.t('idp.development_actions.incomplete_warning'),
         content: I18n.t('idp.development_actions.incomplete_warning_message'),
         onOk: () => {
-          updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
-            setEditMode(false)
-          })
+          updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED)
         },
       })
     } else {
-      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
-        setEditMode(false)
-      })
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED)
     }
   }
 
   const handleSubmitPlan = () => {
-    // TODO: This should update to PENDING_APPROVAL and onec manager approves should update to APPROVED
-    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED).then(() => {
-      setEditMode(false)
-    })
+    if (managerApprovesIdp) {
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL)
+    } else {
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED)
+    }
   }
 
   const handleStartPlan = () => {
-    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS).then(() => {
-      setEditMode(false)
-    })
+    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.IN_PROGRESS)
   }
 
-  const handleAddMoreSkill = (category) => {
-    setShowAddSkill(true)
-    setPickedCategoryToAddMoreSkills(category)
+  const handleSave = () => {
+    setEditMode(false)
+    const actionsArray = _.values(filteredDevelopmentActions(idpDevelopmentActions))
+    saveUserIdpDevelopmentActions(currentUser.id, actionsArray).then(() => (
+      fetchUserIdpPlan(currentUser.id)
+    ))
   }
-
 
   const operations = (
     <Flex gap={8}>
@@ -267,95 +122,64 @@ const MyPlanComponent = ({
         <Button
           type="primary"
           onClick={handleSave}
-          disabled={status !== USER_IDP_PLAN_STATUS.DRAFT}
         >
           {I18n.t('common.actions.save')}
         </Button>
       ) : (
-        <Button
-          type="primary"
-          disabled={status !== USER_IDP_PLAN_STATUS.DRAFT}
-          onClick={() => setEditMode(true)}
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>
+        (
+          <Button
+            disabled={
+            ![USER_IDP_PLAN_STATUS.DRAFT,
+              USER_IDP_PLAN_STATUS.APPROVED,
+              USER_IDP_PLAN_STATUS.IN_PROGRESS].includes(status)}
+            type="primary"
+            icon={<EditOutlined />}
+            onClick={() => setEditMode(true)}
+          >
+            {I18n.t('idp.edit_plan')}
+          </Button>
+        )
       )}
 
-      {(status === USER_IDP_PLAN_STATUS.NOT_STARTED || status === USER_IDP_PLAN_STATUS.DRAFT) && (
-        <Button
-          // disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
-          onClick={handleSubmitPlan}
-        >
-          {I18n.t('idp.development_actions.submit_plan')}
-        </Button>
-      )}
+      {!editMode && (
+        <>
+          {(status === USER_IDP_PLAN_STATUS.NOT_STARTED || status === USER_IDP_PLAN_STATUS.DRAFT) && (
+            <Button
+              onClick={handleSubmitPlan}
+            >
+              {I18n.t('idp.development_actions.submit_plan')}
+            </Button>
+          )}
 
-      {status === USER_IDP_PLAN_STATUS.APPROVED && (
-        <Button
-          // disabled={status !== USER_IDP_PLAN_STATUS.DRAFT || editMode}
-          onClick={handleStartPlan}
-        >
-          {I18n.t('idp.development_actions.start_plan')}
-        </Button>
-      )}
+          {status === USER_IDP_PLAN_STATUS.APPROVED && (
+            <Button
+              onClick={handleStartPlan}
+            >
+              {I18n.t('idp.development_actions.start_plan')}
+            </Button>
+          )}
 
-      {status === USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS && (
-        <Button
-          disabled={status !== USER_IDP_PLAN_STATUS.PLAN_IN_PROGRESS}
-          onClick={handleCompletion}
-        >
-          {I18n.t('idp.development_actions.mark_as_complete')}
-        </Button>
+          {status === USER_IDP_PLAN_STATUS.IN_PROGRESS && (
+            <Button
+              disabled={status !== USER_IDP_PLAN_STATUS.IN_PROGRESS}
+              onClick={handleCompletion}
+            >
+              {I18n.t('idp.development_actions.mark_as_complete')}
+            </Button>
+          )}
+        </>
       )}
     </Flex>
   )
 
-  // If no status is available, then it's still loading
-  if (!status) {
-    return <PageLoadSpinner size="large" />
-  }
-
   return (
     <IdpPageLayoutWrapper>
       <Layout.Content className={styles.pageContent}>
-        {showAddSkill ? (
-          <div>
-            <Button
-              type="text"
-              icon={<CloseOutlined />}
-              onClick={() => setShowAddSkill(false)}
-            />
-            <AddSkillsStep
-              addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
-              skillCategories={[skillCategory]}
-              onFinishAddSkill={handleFinishAddSkill}
-              selectedSkills={pickedCategoryToAddMoreSkills?.skills || []}
-              onDeselectSkill={handleDeselectSkill}
-              onAddSkill={handleSelectSkill}
-            />
-          </div>
-        ) : (
-          <>
-            <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
-            <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
-              <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
-                <DevelopmentActionListView
-                  editMode={editMode}
-                  categories={listData}
-                  availableDevelopmentActions={availableDevelopmentActionsData}
-                  onAddDevelopmentAction={handleAddDevelopmentAction}
-                  onUpdateDevelopmentActionProgress={handleUpdateDevelopmentActionProgress}
-                  onUpdateDevelopmentAction={updateDevelopmentActionInPlan}
-                  onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
-                  onAddMoreSkills={handleAddMoreSkill}
-                />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
-                <DevelopmentActionBoardView categories={boardData} />
-              </Tabs.TabPane>
-            </Tabs>
-          </>
-        )}
+        <UserDevelopmentPlan
+          idpUserId={currentUser.id}
+          editMode={editMode}
+          operations={operations}
+        />
       </Layout.Content>
     </IdpPageLayoutWrapper>
   )

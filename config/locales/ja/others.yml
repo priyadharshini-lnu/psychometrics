@@ -203,7 +203,7 @@ ja:
       development: 開発
       home: ホーム
       insights: インサイト
-      my_direct_reports: 私の直属の部下
+      my_direct_reportees: 私の直属の部下
       my_plan: 私の計画
       profile: プロフィール
       profile_details: 詳細
@@ -621,7 +621,7 @@ ja:
       structured_learning: 体系的学習
       submit_plan: プランを提出
       write_here: ここに記入してください...
-    direct_report_details: 直属の部下の詳細
+    direct_reportee_details: 直属の部下の詳細
     initial_steps:
       add_skill_group_description: あなたの評価結果に基づき、あなたの強みと開発すべき領域のいくつかを紹介します。開発計画の一部として、さらに伸ばしたいスキルを選択してください。
       add_skill_group_title: あなたの%{category}スキルを探る
@@ -644,7 +644,7 @@ ja:
       skill_column_header: スキル
       skill_gap_report: スキルギャップレポート
     list: リスト
-    my_direct_reports: 私の直属の部下
+    my_direct_reportees: 私の直属の部下
     my_plan:
       development_plan: 開発計画
       graphs:
@@ -755,7 +755,6 @@ ja:
         library: IDPライブラリ
         skills_count: スキル数
         title: レポート概要
-    profile_details: プロフィール詳細
     skill_gap_report:
       continue_to_rate_skills: スキル評価を続ける
       title: スキルギャップレポート

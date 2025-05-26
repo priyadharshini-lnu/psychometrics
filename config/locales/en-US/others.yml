@@ -200,7 +200,7 @@ en-US:
       development: Development
       home: Home
       insights: Insights
-      my_direct_reports: My Direct Reports
+      my_direct_reportees: My Direct Reportees
       my_plan: My Plan
       profile: Profile
       profile_details: Details
@@ -606,7 +606,7 @@ en-US:
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
-    direct_report_details: Direct Report Details
+    direct_reportee_details: My Direct Reportee Details
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -629,7 +629,7 @@ en-US:
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
-    my_direct_reports: My Direct Reports
+    my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
       graphs:
@@ -740,7 +740,6 @@ en-US:
         library: IDP Library
         skills_count: Skills Count
         title: Report Summary
-    profile_details: Profile Details
     skill_gap_report:
       continue_to_rate_skills: Continue to rate skills
       title: Skill Gap Report

@@ -1237,7 +1237,7 @@ de:
       development: Entwicklung
       home: Startseite
       insights: Einblicke
-      my_direct_reports: Meine direkten Berichte
+      my_direct_reportees: Meine direkten Berichte
       my_plan: Mein Plan
       profile: Profil
       profile_details: Details
@@ -2375,7 +2375,7 @@ de:
       structured_learning: Strukturiertes Lernen
       submit_plan: Plan einreichen
       write_here: Hier schreiben...
-    direct_report_details: Details zu direkten Mitarbeitern
+    direct_reportee_details: Details zu direkten Mitarbeitern
     initial_steps:
       add_skill_group_description: Basierend auf Ihren Bewertungsergebnissen sind hier einige Ihrer Stärken und Entwicklungsbereiche. Wählen Sie die Kompetenzen aus, die Sie als Teil Ihres Entwicklungsplans weiterentwickeln möchten.
       add_skill_group_title: Entdecken Sie Ihre %{category} Kompetenzen
@@ -2398,7 +2398,7 @@ de:
       skill_column_header: Kompetenz
       skill_gap_report: Kompetenzlückenbericht
     list: Liste
-    my_direct_reports: Meine direkten Mitarbeiter
+    my_direct_reportees: Meine direkten Mitarbeiter
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
@@ -2509,7 +2509,6 @@ de:
         library: IDP-Bibliothek
         skills_count: Anzahl der Kompetenzen
         title: Berichtszusammenfassung
-    profile_details: Profildetails
     skill_gap_report:
       continue_to_rate_skills: Fahren Sie mit der Bewertung der Kompetenzen fort
       title: Kompetenzlückenbericht

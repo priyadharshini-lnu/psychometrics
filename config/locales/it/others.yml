@@ -1232,7 +1232,7 @@ it:
       development: Sviluppo
       home: Home
       insights: Approfondimenti
-      my_direct_reports: I miei rapporti diretti
+      my_direct_reportees: I miei rapporti diretti
       my_plan: Il mio piano
       profile: Profilo
       profile_details: Dettagli
@@ -2359,7 +2359,7 @@ it:
       structured_learning: Apprendimento strutturato
       submit_plan: Invia Piano
       write_here: Scrivi qui...
-    direct_report_details: Dettagli Report Diretto
+    direct_reportee_details: Dettagli Report Diretto
     initial_steps:
       add_skill_group_description: In base ai risultati della tua valutazione, ecco alcune delle aree di forza e di sviluppo per te. Scegli le competenze che desideri sviluppare ulteriormente come parte del tuo piano di sviluppo.
       add_skill_group_title: Esplorazione delle Tue Competenze %{category}
@@ -2382,7 +2382,7 @@ it:
       skill_column_header: Competenza
       skill_gap_report: Report sul Divario di Competenze
     list: Lista
-    my_direct_reports: I Miei Report Diretti
+    my_direct_reportees: I Miei Report Diretti
     my_plan:
       development_plan: Piano di Sviluppo
       graphs:
@@ -2493,7 +2493,6 @@ it:
         library: Libreria PSI
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
-    profile_details: Dettagli del Profilo
     skill_gap_report:
       continue_to_rate_skills: Continua a valutare le competenze
       title: Report sul Divario di Competenze

@@ -199,7 +199,7 @@ pt:
       development: Desenvolvimento
       home: Início
       insights: Informações
-      my_direct_reports: Os meus subordinados diretos
+      my_direct_reportees: Os meus subordinados diretos
       my_plan: O meu plano
       profile: Perfil
       profile_details: Detalhes
@@ -618,7 +618,7 @@ pt:
       structured_learning: Aprendizagem estruturada
       submit_plan: Submeter Plano
       write_here: Escreva aqui...
-    direct_report_details: Detalhes do Relatório Direto
+    direct_reportee_details: Detalhes do Relatório Direto
     initial_steps:
       add_skill_group_description: Com base nos seus resultados de avaliação, aqui estão algumas das áreas de força e desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: A Explorar as Suas Competências de %{category}
@@ -641,7 +641,7 @@ pt:
       skill_column_header: Competência
       skill_gap_report: Relatório de Lacunas de Competências
     list: Lista
-    my_direct_reports: Os Meus Relatórios Diretos
+    my_direct_reportees: Os Meus Relatórios Diretos
     my_plan:
       development_plan: Plano de Desenvolvimento
       graphs:
@@ -752,7 +752,6 @@ pt:
         library: Biblioteca PDI
         skills_count: Contagem de Competências
         title: Resumo do Relatório
-    profile_details: Detalhes do Perfil
     skill_gap_report:
       continue_to_rate_skills: Continuar a avaliar competências
       title: Relatório de Lacunas de Competências

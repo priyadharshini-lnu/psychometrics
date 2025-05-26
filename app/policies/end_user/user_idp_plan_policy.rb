@@ -10,6 +10,6 @@ class EndUser::UserIdpPlanPolicy < BasePolicy
   end
 
   def update?
-    @record == @current_user || @record.manager == @current_user
+    @record == @current_user || (@record.manager == @current_user && @current_project.idp_setting.manager_approves_idp)
   end
 end
