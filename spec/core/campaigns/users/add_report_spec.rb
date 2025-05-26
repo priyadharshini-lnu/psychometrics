@@ -223,6 +223,19 @@ data_seprator: '4-2')
     expect(new_user_result.answers).to eq(answers)
   end
 
+  it 'copies user_assessment data if user have previously given the assessment and add_with_existing_response is set' do
+    existing_user_result = create(:users_result, evaluator: campaign_user.user,
+assessment_id: report.assessments.first.id)
+    existing_user_result.user_assessment.update!(status: :completed, score_calculated: true,
+                                                 score_calculated_at: Time.current)
+    output = described_class.call!(campaign_user, report, assessments: report.assessments)
+    new_user_assessment = output[:user_assessments].first
+
+    expect(new_user_assessment.status).to eq('completed')
+    expect(new_user_assessment.score_calculated).to eq(true)
+    expect(new_user_assessment.score_calculated_at).to be_present
+  end
+
   it 'copies users_result if user have hogan assessment of same credential and add_with_existing_response is set' do
     allow(Services::Hogan::Api::Json::GetParticipantProfile).to receive(:call!).and_return(participant_profile)
 
