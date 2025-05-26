@@ -1489,7 +1489,11 @@ as: :simulation_progress_notification
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
 
           namespace :ai do
-            jsonapi_resources :assistants, relationships: false
+            jsonapi_resources :assistants, relationships: false do
+              member do
+                post :generate
+              end
+            end
           end
         end
       end

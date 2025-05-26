@@ -9,10 +9,23 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
   let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
-  let!(:assistant) { create(:ai_assistant, owner: client) }
+  let!(:assistant) { create(:ai_assistant, owner: client, provider_id: 'azure-openai') }
   let!(:assistant_id) { assistant.id }
+  let(:mock_provider_config) do
+    config_double = double('ProviderConfig')
+    allow(config_double).to receive(:id).and_return('azure-openai')
+    allow(config_double).to receive(:provider).and_return('AzureOpenai')
+    allow(config_double).to receive(:api_key).and_return('test-api-key')
+    allow(config_double).to receive(:endpoint).and_return('https://test-endpoint.com/openai/deployments/gpt-4o/chat/completions')
+    allow(config_double).to receive(:api_version).and_return('2023-05-15')
+    config_double
+  end
 
-  before { sign_in(superadmin) }
+  before do
+    sign_in(superadmin)
+    # Mock Settings.ai_providers to avoid environment variable dependency
+    allow(Settings).to receive(:ai_providers).and_return([mock_provider_config])
+  end
 
   path '/ai/assistants' do
     get 'Fetch Assistants' do
@@ -81,9 +94,10 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
                   description: { type: :string, example: 'A new AI assistant' },
                   system_prompt: { type: :string, example: 'You are a helpful assistant' },
                   user_prompt: { type: :string, example: 'How can I help you?' },
-                  action: { type: :string, example: 'assist' }
+                  action: { type: :string, example: 'assist' },
+                  provider_id: { type: :string, example: 'azure-openai' }
                 },
-                required: %w[name description system_prompt user_prompt action]
+                required: %w[name description system_prompt user_prompt action provider_id]
               }
             }
           }
@@ -100,7 +114,8 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
                 description: 'A test assistant',
                 system_prompt: 'You are a helpful assistant',
                 user_prompt: 'How can I help you?',
-                action: 'assist'
+                action: 'assist',
+                provider_id: 'azure-openai'
               }
             }
           }
@@ -117,6 +132,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           expect(data).to have_key('created_at')
           expect(data).to have_key('updated_at')
           expect(data['name']).to eq('Test Assistant')
+          expect(data['provider_id']).to eq('azure-openai')
         end
       end
     end
@@ -215,6 +231,78 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
         let(:id) { assistant_id }
 
         run_test!
+      end
+    end
+
+    path '/ai/assistants/{id}/generate' do
+      post 'Generate AI Response' do
+        operationId 'GenerateAIResponse'
+        description 'Generate a response using the AI assistant'
+        tags 'AI Assistants'
+        consumes 'application/vnd.api+json'
+        produces 'application/json'
+        security [basic: []]
+        parameter name: :id, in: :path, type: :string, required: true
+
+        response '200', 'Generated response' do
+          let(:id) { assistant_id }
+
+          before do
+            # Mock the Service instead of the AI client directly
+            allow(AI::Assistants::Service).
+              to receive(:call).
+              with(assistant_id.to_s).
+              and_return('This is a test AI response')
+          end
+
+          run_test! do |response|
+            expect(response.status).to eq(200)
+            data = JSON.parse(response.body)
+
+            expect(data).to have_key('response')
+            expect(data['response']).to be_a(String)
+            expect(data['response']).to eq('This is a test AI response')
+          end
+        end
+
+        response '404', 'Assistant not found' do
+          let(:id) { 'non-existent-id' }
+
+          before do
+            allow(AI::Assistants::Service).
+              to receive(:call).
+              with('non-existent-id').
+              and_raise(ActiveRecord::RecordNotFound.new)
+          end
+
+          run_test! do |response|
+            expect(response.status).to eq(404)
+            data = JSON.parse(response.body)
+
+            expect(data).to have_key('error')
+            expect(data['error']).to eq('Assistant not found')
+          end
+        end
+
+        response '422', 'Error generating response' do
+          let(:id) { assistant_id }
+
+          before do
+            # Simulate an error in the service
+            allow(AI::Assistants::Service).
+              to receive(:call).
+              with(assistant_id.to_s).
+              and_raise(StandardError.new('AI provider error'))
+          end
+
+          run_test! do |response|
+            expect(response.status).to eq(422)
+            data = JSON.parse(response.body)
+
+            expect(data).to have_key('error')
+            expect(data['error']).to eq('AI provider error')
+          end
+        end
       end
     end
   end

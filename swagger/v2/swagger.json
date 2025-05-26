@@ -573,6 +573,42 @@
         }
       }
     },
+    "/ai/assistants/{id}/generate": {
+      "post": {
+        "summary": "Generate AI Response",
+        "operationId": "GenerateAIResponse",
+        "description": "Generate a response using the AI assistant",
+        "tags": [
+          "AI Assistants"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Generated response"
+          },
+          "404": {
+            "description": "Assistant not found"
+          },
+          "422": {
+            "description": "Error generating response"
+          }
+        }
+      }
+    },
     "/users/{user_id}/api_keys/": {
       "get": {
         "summary": "API Keys List",
@@ -6261,6 +6297,362 @@
           "400": {
             "description": "Deletion Not Allowed"
           }
+        }
+      }
+    },
+    "/projects/{project_id}/idp_templates/{id}/update_reflection_questions": {
+      "post": {
+        "summary": "Update Idp Template",
+        "operationId": "UpdateIdpTemplateReflectionQuestions",
+        "description": "Update Idp Template reflection questions",
+        "tags": [
+          "IdpTemplate"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idp Template Updated"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdpTemplateUpdateReflectionQuestionsRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/reflection_questions": {
+      "get": {
+        "summary": "Get a reflection questions",
+        "operationId": "GetReflectionQuestions",
+        "description": "Get Reflection Questions",
+        "tags": [
+          "ReflectionQuestions"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[project_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IdpSetting Update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReflectionQuestionsListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a reflection questions",
+        "operationId": "CreateReflectionQuestions",
+        "description": "Create Reflection Questions",
+        "tags": [
+          "ReflectionQuestions"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Reflection Questions Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "type": "reflection_questions",
+                        "data": {
+                          "attributes": {
+                            "question": "test question",
+                            "mandatory": true,
+                            "min_words": 0,
+                            "max_words": 100
+                          },
+                          "relationships": {
+                            "project": {
+                              "data": {
+                                "id": "123",
+                                "type": "clients"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ReflectionQuestionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReflectionQuestionCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/reflection_questions/{id}": {
+      "put": {
+        "summary": "Update a reflection questions",
+        "operationId": "UpdateReflectionQuestions",
+        "description": "Update Reflection Questions",
+        "tags": [
+          "ReflectionQuestions"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reflection Questions Updated",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "type": "reflection_questions",
+                        "data": {
+                          "id": "",
+                          "attributes": {
+                            "question": "test question",
+                            "mandatory": true,
+                            "min_words": 0,
+                            "max_words": 100
+                          },
+                          "relationships": {
+                            "project": {
+                              "data": {
+                                "id": "123",
+                                "type": "clients"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ReflectionQuestionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReflectionQuestionUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete Idp Template",
+        "operationId": "DeleteReflectionQuestions",
+        "description": "Delete Reflection Questions",
+        "tags": [
+          "ReflectionQuestions"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Reflection Question Deleted"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/reflection_questions/export": {
+      "post": {
+        "summary": "Export reflection questions",
+        "operationId": "ExportReflectionQuestions",
+        "description": "Export reflection questions for a project",
+        "tags": [
+          "ReflectionQuestions"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Queues export_reflection_questions job successfully"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/reflection_questions/import": {
+      "post": {
+        "summary": "Import reflection questions",
+        "operationId": "ImportReflectionQuestions",
+        "description": "Import reflection questions for a project",
+        "tags": [
+          "ReflectionQuestions"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Queues import_reflection_questions job"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "file"
+              }
+            }
+          },
+          "description": "CSV file"
         }
       }
     },
@@ -25738,6 +26130,36 @@
                       "type": "boolean",
                       "nullable": false
                     },
+                    "reflection_questions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "reflection_question_id": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "mandatory": {
+                            "type": "boolean",
+                            "nullable": false
+                          },
+                          "min_words": {
+                            "type": "integer",
+                            "nullable": true
+                          },
+                          "max_words": {
+                            "type": "integer",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "reflection_question_id",
+                          "mandatory"
+                        ],
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
                     "behavioral_global_skill_settings": {
                       "type": "string",
                       "nullable": true
@@ -26455,6 +26877,36 @@
                     "type": "boolean",
                     "nullable": false
                   },
+                  "reflection_questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "reflection_question_id": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "mandatory": {
+                          "type": "boolean",
+                          "nullable": false
+                        },
+                        "min_words": {
+                          "type": "integer",
+                          "nullable": true
+                        },
+                        "max_words": {
+                          "type": "integer",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "reflection_question_id",
+                        "mandatory"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
                   "behavioral_global_skill_settings": {
                     "type": "string",
                     "nullable": true
@@ -26553,6 +27005,36 @@
                   },
                   "self_rating_enabled": {
                     "type": "boolean",
+                    "nullable": false
+                  },
+                  "reflection_questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "reflection_question_id": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "mandatory": {
+                          "type": "boolean",
+                          "nullable": false
+                        },
+                        "min_words": {
+                          "type": "integer",
+                          "nullable": true
+                        },
+                        "max_words": {
+                          "type": "integer",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "reflection_question_id",
+                        "mandatory"
+                      ],
+                      "nullable": false
+                    },
                     "nullable": false
                   },
                   "behavioral_global_skill_settings": {
@@ -27245,6 +27727,894 @@
               "id",
               "type",
               "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AssistantsMultipleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to assistants",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "owner": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to clients",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [],
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [],
+                      "nullable": false
+                    },
+                    "last_modified_by": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to users",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [],
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [],
+                      "nullable": false
+                    }
+                  },
+                  "required": [],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "system_prompt": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "user_prompt": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "action": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description",
+                    "system_prompt",
+                    "user_prompt",
+                    "action",
+                    "created_at",
+                    "updated_at"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "AssistantResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to assistants",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "owner": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [],
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [],
+                    "nullable": false
+                  },
+                  "last_modified_by": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [],
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [],
+                    "nullable": false
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "system_prompt": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "user_prompt": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "action": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "system_prompt",
+                  "user_prompt",
+                  "action",
+                  "created_at",
+                  "updated_at"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AssistantCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "system_prompt": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "user_prompt": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "action": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "system_prompt",
+                  "user_prompt",
+                  "action"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AssistantUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "system_prompt": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "user_prompt": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "action": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ReflectionQuestionsListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to reflection_questions",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "project": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to clients",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "project"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "question": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "mandatory": {
+                      "type": "boolean",
+                      "nullable": false
+                    },
+                    "min_words": {
+                      "type": "integer",
+                      "nullable": true
+                    },
+                    "max_words": {
+                      "type": "integer",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "question",
+                    "mandatory"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "relationships",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ReflectionQuestionResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to reflection_questions",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "project"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "question": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "mandatory": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "min_words": {
+                    "type": "integer",
+                    "nullable": true
+                  },
+                  "max_words": {
+                    "type": "integer",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "question",
+                  "mandatory"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "relationships",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ReflectionQuestionCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to reflection_questions",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "question": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "mandatory": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "min_words": {
+                    "type": "integer",
+                    "nullable": true
+                  },
+                  "max_words": {
+                    "type": "integer",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "question",
+                  "mandatory"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "project"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ReflectionQuestionUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to reflection_questions",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "question": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "mandatory": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "min_words": {
+                    "type": "integer",
+                    "nullable": true
+                  },
+                  "max_words": {
+                    "type": "integer",
+                    "nullable": true
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "project"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "IdpTemplateUpdateReflectionQuestionsRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "reflection_questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "mandatory": {
+                          "type": "boolean",
+                          "nullable": false
+                        },
+                        "min_words": {
+                          "type": "integer",
+                          "nullable": true
+                        },
+                        "max_words": {
+                          "type": "integer",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "mandatory"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "reflection_questions"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
               "attributes"
             ],
             "nullable": false

@@ -407,7 +407,8 @@ CREATE TABLE public.ai_assistants (
     user_prompt text,
     system_prompt text,
     owner_id bigint,
-    last_modified_by_id bigint
+    last_modified_by_id bigint,
+    provider_id character varying NOT NULL
 );
 
 
@@ -15839,6 +15840,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250519045905'),
 ('20250516082303'),
 ('20250514075923'),
 ('20250512082901'),
