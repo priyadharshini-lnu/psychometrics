@@ -1559,6 +1559,38 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 
 
 --
+-- Name: client_features; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_features (
+    id bigint NOT NULL,
+    client_id bigint,
+    sms_notification boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: client_features_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_features_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_features_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_features_id_seq OWNED BY public.client_features.id;
+
+
+--
 -- Name: client_privacy_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7625,6 +7657,13 @@ ALTER TABLE ONLY public.client_auditlog_export_settings ALTER COLUMN id SET DEFA
 
 
 --
+-- Name: client_features id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_features ALTER COLUMN id SET DEFAULT nextval('public.client_features_id_seq'::regclass);
+
+
+--
 -- Name: client_privacy_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9026,6 +9065,14 @@ ALTER TABLE ONLY public.client_ai_assistants
 
 ALTER TABLE ONLY public.client_auditlog_export_settings
     ADD CONSTRAINT client_auditlog_export_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: client_features client_features_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_features
+    ADD CONSTRAINT client_features_pkey PRIMARY KEY (id);
 
 
 --
@@ -11074,6 +11121,13 @@ CREATE INDEX index_client_ai_assistants_on_license_id ON public.client_ai_assist
 --
 
 CREATE INDEX index_client_auditlog_export_settings_on_client_id ON public.client_auditlog_export_settings USING btree (client_id);
+
+
+--
+-- Name: index_client_features_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_features_on_client_id ON public.client_features USING btree (client_id);
 
 
 --
@@ -13922,6 +13976,14 @@ ALTER TABLE ONLY public.oracle_credentials
 
 
 --
+-- Name: client_features fk_rails_30e279c9bd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_features
+    ADD CONSTRAINT fk_rails_30e279c9bd FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15860,6 +15922,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250411120337'),
 ('20250410170845'),
 ('20250410065159'),
+('20250411062532'),
 ('20250404115157'),
 ('20250326104351'),
 ('20250324124118'),

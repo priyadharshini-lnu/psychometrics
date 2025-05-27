@@ -167,6 +167,10 @@ en:
               scoring_strategy_required: Scoring strategy is required at row %{index}
             file:
               invalid_format: Please upload CSV file
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Client SMS notification is disabled
         hogan:
           attributes:
             name:

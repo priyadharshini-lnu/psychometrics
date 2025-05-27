@@ -10,27 +10,39 @@ RSpec.describe Administration::Campaigns::SmsInvitesController, type: :controlle
   after(:each) { sign_out(current_user) }
 
   describe 'GET index' do
-    it 'renders sms_invites' do
-      sms_invites = create_list(:sms_invite, 2, campaign: campaign)
+    shared_examples 'sms invites response' do |sms_permission|
+      let!(:sms_invites) { create_list(:sms_invite, 2, campaign: campaign) }
 
-      get :index, params: { new_campaign_id: campaign.id }, format: :json
-      parsed_response = response.parsed_body
+      before do
+        get :index, params: { new_campaign_id: campaign.id }, format: :json
+      end
 
-      expect(parsed_response['total']).to eq(2)
-      expect(parsed_response['permissions']).to eq({
-        'import' => true,
-        'export' => true,
-        'send_sms' => true,
-        'create' => true,
-        'destroy' => true,
-        'update' => true
-      })
-      expect(parsed_response['list']).to match_array(
-        [
-          expected_sms_invite_response(sms_invites[0]),
-          expected_sms_invite_response(sms_invites[1])
-        ]
-      )
+      it 'returns correct response structure' do
+        parsed_response = response.parsed_body
+
+        expect(parsed_response['total']).to eq(2)
+        expect(parsed_response['permissions']).to include(
+          'import' => true,
+          'export' => true,
+          'send_sms' => sms_permission,
+          'create' => true,
+          'destroy' => true,
+          'update' => true
+        )
+        expect(parsed_response['list']).to match_array(
+          sms_invites.map { |invite| expected_sms_invite_response(invite) }
+        )
+      end
+    end
+
+    context 'when SMS notification is disabled' do
+      include_examples 'sms invites response', false
+    end
+
+    context 'when SMS notification is enabled' do
+      let(:campaign) { create(:campaign, project: create(:project_with_sms_notification)) }
+
+      include_examples 'sms invites response', true
     end
 
     it 'can search through sms_invites' do

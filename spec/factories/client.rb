@@ -59,6 +59,14 @@ FactoryBot.define do
 
     factory :project, parent: :project_base, traits: %i[project_level _end_level]
 
+    factory :project_with_sms_notification, parent: :project do
+      after(:create) do |project|
+        if project.client&.client_feature
+          project.client.client_feature.update(sms_notification: true)
+        end
+      end
+    end
+
     factory :campaign_base, traits: [:with_reports] do
       end_level { true }
       association :parent, factory: %i[project_base sub_campaign_level]

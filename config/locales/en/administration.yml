@@ -3239,6 +3239,11 @@ en:
         successful_remove: Skill alias '%{skill_alias}' was deleted successfully.
       tabs:
         admin_roles: Admin Roles
+        feature_flags: Feature Flags
+        settings:
+          feature_toggled_error: Feature toggle failed
+          feature_toggled_success: Feature toggled successfully
+          sms_notification: SMS Notification
         siem: SIEM
         skill_aliases: Skill Aliases
     sheets:

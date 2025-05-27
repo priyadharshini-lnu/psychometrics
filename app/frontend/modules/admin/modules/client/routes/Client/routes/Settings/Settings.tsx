@@ -6,6 +6,7 @@ import { Siem } from './Siem'
 import { AdminRoles } from './AdminRoles'
 import { SkillAliases } from './SkillAliases'
 import { Privacy as PrivacySettings } from './Privacy'
+import { Features } from './Features'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
 
@@ -25,11 +26,18 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
     { label: I18n.t('administration.settings.tabs.skill_aliases'), key: 'skill_aliases', children: <SkillAliases /> },
     ...(
       isSuperAdmin(currentUser)
-        ? [{
-          label: I18n.t('administration.project_tabs.privacy'),
-          key: 'privacy_settings',
-          children: <PrivacySettings />,
-        }]
+        ? [
+          {
+            label: I18n.t('administration.project_tabs.privacy'),
+            key: 'privacy_settings',
+            children: <PrivacySettings />,
+          },
+          {
+            label: I18n.t('administration.settings.tabs.feature_flags'),
+            key: 'features',
+            children: <Features />,
+          },
+        ]
         : []
     ),
   ]

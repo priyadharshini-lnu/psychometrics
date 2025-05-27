@@ -1155,6 +1155,7 @@ as: :simulation_progress_notification
             jsonapi_relationships
             jsonapi_resources :reports, only: %i[index], controller: 'clients/reports'
             jsonapi_resources :client_privacy_settings, only: %i[index update]
+            jsonapi_resources :client_features, only: %i[index update]
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
                 post :test_connection
