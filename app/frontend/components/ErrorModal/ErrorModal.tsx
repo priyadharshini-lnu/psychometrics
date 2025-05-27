@@ -5,7 +5,7 @@ import styles from './styles.less'
 import { RequestError } from '~/core/errors'
 import { PropsFromRedux } from './connect'
 
-export const CLIENT_ERRORS = ['401', '403']
+export const CLIENT_ERRORS = [] as string[]
 
 const { I18n } = window
 

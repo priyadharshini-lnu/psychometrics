@@ -123,6 +123,8 @@ module Campaigns
           status: existing_result&.status || :not_started,
           completed_at: existing_result&.completed_at,
           completion_reason: existing_result&.completion_reason,
+          score_calculated: existing_result&.score_calculated,
+          score_calculated_at: existing_result&.score_calculated_at,
           require_scheduling: campaign_assessment&.require_scheduling&.present?
         )
         create_external_user_assessment_record(user_assessment, assessment, existing_result, campaign_assessment)

@@ -29,8 +29,7 @@ module Pearson
 
         response = client.post(
           Addressable::URI.encode('v1/authentication/token'),
-          username: credentials[:user_name],
-          password: credentials[:password]
+          URI.encode_www_form(username: credentials[:user_name], password: credentials[:password])
         )
 
         raise "Invalid response from #{self.class.name} #{response.body}" if response.status != 200

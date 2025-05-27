@@ -5,7 +5,7 @@ module Faas
     class UrlToPdf < Base
       ALLOWED_TYPES = %w[UserReport UserIdpPlan].freeze
 
-      def call
+      def call # rubocop:disable Metrics/AbcSize
         record = find_record
         if data['status'] == 'failed'
           admin_job&.update!(status: :failed, error_messages: [data['error']])
@@ -22,26 +22,29 @@ module Faas
             service_name: Settings.storage.private_storage_service
           )
 
-          reprot_pdf = record.report_pdfs.find_or_create_by!(
+          report_pdf = record.report_pdfs.find_or_create_by!(
             locale: data['lang'] || I18n.locale
           )
 
-          reprot_pdf.pdf_file&.purge_later
+          report_pdf.pdf_file&.purge_later
 
           pdf_file_attachment = ActiveStorage::Attachment.new(
-            record_id: reprot_pdf.id,
-            record_type: reprot_pdf.class.name,
+            record_id: report_pdf.id,
+            record_type: report_pdf.class.name,
             name: 'pdf_file'
           )
 
           pdf_file_attachment.blob_id = blob.id
 
-          reprot_pdf.pdf_file_attachment = pdf_file_attachment
-          reprot_pdf.set_generated_timestamps
+          report_pdf.pdf_file_attachment = pdf_file_attachment
+          report_pdf.set_generated_timestamps
 
-          reprot_pdf.save!
+          report_pdf.save!
 
-          record.update(status: :prepared) if record.is_a?(UserReport)
+          if record.is_a?(UserReport)
+            record.update(status: :prepared)
+            UserReports::Webhook.new(record, report_pdf.locale).publish_report_available
+          end
         end
         update_admin_job_progress(data)
         notify_user(data, record) if data['notify_user_id']

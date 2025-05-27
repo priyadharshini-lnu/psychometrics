@@ -40,7 +40,9 @@ module Api::V2::DataReport
       end
 
       data['sections'].each.with_index do |section, section_num|
-        form = Api::V2::DataReport::SectionForm.new(section).with_context(context)
+        form = Api::V2::DataReport::SectionForm.new(section).with_context(
+          context.to_h.merge(campaign_ids: data['campaign_ids'], project_ids: data['project_ids'])
+        )
         form.validate
         err = form.errors.full_messages.join(', ')
         errors.add(:configuration, "section##{section_num + 1}: #{err}") if err.present?

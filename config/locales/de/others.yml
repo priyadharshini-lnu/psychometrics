@@ -58,7 +58,7 @@ de:
         campaign_factors_import_form:
           attributes:
             base:
-              blank: Die Spalte '%{Einheit}' kann in der Zeile %{index} nicht leer sein
+              blank: Die Spalte '%{entity}' kann in der Zeile %{index} nicht leer sein
               duplicate_code: Duplizierter Code '%{code}' in Zeile %{index}
               invalid_output_type: Ungültiger output_type '%{output_type}' in Zeile %{index}
               max_limit_reached: Die Gesamtzahl der Kampagnenfaktoren überschreitet die Höchstgrenze von %{count}
@@ -67,7 +67,7 @@ de:
             file:
               invalid_format: Bitte xlsx-Datei hochladen
             resource:
-              must_exist: "%{Ressource} muss existieren"
+              must_exist: "%{resource} muss existieren"
         campaigns_external_scores_import_form:
           attributes:
             file:
@@ -289,12 +289,12 @@ de:
               email_duplicate: Es gibt Duplikate in der E-Mail-Spalte
               email_invalid: 'Zeile %{row_number}: E-Mail ist ungültig'
               invalid_column: Ungültige Spalte %{name}
-              invalid_column_name: Spalte <b>"%{Spalte}"</b> ist ungültig
-              invalid_column_name_size: Name der Spalte <b>"%{Spalte}"</b> zu lang (max. 64)
+              invalid_column_name: Spalte <b>"%{column}"</b> ist ungültig
+              invalid_column_name_size: Name der Spalte <b>"%{column}"</b> zu lang (max. 64)
               invalid_column_type: Der Spaltentyp muss String, Text, Zahl, HTML oder Markdown sein
               invalid_format: Ungültiges Format (.xlsx)
               invalid_number_value: <b>Zeile#%{index}</b> Spalte <b>"%{column}"</b> ist keine Zahl
-              invalid_string_value: <b>Zeile#%{index}</b> Spalte <b>"%{spalte}"</b> ist kein String
+              invalid_string_value: <b>Zeile#%{index}</b> Spalte <b>"%{column}"</b> ist kein String
               invalid_string_value_size: <b>Zeile#%{index}</b> Spalte <b>"%{column}"</b> zu lang (max 256)
               no_email_column: Datei enthält keine E-Mail-Spalte
               non_uniq_column: Es gibt folgende nicht uniq-Spalten %{columns}
@@ -985,7 +985,7 @@ de:
     instructions:
       begin_assessment: Beginnen Sie
       cancel: Abbrechen
-      default: Dies ist eine zeitlich begrenzte Aktivität. Sobald Sie auf Bewertung beginnen klicken, haben Sie %{Zeit} Minuten Zeit, um sie abzuschließen.
+      default: Dies ist eine zeitlich begrenzte Aktivität. Sobald Sie auf Bewertung beginnen klicken, haben Sie %{time} Minuten Zeit, um sie abzuschließen.
       title: Anweisungen
     messages:
       external_scores_export_scheduled: Exportauftrag für Bewertungsergebnisse wurde erfolgreich geplant
@@ -1031,7 +1031,7 @@ de:
       fifteen_seconds_left: noch 15 Sekunden
       five_minutes_left: noch 5 Minuten
       one_minute_left: noch 1 Minute
-      seconds_left: "%{Sekunden} verbleibende Sekunden"
+      seconds_left: "%{seconds} verbleibende Sekunden"
       thirty_seconds_left: noch 30 Sekunden
       time_is_up: Ihre Zeit ist abgelaufen
       time_is_up_for_recording: Die Zeit ist abgelaufen und die Aufzeichnung wird jetzt beendet
@@ -1159,7 +1159,7 @@ de:
       code_placeholder: Einmaliges Passwort
       description: Bitte geben Sie das OTP ein, das an Ihre registrierte E-Mail-Adresse gesendet wurde.
       resend: OTP erneut senden
-      resend_in: Erneut senden in %{Zeitstempel} Sekunden
+      resend_in: Erneut senden in %{timestamp} Sekunden
       resend_success: OTP wird an Ihre Handynummer gesendet
       sms_description: Bitte geben Sie das OTP ein, das an Ihre Handynummer gesendet wurde.
       submit: Überprüfen Sie
@@ -1485,7 +1485,7 @@ de:
     modals:
       remove:
         apply: Wenden Sie diese Änderungen auf bestehende Benutzer in dieser Kampagne an.
-        msg_text: Sie versuchen, den Bericht <strong>"%{Berichtsname}"</strong> zu löschen
+        msg_text: Sie versuchen, den Bericht <strong>"%{reportName}"</strong> zu löschen
         title: Bericht entfernen?
       user_access:
         apply: Wenden Sie diese Änderungen auf bestehende Benutzer in dieser Kampagne an.
@@ -1517,7 +1517,7 @@ de:
           warning: Beim Erstellen einer neuen Hogan-Anmeldung werden die folgenden Bewertungen und Berichte entfernt, die mit der alten Hogan-Anmeldung für %{email} verbunden sind
         remove:
           successfully: Benutzer mit E-Mail %{email} wurde erfolgreich entfernt.
-          title: Sind Sie sicher, dass Sie diesen Benutzer aus der Kampagne %{Kampagnenname} entfernen möchten?
+          title: Sind Sie sicher, dass Sie diesen Benutzer aus der Kampagne %{campaignName} entfernen möchten?
       not_completed_yet: Noch nicht abgeschlossen
       not_logged_in_yet: Noch nicht eingeloggt
       not_started_yet: Noch nicht begonnen
@@ -1540,7 +1540,7 @@ de:
     card:
       duration: Dauer
       starts_in: 'Beginnt in:'
-      starts_on: Beginnt am %{Datum}
+      starts_on: Beginnt am %{date}
       will_start_shortly: Die Kampagne wird in Kürze beginnen. Bitte warten Sie
   change_password_page:
     old_password: Altes Passwort
@@ -1884,7 +1884,7 @@ de:
         subject: Anweisungen zum Freischalten Ihres Kontos
         unlock_account: Mein Konto freischalten
     omniauth_callbacks:
-      failure: Konnte Sie nicht von %{kind} authentifizieren, weil "%{Grund}".
+      failure: Konnte Sie nicht von %{kind} authentifizieren, weil "%{reason}".
       success: Erfolgreich authentifiziert von %{kind} Konto.
     passwords:
       edit:
@@ -1964,7 +1964,7 @@ de:
     errors:
       add_edit_project:
         invalid_subdomain_format: Falsches Format der Subdomain.
-        reserved_subdomain: Subdomain %{wert} ist reserviert
+        reserved_subdomain: Subdomain %{value} ist reserviert
         uniq_subdomain: Die Subdomain sollte eindeutig sein.
       add_manager:
         manager_not_found: Manager nicht gefunden oder nicht Teil desselben Projekts
@@ -2017,8 +2017,8 @@ de:
       update_workshop:
         less_than_booked: Die Gesamtzahl der Sitzplätze muss größer sein als die gebuchten
       user_availability_date:
-        overlaps_date: Überschneidet sich mit einer anderen Verfügbarkeit %{Bereich}
-        overlaps_time: Überschneidungen Intervall %{Intervall}
+        overlaps_date: Überschneidet sich mit einer anderen Verfügbarkeit %{range}
+        overlaps_time: Überschneidungen Intervall %{interval}
         start_date_should_be_less: Das Anfangsdatum sollte kleiner als das Enddatum sein
         start_time_should_be_less: Die Startzeit sollte kürzer sein als die Endzeit
       user_idp_plan:
@@ -2098,7 +2098,7 @@ de:
       back_to_dashboard: Zurück zu Dashboard
       back_to_tasks: Zurück zu Aufgaben
       calendar: Kalender
-      campaign_name_description: für die Kampagne "%{Kampagnenname}"
+      campaign_name_description: für die Kampagne "%{campaignName}"
       change_language: "(Sprache ändern)"
       clear_date: eindeutiges Datum
       collapse_menu: Menü zusammenklappen
@@ -2207,10 +2207,10 @@ de:
     campaign:
       actions:
         copy:
-          success: "%{Kampagnenname} wurde erfolgreich kopiert."
+          success: "%{campaignName} wurde erfolgreich kopiert."
         remove:
           confirmation: Geben Sie den unten angegebenen Namen der aktuellen Kampagne in das Textfeld ein, um die Kampagne zu entfernen
-          success: "%{Kampagnenname} wurde erfolgreich entfernt."
+          success: "%{campaignName} wurde erfolgreich entfernt."
       users:
         actions:
           export:
@@ -2237,7 +2237,7 @@ de:
         actions:
           remove:
             confirmation: Geben Sie den aktuellen Projektnamen in das unten stehende Textfeld ein, um das Projekt zu entfernen
-            success: Projekt mit dem Namen '%{Projektname}' wurde erfolgreich entfernt
+            success: Projekt mit dem Namen '%{projectName}' wurde erfolgreich entfernt
     delete: lösch
     edit: Bearbeiten
     error_warning: Ups, bei Ihrer Bewertung ist etwas schief gelaufen. Bitte wenden Sie sich an den Support.
@@ -2301,7 +2301,7 @@ de:
     booking_card:
       aria_available_time: verfügbare Zeit
       aria_back_to_time_selection: zurück zur Zeitauswahl
-      aria_desc_current_month: Derzeit am %{Monatsname} %{Jahr}
+      aria_desc_current_month: Derzeit am %{monthName} %{year}
       aria_label_next_month: Weiter zum nächsten Monat
       aria_label_previous_month: Zum vorherigen Monat gehen
       aria_timezone_select: Zeitzone auswählen
@@ -2708,7 +2708,7 @@ de:
       proctoring: Proctoring
       threesixty: Dreiundsechzig
     used_number: Gebrauchte Lizenzen
-    used_out_of: "%{verwendet} von %{Gesamt}"
+    used_out_of: "%{used} von %{total}"
   mailer:
     from: Das Unternehmen Talent
     license:
@@ -2758,7 +2758,7 @@ de:
         standard_deviation: Standardabweichung
       messages:
         failure: 'Fehler: %{error}.'
-        success: Norm für Faktor '%{FaktorName}' wurde erfolgreich aktualisiert.
+        success: Norm für Faktor '%{factorName}' wurde erfolgreich aktualisiert.
       values:
         empty: Leere
   profile:
@@ -2777,7 +2777,7 @@ de:
     male: Männlich
     mandatory_fields: Kennzeichnet Pflichtfelder
     not_disclosed: Lieber nichts preisgeben
-    old_data: Ihre Profildaten sind %{Monate} Monate alt. Bitte bestätigen Sie Ihre Angaben, um fortzufahren
+    old_data: Ihre Profildaten sind %{months} Monate alt. Bitte bestätigen Sie Ihre Angaben, um fortzufahren
     password: Passwort
     password_confirmation: Passwort bestätigen
     photo: Foto
@@ -2813,11 +2813,11 @@ de:
       comment_removed: kommentar entfernt
       comment_resolved: gelöster Kommentar
       comment_unresolved: ungelöster Kommentar
-      comment_updated: kommentar <s>%{altText}</s> in <i>%{neuerText}</i> geändert
+      comment_updated: kommentar <s>%{oldText}</s> in <i>%{newText}</i> geändert
       created_text: hinzugefügter Text
       disapproved_text: missbilligter Text
       removed_text: text entfernt
-      status_changed: status geändert von <i>%{von}</i> nach <i>%{bis}</i>
+      status_changed: status geändert von <i>%{from}</i> nach <i>%{to}</i>
       updated_text: aktualisierter Text
     tabs:
       all: Alle
@@ -2835,7 +2835,7 @@ de:
       actions:
         add: Neuen Bericht hinzufügen
         remove:
-          confirm_message: Sind Sie sicher, dass Sie den Bericht "%{Name}" aus "%{Berichtsbündelname}" löschen möchten?
+          confirm_message: Sind Sie sicher, dass Sie den Bericht "%{Name}" aus "%{report_bundle_name}" löschen möchten?
           confirm_title: Bestätigung erforderlich
           success_message: Bericht %{name} wurde gelöscht
   reports:
@@ -3535,7 +3535,7 @@ de:
       report_generation_message: Bericht wird generiert. Wir werden Sie informieren, wenn der Bericht fertig ist.
     processing: verarbeitung
     processing_report: verarbeitung Bericht
-    progress_text: "%{erledigt} von %{Gesamt}"
+    progress_text: "%{completed} von %{total}"
     question:
       chat_type:
         input_placeholder: Schreiben Sie Ihre Nachricht...
