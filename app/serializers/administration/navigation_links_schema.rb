@@ -30,6 +30,7 @@ module Administration
           optional(:viewDataExports).filled(:str?)
           optional(:skills_taxonomy).filled(:str?)
           optional(:developmentActions).filled(:str?)
+          optional(:aiAssistants).filled(:str?)
         end
       end
     end

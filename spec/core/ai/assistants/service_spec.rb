@@ -9,13 +9,12 @@ RSpec.describe AI::Assistants::Service do
   end
 
   before do
-    allow(AI::Providers::Client).to receive(:call).and_return('This is a test AI response')
+    allow(AI::Providers::Client).to receive(:call).and_return({ ok: 'This is a test AI response' })
   end
 
   describe '.call' do
     it 'processes a request through the instance method' do
-      service = described_class.new(assistant.id)
-      instance_result = service.call
+      instance_result = described_class.call!(assistant.id)
       expect(instance_result).to eq('This is a test AI response')
       expect(described_class).to respond_to(:call)
 
@@ -25,8 +24,7 @@ RSpec.describe AI::Assistants::Service do
 
   describe '#call' do
     it 'finds the assistant and returns the response from the client' do
-      service = described_class.new(assistant.id)
-      result = service.call
+      result = described_class.call!(assistant.id)
 
       expect(result).to eq('This is a test AI response')
     end

@@ -14,9 +14,9 @@ module AI
         result = provider_instance(provider_config).call!
 
         if result[:success]
-          result[:response]
+          broadcast(:ok, result[:response])
         else
-          raise "AI Provider error: #{result[:message]}"
+          broadcast(:error, result[:message])
         end
       end
 

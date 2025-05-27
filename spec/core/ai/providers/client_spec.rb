@@ -31,14 +31,12 @@ RSpec.describe AI::Providers::Client do
     # instance method and verify that the class method has a path to it
     it 'processes a request through the instance method' do
       # First verify that the instance method works correctly
-      client = described_class.new(
+      instance_result = described_class.call!(
         provider_id: provider_id,
         system_prompt: system_prompt,
         user_prompt: user_prompt
       )
 
-      # Verify the instance method returns the expected response
-      instance_result = client.call
       expect(instance_result).to eq('This is a test AI response')
 
       # Now ensure the class method exists and takes the correct parameters
@@ -59,13 +57,12 @@ RSpec.describe AI::Providers::Client do
   describe '#call' do
     it 'finds the provider config and generates a response' do
       # Use real objects
-      client = described_class.new(
+      result = described_class.call!(
         provider_id: provider_id,
         system_prompt: system_prompt,
         user_prompt: user_prompt
       )
 
-      result = client.call
       expect(result).to eq('This is a test AI response')
     end
 
@@ -86,13 +83,12 @@ RSpec.describe AI::Providers::Client do
         message: 'Provider error message'
       })
 
-      client = described_class.new(
+      response = described_class.call(
         provider_id: provider_id,
         system_prompt: system_prompt,
         user_prompt: user_prompt
       )
-
-      expect { client.call }.to raise_error(StandardError, /AI Provider error: Provider error message/)
+      expect(response[:error]).to eq('Provider error message')
     end
 
     it 'falls back to AzureOpenai when provider class is not found' do
@@ -106,13 +102,12 @@ RSpec.describe AI::Providers::Client do
 
       allow(Settings).to receive(:ai_providers).and_return([provider_config])
 
-      client = described_class.new(
+      result = described_class.call!(
         provider_id: 'custom-provider',
         system_prompt: system_prompt,
         user_prompt: user_prompt
       )
 
-      result = client.call
       expect(result).to eq('This is a test AI response')
     end
   end

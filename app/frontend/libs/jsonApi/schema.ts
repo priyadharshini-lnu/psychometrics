@@ -36,6 +36,7 @@ import { Schema as skillsSchema } from '~/modules/admin/modules/client/core/skil
 import { Schema as campaignIdpSchema } from '~/modules/admin/modules/campaigns/core/campaignIdp'
 import { Schema as idpTemplateSchema } from '~/modules/admin/modules/client/core/idp'
 import { Schema as reflectionQuestionSchema } from '~/modules/admin/modules/client/core/reflectionQuestion'
+import { Schema as aiAssistantSchema } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 
 export const Schema = {
   clients: clientSchema,
@@ -71,4 +72,5 @@ export const Schema = {
   idp_templates: idpTemplateSchema,
   user_saved_filters: userSavedFilterSchema,
   reflection_questions: reflectionQuestionSchema,
+  ai_assistants: aiAssistantSchema,
 }

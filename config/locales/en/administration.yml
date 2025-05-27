@@ -231,6 +231,19 @@ en:
             export_status: Export Status
             manage: Manage
             view: View
+    ai_assistants:
+      actions:
+        playground: Playground
+      ai_assistants: AI Assistants
+      ai_assistants_playground: AI Assistant Playground
+      form:
+        action: Action
+        description: Description
+        name: Name
+        provider: Provider
+        system_prompt: System Prompt
+        title: AI Assistant
+        user_prompt: User Prompt
     any: " - Any - "
     api:
       campaigns:
@@ -2222,6 +2235,7 @@ en:
         successfully: User %{name} was updated successfully.
     meta_title: Administration panel
     navigation:
+      ai_assistants: AI Assistants
       assessments: Assessments
       assessments_reports: Assessments & Reports
       assessor_dashboard: Assessor Dashboard

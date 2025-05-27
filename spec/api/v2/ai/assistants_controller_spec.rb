@@ -251,17 +251,16 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
             # Mock the Service instead of the AI client directly
             allow(AI::Assistants::Service).
               to receive(:call).
-              with(assistant_id.to_s).
-              and_return('This is a test AI response')
+              with(assistant_id.to_s, nil).
+              and_return({ ok: 'This is a test AI response' })
           end
 
           run_test! do |response|
             expect(response.status).to eq(200)
             data = JSON.parse(response.body)
 
-            expect(data).to have_key('response')
-            expect(data['response']).to be_a(String)
-            expect(data['response']).to eq('This is a test AI response')
+            expect(data).to have_key('attributes')
+            expect(data.dig('attributes', 'message')).to eq('This is a test AI response')
           end
         end
 
@@ -271,7 +270,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           before do
             allow(AI::Assistants::Service).
               to receive(:call).
-              with('non-existent-id').
+              with('non-existent-id', nil).
               and_raise(ActiveRecord::RecordNotFound.new)
           end
 
@@ -291,7 +290,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
             # Simulate an error in the service
             allow(AI::Assistants::Service).
               to receive(:call).
-              with(assistant_id.to_s).
+              with(assistant_id.to_s, nil).
               and_raise(StandardError.new('AI provider error'))
           end
 

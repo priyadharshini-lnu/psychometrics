@@ -13,6 +13,7 @@ import DashboardRoutes from '~/modules/admin/modules/Dashboard/routes'
 import NormsRoutes from '~/modules/admin/modules/Norms/routes'
 import Skills from '~/modules/admin/modules/SkillsTaxonomy/routes'
 import DevelopmentActionRoutes from '~/modules/admin/modules/DevelopmentActions/routes'
+import AiAssitantRoutes from '~/modules/admin/modules/AiAssitant/routes'
 
 const routes = [
   ...ProfileRoutes,
@@ -30,6 +31,7 @@ const routes = [
   ...NormsRoutes,
   ...Skills,
   ...DevelopmentActionRoutes,
+  ...AiAssitantRoutes,
 ]
 
 export default routes

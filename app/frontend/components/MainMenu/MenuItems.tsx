@@ -26,6 +26,7 @@ type Permissions = {
     auditLogs?: string
     userAvailability?: string
     dataReports?: string
+    aiAssistants?: string
 }
 
 export const getSelected = (): string => {
@@ -113,6 +114,10 @@ export const getSelected = (): string => {
     return 'developmentActions'
   }
 
+  if (location.href.match(/\/admin(\/)(ai_assistants)/)) {
+    return 'aiAssistants'
+  }
+
   return 'clients'
 }
 
@@ -182,6 +187,11 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
         {I18n.t('administration.navigation.users')}
       </Link>,
       icon: <i aria-hidden aria-label="" className="fa fa-users" />,
+    } : null,
+    permissions.aiAssistants ? {
+      key: 'aiAssistants',
+      label: <Link href={permissions.aiAssistants}>{I18n.t('administration.navigation.ai_assistants')}</Link>,
+      icon: <i className="fa fa-diamond" />,
     } : null,
     permissions.skillsTaxonomy && idpEnabled ? {
       key: 'skills_taxonomy',

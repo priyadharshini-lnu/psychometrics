@@ -66,7 +66,8 @@ module Administration
         },
         config: {
           availableLocales: I18n.available_locales,
-          features: feature_flags
+          features: feature_flags,
+          availableAiProviders: Settings.available_ai_providers.to_s.delete("'[]").split(',').map(&:strip).compact_blank
         }
       }
     end
