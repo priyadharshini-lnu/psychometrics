@@ -2132,7 +2132,6 @@ es-ES:
       reports: Informes
       scheduling: Programación
       show_submenu: Mostrar Submenú
-      skills: Habilidades
       user_profile_details: Detalles del Perfil
       user_report_events: Eventos de Informes de Usuario
       users: Usuarios
@@ -3137,7 +3136,6 @@ es-ES:
       import:
         download_example_csv: Descargar Ejemplo CSV
         success_msg: El archivo cargado se ha puesto en cola para importar. Por favor, verifica el estado en las notificaciones.
-      skills: Habilidades
     sms_histories:
       columns:
         first_name: Nombre

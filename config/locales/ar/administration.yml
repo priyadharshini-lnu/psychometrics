@@ -2124,7 +2124,6 @@ ar:
       reports: التقارير
       scheduling: الجدولة
       show_submenu: عرض القائمة الفرعية
-      skills: المهارات
       user_profile_details: تفاصيل الملف الشخصي للمستخدم
       user_report_events: أحداث تقارير المستخدم
       users: المستخدمون
@@ -3129,7 +3128,6 @@ ar:
       import:
         download_example_csv: Download Example csv
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
-      skills: Skills
     sms_histories:
       columns:
         first_name: First Name

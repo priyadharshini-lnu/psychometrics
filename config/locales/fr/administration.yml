@@ -2184,7 +2184,6 @@ fr:
       reports: Rapports
       scheduling: Programmation
       show_submenu: Afficher le sous-menu
-      skills: Compétences
       user_profile_details: Détails du profil
       user_report_events: Rapport de l'utilisateur Événements
       users: Utilisateurs
@@ -3220,7 +3219,6 @@ fr:
       import:
         download_example_csv: Télécharger l'exemple csv
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
-      skills: Compétences
     sms_histories:
       columns:
         first_name: Prénom

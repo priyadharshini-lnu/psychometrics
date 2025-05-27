@@ -13,7 +13,7 @@ import { convertEnumToObject } from '~/utils/object'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
-import { SkillCategoryEnum } from '../constants'
+import { SkillCategoryEnum } from '../../constants'
 
 const { Option } = Select
 

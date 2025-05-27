@@ -2254,7 +2254,7 @@ en:
       reports: Reports
       scheduling: Scheduling
       show_submenu: Show Sub Menu
-      skills: Skills
+      skills_taxonomy: Skills Taxonomy
       user_profile_details: Profile details
       user_report_events: User Report Events
       users: Users
@@ -3330,7 +3330,6 @@ en:
         skills_translations_title: Import Skills Translations
       skill_translations: Skills Translations
       skill_translations_project: Skill Translations based on Project
-      skills: Skills
       skills_project: Skills based on Project
       title: Skills
       translations:
@@ -3340,6 +3339,10 @@ en:
             missing_columns: 'Missing required columns: %{columns}'
             save_failed: 'Error processing Skill ID %{id}: %{message}'
             skill_not_found: Skill with ID %{id} not found
+    skills_taxonomy:
+      tabs:
+        proficiency: Proficiency
+        skills: Skills
     sms_histories:
       columns:
         first_name: First Name

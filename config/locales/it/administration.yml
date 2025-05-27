@@ -2121,7 +2121,6 @@ it:
       reports: Rapporti
       scheduling: Pianificazione
       show_submenu: Mostra Sottomenu
-      skills: Competenze
       user_profile_details: Dettagli del Profilo Utente
       user_report_events: Eventi del Rapporto Utente
       users: Utenti
@@ -3126,7 +3125,6 @@ it:
       import:
         download_example_csv: Scarica esempio CSV
         success_msg: Il file caricato è stato messo in coda per l'importazione. Controlla lo stato nelle notifiche.
-      skills: Competenze
     sms_histories:
       columns:
         first_name: Nome

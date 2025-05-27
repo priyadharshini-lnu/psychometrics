@@ -5,11 +5,12 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { Skill, SkillTR } from '~/modules/admin/modules/client/core/skills'
 import { Resource } from '~/modules/admin/components/Resource'
-import { SkillsFormModal } from '../SkillsFormModal'
-import { SkillsTable } from '../SkillsTable'
-import { SkillsFilter } from '../SkillsFilter'
-import { SkillsImportModal } from '../SkillsImportModal'
-import { SkillsExportModal } from '../SkillsExportModal'
+import { SkillsFormModal } from './SkillsFormModal'
+import { SkillsTable } from './SkillsTable'
+import { SkillsFilter } from './SkillsFilter'
+import { SkillsImportModal } from './SkillsImportModal'
+import { SkillsExportModal } from './SkillsExportModal'
+import { Tabs } from '../Tabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const MODALS = {
@@ -65,11 +66,12 @@ const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
               label: () => I18n.t('users.dashboard'),
             },
             {
-              label: () => I18n.t('administration.skills.skills'),
+              label: () => I18n.t('administration.navigation.skills_taxonomy'),
             },
           ]}
         />
       )}
+      { !projectIdParam && <Tabs />}
       <Resource config={config} name="skills">
         <SkillsFilter openModal={openModal} />
         <SkillsTable openModal={handleOpenModal} />

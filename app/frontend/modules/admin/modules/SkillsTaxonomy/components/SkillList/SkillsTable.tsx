@@ -12,7 +12,7 @@ import { getLabelForEnumValue } from '~/utils/object'
 import { Skill } from '~/modules/admin/modules/client/core/skills'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
-import { SkillCategoryEnum } from '../constants'
+import { SkillCategoryEnum } from '../../constants'
 import { ProjectFilter } from '~/components/ProjectFilter'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
