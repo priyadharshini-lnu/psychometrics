@@ -31,6 +31,8 @@ module Api
 
             next if values[:filter][:project_id_eq].present?
 
+            next if values[:filter][:global].present?
+
             if value.blank? || value.length < MINIMUM_QUERY_LENGTH
               key.failure(
                 I18n.t('administration.skills.errors.search.query_too_short')

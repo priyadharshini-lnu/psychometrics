@@ -1638,8 +1638,10 @@ en:
       export_actions:
         development_action_translations_title: Export Development Actions Translations
         development_actions_title: Export Development Actions
-      export_development_action_translations: Development Action Translations based on Project
-      export_development_actions: Development Actions Based on Project
+      export_development_action_translations: Development Action Translations
+      export_development_action_translations_project: Development Action Translations based on Project
+      export_development_actions: Development Actions
+      export_development_actions_project: Development Actions Based on Project
       export_global_development_actions: Global Development Actions
       export_global_development_actions_translations: Global Development Action Translations
       form:
@@ -3322,7 +3324,9 @@ en:
         skills_title: Import Skills
         skills_translations_title: Import Skills Translations
       skill_translations: Skills Translations
+      skill_translations_project: Skill Translations based on Project
       skills: Skills
+      skills_project: Skills based on Project
       title: Skills
       translations:
         import:

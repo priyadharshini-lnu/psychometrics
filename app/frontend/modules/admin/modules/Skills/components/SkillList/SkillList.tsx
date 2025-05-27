@@ -5,12 +5,12 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { Skill, SkillTR } from '~/modules/admin/modules/client/core/skills'
 import { Resource } from '~/modules/admin/components/Resource'
-import { SkillsBreadcrumb } from '../SkillsBreadcrumb'
 import { SkillsFormModal } from '../SkillsFormModal'
 import { SkillsTable } from '../SkillsTable'
 import { SkillsFilter } from '../SkillsFilter'
 import { SkillsImportModal } from '../SkillsImportModal'
 import { SkillsExportModal } from '../SkillsExportModal'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const MODALS = {
   SkillsImportModal,
@@ -28,13 +28,15 @@ const connecter = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
 
+const { I18n } = window
+
 const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
-  const { projectId } = useParams()
+  const { projectId: projectIdParam } = useParams()
 
   let projectIdFilter
-  if (projectId) {
+  if (projectIdParam) {
     projectIdFilter = {
-      project_id_eq: projectId,
+      project_id_eq: projectIdParam,
     }
   }
 
@@ -45,10 +47,9 @@ const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
       include: ['project'],
       include_meta: ['permissions'],
       filter: projectIdFilter,
-      fields: { projects: ['name'] },
+      fields: { projects: ['name', 'client_id'] },
     },
   }
-
 
   const handleOpenModal = (skill?: Skill) => {
     openModal('SkillsFormModal', { skill })
@@ -56,12 +57,23 @@ const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
 
   return (
     <>
+      {!projectIdParam && (
+        <Breadcrumb
+          crumbs={[
+            {
+              link: () => '/admin',
+              label: () => I18n.t('users.dashboard'),
+            },
+            {
+              label: () => I18n.t('administration.skills.skills'),
+            },
+          ]}
+        />
+      )}
       <Resource config={config} name="skills">
-        {!projectId && <SkillsBreadcrumb />}
         <SkillsFilter openModal={openModal} />
         <SkillsTable openModal={handleOpenModal} />
         <Modals modals={MODALS} />
-
       </Resource>
     </>
   )

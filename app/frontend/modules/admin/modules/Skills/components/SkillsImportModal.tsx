@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ApiAction from 'interfaces/ApiAction'
-import { debounce } from 'lodash'
-import { Client } from 'modules/admin/modules/client/core/clients'
 import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
-  Button, Modal, Alert, Form, Input, Select, Switch,
+  Button, Modal, Alert, Form, Input, Switch,
 } from 'antd'
 import { useParams } from 'react-router'
 import Event from 'interfaces/Event'
-import { Project } from '~/modules/admin/modules/client/core/projects'
-import { useResources } from '~/hooks/useResources'
-
-const { Option } = Select
+import {
+  OwnerAndProjectDropdown,
+  useClientsAndProjectsResource,
+} from '~/components/OwnerAndProjectDropdown'
 
 const { I18n } = window
 
@@ -36,50 +34,66 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const params = useParams()
+  const formRef = useRef<{ resetForm:() => void,
+      setForm: (values: {projectId:string, ownerId: string}) => void }>(null)
 
-  const handleUpload = () => {
-    if (!file) return
-
-    const data = new FormData()
-    data.append('file', file)
-    setLoading(true)
-
-    handleImport(data, params.projectId || projectId, () => {
-      form.resetFields()
-      close()
-      setLoading(false)
-    }, (error) => {
-      setErrors(error)
-      setLoading(false)
-    })
-  }
-  const {
-    data: owners, fetch: fetchOwners,
-  } = useResources<Client>('clients')
-
-  const ownerOption = Form.useWatch('ownerId', form)
-
-  const projectId = Form.useWatch('projectId', form)
+  const { projectId: projectIdParam } = useParams()
+  const [projectId, setProjectId] = useState<string | null>(projectIdParam || null)
+  const [ownerId, setOwnerId] = useState<string | null>()
 
   const globalImportSwitch = Form.useWatch('globalImportSwitch', form)
 
-  const fetchOwnersByValue = (value: string) => fetchOwners({
-    apiConfig: {
-      filter: {
-        filterable_fields: value,
-      },
-    },
-  })
-
+  useEffect(() => {
+    handleOwnersSearch()
+  }, [])
 
   useEffect(() => {
     form.resetFields(['ownerId'])
   }, [globalImportSwitch])
 
-  const searchAvailableOwners = debounce((value) => {
-    fetchOwnersByValue(value)
-  }, 300)
+
+  useEffect(() => {
+    if (ownerId) {
+      handleProjectsSearch()
+    }
+  }, [ownerId])
+
+  const {
+    owners,
+    projects,
+    handleProjectsSearch,
+    handleOwnersSearch,
+  } = useClientsAndProjectsResource(ownerId || '')
+
+  const handleUpload = () => {
+    if (projectId) {
+      if (!file) return
+
+      const data = new FormData()
+      data.append('file', file)
+      setLoading(true)
+
+      handleImport(data, parseInt(projectId, 10), () => {
+        form.resetFields()
+        close()
+        setLoading(false)
+      }, (error) => {
+        setErrors(error)
+        setLoading(false)
+      })
+    }
+  }
+
+  const handleValuesChange = (changedValues: Record<string, string>) => {
+    if (changedValues?.ownerId) {
+      setOwnerId(changedValues?.ownerId)
+      setProjectId(null)
+    }
+
+    if (changedValues?.projectId) {
+      setProjectId(changedValues?.projectId)
+    }
+  }
 
   const renderProjectSelector = () => {
     if (globalImportSwitch) {
@@ -87,25 +101,14 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
     }
     return (
       <>
-        <Form.Item
-          name="ownerId"
-          label={I18n.t('common.column.client')}
-        >
-          <Select
-            showSearch
-            filterOption={false}
-            placeholder={I18n.t('administration.skills.form.client_placeholder')}
-            onSearch={searchAvailableOwners}
-            style={{ marginLeft: '8px', maxWidth: '98.5%' }}
-          >
-            {
-              owners.map(({ id, name }) => (
-                <Option key={id} value={id}>{name}</Option>
-              ))
-            }
-          </Select>
-        </Form.Item>
-        <ProjectDropdown form={form} owner={ownerOption} />
+        <OwnerAndProjectDropdown
+          ref={formRef}
+          projectOpts={projects}
+          ownerOpts={owners}
+          onProjectsSearch={handleProjectsSearch}
+          onOwnersSearch={handleOwnersSearch}
+          onValuesChange={handleValuesChange}
+        />
       </>
     )
   }
@@ -173,7 +176,7 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         form={form}
         onFinish={handleUpload}
       >
-        {!params.projectId && renderScopeSelector()}
+        {!projectIdParam && renderScopeSelector()}
         <Form.Item name="importData">
           <Input
             type="file"
@@ -183,51 +186,5 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         </Form.Item>
       </Form>
     </Modal>
-  )
-}
-
-const ProjectDropdown = ({ form, owner }) => {
-  const {
-    data: projects, fetch: fetchProjects, setData: setProjects,
-  } = useResources<Project>('projects', { basePath: `clients/${owner}` })
-
-  const handleProjectSearch = (value: string) => {
-    fetchProjects({
-      apiConfig: {
-        filter: { filterable_fields: value },
-        fields: { clients: ['name'] },
-      },
-    })
-  }
-
-  useEffect(() => {
-    setProjects([])
-    form.resetFields(['projectId'])
-    if (owner) fetchProjects()
-  }, [owner])
-
-  const searchProjects = debounce((value) => {
-    handleProjectSearch(value)
-  }, 300)
-
-
-  return (
-    <Form.Item
-      name="projectId"
-      label={I18n.t('common.column.project')}
-    >
-      <Select
-        disabled={!owner}
-        showSearch
-        filterOption={false}
-        key={owner}
-        onSearch={searchProjects}
-        options={projects.map(p => ({
-          value: p.id,
-          label: p.name,
-        }))}
-        placeholder={I18n.t('administration.skills.form.project_placeholder')}
-      />
-    </Form.Item>
   )
 }

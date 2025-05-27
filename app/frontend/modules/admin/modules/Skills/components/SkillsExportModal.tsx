@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
-import { Client } from 'modules/admin/modules/client/core/clients'
-import { debounce } from 'lodash'
+import React, { useEffect, useRef, useState } from 'react'
 import {
-  Button, Modal, Form, Select,
+  Button, Modal,
 } from 'antd'
-import { Project } from '~/modules/admin/modules/client/core/projects'
-import { useResources } from '~/hooks/useResources'
-
-const { Option } = Select
+import { OwnerAndProjectDropdown, useClientsAndProjectsResource } from '~/components/OwnerAndProjectDropdown'
 
 const { I18n } = window
 
@@ -22,27 +17,44 @@ export const SkillsExportModal: React.FC<OwnProps> = ({
   handleExport,
   title,
 }) => {
-  const [form] = Form.useForm()
+  const formRef = useRef<{ resetForm:() => void,
+    setForm: (values: {projectId:string, ownerId: string}) => void }>(null)
+  const [projectId, setProjectId] = useState<string | null>()
+  const [ownerId, setOwnerId] = useState<string | null>()
   const {
-    data: owners, fetch: fetchOwners,
-  } = useResources<Client>('clients')
+    owners,
+    projects,
+    handleProjectsSearch,
+    handleOwnersSearch,
+  } = useClientsAndProjectsResource(ownerId || '')
 
-  const ownerOption = Form.useWatch('ownerId', form)
+  const handleValuesChange = (changedValues: Record<string, string>) => {
+    if (changedValues?.ownerId) {
+      setOwnerId(changedValues?.ownerId)
+      setProjectId(null)
+    }
 
-  const projectId = Form.useWatch('projectId', form)
+    if (changedValues?.projectId) {
+      setProjectId(changedValues?.projectId)
+    }
+  }
 
-  const fetchOwnersByValue = (value: string) => fetchOwners({
-    apiConfig: {
-      filter: {
-        filterable_fields: value,
-      },
-    },
-  })
+  useEffect(() => {
+    if (ownerId) {
+      handleProjectsSearch()
+    }
+  }, [ownerId])
 
+  useEffect(() => {
+    handleOwnersSearch()
+  }, [])
 
-  const searchAvailableOwners = debounce((value) => {
-    fetchOwnersByValue(value)
-  }, 300)
+  const handleSubmit = () => {
+    if (projectId) {
+      handleExport(parseInt(projectId, 10))
+      close()
+    }
+  }
 
   return (
     <Modal
@@ -54,81 +66,21 @@ export const SkillsExportModal: React.FC<OwnProps> = ({
         <Button
           key="submit"
           type="primary"
-          onClick={() => { handleExport(projectId); close() }}
+          onClick={handleSubmit}
           disabled={!projectId}
         >
           {I18n.t('administration.skills.export.title')}
         </Button>,
       ]}
     >
-      <Form
-        form={form}
-      >
-        <Form.Item
-          name="ownerId"
-          label={I18n.t('common.column.client')}
-          style={{ marginLeft: '8px', maxWidth: '98.5%' }}
-        >
-          <Select
-            showSearch
-            filterOption={false}
-            placeholder={
-              I18n.t('administration.skills.form.client_placeholder')
-            }
-            onSearch={searchAvailableOwners}
-
-          >
-            {
-              owners.map(({ id, name }) => (
-                <Option key={id} value={id}>{name}</Option>
-              ))
-            }
-          </Select>
-        </Form.Item>
-        <ProjectDropdown form={form} owner={ownerOption} />
-      </Form>
-    </Modal>
-  )
-}
-
-const ProjectDropdown = ({ form, owner }) => {
-  const {
-    data: projects, fetch: fetchProjects, setData: setProjects,
-  } = useResources<Project>('projects', { basePath: `clients/${owner}` })
-
-  const handleProjectSearch = (value: string) => {
-    fetchProjects({
-      apiConfig: {
-        filter: { filterable_fields: value },
-        fields: { clients: ['name'] },
-      },
-    })
-  }
-
-  useEffect(() => {
-    setProjects([])
-    form.resetFields(['projectId'])
-    if (owner) fetchProjects()
-  }, [owner])
-
-
-  return (
-    <Form.Item
-      name="projectId"
-      label={I18n.t('common.column.project')}
-    >
-      <Select
-        disabled={!owner}
-        showSearch
-        filterOption={false}
-        key={owner}
-        onSearch={handleProjectSearch}
-        options={projects.map(p => ({
-          value: p.id,
-          label: p.name,
-        }))}
-        placeholder={I18n.t('administration.development_actions.form.project_placeholder')}
+      <OwnerAndProjectDropdown
+        ref={formRef}
+        projectOpts={projects}
+        ownerOpts={owners}
+        onProjectsSearch={handleProjectsSearch}
+        onOwnersSearch={handleOwnersSearch}
+        onValuesChange={handleValuesChange}
       />
-    </Form.Item>
+    </Modal>
   )
 }

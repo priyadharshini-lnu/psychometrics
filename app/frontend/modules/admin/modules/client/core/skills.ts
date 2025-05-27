@@ -11,6 +11,7 @@ export const SkillTR = t.intersection([
       t.type({
         id: t.string,
         name: t.string,
+        clientId: t.string,
       }),
       t.type({
         id: t.string,

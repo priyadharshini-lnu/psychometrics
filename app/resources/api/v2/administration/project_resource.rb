@@ -9,8 +9,9 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   has_one :creator, foreign_key: :created_by_id
   has_one :modifier, foreign_key: :modified_by_id
+  has_one :client
 
-  ransack_filters %i[disabled_true filterable_fields has_integration]
+  ransack_filters %i[disabled_true filterable_fields has_integration all]
 
   before_create do
     @model.ancestry = context[:client].id
@@ -48,9 +49,15 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
   end
 
   def self.records(opts = {})
-    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, Project]).where(
-      ancestry: opts[:context][:client].id
-    )
+    user = opts[:context][:user]
+    client = opts[:context][:client]
+    policy_scope = ::Pundit.policy_scope!(user, [:api, :administration, Project])
+
+    if client
+      policy_scope.where(ancestry: client.id)
+    else
+      policy_scope.where(ancestry_depth: Project::HIERARCHY_LEVEL[:project])
+    end
   end
 
   def fetchable_fields

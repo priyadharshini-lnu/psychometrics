@@ -56,7 +56,7 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.export) {
     exportMenuItems.push({
       key: 'export_skills',
-      label: I18n.t('administration.skills.title'),
+      label: params.projectId ? I18n.t('administration.skills.title') : I18n.t('administration.skills.skills_project'),
     })
   }
 
@@ -64,7 +64,8 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.exportTranslations) {
     exportMenuItems.push({
       key: 'export_skills_translations',
-      label: I18n.t('administration.skills.skill_translations'),
+      label: params.projectId ? I18n.t('administration.skills.skill_translations')
+        : I18n.t('administration.skills.skill_translations_project'),
     })
   }
 

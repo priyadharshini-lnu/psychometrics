@@ -52,7 +52,9 @@ module Api
     end
 
     def client
-      client_id = params[:client_id] || Project.find_by(id: params[:id]).ancestry
+      client_id = params[:client_id] || Project.find_by(id: params[:id])&.ancestry
+
+      return nil unless client_id
 
       @client ||= Api::Administration::ProjectPolicy::Scope.new(
         current_user, Client

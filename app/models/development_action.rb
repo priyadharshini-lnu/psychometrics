@@ -13,6 +13,8 @@ class DevelopmentAction < ApplicationRecord
   has_many :skills, through: :skills_development_actions
   has_many :course_schedules, dependent: :destroy
 
+  scope :global, ->(_value = nil) { where(project_id: nil) }
+
   enum :category, {
     course: 0,
     default: 1
@@ -43,6 +45,10 @@ class DevelopmentAction < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[course_schedules image_attachment image_blob project skills skills_development_actions translations]
+  end
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %w[global]
   end
 
   # Add helper method to get human readable category names
