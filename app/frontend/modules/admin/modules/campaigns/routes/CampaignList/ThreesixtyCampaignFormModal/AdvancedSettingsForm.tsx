@@ -384,7 +384,7 @@ const AdvancedSettingsForm = ({
           <Flex gap={8} vertical className="w-100 p-8" style={{ maxWidth: 360, overflow: 'auto' }}>
             <Form.Item
               name="campaign_template_id"
-              label="Campaign template"
+              label={I18n.t('administration.campaigns.modals.create_threesixity.advance_settings.campaign_template')}
               rules={[{ required: true }]}
             >
               <Select
@@ -401,7 +401,7 @@ const AdvancedSettingsForm = ({
             {showFactorsSelect && (
               <Form.Item
                 name="factors"
-                label="Factors"
+                label={I18n.t('administration.campaigns.modals.create_threesixity.advance_settings.factors')}
               >
                 <Select
                   onSearch={handleSearch}

@@ -95,20 +95,26 @@ fr:
         labels:
           apiKeys:
             manage: Gérer
+            title: Clés API
             view: Voir
           assessments:
             manage: Gérer
+            title: Évaluations
             view: Voir
           assessors:
             manage: Gérer
+            title: Évaluateurs
             view: Voir
           auditLogs:
+            title: Journaux d'audit
             view: Voir
           auditReports:
             admin_permissions: Exportation des rôles et permissions des administrateurs
+            title: Rapports d'audit
             user_report_events: Rapport Journaux d'approbation
           campaignFactors:
             manage: Gérer
+            title: Facteurs de campagne
             view: Voir
           campaigns:
             bulk_download: Téléchargement en masse
@@ -123,24 +129,29 @@ fr:
             participant_options: Options pour les participants
             report_options: Options du rapport
             reset_nominations: Réinitialiser les nominations
+            title: Campagnes
             view: Voir
             view_factor_benchmark_scores: Voir les notes d'évaluation des facteurs
             view_stats: Voir les statistiques
           clients:
             export_data_report: Rapport d'exportation de données
             manage: Gérer
+            title: Clients
             view: Voir
             view_licenses: Voir les licences
           communications:
             manage: Gérer
+            title: Communications
             view: Voir
           dashboards:
             accesssheet_manage: Feuille d'accès Gérer
             accesssheet_settings: Paramètres de la feuille d'accès
             accesssheet_view: Vue de la feuille d'accès
+            title: Tableaux de bord
             view: Voir
           datasheets:
             manage: Gérer
+            title: Fiches techniques
             view: Voir
           developmentActions:
             export: Exportation
@@ -152,22 +163,28 @@ fr:
             import_global_translations: Importer Global Translations
             import_translations: Traductions des importations
             manage: Gérer
+            title: Actions de développement
             view: Voir
           dimensions:
             manage: Gérer
+            title: Dimensions
             view: Voir
           idpTemplates:
             manage: Gérer
+            title: Modèles de PDI
             view: Voir
           mediaLibraries:
             manage: Gérer
+            title: Bibliothèques des médias
             view: Voir
           messages:
             email: Courriel
             instructions: Instructions
             options: Options
+            title: Messages
           norms:
             manage: Gérer
+            title: Normes
             view: Voir
           projectSettings:
             assessments: Évaluations
@@ -178,23 +195,31 @@ fr:
             saml: SAML
             security: Sécurité
             smtp: SMTP
+            title: Paramètres du projet
             webhooks: Crochets Web
           projects:
             manage: Gérer
             manage_admins: Gérer les administrateurs
             manage_users: Gérer les utilisateurs
+            title: Projets
             view: Voir
           questions:
             manage: Gérer
+            title: Questions
             view: Voir
           registrationCodes:
             manage: Gérer
+            title: Codes d'enregistrement
             view: Voir
           registrationSettings:
             manage: Gérer
+            title: Paramètres d'enregistrement
           reports:
             manage: Gérer
+            title: Rapports
             view: Voir
+          responseMeta:
+            title: Réponse Meta
           results:
             approve_report: Approuver le rapport
             bulk_download: Téléchargement en masse
@@ -213,22 +238,32 @@ fr:
             reset_progress: Réinitialiser la progression
             reset_responses: Réponses à la réinitialisation
             scores: Scores
+            title: Résultats
             view_report: Voir le rapport
             view_stats: Voir les statistiques
           skills:
+            export: Exportation
+            export_translations: Traductions pour l'exportation
+            import: Importation
+            import_translations: Traductions des importations
             manage: Gérer
+            title: Compétences
             view: Voir
           smsHistories:
             manage: Gérer
+            title: Histoires de SMS
             view: Voir
           smsInvites:
             manage: Gérer
+            title: Invitations par SMS
             view: Voir
           users:
             reset_password: Réinitialiser le mot de passe
+            title: Utilisateurs
           workshops:
             export_status: Statut de l'exportation
             manage: Gérer
+            title: Ateliers
             view: Voir
     any: " - Tous - "
     api:
@@ -354,6 +389,7 @@ fr:
       successfully_scheduled: Question L'importation a été programmée avec succès.
     assessments:
       assessment: L'évaluation
+      assessment_report: Évaluations
       copy:
         copy: copie
         copy_assessment: Évaluation de la copie
@@ -367,12 +403,16 @@ fr:
         header: Paramètres d'évaluation
       errors:
         owner_validation: Vous n'avez pas %{nom_de_la_ressource} %{permission} pour %{nom_du_client}
+      export:
+        questions: Questions sur l'exportation
+      export_questions_toastr: Questions L'exportation a été programmée avec succès
       flow: Débit
       linkedAssessment:
         assessment_title: Sélectionner les questions de %{nom}
         title: Sélectionner les questions liées
       map_norms: Normes cartographiques
       menu:
+        export_questions: Questions sur l'exportation
         import_questions: Questions sur les importations
         managage_campaign_factors: Gérer les facteurs de la campagne
       new:
@@ -408,6 +448,10 @@ fr:
             title: "<strong>%{status}</strong> %{name} ?"
       restore:
         successfully: L'évaluation %{nom} a été restaurée avec succès.
+      scoring_strategy:
+        average: Moyenne
+        sum: Somme
+        title: Stratégie de notation
       settings:
         disable_continue_to_dashboard: Désactiver le bouton "Continuer vers le tableau de bord
         disable_nav_btn: Désactiver le bouton de navigation arrière
@@ -451,6 +495,7 @@ fr:
         subject_name: Nom du sujet
       completed_at: Terminé le
       count: "%{count} Évaluateurs"
+      create_assessor: Ajouter l'assesseur
       evaluations: Évaluations
       mailer:
         subject: Nouveaux sujets ajoutés pour votre évaluation
@@ -489,6 +534,7 @@ fr:
         refresh: Rafraîchir
         reports: Rapports
         reports_count: "%{count} Rapports"
+      overview: Vue d'ensemble
       remove_confirmation: Êtes-vous sûr de vouloir supprimer de cette campagne l'évaluateur dont l'adresse électronique est %{email} ?
       statuses:
         completed: Terminé
@@ -781,6 +827,7 @@ fr:
         name: Nom
         name_placeholder: Saisir le nom
         owner: Propriétaire
+        owner_placeholder: Sélectionner un propriétaire
         report: rapport
         report_placeholder: Sélectionner un rapport
         title: Modèle de campagne
@@ -822,12 +869,17 @@ fr:
         report_approval:
           allow_bulk_approve: Autoriser Approuver en bloc
           allow_qc_bulk_submit: Autoriser la soumission en bloc au CQ
+          approval_notification_users: Notification d'approbation Utilisateurs
+          approvers: Approbateurs
           approvers_can_edit: Les approbateurs peuvent modifier
           approvers_not_required: Approbateurs non requis
           do_not_send_notifications: Ne pas envoyer de notifications
           modal_title: Paramètres d'approbation des rapports
+          qc_users: Utilisateurs du CQ
           remove_modal_success: 'Le paramètre d''approbation du rapport : %{reportId} a été supprimé avec succès '
           remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant du rapport : %{reportId} ?'
+          report: Rapport
+          settings: Paramètres
       assessors:
         spoof:
           successfully: Vous vous êtes connecté avec succès en tant que %{nom}
@@ -835,6 +887,13 @@ fr:
       delete: Supprimer
       edit: Editer
       extend_time_success_message: Le délai de la campagne est prolongé jusqu'à %{minutes} minutes
+      filters:
+        active: Actif
+        all: Tous
+        archived: Archivé
+        closed: Fermé
+        inactive: Inactif
+        status: Statut
       form:
         name: Nom
         practice_campaign: Campagne d'entraînement
@@ -851,6 +910,20 @@ fr:
         add_multi_rater_campaign: Ajouter une campagne multi-évaluateurs
       modals:
         create_threesixity:
+          advance_settings:
+            campaign_template: Modèle de campagne
+            factors: Facteurs
+          base_settings:
+            active: Actif
+            archive: Archives
+            assessment: L'évaluation
+            closed: Fermé
+            empty: Vide
+            inactive: Inactif
+            name: Nom
+            previous: Précédent
+            standard: Standard
+            status: Statut
           close:
             content: Êtes-vous sûr de vouloir fermer le Créateur de campagne à évaluateurs multiples ? Tout travail de personnalisation non sauvegardé sera perdu. Veuillez confirmer votre décision.
             title: Fermer Créateur de campagne multi-évaluateurs ?
@@ -888,6 +961,7 @@ fr:
         prework_required: Ne pas autoriser la réservation d'un centre si les travaux préliminaires ne sont pas terminés
         prework_required_for_invite: Envoyer un courriel d'invitation uniquement lorsque le travail préliminaire est terminé
         proctoring:
+          allow_on_assessment_center: Autoriser les surveillants dans les centres d'évaluation
           enable: Permettre l'examen
           identification: Identification
           identifications:
@@ -1365,6 +1439,9 @@ fr:
         update:
           successfully: Le projet %{nom} a été mis à jour avec succès.
       registration_codes:
+        column:
+          code: Code
+          usage_stats: Statistiques d'utilisation
         errors:
           count_invalid: ne peut pas être inférieure à la valeur utilisée = %{compte_utilisé}
           criteria: ne peut contenir que des caractères alphanumériques, le trait d'union (-) et le trait de soulignement (_)
@@ -1628,6 +1705,7 @@ fr:
       export_global_development_actions_translations: Action mondiale pour le développement Traductions
       form:
         category: Catégorie
+        client_placeholder: Sélectionner un client
         course_image: Image du cours
         course_link: Lien vers le cours
         description: Description
@@ -1640,6 +1718,7 @@ fr:
         start_date: Date de début
         title: Action de développement
         upload: Télécharger
+      global: Le développement mondial est-il une action ?
       heading: Actions de développement
       import:
         download_example_csv: Télécharger l'exemple csv
@@ -1679,6 +1758,8 @@ fr:
         successfully: La dimension %{nom} a été supprimée avec succès.
       edit:
         header: Modifier le nom de la dimension
+      export_json:
+        successfully: Exportation du JSON prévu pour la dimension %{nom}.
       export_translations_scheduled:
         successfully: Exportations de traductions prévues pour la dimension %{nom}.
       form:
@@ -1688,12 +1769,19 @@ fr:
         import: Importation
         successfully: Importation de facteurs prévue pour la dimension %{nom}.
         title: Facteurs d'importation
+      import_modal:
+        cancel: Annuler
+        continue: Continuer
+        import: Importation
+        import_dimension: Dimension de l'importation
       import_translations:
         error: Erreur lors de l'importation des traductions pour la dimension %{nom}.
         successfully: Importation de traductions prévue pour la dimension %{nom}.
       import_translations_scheduled:
         error: Erreur
       index:
+        create_dimension: Créer une dimension
+        import_dimension: Dimension de l'importation
         new: Ajouter
         owner: Propriétaire
         title: Dimensions
@@ -1720,6 +1808,7 @@ fr:
           copy: Copier la dimension
           delete: Supprimer la dimension
           edit: Modifier le nom de la dimension
+          export_json: Exporter JSON pour importer dans d'autres plateformes
       sidebar:
         copy: Copier la dimension
         destroy: Supprimer la dimension
@@ -1883,6 +1972,7 @@ fr:
       self_rating: Activer l'auto-évaluation
       skill_gap_report: Rapport sur les lacunes en matière de compétences
       tab:
+        development_actions: Actions de développement
         settings: Paramètres
         templates: Modèles
       technical_skills: Compétences techniques
@@ -2184,6 +2274,7 @@ fr:
       reports: Rapports
       scheduling: Programmation
       show_submenu: Afficher le sous-menu
+      skills_taxonomy: Taxonomie des compétences
       user_profile_details: Détails du profil
       user_report_events: Rapport de l'utilisateur Événements
       users: Utilisateurs
@@ -2419,6 +2510,7 @@ fr:
           assessment_required: Une évaluation est nécessaire
           normalize_factor_scores: Normaliser les scores des facteurs
           user_result_validity_in_days: Validité du résultat en jours
+        title: Évaluations
       design: Conception
       general: Général
       privacy: Vie privée
@@ -2598,6 +2690,14 @@ fr:
         privacy_text: Texte sur la protection de la vie privée
         privacy_text_placeholder: Saisir le texte sur la protection de la vie privée
       profile_settings:
+        form_fields:
+          enabled: Activé
+          half_size: Demi-taille
+          locked: Verrouillé
+          name: Nom
+          remove: Retirer
+          required: Exigée
+          sort: Trier
         month: Mois
         never: Jamais
         update_in: Notifier la mise à jour du profil en
@@ -2782,6 +2882,10 @@ fr:
       new:
         header: Sélectionner un rapport
       preview:
+        comments: Commentaires
+        hide_resolved: Masquer Résolu
+        history: L'histoire
+        info_to_select_module: Sélectionnez un élément de texte à commenter
         title: Avant-première
       regenerate:
         successfully: Rapport envoyé avec succès pour régénération
@@ -2846,6 +2950,7 @@ fr:
         schedule_time: Horaire
       add_subject: Ajouter un sujet
       assessment_center_form:
+        add_more: Plus d'informations
         allow_late_cancellation_and_scheduling: Permettre l'annulation et la programmation tardives
         assessor_ids_label: Évaluateurs
         back: Retour
@@ -2862,6 +2967,7 @@ fr:
         duration_min_error: La durée ne peut être inférieure à 15 minutes
         duration_placeholder: Par exemple, 4h 30m
         manager_ids_label: Gestionnaires de centre
+        meeting_link: Lien vers la réunion
         meetings_and_resources: Réunions et ressources
         name_label: Nom
         next: Suivant
@@ -2878,6 +2984,7 @@ fr:
         seats_label: Sièges
         time_label: L'heure
         timezone_label: Fuseau horaire
+        url_label: URL
         video_call_type:
           custom: Sur mesure
           internal: Interne
@@ -3210,15 +3317,45 @@ fr:
           invalid_category: Doit être une catégorie valide
           invalid_global_value: 'doit être l''un de : true, false'
           query_too_short: est obligatoire et doit appartenir à plus de 3 caractères
+      export:
+        details: Détails
+        failure_msg: Erreur lors de l'exportation des traductions
+        success_msg: Des actions de développement de l'exportation sont en cours.
+        title: Exportation
+        translations:
+          details: Traductions des compétences
+      export_action:
+        skills_title: Compétences en matière d'exportation
+        skills_translations_title: Compétences à l'exportation Traductions
       form:
         category: Catégorie
+        client_placeholder: Sélectionner un client
         description: Description
         name: Nom
         project_placeholder: Sélectionner un projet
         title: Compétence
+      global: Est-ce que Global Skill ?
+      global_skills: Compétences globales
+      global_translations: Traductions de compétences globales
       import:
         download_example_csv: Télécharger l'exemple csv
+        info_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
+      import_action:
+        skills_title: Compétences en matière d'importation
+        skills_translations_title: Compétences d'importation Traductions
+      skill_translations: Compétences Traductions
+      title: Compétences
+      translations:
+        import:
+          errors:
+            invalid_csv_format: 'Format CSV non valide : %{message}'
+            save_failed: 'Erreur de traitement de l''ID de compétence %{id} : %{message}'
+            skill_not_found: Compétence avec ID %{id} introuvable
+    skills_taxonomy:
+      tabs:
+        proficiency: Compétence
+        skills: Compétences
     sms_histories:
       columns:
         first_name: Prénom
@@ -3423,6 +3560,9 @@ fr:
           one: 'Total : 1'
           other: ''
       more_actions: Plus d'actions
+    taxonomy:
+      skills: Compétences
+      title: Taxonomie
     templates:
       blocks:
         copy:
@@ -3670,6 +3810,8 @@ fr:
         successfully: L'utilisateur %{nom} a été mis à jour avec succès.
       toggle_status:
         successfully: L'utilisateur %{nom} a été mis à jour avec succès.
+      toolbar:
+        title: Outils
       update:
         successfully: L'utilisateur %{nom} a été mis à jour avec succès.
       user: Utilisateur
@@ -3689,3 +3831,5 @@ fr:
       errors:
         update_assessor_for_failure: Les détails de la réunion ne peuvent pas être ajoutés car il n'y a pas d'activité liée au sujet.
     years: Années
+  administration.users.toolbar:
+    title: Outils

@@ -141,7 +141,7 @@ const Evaluation: FC<Props> = ({
             className={styles.assessorTabs}
             destroyInactiveTabPane
           >
-            <TabPane tab="Overview" key="overview">
+            <TabPane tab={I18n.t('administration.assessor.overview')} key="overview">
               <Overview userInfo={userInfo} />
             </TabPane>
             {_.map(sortedAssessorAssesments, ({ assessments, id }) => {

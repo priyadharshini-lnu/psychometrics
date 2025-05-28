@@ -25,7 +25,7 @@ export const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissi
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>Tools</span>
+        <span>{I18n.t('administration.assessor.toolbar.tools')}</span>
         <DownOutlined />
       </Button>
     )}

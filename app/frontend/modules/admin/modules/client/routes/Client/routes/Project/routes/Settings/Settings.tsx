@@ -92,7 +92,7 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
   })
   permissions.manageProjectAssessments && menuItems.push({
     key: '/assessments',
-    label: 'Assessments',
+    label: I18n.t('administration.project_tabs.assessments.title'),
   })
 
   return (

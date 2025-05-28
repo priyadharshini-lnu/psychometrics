@@ -118,11 +118,11 @@ const AssessmentList: React.FC<Props> = ({
                   disabled={bulkDeleteInProgress}
                   loading={bulkDeleteInProgress}
                 >
-                  <span>Remove</span>
+                  <span>{I18n.t('common.actions.remove')}</span>
                 </Button>
               )}
               <Search
-                placeholder="Search"
+                placeholder={I18n.t('common.actions.search')}
                 className={styles.searchInput}
                 value={filters.filterableFields}
                 onChange={e => changeFilter('filterBySubjectOrAssessment', e.target.value)}

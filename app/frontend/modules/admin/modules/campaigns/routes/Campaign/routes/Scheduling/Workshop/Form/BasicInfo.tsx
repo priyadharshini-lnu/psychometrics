@@ -139,7 +139,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Col xs={12} sm={6} lg={4}>
               <Form.Item
                 name="time"
-                label="Time"
+                label={I18n.t('administration.scheduling.assessment_center_form.time_label')}
                 {...fieldLayout}
                 rules={[{
                   required: true,
@@ -258,7 +258,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           </Form.Item>
           {videoCallType === 2 && (
             <Form.Item
-              label="Meeting Link"
+              label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
               name="meeting_link"
               {...fieldLayout}
               rules={[{

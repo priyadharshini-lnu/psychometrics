@@ -123,7 +123,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
           </Form.Item>
           {videoCallType === 'custom' && (
             <Form.Item
-              label="Meeting Link"
+              label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
               name="meetingLink"
               rules={[{ required: true },
                 {

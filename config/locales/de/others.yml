@@ -829,7 +829,6 @@ de:
     super_admin:
       errors:
         data_processing_disabled: Die Datenverarbeitung ist deaktiviert.
-  administration:
   anonym:
     close: Schließen Sie
     continue: Weiter
@@ -2343,8 +2342,8 @@ de:
       aria_selected: Ausgewählte
   idp:
     actions: Aktionen
-    board: Board
-    details: Details
+    board: Vorstand
+    details: Einzelheiten
     development_actions:
       action_private: Ja
       action_public: Nein
@@ -2353,55 +2352,55 @@ de:
       approved: Genehmigt
       board_view:
         completed: Abgeschlossen
-        in_progress: In Bearbeitung
-        not_started: Nicht gestartet
-      completion: Abschluss
+        in_progress: In Arbeit
+        not_started: Nicht begonnen
+      completion: Fertigstellung
       create_my_own: Eigene erstellen
       date_range: Startdatum - Enddatum
-      generate_by_ai: Mit KI generieren
+      generate_by_ai: Generieren durch AI
       generate_more: Mehr generieren
-      generating_development_actions: Entwicklungsmaßnahmen werden generiert...
-      heading: Entwicklungsmaßnahmen
+      generating_development_actions: Generierung von Entwicklungsmaßnahmen...
+      heading: Entwicklungspolitische Maßnahmen
       learning_from_others: Von anderen lernen
-      manage_skills: Kompetenzen verwalten
+      manage_skills: Fertigkeiten managen
       marathon: Marathon
       no_development_actions: Keine Entwicklungsmaßnahmen
-      on_the_job: Am Arbeitsplatz
-      other: Sonstiges
+      on_the_job: Bei der Arbeit
+      other: Andere
       private: Privat
       remove: Entfernen
-      skill: Kompetenz
+      skill: Fertigkeit
       sprint: Sprint
       structured_learning: Strukturiertes Lernen
       submit_plan: Plan einreichen
       write_here: Hier schreiben...
     direct_reportee_details: Details zu direkten Mitarbeitern
     initial_steps:
-      add_skill_group_description: Basierend auf Ihren Bewertungsergebnissen sind hier einige Ihrer Stärken und Entwicklungsbereiche. Wählen Sie die Kompetenzen aus, die Sie als Teil Ihres Entwicklungsplans weiterentwickeln möchten.
-      add_skill_group_title: Entdecken Sie Ihre %{category} Kompetenzen
+      add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
+      add_skill_group_title: Erkunden Sie Ihre %{Kategorie}-Fähigkeiten
       add_skills: Hinzufügen
-      add_skills_step: Kompetenzen hinzufügen
-      continue_to_rate_skills: Fahren Sie mit der Bewertung der Kompetenzen fort
+      add_skills_step: Fertigkeiten hinzufügen
+      continue_to_rate_skills: Fähigkeiten weiter bewerten
       getting_started: Erste Schritte
-      getting_started_info: Willkommen bei Ihrem individuellen Entwicklungsplan (IDP). Dieser Plan hilft Ihnen, Ihre beruflichen und persönlichen Ziele zu identifizieren, zu verwalten und zu verfolgen sowie die Schritte zu planen, die Sie zur Erreichung dieser Ziele unternehmen müssen. Ihre beruflichen Ziele können verhaltensbezogene, Führungs- sowie technische Entwicklungsbereiche umfassen. Ihr IDP ist ein wesentliches Instrument zur Unterstützung Ihrer Karriereentwicklung und Kompetenzverbesserung.
-      less_skills: Weniger Kompetenzen anzeigen
-      more_skills: Mehr Kompetenzen entdecken
+      getting_started_info: Willkommen bei der Erstellung Ihres individuellen Entwicklungsplans (IDP). Dieser Plan wird Ihnen helfen, Ihre beruflichen und persönlichen Ziele zu identifizieren, zu verwalten und zu verfolgen, sowie die Schritte, die Sie unternehmen müssen, um diese Ziele zu erreichen. Ihre beruflichen Ziele können sowohl verhaltensbezogene, führungsbezogene als auch technische Entwicklungsbereiche umfassen. Ihr IDP ist ein wichtiges Instrument zur Unterstützung Ihrer beruflichen Entwicklung und zur Verbesserung Ihrer Fähigkeiten.
+      less_skills: Weniger Fähigkeiten zeigen
+      more_skills: Mehr Kompetenzen erkunden
       next: Weiter
-      no_skills_selected: Keine Kompetenzen ausgewählt.
-      rate_skills: Kompetenzen bewerten
-      rate_skills_description: Nachdem Sie Ihre Entwicklungsprioritäten ausgewählt haben, bewerten Sie sich bitte bei jeder der folgenden Kompetenzen. Denken Sie daran, sich basierend auf Ihrem aktuellen Niveau zu bewerten und nicht auf Ihrem vergangenen oder gewünschten Niveau.
-      rate_skills_title: Bewertung Ihrer Kompetenzen
-      rating_column_header: Ihre Selbstbewertung
-      select_skills: Wählen Sie Ihre Kompetenzen
-      select_skills_placeholder: Kompetenzen auswählen
-      selected_skills: Ausgewählte Kompetenzen
-      skill_column_header: Kompetenz
-      skill_gap_report: Kompetenzlückenbericht
+      no_skills_selected: Keine Fähigkeiten ausgewählt.
+      rate_skills: Fähigkeiten bewerten
+      rate_skills_description: Nachdem Sie nun Ihre Entwicklungsprioritäten ausgewählt haben, bewerten Sie sich bitte selbst zu jedem der folgenden Punkte. Denken Sie daran, dass Sie sich selbst auf der Grundlage Ihres derzeitigen Niveaus bewerten und nicht auf der Grundlage Ihres früheren oder gewünschten Niveaus.
+      rate_skills_title: Bewertung Ihrer Fertigkeiten
+      rating_column_header: Ihre Selbsteinschätzung
+      select_skills: Wählen Sie Ihre Fähigkeiten
+      select_skills_placeholder: Fähigkeiten auswählen
+      selected_skills: Ausgewählte Fertigkeiten
+      skill_column_header: Fertigkeit
+      skill_gap_report: Bericht über das Qualifikationsdefizit
     list: Liste
-    my_direct_reportees: Meine direkten Mitarbeiter
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
+        behavioural: Verhaltensweisen
         categories: Kategorien
       save_skills: Kompetenzen speichern
     pdf:
@@ -2510,13 +2509,13 @@ de:
         skills_count: Anzahl der Kompetenzen
         title: Berichtszusammenfassung
     skill_gap_report:
-      continue_to_rate_skills: Fahren Sie mit der Bewertung der Kompetenzen fort
-      title: Kompetenzlückenbericht
+      continue_to_rate_skills: Fähigkeiten weiter bewerten
+      title: Bericht über das Qualifikationsdefizit
     status: Status
     user_idp_status:
       approved: Genehmigt
       draft: Entwurf
-      pending_approval: Ausstehend
+      pending_approval: Anhängig
     users: Benutzer
   idp_templates:
     assign: Zuweisen

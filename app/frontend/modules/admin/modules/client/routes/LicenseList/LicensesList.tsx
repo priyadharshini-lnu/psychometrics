@@ -51,7 +51,7 @@ const LicenseList: React.FC<Props> = ({
   return (
     <>
       <Resource config={config} name="licenses">
-        <Resource.Filter placeholder="Search" name="report_family_name_cont">
+        <Resource.Filter placeholder={I18n.t('common.actions.search')} name="report_family_name_cont">
           {isSuperAdmin(currentUser)
               && (
                 <Button

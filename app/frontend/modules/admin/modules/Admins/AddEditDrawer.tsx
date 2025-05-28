@@ -444,7 +444,7 @@ const AddEditDrawerComponent: FC<Props> = ({
               <Fragment key={grantFor}>
                 <Form.Item
                   name={['grantNames', `${grantFor}`]}
-                  label={_.startCase(grantFor)}
+                  label={I18n.t(`administration.administrators.permissions.labels.${grantFor}.title`)}
                   initialValue={
                     _.map(admin?.grantNames?.[grantFor], grantName => grantName)
                   }

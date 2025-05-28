@@ -174,12 +174,12 @@ const DataExportsComponent:FC<Props> = ({
 
   const columns = [
     {
-      title: 'Name',
+      title: I18n.t('common.column.name'),
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: 'Actions',
+      title: I18n.t('common.column.action'),
       dataIndex: 'dataType',
       key: 'actions',
       render: value => (

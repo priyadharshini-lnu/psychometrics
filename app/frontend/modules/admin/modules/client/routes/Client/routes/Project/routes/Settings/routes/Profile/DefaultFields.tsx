@@ -87,9 +87,9 @@ export const DefaultFields: React.FC<Props> = ({
       dataSource={fields}
       rowKey="position"
     >
-      <Column title="Name" dataIndex="name" />
+      <Column title={I18n.t('administration.projects.profile_settings.form_fields.name')} dataIndex="name" />
       <Column
-        title="Enabled"
+        title={I18n.t('administration.projects.profile_settings.form_fields.enabled')}
         dataIndex="enabled"
         render={(_, row: Field) => (row.showEnabled ? (
           <Checkbox
@@ -101,7 +101,7 @@ export const DefaultFields: React.FC<Props> = ({
         }
       />
       <Column
-        title="Required"
+        title={I18n.t('administration.projects.profile_settings.form_fields.required')}
         dataIndex="required"
         render={(_, row:Field) => (
           <Checkbox
@@ -112,7 +112,7 @@ export const DefaultFields: React.FC<Props> = ({
         )}
       />
       <Column
-        title="Locked"
+        title={I18n.t('administration.projects.profile_settings.form_fields.locked')}
         dataIndex="locked"
         render={(_, row:Field) => (
           <Checkbox onChange={() => changeLocked(row)} checked={lockedFields[row.index]} />

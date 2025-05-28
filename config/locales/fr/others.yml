@@ -1619,6 +1619,7 @@ fr:
       copy: Copie
       create: Créer
       delete: Supprimer
+      done: Terminé
       edit: Editer
       export: Exportation
       filter_by_tags: Filtrer par tags
@@ -2329,13 +2330,13 @@ fr:
       aria_selected: Sélectionné
   idp:
     actions: Actions
-    board: Tableau
+    board: Conseil d'administration
     details: Détails
     development_actions:
       action_private: Oui
       action_public: Non
       add_development_action: Ajouter une action de développement
-      all: Tout
+      all: Tous
       approved: Approuvé
       board_view:
         completed: Terminé
@@ -2344,57 +2345,57 @@ fr:
       completion: Achèvement
       create_my_own: Créer le mien
       date_range: Date de début - Date de fin
-      generate_by_ai: Générer par IA
+      generate_by_ai: Générer par l'IA
       generate_more: Générer plus
-      generating_development_actions: Génération d'actions de développement...
+      generating_development_actions: Générer des actions de développement...
       heading: Actions de développement
-      incomplete_error: Actions de développement incomplètes
-      incomplete_error_message: Certaines actions de développement sont incomplètes. Veuillez les compléter avant de soumettre votre PDI.
-      incomplete_warning: Actions de développement incomplètes
-      incomplete_warning_message: Certaines actions de développement sont incomplètes. Êtes-vous sûr de vouloir marquer votre PDI comme complet ?
-      learning_from_others: Apprentissage par les autres
+      learning_from_others: Apprendre des autres
       manage_skills: Gérer les compétences
       marathon: Marathon
-      mark_as_complete: Marquer comme terminé
       no_development_actions: Aucune action de développement
-      on_the_job: Sur le terrain
-      other: Autre
+      on_the_job: Au travail
+      other: Autres
       private: Privé
-      remove: Supprimer
+      remove: Retirer
       skill: Compétence
       sprint: Sprint
-      start_plan: Démarrer le plan
       structured_learning: Apprentissage structuré
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
     direct_reportee_details: Détails des subordonnés directs
     initial_steps:
-      add_skill_group_description: Sur la base de vos résultats d'évaluation, voici quelques domaines de forces et de développement pour vous. Choisissez les compétences que vous souhaitez développer davantage dans le cadre de votre plan de développement.
-      add_skill_group_title: Exploration de vos compétences en %{category}
+      add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
+      add_skill_group_title: Explorer vos compétences %{catégorie}
       add_skills: Ajouter
       add_skills_step: Ajouter des compétences
       continue_to_rate_skills: Continuer à évaluer les compétences
-      getting_started: Premiers pas
-      getting_started_info: Bienvenue dans votre créateur de Plan de Développement Individuel (PDI). Ce plan vous aidera à identifier, gérer et suivre vos objectifs professionnels et personnels ainsi que les étapes nécessaires pour les atteindre. Vos objectifs professionnels peuvent inclure des domaines de développement comportemental, de leadership ainsi que technique. Votre PDI est un outil essentiel pour soutenir votre développement de carrière et l'amélioration de vos compétences.
-      less_skills: Afficher moins de compétences
-      more_skills: Explorer plus de compétences
+      getting_started: Pour commencer
+      getting_started_info: Bienvenue sur le site du créateur de votre plan de développement individuel (PDI). Ce plan vous aidera à identifier, gérer et suivre vos objectifs professionnels et personnels ainsi que les étapes à franchir pour atteindre ces objectifs. Vos objectifs professionnels peuvent inclure des domaines de développement comportementaux, techniques et de leadership. Votre PDI est un outil essentiel pour soutenir votre développement de carrière et l'amélioration de vos compétences.
+      less_skills: Montrer moins de compétences
+      more_skills: Explorer d'autres compétences
       next: Suivant
       no_skills_selected: Aucune compétence sélectionnée.
-      rate_skills: Évaluer les compétences
-      rate_skills_description: Maintenant que vous avez sélectionné vos priorités de développement, veuillez vous auto-évaluer sur chacune des compétences suivantes. N'oubliez pas de vous évaluer en fonction de votre niveau actuel et non de votre niveau passé ou souhaité.
-      rate_skills_title: Évaluation de vos compétences
+      rate_skills: Compétences tarifaires
+      rate_skills_description: Maintenant que vous avez choisi vos priorités de développement, veuillez vous évaluer sur chacun des points suivants. N'oubliez pas de vous évaluer sur la base de votre niveau actuel et non sur la base de votre niveau passé ou souhaité.
+      rate_skills_title: Évaluer ses compétences
       rating_column_header: Votre auto-évaluation
-      select_skills: Sélectionner vos compétences
+      select_skills: Sélectionnez vos compétences
       select_skills_placeholder: Sélectionner les compétences
       selected_skills: Compétences sélectionnées
       skill_column_header: Compétence
-      skill_gap_report: Rapport d'écart de compétences
+      skill_gap_report: Rapport sur les lacunes en matière de compétences
     list: Liste
     my_direct_reportees: Mes subordonnés directs
     my_plan:
       development_plan: Plan de développement
       graphs:
+        behavioural: Comportementale
         categories: Catégories
+        learning_on_job: Au travail (%{count})
+        learning_others: Apprendre des autres (%{count})
+        learning_structured: Apprentissage structuré (%{count})
+        other: Autres
+        technical: Technique
       save_skills: Sauvegarder les compétences
     pdf:
       approval_status: Statut d'approbation
@@ -2503,7 +2504,13 @@ fr:
         title: Résumé du rapport
     skill_gap_report:
       continue_to_rate_skills: Continuer à évaluer les compétences
-      title: Rapport d'écart de compétences
+      title: Rapport sur les lacunes en matière de compétences
+    status: Statut
+    user_idp_status:
+      approved: Approuvé
+      draft: Projet
+      pending_approval: En attente
+    users: Utilisateurs
   idp_templates:
     assign: Attribuer
     assign_idp_template: Attribuer un modèle Idp

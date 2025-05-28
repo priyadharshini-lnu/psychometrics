@@ -23,13 +23,13 @@ export function hasGrant (user, scope, action) {
 export const defaultState = null
 
 
-const isAdmin = window.location.pathname.includes('admin') || window.location.pathname.includes('administration')
+const isNotEndUser = ['admin', 'administration', 'assessors'].includes(window.location.pathname.split('/')[1])
 
 export const changeLocale = locale => ({
   type: CHANGE_LOCALE,
   request: {
     method: 'post',
-    url: isAdmin ? '/api/v2/administration/users/change_locale' : '/users/change_locale',
+    url: isNotEndUser ? '/api/v2/administration/users/change_locale' : '/users/change_locale',
     body: {
       locale,
     },

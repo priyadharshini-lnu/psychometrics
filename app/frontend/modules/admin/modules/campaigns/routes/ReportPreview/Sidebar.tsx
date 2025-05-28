@@ -154,10 +154,10 @@ function Sidebar ({
             ))}
           </Tabs.TabPane>
         )}
-        <Tabs.TabPane tab="Comments" key="comments">
+        <Tabs.TabPane tab={I18n.t('administration.reports.preview.comments')} key="comments">
           <Comments pageModules={pageModules} scrollToModule={scrollToModule} />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="History" key="history">
+        <Tabs.TabPane tab={I18n.t('administration.reports.preview.history')} key="history">
           <Space
             direction="vertical"
             className={styles.events}

@@ -60,7 +60,7 @@ export const ResourcesItems: React.FC<Props> = ({
           </Form.Item>
           {videoCallType === 2 && (
             <Form.Item
-              label="Meeting Link"
+              label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
               name="meeting_link"
               {...fieldLayout}
               rules={[{ required: true },
@@ -75,7 +75,9 @@ export const ResourcesItems: React.FC<Props> = ({
           )}
         </>
       )}
-      <Title level={5}>Resources</Title>
+      <Title level={5}>
+        {I18n.t('administration.scheduling.assessment_center_form.resources_panel.title')}
+      </Title>
       <Form.List
         name={fieldName !== undefined ? [fieldName, 'workshop_resources'] : 'workshop_resources'}
         rules={[{
@@ -103,7 +105,7 @@ export const ResourcesItems: React.FC<Props> = ({
                   <Form.Item
                     {...field}
                     name={[field.name, 'name']}
-                    label="Name"
+                    label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
                     {...fieldLayout}
                   >
                     <Input placeholder={
@@ -117,7 +119,7 @@ export const ResourcesItems: React.FC<Props> = ({
                   <Form.Item
                     {...field}
                     name={[field.name, 'url']}
-                    label="URL"
+                    label={I18n.t('administration.scheduling.assessment_center_form.url_label')}
                     {...fieldLayout}
                     validateStatus={
                       getAttributeValidationError('url', index) ? 'error' : undefined
@@ -155,7 +157,7 @@ export const ResourcesItems: React.FC<Props> = ({
               onClick={() => add()}
               className="ps-0"
             >
-              Add More
+              {I18n.t('administration.scheduling.assessment_center_form.add_more')}
             </Button>
           </>
         )}
