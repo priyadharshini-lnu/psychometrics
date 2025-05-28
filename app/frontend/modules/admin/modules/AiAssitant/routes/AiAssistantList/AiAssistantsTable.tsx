@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { AiAssistant } from 'modules/admin/modules/AiAssitant/core/aiAssistant'
 import { useNavigate } from 'react-router-dom'
+import { AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/core/constants'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -50,6 +51,13 @@ export const AiAssistantsTable: React.FC<Props> = ({ openModal }) => (
       sorter
     />
     <Resource.Column<AiAssistant>
+      title={I18n.t('administration.ai_assistants.column.provider')}
+      id="providerId"
+      render={aiAssistant => (AI_PROVIDERS[aiAssistant.providerId]?.name)}
+      width={200}
+      sorter
+    />
+    <Resource.Column<AiAssistant>
       title={I18n.t('administration.ai_assistants.form.system_prompt')}
       id="system_prompt"
       render={aiAssistant => (
@@ -86,7 +94,7 @@ export const AiAssistantsTable: React.FC<Props> = ({ openModal }) => (
       sorter
     />
     <Resource.Column<AiAssistant>
-      title={I18n.t('common.column.action')}
+      title={I18n.t('administration.ai_assistants.column.ai_action')}
       id="ai_action"
       render={aiAssistant => <Typography.Text>{aiAssistant.action}</Typography.Text>}
       sorter

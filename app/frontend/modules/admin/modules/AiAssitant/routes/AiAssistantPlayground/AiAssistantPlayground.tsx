@@ -298,7 +298,7 @@ export const AiAssistantPlayground: React.FC = () => {
 
                     <div className={styles['ai-assistant-playground__settings-section']}>
                       <div className={styles['ai-assistant-playground__settings-label']}>Provider</div>
-                      <Paragraph>{selectedAssistant.provider}</Paragraph>
+                      <Paragraph>{AI_PROVIDERS[selectedAssistant.providerId]?.name}</Paragraph>
                     </div>
 
                     <div className={styles['ai-assistant-playground__settings-section']}>
