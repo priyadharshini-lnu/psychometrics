@@ -20,7 +20,6 @@ import { RootState } from '~/modules/reports/core/rootReducers'
 import config from '~/modules/reports/components/modules/Text/components/froalaConfig'
 import ModuleInterface from '~/modules/reports/core/interfaces/Module'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
-
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './styles.less'
 import { TextModuleContent } from './TextModuleContent'
@@ -111,8 +110,17 @@ const OverrideComponent: FC<Props> = ({
     })
   }
 
+
   const saveReview = (override) => {
     const { id, campaignId } = userReport || {}
+    const originalContent = override?.content || module?.props?.text || ''
+    const currentContent = content?.trim() || ''
+
+    if (originalContent.trim() === currentContent) {
+      closeEditor()
+      return
+    }
+
     const data = {
       userReportId: id,
       moduleId: module.id,
