@@ -1280,7 +1280,7 @@ it:
       last_login_text: 'Ultimo accesso il :'
       last_updated_text: 'Il profilo è stato aggiornato l''ultima volta il:'
       sub_heading: Completate le informazioni del Tuo profilo
-      welcome_text: Benvenuta,
+      welcome_text: Benvenuto/a,
     reset_warning: È possibile riavviare solo la campagna contrassegnata come campagna di esercitazione.
     restart_practice: Riavviare la pratica
     restart_practice_confirmation: È sicuro di voler riavviare la pratica?
