@@ -400,10 +400,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     Rails.cache.delete(serializer_cache_key)
   end
 
-  def translations_migrated?
-    Settings.features.inline_translation_enabled && translations_migrated
-  end
-
   def score_validity_period(project_id: nil)
     return nil if hogan?
     return DEFAULT_SCORE_VALIDITY_PERIOD unless project_id

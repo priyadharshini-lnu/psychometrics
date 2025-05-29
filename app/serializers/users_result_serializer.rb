@@ -87,6 +87,8 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def translations
+    return {} if assessment.translations_migrated?
+
     Assessments::GetTranslationWithPipetextReplaced.call!(
       object.assessment,
       piped_text_context: piped_text_context,
@@ -187,5 +189,9 @@ class UsersResultSerializer < Panko::Serializer
 
   def user_assessment
     object.user_assessment
+  end
+
+  def assessment
+    user_assessment.assessment
   end
 end
