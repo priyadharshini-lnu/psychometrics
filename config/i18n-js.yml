@@ -16,9 +16,9 @@
 # the following configuration to something like this:
 #
 translations:
-  - file: "app/assets/javascripts/administration/i18n/translations.js"
+  - file: "app/assets/javascripts/administration/i18n/%{locale}.js"
     pretty_print: true
-  - file: "app/assets/javascripts/i18n/translations.js"
+  - file: "app/assets/javascripts/i18n/%{locale}.js"
     pretty_print: true
     only: ['*.validations.*', '*.reports.*', '*.threesixty.*', '*.helps.*', '*.subjects.*', '*.languages.*', '*.assessments.*', '*.shared.*',
            '*.anonym.*', '*.checking_wizard.*', '*.campaign.*',  '*.user_reports.*',  '*.common.*',  '*.frontend.*',  '*.administration.factors.form.*',

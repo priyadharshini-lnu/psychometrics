@@ -86,8 +86,8 @@ support/dev-ssl/*.key
 !support/dev-ssl/ttedev.me.key
 
 # Ignore local translations
-app/assets/javascripts/administration/i18n/translations.js
-app/assets/javascripts/i18n/translations.js
+app/assets/javascripts/administration/i18n/*
+app/assets/javascripts/i18n/*
 
 # Ignore Dev Procfile
 Procfile.*

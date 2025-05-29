@@ -4,8 +4,9 @@ import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'
 
 import initSentry from '~/libs/initSentry'
+import setLocale from '~/utils/setLocale'
 
 initSentry()
-
+setLocale()
 const root = createRoot(document.getElementById('three-sixty-container'))
 root.render(<ThreeSixtyApp />)

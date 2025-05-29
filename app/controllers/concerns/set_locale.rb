@@ -8,6 +8,7 @@ module SetLocale
     helper_method :user_locale_rtl?
     helper_method :selected_locale
     helper_method :available_enduser_locales
+    helper_method :ui_locale
   end
 
   def user_locale # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity

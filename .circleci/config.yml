@@ -323,7 +323,8 @@ jobs:
           command: |
             cp config/database.yml.sample config/database.yml
             cp config/application.yml.sample  config/application.yml
-            (find tmp/cache/vite tmp/cache/assets/sprockets -type f -mtime +15 -delete) || echo "No old cache files to prune"
+            bundle exec rake i18n:js:export
+            (find tmp/cache/vite tmp/cache/assets/sprockets -type f -mtime +30 -delete) || echo "No old cache files to prune"
             bundle exec rails assets:precompile
       - save_assets_cache
 

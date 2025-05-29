@@ -10,6 +10,7 @@ html lang="en"
     - if Rails.env.test?
       = stylesheet_link_tag 'test'
     = javascript_include_tag 'administration'
+    = javascript_include_tag "administration/i18n/#{I18n.locale}.js"
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag
