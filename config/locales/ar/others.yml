@@ -377,6 +377,7 @@ ar:
       search: بحث
       send: إرسال
       start: ابدأ
+      submit: إرسال
       unarchive: أخرج من الأرشيف
       unresolve: إلغاء الحل
       update: تحديث
@@ -662,6 +663,7 @@ ar:
       rate_skills_description: بعد أن حددت أولويات التطوير الخاصة بك، يرجى تقييم نفسك في كل مما يلي. تذكر أن تقيم نفسك بناءً على مستواك الحالي وليس على مستواك السابق أو المرغوب.
       rate_skills_title: تقييم مهاراتك
       rating_column_header: تقييمك الذاتي
+      reflective_questions: أسئلة تأملية
       select_skills: حدد مهاراتك
       select_skills_placeholder: حدد المهارات
       selected_skills: المهارات المحددة
@@ -779,6 +781,19 @@ ar:
         library: مكتبة خطة التطوير الفردية
         skills_count: عدد المهارات
         title: ملخص التقرير
+    reflective_questions:
+      answer_later: أجب لاحقًا
+      answer_placeholder: اكتب إجابتك هنا...
+      errors:
+        max_words: تسمح الإجابة بحد أقصى %{عدد} الكلمات
+        min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
+        required: إجابة السؤال مطلوبة
+      max_words: الحد الأقصى للكلمات
+      min_words: كلمات دقيقة
+      title: أسئلة تأملية
+      update_failed: حدث خطأ أثناء التحديث
+      updated_successfully: تم تحديث إجاباتك بنجاح
+      words: الكلمات
     skill_gap_report:
       continue_to_rate_skills: استمر في تقييم المهارات
       title: تقرير فجوة المهارات

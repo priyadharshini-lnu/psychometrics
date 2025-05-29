@@ -181,7 +181,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
             <Tabs.TabPane tab={I18n.t('idp.skill_gap_report.title')} key="skill_gap_report">
               <Empty />
             </Tabs.TabPane>
-            <Tabs.TabPane tab={I18n.t('idp.reflective_questions')} key="reflective_questions">
+            <Tabs.TabPane tab={I18n.t('idp.reflective_questions.title')} key="reflective_questions">
               <Empty />
             </Tabs.TabPane>
           </Tabs>

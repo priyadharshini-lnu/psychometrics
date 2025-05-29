@@ -13,6 +13,11 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
   let(:structured_learning) { create(:development_action, learning_style: :structured_learning) }
   let(:learning_from_others) { create(:development_action, learning_style: :learning_from_others) }
   let(:on_the_job) { create(:development_action, learning_style: :on_the_job) }
+  let!(:reflection_question) { create(:reflection_question, project_id: campaign.project_id) }
+  let!(:idp_template_reflection_questions) do
+    user_idp_plan.idp_template.reflection_questions << reflection_question
+    user_idp_plan.idp_template.save!
+  end
 
   let!(:development_actions) do
     [
@@ -43,6 +48,39 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
         'skill_progress_by_category' => { 'behavioral' => 30.0, 'technical' => 35.0,
                                           'other' => 90.0 }
       })
+    end
+  end
+
+  describe 'GET show' do
+    it 'returns user idp plan' do
+      get :show, params: { user_id: user.id, id: user_idp_plan.id }
+      expect(response).to have_http_status(:ok)
+      parsed_result = response.parsed_body
+
+      expect(parsed_result['data']['status']).to eq('not_started')
+      expect(parsed_result['data']['self_rating_enabled']).to be true
+      expect(parsed_result['data']['skill_gap_report_available']).to be false
+      expect(parsed_result['data']['reflection_questions'].first['id']).to eq(reflection_question.id)
+    end
+  end
+
+  describe 'PUT update_reflection_questions' do
+    let(:reflection_questions_params) do
+      [
+        { id: reflection_question.id, answer: 'This is a reflection answer' }
+      ]
+    end
+    it 'updates user reflection questions' do
+      put :update_reflection_questions, params: {
+        user_id: user.id,
+        reflection_questions: reflection_questions_params
+      }
+
+      expect(response).to have_http_status(:ok)
+      parsed_result = response.parsed_body
+
+      expect(parsed_result['data'].first['id']).to eq(reflection_question.id)
+      expect(parsed_result['data'].first['answer']).to eq('This is a reflection answer')
     end
   end
 

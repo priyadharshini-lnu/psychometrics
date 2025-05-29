@@ -1,0 +1,49 @@
+@import "~/styles/spacing.less";
+
+.main {
+  padding: 80px;
+}
+
+.pageContent {
+  overflow-x: hidden;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: @space-4;
+}
+
+.questionsBox {
+  padding: 24px;
+}
+
+.minmaxInfo {
+  color: #A0A0A0;
+  font-size: @space-3;
+}
+
+.mandatory {
+  color: #FF0000;
+}
+
+.questionInput {
+  margin-bottom: @space-2;
+}
+
+.editor {
+  :global {
+    .fr-second-toolbar {
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+}
+
+.withError {
+  .editor {
+    :global {
+      .fr-toolbar, .fr-wrapper, .fr-second-toolbar {
+        border-color: red;
+      }
+    }
+  }
+}

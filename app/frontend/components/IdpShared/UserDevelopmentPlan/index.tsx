@@ -38,6 +38,7 @@ import {
 import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
 import { groupDevelopmentActionsByCategory, groupSkillsByCategory } from './utils'
 import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '../constants'
+import { ReflectiveQuestions } from '~/modules/endUser/modules/campaigns/routes/idp/ReflectiveQuestions'
 
 const { I18n } = window
 
@@ -226,6 +227,9 @@ const UserDevelopmentPlanComponent = ({
             </Tabs.TabPane>
             <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
               <DevelopmentActionBoardView categories={boardData} />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab={I18n.t('idp.reflective_questions.title')} key="reflective_questions">
+              <ReflectiveQuestions />
             </Tabs.TabPane>
           </Tabs>
         </>

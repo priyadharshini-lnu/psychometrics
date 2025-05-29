@@ -9,6 +9,7 @@ import { GettingStart } from './GettingStart'
 import { SkillGapReport } from './SkillGapReport'
 import { AddSkills } from './AddSkills'
 import { RateSkills } from './RateSkills'
+import { ReflectiveQuestionsStep } from './ReflectiveQuestions'
 import { BoxWithShadow } from '~/glint'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 
@@ -30,8 +31,8 @@ enum STEPS {
   skillGapReport = 'skill_gap_report',
   addSkills = 'add_skills',
   rateSkills = 'rate_skills',
+  reflectionQuestions = 'reflection_questions',
 }
-
 
 const connector = connect((state: RootState) => ({
   status: state.campaigns.idp.status,
@@ -76,6 +77,10 @@ const InitialStepsComponent = ({
       hide: !selfRatingEnabled,
       step: STEPS.rateSkills,
     },
+    {
+      title: I18n.t('idp.initial_steps.reflective_questions'),
+      step: STEPS.reflectionQuestions,
+    },
   ]
 
   const visibleSteps = STEP_ITEMS.filter(item => !item.hide)
@@ -100,6 +105,10 @@ const InitialStepsComponent = ({
     } else {
       next(STEPS.addSkills)
     }
+  }
+
+  const handleNextForReflectiveQuestionsStep = () => {
+    next(STEPS.reflectionQuestions)
   }
 
   const handleNextForAddSkillsStep = () => {
@@ -149,8 +158,13 @@ const InitialStepsComponent = ({
             )}
             {paramStep === STEPS.rateSkills && (
               <RateSkills
-                next={handleSubmit}
+                next={handleNextForReflectiveQuestionsStep}
                 isSubmittingPlan={isSubmitting}
+              />
+            )}
+            {paramStep === STEPS.reflectionQuestions && (
+              <ReflectiveQuestionsStep
+                next={handleSubmit}
               />
             )}
           </Layout.Content>

@@ -1644,6 +1644,7 @@ zh:
       search: 搜索
       send: 发送
       start: 开始
+      submit: 提交
       unarchive: 取消存档
       unresolve: 取消解决
       update: 更新
@@ -2386,6 +2387,7 @@ zh:
       rate_skills_description: 现在，您已经选定了自己的发展重点，请就以下各项给自己打分。 请记住，要根据自己当前的水平打分，而不是根据自己过去或期望的水平打分。
       rate_skills_title: 评定您的技能
       rating_column_header: 您的自我评分
+      reflective_questions: 思考题
       select_skills: 选择您的技能
       select_skills_placeholder: 选择技能
       selected_skills: 精选技能
@@ -2509,6 +2511,19 @@ zh:
         library: IDP库
         skills_count: 技能数量
         title: 报告摘要
+    reflective_questions:
+      answer_later: 稍后回答
+      answer_placeholder: 在此写下您的答案...
+      errors:
+        max_words: 答案最多允许 %{count} 字数
+        min_words: 答案至少需要 %{count} 字数
+        required: 必须回答问题
+      max_words: 最大字数
+      min_words: 分词
+      title: 思考题
+      update_failed: 更新过程中出现错误
+      updated_successfully: 您的答案已成功更新
+      words: 字数
     skill_gap_report:
       continue_to_rate_skills: 继续评定技能
       title: 技能差距报告

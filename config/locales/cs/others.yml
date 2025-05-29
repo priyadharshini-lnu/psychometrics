@@ -1649,6 +1649,7 @@ cs:
       search: Hledat
       send: Odeslat
       start: Spustit
+      submit: Odeslat
       unarchive: Odebrat z archivu
       unresolve: Označit jako nevyřešené
       update: Aktualizovat
@@ -2397,6 +2398,7 @@ cs:
       rate_skills_description: Nyní, když jste vybrali své rozvojové priority, ohodnoťte se prosím v každé z následujících oblastí. Pamatujte, že se máte hodnotit na základě své současné úrovně, nikoli na základě minulé nebo požadované úrovně.
       rate_skills_title: Hodnocení vašich dovedností
       rating_column_header: Vaše sebehodnocení
+      reflective_questions: Reflektivní otázky
       select_skills: Vyberte své dovednosti
       select_skills_placeholder: Vyberte dovednosti
       selected_skills: Vybrané dovednosti
@@ -2514,6 +2516,19 @@ cs:
         library: Knihovna IDP
         skills_count: Počet dovedností
         title: Shrnutí zprávy
+    reflective_questions:
+      answer_later: Odpověď Později
+      answer_placeholder: Napište sem svou odpověď...
+      errors:
+        max_words: Odpověď umožňuje maximálně %{počet} slov
+        min_words: Odpověď vyžaduje alespoň %{count} slov
+        required: Odpověď na otázku je nutná
+      max_words: Maximální počet slov
+      min_words: Min. slov
+      title: Reflektivní otázky
+      update_failed: Během aktualizace došlo k chybě
+      updated_successfully: Vaše odpovědi byly úspěšně aktualizovány
+      words: Slova
     skill_gap_report:
       continue_to_rate_skills: Pokračujte v hodnocení dovedností
       title: Zpráva o nedostatku dovedností

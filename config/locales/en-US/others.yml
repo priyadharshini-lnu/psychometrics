@@ -358,6 +358,7 @@ en-US:
       search: Search
       send: Send
       start: Start
+      submit: Submit
       unarchive: Unarchive
       unresolve: Unresolve
       update: Update
@@ -623,6 +624,7 @@ en-US:
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
       rate_skills_title: Rating Your Skills
       rating_column_header: Your self rating
+      reflective_questions: Reflective Questions
       select_skills: Select your skills
       select_skills_placeholder: Select skills
       selected_skills: Selected Skills
@@ -740,6 +742,19 @@ en-US:
         library: IDP Library
         skills_count: Skills Count
         title: Report Summary
+    reflective_questions:
+      answer_later: Answer Later
+      answer_placeholder: Write your answer here...
+      errors:
+        max_words: The answer allows a maximum %{count} words
+        min_words: The answer requires at least %{count} words
+        required: The answer to the question is required
+      max_words: Max Words
+      min_words: Min Words
+      title: Reflective Questions
+      update_failed: An error occurred during the update
+      updated_successfully: Your answers have been updated successfully
+      words: Words
     skill_gap_report:
       continue_to_rate_skills: Continue to rate skills
       title: Skill Gap Report

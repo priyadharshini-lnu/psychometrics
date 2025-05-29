@@ -1010,6 +1010,9 @@ as: :simulation_progress_notification
       end
 
       resources :user_idp_plans, param: :user_id, only: %i[show update] do
+        member do
+          put :update_reflection_questions
+        end
         collection do
           get :summary
         end

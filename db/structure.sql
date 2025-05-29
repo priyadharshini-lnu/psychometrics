@@ -6614,6 +6614,39 @@ ALTER SEQUENCE public.user_profiles_id_seq OWNED BY public.user_profiles.id;
 
 
 --
+-- Name: user_reflection_question_answers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_reflection_question_answers (
+    id bigint NOT NULL,
+    answer text,
+    reflection_question_id bigint NOT NULL,
+    user_idp_plan_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_reflection_question_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_reflection_question_answers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_reflection_question_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_reflection_question_answers_id_seq OWNED BY public.user_reflection_question_answers.id;
+
+
+--
 -- Name: user_report_comments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8616,6 +8649,13 @@ ALTER TABLE ONLY public.user_profiles ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: user_reflection_question_answers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers ALTER COLUMN id SET DEFAULT nextval('public.user_reflection_question_answers_id_seq'::regclass);
+
+
+--
 -- Name: user_report_comments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10180,6 +10220,14 @@ ALTER TABLE ONLY public.user_profiles
 
 
 --
+-- Name: user_reflection_question_answers user_reflection_question_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers
+    ADD CONSTRAINT user_reflection_question_answers_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_report_comments user_report_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10435,6 +10483,13 @@ CREATE UNIQUE INDEX idx_on_idp_template_id_skill_id_category_11f5232638 ON publi
 --
 
 CREATE INDEX idx_on_reflection_question_id_081af4b0ec ON public.idp_template_reflection_questions USING btree (reflection_question_id);
+
+
+--
+-- Name: idx_on_reflection_question_id_5b36f1a8ed; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_reflection_question_id_5b36f1a8ed ON public.user_reflection_question_answers USING btree (reflection_question_id);
 
 
 --
@@ -12993,6 +13048,13 @@ CREATE INDEX index_user_profiles_on_user_id ON public.user_profiles USING btree 
 
 
 --
+-- Name: index_user_reflection_question_answers_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_reflection_question_answers_on_user_idp_plan_id ON public.user_reflection_question_answers USING btree (user_idp_plan_id);
+
+
+--
 -- Name: index_user_report_comments_on_creator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14256,6 +14318,14 @@ ALTER TABLE ONLY public.project_assessments
 
 
 --
+-- Name: user_reflection_question_answers fk_rails_4e78d614fb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers
+    ADD CONSTRAINT fk_rails_4e78d614fb FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id) ON DELETE CASCADE;
+
+
+--
 -- Name: privacy_setting_translations fk_rails_4f38fd7ce2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15336,6 +15406,14 @@ ALTER TABLE ONLY public.question_recoding
 
 
 --
+-- Name: user_reflection_question_answers fk_rails_d1daa1ae8e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers
+    ADD CONSTRAINT fk_rails_d1daa1ae8e FOREIGN KEY (reflection_question_id) REFERENCES public.reflection_questions(id) ON DELETE CASCADE;
+
+
+--
 -- Name: text_module_overrides fk_rails_d255d5b433; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15902,6 +15980,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250522061329'),
 ('20250519045905'),
 ('20250516082303'),
 ('20250514075923'),
@@ -16712,4 +16791,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

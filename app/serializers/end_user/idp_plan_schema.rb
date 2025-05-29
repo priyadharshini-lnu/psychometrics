@@ -23,6 +23,15 @@ module EndUser
           required(:skill_id).filled(:int?)
         end
 
+        optional(:reflection_questions).array(:hash) do
+          required(:id).filled(:int?)
+          required(:mandatory).filled(:bool?)
+          required(:question).filled(:str?)
+          required(:min_words).maybe(:int?)
+          required(:max_words).maybe(:int?)
+          required(:answer).maybe(:str?)
+        end
+
         optional(:user_idp_development_actions).array(:hash) do
           required(:id).filled(:int?)
           required(:development_action_id).maybe(:int?)

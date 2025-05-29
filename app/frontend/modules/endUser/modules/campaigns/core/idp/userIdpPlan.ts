@@ -2,7 +2,7 @@ import { USER_IDP_PLAN_STATUS } from 'components/IdpShared/constants'
 import { Skill, DevelopmentAction } from 'components/IdpShared/DevelopmentActions'
 import _ from 'lodash'
 
-const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
+export const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
 const UPDATE_USER_IDP_PLAN = 'IDP/MY_PLAN/UPDATE_USER_IDP_PLAN'
 const FETCH_USER_IDP_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_USER_IDP_DEVELOPMENT_ACTIONS'
 const FETCH_USER_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_USER_IDP_SKILLS'

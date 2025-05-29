@@ -2,7 +2,7 @@
 
 module EndUser
   class UserIdpPlansController < ApplicationController
-    before_action :load_user_idp_plan, only: %i[show update]
+    before_action :load_user_idp_plan, only: %i[show update update_reflection_questions]
     before_action :load_skill_gap_report_status, only: %i[show]
 
     def summary
@@ -18,7 +18,8 @@ module EndUser
         render json: {
           data: EndUser::IdpPlanSerializer.new(
             context: {
-              skill_gap_report_available: @skill_gap_report_available
+              skill_gap_report_available: @skill_gap_report_available,
+              reflection_answers: user_reflection_question_answers
             }
           ).serialize(@user_idp_plan)
         }
@@ -40,7 +41,27 @@ module EndUser
       end
     end
 
+    def update_reflection_questions
+      authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+      Idp::UpdateUserReflectionQuestions.call!(@user_idp_plan, params[:reflection_questions])
+      render json: {
+        data: Panko::ArraySerializer.new(
+          @user_idp_plan.idp_template.idp_template_reflection_questions,
+          each_serializer: EndUser::ReflectionQuestionSerializer,
+          context: {
+            reflection_answers: user_reflection_question_answers
+          }
+        ).to_a
+      }
+    end
+
     private
+
+    def user_reflection_question_answers
+      @user_idp_plan.user_reflection_question_answers.group_by(&:reflection_question_id).transform_values do |answers|
+        answers.map(&:answer).first
+      end
+    end
 
     def user
       @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user

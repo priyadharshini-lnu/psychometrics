@@ -1636,6 +1636,7 @@ it:
       search: Ricerca
       send: Inviare
       start: Inizio
+      submit: Invia
       unarchive: Disarchivio
       unresolve: Non risolvere
       update: Aggiornamento
@@ -2377,6 +2378,7 @@ it:
       rate_skills_description: Ora che avete selezionato le vostre priorità di sviluppo, valutate voi stessi su ciascuno dei seguenti aspetti. Ricordate di valutare voi stessi in base al vostro livello attuale e non in base al vostro livello passato o desiderato.
       rate_skills_title: Valutazione delle competenze
       rating_column_header: La vostra autovalutazione
+      reflective_questions: Domande di riflessione
       select_skills: Seleziona le tue competenze
       select_skills_placeholder: Seleziona competenze
       selected_skills: Competenze Selezionate
@@ -2500,6 +2502,19 @@ it:
         library: Libreria PSI
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
+    reflective_questions:
+      answer_later: Risposta successiva
+      answer_placeholder: Scrivi qui la tua risposta...
+      errors:
+        max_words: La risposta consente un massimo di %{count} di parole
+        min_words: La risposta richiede almeno %{count} parole
+        required: La risposta alla domanda è richiesta
+      max_words: Parole massime
+      min_words: Parole Min
+      title: Domande di riflessione
+      update_failed: Si è verificato un errore durante l'aggiornamento
+      updated_successfully: Le risposte sono state aggiornate con successo
+      words: Parole
     skill_gap_report:
       continue_to_rate_skills: Continuare a valutare le competenze
       title: Rapporto sul divario di competenze

@@ -1648,6 +1648,7 @@ de:
       search: Suchen
       send: Schicken
       start: Starten
+      submit: Einreichen
       unarchive: Dearchivieren
       unresolve: Unresolve
       update: Aktualisieren
@@ -2391,6 +2392,7 @@ de:
       rate_skills_description: Nachdem Sie nun Ihre Entwicklungsprioritäten ausgewählt haben, bewerten Sie sich bitte selbst zu jedem der folgenden Punkte. Denken Sie daran, dass Sie sich selbst auf der Grundlage Ihres derzeitigen Niveaus bewerten und nicht auf der Grundlage Ihres früheren oder gewünschten Niveaus.
       rate_skills_title: Bewertung Ihrer Fertigkeiten
       rating_column_header: Ihre Selbsteinschätzung
+      reflective_questions: Reflektierende Fragen
       select_skills: Wählen Sie Ihre Fähigkeiten
       select_skills_placeholder: Fähigkeiten auswählen
       selected_skills: Ausgewählte Fertigkeiten
@@ -2508,6 +2510,19 @@ de:
         library: IDP-Bibliothek
         skills_count: Anzahl der Kompetenzen
         title: Berichtszusammenfassung
+    reflective_questions:
+      answer_later: Antwort später
+      answer_placeholder: Schreiben Sie Ihre Antwort hier...
+      errors:
+        max_words: Die Antwort erlaubt maximal %{count} Wörter
+        min_words: Die Antwort erfordert mindestens %{count} Wörter
+        required: Die Antwort auf die Frage ist erforderlich
+      max_words: Max Wörter
+      min_words: Min Worte
+      title: Reflektierende Fragen
+      update_failed: Während der Aktualisierung ist ein Fehler aufgetreten
+      updated_successfully: Ihre Antworten wurden erfolgreich aktualisiert
+      words: Wörter
     skill_gap_report:
       continue_to_rate_skills: Fähigkeiten weiter bewerten
       title: Bericht über das Qualifikationsdefizit

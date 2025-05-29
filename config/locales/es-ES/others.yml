@@ -1650,6 +1650,7 @@ es-ES:
       search: Buscar
       send: Enviar
       start: Iniciar
+      submit: Enviar
       unarchive: Sacar del archivo
       unresolve: Deshacer la resolución
       update: Actualizar
@@ -2392,6 +2393,7 @@ es-ES:
       rate_skills_description: Ahora que ha seleccionado sus prioridades de desarrollo, por favor evalúese en cada una de las siguientes. Recuerde evaluarse según su nivel actual y no en su nivel pasado o deseado.
       rate_skills_title: Evaluando Sus Habilidades
       rating_column_header: Su autoevaluación
+      reflective_questions: Preguntas de reflexión
       select_skills: Seleccione sus habilidades
       select_skills_placeholder: Seleccionar habilidades
       selected_skills: Habilidades Seleccionadas
@@ -2509,6 +2511,19 @@ es-ES:
         library: Biblioteca PDI
         skills_count: Recuento de Habilidades
         title: Resumen del Informe
+    reflective_questions:
+      answer_later: Respuesta
+      answer_placeholder: Escribe aquí tu respuesta...
+      errors:
+        max_words: La respuesta permite un máximo de %{count} palabras
+        min_words: La respuesta requiere al menos %{count} palabras
+        required: La respuesta a la pregunta es obligatoria
+      max_words: Palabras máximas
+      min_words: Palabras mínimas
+      title: Preguntas de reflexión
+      update_failed: Se ha producido un error durante la actualización
+      updated_successfully: Tus respuestas se han actualizado correctamente
+      words: Palabras
     skill_gap_report:
       continue_to_rate_skills: Seguir valorando las competencias
       title: Informe sobre el déficit de cualificaciones

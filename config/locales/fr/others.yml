@@ -1636,6 +1636,7 @@ fr:
       search: Recherche
       send: Envoyer
       start: Démarrage
+      submit: Soumettre
       unarchive: Désarchiver
       unresolve: Non résolu
       update: Mise à jour
@@ -2379,6 +2380,7 @@ fr:
       rate_skills_description: Maintenant que vous avez choisi vos priorités de développement, veuillez vous évaluer sur chacun des points suivants. N'oubliez pas de vous évaluer sur la base de votre niveau actuel et non sur la base de votre niveau passé ou souhaité.
       rate_skills_title: Évaluer ses compétences
       rating_column_header: Votre auto-évaluation
+      reflective_questions: Questions de réflexion
       select_skills: Sélectionnez vos compétences
       select_skills_placeholder: Sélectionner les compétences
       selected_skills: Compétences sélectionnées
@@ -2502,6 +2504,19 @@ fr:
         library: Bibliothèque PDI
         skills_count: Nombre de compétences
         title: Résumé du rapport
+    reflective_questions:
+      answer_later: Réponse plus tard
+      answer_placeholder: Inscrivez votre réponse ici...
+      errors:
+        max_words: La réponse peut contenir un maximum de %{count} mots.
+        min_words: La réponse nécessite au moins %{count} mots
+        required: La réponse à la question est requise
+      max_words: Mots maximums
+      min_words: Mots minuscules
+      title: Questions de réflexion
+      update_failed: Une erreur s'est produite lors de la mise à jour
+      updated_successfully: Vos réponses ont été mises à jour avec succès
+      words: Mots
     skill_gap_report:
       continue_to_rate_skills: Continuer à évaluer les compétences
       title: Rapport sur les lacunes en matière de compétences

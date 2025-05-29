@@ -1648,6 +1648,7 @@ pt:
       search: Pesquisar
       send: Enviar
       start: Iniciar
+      submit: Enviar
       unarchive: Desarquivar
       unresolve: Reabrir
       update: Atualizar
@@ -2390,6 +2391,7 @@ pt:
       rate_skills_description: Agora que selecionou as suas prioridades de desenvolvimento, classifique-se em cada uma das seguintes categorias. Não se esqueça de se classificar com base no seu nível atual e não no seu nível passado ou desejado.
       rate_skills_title: Avaliar as suas competências
       rating_column_header: A sua autoavaliação
+      reflective_questions: Perguntas de reflexão
       select_skills: Selecione as suas competências
       select_skills_placeholder: Selecionar competências
       selected_skills: Competências selecionadas
@@ -2513,6 +2515,19 @@ pt:
         library: Biblioteca PDI
         skills_count: Contagem de Competências
         title: Resumo do Relatório
+    reflective_questions:
+      answer_later: Responder mais tarde
+      answer_placeholder: Escreve aqui a tua resposta...
+      errors:
+        max_words: A resposta permite um máximo de %{count} palavras
+        min_words: A resposta requer pelo menos %{count} palavras
+        required: A resposta à pergunta é necessária
+      max_words: Máximo de palavras
+      min_words: Palavras mínimas
+      title: Perguntas de reflexão
+      update_failed: Ocorreu um erro durante a atualização
+      updated_successfully: As suas respostas foram actualizadas com sucesso
+      words: Palavras
     skill_gap_report:
       continue_to_rate_skills: Continuar a avaliar as competências
       title: Relatório de défice de competências

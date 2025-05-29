@@ -16,6 +16,7 @@ import { Bookings } from './Bookings'
 import MeetingRoom from './MeetingRoom'
 import { MyPlan } from './idp/MyPlan'
 import { InitialSteps } from './idp/InitialSteps'
+import { ReflectiveQuestions } from './idp/ReflectiveQuestions'
 import { DirectReporteesList } from './idp/DirectReportees/List'
 import { DirectReportDetails } from './idp/DirectReportees/Details'
 
@@ -100,6 +101,10 @@ const routes = [
   {
     path: '/idp/my_plan',
     component: <MyPlan />,
+  },
+  {
+    path: '/idp/reflective_questions',
+    component: <ReflectiveQuestions />,
   },
   {
     path: '/idp/my_plan/:tab',

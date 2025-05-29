@@ -365,6 +365,7 @@ pl:
       search: Szukaj
       send: Wysłać
       start: Początek
+      submit: Prześlij
       unarchive: Unarchive
       unresolve: Nierozwiązany
       update: Aktualizacja
@@ -634,6 +635,7 @@ pl:
       rate_skills_description: Teraz, gdy wybrałeś swoje priorytety rozwojowe, oceń siebie w każdym z następujących obszarów. Pamiętaj, aby oceniać siebie na podstawie swojego obecnego poziomu, a nie przeszłego lub pożądanego.
       rate_skills_title: Ocena Twoich umiejętności
       rating_column_header: Twoja samoocena
+      reflective_questions: Pytania refleksyjne
       select_skills: Wybierz swoje umiejętności
       select_skills_placeholder: Wybierz umiejętności
       selected_skills: Wybrane umiejętności
@@ -751,6 +753,19 @@ pl:
         library: Biblioteka IDP
         skills_count: Liczba umiejętności
         title: Podsumowanie raportu
+    reflective_questions:
+      answer_later: Odpowiedź później
+      answer_placeholder: Wpisz tutaj swoją odpowiedź...
+      errors:
+        max_words: Odpowiedź może zawierać maksymalnie %{count} słów
+        min_words: Odpowiedź wymaga co najmniej %{count} słów
+        required: Odpowiedź na pytanie jest wymagana
+      max_words: Maksymalna liczba słów
+      min_words: Min Words
+      title: Pytania refleksyjne
+      update_failed: Wystąpił błąd podczas aktualizacji
+      updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane
+      words: Słowa
     skill_gap_report:
       continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
       title: Raport luk w umiejętnościach

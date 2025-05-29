@@ -2,7 +2,7 @@
 
 module EndUser
   class IdpPlanSerializer < Panko::Serializer
-    attributes :status, :self_rating_enabled, :skill_gap_report_available
+    attributes :status, :self_rating_enabled, :skill_gap_report_available, :reflection_questions
     delegate :self_rating_enabled, to: :idp_template
 
     has_many :user_idp_skills,
@@ -14,6 +14,14 @@ module EndUser
     has_one :user, serializer: ::IdpUserSerializer
 
     private
+
+    def reflection_questions
+      Panko::ArraySerializer.new(
+        idp_template.idp_template_reflection_questions,
+        each_serializer: EndUser::ReflectionQuestionSerializer,
+        context: context
+      ).to_a
+    end
 
     def skill_gap_report_available
       return context[:skill_gap_report_available] if context.key?(:skill_gap_report_available)
