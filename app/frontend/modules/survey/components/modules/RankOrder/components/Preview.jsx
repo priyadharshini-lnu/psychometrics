@@ -27,7 +27,7 @@ export class Preview extends Component {
   render () {
     const { model, I18n } = this.props
     return (
-      <fieldset>
+      <fieldset className="border-none">
         <legend className="mb-0 border-none">
           <SafeHTML
             className={styles.questionTextPreview}
