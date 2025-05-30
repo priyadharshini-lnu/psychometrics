@@ -31,6 +31,7 @@ module PankoOverride
     end
 
     def skip_schema_check?
+      return true if ENV['SKIP_PANKO_SCHEMA_CHECK'] == 'true'
       return serializer_class.skip_schema_check? if serializer_class.respond_to?(:skip_schema_check?)
 
       ENV['REAL_ENV'].present? && ENV['REAL_ENV'].start_with?('production')
