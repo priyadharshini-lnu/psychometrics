@@ -152,16 +152,16 @@ const IDPTemplateForm = ({
       technicalClientSkills: [],
     }
     const newCategorizedSkills = idp?.skills?.reduce((acc, skill) => {
-      if (skill.category === 'behavioral' && !skill.projectId) {
+      if (skill.skillType === 'behavioral' && !skill.projectId) {
         acc.behavioralGlobalSkills.push(skill)
         skills.behavioralGlobalSkills.push(skill.id)
-      } else if (skill.category === 'behavioral' && skill.projectId) {
+      } else if (skill.skillType === 'behavioral' && skill.projectId) {
         acc.behavioralClientSkills.push(skill)
         skills.behavioralClientSkills.push(skill.id)
-      } else if (skill.category === 'technical' && !skill.projectId) {
+      } else if (skill.skillType === 'technical' && !skill.projectId) {
         acc.technicalGlobalSkills.push(skill)
         skills.technicalGlobalSkills.push(skill.id)
-      } else if (skill.category === 'technical' && skill.projectId) {
+      } else if (skill.skillType === 'technical' && skill.projectId) {
         acc.technicalClientSkills.push(skill)
         skills.technicalClientSkills.push(skill.id)
       }
@@ -304,13 +304,13 @@ const IDPTemplateForm = ({
                         <Card title={I18n.t('administration.idp.behavioral_skills')}>
                           <SkillsAndTagsSelection
                             categorizedSkills={categorizedSkills}
-                            category="behavioral"
+                            skillType="behavioral"
                             type="Global"
                             form={form}
                           />
                           <SkillsAndTagsSelection
                             categorizedSkills={categorizedSkills}
-                            category="behavioral"
+                            skillType="behavioral"
                             type="Client"
                             projectId={projectId}
                             form={form}
@@ -321,13 +321,13 @@ const IDPTemplateForm = ({
                         <Card title={I18n.t('administration.idp.technical_skills')}>
                           <SkillsAndTagsSelection
                             categorizedSkills={categorizedSkills}
-                            category="technical"
+                            skillType="technical"
                             type="Global"
                             form={form}
                           />
                           <SkillsAndTagsSelection
                             categorizedSkills={categorizedSkills}
-                            category="technical"
+                            skillType="technical"
                             type="Client"
                             projectId={projectId}
                             form={form}

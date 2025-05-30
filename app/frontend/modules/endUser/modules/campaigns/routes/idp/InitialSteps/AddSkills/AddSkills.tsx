@@ -47,8 +47,8 @@ const AddSkillsComponent = ({
     setSelectedSkills(selectedSkills.filter(userIdpSkill => userIdpSkill.skillId !== skillId))
   }
 
-  const skillCategories = _.map(_.groupBy(skills, 'category'), (skills, category) => ({
-    category,
+  const skillCategories = _.map(_.groupBy(skills, 'skillType'), (skills, skillType) => ({
+    skillType,
     skills,
   }))
 

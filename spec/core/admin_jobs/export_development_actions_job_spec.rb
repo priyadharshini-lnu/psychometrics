@@ -12,7 +12,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
                     name: 'Test Action',
                     description: 'Test Description',
                     learning_style: 'structured_learning',
-                    category: 'course',
+                    development_action_type: 'course',
                     course_url: 'https://example.com',
                     course_start_date: Date.new(2024, 1, 1),
                     course_end_date: Date.new(2024, 12, 31))
@@ -41,7 +41,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
         Description
         Type
         ProjectID
-        Category
+        DevelopmentActionType
         CourseURL
         CourseStartDate
         CourseEndDate

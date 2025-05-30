@@ -33,16 +33,20 @@ function addSkillsToDevelopmentActions (
   }))
 }
 
+
 export function groupDevelopmentActionsByCategory (
   developmentActions: Record<string, DevelopmentAction>,
   skills: Record<string, Skill>,
 ): CategoryWithDevelopmentActions[] {
   if (_.isEmpty(developmentActions) || _.isEmpty(skills)) return []
   const enrichedDevelopmentActions = addSkillsToDevelopmentActions(developmentActions, skills)
-  const groupedByCategory = _.groupBy(enrichedDevelopmentActions, developmentAction => developmentAction.skill.category)
+  const groupedByCategory = _.groupBy(
+    enrichedDevelopmentActions,
+    developmentAction => developmentAction.skill.skillType,
+  )
 
-  return _.map(groupedByCategory, (developmentActions, category) => ({
-    category,
+  return _.map(groupedByCategory, (developmentActions, developmentActionType) => ({
+    developmentActionType,
     developmentActions,
   }))
 }
@@ -53,8 +57,8 @@ export function groupSkillsByCategory (
   const enrichedSkills = addDevelopmentActionsToSkills(skills, developmentActions)
   const groupedByCategory = _.groupBy(enrichedSkills, 'category')
 
-  return _.map(groupedByCategory, (skills, category) => ({
-    category,
+  return _.map(groupedByCategory, (skills, skillType) => ({
+    skillType,
     skills,
   }))
 }

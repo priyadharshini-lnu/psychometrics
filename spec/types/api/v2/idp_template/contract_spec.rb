@@ -6,10 +6,10 @@ RSpec.describe Api::V2::IdpTemplate::Contract do
   let(:user) { create(:user) }
   let(:project) { create(:project) }
   let(:idp_template) { create(:idp_template, project: project) }
-  let(:behavioral_global_skill) { create(:skill, category: :behavioral, project_id: nil) }
-  let(:technical_global_skill) { create(:skill, category: :technical, project_id: nil) }
-  let(:behavioural_client_skill) { create(:skill, category: :behavioral, project_id: project.id) }
-  let(:technical_client_skill) { create(:skill, category: :technical, project_id: project.id) }
+  let(:behavioral_global_skill) { create(:skill, skill_type: :behavioral, project_id: nil) }
+  let(:technical_global_skill) { create(:skill, skill_type: :technical, project_id: nil) }
+  let(:behavioural_client_skill) { create(:skill, skill_type: :behavioral, project_id: project.id) }
+  let(:technical_client_skill) { create(:skill, skill_type: :technical, project_id: project.id) }
 
   let(:params) do
     jsonapi_resource_request(

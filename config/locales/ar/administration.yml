@@ -1559,7 +1559,6 @@ ar:
         blank_field: 'الصف %{row}: %{field} لا يمكن أن يكون فارغًا'
         csv_file_required: يجب أن يكون ملف CSV
         image_download_failed: 'فشل تنزيل الصورة من %{url}: %{message}'
-        invalid_category: 'الصف %{row}: فئة غير صالحة ''%{value}''. الفئات الصالحة هي: %{valid_categories}'
         invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
         invalid_date_format: 'تنسيق التاريخ غير صالح: %{date}'
         invalid_image_file: 'ملف الصورة غير صالح: %{message}'
@@ -1569,13 +1568,13 @@ ar:
         save_failed: 'فشل حفظ إجراء التطوير: %{message}'
         skill_not_found: 'لم يتم العثور على المهارة للمعرف: %{skill_id}'
     development_actions:
-      categories:
-        course: دورة
-        default: افتراضي
       create:
         successfully: تم إنشاء إجراء التطوير "%{name}" بنجاح.
       destroy:
         successfully: تم حذف إجراء التطوير "%{name}" بنجاح.
+      development_action_types:
+        course: دورة
+        default: افتراضي
       edit:
         header: تعديل إجراء التطوير
       export:
@@ -1585,10 +1584,10 @@ ar:
       export_development_actions: تصدير إجراءات التطوير بناءً على المشروع
       export_global_development_actions: تصدير إجراءات التطوير العالمية
       form:
-        category: الفئة
         course_image: صورة الدورة
         course_link: رابط الدورة
         description: الوصف
+        development_action_type: نوع عمل التطوير
         end_date: تاريخ الانتهاء
         learning_style: نمط التعلم
         name: الاسم
@@ -3116,14 +3115,13 @@ ar:
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
-          invalid_category: Must be a valid category
           invalid_global_value: 'must be one of: true, false'
           query_too_short: is required and must belonger than 3 characters
       form:
-        category: Category
         description: Description
         name: Name
         project_placeholder: Select a Project
+        skill_type: نوع المهارة
         title: Skill
       import:
         download_example_csv: Download Example csv

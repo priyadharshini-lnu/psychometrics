@@ -60,7 +60,7 @@ module Administration
       attributes = {
         name: row['Name'],
         description: row['Description'],
-        category: normalize_category(row['Category'])
+        skill_type: normalize_skill_type(row['SkillType'])
       }
       attributes[:project_id] = @project_id if @project_id.present?
 
@@ -74,9 +74,9 @@ module Administration
       skill.tag_list = row['Tag'].split(',').map(&:strip)
     end
 
-    def normalize_category(category)
-      category = category.to_s.strip.downcase
-      %w[behavioral technical other].include?(category) ? category : 'other'
+    def normalize_skill_type(skill_type)
+      skill_type = skill_type.to_s.strip.downcase
+      %w[behavioral technical other].include?(skill_type) ? skill_type : 'other'
     end
   end
 end

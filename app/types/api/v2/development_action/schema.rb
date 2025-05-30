@@ -13,9 +13,8 @@ module Api
             # Required fields
             attribute[:name].filled(:string)
             attribute[:description].filled(:string)
-            attribute[:category].filled(:string)
+            attribute[:development_action_type].filled(:string)
             attribute[:learning_style].filled(:string)
-            attribute[:default_language].filled(:string)
 
             # Optional fields - only validated if present
             optional(:course_url).maybe(:str?)

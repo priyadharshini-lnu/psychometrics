@@ -1661,9 +1661,9 @@ zh-Hant:
         blank_field: '行 %{row}: %{field} 不能為空白'
         csv_file_required: 必須是 CSV 檔案
         image_download_failed: 從 %{url} 下載影像失敗： %{message}
-        invalid_category: 行 %{row}：無效類別 '%{value}'。 有效類別為：%{valid_categories}。
         invalid_csv_format: 無效的 CSV 格式：%{message}。
         invalid_date_format: 無效日期格式： %{date}
+        invalid_development_action_type: 行 %{row}：無效的開發作業類型「%{value}」。有效的開發行動類型是：%{valid_development_action_types}。
         invalid_image_file: 無效的影像檔案：%{message}。
         invalid_image_url: 無效的圖片 URL 格式：%{url}。
         invalid_learning_style: 行 %{row}：無效的學習樣式 '%{value}'。 有效的類型是：%{valid_types}。
@@ -1681,13 +1681,13 @@ zh-Hant:
           missing_columns: 缺少必填欄位：%{fields}。
           save_failed: 儲存失敗
     development_actions:
-      categories:
-        course: 課程
-        default: 預設
       create:
         successfully: 開發動作「%{name}」已成功建立。
       destroy:
         successfully: 開發動作「%{name}」已成功刪除。
+      development_action_types:
+        course: 課程
+        default: 預設
       edit:
         header: 編輯開發行動
       export:
@@ -1704,11 +1704,11 @@ zh-Hant:
       export_global_development_actions: 全球發展行動
       export_global_development_actions_translations: 全球發展行動翻譯
       form:
-        category: 類別
         client_placeholder: 選擇客戶
         course_image: 課程圖片
         course_link: 課程連結
         description: 說明
+        development_action_type: 發展行動類型
         end_date: 結束日期
         learning_style: 學習風格
         name: 名稱
@@ -3314,8 +3314,8 @@ zh-Hant:
         search:
           all_and_project_id_mutually_exclusive: 當提供 project_id_eq 時，所有項目都不能為真
           invalid_all_value: 必須是其中之一：true、false
-          invalid_category: 必須為有效類別
           invalid_global_value: 必須是其中之一：true、false
+          invalid_skill_type: 必須為有效類別
           query_too_short: 必須填寫，且必須超過 3 個字元
       export:
         details: 詳細資訊
@@ -3328,11 +3328,11 @@ zh-Hant:
         skills_title: 出口技能
         skills_translations_title: 出口技能翻譯
       form:
-        category: 類別
         client_placeholder: 選擇客戶
         description: 說明
         name: 名稱
         project_placeholder: 選擇專案
+        skill_type: 技能類型
         title: 技術
       global: 全球技能？
       global_skills: 全球技能

@@ -56,12 +56,12 @@ module IdpTemplates
       if skills.is_a?(Array)
         ::Skill.exists?(
           id: skills.pluck(:id),
-          category: config[:type],
+          skill_type: config[:type],
           project_id: config[:global] ? nil : project_id
         )
       else
         skills.any? do |skill|
-          skill[:category] == config[:type].to_s &&
+          skill[:skill_type] == config[:type].to_s &&
             (config[:global] ? skill[:project_id].nil? : skill[:project_id] == project_id)
         end
       end

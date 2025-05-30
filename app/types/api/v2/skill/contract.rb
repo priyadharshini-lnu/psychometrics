@@ -13,7 +13,7 @@ module Api
               optional(:project_id_eq).maybe(:string)
               optional(:all_skills).maybe(:string, included_in?: %w[true false])
               optional(:global).maybe(:string, included_in?: %w[true false])
-              optional(:category_in).maybe(:string)
+              optional(:skill_type_in).maybe(:string)
               optional(:tagged_with).maybe(:string)
             end
           end
@@ -40,12 +40,12 @@ module Api
             end
           end
 
-          rule('filter.category_in') do
-            next if values.dig(:filter, :category_in).blank?
+          rule('filter.skill_type_in') do
+            next if values.dig(:filter, :skill_type_in).blank?
 
-            categories = value.split(',').map(&:strip)
-            unless categories.all? { |category| category.in?(%w[behavioral technical other]) }
-              key.failure(I18n.t('administration.skills.errors.search.invalid_category'))
+            skill_types = value.split(',').map(&:strip)
+            unless skill_types.all? { |skill_type| skill_type.in?(%w[behavioral technical other]) }
+              key.failure(I18n.t('administration.skills.errors.search.invalid_skill_type'))
             end
           end
 
@@ -72,7 +72,7 @@ module Api
               optional(:project_id_eq).maybe(:string)
               optional(:all).maybe(:string, included_in?: %w[true false])
               required(:name_cont).filled(:string)
-              optional(:category_in).maybe(:string)
+              optional(:skill_type_in).maybe(:string)
             end
           end
 
@@ -82,11 +82,11 @@ module Api
             end
           end
 
-          rule('filter.category_in') do
+          rule('filter.skill_type_in') do
             if value.present?
-              categories = value.split(',').map(&:strip)
-              unless categories.all? { |category| category.in?(%w[behavioral technical other]) }
-                key.failure(I18n.t('administration.skills.errors.search.invalid_category'))
+              skill_types = value.split(',').map(&:strip)
+              unless skill_types.all? { |skill_type| skill_type.in?(%w[behavioral technical other]) }
+                key.failure(I18n.t('administration.skills.errors.search.invalid_skill_type'))
               end
             end
           end

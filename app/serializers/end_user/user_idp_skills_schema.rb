@@ -9,7 +9,7 @@ module EndUser
         required(:id).filled(:int?)
         required(:name).filled(:str?)
         required(:description).filled(:str?)
-        required(:category).filled(:str?)
+        required(:skill_type).filled(:str?)
         required(:initial_rating).value { nil? | int? | float? }
         required(:final_rating).value { nil? | int? | float? }
         required(:skill_id).filled(:int?)

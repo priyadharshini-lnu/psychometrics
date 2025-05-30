@@ -65,23 +65,23 @@ class IdpTemplate < ApplicationRecord
   def skills_by_tags
     client_queries = []
     if behavioral_client_skill_settings == 'selected'
-      client_queries << Skill.where(project: project, category: 'behavioral').
+      client_queries << Skill.where(project: project, skill_type: 'behavioral').
                         tagged_with(behavioural_client_tags, any: true).to_sql
     end
 
     if technical_client_skill_settings == 'selected'
-      client_queries << Skill.where(project: project, category: 'technical').
+      client_queries << Skill.where(project: project, skill_type: 'technical').
                         tagged_with(technical_client_tags, any: true).to_sql
     end
 
     global_queries = []
     if behavioral_global_skill_settings == 'selected'
-      global_queries << Skill.where(project: nil, category: 'behavioral').
+      global_queries << Skill.where(project: nil, skill_type: 'behavioral').
                         tagged_with(behavioural_global_tags, any: true).to_sql
     end
 
     if technical_global_skill_settings == 'selected'
-      global_queries << Skill.where(project: nil, category: 'technical').
+      global_queries << Skill.where(project: nil, skill_type: 'technical').
                         tagged_with(technical_global_tags, any: true).to_sql
     end
 
@@ -91,12 +91,12 @@ class IdpTemplate < ApplicationRecord
     all_queries.join(' UNION ')
   end
 
-  def load_setting_based_skill(setting, category, owner = nil)
+  def load_setting_based_skill(setting, skill_type, owner = nil)
     case setting
       when 'all'
-        Skill.where(category: category, project: owner)
+        Skill.where(skill_type: skill_type, project: owner)
       when 'selected'
-        Skill.where(category: category, project: owner, id: skills.select(:id))
+        Skill.where(skill_type: skill_type, project: owner, id: skills.select(:id))
       else
         Skill.none
     end

@@ -1663,9 +1663,9 @@ zh:
         blank_field: '行 %{row}: %{field} 不能为空'
         csv_file_required: 必须是 CSV 文件
         image_download_failed: 从 %{url} 下载图像失败： %{message}
-        invalid_category: 行 %{row}：无效类别"%{value}"。 有效类别为：%{valid_categories}。
         invalid_csv_format: CSV 格式无效： %{message}
         invalid_date_format: 日期格式无效： %{date}
+        invalid_development_action_type: 第 %{row} 行：开发行动类型“%{value}”无效。有效的开发行动类型为：%{valid_development_action_types}
         invalid_image_file: 无效图像文件：%{信息｝
         invalid_image_url: 图像 URL 格式无效：%{url} %{url}
         invalid_learning_style: 行 %{row}：学习类型"%{value}"无效。 有效类型为：%{valid_types}。
@@ -1683,13 +1683,13 @@ zh:
           missing_columns: 缺少必填列： %{fields}
           save_failed: 保存失败
     development_actions:
-      categories:
-        course: 课程
-        default: 默认值
       create:
         successfully: 开发行动"%{name}"已成功创建。
       destroy:
         successfully: 已成功删除开发操作"%{name}"。
+      development_action_types:
+        course: 课程
+        default: 默认值
       edit:
         header: 编辑发展行动
       export:
@@ -1706,11 +1706,11 @@ zh:
       export_global_development_actions: 全球发展行动
       export_global_development_actions_translations: 全球发展行动 翻译
       form:
-        category: 类别
         client_placeholder: 选择客户
         course_image: 课程图像
         course_link: 课程链接
         description: 说明
+        development_action_type: 发展行动类型
         end_date: 结束日期
         learning_style: 学习方式
         name: 名称
@@ -3320,8 +3320,8 @@ zh:
         search:
           all_and_project_id_mutually_exclusive: 当提供 project_id_eq 时，不能全部为真
           invalid_all_value: 必须是：true、false
-          invalid_category: 必须是有效类别
           invalid_global_value: 必须是：true、false
+          invalid_skill_type: 必须是有效类别
           query_too_short: 为必填项，且必须少于 3 个字符
       export:
         details: 详细信息
@@ -3334,11 +3334,11 @@ zh:
         skills_title: 出口技能
         skills_translations_title: 出口技能翻译
       form:
-        category: 类别
         client_placeholder: 选择客户
         description: 说明
         name: 名称
         project_placeholder: 选择项目
+        skill_type: 技能类型
         title: 技能
       global: 全球技能是什么？
       global_skills: 全球技能

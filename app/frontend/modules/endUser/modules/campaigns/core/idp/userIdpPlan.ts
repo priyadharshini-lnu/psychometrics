@@ -136,12 +136,12 @@ export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActio
   },
 })
 
-export const saveUserIdpSkills = (skills, category: string | null = null, userId: string | null = null) => ({
+export const saveUserIdpSkills = (skills, skillType: string | null = null, userId: string | null = null) => ({
   type: SAVE_USER_IDP_SKILLS,
   request: {
     url: '/user_idp_skills/save_skills',
     method: 'post',
-    body: { skills, category, userId },
+    body: { skills, skillType, userId },
   },
 })
 

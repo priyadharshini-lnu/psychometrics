@@ -1661,9 +1661,9 @@ es-ES:
         blank_field: 'Fila %{row}: %{field} no puede estar en blanco'
         csv_file_required: Debe ser un archivo CSV
         image_download_failed: 'Error al descargar la imagen de %{url}: %{message}'
-        invalid_category: 'Fila %{row}: Categoría no válida ''%{value}''. Las categorías válidas son: %{valid_categories}'
         invalid_csv_format: 'Formato CSV no válido: %{message}'
         invalid_date_format: 'Formato de fecha no válido: %{date}'
+        invalid_development_action_type: 'Fila %{row}: Tipo de acción de desarrollo ''%{value}'' no válido. Los tipos de acción de desarrollo válidos son: %{valid_development_action_types}'
         invalid_image_file: 'Archivo de imagen no válido: %{message}'
         invalid_image_url: 'Formato de URL de imagen no válido: %{url}'
         invalid_learning_style: 'Fila %{row}: Estilo de aprendizaje ''%{value}'' no válido Los tipos válidos son: %{valid_types}'
@@ -1681,13 +1681,13 @@ es-ES:
           missing_columns: 'Faltan columnas obligatorias: %{fields}'
           save_failed: Guardado fallido
     development_actions:
-      categories:
-        course: Curso
-        default: Por defecto
       create:
         successfully: La acción de desarrollo "%{name}" se ha creado correctamente.
       destroy:
         successfully: La acción de desarrollo "%{name}" se ha eliminado correctamente.
+      development_action_types:
+        course: Curso
+        default: Por defecto
       edit:
         header: Editar acción de desarrollo
       export:
@@ -1704,11 +1704,11 @@ es-ES:
       export_global_development_actions: Acciones globales de desarrollo
       export_global_development_actions_translations: Traducciones de Global Development Action
       form:
-        category: Categoría
         client_placeholder: Seleccione un cliente
         course_image: Imagen del curso
         course_link: Enlace al curso
         description: Descripción
+        development_action_type: Tipo de acción de desarrollo
         end_date: Fecha final
         learning_style: Estilo de aprendizaje
         name: Nombre
@@ -3312,8 +3312,8 @@ es-ES:
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'debe ser uno de los siguientes: true, false'
-          invalid_category: Debe ser una categoría válida
           invalid_global_value: 'debe ser uno de los siguientes: true, false'
+          invalid_skill_type: Debe ser una categoría válida
           query_too_short: es obligatorio y debe pertenecer a más de 3 caracteres
       export:
         details: Detalles
@@ -3326,11 +3326,11 @@ es-ES:
         skills_title: Exportación
         skills_translations_title: Exportación Traducciones especializadas
       form:
-        category: Categoría
         client_placeholder: Seleccione un cliente
         description: Descripción
         name: Nombre
         project_placeholder: Seleccione un proyecto
+        skill_type: Tipo de habilidad
         title: Habilidad
       global: "¿Es Global Skill?"
       global_skills: Habilidades globales

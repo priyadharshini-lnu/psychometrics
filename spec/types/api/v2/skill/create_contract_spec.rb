@@ -10,9 +10,8 @@ RSpec.describe Api::V2::Skill::CreateContract do
       'skills',
       {
         name: 'Skill Name',
-        category: 'Skill Category',
-        description: 'Skill Description',
-        default_language: 'en'
+        skill_type: 'Skill Type',
+        description: 'Skill Description'
       },
       { project: { id: project.id.to_s, type: 'projects' } }
     )

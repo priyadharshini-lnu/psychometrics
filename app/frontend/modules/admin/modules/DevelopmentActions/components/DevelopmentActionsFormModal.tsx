@@ -18,7 +18,7 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { getFormDataForFiles } from '~/utils/formData'
 import {
   uploadFiles,
-  DevelopmentActionCategory,
+  DevelopmentActionType,
   DevelopmentActionLearningStyle,
 } from '~/modules/admin/modules/client/core/developmentAction'
 
@@ -40,8 +40,6 @@ type ImageFile = {
 }
 
 const { I18n } = window
-
-const { availableLocales } = I18n
 
 export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmentAction }) => {
   const { resource } = useResourceContext<DevelopmentAction>()
@@ -128,7 +126,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     })
   }, 300)
 
-  const category = Form.useWatch('category', form)
+  const developmentActionType = Form.useWatch('developmentActionType', form)
 
   const imageField = Form.useWatch('image', form)
 
@@ -306,13 +304,12 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       formProps={{
         initialValues: {
           ...developmentAction,
-          category: developmentAction?.category,
+          developmentActionType: developmentAction?.developmentActionType,
           learning_style: developmentAction?.learningStyle,
           course_url: developmentAction?.courseUrl ?? '',
           course_start_date: developmentAction?.courseStartDate ? dayjs(developmentAction.courseStartDate) : null,
           course_end_date: developmentAction?.courseEndDate ? dayjs(developmentAction.courseEndDate) : null,
           image: developmentAction?.image,
-          defaultLanguage: developmentAction?.defaultLanguage || 'en',
         },
       }}
     >
@@ -352,19 +349,19 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
             </>
           )}
           <Form.Item
-            name="category"
-            label={I18n.t('administration.development_actions.form.category')}
+            name="developmentActionType"
+            label={I18n.t('administration.development_actions.form.development_action_type')}
             rules={[
               { required: true },
             ]}
           >
             <Select>
               {
-                Object.keys(DevelopmentActionCategory)
-                  .map(category => (
-                    <Option key={category} value={category}>
+                Object.keys(DevelopmentActionType)
+                  .map(developmentActionType => (
+                    <Option key={developmentActionType} value={developmentActionType}>
                       {I18n.t(
-                        `administration.development_actions.categories.${category}`,
+                        `administration.development_actions.development_action_types.${developmentActionType}`,
                       )}
                     </Option>
                   ))
@@ -373,7 +370,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           </Form.Item>
 
           {
-            category === DevelopmentActionCategory.course
+            developmentActionType === DevelopmentActionType.course
               ? (
                 <>
                   <Form.Item name="image" label={I18n.t('administration.development_actions.form.course_image')}>
@@ -446,16 +443,6 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                     </Option>
                   ))
               }
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="defaultLanguage"
-            label={I18n.t('common.column.default_language')}
-          >
-            <Select>
-              {availableLocales.map(locale => (
-                <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
-              ))}
             </Select>
           </Form.Item>
           <Form.Item

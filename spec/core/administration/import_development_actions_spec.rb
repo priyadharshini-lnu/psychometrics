@@ -39,7 +39,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         expect(form).not_to be_valid
         expect(form.errors[:base]).to include(
           I18n.t('administration.development_action_import.errors.missing_columns',
-                 fields: 'SkillID, Type, Category')
+                 fields: 'SkillID, Type, DevelopmentActionType')
         )
       end
     end
@@ -49,7 +49,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         allow(CSVSafe).to receive(:read).with(csv_file.path, encoding: 'bom|utf-8').and_return(
           [
             [
-              'ID', 'SkillID', 'Name', 'Description', 'Type', 'Category',
+              'ID', 'SkillID', 'Name', 'Description', 'Type', 'DevelopmentActionType',
               'CourseURL', 'CourseStartDate', 'CourseEndDate'
             ],
             [
@@ -109,7 +109,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate,CourseImage
               1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31,#{image_url}
             CSV
           )
@@ -131,7 +131,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         expect(development_action.description).to eq('Attend workshop')
         expect(development_action.learning_style).to eq('structured_learning')
         expect(development_action.course_url).to eq('https://example.com/course')
-        expect(development_action.category).to eq('course')
+        expect(development_action.development_action_type).to eq('course')
         expect(development_action.project_id).to eq(project.id)
 
         # Compare dates using to_date to avoid time zone issues
@@ -150,7 +150,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
               1,#{project_skill.id},Project Skill Workshop,Attend workshop,structured_learning,default,https://example.com/course,2025-01-01,2025-12-31
             CSV
           )
@@ -161,7 +161,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         development_action = DevelopmentAction.last
         expect(development_action.skills).to include(project_skill)
         expect(development_action.project_id).to eq(project.id)
-        expect(development_action.category).to eq('default')
+        expect(development_action.development_action_type).to eq('default')
       end
     end
 
@@ -172,7 +172,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate,CourseImage
               1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31,invalid-url
             CSV
           )
@@ -193,7 +193,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
               1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,invalid-date,2025-12-31
             CSV
           )
@@ -214,7 +214,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
               1,999999,Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
             CSV
           )

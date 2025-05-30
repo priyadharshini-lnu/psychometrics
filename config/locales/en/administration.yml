@@ -1691,9 +1691,9 @@ en:
         blank_field: 'Row %{row}: %{field} cannot be blank'
         csv_file_required: Must be a CSV file
         image_download_failed: 'Failed to download image from %{url}: %{message}'
-        invalid_category: 'Row %{row}: Invalid category ''%{value}''. Valid categories are: %{valid_categories}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
         invalid_date_format: 'Invalid date format: %{date}'
+        invalid_development_action_type: 'Řádek %{row}: Neplatný typ vývojové akce ''%{value}''. Platné typy akcí vývoje jsou: %{valid_development_action_types}'
         invalid_image_file: 'Invalid image file: %{message}'
         invalid_image_url: 'Invalid image URL format: %{url}'
         invalid_learning_style: 'Row %{row}: Invalid learning style ''%{value}''. Valid types are: %{valid_types}'
@@ -1713,13 +1713,13 @@ en:
           missing_columns: 'Missing required columns: %{fields}'
           save_failed: 'Failed to save: %{message}'
     development_actions:
-      categories:
-        course: Course
-        default: Default
       create:
         successfully: Development Action "%{name}" was created successfully.
       destroy:
         successfully: Development Action "%{name}" was deleted successfully.
+      development_action_types:
+        course: Course
+        default: Default
       edit:
         header: Edit Development Action
       export:
@@ -1738,11 +1738,11 @@ en:
       export_global_development_actions: Global Development Actions
       export_global_development_actions_translations: Global Development Action Translations
       form:
-        category: Category
         client_placeholder: Select a Client
         course_image: Course Image
         course_link: Course Link
         description: Description
+        development_action_type: Development Action Type
         end_date: End Date
         learning_style: Learning Style
         name: Name
@@ -3425,6 +3425,8 @@ en:
         rows: Rows
         settings: Settings
     skills:
+      columns:
+        skill_type: Skill Type
       errors:
         import:
           missing_fields_data: 'Line %{line_number}: Missing required fields: %{fields}'
@@ -3432,8 +3434,8 @@ en:
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
-          invalid_category: Must be a valid category
           invalid_global_value: 'must be one of: true, false'
+          invalid_skill_type: Must be a valid skill type
           query_too_short: is required and must belonger than 3 characters
       export:
         details: Details
@@ -3446,11 +3448,11 @@ en:
         skills_title: Export Skills
         skills_translations_title: Export Skills Translations
       form:
-        category: Category
         client_placeholder: Select a Client
         description: Description
         name: Name
         project_placeholder: Select a Project
+        skill_type: Skill Type
         title: Skill
       global: Is Global Skill?
       global_skills: Global Skills

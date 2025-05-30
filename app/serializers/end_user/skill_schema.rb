@@ -8,7 +8,7 @@ module EndUser
 
         required(:id).filled(:integer)
         required(:name).filled(:string)
-        required(:category).filled(:string)
+        required(:skill_type).filled(:string)
       end
     end
   end

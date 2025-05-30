@@ -23,7 +23,7 @@ class EndUser::UserIdpSkillsController < ApplicationController
             skills,
             each_serializer: ::EndUser::UserIdpSkillSerializer
           ).to_a,
-          category: skills_form.category
+          skill_type: skills_form.skill_type
         }
       end
       on(:error) do |form|
@@ -51,7 +51,7 @@ class EndUser::UserIdpSkillsController < ApplicationController
   end
 
   def skills_params
-    params.permit(:category, skills: %i[skill_id])
+    params.permit(:skill_type, skills: %i[skill_id])
   end
 
   def update_params

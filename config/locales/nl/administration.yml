@@ -1661,9 +1661,9 @@ nl:
         blank_field: 'Rij %{row}: %{field} kan niet leeg zijn'
         csv_file_required: Moet een CSV-bestand zijn
         image_download_failed: 'Downloaden van afbeelding van %{url} mislukt: %{message}'
-        invalid_category: 'Rij %{rij}: Ongeldige categorie ''%{waarde}''. Geldige categorieën zijn: %{geldige_categorieën}'
         invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
         invalid_date_format: 'Ongeldig datumformaat: %{datum}'
+        invalid_development_action_type: 'Rij %{row}: Ongeldig type ontwikkelingsactie ''%{value}''. Geldige typen ontwikkelingsacties zijn: %{valid_development_action_types}'
         invalid_image_file: 'Ongeldig afbeeldingsbestand: %{message}'
         invalid_image_url: 'Ongeldig URL-formaat voor afbeelding: %{url}'
         invalid_learning_style: 'Rij %{row}: Ongeldige leerstijl ''%{value}''. Geldige types zijn: %{valid_types}'
@@ -1681,13 +1681,13 @@ nl:
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
           save_failed: Opslaan mislukt
     development_actions:
-      categories:
-        course: Cursus
-        default: Standaard
       create:
         successfully: Ontwikkelactie "%{naam}" is succesvol aangemaakt.
       destroy:
         successfully: Ontwikkelactie "%{naam}" is succesvol verwijderd.
+      development_action_types:
+        course: Cursus
+        default: Standaard
       edit:
         header: Bewerken Ontwikkelingsactie
       export:
@@ -1704,11 +1704,11 @@ nl:
       export_global_development_actions: Wereldwijde ontwikkelingsacties
       export_global_development_actions_translations: Global Development Action Vertalingen
       form:
-        category: Categorie
         client_placeholder: Selecteer een klant
         course_image: Cursusbeeld
         course_link: Cursuslink
         description: Beschrijving
+        development_action_type: Type ontwikkelingsactie
         end_date: Einddatum
         learning_style: Leerstijl
         name: Naam
@@ -3314,8 +3314,8 @@ nl:
         search:
           all_and_project_id_mutually_exclusive: Alles kan niet waar zijn als project_id_eq is opgegeven
           invalid_all_value: 'moet een van de volgende zijn: waar, onwaar'
-          invalid_category: Moet een geldige categorie zijn
           invalid_global_value: 'moet een van de volgende zijn: waar, onwaar'
+          invalid_skill_type: Moet een geldige categorie zijn
           query_too_short: is vereist en moet meer dan 3 karakters bevatten
       export:
         details: Details
@@ -3328,11 +3328,11 @@ nl:
         skills_title: Exportvaardigheden
         skills_translations_title: Exportvaardigheden Vertalingen
       form:
-        category: Categorie
         client_placeholder: Selecteer een klant
         description: Beschrijving
         name: Naam
         project_placeholder: Selecteer een project
+        skill_type: Vaardigheidstype
         title: Vaardigheid
       global: Is globale vaardigheid?
       global_skills: Wereldwijde vaardigheden

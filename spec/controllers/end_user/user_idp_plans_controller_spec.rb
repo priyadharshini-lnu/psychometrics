@@ -7,9 +7,9 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
   let(:campaign) { create(:campaign) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, campaign: campaign) }
-  let(:behavioral_skill) { create(:skill, category: :behavioral) }
-  let(:technical_skill) { create(:skill, category: :technical) }
-  let(:other_skill) { create(:skill, category: :other) }
+  let(:behavioral_skill) { create(:skill, skill_type: :behavioral) }
+  let(:technical_skill) { create(:skill, skill_type: :technical) }
+  let(:other_skill) { create(:skill, skill_type: :other) }
   let(:structured_learning) { create(:development_action, learning_style: :structured_learning) }
   let(:learning_from_others) { create(:development_action, learning_style: :learning_from_others) }
   let(:on_the_job) { create(:development_action, learning_style: :on_the_job) }
@@ -42,11 +42,14 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
       parsed_result = response.parsed_body
 
       expect(parsed_result).to eq({
-        'skills_by_category_count' => { 'behavioral' => 1, 'technical' => 2, 'other' => 1 },
+        'skills_by_skill_type_count' => { 'behavioral' => 1, 'technical' => 2, 'other' => 1 },
         'development_actions_by_learning_style_count' => { 'structured_learning' => 1, 'learning_from_others' => 1,
                                                            'on_the_job' => 2 },
-        'skill_progress_by_category' => { 'behavioral' => 30.0, 'technical' => 35.0,
-                                          'other' => 90.0 }
+        'skill_progress_by_skill_type' => {
+          'behavioral' => 30.0,
+          'technical' => 35.0,
+          'other' => 90.0
+        }
       })
     end
   end

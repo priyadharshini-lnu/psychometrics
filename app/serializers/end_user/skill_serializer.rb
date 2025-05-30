@@ -2,6 +2,6 @@
 
 module EndUser
   class SkillSerializer < Panko::Serializer
-    attributes :id, :name, :category
+    attributes :id, :name, :skill_type
   end
 end

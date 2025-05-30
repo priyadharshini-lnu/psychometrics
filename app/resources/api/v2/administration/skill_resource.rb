@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseResource
-  attributes :name, :description, :category, :created_at, :updated_at, :project_id, :tag_list, :global,
-             :default_language
+  attributes :name, :description, :skill_type, :created_at, :updated_at, :project_id, :tag_list, :global
 
   has_one :project
 
@@ -40,5 +39,5 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     super + %i[project.name]
   end
 
-  ransack_filters %i[name_cont category_in project_id_eq global all_skills filterable_fields]
+  ransack_filters %i[name_cont skill_type_in project_id_eq global all_skills filterable_fields]
 end

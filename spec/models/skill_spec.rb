@@ -11,7 +11,7 @@ RSpec.describe Skill, type: :model do
   it { should have_many(:development_actions).through(:skills_development_actions) }
 
   # Enum tests
-  it { should define_enum_for(:category).with_values(behavioral: 0, technical: 1, other: 2) }
+  it { should define_enum_for(:skill_type).with_values(behavioral: 0, technical: 1, other: 2) }
 
   # Translation tests
   describe 'translations' do
@@ -70,7 +70,7 @@ RSpec.describe Skill, type: :model do
   # Ransack configuration tests
   describe 'ransackable attributes' do
     it 'returns the allowed ransackable attributes' do
-      expect(described_class.ransackable_attributes).to match_array(%w[id name category project_id])
+      expect(described_class.ransackable_attributes).to match_array(%w[id name skill_type project_id])
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe Skill, type: :model do
   describe 'ransackable scopes' do
     it 'returns the allowed ransackable scopes' do
       expect(described_class.ransackable_scopes).
-        to match_array(%w[all_skills by_project filter_by_category global filterable_fields])
+        to match_array(%w[all_skills by_project filter_by_skill_type global filterable_fields])
     end
   end
 

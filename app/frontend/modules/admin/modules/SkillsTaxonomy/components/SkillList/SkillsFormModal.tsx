@@ -13,7 +13,7 @@ import { convertEnumToObject } from '~/utils/object'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
-import { SkillCategoryEnum } from '../../constants'
+import { SkillTypeEnum } from '../../constants'
 
 const { Option } = Select
 
@@ -37,7 +37,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
   const {
     data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
   } = useResources<Client>('clients')
-  const { availableLocales } = I18n
 
   const {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
@@ -185,7 +184,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       transformValues={transformValues}
       formProps={{
         initialValues: {
-          category: SkillCategoryEnum.Behavioral,
+          skillType: SkillTypeEnum.Behavioral,
         },
       }}
     >
@@ -222,28 +221,17 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
             </>
           )}
           <Form.Item
-            name="category"
-            label={I18n.t('administration.skills.form.category')}
+            name="SkillType"
+            label={I18n.t('administration.skills.form.skill_type')}
           >
             <Select
               filterOption={false}
             >
               {
-                Object.values(convertEnumToObject(SkillCategoryEnum)).map(([key, value]) => (
+                Object.values(convertEnumToObject(SkillTypeEnum)).map(([key, value]) => (
                   <Option key={value} value={value}>{key}</Option>
                 ))
               }
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="defaultLanguage"
-            label={I18n.t('common.column.default_language')}
-            initialValue="en"
-          >
-            <Select>
-              {availableLocales.map(locale => (
-                <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
-              ))}
             </Select>
           </Form.Item>
           <Form.Item

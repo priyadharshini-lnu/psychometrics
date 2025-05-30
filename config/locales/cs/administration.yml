@@ -1661,9 +1661,9 @@ cs:
         blank_field: 'Řádek %{řádek}: %{pole} nemůže být prázdné'
         csv_file_required: Musí to být soubor CSV
         image_download_failed: 'Nepodařilo se stáhnout obrázek z %{url}: %{message}'
-        invalid_category: 'Řádek %{řádek}: Neplatná kategorie ''%{hodnota}''. Platné kategorie jsou: %{valid_categories}'
         invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
         invalid_date_format: 'Nesprávný formát data: %{date}'
+        invalid_development_action_type: 'Řádek %{řádek}: Neplatná kategorie ''%{hodnota}''. Platné kategorie jsou: %{valid_categories}'
         invalid_image_file: 'Neplatný soubor obrázku: %{zpráva}'
         invalid_image_url: 'Nesprávný formát adresy URL obrázku: %{url}'
         invalid_learning_style: 'Řádek %{řádek}: Neplatný styl učení ''%{hodnota}''. Platné typy jsou: %{valid_types}'
@@ -1681,13 +1681,13 @@ cs:
           missing_columns: 'Chybějící povinné sloupce: %{pole}'
           save_failed: Uložení se nezdařilo
     development_actions:
-      categories:
-        course: Kurz
-        default: Výchozí
       create:
         successfully: Vývojová akce "%{název}" byla úspěšně vytvořena.
       destroy:
         successfully: Vývojová akce "%{název}" byla úspěšně odstraněna.
+      development_action_types:
+        course: Kurz
+        default: Výchozí
       edit:
         header: Upravit vývoj Akce
       export:
@@ -1704,11 +1704,11 @@ cs:
       export_global_development_actions: Globální rozvojové akce
       export_global_development_actions_translations: Překlady globální rozvojové akce
       form:
-        category: Kategorie
         client_placeholder: Výběr klienta
         course_image: Obrázek kurzu
         course_link: Odkaz na kurz
         description: Popis
+        development_action_type: Typ rozvojové akce
         end_date: Datum ukončení
         learning_style: Styl učení
         name: Název
@@ -3314,8 +3314,8 @@ cs:
         search:
           all_and_project_id_mutually_exclusive: Vše nemůže být pravda, pokud je zadáno project_id_eq
           invalid_all_value: 'musí být jedna z následujících hodnot: true, false'
-          invalid_category: Musí se jednat o platnou kategorii
           invalid_global_value: 'musí být jedna z následujících hodnot: true, false'
+          invalid_skill_type: Musí se jednat o platnou kategorii
           query_too_short: je povinný a musí obsahovat více než 3 znaky
       export:
         details: Podrobnosti na
@@ -3328,11 +3328,11 @@ cs:
         skills_title: Exportní dovednosti
         skills_translations_title: Exportní dovednosti Překlady
       form:
-        category: Kategorie
         client_placeholder: Výběr klienta
         description: Popis
         name: Název
         project_placeholder: Výběr projektu
+        skill_type: Typ dovednosti
         title: Dovednost
       global: Je globální dovednost?
       global_skills: Globální dovednosti

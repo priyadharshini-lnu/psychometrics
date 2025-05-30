@@ -8,7 +8,7 @@ module EndUser
     delegate :name, to: :skill
 
     def skill_category
-      object.skill.category
+      object.skill.skill_type
     end
   end
 end

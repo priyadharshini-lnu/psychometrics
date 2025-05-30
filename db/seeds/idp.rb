@@ -20,7 +20,7 @@ ApplicationRecord.transaction do
     owner: client,
     name: 'Development Action 2',
     description: 'Development Action 2 Description',
-    category: :online_course,
+    development_action_type: :online_course,
     course_provider: 'Coursera',
     course_url: 'https://www.coursera.org/professional-certificates/ibm-data-analyst'
   )
@@ -30,7 +30,7 @@ ApplicationRecord.transaction do
     owner: client,
     name: 'Development Action 4',
     description: 'Development Action 4 Description',
-    category: :online_course,
+    development_action_type: :online_course,
     course_provider: 'Coursera',
     course_url: 'https://www.coursera.org/professional-certificates/ibm-data-analyst'
   )

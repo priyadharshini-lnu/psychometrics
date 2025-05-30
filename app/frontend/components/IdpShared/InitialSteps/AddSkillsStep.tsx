@@ -55,8 +55,8 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
               )
               return (
                 <SkillsGroupCard
-                  key={skillCategory.category}
-                  skillCategory={{ category: skillCategory.category, skills: skillsAvailableForSelection }}
+                  key={skillCategory.skillType}
+                  skillCategory={{ skillType: skillCategory.skillType, skills: skillsAvailableForSelection }}
                   onAddSkill={onAddSkill}
                   onRemoveSkill={onDeselectSkill}
                   selectedSkills={selectedSkills}

@@ -174,11 +174,11 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
       ) : null}
       <Flex vertical gap={12}>
         {categories.map(category => (
-          <BoxWithShadow key={category.category} className={`${styles.p_16} ${styles.mt_8}`}>
+          <BoxWithShadow key={category.skillType} className={`${styles.p_16} ${styles.mt_8}`}>
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
-                <Avatar size={24} src={renderSkillCategoryIcon(category.category)} />
-                <h3 className={styles.h3}>{category.category}</h3>
+                <Avatar size={24} src={renderSkillCategoryIcon(category.skillType)} />
+                <h3 className={styles.h3}>{category.skillType}</h3>
               </Flex>
               <Flex gap={12} vertical>
                 {renderCards(category.skills)}

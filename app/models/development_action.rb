@@ -15,7 +15,7 @@ class DevelopmentAction < ApplicationRecord
 
   scope :global, ->(_value = nil) { where(project_id: nil) }
 
-  enum :category, {
+  enum :development_action_type, {
     course: 0,
     default: 1
   }
@@ -37,7 +37,7 @@ class DevelopmentAction < ApplicationRecord
   validate :validate_end_date_after_start_date,
            if: -> { course? && course_start_date.present? && course_end_date.present? }
 
-  before_save :clear_course_data, if: -> { category_changed? && default? }
+  before_save :clear_course_data, if: -> { development_action_type_changed? && default? }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[name]
@@ -51,9 +51,9 @@ class DevelopmentAction < ApplicationRecord
     %w[global]
   end
 
-  # Add helper method to get human readable category names
-  def self.category_options
-    categories.map do |key, _value|
+  # Add helper method to get human readable development_action_type names
+  def self.development_action_type_options
+    development_action_types.map do |key, _value|
       [key.humanize, key]
     end
   end

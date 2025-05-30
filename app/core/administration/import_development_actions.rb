@@ -2,7 +2,7 @@
 
 module Administration
   class ImportDevelopmentActions < BaseCommand
-    REQUIRED_FIELDS = %w[SkillID Name Description Type Category].freeze
+    REQUIRED_FIELDS = %w[SkillID Name Description Type DevelopmentActionType].freeze
     OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
 
     def initialize(file, project_id)
@@ -66,7 +66,7 @@ module Administration
       development_action.assign_attributes(
         project_id: @project_id,
         learning_style: row_data['Type'].downcase,
-        category: row_data['Category'].downcase
+        development_action_type: row_data['DevelopmentActionType'].downcase
       )
 
       development_action.skills << skill unless skill_ids.include?(skill.id)

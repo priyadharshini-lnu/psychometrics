@@ -16,7 +16,7 @@ RSpec.describe Administration::ImportSkills do
   let(:skill) { create(:skill, project: project) }
   let(:csv) do
     [
-      ['ID', 'Name', 'Description', 'Category', 'Tag'],
+      ['ID', 'Name', 'Description', 'SkillType', 'Tag'],
       [skill.id, 'Skill 1', 'Description 1', 'behavioral', 'tag1,tag2'],
       [nil, 'Skill 2', 'Description 2', 'technical', 'tag3']
     ]
@@ -100,19 +100,19 @@ RSpec.describe Administration::ImportSkills do
       end
     end
 
-    context 'with categories' do
-      it 'imports skills with correct categories' do
+    context 'with skill_types' do
+      it 'imports skills with correct skill_types' do
         csv[3] = ['', 'Other Skill', 'Description 3', 'other', 'tag3']
         csv[4] = ['', 'Invalid Cat', 'Description 5', 'invalid_category', 'tag5']
         csv[5] = ['', 'Default Skill', 'Description 4', '', 'tag4']
         result = described_class.new(file, project.id).call
         expect(result).to eq true
 
-        expect(Skill.find_by(name: 'Skill 1').category).to eq('behavioral')
-        expect(Skill.find_by(name: 'Skill 2').category).to eq('technical')
-        expect(Skill.find_by(name: 'Other Skill').category).to eq('other')
-        expect(Skill.find_by(name: 'Default Skill').category).to eq('other')
-        expect(Skill.find_by(name: 'Invalid Cat').category).to eq('other')
+        expect(Skill.find_by(name: 'Skill 1').skill_type).to eq('behavioral')
+        expect(Skill.find_by(name: 'Skill 2').skill_type).to eq('technical')
+        expect(Skill.find_by(name: 'Other Skill').skill_type).to eq('other')
+        expect(Skill.find_by(name: 'Default Skill').skill_type).to eq('other')
+        expect(Skill.find_by(name: 'Invalid Cat').skill_type).to eq('other')
       end
     end
 
@@ -154,7 +154,7 @@ RSpec.describe Administration::ImportSkills do
         expect(skill).to be_present
         expect(skill.project).to be_nil
         expect(skill.description).to eq('Description 2')
-        expect(skill.category).to eq('technical')
+        expect(skill.skill_type).to eq('technical')
         expect(skill.tag_list).to match_array(['tag3'])
       end
     end
@@ -165,7 +165,7 @@ RSpec.describe Administration::ImportSkills do
       before do
         allow(CsvFileParser).to receive(:call!).with(file).and_return(
           [
-            ['ID', 'Name', 'Description', 'Category', 'Tag'],
+            ['ID', 'Name', 'Description', 'SkillType', 'Tag'],
             [nil, 'Project Skill', 'Project Description', 'behavioral', 'tag1']
           ]
         )
@@ -179,7 +179,7 @@ RSpec.describe Administration::ImportSkills do
         # Change the skill name to avoid uniqueness constraint
         allow(CsvFileParser).to receive(:call!).with(file).and_return(
           [
-            ['ID', 'Name', 'Description', 'Category', 'Tag'],
+            ['ID', 'Name', 'Description', 'SkillType', 'Tag'],
             [nil, 'Another Project Skill', 'Another Project Description', 'technical', 'tag2']
           ]
         )

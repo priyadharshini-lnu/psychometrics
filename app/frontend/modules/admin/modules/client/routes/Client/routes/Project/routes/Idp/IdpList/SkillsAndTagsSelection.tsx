@@ -22,13 +22,13 @@ export const SkillsOption = {
 
 type filterType = {
     name_cont: string,
-    category_in:string,
+    skill_type_in:string,
     project_id_eq?: string,
     global?: string
 }
 
 type Props = {
-  category: 'behavioral' | 'technical',
+  skillType: 'behavioral' | 'technical',
   type: 'Global' | 'Client',
   projectId?: string,
   form: FormInstance,
@@ -36,19 +36,19 @@ type Props = {
 }
 
 const SkillsAndTagsSelection = ({
-  category, type, projectId, form, categorizedSkills,
+  skillType, type, projectId, form, categorizedSkills,
 }:Props) => {
   const { fetch: fetchSkillsTag, data: skillsByTagSearchData } = useResources<Skill>('tags_search',
     { basePath: 'skills' })
   const { fetch: fetchSpecificSkills, data: specificSkillsSearchData } = useResources<Skill>('skills')
-  const settingPrefix = `${category}${type}`
+  const settingPrefix = `${skillType}${type}`
   const nameSkillsOption = `${settingPrefix}SkillSettings`
   const selectedSkillOption = Form.useWatch(nameSkillsOption, form)
   const searchSkillsHandler = useCallback(
     debounce((query, isSpecific) => {
       const filter: filterType = {
         name_cont: query,
-        category_in: category,
+        skill_type_in: skillType,
       }
 
       if (projectId) {
@@ -59,7 +59,7 @@ const SkillsAndTagsSelection = ({
       if (query.length < 3) return
       isSpecific ? fetchSpecificSkills({ apiConfig: { filter } }) : fetchSkillsTag({ apiConfig: { filter } })
     }, 300),
-    [category],
+    [skillType],
   )
 
   const skills = categorizedSkills ? (specificSkillsSearchData || [])

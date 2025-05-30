@@ -1661,9 +1661,9 @@ ja:
         blank_field: '行 %{row}: %{field} は空白にできません。'
         csv_file_required: CSVファイルであること
         image_download_failed: url}からの画像のダウンロードに失敗しました。
-        invalid_category: '行 %{row}: 無効なカテゴリ ''%{値}'' です。 有効なカテゴリは %{valid_categories} です。'
         invalid_csv_format: '無効な CSV 形式: %{message} です。'
         invalid_date_format: '無効な日付形式: %{date}'
+        invalid_development_action_type: '行 %{row}: 開発アクションタイプ ''%{value}'' が無効です。有効な開発アクションタイプは次のとおりです: %{valid_development_action_types}'
         invalid_image_file: 無効な画像ファイルです。
         invalid_image_url: '無効な画像URLフォーマット: %{url}'
         invalid_learning_style: '行 %{row}: 無効な学習スタイル ''%{value}'' です。 有効なタイプは %{valid_types} です。'
@@ -1681,13 +1681,13 @@ ja:
           missing_columns: '必須列がありません: %{fields}.'
           save_failed: 保存に失敗
     development_actions:
-      categories:
-        course: コース
-        default: デフォルト
       create:
         successfully: 開発アクション "%{name}" が正常に作成されました。
       destroy:
         successfully: 開発アクション "%{name}" は正常に削除されました。
+      development_action_types:
+        course: コース
+        default: デフォルト
       edit:
         header: 編集開発アクション
       export:
@@ -1704,11 +1704,11 @@ ja:
       export_global_development_actions: グローバル開発アクション
       export_global_development_actions_translations: グローバル開発アクションの翻訳
       form:
-        category: カテゴリー
         client_placeholder: クライアントの選択
         course_image: コースイメージ
         course_link: コースリンク
         description: 説明
+        development_action_type: 開発アクションのタイプ
         end_date: 終了日
         learning_style: 学習スタイル
         name: 名称
@@ -3314,8 +3314,8 @@ ja:
         search:
           all_and_project_id_mutually_exclusive: project_id_eqが指定された場合、すべてがtrueになる。
           invalid_all_value: true、falseのいずれかでなければならない。
-          invalid_category: 有効なカテゴリーであること
           invalid_global_value: true、falseのいずれかでなければならない。
+          invalid_skill_type: 有効なカテゴリーであること
           query_too_short: は必須で、3文字以上でなければならない。
       export:
         details: 詳細
@@ -3328,11 +3328,11 @@ ja:
         skills_title: 輸出スキル
         skills_translations_title: 輸出技能翻訳
       form:
-        category: カテゴリー
         client_placeholder: クライアントの選択
         description: 説明
         name: 名称
         project_placeholder: プロジェクトを選択する
+        skill_type: スキルタイプ
         title: スキル
       global: グローバル・スキルとは何か？
       global_skills: グローバル・スキル

@@ -179,11 +179,11 @@ module Api
         def search_params
           s_params = params.require(:filter).permit(
             :project_id_eq,
-            :category_in,
+            :skill_type_in,
             :name_cont
           ).to_h
 
-          s_params[:category_in] = s_params[:category_in]&.split(',')&.map(&:strip)
+          s_params[:skill_type_in] = s_params[:skill_type_in]&.split(',')&.map(&:strip)
 
           s_params
         end

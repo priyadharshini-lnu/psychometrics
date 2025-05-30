@@ -6,9 +6,9 @@ describe DevelopmentPlanSummarySerializer do
   let(:user) { create(:user) }
   let(:campaign) { create(:campaign) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, campaign: campaign) }
-  let(:behavioral_skill) { create(:skill, category: :behavioral) }
-  let(:technical_skill) { create(:skill, category: :technical) }
-  let(:other_skill) { create(:skill, category: :other) }
+  let(:behavioral_skill) { create(:skill, skill_type: :behavioral) }
+  let(:technical_skill) { create(:skill, skill_type: :technical) }
+  let(:other_skill) { create(:skill, skill_type: :other) }
   let(:structured_learning) { create(:development_action, learning_style: :structured_learning) }
   let(:learning_from_others) { create(:development_action, learning_style: :learning_from_others) }
   let(:on_the_job) { create(:development_action, learning_style: :on_the_job) }
@@ -29,11 +29,11 @@ development_action: on_the_job, progress: 90)
 
   subject(:serializer) { described_class.new(context: {}).serialize(user) }
 
-  describe '#skills_by_category_count' do
-    it 'returns the count of development actions grouped by skills category' do
-      skills_by_category_count = serializer.deep_symbolize_keys[:skills_by_category_count]
+  describe '#skills_by_skill_type_count' do
+    it 'returns the count of development actions grouped by skills skill_type' do
+      skills_by_skill_type_count = serializer.deep_symbolize_keys[:skills_by_skill_type_count]
 
-      expect(skills_by_category_count).to eq(
+      expect(skills_by_skill_type_count).to eq(
         behavioral: 1,
         technical: 2,
         other: 1
@@ -53,11 +53,11 @@ development_action: on_the_job, progress: 90)
     end
   end
 
-  describe '#skill_progress_by_category' do
-    it 'returns the avarage progress of development actions grouped by skills category' do
-      skill_progress_by_category = serializer.deep_symbolize_keys[:skill_progress_by_category]
+  describe '#skill_progress_by_skill_type' do
+    it 'returns the avarage progress of development actions grouped by skills skill_type' do
+      skill_progress_by_skill_type = serializer.deep_symbolize_keys[:skill_progress_by_skill_type]
 
-      expect(skill_progress_by_category).to eq(
+      expect(skill_progress_by_skill_type).to eq(
         behavioral: 30.0,
         technical: 35.0,
         other: 90.0

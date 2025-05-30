@@ -2255,7 +2255,7 @@ ALTER SEQUENCE public.development_action_translations_id_seq OWNED BY public.dev
 
 CREATE TABLE public.development_actions (
     id bigint NOT NULL,
-    category integer DEFAULT 0 NOT NULL,
+    development_action_type integer DEFAULT 0 NOT NULL,
     learning_style integer DEFAULT 0 NOT NULL,
     name character varying NOT NULL,
     description character varying NOT NULL,
@@ -2266,8 +2266,7 @@ CREATE TABLE public.development_actions (
     image character varying,
     course_start_date timestamp(6) without time zone,
     course_end_date timestamp(6) without time zone,
-    project_id bigint,
-    default_language character varying DEFAULT 'en'::character varying NOT NULL
+    project_id bigint
 );
 
 
@@ -5436,11 +5435,10 @@ CREATE TABLE public.skills (
     id bigint NOT NULL,
     name character varying NOT NULL,
     description character varying NOT NULL,
-    category integer DEFAULT 0 NOT NULL,
+    skill_type integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    project_id bigint,
-    default_language character varying DEFAULT 'en'::character varying NOT NULL
+    project_id bigint
 );
 
 
@@ -15980,7 +15978,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250522122128'),
 ('20250522061329'),
+('20250521193031'),
 ('20250519045905'),
 ('20250516082303'),
 ('20250514075923'),
@@ -15999,9 +15999,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250415070851'),
 ('20250415064739'),
 ('20250411120337'),
+('20250411062532'),
 ('20250410170845'),
 ('20250410065159'),
-('20250411062532'),
 ('20250404115157'),
 ('20250326104351'),
 ('20250324124118'),
@@ -16791,3 +16791,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

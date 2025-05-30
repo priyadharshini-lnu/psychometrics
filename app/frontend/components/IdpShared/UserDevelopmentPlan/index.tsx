@@ -67,7 +67,7 @@ type Props = PropsFromRedux & {
 }
 
 const emptySkillCategory = {
-  category: '',
+  skillType: '',
   skills: [],
 }
 
@@ -135,10 +135,10 @@ const UserDevelopmentPlanComponent = ({
   useEffect(() => {
     if (showAddSkill) {
       fetchIdpSkills({
-        filterByCategory: pickedCategoryToAddMoreSkills?.category,
+        filterByCategory: pickedCategoryToAddMoreSkills?.skillType,
       }).then(({ response }) => {
         setSkillCategory({
-          category: pickedCategoryToAddMoreSkills?.category || '',
+          skillType: pickedCategoryToAddMoreSkills?.skillType || '',
           skills: response as Skill[],
         })
       })
@@ -162,14 +162,14 @@ const UserDevelopmentPlanComponent = ({
       skillId: skill.id,
     }))
     setPickedCategoryToAddMoreSkills({
-      category: pickedCategoryToAddMoreSkills?.category || '',
+      skillType: pickedCategoryToAddMoreSkills?.skillType || '',
       skills: _.uniqBy([...pickedCategoryToAddMoreSkills?.skills, ...userIdpSkill], 'skillId'),
     })
   }
 
   const handleFinishAddSkill = () => {
     saveUserIdpSkills(
-      pickedCategoryToAddMoreSkills.skills, pickedCategoryToAddMoreSkills.category, idpUserId,
+      pickedCategoryToAddMoreSkills.skills, pickedCategoryToAddMoreSkills.skillType, idpUserId,
     ).then(() => (
       setShowAddSkill(false)
     ))
@@ -177,7 +177,7 @@ const UserDevelopmentPlanComponent = ({
 
   const handleDeselectSkill = (skillId) => {
     setPickedCategoryToAddMoreSkills({
-      category: pickedCategoryToAddMoreSkills?.category || '',
+      skillType: pickedCategoryToAddMoreSkills?.skillType || '',
       skills: pickedCategoryToAddMoreSkills?.skills.filter(
         userIdpSkill => userIdpSkill.skillId !== skillId,
       ),
@@ -226,7 +226,7 @@ const UserDevelopmentPlanComponent = ({
               />
             </Tabs.TabPane>
             <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
-              <DevelopmentActionBoardView categories={boardData} />
+              <DevelopmentActionBoardView developmentActionTypes={boardData} />
             </Tabs.TabPane>
             <Tabs.TabPane tab={I18n.t('idp.reflective_questions.title')} key="reflective_questions">
               <ReflectiveQuestions />

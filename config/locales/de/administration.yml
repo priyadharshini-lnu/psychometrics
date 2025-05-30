@@ -1661,9 +1661,9 @@ de:
         blank_field: 'Zeile %{row}: %{field} kann nicht leer sein'
         csv_file_required: Muss eine CSV-Datei sein
         image_download_failed: 'Herunterladen des Bildes von %{url} fehlgeschlagen: %{Meldung}'
-        invalid_category: 'Zeile %{row}: Ungültige Kategorie ''%{value}''. Gültige Kategorien sind: %{valid_categories}'
         invalid_csv_format: 'Ungültiges CSV-Format: %{Meldung}'
         invalid_date_format: 'Ungültiges Datumsformat: %{date}'
+        invalid_development_action_type: 'Zeile %{row}: Ungültiger Entwicklungsaktionstyp ''%{value}''. Gültige Entwicklungsaktionstypen sind: %{valid_development_action_types}'
         invalid_image_file: 'Ungültige Bilddatei: %{message}'
         invalid_image_url: 'Ungültiges Bild-URL-Format: %{url}'
         invalid_learning_style: 'Zeile %{row}: Ungültiger Lernstil ''%{value}''. Gültige Typen sind: %{valid_types}'
@@ -1681,13 +1681,13 @@ de:
           missing_columns: 'Fehlende erforderliche Spalten: %{fields}'
           save_failed: Speichern fehlgeschlagen
     development_actions:
-      categories:
-        course: Kurs
-        default: Standard
       create:
         successfully: Entwicklungsaktion "%{name}" wurde erfolgreich erstellt.
       destroy:
         successfully: Entwicklungsaktion "%{name}" wurde erfolgreich gelöscht.
+      development_action_types:
+        course: Kurs
+        default: Standard
       edit:
         header: Entwicklung bearbeiten Aktion
       export:
@@ -1704,11 +1704,11 @@ de:
       export_global_development_actions: Globale Entwicklungsmaßnahmen
       export_global_development_actions_translations: Globale Entwicklungsmaßnahmen Übersetzungen
       form:
-        category: Kategorie
         client_placeholder: Wählen Sie einen Kunden
         course_image: Kursbild
         course_link: Link zum Kurs
         description: Beschreibung
+        development_action_type: Entwicklungsaktionstyp
         end_date: Enddatum
         learning_style: Lernstil
         name: Name
@@ -3314,8 +3314,8 @@ de:
         search:
           all_and_project_id_mutually_exclusive: Alle können nicht wahr sein, wenn project_id_eq angegeben wird
           invalid_all_value: 'muss einer der folgenden Werte sein: true, false'
-          invalid_category: Muss eine gültige Kategorie sein
           invalid_global_value: 'muss einer der folgenden Werte sein: true, false'
+          invalid_skill_type: Muss eine gültige Kategorie sein
           query_too_short: ist erforderlich und muss länger als 3 Zeichen sein
       export:
         details: Einzelheiten
@@ -3328,11 +3328,11 @@ de:
         skills_title: Exportfähigkeiten
         skills_translations_title: Exportkompetenzen Übersetzungen
       form:
-        category: Kategorie
         client_placeholder: Wählen Sie einen Kunden
         description: Beschreibung
         name: Name
         project_placeholder: Wählen Sie ein Projekt
+        skill_type: Fähigkeitstyp
         title: Fertigkeit
       global: Ist Global Skill?
       global_skills: Globale Fertigkeiten

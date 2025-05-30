@@ -5,9 +5,9 @@ class DevelopmentPlanSummarySchema < BaseSchema
     Dry::Schema.JSON do
       config.validate_keys = true
 
-      required(:skills_by_category_count).hash do
-        Skill.categories.each_key do |category|
-          optional(category.to_sym).value(:int?)
+      required(:skills_by_skill_type_count).hash do
+        Skill.skill_types.each_key do |skill_type|
+          optional(skill_type.to_sym).value(:int?)
         end
       end
 
@@ -17,9 +17,9 @@ class DevelopmentPlanSummarySchema < BaseSchema
         end
       end
 
-      required(:skill_progress_by_category).hash do
-        Skill.categories.each_key do |category|
-          optional(category.to_sym).value(:float?)
+      required(:skill_progress_by_skill_type).hash do
+        Skill.skill_types.each_key do |skill_type|
+          optional(skill_type.to_sym).value(:float?)
         end
       end
     end

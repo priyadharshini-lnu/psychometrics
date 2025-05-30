@@ -19,7 +19,7 @@ RSpec.describe IdpTemplates::SkillsOrTagsPresenceValidator do
   let(:skills) { [] }
   let(:project_id) { 1 }
   let(:validator) { described_class.new(context, skills, project_id) }
-  let!(:skill) { create(:skill, category: 'behavioral', project_id: nil) }
+  let!(:skill) { create(:skill, skill_type: 'behavioral', project_id: nil) }
 
   describe '#call' do
     context 'when tags are blank and skills are not present' do

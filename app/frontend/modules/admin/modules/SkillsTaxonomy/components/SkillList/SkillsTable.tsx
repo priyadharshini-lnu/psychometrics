@@ -12,7 +12,7 @@ import { getLabelForEnumValue } from '~/utils/object'
 import { Skill } from '~/modules/admin/modules/client/core/skills'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
-import { SkillCategoryEnum } from '../../constants'
+import { SkillTypeEnum } from '../../constants'
 import { ProjectFilter } from '~/components/ProjectFilter'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
@@ -68,10 +68,10 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<Skill>
-        title={I18n.t('common.column.category')}
-        id="category"
+        title={I18n.t('administration.skills.columns.skill_type')}
+        id="skill_type"
         width={200}
-        render={skill => <Typography.Text>{getLabelForEnumValue(SkillCategoryEnum, skill.category)}</Typography.Text>}
+        render={skill => <Typography.Text>{getLabelForEnumValue(SkillTypeEnum, skill.skillType)}</Typography.Text>}
       />
       {!projectId && (
         <Resource.Column<Skill>

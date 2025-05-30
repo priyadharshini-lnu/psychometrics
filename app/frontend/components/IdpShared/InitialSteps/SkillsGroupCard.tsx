@@ -51,7 +51,7 @@ const SkillsGroupCardComponent: FC<Props> = ({
   const handleSearch = _.debounce((value) => {
     setIsSearching(true)
     fetchIdpSkills({
-      filterByCategory: skillCategory.category,
+      filterByCategory: skillCategory.skillType,
       nameCont: value,
     }).then(({ response }) => {
       setIsSearching(false)
@@ -81,13 +81,13 @@ const SkillsGroupCardComponent: FC<Props> = ({
       <Space className={`${styles.heading} w-100`}>
         <Avatar
           size={64}
-          src={renderSkillCategoryIcon(skillCategory.category)}
+          src={renderSkillCategoryIcon(skillCategory.skillType)}
           // API changes not available yet
           // src={skillCategory.iconUrl}
         />
         <div>
           <Title className="mb-0" level={4}>
-            {I18n.t('idp.initial_steps.add_skill_group_title', { category: _.capitalize(skillCategory.category) })}
+            {I18n.t('idp.initial_steps.add_skill_group_title', { category: _.capitalize(skillCategory.skillType) })}
           </Title>
           <Paragraph>
             {/* API changes not available yet */}

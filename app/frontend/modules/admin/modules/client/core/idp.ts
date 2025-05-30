@@ -4,7 +4,7 @@ import { ResourceIdentifierTR } from '~/modules/admin/core/types/resource'
 const SkillTR = t.type({
   id: t.string,
   name: t.union([t.string, t.null, t.undefined]),
-  category: t.union([t.string, t.null, t.undefined]),
+  skillType: t.union([t.string, t.null, t.undefined]),
   projectId: t.union([t.string, t.null, t.undefined]),
 })
 

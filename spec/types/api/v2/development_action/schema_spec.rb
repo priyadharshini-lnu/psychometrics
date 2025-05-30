@@ -19,9 +19,8 @@ RSpec.describe Api::V2::DevelopmentAction::Schema do
           {
             name: '',
             description: '',
-            category: '',
-            learning_style: '',
-            default_language: ''
+            development_action_type: '',
+            learning_style: ''
           }
         )
       )
@@ -29,9 +28,8 @@ RSpec.describe Api::V2::DevelopmentAction::Schema do
       expect(schema).to have_jsonapi_attr_error({
         name: ["can't be blank"],
         description: ["can't be blank"],
-        category: ["can't be blank"],
-        learning_style: ["can't be blank"],
-        default_language: ["can't be blank"]
+        development_action_type: ["can't be blank"],
+        learning_style: ["can't be blank"]
       })
     end
 

@@ -1,4 +1,4 @@
-export enum SkillCategoryEnum {
+export enum SkillTypeEnum {
     Behavioral= 'behavioral',
     Technical= 'technical',
     Other= 'other',

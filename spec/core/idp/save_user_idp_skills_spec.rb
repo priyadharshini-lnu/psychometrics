@@ -4,13 +4,13 @@ require 'rails_helper'
 
 describe Idp::SaveUserIdpSkills do
   let!(:user) { create(:user) }
-  let!(:skill) { create(:skill, name: 'abc', category: 'other') }
-  let!(:skill2) { create(:skill, name: 'abc 2', category: 'other') }
+  let!(:skill) { create(:skill, name: 'abc', skill_type: 'other') }
+  let!(:skill2) { create(:skill, name: 'abc 2', skill_type: 'other') }
   let!(:idp_template) { create(:idp_template) }
   let!(:idp_template_skill) { create(:idp_template_skill, idp_template: idp_template, skill: skill) }
   let!(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
 
-  context 'when category is not present in form' do
+  context 'when skill_type is not present in form' do
     it 'saves selected idp skills' do
       skills_params = [{ 'skill_id' => skill.id }, { 'skill_id' => skill2.id }]
       skills_form = Idp::SaveUserIdpSkillsForm.new(skills: skills_params)
@@ -38,13 +38,13 @@ describe Idp::SaveUserIdpSkills do
     end
   end
 
-  context 'when category is present in form' do
-    let(:technical_skill) { create(:skill, category: 'technical') }
-    let(:other_skill) { create(:skill, category: 'other') }
+  context 'when skill_type is present in form' do
+    let(:technical_skill) { create(:skill, skill_type: 'technical') }
+    let(:other_skill) { create(:skill, skill_type: 'other') }
 
     before do
-      behavioral_skill = create(:skill, category: 'behavioral')
-      behavioral_skill2 = create(:skill, category: 'behavioral')
+      behavioral_skill = create(:skill, skill_type: 'behavioral')
+      behavioral_skill2 = create(:skill, skill_type: 'behavioral')
 
       create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: behavioral_skill)
       create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: behavioral_skill2)
@@ -52,12 +52,14 @@ describe Idp::SaveUserIdpSkills do
       create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: other_skill)
     end
 
-    it 'syncs skills for specified category' do
-      category = 'behavioral'
+    it 'syncs skills for specified skill_type' do
+      skill_type = 'behavioral'
 
-      new_skill1 = create(:skill, category: category)
-      new_skill2 = create(:skill, category: category)
-      skills_params = { skills: [{ 'skill_id' => new_skill1.id }, { 'skill_id' => new_skill2.id }], category: category }
+      new_skill1 = create(:skill, skill_type: skill_type)
+      new_skill2 = create(:skill, skill_type: skill_type)
+      skills_params = {
+        skills: [{ 'skill_id' => new_skill1.id }, { 'skill_id' => new_skill2.id }], skill_type: skill_type
+      }
       skills_form = Idp::SaveUserIdpSkillsForm.new(skills_params)
 
       res = described_class.call(user_idp_plan, skills_form)
@@ -65,7 +67,7 @@ describe Idp::SaveUserIdpSkills do
       expect(res[:ok].count).to eq(2)
       expect(
         user_idp_plan.user_idp_skills.joins(:skill).
-        where(skills: { category: category }).pluck(:skill_id)
+        where(skills: { skill_type: skill_type }).pluck(:skill_id)
       ).to include(new_skill1.id, new_skill2.id)
       expect(user_idp_plan.skills).to include(new_skill1, new_skill2)
       expect(user_idp_plan.skills).to include(technical_skill)

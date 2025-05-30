@@ -16,7 +16,7 @@ interface Template {
 }
 
 interface Skill {
-  category: string
+  skillType: string
   user_idp_development_actions: DevelopmentAction[]
 }
 

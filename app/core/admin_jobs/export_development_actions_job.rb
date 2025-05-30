@@ -14,7 +14,7 @@ module AdminJobs
         Description
         Type
         ProjectID
-        Category
+        DevelopmentActionType
         CourseURL
         CourseStartDate
         CourseEndDate
@@ -36,7 +36,7 @@ module AdminJobs
           development_action.description,
           development_action.learning_style,
           development_action.project_id,
-          development_action.category,
+          development_action.development_action_type,
           development_action.course_url,
           development_action.course_start_date&.strftime('%Y-%m-%d'),
           development_action.course_end_date&.strftime('%Y-%m-%d'),

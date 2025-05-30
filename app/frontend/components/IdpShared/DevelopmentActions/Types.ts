@@ -2,7 +2,7 @@ export type AvailableDevelopmentActions = {
     id: number,
     name: string,
     description: string,
-    category: string,
+    developmentActionType: string,
     learningStyle: 'on_the_job' | 'structured_learning' | 'learning_from_others',
     image: string | null,
 }
@@ -34,12 +34,12 @@ export type Skill = {
     id: number;
     name: string;
     description: string;
-    category: string;
+    skillType: string;
     initialRating: number;
     finalRating: null | number;
 }
 
-export type UserIdpSkill = Omit<Skill, 'category' | 'description'> & {
+export type UserIdpSkill = Omit<Skill, 'skillType' | 'description'> & {
     skillId: number;
 }
 
@@ -48,21 +48,21 @@ export type SkillWithDevelopmentActions = UserIdpSkill & {
 }
 
 export type CategoryWithSkills = {
-    category: string;
+    skillType: string;
     skills: SkillWithDevelopmentActions[];
 }
 
 export type CategoryWithSkillsSummary = {
-    category: string;
+    skillType: string;
     skills: Skill[];
 }
 
 export type CategoryWithUserIdpSkills = {
-    category: string;
+    skillType: string;
     skills: UserIdpSkill[];
 }
 
 export type CategoryWithDevelopmentActions = {
-    category: string;
+    developmentActionType: string;
     developmentActions: DevelopmentActionWithSkill[];
 }
