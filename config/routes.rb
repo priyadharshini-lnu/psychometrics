@@ -835,6 +835,8 @@ as: :simulation_progress_notification
     get 'users/sign_in_link', to: 'users/magic_links#sign_in_link'
     get 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
     post 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
+    get 'users/invitation/accept', to: 'users/invitations#edit', as: :accept_user_invitation
+    patch 'users/invitation', to: 'users/invitations#update', as: :user_invitation
   end
 
   devise_for :users,
@@ -846,11 +848,11 @@ as: :simulation_progress_notification
              class_name: 'User',
              controllers: { registrations: 'users/registrations',
                             sessions: 'users/sessions',
-                            invitations: 'users/invitations',
                             passwords: 'passwords',
                             password_expired: 'users/password_expired',
                             magic_links: 'users/magic_links',
-                            unlocks: 'users/unlocks' }
+                            unlocks: 'users/unlocks' },
+            skip: :invitations
 
   namespace 'passwordless' do
     devise_for :users,
