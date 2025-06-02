@@ -11,6 +11,8 @@ class MediaResponseSchema < BaseSchema
       required(:question_id).filled(:int?)
       required(:url).maybe(:str?)
       required(:created_at) { str? | time? }
+      required(:encoded_file_url).maybe(:str?)
+      required(:file_extension).maybe(:str?)
     end
   end
 end
