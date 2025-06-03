@@ -1,11 +1,12 @@
 import { Button, Modal } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { CloseCircleOutlined } from '@ant-design/icons'
+import { useEffect, useState } from 'react'
 import styles from './styles.less'
 import { RequestError } from '~/core/errors'
 import { PropsFromRedux } from './connect'
 
-export const CLIENT_ERRORS = [] as string[]
+export const CLIENT_ERRORS = ['401', '403']
 
 const { I18n } = window
 
@@ -19,6 +20,18 @@ const ErrorModal: React.FC<Props> = ({ errors, clearRequestErrors }) => {
   const navigate = useNavigate()
 
   const statusCode = hasErrorsToHandle(errors.errors)?.statusCode
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
+  }
+
+  useEffect(() => {
+    if (statusCode) {
+      setIsModalOpen(true)
+    }
+  }, [statusCode])
 
   const handleNavigation = (type?: 'signin' | 'goback' | 'gohome') => {
     clearRequestErrors()
@@ -41,9 +54,8 @@ const ErrorModal: React.FC<Props> = ({ errors, clearRequestErrors }) => {
           {I18n.t('errors.error')}
         </span>
       )}
-      open={!!statusCode}
-      onCancel={undefined}
-      closable={false}
+      onCancel={handleCancel}
+      open={isModalOpen}
       footer={null}
       centered
       className={styles.modalContainer}
