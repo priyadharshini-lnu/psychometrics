@@ -7,6 +7,7 @@ import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
 import { SimulationDetails } from './SimulationDetails'
 import { SavilleDetails } from './SavilleDetails'
 import { PearsonDetails } from './PearsonDetails'
+import { SkillvueDetails } from './SkillvueDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import RawJSON from './RawJSON'
 
@@ -112,6 +113,12 @@ export const DetailsDrawer: FC<Props> = ({
               I18n={I18n}
               assessment={assessment}
             />
+
+            <SkillvueDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
+
             <RawJSON
               I18n={I18n}
               usersResultId={assessment?.usersResultId}

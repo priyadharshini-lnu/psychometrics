@@ -22,6 +22,10 @@ module Administration
       can_manage_integrations?
     end
 
+    def load_skillvue_assessments?
+      can_manage_integrations?
+    end
+
     private
 
     def can_manage_integrations?

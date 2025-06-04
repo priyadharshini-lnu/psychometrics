@@ -14,7 +14,8 @@ module Api
       'iiht' => Api::V2::Assessment::IihtContract,
       'mettl' => Api::V2::Assessment::MettlContract,
       'saville' => Api::V2::Assessment::SavilleContract,
-      'simulation' => Api::V2::Assessment::SimulationContract
+      'simulation' => Api::V2::Assessment::SimulationContract,
+      'skillvue' => Api::V2::Assessment::SkillvueContract
     }.freeze
 
     def create_contract_based_on_assessment_type

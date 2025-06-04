@@ -206,6 +206,10 @@ class Client < ApplicationRecord
     integrations.mettl.first&.mettl_config
   end
 
+  def skillvue_config
+    integrations.skillvue.first&.skillvue_config
+  end
+
   def saml_setting
     super || build_saml_setting
   end

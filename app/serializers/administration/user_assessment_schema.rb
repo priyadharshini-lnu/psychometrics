@@ -55,6 +55,9 @@ module Administration
         required(:pearson_user_assessment_details).maybe do
           hash(Administration::PearsonUserAssessmentSchema.schema(_, _))
         end
+        required(:skillvue_user_assessment_details).maybe do
+          hash(Administration::SkillvueUserAssessmentSchema.schema(_, _))
+        end
         required(:hogan_participant_id).maybe(:str?)
       end
     end

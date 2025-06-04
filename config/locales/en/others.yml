@@ -308,6 +308,10 @@ en:
             email:
               blank: Email can't be blank
               not_uniq_email: Row with email is already present
+        skillvue:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project.
         sms_invites_create:
           attributes:
             first_name:
@@ -932,6 +936,7 @@ en:
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
+        skillvue_assessment_name: Skillvue Assessment Name
       translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
@@ -971,6 +976,7 @@ en:
         psychometric: Psychometric
         saville: Saville
         simulation: Simulation
+        skillvue: Skillvue
         threesixty: 360 Campaign
       status:
         finished: Finished
@@ -983,6 +989,7 @@ en:
         pearson: Pearson Assessment
         saville: Saville Assessment
         simulation: Simulation Assessment
+        skillvue: Skillvue Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -1356,6 +1363,8 @@ en:
       simulation_content_variation: Simulation Content Variation
       simulation_participant_id: Simulation Participant ID
       simulation_time_extension: Simulation Time Extension
+      skillvue_email_id: Skillvue Candidate Email ID
+      skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Universal link
     drawer:
       mettl_schedule_name: Mettl Schedule Name
@@ -2059,6 +2068,7 @@ en:
       uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
+      uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
       update_workshop:
         less_than_booked: The total seats must be greater than booked
       user_availability_date:
@@ -2986,9 +2996,11 @@ en:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
+      load_from_skillvue: Load from Skillvue
       none_external: None - Use report builder
     language: Report Language
     language_updated: Report Language was updated successfully

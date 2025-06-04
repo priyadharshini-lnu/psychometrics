@@ -194,6 +194,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'pearson_user_assessment_details' => nil,
       'simulation_user_assessment_details' => nil,
       'saville_user_assessment_details' => nil,
+      'skillvue_user_assessment_details' => nil,
       'users_result_id' => user_assessment.users_result_id
     })
   end

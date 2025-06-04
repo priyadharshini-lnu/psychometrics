@@ -144,6 +144,8 @@ module Campaigns
           create_mettl_assessment(user_assessment, existing_result, campaign_assessment)
         elsif assessment.simulation?
           create_simulation_assessment(user_assessment, existing_result, campaign_assessment)
+        elsif assessment.skillvue?
+          create_skillvue_assessment(user_assessment, existing_result)
         end
       end
 
@@ -189,6 +191,14 @@ module Campaigns
           participant_id: existing_simulation_user_assessment&.participant_id,
           content_variation_id: content_variation_id,
           time_extension: existing_simulation_user_assessment&.time_extension
+        )
+      end
+
+      def create_skillvue_assessment(user_assessment, existing_result)
+        existing_skillvue_user_assessment = existing_result&.skillvue_user_assessment
+        user_assessment.create_skillvue_user_assessment(
+          url: existing_skillvue_user_assessment&.url,
+          email: existing_skillvue_user_assessment&.email
         )
       end
 

@@ -17,7 +17,8 @@ class Report < ApplicationRecord
     saville: 3,
     pearson: 4,
     custom_upload: 5,
-    mettl: 6
+    mettl: 6,
+    skillvue: 7
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10

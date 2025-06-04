@@ -5,6 +5,7 @@ import { PearsonFields } from './PearsonFields'
 import { IihtFields } from './IihtFields'
 import { MettlFields } from './MettlFields'
 import { SimulationFields } from './SimulationFields'
+import { SkillvueFields } from './SkillvueFields'
 
 export const ExternalAssessmentFields = {
   hogan: HoganFields,
@@ -13,4 +14,5 @@ export const ExternalAssessmentFields = {
   saville: SavilleFields,
   mettl: MettlFields,
   simulation: SimulationFields,
+  skillvue: SkillvueFields,
 }

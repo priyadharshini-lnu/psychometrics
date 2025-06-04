@@ -41,14 +41,14 @@ describe Administration::Projects::IntegrationsController, type: :controller do
 
         parsed_response = response.parsed_body
         integration = project.reload.integrations.iiht.first
-        expected_response = integration.attributes.slice('id', 'name', 'active').merge(
-          integration.config.except('password'),
-          'provider' => nil,
-          'public_key' => nil,
-          'private_key' => nil,
-          'api_base_url' => nil
-        ).merge(
-          'details' => {
+        expected_response = {
+          'id' => integration.id,
+          'name' => 'iiht',
+          'active' => true,
+          'iiht_integration_details' => {
+            'tenant_id' => 'tenant_id',
+            'tenancy_name' => 'tenancy_name',
+            'user' => 'user',
             'webhook_url' => webhooks_iiht_url(
               host: Settings.domain,
               subdomain: Settings.subdomain,
@@ -56,8 +56,11 @@ describe Administration::Projects::IntegrationsController, type: :controller do
               port: Settings.port,
               project_id: project.id
             )
-          }
-        )
+          },
+          'hogan_integration_details' => nil,
+          'mettl_integration_details' => nil,
+          'skillvue_integration_details' => nil
+        }
 
         expect(response.status).to eq(200)
         expect(parsed_response).to eq(expected_response)
@@ -92,17 +95,15 @@ describe Administration::Projects::IntegrationsController, type: :controller do
 
         parsed_response = response.parsed_body
         integration = project.reload.integrations.hogan.first
-        expected_response = integration.attributes.slice('id', 'name', 'active').merge(
-          'provider' => 'phoenix',
-          'tenant_id' => nil,
-          'tenancy_name' => nil,
-          'user' => nil,
-          'api_base_url' => nil,
-          'public_key' => nil,
-          'private_key' => nil
-        ).merge(
-          'details' => nil
-        )
+        expected_response = {
+          'id' => integration.id,
+          'name' => 'hogan',
+          'active' => true,
+          'hogan_integration_details' => { 'provider' => 'phoenix' },
+          'iiht_integration_details' => nil,
+          'mettl_integration_details' => nil,
+          'skillvue_integration_details' => nil
+        }
 
         expect(response.status).to eq(200)
         expect(parsed_response).to eq(expected_response)
@@ -117,6 +118,60 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         parsed_response = response.parsed_body
         expect(response.status).to eq(422)
         expect(parsed_response).to eq({ 'errors' => { 'provider' => ["can't be blank"] } })
+      end
+    end
+
+    context 'skillvue integration' do
+      let(:skillvue_valid_params) do
+        {
+          name: 'skillvue',
+          api_key: 'some_api_key',
+          active: true
+        }
+      end
+
+      it 'creates integration if params are valid' do
+        expect do
+          post :create, params: {
+            project_id: project.id,
+            resource: skillvue_valid_params
+          }, format: :json
+        end.to change { Integration.where(project_id: project.id, name: 'skillvue').count }.by(1)
+
+        integration = project.reload.integrations.find_by(name: 'skillvue')
+        expect(integration).not_to be_nil
+        expect(integration.skillvue_config['api_key']).to eq(skillvue_valid_params[:api_key])
+        expect(integration.name).to eq('skillvue')
+        expect(integration.active).to be(true)
+
+        parsed_response = response.parsed_body
+        expected_response = {
+          'id' => integration.id,
+          'name' => 'skillvue',
+          'active' => true,
+          'skillvue_integration_details' => {
+            'api_key' => 'some_api_key',
+            'completion_webhook_url' => nil,
+            'results_webhook_url' => nil
+          },
+          'hogan_integration_details' => nil,
+          'iiht_integration_details' => nil,
+          'mettl_integration_details' => nil
+        }
+
+        expect(response.status).to eq(200)
+        expect(parsed_response).to eq(expected_response)
+      end
+
+      it "doesn't create integration if params are not valid" do
+        post :create, params: {
+          project_id: project.id,
+          resource: skillvue_valid_params.merge(api_key: '')
+        }, format: :json
+
+        parsed_response = response.parsed_body
+        expect(response.status).to eq(422)
+        expect(parsed_response).to eq({ 'errors' => { 'api_key' => ["can't be blank"] } })
       end
     end
   end
@@ -137,7 +192,38 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         expect(integration.mettl_config['public_key']).to eq('public_key')
         expect(integration.mettl_config['private_key']).to eq('private_key')
         expect(integration.active).to be(true)
+
+        parsed_response = response.parsed_body
+        expected_response = {
+          'id' => integration.id,
+          'name' => 'mettl',
+          'active' => true,
+          'mettl_integration_details' => {
+            'api_base_url' => 'https://api.mettl.com',
+            'public_key' => 'public_key',
+            'private_key' => 'private_key',
+            'completion_webhook_url' => webhooks_mettl_completion_notification_url(
+              host: Settings.domain,
+              subdomain: Settings.subdomain,
+              protocol: Settings.protocol,
+              port: Settings.port,
+              project_id: project.id
+            ),
+            'results_webhook_url' => webhooks_mettl_results_notification_url(
+              host: Settings.domain,
+              subdomain: Settings.subdomain,
+              protocol: Settings.protocol,
+              port: Settings.port,
+              project_id: project.id
+            )
+          },
+          'hogan_integration_details' => nil,
+          'iiht_integration_details' => nil,
+          'skillvue_integration_details' => nil
+        }
+
         expect(response.status).to eq(200)
+        expect(parsed_response).to eq(expected_response)
       end
 
       it "doesn't create integration if params are not valid" do
@@ -184,7 +270,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
       parsed_response = response.parsed_body
 
       expect(response.status).to eq(200)
-      expect(parsed_response['tenant_id']).to eq(update_tenant_id)
+      expect(parsed_response['iiht_integration_details']['tenant_id']).to eq(update_tenant_id)
       expect(integration.reload.config['tenant_id']).to eq(update_tenant_id)
     end
 

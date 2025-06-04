@@ -18,6 +18,7 @@ module UserAssessments
       url = pass_iiht_user_assessment_path(user_assessment.id) if assessment.iiht?
       url = pass_mettl_user_assessment_path(user_assessment.id) if assessment.mettl?
       url = pass_simulation_user_assessment_path(user_assessment.id) if assessment.simulation?
+      url = pass_skillvue_user_assessment_path(user_assessment.id) if assessment.skillvue?
 
       url ||= pass_user_assessment_path(user_assessment)
 

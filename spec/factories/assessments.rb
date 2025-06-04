@@ -57,6 +57,12 @@ FactoryBot.define do
       type { Assessments::Simulation }
       external_settings { { assessment_id: 'assessmentId' } }
     end
+
+    trait :skillvue do
+      category { Assessment::CATEGORIES[:skillvue] }
+      type { Assessments::Skillvue }
+      external_settings { { assessment_id: '36d0676c454f67d39e67aee0699a2edd' } }
+    end
   end
 
   factory :assessment_hogan, class: 'Assessments::Hogan' do

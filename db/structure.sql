@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -5529,6 +5536,74 @@ ALTER SEQUENCE public.skills_job_roles_id_seq OWNED BY public.skills_job_roles.i
 
 
 --
+-- Name: skillvue_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.skillvue_assessments (
+    id bigint NOT NULL,
+    product_id character varying NOT NULL,
+    name character varying NOT NULL,
+    iso_code character varying,
+    expiration date,
+    project_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: skillvue_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.skillvue_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: skillvue_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.skillvue_assessments_id_seq OWNED BY public.skillvue_assessments.id;
+
+
+--
+-- Name: skillvue_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.skillvue_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    url character varying,
+    email character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: skillvue_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.skillvue_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: skillvue_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.skillvue_user_assessments_id_seq OWNED BY public.skillvue_user_assessments.id;
+
+
+--
 -- Name: sms_histories; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8441,6 +8516,20 @@ ALTER TABLE ONLY public.skills_job_roles ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: skillvue_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_assessments ALTER COLUMN id SET DEFAULT nextval('public.skillvue_assessments_id_seq'::regclass);
+
+
+--
+-- Name: skillvue_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.skillvue_user_assessments_id_seq'::regclass);
+
+
+--
 -- Name: sms_histories id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9979,6 +10068,22 @@ ALTER TABLE ONLY public.skills_job_roles
 
 ALTER TABLE ONLY public.skills
     ADD CONSTRAINT skills_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: skillvue_assessments skillvue_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_assessments
+    ADD CONSTRAINT skillvue_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: skillvue_user_assessments skillvue_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_user_assessments
+    ADD CONSTRAINT skillvue_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -12595,6 +12700,27 @@ CREATE UNIQUE INDEX index_skills_on_project_id_and_name ON public.skills USING b
 
 
 --
+-- Name: index_skillvue_assessments_on_project_and_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skillvue_assessments_on_project_and_product_id ON public.skillvue_assessments USING btree (project_id, product_id);
+
+
+--
+-- Name: index_skillvue_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skillvue_assessments_on_project_id ON public.skillvue_assessments USING btree (project_id);
+
+
+--
+-- Name: index_skillvue_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skillvue_user_assessments_on_user_assessment_id ON public.skillvue_user_assessments USING btree (user_assessment_id);
+
+
+--
 -- Name: index_sms_histories_on_sms_record_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14991,6 +15117,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: skillvue_assessments fk_rails_9ba716734a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_assessments
+    ADD CONSTRAINT fk_rails_9ba716734a FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports fk_rails_9c1b8d7e35; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15460,6 +15594,14 @@ ALTER TABLE ONLY public.license_usages
 
 ALTER TABLE ONLY public.idp_template_skills
     ADD CONSTRAINT fk_rails_d36f05e26d FOREIGN KEY (skill_id) REFERENCES public.skills(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skillvue_user_assessments fk_rails_d3910f4496; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_user_assessments
+    ADD CONSTRAINT fk_rails_d3910f4496 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -15989,6 +16131,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250528132845'),
+('20250528062059'),
 ('20250602071331'),
 ('20250530095701'),
 ('20250522122128'),

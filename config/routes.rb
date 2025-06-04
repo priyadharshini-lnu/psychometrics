@@ -405,6 +405,7 @@ Rails.application.routes.draw do
         resources :integrations, only: %i[index create update destroy] do
           collection do
             post :load_mettl_assessments
+            post :load_skillvue_assessments
           end
         end
       end
@@ -829,6 +830,9 @@ Rails.application.routes.draw do
     post '/:project_id/mettl/results', to: 'mettl#results', as: :mettl_results_notification
     post '/:project_id/simulation/progress_notification', to: 'simulation#progress_notification',
 as: :simulation_progress_notification
+    post '/:project_id/skillvue/completion_notification', to: 'skillvue#completion_notification',
+                                                            as: :skillvue_completion_notification
+    post '/:project_id/skillvue/results', to: 'skillvue#results', as: :skillvue_results_notification
   end
 
   devise_scope :user do
@@ -963,6 +967,12 @@ as: :simulation_progress_notification
         member do
           post :pass
           get :redirect
+        end
+      end
+
+      resources :skillvue_user_assessments, only: [] do
+        member do
+          post :pass
         end
       end
 

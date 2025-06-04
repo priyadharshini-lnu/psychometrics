@@ -2201,6 +2201,7 @@ en:
         add: Integrations
         back: Back to Integrations
         load_mettl_catalog: Load Mettl Assessment Catalog
+        load_skillvue_catalog: Load Skillvue Assessment Catalog
       columns:
         active: Active
         details: Details
@@ -2211,6 +2212,7 @@ en:
         webhookUrls: Webhook URLs
       integrations: Integrations
       load_mettl_success: Load mettl assessments job is successfully enqueued
+      load_skillvue_success: Load skillvue assessments job is successfully enqueued
       modal:
         hogan:
           provider: Provider
@@ -2232,16 +2234,22 @@ en:
           servers:
             mettl_eu: Europe
             mettl_india: India
+        skillvue:
+          apiKey: API Key
+          apiKeyRequired: API key is required
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        skillvue: Skillvue
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
           tenant_id_present: Tenant id is already present in other project
         mettl:
           public_key_present: Public key is already present in other project
+        skillvue:
+          api_key_present: API key is already present in other project
       view_all_schedules: View All Mettl Schedules
     invited_subject:
       add_btn: Add Subject
