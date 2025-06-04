@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react'
 import {
-  Card, Input, Button,
+  Input, Button,
   Flex, Form, Typography,
   Select, Splitter,
 } from 'antd'
 import {
-  SendOutlined, HistoryOutlined, EditOutlined, CheckOutlined, CloseOutlined,
+  HistoryOutlined, EditOutlined, CheckOutlined, CloseOutlined,
+  UserOutlined, RobotOutlined,
 } from '@ant-design/icons'
+import { Bubble, Sender } from '@ant-design/x'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { AiAssistantsPlaygroundBreadcrumb } from './AiAssistantsPlaygroundBreadcrumb'
@@ -18,6 +20,8 @@ import { AI_ACTIONS, AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/cor
 import { getAvailableAiProviders } from '~/core/config'
 
 const { Paragraph } = Typography
+const MAX_LENGTH = 10000
+
 
 export const AiAssistantPlayground: React.FC = () => {
   const [messages, setMessages] = useState([
@@ -25,7 +29,7 @@ export const AiAssistantPlayground: React.FC = () => {
   ])
   const [input, setInput] = useState('')
   const chatEndRef = useRef<HTMLDivElement>(null)
-  const MAX_LENGTH = 3000
+  const [loading, setLoading] = useState(false)
   const [editMode, setEditMode] = useState(false)
   const [form] = Form.useForm()
   const { aiAssistantId } = useParams() as { aiAssistantId: string }
@@ -58,6 +62,7 @@ export const AiAssistantPlayground: React.FC = () => {
     if (!prompt.trim()) return
     setMessages([...messages, { text: prompt, isUser: true }])
     setInput('')
+    setLoading(true)
     collectionAction({
       action: `${aiAssistantId}/generate`,
       method: 'post',
@@ -72,7 +77,16 @@ export const AiAssistantPlayground: React.FC = () => {
           isUser: false,
         },
       ])
+      setLoading(false)
+    }).catch(() => {
+      setLoading(false)
     })
+  }
+
+  const handleInputChange = (value: string) => {
+    if (value.length <= MAX_LENGTH) {
+      setInput(value)
+    }
   }
 
   const toggleEdit = () => {
@@ -85,55 +99,58 @@ export const AiAssistantPlayground: React.FC = () => {
   }
 
   const chatUI = (
-    <div className={styles['ai-assistant-playground__main-container']}>
-      <div
-        className={styles['ai-assistant-playground__chat-area']}
-        role="log"
-        aria-live="polite"
-        aria-label="AI chat conversation"
-      >
+    <div className={styles.mainContainer}>
+      <Flex gap="middle" vertical flex="1 1 auto" className={styles.chatArea}>
         {messages.map((msg, idx) => (
-          <ChatBubble key={idx} text={msg.text} isUser={msg.isUser} />
+          <>
+            {idx === messages.length - 1 && (
+              <div ref={chatEndRef} />
+            )}
+            <Bubble
+              key={idx}
+              placement={msg.isUser ? 'end' : 'start'}
+              content={msg.text}
+              styles={{ content: { maxWidth: 500 } }}
+              avatar={{
+                icon: msg.isUser ? <UserOutlined /> : <RobotOutlined />,
+                style: {
+                  color: '#fff',
+                  backgroundColor: msg.isUser ? '#1890ff' : '#87d068',
+                },
+              }}
+            />
+          </>
         ))}
-        <div ref={chatEndRef} className={styles['ai-assistant-playground__scroll-anchor']} />
-      </div>
-
-      <div className={styles['ai-assistant-playground__input-container']}>
-        <Input.TextArea
+      </Flex>
+      <Flex className={styles.senderContainer}>
+        <Sender
           value={input}
-          onChange={e => setInput(e.target.value)}
-          onPressEnter={(e) => {
-            if (!e.shiftKey) {
-              e.preventDefault()
-              handleSend()
-            }
+          onChange={handleInputChange}
+          onSubmit={handleSend}
+          autoSize={{ minRows: 2, maxRows: 6 }}
+          actions={false}
+          footer={({ components }) => {
+            const { SendButton, LoadingButton } = components
+            return (
+              <Flex justify="space-between" align="center">
+                <Typography.Text type="secondary">
+                  {`${input.length} / ${MAX_LENGTH}`}
+                </Typography.Text>
+                {loading ? (
+                  <LoadingButton type="default" />
+                ) : (
+                  <SendButton type="primary" disabled={!input.trim() || input.length > MAX_LENGTH} />
+                )}
+              </Flex>
+            )
           }}
-          placeholder="Summarize the latest..."
-          autoSize={{ minRows: 2, maxRows: 4 }}
-          className={styles['ai-assistant-playground__input']}
-          maxLength={MAX_LENGTH}
         />
-
-        <div className={styles['ai-assistant-playground__input-footer']}>
-          <div className={styles['ai-assistant-playground__char-count']}>
-            {input.length}
-            <span> / </span>
-            <span>{MAX_LENGTH}</span>
-          </div>
-          <Button
-            type="text"
-            icon={<SendOutlined />}
-            onClick={handleSend}
-            className={styles['ai-assistant-playground__send-button']}
-            aria-label="Send"
-          />
-        </div>
-      </div>
+      </Flex>
     </div>
   )
 
   const aiModalUI = (
-    <div className={styles['ai-assistant-playground__settings-panel']}>
+    <div className={styles.settingsPanel}>
       {selectedAssistant && (
         <ResourceForm
           resourceName="assistants"
@@ -158,15 +175,15 @@ export const AiAssistantPlayground: React.FC = () => {
               <Flex
                 justify="space-between"
                 align="center"
-                className={styles['ai-assistant-playground__settings-header']}
+                className={styles.settingsHeader}
               >
-                <h3 className={styles['ai-assistant-playground__settings-title']}>AI Assistant</h3>
+                <h3 className={styles.settingsTitle}>AI Assistant</h3>
                 <Flex gap="small">
                   <Button
                     type="text"
                     icon={<HistoryOutlined />}
                     aria-label="View history"
-                    className={styles['ai-assistant-playground__history-button']}
+                    className={styles.historyButton}
                   />
                   {editMode ? (
                     <>
@@ -193,142 +210,122 @@ export const AiAssistantPlayground: React.FC = () => {
                   )}
                 </Flex>
               </Flex>
-              <div className={styles['ai-assistant-playground__settings-form']}>
+              <div className={styles.settingsForm}>
                 {editMode && (
-                  <div className={styles['ai-assistant-playground__settings-form-content']}>
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <Form.Item
-                        name="name"
-                        label="Name"
-                        className={styles['ai-assistant-playground__form-item']}
-                      >
-                        <Input />
-                      </Form.Item>
-                    </div>
+                  <div className={styles.settingsFormContent}>
+                    <Form.Item
+                      name="name"
+                      label="Name"
+                    >
+                      <Input />
+                    </Form.Item>
+                    <Form.Item
+                      name="description"
+                      label="Description"
+                    >
+                      <Input.TextArea
+                        rows={4}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name="providerId"
+                      label="Provider"
+                    >
+                      <Select>
+                        {availableAiProviders.map(provider => (
+                          <Select.Option key={provider} value={provider}>
+                            {AI_PROVIDERS[provider].name}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      name="action"
+                      label="Action"
+                    >
+                      <Select>
+                        {Object.values(AI_ACTIONS).map(action => (
+                          <Select.Option key={action.id} value={action.id}>
+                            {action.name}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      name="systemPrompt"
+                      label="System Prompt"
+                    >
+                      <Input.TextArea
+                        rows={4}
+                      />
+                    </Form.Item>
 
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <Form.Item
-                        name="description"
-                        label="Description"
-                        className={styles['ai-assistant-playground__form-item']}
-                      >
-                        <Input.TextArea
-                          rows={4}
-                        />
-                      </Form.Item>
-                    </div>
-
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <Form.Item
-                        name="providerId"
-                        label="Provider"
-                        className={styles['ai-assistant-playground__form-item']}
-                      >
-                        <Select>
-                          {availableAiProviders.map(provider => (
-                            <Select.Option key={provider} value={provider}>
-                              {AI_PROVIDERS[provider].name}
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                    </div>
-
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <Form.Item
-                        name="action"
-                        label="Action"
-                        className={styles['ai-assistant-playground__form-item']}
-                      >
-                        <Select>
-                          {Object.values(AI_ACTIONS).map(action => (
-                            <Select.Option key={action.id} value={action.id}>
-                              {action.name}
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                    </div>
-
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <Form.Item
-                        name="systemPrompt"
-                        label="System Prompt"
-                        className={styles['ai-assistant-playground__form-item']}
-                      >
-                        <Input.TextArea
-                          rows={4}
-                        />
-                      </Form.Item>
-                    </div>
-
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <Form.Item
-                        name="userPrompt"
-                        label="User Prompt Template"
-                        className={styles['ai-assistant-playground__form-item']}
-                      >
-                        <Input.TextArea
-                          rows={4}
-                        />
-                      </Form.Item>
-                    </div>
+                    <Form.Item
+                      name="userPrompt"
+                      label="User Prompt Template"
+                    >
+                      <Input.TextArea
+                        rows={4}
+                      />
+                    </Form.Item>
                   </div>
                 )}
                 {!editMode && selectedAssistant && (
                   <>
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <div className={styles['ai-assistant-playground__settings-label']}>Name</div>
-                      <Paragraph>{selectedAssistant.name}</Paragraph>
+                    <div className={styles.settingsSection}>
+                      <div className={styles.settingsLabel}>Name</div>
+                      <Paragraph className={styles.promptText}>{selectedAssistant.name}</Paragraph>
                     </div>
 
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <div className={styles['ai-assistant-playground__settings-label']}>Description</div>
+                    <div className={styles.settingsSection}>
+                      <div className={styles.settingsLabel}>Description</div>
                       <Paragraph
                         ellipsis={{
-                          rows: 3,
+                          rows: 4,
                           expandable: true,
                           symbol: 'Show more',
                         }}
-                        className={styles['ai-assistant-playground__prompt-text']}
+                        className={styles.promptText}
                       >
                         {selectedAssistant.description}
                       </Paragraph>
                     </div>
 
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <div className={styles['ai-assistant-playground__settings-label']}>Provider</div>
-                      <Paragraph>{AI_PROVIDERS[selectedAssistant.providerId]?.name}</Paragraph>
+                    <div className={styles.settingsSection}>
+                      <div className={styles.settingsLabel}>Provider</div>
+                      <Paragraph className={styles.promptText}>
+                        {AI_PROVIDERS[selectedAssistant.providerId]?.name}
+                      </Paragraph>
                     </div>
 
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <div className={styles['ai-assistant-playground__settings-label']}>Action</div>
-                      <Paragraph>{selectedAssistant.action}</Paragraph>
+                    <div className={styles.settingsSection}>
+                      <div className={styles.settingsLabel}>Action</div>
+                      <Paragraph className={styles.promptText}>{selectedAssistant.action}</Paragraph>
                     </div>
 
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <div className={styles['ai-assistant-playground__settings-label']}>System Prompt</div>
+                    <div className={styles.settingsSection}>
+                      <div className={styles.settingsLabel}>System Prompt</div>
                       <Paragraph
                         ellipsis={{
-                          rows: 3,
+                          rows: 4,
                           expandable: true,
                           symbol: 'Show more',
                         }}
-                        className={styles['ai-assistant-playground__prompt-text']}
+                        className={styles.promptText}
                       >
                         {selectedAssistant.systemPrompt}
                       </Paragraph>
                     </div>
 
-                    <div className={styles['ai-assistant-playground__settings-section']}>
-                      <div className={styles['ai-assistant-playground__settings-label']}>User Prompt Template</div>
+                    <div className={styles.settingsSection}>
+                      <div className={styles.settingsLabel}>User Prompt Template</div>
                       <Paragraph
                         ellipsis={{
-                          rows: 3,
+                          rows: 4,
                           expandable: true,
                           symbol: 'Show more',
                         }}
-                        className={styles['ai-assistant-playground__prompt-text']}
+                        className={styles.promptText}
                       >
                         {selectedAssistant.userPrompt}
                       </Paragraph>
@@ -345,9 +342,9 @@ export const AiAssistantPlayground: React.FC = () => {
   )
 
   return (
-    <Flex vertical className={styles['ai-assistant-playground']}>
+    <Flex vertical className={styles.aiAssistantPlayground}>
       <AiAssistantsPlaygroundBreadcrumb />
-      <Flex className={styles['ai-assistant-playground__layout']}>
+      <Flex className={styles.layout}>
         <Splitter>
           <Splitter.Panel defaultSize="80%" min="20%" max="80%">
             {chatUI}
@@ -360,12 +357,3 @@ export const AiAssistantPlayground: React.FC = () => {
     </Flex>
   )
 }
-
-
-const ChatBubble = ({ text, isUser }: { text: string; isUser: boolean }) => (
-  <Card className={`${styles['chat-bubble']} ${isUser ? styles['chat-bubble--user'] : ''}`}>
-    <div className={styles['chat-bubble__content']}>
-      {text}
-    </div>
-  </Card>
-)
