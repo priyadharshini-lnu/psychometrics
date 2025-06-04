@@ -1385,6 +1385,10 @@ en:
         success_msg: Import was uploaded successfully
         title: Import Scoring Results data
         upload: Upload
+      prework_setting:
+        disable: Disable prework for all existing users
+        enable: Enable prework for all existing users
+        title: Prework setting form
       regenerate:
         content: Are you sure you want to regenerate available reports?
         title: Regenerate reports?

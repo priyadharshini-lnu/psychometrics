@@ -187,6 +187,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'require_scheduling' => false,
       'mettl_schedule_name' => nil,
       'mettl_schedule_record_id' => nil,
+      'prework' => false,
       'dimension_id' => assessment.dimension_id,
       'simulation_content_variations' => [],
       'hogan_participant_id' => nil,

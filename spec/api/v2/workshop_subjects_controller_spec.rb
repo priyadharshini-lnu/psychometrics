@@ -13,9 +13,9 @@ describe Api::V2::Administration::WorkshopSubjectsController, swagger_doc: 'v2/s
   let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before do
-    completed = create(:user_assessment, campaign: campaign, subject: subject.user, status: 2)
-    another_completed = create(:user_assessment, campaign: campaign, subject: subject.user, status: 2)
-    not_completed = create(:user_assessment, campaign: campaign, subject: subject.user)
+    completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user, status: 2)
+    another_completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user, status: 2)
+    not_completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user)
     create(:campaign_assessment, assessment: completed.assessment, campaign: campaign,
       prework: true, workshop_activity: true)
     create(:campaign_assessment, assessment: another_completed.assessment, campaign: campaign,

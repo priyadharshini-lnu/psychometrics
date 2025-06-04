@@ -366,6 +366,7 @@ Rails.application.routes.draw do
             put :toggle_require_scheduling
             put :update_content_variation
             put :update_simulation_time_extension
+            put :toggle_prework
           end
         end
 

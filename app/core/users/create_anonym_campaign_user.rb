@@ -2,9 +2,10 @@
 
 module Users
   class CreateAnonymCampaignUser < BaseCommand
-    attr_reader :campaign, :assessment, :user
+    attr_reader :campaign, :assessment, :user, :campaign_assessment
 
     def initialize(campaign_assessment, user = nil)
+      @campaign_assessment = campaign_assessment
       @campaign = campaign_assessment.campaign
       @assessment = campaign_assessment.assessment
       @user = user
@@ -58,7 +59,8 @@ module Users
         evaluator: user,
         status: :in_progress,
         users_result: users_result,
-        last_activity_at: DateTime.current
+        last_activity_at: DateTime.current,
+        prework: campaign_assessment&.prework&.present?
       )
     end
 

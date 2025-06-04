@@ -104,7 +104,7 @@ module Campaigns
         end
       end
 
-      def create_assessment_to_user(assessment)
+      def create_assessment_to_user(assessment) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
 
@@ -125,7 +125,8 @@ module Campaigns
           completion_reason: existing_result&.completion_reason,
           score_calculated: existing_result&.score_calculated,
           score_calculated_at: existing_result&.score_calculated_at,
-          require_scheduling: campaign_assessment&.require_scheduling&.present?
+          require_scheduling: campaign_assessment&.require_scheduling&.present?,
+          prework: campaign_assessment&.prework&.present?
         )
         create_external_user_assessment_record(user_assessment, assessment, existing_result, campaign_assessment)
 

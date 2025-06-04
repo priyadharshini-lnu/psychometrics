@@ -36,6 +36,7 @@ import {
 import { WorkshopActivityDurationFormModal } from './AssessmentList/WorkshopActivityDurationFormModal'
 import { SchedulingCampaignAssessmentModal } from './AssessmentList/SchedulingCampaignAssessmentModal'
 import { UserFilterModal } from '../../../Participants/Subjects/UserFilterModal'
+import { ApplyToExistingUsersFormModal } from './AssessmentList/ApplyToExistingUsersModal'
 
 const MODALS = {
   AddReportModal,
@@ -51,6 +52,7 @@ const MODALS = {
   UpdateAssessorFormModal,
   AddAssessorAssessmentModal,
   WorkshopActivityDurationFormModal,
+  ApplyToExistingUsersFormModal,
   SchedulingCampaignAssessmentModal,
   UserFilterModal,
 }

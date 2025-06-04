@@ -41,7 +41,7 @@ class UserAssessment < ApplicationRecord
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :assessor_form?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
-  delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
+  delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true
 
@@ -84,7 +84,7 @@ class UserAssessment < ApplicationRecord
   }
 
   scope :preworks, lambda { |value|
-    with_campaign_assessments.where(campaign_assessments: { prework: value })
+    where(prework: value)
   }
   scope :pending_assessments, lambda {
     where('subject_id = evaluator_id').where.not(status: %i[completed timed_out ineligible])

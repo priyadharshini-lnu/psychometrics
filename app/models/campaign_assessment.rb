@@ -125,6 +125,13 @@ class CampaignAssessment < ApplicationRecord
     end
   end
 
+  def update_prework(prework, apply_to_existing_users = false)
+    if update!(prework: prework) && apply_to_existing_users
+      not_started_assessments = user_assessments.where(status: :not_started)
+      not_started_assessments.update_all(prework: prework)
+    end
+  end
+
   def user_assessments
     UserAssessment.where(campaign_id: campaign_id, assessment_id: assessment_id)
   end

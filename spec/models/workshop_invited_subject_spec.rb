@@ -39,6 +39,7 @@ RSpec.describe WorkshopInvitedSubject, type: :model do
              campaign: campaign,
              subject: subject,
              evaluator: subject,
+             prework: true,
              status: 'not_started')
     end
 

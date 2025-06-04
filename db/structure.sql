@@ -6339,7 +6339,8 @@ CREATE TABLE public.user_assessments (
     completion_status_code character varying,
     evaluation_session_id character varying,
     score_calculated boolean DEFAULT false,
-    score_calculated_at timestamp(6) without time zone
+    score_calculated_at timestamp(6) without time zone,
+    prework boolean DEFAULT false
 );
 
 
@@ -12920,6 +12921,13 @@ CREATE INDEX index_user_assessments_on_norm_id ON public.user_assessments USING 
 
 
 --
+-- Name: index_user_assessments_on_prework; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessments_on_prework ON public.user_assessments USING btree (prework);
+
+
+--
 -- Name: index_user_assessments_on_relationship_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15978,6 +15986,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250530095701'),
 ('20250522122128'),
 ('20250522061329'),
 ('20250521193031'),

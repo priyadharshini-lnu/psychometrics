@@ -67,6 +67,12 @@ module Administration
       )
     end
 
+    def toggle_prework?
+      has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     def reset?
       assessment = record.assessment
       has_permission_to_reset_assessment? &&

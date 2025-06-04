@@ -59,6 +59,15 @@ const AssessmentList: React.FC<Props> = ({
     }
   }
 
+  const handleTogglePrework = (assessment: Assessment, parsedCampaignId: number, checked: boolean) => {
+    openModal('ApplyToExistingUsersFormModal', {
+      assessment,
+      parsedCampaignId,
+      updatePrework,
+      checked,
+    })
+  }
+
   return (
     <Row>
       <Col span={24}>
@@ -197,10 +206,10 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.prework')}
             key="category"
-            render={({ id, prework }) => (
+            render={assessment => (
               <Switch
-                checked={prework}
-                onChange={checked => updatePrework(parsedCampaignId, id, checked)}
+                checked={assessment.prework}
+                onChange={checked => handleTogglePrework(assessment, parsedCampaignId, checked)}
               />
             )}
           />

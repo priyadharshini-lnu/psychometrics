@@ -40,6 +40,7 @@ module Administration
         required(:has_external_norm).filled(:bool?)
         required(:schedule_time).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
+        required(:prework).maybe(:bool?)
         required(:dimension_id).maybe(:int?)
         required(:users_result_id).maybe(:int?)
         required(:simulation_content_variations).maybe do

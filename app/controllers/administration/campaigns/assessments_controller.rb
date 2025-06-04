@@ -156,7 +156,7 @@ module Administration
       end
 
       def update_prework
-        campaign_assessment.update!(prework: params[:prework])
+        campaign_assessment.update_prework(params[:prework], params[:apply_to_existing_users])
         render json: Administration::CampaignAssessmentSerializer.new(
           context: {
             current_user: current_user,
