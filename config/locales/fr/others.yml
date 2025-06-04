@@ -3426,8 +3426,10 @@ fr:
   threesixty:
     accept_privacy_modal:
       accept: Accepter
-      checkbox: J'ai lu et compris la politique de confidentialité mentionnée ci-dessus
-      title: Consentement au traitement des données
+      checkbox: En cliquant sur cette case, vous reconnaissez avoir pris connaissance de notre avis de confidentialité concernant la collecte et le traitement de vos données à caractère personnel tels qu'ils y sont décrits, y compris le transfert international de vos données à caractère personnel.
+      checkbox_with_client_link: En cliquant sur cette case, vous reconnaissez avoir lu notre avis de confidentialité et l'avis de confidentialité de nos clients et vous consentez à la collecte et au traitement de vos informations personnelles comme décrit dans ces documents, y compris le transfert international de vos informations personnelles.
+      privacy_notice: Avis de confidentialité
+      title: Consentement au traitement et au transfert des informations personnelles
     action: Action
     add: Ajouter
     and: Et

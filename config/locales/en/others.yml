@@ -3488,8 +3488,10 @@ en:
   threesixty:
     accept_privacy_modal:
       accept: Accept
-      checkbox: I have read and understood Privacy Policy mentioned above
-      title: Data processing consent
+      checkbox: By clicking this box, you agree that you have read our privacy notice to the collection and processing of your personal information as described therein, including the international transfer of your personal information.
+      checkbox_with_client_link: By clicking this box, you agree that you have read our privacy notice and our client's privacy notice and you consent to the collection and processing of your personal information as described therein, including the international transfer of your personal information.
+      privacy_notice: Privacy Notice
+      title: Consent to Process and Transfer Personal Information
     action: Action
     add: Add
     and: And

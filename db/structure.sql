@@ -4020,7 +4020,10 @@ CREATE TABLE public.privacy_consents (
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
     version smallint DEFAULT 1 NOT NULL,
-    policy_type integer DEFAULT 0
+    policy_type integer DEFAULT 0,
+    ip_address character varying,
+    user_agent character varying,
+    locale character varying
 );
 
 
@@ -15986,6 +15989,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250602071331'),
 ('20250530095701'),
 ('20250522122128'),
 ('20250522061329'),

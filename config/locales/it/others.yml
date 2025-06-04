@@ -3424,8 +3424,10 @@ it:
   threesixty:
     accept_privacy_modal:
       accept: Accetta
-      checkbox: Ho letto e compreso l'informativa sulla privacy di cui sopra
-      title: Consenso al trattamento dei dati
+      checkbox: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy per la raccolta e l'elaborazione dei suoi dati personali come descritto in essa, compreso il trasferimento internazionale dei suoi dati personali.
+      checkbox_with_client_link: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy e l'informativa sulla privacy del nostro cliente e acconsente alla raccolta e all'elaborazione dei suoi dati personali come descritto in esse, compreso il trasferimento internazionale dei suoi dati personali.
+      privacy_notice: Informativa sulla privacy
+      title: Consenso al trattamento e al trasferimento dei dati personali
     action: Azione
     add: Aggiungi
     and: E

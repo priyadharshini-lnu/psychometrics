@@ -3432,8 +3432,10 @@ de:
   threesixty:
     accept_privacy_modal:
       accept: Annehmen
-      checkbox: Ich habe die oben genannten Datenschutzbestimmungen gelesen und verstanden
-      title: Einwilligung zur Datenverarbeitung
+      checkbox: Durch Anklicken dieses Kästchens erklären Sie sich damit einverstanden, dass Sie unseren Datenschutzhinweis zur Erfassung und Verarbeitung Ihrer persönlichen Daten wie darin beschrieben gelesen haben, einschließlich der internationalen Übermittlung Ihrer persönlichen Daten.
+      checkbox_with_client_link: Durch Anklicken dieses Kästchens erklären Sie, dass Sie unseren Datenschutzhinweis und den Datenschutzhinweis unseres Kunden gelesen haben und mit der darin beschriebenen Erfassung und Verarbeitung Ihrer personenbezogenen Daten einverstanden sind, einschließlich der internationalen Übermittlung Ihrer personenbezogenen Daten.
+      privacy_notice: Datenschutzhinweis
+      title: Zustimmung zur Verarbeitung und Übermittlung persönlicher Daten
     action: Aktion
     add: hinzufügen
     and: und

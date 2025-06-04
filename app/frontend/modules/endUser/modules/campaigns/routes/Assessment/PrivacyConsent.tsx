@@ -9,14 +9,20 @@ import ReactMarkdown from 'react-markdown'
 import {
   getlighthousePrivacyUrl, getCustomPrivacyConsentText, getprivacyPolicyVersion,
 } from '~/modules/endUser/core/config'
+import {
+  getPrivacyText,
+  privacyPageLink,
+  enablePrivacyLink,
+  fetchPolicy, acceptPolicy,
+} from '~/modules/endUser/modules/campaigns/core/project'
 import styles from './UserAssessment.less'
-import { fetchPolicy, acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { SafeHTML } from '~/components/SafeHTML'
 
 const { I18n } = window
 const { Paragraph } = Typography
 const { Content, Header } = Layout
+const globalLink = `/privacy-statement/${I18n.currentLocale()}`
 
 const connector = connect(
   (state: RootState) => ({
@@ -24,6 +30,9 @@ const connector = connect(
     privacyPolicyVersion: getprivacyPolicyVersion(state),
     customPrivacyConsentText: getCustomPrivacyConsentText(state),
     policy: state.project.policy,
+    privacyText: getPrivacyText(state),
+    privacyLink: privacyPageLink(state),
+    enablePrivacyLink: enablePrivacyLink(state),
   }),
   {
     acceptPolicy,
@@ -36,7 +45,8 @@ type Props = ConnectedProps<typeof connector> & {
 }
 
 export const PrivacyConsentComponent: FC<Props> = ({
-  privacyPolicyVersion, acceptPolicy, fetchPolicy, policy, onAccept, customPrivacyConsentText,
+  privacyPolicyVersion, acceptPolicy, fetchPolicy, policy, onAccept, customPrivacyConsentText, privacyText, privacyLink,
+  enablePrivacyLink,
 }) => {
   const [accepted, setAccepted] = useState(false)
 
@@ -48,6 +58,30 @@ export const PrivacyConsentComponent: FC<Props> = ({
     acceptPolicy(privacyPolicyVersion).then(() => {
       onAccept()
     })
+  }
+
+  function processPolicyContent (
+    content: string,
+    globalLink: string,
+    clientLink?: boolean,
+  ) {
+    let processed = content.replace(
+      '[GLOBAL_PRIVACY_LINK]',
+      `[${I18n.t('threesixty.accept_privacy_modal.privacy_notice')}](${globalLink})`,
+    )
+
+    if (enablePrivacyLink) {
+      processed = processed.replace(
+        '[CLIENT_PRIVACY_LINK]',
+        `[${privacyText}](${clientLink})`,
+      )
+    } else {
+      processed = processed.replace(
+        /^.*\[CLIENT_PRIVACY_LINK\].*\n?/gm,
+        '',
+      )
+    }
+    return processed
   }
 
   return (
@@ -68,7 +102,11 @@ export const PrivacyConsentComponent: FC<Props> = ({
                 <Paragraph>
                   {customPrivacyConsentText
                     ? <SafeHTML html={customPrivacyConsentText} config="adminRichText" />
-                    : <ReactMarkdown>{policy.content}</ReactMarkdown>
+                    : (
+                      <ReactMarkdown>
+                        {processPolicyContent(policy.content, globalLink, privacyLink)}
+                      </ReactMarkdown>
+                    )
                   }
                 </Paragraph>
               </div>
@@ -78,9 +116,13 @@ export const PrivacyConsentComponent: FC<Props> = ({
           <div className={styles.footerButtons}>
             <Space direction="vertical">
               <Checkbox onChange={e => setAccepted(e.target.checked)}>
-                {I18n.t('threesixty.accept_privacy_modal.checkbox')}
+                <span className={styles.checkboxText}>
+                  {enablePrivacyLink
+                    ? I18n.t('threesixty.accept_privacy_modal.checkbox_with_client_link')
+                    : I18n.t('threesixty.accept_privacy_modal.checkbox')}
+                </span>
               </Checkbox>
-              <div>
+              <div className={styles.buttonContainer}>
                 <Button type="primary" disabled={!accepted} onClick={accept}>
                   {I18n.t('threesixty.accept_privacy_modal.accept')}
                 </Button>
