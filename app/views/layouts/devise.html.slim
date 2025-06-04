@@ -10,7 +10,7 @@ html.body-full-height lang="#{I18n.locale}"
     = vite_react_refresh_tag
     = render 'layouts/pys_global_state'
     = javascript_include_tag 'threesixty'
-    = javascript_include_tag "i18n/#{I18n.locale}.js"
+    = javascript_include_tag "i18n/#{load_translation_file}.js"
     = render 'layouts/favicons'
   body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}"
     - if show_maintenance_alert?

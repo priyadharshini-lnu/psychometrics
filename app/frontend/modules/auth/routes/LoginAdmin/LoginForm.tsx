@@ -5,10 +5,8 @@ import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import { InputField } from '../../components/InputField'
 import { Flash } from '~/components/Flash'
 import styles from './styles.less'
-import setLocale from '~/utils/setLocale'
 
 const { I18n } = window
-setLocale()
 
 interface LoginFormProps {
   csrfToken: string

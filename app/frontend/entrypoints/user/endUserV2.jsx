@@ -5,9 +5,7 @@ import '~/utils/axiosInterceptors'
 import '~/utils/fetchRequestInterceptors'
 import initSentry from '~/libs/initSentry'
 import Campaigns from '~/modules/endUser/modules/campaigns/App'
-import setLocale from '~/utils/setLocale'
 
 initSentry()
-setLocale()
 const root = createRoot(document.getElementById('endUserContainer'))
 root.render(<Campaigns />)

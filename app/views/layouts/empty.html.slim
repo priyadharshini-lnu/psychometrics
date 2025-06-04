@@ -8,7 +8,7 @@ html.body-full-height
     = render 'layouts/pys_global_state'
     = stylesheet_link_tag :administration
     = javascript_include_tag 'administration'
-    = javascript_include_tag "administration/i18n/#{I18n.locale}.js"
+    = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag

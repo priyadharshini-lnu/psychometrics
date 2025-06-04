@@ -5,10 +5,8 @@ import '~/utils/fetchRequestInterceptors'
 import '~/utils/axiosInterceptors'
 import App from '~/modules/admin/App'
 import initSentry from '~/libs/initSentry'
-import setLocale from '~/utils/setLocale'
 
 initSentry()
-setLocale()
 
 const root = createRoot(document.getElementById('admin-app-container'))
 root.render(<App />)

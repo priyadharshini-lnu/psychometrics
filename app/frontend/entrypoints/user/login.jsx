@@ -4,9 +4,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import api from '~/middleware/api'
 import App from '~/modules/auth/App'
 import reducers from '~/modules/auth/core/reducers'
-import setLocale from '~/utils/setLocale'
-
-setLocale()
 
 let composeEnhancers = compose
 

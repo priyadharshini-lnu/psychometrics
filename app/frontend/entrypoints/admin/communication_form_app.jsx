@@ -2,9 +2,6 @@ import { createRoot } from 'react-dom/client'
 import '~/modules/admin/styles/common.less'
 import CommunicationForm from '~/modules/admin/modules/CommunicationForm'
 import { SubjectPipedTextButton } from '~/modules/admin/modules/CommunicationForm/SubjectPipedTextButton'
-import setLocale from '~/utils/setLocale'
-
-setLocale()
 
 window.renderCommunicationForm = (id) => {
   const root = createRoot(document.getElementById(id))
