@@ -23,6 +23,7 @@ const initSentry = () => {
       'ResizeObserver loop completed with undelivered notifications',
       "undefined is not a constructor (evaluating 'new(window.AudioContext||window.webkitAudioContext)')",
       "Cannot read properties of undefined (reading 'received')",
+      'UnhandledRejection: Object captured as promise rejection with keys: base',
     ],
   })
 
