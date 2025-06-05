@@ -2972,6 +2972,8 @@ cs:
         score: Skóre
       gap_assessment:
         gap: Rozdíl
+        hide_left_filter: Skrýt levý filtr
+        hide_right_filter: Skrýt pravý filtr
         item: Indikátor
         negative_gap: Negativní rozdíly
         no_negative_gaps: Nemáte žádné negativní rozdíly

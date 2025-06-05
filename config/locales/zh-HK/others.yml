@@ -845,6 +845,8 @@ zh-HK:
         score: 分數
       gap_assessment:
         gap: 差距
+        hide_left_filter: 隱藏左側篩選器
+        hide_right_filter: 隱藏右篩選器
         item: 指標
         negative_gap: 負差距
         no_negative_gaps: 沒有負差距

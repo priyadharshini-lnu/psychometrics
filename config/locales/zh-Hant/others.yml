@@ -2939,6 +2939,8 @@ zh-Hant:
         score: 得分
       gap_assessment:
         gap: 縫隙
+        hide_left_filter: 隱藏左側篩選器
+        hide_right_filter: 隱藏右篩選器
         item: 指標
         negative_gap: 負差距
         no_negative_gaps: 沒有負面差距

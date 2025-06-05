@@ -2967,6 +2967,8 @@ es-ES:
         score: Puntuación
       gap_assessment:
         gap: Diferencia
+        hide_left_filter: Ocultar filtro izquierdo
+        hide_right_filter: Ocultar filtro derecho
         item: Indicador
         negative_gap: Diferencias negativas
         no_negative_gaps: No hay diferencias negativas

@@ -2970,6 +2970,8 @@ ja:
         score: スコア
       gap_assessment:
         gap: ギャップ
+        hide_left_filter: 左フィルターを隠す
+        hide_right_filter: 右フィルターを隠す
         item: 指標
         negative_gap: マイナスのギャップ
         no_negative_gaps: マイナスのギャップはありません

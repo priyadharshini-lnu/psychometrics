@@ -93,6 +93,8 @@ const MOCK_NEGATIVE_GAPS: Array<Gap> = [
 interface Props {
   factorIds: PropertiesModel['props']['factorIds']
   filters: typeof AppStore.report.filters
+  hideLeftFilter: boolean | null
+  hideRightFilter: boolean | null
   gapType: PropertiesModel['props']['gapType']
   assessment_id: PropertiesModel['assessment_id']
   tableStyle: TableStyleType
@@ -108,6 +110,8 @@ interface Props {
 
 const Factor: FC<Props> = ({
   filters: [leftFilter, rightFilter],
+  hideLeftFilter,
+  hideRightFilter,
   factorIds,
   assessment_id,
   tableStyle,
@@ -249,6 +253,8 @@ const Factor: FC<Props> = ({
                 }
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
               />
@@ -258,6 +264,8 @@ const Factor: FC<Props> = ({
                   'reports.modules.gap_assessment.no_positive_gaps',
                 )}
                 hideValues={hideValues}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 precision={precision}
                 columnsHeaderData={columnsHeaderData}
                 type="top"
@@ -275,6 +283,8 @@ const Factor: FC<Props> = ({
                 }
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
               />
@@ -284,6 +294,8 @@ const Factor: FC<Props> = ({
                   'reports.modules.gap_assessment.no_negative_gaps',
                 )}
                 hideValues={hideValues}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 precision={precision}
                 columnsHeaderData={columnsHeaderData}
                 type="bottom"
@@ -301,12 +313,14 @@ interface THeaderProps {
   title: string
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
+  hideLeftFilter: boolean | null,
+  hideRightFilter: boolean | null,
   hideValues: boolean
   columnsHeaderData: ColumnsHeaderData
 }
 
 const THeader: FC<THeaderProps> = ({
-  leftFilter, rightFilter, title, hideValues, columnsHeaderData,
+  leftFilter, rightFilter, hideLeftFilter, hideRightFilter, title, hideValues, columnsHeaderData,
 }) => (
   <>
     {title.length !== 0 && (
@@ -329,8 +343,8 @@ const THeader: FC<THeaderProps> = ({
       )}
       {!hideValues && (
         <>
-          <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
-          <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
+          {!hideLeftFilter && <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>}
+          {!hideRightFilter && <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>}
           {!columnsHeaderData.gap.hide && (
             <th className={styles.label}>
               {columnsHeaderData.gap.label}
@@ -346,6 +360,8 @@ interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
   hideValues: boolean
+  hideLeftFilter: boolean | null
+  hideRightFilter: boolean | null
   precision?: number
   columnsHeaderData: ColumnsHeaderData
   type: 'top' | 'bottom'
@@ -356,6 +372,8 @@ const TBody: FC<TBodyProps> = ({
   gaps,
   emptyText,
   hideValues,
+  hideLeftFilter,
+  hideRightFilter,
   precision,
   columnsHeaderData,
   type,
@@ -386,8 +404,8 @@ const TBody: FC<TBodyProps> = ({
           {!columnsHeaderData.indicator.hide && <td>{I18nStore.tFactorName(gap)}</td>}
           {!hideValues && (
             <>
-              <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>
-              <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>
+              {!hideLeftFilter && <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>}
+              {!hideRightFilter && <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>}
               {!columnsHeaderData.gap.hide && <td dir="ltr">{gapValue(gap.diff)}</td>}
             </>
           )}

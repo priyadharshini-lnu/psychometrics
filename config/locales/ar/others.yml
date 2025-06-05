@@ -877,6 +877,8 @@ ar:
         score: الدرجة
       gap_assessment:
         gap: فجوة
+        hide_left_filter: إخفاء المرشح الأيسر
+        hide_right_filter: إخفاء المرشح الأيمن
         item: مؤشر
         negative_gap: " الفجوات السلبية"
         no_negative_gaps: لا توجد فجوات سلبية

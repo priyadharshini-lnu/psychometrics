@@ -2833,6 +2833,8 @@ nl:
         score: Score
       gap_assessment:
         gap: Gap
+        hide_left_filter: Filter links verbergen
+        hide_right_filter: Filter rechts verbergen
         item: Indicator
         negative_gap: Negatieve gaten
         no_negative_gaps: Er zijn geen negatieve hiaten

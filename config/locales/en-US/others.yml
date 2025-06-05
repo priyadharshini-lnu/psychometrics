@@ -823,6 +823,8 @@ en-US:
         score: Score
       gap_assessment:
         gap: Gap
+        hide_left_filter: Hide Left Filter
+        hide_right_filter: Hide Right Filter
         item: Indicator
         negative_gap: Negative Gaps
         no_negative_gaps: There are no Negative Gaps

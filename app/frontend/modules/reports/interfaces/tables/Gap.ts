@@ -10,6 +10,8 @@ interface Props {
   gapType: GapType
   sourceType: 'Factor' | 'Question'
   filter: Array<number>
+  hideLeftFilter: boolean | null
+  hideRightFilter: boolean | null
   tableStyle: TableStyleType
   questionsChoices: Array<{ questionId: number; choiceIds: Array<number> }>
   factorIds: Array<number>

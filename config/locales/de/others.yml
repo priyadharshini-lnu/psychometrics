@@ -2966,6 +2966,8 @@ de:
         score: Ergebnis
       gap_assessment:
         gap: lück
+        hide_left_filter: Linken Filter ausblenden
+        hide_right_filter: Rechten Filter ausblenden
         item: Indikator
         negative_gap: negativ lücken
         no_negative_gaps: Es gibt keine negativen Lücken

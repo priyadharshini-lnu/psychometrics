@@ -834,6 +834,8 @@ pl:
         score: Wynik
       gap_assessment:
         gap: Gap
+        hide_left_filter: Ukryj lewy filtr
+        hide_right_filter: Ukryj prawy filtr
         item: Wskaźnik
         negative_gap: Luki ujemne
         no_negative_gaps: Nie ma żadnych negatywnych luk

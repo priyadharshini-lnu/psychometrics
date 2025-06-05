@@ -2960,6 +2960,8 @@ fr:
         score: Score
       gap_assessment:
         gap: Écart
+        hide_left_filter: Masquer le filtre de gauche
+        hide_right_filter: Masquer le filtre de droite
         item: Indicateur
         negative_gap: Écarts négatifs
         no_negative_gaps: Il n'y a pas de lacunes négatives

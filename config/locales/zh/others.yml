@@ -2967,6 +2967,8 @@ zh:
         score: 分数
       gap_assessment:
         gap: 差距
+        hide_left_filter: 隐藏左侧过滤器
+        hide_right_filter: 隐藏右侧过滤器
         item: 指示器
         negative_gap: 负差距
         no_negative_gaps: 没有负差距

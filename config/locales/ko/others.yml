@@ -2832,6 +2832,8 @@ ko:
         score: 점수
       gap_assessment:
         gap: Gap
+        hide_left_filter: 왼쪽 필터 숨기기
+        hide_right_filter: 오른쪽 필터 숨기기
         item: 표시기
         negative_gap: 네거티브 갭
         no_negative_gaps: 네거티브 갭이 없습니다

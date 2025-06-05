@@ -2958,6 +2958,8 @@ it:
         score: Punteggio
       gap_assessment:
         gap: Divario
+        hide_left_filter: Nascondi filtro a sinistra
+        hide_right_filter: Nascondi filtro destro
         item: Indicatore
         negative_gap: Lacune negative
         no_negative_gaps: Non ci sono lacune negative
