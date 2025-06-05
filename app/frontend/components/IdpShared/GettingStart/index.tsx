@@ -3,7 +3,6 @@ import { Space, Typography } from 'antd'
 import { ButtonWithArrow, BoxWithShadow } from '~/glint'
 import { RocketLaunchIcon } from '~/glint/icons'
 import VideoPlayer from '~/modules/survey/components/modules/VideoResponse/VideoPlayer'
-
 import styles from './GettingStart.less'
 
 // to be replaced with actual video url

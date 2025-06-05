@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import { GettingStart } from './GettingStart'
-import { SkillGapReport } from './SkillGapReport'
+import { SkillGapReportStep } from './SkillGapReport'
 import { AddSkills } from './AddSkills'
 import { RateSkills } from './RateSkills'
 import { ReflectiveQuestionsStep } from './ReflectiveQuestions'
@@ -145,7 +145,7 @@ const InitialStepsComponent = ({
             </BoxWithShadow>
             {paramStep === STEPS.gettingStarted && <GettingStart next={handleNextForGettingStartedStep} />}
             {paramStep === STEPS.skillGapReport && (
-              <SkillGapReport
+              <SkillGapReportStep
                 next={() => next(STEPS.addSkills)}
               />
             )}

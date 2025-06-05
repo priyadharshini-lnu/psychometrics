@@ -4,7 +4,6 @@ import {
 } from 'antd'
 import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BoxWithShadow, MediaQueryContext } from '~/glint'
-
 import styles from './IdpUserProfileCard.less'
 
 type Field = {

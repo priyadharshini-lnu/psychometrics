@@ -2332,6 +2332,7 @@ fr:
   idp:
     actions: Actions
     board: Conseil d'administration
+    convert_to_draft: Convertir en brouillon
     details: Détails
     development_actions:
       action_private: Oui
@@ -2387,6 +2388,8 @@ fr:
       skill_column_header: Compétence
       skill_gap_report: Rapport sur les lacunes en matière de compétences
     list: Liste
+    manage_plan: Gérer le forfait
+    mark_as_incomplete: Marquer comme incomplet
     my_direct_reportees: Mes subordonnés directs
     my_plan:
       development_plan: Plan de développement
@@ -2518,7 +2521,6 @@ fr:
       updated_successfully: Vos réponses ont été mises à jour avec succès
       words: Mots
     skill_gap_report:
-      continue_to_rate_skills: Continuer à évaluer les compétences
       title: Rapport sur les lacunes en matière de compétences
     status: Statut
     user_idp_status:

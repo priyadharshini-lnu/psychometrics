@@ -28,7 +28,7 @@ type SkillsContainerProps = {
   categories: CategoryWithSkills[]
   availableDevelopmentActions: AvailableDevelopmentActions[]
   onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onShowAvailableDevelopmentAction?: (skillId: number | null) => void
+  onShowAvailableDevelopmentAction?: (skillId: string | number | null) => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onAddMoreSkills: (category: CategoryWithSkills) => void;
@@ -129,7 +129,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onAddDevelopmentAction={() => handleShowAvailableDevelopmentAction(skill)}
         onUpdateDevelopmentAction={onUpdateDevelopmentAction}
         onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
-        userIdpSkillId={skill.id}
+        userIdpSkillId={skill.id as number}
         {...skill}
       />
     ))
@@ -202,7 +202,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onCancel={handleCancel}
         open={isAddDevelopmentActionModalOpen}
         onShowAIGeneratedDevelopmentActions={() => setIsAIGeneratedDevelopmentActionsModalOpen(true)}
-        selectedDevelopmentActionIds={selectedDevelopmentActionIds}
+        selectedDevelopmentActionIds={selectedDevelopmentActionIds as (string | number)[]}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}

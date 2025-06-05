@@ -6,10 +6,17 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
+import { SelectedSkillsCard } from '~/components/IdpShared/AddSkillsStep/SelectedSkillsCard'
 import { ButtonWithArrow, BoxWithShadow, MediaQueryContext } from '~/glint'
-import { SelectedSkillsCard } from '~/components/IdpShared/InitialSteps/SelectedSkillsCard'
-import { SkillsGroupCard } from '~/components/IdpShared/InitialSteps/SkillsGroupCard'
-import { UserIdpSkill, CategoryWithSkillsSummary } from '../DevelopmentActions'
+import { CategoryWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
+import { SkillsGroupCard } from '~/components/IdpShared/SkillGroupCard'
+
+
+type SearchSkillResourceProps = {
+     isSearching: boolean,
+     searchResults: { id: string|number; name: string }[],
+     handleSearch: (value: string, skillType: string)=> void
+  }
 
 type AddSkillsStepProps = {
   onFinishAddSkill: () => void
@@ -19,7 +26,9 @@ type AddSkillsStepProps = {
   onDeselectSkill: (id: number) => void
   onAddSkill: (skills: { id: number; name: string }[]) => void
   isSubmitting?: boolean
+  searchSkillResource: SearchSkillResourceProps
 }
+
 
 const { I18n } = window
 
@@ -27,7 +36,7 @@ const { I18n } = window
 export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   onFinishAddSkill, addSkillButtonText,
   skillCategories, selectedSkills, onDeselectSkill, onAddSkill,
-  isSubmitting = false,
+  isSubmitting = false, searchSkillResource,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const [openSelectedSkillsModal, setOpenSelectedSkillsModal] = useState(false)
@@ -55,11 +64,13 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
               )
               return (
                 <SkillsGroupCard
-                  key={skillCategory.skillType}
                   skillCategory={{ skillType: skillCategory.skillType, skills: skillsAvailableForSelection }}
                   onAddSkill={onAddSkill}
                   onRemoveSkill={onDeselectSkill}
                   selectedSkills={selectedSkills}
+                  handleSearch={searchSkillResource.handleSearch}
+                  searchResults={searchSkillResource.searchResults}
+                  isSearching={searchSkillResource.isSearching}
                 />
               )
             })

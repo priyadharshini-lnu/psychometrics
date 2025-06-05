@@ -10,13 +10,17 @@ import { renderSkillCategoryIcon } from '../utils'
 const { I18n } = window
 interface SkillsContainerProps {
   developmentActionTypes: CategoryWithDevelopmentActions[];
+  showRating?: boolean
 }
 
-export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({ developmentActionTypes }) => {
+export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({
+  developmentActionTypes,
+  showRating = true,
+}) => {
   const renderPortraitSkillCards = (skills: DevelopmentActionWithSkill[]) => {
     if (skills.length === 0) return <span>{I18n.t('idp.development_actions.no_development_actions')}</span>
     return skills.map(skill => (
-      <DevelopmentActionPortraitCard key={skill.id} {...skill} />
+      <DevelopmentActionPortraitCard key={skill.id} {...skill} showRating={showRating} />
     ))
   }
 

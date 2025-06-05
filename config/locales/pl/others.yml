@@ -581,6 +581,7 @@ pl:
   idp:
     actions: Działania
     board: Tablica
+    convert_to_draft: Konwertuj na wersję roboczą
     details: Szczegóły
     development_actions:
       action_private: Tak
@@ -642,6 +643,8 @@ pl:
       skill_column_header: Umiejętność
       skill_gap_report: Raport luk w umiejętnościach
     list: Lista
+    manage_plan: Zarządzaj planem
+    mark_as_incomplete: Oznacz jako niekompletne
     my_direct_reportees: Moi bezpośredni podwładni
     my_plan:
       development_plan: Plan rozwoju
@@ -767,7 +770,6 @@ pl:
       updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane
       words: Słowa
     skill_gap_report:
-      continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
       title: Raport luk w umiejętnościach
   idp_templates:
     errors:

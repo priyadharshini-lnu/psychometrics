@@ -609,6 +609,7 @@ ar:
   idp:
     actions: الإجراءات
     board: اللوحة
+    convert_to_draft: تحويل إلى مسودة
     details: التفاصيل
     development_actions:
       action_private: نعم
@@ -670,6 +671,8 @@ ar:
       skill_column_header: المهارة
       skill_gap_report: تقرير فجوة المهارات
     list: قائمة
+    manage_plan: إدارة الخطة
+    mark_as_incomplete: وضع علامة على أنها غير مكتملة
     my_direct_reportees: تقاريري المباشرة
     my_plan:
       development_plan: خطة التطوير
@@ -795,7 +798,6 @@ ar:
       updated_successfully: تم تحديث إجاباتك بنجاح
       words: الكلمات
     skill_gap_report:
-      continue_to_rate_skills: استمر في تقييم المهارات
       title: تقرير فجوة المهارات
     status: الحالة
     user_idp_status:

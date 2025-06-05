@@ -1,6 +1,8 @@
 import { USER_IDP_PLAN_STATUS } from 'components/IdpShared/constants'
 import { Skill, DevelopmentAction } from 'components/IdpShared/DevelopmentActions'
 import _ from 'lodash'
+import ApiAction from 'interfaces/ApiAction'
+
 
 export const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
 const UPDATE_USER_IDP_PLAN = 'IDP/MY_PLAN/UPDATE_USER_IDP_PLAN'
@@ -158,7 +160,7 @@ export const updateUserIdpSkill = (
   },
 })
 
-export const fetchIdpSkills = (filters: object | null = null) => ({
+export const fetchIdpSkills = (filters: object | null = null):ApiAction<Skill[]> => ({
   type: FETCH_IDP_SKILLS,
   request: {
     url: '/skills',

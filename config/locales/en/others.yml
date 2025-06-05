@@ -2399,6 +2399,7 @@ en:
   idp:
     actions: Actions
     board: Board
+    convert_to_draft: Convert to Draft
     details: Details
     development_actions:
       action_private: 'Yes'
@@ -2455,12 +2456,15 @@ en:
       rate_skills_title: Rating Your Skills
       rating_column_header: Your self rating
       reflective_questions: Reflective Questions
+      save: Save
       select_skills: Select your skills
       select_skills_placeholder: Select skills
       selected_skills: Selected Skills
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
+    manage_plan: Manage Plan
+    mark_as_incomplete: Mark as Incomplete
     my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
@@ -2587,7 +2591,6 @@ en:
       updated_successfully: Your answers have been updated successfully
       words: Words
     skill_gap_report:
-      continue_to_rate_skills: Continue to rate skills
       title: Skill Gap Report
     status: Status
     user_idp_status:

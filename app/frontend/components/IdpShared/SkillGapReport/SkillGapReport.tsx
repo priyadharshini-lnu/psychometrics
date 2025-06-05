@@ -1,68 +1,30 @@
 import {
-  FC, useState, useEffect,
-} from 'react'
-import { PageHeader } from '@ant-design/pro-layout'
-import {
-  Row, Col, Layout, Button, Spin, Typography, Flex,
+  Typography,
+  Row, Col, Button, Spin, Flex, Layout,
 } from 'antd'
-import { connect, ConnectedProps } from 'react-redux'
-import { ButtonWithArrow } from '~/glint'
+import { PageHeader } from '@ant-design/pro-layout'
 import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import styles from './styles.less'
-import { RootState } from '~/modules/endUser/core/rootReducers'
-import { fetchSkillGaps, FetchSkillGapsResponse } from '~/modules/endUser/modules/campaigns/core/idp/idpForm'
+import {
+  ButtonWithArrow,
+} from '~/glint'
 import Report from '~/modules/reports/report'
-import rstore from '~/modules/reports/store'
-import { setReportLoading } from '~/modules/reports/core/builder/actions'
-
-const connector = connect(
-  (state: RootState) => ({
-    currentUser: state.currentUser,
-  }),
-  {
-    fetchSkillGaps,
-  },
-)
-
-type PropsFromRedux = ConnectedProps<typeof connector>
-type SkillGapReportProps = {
-  next: () => void
-} & PropsFromRedux
 
 const { Content } = Layout
 
 const { I18n } = window
 
-const SkillGapReportComponent: FC<SkillGapReportProps> = ({ next, currentUser, fetchSkillGaps }) => {
-  const [skillGapData, setSkillGapData] = useState<FetchSkillGapsResponse | null>(null)
-  const [isLoading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetchSkillGaps(currentUser.id, { lang: I18n.locale }).then((data) => {
-      setSkillGapData(data.response)
-    }).finally(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      })
-      setLoading(false)
-    })
-
-    return () => {
-      rstore.dispatch(setReportLoading(false))
-    }
-  }, [])
-
+export const SkillGapReport = ({
+  next, skillGapData, reportUrl, isLoading, styles,
+}) => {
   const extraContent = (isLoading ? <></>
     : (
-      skillGapData?.report_url && (
+      reportUrl && (
         <Flex className="mt-2">
           <Button
             key="download"
             icon={<DownloadOutlined />}
             disabled={skillGapData?.status !== 'prepared'}
-            href={skillGapData?.report_url}
+            href={reportUrl}
             target="_blank"
           >
             {I18n.t('common.text.download')}
@@ -71,6 +33,7 @@ const SkillGapReportComponent: FC<SkillGapReportProps> = ({ next, currentUser, f
       )
     )
   )
+
   return (
     <>
       <Content className={styles.reportContainer}>
@@ -93,7 +56,7 @@ const SkillGapReportComponent: FC<SkillGapReportProps> = ({ next, currentUser, f
                 )}
                     extra={extraContent}
                   />
-                  <Flex justify="center" className="mt-5 mb-5">
+                  <Flex justify="center" className={`${styles.reportViewer} mb-5"`}>
                     <Report
                       data={skillGapData.report}
                       results={skillGapData.results}
@@ -123,5 +86,3 @@ const SkillGapReportComponent: FC<SkillGapReportProps> = ({ next, currentUser, f
     </>
   )
 }
-
-export const SkillGapReport = connector(SkillGapReportComponent)

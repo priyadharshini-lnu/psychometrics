@@ -2339,6 +2339,7 @@ zh:
   idp:
     actions: 行动
     board: 董事会
+    convert_to_draft: 轉換為草稿
     details: 详细信息
     development_actions:
       action_private: 是
@@ -2394,6 +2395,8 @@ zh:
       skill_column_header: 技能
       skill_gap_report: 技能差距报告
     list: 列表
+    manage_plan: 管理计划
+    mark_as_incomplete: 標記為不完整
     my_direct_reportees: 我的直属下属
     my_plan:
       development_plan: 发展计划
@@ -2525,7 +2528,6 @@ zh:
       updated_successfully: 您的答案已成功更新
       words: 字数
     skill_gap_report:
-      continue_to_rate_skills: 继续评定技能
       title: 技能差距报告
     status: 现状
     user_idp_status:

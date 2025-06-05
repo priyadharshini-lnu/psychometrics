@@ -1470,7 +1470,12 @@ as: :simulation_progress_notification
               get :get_password, on: :member
             end
           end
-          resources :user_idp_plans, only: %i[create]
+          jsonapi_resources :user_idp_plans, only: %i[create show update]
+          jsonapi_resources :user_idp_development_actions, only: %i[show index] do
+            post :bulk_update, on: :collection
+            post :generate_by_ai, on: :collection
+          end
+
           jsonapi_resources :skills, concerns: :taggable do
             post :import, on: :collection
             post :export, on: :collection

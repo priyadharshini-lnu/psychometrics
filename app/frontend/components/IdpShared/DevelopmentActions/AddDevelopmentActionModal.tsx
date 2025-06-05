@@ -16,7 +16,7 @@ type Props = {
   onShowAIGeneratedDevelopmentActions: () => void,
   onCancel: () => void,
   open: boolean,
-  selectedDevelopmentActionIds: (number)[],
+  selectedDevelopmentActionIds: (string | number)[],
 }
 
 const tabs = [
@@ -38,7 +38,8 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
   const [selectedTab, setSelectedTab] = useState('all')
   const [availableActions, setAvailableActions] = useState(data)
   const handleAddAction = (developmentAction: Partial<DevelopmentAction>) => {
-    if (developmentAction.id && selectedDevelopmentActionIds.includes(developmentAction.id)) return
+    if (developmentAction.id && (selectedDevelopmentActionIds.includes(developmentAction.id)
+      || selectedDevelopmentActionIds.includes(Number(developmentAction.id)))) return
 
     onAddAction(developmentAction)
   }

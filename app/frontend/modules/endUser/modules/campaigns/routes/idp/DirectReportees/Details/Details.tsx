@@ -12,7 +12,9 @@ import {
 } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import UserDevelopmentPlan from '~/components/IdpShared/UserDevelopmentPlan'
+import { filteredDevelopmentActions } from '../../UserDevelopmentPlan/utils'
+import { IdpUserProfileCard } from '~/components/IdpShared/IdpUserProfileCard'
+import UserDevelopmentPlan from '../../UserDevelopmentPlan'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '~/components/IdpShared/constants'
 import { getIdpSettings } from '~/modules/endUser/core/config'
@@ -23,11 +25,9 @@ import {
   saveUserIdpDevelopmentActions,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { DirectionalNavigateBackIcon } from '~/glint'
-import { IdpUserProfileCard } from '~/components/IdpShared/InitialSteps/IdpUserProfileCard'
 
 import styles from '../DirectReportees.less'
 import { CheckCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { filteredDevelopmentActions } from '~/components/IdpShared/UserDevelopmentPlan/utils'
 
 const { I18n } = window
 

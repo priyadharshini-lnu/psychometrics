@@ -2343,6 +2343,7 @@ pt:
   idp:
     actions: Acções
     board: Direção
+    convert_to_draft: Converter em rascunho
     details: Detalhes
     development_actions:
       action_private: Sim
@@ -2398,6 +2399,8 @@ pt:
       skill_column_header: Habilidade
       skill_gap_report: Relatório de défice de competências
     list: Lista
+    manage_plan: Gerenciar plano
+    mark_as_incomplete: Marcar como incompleto
     my_direct_reportees: Os Meus Relatórios Diretos
     my_plan:
       development_plan: Plano de desenvolvimento
@@ -2529,7 +2532,6 @@ pt:
       updated_successfully: As suas respostas foram actualizadas com sucesso
       words: Palavras
     skill_gap_report:
-      continue_to_rate_skills: Continuar a avaliar as competências
       title: Relatório de défice de competências
     status: Estado
     user_idp_status:

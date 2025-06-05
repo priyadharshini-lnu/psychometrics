@@ -2330,6 +2330,7 @@ it:
   idp:
     actions: Azioni
     board: Consiglio di amministrazione
+    convert_to_draft: Converti in bozza
     details: Dettagli
     development_actions:
       action_private: Sì
@@ -2385,6 +2386,8 @@ it:
       skill_column_header: Competenza
       skill_gap_report: Report sul Divario di Competenze
     list: Lista
+    manage_plan: Gestisci piano
+    mark_as_incomplete: Contrassegna come incompleto
     my_direct_reportees: I Miei Report Diretti
     my_plan:
       development_plan: Piano di sviluppo
@@ -2516,7 +2519,6 @@ it:
       updated_successfully: Le risposte sono state aggiornate con successo
       words: Parole
     skill_gap_report:
-      continue_to_rate_skills: Continuare a valutare le competenze
       title: Rapporto sul divario di competenze
     status: Stato
     user_idp_status:

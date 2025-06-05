@@ -4,12 +4,11 @@ import {
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
 import { useState } from 'react'
+import { filteredDevelopmentActions } from '../UserDevelopmentPlan/utils'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { getIdpSettings } from '~/modules/endUser/core/config'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
-
-import UserDevelopmentPlan from '~/components/IdpShared/UserDevelopmentPlan'
-
+import UserDevelopmentPlan from '../UserDevelopmentPlan'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import {
@@ -20,7 +19,6 @@ import {
 
 import styles from './MyPlan.less'
 import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { filteredDevelopmentActions } from '~/components/IdpShared/UserDevelopmentPlan/utils'
 
 const { I18n } = window
 

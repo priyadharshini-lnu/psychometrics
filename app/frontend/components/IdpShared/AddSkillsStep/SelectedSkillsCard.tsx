@@ -27,11 +27,10 @@ export const SelectedSkillsCard: FC<Props> = ({ selectedSkills, onRemoveSkill })
               key={userIdpSkill.skillId}
               color={token.colorPrimaryActive}
               closable
-              onClose={() => onRemoveSkill(userIdpSkill.skillId)}
+              onClose={() => onRemoveSkill(userIdpSkill.skillId as number)}
               style={{ alignItems: 'center', display: 'flex', width: 'min-content' }}
             >
               <Text
-                key={userIdpSkill.skillId}
                 style={{ maxWidth: 150, color: 'inherit' }}
                 ellipsis={{ tooltip: userIdpSkill.name }}
               >

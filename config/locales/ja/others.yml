@@ -2342,6 +2342,7 @@ ja:
   idp:
     actions: 行動
     board: ボード
+    convert_to_draft: ドラフトに変換
     details: 詳細
     development_actions:
       action_private: はい
@@ -2397,6 +2398,8 @@ ja:
       skill_column_header: スキル
       skill_gap_report: スキル・ギャップ・レポート
     list: リスト
+    manage_plan: 計画の管理
+    mark_as_incomplete: 未完了としてマークする
     my_direct_reportees: 私の直属の部下
     my_plan:
       development_plan: 開発計画
@@ -2528,7 +2531,6 @@ ja:
       updated_successfully: 回答が更新されました
       words: 言葉
     skill_gap_report:
-      continue_to_rate_skills: 技能の評価を続ける
       title: スキル・ギャップ・レポート
     status: ステータス
     user_idp_status:

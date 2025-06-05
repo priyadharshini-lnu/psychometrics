@@ -2344,6 +2344,7 @@ de:
   idp:
     actions: Aktionen
     board: Vorstand
+    convert_to_draft: In Entwurf konvertieren
     details: Einzelheiten
     development_actions:
       action_private: Ja
@@ -2399,6 +2400,8 @@ de:
       skill_column_header: Fertigkeit
       skill_gap_report: Bericht über das Qualifikationsdefizit
     list: Liste
+    manage_plan: Plan verwalten
+    mark_as_incomplete: Als unvollständig markieren
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
@@ -2524,7 +2527,6 @@ de:
       updated_successfully: Ihre Antworten wurden erfolgreich aktualisiert
       words: Wörter
     skill_gap_report:
-      continue_to_rate_skills: Fähigkeiten weiter bewerten
       title: Bericht über das Qualifikationsdefizit
     status: Status
     user_idp_status:

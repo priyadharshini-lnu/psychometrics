@@ -4,7 +4,7 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
   attributes :name, :description, :skill_type, :created_at, :updated_at, :project_id, :tag_list, :global
 
   has_one :project
-
+  has_many :development_actions
   add_tag_filter
 
   def created_at
@@ -39,5 +39,14 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     super + %i[project.name]
   end
 
-  ransack_filters %i[name_cont skill_type_in project_id_eq global all_skills filterable_fields]
+  ransack_filters %i[
+    name_cont
+    skill_type_in
+    project_id_eq
+    global
+    all_skills
+    filterable_fields
+    by_idp_template_id
+    filter_by_skill_type
+  ]
 end

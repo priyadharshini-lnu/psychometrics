@@ -2327,6 +2327,7 @@ zh-Hant:
   idp:
     actions: 行動
     board: 董事會
+    convert_to_draft: 转换为草稿
     details: 詳細資訊
     development_actions:
       action_private: 是
@@ -2380,6 +2381,8 @@ zh-Hant:
       skill_column_header: 技術
       skill_gap_report: 技能差距報告
     list: 清單
+    manage_plan: 管理計劃
+    mark_as_incomplete: 标记为不完整
     my_plan:
       development_plan: 發展計劃
       graphs:
@@ -2497,7 +2500,6 @@ zh-Hant:
         skills_count: 技能數量
         title: 報告摘要
     skill_gap_report:
-      continue_to_rate_skills: 繼續評定技能
       title: 技能差距報告
     status: 狀態
     user_idp_status:

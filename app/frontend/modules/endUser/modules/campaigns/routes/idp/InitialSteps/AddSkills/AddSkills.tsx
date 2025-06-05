@@ -1,14 +1,15 @@
-import { UserIdpSkill, Skill } from 'components/IdpShared/DevelopmentActions'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Spin } from 'antd'
-import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
+import { Skill } from '~/components/IdpShared/DevelopmentActions'
+import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
 import {
   fetchIdpSkills,
   saveUserIdpSkills,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { RootState } from '~/modules/endUser/core/rootReducers'
+import { useSearchSkills } from './useSearchSkills'
 
 const connector = connect((state: RootState) => ({
   userIdpSkills: state.campaigns.idp.userIdpSkills,
@@ -30,7 +31,7 @@ const AddSkillsComponent = ({
 }) => {
   const [skills, setSkills] = useState<Skill[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [selectedSkills, setSelectedSkills] = useState<UserIdpSkill[]>(([]))
+  const [selectedSkills, setSelectedSkills] = useState<Skill[]>(([]))
   const [isSkillsLoading, setIsSkillsLoading] = useState(true)
 
   const handleAddSkill = (skills) => {
@@ -60,6 +61,7 @@ const AddSkillsComponent = ({
       next()
     })
   }
+  const searchSkillResource = useSearchSkills()
 
   useEffect(() => {
     setIsSkillsLoading(true)
@@ -91,6 +93,7 @@ const AddSkillsComponent = ({
       onDeselectSkill={handleDeselectSkill}
       onFinishAddSkill={handleFinishAddinSkill}
       isSubmitting={isSubmittingPlan || isSubmitting}
+      searchSkillResource={searchSkillResource}
     />
   )
 }

@@ -2345,6 +2345,7 @@ es-ES:
   idp:
     actions: Acciones
     board: Tablero
+    convert_to_draft: Convertir a borrador
     details: Detalles
     development_actions:
       action_private: Sí
@@ -2400,6 +2401,8 @@ es-ES:
       skill_column_header: Habilidad
       skill_gap_report: Informe de Brecha de Habilidades
     list: Lista
+    manage_plan: Gestionar plan
+    mark_as_incomplete: Marcar como incompleta
     my_direct_reportees: Mis Informes Directos
     my_plan:
       development_plan: Plan de Desarrollo
@@ -2525,7 +2528,6 @@ es-ES:
       updated_successfully: Tus respuestas se han actualizado correctamente
       words: Palabras
     skill_gap_report:
-      continue_to_rate_skills: Seguir valorando las competencias
       title: Informe sobre el déficit de cualificaciones
     status: Estado
     user_idp_status:

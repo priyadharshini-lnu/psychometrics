@@ -592,6 +592,7 @@ zh-HK:
   idp:
     actions: 操作
     board: 看板
+    convert_to_draft: 轉換為草稿
     details: 詳情
     development_actions:
       action_private: 是
@@ -647,6 +648,8 @@ zh-HK:
       skill_column_header: 技能
       skill_gap_report: 技能差距報告
     list: 列表
+    manage_plan: 管理计划
+    mark_as_incomplete: 標記為不完整
     my_direct_reportees: 我的直屬下屬
     my_plan:
       development_plan: 發展計劃
@@ -772,7 +775,6 @@ zh-HK:
       updated_successfully: 您的答案已成功更新
       words: 詞彙
     skill_gap_report:
-      continue_to_rate_skills: 繼續評定技能
       title: 技能差距報告
     status: 狀態
     user_idp_status:

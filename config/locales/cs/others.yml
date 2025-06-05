@@ -2344,6 +2344,7 @@ cs:
   idp:
     actions: Akce
     board: Přehled
+    convert_to_draft: Převést na koncept
     details: Podrobnosti
     development_actions:
       action_private: Ano
@@ -2405,6 +2406,8 @@ cs:
       skill_column_header: Dovednost
       skill_gap_report: Zpráva o mezerách v dovednostech
     list: Seznam
+    manage_plan: Spravovat plán
+    mark_as_incomplete: Označit jako nedokončené
     my_direct_reportees: Moji přímí podřízení
     my_plan:
       development_plan: Rozvojový plán
@@ -2530,7 +2533,6 @@ cs:
       updated_successfully: Vaše odpovědi byly úspěšně aktualizovány
       words: Slova
     skill_gap_report:
-      continue_to_rate_skills: Pokračujte v hodnocení dovedností
       title: Zpráva o nedostatku dovedností
     status: Stav
     user_idp_status:

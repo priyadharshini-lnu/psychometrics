@@ -1,1 +1,1 @@
-export { SkillGapReport } from './SkillGapReport'
+export { SkillGapReportStep } from './SkillGapReportStep'

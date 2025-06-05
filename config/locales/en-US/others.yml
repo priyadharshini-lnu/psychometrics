@@ -570,6 +570,7 @@ en-US:
   idp:
     actions: Actions
     board: Board
+    convert_to_draft: Convert to Draft
     details: Details
     development_actions:
       action_private: 'Yes'
@@ -631,6 +632,8 @@ en-US:
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
+    manage_plan: Manage Plan
+    mark_as_incomplete: Mark as Incomplete
     my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
@@ -756,7 +759,6 @@ en-US:
       updated_successfully: Your answers have been updated successfully
       words: Words
     skill_gap_report:
-      continue_to_rate_skills: Continue to rate skills
       title: Skill Gap Report
   idp_templates:
     errors:

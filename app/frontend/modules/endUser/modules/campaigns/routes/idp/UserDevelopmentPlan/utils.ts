@@ -34,7 +34,7 @@ function addSkillsToDevelopmentActions (
 }
 
 
-export function groupDevelopmentActionsByCategory (
+export function groupDevelopmentActionsBySkillType (
   developmentActions: Record<string, DevelopmentAction>,
   skills: Record<string, Skill>,
 ): CategoryWithDevelopmentActions[] {
@@ -50,12 +50,12 @@ export function groupDevelopmentActionsByCategory (
     developmentActions,
   }))
 }
-export function groupSkillsByCategory (
+export function groupSkillsBySkillType (
   skills: Record<string, Skill>,
   developmentActions: Record<string, DevelopmentAction>,
 ): CategoryWithSkills[] {
   const enrichedSkills = addDevelopmentActionsToSkills(skills, developmentActions)
-  const groupedByCategory = _.groupBy(enrichedSkills, 'category')
+  const groupedByCategory = _.groupBy(enrichedSkills, 'skillType')
 
   return _.map(groupedByCategory, (skills, skillType) => ({
     skillType,

@@ -2326,6 +2326,7 @@ nl:
   idp:
     actions: Acties
     board: Raad van bestuur
+    convert_to_draft: Converteren naar concept
     details: Details
     development_actions:
       action_private: Ja
@@ -2379,6 +2380,8 @@ nl:
       skill_column_header: Vaardigheid
       skill_gap_report: Rapport over vaardigheidskloof
     list: Lijst
+    manage_plan: Plan beheren
+    mark_as_incomplete: Markeren als onvolledig
     my_plan:
       development_plan: Ontwikkelingsplan
       graphs:
@@ -2391,7 +2394,6 @@ nl:
         technical: Technisch
       save_skills: Vaardigheden opslaan
     skill_gap_report:
-      continue_to_rate_skills: Blijf vaardigheden beoordelen
       title: Rapport over vaardigheidskloof
     status: Status
     user_idp_status:

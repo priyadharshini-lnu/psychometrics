@@ -13,7 +13,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { CloseOutlined } from '@ant-design/icons'
-
+import { useSearchSkills } from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/AddSkills/useSearchSkills'
 import { PageLoadSpinner } from '~/glint'
 
 import {
@@ -31,13 +31,11 @@ import {
   DevelopmentActionListView,
   DevelopmentActionBoardView,
   DevelopmentAction,
-  Skill,
   CategoryWithSkillsSummary,
-  CategoryWithUserIdpSkills,
 } from '~/components/IdpShared/DevelopmentActions'
-import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
-import { groupDevelopmentActionsByCategory, groupSkillsByCategory } from './utils'
-import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '../constants'
+import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
+import { groupDevelopmentActionsBySkillType, groupSkillsBySkillType } from './utils'
+import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '~/components/IdpShared/constants'
 import { ReflectiveQuestions } from '~/modules/endUser/modules/campaigns/routes/idp/ReflectiveQuestions'
 
 const { I18n } = window
@@ -92,21 +90,23 @@ const UserDevelopmentPlanComponent = ({
 
   const [tab, setTab] = useState(paramTab || 'list')
   const [showAddSkill, setShowAddSkill] = useState(false)
-  const [pickedCategoryToAddMoreSkills, setPickedCategoryToAddMoreSkills] = useState<CategoryWithUserIdpSkills>(
+  const [pickedCategoryToAddMoreSkills, setPickedCategoryToAddMoreSkills] = useState<CategoryWithSkillsSummary>(
     emptySkillCategory,
   )
   const [skillCategory, setSkillCategory] = useState<CategoryWithSkillsSummary>(emptySkillCategory)
 
-  const listData = useMemo(() => groupSkillsByCategory(idpSkills, idpDevelopmentActions),
+  const listData = useMemo(() => groupSkillsBySkillType(idpSkills, idpDevelopmentActions),
     [idpSkills, idpDevelopmentActions])
 
-  const boardData = useMemo(() => groupDevelopmentActionsByCategory(idpDevelopmentActions, idpSkills),
+  const boardData = useMemo(() => groupDevelopmentActionsBySkillType(idpDevelopmentActions, idpSkills),
     [idpDevelopmentActions, idpSkills])
 
   const availableDevelopmentActionsData = useMemo(() => _.values(availableDevelopmentActions),
     [availableDevelopmentActions])
 
   const navigate = useNavigate()
+
+  const searchSkillResource = useSearchSkills()
 
   const changeTab = (tab: string) => {
     setTab(tab)
@@ -139,7 +139,7 @@ const UserDevelopmentPlanComponent = ({
       }).then(({ response }) => {
         setSkillCategory({
           skillType: pickedCategoryToAddMoreSkills?.skillType || '',
-          skills: response as Skill[],
+          skills: response,
         })
       })
     } else {
@@ -264,6 +264,7 @@ const UserDevelopmentPlanComponent = ({
             selectedSkills={pickedCategoryToAddMoreSkills?.skills || []}
             onDeselectSkill={handleDeselectSkill}
             onAddSkill={handleSelectSkill}
+            searchSkillResource={searchSkillResource}
           />
         </div>
       ) : renderDevelopmentActionViews()}
