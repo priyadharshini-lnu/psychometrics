@@ -60,7 +60,7 @@ module Users
         status: :in_progress,
         users_result: users_result,
         last_activity_at: DateTime.current,
-        prework: campaign_assessment&.prework&.present?
+        prework: campaign_assessment&.prework.present?
       )
     end
 
