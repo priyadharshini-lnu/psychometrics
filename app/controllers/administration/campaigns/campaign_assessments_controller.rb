@@ -58,7 +58,7 @@ module Administration
       end
 
       def update_position_params
-        params.permit(campaign_assessments: [%i[id position campaign_assessment_group_id]])
+        params.permit(campaign_assessments: [%i[id position campaign_assessment_group_id workshop_activity_duration]])
       end
 
       def resource_params

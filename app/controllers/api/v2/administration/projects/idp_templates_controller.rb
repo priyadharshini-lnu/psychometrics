@@ -29,6 +29,12 @@ module Api
       }, status: :bad_request
     end
 
+    def update_reflection_questions
+      IdpTemplates::UpdateReflectionQuestions.call(@model, params[:data][:attributes][:reflection_questions])
+
+      jsonapi_render json: @model
+    end
+
     def uploads
       if @model.update(uploads_params)
         jsonapi_render json: @model

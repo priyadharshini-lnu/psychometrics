@@ -34,6 +34,7 @@ module Psychometrics
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = Settings.timezone
+    config.autoload_lib(ignore: %w[generators])
     config.eager_load_paths += Rails.root.glob('lib')
 
     # Load all translates inside folders
@@ -73,7 +74,6 @@ module Psychometrics
     config.middleware.use(Middlewares::CheckSession)
     config.middleware.use(Middlewares::SetTimeoutHeaderMiddleware)
     config.middleware.use(Middlewares::SidekiqAuthMiddleware)
-
     config.action_controller.raise_on_open_redirects = false
 
     # Settings in config/environments/* take precedence over those specified here.

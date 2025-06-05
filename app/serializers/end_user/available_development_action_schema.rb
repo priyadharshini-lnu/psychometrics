@@ -9,7 +9,7 @@ module EndUser
         required(:id).filled(:int?)
         required(:name).filled(:str?)
         required(:description).filled(:str?)
-        required(:category).filled(:str?)
+        required(:development_action_type).filled(:str?)
         required(:learning_style).filled(:str?)
         required(:image).maybe(:str?)
       end

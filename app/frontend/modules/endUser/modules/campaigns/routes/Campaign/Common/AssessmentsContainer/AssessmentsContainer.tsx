@@ -1,14 +1,16 @@
 import _ from 'lodash'
 import {
   Col, Row, Typography, Space, Alert,
+  Button,
 } from 'antd'
 import cs from 'classnames'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AssessmentCard } from '../AssessmentCard'
 import { AssessmentCardContainer } from '../AssessmentCardContainer'
 import { InviteDeatilsContainer } from './InviteDetailsContainer'
 import { BreakCard } from './BreakCard'
 import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
-import { ViewsContainer } from '~/glint'
+import { DirectionalNavigateBackIcon, ViewsContainer } from '~/glint'
 import styles from './AssessmentsContainer.less'
 import { isProctored } from '~/utils/isProctored'
 
@@ -59,11 +61,19 @@ export const AssessmentsContainer = ({
   campaignNotStarted,
   canNotStartPrework,
 }) => {
-  let assessmentGroups = [...groups]
+  const { search } = useLocation()
+  const navigate = useNavigate()
+  const searchParams = new URLSearchParams(search)
+  const assessmentCenterIdFromUrl = searchParams.get('assessmentCenterId')
+  const showAssessmentCenterDetails = !!assessmentCenterIdFromUrl
+  let assessmentGroups = groups.map((group) => {
+    if (!showAssessmentCenterDetails) return group
+    if (group.id === parseInt(assessmentCenterIdFromUrl, 10)) return { ...group, hide: false }
+    return { ...group, hide: true }
+  })
   const inviteDetails = campaign.workshopInvite
-  const { workshop } = campaign
-  const workshopCompleted = workshop ? workshop.completed : false
-  const workshopAttended = workshop ? workshop.attended : false
+  const { workshops: campaignWorkshops } = campaign
+
   let workshopActivities = campaign.userAssessments
     .filter(assessment => assessment?.workshopActivity && !assessment?.prework)
   workshopActivities = _.sortBy(workshopActivities, wa => wa.scheduleTime)
@@ -83,8 +93,19 @@ export const AssessmentsContainer = ({
           - ${I18n.t('frontend.lighthouse_app')}`
         }
       </title>
+      {assessmentCenterIdFromUrl && (
+        <AssessmentCardContainer className="mt-0 pt-0">
+          <Button
+            onClick={() => navigate(`/campaigns/${campaign.id}`)}
+            icon={<DirectionalNavigateBackIcon className="fs-12" />}
+          >
+            {I18n.t('common.actions.view_all_tasks')}
+          </Button>
+        </AssessmentCardContainer>
+      )}
       <ViewsContainer
-        title={I18n.t('campaign_assessment.assessments_heading')}
+        title={assessmentCenterIdFromUrl
+          ? I18n.t('campaign_assessment.assessment_center_heading') : I18n.t('campaign_assessment.assessments_heading')}
         titleHeadingLevel={1}
         defaultView="grid"
         viewTypeStorageKey="assessmentListingType"
@@ -99,12 +120,17 @@ export const AssessmentsContainer = ({
           }
           let prevGroup
           return (
-            <>
+            <Space direction="vertical" className="w-100">
               {assessmentGroups.map((group) => {
+                if (group.hide) {
+                  return null
+                }
                 let prevCompleted = true
                 let previousAssessmentIsIneligible = false
                 const isAssessmentCenter = isAnAssessmentCenterGroup(group)
                 const isPreviousGroupAnAssessmentCenter = isAnAssessmentCenterGroup(prevGroup)
+                const showAssessentCenterDetailsLink = isAssessmentCenter && !showAssessmentCenterDetails
+                const groupTitleId = `camp-group-${group.id}`
 
                 if (group.previousGroupRequired) {
                   const userAssessments: UserAssessment[] = isPreviousGroupAnAssessmentCenter ? workshopActivities : _
@@ -118,14 +144,23 @@ export const AssessmentsContainer = ({
                   }
                 }
                 prevGroup = group
-                let userAssessments: UserAssessment[] = []
+                let userAssessments: UserAssessment[] = _.compact(
+                  group.campaignAssessmentIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
+                )
                 let proctoringMsgOnWorkshop = ''
+                const workshop = isAssessmentCenter
+                  ? campaignWorkshops.find(workshop => workshop.campaignAssessmentGroupId === group.id) || {} : {}
+                const alignCardItemsInCenter = showAssessentCenterDetailsLink && !_.isEmpty(workshop)
+                const workshopCompleted = workshop ? workshop.completed : false
+                const workshopAttended = workshop ? workshop.attended : false
                 if (isAssessmentCenter) {
                   proctoringMsgOnWorkshop = getProctoringMsgOnWorkshop(
                     campaign.campaignOptions || {}, canNotStartWorkshopActivity,
                   )
                   if (workshop?.closed) return
-                  userAssessments = workshopCompleted ? [] : workshopActivities
+                  if (workshopCompleted) {
+                    userAssessments = []
+                  }
                 } else {
                   userAssessments = _.compact(
                     group.campaignAssessmentIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
@@ -139,67 +174,91 @@ export const AssessmentsContainer = ({
 
                 return (
                   <div
-                    className={cs({ [styles.group]: true, [styles.assessmentCenter]: isAssessmentCenter })}
+                    className={styles.group}
                     key={group.id}
                   >
-                    <AssessmentCardContainer>
-                      <Title level={5}>{group.name}</Title>
-                      <Space direction="vertical" size="middle" className="w-100">
-                        {isAssessmentCenter ? (
-                          <InviteDeatilsContainer inviteDetails={inviteDetails} bookingDetails={workshop} />
+                    <AssessmentCardContainer
+                      className={cs({
+                        [styles.assessmentCenter]: isAssessmentCenter,
+                        'ta-c': alignCardItemsInCenter,
+                      })}
+                    >
+                      <Title id={groupTitleId} className="mt-0" level={5}>{group.name}</Title>
+                      <Space
+                        align={(alignCardItemsInCenter) ? 'center' : undefined}
+                        direction="vertical"
+                        size="middle"
+                        className="w-100"
+                      >
+                        {showAssessentCenterDetailsLink ? (
+                          <InviteDeatilsContainer
+                            inviteDetails={inviteDetails}
+                            bookingDetails={workshop}
+                            groupId={group.id}
+                            groupTitleId={groupTitleId}
+                          />
                         ) : null}
                         {proctoringMsgOnWorkshop && <Alert message={proctoringMsgOnWorkshop} showIcon />}
-                        <Row gutter={[16, 16]}>
-                          {userAssessments.map((userAssessment, index) => {
-                            let isDisabled = userAssessment.prework ? canNotStartPrework : canNotStartAssessment
-                            if (isAssessmentCenter) {
-                              isDisabled = canNotStartWorkshopActivity
-                            }
-                            isDisabled = isDisabled || !prevCompleted
-                            if (!isDisabled && group.previousAssessmentsRequired) {
-                              prevCompleted = prevAssessmentsCompleted(userAssessments, userAssessment)
-                              isDisabled = isDisabled || !prevCompleted
-                              if (previousAssessmentIsIneligible) {
-                                return null
-                              }
-                            }
-                            previousAssessmentIsIneligible = userAssessment.status === Statuses.INELIGIBLE
+                        {showAssessentCenterDetailsLink
+                          ? null : (
+                            <Row gutter={[16, 16]}>
+                              {userAssessments.map((userAssessment, index) => {
+                                let isDisabled = userAssessment.prework ? canNotStartPrework : canNotStartAssessment
+                                if (isAssessmentCenter) {
+                                  isDisabled = canNotStartWorkshopActivity
+                                }
+                                isDisabled = isDisabled || !prevCompleted
+                                if (!isDisabled && group.previousAssessmentsRequired) {
+                                  prevCompleted = prevAssessmentsCompleted(userAssessments, userAssessment)
+                                  isDisabled = isDisabled || !prevCompleted
+                                  if (previousAssessmentIsIneligible) {
+                                    return null
+                                  }
+                                }
+                                previousAssessmentIsIneligible = userAssessment.status === Statuses.INELIGIBLE
 
-                            return (
-                              <>
-                                <Col xs={24} sm={tabCol} md={tabCol} lg={tabCol} xl={deskCol} key={userAssessment.id}>
-                                  <AssessmentCard
-                                    view={view}
-                                    userAssessment={userAssessment}
-                                    workshopBooked={!!workshop}
-                                    workshopAttended={workshopAttended}
-                                    disabled={isDisabled}
-                                    prevCompleted={prevCompleted}
-                                    campaignNotStarted={campaignNotStarted}
-                                  />
-                                </Col>
-                                {isAssessmentCenter && index < userAssessments.length - 1 ? (
-                                  <BreakCard
-                                    currentWorkshopActivity={userAssessment}
-                                    nextWorkshopActivity={userAssessments[index + 1]}
-                                    tabCol={tabCol}
-                                    deskCol={deskCol}
-                                  />
-                                ) : null}
-                              </>
-                            )
-                          })}
-                        </Row>
+                                return (
+                                  <>
+                                    {/* eslint-disable-next-line max-len */}
+                                    <Col xs={24} sm={tabCol} md={tabCol} lg={tabCol} xl={deskCol} key={userAssessment.id}>
+                                      <AssessmentCard
+                                        view={view}
+                                        userAssessment={userAssessment}
+                                        workshopBooked={!!workshop}
+                                        workshopAttended={workshopAttended}
+                                        disabled={isDisabled}
+                                        prevCompleted={prevCompleted}
+                                        campaignNotStarted={campaignNotStarted}
+                                      />
+                                    </Col>
+                                    {isAssessmentCenter && index < userAssessments.length - 1 ? (
+                                      <BreakCard
+                                        currentWorkshopActivity={userAssessment}
+                                        nextWorkshopActivity={userAssessments[index + 1]}
+                                        tabCol={tabCol}
+                                        deskCol={deskCol}
+                                      />
+                                    ) : null}
+                                  </>
+                                )
+                              })}
+                            </Row>
+                          )}
                       </Space>
                     </AssessmentCardContainer>
                   </div>
                 )
               })}
-              {!!ungroupedAssessments.length && (
+              {!!ungroupedAssessments.length && !showAssessmentCenterDetails && (
                 <div className={styles.group}>
                   <AssessmentCardContainer>
                     {groups.length > 0 && (
-                      <Title level={5}>{I18n.t('campaign_assessment.ungrouped_assessments_heading')}</Title>
+                      <Title
+                        className="mt-0"
+                        level={5}
+                      >
+                        {I18n.t('campaign_assessment.ungrouped_assessments_heading')}
+                      </Title>
                     )}
                     <Row gutter={[16, 16]}>
                       {ungroupedAssessments.map(userAssessment => (
@@ -217,7 +276,7 @@ export const AssessmentsContainer = ({
                   </AssessmentCardContainer>
                 </div>
               )}
-            </>
+            </Space>
           )
         }}
       </ViewsContainer>

@@ -11,35 +11,828 @@ pt:
         select_comparison: Escolha o tipo de comparação
         select_factors: Selecione Fatores
         select_operation: Selecione Operação
-  activerecord:
-    attributes:
-      membership:
-        first_name: Nome próprio
-        last_name: Apelido
-      user:
-        email: Endereço de e-mail
-        first_name: Nome próprio
-        last_name: Apelido
-      user_form:
-        email: Endereço de e-mail
-        first_name: Nome próprio
-        last_name: Apelido
-        password: Palavra-passe
+      sheet_column:
+        accessor_access: Acesso do acessório
+        dashboard_use: Utilização do painel de controlo
+        visible_in_list: Visível na lista
     errors:
       models:
+        admin_edit:
+          attributes:
+            email:
+              blank: O campo de correio eletrónico não pode estar em branco
+              invalid: O correio eletrónico é inválido
+            first_name:
+              blank: O nome próprio não pode estar em branco
+            last_name:
+              blank: O apelido não pode estar em branco
+        agile:
+          answers:
+            blank: As respostas não podem estar em branco
+          group_id:
+            blank: O ID do grupo não pode estar em branco
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Carregar ficheiro xlsx
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: Foram selecionados relatórios que não estão ligados ao pacote de relatórios selecionado
+              report_family_disabled: Selecionou o pacote de relatórios desativado
+              reports_disabled: Selecionou Relatório(s) desativado(s)
+            removing_report_ids:
+              not_linked_to_report_family: Foram selecionados relatórios que não estão ligados ao pacote de relatórios selecionado
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: A ID de avaliação não pode estar em branco
+            bundle_report_id:
+              blank: O ID do pacote de relatórios não pode estar em branco
+            report_id:
+              blank: O ID do relatório não pode estar em branco
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: Carregar ficheiro xlsx
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: A coluna "%{entity}" não pode estar em branco na linha %{index}
+              duplicate_code: Código duplicado "%{code}" na linha %{index}
+              invalid_output_type: Tipo de saída inválido '%{output_type}' na linha %{index}
+              max_limit_reached: O total de factores da campanha excede o limite máximo de %{count}
+              missing_headers: 'Faltam cabeçalhos obrigatórios: %{cabeçalhos}'
+              type_mismatch: Incompatibilidade de tipo de saída para o código '%{code}' na linha %{index}
+            file:
+              invalid_format: Carregar ficheiro xlsx
+            resource:
+              must_exist: "%{resource} tem de existir"
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Carregar ficheiro CSV
+        column:
+          attributes:
+            name:
+              not_unique: Este campo já está presente
+        create_all:
+          attributes:
+            assessors:
+              blank: Selecionar pelo menos um avaliador
+              email_duplicated: Os e-mails do assunto e do avaliador estão duplicados
+              multiple_leads_for_subject: Múltiplos Avaliadores Principais atribuídos a um tema
+            evaluators:
+              email_duplicated: O assunto e os e-mails do avaliador estão duplicados
+            subjects:
+              email_duplicated: Alguns temas têm o mesmo correio eletrónico
+        create_one:
+          attributes:
+            assessment_ids:
+              invalid: A avaliação %{id} não pode ser associada a um avaliador
+              lead_assessor_already_assigned: Só pode ser atribuído um avaliador principal a cada disciplina
+            assessor_email:
+              already_exists: O assunto com este assessor já está ligado
+              blank: O e-mail do assessor não pode estar em branco
+              invalid: O e-mail do assessor é inválido
+            email:
+              already_exists: Já existe um assunto com o mesmo correio eletrónico
+              blank: O correio eletrónico não pode estar em branco
+              invalid: O correio eletrónico é inválido
+            evaluator_email:
+              already_exists: O sujeito com este avaliador já está ligado
+              blank: O e-mail do avaliador não pode estar em branco
+              invalid: O e-mail do avaliador é inválido
+            evaluator_first_name:
+              blank: O primeiro nome do avaliador não pode estar em branco
+            evaluator_last_name:
+              blank: O apelido do avaliador não pode estar em branco
+            evaluator_locale:
+              inclusion: Localidade incorrecta
+            evaluator_password:
+              too_short: A palavra-passe do avaliador é demasiado curta (o mínimo é %{count} caracteres)
+            first_name:
+              blank: O nome próprio não pode estar em branco
+            last_name:
+              blank: O apelido não pode estar em branco
+            locale:
+              inclusion: Localidade incorrecta
+            relationship_name:
+              blank: A relação não pode estar em branco
+              invalid: A relação %{nome} é inválida
+            subject_email:
+              blank: O assunto do e-mail não pode estar em branco
+              invalid: Assunto O e-mail é inválido
+              not_exists: Assunto não encontrado com o endereço de correio eletrónico %{email}
+        email_schedule:
+          attributes:
+            content:
+              blank: O conteúdo não pode estar em branco
+            from:
+              blank: O campo De não pode estar em branco
+            reply_to_email:
+              blank: O campo Responder ao correio eletrónico não pode estar em branco
+              invalid: A resposta ao correio eletrónico é inválida
+            scheduled_date:
+              blank: O campo de data programada não pode estar em branco
+            subject:
+              blank: O assunto não pode estar em branco
+        email_template:
+          attributes:
+            content:
+              blank: O conteúdo não pode estar em branco
+              invalid_consolidated_pipetext: Estes pipetext são inválidos para consolidar mensagens %{invalid_pipetexts}
+              invalid_unconsolidated_pipetext: Estes pipetext são inválidos para mensagens não consolidadas %{invalid_pipetexts}
+            from:
+              blank: O campo De não pode estar em branco
+            reply_to_email:
+              blank: O campo Responder ao correio eletrónico não pode estar em branco
+              invalid: A resposta ao correio eletrónico é inválida
+            subject:
+              blank: O assunto não pode estar em branco
+        email_test_form:
+          attributes:
+            to_email:
+              blank: O campo de correio eletrónico não pode estar em branco
+              invalid: O correio eletrónico é inválido
+        factor_import_form:
+          attributes:
+            base:
+              code_length: O código deve ter pelo menos 3 caracteres na linha %{index}.
+              code_required: O código do fator é necessário na linha %{index}
+              invalid_scoring_strategy: Estratégia de pontuação inválida "%{estratégia}" na linha %{índice}. As estratégias permitidas são %{permitidas}.
+              missing_headers: 'Faltam cabeçalhos obrigatórios: %{cabeçalhos}'
+              name_required: O nome do fator é necessário na linha %{index}
+              scoring_strategy_required: A estratégia de pontuação é necessária na linha %{index}
+            file:
+              invalid_format: Carregar ficheiro CSV
+        hogan:
+          attributes:
+            name:
+              not_unique: Esta integração já está presente para este projeto
+        iiht:
+          attributes:
+            name:
+              not_unique: Esta integração já está presente para este projeto
+        import_one:
+          attributes:
+            email:
+              already_exists: Já existe um assunto com o mesmo correio eletrónico
+              blank: O correio eletrónico não pode estar em branco
+              invalid: O correio eletrónico é inválido
+            first_name:
+              blank: O nome próprio não pode estar em branco
+            last_name:
+              blank: O apelido não pode estar em branco
+            locale:
+              inclusion: Localidade incorrecta
+            password:
+              too_short: A palavra-passe é demasiado curta. É necessário um mínimo de %{count} caracteres
+        mettl:
+          attributes:
+            name:
+              not_unique: Esta integração já está presente para este projeto
+        password_reset:
+          attributes:
+            email:
+              wrong_email: Não foi possível encontrar nenhum utilizador com o e-mail que forneceu.
+        profile:
+          attributes:
+            first_name:
+              blank: O nome próprio não pode estar em branco
+            last_name:
+              blank: O apelido não pode estar em branco
+            password:
+              contains_repeats: A palavra-passe não deve conter repetições
+              too_short: A palavra-passe é demasiado curta. É necessário um mínimo de %{count} caracteres
+              too_weak: 'A palavra-passe deve conter: no mínimo 1 letra minúscula, 1 letra maiúscula, 1 número e 1 carácter especial.'
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: O nome do bloco não pode estar em branco
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: A propriedade de pergunta 'answersType' de MatrixTable não pode estar em branco
+              inclusion: A propriedade 'answerType' da pergunta MatrixTable deve ser 'SingleAnswer' ou 'MultipleAnswer'
+            type:
+              blank: A propriedade "type" da pergunta MatrixTable não pode estar em branco
+              inclusion: O tipo de pergunta MatrixTable deveria ter "Likert
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: A propriedade 'type' da pergunta MultipleChoice não pode estar em branco.
+              inclusion: A propriedade 'type' da pergunta MultipleChoice deve ser 'SingleAnswer', 'MultipleAnswer' ou 'Dropdown'
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: O nome da pergunta não pode estar em branco
+            type:
+              blank: O título da pergunta não pode estar em branco
+              inclusion: O tipo de pergunta deve ser "TextEntry", "MultipleChoice", "MatrixTable" ou "StaticContent
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: randomization.questions não pode estar em branco se randomization.type for 'Some'
+            type:
+              inclusion: randomization.type deve ser 'All', 'Some' ou 'No'
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: O tipo de validação obrigatório deve ser "Forçar" ou "Pedido
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: O tipo de propriedade da pergunta de Conteúdo estático não pode estar em branco
+              inclusion: O tipo de propriedade da pergunta de conteúdo estático deve ser "Texto
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: A propriedade "type" da pergunta TextEntry não pode estar em branco.
+              inclusion: A propriedade "type" da pergunta TextEntry deve ser "Single Line", "Multi Line" ou "Essay Text Box
         register:
           attributes:
+            email:
+              blank: O endereço de correio eletrónico é obrigatório
+              in_use: Este endereço de e-mail está a ser utilizado. Se já tem uma conta, inicie sessão.
+              invalid: O endereço de correio eletrónico é inválido
+              too_long: O endereço de correio eletrónico é demasiado longo
+            first_name:
+              blank: O primeiro nome é obrigatório
+              too_long: O primeiro nome é demasiado longo
+            last_name:
+              blank: O apelido é obrigatório
+              too_long: O apelido é demasiado longo
             mobile_number:
               blank: É necessário um número de telemóvel
-              invalid: O número de telemóvel é inválido
+              invalid: O número de telemóvel não é válido
               verification_expired: O código de verificação expirou. Pode tentar verificar novamente.
+            registration_code:
+              blank: É necessário um código de registo
+              incorrect_email_domain: Este endereço de correio eletrónico não é válido para o código de registo introduzido
+              invalid: O código de registo é inválido
+            sms_invite_code:
+              invalid: O código de convite por SMS é inválido
+        saml_setting:
+          invalid_cert: Certificado inválido
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: A duração mínima deve ser de 5 minutos
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: A duração mínima é de 60 minutos
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: Espera-se que a coluna <b>%{col}</b> seja do tipo %{type} mas obteve <b>%{got}</b>
+              email_blank: 'Linha %{número_da_linha}: o campo E-mail não pode estar em branco'
+              email_duplicate: Existem duplicados na coluna Email
+              email_invalid: 'Linha %{número_da_linha}: O correio eletrónico é inválido'
+              invalid_column: Coluna inválida %{name}
+              invalid_column_name: A coluna <b>"%{coluna}"</b> é inválida
+              invalid_column_name_size: Nome da coluna <b>"%{coluna}"</b> demasiado longo (máx. 64)
+              invalid_column_type: O tipo de coluna deve ser String, Text, Number, HTML ou Markdown
+              invalid_format: Formato inválido (.xlsx)
+              invalid_number_value: <b>Linha#%{índice}</b> Coluna <b>"%{coluna}"</b> não é um número
+              invalid_string_value: <b>Linha#%{índice}</b> coluna <b>"%{coluna}"</b> não é uma cadeia de caracteres
+              invalid_string_value_size: <b>Linha#%{índice}</b> coluna <b>"%{coluna}"</b> demasiado longa (máx. 256)
+              no_email_column: O ficheiro não contém a coluna Email
+              non_uniq_column: Existem as seguintes colunas não uniq %{columns}
+        sheet_row_form:
+          attributes:
+            email:
+              blank: O correio eletrónico não pode estar em branco
+              not_uniq_email: A linha com o correio eletrónico já está presente
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: O nome próprio não pode estar em branco
+            last_name:
+              blank: O apelido não pode estar em branco
+            locale:
+              inclusion: Localidade incorrecta.
+            mobile_no:
+              blank: O número de telemóvel não pode estar em branco
+              invalid: O número de telemóvel deve começar por "+", seguido do código internacional e do número
+              invite_exists_in_campaign: Já existe um convite por SMS com o mesmo número de telemóvel
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: 'Os seguintes números de telemóvel são duplicados no CSV: %{mobile_numbers}'
+              invalid_header: Cabeçalho inválido. Exportar convite SMS para obter os cabeçalhos corretos
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: O formato do ID de correio eletrónico não é válido.
+        super_admin_edit:
+          attributes:
+            email:
+              blank: O campo de correio eletrónico não pode estar em branco
+              invalid: O correio eletrónico é inválido
+              starts_with_invalid_characters: O correio eletrónico não pode começar por =, |, +, -, @, %
+            first_name:
+              blank: O nome próprio não pode estar em branco
+              starts_with_invalid_characters: O primeiro nome não pode começar por =, |, +, -, @, %
+            last_name:
+              blank: O apelido não pode estar em branco
+              starts_with_invalid_characters: O apelido não pode começar por =, |, +, -, @, %
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: Selecionar o tipo de norma correto
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: O utilizador com este ID de correio eletrónico já existe na campanha
+              user_exists_in_project: O utilizador com este ID de correio eletrónico já existe no projeto
+            import_data:
+              cant_overwrite_password: Não tem permissão para substituir a palavra-passe.
+              duplicated_emails: 'O(s) seguinte(s) correio(s) eletrónico(s) está(ão) duplicado(s) no CSV: %{emails}'
+              invalid_email: 'Linha %{número_da_linha}: correio eletrónico inválido %{email}'
+              invalid_header: Cabeçalho inválido, retirar cabeçalho da exportação
+              invalid_reports_header: Cabeçalho inválido, retirar cabeçalho do ficheiro de amostra
+              manager_not_found: 'Linha %{número_da_linha}: o gestor com o correio eletrónico %{email} não está presente na campanha ou no CSV'
+              user_update_failed: A atualização do utilizador falhou para %{email} com o erro "%{error}
+            locale:
+              inclusion: Localidade incorrecta
+            name:
+              starts_with_invalid_characters: não pode começar com =, |, +, -, @, %
+            schedule_end_date:
+              invalid_datetime: é inválido
+            schedule_start_date:
+              invalid_datetime: é inválido
+        user_assessment:
+          subject_and_assessment_exists: A avaliação e o par de disciplinas já existem
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: é inválido
+            private:
+              inclusion: deve ser um booleano
+            start_date_time:
+              invalid_datetime: é inválido
+  activerecord:
+    attributes:
+      administration/assessments/assign_form:
+        access_reports: Regras do relatório de acesso
+        access_reports_at: Aceder ao relatório em
+        access_reports_at_date: Data
+        access_reports_at_time: Tempo
+        client_ids: Alugueres de clientes
+        manager_ids: Gestores
+        report_ids: Relatórios
+        user_ids: Utilizadores
+      assessment:
+        active: Ativo
+        categories:
+          '360': campanha 360
+          agile: ÁGIL
+          assessor_form: Formulário do assessor
+          case_study: Estudos de caso
+          hogan: Hogan
+          iiht: IIHT
+          meeting: Reunião
+          organisational: Inquéritos
+          pearson: Pearson
+          psychometric: Avaliação
+          saville: Saville
+          threesixty: campanha 360
+        category: Categoria
+        created_at: Data de criação
+        description: Descrição
+        id: ID
+        name: Nome
+        statuses:
+          finished: terminado
+        timing: Calendário
+        types:
+          common: Avaliação TTE
+          hogan: Hogan
+          iiht: Avaliação IIHT
+          pearson: Avaliação da Pearson
+          saville: Avaliação Saville
+        updated_at: Data de modificação
+      assign:
+        completed_at: Data de conclusão
+        statuses:
+          completed: Concluído
+          in_progress: Currículo
+          ineligible: Não elegível
+          interrupted: Interrompido
+          not_started: Novo
+          overdue: Atrasado
+          timed_out: Expirou o prazo
+      block:
+        active: Ativo
+        assign_to_assessment_ids: Avaliações
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      client:
+        applicable_level: Nível aplicável
+        applicable_levels:
+          campaign: Campanha
+          project: Projeto
+          sub_campaign: Sub-campanha
+        category: Categoria
+        created_at: Data de criação
+        id: ID
+        licenses: Número de licença
+        licenses_expire: Data de expiração da licença
+        licenses_used: Utilização da licença
+        location: Localização
+        logo: Logótipo do cliente
+        memberships_count: Utilizadores
+        name: Nome
+        number: Número de cliente
+        privacy_consent: Permitir o consentimento para o tratamento de dados
+        project_manager: Gestor de projectos TTE
+        project_manager_id: Gestor de projectos TTE
+        report_ids: Relatórios
+        strong_password_enabled: Ativar a palavra-passe forte
+        subdomain: Subdomínio
+        types:
+          associate: Associado
+          corporate: Empresa
+          distributer: Distribuidor
+          other: Outros
+          partner: Parceiro
+          retail: Retalho
+          tte: TTE
+        updated_at: Data de modificação
+        year: Ano do cliente
+      communication:
+        created_at: Data de criação
+        id: ID
+        updated_at: Data de modificação
+      dimension:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      factor:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        parent_id: Pai
+        questions_count: N.º de perguntas
+        updated_at: Data de modificação
+      hogan_report_setting:
+        load_report: Relatório de carga de Hogan
+      innovation_style:
+        active: Ativo
+        created_at: Data de criação
+        description: Descrição
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      innovation_styles_factor:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      library:
+        created_at: Data de criação
+        id: ID
+        type: Miniatura
+        updated_at: Data de modificação
+      license:
+        id: ID
+        number: Número de licença
+        overuse_number: Subsídio de utilização excessiva
+        type: Licença para
+        types:
+          common: Comum
+          proctoring: Controlo de qualidade
+          threesixty: Trezentos e sessenta
+        unlimited: Ilimitado
+        used_number: Número de licença usado
+      membership:
+        active: Ativo
+        created_at: Data de criação
+        disabled: Desativar
+        email: Correio eletrónico
+        first_name: Nome próprio
+        id: ID
+        last_name: Apelido
+        parent: Gestor direto
+        parent_id: Gestor direto
+        report_ids: IDs de relatórios
+        roles:
+          campaign_admin: Administração de campanhas
+          client_admin: Administrador de clientes
+          manager: Diretor
+          member: Utilizador
+          project_admin: Administrador do projeto
+        updated_at: Data de modificação
+        user_access: Acesso do utilizador
+      norm:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+        updated_by: Editado por
+      occupation:
+        active: Ativo
+        bachelors_or_masters_qualification: Bacharelato ou Mestrado
+        created_at: Data de criação
+        description: Descrição
+        diploma_qualification: Diploma de qualificação
+        full_description: Descrição completa
+        high_school_entry_roles: Funções de entrada no ensino secundário
+        id: ID
+        key_career_tracks: Principais carreiras
+        name: Nome
+        potential_areas_of_study: Áreas potenciais de estudo
+        updated_at: Data de modificação
+        work_environment: Ambiente de trabalho
+      occupations_factor:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      product:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      question:
+        active: Ativo
+        assign_to_assessment_ids: Avaliações
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      report:
+        created_at: Data de criação
+        id: ID
+        updated_at: Data de modificação
+      report_family:
+        created_at: Data de criação
+        id: ID
+        updated_at: Data de modificação
+      task:
+        active: Ativo
+        created_at: Data de criação
+        description: Descrição
+        description_label: DESCRIÇÃO
+        factor_id: Competência
+        factor_id_label: SELECCIONAR A COMPETÊNCIA
+        id: ID
+        membership_id: Cedente
+        membership_id_label: SELECCIONAR ATRIBUIDOR
+        name: Item de ação
+        name_label: PONTO DE ACÇÃO
+        planned_completed_at: Data de vencimento
+        planned_completed_at_label: SELECCIONAR DATA DE VENCIMENTO
+        priority: Prioridade
+        priority_label: PRIORIDADE
+        status: Estado
+        status_label: SELECCIONAR ESTADO
+        statuses:
+          completed: Concluído
+          in_progress: Em curso
+          not_started: Não iniciado
+          overdue: Atrasado
+        updated_at: Data de modificação
+        updated_by: Editado por
+      threesixty:
+        users_result:
+          statuses:
+            completed: Concluído
+            in_progress: Currículo
+            not_started: Novo
+      user:
+        active: Ativo
+        created_at: Data de criação
+        current_password: Palavra-passe atual
+        disabled: Desativar
+        email: Endereço de e-mail
+        first_name: Nome próprio
+        id: ID
+        last_name: Apelido
+        manage_client_ids: Locação de clientes
+        memberships: Locação de clientes
+        name: Nome
+        password: Palavra-passe
+        password_confirmation: Confirmação da palavra-passe
+        role: Papel
+        roles:
+          admin: Administrador
+          admins:
+            admin: Administrador
+            campaign_admin: Administração de campanhas
+            project_admin: Administrador do projeto
+            regular: Administrador de clientes
+            superadmin: Super Admin
+          agile: ÁGIL
+          assessor: Assessor
+          assessor_form: Formulário do assessor
+          campaign_admin: Administração de campanhas
+          case_study: Estudo de caso
+          client_admin: Administrador de clientes
+          hogan: Hogan
+          iiht: IIHT
+          manager: Diretor
+          meeting: Reunião
+          member: Utilizador
+          organisational: Organizacional
+          pearson: Pearson
+          project_admin: Administrador do projeto
+          psychometric: Psicométrico
+          regular: Regular
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Três sessenta
+        types:
+          anonymous: Utilizadores anónimos
+          identified: Utilizadores identificados
+        updated_at: Data de modificação
+      user_form:
+        active: Ativo
+        created_at: Data de criação
+        current_password: Palavra-passe atual
+        disabled: Desativar
+        email: Endereço de e-mail
+        first_name: Nome próprio
+        id: ID
+        last_name: Apelido
+        parent: Gestor direto
+        parent_id: Gestor direto
+        password: Palavra-passe
+        password_confirmation: Confirmação da palavra-passe
+        role: Papel
+        updated_at: Data de modificação
+      users_result:
+        assessment_name: Nome da avaliação
+        assessment_type: Tipo de avaliação
+        completed_at: Concluído em
+        completion_reasons:
+          time_out_offline: Tempo esgotado / Offline
+          time_out_online: Tempo livre / Online
+          user_completed: Utilizador concluído
+        email: Correio eletrónico
+        name: Nome
+        result_id: ID do resultado
+        started_at: Iniciado em
+        status: Estado
+        statuses:
+          completed: Concluído
+          in_progress: Currículo
+          ineligible: Não elegível
+          interrupted: Interrompido
+          not_started: Novo
+          timed_out: Importação cronometrada_raw
+    errors:
+      messages:
+        admin_for_another_tte: Utilizador já administrador noutra tarefa
+        invalid_http_url: URL inválido Especifique o URL completo com o protocolo http ou https.
+        not_uniqueness: A atribuição já foi efectuada
+      models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: External Config deve ser um josn válido
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'Existe uma dependência cíclica na fórmula. Dependência: %{caminho_cíclico}'
+        factors_norm:
+          score_from_must_be_number: A pontuação de deve ser um número
+          score_to_less_than_score_from: A pontuação para é inferior à pontuação de
+          score_to_must_be_number: A pontuação a deve ser um número
+        license:
+          attributes:
+            used_number:
+              overused: A licença utilizada não pode ser superior à soma da licença atribuída e do limite de utilização excessiva.
+          overuse: A licença %{nome} está a ser utilizada em excesso
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: Limite atingido para o máximo de tomadas
+        report:
+          assessments_not_hogan: Todas as avaliações devem ser do tipo Hogan
+          assessments_not_saville: Todas as avaliações devem ser do tipo Saville
+          has_already_assigned: A avaliação não pode ser alterada, uma vez que já está atribuída ao utilizador ou ao nível aplicável
+          has_dependent_relation: Este relatório é atribuído aos utilizadores
+          max_assessment_count: Atingiu o limite de avaliações %{max}
+          min_assessment_count: O número mínimo de avaliações é %{min}
+        skill_gap_report:
+          not_found: Relatório de lacunas de competências não encontrado
         user:
           attributes:
             current_password:
               invalid: A palavra-passe atual está incorreta
+        user_idp_plan:
+          no_active_plan: Não foi encontrado nenhum plano IDP ativo
+  admin_jobs:
+    attrs:
+      operations:
+        add_campaign_reports: Adicionar relatórios de campanha
+        assessment_norm_export: Exportação de resultados normalizados
+        assessment_raw_factor_export: Pontuação dos factores brutos Exportação
+        assessment_raw_result_export: Exportação de resultados brutos
+        assessment_scoring_export: Exportação de resultados de avaliação
+        assign_idp_to_users: Atribuir IDP aos utilizadores
+        assign_reports_and_assessments: Atribuir relatórios e avaliações
+        bulk_create_workshop_invites: Convites para centros de avaliação em massa Enviar
+        bulk_download_reports: Relatórios de transferência em massa
+        bulk_download_user_reports: Transferência em massa de relatórios do utilizador
+        bulk_regenerate_reports: Regenerar relatórios de campanha
+        bulk_regenerate_threesixty_reports: Regenerar relatórios de trinta e seis assuntos
+        bulk_regenerate_user_reports: Gerar novamente relatórios de utilizadores
+        bulk_reports: Relatórios em massa
+        bulk_rescore_campaign_factors: Factores da campanha de reescalonamento em massa
+        compact_completion_status_export: Exportação do estado de conclusão compacto
+        completion_status_export: Exportação do estado de conclusão
+        copy_dimension: Dimensão da cópia
+        create_threesixty_campaign: Criar campanha Threesixty
+        data_report_export: Exportação de relatórios de dados
+        export_admin_with_permissions: Exportar administrador com permissões
+        export_assessment_questions: Perguntas de avaliação das exportações
+        export_campaign_factors: Factores da campanha de exportação
+        export_campaign_scorings: Pontuações de campanhas de exportação
+        export_development_action_translations: Ação de desenvolvimento das exportações Traduções
+        export_development_actions: Acções de desenvolvimento das exportações
+        export_dimension_as_json: Exportar dimensão JSON
+        export_factor_translations: Traduções de factores de exportação
+        export_norm: Norma de exportação
+        export_occupations: Profissões Exportação
+        export_report_data: Exportar dados do relatório
+        export_reports_and_assessments: Relatórios e avaliações de exportação
+        export_skill_translations: Competências de exportação Traduções
+        export_skills: Competências de exportação
+        export_user_report_events: Exportar eventos do relatório do utilizador
+        export_users: Exportação de utilizadores de campanhas
+        external_assessment_export: Exportação de resultados externos
+        import_accesssheet: Importar folha de acesso
+        import_assessment_questions: Questões de avaliação da importação
+        import_assessors: Avaliadores de importação
+        import_campaign_factors: Factores da campanha de importação
+        import_datasheet: Importar ficha de dados
+        import_development_action_translations: Importação Desenvolvimento Ação Traduções
+        import_development_actions: Importar acções de desenvolvimento
+        import_dimension_from_json: Importar dimensão a partir de JSON
+        import_external_campaign_scoring: Importar pontuação de campanha externa
+        import_factor_translations: Traduções de factores de importação
+        import_factors: Factores de importação
+        import_norm: Norma de importação
+        import_question_translations: Importar traduções de perguntas
+        import_raw_data: Importar dados brutos
+        import_scoring_data: Importar dados de avaliação
+        import_skill_translations: Traduções de competências de importação
+        import_skills: Competências de importação
+        import_sms_invites: Importar convite SMS
+        import_users: Importar utilizadores
+        migrate_assessment_translations: Avaliação Tradução migração
+        normalize_factor_scores: Normalizar as pontuações dos factores
+        regenerate_campaign_reports: Regenerar relatórios de campanha
+        regenerate_report: Relatório Regenerar
+        regenerate_threesixty_report: Relatório Regenerate Threesixty
+        remap_report_assessment: Avaliação do relatório Remap
+        rescore_assessment: Avaliação de novo registo
+        rescore_user_assessment: Avaliação do utilizador Rescore
+        send_sms_invites: Enviar convites por SMS
+        super_admin_assessment_norm_export: Exportação de resultados da norma Super Admin
+        super_admin_assessment_raw_factor_export: Exportação de pontuações de factores brutos do Super Admin
+        super_admin_assessment_raw_result_export: Exportação de resultados brutos do Super Admin
+        super_admin_datasheet_export: Exportação da folha de dados do Super Admin
+        super_admin_external_assessment_export: Super Admin Exportação da avaliação externa
+        threesixty_campaign_export_completion_status: Estado de conclusão da exportação da campanha Threesixty
+        threesixty_campaign_export_scores: A campanha Threesixty marca a exportação
+        workshop_status_export: Exportação do estado do centro de avaliação
+      statuses:
+        completed: Concluído
+        completed_with_errors: Concluído com erros
+        failed: Falhado
+        in_progress: Em curso
+        scheduled: Programado
+    bulk_download_reports:
+      content:
+        title: Ligações para descarregar relatórios
+    close: Fechar
+    details: Detalhes
+    errors: Erros
+    invalid_job: Esta notificação corresponde a um registo eliminado
+    mark_as_read: Marcar todas as leituras
+    more: Mais
+    notifications: Notificações
+    results: Resultados
+    super_admin:
+      errors:
+        data_processing_disabled: O processamento de dados está desativado.
   anonym:
     close: Fechar
     continue: Continuar
+    link_invalid_error_message: A ligação a que está a tentar aceder é inválida. Contacte o administrador para obter o URL correto e prosseguir com o inquérito.
     notifications:
       restart:
         copy: Já iniciou este inquérito. Pode escolher Continuar ou Reiniciar.
@@ -51,37 +844,201 @@ pt:
     retake: Retomar
   assessments:
     actions:
+      add_tag:
+        success_message: A etiqueta foi adicionada com sucesso
+      archived:
+        success_message: A avaliação "%{nome}" foi arquivada com êxito.
+      assessment_cache:
+        remove_cache: Remover cache
+        success_message: Remoção bem sucedida da cache
       back_to_campaign: Voltar à Campanha
+      back_to_dashboard: Voltar ao painel de controlo
+      copy:
+        success_message: A avaliação "%{nome}" foi copiada com êxito.
+      details: Detalhes
+      download_csv: Descarregar CSV
+      edit: Editar
+      evaluate: Avaliar
+      export_normed: Pontuação normalizada dos factores
+      export_raw_labels: Em bruto (com etiquetas)
+      export_raw_scores: Pontuação bruta dos factores
+      export_raw_without_labels: Em bruto (sem rótulos)
       extend_time: Prolongar o tempo
+      external_scores_export: Pontuações externas
       goto_dashboard: Clique aqui para continuar
+      manage_mettl_schedule: Gerir o calendário do Mettle
+      moderate: Pontuações moderadas
+      new_response: Nova resposta
+      next_assessment: Passar para a avaliação seguinte
+      pending_tasks:
+        many:
+        one:
+        other:
+      re_evaluate: Clique aqui para reavaliar
+      reevaluate: Reavaliar
+      remove:
+        confirm_message: Tem a certeza de que pretende eliminar a avaliação "%{name}"?
+        confirm_title: Confirmação necessária
+        success_message: A avaliação %{name} foi removida
+      remove_tag:
+        success_message: A etiqueta foi removida com êxito
       rescore: Reavaliar
+      restore:
+        success_message: A avaliação "%{nome}" foi restaurada com êxito
+      show_usage: Mostrar utilização
+      submit_another_response: Enviar outra resposta
+      submit_evaluation: Apresentar avaliação
+      translations:
+        success_message: As traduções de avaliação actualizadas
+      unarchived:
+        success_message: A avaliação "%{nome}" foi desarquivada com êxito
+      view: Ver
+    active: Ativo
+    archived: Arquivado
+    assessment: Avaliação
+    assessments: Avaliações
     audio_response:
+      pause: Pausa
       permission_denied_message: Ative a permissão do microfone no seu navegador para gravar a resposta
       permission_text: Permita o uso do microfone para gravar áudio
+      resume: Currículo
+      saved:
+        label: Áudio guardado
+      saving: Guardar áudio
+      start_recording: Iniciar a gravação
+      stop: Parar
     card_actions:
       begin: Começar
       continue: Continuar
+    categories:
+      redirecting: Redireccionamento
+    column:
+      enable_audio_check: Ativar verificação de áudio
+      enable_network_check: Ativar verificação de rede
+      enable_video_check: Ativar verificação de vídeo
+      external_settings:
+        hogan_assessment_name: Hogan Nome da avaliação
+        iiht_assessment_name: Avaliação IIHT Nome
+        iiht_schedule_config: Configuração do calendário
+        mettl_assessment_name: Nome da avaliação METTL
+        pearson_assessment_name: Nome da avaliação Pearson
+        pearson_norm_id: Norma de Pearson ID
+        saville_assessment_name: Avaliação Saville Nome
+        simulation_assessment_name: Nome da avaliação da simulação
+      translations_migrated: Tradução Migrada
+    create: Criar
+    dashboard: Painel de controlo
+    dictation:
+      allow_browser_permision: Permissão de áudio do navegador para utilizar o ditado
+      autostopping_in: Paragem automática do ditado em %{reverseCountdown} segundos
+      browser_unsupported: O seu browser não suporta a entrada de áudio
+      dictation_active: O ditado está agora ativo
+      dictation_disabled: O ditado está atualmente desativado ou está a ser utilizado por outra pergunta
+      dictation_not_started: Não foi possível iniciar o ditado de voz
+      dictation_stopped: Ditado de voz interrompido
+      left: esquerda
+      listening: Audição
+      minutes: minutos
+      no_dictation_url: O servidor não conseguiu responder à capacidade de conversão de voz em texto
+      notifications:
+        autostopped: O ditado foi interrompido automaticamente devido ao silêncio contínuo durante %{autocutoff} segundos
+        refresh_page: Não é possível continuar o ditado de voz, tente novamente actualizando a página
+      start_dictation: Iniciar ditado
+      stop_dictation: Parar o ditado
+      use_speech_instructions: Utilize a introdução de voz para escrever esta resposta
+    drawer:
+      title: Detalhes da avaliação
+    edit: Editar
+    fields:
+      category:
+        agile: ÁGIL
+        assessor_form: Formulário do assessor
+        case_study: Estudos de caso
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: Formulário do avaliador principal
+        meeting: Reunião
+        mettl: Mettl
+        organisational: Inquéritos Org
+        pearson: Pearson
+        psychometric: Psicométrico
+        saville: Saville
+        simulation: Simulação
+        threesixty: campanha 360
+      status:
+        finished: Acabado
+        in_progress: Em curso
+      type:
+        common: Avaliação TTE
+        hogan: Hogan
+        iiht: Avaliação IIHT
+        mettl: Avaliação Mettl
+        pearson: Avaliação da Pearson
+        saville: Avaliação Saville
+        simulation: Avaliação da simulação
+    flow:
+      end_assessment_modal:
+        custom_message: Mensagem personalizada de fim de avaliação
+        default_message: Mensagem de fim de avaliação por defeito
+        mark_as_ineligible: Marcar como não elegível
+        show_uniq_identifier: Mostrar identificador único aos inquiridos (para inquéritos anónimos)
     instructions:
       begin_assessment: Começar
       cancel: Cancelar
       default: Esta é uma atividade cronometrada. Depois de clicar em Iniciar avaliação, terá %{time} minutos para concluí-la.
       title: Instruções
     messages:
+      external_scores_export_scheduled: O trabalho de exportação das Pontuações de Avaliação foi agendado com sucesso
       finish: "Agradecemos o seu tempo. \nAs suas respostas foram gravadas."
+      norm_results_export_scheduled: A tarefa de exportação Assessment Normed Results foi agendada com êxito
+      raw_factor_export_scheduled: Avaliação O trabalho de exportação do Raw Fator foi agendado com sucesso
+      raw_results_export_scheduled: A tarefa de exportação dos resultados brutos da avaliação foi agendada com êxito
     page:
       back: Voltar
       confirm_message: |-
         #### As suas respostas serão enviadas e não poderão ser alteradas depois disto.
 
         Clique em **Voltar** para rever as suas respostas uma última vez ou clique em **Enviar** se tiver terminado.
+      invalid_session:
+        description: Esta sessão de avaliação foi invalidada, o que pode acontecer se continuar a avaliação num outro separador, navegador ou dispositivo.
+        title: Último pedido falhou
       next: Avançar
       read_only: O modo é apenas de leitura, não pode alterar nenhum resultado.
       save: Guardar
+      submissionFailedAlert:
+        description: Não foi possível estabelecer ligação ao servidor. Actualize a página e tente novamente. Se não funcionar, contacte o serviço de apoio através do chat ao vivo ou de mte.surveys@mercer.com
+        title: Último pedido falhou
       submit: Enviar
+      warning: AVISO
+    pages:
+      edit:
+        assets: Activos
+        general_settings: Definições gerais
+        translations: Traduções
     pickgrouprank:
       items: Itens
     proceed: Continuar mesmo assim
+    question_info_bar:
+      select_linked_questions: Selecionar perguntas relacionadas
+    reset: Reiniciar
+    scoring:
+      competency: Competência
+      id: ID
+      score: Pontuação
+    screen_reader_announcements:
+      fifteen_seconds_left: faltam 15 segundos
+      five_minutes_left: faltam 5 minutos
+      one_minute_left: 1 minuto restante
+      seconds_left: "%{seconds} segundos restantes"
+      thirty_seconds_left: 30 segundos restantes
+      time_is_up: O seu tempo acabou
+      time_is_up_for_recording: O tempo acabou e a gravação vai parar agora
+    single_page:
+      display_linked_questions: Mostrar respostas ligadas à pergunta atualmente selecionada.
+    trash: Lixo
     unknown_error: Ocorreu um erro desconhecido.
+    update: Atualização
+    upload: Carregar
     video_response:
       device: Permitir
       device_selection:
@@ -92,6 +1049,7 @@ pt:
       media_recorder:
         failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
         success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
+        unsupported: Este browser não suporta a gravação de vídeo. Utilize qualquer um dos seguintes browsers,
       recording_duration_label: Duração máxima do registo
       recording_stop_label: A gravação pára em
       requesting_permission: Pedido de autorização...
@@ -100,6 +1058,7 @@ pt:
       saved:
         label: Guardado
       saving: A guardar...
+      seek: Procurar
       start_recording: Iniciar gravação
       stop_recording: Parar a gravação
       tracker:
@@ -108,6 +1067,58 @@ pt:
         frame: Certifique-se de que o seu rosto está alinhado com a moldura
         ready: Pressione o botão Gravar quando estiver a postos para gravar
     wait: Aguardar
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: As avaliações devem ser efectuadas pela seguinte ordem
+      previous_group_required: Conclusão anterior do grupo necessária
+    menu:
+      assessment_center: Centro de avaliação
+      assessments_and_reports: Avaliações e relatórios
+      idp: PDI
+      manage: Gerir
+      report_approval: Configurações de aprovação de relatório
+      sequencing: Sequenciação
+    report_approval:
+      add_settings: Adicionar definição
+      create_seetings: Criar definições
+    sequencing:
+      add_assessment_center: Adicionar centro de avaliação
+      add_group: Adicionar grupo
+      assessments: Avaliações
+      delete_group: Eliminar grupo
+      edit_group_name: Editar o nome do grupo
+      modal:
+        delete:
+          cancel: Cancelar
+          failed: Falha ao eliminar o grupo "%{nome}", contactar o administrador
+          ok: Sim, apagar
+          text: Tem a certeza de que pretende eliminar o grupo "%{nome}"?
+          title: Eliminar grupo
+      no_assessments: Arrastar e largar as avaliações
+      no_ungrouped_assessments: Arrastar e largar as avaliações aqui para desagrupar
+      ungrouped_assessments: Avaliações não agrupadas
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: Contagem de avaliação
+        evaluation_status: Estado de avaliação
+        moderation_count: Contagem de moderação
+        moderation_status: Estado de moderação
+  assign_reports:
+    assessment_not_in_report: A avaliação com o id %{assessment_id} não faz parte do relatório com o id %{report_id}
+    errors:
+      not_enought_licenses: O pacote com o id %{bundle_id} não tem licenças
+      user_not_found: 'Linha %{linha}: Utilizador com o e-mail ''%{email}'' não encontrado'
+    report_bundle_not_found: Relatório O pacote com o id %{bundle_id} não foi encontrado
+    report_not_found: O relatório com o id %{report_id} não foi encontrado
+    report_not_in_bundle: O relatório com o id %{report_id} não faz parte do pacote de relatórios com o id %{bundle_id}
+  assigns:
+    decorator:
+      no_description: A descrição está vazia
+  audit_log_failures:
+    invalid_sso_token: Token SSO inválido
+    record_not_found: Registo não encontrado
+    user_not_authorized: Utilizador não autorizado
   auth:
     current_password: Palavra-passe atual
     current_password_placeholder: Insira a palavra-passe atual
@@ -117,18 +1128,23 @@ pt:
       description: Preencha todos os campos para criar uma nova palavra-passe
       submit: Enviar
       title: Renovar a sua palavra-passe
+    lighthouse_logo_alt_text: Logótipo do farol
     login:
+      continue_btn: Continuar
       description: Inicie sessão com as informações da sua conta pessoal
       forgot_password: Esqueceu-se da palavra-passe?
+      hide_password: Ocultar palavra-passe
       login_btn: Iniciar sessão
       magic_link_btn: Enviar-me por correio eletrónico a ligação de acesso
       not_member: Não é membro?
       or: OU
+      show_password: Mostrar palavra-passe
       sso_btn: Iniciar sessão usando o Início de sessão única
       title: Damos-lhe as boas-vindas!
     logout: Terminar sessão
     magic_link:
       description: Introduza o seu endereço de correio eletrónico para receber uma ligação de acesso
+      invalid_email: O correio eletrónico é inválido
       login_with_password: Iniciar sessão com a palavra-passe
       send_me_login_link: Enviar-me a ligação de acesso
       success: Enviámos-lhe uma ligação de início de sessão para "%{email}". Clique na ligação na mensagem de correio eletrónico que recebeu para iniciar sessão
@@ -180,14 +1196,33 @@ pt:
         invalid_code: Código inválido
         invalid_number: O número de telemóvel está incorreto. Verifique novamente o seu número
         max_attempts_reached: Demasiadas tentativas. Aguarde 10 minutos antes de tentar novamente.
+  browsers:
+    chrome: Google Chrome
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: Descarregar
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
+    firefox: Mozilla Firefox
+    safari: Apple Safari
+    support:
+      instruction: Descarregue e utilize qualquer um dos seguintes browsers.
+      message: O browser que está a utilizar não é suportado pelo Lighthouse.
+    upgrade:
+      instruction: Atualizar agora
+      message: Utilize a versão mais recente dos browsers
   campaign:
     all_activities_are_completed: Todas as atividades estão agora concluídas.
     all_activities_are_completed_multiple: Todas as atividades desta campanha estão agora concluídas. Aceda ao Painel e verifique se tem alguma outra atividade atribuída.
+    already_joined: Já aderiu a esta campanha
     begin: Comece as suas tarefas
     begin_btn_msg_before_prework: Tens de completar as tarefas abaixo indicadas antes de iniciares a campanha cronometrada
     begin_campaign_msg: Iniciar a campanha antes de efetuar as avaliações
     campaigns: Campanhas
     closed_campaign_message: Esta campanha está fechada. Não pode realizar nenhuma avaliação nesta campanha.
+    code_usage_limit_reached: O limite de utilização do código foi atingido, contacte o administrador
     complete_prev: Conclua todas as avaliações anteriores
     complete_tasks: Antes de efetuar esta ação, complete as tarefas abaixo indicadas.
     continue: Continue as suas tarefas
@@ -199,7 +1234,7 @@ pt:
       development: Desenvolvimento
       home: Início
       insights: Informações
-      my_direct_reports: Os meus subordinados diretos
+      my_direct_reportees: Os meus subordinados diretos
       my_plan: O meu plano
       profile: Perfil
       profile_details: Detalhes
@@ -236,7 +1271,9 @@ pt:
           Para concluir as tarefas supervisionadas, ser-lhe-á solicitado que descarregue e instale um navegador especial. Siga as instruções no ecrã a seguir. Pode desinstalar depois de concluir todas as atividades necessárias.
         </p>
     instructions:
+      collapse_aria_label: 'Mostrar mais informações acima: Centro Virtual de Aprendizagem'
       collapse_link_text: Mostrar menos
+      expand_aria_label: 'Mostrar menos informações acima: Centro Virtual de Aprendizagem'
       expand_link_text: Mostrar mais
       heading: Consulte as orientações abaixo antes de começar. Desejamos-lhe sucesso!
     language:
@@ -255,6 +1292,10 @@ pt:
       last_updated_text: 'O seu perfil foi atualizado pela última vez em:'
       sub_heading: Preencha as informações completas do seu perfil
       welcome_text: Damos-lhe as boas-vindas,
+    reset_warning: Só é possível reiniciar a campanha marcada como campanha de treino.
+    restart_practice: Reiniciar a prática
+    restart_practice_confirmation: Tem a certeza de que pretende reiniciar a prática?
+    restart_practice_success: A prática foi reiniciada com êxito
     thank_you_for_time: Agradecemos o seu tempo
     time_left:
       cancel: Cancelar
@@ -264,7 +1305,137 @@ pt:
       notification_hours: Você tem %{hours} horas restantes
       notification_minutes: você tem %{minutos} minutos restantes
   campaign_assessment:
+    actions:
+      bulk_download: Transferência em massa
+      download: Descarregar relatórios
+      export_completion_status: Estado de conclusão da exportação
+      export_external: Externo
+      export_normed: Pontuação normalizada dos factores
+      export_occupations: Profissões
+      export_raw_labels: Em bruto (com etiquetas)
+      export_raw_scores: Pontuação bruta dos factores
+      export_raw_without_labels: Em bruto (sem rótulos)
+      export_scores: Pontuações
+      export_scoring: Pontuação
+      factor_benchmark_score: Fator Pontuação de referência
+      force_generate: Forçar a geração
+      import_raw: Bruto
+      import_scoring: Pontuação
+      regenerate: Gerar relatórios
+      rescore: Avaliação de novo registo
+      reset_all_nominations: Redefinir todas as nomeações
+      reset_participant: Reiniciar todos os participantes
+    allow_msg_proctoring_workshop_activity: As actividades do centro de avaliação não são supervisionadas.
+    assessment_center_heading: Detalhes do centro de avaliação
     assessments_heading: As suas tarefas
+    column:
+      assessment_name: Nome da avaliação
+      assessor_form: Formulário do assessor
+      auto_assign: Atribuição automática
+      dimension_id: ID da dimensão
+      id: ID de avaliação da campanha
+      locales: Localidades
+      norm: Norma
+      norm_id: ID da norma
+      pearson_variation: Variação de Pearson
+      prework: Pré-trabalho
+      simulation_content_variation: Variação do conteúdo da simulação
+      universal_link: Ligação universal
+    drawer:
+      mettl_schedule_name: Nome do calendário Mettl
+      title: Detalhes da avaliação
+    messages:
+      export_completion_statuses_scheduled: Status de conclusão o trabalho de exportação foi agendado com sucesso
+      export_occupations_job_scheduled: Profissões O trabalho de exportação foi agendado com êxito
+      export_reports_and_assessments_statuses_scheduled: A tarefa Exportar relatórios e avaliações foi agendada com êxito
+      external_results_export_scheduled: A tarefa de exportação da Avaliação Externa foi agendada com êxito
+      norm_results_export_scheduled: A tarefa de exportação Assessment Normed Results foi agendada com êxito
+      normalize_factor_scores_scheduled: A tarefa de normalização das pontuações dos factores foi agendada com êxito.
+      raw_factor_export_scheduled: Avaliação O trabalho de exportação do Raw Fator foi agendado com sucesso
+      raw_results_export_scheduled: A tarefa de exportação dos resultados brutos da avaliação foi agendada com êxito
+      scoring_results_export_scheduled: Resultados da avaliação A tarefa de exportação foi agendada com êxito
+    modals:
+      import_raw:
+        body: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
+        success_msg: A importação foi carregada com sucesso
+        title: Importar dados de resultados brutos
+        upload: Carregar
+      import_scoring:
+        body: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
+        success_msg: A importação foi carregada com sucesso
+        title: Importar dados de resultados de avaliação
+        upload: Carregar
+      regenerate:
+        content: Tem a certeza de que pretende gerar novamente os relatórios disponíveis?
+        title: Regenerar relatórios?
+      remove:
+        helper_text: 'PERIGO: Se selecionar esta opção, todas as respostas dos utilizadores a esta avaliação serão removidas desta campanha.'
+        msg_text: Está a tentar eliminar <strong>"%{nome}"</strong> Avaliação
+        successfully: a avaliação %{nome} foi removida com êxito.
+        title: Remover a avaliação?
+      rescore:
+        content: Tem a certeza de que pretende voltar a classificar a avaliação?
+        successfully: A avaliação foi reavaliada com êxito.
+        title: Reavaliar a avaliação?
+      rescore_response:
+        message: Reavaliação programada para a avaliação "%{name}"
+        title: Respostas de reescrita
+      reset:
+        content: Tem a certeza de que pretende repor o resultado?
+        successfully: Os dados do resultado foram repostos com êxito.
+        title: Repor o resultado da avaliação %{name}?
+      update_assessor_form:
+        select_assessor: Formulário de seleção do avaliador
+        success_msg: O formulário do assessor foi carregado com sucesso
+        title: Atualizar o formulário do assessor
+        update: Atualização
+      update_content_variation:
+        select_schedule: Selecionar variação de conteúdo
+        success_msg: A Simulation Content Variation foi actualizada com sucesso
+        update: Atualização
+      update_external_config:
+        text_placeholder: Configuração json externa
+        title: Atualizar configuração externa
+      update_locales:
+        select_locales: Selecionar locais
+        success_msg: As localidades foram actualizadas com sucesso
+        title: Atualizar os locais disponíveis
+      update_mettl_schedule:
+        select_schedule: Selecionar horário
+        success_msg: O Mettl Schedule foi atualizado com sucesso
+        update: Atualização
+      update_norm:
+        apply: Aplicar esta alteração aos utilizadores existentes nesta campanha
+        cannot_remove_norm: Não é possível remover a norma para uma avaliação concluída.
+        select_norm: Selecionar norma
+        success_msg: As normas foram actualizadas com êxito
+        title: Atualizar a norma
+        update: Atualização
+      update_simulation_time_extension:
+        success_msg: A Simulation Time Extension foi actualizada com sucesso
+        title: Prolongamento do prazo
+        tooltip: Extensão do tempo como um fator (por exemplo, 1,5 para 50% mais tempo)
+        update: Atualização
+      update_time:
+        additional_time: Tempo (min)
+        title: Prolongar o tempo
+      workshop_activity_duration:
+        form:
+          duration: Duração em minutos
+        title: Duração da atividade do seminário
+    normalize_factor_scores:
+      normalization_not_allowed: A normalização das pontuações dos factores está atualmente desactivada para esta avaliação nas definições do projeto.
+      success: Normalização das pontuações dos factores concluída com êxito
+    not_allow_msg_proctoring_workshop_activity: Não é possível realizar actividades do centro de avaliação, uma vez que se encontra dentro de uma janela de fiscalização. Para realizar estas actividades, é necessário sair da janela de fiscalização.
+    pearson_variation_form:
+      apply_to_existing_users: Aplicar esta alteração aos utilizadores existentes nesta campanha
+      select: Selecionar variação
+      update: Atualização
+      update_success: Variação da Pearson actualizada com êxito
+    scheduled_successfully: A avaliação foi agendada com sucesso
+    scheduling:
+      update_exists: Anular o horário existente
+    scheduling_time: Programar o tempo de avaliação
     statuses:
       completed: Concluído
       in_progress: Em curso
@@ -273,7 +1444,96 @@ pt:
       not_started: Não iniciado
       timed_out: Temporizada
       universal_link: Ligação universal
+    ungrouped_assessments_heading: Não agrupado
+  campaign_join_token:
+    campaign_id: ID da campanha
+    expire_in: Expirar em (seg)
+    invalid_token: Token inválido
+    text: Texto
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: O trabalho Adicionar relatórios foi colocado na fila de espera com êxito
+        success_message: Os relatórios foram adicionados com êxito
+      bulk_download: Transferência em massa
+      export_data: Exportar dados
+    bulk_download:
+      error: A transferência em massa está limitada a 1000 ficheiros de relatório. A seleção atual tem %{contagem} de ficheiros de relatório. Ajuste as datas de início e fim para reduzir o número de ficheiros de relatório a transferir.
+    column:
+      assessor_access: Acesso do assessor
+      auto_assign: Atribuição automática
+      main_report: Relatório principal
+      report_bundle: Pacote de relatórios
+      report_name: Nome do relatório
+      user_access: Acesso do utilizador
+      user_dashboard: Painel de controlo do utilizador
+    form:
+      operation: Funcionamento
+      operation_options:
+        add_and_allow_new_response: Adicionar relatório a um utilizador existente e permitir uma nova resposta
+        add_with_existing_response: Adicionar relatório a um utilizador existente e manter a resposta existente
+        skip_existing: Ignorar utilizador existente
+      report: Relatório
+      report_bundle_placeholder: Selecionar um pacote de relatórios
+    messages:
+      bulk_download_error: A transferência em massa está limitada a 1000 ficheiros de relatório. Se selecionou muitos idiomas, reduza o número de ficheiros.
+      bulk_download_successful: A tarefa de descarregamento de relatórios em massa foi agendada com sucesso
+      export_report_data_scheduled: A tarefa de exportação de dados do relatório foi agendada com êxito
+    modals:
+      remove:
+        apply: Aplique estas alterações aos utilizadores existentes nesta campanha.
+        msg_text: Está a tentar eliminar o relatório <strong>"%{reportName}</strong>
+        title: Remover relatório?
+      user_access:
+        apply: Aplique estas alterações aos utilizadores existentes nesta campanha.
+        title:
+          disable: Desativar o acesso do utilizador
+          enable: Ativar o acesso do utilizador
+  campaign_users:
+    actions:
+      add_manager: Adicionar gestor
+      extend_time: Prolongar o tempo
+      search_user: Procurar utilizador
+    assessments:
+      progress: Progresso
+    details:
+      additional_time: Tempo adicional
+      assessment_center: Centro de avaliação
+      assessment_center_invites: Convites para o Centro de Avaliação
+      completed_at: Concluído em
+      completion_status: Estado de conclusão
+      hogan_id: Hogan Id
+      last_login: Último login
+      manager: Diretor
+      modals:
+        create_hogan_credentials:
+          assessments: 'Avaliações:'
+          confirmation: Introduza o e-mail indicado abaixo na caixa de texto para adicionar uma nova credencial hogan
+          reports: 'Relatórios:'
+          successfully: A nova credencial hogan para o utilizador com o e-mail %{email} foi adicionada com sucesso.
+          warning: A criação de uma nova credencial Hogan irá remover as seguintes avaliações e relatórios associados à antiga credencial Hogan para %{email}
+        remove:
+          successfully: O utilizador com o e-mail %{email} foi removido com sucesso.
+          title: Tem a certeza de que pretende remover este utilizador da campanha %{campaignName}?
+      not_completed_yet: Ainda não concluído
+      not_logged_in_yet: Ainda não iniciou sessão
+      not_started_yet: Ainda não começou
+      started_at: Iniciado em
+      statuses:
+        completed: Concluído
+        in_progress: Em curso
+        ineligible: Não elegível
+        interrupted: Interrompido
+        not_started: Não iniciado
+        timed_out: Tempo esgotado
+    modals:
+      remove: Tem a certeza de que pretende remover o utilizador com o e-mail "%{email}" desta campanha?
   campaigns:
+    assessments_and_reports:
+      assessor_assessments: Avaliador Avaliações
+      other_assessments: Outras avaliações
+      other_assessor_assessments: Outros Assessores Avaliações
+      other_reports: Outros relatórios
     card:
       duration: Duração
       starts_in: 'Começa em:'
@@ -354,69 +1614,292 @@ pt:
       retake: Não, quero repetir
       run_again: Executar novamente
       title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
+      upload_again: Carregar novamente
       uploading: Carregamento
   common:
     actions:
       add: Adicionar
+      approve: Aprovar
       archive: Arquivar
+      back_to_dashboard: Voltar ao painel de controlo
+      back_to_responses: Voltar às respostas
       cancel: Cancelar
+      change: Alterar
       close: Fechar
+      continue: Continuar
       copy: Copiar
+      create: Criar
       delete: Eliminar
+      done: Feito
       edit: Editar
+      export: Exportação
+      filter_by_tags: Filtrar por etiquetas
+      import: Importação
+      insert: Inserir
+      ok: OK
       remove: Remover
       reset: Repor
       resolve: Resolver
       restore: Restaurar
+      run: Correr
       save: Guardar
+      schedule: Horário
       search: Pesquisar
       send: Enviar
       start: Iniciar
+      submit: Enviar
       unarchive: Desarquivar
       unresolve: Reabrir
       update: Atualizar
       upload: Carregar
+      upload_file: Carregar ficheiro
       verify: Verificar
+      view: Ver
+      view_all_tasks: Ver todas as tarefas
+      view_details: Ver detalhes
     column:
       action: Ação
+      active: Ativo
+      allow_multiple_responses: Permitir respostas múltiplas
+      approval_notification_list: Lista de utilizadores de notificações de aprovação
+      approvers_list: Lista de aprovadores
+      assessment: Avaliação
+      assessment_name: Nome da avaliação
+      assessments: Avaliações
+      assessor: Assessor
       category: Categoria
+      client: Cliente
       created_at: Criado em
+      created_by: Criado por
+      created_date: Data de criação
+      default_language: Língua por defeito
+      description: Descrição
+      details: Detalhes
+      dimension: Dimensão
+      email: Correio eletrónico
+      external_report_id: ID do relatório externo
+      first_name: Nome próprio
+      icon: Ícone
+      icon_color: Cor do ícone
       id: Identificação
+      json:
+        answer: Resposta JSON
+        external_result: Resultado externo JSON
+        scoring: Pontuação JSON
+      key: Chave
+      last_name: Apelido
+      linked_activities: Actividades conexas
+      linked_assessment: Avaliação associada
+      meeting_link: Ligação da reunião
+      modified_by: Modificado por
+      modified_date: Data de modificação
+      name: Nome
+      owner: Proprietário
+      package_id: Identificação do pacote
+      poster: Cartaz
+      project: Projeto
+      provider: Fornecedor
+      qc_user_list: Lista de utilizadores QC
+      report: Relatório
+      report_id: Id do relatório
+      require_scheduling: Programação de necessidades
+      responses_count: Contagem de respostas
+      schedule_time: Horário
+      scheduling: Programação
+      skills: Competências
       status: Estado
+      tags: Etiquetas
+      timing: Calendário
+      token: Ficha
+      type: Tipo
+      unschedule: Anular o agendamento
+      updated_at: Última atualização
+    errors:
+      csv_injection_validation_error: não pode começar com =, |, +, -, @, %
+      something_wrong: Algo correu mal. Contacte o seu administrador.
+    messages:
+      leave_message: Tem a certeza de que pretende sair desta página? Quaisquer respostas não guardadas que tenha serão perdidas.
     model:
+      admins: Administradores
+      assessment: Avaliação
       assessments: Avaliações
       campaigns: Campanhas
+      completion_statuses: Estado de conclusão
+      datasheet: Ficha de dados
+      projects: Projectos
+      report: Relatório
       reports: Relatórios
+      scoring: Pontuação
+      sms_contact: Contacto SMS
+      threesixty_campaign: Pontuações da campanha Threesixty
+    status:
+      completed: Concluído
+      dropped_out: Abandono
+      in_progress: Em curso
+      late: Tarde
+      no_show: Sem espetáculo
+      not_started: Não iniciado
+      not_status: Sem estatuto
+      on_time: A tempo
     text:
+      accepted: Aceite
+      all_pages: Todas as páginas
       cancel: Cancelar
       confirm: Confirmar
       continue: Continuar
+      copied: Copiado para a área de transferência
       default: Padrão
       download: Descarregar
+      file: Ficheiro
+      global_import: A importação global?
+      minutes: Minutos
       na: N/A
+      none: Nenhum
       ok: OK
+      reference_language: Língua de referência
       response: Resposta
+      selected: Selecionado
+      subject: Assunto
+      total: Total
+      view_as: Ver como
+    tooltips:
+      hide: Esconder
+      view: Ver
+    validations:
+      select_locale: Selecione uma ou mais localidades
+      should_be_whole_number: deve ser um número inteiro
+  confirmation:
+    delete_comment: Tem a certeza de que pretende apagar este comentário?
+  custom_field:
+    field_name: Nome do campo
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: Coluna "%{nome_da_coluna}" não encontrada
+        numeric_value_required: A coluna "%{campo}" deve ser um número
+        string_value_required: A coluna "%{campo}" deve ser uma cadeia de caracteres
+      not_configured: A ficha de dados não está configurada
   devise:
     administrators:
+      meta_title: Aceder ao painel de administração
+      passwords:
+        edit:
+          submit: Definir nova palavra-passe
+          title: Alterar a sua palavra-passe
+        new:
+          back: Voltar atrás
+          submit: Enviar-me instruções
+          title: Esqueceu-se da sua palavra-passe?
       sessions:
         new:
+          forgot_password: Esqueceu-se da sua palavra-passe?
           submit: Iniciar sessão
+          title: "<strong>Bem-vindo</strong>, faça o login"
+      shared:
+        links:
+          about: Sobre
+          app_name: "© 2016 AppName"
+          contact_us: Contactar-nos
+          privacy: Privacidade
+    confirmations:
+      confirmed: O seu endereço de correio eletrónico foi confirmado com sucesso.
+      send_instructions: Receberá uma mensagem de correio eletrónico com instruções sobre como confirmar o seu endereço de correio eletrónico dentro de alguns minutos.
+      send_paranoid_instructions: Se o seu endereço de correio eletrónico existir na nossa base de dados, receberá um e-mail com instruções sobre como confirmar o seu endereço de correio eletrónico dentro de alguns minutos.
     failure:
       already_authenticated: Já está inscrito.
       inactive: A sua conta ainda não está ativada.
       invalid: E-mail ou palavra-passe inválidos.
       invited: Tem um convite pendente, aceite-o para finalizar a criação da sua conta.
+      last_attempt: Tem mais uma tentativa antes de a sua conta ser bloqueada.
+      locked: A sua conta está bloqueada.
       magic_link_invalid: Link de início de sessão inválido ou expirado.
       not_found_in_database: E-mail ou palavra-passe inválidos.
+      saml_user_not_present: O utilizador não está presente no sistema
       timeout: A sua sessão expirou. Inicie sessão para continuar.
       unauthenticated: Tem de iniciar sessão ou registar-se antes de continuar.
+      unconfirmed: Tem de confirmar o seu endereço de correio eletrónico antes de continuar.
     invitations:
       edit:
+        confirm_password_label: Confirmar a palavra-passe
+        header: Definir a sua palavra-passe
+        instruction: Para criar uma nova palavra-passe, introduza a sua nova palavra-passe nas caixas abaixo
         password_label: Palavra-passe
+        submit: Definir nova palavra-passe
+        submit_button: Definir a minha palavra-passe
+        title: Criar palavra-passe
+      invitation_removed: O seu convite foi retirado.
+      invitation_token_invalid: O código de convite fornecido não é válido!
+      new:
+        header: Enviar convite
+        submit_button: Enviar um convite
+      no_invitations_remaining: Não restam convites
+      send_instructions: Foi enviado um convite por correio eletrónico para %{email}.
+      updated: A sua palavra-passe foi definida com êxito. Está agora ligado.
+      updated_not_active: A sua palavra-passe foi definida com êxito.
+    mailer:
+      admin_invitation_instructions:
+        accept: Clique aqui para aceitar o convite.
+        body: 'Olá %{name}, Foi convidado a aceder ao painel de administração da plataforma de avaliação Lighthouse - The Talent Enterprise. %{accept} Ou pode ignorar esta mensagem de correio eletrónico. Não partilhe as suas credenciais de acesso com ninguém.
+
+          '
+        subject: Convite para o Lighthouse
+      confirmation_instructions:
+        subject: Instruções de confirmação
+      invitation_instructions:
+        body: 'Olá %{name}, Foi adicionado ao Lighthouse como Administrador da seguinte secção
+
+          '
+        login: Iniciar sessão no Lighthouse
+        sections:
+          campaign: 'Campanha: %{nome_da_secção}'
+          client: 'Arrendamento do cliente: %{nome_da_secção}'
+          project: 'Projeto: %{nome_da_secção}'
+        subject: Convite para o Lighthouse
+      password_change:
+        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em support@thetalententerprise.com
+
+          '
+        regards: 'Cumprimentos, Equipa do Farol
+
+          '
+        subject: A sua palavra-passe do Lighthouse foi alterada
+      reset_password_instructions:
+        body: 'Olá %{name}! Alguém solicitou uma ligação para alterar a sua palavra-passe. Pode fazê-lo através da ligação abaixo.
+
+          '
+        change_password: Alterar a palavra-passe
+        footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
+        regards: 'Cumprimentos, Equipa do Farol
+
+          '
+        subject: Instruções para repor a sua palavra-passe
+      unlock_instructions:
+        body: 'Olá %{name}! A sua conta foi bloqueada devido a um número excessivo de tentativas de início de sessão sem êxito. Clique na ligação abaixo para desbloquear a sua conta:
+
+          '
+        footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
+        regards: 'Cumprimentos, Equipa do Farol
+
+          '
+        subject: Instruções para desbloquear a sua conta
+        unlock_account: Desbloquear a minha conta
+    omniauth_callbacks:
+      failure: Não foi possível autenticá-lo a partir de %{kind} porque "%{reason}".
+      success: Autenticação bem sucedida da conta %{kind}.
     passwords:
+      edit:
+        instruction: Para criar uma nova palavra-passe, introduza a sua nova palavra-passe nas caixas abaixo
+        submit: Enviar
+        title: Criar palavra-passe
       invalid_email: E-mail inválido
+      no_token: Não é possível aceder a esta página sem ter recebido um e-mail de redefinição da palavra-passe. Se tiver recebido um e-mail de redefinição da palavra-passe, certifique-se de que utilizou o URL completo fornecido.
+      send_instructions: Receberá um e-mail com instruções sobre como redefinir a sua palavra-passe dentro de alguns minutos.
+      send_paranoid_instructions: Se o seu endereço de correio eletrónico existir na nossa base de dados, receberá uma ligação de recuperação da palavra-passe no seu endereço de correio eletrónico dentro de alguns minutos.
+      updated: A sua palavra-passe foi alterada com êxito e já tem sessão iniciada.
+      updated_not_active: A sua palavra-passe foi alterada com sucesso.
     registrations:
       communication_not_setup_error: A comunicação por e-mail de registo não está configurada, contacte o administrador deste projeto.
+      destroyed: Adeus! A sua conta foi cancelada com sucesso. Esperamos voltar a vê-lo em breve.
       new:
         email: Endereço de e-mail
         first_name: Nome próprio
@@ -430,59 +1913,234 @@ pt:
           sign_in: Iniciar sessão
         terms_notice: Ao efetuar o registo, concorda com os nossos <a href="%{terms_url}">Termos de Serviço e Política de Privacidade</a>
         title: Registe-se agora
+      signed_up: Bem-vindo! A sua inscrição foi efectuada com sucesso.
+      signed_up_but_inactive: A sua inscrição foi efectuada com êxito, mas não foi possível iniciar sessão porque a sua conta ainda não está activada.
+      signed_up_but_locked: A sua inscrição foi efectuada com êxito, mas não foi possível iniciar sessão porque a sua conta está bloqueada.
+      signed_up_but_unconfirmed: Foi enviada uma mensagem com uma ligação de confirmação para o seu endereço de correio eletrónico. Siga a ligação para ativar a sua conta.
       success:
         actions:
           sign_in: Iniciar sessão
+        instruction: Consulte o seu correio eletrónico para obter mais instruções
+        title: Registo bem sucedido
+      update_needs_confirmation: Actualizou a sua conta com êxito, mas temos de verificar o seu novo endereço de correio eletrónico. Verifique o seu correio eletrónico e siga a ligação de confirmação para confirmar o seu novo endereço de correio eletrónico.
+      updated: A sua conta foi actualizada com sucesso.
     sessions:
+      already_signed_out: O registo foi efectuado com sucesso.
       new:
         email: Endereço de e-mail
         forgot_password: Esqueceu-se da palavra-passe?
         instruction: Inicie sessão com as informações da sua conta pessoal
+        keep_sign_in: Sim, manter-me ligado
+        login_with_sso: Iniciar sessão com o início de sessão único
         password_placeholder: Palavra-passe
         submit: Iniciar sessão
         tabs:
           register: Registar
           sign_in: Iniciar sessão
         title: Damos-lhe as boas-vindas!
+      signed_in: Iniciou sessão com sucesso!
+      signed_in_time: A última vez que iniciou sessão foi em %{date_time}
+      signed_out: O registo foi efectuado com sucesso.
+      unsuccessful_sign_in_time: A sua última tentativa de início de sessão em %{data_tempo} não foi bem sucedida.
     two_factor_authentication:
       attempt: Insira a OTP que recebeu no seu endereço de e-mail registado
+      attempt_failed: OTP incorreto! Tente novamente
       code_has_been_sent: A sua nova OTP foi enviada para o seu e-mail registado
+      contact_administrator: Contacte o administrador do sistema
+      email:
+        otp:
+          subject: A sua palavra-passe única
+      max_login_attempts_reached: Atingiu o número máximo de tentativas para a OTP atual. Clique em Reenviar OTP para receber uma nova OTP
+      otp: Código
+      submit: Verificar
+      success: O início de sessão com autenticação de dois factores foi bem sucedido.
+      title: Palavra-passe única
+    unlocks:
+      send_instructions: Receberá um e-mail com instruções sobre como desbloquear a sua conta dentro de alguns minutos.
+      send_paranoid_instructions: Se a sua conta existir, receberá um e-mail com instruções para a desbloquear dentro de alguns minutos.
+      unlocked: A sua conta foi desbloqueada com sucesso. Inicie sessão para continuar.
+      unprocessable_entity: Não foi possível desbloquear a sua conta com esta ligação. Contacte o apoio ao cliente.
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: Formato de subdomínio incorreto.
+        reserved_subdomain: O subdomínio %{valor} está reservado
+        uniq_subdomain: O subdomínio deve ser único.
+      add_manager:
+        manager_not_found: O gestor não foi encontrado ou não faz parte do mesmo projeto
+        user_not_found: Utilizador não encontrado ou que não faz parte do mesmo projeto
+      admin:
+        already_added: Administrador com correio eletrónico já adicionado.
+      already_assigned?: Não é possível ligar esta avaliação - já está atribuída a '%{nome_da_forma_de_avaliador_ligado}'.
+      already_invited: Este utilizador já existe no centro de avaliação que está a tentar adicionar.
+      assessor_assessment:
+        already_added: Avaliação do assessor já adicionada à campanha.
+        lead_already_added: Só pode ser adicionada uma avaliação do avaliador principal à campanha.
+      campaign_factor:
+        code_already_exists: Já existe um fator com o mesmo código.
+        invalid_lua_name: deve ser um nome de variável lua válido
+        limit_exceeded: Atingiu o limite máximo de factores de campanha %{limit}.
+        name_already_exists: Já existe um fator com o mesmo nome.
+        rank_not_allowed: Apenas os factores com um tipo de saída numérico podem ser ordenados.
+      campaign_factor_group:
+        group_already_exists: Já existe um grupo com o mesmo nome.
+        last_factor_group: Não é possível eliminar o último grupo de factores de campanha.
+      create_superadmin:
+        uniq_email: O correio eletrónico deve ser uniq.
+      exceeded_subjects_count: Só é possível adicionar %{count} temas por convite
+      filled?: não pode estar em branco
       idp_template:
         tag_or_skill_required: Selecione uma etiqueta ou uma habilidade quando a opção "Selecionado" for escolhida.
+      invalid_name: apenas o alfabeto, o número, os espaços, o traço e o ponto são permitidos como caracteres válidos
+      invalid_value: declaração inválida '%{value}' na linha número %{row}
+      json?: Deve ser um JSON válido
+      key?: não pode estar em branco
+      match_regexp?: valor inválido
+      mettl_schedule_record_create:
+        uniq_schedule_name: O nome do calendário deve ser único
+      missed?: não pode estar em branco
+      not_allowed?: não é permitido alterar
+      not_in_the_list?: valor inválido passado
+      not_uniq_variable: variável '%{value}' redefinida na linha número %{row}
+      project_assessments:
+        should_be_greater_than_zero: A validade do resultado deve ser superior a 0 dias
+      report_approval_settings:
+        report_exists: Já existe uma definição de aprovação de relatório para este relatório.
+        validates_admins: Os administradores não têm acesso à campanha.
+      report_families_reports:
+        report_exists: Este relatório já faz parte do pacote de relatórios
+      size?: o tamanho deve ser inferior a %{size}
+      skill_alias:
+        unique_alias: O pseudónimo deve ser único
+        unique_skill: A competência deve ser única
+      uniq: Esta avaliação Mettl já está presente no sistema. O ID desta avaliação é %{id}
+      uniq?: deve ser único
+      uniq_simulation: Esta avaliação de simulação já está presente no sistema. O ID desta avaliação é %{id}
+      update_workshop:
+        less_than_booked: O total de lugares deve ser superior ao reservado
+      user_availability_date:
+        overlaps_date: Sobrepõe-se a outra disponibilidade %{range}
+        overlaps_time: Intervalo de sobreposições %{intervalo}
+        start_date_should_be_less: A data de início deve ser inferior à data de fim
+        start_time_should_be_less: A hora de início deve ser inferior à hora de fim
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Este modelo de Idp já foi atribuído a este utilizador e está ativo
+      user_saved_filters:
+        limit_exceeded: Só pode ter %{limite} filtros guardados, por favor elimine os filtros guardados para adicionar mais.
+        unique_name: Já existe um filtro com o mesmo nome.
+      workshop_invited_subject_create:
+        already_exists: O assunto já existe no convite.
+      workshop_subject_create:
+        already_exists: O assunto já existe neste centro de avaliação.
+        part_of_other_workshop: O sujeito já é um participante de "%{nome_do_workshop}".
+      workshops:
+        no_available_assessor_slots: Não existem faixas horárias disponíveis para o avaliador %{assessor}
+        no_available_manager_slots: Não há faixas horárias disponíveis para o gestor %{manager}
+    users:
+      registrations:
+        new:
+          register: Registar
+          sign_in: Iniciar sessão
+      sessions:
+        new:
+          register: Registar
+          sign_in: Iniciar sessão
   emails:
+    nomination_approval_table:
+      evaluator_name: Nome do avaliador
+      number: Não
+      relationship: Relacionamento
+      subject_name: Nome do sujeito
     subject_relationship_table:
       subject_email: Assunto Email
       subject_name: Nome do sujeito
       subject_relationship: Assunto Relação
+  empty: Vazio
+  enums:
+    communication:
+      body:
+        error: O corpo do e-mail tem um pipetexto incorreto.
   errors:
     assessments:
       timed_out: Não é possível efetuar a avaliação %{assessment_name} porque o tempo limite foi ultrapassado.
     error: Erro
     error_500: Algo correu mal. Contacte o seu administrador.
+    error_msg: Algo correu mal. Actualize a página e, se o problema persistir, contacte o seu administrador
     forbidden: Não tem acesso a esta página
     forbidden_action: Não tem permissões para esta ação
+    invalid_session_title: Sessão inválida
     invalid_token: Alguma coisa correu mal. Por favor, recarregue a página e tente novamente.
+    max_regeneration_limit: Limite máximo de regeneração excedido, contacte a sua administração.
+    messages:
+      data_report_blank: Relatório de dados não existe
     module_error: Algo correu mal com este módulo, contacte a administração.
     module_error_editor: Algo correu mal com este módulo, verifique as definições do módulo.
     module_props_error: Algo correu mal com este módulo.
+    skill_gap_report:
+      not_found: Relatório de lacunas de competências não encontrado
     try_again: Tente novamente
+    user_idp_plan:
+      no_active_plan: Não foi encontrado nenhum plano IDP ativo
+    webhooks:
+      multiple_webhook_error: o url não pode ser atualizado porque existem vários webhooks para este projeto.
+  evaluators:
+    errors:
+      can_not_processed: não pode ser processado
+      exists: já existe
+      max_evaluators: já tem avaliadores suficientes
   factors:
     description: Descrição
     factor: Fator
   frontend:
     activate: Ativar
     are_you_sure: Tem certeza?
+    aria:
+      back_to_dashboard: Voltar ao painel de controlo
+      back_to_tasks: Voltar a Tarefas
+      calendar: Calendário
+      campaign_name_description: ', para a campanha "%{campaignName}"'
+      change_language: "(Alterar idioma)"
+      clear_date: data clara
+      collapse_menu: Recolher o menu
+      confirm_proceed: Confirmar para prosseguir
+      delete_message: Apagar mensagem
+      drag_drop_instructions_desktop: Active o modo de formulários para arrastar e largar os itens com um leitor de ecrã.
+      drag_drop_instructions_mobile: Com um leitor de ecrã, toque duas vezes e mantenha premido um botão de arrastar, desloque-se para outro item e levante o dedo para mover o item.
+      enlarge_view_text: Ampliar a vista de %{texto}
+      expand_menu: Expandir o menu
+      file_uploaded: Ficheiro carregado
+      lang_dropdown_description: mudar de língua
+      pause: Pausa
+      play: Jogar
+      profile_progress: O preenchimento do perfil é
+      remove_file: remover ficheiro
+      send_message: Enviar mensagem
+      slider_label_instruction: 'min: %{min} e max: %{max}'
+      task_btn_description: tarefa %{assessmentName}
+      task_progress_label: A conclusão da tarefa é
+      write_message: Escreva a sua mensagem
     assessment: Avaliação
     assessment_groups:
       create_success: O grupo foi criado com êxito
       update_success: O grupo foi atualizado com êxito
+    availability:
+      add_new_availability: Adicionar nova disponibilidade
+      create_success: A disponibilidade foi criada com êxito.
+      remove_confirm:
+        content: Tem a certeza de que pretende remover a disponibilidade?
+        success: A disponibilidade foi removida com sucesso.
+        title: Remover disponibilidade
+      update_success: A disponibilidade foi actualizada com êxito.
     background_reading: Leitura de contexto
     bookings:
       accept_invite_msg: Recebeu um convite. Reserve a sua vaga.
       add_to_calendar: Adicionar ao calendário
       add_to_calendar_tour_description: Adicione esta reserva ao seu calendário
+      add_to_google_calendar: Adicionar ao calendário do Google
+      add_to_i_calendar: Adicionar ao iCalendar
+      add_to_msoffice_calendar: Adicionar ao calendário do Microsoft Office 365
+      add_to_outlook_calendar: Adicionar ao calendário do Outlook
+      add_to_yahoo_calendar: Adicionar ao calendário do yahoo
       assessment_center_alert:
         btn_title: Campanha
         message_part1: Conclua todas as atividades prévias nisto
@@ -520,8 +2178,10 @@ pt:
       language_required_msg: Selecione um idioma
       meeting_start_text: 'A reunião começará dentro de:'
       need_changes: Necessita de fazer as alterações?
+      neurodivergence_comment_aria_label: Comentários sobre a neurodivergência
       neurodivergence_comment_placeholder: Os seus comentários
       neurodivergence_question: Precisa de alguma adaptação ou ajuste razoável devido a necessidades especiais ou deficiências para participar plenamente na avaliação?
+      or: ou
       other_invite: Ver mais %{count} convite
       other_invites: Ver mais %{count} convites
       reason: Motivo
@@ -546,24 +2206,68 @@ pt:
     break_time: Intervalo
     campaign:
       actions:
+        copy:
+          success: "%{campaignName} foi copiado com êxito."
         remove:
           confirmation: Insira o nome da campanha atual fornecido abaixo na caixa de texto para remover a campanha
           success: "%{campaignName} removida com êxito."
       users:
+        actions:
+          export:
+            details: Utilizadores da campanha
+            scheduled: A exportação do utilizador foi agendada com êxito.
+          export_reports_and_assessments:
+            details: Relatórios e avaliações
         completion_statuses:
           completed: Concluído
           in_progress: Em curso
           not_started: Não iniciado
     change_password: Alterar palavra-passe
+    clients:
+      actions:
+        create:
+          create_client: Criar cliente
+          create_license: Adicionar licença
+        menus:
+          view_licenses: Ver licenças
+        remove:
+          confirmation: Introduzir o nome do cliente atual indicado abaixo na caixa de texto para remover o cliente
+          success: O cliente com o nome '%{clientName}' foi removido com êxito
+      projects:
+        actions:
+          remove:
+            confirmation: Introduzir o nome do projeto atual indicado abaixo na caixa de texto para remover o projeto
+            success: O projeto com o nome "%{projectName}" foi removido com êxito
     delete: Eliminar
     edit: Editar
+    error_warning: Oops, algo correu mal com a sua avaliação. Contacte o apoio ao cliente.
+    hogan:
+      cannot_start: Não é possível iniciar a avaliação hogan neste momento. Tente após alguns minutos.
     lighthouse_app: Farol de Mercer
     login: Iniciar sessão
+    maintenance:
+      notification: O farol estará inativo para manutenção programada dentro de 60 segundos
     manage: Gerir
     'no': Não
+    passwordSetting:
+      update_success: As definições de segurança foram actualizadas com êxito
+    questions:
+      campaign_factor_feedback:
+        add_skill: Adicionar habilidade
+        feedback: Feedback
+        max_factors: Factores máximos
+        min_factors: Factores mínimos
+        skill_factor: Fator de competência
+    report_error: Oops, algo correu mal com o seu relatório. Por favor contacte o suporte.
+    request_failed_message_box:
+      message: O último pedido falhou. Actualize a página e, se o problema persistir, contacte o seu administrador.
+      refresh: Atualizar
     resource:
       create_success: "%{readableResourceName} adicionado com êxito"
       update_success: "%{readableResourceName} atualizado com êxito"
+    restart: Reiniciar
+    restart_progress: Houve algumas alterações na avaliação. Actualize a página para ver as alterações. Ao atualizar a página, a avaliação começa do início. As perguntas às quais já respondeu serão preenchidas automaticamente.
+    saved_results: Respostas guardadas com sucesso.
     session_timeout_modal:
       buttons:
         close: Fechar
@@ -574,6 +2278,15 @@ pt:
       message_after_timeout: A sua sessão expirou, por favor volte a iniciar sessão.
       time_remaining: Tempo restante
       title: Aviso de tempo limite da sessão
+    skip_to_content: Saltar para o conteúdo
+    smsInvites:
+      create_success: O convite por SMS foi adicionado com êxito
+      update_success: O Convite SMS foi atualizado com sucesso
+    sms_records:
+      create_success: A tarefa SMS foi agendada com êxito
+    test_webhook:
+      create_success: Teste de webhook bem sucedido.
+      success: Sucesso
     update: Atualizar
     upload: Carregar
     workshop_invited_subjects:
@@ -584,69 +2297,124 @@ pt:
         requested_rescheduling: Solicitou reagendamento
         requested_rescheduling_rejected: Solicitado Reagendamento Rejeitado
     'yes': Sim
+  glint:
+    booking_card:
+      aria_available_time: tempo disponível
+      aria_back_to_time_selection: voltar à seleção da hora
+      aria_desc_current_month: Atualmente em %{monthName} %{year}
+      aria_label_next_month: Passar para o mês seguinte
+      aria_label_previous_month: Ir para o mês anterior
+      aria_timezone_select: Selecionar fuso horário
+    color_picker:
+      copy_success_msg: Copiou o hexcode para a área de transferência.
+      recent_colors: 'Utilizado recentemente:'
+      recommended_colors: 'Recomendado:'
+    datepicker_with_ranges:
+      all_time: Todo o tempo
+      current_month: Mês atual
+      current_week: Semana atual
+      last_month: Último mês
+      last_week: Última semana
+      today: Hoje
+      yesterday: Ontem
+    fontsize_modifier:
+      change_font: Alterar o tamanho do tipo de letra
+      decrease_font: Diminuir o tamanho da letra
+      increase_font: Aumentar o tamanho da letra
+      reset_font: Repor o tamanho do tipo de letra
+    input_duration:
+      max_duration: A duração máxima é de %{duração}
+    schedule_availability:
+      copy_to_all: Copiar para todos
+      end_date: Data final
+      from: De
+      new_schedule: Adicionar novo horário
+      new_schedule_description: A hora de início deve ser anterior à hora de fim
+      no_slots: Não foram adicionadas ranhuras
+      required_error: não pode estar vazio
+      save: Guardar
+      saved_schedule_description: Calendário de disponibilidade guardado do utilizador
+      start_date: Data de início
+      timezone_label: Fuso horário
+      to: Para
+    views_container:
+      aria_grid_view: Vista de grelha
+      aria_list_view: Vista de lista
+      aria_selected: Selecionado
   idp:
-    actions: Ações
-    board: Quadro
+    actions: Acções
+    board: Direção
+    convert_to_draft: Converter em rascunho
     details: Detalhes
     development_actions:
       action_private: Sim
       action_public: Não
-      add_development_action: Adicionar Ação de Desenvolvimento
+      add_development_action: Adicionar ação de desenvolvimento
       all: Todos
       approved: Aprovado
       board_view:
         completed: Concluído
-        in_progress: Em Progresso
-        not_started: Não Iniciado
+        in_progress: Em curso
+        not_started: Não iniciado
       completion: Conclusão
-      create_my_own: Criar o Meu Próprio
-      date_range: Data de Início - Data de Fim
+      create_my_own: Criar o meu próprio
+      date_range: Data de início - Data de fim
       generate_by_ai: Gerar por IA
-      generate_more: Gerar Mais
-      generating_development_actions: A gerar ações de desenvolvimento...
-      heading: Ações de Desenvolvimento
-      learning_from_others: Aprendizagem com outros
-      manage_skills: Gerir Competências
+      generate_more: Gerar mais
+      generating_development_actions: Geração de acções de desenvolvimento...
+      heading: Acções de desenvolvimento
+      learning_from_others: Aprender com os outros
+      manage_skills: Gerir competências
       marathon: Maratona
-      no_development_actions: Sem ações de desenvolvimento
+      no_development_actions: Nenhuma ação de desenvolvimento
       on_the_job: No trabalho
-      other: Outro
+      other: Outros
       private: Privado
       remove: Remover
-      skill: Competência
+      skill: Habilidade
       sprint: Sprint
       structured_learning: Aprendizagem estruturada
-      submit_plan: Submeter Plano
+      submit_plan: Apresentar plano
       write_here: Escreva aqui...
-    direct_report_details: Detalhes do Relatório Direto
+    direct_reportee_details: Detalhes do Relatório Direto
     initial_steps:
-      add_skill_group_description: Com base nos seus resultados de avaliação, aqui estão algumas das áreas de força e desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
-      add_skill_group_title: A Explorar as Suas Competências de %{category}
+      add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
+      add_skill_group_title: Explorar as suas competências de %{categoria}
       add_skills: Adicionar
-      add_skills_step: Adicionar Competências
-      continue_to_rate_skills: Continuar a avaliar competências
-      getting_started: Começar
-      getting_started_info: Bem-vindo ao seu criador de Plano de Desenvolvimento Individual (PDI). Este plano irá ajudá-lo a identificar, gerir e acompanhar os seus objetivos profissionais e pessoais, bem como os passos necessários para alcançar esses objetivos. Os seus objetivos profissionais podem incluir áreas de desenvolvimento comportamental, de liderança e técnico. O seu PDI é uma ferramenta essencial para apoiar o desenvolvimento da sua carreira e o aprimoramento das suas competências.
+      add_skills_step: Adicionar competências
+      continue_to_rate_skills: Continuar a avaliar as competências
+      getting_started: Como começar
+      getting_started_info: Bem-vindo ao criador do seu Plano de Desenvolvimento Individual (PDI). Este plano ajudá-lo-á a identificar, gerir e acompanhar os seus objectivos profissionais e pessoais, bem como os passos a dar para os atingir. Os seus objectivos profissionais podem incluir áreas de desenvolvimento comportamental, de liderança e técnicas. O seu PDI é uma ferramenta essencial para apoiar o desenvolvimento da sua carreira e a melhoria das suas competências.
       less_skills: Mostrar menos competências
       more_skills: Explorar mais competências
-      next: Próximo
+      next: Seguinte
       no_skills_selected: Nenhuma competência selecionada.
-      rate_skills: Avaliar Competências
-      rate_skills_description: Agora que selecionou as suas prioridades de desenvolvimento, por favor, avalie-se em cada uma das seguintes. Lembre-se de se avaliar com base no seu nível atual e não no seu nível passado ou desejado.
-      rate_skills_title: A Avaliar as Suas Competências
+      rate_skills: Avaliar competências
+      rate_skills_description: Agora que selecionou as suas prioridades de desenvolvimento, classifique-se em cada uma das seguintes categorias. Não se esqueça de se classificar com base no seu nível atual e não no seu nível passado ou desejado.
+      rate_skills_title: Avaliar as suas competências
       rating_column_header: A sua autoavaliação
+      reflective_questions: Perguntas de reflexão
       select_skills: Selecione as suas competências
       select_skills_placeholder: Selecionar competências
-      selected_skills: Competências Selecionadas
-      skill_column_header: Competência
-      skill_gap_report: Relatório de Lacunas de Competências
+      selected_skills: Competências selecionadas
+      skill_column_header: Habilidade
+      skill_gap_report: Relatório de défice de competências
     list: Lista
-    my_direct_reports: Os Meus Relatórios Diretos
+    manage_plan: Gerenciar plano
+    mark_as_complete: Marcar como concluído
+    mark_as_incomplete: Marcar como incompleto
+    my_direct_reportees: Os Meus Relatórios Diretos
     my_plan:
-      development_plan: Plano de Desenvolvimento
+      development_plan: Plano de desenvolvimento
       graphs:
+        behavioural: Comportamental
         categories: Categorias
-      save_skills: Guardar Competências
+        learning_on_job: No emprego (%{count})
+        learning_others: Aprender com os outros (%{contagem})
+        learning_structured: Aprendizagem estruturada (%{contagem})
+        other: Outros
+        technical: Técnica
+      save_skills: Guardar competências
     pdf:
       approval_status: Estado de Aprovação
       cover:
@@ -752,20 +2520,241 @@ pt:
         library: Biblioteca PDI
         skills_count: Contagem de Competências
         title: Resumo do Relatório
-    profile_details: Detalhes do Perfil
+    reflective_questions:
+      answer_later: Responder mais tarde
+      answer_placeholder: Escreve aqui a tua resposta...
+      errors:
+        max_words: A resposta permite um máximo de %{count} palavras
+        min_words: A resposta requer pelo menos %{count} palavras
+        required: A resposta à pergunta é necessária
+      max_words: Máximo de palavras
+      min_words: Palavras mínimas
+      title: Perguntas de reflexão
+      update_failed: Ocorreu um erro durante a atualização
+      updated_successfully: As suas respostas foram actualizadas com sucesso
+      words: Palavras
     skill_gap_report:
-      continue_to_rate_skills: Continuar a avaliar competências
-      title: Relatório de Lacunas de Competências
+      title: Relatório de défice de competências
     status: Estado
     user_idp_status:
       approved: Aprovado
-      draft: Rascunho
+      draft: Projeto
+      not_started: Não iniciado
       pending_approval: Pendente
     users: Utilizadores
   idp_templates:
+    assign: Atribuir
+    assign_idp_template: Atribuir modelo de Idp
+    auto_assign: Atribuir automaticamente novos utilizadores
     errors:
+      idp_template_not_found: Modelo IDP não encontrado
       user_idp_template_not_found: Não lhe foi atribuído nenhum modelo de PDI.
+    idp_template: Modelo de PDI
+    override_exists: Anular e repor utilizadores existentes
+    placeholder: Selecionar um modelo de Idp
+    save_and_assign: Guardar e atribuir
+    success_scheduled: A tarefa de atribuição de IDP foi agendada com êxito
+  jobs:
+    threesixty:
+      bulk_downloads: A tarefa de transferência em massa foi agendada com êxito
+      export_completion_statuses_scheduled: Status de conclusão o trabalho de exportação foi agendado com sucesso
+      export_raw_results_scheduled: A tarefa de exportação de resultados brutos foi agendada com êxito
+      export_scores_scheduled: A tarefa de exportação de resultados foi agendada com êxito
+      reports:
+        download:
+          description: 'Para descarregar o relatório, siga a ligação: <a href=''%{url}'' target=''_blank''>Descarregar</a>'
+          error: Ocorreu um erro
+          error_description: A geração do seu relatório falhou. Contacte o Administrador ou tente <b>transferir</b> novamente.
+          message: O relatório está pronto
+  languages:
+    af: Africâner
+    ar: Árabe
+    az: Azerbaijanês
+    bg: Búlgaro
+    bs: Bósnio
+    by: Bielorrusso
+    ca: Catalão
+    cn: Chinês
+    cs: Checo
+    cy: Cymraeg
+    da: Dinamarquesa
+    de: Alemão
+    el: Grego
+    en: Inglês
+    en-GB: Inglês - Reino Unido
+    en-US: Inglês - EUA
+    eo: Esperanto
+    es: Espanhol (América Latina)
+    es-ES: Espanhol (Espanha)
+    et: Estónio
+    fa: Persa
+    fi: Finlandês
+    fr: Francês
+    gu: Gujarati
+    he: Hebraico
+    hi: Hindi
+    hr: Croata
+    hu: Húngaro
+    id: Bahasa Indonésia
+    it: Italiano
+    ja: Japonês
+    km: Khmer
+    ko: Coreano
+    lt: Lituano
+    lv: Letão
+    mk: Macedónio
+    mn: Mongol
+    ms: Bahasa Malásia
+    my: Myanmar
+    nb: Norueguês Bokmål
+    nl: Holandês
+    'no': Norueguês
+    pl: Polaco
+    pt: Português
+    pt-BR: Português do Brasil
+    pt-PT: Português (Portugal)
+    pt_BR: Português (Brasil)
+    ro: Romeno
+    ru: Russo
+    sk: Eslovaco
+    sl: Esloveno
+    sr-Cyrl: Cirílico sérvio
+    sr-Latn: Latim sérvio
+    sv: Sueco
+    sw: Swahili
+    ta: Tamil
+    th: Tailandês
+    tl: Tagalo
+    tr: Turco
+    ua: Ucraniano
+    uk: Ucraniano
+    ur: Urdu
+    vi: Vietnamita
+    zh: Chinês simplificado
+    zh-CN: Chinês (RPC)
+    zh-HK: Chinês (Hong Kong)
+    zh-Hant: Chinês - Tradicional
+    zh-TW: Chinês (Taiwan)
+  languages_localized:
+    af: Africâner
+    ar: عربي
+    az: Azerbaijanês
+    bg: български
+    bs: bosanski
+    by: Bielorrusso
+    ca: catalão
+    cn: 中国人
+    cs: português
+    cy: Cymraeg
+    da: dansk
+    de: Alemão
+    el: Ελληνικά
+    en: Inglês
+    en-GB: Inglês (Reino Unido)
+    en-US: Inglês (EUA)
+    eo: Esperanto
+    es: Espanhol
+    es-ES: Español (españa)
+    et: Estónio
+    fa: Persa
+    fi: Finlandês
+    fr: Francês
+    gu: Gujarati
+    he: Hebraico
+    hi: हिन्दी
+    hr: Croata
+    hu: Húngaro
+    id: Bahasa Indonésia
+    it: italiano
+    ja: 日本語
+    km: Khmer
+    ko: Coreano
+    lt: Lituano
+    lv: Letão
+    mk: Macedónio
+    mn: Mongol
+    ms: Bahasa Malásia
+    my: Myanmar
+    nb: Norueguês Bokmål
+    nl: Holandês
+    'no': Norueguês
+    pl: Polaco
+    pt: Português
+    pt-BR: Português (Brasil)
+    pt-PT: Português (Portugal)
+    pt_BR: Português (Brasil)
+    ro: Romeno
+    ru: Russo
+    sk: Eslovaco
+    sl: Esloveno
+    sr-Cyrl: Cirílico sérvio
+    sr-Latn: Latim sérvio
+    sv: Sueco
+    sw: Suaíli
+    ta: Tamil
+    th: Tailandês
+    tl: Tagalo
+    tr: Turco
+    ua: Ucraniano
+    uk: Ucraniano
+    ur: Urdu
+    vi: Vietnamita
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政区)
+    zh-Hant: 繁體中文
+    zh-TW: 漢語
+  license_usage:
+    active: Ativo
+    campaign_name: Nome da campanha
+    inactive: Inativo
+    status_updated_at: Última atualização do estado
+    status_updated_by: Última atualização por
+    subject_email: 'Assunto: correio eletrónico'
+    subject_name: Nome do sujeito
+    usage_overview: Ver a utilização da licença
+    usages: Utilizações
+  licenses:
+    enabled: Ativado
+    end_date: Data final
+    not_enough_idp_license: Não existem licenças IDP suficientes, contactar o administrador
+    not_enough_license: "'%{nome_do_cliente}' não tem licenças suficientes para '%{nome_do_relatório}'"
+    not_enough_license_count: Não existem licenças suficientes, contacte o administrador
+    not_enough_proctoring_credits: Não há créditos suficientes para iniciar a sessão de controlo
+    number: Número
+    overuse_number: Subsídio por utilização excessiva
+    report_family: Pacote de relatórios
+    start_date: Data de início
+    type: Tipo
+    types:
+      common: Comum
+      idp: PDI
+      proctoring: Controlo de qualidade
+      threesixty: Três sessenta
+    used_number: Licenças usadas
+    used_out_of: "%{used} de %{total}"
   mailer:
+    from: A Empresa de Talentos
+    license:
+      expire:
+        subject: Licença expirada
+      overuse:
+        subject: Utilização excessiva da licença
+      weekly_stats:
+        column_headers:
+          client_name: Nome do cliente
+          expiry_date: Data de expiração
+          overuse_limit: Limite de utilização excessiva
+          project_manager: Gestor de projectos
+          remaining_count: Contagem restante
+          type: Tipo de licença
+          use_count: Utilizar a contagem
+        expiry_stats: 'Licenças que expiram nos próximos 30 dias :'
+        no_expiry_stats: Não há licenças que expirem nos próximos 30 dias.
+        no_weekly_stats: Não foram consumidas licenças nos últimos 7 dias.
+        notice: Nota - Pode anular a subscrição desta mensagem eletrónica semanal a partir da sua página de perfil.
+        subject: Estatísticas semanais de utilização de licenças
+        weekly_stats: 'Estatísticas de utilização de licenças da semana passada :'
     magic_link:
       body:
         dear: Caro %{nome},
@@ -773,8 +2762,29 @@ pt:
         instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
         signin_link: Ligação de registo
       subject: Ligação de início de sessão para o Lighthouse
+    users:
+      account_disable: A sua conta foi desactivada devido a inatividade
+      warning: A sua conta será desactivada em breve devido a inatividade
+  maintenance_message: O Lighthouse estará inativo para manutenção programada em %{start_date} e estará indisponível durante %{duration} horas
+  maintenance_submessage: Após a conclusão da manutenção, actualize a página e será redireccionado para a página de início de sessão
+  my: O meu
+  myself: Eu próprio
   navigation:
     logout: Terminar sessão
+  'no': Não
+  nominations:
+    approval_email_error: O último e-mail de aprovação foi enviado em %{last_sent_at}. Pode enviar o próximo e-mail de lembrete em %{wait_time}
+  norms:
+    percentile:
+      columns:
+        mean: Média
+        name: Nome
+        standard_deviation: Desvio padrão
+      messages:
+        failure: 'Erro: %{erro}.'
+        success: A norma do fator "%{factorName}" foi actualizada com êxito.
+      values:
+        empty: Vazio
   profile:
     add_field: Adicionar campo
     add_photo: Adicionar fotografia
@@ -789,20 +2799,153 @@ pt:
     last_name: Apelido
     locale: Idioma preferencial
     male: Masculino
+    mandatory_fields: Indica os campos obrigatórios
     not_disclosed: Prefiro não revelar
     old_data: Os dados do seu perfil têm %{meses} meses. Confirme os dados para prosseguir
     password: Palavra-passe
     password_confirmation: Confirmação da palavra-passe
+    photo: Fotografia
     success_update: Perfil guardado com êxito
     timezone: Fuso horário
     title: O meu perfil
     update: Atualizar
     update_required: Actualizações de perfil necessárias
+  profiles:
+    edit:
+      header: Definições de perfil
+    form:
+      username: Nome de utilizador
+    update:
+      successfully: O perfil foi atualizado com sucesso
+  registration:
+    success_update: O registo foi guardado com sucesso
+  registration_code:
+    allowed_domains: Domínios permitidos
+    invalid_code: Código de campanha inválido
+    modals:
+      remove:
+        content: Tem a certeza de que pretende remover o código de registo <strong>"%{código}"</strong>?
+        successfully: O código de registo "%{código}" foi removido com êxito.
+      title: Código de registo
+    one_domain_per_line: Um nome de domínio por linha
+    restricted_domains: Domínios restritos
+    token_expired: O token expirou
+  report_approvals:
+    events:
+      approved_text: texto aprovado
+      comment_added: comentário adicionado <i>%{text}</i>
+      comment_removed: comentário removido
+      comment_resolved: comentário resolvido
+      comment_unresolved: comentário não resolvido
+      comment_updated: mudou o comentário <s>%{oldText}</s> para <i>%{newText}</i>
+      created_text: texto acrescentado
+      disapproved_text: texto não aprovado
+      removed_text: texto removido
+      status_changed: mudou o estado de <i>%{de}</i> para <i>%{para}</i>
+      updated_text: texto atualizado
+    tabs:
+      all: Todos
+      approved: Aprovado
+      my_tasks: As minhas tarefas
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: Tem a certeza de que pretende eliminar o conjunto de relatórios "%{name}"?
+        confirm_title: Confirmação necessária
+        success_message: O pacote de relatórios %{name} foi eliminado
+    report_bundle: Pacote de relatórios
+    report_bundles: Pacotes de relatórios
+    reports:
+      actions:
+        add: Adicionar novo relatório
+        remove:
+          confirm_message: Tem a certeza de que pretende eliminar o relatório "%{name}" de "%{report_bundle_name}"?
+          confirm_title: Confirmação necessária
+          success_message: O relatório %{name} foi eliminado
   reports:
     actions:
       add: Adicionar relatório
+      archived:
+        success_message: O relatório "%{nome}" foi arquivado com êxito.
+      back_to_campaign: Voltar à campanha
+      copy:
+        success_message: O relatório "%{nome}" foi copiado com êxito.
+      details: Detalhes
       download: Descarregar relatório
+      download_csv: Descarregar CSV
+      edit: Editar
+      evaluate: Avaliar
+      extend_time: Prolongar o tempo
+      goto_dashboard: Clique aqui para continuar
+      re_evaluate: Clique aqui para reavaliar
+      reevaluate: Reavaliar
+      remove:
+        confirm_message: Tem a certeza de que pretende eliminar o relatório "%{name}"?
+        confirm_title: Confirmação necessária
+        success_message: Relatório %{name} foi removido
+      rescore: Rescore
+      restore:
+        success_message: O relatório %{name} foi restaurado com êxito
+      unarchived:
+        success_message: O relatório %{name} foi desarquivado com êxito
+      update_language: Atualizar a língua
       view: Ver relatório
+    active: Ativo
+    archived: Arquivado
+    builder:
+      graph:
+        properties:
+          barBorderRadius: Raio do limite da barra
+          barWeight: Peso da barra
+          dataFormat: Formato dos dados
+          graphOption3D: 3D
+          graphOptionStandard: Padrão
+          graphSubType: Subtipo de gráfico
+          graphTypeHorizontal: Horizontal
+          graphTypeVertical: Vertical
+          hideEmptyColumns: Ocultar colunas vazias
+          hideEmptyFilters: Ocultar filtros vazios
+          hideXAxisLine: Ocultar linhas de grelha do eixo X
+          hideXAxisTitle: Ocultar o título do eixo X
+          hideYAxisLine: Ocultar linhas de grelha do eixo Y
+          hideYAxisTitle: Ocultar o título do eixo Y
+          hideZeroValueColumns: Ocultar colunas de valor zero
+          legendPosition: Legenda Posição
+          maxValueLabel: Valor máximo (número)
+          maxValueLabelPlaceholder: Valor máximo
+          positionBottomLeft: Esquerda inferior
+          positionBottomMiddle: Fundo Meio
+          positionBottomRight: Parte inferior direita
+          positionTopLeft: Em cima à esquerda
+          positionTopMiddle: Topo Médio
+          positionTopRight: Topo direito
+          reverse: Inverter
+          showLegend: Mostrar legenda
+    columns:
+      data_only: Apenas dados
+      default_language: Língua por defeito
+      external_settings:
+        hogan_report_id: ID do relatório Hogan
+        saville_report_id: ID do relatório Saville
+      other_available_languages: Outras línguas disponíveis
+    create: Criar
+    dashboard: Painel de controlo
+    drawer:
+      title: Detalhes do relatório
+    fields:
+      provider:
+        custom_upload: Carregamento personalizado
+        hogan: Hogan
+        internal: Interno
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+    form:
+      load_from_mettl: Carga de Mettl
+      load_from_pearson: Carregar de Pearson
+      none_external: Nenhum - Utilizar o criador de relatórios
+    language: Idioma do relatório
+    language_updated: O idioma do relatório foi atualizado com sucesso
     modules:
       campaign_factors_table:
         add_condition: Adicionar condição
@@ -820,13 +2963,21 @@ pt:
         strengths: Pontos fortes
         then: Em seguida, mostre o seguinte texto
         title: Título
+      common:
+        all_factors: Todos os factores
+        font: Tipo de letra
+        table_options: Opções de tabela
+        table_type: Tipo de tabela
       factors_table:
         description: Descrição
+        na: N/A
         no_data: Não há dados disponíveis para esta secção.
         rank: Classificação
         score: Pontuação
       gap_assessment:
         gap: Diferença
+        hide_left_filter: Ocultar filtro esquerdo
+        hide_right_filter: Ocultar filtro direito
         item: Indicador
         negative_gap: Diferenças negativas
         no_negative_gaps: Não há diferenças negativas
@@ -889,6 +3040,14 @@ pt:
         total: Total
       video_response:
         no_results: Não foram gravados vídeos
+    pages:
+      edit:
+        assets: Activos
+        general_settings: Definições gerais
+        translations: Traduções
+    report: Relatório
+    reports: Relatórios
+    reset: Reiniciar
     show:
       export_pdf: Exportar para PDF
       header: Relatório
@@ -900,29 +3059,358 @@ pt:
       not_available: Não disponível
       on_hold: Pendente
       released: Divulgado
+    trash: Lixo
+    update: Atualização
+    upload: Carregar
+  reset_password_modal:
+    fields:
+      automatically_generate_password: Gerar automaticamente a palavra-passe
+      change_password_on_login: Alterar a palavra-passe no início de sessão
+      login_link: Ligação de acesso
+      new_password: Nova palavra-passe
+      password_placeholder: Introduzir palavra-passe
+      send_password_email: Enviar palavra-passe por e-mail
+      username: Nome de utilizador
+    messages:
+      reset_password_success: A palavra-passe do utilizador %{email} foi redefinida com êxito.
+      send_password_email_success: Correio eletrónico enviado ao utilizador %{email} com a palavra-passe.
+    title: Repor a palavra-passe
+  select: Selecionar
   shared:
     filters:
       clear: Limpar filtros
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
+    mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
     terms_conditions_privacy: Declaração de privacidade
     tte_terms_and_condition: Termos e privacidade
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: Carregar uma nova folha de acesso com a eliminação de todos os registos existentes e carregar um novo registo a partir da folha.
+      success_message: O ficheiro foi carregado com sucesso. Importação do registo da folha de dados em curso
+      title: Importar registos de folhas
+    menu:
+      export: Folha de exportação
+      export_info: Não há dados para exportar.
+      import: Folha de importação
+    no_sheet: É necessário importar primeiro a folha
   simple_form:
+    error_notification:
+      default_message: 'Analise os problemas abaixo:'
+    labels:
+      client:
+        applicable_level: Nível aplicável
+        applicable_levels:
+          campaign: Campanha
+          project: Projeto
+          sub_campaign: Sub-campanha
+        category: Categoria
+        created_at: Data de criação
+        id: ID
+        licenses: Número de licença
+        licenses_expire: Data de expiração da licença
+        licenses_used: Utilização da licença
+        location: Localização
+        logo: Logótipo do cliente
+        memberships_count: Utilizadores
+        name: Nome
+        number: Número de cliente
+        privacy_consent: Permitir o consentimento para o tratamento de dados
+        project_manager: Gestor de projectos TTE
+        project_manager_id: Gestor de projectos TTE
+        report_ids: Relatórios
+        strong_password_enabled: Ativar a palavra-passe forte
+        subdomain: Subdomínio
+        types:
+          associate: Associado
+          corporate: Empresa
+          distributer: Distribuidor
+          other: Outros
+          partner: Parceiro
+          retail: Retalho
+          tte: TTE
+        updated_at: Data de modificação
+        year: Ano do cliente
+      membership:
+        role: Função de membro
+    'no': Não
     placeholders:
+      administration/assessments/assign_form:
+        access_reports: Regras do relatório de acesso
+        access_reports_at: Aceder ao relatório em
+        access_reports_at_date: Data
+        access_reports_at_time: Tempo
+        client_ids: Alugueres de clientes
+        manager_ids: Gestores
+        report_ids: Relatórios
+        user_ids: Utilizadores
       administrator:
+        active: Ativo
+        created_at: Data de criação
+        current_password: Palavra-passe atual
+        disabled: Desativar
         email: Endereço de e-mail
+        first_name: Nome próprio
+        id: ID
         last_name: Apelido
+        manage_client_ids: Locação de clientes
+        memberships: Locação de clientes
+        name: Nome
+        password: Palavra-passe
+        password_confirmation: Confirmação da palavra-passe
+        role: Papel
+        roles:
+          admin: Administrador
+          admins:
+            admin: Administrador
+            project_admin: Administrador do projeto
+            regular: Administrador de clientes
+            superadmin: Super Admin
+          agile: ÁGIL
+          case_study: Estudo de caso
+          client_admin: Administrador de clientes
+          hogan: Hogan
+          manager: Diretor
+          member: Utilizador
+          organisational: Organizacional
+          project_admin: Administrador do projeto
+          psychometric: Psicométrico
+          regular: Regular
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Trezentos e sessenta
+        types:
+          anonymous: Utilizadores anónimos
+          identified: Utilizadores identificados
+        updated_at: Data de modificação
+      assessment:
+        active: Ativo
+        categories:
+          '360': campanha 360
+          agile: ÁGIL
+          assessor_form: Formulário do assessor
+          case_study: Estudos de caso
+          hogan: Hogan
+          meeting: Reunião
+          organisational: Inquéritos
+          psychometric: Avaliação
+          saville: Saville
+        category: Categoria
+        completed_at: Data de conclusão
+        created_at: Data de criação
+        description: Descrição
+        id: ID
+        name: Nome
+        statuses:
+          completed: Concluído
+          finished: terminado
+          in_progress: Currículo
+          interrupted: Interrompido
+          not_started: Novo
+          overdue: Atrasado
+        timing: Calendário
+        types:
+          common: Avaliação TTE
+          hogan: Hogan
+          saville: Avaliação Saville
+        updated_at: Data de modificação
+      block:
+        active: Ativo
+        assign_to_assessment_ids: Avaliações
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      client:
+        applicable_level: Nível aplicável
+        applicable_levels:
+          campaign: Campanha
+          project: Projeto
+          sub_campaign: Sub-campanha
+        category: Categoria
+        created_at: Data de criação
+        id: ID
+        licenses: Número de licença
+        licenses_expire: Data de expiração da licença
+        licenses_used: Utilização da licença
+        location: Localização
+        logo: Logótipo do cliente
+        memberships_count: Utilizadores
+        name: Nome
+        number: Número de cliente
+        privacy_consent: Permitir o consentimento para o tratamento de dados
+        project_manager: Gestor de projectos TTE
+        project_manager_id: Gestor de projectos TTE
+        report_ids: Relatórios
+        strong_password_enabled: Ativar a palavra-passe forte
+        subdomain: Subdomínio
+        types:
+          associate: Associado
+          corporate: Empresa
+          distributer: Distribuidor
+          other: Outros
+          partner: Parceiro
+          retail: Retalho
+          tte: TTE
+        updated_at: Data de modificação
+        year: Ano do cliente
+      communication:
+        created_at: Data de criação
+        id: ID
+        updated_at: Data de modificação
+      dimension:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      factor:
+        active: Ativo
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        parent_id: Pai
+        questions_count: N.º de perguntas
+        updated_at: Data de modificação
+      library:
+        created_at: Data de criação
+        id: ID
+        type: Miniatura
+        updated_at: Data de modificação
+      license:
+        id: ID
+        number: Número de licença
+        overuse_number: Subsídio de utilização excessiva
+        type: Licença para
+        types:
+          common: Comum
+          threesixty: Trezentos e sessenta
+        unlimited: Ilimitado
+        used_number: Número de licença usado
       memebrship:
+        active: Ativo
+        created_at: Data de criação
+        disabled: Desativar
+        email: Correio eletrónico
+        first_name: Nome próprio
+        id: ID
         last_name: Apelido
+        parent: Gestor direto
+        parent_id: Gestor direto
+        report_ids: IDs de relatórios
+        roles:
+          campaign_admin: Administração de campanhas
+          client_admin: Administrador de clientes
+          manager: Diretor
+          member: Utilizador
+          project_admin: Administrador do projeto
+        updated_at: Data de modificação
+        user_access: Acesso do utilizador
+      norm:
+        active: Ativo
+        bachelors_or_masters_qualification: Bacharelato ou Mestrado
+        created_at: Data de criação
+        description: Descrição
+        description_label: DESCRIÇÃO
+        diploma_qualification: Diploma de qualificação
+        factor_id: Competência
+        factor_id_label: SELECCIONAR A COMPETÊNCIA
+        full_description: Descrição completa
+        high_school_entry_roles: Funções de entrada no ensino secundário
+        id: ID
+        key_career_tracks: Principais carreiras
+        membership_id: Cedente
+        membership_id_label: SELECCIONAR ATRIBUIDOR
+        name: Nome
+        name_label: PONTO DE ACÇÃO
+        planned_completed_at: Data de vencimento
+        planned_completed_at_label: SELECCIONAR DATA DE VENCIMENTO
+        potential_areas_of_study: Áreas potenciais de estudo
+        priority: Prioridade
+        priority_label: PRIORIDADE
+        status: Estado
+        status_label: SELECCIONAR ESTADO
+        statuses:
+          completed: Concluído
+          in_progress: Em curso
+          not_started: Não iniciado
+          overdue: Atrasado
+        updated_at: Data de modificação
+        updated_by: Editado por
+        work_environment: Ambiente de trabalho
+      question:
+        active: Ativo
+        assign_to_assessment_ids: Avaliações
+        created_at: Data de criação
+        id: ID
+        name: Nome
+        updated_at: Data de modificação
+      regenerate_reports:
+        report_ids: Relatórios
+      report:
+        created_at: Data de criação
+        id: ID
+        updated_at: Data de modificação
       user:
+        active: Ativo
+        created_at: Data de criação
+        current_password: Palavra-passe atual
+        disabled: Desativar
         email: Endereço de e-mail
         first_name: Nome próprio
+        id: ID
         last_name: Apelido
+        manage_client_ids: Locação de clientes
+        memberships: Locação de clientes
+        name: Nome
+        old_password: Palavra-passe antiga
         password: Palavra-passe
+        password_confirmation: Confirmação da palavra-passe
+        role: Papel
+        roles:
+          admin: Administrador
+          admins:
+            admin: Administrador
+            project_admin: Administrador do projeto
+            regular: Administrador de clientes
+            superadmin: Super Admin
+          agile: ÁGIL
+          case_study: Estudo de caso
+          client_admin: Administrador de clientes
+          hogan: Hogan
+          manager: Diretor
+          member: Utilizador
+          organisational: Organizacional
+          project_admin: Administrador do projeto
+          psychometric: Psicométrico
+          regular: Regular
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Trezentos e sessenta
+        types:
+          anonymous: Utilizadores anónimos
+          identified: Utilizadores identificados
+        updated_at: Data de modificação
       user_form:
+        active: Ativo
+        created_at: Data de criação
+        current_password: Palavra-passe atual
+        disabled: Desativar
         email: Endereço de e-mail
         first_name: Nome próprio
+        id: ID
         last_name: Apelido
+        parent: Gestor direto
+        parent_id: Gestor direto
         password: Palavra-passe
+        password_confirmation: Confirmação da palavra-passe
+        role: Papel
+        updated_at: Data de modificação
+    required:
+      mark: "*"
+      text: necessário
+    'yes': Sim
   subjects:
     approval_statuses:
       approved: Aprovado
@@ -961,6 +3449,7 @@ pt:
     action: Ação
     add: Adicionar
     and: E
+    approve: Aprovar
     approve_all: Aprovar tudo
     approve_all_successful: Aprovou todas as nomeações
     approve_evaluations: Aprovar avaliações
@@ -988,6 +3477,7 @@ pt:
     decline: Recusar
     decline_invite: Recusar convite
     denied: Recusado
+    deny: Recusar
     deny_all: Recusar tudo
     deny_all_successful: Recusou todas as nomeações
     download_pdf: Descarregar PDF
@@ -1000,6 +3490,7 @@ pt:
     evaluate: Avaliar
     evaluation: Avaliação
     evaluation_all_closed_message: Neste momento, todas as nomeações estão a aguardar aprovação
+    evaluation_closed_message: A avaliação está encerrada para este tema
     evaluation_closed_nomination_message: Não é possível nomear para este tema porque a avaliação está encerrada para este tema
     evaluation_help_modal:
       title: Ajuda na avaliação
@@ -1017,6 +3508,8 @@ pt:
       statuses:
         success: Êxito
         undelivered: Não entregue
+    more_info_evaluation_label: Mais informações - Avaliações
+    more_info_nomination_label: Mais informações - Nomeações
     my_projects: Os meus projetos
     name_label: Nome
     nominate: Nomear
@@ -1030,8 +3523,11 @@ pt:
       exactly: Exatamente %{count}
     nominations: Nomeações
     options:
+      form:
+        value_not_valid: não tem um valor válido
       global:
         cannot_re_edit: Os participantes não podem editar as avaliações
+        disable_all_evaluations: Desativar todas as avaliações
     or: Ou
     page_title: Revisão do Signify 360° – Nível de aplicação
     participant_list:
@@ -1042,11 +3538,13 @@ pt:
         hold_report: Reter relatório
         login: Iniciar sessão
         mark_as_done: Marcar como enviado
+        regenerate_report: Gerar relatório
         release_report: Divulgar relatório
         remove_campaign: Remover da campanha
         remove_report_approval: Remover aprovação do relatório
         remove_report_hold_release_report: Remover retenção/divulgação do relatório
         remove_subject: Remover assunto
+        reset_password: Repor a palavra-passe
         unmark_as_done: Desmarcar como enviado
         view_report: Ver relatório
         view_responses: Ver respostas
@@ -1094,6 +3592,7 @@ pt:
     setup_nominations: Definir as nomeações
     subject: Assunto
     submit: Enviar
+    timed_out: Expirou o prazo
     total_progress: Progresso total
     user_name_input_placeholder: escreva o nome ou e-mail...
     validation_errors: Erros de validação
@@ -1103,27 +3602,212 @@ pt:
     waiting: Em espera
     you: Você
     yourself: Você mesmo
+  time:
+    formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/AAAA hh:mm A
+      datetimepicker_client_with_timezone: D MMM AAAA / H:mm Z
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/AAAA
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
+  universal_links:
+    active: Ativo
+    allow_multiple_respones: Permitir que os utilizadores enviem várias respostas
+    png: PNG
+    regenerate_link: Regenerar ligação
+    successfully_generated: Gerado com sucesso
+    successfully_updated: Atualizado com sucesso
+    svg: SVG
   user:
+    datasheet:
+      attribute: Atributo
+      value: Valor
     fields:
       email: Endereço de e-mail
       first_name: Nome próprio
       last_name: Apelido
+    form:
+      email: Correio eletrónico
+      first_name: Nome próprio
+      last_name: Apelido
+      locale: Localidade
+      operation: Funcionamento
+      operation_options:
+        add_and_allow_new_response: Adicionar utilizador e permitir nova resposta
+        add_with_existing_response: Adicionar utilizador com resposta existente
+        skip_existing: Ignorar utilizador existente
+    modals:
+      exports:
+        export_sign_in_url: Exportar com URL de início de sessão mágico
+        include_inactive_users: Exportar com utilizadores inactivos
+        title: Exportar utilizadores
+      import:
+        body: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
+        imported_reports: Os relatórios e avaliações foram importados
+        imported_users: 'O número de utilizadores importados: %{número}'
+        success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações
+        title: Importar utilizadores
+        user_with_unchanged_passwords: A lista de utilizadores cujas palavras-passe não foram alteradas
+      import_reports:
+        body: Consulte o ficheiro de exemplo para extrair um modelo que pode ser utilizado para Importar aqui.
+        title: Atribuir relatórios e avaliações
+    toolbar:
+      export: Exportar utilizadores
+      export_compact_completion_status: Compacto
+      export_detailed_completion_status: Detalhado
+      export_reports_and_assessments: Relatórios e avaliações de exportação
+      import: Importar utilizadores
+      import_reports: Importar relatórios e avaliações
+  user_assessment:
+    column:
+      dimension_id: ID da dimensão
+      id: ID de avaliação do utilizador
+      norm_id: ID da norma
+    drawer:
+      copied: "%{nome} copiado para a área de transferência."
+      copy: Copiar para a área de transferência
+      mettl_schedule_name: Nome do calendário Mettl
+      no_data: Não existem dados disponíveis
+      title: Detalhes da avaliação
+      view: Ver
   user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: Reiniciar o progresso
+          success_message: A avaliação %{name} está pronta para ser editada
+      push_test_webhook:
+        copy_request_data_success: Rquest Payload copiado para a área de transferência com sucesso.
+        copy_response_body_success: O corpo da resposta foi copiado para a área de transferência com êxito.
+        copy_response_headers_success: Os cabeçalhos de resposta foram copiados para a área de transferência com êxito.
+        event_name_placeholder: Nome do evento
+        response_body_title: Corpo da resposta
+        response_header_title: Cabeçalhos de resposta
+      push_webhook:
+        submit_button_name: Webhook de envio
+        title: Webhook de envio
+      remove:
+        content: Tem a certeza de que pretende remover a avaliação "%{name}"?
+        successfully: a avaliação %{nome} foi removida com êxito.
+      reset:
+        content: Tem a certeza de que pretende repor o progresso "%{name}"?
+      test_webhook:
+        submit_button_name: Enviar teste
+        title: Enviar teste de evento de webhook
+    normalize_factor_scores:
+      no_scoring_data: A normalização das pontuações dos factores não pode ser concluída porque não estão disponíveis dados de pontuação.
+    progress_label: Progresso da avaliação
     redirect: Será redireccionado para um sítio de terceiros para esta avaliação. Clique em continuar se pretender iniciar a avaliação.
+    status:
+      completed: Concluído
+      in_progress: Em curso
+      ineligible: Não elegível
+      interrupted: Interrompido
+      not_started: Não iniciado
+      timed_out: Temporizada
+    statuses:
+      evaluator_nomination_status:
+        completed: Concluído
+        declined: Recusado
+        waiting: Em espera
+      manager_evaluation_status:
+        approved: Aprovado
+        denied: Recusado
+        waiting: Em espera
+      manager_nomination_status:
+        approved: Aprovado
+        completed: Concluído
+        declined: Recusado
+        denied: Recusado
+        waiting: Em espera
+    timer_title:
+      assessment: Avaliação
+      campaign: Campanha
   user_reports:
     actions:
+      add: Adicionar relatório
+      download: Descarregar
+      generate: Gerar
       regenerate: Regenerar
+    approval_statuses:
+      approved: Aprovado
+      change_requested: Alteração solicitada
+      not_ready: Não está pronto
+      pending_qc: Pendente de CQ
+      qc_completed: CQ Concluído
+      qc_in_progress: CQ em curso
     messages:
+      async_generation: Geração de relatório em curso. Será notificado quando o relatório for gerado.
       regenerate_successful: Tarefa de regeneração de relatórios agendada com êxito
     modals:
       remove:
         content: Tem a certeza de que pretende remover o relatório %{userReportName}?
+        content_with_counts:
+          both: 'PERIGO: O relatório %{userReportName} tem %{commentsCount} comentário(s) e %{editsCount} edição(ões). Se remover o relatório do utilizador, estes comentários e edições perder-se-ão.'
+          comments: 'PERIGO: O relatório %{userReportName} tem %{commentsCount} comentário(s). Se remover o relatório do utilizador, estes comentários perder-se-ão.'
+          edits: 'PERIGO: O relatório %{userReportName} tem %{editsCount} edição(ões). Se remover o relatório do utilizador, estas edições perder-se-ão.'
         successfully: Relatório %{userReportName} removido com sucesso
+      remove_file:
+        content: Tem a certeza de que pretende remover o ficheiro?
+        successfully: O ficheiro foi removido com sucesso.
+      upload_file:
+        choose_file: Escolher ficheiro
+        success: Ficheiro carregado com sucesso.
+        upload: Carregar
     preview_report: Pré-visualizar relatório
     statuses:
       generating: A gerar
       not_prepared: Não disponível
       prepared: Disponível
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: a autenticação de 2 factores está desactivada
+          enabled: a autenticação de 2 factores está activada
+        option_to_disable: Desativar a 2FA
+        option_to_enable: Ativar a 2FA
+      remove:
+        confirm_message: Tem a certeza de que pretende eliminar o utilizador com um e-mail "%{email}"?
+        confirm_title: Confirmação necessária
+        error_message: Não foi possível remover o utilizador devido a um erro - %{erro}
+        success_message: "%{email} foi removido"
+        system_error_message: Não foi possível remover o utilizador, tente novamente mais tarde ou contacte o suporte.
+      reset_password:
+        option: Repor a palavra-passe
+      unlock_user_access:
+        message: O acesso do utilizador a %{email} foi desbloqueado com êxito.
+        title: Desbloquear o acesso do utilizador
+        tooltip: Esta conta de utilizador está bloqueada
+    admins: Administradores
+    create_global_assessor: Criar avaliador global
+    create_superadmin: Criar Super Admin
+    dashboard: Painel de controlo
+    drawer:
+      link: Ligação
+      role: Papel
+      title: Detalhes do utilizador
+    global_assessors: Avaliadores globais
+    password_change_success: A palavra-passe foi alterada com sucesso. Inicie sessão com a sua nova palavra-passe.
+    roles:
+      campaign_admin: Administração de campanhas
+      campaign_assessor: Assessor de campanha
+      campaign_user: Utilizador da campanha
+      client_admin: Administrador de clientes
+      project_admin: Administrador do projeto
+      superadmin: Super Admin
+    superadmins: Super Administradores
+    users: Utilizadores
   validations:
     AudioResponse:
       in_progress:
@@ -1138,6 +3822,8 @@ pt:
     TextEntry:
       Email:
         character_range: A mensagem de e-mail introduzida tem de ter, no mínimo, %{min} e, no máximo, %{max} caracteres.
+        max_character: A mensagem de correio eletrónico introduzida não pode ter mais de %{max} caracteres.
+        min_character: A mensagem de correio eletrónico introduzida tem de ter pelo menos %{min} caracteres.
         subject:
           min_length: O campo "Assunto" deve ter um mínimo de 10 caracteres
         to:
@@ -1155,22 +3841,34 @@ pt:
     date: A sua resposta tem de ser uma data válida (mm/dd/aaaa)
     each_group_contains: Cada grupo tem de conter, no mínimo, %{min} e, no máximo, %{max} itens
     email: A sua resposta tem de ser um e-mail válido
+    exact: Selecione exatamente a(s) opção(ões) %{count}
     file_upload:
+      BadRequest: O ficheiro não foi carregado porque o último pedido falhou. Isto pode dever-se ao facto de a sua Internet não estar a funcionar. Se a sua Internet estiver a funcionar, contacte o administrador
       EntityTooLarge: O tamanho do ficheiro deverá ser menor que %{maxFileSize} MB
       WrongFileType: 'O tipo de ficheiro deve ser um dos seguintes: %{allowedFileTypes}'
+    invalid: é inválido
     issue: Problema
     least: Responda pelo menos %{min} opção(ões).
     least_hotspot: Responda pelo menos %{min} opção(ões).
     max_character: A sua resposta não deve conter mais do que %{max} caracteres.
     max_word: A sua resposta não deve ter mais do que %{max} palavras.
     min_character: A sua resposta deve conter pelo menos %{min} caracteres.
+    min_factor: A sua resposta deve conter pelo menos %{min} de feedbacks de factores.
     min_word: A sua resposta deve contar pelo menos %{min} palavras
+    most: Selecione, no máximo, %{max} opção(ões)
     must_rank_between: Atribua um valor de %{min} a %{max} para cada item. Os valores não podem ser repetidos.
     must_select: Selecione de %{min} a %{max} opções
+    not_in_future: A data selecionada não deve ser no futuro
+    not_in_past: A data selecionada não deve ser no passado
     number: A sua resposta deve ser um número
     range: Responda pelo menos %{min} e não mais do que %{max} opção(ões).
     required: Responda a esta questão
     text: A sua resposta não pode conter números
+    title:
+      many:
+      one:
+      other:
+    user_self_skill_rating_disabled: A auto-classificação está desactivada para este modelo
     word_count: 'Contagem de palavras '
     word_range: A sua resposta deve ter pelo menos %{min} e não mais do que %{max} palavras.
   'yes': Sim

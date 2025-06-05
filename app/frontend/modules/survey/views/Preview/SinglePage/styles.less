@@ -5,6 +5,9 @@
   flex-direction: column;
   flex: 1;
   max-width: 960px;
+  :global(.lh-splitter-fullscreen-wrapper) & {
+    max-width: 100%;
+  }
   margin: 0 auto;
   overflow-y: scroll;
   max-height: calc((var(--vh, 1vh) * 100) - 204px);

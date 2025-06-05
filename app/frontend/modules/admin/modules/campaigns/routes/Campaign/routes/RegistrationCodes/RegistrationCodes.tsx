@@ -87,30 +87,30 @@ const RegistrationCodes: React.FC<Props> = ({
         <Col span={24}>
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
             <Column
-              title="Active"
+              title={I18n.t('common.column.active')}
               key="active"
               width={40}
               render={({ disabled }) => (disabled ? <CloseOutlined /> : <CheckOutlined />)}
             />
             <Column
-              title="Name"
+              title={I18n.t('common.column.name')}
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
               dataIndex="name"
             />
             <Column
-              title="Code"
+              title={I18n.t('administration.clients.registration_codes.column.code')}
               key="code"
               dataIndex="code"
             />
             <Column
-              title="Start date"
+              title={I18n.t('administration.dates.start')}
               key="startDate"
               render={({ startDate }) => formatedDate(startDate)}
             />
             <Column
-              title="End date"
+              title={I18n.t('administration.dates.end')}
               key="endDate"
               render={({ endDate }) => formatedDate(endDate)}
             />
@@ -120,12 +120,12 @@ const RegistrationCodes: React.FC<Props> = ({
               render={({ restrictedDomains }) => (restrictedDomains ? restrictedDomains.split('\n').length : 0)}
             />
             <Column
-              title="Usage stats"
+              title={I18n.t('administration.clients.registration_codes.column.usage_stats')}
               key="usage"
               render={({ useCount, totalCount }) => `${useCount} of ${totalCount}`}
             />
             <Column
-              title="Action"
+              title={I18n.t('common.column.action')}
               key="action"
               render={code => (
                 <>

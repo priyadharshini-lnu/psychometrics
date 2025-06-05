@@ -46,11 +46,11 @@ describe EndUser::UserIdpSkillsController, type: :controller do
       expect(response.parsed_body).to include({ 'skill_id' => ["can't be blank"] })
     end
 
-    it 'returns error if category is invalid' do
-      post :save_skills, params: { skills: [{ skill_id: skill.id }], category: 'invalid' }
+    it 'returns error if skill_type is invalid' do
+      post :save_skills, params: { skills: [{ skill_id: skill.id }], skill_type: 'invalid' }
 
       expect(response.status).to eq(422)
-      expect(response.parsed_body).to include({ 'category' => ['is invalid'] })
+      expect(response.parsed_body).to include({ 'skill_type' => ['is invalid'] })
     end
 
     it 'removes skills not included in the request' do

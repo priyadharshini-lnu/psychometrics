@@ -13,6 +13,11 @@ describe Api::V2::DataReport::ConfigurationForm do
     create(:user_assessment, subject: user, assessment: assessment, status: :completed, completed_at: Time.current)
   end
   let!(:factor) { create(:factor, dimension: assessment.dimension) }
+  let!(:same_factor_name) do
+    create(:campaign_factor, output_type: 'numeric',
+      factor_type: :formula, code: 'code', formula: 'return 4')
+  end
+
   let!(:campaign_factor) do
     create(:campaign_factor, campaign: campaign, output_type: 'numeric',
       factor_type: :formula, code: 'code', formula: 'return 4')

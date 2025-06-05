@@ -19,12 +19,18 @@ export const AccessibleMenu:FC<Omit<MenuProps, 'ref'>> = (props) => {
   }, [selectedKeys])
 
   const handleSelect = (data) => {
-    // pass keyboard click to the child anchor tag of menuitem to make keyboard click(Enter/Space) work.
+    // Skip triggering the click event if Command (metaKey) or Ctrl (ctrlKey) is pressed
+    if (data.domEvent?.metaKey || data.domEvent?.ctrlKey) {
+      onSelect?.(data)
+      return
+    }
+
+    // Pass keyboard click to the child anchor tag of menuitem to make keyboard click (Enter/Space) work
     if (menuItemLinkRef.current) {
       menuItemLinkRef.current.click()
       menuItemLinkRef.current = null
     }
-    onSelect && onSelect(data)
+    onSelect?.(data)
   }
 
   // antd menu has keyboard and screenreader accessibility issue when anchor tag is used as menuitem.

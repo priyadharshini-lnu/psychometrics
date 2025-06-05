@@ -8,6 +8,5 @@ import initSentry from '~/libs/initSentry'
 import DatasheetManagementApp from '~/modules/admin/modules/SheetManagement/App'
 
 initSentry()
-
 const root = createRoot(document.getElementById('datasheet-management-container'))
 root.render(<DatasheetManagementApp />)

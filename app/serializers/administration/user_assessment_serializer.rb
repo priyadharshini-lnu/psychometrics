@@ -5,8 +5,9 @@ module Administration
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
                :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id, :simulation_content_variations,
-               :users_result_id, :hogan_participant_id,
-               :saville_user_assessment_details, :simulation_user_assessment_details, :pearson_user_assessment_details
+               :users_result_id, :hogan_participant_id, :prework,
+               :saville_user_assessment_details, :simulation_user_assessment_details, :pearson_user_assessment_details,
+               :skillvue_user_assessment_details
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -68,6 +69,12 @@ module Administration
       return nil unless object.pearson?
 
       Administration::PearsonUserAssessmentSerializer.new.serialize(object.pearson_user_assessment)
+    end
+
+    def skillvue_user_assessment_details
+      return nil unless object.skillvue?
+
+      Administration::SkillvueUserAssessmentSerializer.new.serialize(object.skillvue_user_assessment)
     end
 
     def permissions

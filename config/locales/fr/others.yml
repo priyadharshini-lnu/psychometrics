@@ -58,9 +58,9 @@ fr:
         campaign_factors_import_form:
           attributes:
             base:
-              blank: La colonne '%{entité}' ne peut pas être vide à la ligne %{index}
+              blank: La colonne '%{entity}' ne peut pas être vide à la ligne %{index}
               duplicate_code: Code dupliqué '%{code}' à la ligne %{index}
-              invalid_output_type: Type de sortie invalide '%{type_de_sortie}' à la ligne %{index}
+              invalid_output_type: Type de sortie invalide '%{output_type}' à la ligne %{index}
               max_limit_reached: Le total des facteurs de campagne dépasse la limite maximale de %{count}
               missing_headers: 'En-tête manquant : %{headers}'
               type_mismatch: Erreur de type de sortie pour le code '%{code}' à la ligne %{index}
@@ -119,7 +119,7 @@ fr:
               inclusion: Localité incorrecte
             relationship_name:
               blank: La relation ne peut être vide
-              invalid: La relation %{nom} n'est pas valide
+              invalid: La relation %{name} n'est pas valide
             subject_email:
               blank: L'objet de l'e-mail ne peut pas être vide
               invalid: Objet L'adresse électronique n'est pas valide
@@ -285,17 +285,17 @@ fr:
           attributes:
             file:
               column_type_mismatch: La colonne <b>%{col}</b> devrait être de type %{type} mais a obtenu <b>%{got}</b>
-              email_blank: 'Ligne %{numéro_de_la_rangée} : Le champ Email ne peut pas être vide'
+              email_blank: 'Ligne %{row_number} : Le champ Email ne peut pas être vide'
               email_duplicate: Il y a des doublons dans la colonne Email
-              email_invalid: 'Ligne %{numéro_de_la_rangée} : l''adresse électronique n''est pas valide'
-              invalid_column: Colonne invalide %{nom}
-              invalid_column_name: La colonne <b>"%{colonne}"</b> n'est pas valide
-              invalid_column_name_size: Le nom de la colonne <b>"%{colonne}"</b> est trop long (max 64)
+              email_invalid: 'Ligne %{row_number} : l''adresse électronique n''est pas valide'
+              invalid_column: Colonne invalide %{name}
+              invalid_column_name: La colonne <b>"%{column}"</b> n'est pas valide
+              invalid_column_name_size: Le nom de la colonne <b>"%{column}"</b> est trop long (max 64)
               invalid_column_type: Le type de colonne doit être String, Text, Number, HTML ou Markdown
               invalid_format: Format non valide (.xlsx)
-              invalid_number_value: <b>Ligne#%{index}</b> Colonne <b>"%{colonne}"</b> n'est pas un nombre
-              invalid_string_value: <b>Ligne#%{index}</b> colonne <b>"%{colonne}"</b> n'est pas une chaîne de caractères
-              invalid_string_value_size: <b>Ligne#%{index}</b> colonne <b>"%{colonne}"</b> trop longue (max 256)
+              invalid_number_value: <b>Ligne#%{index}</b> Colonne <b>"%{column}"</b> n'est pas un nombre
+              invalid_string_value: <b>Ligne#%{index}</b> colonne <b>"%{column}"</b> n'est pas une chaîne de caractères
+              invalid_string_value_size: <b>Ligne#%{index}</b> colonne <b>"%{column}"</b> trop longue (max 256)
               no_email_column: Le fichier ne contient pas la colonne Email
               non_uniq_column: Les colonnes non uniq suivantes %{columns}
         sheet_row_form:
@@ -318,7 +318,7 @@ fr:
         sms_invites_import:
           attributes:
             import_data:
-              duplicated_mobile_numbers: 'Les numéros de téléphone mobile suivants sont dupliqués dans le fichier CSV : %{numéro_mobile}'
+              duplicated_mobile_numbers: 'Les numéros de téléphone mobile suivants sont dupliqués dans le fichier CSV : %{mobile_numbers}'
               invalid_header: Exporter l'invitation par SMS pour obtenir les en-têtes corrects
         smtp_setting_form:
           attributes:
@@ -348,7 +348,7 @@ fr:
             import_data:
               cant_overwrite_password: Vous n'avez pas la permission d'écraser le mot de passe.
               duplicated_emails: 'Le(s) courriel(s) suivant(s) est/sont dupliqué(s) dans le CSV : %{emails}'
-              invalid_email: 'Ligne %{numéro_de_la_rangée} : Courriel invalide %{courriel}'
+              invalid_email: 'Ligne %{row_number} : Courriel invalide %{email}'
               invalid_header: En-tête non valide, reprendre l'en-tête de l'exportation
               invalid_reports_header: En-tête non valide, prendre l'en-tête du fichier d'exemple
               manager_not_found: 'Row %{row_number} : Manager with email %{email} is not present in the campaign or in CSV'
@@ -713,7 +713,7 @@ fr:
           attributes:
             used_number:
               overused: La licence utilisée ne peut être supérieure à la somme de la licence allouée et de la limite de surutilisation.
-          overuse: La licence %{nom} est surutilisée
+          overuse: La licence %{name} est surutilisée
         media_response:
           attributes:
             base:
@@ -847,14 +847,14 @@ fr:
       add_tag:
         success_message: La balise a été ajoutée avec succès
       archived:
-        success_message: L'évaluation "%{nom}" a été archivée avec succès.
+        success_message: L'évaluation "%{name}" a été archivée avec succès.
       assessment_cache:
         remove_cache: Supprimer le cache
         success_message: Suppression du cache réussie
       back_to_campaign: Retour à la campagne
       back_to_dashboard: Retour au tableau de bord
       copy:
-        success_message: L'évaluation "%{nom}" a été copiée avec succès.
+        success_message: L'évaluation "%{name}" a été copiée avec succès.
       details: Détails
       download_csv: Télécharger le CSV
       edit: Editer
@@ -877,21 +877,21 @@ fr:
       re_evaluate: Cliquez ici pour réévaluer
       reevaluate: Réévaluer
       remove:
-        confirm_message: Êtes-vous sûr de vouloir supprimer l'évaluation "%{nom}" ?
+        confirm_message: Êtes-vous sûr de vouloir supprimer l'évaluation "%{name}" ?
         confirm_title: Confirmation requise
-        success_message: L'évaluation %{nom} a été supprimée
+        success_message: L'évaluation %{name} a été supprimée
       remove_tag:
         success_message: L'étiquette a été retirée avec succès
       rescore: Reprise
       restore:
-        success_message: L'évaluation "%{nom}" a été restaurée avec succès
+        success_message: L'évaluation "%{name}" a été restaurée avec succès
       show_usage: Montrer l'utilisation
       submit_another_response: Soumettre une autre réponse
       submit_evaluation: Soumettre l'évaluation
       translations:
         success_message: Les traductions de l'évaluation mises à jour
       unarchived:
-        success_message: L'évaluation "%{nom}" a été désarchivée avec succès
+        success_message: L'évaluation "%{name}" a été désarchivée avec succès
       view: Voir
     active: Actif
     archived: Archivé
@@ -985,7 +985,7 @@ fr:
     instructions:
       begin_assessment: Commencer
       cancel: Annuler
-      default: Il s'agit d'une activité chronométrée. Une fois que vous aurez cliqué sur "Commencer l'évaluation", vous disposerez de %{temps} minutes pour terminer l'activité.
+      default: Il s'agit d'une activité chronométrée. Une fois que vous aurez cliqué sur "Commencer l'évaluation", vous disposerez de %{time} minutes pour terminer l'activité.
       title: Instructions
     messages:
       external_scores_export_scheduled: La tâche d'exportation des scores d'évaluation a été programmée avec succès
@@ -1026,7 +1026,7 @@ fr:
       fifteen_seconds_left: 15 secondes restantes
       five_minutes_left: 5 minutes restantes
       one_minute_left: 1 minute restante
-      seconds_left: "%{secondes} secondes restantes"
+      seconds_left: "%{seconds} secondes restantes"
       thirty_seconds_left: il reste 30 secondes
       time_is_up: Votre temps est écoulé
       time_is_up_for_recording: Le temps est écoulé et l'enregistrement s'arrête maintenant
@@ -1081,16 +1081,15 @@ fr:
     sequencing:
       add_assessment_center: Ajouter un centre d'évaluation
       add_group: Ajouter un groupe
-      assessment_center_message: Les évaluations de ce groupe sont gérées par le centre d'évaluation
       assessments: Évaluations
       delete_group: Supprimer un groupe
       edit_group_name: Modifier le nom du groupe
       modal:
         delete:
           cancel: Annuler
-          failed: Échec de la suppression du groupe "%{nom}", veuillez contacter l'administrateur
+          failed: Échec de la suppression du groupe "%{name}", veuillez contacter l'administrateur
           ok: Oui, supprimer
-          text: Êtes-vous sûr de vouloir supprimer le groupe "%{nom}" ?
+          text: Êtes-vous sûr de vouloir supprimer le groupe "%{name}" ?
           title: Supprimer un groupe
       no_assessments: Glisser-déposer les évaluations
       no_ungrouped_assessments: Glisser-déposer les évaluations ici pour les dégrouper
@@ -1232,7 +1231,7 @@ fr:
       development: Développement
       home: Accueil
       insights: Perspectives
-      my_direct_reports: Mes subordonnés directs
+      my_direct_reportees: Mes subordonnés directs
       my_plan: Mon plan
       profile: Profil
       profile_details: Détails
@@ -1289,9 +1288,9 @@ fr:
     time_left:
       cancel: Annuler
       continue: Continuer
-      notification: Votre temps alloué pour cette tâche "%{nomdel'évaluation}" était de %{totalAssessmentTime}. En raison du temps total écoulé, il ne vous reste plus que %{remainingCampaignTime} comme temps ajusté pour achever cette tâche.
+      notification: Votre temps alloué pour cette tâche "%{assessmentName}" était de %{totalAssessmentTime}. En raison du temps total écoulé, il ne vous reste plus que %{remainingCampaignTime} comme temps ajusté pour achever cette tâche.
     timer:
-      notification_hours: Il vous reste %{heures} heures
+      notification_hours: Il vous reste %{hours} heures
       notification_minutes: il vous reste %{minutes} minutes
   campaign_assessment:
     actions:
@@ -1315,9 +1314,9 @@ fr:
       reset_all_nominations: Réinitialiser toutes les nominations
       reset_participant: Réinitialiser tous les participants
     allow_msg_proctoring_workshop_activity: Les activités du centre d'évaluation ne sont pas surveillées.
+    assessment_center_heading: Détails du centre d'évaluation
     assessments_heading: Vos tâches
     column:
-      assessment_center_activity: Activité du centre d'évaluation
       assessment_name: Nom de l'évaluation
       assessor_form: Formulaire de l'évaluateur
       auto_assign: Attribution automatique
@@ -1359,20 +1358,20 @@ fr:
         title: Régénérer les rapports ?
       remove:
         helper_text: 'DANGER : Si vous sélectionnez cette option, toutes les réponses des utilisateurs à cette évaluation seront supprimées dans cette campagne.'
-        msg_text: Vous essayez de supprimer l'évaluation <strong>"%{nom}"</strong>
-        successfully: l'évaluation %{nom} a été supprimée avec succès.
+        msg_text: Vous essayez de supprimer l'évaluation <strong>"%{name}"</strong>
+        successfully: l'évaluation %{name} a été supprimée avec succès.
         title: Supprimer l'évaluation ?
       rescore:
         content: Êtes-vous sûr de vouloir refaire l'évaluation ?
         successfully: L'évaluation a été refaite avec succès.
         title: Évaluation de la redéfinition ?
       rescore_response:
-        message: Revalorisation prévue pour l'évaluation "%{nom}"
+        message: Revalorisation prévue pour l'évaluation "%{name}"
         title: Réponses à la réinitialisation
       reset:
         content: Êtes-vous sûr de vouloir réinitialiser le résultat ?
         successfully: Les données de résultat ont été réinitialisées avec succès.
-        title: Réinitialiser le résultat de l'évaluation %{nom} ?
+        title: Réinitialiser le résultat de l'évaluation %{name} ?
       update_assessor_form:
         select_assessor: Formulaire de sélection de l'évaluateur
         success_msg: Le formulaire de l'évaluateur a été téléchargé avec succès
@@ -1471,7 +1470,7 @@ fr:
     modals:
       remove:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
-        msg_text: Vous essayez de supprimer le rapport <strong>"%{nom du rapport}"</strong>
+        msg_text: Vous essayez de supprimer le rapport <strong>"%{reportName}"</strong>
         title: Supprimer le rapport ?
       user_access:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
@@ -1503,7 +1502,7 @@ fr:
           warning: La création d'un nouvel identifiant Hogan supprimera les évaluations et rapports suivants associés à l'ancien identifiant Hogan pour %{email}
         remove:
           successfully: L'utilisateur dont l'adresse électronique est %{email} a été supprimé avec succès.
-          title: Êtes-vous sûr de vouloir retirer cet utilisateur de la campagne %{nom de la campagne} ?
+          title: Êtes-vous sûr de vouloir retirer cet utilisateur de la campagne %{campaignName} ?
       not_completed_yet: Pas encore achevé
       not_logged_in_yet: Pas encore connecté
       not_started_yet: Pas encore commencé
@@ -1619,6 +1618,7 @@ fr:
       copy: Copie
       create: Créer
       delete: Supprimer
+      done: Terminé
       edit: Editer
       export: Exportation
       filter_by_tags: Filtrer par tags
@@ -1635,6 +1635,7 @@ fr:
       search: Recherche
       send: Envoyer
       start: Démarrage
+      submit: Soumettre
       unarchive: Désarchiver
       unresolve: Non résolu
       update: Mise à jour
@@ -1642,6 +1643,8 @@ fr:
       upload_file: Télécharger le fichier
       verify: Vérifier
       view: Voir
+      view_all_tasks: Voir toutes les tâches
+      view_details: Afficher les détails
     column:
       action: Action
       active: Actif
@@ -1761,9 +1764,9 @@ fr:
   datasheet:
     errors:
       datasheet_column:
-        not_found: La colonne '%{nom_de_la_colonne}' est introuvable
-        numeric_value_required: La colonne "%{champ}" doit être un nombre
-        string_value_required: La colonne "%{champ}" doit être une chaîne de caractères
+        not_found: La colonne '%{column_name}' est introuvable
+        numeric_value_required: La colonne "%{field}" doit être un nombre
+        string_value_required: La colonne "%{field}" doit être une chaîne de caractères
       not_configured: La fiche technique n'est pas configurée
   devise:
     administrators:
@@ -1825,24 +1828,24 @@ fr:
     mailer:
       admin_invitation_instructions:
         accept: Cliquez ici pour accepter l'invitation.
-        body: 'Bonjour %{nom}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit.
+        body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit.
 
           '
         subject: Invitation au phare
       confirmation_instructions:
         subject: Instructions de confirmation
       invitation_instructions:
-        body: 'Bonjour %{nom}, Vous avez été ajouté à Lighthouse en tant qu''administrateur pour la section suivante
+        body: 'Bonjour %{name}, Vous avez été ajouté à Lighthouse en tant qu''administrateur pour la section suivante
 
           '
         login: Se connecter à Lighthouse
         sections:
-          campaign: 'Campagne : %{nom_de_la_section}'
-          client: 'Location du client : %{nom_de_la_section}'
-          project: 'Projet : %{nom_de_la_section}'
+          campaign: 'Campagne : %{section_name}'
+          client: 'Location du client : %{section_name}'
+          project: 'Projet : %{section_name}'
         subject: Invitation au phare
       password_change:
-        body: 'Bonjour %{nom} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse support@thetalententerprise.com
+        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse support@thetalententerprise.com
 
           '
         regards: 'Cordialement, l''équipe de Lighthouse
@@ -1850,7 +1853,7 @@ fr:
           '
         subject: Votre mot de passe Lighthouse a changé
       reset_password_instructions:
-        body: 'Bonjour %{nom} ! Quelqu''un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire en cliquant sur le lien ci-dessous.
+        body: 'Bonjour %{name} ! Quelqu''un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire en cliquant sur le lien ci-dessous.
 
           '
         change_password: Modifier le mot de passe
@@ -1860,7 +1863,7 @@ fr:
           '
         subject: Instructions pour réinitialiser votre mot de passe
       unlock_instructions:
-        body: 'Bonjour %{nom} ! Votre compte a été verrouillé en raison d''un nombre excessif de tentatives de connexion infructueuses. Cliquez sur le lien ci-dessous pour déverrouiller votre compte :
+        body: 'Bonjour %{name} ! Votre compte a été verrouillé en raison d''un nombre excessif de tentatives de connexion infructueuses. Cliquez sur le lien ci-dessous pour déverrouiller votre compte :
 
           '
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
@@ -1925,9 +1928,9 @@ fr:
           sign_in: Connexion
         title: Bienvenue !
       signed_in: Vous vous êtes connecté avec succès !
-      signed_in_time: Votre dernière connexion a eu lieu le %{date_heure}
+      signed_in_time: Votre dernière connexion a eu lieu le %{date_time}
       signed_out: Signature réussie.
-      unsuccessful_sign_in_time: Votre dernière tentative de connexion le %{date_heure} a échoué.
+      unsuccessful_sign_in_time: Votre dernière tentative de connexion le %{date_time} a échoué.
     two_factor_authentication:
       attempt: Veuillez saisir l'OTP que vous avez reçu à l'adresse électronique que vous avez enregistrée
       attempt_failed: OTP incorrect, veuillez réessayer
@@ -1950,14 +1953,14 @@ fr:
     errors:
       add_edit_project:
         invalid_subdomain_format: Format de sous-domaine incorrect.
-        reserved_subdomain: Le sous-domaine %{valeur} est réservé
+        reserved_subdomain: Le sous-domaine %{value} est réservé
         uniq_subdomain: Le sous-domaine doit être unique.
       add_manager:
         manager_not_found: Gestionnaire introuvable ou ne faisant pas partie du même projet
         user_not_found: Utilisateur introuvable ou ne faisant pas partie du même projet
       admin:
         already_added: Admin avec email déjà ajouté.
-      already_assigned?: Impossible de lier cette évaluation - elle est déjà attribuée à "%{nom_de_l'évaluateur_lien}".
+      already_assigned?: Impossible de lier cette évaluation - elle est déjà attribuée à "%{linked_assessor_form_name}".
       already_invited: Cet utilisateur existe déjà dans le centre d'évaluation que vous essayez d'ajouter.
       assessor_assessment:
         already_added: Évaluation de l'Assesseur déjà ajoutée à la campagne.
@@ -1965,7 +1968,7 @@ fr:
       campaign_factor:
         code_already_exists: Un facteur portant le même code existe déjà.
         invalid_lua_name: doit être un nom de variable lua valide
-        limit_exceeded: Vous avez atteint la limite maximale de %{limite} facteurs de campagne.
+        limit_exceeded: Vous avez atteint la limite maximale de %{limit} facteurs de campagne.
         name_already_exists: Un facteur portant le même nom existe déjà.
         rank_not_allowed: Seuls les facteurs dont le type de sortie est numérique peuvent être classés.
       campaign_factor_group:
@@ -1976,7 +1979,7 @@ fr:
       exceeded_subjects_count: Vous ne pouvez ajouter que %{count} sujets par invitation
       filled?: ne peut être vide
       invalid_name: seuls l'alphabet, les chiffres, les espaces, les tirets et les points sont autorisés comme caractères valides
-      invalid_value: déclaration invalide '%{valeur}' sur la ligne numéro %{row}
+      invalid_value: déclaration invalide '%{value}' sur la ligne numéro %{row}
       json?: Doit être un JSON valide
       key?: ne peut être vide
       match_regexp?: valeur non valide
@@ -1985,7 +1988,7 @@ fr:
       missed?: ne peut être vide
       not_allowed?: n'est pas autorisé à changer
       not_in_the_list?: valeur invalide transmise
-      not_uniq_variable: variable '%{valeur}' redéfinie sur la ligne numéro %{row}
+      not_uniq_variable: variable '%{value}' redéfinie sur la ligne numéro %{row}
       project_assessments:
         should_be_greater_than_zero: La validité du résultat doit être supérieure à 0 jour
       report_approval_settings:
@@ -2004,21 +2007,21 @@ fr:
         less_than_booked: Le nombre total de places doit être supérieur au nombre de places réservées
       user_availability_date:
         overlaps_date: Chevauche une autre disponibilité %{range}
-        overlaps_time: Chevauchement de l'intervalle %{intervalle}
+        overlaps_time: Chevauchement de l'intervalle %{interval}
         start_date_should_be_less: La date de début doit être inférieure à la date de fin
         start_time_should_be_less: L'heure de début doit être inférieure à l'heure de fin
       user_idp_plan:
         idp_template_already_assigned_to_user: Ce modèle Idp est déjà attribué à cet utilisateur et est actif
       user_saved_filters:
-        limit_exceeded: Vous ne pouvez avoir qu'une %{limite} de filtres enregistrés, veuillez supprimer les filtres enregistrés pour en ajouter d'autres.
+        limit_exceeded: Vous ne pouvez avoir qu'une %{limit} de filtres enregistrés, veuillez supprimer les filtres enregistrés pour en ajouter d'autres.
         unique_name: Un filtre portant le même nom existe déjà.
       workshop_invited_subject_create:
         already_exists: Le sujet existe déjà dans l'invitation.
       workshop_subject_create:
         already_exists: Le sujet existe déjà dans ce centre d'évaluation.
-        part_of_other_workshop: Le sujet est déjà un participant de '%{nom_de_l'atelier}'.
+        part_of_other_workshop: Le sujet est déjà un participant de '%{workshop_name}'.
       workshops:
-        no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assesseur}
+        no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assessor}
         no_available_manager_slots: Aucun emplacement disponible pour le manager %{manager}
     idp_template:
       tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
@@ -2048,7 +2051,7 @@ fr:
         error: Le corps de l'e-mail contient un texte incorrect.
   errors:
     assessments:
-      timed_out: Vous ne pourrez pas passer l'évaluation %{nom_de_l'évaluation} car elle a dépassé le temps imparti.
+      timed_out: Vous ne pourrez pas passer l'évaluation %{assessment_name} car elle a dépassé le temps imparti.
     error: Erreur
     error_500: Contactez votre administrateur.
     error_msg: Veuillez actualiser la page et si le problème persiste, contactez votre administrateur
@@ -2084,7 +2087,7 @@ fr:
       back_to_dashboard: Retour au tableau de bord
       back_to_tasks: Retour aux tâches
       calendar: Calendrier
-      campaign_name_description: ', pour la campagne "%{nom de la campagne}"'
+      campaign_name_description: ', pour la campagne "%{campaignName}"'
       change_language: "(Changer de langue)"
       clear_date: date claire
       collapse_menu: Réduire le menu
@@ -2092,7 +2095,7 @@ fr:
       delete_message: Supprimer le message
       drag_drop_instructions_desktop: Activez le mode formulaire pour glisser-déposer les éléments avec un lecteur d'écran.
       drag_drop_instructions_mobile: Avec un lecteur d'écran, double-cliquez et maintenez le doigt sur un bouton de glissement, passez à un autre élément et levez le doigt pour déplacer l'élément.
-      enlarge_view_text: Agrandir la vue de %{texte}
+      enlarge_view_text: Agrandir la vue de %{text}
       expand_menu: Développer le menu
       file_uploaded: Fichier téléchargé
       lang_dropdown_description: changer de langue
@@ -2102,7 +2105,7 @@ fr:
       remove_file: supprimer le fichier
       send_message: Envoyer un message
       slider_label_instruction: 'min : %{min} et max : %{max}'
-      task_btn_description: tâche %{nom de l'évaluation}
+      task_btn_description: tâche %{assessmentName}
       task_progress_label: L'achèvement des tâches est
       write_message: Rédigez votre message
     assessment: L'évaluation
@@ -2132,7 +2135,7 @@ fr:
         message_part1: Complétez tous les travaux préliminaires dans cette
         message_part2: avant de réserver un créneau.
       assessment_center_group_name: Centre d'évaluation
-      booking_failed_msg: 'Échec de la réservation du créneau : %{erreur}'
+      booking_failed_msg: 'Échec de la réservation du créneau : %{error}'
       buttons:
         book: Livre
         book_again: Réserver à nouveau
@@ -2149,13 +2152,13 @@ fr:
         reserve_spot: Réservez votre place
         yes_text: Oui
       cancel_booking_confirmation: Êtes-vous sûr de vouloir annuler cette réservation ?
-      cancellation_failed: 'L''annulation de la réservation a échoué : %{erreur}'
+      cancellation_failed: 'L''annulation de la réservation a échoué : %{error}'
       cancellation_success: Annulation réussie de la réservation
       comments_required_msg: Veuillez saisir vos commentaires
       confirm_booking_description: Veuillez confirmer que ces informations sont correctes avant de finaliser la réservation.
       confirm_booking_title: Confirmer cette réservation ?
       default_failure_msg: Impossible de traiter votre demande, veuillez réessayer plus tard.
-      default_requires_msg: "%{nom} est obligatoire"
+      default_requires_msg: "%{name} est obligatoire"
       join_activity_meeting: Participer à la réunion
       join_workshop_meeting: Participer à la réunion
       language: Langue
@@ -2173,11 +2176,11 @@ fr:
       reason: Raison
       reason_for_cancel: Motif de l'annulation
       reason_for_reschedule: Raison de la reprogrammation
-      request_cancellation_failed: 'Échec de la demande d''annulation : %{erreur}'
+      request_cancellation_failed: 'Échec de la demande d''annulation : %{error}'
       request_cancellation_success: Demande d'annulation acceptée
-      request_reschedule_failed: 'Échec de la demande de reprogrammation : %{erreur}'
+      request_reschedule_failed: 'Échec de la demande de reprogrammation : %{error}'
       request_reschedule_success: Demande de reprogrammation acceptée
-      reschedule_failed_msg: 'Échec de la reprogrammation : %{erreur}'
+      reschedule_failed_msg: 'Échec de la reprogrammation : %{error}'
       reschedule_reason_placeholder: Pour continuer, veuillez indiquer la raison de la reprogrammation.
       schedule_success: Cette réservation est prévue
       schedule_success_msg: Nous vous avons envoyé, ainsi qu'aux autres participants, une invitation par courrier électronique avec tous les détails.
@@ -2193,7 +2196,7 @@ fr:
     campaign:
       actions:
         copy:
-          success: "%{nomcampagne} a été copié avec succès."
+          success: "%{campaignName} a été copié avec succès."
         remove:
           confirmation: Saisir le nom de la campagne actuelle dans la zone de texte pour supprimer la campagne
           success: "%{campaignName} a été supprimé avec succès."
@@ -2218,12 +2221,12 @@ fr:
           view_licenses: Voir les licences
         remove:
           confirmation: Saisir le nom du client actuel indiqué ci-dessous dans la zone de texte pour supprimer le client
-          success: Le client portant le nom '%{nomclient}' a été supprimé avec succès
+          success: Le client portant le nom '%{clientName}' a été supprimé avec succès
       projects:
         actions:
           remove:
             confirmation: Saisir le nom du projet actuel indiqué ci-dessous dans la zone de texte pour supprimer le projet
-            success: Le projet portant le nom '%{nomduprojet}' a été supprimé avec succès
+            success: Le projet portant le nom '%{projectName}' a été supprimé avec succès
     delete: Supprimer
     edit: Editer
     error_warning: Oups, un problème s'est produit lors de votre évaluation. Veuillez contacter le service d'assistance.
@@ -2249,8 +2252,8 @@ fr:
       message: Veuillez rafraîchir la page et si le problème persiste, contactez votre administrateur.
       refresh: Rafraîchir
     resource:
-      create_success: "%{nom de la ressource lisible} a été ajouté avec succès"
-      update_success: la mise à jour de %{nom de la ressource lisible} a été effectuée avec succès
+      create_success: "%{readableResourceName} a été ajouté avec succès"
+      update_success: la mise à jour de %{readableResourceName} a été effectuée avec succès
     restart: Redémarrage
     restart_progress: Des changements ont été apportés à l'évaluation. Veuillez actualiser la page pour voir les changements. En actualisant la page, l'évaluation reprendra depuis le début. Les questions auxquelles vous avez déjà répondu seront remplies automatiquement.
     saved_results: Les réponses ont été sauvegardées avec succès.
@@ -2287,7 +2290,7 @@ fr:
     booking_card:
       aria_available_time: temps disponible
       aria_back_to_time_selection: retour à la sélection de l'heure
-      aria_desc_current_month: Actuellement le %{nom du mois} %{année}
+      aria_desc_current_month: Actuellement le %{monthName} %{year}
       aria_label_next_month: Aller au mois suivant
       aria_label_previous_month: Aller au mois précédent
       aria_timezone_select: Sélectionner le fuseau horaire
@@ -2309,7 +2312,7 @@ fr:
       increase_font: Augmenter la taille de la police
       reset_font: Réinitialiser la taille de la police
     input_duration:
-      max_duration: La durée maximale est de %{durée}
+      max_duration: La durée maximale est de %{duration}
     schedule_availability:
       copy_to_all: Copie à tous
       end_date: Date de fin
@@ -2329,13 +2332,14 @@ fr:
       aria_selected: Sélectionné
   idp:
     actions: Actions
-    board: Tableau
+    board: Conseil d'administration
+    convert_to_draft: Convertir en brouillon
     details: Détails
     development_actions:
       action_private: Oui
       action_public: Non
       add_development_action: Ajouter une action de développement
-      all: Tout
+      all: Tous
       approved: Approuvé
       board_view:
         completed: Terminé
@@ -2344,57 +2348,61 @@ fr:
       completion: Achèvement
       create_my_own: Créer le mien
       date_range: Date de début - Date de fin
-      generate_by_ai: Générer par IA
+      generate_by_ai: Générer par l'IA
       generate_more: Générer plus
-      generating_development_actions: Génération d'actions de développement...
+      generating_development_actions: Générer des actions de développement...
       heading: Actions de développement
-      incomplete_error: Actions de développement incomplètes
-      incomplete_error_message: Certaines actions de développement sont incomplètes. Veuillez les compléter avant de soumettre votre PDI.
-      incomplete_warning: Actions de développement incomplètes
-      incomplete_warning_message: Certaines actions de développement sont incomplètes. Êtes-vous sûr de vouloir marquer votre PDI comme complet ?
-      learning_from_others: Apprentissage par les autres
+      learning_from_others: Apprendre des autres
       manage_skills: Gérer les compétences
       marathon: Marathon
-      mark_as_complete: Marquer comme terminé
       no_development_actions: Aucune action de développement
-      on_the_job: Sur le terrain
-      other: Autre
+      on_the_job: Au travail
+      other: Autres
       private: Privé
-      remove: Supprimer
+      remove: Retirer
       skill: Compétence
       sprint: Sprint
-      start_plan: Démarrer le plan
       structured_learning: Apprentissage structuré
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
-    direct_report_details: Détails des subordonnés directs
+    direct_reportee_details: Détails des subordonnés directs
     initial_steps:
-      add_skill_group_description: Sur la base de vos résultats d'évaluation, voici quelques domaines de forces et de développement pour vous. Choisissez les compétences que vous souhaitez développer davantage dans le cadre de votre plan de développement.
-      add_skill_group_title: Exploration de vos compétences en %{category}
+      add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
+      add_skill_group_title: Explorer vos compétences %{catégorie}
       add_skills: Ajouter
       add_skills_step: Ajouter des compétences
       continue_to_rate_skills: Continuer à évaluer les compétences
-      getting_started: Premiers pas
-      getting_started_info: Bienvenue dans votre créateur de Plan de Développement Individuel (PDI). Ce plan vous aidera à identifier, gérer et suivre vos objectifs professionnels et personnels ainsi que les étapes nécessaires pour les atteindre. Vos objectifs professionnels peuvent inclure des domaines de développement comportemental, de leadership ainsi que technique. Votre PDI est un outil essentiel pour soutenir votre développement de carrière et l'amélioration de vos compétences.
-      less_skills: Afficher moins de compétences
-      more_skills: Explorer plus de compétences
+      getting_started: Pour commencer
+      getting_started_info: Bienvenue sur le site du créateur de votre plan de développement individuel (PDI). Ce plan vous aidera à identifier, gérer et suivre vos objectifs professionnels et personnels ainsi que les étapes à franchir pour atteindre ces objectifs. Vos objectifs professionnels peuvent inclure des domaines de développement comportementaux, techniques et de leadership. Votre PDI est un outil essentiel pour soutenir votre développement de carrière et l'amélioration de vos compétences.
+      less_skills: Montrer moins de compétences
+      more_skills: Explorer d'autres compétences
       next: Suivant
       no_skills_selected: Aucune compétence sélectionnée.
-      rate_skills: Évaluer les compétences
-      rate_skills_description: Maintenant que vous avez sélectionné vos priorités de développement, veuillez vous auto-évaluer sur chacune des compétences suivantes. N'oubliez pas de vous évaluer en fonction de votre niveau actuel et non de votre niveau passé ou souhaité.
-      rate_skills_title: Évaluation de vos compétences
+      rate_skills: Compétences tarifaires
+      rate_skills_description: Maintenant que vous avez choisi vos priorités de développement, veuillez vous évaluer sur chacun des points suivants. N'oubliez pas de vous évaluer sur la base de votre niveau actuel et non sur la base de votre niveau passé ou souhaité.
+      rate_skills_title: Évaluer ses compétences
       rating_column_header: Votre auto-évaluation
-      select_skills: Sélectionner vos compétences
+      reflective_questions: Questions de réflexion
+      select_skills: Sélectionnez vos compétences
       select_skills_placeholder: Sélectionner les compétences
       selected_skills: Compétences sélectionnées
       skill_column_header: Compétence
-      skill_gap_report: Rapport d'écart de compétences
+      skill_gap_report: Rapport sur les lacunes en matière de compétences
     list: Liste
-    my_direct_reports: Mes subordonnés directs
+    manage_plan: Gérer le forfait
+    mark_as_complete: Marquer comme terminé
+    mark_as_incomplete: Marquer comme incomplet
+    my_direct_reportees: Mes subordonnés directs
     my_plan:
       development_plan: Plan de développement
       graphs:
+        behavioural: Comportementale
         categories: Catégories
+        learning_on_job: Au travail (%{count})
+        learning_others: Apprendre des autres (%{count})
+        learning_structured: Apprentissage structuré (%{count})
+        other: Autres
+        technical: Technique
       save_skills: Sauvegarder les compétences
     pdf:
       approval_status: Statut d'approbation
@@ -2501,10 +2509,28 @@ fr:
         library: Bibliothèque PDI
         skills_count: Nombre de compétences
         title: Résumé du rapport
-    profile_details: Détails du profil
+    reflective_questions:
+      answer_later: Réponse plus tard
+      answer_placeholder: Inscrivez votre réponse ici...
+      errors:
+        max_words: La réponse peut contenir un maximum de %{count} mots.
+        min_words: La réponse nécessite au moins %{count} mots
+        required: La réponse à la question est requise
+      max_words: Mots maximums
+      min_words: Mots minuscules
+      title: Questions de réflexion
+      update_failed: Une erreur s'est produite lors de la mise à jour
+      updated_successfully: Vos réponses ont été mises à jour avec succès
+      words: Mots
     skill_gap_report:
-      continue_to_rate_skills: Continuer à évaluer les compétences
-      title: Rapport d'écart de compétences
+      title: Rapport sur les lacunes en matière de compétences
+    status: Statut
+    user_idp_status:
+      approved: Approuvé
+      draft: Projet
+      not_started: Non démarré
+      pending_approval: En attente
+    users: Utilisateurs
   idp_templates:
     assign: Attribuer
     assign_idp_template: Attribuer un modèle Idp
@@ -2681,7 +2707,7 @@ fr:
     enabled: Activé
     end_date: Date de fin
     not_enough_idp_license: Pas assez de licences IDP, veuillez contacter l'administrateur
-    not_enough_license: "'%{nom_du_client}' n'a pas assez de licences pour '%{nom_du_rapport}'"
+    not_enough_license: "'%{client_name}' n'a pas assez de licences pour '%{report_name}'"
     not_enough_license_count: Pas assez de licences, veuillez contacter l'administrateur
     not_enough_proctoring_credits: Pas assez de crédits pour commencer la session d'examen
     number: Nombre
@@ -2695,7 +2721,7 @@ fr:
       proctoring: Test d'évaluation
       threesixty: Troisixty
     used_number: Licences utilisées
-    used_out_of: "%{utilisé} sur %{total}"
+    used_out_of: "%{used} sur %{total}"
   mailer:
     from: L'entreprise des talents
     license:
@@ -2720,7 +2746,7 @@ fr:
         weekly_stats: 'Statistiques d''utilisation des licences pour la semaine écoulée :'
     magic_link:
       body:
-        dear: Cher %{nom},
+        dear: Cher %{name},
         greetings: Salutations pour la journée !
         instructions: Cliquez sur le lien ci-dessous pour vous connecter à lighthouse.
         signin_link: Lien de connexion
@@ -2728,7 +2754,7 @@ fr:
     users:
       account_disable: Votre compte a été désactivé pour cause d'inactivité
       warning: Votre compte sera bientôt désactivé pour cause d'inactivité
-  maintenance_message: Lighthouse sera arrêté pour maintenance programmée le %{date_de_début} et sera indisponible pendant %{durée} heures
+  maintenance_message: Lighthouse sera arrêté pour maintenance programmée le %{start_date} et sera indisponible pendant %{duration} heures
   maintenance_submessage: Veuillez rafraîchir la page une fois la maintenance terminée. Vous serez redirigé vers la page de connexion
   my: Mon
   myself: Moi-même
@@ -2764,7 +2790,7 @@ fr:
     male: Homme
     mandatory_fields: Indique les champs obligatoires
     not_disclosed: Préfère ne pas divulguer
-    old_data: Les données de votre profil datent de %{mois} mois. Veuillez confirmer les détails pour continuer
+    old_data: Les données de votre profil datent de %{months} mois. Veuillez confirmer les détails pour continuer
     password: Mot de passe
     password_confirmation: Confirmation du mot de passe
     photo: Photo
@@ -2796,11 +2822,11 @@ fr:
   report_approvals:
     events:
       approved_text: texte approuvé
-      comment_added: commentaire ajouté <i>%{texte}</i>
+      comment_added: commentaire ajouté <i>%{text}</i>
       comment_removed: suppression d'un commentaire
       comment_resolved: commentaire résolu
       comment_unresolved: commentaire non résolu
-      comment_updated: modification du commentaire <s>%{ancienText}</s> en <i>%{nouveauText}</i>
+      comment_updated: modification du commentaire <s>%{oldText}</s> en <i>%{newText}</i>
       created_text: texte ajouté
       disapproved_text: texte désapprouvé
       removed_text: texte supprimé
@@ -2813,26 +2839,26 @@ fr:
   report_bundles:
     actions:
       remove:
-        confirm_message: Êtes-vous sûr de vouloir supprimer le groupe de rapports "%{nom}" ?
+        confirm_message: Êtes-vous sûr de vouloir supprimer le groupe de rapports "%{name}" ?
         confirm_title: Confirmation requise
-        success_message: L'ensemble de rapports %{nom} a été supprimé
+        success_message: L'ensemble de rapports %{name} a été supprimé
     report_bundle: L'ensemble des rapports
     report_bundles: Ensembles de rapports
     reports:
       actions:
         add: Ajouter un nouveau rapport
         remove:
-          confirm_message: Êtes-vous sûr de vouloir supprimer le rapport "%{nom}" de "%{nom_du_groupe_de_rapports}" ?
+          confirm_message: Êtes-vous sûr de vouloir supprimer le rapport "%{name}" de "%{report_bundle_name}" ?
           confirm_title: Confirmation requise
-          success_message: Le rapport %{nom} a été supprimé
+          success_message: Le rapport %{name} a été supprimé
   reports:
     actions:
       add: Ajouter un rapport
       archived:
-        success_message: Le rapport "%{nom}" a été archivé avec succès.
+        success_message: Le rapport "%{name}" a été archivé avec succès.
       back_to_campaign: Retour à la campagne
       copy:
-        success_message: Le rapport "%{nom}" a été copié avec succès.
+        success_message: Le rapport "%{name}" a été copié avec succès.
       details: Détails
       download: Télécharger le rapport
       download_csv: Télécharger le CSV
@@ -2843,14 +2869,14 @@ fr:
       re_evaluate: Cliquez ici pour réévaluer
       reevaluate: Réévaluer
       remove:
-        confirm_message: Êtes-vous sûr de vouloir supprimer le rapport "%{nom}" ?
+        confirm_message: Êtes-vous sûr de vouloir supprimer le rapport "%{name}" ?
         confirm_title: Confirmation requise
-        success_message: Le rapport %{nom} a été supprimé
+        success_message: Le rapport %{name} a été supprimé
       rescore: Reprise
       restore:
-        success_message: Le rapport %{nom} a été restauré avec succès
+        success_message: Le rapport %{name} a été restauré avec succès
       unarchived:
-        success_message: Le rapport %{nom} a été désarchivé avec succès
+        success_message: Le rapport %{name} a été désarchivé avec succès
       update_language: Mise à jour de la langue
       view: Voir le rapport
     active: Actif
@@ -2939,6 +2965,8 @@ fr:
         score: Score
       gap_assessment:
         gap: Écart
+        hide_left_filter: Masquer le filtre de gauche
+        hide_right_filter: Masquer le filtre de droite
         item: Indicateur
         negative_gap: Écarts négatifs
         no_negative_gaps: Il n'y a pas de lacunes négatives
@@ -3405,8 +3433,10 @@ fr:
   threesixty:
     accept_privacy_modal:
       accept: Accepter
-      checkbox: J'ai lu et compris la politique de confidentialité mentionnée ci-dessus
-      title: Consentement au traitement des données
+      checkbox: En cliquant sur cette case, vous reconnaissez avoir pris connaissance de notre avis de confidentialité concernant la collecte et le traitement de vos données à caractère personnel tels qu'ils y sont décrits, y compris le transfert international de vos données à caractère personnel.
+      checkbox_with_client_link: En cliquant sur cette case, vous reconnaissez avoir lu notre avis de confidentialité et l'avis de confidentialité de nos clients et vous consentez à la collecte et au traitement de vos informations personnelles comme décrit dans ces documents, y compris le transfert international de vos informations personnelles.
+      privacy_notice: Avis de confidentialité
+      title: Consentement au traitement et au transfert des informations personnelles
     action: Action
     add: Ajouter
     and: Et
@@ -3424,7 +3454,7 @@ fr:
     begin: Commencer
     cancel: Annuler
     close_evaluation_modal:
-      message: Une fois que vous aurez consulté le rapport, %{pronoun_ou_nom} ne pourra plus recevoir d'autres évaluations
+      message: Une fois que vous aurez consulté le rapport, %{pronoun_or_name} ne pourra plus recevoir d'autres évaluations
       title: Êtes-vous sûr de vouloir consulter le rapport ?
     closed_campaign_message: Cette campagne 360 est fermée. Vous ne pouvez pas nommer ou évaluer quelqu'un pour cette campagne.
     completed: Terminé
@@ -3434,7 +3464,7 @@ fr:
     confirmation_text_incorrect: Le texte de confirmation est incorrect
     confirmation_text_placeholder: Texte de confirmation ici
     continue: Continuer
-    dashboard_title: Bienvenue %{nom}
+    dashboard_title: Bienvenue %{name}
     decline: Déclin
     decline_invite: Refuser l'invitation
     denied: Refusé
@@ -3522,7 +3552,7 @@ fr:
       report_generation_message: Le rapport est en cours de génération et nous vous informerons lorsqu'il sera prêt.
     processing: Traitement
     processing_report: Rapport de traitement
-    progress_text: "%{complété} de %{total}"
+    progress_text: "%{completed} de %{total}"
     question:
       chat_type:
         input_placeholder: Rédigez votre message...
@@ -3615,7 +3645,7 @@ fr:
       import:
         body: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
         imported_reports: Les rapports et les évaluations ont été importés
-        imported_users: 'Le nombre d''utilisateurs importés : %{nombre}'
+        imported_users: 'Le nombre d''utilisateurs importés : %{number}'
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications
         title: Importer des utilisateurs
         user_with_unchanged_passwords: La liste des utilisateurs dont les mots de passe n'ont pas été modifiés
@@ -3635,7 +3665,7 @@ fr:
       id: ID d'évaluation de l'utilisateur
       norm_id: ID de la norme
     drawer:
-      copied: "%{nom} copié dans le presse-papiers."
+      copied: "%{name} copié dans le presse-papiers."
       copy: Copier dans le presse-papiers
       mettl_schedule_name: Nom du programme Mettl
       no_data: Pas de données disponibles
@@ -3646,7 +3676,7 @@ fr:
       actions:
         reset_progress:
           name: Réinitialiser la progression
-          success_message: L'évaluation %{nom} est prête à être modifiée
+          success_message: L'évaluation %{name} est prête à être modifiée
       push_test_webhook:
         copy_request_data_success: Rquest Payload copié dans le presse-papiers avec succès.
         copy_response_body_success: Le corps de la réponse a été copié dans le presse-papiers avec succès.
@@ -3658,10 +3688,10 @@ fr:
         submit_button_name: Push Webhook
         title: Push Webhook
       remove:
-        content: Êtes-vous sûr de vouloir supprimer l'évaluation "%{nom}" ?
-        successfully: l'évaluation %{nom} a été supprimée avec succès.
+        content: Êtes-vous sûr de vouloir supprimer l'évaluation "%{name}" ?
+        successfully: l'évaluation %{name} a été supprimée avec succès.
       reset:
-        content: Êtes-vous sûr de vouloir réinitialiser la progression "%{nom}" ?
+        content: Êtes-vous sûr de vouloir réinitialiser la progression "%{name}" ?
       test_webhook:
         submit_button_name: Envoyer le test
         title: Test d'envoi de l'événement Webhook
@@ -3712,10 +3742,10 @@ fr:
       regenerate_successful: Le travail de régénération des rapports a été programmé avec succès
     modals:
       remove:
-        content: Êtes-vous sûr de vouloir supprimer le rapport %{nomdurapportdel'utilisateur} ?
+        content: Êtes-vous sûr de vouloir supprimer le rapport %{userReportName} ?
         content_with_counts:
-          both: 'DANGER : Le rapport %{nomdurapportdel''utilisateur} contient %{commentsCount} commentaire(s) et %{editsCount} modification(s). Si vous supprimez le rapport de l''utilisateur, ce(s) commentaire(s) et cette(ces) modification(s) seront perdus.'
-          comments: 'DANGER : Le rapport %{nomdurapportdel''utilisateur} contient %{commentairesCount} commentaires. Si vous supprimez le rapport de l''utilisateur, ces commentaires seront perdus.'
+          both: 'DANGER : Le rapport %{userReportName} contient %{commentsCount} commentaire(s) et %{editsCount} modification(s). Si vous supprimez le rapport de l''utilisateur, ce(s) commentaire(s) et cette(ces) modification(s) seront perdus.'
+          comments: 'DANGER : Le rapport %{userReportName} contient %{commentsCount} commentaires. Si vous supprimez le rapport de l''utilisateur, ces commentaires seront perdus.'
           edits: 'DANGER : Le rapport %{userReportName} a %{editsCount} de modifications. Si vous supprimez le rapport de l''utilisateur, ces modifications seront perdues.'
         successfully: le rapport %{userReportName} a été supprimé avec succès
       remove_file:

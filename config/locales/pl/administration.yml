@@ -5,3 +5,9 @@ pl:
     norms:
       import:
         download_example_csv: Pobierz przykładowy plik csv
+    scheduling:
+      assessment_center_form:
+        assessment_center_group: Grupa Centrum Oceny
+        assessment_center_group_placeholder: Wybierz grupę Assessment Center
+      info:
+        campaign_assessment_group: Grupa Centrum Oceny

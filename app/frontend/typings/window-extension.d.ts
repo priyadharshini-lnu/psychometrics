@@ -12,6 +12,7 @@ declare global {
     PsyGlobalState: {
       realEnv: string,
       adminLocales:string,
+      availableAiProviders: string,
       sentryUrl: string,
       sentryDebug: string,
       currentUser: {

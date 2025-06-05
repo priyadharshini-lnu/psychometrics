@@ -142,11 +142,11 @@ class CampaignUser < ApplicationRecord
   end
 
   def prework_assessment_ids
-    campaign_assessments.preworks.pluck(:assessment_id)
+    campaign_user_assessments.preworks(true).pluck(:assessment_id)
   end
 
   def prework_user_assessments
-    campaign_user_assessments.self_assessment.where(assessment_id: prework_assessment_ids)
+    campaign_user_assessments.preworks(true).self_assessment
   end
 
   def all_prework_completed?
@@ -160,7 +160,7 @@ class CampaignUser < ApplicationRecord
   def all_proctored_assessments
     return UserAssessment.none unless proctoring_enabled?
 
-    query = campaign_user_assessments.self_assessment.where.not(assessment_id: prework_assessment_ids)
+    query = campaign_user_assessments.self_assessment.where(prework: false)
     query = query.where.not(assessment_id: workshop_assessment_ids) unless proctoring_enabled_on_workshop_activity?
 
     query

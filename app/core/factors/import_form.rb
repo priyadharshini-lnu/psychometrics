@@ -18,7 +18,7 @@ module Factors
     delegate :dimension, to: :context
 
     validate :validate_headers, if: :file
-    validate :validate_file_content, if: :file
+    validate :validate_file_content, if: :should_validate_file_content?
 
     def processed_data
       return [] unless valid?
@@ -42,6 +42,10 @@ module Factors
 
     private
 
+    def should_validate_file_content?
+      file.present? && errors.blank?
+    end
+
     def parse_csv_file
       csv = if file.is_a?(ActionDispatch::Http::UploadedFile) || file.is_a?(Rack::Test::UploadedFile)
               CSV.read(file.path, encoding: 'bom|utf-8', headers: true)
@@ -59,6 +63,8 @@ module Factors
       if missing_headers.any?
         errors.add(:base, :missing_headers, headers: missing_headers.join(', '))
       end
+    rescue CSV::InvalidEncodingError, CSV::MalformedCSVError => e
+      errors.add(:base, :invalid_csv, error_message: e.message)
     end
 
     def validate_file_content
@@ -67,6 +73,8 @@ module Factors
         validate_scoring_strategy(row, index)
         validate_code(row, index)
       end
+    rescue CSV::InvalidEncodingError, CSV::MalformedCSVError => e
+      errors.add(:base, :invalid_csv, error_message: e.message)
     end
 
     def validate_name(row, index)

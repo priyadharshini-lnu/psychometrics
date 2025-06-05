@@ -42,7 +42,7 @@ module Api
           :import_development_actions,
           { project_id: project.id },
           current_user,
-          form.processed_file
+          form.file
         )
 
         render json: :ok
@@ -61,7 +61,7 @@ module Api
           :import_development_actions,
           { project_id: nil },
           current_user,
-          form.processed_file
+          form.file
         )
 
         render json: :ok
@@ -100,7 +100,7 @@ module Api
           :import_development_action_translations,
           { project_id: project.id },
           current_user,
-          form.processed_file
+          form.file
         )
 
         render json: :ok
@@ -119,7 +119,7 @@ module Api
           :import_development_action_translations,
           { project_id: nil },
           current_user,
-          form.processed_file
+          form.file
         )
 
         render json: :ok

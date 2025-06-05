@@ -95,20 +95,26 @@ en:
         labels:
           apiKeys:
             manage: Manage
+            title: API Keys
             view: View
           assessments:
             manage: Manage
+            title: Assessments
             view: View
           assessors:
             manage: Manage
+            title: Assessors
             view: View
           auditLogs:
+            title: Audit Logs
             view: View
           auditReports:
             admin_permissions: Admin Roles and Permissions export
+            title: Audit Reports
             user_report_events: Report Approval logs
           campaignFactors:
             manage: Manage
+            title: Campaign Factors
             view: View
           campaigns:
             bulk_download: Bulk Download
@@ -123,24 +129,29 @@ en:
             participant_options: Participant Options
             report_options: Report Options
             reset_nominations: Reset Nominations
+            title: Campaigns
             view: View
             view_factor_benchmark_scores: View Factor Benchmark Scores
             view_stats: View Stats
           clients:
             export_data_report: Export Data Report
             manage: Manage
+            title: Clients
             view: View
             view_licenses: View Licenses
           communications:
             manage: Manage
+            title: Communications
             view: View
           dashboards:
             accesssheet_manage: Accesssheet Manage
             accesssheet_settings: Accesssheet Settings
             accesssheet_view: Accesssheet View
+            title: Dashboards
             view: View
           datasheets:
             manage: Manage
+            title: Datasheets
             view: View
           developmentActions:
             export: Export
@@ -152,22 +163,28 @@ en:
             import_global_translations: Import Global Translations
             import_translations: Import Translations
             manage: Manage
+            title: Development Actions
             view: View
           dimensions:
             manage: Manage
+            title: Dimensions
             view: View
           idpTemplates:
             manage: Manage
+            title: IDP Templates
             view: View
           mediaLibraries:
             manage: Manage
+            title: Media Libraries
             view: View
           messages:
             email: Email
             instructions: Instructions
             options: Options
+            title: Messages
           norms:
             manage: Manage
+            title: Norms
             view: View
           projectSettings:
             assessments: Assessments
@@ -178,23 +195,31 @@ en:
             saml: SAML
             security: Security
             smtp: SMTP
+            title: Project Settings
             webhooks: Webhooks
           projects:
             manage: Manage
             manage_admins: Manage Admins
             manage_users: Manage Users
+            title: Projects
             view: View
           questions:
             manage: Manage
+            title: Questions
             view: View
           registrationCodes:
             manage: Manage
+            title: Registration Codes
             view: View
           registrationSettings:
             manage: Manage
+            title: Registration Settings
           reports:
             manage: Manage
+            title: Reports
             view: View
+          responseMeta:
+            title: Response Meta
           results:
             approve_report: Approve Report
             bulk_download: Bulk Download
@@ -214,32 +239,57 @@ en:
             reset_progress: Reset Progress
             reset_responses: Reset Responses
             scores: Scores
+            title: Results
             view_report: View Report
             view_stats: View Stats
           skills:
+            export: Export
+            export_translations: Export translation
+            import: Import
+            import_translations: Import translation
             manage: Manage
+            title: Skills
             view: View
           smsHistories:
             manage: Manage
+            title: SMS Histories
             view: View
           smsInvites:
             manage: Manage
+            title: SMS Invites
             view: View
           users:
             reset_password: Reset Password
+            title: Users
           workshops:
             export_status: Export Status
             manage: Manage
+            title: Workshops
             view: View
+    ai_assistants:
+      actions:
+        playground: Playground
+      ai_assistants: AI Assistants
+      ai_assistants_playground: AI Assistant Playground
+      column:
+        ai_action: AI Action
+        provider: Provider
+      form:
+        action: Action
+        description: Description
+        name: Name
+        provider: Provider
+        system_prompt: System Prompt
+        title: AI Assistant
+        user_prompt: User Prompt
     any: " - Any - "
     api:
       campaigns:
         validate_form:
-          external_id_taken: Campaign User External Id '%{external_id}' is already taken'
+          external_id_taken: External Id '%{external_id}' is already taken'
       users:
         form:
           campaign_ids_not_existing: Not all campaign ids are existing
-          external_id_taken: User External ID '%{external_id}' is already taken
     api_keys:
       form:
         description: Description
@@ -346,7 +396,6 @@ en:
       errors:
         doesnt_have_header: "'%{sub_header}' does not have header"
         invalid_headers: 'Following headers are invalid: %{headers}'
-        invalid_question: Question with id %{question_id} does not exist
         invalid_scores: Scores for factor %{factor_name} are invalid. Scores should be comma separated numeric values
         invalid_sub_header: "'%{sub_header}' is not a valid subheader for header '%{header}'"
         scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
@@ -463,6 +512,7 @@ en:
         subject_name: Subject Name
       completed_at: Completed At
       count: "%{count} Assessors"
+      create_assessor: Add Assessor
       evaluations: Evaluations
       mailer:
         subject: New subjects added for your evaluation
@@ -501,6 +551,7 @@ en:
         refresh: Refresh
         reports: Reports
         reports_count: "%{count} Reports"
+      overview: Overview
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
       statuses:
         completed: Completed
@@ -540,6 +591,7 @@ en:
     assigns_reports:
       edit:
         header: Edit report assignment
+    attention: Attention
     audit_log:
       action: Action
       audit_logs: Audit Logs
@@ -681,7 +733,10 @@ en:
       users_import: Import
     bulk_reports:
       create:
+        no_data: No data
         successfully: The reports are being created and you will be notified via email when ready
+      download:
+        removed: Removed
       form:
         end_date: End date
         start_date: Start date
@@ -793,6 +848,8 @@ en:
         report: report
         report_placeholder: Select a report
         title: Campaign Template
+      image_fields:
+        remove: Remove
       index:
         new: Add
         title: Campaign templates
@@ -829,19 +886,31 @@ en:
         report_approval:
           allow_bulk_approve: Allow Bulk Approve
           allow_qc_bulk_submit: Allow QC Bulk Submit
+          approval_notification_users: Approval Notification Users
+          approvers: Approvers
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
           do_not_send_notifications: Do Not Send Notifications
           modal_title: Report Approval Settings
+          qc_users: QC Users
           remove_modal_success: 'Approval setting for report id: %{reportId} was deleted successfully '
           remove_modal_text: 'Are you sure you want to delete this setting for report id: %{reportId}?'
+          report: Report
+          settings: Settings
       assessors:
         spoof:
           successfully: You was successfully login as %{name}
-      copy: Copy Campaign
+      copy: Copy
       delete: Delete
       edit: Edit
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
+      filters:
+        active: Active
+        all: All
+        archived: Archived
+        closed: Closed
+        inactive: Inactive
+        status: Status
       form:
         name: Name
         practice_campaign: Practice Campaign
@@ -858,6 +927,20 @@ en:
         add_multi_rater_campaign: Add Multi Rater Campaign
       modals:
         create_threesixity:
+          advance_settings:
+            campaign_template: Campaign Template
+            factors: Factors
+          base_settings:
+            active: Active
+            archive: Archive
+            assessment: Assessment
+            closed: Closed
+            empty: Empty
+            inactive: Inactive
+            name: Name
+            previous: Previous
+            standard: Standard
+            status: Status
           close:
             content: Are you sure you want to close the Multi Rater Campaign Creator? Any unsaved customization work will be lost. Please confirm your decision.
             title: Close Multi Rater Campaign Creator?
@@ -950,6 +1033,7 @@ en:
     campaigns_external_scores_import:
       errors:
         invalid_campaign_factor_codes: 'Following campaign factor_codes are invalid: %{codes}'
+        missing_headers: Missing headers
         missing_users: 'Following emails are not existing: %{emails}'
       import:
         example_csv: Download Example csv
@@ -957,6 +1041,11 @@ en:
       modal:
         title: Import External Campaign Scores
     clients:
+      api_keys:
+        init_breadcrumbs:
+          breadcrumb: Breadcrumb
+      archive:
+        successfully: Successfully
       base:
         active: Active
         archived: Archived
@@ -1367,6 +1456,9 @@ en:
         update:
           successfully: Project %{name} was updated successfully.
       registration_codes:
+        column:
+          code: Code
+          usage_stats: Usage stats
         errors:
           count_invalid: cannot be less than the used_count = %{use_count}
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
@@ -1394,6 +1486,7 @@ en:
       back: Back
       cancel: Cancel
       disabled: Diasbled
+      download_sample_file: Download Sample File
       enabled: Enabled
       import:
         failure_msg: Error while importing file.
@@ -1597,40 +1690,36 @@ en:
       errors:
         blank_field: 'Row %{row}: %{field} cannot be blank'
         csv_file_required: Must be a CSV file
-        download_failed: 'Failed to download file: %{message}'
         image_download_failed: 'Failed to download image from %{url}: %{message}'
-        invalid_category: 'Row %{row}: Invalid category ''%{value}''. Valid categories are: %{valid_categories}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
         invalid_date_format: 'Invalid date format: %{date}'
+        invalid_development_action_type: 'Řádek %{row}: Neplatný typ vývojové akce ''%{value}''. Platné typy akcí vývoje jsou: %{valid_development_action_types}'
         invalid_image_file: 'Invalid image file: %{message}'
         invalid_image_url: 'Invalid image URL format: %{url}'
         invalid_learning_style: 'Row %{row}: Invalid learning style ''%{value}''. Valid types are: %{valid_types}'
-        invalid_url: 'Invalid URL: %{message}'
         missing_columns: 'Required columns are missing: %{fields}'
+        save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Skill not found for ID: %{skill_id}'
     development_action_translations:
       import:
         errors:
           blank_id: 'Row %{row}: ID cannot be blank'
           development_action_not_found: Development Action not found
-          download_failed: 'Failed to download file: %{message}'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_field: 'Row %{row}: Invalid field "%{field}", must be "Name" or "Description"'
           invalid_file_format: File must be a CSV file
           invalid_id: 'Row %{row}: ID must be a number'
           invalid_id_format: 'Row %{row}: ID must be in the format "id#field"'
-          invalid_url: 'Invalid URL: %{message}'
-          invalid_url_format: Invalid URL format
           missing_columns: 'Missing required columns: %{fields}'
           save_failed: 'Failed to save: %{message}'
     development_actions:
-      categories:
-        course: Course
-        default: Default
       create:
         successfully: Development Action "%{name}" was created successfully.
       destroy:
         successfully: Development Action "%{name}" was deleted successfully.
+      development_action_types:
+        course: Course
+        default: Default
       edit:
         header: Edit Development Action
       export:
@@ -1642,16 +1731,18 @@ en:
       export_actions:
         development_action_translations_title: Export Development Actions Translations
         development_actions_title: Export Development Actions
-      export_development_action_translations: Development Action Translations based on Project
-      export_development_actions: Development Actions Based on Project
+      export_development_action_translations: Development Action Translations
+      export_development_action_translations_project: Development Action Translations based on Project
+      export_development_actions: Development Actions
+      export_development_actions_project: Development Actions Based on Project
       export_global_development_actions: Global Development Actions
       export_global_development_actions_translations: Global Development Action Translations
       form:
-        category: Category
         client_placeholder: Select a Client
         course_image: Course Image
         course_link: Course Link
         description: Description
+        development_action_type: Development Action Type
         end_date: End Date
         learning_style: Learning Style
         name: Name
@@ -1710,6 +1801,7 @@ en:
         enable_occupations: Enable Occupations
       import_factors:
         import: Import
+        sample_file: Sample File
         successfully: Import factors job scheduled for dimension %{name}.
         title: Import Factors
       import_modal:
@@ -1720,6 +1812,8 @@ en:
       import_translations:
         error: Error while importing translations for dimension %{name}.
         successfully: Import translations scheduled for dimension %{name}.
+      import_translations_scheduled:
+        error: Error
       index:
         create_dimension: Create Dimension
         import_dimension: Import Dimension
@@ -1770,7 +1864,13 @@ en:
       project_participants: Participants | %{project}
     enable: Enable
     errors:
+      csv_file_required: File must be a CSV file
+      download_failed: 'Failed to download file: %{message}'
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
+      invalid_csv_format: 'Invalid CSV format: %{message}'
+      invalid_url: 'Invalid URL: %{message}'
+      invalid_url_format: Invalid URL format
+      missing_columns: 'Missing required columns: %{fields}'
     factors:
       copy:
         error: "'%{name}' factor was not copied"
@@ -1925,9 +2025,14 @@ en:
         mercer_only: Mercer logo only
         none: Without logos
       logo_type_label: Logo Type
+      no_reflection_questions_selected: No Reflection Questions selected
       none: None
+      reflection_questions: Reflection Questions
+      reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.
+      reflection_questions_updated: Reflection Questions updated successfully.
       remove: Remove
       select_by_tags: Select by Tags
+      select_reflection_question: Start typing to search and select question
       select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
       selected: Selected
@@ -1938,11 +2043,13 @@ en:
       subtitle_text: Subtitle text
       tab:
         development_actions: Development Actions
+        reflection_questions: Reflection Questions
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills
       template_details: Template Details
       title_text: Title text
+      update_reflection_questions: Update Reflection Questions
     idp_setting:
       allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
@@ -1962,7 +2069,6 @@ en:
         norm:
           dimension_not_found: Dimension %{dimension_name} for %{client_name} was not found
           factor_mismatch: Dimension %{dimension_name} does not have factor %{factor_name}
-          factors_mismatch: "[#%{coords}] dimension %{dimension} does not have factor %{factor}"
           not_set_dimension: The name of the Dimension should be written in second cell of the first row
         result:
           answer_invalid: "[Row %{row}] Answer for qid %{question_id} is invalid: %{error}"
@@ -2095,6 +2201,7 @@ en:
         add: Integrations
         back: Back to Integrations
         load_mettl_catalog: Load Mettl Assessment Catalog
+        load_skillvue_catalog: Load Skillvue Assessment Catalog
       columns:
         active: Active
         details: Details
@@ -2105,6 +2212,7 @@ en:
         webhookUrls: Webhook URLs
       integrations: Integrations
       load_mettl_success: Load mettl assessments job is successfully enqueued
+      load_skillvue_success: Load skillvue assessments job is successfully enqueued
       modal:
         hogan:
           provider: Provider
@@ -2126,16 +2234,22 @@ en:
           servers:
             mettl_eu: Europe
             mettl_india: India
+        skillvue:
+          apiKey: API Key
+          apiKeyRequired: API key is required
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        skillvue: Skillvue
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
           tenant_id_present: Tenant id is already present in other project
         mettl:
           public_key_present: Public key is already present in other project
+        skillvue:
+          api_key_present: API key is already present in other project
       view_all_schedules: View All Mettl Schedules
     invited_subject:
       add_btn: Add Subject
@@ -2210,6 +2324,7 @@ en:
         successfully: User %{name} was updated successfully.
     meta_title: Administration panel
     navigation:
+      ai_assistants: AI Assistants
       assessments: Assessments
       assessments_reports: Assessments & Reports
       assessor_dashboard: Assessor Dashboard
@@ -2242,7 +2357,7 @@ en:
       reports: Reports
       scheduling: Scheduling
       show_submenu: Show Sub Menu
-      skills: Skills
+      skills_taxonomy: Skills Taxonomy
       user_profile_details: Profile details
       user_report_events: User Report Events
       users: Users
@@ -2422,6 +2537,13 @@ en:
         report: Report
         review: Review
       resource_name: Proctoring Sessions
+    products:
+      copy:
+        error: Error
+      destroy:
+        successfully: Successfully
+      toggle_status:
+        successfully: Successfully
     profile:
       change_password: Change password
       details: Details
@@ -2430,6 +2552,9 @@ en:
       edit:
         success: Profile was updated successfully.
         title: Profile Editor
+      update:
+        edit:
+          success: Profile was updated successfully.
     project:
       tools:
         workshop_status_export: Workshop Status Export
@@ -2468,6 +2593,7 @@ en:
           assessment_required: Assessment is required
           normalize_factor_scores: Normalize Factor Scores
           user_result_validity_in_days: Result Validity in Days
+        title: Assessments
       design: Design
       general: General
       privacy: Privacy
@@ -2573,6 +2699,11 @@ en:
       addProject: Add Project
       assessment_settings:
         search: Search Assessment
+      clients:
+        confirmations:
+          detach_from_project:
+            body: Body
+            title: Title
       columns:
         project_number: Project Number
       design_settings:
@@ -2650,13 +2781,26 @@ en:
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
       profile_settings:
-        month: Month %{count}
+        form_fields:
+          enabled: Enabled
+          half_size: Half Size
+          locked: Locked
+          name: Name
+          remove: Remove
+          required: Required
+          sort: Sort
+        month: Month
         never: Never
         update_in: Notify Profile Update in
         year: Year
       registration_settings:
         hide_signup: Hide Sign up option
         require_mobile_number: Require Mobile Number
+      users:
+        confirmations:
+          detach_from_project:
+            body: Body
+            title: Title
       webhook_settings:
         add: Add Webhook
         column_active: Active
@@ -2689,6 +2833,30 @@ en:
             title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Updated successfully.
+    reflection_questions:
+      delete_confirmation: Are you sure you want to delete this Reflection Question?
+      export:
+        action: Export Reflection Questions
+        details: File Details
+        failure_msg: Error while exporting file.
+        success_msg: Exporting Reflection Questions in progress. Please check the status in the notifications.
+      form:
+        mandatory: Mandatory
+        max_words: Maximum words
+        min_words: Minimum words
+        question: Question
+        title: Reflection Question
+      import:
+        action: Import Reflection Questions
+        errors:
+          invalid_max_words_column_format: Invalid Maximum Words column value format %{row}
+          invalid_min_words_column_format: Invalid Minimum Words column value format %{row}
+          invalid_required_column_format: Invalid Mandatory column value format %{row}
+          missing_eng_question: Missing English question content %{row}
+          save_failed: Save failed %{message}
+        failure_msg: Error while importing file.
+        success_msg: Importing Reflection Questions in progress. Please check the status in the notifications.
+      question: Question
     report_approval:
       bulk_approve_success: "%{sent_for_approval} sent for approval. %{approved} reports approved. %{ignored} reports require manual approval due to QC changes/comments."
       columns:
@@ -2831,6 +2999,10 @@ en:
       new:
         header: Select Report
       preview:
+        comments: Comments
+        hide_resolved: Hide Resolved
+        history: History
+        info_to_select_module: Select a text module to comment
         title: Preview
       regenerate:
         successfully: Report successfully sent for regeneration
@@ -2895,7 +3067,10 @@ en:
         schedule_time: Schedule Time
       add_subject: Add subject
       assessment_center_form:
+        add_more: Add More
         allow_late_cancellation_and_scheduling: Allow late cancellation and scheduling
+        assessment_center_group: Assessment Center Group
+        assessment_center_group_placeholder: Select Assessment Center Group
         assessor_ids_label: Assessors
         back: Back
         basic_info_panel:
@@ -2911,6 +3086,7 @@ en:
         duration_min_error: Cannot be less than 15 minutes
         duration_placeholder: E.g. 4h 30m
         manager_ids_label: Center Managers
+        meeting_link: Meeting Link
         meetings_and_resources: Meetings & Resources
         name_label: Name
         next: Next
@@ -2927,6 +3103,7 @@ en:
         seats_label: Seats
         time_label: Time
         timezone_label: Timezone
+        url_label: URL
         video_call_type:
           custom: Custom
           internal: Internal
@@ -2950,6 +3127,7 @@ en:
         attendance: Attendance
         attended: Attended
         booked_at: Booked At
+        campaign_assessment_group: Assessment Center Group
         campaign_name: Campaign Name
         duration: Duration
         managers: Managers
@@ -2975,6 +3153,7 @@ en:
         allowed: Allowed
         assessors: Assessors
         booked: Seats Booked
+        campaign_assessment_group: Assessment Center Group
         cancellation_lead_time: Cancellation Lead Time
         cancellation_tooltip: User would be able to cancel the booking till %{date}
         date: Date & Time
@@ -3168,6 +3347,8 @@ en:
       send_unlock_email: Send unlock email
       session_timeout_duration: Session Timeout Duration
       tfa_enabled: Enable Two Factor Authentication
+    security_settings:
+      security_setting: Security setting
     settings:
       admin_roles:
         admin_role_single: Admin Role
@@ -3203,6 +3384,11 @@ en:
         successful_remove: Skill alias '%{skill_alias}' was deleted successfully.
       tabs:
         admin_roles: Admin Roles
+        feature_flags: Feature Flags
+        settings:
+          feature_toggled_error: Feature toggle failed
+          feature_toggled_success: Feature toggled successfully
+          sms_notification: SMS Notification
         siem: SIEM
         skill_aliases: Skill Aliases
     sheets:
@@ -3251,14 +3437,17 @@ en:
         rows: Rows
         settings: Settings
     skills:
+      columns:
+        skill_type: Skill Type
       errors:
         import:
+          missing_fields_data: 'Line %{line_number}: Missing required fields: %{fields}'
           save_failed: 'Line %{line_number}: Failed to save skill ''%{name}'': %{message}'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
-          invalid_category: Must be a valid category
           invalid_global_value: 'must be one of: true, false'
+          invalid_skill_type: Must be a valid skill type
           query_too_short: is required and must belonger than 3 characters
       export:
         details: Details
@@ -3271,11 +3460,11 @@ en:
         skills_title: Export Skills
         skills_translations_title: Export Skills Translations
       form:
-        category: Category
         client_placeholder: Select a Client
         description: Description
         name: Name
         project_placeholder: Select a Project
+        skill_type: Skill Type
         title: Skill
       global: Is Global Skill?
       global_skills: Global Skills
@@ -3287,17 +3476,20 @@ en:
         skills_title: Import Skills
         skills_translations_title: Import Skills Translations
       skill_translations: Skills Translations
-      skills: Skills
+      skill_translations_project: Skill Translations based on Project
+      skills_project: Skills based on Project
       title: Skills
       translations:
         import:
           errors:
-            download_failed: Failed to download file
             invalid_csv_format: 'Invalid CSV format: %{message}'
-            invalid_url: Invalid URL
             missing_columns: 'Missing required columns: %{columns}'
             save_failed: 'Error processing Skill ID %{id}: %{message}'
             skill_not_found: Skill with ID %{id} not found
+    skills_taxonomy:
+      tabs:
+        proficiency: Proficiency
+        skills: Skills
     sms_histories:
       columns:
         first_name: First Name
@@ -3512,7 +3704,7 @@ en:
     templates:
       blocks:
         copy:
-          error: Block \#%{name} was not copied.
+          error: Block \
         destroy:
           successfully: Block %{name} was deleted successfully.
         edit:
@@ -3551,6 +3743,8 @@ en:
           new: New Block
           new_assign: Assign Block
           title: Block's options
+        toggle_status:
+          successfully: Successfully
       questions:
         copy:
           error: Question
@@ -3592,6 +3786,8 @@ en:
           new: New Question
           new_assign: Assign Question
           title: Question's options
+        toggle_status:
+          successfully: Successfully
     threesixty_campaigns:
       email_templates:
         approve_nomination:
@@ -3772,3 +3968,4 @@ en:
     workshop_subjects:
       errors:
         update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.
+    years: Years

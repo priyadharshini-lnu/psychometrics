@@ -19,7 +19,7 @@ module WebhookEvents
         report_pdf: {
           url: ctx[:user_report]&.pdf_url(expires_in: 7.days),
           expiry_time: 7.days.from_now,
-          lang: ctx[:locale]
+          lang: ctx[:pdf_locale]
         }
       }
     end

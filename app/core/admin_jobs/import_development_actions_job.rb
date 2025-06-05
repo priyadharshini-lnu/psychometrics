@@ -4,7 +4,7 @@ module AdminJobs
   class ImportDevelopmentActionsJob < AdminJobs::Base
     def call
       Administration::ImportDevelopmentActions.new(
-        record.file.url,
+        record.file,
         record.data['project_id']
       ).call
 

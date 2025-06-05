@@ -117,32 +117,36 @@ export const Fields: React.FC<Props> = ({
       )}
     >
       <Column
-        title="Sort"
+        title={I18n.t('administration.projects.profile_settings.form_fields.sort')}
         dataIndex="sort"
         width={30}
         render={() => <DragHandle />}
       />
       <Column title="ID" dataIndex="id" />
-      <Column title="Name" dataIndex="name" />
+      <Column title={I18n.t('administration.projects.profile_settings.form_fields.name')} dataIndex="name" />
       <Column
-        title="Required"
+        title={I18n.t('administration.projects.profile_settings.form_fields.required')}
         dataIndex="required"
         render={(_, row:ProfileField) => <Checkbox onChange={() => changeRequired(row)} checked={row.required} />}
       />
       <Column
-        title="Locked"
+        title={I18n.t('administration.projects.profile_settings.form_fields.locked')}
         dataIndex="locked"
         render={(_, row:ProfileField) => <Checkbox onChange={() => changeLocked(row)} checked={row.locked} />}
       />
       <Column
-        title="Half Size"
+        title={I18n.t('administration.projects.profile_settings.form_fields.half_size')}
         dataIndex="halfSize"
         render={(_, row:ProfileField) => <Checkbox onChange={() => changeHalfsize(row)} checked={row.halfSize} />}
       />
       <Column
-        title="Remove"
+        title={I18n.t('administration.projects.profile_settings.form_fields.remove')}
         dataIndex="remove"
-        render={(_, row:ProfileField) => <Button onClick={() => onRemoveField(row)}>Remove</Button>}
+        render={(_, row:ProfileField) => (
+          <Button onClick={() => onRemoveField(row)}>
+            {I18n.t('administration.projects.profile_settings.form_fields.remove')}
+          </Button>
+        )}
       />
     </Table>
   )

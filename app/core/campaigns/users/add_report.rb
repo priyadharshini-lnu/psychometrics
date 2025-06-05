@@ -123,7 +123,10 @@ module Campaigns
           status: existing_result&.status || :not_started,
           completed_at: existing_result&.completed_at,
           completion_reason: existing_result&.completion_reason,
-          require_scheduling: campaign_assessment&.require_scheduling&.present?
+          score_calculated: existing_result&.score_calculated,
+          score_calculated_at: existing_result&.score_calculated_at,
+          require_scheduling: campaign_assessment&.require_scheduling&.present?,
+          prework: campaign_assessment&.prework.present?
         )
         create_external_user_assessment_record(user_assessment, assessment, existing_result, campaign_assessment)
 
@@ -141,6 +144,8 @@ module Campaigns
           create_mettl_assessment(user_assessment, existing_result, campaign_assessment)
         elsif assessment.simulation?
           create_simulation_assessment(user_assessment, existing_result, campaign_assessment)
+        elsif assessment.skillvue?
+          create_skillvue_assessment(user_assessment, existing_result)
         end
       end
 
@@ -186,6 +191,14 @@ module Campaigns
           participant_id: existing_simulation_user_assessment&.participant_id,
           content_variation_id: content_variation_id,
           time_extension: existing_simulation_user_assessment&.time_extension
+        )
+      end
+
+      def create_skillvue_assessment(user_assessment, existing_result)
+        existing_skillvue_user_assessment = existing_result&.skillvue_user_assessment
+        user_assessment.create_skillvue_user_assessment(
+          url: existing_skillvue_user_assessment&.url,
+          email: existing_skillvue_user_assessment&.email
         )
       end
 

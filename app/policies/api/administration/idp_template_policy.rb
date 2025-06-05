@@ -23,6 +23,10 @@ module Api
         has_permission?(:idp_templates, :manage)
       end
 
+      def update_reflection_questions?
+        has_permission?(:idp_templates, :manage)
+      end
+
       class Scope < Api::Administration::BasePolicy::Scope
         def resolve
           scope.where(project_id: project_id)

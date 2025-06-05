@@ -2,7 +2,7 @@
 
 module AdminJobs
   class ExternalAssessmentExport < BaseExportXlsx
-    HAS_CSV_EXPORT = ['mettl'].freeze
+    HAS_CSV_EXPORT = %w[mettl skillvue].freeze
 
     def valid?
       campaign.present? && assessment.present?
@@ -30,6 +30,10 @@ module AdminJobs
     def external_csv_export
       if assessment.mettl?
         ::AdminJobs::MettlResultExport.call!(job_record)
+      end
+
+      if assessment.skillvue?
+        ::AdminJobs::SkillvueResultExport.call!(job_record)
       end
     end
 

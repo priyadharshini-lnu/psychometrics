@@ -11,12 +11,12 @@ describe Projects::LastPreworkCompletedAt do
 
     user = create(:user)
     create(
-      :user_assessment, campaign: campaign,
+      :user_assessment, prework: true, campaign: campaign,
       subject: user, evaluator: user,
       assessment: prework_activity1.assessment, status: :completed, completed_at: 2.days.ago
     )
     create(
-      :user_assessment, campaign: campaign,
+      :user_assessment, prework: true, campaign: campaign,
       subject: user, evaluator: user,
       assessment: prework_activity2.assessment, status: :completed, completed_at: 3.days.ago
     )

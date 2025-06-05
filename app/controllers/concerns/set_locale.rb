@@ -8,6 +8,8 @@ module SetLocale
     helper_method :user_locale_rtl?
     helper_method :selected_locale
     helper_method :available_enduser_locales
+    helper_method :ui_locale
+    helper_method :load_translation_file
   end
 
   def user_locale # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
@@ -76,5 +78,9 @@ module SetLocale
 
   def match_locale?(str1, str2)
     str1.to_s.casecmp(str2.to_s).zero?
+  end
+
+  def load_translation_file
+    I18n.available_locales.include?(I18n.locale) ? I18n.locale : I18n.default_locale
   end
 end

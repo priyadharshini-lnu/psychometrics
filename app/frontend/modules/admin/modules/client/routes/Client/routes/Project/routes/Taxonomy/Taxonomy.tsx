@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { MenuItem } from '~/interfaces/Antd'
 import RouteList from '~/components/RouteList'
 import routeUtils from '~/utils/route'
-import SkillList from '~/modules/admin/modules/Skills/components/SkillList'
+import SkillList from '~/modules/admin/modules/SkillsTaxonomy/components/SkillList'
 
 const { I18n } = window
 

@@ -51,9 +51,9 @@ module Campaigns
       private
 
       def user_already_booked?
-        WorkshopSubject.participatable.exists?(
-          campaign_id: workshop_invite.campaign_id, user_id: current_user.id
-        )
+        WorkshopSubject.joins(workshop: :campaign_assessment_group).participatable.
+          where(workshops: { campaign_assessment_group_id: workshop.campaign_assessment_group_id }).
+          exists?(campaign_id: workshop_invite.campaign_id, user_id: current_user.id)
       end
 
       def workshop_invited_subject

@@ -6,6 +6,20 @@ module Api
       class AI::AssistantsController < BaseController
         validate_crud_requests Api::V2::AI::Assistant::Schema
 
+        def generate
+          result = ::AI::Assistants::Service.call(params[:id], params.dig(:data, :attributes, :prompt))
+          if result[:ok]
+            message = result[:ok]
+            render json: { id: params[:id], attributes: { message: message } }, status: :ok
+          else
+            jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
+          end
+        rescue ActiveRecord::RecordNotFound
+          render json: { error: 'Assistant not found' }, status: :not_found
+        rescue StandardError => e
+          render json: { error: e.message }, status: :unprocessable_entity
+        end
+
         def policy_class
           Api::Administration::AI::AssistantPolicy
         end

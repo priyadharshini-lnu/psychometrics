@@ -13,6 +13,8 @@ import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'
 
+const { I18n } = window
+
 const GAP_TYPE_OPTIONS = [
   {
     label: 'All',
@@ -110,6 +112,8 @@ export const Properties: FC<Props> = ({ modules }) => {
         noOfItems={noOfItems}
         gapCutoff={gapCutoff}
         onChange={onChange}
+        hideLeftFilter={model.props.hideLeftFilter}
+        hideRightFilter={model.props.hideRightFilter}
       />
       <div className="margin-top-10">
         <div>Number Prceision:</div>
@@ -164,13 +168,15 @@ const TableStyleSelect: FC<TableStyleSelectProps> = ({ value, onChange }) => (
 
 interface TablePreferencesProps {
   hideValues: boolean
+  hideLeftFilter: boolean | null
+  hideRightFilter: boolean | null
   noOfItems: number | null
   gapCutoff: number | null
   onChange(key: string, value: unknown): void
 }
 
 const TablePreferences: FC<TablePreferencesProps> = ({
-  hideValues, noOfItems, gapCutoff, onChange,
+  hideValues, noOfItems, gapCutoff, onChange, hideLeftFilter, hideRightFilter,
 }) => (
   <Space direction="vertical">
     <Checkbox
@@ -178,6 +184,18 @@ const TablePreferences: FC<TablePreferencesProps> = ({
       onChange={e => onChange('hideValues', e.target.checked)}
     >
       Hide Values
+    </Checkbox>
+    <Checkbox
+      checked={hideLeftFilter === true}
+      onChange={e => onChange('hideLeftFilter', e.target.checked)}
+    >
+      {I18n.t('reports.modules.gap_assessment.hide_left_filter')}
+    </Checkbox>
+    <Checkbox
+      checked={hideRightFilter === true}
+      onChange={e => onChange('hideRightFilter', e.target.checked)}
+    >
+      {I18n.t('reports.modules.gap_assessment.hide_right_filter')}
     </Checkbox>
     <PropertyNumber
       label="No. of Items"

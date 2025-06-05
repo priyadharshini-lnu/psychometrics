@@ -4,6 +4,13 @@ import styles from './styles.less'
 
 type Props = {
   children: React.ReactNode
+  className?: string
 }
 
-export const AssessmentCardContainer: FC<Props> = ({ children }) => <div className={styles.container}>{children}</div>
+export const AssessmentCardContainer: FC<Props> = ({ children, className }) => (
+  <div
+    className={`${styles.container} ${className}`}
+  >
+    {children}
+  </div>
+)

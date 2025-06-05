@@ -287,73 +287,74 @@ const CommonComponent: FC<CommonComponentProps> = ({
                   </div>
                 )}
                 <div className={styles.tasksContainer}>
-                  <AssessmentCardContainer>
-                    <Flash className="mt-2" />
-                    <Row>
-                      <Col span={24} style={{ paddingInlineStart: '14px' }}>
-                        {canBeginCampaign && (
-                          <>
-                            <Title className={styles.beginText} level={4}>
-                              {I18n.t('campaign.begin')}
-                            </Title>
-                            <Button
-                              size="small"
-                              type="primary"
-                              onClick={handleStartCampaignActivities}
-                              disabled={!allPreworkIsComplete}
-                            >
-                              {I18n.t('campaign.begin')}
-                              {' '}
-                              <DirectionalArrowIcon />
-                            </Button>
-                          </>
-                        )}
-                        {campaign.practiceCampaign && hasStartedCampaign && !isProctored() && (
-                          <>
-                            <Title className={styles.beginText} level={4}>
-                              {I18n.t('campaign.restart_practice')}
-                            </Title>
-                            <Button
-                              size="small"
-                              type="primary"
-                              onClick={() => handleResetPracticeCampaign(campaign.id)}
-                              icon={<ReloadOutlined />}
-                            >
-                              {I18n.t('campaign.restart_practice')}
-                            </Button>
-                          </>
-                        )}
-                        {canContinueCampaign && (
-                          <>
-                            <Title className={styles.beginText} level={4}>
-                              {I18n.t('campaign.continue')}
-                            </Title>
-                            {/* {<p>This is text will come from backend</p>} */}
-                            <Button
-                              size="small"
-                              type="primary"
-                              onClick={handleStartCampaignActivities}
-                              disabled={!allPreworkIsComplete}
-                            >
-                              {I18n.t('campaign.continue')}
-                              {' '}
-                              <DirectionalArrowIcon />
-                            </Button>
-                          </>
-                        )}
-                        {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
-                          <div className="mt-1">
-                            <Space>
-                              <InfoCircleOutlined />
-                              <Typography.Text type="secondary">
-                                {I18n.t('campaign.begin_btn_msg_before_prework')}
-                              </Typography.Text>
-                            </Space>
-                          </div>
-                        )}
-                      </Col>
-                    </Row>
-                  </AssessmentCardContainer>
+                  {(canBeginCampaign || canContinueCampaign || campaign.practiceCampaign) && (
+                    <AssessmentCardContainer>
+                      <Flash className="mt-2" />
+                      <Row>
+                        <Col span={24} style={{ paddingInlineStart: '14px' }}>
+                          {canBeginCampaign && (
+                            <>
+                              <Title className={styles.beginText} level={4}>
+                                {I18n.t('campaign.begin')}
+                              </Title>
+                              <Button
+                                size="small"
+                                type="primary"
+                                onClick={handleStartCampaignActivities}
+                                disabled={!allPreworkIsComplete}
+                              >
+                                {I18n.t('campaign.begin')}
+                                {' '}
+                                <DirectionalArrowIcon />
+                              </Button>
+                            </>
+                          )}
+                          {campaign.practiceCampaign && hasStartedCampaign && !isProctored() && (
+                            <>
+                              <Title className={styles.beginText} level={4}>
+                                {I18n.t('campaign.restart_practice')}
+                              </Title>
+                              <Button
+                                size="small"
+                                type="primary"
+                                onClick={() => handleResetPracticeCampaign(campaign.id)}
+                                icon={<ReloadOutlined />}
+                              >
+                                {I18n.t('campaign.restart_practice')}
+                              </Button>
+                            </>
+                          )}
+                          {canContinueCampaign && (
+                            <>
+                              <Title className={styles.beginText} level={4}>
+                                {I18n.t('campaign.continue')}
+                              </Title>
+                              <Button
+                                size="small"
+                                type="primary"
+                                onClick={handleStartCampaignActivities}
+                                disabled={!allPreworkIsComplete}
+                              >
+                                {I18n.t('campaign.continue')}
+                                {' '}
+                                <DirectionalArrowIcon />
+                              </Button>
+                            </>
+                          )}
+                          {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
+                            <div className="mt-1">
+                              <Space>
+                                <InfoCircleOutlined />
+                                <Typography.Text type="secondary">
+                                  {I18n.t('campaign.begin_btn_msg_before_prework')}
+                                </Typography.Text>
+                              </Space>
+                            </div>
+                          )}
+                        </Col>
+                      </Row>
+                    </AssessmentCardContainer>
+                  )}
                   <AssessmentsContainer
                     groups={groups}
                     ungrouped={ungrouped}

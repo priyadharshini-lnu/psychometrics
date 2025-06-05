@@ -18,6 +18,7 @@ class UsersResult < ApplicationRecord
   has_one :pearson_user_assessment, through: :user_assessment
   has_one :mettl_user_assessment, through: :user_assessment
   has_one :simulation_user_assessment, through: :user_assessment
+  has_one :skillvue_user_assessment, through: :user_assessment
 
   has_one :agile, through: :assessment
   has_many :agile_events, dependent: :destroy
@@ -33,7 +34,7 @@ class UsersResult < ApplicationRecord
   delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,
            :norm_data, :completed_at, :started_at, :completion_reason, :user_reports, :available_locales,
            :user_reports, :user, :user_id, :campaign_user, :deemed_completed?, :completion_status_code,
-           :score_calculated,
+           :score_calculated, :score_calculated_at,
            to: :user_assessment, allow_nil: true
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
            to: :user_assessment, allow_nil: true)

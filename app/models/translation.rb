@@ -36,13 +36,17 @@ class Translation < ApplicationRecord
 
     def to_hash_for_questions(question_ids, locale)
       results = {}
-      where(translateable_type: 'Question', translateable_id: question_ids, locale: locale).find_each do |t|
+      where(translateable_type: 'Question', translateable_id: question_ids,
+            locale: locale).includes(:resource).find_each do |t|
+        assessment = t.resource
+        props = assessment.try(:translations_migrated?) ? t.data['props'] : t.props
         results[t.translateable_type.underscore] ||= {}
-        results[t.translateable_type.underscore][t.translateable_id] ||= t.props
+        results[t.translateable_type.underscore][t.translateable_id] ||= props
       end
       results
     end
 
+    # TODO: Remove this. Do not use this for any other purpose then for profile fields translation
     def to_hash_for_question(id, locale)
       find_by(translateable_type: 'Question', translateable_id: id, locale: locale)&.props || {}
     end

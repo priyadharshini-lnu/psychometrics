@@ -203,7 +203,7 @@ ar:
       development: تطوير
       home: الصفحة الرئيسية
       insights: البصائر
-      my_direct_reports: تقاريري المباشرة
+      my_direct_reportees: تقاريري المباشرة
       my_plan: خطتي
       profile: تفاصيلي
       profile_details: تفاصيل
@@ -268,6 +268,7 @@ ar:
       notification_hours: لديك %{hours}   لإكمال التقييمات
       notification_minutes: لديك %{minutes}   لإكمال التقييمات
   campaign_assessment:
+    assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
     statuses:
       completed: تم اكماله
@@ -377,11 +378,14 @@ ar:
       search: بحث
       send: إرسال
       start: ابدأ
+      submit: إرسال
       unarchive: أخرج من الأرشيف
       unresolve: إلغاء الحل
       update: تحديث
       upload: تحميل
       verify: تحقق
+      view_all_tasks: عرض جميع المهام
+      view_details: عرض التفاصيل
     column:
       action: نشاط
       category: فئة
@@ -608,6 +612,7 @@ ar:
   idp:
     actions: الإجراءات
     board: اللوحة
+    convert_to_draft: تحويل إلى مسودة
     details: التفاصيل
     development_actions:
       action_private: نعم
@@ -645,7 +650,7 @@ ar:
       structured_learning: تعلم منظم
       submit_plan: تقديم الخطة
       write_here: اكتب هنا...
-    direct_report_details: تفاصيل التقرير المباشر
+    direct_reportee_details: تفاصيل التقرير المباشر
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
       add_skill_group_title: استكشاف مهاراتك في %{category}
@@ -662,13 +667,16 @@ ar:
       rate_skills_description: بعد أن حددت أولويات التطوير الخاصة بك، يرجى تقييم نفسك في كل مما يلي. تذكر أن تقيم نفسك بناءً على مستواك الحالي وليس على مستواك السابق أو المرغوب.
       rate_skills_title: تقييم مهاراتك
       rating_column_header: تقييمك الذاتي
+      reflective_questions: أسئلة تأملية
       select_skills: حدد مهاراتك
       select_skills_placeholder: حدد المهارات
       selected_skills: المهارات المحددة
       skill_column_header: المهارة
       skill_gap_report: تقرير فجوة المهارات
     list: قائمة
-    my_direct_reports: تقاريري المباشرة
+    manage_plan: إدارة الخطة
+    mark_as_incomplete: وضع علامة على أنها غير مكتملة
+    my_direct_reportees: تقاريري المباشرة
     my_plan:
       development_plan: خطة التطوير
       graphs:
@@ -779,14 +787,26 @@ ar:
         library: مكتبة خطة التطوير الفردية
         skills_count: عدد المهارات
         title: ملخص التقرير
-    profile_details: تفاصيل الملف الشخصي
+    reflective_questions:
+      answer_later: أجب لاحقًا
+      answer_placeholder: اكتب إجابتك هنا...
+      errors:
+        max_words: تسمح الإجابة بحد أقصى %{عدد} الكلمات
+        min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
+        required: إجابة السؤال مطلوبة
+      max_words: الحد الأقصى للكلمات
+      min_words: كلمات دقيقة
+      title: أسئلة تأملية
+      update_failed: حدث خطأ أثناء التحديث
+      updated_successfully: تم تحديث إجاباتك بنجاح
+      words: الكلمات
     skill_gap_report:
-      continue_to_rate_skills: استمر في تقييم المهارات
       title: تقرير فجوة المهارات
     status: الحالة
     user_idp_status:
       approved: تمت الموافقة
       draft: مسودة
+      not_started: لم يبدأ
       pending_approval: قيد الموافقة
     users: المستخدمون
   idp_templates:
@@ -863,6 +883,8 @@ ar:
         score: الدرجة
       gap_assessment:
         gap: فجوة
+        hide_left_filter: إخفاء المرشح الأيسر
+        hide_right_filter: إخفاء المرشح الأيمن
         item: مؤشر
         negative_gap: " الفجوات السلبية"
         no_negative_gaps: لا توجد فجوات سلبية

@@ -1,0 +1,3837 @@
+---
+cs:
+  administration:
+    actions: Akce
+    active_record_audits:
+      action: Akce
+      audit_id: Id auditu
+      auditable_id: Id záznamu
+      auditable_type: Typ záznamu
+      audited_changes: Auditované změny
+      new_diff:
+        parse_error: Nepodařilo se analyzovat JSON s novými změnami
+      old_diff:
+        parse_error: Nepodařilo se analyzovat JSON se starými změnami
+      title: Auditované změny
+    administrator:
+      sessions:
+        new:
+          forgot_password: Zapomněli jste heslo?
+          instruction: Přihlaste se prosím pomocí údajů o svém osobním účtu
+          password_placeholder: Heslo
+          title: Vítejte!
+      shared:
+        simple_design:
+          design: Design
+          or: Nebo
+    administrators:
+      drawers:
+        edit:
+          admin_role_select: Vyberte roli správce
+          admin_roles: Role správce
+          create_success: Správce '%{jméno}' byl úspěšně vytvořen
+          email: E-mail
+          first_name: Křestní jméno
+          first_name_required: Křestní jméno je povinné
+          last_name: Příjmení
+          last_name_required: Příjmení je povinné
+          no_edit_permission: Nemáte oprávnění k úpravám administrátora '%{jméno}'
+          save: Uložit
+          update: Aktualizace
+          update_success: Admin '%{jméno}' byl úspěšně aktualizován
+        notes:
+          threesixty_permission: Oprávnění specifická pro kampaně 360
+          title: Poznámky
+        view:
+          add_campaign_admin: Přidání správce kampaně
+          add_client_admin: Přidání správce klienta
+          add_project_admin: Přidání správce projektu
+          add_threesixty_campaign_admin: Přidání správce kampaně
+          edit_campaign_admin: Upravit správce kampaně
+          edit_client_admin: Upravit správce klienta
+          edit_project_admin: Upravit správce projektu
+          edit_threesixty_campaign_admin: Upravit správce kampaně
+          first_name: Křestní jméno
+          last_name: Příjmení
+          project_admin: Administrátor projektu
+          project_list: Seznam projektů
+          role: Správce kampaně
+          title:
+            campaign_admin: Správce kampaně
+            client_admin: Administrátor klienta
+            project_admin: Administrátor projektu
+      list:
+        actions:
+          api_keys: Klíče API
+          cancel_text: Zrušit
+          change_password: Obnovení hesla
+          edit: Upravit
+          export_admins_with_permissions: Export rolí a oprávnění správce
+          export_success: Úloha exportu správce byla úspěšně naplánována. Zkontrolujte prosím stav oznámení.
+          login: Přihlášení
+          send_email: Odeslat e-mail
+          spoof:
+            login_successful: Přihlášení proběhlo úspěšně.
+          user_report_events: Protokoly o schvalování zpráv
+        columns:
+          actions: Akce
+          created_at: Vytvořeno v
+          email: E-mail
+          id: Id
+          name: Název
+        header:
+          add_admin: Přidat správce
+          search_admins: Vyhledávání administrátorů
+        toolbar:
+          export_admins_with_permissions: Export rolí a oprávnění správce
+      modals:
+        delete:
+          cancelText: Zrušit
+          content: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
+          okText: Ok
+          onSuccess: Administrátor s e-mailem '%{email}' byl úspěšně odstraněn
+          title: Potvrďte
+      permissions:
+        labels:
+          apiKeys:
+            manage: Správa
+            title: Klíče API
+            view: Zobrazit
+          assessments:
+            manage: Správa
+            title: Hodnocení
+            view: Zobrazit
+          assessors:
+            manage: Správa
+            title: Posuzovatelé
+            view: Zobrazit
+          auditLogs:
+            title: Protokoly o auditu
+            view: Zobrazit
+          auditReports:
+            admin_permissions: Export rolí a oprávnění správce
+            title: Auditní zprávy
+            user_report_events: Protokoly o schvalování zpráv
+          campaignFactors:
+            manage: Správa
+            title: Faktory kampaně
+            view: Zobrazit
+          campaigns:
+            bulk_download: Hromadné stahování
+            bulk_regenerate_reports: Hromadné přegenerování sestav
+            manage: Správa
+            manage_admins: Správa správců
+            manage_factor_benchmark_scores: Srovnávací skóre faktorů správy
+            manage_messages: Správa zpráv
+            manage_options: Správa možností
+            manage_report_approvals: Správa schvalování zpráv
+            manage_users: Správa uživatelů
+            participant_options: Možnosti účastníků
+            report_options: Možnosti hlášení
+            reset_nominations: Obnovení nominací
+            title: Kampaně
+            view: Zobrazit
+            view_factor_benchmark_scores: Zobrazit výsledky srovnávacího testu faktorů
+            view_stats: Zobrazit statistiky
+          clients:
+            export_data_report: Zpráva o exportu dat
+            manage: Správa
+            title: Klienti
+            view: Zobrazit
+            view_licenses: Zobrazit licence
+          communications:
+            manage: Správa
+            title: Komunikace
+            view: Zobrazit
+          dashboards:
+            accesssheet_manage: Správa přístupových listů
+            accesssheet_settings: Nastavení přístupového listu
+            accesssheet_view: Zobrazení přístupového listu
+            title: Přístrojové panely
+            view: Zobrazit
+          datasheets:
+            manage: Správa
+            title: Datové listy
+            view: Zobrazit
+          developmentActions:
+            export: Export
+            export_global: Export Global
+            export_global_translations: Export globálních překladů
+            export_translations: Exportní překlady
+            import: Import
+            import_global: Globální import
+            import_global_translations: Import globálních překladů
+            import_translations: Importovat překlady
+            manage: Správa
+            title: Vývojové akce
+            view: Zobrazit
+          dimensions:
+            manage: Správa
+            title: Rozměry
+            view: Zobrazit
+          idpTemplates:
+            manage: Správa
+            title: Šablony IDP
+            view: Zobrazit
+          mediaLibraries:
+            manage: Správa
+            title: Knihovny médií
+            view: Zobrazit
+          messages:
+            email: E-mail
+            instructions: Pokyny
+            options: Možnosti
+            title: Zprávy
+          norms:
+            manage: Správa
+            title: Normy
+            view: Zobrazit
+          projectSettings:
+            assessments: Hodnocení
+            design: Design
+            idp: IDP
+            integrations: Integrace
+            privacy_settings: Nastavení ochrany osobních údajů
+            saml: SAML
+            security: Zabezpečení
+            smtp: SMTP
+            title: Nastavení projektu
+            webhooks: Webové háčky
+          projects:
+            manage: Správa
+            manage_admins: Správa správců
+            manage_users: Správa uživatelů
+            title: Projekty
+            view: Zobrazit
+          questions:
+            manage: Správa
+            title: Otázky
+            view: Zobrazit
+          registrationCodes:
+            manage: Správa
+            title: Registrační kódy
+            view: Zobrazit
+          registrationSettings:
+            manage: Správa
+            title: Nastavení registrace
+          reports:
+            manage: Správa
+            title: Zprávy
+            view: Zobrazit
+          responseMeta:
+            title: Reakce Meta
+          results:
+            approve_report: Schválení zprávy
+            bulk_download: Hromadné stahování
+            bulk_regenerate_reports: Hromadné přegenerování sestav
+            download_report: Stáhnout zprávu
+            edit_report: Upravit zprávu
+            export_occupations: Vývozní profese
+            external_score_import: Import externího skóre
+            finalize_scores: Finalizace skóre
+            normalize_factor_scores: Normalizace skóre faktorů
+            raw_responses: Surové odpovědi
+            regenerate_report: Zpráva o regeneraci
+            report_data: Údaje ze zprávy
+            report_file_upload: Nahrání souboru s hlášením
+            rescore_responses: Reakce na výsledky
+            reset_progress: Obnovení postupu
+            reset_responses: Resetování odpovědí
+            scores: Skóre
+            title: Výsledky
+            view_report: Zobrazit zprávu
+            view_stats: Zobrazit statistiky
+          skills:
+            export: Export
+            export_translations: Exportní překlady
+            import: Import
+            import_translations: Importovat překlady
+            manage: Správa
+            title: Dovednosti
+            view: Zobrazit
+          smsHistories:
+            manage: Správa
+            title: Historie SMS
+            view: Zobrazit
+          smsInvites:
+            manage: Správa
+            title: Pozvánky SMS
+            view: Zobrazit
+          users:
+            reset_password: Obnovení hesla
+            title: Uživatelé
+          workshops:
+            export_status: Stav exportu
+            manage: Správa
+            title: Workshopy
+            view: Zobrazit
+    any: " - Jakýkoli - "
+    api:
+      campaigns:
+        validate_form:
+          external_id_taken: Externí ID '%{external_id}' je již obsazeno'
+      users:
+        form:
+          campaign_ids_not_existing: Ne všechny identifikátory kampaní jsou existující
+    api_keys:
+      form:
+        description: Popis
+        title: klíč api
+    assessment_center:
+      cancel_confirmation:
+        message: Jste si jisti, že chcete průběh formuláře zahodit?
+        title: Vyřazovací formulář Progress
+      current: Aktuální
+      invite:
+        add_invite: Přidat pozvánku
+        assessment_center: Hodnotící centrum
+        back: Zpět
+        basic_info:
+          allow_preferred_language: Povolit preferovaný jazyk
+          assessment_centers: Hodnotící střediska
+          assessment_centers_hint: Příklad vyhledávacího dotazu '10. srpna 2023, 20:06'
+          assessment_centers_placeholder: Vybraná hodnotící centra
+          description: Vydejte pozvánky uchazečům tak, že vyberete více hodnotících center. Uchazeči si pak z dostupných center vyberou jedno.
+          neurodiversity: Zahrňte otázku týkající se neurodiverzity
+          preferred_language: Povolené jazyky
+          required_error: Nemůže být prázdný
+          title: Základní informace
+        confirm_message: Jste si jisti, že chcete pozvánku odstranit?
+        confirm_message_with_title: Opravdu chcete odstranit pozvánku s názvem '%{invite_title}'?
+        confirm_title: Potvrďte
+        exceeded_subjects_count: Kampaň má %{uživatelů} subjektů. Na jednu pozvánku můžete přidat pouze %{počet} subjektů
+        id: ID
+        invites: Pozvánky
+        next: Další
+        not_selected: Nevybráno
+        requests: Žádosti
+        save: Uložit a odeslat
+        send_invites:
+          add: Přidat
+          add_description: Název a popis pozvánky můžete přeložit do více jazyků
+          add_language: Přidat jazyk
+          description: Popis
+          input_label: Přidání dalšího jazyka
+          input_placeholder: Výběr dalšího jazyka
+          invitation_title: Název pozvánky
+          title: Pozvánka (%{lang})
+        steps:
+          add_subjects: Přidat předměty
+          basic_info: Základní informace
+          has_errors: obsahuje chyby
+          send_invitation: Odeslat pozvánku
+        subjects:
+          cancel: Zrušit
+          count: "%{count} Subjekty"
+          csv_error: 'Řádek%{index}: uživatel s e-mailem %{email} není v této kampani zařazen'
+          csv_imported: "%{počet} importovaných subjektů"
+          description: Subjekty můžete přidávat jednotlivě pomocí vyhledávání nebo hromadně nahrát soubor csv.
+          download: Stáhnout
+          file_example: Odkaz na příkladový soubor pro nahrání informací o subjektech.
+          import_from_campaign: Přidat vše z kampaně
+          import_title: Importované předměty
+          import_users: Import uživatelů
+          search_user: Vyhledávání předmětů
+          title: Předměty
+          upload: Nahrát
+          upload_csv: Nahrát CSV
+        subjects_count_added: Úspěšně přidané subjekty
+        success:
+          continue: Pokračovat
+          message: Úkol odeslat pozvánky byl zařazen do fronty; uživatelé je brzy obdrží.
+        success_message: Pozvánka byla úspěšně odstraněna.
+        success_message_with_title: Pozvánka s názvem '%{invite_title}' byla úspěšně odstraněna.
+        title: Název
+        workshop:
+          title: Hodnotící střediska
+        workshop_list:
+          add: Přidat
+          name: Název
+          remove_confirm:
+            content: Opravdu chcete odebrat středisko hodnocení s názvem '%{jméno}'?
+            success: Assessment Center bylo úspěšně odstraněno.
+            title: Potvrďte
+      invite_request:
+        accept: Přijmout
+        reason: Důvod
+        reject: Odmítnout
+        remove_confirm:
+          content: Jste si jisti, že chcete %{akce} %{stav} z %{jméno předmětu}?
+          success: "%{status} z %{jméno subjektu} byla %{akce} úspěšně provedena."
+          title: "%{action} %{status}"
+        status: Stav
+        subject_name: Jméno subjektu
+        workshop_time: Čas workshopu
+      past: Minulost
+      steps:
+        basic_information: Základní informace
+        facilitators: Zprostředkovatelé
+        invite_options: Možnosti pozvání
+        invite_subjects: Pozvat subjekty
+        send_invitations: Odesílání pozvánek
+      success:
+        call_send_invitation: Chcete poslat pozvánky?
+        ok: Ano
+        skip: Prozatím přeskočit
+        title: Vytvořená hodnotící centra
+      upcoming: Nadcházející
+    assessment_question_import:
+      errors:
+        doesnt_have_header: "'%{sub_header}' nemá hlavičku"
+        invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
+        invalid_scores: Skóre pro faktor %{název_faktoru} jsou neplatná. Skóre by měly být číselné hodnoty oddělené čárkou
+        invalid_sub_header: "'%{sub_header}' není platný podnadpis pro hlavičku '%{header}'"
+        scores_not_allowed: Skóre lze přidávat pouze u otázek typu MultiChoice a Matrix
+        unavailable_factors: "%{unavailable_factor_names} faktory nejsou v dimenzi přítomny"
+      modal:
+        download_xls: Stáhnout příklad souboru XLSX
+        title: Otázky k importu
+      successfully_scheduled: Otázka Import byl úspěšně naplánován.
+    assessments:
+      assessment: Hodnocení
+      assessment_report: Hodnocení
+      copy:
+        copy: kopírovat
+        copy_assessment: Posouzení kopírování
+        name: Název
+        successfully: Posouzení "%{jméno}" bylo úspěšně zkopírováno.
+      create:
+        successfully: Hodnocení "%{jméno}" bylo úspěšně vytvořeno.
+      destroy:
+        successfully: Hodnocení "%{jméno}" bylo úspěšně odstraněno.
+      edit:
+        header: Nastavení hodnocení
+      errors:
+        owner_validation: Nemáte oprávnění %{název_zdroje} %{oprávnění} pro %{název_klienta}
+      export:
+        questions: Otázky k exportu
+      export_questions_toastr: Otázky Exportní úloha byla úspěšně naplánována
+      flow: Průtok
+      linkedAssessment:
+        assessment_title: Vybrat otázky z %{jméno}
+        title: Vybrané propojené otázky
+      map_norms: Mapové normy
+      menu:
+        export_questions: Otázky k exportu
+        import_questions: Otázky k importu
+        managage_campaign_factors: Správa faktorů kampaně
+      new:
+        header: Nové hodnocení
+      preview: Náhled hodnocení
+      randomization:
+        cancel: Zrušit
+        no_randomization: Bez randomizace
+        no_randomization_order_all: Náhodné pořadí všech
+        of_total: z celkového počtu
+        per_page: na stránku
+        plural:
+          block: bloky
+          question: otázky
+        present_only: Pouze přítomnost
+        question_per_factor_and_show: otázky na faktor a ukázat
+        save: Uložit
+        select: Vyberte
+        select_only: Vyberte pouze
+        single_question_page_warning: Aktuální hodnocení je nakonfigurováno tak, aby zobrazovalo jednu otázku na stránku. Pokud zde nastavíte více než jednu otázku na stránku, nastavení Jedna otázka na stránku se automaticky vypne.
+        title: Randomizace
+      reports: Zprávy
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete toto hodnocení odstranit?</p>\n"
+            title: Vymazat <strong>hodnocení</strong>?
+          soft_delete:
+            body: "<p>Jste si jisti, že chcete toto hodnocení odstranit softwarově?</p>\n"
+            title: "<strong>Posouzení</strong> soft delete?"
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} toto hodnocení?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+      restore:
+        successfully: Posouzení %{název} bylo úspěšně obnoveno.
+      scoring_strategy:
+        average: Průměr
+        sum: Součet
+        title: Bodovací strategie
+      settings:
+        disable_continue_to_dashboard: Zakázat tlačítko "Pokračovat na ovládací panel"
+        disable_nav_btn: Zakázat navigační tlačítko Zpět
+        enable_back: Povolit tlačítko zpět
+        enable_progress: Povolit ukazatel průběhu
+        enable_save: Povolit tlačítko pro uložení
+        enable_single_question_page: Zobrazit jednu otázku na stránku
+        enable_single_question_page_confirm: Tím se aktualizuje randomizace bloků na stránku na 1. Jste si jisti?
+        enable_timer: Povolení časovače
+        has_randomized_block_warning: Současné hodnocení má randomizované bloky s více než jednou otázkou na stránku. Povolením možnosti "Zobrazit jednu otázku na stránku" se přepíše veškerá konfigurace randomizace tak, aby na každé stránce byla pouze jedna otázka.
+        instructions: Povolení pokynů
+        title: Nastavení hodnocení
+      soft_delete:
+        successfully: Hodnocení %{jméno} bylo úspěšně přesunuto do koše.
+      toggle_archive:
+        successfully: Hodnocení %{jméno} proběhlo %{stav} úspěšně.
+      toggle_status:
+        successfully: Hodnocení %{název} bylo úspěšně aktualizováno.
+      update:
+        successfully: Hodnocení %{název} bylo úspěšně aktualizováno.
+    assessor:
+      add_subject_modal:
+        assessment: Hodnocení
+        mark_as_lead_assessor: Označit jako hlavního hodnotitele pro výše uvedený předmět
+        subject: Předmět
+        subject_placeholder: Hledaný předmět..
+        title: Přidat předmět
+      assessments:
+        actions:
+          add_subject: Přidat předmět
+          rescore: Rescore
+          reset: Vyhodnocení resetování
+          reset_progress: Obnovení postupu
+        bulk_delete_confirmation: Jste si jisti, že chcete odstranit vybrané záznamy?
+        bulk_delete_successful: Posudky hodnotitelů byly úspěšně smazány
+        reset_confirmation: Jste si jisti, že chcete obnovit hodnocení předmětu pomocí e-mailu "%{subjectEmail}"?
+        reset_progress_confirmation: Jste si jisti, že chcete obnovit postup pro předmět s e-mailem "%{subjectEmail}"?
+        reset_progress_successfully: Průběh resetování předmětu s e-mailem "%{subjectEmail}" byl úspěšný.
+        reset_successfully: Vyhodnocení resetování předmětu s e-mailem "%{subjectEmail}" proběhlo úspěšně.
+        subject_email: Předmět E-mail
+        subject_name: Jméno subjektu
+      completed_at: Dokončeno v
+      count: "%{count} Hodnotitelé"
+      create_assessor: Přidat hodnotitele
+      evaluations: Hodnocení
+      mailer:
+        subject: Přidány nové předměty pro vaše hodnocení
+      modals:
+        create_assessor:
+          add: Přidat
+          cancel: Zrušit
+          form:
+            add: Přidat
+            add_lead_assessor: Přidat jako hlavního hodnotitele
+            add_lead_assessor_hint: Nejprve přidejte formulář Lead Assessor
+            assessments: Hodnocení
+            assessor: Posuzovatel
+            assessor_placeholder: Hledání Assessor...
+            lead_assessment: Hodnocení olova
+            subject: Předmět
+            subject_placeholder: Hledat předmět...
+          sheet:
+            assessments: Hodnocení
+            assessments_placeholder: Vyberte
+            assessor_email: E-mail odhadce
+            assessor_first_name: Křestní jméno posuzovatele
+            assessor_last_name: Příjmení odhadce
+            subject_email: E-mail subjektu
+          title: Přidat hodnotitele
+        import:
+          body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
+          title: Posuzovatelé dovozu
+      moderate_score:
+        assessor_evaluations: Hodnocení hodnotitelů
+        main_report: Hlavní zpráva
+        no_completed_assessments: Zatím nejsou k dispozici žádná dokončená hodnocení
+        no_results: Neexistují žádné zodpovězené otázky
+        other_reports: Další zprávy
+        overall_scoring: Celkové bodování
+        refresh: Obnovit
+        reports: Zprávy
+        reports_count: "%{count} Zprávy"
+      overview: Přehled
+      remove_confirmation: Jste si jisti, že chcete z této kampaně odstranit hodnotitele s e-mailem %{email}?
+      statuses:
+        completed: Dokončeno
+        not_completed: Není dokončeno
+      toolbar:
+        export: Hodnotitelé vývozu
+        import: Posuzovatelé dovozu
+        tools: Nástroje
+    assessor_assessment:
+      add: Přidat
+      modals:
+        add_assessor_assessment:
+          assessment_placeholder: Výběr hodnocení
+      name: Posuzovatel Posouzení
+    assessor_campaigns:
+      statuses:
+        completed: Dokončeno
+        in_progress: Probíhá
+        not_started: Nebylo zahájeno
+    assessor_subjects:
+      statuses:
+        completed: Dokončeno
+        in_progress: Probíhá
+        not_started: Nebylo zahájeno
+    assigns:
+      create:
+        successfully: Nové přiřazení k hodnocení bylo úspěšně vytvořeno
+      destroy:
+        successfully: Přiřazení k hodnocení bylo úspěšně odstraněno
+      new:
+        header: Přiřazení hodnocení a zpráv
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete toto přiřazení odstranit?</p>"
+            title: Smazat <strong>%{jméno}</strong>?
+    assigns_reports:
+      edit:
+        header: Úprava přiřazení sestavy
+    attention: Pozor
+    audit_log:
+      action: Akce
+      audit_logs: Protokoly o auditu
+      campaign: Kampaň
+      client: Klient
+      client_ip: Ip klienta
+      collapse_filters: Sbalit filtry
+      dashboard: Přístrojová deska
+      date_presets:
+        last_30_days: Posledních 30 dní
+        last_7_days: Posledních 7 dní
+        last_month: Minulý měsíc
+        last_week: Minulý týden
+        today: Dnes
+        yesterday: Včera
+      date_range: Rozsah dat
+      expand_filters: Rozbalit filtry
+      failure_reason: Důvod selhání
+      interface: Rozhraní
+      log_date: Datum záznamu
+      outcome: Výsledek
+      payload: Užitečné zatížení
+      project: Projekt
+      record_id: Id záznamu
+      request_id: Id žádosti
+      reset: Obnovení
+      search: Vyhledávání
+      search_campaign: Vyhledávání podle kampaně
+      search_client: Vyhledávání podle klienta
+      search_project: Vyhledávání podle projektu
+      search_record: Vyhledávání podle ID záznamu
+      search_user: Vyhledávání podle uživatele
+      title: Informace o protokolu auditu
+      type: Typ záznamu
+      user: Uživatel
+      user_agent: Uživatelský agent
+    back: Zpět
+    base:
+      top_sidebar:
+        sign_out_message:
+          body: "<p>Určitě se chcete odhlásit?</p> <p>Stiskněte Ne, pokud chcete pokračovat v práci. Stiskněte Ano pro odhlášení aktuálního uživatele.</p>"
+          title: "<strong>Odhlásit se</strong>?"
+    block_settings:
+      modal:
+        add_layer: Přidat vrstvu
+        background_color: Barva pozadí
+        background_image: Obrázek na pozadí
+        base_offse_speed: Základní rychlost posunu
+        confirm_msg: Určitě chcete tuto vrstvu odstranit?
+        confirm_title: Odstranění vrstvy
+        layers: Vrstvy
+        main_background_color: Hlavní barva pozadí
+        select_from_lib: Vybrat z knihovny
+        speed: Rychlost
+        title: Nastavení bloku
+    blocks:
+      copy:
+        successfully: Blok %{název} byl úspěšně zkopírován.
+      create:
+        successfully: Blok %{název} byl úspěšně vytvořen.
+      destroy:
+        successfully: Blok %{název} byl úspěšně odstraněn.
+      edit:
+        header: Blok úprav
+      new:
+        header: Nový blok
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tento blok odstranit?</p>\n"
+            title: Smazat <strong>blok</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tohoto bloku?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+    bookings:
+      errors:
+        already_booked: Místo v letadle jste si již rezervovali.
+        booking_deadline_passed: Toto datum již není k dispozici, vyberte laskavě jiné datum z předchozí obrazovky.
+        cancellation_deadline_passed: Lhůta pro zrušení prošla.
+        cancelled_and_rebook_deadline_passed: Zrušeno a opětovně vypršela lhůta pro vydání knihy.
+        late_cancellation_not_allowed: Pozdní zrušení rezervace není povoleno.
+        late_rescheduling_not_allowed: Pozdější změna termínu není povolena.
+        prework_not_completed: Před rezervací místa v hodnotícím centru dokončete všechny předpracovní aktivity.
+        reschedule_deadline_passed: Lhůta pro změnu termínu uplynula.
+        seats_not_available: Místa nejsou k dispozici.
+    breadcrumbs:
+      admins: Administrátoři
+      assessments: Hodnocení
+      assessor_dashboard: Přístrojový panel hodnotitele
+      assessors: Posuzovatelé
+      audit_log_info: Informace o protokolu auditu
+      audit_logs: Protokoly o auditu
+      audit_reports: Auditní zprávy
+      campaign_templates: Šablony kampaní
+      campaigns: Kampaně
+      client: Nájem klienta
+      clientAdmins: Správci klientů
+      client_admins: Správci klientů
+      clients: Nájemní smlouvy klientů
+      communication_center: Komunikační centrum
+      create: Vytvořit
+      data_exports: Export dat
+      data_reports: Datové zprávy
+      datasheets: Datové listy
+      design: Design
+      dimension: Rozměr
+      dimensions: Rozměry
+      factors: Faktory
+      home: Přístrojová deska
+      innovation_styles: Inovační styly
+      innovation_styles_factors: Faktory
+      libraries: Knihovna médií
+      license_usages: Používání licencí
+      licenses: Licence
+      new_campaign: Nová kampaň
+      norm: Norm
+      norms: Normy
+      norms_editor: Normální editor
+      occupations: Povolání
+      occupations_factors: Faktory
+      participants: Účastníci
+      products: Produkty
+      project_admins: Správci projektů
+      projects: Projekty
+      psychometrics: Psychometrie
+      question_center: Centrum otázek
+      registration_codes: Registrační kódy
+      report_families: Svazky zpráv
+      reports: Zprávy
+      settings: Nastavení
+      smtp_settings: Nastavení SMTP
+      statistics: Statistiky
+      sub_campaigns: Dílčí kampaně
+      sub_factors: Dílčí faktory
+      survey: Průzkum
+      surveys: Průzkumy
+      users: Uživatelé
+      users_add: Přidat nový
+      users_import: Import
+    bulk_reports:
+      create:
+        no_data: Žádné údaje
+        successfully: Zprávy se vytvářejí a po jejich dokončení budete informováni e-mailem
+      download:
+        removed: Odstraněno
+      form:
+        end_date: Datum ukončení
+        start_date: Datum zahájení
+      mailer:
+        subject: Stahování hromadných zpráv
+      new:
+        header: Hromadné stahování
+      reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
+    cable:
+      notification:
+        assessment_factors: Faktory jsou načteny
+        assessment_update: Hodnocení je aktualizováno
+        block_clone: Blok je zkopírován
+        block_create: Blok %{jméno} je vytvořen
+        block_create_by_template: Blok byl načten ze šablony
+        block_destroy: Blok byl odstraněn
+        block_move_down: Blok %{název} je přesunut dolů
+        block_move_up: Blok %{název} je přesunut nahoru
+        block_permanent_destroy: Blok je trvale odstraněn
+        block_rename: Blok je přejmenován
+        block_restore: Blok je obnoven
+        block_save_as_template: Blok uložený jako šablona
+        block_unlink_template: Blok byl odpojen
+        block_update: Blok je aktualizován
+        comment_create: Komentář je vytvořen
+        comment_destroy: Komentář byl smazán
+        geo_filter: Filtrování dat
+        module_create: Modul %{název} je vytvořen
+        module_destroy: Modul byl odstraněn
+        module_insert_after: Modul je vložen po
+        module_insert_before: Modul je vložen před
+        module_move_down: Modul je posunut dolů
+        module_move_up: Modul je posunut nahoru
+        module_rename: Modul je přejmenován
+        module_update: Modul je aktualizován
+        page_create: Stránka %{název} je vytvořena
+        page_destroy: Stránka byla smazána
+        page_move_down: Stránka %{název} je přesunuta dolů
+        page_move_up: Stránka %{název} je přesunuta nahoru
+        page_rename: Stránka je přejmenována
+        page_update: Stránka je aktualizována
+        question_clone: Otázka je zkopírována
+        question_create: Je vytvořena otázka %{jméno}
+        question_create_by_template: Otázka byla načtena ze šablony
+        question_create_from_template: Otázka je vytvořena ze šablony
+        question_destroy: Otázka byla smazána
+        question_insert_after: Otázka se vkládá za
+        question_insert_before: Otázka se vkládá před
+        question_move_down: Otázka je přesunuta dolů
+        question_move_up: Otázka je přesunuta nahoru
+        question_permanent_destroy: Otázka je trvale smazána
+        question_rename: Otázka je přejmenována
+        question_restore: Otázka je obnovena
+        question_save_as_template: Otázka uložená jako šablona
+        question_unlink_template: Otázka byla odpojena
+        question_update: Otázka je aktualizována
+        report_change_aliases: Pseudonymy jsou aktualizovány
+        report_change_campaign_factors: Faktory kampaně jsou aktualizovány
+        report_change_data_configuration: Konfigurace datové zprávy byla úspěšně aktualizována
+        report_change_filters: Filtry jsou aktualizovány
+        report_update: Zpráva je aktualizována
+        scoring_update: Bodování je aktualizováno
+        trash_empty: Koš Komentář prázdný
+    campaign_factor_import:
+      errors:
+        assessment_not_found_in_campaign: ID hodnocení '%{assessment_id}' nebylo v kampani nalezeno
+        code_already_exists: Faktor se stejným kódem '%{kód}' již existuje.
+        factor_not_in_assessment_dimension: Id faktoru '%{factor_id}' není součástí dimenze hodnocení
+        invalid_lua_name: Kód '%{code}' by měl být platný název proměnné lua
+        invalid_name_format: Název '%{jméno}' by měl odpovídat očekávanému formátu.
+        max_limit_reached: Nelze vytvořit více než %{počet} faktorů kampaně.
+        missing_assessment_id: Vyžaduje se ID pro posouzení.
+        missing_assessment_score_type: Vyžaduje se typ hodnocení.
+        missing_factor_id: Je vyžadováno ID faktoru.
+        name_already_exists: Faktor se stejným názvem '%{jméno}' již existuje.
+        name_size_exceded: Název by neměl přesáhnout %{velikost} znaků.
+    campaign_factors:
+      delete:
+        confirm_message:
+          assessor_scoring: Chystáte se odstranit bodování hodnotitele. Ztratíte všechna moderovaná hodnocení hodnotitele pro tento faktor '%{název_faktoru}'. Jste si jisti, že chcete pokračovat?
+          default: Opravdu chcete odstranit faktor kampaně '%{název_faktoru}'?
+          external_score: Chystáte se odstranit externí bodování. Ztratíte externí bodování, které je spojeno s tímto faktorem '%{název_faktoru}'. Určitě chcete pokračovat?
+    campaign_factors_import:
+      errors:
+        invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
+    campaign_templates:
+      campaign_templates: Šablony kampaní
+      column:
+        assessment: Hodnocení
+        owner: Majitel
+        report: Nahlásit
+      copy:
+        successfully: Klientská smlouva %{název} byla úspěšně zkopírována.
+      create:
+        successfully: Klientský nájemní vztah %{název} byl úspěšně vytvořen.
+      destroy:
+        successfully: Klientský nájemní vztah %{název} byl úspěšně odstraněn.
+      edit:
+        header: Upravit klienta
+      errors:
+        owner_invalid: Vlastník šablony musí být stejný jako vlastník posudku, zprávy a rozměru
+      form:
+        assessment: Hodnocení
+        assessment_placeholder: Výběr hodnocení
+        name: Název
+        name_placeholder: Zadejte jméno
+        owner: Majitel
+        owner_placeholder: Výběr vlastníka
+        report: zpráva
+        report_placeholder: Výběr zprávy
+        title: Šablona kampaně
+      image_fields:
+        remove: Odstranění stránky
+      index:
+        new: Přidat
+        title: Šablony kampaní
+      list:
+        admin: Klientský administrátor
+        client_admins: Administrátoři klientů
+        created_at: Datum vytvoření
+        name: Název
+        report_bundle: Svazek zpráv
+        updated_at: Aktualizované datum
+      new:
+        header: Nový klient
+      remove_confirm:
+        content: Opravdu chcete odstranit šablonu kampaně '%{jméno}'?
+        success: Šablona kampaně '%{název}' byla úspěšně odstraněna.
+        title: Odstranění šablony kampaně
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tuto šablonu kampaně odstranit?</p>\n"
+            title: Smazat <strong>%{jméno}</strong>?
+        in_progress:
+          deleting: Odstranění
+        tooltips:
+          delete: Odstranit klienta
+          edit: Upravit klienta
+      toggle_status:
+        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+      update:
+        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+    campaigns:
+      actions: Správa
+      assessment_reports:
+        report_approval:
+          allow_bulk_approve: Povolit hromadné schvalování
+          allow_qc_bulk_submit: Povolit hromadné odeslání QC
+          approval_notification_users: Oznámení o schválení Uživatelé
+          approvers: Schvalovatelé
+          approvers_can_edit: Schvalovatelé mohou upravovat
+          approvers_not_required: Schvalovatelé nejsou vyžadováni
+          do_not_send_notifications: Neodesílat oznámení
+          modal_title: Nastavení schvalování zpráv
+          qc_users: Uživatelé QC
+          remove_modal_success: 'Nastavení schválení pro id zprávy: %{reportId} bylo úspěšně odstraněno '
+          remove_modal_text: 'Opravdu chcete odstranit toto nastavení pro id sestavy: %{reportId}?'
+          report: Nahlásit
+          settings: Nastavení
+      assessors:
+        spoof:
+          successfully: Byl jste úspěšně přihlášen jako %{jméno}
+      copy: Kopírovat
+      delete: Odstranit
+      edit: Upravit
+      extend_time_success_message: Časovač kampaně prodloužen na %{minut} minut
+      filters:
+        active: Aktivní
+        all: Všechny
+        archived: Archivováno
+        closed: Uzavřeno
+        inactive: Neaktivní
+        status: Stav
+      form:
+        name: Název
+        practice_campaign: Praktická kampaň
+        status: Stav
+      listing:
+        assessments: Hodnocení
+        id: Id
+        name: Název
+        reports: Zprávy
+        status: Stav
+        type: Typ
+      menus:
+        add_common_campaign: Přidání společné kampaně
+        add_multi_rater_campaign: Přidání kampaně s více hodnotiteli
+      modals:
+        create_threesixity:
+          advance_settings:
+            campaign_template: Šablona kampaně
+            factors: Faktory
+          base_settings:
+            active: Aktivní
+            archive: Archiv
+            assessment: Hodnocení
+            closed: Uzavřeno
+            empty: Prázdné stránky
+            inactive: Neaktivní
+            name: Název
+            previous: Předchozí
+            standard: Standardní
+            status: Stav
+          close:
+            content: Opravdu chcete zavřít nástroj Multi Rater Campaign Creator? Veškeré neuložené úpravy budou ztraceny. Potvrďte prosím své rozhodnutí.
+            title: Zavřít nástroj Multi Rater Campaign Creator?
+          instructions_creation:
+            empty: 'Prázdný: Začněte s prázdným dotazníkem a upravte jej podle svých konkrétních potřeb.'
+            previous: 'Předchozí: Vyberte předchozí hodnocení jako výchozí bod a proveďte úpravy.'
+            standard: 'Standard: Použijte předem připravenou šablonu s běžně používanými otázkami a ukazateli.'
+            sub_title: Vyberte typ kampaně, kterou chcete vytvořit.
+            title: Vítejte v nástroji pro vytváření kampaní s více hodnotiteli!
+          instructions_customization:
+            sub_title: Vyberte šablonu a faktory, které mají být zahrnuty do hodnocení.
+            title: Přizpůsobte si hodnocení!
+          no_factors:
+            description: Zkuste prosím jiná klíčová slova.
+            title: Nebyly nalezeny žádné faktory
+          questions:
+            select_all: Vybrat vše
+            title: Otázky a ukazatele
+          search_factors:
+            description: Zadejte alespoň 3 znaky, abyste našli hledané faktory.
+            title: Začněte hledat
+          success: Kampaň s více hodnotiteli byla úspěšně vytvořena.
+          success_job: Úloha vytvoření kampaně s více hodnotiteli byla úspěšně naplánována.
+      options:
+        description:
+          name: Popis
+          save: Uložit Popis
+          save_success: Popis úspěšně uložen
+        fixed_time: Pevný čas
+        instructions:
+          actions:
+            saved: Pokyny byly úspěšně uloženy
+          enable: Povolení pokynů
+          save: Pokyny pro uložení
+        prework_required: Nepovolte rezervaci centra, pokud nejsou dokončeny přípravné práce
+        prework_required_for_invite: Odeslání e-mailu s pozvánkou až po dokončení přípravných prací
+        proctoring:
+          allow_on_assessment_center: Povolení proctoringu v hodnotícím centru
+          enable: Povolení proctoringu
+          identification: Identifikace
+          identifications:
+            face: Obličej
+            face_and_passport: Obličej a pas
+            passport: Pas
+          integration_type: Integrace
+          integration_types:
+            iframe: IFrame
+            ldb: Prohlížeč Lockdown
+          proctoring_types:
+            offline: Offline
+            online: Online
+          rule_types:
+            allow_absence_in_frame: Povolit nepřítomnost v rámečku
+            allow_to_use_books: Povolit používání knih
+            allow_to_use_calculator: Povolit použití kalkulačky
+            allow_to_use_excel: Povolit použití aplikace Excel
+            allow_to_use_human_assistant: Umožnit použití lidského asistenta
+            allow_to_use_messengers: Povolení používání messengerů
+            allow_to_use_paper: Povolení k použití papíru
+            allow_to_use_websites: Povolení používat webové stránky
+            allow_voices: Povolit hlasy
+            allow_wrong_gaze_direction: Povolení špatného směru pohledu
+          rules: Pravidla
+          trial: Zkouška proctoringu
+          type: Typ
+        show_watermark: Zobrazit vodoznak
+        watermark_content: Obsah vodoznaku
+        watermark_info: Pokud nepřidáte žádný obsah, ve výchozím nastavení se e-mail uživatele zobrazí jako vodoznak. Můžete použít některý z následujících pipetextů -<br/> {{id}} - ID účastníka </br>{{křestní_jméno}} - Křestní jméno účastníka </br>{{last_name}} - Příjmení účastníka </br>{{email}} - E-mail účastníka
+      pdf_password: Heslo PDF
+      types:
+        common: Společné
+        threesixty: Více hodnotitelů
+      users:
+        add_user: Přidat uživatele
+        completion_status: Stav dokončení
+        created_by: Vytvořil
+        email: E-mail
+        filters:
+          all: Všechny
+          anonymous: Anonymní
+          identified: Identifikováno
+        id: Id
+        is_active: Aktivní
+        name: Název
+        no_permission_message: Nemáte oprávnění upravovat
+        updated_by: Aktualizováno
+      validations:
+        dates:
+          end: musí být po datu zahájení
+    campaigns_external_scores_import:
+      errors:
+        invalid_campaign_factor_codes: 'Následující kódy faktorů kampaně jsou neplatné: %{codes}'
+        missing_headers: Chybějící záhlaví
+        missing_users: 'Následující e-maily neexistují: %{emails}'
+      import:
+        example_csv: Stáhnout příklad csv
+        success_msg: Import byl úspěšně nahrán
+      modal:
+        title: Import výsledků externích kampaní
+    clients:
+      api_keys:
+        init_breadcrumbs:
+          breadcrumb: Drobečky
+      archive:
+        successfully: Úspěšně
+      base:
+        active: Aktivní
+        archived: Archivováno
+        disable: Archiv
+        enable: Odarchivovat
+      columns:
+        country: Země
+        project_manager: Projektový manažer
+        type: Typ
+        year: Rok
+      copy:
+        successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně zkopírována.
+      create:
+        successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně vytvořena.
+      destroy:
+        successfully: Klientský nájemní vztah %{název} byl úspěšně odstraněn.
+      edit:
+        header: Upravit klienta
+      licenses:
+        resource:
+          confirmations:
+            toggle_status:
+              body: "<p>Jste si jisti, že chcete %{status} této licence?</p>\n"
+              title: "<strong>%{status}</strong> Licence pro %{jméno}?"
+        show:
+          used_out_of: "%{used_number} z %{number}"
+      new:
+        header: Nový klient
+      projects:
+        actions:
+          archive: Archiv
+          unarchive: Odarchivovat
+        archive:
+          content: Jste si jisti, že chcete archivovat '%{název_projektu}'?
+          success: Projekt '%{jméno_projektu}' byl úspěšně archivován.
+          title: Archivní projekt
+        assign_assessments:
+          add_assessment: Přidat hodnocení
+          assessments: Hodnocení
+        assign_reports:
+          add_report: Přidat zprávu
+        campaigns:
+          archive:
+            successfully: Kampaň '%{název}' byla úspěšně archivována.
+          copy:
+            error: Kampaň '%{jméno}' nebyla zkopírována.
+            successfully: Kampaň '%{název}' byla úspěšně zkopírována.
+          create:
+            successfully: Kampaň '%{název}' byla úspěšně vytvořena.
+          destroy:
+            successfully: Kampaň '%{název}' byla úspěšně odstraněna.
+          edit:
+            header: Upravit kampaň
+          export:
+            assessments: Hodnocení
+            assigned_user: Přiřazení uživatelé
+            completed_user: Dokončení uživatelé
+            created_at: Datum vytvoření
+            header:
+              actions: Akce
+              actual_usage: Skutečné použití
+              assessments: Hodnocení
+              campaigns: Kampaně
+              name: Název
+              reports: Zprávy
+              sub_campaigns: Dílčí kampaně
+              tests_allocated: Přidělené testy
+              users: Uživatelé
+            id: Id
+            name: Název kampaně
+            reports: Zprávy
+            updated_at: Aktualizované datum
+          index:
+            export: Export
+            new: Přidat
+            title: Kampaně
+          list:
+            assessments: Hodnocení
+            assigned_user: Přiřazení uživatelé
+            completed_user: Dokončení uživatelé
+            created_at: Datum vytvoření
+            header:
+              actions: Akce
+              actual_usage: Skutečné použití
+              assessments: Hodnocení
+              campaigns: Kampaně
+              name: Název
+              reports: Zprávy
+              sub_campaigns: Dílčí kampaně
+              tests_allocated: Přidělené testy
+              users: Uživatelé
+            id: Id
+            name: Název kampaně
+            reports: Zprávy
+            updated_at: Aktualizované datum
+          new:
+            header: Nová kampaň
+          resource:
+            sub_campaign:
+              create: Vytvořit novou dílčí kampaň
+            tooltips:
+              copy: Kopírování kampaně
+              create_report: Přidat novou zprávu
+              create_user: Přidat nového uživatele
+              delete: Odstranění kampaně
+              edit: Upravit kampaň
+              export: Export
+          sidebar:
+            archive: Archivní kampaň
+            copy: Kopírování kampaně
+            destroy: Odstranění kampaně
+            disable: Zakázat
+            edit: Upravit kampaň
+            enable: Povolit
+            new: Nová kampaň
+            title: Možnosti kampaně
+            view_licenses: Zobrazit licence
+          sub_campaigns:
+            archive:
+              successfully: Dílčí kampaň %{název} byla úspěšně archivována.
+            copy:
+              error: Podkampaně %{název} nebyly zkopírovány.
+              successfully: Dílčí kampaň %{název} byla úspěšně zkopírována.
+            create:
+              successfully: Dílčí kampaň %{název} byla úspěšně vytvořena.
+            destroy:
+              successfully: Dílčí kampaň %{název} byla úspěšně odstraněna.
+            edit:
+              header: Upravit dílčí kampaň
+            export:
+              assessments: Hodnocení
+              assigned_user: Přiřazení uživatelé
+              completed_user: Dokončení uživatelé
+              created_at: Datum vytvoření
+              header:
+                actions: Akce
+                actual_usage: Skutečné použití
+                archive_status: Stav archivu
+                name: Název
+                sub_campaign: Dílčí kampaně
+                tests_allocated: Přidělené testy
+                users: Uživatelé
+              id: Id
+              name: Název dílčí kampaně
+              reports: Zprávy
+              updated_at: Aktualizované datum
+            header:
+              actions: Akce
+            index:
+              export: Export
+              new: Přidat
+              title: Dílčí kampaně
+            list:
+              assessments: Hodnocení
+              assigned_user: Přiřazení uživatelé
+              completed_user: Dokončení uživatelé
+              created_at: Datum vytvoření
+              header:
+                actions: Akce
+                actual_usage: Skutečné použití
+                archive_status: Stav archivu
+                name: Název
+                sub_campaign: Dílčí kampaně
+                tests_allocated: Přidělené testy
+                users: Uživatelé
+              id: Id
+              name: Název dílčí kampaně
+              reports: Zprávy
+              updated_at: Aktualizované datum
+            new:
+              header: Nová dílčí kampaň
+            resource:
+              tooltips:
+                copy: Kopírovat dílčí kampaň
+                create_report: Přidat novou zprávu
+                create_user: Přidat nového uživatele
+                delete: Odstranění dílčí kampaně
+                edit: Upravit dílčí kampaň
+            sidebar:
+              archive: Dílčí kampaň Archiv
+              copy: Kopírování dílčí kampaně
+              destroy: Odstranění dílčí kampaně
+              disable: Zakázat
+              edit: Upravit dílčí kampaň
+              enable: Povolit
+              new: Nová dílčí kampaň
+              title: Možnosti dílčí kampaně
+              view_licenses: Zobrazit licence
+            toggle_status:
+              successfully: Dílčí kampaň %{název} byla úspěšně aktualizována.
+            update:
+              successfully: Dílčí kampaň %{název} byla úspěšně aktualizována.
+          toggle_status:
+            successfully: Kampaň %{název} byla úspěšně aktualizována.
+          update:
+            successfully: Kampaň %{název} byla úspěšně aktualizována.
+        copy:
+          error: Projekt %{název} nebyl zkopírován.
+          successfully: Projekt %{název} byl úspěšně zkopírován.
+        create:
+          successfully: Projekt %{název} byl úspěšně vytvořen.
+        destroy:
+          successfully: Projekt %{název} byl úspěšně odstraněn.
+        edit:
+          header: Upravit projekt
+        export:
+          2fa_enabled: povoleno 2FA
+          actual_usage: Skutečné použití
+          admin: Klientský administrátor
+          applicable_level: Použitelná úroveň
+          archive_status: Stav
+          assessments: Hodnocení
+          assigned_user: Přiřazení uživatelé
+          completed_user: Dokončení uživatelé
+          created_at: Datum vytvoření
+          id: Id
+          name: Název projektu
+          number: Číslo
+          project_admin: Administrátoři projektu
+          reports: Zprávy
+          tests_allocated: Přidělené testy
+          tte_admin: Projektový manažer TTE
+          updated_at: Datum úpravy
+          url: ADRESA URL
+          users_count: Počet uživatelů
+        form:
+          2fa: ověřování pomocí 2 faktorů
+          2fa_enable: Povolení dvoufaktorového ověřování
+          applicable_levels:
+            campaign: Úroveň ukončení kampaně
+            project: Koncová úroveň projektu
+            sub_campaign: Koncová úroveň dílčí kampaně
+          data_privacy: Ochrana osobních údajů
+          enable_live_chat: Povolení živého chatu
+          enable_privacy_links: Povolit odkaz na ochranu soukromí
+          live_chat_token: Token živého chatu
+          optional: Volitelně
+          other_settings: Další nastavení
+          privacy_link: Odkaz na ochranu osobních údajů
+          privacy_text: Text o ochraně soukromí
+          project_number: Číslo projektu
+          webhook: Webhook
+          webhook_auth_enabled: Povolení ověřování webového háčku
+          webhook_password: Heslo
+          webhook_username: Uživatelské jméno
+        header:
+          actions: Akce
+        index:
+          export: Export
+          new: Přidat
+          title: Projekty
+          tooltips:
+            create: Vytvořit
+            export: Export
+        list:
+          2fa_enabled: povoleno 2FA
+          actual_usage: Skutečné použití
+          admin: Klientský administrátor
+          applicable_level: Použitelná úroveň
+          archive_status: Stav
+          assessments: Hodnocení
+          assigned_user: Přiřazení uživatelé
+          completed_user: Dokončení uživatelé
+          created_at: Datum vytvoření
+          id: Id
+          name: Název projektu
+          number: Číslo
+          project_admin: Administrátoři projektu
+          reports: Zprávy
+          tests_allocated: Přidělené testy
+          tte_admin: Projektový manažer TTE
+          updated_at: Datum úpravy
+          url: ADRESA URL
+          users_count: Počet uživatelů
+        new:
+          header: Nový projekt
+        resource:
+          add_assessment: Přidat hodnocení
+          add_report: Přidat zprávu
+          assessments: Hodnocení
+          tooltips:
+            copy: Kopírování projektu
+            create_admin: Vytvořit správce projektu
+            create_report: Přidat novou zprávu
+            create_user: Přidat nového uživatele
+            delete: Odstranit projekt
+            edit: Upravit projekt
+        sidebar:
+          admins: Správci projektů
+          archive: Archivní projekt
+          copy: Kopírování projektu
+          design: Upravit design
+          destroy: Odstranit projekt
+          disable: Zakázat
+          edit: Upravit projekt
+          enable: Povolit
+          new: Nový projekt
+          title: Možnosti projektu
+          view_licenses: Zobrazit licence
+        status:
+          active: Aktivní
+          archived: Archivováno
+        threesixty_campaigns:
+          base:
+            active: Aktivní
+            archived: Archivováno
+            disable: Archiv
+            enable: Odarchivovat
+          completion_statuses:
+            approved: Schváleno
+            completed: Dokončeno
+            denied: Odmítnuto
+            in_progress: Probíhá
+            not_started: Nebylo zahájeno
+          copy:
+            error: Klientská nájemní smlouva '%{název}' nebyla zkopírována.
+            successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně zkopírována.
+          create:
+            successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně vytvořena.
+          designs:
+            form:
+              no_background: Zatím žádné pozadí
+              no_logo: Zatím žádné logo
+          destroy:
+            error: Nelze odstranit '%{jméno}', protože existují některé závislé asociace subjektů nebo hodnotitelů.
+            successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně odstraněna.
+          edit:
+            header: Upravit kampaň 360
+          export:
+            admin: Administrátor klienta
+            assessment: Assement
+            client_admins: Správci klientů
+            created_at: Vytvořeno v
+            id: Id
+            name: Název
+            report: Nahlásit
+            report_bundle: Svazek zpráv
+            status: Stav
+          index:
+            export: Export
+            new: Přidat kampaň 360
+            title: 360 Kampaně
+          license:
+            header: "%{jméno} - Upravit licenci"
+          licenses:
+            update:
+              duplicate_licenses: Máte duplicitní licence
+              successfully: Licence byly úspěšně aktualizovány
+          list:
+            admin: Administrátor klienta
+            assessment: Assement
+            client_admins: Správci klientů
+            created_at: Vytvořeno v
+            id: Id
+            name: Název
+            report: Nahlásit
+            report_bundle: Svazek zpráv
+            status: Stav
+            updated_at: Aktualizované datum
+          new:
+            header: Nová kampaň 360
+          resource:
+            confirmations:
+              delete:
+                body: "<p>Jste si jisti, že je chcete odstranit?</p> <p>Tuto akci nelze vrátit zpět. Tímto krokem se trvale odstraní kampaň <strong>%{název}</strong>, dílčí kampaně a všechna sdružení.</p> <p>Pro potvrzení zadejte <strong>%{jméno}</strong>.</p>"
+                title: Smazat <strong>%{jméno}</strong>?
+              disable:
+                body:
+                  '0': "<p>Určitě chcete archivovat?</p> <p>Všechny kampaně, dílčí kampaně a uživatelé budou také archivovány</p>"
+                  '1': "<p>Určitě chcete archivovat?</p> <p>Všechny dílčí kampaně a uživatelé budou také archivováni</p>"
+                  '2': "<p>Určitě chcete archivovat?</p> <p>Všichni uživatelé budou také archivováni</p>"
+                  '3': "<p>Určitě chcete archivovat?</p> <p>Všichni uživatelé budou také archivováni</p>"
+                title: Archivovat <strong>%{jméno}</strong>?
+              enable:
+                body:
+                  '0': "<p>Určitě chcete zrušit archivaci?</p>"
+                  '1': "<p>Určitě chcete zrušit archivaci?</p>"
+                  '2': "<p>Určitě chcete zrušit archivaci?</p>"
+                  '3': "<p>Určitě chcete zrušit archivaci?</p>"
+                title: Odarchivovat <strong>%{jméno}</strong>?
+            export_results: Výsledky exportu
+            raw_results: Surové výsledky
+            tooltips:
+              campaigns:
+                delete: Odstranění kampaně
+              copy: Kopírovat klienta
+              create_admin: Vytvořit správce klienta
+              delete: Odstranit klienta
+              disable: Zakázat klienta
+              edit: Upravit klienta
+              enable: Povolit klienta
+          statistics:
+            index:
+              all_assessments: Všechna hodnocení
+              assessment_type: Typ hodnocení
+              title: Statistiky
+          toggle_status:
+            successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+          update:
+            successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+          url: Url
+        toggle_status:
+          successfully: Projekt %{název} byl úspěšně aktualizován.
+        unarchive:
+          content: Jste si jisti, že chcete zrušit archivaci '%{název_projektu}'?
+          success: Projekt '%{název_projektu}'' byl úspěšně odarchivován.
+          title: Projekt Unarchive
+        update:
+          successfully: Projekt %{název} byl úspěšně aktualizován.
+      registration_codes:
+        column:
+          code: Kód
+          usage_stats: Statistiky používání
+        errors:
+          count_invalid: nemůže být menší než used_count = %{use_count}
+          criteria: může obsahovat pouze alfanumerické znaky, pomlčku (-) a podtržítko (_)
+          duplicate_code: se v tomto projektu používá. Zkuste jiný.
+          incorrect_domain: Nesprávný formát domény.
+          invalid_end_date: musí být větší než datum zahájení
+          license_issue: Nedostatek licencí.
+      resource:
+        confirmations:
+          delete:
+            title: Smazat <strong>%{jméno}</strong>?
+          disable:
+            title: Archiv <strong>%{jméno}</strong>?
+          enable:
+            title: Odarchivovat <strong>%{jméno}</strong>?
+      tenancies: Nájemní smlouvy klientů
+      threesixty_campaign: Kampaň Threesixty
+      toggle_status:
+        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+      update:
+        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+    close: Zavřít
+    common:
+      add: Přidat
+      back: Zpět
+      cancel: Zrušit
+      disabled: Diasbled
+      enabled: Povoleno
+      next: Další
+      reset: Obnovení
+      save: Uložit
+      select_all: Vyberte vše
+      unselect_all: Zrušit výběr všech
+    communications:
+      create:
+        successfully: Komunikace byla úspěšně vytvořena.
+      destroy:
+        successfully: Komunikace %{jméno} byla úspěšně odstraněna.
+      edit:
+        header: Upravit komunikaci
+      form:
+        all: Všechny
+        assessment_completion_status_code: Kód stavu dokončení hodnocení
+        assessment_completion_status_code_hint: Pokud je zadán kód dokončení, bude odeslán pouze v případě, že hodnocení uživatele má tento kód stavu dokončení.
+        body_mustache: "{{{user_link}} - Odkaz na platformu pro stávající uživatele nebo jednorázový odkaz pro nastavení hesla pro nové uživatele {{{user_url}} - Stejný jako user_link, ale místo hypertextového odkazu pouze URL {{{user_link_qrcode}}} - Vložení QR kódu vygenerovaného z user_link {{first_name}} - Křestní jméno příjemce {{last_name}} - Příjmení příjemce {{email}} - E-mail příjemce {{schedule_start_date}} - Datum zahájení rozvrhu {{schedule_end_date}} - Datum ukončení rozvrhu\n"
+        completion: Dokončení
+        delivery_at: Dodání na (GST)
+        delivery_delay_hours: Zpoždění dodávky (v hodinách)
+        delivery_rules:
+          in_progress: Pokud probíhá hodnocení
+          not_competed: Pokud není hodnocení dokončeno
+          not_started: Pokud není hodnocení zahájeno
+          send_now: Odeslat nyní
+          specific_datetime: Odeslat na adresu
+        idp_template_approved: Schválený IDP
+        idp_template_assigned: Přidělený IDP
+        idp_template_rejected: IDP Odmítnuto
+        invitation: Pozvánka
+        kind: Typy komunikace
+        magic_link_email: Kouzelný odkaz E-mail
+        new_assignment: Nové zadání
+        new_users: Noví uživatelé
+        other: Další
+        reminder: Připomínka
+        report_available: Zpráva je k dispozici
+        selected: Vybrané stránky
+        selected_cc_recipients: Vybraní příjemci CC
+        selected_recipients: Vybraní příjemci
+        stop_reminder: Přestat posílat upomínky
+        stop_reminder_datetime: Datum ukončení upomínek (GST)
+        workshop_booked: Potvrzení rezervace hodnotícího centra
+        workshop_cancelled: Hodnotící centrum zrušeno
+        workshop_completed: Hodnotící centrum dokončeno
+        workshop_invite: Pozvánka do hodnotícího centra
+        workshop_invite_reminder: Připomenutí pozvánky do hodnotícího centra
+        workshop_upcoming_reminder: Připomínka nadcházejícího hodnotícího centra
+      index:
+        clients: Klienti
+        new: Přidat
+        title: Komunikační centrum
+        type: Typ
+      list:
+        actions: Akce
+        author: Vytvořil
+        campaign: Kampaň
+        client_name: Klient
+        created_at: Datum vytvoření
+        creator_first_name: Vytvořil
+        delivery_rule: Dodávka
+        kind: Typ komunikace
+        project: Projekt
+        recipients: Příjemci
+        sub_campaign: Dílčí kampaň
+        subject: Předmět komunikace
+        updated_at: Datum úpravy
+      new:
+        header: Nová komunikace
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete toto sdělení odstranit?</p>\n"
+            title: Smazat <strong>komunikaci</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tohoto sdělení?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+        in_progress:
+          copying: Kopírování
+          deleting: Odstranění
+        tooltips:
+          copy: Kopírovat komunikaci
+          delete: Odstranit komunikaci
+          download: Stáhnout Historie komunikace
+          view: Zobrazit komunikaci
+      show:
+        assessment: 'Hodnocení:'
+        back: Zpět
+        body: 'Tělo:'
+        campaign: 'Kampaň:'
+        client: 'Klient:'
+        communication_type: 'Typ komunikace:'
+        delivery_rule: 'Pravidlo doručování:'
+        every_interval: Každý %{interval}
+        owner: 'Majitel:'
+        project: 'Projekt:'
+        recipients: 'Příjemci:'
+        specific_datetime: 'Odeslat na adresu:'
+        stop_reminder_datetime: Datum ukončení upomínek (GST)
+        sub_campaign: 'Dílčí kampaň:'
+        subject: 'Předmět: Zpracování informací o projektu, který se uskutečnil v roce 2012, a o jeho výsledcích:'
+        users: 'Uživatelé:'
+      sidebar:
+        copy: Kopírovat komunikaci
+        destroy: Odstranit komunikaci
+        download: Stáhnout Historie komunikace
+        title: Možnosti komunikace
+        view: Zobrazit komunikaci
+      toggle_status:
+        successfully: Komunikace byla úspěšně aktualizována.
+    components:
+      input_duration:
+        placeholder: Zadejte jako "1d 2h 3m"
+    create: Vytvořit
+    dashboard:
+      capacity_name: Název kapacity
+      dashboard_types:
+        oracle_analytics: Oracle Analytics
+        powerbi: PowerBi
+      dashboards: Přístrojové panely
+      get_started: Začněte
+      initialize_msg: Inicializace ovládacího panelu pro tuto kampaň
+      loading_failed: Načítání přístrojové desky se nezdařilo.
+      preview:
+        embed_token_error_description: Zkontrolujte, zda je Dataset a Report Id v nastavení správné.
+        embed_token_error_title: Nelze vygenerovat vložený token.
+      settings:
+        capacity_id: Id kapacity
+        details: Podrobnosti na
+        refresh: Obnovit
+        workspace_id: Id pracovního prostoru
+      tabs:
+        accesssheet: Přístupový list
+        accesssheet_setting: Nastavení přístupového listu
+        dashboard: Přístrojová deska
+        settings: Nastavení
+    dashboard_form:
+      fields:
+        dataset_id: Id datové sady
+        enabled: Povoleno
+        image: Obrázek
+        project_path: Cesta projektu
+        refresh_interval: Interval obnovení (minuty)
+        report_id: Id hlášení
+        visual_header_visibility: Vizuální viditelnost záhlaví
+      image_upload_failed: Nahrávání obrázků se nezdařilo.
+      none: Žádné
+      refresh_success: Obnova datové sady byla úspěšně naplánována.
+      visual_header_visibility_options:
+        hide_all: Skrýt vše
+        keep_original: Zachovejte originál
+        show_all: Zobrazit vše
+    data_exports_modal:
+      title: Zvolte rozsah dat
+    data_reports:
+      columns:
+        created_at: Vytvořeno v
+        created_by: Vytvořil
+        last_updated_by: Poslední aktualizace provedl
+        name: Název
+        owner: Majitel
+        password: Heslo
+        status: Stav
+        udpated_at: Poslední aktualizace
+      configuration: Konfigurace
+      errors:
+        factor_not_found: není v rozsahu posouzení
+        inclusion: 'neplatný typ, platné typy: %{values}'
+        not_found: nenalezeno
+        not_owned: není ve vlastnictví klienta
+      form:
+        name: Datová zpráva
+      messages:
+        runed: Spuštění datové zprávy bylo úspěšně naplánováno
+      validations:
+        project_and_campaigns_not_allowed: project_ids a campaign_ids by neměly být zadávány společně
+        project_not_related_to_client: "%{project_id} nepatří klientovi"
+        project_or_campaign_required: je vyžadováno project_ids nebo campaign_ids
+        sections_required: sekce jsou vyžadovány
+    datasheet:
+      threesixty_warning: Odtud nelze nahrát sloupce datového listu pro sestavu 360. Pro sestavu 360 se sloupce datového listu načítají z kampaně, ke které je tato sestava připojena
+    dates:
+      completed: Dokončeno v
+      end: Datum ukončení
+      start: Datum zahájení
+      started: Začínáme v
+    development_action_import:
+      errors:
+        blank_field: 'Řádek %{řádek}: %{pole} nemůže být prázdné'
+        csv_file_required: Musí to být soubor CSV
+        image_download_failed: 'Nepodařilo se stáhnout obrázek z %{url}: %{message}'
+        invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
+        invalid_date_format: 'Nesprávný formát data: %{date}'
+        invalid_development_action_type: 'Řádek %{řádek}: Neplatná kategorie ''%{hodnota}''. Platné kategorie jsou: %{valid_categories}'
+        invalid_image_file: 'Neplatný soubor obrázku: %{zpráva}'
+        invalid_image_url: 'Nesprávný formát adresy URL obrázku: %{url}'
+        invalid_learning_style: 'Řádek %{řádek}: Neplatný styl učení ''%{hodnota}''. Platné typy jsou: %{valid_types}'
+        missing_columns: 'Chybí povinné sloupce: %{fields}'
+        save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
+        skill_not_found: 'Dovednost nebyla nalezena pro ID: %{skill_id}'
+    development_action_translations:
+      import:
+        errors:
+          blank_id: 'Řádek %{řádek}: ID nemůže být prázdné'
+          development_action_not_found: Vývojová akce nebyla nalezena
+          invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
+          invalid_file_format: Soubor musí být CSV
+          invalid_id: 'Řádek %{řádek}: ID musí být číslo'
+          missing_columns: 'Chybějící povinné sloupce: %{pole}'
+          save_failed: Uložení se nezdařilo
+    development_actions:
+      create:
+        successfully: Vývojová akce "%{název}" byla úspěšně vytvořena.
+      destroy:
+        successfully: Vývojová akce "%{název}" byla úspěšně odstraněna.
+      development_action_types:
+        course: Kurz
+        default: Výchozí
+      edit:
+        header: Upravit vývoj Akce
+      export:
+        details: Podrobnosti o souboru
+        failure_msg: Chyba při exportu překladů
+        success_msg: Probíhá export vývojových akcí. Zkontrolujte prosím stav v oznámeních.
+        title: Export
+        translation_details: Podrobnosti na
+      export_actions:
+        development_action_translations_title: Akce pro rozvoj exportu Překlady
+        development_actions_title: Akce na rozvoj vývozu
+      export_development_action_translations: Vývojová akce Překlady na základě projektu
+      export_development_actions: Rozvojové akce na základě projektu
+      export_global_development_actions: Globální rozvojové akce
+      export_global_development_actions_translations: Překlady globální rozvojové akce
+      form:
+        client_placeholder: Výběr klienta
+        course_image: Obrázek kurzu
+        course_link: Odkaz na kurz
+        description: Popis
+        development_action_type: Typ rozvojové akce
+        end_date: Datum ukončení
+        learning_style: Styl učení
+        name: Název
+        project_placeholder: Výběr projektu
+        skills: Dovednosti
+        skills_placeholder: Vybrané dovednosti
+        start_date: Datum zahájení
+        title: Rozvojová akce
+        upload: Nahrát
+      global: Je globální rozvoj akce?
+      heading: Vývojové akce
+      import:
+        download_example_csv: Stáhnout příklad csv
+        failure_msg: Chyba při importu souboru.
+        info_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+      import_action:
+        development_actions_title: Import vývojových akcí
+        development_actions_translations_title: Import Vývojové akce Překlady
+      import_development_actions: Vývojové akce
+      import_development_actions_translations: Vývojové akce Překlady
+      learning_styles:
+        cannot_be_blank: Nemůže být prázdný
+        invalid: 'Musí se jednat o jednu z těchto možností: on_the_job, structured_learning, learning_from_others'
+        learning_from_others: Učení se od ostatních [20]
+        on_the_job: Na pracovišti [70]
+        structured_learning: Strukturované učení [10]
+      new:
+        header: Nová rozvojová akce
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tuto vývojovou akci odstranit?</p>\n"
+            title: Smazat <strong>vývojovou akci</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tuto vývojovou akci?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+      toggle_status:
+        successfully: Vývojová akce byla úspěšně aktualizována.
+      update:
+        successfully: Vývojová akce "%{název}" byla úspěšně aktualizována.
+    dimensions:
+      copy_scheduled:
+        successfully: Kopírování naplánované pro rozměr %{název}
+      create:
+        successfully: "%{název} dimenze byla úspěšně vytvořena"
+      destroy:
+        successfully: Rozměr %{název} byl úspěšně odstraněn.
+      edit:
+        header: Upravit název rozměru
+      export_json:
+        successfully: Export JSON naplánovaný pro dimenzi %{název}.
+      export_translations_scheduled:
+        successfully: Export překladů naplánovaný pro dimenzi %{název}.
+      form:
+        enable_innovation_styles: Umožnit inovační styly
+        enable_occupations: Umožnit povolání
+      import_factors:
+        import: Import
+        successfully: Úloha importních faktorů naplánovaná pro dimenzi %{název}.
+        title: Faktory dovozu
+      import_modal:
+        cancel: Zrušit
+        continue: Pokračovat
+        import: Import
+        import_dimension: Rozměr importu
+      import_translations:
+        error: Chyba při importu překladů pro rozměr %{název}.
+        successfully: Import překladů naplánovaný pro dimenzi %{název}.
+      import_translations_scheduled:
+        error: Chyba
+      index:
+        create_dimension: Vytvořit rozměr
+        import_dimension: Rozměr importu
+        new: Přidat
+        owner: Majitel
+        title: Rozměry
+      list:
+        active: Aktivní
+        created_at: Datum vytvoření
+        id: Id
+        name: Název
+        updated_at: Datum úpravy
+      new:
+        header: Nový rozměr
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tuto dimenzi odstranit?</p>\n"
+            title: Smazat <strong>rozměr</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tento rozměr?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+        in_progress:
+          copying: Kopírování
+          deleting: Odstranění
+        tooltips:
+          copy: Kopírovat rozměr
+          delete: Odstranit rozměr
+          edit: Upravit název rozměru
+          export_json: Export JSON pro import do jiné platformy
+      sidebar:
+        copy: Kopírovat rozměr
+        destroy: Odstranit rozměr
+        edit: Upravit název rozměru
+        title: Možnosti rozměru
+        view: Zobrazit rozměr
+      toggle_status:
+        successfully: Rozměr byl úspěšně aktualizován.
+      translations:
+        export: Exportovat vše
+        header: Faktorové překlady
+        import: Import
+      update:
+        successfully: rozměr %{název} byl úspěšně aktualizován
+    disable: Zakázat
+    document_titles:
+      project_assessors: Hodnotitelé | %{projekt}
+      project_participants: Účastníci | %{projekt}
+    enable: Povolit
+    errors:
+      error_msg: Něco se pokazilo. Obnovte prosím stránku a pokud problém přetrvává, kontaktujte správce
+    errror_msg: Errror msg
+    factors:
+      copy:
+        error: faktor '%{name}' nebyl zkopírován
+        successfully: Faktor '%{jméno}' byl úspěšně zkopírován.
+      create:
+        successfully: faktor %{jméno} byl úspěšně vytvořen.
+      destroy:
+        successfully: Faktor "%{jméno}" byl úspěšně odstraněn.
+      edit:
+        header: Upravit název faktoru
+      form:
+        components:
+          ExternalList:
+            add: Přidat
+            table:
+              actions: Akce
+              jsonpath: Cesta JSON
+              type: Typ
+              types:
+                norm_score: Normované skóre
+                percentage: Procento
+                percentile: Percentilové skóre
+                score: Skóre
+                zscore: Skóre Z
+            title: Cesty JSON pro skóre
+        scoring_strategies:
+          custom_formula: Vlastní vzorec
+          external_score: Externí skóre
+          questions: Otázky (průměr)
+          questions_percentage: Otázky (SUMA / MAX Celkem)
+          questions_sum: Otázky (SUM)
+          sub_factor_questions: Otázky ostatních faktorů (průměr)
+          sub_factor_questions_sum: Otázky ostatních faktorů (SUM)
+          sub_factors_average: Vážený průměr faktorů
+          sub_factors_conditional_average: Podmíněný vážený průměr faktorů
+          sub_factors_sum: Vážený součet faktorů
+        scoring_strategies_tip: "<strong>otázky (průměr):</strong> Jedná se o podobnou metodu bodování jako v současnosti, kdy jsou s faktorem spojeny otázky. <br /> <br /><strong>otázky (Součet):</strong> Tato metoda je stejná jako metoda Otázky (Průměr), ale používá součet <br /> <br /><strong>otázky ostatních faktorů (Průměr</strong> ): Jedná se o stejnou metodu bodování jako v současné době, kdy jsou k faktoru přiřazeny dílčí faktory, jedinou změnou je přidání váhy. <br /> <br /><strong>otázky ostatních faktorů (SUM):</strong> Jedná se o stejnou metodu jako u ostatních faktorů (průměr), ale používá se součet <br /> <br /><strong>vážený součet faktorů</strong>: Zde se body vybraných ostatních faktorů vynásobí jejich váhami a sečtou."
+        scoring_strategy: Bodovací strategie
+        use_sub_factor_norm_score: Použití Faktory normované skóre
+      index:
+        icon: Ikona
+        new: Přidat
+        scoring_strategies:
+          custom_formula: Vlastní vzorec
+          external_score: Externí skóre
+          questions: Otázky (průměr)
+          questions_percentage: Otázky (SUMA / MAX Celkem)
+          questions_sum: Otázky (SUM)
+          sub_factor_questions: Otázky ostatních faktorů (průměr)
+          sub_factor_questions_sum: Otázky ostatních faktorů (SUM)
+          sub_factors_average: Vážený průměr faktorů
+          sub_factors_conditional_average: Podmíněný vážený průměr faktorů
+          sub_factors_sum: Vážený součet faktorů
+        scoring_strategy: Bodovací strategie
+        sub_factors: Dílčí faktory
+        title: Faktory
+      list:
+        active: Aktivní
+        created_at: Datum vytvoření
+        id: Id
+        name: Název
+        updated_at: Datum úpravy
+      new:
+        header: Nový faktor
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tento faktor odstranit?</p>\n"
+            title: Smazat <strong>faktor</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete tento faktor %{status}?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+        in_progress:
+          copying: Kopírování
+          deleting: Odstranění
+        scoring_strategies:
+          custom_formula: Vlastní vzorec
+          external_score: Externí skóre
+          questions: Otázky (průměr)
+          questions_percentage: Otázky (SUMA / MAX Celkem)
+          questions_sum: Otázky (SUM)
+          sub_factor_questions: Otázky ostatních faktorů (průměr)
+          sub_factor_questions_sum: Otázky ostatních faktorů (SUM)
+          sub_factors_average: Vážený průměr faktorů
+          sub_factors_conditional_average: Podmíněný vážený průměr faktorů
+          sub_factors_sum: Vážený součet faktorů
+        tooltips:
+          copy: Faktor kopírování
+          delete: Odstranit faktor
+          edit: Faktor úprav
+      sidebar:
+        copy: Faktor kopírování
+        destroy: Odstranit faktor
+        edit: Faktor úprav
+        title: Možnosti společnosti Factor
+      toggle_status:
+        successfully: Faktor byl úspěšně aktualizován.
+      update:
+        successfully: "%{jméno} faktor byl úspěšně aktualizován"
+    genders:
+      female: Ženy
+      male: Muži
+      not_set: Není nastaveno
+    grants:
+      common:
+        view: Zobrazit
+      dashboard:
+        name: Přístrojová deska
+        permissions:
+          accesssheet_manage: Správa přístupových listů
+          accesssheet_settings: Nastavení přístupového listu
+          accesssheet_view: Zobrazení přístupového listu
+    hogan:
+      errors:
+        new_assessment_response_not_allowed:
+          detailed_error_message: Pro hodnocení hogan %{název_hodnocení} nelze přidat novou odpověď, protože toto hodnocení je již přiřazeno a spuštěno uživatelem %{email}. Pro tohoto uživatele můžete vytvořit nový účet hogan, který mu umožní hodnocení opakovat.
+          short_error_message: Pro hodnocení hogan %{assessment_name} nelze přidat novou odpověď, protože toto hodnocení je již přiřazeno a spuštěno uživatelem %{email}
+    idp:
+      actions:
+        remove_confirm: Pro odstranění šablony zadejte do textového pole aktuální název šablony uvedený níže
+        success: "%{idpName} byl úspěšně odstraněn."
+      add_idp_template: Přidání šablony IDP
+      all: Všechny
+      behavioral_skills: Behaviorální dovednosti
+      client_skills: Klientské dovednosti
+      edit_template: Upravit šablonu IDP
+      enter_template_description: Popis
+      enter_template_description_error: Je vyžadován popis šablony.
+      enter_template_name: Název
+      enter_template_name_error: Název šablony je povinný
+      global_skills: Globální dovednosti
+      idp: IDP
+      idp_template: Přidání šablony IDP
+      none: Žádné
+      select_by_tags: Vybrat podle značek
+      select_skill_gap_report: Vyberte zprávu o nedostatku dovedností
+      select_specific_skills: Vyberte konkrétní dovednosti
+      selected: Vybrané stránky
+      self_rating: Povolit vlastní hodnocení
+      skill_gap_report: Zpráva o nedostatku dovedností
+      tab:
+        development_actions: Vývojové akce
+        settings: Nastavení
+        templates: Šablony
+      technical_skills: Technické dovednosti
+      template_details: Podrobnosti o šabloně
+    idp_setting:
+      allow_global_skills: Povolit globální dovednosti
+      manager_approves_idp: Manažer schvaluje IDP
+      manager_can_edit_idp: Správce může upravovat IDP
+    import: Import
+    imports:
+      assessments:
+        results:
+          form:
+            import: Import
+      base:
+        form:
+          import: Import
+      errors:
+        invalid_format: Nesprávný formát souboru
+        norm:
+          dimension_not_found: Rozměr %{název_rozměru} pro %{název_klienta} nebyl nalezen
+          factor_mismatch: Rozměr %{název_rozměru} nemá faktor %{název_faktoru}
+          not_set_dimension: Název rozměru by měl být zapsán ve druhé buňce prvního řádku
+        result:
+          answer_invalid: "[Řádek %{řádek}] Odpověď pro qid %{question_id} je neplatná: %{error}"
+          date_errors:
+            both_dates_required: Pro stav dokončeno je vyžadováno jak started_at, tak completed_at
+            completed_at_should_be_after_started_at: completed_at musí být za started_at, aby byl stav dokončen
+            completed_at_should_be_empty: completed_at by měl být prázdný pro stav in_progress
+            dates_not_in_future: Data by neměla být v budoucnosti
+            dates_should_be_empty: Data by měla být prázdná pro stav not_started
+            started_at_required: Pro stav in_progress je vyžadováno platné started_at
+          error: "[Řádek %{řádek}] %{chybný}"
+          invalid_assign: "[Řádek %{řádek}] Nelze najít záznam pro zadané ID výsledku. Pokud chcete vytvořit nový výsledek, nechte prosím sloupec ID výsledku prázdný"
+          invalid_date: "[Řádek %{řádek}] %{chybný}"
+          question_invalid: "[Řádek %{řádek}] Otázka %{question_id} je neplatná"
+          user:
+            record_not_found: Nelze najít existujícího uživatele s e-mailem %{email}.
+          user_assessment:
+            record_not_found: Nelze najít záznam hodnocení s id %{assessment_id} přiřazený uživateli.
+        translation:
+          error: "[Překlad %{id}] %{error}"
+          invalid_format: Nesprávný formát souboru
+        unknown_type: 'Neznámý typ souboru: %{jméno souboru}'
+      form:
+        description: Viz funkce Export pro získání šablony, kterou lze použít k importu.
+        import: Import
+      hris:
+        form:
+          import: Import
+      new:
+        header: Import
+      users:
+        existing_users_whose_password_not_changed_modal_dialog:
+          header: Seznam uživatelů, jejichž hesla nebudou změněna
+        form:
+          description: Viz funkce Export pro získání šablony, kterou lze použít k importu.
+          import: Import
+    imports_assessments_result_imports:
+      create:
+        successfully: Surová data výsledků byla úspěšně importována
+      modal:
+        header:
+          raw: Importovat nezpracovaná data výsledků
+          scoring: Import dat výsledků bodování
+      new:
+        header: Nový
+    imports_hris_imports:
+      create:
+        successfully: Data HRIS byla úspěšně importována
+      new:
+        header: Import dat HRIS
+    imports_user_imports:
+      create:
+        successfully: Uživatelé byli úspěšně importováni
+      new:
+        header: Import uživatelů
+    individual_invite:
+      tabs:
+        assessment_center: Hodnotící centrum
+        subjects: Předměty
+    innovation_styles:
+      create:
+        successfully: Inovační styl %{název} byl úspěšně vytvořen.
+      destroy:
+        successfully: Inovační styl %{název} byl úspěšně odstraněn.
+      edit:
+        header: Upravit styl inovace
+      form:
+        no_icon: Žádná ikona
+      index:
+        new: Přidat
+        title: Inovační styly
+      list:
+        created_at: Datum vytvoření
+        id: Id
+        name: Název
+        position: Pozice
+        updated_at: Datum úpravy
+      new:
+        header: Nový inovační styl
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Jste si jisti, že chcete tento styl inovace odstranit?</p>\n"
+            title: Smazat <strong>styl inovace</strong>?
+        tooltips:
+          delete: Odstranit styl inovace
+          edit: Upravit styl inovace
+      sidebar:
+        copy: Kopírovat styl inovace
+        edit: Upravit
+        title: Možnosti inovačního stylu
+      toggle_status:
+        successfully: Inovační styl byl úspěšně aktualizován.
+    innovation_styles_factors:
+      create:
+        successfully: Faktor %{jméno} byl úspěšně vytvořen.
+      destroy:
+        successfully: Faktor %{jméno} byl úspěšně odpojen.
+      edit:
+        header: Faktor úprav
+      index:
+        new: Přidat
+        title: Faktory
+      list:
+        condition: Stav
+        created_at: Datum vytvoření
+        id: Id
+        name: Název
+        position: Pozice
+        updated_at: Datum úpravy
+        weight: Hmotnost
+      new:
+        header: Připojte faktory
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tento faktor odstranit?</p>"
+            title: Smazat <strong>faktor</strong>?
+        tooltips:
+          delete: Odstranit faktor
+          edit: Faktor úprav
+      sidebar:
+        destroy: Zničit
+        edit: Upravit
+        title: Možnosti společnosti Factor
+      toggle_status:
+        successfully: Faktor byl úspěšně aktualizován.
+    integrations:
+      actions:
+        add: Integrace
+        back: Zpět na Integrace
+        load_mettl_catalog: Katalog hodnocení zatížení Mettl
+      columns:
+        active: Aktivní
+        details: Podrobnosti na
+        name: Název integrace
+      details:
+        provider: Název poskytovatele
+        webhookUrl: Adresa URL webhooku
+        webhookUrls: Adresy URL webhooku
+      integrations: Integrace
+      load_mettl_success: Úloha pro vyhodnocování mettlů zatížení je úspěšně zařazena do fronty
+      modal:
+        hogan:
+          provider: Poskytovatel
+          providers:
+            mercer: Mercer
+            phoenix: Phoenix
+        iiht:
+          password: Heslo
+          tenancy_name: Název nájemní smlouvy
+          tenant_id: ID nájemce
+          user: Uživatel
+        mettl:
+          apiBaseUrl: Koncový bod API
+          apiBaseUrlRequired: Je vyžadován koncový bod API.
+          privateKey: Soukromý klíč
+          privateKeyRequired: Je vyžadován soukromý klíč.
+          publicKey: Veřejný klíč
+          publicKeyRequired: Je vyžadován veřejný klíč.
+          servers:
+            mettl_eu: Evropa
+            mettl_india: Indie
+      names:
+        hogan: HOGAN
+        iiht: IIHT
+        mettl: METTL
+      validations:
+        iiht:
+          tenancy_name_present: Název nájmu je již uveden v jiném projektu
+          tenant_id_present: Id nájemce je již uvedeno v jiném projektu
+        mettl:
+          public_key_present: Veřejný klíč se již nachází v jiném projektu
+      view_all_schedules: Zobrazit všechny plány Mettl
+    invited_subject:
+      add_btn: Přidat předmět
+      assessment_center: 'Hodnotící centrum:'
+      booked_at: 'Rezervováno v:'
+      column:
+        participant: Účastník
+      remove_confirm:
+        content: Jste si jisti, že chcete odstranit předmět s e-mailem '%{subjectEmail}'?
+        success: Předmět s e-mailem '%{subjectEmail}'' byl úspěšně odstraněn.
+        title: Odstranit předmět
+      statuses:
+        accepted: Přijato
+        cancelled: Zrušeno
+        pending: Čeká se na
+        requested_cancellation: Požadované zrušení
+        requested_cancellation_rejected: Odmítnutí zrušení
+        requested_rescheduling: Požadované přeplánování
+        requested_rescheduling_rejected: Změna termínu Zamítnuto
+        rescheduled: Přeloženo na
+      subject: Předmět
+    libraries:
+      create:
+        successfully: Položka %{název} byla úspěšně vytvořena.
+      destroy:
+        successfully: Položka %{název} byla úspěšně odstraněna.
+      edit:
+        header: Upravit
+      index:
+        new_folder: Nová složka
+        owner: Majitel
+        title: Knihovna médií
+        upload: Nahrát
+      list:
+        created_at: Datum vytvoření
+        name: Název
+        new_folder: Nová složka
+        root: Knihovna médií
+        type: Typ
+        updated_at: Datum úpravy
+        upload: Nahrát nový soubor
+      new:
+        header: Nová složka
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete odstranit %{jméno}?</p>\n"
+            title: Smazat <strong>%{jméno}</strong>?
+        tooltips:
+          delete: Odstranit
+          edit: Upravit
+      update:
+        successfully: Položka %{název} byla úspěšně aktualizována.
+    memberships:
+      admin_chosen:
+        successfully: Uživatelé správce byli úspěšně aktualizováni.
+      create:
+        successfully: Uživatel %{jméno} byl úspěšně vytvořen.
+      destroy:
+        successfully: Uživatel %{jméno} byl úspěšně odstraněn.
+      new:
+        header: Nový uživatel
+      reset_password:
+        successfully: Uživatel %{jméno} obdrží během několika minut e-mail s pokyny, jak obnovit své heslo.
+      spoof:
+        successfully: Byl jste úspěšně přihlášen jako %{jméno}
+      toggle_membership_status:
+        successfully: Členství v %{jméno} bylo úspěšně aktualizováno.
+      toggle_status:
+        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+      update:
+        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+    meta_title: Administrativní panel
+    navigation:
+      assessments: Hodnocení
+      assessments_reports: Hodnocení a zprávy
+      assessor_dashboard: Přístrojový panel hodnotitele
+      assessor_workshops: Hodnotící centrum
+      audit_logs: Protokoly o auditu
+      availability: Dostupnost
+      back_to_main: Hlavní nabídka
+      campaign_templates: Šablony kampaní
+      change_password: Změna hesla
+      client_admins: Správci klientů
+      clients: Nájemní smlouvy klientů
+      communication_center: Komunikační centrum
+      dashboard: Přístrojová deska
+      data_reports: Datové zprávy
+      development_actions: Vývojové akce
+      dimensions: Rozměry
+      factors: Faktory
+      innovation_styles: Inovační styly
+      libraries: Knihovna médií
+      norms: Normy
+      occupations: Povolání
+      options: Možnosti
+      participants: Účastníci
+      profile: Profil
+      profile_details: Podrobnosti na
+      project_admins: Správci projektů
+      question_center: Centrum otázek
+      registration_codes: Registrační kódy
+      report_approvals: Schvalování zpráv
+      reports: Zprávy
+      scheduling: Plánování
+      show_submenu: Zobrazit dílčí nabídku
+      skills_taxonomy: Taxonomie dovedností
+      user_profile_details: Podrobnosti o profilu
+      user_report_events: Hlášení uživatele Události
+      users: Uživatelé
+    no_data_found: Nebyly nalezeny žádné údaje
+    norms:
+      copy:
+        error: 'Norma #%{id} nebyla zkopírována.'
+        successfully: Norma "%{název}" byla úspěšně zkopírována.
+      create:
+        successfully: Norma "%{název}" byla úspěšně vytvořena.
+      destroy:
+        successfully: Norma "%{název}" byla úspěšně odstraněna.
+      edit:
+        header: Přejmenování normy
+      editor:
+        factors: Faktory
+        inplace_title: Zadejte hodnotu
+        title: Normální editor
+      export:
+        success_msg: Úloha normálního exportu byla úspěšně naplánována. Zkontrolujte prosím stav v oznámeních.
+      import:
+        download_example_csv: Vzorové normy CSV
+        select_file_validation: Před odesláním vyberte vlastníka a soubor.
+        success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+        title: Import norem
+      index:
+        import: Import
+        new: Přidat
+        owner: Majitel
+        title: Normy
+      list:
+        active: Aktivní
+        created_at: Datum vytvoření
+        dimension_id: Rozměr Id
+        id: Id
+        name: Název
+        updated_at: Datum úpravy
+        updated_by: Aktualizováno
+      new:
+        header: Nová norma
+      norms: Normy
+      remove:
+        confirm: Pro potvrzení zadejte do textového pole níže uvedený název normy
+        warning: Jste si jisti, že chcete odstranit normu "%{jméno}"?
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tuto normu smazat?</p>\n"
+            title: Smazat <strong>normu</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tuto normu?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+        in_progress:
+          copying: Kopírování
+          deleting: Odstranění
+        tooltips:
+          copy: Kopírovat normu
+          delete: Smazat normu
+          edit: Přejmenování normy
+      score_types:
+        five_scale: Pět stupnic
+        norm_type: Typ normy
+        percentage: Procento
+      sidebar:
+        copy: Kopírovat normu
+        destroy: Smazat normu
+        edit: Přejmenování normy
+        editor: Normální editor
+        export: Norma pro vývoz
+        title: Normovy možnosti
+      toggle_status:
+        successfully: Norma byla úspěšně aktualizována.
+      update:
+        successfully: Norma %{název} byla úspěšně aktualizována.
+    notification_bell_icon: Ikona zvonku oznámení
+    noty:
+      error_408: Tato akce trvá příliš dlouho. Zkuste stránku načíst znovu.
+      error_500: Něco se pokazilo. Kontaktujte správce.
+    occupations:
+      create:
+        successfully: Povolání %{jméno} bylo úspěšně vytvořeno.
+      destroy:
+        successfully: Povolání %{jméno} bylo úspěšně smazáno.
+      edit:
+        header: Upravit povolání
+      form:
+        hint:
+          key_career_tracks: '"+" - seznam, "*" - tučně. Příklad: + *Biologie* - nějaký popis...'
+        no_icon: Žádná ikona
+      index:
+        new: Přidat
+        title: Povolání
+      list:
+        created_at: Datum vytvoření
+        id: Id
+        name: Název
+        updated_at: Datum úpravy
+      new:
+        header: Nové povolání
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete toto povolání smazat?</p>\n"
+            title: Smazat <strong>povolání</strong>?
+        tooltips:
+          delete: Odstranit povolání
+          edit: Upravit povolání
+      sidebar:
+        copy: Kopírovat povolání
+        edit: Upravit
+        title: Možnosti povolání
+      toggle_status:
+        successfully: Povolání bylo úspěšně aktualizováno.
+    occupations_factors:
+      create:
+        successfully: Faktor %{jméno} byl úspěšně vytvořen.
+      destroy:
+        successfully: Faktor %{jméno} byl úspěšně odpojen.
+      edit:
+        header: Faktor úprav
+      index:
+        new: Přidat
+        title: Faktory
+      list:
+        condition: Stav
+        created_at: Datum vytvoření
+        id: Id
+        name: Název
+        position: Pozice
+        updated_at: Datum úpravy
+        weight: Hmotnost
+      new:
+        header: Připojte faktory
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tento faktor odstranit?</p>"
+            title: Smazat <strong>faktor</strong>?
+        tooltips:
+          delete: Odstranit faktor
+          edit: Faktor úprav
+      sidebar:
+        destroy: Destroy Factor
+        edit: Upravit
+        title: Možnosti společnosti Factor
+      toggle_status:
+        successfully: Faktor byl úspěšně aktualizován.
+      update:
+        successfully: Faktor %{jméno} byl úspěšně aktualizován.
+    participants:
+      tabs:
+        assessors: Posuzovatelé
+        sms_contacts: Kontakty SMS
+        subjects: Předměty
+    piped_text_modal:
+      assessment_id: ID hodnocení
+      campaign_id: ID kampaně
+      insight_page_link: Odkaz na stránku Insight
+      insight_page_url: Adresa URL stránky Insight
+      join_link: Připojte se k odkazu
+      magic_link: Magický odkaz
+      magic_url: Magická adresa URL
+      profile_custom_field: Vlastní pole profilu
+      report_name: Název zprávy
+      text: Text
+      title: Přidání textu s potrubím
+    proctoring_sessions:
+      columns:
+        comment: Komentář
+        completed_at: Dokončeno v
+        conclusion: Závěr
+        links: Odkazy
+        score: Skóre
+        session_id: Id relace
+        started_at: Začínáme v
+      links:
+        report: Nahlásit
+        review: Recenze
+      resource_name: Proctoringové relace
+    products:
+      copy:
+        error: Chyba
+      destroy:
+        successfully: Úspěšně
+      toggle_status:
+        successfully: Úspěšně
+    profile:
+      change_password: Změna hesla
+      details: Podrobnosti na
+      profile: Profil
+    profiles:
+      edit:
+        success: Profil byl úspěšně aktualizován.
+        title: Editor profilu
+      update:
+        edit:
+          success: Úspěch
+    project:
+      tools:
+        workshop_status_export: Export stavu dílny
+        workshop_status_export_success: Workshop Status Export byl úspěšně naplánován.
+    project_participants:
+      cancel: Zrušit
+      column_actions: Akce
+      column_campaigns: Kampaně
+      column_createdAt: Vytvořeno v
+      column_created_at: Vytvořeno v
+      column_email: E-mail
+      column_id: Id
+      column_name: Název
+      delete: Odstranit
+      edit: Upravit
+      edit_participant: Upravit účastníka
+      filter_campaigns: Žádné kampaně
+      form_first_name: Křestní jméno
+      form_last_name: Příjmení
+      reset_password: Obnovení hesla
+      save: Uložit
+      search_user: Hledat uživatele
+      send_email: Odeslat e-mail
+    project_tabs:
+      assessments:
+        column:
+          name: Název
+          normalize_factor_scores: Normalizace skóre faktorů
+          user_result_validity_in_days: Platnost výsledku
+        delete:
+          content: Opravdu chcete odstranit hodnocení '%{jméno}'?
+          success: Hodnocení '%{name}' bylo úspěšně odstraněno.
+          title: Odstranit hodnocení
+        form:
+          assessment_placeholder: Vybrat hodnocení
+          assessment_required: Vyžaduje se posouzení
+          normalize_factor_scores: Normalizace skóre faktorů
+          user_result_validity_in_days: Platnost výsledku ve dnech
+        title: Hodnocení
+      design: Design
+      general: Obecné
+      privacy: Ochrana osobních údajů
+      profile: Profil
+      registration: Registrace
+      webhooks:
+        actions:
+          delete:
+            key: smazat
+            label: Odstranit
+          edit:
+            key: editovat
+            label: Upravit
+          send_test:
+            key: send_test
+            label: Odeslat test
+        form:
+          active:
+            label: Aktivní
+            name: aktivní
+          auth_type:
+            basic:
+              label: Základní
+              value: basic_auth
+            label: Typ ověření
+            name: auth_type
+            no_auth:
+              label: Žádné
+              value: no_auth
+          description:
+            label: Popis
+            name: popis
+          include_locales:
+            label: Zahrnout překlady
+            name: include_locales
+          password:
+            label: Heslo
+            name: heslo
+          topics:
+            label: Události
+            list:
+              assessment_assigned: Přiřazené hodnocení
+              assessment_completed: Hodnocení dokončeno
+              assessment_started: Hodnocení zahájeno
+              assessment_timeout: Časový limit hodnocení
+              campaign_results_available: Výsledky kampaně jsou k dispozici
+              campaign_user_status: Stav uživatele kampaně
+              report_available: Zpráva je k dispozici
+              results_available: Dostupné výsledky
+              scheduling_cancelled: Plánování zrušeno
+              scheduling_invited: Plánování Pozváni
+              scheduling_rescheduled: Plánování Přeloženo
+              scheduling_scheduled: Plánování Plánované
+            name: témata
+          url:
+            label: Url
+            name: url
+          username:
+            label: Uživatelské jméno
+            name: uživatelské jméno
+        remove_webhook:
+          content: Smazat %{popis}?
+          title: Odstranit
+        title: Webové háčky
+    project_users:
+      cancel: Zrušit
+      change_password: Změna hesla
+      column_actions: Akce
+      column_campaigns: Kampaně
+      column_created_at: Vytvořeno v
+      column_email: E-mail
+      column_id: Id
+      column_name: Název
+      confirm_delete: Ano, vymazat
+      confirm_send: Ano, pošlete
+      delete: Odstranit
+      delete_error: Nepodařilo se odstranit hodnotitele '%{jméno}'. Obraťte se prosím na svého správce.
+      delete_success: Hodnotitel '%{jméno}' byl úspěšně odstraněn.
+      edit: Upravit
+      edit_assessor: Upravit hodnotitele
+      filter_campaigns: Bez kampaní
+      form_first_name: Křestní jméno
+      form_last_name: Příjmení
+      modal_delete_content: Opravdu chcete odstranit hodnotitele '%{jméno}'?
+      modal_delete_title: Vymazat hodnotitele
+      modal_reset_email_content: Opravdu chcete odeslat odkaz na obnovení hesla na adresu '%{email}'?
+      model_reset_email: Obnovení hesla hodnotitele
+      no_edit_permission: Nemáte oprávnění upravovat hodnotitele '%{jméno}'
+      reset_mail_error: Nepodařilo se odeslat odkaz na obnovení hesla na adresu '%{email}'. Kontaktujte prosím svého správce.
+      reset_mail_success: Odkaz na obnovení hesla byl úspěšně odeslán na adresu '%{email}'
+      save: Uložit
+      search_accessor: Přístupy pro vyhledávání
+      send_email: Odeslat e-mail
+    projects:
+      addProject: Přidat projekt
+      assessment_settings:
+        search: Vyhodnocení vyhledávání
+      clients:
+        confirmations:
+          detach_from_project:
+            body: Tělo
+            title: Název
+      columns:
+        project_number: Číslo projektu
+      design_settings:
+        alt_text_invalid: Alt Text obsahuje nepodporované znaky.
+        alt_text_logo: Logo Alt-Text
+        alt_text_logo_required: Je vyžadováno logo Alt-Text
+        alt_text_long: Překračuje maximální limit 100 znaků.
+        background_color: Barva pozadí
+        background_label: Pozadí
+        background_overlay_label: Překrytí pozadí
+        background_size: Velikost pozadí
+        background_size_contain: Obsahuje
+        background_size_cover: Obálka
+        bg_upload: Nahrát
+        client_logo_label: Logo klienta
+        contrast_ratio_warning: 'Poznámka: Použití této základní barvy může porušit požadavek na kontrastní poměr pro čitelnost textu.'
+        contrast_ratio_warning_lighter_color: 'Poznámka: Použití této barvy %{název} může porušit požadavek na kontrastní poměr pro čitelnost textu. Zkuste použít tmavší barvu.'
+        error_color: Barva chyby
+        info_color: Informační barva
+        logo_upload: Nahrát
+        position_auto: Auto
+        position_label: Pozice přihlašovacího pole
+        position_left: Vlevo
+        position_right: Vpravo
+        primary_color: Základní barva
+        reset: Obnovení
+        sec_logo_label: Sekundární logo
+        sec_logo_upload: Nahrát
+        secondary_logo_alt_text: Sekundární logo Alt-Text
+        secondary_logo_alt_text_required: Je vyžadováno sekundární logo Alt-Text
+        success_color: Barva úspěchu
+        success_update: Nastavení návrhu byla úspěšně uložena
+        warning_color: Varovná barva
+      general_settings:
+        live_chat: Povolení živého chatu
+        locales_label: Lokality
+        name_label: Název
+        project_number_label: Číslo projektu
+        save_changes: Uložení změn
+        sub_domain_label: Subdoména
+      mettl_schedule_records:
+        actions:
+          edit: Upravit
+        add: Přidat plán
+        assessment_id: ID hodnocení
+        assessment_name: Název hodnocení
+        candidate_authorization: Povolení autorizace kandidáta
+        candidate_screen_capture: Povolit snímání obrazovky kandidáta
+        count: Počet tolerancí při prohlížení
+        created_at: Vytvořeno v
+        schedule_id: ID plánu
+        schedule_name: Název plánu
+        search: Vyhledávání
+        secure_browser_enabled: Povolení zabezpečeného prohlížeče
+        settings: Nastavení
+        show_remaining_counts: Povolit zobrazení zbývajícího počtu
+        visual_proctoring_enabled: Povolení vizuálního proctoringu
+        web_proctoring_enabled: Povolení webového proctoringu
+      privacy_settings:
+        disable_dp: Nepovolujte další zpracování dat
+        dp_consent: Povolit souhlas se zpracováním údajů
+        dp_consent_custom: Přizpůsobení souhlasu se zpracováním údajů
+        dp_consent_version: Verze politiky
+        errors:
+          policy_version_format: Povolena jsou pouze celá čísla
+        mask_identity_for_examus: Údaje o masce pro Examus Proctoring
+        mask_identity_for_hogan: Údaje o masce pro Hogan
+        mask_identity_for_iiht: Údaje o masce pro IIHT
+        mask_identity_for_mettl: Údaje masky pro METTL
+        mask_identity_for_pearson: Údaje o masce pro Pearson
+        mask_identity_for_saville: Údaje o masce pro Saville
+        privacy_link: Povolení ochrany osobních údajů Odkaz
+        privacy_link_label: Odkaz na ochranu osobních údajů
+        privacy_link_placeholder: Zadejte odkaz na ochranu osobních údajů
+        privacy_text: Text o ochraně osobních údajů
+        privacy_text_placeholder: Zadejte text o ochraně osobních údajů
+      profile_settings:
+        form_fields:
+          enabled: Povoleno
+          half_size: Poloviční velikost
+          locked: Uzamčené stránky
+          name: Název
+          remove: Odstranění stránky
+          required: Požadované
+          sort: Třídit
+        month: Měsíc
+        never: Nikdy
+        update_in: Upozornit na aktualizaci profilu v
+        year: Rok
+      registration_settings:
+        hide_signup: Skrýt možnost Registrace
+        require_mobile_number: Vyžadovat číslo mobilního telefonu
+      users:
+        confirmations:
+          detach_from_project:
+            body: Tělo
+            title: Název
+      webhook_settings:
+        add: Přidat webový háček
+        column_active: Aktivní
+        column_created_date: Datum vytvoření
+        column_description: Popis
+        column_manage: Správa
+        column_updated_date: Datum úpravy
+        column_url: ADRESA URL
+        search: Vyhledávání Webhoook
+    questions:
+      copy:
+        successfully: Otázka "%{jméno}" byla úspěšně zkopírována.
+      create:
+        successfully: Otázka "%{jméno}" byla úspěšně vytvořena.
+      destroy:
+        successfully: Otázka "%{jméno}" byla úspěšně smazána.
+      edit:
+        header: Upravit otázku
+      index:
+        owner: Majitel
+      new:
+        header: Nová otázka
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tuto otázku smazat?</p>\n"
+            title: Smazat <strong>otázku</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tuto otázku?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+      toggle_status:
+        successfully: Úspěšně aktualizováno.
+    report_approval:
+      bulk_approve_success: "%{sent_for_approval} odesláno ke schválení. %{approved} zprávy schváleny. %{ignored} zprávy vyžadují ruční schválení kvůli změnám/komentářům QC."
+      columns:
+        actions: Akce
+        approval_status: Stav schválení
+        approved_by: Schváleno
+        campaign_name: Název kampaně
+        qc_by: QC Podle
+        report_name: Název zprávy
+        user_email: E-mail uživatele
+        user_name: Uživatelské jméno
+      dashboard: Přístrojová deska
+      download: Stáhnout
+      report_approvals: Schvalování zpráv
+      review: Recenze
+      saving_filters:
+        actions:
+          clear_filters: Vymazat filtry
+          delete_filter: Odstranit filtr
+          save_filter: Uložit
+          save_new_filter: Uložit jako nový filtr
+          saved_filters: Uložené filtry
+        delete_saved_filters: Odstraněný filtr
+        edit_filter_name: Název filtru uložen
+        error_while_deleting: Chyba při mazání
+        error_while_editing: Chyba při úpravách
+        error_while_fetching: Něco se pokazilo , zkuste to znovu
+        error_while_saving: Chyba při ukládání filtru
+        filter_updated: Aktualizace filtru
+        no_saved_filters: Nejsou uloženy žádné filtry
+        save_filter: Uložený filtr
+        set_favorite: Filtr byl nastaven jako oblíbený
+    report_builder:
+      campaign_factors:
+        add_field: Přidat pole
+        code: Kód
+        code_constraint: Kód musí začínat malým písmenem a může obsahovat pouze malá písmena, číslice a podtržítka
+        delete: Odstranit
+        import_factors: Faktory dovozu
+        invalid_factor_params: Nesprávný formát parametrů faktorů kampaně
+        name: Název
+        no_boundary_space: Název nesmí začínat ani končit mezerou
+        too_many_factors: Nelze vytvořit více než %{počet} faktorů kampaně
+        tools: Nástroje
+        type: Typ
+      pagination:
+        edit_frame: Upravit rámeček stránkování
+        hints:
+          frame_settings_off: Zakázáno nastavení stránkovacího rámečku, modul se chová jako obvykle
+          frame_settings_on: Povolte nastavení rámečku pro stránkování a nastavte rozměry další stránky modulu (rámeček je zvýrazněn oranžovou barvou)
+          pagination_disabled: Stránkování modulu není pro modul k dispozici. Na jedné stránce je povoleno pouze jedno stránkování modulu
+          pagination_off: Stránkování modulu je zakázáno
+          pagination_on: Je povoleno stránkování modulu. Obsah, který neodpovídá rozměrům modulu, bude vložen na další stránku/stránky
+          repeat_modules: Vybrané moduly se budou opakovat na vložených stránkách exta, odkazuje na název modulu
+        module_pagination: Stránkování modulů
+        repeat_modules: Opakování modulů
+    report_families:
+      create:
+        successfully: Svazek sestav %{název} byl úspěšně vytvořen.
+      destroy:
+        successfully: Svazek sestav %{název} byl úspěšně odstraněn.
+      edit:
+        header: Upravit název svazku zpráv
+      index:
+        add: Přidat
+        title: Svazky zpráv
+      new:
+        header: Nový balíček zpráv
+      reports:
+        destroy:
+          successfully: Zpráva byla úspěšně odstraněna ze svazku zpráv
+        index:
+          add: Přidat novou zprávu
+          title: Zprávy ve svazku
+        resource:
+          confirmations:
+            delete:
+              body: "<p>Opravdu chcete tuto zprávu ze svazku odstranit?</p>\n"
+              title: Odstranit <strong>zprávu</strong> ze svazku?
+          tooltips:
+            delete: Odstranění zprávy ze svazku
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tento svazek zpráv odstranit?</p>\n"
+            title: Smazat <strong>zprávu</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tento Svazek zpráv?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+        tooltips:
+          delete: Odstranění svazku zpráv
+          edit: Upravit svazek zpráv
+      sidebar:
+        destroy: Odstranění svazku zpráv
+        edit: Upravit balíček zpráv
+        title: Možnosti hlášení Svazek
+      update:
+        successfully: Svazek sestav %{název} byl úspěšně aktualizován.
+    report_review:
+      abort_qc: Přerušení kontroly kvality
+      approve: Schválit
+      approve_changes: Schválení změn
+      edit: Upravit
+      remove_approval: Odebrat schválení
+      request_changes: Žádost o změny
+      review: Recenze
+      send_for_approve: Odeslat ke schválení
+      statuses:
+        approved: Schváleno
+        change_requested: Požadované změny
+        not_ready: Není připraven
+        pending_qc: Čeká se na kontrolu kvality
+        qc_completed: QC Dokončeno
+        qc_in_progress: Probíhající kontrola kvality
+    reports:
+      bulk_upload:
+        choose_file: Zvolte Soubor
+        no_file_selected: Není vybrán žádný soubor
+        title: Faktory kampaně hromadného nahrávání
+        upload_success: Úspěšně nahráno
+      copy:
+        copy: kopírovat
+        copy_report: Kopírování zprávy
+        name: Název
+        successfully: Zpráva '%{název}' byla úspěšně zkopírována.
+      create:
+        successfully: Zpráva '%{název}' byla úspěšně vytvořena.
+      destroy:
+        successfully: Hlášení '%{jméno}' bylo úspěšně odstraněno.
+      edit:
+        header: Upravit název zprávy
+      modals:
+        remap_assessment:
+          new_assessment_name: Název nového posouzení
+          old_assessment_name: Název starého posouzení
+          success_message: Bylo naplánováno přemapování hodnocení, po nějaké době jej prosím obnovte. Neupravujte zprávu a neukládejte žádné nové změny, dokud nebude přemapování dokončeno.
+      name: Zprávy
+      new:
+        header: Vybrat zprávu
+      preview:
+        comments: Komentáře
+        hide_resolved: Skrýt Vyřešeno
+        history: Historie
+        info_to_select_module: Vyberte textový modul, který chcete komentovat
+        title: Náhled
+      regenerate:
+        successfully: Zpráva byla úspěšně odeslána k regeneraci
+      regenerated: Regenerované stránky
+      regenerated_count: Zprávy regenerované
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tuto zprávu odstranit?</p>\n"
+            title: Smazat <strong>zprávu</strong>?
+          detach:
+            body: "<p>Jste si jisti, že chcete tuto zprávu odpojit?</p>\n"
+            title: Odpojit <strong>zprávu</strong>?
+          soft_delete:
+            body: "<p>Jste si jisti, že chcete tuto zprávu odstranit softwarově?</p>\n"
+            title: Soft Delete <strong>Report</strong>?
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete tuto zprávu %{status}?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+      restore:
+        successfully: Zpráva %{název} byla úspěšně obnovena.
+      soft_delete:
+        successfully: Zpráva %{jméno} byla úspěšně přesunuta do koše.
+      toggle_archive:
+        successfully: Hodnocení %{jméno} proběhlo %{stav} úspěšně.
+      toggle_status:
+        successfully: Zpráva byla úspěšně aktualizována.
+      update:
+        successfully: Zpráva %{název} byla úspěšně aktualizována.
+    resource:
+      remove_confirm:
+        message: Opravdu chcete tento zdroj odebrat?
+        title: Odebrat zdroj
+    saml_settings:
+      after_signout_url: Po odhlášení Url
+      cert: Certifikát
+      config_details:
+        acs_url: Adresa URL služby Assertion Consumer Service
+        copied: Zkopírováno %{element}
+        issuer: Id subjektu/Issuer
+        title: Konfigurace Idp s následujícími informacemi
+      email_pipetext: E-mail Pipetext
+      enabled: Povoleno
+      enforced: Vynucení SAML
+      entity_id: ID subjektu/Issuer
+      name_identifier_format: Identifikátor názvu
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml: SAML
+      saml_setting: Nastavení SAML
+      save: Uložit nastavení
+      sso_service_url: Url služby SSO
+      successfully_saved_msg: Nastavení SAML bylo úspěšně uloženo.
+    save: Uložit
+    scheduling:
+      add_activity: Přidat aktivitu
+      add_assessment_center: Přidat hodnotící centrum
+      add_assessor_form:
+        assessment: Hodnocení
+        assessor: Posuzovatel
+        schedule_time: Časový plán
+      add_subject: Přidat předmět
+      assessment_center_form:
+        add_more: Přidat více
+        allow_late_cancellation_and_scheduling: Povolení pozdního zrušení a plánování
+        assessor_ids_label: Posuzovatelé
+        back: Zpět
+        basic_info_panel:
+          description: Níže zadejte informace o rozvrhu. Můžete také vybrat více termínů a vytvořit tak více hodnotících center.
+          title: Základní informace
+        cancellation_lead_time_label: Doba pro zrušení
+        copy_hint: Zkopíruje výše uvedené konfigurace Seats, Center Managers, Assessors a Meetings &amp; Resources do následujících Assessment Center. Po zkopírování můžete před pokračováním provést další změny v jednotlivých Assessment Centrech.
+        copy_to_all: Kopírování do ostatních středisek pro posuzování
+        create: Vytvořit
+        dates_label: Data
+        duration_label: Doba trvání
+        duration_max_error: Nesmí být delší než 16 hodin
+        duration_min_error: Nesmí být kratší než 15 minut
+        duration_placeholder: Např. 4h 30m
+        manager_ids_label: Manažeři středisek
+        meeting_link: Odkaz na setkání
+        meetings_and_resources: Schůzky a zdroje
+        name_label: Název
+        next: Další
+        required_error: Požadované
+        reschedule_duration_max_error: Nesmí být delší než 30 dní
+        reschedule_duration_min_error: Nesmí být kratší než 1 minuta
+        resources_panel:
+          description: Přidejte odkazy na všechny zdroje, ke kterým chcete, aby měli facilitátoři přístup.
+          resource_name_placeholder: Název zdroje
+          resource_url_placeholder: Odkaz na zdroje
+          title: Zdroje
+          validation_error: Zadejte název i adresu URL nebo odstraňte zdroj
+        scheduling_lead_time_label: Doba přípravy na plánování
+        seats_label: Sedadla
+        time_label: Čas
+        timezone_label: Časové pásmo
+        url_label: ADRESA URL
+        video_call_type:
+          custom: Vlastní
+          internal: Interní
+          none: Žádné
+        video_call_type_label: Přidání videohovoru
+      attendance_status:
+        column_name: Stav docházky
+        dropped_out: Vypadl
+        late: Pozdě
+        no_show: Žádné představení
+        no_status: Žádný stav
+        on_time: Včas
+      attended:
+        attended: Zúčastnil se
+        not_attended: Nezúčastnil se
+      campaign_participants: Účastníci kampaně
+      columns:
+        activity: Aktivita
+        assessor: Posuzovatel
+        assessors: Posuzovatelé
+        attendance: Docházka
+        attended: Zúčastnil se
+        booked_at: Rezervováno v
+        campaign_name: Název kampaně
+        duration: Doba trvání
+        managers: Mangers
+        meeting_link: Odkaz na setkání
+        name: Název
+        participants: Účastníci
+        prework: Předpráce
+        resource_link: Odkaz
+        resource_name: Název
+        schedule_time: Časový plán
+        scheduling_status: Stav plánování
+        seats: Sedadla
+        start_time: Datum a čas
+        subject: Předmět
+        title: Název
+      errors:
+        assessor_already_assigned: Posuzovatel je již přiřazen k tomuto posouzení. Vyberte prosím jiné posouzení nebo posuzovatele.
+        date_required: Vyberte prosím datum
+        invalid_url: Nesprávný formát adresy URL
+        meeting_link_https: Odkaz na schůzku musí začínat na "https://"
+      id: ID
+      info:
+        allowed: Povolené
+        assessors: Posuzovatelé
+        booked: Rezervovaná místa
+        cancellation_lead_time: Doba trvání zrušení
+        cancellation_tooltip: Uživatel by mohl zrušit rezervaci do %{date}
+        date: Datum a čas
+        duration: Doba trvání
+        join_meeting: Připojit se k místnosti
+        late_cancellation_and_scheduling: Pozdní zrušení a plánování
+        link: Odkaz na setkání
+        managers: Manažeři středisek
+        none: Žádné
+        not_allowed: Není povoleno
+        remaining: Zbývající místa
+        scheduling_lead_time: Doba plánování
+        scheduling_tooltip: Uživatel si bude moci rezervovat čas do %{date}
+        search_placehoder: Vyhledávání podle ID, e-mailu nebo jména
+        timezone: Časové pásmo
+        total_seats: Celkový počet míst
+      resources:
+        confirm_message: Opravdu chcete odstranit prostředek '%{název_zdroje}'?
+        confirm_title: Požadované potvrzení
+        create: Vytvořit zdroj
+        invalid_url: Neplatná adresa URL. Zadejte kompletní adresu url s protokolem http nebo https.
+        resource: Zdroje
+        successful_remove: Prostředek Assessment Center %{název_prostředku} byl úspěšně odstraněn.
+      schedule_assessments: Plánování hodnocení
+      scheduling_statuses:
+        cancelled: Zrušeno
+        late_cancelled: Pozdě zrušeno
+        late_rescheduled: Zpožděný přesun termínu
+        rescheduled: Přeloženo na
+        scheduled: Plánované
+      search_participant: Vyhledávání účastníků kampaně
+      status:
+        completed: Dokončeno
+        dropped_out: Vypadl
+        in_progress: Probíhá
+        late: Pozdě
+        no_show: Žádné představení
+        not_started: Nebylo zahájeno
+      status_change_modal:
+        content: Po uzavření hodnotícího centra se účastníci nebudou moci účastnit žádných aktivit centra.
+        title: Změna statusu hodnotícího centra
+      subjects:
+        activities: Aktivity
+        add_assessor_form: Přidat formulář Assessor
+        assessments: Hodnocení
+        assessor_forms: Formuláře pro odhadce
+        confirm_message: 'Jste si jisti, že chcete zrušit účast subjektu s e-mailem ''%{subject_email}''?<br />po označení jako zrušený se tento subjekt nebude moci účastnit hodnotícího centra.
+
+          '
+        confirm_title: Potvrzení je vyžadováno
+        edit_assessor_form: Upravit formulář hodnotitele
+        form_title: Plánování hodnocení
+        language: Jazyk
+        language_not_selected: Nevybráno
+        mark_cancel_success: Zrušena účast subjektu s e-mailem %{subject_email}.
+        meeting_link_custom: Vlastní
+        meeting_link_internal: Interní
+        meeting_link_none: Žádné
+        meeting_link_title: Odkaz na setkání
+        no_change: Žádná změna
+        override_existing: Přepsání stávajících rozvrhů pro předměty
+        preworks: Předpráce
+        schedule: Plán
+        unschedule: Zrušit plánování
+      tabs:
+        activities: Aktivity
+        assessment_center: Hodnotící centrum
+        invites: Pozvánky
+        resources: Zdroje
+        subjects: Předměty
+    scoring:
+      action_prohibited: Zakázaná akce
+      active: Aktivní
+      actual_average: Skutečný průměr
+      add_factor: Přidat faktor
+      add_group: Přidat skupinu
+      assessment: Hodnocení
+      assessment_scoring_type: Typ hodnocení
+      average: Průměr
+      campaign_scoring_variables: Proměnné pro hodnocení kampaně
+      code: Kód
+      desc: Překročili jste maximální limit %{n} faktorů kampaně. Další faktory nelze přidat. Před pokračováním zkontrolujte a spravujte své stávající faktory.
+      description: Popis
+      dimension: Rozměr
+      edit_factor: Faktor úprav
+      export:
+        details: Bodování kampaní
+        factors: Faktory vývozní kampaně
+      factor: Faktor
+      factor_group_removed_successfully: Skupina Campaign Factor byla úspěšně odstraněna
+      factor_removal_confirmation: Pro potvrzení zadejte do textového pole název faktoru uvedený níže
+      factor_removed_successfully: Faktor kampaně byl úspěšně odstraněn
+      factors_exported_successfully: Úloha faktorů exportní kampaně byla úspěšně naplánována
+      factors_imported_successfully: Úloha importovat faktory kampaně byla úspěšně naplánována
+      final: Závěrečná stránka
+      final_score_updated_successfully: Konečné skóre bylo úspěšně aktualizováno
+      formula: Vzorec
+      get_started: Začněte
+      id: Id
+      import:
+        factors: Faktory importní kampaně
+      name: Název
+      no_groups: Žádné přítomné skupiny
+      output_type: Typ výstupu
+      pattern_error: Povoleny jsou pouze alfanumerické znaky, mezery a pomlčky.
+      profile:
+        years: Roky
+      public: Veřejnost
+      ranked: Hodnocení
+      remove_all_campaign_factors:
+        confirmation: Pro potvrzení zadejte do textového pole aktuální název kampaně uvedený níže
+        error: Kampaň Faktory odstranit se nepodařilo
+        success: Faktory kampaně úspěšně odstraněny
+        title: Odstranění faktorů kampaně
+        warning: Chystáte se odstranit všechny faktory kampaně a všechna přidružená skóre uživatelů. Jste si jisti, že chcete tuto akci provést?
+      remove_factor_group_confirmation_content: Opravdu chcete odstranit skupinu faktorů '%{jméno_skupiny}'?
+      remove_factor_group_confirmation_title: Odstranění skupiny faktorů
+      required_error: Nemůže být prázdný
+      save: Uložit
+      save_all: Uložit vše
+      score_range: Rozsah skóre
+      score_types:
+        norm_score: Normované skóre
+        percentage: Procento
+        percentile: Percentil
+        score: Skóre
+        zscore: Skóre Z
+      scoring: Bodování
+      scoring_description: Campaign Scoring umožňuje podávat zprávy napříč hodnoceními
+      select_all: Vybrat všechny %{n} subjekty
+      select_assessment_first: Zvolte možnost Posouzení jako první
+      select_factor: Vybrat faktor
+      show_weightages: Zobrazit váhy
+      subject: Předmět
+      subject_list:
+        actions: Akce
+        bulk_mark_finalized: Hromadná značka dokončena
+        bulk_mark_finalized_confirm: Dokončením skóre pro vybrané uživatele se vygeneruje zpráva, která pro uživatele použije faktor kampaně. Určitě chcete pokračovat?
+        bulk_mark_not_finalized: Hromadná značka není dokončena
+        bulk_mark_not_finalized_confirm: Odstranění finalizace u vybraných uživatelů odstraní vygenerovanou zprávu, která pro uživatele používá faktor kampaně. Určitě chcete pokračovat?
+        bulk_rescore: Hromadné obnovení výsledků
+        bulk_rescore_confirm: Změna hodnocení vybraných uživatelů. Určitě chcete pokračovat?
+        calculated_date: Vypočítané datum
+        calculation_errors: Chyby výpočtu
+        export: Vývoz výřezů
+        export_success: Úloha exportování výsledků byla úspěšně naplánována
+        finalized: Dokončené stránky
+        finalized_date: Datum dokončení
+        import_external_scores: Import externích scoringů
+        mark_finalized: Značka Dokončeno
+        mark_finalized_confirm: Dokončení skóre pro uživatele '%{email}' vygeneruje zprávu, která pro uživatele použije faktor kampaně. Určitě chcete pokračovat?
+        mark_not_finalized: Značka není dokončena
+        mark_not_finalized_confirm: Odstranění finalizace z uživatele '%{email}' odstraní vygenerovanou zprávu, která pro uživatele používá faktor kampaně. Určitě chcete pokračovat?
+        push_webhook: Push webhooks
+        rank: Hodnost
+        rescore: Rescore
+        rescore_confirm: Přepište uživatele '%{email}'. Určitě chcete pokračovat?
+        tools: Nástroje
+      tabs:
+        settings: Nastavení
+        subject_scores: Bodové hodnocení předmětu
+      type: Typ
+      variables: Proměnné
+      weightages:
+        assessorForms: Formuláře pro odhadce
+        successful_update: Vážení bylo úspěšně aktualizováno
+        tools: Nástroje
+        weightages: Vážení
+      weighted_average: Vážený průměr
+    search: Vyhledávání
+    security_setting:
+      180_days: 180 dní
+      30_days: 30 dní
+      365_days: 365 dní
+      90_days: 90 dní
+      attempts_to_lock: Pokusy o uzamčení
+      auto_unlock_time: Čas automatického odemknutí
+      disable_password_reuse: Zakázat opakované použití hesla
+      disallow_password_login: Zakázat přihlášení heslem
+      enable_login_with_magic_link: Povolit přihlášení pomocí magického odkazu
+      enforce_password_policy: Vynucení zásad hesla při příštím přihlášení
+      enforce_strong: Vynucení silného hesla
+      expiration: Vypršení platnosti hesla
+      lock_account: Uzamčení účtu
+      magic_link_expiry_duration: Doba platnosti kouzelného odkazu
+      min_length: Minimální délka hesla
+      never: Nikdy
+      restrict_sequences: Omezení sekvenčních a opakujících se znaků
+      security: Nastavení zabezpečení
+      send_unlock_email: Odeslat odemykací e-mail
+      session_timeout_duration: Doba trvání časového limitu relace
+      tfa_enabled: Povolení dvoufaktorového ověřování
+    security_settings:
+      security_setting: Nastavení zabezpečení
+    settings:
+      admin_roles:
+        admin_role_single: Role správce
+        confirm_message: Opravdu chcete odstranit roli správce '%{jméno_role}'?
+        create: Přidání role správce
+        description: Popis
+        name: Název
+        successful_remove: Role správce '%{název_role}' byla úspěšně odstraněna.
+      siem:
+        description: Popis
+        destination_type: Typ cíle
+        destination_types:
+          s3: S3
+          s3_compatible: S3 Kompatibilní
+        enabled: Povoleno
+        readable_resource_name: Nastavení SIEM
+        s3_access_key_id: ID přístupového klíče
+        s3_bucket_folder: Složka S3 Bucket
+        s3_bucket_name: Název kbelíku S3
+        s3_endpoint: Koncový bod S3
+        s3_region: Region S3
+        s3_secret_access_key: Tajný přístupový klíč
+        send_test_log: Odeslat protokol o zkoušce
+        send_test_log_error_message: Testovací protokol nebyl odeslán do kbelíku, zkontrolujte nastavení
+        send_test_log_success_message: Testovací protokol byl úspěšně odeslán do vašeho kbelíku
+      skill_aliases:
+        alias: Alias
+        confirm_message: Opravdu chcete odstranit alias dovednosti '%{skill_alias}'?
+        create: Přidání aliasu dovednosti
+        select_skill: Vyberte dovednost
+        skill: Dovednost
+        skill_alias: Alias dovednosti
+        successful_remove: Alias dovednosti '%{skill_alias}' byl úspěšně odstraněn.
+      tabs:
+        admin_roles: Role správce
+        siem: SIEM
+        skill_aliases: Pseudonymy dovedností
+    sheets:
+      column:
+        add_column: Přidat sloupec
+        not_allowed_for_dashboard_use: Sloupec, který má být použit v ovládacím panelu, by měl mít méně než 64 znaků
+        reorder: Přeobjednat
+        save_order: Uložit objednávku
+      drawers:
+        add_edit:
+          cancelText: Zrušit
+          markdown:
+            preview: Náhled
+            title: Markdown
+          save: Uložit
+          saving: Úspora
+          success_message_add: Přidán nový záznam
+          success_message_edit: Aktualizace záznamu
+          title_add: Přidat záznam listu
+          title_edit: Upravit záznam řádku listu
+          validations:
+            required_email: Zadejte prosím e-mail
+        view:
+          campaign_title: Záznam na úrovni kampaně
+          edit_button: Upravit
+          project_title: Záznam na úrovni projektu
+          title: Podrobnosti o záznamu na listu Řádek
+      list:
+        header:
+          add_record: Přidat záznam
+          search_record: Vyhledávání záznamů
+      modals:
+        delete_records:
+          cancelText: Zrušit
+          content: Jste si jisti, že chcete odstranit vybrané záznamy {{count}}?
+          okText: Ano, vymazat
+          successMessage: "{{count}} záznamy byly úspěšně smazány."
+          title: Smazat záznamy {{count}}
+        remove_columns:
+          cancelText: Zrušit
+          content: Odstranění sloupce ({{columns}}) odstraní data v tomto sloupci ze všech řádků
+          okText: Ano, vymazat
+          successMessage: "{{count}} smazané záznamy"
+          title: Odstranění sloupců
+      tabs:
+        rows: Řádky
+        settings: Nastavení
+    skills:
+      errors:
+        search:
+          all_and_project_id_mutually_exclusive: Vše nemůže být pravda, pokud je zadáno project_id_eq
+          invalid_all_value: 'musí být jedna z následujících hodnot: true, false'
+          invalid_global_value: 'musí být jedna z následujících hodnot: true, false'
+          invalid_skill_type: Musí se jednat o platnou kategorii
+          query_too_short: je povinný a musí obsahovat více než 3 znaky
+      export:
+        details: Podrobnosti na
+        failure_msg: Chyba při exportu překladů
+        success_msg: Exportování probíhajících vývojových akcí.
+        title: Export
+        translations:
+          details: Překlady dovedností
+      export_action:
+        skills_title: Exportní dovednosti
+        skills_translations_title: Exportní dovednosti Překlady
+      form:
+        client_placeholder: Výběr klienta
+        description: Popis
+        name: Název
+        project_placeholder: Výběr projektu
+        skill_type: Typ dovednosti
+        title: Dovednost
+      global: Je globální dovednost?
+      global_skills: Globální dovednosti
+      global_translations: Překlady globálních dovedností
+      import:
+        download_example_csv: Stáhnout příklad csv
+        info_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+        success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+      import_action:
+        skills_title: Dovednosti pro import
+        skills_translations_title: Importovat dovednosti Překlady
+      skill_translations: Překlady dovedností
+      title: Dovednosti
+      translations:
+        import:
+          errors:
+            invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
+            save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{zpráva}'
+            skill_not_found: Dovednost s ID %{id} nebyla nalezena
+    skills_taxonomy:
+      tabs:
+        proficiency: Proficience
+        skills: Dovednosti
+    sms_histories:
+      columns:
+        first_name: Jméno
+        last_name: Příjmení
+        mobile_no: Mobilní telefon č
+        price: Cena
+        segment_length: Délka segmentu
+        sent_at: Odesláno na
+      drawer:
+        title: Podrobnosti o SMS
+      history: Historie
+      statuses:
+        accepted: Přijato
+        delivered: Doručeno na
+        failed: Neúspěšný
+        queued: Fronta
+        scheduled: Plánované
+        sent: Odesláno
+        undelivered: Nedoručené
+    sms_invites:
+      actions:
+        add: Přidání kontaktu SMS
+      columns:
+        created_at: Vytvořeno v
+        created_by: Vytvořil
+        email: E-mail
+        first_name: Jméno
+        last_name: Příjmení
+        mobile_no: Mobilní telefon č
+      contacts: Kontakty
+      form_modal:
+        first_name: Jméno
+        last_name: Příjmení
+        locale: Lokalita
+        mobile_no: Mobilní telefon ne
+        title: Pozvánka na SMS
+      import:
+        download_example_csv: Stáhnout příklad CSV
+        success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+        title: Import pozvánek SMS
+      messages:
+        delete_confirm_text: Jste si jisti, že chcete odstranit SMS pozvánku s mobilním číslem %{mobile_no}?
+        delete_success: Pozvánka SMS byla úspěšně odstraněna
+        failed_to_sent_invite: Nepodařilo se odeslat pozvánku na mobilní číslo %{mobile_no}
+      send_sms:
+        fields:
+          link_expiry: Vypršení platnosti odkazu
+          locale: Lokalita
+          message: Zpráva
+          statuses: Statuty
+          users: Uživatelé
+        modal:
+          btn_name: Odesílání SMS
+          title: Odesílání SMS
+        pipetext_details: "{{{křestní_jméno}}} - Křestní jméno příjemce<br />{{{last_name}}} - Příjmení příjemce<br />{{{invite_url}} - Odkaz pro registraci\n"
+        segment_length_msg: Odhadovaný počet segmentů této zprávy je %{délka segmentu}.
+        segment_length_range_msg: Odhadovaný počet segmentů této zprávy je mezi %{min_segment_length} a %{max_segment_length}.
+      statuses:
+        all: Všechny
+        failed: Neúspěšný
+        invited: Pozvánka
+        not_invited: Nebyl pozván
+        registered: Registrováno
+      tools:
+        export: Export kontaktů SMS
+        import: Importovat kontakty SMS
+        send_sms: Odesílání SMS
+    sms_records:
+      columns:
+        id: Id
+        message: Zpráva
+    smtp_settings:
+      authentication: Ověřování
+      authentication_type: Typ ověření
+      authentication_types:
+        cram_md5: cram md5
+        login: Přihlášení
+        plain: Obyčejný
+      enabled: Povoleno
+      encryption: Šifrování
+      encryption_types:
+        none: Žádné
+        ssl: SSL
+        tls: TLS
+      errors:
+        authentication_failed: Uživatelské jméno nebo heslo je nesprávné
+        host_unreachable: Nelze se připojit k hostiteli. Hostitel, port nebo šifrování jsou nesprávné
+      from_email: Z e-mailu
+      from_name: Od názvu
+      host: Hostitel
+      password: Heslo
+      port: Přístav
+      send_test_email: Odeslání testovacího e-mailu
+      smtp: SMTP
+      test_email_modal:
+        input_hint: Nastavení e-mailu se uloží až po úspěšném odeslání testovacího e-mailu.
+        input_placeholder: ID testovacího e-mailu
+        title: Testovací e-mailová adresa
+      test_modal:
+        success_message: Testovací e-mail odeslán na adresu %{email_id}.
+        title: Test nastavení SMTP
+      update_success_msg: Nastavení SMTP bylo úspěšně aktualizováno.
+      use_sender_verification: Použijte ověření odesílatele
+      user_name: Uživatelské jméno
+    stats:
+      assessments:
+        columns:
+          assessment_name: Název hodnocení
+          completed: Dokončeno
+          id: ID
+          in_progress: Probíhá
+          ineligible: Nezpůsobilé
+          interrupted: Přerušeno
+          not_started: Nebylo zahájeno
+          timed_out: Vypršel časový limit
+        title: Hodnocení
+      title: Statistiky
+      top_metrics:
+        completed: Dokončeno
+        in_progress: Probíhá
+        interrupted: Přerušeno
+        not_started: Nebylo zahájeno
+        timed_out: Vypršel časový limit
+        users: Uživatelé
+      users:
+        date_presets:
+          last_30_days: Posledních 30 dní
+          last_7_days: Posledních 7 dní
+          last_month: Minulý měsíc
+          last_week: Minulý týden
+          today: Dnes
+          yesterday: Včera
+        y_title: Počet uživatelů
+    sub_factors:
+      destroy:
+        successfully: Podfaktor %{název} byl úspěšně odstraněn.
+      edit:
+        header: Upravit název dílčího faktoru
+      new:
+        header: Nový dílčí faktor
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Opravdu chcete tento dílčí faktor odstranit?</p>\n"
+            title: Odstranit <strong>dílčí faktor</strong>?
+      toggle_status:
+        successfully: Dílčí faktor byl úspěšně aktualizován.
+    survey_builder:
+      builder_area:
+        options: Možnosti
+      property_panel:
+        add_n_a_option: Přidat možnost N/A
+        allow_content_copy: Povolit kopírování obsahu
+        answer_type: Typ odpovědi
+        cant_change_type: Typ nelze změnit pro uloženou otázku
+        date_format: Formát data
+        date_format_options:
+          dd_mm_yyy: DD-MM-RRRR
+          mm_yyyy: MM-RRRR
+          yyyy: RRRR
+          yyyy_mm: RRRR-MM
+          yyyy_mm_dd: RRRR-MM-DD
+        duration_options:
+          '10': 10s
+          '120': 2min
+          '180': 3min
+          '30': 30s
+          '300': 5min
+          '60': 1min
+          '600': 10min
+        image_multi_choice_properties:
+          enable: S obrázky
+          preview: Náhled po kliknutí
+          size:
+            large: L
+            medium: M
+            small: S
+            title: Velikost mřížky
+            x-small: XS
+            xx-small: XXS
+        max_duration: Maximální doba trvání
+        multiple_choice_types:
+          dropdown: Rozbalovací nabídka
+          multi_answer: Více odpovědí
+          single_answer: Jediná odpověď
+        no_of_choices: Počet možností
+        orientation:
+          horizontal: Horizontální
+          title: Orientace
+          vertical: Vertikální
+        question_description: Popisy řádků
+        validation_response_type: Typ ověřovací odpovědi
+        voice_dictation: Hlasové diktování
+    table:
+      entries:
+        selected:
+          few:
+          many:
+          one: vybrán 1 řádek
+          other: ''
+        total:
+          few:
+          many:
+          one: 'Celkem : 1'
+          other: ''
+      more_actions: Další akce
+    taxonomy:
+      skills: Dovednosti
+      title: Taxonomie
+    templates:
+      blocks:
+        copy:
+          error: Blok \
+        destroy:
+          successfully: Blok %{název} byl úspěšně odstraněn.
+        edit:
+          header: Blok úprav
+        index:
+          new: Přidat
+          templates:
+            blocks: Bloky
+            questions: Otázky
+          title: Bloky
+          tooltips:
+            create: Vytvořit
+        list:
+          active: Aktivní
+          created_at: Datum vytvoření
+          linked_assessments: Související hodnocení
+          name: Název
+          updated_at: Datum úpravy
+        new:
+          header: Nový blok
+        new_assign:
+          header: Přiřazení bloku k hodnocení
+        resource:
+          in_progress:
+            copying: Kopírování
+            deleting: Odstranění
+          tooltips:
+            copy: Kopírovat blok
+            delete: Odstranit blok
+            edit: Blok úprav
+        sidebar:
+          destroy: Odstranit blok
+          disable: Zakázat
+          edit: Blok úprav
+          enable: Povolit
+          new: Nový blok
+          new_assign: Přiřazení bloku
+          title: Možnosti bloku
+        toggle_status:
+          successfully: Úspěšně
+      questions:
+        copy:
+          error: Otázka
+        destroy:
+          successfully: Otázka %{jméno} byla úspěšně smazána.
+        edit:
+          header: Upravit otázku
+        index:
+          new: Přidat
+          templates:
+            blocks: Bloky
+            questions: Otázky
+          title: Otázky
+          tooltips:
+            create: Vytvořit
+        list:
+          active: Aktivní
+          created_at: Datum vytvoření
+          linked_assessments: Související hodnocení
+          name: Název
+          updated_at: Datum úpravy
+        new:
+          header: Nová otázka
+        new_assign:
+          header: Přiřazení otázky k hodnocení
+        resource:
+          in_progress:
+            copying: Kopírování
+            deleting: Odstranění
+          tooltips:
+            copy: Kopírovat otázku
+            delete: Smazat otázku
+            edit: Upravit otázku
+        sidebar:
+          destroy: Smazat otázku
+          disable: Zakázat
+          edit: Upravit otázku
+          enable: Povolit
+          new: Nová otázka
+          new_assign: Přiřadit otázku
+          title: Možnosti otázky
+        toggle_status:
+          successfully: Úspěšně
+    threesixty_campaigns:
+      email_templates:
+        approve_nomination:
+          description: Tato zpráva je zaslána vedoucímu pracovníkovi, když je třeba schválit nominaci provedenou přímým podřízeným
+          name: Schválení nominace
+        approve_report:
+          description: Tato zpráva je odeslána manažerovi subjektu, aby mu oznámila, že zpráva subjektu je připravena ke schválení
+          name: Schválení zprávy
+        categories:
+          approvals: Schválení
+          invitations: Pozvánky
+          reminders: Připomínky
+          report_ready: Připravená zpráva
+        custom_message:
+          description: Tato zpráva může být zaslána komukoli, kdo se účastní hodnocení
+          name: Vlastní zpráva
+        days_repeated: dny, opakovaně
+        evaluator_invite:
+          description: Tato zpráva bude zaslána všem účastníkům, kteří jsou hodnotiteli
+          name: Pozvání hodnotitele
+        evaluator_reminder:
+          description: Tato zpráva bude odeslána jako připomínka hodnotitelům, aby dokončili probíhající hodnocení
+          name: Připomínka hodnotitele
+          rule_description: Zadání pravidel pro automatické plánování při naplánování pozvánky
+          rule_name: Připomínková pravidla pro hodnotitele
+        from: Z
+        manager_report_ready:
+          description: Tato zpráva je odeslána manažerovi subjektu, jakmile je zpráva subjektu připravena
+          name: Zpráva manažera Připraveno
+        nomination_denied:
+          description: Tato zpráva je subjektům zaslána, když je nominace zamítnuta
+          name: Zamítnutí nominace
+        reply_to_email: Odpovědět na e-mail
+        request_approval:
+          description: Tato zpráva je zasílána manažerům, když subjekt žádá o schválení
+          name: Žádost o schválení
+        schedule_email: Plán E-mail
+        schedule_time: Časový plán
+        send_test_email: Odeslání testovacího e-mailu
+        subject: Předmět
+        subject_invite:
+          description: Tato zpráva bude zaslána jako výzva subjektům k účasti na hodnocení
+          name: Pozvánka na téma
+        subject_reminder:
+          description: Zpráva zaslaná každému účastníkovi s připomenutím účasti v hodnocení
+          name: Připomenutí předmětu
+          rule_description: Zadání pravidel pro automatické plánování při naplánování pozvánky
+          rule_name: Pravidla pro připomenutí předmětu
+        subject_report_ready:
+          description: Tato zpráva je subjektu zaslána, jakmile je jeho zpráva připravena
+          name: Předmět Zpráva připravena
+        times: krát
+      instruction_templates:
+        evaluate_others:
+          description: Tato zpráva se zobrazí, když účastníci hodnotí ostatní zevnitř portálu
+          name: Hodnocení ostatních
+        evaluate_self:
+          description: Tato zpráva se subjektům zobrazí při zahájení sebehodnocení
+          name: Hodnotitel Self
+        evaluation_help:
+          description: Text nápovědy zobrazený na hodnotící kartě na panelu uživatele
+          name: Nápověda pro hodnocení
+        evaluator_welcome:
+          description: Tato zpráva nahradí "uvítací zprávu" a zobrazí se pouze účastníkům, kteří se aktuálně účastní jako hodnotitelé.
+          name: Vítání hodnotitelů
+        invite_evaluators:
+          description: Tato zpráva se zobrazí subjektům, když začnou nominovat hodnotitele
+          name: Pozvat hodnotitele
+        nomination_help:
+          description: Text nápovědy zobrazený na nominační kartě na hlavním panelu uživatele
+          name: Nápověda k nominaci
+        report_help:
+          description: Text nápovědy zobrazený na kartě hlášení na hlavním panelu uživatele
+          name: Nápověda pro zprávy
+        welcome_message:
+          description: Tato zpráva se subjektům zobrazí, když se přihlásí k zahájení hodnocení nebo si zobrazí seznam úkolů
+          name: Uvítací zpráva
+      manage:
+        assessment: Hodnocení
+        dimension: Rozměry
+        manage_relationships: Správa vztahů...
+        report: Nahlásit
+        title: Správa
+      menu:
+        datasheet:
+          title: Datový list
+        messages:
+          title: Zprávy
+        participants:
+          title: Účastníci
+        report:
+          menu:
+            report_approval:
+              title: Nastavení schvalování zpráv
+            report_options:
+              title: Možnosti hlášení
+          title: Nahlásit
+      messages:
+        email_messages: E-mailové zprávy
+        factor_benchmark_scores_updated: Úspěšná aktualizace skóre srovnávacího testu faktorů
+        instruction_messages: Pokyny Zprávy
+        mail_history: Historie pošty
+        options: Možnosti
+      reports:
+        show:
+          title: Předmětová zpráva
+    time_zone: Časové pásmo
+    tools: Nástroje
+    translations:
+      assessments:
+        new:
+          header: Importovat překlady
+      import:
+        successfully: Překlady byly úspěšně importovány
+      reports:
+        export: Exportní překlady
+        import: Importovat překlady
+        import_descr: Viz funkce Export pro získání šablony, kterou lze použít k importu.
+    tte: TTE
+    update: Aktualizace
+    users:
+      create:
+        successfully: Uživatel %{jméno} byl úspěšně vytvořen.
+      destroy:
+        successfully: Uživatel %{jméno} byl úspěšně odstraněn.
+      list:
+        email: E-mail
+      new:
+        header: Nový uživatel
+      reset_password:
+        successfully: Uživatel %{jméno} obdrží během několika minut e-mail s pokyny, jak obnovit své heslo.
+      resource:
+        confirmations:
+          change_password:
+            body: "<p>Určitě chcete poslat pokyny s odkazem na změnu hesla?</p>\n"
+            title: Změna hesla <strong>%{jméno}</strong>?
+          delete:
+            body: "<p>Opravdu chcete tohoto uživatele odstranit?</p>\n"
+            title: Smazat <strong>%{jméno}</strong>?
+          membership:
+            delete:
+              body: "<p>Jste si jisti, že chcete odstranit?</p>\n"
+              title: Smazat <strong>%{jméno}</strong> z %{jméno_klienta} Klientské nájemní smlouvy?
+            toggle_status:
+              body: "<p>Jste si jisti, že chcete %{status} tohoto členství?</p>\n"
+              title: členství <strong>%{status}</strong> %{jméno}?
+          toggle_enable_2fa:
+            body: "<p>Jste si jisti, že chcete %{status} 2FA pro %{jméno}?</p>\n"
+            title: "<strong>%{status}</strong> 2FA"
+          toggle_status:
+            body: "<p>Jste si jisti, že chcete %{status} tohoto uživatele?</p>\n"
+            title: "<strong>%{status}</strong> %{jméno}?"
+      spoof:
+        successfully: Byl jste úspěšně přihlášen jako %{jméno}
+      toggle_enable_2fa:
+        disable: Zakázat 2FA
+        enable: Povolení 2FA
+        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+      toggle_status:
+        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+      toolbar:
+        title: Nástroje
+      update:
+        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+      user: Uživatel
+    webhook:
+      connection_failure: Nelze se připojit k url adrese webhooku. Ověřte prosím, zda je url adresa webhooku správná..
+      delete_success: Nastavení webhooku bylo úspěšně odstraněno
+      request_failure: Požadavek selhal se stavovým kódem %{http_status_code}.
+    workshop:
+      actions:
+        remove_workshop: Dílna úspěšně odstraněna
+      errors:
+        remove_workshop_failure: Workshop, který se snažíte odstranit, má naplánované předměty. Workshop můžete odstranit tak, že označíte všechny předměty jako zrušené
+      statuses:
+        closed: Uzavřeno
+        open: Otevřít
+    workshop_subjects:
+      errors:
+        update_assessor_for_failure: Podrobnosti o schůzce nelze přidat, protože neexistuje žádná související činnost subjektu.
+    years: Roky
+  administration.users.toolbar:
+    title: Nástroje

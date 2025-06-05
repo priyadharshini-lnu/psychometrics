@@ -1,3 +1,5 @@
+import { Plan } from '~/modules/admin/modules/campaigns/routes/IDP/Plan'
+import { InitialStepsComponent } from '~/modules/admin/modules/campaigns/routes/IDP/InitialSteps'
 import { Participants } from './Participants'
 import AssessmentsReports from './AssessmentsReports'
 import { Stats } from './Stats'
@@ -13,6 +15,7 @@ import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
 import AssessorsDetails from './Participants/Assessors/AssessorDetails'
 import { DataExports } from './DataExports'
 import IdpReportPreview from './IdpReportPreview'
+
 
 const routes = [
   { redirect: true, from: '', to: 'participants' },
@@ -36,6 +39,8 @@ const routes = [
   { path: '/audit_reports', component: <DataExports /> },
   { path: '/audit_reports', component: <DataExports /> },
   { path: '/user_idp_reports/:id/*', component: <IdpReportPreview /> },
+  { path: '/user/:user_id/idp_plan/:idp_plan_id/step/:step', component: <InitialStepsComponent /> },
+  { path: '/user/:user_id/idp_plan/:idp_plan_id/plan', component: <Plan /> },
 ]
 
 export default routes

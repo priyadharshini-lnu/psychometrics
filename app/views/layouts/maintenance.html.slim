@@ -8,6 +8,7 @@ html.body-full-height
     = csrf_meta_tags
     = stylesheet_link_tag :administration
     = javascript_include_tag 'administration'
+    = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
     = render 'layouts/favicons'
     css:
       body {

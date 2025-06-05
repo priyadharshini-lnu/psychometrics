@@ -56,7 +56,12 @@ class EndUser::UsersController < ApplicationController
   def accept_privacy
     raise "Invalid Privacy consent version '#{params[:version]}' passed" if params[:version].blank?
 
-    current_user.privacy_consents.create(version: params[:version])
+    current_user.privacy_consents.create(
+      version: params[:version],
+      ip_address: request.remote_ip,
+      user_agent: request.user_agent,
+      locale: I18n.locale
+    )
     head :ok
   end
 

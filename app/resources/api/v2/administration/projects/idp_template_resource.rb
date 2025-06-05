@@ -7,13 +7,26 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :behavioural_global_tags, :behavioural_client_tags,
              :technical_global_tags, :technical_client_tags,
              :logo_type, :title_text, :subtitle_text, :fields,
-             :background, :client_logo, :show_reflections
+             :background, :client_logo, :show_reflections, :reflection_questions
 
   has_one :project, class_name: 'Client'
   has_one :report
   has_many :idp_template_skills
   has_many :skills, through: :idp_template_skills, class_name: 'Skill'
+
   ransack_filters %i[filterable_fields]
+
+  def reflection_questions
+    @model.idp_template_reflection_questions.map do |itrq|
+      {
+        id: itrq.reflection_question_id.to_s,
+        question: itrq.reflection_question.question,
+        mandatory: itrq.mandatory,
+        min_words: itrq.min_words,
+        max_words: itrq.max_words
+      }
+    end
+  end
 
   def background
     @model.background.url if @model.background.present?

@@ -20,7 +20,7 @@ module Administration
         links['assessor_dashboard'] = assessors_dashboard_path if policy(%i[assessors campaign]).index?
         links['assessor_workshops'] = assessors_assessment_centers_path if policy(%i[assessors workshop]).index?
         links['clients'] = "#{admin_path}/clients" if policy(%i[administration client]).index?
-        links['skills'] = "#{admin_path}/skills" if policy(%i[api administration skill]).index?
+        links['skills_taxonomy'] = "#{admin_path}/skills_taxonomy" if policy(%i[api administration skill]).index?
         links['development_actions'] = "#{admin_path}/development_actions" if policy(%i[api administration
                                                                                         development_action]).index?
         links['users'] = "#{admin_path}/users" if policy(%i[administration user]).index?
@@ -46,6 +46,9 @@ module Administration
           links['campaign_templates'] = "#{admin_path}/campaign_templates"
         end
         links['audit_logs'] = "#{admin_path}/audit_logs" if policy(%i[administration audit_log]).index?
+        if policy(%i[api administration ai assistant]).index? && feature_enabled?(:ai_assistant_enabled)
+          links['ai_assistants'] = "#{admin_path}/ai_assistants"
+        end
       end.transform_keys! { |k| k.camelcase(:lower) }
     end
     # rubocop:enable Metrics/PerceivedComplexity
@@ -60,6 +63,10 @@ module Administration
 
     def current_user
       object
+    end
+
+    def feature_enabled?(feature)
+      Settings.features[feature]
     end
   end
 end

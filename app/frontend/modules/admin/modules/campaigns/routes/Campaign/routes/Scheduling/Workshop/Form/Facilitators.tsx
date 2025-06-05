@@ -37,6 +37,7 @@ interface Props {
       name: string
       url: string
     }[]
+    campaign_assessment_group_id: number,
   }
   onPrevious: () => void
   onCancel?: () => void
@@ -89,6 +90,7 @@ export const Facilitators: React.FC<Props> = ({
     allow_late_cancellation_and_rescheduling: basicInfoData.allow_late_cancellation_and_rescheduling,
     timezone: basicInfoData.timezone,
     workshop_resources: filterInvalidResources(facilitator.workshop_resources),
+    campaignAssessmentGroupId: basicInfoData.campaign_assessment_group_id,
   })
 
   const handleSubmit = async () => {

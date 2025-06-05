@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import {
-  App, Select, Button, Tag,
+  App, Select, Button, Tag, Flex,
 } from 'antd'
 import _ from 'lodash'
 import { IdpTemplate, IdpTemplateTR } from '~/modules/admin/modules/campaigns/core/idp/index'
 import { useResources } from '~/hooks/useResources'
-import { UserIdpPlan, UserIdpPlanTR } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
+import { UserIdpPlan, UserActiveIdpTemplateTR, UserActiveIdpTemplate } from
+  '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { User } from '~/modules/admin/modules/campaigns/core/user'
 
 const { I18n } = window
@@ -15,7 +16,9 @@ export const Idp: React.FC<{}> = () => {
   const { message } = App.useApp()
   const { campaignId, id, projectId } = useParams() as { projectId: string, campaignId: string, id: string }
   const [selectedIdpTemplate, setSelectedIdpTemplate] = useState<string | null>()
-  const [activeIdpPlan, setActiveIdpPlan] = useState<UserIdpPlan | null>(null)
+  const [activeIdpPlan, setActiveIdpPlan] = useState<UserActiveIdpTemplate | null>(null)
+
+  const navigate = useNavigate()
 
 
   const {
@@ -50,8 +53,8 @@ export const Idp: React.FC<{}> = () => {
       id,
       action: 'active_idp_template',
       method: 'get',
-      responseType: UserIdpPlanTR,
-    }).then((response: UserIdpPlan) => {
+      responseType: UserActiveIdpTemplateTR,
+    }).then((response: UserActiveIdpTemplate) => {
       setActiveIdpPlan(response)
     })
   }
@@ -89,42 +92,64 @@ export const Idp: React.FC<{}> = () => {
   }, [])
 
   return (
-    <>
+    <Flex vertical>
       <h3>{I18n.t('idp_templates.assign_idp_template')}</h3>
-      <Select
-        showSearch
-        placeholder={I18n.t('idp_templates.placeholder')}
-        style={{ width: '700px' }}
-        onChange={(value) => {
-          handleSelectChange(value)
-        }}
-        value={selectedIdpTemplate || (activeIdpPlan?.idpTemplateId.toString())}
-      >
-        {_.map(data, (idpTemplate: IdpTemplate) => (
-          <Select.Option key={idpTemplate.id} value={idpTemplate.id}>
-            {idpTemplate.name}
-            {'     '}
-            {activeIdpPlan?.idpTemplateId === +idpTemplate.id && <Tag color="green">Active</Tag>}
-          </Select.Option>
-        ))}
-      </Select>
 
-      <Button
-        type="primary"
-        onClick={handleSave}
-        style={{ marginTop: '10px', marginRight: '10px' }}
-        disabled={!selectedIdpTemplate || selectedIdpTemplate === activeIdpPlan?.idpTemplateId.toString()}
-      >
-        {I18n.t('idp_templates.assign')}
-      </Button>
-      {activeIdpPlan && (
-        <Link
-          type="link"
-          to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/user_idp_reports/${activeIdpPlan.id}`}
-        >
-          {I18n.t('user_reports.preview_report')}
-        </Link>
-      )}
-    </>
+      <Flex justify="space-between">
+        <Flex className="m4">
+          <Select
+            showSearch
+            placeholder={I18n.t('idp_templates.placeholder')}
+            style={{ width: '700px' }}
+            onChange={(value) => {
+              handleSelectChange(value)
+            }}
+            value={selectedIdpTemplate || (activeIdpPlan?.idpTemplateId.toString())}
+          >
+            {_.map(data, (idpTemplate: IdpTemplate) => (
+              <Select.Option key={idpTemplate.id} value={idpTemplate.id}>
+                {idpTemplate.name}
+                {'     '}
+                {activeIdpPlan?.idpTemplateId === +idpTemplate.id && <Tag color="green">Active</Tag>}
+              </Select.Option>
+            ))}
+          </Select>
+          <Button
+            type="primary"
+            onClick={handleSave}
+            style={{ marginRight: '10px' }}
+            disabled={!selectedIdpTemplate || selectedIdpTemplate === activeIdpPlan?.idpTemplateId.toString()}
+          >
+            {I18n.t('idp_templates.assign')}
+          </Button>
+        </Flex>
+
+        {activeIdpPlan && (
+          <Flex className="m4">
+            <Button
+              style={{ marginRight: '8px' }}
+              onClick={() => {
+                // eslint-disable-next-line max-len
+                navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/user_idp_reports/${activeIdpPlan.id}`)
+              }}
+            >
+              {I18n.t('user_reports.preview_report')}
+            </Button>
+
+
+            <Button
+              onClick={() => {
+              // eslint-disable-next-line max-len
+                navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/user/${id}/idp_plan/${activeIdpPlan?.id.toString()}/step/getting_started`)
+              }}
+            >
+              {I18n.t('idp.manage_plan')}
+            </Button>
+          </Flex>
+
+        )}
+      </Flex>
+
+    </Flex>
   )
 }

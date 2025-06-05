@@ -14,19 +14,13 @@ module Api
         validate :validate_file_format
         validate :validate_file_content
 
-        def processed_file
-          return nil unless valid?
-
-          file
-        end
-
         private
 
         def validate_file_format
           return if file.blank?
           return if file.respond_to?(:content_type) && file.content_type == 'text/csv'
 
-          errors.add(:file, 'must be a CSV file')
+          errors.add(:file, I18n.t('administration.errors.csv_file_required'))
         end
 
         def validate_file_content
@@ -35,16 +29,49 @@ module Api
 
           begin
             file.rewind if file.respond_to?(:rewind)
-            csv_data = CSV.parse(file.read)
-            headers = csv_data.first || []
-            missing_fields = REQUIRED_FIELDS - headers
-            if missing_fields.any?
-              errors.add(:base, "Missing required columns: #{missing_fields.join(', ')}")
-            end
+            @csv_data = CsvFileParser.call!(file)
+            validates_headers
+            validates_data
           rescue CSV::MalformedCSVError => e
             errors.add(:base, "Invalid CSV format: #{e.message}")
           ensure
             file.rewind if file.respond_to?(:rewind)
+          end
+        end
+
+        def validates_data
+          return if errors.any?
+
+          @csv_data.drop(1).each_with_index do |row, index|
+            row_number = index + 2
+            headers = @csv_data.first
+            row_hash = headers.zip(row).to_h
+            validate_row(row_hash, row_number)
+          end
+        end
+
+        def validate_row(row, row_number)
+          missing_fields = REQUIRED_FIELDS.select { |field| row[field].blank? }
+          if missing_fields.any?
+            errors.add(
+              :base,
+              I18n.t(
+                'administration.skills.errors.import.missing_fields_data',
+                fields: missing_fields.join(', '),
+                line_number: row_number
+              )
+            )
+          end
+        end
+
+        def validates_headers
+          headers = @csv_data.first || []
+          missing_fields = REQUIRED_FIELDS - headers
+          if missing_fields.any?
+            errors.add(
+              :base,
+              I18n.t('administration.skills.import.errors.missing_columns', fields: missing_fields.join(', '))
+            )
           end
         end
       end

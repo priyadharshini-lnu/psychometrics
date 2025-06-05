@@ -1,0 +1,77 @@
+@import "~/styles/antv4.variable.less";
+@import "~/styles/spacing.less";
+
+.aiAssistantPlayground {
+  height: calc(100vh - 4.167rem);
+  width: 100%;
+}
+
+.layout {
+  flex: 1;
+  overflow: hidden;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.chatArea {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1.25rem;
+}
+
+.senderContainer {
+  padding: 1.25rem;
+}
+
+.settingsPanel {
+  height: 100%;
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+
+.settingsHeader {
+  margin-bottom: 0.833rem;
+}
+
+.settingsTitle {
+  margin: 0;
+  color: var(--ant-text-color);
+}
+
+.settingsSection {
+  margin-bottom: 1.25rem;
+}
+
+.settingsLabel {
+  margin-bottom: 0.417rem;
+  font-weight: 600;
+  font-size: 1.167rem;
+  color: var(--ant-text-color);
+}
+
+.settingsDescription {
+  color: var(--grey-text);
+  margin-bottom: 0.417rem;
+  font-size: 1.083rem;
+}
+
+.historyButton {
+  color: var(--grey-text);
+}
+
+.promptText {
+  font-family: monospace;
+  background: var(--light-green-bg);
+  padding: 0.5rem;
+  border-radius: 0.333rem;
+  white-space: pre-wrap;
+  font-size: 1.083rem;
+  color: var(--ant-text-color);
+}

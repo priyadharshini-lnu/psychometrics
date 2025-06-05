@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input, Switch,
+  DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input, Switch, Select,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
+import _ from 'lodash'
+import { useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import InputDuration from '~/components/InputDuration'
 import { Panel } from '~/glint/components/Panel/Panel'
+import { useResources } from '~/hooks/useResources'
 import styles from './Form.less'
 import { ResourcesItems } from './ResourcesItems'
 import { durationValidator } from '../utils'
@@ -28,14 +31,47 @@ interface Props {
   onCancel?: () => void
 }
 
+interface AssessmentCenterGroup {
+  id: string
+  name: string
+}
+
 export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel }) => {
   const [form] = Form.useForm()
 
   const [selectedDates, setSelectedDates] = useState<dayjs.Dayjs[]>(initialValues.dates || [])
   const [videoCallType, setVideoCallType] = useState<number>(initialValues.video_call_type)
   const [dateFieldStatus, setDateFieldStatus] = useState<'success' | 'error'>('success')
+  const [assessmentCenterGroups, setAssessmentCenterGroups] = useState<AssessmentCenterGroup[]>([])
+
+  const { campaignId } = useParams<{ campaignId: string }>()
+
+  const {
+    collectionAction: assessmentGroupsAction,
+  } = useResources<AssessmentCenterGroup>(
+    'campaign_assessment_groups',
+    {
+      basePath: `campaigns/${campaignId}`,
+    },
+  )
 
   const sortDates = (dates: dayjs.Dayjs[]) => dates.sort((a, b) => a.valueOf() - b.valueOf())
+
+  useEffect(() => {
+    assessmentGroupsAction({
+      action: '',
+      method: 'get',
+      apiConfig: {
+        filter: { group_type_eq: '1' },
+      },
+    })
+      .then((response) => {
+        setAssessmentCenterGroups(response as AssessmentCenterGroup[])
+      })
+      .catch((error) => {
+        console.error('Failed to load assessment center groups:', error)
+      })
+  }, [campaignId])
 
   const handleDateChange = (date: dayjs.Dayjs) => {
     if (!date) {
@@ -85,46 +121,69 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           form={form}
           initialValues={{ ...initialValues, dates: initialValues.dates?.length ? initialValues.dates : null }}
         >
-          <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
-            {...fieldLayout}
-            validateStatus={dateFieldStatus}
-            help={dateFieldStatus === 'success' ? '' : I18n.t('administration.scheduling.errors.date_required')}
-          >
-            <DatePicker
-              format="DD/MM/YYYY"
-              value={null}
-              onCalendarChange={handleDateChange}
-              disabledDate={current => current && current.isBefore(dayjs().startOf('day'))}
-              dateRender={(current) => {
-                const style: React.CSSProperties = {}
-                const found = selectedDates.find(d => d.format('YYYY MM DD') === current.format('YYYY MM DD'))
-                if (found) {
-                  style.backgroundColor = 'var(--ant-primary-color)'
-                  style.color = '#fff'
-                }
-                return (
-                  <div className="ant-picker-cell-inner" style={style}>
-                    {current.date()}
+          <Row gutter={16}>
+            <Col xs={24} sm={12} lg={8}>
+              <Form.Item
+                label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
+                {...fieldLayout}
+                validateStatus={dateFieldStatus}
+                help={dateFieldStatus === 'success' ? '' : I18n.t('administration.scheduling.errors.date_required')}
+              >
+                <DatePicker
+                  format="DD/MM/YYYY"
+                  value={null}
+                  onCalendarChange={handleDateChange}
+                  disabledDate={current => current && current.isBefore(dayjs().startOf('day'))}
+                  dateRender={(current) => {
+                    const style: React.CSSProperties = {}
+                    const found = selectedDates.find(d => d.format('YYYY MM DD') === current.format('YYYY MM DD'))
+                    if (found) {
+                      style.backgroundColor = 'var(--ant-primary-color)'
+                      style.color = '#fff'
+                    }
+                    return (
+                      <div className="ant-picker-cell-inner" style={style}>
+                        {current.date()}
+                      </div>
+                    )
+                  }}
+                  style={{ width: '200px' }}
+                />
+                {selectedDates.length ? (
+                  <div className={styles.dateTags}>
+                    {selectedDates.map(date => (
+                      <Tag
+                        key={date.toISOString()}
+                        closable
+                        onClose={() => handleTagClose(date)}
+                      >
+                        {date.format('Do, MMMM, YYYY').toString()}
+                      </Tag>
+                    ))}
                   </div>
-                )
-              }}
-              style={{ width: '200px' }}
-            />
-            {selectedDates.length ? (
-              <div className={styles.dateTags}>
-                {selectedDates.map(date => (
-                  <Tag
-                    key={date.toISOString()}
-                    closable
-                    onClose={() => handleTagClose(date)}
-                  >
-                    {date.format('Do, MMMM, YYYY').toString()}
-                  </Tag>
-                ))}
-              </div>
-            ) : null}
-          </Form.Item>
+                ) : null}
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <Form.Item
+                name="campaign_assessment_group_id"
+                label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+                {...fieldLayout}
+                rules={[{ required: true }]}
+              >
+                <Select
+                  placeholder={
+                    I18n.t('administration.scheduling.assessment_center_form.assessment_center_group_placeholder')}
+                >
+                  {_.map(assessmentCenterGroups, (assessmentCenterGroup: AssessmentCenterGroup) => (
+                    <Select.Option key={assessmentCenterGroup.id} value={assessmentCenterGroup.id}>
+                      {assessmentCenterGroup.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
           <Row gutter={16}>
             <Col xs={24} sm={12} lg={8}>
               <Form.Item
@@ -139,7 +198,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Col xs={12} sm={6} lg={4}>
               <Form.Item
                 name="time"
-                label="Time"
+                label={I18n.t('administration.scheduling.assessment_center_form.time_label')}
                 {...fieldLayout}
                 rules={[{
                   required: true,
@@ -258,7 +317,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           </Form.Item>
           {videoCallType === 2 && (
             <Form.Item
-              label="Meeting Link"
+              label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
               name="meeting_link"
               {...fieldLayout}
               rules={[{

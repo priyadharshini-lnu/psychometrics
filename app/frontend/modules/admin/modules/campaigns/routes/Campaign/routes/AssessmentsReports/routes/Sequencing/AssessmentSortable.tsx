@@ -10,10 +10,11 @@ interface Props {
   assessment?: CampaignAssessment
   span?: number
   disabled?: boolean | null
+  onEditScheduleTime?: () => void
 }
 
 export const AssessmentSortable: FC<Props> = ({
-  assessment, sortId, span, disabled,
+  assessment, sortId, span, disabled, onEditScheduleTime,
 }) => {
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging,
@@ -44,6 +45,7 @@ export const AssessmentSortable: FC<Props> = ({
       ref={disabled ? null : setNodeRef}
       span={span}
       style={containerStyles}
+      onEditScheduleTime={onEditScheduleTime}
     />
   )
 }

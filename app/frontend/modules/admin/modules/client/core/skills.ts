@@ -6,11 +6,12 @@ export const SkillTR = t.intersection([
   t.type({
     name: t.string,
     description: t.union([t.string, t.undefined]),
-    category: t.union([t.string, t.undefined]),
+    skillType: t.union([t.string, t.undefined]),
     project: t.union([
       t.type({
         id: t.string,
         name: t.string,
+        clientId: t.string,
       }),
       t.type({
         id: t.string,

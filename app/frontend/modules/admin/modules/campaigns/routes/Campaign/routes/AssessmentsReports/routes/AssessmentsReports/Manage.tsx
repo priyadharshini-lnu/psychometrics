@@ -33,9 +33,9 @@ import { useResources } from '~/hooks/useResources'
 import {
   CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
 } from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
-import { WorkshopActivityDurationFormModal } from './AssessmentList/WorkshopActivityDurationFormModal'
 import { SchedulingCampaignAssessmentModal } from './AssessmentList/SchedulingCampaignAssessmentModal'
 import { UserFilterModal } from '../../../Participants/Subjects/UserFilterModal'
+import { ApplyToExistingUsersFormModal } from './AssessmentList/ApplyToExistingUsersModal'
 
 const MODALS = {
   AddReportModal,
@@ -50,7 +50,7 @@ const MODALS = {
   UpdateExternalConfigModal,
   UpdateAssessorFormModal,
   AddAssessorAssessmentModal,
-  WorkshopActivityDurationFormModal,
+  ApplyToExistingUsersFormModal,
   SchedulingCampaignAssessmentModal,
   UserFilterModal,
 }

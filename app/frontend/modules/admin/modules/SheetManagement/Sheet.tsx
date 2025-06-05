@@ -227,7 +227,7 @@ const SheetComponent: FC<Props> = ({
                 onChange: (rowKey: string[]) => setSelectedRowKeys(rowKey),
               }}
             />
-          ) : <Empty />}
+          ) : <Empty description={I18n.t('administration.no_data_found')} />}
         </Col>
       </Row>
       <Row className="pt-4 pb-4 ps-4 pe-4">

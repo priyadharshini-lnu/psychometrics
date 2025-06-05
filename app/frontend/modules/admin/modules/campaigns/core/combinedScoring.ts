@@ -13,6 +13,7 @@ export const FactorTR = t.type({
   id: t.string,
   factorId: t.string,
   name: t.string,
+  description: t.union([t.string, t.null]),
 })
 
 export const ScoreTR = t.type({

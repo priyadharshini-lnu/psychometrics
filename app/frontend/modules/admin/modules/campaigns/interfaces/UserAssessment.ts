@@ -18,6 +18,11 @@ interface PearsonUserAssessmentDetails {
   scheduleId: string | null
 }
 
+interface SkillvueUserAssessmentDetails {
+  email: string | null
+  externalAssessmentId: string | null
+}
+
 export default interface UserAssessment {
   id: number
   name: string
@@ -38,6 +43,8 @@ export default interface UserAssessment {
   savilleUserAssessmentDetails: SavilleUserAssessmentDetails | null
   simulationUserAssessmentDetails: SimulationUserAssessmentDetails | null
   pearsonUserAssessmentDetails: PearsonUserAssessmentDetails | null
+  skillvueUserAssessmentDetails: SkillvueUserAssessmentDetails | null
+
   permissions: {
     updateAdditionalTime: boolean
     resetResults: boolean

@@ -61,12 +61,12 @@ describe EndUser::SkillsController, type: :controller do
     end
 
     context 'without any filters' do
-      let!(:technical_skill1) { create(:skill, name: 'Ruby', category: 'technical', project: project) }
-      let!(:technical_skill2) { create(:skill, name: 'Python', category: 'technical', project: project) }
-      let!(:technical_skill3) { create(:skill, name: 'JavaScript', category: 'technical', project: project) }
+      let!(:technical_skill1) { create(:skill, name: 'Ruby', skill_type: 'technical', project: project) }
+      let!(:technical_skill2) { create(:skill, name: 'Python', skill_type: 'technical', project: project) }
+      let!(:technical_skill3) { create(:skill, name: 'JavaScript', skill_type: 'technical', project: project) }
 
-      let!(:behavioral_skill1) { create(:skill, name: 'Leadership', category: 'behavioral', project: project) }
-      let!(:behavioral_skill2) { create(:skill, name: 'Communication', category: 'behavioral', project: project) }
+      let!(:behavioral_skill1) { create(:skill, name: 'Leadership', skill_type: 'behavioral', project: project) }
+      let!(:behavioral_skill2) { create(:skill, name: 'Communication', skill_type: 'behavioral', project: project) }
 
       before do
         Skill.where(project: project).find_each do |skill|
@@ -74,24 +74,24 @@ describe EndUser::SkillsController, type: :controller do
         end
       end
 
-      it 'returns sample skills from each category' do
+      it 'returns sample skills from each skill type' do
         get :index
 
         parsed_response = response.parsed_body
 
         expect(response).to have_http_status(:ok)
 
-        categories = parsed_response.map { |s| s['category'] }.uniq
-        expect(categories).to match_array(%w[technical behavioral])
+        skill_types = parsed_response.map { |s| s['skill_type'] }.uniq
+        expect(skill_types).to match_array(%w[technical behavioral])
 
-        technical_skills = parsed_response.select { |s| s['category'] == 'technical' }
-        behavioral_skills = parsed_response.select { |s| s['category'] == 'behavioral' }
+        technical_skills = parsed_response.select { |s| s['skill_type'] == 'technical' }
+        behavioral_skills = parsed_response.select { |s| s['skill_type'] == 'behavioral' }
 
         expect(technical_skills).not_to be_empty
         expect(behavioral_skills).not_to be_empty
 
-        expect(technical_skills.length).to be <= Skill::SAMPLES_PER_CATEGORY
-        expect(behavioral_skills.length).to be <= Skill::SAMPLES_PER_CATEGORY
+        expect(technical_skills.length).to be <= Skill::SAMPLES_PER_SKILL_TYPE
+        expect(behavioral_skills.length).to be <= Skill::SAMPLES_PER_SKILL_TYPE
       end
     end
   end

@@ -1,2 +1,2 @@
-ID,SkillID,Name,Description,Type,ProjectID,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
+ID,SkillID,Name,Description,Type,ProjectID,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate,CourseImage
 1,1,Test Action,Test Description,structured_learning,1,course,https://example.com,2024-01-01,2024-12-31,https://example.com/image.jpg

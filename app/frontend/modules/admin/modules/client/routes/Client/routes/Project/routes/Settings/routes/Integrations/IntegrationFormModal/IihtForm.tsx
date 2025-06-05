@@ -1,44 +1,73 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Input } from 'antd'
-import { Integration } from '~/modules/admin/modules/client/core/integrations'
 
 const { I18n } = window
 
-type OwneProps = {
-  integration?: Integration
+type IihtIntegrationDetails = {
+  tenantId?: string
+  tenancyName?: string
+  user?: string
+  webhookUrl?: string
 }
-export const IihtForm: React.FC<OwneProps> = ({ integration }) => (
-  <>
-    <Form.Item
-      name="tenantId"
-      label={I18n.t('administration.integrations.modal.iiht.tenant_id')}
-      rules={[{ required: true }]}
-    >
-      <Input />
-    </Form.Item>
 
-    <Form.Item
-      name="tenancyName"
-      label={I18n.t('administration.integrations.modal.iiht.tenancy_name')}
-      rules={[{ required: true }]}
-    >
-      <Input />
-    </Form.Item>
+type IntegrationType = {
+  id: number
+  name: string
+  active: boolean
+  iihtIntegrationDetails?: IihtIntegrationDetails
+}
 
-    <Form.Item
-      name="user"
-      label={I18n.t('administration.integrations.modal.iiht.user')}
-      rules={[{ required: true }]}
-    >
-      <Input autoComplete="off" />
-    </Form.Item>
+type OwnProps = {
+  integration?: IntegrationType
+}
 
-    <Form.Item
-      name="password"
-      label={I18n.t('administration.integrations.modal.iiht.password')}
-      rules={[{ required: integration === undefined }]}
-    >
-      <Input.Password autoComplete="off" />
-    </Form.Item>
-  </>
-)
+export const IihtForm: React.FC<OwnProps> = ({ integration }) => {
+  const form = Form.useFormInstance()
+
+  useEffect(() => {
+    if (integration?.iihtIntegrationDetails) {
+      const details = integration.iihtIntegrationDetails
+      form.setFieldsValue({
+        tenantId: details.tenantId,
+        tenancyName: details.tenancyName,
+        user: details.user,
+      })
+    }
+  }, [integration, form])
+
+  return (
+    <>
+      <Form.Item
+        name="tenantId"
+        label={I18n.t('administration.integrations.modal.iiht.tenant_id')}
+        rules={[{ required: true }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        name="tenancyName"
+        label={I18n.t('administration.integrations.modal.iiht.tenancy_name')}
+        rules={[{ required: true }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        name="user"
+        label={I18n.t('administration.integrations.modal.iiht.user')}
+        rules={[{ required: true }]}
+      >
+        <Input autoComplete="off" />
+      </Form.Item>
+
+      <Form.Item
+        name="password"
+        label={I18n.t('administration.integrations.modal.iiht.password')}
+        rules={[{ required: integration === undefined }]}
+      >
+        <Input.Password autoComplete="off" />
+      </Form.Item>
+    </>
+  )
+}

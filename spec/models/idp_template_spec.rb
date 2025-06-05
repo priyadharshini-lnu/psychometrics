@@ -75,7 +75,7 @@ RSpec.describe IdpTemplate, type: :model do
       end
 
       it 'is valid with skills when a skill setting is selected' do
-        skill = create(:skill, category: 'behavioral', project: nil)
+        skill = create(:skill, skill_type: 'behavioral', project: nil)
         idp_template.behavioral_global_skill_settings = 'selected'
         idp_template.behavioural_global_tags = []
         idp_template.skills << skill
@@ -96,10 +96,10 @@ RSpec.describe IdpTemplate, type: :model do
     let!(:project) { Project.find(create(:project).id) }
     let!(:idp_template) { create(:idp_template, project: project) }
 
-    let!(:global_technical_skill) { create(:skill, category: 'technical', project: nil) }
-    let!(:global_behavioral_skill) { create(:skill, category: 'behavioral', project: nil) }
-    let!(:client_technical_skill) { create(:skill, category: 'technical', project: project) }
-    let!(:client_behavioral_skill) { create(:skill, category: 'behavioral', project: project) }
+    let!(:global_technical_skill) { create(:skill, skill_type: 'technical', project: nil) }
+    let!(:global_behavioral_skill) { create(:skill, skill_type: 'behavioral', project: nil) }
+    let!(:client_technical_skill) { create(:skill, skill_type: 'technical', project: project) }
+    let!(:client_behavioral_skill) { create(:skill, skill_type: 'behavioral', project: project) }
 
     context 'when all settings are none' do
       before do
@@ -118,7 +118,7 @@ RSpec.describe IdpTemplate, type: :model do
 
     context 'when all settings are all' do
       let!(:project2) { Project.find(create(:project).id) }
-      let!(:skill_owned_by_project2) { create(:skill, category: 'technical', project: project2) }
+      let!(:skill_owned_by_project2) { create(:skill, skill_type: 'technical', project: project2) }
 
       before do
         idp_template.update!(
@@ -144,8 +144,8 @@ RSpec.describe IdpTemplate, type: :model do
     end
 
     context 'when some settings are selected' do
-      let!(:selected_global_technical_skill) { create(:skill, category: 'technical', project: nil) }
-      let!(:selected_client_behavioral_skill) { create(:skill, category: 'behavioral', project: project) }
+      let!(:selected_global_technical_skill) { create(:skill, skill_type: 'technical', project: nil) }
+      let!(:selected_client_behavioral_skill) { create(:skill, skill_type: 'behavioral', project: project) }
 
       before do
         idp_template.skills << selected_global_technical_skill
@@ -168,10 +168,10 @@ RSpec.describe IdpTemplate, type: :model do
     end
 
     context 'when skills have tags' do
-      let!(:global_tagged_skill) { create(:skill, category: 'technical', project: nil) }
-      let!(:client_tagged_skill) { create(:skill, category: 'technical', project: project) }
-      let!(:client_tagged_behavioral_skill) { create(:skill, category: 'technical', project: project) }
-      let!(:selected_global_technical_skill) { create(:skill, category: 'technical', project: nil) }
+      let!(:global_tagged_skill) { create(:skill, skill_type: 'technical', project: nil) }
+      let!(:client_tagged_skill) { create(:skill, skill_type: 'technical', project: project) }
+      let!(:client_tagged_behavioral_skill) { create(:skill, skill_type: 'technical', project: project) }
+      let!(:selected_global_technical_skill) { create(:skill, skill_type: 'technical', project: nil) }
 
       before do
         idp_template
@@ -199,13 +199,13 @@ RSpec.describe IdpTemplate, type: :model do
       end
 
       it 'does not include skills matching the tags but not part of tag settings' do
-        # client_tagged_behavioral_skill is not included because behaviorat_*_tags are not set
+        # client_tagged_behavioral_skill is not included because behavioral_*_tags are not set
         expect(idp_template.available_skills).not_to include(client_tagged_behavioral_skill)
       end
     end
 
     context 'with mixed settings' do
-      let!(:selected_client_technical_skill) { create(:skill, category: 'technical', project: project) }
+      let!(:selected_client_technical_skill) { create(:skill, skill_type: 'technical', project: project) }
 
       before do
         idp_template.skills << selected_client_technical_skill

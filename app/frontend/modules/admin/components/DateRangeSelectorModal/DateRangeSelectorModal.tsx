@@ -57,7 +57,7 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
 
   return (
     <Modal
-      title={modalTitle || 'Bulk Download'}
+      title={modalTitle || I18n.t('campaign_report.actions.bulk_download')}
       open={open}
       onCancel={handleCancel}
       footer={[
@@ -83,7 +83,8 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
           disabledDate={handleDisableDate}
           format={dateFormat}
           showTime={showTime}
-          placeholder={['Start Date', 'End Date']}
+          placeholder={[I18n.t('glint.schedule_availability.start_date'),
+            I18n.t('glint.schedule_availability.end_date')]}
           style={{ width: '100%' }}
           allowClear={false}
         />

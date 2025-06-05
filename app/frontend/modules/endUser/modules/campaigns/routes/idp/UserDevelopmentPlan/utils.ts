@@ -1,0 +1,76 @@
+import _ from 'lodash'
+import {
+  CategoryWithDevelopmentActions,
+  CategoryWithSkills,
+  DevelopmentAction,
+  DevelopmentActionWithSkill,
+  Skill,
+  SkillWithDevelopmentActions,
+} from '~/components/IdpShared/DevelopmentActions'
+
+function addDevelopmentActionsToSkills (
+  skills: Record<string, Skill>,
+  developmentActions: Record<string, DevelopmentAction>,
+):SkillWithDevelopmentActions[] {
+  const groupedSkills = _.groupBy(developmentActions, 'userIdpSkillId')
+  return _.map(skills, skill => ({
+    ...skill,
+    // skill here can be either Skill or UserIdpSkill, it's important to maintain skillId if present
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    skillId: skill?.skillId || skill.id,
+    developmentActions: groupedSkills[skill.id] || [],
+  }))
+}
+
+function addSkillsToDevelopmentActions (
+  developmentActions: Record<string, DevelopmentAction>,
+  skills: Record<string, Skill>,
+): DevelopmentActionWithSkill[] {
+  return _.map(developmentActions, developmentAction => ({
+    ...developmentAction,
+    skill: skills[developmentAction.userIdpSkillId],
+  }))
+}
+
+
+export function groupDevelopmentActionsBySkillType (
+  developmentActions: Record<string, DevelopmentAction>,
+  skills: Record<string, Skill>,
+): CategoryWithDevelopmentActions[] {
+  if (_.isEmpty(developmentActions) || _.isEmpty(skills)) return []
+  const enrichedDevelopmentActions = addSkillsToDevelopmentActions(developmentActions, skills)
+  const groupedByCategory = _.groupBy(
+    enrichedDevelopmentActions,
+    developmentAction => developmentAction.skill.skillType,
+  )
+
+  return _.map(groupedByCategory, (developmentActions, developmentActionType) => ({
+    developmentActionType,
+    developmentActions,
+  }))
+}
+export function groupSkillsBySkillType (
+  skills: Record<string, Skill>,
+  developmentActions: Record<string, DevelopmentAction>,
+): CategoryWithSkills[] {
+  const enrichedSkills = addDevelopmentActionsToSkills(skills, developmentActions)
+  const groupedByCategory = _.groupBy(enrichedSkills, 'skillType')
+
+  return _.map(groupedByCategory, (skills, skillType) => ({
+    skillType,
+    skills,
+  }))
+}
+
+export const filteredDevelopmentActions = (idpDevelopmentActions: Record<string, DevelopmentAction>) => {
+  const filteredValue = _.mapValues(idpDevelopmentActions, (action) => {
+    if (action.localData) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id, localData, ...restOfAction } = action
+      return restOfAction
+    }
+    return { ...action }
+  })
+  return filteredValue
+}

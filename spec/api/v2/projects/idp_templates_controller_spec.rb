@@ -17,6 +17,7 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
   let!(:skill1) { create(:skill, name: 'Skill 1') }
   let!(:skill2) { create(:skill, name: 'Skill 2') }
   let!(:idp_template) { create(:idp_template, project: project) }
+  let!(:reflection_question) { create(:reflection_question, project_id: project.id) }
 
   before(:each) do
     sign_in(superadmin)
@@ -231,6 +232,53 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
               'Deletion not allowed because the IDP template is already associated with a user IDP plan.'
             )
           end
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/idp_templates/{id}/update_reflection_questions' do
+    post 'Update Idp Template' do
+      operationId 'UpdateIdpTemplateReflectionQuestions'
+      description 'Update Idp Template reflection questions'
+      tags 'IdpTemplate'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :string
+      parameter name: :body, in: :body,
+                schema: { '$ref' => '#/components/schemas/IdpTemplateUpdateReflectionQuestionsRequest' },
+                required: true
+
+      response '200', 'Idp Template Updated' do
+        let(:id) { idp_template.id }
+        let(:body) do
+          {
+            data: {
+              attributes: {
+                reflection_questions: [
+                  id: reflection_question.id.to_s,
+                  mandatory: true,
+                  min_words: 3,
+                  max_words: 10
+                ]
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          idp_template.reload
+          expect(response.status).to eq(200)
+          expect(idp_template.reflection_questions.count).to eq(1)
+          rq = idp_template.reflection_questions.first
+          itrq = idp_template.idp_template_reflection_questions.first
+          expect(rq.mandatory).to eq(false)
+          expect(rq.min_words).to eq(nil)
+          expect(rq.max_words).to eq(nil)
+          expect(itrq.mandatory).to eq(true)
+          expect(itrq.min_words).to eq(3)
+          expect(itrq.max_words).to eq(10)
         end
       end
     end

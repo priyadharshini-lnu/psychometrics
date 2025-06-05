@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administration::BaseResource
-  attributes :name, :description, :category, :course_url, :course_start_date, :course_end_date,
-             :project_id, :learning_style, :image, :skill_ids, :created_at, :updated_at,
-             :default_language
+  attributes :name, :description, :development_action_type, :course_url, :course_start_date, :course_end_date,
+             :project_id, :learning_style, :image, :skill_ids, :created_at, :updated_at, :global
 
   has_one :project
   has_many :skills
@@ -11,6 +10,7 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
   ransack_filters %i[
     name_cont
     project_id_eq
+    global
     filterable_fields
   ]
 
@@ -20,6 +20,14 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
 
   def updated_at
     @model.decorate.updated_at
+  end
+
+  def global
+    @model.project_id.nil?
+  end
+
+  def global=(value)
+    @model.project_id = nil if value
   end
 
   delegate :skill_ids=, to: :@model

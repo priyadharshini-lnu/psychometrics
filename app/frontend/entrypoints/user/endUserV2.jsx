@@ -7,6 +7,5 @@ import initSentry from '~/libs/initSentry'
 import Campaigns from '~/modules/endUser/modules/campaigns/App'
 
 initSentry()
-
 const root = createRoot(document.getElementById('endUserContainer'))
 root.render(<Campaigns />)

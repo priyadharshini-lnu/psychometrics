@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState, useRef } from 'react'
 import { Flex, Typography, Empty } from 'antd'
 import cs from 'classnames'
@@ -9,7 +10,7 @@ type Props = {
   availableActions: AvailableDevelopmentActions[];
   onDevelopmentActionClick: (developmentAction: Partial<AvailableDevelopmentActions>) => void;
   highlightNewlyAddedActions?: boolean;
-  selectedDevelopmentActionIds?: number[];
+  selectedDevelopmentActionIds?: (string | number)[];
 };
 
 const DevelopmentActionsList: React.FC<Props> = ({
@@ -60,7 +61,8 @@ const DevelopmentActionsList: React.FC<Props> = ({
             onClick={() => onDevelopmentActionClick(developmentAction)}
             className={cs(styles.card, {
               [styles.highlight]: highlightedIdsState.includes(developmentAction.id ?? index),
-              [styles.disabled]: selectedDevelopmentActionIds.includes(developmentAction.id),
+              [styles.disabled]: selectedDevelopmentActionIds.includes(developmentAction.id)
+              || selectedDevelopmentActionIds.includes(Number(developmentAction.id)),
             })}
             gap={16}
             key={developmentAction.id ?? index}

@@ -589,6 +589,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return request ? request.status === RequestStatus.Success : false
   }
 
+  const getAppliedFiltersFromURL = () => queryFromUrl.filter
+
   return {
     data,
     meta,
@@ -618,5 +620,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     collectionAction,
     addRelationships,
     uploadFileAction,
+    getAppliedFiltersFromURL,
   }
 }

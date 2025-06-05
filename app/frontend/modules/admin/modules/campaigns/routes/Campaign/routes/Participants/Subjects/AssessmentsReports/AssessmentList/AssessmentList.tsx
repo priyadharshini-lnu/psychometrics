@@ -46,6 +46,7 @@ const AssessmentList: React.FC<Props> = ({
   remove,
   resetProgress,
   toggleRequireScheduling,
+  togglePrework,
   updateMettlSchedule,
   normalizeFactorScores,
   loadingUpdateMettlSchedule,
@@ -96,6 +97,16 @@ const AssessmentList: React.FC<Props> = ({
                 onChange={() => {
                   toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
                 }}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_assessment.column.prework')}
+            key="category"
+            render={({ id, prework }) => (
+              <Switch
+                checked={prework}
+                onChange={checked => togglePrework(parsedCampaignId, id, checked)}
               />
             )}
           />

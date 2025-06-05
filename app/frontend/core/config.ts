@@ -13,12 +13,14 @@ export interface ConfigState {
   availableLocales: string[]
   features: FeaturesFlags,
   timezone: string,
+  availableAiProviders: string[]
 }
 
 export const defaultState: ConfigState = {
   availableLocales: [],
   features: {},
   timezone: '',
+  availableAiProviders: [],
 }
 
 type FetchType = ApiActionResponse<{
@@ -28,6 +30,8 @@ type FetchType = ApiActionResponse<{
 export const getFeatures = (state): FeaturesFlags => _.get(state, ['config', 'features'], {})
 export const getTimezone = (state): string => _.get(state, ['config', 'timezone'])
 export const availableLocales = (state: RootState): string[] => _.get(state, ['config', 'availableLocales'], [])
+export const getAvailableAiProviders = (state: RootState): string[] => _.get(state,
+  ['config', 'availableAiProviders'], [])
 
 const HANDLERS = {
   [FETCH_PROJECT]: (state: ConfigState, { response }: FetchType) => ({

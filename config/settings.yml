@@ -1,5 +1,5 @@
 project_name: Psychometrics
-privacy_policy_version: <%= ENV.fetch('PRIVACY_POLICY_VERSION', '3').to_i %>
+privacy_policy_version: 4
 enduser_locales:
   - ar
   - cs
@@ -15,6 +15,8 @@ enduser_locales:
   - zh
   - zh-Hant
   - zh-HK
+  - nl
+  - ko
 admin_user_locales:  <%= ENV["ADMIN_LOCALES"]%>
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
@@ -46,6 +48,8 @@ storage:
 iiht:
   token_api_url: <%= ENV.fetch('IIHT_TOKEN_API_URL', nil) %>
   base_api_url: <%= ENV.fetch('IIHT_BASE_API_URL', nil) %>
+skillvue:
+  base_api_url: <%= ENV.fetch('SKILLVUE_BASE_API_URL', nil) %>
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
@@ -70,11 +74,10 @@ features:
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
   skip_session_limitable: <%= ENV.fetch('SKIP_SESSION_LIMITABLE', 'false') == 'true' %>
   disable_session_timeout: <%= ENV.fetch('DISABLE_SESSION_TIMEOUT', 'false') == 'true' %>
-  inline_translation_enabled: <%= ENV.fetch('INLINE_TRANSLATION_ENABLED', 'false') == 'true' %>
   disable_saml_for_admins: <%= ENV.fetch('DISABLE_SAML_FOR_ADMINS', 'false') == 'true' %>
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
   enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
-  ai_assistant_enabled: <%= ENV['AI_ASSISTANT_ENABLED'] %>
+  ai_assistant_enabled: <%= ENV.fetch('AI_ASSISTANT_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -984,6 +987,13 @@ providers:
           - de
           - fr
           - it
+      - id: mte-trial
+        name: MTE Apply Trial
+        possible_languages:
+          - en
+          - de
+          - fr
+          - it
       - id: mte-shape
         name: MTE Shape
         possible_languages:
@@ -1496,19 +1506,19 @@ providers:
           - E10E68CF-9B20-4C35-8867-81E2D767718F
     norms:
       - id: 998C485C-B931-416D-8404-9B284160F688
-        name: Abstract Reasoning Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+        name: Abstract Reasoning Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: 846B63CF-358A-43F0-9835-A95D8F38D860
-        name: Abstract Reasoning Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
       - id: 655C4C3A-139B-4CC0-AE88-91FE4DA7C279
-        name: Abstract Reasoning Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
       - id: 11673989-C2B8-435C-BD5F-3FB2893E1CD8
-        name: Abstract Reasoning Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
       - id: 46C8BC34-34C8-4955-8D9D-B0497476B721
-        name: Abstract Reasoning Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
       - id: 4F9ED4DC-16EF-4441-B356-4562CD6C9E6D
-        name: Abstract Reasoning Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
       - id: 41C3630D-23E9-4C61-9CA4-53041A0B70E3
-        name: Abstract Reasoning Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
       - id: 00CCBE42-638B-4770-BF92-6D0FA45206DA
         name: Diagrammatic Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: 5B64B8AE-54EA-4749-BD37-32803FAB9150
@@ -2248,3 +2258,13 @@ saml:
   name_identifier_format: <%= ENV.fetch('SAML_NAME_IDENTIFIER_FORMAT', 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress') %>
   idp_entity_id: <%= ENV.fetch('SAML_IDP_ENTITY_ID', nil) %>
   idp_sso_service_url: <%= ENV.fetch('SAML_IDP_SSO_SERVICE_URL', nil) %>
+ai_providers:
+  - id: azure-openai
+    api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY', nil) %>
+    provider: AzureOpenai
+    name: Azure OpenAI
+    endpoint: <%= ENV.fetch('AZURE_OPENAI_API_ENDPOINT', nil) %>
+    description: "Azure OpenAI"
+    data_processing_locations: ""
+    data_at_rest_location: ""
+available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>

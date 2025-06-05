@@ -2,21 +2,34 @@ import React from 'react'
 import {
   Button, MenuProps, Typography,
 } from 'antd'
+import {
+  FilterFilled,
+} from '@ant-design/icons'
 import { useParams } from 'react-router'
 import { MenuItem } from '~/interfaces/Antd'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
 import { DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
-import { Resource } from '~/modules/admin/components/Resource'
+import { useResourceContext, Resource } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-
+import { ProjectFilter } from '~/components/ProjectFilter'
+import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 const { I18n } = window
 
 type Props = {
-  openModal: (developmentAction?: DevelopmentAction) => void
+  openModal: (developmentAction?: DevelopmentAction) => void,
 }
 export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => {
   const { projectId } = useParams()
+
+  const { resource } = useResourceContext<DevelopmentAction>()
+
+  const filter = resource.getAppliedFiltersFromURL()
+
+  const isProjectFilterApplied = (filter?.global || filter?.project_id_eq) ?? false
+
+  const { DEFAULT_PRIMARY_COLOR } = constants
+
   return (
     <Resource.Table pagination>
       <Resource.Column<DevelopmentAction>
@@ -70,6 +83,16 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => {
           ) : null)}
           width={200}
           sorter
+          filterDropdown={() => (
+            <ProjectFilter />
+          )}
+          filterIcon={() => (
+            <FilterFilled style={{
+              color: isProjectFilterApplied
+                ? DEFAULT_PRIMARY_COLOR : undefined,
+            }}
+            />
+          )}
         />
       )}
       <Resource.Column<DevelopmentAction>

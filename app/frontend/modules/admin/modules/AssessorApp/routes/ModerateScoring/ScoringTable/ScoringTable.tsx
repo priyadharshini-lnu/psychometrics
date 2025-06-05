@@ -2,7 +2,7 @@ import React, {
   useCallback, useEffect, useMemo, useState,
 } from 'react'
 import {
-  Table, InputNumber, Skeleton, Flex, Button, Typography, Modal, App,
+  Table, InputNumber, Skeleton, Flex, Button, Typography, Modal, App, Popover,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
@@ -328,7 +328,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
       fixed: 'left',
     },
     ...columnsData.map(factor => ({
-      title: factor.name,
+      title: <Popover title={factor.name} content={factor.description}>{factor.name}</Popover>,
       dataIndex: ['scores', factor.factorId],
       key: factor.factorId,
       render: (score) => {

@@ -102,7 +102,7 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
   const { resource } = useResourceContext<WorkshopInvite, { permissions: { create: boolean } }>()
 
   return (
-    <Resource.Filter placeholder="Search" name="title_cont">
+    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="title_cont">
       {resource.meta.permissions.create && (
         <Button type="primary" onClick={openForm}>
           <PlusOutlined />

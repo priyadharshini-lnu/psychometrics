@@ -3,33 +3,28 @@
 module Administration
   module Projects
     class IntegrationSchema < BaseSchema
-      def self.schema(_, _)
+      def self.schema(_, _) # rubocop:disable Lint/UnderscorePrefixedVariableName
         Dry::Schema.JSON do
           config.validate_keys = true
 
           required(:id).filled(:int?)
           required(:name).filled(:str?)
           required(:active).filled(:bool?)
-          required(:details).maybe do
-            hash do
-              optional(:provider).filled(:str?)
-              optional(:webhook_url).filled(:str?)
-              optional(:host).filled(:str?)
-              optional(:subdomain).filled(:str?)
-              optional(:protocol).filled(:str?)
-              optional(:port).filled(:str?)
-              optional(:project_id).filled(:str?)
-              optional(:completion_webhook_url).filled(:str?)
-              optional(:results_webhook_url).filled(:str?)
-            end
+          optional(:iiht_integration_details).maybe do
+            hash(Administration::Projects::Integrations::IihtIntegrationSchema.schema(_, _))
           end
-          optional(:user).maybe(:str?)
-          optional(:tenant_id).maybe(:str?)
-          optional(:tenancy_name).maybe(:str?)
-          optional(:provider).maybe(:str?)
-          optional(:public_key).maybe(:str?)
-          optional(:private_key).maybe(:str?)
-          optional(:api_base_url).maybe(:str?)
+
+          optional(:hogan_integration_details).maybe do
+            hash(Integrations::HoganIntegrationSchema.schema(_, _))
+          end
+
+          optional(:mettl_integration_details).maybe do
+            hash(Administration::Projects::Integrations::MettlIntegrationSchema.schema(_, _))
+          end
+
+          optional(:skillvue_integration_details).maybe do
+            hash(Administration::Projects::Integrations::SkillvueIntegrationSchema.schema(_, _))
+          end
         end
       end
     end

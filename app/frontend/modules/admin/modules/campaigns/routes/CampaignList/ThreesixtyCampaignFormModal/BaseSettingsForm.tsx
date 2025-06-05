@@ -77,7 +77,7 @@ const BaseSettingsForm = ({
             <Flex vertical className="w-100">
               <Form.Item
                 name="name"
-                label="Name"
+                label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.name')}
                 rules={[{ required: true, transform: value => value.trim() }]}
               >
                 <Input name="threesixty_campaign_name" />
@@ -87,7 +87,7 @@ const BaseSettingsForm = ({
             <Flex vertical className="w-100">
               <Form.Item
                 name="status"
-                label="Status"
+                label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.status')}
                 required
               >
                 <Radio.Group className="ps-4">
@@ -95,12 +95,12 @@ const BaseSettingsForm = ({
                     <Radio
                       value={STATUSES.ACTIVE}
                     >
-                      {_.capitalize(STATUSES.ACTIVE)}
+                      {I18n.t(`administration.campaigns.modals.create_threesixity.base_settings.${STATUSES.ACTIVE}`)}
                     </Radio>
                     <Radio
                       value={STATUSES.INACTIVE}
                     >
-                      {_.capitalize(STATUSES.INACTIVE)}
+                      {I18n.t(`administration.campaigns.modals.create_threesixity.base_settings.${STATUSES.INACTIVE}`)}
                     </Radio>
                   </Space>
                 </Radio.Group>
@@ -118,17 +118,17 @@ const BaseSettingsForm = ({
                     <Radio
                       value={THREESIXTY_TYPES.EMPTY}
                     >
-                      Empty
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.empty')}
                     </Radio>
                     <Radio
                       value={THREESIXTY_TYPES.STANDARD_360}
                     >
-                      Standard
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
                     </Radio>
                     <Radio
                       value={THREESIXTY_TYPES.PREVIOUS_360}
                     >
-                      Previous
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.previous')}
                     </Radio>
                   </Space>
                 </Radio.Group>
@@ -138,7 +138,7 @@ const BaseSettingsForm = ({
               <Flex vertical className="w-100">
                 <Form.Item
                   name="assessment_id"
-                  label="Assessment"
+                  label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.assessment')}
                   rules={[{ required: true }]}
                 >
                   <Select

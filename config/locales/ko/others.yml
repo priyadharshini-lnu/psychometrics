@@ -1,0 +1,3735 @@
+---
+ko:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: 모든 응답
+      numeric_comparator:
+        enter_value: 값 입력
+        select_data: 데이터 선택
+      scoring:
+        select_comparison: 비교 유형 선택
+        select_factors: 요소 선택
+        select_operation: 작업 선택
+      sheet_column:
+        accessor_access: 액세스 권한
+        dashboard_use: 대시보드 사용
+        visible_in_list: 목록에 표시됨
+    errors:
+      models:
+        admin_edit:
+          attributes:
+            email:
+              blank: 이메일 필드는 비워 둘 수 없습니다
+              invalid: 이메일이 유효하지 않습니다
+            first_name:
+              blank: 이름은 비워 둘 수 없습니다
+            last_name:
+              blank: 성은 비워 둘 수 없습니다
+        agile:
+          answers:
+            blank: 답변은 비워 둘 수 없습니다
+          group_id:
+            blank: 그룹 ID는 비워 둘 수 없습니다
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Xlsx 파일을 업로드하세요
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: 선택한 보고서 번들에 연결되지 않은 보고서를 선택했습니다
+              report_family_disabled: 비활성화된 보고서 번들을 선택했습니다
+              reports_disabled: 비활성화된 보고서를 선택했습니다
+            removing_report_ids:
+              not_linked_to_report_family: 선택한 보고서 번들에 연결되지 않은 보고서를 선택했습니다
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: 평가 ID는 비워 둘 수 없습니다
+            bundle_report_id:
+              blank: 보고서 번들 ID는 비워 둘 수 없습니다
+            report_id:
+              blank: 신고 ID는 비워 둘 수 없습니다
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: Xlsx 파일을 업로드하세요
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: "'%{엔터티}' 열은 %{색인} 행에서 비워 둘 수 없습니다"
+              duplicate_code: 인덱스} 행에 코드 '%{코드}'를 중복합니다
+              invalid_output_type: 인덱스} 행에 잘못된 출력 유형 '%{출력 유형}'이 있습니다
+              max_limit_reached: 총 캠페인 계수가 최대 한도인 %{카운트}를 초과합니다
+              missing_headers: '누락된 필수 헤더: %{헤더}'
+              type_mismatch: 인덱스} 행의 '%{코드}' 코드에 대한 출력 유형이 일치하지 않습니다
+            file:
+              invalid_format: Xlsx 파일을 업로드하세요
+            resource:
+              must_exist: 리소스}가 존재해야 합니다
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: CSV 파일을 업로드하세요
+        column:
+          attributes:
+            name:
+              not_unique: 이 필드는 이미 존재합니다
+        create_all:
+          attributes:
+            assessors:
+              blank: 평가자를 한 명 이상 선택합니다
+              email_duplicated: 제목 및 평가자 이메일이 중복됩니다
+              multiple_leads_for_subject: 과목에 여러 명의 수석 평가자가 할당됨
+            evaluators:
+              email_duplicated: 제목과 평가자 이메일이 중복됩니다
+            subjects:
+              email_duplicated: 일부 주제의 이메일이 동일합니다
+        create_one:
+          attributes:
+            assessment_ids:
+              invalid: 평가 %{id}를 평가자에 연결할 수 없습니다
+              lead_assessor_already_assigned: 과목에는 한 명의 리드 평가자만 지정할 수 있습니다
+            assessor_email:
+              already_exists: 이 평가자가 있는 피험자는 이미 연결되어 있습니다
+              blank: 평가자 이메일은 비워 둘 수 없습니다
+              invalid: 평가자 이메일이 유효하지 않습니다
+            email:
+              already_exists: 동일한 이메일의 제목이 이미 존재합니다
+              blank: 이메일은 비워 둘 수 없습니다
+              invalid: 이메일이 유효하지 않습니다
+            evaluator_email:
+              already_exists: 이 평가자가 있는 피사체가 이미 연결되어 있습니다
+              blank: 평가자 이메일은 비워 둘 수 없습니다
+              invalid: 평가자 이메일이 유효하지 않습니다
+            evaluator_first_name:
+              blank: 평가자 이름은 비워 둘 수 없습니다
+            evaluator_last_name:
+              blank: 평가자 성은 비워 둘 수 없습니다
+            evaluator_locale:
+              inclusion: 잘못된 로캘
+            evaluator_password:
+              too_short: 평가자 암호가 너무 짧습니다(최소값은 %{자수}입니다)
+            first_name:
+              blank: 이름은 비워 둘 수 없습니다
+            last_name:
+              blank: 성은 비워 둘 수 없습니다
+            locale:
+              inclusion: 잘못된 로캘
+            relationship_name:
+              blank: 관계는 공백이 될 수 없습니다
+              invalid: 관계 %{이름}이(가) 잘못되었습니다
+            subject_email:
+              blank: 제목 이메일은 비워 둘 수 없습니다
+              invalid: 제목 이메일이 잘못되었습니다
+              not_exists: 이메일 주소 %{이메일}로 제목을 찾을 수 없습니다
+        email_schedule:
+          attributes:
+            content:
+              blank: 콘텐츠는 비워둘 수 없습니다
+            from:
+              blank: 필드에서 비워 둘 수 없음
+            reply_to_email:
+              blank: 이메일 답장 필드를 비워 둘 수 없습니다
+              invalid: 이메일 답장이 유효하지 않습니다
+            scheduled_date:
+              blank: 예약 날짜 필드는 비워 둘 수 없습니다
+            subject:
+              blank: 제목은 비워둘 수 없습니다
+        email_template:
+          attributes:
+            content:
+              blank: 콘텐츠는 비워둘 수 없습니다
+              invalid_consolidated_pipetext: 이 파이펫 텍스트는 통합 메시지 %{invalid_pipetexts}에 대해 유효하지 않습니다
+              invalid_unconsolidated_pipetext: 이 파이펫 텍스트는 통합되지 않은 메시지 %{invalid_pipetexts}에 대해 유효하지 않습니다
+            from:
+              blank: 필드에서 비워 둘 수 없음
+            reply_to_email:
+              blank: 이메일 답장 필드를 비워 둘 수 없습니다
+              invalid: 이메일 답장이 유효하지 않습니다
+            subject:
+              blank: 제목은 비워둘 수 없습니다
+        email_test_form:
+          attributes:
+            to_email:
+              blank: 이메일 필드는 비워 둘 수 없습니다
+              invalid: 이메일이 유효하지 않습니다
+        factor_import_form:
+          attributes:
+            base:
+              code_length: 인덱스} 행의 코드 길이는 3자 이상이어야 합니다.
+              code_required: 행 %{index}에 팩터 코드가 필요합니다
+              invalid_scoring_strategy: 인덱스} 행에 잘못된 채점 전략 '%{전략}'이 있습니다. 허용되는 전략은 %{허용된 전략}입니다.
+              missing_headers: '누락된 필수 헤더: %{헤더}'
+              name_required: 행 %{인덱스}에 팩터 이름이 필요합니다
+              scoring_strategy_required: 행 %{index}에 채점 전략이 필요합니다
+            file:
+              invalid_format: CSV 파일을 업로드하세요
+        hogan:
+          attributes:
+            name:
+              not_unique: 이 통합은 이 프로젝트에 이미 존재합니다
+        iiht:
+          attributes:
+            name:
+              not_unique: 이 통합은 이 프로젝트에 이미 존재합니다
+        import_one:
+          attributes:
+            email:
+              already_exists: 동일한 이메일의 제목이 이미 존재합니다
+              blank: 이메일은 비워 둘 수 없습니다
+              invalid: 이메일이 유효하지 않습니다
+            first_name:
+              blank: 이름은 비워 둘 수 없습니다
+            last_name:
+              blank: 성은 비워 둘 수 없습니다
+            locale:
+              inclusion: 잘못된 로캘
+            password:
+              too_short: 비밀번호가 너무 짧습니다. 최소 %{자수}자 필요
+        mettl:
+          attributes:
+            name:
+              not_unique: 이 통합은 이 프로젝트에 이미 존재합니다
+        password_reset:
+          attributes:
+            email:
+              wrong_email: 제공하신 이메일로 사용자를 찾을 수 없습니다.
+        profile:
+          attributes:
+            first_name:
+              blank: 이름은 비워 둘 수 없습니다
+            last_name:
+              blank: 성은 비워 둘 수 없습니다
+            password:
+              contains_repeats: 비밀번호에는 반복되는 내용이 없어야 합니다
+              too_short: 비밀번호가 너무 짧습니다. 최소 %{자수}자 필요
+              too_weak: 비밀번호에는 소문자 1개, 대문자 1개, 숫자 1개, 특수 문자 1개 이상이 포함되어야 합니다.
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: 블록 이름은 비워둘 수 없습니다
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: MatrixTable 문제 속성 'answersType'은 비워 둘 수 없습니다
+              inclusion: MatrixTable 문제 속성 'answerType'은 'SingleAnswer' 또는 'MultipleAnswer'여야 합니다
+            type:
+              blank: 매트릭스 테이블 문제 속성 '유형'은 비워 둘 수 없습니다
+              inclusion: 매트릭스 테이블 문제 유형은 '리커트'여야 합니다
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: 객관식(정답 하나) 문제 속성 '유형'은 비워 둘 수 없습니다.
+              inclusion: 객관식(정답 하나) 문제 속성 '유형'은 '단답형', '복수 답안' 또는 '드롭다운'이어야 합니다
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: 질문 이름은 비워 둘 수 없습니다
+            type:
+              blank: 질문 제목은 비워 둘 수 없습니다
+              inclusion: 문제 유형은 '텍스트 입력', '객관식', '매트릭스 테이블' 또는 '정적 콘텐츠'여야 합니다
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: 무작위화.질문은 무작위화.유형이 '일부'인 경우 비워 둘 수 없습니다
+            type:
+              inclusion: randomization.type은 '모두', '일부' 또는 '아니오' 중 하나여야 합니다
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: 필수 유효성 검사 유형은 '강제' 또는 '요청' 중 하나여야 합니다
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: 정적 콘텐츠 문제 속성 유형은 비워 둘 수 없습니다
+              inclusion: 정적 콘텐츠 문제 속성 유형은 '텍스트'여야 합니다
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: 텍스트 입력 문제 속성 '유형'은 비워 둘 수 없습니다.
+              inclusion: 텍스트 입력 문제 속성 '유형'은 '한 줄', '여러 줄' 또는 '에세이 텍스트 상자'여야 합니다
+        register:
+          attributes:
+            email:
+              blank: 이메일 주소는 필수 입력 사항입니다
+              in_use: 이 이메일 주소는 사용 중입니다. 이미 계정이 있는 경우 로그인하세요.
+              invalid: 이메일 주소가 유효하지 않습니다
+              too_long: 이메일 주소가 너무 깁니다
+            first_name:
+              blank: 이름은 필수 입력 사항입니다
+              too_long: 이름이 너무 깁니다
+            last_name:
+              blank: 성은 필수 입력 사항입니다
+              too_long: 성이 너무 깁니다
+            mobile_number:
+              blank: 휴대폰 번호 필수 입력
+              invalid: 휴대폰 번호가 유효하지 않습니다
+              verification_expired: 인증 코드가 만료되었습니다. 다시 인증해 보세요.
+            registration_code:
+              blank: 등록 코드가 필요합니다
+              incorrect_email_domain: 이 이메일 주소는 입력한 등록 코드에 유효하지 않습니다
+              invalid: 등록 코드가 유효하지 않습니다
+            sms_invite_code:
+              invalid: SMS 초대 코드가 잘못되었습니다
+        saml_setting:
+          invalid_cert: 잘못된 인증서
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: 소요 시간은 최소 5분 이상이어야 합니다
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: 소요 시간은 최소 60분이어야 합니다
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: 열 <b>%{col}은</b> (는) %{유형}이어야 하지만 <b>%{갓}을</b>(를) 가져왔습니다
+              email_blank: '행 %{행_번호}: 이메일 필드를 비워 둘 수 없습니다'
+              email_duplicate: 이메일 열에 중복된 항목이 있습니다
+              email_invalid: '행 %{행_번호}: 이메일이 잘못되었습니다'
+              invalid_column: 잘못된 열 %{이름}
+              invalid_column_name: 열 <b>"%{열}"</b> 이(가) 잘못되었습니다
+              invalid_column_name_size: <b>"%{열}"</b> 열 이름이 너무 깁니다(최대 64개)
+              invalid_column_type: 열 유형은 문자열, 텍스트, 숫자, HTML 또는 마크다운이어야 합니다
+              invalid_format: 잘못된 형식(.xlsx)
+              invalid_number_value: <b>행#%{색인}</b> 열 <b>"%{열}"</b> 이 숫자가 아닙니다
+              invalid_string_value: <b>행#%{색인}</b> 열 <b>"%{열}"</b> 이 문자열이 아닙니다
+              invalid_string_value_size: <b>행#%{색인}</b> 열 <b>"%{열}"</b> 이 너무 깁니다(최대 256)
+              no_email_column: 파일에 이메일 열이 포함되어 있지 않습니다
+              non_uniq_column: 유니크가 아닌 %{column} 열이 다음과 같습니다
+        sheet_row_form:
+          attributes:
+            email:
+              blank: 이메일은 비워 둘 수 없습니다
+              not_uniq_email: 이메일이 있는 행이 이미 존재합니다
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: 이름은 비워 둘 수 없습니다
+            last_name:
+              blank: 성은 비워 둘 수 없습니다
+            locale:
+              inclusion: 로캘이 잘못되었습니다.
+            mobile_no:
+              blank: 휴대폰 번호는 비워 둘 수 없습니다
+              invalid: 휴대폰 번호는 플러스로 시작하고 그 뒤에 국제 코드와 숫자가 이어져야 합니다
+              invite_exists_in_campaign: 동일한 휴대폰 번호의 SMS 초대가 이미 존재합니다
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: '다음 휴대폰 번호가 CSV에 중복되어 있습니다: %{mobile_numbers}'
+              invalid_header: 헤더가 잘못되었습니다. 올바른 헤더를 가져오려면 SMS 초대를 내보내세요
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: 이메일 ID 형식이 유효하지 않습니다.
+        super_admin_edit:
+          attributes:
+            email:
+              blank: 이메일 필드는 비워 둘 수 없습니다
+              invalid: 이메일이 유효하지 않습니다
+              starts_with_invalid_characters: 이메일은 =, |, +, -, @, %로 시작할 수 없습니다
+            first_name:
+              blank: 이름은 비워 둘 수 없습니다
+              starts_with_invalid_characters: 이름은 =, |, +, -, @, %로 시작할 수 없습니다
+            last_name:
+              blank: 성은 비워 둘 수 없습니다
+              starts_with_invalid_characters: 성은 =, |, +, -, @, %로 시작할 수 없습니다
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: 올바른 규범 유형을 선택하세요
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: 이 이메일 ID를 가진 사용자가 캠페인에 이미 존재합니다
+              user_exists_in_project: 이 이메일 ID를 가진 사용자가 프로젝트에 이미 존재합니다
+            import_data:
+              cant_overwrite_password: 비밀번호를 덮어쓸 수 있는 권한이 없습니다.
+              duplicated_emails: '다음 이메일이 CSV에 중복되어 있습니다: %{이메일}'
+              invalid_email: '행 %{행_번호}: 잘못된 이메일 %{이메일}입니다'
+              invalid_header: 잘못된 헤더, 내보내기에서 헤더 가져옴
+              invalid_reports_header: 헤더가 잘못되었습니다. 샘플 파일에서 헤더를 가져옵니다
+              manager_not_found: '행 %{행_번호}: 이메일 %{이메일}을 사용하는 관리자가 캠페인 또는 CSV에 없습니다'
+              user_update_failed: 오류 '%{오류}'로 %{이메일}에 대한 사용자 업데이트에 실패했습니다
+            locale:
+              inclusion: 잘못된 로캘
+            name:
+              starts_with_invalid_characters: 로 시작할 수 없음, |, +, -, @, %로 시작할 수 없음
+            schedule_end_date:
+              invalid_datetime: 가 유효하지 않습니다
+            schedule_start_date:
+              invalid_datetime: 가 유효하지 않습니다
+        user_assessment:
+          subject_and_assessment_exists: 평가 및 과목 쌍이 이미 존재합니다
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: 가 유효하지 않습니다
+            private:
+              inclusion: 는 부울이어야 합니다
+            start_date_time:
+              invalid_datetime: 가 유효하지 않습니다
+  activerecord:
+    attributes:
+      administration/assessments/assign_form:
+        access_reports: 액세스 보고서 규칙
+        access_reports_at: 다음에서 보고서에 액세스
+        access_reports_at_date: 날짜
+        access_reports_at_time: 시간
+        client_ids: 고객 임차
+        manager_ids: 관리자
+        report_ids: 보고서
+        user_ids: 사용자
+      assessment:
+        active: 활성
+        categories:
+          '360': 360 캠페인
+          agile: AGILE
+          assessor_form: 평가자 양식
+          case_study: 사례 연구
+          hogan: Hogan
+          iiht: IIHT
+          meeting: 회의
+          organisational: 설문조사
+          pearson: Pearson
+          psychometric: 평가
+          saville: Saville
+          threesixty: 360 캠페인
+        category: 카테고리
+        created_at: 생성 날짜
+        description: 설명
+        id: ID
+        name: 이름
+        statuses:
+          finished: 완료
+        timing: 타이밍
+        types:
+          common: TTE 평가
+          hogan: Hogan
+          iiht: IIHT 평가
+          pearson: 피어슨 평가
+          saville: 새빌 평가
+        updated_at: 수정된 날짜
+      assign:
+        completed_at: 완료 날짜
+        statuses:
+          completed: 완료
+          in_progress: 이력서
+          ineligible: 부적격
+          interrupted: 중단됨
+          not_started: 신규
+          overdue: 기한 초과
+          timed_out: 시간 초과
+      block:
+        active: 활성
+        assign_to_assessment_ids: 평가
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      client:
+        applicable_level: 적용 가능한 수준
+        applicable_levels:
+          campaign: 캠페인
+          project: 프로젝트
+          sub_campaign: 하위 캠페인
+        category: 카테고리
+        created_at: 생성 날짜
+        id: ID
+        licenses: 라이선스 번호
+        licenses_expire: 라이선스 만료 날짜
+        licenses_used: 라이선스 사용량
+        location: 위치
+        logo: 고객 로고
+        memberships_count: 사용자
+        name: 이름
+        number: 고객 번호
+        privacy_consent: 데이터 처리 동의 활성화
+        project_manager: TTE 프로젝트 관리자
+        project_manager_id: TTE 프로젝트 관리자
+        report_ids: 보고서
+        strong_password_enabled: 강력한 비밀번호 사용
+        subdomain: 하위 도메인
+        types:
+          associate: 어소시에이트
+          corporate: 기업
+          distributer: 배포자
+          other: 기타
+          partner: 파트너
+          retail: 리테일
+          tte: TTE
+        updated_at: 수정된 날짜
+        year: 고객 연도
+      communication:
+        created_at: 생성 날짜
+        id: ID
+        updated_at: 수정된 날짜
+      dimension:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      factor:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        parent_id: 부모
+        questions_count: 질문 수
+        updated_at: 수정된 날짜
+      hogan_report_setting:
+        load_report: Hogan의 로드 보고서
+      innovation_style:
+        active: 활성
+        created_at: 생성 날짜
+        description: 설명
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      innovation_styles_factor:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      library:
+        created_at: 생성 날짜
+        id: ID
+        type: 썸네일
+        updated_at: 수정된 날짜
+      license:
+        id: ID
+        number: 라이선스 번호
+        overuse_number: 초과 사용 허용량
+        type: 라이선스 대상
+        types:
+          common: 공통
+          proctoring: 감독
+          threesixty: 쓰리식스티
+        unlimited: 무제한
+        used_number: 사용한 라이선스 번호
+      membership:
+        active: 활성
+        created_at: 생성 날짜
+        disabled: 비활성화
+        email: 이메일
+        first_name: 이름
+        id: ID
+        last_name: 성
+        parent: 직접 관리자
+        parent_id: 직접 관리자
+        report_ids: 신고 ID
+        roles:
+          campaign_admin: 캠페인 관리자
+          client_admin: 클라이언트 관리자
+          manager: 관리자
+          member: 사용자
+          project_admin: 프로젝트 관리자
+        updated_at: 수정된 날짜
+        user_access: 사용자 액세스
+      norm:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+        updated_by: 편집자
+      occupation:
+        active: 활성
+        bachelors_or_masters_qualification: 학사 또는 석사 자격
+        created_at: 생성 날짜
+        description: 설명
+        diploma_qualification: 디플로마 자격
+        full_description: 전체 설명
+        high_school_entry_roles: 고등학교 입학 역할
+        id: ID
+        key_career_tracks: 주요 커리어 트랙
+        name: 이름
+        potential_areas_of_study: 잠재적 연구 분야
+        updated_at: 수정된 날짜
+        work_environment: 업무 환경
+      occupations_factor:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      product:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      question:
+        active: 활성
+        assign_to_assessment_ids: 평가
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      report:
+        created_at: 생성 날짜
+        id: ID
+        updated_at: 수정된 날짜
+      report_family:
+        created_at: 생성 날짜
+        id: ID
+        updated_at: 수정된 날짜
+      task:
+        active: 활성
+        created_at: 생성 날짜
+        description: 설명
+        description_label: 설명
+        factor_id: 역량
+        factor_id_label: 역량 선택
+        id: ID
+        membership_id: 할당자
+        membership_id_label: 할당자 선택
+        name: 작업 항목
+        name_label: 액션 항목
+        planned_completed_at: 마감일
+        planned_completed_at_label: 마감일 선택
+        priority: 우선순위
+        priority_label: 우선순위
+        status: 상태
+        status_label: 상태 선택
+        statuses:
+          completed: 완료
+          in_progress: 진행 중
+          not_started: 시작되지 않음
+          overdue: 기한 초과
+        updated_at: 수정된 날짜
+        updated_by: 편집자
+      threesixty:
+        users_result:
+          statuses:
+            completed: 완료
+            in_progress: 이력서
+            not_started: 신규
+      user:
+        active: 활성
+        created_at: 생성 날짜
+        current_password: 현재 비밀번호
+        disabled: 비활성화
+        email: 이메일
+        first_name: 이름
+        id: ID
+        last_name: 성
+        manage_client_ids: 클라이언트 테넌시
+        memberships: 클라이언트 테넌시
+        name: 이름
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+        role: 역할
+        roles:
+          admin: 관리자
+          admins:
+            admin: 관리자
+            campaign_admin: 캠페인 관리자
+            project_admin: 프로젝트 관리자
+            regular: 클라이언트 관리자
+            superadmin: 슈퍼 관리자
+          agile: AGILE
+          assessor: 평가자
+          assessor_form: 평가자 양식
+          campaign_admin: 캠페인 관리자
+          case_study: 사례 연구
+          client_admin: 클라이언트 관리자
+          hogan: Hogan
+          iiht: IIHT
+          manager: 관리자
+          meeting: 회의
+          member: 사용자
+          organisational: 조직
+          pearson: Pearson
+          project_admin: 프로젝트 관리자
+          psychometric: 사이코메트릭
+          regular: 일반
+          saville: Saville
+          super_admin: 슈퍼 관리자
+          superadmin: 슈퍼 관리자
+          threesixty: 쓰리식스티
+        types:
+          anonymous: 익명 사용자
+          identified: 식별된 사용자
+        updated_at: 수정된 날짜
+      user_form:
+        active: 활성
+        created_at: 생성 날짜
+        current_password: 현재 비밀번호
+        disabled: 비활성화
+        email: 이메일
+        first_name: 이름
+        id: ID
+        last_name: 성
+        parent: 직접 관리자
+        parent_id: 직접 관리자
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+        role: 역할
+        updated_at: 수정된 날짜
+      users_result:
+        assessment_name: 평가 이름
+        assessment_type: 평가 유형
+        completed_at: 완료 시점
+        completion_reasons:
+          time_out_offline: 시간 초과/오프라인
+          time_out_online: 시간 초과 / 온라인
+          user_completed: 사용자 완료
+        email: 이메일
+        name: 이름
+        result_id: 결과 ID
+        started_at: 시작 위치
+        status: 상태
+        statuses:
+          completed: 완료
+          in_progress: 이력서
+          ineligible: 부적격
+          interrupted: 중단됨
+          not_started: 신규
+          timed_out: 시간 제한 가져오기_raw
+    errors:
+      messages:
+        admin_for_another_tte: 다른 티티에서 이미 관리 중인 사용자
+        invalid_http_url: 잘못된 URL입니다. http 또는 https 프로토콜이 포함된 전체 URL을 지정합니다.
+        not_uniqueness: 할당이 이미 수행되었습니다
+      models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: 외부 구성은 유효한 josn이어야 합니다
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: '공식에 순환 종속성이 있습니다. 종속성: %{순환_경로}'
+        factors_norm:
+          score_from_must_be_number: 점수는 숫자여야 합니다
+          score_to_less_than_score_from: 다음 점수가 다음 점수보다 작습니다
+          score_to_must_be_number: 점수는 숫자여야 합니다
+        license:
+          attributes:
+            used_number:
+              overused: 사용된 라이선스는 할당된 라이선스와 초과 사용 한도의 합계를 초과할 수 없습니다.
+          overuse: 라이선스 %{이름}이(가) 과도하게 사용되었습니다
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: 최대 테이크 한도 도달
+        report:
+          assessments_not_hogan: 모든 평가는 호건 유형이어야 합니다
+          assessments_not_saville: 모든 평가는 새빌 유형이어야 합니다
+          has_already_assigned: 평가는 이미 사용자 또는 해당 레벨에 할당되었으므로 변경할 수 없습니다
+          has_dependent_relation: 이 보고서는 사용자에게 할당됩니다
+          max_assessment_count: 최대 %{최대} 평가 한도에 도달했습니다
+          min_assessment_count: 최소 평가 횟수는 %{min}입니다
+        skill_gap_report:
+          not_found: 기술 격차 보고서를 찾을 수 없습니다
+        user:
+          attributes:
+            current_password:
+              invalid: 현재 비밀번호가 올바르지 않습니다
+        user_idp_plan:
+          no_active_plan: 활성 IDP 요금제를 찾을 수 없습니다
+  admin_jobs:
+    attrs:
+      operations:
+        add_campaign_reports: 캠페인 보고서 추가
+        assessment_norm_export: 표준화된 결과 내보내기
+        assessment_raw_factor_export: 원시 팩터 점수 내보내기
+        assessment_raw_result_export: 원시 결과 내보내기
+        assessment_scoring_export: 채점 결과 내보내기
+        assign_idp_to_users: 사용자에게 IDP 할당
+        assign_reports_and_assessments: 보고서 및 평가 할당
+        bulk_create_workshop_invites: 일괄 평가 센터 초대장 보내기
+        bulk_download_reports: 보고서 대량 다운로드
+        bulk_download_user_reports: 사용자 보고서 대량 다운로드
+        bulk_regenerate_reports: 캠페인 보고서 재생성
+        bulk_regenerate_threesixty_reports: 주제 보고서 3십 개 재생성하기
+        bulk_regenerate_user_reports: 사용자 보고서 다시 생성
+        bulk_reports: 대량 보고서
+        bulk_rescore_campaign_factors: 대량 리스코어 캠페인 요소
+        compact_completion_status_export: 컴팩트 완료 상태 내보내기
+        completion_status_export: 완료 상태 내보내기
+        copy_dimension: 복사 차원
+        create_threesixty_campaign: 쓰리식스티 캠페인 만들기
+        data_report_export: 데이터 보고서 내보내기
+        export_admin_with_permissions: 권한이 있는 관리자 내보내기
+        export_assessment_questions: 수출 평가 질문
+        export_campaign_factors: 수출 캠페인 요소
+        export_campaign_scorings: 내보내기 캠페인 점수
+        export_development_action_translations: 수출 개발 작업 번역
+        export_development_actions: 수출 개발 작업
+        export_dimension_as_json: 차원 JSON 내보내기
+        export_factor_translations: 내보내기 팩터 번역
+        export_norm: 내보내기 규범
+        export_occupations: 직업 내보내기
+        export_report_data: 보고서 데이터 내보내기
+        export_reports_and_assessments: 내보내기 보고서 및 평가
+        export_skill_translations: 기술 번역 내보내기
+        export_skills: 기술 내보내기
+        export_user_report_events: 사용자 보고서 이벤트 내보내기
+        export_users: 캠페인 사용자 내보내기
+        external_assessment_export: 외부 결과 내보내기
+        import_accesssheet: 액세스 시트 가져오기
+        import_assessment_questions: 가져오기 평가 질문
+        import_assessors: 평가자 가져오기
+        import_campaign_factors: 캠페인 요소 가져오기
+        import_datasheet: 데이터시트 가져오기
+        import_development_action_translations: 개발 작업 번역 가져오기
+        import_development_actions: 개발 작업 가져오기
+        import_dimension_from_json: JSON에서 차원 가져오기
+        import_external_campaign_scoring: 외부 캠페인 점수 가져오기
+        import_factor_translations: 가져오기 계수 번역
+        import_factors: 가져오기 요소
+        import_norm: 가져오기 규범
+        import_question_translations: 질문 번역 가져오기
+        import_raw_data: 원시 데이터 가져오기
+        import_scoring_data: 채점 데이터 가져오기
+        import_skill_translations: 스킬 번역 가져오기
+        import_skills: 스킬 가져오기
+        import_sms_invites: SMS 초대 가져오기
+        import_users: 사용자 가져오기
+        migrate_assessment_translations: 평가 번역 마이그레이션
+        normalize_factor_scores: 팩터 점수 정규화
+        regenerate_campaign_reports: 캠페인 보고서 재생성
+        regenerate_report: 보고서 다시 생성
+        regenerate_threesixty_report: 삼십육 보고서 재생성
+        remap_report_assessment: 리매핑 보고서 평가
+        rescore_assessment: 평가 재채점
+        rescore_user_assessment: 사용자 평가 재채점
+        send_sms_invites: SMS 초대 보내기
+        super_admin_assessment_norm_export: 슈퍼 관리자 규범 결과 내보내기
+        super_admin_assessment_raw_factor_export: 슈퍼 관리자 로우 팩터 점수 내보내기
+        super_admin_assessment_raw_result_export: 슈퍼 관리자 원시 결과 내보내기
+        super_admin_datasheet_export: 슈퍼 관리자 데이터 시트 내보내기
+        super_admin_external_assessment_export: 슈퍼 관리자 외부 평가 내보내기
+        threesixty_campaign_export_completion_status: 쓰리식스티 캠페인 내보내기 완료 상태
+        threesixty_campaign_export_scores: 쓰리식스티 캠페인 점수 내보내기
+        workshop_status_export: 평가 센터 상태 내보내기
+      statuses:
+        completed: 완료
+        completed_with_errors: 오류로 완료
+        failed: 실패
+        in_progress: 진행 중
+        scheduled: 예약됨
+    bulk_download_reports:
+      content:
+        title: 보고서 다운로드 링크
+    close: 닫기
+    details: 세부 정보
+    errors: 오류
+    invalid_job: 이 알림은 삭제된 레코드에 해당합니다
+    mark_as_read: 모두 읽음 표시
+    more: 자세히 보기
+    notifications: 알림
+    results: 결과
+    super_admin:
+      errors:
+        data_processing_disabled: 데이터 처리가 비활성화됩니다.
+  anonym:
+    close: 닫기
+    continue: 계속하기
+    link_invalid_error_message: 액세스하려는 링크가 유효하지 않습니다. 관리자에게 문의하여 올바른 URL을 얻은 후 설문조사를 진행하세요.
+    notifications:
+      restart:
+        copy: 복사
+        title: 계속하시겠습니까?
+      retake:
+        copy: 복사
+        title: 재응시?
+    restart: 다시 시작
+    retake: 재응시
+  assessments:
+    actions:
+      add_tag:
+        success_message: 태그가 성공적으로 추가되었습니다
+      archived:
+        success_message: 평가 "%{이름}"을(를) 성공적으로 아카이브했습니다.
+      assessment_cache:
+        remove_cache: 캐시 제거
+        success_message: 캐시 제거 성공
+      back_to_campaign: 캠페인으로 돌아가기
+      back_to_dashboard: 대시보드로 돌아가기
+      copy:
+        success_message: 평가 "%{이름}"이(가) 성공적으로 복사되었습니다.
+      details: 세부 정보
+      download_csv: CSV 다운로드
+      edit: 편집
+      evaluate: 평가
+      export_normed: 표준화된 요인 점수
+      export_raw_labels: 원시(레이블 포함)
+      export_raw_scores: 원시 요인 점수
+      export_raw_without_labels: 원시(레이블 없음)
+      extend_time: 시간 연장
+      external_scores_export: 외부 점수
+      goto_dashboard: 계속하려면 여기를 클릭하세요
+      manage_mettl_schedule: 메틀 일정 관리
+      moderate: 보통 점수
+      new_response: 새로운 응답
+      next_assessment: 다음 평가로 넘어가기
+      pending_tasks:
+        other:
+      re_evaluate: 재평가하려면 여기를 클릭하세요
+      reevaluate: 재평가
+      remove:
+        confirm_message: '"%{이름}" 평가를 삭제하시겠습니까?'
+        confirm_title: 확인 필요
+        success_message: 평가 %{이름}이 제거되었습니다
+      remove_tag:
+        success_message: 태그가 성공적으로 제거되었습니다
+      rescore: 재점수
+      restore:
+        success_message: 평가 "%{이름}"이(가) 성공적으로 복원되었습니다
+      show_usage: 사용량 표시
+      submit_another_response: 다른 응답 제출
+      submit_evaluation: 평가 제출
+      translations:
+        success_message: 평가 번역 업데이트
+      unarchived:
+        success_message: 평가 "%{이름}"이(가) 성공적으로 보관 해제되었습니다
+      view: 보기
+    active: 활성
+    archived: 아카이브
+    assessment: 평가
+    assessments: 평가
+    audio_response:
+      pause: 일시 중지
+      permission_denied_message: 답변을 녹음하려면 브라우저에서 마이크 권한을 활성화하세요
+      permission_text: 마이크를 사용하여 오디오를 녹음할 수 있도록 허용하세요
+      resume: 이력서
+      saved:
+        label: 오디오 저장
+      saving: 오디오 저장
+      start_recording: 녹화 시작
+      stop: 중지
+    card_actions:
+      begin: 시작
+      continue: 계속하기
+    categories:
+      redirecting: 리디렉션
+    column:
+      enable_audio_check: 오디오 확인 사용
+      enable_network_check: 네트워크 확인 사용
+      enable_video_check: 비디오 확인 사용
+      external_settings:
+        hogan_assessment_name: 호건 평가 이름
+        iiht_assessment_name: IIHT 평가 이름
+        iiht_schedule_config: 일정 구성
+        mettl_assessment_name: METTL 평가 이름
+        pearson_assessment_name: 피어슨 평가 이름
+        pearson_norm_id: 피어슨 표준 ID
+        saville_assessment_name: 새빌 평가 이름
+        simulation_assessment_name: 시뮬레이션 평가 이름
+      translations_migrated: 번역 마이그레이션
+    create: 만들기
+    dashboard: 대시보드
+    dictation:
+      allow_browser_permision: 받아쓰기를 사용하려면 브라우저 오디오 권한을 허용하세요
+      autostopping_in: 역방향 카운트다운}초 후 받아쓰기 자동 중지
+      browser_unsupported: 브라우저가 오디오 입력을 지원하지 않습니다
+      dictation_active: 받아쓰기가 활성화되었습니다
+      dictation_disabled: 받아쓰기가 현재 비활성화되어 있거나 다른 문제에서 사용 중입니다
+      dictation_not_started: 음성 받아쓰기를 시작하지 못했습니다
+      dictation_stopped: 음성 받아쓰기 중지
+      left: 왼쪽
+      listening: 듣기
+      minutes: 분
+      no_dictation_url: 서버가 음성 텍스트 변환 기능에 응답하지 못함
+      notifications:
+        autostopped: 몇 초 동안 계속 침묵하여 받아쓰기가 자동으로 중지되었습니다(%{자동 차단}초)
+        refresh_page: 음성 받아쓰기를 계속할 수 없는 경우 페이지를 새로 고쳐서 다시 시도하세요
+      start_dictation: 받아쓰기 시작
+      stop_dictation: 받아쓰기 중지
+      use_speech_instructions: 음성 입력을 사용하여 이 답안 작성하기
+    drawer:
+      title: 평가 세부 정보
+    edit: 편집
+    fields:
+      category:
+        agile: AGILE
+        assessor_form: 평가자 양식
+        case_study: 사례 연구
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: 리드 평가자 양식
+        meeting: 회의
+        mettl: Mettl
+        organisational: 조직 설문 조사
+        pearson: Pearson
+        psychometric: 사이코메트릭
+        saville: Saville
+        simulation: 시뮬레이션
+        threesixty: 360 캠페인
+      status:
+        finished: 완료
+        in_progress: 진행 중
+      type:
+        common: TTE 평가
+        hogan: Hogan
+        iiht: IIHT 평가
+        mettl: Mettl 평가
+        pearson: 피어슨 평가
+        saville: 새빌 평가
+        simulation: 시뮬레이션 평가
+    flow:
+      end_assessment_modal:
+        custom_message: 사용자 지정 평가 종료 메시지
+        default_message: 기본 평가 종료 메시지
+        mark_as_ineligible: 부적격으로 표시
+        show_uniq_identifier: 응답자에게 고유 식별자 표시(익명 설문조사의 경우)
+    instructions:
+      begin_assessment: 시작
+      cancel: 취소
+      default: 기본값
+      title: 지침
+    messages:
+      external_scores_export_scheduled: 평가 점수 내보내기 작업이 성공적으로 예약되었습니다
+      finish: 시간 내주셔서 감사합니다. 이제 답변이 녹음되었습니다.
+      norm_results_export_scheduled: 평가 표준 결과 내보내기 작업이 성공적으로 예약되었습니다
+      raw_factor_export_scheduled: 평가 원시 팩터 내보내기 작업이 성공적으로 예약되었습니다
+      raw_results_export_scheduled: 평가 원시 결과 내보내기 작업이 성공적으로 예약되었습니다
+    page:
+      back: 뒤로
+      confirm_message: "## 응답이 제출되며 이후에는 변경할 수 없습니다. 응답을 마지막으로 한 번 더 검토하려면 **뒤로**를 클릭하고, 완료했으면 **제출**을 클릭합니다."
+      invalid_session:
+        description: 이 평가 세션이 무효화되었습니다. 다른 탭, 브라우저 또는 장치에서 평가를 계속한 경우 이러한 문제가 발생할 수 있습니다.
+        title: 마지막 요청 실패
+      next: 다음
+      read_only: 읽기 전용 모드에서는 결과를 변경할 수 없습니다.
+      save: 저장
+      submissionFailedAlert:
+        description: 서버에 연결할 수 없습니다. 페이지를 새로고침하고 다시 시도하세요. 그래도 문제가 해결되지 않으면 라이브 채팅 또는 mte.surveys@mercer.com 으로 지원팀에 문의하세요
+        title: 마지막 요청 실패
+      submit: 제출하기
+      warning: 경고
+    pages:
+      edit:
+        assets: 자산
+        general_settings: 일반 설정
+        translations: 번역
+    pickgrouprank:
+      items: 항목
+    proceed: 어떻게든 진행
+    question_info_bar:
+      select_linked_questions: 연결된 질문 선택
+    reset: 초기화
+    scoring:
+      competency: 역량
+      id: ID
+      score: 점수
+    screen_reader_announcements:
+      fifteen_seconds_left: 15초 남았습니다
+      five_minutes_left: 5분 남았습니다
+      one_minute_left: 1분 남았습니다
+      seconds_left: 남은 %{초}초
+      thirty_seconds_left: 30초 남았습니다
+      time_is_up: 시간이 다 되었습니다
+      time_is_up_for_recording: 시간이 다 되어 녹화가 중지됩니다
+    single_page:
+      display_linked_questions: 현재 선택한 질문과 연결된 응답을 표시합니다.
+    trash: 휴지통
+    unknown_error: 알 수 없는 오류가 발생했습니다.
+    update: 업데이트
+    upload: 업로드
+    video_response:
+      device: 허용
+      device_selection:
+        camera: 카메라
+        mic: 마이크
+      discard: 폐기
+      discard_record_again: 삭제 후 다시 기록
+      media_recorder:
+        failure: 이 브라우저는 동영상 녹화를 지원하지 않습니다. 동영상 녹화를 위해서는 Chrome 또는 Firefox를 사용하세요
+        success: 성공
+        unsupported: 이 브라우저는 동영상 녹화를 지원하지 않습니다. 다음 브라우저 중 하나를 사용하세요,
+      recording_duration_label: 최대 녹화 시간
+      recording_stop_label: 녹화가 다음에서 중지됩니다
+      requesting_permission: 권한 요청 중...
+      response_recorded: 응답 기록
+      save: 저장
+      saved:
+        label: 동영상 저장
+      saving: 저장
+      seek: Seek
+      start_recording: 녹화 시작
+      stop_recording: 녹화 중지
+      tracker:
+        backward: 화면에 너무 가까이 있습니다. 조금 뒤로 이동하세요
+        forward: 화면에서 너무 멀리 떨어져 있습니다. 조금 더 가까이 오세요
+        frame: 얼굴이 프레임에 맞춰져 있는지 확인하세요
+        ready: 녹화할 준비가 되면 녹화 버튼을 누릅니다
+    wait: 대기
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: 아래 순서로 실행할 평가
+      previous_group_required: 이전 그룹 완료 필요
+    menu:
+      assessment_center: 평가 센터
+      assessments_and_reports: 평가 및 보고서
+      idp: IDP
+      manage: 관리
+      report_approval: 보고서 승인 설정
+      sequencing: 시퀀싱
+    report_approval:
+      add_settings: 설정 추가
+      create_seetings: 설정 만들기
+    sequencing:
+      add_assessment_center: 평가 센터 추가
+      add_group: 그룹 추가
+      assessments: 평가
+      delete_group: 그룹 삭제
+      edit_group_name: 그룹 이름 수정
+      modal:
+        delete:
+          cancel: 취소
+          failed: '"%{이름}" 그룹을 삭제하지 못했습니다. 관리자에게 문의하세요'
+          ok: 예, 삭제
+          text: '"%{이름}" 그룹을 삭제하시겠습니까?'
+          title: 그룹 삭제
+      no_assessments: 평가를 끌어다 놓기
+      no_ungrouped_assessments: 평가를 여기로 끌어다 놓아 그룹을 해제합니다
+      ungrouped_assessments: 그룹화되지 않은 평가
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: 평가 횟수
+        evaluation_status: 평가 상태
+        moderation_count: 중재 횟수
+        moderation_status: 중재 상태
+  assign_reports:
+    assessment_not_in_report: ID가 %{assessment_id}인 평가는 ID가 %{report_id}인 보고서에 포함되지 않습니다
+    errors:
+      not_enought_licenses: 번들 ID가 %{번들_id}인 번들에 라이선스가 없습니다
+      user_not_found: '행 %{행}: 이메일 ''%{이메일}''을(를) 가진 사용자를 찾을 수 없습니다'
+    report_bundle_not_found: 아이디가 %{번들_id}인 보고서 번들을 찾을 수 없습니다
+    report_not_found: ID %{보고서_id}의 보고서를 찾을 수 없습니다
+    report_not_in_bundle: ID %{보고서_id}가 %{번들_id}가 있는 보고서 번들에 속하지 않은 보고서입니다
+  assigns:
+    decorator:
+      no_description: 설명이 비어 있습니다
+  audit_log_failures:
+    invalid_sso_token: 잘못된 SSO 토큰
+    record_not_found: 레코드를 찾을 수 없음
+    user_not_authorized: 권한이 없는 사용자
+  auth:
+    current_password: 현재 비밀번호
+    current_password_placeholder: 현재 비밀번호 입력
+    email: 이메일
+    email_placeholder: 이메일 주소 입력
+    expired_password:
+      description: 설명
+      submit: 제출하기
+      title: 비밀번호 갱신
+    lighthouse_logo_alt_text: 등대 로고
+    login:
+      continue_btn: 계속하기
+      description: 설명
+      forgot_password: 비밀번호를 잊으셨나요?
+      hide_password: 비밀번호 숨기기
+      login_btn: 로그인
+      magic_link_btn: 로그인 링크를 이메일로 보내주세요
+      not_member: 회원이 아니신가요?
+      or: 또는
+      show_password: 비밀번호 표시
+      sso_btn: 싱글 사인온으로 로그인
+      title: 환영합니다!
+    logout: 로그아웃
+    magic_link:
+      description: 설명
+      invalid_email: 이메일이 유효하지 않습니다
+      login_with_password: 비밀번호로 로그인
+      send_me_login_link: 로그인 링크 보내기
+      success: 성공
+    mobile_number: 휴대폰 번호
+    new_password: 새 비밀번호
+    new_password_placeholder: 새 비밀번호 입력
+    otp:
+      code: 코드
+      code_placeholder: 일회용 비밀번호
+      description: 설명
+      resend: OTP 다시 보내기
+      resend_in: 타임스탬프}초 후에 다시 보내기
+      resend_success: 휴대폰 번호로 OTP가 전송됩니다
+      sms_description: 휴대폰 번호로 전송된 OTP를 입력하세요.
+      submit: 확인
+      title: 일회용 비밀번호
+    password: 비밀번호
+    password_confirmation: 비밀번호 확인
+    password_confirmation_placeholder: 비밀번호 확인 입력
+    password_placeholder: 비밀번호 입력
+    registration:
+      description: 설명
+      email_hint: 당사는 사용자의 개인정보를 존중하며 스팸을 용납하지 않습니다. 당사는 사용자의 정보를 제3자에게 절대 제공하지 않습니다
+      first_name: 이름
+      first_name_placeholder: 이름 입력
+      have_account: 이미 계정이 있으신가요?
+      last_name: 성
+      last_name_placeholder: 성 입력
+      login_now: 지금 로그인하세요!
+      registration_code: 등록 코드
+      registration_code_placeholder: 등록 코드 입력
+      terms_notice: 등록하면 <a href="%{terms_url}">서비스 약관 및 개인정보 취급방침에</a> 동의하는 것으로 간주됩니다
+      title: 가입하기
+    reset_password:
+      back_to_sign_in: 로그인으로 돌아가기
+      description: 설명
+      submit: 비밀번호 재설정
+      title: 비밀번호를 잊으셨나요?
+    set_password:
+      description: 설명
+      submit: 제출하기
+      title: 비밀번호 만들기
+    sign_out: 다른 사용자로 로그인
+    sign_up: 가입하기
+    terms_link: <a href="%{terms_url}">약관 및 개인정보 처리방침</a>
+    verify_mobile_number:
+      error:
+        blocked: 이 번호는 너무 많은 시도로 인해 차단되었습니다.
+        invalid_code: 잘못된 코드
+        invalid_number: 휴대폰 번호가 잘못되었습니다. 번호를 다시 확인해 주세요
+        max_attempts_reached: 시도 횟수가 너무 많습니다. 10분간 기다렸다가 다시 시도하세요.
+  browsers:
+    chrome: Google 크롬
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: 다운로드
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
+    firefox: Mozilla Firefox
+    safari: Apple Safari
+    support:
+      instruction: 다음 브라우저 중 하나를 다운로드하여 사용하세요.
+      message: 사용 중인 브라우저는 라이트하우스에서 지원되지 않습니다.
+    upgrade:
+      instruction: 지금 업그레이드
+      message: 최신 버전의 브라우저를 사용하세요
+  campaign:
+    all_activities_are_completed: 이제 모든 활동이 완료되었습니다.
+    all_activities_are_completed_multiple: 이제 이 캠페인의 모든 활동이 완료되었습니다. 대시보드로 이동하여 할당된 다른 활동이 있는지 확인하세요.
+    already_joined: 이미 이 캠페인에 참여하셨습니다
+    begin: 작업 시작
+    begin_btn_msg_before_prework: 시간 제한 캠페인을 시작하기 전에 아래 작업을 완료해야 합니다
+    begin_campaign_msg: 평가를 받기 전에 캠페인 시작
+    campaigns: 캠페인
+    closed_campaign_message: 이 캠페인은 종료되었습니다. 이 캠페인에서는 어떠한 평가도 받을 수 없습니다.
+    code_usage_limit_reached: 코드 사용 한도에 도달했습니다. 관리자에게 문의하세요
+    complete_prev: 이전의 모든 평가 완료
+    complete_tasks: 이 조치를 취하기 전에 아래 작업을 완료하세요.
+    continue: 계속하기
+    dashboard_instructions: 완료해야 하는 활동이 여러 개 할당되었을 수 있습니다. 모든 캠페인에서 할당된 활동이 모두 완료되었는지 확인하세요.
+    dashboard_menu:
+      bookings: 예약
+      campaign: 캠페인
+      change_password: 비밀번호 변경
+      development: 개발
+      home: 홈
+      insights: 인사이트
+      my_plan: 내 요금제
+      profile: 프로필
+      profile_details: 세부 정보
+      tasks: 작업
+    details: 세부 정보
+    edit_evaluation:
+      body: 본문
+      edit: 편집
+      title: 확인
+      view: 보기
+    errors:
+      invalid_status: 잘못된 캠페인 상태
+    goto_dashboard: 대시보드로 이동
+    inactive_campaign_message: 현재 활동이 할당되지 않았습니다.
+    insights_reports: 인사이트 및 보고서
+    instruction_modal:
+      campaign_start_final_instructions: "<p>타이머를 중지하거나 일시 중지하는 방법은 없습니다. 브라우저를 닫아도 캠페인 타이머는 계속 실행되므로 중간에 다른 일을 하기 위해 작업을 중단할 생각은 하지 마세요. 작업 중 방해 요소를 최소화하세요. 조용한 환경을 찾고, 기기에서 알림을 끄고, 멀티태스킹을 피하세요. 집중력을 유지하고 집중하세요. 캠페인 타이머가 다 지나면 계속할 수 없습니다. 위의 지침을 모두 읽었다면 시작을 클릭하여 할당된 작업을 계속 진행하시기 바랍니다</p>\n"
+      campaign_start_instruction: |
+        <h4>다음 지침을 잘 읽어주세요.</h4>
+        <p>시작하려는 작업에는 시간이 정해져 있습니다. '시작'을 클릭하면 캠페인 타이머가 자동으로 시작됩니다. 모든 활동을 완료하는 데 남은 시간은 %{분}입니다. 지정된 시간 내에 작업을 완료하고 평가 과정을 서두르지 않도록 시간을 효율적으로 관리하세요. 한 번에 작업을 완료해야 하므로 잠시 쉬고 싶다면 지금이 바로 그 시간입니다</p>
+      common_proctoring_instructions: |
+        <h4>감독</h4>
+        <p>시작 버튼을 클릭하면 감독 시스템으로 리디렉션되며, 세션이 진행되는 동안 카메라, 마이크, 화면을 모니터링합니다. 이러한 세션은 정교한 AI 시스템에 의해 자동으로 감독되어 중단 없이 원활한 사용자 경험을 제공합니다. 그러나 세션은 인간 감독자가 검토할 수도 있습니다. 부정 행위나 부정 행위의 징후가 발견되면 플래그가 표시됩니다. 이는 부정 행위 시도를 방지하기 위한 것입니다. 의심이 발견되면 작업은 취소될 수 있습니다</p>
+      lockdown_browser_instruction: |
+        <h4>감독 브라우저</h4>
+        <p>감독하는 작업을 완료하려면 특수 브라우저를 다운로드하여 설치해야 합니다. 다음 화면의 지침을 따르세요. 필요한 모든 활동을 완료한 후 제거할 수 있습니다</p>
+    instructions:
+      collapse_aria_label: '위의 자세한 정보 보기: 가상 학습 센터'
+      collapse_link_text: 덜 보기
+      expand_aria_label: '위 정보 적게 보기: 가상 학습 센터'
+      expand_link_text: 자세히 보기
+      heading: 시작하기 전에 아래 가이드라인을 검토해 주세요. 최선을 다하시길 바랍니다!
+    language:
+      content: 이 작업은 현재 선택한 언어로 사용할 수 없습니다. 계속하려면 사용 가능한 언어 중 하나를 선택하세요.
+      single_lang: 이 작업은 %{언어}에서만 사용할 수 있습니다. 계속하려면 "진행"을 클릭합니다.
+      title: 언어 선택
+    panels:
+      dashboard: 대시보드
+      reports: 보고서
+    profile:
+      complete_heading: 프로필이 완료되었습니다
+      complete_profile_label: 지금 완료
+      edit_profile_label: 프로필 수정
+      incomplete_heading: 프로필 작성
+      last_login_text: '에 마지막으로 로그인했습니다:'
+      last_updated_text: 프로필이 마지막으로 업데이트된 날짜가 언제입니까?
+      sub_heading: 전체 프로필 정보를 입력하세요
+      welcome_text: 환영합니다,
+    reset_warning: 연습 캠페인으로 표시된 캠페인만 다시 시작할 수 있습니다.
+    restart_practice: 연습 다시 시작
+    restart_practice_confirmation: 연습을 다시 시작하시겠습니까?
+    restart_practice_success: 연습이 성공적으로 다시 시작되었습니다
+    thank_you_for_time: 시간 내주셔서 감사합니다
+    time_left:
+      cancel: 취소
+      continue: 계속하기
+      notification: 이 작업 "%{평가 이름}"에 할당된 시간은 %{총평가 시간}이었습니다. 전체 경과 시간으로 인해 이제 이 작업을 완료하기 위한 조정된 시간은 %{잔여 캠페인 시간}뿐입니다.
+    timer:
+      notification_hours: 남은 시간은 %{시간}시간입니다
+      notification_minutes: 분이 남았습니다
+  campaign_assessment:
+    actions:
+      bulk_download: 대량 다운로드
+      download: 보고서 다운로드
+      export_completion_status: 내보내기 완료 상태
+      export_external: 외부
+      export_normed: 표준화된 요인 점수
+      export_occupations: 직업
+      export_raw_labels: 원시(레이블 포함)
+      export_raw_scores: 원시 요인 점수
+      export_raw_without_labels: 원시(레이블 없음)
+      export_scores: 점수
+      export_scoring: 득점
+      factor_benchmark_score: 요인 벤치마크 점수
+      force_generate: 강제 생성
+      import_raw: Raw
+      import_scoring: 득점
+      regenerate: 보고서 생성
+      rescore: 평가 재채점
+      reset_all_nominations: 모든 추천 재설정
+      reset_participant: 모든 참가자 초기화
+    allow_msg_proctoring_workshop_activity: 평가 센터 활동은 감독되지 않습니다.
+    assessment_center_heading: 평가 센터 세부 정보
+    assessments_heading: 작업
+    column:
+      assessment_name: 평가 이름
+      assessor_form: 평가자 양식
+      auto_assign: 자동 할당
+      dimension_id: 차원 ID
+      id: 캠페인 평가 ID
+      locales: 로캘
+      norm: 표준
+      norm_id: 표준 ID
+      pearson_variation: 피어슨 변형
+      prework: 사전 작업
+      simulation_content_variation: 시뮬레이션 콘텐츠 변형
+      universal_link: 유니버설 링크
+    drawer:
+      mettl_schedule_name: 메틀 스케줄 이름
+      title: 평가 세부 정보
+    messages:
+      export_completion_statuses_scheduled: 완료 상태 내보내기 작업이 성공적으로 예약되었습니다
+      export_occupations_job_scheduled: 직업 내보내기 작업이 성공적으로 예약되었습니다
+      export_reports_and_assessments_statuses_scheduled: 보고서 및 평가 내보내기 작업이 성공적으로 예약되었습니다
+      external_results_export_scheduled: 외부 평가 내보내기 작업이 성공적으로 예약되었습니다
+      norm_results_export_scheduled: 평가 표준 결과 내보내기 작업이 성공적으로 예약되었습니다
+      normalize_factor_scores_scheduled: 요인 점수 정규화 작업이 성공적으로 예약되었습니다.
+      raw_factor_export_scheduled: 평가 원시 팩터 내보내기 작업이 성공적으로 예약되었습니다
+      raw_results_export_scheduled: 평가 원시 결과 내보내기 작업이 성공적으로 예약되었습니다
+      scoring_results_export_scheduled: 평가 채점 결과 내보내기 작업이 성공적으로 예약되었습니다
+    modals:
+      import_raw:
+        body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
+        success_msg: 가져오기가 성공적으로 업로드되었습니다
+        title: 원시 결과 데이터 가져오기
+        upload: 업로드
+      import_scoring:
+        body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
+        success_msg: 가져오기가 성공적으로 업로드되었습니다
+        title: 채점 결과 데이터 가져오기
+        upload: 업로드
+      regenerate:
+        content: 사용 가능한 보고서를 다시 생성하시겠습니까?
+        title: 보고서를 다시 생성하시겠습니까?
+      remove:
+        helper_text: '위험: 이 옵션을 선택하면 이 캠페인에서 이 평가에 대한 모든 사용자의 응답이 제거됩니다.'
+        msg_text: <strong>"%{이름}"</strong> 평가를 삭제하려고 합니다
+        successfully: 이름} 평가가 성공적으로 제거되었습니다.
+        title: 평가를 제거하시겠습니까?
+      rescore:
+        content: 평가를 다시 채점하시겠습니까?
+        successfully: 평가가 성공적으로 완료되었습니다.
+        title: 재평가?
+      rescore_response:
+        message: '"%{이름}" 평가를 위해 채점 예약됨'
+        title: 응답 재채점
+      reset:
+        content: 결과를 초기화하시겠습니까?
+        successfully: 결과 데이터가 성공적으로 재설정되었습니다.
+        title: 평가 결과 %{이름}을(를) 초기화하시겠습니까?
+      update_assessor_form:
+        select_assessor: 평가자 양식 선택
+        success_msg: 평가자 양식이 성공적으로 업로드되었습니다
+        title: 평가자 양식 업데이트
+        update: 업데이트
+      update_content_variation:
+        select_schedule: 콘텐츠 변형 선택
+        success_msg: 시뮬레이션 콘텐츠 변형이 성공적으로 업데이트되었습니다
+        update: 업데이트
+      update_external_config:
+        text_placeholder: 외부 json 구성
+        title: 외부 구성 업데이트
+      update_locales:
+        select_locales: 로캘 선택
+        success_msg: 로캘이 성공적으로 업데이트되었습니다
+        title: 사용 가능한 로캘 업데이트
+      update_mettl_schedule:
+        select_schedule: 일정 선택
+        success_msg: Mettl 일정이 성공적으로 업데이트되었습니다
+        update: 업데이트
+      update_norm:
+        apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다
+        cannot_remove_norm: 완료된 평가에 대한 규범을 제거할 수 없습니다.
+        select_norm: 표준 선택
+        success_msg: 규범이 성공적으로 업데이트되었습니다
+        title: 규범 업데이트
+        update: 업데이트
+      update_simulation_time_extension:
+        success_msg: 시뮬레이션 시간 연장이 성공적으로 업데이트되었습니다
+        title: 시간 연장
+        tooltip: '시간 연장 요소로 시간 연장(예: 50% 더 많은 시간에 1.5)'
+        update: 업데이트
+      update_time:
+        additional_time: 시간(분)
+        title: 시간 연장
+      workshop_activity_duration:
+        form:
+          duration: 지속 시간(분)
+        title: 워크샵 활동 기간
+    normalize_factor_scores:
+      normalization_not_allowed: 현재 프로젝트 설정에서 이 평가에 대해 요소 점수 정규화가 비활성화되어 있습니다. 계속 진행하려면 활성화하세요.
+      success: 요인 점수 정규화가 성공적으로 완료되었습니다
+    not_allow_msg_proctoring_workshop_activity: 감독 창 안에 있으므로 평가 센터 활동을 할 수 없습니다. 이 활동을 하려면 감독 창에서 나가야 합니다.
+    pearson_variation_form:
+      apply_to_existing_users: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다
+      select: 변형 선택
+      update: 업데이트
+      update_success: 피어슨 변형이 성공적으로 업데이트되었습니다
+    scheduled_successfully: 평가가 성공적으로 예약되었습니다
+    scheduling:
+      update_exists: 기존 일정 재정의
+    scheduling_time: 평가 시간 예약
+    statuses:
+      completed: 완료
+      in_progress: 진행 중
+      ineligible: 부적격
+      interrupted: 중단됨
+      not_started: 시작되지 않음
+      timed_out: 시간 초과
+      universal_link: 유니버설 링크
+    ungrouped_assessments_heading: 그룹 해제
+  campaign_join_token:
+    campaign_id: 캠페인 ID
+    expire_in: 만료(초)
+    invalid_token: 잘못된 토큰
+    text: 텍스트
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: 보고서 추가 작업이 성공적으로 대기열에 추가되었습니다
+        success_message: 보고서가 성공적으로 추가되었습니다
+      bulk_download: 대량 다운로드
+      export_data: 데이터 내보내기
+    bulk_download:
+      error: 대량 다운로드는 보고서 파일 1,000개로 제한됩니다. 현재 선택 항목에 %{개}개의 보고서 파일이 있습니다. 다운로드할 보고서 파일 수를 줄이려면 시작 날짜와 종료 날짜를 조정하세요.
+    column:
+      assessor_access: 평가자 액세스
+      auto_assign: 자동 할당
+      main_report: 주요 보고서
+      report_bundle: 보고서 번들
+      report_name: 보고서 이름
+      user_access: 사용자 액세스
+      user_dashboard: 사용자 대시보드
+    form:
+      operation: 운영
+      operation_options:
+        add_and_allow_new_response: 기존 사용자에게 보고서 추가 및 새 응답 허용
+        add_with_existing_response: 기존 사용자에 대한 보고서 추가 및 기존 응답 유지
+        skip_existing: 기존 사용자 건너뛰기
+      report: 신고
+      report_bundle_placeholder: 보고서 번들 선택
+    messages:
+      bulk_download_error: 대량 다운로드는 보고서 파일 1,000개로 제한됩니다. 많은 언어를 선택한 경우 다운로드 횟수를 줄여주세요.
+      bulk_download_successful: 대량 보고서 다운로드 작업이 성공적으로 예약되었습니다
+      export_report_data_scheduled: 보고서 데이터 내보내기 작업이 성공적으로 예약되었습니다
+    modals:
+      remove:
+        apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
+        msg_text: <strong>"%{보고서 이름}"</strong> 보고서를 삭제하려고 합니다
+        title: 신고 삭제?
+      user_access:
+        apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
+        title:
+          disable: 사용자 액세스 비활성화
+          enable: 사용자 액세스 활성화
+  campaign_users:
+    actions:
+      add_manager: 관리자 추가
+      extend_time: 시간 연장
+      search_user: 사용자 검색
+    assessments:
+      progress: 진행 상황
+    details:
+      additional_time: 추가 시간
+      assessment_center: 평가 센터
+      assessment_center_invites: 평가 센터 초대
+      completed_at: 완료 시점
+      completion_status: 완료 상태
+      hogan_id: 호건 아이디
+      last_login: 마지막 로그인
+      manager: 관리자
+      modals:
+        create_hogan_credentials:
+          assessments: '평가:'
+          confirmation: 새 호건 자격 증명을 추가하려면 아래 텍스트 상자에 이메일을 입력하세요
+          reports: '보고서:'
+          successfully: 이메일 %{이메일}을 사용하는 사용자에 대한 새 호건 자격 증명을 추가했습니다.
+          warning: 새 호건 자격 증명을 만들면 %{이메일}에 대한 이전 호건 자격 증명과 연결된 다음 평가 및 보고서가 제거됩니다
+        remove:
+          successfully: 이메일 %{이메일}을 가진 사용자가 성공적으로 제거되었습니다.
+          title: 캠페인 %{캠페인명}에서 이 사용자를 제거하시겠습니까?
+      not_completed_yet: 아직 완료되지 않음
+      not_logged_in_yet: 아직 로그인하지 않았습니다
+      not_started_yet: 아직 시작되지 않음
+      started_at: 시작 위치
+      statuses:
+        completed: 완료
+        in_progress: 진행 중
+        ineligible: 부적격
+        interrupted: 중단됨
+        not_started: 시작되지 않음
+        timed_out: 시간 초과
+    modals:
+      remove: 이메일 '%{이메일}'을 사용하는 사용자를 이 캠페인에서 제거하시겠습니까?
+  campaigns:
+    assessments_and_reports:
+      assessor_assessments: 평가자 평가
+      other_assessments: 기타 평가
+      other_assessor_assessments: 기타 평가자 평가
+      other_reports: 기타 보고서
+    card:
+      duration: 기간
+      starts_in: '시작됩니다:'
+      starts_on: 날짜}에 시작
+      will_start_shortly: 캠페인이 곧 시작됩니다. 잠시만 기다려주세요
+  change_password_page:
+    old_password: 이전 비밀번호
+    password: 비밀번호
+    password_confirmation: 비밀번호 확인
+    title: 비밀번호 변경
+    warning_message: '중요: 비밀번호를 변경하면 로그아웃됩니다.'
+  checking_wizard:
+    audio_check:
+      access: 액세스
+      continue: 계속하기
+      random_phrases:
+        eight: 커피가 진하고 생산적인 하루가 되길 바랍니다.
+        five: 웃으면 인생이 더 즐거워집니다. 마이크를 향해 웃어보세요!
+        four: 그녀는 해변에서 조개를 팔고 있습니다.
+        nine: 확실하지 않다면 이 마이크가 작동하는지 테스트해 보세요!
+        one: 나도 비명을 지르고, 당신도 비명을 지르고, 우리 모두 아이스크림을 원합니다!
+        seven: 매일이 새로운 시작입니다. 큰 소리로 자랑스럽게 말하세요!
+        six: 피자 아니면 파스타? 결정은 어렵습니다.
+        three: 테스트, 하나 둘 셋, 소리가 깨끗하게 들립니다!
+        two: 재빠른 갈색 여우가 게으른 개를 뛰어넘습니다.
+      record_title: 다음 문장을 3번 말하고 반복해 주세요.
+      retake: 아니요, 재응시하고 싶습니다
+      run_again: 다시 실행
+      test_message: 만나서 반가웠습니다
+    network_check:
+      continue: 계속하기
+      download: 다운로드
+      please_check_connection: 인터넷 연결 상태를 확인하세요
+      processing: 처리
+      run_again: 다시 실행
+      run_again_title: 그리고 이 테스트를 다시 실행하세요
+      title: 인터넷 속도 테스트를 시작하려면 시작을 클릭합니다.
+      upload: 업로드
+    steps:
+      audio_check: 마이크 테스트
+      network_check: 인터넷 속도 테스트
+      system_check: 시스템 점검
+      video_check: 비디오 카메라 테스트
+    success:
+      start: 평가 시작
+      title: 모든 확인을 성공적으로 완료했습니다.
+    system_check:
+      compatibility: 시스템 호환성
+      continue: 계속하기
+      failure:
+        description: 설명
+        link_text: 여기
+        link_text_action: 클릭
+        link_text_instruction: 를 클릭하고 다음 단계에 따라 권한을 제공합니다
+        refresh: 새로 고침
+        refresh_text: 브라우저를 새로 고치고 변경 사항을 적용하려면 아래를 클릭하세요
+        subtitle: 빠른 수정
+        title: 웹캠 및 마이크 권한을 취소했습니다
+      permissions: 웹캠 및 오디오 권한
+      title: 이 평가를 시작하기 전에 시스템을 몇 가지 점검해야 합니다.
+    video_check:
+      access: 액세스
+      camera_preview: 카메라 미리보기가 여기에 표시됩니다
+      continue: 계속하기
+      description: 설명
+      random_phrases:
+        eight: 저를 볼 수 있다면 동영상은 성공한 것이고, 안 보인다면 문제를 해결한 것입니다!
+        five: 동영상 테스트, 오스카 후보에 오를 필요는 없으니 걱정하지 마세요.
+        four: 준비, 설정, 집중! 카메라는 여러분의 무대입니다.
+        nine: 큰 웃음과 선명한 영상, 이 테스트를 제대로 끝내자!
+        one: 내 말이 들리면 손을 들거나 카메라를 향해 손을 흔들어주세요!
+        seven: 거울, 화면에 거울을 비추고 동영상 확인을 깨끗하게 하세요.
+        six: 조명, 카메라, 액션, 지금이 바로 여러분이 빛날 때입니다!
+        ten: 친절한 손짓으로 모든 것이 잘 작동하는지 확인하세요.
+        three: 치즈를 말해보세요! 아니면 완벽한 미소를 시험해 보세요.
+        two: 렌즈를 바라보며 미소를 짓고 영화 예고편에 있는 것처럼 상상해 보세요.
+      rec_text: REC
+      retake: 아니요, 재응시하고 싶습니다
+      run_again: 다시 실행
+      title: 시스템이 동영상을 녹화할 수 있는지 확인해야 합니다
+      upload_again: 다시 업로드
+      uploading: 업로드
+  common:
+    actions:
+      add: 추가
+      approve: 승인
+      archive: 아카이브
+      back_to_dashboard: 대시보드로 돌아가기
+      back_to_responses: 응답으로 돌아가기
+      cancel: 취소
+      change: 변경
+      close: 닫기
+      continue: 계속하기
+      copy: 복사
+      create: 만들기
+      delete: 삭제
+      done: 완료
+      edit: 편집
+      export: 내보내기
+      filter_by_tags: 태그별로 필터링
+      import: 가져오기
+      insert: 삽입
+      ok: 확인
+      remove: 제거
+      reset: 초기화
+      resolve: 해결
+      restore: 복원
+      run: 실행
+      save: 저장
+      schedule: 일정
+      search: 검색
+      send: 보내기
+      start: 시작
+      unarchive: 보관 해제
+      unresolve: 해결 취소
+      update: 업데이트
+      upload: 업로드
+      upload_file: 파일 업로드
+      verify: 확인
+      view: 보기
+      view_all_tasks: 모든 작업 보기
+      view_details: 세부정보 보기
+    column:
+      action: 액션
+      active: 활성
+      allow_multiple_responses: 여러 개의 응답 허용
+      approval_notification_list: 승인 알림 사용자 목록
+      approvers_list: 승인자 목록
+      assessment: 평가
+      assessment_name: 평가 이름
+      assessments: 평가
+      assessor: 평가자
+      category: 카테고리
+      client: 클라이언트
+      created_at: 만든 곳
+      created_by: 만든 사람
+      created_date: 생성 날짜
+      default_language: 기본 언어
+      description: 설명
+      details: 세부 정보
+      dimension: 차원
+      email: 이메일
+      external_report_id: 외부 보고서 ID
+      first_name: 이름
+      icon: 아이콘
+      icon_color: 아이콘 색상
+      id: Id
+      json:
+        answer: 응답 JSON
+        external_result: 외부 결과 JSON
+        scoring: JSON 채점
+      key: 키
+      last_name: 성
+      linked_activities: 연계 활동
+      linked_assessment: 연계 평가
+      meeting_link: 미팅 링크
+      modified_by: 수정자
+      modified_date: 수정된 날짜
+      name: 이름
+      owner: 소유자
+      package_id: 패키지 ID
+      poster: 포스터
+      project: 프로젝트
+      provider: 공급자
+      qc_user_list: QC 사용자 목록
+      report: 신고
+      report_id: 신고 ID
+      require_scheduling: 예약 필요
+      responses_count: 응답 수
+      schedule_time: 스케줄 시간
+      scheduling: 일정 예약
+      skills: 기술
+      status: 상태
+      tags: 태그
+      timing: 타이밍
+      token: 토큰
+      type: 유형
+      unschedule: 일정 취소
+      updated_at: 마지막 업데이트
+    errors:
+      csv_injection_validation_error: 로 시작할 수 없음, |, +, -, @, %로 시작할 수 없음
+      something_wrong: 문제가 발생했습니다. 관리자에게 문의하세요.
+    messages:
+      leave_message: 이 페이지를 나가시겠습니까? 저장하지 않은 답변은 모두 손실됩니다.
+    model:
+      admins: 관리자
+      assessment: 평가
+      assessments: 평가
+      campaigns: 캠페인
+      completion_statuses: 완료 상태
+      datasheet: 데이터시트
+      projects: 프로젝트
+      report: 신고
+      reports: 보고서
+      scoring: 채점
+      sms_contact: SMS 연락처
+      threesixty_campaign: 쓰리식스티 캠페인 점수
+    status:
+      completed: 완료
+      dropped_out: 탈락
+      in_progress: 진행 중
+      late: Late
+      no_show: 노쇼
+      not_started: 시작되지 않음
+      not_status: 상태 없음
+      on_time: 정시에
+    text:
+      accepted: 수락됨
+      all_pages: 모든 페이지
+      cancel: 취소
+      confirm: 확인
+      continue: 계속하기
+      copied: 클립보드에 복사
+      default: 기본값
+      download: 다운로드
+      file: 파일
+      global_import: 글로벌 가져오기란 무엇인가요?
+      minutes: 분
+      na: N/A
+      none: 없음
+      ok: 확인
+      reference_language: 참조 언어
+      response: 응답
+      selected: 선택됨
+      subject: 제목
+      total: 합계
+      view_as: 다른 이름으로 보기
+    tooltips:
+      hide: 숨기기
+      view: 보기
+    validations:
+      select_locale: 일부 로캘을 선택해 주세요
+      should_be_whole_number: 는 정수여야 합니다
+  confirmation:
+    delete_comment: 이 댓글을 삭제하시겠습니까?
+  custom_field:
+    field_name: 필드 이름
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: 열 '%{열_이름}'을(를) 찾을 수 없습니다
+        numeric_value_required: "'%{필드}' 열은 숫자여야 합니다"
+        string_value_required: 열 '%{field}'는 문자열이어야 합니다
+      not_configured: 데이터시트 구성되지 않음
+  devise:
+    administrators:
+      meta_title: 관리 패널에 로그인
+      passwords:
+        edit:
+          submit: 새 비밀번호 설정
+          title: 비밀번호 변경
+        new:
+          back: 뒤로 돌아가기
+          submit: 지침 보내기
+          title: 비밀번호를 잊어버리셨나요?
+      sessions:
+        new:
+          forgot_password: 비밀번호를 잊어버리셨나요?
+          submit: 로그인
+          title: "<strong>환영합니다</strong>, 로그인하세요"
+      shared:
+        links:
+          about: 정보
+          app_name: "© 2016 AppName"
+          contact_us: 문의하기
+          privacy: 개인 정보 보호
+    confirmations:
+      confirmed: 이메일 주소가 성공적으로 확인되었습니다.
+      send_instructions: 몇 분 후에 이메일 주소를 확인하는 방법에 대한 안내가 포함된 이메일이 전송됩니다.
+      send_paranoid_instructions: 이메일 주소가 당사 데이터베이스에 있는 경우 몇 분 후에 이메일 주소 확인 방법이 포함된 이메일을 받게 됩니다.
+    failure:
+      already_authenticated: 이미 로그인되어 있습니다.
+      inactive: 계정이 아직 활성화되지 않았습니다.
+      invalid: 이메일 또는 비밀번호가 잘못되었습니다.
+      invited: 초대됨
+      last_attempt: 계정이 잠기기 전에 한 번 더 시도할 수 있습니다.
+      locked: 계정이 잠겼습니다.
+      magic_link_invalid: 유효하지 않거나 만료된 로그인 링크입니다.
+      not_found_in_database: 이메일 또는 비밀번호가 잘못되었습니다.
+      saml_user_not_present: 사용자가 시스템에 없습니다
+      timeout: 세션이 만료되었습니다. 계속하려면 다시 로그인하세요.
+      unauthenticated: 계속하려면 로그인하거나 등록해야 합니다.
+      unconfirmed: 계속하기 전에 이메일 주소를 확인해야 합니다.
+    invitations:
+      edit:
+        confirm_password_label: 비밀번호 확인
+        header: 비밀번호 설정
+        instruction: 새 비밀번호를 만들려면 아래 상자에 새 비밀번호를 입력하세요
+        password_label: 비밀번호
+        submit: 새 비밀번호 설정
+        submit_button: 비밀번호 설정
+        title: 비밀번호 만들기
+      invitation_removed: 초대가 삭제되었습니다.
+      invitation_token_invalid: 제공된 초대 토큰이 유효하지 않습니다!
+      new:
+        header: 초대 보내기
+        submit_button: 초대 보내기
+      no_invitations_remaining: 남은 초대 없음
+      send_instructions: 초대 이메일이 %{이메일}로 전송되었습니다.
+      updated: 비밀번호가 성공적으로 설정되었습니다. 이제 로그인했습니다.
+      updated_not_active: 비밀번호가 성공적으로 설정되었습니다.
+    mailer:
+      admin_invitation_instructions:
+        accept: 초대를 수락하려면 여기를 클릭하세요.
+        body: '안녕하세요 %{이름} 님, 인재 기업 평가 플랫폼인 라이트하우스의 관리자 패널에 액세스하도록 초대되었습니다. 수락] 또는 이 이메일을 무시해도 됩니다. 액세스 자격 증명을 다른 사람과 공유하지 마세요.
+
+          '
+        subject: 라이트하우스로의 초대
+      confirmation_instructions:
+        subject: 확인 지침
+      invitation_instructions:
+        body: '안녕하세요 %{이름} 님, 다음 섹션의 관리자로 라이트하우스에 추가되었습니다
+
+          '
+        login: 라이트하우스에 로그인
+        sections:
+          campaign: '캠페인: %{섹션_이름}'
+          client: '클라이언트 테넌시: %{섹션_이름}'
+          project: '프로젝트: %{섹션_이름}'
+        subject: 라이트하우스로의 초대
+      password_change:
+        body: '안녕하세요 %{이름} 님! 비밀번호가 변경되었습니다. 이 요청을 하지 않은 경우 즉시 지원팀(support@thetalententerprise.com)으로 문의하시기 바랍니다
+
+          '
+        regards: '라이트하우스 팀
+
+          '
+        subject: 라이트하우스 비밀번호가 변경되었습니다
+      reset_password_instructions:
+        body: '안녕하세요 %{이름} 님! 누군가 비밀번호를 변경할 수 있는 링크를 요청했습니다. 아래 링크를 통해 비밀번호를 변경할 수 있습니다.
+
+          '
+        change_password: 비밀번호 변경
+        footer: 요청하지 않은 경우 이 이메일을 무시해도 됩니다. 위의 링크에 액세스하여 새 비밀번호를 생성할 때까지 비밀번호는 변경되지 않습니다.
+        regards: '라이트하우스 팀
+
+          '
+        subject: 비밀번호 재설정 방법
+      unlock_instructions:
+        body: '안녕하세요 %{이름} 님! 로그인 시도 횟수가 너무 많아 계정이 잠겼습니다. 아래 링크를 클릭하여 계정의 잠금을 해제하세요:
+
+          '
+        footer: 요청하지 않은 경우 이 이메일을 무시해도 됩니다. 위의 링크에 액세스하여 새 비밀번호를 생성할 때까지 비밀번호는 변경되지 않습니다.
+        regards: '라이트하우스 팀
+
+          '
+        subject: 계정 잠금 해제 지침
+        unlock_account: 내 계정 잠금 해제
+    omniauth_callbacks:
+      failure: '"%{이유}" 때문에 %{종류}에서 사용자를 인증할 수 없습니다.'
+      success: 종류] 계정에서 인증에 성공했습니다.
+    passwords:
+      edit:
+        instruction: 새 비밀번호를 만들려면 아래 상자에 새 비밀번호를 입력하세요
+        submit: 제출하기
+        title: 비밀번호 만들기
+      invalid_email: 잘못된 이메일
+      no_token: 비밀번호 재설정 이메일이 아니면 이 페이지에 액세스할 수 없습니다. 비밀번호 재설정 이메일을 받은 경우 제공된 전체 URL을 사용했는지 확인하세요.
+      send_instructions: 몇 분 후에 비밀번호를 재설정하는 방법에 대한 안내가 담긴 이메일을 받게 됩니다.
+      send_paranoid_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 후에 이메일 주소로 비밀번호 복구 링크를 보내드립니다.
+      updated: 비밀번호가 성공적으로 변경되었습니다. 이제 로그인되었습니다.
+      updated_not_active: 비밀번호가 성공적으로 변경되었습니다.
+    registrations:
+      communication_not_setup_error: 등록 이메일 커뮤니케이션이 설정되지 않은 경우 이 프로젝트의 관리자에게 문의하세요.
+      destroyed: 안녕! 계정이 성공적으로 해지되었습니다. 곧 다시 뵙기를 바랍니다.
+      new:
+        email: 이메일
+        first_name: 이름
+        instruction: 아래 세부 정보를 입력하여 등록하고 새 계정을 만드세요
+        last_name: 성
+        privacy_notice: 당사는 사용자의 개인정보를 존중하며 스팸을 용납하지 않습니다. 당사는 사용자의 정보를 제3자에게 절대 제공하지 않습니다.
+        registration_code: 등록 코드
+        submit: 등록하기
+        tabs:
+          register: 등록하기
+          sign_in: 로그인
+        terms_notice: 등록하면 <a href="%{terms_url}">서비스 약관 및 개인정보 취급방침에</a> 동의하는 것으로 간주됩니다
+        title: 지금 등록하기
+      signed_up: 환영합니다! 가입이 완료되었습니다.
+      signed_up_but_inactive: 가입에 성공했습니다. 그러나 계정이 아직 활성화되지 않아 로그인할 수 없습니다.
+      signed_up_but_locked: 가입에 성공했습니다. 그러나 계정이 잠겨 있어 로그인할 수 없습니다.
+      signed_up_but_unconfirmed: 확인 링크가 포함된 메시지가 이메일 주소로 전송되었습니다. 링크를 따라 계정을 활성화하세요.
+      success:
+        actions:
+          sign_in: 로그인
+        instruction: 자세한 안내는 이메일을 통해 확인하세요
+        title: 가입 성공
+      update_needs_confirmation: 계정을 성공적으로 업데이트했지만 새 이메일 주소를 확인해야 합니다. 이메일을 확인한 후 확인 링크를 따라 새 이메일 주소를 확인하세요.
+      updated: 계정이 성공적으로 업데이트되었습니다.
+    sessions:
+      already_signed_out: 로그아웃에 성공했습니다.
+      new:
+        email: 이메일
+        forgot_password: 비밀번호를 잊으셨나요?
+        instruction: 개인 계정 정보로 로그인하세요
+        keep_sign_in: 예, 로그인 유지
+        login_with_sso: 싱글 사인온으로 로그인
+        password_placeholder: 비밀번호
+        submit: 로그인
+        tabs:
+          register: 등록하기
+          sign_in: 로그인
+        title: 환영합니다!
+      signed_in: 로그인에 성공했습니다!
+      signed_in_time: 마지막으로 로그인한 날짜는 %{날짜_시간}입니다
+      signed_out: 로그아웃에 성공했습니다.
+      unsuccessful_sign_in_time: 날짜_시간}에 마지막으로 로그인하지 못했습니다.
+    two_factor_authentication:
+      attempt: 등록된 이메일 주소로 받은 OTP를 입력하세요
+      attempt_failed: OTP가 잘못되었습니다! 다시 시도하세요
+      code_has_been_sent: 새 OTP가 등록된 이메일 주소로 전송되었습니다
+      contact_administrator: 시스템 관리자에게 문의하세요
+      email:
+        otp:
+          subject: 일회용 비밀번호
+      max_login_attempts_reached: 현재 OTP의 최대 시도 횟수에 도달했습니다. 새 OTP를 받으려면 OTP 재전송을 클릭합니다
+      otp: 코드
+      submit: 확인
+      success: 2단계 인증으로 로그인에 성공했습니다.
+      title: 일회용 비밀번호
+    unlocks:
+      send_instructions: 몇 분 후에 계정 잠금 해제 방법에 대한 안내가 담긴 이메일을 받게 됩니다.
+      send_paranoid_instructions: 계정이 있는 경우 몇 분 후에 잠금 해제 방법에 대한 안내가 포함된 이메일을 받게 됩니다.
+      unlocked: 계정이 성공적으로 잠금 해제되었습니다. 계속하려면 로그인하세요.
+      unprocessable_entity: 이 링크로 계정을 잠금 해제할 수 없습니다. 지원팀에 문의하세요.
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: 하위 도메인 형식이 잘못되었습니다.
+        reserved_subdomain: 하위 도메인 %{값}이 예약되었습니다
+        uniq_subdomain: 하위 도메인은 고유해야 합니다.
+      add_manager:
+        manager_not_found: 관리자를 찾을 수 없거나 동일한 프로젝트에 속하지 않음
+        user_not_found: 사용자를 찾을 수 없거나 동일한 프로젝트에 속하지 않은 사용자
+      admin:
+        already_added: 이메일이 이미 추가된 관리자입니다.
+      already_assigned?: 이 평가를 연결할 수 없습니다. 이 평가는 이미 '%{연결된_평가자_양식_이름}'에 할당되어 있습니다.
+      already_invited: 이 사용자는 추가하려는 평가 센터에 이미 존재합니다.
+      assessor_assessment:
+        already_added: 평가자 평가는 이미 캠페인에 추가되었습니다.
+        lead_already_added: 캠페인에는 리드 평가자 평가를 하나만 추가할 수 있습니다.
+      campaign_factor:
+        code_already_exists: 동일한 코드를 가진 요소가 이미 존재합니다.
+        invalid_lua_name: 는 유효한 루아 변수 이름이어야 합니다
+        limit_exceeded: 캠페인 계수의 최대 한도 %{한도}에 도달했습니다.
+        name_already_exists: 같은 이름의 요소가 이미 존재합니다.
+        rank_not_allowed: 출력 유형이 숫자인 요소만 순위를 매길 수 있습니다.
+      campaign_factor_group:
+        group_already_exists: 같은 이름의 그룹이 이미 존재합니다.
+        last_factor_group: 마지막 캠페인 요소 그룹을 삭제할 수 없습니다.
+      create_superadmin:
+        uniq_email: 이메일은 고유해야 합니다.
+      exceeded_subjects_count: 초대당 %{개수}명의 피사체만 추가할 수 있습니다
+      filled?: 비어있을 수 없습니다
+      invalid_name: 알파벳, 숫자, 공백, 대시 및 점만 유효한 문자로 허용됩니다
+      invalid_value: 줄 번호 %{행}에 잘못된 문 '%{값}'이 있습니다
+      json?: 유효한 JSON이어야 합니다
+      key?: 비어있을 수 없습니다
+      match_regexp?: 유효하지 않은 값
+      mettl_schedule_record_create:
+        uniq_schedule_name: 일정 이름은 고유해야 합니다
+      missed?: 비어있을 수 없습니다
+      not_allowed?: 변경할 수 없습니다
+      not_in_the_list?: 잘못된 값이 전달되었습니다
+      not_uniq_variable: 행 번호 %{행}에서 변수 '%{값}'이(가) 재정의되었습니다
+      project_assessments:
+        should_be_greater_than_zero: 결과 유효 기간은 0일 이상이어야 합니다
+      report_approval_settings:
+        report_exists: 이 보고서에 대한 보고서 승인 설정이 이미 존재합니다.
+        validates_admins: 관리자는 캠페인에 액세스할 수 없습니다.
+      report_families_reports:
+        report_exists: 이 보고서는 이미 보고서 번들의 일부입니다
+      size?: 크기는 %{크기}보다 작아야 합니다
+      skill_alias:
+        unique_alias: 별칭은 고유해야 합니다
+        unique_skill: 스킬은 고유해야 합니다
+      uniq: 이 Mettl 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
+      uniq?: 고유해야 합니다
+      uniq_simulation: 이 시뮬레이션 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
+      update_workshop:
+        less_than_booked: 총 좌석 수가 예약된 좌석 수보다 많아야 합니다
+      user_availability_date:
+        overlaps_date: 다른 가용성 %{범위}와 겹침
+        overlaps_time: 겹침 간격 %{간격}
+        start_date_should_be_less: 시작 날짜는 종료 날짜보다 작아야 합니다
+        start_time_should_be_less: 시작 시간은 종료 시간보다 짧아야 합니다
+      user_idp_plan:
+        idp_template_already_assigned_to_user: 이 Idp 템플릿은 이미 이 사용자에게 할당되어 있으며 활성화되어 있습니다
+      user_saved_filters:
+        limit_exceeded: 제한] 개의 필터만 저장할 수 있으며, 더 추가하려면 저장된 필터를 삭제해 주세요.
+        unique_name: 같은 이름의 필터가 이미 존재합니다.
+      workshop_invited_subject_create:
+        already_exists: 초대장에 제목이 이미 존재합니다.
+      workshop_subject_create:
+        already_exists: 이 평가 센터에 과목이 이미 존재합니다.
+        part_of_other_workshop: 주체가 이미 '%{워크샵_이름}'의 참가자입니다.
+      workshops:
+        no_available_assessor_slots: 평가자 %{평가자}에 사용할 수 있는 슬롯이 없습니다
+        no_available_manager_slots: 관리자 %{관리자}에게 사용 가능한 슬롯이 없습니다
+    users:
+      registrations:
+        new:
+          register: 등록하기
+          sign_in: 로그인
+      sessions:
+        new:
+          register: 등록하기
+          sign_in: 로그인
+  emails:
+    nomination_approval_table:
+      evaluator_name: 평가자 이름
+      number: 아니요
+      relationship: 관계
+      subject_name: 제목 이름
+    subject_relationship_table:
+      subject_email: 제목 이메일
+      subject_name: 제목 이름
+      subject_relationship: 주제 관계
+  empty: 비어 있음
+  enums:
+    communication:
+      body:
+        error: 이메일 본문에 잘못된 파이펫 텍스트가 있습니다.
+  errors:
+    assessments:
+      timed_out: 시간이 초과되었으므로 %{평가_이름} 평가에 응시할 수 없습니다.
+    error: 오류
+    error_500: 문제가 발생했습니다. 관리자에게 문의하세요.
+    error_msg: 문제가 발생했습니다. 페이지를 새로 고친 후 문제가 지속되면 관리자에게 문의하세요
+    forbidden: 이 페이지에 액세스할 수 없습니다
+    forbidden_action: 이 작업에 대한 권한이 없습니다
+    invalid_session_title: 잘못된 세션
+    invalid_token: 문제가 발생했습니다. 페이지를 새로고침하고 다시 시도하세요.
+    max_regeneration_limit: 최대 재생 한도가 초과되었으니 관리팀에 문의하세요.
+    messages:
+      data_report_blank: 데이터 보고서가 존재하지 않습니다
+    module_error: 이 모듈에 문제가 발생했습니다. 관리팀에 문의하세요.
+    module_error_editor: 이 모듈에 문제가 발생했습니다. 모듈 설정을 확인하세요.
+    module_props_error: 이 모듈에 문제가 발생했습니다.
+    skill_gap_report:
+      not_found: 기술 격차 보고서를 찾을 수 없습니다
+    try_again: 다시 시도해 주세요
+    user_idp_plan:
+      no_active_plan: 활성 IDP 요금제를 찾을 수 없습니다
+    webhooks:
+      multiple_webhook_error: 이 프로젝트에 웹훅이 여러 개 있으므로 URL을 업데이트할 수 없습니다.
+  evaluators:
+    errors:
+      can_not_processed: 처리할 수 없습니다
+      exists: 이미 존재
+      max_evaluators: 이미 충분한 평가자가 있습니다
+  factors:
+    description: 설명
+    factor: 요인
+  frontend:
+    activate: 활성화
+    are_you_sure: 확실하신가요?
+    aria:
+      back_to_dashboard: 대시보드로 돌아가기
+      back_to_tasks: 작업으로 돌아가기
+      calendar: 캘린더
+      campaign_name_description: 캠페인 "%{캠페인이름}"의 경우
+      change_language: "(언어 변경)"
+      clear_date: 날짜 지우기
+      collapse_menu: 메뉴 축소
+      confirm_proceed: 계속하려면 확인
+      delete_message: 메시지 삭제
+      drag_drop_instructions_desktop: 양식 모드를 켜서 화면 리더로 항목을 끌어다 놓습니다.
+      drag_drop_instructions_mobile: 화면 리더를 사용하여 드래그 버튼을 두 번 탭한 다음 다른 항목으로 이동하고 손가락을 들어 항목을 이동합니다.
+      enlarge_view_text: 텍스트} 확대 보기
+      expand_menu: 메뉴 확장
+      file_uploaded: 파일 업로드
+      lang_dropdown_description: 언어 변경
+      pause: 일시 중지
+      play: 플레이
+      profile_progress: 프로필 완료는
+      remove_file: 파일 제거
+      send_message: 메시지 보내기
+      slider_label_instruction: '최소: %{min} 및 최대: %{max}'
+      task_btn_description: 작업 %{평가 이름}
+      task_progress_label: 작업 완료는
+      write_message: 메시지 작성
+    assessment: 평가
+    assessment_groups:
+      create_success: 그룹이 성공적으로 만들어졌습니다
+      update_success: 그룹이 성공적으로 업데이트되었습니다
+    availability:
+      add_new_availability: 새로운 가용성 추가
+      create_success: 가용성이 성공적으로 생성되었습니다.
+      remove_confirm:
+        content: 사용 가능성을 제거하시겠습니까?
+        success: 가용성이 성공적으로 제거되었습니다.
+        title: 가용성 제거
+      update_success: 가용성이 성공적으로 업데이트되었습니다.
+    background_reading: 배경 읽기
+    bookings:
+      accept_invite_msg: 초대를 받았습니다. 슬롯을 예약해 주세요.
+      add_to_calendar: 캘린더에 추가
+      add_to_calendar_tour_description: 이 예약을 캘린더에 추가하기
+      add_to_google_calendar: Google 캘린더에 추가
+      add_to_i_calendar: ICalendar에 추가
+      add_to_msoffice_calendar: Microsoft Office 365 캘린더에 추가
+      add_to_outlook_calendar: Outlook 일정에 추가
+      add_to_yahoo_calendar: 야후 캘린더에 추가
+      assessment_center_alert:
+        btn_title: 캠페인
+        message_part1: 모든 사전 작업을 완료하세요
+        message_part2: 슬롯을 예약하기 전에
+      assessment_center_group_name: 평가 센터
+      booking_failed_msg: '슬롯을 예약하지 못했습니다: %{오류}'
+      buttons:
+        book: 예약
+        book_again: 다시 예약하기
+        cancel: 취소
+        cancel_booking: 예약 취소
+        confirm_booking: 예약 확인
+        confirm_reschedule: 일정 변경 확인
+        modify: 수정
+        nevermind: 네버마인드
+        no_text: 아니요
+        request_cancel: 취소 요청하기
+        request_reschedule: 일정 변경 요청
+        reschedule: 일정 변경
+        reserve_spot: 자리 예약하기
+        yes_text: 예
+      cancel_booking_confirmation: 이 예약을 취소하시겠습니까?
+      cancellation_failed: '예약을 취소하지 못했습니다: %{오류}'
+      cancellation_success: 예약을 성공적으로 취소했습니다
+      comments_required_msg: 의견을 입력하세요
+      confirm_booking_description: 예약을 완료하기 전에 이러한 세부 정보가 정확한지 확인해 주세요.
+      confirm_booking_title: 이 예약을 확인하시겠습니까?
+      default_failure_msg: 요청을 처리할 수 없습니다. 나중에 다시 시도하세요.
+      default_requires_msg: "%{이름}은(는) 필수 입력 사항입니다"
+      join_activity_meeting: 미팅 참여
+      join_workshop_meeting: 미팅 참여
+      language: 언어
+      language_placeholder: 언어 선택
+      language_preference_question: 선호하는 언어가 있나요?
+      language_required_msg: 언어를 선택해 주세요
+      meeting_start_text: '회의가 시작됩니다:'
+      need_changes: 변경이 필요하신가요?
+      neurodivergence_comment_aria_label: 신경 발산 댓글
+      neurodivergence_comment_placeholder: 귀하의 의견
+      neurodivergence_question: 평가에 완전히 참여하기 위해 특별한 필요나 장애로 인해 합리적인 편의나 조정이 필요하신가요?
+      or: 또는
+      other_invite: 카운트] 더 초대하기 참조
+      other_invites: 카운트] 더 많은 초대 참조
+      reason: 이유
+      reason_for_cancel: 취소 사유
+      reason_for_reschedule: 일정 변경 이유
+      request_cancellation_failed: '취소 요청에 실패했습니다: %{오류}'
+      request_cancellation_success: 취소 요청 성공
+      request_reschedule_failed: '일정 변경을 요청하지 못했습니다: %{오류}'
+      request_reschedule_success: 일정 변경을 성공적으로 요청했습니다
+      reschedule_failed_msg: '일정을 변경하지 못했습니다: %{오류}'
+      reschedule_reason_placeholder: 계속하려면 일정 변경 사유를 입력하세요.
+      schedule_success: 이 예약은 예정되어 있습니다
+      schedule_success_msg: 귀하와 다른 참석자에게 모든 세부 정보가 포함된 캘린더 초대장을 이메일로 보냈습니다.
+      starts_at: '시작 날짜: %{날짜}'
+      starts_in: '시작됩니다:'
+      tab_label:
+        bookings: 예약
+        invites: 초대
+      what: 무엇
+      when: 언제
+      workshop_start_text: 평가 센터는 다음에서 시작됩니다
+    break_time: 휴식 시간
+    campaign:
+      actions:
+        copy:
+          success: 캠페인 이름 %{캠페인 이름}이 성공적으로 복사되었습니다.
+        remove:
+          confirmation: 캠페인을 제거하려면 아래 텍스트 상자에 현재 캠페인 이름을 입력합니다
+          success: 성공
+      users:
+        actions:
+          export:
+            details: 캠페인 사용자
+            scheduled: 사용자 내보내기가 성공적으로 예약되었습니다.
+          export_reports_and_assessments:
+            details: 보고서 및 평가
+        completion_statuses:
+          completed: 완료
+          in_progress: 진행 중
+          not_started: 시작되지 않음
+    change_password: 비밀번호 변경
+    clients:
+      actions:
+        create:
+          create_client: 클라이언트 만들기
+          create_license: 라이선스 추가
+        menus:
+          view_licenses: 라이선스 보기
+        remove:
+          confirmation: 클라이언트를 제거하려면 아래 텍스트 상자에 현재 클라이언트 이름을 입력합니다
+          success: 클라이언트 이름이 '%{클라이언트 이름}'인 클라이언트가 성공적으로 제거되었습니다
+      projects:
+        actions:
+          remove:
+            confirmation: 프로젝트를 제거하려면 아래 텍스트 상자에 현재 프로젝트 이름을 입력하세요
+            success: 프로젝트 이름이 '%{프로젝트 이름}'인 프로젝트가 성공적으로 제거되었습니다
+    delete: 삭제
+    edit: 편집
+    error_warning: 평가에 문제가 발생했습니다. 지원팀에 문의하세요.
+    hogan:
+      cannot_start: 지금은 호건 평가를 시작할 수 없습니다. 몇 분 후에 다시 시도해 주세요.
+    lighthouse_app: 머서 등대
+    login: 로그인
+    maintenance:
+      notification: 라이트하우스가 60초 후에 정기 점검을 위해 다운됩니다
+    manage: 관리
+    'no': 아니요
+    passwordSetting:
+      update_success: 보안 설정이 성공적으로 업데이트되었습니다
+    questions:
+      campaign_factor_feedback:
+        add_skill: 스킬 추가
+        feedback: 피드백
+        max_factors: 최대 요인
+        min_factors: 최소 요소
+        skill_factor: 기술 요소
+    report_error: 신고에 문제가 발생했습니다. 지원팀에 문의하세요.
+    request_failed_message_box:
+      message: 마지막 요청이 실패했습니다. 페이지를 새로고침하고 문제가 지속되면 관리자에게 문의하세요.
+      refresh: 새로 고침
+    resource:
+      create_success: "%{읽을 수 있는 리소스 이름}이(가) 성공적으로 추가되었습니다"
+      update_success: "%{읽을 수 있는 리소스 이름}이(가) 성공적으로 업데이트되었습니다"
+    restart: 다시 시작
+    restart_progress: 평가에 몇 가지 변경 사항이 있습니다. 변경 사항을 확인하려면 페이지를 새로 고치세요. 페이지를 새로 고치면 평가가 처음부터 다시 시작됩니다. 이미 답변한 질문은 자동으로 채워집니다.
+    saved_results: 답변이 성공적으로 저장되었습니다.
+    session_timeout_modal:
+      buttons:
+        close: 닫기
+        log_out: 지금 로그아웃
+        re_login: 다시 로그인
+        stay_logged_in: 로그인 상태 유지
+      message: 메시지
+      message_after_timeout: 세션 시간이 초과되었습니다. 다시 로그인해 주세요.
+      time_remaining: 남은 시간
+      title: 세션 시간 초과 경고
+    skip_to_content: 콘텐츠로 건너뛰기
+    smsInvites:
+      create_success: SMS 초대가 성공적으로 추가되었습니다
+      update_success: SMS 초대가 성공적으로 업데이트되었습니다
+    sms_records:
+      create_success: SMS 작업이 성공적으로 예약되었습니다
+    test_webhook:
+      create_success: 웹훅 테스트 성공.
+      success: 성공
+    update: 업데이트
+    upload: 업로드
+    workshop_invited_subjects:
+      statuses:
+        cancelled: 취소됨
+        requested_cancellation: 취소 요청
+        requested_cancellation_rejected: 취소 요청 거부됨
+        requested_rescheduling: 일정 변경 요청
+        requested_rescheduling_rejected: 일정 변경 요청 거부됨
+    'yes': 예
+  glint:
+    booking_card:
+      aria_available_time: 사용 가능한 시간
+      aria_back_to_time_selection: 시간 선택으로 돌아가기
+      aria_desc_current_month: 현재 %{월 이름} %{연도}
+      aria_label_next_month: 다음 달로 이동
+      aria_label_previous_month: 이전 달로 이동
+      aria_timezone_select: 표준 시간대 선택
+    color_picker:
+      copy_success_msg: 클립보드에 헥스코드를 복사했습니다.
+      recent_colors: '최근 사용:'
+      recommended_colors: '추천합니다:'
+    datepicker_with_ranges:
+      all_time: 모든 시간
+      current_month: 현재 월
+      current_week: 금주
+      last_month: 지난 달
+      last_week: 지난 주
+      today: 오늘
+      yesterday: 어제
+    fontsize_modifier:
+      change_font: 글꼴 크기 변경
+      decrease_font: 글꼴 크기 줄이기
+      increase_font: 글꼴 크기 늘리기
+      reset_font: 글꼴 크기 재설정
+    input_duration:
+      max_duration: 최대 기간은 %{기간}입니다
+    schedule_availability:
+      copy_to_all: 모두에게 복사
+      end_date: 종료 날짜
+      from: 에서
+      new_schedule: 새 일정 추가
+      new_schedule_description: 시작 시간이 종료 시간보다 빨라야 합니다
+      no_slots: 추가된 슬롯 없음
+      required_error: 비어있을 수 없습니다
+      save: 저장
+      saved_schedule_description: 사용자의 저장된 가용성 일정
+      start_date: 시작 날짜
+      timezone_label: 시간대
+      to: To
+    views_container:
+      aria_grid_view: 그리드 보기
+      aria_list_view: 목록 보기
+      aria_selected: 선택됨
+  idp:
+    actions: 작업
+    board: 보드
+    convert_to_draft: 초안으로 변환
+    details: 세부 정보
+    development_actions:
+      action_private: 예
+      action_public: 아니요
+      add_development_action: 개발 작업 추가
+      all: 모두
+      approved: 승인됨
+      board_view:
+        completed: 완료
+        in_progress: 진행 중
+        not_started: 시작되지 않음
+      completion: 완료
+      create_my_own: 나만의 만들기
+      date_range: 시작 날짜 - 종료 날짜
+      generate_by_ai: AI로 생성
+      generate_more: 더 많은 생성
+      generating_development_actions: 개발 작업 생성...
+      heading: 개발 작업
+      learning_from_others: 다른 사람에게서 배우기
+      manage_skills: 스킬 관리
+      marathon: 마라톤
+      no_development_actions: 개발 작업 없음
+      on_the_job: 업무 중
+      other: 기타
+      private: 비공개
+      remove: 제거
+      skill: 스킬
+      sprint: 스프린트
+      structured_learning: 구조화된 학습
+      submit_plan: 계획 제출
+      write_here: 여기에 쓰기...
+    initial_steps:
+      add_skill_group_description: 평가 결과에 따라 강점과 개발이 필요한 영역은 다음과 같습니다. 개발 계획의 일부로 더 발전시키고 싶은 기술을 선택하세요.
+      add_skill_group_title: 카테고리] 스킬 살펴보기
+      add_skills: 추가
+      add_skills_step: 스킬 추가
+      continue_to_rate_skills: 스킬 평가 계속하기
+      getting_started: 시작하기
+      getting_started_info: 개인 개발 계획(IDP) 작성자에 오신 것을 환영합니다. 이 계획은 업무적, 개인적 목표와 목표 달성을 위해 필요한 단계를 식별, 관리 및 추적하는 데 도움이 됩니다. 업무적 목표에는 행동, 리더십 및 기술 개발 영역이 포함될 수 있습니다. IDP는 경력 개발과 기술 향상을 지원하는 필수 도구입니다.
+      less_skills: 적은 기술 표시
+      more_skills: 더 많은 기술 살펴보기
+      next: 다음
+      no_skills_selected: 선택한 스킬이 없습니다.
+      rate_skills: 평가 기술
+      rate_skills_description: 이제 개발 우선순위를 선택했으니 다음 각 항목에 대해 자신을 평가해 주세요. 과거 또는 원하는 수준이 아닌 현재 수준을 기준으로 자신을 평가해야 한다는 점을 잊지 마세요.
+      rate_skills_title: 실력 평가하기
+      rating_column_header: 자기 평가
+      select_skills: 기술 선택
+      select_skills_placeholder: 기술 선택
+      selected_skills: 선택 기술
+      skill_column_header: 스킬
+      skill_gap_report: 기술 격차 보고서
+    list: 목록
+    manage_plan: 계획 관리
+    mark_as_complete: 완료로 표시
+    mark_as_incomplete: 미완료로 표시
+    my_plan:
+      development_plan: 개발 계획
+      graphs:
+        behavioural: 행동
+        categories: 카테고리
+        learning_on_job: 업무 중(%{카운트})
+        learning_others: 다른 사람으로부터 학습 (%{카운트})
+        learning_structured: 구조화된 학습(%{개수})
+        other: 기타
+        technical: 기술
+      save_skills: 스킬 저장
+    skill_gap_report:
+      title: 기술 격차 보고서
+    status: 상태
+    user_idp_status:
+      approved: 승인됨
+      draft: 초안
+      not_started: 시작되지 않음
+      pending_approval: 보류 중
+    users: 사용자
+  idp_templates:
+    assign: 할당
+    assign_idp_template: Idp 템플릿 할당
+    auto_assign: 새 사용자 자동 할당
+    errors:
+      idp_template_not_found: IDP 템플릿을 찾을 수 없습니다
+      user_idp_template_not_found: IDP 템플릿이 할당되지 않았습니다.
+    idp_template: IDP 템플릿
+    override_exists: 기존 사용자 재정의 및 재설정
+    placeholder: Idp 템플릿 선택
+    save_and_assign: 저장 및 할당
+    success_scheduled: IDP 할당 작업이 성공적으로 예약되었습니다
+  jobs:
+    threesixty:
+      bulk_downloads: 대량 다운로드 작업이 성공적으로 예약되었습니다
+      export_completion_statuses_scheduled: 완료 상태 내보내기 작업이 성공적으로 예약되었습니다
+      export_raw_results_scheduled: 원시 결과 내보내기 작업이 성공적으로 예약되었습니다
+      export_scores_scheduled: 점수 내보내기 작업이 성공적으로 예약되었습니다
+      reports:
+        download:
+          description: 보고서를 다운로드하려면 다음 링크에서 <a href='%{url}' target='_blank'>다운로드하세요</a>
+          error: 오류가 발생했습니다
+          error_description: 보고서 생성에 실패했습니다. 관리자에게 문의하거나 다시 <b>다운로드해</b> 보세요.
+          message: 보고서가 준비되었습니다
+  languages:
+    af: 아프리칸스어
+    ar: 아랍어
+    az: 아제르바이잔
+    bg: 불가리아어
+    bs: 보스니아어
+    by: 벨로루시어
+    ca: 카탈루냐어
+    cn: 중국어
+    cs: 체코어
+    cy: Cymraeg
+    da: 덴마크어
+    de: Deutsch
+    el: 그리스어
+    en: 영어
+    en-GB: 영어 - 영국
+    en-US: 영어 - 미국
+    eo: 에스페란토
+    es: 스페인어(라틴 아메리카)
+    es-ES: 스페인어(스페인)
+    et: 에스토니아어
+    fa: 페르시아어
+    fi: 핀란드어
+    fr: 프랑스어
+    gu: 구자라트어
+    he: 히브리어
+    hi: 힌디어
+    hr: 크로아티아어
+    hu: 헝가리어
+    id: 바하사 인도네시아
+    it: 이탈리아어
+    ja: 일본어
+    km: 크메르어
+    ko: 한국어
+    lt: 리투아니아어
+    lv: 라트비아어
+    mk: 마케도니아어
+    mn: 몽골어
+    ms: 말레이시아 바하사
+    my: 미얀마
+    nb: 노르웨이 복말
+    nl: 네덜란드어
+    'no': Norwegian
+    pl: 폴란드어
+    pt: 포르투갈어
+    pt-BR: 브라질 포르투갈어
+    pt-PT: 포르투갈어(포르투갈)
+    pt_BR: 포르투갈어(브라질)
+    ro: 루마니아어
+    ru: 러시아어
+    sk: 슬로바키아어
+    sl: 슬로베니아어
+    sr-Cyrl: 세르비아어 키릴 문자
+    sr-Latn: 세르비아어 라틴어
+    sv: 스웨덴어
+    sw: 스와힐리어
+    ta: 타밀어
+    th: Thai
+    tl: 타갈로그어
+    tr: 터키어
+    ua: 우크라이나어
+    uk: 우크라이나어
+    ur: 우르두어
+    vi: 베트남어
+    zh: 중국어 간체
+    zh-CN: 중국어(PRC)
+    zh-HK: 중국어(홍콩)
+    zh-Hant: 중국어 - 번체
+    zh-TW: 중국어(대만)
+  languages_localized:
+    af: 아프리칸스어
+    ar: 日本語
+    az: 아제르바이잔
+    bg: български
+    bs: 보산스키
+    by: 벨로루시어
+    ca: 카탈라
+    cn: 中国人
+    cs: 체코어
+    cy: Cymraeg
+    da: dansk
+    de: Deutsch
+    el: Ελληνικά
+    en: 영어
+    en-GB: 영어(영국)
+    en-US: 영어(미국)
+    eo: 에스페란토
+    es: Español
+    es-ES: Español (에스파냐)
+    et: 에스토니아어
+    fa: 페르시아어
+    fi: 핀란드어
+    fr: Français
+    gu: 구자라트어
+    he: 히브리어
+    hi: हिन्दी
+    hr: 크로아티아어
+    hu: 헝가리어
+    id: 바하사 인도네시아
+    it: 이탈리아어
+    ja: 日本語
+    km: 크메르어
+    ko: 한국어
+    lt: 리투아니아어
+    lv: 라트비아어
+    mk: 마케도니아어
+    mn: 몽골어
+    ms: 말레이시아 바하사
+    my: 미얀마
+    nb: 노르웨이 복말
+    nl: 네덜란드어
+    'no': Norwegian
+    pl: Polski
+    pt: 포르투갈어
+    pt-BR: 포르투갈어(브라질)
+    pt-PT: 포르투갈어(포르투갈)
+    pt_BR: 포르투갈어(브라질)
+    ro: 루마니아어
+    ru: 러시아어
+    sk: 슬로바키아어
+    sl: 슬로베니아어
+    sr-Cyrl: 세르비아어 키릴 문자
+    sr-Latn: 세르비아어 라틴어
+    sv: 스웨덴어
+    sw: 스와힐리어
+    ta: 타밀어
+    th: Thai
+    tl: 타갈로그어
+    tr: 터키어
+    ua: 우크라이나어
+    uk: 우크라이나어
+    ur: 우르두어
+    vi: 베트남어
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政區)
+    zh-Hant: 繁體中文
+    zh-TW: 漢語
+  license_usage:
+    active: 활성
+    campaign_name: 캠페인 이름
+    inactive: 비활성
+    status_updated_at: 마지막 상태 업데이트
+    status_updated_by: 마지막 업데이트 날짜
+    subject_email: 제목 이메일
+    subject_name: 제목 이름
+    usage_overview: 라이선스 사용량 보기
+    usages: 용도
+  licenses:
+    enabled: 활성화됨
+    end_date: 종료 날짜
+    not_enough_idp_license: IDP 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
+    not_enough_license: "'%{클라이언트_이름}'에 '%{보고서_이름}'에 대한 라이선스가 충분하지 않습니다"
+    not_enough_license_count: 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
+    not_enough_proctoring_credits: 감독 세션을 시작하기에 학점이 부족합니다
+    number: 번호
+    overuse_number: 초과 사용 허용량
+    report_family: 보고서 번들
+    start_date: 시작 날짜
+    type: 유형
+    types:
+      common: 공통
+      idp: IDP
+      proctoring: 감독
+      threesixty: 쓰리식스티
+    used_number: 사용한 라이선스
+    used_out_of: 총 %{used} 중 %{total}
+  mailer:
+    from: 인재 기업
+    license:
+      expire:
+        subject: 라이선스 만료
+      overuse:
+        subject: 라이선스 남용
+      weekly_stats:
+        column_headers:
+          client_name: 고객 이름
+          expiry_date: 만료 날짜
+          overuse_limit: 초과 사용 제한
+          project_manager: 프로젝트 관리자
+          remaining_count: 남은 수
+          type: 라이선스 유형
+          use_count: 사용 횟수
+        expiry_stats: '향후 30일 이내에 만료되는 라이선스 :'
+        no_expiry_stats: 향후 30일 이내에 만료되는 라이선스가 없습니다.
+        no_weekly_stats: 지난 7일 동안 사용한 라이선스가 없습니다.
+        notice: 참고 - 프로필 페이지에서 이 주간 이메일의 수신을 취소할 수 있습니다.
+        subject: 주간 라이선스 사용량 통계
+        weekly_stats: '지난 주 라이선스 사용량 통계 :'
+    magic_link:
+      body:
+        dear: 이름}님께,
+        greetings: 오늘의 인사!
+        instructions: 지침
+        signin_link: 로그인 링크
+      subject: 제목
+    users:
+      account_disable: 활동이 없어 계정이 비활성화되었습니다
+      warning: 활동이 없어 곧 계정이 비활성화됩니다
+  maintenance_message: 라이트하우스가 %{시작_날짜}에 예정된 유지 관리를 위해 다운되며 %{기간}시간 동안 사용할 수 없습니다
+  maintenance_submessage: 점검이 완료된 후 페이지를 새로고침하세요. 로그인 페이지로 리디렉션됩니다
+  my: My
+  myself: 내 자신
+  navigation:
+    logout: 로그아웃
+  'no': 아니요
+  nominations:
+    approval_email_error: 마지막 이메일 승인은 %{마지막_발송_시간}에 전송되었습니다. 다음 알림 메일은 %{대기_시간}에 보낼 수 있습니다
+  norms:
+    percentile:
+      columns:
+        mean: 평균
+        name: 이름
+        standard_deviation: 표준 편차
+      messages:
+        failure: '오류: %{오류}.'
+        success: "'%{인자 이름}' 팩터에 대한 규범이 업데이트되었습니다."
+      values:
+        empty: 비어 있음
+  profile:
+    add_field: 필드 추가
+    add_photo: 사진 추가
+    age: 나이
+    change_password: 비밀번호 변경
+    change_photo: 사진 변경
+    email: 이메일
+    female: 여성
+    first_name: 이름
+    gender: 성별
+    incomplete: 프로필 세부 정보가 완료되지 않았습니다. 프로필 세부 정보를 입력해 주세요
+    last_name: 성
+    locale: 로캘
+    male: 남성
+    mandatory_fields: 필수 필드를 표시합니다
+    not_disclosed: 공개하지 않기를 원합니다
+    old_data: 프로필 데이터가 %{개월}개월이 지났습니다. 계속 진행하려면 세부 정보를 확인해 주세요
+    password: 비밀번호
+    password_confirmation: 비밀번호 확인
+    photo: 사진
+    success_update: 프로필이 성공적으로 저장되었습니다
+    timezone: 시간대
+    title: 내 프로필
+    update: 업데이트
+    update_required: 프로필 업데이트 필요
+  profiles:
+    edit:
+      header: 프로필 설정
+    form:
+      username: 사용자 이름
+    update:
+      successfully: 프로필이 성공적으로 업데이트되었습니다
+  registration:
+    success_update: 등록이 성공적으로 저장되었습니다
+  registration_code:
+    allowed_domains: 허용된 도메인
+    invalid_code: 잘못된 캠페인 코드
+    modals:
+      remove:
+        content: 등록 코드 <strong>"%{코드}"</strong>를 제거하시겠습니까?
+        successfully: 등록 코드 '%{코드}'를 성공적으로 제거했습니다.
+      title: 등록 코드
+    one_domain_per_line: 한 줄당 하나의 도메인 이름
+    restricted_domains: 제한된 도메인
+    token_expired: 토큰이 만료되었습니다
+  report_approvals:
+    events:
+      approved_text: 승인된 텍스트
+      comment_added: 댓글 <i>%{텍스트}</i> 추가
+      comment_removed: 삭제된 댓글
+      comment_resolved: 해결된 댓글
+      comment_unresolved: 해결되지 않은 댓글
+      comment_updated: 주석을 <s>%{oldText}에서</s> <i>%{새 텍스트}로</i> 변경했습니다
+      created_text: 텍스트 추가
+      disapproved_text: 승인되지 않은 텍스트
+      removed_text: 제거된 텍스트
+      status_changed: 에서 <i>%{에서}로</i> 상태가 변경되었습니다 <i></i>
+      updated_text: 업데이트된 텍스트
+    tabs:
+      all: 모두
+      approved: 승인됨
+      my_tasks: 내 작업
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: 보고서 번들 "%{이름}"을 삭제하시겠습니까?
+        confirm_title: 확인 필요
+        success_message: 보고서 번들 %{이름}이(가) 삭제되었습니다
+    report_bundle: 보고서 번들
+    report_bundles: 보고서 번들
+    reports:
+      actions:
+        add: 새 보고서 추가
+        remove:
+          confirm_message: '''%{보고서_번들_이름}''에서 "%{이름}" 보고서를 삭제하시겠습니까?'
+          confirm_title: 확인 필요
+          success_message: 보고서 %{이름}이(가) 삭제되었습니다
+  reports:
+    actions:
+      add: 추가
+      archived:
+        success_message: '"%{이름}" 보고서를 성공적으로 보관했습니다.'
+      back_to_campaign: 캠페인으로 돌아가기
+      copy:
+        success_message: '"%{이름}" 보고서를 성공적으로 복사했습니다.'
+      details: 세부 정보
+      download: 다운로드
+      download_csv: CSV 다운로드
+      edit: 편집
+      evaluate: 평가
+      extend_time: 시간 연장
+      goto_dashboard: 계속하려면 여기를 클릭하세요
+      re_evaluate: 재평가하려면 여기를 클릭하세요
+      reevaluate: 재평가
+      remove:
+        confirm_message: '"%{이름}" 보고서를 삭제하시겠습니까?'
+        confirm_title: 확인 필요
+        success_message: 이름} 신고가 제거되었습니다
+      rescore: 재점수
+      restore:
+        success_message: 보고서 %{이름}이(가) 성공적으로 복원되었습니다
+      unarchived:
+        success_message: 이름 %{이름}을(를) 성공적으로 보관 해제했습니다
+      update_language: 언어 업데이트
+      view: 보기
+    active: 활성
+    archived: 아카이브
+    builder:
+      graph:
+        properties:
+          barBorderRadius: 막대 테두리 반경
+          barWeight: 바 무게
+          dataFormat: 데이터 형식
+          graphOption3D: 3D
+          graphOptionStandard: 표준
+          graphSubType: 그래프 하위 유형
+          graphTypeHorizontal: 수평
+          graphTypeVertical: 세로
+          hideEmptyColumns: 빈 열 숨기기
+          hideEmptyFilters: 빈 필터 숨기기
+          hideXAxisLine: X축 격자선 숨기기
+          hideXAxisTitle: X축 제목 숨기기
+          hideYAxisLine: Y축 격자선 숨기기
+          hideYAxisTitle: Y축 제목 숨기기
+          hideZeroValueColumns: 0 값 열 숨기기
+          legendPosition: 범례 위치
+          maxValueLabel: 최대 값(숫자)
+          maxValueLabelPlaceholder: 최대 값
+          positionBottomLeft: 왼쪽 하단
+          positionBottomMiddle: 하단 가운데
+          positionBottomRight: 오른쪽 하단
+          positionTopLeft: 왼쪽 상단
+          positionTopMiddle: 상단 가운데
+          positionTopRight: 오른쪽 상단
+          reverse: 역방향
+          showLegend: 범례 표시
+    columns:
+      data_only: 데이터 전용
+      default_language: 기본 언어
+      external_settings:
+        hogan_report_id: 호건 보고서 ID
+        saville_report_id: Saville 신고 ID
+      other_available_languages: 기타 사용 가능한 언어
+    create: 만들기
+    dashboard: 대시보드
+    drawer:
+      title: 보고서 세부 정보
+    fields:
+      provider:
+        custom_upload: 사용자 지정 업로드
+        hogan: Hogan
+        internal: 내부
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+    form:
+      load_from_mettl: Mettl에서 로드
+      load_from_pearson: 피어슨에서 로드
+      none_external: 없음 - 보고서 작성기 사용
+    language: 보고 언어
+    language_updated: 보고서 언어가 성공적으로 업데이트되었습니다
+    modules:
+      campaign_factors_table:
+        add_condition: 조건 추가
+        baseline_score: 기준 점수
+        blindspots: 사각지대
+        campaign_factor_conditions: 캠페인 팩터 조건
+        cancel: 취소
+        color: 색상
+        delete: 삭제
+        description: 설명
+        if: 만약
+        label: 라벨
+        no_conditions: 조건 없음
+        save: 저장
+        strengths: 강점
+        then: 그런 다음 다음 텍스트를 표시합니다
+        title: 제목
+      common:
+        all_factors: 모든 요소
+        font: 글꼴
+        table_options: 테이블 옵션
+        table_type: 테이블 유형
+      factors_table:
+        description: 설명
+        na: N/A
+        no_data: 이 섹션에 사용할 수 있는 데이터가 없습니다.
+        rank: 순위
+        score: 점수
+      gap_assessment:
+        gap: Gap
+        hide_left_filter: 왼쪽 필터 숨기기
+        hide_right_filter: 오른쪽 필터 숨기기
+        item: 표시기
+        negative_gap: 네거티브 갭
+        no_negative_gaps: 네거티브 갭이 없습니다
+        no_positive_gaps: 포지티브 갭이 없습니다
+        positive_gap: 포지티브 갭
+        rank: 순위
+        scoring_category: 역량
+      highest_lowest:
+        bottom_5: 하위 5위
+        category: 카테고리
+        highest_scores: 최고 점수
+        item: 표시기
+        lowest_scores: 최저 점수
+        mean_score: 평균 점수
+        rank: 순위
+        scoring_category: 역량
+        sub_competenties: 하위 역량
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: 경력 강점 및 결과
+        career_sub_tracks: 커리어 하위 트랙
+        key_career_tracks_within: 아래는 각 커리어 트랙의 잠재적 직무 목록입니다. 이 목록은 참고용일 뿐 모든 직무가 포함되어 있는 것은 아닙니다. 이탤릭체로 표시된 직무는 더 높은 수준의 교육 및/또는 경험이 필요하다는 점에 유의하세요.
+        potential_areas_of_study: 잠재적 연구 분야
+        strength_high: 시그니처 강도
+        strength_low: 발달 강도
+        strength_moderate: 잠재적 힘
+        work_environment: 업무 환경
+        your_suitability: 귀하의 적합성
+      single_value:
+        factor_name: 채점 카테고리
+        question_name: 질문
+      single_value_cluster:
+        competency: 역량
+        developmental_rating: 발달 등급
+        questions: 질문
+      strength_clusters:
+        index_sub_factors_considered: 근무 스타일} 업무 환경에 대한 최종 점수를 제공하기 위해 고려된 번창 지수 하위 요소는 다음과 같습니다
+        possible_roles: 가능한 역할
+        work_environments: 예상되는 업무 환경
+      three_sixty_default:
+        factor:
+          items: 항목
+          max: 최대 값
+          mean: 평균
+          min: 최소값
+          standardDeviation: 표준 편차
+          sum: 합계
+          totalResponses: 총 응답 수
+          variance: 분산
+          weightedMean: 가중 평균
+        question:
+          no_response: 응답할 수 없음
+        statistic: 통계
+        value: 가치
+      three_sixty_report_summary:
+        completed: 완료
+        footnote: "* 최소 임계값 요구 사항으로 인해 제외됨"
+        invited: 초대됨
+        relationships: 관계
+        total: 합계
+      video_response:
+        no_results: 녹화된 동영상 없음
+    pages:
+      edit:
+        assets: 자산
+        general_settings: 일반 설정
+        translations: 번역
+    report: 신고
+    reports: 보고서
+    reset: 초기화
+    show:
+      export_pdf: PDF로 내보내기
+      header: 신고
+    statuses:
+      approved: 승인됨
+      available: 사용 가능
+      denied: 거부됨
+      incomplete: 불완전
+      not_available: 사용 불가
+      on_hold: 보류 중
+      released: 출시
+    trash: 휴지통
+    update: 업데이트
+    upload: 업로드
+  reset_password_modal:
+    fields:
+      automatically_generate_password: 비밀번호 자동 생성
+      change_password_on_login: 로그인 시 비밀번호 변경
+      login_link: 로그인 링크
+      new_password: 새 비밀번호
+      password_placeholder: 비밀번호 입력
+      send_password_email: 이메일을 통해 비밀번호 보내기
+      username: 사용자 이름
+    messages:
+      reset_password_success: 사용자 %{이메일} 비밀번호를 성공적으로 재설정했습니다.
+      send_password_email_success: 사용자 %{이메일}에게 비밀번호가 포함된 이메일을 보냈습니다.
+    title: 비밀번호 재설정
+  select: 선택
+  shared:
+    filters:
+      clear: 필터 지우기
+    internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
+    mte_logo_alt_text: 머서 탤런트 엔터프라이즈 로고
+    terms_conditions_privacy: 개인정보 처리방침
+    tte_terms_and_condition: 약관 및 개인정보 보호
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: 기존 레코드를 모두 삭제하고 시트에서 새 액세스시트를 업로드합니다. 스프레드시트에 모든 액세스시트 레코드가 있는지 확인하세요.
+      success_message: 파일이 성공적으로 업로드되었습니다. 데이터시트 레코드 가져오기 진행 중
+      title: 시트 레코드 가져오기
+    menu:
+      export: 시트 내보내기
+      export_info: 내보낼 데이터가 없습니다.
+      import: 시트 가져오기
+    no_sheet: 먼저 시트를 가져와야 합니다
+  simple_form:
+    error_notification:
+      default_message: '아래 문제를 검토해 주세요:'
+    labels:
+      client:
+        applicable_level: 적용 가능한 수준
+        applicable_levels:
+          campaign: 캠페인
+          project: 프로젝트
+          sub_campaign: 하위 캠페인
+        category: 카테고리
+        created_at: 생성 날짜
+        id: ID
+        licenses: 라이선스 번호
+        licenses_expire: 라이선스 만료 날짜
+        licenses_used: 라이선스 사용량
+        location: 위치
+        logo: 고객 로고
+        memberships_count: 사용자
+        name: 이름
+        number: 고객 번호
+        privacy_consent: 데이터 처리 동의 활성화
+        project_manager: TTE 프로젝트 관리자
+        project_manager_id: TTE 프로젝트 관리자
+        report_ids: 보고서
+        strong_password_enabled: 강력한 비밀번호 사용
+        subdomain: 하위 도메인
+        types:
+          associate: 어소시에이트
+          corporate: 기업
+          distributer: 배포자
+          other: 기타
+          partner: 파트너
+          retail: 리테일
+          tte: TTE
+        updated_at: 수정된 날짜
+        year: 고객 연도
+      membership:
+        role: 멤버십 역할
+    'no': 아니요
+    placeholders:
+      administration/assessments/assign_form:
+        access_reports: 액세스 보고서 규칙
+        access_reports_at: 다음에서 보고서에 액세스
+        access_reports_at_date: 날짜
+        access_reports_at_time: 시간
+        client_ids: 고객 임차
+        manager_ids: 관리자
+        report_ids: 보고서
+        user_ids: 사용자
+      administrator:
+        active: 활성
+        created_at: 생성 날짜
+        current_password: 현재 비밀번호
+        disabled: 비활성화
+        email: 이메일
+        first_name: 이름
+        id: ID
+        last_name: 성
+        manage_client_ids: 클라이언트 테넌시
+        memberships: 클라이언트 테넌시
+        name: 이름
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+        role: 역할
+        roles:
+          admin: 관리자
+          admins:
+            admin: 관리자
+            project_admin: 프로젝트 관리자
+            regular: 클라이언트 관리자
+            superadmin: 슈퍼 관리자
+          agile: AGILE
+          case_study: 사례 연구
+          client_admin: 클라이언트 관리자
+          hogan: Hogan
+          manager: 관리자
+          member: 사용자
+          organisational: 조직
+          project_admin: 프로젝트 관리자
+          psychometric: 사이코메트릭
+          regular: 일반
+          saville: Saville
+          super_admin: 슈퍼 관리자
+          superadmin: 슈퍼 관리자
+          threesixty: 쓰리식스티
+        types:
+          anonymous: 익명 사용자
+          identified: 식별된 사용자
+        updated_at: 수정된 날짜
+      assessment:
+        active: 활성
+        categories:
+          '360': 360 캠페인
+          agile: AGILE
+          assessor_form: 평가자 양식
+          case_study: 사례 연구
+          hogan: Hogan
+          meeting: 회의
+          organisational: 설문조사
+          psychometric: 평가
+          saville: Saville
+        category: 카테고리
+        completed_at: 완료 날짜
+        created_at: 생성 날짜
+        description: 설명
+        id: ID
+        name: 이름
+        statuses:
+          completed: 완료
+          finished: 완료
+          in_progress: 이력서
+          interrupted: 중단됨
+          not_started: 신규
+          overdue: 기한 초과
+        timing: 타이밍
+        types:
+          common: TTE 평가
+          hogan: Hogan
+          saville: 새빌 평가
+        updated_at: 수정된 날짜
+      block:
+        active: 활성
+        assign_to_assessment_ids: 평가
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      client:
+        applicable_level: 적용 가능한 수준
+        applicable_levels:
+          campaign: 캠페인
+          project: 프로젝트
+          sub_campaign: 하위 캠페인
+        category: 카테고리
+        created_at: 생성 날짜
+        id: ID
+        licenses: 라이선스 번호
+        licenses_expire: 라이선스 만료 날짜
+        licenses_used: 라이선스 사용량
+        location: 위치
+        logo: 고객 로고
+        memberships_count: 사용자
+        name: 이름
+        number: 고객 번호
+        privacy_consent: 데이터 처리 동의 활성화
+        project_manager: TTE 프로젝트 관리자
+        project_manager_id: TTE 프로젝트 관리자
+        report_ids: 보고서
+        strong_password_enabled: 강력한 비밀번호 사용
+        subdomain: 하위 도메인
+        types:
+          associate: 어소시에이트
+          corporate: 기업
+          distributer: 배포자
+          other: 기타
+          partner: 파트너
+          retail: 리테일
+          tte: TTE
+        updated_at: 수정된 날짜
+        year: 고객 연도
+      communication:
+        created_at: 생성 날짜
+        id: ID
+        updated_at: 수정된 날짜
+      dimension:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      factor:
+        active: 활성
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        parent_id: 부모
+        questions_count: 질문 수
+        updated_at: 수정된 날짜
+      library:
+        created_at: 생성 날짜
+        id: ID
+        type: 썸네일
+        updated_at: 수정된 날짜
+      license:
+        id: ID
+        number: 라이선스 번호
+        overuse_number: 초과 사용 허용량
+        type: 라이선스 대상
+        types:
+          common: 공통
+          threesixty: 쓰리식스티
+        unlimited: 무제한
+        used_number: 사용한 라이선스 번호
+      memebrship:
+        active: 활성
+        created_at: 생성 날짜
+        disabled: 비활성화
+        email: 이메일
+        first_name: 이름
+        id: ID
+        last_name: 성
+        parent: 직접 관리자
+        parent_id: 직접 관리자
+        report_ids: 신고 ID
+        roles:
+          campaign_admin: 캠페인 관리자
+          client_admin: 클라이언트 관리자
+          manager: 관리자
+          member: 사용자
+          project_admin: 프로젝트 관리자
+        updated_at: 수정된 날짜
+        user_access: 사용자 액세스
+      norm:
+        active: 활성
+        bachelors_or_masters_qualification: 학사 또는 석사 자격
+        created_at: 생성 날짜
+        description: 설명
+        description_label: 설명
+        diploma_qualification: 디플로마 자격
+        factor_id: 역량
+        factor_id_label: 역량 선택
+        full_description: 전체 설명
+        high_school_entry_roles: 고등학교 입학 역할
+        id: ID
+        key_career_tracks: 주요 커리어 트랙
+        membership_id: 할당자
+        membership_id_label: 할당자 선택
+        name: 이름
+        name_label: 액션 항목
+        planned_completed_at: 마감일
+        planned_completed_at_label: 마감일 선택
+        potential_areas_of_study: 잠재적 연구 분야
+        priority: 우선순위
+        priority_label: 우선순위
+        status: 상태
+        status_label: 상태 선택
+        statuses:
+          completed: 완료
+          in_progress: 진행 중
+          not_started: 시작되지 않음
+          overdue: 기한 초과
+        updated_at: 수정된 날짜
+        updated_by: 편집자
+        work_environment: 업무 환경
+      question:
+        active: 활성
+        assign_to_assessment_ids: 평가
+        created_at: 생성 날짜
+        id: ID
+        name: 이름
+        updated_at: 수정된 날짜
+      regenerate_reports:
+        report_ids: 보고서
+      report:
+        created_at: 생성 날짜
+        id: ID
+        updated_at: 수정된 날짜
+      user:
+        active: 활성
+        created_at: 생성 날짜
+        current_password: 현재 비밀번호
+        disabled: 비활성화
+        email: 이메일
+        first_name: 이름
+        id: ID
+        last_name: 성
+        manage_client_ids: 클라이언트 테넌시
+        memberships: 클라이언트 테넌시
+        name: 이름
+        old_password: 이전 비밀번호
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+        role: 역할
+        roles:
+          admin: 관리자
+          admins:
+            admin: 관리자
+            project_admin: 프로젝트 관리자
+            regular: 클라이언트 관리자
+            superadmin: 슈퍼 관리자
+          agile: AGILE
+          case_study: 사례 연구
+          client_admin: 클라이언트 관리자
+          hogan: Hogan
+          manager: 관리자
+          member: 사용자
+          organisational: 조직
+          project_admin: 프로젝트 관리자
+          psychometric: 사이코메트릭
+          regular: 일반
+          saville: Saville
+          super_admin: 슈퍼 관리자
+          superadmin: 슈퍼 관리자
+          threesixty: 쓰리식스티
+        types:
+          anonymous: 익명 사용자
+          identified: 식별된 사용자
+        updated_at: 수정된 날짜
+      user_form:
+        active: 활성
+        created_at: 생성 날짜
+        current_password: 현재 비밀번호
+        disabled: 비활성화
+        email: 이메일
+        first_name: 이름
+        id: ID
+        last_name: 성
+        parent: 직접 관리자
+        parent_id: 직접 관리자
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+        role: 역할
+        updated_at: 수정된 날짜
+    required:
+      mark: "*"
+      text: 필수
+    'yes': 예
+  subjects:
+    approval_statuses:
+      approved: 승인됨
+      denied: 거부됨
+      waiting: 승인 필요
+    report_approval_status:
+      approved: 승인됨
+      denied: 거부됨
+      waiting: 대기 중
+    report_release_status:
+      on_hold: 보류 중
+      released: 출시
+      waiting: 대기 중
+    report_statuses:
+      approved: 승인됨
+      available: 사용 가능
+      denied: 거부됨
+      incomplete: 불완전
+      not_available: 사용 불가
+      not_prepared: 준비되지 않음
+      on_hold: 보류 중
+      prepared: 완료
+      released: 출시
+    statuses:
+      completed: 완료
+      declined: 거부됨
+      denied: 거부됨
+      done: 완료
+      not_completed: 완료되지 않음
+      waiting: 대기 중
+  threesixty:
+    accept_privacy_modal:
+      accept: 수락
+      checkbox: 본인은 위에 언급된 개인정보 보호정책을 읽고 이해했습니다
+      title: 데이터 처리 동의
+    action: 액션
+    add: 추가
+    and: 그리고
+    approve: 승인
+    approve_all: 모두 승인
+    approve_all_successful: 모든 후보 승인
+    approve_evaluations: 평가 승인
+    approve_nominations: 추천 승인
+    approve_reports: 보고서 승인
+    approved: 승인됨
+    approving_mail_sent: 추천 승인을 위한 메일이 관리자에게 전송되었습니다
+    as_my: 내
+    assessment: 평가
+    back_to_tasks: 작업으로 돌아가기
+    begin: 시작
+    cancel: 취소
+    close_evaluation_modal:
+      message: 메시지
+      title: 보고서를 정말 보시겠습니까?
+    closed_campaign_message: 이 360 캠페인은 마감되었습니다. 이 캠페인에 다른 사람을 추천하거나 평가할 수 없습니다.
+    completed: 완료
+    confirm: 확인
+    confirmation_for_nomination_removal: 지명을 삭제하시겠습니까?
+    confirmation_required: 확인 필요
+    confirmation_text_incorrect: 확인 텍스트가 올바르지 않습니다
+    confirmation_text_placeholder: 확인 텍스트는 여기
+    continue: 계속하기
+    dashboard_title: 환영합니다 %{이름}
+    decline: 거절
+    decline_invite: 초대 거절
+    denied: 거부됨
+    deny: 거부
+    deny_all: 모두 거부
+    deny_all_successful: 모든 추천 거부
+    download_pdf: PDF 다운로드
+    download_report: 보고서 다운로드
+    download_reports: 보고서 다운로드
+    edit_user: 사용자 편집
+    email_approve_request: 이메일 승인 요청
+    email_schedules:
+      delete_successful: 이메일 일정이 성공적으로 삭제되었습니다
+    evaluate: 평가
+    evaluation: 평가
+    evaluation_all_closed_message: 현재 모든 후보가 승인을 기다리고 있습니다
+    evaluation_closed_message: 이 주제에 대한 평가가 마감되었습니다
+    evaluation_closed_nomination_message: 이 주제에 대한 평가가 마감되었으므로 이 주제에 후보로 추천할 수 없습니다
+    evaluation_help_modal:
+      title: 평가 도움말
+    evaluations: 평가
+    evaluator: 평가자
+    export_pdf: PDF 내보내기
+    first_name: 이름
+    first_name_error: 이름을 입력하세요
+    help: 도움말
+    language: 언어
+    last_name: 성
+    last_name_error: 성을 입력하세요
+    load_results: 결과 로드
+    mail_history:
+      statuses:
+        success: 성공
+        undelivered: 배달되지 않음
+    more_info_evaluation_label: 자세한 정보 - 평가
+    more_info_nomination_label: 자세한 정보 - 추천
+    my_projects: 내 프로젝트
+    name_label: 이름
+    nominate: 추천
+    nominate_evaluators: 평가자 추천 대상
+    nomination: 추천
+    nomination_help_modal:
+      title: 추천 도움말
+    nomination_predicates:
+      atleast: 카운트] 이상
+      atmost: 최대 %{카운트}
+      exactly: 정확히 %{카운트}
+    nominations: 추천
+    options:
+      form:
+        value_not_valid: 에 유효한 값이 없습니다
+      global:
+        cannot_re_edit: 참가자는 평가를 수정할 수 없습니다
+        disable_all_evaluations: 모든 평가 비활성화
+    or: 또는
+    page_title: 시그니파이 360° 검토 - 레벨 적용
+    participant_list:
+      actions:
+        approve_report: 보고서 승인
+        download_report: 보고서 다운로드
+        edit: 편집
+        hold_report: 보류 보고서
+        login: 로그인
+        mark_as_done: 완료로 표시
+        regenerate_report: 보고서 생성
+        release_report: 릴리스 보고서
+        remove_campaign: 캠페인에서 제거
+        remove_report_approval: 보고서 승인 제거
+        remove_report_hold_release_report: 보고서 보류/해제 제거
+        remove_subject: 제목 제거
+        reset_password: 비밀번호 재설정
+        unmark_as_done: 완료로 표시 취소
+        view_report: 보고서 보기
+        view_responses: 응답 보기
+      confirmation_messages:
+        approve_report: 보고서를 승인하시겠습니까?
+        hold_report: 보고를 보류하시겠습니까?
+        mark_evaluation_done: 평가를 완료로 표시하시겠습니까? 이 주제에 대한 평가가 종료됩니다.
+        release_report: 보고서를 공개하시겠습니까?
+        remove_from_campaign: 캠페인에서 사용자를 제거하시겠습니까?
+        remove_release_hold: 릴리스/보류 상태를 제거하시겠습니까?
+        remove_report_approval: 보고서 승인을 제거하시겠습니까?
+        remove_subject: 캠페인에서 이메일 제목을 제거하시겠습니까?
+        umark_evaluation_as_complete: 평가를 완료된 것으로 표시를 취소하시겠습니까?
+      report_generation_message: 보고서가 생성 중입니다. 보고서가 준비되면 알려드리겠습니다.
+    processing: 처리
+    processing_report: 처리 보고서
+    progress_text: 완료된 %{총계} 중 %{총계}
+    question:
+      chat_type:
+        input_placeholder: 메시지 작성...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: 편집
+        max_length_warning: 남은 %{x} 문자
+        message: 메시지
+        send: 보내기
+        subject: 제목
+        successful_message: 이메일을 성공적으로 보냈습니다
+        to: To
+    remind_all: 모두에게 알림
+    remind_mail_sent: 평가를 완료하지 않은 평가자에게 리마인더를 보냅니다
+    report_for: 다음 대상에 대한 보고
+    report_generation_in_progress: 보고서가 생성 중입니다. 보고서가 준비되면 알려드리겠습니다.
+    reports: 보고서
+    reports_help_modal:
+      title: 보고서 도움말
+    reset_campaign_confirmation: 모든 참가자를 초기화하려면 아래 텍스트 상자에 현재 캠페인 이름을 입력합니다
+    reset_nomination_confirmation: 모든 후보를 초기화하려면 아래 텍스트 상자에 현재 캠페인 이름을 입력하세요
+    save: 저장
+    select_relationnship: 관계 선택
+    select_relationship: 관계 선택
+    self: Self
+    set_name_for_evaluator: 평가자 이름 설정
+    setup_nominations: 추천 설정
+    subject: 제목
+    submit: 제출하기
+    timed_out: 시간 초과
+    total_progress: 총 진행 상황
+    user_name_input_placeholder: 이름 또는 이메일 입력...
+    validation_errors: 유효성 검사 오류
+    view_my_report: 내 보고서 보기
+    view_nominations: 후보 보기
+    view_reports: 보고서 보기
+    waiting: 대기 중
+    you: 당신
+    yourself: 나 자신
+  time:
+    formats:
+      date: d/%m/%y
+      datetimepicker_client: DD/MM/YYYY hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
+      datetimepicker_server: d/%m/%Y %I:%M %p
+      datetimepicker_server_with_timezone: d %b %Y / %H:%M %:z
+      datetimepicker_without_time_client: DD/MM/YYYY
+      datetimepicker_without_time_server: d/%m/%Y
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: b %d, %Y %I:%M %p
+      iso8601_without_seconds_and_timezone: y-%m-%dT%H:%M
+      short: d %b %Y / %H:%M
+      short_date: d %b %Y
+      with_time_zone: d %b %Y %I:%M %p %:z
+      workshop_date: e %B %Y, %l:%M %p %:z
+  universal_links:
+    active: 활성
+    allow_multiple_respones: 사용자가 여러 개의 응답을 제출할 수 있도록 허용
+    png: PNG
+    regenerate_link: 링크 다시 생성
+    successfully_generated: 성공적으로 생성됨
+    successfully_updated: 업데이트 성공
+    svg: SVG
+  user:
+    datasheet:
+      attribute: 속성
+      value: 가치
+    fields:
+      email: 이메일
+      first_name: 이름
+      last_name: 성
+    form:
+      email: 이메일
+      first_name: 이름
+      last_name: 성
+      locale: 로캘
+      operation: 운영
+      operation_options:
+        add_and_allow_new_response: 사용자 추가 및 새 응답 허용
+        add_with_existing_response: 기존 응답이 있는 사용자 추가
+        skip_existing: 기존 사용자 건너뛰기
+    modals:
+      exports:
+        export_sign_in_url: 매직 로그인 URL로 내보내기
+        include_inactive_users: 비활성 사용자와 함께 내보내기
+        title: 사용자 내보내기
+      import:
+        body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
+        imported_reports: 보고서 및 평가를 가져왔습니다
+        imported_users: '가져온 사용자 수: %{숫자}'
+        success_msg: 업로드한 파일을 가져오기 위해 대기열에 추가되었습니다. 알림에서 상태를 확인하세요
+        title: 사용자 가져오기
+        user_with_unchanged_passwords: 비밀번호가 변경되지 않은 사용자 목록
+      import_reports:
+        body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 샘플 파일을 참조하세요.
+        title: 보고서 및 평가 할당
+    toolbar:
+      export: 사용자 내보내기
+      export_compact_completion_status: 컴팩트
+      export_detailed_completion_status: 상세
+      export_reports_and_assessments: 내보내기 보고서 및 평가
+      import: 사용자 가져오기
+      import_reports: 보고서 및 평가 가져오기
+  user_assessment:
+    column:
+      dimension_id: 차원 ID
+      id: 사용자 평가 ID
+      norm_id: 표준 ID
+    drawer:
+      copied: 이름}이(가) 클립보드에 복사되었습니다.
+      copy: 클립보드에 복사
+      mettl_schedule_name: 메틀 스케줄 이름
+      no_data: 사용 가능한 데이터 없음
+      title: 평가 세부 정보
+      view: 보기
+  user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: 진행 상황 재설정
+          success_message: 평가 %{이름}을 수정할 준비가 되었습니다
+      push_test_webhook:
+        copy_request_data_success: Rquest 페이로드가 클립보드에 성공적으로 복사되었습니다.
+        copy_response_body_success: 응답 본문이 클립보드에 성공적으로 복사되었습니다.
+        copy_response_headers_success: 응답 헤더가 클립보드에 성공적으로 복사되었습니다.
+        event_name_placeholder: 이벤트 이름
+        response_body_title: 응답 본문
+        response_header_title: 응답 헤더
+      push_webhook:
+        submit_button_name: 푸시 웹훅
+        title: 푸시 웹훅
+      remove:
+        content: '"%{이름}" 평가를 제거하시겠습니까?'
+        successfully: 이름} 평가가 성공적으로 제거되었습니다.
+      reset:
+        content: 진행률 "%{이름}"을 초기화하시겠습니까?
+      test_webhook:
+        submit_button_name: 테스트 보내기
+        title: 웹훅 이벤트 보내기 테스트
+    normalize_factor_scores:
+      no_scoring_data: 채점 데이터를 사용할 수 없으므로 요인 점수 정규화를 완료할 수 없습니다.
+    progress_label: 평가 진행 상황
+    redirect: 이 평가를 위해 타사 사이트로 리디렉션됩니다. 평가를 시작하려면 계속을 클릭하세요.
+    status:
+      completed: 완료
+      in_progress: 진행 중
+      ineligible: 부적격
+      interrupted: 중단됨
+      not_started: 시작되지 않음
+      timed_out: 시간 초과
+    statuses:
+      evaluator_nomination_status:
+        completed: 완료
+        declined: 거부됨
+        waiting: 대기 중
+      manager_evaluation_status:
+        approved: 승인됨
+        denied: 거부됨
+        waiting: 대기 중
+      manager_nomination_status:
+        approved: 승인됨
+        completed: 완료
+        declined: 거부됨
+        denied: 거부됨
+        waiting: 대기 중
+    timer_title:
+      assessment: 평가
+      campaign: 캠페인
+  user_reports:
+    actions:
+      add: 보고서 추가
+      download: 다운로드
+      generate: 생성
+      regenerate: 재생성
+    approval_statuses:
+      approved: 승인됨
+      change_requested: 변경 요청
+      not_ready: 준비되지 않음
+      pending_qc: 대기 중인 QC
+      qc_completed: QC 완료
+      qc_in_progress: QC 진행 중
+    messages:
+      async_generation: 보고서 생성 중. 보고서가 생성되면 알림을 받게 됩니다.
+      regenerate_successful: 보고서 재생성 작업이 성공적으로 예약되었습니다
+    modals:
+      remove:
+        content: 사용자 보고서 %{사용자 보고서 이름}을 제거하시겠습니까?
+        content_with_counts:
+          both: '위험: %{userReportName} 보고서에 %{commentsCount}개의 댓글과 %{editsCount}개의 편집 내용이 있습니다. 사용자로부터 보고서를 제거하면 이러한 댓글과 편집 내용이 손실됩니다.'
+          comments: '위험: %{사용자 보고서 이름} 보고서에 %{댓글 수}개의 댓글이 있습니다. 사용자로부터 보고서를 제거하면 이러한 댓글이 손실됩니다.'
+          edits: '위험: %{사용자 보고서 이름} 보고서에 %{편집 횟수}개의 편집 내용이 있습니다. 사용자로부터 보고서를 제거하면 이러한 편집 내용이 손실됩니다.'
+        successfully: 사용자 보고서 이름} 보고서를 성공적으로 제거했습니다
+      remove_file:
+        content: 파일을 제거하시겠습니까?
+        successfully: 파일이 성공적으로 제거되었습니다.
+      upload_file:
+        choose_file: 파일 선택
+        success: 파일이 성공적으로 업로드되었습니다.
+        upload: 업로드
+    preview_report: 보고서 미리보기
+    statuses:
+      generating: 생성
+      not_prepared: 사용 불가
+      prepared: 사용 가능
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: 2단계 인증이 비활성화됨
+          enabled: 2단계 인증이 활성화됨
+        option_to_disable: 2FA 비활성화
+        option_to_enable: 2FA 사용
+      remove:
+        confirm_message: 이메일 '%{이메일}'을 사용하는 사용자를 삭제하시겠습니까?
+        confirm_title: 확인 필요
+        error_message: 오류로 인해 사용자를 제거할 수 없습니다 - %{오류}
+        success_message: email}이(가) 삭제되었습니다
+        system_error_message: 사용자를 제거할 수 없습니다. 나중에 다시 시도하거나 지원팀에 문의하세요.
+      reset_password:
+        option: 비밀번호 재설정
+      unlock_user_access:
+        message: Email}에 대한 사용자 액세스가 성공적으로 잠금 해제되었습니다.
+        title: 사용자 액세스 잠금 해제
+        tooltip: 이 사용자 계정은 잠긴 상태입니다
+    admins: 관리자
+    create_global_assessor: 글로벌 평가자 만들기
+    create_superadmin: 슈퍼 관리자 만들기
+    dashboard: 대시보드
+    drawer:
+      link: 링크
+      role: 역할
+      title: 사용자 세부 정보
+    global_assessors: 글로벌 평가자
+    password_change_success: 비밀번호가 성공적으로 변경되었습니다. 새 비밀번호로 로그인하세요.
+    roles:
+      campaign_admin: 캠페인 관리자
+      campaign_assessor: 캠페인 평가자
+      campaign_user: 캠페인 사용자
+      client_admin: 클라이언트 관리자
+      project_admin: 프로젝트 관리자
+      superadmin: 슈퍼 관리자
+    superadmins: 슈퍼 관리자
+    users: 사용자
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: 오디오는 녹음되었지만 저장되지 않음
+        RECORDING: 오디오 녹음이 진행 중입니다
+        SAVING: 저장
+      required: 필수
+    FileUpload:
+      in_progress:
+        SAVING: 저장
+      required: 필수
+    TextEntry:
+      Email:
+        character_range: 입력한 이메일 메시지는 %{최소}자 이상 %{최대}자 이하여야 합니다.
+        max_character: 입력한 이메일 메시지는 %{최대}자를 넘지 않아야 합니다.
+        min_character: 입력한 이메일 메시지는 %{분}자 이상이어야 합니다.
+        subject:
+          min_length: 제목 필드는 최소 10자 이상이어야 합니다
+        to:
+          required: 필수
+    VideoResponse:
+      in_progress:
+        recorded: 동영상이 녹화되었지만 저장되지 않음
+        recording: 비디오 녹화가 진행 중입니다
+        saving: 저장
+      required: 필수
+    actions_still_in_progress: 아래 작업이 진행 중입니다. 계속 진행하면 이러한 데이터가 손실됩니다.
+    blank: 비어있을 수 없습니다
+    character_count: '문자 수 '
+    character_range: 응답은 최소 %{분} 이상 최대 %{최대}자 이상이어야 합니다.
+    date: 응답은 유효한 날짜(월/일/년/월/일)여야 합니다
+    each_group_contains: 각 그룹에는 %{최소}개 이상 %{최대}개 이하의 항목이 포함되어야 합니다
+    email: 이메일
+    exact: 선택 항목을 정확히 %{개수}개 선택해 주세요
+    file_upload:
+      BadRequest: 마지막 요청이 실패하여 파일이 업로드되지 않았습니다. 인터넷이 작동하지 않기 때문일 수 있습니다. 인터넷이 작동하는 경우 관리자에게 문의하세요
+      EntityTooLarge: 파일 크기는 %{최대 파일 크기}MB 미만이어야 합니다
+      WrongFileType: 파일 유형은 다음 %{allowedFileTypes} 중 하나이어야 합니다
+    invalid: 가 유효하지 않습니다
+    issue: 이슈
+    least: 최소 %{분}개 이상 선택해 주세요.
+    least_hotspot: 최소 %{분}개 이상 선택해 주세요.
+    max_character: 응답은 %{최대}자를 넘지 않아야 합니다.
+    max_word: 응답은 %{최대}단어를 넘지 않아야 합니다.
+    min_character: 응답에는 최소 %{분}자 이상이 포함되어야 합니다.
+    min_factor: 응답에는 %{분} 이상의 요소 피드백이 포함되어야 합니다.
+    min_word: 응답은 최소 %{분}단어 이상이어야 합니다
+    most: 최대 %{최대}개의 선택 항목을 선택하세요
+    must_rank_between: 각 항목에 %{최소값}에서 %{최대값} 사이의 값을 지정해 주세요. 값은 반복할 수 없습니다.
+    must_select: 최소] ~ 최대] 중에서 선택해 주세요
+    not_in_future: 선택한 날짜는 미래가 아니어야 합니다
+    not_in_past: 선택한 날짜가 과거가 아니어야 합니다
+    number: 번호
+    range: 최소 %{분} 이상 최대 %{최대}개까지 선택해 주세요.
+    required: 필수
+    text: 텍스트
+    title:
+      other:
+    user_self_skill_rating_disabled: 이 템플릿에는 자체 평가가 비활성화되어 있습니다
+    word_count: '단어 수 '
+    word_range: 응답은 최소 %{분} 이상 최대 %{최대}단어여야 합니다.
+  'yes': 예
+  your: 귀하의
+  yourself: 나 자신

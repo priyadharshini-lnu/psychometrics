@@ -1,0 +1,5 @@
+import 'video.js/dist/video-js.css'
+import 'videojs-record/dist/css/videojs.record.css'
+import { GettingStart } from '~/components/IdpShared/GettingStart'
+
+export { GettingStart }

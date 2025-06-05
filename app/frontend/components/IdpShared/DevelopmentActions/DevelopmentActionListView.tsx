@@ -28,7 +28,7 @@ type SkillsContainerProps = {
   categories: CategoryWithSkills[]
   availableDevelopmentActions: AvailableDevelopmentActions[]
   onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onShowAvailableDevelopmentAction?: (skillId: number | null) => void
+  onShowAvailableDevelopmentAction?: (skillId: string | number | null) => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onAddMoreSkills: (category: CategoryWithSkills) => void;
@@ -129,7 +129,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onAddDevelopmentAction={() => handleShowAvailableDevelopmentAction(skill)}
         onUpdateDevelopmentAction={onUpdateDevelopmentAction}
         onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
-        userIdpSkillId={skill.id}
+        userIdpSkillId={skill.id as number}
         {...skill}
       />
     ))
@@ -174,11 +174,11 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
       ) : null}
       <Flex vertical gap={12}>
         {categories.map(category => (
-          <BoxWithShadow key={category.category} className={`${styles.p_16} ${styles.mt_8}`}>
+          <BoxWithShadow key={category.skillType} className={`${styles.p_16} ${styles.mt_8}`}>
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
-                <Avatar size={24} src={renderSkillCategoryIcon(category.category)} />
-                <h3 className={styles.h3}>{category.category}</h3>
+                <Avatar size={24} src={renderSkillCategoryIcon(category.skillType)} />
+                <h3 className={styles.h3}>{category.skillType}</h3>
               </Flex>
               <Flex gap={12} vertical>
                 {renderCards(category.skills)}
@@ -202,7 +202,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onCancel={handleCancel}
         open={isAddDevelopmentActionModalOpen}
         onShowAIGeneratedDevelopmentActions={() => setIsAIGeneratedDevelopmentActionsModalOpen(true)}
-        selectedDevelopmentActionIds={selectedDevelopmentActionIds}
+        selectedDevelopmentActionIds={selectedDevelopmentActionIds as (string | number)[]}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}

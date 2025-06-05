@@ -13,6 +13,7 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
   model_hint model: 'assessments/iiht', resource: :assessment
   model_hint model: 'assessments/mettl', resource: :assessment
   model_hint model: 'assessments/simulation', resource: :assessment
+  model_hint model: 'assessments/skillvue', resource: :assessment
 
   class_attribute :_audit_log_config
 

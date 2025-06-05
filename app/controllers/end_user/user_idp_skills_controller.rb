@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+# TODO: Policy is required
 class EndUser::UserIdpSkillsController < ApplicationController
+  append_before_action :pundit_authorize
   before_action :load_user_idp_skill, only: %i[update]
 
   def index
-    user_idp_skills = current_user.user_idp_skills
+    user_idp_skills = user.user_idp_skills
     render json: ::Panko::ArraySerializer.new(
       user_idp_skills,
       each_serializer: ::EndUser::UserIdpSkillSerializer
@@ -12,16 +14,16 @@ class EndUser::UserIdpSkillsController < ApplicationController
   end
 
   def save_skills
-    skills_form = ::Idp::SaveUserIdpSkillsForm.new(skills_params).with_context(user: current_user)
+    skills_form = ::Idp::SaveUserIdpSkillsForm.new(skills_params).with_context(user: user)
 
-    ::Idp::SaveUserIdpSkills.call(current_user.active_user_idp_plan, skills_form) do
+    ::Idp::SaveUserIdpSkills.call(user.active_user_idp_plan, skills_form) do
       on(:ok) do |skills|
         render json: {
           data: ::Panko::ArraySerializer.new(
             skills,
             each_serializer: ::EndUser::UserIdpSkillSerializer
           ).to_a,
-          category: skills_form.category
+          skill_type: skills_form.skill_type
         }
       end
       on(:error) do |form|
@@ -44,8 +46,12 @@ class EndUser::UserIdpSkillsController < ApplicationController
 
   private
 
+  def user
+    @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
+  end
+
   def skills_params
-    params.permit(:category, skills: %i[skill_id])
+    params.permit(:skill_type, skills: %i[skill_id])
   end
 
   def update_params
@@ -53,6 +59,10 @@ class EndUser::UserIdpSkillsController < ApplicationController
   end
 
   def load_user_idp_skill
-    @user_idp_skill = current_user.user_idp_skills.includes(user_idp_plan: :idp_template).find(params[:id])
+    @user_idp_skill = user.user_idp_skills.includes(user_idp_plan: :idp_template).find(params[:id])
+  end
+
+  def pundit_authorize
+    authorize(user, nil, policy_class: ::EndUser::UserIdpSkillsPolicy)
   end
 end

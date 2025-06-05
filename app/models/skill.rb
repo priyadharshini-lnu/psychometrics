@@ -5,7 +5,7 @@ class Skill < ApplicationRecord
   include Taggable
   include RansackSearchableFields
 
-  SAMPLES_PER_CATEGORY = 5
+  SAMPLES_PER_SKILL_TYPE = 5
 
   translates :name, :description
 
@@ -15,11 +15,11 @@ class Skill < ApplicationRecord
   has_many :job_roles, through: :skills_job_roles
   has_many :skills_development_actions, dependent: :destroy
   has_many :development_actions, through: :skills_development_actions
-  has_many :idp_template_skills # added for sample_by_categories being used through template
+  has_many :idp_template_skills # added for sample_by_skill_types being used through template
 
   validates :name, presence: true, uniqueness: { scope: :project_id }
 
-  enum :category, { behavioral: 0, technical: 1, other: 2 }
+  enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
 
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id
@@ -29,20 +29,24 @@ class Skill < ApplicationRecord
   scope :project_id_eq, ->(project_id) { where(project_id: project_id) }
   scope :all_skills, ->(_value = nil) { all }
 
-  scope :filter_by_category, lambda { |category|
-    where(category: Skill.categories[category]) if Skill.categories.key?(category)
+  scope :filter_by_skill_type, lambda { |skill_type|
+    where(skill_type: Skill.skill_types[skill_type]) if Skill.skill_types.key?(skill_type)
   }
 
-  scope :sample_by_categories, lambda {
+  scope :sample_by_skill_types, lambda {
     from("(#{
-      select('skills.*', 'ROW_NUMBER() OVER (PARTITION BY skills.category ORDER BY RANDOM()) as row_num').
+      select('skills.*', 'ROW_NUMBER() OVER (PARTITION BY skills.skill_type ORDER BY RANDOM()) as row_num').
       to_sql
     }) as skills").
-      where('row_num <= ?', SAMPLES_PER_CATEGORY)
+      where('row_num <= ?', SAMPLES_PER_SKILL_TYPE)
+  }
+
+  scope :by_idp_template_id, lambda { |idp_template_id|
+    IdpTemplate.includes(:project, :skills).find_by(id: idp_template_id)&.available_skills || Skill.none
   }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name category project_id]
+    %w[id name skill_type project_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
@@ -50,11 +54,11 @@ class Skill < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %w[all_skills global by_project filter_by_category filterable_fields]
+    %w[all_skills global by_project filter_by_skill_type filterable_fields by_idp_template_id]
   end
 
-  # Custom ransacker for category enum
-  ransacker :category, formatter: proc { |v| categories[v] } do |parent|
-    parent.table[:category]
+  # Custom ransacker for skill_type enum
+  ransacker :skill_type, formatter: proc { |v| skill_types[v] } do |parent|
+    parent.table[:skill_type]
   end
 end

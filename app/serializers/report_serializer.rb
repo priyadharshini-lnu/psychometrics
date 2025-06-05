@@ -68,13 +68,13 @@ class ReportSerializer < Panko::Serializer
   def factors
     object_assessment_ids = object.assessment_ids
     factors = Factor.where(dimension_id: object.dimension_ids).
-              includes(:sub_factors, :translations, sub_factors: :translations).
+              includes(:factors_sub_factors, :translations, icon_attachment: :blob).
               order(name: :asc)
 
     question_ids = FactorsScoring.factor_question_ids(object_assessment_ids)
 
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
-    factors.with_attached_icon.group_by(&:dimension_id).transform_values do |group|
+    factors.group_by(&:dimension_id).transform_values do |group|
       Panko::ArraySerializer.new(
         group,
         each_serializer: ::Factors::WithSubFactorsSerializer,

@@ -9,14 +9,18 @@ import { renderSkillCategoryIcon } from '../utils'
 
 const { I18n } = window
 interface SkillsContainerProps {
-  categories: CategoryWithDevelopmentActions[];
+  developmentActionTypes: CategoryWithDevelopmentActions[];
+  showRating?: boolean
 }
 
-export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({ categories }) => {
+export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({
+  developmentActionTypes,
+  showRating = true,
+}) => {
   const renderPortraitSkillCards = (skills: DevelopmentActionWithSkill[]) => {
     if (skills.length === 0) return <span>{I18n.t('idp.development_actions.no_development_actions')}</span>
     return skills.map(skill => (
-      <DevelopmentActionPortraitCard key={skill.id} {...skill} />
+      <DevelopmentActionPortraitCard key={skill.id} {...skill} showRating={showRating} />
     ))
   }
 
@@ -59,17 +63,20 @@ export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({ cat
     )
   }
 
-  const items = useMemo(() => categories.map(category => ({
-    key: category.category,
+  const items = useMemo(() => developmentActionTypes.map(type => ({
+    key: type.developmentActionType,
     label: (
       <Flex align="center" gap={12}>
-        <Avatar size={24} src={renderSkillCategoryIcon(category.category)} />
-        <h3 className={styles.h3}>{category.category}</h3>
+        <Avatar size={24} src={renderSkillCategoryIcon(type.developmentActionType)} />
+        <h3 className={styles.h3}>{type.developmentActionType}</h3>
       </Flex>),
-    children: renderSkillBoards(category.developmentActions),
-  })), [categories])
+    children: renderSkillBoards(type.developmentActions),
+  })), [developmentActionTypes])
 
-  const activeKeys = useMemo(() => categories.map(category => category.category), [categories])
+  const activeKeys = useMemo(
+    () => developmentActionTypes.map(category => category.developmentActionType),
+    [developmentActionTypes],
+  )
 
   return (
     <Flex gap={12}>

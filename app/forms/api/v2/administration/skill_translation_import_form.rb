@@ -12,26 +12,27 @@ module Api
         attr_reader :processed_file
 
         validates :file, presence: true
-        validate :file_is_csv
+        validate :validate_file_format
         validate :validate_file_content
         validate :process_file
 
         private
 
-        def file_is_csv
+        def validate_file_format
           return if file.blank?
-          return if file.content_type.in?(%w[text/csv application/csv])
+          return if file.respond_to?(:content_type) && file.content_type == 'text/csv'
 
-          errors.add(:file, I18n.t('administration.skills.import.file.must_be_csv'))
+          errors.add(:file, I18n.t('administration.errors.csv_file_required'))
         end
 
         def validate_file_content
           return if file.blank?
-          return unless file.content_type.in?(%w[text/csv application/csv])
+          return unless file.respond_to?(:content_type) && file.content_type == 'text/csv'
 
           begin
             file.rewind if file.respond_to?(:rewind)
-            csv_data = CSVSafe.parse(file.read, headers: true)
+
+            csv_data = ::CsvFileParser.call!(file, headers: true)
 
             # Check for required fields
             validate_headers(csv_data.headers)
@@ -59,6 +60,8 @@ module Api
         end
 
         def validate_row_format(csv_data)
+          return if errors.any?
+
           csv_data.each_with_index do |row, index|
             row_number = index + 2
             row_data = row.to_h.transform_values do |value|

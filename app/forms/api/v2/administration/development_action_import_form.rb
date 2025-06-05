@@ -6,21 +6,15 @@ module Api
       class DevelopmentActionImportForm
         include ActiveModel::Model
 
-        REQUIRED_FIELDS = %w[SkillID Name Description Type Category].freeze
+        REQUIRED_FIELDS = %w[SkillID Name Description Type DevelopmentActionType].freeze
         OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
-        VALID_CATEGORIES = %w[course default].freeze
+        VALID_DEVELOPMENT_ACTION_TYPES = %w[course default].freeze
 
         attr_accessor :file
 
         validates :file, presence: true
         validate :validate_file_format
         validate :validate_file_content
-
-        def processed_file
-          return nil unless valid?
-
-          file
-        end
 
         private
 
@@ -37,7 +31,7 @@ module Api
 
           begin
             file.rewind if file.respond_to?(:rewind)
-            @csv_data = CSVSafe.parse(file.read)
+            @csv_data = ::CsvFileParser.call!(file)
             validate_headers
             validate_data
           rescue CSV::MalformedCSVError => e
@@ -73,7 +67,7 @@ module Api
           validate_required_fields(row, row_number)
           validate_learning_style(row, row_number)
           validate_dates(row, row_number)
-          validate_category(row, row_number)
+          validate_development_action_type(row, row_number)
         end
 
         def validate_required_fields(row, row_number)
@@ -109,14 +103,14 @@ module Api
           end
         end
 
-        def validate_category(row, row_number)
-          return if row['Category'].blank?
+        def validate_development_action_type(row, row_number)
+          return if row['DevelopmentActionType'].blank?
 
-          unless VALID_CATEGORIES.include?(row['Category'].downcase)
-            errors.add(:base, I18n.t('administration.development_action_import.errors.invalid_category',
+          unless VALID_DEVELOPMENT_ACTION_TYPES.include?(row['DevelopmentActionType'].downcase)
+            errors.add(:base, I18n.t('administration.development_action_import.errors.invalid_development_action_type',
                                      row: row_number,
-                                     value: row['Category'],
-                                     valid_categories: VALID_CATEGORIES.join(', ')))
+                                     value: row['DevelopmentActionType'],
+                                     valid_development_action_types: VALID_DEVELOPMENT_ACTION_TYPES.join(', ')))
           end
         end
       end

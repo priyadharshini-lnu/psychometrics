@@ -3,10 +3,10 @@
 module Idp
   class SaveUserIdpSkillsForm < Rectify::Form
     attribute :skills, Array
-    attribute :category, String
+    attribute :skill_type, String
 
     validate :skills_are_valid
-    validate :valid_category
+    validate :valid_skill_type
 
     def skills_are_valid
       skills.each do |skill|
@@ -14,10 +14,10 @@ module Idp
       end
     end
 
-    def valid_category
-      return if category.blank? # Means that skills are being added for all category
+    def valid_skill_type
+      return if skill_type.blank? # Means that skills are being added for all skill_type
 
-      errors.add(:category, I18n.t('validations.invalid')) unless category.in?(Skill.categories.keys)
+      errors.add(:skill_type, I18n.t('validations.invalid')) unless skill_type.in?(Skill.skill_types.keys)
     end
   end
 end

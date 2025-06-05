@@ -27,6 +27,7 @@ export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PRO
 export const GET_WEBHOOK_REQUEST_DATA = 'campaigns/userAssessments/GET_WEBHOOK_REQUEST_DATA'
 export const SCHEDULE_ASSESSMENT = 'campaigns/userAssessments/SCHEDULE_ASSESSMENT'
 export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/userAssessments/TOGGLE_REQUIRE_SCHEDULE'
+export const TOGGLE_PREWORK = 'campaigns/userAssessments/TOGGLE_PREWORK'
 export const NORMALIZE_FACTOR_SCORES = 'campaigns/userAssessments/NORMALIZE_FACTOR_SCORES'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
@@ -133,6 +134,17 @@ export const toggleRequireScheduling = (campaignId: number, assessmentId: number
   },
 })
 
+export const togglePrework = (campaignId: number, assessmentId: number, prework: boolean) => ({
+  type: TOGGLE_PREWORK,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${assessmentId}/toggle_prework`,
+    body: {
+      prework,
+    },
+  },
+})
+
 export const reset = (campaignId: number, campaignAssessmentId: number) => ({
   type: RESET_ASSESSMENT,
   request: {
@@ -184,6 +196,8 @@ const HANDLERS = {
   [SCHEDULE_ASSESSMENT]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
     { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
   [TOGGLE_REQUIRE_SCHEDULE]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
+    { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
+  [TOGGLE_PREWORK]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
     { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
     const { campaignAssessmentId, normId } = request.body

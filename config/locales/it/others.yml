@@ -58,7 +58,7 @@ it:
         campaign_factors_import_form:
           attributes:
             base:
-              blank: La colonna '%{entità}' non può essere vuota alla riga %{indice}
+              blank: La colonna '%{entity}' non può essere vuota alla riga %{index}
               duplicate_code: Codice duplicato '%{code}' alla riga %{index}
               invalid_output_type: Tipo_di_uscita_invalido '%{output_type}' alla riga %{index}
               max_limit_reached: Il totale dei fattori della campagna supera il limite massimo di %{count}
@@ -67,7 +67,7 @@ it:
             file:
               invalid_format: Caricare il file xlsx
             resource:
-              must_exist: "%{risorsa} deve esistere"
+              must_exist: "%{resource} deve esistere"
         campaigns_external_scores_import_form:
           attributes:
             file:
@@ -119,7 +119,7 @@ it:
               inclusion: Localizzazione errata
             relationship_name:
               blank: La relazione non può essere vuota
-              invalid: La relazione %{nome} non è valida
+              invalid: La relazione %{name} non è valida
             subject_email:
               blank: Oggetto L'e-mail non può essere vuota
               invalid: Oggetto L'e-mail non è valida
@@ -160,7 +160,7 @@ it:
             base:
               code_length: Il codice deve essere lungo almeno 3 caratteri alla riga %{index}.
               code_required: Il codice del fattore è richiesto alla riga %{index}
-              invalid_scoring_strategy: Strategia di punteggio non valida '%{strategia}' alla riga %{indice}. Le strategie consentite sono %{consentite}.
+              invalid_scoring_strategy: Strategia di punteggio non valida '%{strategy}' alla riga %{index}. Le strategie consentite sono %{allowed}.
               missing_headers: 'Mancano le intestazioni richieste: %{headers}'
               name_required: Il nome del fattore è richiesto alla riga %{index}
               scoring_strategy_required: La strategia di punteggio è richiesta alla riga %{index}
@@ -284,20 +284,20 @@ it:
         sheet:
           attributes:
             file:
-              column_type_mismatch: La colonna <b>%{col}</b> dovrebbe essere di tipo %{tipo} ma ha ottenuto <b>%{got}</b>
-              email_blank: 'Riga %{numero_riga}: il campo e-mail non può essere vuoto'
+              column_type_mismatch: La colonna <b>%{col}</b> dovrebbe essere di tipo %{type} ma ha ottenuto <b>%{got}</b>
+              email_blank: 'Riga %{row_number}: il campo e-mail non può essere vuoto'
               email_duplicate: Ci sono duplicati nella colonna Email
-              email_invalid: 'Riga %{numero_riga}: l''e-mail non è valida'
-              invalid_column: Colonna non valida %{nome}
-              invalid_column_name: La colonna <b>"%{colonna}"</b> non è valida
-              invalid_column_name_size: Nome della colonna <b>"%{colonna}"</b> troppo lungo (max 64)
+              email_invalid: 'Riga %{row_number}: l''e-mail non è valida'
+              invalid_column: Colonna non valida %{name}
+              invalid_column_name: La colonna <b>"%{column}"</b> non è valida
+              invalid_column_name_size: Nome della colonna <b>"%{column}"</b> troppo lungo (max 64)
               invalid_column_type: Il tipo di colonna deve essere Stringa, Testo, Numero, HTML o Markdown
               invalid_format: Formato non valido (.xlsx)
-              invalid_number_value: <b>Riga#%{index}</b> Colonna <b>"%{colonna}"</b> non è un numero
-              invalid_string_value: <b>Riga#%{index}</b> colonna <b>"%{colonna}"</b> non è una stringa
-              invalid_string_value_size: <b>Riga#%{index}</b> colonna <b>"%{colonna}"</b> troppo lunga (max 256)
+              invalid_number_value: <b>Riga#%{index}</b> Colonna <b>"%{column}"</b> non è un numero
+              invalid_string_value: <b>Riga#%{index}</b> colonna <b>"%{column}"</b> non è una stringa
+              invalid_string_value_size: <b>Riga#%{index}</b> colonna <b>"%{column}"</b> troppo lunga (max 256)
               no_email_column: Il file non contiene la colonna Email
-              non_uniq_column: Ci sono le seguenti colonne non uniq %{colonne}
+              non_uniq_column: Ci sono le seguenti colonne non uniq %{columns}
         sheet_row_form:
           attributes:
             email:
@@ -348,10 +348,10 @@ it:
             import_data:
               cant_overwrite_password: Non si ha l'autorizzazione a sovrascrivere la password.
               duplicated_emails: 'Le seguenti email sono duplicate nel CSV: %{emails}'
-              invalid_email: 'Riga %{numero_riga}: email non valida %{email}'
+              invalid_email: 'Riga %{row_number}: email non valida %{email}'
               invalid_header: Intestazione non valida, prendere l'intestazione dall'esportazione
               invalid_reports_header: Intestazione non valida, prendere l'intestazione dal file di esempio
-              manager_not_found: 'Riga %{numero_riga}: il gestore con email %{email} non è presente nella campagna o nel CSV'
+              manager_not_found: 'Riga %{row_number}: il gestore con email %{email} non è presente nella campagna o nel CSV'
               user_update_failed: Aggiornamento utente fallito per %{email} con l'errore "%{error}"
             locale:
               inclusion: Localizzazione errata
@@ -704,7 +704,7 @@ it:
         campaign_factor:
           attributes:
             formula:
-              cyclic_dependency_found: 'C''è una dipendenza ciclica nella formula. Dipendenza: %{percorso_ciclico}'
+              cyclic_dependency_found: 'C''è una dipendenza ciclica nella formula. Dipendenza: %{cyclic_path}'
         factors_norm:
           score_from_must_be_number: Il punteggio da deve essere un numero
           score_to_less_than_score_from: Il punteggio per è inferiore al punteggio da
@@ -713,7 +713,7 @@ it:
           attributes:
             used_number:
               overused: La licenza utilizzata non può essere superiore alla somma della licenza assegnata e del limite di sovrautilizzo.
-          overuse: La licenza %{nome} è sovrautilizzata
+          overuse: La licenza %{name} è sovrautilizzata
         media_response:
           attributes:
             base:
@@ -759,7 +759,7 @@ it:
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
         export_campaign_factors: Fattori della campagna di esportazione
-        export_campaign_scorings: Esportazione delle campagne
+        export_campaign_scorings: Esportazione delle Attività
         export_development_action_translations: Azione di sviluppo delle esportazioni Traduzioni
         export_development_actions: Azioni di sviluppo delle esportazioni
         export_dimension_as_json: Esportazione della dimensione JSON
@@ -847,14 +847,14 @@ it:
       add_tag:
         success_message: Il tag è stato aggiunto con successo
       archived:
-        success_message: La valutazione "%{nome}" è stata archiviata con successo.
+        success_message: La valutazione "%{name}" è stata archiviata con successo.
       assessment_cache:
         remove_cache: Rimuovere la cache
         success_message: Rimossa la cache con successo
       back_to_campaign: Torna alla campagna
       back_to_dashboard: Torna al cruscotto
       copy:
-        success_message: La valutazione "%{nome}" è stata copiata con successo.
+        success_message: La valutazione "%{name}" è stata copiata con successo.
       details: Dettagli
       download_csv: Scarica il CSV
       edit: Modifica
@@ -877,21 +877,21 @@ it:
       re_evaluate: Fare clic qui per rivalutare
       reevaluate: Rivalutare
       remove:
-        confirm_message: Siete sicuri di voler cancellare la valutazione "%{nome}"?
+        confirm_message: Siete sicuri di voler cancellare la valutazione "%{name}"?
         confirm_title: Conferma richiesta
-        success_message: La valutazione %{nome} è stata rimossa
+        success_message: La valutazione %{name} è stata rimossa
       remove_tag:
         success_message: Il tag è stato rimosso con successo
       rescore: Ricompilare
       restore:
-        success_message: La valutazione "%{nome}" è stata ripristinata con successo
+        success_message: La valutazione "%{name}" è stata ripristinata con successo
       show_usage: Mostra uso
       submit_another_response: Invia un'altra risposta
       submit_evaluation: Invia la valutazione
       translations:
         success_message: Le traduzioni di valutazione aggiornate
       unarchived:
-        success_message: La valutazione "%{nome}" è stata disarchiviata con successo
+        success_message: La valutazione "%{name}" è stata disarchiviata con successo
       view: Vista
     active: Attivo
     archived: Archiviato
@@ -984,8 +984,8 @@ it:
         show_uniq_identifier: Mostrare l'identificativo univoco ai rispondenti (per i sondaggi anonimi)
     instructions:
       begin_assessment: Inizia
-      cancel: Annullamento
-      default: Si tratta di un'attività a tempo; una volta fatto clic su Inizia la valutazione, si avrà a disposizione %{tempo} minuti per completarla.
+      cancel: Annulla
+      default: Si tratta di un'attività a tempo; una volta fatto clic su Inizia la valutazione, si avrà a disposizione %{time} minuti per completarla.
       title: Istruzioni
     messages:
       external_scores_export_scheduled: Il lavoro di esportazione dei punteggi di valutazione è stato pianificato con successo
@@ -1001,7 +1001,7 @@ it:
         title: Ultima richiesta fallita
       next: Avanti
       read_only: È in modalità di sola lettura, non è possibile modificare alcun risultato.
-      save: Risparmiare
+      save: Salva
       submissionFailedAlert:
         description: Impossibile connettersi al server. Si prega di aggiornare la pagina e riprovare. Se non funziona, si prega di contattare il supporto tramite live chat o mte.surveys@mercer.com
         title: Ultima richiesta fallita
@@ -1026,7 +1026,7 @@ it:
       fifteen_seconds_left: 15 secondi alla fine
       five_minutes_left: 5 minuti al termine
       one_minute_left: manca 1 minuto
-      seconds_left: "%{secondi} secondi rimasti"
+      seconds_left: "%{seconds} secondi rimasti"
       thirty_seconds_left: mancano 30 secondi
       time_is_up: Il vostro tempo è scaduto
       time_is_up_for_recording: Il tempo è scaduto e la registrazione si interrompe ora
@@ -1051,7 +1051,7 @@ it:
       recording_stop_label: La registrazione si interromperà in
       requesting_permission: Richiesta di autorizzazione...
       response_recorded: Risposta registrata
-      save: Risparmiare
+      save: Salva
       saved:
         label: Video salvato
       saving: Salvataggio dei video...
@@ -1081,16 +1081,15 @@ it:
     sequencing:
       add_assessment_center: Aggiungi centro di valutazione
       add_group: Aggiungi gruppo
-      assessment_center_message: Le valutazioni di questo gruppo sono gestite dall'Assessment Center
       assessments: Valutazioni
       delete_group: Cancellare il gruppo
       edit_group_name: Modifica del nome del gruppo
       modal:
         delete:
-          cancel: Annullamento
-          failed: Impossibile eliminare il gruppo "%{nome}", contattare l'amministratore
+          cancel: Annulla
+          failed: Impossibile eliminare il gruppo "%{name}", contattare l'amministratore
           ok: Sì, eliminare
-          text: Si è sicuri di voler eliminare il gruppo "%{nome}"?
+          text: Si è sicuri di voler eliminare il gruppo "%{name}"?
           title: Cancellare il gruppo
       no_assessments: Trascinare e rilasciare le valutazioni
       no_ungrouped_assessments: Trascinare e rilasciare le valutazioni qui per disaggregarle
@@ -1218,21 +1217,21 @@ it:
     begin: Iniziare le attività
     begin_btn_msg_before_prework: Prima di iniziare la campagna a tempo, è necessario completare le seguenti attività
     begin_campaign_msg: Avviare la campagna prima di effettuare le valutazioni
-    campaigns: Campagne
+    campaigns: Attività
     closed_campaign_message: Questa campagna è chiusa. Non è possibile eseguire alcuna valutazione all'interno di questa campagna.
     code_usage_limit_reached: Limite di utilizzo del codice raggiunto, contattare l'amministratore
     complete_prev: Completare tutte le valutazioni precedenti
     complete_tasks: Prima di intraprendere questa azione, completare le operazioni indicate di seguito.
     continue: Continuare a svolgere i propri compiti
-    dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le campagne.
+    dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Attività.
     dashboard_menu:
       bookings: Prenotazioni
-      campaign: Campagna
+      campaign: Attività
       change_password: Modifica della password
       development: Sviluppo
-      home: Casa
+      home: Home
       insights: Approfondimenti
-      my_direct_reports: I miei rapporti diretti
+      my_direct_reportees: I miei rapporti diretti
       my_plan: Il mio piano
       profile: Profilo
       profile_details: Dettagli
@@ -1252,7 +1251,7 @@ it:
       campaign_start_final_instructions: "<p>il timer della campagna continuerà a scorrere anche quando si chiude il browser, quindi non si deve mai pensare di abbandonare i compiti per dedicarsi ad altro. Assicurarsi di ridurre al minimo le distrazioni durante i compiti. Trovare un ambiente tranquillo, disattivare le notifiche sui dispositivi ed evitare il multitasking. Mantenere la concentrazione e rimanere concentrati. Una volta scaduto il timer della campagna, non sarà più possibile continuare. Se si sono lette le istruzioni di cui sopra, fare clic su Start per continuare i compiti assegnati</p>\n"
       campaign_start_instruction: |
         <h4>Leggere attentamente le seguenti istruzioni.</h4>
-        <p>i compiti che state per iniziare sono a tempo. Una volta cliccato su "Inizia", il timer della campagna partirà automaticamente. Avete %{minuti} minuti per completare tutte le attività. Cercate di completare i compiti entro il tempo stabilito e gestite il tempo in modo efficace per evitare di affrettare il processo di valutazione. Assicuratevi di completare i compiti in una volta sola, quindi se avete bisogno di fare una pausa, questo è il momento giusto</p>
+        <p>i compiti che state per iniziare sono a tempo. Una volta cliccato su "Inizia", il timer della campagna partirà automaticamente. Avete %{minutes} minuti per completare tutte le attività. Cercate di completare i compiti entro il tempo stabilito e gestite il tempo in modo efficace per evitare di affrettare il processo di valutazione. Assicuratevi di completare i compiti in una volta sola, quindi se avete bisogno di fare una pausa, questo è il momento giusto</p>
       common_proctoring_instructions: |
         <h4>Proctoring</h4>
         <p>facendo clic sul pulsante Avvia, verrete reindirizzati al nostro sistema di proctoring, che monitorerà la vostra telecamera, il vostro microfono e il vostro schermo durante la sessione. Queste sessioni sono automaticamente controllate dal nostro sofisticato sistema di intelligenza artificiale, che garantisce un'esperienza utente ininterrotta e senza intoppi. Tuttavia, le sessioni possono anche essere esaminate da proctor umani. Qualsiasi segno di cattiva condotta o irregolarità verrà segnalato. Questo viene fatto per garantire che non ci siano tentativi di imbroglio. Se si riscontrano sospetti, i vostri compiti verranno annullati</p>
@@ -1273,26 +1272,26 @@ it:
       dashboard: Cruscotto
       reports: Rapporti
     profile:
-      complete_heading: Il vostro profilo è completo
+      complete_heading: Il Tuo profilo è completo
       complete_profile_label: Completa ora
       edit_profile_label: Modifica profilo
-      incomplete_heading: Completate il vostro profilo
+      incomplete_heading: Completate il Tuo profilo
       last_login_text: 'Ultimo accesso il :'
       last_updated_text: 'Il profilo è stato aggiornato l''ultima volta il:'
-      sub_heading: Completate le informazioni del vostro profilo
-      welcome_text: Benvenuti,
+      sub_heading: Completate le informazioni del Tuo profilo
+      welcome_text: Benvenuto/a,
     reset_warning: È possibile riavviare solo la campagna contrassegnata come campagna di esercitazione.
     restart_practice: Riavviare la pratica
     restart_practice_confirmation: È sicuro di voler riavviare la pratica?
     restart_practice_success: La pratica è stata riavviata con successo
     thank_you_for_time: Grazie per il vostro tempo
     time_left:
-      cancel: Annullamento
-      continue: Continua
-      notification: Il tempo assegnato per questo compito "%{nomevalutazione}" era %{totalAssessmentTime}. A causa del tempo complessivo trascorso, ora si ha solo %{remainingCampaignTime} come tempo adattato per completare questo compito.
+      cancel: Annulla
+      continue: Procedi
+      notification: Il tempo assegnato per questo compito "%{assessmentName}" era %{totalAssessmentTime}. A causa del tempo complessivo trascorso, ora si ha solo %{remainingCampaignTime} come tempo adattato per completare questo compito.
     timer:
-      notification_hours: Ti rimane %{ore} un'ora
-      notification_minutes: hai ancora %{minuti} minuti
+      notification_hours: Ti rimane %{hours} un'ora
+      notification_minutes: hai ancora %{minutes} minuti
   campaign_assessment:
     actions:
       bulk_download: Scaricamento in blocco
@@ -1315,9 +1314,9 @@ it:
       reset_all_nominations: Azzeramento di tutte le nomine
       reset_participant: Azzeramento di tutti i partecipanti
     allow_msg_proctoring_workshop_activity: Le attività dell'Assessment Center non vengono verificate.
+    assessment_center_heading: Dettagli sull'Assessment Center
     assessments_heading: Le tue Attività
     column:
-      assessment_center_activity: Attività del Centro di valutazione
       assessment_name: Nome della valutazione
       assessor_form: Modulo per il valutatore
       auto_assign: Assegnazione automatica
@@ -1359,7 +1358,7 @@ it:
         title: Rigenerare i rapporti?
       remove:
         helper_text: 'PERICOLO: se si seleziona questa opzione, tutte le risposte degli utenti a questa valutazione verranno eliminate in questa campagna.'
-        msg_text: Si sta cercando di eliminare <strong>"%{nome}"</strong> Valutazione
+        msg_text: Si sta cercando di eliminare <strong>"%{name}"</strong> Valutazione
         successfully: la valutazione %{name} è stata rimossa con successo.
         title: Rimuovere la valutazione?
       rescore:
@@ -1367,12 +1366,12 @@ it:
         successfully: La valutazione è stata ripetuta con successo.
         title: Ricostruire la valutazione?
       rescore_response:
-        message: Rescoring previsto per la valutazione "%{nome}"
+        message: Rescoring previsto per la valutazione "%{name}"
         title: Risposte di rielaborazione
       reset:
         content: Sei sicuro di voler resettare i risultati?
         successfully: I dati dei risultati sono stati azzerati con successo.
-        title: Azzerare il risultato della valutazione %{nome}?
+        title: Azzerare il risultato della valutazione %{name}?
       update_assessor_form:
         select_assessor: Selezionare il modulo per la valutazione
         success_msg: Il modulo del valutatore è stato caricato con successo
@@ -1426,11 +1425,11 @@ it:
       update_exists: Sovrascrivere il programma esistente
     scheduling_time: Programmare l'orario di valutazione
     statuses:
-      completed: Completato
+      completed: Completati
       in_progress: In corso
       ineligible: Non ammissibile
       interrupted: Interrotto
-      not_started: Non iniziato
+      not_started: Da iniziare
       timed_out: Timed Out
       universal_link: Collegamento universale
     ungrouped_assessments_heading: Non raggruppati
@@ -1612,13 +1611,14 @@ it:
       archive: Archivio
       back_to_dashboard: Torna al cruscotto
       back_to_responses: Torna alle risposte
-      cancel: Annullamento
+      cancel: Annulla
       change: Cambiamento
       close: Chiudere
       continue: Continua
       copy: Copia
       create: Creare
       delete: Cancellare
+      done: Fatto
       edit: Modifica
       export: Esportazione
       filter_by_tags: Filtrare per tag
@@ -1630,11 +1630,12 @@ it:
       resolve: Risolvere
       restore: Ripristino
       run: Correre
-      save: Risparmiare
+      save: Salva
       schedule: Programma
       search: Ricerca
       send: Inviare
       start: Inizio
+      submit: Invia
       unarchive: Disarchivio
       unresolve: Non risolvere
       update: Aggiornamento
@@ -1642,6 +1643,8 @@ it:
       upload_file: Caricare il file
       verify: Verifica
       view: Vista
+      view_all_tasks: Visualizza tutti i compiti
+      view_details: Visualizza i dettagli
     column:
       action: Azione
       active: Attivo
@@ -1708,7 +1711,7 @@ it:
       admins: Amministratori
       assessment: Valutazione
       assessments: Valutazioni
-      campaigns: Campagne
+      campaigns: Attività
       completion_statuses: Stati di completamento
       datasheet: Scheda tecnica
       projects: Progetti
@@ -1729,7 +1732,7 @@ it:
     text:
       accepted: Accettato
       all_pages: Tutte le pagine
-      cancel: Annullamento
+      cancel: Annulla
       confirm: Confermare
       continue: Continua
       copied: Copiato negli appunti
@@ -1761,9 +1764,9 @@ it:
   datasheet:
     errors:
       datasheet_column:
-        not_found: Colonna '%{nome_colonna}' non trovata
-        numeric_value_required: La colonna '%{campo}' deve essere un numero
-        string_value_required: La colonna '%{campo}' deve essere una stringa
+        not_found: Colonna '%{column_name}' non trovata
+        numeric_value_required: La colonna '%{field}' deve essere un numero
+        string_value_required: La colonna '%{field}' deve essere una stringa
       not_configured: La scheda tecnica non è configurata
   devise:
     administrators:
@@ -1825,7 +1828,7 @@ it:
     mailer:
       admin_invitation_instructions:
         accept: Fare clic qui per accettare l'invito.
-        body: 'Ciao %{nome}, Sei stato invitato ad accedere al pannello di amministrazione di Lighthouse - La piattaforma di valutazione di Talent Enterprise. %{accetto} Oppure puoi tranquillamente ignorare questa e-mail. Ti preghiamo di non condividere le tue credenziali di accesso con nessuno.
+        body: 'Ciao %{name}, Sei stato invitato ad accedere al pannello di amministrazione di Lighthouse - La piattaforma di valutazione di Talent Enterprise. %{accept} Oppure puoi tranquillamente ignorare questa e-mail. Ti preghiamo di non condividere le tue credenziali di accesso con nessuno.
 
           '
         subject: Invito al Faro
@@ -1837,12 +1840,12 @@ it:
           '
         login: Accedi a Lighthouse
         sections:
-          campaign: 'Campagna: %{nome_sezione}'
-          client: 'Affitto cliente: %{nome_sezione}'
-          project: 'Progetto: %{nome_sezione}'
+          campaign: 'Campagna: %{section_name}'
+          client: 'Affitto cliente: %{section_name}'
+          project: 'Progetto: %{section_name}'
         subject: Invito al Faro
       password_change:
-        body: 'Ciao %{nome}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo support@thetalententerprise.com
+        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo support@thetalententerprise.com
 
           '
         regards: 'Saluti, team Lighthouse
@@ -1923,7 +1926,7 @@ it:
         tabs:
           register: Registro
           sign_in: Accesso
-        title: Benvenuto/a!
+        title: Benvenuto!
       signed_in: L'accesso è stato effettuato con successo!
       signed_in_time: L'ultimo accesso è stato effettuato il %{date_time}
       signed_out: La firma è stata apposta con successo.
@@ -2004,21 +2007,21 @@ it:
         less_than_booked: I posti totali devono essere maggiori di quelli prenotati
       user_availability_date:
         overlaps_date: Si sovrappone ad un'altra disponibilità %{range}
-        overlaps_time: Si sovrappone all'intervallo %{intervallo}
+        overlaps_time: Si sovrappone all'intervallo %{interval}
         start_date_should_be_less: La data di inizio deve essere inferiore alla data di fine
         start_time_should_be_less: L'ora di inizio deve essere inferiore all'ora di fine
       user_idp_plan:
         idp_template_already_assigned_to_user: Questo modello Idp è già assegnato a questo utente ed è attivo
       user_saved_filters:
-        limit_exceeded: È possibile avere solo un %{limite} di filtri salvati; cancellare i filtri salvati per aggiungerne altri.
+        limit_exceeded: È possibile avere solo un %{limit} di filtri salvati; cancellare i filtri salvati per aggiungerne altri.
         unique_name: Esiste già un filtro con lo stesso nome.
       workshop_invited_subject_create:
         already_exists: L'oggetto esiste già nell'invito.
       workshop_subject_create:
         already_exists: Il soggetto esiste già in questo Assessment Center.
-        part_of_other_workshop: Il soggetto è già un partecipante di "%{nome_workshop}".
+        part_of_other_workshop: Il soggetto è già un partecipante di "%{workshop_name}".
       workshops:
-        no_available_assessor_slots: Non ci sono slot disponibili per il valutatore %{valutatore}
+        no_available_assessor_slots: Non ci sono slot disponibili per il valutatore %{assessor}
         no_available_manager_slots: Non ci sono slot disponibili per il manager %{manager}
     users:
       registrations:
@@ -2046,7 +2049,7 @@ it:
         error: Il corpo dell'e-mail ha un testo non corretto.
   errors:
     assessments:
-      timed_out: Non sarà possibile eseguire la valutazione %{nome_valutazione} perché il tempo è scaduto.
+      timed_out: Non sarà possibile eseguire la valutazione %{assessment_name} perché il tempo è scaduto.
     error: Errore
     error_500: Qualcosa è andato storto. Contattare l'amministratore.
     error_msg: Qualcosa è andato storto. Aggiornare la pagina e, se il problema persiste, contattare l'amministratore
@@ -2100,7 +2103,7 @@ it:
       remove_file: rimuovere il file
       send_message: Invia il messaggio
       slider_label_instruction: 'min: %{min} e max: %{max}'
-      task_btn_description: compito %{nomevalutazione}
+      task_btn_description: compito %{assessmentName}
       task_progress_label: Il completamento dell'attività è
       write_message: Scrivi il tuo messaggio
     assessment: Valutazione
@@ -2130,12 +2133,12 @@ it:
         message_part1: Completare tutti i lavori preliminari in questo
         message_part2: prima di prenotare uno slot.
       assessment_center_group_name: Centro di valutazione
-      booking_failed_msg: 'Impossibile prenotare lo slot: %{errore}'
+      booking_failed_msg: 'Impossibile prenotare lo slot: %{error}'
       buttons:
         book: Libro
         book_again: Prenota di nuovo
-        cancel: Annullamento
-        cancel_booking: Annullamento della prenotazione
+        cancel: Annulla
+        cancel_booking: Annulla della prenotazione
         confirm_booking: Confermare la prenotazione
         confirm_reschedule: Confermare Riprogrammare
         modify: Modificare
@@ -2147,13 +2150,13 @@ it:
         reserve_spot: Prenota il tuo posto
         yes_text: Sì
       cancel_booking_confirmation: È sicuro di voler cancellare questa prenotazione?
-      cancellation_failed: 'Non è stato possibile cancellare la prenotazione: %{errore}'
+      cancellation_failed: 'Non è stato possibile cancellare la prenotazione: %{error}'
       cancellation_success: La prenotazione è stata annullata con successo
       comments_required_msg: Inserite i vostri commenti
       confirm_booking_description: Si prega di confermare la correttezza di questi dati prima di finalizzare la prenotazione.
       confirm_booking_title: Confermare la prenotazione?
       default_failure_msg: Impossibile elaborare la richiesta. Riprovare più tardi.
-      default_requires_msg: "%{nome} è richiesto"
+      default_requires_msg: "%{name} è richiesto"
       join_activity_meeting: Partecipa alla riunione
       join_workshop_meeting: Partecipa alla riunione
       language: Lingua
@@ -2171,11 +2174,11 @@ it:
       reason: Motivo
       reason_for_cancel: Motivo della cancellazione
       reason_for_reschedule: Motivo della riprogrammazione
-      request_cancellation_failed: 'Richiesta di cancellazione fallita: %{errore}'
+      request_cancellation_failed: 'Richiesta di cancellazione fallita: %{error}'
       request_cancellation_success: Richiesta di cancellazione riuscita
-      request_reschedule_failed: 'Richiesta di riprogrammazione fallita: %{errore}'
+      request_reschedule_failed: 'Richiesta di riprogrammazione fallita: %{error}'
       request_reschedule_success: Richiesta di riprogrammazione riuscita
-      reschedule_failed_msg: 'Impossibile riprogrammare: %{errore}'
+      reschedule_failed_msg: 'Impossibile riprogrammare: %{error}'
       reschedule_reason_placeholder: Per continuare, inserire il motivo della riprogrammazione.
       schedule_success: Questa prenotazione è prevista
       schedule_success_msg: Abbiamo inviato a te e agli altri partecipanti un invito al calendario con tutti i dettagli.
@@ -2191,10 +2194,10 @@ it:
     campaign:
       actions:
         copy:
-          success: "%{nomeCampagna} è stato copiato con successo."
+          success: "%{campaignName} è stato copiato con successo."
         remove:
           confirmation: Per rimuovere la campagna, inserire il nome attuale della campagna indicato di seguito nella casella di testo
-          success: "%{nomeCampagna} è stato rimosso con successo."
+          success: "%{campaignName} è stato rimosso con successo."
       users:
         actions:
           export:
@@ -2227,7 +2230,7 @@ it:
     error_warning: Oops, qualcosa è andato storto con la valutazione. Si prega di contattare il supporto.
     hogan:
       cannot_start: Non è possibile avviare la valutazione delle hogan in questo momento. Provare dopo qualche minuto.
-    lighthouse_app: Faro di Mercer
+    lighthouse_app: Mercer Lighthouse
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
@@ -2247,7 +2250,7 @@ it:
       message: L'ultima richiesta non è andata a buon fine. Aggiornare la pagina e, se il problema persiste, contattare l'amministratore.
       refresh: Aggiornare
     resource:
-      create_success: "%{nomeRisorsaLeggibile} è stato aggiunto con successo"
+      create_success: "%{readableResourceName} è stato aggiunto con successo"
       update_success: "%{readableResourceName} è stato aggiornato con successo"
     restart: Riavvio
     restart_progress: Sono state apportate alcune modifiche alla valutazione. Aggiornate la pagina per vedere le modifiche. Aggiornando la pagina, la valutazione ricomincerà dall'inizio. Le domande a cui avete già risposto saranno riempite automaticamente.
@@ -2285,7 +2288,7 @@ it:
     booking_card:
       aria_available_time: tempo disponibile
       aria_back_to_time_selection: torna alla selezione del tempo
-      aria_desc_current_month: Attualmente il %{nome mese} %{anno}
+      aria_desc_current_month: Attualmente il %{monthName} %{year}
       aria_label_next_month: Vai al prossimo mese
       aria_label_previous_month: Vai al mese precedente
       aria_timezone_select: Selezionare il fuso orario
@@ -2316,7 +2319,7 @@ it:
       new_schedule_description: L'ora di inizio deve essere precedente all'ora di fine
       no_slots: Nessuna slot aggiunta
       required_error: non può essere vuoto
-      save: Risparmiare
+      save: Salva
       saved_schedule_description: Programma di disponibilità salvato dell'utente
       start_date: Data di inizio
       timezone_label: Fuso orario
@@ -2327,67 +2330,78 @@ it:
       aria_selected: Selezionato
   idp:
     actions: Azioni
-    board: Bacheca
+    board: Consiglio di amministrazione
+    convert_to_draft: Converti in bozza
     details: Dettagli
     development_actions:
       action_private: Sì
-      action_public: 'No'
-      add_development_action: Aggiungi Azione di Sviluppo
+      action_public: 'false'
+      add_development_action: Aggiungi azione di sviluppo
       all: Tutti
       approved: Approvato
       board_view:
         completed: Completato
-        in_progress: In Corso
-        not_started: Non Iniziato
+        in_progress: In corso
+        not_started: Non iniziato
       completion: Completamento
-      create_my_own: Crea il Mio
-      date_range: Data di Inizio - Data di Fine
-      generate_by_ai: Genera con IA
-      generate_more: Genera Altro
-      generating_development_actions: Generazione delle azioni di sviluppo...
-      heading: Azioni di Sviluppo
-      learning_from_others: Apprendimento dagli altri
-      manage_skills: Gestisci Competenze
+      create_my_own: Creare il mio personale
+      date_range: Data di inizio - Data di fine
+      generate_by_ai: Generati dall'intelligenza artificiale
+      generate_more: Generare di più
+      generating_development_actions: Generare azioni di sviluppo...
+      heading: Azioni di sviluppo
+      learning_from_others: Imparare dagli altri
+      manage_skills: Gestire le competenze
       marathon: Maratona
       no_development_actions: Nessuna azione di sviluppo
       on_the_job: Sul lavoro
       other: Altro
       private: Privato
-      remove: Rimuovi
-      skill: Competenza
+      remove: Rimuovere
+      skill: Abilità
       sprint: Sprint
       structured_learning: Apprendimento strutturato
-      submit_plan: Invia Piano
+      submit_plan: Invia il piano
       write_here: Scrivi qui...
-    direct_report_details: Dettagli Report Diretto
+    direct_reportee_details: Dettagli Report Diretto
     initial_steps:
-      add_skill_group_description: In base ai risultati della tua valutazione, ecco alcune delle aree di forza e di sviluppo per te. Scegli le competenze che desideri sviluppare ulteriormente come parte del tuo piano di sviluppo.
-      add_skill_group_title: Esplorazione delle Tue Competenze %{category}
+      add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
+      add_skill_group_title: Esplorare le proprie capacità di %{categoria}
       add_skills: Aggiungi
-      add_skills_step: Aggiungi Competenze
-      continue_to_rate_skills: Continua a valutare le competenze
-      getting_started: Iniziamo
-      getting_started_info: Benvenuto nel tuo creatore di Piano di Sviluppo Individuale (PSI). Questo piano ti aiuterà a identificare, gestire e tracciare i tuoi obiettivi professionali e personali, nonché i passi necessari per raggiungerli. I tuoi obiettivi professionali possono includere aree di sviluppo comportamentali, di leadership e tecniche. Il tuo PSI è uno strumento essenziale per supportare lo sviluppo della tua carriera e il miglioramento delle tue competenze.
+      add_skills_step: Aggiungi competenze
+      continue_to_rate_skills: Continuare a valutare le competenze
+      getting_started: Come iniziare
+      getting_started_info: Benvenuti nel creatore del vostro Piano di Sviluppo Individuale (IDP), che vi aiuterà a identificare, gestire e monitorare i vostri obiettivi professionali e personali, nonché i passi da compiere per raggiungerli. I vostri obiettivi professionali possono includere aree di sviluppo comportamentali, di leadership e tecniche. Il vostro IDP è uno strumento essenziale per supportare lo sviluppo della vostra carriera e il miglioramento delle vostre competenze.
       less_skills: Mostra meno competenze
-      more_skills: Esplora più competenze
+      more_skills: Esplora altre competenze
       next: Avanti
-      no_skills_selected: Nessuna competenza selezionata.
-      rate_skills: Valuta Competenze
-      rate_skills_description: Ora che hai selezionato le tue priorità di sviluppo, valuta te stesso su ciascuna delle seguenti. Ricorda di valutarti in base al tuo livello attuale e non al tuo livello passato o desiderato.
-      rate_skills_title: Valutazione delle Tue Competenze
-      rating_column_header: La tua autovalutazione
+      no_skills_selected: Nessuna abilità selezionata.
+      rate_skills: Competenze tariffarie
+      rate_skills_description: Ora che avete selezionato le vostre priorità di sviluppo, valutate voi stessi su ciascuno dei seguenti aspetti. Ricordate di valutare voi stessi in base al vostro livello attuale e non in base al vostro livello passato o desiderato.
+      rate_skills_title: Valutazione delle competenze
+      rating_column_header: La vostra autovalutazione
+      reflective_questions: Domande di riflessione
       select_skills: Seleziona le tue competenze
       select_skills_placeholder: Seleziona competenze
       selected_skills: Competenze Selezionate
       skill_column_header: Competenza
       skill_gap_report: Report sul Divario di Competenze
     list: Lista
-    my_direct_reports: I Miei Report Diretti
+    manage_plan: Gestisci piano
+    mark_as_complete: Contrassegna come completato
+    mark_as_incomplete: Contrassegna come incompleto
+    my_direct_reportees: I Miei Report Diretti
     my_plan:
-      development_plan: Piano di Sviluppo
+      development_plan: Piano di sviluppo
       graphs:
+        behavioural: Comportamentale
         categories: Categorie
-      save_skills: Salva Competenze
+        learning_on_job: Sul lavoro (%{count})
+        learning_others: Imparare dagli altri (%{count})
+        learning_structured: Apprendimento strutturato (%{count})
+        other: Altro
+        technical: Tecnica
+      save_skills: Salvataggio delle competenze
     pdf:
       approval_status: Stato di Approvazione
       cover:
@@ -2493,15 +2507,27 @@ it:
         library: Libreria PSI
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
-    profile_details: Dettagli del Profilo
+    reflective_questions:
+      answer_later: Risposta successiva
+      answer_placeholder: Scrivi qui la tua risposta...
+      errors:
+        max_words: La risposta consente un massimo di %{count} di parole
+        min_words: La risposta richiede almeno %{count} parole
+        required: La risposta alla domanda è richiesta
+      max_words: Parole massime
+      min_words: Parole Min
+      title: Domande di riflessione
+      update_failed: Si è verificato un errore durante l'aggiornamento
+      updated_successfully: Le risposte sono state aggiornate con successo
+      words: Parole
     skill_gap_report:
-      continue_to_rate_skills: Continua a valutare le competenze
-      title: Report sul Divario di Competenze
+      title: Rapporto sul divario di competenze
     status: Stato
     user_idp_status:
       approved: Approvato
       draft: Bozza
-      pending_approval: In Attesa di Approvazione
+      not_started: Non iniziato
+      pending_approval: In attesa
     users: Utenti
   idp_templates:
     assign: Assegnazione
@@ -2511,7 +2537,7 @@ it:
       idp_template_not_found: Modello IDP non trovato
       user_idp_template_not_found: Non è stato assegnato alcun modello IDP.
     idp_template: Modello di IDP
-    override_exists: Annullamento e ripristino di utenti esistenti
+    override_exists: Annulla e ripristino di utenti esistenti
     placeholder: Selezionare un modello Idp
     save_and_assign: Salvare e assegnare
     success_scheduled: Il lavoro di assegnazione dell'IDP è stato pianificato con successo
@@ -2626,7 +2652,7 @@ it:
     hr: Croato
     hu: Ungherese
     id: Bahasa Indonesia
-    it: italiano
+    it: Italiano
     ja: 日本語
     km: Khmer
     ko: Coreano
@@ -2679,7 +2705,7 @@ it:
     enabled: Abilitato
     end_date: Data di fine
     not_enough_idp_license: Non ci sono abbastanza licenze IDP, contattare l'amministratore
-    not_enough_license: "'%{nome_cliente}' non dispone di licenze sufficienti per '%{nome_report}'"
+    not_enough_license: "'%{client_name}' non dispone di licenze sufficienti per '%{report_name}'"
     not_enough_license_count: Non ci sono abbastanza licenze, contattare l'amministratore
     not_enough_proctoring_credits: Non ci sono abbastanza crediti per iniziare la sessione di proctoring
     number: Numero
@@ -2693,7 +2719,7 @@ it:
       proctoring: Proctoring
       threesixty: Trecentosessanta
     used_number: Licenze usate
-    used_out_of: "%{usato} su %{totale}"
+    used_out_of: "%{used} su %{total}"
   mailer:
     from: L'impresa dei talenti
     license:
@@ -2718,7 +2744,7 @@ it:
         weekly_stats: 'Statistiche di utilizzo delle licenze dell''ultima settimana :'
     magic_link:
       body:
-        dear: Caro %{nome},
+        dear: Caro %{name},
         greetings: Saluti per la giornata!
         instructions: Fare clic sul link sottostante per accedere a lighthouse.
         signin_link: Link di accesso
@@ -2726,12 +2752,12 @@ it:
     users:
       account_disable: L'account è stato disattivato per inattività
       warning: Il tuo account sarà presto disabilitato a causa dell'inattività
-  maintenance_message: Lighthouse sarà disattivato per manutenzione programmata il giorno %{data_inizio} e non sarà disponibile per le ore %{durata}
+  maintenance_message: Lighthouse sarà disattivato per manutenzione programmata il giorno %{start_date} e non sarà disponibile per le ore %{duration}
   maintenance_submessage: Al termine della manutenzione, aggiornare la pagina. Si verrà reindirizzati alla pagina di accesso
   my: Il mio
   myself: Io stesso
   navigation:
-    logout: Disconnettersi
+    logout: Esci
   'no': 'false'
   nominations:
     approval_email_error: L'ultima e-mail di approvazione è stata inviata a %{last_sent_at}. È possibile inviare la prossima e-mail di promemoria in %{wait_time}
@@ -2742,8 +2768,8 @@ it:
         name: Nome
         standard_deviation: Deviazione standard
       messages:
-        failure: 'Errore: %{errore}.'
-        success: La norma per il fattore '%{nomefattore}' è stata aggiornata con successo.
+        failure: 'Errore: %{error}.'
+        success: La norma per il fattore '%{factorName}' è stata aggiornata con successo.
       values:
         empty: Vuoto
   profile:
@@ -2762,7 +2788,7 @@ it:
     male: Uomo
     mandatory_fields: Indica i campi obbligatori
     not_disclosed: Preferisco non rivelare
-    old_data: I dati del profilo risalgono a %{mesi} mesi fa. Si prega di confermare i dati per procedere ulteriormente
+    old_data: I dati del profilo risalgono a %{months} mesi fa. Si prega di confermare i dati per procedere ulteriormente
     password: Password
     password_confirmation: Conferma della password
     photo: Foto
@@ -2794,7 +2820,7 @@ it:
   report_approvals:
     events:
       approved_text: testo approvato
-      comment_added: aggiunto il commento <i>%{testo}</i>
+      comment_added: aggiunto il commento <i>%{text}</i>
       comment_removed: commento rimosso
       comment_resolved: commento risolto
       comment_unresolved: commento non risolto
@@ -2811,26 +2837,26 @@ it:
   report_bundles:
     actions:
       remove:
-        confirm_message: Si è sicuri di voler eliminare il bundle dei report "%{nome}"?
+        confirm_message: Si è sicuri di voler eliminare il bundle dei report "%{name}"?
         confirm_title: Conferma richiesta
-        success_message: Il bundle %{nome} è stato cancellato
+        success_message: Il bundle %{name} è stato cancellato
     report_bundle: Pacchetto di rapporti
     report_bundles: Pacchetti di rapporti
     reports:
       actions:
         add: Aggiungi nuovo rapporto
         remove:
-          confirm_message: Si è sicuri di voler eliminare il report "%{nome}" da '%{nome_report_bundle}'?
+          confirm_message: Si è sicuri di voler eliminare il report "%{name}" da '%{report_bundle_name}'?
           confirm_title: Conferma richiesta
-          success_message: Il rapporto %{nome} è stato cancellato
+          success_message: Il rapporto %{name} è stato cancellato
   reports:
     actions:
       add: Aggiungi rapporto
       archived:
-        success_message: Il rapporto "%{nome}" è stato archiviato con successo.
+        success_message: Il rapporto "%{name}" è stato archiviato con successo.
       back_to_campaign: Torna alla campagna
       copy:
-        success_message: Il rapporto "%{nome}" è stato copiato con successo.
+        success_message: Il rapporto "%{name}" è stato copiato con successo.
       details: Dettagli
       download: Scarica il rapporto
       download_csv: Scarica il CSV
@@ -2841,14 +2867,14 @@ it:
       re_evaluate: Fare clic qui per rivalutare
       reevaluate: Rivalutare
       remove:
-        confirm_message: Si è sicuri di voler eliminare il rapporto "%{nome}"?
+        confirm_message: Si è sicuri di voler eliminare il rapporto "%{name}"?
         confirm_title: Conferma richiesta
-        success_message: Il rapporto %{nome} è stato rimosso
+        success_message: Il rapporto %{name} è stato rimosso
       rescore: Ricompilare
       restore:
-        success_message: Il report %{nome} è stato ripristinato con successo
+        success_message: Il report %{name} è stato ripristinato con successo
       unarchived:
-        success_message: Il rapporto %{nome} è stato disarchiviato con successo
+        success_message: Il rapporto %{name} è stato disarchiviato con successo
       update_language: Aggiornamento della lingua
       view: Visualizza il rapporto
     active: Attivo
@@ -2913,14 +2939,14 @@ it:
         baseline_score: Punteggio di base
         blindspots: Punti ciechi
         campaign_factor_conditions: Condizioni del Fattore Campagna
-        cancel: Annullamento
+        cancel: Annulla
         color: Colore
         delete: Cancellare
         description: Descrizione
         if: Se
         label: Etichetta
         no_conditions: Nessuna condizione
-        save: Risparmiare
+        save: Salva
         strengths: Punti di forza
         then: Mostrare quindi il seguente testo
         title: Titolo
@@ -2937,6 +2963,8 @@ it:
         score: Punteggio
       gap_assessment:
         gap: Divario
+        hide_left_filter: Nascondi filtro a sinistra
+        hide_right_filter: Nascondi filtro destro
         item: Indicatore
         negative_gap: Lacune negative
         no_negative_gaps: Non ci sono lacune negative
@@ -3402,9 +3430,11 @@ it:
       waiting: In attesa
   threesixty:
     accept_privacy_modal:
-      accept: Accettare
-      checkbox: Ho letto e compreso l'informativa sulla privacy di cui sopra
-      title: Consenso al trattamento dei dati
+      accept: Accetta
+      checkbox: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy per la raccolta e l'elaborazione dei suoi dati personali come descritto in essa, compreso il trasferimento internazionale dei suoi dati personali.
+      checkbox_with_client_link: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy e l'informativa sulla privacy del nostro cliente e acconsente alla raccolta e all'elaborazione dei suoi dati personali come descritto in esse, compreso il trasferimento internazionale dei suoi dati personali.
+      privacy_notice: Informativa sulla privacy
+      title: Consenso al trattamento e al trasferimento dei dati personali
     action: Azione
     add: Aggiungi
     and: E
@@ -3420,7 +3450,7 @@ it:
     assessment: Valutazione
     back_to_tasks: Torna alle attività
     begin: Inizia
-    cancel: Annullamento
+    cancel: Annulla
     close_evaluation_modal:
       message: Una volta visualizzato il rapporto, %{pronoun_or_name} non potrà ricevere ulteriori valutazioni
       title: Siete sicuri di voler visualizzare il rapporto?
@@ -3432,7 +3462,7 @@ it:
     confirmation_text_incorrect: Il testo di conferma non è corretto
     confirmation_text_placeholder: Testo di conferma qui
     continue: Continua
-    dashboard_title: Benvenuto %{nome}
+    dashboard_title: Benvenuto %{name}
     decline: Declino
     decline_invite: Rifiutare l'invito
     denied: Negato
@@ -3520,7 +3550,7 @@ it:
       report_generation_message: Il rapporto è in fase di generazione e vi informeremo quando sarà pronto.
     processing: Elaborazione
     processing_report: Rapporto di elaborazione
-    progress_text: "%{completato} del %{totale}"
+    progress_text: "%{completed} del %{total}"
     question:
       chat_type:
         input_placeholder: Scrivi il tuo messaggio...
@@ -3543,7 +3573,7 @@ it:
       title: Aiuto per i rapporti
     reset_campaign_confirmation: Immettere il nome della campagna attuale indicato di seguito nella casella di testo per resettare tutti i partecipanti
     reset_nomination_confirmation: Immettere il nome della campagna attuale indicato di seguito nella casella di testo per azzerare tutte le candidature
-    save: Risparmiare
+    save: Salva
     select_relationnship: Selezionare la relazione
     select_relationship: Selezionare la relazione
     self: Auto
@@ -3633,7 +3663,7 @@ it:
       id: ID valutazione utente
       norm_id: ID norma
     drawer:
-      copied: "%{nome} copiato negli appunti."
+      copied: "%{name} copiato negli appunti."
       copy: Copia negli Appunti
       mettl_schedule_name: Nome del programma Mettl
       no_data: Nessun dato disponibile
@@ -3644,7 +3674,7 @@ it:
       actions:
         reset_progress:
           name: Azzeramento dei progressi
-          success_message: La valutazione %{nome} è pronta per la modifica
+          success_message: La valutazione %{name} è pronta per la modifica
       push_test_webhook:
         copy_request_data_success: Rquest Payload copiato negli appunti con successo.
         copy_response_body_success: Il corpo della risposta è stato copiato negli appunti con successo.
@@ -3656,17 +3686,17 @@ it:
         submit_button_name: Push Webhook
         title: Push Webhook
       remove:
-        content: Siete sicuri di voler rimuovere la valutazione "%{nome}"?
+        content: Siete sicuri di voler rimuovere la valutazione "%{name}"?
         successfully: la valutazione %{name} è stata rimossa con successo.
       reset:
-        content: Si è sicuri di voler ripristinare il progresso "%{nome}"?
+        content: Si è sicuri di voler ripristinare il progresso "%{name}"?
       test_webhook:
         submit_button_name: Inviare il test
         title: Inviare un evento Webhook di prova
     normalize_factor_scores:
       no_scoring_data: La normalizzazione dei punteggi dei fattori non può essere completata in quanto non sono disponibili dati di punteggio.
     progress_label: Progressi nella valutazione
-    redirect: Si viene reindirizzati al sito di terzi per questa valutazione. Fare clic su continua se si desidera avviare la valutazione.
+    redirect: Verrai reindirizzato a un sito esterno per questa valutazione. Fare clic su continua se si desidera avviare la valutazione.
     status:
       completed: Completato
       in_progress: In corso
@@ -3691,7 +3721,7 @@ it:
         waiting: In attesa
     timer_title:
       assessment: Valutazione
-      campaign: Campagna
+      campaign: Attività
   user_reports:
     actions:
       add: Aggiungi rapporto
@@ -3713,9 +3743,9 @@ it:
         content: Si è sicuri di voler rimuovere il rapporto %{userReportName}?
         content_with_counts:
           both: 'PERICOLO: La segnalazione %{userReportName} ha %{commentsCount} commenti e %{editsCount} modifiche. Se si rimuove la segnalazione dall''utente, questi commenti e modifiche andranno persi.'
-          comments: 'PERICOLO: il rapporto %{nomeRapportoUtente} ha %{commentiCount} commenti. Se si rimuove il rapporto dall''utente, questi commenti andranno persi.'
+          comments: 'PERICOLO: il rapporto %{userReportName} ha %{commentsCount} commenti. Se si rimuove il rapporto dall''utente, questi commenti andranno persi.'
           edits: 'PERICOLO: il rapporto %{userReportName} ha %{editsCount} modifiche. Se si rimuove il rapporto dall''utente, queste modifiche andranno perse.'
-        successfully: il rapporto %{utenteNomeRapporto} è stato rimosso con successo
+        successfully: il rapporto %{userReportName} è stato rimosso con successo
       remove_file:
         content: Siete sicuri di voler rimuovere il file?
         successfully: Il file è stato rimosso con successo.
