@@ -806,6 +806,7 @@ ar:
     user_idp_status:
       approved: تمت الموافقة
       draft: مسودة
+      not_started: لم يبدأ
       pending_approval: قيد الموافقة
     users: المستخدمون
   idp_templates:

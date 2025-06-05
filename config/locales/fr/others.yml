@@ -2390,6 +2390,7 @@ fr:
       skill_gap_report: Rapport sur les lacunes en matière de compétences
     list: Liste
     manage_plan: Gérer le forfait
+    mark_as_complete: Marquer comme terminé
     mark_as_incomplete: Marquer comme incomplet
     my_direct_reportees: Mes subordonnés directs
     my_plan:
@@ -2527,6 +2528,7 @@ fr:
     user_idp_status:
       approved: Approuvé
       draft: Projet
+      not_started: Non démarré
       pending_approval: En attente
     users: Utilisateurs
   idp_templates:

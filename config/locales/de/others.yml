@@ -2402,6 +2402,7 @@ de:
       skill_gap_report: Bericht über das Qualifikationsdefizit
     list: Liste
     manage_plan: Plan verwalten
+    mark_as_complete: Als abgeschlossen markieren
     mark_as_incomplete: Als unvollständig markieren
     my_plan:
       development_plan: Entwicklungsplan
@@ -2533,6 +2534,7 @@ de:
     user_idp_status:
       approved: Genehmigt
       draft: Entwurf
+      not_started: Nicht gestartet
       pending_approval: Anhängig
     users: Benutzer
   idp_templates:

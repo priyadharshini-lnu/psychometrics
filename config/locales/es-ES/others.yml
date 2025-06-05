@@ -2403,6 +2403,7 @@ es-ES:
       skill_gap_report: Informe de Brecha de Habilidades
     list: Lista
     manage_plan: Gestionar plan
+    mark_as_complete: Marcar como completa
     mark_as_incomplete: Marcar como incompleta
     my_direct_reportees: Mis Informes Directos
     my_plan:
@@ -2534,6 +2535,7 @@ es-ES:
     user_idp_status:
       approved: Aprobado
       draft: Borrador
+      not_started: No iniciado
       pending_approval: Pendiente
     users: Usuarios
   idp_templates:

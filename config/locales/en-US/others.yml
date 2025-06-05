@@ -636,6 +636,7 @@ en-US:
       skill_gap_report: Skill Gap Report
     list: List
     manage_plan: Manage Plan
+    mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
     my_direct_reportees: My Direct Reportees
     my_plan:

@@ -2383,6 +2383,7 @@ zh-Hant:
       skill_gap_report: 技能差距報告
     list: 清單
     manage_plan: 管理計劃
+    mark_as_complete: 標記為完成
     mark_as_incomplete: 标记为不完整
     my_plan:
       development_plan: 發展計劃
@@ -2506,6 +2507,7 @@ zh-Hant:
     user_idp_status:
       approved: 已核准
       draft: 草案
+      not_started: 未開始
       pending_approval: 待定
     users: 使用者
   idp_templates:

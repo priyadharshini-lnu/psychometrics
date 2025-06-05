@@ -2382,6 +2382,7 @@ nl:
       skill_gap_report: Rapport over vaardigheidskloof
     list: Lijst
     manage_plan: Plan beheren
+    mark_as_complete: Markeer als voltooid
     mark_as_incomplete: Markeren als onvolledig
     my_plan:
       development_plan: Ontwikkelingsplan
@@ -2400,6 +2401,7 @@ nl:
     user_idp_status:
       approved: Goedgekeurd
       draft: Ontwerp
+      not_started: Niet gestart
       pending_approval: In afwachting van
     users: Gebruikers
   idp_templates:

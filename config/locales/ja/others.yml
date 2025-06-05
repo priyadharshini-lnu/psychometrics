@@ -2400,6 +2400,7 @@ ja:
       skill_gap_report: スキル・ギャップ・レポート
     list: リスト
     manage_plan: 計画の管理
+    mark_as_complete: 完了としてマーク
     mark_as_incomplete: 未完了としてマークする
     my_direct_reportees: 私の直属の部下
     my_plan:
@@ -2537,6 +2538,7 @@ ja:
     user_idp_status:
       approved: 承認済み
       draft: ドラフト
+      not_started: 未開始
       pending_approval: 申請中
     users: ユーザー
   idp_templates:

@@ -2388,6 +2388,7 @@ it:
       skill_gap_report: Report sul Divario di Competenze
     list: Lista
     manage_plan: Gestisci piano
+    mark_as_complete: Contrassegna come completato
     mark_as_incomplete: Contrassegna come incompleto
     my_direct_reportees: I Miei Report Diretti
     my_plan:
@@ -2525,6 +2526,7 @@ it:
     user_idp_status:
       approved: Approvato
       draft: Bozza
+      not_started: Non iniziato
       pending_approval: In attesa
     users: Utenti
   idp_templates:

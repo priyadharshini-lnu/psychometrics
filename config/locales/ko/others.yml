@@ -2381,6 +2381,7 @@ ko:
       skill_gap_report: 기술 격차 보고서
     list: 목록
     manage_plan: 계획 관리
+    mark_as_complete: 완료로 표시
     mark_as_incomplete: 미완료로 표시
     my_plan:
       development_plan: 개발 계획
@@ -2399,6 +2400,7 @@ ko:
     user_idp_status:
       approved: 승인됨
       draft: 초안
+      not_started: 시작되지 않음
       pending_approval: 보류 중
     users: 사용자
   idp_templates:

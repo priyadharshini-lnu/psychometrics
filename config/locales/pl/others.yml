@@ -647,6 +647,7 @@ pl:
       skill_gap_report: Raport luk w umiejętnościach
     list: Lista
     manage_plan: Zarządzaj planem
+    mark_as_complete: Oznacz jako ukończone
     mark_as_incomplete: Oznacz jako niekompletne
     my_direct_reportees: Moi bezpośredni podwładni
     my_plan:
@@ -774,6 +775,11 @@ pl:
       words: Słowa
     skill_gap_report:
       title: Raport luk w umiejętnościach
+    user_idp_status:
+      approved: Zatwierdzony
+      draft: Projekt
+      not_started: Nie rozpoczęte
+      pending_approval: Oczekujące na zatwierdzenie
   idp_templates:
     errors:
       user_idp_template_not_found: Nie przypisano do ciebie żadnego szablonu IDP.

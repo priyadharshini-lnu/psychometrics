@@ -2397,6 +2397,7 @@ zh:
       skill_gap_report: 技能差距报告
     list: 列表
     manage_plan: 管理计划
+    mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
     my_direct_reportees: 我的直属下属
     my_plan:
@@ -2534,6 +2535,7 @@ zh:
     user_idp_status:
       approved: 批准
       draft: 草案
+      not_started: 未开始
       pending_approval: 待定
     users: 用户
   idp_templates:

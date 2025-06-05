@@ -2401,6 +2401,7 @@ pt:
       skill_gap_report: Relatório de défice de competências
     list: Lista
     manage_plan: Gerenciar plano
+    mark_as_complete: Marcar como concluído
     mark_as_incomplete: Marcar como incompleto
     my_direct_reportees: Os Meus Relatórios Diretos
     my_plan:
@@ -2538,6 +2539,7 @@ pt:
     user_idp_status:
       approved: Aprovado
       draft: Projeto
+      not_started: Não iniciado
       pending_approval: Pendente
     users: Utilizadores
   idp_templates:

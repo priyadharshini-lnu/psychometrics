@@ -2465,6 +2465,7 @@ en:
       skill_gap_report: Skill Gap Report
     list: List
     manage_plan: Manage Plan
+    mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
     my_direct_reportees: My Direct Reportees
     my_plan:
@@ -2599,6 +2600,7 @@ en:
       completed: Completed
       draft: Draft
       in_progress: In Progress
+      not_started: Not Started
       pending_approval: Pending Approval
       rejected: Rejected
     users: Users

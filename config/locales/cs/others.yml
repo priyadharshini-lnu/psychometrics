@@ -2408,6 +2408,7 @@ cs:
       skill_gap_report: Zpráva o mezerách v dovednostech
     list: Seznam
     manage_plan: Spravovat plán
+    mark_as_complete: Označit jako dokončené
     mark_as_incomplete: Označit jako nedokončené
     my_direct_reportees: Moji přímí podřízení
     my_plan:
@@ -2539,6 +2540,7 @@ cs:
     user_idp_status:
       approved: Schváleno
       draft: Návrh
+      not_started: Nezahájeno
       pending_approval: Čeká se na
     users: Uživatelé
   idp_templates:
