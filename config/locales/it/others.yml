@@ -1081,7 +1081,6 @@ it:
     sequencing:
       add_assessment_center: Aggiungi centro di valutazione
       add_group: Aggiungi gruppo
-      assessment_center_message: Le valutazioni di questo gruppo sono gestite dall'Assessment Center
       assessments: Valutazioni
       delete_group: Cancellare il gruppo
       edit_group_name: Modifica del nome del gruppo
@@ -1315,9 +1314,9 @@ it:
       reset_all_nominations: Azzeramento di tutte le nomine
       reset_participant: Azzeramento di tutti i partecipanti
     allow_msg_proctoring_workshop_activity: Le attività dell'Assessment Center non vengono verificate.
+    assessment_center_heading: Dettagli sull'Assessment Center
     assessments_heading: Le tue Attività
     column:
-      assessment_center_activity: Attività del Centro di valutazione
       assessment_name: Nome della valutazione
       assessor_form: Modulo per il valutatore
       auto_assign: Assegnazione automatica
@@ -1644,6 +1643,8 @@ it:
       upload_file: Caricare il file
       verify: Verifica
       view: Vista
+      view_all_tasks: Visualizza tutti i compiti
+      view_details: Visualizza i dettagli
     column:
       action: Azione
       active: Attivo

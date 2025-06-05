@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { FC, useState, useEffect } from 'react'
 import {
-  Form, Typography, InputNumber, Input, Radio, Switch,
+  Form, Typography, InputNumber, Input, Radio, Switch, Select,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { durationValidator } from './utils'
@@ -28,6 +28,11 @@ const fieldLayout = {
   wrapperCol: { span: 24 },
 }
 
+interface AssessmentCenterGroup {
+  id: string
+  name: string
+}
+
 export const WorkshopEditFormModal: FC<Props> = ({
   close,
   workshop,
@@ -46,12 +51,40 @@ export const WorkshopEditFormModal: FC<Props> = ({
     { responseType: userDetailsListTR },
   )
 
+  const {
+    collectionAction: assessmentGroupsAction,
+  } = useResources<AssessmentCenterGroup>(
+    'campaign_assessment_groups',
+    {
+      basePath: `campaigns/${campaignId}`,
+    },
+  )
+
+  const [assessmentCenterGroups, setAssessmentCenterGroups] = useState<AssessmentCenterGroup[]>([])
+
+  useEffect(() => {
+    assessmentGroupsAction({
+      action: '',
+      method: 'get',
+      apiConfig: {
+        filter: { group_type_eq: '1' },
+      },
+    })
+      .then((response) => {
+        setAssessmentCenterGroups(response as AssessmentCenterGroup[])
+      })
+      .catch((error) => {
+        console.error('Failed to load assessment center groups:', error)
+      })
+  }, [campaignId])
+
   const [videoCallType, setVideoCallType] = useState<string>(workshop.videoCallType)
 
   useEffect(() => {
     form.setFieldValue('workshopManagersIds', _.map(workshop.workshopManagers, 'userId').map(id => id?.toString()))
     form.setFieldValue('workshopAssessorsIds', _.map(workshop.workshopAssessors, 'userId').map(id => id?.toString()))
-  }, [])
+    form.setFieldValue('campaignAssessmentGroupId', workshop.campaignAssessmentGroupId)
+  }, [workshop])
 
   const handleSearch = (_.debounce((searchKey, action) => {
     collectionAction({
@@ -95,6 +128,21 @@ export const WorkshopEditFormModal: FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Input name="workshop_name" />
+          </Form.Item>
+
+          <Form.Item
+            name="campaignAssessmentGroupId"
+            label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+            {...fieldLayout}
+            rules={[{ required: true }]}
+          >
+            <Select>
+              {_.map(assessmentCenterGroups, (assessmentCenterGroup: AssessmentCenterGroup) => (
+                <Select.Option key={assessmentCenterGroup.id} value={assessmentCenterGroup.id}>
+                  {assessmentCenterGroup.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling')}

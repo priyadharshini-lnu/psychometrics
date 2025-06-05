@@ -26,6 +26,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
   end
   let!(:workshop_without_subject) { create(:workshop, campaign: campaign) }
   let!(:workshop_without_subject_id) { workshop_without_subject.id }
+  let(:campaign_assessment_group) { create(:campaign_assessment_group, campaign: campaign) }
 
   before { sign_in(superadmin) }
 
@@ -211,7 +212,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
               workshop_managers_ids: [1],
               scheduling_lead_time: 60,
               cancellation_lead_time: 60,
-              allow_late_cancellation_and_rescheduling: false
+              allow_late_cancellation_and_rescheduling: false,
+              campaign_assessment_group_id: '1'
             }
           }
         }
@@ -230,7 +232,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
                 workshop_managers_ids: [user2.id.to_s],
                 scheduling_lead_time: 60,
                 cancellation_lead_time: 60,
-                allow_late_cancellation_and_rescheduling: false
+                allow_late_cancellation_and_rescheduling: false,
+                campaign_assessment_group_id: campaign_assessment_group.id.to_s
               }
             }
           }
@@ -249,6 +252,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
           expect(workshop.scheduling_lead_time).to eq(60)
           expect(workshop.cancellation_lead_time).to eq(60)
           expect(workshop.allow_late_cancellation_and_rescheduling).to eq(false)
+          expect(workshop.campaign_assessment_group_id).to eq(campaign_assessment_group.id)
         end
       end
     end

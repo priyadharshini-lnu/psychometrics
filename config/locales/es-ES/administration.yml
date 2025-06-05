@@ -2952,6 +2952,8 @@ es-ES:
       assessment_center_form:
         add_more: Más información
         allow_late_cancellation_and_scheduling: Permitir la cancelación tardía y la programación
+        assessment_center_group: Grupo del Centro de Evaluación
+        assessment_center_group_placeholder: Seleccionar grupo del centro de evaluación
         assessor_ids_label: Asesores
         back: Volver
         basic_info_panel:
@@ -3033,6 +3035,7 @@ es-ES:
         allowed: Permitido
         assessors: Asesores
         booked: Plazas reservadas
+        campaign_assessment_group: Grupo del Centro de Evaluación
         cancellation_lead_time: Plazo de cancelación
         cancellation_tooltip: El usuario podrá cancelar la reserva hasta %{date}
         date: Fecha y hora

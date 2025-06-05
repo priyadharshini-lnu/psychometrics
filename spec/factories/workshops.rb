@@ -8,6 +8,7 @@ FactoryBot.define do
     timezone { 'Asia/Dubai' }
     duration { 14_400 }
     total_seats { 10 }
+    campaign_assessment_group { create(:campaign_assessment_group) }
   end
 
   trait :with_managers do

@@ -1098,7 +1098,6 @@ en:
     sequencing:
       add_assessment_center: Add assessment center
       add_group: Add group
-      assessment_center_message: Assessments in this group are managed by assessment center
       assessments: Assessments
       delete_group: Delete group
       edit_group_name: Edit group name
@@ -1343,9 +1342,9 @@ en:
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
     allow_msg_proctoring_workshop_activity: Assessment center activities are not proctored.
+    assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
     column:
-      assessment_center_activity: Assessment Center Activity
       assessment_name: Assessment name
       assessor_form: Assessor Form
       auto_assign: Auto Assign
@@ -1694,6 +1693,8 @@ en:
       upload_file: Upload File
       verify: Verify
       view: View
+      view_all_tasks: View all tasks
+      view_details: View Details
     column:
       action: Action
       active: Active

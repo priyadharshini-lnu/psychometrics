@@ -22,6 +22,7 @@ const CampaignAssessmentTR = t.type({
   name: t.string,
   position: t.number,
   campaignAssessmentGroupId: t.union([t.number, t.null]),
+  workshopActivityDuration: t.union([t.number, t.null]),
 })
 export type CampaignAssessment = t.TypeOf<typeof CampaignAssessmentTR>
 
@@ -127,6 +128,7 @@ export const UPDATE_POSITION_REQUEST = `${UPDATE_POSITION}_REQUEST`
 export const UPDATE_POSITION_ASSESSMENT = 'resource/campaigns/campaign_assessments/update_position'
 export type UpdateAssessmentPositionRequest = UpdatePositionRequest & {
   campaign_assessment_group_id: number | null
+  workshop_activity_duration?: number | null
 }
 type UpdateAssessmentPositionResponse = t.TypeOf<typeof UpdatePositionResponseTR>
 export const updateAssessmentPosition = (

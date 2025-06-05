@@ -1086,7 +1086,6 @@ es-ES:
     sequencing:
       add_assessment_center: Añadir centro de evaluación
       add_group: Añadir grupo
-      assessment_center_message: Las evaluaciones de este grupo las gestiona el centro de evaluación
       assessments: Evaluaciones
       delete_group: Borrar grupo
       edit_group_name: Editar nombre de grupo
@@ -1329,9 +1328,9 @@ es-ES:
       reset_all_nominations: Restablecer todas las candidaturas
       reset_participant: Reiniciar todos los participantes
     allow_msg_proctoring_workshop_activity: Las actividades del centro de evaluación no son supervisadas.
+    assessment_center_heading: Detalles del Centro de Evaluación
     assessments_heading: Sus tareas
     column:
-      assessment_center_activity: Actividad del Centro de Evaluación
       assessment_name: Nombre de la evaluación
       assessor_form: Formulario para asesores
       auto_assign: Asignación automática
@@ -1658,6 +1657,8 @@ es-ES:
       upload_file: Cargar archivo
       verify: Verifique
       view: Ver
+      view_all_tasks: Ver todas las tareas
+      view_details: Ver detalles
     column:
       action: Acción
       active: Activo

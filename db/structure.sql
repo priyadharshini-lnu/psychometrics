@@ -7476,6 +7476,7 @@ CREATE TABLE public.workshops (
     name character varying,
     status integer DEFAULT 0,
     allow_late_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
+    campaign_assessment_group_id bigint,
     CONSTRAINT booked_seats_not_exceed_total_seats CHECK ((booked_seats <= total_seats)),
     CONSTRAINT booked_seats_positive CHECK ((booked_seats >= 0))
 );
@@ -13617,6 +13618,13 @@ CREATE INDEX index_workshop_subjects_on_workshop_invited_subject_id ON public.wo
 
 
 --
+-- Name: index_workshops_on_campaign_assessment_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshops_on_campaign_assessment_group_id ON public.workshops USING btree (campaign_assessment_group_id);
+
+
+--
 -- Name: index_workshops_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15357,6 +15365,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: workshops fk_rails_bad3af4e15; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops
+    ADD CONSTRAINT fk_rails_bad3af4e15 FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
 -- Name: communications_users fk_rails_bc228f8bf6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16131,6 +16147,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250506122929'),
+('20250506113935'),
 ('20250528132845'),
 ('20250528062059'),
 ('20250602071331'),

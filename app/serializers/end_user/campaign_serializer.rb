@@ -6,7 +6,7 @@ module EndUser
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,
-               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invite, :workshop, :user_assessments,
+               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invite, :workshops, :user_assessments,
                :practice_campaign
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
@@ -24,14 +24,16 @@ module EndUser
       ).serialize(workshop_invite_record)
     end
 
-    def workshop
-      workshop = Workshop.visible_to_end_user(current_user.id).where(campaign_id: object.id).first
+    def workshops
+      workshops = Workshop.visible_to_end_user(current_user.id).where(campaign_id: object.id)
 
-      return nil unless workshop
+      return nil unless workshops
 
-      ::EndUser::ShortWorkshopSerializer.new(
-        context: { current_user: current_user }
-      ).serialize(workshop)
+      Panko::ArraySerializer.new(
+        workshops,
+        context: { current_user: current_user },
+        each_serializer: ::EndUser::ShortWorkshopSerializer
+      ).to_a
     end
 
     def privacy_consent_required

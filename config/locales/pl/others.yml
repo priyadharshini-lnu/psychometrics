@@ -257,6 +257,7 @@ pl:
       notification_hours: Pozostało Ci %{hours} godziny
       notification_minutes: Masz %{minutes} minut i  na ukończenie
   campaign_assessment:
+    assessment_center_heading: Szczegóły centrum oceny
     assessments_heading: Twoje zadania
     statuses:
       completed: Zakończony
@@ -371,6 +372,8 @@ pl:
       update: Aktualizacja
       upload: Przekazać plik
       verify: Weryfikacja
+      view_all_tasks: Wyświetl wszystkie zadania
+      view_details: Zobacz szczegóły
     column:
       action: Działanie
       category: Kategoria

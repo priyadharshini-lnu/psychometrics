@@ -3069,6 +3069,8 @@ en:
       assessment_center_form:
         add_more: Add More
         allow_late_cancellation_and_scheduling: Allow late cancellation and scheduling
+        assessment_center_group: Assessment Center Group
+        assessment_center_group_placeholder: Select Assessment Center Group
         assessor_ids_label: Assessors
         back: Back
         basic_info_panel:
@@ -3125,6 +3127,7 @@ en:
         attendance: Attendance
         attended: Attended
         booked_at: Booked At
+        campaign_assessment_group: Assessment Center Group
         campaign_name: Campaign Name
         duration: Duration
         managers: Managers
@@ -3150,6 +3153,7 @@ en:
         allowed: Allowed
         assessors: Assessors
         booked: Seats Booked
+        campaign_assessment_group: Assessment Center Group
         cancellation_lead_time: Cancellation Lead Time
         cancellation_tooltip: User would be able to cancel the booking till %{date}
         date: Date & Time

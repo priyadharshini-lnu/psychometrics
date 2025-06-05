@@ -1084,7 +1084,6 @@ ja:
     sequencing:
       add_assessment_center: アセスメントセンターを追加
       add_group: グループ追加
-      assessment_center_message: このグループの査定は査定センターによって管理される。
       assessments: アセスメント
       delete_group: グループ削除
       edit_group_name: グループ名の編集
@@ -1326,9 +1325,9 @@ ja:
       reset_all_nominations: すべての指名をリセット
       reset_participant: 全参加者をリセット
     allow_msg_proctoring_workshop_activity: アセスメントセンターでの活動は試験されない。
+    assessment_center_heading: アセスメントセンターの詳細
     assessments_heading: あなたのタスク
     column:
-      assessment_center_activity: アセスメントセンター活動
       assessment_name: 評価名
       assessor_form: アセッサフォーム
       auto_assign: オートアサイン
@@ -1655,6 +1654,8 @@ ja:
       upload_file: ファイルのアップロード
       verify: ベリファイ
       view: 表示
+      view_all_tasks: すべてのタスクを表示
+      view_details: 詳細を表示します
     column:
       action: アクション
       active: アクティブ

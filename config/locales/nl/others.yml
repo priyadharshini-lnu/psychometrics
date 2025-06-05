@@ -1080,7 +1080,6 @@ nl:
     sequencing:
       add_assessment_center: Beoordelingscentrum toevoegen
       add_group: Groep toevoegen
-      assessment_center_message: Assessments in deze groep worden beheerd door assessment center
       assessments: Beoordeling
       delete_group: Groep verwijderen
       edit_group_name: Groepsnaam bewerken
@@ -1313,9 +1312,9 @@ nl:
       reset_all_nominations: Alle nominaties resetten
       reset_participant: Alle deelnemers resetten
     allow_msg_proctoring_workshop_activity: Assessmentactiviteiten worden niet gescreend.
+    assessment_center_heading: Details beoordelingscentrum
     assessments_heading: Uw taken
     column:
-      assessment_center_activity: Assessment Center Activiteit
       assessment_name: Naam beoordeling
       assessor_form: Beoordelaarsformulier
       auto_assign: Automatisch toewijzen
@@ -1641,6 +1640,8 @@ nl:
       upload_file: Bestand uploaden
       verify: Controleer
       view: Bekijk
+      view_all_tasks: Bekijk alle taken
+      view_details: Bekijk Details
     column:
       action: Actie
       active: Actief

@@ -1082,7 +1082,6 @@ zh:
     sequencing:
       add_assessment_center: 增加评估中心
       add_group: 添加组
-      assessment_center_message: 本组评估由评估中心管理
       assessments: 评估
       delete_group: 删除组
       edit_group_name: 编辑组名
@@ -1323,9 +1322,9 @@ zh:
       reset_all_nominations: 重置所有提名
       reset_participant: 重置所有参与者
     allow_msg_proctoring_workshop_activity: 评估中心活动不进行监考。
+    assessment_center_heading: 评估中心详情
     assessments_heading: 你的任务
     column:
-      assessment_center_activity: 评估中心活动
       assessment_name: 评估名称
       assessor_form: 评估员表格
       auto_assign: 自动分配
@@ -1652,6 +1651,8 @@ zh:
       upload_file: 上传文件
       verify: 验证
       view: 查看
+      view_all_tasks: 查看所有任务
+      view_details: 查看详细信息
     column:
       action: 操作
       active: 活跃

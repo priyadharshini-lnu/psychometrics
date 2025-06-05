@@ -268,6 +268,7 @@ zh-HK:
       notification_hours: 您有 %{hours} 小時 完成
       notification_minutes: 您有 %{minutes} 分 完成
   campaign_assessment:
+    assessment_center_heading: 評估中心詳細資訊
     assessments_heading: 您的任務
     statuses:
       completed: 已完成
@@ -382,6 +383,8 @@ zh-HK:
       update: 更新
       upload: 上載
       verify: 驗證
+      view_all_tasks: 檢視所有任務
+      view_details: 查看詳細信息
     column:
       action: 操作
       category: 類別

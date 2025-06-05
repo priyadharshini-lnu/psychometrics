@@ -268,6 +268,7 @@ ar:
       notification_hours: لديك %{hours}   لإكمال التقييمات
       notification_minutes: لديك %{minutes}   لإكمال التقييمات
   campaign_assessment:
+    assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
     statuses:
       completed: تم اكماله
@@ -383,6 +384,8 @@ ar:
       update: تحديث
       upload: تحميل
       verify: تحقق
+      view_all_tasks: عرض جميع المهام
+      view_details: عرض التفاصيل
     column:
       action: نشاط
       category: فئة

@@ -73,6 +73,7 @@ module Api
           :start_time,
           :timezone,
           :allow_late_cancellation_and_rescheduling,
+          :campaign_assessment_group_id,
           {
             workshop_resources: %i[name url],
             center_manager_ids: [],
@@ -110,6 +111,7 @@ module Api
       params.require(:data).require(:attributes).permit(:name, :meeting_link, :total_seats, :video_call_type,
                                                         :allow_late_cancellation_and_rescheduling,
                                                         :scheduling_lead_time, :cancellation_lead_time,
+                                                        :campaign_assessment_group_id,
                                                         workshop_managers_ids: [],
                                                         workshop_assessors_ids: [])
     end

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   Button, Space, Typography,
 } from 'antd'
@@ -17,8 +17,11 @@ import styles from './InviteDetailsContainer.less'
 const { Title } = Typography
 const { I18n } = window
 
-export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
+export const InviteDeatilsContainer = ({
+  inviteDetails, bookingDetails, groupId, groupTitleId,
+}) => {
   const navigate = useNavigate()
+  const { campaignId } = useParams()
   const currentTime = dayjs.tz()
   const bookingStartTimeMomentObj = dayjs(bookingDetails?.startTime)
   const [canJoinMeeting, setCanJoinMeeting] = useState(currentTime.isAfter(bookingStartTimeMomentObj))
@@ -27,30 +30,48 @@ export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
   const otherInvitesCount = totalInvites - 1
   const workshopMeetingLink = bookingDetails?.meetingLink || ''
 
+  const detailsLink = (
+    <Button
+      id={`ac-details-btn-${groupId}`}
+      className="ta-c mt-2"
+      size="small"
+      type="primary"
+      onClick={() => navigate(`/campaigns/${campaignId}?assessmentCenterId=${groupId}`)}
+      aria-labelledby={`${groupTitleId} ac-details-btn-${groupId}`}
+    >
+      {I18n.t('common.actions.view_details')}
+      <DirectionalArrowIcon className="fs-12" />
+    </Button>
+  )
+
   if (bookingDetails) {
     if (canJoinMeeting && !workshopMeetingLink) {
-      return null
+      return <>{detailsLink}</>
     }
     return (
-      <div className={cs(styles.bookingCountdown, 'ta-c')}>
+      <div className={cs('ta-c')}>
         {canJoinMeeting ? (
-          <Button type="link" href={workshopMeetingLink} target="_blank">
-            <Title level={5} className="mb-0">
-              {I18n.t('frontend.bookings.join_workshop_meeting')}
-              {' '}
-              <DirectionalArrowIcon className="fs-12" />
-            </Title>
-          </Button>
+          <Space>
+            {detailsLink}
+            <Button type="link" href={workshopMeetingLink} target="_blank">
+              <Title level={5} className="mb-0">
+                {I18n.t('frontend.bookings.join_workshop_meeting')}
+                {' '}
+                <DirectionalArrowIcon className="fs-12" />
+              </Title>
+            </Button>
+          </Space>
         ) : (
           <>
             <p className="mb-0">{I18n.t('frontend.bookings.workshop_start_text')}</p>
-            <Title level={5} className="mb-0">
+            <Title level={5} className="mb-0 mt-0">
               <CountdownTimer
                 seconds={secondsLeftToStartAssessmentCenter}
                 onFinish={() => setCanJoinMeeting(true)}
                 className={styles.countdown}
               />
             </Title>
+            {detailsLink}
           </>
         ) }
       </div>

@@ -39,6 +39,7 @@ const ResponseTR = t.type({
     name: WorkshopTR.props.name,
     startTime: WorkshopTR.props.startTime,
   }),
+  campaignAssessmentGroupName: t.string,
 })
 
 type Response = t.TypeOf<typeof ResponseTR>
@@ -86,6 +87,11 @@ const WorkshopList: React.FC = () => {
           id="startTime"
           width="15%"
           render={(_, { workshop }) => formatWorkshopDate(workshop.startTime)}
+        />
+        <Resource.Column<Response>
+          title={I18n.t('administration.scheduling.columns.campaign_assessment_group')}
+          id="campaignAssessmentGroupName"
+          width="10%"
         />
         <Resource.Column<Response>
           title={I18n.t('administration.scheduling.columns.attended')}

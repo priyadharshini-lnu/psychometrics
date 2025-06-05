@@ -2756,6 +2756,8 @@ ar:
       add_subject: Add subject
       assessment_center_form:
         allow_late_cancellation_and_scheduling: Allow late cancellation and scheduling
+        assessment_center_group: مجموعة مركز التقييم
+        assessment_center_group_placeholder: اختر مجموعة مركز التقييم
         assessor_ids_label: Assessors
         back: Back
         basic_info_panel:
@@ -2835,6 +2837,7 @@ ar:
         allowed: Allowed
         assessors: Assessors
         booked: Seats Booked
+        campaign_assessment_group: مجموعة مركز التقييم
         cancellation_lead_time: Cancellation Lead Time
         cancellation_tooltip: User would be able to cancel the booking till %{date}
         date: Date & Time

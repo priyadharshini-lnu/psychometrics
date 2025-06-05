@@ -2952,6 +2952,8 @@ it:
       assessment_center_form:
         add_more: Aggiungi altro
         allow_late_cancellation_and_scheduling: Consentire la cancellazione e la programmazione tardiva
+        assessment_center_group: Gruppo del Centro di Valutazione
+        assessment_center_group_placeholder: Seleziona il gruppo del centro di valutazione
         assessor_ids_label: Valutatori
         back: Indietro
         basic_info_panel:
@@ -3033,6 +3035,7 @@ it:
         allowed: Consentito
         assessors: Valutatori
         booked: Posti prenotati
+        campaign_assessment_group: Gruppo del centro di valutazione
         cancellation_lead_time: Tempi di annullamento
         cancellation_tooltip: L'utente potrà cancellare la prenotazione fino a %{date}
         date: Data e ora

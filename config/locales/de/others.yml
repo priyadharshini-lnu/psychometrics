@@ -1085,7 +1085,6 @@ de:
     sequencing:
       add_assessment_center: Assessment Center hinzufügen
       add_group: Gruppe hinzufügen
-      assessment_center_message: Beurteilungen in dieser Gruppe werden von einem Assessment Center verwaltet
       assessments: Beurteilungen
       delete_group: Gruppe löschen
       edit_group_name: Gruppenname bearbeiten
@@ -1328,9 +1327,9 @@ de:
       reset_all_nominations: Alle Nominierungen zurücksetzen
       reset_participant: Alle Teilnehmer zurücksetzen
     allow_msg_proctoring_workshop_activity: Assessment-Center-Aktivitäten werden nicht geprüft.
+    assessment_center_heading: Assessment Center Details
     assessments_heading: Deine Aufgaben
     column:
-      assessment_center_activity: Assessment Center-Aktivität
       assessment_name: Name der Bewertung
       assessor_form: Beisitzer-Formular
       auto_assign: Automatisch zuweisen
@@ -1656,6 +1655,8 @@ de:
       upload_file: Datei hochladen
       verify: Überprüfen Sie
       view: Siehe
+      view_all_tasks: Alle Aufgaben anzeigen
+      view_details: Details anzeigen
     column:
       action: Aktion
       active: Aktiv

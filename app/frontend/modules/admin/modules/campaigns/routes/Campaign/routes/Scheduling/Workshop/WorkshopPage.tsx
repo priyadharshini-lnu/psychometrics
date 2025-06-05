@@ -56,12 +56,13 @@ export const WorkshopPage: FC = () => {
       basePath: `campaigns/${campaignId}/`,
       responseType: WorkshopTR,
       apiConfig: {
-        include: ['workshop_managers', 'workshop_assessors', 'workshop_resources'],
+        include: ['workshop_managers', 'workshop_assessors', 'workshop_resources', 'campaign_assessment_group'],
         include_resource_meta: ['permissions'],
         fields: {
           workshop_managers: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
           workshop_assessors: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
           workshop_resources: ['id', 'name', 'url'],
+          campaign_assessment_group: ['id', 'name'],
         },
       },
     },
@@ -121,6 +122,9 @@ export const WorkshopPage: FC = () => {
         >
           <Descriptions.Item label={I18n.t('administration.scheduling.info.date')}>
             <DateTimeWithZone dateString={workshop.startTime} />
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('administration.scheduling.info.campaign_assessment_group')}>
+            {workshop.campaignAssessmentGroup.name}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
             {secondsToDayHoursAndMinutes(workshop.duration)}

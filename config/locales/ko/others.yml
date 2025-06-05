@@ -1079,7 +1079,6 @@ ko:
     sequencing:
       add_assessment_center: 평가 센터 추가
       add_group: 그룹 추가
-      assessment_center_message: 이 그룹의 평가는 평가 센터에서 관리합니다
       assessments: 평가
       delete_group: 그룹 삭제
       edit_group_name: 그룹 이름 수정
@@ -1312,9 +1311,9 @@ ko:
       reset_all_nominations: 모든 추천 재설정
       reset_participant: 모든 참가자 초기화
     allow_msg_proctoring_workshop_activity: 평가 센터 활동은 감독되지 않습니다.
+    assessment_center_heading: 평가 센터 세부 정보
     assessments_heading: 작업
     column:
-      assessment_center_activity: 평가 센터 활동
       assessment_name: 평가 이름
       assessor_form: 평가자 양식
       auto_assign: 자동 할당
@@ -1640,6 +1639,8 @@ ko:
       upload_file: 파일 업로드
       verify: 확인
       view: 보기
+      view_all_tasks: 모든 작업 보기
+      view_details: 세부정보 보기
     column:
       action: 액션
       active: 활성

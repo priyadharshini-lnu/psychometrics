@@ -1085,7 +1085,6 @@ cs:
     sequencing:
       add_assessment_center: Přidat hodnotící centrum
       add_group: Přidat skupinu
-      assessment_center_message: Hodnocení v této skupině spravuje hodnotící centrum
       assessments: Hodnocení
       delete_group: Odstranit skupinu
       edit_group_name: Upravit název skupiny
@@ -1328,9 +1327,9 @@ cs:
       reset_all_nominations: Obnovení všech nominací
       reset_participant: Obnovení všech účastníků
     allow_msg_proctoring_workshop_activity: Činnosti v hodnotícím centru nejsou ověřovány.
+    assessment_center_heading: Podrobnosti o hodnotícím centru
     assessments_heading: Vaše úkoly
     column:
-      assessment_center_activity: Činnost hodnotícího centra
       assessment_name: Název hodnocení
       assessor_form: Formulář hodnotitele
       auto_assign: Automatické přiřazení
@@ -1657,6 +1656,8 @@ cs:
       upload_file: Nahrát soubor
       verify: Ověřit
       view: Zobrazit
+      view_all_tasks: Zobrazit všechny úkoly
+      view_details: Zobrazit podrobnosti
     column:
       action: Akce
       active: Aktivní

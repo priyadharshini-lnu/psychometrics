@@ -1055,7 +1055,6 @@ en:
     sequencing:
       add_assessment_center: Add assessment center
       add_group: Add group
-      assessment_center_message: Assessments in this group are managed by assessment center
       assessments: Assessments
       delete_group: Delete group
       edit_group_name: Edit group name

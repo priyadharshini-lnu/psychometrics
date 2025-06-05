@@ -14,6 +14,11 @@ export const workshopResourceTR = t.type({
   url: t.string,
 })
 
+export const campaignAssessmentGroupTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+
 export const WorkshopTR = t.type({
   id: t.string,
   status: t.string,
@@ -27,11 +32,13 @@ export const WorkshopTR = t.type({
   videoCallType: t.string,
   cancellationLeadTime: t.number,
   allowLateCancellationAndRescheduling: t.boolean,
+  campaignAssessmentGroupId: t.union([t.string, t.null]),
   schedulingLeadTime: t.number,
   meetingLink: t.union([t.string, t.null]),
   workshopManagers: t.array(userDetailsTR),
   workshopAssessors: t.array(userDetailsTR),
   workshopResources: t.array(workshopResourceTR),
+  campaignAssessmentGroup: campaignAssessmentGroupTR,
   meta: t.union([
     t.type({
       permissions: t.type({
@@ -55,6 +62,7 @@ export const WorkshopCreateResponseTR = t.array(t.type({
   remainingSeats: t.number,
   timezone: t.string,
   meetingLink: t.union([t.string, t.null]),
+  campaignAssessmentGroupId: t.union([t.number, t.null]),
 }))
 
 export const userDetailsListTR = t.array(userDetailsTR)

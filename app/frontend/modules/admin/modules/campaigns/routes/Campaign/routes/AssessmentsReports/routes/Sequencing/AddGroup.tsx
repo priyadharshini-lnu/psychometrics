@@ -24,12 +24,11 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
   addNewGroup: (groupType: string) => void
-  hideAddAssessmentCenterBtn: boolean
 }
 
 type Props = OwnProps & PropsFromRedux
 
-const AddGroupComponent: FC<Props> = ({ isLoading, addNewGroup, hideAddAssessmentCenterBtn }) => (
+const AddGroupComponent: FC<Props> = ({ isLoading, addNewGroup }) => (
   <Card className={cs('flex justify-center items-center h-100', styles.minHeightForGroup)}>
     <Space direction="vertical" className={cs('flex justify-center items-center')}>
       <Button type="dashed" onClick={() => addNewGroup('regular')} loading={isLoading} disabled={isLoading}>
@@ -38,16 +37,12 @@ const AddGroupComponent: FC<Props> = ({ isLoading, addNewGroup, hideAddAssessmen
           {I18n.t('assessments_reports.sequencing.add_group')}
         </Space>
       </Button>
-      {
-      hideAddAssessmentCenterBtn && (
-        <Button type="dashed" onClick={() => addNewGroup('assessment_center')} loading={isLoading} disabled={isLoading}>
-          <Space>
-            <PlusOutlined />
-            {I18n.t('assessments_reports.sequencing.add_assessment_center')}
-          </Space>
-        </Button>
-      )
-    }
+      <Button type="dashed" onClick={() => addNewGroup('assessment_center')} loading={isLoading} disabled={isLoading}>
+        <Space>
+          <PlusOutlined />
+          {I18n.t('assessments_reports.sequencing.add_assessment_center')}
+        </Space>
+      </Button>
     </Space>
   </Card>
 )

@@ -1,5 +1,6 @@
 import {
   useEffect, useState, FC,
+  useRef,
 } from 'react'
 import { Button, Checkbox, Popconfirm } from 'antd'
 import {
@@ -65,6 +66,7 @@ const OverrideComponent: FC<Props> = ({
   removeTextOverride, updateTextOverride, createTextOverride,
   selectModule, rstore, disapproveTextOverride, questions,
 }) => {
+  const editrRef = useRef<FroalaEditor>(null)
   const [box, setBox] = useState<{}>({})
   const [edit, setEdit] = useState(false)
   const [showDiff, setShowDiff] = useState(false)
@@ -144,6 +146,7 @@ const OverrideComponent: FC<Props> = ({
       {edit && (
         <FroalaEditor
           key="editor"
+          ref={editrRef}
           config={config}
           model={content || TextModuleContent.run(module, questions)}
           onModelChange={content => setContent(content)}

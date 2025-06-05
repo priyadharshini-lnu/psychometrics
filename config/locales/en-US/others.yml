@@ -250,6 +250,7 @@ en-US:
       notification_hours: You have %{hours} hour left
       notification_minutes: you have %{minutes} minutes left
   campaign_assessment:
+    assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
     statuses:
       completed: Completed
@@ -364,6 +365,8 @@ en-US:
       update: Update
       upload: Upload
       verify: Verify
+      view_all_tasks: View all tasks
+      view_details: View Details
     column:
       action: Action
       category: Category

@@ -1079,7 +1079,6 @@ zh-Hant:
     sequencing:
       add_assessment_center: 新增評估中心
       add_group: 新增群組
-      assessment_center_message: 此類評估由評估中心管理
       assessments: 評估
       delete_group: 刪除群組
       edit_group_name: 編輯群組名稱
@@ -1313,9 +1312,9 @@ zh-Hant:
       reset_all_nominations: 重設所有提名
       reset_participant: 重設所有參與者
     allow_msg_proctoring_workshop_activity: 評估中心的活動不接受監考。
+    assessment_center_heading: 評估中心詳細資訊
     assessments_heading: 您的任務
     column:
-      assessment_center_activity: 評估中心活動
       assessment_name: 評估名稱
       assessor_form: 評估員表格
       auto_assign: 自動指定
@@ -1642,6 +1641,8 @@ zh-Hant:
       upload_file: 上傳檔案
       verify: 驗證
       view: 檢視
+      view_all_tasks: 檢視所有任務
+      view_details: 查看詳細信息
     column:
       action: 行動
       active: 活躍
