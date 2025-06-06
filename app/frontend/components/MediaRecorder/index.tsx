@@ -10,12 +10,14 @@ import {
   Button, Flex, Alert,
   Select,
 } from 'antd'
+import humps from 'humps'
 import {
   DeleteOutlined, StopOutlined, VideoCameraOutlined, LoadingOutlined,
   DownOutlined,
   AudioOutlined,
   CheckCircleFilled,
 } from '@ant-design/icons'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import { useRecording } from '~/context/RecordingContext'
 import VideoPlayer from './components/VideoPlayer'
@@ -50,6 +52,8 @@ interface Props {
   mediaUrl: string;
   questionId: string;
   maxDuration: number;
+  onSuccessUpload: (media: MediaResponse) => void;
+  onDeleteMedia: () => void;
   mediaResponse: {
     url: string;
     id: number;
@@ -78,7 +82,7 @@ const formatDuration = (durationInSeconds: number): string => {
 }
 
 const MediaRecorderComponent: React.FC<Props> = ({
-  mediaUrl, questionId, maxDuration, mediaResponse,
+  mediaUrl, questionId, maxDuration, mediaResponse, onSuccessUpload, onDeleteMedia,
 }) => {
   const { isRecording, startVideoRecording, stopVideoRecording } = useRecording()
 
@@ -235,11 +239,8 @@ const MediaRecorderComponent: React.FC<Props> = ({
           headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
         },
       )
-
-      setExistingMedia(data)
-      handleRecordingSaved()
-      resetMultipartUpload()
-      successMessage()
+      const camelizedData = humps.camelizeKeys(data)
+      handleRecordingSaved(camelizedData)
       stopVideoRecording()
     } catch (error) {
       console.error('Error completing media upload:', error)
@@ -254,8 +255,12 @@ const MediaRecorderComponent: React.FC<Props> = ({
     setPercent({})
   }
 
-  const handleRecordingSaved = (): void => {
+  const handleRecordingSaved = (data: MediaResponse): void => {
+    onSuccessUpload(data)
     setRecordingState('saved')
+    setExistingMedia(data)
+    resetMultipartUpload()
+    successMessage()
   }
 
   const handleChunkAvailable = useCallback((chunk: Blob): void => {
@@ -357,6 +362,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         })
         setExistingVideoUrl(null)
         clearBlobUrl()
+        onDeleteMedia()
       } catch (error) {
         console.error('Error discarding existing video:', error)
         setError('discard')('Failed to discard existing video')
@@ -496,7 +502,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     if (status === 'idle' && !existingVideoUrl) {
       return {
         percent: 0,
-        label: `${I18n.t('assessments.video_response.recording_duration_label')} 
+        label: `${I18n.t('assessments.video_response.recording_duration_label')}
         ${formatDuration(maxDuration)}`,
       }
     } if (status === 'recording') {
