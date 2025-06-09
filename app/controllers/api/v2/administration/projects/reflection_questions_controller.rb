@@ -3,7 +3,7 @@
 module Api
   class V2::Administration::Projects::ReflectionQuestionsController < Api::V2::Administration::BaseController
     validate_crud_requests V2::ReflectionQuestion::Schema
-    validates_request_schema :destroy, Api::V2::ReflectionQuestion::DeleteContract.new
+    validates_request_schema :destroy, -> { Api::V2::ReflectionQuestion::DeleteContract.new }
 
     def meta_details
       {

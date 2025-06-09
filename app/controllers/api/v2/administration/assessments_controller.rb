@@ -6,7 +6,7 @@ module Api
 
     validates_request_schema :create, :create_contract_based_on_assessment_type
     validates_request_schema :update, :update_contract_based_on_assessment_type
-    validates_request_schema :copy, Api::V2::Assessment::CopyContract.new
+    validates_request_schema :copy, -> { Api::V2::Assessment::CopyContract.new }
 
     INTEGRATIONS_CONTRACTS = {
       'hogan' => Api::V2::Assessment::HoganContract,

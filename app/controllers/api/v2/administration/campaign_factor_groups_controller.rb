@@ -3,8 +3,8 @@
 module Api
   class V2::Administration::CampaignFactorGroupsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::CampaignFactorGroup::Schema
-    validates_request_schema :create, Api::V2::CampaignFactorGroup::Contract.new
-    validates_request_schema :update, Api::V2::CampaignFactorGroup::Contract.new
+    validates_request_schema :create, -> { Api::V2::CampaignFactorGroup::Contract.new }
+    validates_request_schema :update, -> { Api::V2::CampaignFactorGroup::Contract.new }
 
     def initialize_scoring
       result = ::CampaignFactorGroups::InitializeScoring.call(campaign)

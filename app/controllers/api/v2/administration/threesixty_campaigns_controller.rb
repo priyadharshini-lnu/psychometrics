@@ -3,7 +3,7 @@
 module Api
   class V2::Administration::ThreesixtyCampaignsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::ThreesixtyCampaign::Schema
-    validates_request_schema :create_campaign, Api::V2::ThreesixtyCampaign::Schema.create_campaign
+    validates_request_schema :create_campaign, -> { Api::V2::ThreesixtyCampaign::Schema.create_campaign }
 
     def create_campaign
       form = ::Threesixty::Campaigns::CreateForm.from_params(params[:data][:attributes])

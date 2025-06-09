@@ -4,7 +4,7 @@ module Api
   class V2::Administration::WorkshopInvitesController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopInvite::Schema
     validates_request_schema :create, Api::V2::WorkshopInvite::CreateContract.new
-    validates_request_schema :create_relationship, Api::V2::WorkshopInvite::CreateRelationshipsContract.new
+    validates_request_schema :create_relationship, -> { Api::V2::WorkshopInvite::CreateRelationshipsContract.new }
 
     prepend_before_action :set_workshops, only: %i[create]
 

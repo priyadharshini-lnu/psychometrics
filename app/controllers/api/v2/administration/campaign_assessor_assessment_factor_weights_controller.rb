@@ -2,7 +2,7 @@
 
 module Api
   class V2::Administration::CampaignAssessorAssessmentFactorWeightsController < Api::V2::Administration::BaseController
-    validates_request_schema :bulk_upsert, Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.bulk_upsert
+    validates_request_schema :bulk_upsert, -> { Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.bulk_upsert }
 
     def bulk_upsert
       audit! :bulk_upsert, nil, record_type: CampaignAssessorAssessmentFactorWeight,

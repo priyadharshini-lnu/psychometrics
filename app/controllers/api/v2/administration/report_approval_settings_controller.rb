@@ -2,8 +2,8 @@
 
 module Api
   class V2::Administration::ReportApprovalSettingsController < Api::V2::Administration::BaseController
-    validates_request_schema :create, Api::V2::ReportApprovalSetting::CreateContract.new
-    validates_request_schema :update, Api::V2::ReportApprovalSetting::UpdateContract.new
+    validates_request_schema :create, -> { Api::V2::ReportApprovalSetting::CreateContract.new }
+    validates_request_schema :update, -> { Api::V2::ReportApprovalSetting::UpdateContract.new }
 
     validate_crud_requests Api::V2::ReportApprovalSetting::Schema
 
