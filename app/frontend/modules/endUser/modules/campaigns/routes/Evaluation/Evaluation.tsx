@@ -56,7 +56,7 @@ const connector = connect((state: any) => ({
 })
 const { Content } = Layout
 const { I18n } = window
-const { Text } = Typography
+const { Title } = Typography
 
 const EvaluationComponent = ({
   evaluation: {
@@ -134,7 +134,7 @@ const EvaluationComponent = ({
   }
 
   const titleElement = (
-    <Text className={styles.campaignDropdown}>
+    <Title level={1} className={styles.campaignDropdown}>
       {approve_evaluation ? (
         <>
           {I18n.t('threesixty.subject')}
@@ -160,7 +160,7 @@ const EvaluationComponent = ({
       )
           }
 
-    </Text>
+    </Title>
   )
 
 

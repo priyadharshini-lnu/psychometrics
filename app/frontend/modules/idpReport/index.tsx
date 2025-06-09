@@ -1,4 +1,4 @@
-import './styles/reset.css'
+// import './styles/reset.css'
 import './styles/main.css'
 import { Provider } from 'react-redux'
 import store from './store'

@@ -277,13 +277,15 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           )}
         />
       </Resource.Table>
-      <BulkSchedule
-        open={openForm}
-        subjects={selectedSubjects}
-        onClose={() => setOpenForm(false)}
-        onSave={updateSubjects}
-        workshopStartTime={workshop.startTime}
-      />
+      {openForm && (
+        <BulkSchedule
+          open={openForm}
+          subjects={selectedSubjects}
+          onClose={() => setOpenForm(false)}
+          onSave={updateSubjects}
+          workshopStartTime={workshop.startTime}
+        />
+      )}
       {openSubjectForm && (<AddSubjectForm close={() => setOpenSubjectForm(false)} />)}
     </>
   )
