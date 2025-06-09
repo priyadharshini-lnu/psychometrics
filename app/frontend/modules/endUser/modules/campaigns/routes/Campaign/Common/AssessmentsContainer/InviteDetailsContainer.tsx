@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -44,7 +45,7 @@ export const InviteDeatilsContainer = ({
     </Button>
   )
 
-  if (bookingDetails) {
+  if (!_.isEmpty(bookingDetails)) {
     if (canJoinMeeting && !workshopMeetingLink) {
       return <>{detailsLink}</>
     }
@@ -81,7 +82,7 @@ export const InviteDeatilsContainer = ({
     <>
       {inviteDetails ? (
         <Space size={6} className="w-100" direction="vertical">
-          <p className="mb-0">{I18n.t('frontend.bookings.accept_invite_msg')}</p>
+          <p className="mb-0 ta-c">{I18n.t('frontend.bookings.accept_invite_msg')}</p>
           <DetailsCard
             title={inviteDetails.title}
             subtitle={(
@@ -111,7 +112,9 @@ export const InviteDeatilsContainer = ({
             </Button>
           ) : null}
         </Space>
-      ) : null}
+      ) : (
+        <p className="ta-c">{I18n.t('frontend.bookings.no_invites_msg')}</p>
+      )}
     </>
   )
 }

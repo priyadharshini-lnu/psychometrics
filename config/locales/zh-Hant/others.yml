@@ -2165,6 +2165,7 @@ zh-Hant:
       neurodivergence_comment_aria_label: 神經分化評論
       neurodivergence_comment_placeholder: 您的意見
       neurodivergence_question: 您是否因特殊需求或殘障而需要任何合理的便利或調整，才能完全參與評估？
+      no_invites_msg: 目前您尚未收到此評估中心的任何邀請。一旦您收到邀請，它就會出現在這裡，您就可以預約時段。一旦您預約了時段，評估中心的活動就會出現。
       or: 或
       other_invite: 請參閱 %{count} 更多邀請
       other_invites: 請參閱 %{count} 更多邀請

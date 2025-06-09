@@ -2182,6 +2182,7 @@ cs:
       neurodivergence_comment_aria_label: Neurodivergence komentáře
       neurodivergence_comment_placeholder: Vaše komentáře
       neurodivergence_question: Potřebujete nějaké přiměřené úpravy nebo přizpůsobení kvůli speciálním potřebám nebo zdravotnímu postižení, abyste se mohli plně zúčastnit hodnocení?
+      no_invites_msg: V současné době nemáte žádnou pozvánku pro toto hodnotící středisko. Jakmile pozvánku obdržíte, objeví se zde a budete si moci rezervovat čas. A aktivity Assessment Center se zobrazí, jakmile si rezervujete slot.
       or: nebo
       other_invite: Zobrazit %{count} další pozvánku
       other_invites: Zobrazit %{count} další pozvánky/pozvánek

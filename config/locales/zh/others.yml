@@ -2177,6 +2177,7 @@ zh:
       neurodivergence_comment_aria_label: 神经差异评论
       neurodivergence_comment_placeholder: 你的评论
       neurodivergence_question: 你是否因特殊需要或身障而需要合理的特殊安排或调整才能充分参与评估？
+      no_invites_msg: 目前，您尚未收到该评估中心的邀请。一旦您收到邀请，它就会出现在这里，您就可以预订时间段。一旦您预订了时间段，评估中心的活动就会出现。
       or: 或
       other_invite: 查看其他 %{count} 个邀请
       other_invites: 查看其他 %{count} 个邀请

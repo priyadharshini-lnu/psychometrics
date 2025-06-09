@@ -2181,6 +2181,7 @@ pt:
       neurodivergence_comment_aria_label: Comentários sobre a neurodivergência
       neurodivergence_comment_placeholder: Os seus comentários
       neurodivergence_question: Precisa de alguma adaptação ou ajuste razoável devido a necessidades especiais ou deficiências para participar plenamente na avaliação?
+      no_invites_msg: Atualmente, não tem nenhum convite para este centro de avaliação. Quando receber um convite, este aparecerá aqui e poderá reservar uma vaga. E as actividades do centro de avaliação aparecerão assim que tiver reservado uma vaga.
       or: ou
       other_invite: Ver mais %{count} convite
       other_invites: Ver mais %{count} convites

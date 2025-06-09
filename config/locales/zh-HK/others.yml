@@ -530,6 +530,7 @@ zh-HK:
       need_changes: 需要更改嗎？
       neurodivergence_comment_placeholder: 您的留言
       neurodivergence_question: 您是否因特殊需求或殘疾需要任何合理的便利或調整，以便能夠完全參與評估？
+      no_invites_msg: 目前您尚未收到此評估中心的任何邀請。一旦您收到邀請，它就會出現在這裡，您就可以預約時段。一旦您預約了時段，評估中心的活動就會出現。
       other_invite: 查看 %{count} 個更多邀請
       other_invites: 查看 %{count} 個更多邀請
       reason: 原因

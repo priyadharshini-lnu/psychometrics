@@ -124,7 +124,7 @@ export const WorkshopPage: FC = () => {
             <DateTimeWithZone dateString={workshop.startTime} />
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.campaign_assessment_group')}>
-            {workshop.campaignAssessmentGroup.name}
+            {workshop.campaignAssessmentGroup?.name}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
             {secondsToDayHoursAndMinutes(workshop.duration)}

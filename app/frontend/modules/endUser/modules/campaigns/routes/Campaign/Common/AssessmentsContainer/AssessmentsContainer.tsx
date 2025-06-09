@@ -71,7 +71,7 @@ export const AssessmentsContainer = ({
     if (group.id === parseInt(assessmentCenterIdFromUrl, 10)) return { ...group, hide: false }
     return { ...group, hide: true }
   })
-  const inviteDetails = campaign.workshopInvite
+  const workshopInvites = campaign.workshopInvites || []
   const { workshops: campaignWorkshops } = campaign
 
   let workshopActivities = campaign.userAssessments
@@ -94,7 +94,7 @@ export const AssessmentsContainer = ({
         }
       </title>
       {assessmentCenterIdFromUrl && (
-        <AssessmentCardContainer className="mt-0 pt-0">
+        <AssessmentCardContainer className="pt-0 pb-0">
           <Button
             onClick={() => navigate(`/campaigns/${campaign.id}`)}
             icon={<DirectionalNavigateBackIcon className="fs-12" />}
@@ -129,6 +129,8 @@ export const AssessmentsContainer = ({
                 let previousAssessmentIsIneligible = false
                 const isAssessmentCenter = isAnAssessmentCenterGroup(group)
                 const isPreviousGroupAnAssessmentCenter = isAnAssessmentCenterGroup(prevGroup)
+                const inviteDetails = isAssessmentCenter
+                  ? workshopInvites.find(invite => invite.campaignAssessmentGroupId === group.id) : {}
                 const showAssessentCenterDetailsLink = isAssessmentCenter && !showAssessmentCenterDetails
                 const groupTitleId = `camp-group-${group.id}`
 
@@ -145,12 +147,14 @@ export const AssessmentsContainer = ({
                 }
                 prevGroup = group
                 let userAssessments: UserAssessment[] = _.compact(
-                  group.campaignAssessmentIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
+                  group.campaignAssessmentIds?.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
                 )
                 let proctoringMsgOnWorkshop = ''
                 const workshop = isAssessmentCenter
                   ? campaignWorkshops.find(workshop => workshop.campaignAssessmentGroupId === group.id) || {} : {}
-                const alignCardItemsInCenter = showAssessentCenterDetailsLink && !_.isEmpty(workshop)
+                const workshopNotBooked = _.isEmpty(workshop)
+                const alignCardItemsInCenter = showAssessentCenterDetailsLink
+                  && (!workshopNotBooked || _.isEmpty(inviteDetails))
                 const workshopCompleted = workshop ? workshop.completed : false
                 const workshopAttended = workshop ? workshop.attended : false
                 if (isAssessmentCenter) {
@@ -183,7 +187,16 @@ export const AssessmentsContainer = ({
                         'ta-c': alignCardItemsInCenter,
                       })}
                     >
-                      <Title id={groupTitleId} className="mt-0" level={5}>{group.name}</Title>
+                      <Title
+                        id={groupTitleId}
+                        className={cs({
+                          'mt-0': true,
+                          'ta-c': showAssessentCenterDetailsLink,
+                        })}
+                        level={5}
+                      >
+                        {group.name}
+                      </Title>
                       <Space
                         align={(alignCardItemsInCenter) ? 'center' : undefined}
                         direction="vertical"

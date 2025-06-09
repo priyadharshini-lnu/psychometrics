@@ -2182,6 +2182,7 @@ de:
       neurodivergence_comment_aria_label: Kommentare zur Neurodivergenz
       neurodivergence_comment_placeholder: Ihre Kommentare
       neurodivergence_question: Benötigen Sie aufgrund besonderer Bedürfnisse oder Behinderungen Anpassungen, um vollständig am Assessment teilnehmen zu können?
+      no_invites_msg: Derzeit haben Sie noch keine Einladung für dieses Assessment Center. Sobald Sie eine Einladung erhalten haben, wird diese hier erscheinen und Sie können einen Platz buchen. Die Aktivitäten des Assessment Centers werden angezeigt, sobald Sie einen Termin gebucht haben.
       or: oder
       other_invite: Weitere %{count} Einladungen anzeigen
       other_invites: Weitere %{count} Einladungen anzeigen

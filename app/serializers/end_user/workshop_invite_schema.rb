@@ -11,6 +11,7 @@ module EndUser
         required(:description).maybe(:str?)
         required(:duration).filled(:int?)
         required(:total_invites).filled(:int?)
+        required(:campaign_assessment_group_id).filled(:int?)
       end
     end
   end

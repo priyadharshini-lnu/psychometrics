@@ -519,6 +519,7 @@ pl:
       need_changes: Potrzebujesz wprowadzić zmiany?
       neurodivergence_comment_placeholder: Twój komentarz
       neurodivergence_question: Czy ze względu na specjalne potrzeby lub niepełnosprawność potrzebujesz racjonalnych udogodnień lub dostosowań, aby w pełni uczestniczyć w ocenie?
+      no_invites_msg: Obecnie nie masz żadnego zaproszenia na to Assessment Center. Gdy otrzymasz zaproszenie, pojawi się ono tutaj i będziesz mógł zarezerwować slot. Działania Assessment Center pojawią się po zarezerwowaniu miejsca.
       other_invite: Zobacz %{count} więcej zaproszeń
       other_invites: Zobacz %{count} więcej zaproszeń
       reason: Powód

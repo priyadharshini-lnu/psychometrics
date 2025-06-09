@@ -106,9 +106,6 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   ), [assessments])
 
   const sortedGroups = useMemo(() => groups.sort((groupA, groupB) => groupA.position - groupB.position), [groups])
-  const isAssessmentCenterGroup = useMemo(() => sortedGroups.some(
-    group => group.groupType === 'assessment_center',
-  ), [sortedGroups])
 
   const prefixedUngroupedAssessmentIds = useMemo(() => (unGroupedAssessments
     .sort((groupA, groupB) => groupA.position - groupB.position)
@@ -257,6 +254,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
       id: item.id,
       position: item.position,
       campaign_assessment_group_id: item.campaignAssessmentGroupId,
+      workshop_activity_duration: item.workshopActivityDuration,
     }))
 
     updateAssessmentPosition(parsedCampaignId, requestPayload)
@@ -282,7 +280,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     over: Over | null,
     overContainer: string,
     activeContainer: string,
-    duration: string | null,
+    duration: string | number | null,
   ) => {
     let overItems: CampaignAssessment[]
     let activeItems: CampaignAssessment[]
@@ -464,14 +462,16 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     }
 
     if (activeContainer !== overContainer) {
-      if (isAssessmentCenterGroup) {
-        const droppedOntoGroupId = getItemIdFromSortingId(overContainer)
-        const groupDroppedOnto = groups.find(group => group.id === droppedOntoGroupId)
-        if (groupDroppedOnto?.groupType === 'assessment_center') {
-          return handleDropOntoAssessmentCenter(active, over, overContainer, activeContainer)
-        }
+      const activeAssessment = assessments.find(assessment => assessment.id === getItemIdFromSortingId(active.id))
+      const activeItemHasWorkshopDuration = activeAssessment && !!activeAssessment.workshopActivityDuration
+      const droppedOntoGroupId = getItemIdFromSortingId(overContainer)
+      const groupDroppedOnto = groups.find(group => group.id === droppedOntoGroupId)
+      if (groupDroppedOnto?.groupType === 'assessment_center' && !activeItemHasWorkshopDuration) {
+        return handleDropOntoAssessmentCenter(active, over, overContainer, activeContainer)
       }
-      handleAssessmentDropInDiffGroup(active, over, overContainer, activeContainer, null)
+      handleAssessmentDropInDiffGroup(
+        active, over, overContainer, activeContainer, activeAssessment?.workshopActivityDuration || null,
+      )
     }
     return null
   }

@@ -2237,6 +2237,7 @@ en:
       neurodivergence_comment_aria_label: Neurodivergence comments
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
+      no_invites_msg: Currently you do not have any invite for this Assessment Center. Once you have received an invite it will appear here and you will be able to book a slot. And the Assessment Center activities will appear once you have booked a slot.
       or: or
       other_invite: See %{count} more invite
       other_invites: See %{count} more invites
