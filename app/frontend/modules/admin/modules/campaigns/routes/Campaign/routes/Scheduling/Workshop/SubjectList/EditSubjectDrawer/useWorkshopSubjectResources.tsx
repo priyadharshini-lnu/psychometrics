@@ -5,7 +5,13 @@ import {
   AssessorUserAssessment,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 
-export const useWorkshopSubjectResources = (campaignId:string, id:string, subjectId:string, userId:string) => {
+export const useWorkshopSubjectResources = (
+  campaignId: string,
+  id: string,
+  subjectId: string,
+  userId: string,
+  campaignAssessmentGroupId: string,
+) => {
   const { fetchSingle: fetchSubject, getResource, isLoading } = useResources<EditableWorkshopSubject>(
     'workshop_subjects',
     {
@@ -39,6 +45,7 @@ export const useWorkshopSubjectResources = (campaignId:string, id:string, subjec
           campaign_id_eq: campaignId,
           preworks: 'false',
           workshop_activities: 'true',
+          campaign_assessment_group_eq: campaignAssessmentGroupId,
         },
       },
     },

@@ -40,6 +40,7 @@ const ResponseTR = t.type({
     startTime: WorkshopTR.props.startTime,
   }),
   campaignAssessmentGroupName: t.string,
+  campaignAssessmentGroupId: t.number,
 })
 
 type Response = t.TypeOf<typeof ResponseTR>

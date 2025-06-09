@@ -92,6 +92,10 @@ class UserAssessment < ApplicationRecord
     where('subject_id = evaluator_id').where.not(status: %i[completed timed_out ineligible])
   }
 
+  scope :campaign_assessment_group_eq, lambda { |group_id|
+    with_campaign_assessments.where(campaign_assessments: { campaign_assessment_group_id: group_id })
+  }
+
   scope :scored, -> { where(status: :completed, score_calculated: true) }
   scope :deemed_completed, -> { where(status: DEEMED_COMPLETED_STATUS) }
   scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
@@ -127,8 +131,12 @@ class UserAssessment < ApplicationRecord
     %w[id subject_id campaign_id]
   end
 
+  def self.ransackable_associations(_auth_object = nil)
+    %w[campaign_assessment]
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filter_by_subject_or_assessment preworks workshop_activities]
+    %i[filter_by_subject_or_assessment preworks workshop_activities campaign_assessment_group_eq]
   end
 
   def finish_proctoring_session

@@ -49,7 +49,7 @@ interface OwnProps {
 
 interface SubjectTableProps {
   workshop: Workshop
-  handleEditSubject: (id: string, userId: string) => void
+  handleEditSubject: (id: string, userId: string, campaignAssessmentGroupId: string) => void
   currentUser: { id: string, role: string }
 }
 
@@ -67,10 +67,12 @@ export const SubjectListComponent: React.FC<Props> = ({ workshop, currentUser })
   const [openEditDrawer, setOpenEditDrawer] = useState(false)
   const [currentSubjectId, setCurrentSubjectId] = useState('')
   const [currentUserId, setCurrentUserId] = useState('')
+  const [currentCampaignAssessmentGroupId, setCurrentCampaignAssessmentGroupId] = useState('')
 
-  const handleEditSubject = (id, userId) => {
+  const handleEditSubject = (id, userId, campaignAssessmentGroupId) => {
     setCurrentSubjectId(id)
     setCurrentUserId(userId)
+    setCurrentCampaignAssessmentGroupId(campaignAssessmentGroupId)
     setOpenEditDrawer(true)
   }
 
@@ -96,6 +98,7 @@ export const SubjectListComponent: React.FC<Props> = ({ workshop, currentUser })
         workshopStartTime={workshop.startTime}
         subjectId={currentSubjectId}
         userId={currentUserId}
+        campaignAssessmentGroupId={currentCampaignAssessmentGroupId}
         onClose={() => setOpenEditDrawer(false)}
         open={openEditDrawer}
       />
@@ -204,7 +207,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           title={I18n.t('administration.scheduling.columns.participants')}
           id="full_name"
           width="40%"
-          render={({ user, id }, record) => {
+          render={({ user, id, campaignAssessmentGroupId }, record) => {
             const { fullName, photoUrl } = user || {}
             const userId = user?.id
             return (
@@ -214,7 +217,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
                 onClick={() => (
                   resource.meta.permissions?.manage && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
                     record.schedulingStatus,
-                  ) && handleEditSubject(id, userId)
+                  ) && handleEditSubject(id, userId, campaignAssessmentGroupId)
                 )}
               >
                 <Space>

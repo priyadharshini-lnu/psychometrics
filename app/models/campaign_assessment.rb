@@ -39,7 +39,7 @@ class CampaignAssessment < ApplicationRecord
   scope :workshop_activities, -> { where(workshop_activity: true) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name category archived campaign_id workshop_activity]
+    %w[id name category archived campaign_id workshop_activity campaign_assessment_group_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
