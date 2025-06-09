@@ -50,6 +50,7 @@ class UserIdpPlan < ApplicationRecord
       event :reject, transitions_to: :rejected
     end
     state :rejected do
+      event :submit_for_approval, transitions_to: :pending_approval
       event :approve, transitions_to: :approved
     end
     state :in_progress do
@@ -83,6 +84,14 @@ class UserIdpPlan < ApplicationRecord
 
   def report_name_for_download
     "#{user.email}_idp_report_#{user.id}.pdf"
+  end
+
+  def editable?
+    not_started? || draft? || rejected?
+  end
+
+  def manager_editable?
+    rejected? || pending_approval?
   end
 
   private

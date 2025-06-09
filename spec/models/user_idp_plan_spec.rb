@@ -228,4 +228,49 @@ RSpec.describe UserIdpPlan, type: :model do
       end
     end
   end
+
+  describe '#editable?' do
+    let(:user_idp_plan) { create(:user_idp_plan) }
+
+    {
+      editable: %i[not_started draft rejected],
+      non_editable: %i[pending_approval approved in_progress completed]
+    }.each do |editability, statuses|
+      expected_result = editability == :editable
+
+      context "#{editability} statuses" do
+        statuses.each do |status|
+          context "when status is #{status}" do
+            before { user_idp_plan.update(status: status) }
+
+            it "returns #{expected_result}" do
+              expect(user_idp_plan.editable?).to be expected_result
+            end
+          end
+        end
+      end
+    end
+  end
+  describe '#manager_editable?' do
+    let(:user_idp_plan) { create(:user_idp_plan) }
+
+    {
+      manager_editable: %i[rejected pending_approval],
+      non_manager_editable: %i[not_started draft approved in_progress completed]
+    }.each do |editability, statuses|
+      expected_result = editability == :manager_editable
+
+      context "#{editability} statuses" do
+        statuses.each do |status|
+          context "when status is #{status}" do
+            before { user_idp_plan.update(status: status) }
+
+            it "returns #{expected_result}" do
+              expect(user_idp_plan.manager_editable?).to be expected_result
+            end
+          end
+        end
+      end
+    end
+  end
 end

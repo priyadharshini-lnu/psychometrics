@@ -147,7 +147,7 @@ module EndUser
     end
 
     def pundit_authorize
-      authorize(user, nil, policy_class: ::EndUser::UserIdpDevelopmentActionPolicy)
+      authorize(user, nil, policy_class: ::EndUser::UserIdpDevelopmentActionPolicy, user_idp_plan: user_idp_plan)
     end
   end
 end

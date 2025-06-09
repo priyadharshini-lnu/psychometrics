@@ -261,14 +261,14 @@ export const HANDLERS = {
     status: action.response.status,
   }),
   [SAVE_USER_IDP_SKILLS]: (state, action) => {
-    const { category: requestedCategory, data: skills } = action.response
+    const { skillType: requestedSkillType, data: skills } = action.response
 
     const { userIdpDevelopmentActions, userIdpSkills } = state
 
     // userIdpSkills which are not part of the requested category, they should be kept as is
-    // only when requestedCategory is null, all userIdpSkills should be kept as is
+    // only when requestedSkillType is null, all userIdpSkills should be kept as is
     const userIdpSkillsUnmodified = _.pickBy(userIdpSkills,
-      ({ category: cat }) => !requestedCategory || cat !== requestedCategory)
+      ({ skillType }) => !requestedSkillType || skillType !== requestedSkillType)
 
     const updatedUserIdpSkills = _.keyBy(skills, 'id')
 
@@ -276,7 +276,7 @@ export const HANDLERS = {
     const updatedUserIdpDevelopmentActions = _.pickBy(userIdpDevelopmentActions,
       ({ userIdpSkillId }) => userIdpSkillsUnmodified[userIdpSkillId] || updatedUserIdpSkills[userIdpSkillId])
 
-    const newUserIdpSkillsList = !requestedCategory
+    const newUserIdpSkillsList = !requestedSkillType
       ? updatedUserIdpSkills : { ...userIdpSkillsUnmodified, ...updatedUserIdpSkills }
 
     return {

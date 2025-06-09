@@ -64,11 +64,17 @@ const DirectReportDetailsComponent: FC<Props> = ({
 
   const { managerApprovesIdp, managerCanEditIdp } = idpSettings
 
-  const planInPorgress = status === USER_IDP_PLAN_STATUS.IN_PROGRESS
-  const planCompleted = status === USER_IDP_PLAN_STATUS.COMPLETED
-  const isPlanEditable = !planInPorgress && !planCompleted
-  const isPlanEditableByManager = isPlanEditable && managerCanEditIdp
-  const planRequiresApproval = !planInPorgress && !planCompleted && managerApprovesIdp
+  const isPlanEditable = [
+    USER_IDP_PLAN_STATUS.PENDING_APPROVAL,
+    USER_IDP_PLAN_STATUS.REJECTED,
+  ].includes(status)
+
+  const canNotModifyApprovalState = [
+    USER_IDP_PLAN_STATUS.IN_PROGRESS,
+    USER_IDP_PLAN_STATUS.COMPLETED,
+    USER_IDP_PLAN_STATUS.DRAFT,
+    USER_IDP_PLAN_STATUS.NOT_STARTED,
+  ].includes(status)
 
   const navigate = useNavigate()
   const changeTab = (tab: string) => {
@@ -103,14 +109,14 @@ const DirectReportDetailsComponent: FC<Props> = ({
   const operations = (
     <Flex gap={8}>
       {!editMode
-      && planRequiresApproval
+      && managerApprovesIdp
       && (
         <>
           <Button
             type="default"
             onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.REJECTED)}
             loading={isUpdating}
-            disabled={status === USER_IDP_PLAN_STATUS.REJECTED || status === USER_IDP_PLAN_STATUS.COMPLETED}
+            disabled={status === USER_IDP_PLAN_STATUS.REJECTED || canNotModifyApprovalState}
           >
             {status === USER_IDP_PLAN_STATUS.REJECTED
               ? I18n.t('idp.user_idp_status.rejected') : I18n.t('common.actions.reject')}
@@ -119,7 +125,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
             type="primary"
             onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.APPROVED)}
             loading={isUpdating}
-            disabled={status === USER_IDP_PLAN_STATUS.APPROVED}
+            disabled={status === USER_IDP_PLAN_STATUS.APPROVED || canNotModifyApprovalState}
             icon={status === USER_IDP_PLAN_STATUS.APPROVED && <CheckCircleOutlined style={{ color: '#52c41a' }} />}
           >
             {status === USER_IDP_PLAN_STATUS.APPROVED
@@ -136,8 +142,9 @@ const DirectReportDetailsComponent: FC<Props> = ({
           {I18n.t('common.actions.save')}
         </Button>
       ) : (
-        isPlanEditableByManager && (
+        managerCanEditIdp && (
           <Button
+            disabled={!isPlanEditable}
             type="primary"
             icon={<EditOutlined />}
             onClick={() => setEditMode(true)}

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class BasePolicy
-  def initialize(context, record, _extra = {})
+  def initialize(context, record, extra = {})
     @current_user   = context[:current_user]
     @current_client = context[:current_client]
     @current_project = context[:current_project]
     @current_membership = context[:current_membership]
+    @current_user_idp = extra[:user_idp_plan]
     @record = [record].flatten.last
   end
 
