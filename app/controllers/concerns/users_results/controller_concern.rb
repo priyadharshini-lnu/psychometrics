@@ -84,7 +84,8 @@ module UsersResults::ControllerConcern
         upload_id: params[:upload_id],
         parts: params[:parts],
         file_size: params[:file_size],
-        content_type: params[:content_type]
+        content_type: params[:content_type],
+        checksum: params[:checksum]
       }
     )
 
