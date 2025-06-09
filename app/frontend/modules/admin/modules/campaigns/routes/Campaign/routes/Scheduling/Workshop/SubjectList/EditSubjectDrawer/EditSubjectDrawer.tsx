@@ -59,7 +59,8 @@ type OwnProps = {
   open: boolean,
   subjectId: string,
   userId: string,
-  workshopStartTime: string
+  workshopStartTime: string,
+  campaignAssessmentGroupId: string,
   onClose: ()=> void
 }
 type Props = PropsFromRedux & OwnProps
@@ -73,6 +74,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   subjectId,
   workshopStartTime,
   userId,
+  campaignAssessmentGroupId,
 }) => {
   const [, setFields] = useState({})
   const [errors, setErrors] = useState<Errors>()
@@ -96,7 +98,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     fetchAssessments,
     fetchAssessorAssessments,
     updateSubject,
-  } = useWorkshopSubjectResources(campaignId, id, subjectId, userId)
+  } = useWorkshopSubjectResources(campaignId, id, subjectId, userId, campaignAssessmentGroupId)
 
   const assessorAssessmentsMap = useMemo(() => {
     const assignedAssessmentIds = new Map()

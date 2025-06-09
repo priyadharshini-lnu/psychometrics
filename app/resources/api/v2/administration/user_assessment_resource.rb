@@ -9,7 +9,7 @@ class Api::V2::Administration::UserAssessmentResource < Api::V2::Administration:
 
   delegate :name, to: :assessment, allow_nil: true
 
-  ransack_filters %i[subject_id_eq campaign_id_eq workshop_activities preworks]
+  ransack_filters %i[subject_id_eq campaign_id_eq workshop_activities preworks campaign_assessment_group_eq]
 
   def linked_subject_meeting_link
     @model.linked_subject_user_assessment&.real_meeting_link(context[:user])
