@@ -130,6 +130,8 @@ class SupportedVideoRecorder extends Component {
             mediaUrl={mediaUrl}
             questionId={model.id}
             maxDuration={model.props.duration}
+            onSuccessUpload={this.successUpload}
+            onDeleteMedia={this.deleteMedia}
             mediaResponse={mediaResponses[mediaResponses.length - 1]}
           />
         ) : (

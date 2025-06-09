@@ -29,7 +29,7 @@ module AdminJobs
     private
 
     def user_reports
-      @user_reports ||= campaign&.user_reports&.where(id: record.data['ids'])
+      @user_reports ||= campaign&.user_reports&.includes(:report)&.where(id: record.data['ids'])
     end
 
     def user

@@ -71,6 +71,17 @@ const MyPlanComponent = ({
 
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
 
+  const isPlanEditable = [
+    USER_IDP_PLAN_STATUS.DRAFT,
+    USER_IDP_PLAN_STATUS.REJECTED,
+    USER_IDP_PLAN_STATUS.NOT_STARTED,
+  ].includes(status)
+
+  const allowSubmitting = [
+    USER_IDP_PLAN_STATUS.DRAFT,
+    USER_IDP_PLAN_STATUS.REJECTED,
+  ].includes(status)
+
   const handleCompletion = () => {
     const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
     if (hasIncompleteDAs && requireAllDevelopmentActionsComplete) {
@@ -126,10 +137,7 @@ const MyPlanComponent = ({
       ) : (
         (
           <Button
-            disabled={
-            ![USER_IDP_PLAN_STATUS.DRAFT,
-              USER_IDP_PLAN_STATUS.APPROVED,
-              USER_IDP_PLAN_STATUS.IN_PROGRESS].includes(status)}
+            disabled={!isPlanEditable}
             type="primary"
             icon={<EditOutlined />}
             onClick={() => setEditMode(true)}
@@ -141,7 +149,7 @@ const MyPlanComponent = ({
 
       {!editMode && (
         <>
-          {(status === USER_IDP_PLAN_STATUS.NOT_STARTED || status === USER_IDP_PLAN_STATUS.DRAFT) && (
+          {allowSubmitting && (
             <Button
               onClick={handleSubmitPlan}
             >
@@ -159,7 +167,6 @@ const MyPlanComponent = ({
 
           {status === USER_IDP_PLAN_STATUS.IN_PROGRESS && (
             <Button
-              disabled={status !== USER_IDP_PLAN_STATUS.IN_PROGRESS}
               onClick={handleCompletion}
             >
               {I18n.t('idp.development_actions.mark_as_complete')}

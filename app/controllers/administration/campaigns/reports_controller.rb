@@ -114,7 +114,8 @@ module Administration
 
         assessments = Panko::ArraySerializer.new(
           campaign.campaign_assessments.includes(
-            :norm, :mettl_schedule_record, assessment: %i[norms linked_assessment dimension]
+            :norm, :mettl_schedule_record, assessment: %i[norms linked_assessment linked_assessor_form dimension
+                                                          translations]
           ),
           each_serializer: Administration::CampaignAssessmentSerializer,
           context: {

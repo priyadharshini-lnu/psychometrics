@@ -16,7 +16,7 @@ class EndUser::UserIdpSkillsController < ApplicationController
   def save_skills
     skills_form = ::Idp::SaveUserIdpSkillsForm.new(skills_params).with_context(user: user)
 
-    ::Idp::SaveUserIdpSkills.call(user.active_user_idp_plan, skills_form) do
+    ::Idp::SaveUserIdpSkills.call(user_idp_plan, skills_form) do
       on(:ok) do |skills|
         render json: {
           data: ::Panko::ArraySerializer.new(
@@ -46,6 +46,10 @@ class EndUser::UserIdpSkillsController < ApplicationController
 
   private
 
+  def user_idp_plan
+    @user_idp_plan ||= user.active_user_idp_plan
+  end
+
   def user
     @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
   end
@@ -63,6 +67,6 @@ class EndUser::UserIdpSkillsController < ApplicationController
   end
 
   def pundit_authorize
-    authorize(user, nil, policy_class: ::EndUser::UserIdpSkillsPolicy)
+    authorize(user, nil, policy_class: ::EndUser::UserIdpSkillsPolicy, user_idp_plan: user_idp_plan)
   end
 end
