@@ -61,7 +61,7 @@ module AdminJobs
       @user_reports ||= if record.data['is_threesixty']
                           campaign.user_reports
                         else
-                          campaign.user_reports.where(id: record.data['ids'])
+                          campaign.user_reports.includes(:report).where(id: record.data['ids'])
                         end
     end
 

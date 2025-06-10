@@ -135,7 +135,7 @@ const UserDevelopmentPlanComponent = ({
   useEffect(() => {
     if (showAddSkill) {
       fetchIdpSkills({
-        filterByCategory: pickedCategoryToAddMoreSkills?.skillType,
+        filterBySkillType: pickedCategoryToAddMoreSkills?.skillType,
       }).then(({ response }) => {
         setSkillCategory({
           skillType: pickedCategoryToAddMoreSkills?.skillType || '',
