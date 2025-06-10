@@ -48,7 +48,7 @@ class DevelopmentAction < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %w[global]
+    %w[global filterable_fields]
   end
 
   # Add helper method to get human readable development_action_type names

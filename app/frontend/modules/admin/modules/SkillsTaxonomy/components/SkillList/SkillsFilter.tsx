@@ -150,7 +150,7 @@ export const SkillsFilter: React.FC<Props> = ({
 
   return (
     <Resource.Filter
-      name="name_cont"
+      name="filterable_fields"
       showTagFilter
       tagFilterConfig={{ taggable_resource_type: TaggableResourceType.Skill }}
     >
