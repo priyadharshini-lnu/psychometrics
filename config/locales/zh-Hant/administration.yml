@@ -2684,6 +2684,7 @@ zh-Hant:
         mask_identity_for_mettl: METTL 的掩模資料
         mask_identity_for_pearson: Pearson 的遮罩資料
         mask_identity_for_saville: 薩維爾的面具資料
+        mask_identity_for_skillvue: Skillvue 的掩膜資料
         privacy_link: 啟用隱私連結
         privacy_link_label: 隱私權連結
         privacy_link_placeholder: 輸入隱私權連結

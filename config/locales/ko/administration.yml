@@ -2684,6 +2684,7 @@ ko:
         mask_identity_for_mettl: METTL용 마스크 데이터
         mask_identity_for_pearson: 피어슨의 마스크 데이터
         mask_identity_for_saville: Saville의 마스크 데이터
+        mask_identity_for_skillvue: 스킬뷰용 마스크 데이터
         privacy_link: 개인정보 링크 사용
         privacy_link_label: 개인정보 보호 링크
         privacy_link_placeholder: 개인정보 보호 링크 입력

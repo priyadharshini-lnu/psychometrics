@@ -2684,6 +2684,7 @@ cs:
         mask_identity_for_mettl: Údaje masky pro METTL
         mask_identity_for_pearson: Údaje o masce pro Pearson
         mask_identity_for_saville: Údaje o masce pro Saville
+        mask_identity_for_skillvue: Údaje o masce pro Skillvue
         privacy_link: Povolení ochrany osobních údajů Odkaz
         privacy_link_label: Odkaz na ochranu osobních údajů
         privacy_link_placeholder: Zadejte odkaz na ochranu osobních údajů

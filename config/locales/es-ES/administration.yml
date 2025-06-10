@@ -2684,6 +2684,7 @@ es-ES:
         mask_identity_for_mettl: Datos de la máscara METTL
         mask_identity_for_pearson: Datos de la máscara de Pearson
         mask_identity_for_saville: Datos de la máscara de Saville
+        mask_identity_for_skillvue: Datos de la máscara Skillvue
         privacy_link: Activar enlace de privacidad
         privacy_link_label: Enlace de privacidad
         privacy_link_placeholder: Introducir enlace de privacidad

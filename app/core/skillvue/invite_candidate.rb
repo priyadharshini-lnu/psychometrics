@@ -74,7 +74,7 @@ module Skillvue
 
     def maskable_identity
       @maskable_identity ||= user_assessment.subject.maskable_identity(
-        mask: true
+        mask: user_assessment.project.mask_identity_for_skillvue?
       )
     end
 

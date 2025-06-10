@@ -4139,7 +4139,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_iiht boolean DEFAULT false,
     mask_identity_for_examus boolean DEFAULT false,
     mask_identity_for_mettl boolean DEFAULT false,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    mask_identity_for_skillvue boolean DEFAULT false
 );
 
 
@@ -16147,6 +16148,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250610070045'),
 ('20250605154240'),
 ('20250602071331'),
 ('20250530095701'),

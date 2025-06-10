@@ -2688,6 +2688,7 @@ zh:
         mask_identity_for_mettl: METTL 的掩码数据
         mask_identity_for_pearson: 皮尔逊的掩码数据
         mask_identity_for_saville: 萨维尔面具数据
+        mask_identity_for_skillvue: Skillvue 的面具数据
         privacy_link: 启用隐私链接
         privacy_link_label: 隐私链接
         privacy_link_placeholder: 输入隐私链接

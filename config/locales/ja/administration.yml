@@ -2684,6 +2684,7 @@ ja:
         mask_identity_for_mettl: METTLのマスクデータ
         mask_identity_for_pearson: ピアソンのマスクデータ
         mask_identity_for_saville: サヴィルのマスクデータ
+        mask_identity_for_skillvue: スキルビューのマスクデータ
         privacy_link: プライバシー・リンクを有効にする
         privacy_link_label: プライバシー・リンク
         privacy_link_placeholder: プライバシーリンク

@@ -2684,6 +2684,7 @@ nl:
         mask_identity_for_mettl: Maskergegevens voor METTL
         mask_identity_for_pearson: Maskergegevens voor Pearson
         mask_identity_for_saville: Maskergegevens voor Saville
+        mask_identity_for_skillvue: Maskergegevens voor Skillvue
         privacy_link: Privacylink inschakelen
         privacy_link_label: Privacy link
         privacy_link_placeholder: Privacylink invoeren

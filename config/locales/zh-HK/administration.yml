@@ -4,3 +4,6 @@ zh-HK:
     norms:
       import:
         download_example_csv: 下載範例 csv
+    projects:
+      privacy_settings:
+        mask_identity_for_skillvue: Skillvue 的掩膜資料

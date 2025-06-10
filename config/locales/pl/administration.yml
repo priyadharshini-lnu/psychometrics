@@ -5,6 +5,9 @@ pl:
     norms:
       import:
         download_example_csv: Pobierz przykładowy plik csv
+    projects:
+      privacy_settings:
+        mask_identity_for_skillvue: Dane maski dla Skillvue
     scheduling:
       assessment_center_form:
         assessment_center_group: Grupa Centrum Oceny
