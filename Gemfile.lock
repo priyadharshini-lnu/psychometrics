@@ -1141,6 +1141,7 @@ DEPENDENCIES
   devise_saml_authenticatable (~> 1.9.1)
   dotiw (~> 5.3.3)
   draper (~> 4.0.2)
+  dry-cli (~> 1.2.0)
   dry-swagger (~> 0.7.2)
   dry-validation (~> 1.10)
   encryptor (~> 3.0.0)
