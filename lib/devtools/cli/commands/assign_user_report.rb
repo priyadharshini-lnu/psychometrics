@@ -92,7 +92,7 @@ module Devtools
             # Use existing user
             user = User.find_by(id: user_input, project_id: campaign.project_id)
             unless user
-              cli_log "\nError: User with ID #{user_input} not found."
+              cli_log "\nError: User with ID #{user_input} not found in project #{campaign.project.name}."
               exit
             end
             cli_log "Selected user: #{user.name} (ID: #{user.id})"
