@@ -7,10 +7,11 @@ module Devtools
         attr_reader :script_id
 
         desc 'Assign report to user in campaign'
-        option :campaign_id, desc: 'Campaign ID where user needs to be assigned report in'
-        option :user_id, desc: 'Existing User ID (leave empty to create new user)'
-        option :report_id, desc: 'Existing Report ID (leave empty to create new report)'
-        option :assessment_id, desc: 'Existing Assessment ID (leave empty to create new assessment)'
+        option :campaign_id,
+               desc: 'Existing Campaign ID where user needs to be added or report needs to be added to user'
+        option :user_id, desc: "Existing User ID (Enter 'n' to create new user)"
+        option :report_id, desc: "Existing Report ID (Enter 'n' to create new report)"
+        option :assessment_id, desc: "Existing Assessment ID (Enter 'n' to create new assessment)"
 
         def call(campaign_id: nil, user_id: nil, report_id: nil, assessment_id: nil, **)
           @script_id = "Scr#{SecureRandom.hex(2)}"
