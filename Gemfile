@@ -2,11 +2,12 @@
 
 source 'https://rubygems.org'
 ruby '3.4.2'
+
+gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
 gem 'rack',                       '~> 2.2.14'
 
 gem 'barnes',                     '~> 0.0.7'
-gem 'bootsnap', '>= 1.12.0', require: false
 gem 'faraday',                    '~> 1.10.0'
 gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.4.0'
