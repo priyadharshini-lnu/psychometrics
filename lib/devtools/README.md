@@ -5,7 +5,7 @@
 ```
 lib/
   devtools/
-    cli.rb       # Main CLI registry
+    cli.rb # Main CLI registry
     cli/
       commands/
         ASSIGN_USER_REPORT_README.md # Documentation
