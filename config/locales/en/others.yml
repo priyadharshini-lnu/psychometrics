@@ -1104,6 +1104,7 @@ en:
       modal:
         delete:
           cancel: Cancel
+          cannot_delete_with_workshops: Cannot delete group containing workshops, delete workshops first
           failed: Failed to delete "%{name}" group, please contact administrator
           ok: Yes, delete
           text: Are you sure you want to delete "%{name}" group?

@@ -1091,6 +1091,7 @@ cs:
       modal:
         delete:
           cancel: Zrušit
+          cannot_delete_with_workshops: Nelze odstranit skupinu obsahující workshopy, nejprve odstraňte workshopy
           failed: Nepodařilo se odstranit skupinu "%{jméno}", kontaktujte prosím správce
           ok: Ano, vymazat
           text: Opravdu chcete odstranit skupinu "%{jméno}"?

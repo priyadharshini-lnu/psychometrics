@@ -1091,6 +1091,7 @@ de:
       modal:
         delete:
           cancel: Abbrechen
+          cannot_delete_with_workshops: Gruppe mit Workshops kann nicht gelöscht werden, löschen Sie zuerst die Workshops
           failed: Gruppe "%{name}" konnte nicht gelöscht werden, bitte kontaktieren Sie den Administrator
           ok: Ja, löschen
           text: Sind Sie sicher, dass Sie die Gruppe "%{name}" löschen wollen?

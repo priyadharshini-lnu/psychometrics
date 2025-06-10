@@ -70,7 +70,7 @@ export const GroupedAssessmentContainer = React.forwardRef(
             }
           } catch (error) {
             message.error(
-              I18n.t('assessments_reports.sequencing.modal.delete.failed', {
+              error || I18n.t('assessments_reports.sequencing.modal.delete.failed', {
                 name: group.name,
               }),
             )

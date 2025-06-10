@@ -1087,6 +1087,7 @@ fr:
       modal:
         delete:
           cancel: Annuler
+          cannot_delete_with_workshops: Impossible de supprimer un groupe contenant des ateliers, il faut d'abord supprimer les ateliers.
           failed: Échec de la suppression du groupe "%{name}", veuillez contacter l'administrateur
           ok: Oui, supprimer
           text: Êtes-vous sûr de vouloir supprimer le groupe "%{name}" ?

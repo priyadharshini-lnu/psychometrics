@@ -1090,6 +1090,7 @@ ja:
       modal:
         delete:
           cancel: キャンセル
+          cannot_delete_with_workshops: ワークショップを含むグループは削除できません。
           failed: name}"グループの削除に失敗しました。
           ok: はい、削除
           text: 本当に"%{name}"グループを削除しますか？

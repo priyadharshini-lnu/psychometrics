@@ -1092,6 +1092,7 @@ es-ES:
       modal:
         delete:
           cancel: Cancelar
+          cannot_delete_with_workshops: No se puede eliminar el grupo que contiene talleres, elimine primero los talleres
           failed: No se ha podido eliminar el grupo "%{name}", póngase en contacto con el administrador
           ok: Sí, borrar
           text: ¿Estás seguro de que quieres eliminar el grupo "%{nombre}"?

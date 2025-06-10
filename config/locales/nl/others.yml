@@ -1086,6 +1086,7 @@ nl:
       modal:
         delete:
           cancel: Annuleren
+          cannot_delete_with_workshops: Kan groep met workshops niet verwijderen, verwijder eerst workshops
           failed: Fout bij het verwijderen van "%{naam}" groep, neem contact op met beheerder
           ok: Ja, verwijderen
           text: Weet je zeker dat je de groep "%{naam}" wilt verwijderen?

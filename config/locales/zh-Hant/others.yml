@@ -1085,6 +1085,7 @@ zh-Hant:
       modal:
         delete:
           cancel: 取消
+          cannot_delete_with_workshops: 無法刪除包含工作坊的群組，請先刪除工作坊
           failed: 刪除「%{name}」群組失敗，請聯絡管理員
           ok: 是，刪除
           text: 您確定要刪除「%{name}」群組嗎？

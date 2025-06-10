@@ -105,6 +105,11 @@ pl:
         frame: Upewnij się, że Twoja twarz pasuje do ramki
         ready: Naciśnij przycisk nagrywania, gdy będziesz gotowy do nagrywania
     wait: Czekaj
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: Nie można usunąć grupy zawierającej warsztaty, najpierw należy usunąć warsztaty
   auth:
     current_password: Aktualne hasło
     current_password_placeholder: Wprowadź bieżące hasło

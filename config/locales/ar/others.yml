@@ -112,6 +112,11 @@ ar:
         frame: الرجاء التأكد من أن وجهك يحاذي الإطار المرسوم على الشاشه
         ready: 'اضغط على زر التسجيل عندما تكون جاهزاً '
     wait: انتظر
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: لا يمكن حذف المجموعة التي تحتوي على ورش عمل، احذف ورش العمل أولاً
   auth:
     current_password: كلمة المرور الحالية
     current_password_placeholder: إدخل كلمة السر الحالية

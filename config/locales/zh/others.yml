@@ -1088,6 +1088,7 @@ zh:
       modal:
         delete:
           cancel: 取消
+          cannot_delete_with_workshops: 无法删除包含讲习班的组，请先删除讲习班
           failed: 删除"%{name}"组失败，请联系管理员
           ok: 是，删除
           text: 您确定要删除"%{name}"组吗？

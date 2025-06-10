@@ -109,6 +109,11 @@ en-US:
         frame: Please make sure that your face aligns with the frame
         ready: Press the Record button when ready to record
     wait: Wait
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: Cannot delete group containing workshops, delete workshops first
   auth:
     current_password: Current Password
     current_password_placeholder: Enter Current Password

@@ -1087,6 +1087,7 @@ it:
       modal:
         delete:
           cancel: Annulla
+          cannot_delete_with_workshops: Impossibile eliminare il gruppo contenente i workshop, eliminare prima i workshop
           failed: Impossibile eliminare il gruppo "%{name}", contattare l'amministratore
           ok: Sì, eliminare
           text: Si è sicuri di voler eliminare il gruppo "%{name}"?
