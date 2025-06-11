@@ -28,7 +28,8 @@ module Api
 
           subject_exists = ::WorkshopSubject.joins(workshop: :campaign_assessment_group).
                            where(workshops: { campaign_assessment_group_id: workshop.campaign_assessment_group_id }).
-                           exists?(campaign_id: _context[:campaign], user_id: value)
+                           exists?(workshop_id: values.dig(:data, :relationships, :workshop, :data,
+                                                           :id), user_id: value)
           key.failure(:already_exists) if subject_exists
         end
       end
