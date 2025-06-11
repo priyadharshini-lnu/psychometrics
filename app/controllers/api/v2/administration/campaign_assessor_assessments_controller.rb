@@ -19,12 +19,6 @@ module Api
     end
 
     def serialized_assessor_user_assessments
-      assessor_user_assessments = UserAssessment.where(
-        relationship_id: Relationship.assessor_relationship.id,
-        subject_id: workshop_subject.user_id,
-        campaign_id: campaign_id
-      )
-
       Panko::ArraySerializer.new(
         assessor_user_assessments,
         each_serializer: ::Administration::Campaigns::WorkshopSubjects::AssessorUserAssessmentSerializer,
@@ -39,7 +33,18 @@ module Api
     end
 
     def campaign_assessor_assessments
-      CampaignAssessorAssessment.where(campaign_id: campaign_id)
+      CampaignAssessorAssessment.
+        joins(:assessment).
+        where(campaign_id: campaign_id).
+        where(assessment: { linked_assessment_id: [nil, *assessor_user_assessments.pluck(:assessment_id)] })
+    end
+
+    def assessor_user_assessments
+      @assessor_user_assessments ||= UserAssessment.where(
+        relationship_id: Relationship.assessor_relationship.id,
+        subject_id: workshop_subject.user_id,
+        campaign_id: campaign_id
+      )
     end
   end
 end

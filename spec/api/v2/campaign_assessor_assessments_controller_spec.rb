@@ -141,21 +141,23 @@ subject_assessor_assessments" do
           create(:user_assessment, relationship: relationship,
                                    subject: workshop_subject.user,
                                    campaign: campaign,
-                                   assessment: assessment,
-                                   meeting_type: :not_available)
+                                   meeting_type: :not_available,
+                                   assessment: linked_assessment)
         end
         let!(:subject_user_assessment) do
           create(:user_assessment, relationship: Relationship.self_relationship,
                                     subject: workshop_subject.user,
                                     evaluator: workshop_subject.user,
-                                    assessment: linked_assessment,
-                                    campaign: campaign)
+                                    assessment: assessment,
+                                    campaign: campaign,
+                                    meeting_type: :not_available)
         end
         let(:workshop_subject_id) { workshop_subject.id.to_s }
         let(:campaign_id) { campaign.id.to_s }
 
         run_test! do |response|
           assessment_response = JSON.parse(response.body)
+
           expect(assessment_response['assessor_user_assessments'][0]).to have_key('id')
           expect(assessment_response['assessor_user_assessments']).to match_array([{
             'id' => assessor_user_assessment.id.to_s,
@@ -169,9 +171,9 @@ subject_assessor_assessments" do
               'name' => assessor_user_assessment.evaluator.name,
               'photo_url' => assessor_user_assessment.evaluator.photo_url
             },
-            'meeting_type' => assessor_user_assessment.meeting_type,
+            'meeting_type' => nil,
             'assessment_id' => assessor_user_assessment.assessment_id,
-            'linked_activity_id' => linked_assessment.id.to_s
+            'linked_activity_id' => ''
           }])
 
           expect(assessment_response['campaign_assessor_assessments']).to match_array([{

@@ -15,7 +15,7 @@ module EndUser
     end
 
     def workshop
-      current_user.last_workshop(object.workshop_invite.campaign_id)
+      current_user.workshop(object.workshop_invite)
     end
 
     def current_user

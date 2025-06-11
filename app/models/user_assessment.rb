@@ -427,5 +427,9 @@ class UserAssessment < ApplicationRecord
       WorkshopInvites::SendEmail.call!(invited_subject)
     end
   end
+
+  def associated_workshop
+    campaign_assessment&.campaign_assessment_group&.workshops
+  end
 end
 # rubocop:enable Metrics/ClassLength
