@@ -370,8 +370,8 @@ en-US:
       update: Update
       upload: Upload
       verify: Verify
+      view_activities: View activities
       view_all_tasks: View all tasks
-      view_details: View Details
     column:
       action: Action
       category: Category
@@ -513,7 +513,7 @@ en-US:
       need_changes: Need to make the changes?
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
-      no_invites_msg: Currently you do not have any invite for this Assessment Center. Once you have received an invite it will appear here and you will be able to book a slot. And the Assessment Center activities will appear once you have booked a slot.
+      no_invites_msg: Currently, you do not have any invites to this Assessment Center. Once you have received an invite, it will appear here and you will be able to book a slot. The activities which are part of this Assessment Center can be viewed by clicking the button below.
       other_invite: See %{count} more invite
       other_invites: See %{count} more invites
       reason: Reason

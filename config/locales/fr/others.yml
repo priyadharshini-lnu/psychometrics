@@ -1644,8 +1644,8 @@ fr:
       upload_file: Télécharger le fichier
       verify: Vérifier
       view: Voir
+      view_activities: Voir les activités
       view_all_tasks: Voir toutes les tâches
-      view_details: Afficher les détails
     column:
       action: Action
       active: Actif
@@ -2171,7 +2171,7 @@ fr:
       neurodivergence_comment_aria_label: Commentaires sur la neurodivergence
       neurodivergence_comment_placeholder: Vos commentaires
       neurodivergence_question: Avez-vous besoin d'aménagements ou d'ajustements raisonnables en raison de besoins particuliers ou de handicaps pour participer pleinement à l'évaluation ?
-      no_invites_msg: Actuellement, vous n'avez pas d'invitation pour ce centre d'évaluation. Lorsque vous aurez reçu une invitation, elle apparaîtra ici et vous pourrez réserver un créneau. Les activités de l'Assessment Center apparaîtront une fois que vous aurez réservé un créneau.
+      no_invites_msg: Actuellement, vous n'avez pas d'invitation pour ce centre d'évaluation. Lorsque vous aurez reçu une invitation, elle apparaîtra ici et vous pourrez réserver un créneau. Les activités qui font partie de ce centre d'évaluation peuvent être consultées en cliquant sur le bouton ci-dessous.
       or: ou
       other_invite: Voir %{count} plus d'invitations
       other_invites: Voir %{count} plus d'invitations

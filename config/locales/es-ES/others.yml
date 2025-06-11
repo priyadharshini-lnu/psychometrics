@@ -1658,8 +1658,8 @@ es-ES:
       upload_file: Cargar archivo
       verify: Verifique
       view: Ver
+      view_activities: Ver actividades
       view_all_tasks: Ver todas las tareas
-      view_details: Ver detalles
     column:
       action: Acción
       active: Activo
@@ -2184,7 +2184,7 @@ es-ES:
       neurodivergence_comment_aria_label: Comentarios sobre la neurodivergencia
       neurodivergence_comment_placeholder: Sus comentarios
       neurodivergence_question: "¿Necesita adaptaciones o ajustes para participar en la evaluación debido a necesidades especiales o a una discapacidad?"
-      no_invites_msg: Actualmente no tiene ninguna invitación para este Centro de Evaluación. Una vez que haya recibido una invitación, aparecerá aquí y podrá reservar una plaza. Una vez que haya reservado una plaza, aparecerán las actividades del Centro de Evaluación.
+      no_invites_msg: Actualmente no tiene ninguna invitación para este Centro de Evaluación. Cuando reciba una invitación, aparecerá aquí y podrá reservar una plaza. Las actividades que forman parte de este Centro de Evaluación pueden consultarse haciendo clic en el botón de abajo.
       or: o
       other_invite: Ver %{count} invitación más
       other_invites: Ver %{count} invitaciones más

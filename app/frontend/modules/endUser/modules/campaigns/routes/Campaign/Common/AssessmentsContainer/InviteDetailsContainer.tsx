@@ -31,16 +31,20 @@ export const InviteDeatilsContainer = ({
   const otherInvitesCount = totalInvites - 1
   const workshopMeetingLink = bookingDetails?.meetingLink || ''
 
+  const navigateToAssessmentCenterDetails = () => {
+    navigate(`/campaigns/${campaignId}?assessmentCenterId=${groupId}`)
+  }
+
   const detailsLink = (
     <Button
       id={`ac-details-btn-${groupId}`}
       className="ta-c mt-2"
       size="small"
       type="primary"
-      onClick={() => navigate(`/campaigns/${campaignId}?assessmentCenterId=${groupId}`)}
+      onClick={navigateToAssessmentCenterDetails}
       aria-labelledby={`${groupTitleId} ac-details-btn-${groupId}`}
     >
-      {I18n.t('common.actions.view_details')}
+      {I18n.t('common.actions.view_activities')}
       <DirectionalArrowIcon className="fs-12" />
     </Button>
   )
@@ -98,6 +102,8 @@ export const InviteDeatilsContainer = ({
             className={styles.inviteCard}
             hideTitleHighlighter
             onButtonClick={() => navigate(`/invites/${inviteDetails.id}/details?type=invite`)}
+            secondaryBtnText={I18n.t('common.actions.view_activities')}
+            onSecondaryBtnClick={navigateToAssessmentCenterDetails}
           />
           {totalInvites > 1 ? (
             <Button
@@ -113,7 +119,10 @@ export const InviteDeatilsContainer = ({
           ) : null}
         </Space>
       ) : (
-        <p className="ta-c">{I18n.t('frontend.bookings.no_invites_msg')}</p>
+        <>
+          <p>{I18n.t('frontend.bookings.no_invites_msg')}</p>
+          {detailsLink}
+        </>
       )}
     </>
   )
