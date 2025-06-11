@@ -361,7 +361,6 @@ class VideoRecorder extends Component {
     if (preview) {
       this.handleRecordingSaved()
     } else if (this.urlDetails) {
-      this.urlDetails.checksum = await this.calculateMD5Checksum()
       this.uploadLastPart()
       this.setState({ recordingState: 'saving' })
       markQuestionInProgress(model.id, 'saving')
@@ -421,6 +420,7 @@ class VideoRecorder extends Component {
 
   completeMediaUpload = (uploadPartsArray) => {
     const { mediaUrl } = this.props
+    const checksum = this.calculateMD5Checksum()
     axiosInstance.put(
       `${mediaUrl}/complete_multipart_upload`,
       {
@@ -429,7 +429,7 @@ class VideoRecorder extends Component {
         asset_key: this.urlDetails.asset_key,
         upload_id: this.urlDetails.upload_id,
         file_size: this.player.recordedData.size,
-        checksum: this.urlDetails.checksum,
+        checksum,
         content_type: this.supportedMimeType,
       },
       {
