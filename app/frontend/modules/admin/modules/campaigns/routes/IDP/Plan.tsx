@@ -264,20 +264,22 @@ export const Plan = () => {
 
   const operations = (
     <Flex gap={8}>
-      {editMode ? (
-        <Button
-          type="primary"
-          onClick={handleSave}
-        >
-          {I18n.t('common.actions.save')}
-        </Button>
-      ) : (
-        <Button
-          type="primary"
-          onClick={() => setEditMode(true)}
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>
+      {tab === 'list' && (
+        editMode ? (
+          <Button
+            type="primary"
+            onClick={handleSave}
+          >
+            {I18n.t('common.actions.save')}
+          </Button>
+        ) : (
+          <Button
+            type="primary"
+            onClick={() => setEditMode(true)}
+          >
+            {I18n.t('common.actions.edit')}
+          </Button>
+        )
       )}
       {
         userIdpPlanData[0]?.status === USER_IDP_PLAN_STATUS.IN_PROGRESS && (
@@ -355,7 +357,12 @@ export const Plan = () => {
   ) : (
     <>
       <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
-      <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
+      <Tabs
+        tabBarExtraContent={tab !== 'reflective_questions'
+          ? operations : null}
+        activeKey={tab}
+        onChange={tab => changeTab(tab)}
+      >
         <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
           <DevelopmentActionListView
             editMode={editMode}
