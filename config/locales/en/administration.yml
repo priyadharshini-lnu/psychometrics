@@ -890,7 +890,7 @@ en:
           approvers: Approvers
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
-          do_not_send_notifications: Do Not Send Notifications
+          do_not_send_notifications: Do not send emails to users[QC, Approvers & Approval notification]
           modal_title: Report Approval Settings
           qc_users: QC Users
           remove_modal_success: 'Approval setting for report id: %{reportId} was deleted successfully '
