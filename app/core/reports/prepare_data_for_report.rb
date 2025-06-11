@@ -29,7 +29,8 @@ module Reports
                   context: {
                     piped_text_context: piped_text_context, membership: membership,
                     module_overrides: user_report&.text_module_overrides,
-                    lang: @lang
+                    lang: @lang,
+                    user_results: user_report&.user_results(view_report_as: @current_user)
                   }
                 ).serialize(report).to_json,
                 locales: translations(piped_text_context).to_json,
