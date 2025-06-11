@@ -2,9 +2,17 @@
 pl:
   administration:
     actions: Actions
+    common:
+      minute: minuta
     norms:
       import:
         download_example_csv: Pobierz przykładowy plik csv
+    project_tabs:
+      webhooks:
+        form:
+          acceptable_rate_limit:
+            label: Dopuszczalny limit żądań
+            request_per: żądań na
     scheduling:
       assessment_center_form:
         assessment_center_group: Grupa Centrum Oceny

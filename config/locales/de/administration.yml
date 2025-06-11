@@ -1470,6 +1470,7 @@ de:
       cancel: Abbrechen
       disabled: Diasbled
       enabled: Aktiviert
+      minute: Minute
       next: Weiter
       reset: Zurücksetzen
       save: Speichern Sie
@@ -2528,6 +2529,9 @@ de:
             key: senden_test
             label: Test senden
         form:
+          acceptable_rate_limit:
+            label: Zulässiges Antragslimit
+            request_per: Anfragen pro
           active:
             label: Aktiv
             name: aktiv

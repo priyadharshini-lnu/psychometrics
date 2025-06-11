@@ -1472,6 +1472,7 @@ zh:
       cancel: 取消
       disabled: Diasbled
       enabled: 已启用
+      minute: 分钟
       next: 下一页
       reset: 重置
       save: 节省
@@ -2532,6 +2533,9 @@ zh:
             key: 发送测试
             label: 发送测试
         form:
+          acceptable_rate_limit:
+            label: 可接受的申请上限
+            request_per: 每
           active:
             label: 活跃
             name: 活动

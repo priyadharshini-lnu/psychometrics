@@ -1470,6 +1470,7 @@ fr:
       cancel: Annuler
       disabled: Diasbled
       enabled: Activé
+      minute: minute
       next: Suivant
       reset: Remise à zéro
       save: Économiser
@@ -2528,6 +2529,9 @@ fr:
             key: envoyer_tester
             label: Envoyer le test
         form:
+          acceptable_rate_limit:
+            label: Limite acceptable de la demande
+            request_per: demandes par
           active:
             label: Actif
             name: actif

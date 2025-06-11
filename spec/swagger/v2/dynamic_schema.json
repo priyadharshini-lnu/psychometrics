@@ -844,7 +844,8 @@
                     "pearson",
                     "iiht",
                     "mettl",
-                    "simulation"
+                    "simulation",
+                    "skillvue"
                   ],
                   "nullable": false
                 },
@@ -1442,7 +1443,8 @@
                   "pearson",
                   "iiht",
                   "mettl",
-                  "simulation"
+                  "simulation",
+                  "skillvue"
                 ],
                 "nullable": false
               },
@@ -8422,13 +8424,23 @@
               "active": {
                 "type": "boolean",
                 "nullable": false
+              },
+              "rate_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "rate_limit_period": {
+                "type": "integer",
+                "nullable": false
               }
             },
             "required": [
               "url",
               "description",
               "auth_type",
-              "active"
+              "active",
+              "rate_limit",
+              "rate_limit_period"
             ],
             "nullable": false
           }
@@ -8491,13 +8503,23 @@
               "active": {
                 "type": "boolean",
                 "nullable": false
+              },
+              "rate_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "rate_limit_period": {
+                "type": "integer",
+                "nullable": false
               }
             },
             "required": [
               "url",
               "description",
               "auth_type",
-              "active"
+              "active",
+              "rate_limit",
+              "rate_limit_period"
             ],
             "nullable": false
           }
@@ -8561,6 +8583,14 @@
               },
               "active": {
                 "type": "boolean",
+                "nullable": false
+              },
+              "rate_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "rate_limit_period": {
+                "type": "integer",
                 "nullable": false
               }
             },
@@ -8644,13 +8674,23 @@
                 "active": {
                   "type": "boolean",
                   "nullable": false
+                },
+                "rate_limit": {
+                  "type": "integer",
+                  "nullable": false
+                },
+                "rate_limit_period": {
+                  "type": "integer",
+                  "nullable": false
                 }
               },
               "required": [
                 "url",
                 "description",
                 "auth_type",
-                "active"
+                "active",
+                "rate_limit",
+                "rate_limit_period"
               ],
               "nullable": false
             }
@@ -13489,6 +13529,10 @@
               "cancellation_lead_time": {
                 "type": "integer",
                 "nullable": false
+              },
+              "campaign_assessment_group_id": {
+                "type": "string",
+                "nullable": false
               }
             },
             "required": [
@@ -13497,7 +13541,8 @@
               "workshop_assessors_ids",
               "workshop_managers_ids",
               "scheduling_lead_time",
-              "cancellation_lead_time"
+              "cancellation_lead_time",
+              "campaign_assessment_group_id"
             ],
             "nullable": false
           }

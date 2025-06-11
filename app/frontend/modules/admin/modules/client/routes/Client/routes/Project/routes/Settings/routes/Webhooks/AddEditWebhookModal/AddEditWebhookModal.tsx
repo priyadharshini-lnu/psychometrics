@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {
-  Form, Input, Checkbox, Radio, Switch, Row, Col,
+  Form, Input, InputNumber, Space, Checkbox, Radio, Switch, Row, Col,
+  Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
@@ -60,6 +61,9 @@ export const AddEditWebhookModal: React.FC<Props> = ({
           createResource: values => addWebhook({ ...values, projectId }),
           updateResource: updateWebhook,
         }}
+        formProps={{
+          initialValues: { rateLimit: 60, rateLimitPeriod: 1 },
+        }}
       >
         {() => (
           <>
@@ -77,6 +81,30 @@ export const AddEditWebhookModal: React.FC<Props> = ({
             >
               <Input name="webhook_url" />
             </Form.Item>
+
+            <Typography.Paragraph strong>
+              {I18n.t('administration.project_tabs.webhooks.form.acceptable_rate_limit.label')}
+            </Typography.Paragraph>
+            <Space align="baseline">
+              <Form.Item
+                name="rateLimit"
+                layout="horizontal"
+                colon={false}
+              >
+                <InputNumber />
+              </Form.Item>
+              <Form.Item
+                name="rateLimitPeriod"
+                label={I18n.t('administration.project_tabs.webhooks.form.acceptable_rate_limit.request_per')}
+                labelAlign="left"
+                layout="horizontal"
+                colon={false}
+              >
+                <InputNumber />
+              </Form.Item>
+              <Typography.Text strong>{I18n.t('administration.common.minute')}</Typography.Text>
+            </Space>
+
             <Form.Item
               name={I18n.t('administration.project_tabs.webhooks.form.topics.name')}
               label={I18n.t('administration.project_tabs.webhooks.form.topics.label')}

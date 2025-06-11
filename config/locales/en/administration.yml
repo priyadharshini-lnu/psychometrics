@@ -1490,6 +1490,7 @@ en:
       enabled: Enabled
       import:
         failure_msg: Error while importing file.
+      minute: minute
       next: Next
       reset: Reset
       save: Save
@@ -2611,6 +2612,9 @@ en:
             key: send_test
             label: Send Test
         form:
+          acceptable_rate_limit:
+            label: Acceptable request limit
+            request_per: requests per
           active:
             label: Active
             name: active

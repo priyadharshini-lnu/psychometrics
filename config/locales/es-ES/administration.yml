@@ -1470,6 +1470,7 @@ es-ES:
       cancel: Cancelar
       disabled: Diasbled
       enabled: Activado
+      minute: minuto
       next: Siguiente
       reset: Restablecer
       save: Guardar
@@ -2528,6 +2529,9 @@ es-ES:
             key: enviar_prueba
             label: Enviar prueba
         form:
+          acceptable_rate_limit:
+            label: Límite de solicitud aceptable
+            request_per: solicitudes por
           active:
             label: Activo
             name: activo

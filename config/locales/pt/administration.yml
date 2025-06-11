@@ -1470,6 +1470,7 @@ pt:
       cancel: Cancelar
       disabled: Diasbled
       enabled: Ativado
+      minute: minuto
       next: Seguinte
       reset: Reiniciar
       save: Guardar
@@ -2528,6 +2529,9 @@ pt:
             key: enviar_teste
             label: Enviar teste
         form:
+          acceptable_rate_limit:
+            label: Limite de pedidos aceitável
+            request_per: pedidos por
           active:
             label: Ativo
             name: ativo
