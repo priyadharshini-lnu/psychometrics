@@ -2,6 +2,7 @@ import { USER_IDP_PLAN_STATUS } from 'components/IdpShared/constants'
 import { Skill, DevelopmentAction } from 'components/IdpShared/DevelopmentActions'
 import _ from 'lodash'
 import ApiAction from 'interfaces/ApiAction'
+import { getRequestQuery, updateUserIdpSkillComments } from './utils'
 
 
 export const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
@@ -19,6 +20,8 @@ const UPDATE_DEVELOPMENT_ACTION_PROGRESS = 'IPD/MY_PLAN/UPDATE_DEVELOPMENT_ACTIO
 const UPDATE_USER_IDP_SKILL = 'IDP/MY_PLAN/UPDATE_USER_IDP_SKILL'
 const SAVE_USER_IDP_SKILLS = 'IDP/MY_PLAN/SAVE_USER_IDP_SKILLS'
 const FETCH_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_IDP_SKILLS'
+const FETCH_USER_IDP_COMMENTS = 'IDP/MY_PLAN/FETCH_USER_IDP_COMMENTS'
+const ADD_USER_IDP_COMMENT = 'IDP/MY_PLAN/ADD_USER_IDP_COMMENT'
 
 interface UserIdpPlan {
   status: string | null;
@@ -30,6 +33,9 @@ interface UserIdpPlan {
   AIGeneratedDevelopmentActions: Record<number, Pick<DevelopmentAction, 'description' | 'learningStyle'>[]>;
   skills: Skill[];
   user: object;
+  unreadCommentsCount: number;
+  userIdpComments: object[];
+  userIdpCommentsTotalCount: number;
 }
 
 interface GenerateDevelopmentActionsByAIPayload {
@@ -37,6 +43,25 @@ interface GenerateDevelopmentActionsByAIPayload {
   generateMore: boolean;
   generatedActions: DevelopmentAction[];
   lang?: string;
+}
+
+export interface UserIdpCommentPayload {
+  resourceId: string | null;
+  resourceType: string | null;
+  content: string;
+}
+
+export interface UserIdpCommentsQuery {
+  page: number;
+  perPage?: number;
+  loadReplies?: boolean;
+  unreadByUser?: boolean;
+  q?: {
+    resourceIdEq?: string;
+    resourceTypeEq?: string;
+    resolvedEq?: boolean;
+    s?: string;
+  }
 }
 
 type UserIdpPlanStatus = typeof USER_IDP_PLAN_STATUS[keyof typeof USER_IDP_PLAN_STATUS];
@@ -91,6 +116,24 @@ export const updateDevelopmentActionProgressInPlan = (
     camelize: false,
     method: 'put',
     body: developmentAction,
+  },
+})
+
+export const fetchUserIdpComments = (idpUserId: string, query: UserIdpCommentsQuery = { page: 1 }) => ({
+  type: FETCH_USER_IDP_COMMENTS,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments`,
+    body: query,
+    method: 'get',
+  },
+})
+
+export const addUserIdpComment = (idpUserId: string, payload: UserIdpCommentPayload) => ({
+  type: ADD_USER_IDP_COMMENT,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments`,
+    method: 'post',
+    body: payload,
   },
 })
 
@@ -182,6 +225,7 @@ export const HANDLERS = {
       skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
       user: userIdpPlan.user,
+      unreadCommentsCount: userIdpPlan.unreadCommentsCount,
     }
   },
   [FETCH_DIRECT_REPORTS]: (state, action) => ({
@@ -295,6 +339,45 @@ export const HANDLERS = {
       userIdpSkills,
     }
   },
+  [FETCH_USER_IDP_COMMENTS]: (state, action) => {
+    const { data: comments, meta } = action.response
+    const { resourceId, resourceType } = getRequestQuery(action)
+
+    const newState = {
+      ...state,
+      userIdpComments: comments,
+      userIdpCommentsTotalCount: meta.count,
+    }
+
+    if (resourceId && resourceType) {
+      newState.userIdpSkills = updateUserIdpSkillComments(
+        state,
+        resourceId,
+        existingComments => [...existingComments, ...comments],
+      )
+    }
+
+    return newState
+  },
+  [ADD_USER_IDP_COMMENT]: (state, action) => {
+    const newComment = action.response.data
+    const { resourceId, resourceType } = newComment
+
+    const newState = {
+      ...state,
+      userIdpComments: [...(state.userIdpComments || []), newComment],
+    }
+
+    if (resourceId && resourceType) {
+      newState.userIdpSkills = updateUserIdpSkillComments(
+        state,
+        resourceId,
+        existingComments => [...existingComments, newComment],
+      )
+    }
+
+    return newState
+  },
 }
 
 export const defaultState: UserIdpPlan = {
@@ -307,6 +390,9 @@ export const defaultState: UserIdpPlan = {
   userIdpSkills: [],
   skills: [],
   user: {},
+  unreadCommentsCount: 0,
+  userIdpComments: [],
+  userIdpCommentsTotalCount: 0,
 }
 
 export default function reducer (state = defaultState, action) {

@@ -1029,6 +1029,15 @@ as: :simulation_progress_notification
         collection do
           get :summary
         end
+
+        member do
+          resources :comments, only: %i[index create update show], controller: 'user_idp_comments' do
+            member do
+              patch :resolve
+              patch :unresolve
+            end
+          end
+        end
       end
     end
 

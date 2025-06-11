@@ -19,6 +19,7 @@ module EndUser
           data: EndUser::IdpPlanSerializer.new(
             context: {
               skill_gap_report_available: @skill_gap_report_available,
+              current_user: current_user,
               reflection_answers: user_reflection_question_answers
             }
           ).serialize(@user_idp_plan)

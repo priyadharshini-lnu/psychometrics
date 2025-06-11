@@ -16,6 +16,7 @@ class UserIdpPlan < ApplicationRecord
   has_many :communication_emails, through: :communication_email_resources
   has_one :license_usage, as: :consumer
   has_many :idp_report_pdfs, dependent: :destroy
+  has_many :user_idp_comments, dependent: :destroy
   has_many :reflection_questions, through: :idp_template
   has_many :user_reflection_question_answers, dependent: :destroy
 
@@ -72,6 +73,10 @@ class UserIdpPlan < ApplicationRecord
       user_email: user.email,
       user_name: user.decorate.full_name
     }
+  end
+
+  def unread_comments_count_by(user)
+    user_idp_comments.unread_by_user(user).count
   end
 
   def campaign_user

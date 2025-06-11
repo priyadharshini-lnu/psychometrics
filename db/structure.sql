@@ -6524,6 +6524,47 @@ ALTER SEQUENCE public.user_bookings_id_seq OWNED BY public.user_bookings.id;
 
 
 --
+-- Name: user_idp_comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_idp_comments (
+    id bigint NOT NULL,
+    content text NOT NULL,
+    user_idp_plan_id bigint,
+    created_by_id bigint,
+    resource_type character varying,
+    resource_id bigint,
+    parent_id bigint,
+    resolved_by_id bigint,
+    resolved_at timestamp(6) without time zone,
+    read_by_user_ids integer[] DEFAULT '{}'::integer[] NOT NULL,
+    replies_count integer DEFAULT 0 NOT NULL,
+    edited boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_idp_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_idp_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_idp_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_idp_comments_id_seq OWNED BY public.user_idp_comments.id;
+
+
+--
 -- Name: user_idp_development_actions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8692,6 +8733,13 @@ ALTER TABLE ONLY public.user_bookings ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: user_idp_comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments ALTER COLUMN id SET DEFAULT nextval('public.user_idp_comments_id_seq'::regclass);
+
+
+--
 -- Name: user_idp_development_actions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10280,6 +10328,14 @@ ALTER TABLE ONLY public.user_availability_days
 
 ALTER TABLE ONLY public.user_bookings
     ADD CONSTRAINT user_bookings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_idp_comments user_idp_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT user_idp_comments_pkey PRIMARY KEY (id);
 
 
 --
@@ -13108,6 +13164,62 @@ CREATE INDEX index_user_bookings_on_user_id ON public.user_bookings USING btree 
 
 
 --
+-- Name: index_user_idp_comments_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_created_at ON public.user_idp_comments USING btree (created_at);
+
+
+--
+-- Name: index_user_idp_comments_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_created_by_id ON public.user_idp_comments USING btree (created_by_id);
+
+
+--
+-- Name: index_user_idp_comments_on_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_parent_id ON public.user_idp_comments USING btree (parent_id);
+
+
+--
+-- Name: index_user_idp_comments_on_read_by_user_ids; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_read_by_user_ids ON public.user_idp_comments USING gin (read_by_user_ids);
+
+
+--
+-- Name: index_user_idp_comments_on_resolved_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_resolved_by_id ON public.user_idp_comments USING btree (resolved_by_id);
+
+
+--
+-- Name: index_user_idp_comments_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_resource ON public.user_idp_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_user_idp_comments_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_user_idp_plan_id ON public.user_idp_comments USING btree (user_idp_plan_id);
+
+
+--
+-- Name: index_user_idp_comments_on_user_idp_plan_id_and_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_user_idp_plan_id_and_created_by_id ON public.user_idp_comments USING btree (user_idp_plan_id, created_by_id);
+
+
+--
 -- Name: index_user_idp_development_actions_on_development_action_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14606,6 +14718,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 
 --
+-- Name: user_idp_comments fk_rails_625bce6b01; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_625bce6b01 FOREIGN KEY (resolved_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: user_reports fk_rails_6280270170; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14651,6 +14771,14 @@ ALTER TABLE ONLY public.workshop_managers
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT fk_rails_667cccdf0c FOREIGN KEY (campaign_factor_group_id) REFERENCES public.campaign_factor_groups(id);
+
+
+--
+-- Name: user_idp_comments fk_rails_67fb1b4907; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_67fb1b4907 FOREIGN KEY (parent_id) REFERENCES public.user_idp_comments(id) ON DELETE CASCADE;
 
 
 --
@@ -14747,6 +14875,14 @@ ALTER TABLE ONLY public.workshop_invite_logs
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_6ec04ddf91 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_idp_comments fk_rails_6fb8f1ccac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_6fb8f1ccac FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id) ON DELETE CASCADE;
 
 
 --
@@ -14875,6 +15011,14 @@ ALTER TABLE ONLY public.mettl_assessments
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_819dfa2a29 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_idp_comments fk_rails_824db9755d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_824db9755d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -16162,6 +16306,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250530095701'),
 ('20250528132845'),
 ('20250528062059'),
+('20250523071937'),
 ('20250522122128'),
 ('20250522061329'),
 ('20250521193031'),
@@ -16975,4 +17120,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

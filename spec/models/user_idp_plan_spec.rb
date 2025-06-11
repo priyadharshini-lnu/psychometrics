@@ -229,6 +229,31 @@ RSpec.describe UserIdpPlan, type: :model do
     end
   end
 
+  describe '#unread_comments_count_by' do
+    let(:user) { create(:user) }
+    let(:campaign_user) { create(:campaign_user, user: user) }
+    let(:user_idp_plan) do
+      create(:user_idp_plan, user: user, campaign_id: campaign_user.campaign_id)
+    end
+    let!(:another_user) { create(:user) }
+    let!(:comment1) { create(:user_idp_comment, user_idp_plan: user_idp_plan, created_by: user) }
+    let!(:comment2) { create(:user_idp_comment, user_idp_plan: user_idp_plan, created_by: user) }
+    let!(:read_comment_by_another_user) do
+      create(:user_idp_comment, user_idp_plan: user_idp_plan, created_by: user, read_by_user_ids: [another_user.id])
+    end
+    it 'returns the count of unread comments for the user' do
+      expect(user_idp_plan.reload.unread_comments_count_by(another_user)).to eq(2)
+    end
+
+    context 'when some unread comments have replies' do
+      let!(:reply1) { create(:user_idp_comment, user_idp_plan: user_idp_plan, created_by: user, parent: comment1) }
+
+      it 'returns total accumulation of unread comments and unread replies' do
+        expect(user_idp_plan.reload.unread_comments_count_by(another_user)).to eq(3)
+      end
+    end
+  end
+
   describe '#editable?' do
     let(:user_idp_plan) { create(:user_idp_plan) }
 
@@ -251,6 +276,7 @@ RSpec.describe UserIdpPlan, type: :model do
       end
     end
   end
+
   describe '#manager_editable?' do
     let(:user_idp_plan) { create(:user_idp_plan) }
 

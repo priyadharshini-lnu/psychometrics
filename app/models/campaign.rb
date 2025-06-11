@@ -77,6 +77,7 @@ class Campaign < ApplicationRecord
   has_many :report_approval_settings, dependent: :destroy
   has_many :report_approvals, dependent: :destroy
   has_many :communications, dependent: :destroy
+  has_many :user_idp_plans
 
   accepts_nested_attributes_for :campaign_options
 

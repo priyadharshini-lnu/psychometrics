@@ -1,0 +1,6 @@
+body
+  - root_url = root_url(Utility::Url.get_params(subdomain: @user.project.try(:subdomain)))
+  - dashboard_url = "#{root_url}idp/my_plan"
+  - dashboard_link = link_to t("mailer.idp.user_unread_comments.dashboard_link"), dashboard_url, target: :blank
+
+  p = simple_format(t("mailer.idp.user_unread_comments.body", name: @user.decorate.display_name, dashboard_link: dashboard_link))
