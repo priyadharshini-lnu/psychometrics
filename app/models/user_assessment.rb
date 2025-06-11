@@ -383,7 +383,9 @@ class UserAssessment < ApplicationRecord
     simulation_user_assessment.update!(content_variation_id: content_variation_id)
   end
 
-  private
+  def associated_workshops
+    campaign_assessment&.campaign_assessment_group&.workshops
+  end
 
   def saville_norm_name
     Settings.providers.saville.norms.
@@ -426,10 +428,6 @@ class UserAssessment < ApplicationRecord
       find_each do |invited_subject|
       WorkshopInvites::SendEmail.call!(invited_subject)
     end
-  end
-
-  def associated_workshop
-    campaign_assessment&.campaign_assessment_group&.workshops
   end
 end
 # rubocop:enable Metrics/ClassLength

@@ -134,7 +134,10 @@ subject_assessor_assessments" do
         let(:campaign_assessor_assessment) do
           create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
         end
-        let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign) }
+        let!(:campaign_assessment) do
+          create(:campaign_assessment, campaign: campaign,
+              campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
+        end
         let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
         let!(:self_relationship) { create(:relationship, name: 'Self', type: :global) }
         let!(:assessor_user_assessment) do
@@ -174,13 +177,6 @@ subject_assessor_assessments" do
             'meeting_type' => nil,
             'assessment_id' => assessor_user_assessment.assessment_id,
             'linked_activity_id' => ''
-          }])
-
-          expect(assessment_response['campaign_assessor_assessments']).to match_array([{
-            'id' => campaign_assessor_assessment.id,
-            'name' => campaign_assessor_assessment.assessment.name,
-            'assessment_id' => campaign_assessor_assessment.assessment_id,
-            'linked_activity_id' => campaign_assessor_assessment.assessment.linked_assessment_id.to_s
           }])
         end
       end

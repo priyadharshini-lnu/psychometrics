@@ -36,7 +36,7 @@ module Api
       CampaignAssessorAssessment.
         joins(:assessment).
         where(campaign_id: campaign_id).
-        where(assessment: { linked_assessment_id: [nil, *assessor_user_assessments.pluck(:assessment_id)] })
+        where(assessment: { linked_assessment_id: [nil, *user_assessments.pluck(:assessment_id)] })
     end
 
     def assessor_user_assessments
@@ -45,6 +45,14 @@ module Api
         subject_id: workshop_subject.user_id,
         campaign_id: campaign_id
       )
+    end
+
+    def user_assessments
+      @user_assessments = UserAssessment.with_campaign_assessments.
+                          where(campaign_assessments: {
+                            campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id
+                          }).
+                          where(subject_id: workshop_subject.user_id, campaign_id: campaign_id)
     end
   end
 end
