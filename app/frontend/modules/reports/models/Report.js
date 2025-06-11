@@ -49,8 +49,6 @@ export const SOURCE_TYPES = {
     { value: 'Factor', label: 'Factors', condition: true },
   ],
   [AGILE]: [
-    { value: 'Question', label: 'Question', condition: false },
-    { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
     { value: 'Factor', label: 'Factors', condition: true },
   ],
   [HOGAN]: [
