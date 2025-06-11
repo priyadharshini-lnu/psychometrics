@@ -7,7 +7,7 @@ import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import Presets from '~/modules/reports/consts/Presets'
 import AppStore from '~/modules/reports/store/AppStore'
 import {
-  HOGAN, PSYCHOMETRIC, SAVILLE,
+  AGILE, HOGAN, PSYCHOMETRIC, SAVILLE,
 } from '~/modules/reports/models/Assessment'
 import rstore from '~/modules/reports/store'
 import { UPDATE_MODULE } from '~/modules/reports/core/builder/module/actions'
@@ -210,7 +210,7 @@ _.extend(Module.prototype, {
   },
 
   canShowDataSet (type, category) {
-    if ([HOGAN, SAVILLE, PSYCHOMETRIC].includes(category)) { return true }
+    if ([HOGAN, SAVILLE, PSYCHOMETRIC, AGILE].includes(category)) { return true }
     if (this.props.sourceType === 'ResultText') {
       if (['Question', 'Factor', 'EmbeddedData'].includes(type)) { return false }
     }
