@@ -3860,6 +3860,7 @@ de:
     not_in_future: Das ausgewählte Datum sollte nicht in der Zukunft liegen
     not_in_past: Das ausgewählte Datum sollte nicht in der Vergangenheit liegen
     number: Ihre Antwort muss eine Zahl sein
+    photo: erforderlich
     range: Bitte wählen Sie mindestens %{min} und nicht mehr als %{max} Auswahlmöglichkeit(en).
     required: Bitte beantworten Sie diese Frage
     text: Ihre Antwort darf keine Zahlen enthalten

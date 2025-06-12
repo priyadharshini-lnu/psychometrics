@@ -1194,6 +1194,7 @@ pl:
     must_rank_between: Przypisz wartość od %{min} do %{max} dla każdego elementu. Wartości nie mogą się powtarzać.
     must_select: Wybierz spośród opcji od %{min} do %{max}
     number: Twoja odpowiedź musi być liczbą
+    photo: wymagany
     range: Prosimy o udzielenie odpowiedzi na co najmniej %{min} i nie więcej niż %{max} wyborów.
     required: Proszę o odpowiedź na to pytanie
     text: Odpowiedź nie może zawierać liczb

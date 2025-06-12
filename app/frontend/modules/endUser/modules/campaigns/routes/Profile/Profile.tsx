@@ -218,7 +218,7 @@ function ProfileComponent ({
                         validateStatus={errors?.photo ? 'error' : ''}
                         name="photo"
                         rules={[
-                          { required: requiredFields.photo, message: I18n.t('simple_form.required.text') },
+                          { required: requiredFields.photo, message: I18n.t('validations.photo') },
                         ]}
                       >
                         <Upload

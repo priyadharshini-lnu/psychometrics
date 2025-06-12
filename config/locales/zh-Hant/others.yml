@@ -3831,6 +3831,7 @@ zh-Hant:
     not_in_future: 所選日期不應是未來日期
     not_in_past: 選取的日期不應在過去
     number: 您的回應必須是一個數字
+    photo: 所需
     range: 請回答至少 %{min}，且不超過 %{max} 的選項。
     required: 請回答這個問題
     text: 您的回覆不得包含數字

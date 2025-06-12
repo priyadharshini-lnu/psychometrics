@@ -3859,6 +3859,7 @@ zh:
     not_in_future: 所选日期不应是未来日期
     not_in_past: 所选日期不应在过去
     number: 你的回答必须是数字
+    photo: 所需
     range: 请至少回答 %{min} 个且不超过 %{max} 个选项。
     required: 请回答此问题
     text: 你的回答不得包含数字

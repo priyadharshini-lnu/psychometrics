@@ -3864,6 +3864,7 @@ cs:
     not_in_future: Vybrané datum by nemělo být v budoucnosti
     not_in_past: Vybrané datum by nemělo být v minulosti
     number: Vaše odpověď musí být číslo
+    photo: požadované
     range: 'Odpovězte alespoň na %{min} a ne více než na tolik možností: %{max}.'
     required: Odpovězte na tuto otázku
     text: Vaše odpověď nesmí obsahovat čísla

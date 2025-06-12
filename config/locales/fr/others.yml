@@ -3854,6 +3854,7 @@ fr:
     not_in_future: La date sélectionnée ne doit pas être dans le futur
     not_in_past: La date sélectionnée ne doit pas être dans le passé
     number: Votre réponse doit être un nombre
+    photo: requis
     range: Veuillez répondre à un minimum de %{min} et à un maximum de %{max} de choix.
     required: Veuillez répondre à cette question
     text: Votre réponse ne doit pas contenir de chiffres

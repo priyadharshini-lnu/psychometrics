@@ -3725,6 +3725,7 @@ nl:
     not_in_future: De geselecteerde datum mag niet in de toekomst liggen
     not_in_past: De geselecteerde datum mag niet in het verleden liggen
     number: Je antwoord moet een getal zijn
+    photo: vereist
     range: Beantwoord ten minste %{min} en niet meer dan %{max} keuze(s).
     required: Beantwoord deze vraag
     text: Je antwoord mag geen getallen bevatten

@@ -3859,6 +3859,7 @@ es-ES:
     not_in_future: La fecha seleccionada no debe ser futura
     not_in_past: La fecha seleccionada no debe estar en el pasado
     number: Su respuesta debe ser una cifra
+    photo: obligatorio
     range: Responda al menos %{min} opción(es) y no más de %{max}.
     required: Responda esta pregunta
     text: Su respuesta no debe contener cifras

@@ -1201,6 +1201,7 @@ zh-HK:
     must_rank_between: 請為每個項目分配從 %{min} 到 %{max} 的值。不得重複數值。
     must_select: 請從 %{min} 到 %{max} 個選項中選擇
     number: 您的回覆必須是數字
+    photo: 所需
     range: 請至少回答 %{min}，不得超過 %{max} 個選項。
     required: 請回答此問題
     text: 您的回覆不得包含數字

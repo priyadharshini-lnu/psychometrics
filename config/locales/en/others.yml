@@ -3932,6 +3932,7 @@ en:
     not_in_future: Selected date should not be in future
     not_in_past: Selected date should not be in past
     number: Your response must be a number
+    photo: required
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
     text: Your response must not contain a numbers

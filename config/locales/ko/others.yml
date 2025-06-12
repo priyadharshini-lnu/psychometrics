@@ -3724,6 +3724,7 @@ ko:
     not_in_future: 선택한 날짜는 미래가 아니어야 합니다
     not_in_past: 선택한 날짜가 과거가 아니어야 합니다
     number: 번호
+    photo: 필수
     range: 최소 %{분} 이상 최대 %{최대}개까지 선택해 주세요.
     required: 필수
     text: 텍스트

@@ -3852,6 +3852,7 @@ it:
     not_in_future: La data selezionata non deve essere futura
     not_in_past: La data selezionata non deve essere passata
     number: La risposta deve essere un numero
+    photo: richiesto
     range: Rispondere ad almeno %{min} e non più di %{max} scelta/e.
     required: Rispondere a questa domanda
     text: La risposta non deve contenere numeri

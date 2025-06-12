@@ -3863,6 +3863,7 @@ pt:
     not_in_future: A data selecionada não deve ser no futuro
     not_in_past: A data selecionada não deve ser no passado
     number: A sua resposta deve ser um número
+    photo: necessário
     range: Responda pelo menos %{min} e não mais do que %{max} opção(ões).
     required: Responda a esta questão
     text: A sua resposta não pode conter números
