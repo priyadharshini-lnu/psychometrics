@@ -66,7 +66,11 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
       },
     })
       .then((response) => {
-        setAssessmentCenterGroups(response as AssessmentCenterGroup[])
+        const groups = response as AssessmentCenterGroup[]
+        setAssessmentCenterGroups(groups)
+        if (groups.length === 1) {
+          form.setFieldValue('campaign_assessment_group_id', groups[0].id)
+        }
       })
       .catch((error) => {
         console.error('Failed to load assessment center groups:', error)
