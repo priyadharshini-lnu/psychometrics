@@ -207,6 +207,12 @@ en:
             manage: Manage
             title: Questions
             view: View
+          reflectionQuestions:
+            export: Export
+            import: Import
+            manage: Manage
+            title: IDP Reflection Questions
+            view: View
           registrationCodes:
             manage: Manage
             title: Registration Codes
