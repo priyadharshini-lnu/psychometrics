@@ -207,6 +207,12 @@ ko:
             manage: 관리
             title: 질문
             view: 보기
+          reflectionQuestions:
+            export: 내보내기
+            import: 가져오기
+            manage: 관리
+            title: IDP 반영 질문
+            view: 보기
           registrationCodes:
             manage: 관리
             title: 등록 코드

@@ -207,6 +207,12 @@ cs:
             manage: Správa
             title: Otázky
             view: Zobrazit
+          reflectionQuestions:
+            export: Export
+            import: Import
+            manage: Správa
+            title: Otázky k reflexi IDP
+            view: Zobrazit
           registrationCodes:
             manage: Správa
             title: Registrační kódy

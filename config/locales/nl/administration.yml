@@ -207,6 +207,12 @@ nl:
             manage: Beheer
             title: Vragen
             view: Bekijk
+          reflectionQuestions:
+            export: Exporteer
+            import: Importeren
+            manage: Beheer
+            title: Vragen voor IDP-reflectie
+            view: Bekijk
           registrationCodes:
             manage: Beheer
             title: Registratiecodes

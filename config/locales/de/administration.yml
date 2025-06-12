@@ -207,6 +207,12 @@ de:
             manage: Verwalten Sie
             title: Fragen
             view: Siehe
+          reflectionQuestions:
+            export: Exportieren
+            import: Importieren
+            manage: Verwalten Sie
+            title: IDP-Reflexionsfragen
+            view: Siehe
           registrationCodes:
             manage: Verwalten Sie
             title: Registrierungs-Codes

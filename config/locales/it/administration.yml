@@ -207,6 +207,12 @@ it:
             manage: Gestire
             title: Domande
             view: Vista
+          reflectionQuestions:
+            export: Esportazione
+            import: Importazione
+            manage: Gestire
+            title: Domande di riflessione sull'IDP
+            view: Vista
           registrationCodes:
             manage: Gestire
             title: Codici di registrazione

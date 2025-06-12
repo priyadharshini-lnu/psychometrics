@@ -207,6 +207,12 @@ pt:
             manage: Gerir
             title: Perguntas
             view: Ver
+          reflectionQuestions:
+            export: Exportação
+            import: Importação
+            manage: Gerir
+            title: Perguntas de reflexão sobre o PDI
+            view: Ver
           registrationCodes:
             manage: Gerir
             title: Códigos de registo

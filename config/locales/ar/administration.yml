@@ -176,6 +176,12 @@ ar:
           questions:
             manage: إدارة
             view: عرض
+          reflectionQuestions:
+            export: التصدير
+            import: الاستيراد
+            manage: الإدارة
+            title: أسئلة التأملات الخاصة بالمشردين داخلياً
+            view: عرض
           registrationCodes:
             manage: إدارة
             view: عرض

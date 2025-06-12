@@ -2,6 +2,15 @@
 pl:
   administration:
     actions: Actions
+    administrators:
+      permissions:
+        labels:
+          reflectionQuestions:
+            export: Eksport
+            import: Import
+            manage: Zarządzanie
+            title: Pytania refleksyjne IDP
+            view: Widok
     norms:
       import:
         download_example_csv: Pobierz przykładowy plik csv

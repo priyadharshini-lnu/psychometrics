@@ -207,6 +207,12 @@ es-ES:
             manage: Gestione
             title: Preguntas
             view: Ver
+          reflectionQuestions:
+            export: Exportar
+            import: Importar
+            manage: Gestione
+            title: Preguntas de reflexión del PDI
+            view: Ver
           registrationCodes:
             manage: Gestione
             title: Códigos de registro

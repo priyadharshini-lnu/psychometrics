@@ -207,6 +207,12 @@ ja:
             manage: 管理
             title: 質問
             view: 表示
+          reflectionQuestions:
+            export: 輸出
+            import: 輸入
+            manage: 管理
+            title: IDPリフレクションの質問
+            view: 表示
           registrationCodes:
             manage: 管理
             title: 登録コード

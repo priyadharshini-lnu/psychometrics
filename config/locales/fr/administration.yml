@@ -207,6 +207,12 @@ fr:
             manage: Gérer
             title: Questions
             view: Voir
+          reflectionQuestions:
+            export: Exportation
+            import: Importation
+            manage: Gérer
+            title: Questions de réflexion sur le PDI
+            view: Voir
           registrationCodes:
             manage: Gérer
             title: Codes d'enregistrement

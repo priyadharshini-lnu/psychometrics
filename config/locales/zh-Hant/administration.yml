@@ -207,6 +207,12 @@ zh-Hant:
             manage: 管理
             title: 問題
             view: 檢視
+          reflectionQuestions:
+            export: 出口
+            import: 進口
+            manage: 管理
+            title: IDP 反思問題
+            view: 檢視
           registrationCodes:
             manage: 管理
             title: 註冊碼
