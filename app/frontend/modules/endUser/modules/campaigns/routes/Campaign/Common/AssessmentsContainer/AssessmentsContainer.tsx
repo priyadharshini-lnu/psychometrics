@@ -1,16 +1,18 @@
 import _ from 'lodash'
+import { useState } from 'react'
 import {
   Col, Row, Typography, Space, Alert,
   Button,
 } from 'antd'
 import cs from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
+import dayjs from '~/utils/dayjs'
 import { AssessmentCard } from '../AssessmentCard'
 import { AssessmentCardContainer } from '../AssessmentCardContainer'
 import { InviteDeatilsContainer } from './InviteDetailsContainer'
 import { BreakCard } from './BreakCard'
 import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
-import { DirectionalNavigateBackIcon, ViewsContainer } from '~/glint'
+import { DirectionalNavigateBackIcon, ViewsContainer, DirectionalArrowIcon } from '~/glint'
 import styles from './AssessmentsContainer.less'
 import { isProctored } from '~/utils/isProctored'
 
@@ -61,6 +63,7 @@ export const AssessmentsContainer = ({
   campaignNotStarted,
   canNotStartPrework,
 }) => {
+  const [joinMeetingWorkshopData, setJoinMeetingWorkshopData] = useState({})
   const { search } = useLocation()
   const navigate = useNavigate()
   const searchParams = new URLSearchParams(search)
@@ -98,6 +101,8 @@ export const AssessmentsContainer = ({
           <Button
             onClick={() => navigate(`/campaigns/${campaign.id}`)}
             icon={<DirectionalNavigateBackIcon className="fs-12" />}
+            type="link"
+            className="ps-0"
           >
             {I18n.t('common.actions.view_all_tasks')}
           </Button>
@@ -152,12 +157,17 @@ export const AssessmentsContainer = ({
                 let proctoringMsgOnWorkshop = ''
                 const workshop = isAssessmentCenter
                   ? campaignWorkshops.find(workshop => workshop.campaignAssessmentGroupId === group.id) || {} : {}
+                const workshopMeetingLink = workshop?.meetingLink || ''
                 const workshopNotBooked = _.isEmpty(workshop)
+                let canJoinMeeting = false
                 const alignCardItemsInCenter = showAssessentCenterDetailsLink
                   && (!workshopNotBooked || _.isEmpty(inviteDetails))
                 const workshopCompleted = workshop ? workshop.completed : false
                 const workshopAttended = workshop ? workshop.attended : false
                 if (isAssessmentCenter) {
+                  const currentTime = dayjs.tz()
+                  const bookingStartTimeMomentObj = dayjs(workshop?.startTime)
+                  canJoinMeeting = currentTime.isAfter(bookingStartTimeMomentObj) || joinMeetingWorkshopData[group.id]
                   proctoringMsgOnWorkshop = getProctoringMsgOnWorkshop(
                     campaign.campaignOptions || {}, canNotStartWorkshopActivity,
                   )
@@ -183,8 +193,9 @@ export const AssessmentsContainer = ({
                   >
                     <AssessmentCardContainer
                       className={cs({
-                        [styles.assessmentCenter]: isAssessmentCenter,
+                        [styles.assessmentCenter]: isAssessmentCenter && showAssessentCenterDetailsLink,
                         'ta-c': alignCardItemsInCenter,
+                        'pb-0 pt-2': !showAssessentCenterDetailsLink,
                       })}
                     >
                       <Title
@@ -203,15 +214,32 @@ export const AssessmentsContainer = ({
                         size="middle"
                         className="w-100"
                       >
+                        {!showAssessentCenterDetailsLink && canJoinMeeting && workshopMeetingLink ? (
+                          <div className={styles.meetingLinkContainer}>
+                            <Button className="pb-2" type="link" href={workshopMeetingLink} target="_blank">
+                              <Title level={5} className="mb-0">
+                                {I18n.t('frontend.bookings.join_workshop_meeting')}
+                                {' '}
+                                <DirectionalArrowIcon className="fs-12" />
+                              </Title>
+                            </Button>
+                          </div>
+                        ) : null}
                         {showAssessentCenterDetailsLink ? (
                           <InviteDeatilsContainer
                             inviteDetails={inviteDetails}
                             bookingDetails={workshop}
                             groupId={group.id}
                             groupTitleId={groupTitleId}
+                            onAllowJoinMeeting={() => setJoinMeetingWorkshopData({
+                              ...joinMeetingWorkshopData,
+                              [group.id]: true,
+                            })}
+                            canJoinMeeting={canJoinMeeting}
                           />
                         ) : null}
-                        {proctoringMsgOnWorkshop && <Alert message={proctoringMsgOnWorkshop} showIcon />}
+                        {proctoringMsgOnWorkshop
+                          && !showAssessentCenterDetailsLink && <Alert message={proctoringMsgOnWorkshop} showIcon />}
                         {showAssessentCenterDetailsLink
                           ? null : (
                             <Row gutter={[16, 16]}>

@@ -1641,8 +1641,8 @@ nl:
       upload_file: Bestand uploaden
       verify: Controleer
       view: Bekijk
-      view_activities: Bekijk activiteiten
       view_all_tasks: Bekijk alle taken
+      view_detail: Detail bekijken
     column:
       action: Actie
       active: Actief
@@ -2165,7 +2165,7 @@ nl:
       neurodivergence_comment_aria_label: Neurodivergentie opmerkingen
       neurodivergence_comment_placeholder: Uw opmerkingen
       neurodivergence_question: Heb je redelijke aanpassingen nodig vanwege speciale behoeften of handicaps om volledig deel te kunnen nemen aan de beoordeling?
-      no_invites_msg: Momenteel heb je nog geen uitnodigingen voor dit Assessment Center. Zodra je een uitnodiging hebt ontvangen, verschijnt die hier en kun je een plaats reserveren. De activiteiten die deel uitmaken van dit Assessment Center kun je bekijken door op de knop hieronder te klikken.
+      no_invites_msg: Je wordt toegevoegd aan het assessment center of ontvangt een uitnodiging om je plaats te reserveren; zodra je deel uitmaakt van het center, kun je de activiteiten voltooien door op de knop 'Detail bekijken' hieronder te klikken.
       or: of
       other_invite: Zie %{count} meer uitnodigen
       other_invites: Zie %{getal} meer uitnodigingen

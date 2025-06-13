@@ -388,8 +388,8 @@ zh-HK:
       update: 更新
       upload: 上載
       verify: 驗證
-      view_activities: 檢視活動
       view_all_tasks: 檢視所有任務
+      view_detail: 檢視詳細內容
     column:
       action: 操作
       category: 類別
@@ -535,7 +535,7 @@ zh-HK:
       need_changes: 需要更改嗎？
       neurodivergence_comment_placeholder: 您的留言
       neurodivergence_question: 您是否因特殊需求或殘疾需要任何合理的便利或調整，以便能夠完全參與評估？
-      no_invites_msg: 目前，您尚未收到此評估中心的任何邀請。一旦您收到邀請，邀請將顯示在此，您就可以預約時段。按一下下面的按鈕，即可檢視屬於此評估中心的活動。
+      no_invites_msg: 您會被加入評估中心或收到預約時段的邀請函；一旦您成為中心的一員，您就可以按一下下方的「檢視詳細資料」按鈕來完成活動。
       other_invite: 查看 %{count} 個更多邀請
       other_invites: 查看 %{count} 個更多邀請
       reason: 原因

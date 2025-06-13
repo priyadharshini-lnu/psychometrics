@@ -1652,8 +1652,8 @@ zh:
       upload_file: 上传文件
       verify: 验证
       view: 查看
-      view_activities: 查看活动
       view_all_tasks: 查看所有任务
+      view_detail: 查看详情
     column:
       action: 操作
       active: 活跃
@@ -2178,7 +2178,7 @@ zh:
       neurodivergence_comment_aria_label: 神经差异评论
       neurodivergence_comment_placeholder: 你的评论
       neurodivergence_question: 你是否因特殊需要或身障而需要合理的特殊安排或调整才能充分参与评估？
-      no_invites_msg: 目前，您还没有收到该评估中心的任何邀请。一旦您收到邀请，它就会出现在这里，您就可以预订时间段了。单击下面的按钮，即可查看该评估中心的部分活动。
+      no_invites_msg: 您将被添加到评估中心，或收到邀请来预订您的时间段；一旦您成为中心的一员，您就可以点击下面的 "查看详情 "按钮来完成活动。
       or: 或
       other_invite: 查看其他 %{count} 个邀请
       other_invites: 查看其他 %{count} 个邀请

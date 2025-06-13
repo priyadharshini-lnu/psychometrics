@@ -1644,8 +1644,8 @@ it:
       upload_file: Caricare il file
       verify: Verifica
       view: Vista
-      view_activities: Visualizza le attività
       view_all_tasks: Visualizza tutti i compiti
+      view_detail: Visualizza il dettaglio
     column:
       action: Azione
       active: Attivo
@@ -2169,7 +2169,7 @@ it:
       neurodivergence_comment_aria_label: Commenti sulla neurodivergenza
       neurodivergence_comment_placeholder: I vostri commenti
       neurodivergence_question: Per partecipare pienamente alla valutazione, avete bisogno di sistemazioni o adattamenti ragionevoli dovuti a esigenze speciali o a disabilità?
-      no_invites_msg: Al momento non avete inviti per questo Assessment Center. Una volta ricevuto l'invito, questo apparirà qui e sarà possibile prenotare un posto. Le attività che fanno parte di questo Assessment Center possono essere visualizzate facendo clic sul pulsante sottostante.
+      no_invites_msg: Sarete aggiunti al centro di valutazione o riceverete un invito a prenotare il vostro posto; una volta entrati a far parte del centro, potrete completare le attività facendo clic sul pulsante "Visualizza dettagli" qui sotto.
       or: o
       other_invite: Vedi %{count} altro invito
       other_invites: Vedere %{count} altri inviti

@@ -1656,8 +1656,8 @@ de:
       upload_file: Datei hochladen
       verify: Überprüfen Sie
       view: Siehe
-      view_activities: Aktivitäten anzeigen
       view_all_tasks: Alle Aufgaben anzeigen
+      view_detail: Ansicht Detail
     column:
       action: Aktion
       active: Aktiv
@@ -2183,7 +2183,7 @@ de:
       neurodivergence_comment_aria_label: Kommentare zur Neurodivergenz
       neurodivergence_comment_placeholder: Ihre Kommentare
       neurodivergence_question: Benötigen Sie aufgrund besonderer Bedürfnisse oder Behinderungen Anpassungen, um vollständig am Assessment teilnehmen zu können?
-      no_invites_msg: Derzeit haben Sie noch keine Einladungen zu diesem Assessment Center. Sobald Sie eine Einladung erhalten haben, wird diese hier erscheinen und Sie können einen Termin buchen. Die Aktivitäten, die Teil dieses Assessment Centers sind, können Sie einsehen, indem Sie auf die Schaltfläche unten klicken.
+      no_invites_msg: Sie werden zum Assessment Center hinzugefügt oder erhalten eine Einladung, um Ihren Platz zu reservieren. Sobald Sie Teil des Centers sind, können Sie die Aktivitäten abschließen, indem Sie auf die Schaltfläche "Details anzeigen" unten klicken.
       or: oder
       other_invite: Weitere %{count} Einladungen anzeigen
       other_invites: Weitere %{count} Einladungen anzeigen

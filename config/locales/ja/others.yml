@@ -1655,8 +1655,8 @@ ja:
       upload_file: ファイルのアップロード
       verify: ベリファイ
       view: 表示
-      view_activities: アクティビティを見る
       view_all_tasks: すべてのタスクを表示
+      view_detail: 詳細を見る
     column:
       action: アクション
       active: アクティブ
@@ -2181,7 +2181,7 @@ ja:
       neurodivergence_comment_aria_label: ニューロダイバージェンスのコメント
       neurodivergence_comment_placeholder: コメント
       neurodivergence_question: アセスメントに十分に参加するために、特別なニーズや障害に対する、相応の便宜や調整が必要ですか？
-      no_invites_msg: 現在、このアセスメントセンターへの招待はありません。招待状が届いたら、ここに表示され、スロットを予約することができます。このアセスメントセンターのアクティビティは、下のボタンをクリックしてご覧いただけます。
+      no_invites_msg: アセスメント・センターに追加されるか、または枠を予約するための招待が届きます。センターに参加したら、下の「詳細を見る」ボタンをクリックしてアクティビティを完了することができます。
       or: または
       other_invite: あと%{count}件の招待状を見る
       other_invites: あと%{count}件の招待状を見る

@@ -377,8 +377,8 @@ pl:
       update: Aktualizacja
       upload: Przekazać plik
       verify: Weryfikacja
-      view_activities: Wyświetl działania
       view_all_tasks: Wyświetl wszystkie zadania
+      view_detail: Zobacz szczegóły
     column:
       action: Działanie
       category: Kategoria
@@ -524,7 +524,7 @@ pl:
       need_changes: Potrzebujesz wprowadzić zmiany?
       neurodivergence_comment_placeholder: Twój komentarz
       neurodivergence_question: Czy ze względu na specjalne potrzeby lub niepełnosprawność potrzebujesz racjonalnych udogodnień lub dostosowań, aby w pełni uczestniczyć w ocenie?
-      no_invites_msg: Obecnie nie masz żadnych zaproszeń do tego Assessment Center. Gdy otrzymasz zaproszenie, pojawi się ono tutaj i będziesz mógł zarezerwować miejsce. Działania, które są częścią tego Assessment Center, można wyświetlić, klikając poniższy przycisk.
+      no_invites_msg: Zostaniesz dodany do centrum oceny lub otrzymasz zaproszenie do zarezerwowania swojego miejsca; po dołączeniu do centrum możesz ukończyć działania, klikając przycisk "Wyświetl szczegóły" poniżej.
       other_invite: Zobacz %{count} więcej zaproszeń
       other_invites: Zobacz %{count} więcej zaproszeń
       reason: Powód

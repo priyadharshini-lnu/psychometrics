@@ -1657,8 +1657,8 @@ cs:
       upload_file: Nahrát soubor
       verify: Ověřit
       view: Zobrazit
-      view_activities: Zobrazit aktivity
       view_all_tasks: Zobrazit všechny úkoly
+      view_detail: Zobrazit detail
     column:
       action: Akce
       active: Aktivní
@@ -2183,7 +2183,7 @@ cs:
       neurodivergence_comment_aria_label: Neurodivergence komentáře
       neurodivergence_comment_placeholder: Vaše komentáře
       neurodivergence_question: Potřebujete nějaké přiměřené úpravy nebo přizpůsobení kvůli speciálním potřebám nebo zdravotnímu postižení, abyste se mohli plně zúčastnit hodnocení?
-      no_invites_msg: V současné době nemáte žádné pozvánky do tohoto hodnotícího centra. Jakmile obdržíte pozvánku, objeví se zde a budete si moci rezervovat místo. Aktivity, které jsou součástí tohoto Assessment Center, si můžete prohlédnout kliknutím na tlačítko níže.
+      no_invites_msg: Budete přidáni do hodnotícího centra nebo obdržíte pozvánku, abyste si rezervovali čas; jakmile se stanete součástí centra, můžete dokončit aktivity kliknutím na tlačítko "Zobrazit podrobnosti" níže.
       or: nebo
       other_invite: Zobrazit %{count} další pozvánku
       other_invites: Zobrazit %{count} další pozvánky/pozvánek

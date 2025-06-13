@@ -1640,8 +1640,8 @@ ko:
       upload_file: 파일 업로드
       verify: 확인
       view: 보기
-      view_activities: 활동 보기
       view_all_tasks: 모든 작업 보기
+      view_detail: 세부 정보 보기
     column:
       action: 액션
       active: 활성
@@ -2164,7 +2164,7 @@ ko:
       neurodivergence_comment_aria_label: 신경 발산 댓글
       neurodivergence_comment_placeholder: 귀하의 의견
       neurodivergence_question: 평가에 완전히 참여하기 위해 특별한 필요나 장애로 인해 합리적인 편의나 조정이 필요하신가요?
-      no_invites_msg: 현재 이 평가 센터에 초대를 받은 사람이 없습니다. 초대를 받으면 여기에 표시되며 슬롯을 예약할 수 있습니다. 이 평가 센터의 일부인 활동은 아래 버튼을 클릭하여 확인할 수 있습니다.
+      no_invites_msg: 평가 센터에 추가되거나 슬롯 예약 초대를 받게 되며, 센터에 참여하게 되면 아래의 '세부 정보 보기' 버튼을 클릭하여 활동을 완료할 수 있습니다.
       or: 또는
       other_invite: 카운트] 더 초대하기 참조
       other_invites: 카운트] 더 많은 초대 참조
