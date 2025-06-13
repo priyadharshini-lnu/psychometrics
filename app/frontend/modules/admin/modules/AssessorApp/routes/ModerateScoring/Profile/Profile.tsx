@@ -43,7 +43,7 @@ const ProfileCard = ({
             <span>
               {age ? `${age} ${I18n.t('administration.scoring.profile.years')}, ` : null}
               {gender ? `${gender}, ` : null}
-              {locale ? I18n.t(`languages.${locale}`) : null}
+              {locale ? I18n.t(`languages_localized.${locale}`) : null}
             </span>
           </Flex>
         </Flex>
