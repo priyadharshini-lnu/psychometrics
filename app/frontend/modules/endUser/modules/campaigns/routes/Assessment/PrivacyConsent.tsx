@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import {
   Button, Typography, Layout, Col, Checkbox, Space,
+  Flex,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/endUser/core/rootReducers'
@@ -95,7 +96,7 @@ export const PrivacyConsentComponent: FC<Props> = ({
         <Col span={4} className="ta-e" />
       </Header>
       <Content className={styles.container}>
-        <div className={cs(styles.pageContent)}>
+        <div className={cs(styles.privacyPageContent)}>
           {policy?.content || customPrivacyConsentText
             ? (
               <div className={styles.policyContent}>
@@ -113,15 +114,19 @@ export const PrivacyConsentComponent: FC<Props> = ({
             )
             : <PageContentSkeleton />
           }
-          <div className={styles.footerButtons}>
+          <div className={styles.privacyPageFooterButtons}>
             <Space direction="vertical">
-              <Checkbox onChange={e => setAccepted(e.target.checked)}>
+              <Flex gap={8}>
+                <Checkbox
+                  checked={accepted}
+                  onChange={e => setAccepted(e.target.checked)}
+                />
                 <span className={styles.checkboxText}>
                   {enablePrivacyLink
                     ? I18n.t('threesixty.accept_privacy_modal.checkbox_with_client_link')
                     : I18n.t('threesixty.accept_privacy_modal.checkbox')}
                 </span>
-              </Checkbox>
+              </Flex>
               <div className={styles.buttonContainer}>
                 <Button type="primary" disabled={!accepted} onClick={accept}>
                   {I18n.t('threesixty.accept_privacy_modal.accept')}
