@@ -690,14 +690,14 @@ workflows:
                 - develop
       - build_docker_image:
           name: build_image_review
-          app-name: tte-lighthouse
+          app-name: tte-lighthouse-review
           filters:
             branches:
               only:
                 - review
       - heroku_release:
           name: heroku_release_review
-          app-name: tte-lighthouse
+          app-name: tte-lighthouse-review
           requires:
             - build_image_review
             - vitest

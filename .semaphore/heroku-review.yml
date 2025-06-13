@@ -15,7 +15,7 @@ global_job_config:
     - name: BUNDLER_VERSION
       value: 2.2.31
     - name: HEROKU_REMOTE
-      value: https://git.heroku.com/tte-lighthouse.git
+      value: https://git.heroku.com/tte-lighthouse-review.git
     - name: DATABASE_URL
       value: "postgres://postgres:postgres@localhost:5432/ci"
     - name: AWS_ACCESS_KEY_ID
