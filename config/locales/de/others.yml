@@ -2406,7 +2406,6 @@ de:
     manage_plan: Plan verwalten
     mark_as_complete: Als abgeschlossen markieren
     mark_as_incomplete: Als unvollständig markieren
-    my_direct_reportees: Meine direkten Berichte
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
@@ -2633,6 +2632,75 @@ de:
     zh-HK: Chinesisch (Hongkong)
     zh-Hant: Chinesisch - Traditionell
     zh-TW: Chinesisch (Taiwan)
+  languages_localized:
+    af: Afrikaans
+    ar: عربي
+    az: Aserbaidschanisch
+    bg: български
+    bs: bosanski
+    by: Weißrussisch
+    ca: català
+    cn: 中国人
+    cs: čeština
+    cy: Cymraeg
+    da: dansk
+    de: Deutsch
+    el: Ελληνικά
+    en: Englisch
+    en-GB: Englisch (UK)
+    en-US: Englisch (US)
+    eo: Esperanto
+    es: Español
+    es-ES: Español (españa)
+    et: Estnisch
+    fa: Persisch
+    fi: Finnisch
+    fr: Französisch
+    gu: Gujarati
+    he: Hebräisch
+    hi: हिन्दी
+    hr: Kroatisch
+    hu: Ungarisch
+    id: Bahasa Indonesien
+    it: italienisch
+    ja: 日本語
+    km: Khmer
+    ko: Koreanisch
+    lt: Litauisch
+    lv: Lettisch
+    mk: Mazedonisch
+    mn: Mongolei
+    ms: Bahasa Malaysia
+    my: Myanmar
+    nb: Norwegisch Bokmål
+    nl: Niederländisch
+    'no': Norwegisch
+    pl: Polski
+    pt: Português
+    pt-BR: Português (Brasilien)
+    pt-PT: Português (Portugal)
+    pt_BR: Português (Brasilien)
+    ro: Rumänisch
+    ru: Russisch
+    sk: Slowakisch
+    sl: Slowenisch
+    sr-Cyrl: Serbisch Kyrillisch
+    sr-Latn: Serbisch Latein
+    sv: Schwedisch
+    sw: Suaheli
+    ta: Tamilisch
+    th: Thailändisch
+    tl: Tagalog
+    tr: Türkisch
+    ua: Ukrainisch
+    uk: Ukrainisch
+    ur: Urdu
+    vi: Vietnamesisch
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政区)
+    zh-Hant: 繁體中文
+    zh-TW: 漢語
   license_usage:
     active: Aktiv
     campaign_name: Name der Kampagne

@@ -1165,7 +1165,8 @@ en-US:
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
-    exact: Please select exactly %{count} choice(s)
+    exact:
+      one: Please select exactly %{count} choice(s)
     file_upload:
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
