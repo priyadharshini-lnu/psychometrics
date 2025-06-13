@@ -18,6 +18,7 @@ module UsersResults
         Saville::ResetAssessment.call!(user_assessment) if user_assessment.saville?
         Mettl::ResetCandidateAssessment.call!(user_assessment) if user_assessment.mettl?
         Simulation::ResetAssessment.call!(user_assessment) if user_assessment.simulation?
+        Skillvue::ResetAssessment.call!(user_assessment) if user_assessment.skillvue?
       end
 
       broadcast :ok

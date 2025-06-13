@@ -45,8 +45,8 @@ RSpec.describe UserReports::FetchModuleContent, type: :service do
         )
       end
 
-      it 'returns the original module content without HTML tags' do
-        expect(subject).to eq(module1.props['text'])
+      it 'returns the removed content without HTML tags' do
+        expect(subject).to eq('removed_content')
       end
     end
 
@@ -64,8 +64,8 @@ RSpec.describe UserReports::FetchModuleContent, type: :service do
         )
       end
 
-      it 'returns the event content without HTML tags' do
-        expect(subject).to eq('Event content')
+      it 'returns the original content without HTML tags' do
+        expect(subject).to eq(module1.props['text'])
       end
     end
 

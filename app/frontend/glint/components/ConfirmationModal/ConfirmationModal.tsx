@@ -39,11 +39,11 @@ export const ConfirmationModal: FC<Props> = ({
       onCancel={handleCancel}
       footer={[
         <Button key="back" onClick={handleCancel}>
-          Cancel
+          {I18n.t('common.text.cancel')}
         </Button>,
         <Button key="submit" type="primary" onClick={handleConfirm}>
           <CheckOutlined />
-          Confirm
+          {I18n.t('common.text.confirm')}
         </Button>,
       ]}
     >

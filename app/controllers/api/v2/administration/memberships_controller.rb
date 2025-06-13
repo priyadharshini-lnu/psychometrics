@@ -2,7 +2,7 @@
 
 module Api
   class V2::Administration::MembershipsController < Api::V2::Administration::BaseController
-    validates_request_schema :create, Api::V2::Membership::CreateContract.new
+    validates_request_schema :create, -> { Api::V2::Membership::CreateContract.new }
     validate_crud_requests Api::V2::Membership::Schema
 
     before_action :set_resource, only: %i[spoof reset_password]

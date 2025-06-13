@@ -45,6 +45,11 @@ const IdpComponent: FC<PropsFromRedux> = ({ currentUser }) => {
     label: I18n.t('administration.idp.tab.development_actions'),
   })
 
+  currentUser.permissions.accessReflectionQuestions && menuItems.push({
+    key: '/reflection_questions',
+    label: I18n.t('administration.idp.tab.reflection_questions'),
+  })
+
   return (
     <div>
       <Menu

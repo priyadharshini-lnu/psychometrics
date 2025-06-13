@@ -9,21 +9,21 @@ RSpec.describe Administration::TagsSearch do
 
   describe '#call' do
     let!(:global_skill) do
-      skill = create(:skill, name: 'Ruby Programming', category: 'technical', project: nil)
+      skill = create(:skill, name: 'Ruby Programming', skill_type: 'technical', project: nil)
       skill.tag_list.add('programming', 'backend')
       skill.save!
       skill
     end
 
     let!(:project_skill) do
-      skill = create(:skill, name: 'Leadership', category: 'behavioral', project: project)
+      skill = create(:skill, name: 'Leadership', skill_type: 'behavioral', project: project)
       skill.tag_list.add('soft-skills', 'management')
       skill.save!
       skill
     end
 
     let!(:other_project_skill) do
-      skill = create(:skill, name: 'Python Programming', category: 'technical', project: other_project)
+      skill = create(:skill, name: 'Python Programming', skill_type: 'technical', project: other_project)
       skill.tag_list.add('programming', 'scripting')
       skill.save!
       skill
@@ -49,16 +49,16 @@ RSpec.describe Administration::TagsSearch do
       end
     end
 
-    context 'with category_in filter' do
-      it 'returns tags from skills matching any of the categories' do
-        search = described_class.new(scope, { category_in: %w[technical behavioral] }, all: true)
+    context 'with skill_type_in filter' do
+      it 'returns tags from skills matching any of the skill types' do
+        search = described_class.new(scope, { skill_type_in: %w[technical behavioral] }, all: true)
         results = search.call
 
         expect(results.map(&:name)).to include('programming', 'backend', 'soft-skills', 'management')
       end
 
-      it 'returns tags from skills matching a single category' do
-        search = described_class.new(scope, { category_in: ['technical'] })
+      it 'returns tags from skills matching a single skill_type' do
+        search = described_class.new(scope, { skill_type_in: ['technical'] })
         results = search.call
 
         expect(results.map(&:name)).to include('programming', 'backend')
@@ -89,7 +89,7 @@ RSpec.describe Administration::TagsSearch do
           scope,
           {
             name_cont: 'program',
-            category_in: ['technical'],
+            skill_type_in: ['technical'],
             project_id_eq: nil
           }
         )
@@ -99,12 +99,12 @@ RSpec.describe Administration::TagsSearch do
         expect(results.map(&:name)).not_to include('soft-skills', 'management', 'backend', 'scripting')
       end
 
-      it 'applies filters with integer categories' do
+      it 'applies filters with integer skill_types' do
         search = described_class.new(
           scope,
           {
             name_cont: 'script',
-            category_in: [1], # technical
+            skill_type_in: [1], # technical
             project_id_eq: other_project.id
           }
         )

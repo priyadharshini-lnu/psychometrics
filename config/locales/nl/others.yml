@@ -1,0 +1,3740 @@
+---
+nl:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Alle reacties
+      numeric_comparator:
+        enter_value: Waarde invoeren
+        select_data: Gegevens selecteren
+      scoring:
+        select_comparison: Kies Vergelijkingstype
+        select_factors: Factoren selecteren
+        select_operation: Selecteer bewerking
+      sheet_column:
+        accessor_access: Accessor toegang
+        dashboard_use: Dashboardgebruik
+        visible_in_list: Zichtbaar in lijst
+    errors:
+      models:
+        admin_edit:
+          attributes:
+            email:
+              blank: E-mailveld kan niet leeg zijn
+              invalid: E-mail is ongeldig
+            first_name:
+              blank: Voornaam kan niet leeg zijn
+            last_name:
+              blank: Achternaam kan niet leeg zijn
+        agile:
+          answers:
+            blank: Antwoorden kunnen niet leeg zijn
+          group_id:
+            blank: Groepsid kan niet leeg zijn
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Upload xlsx-bestand
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: U hebt Rapporten geselecteerd die niet zijn gekoppeld aan de geselecteerde Rapportbundel
+              report_family_disabled: U hebt Rapportbundel uitgeschakeld geselecteerd
+              reports_disabled: U hebt uitgeschakeld Rapport(en) geselecteerd
+            removing_report_ids:
+              not_linked_to_report_family: U hebt Rapporten geselecteerd die niet zijn gekoppeld aan de geselecteerde Rapportbundel
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: Beoordelings-ID kan niet leeg zijn
+            bundle_report_id:
+              blank: Bundel-ID van rapport kan niet leeg zijn
+            report_id:
+              blank: Rapport-ID kan niet leeg zijn
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: Upload xlsx-bestand
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: Kolom '%{entity}' kan niet leeg zijn op rij %{index}
+              duplicate_code: Dubbele code '%{code}' op rij %{index}
+              invalid_output_type: Ongeldig output_type '%{output_type}' op rij %{index}
+              max_limit_reached: Totaal aantal campagnefactoren overschrijdt de maximumlimiet van %{count}
+              missing_headers: 'Verplichte headers ontbreken: %{headers}'
+              type_mismatch: Uitvoerfout voor code '%{code}' in rij %{index}
+            file:
+              invalid_format: Upload xlsx-bestand
+            resource:
+              must_exist: "%{resource} moet bestaan"
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: CSV-bestand uploaden
+        column:
+          attributes:
+            name:
+              not_unique: Dit veld is al aanwezig
+        create_all:
+          attributes:
+            assessors:
+              blank: Selecteer ten minste één beoordelaar
+              email_duplicated: Het onderwerp en de beoordelaarmails zijn dubbel
+              multiple_leads_for_subject: Meerdere hoofdbeoordelaars toegewezen aan onderwerp
+            evaluators:
+              email_duplicated: Het onderwerp en de evaluatie-e-mails zijn gedupliceerd
+            subjects:
+              email_duplicated: Sommige onderwerpen hebben dezelfde e-mail
+        create_one:
+          attributes:
+            assessment_ids:
+              invalid: Beoordeling %{id} kan niet worden gekoppeld aan een beoordelaar
+              lead_assessor_already_assigned: Onderwerp kan slechts één hoofdbeoordelaar toegewezen krijgen
+            assessor_email:
+              already_exists: Het onderwerp met deze beoordelaar is al verbonden
+              blank: E-mail van beoordelaar kan niet leeg zijn
+              invalid: E-mail beoordelaar is ongeldig
+            email:
+              already_exists: Er bestaat al een onderwerp met dezelfde e-mail
+              blank: E-mail kan niet leeg zijn
+              invalid: E-mail is ongeldig
+            evaluator_email:
+              already_exists: Het onderwerp met deze evaluator is al verbonden
+              blank: Evaluator e-mail kan niet leeg zijn
+              invalid: Het e-mailadres van de beoordelaar is ongeldig
+            evaluator_first_name:
+              blank: De voornaam van de beoordelaar kan niet leeg zijn
+            evaluator_last_name:
+              blank: Achternaam beoordelaar kan niet leeg zijn
+            evaluator_locale:
+              inclusion: Verkeerde locale
+            evaluator_password:
+              too_short: Het wachtwoord van de evaluator is te kort (het minimum is %{count} tekens)
+            first_name:
+              blank: Voornaam kan niet leeg zijn
+            last_name:
+              blank: Achternaam kan niet leeg zijn
+            locale:
+              inclusion: Verkeerde locale
+            relationship_name:
+              blank: Relatie kan niet leeg zijn
+              invalid: Relatie %{naam} is ongeldig
+            subject_email:
+              blank: Onderwerp E-mail kan niet leeg zijn
+              invalid: Onderwerp E-mail is ongeldig
+              not_exists: Onderwerp niet gevonden met e-mailadres %{email}
+        email_schedule:
+          attributes:
+            content:
+              blank: Inhoud kan niet leeg zijn
+            from:
+              blank: Van veld kan niet leeg zijn
+            reply_to_email:
+              blank: Antwoord op e-mail veld kan niet leeg zijn
+              invalid: Antwoord op e-mail is ongeldig
+            scheduled_date:
+              blank: Geplande datum veld kan niet leeg zijn
+            subject:
+              blank: Onderwerp kan niet leeg zijn
+        email_template:
+          attributes:
+            content:
+              blank: Inhoud kan niet leeg zijn
+              invalid_consolidated_pipetext: Deze pipetexts zijn ongeldig voor consolidatieberichten %{invalid_pipetexts}
+              invalid_unconsolidated_pipetext: Deze pipetexts zijn ongeldig voor niet-geconsolideerde berichten %{invalid_pipetexts}
+            from:
+              blank: Van veld kan niet leeg zijn
+            reply_to_email:
+              blank: Antwoord op e-mail veld kan niet leeg zijn
+              invalid: Antwoord op e-mail is ongeldig
+            subject:
+              blank: Onderwerp kan niet leeg zijn
+        email_test_form:
+          attributes:
+            to_email:
+              blank: E-mailveld kan niet leeg zijn
+              invalid: E-mail is ongeldig
+        factor_import_form:
+          attributes:
+            base:
+              code_length: De code moet minstens 3 tekens lang zijn op rij %{index}.
+              code_required: Factorcode is vereist bij rij %{index}
+              invalid_scoring_strategy: Ongeldige scoringsstrategie '%{strategie}' op rij %{index}. Toegestane strategieën zijn %{toegestaan}.
+              missing_headers: 'Verplichte headers ontbreken: %{headers}'
+              name_required: Factornaam is vereist bij rij %{index}
+              scoring_strategy_required: Scoringsstrategie is vereist bij rij %{index}
+            file:
+              invalid_format: CSV-bestand uploaden
+        hogan:
+          attributes:
+            name:
+              not_unique: Deze integratie is al aanwezig voor dit project
+        iiht:
+          attributes:
+            name:
+              not_unique: Deze integratie is al aanwezig voor dit project
+        import_one:
+          attributes:
+            email:
+              already_exists: Er bestaat al een onderwerp met dezelfde e-mail
+              blank: E-mail kan niet leeg zijn
+              invalid: E-mail is ongeldig
+            first_name:
+              blank: Voornaam kan niet leeg zijn
+            last_name:
+              blank: Achternaam kan niet leeg zijn
+            locale:
+              inclusion: Verkeerde locale
+            password:
+              too_short: Wachtwoord is te kort. Minimum %{count} teken vereist
+        mettl:
+          attributes:
+            name:
+              not_unique: Deze integratie is al aanwezig voor dit project
+        password_reset:
+          attributes:
+            email:
+              wrong_email: We konden geen gebruiker vinden met het e-mailadres dat u hebt opgegeven.
+        profile:
+          attributes:
+            first_name:
+              blank: Voornaam kan niet leeg zijn
+            last_name:
+              blank: Achternaam kan niet leeg zijn
+            password:
+              contains_repeats: Wachtwoord mag geen herhalingen bevatten
+              too_short: Wachtwoord is te kort. Minimum %{count} teken vereist
+              too_weak: 'Wachtwoord moet bestaan uit: Minimaal 1 kleine letter, 1 hoofdletter, 1 cijfer en 1 speciaal teken.'
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: Bloknaam kan niet leeg zijn
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: MatrixTable vraagteken-eigenschap 'answersType' kan niet leeg zijn
+              inclusion: MatrixTable vraageigenschap 'answerType' moet 'SingleAnswer' of 'MultipleAnswer' zijn
+            type:
+              blank: MatrixTable vraagteken eigenschap 'type' kan niet leeg zijn
+              inclusion: MatrixTable vraagtype moet 'Likert' hebben
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: MultipleChoice-vraageigenschap 'type' kan niet leeg zijn.
+              inclusion: MultipleChoice-vraageigenschap "type" moet "SingleAnswer", "MultipleAnswer" of "Dropdown" zijn
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: Vraagnaam kan niet leeg zijn
+            type:
+              blank: Titel van vraag kan niet leeg zijn
+              inclusion: Het vraagtype moet "TextEntry", "MultipleChoice", "MatrixTable" of "StaticContent" zijn
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: randomization.questions kan niet leeg zijn als randomization.type 'Some' is
+            type:
+              inclusion: randomization.type moet zijn 'All', 'Some' of 'No'
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: Vereist validatietype moet 'Force' of 'Request' zijn
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: Het vraagtype van de eigenschap Statische inhoud kan niet leeg zijn
+              inclusion: Het vraagtype van de eigenschap Statische inhoud moet 'Tekst' zijn
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: TextEntry vraagteken eigenschap 'type' kan niet leeg zijn.
+              inclusion: TextEntry vraagteken eigenschap 'type' moet zijn 'Enkele regel', 'Meerdere regels' of 'Essay tekstvak'
+        register:
+          attributes:
+            email:
+              blank: E-mailadres is vereist
+              in_use: Dit e-mailadres is in gebruik. Als je al een account hebt, meld je dan aan.
+              invalid: E-mailadres is ongeldig
+              too_long: E-mailadres is te lang
+            first_name:
+              blank: Voornaam is verplicht
+              too_long: Voornaam is te lang
+            last_name:
+              blank: Achternaam is vereist
+              too_long: Achternaam is te lang
+            mobile_number:
+              blank: Mobiel nummer is vereist
+              invalid: Mobiel nummer is ongeldig
+              verification_expired: De verificatiecode is verlopen. U kunt opnieuw proberen te verifiëren.
+            registration_code:
+              blank: Registratiecode is vereist
+              incorrect_email_domain: Dit e-mailadres is niet geldig voor de ingevoerde registratiecode
+              invalid: Registratiecode is ongeldig
+            sms_invite_code:
+              invalid: SMS Uitnodigingscode is ongeldig
+        saml_setting:
+          invalid_cert: Ongeldig certificaat
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: De duur moet minimaal 5 minuten zijn
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: De duur moet minimaal 60 minuten zijn
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: Kolom <b>%{col}</b> wordt verwacht van type %{type} maar kreeg <b>%{got}</b>
+              email_blank: 'Rij %{rij_nummer}: E-mailveld kan niet leeg zijn'
+              email_duplicate: Er zijn duplicaten in de kolom E-mail
+              email_invalid: 'Rij %{rij_nummer}: E-mail is ongeldig'
+              invalid_column: Ongeldige kolom %{naam}
+              invalid_column_name: Kolom <b>"%{column}"</b> is ongeldig
+              invalid_column_name_size: Kolomnaam <b>"%{column}"</b> te lang (max 64)
+              invalid_column_type: Kolomtype moet zijn String, Tekst, Getal, HTML of Markdown
+              invalid_format: Ongeldig formaat (.xlsx)
+              invalid_number_value: <b>Rij#%{index}</b> Kolom <b>"%{column}"</b> is geen getal
+              invalid_string_value: <b>Rij#%{index}</b> kolom <b>"%{column}"</b> is geen String
+              invalid_string_value_size: <b>Rij#%{index}</b> kolom <b>"%{column}"</b> te lang (max 256)
+              no_email_column: Bestand bevat geen kolom Email
+              non_uniq_column: Er zijn de volgende niet-uniq kolommen %{columns}
+        sheet_row_form:
+          attributes:
+            email:
+              blank: E-mail kan niet leeg zijn
+              not_uniq_email: Rij met e-mail is al aanwezig
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: Voornaam kan niet leeg zijn
+            last_name:
+              blank: Achternaam kan niet leeg zijn
+            locale:
+              inclusion: Verkeerde locale.
+            mobile_no:
+              blank: Mobiel nummer kan niet leeg zijn
+              invalid: Het mobiele nummer moet beginnen met een plus, gevolgd door de internationale code en dan het nummer
+              invite_exists_in_campaign: SMS Uitnodiging met hetzelfde mobiele nummer bestaat al
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: 'De volgende mobiele nummers worden gedupliceerd in CSV: %{mobile_numbers}'
+              invalid_header: Ongeldige header. Exporteer SMS-uitnodiging om de juiste headers te krijgen
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: De indeling van e-mailadres is ongeldig.
+        super_admin_edit:
+          attributes:
+            email:
+              blank: E-mailveld kan niet leeg zijn
+              invalid: E-mail is ongeldig
+              starts_with_invalid_characters: E-mail kan niet beginnen met =, |, +, -, @, %
+            first_name:
+              blank: Voornaam kan niet leeg zijn
+              starts_with_invalid_characters: Voornaam kan niet beginnen met =, |, +, -, @, %
+            last_name:
+              blank: Achternaam kan niet leeg zijn
+              starts_with_invalid_characters: Achternaam kan niet beginnen met =, |, +, -, @, %
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: Selecteer het juiste normtype
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: Gebruiker met dit e-mailadres bestaat al in de campagne
+              user_exists_in_project: Gebruiker met dit e-mailadres bestaat al in het project
+            import_data:
+              cant_overwrite_password: U hebt geen toestemming om het wachtwoord te overschrijven.
+              duplicated_emails: 'De volgende e-mail(s) zijn gedupliceerd in CSV: %{emails}'
+              invalid_email: 'Rij %{rij_nummer}: Ongeldige e-mail %{email}'
+              invalid_header: Ongeldige header, neem header over van export
+              invalid_reports_header: Ongeldige header, neem header uit voorbeeldbestand
+              manager_not_found: 'Rij %{rij_nummer}: Manager met e-mailadres %{email} is niet aanwezig in de campagne of in CSV'
+              user_update_failed: Update gebruiker mislukt voor %{email} met fout '%{error}'
+            locale:
+              inclusion: Verkeerde locale
+            name:
+              starts_with_invalid_characters: kan niet beginnen met =, |, +, -, @, %
+            schedule_end_date:
+              invalid_datetime: is ongeldig
+            schedule_start_date:
+              invalid_datetime: is ongeldig
+        user_assessment:
+          subject_and_assessment_exists: Er bestaat al een beoordelings- en vakkenpaar
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: is ongeldig
+            private:
+              inclusion: moet een booleaans zijn
+            start_date_time:
+              invalid_datetime: is ongeldig
+  activerecord:
+    attributes:
+      administration/assessments/assign_form:
+        access_reports: Regels voor toegangsrapporten
+        access_reports_at: Ga naar het rapport op
+        access_reports_at_date: Datum
+        access_reports_at_time: Tijd
+        client_ids: Huurcontracten voor klanten
+        manager_ids: Managers
+        report_ids: Rapporten
+        user_ids: Gebruikers
+      assessment:
+        active: Actief
+        categories:
+          '360': 360 Campagne
+          agile: AGIEL
+          assessor_form: Beoordelaarsformulier
+          case_study: Casestudies
+          hogan: Hogan
+          iiht: IIHT
+          meeting: Vergadering
+          organisational: Enquêtes
+          pearson: Pearson
+          psychometric: Beoordeling
+          saville: Saville
+          threesixty: 360 Campagne
+        category: Categorie
+        created_at: Datum aangemaakt
+        description: Beschrijving
+        id: ID
+        name: Naam
+        statuses:
+          finished: klaar
+        timing: Timing
+        types:
+          common: TTE-beoordeling
+          hogan: Hogan
+          iiht: IIHT-beoordeling
+          pearson: Pearson Beoordeling
+          saville: Beoordeling Saville
+        updated_at: Gewijzigde datum
+      assign:
+        completed_at: Datum van voltooiing
+        statuses:
+          completed: Voltooid
+          in_progress: CV
+          ineligible: Niet-subsidiabel
+          interrupted: Onderbroken
+          not_started: Nieuw
+          overdue: Achterstallig
+          timed_out: Uitgetimed
+      block:
+        active: Actief
+        assign_to_assessment_ids: Beoordeling
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      client:
+        applicable_level: Toepasselijk niveau
+        applicable_levels:
+          campaign: Campagne
+          project: Project
+          sub_campaign: Subcampagne
+        category: Categorie
+        created_at: Datum aangemaakt
+        id: ID
+        licenses: Licentienummer
+        licenses_expire: Vervaldatum licentie
+        licenses_used: Licentiegebruik
+        location: Locatie
+        logo: Logo klant
+        memberships_count: Gebruikers
+        name: Naam
+        number: Klantnummer
+        privacy_consent: Toestemming voor gegevensverwerking inschakelen
+        project_manager: TTE projectmanager
+        project_manager_id: TTE projectmanager
+        report_ids: Rapporten
+        strong_password_enabled: Sterk wachtwoord inschakelen
+        subdomain: Subdomein
+        types:
+          associate: Geassocieerd
+          corporate: Bedrijven
+          distributer: Distributeur
+          other: Andere
+          partner: Partner
+          retail: Detailhandel
+          tte: TTE
+        updated_at: Gewijzigde datum
+        year: Klant Jaar
+      communication:
+        created_at: Datum aangemaakt
+        id: ID
+        updated_at: Gewijzigde datum
+      dimension:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      factor:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        parent_id: Ouder
+        questions_count: Aantal vragen
+        updated_at: Gewijzigde datum
+      hogan_report_setting:
+        load_report: Laadrapport van Hogan
+      innovation_style:
+        active: Actief
+        created_at: Datum aangemaakt
+        description: Beschrijving
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      innovation_styles_factor:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      library:
+        created_at: Datum aangemaakt
+        id: ID
+        type: Miniaturen
+        updated_at: Gewijzigde datum
+      license:
+        id: ID
+        number: Licentienummer
+        overuse_number: Toeslag voor overmatig gebruik
+        type: Licentie voor
+        types:
+          common: Gewoon
+          proctoring: Proctor
+          threesixty: Driezestig
+        unlimited: Onbeperkt
+        used_number: Gebruikt licentienummer
+      membership:
+        active: Actief
+        created_at: Datum aangemaakt
+        disabled: Uitschakelen
+        email: E-mail
+        first_name: Voornaam
+        id: ID
+        last_name: Achternaam
+        parent: Directe manager
+        parent_id: Directe manager
+        report_ids: Rapport-ID's
+        roles:
+          campaign_admin: Campagne Admin
+          client_admin: Klant Admin
+          manager: Manager
+          member: Gebruiker
+          project_admin: Projectbeheerder
+        updated_at: Gewijzigde datum
+        user_access: Gebruikerstoegang
+      norm:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+        updated_by: Bewerkt door
+      occupation:
+        active: Actief
+        bachelors_or_masters_qualification: Bachelors of Masters kwalificatie
+        created_at: Datum aangemaakt
+        description: Beschrijving
+        diploma_qualification: Diploma
+        full_description: Volledige beschrijving
+        high_school_entry_roles: Instaprollen middelbare school
+        id: ID
+        key_career_tracks: Belangrijkste loopbaantrajecten
+        name: Naam
+        potential_areas_of_study: Potentiële studiegebieden
+        updated_at: Gewijzigde datum
+        work_environment: Werkomgeving
+      occupations_factor:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      product:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      question:
+        active: Actief
+        assign_to_assessment_ids: Beoordeling
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      report:
+        created_at: Datum aangemaakt
+        id: ID
+        updated_at: Gewijzigde datum
+      report_family:
+        created_at: Datum aangemaakt
+        id: ID
+        updated_at: Gewijzigde datum
+      task:
+        active: Actief
+        created_at: Datum aangemaakt
+        description: Beschrijving
+        description_label: BESCHRIJVING
+        factor_id: Competentie
+        factor_id_label: SELECTEER COMPETENTIE
+        id: ID
+        membership_id: Toewijzer
+        membership_id_label: SELECTEER TOEWIJZER
+        name: Actiepunt
+        name_label: ACTIE-ITEM
+        planned_completed_at: Vervaldatum
+        planned_completed_at_label: SELECTEER VERVALDATUM
+        priority: Prioriteit
+        priority_label: PRIORITEIT
+        status: Status
+        status_label: STATUS SELECTEREN
+        statuses:
+          completed: Voltooid
+          in_progress: In uitvoering
+          not_started: Niet gestart
+          overdue: Achterstallig
+        updated_at: Gewijzigde datum
+        updated_by: Bewerkt door
+      threesixty:
+        users_result:
+          statuses:
+            completed: Voltooid
+            in_progress: CV
+            not_started: Nieuw
+      user:
+        active: Actief
+        created_at: Datum aangemaakt
+        current_password: Huidig wachtwoord
+        disabled: Uitschakelen
+        email: E-mailadres
+        first_name: Voornaam
+        id: ID
+        last_name: Achternaam
+        manage_client_ids: Huurder
+        memberships: Huurder
+        name: Naam
+        password: Wachtwoord
+        password_confirmation: Wachtwoord bevestigen
+        role: Rol
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            campaign_admin: Campagne Admin
+            project_admin: Projectbeheerder
+            regular: Klant Admin
+            superadmin: Superbeheerder
+          agile: AGIEL
+          assessor: Assessor
+          assessor_form: Beoordelaarsformulier
+          campaign_admin: Campagne Admin
+          case_study: Casestudy
+          client_admin: Klant Admin
+          hogan: Hogan
+          iiht: IIHT
+          manager: Manager
+          meeting: Vergadering
+          member: Gebruiker
+          organisational: Organisatie
+          pearson: Pearson
+          project_admin: Projectbeheerder
+          psychometric: Psychometrisch
+          regular: Regelmatig
+          saville: Saville
+          super_admin: Superbeheerder
+          superadmin: Superbeheerder
+          threesixty: Driezestig
+        types:
+          anonymous: Anonieme gebruikers
+          identified: Geïdentificeerde gebruikers
+        updated_at: Gewijzigde datum
+      user_form:
+        active: Actief
+        created_at: Datum aangemaakt
+        current_password: Huidig wachtwoord
+        disabled: Uitschakelen
+        email: E-mail
+        first_name: Voornaam
+        id: ID
+        last_name: Achternaam
+        parent: Directe manager
+        parent_id: Directe manager
+        password: Wachtwoord
+        password_confirmation: Wachtwoord bevestigen
+        role: Rol
+        updated_at: Gewijzigde datum
+      users_result:
+        assessment_name: Naam beoordeling
+        assessment_type: Beoordelingstype
+        completed_at: Voltooid Op
+        completion_reasons:
+          time_out_offline: Tijd uit / Offline
+          time_out_online: Time-out / Online
+          user_completed: Gebruiker Voltooid
+        email: E-mail
+        name: Naam
+        result_id: Resultaat ID
+        started_at: Begonnen bij
+        status: Status
+        statuses:
+          completed: Voltooid
+          in_progress: CV
+          ineligible: Niet in aanmerking komend
+          interrupted: Onderbroken
+          not_started: Nieuw
+          timed_out: Getimede import_raw
+    errors:
+      messages:
+        admin_for_another_tte: Gebruiker al admin in een andere tte
+        invalid_http_url: Ongeldige URL. Geef de volledige url op met het http- of https-protocol erin.
+        not_uniqueness: Opdracht is al gegeven
+      models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: Externe configuratie moet een geldige josn zijn
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'Er is een cyclische afhankelijkheid in de formule. Afhankelijkheid: %{cyclic_path}'
+        factors_norm:
+          score_from_must_be_number: Score van moet nummer zijn
+          score_to_less_than_score_from: Score tot is lager dan Score van
+          score_to_must_be_number: Score naar moet nummer zijn
+        license:
+          attributes:
+            used_number:
+              overused: De gebruikte licentie kan niet meer zijn dan de som van de toegewezen licentie en de overgebruikslimiet.
+          overuse: Licentie %{naam} wordt te veel gebruikt
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: Limiet bereikt voor maximale opnames
+        report:
+          assessments_not_hogan: Alle beoordelingen moeten van het Hogan-type zijn
+          assessments_not_saville: Alle beoordelingen moeten van het type Saville zijn
+          has_already_assigned: Beoordeling kan niet worden gewijzigd omdat deze al is toegewezen aan de gebruiker of het van toepassing zijnde niveau
+          has_dependent_relation: Dit rapport is gericht op gebruikers
+          max_assessment_count: Je hebt de limiet van %{max} beoordelingen bereikt
+          min_assessment_count: Het minimum aantal beoordelingen is %{min}
+        skill_gap_report:
+          not_found: Rapport over vaardigheidskloof niet gevonden
+        user:
+          attributes:
+            current_password:
+              invalid: Huidig wachtwoord is onjuist
+        user_idp_plan:
+          no_active_plan: Geen actief IDP-plan gevonden
+  admin_jobs:
+    attrs:
+      operations:
+        add_campaign_reports: Campagnerapporten toevoegen
+        assessment_norm_export: Export van genormaliseerde resultaten
+        assessment_raw_factor_export: Ruwe factorscores Export
+        assessment_raw_result_export: Export van ruwe resultaten
+        assessment_scoring_export: Resultaten exporteren
+        assign_idp_to_users: IDP toewijzen aan gebruikers
+        assign_reports_and_assessments: Rapporten en beoordelingen toewijzen
+        bulk_create_workshop_invites: Bulk Assessment Center Uitnodigingen versturen
+        bulk_download_reports: Bulkrapporten downloaden
+        bulk_download_user_reports: Bulk Download Gebruikersrapporten
+        bulk_regenerate_reports: Campagneverslagen opnieuw genereren
+        bulk_regenerate_threesixty_reports: Regenereren van drieënzestig onderwerpsrapporten
+        bulk_regenerate_user_reports: Gebruikersrapporten opnieuw genereren
+        bulk_reports: Bulkrapporten
+        bulk_rescore_campaign_factors: Bulk Rescore-campagnefactoren
+        compact_completion_status_export: Export van compacte voltooiingsstatus
+        completion_status_export: Export van voltooiingsstatus
+        copy_dimension: Dimensie kopiëren
+        create_threesixty_campaign: Creëer DrieZestig Campagne
+        data_report_export: Gegevensrapport exporteren
+        export_admin_with_permissions: Admin exporteren met machtigingen
+        export_assessment_questions: Vragen over exportbeoordeling
+        export_campaign_factors: Factoren voor exportcampagnes
+        export_campaign_scorings: Campagne scorings exporteren
+        export_development_action_translations: Export Ontwikkeling Actie Vertalingen
+        export_development_actions: Acties voor exportontwikkeling
+        export_dimension_as_json: Dimensie JSON exporteren
+        export_factor_translations: Exportfactor Vertalingen
+        export_norm: Exportnorm
+        export_occupations: Beroepen Export
+        export_report_data: Rapportgegevens exporteren
+        export_reports_and_assessments: Rapporten en beoordelingen exporteren
+        export_skill_translations: Exportvaardigheden Vertalingen
+        export_skills: Exportvaardigheden
+        export_user_report_events: Gebeurtenissen gebruikersrapport exporteren
+        export_users: Campagne gebruikers exporteren
+        external_assessment_export: Exporteren van externe resultaten
+        import_accesssheet: Accessheet importeren
+        import_assessment_questions: Vragen over importeren
+        import_assessors: Importeurs
+        import_campaign_factors: Campagnefactoren importeren
+        import_datasheet: Gegevensblad importeren
+        import_development_action_translations: Import Ontwikkeling Actie Vertalingen
+        import_development_actions: Ontwikkelingsacties importeren
+        import_dimension_from_json: Dimensie importeren vanuit JSON
+        import_external_campaign_scoring: Externe campagnescores importeren
+        import_factor_translations: Importfactor Vertalingen
+        import_factors: Importfactoren
+        import_norm: Norm importeren
+        import_question_translations: Vragen importeren Vertalingen
+        import_raw_data: Ruwe gegevens importeren
+        import_scoring_data: Scoringsgegevens importeren
+        import_skill_translations: Importvaardigheden Vertalingen
+        import_skills: Vaardigheden importeren
+        import_sms_invites: SMS-uitnodiging importeren
+        import_users: Gebruikers importeren
+        migrate_assessment_translations: Beoordeling Vertaalmigratie
+        normalize_factor_scores: Factorscores normaliseren
+        regenerate_campaign_reports: Campagneverslagen opnieuw genereren
+        regenerate_report: Regenereren Rapport
+        regenerate_threesixty_report: Regenereren Drieënzestig Verslag
+        remap_report_assessment: Beoordeling Remap-rapport
+        rescore_assessment: Rescore-beoordeling
+        rescore_user_assessment: Rescore gebruikersbeoordeling
+        send_sms_invites: SMS-uitnodigingen versturen
+        super_admin_assessment_norm_export: Super Admin Normresultaten exporteren
+        super_admin_assessment_raw_factor_export: Super Admin Export ruwe factor scores
+        super_admin_assessment_raw_result_export: Super Admin Export ruwe resultaten
+        super_admin_datasheet_export: Super Admin Gegevensblad Exporteren
+        super_admin_external_assessment_export: Superbeheerder Extern beoordelen exporteren
+        threesixty_campaign_export_completion_status: Threesixty Campagne Export Status Voltooiing
+        threesixty_campaign_export_scores: Threesixty Campagne Scores Export
+        workshop_status_export: Status beoordelingscentrum exporteren
+      statuses:
+        completed: Voltooid
+        completed_with_errors: Voltooid met fouten
+        failed: Mislukt
+        in_progress: In uitvoering
+        scheduled: Gepland
+    bulk_download_reports:
+      content:
+        title: Koppelingen om rapporten te downloaden
+    close: Sluit
+    details: Details
+    errors: Fouten
+    invalid_job: Deze melding komt overeen met verwijderde record
+    mark_as_read: Markeer alle gelezen
+    more: Meer
+    notifications: Meldingen
+    results: Resultaten
+    super_admin:
+      errors:
+        data_processing_disabled: Gegevensverwerking is uitgeschakeld.
+  anonym:
+    close: Sluit
+    continue: Ga verder
+    link_invalid_error_message: De link die u probeert te openen is ongeldig. Neem contact op met de beheerder voor de juiste URL en ga verder met de enquête.
+    notifications:
+      restart:
+        copy: U was al begonnen met deze enquête. U kunt kiezen tussen Doorgaan of Opnieuw beginnen.
+        title: Doorgaan?
+      retake:
+        copy: Je hebt deze enquête al ingevuld. Klik op de knop Opnieuw invullen hieronder als je de enquête opnieuw wilt invullen.
+        title: Opnieuw opnemen?
+    restart: Herstart
+    retake: Opnieuw
+  assessments:
+    actions:
+      add_tag:
+        success_message: Tag is succesvol toegevoegd
+      archived:
+        success_message: Assessment "%{naam}" is succesvol gearchiveerd.
+      assessment_cache:
+        remove_cache: Cache verwijderen
+        success_message: Cache succesvol verwijderd
+      back_to_campaign: Terug naar Campagne
+      back_to_dashboard: Terug naar Dashboard
+      copy:
+        success_message: Assessment "%{naam}" is succesvol gekopieerd.
+      details: Details
+      download_csv: CSV downloaden
+      edit: Bewerk
+      evaluate: Evalueer
+      export_normed: Genormeerde factorscores
+      export_raw_labels: Rauw (met labels)
+      export_raw_scores: Ruwe factorscores
+      export_raw_without_labels: Rauw (zonder labels)
+      extend_time: Tijd verlengen
+      external_scores_export: Externe Scores
+      goto_dashboard: Klik hier om verder te gaan
+      manage_mettl_schedule: Mettle schema beheren
+      moderate: Matige Scores
+      new_response: Nieuw antwoord
+      next_assessment: Doorgaan naar volgende beoordeling
+      pending_tasks:
+        one:
+        other:
+      re_evaluate: Klik hier om opnieuw te evalueren
+      reevaluate: Opnieuw evalueren
+      remove:
+        confirm_message: Weet je zeker dat je de beoordeling "%{naam}" wilt verwijderen?
+        confirm_title: Bevestiging vereist
+        success_message: Beoordeling %{naam} is verwijderd
+      remove_tag:
+        success_message: Tag is succesvol verwijderd
+      rescore: Rescore
+      restore:
+        success_message: Beoordeling "%{naam}" is succesvol hersteld
+      show_usage: Gebruik tonen
+      submit_another_response: Dien nog een reactie in
+      submit_evaluation: Evaluatie indienen
+      translations:
+        success_message: De beoordelingsvertalingen bijgewerkt
+      unarchived:
+        success_message: Assessment "%{naam}" is uitgearchiveerd
+      view: Bekijk
+    active: Actief
+    archived: Gearchiveerd
+    assessment: Beoordeling
+    assessments: Beoordeling
+    audio_response:
+      pause: Pauze
+      permission_denied_message: Schakel microfoontoestemming in uw browser in om het antwoord op te nemen
+      permission_text: Sta het gebruik van een microfoon toe om audio op te nemen
+      resume: CV
+      saved:
+        label: Opgeslagen audio
+      saving: Audio opslaan
+      start_recording: Opname starten
+      stop: Stop
+    card_actions:
+      begin: Begin
+      continue: Ga verder
+    categories:
+      redirecting: Omleiden
+    column:
+      enable_audio_check: Audiocontrole inschakelen
+      enable_network_check: Netwerkcontrole inschakelen
+      enable_video_check: Videocontrole inschakelen
+      external_settings:
+        hogan_assessment_name: Hogan Beoordeling Naam
+        iiht_assessment_name: IIHT beoordeling Naam
+        iiht_schedule_config: Configuratie schema
+        mettl_assessment_name: METTL Beoordeling Naam
+        pearson_assessment_name: Pearson Beoordeling Naam
+        pearson_norm_id: Pearson norm ID
+        saville_assessment_name: Saville beoordeling Naam
+        simulation_assessment_name: Simulatie Beoordeling Naam
+      translations_migrated: Vertaling gemigreerd
+    create: Maak
+    dashboard: Dashboard
+    dictation:
+      allow_browser_permision: Geef browser audio toestemming om dictaat te gebruiken
+      autostopping_in: Automatisch stoppen met dicteren in %{reverseCountdown} seconden
+      browser_unsupported: Uw browser ondersteunt geen audio-invoer
+      dictation_active: Dicteren is nu actief
+      dictation_disabled: Dicteren is momenteel uitgeschakeld of wordt gebruikt door een andere vraag
+      dictation_not_started: Speechdictee niet gestart
+      dictation_stopped: Spraakdictee gestopt
+      left: links
+      listening: Luisteren
+      minutes: minuten
+      no_dictation_url: Server geeft geen antwoord voor spraak-naar-tekst functie
+      notifications:
+        autostopped: Dictaat werd automatisch gestopt wegens aanhoudende stilte gedurende %{autocutoff} seconden
+        refresh_page: Kan niet doorgaan met spraakdictee, probeer het opnieuw door de pagina te verversen
+      start_dictation: Dictaat starten
+      stop_dictation: Dictaat stoppen
+      use_speech_instructions: Gebruik spraakinvoer om dit antwoord te schrijven
+    drawer:
+      title: Beoordeling Details
+    edit: Bewerk
+    fields:
+      category:
+        agile: AGIEL
+        assessor_form: Beoordelaarsformulier
+        case_study: Casestudies
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: Formulier hoofdbeoordelaar
+        meeting: Vergadering
+        mettl: Mettl
+        organisational: Organisatie Enquêtes
+        pearson: Pearson
+        psychometric: Psychometrisch
+        saville: Saville
+        simulation: Simulatie
+        threesixty: 360 Campagne
+      status:
+        finished: Afgewerkt
+        in_progress: In uitvoering
+      type:
+        common: TTE-beoordeling
+        hogan: Hogan
+        iiht: IIHT-beoordeling
+        mettl: Mettl Beoordeling
+        pearson: Pearson Beoordeling
+        saville: Beoordeling Saville
+        simulation: Simulatie Beoordeling
+    flow:
+      end_assessment_modal:
+        custom_message: Aangepast bericht einde beoordeling
+        default_message: Standaardbericht einde beoordeling
+        mark_as_ineligible: Markeren als niet in aanmerking komend
+        show_uniq_identifier: Unieke identificatiecode tonen aan respondenten (voor anonieme enquêtes)
+    instructions:
+      begin_assessment: Begin
+      cancel: Annuleren
+      default: Dit is een tijdgebonden activiteit. Zodra je op Begin test klikt, heb je %{tijd} minuten om het te voltooien.
+      title: Instructies
+    messages:
+      external_scores_export_scheduled: De exporttaak voor beoordelingsscores is met succes ingepland
+      finish: Bedankt voor uw tijd. Uw antwoorden zijn nu opgenomen.
+      norm_results_export_scheduled: Exporttaak Assessment Normed Results is met succes gepland
+      raw_factor_export_scheduled: Beoordeling Raw Factor exporttaak is succesvol gepland
+      raw_results_export_scheduled: De exporttaak Assessment Raw Results is met succes ingepland
+    page:
+      back: Terug
+      confirm_message: "## Uw antwoorden worden ingediend en kunnen hierna niet meer worden gewijzigd. Klik op **Terug** om uw antwoorden nog een laatste keer te bekijken of klik op **Zend** als u klaar bent."
+      invalid_session:
+        description: Deze evaluatiesessie is ongeldig gemaakt. Dit kan gebeuren als u de evaluatie in een ander tabblad, browser of apparaat hebt voortgezet.
+        title: Laatste verzoek mislukt
+      next: Volgende
+      read_only: Is alleen-lezen modus, je kunt geen resultaten wijzigen.
+      save: Sla
+      submissionFailedAlert:
+        description: Kan geen verbinding maken met de server. Vernieuw de pagina en probeer het opnieuw. Als dat niet werkt, neem dan contact op met de ondersteuning via live chat of mte.surveys@mercer.com
+        title: Laatste verzoek mislukt
+      submit: Stuur  in
+      warning: WAARSCHUWING
+    pages:
+      edit:
+        assets: Activa
+        general_settings: Algemene instellingen
+        translations: Vertalingen
+    pickgrouprank:
+      items: Items
+    proceed: Toch doorgaan
+    question_info_bar:
+      select_linked_questions: Gekoppelde vragen selecteren
+    reset: Reset
+    scoring:
+      competency: Competentie
+      id: ID
+      score: Score
+    screen_reader_announcements:
+      fifteen_seconds_left: nog 15 seconden
+      five_minutes_left: nog 5 minuten
+      one_minute_left: 1 minuut over
+      seconds_left: "%{seconds} seconden over"
+      thirty_seconds_left: nog 30 seconden
+      time_is_up: Uw tijd is om
+      time_is_up_for_recording: De tijd is om en het opnemen zal nu stoppen
+    single_page:
+      display_linked_questions: Reacties weergeven die zijn gekoppeld aan de huidige geselecteerde vraag.
+    trash: Vuilnis
+    unknown_error: Onbekende fout opgetreden.
+    update: Update
+    upload: Uploaden
+    video_response:
+      device: Sta  toe
+      device_selection:
+        camera: Camera
+        mic: Mic
+      discard: Gooi weg
+      discard_record_again: Weggooien en opnieuw opnemen
+      media_recorder:
+        failure: Deze browser ondersteunt het opnemen van video's niet. Gebruik Chrome of Firefox voor het opnemen van video's
+        success: Sta het gebruik van camera en microfoon toe om audio en video op te nemen
+        unsupported: Deze browser ondersteunt het opnemen van video's niet. Gebruik een van de volgende browsers,
+      recording_duration_label: Maximale duur van opname
+      recording_stop_label: De opname stopt in
+      requesting_permission: Toestemming vragen...
+      response_recorded: Reactie opgenomen
+      save: Sla
+      saved:
+        label: Video opgeslagen
+      saving: Video opslaan...
+      seek: Zoek
+      start_recording: Opname starten
+      stop_recording: Opname stoppen
+      tracker:
+        backward: U staat te dicht bij het scherm. Ga iets naar achteren
+        forward: Je staat te ver van het scherm af. Ga alsjeblieft wat dichterbij staan
+        frame: Zorg ervoor dat je gezicht uitgelijnd is met het frame
+        ready: Druk op de opnameknop wanneer u klaar bent om op te nemen
+    wait: Wacht
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: De beoordelingen worden in onderstaande volgorde uitgevoerd
+      previous_group_required: Eerdere voltooiing van de groep vereist
+    menu:
+      assessment_center: Beoordelingscentrum
+      assessments_and_reports: Beoordelingen en rapporten
+      idp: IDP
+      manage: Beheer
+      report_approval: Instellingen voor goedkeuring van rapporten
+      sequencing: Sequencing
+    report_approval:
+      add_settings: Instelling toevoegen
+      create_seetings: Instellingen maken
+    sequencing:
+      add_assessment_center: Beoordelingscentrum toevoegen
+      add_group: Groep toevoegen
+      assessments: Beoordeling
+      delete_group: Groep verwijderen
+      edit_group_name: Groepsnaam bewerken
+      modal:
+        delete:
+          cancel: Annuleren
+          cannot_delete_with_workshops: Kan groep met workshops niet verwijderen, verwijder eerst workshops
+          failed: Fout bij het verwijderen van "%{naam}" groep, neem contact op met beheerder
+          ok: Ja, verwijderen
+          text: Weet je zeker dat je de groep "%{naam}" wilt verwijderen?
+          title: Groep verwijderen
+      no_assessments: Versleep de beoordelingen
+      no_ungrouped_assessments: Sleep de beoordelingen hierheen om ze te degroeperen
+      ungrouped_assessments: Niet-gegroepeerde beoordelingen
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: Evaluatie telling
+        evaluation_status: Evaluatiestatus
+        moderation_count: Matigingstelling
+        moderation_status: Moderatiestatus
+  assign_reports:
+    assessment_not_in_report: Beoordeling met id %{beoordeling_id} is geen onderdeel van rapport met id %{rapport_id}
+    errors:
+      not_enought_licenses: Bundel met id %{bundle_id} heeft geen licenties
+      user_not_found: 'Rij %{rij}: Gebruiker met e-mailadres ''%{email}'' niet gevonden'
+    report_bundle_not_found: Rapportbundel met id %{bundle_id} is niet gevonden
+    report_not_found: Rapport met id %{report_id} is niet gevonden
+    report_not_in_bundle: Rapport met id %{report_id} is geen onderdeel van rapportbundel met id %{bundle_id}
+  assigns:
+    decorator:
+      no_description: Beschrijving is leeg
+  audit_log_failures:
+    invalid_sso_token: Ongeldig SSO-token
+    record_not_found: Record niet gevonden
+    user_not_authorized: Gebruiker niet geautoriseerd
+  auth:
+    current_password: Huidig wachtwoord
+    current_password_placeholder: Huidig wachtwoord invoeren
+    email: E-mail
+    email_placeholder: E-mailadres invoeren
+    expired_password:
+      description: Vul alle velden in om een nieuw wachtwoord aan te maken
+      submit: Stuur  in
+      title: Vernieuw je wachtwoord
+    lighthouse_logo_alt_text: Vuurtoren logo
+    login:
+      continue_btn: Ga verder
+      description: Log in met uw persoonlijke accountgegevens
+      forgot_password: Wachtwoord vergeten?
+      hide_password: Wachtwoord verbergen
+      login_btn: Inloggen
+      magic_link_btn: E-mail mij inloglink
+      not_member: Geen lid?
+      or: OF
+      show_password: Wachtwoord tonen
+      sso_btn: Inloggen met eenmalige aanmelding
+      title: Welkom!
+    logout: Afmelden
+    magic_link:
+      description: Voer uw e-mailadres in om een aanmeldlink te ontvangen
+      invalid_email: E-mail is ongeldig
+      login_with_password: Inloggen met wachtwoord
+      send_me_login_link: Stuur me de aanmeldlink
+      success: We hebben je een inloglink gestuurd naar '%{email}'. Klik op de link in de e-mail die je hebt ontvangen om in te loggen
+    mobile_number: Mobiel nummer
+    new_password: Nieuw wachtwoord
+    new_password_placeholder: Voer het nieuwe wachtwoord in
+    otp:
+      code: Code
+      code_placeholder: Eenmalig wachtwoord
+      description: Voer de OTP in die naar uw geregistreerde e-mailadres is verzonden.
+      resend: OTP opnieuw verzenden
+      resend_in: Opnieuw verzenden in %{timestamp} seconden
+      resend_success: OTP wordt naar je mobiele nummer gestuurd
+      sms_description: Voer de OTP in die naar uw mobiele nummer is verzonden.
+      submit: Controleer
+      title: Eenmalig wachtwoord
+    password: Wachtwoord
+    password_confirmation: Wachtwoord bevestigen
+    password_confirmation_placeholder: Wachtwoord bevestigen
+    password_placeholder: Voer wachtwoord in
+    registration:
+      description: Vul de onderstaande gegevens in om te registreren en een nieuwe account aan te maken
+      email_hint: We respecteren je privacy en tolereren geen spam. We zullen je gegevens nooit doorgeven aan derden
+      first_name: Voornaam
+      first_name_placeholder: Voer uw voornaam in
+      have_account: Heb je al een account?
+      last_name: Achternaam
+      last_name_placeholder: Achternaam invoeren
+      login_now: Nu aanmelden!
+      registration_code: Registratiecode
+      registration_code_placeholder: Registratiecode invoeren
+      terms_notice: Door te registreren, gaat u akkoord met onze <a href="%{terms_url}">Servicevoorwaarden en Privacybeleid</a>
+      title: Aanmelden
+    reset_password:
+      back_to_sign_in: Terug naar Aanmelden
+      description: Voer het e-mailadres in dat aan uw account is gekoppeld
+      submit: Wachtwoord opnieuw instellen
+      title: Wachtwoord vergeten?
+    set_password:
+      description: Om een nieuw wachtwoord aan te maken, voert u uw nieuwe wachtwoord in de vakjes hieronder in
+      submit: Stuur  in
+      title: Wachtwoord aanmaken
+    sign_out: Inloggen als andere gebruiker
+    sign_up: Aanmelden
+    terms_link: <a href="%{terms_url}">Voorwaarden en privacyverklaring</a>
+    verify_mobile_number:
+      error:
+        blocked: Dit nummer is geblokkeerd vanwege te veel pogingen.
+        invalid_code: Ongeldige code
+        invalid_number: Het mobiele nummer is onjuist. Controleer uw nummer opnieuw
+        max_attempts_reached: Te veel pogingen. Wacht 10 minuten voordat u het opnieuw probeert.
+  browsers:
+    chrome: Google Chrome
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: Downloaden
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
+    firefox: Mozilla Firefox
+    safari: Apple Safari
+    support:
+      instruction: Download en gebruik een van de volgende browsers.
+      message: De browser die je gebruikt wordt niet ondersteund door Lighthouse.
+    upgrade:
+      instruction: Nu upgraden
+      message: Gebruik de nieuwste versie van de browsers
+  campaign:
+    all_activities_are_completed: Alle activiteiten zijn nu voltooid.
+    all_activities_are_completed_multiple: Alle activiteiten voor deze campagne zijn nu voltooid. Ga naar het Dashboard en controleer of je nog andere activiteiten hebt toegewezen.
+    already_joined: Je hebt je al aangesloten bij deze campagne
+    begin: Begin je taken
+    begin_btn_msg_before_prework: Je moet de onderstaande taken uitvoeren voordat je de getimede campagne start
+    begin_campaign_msg: Campagne starten voordat je assessments doet
+    campaigns: Campagnes
+    closed_campaign_message: Deze campagne is gesloten. Je kunt geen beoordeling maken binnen deze campagne.
+    code_usage_limit_reached: Gebruikslimiet code bereikt, neem contact op met beheerder
+    complete_prev: Voltooi alle voorgaande beoordelingen
+    complete_tasks: Voer onderstaande taken uit voordat u deze actie onderneemt.
+    continue: Doorgaan met je taken
+    dashboard_instructions: Er kunnen meerdere activiteiten aan je zijn toegewezen die je moet voltooien. Controleer of alle toegewezen activiteiten zijn voltooid in alle campagnes.
+    dashboard_menu:
+      bookings: Boekingen
+      campaign: Campagne
+      change_password: Wachtwoord wijzigen
+      development: Ontwikkeling
+      home: Home
+      insights: Inzichten
+      my_plan: Mijn plan
+      profile: Profiel
+      profile_details: Details
+      tasks: Taken
+    details: Details
+    edit_evaluation:
+      body: Houd er rekening mee dat zodra je op Opnieuw evalueren klikt, je naar het begin van de enquête wordt geleid waar je de antwoorden kunt bewerken. De vorige antwoorden blijven beschikbaar, maar je kunt ze naar eigen inzicht wijzigen. Na het bewerken moet je de beoordeling opnieuw indienen om het proces te voltooien.
+      edit: Opnieuw evalueren
+      title: Bevestig
+      view: Beoordeling bekijken
+    errors:
+      invalid_status: Ongeldige campagnestatus
+    goto_dashboard: Ga naar het dashboard
+    inactive_campaign_message: Momenteel zijn er nog geen activiteiten aan je toegewezen.
+    insights_reports: Inzichten en rapporten
+    instruction_modal:
+      campaign_start_final_instructions: "<p>houd er rekening mee dat er geen manier is om de timer te stoppen of te pauzeren. De campagnetimer blijft lopen, zelfs als je de browser sluit, dus je moet er op geen enkel moment aan denken om de taken tussendoor te verlaten om iets anders te doen. Zorg ervoor dat je zo min mogelijk wordt afgeleid tijdens de taken. Zoek een rustige omgeving, schakel meldingen op je apparaten uit en vermijd multitasking. Houd je concentratie vast en blijf gefocust. Als de campagnetimer is afgelopen, kun je niet meer verder. Als je de bovenstaande instructies hebt doorgelezen, klik dan op start om verder te gaan met de toegewezen taken</p>\n"
+      campaign_start_instruction: |
+        <h4>Lees de volgende instructies goed door.</h4>
+        <p>de taken die je gaat uitvoeren hebben een tijdslimiet. Zodra je op "Start" klikt, begint de campagnetimer automatisch te lopen. Je hebt %{minuten} minuten om alle activiteiten te voltooien. Probeer de taken binnen de aangegeven tijd te voltooien en ga effectief met je tijd om, zodat je je niet door het evaluatieproces hoeft te haasten. Zorg ervoor dat je de taken in één keer voltooit, dus als je een pauze moet nemen, is dit het juiste moment</p>
+      common_proctoring_instructions: |
+        <h4>Surveilleren</h4>
+        <p>als je op de Startknop klikt, word je doorgestuurd naar ons surveillancesysteem. Het zal je camera, microfoon en scherm in de gaten houden tijdens je sessie. Deze sessies worden automatisch gecontroleerd door ons geavanceerde AI-systeem, wat zorgt voor een ononderbroken en soepele gebruikerservaring. Sessies kunnen echter ook worden beoordeeld door menselijke surveillanten. Alle tekenen van wangedrag of onregelmatigheden zullen worden gemarkeerd. Dit wordt gedaan om ervoor te zorgen dat er geen pogingen tot valsspelen worden gedaan. Als er verdenkingen worden gevonden, worden je taken geannuleerd</p>
+      lockdown_browser_instruction: |
+        <h4>Proctor browser</h4>
+        <p>je zult een speciale browser moeten downloaden en installeren om de proctoraatstaken te voltooien. Volg de instructies in het volgende scherm. Je kunt deze verwijderen nadat je alle vereiste activiteiten hebt voltooid</p>
+    instructions:
+      collapse_aria_label: 'Toon meer informatie hierboven: Virtueel leercentrum'
+      collapse_link_text: Minder tonen
+      expand_aria_label: 'Toon minder informatie hierboven: Virtueel leercentrum'
+      expand_link_text: Meer tonen
+      heading: Lees de onderstaande richtlijnen voordat je aan de slag gaat. We wensen je het allerbeste!
+    language:
+      content: Deze taak is niet beschikbaar in de huidige geselecteerde taal. Selecteer een van de beschikbare talen om verder te gaan.
+      single_lang: Deze taak is alleen beschikbaar in %{lang}. Klik op "Doorgaan" om door te gaan.
+      title: Selecteer taal
+    panels:
+      dashboard: Dashboard
+      reports: Rapporten
+    profile:
+      complete_heading: Je profiel is compleet
+      complete_profile_label: Nu voltooien
+      edit_profile_label: Profiel bewerken
+      incomplete_heading: Vul je profiel aan
+      last_login_text: 'Laatst ingelogd op :'
+      last_updated_text: 'Profiel is voor het laatst bijgewerkt op:'
+      sub_heading: Vul je volledige profielinformatie in
+      welcome_text: Welkom,
+    reset_warning: Je kunt alleen de campagne die gemarkeerd is als oefencampagne opnieuw starten.
+    restart_practice: Praktijk herstarten
+    restart_practice_confirmation: Weet je zeker dat je de praktijk opnieuw wilt starten?
+    restart_practice_success: Praktijk succesvol herstart
+    thank_you_for_time: Bedankt voor uw tijd
+    time_left:
+      cancel: Annuleren
+      continue: Ga verder
+      notification: Je toegewezen tijd voor deze taak "%{assessmentName}" was %{totalAssessmentTime}. Vanwege de totale verstreken tijd, heb je nu slechts %{remainingCampaignTime} als je aangepaste tijd om deze taak te voltooien.
+    timer:
+      notification_hours: Je hebt %{uur} uur over
+      notification_minutes: je hebt %{minuten} minuten over
+  campaign_assessment:
+    actions:
+      bulk_download: Bulk downloaden
+      download: Rapporten downloaden
+      export_completion_status: Status voltooiing export
+      export_external: Extern
+      export_normed: Genormeerde factorscores
+      export_occupations: Beroepen
+      export_raw_labels: Rauw (met labels)
+      export_raw_scores: Ruwe factorscores
+      export_raw_without_labels: Rauw (zonder labels)
+      export_scores: Scores
+      export_scoring: Scoren
+      factor_benchmark_score: Factor Benchmark Score
+      force_generate: Kracht genereren
+      import_raw: Rauw
+      import_scoring: Scoren
+      regenerate: Rapporten genereren
+      rescore: Rescore-beoordeling
+      reset_all_nominations: Alle nominaties resetten
+      reset_participant: Alle deelnemers resetten
+    allow_msg_proctoring_workshop_activity: Assessmentactiviteiten worden niet gescreend.
+    assessment_center_heading: Details beoordelingscentrum
+    assessments_heading: Uw taken
+    column:
+      assessment_name: Naam beoordeling
+      assessor_form: Beoordelaarsformulier
+      auto_assign: Automatisch toewijzen
+      dimension_id: Afmeting ID
+      id: Campagne Beoordeling ID
+      locales: Locaties
+      norm: Norm
+      norm_id: Norm ID
+      pearson_variation: Pearson Variatie
+      prework: Voorwerk
+      simulation_content_variation: Simulatie Inhoud Variatie
+      universal_link: Universele link
+    drawer:
+      mettl_schedule_name: Mettl Schema Naam
+      title: Beoordeling Details
+    messages:
+      export_completion_statuses_scheduled: Uitvoerstatussen uitvoertaak is met succes gepland
+      export_occupations_job_scheduled: Beroepen Exporttaak is succesvol ingepland
+      export_reports_and_assessments_statuses_scheduled: De taak Exportrapporten en beoordelingen is met succes gepland
+      external_results_export_scheduled: De exporttaak voor externe beoordelingen is met succes gepland
+      norm_results_export_scheduled: Exporttaak Assessment Normed Results is met succes gepland
+      normalize_factor_scores_scheduled: De taak voor het normaliseren van factorscores is met succes ingepland.
+      raw_factor_export_scheduled: Beoordeling Raw Factor exporttaak is succesvol gepland
+      raw_results_export_scheduled: De exporttaak Assessment Raw Results is met succes ingepland
+      scoring_results_export_scheduled: Beoordelingsscores exporttaak is met succes ingepland
+    modals:
+      import_raw:
+        body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
+        success_msg: Het importeren is gelukt
+        title: Gegevens ruwe resultaten importeren
+        upload: Uploaden
+      import_scoring:
+        body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
+        success_msg: Het importeren is gelukt
+        title: Gegevens scoreresultaten importeren
+        upload: Uploaden
+      regenerate:
+        content: Weet je zeker dat je beschikbare rapporten opnieuw wilt genereren?
+        title: Rapporten opnieuw genereren?
+      remove:
+        helper_text: 'GEVAAR: Als je dit selecteert, worden alle reacties van gebruikers op deze beoordeling in deze campagne verwijderd.'
+        msg_text: U probeert <strong>"%{naam}"</strong> te verwijderen Beoordeling
+        successfully: "%{naam} beoordeling is succesvol verwijderd."
+        title: Beoordeling verwijderen?
+      rescore:
+        content: Weet je zeker dat je de beoordeling opnieuw wilt doen?
+        successfully: De beoordeling werd met succes opnieuw beoordeeld.
+        title: Beoordeling opnieuw beoordelen?
+      rescore_response:
+        message: Herschaling gepland voor beoordeling "%{naam}"
+        title: Reacties opnieuw scoren
+      reset:
+        content: Weet je zeker dat je het resultaat opnieuw wilt instellen?
+        successfully: De resultaatgegevens zijn met succes gereset.
+        title: Reset resultaat voor beoordeling %{naam}?
+      update_assessor_form:
+        select_assessor: Selecteer beoordelaar formulier
+        success_msg: Assessor Formulier is succesvol geüpload
+        title: Formulier bijwerken beoordelaar
+        update: Update
+      update_content_variation:
+        select_schedule: Selecteer inhoudsvariatie
+        success_msg: Simulatie Inhoud Variatie is succesvol bijgewerkt
+        update: Update
+      update_external_config:
+        text_placeholder: Externe json configuratie
+        title: Externe configuratie bijwerken
+      update_locales:
+        select_locales: Locaties selecteren
+        success_msg: Locales zijn succesvol bijgewerkt
+        title: Beschikbare locaties bijwerken
+      update_mettl_schedule:
+        select_schedule: Selecteer schema
+        success_msg: Mettl Schema zijn succesvol bijgewerkt
+        update: Update
+      update_norm:
+        apply: Pas deze wijziging toe op bestaande gebruikers in deze campagne
+        cannot_remove_norm: Kan norm voor voltooide beoordeling niet verwijderen.
+        select_norm: Selecteer Norm
+        success_msg: De normen zijn met succes bijgewerkt
+        title: Norm bijwerken
+        update: Update
+      update_simulation_time_extension:
+        success_msg: Simulation Time Extension is succesvol bijgewerkt
+        title: Tijd verlenging
+        tooltip: Tijdverlenging als factor (bijv. 1,5 voor 50% meer tijd)
+        update: Update
+      update_time:
+        additional_time: Tijd (min)
+        title: Tijd verlengen
+      workshop_activity_duration:
+        form:
+          duration: Duur in minuten
+        title: Duur van de workshopactiviteit
+    normalize_factor_scores:
+      normalization_not_allowed: De normalisatie van factorscores is momenteel uitgeschakeld voor deze beoordeling in de projectinstellingen. Schakel dit in om verder te gaan.
+      success: Normalisatie van factorscores succesvol afgerond
+    not_allow_msg_proctoring_workshop_activity: U kunt geen activiteiten van het beoordelingscentrum doen omdat u zich in het venster van het beoordelingscentrum bevindt. Om deze activiteiten te doen, moet u het venster van het beoordelingscentrum verlaten.
+    pearson_variation_form:
+      apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
+      select: Selecteer variatie
+      update: Update
+      update_success: Pearson-variatie succesvol bijgewerkt
+    scheduled_successfully: De beoordeling is met succes gepland
+    scheduling:
+      update_exists: Bestaand schema overschrijven
+    scheduling_time: Tijd voor beoordeling plannen
+    statuses:
+      completed: Voltooid
+      in_progress: In uitvoering
+      ineligible: Niet-subsidiabel
+      interrupted: Onderbroken
+      not_started: Niet gestart
+      timed_out: Uitgetimed
+      universal_link: Universele link
+    ungrouped_assessments_heading: Niet-gegroepeerd
+  campaign_join_token:
+    campaign_id: Campagne-ID
+    expire_in: Verstrijken in (sec)
+    invalid_token: Ongeldig token
+    text: Tekst
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: Taak Rapporten toevoegen is succesvol in wachtrij geplaatst
+        success_message: Rapporten zijn succesvol toegevoegd
+      bulk_download: Bulk downloaden
+      export_data: Gegevens exporteren
+    bulk_download:
+      error: Bulkdownload is beperkt tot 1000 rapportbestanden. Huidige selectie heeft %{getal} rapportbestanden. Pas de begin- en einddatum aan om het aantal te downloaden rapportbestanden te verminderen.
+    column:
+      assessor_access: Toegang Assessor
+      auto_assign: Automatisch toewijzen
+      main_report: Hoofdrapport
+      report_bundle: Bundel rapporten
+      report_name: Naam verslag
+      user_access: Gebruikerstoegang
+      user_dashboard: Gebruikersdashboard
+    form:
+      operation: Operatie
+      operation_options:
+        add_and_allow_new_response: Rapport toevoegen aan bestaande gebruiker en nieuwe reactie toestaan
+        add_with_existing_response: Rapport toevoegen aan bestaande gebruiker en bestaande reactie behouden
+        skip_existing: Bestaande gebruiker overslaan
+      report: Rapporteer
+      report_bundle_placeholder: Selecteer een rapportbundel
+    messages:
+      bulk_download_error: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verklein dit dan.
+      bulk_download_successful: De downloadtaak voor bulkrapporten is met succes gepland
+      export_report_data_scheduled: De exporttaak voor rapportgegevens is met succes gepland
+    modals:
+      remove:
+        apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
+        msg_text: U probeert <strong>"%{reportName}"</strong> Rapport te verwijderen
+        title: Rapport verwijderen?
+      user_access:
+        apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
+        title:
+          disable: Gebruikerstoegang uitschakelen
+          enable: Gebruikerstoegang inschakelen
+  campaign_users:
+    actions:
+      add_manager: Manager toevoegen
+      extend_time: Tijd verlengen
+      search_user: Gebruiker zoeken
+    assessments:
+      progress: Vooruitgang
+    details:
+      additional_time: Extra tijd
+      assessment_center: Beoordelingscentrum
+      assessment_center_invites: Uitnodigingen voor beoordelingscentrum
+      completed_at: Voltooid Op
+      completion_status: Voltooiingsstatus
+      hogan_id: Hogan Id
+      last_login: Laatste login
+      manager: Manager
+      modals:
+        create_hogan_credentials:
+          assessments: 'Beoordelingen:'
+          confirmation: Voer het e-mailadres hieronder in het tekstvak in om een nieuw hogan-creditential toe te voegen
+          reports: 'Rapporten:'
+          successfully: Nieuwe hogan credential voor gebruiker met email %{email} is succesvol toegevoegd.
+          warning: Door een nieuwe Hogan login aan te maken, worden de volgende beoordelingen en rapporten verwijderd die gekoppeld waren aan de oude Hogan login voor %{email}
+        remove:
+          successfully: Gebruiker met e-mailadres %{email} is succesvol verwijderd.
+          title: Weet u zeker dat u deze gebruiker wilt verwijderen uit campagne %{campaignName}?
+      not_completed_yet: Nog niet voltooid
+      not_logged_in_yet: Nog niet ingelogd
+      not_started_yet: Nog niet begonnen
+      started_at: Begonnen bij
+      statuses:
+        completed: Voltooid
+        in_progress: In uitvoering
+        ineligible: Niet-subsidiabel
+        interrupted: Onderbroken
+        not_started: Niet gestart
+        timed_out: Uitgetimed
+    modals:
+      remove: Weet je zeker dat je gebruiker met e-mailadres '%{email}' wilt verwijderen uit deze campagne?
+  campaigns:
+    assessments_and_reports:
+      assessor_assessments: Assessor Assessments
+      other_assessments: Andere beoordelingen
+      other_assessor_assessments: Andere taxateur taxaties
+      other_reports: Andere rapporten
+    card:
+      duration: Duur
+      starts_in: 'Begint in:'
+      starts_on: Begint op %{datum}
+      will_start_shortly: De campagne start binnenkort. Even geduld a.u.b
+  change_password_page:
+    old_password: Oud wachtwoord
+    password: Wachtwoord
+    password_confirmation: Wachtwoord bevestigen
+    title: Wachtwoord wijzigen
+    warning_message: 'Belangrijk: Als je je wachtwoord wijzigt, word je uitgelogd.'
+  checking_wizard:
+    audio_check:
+      access: Toegang
+      continue: Ja, oké om door te gaan
+      random_phrases:
+        eight: Moge je koffie sterk zijn en je dag productief.
+        five: Het leven is beter als je lacht. Lach voor de microfoon!
+        four: Ze verkoopt zeeschelpen aan de kust.
+        nine: Bij twijfel, test deze microfoon!
+        one: Ik schreeuw, jij schreeuw, we schreeuwen allemaal om ijs!
+        seven: Elke dag is een nieuw begin. Zeg het luid en trots!
+        six: Pizza of pasta? Beslissingen zijn moeilijk.
+        three: Test, één twee drie, het geluid is zo helder als maar kan!
+        two: De snelle bruine vos springt over de luie hond.
+      record_title: Spreek en herhaal de volgende zin 3 keer.
+      retake: Nee, ik wil een herkansing
+      run_again: Opnieuw rennen
+      test_message: leuk om met je te praten
+    network_check:
+      continue: Ga verder
+      download: Downloaden
+      please_check_connection: Controleer uw internetverbinding
+      processing: Verwerking
+      run_again: Opnieuw rennen
+      run_again_title: En voer deze test opnieuw uit
+      title: Klik op start om de internetsnelheidstest te starten.
+      upload: Uploaden
+    steps:
+      audio_check: Microfoontest
+      network_check: Internet-snelheidstest
+      system_check: Systeem controleren
+      video_check: Videocameratest
+    success:
+      start: Beoordeling starten
+      title: Je hebt alle controles met succes voltooid.
+    system_check:
+      compatibility: Systeemcompatibiliteit
+      continue: Ga verder
+      failure:
+        description: Toestemming voor webcam en microfoon is nodig voor audio/video vragen in deze test.
+        link_text: hier
+        link_text_action: Klik op
+        link_text_instruction: en volg de stappen om rechten te geven
+        refresh: Browser verversen
+        refresh_text: Klik hieronder om de browser te verversen en de wijzigingen toe te passen
+        subtitle: Snelle oplossingen
+        title: Je hebt Webcam- en Microfoonrechten geannuleerd
+      permissions: Webcam en audio rechten
+      title: Voordat je met deze beoordeling begint, moet je systeem een aantal controles ondergaan.
+    video_check:
+      access: Toegang
+      camera_preview: Hier verschijnt het voorbeeld van de camera
+      continue: Ja, oké om door te gaan
+      description: Klik op Start opname en neem jezelf op terwijl je de onderstaande passage voorleest met je eigen stem
+      random_phrases:
+        eight: Als je me kunt zien, is de video geslaagd. Zo niet, dan lossen we het probleem op!
+        five: Test je video, maak je geen zorgen, je hoeft geen Oscarnominatie te krijgen.
+        four: Ready, set, focus! De camera is je podium.
+        nine: Grote glimlachen en duidelijke video, laten we deze test goed doen!
+        one: Steek je hand op als je me kunt horen of zwaai voor de camera!
+        seven: Spiegel, spiegel op het scherm, laat de videocontrole schoon zijn.
+        six: Licht, camera, actie, dit is jouw tijd om te schitteren!
+        ten: Een vriendelijk zwaai zorgt ervoor dat alles goed werkt.
+        three: Zeg cheese! Of test gewoon die perfecte glimlach.
+        two: Kijk naar de lens, glimlach en doe alsof je in een filmtrailer zit.
+      rec_text: REC
+      retake: Nee, ik wil een herkansing
+      run_again: Opnieuw rennen
+      title: We moeten ervoor zorgen dat je systeem de video kan opnemen
+      upload_again: Opnieuw uploaden
+      uploading: Uploaden
+  common:
+    actions:
+      add: Voeg  toe
+      approve: Goedkeuren
+      archive: Archief
+      back_to_dashboard: Terug naar Dashboard
+      back_to_responses: Terug naar Reacties
+      cancel: Annuleren
+      change: Verander
+      close: Sluit
+      continue: Ga verder
+      copy: Kopie
+      create: Maak
+      delete: Verwijder
+      done: Gedaan
+      edit: Bewerk
+      export: Exporteer
+      filter_by_tags: Filter op tags
+      import: Importeren
+      insert: Invoegen
+      ok: OK
+      remove: Verwijder
+      reset: Reset
+      resolve: Oplossen
+      restore: Herstel
+      run: Ren
+      save: Sla
+      schedule: Schema
+      search: Zoek op
+      send: Stuur
+      start: Start
+      unarchive: Unarchive
+      unresolve: Niet oplossen
+      update: Update
+      upload: Uploaden
+      upload_file: Bestand uploaden
+      verify: Controleer
+      view: Bekijk
+      view_all_tasks: Bekijk alle taken
+      view_detail: Detail bekijken
+    column:
+      action: Actie
+      active: Actief
+      allow_multiple_responses: Meerdere reacties toestaan
+      approval_notification_list: Gebruikerslijst voor goedkeuringsmeldingen
+      approvers_list: Lijst met goedkeurders
+      assessment: Beoordeling
+      assessment_name: Naam beoordeling
+      assessments: Beoordeling
+      assessor: Assessor
+      category: Categorie
+      client: Klant
+      created_at: Gemaakt op
+      created_by: Gemaakt door
+      created_date: Datum aangemaakt
+      default_language: Standaard Taal
+      description: Beschrijving
+      details: Details
+      dimension: Afmeting
+      email: E-mail
+      external_report_id: Exterieur Rapport ID
+      first_name: Voornaam
+      icon: Pictogram
+      icon_color: Kleur pictogram
+      id: Id
+      json:
+        answer: Antwoord JSON
+        external_result: Extern resultaat JSON
+        scoring: JSON scoren
+      key: Sleutel
+      last_name: Achternaam
+      linked_activities: Gekoppelde activiteiten
+      linked_assessment: Gekoppelde beoordeling
+      meeting_link: Bijeenkomst Link
+      modified_by: Gewijzigd door
+      modified_date: Gewijzigde datum
+      name: Naam
+      owner: Eigenaar
+      package_id: Pakket-id
+      poster: Poster
+      project: Project
+      provider: Aanbieder
+      qc_user_list: QC gebruikerslijst
+      report: Rapporteer
+      report_id: Rapport Id
+      require_scheduling: Planning vereisen
+      responses_count: Antwoorden Tellen
+      schedule_time: Tijd plannen
+      scheduling: Planning
+      skills: Vaardigheden
+      status: Status
+      tags: Tags
+      timing: Timing
+      token: Penning
+      type: Type
+      unschedule: Uitschakelen
+      updated_at: Laatst bijgewerkt
+    errors:
+      csv_injection_validation_error: kan niet beginnen met =, |, +, -, @, %
+      something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
+    messages:
+      leave_message: Weet je zeker dat je deze pagina wilt verlaten? Alle niet-opgeslagen antwoorden die je hebt zullen verloren gaan.
+    model:
+      admins: Admins
+      assessment: Beoordeling
+      assessments: Beoordeling
+      campaigns: Campagnes
+      completion_statuses: Afrondingsstatussen
+      datasheet: Gegevensblad
+      projects: Projecten
+      report: Rapporteer
+      reports: Rapporten
+      scoring: Scoren
+      sms_contact: SMS contact
+      threesixty_campaign: Threesixty Campagne Scores
+    status:
+      completed: Voltooid
+      dropped_out: Uitgevallen
+      in_progress: In uitvoering
+      late: Laat
+      no_show: Geen voorstelling
+      not_started: Niet gestart
+      not_status: Geen status
+      on_time: Op tijd
+    text:
+      accepted: Geaccepteerd
+      all_pages: Alle pagina's
+      cancel: Annuleren
+      confirm: Bevestig
+      continue: Ga verder
+      copied: Gekopieerd naar klembord
+      default: Standaard
+      download: Downloaden
+      file: Bestand
+      global_import: Is Global Import?
+      minutes: Notulen
+      na: N.V.T
+      none: Geen
+      ok: Ok
+      reference_language: Referentietaal
+      response: Reactie
+      selected: Geselecteerd
+      subject: Onderwerp
+      total: Totaal
+      view_as: Bekijk als
+    tooltips:
+      hide: Verberg
+      view: Bekijk
+    validations:
+      select_locale: Selecteer een of meer locaties
+      should_be_whole_number: moet een heel getal zijn
+  confirmation:
+    delete_comment: Weet je zeker dat je deze opmerking wilt verwijderen?
+  custom_field:
+    field_name: Veldnaam
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: Kolom '%{column_name}' niet gevonden
+        numeric_value_required: Kolom '%{field}' moet een getal zijn
+        string_value_required: Kolom '%{field}' moet een string zijn
+      not_configured: Gegevensblad is niet geconfigureerd
+  devise:
+    administrators:
+      meta_title: Inloggen op het administratiepaneel
+      passwords:
+        edit:
+          submit: Nieuw wachtwoord instellen
+          title: Wijzig je wachtwoord
+        new:
+          back: Terugkeren
+          submit: Stuur mij instructies
+          title: Wachtwoord vergeten?
+      sessions:
+        new:
+          forgot_password: Wachtwoord vergeten?
+          submit: Inloggen
+          title: "<strong>Welkom</strong>, Inloggen"
+      shared:
+        links:
+          about: Over
+          app_name: "© 2016 AppName"
+          contact_us: Neem contact met ons op
+          privacy: Privacy
+    confirmations:
+      confirmed: Je e-mailadres is succesvol bevestigd.
+      send_instructions: Je ontvangt binnen enkele minuten een e-mail met instructies om je e-mailadres te bevestigen.
+      send_paranoid_instructions: Als je e-mailadres bestaat in onze database, ontvang je binnen enkele minuten een e-mail met instructies om je e-mailadres te bevestigen.
+    failure:
+      already_authenticated: U bent al aangemeld.
+      inactive: Je account is nog niet geactiveerd.
+      invalid: Ongeldig e-mailadres of wachtwoord.
+      invited: Je hebt een uitnodiging in behandeling. Accepteer deze om het aanmaken van je account te voltooien.
+      last_attempt: Je hebt nog één poging voordat je account wordt vergrendeld.
+      locked: Je account is vergrendeld.
+      magic_link_invalid: Ongeldige of verlopen aanmeldlink.
+      not_found_in_database: Ongeldig e-mailadres of wachtwoord.
+      saml_user_not_present: Gebruiker is niet aanwezig in het systeem
+      timeout: Uw sessie is verlopen. Log opnieuw in om verder te gaan.
+      unauthenticated: U moet inloggen of registreren voordat u verder kunt gaan.
+      unconfirmed: Je moet je e-mailadres bevestigen voordat je verder kunt gaan.
+    invitations:
+      edit:
+        confirm_password_label: Wachtwoord bevestigen
+        header: Wachtwoord instellen
+        instruction: Om een nieuw wachtwoord aan te maken, voert u uw nieuwe wachtwoord in de vakjes hieronder in
+        password_label: Wachtwoord
+        submit: Nieuw wachtwoord instellen
+        submit_button: Mijn wachtwoord instellen
+        title: Wachtwoord aanmaken
+      invitation_removed: Je uitnodiging is verwijderd.
+      invitation_token_invalid: Het verstrekte uitnodigingstoken is niet geldig!
+      new:
+        header: Uitnodiging versturen
+        submit_button: Een uitnodiging sturen
+      no_invitations_remaining: Geen uitnodigingen meer
+      send_instructions: Er is een uitnodigingsmail verstuurd naar %{email}.
+      updated: Uw wachtwoord is succesvol ingesteld. U bent nu aangemeld.
+      updated_not_active: Uw wachtwoord is succesvol ingesteld.
+    mailer:
+      admin_invitation_instructions:
+        accept: Klik hier om de uitnodiging te accepteren.
+        body: 'Hallo %{naam}, U bent uitgenodigd om toegang te krijgen tot het beheerpaneel van Lighthouse - The Talent Enterprise assessment platform. %{accept} Of u kunt deze e-mail negeren. Deel uw toegangsgegevens met niemand.
+
+          '
+        subject: Uitnodiging voor Lighthouse
+      confirmation_instructions:
+        subject: Instructies voor bevestiging
+      invitation_instructions:
+        body: 'Hallo %{naam}, Je bent toegevoegd aan Lighthouse als Admin voor de volgende sectie
+
+          '
+        login: Aanmelden bij Lighthouse
+        sections:
+          campaign: 'Campagne: %{sectie_naam}'
+          client: 'Huurder: %{sectie_naam}'
+          project: 'Project: %{sectie_naam}'
+        subject: Uitnodiging voor Lighthouse
+      password_change:
+        body: 'Hallo %{naam}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via support@thetalententerprise.com
+
+          '
+        regards: 'Groeten, Lighthouse Team
+
+          '
+        subject: Uw Lighthouse wachtwoord is gewijzigd
+      reset_password_instructions:
+        body: 'Hallo %{naam}! Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via onderstaande link.
+
+          '
+        change_password: Wachtwoord wijzigen
+        footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
+        regards: 'Groeten, Lighthouse Team
+
+          '
+        subject: Instructies om je wachtwoord opnieuw in te stellen
+      unlock_instructions:
+        body: 'Hallo %{naam}! Uw account is vergrendeld vanwege een buitensporig aantal mislukte aanmeldingspogingen. Klik op de onderstaande koppeling om uw account te ontgrendelen:
+
+          '
+        footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
+        regards: 'Groeten, Lighthouse Team
+
+          '
+        subject: Instructies voor het deblokkeren van je account
+        unlock_account: Mijn account deblokkeren
+    omniauth_callbacks:
+      failure: Kan u niet verifiëren van %{kind} omdat "%{reden}".
+      success: Succesvol geverifieerd van %{kind} account.
+    passwords:
+      edit:
+        instruction: Om een nieuw wachtwoord aan te maken, voert u uw nieuwe wachtwoord in de vakjes hieronder in
+        submit: Stuur  in
+        title: Wachtwoord aanmaken
+      invalid_email: Ongeldige e-mail
+      no_token: U kunt deze pagina niet openen als u niet uit een e-mail komt waarin u uw wachtwoord opnieuw instelt. Als u wel uit een e-mail komt waarin u uw wachtwoord opnieuw instelt, zorg er dan voor dat u de volledige URL gebruikt.
+      send_instructions: Je ontvangt binnen enkele minuten een e-mail met instructies om je wachtwoord opnieuw in te stellen.
+      send_paranoid_instructions: Als je e-mailadres in onze database voorkomt, ontvang je binnen enkele minuten een link om je wachtwoord te herstellen op je e-mailadres.
+      updated: Uw wachtwoord is succesvol gewijzigd. U bent nu aangemeld.
+      updated_not_active: Je wachtwoord is succesvol gewijzigd.
+    registrations:
+      communication_not_setup_error: Registratie e-mailcommunicatie is niet ingesteld, neem dan contact op met de beheerder van dit project.
+      destroyed: Dag! Je account is succesvol geannuleerd. We hopen je snel weer te zien.
+      new:
+        email: E-mailadres
+        first_name: Voornaam
+        instruction: Vul de onderstaande gegevens in om te registreren en een nieuwe account aan te maken
+        last_name: Achternaam
+        privacy_notice: We respecteren je privacy en tolereren geen spam. We zullen je gegevens nooit doorgeven aan derden.
+        registration_code: Registratiecode
+        submit: Registreer
+        tabs:
+          register: Registreer
+          sign_in: Aanmelden
+        terms_notice: Door te registreren, gaat u akkoord met onze <a href="%{terms_url}">Servicevoorwaarden en Privacybeleid</a>
+        title: Nu registreren
+      signed_up: Welkom, je hebt je succesvol aangemeld.
+      signed_up_but_inactive: Je hebt je succesvol aangemeld, maar we konden je niet aanmelden omdat je account nog niet is geactiveerd.
+      signed_up_but_locked: Je hebt je succesvol aangemeld, maar we konden je niet aanmelden omdat je account is vergrendeld.
+      signed_up_but_unconfirmed: Er is een bericht met een bevestigingslink naar uw e-mailadres verzonden. Volg de link om uw account te activeren.
+      success:
+        actions:
+          sign_in: Aanmelden
+        instruction: Controleer je e-mail voor verdere instructies
+        title: Succesvol aanmelden
+      update_needs_confirmation: Je hebt je account met succes bijgewerkt, maar we moeten je nieuwe e-mailadres verifiëren. Controleer je e-mail en volg de bevestigingslink om je nieuwe e-mailadres te bevestigen.
+      updated: Je account is succesvol bijgewerkt.
+    sessions:
+      already_signed_out: Succesvol afgemeld.
+      new:
+        email: E-mailadres
+        forgot_password: Wachtwoord vergeten?
+        instruction: Log in met uw persoonlijke accountgegevens
+        keep_sign_in: Ja, houd me aangemeld
+        login_with_sso: Inloggen met eenmalige aanmelding
+        password_placeholder: Wachtwoord
+        submit: Inloggen
+        tabs:
+          register: Registreer
+          sign_in: Inloggen
+        title: Welkom!
+      signed_in: U bent succesvol aangemeld!
+      signed_in_time: U bent voor het laatst ingelogd op %{datum_tijd}
+      signed_out: Succesvol afgemeld.
+      unsuccessful_sign_in_time: Uw laatste aanmeldingspoging op %{datum_tijd} is mislukt.
+    two_factor_authentication:
+      attempt: Voer de OTP in die u hebt ontvangen op uw geregistreerde e-mailadres
+      attempt_failed: Onjuiste OTP! Probeer het opnieuw
+      code_has_been_sent: Uw nieuwe OTP is verzonden naar uw geregistreerde e-mailadres
+      contact_administrator: Neem contact op met uw systeembeheerder
+      email:
+        otp:
+          subject: Uw eenmalige wachtwoord
+      max_login_attempts_reached: U heeft het maximale aantal pogingen voor de huidige OTP bereikt. Klik op OTP opnieuw verzenden om een nieuwe OTP te ontvangen
+      otp: Code
+      submit: Controleer
+      success: Inloggen met Two Factor Authenticatie is gelukt.
+      title: Eenmalig wachtwoord
+    unlocks:
+      send_instructions: Je ontvangt binnen enkele minuten een e-mail met instructies voor het ontgrendelen van je account.
+      send_paranoid_instructions: Als je account bestaat, ontvang je binnen enkele minuten een e-mail met instructies om het te ontgrendelen.
+      unlocked: Uw account is succesvol ontgrendeld. Log in om verder te gaan.
+      unprocessable_entity: Uw account kon niet worden ontgrendeld met deze link. Neem contact op met ondersteuning.
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: Verkeerd subdomeinformaat.
+        reserved_subdomain: Subdomein %{waarde} is gereserveerd
+        uniq_subdomain: Subdomein moet uniek zijn.
+      add_manager:
+        manager_not_found: Manager niet gevonden of geen onderdeel van hetzelfde project
+        user_not_found: Gebruiker niet gevonden of maakt geen deel uit van hetzelfde project
+      admin:
+        already_added: Admin met e-mail al toegevoegd.
+      already_assigned?: Kan deze beoordeling niet koppelen - ze is al toegewezen aan '%{linked_assessor_form_name}'.
+      already_invited: Deze gebruiker bestaat al in het beoordelingscentrum dat u probeert toe te voegen.
+      assessor_assessment:
+        already_added: Assessor Beoordeling al toegevoegd aan campagne.
+        lead_already_added: Er kan slechts één Lead Assessor Assessment aan een campagne worden toegevoegd.
+      campaign_factor:
+        code_already_exists: Er bestaat al een factor met dezelfde code.
+        invalid_lua_name: moet een geldige lua-variabele naam zijn
+        limit_exceeded: U hebt de maximale limiet van %{limit} campagnefactoren bereikt.
+        name_already_exists: Er bestaat al een factor met dezelfde naam.
+        rank_not_allowed: Alleen factoren met een uitvoertype numeriek kunnen gerangschikt worden.
+      campaign_factor_group:
+        group_already_exists: Er bestaat al een groep met dezelfde naam.
+        last_factor_group: Kan laatste Campagnefactor-groep niet verwijderen.
+      create_superadmin:
+        uniq_email: E-mail moet uniek zijn.
+      exceeded_subjects_count: Je kunt alleen %{aantal} onderwerpen per uitnodiging toevoegen
+      filled?: kan niet leeg zijn
+      invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
+      invalid_value: ongeldige instructie '%{waarde}' op regelnummer %{rij}
+      json?: Moet geldige JSON zijn
+      key?: kan niet leeg zijn
+      match_regexp?: ongeldige waarde
+      mettl_schedule_record_create:
+        uniq_schedule_name: De naam van het schema moet uniek zijn
+      missed?: kan niet leeg zijn
+      not_allowed?: niet toegestaan om te veranderen
+      not_in_the_list?: ongeldige waarde doorgegeven
+      not_uniq_variable: variabele '%{value}' geherdefinieerd op regelnummer %{row}
+      project_assessments:
+        should_be_greater_than_zero: De geldigheidsduur van het resultaat moet groter zijn dan 0 dagen
+      report_approval_settings:
+        report_exists: Er bestaat al een goedkeuringsinstelling voor dit rapport.
+        validates_admins: Admins hebben geen toegang tot de campagne.
+      report_families_reports:
+        report_exists: Dit rapport maakt al deel uit van Rapportbundel
+      size?: grootte moet kleiner zijn %{size}
+      skill_alias:
+        unique_alias: Alias moet uniek zijn
+        unique_skill: Vaardigheden moeten uniek zijn
+      uniq: Deze Mettl beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
+      uniq?: moet uniek zijn
+      uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
+      update_workshop:
+        less_than_booked: Het totaal aantal geboekte zitplaatsen moet groter zijn dan
+      user_availability_date:
+        overlaps_date: Overlapt een andere beschikbaarheid %{range}
+        overlaps_time: Overlapt interval %{interval}
+        start_date_should_be_less: De begindatum moet korter zijn dan de einddatum
+        start_time_should_be_less: Starttijd moet korter zijn dan eindtijd
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Dit Idp-sjabloon is al toegewezen aan deze gebruiker en is actief
+      user_saved_filters:
+        limit_exceeded: Je kunt maar %{limit} opgeslagen filters hebben. Verwijder opgeslagen filters om er meer toe te voegen.
+        unique_name: Er bestaat al een filter met dezelfde naam.
+      workshop_invited_subject_create:
+        already_exists: Het onderwerp bestaat al in de uitnodiging.
+      workshop_subject_create:
+        already_exists: Het onderwerp bestaat al in dit Assessment Center.
+        part_of_other_workshop: Onderwerp is al deelnemer van '%{workshop_name}'.
+      workshops:
+        no_available_assessor_slots: Geen beschikbare slots voor beoordelaar %{assessor}
+        no_available_manager_slots: Geen beschikbare slots voor manager %{manager}
+    users:
+      registrations:
+        new:
+          register: Registreer
+          sign_in: Aanmelden
+      sessions:
+        new:
+          register: Registreer
+          sign_in: Aanmelden
+  emails:
+    nomination_approval_table:
+      evaluator_name: Naam beoordelaar
+      number: Geen
+      relationship: Relatie
+      subject_name: Onderwerp Naam
+    subject_relationship_table:
+      subject_email: Onderwerp E-mail
+      subject_name: Onderwerp Naam
+      subject_relationship: Onderwerp Relatie
+  empty: Leeg
+  enums:
+    communication:
+      body:
+        error: E-mail bevat onjuiste pipetekst.
+  errors:
+    assessments:
+      timed_out: Je kunt de %{assessment_name} beoordeling niet doen omdat deze is uitgetimed.
+    error: Fout
+    error_500: Er is iets misgegaan. Neem contact op met uw beheerder.
+    error_msg: Er is iets misgegaan. Vernieuw de pagina en neem contact op met uw beheerder als het probleem zich nog steeds voordoet
+    forbidden: Je hebt geen toegang tot deze pagina
+    forbidden_action: Je hebt geen rechten voor deze actie
+    invalid_session_title: Ongeldige sessie
+    invalid_token: Er is iets misgegaan. Laad de pagina opnieuw en probeer het opnieuw.
+    max_regeneration_limit: Maximale regeneratielimiet overschreden, neem contact op met uw administratie.
+    messages:
+      data_report_blank: Gegevensrapport bestaat niet
+    module_error: Er is iets misgegaan met deze module. Neem contact op met de administratie.
+    module_error_editor: Er is iets misgegaan met deze module. Controleer de module-instellingen.
+    module_props_error: Er is iets misgegaan met deze module.
+    skill_gap_report:
+      not_found: Rapport over vaardigheidskloof niet gevonden
+    try_again: Probeer het opnieuw
+    user_idp_plan:
+      no_active_plan: Geen actief IDP-plan gevonden
+    webhooks:
+      multiple_webhook_error: de url kan niet worden bijgewerkt omdat er meerdere webhooks zijn voor dit project.
+  evaluators:
+    errors:
+      can_not_processed: kan niet worden verwerkt
+      exists: bestaat al
+      max_evaluators: je hebt al genoeg beoordelaars
+  factors:
+    description: Beschrijving
+    factor: Factor
+  frontend:
+    activate: Activeer
+    are_you_sure: Weet je het zeker?
+    aria:
+      back_to_dashboard: Terug naar Dashboard
+      back_to_tasks: Terug naar Taken
+      calendar: Kalender
+      campaign_name_description: ', voor campagne "%{campaignName}"'
+      change_language: "(Verander van taal)"
+      clear_date: duidelijke datum
+      collapse_menu: Menu samenvouwen
+      confirm_proceed: Bevestigen om door te gaan
+      delete_message: Bericht verwijderen
+      drag_drop_instructions_desktop: Schakel de formulierenmodus in om de items met een schermlezer te slepen.
+      drag_drop_instructions_mobile: Met een schermlezer dubbel tikken en vasthouden op een sleepknop, naar een ander item gaan en de vinger optillen om het item te verplaatsen.
+      enlarge_view_text: Vergroot weergave van %{tekst}
+      expand_menu: Menu uitbreiden
+      file_uploaded: Bestand geüpload
+      lang_dropdown_description: taal wijzigen
+      pause: Pauze
+      play: Speel
+      profile_progress: Profiel voltooien is
+      remove_file: bestand verwijderen
+      send_message: Verstuur bericht
+      slider_label_instruction: 'min: %{min} en max: %{max}'
+      task_btn_description: taak %{beoordelingsnaam}
+      task_progress_label: Taakvoltooiing is
+      write_message: Schrijf je bericht
+    assessment: Beoordeling
+    assessment_groups:
+      create_success: De groep is succesvol aangemaakt
+      update_success: De groep is succesvol bijgewerkt
+    availability:
+      add_new_availability: Nieuwe beschikbaarheid toevoegen
+      create_success: Beschikbaarheid is succesvol aangemaakt.
+      remove_confirm:
+        content: Weet je zeker dat je de beschikbaarheid wilt verwijderen?
+        success: Beschikbaarheid is met succes verwijderd.
+        title: Beschikbaarheid verwijderen
+      update_success: Beschikbaarheid is met succes bijgewerkt.
+    background_reading: Achtergrondlezen
+    bookings:
+      accept_invite_msg: Je hebt een uitnodiging ontvangen. Reserveer je plaats.
+      add_to_calendar: Toevoegen aan agenda
+      add_to_calendar_tour_description: Voeg deze boeking toe aan je agenda
+      add_to_google_calendar: Toevoegen aan google agenda
+      add_to_i_calendar: Toevoegen aan iCalendar
+      add_to_msoffice_calendar: Toevoegen aan microsoft office 365 agenda
+      add_to_outlook_calendar: Toevoegen aan outlook kalender
+      add_to_yahoo_calendar: Toevoegen aan yahoo agenda
+      assessment_center_alert:
+        btn_title: Campagne
+        message_part1: Voltooi alle voorwerken in deze
+        message_part2: voordat je een slot boekt.
+      assessment_center_group_name: Beoordelingscentrum
+      booking_failed_msg: 'Boeking mislukt: %{error}'
+      buttons:
+        book: Boek
+        book_again: Opnieuw boeken
+        cancel: Annuleren
+        cancel_booking: Boeking annuleren
+        confirm_booking: Bevestig boeking
+        confirm_reschedule: Bevestig opnieuw plannen
+        modify: Aanpassen
+        nevermind: Nevermind
+        no_text: Geen
+        request_cancel: Annulering aanvragen
+        request_reschedule: Verzoek tot verzetten
+        reschedule: Opnieuw inplannen
+        reserve_spot: Reserveer je plek
+        yes_text: Ja
+      cancel_booking_confirmation: Weet je zeker dat je deze boeking wilt annuleren?
+      cancellation_failed: 'Het is niet gelukt de boeking te annuleren: %{error}'
+      cancellation_success: De boeking succesvol geannuleerd
+      comments_required_msg: Geef uw commentaar
+      confirm_booking_description: Controleer of deze gegevens correct zijn voordat u de boeking definitief maakt.
+      confirm_booking_title: Deze boeking bevestigen?
+      default_failure_msg: Kan uw aanvraag niet verwerken, probeer het later nog eens.
+      default_requires_msg: "%{naam} is vereist"
+      join_activity_meeting: Deelnemen aan de vergadering
+      join_workshop_meeting: Deelnemen aan de vergadering
+      language: Taal
+      language_placeholder: Selecteer een taal
+      language_preference_question: Heb je een taalvoorkeur?
+      language_required_msg: Selecteer een taal
+      meeting_start_text: 'De vergadering begint in:'
+      need_changes: Moet je de wijzigingen doorvoeren?
+      neurodivergence_comment_aria_label: Neurodivergentie opmerkingen
+      neurodivergence_comment_placeholder: Uw opmerkingen
+      neurodivergence_question: Heb je redelijke aanpassingen nodig vanwege speciale behoeften of handicaps om volledig deel te kunnen nemen aan de beoordeling?
+      no_invites_msg: Je wordt toegevoegd aan het assessment center of ontvangt een uitnodiging om je plaats te reserveren; zodra je deel uitmaakt van het center, kun je de activiteiten voltooien door op de knop 'Detail bekijken' hieronder te klikken.
+      or: of
+      other_invite: Zie %{count} meer uitnodigen
+      other_invites: Zie %{getal} meer uitnodigingen
+      reason: Reden
+      reason_for_cancel: Reden voor annulering
+      reason_for_reschedule: Reden voor herschikking
+      request_cancellation_failed: 'Geen annuleringsverzoek ingediend: %{error}'
+      request_cancellation_success: Met succes om annulering gevraagd
+      request_reschedule_failed: 'Aanvraag voor herschikking mislukt: %{error}'
+      request_reschedule_success: Met succes een verzoek tot herschikking ingediend
+      reschedule_failed_msg: 'Herschikking mislukt: %{error}'
+      reschedule_reason_placeholder: Voer de reden voor het opnieuw plannen in om verder te gaan.
+      schedule_success: Deze boeking is gepland
+      schedule_success_msg: We hebben jou en de andere deelnemers een agenda-uitnodiging gemaild met alle details.
+      starts_at: 'Begint op: %{datum}'
+      starts_in: 'Begint in:'
+      tab_label:
+        bookings: Boekingen
+        invites: Nodigt  uit
+      what: Wat
+      when: Wanneer
+      workshop_start_text: Je Assessment Center begint in
+    break_time: Pauze
+    campaign:
+      actions:
+        copy:
+          success: "%{campaignName} is succesvol gekopieerd."
+        remove:
+          confirmation: Voer de huidige campagnenaam hieronder in het tekstvak in om de campagne te verwijderen
+          success: "%{campaignName} is succesvol verwijderd."
+      users:
+        actions:
+          export:
+            details: Gebruikers campagne
+            scheduled: De gebruikersexport is met succes gepland.
+          export_reports_and_assessments:
+            details: Rapporten en beoordelingen
+        completion_statuses:
+          completed: Voltooid
+          in_progress: In uitvoering
+          not_started: Niet gestart
+    change_password: Wachtwoord wijzigen
+    clients:
+      actions:
+        create:
+          create_client: Klant maken
+          create_license: Licentie toevoegen
+        menus:
+          view_licenses: Licenties bekijken
+        remove:
+          confirmation: Voer de huidige klantnaam hieronder in het tekstvak in om de klant te verwijderen
+          success: Client met naam '%{clientName}' is succesvol verwijderd
+      projects:
+        actions:
+          remove:
+            confirmation: Voer de huidige projectnaam hieronder in het tekstvak in om het project te verwijderen
+            success: Project met naam '%{projectnaam}' is succesvol verwijderd
+    delete: Verwijder
+    edit: Bewerk
+    error_warning: Oeps, er is iets misgegaan met je beoordeling. Neem contact op met de ondersteuning.
+    hogan:
+      cannot_start: Je kunt de hogan beoordeling nu niet starten. Probeer het na een paar minuten.
+    lighthouse_app: Vuurtoren Mercer
+    login: Inloggen
+    maintenance:
+      notification: Lighthouse wordt over 60 seconden uitgeschakeld voor gepland onderhoud
+    manage: Beheer
+    'no': Geen
+    passwordSetting:
+      update_success: Beveiligingsinstellingen is succesvol bijgewerkt
+    questions:
+      campaign_factor_feedback:
+        add_skill: Vaardigheid toevoegen
+        feedback: Feedback
+        max_factors: Maximale factoren
+        min_factors: Min factoren
+        skill_factor: Vaardigheidsfactor
+    report_error: Oeps, er is iets misgegaan met je rapport. Neem contact op met de ondersteuning.
+    request_failed_message_box:
+      message: Vernieuw de pagina en neem contact op met uw beheerder als het probleem zich blijft voordoen.
+      refresh: Vernieuw
+    resource:
+      create_success: "%{readableResourceName} is succesvol toegevoegd"
+      update_success: "%{readableResourceName} is succesvol bijgewerkt"
+    restart: Herstart
+    restart_progress: Er zijn enkele wijzigingen in de beoordeling. Vernieuw de pagina om de wijzigingen te zien. Als je de pagina vernieuwt, begint de beoordeling vanaf het begin. Vragen die je al hebt beantwoord, worden automatisch ingevuld.
+    saved_results: Antwoorden succesvol opgeslagen.
+    session_timeout_modal:
+      buttons:
+        close: Sluit
+        log_out: Nu afmelden
+        re_login: Terug aanmelden
+        stay_logged_in: Ingelogd blijven
+      message: Uw sessie wordt na 2 minuten beëindigd wegens inactiviteit. Klik op 'Blijf aangemeld' om uw sessie voort te zetten, anders wordt u automatisch afgemeld.
+      message_after_timeout: Uw sessie is verlopen, logt u alstublieft opnieuw in.
+      time_remaining: Resterende tijd
+      title: Sessie time-out waarschuwing
+    skip_to_content: Overslaan naar inhoud
+    smsInvites:
+      create_success: SMS Uitnodiging is succesvol toegevoegd
+      update_success: SMS Uitnodiging is succesvol bijgewerkt
+    sms_records:
+      create_success: SMS-taak is met succes gepland
+    test_webhook:
+      create_success: Webhook test geslaagd.
+      success: Succes
+    update: Update
+    upload: Uploaden
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Geannuleerd
+        requested_cancellation: Gevraagde annulering
+        requested_cancellation_rejected: Aangevraagde annulering Afgewezen
+        requested_rescheduling: Aangevraagde herplanning
+        requested_rescheduling_rejected: Aangevraagd Wijziging Afgewezen
+    'yes': Ja
+  glint:
+    booking_card:
+      aria_available_time: beschikbare tijd
+      aria_back_to_time_selection: terug naar tijdselectie
+      aria_desc_current_month: Momenteel op %{maandNaam} %{jaar}
+      aria_label_next_month: Ga naar volgende maand
+      aria_label_previous_month: Ga naar vorige maand
+      aria_timezone_select: Selecteer tijdzone
+    color_picker:
+      copy_success_msg: Kopieer hexcode naar klembord.
+      recent_colors: 'Onlangs gebruikt:'
+      recommended_colors: 'Aanbevolen:'
+    datepicker_with_ranges:
+      all_time: Alle tijden
+      current_month: Huidige maand
+      current_week: Huidige week
+      last_month: Laatste maand
+      last_week: Vorige week
+      today: Vandaag
+      yesterday: Gisteren
+    fontsize_modifier:
+      change_font: Lettergrootte wijzigen
+      decrease_font: Lettergrootte verkleinen
+      increase_font: Lettergrootte vergroten
+      reset_font: Lettergrootte opnieuw instellen
+    input_duration:
+      max_duration: Maximale duur is %{duur}
+    schedule_availability:
+      copy_to_all: Kopiëren naar alle
+      end_date: Einddatum
+      from: Van
+      new_schedule: Nieuwe planning toevoegen
+      new_schedule_description: De starttijd moet eerder zijn dan de eindtijd
+      no_slots: Geen slots toegevoegd
+      required_error: kan niet leeg zijn
+      save: Sla
+      saved_schedule_description: Opgeslagen beschikbaarheidsschema van gebruiker
+      start_date: Startdatum
+      timezone_label: Tijdzone
+      to: Naar
+    views_container:
+      aria_grid_view: Roosterweergave
+      aria_list_view: Lijstweergave
+      aria_selected: Geselecteerd
+  idp:
+    actions: Acties
+    board: Raad van bestuur
+    convert_to_draft: Converteren naar concept
+    details: Details
+    development_actions:
+      action_private: Ja
+      action_public: Geen
+      add_development_action: Ontwikkelingsactie toevoegen
+      all: Alle
+      approved: Goedgekeurd
+      board_view:
+        completed: Voltooid
+        in_progress: In uitvoering
+        not_started: Niet gestart
+      completion: Voltooiing
+      create_my_own: Maak mijn eigen
+      date_range: Startdatum - Einddatum
+      generate_by_ai: Genereren door AI
+      generate_more: Meer genereren
+      generating_development_actions: Ontwikkelingsacties genereren...
+      heading: Ontwikkelingsacties
+      learning_from_others: Leren van anderen
+      manage_skills: Vaardigheden beheren
+      marathon: Marathon
+      no_development_actions: Geen ontwikkelingsacties
+      on_the_job: Op het werk
+      other: Andere
+      private: Privé
+      remove: Verwijder
+      skill: Vaardigheid
+      sprint: Sprint
+      structured_learning: Gestructureerd leren
+      submit_plan: Plan indienen
+      write_here: Schrijf hier...
+    initial_steps:
+      add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
+      add_skill_group_title: Je %{categorie} vaardigheden verkennen
+      add_skills: Voeg  toe
+      add_skills_step: Vaardigheden toevoegen
+      continue_to_rate_skills: Blijf vaardigheden beoordelen
+      getting_started: Aan de slag
+      getting_started_info: Welkom bij de maker van uw individueel ontwikkelingsplan (IDP). Dit plan helpt u bij het identificeren, beheren en volgen van uw professionele en persoonlijke doelen en de stappen die u moet nemen om deze doelen te bereiken. Uw professionele doelen kunnen zowel gedrags-, leiderschaps- als technische ontwikkelingsgebieden omvatten. Uw IDP is een essentieel hulpmiddel om uw loopbaanontwikkeling en vaardigheidsverbetering te ondersteunen.
+      less_skills: Minder vaardigheden tonen
+      more_skills: Ontdek meer vaardigheden
+      next: Volgende
+      no_skills_selected: Geen vaardigheden geselecteerd.
+      rate_skills: Beoordeel vaardigheden
+      rate_skills_description: Nu je je ontwikkelingsprioriteiten hebt geselecteerd, wil ik je vragen jezelf te beoordelen op elk van de volgende punten. Denk eraan jezelf te beoordelen op basis van je huidige niveau en niet op basis van je vroegere of gewenste niveau.
+      rate_skills_title: Je vaardigheden beoordelen
+      rating_column_header: Je zelfbeoordeling
+      select_skills: Selecteer je vaardigheden
+      select_skills_placeholder: Selecteer vaardigheden
+      selected_skills: Geselecteerde vaardigheden
+      skill_column_header: Vaardigheid
+      skill_gap_report: Rapport over vaardigheidskloof
+    list: Lijst
+    manage_plan: Plan beheren
+    mark_as_complete: Markeer als voltooid
+    mark_as_incomplete: Markeren als onvolledig
+    my_plan:
+      development_plan: Ontwikkelingsplan
+      graphs:
+        behavioural: Gedrag
+        categories: Categorieën
+        learning_on_job: Op het werk (%{telling})
+        learning_others: Leren van anderen (%{telling})
+        learning_structured: Gestructureerd leren (%{telling})
+        other: Andere
+        technical: Technisch
+      save_skills: Vaardigheden opslaan
+    skill_gap_report:
+      title: Rapport over vaardigheidskloof
+    status: Status
+    user_idp_status:
+      approved: Goedgekeurd
+      draft: Ontwerp
+      not_started: Niet gestart
+      pending_approval: In afwachting van
+    users: Gebruikers
+  idp_templates:
+    assign: Toewijzen
+    assign_idp_template: Idp-sjabloon toewijzen
+    auto_assign: Nieuwe gebruikers automatisch toewijzen
+    errors:
+      idp_template_not_found: IDP-sjabloon niet gevonden
+      user_idp_template_not_found: Er is geen IDP-sjabloon aan u toegewezen.
+    idp_template: IDP-sjabloon
+    override_exists: Bestaande gebruikers overschrijven en resetten
+    placeholder: Selecteer een Idp-sjabloon
+    save_and_assign: Opslaan en toewijzen
+    success_scheduled: De taak om IDP toe te wijzen is met succes gepland
+  jobs:
+    threesixty:
+      bulk_downloads: Bulk Download taak is succesvol gepland
+      export_completion_statuses_scheduled: Uitvoerstatussen uitvoertaak is met succes gepland
+      export_raw_results_scheduled: De exporttaak voor ruwe resultaten is met succes ingepland
+      export_scores_scheduled: De exporttaak van scores is met succes gepland
+      reports:
+        download:
+          description: 'Volg de link om het rapport te downloaden: <a href=''%{url}'' target=''_blank''>Downloaden</a>'
+          error: Er is een fout opgetreden
+          error_description: Neem contact op met de beheerder of probeer opnieuw <b>te downloaden</b>.
+          message: Rapport is klaar
+  languages:
+    af: Afrikaans
+    ar: Arabisch
+    az: Azerbeidzjaans
+    bg: Bulgaars
+    bs: Bosnisch
+    by: Wit-Russisch
+    ca: Catalaans
+    cn: Chinees
+    cs: Tsjechisch
+    cy: Cymraeg
+    da: Deens
+    de: Deutsch
+    el: Grieks
+    en: Engels
+    en-GB: Engels - UK
+    en-US: Engels - VS
+    eo: Esperanto
+    es: Spaans (Latijns-Amerika)
+    es-ES: Spaans (Spanje)
+    et: Ests
+    fa: Perzisch
+    fi: Fins
+    fr: Frans
+    gu: Gujarati
+    he: Hebreeuws
+    hi: Hindi
+    hr: Kroatisch
+    hu: Hongaars
+    id: Bahasa Indonesië
+    it: Italiaans
+    ja: Japans
+    km: Khmer
+    ko: Koreaans
+    lt: Litouws
+    lv: Lets
+    mk: Macedonisch
+    mn: Mongools
+    ms: Bahasa Maleisië
+    my: Myanmar
+    nb: Noors Bokmål
+    nl: Nederlands
+    'no': Noors
+    pl: Pools
+    pt: Portugees
+    pt-BR: Braziliaans Portugees
+    pt-PT: Portugees (Portugal)
+    pt_BR: Portugees (Brazilië)
+    ro: Roemeens
+    ru: Russisch
+    sk: Slowaaks
+    sl: Sloveens
+    sr-Cyrl: Servisch Cyrillisch
+    sr-Latn: Servisch Latijn
+    sv: Zweeds
+    sw: Swahili
+    ta: Tamil
+    th: Thais
+    tl: Tagalog
+    tr: Turks
+    ua: Oekraïens
+    uk: Oekraïens
+    ur: Urdu
+    vi: Vietnamees
+    zh: Vereenvoudigd Chinees
+    zh-CN: Chinees (PRC)
+    zh-HK: Chinees (Hongkong)
+    zh-Hant: Chinees - Traditioneel
+    zh-TW: Chinees (Taiwan)
+  languages_localized:
+    af: Afrikaans
+    ar: عربي
+    az: Azerbeidzjaans
+    bg: български
+    bs: bosanski
+    by: Wit-Russisch
+    ca: català
+    cn: 中国人
+    cs: čeština
+    cy: Cymraeg
+    da: dansk
+    de: Deutsch
+    el: Ελληνικά
+    en: Engels
+    en-GB: Engels (UK)
+    en-US: Engels (VS)
+    eo: Esperanto
+    es: Español
+    es-ES: Español (Spaans)
+    et: Ests
+    fa: Perzisch
+    fi: Fins
+    fr: Français
+    gu: Gujarati
+    he: Hebreeuws
+    hi: हिन्दी
+    hr: Kroatisch
+    hu: Hongaars
+    id: Bahasa Indonesië
+    it: italiano
+    ja: 日本語
+    km: Khmer
+    ko: Koreaans
+    lt: Litouws
+    lv: Lets
+    mk: Macedonisch
+    mn: Mongools
+    ms: Bahasa Maleisië
+    my: Myanmar
+    nb: Noors Bokmål
+    nl: Nederlands
+    'no': Noors
+    pl: Polski
+    pt: Portugees
+    pt-BR: Português (Brazilië)
+    pt-PT: Português (Portugal)
+    pt_BR: Português (Brazilië)
+    ro: Roemeens
+    ru: Russisch
+    sk: Slowaaks
+    sl: Sloveens
+    sr-Cyrl: Servisch Cyrillisch
+    sr-Latn: Servisch Latijn
+    sv: Zweeds
+    sw: Swahili
+    ta: Tamil
+    th: Thai
+    tl: Tagalog
+    tr: Turks
+    ua: Oekraïens
+    uk: Oekraïens
+    ur: Urdu
+    vi: Vietnamees
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政区)
+    zh-Hant: 繁體中文
+    zh-TW: 漢語
+  license_usage:
+    active: Actief
+    campaign_name: Naam campagne
+    inactive: Inactief
+    status_updated_at: Laatste statusupdate
+    status_updated_by: Laatst bijgewerkt door
+    subject_email: Onderwerp e-mail
+    subject_name: Naam onderwerp
+    usage_overview: Licentiegebruik bekijken
+    usages: Gebruik
+  licenses:
+    enabled: Ingeschakeld
+    end_date: Einddatum
+    not_enough_idp_license: Niet genoeg IDP-licenties, neem contact op met beheerder
+    not_enough_license: "%{client_name}' heeft niet genoeg licenties voor '%{report_name}'"
+    not_enough_license_count: Niet genoeg licenties, neem contact op met beheerder
+    not_enough_proctoring_credits: Niet genoeg studiepunten om proctoraatsessie te beginnen
+    number: Aantal
+    overuse_number: Vergoeding voor overmatig gebruik
+    report_family: Verslagbundel
+    start_date: Startdatum
+    type: Type
+    types:
+      common: Gewoon
+      idp: IDP
+      proctoring: Proctor
+      threesixty: Driezestig
+    used_number: Gebruikte licenties
+    used_out_of: "%{used} van %{total}"
+  mailer:
+    from: De talentenonderneming
+    license:
+      expire:
+        subject: Licentie verlopen
+      overuse:
+        subject: Overmatig licentiegebruik
+      weekly_stats:
+        column_headers:
+          client_name: Naam klant
+          expiry_date: Vervaldatum
+          overuse_limit: Limiet overmatig gebruik
+          project_manager: Projectmanager
+          remaining_count: Resterende telling
+          type: Type licentie
+          use_count: Gebruik telling
+        expiry_stats: 'Licenties die de komende 30 dagen verlopen :'
+        no_expiry_stats: Geen licenties die de komende 30 dagen verlopen.
+        no_weekly_stats: Geen licenties verbruikt in de afgelopen 7 dagen.
+        notice: Opmerking - Je kunt je afmelden voor deze wekelijkse e-mail op je profielpagina.
+        subject: Wekelijkse statistieken licentiegebruik
+        weekly_stats: 'Statistieken licentiegebruik afgelopen week :'
+    magic_link:
+      body:
+        dear: Beste %{naam},
+        greetings: De groeten voor vandaag!
+        instructions: Klik op onderstaande link om je aan te melden bij lighthouse.
+        signin_link: Aanmelden Link
+      subject: Aanmelden link voor Lighthouse
+    users:
+      account_disable: Je account is uitgeschakeld wegens inactiviteit
+      warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit
+  maintenance_message: Lighthouse zal niet beschikbaar zijn voor gepland onderhoud op %{start_datum} en zal niet beschikbaar zijn voor %{duur} uur
+  maintenance_submessage: Vernieuw de pagina nadat het onderhoud is voltooid. U wordt doorgestuurd naar de inlogpagina
+  my: Mijn
+  myself: Ikzelf
+  navigation:
+    logout: Afmelden
+  'no': Geen
+  nominations:
+    approval_email_error: Laatste e-mail goedkeuring is verzonden op %{last_sent_at}. U kunt de volgende herinneringsmail verzenden in %{wait_time}
+  norms:
+    percentile:
+      columns:
+        mean: Gemiddelde
+        name: Naam
+        standard_deviation: Standaardafwijking
+      messages:
+        failure: 'Fout: %{error}.'
+        success: Norm voor Factor '%{factorName}' is bijgewerkt.
+      values:
+        empty: Leeg
+  profile:
+    add_field: Veld toevoegen
+    add_photo: Foto toevoegen
+    age: Leeftijd
+    change_password: Wachtwoord wijzigen
+    change_photo: Foto wijzigen
+    email: E-mail
+    female: Vrouw
+    first_name: Voornaam
+    gender: Geslacht
+    incomplete: Je profielgegevens zijn onvolledig. Vul je profielgegevens aan a.u.b
+    last_name: Achternaam
+    locale: Gewenste taal
+    male: Mannelijk
+    mandatory_fields: Geeft verplichte velden aan
+    not_disclosed: Liever niet bekendmaken
+    old_data: Uw profielgegevens zijn %{maanden} maanden oud. Bevestig uw gegevens om verder te gaan
+    password: Wachtwoord
+    password_confirmation: Wachtwoord bevestigen
+    photo: Foto
+    success_update: Profiel is succesvol opgeslagen
+    timezone: Tijdzone
+    title: Mijn profiel
+    update: Update
+    update_required: Profielupdates vereist
+  profiles:
+    edit:
+      header: Profielinstellingen
+    form:
+      username: Gebruikersnaam
+    update:
+      successfully: Profiel is succesvol bijgewerkt
+  registration:
+    success_update: Registratie is succesvol opgeslagen
+  registration_code:
+    allowed_domains: Toegestane domeinen
+    invalid_code: Ongeldige campagnecode
+    modals:
+      remove:
+        content: Weet je zeker dat je Registratiecode <strong>"%{code}"</strong> wilt verwijderen?
+        successfully: Registratiecode '%{code}' is succesvol verwijderd.
+      title: Registratiecode
+    one_domain_per_line: Eén domeinnaam per regel
+    restricted_domains: Beperkte domeinen
+    token_expired: Het token is verlopen
+  report_approvals:
+    events:
+      approved_text: goedgekeurde tekst
+      comment_added: commentaar <i>%{text}</i> toegevoegd
+      comment_removed: commentaar verwijderd
+      comment_resolved: opgelost commentaar
+      comment_unresolved: onopgeloste opmerking
+      comment_updated: commentaar <s>%{oldText}</s> gewijzigd in <i>%{newText}</i>
+      created_text: tekst toegevoegd
+      disapproved_text: afgekeurde tekst
+      removed_text: verwijderde tekst
+      status_changed: status gewijzigd van <i>%{van}</i> in <i>%{naar}</i>
+      updated_text: bijgewerkte tekst
+    tabs:
+      all: Alle
+      approved: Goedgekeurd
+      my_tasks: Mijn taken
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: Weet je zeker dat je de rapportbundel "%{naam}" wilt verwijderen?
+        confirm_title: Bevestiging vereist
+        success_message: Rapportbundel %{naam} is verwijderd
+    report_bundle: Bundel rapporten
+    report_bundles: Bundels rapporten
+    reports:
+      actions:
+        add: Nieuw rapport toevoegen
+        remove:
+          confirm_message: Weet je zeker dat je het rapport "%{naam}" wilt verwijderen uit '%{report_bundle_name}'?
+          confirm_title: Bevestiging vereist
+          success_message: Rapport %{naam} is verwijderd
+  reports:
+    actions:
+      add: Rapport toevoegen
+      archived:
+        success_message: Rapport "%{naam}" is succesvol gearchiveerd.
+      back_to_campaign: Terug naar Campagne
+      copy:
+        success_message: Rapport "%{naam}" is succesvol gekopieerd.
+      details: Details
+      download: Rapport downloaden
+      download_csv: CSV downloaden
+      edit: Bewerk
+      evaluate: Evalueer
+      extend_time: Tijd verlengen
+      goto_dashboard: Klik hier om verder te gaan
+      re_evaluate: Klik hier om opnieuw te evalueren
+      reevaluate: Opnieuw evalueren
+      remove:
+        confirm_message: Weet je zeker dat je het rapport "%{naam}" wilt verwijderen?
+        confirm_title: Bevestiging vereist
+        success_message: Rapport %{naam} is verwijderd
+      rescore: Rescore
+      restore:
+        success_message: Rapport %{naam} is succesvol hersteld
+      unarchived:
+        success_message: Rapport %{naam} is succesvol gedearchiveerd
+      update_language: Taal bijwerken
+      view: Rapport bekijken
+    active: Actief
+    archived: Gearchiveerd
+    builder:
+      graph:
+        properties:
+          barBorderRadius: Straal rand balk
+          barWeight: Gewicht staaf
+          dataFormat: Gegevensformaat
+          graphOption3D: 3D
+          graphOptionStandard: Standaard
+          graphSubType: Grafiek subtype
+          graphTypeHorizontal: Horizontaal
+          graphTypeVertical: Verticaal
+          hideEmptyColumns: Lege kolommen verbergen
+          hideEmptyFilters: Verberg lege filters
+          hideXAxisLine: Verberg de rasterlijnen van de X-as
+          hideXAxisTitle: Verberg de titel van de X-as
+          hideYAxisLine: Verberg Y-as rasterlijnen
+          hideYAxisTitle: Titel Y-as verbergen
+          hideZeroValueColumns: Kolommen met nulwaarden verbergen
+          legendPosition: Legenda Positie
+          maxValueLabel: Max waarde (getal)
+          maxValueLabelPlaceholder: Maximale waarde
+          positionBottomLeft: Linksonder
+          positionBottomMiddle: Onderste Midden
+          positionBottomRight: Rechtsonder
+          positionTopLeft: Linksboven
+          positionTopMiddle: Top Midden
+          positionTopRight: Rechtsboven
+          reverse: Omgekeerd
+          showLegend: Legende weergeven
+    columns:
+      data_only: Alleen gegevens
+      default_language: Standaard Taal
+      external_settings:
+        hogan_report_id: Hogan Rapport-ID
+        saville_report_id: Saville Rapport ID
+      other_available_languages: Andere beschikbare talen
+    create: Maak
+    dashboard: Dashboard
+    drawer:
+      title: Rapporteer details
+    fields:
+      provider:
+        custom_upload: Aangepast uploaden
+        hogan: Hogan
+        internal: Intern
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+    form:
+      load_from_mettl: Belasting van Mettl
+      load_from_pearson: Laden van Pearson
+      none_external: Geen - Gebruik rapportbouwer
+    language: Rapport Taal
+    language_updated: Rapporttaal is met succes bijgewerkt
+    modules:
+      campaign_factors_table:
+        add_condition: Voorwaarde toevoegen
+        baseline_score: Basisscore
+        blindspots: Blindspots
+        campaign_factor_conditions: Campagnefactor Voorwaarden
+        cancel: Annuleren
+        color: Kleur
+        delete: Verwijder
+        description: Beschrijving
+        if: Als
+        label: Label
+        no_conditions: Geen voorwaarden
+        save: Sla
+        strengths: Sterke punten
+        then: Laat dan de volgende tekst zien
+        title: Titel
+      common:
+        all_factors: Alle factoren
+        font: Lettertype
+        table_options: Tabel opties
+        table_type: Tabel type
+      factors_table:
+        description: Beschrijving
+        na: N.V.T
+        no_data: Er zijn geen gegevens beschikbaar voor deze sectie.
+        rank: Rang
+        score: Score
+      gap_assessment:
+        gap: Gap
+        hide_left_filter: Filter links verbergen
+        hide_right_filter: Filter rechts verbergen
+        item: Indicator
+        negative_gap: Negatieve gaten
+        no_negative_gaps: Er zijn geen negatieve hiaten
+        no_positive_gaps: Er zijn geen positieve hiaten
+        positive_gap: Positieve hiaten
+        rank: Rang
+        scoring_category: Competentie
+      highest_lowest:
+        bottom_5: ONDERSTE 5
+        category: Categorie
+        highest_scores: Hoogste Scores
+        item: Indicator
+        lowest_scores: Laagste scores
+        mean_score: Gemiddelde Score
+        rank: Rang
+        scoring_category: Competentie
+        sub_competenties: Subcompetenties
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: Carrièrekracht en je resultaten
+        career_sub_tracks: Carrière Subtracks
+        key_career_tracks_within: 'Hieronder vind je een lijst met mogelijke functies voor elk van de loopbaantrajecten. Denk eraan dat deze lijst slechts indicatief en niet volledig is. Let op: voor cursief gedrukte functies heb je een hoger opleidingsniveau en/of meer ervaring nodig.'
+        potential_areas_of_study: Potentiële studiegebieden
+        strength_high: Handtekening Sterkte
+        strength_low: Ontwikkelingssterkte
+        strength_moderate: Potentiële kracht
+        work_environment: Werkomgeving
+        your_suitability: Uw geschiktheid
+      single_value:
+        factor_name: Scoringscategorie
+        question_name: Vragen
+      single_value_cluster:
+        competency: Competentie
+        developmental_rating: Waardering Ontwikkeling
+        questions: Vragen
+      strength_clusters:
+        index_sub_factors_considered: Thriving Index-subfactoren waarmee rekening is gehouden om uw eindscore voor de %{werkstijl} werkomgeving te bepalen
+        possible_roles: Mogelijke rollen
+        work_environments: Verwachte werkomgevingen
+      three_sixty_default:
+        factor:
+          items: Items
+          max: Maximale waarde
+          mean: Gemiddelde
+          min: Min Waarde
+          standardDeviation: Standaardafwijking
+          sum: Som
+          totalResponses: Totaal aantal reacties
+          variance: Variantie
+          weightedMean: Gewogen gemiddelde
+        question:
+          no_response: Geen reactie beschikbaar
+        statistic: Statistiek
+        value: Waarde
+      three_sixty_report_summary:
+        completed: Voltooid
+        footnote: "* Uitgesloten vanwege vereiste minimumdrempel"
+        invited: Uitgenodigd
+        relationships: Relaties
+        total: Totaal
+      video_response:
+        no_results: Geen video's opgenomen
+    pages:
+      edit:
+        assets: Activa
+        general_settings: Algemene instellingen
+        translations: Vertalingen
+    report: Rapporteer
+    reports: Rapporten
+    reset: Reset
+    show:
+      export_pdf: Exporteren naar PDF
+      header: Rapporteer
+    statuses:
+      approved: Goedgekeurd
+      available: Beschikbaar
+      denied: Geweigerd
+      incomplete: Onvolledig
+      not_available: Niet beschikbaar
+      on_hold: In de wacht
+      released: Vrijgegeven
+    trash: Vuilnis
+    update: Update
+    upload: Uploaden
+  reset_password_modal:
+    fields:
+      automatically_generate_password: Automatisch wachtwoord genereren
+      change_password_on_login: Wachtwoord wijzigen bij inloggen
+      login_link: Inloggen
+      new_password: Nieuw wachtwoord
+      password_placeholder: Voer wachtwoord in
+      send_password_email: Stuur wachtwoord via e-mail
+      username: Gebruikersnaam
+    messages:
+      reset_password_success: Gebruiker %{email} wachtwoord is succesvol gewijzigd.
+      send_password_email_success: E-mail verzonden naar gebruiker %{email} met het wachtwoord.
+    title: Wachtwoord opnieuw instellen
+  select: Selecteer
+  shared:
+    filters:
+      clear: Filters wissen
+    internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
+    mte_logo_alt_text: Mercer logo voor talentondernemingen
+    terms_conditions_privacy: Privacyverklaring
+    tte_terms_and_condition: Voorwaarden en privacy
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: Bij het uploaden van een nieuw Accesssheet worden alle bestaande records verwijderd en wordt een nieuwe geüpload vanuit het blad. Zorg ervoor dat alle Accesssheet-records in het spreadsheet staan.
+      success_message: Bestand is succesvol geüpload. Import van gegevensbladrecord is bezig
+      title: Records importeren
+    menu:
+      export: Exportblad
+      export_info: Geen gegevens om te exporteren.
+      import: Importblad
+    no_sheet: Je moet eerst blad importeren
+  simple_form:
+    error_notification:
+      default_message: 'Bekijk de problemen hieronder:'
+    labels:
+      client:
+        applicable_level: Toepasselijk niveau
+        applicable_levels:
+          campaign: Campagne
+          project: Project
+          sub_campaign: Subcampagne
+        category: Categorie
+        created_at: Datum aangemaakt
+        id: ID
+        licenses: Licentienummer
+        licenses_expire: Vervaldatum licentie
+        licenses_used: Licentiegebruik
+        location: Locatie
+        logo: Logo klant
+        memberships_count: Gebruikers
+        name: Naam
+        number: Klantnummer
+        privacy_consent: Toestemming voor gegevensverwerking inschakelen
+        project_manager: TTE projectmanager
+        project_manager_id: TTE projectmanager
+        report_ids: Rapporten
+        strong_password_enabled: Sterk wachtwoord inschakelen
+        subdomain: Subdomein
+        types:
+          associate: Geassocieerd
+          corporate: Bedrijven
+          distributer: Distributeur
+          other: Andere
+          partner: Partner
+          retail: Detailhandel
+          tte: TTE
+        updated_at: Gewijzigde datum
+        year: Klant Jaar
+      membership:
+        role: Lidmaatschap rol
+    'no': Geen
+    placeholders:
+      administration/assessments/assign_form:
+        access_reports: Regels voor toegangsrapporten
+        access_reports_at: Ga naar het rapport op
+        access_reports_at_date: Datum
+        access_reports_at_time: Tijd
+        client_ids: Huurcontracten voor klanten
+        manager_ids: Managers
+        report_ids: Rapporten
+        user_ids: Gebruikers
+      administrator:
+        active: Actief
+        created_at: Datum aangemaakt
+        current_password: Huidig wachtwoord
+        disabled: Uitschakelen
+        email: E-mailadres
+        first_name: Voornaam
+        id: ID
+        last_name: Achternaam
+        manage_client_ids: Huurder
+        memberships: Huurder
+        name: Naam
+        password: Wachtwoord
+        password_confirmation: Wachtwoord bevestigen
+        role: Rol
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Projectbeheerder
+            regular: Klant Admin
+            superadmin: Superbeheerder
+          agile: AGIEL
+          case_study: Casestudy
+          client_admin: Klant Admin
+          hogan: Hogan
+          manager: Manager
+          member: Gebruiker
+          organisational: Organisatie
+          project_admin: Projectbeheerder
+          psychometric: Psychometrisch
+          regular: Gewoon
+          saville: Saville
+          super_admin: Superbeheerder
+          superadmin: Superbeheerder
+          threesixty: Driezestig
+        types:
+          anonymous: Anonieme gebruikers
+          identified: Geïdentificeerde gebruikers
+        updated_at: Gewijzigde datum
+      assessment:
+        active: Actief
+        categories:
+          '360': 360 Campagne
+          agile: AGIEL
+          assessor_form: Beoordelaarsformulier
+          case_study: Casestudies
+          hogan: Hogan
+          meeting: Vergadering
+          organisational: Enquêtes
+          psychometric: Beoordeling
+          saville: Saville
+        category: Categorie
+        completed_at: Datum van voltooiing
+        created_at: Datum aangemaakt
+        description: Beschrijving
+        id: ID
+        name: Naam
+        statuses:
+          completed: Voltooid
+          finished: klaar
+          in_progress: CV
+          interrupted: Onderbroken
+          not_started: Nieuw
+          overdue: Achterstallig
+        timing: Timing
+        types:
+          common: TTE-beoordeling
+          hogan: Hogan
+          saville: Beoordeling Saville
+        updated_at: Gewijzigde datum
+      block:
+        active: Actief
+        assign_to_assessment_ids: Beoordeling
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      client:
+        applicable_level: Toepasselijk niveau
+        applicable_levels:
+          campaign: Campagne
+          project: Project
+          sub_campaign: Subcampagne
+        category: Categorie
+        created_at: Datum aangemaakt
+        id: ID
+        licenses: Licentienummer
+        licenses_expire: Vervaldatum licentie
+        licenses_used: Licentiegebruik
+        location: Locatie
+        logo: Logo klant
+        memberships_count: Gebruikers
+        name: Naam
+        number: Klantnummer
+        privacy_consent: Toestemming voor gegevensverwerking inschakelen
+        project_manager: TTE projectmanager
+        project_manager_id: TTE projectmanager
+        report_ids: Rapporten
+        strong_password_enabled: Sterk wachtwoord inschakelen
+        subdomain: Subdomein
+        types:
+          associate: Geassocieerd
+          corporate: Bedrijven
+          distributer: Distributeur
+          other: Andere
+          partner: Partner
+          retail: Detailhandel
+          tte: TTE
+        updated_at: Gewijzigde datum
+        year: Klant Jaar
+      communication:
+        created_at: Datum aangemaakt
+        id: ID
+        updated_at: Gewijzigde datum
+      dimension:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      factor:
+        active: Actief
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        parent_id: Ouder
+        questions_count: Aantal vragen
+        updated_at: Gewijzigde datum
+      library:
+        created_at: Datum aangemaakt
+        id: ID
+        type: Miniaturen
+        updated_at: Gewijzigde datum
+      license:
+        id: ID
+        number: Licentienummer
+        overuse_number: Toeslag voor overmatig gebruik
+        type: Licentie voor
+        types:
+          common: Gewoon
+          threesixty: Driezestig
+        unlimited: Onbeperkt
+        used_number: Gebruikt licentienummer
+      memebrship:
+        active: Actief
+        created_at: Datum aangemaakt
+        disabled: Uitschakelen
+        email: E-mail
+        first_name: Voornaam
+        id: ID
+        last_name: Achternaam
+        parent: Directe manager
+        parent_id: Directe manager
+        report_ids: Rapport-ID's
+        roles:
+          campaign_admin: Campagne Admin
+          client_admin: Klant Admin
+          manager: Manager
+          member: Gebruiker
+          project_admin: Projectbeheerder
+        updated_at: Gewijzigde datum
+        user_access: Gebruikerstoegang
+      norm:
+        active: Actief
+        bachelors_or_masters_qualification: Bachelors of Masters kwalificatie
+        created_at: Datum aangemaakt
+        description: Beschrijving
+        description_label: BESCHRIJVING
+        diploma_qualification: Diploma
+        factor_id: Competentie
+        factor_id_label: SELECTEER COMPETENTIE
+        full_description: Volledige beschrijving
+        high_school_entry_roles: Instaprollen middelbare school
+        id: ID
+        key_career_tracks: Belangrijkste loopbaantrajecten
+        membership_id: Toewijzer
+        membership_id_label: SELECTEER TOEWIJZER
+        name: Naam
+        name_label: ACTIE-ITEM
+        planned_completed_at: Vervaldatum
+        planned_completed_at_label: SELECTEER VERVALDATUM
+        potential_areas_of_study: Potentiële studiegebieden
+        priority: Prioriteit
+        priority_label: PRIORITEIT
+        status: Status
+        status_label: STATUS SELECTEREN
+        statuses:
+          completed: Voltooid
+          in_progress: In uitvoering
+          not_started: Niet gestart
+          overdue: Achterstallig
+        updated_at: Gewijzigde datum
+        updated_by: Bewerkt door
+        work_environment: Werkomgeving
+      question:
+        active: Actief
+        assign_to_assessment_ids: Beoordeling
+        created_at: Datum aangemaakt
+        id: ID
+        name: Naam
+        updated_at: Gewijzigde datum
+      regenerate_reports:
+        report_ids: Rapporten
+      report:
+        created_at: Datum aangemaakt
+        id: ID
+        updated_at: Gewijzigde datum
+      user:
+        active: Actief
+        created_at: Datum aangemaakt
+        current_password: Huidig wachtwoord
+        disabled: Uitschakelen
+        email: E-mailadres
+        first_name: Voornaam
+        id: ID
+        last_name: Achternaam
+        manage_client_ids: Huurder
+        memberships: Huurder
+        name: Naam
+        old_password: Oud wachtwoord
+        password: Wachtwoord
+        password_confirmation: Wachtwoord bevestigen
+        role: Rol
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Projectbeheerder
+            regular: Klant Admin
+            superadmin: Superbeheerder
+          agile: AGIEL
+          case_study: Casestudy
+          client_admin: Klant Admin
+          hogan: Hogan
+          manager: Manager
+          member: Gebruiker
+          organisational: Organisatie
+          project_admin: Projectbeheerder
+          psychometric: Psychometrisch
+          regular: Regelmatig
+          saville: Saville
+          super_admin: Superbeheerder
+          superadmin: Superbeheerder
+          threesixty: Driezestig
+        types:
+          anonymous: Anonieme gebruikers
+          identified: Geïdentificeerde gebruikers
+        updated_at: Gewijzigde datum
+      user_form:
+        active: Actief
+        created_at: Datum aangemaakt
+        current_password: Huidig wachtwoord
+        disabled: Uitschakelen
+        email: E-mailadres
+        first_name: Voornaam
+        id: ID
+        last_name: Achternaam
+        parent: Directe manager
+        parent_id: Directe manager
+        password: Wachtwoord
+        password_confirmation: Wachtwoord bevestigen
+        role: Rol
+        updated_at: Gewijzigde datum
+    required:
+      mark: "*"
+      text: vereist
+    'yes': Ja
+  subjects:
+    approval_statuses:
+      approved: Goedgekeurd
+      denied: Geweigerd
+      waiting: Goedkeuring nodig
+    report_approval_status:
+      approved: Goedgekeurd
+      denied: Geweigerd
+      waiting: Wachten
+    report_release_status:
+      on_hold: In de wacht
+      released: Vrijgegeven
+      waiting: Wachten
+    report_statuses:
+      approved: Goedgekeurd
+      available: Beschikbaar
+      denied: Geweigerd
+      incomplete: Onvolledig
+      not_available: Niet beschikbaar
+      not_prepared: Niet klaar
+      on_hold: In de wacht
+      prepared: Gedaan
+      released: Vrijgegeven
+    statuses:
+      completed: Voltooid
+      declined: Afgewezen
+      denied: Geweigerd
+      done: Gedaan
+      not_completed: Niet voltooid
+      waiting: Wachten
+  threesixty:
+    accept_privacy_modal:
+      accept: Accepteer
+      checkbox: Ik heb bovenstaand privacybeleid gelezen en begrepen
+      title: Toestemming voor gegevensverwerking
+    action: Actie
+    add: Voeg  toe
+    and: En
+    approve: Goedkeuren
+    approve_all: Alles goedkeuren
+    approve_all_successful: Alle nominaties goedgekeurd
+    approve_evaluations: Evaluaties goedkeuren
+    approve_nominations: Nominaties goedkeuren
+    approve_reports: Rapporten goedkeuren
+    approved: Goedgekeurd
+    approving_mail_sent: Mail voor goedkeuring nominatie is verstuurd naar managers
+    as_my: als mijn
+    assessment: Beoordeling
+    back_to_tasks: Terug naar taken
+    begin: Begin
+    cancel: Annuleren
+    close_evaluation_modal:
+      message: Zodra je het rapport hebt bekeken, kan %{pronoun_or_name} geen verdere evaluaties meer ontvangen
+      title: Weet je zeker dat je het rapport wilt bekijken?
+    closed_campaign_message: Deze 360 campagne is gesloten. Je kunt niemand nomineren of beoordelen voor deze campagne.
+    completed: Voltooid
+    confirm: Weet je het zeker?
+    confirmation_for_nomination_removal: Weet je zeker dat je de nominatie wilt verwijderen?
+    confirmation_required: Bevestiging vereist
+    confirmation_text_incorrect: De bevestigingstekst is onjuist
+    confirmation_text_placeholder: Bevestigingstekst hier
+    continue: Ga verder
+    dashboard_title: Welkom %{naam}
+    decline: Daling
+    decline_invite: Uitnodiging weigeren
+    denied: Geweigerd
+    deny: Weigeren
+    deny_all: Alles weigeren
+    deny_all_successful: Alle nominaties geweigerd
+    download_pdf: Downloaden PDF
+    download_report: Rapport downloaden
+    download_reports: Rapporten downloaden
+    edit_user: Gebruiker bewerken
+    email_approve_request: Goedkeuringsverzoek per e-mail
+    email_schedules:
+      delete_successful: Agenda is verwijderd
+    evaluate: Evalueer
+    evaluation: Evaluatie
+    evaluation_all_closed_message: Momenteel wachten alle nominaties op goedkeuring
+    evaluation_closed_message: Evaluatie is gesloten voor dit onderwerp
+    evaluation_closed_nomination_message: Je kunt niet nomineren voor dit onderwerp omdat de evaluatie voor dit onderwerp gesloten is
+    evaluation_help_modal:
+      title: Evaluatie hulp
+    evaluations: Evaluaties
+    evaluator: Evaluator
+    export_pdf: PDF exporteren
+    first_name: Voornaam
+    first_name_error: Voer uw voornaam in
+    help: Help
+    language: Taal
+    last_name: Achternaam
+    last_name_error: Voer uw achternaam in
+    load_results: Resultaten laden
+    mail_history:
+      statuses:
+        success: Succes
+        undelivered: Niet geleverd
+    more_info_evaluation_label: Meer informatie - Evaluaties
+    more_info_nomination_label: Meer informatie - Nominaties
+    my_projects: Mijn projecten
+    name_label: Naam
+    nominate: Nomineer
+    nominate_evaluators: Nomineer beoordelaars voor
+    nomination: Nominatie
+    nomination_help_modal:
+      title: Hulp bij nominaties
+    nomination_predicates:
+      atleast: Ten minste %{count}
+      atmost: Hoogstens %{telling}
+      exactly: Precies %{count}
+    nominations: Nominaties
+    options:
+      form:
+        value_not_valid: heeft geen geldige waarde
+      global:
+        cannot_re_edit: Deelnemers kunnen evaluaties niet bewerken
+        disable_all_evaluations: Alle evaluaties uitschakelen
+    or: Of
+    page_title: Signify 360° Review - Aanpassen
+    participant_list:
+      actions:
+        approve_report: Verslag goedkeuren
+        download_report: Rapport downloaden
+        edit: Bewerk
+        hold_report: Rapport vasthouden
+        login: Inloggen
+        mark_as_done: Markeren als gereed
+        regenerate_report: Rapport genereren
+        release_report: Release rapport
+        remove_campaign: Verwijderen uit campagne
+        remove_report_approval: Rapportgoedkeuring verwijderen
+        remove_report_hold_release_report: Verslag inhouden/vrijgeven verwijderen
+        remove_subject: Onderwerp verwijderen
+        reset_password: Wachtwoord opnieuw instellen
+        unmark_as_done: Verwijderen als gedaan
+        view_report: Rapport bekijken
+        view_responses: Reacties bekijken
+      confirmation_messages:
+        approve_report: Weet je zeker dat je het rapport wilt goedkeuren?
+        hold_report: Weet je zeker dat je het rapport wilt vasthouden?
+        mark_evaluation_done: Weet je zeker dat je de evaluatie als gedaan wilt markeren? De evaluatie wordt afgesloten voor dit onderwerp.
+        release_report: Weet je zeker dat je het rapport wilt vrijgeven?
+        remove_from_campaign: Weet je zeker dat je de gebruiker uit de campagne wilt verwijderen?
+        remove_release_hold: Weet je zeker dat je de status Vrijgeven/vasthouden wilt verwijderen?
+        remove_report_approval: Weet je zeker dat je de goedkeuring van rapporten wilt verwijderen?
+        remove_subject: Weet je zeker dat je het onderwerp met e-mail uit de campagne wilt verwijderen?
+        umark_evaluation_as_complete: Weet je zeker dat je de evaluatie wilt verwijderen?
+      report_generation_message: We laten je weten wanneer het rapport klaar is.
+    processing: Verwerking
+    processing_report: Verwerkingsrapport
+    progress_text: "%{voltooid} van %{totaal}"
+    question:
+      chat_type:
+        input_placeholder: Schrijf je bericht...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Bewerk
+        max_length_warning: "%{x} resterende tekens"
+        message: Uw bericht
+        send: Stuur
+        subject: Onderwerp
+        successful_message: U hebt de e-mail met succes verzonden
+        to: Naar
+    remind_all: Herinner alles
+    remind_mail_sent: Herinneringen gestuurd naar beoordelaars die de evaluatie nog niet hebben afgerond
+    report_for: Verslag voor
+    report_generation_in_progress: We laten je weten wanneer het rapport klaar is.
+    reports: Rapporten
+    reports_help_modal:
+      title: Rapporten helpen
+    reset_campaign_confirmation: Voer de huidige campagnenaam hieronder in het tekstvak in om alle deelnemers te resetten
+    reset_nomination_confirmation: Voer de huidige campagnenaam hieronder in het tekstvak in om alle nominaties te resetten
+    save: Sla
+    select_relationnship: Selecteer relatie
+    select_relationship: Selecteer relatie
+    self: Zelf
+    set_name_for_evaluator: Naam voor evaluator instellen
+    setup_nominations: Nominaties instellen
+    subject: Onderwerp
+    submit: Stuur  in
+    timed_out: Uitgetimed
+    total_progress: Totale vooruitgang
+    user_name_input_placeholder: type naam of e-mail...
+    validation_errors: Validatiefouten
+    view_my_report: Mijn rapport bekijken
+    view_nominations: Nominaties bekijken
+    view_reports: Rapporten bekijken
+    waiting: Wachten
+    you: U
+    yourself: Jezelf
+  time:
+    formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/JJJJ hh:mm A
+      datetimepicker_client_with_timezone: D MMM JJJJ / H:mm Z
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/JJJJ
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
+  universal_links:
+    active: Actief
+    allow_multiple_respones: Gebruikers toestaan om meerdere reacties in te dienen
+    png: PNG
+    regenerate_link: Regenereren Link
+    successfully_generated: Met succes gegenereerd
+    successfully_updated: Succesvol bijgewerkt
+    svg: SVG
+  user:
+    datasheet:
+      attribute: Attribuut
+      value: Waarde
+    fields:
+      email: E-mailadres
+      first_name: Voornaam
+      last_name: Achternaam
+    form:
+      email: E-mail
+      first_name: Voornaam
+      last_name: Achternaam
+      locale: Lokaal
+      operation: Operatie
+      operation_options:
+        add_and_allow_new_response: Gebruiker toevoegen en nieuwe reactie toestaan
+        add_with_existing_response: Gebruiker toevoegen met bestaande respons
+        skip_existing: Bestaande gebruiker overslaan
+    modals:
+      exports:
+        export_sign_in_url: Exporteren met magische aanmeldings-URL
+        include_inactive_users: Exporteren met inactieve gebruikers
+        title: Gebruikers exporteren
+      import:
+        body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
+        imported_reports: De rapporten en beoordelingen werden geïmporteerd
+        imported_users: 'Het aantal geïmporteerde gebruikers: %{number}'
+        success_msg: Het geüploade bestand is in de wachtrij geplaatst voor import. Controleer de status in de meldingen
+        title: Gebruikers importeren
+        user_with_unchanged_passwords: De lijst met gebruikers waarvan de wachtwoorden niet zijn gewijzigd
+      import_reports:
+        body: Raadpleeg het voorbeeldbestand om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
+        title: Rapporten en beoordelingen toewijzen
+    toolbar:
+      export: Gebruikers exporteren
+      export_compact_completion_status: Compact
+      export_detailed_completion_status: Gedetailleerd
+      export_reports_and_assessments: Rapporten en beoordelingen exporteren
+      import: Gebruikers importeren
+      import_reports: Rapporten en beoordelingen importeren
+  user_assessment:
+    column:
+      dimension_id: Afmeting ID
+      id: ID gebruikersbeoordeling
+      norm_id: Norm ID
+    drawer:
+      copied: "%{naam} gekopieerd naar klembord."
+      copy: Kopiëren naar klembord
+      mettl_schedule_name: Mettl Schema Naam
+      no_data: Geen gegevens beschikbaar
+      title: Beoordeling Details
+      view: Bekijk
+  user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: Vooruitgang resetten
+          success_message: Beoordeling %{naam} is klaar voor bewerking
+      push_test_webhook:
+        copy_request_data_success: Rquest Payload succesvol gekopieerd naar klembord.
+        copy_response_body_success: Response body succesvol gekopieerd naar klembord.
+        copy_response_headers_success: Response-headers succesvol gekopieerd naar klembord.
+        event_name_placeholder: Naam evenement
+        response_body_title: Antwoordinstantie
+        response_header_title: Response Headers
+      push_webhook:
+        submit_button_name: Push Webhook
+        title: Push Webhook
+      remove:
+        content: Weet je zeker dat je de beoordeling "%{name}" wilt verwijderen?
+        successfully: "%{naam} beoordeling is succesvol verwijderd."
+      reset:
+        content: Weet je zeker dat je de voortgang "%{naam}" wilt resetten?
+      test_webhook:
+        submit_button_name: Test verzenden
+        title: Webhook-gebeurtenistest verzenden
+    normalize_factor_scores:
+      no_scoring_data: Normalisatie van factorscores kan niet worden voltooid omdat er geen scoringsgegevens beschikbaar zijn.
+    progress_label: Voortgangsbeoordeling
+    redirect: Je wordt doorgestuurd naar de site van een derde partij voor deze beoordeling. Klik op Doorgaan als je de beoordeling wilt starten.
+    status:
+      completed: Voltooid
+      in_progress: In uitvoering
+      ineligible: Niet-subsidiabel
+      interrupted: Onderbroken
+      not_started: Niet gestart
+      timed_out: Uitgetimed
+    statuses:
+      evaluator_nomination_status:
+        completed: Voltooid
+        declined: Afgewezen
+        waiting: Wachten
+      manager_evaluation_status:
+        approved: Goedgekeurd
+        denied: Geweigerd
+        waiting: Wachten
+      manager_nomination_status:
+        approved: Goedgekeurd
+        completed: Voltooid
+        declined: Afgewezen
+        denied: Geweigerd
+        waiting: Wachten
+    timer_title:
+      assessment: Beoordeling
+      campaign: Campagne
+  user_reports:
+    actions:
+      add: Rapport toevoegen
+      download: Downloaden
+      generate: Genereren
+      regenerate: Regenereer
+    approval_statuses:
+      approved: Goedgekeurd
+      change_requested: Aangevraagde wijziging
+      not_ready: Niet klaar
+      pending_qc: In afwachting van QC
+      qc_completed: QC Voltooid
+      qc_in_progress: QC in uitvoering
+    messages:
+      async_generation: Rapport wordt gegenereerd. Je ontvangt een melding zodra het rapport is gegenereerd.
+      regenerate_successful: De taak voor het regenereren van rapporten is met succes gepland
+    modals:
+      remove:
+        content: Weet je zeker dat je rapport %{userReportName} wilt verwijderen?
+        content_with_counts:
+          both: 'GEVAAR: Rapport %{userReportName} heeft %{commentsCount} commentaar(en) en %{editsCount} bewerking(en). Als je het rapport van de gebruiker verwijdert, gaan deze commentaar(en) en bewerking(en) verloren.'
+          comments: 'GEVAAR: Rapport %{userReportName} heeft %{commentsCount} commentaar(en). Als u het rapport van de gebruiker verwijdert, gaan deze commentaar(en) verloren.'
+          edits: 'GEVAAR: Rapport %{userReportName} heeft %{editsCount} bewerkingen. Als je het rapport van de gebruiker verwijdert, gaan deze bewerkingen verloren.'
+        successfully: "%{userReportName} rapport is succesvol verwijderd"
+      remove_file:
+        content: Weet je zeker dat je het bestand wilt verwijderen?
+        successfully: Bestand is succesvol verwijderd.
+      upload_file:
+        choose_file: Kies bestand
+        success: Bestand succesvol geüpload.
+        upload: Uploaden
+    preview_report: Voorbeeldrapport
+    statuses:
+      generating: Genereren
+      not_prepared: Niet beschikbaar
+      prepared: Beschikbaar
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: 2 Factor Auth is uitgeschakeld
+          enabled: 2 Factor Auth is ingeschakeld
+        option_to_disable: 2FA uitschakelen
+        option_to_enable: 2FA inschakelen
+      remove:
+        confirm_message: Weet je zeker dat je de gebruiker met een e-mailadres '%{email}' wilt verwijderen?
+        confirm_title: Bevestiging vereist
+        error_message: Kon de gebruiker niet verwijderen door fout - %{error}
+        success_message: "%{email} is verwijderd"
+        system_error_message: Kan de gebruiker niet verwijderen, probeer het later nog eens of neem contact op met support.
+      reset_password:
+        option: Wachtwoord opnieuw instellen
+      unlock_user_access:
+        message: Gebruikerstoegang voor %{email} is met succes ontgrendeld.
+        title: Gebruikerstoegang ontgrendelen
+        tooltip: Dit gebruikersaccount is vergrendeld
+    admins: Admins
+    create_global_assessor: Globale beoordelaar maken
+    create_superadmin: Superbeheerder maken
+    dashboard: Dashboard
+    drawer:
+      link: Link
+      role: Rol
+      title: Gegevens gebruiker
+    global_assessors: Wereldwijde beoordelaars
+    password_change_success: Het wachtwoord is succesvol gewijzigd. Log in met je nieuwe wachtwoord.
+    roles:
+      campaign_admin: Campagne Admin
+      campaign_assessor: Campagne Assessor
+      campaign_user: Campagne Gebruiker
+      client_admin: Klant Admin
+      project_admin: Projectbeheerder
+      superadmin: Superbeheerder
+    superadmins: Superbeheerders
+    users: Gebruikers
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Audio wordt opgenomen maar niet opgeslagen
+        RECORDING: Audio-opname is bezig
+        SAVING: Opgenomen audio wordt geüpload
+      required: Neem het geluid op en sla het op voordat je verdergaat
+    FileUpload:
+      in_progress:
+        SAVING: Bestand wordt geüpload
+      required: Upload het bestand
+    TextEntry:
+      Email:
+        character_range: Het ingevoerde e-mailbericht moet minstens %{min} en niet meer dan %{max} tekens bevatten.
+        max_character: Het ingevoerde e-mailbericht mag niet meer dan %{max} tekens bevatten.
+        min_character: Het ingevoerde e-mailbericht moet minstens %{min} tekens bevatten.
+        subject:
+          min_length: Het onderwerpveld moet minimaal 10 tekens bevatten
+        to:
+          required: Het veld Aan is vereist
+    VideoResponse:
+      in_progress:
+        recorded: Video wordt opgenomen maar niet opgeslagen
+        recording: Video-opname is bezig
+        saving: Opgenomen video wordt geüpload
+      required: Neem de video op en sla hem op voordat je verdergaat
+    actions_still_in_progress: Onderstaande acties zijn in uitvoering. Als u doorgaat, verliest u deze gegevens.
+    blank: kan niet leeg zijn
+    character_count: 'Personages tellen '
+    character_range: Je antwoord moet minstens %{min} en niet meer dan %{max} tekens lang zijn.
+    date: Je antwoord moet een geldige datum zijn (mm/dd/jjjj)
+    each_group_contains: Elke groep mag niet minder dan %{min} en niet meer dan %{max} items bevatten
+    email: Je antwoord moet een geldig e-mailadres zijn
+    exact: Selecteer precies %{aantal} keuze(s)
+    file_upload:
+      BadRequest: Het bestand is niet geüpload omdat het laatste verzoek is mislukt. Dit kan komen doordat uw internet niet werkt. Als uw internet werkt, neem dan contact op met de beheerder
+      EntityTooLarge: De bestandsgrootte moet kleiner zijn dan %{maxFileSize} MB
+      WrongFileType: Het bestandstype moet een van de volgende %{allowedFileTypes} zijn
+    invalid: is ongeldig
+    issue: Uitgave
+    least: Beantwoord ten minste %{min} keuze(s).
+    least_hotspot: Beantwoord ten minste %{min} keuze(s).
+    max_character: Je antwoord mag niet meer dan %{max} tekens bevatten.
+    max_word: Je antwoord mag niet langer zijn dan %{max} woorden.
+    min_character: Je antwoord moet minstens %{min} tekens bevatten.
+    min_factor: Je antwoord moet minstens %{min} factorfeedbacks bevatten.
+    min_word: Je antwoord moet minstens %{min} woorden bevatten
+    most: Selecteer maximaal %{max} keuze(s)
+    must_rank_between: Geef een waarde op van %{min} tot %{max} voor elk item. Waarden mogen niet worden herhaald.
+    must_select: Kies uit %{min} tot %{max} keuzes
+    not_in_future: De geselecteerde datum mag niet in de toekomst liggen
+    not_in_past: De geselecteerde datum mag niet in het verleden liggen
+    number: Je antwoord moet een getal zijn
+    photo: vereist
+    range: Beantwoord ten minste %{min} en niet meer dan %{max} keuze(s).
+    required: Beantwoord deze vraag
+    text: Je antwoord mag geen getallen bevatten
+    title:
+      one:
+      other:
+    user_self_skill_rating_disabled: Zelfclassificatie is uitgeschakeld voor deze sjabloon
+    word_count: 'Aantal woorden '
+    word_range: Je antwoord moet minstens %{min} en niet meer dan %{max} woorden bevatten.
+  'yes': Ja
+  your: Jouw
+  yourself: Jezelf

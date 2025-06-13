@@ -2,17 +2,21 @@
 
 module Administration
   class ImportDevelopmentActions < BaseCommand
-    REQUIRED_FIELDS = %w[SkillID Name Description Type Category].freeze
+    REQUIRED_FIELDS = %w[SkillID Name Description Type DevelopmentActionType].freeze
     OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
 
-    def initialize(file_url, project_id)
-      @file_url = file_url.to_s
+    def initialize(file, project_id)
+      @file = file
       @project_id = project_id
-      @errors = []
     end
 
     def call
-      csv_data = download_file
+      begin
+        csv_data = CsvFileParser.call!(@file, headers: true)
+      rescue Errors::DownloadFailedError => e
+        raise Errors::ImportError, e.message
+      end
+
       ActiveRecord::Base.transaction do
         process_csv_data(csv_data)
       end
@@ -20,22 +24,6 @@ module Administration
     end
 
     private
-
-    def download_file
-      uri = URI.parse(@file_url)
-      unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
-        raise Errors::ImportError,
-              I18n.t('administration.development_action_import.errors.invalid_url_format')
-      end
-
-      CSV.parse(uri.open, headers: true)
-    rescue URI::InvalidURIError => e
-      raise Errors::ImportError,
-            I18n.t('administration.development_action_import.errors.invalid_url', message: e.message)
-    rescue OpenURI::HTTPError => e
-      raise Errors::ImportError,
-            I18n.t('administration.development_action_import.errors.download_failed', message: e.message)
-    end
 
     def process_csv_data(csv_data)
       csv_data.each do |row|
@@ -78,7 +66,7 @@ module Administration
       development_action.assign_attributes(
         project_id: @project_id,
         learning_style: row_data['Type'].downcase,
-        category: row_data['Category'].downcase
+        development_action_type: row_data['DevelopmentActionType'].downcase
       )
 
       development_action.skills << skill unless skill_ids.include?(skill.id)

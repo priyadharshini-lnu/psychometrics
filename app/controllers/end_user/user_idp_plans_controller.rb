@@ -2,7 +2,7 @@
 
 module EndUser
   class UserIdpPlansController < ApplicationController
-    before_action :load_user_idp_plan, only: %i[show update]
+    before_action :load_user_idp_plan, only: %i[show update update_reflection_questions]
     before_action :load_skill_gap_report_status, only: %i[show]
 
     def summary
@@ -12,13 +12,14 @@ module EndUser
     end
 
     def show
-      authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+      authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
 
       if @user_idp_plan
         render json: {
           data: EndUser::IdpPlanSerializer.new(
             context: {
-              skill_gap_report_available: @skill_gap_report_available
+              skill_gap_report_available: @skill_gap_report_available,
+              reflection_answers: user_reflection_question_answers
             }
           ).serialize(@user_idp_plan)
         }
@@ -28,29 +29,46 @@ module EndUser
     end
 
     def update
-      authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+      authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
 
-      if update_params[:status] == 'completed'
-        @user_idp_plan.update!(status: 'completed', completed_at: Time.current)
-      elsif update_params[:status] == 'in_progress'
-        @user_idp_plan.update!(status: 'in_progress', started_at: Time.current)
+      form = ::Idp::UpdateStatusForm.from_params(update_params).
+             with_context(current_user: current_user, user_idp_plan: @user_idp_plan)
+
+      if form.save!
+        render json: { status: @user_idp_plan.status }
       else
-        @user_idp_plan.update!(update_params)
+        render json: { errors: form.errors.full_messages }, status: 422
       end
+    end
 
+    def update_reflection_questions
+      authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+      Idp::UpdateUserReflectionQuestions.call!(@user_idp_plan, params[:reflection_questions])
       render json: {
-        status: @user_idp_plan.status
+        data: Panko::ArraySerializer.new(
+          @user_idp_plan.idp_template.idp_template_reflection_questions,
+          each_serializer: EndUser::ReflectionQuestionSerializer,
+          context: {
+            reflection_answers: user_reflection_question_answers
+          }
+        ).to_a
       }
     end
 
     private
 
+    def user_reflection_question_answers
+      @user_idp_plan.user_reflection_question_answers.group_by(&:reflection_question_id).transform_values do |answers|
+        answers.map(&:answer).first
+      end
+    end
+
     def user
-      User.find(params[:user_id])
+      @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
     end
 
     def load_user_idp_plan
-      @user_idp_plan = current_user.
+      @user_idp_plan = user.
                        association(:active_user_idp_plan).
                        scope.
                        includes(

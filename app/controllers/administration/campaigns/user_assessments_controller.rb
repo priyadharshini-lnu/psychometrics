@@ -147,6 +147,17 @@ module Administration
         ).serialize(resource)
       end
 
+      def toggle_prework
+        resource.update!(prework: params[:prework])
+
+        render json: Administration::UserAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: resource.campaign
+          }
+        ).serialize(resource)
+      end
+
       def schedule_assessment
         resource.update!(schedule_time: params[:schedule_time])
 

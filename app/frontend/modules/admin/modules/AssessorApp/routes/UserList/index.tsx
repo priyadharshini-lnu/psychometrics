@@ -73,11 +73,11 @@ const UserList: React.FC<Props> = (
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} Users`}</span>
+          <span className="mlm">{`${total} ${I18n.t('administration.navigation.users')}`}</span>
         </Col>
         <div className="float-r">
           <Search
-            placeholder="Search"
+            placeholder={I18n.t('common.actions.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}

@@ -40,7 +40,7 @@ module Workshops
       data = workshop_data.slice(
         :timezone, :duration, :cancellation_lead_time, :scheduling_lead_time, :name,
         :video_call_type, :start_time, :campaign_id, :total_seats, :meeting_link,
-        :allow_late_cancellation_and_rescheduling
+        :allow_late_cancellation_and_rescheduling, :campaign_assessment_group_id
       )
       workshop = Workshop.create!(data)
       new_workshops << workshop

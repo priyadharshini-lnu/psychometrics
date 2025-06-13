@@ -28,12 +28,12 @@ export const NORMALIZE_FACTOR_SCORES = 'campaigns/assessments/NORMALIZE_FACTOR_S
 export const UPDATE_CONTENT_VARIATION = 'campaigns/assessments/UPDATE_CONTENT_VARIATION'
 
 export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
-export const updatePrework = (campaignId: number, id: number, prework: boolean) => ({
+export const updatePrework = (campaignId: number, id: number, body: object) => ({
   type: UPDATE_PREWORK,
   request: {
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/assessments/${id}/update_prework`,
-    body: { prework },
+    body,
   },
 })
 

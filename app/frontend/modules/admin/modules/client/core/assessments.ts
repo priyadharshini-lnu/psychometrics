@@ -118,6 +118,7 @@ export const TYPES = [
   'saville',
   'mettl',
   'simulation',
+  'skillvue',
 ]
 
 export const Schema = {

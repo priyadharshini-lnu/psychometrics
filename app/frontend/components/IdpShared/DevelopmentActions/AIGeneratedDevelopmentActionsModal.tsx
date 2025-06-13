@@ -46,7 +46,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
     if (skill) {
       setIsLoading(true)
       generateDevelopmentActionsByAI({
-        userIdpSkillId: skill.id,
+        userIdpSkillId: skill.id as number,
         generateMore,
         generatedActions: developmentActions,
         lang: I18n.locale,

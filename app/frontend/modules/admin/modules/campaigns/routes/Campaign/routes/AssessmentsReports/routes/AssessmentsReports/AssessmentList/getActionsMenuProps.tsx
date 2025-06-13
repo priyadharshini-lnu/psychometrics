@@ -159,17 +159,17 @@ export const getActionsMenuProps = ({
 
 
   const menuItems: MenuItem[] = [{
-    type: 'group', key: 'export', label: 'Export', children: exportGroupItems,
+    type: 'group', key: 'export', label: I18n.t('common.actions.export'), children: exportGroupItems,
   }]
   permissions.importResults && menuItems.push({
     type: 'group',
     key: 'import',
-    label: 'Import',
+    label: I18n.t('common.actions.import'),
     children: importGroupItems,
   })
   permissions.rescoreResponses && menuItems.push(...rescoreMenuItems)
   permissions.updateExternalConfig && actions.updateExternalConfig && menuItems.push(...configMenuItems)
-  permissions.scheduleAssessment && menuItems.push({ key: 'schedule', label: 'Schedule' })
+  permissions.scheduleAssessment && menuItems.push({ key: 'schedule', label: I18n.t('common.actions.schedule') })
   permissions.normalizeFactorScores && menuItems.push(
     { key: 'normalizeFactorScores', label: 'Normalize Factor Scores' },
   )

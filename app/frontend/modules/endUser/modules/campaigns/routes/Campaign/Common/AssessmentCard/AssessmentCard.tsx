@@ -233,6 +233,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     <Space direction="vertical">
       {
         showDuration ? (
+
           <TimerText
             textType="none"
             text={isWorkshopActivity ? workshopActivityDurationText : timing}

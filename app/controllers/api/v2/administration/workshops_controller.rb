@@ -3,11 +3,11 @@
 module Api
   class V2::Administration::WorkshopsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::Workshop::Schema
-    validates_request_schema :update, Api::V2::Workshop::UpdateContract.new
-    validates_request_schema :create_bulk_workshops, Api::V2::Workshop::CreateAllContract.new
+    validates_request_schema :update, -> { Api::V2::Workshop::UpdateContract.new }
+    validates_request_schema :create_bulk_workshops, -> { Api::V2::Workshop::CreateAllContract.new }
     validates_request_schema :bulk_update_subjects,
-                             Api::V2::Workshop::Schema.bulk_update_subjects
-    validates_request_schema :change_status, Api::V2::Workshop::Schema.change_status_request
+                             -> { Api::V2::Workshop::Schema.bulk_update_subjects }
+    validates_request_schema :change_status, -> { Api::V2::Workshop::Schema.change_status_request }
 
     prepend_before_action :set_workshop, only: %i[bulk_update_subjects update change_status remove_workshop]
 
@@ -73,6 +73,7 @@ module Api
           :start_time,
           :timezone,
           :allow_late_cancellation_and_rescheduling,
+          :campaign_assessment_group_id,
           {
             workshop_resources: %i[name url],
             center_manager_ids: [],
@@ -110,6 +111,7 @@ module Api
       params.require(:data).require(:attributes).permit(:name, :meeting_link, :total_seats, :video_call_type,
                                                         :allow_late_cancellation_and_rescheduling,
                                                         :scheduling_lead_time, :cancellation_lead_time,
+                                                        :campaign_assessment_group_id,
                                                         workshop_managers_ids: [],
                                                         workshop_assessors_ids: [])
     end

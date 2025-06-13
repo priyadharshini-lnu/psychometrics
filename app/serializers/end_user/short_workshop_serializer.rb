@@ -2,7 +2,7 @@
 
 module EndUser
   class ShortWorkshopSerializer < Panko::Serializer
-    attributes :id, :start_time, :meeting_link, :attended, :closed
+    attributes :id, :start_time, :meeting_link, :attended, :closed, :campaign_assessment_group_id
 
     def meeting_link
       object.real_meeting_link(current_user)

@@ -22,6 +22,7 @@ module Threesixty::InitialState
           logo: @current_project.design_setting.logo_url,
           secondaryLogo: @current_project.design_setting.secondary_logo_url,
           privacyText: @current_project.privacy_setting.privacy_link_text,
+          enablePrivacyLink: @current_project.privacy_setting.enable_privacy_link,
           privacyPageLink: @current_project.privacy_setting.privacy_link_url
         }
       }.merge(campaign_intial_state),

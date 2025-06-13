@@ -7,15 +7,16 @@ describe Api::V2::Administration::WorkshopSubjectsController, swagger_doc: 'v2/s
   let(:superadmin) { create(:superadmin) }
   let(:campaign) { create(:campaign) }
   let(:campaign_id) { campaign.id }
-  let(:workshop) { create(:workshop, campaign_id: campaign_id) }
+  let!(:group) { create(:campaign_assessment_group, campaign: campaign) }
+  let(:workshop) { create(:workshop, campaign_id: campaign_id, campaign_assessment_group: group) }
   let(:workshop_id) { workshop.id }
   let!(:subject) { create(:workshop_subject, workshop: workshop) }
   let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
 
   before do
-    completed = create(:user_assessment, campaign: campaign, subject: subject.user, status: 2)
-    another_completed = create(:user_assessment, campaign: campaign, subject: subject.user, status: 2)
-    not_completed = create(:user_assessment, campaign: campaign, subject: subject.user)
+    completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user, status: 2)
+    another_completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user, status: 2)
+    not_completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user)
     create(:campaign_assessment, assessment: completed.assessment, campaign: campaign,
       prework: true, workshop_activity: true)
     create(:campaign_assessment, assessment: another_completed.assessment, campaign: campaign,

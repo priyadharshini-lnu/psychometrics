@@ -1081,13 +1081,13 @@ it:
     sequencing:
       add_assessment_center: Aggiungi centro di valutazione
       add_group: Aggiungi gruppo
-      assessment_center_message: Le valutazioni di questo gruppo sono gestite dall'Assessment Center
       assessments: Valutazioni
       delete_group: Cancellare il gruppo
       edit_group_name: Modifica del nome del gruppo
       modal:
         delete:
           cancel: Annulla
+          cannot_delete_with_workshops: Impossibile eliminare il gruppo contenente i workshop, eliminare prima i workshop
           failed: Impossibile eliminare il gruppo "%{name}", contattare l'amministratore
           ok: Sì, eliminare
           text: Si è sicuri di voler eliminare il gruppo "%{name}"?
@@ -1232,7 +1232,7 @@ it:
       development: Sviluppo
       home: Home
       insights: Approfondimenti
-      my_direct_reports: I miei rapporti diretti
+      my_direct_reportees: I miei rapporti diretti
       my_plan: Il mio piano
       profile: Profilo
       profile_details: Dettagli
@@ -1315,9 +1315,9 @@ it:
       reset_all_nominations: Azzeramento di tutte le nomine
       reset_participant: Azzeramento di tutti i partecipanti
     allow_msg_proctoring_workshop_activity: Le attività dell'Assessment Center non vengono verificate.
+    assessment_center_heading: Dettagli sull'Assessment Center
     assessments_heading: Le tue Attività
     column:
-      assessment_center_activity: Attività del Centro di valutazione
       assessment_name: Nome della valutazione
       assessor_form: Modulo per il valutatore
       auto_assign: Assegnazione automatica
@@ -1619,6 +1619,7 @@ it:
       copy: Copia
       create: Creare
       delete: Cancellare
+      done: Fatto
       edit: Modifica
       export: Esportazione
       filter_by_tags: Filtrare per tag
@@ -1635,6 +1636,7 @@ it:
       search: Ricerca
       send: Inviare
       start: Inizio
+      submit: Invia
       unarchive: Disarchivio
       unresolve: Non risolvere
       update: Aggiornamento
@@ -1642,6 +1644,8 @@ it:
       upload_file: Caricare il file
       verify: Verifica
       view: Vista
+      view_all_tasks: Visualizza tutti i compiti
+      view_detail: Visualizza il dettaglio
     column:
       action: Azione
       active: Attivo
@@ -1923,7 +1927,7 @@ it:
         tabs:
           register: Registro
           sign_in: Accesso
-        title: Benvenuto/a!
+        title: Benvenuto!
       signed_in: L'accesso è stato effettuato con successo!
       signed_in_time: L'ultimo accesso è stato effettuato il %{date_time}
       signed_out: La firma è stata apposta con successo.
@@ -2165,6 +2169,7 @@ it:
       neurodivergence_comment_aria_label: Commenti sulla neurodivergenza
       neurodivergence_comment_placeholder: I vostri commenti
       neurodivergence_question: Per partecipare pienamente alla valutazione, avete bisogno di sistemazioni o adattamenti ragionevoli dovuti a esigenze speciali o a disabilità?
+      no_invites_msg: Sarete aggiunti al centro di valutazione o riceverete un invito a prenotare il vostro posto; una volta entrati a far parte del centro, potrete completare le attività facendo clic sul pulsante "Visualizza dettagli" qui sotto.
       or: o
       other_invite: Vedi %{count} altro invito
       other_invites: Vedere %{count} altri inviti
@@ -2327,67 +2332,78 @@ it:
       aria_selected: Selezionato
   idp:
     actions: Azioni
-    board: Bacheca
+    board: Consiglio di amministrazione
+    convert_to_draft: Converti in bozza
     details: Dettagli
     development_actions:
       action_private: Sì
-      action_public: 'No'
-      add_development_action: Aggiungi Azione di Sviluppo
+      action_public: 'false'
+      add_development_action: Aggiungi azione di sviluppo
       all: Tutti
       approved: Approvato
       board_view:
         completed: Completato
-        in_progress: In Corso
-        not_started: Non Iniziato
+        in_progress: In corso
+        not_started: Non iniziato
       completion: Completamento
-      create_my_own: Crea il Mio
-      date_range: Data di Inizio - Data di Fine
-      generate_by_ai: Genera con IA
-      generate_more: Genera Altro
-      generating_development_actions: Generazione delle azioni di sviluppo...
-      heading: Azioni di Sviluppo
-      learning_from_others: Apprendimento dagli altri
-      manage_skills: Gestisci Competenze
+      create_my_own: Creare il mio personale
+      date_range: Data di inizio - Data di fine
+      generate_by_ai: Generati dall'intelligenza artificiale
+      generate_more: Generare di più
+      generating_development_actions: Generare azioni di sviluppo...
+      heading: Azioni di sviluppo
+      learning_from_others: Imparare dagli altri
+      manage_skills: Gestire le competenze
       marathon: Maratona
       no_development_actions: Nessuna azione di sviluppo
       on_the_job: Sul lavoro
       other: Altro
       private: Privato
-      remove: Rimuovi
-      skill: Competenza
+      remove: Rimuovere
+      skill: Abilità
       sprint: Sprint
       structured_learning: Apprendimento strutturato
-      submit_plan: Invia Piano
+      submit_plan: Invia il piano
       write_here: Scrivi qui...
-    direct_report_details: Dettagli Report Diretto
+    direct_reportee_details: Dettagli Report Diretto
     initial_steps:
-      add_skill_group_description: In base ai risultati della tua valutazione, ecco alcune delle aree di forza e di sviluppo per te. Scegli le competenze che desideri sviluppare ulteriormente come parte del tuo piano di sviluppo.
-      add_skill_group_title: Esplorazione delle Tue Competenze %{category}
+      add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
+      add_skill_group_title: Esplorare le proprie capacità di %{categoria}
       add_skills: Aggiungi
-      add_skills_step: Aggiungi Competenze
-      continue_to_rate_skills: Continua a valutare le competenze
-      getting_started: Iniziamo
-      getting_started_info: Benvenuto nel tuo creatore di Piano di Sviluppo Individuale (PSI). Questo piano ti aiuterà a identificare, gestire e tracciare i tuoi obiettivi professionali e personali, nonché i passi necessari per raggiungerli. I tuoi obiettivi professionali possono includere aree di sviluppo comportamentali, di leadership e tecniche. Il tuo PSI è uno strumento essenziale per supportare lo sviluppo della tua carriera e il miglioramento delle tue competenze.
+      add_skills_step: Aggiungi competenze
+      continue_to_rate_skills: Continuare a valutare le competenze
+      getting_started: Come iniziare
+      getting_started_info: Benvenuti nel creatore del vostro Piano di Sviluppo Individuale (IDP), che vi aiuterà a identificare, gestire e monitorare i vostri obiettivi professionali e personali, nonché i passi da compiere per raggiungerli. I vostri obiettivi professionali possono includere aree di sviluppo comportamentali, di leadership e tecniche. Il vostro IDP è uno strumento essenziale per supportare lo sviluppo della vostra carriera e il miglioramento delle vostre competenze.
       less_skills: Mostra meno competenze
-      more_skills: Esplora più competenze
+      more_skills: Esplora altre competenze
       next: Avanti
-      no_skills_selected: Nessuna competenza selezionata.
-      rate_skills: Valuta Competenze
-      rate_skills_description: Ora che hai selezionato le tue priorità di sviluppo, valuta te stesso su ciascuna delle seguenti. Ricorda di valutarti in base al tuo livello attuale e non al tuo livello passato o desiderato.
-      rate_skills_title: Valutazione delle Tue Competenze
-      rating_column_header: La tua autovalutazione
+      no_skills_selected: Nessuna abilità selezionata.
+      rate_skills: Competenze tariffarie
+      rate_skills_description: Ora che avete selezionato le vostre priorità di sviluppo, valutate voi stessi su ciascuno dei seguenti aspetti. Ricordate di valutare voi stessi in base al vostro livello attuale e non in base al vostro livello passato o desiderato.
+      rate_skills_title: Valutazione delle competenze
+      rating_column_header: La vostra autovalutazione
+      reflective_questions: Domande di riflessione
       select_skills: Seleziona le tue competenze
       select_skills_placeholder: Seleziona competenze
       selected_skills: Competenze Selezionate
       skill_column_header: Competenza
       skill_gap_report: Report sul Divario di Competenze
     list: Lista
-    my_direct_reports: I Miei Report Diretti
+    manage_plan: Gestisci piano
+    mark_as_complete: Contrassegna come completato
+    mark_as_incomplete: Contrassegna come incompleto
+    my_direct_reportees: I Miei Report Diretti
     my_plan:
-      development_plan: Piano di Sviluppo
+      development_plan: Piano di sviluppo
       graphs:
+        behavioural: Comportamentale
         categories: Categorie
-      save_skills: Salva Competenze
+        learning_on_job: Sul lavoro (%{count})
+        learning_others: Imparare dagli altri (%{count})
+        learning_structured: Apprendimento strutturato (%{count})
+        other: Altro
+        technical: Tecnica
+      save_skills: Salvataggio delle competenze
     pdf:
       approval_status: Stato di Approvazione
       cover:
@@ -2493,15 +2509,27 @@ it:
         library: Libreria PSI
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
-    profile_details: Dettagli del Profilo
+    reflective_questions:
+      answer_later: Risposta successiva
+      answer_placeholder: Scrivi qui la tua risposta...
+      errors:
+        max_words: La risposta consente un massimo di %{count} di parole
+        min_words: La risposta richiede almeno %{count} parole
+        required: La risposta alla domanda è richiesta
+      max_words: Parole massime
+      min_words: Parole Min
+      title: Domande di riflessione
+      update_failed: Si è verificato un errore durante l'aggiornamento
+      updated_successfully: Le risposte sono state aggiornate con successo
+      words: Parole
     skill_gap_report:
-      continue_to_rate_skills: Continua a valutare le competenze
-      title: Report sul Divario di Competenze
+      title: Rapporto sul divario di competenze
     status: Stato
     user_idp_status:
       approved: Approvato
       draft: Bozza
-      pending_approval: In Attesa di Approvazione
+      not_started: Non iniziato
+      pending_approval: In attesa
     users: Utenti
   idp_templates:
     assign: Assegnazione
@@ -2937,6 +2965,8 @@ it:
         score: Punteggio
       gap_assessment:
         gap: Divario
+        hide_left_filter: Nascondi filtro a sinistra
+        hide_right_filter: Nascondi filtro destro
         item: Indicatore
         negative_gap: Lacune negative
         no_negative_gaps: Non ci sono lacune negative
@@ -3403,8 +3433,10 @@ it:
   threesixty:
     accept_privacy_modal:
       accept: Accetta
-      checkbox: Ho letto e compreso l'informativa sulla privacy di cui sopra
-      title: Consenso al trattamento dei dati
+      checkbox: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy per la raccolta e l'elaborazione dei suoi dati personali come descritto in essa, compreso il trasferimento internazionale dei suoi dati personali.
+      checkbox_with_client_link: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy e l'informativa sulla privacy del nostro cliente e acconsente alla raccolta e all'elaborazione dei suoi dati personali come descritto in esse, compreso il trasferimento internazionale dei suoi dati personali.
+      privacy_notice: Informativa sulla privacy
+      title: Consenso al trattamento e al trasferimento dei dati personali
     action: Azione
     add: Aggiungi
     and: E
@@ -3820,6 +3852,7 @@ it:
     not_in_future: La data selezionata non deve essere futura
     not_in_past: La data selezionata non deve essere passata
     number: La risposta deve essere un numero
+    photo: richiesto
     range: Rispondere ad almeno %{min} e non più di %{max} scelta/e.
     required: Rispondere a questa domanda
     text: La risposta non deve contenere numeri

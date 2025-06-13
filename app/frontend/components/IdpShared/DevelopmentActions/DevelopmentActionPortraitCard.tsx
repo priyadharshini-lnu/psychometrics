@@ -19,6 +19,7 @@ export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill>
   customActionLearningStyle,
   skill,
   customAction,
+  showRating = true,
 }) => (
   <BoxWithShadow className={styles.p_16}>
     <Flex vertical gap={8}>
@@ -37,7 +38,7 @@ export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill>
           <span>{`${I18n.t('idp.development_actions.skill')}:`}</span>
           <p className={styles.m_none}>{skill.name}</p>
         </Flex>
-        <Rate disabled defaultValue={skill.finalRating || skill.initialRating} />
+        {showRating && <Rate disabled defaultValue={skill.finalRating || skill.initialRating} />}
         {
           (learningStyle || customActionLearningStyle) ? (
             <Flex className={styles.mb_8}>

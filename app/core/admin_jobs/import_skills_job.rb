@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module AdminJobs
-  class ImportSkillsJob < AdminJobs::Base
+  class ImportSkillsJob < BaseExportCsv
     def call
       result = Administration::ImportSkills.new(
-        record.file.url,
+        record.file,
         record.data['project_id']
       ).call
 

@@ -1055,7 +1055,6 @@ en:
     sequencing:
       add_assessment_center: Add assessment center
       add_group: Add group
-      assessment_center_message: Assessments in this group are managed by assessment center
       assessments: Assessments
       delete_group: Delete group
       edit_group_name: Edit group name
@@ -2364,7 +2363,6 @@ en:
       add_skill: Add Skill
       development_plan: Development Plan
       graphs:
-        area_of_development: Area of Development
         behavioural: Behavioural
         categories: Categories
         learning_on_job: On the job (%{count})

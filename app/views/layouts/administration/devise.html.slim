@@ -8,6 +8,7 @@ html.body-full-height lang="#{I18n.locale}"
     = csrf_meta_tags
     = render 'layouts/pys_global_state'
     = javascript_include_tag 'threesixty'
+    = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
     = vite_client_tag
     = vite_react_refresh_tag
     = render 'layouts/favicons'

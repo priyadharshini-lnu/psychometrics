@@ -103,6 +103,7 @@ Rails.application.configure do
 
   # Setting nil to allow any hosts on develop
   config.hosts = nil
+  config.middleware.use I18n::JS::Middleware
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true

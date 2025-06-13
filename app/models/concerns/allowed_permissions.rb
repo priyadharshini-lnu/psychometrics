@@ -77,6 +77,7 @@ module AllowedPermissions
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
+    'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations]
   }.freeze
@@ -147,6 +148,7 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
+    'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations]
   }.freeze

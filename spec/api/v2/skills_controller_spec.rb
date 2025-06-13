@@ -16,11 +16,13 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
   describe 'GET #index' do
     let(:project) { Project.find(create(:project).id) }
     let(:other_project) { Project.find(create(:project).id) }
-    let!(:ruby_skill) { create(:skill, name: 'Ruby Engineering', project: project, category: 'technical') }
-    let!(:python_skill) { create(:skill, name: 'Python Engineering', project: nil, category: 'technical') }
-    let!(:java_skill) { create(:skill, name: 'Java Engineering', project: other_project, category: 'technical') }
-    let!(:communication) { create(:skill, name: 'Engineering Communication', project: project, category: 'behavioral') }
-    let!(:leadership) { create(:skill, name: 'Engineering Leadership', project: nil, category: 'behavioral') }
+    let!(:ruby_skill) { create(:skill, name: 'Ruby Engineering', project: project, skill_type: 'technical') }
+    let!(:python_skill) { create(:skill, name: 'Python Engineering', project: nil, skill_type: 'technical') }
+    let!(:java_skill) { create(:skill, name: 'Java Engineering', project: other_project, skill_type: 'technical') }
+    let!(:communication) do
+      create(:skill, name: 'Engineering Communication', project: project, skill_type: 'behavioral')
+    end
+    let!(:leadership) { create(:skill, name: 'Engineering Leadership', project: nil, skill_type: 'behavioral') }
 
     before do
       sign_in superadmin
@@ -38,9 +40,9 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
       end
     end
 
-    context 'with category_in filter' do
-      it 'returns skills in the specified category' do
-        get :index, params: { filter: { category_in: 'technical', name_cont: 'Engineering' } }
+    context 'with skill_type_in filter' do
+      it 'returns skills in the specified skill_type' do
+        get :index, params: { filter: { skill_type_in: 'technical', name_cont: 'Engineering' } }
 
         expect(response).to have_http_status(:ok)
         parsed_response = JSON.parse(response.body)
@@ -48,8 +50,8 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(names).to match_array(['Ruby Engineering', 'Python Engineering', 'Java Engineering'])
       end
 
-      it 'returns skills in multiple categories' do
-        get :index, params: { filter: { category_in: 'technical,behavioral', name_cont: 'ing' } }
+      it 'returns skills in multiple skill_types' do
+        get :index, params: { filter: { skill_type_in: 'technical,behavioral', name_cont: 'ing' } }
 
         expect(response).to have_http_status(:ok)
         parsed_response = JSON.parse(response.body)
@@ -104,11 +106,11 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
     end
 
     context 'with multiple combined filters' do
-      it 'returns skills matching name pattern and category' do
+      it 'returns skills matching name pattern and skill_type' do
         get :index, params: {
           filter: {
             name_cont: 'Engineering',
-            category_in: 'technical'
+            skill_type_in: 'technical'
           }
         }
 
@@ -132,10 +134,10 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(names).to match_array(['Ruby Engineering'])
       end
 
-      it 'returns skills matching category and project' do
+      it 'returns skills matching skill_type and project' do
         get :index, params: {
           filter: {
-            category_in: 'behavioral',
+            skill_type_in: 'behavioral',
             project_id_eq: project.id,
             name_cont: 'ion'
           }
@@ -147,11 +149,11 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(names).to match_array(['Engineering Communication'])
       end
 
-      it 'returns global skills matching category' do
+      it 'returns global skills matching skill_type' do
         get :index, params: {
           filter: {
             global: 'true',
-            category_in: 'behavioral',
+            skill_type_in: 'behavioral',
             name_cont: 'ship'
           }
         }
@@ -162,11 +164,11 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(names).to match_array(['Engineering Leadership'])
       end
 
-      it 'returns skills matching name pattern, category, and project' do
+      it 'returns skills matching name pattern, skill_type, and project' do
         get :index, params: {
           filter: {
             name_cont: 'Engineering',
-            category_in: 'technical',
+            skill_type_in: 'technical',
             project_id_eq: other_project.id
           }
         }
@@ -181,7 +183,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         get :index, params: {
           filter: {
             name_cont: 'NonExistent',
-            category_in: 'behavioral',
+            skill_type_in: 'behavioral',
             project_id_eq: project.id
           }
         }
@@ -248,8 +250,8 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
     let(:project) { Project.find(create(:project).id) }
     let!(:skill) { create(:skill, name: 'Ruby Engineering', project: project) }
     let!(:global_skill) { create(:skill, name: 'Python Engineering', project: nil) }
-    let!(:technical_skill) { create(:skill, name: 'Java Engineering', project: project, category: :technical) }
-    let!(:behavioral_skill) { create(:skill, name: 'Leadership', project: project, category: :behavioral) }
+    let!(:technical_skill) { create(:skill, name: 'Java Engineering', project: project, skill_type: :technical) }
+    let!(:behavioral_skill) { create(:skill, name: 'Leadership', project: project, skill_type: :behavioral) }
 
     before do
       sign_in superadmin
@@ -352,11 +354,11 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
       end
     end
 
-    context 'with category_in filter' do
+    context 'with skill_type_in filter' do
       it 'returns tags from technical skills only' do
         get :tags_search, params: {
           filter: {
-            category_in: 'technical',
+            skill_type_in: 'technical',
             name_cont: 'skills',
             all: 'true'
           }
@@ -372,7 +374,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
       it 'returns tags from behavioral skills only' do
         get :tags_search, params: {
           filter: {
-            category_in: 'behavioral',
+            skill_type_in: 'behavioral',
             name_cont: 'skills',
             all: 'true'
           }
@@ -385,10 +387,10 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(names).not_to include('java skills')
       end
 
-      it 'returns tags from multiple categories' do
+      it 'returns tags from multiple skill_types' do
         get :tags_search, params: {
           filter: {
-            category_in: 'technical,behavioral',
+            skill_type_in: 'technical,behavioral',
             name_cont: 'skills',
             all: 'true'
           }
@@ -400,10 +402,10 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(names).to include('leadership skills', 'java skills')
       end
 
-      it 'combines category filter with project filter' do
+      it 'combines skill_type filter with project filter' do
         get :tags_search, params: {
           filter: {
-            category_in: 'technical',
+            skill_type_in: 'technical',
             project_id_eq: project.id,
             name_cont: 'java'
           }
@@ -419,7 +421,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
       it 'returns all matching tags when all parameter is true' do
         get :tags_search, params: {
           filter: {
-            category_in: 'technical,behavioral',
+            skill_type_in: 'technical,behavioral',
             all: 'true',
             name_cont: 'skills'
           }
@@ -455,7 +457,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
           allow(AdminJob).to receive(:call).and_return(true)
           # Mock the form to be valid and return the processed file
           allow_any_instance_of(Api::V2::Administration::SkillImportForm).to receive(:valid?).and_return(true)
-          allow_any_instance_of(Api::V2::Administration::SkillImportForm).to receive(:processed_file).
+          allow_any_instance_of(Api::V2::Administration::SkillImportForm).to receive(:file).
             and_return(csv_file)
         end
 

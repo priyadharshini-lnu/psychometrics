@@ -2,9 +2,9 @@
 
 module Api
   class V2::Administration::ProjectsController < Api::V2::Administration::BaseController
-    validates_request_schema :update, Api::V2::Projects::UpdateContract.new
-    validates_request_schema :create, Api::V2::Projects::CreateContract.new
-    validates_request_schema :add_manager, Api::V2::Projects::AddManagerContract.new
+    validates_request_schema :update, -> { Api::V2::Projects::UpdateContract.new }
+    validates_request_schema :create, -> { Api::V2::Projects::CreateContract.new }
+    validates_request_schema :add_manager, -> { Api::V2::Projects::AddManagerContract.new }
 
     validate_crud_requests Api::V2::Projects::Schema
 
@@ -52,7 +52,9 @@ module Api
     end
 
     def client
-      client_id = params[:client_id] || Project.find_by(id: params[:id]).ancestry
+      client_id = params[:client_id] || Project.find_by(id: params[:id])&.ancestry
+
+      return nil unless client_id
 
       @client ||= Api::Administration::ProjectPolicy::Scope.new(
         current_user, Client

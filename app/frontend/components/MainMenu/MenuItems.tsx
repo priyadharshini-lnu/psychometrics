@@ -11,7 +11,7 @@ type Permissions = {
     assessorDashboard?: string
     assessorWorkshops?: string
     clients?: string
-    skills?: string
+    skillsTaxonomy?: string
     developmentActions?: string
     users?: string
     norms?: string
@@ -26,6 +26,7 @@ type Permissions = {
     auditLogs?: string
     userAvailability?: string
     dataReports?: string
+    aiAssistants?: string
 }
 
 export const getSelected = (): string => {
@@ -105,12 +106,16 @@ export const getSelected = (): string => {
     return 'dataReports'
   }
 
-  if (location.href.match(/\/admin(\/)(skills)/)) {
-    return 'skills'
+  if (location.href.match(/\/admin(\/)(skills_taxonomy)/)) {
+    return 'skills_taxonomy'
   }
 
   if (location.href.match(/\/admin(\/)(development_actions)/)) {
     return 'developmentActions'
+  }
+
+  if (location.href.match(/\/admin(\/)(ai_assistants)/)) {
+    return 'aiAssistants'
   }
 
   return 'clients'
@@ -183,9 +188,14 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       </Link>,
       icon: <i aria-hidden aria-label="" className="fa fa-users" />,
     } : null,
-    permissions.skills && idpEnabled ? {
-      key: 'skills',
-      label: <Link href={permissions.skills}>{I18n.t('administration.navigation.skills')}</Link>,
+    permissions.aiAssistants ? {
+      key: 'aiAssistants',
+      label: <Link href={permissions.aiAssistants}>{I18n.t('administration.navigation.ai_assistants')}</Link>,
+      icon: <i className="fa fa-diamond" />,
+    } : null,
+    permissions.skillsTaxonomy && idpEnabled ? {
+      key: 'skills_taxonomy',
+      label: <Link href={permissions.skillsTaxonomy}>{I18n.t('administration.navigation.skills_taxonomy')}</Link>,
       icon: <i aria-hidden="true" className="fa fa-book" />,
     } : null,
     permissions.developmentActions && idpEnabled ? {

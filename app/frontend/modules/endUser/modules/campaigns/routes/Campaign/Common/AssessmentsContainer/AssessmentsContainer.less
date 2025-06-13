@@ -1,8 +1,6 @@
 @import '~/styles/spacing.less';
+@import '~/styles/antv4.variable.less';
 
-.group {
-  padding-block: @space-8;
-}
 .container {
   max-width: 1200px;
   padding-inline: @space-2;
@@ -10,4 +8,13 @@
 }
 .assessmentCenter {
   background: var(--ant-primary-light-bg);
+}
+.meetingLinkContainer {
+  background: var(--ant-primary-7);
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 0.25rem;
+  & :global(.ant-typography){
+    color: @white;
+  }
 }

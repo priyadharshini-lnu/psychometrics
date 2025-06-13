@@ -42,7 +42,7 @@ module EndUser
     end
 
     def workshop_subject
-      current_user.last_workshop_subject(object.campaign_id)
+      current_user.workshop_subject(object)
     end
 
     def workshop

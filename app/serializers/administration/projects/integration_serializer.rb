@@ -3,68 +3,39 @@
 module Administration
   module Projects
     class IntegrationSerializer < Panko::Serializer
-      include Rails.application.routes.url_helpers
+      attributes :id, :name, :active, :iiht_integration_details,
+                 :hogan_integration_details, :mettl_integration_details, :skillvue_integration_details
 
-      attributes :id, :name, :active, :details, :user, :tenant_id, :tenancy_name, :provider,
-                 :private_key, :public_key, :api_base_url
+      def iiht_integration_details
+        return nil unless object.iiht?
 
-      def details
-        if object.iiht?
-          {
-            webhook_url: webhooks_iiht_url(
-              host: Settings.domain,
-              subdomain: Settings.subdomain,
-              protocol: Settings.protocol,
-              port: Settings.port,
-              project_id: object.project_id
-            )
-          }
-        elsif object.mettl?
-          {
-            completion_webhook_url: webhooks_mettl_completion_notification_url(
-              host: Settings.domain,
-              subdomain: Settings.subdomain,
-              protocol: Settings.protocol,
-              port: Settings.port,
-              project_id: object.project_id
-            ),
-            results_webhook_url: webhooks_mettl_results_notification_url(
-              host: Settings.domain,
-              subdomain: Settings.subdomain,
-              protocol: Settings.protocol,
-              port: Settings.port,
-              project_id: object.project_id
-            )
-          }
-        end
+        Administration::Projects::Integrations::IihtIntegrationSerializer.new.serialize(
+          object
+        )
       end
 
-      def user
-        object.config['user']
+      def hogan_integration_details
+        return nil unless object.hogan?
+
+        Administration::Projects::Integrations::HoganIntegrationSerializer.new.serialize(
+          object
+        )
       end
 
-      def tenant_id
-        object.config['tenant_id']
+      def mettl_integration_details
+        return nil unless object.mettl?
+
+        Administration::Projects::Integrations::MettlIntegrationSerializer.new.serialize(
+          object
+        )
       end
 
-      def tenancy_name
-        object.config['tenancy_name']
-      end
+      def skillvue_integration_details
+        return nil unless object.skillvue?
 
-      def provider
-        object.config['provider']
-      end
-
-      def public_key
-        object.mettl_config['public_key']
-      end
-
-      def private_key
-        object.mettl_config['private_key']
-      end
-
-      def api_base_url
-        object.mettl_config['api_base_url']
+        Administration::Projects::Integrations::SkillvueIntegrationSerializer.new.serialize(
+          object
+        )
       end
     end
   end

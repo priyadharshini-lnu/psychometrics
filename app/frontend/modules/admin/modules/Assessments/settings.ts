@@ -15,6 +15,7 @@ const settings = {
     'iiht',
     'mettl',
     'simulation',
+    'skillvue',
   ],
 }
 

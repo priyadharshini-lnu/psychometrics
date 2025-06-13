@@ -79,7 +79,9 @@ class AdminJob < ApplicationJob
     import_norm: AdminJobs::ImportNorm,
     export_assessment_questions: AdminJobs::ExportAssessmentQuestions,
     export_dimension_as_json: AdminJobs::ExportDimensionAsJson,
-    import_dimension_from_json: AdminJobs::ImportDimensionFromJson
+    import_dimension_from_json: AdminJobs::ImportDimensionFromJson,
+    export_reflection_questions: AdminJobs::ExportReflectionQuestionsJob,
+    import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob
   }.freeze
 
   def perform(record)

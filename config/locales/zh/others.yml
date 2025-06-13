@@ -11,35 +11,828 @@ zh:
         select_comparison: 选择比较类型
         select_factors: 选择因素
         select_operation: 选择操作
-  activerecord:
-    attributes:
-      membership:
-        first_name: 名
-        last_name: 姓
-      user:
-        email: 电子邮箱地址
-        first_name: 名
-        last_name: 姓
-      user_form:
-        email: 电子邮箱地址
-        first_name: 名
-        last_name: 姓
-        password: 密码
+      sheet_column:
+        accessor_access: 访问器访问
+        dashboard_use: 仪表板的使用
+        visible_in_list: 在列表中可见
     errors:
       models:
+        admin_edit:
+          attributes:
+            email:
+              blank: 电子邮件字段不能为空
+              invalid: 电子邮件无效
+            first_name:
+              blank: 名字不能为空
+            last_name:
+              blank: 姓氏不能为空
+        agile:
+          answers:
+            blank: 答案不能为空
+          group_id:
+            blank: 组 ID 不能为空
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: 请上传 xlsx 文件
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: 您选择了未与所选报告包链接的报告
+              report_family_disabled: 您选择了禁用的报告捆绑包
+              reports_disabled: 您选择了禁用的报告
+            removing_report_ids:
+              not_linked_to_report_family: 您选择了未与所选报告包链接的报告
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: 评估 ID 不能为空
+            bundle_report_id:
+              blank: 报告捆绑包 ID 不能为空
+            report_id:
+              blank: 报告 ID 不能为空
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: 请上传 xlsx 文件
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: 第 %{index} 行的"%{entity}"列不能为空
+              duplicate_code: 第 %{index} 行上的代码"%{code}"重复
+              invalid_output_type: 第 %{index} 行上的输出类型"%{output_type}"无效
+              max_limit_reached: 活动因素总数超过了 %{count} 的上限
+              missing_headers: 缺少所需的标题： %{headers}
+              type_mismatch: 第 %{index} 行代码"%{code}"的输出类型不匹配
+            file:
+              invalid_format: 请上传 xlsx 文件
+            resource:
+              must_exist: "%{resource} 必须存在"
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: 请上传 CSV 文件
+        column:
+          attributes:
+            name:
+              not_unique: 该字段已存在
+        create_all:
+          attributes:
+            assessors:
+              blank: 至少选择一名评估员
+              email_duplicated: 主题和评审员电子邮件重复
+              multiple_leads_for_subject: 为课题指派多名首席评估员
+            evaluators:
+              email_duplicated: 主题和评估者邮件重复
+            subjects:
+              email_duplicated: 某些主题的电子邮件相同
+        create_one:
+          attributes:
+            assessment_ids:
+              invalid: 评估 %{id} 无法附加到评估员身上
+              lead_assessor_already_assigned: 科目只能指定一名主任评估员
+            assessor_email:
+              already_exists: 与该评估员的主题已连接
+              blank: 评估员电子邮件不能为空
+              invalid: 评估员电子邮件无效
+            email:
+              already_exists: 同一邮件主题已存在
+              blank: 电子邮件不能为空
+              invalid: 电子邮件无效
+            evaluator_email:
+              already_exists: 主体与该评估器已连接
+              blank: 评估员电子邮件不能为空
+              invalid: 评估员电子邮件无效
+            evaluator_first_name:
+              blank: 评估员姓名不能为空
+            evaluator_last_name:
+              blank: 评估员的姓氏不能为空
+            evaluator_locale:
+              inclusion: 地点错误
+            evaluator_password:
+              too_short: 评估者密码太短（最少为 %{count} 字符）
+            first_name:
+              blank: 名字不能为空
+            last_name:
+              blank: 姓氏不能为空
+            locale:
+              inclusion: 地点错误
+            relationship_name:
+              blank: 关系不能空白
+              invalid: 关系 %{name} 无效
+            subject_email:
+              blank: 电子邮件主题不能为空
+              invalid: 主题电子邮件无效
+              not_exists: 主题与电子邮件地址 %{email} 不匹配
+        email_schedule:
+          attributes:
+            content:
+              blank: 内容不能为空
+            from:
+              blank: 发件人字段不能为空
+            reply_to_email:
+              blank: 回复电子邮件字段不能为空
+              invalid: 回复电子邮件无效
+            scheduled_date:
+              blank: 计划日期字段不能为空
+            subject:
+              blank: 主题不能为空
+        email_template:
+          attributes:
+            content:
+              blank: 内容不能为空
+              invalid_consolidated_pipetext: 这些管道文本对合并报文无效 %{invalid_pipetexts}
+              invalid_unconsolidated_pipetext: 这些管道文本对于未合并的报文无效 %{invalid_pipetexts}
+            from:
+              blank: 发件人字段不能为空
+            reply_to_email:
+              blank: 回复电子邮件字段不能为空
+              invalid: 回复电子邮件无效
+            subject:
+              blank: 主题不能为空
+        email_test_form:
+          attributes:
+            to_email:
+              blank: 电子邮件字段不能为空
+              invalid: 电子邮件无效
+        factor_import_form:
+          attributes:
+            base:
+              code_length: 在 %{index} 行，代码长度必须至少为 3 个字符。
+              code_required: 第 %{index} 行需要因子代码
+              invalid_scoring_strategy: 第 %{index} 行的计分策略"%{strategy}"无效。 允许的策略为 %{allowed}。
+              missing_headers: 缺少所需的标题： %{headers}
+              name_required: 第 %{index} 行需要因子名称
+              scoring_strategy_required: 在 %{index} 行需要使用计分策略
+            file:
+              invalid_format: 请上传 CSV 文件
+        hogan:
+          attributes:
+            name:
+              not_unique: 本项目已经实现了这种整合
+        iiht:
+          attributes:
+            name:
+              not_unique: 本项目已经实现了这种整合
+        import_one:
+          attributes:
+            email:
+              already_exists: 同一邮件主题已存在
+              blank: 电子邮件不能为空
+              invalid: 电子邮件无效
+            first_name:
+              blank: 名字不能为空
+            last_name:
+              blank: 姓氏不能为空
+            locale:
+              inclusion: 地点错误
+            password:
+              too_short: 密码太短，至少需要 %{count} 字符
+        mettl:
+          attributes:
+            name:
+              not_unique: 本项目已经实现了这种整合
+        password_reset:
+          attributes:
+            email:
+              wrong_email: 我们无法通过您提供的电子邮件找到任何用户。
+        profile:
+          attributes:
+            first_name:
+              blank: 名字不能为空
+            last_name:
+              blank: 姓氏不能为空
+            password:
+              contains_repeats: 密码不得包含重复内容
+              too_short: 密码太短，至少需要 %{count} 字符
+              too_weak: 密码必须包含：至少 1 个小写字母、1 个大写字母、1 个数字和 1 个特殊字符。
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: 区块名称不能为空
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: MatrixTable 问题属性 "answersType "不能为空
+              inclusion: MatrixTable 问题属性 "answerType "应为 "SingleAnswer "或 "MultipleAnswer"。
+            type:
+              blank: MatrixTable 问题属性 "type "不能为空
+              inclusion: MatrixTable 问题类型应为 "Likert
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: 多选题属性 "类型 "不能为空。
+              inclusion: 多选题属性 "类型 "应为 "单选题"、"多选题 "或 "下拉式"。
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: 问题名称不能为空
+            type:
+              blank: 问题标题不能为空
+              inclusion: 问题类型应为 "TextEntry"、"MultipleChoice"、"MatrixTable "或 "StaticContent"。
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: 如果 randomization.type 为 "Some"，randomization.questions 不能为空
+            type:
+              inclusion: 随机化类型应为 "全部"、"部分 "或 "否"。
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: 必填验证类型应为 "强制 "或 "请求"。
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: 静态内容问题属性类型不能为空
+              inclusion: 静态内容问题属性类型应为 "文本
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: TextEntry 问题属性 "type "不能为空。
+              inclusion: TextEntry 问题属性 "类型 "应为 "单行"、"多行 "或 "作文文本框"。
         register:
           attributes:
+            email:
+              blank: 必须填写电子邮件地址
+              in_use: 该电子邮件地址正在使用中，如果您已有帐户，请登录。
+              invalid: 电子邮件地址无效
+              too_long: 电子邮件地址太长
+            first_name:
+              blank: 必须填写姓名
+              too_long: 名字太长
+            last_name:
+              blank: 必须填写姓氏
+              too_long: 姓氏太长
             mobile_number:
-              blank: 名字不能为空
-              invalid: 电子邮件无效
+              blank: 需要手机号码
+              invalid: 手机号码无效
               verification_expired: 验证码已过期，您可以尝试重新验证。
+            registration_code:
+              blank: 需要注册码
+              incorrect_email_domain: 该电子邮件地址对输入的注册码无效
+              invalid: 注册码无效
+            sms_invite_code:
+              invalid: 短信邀请代码无效
+        saml_setting:
+          invalid_cert: 无效证书
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: 时间至少为 5 分钟
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: 时间至少为 60 分钟
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: 预计列<b>%{col}</b>的类型为 %{type}，但得到的结果是<b>%{got}</b>
+              email_blank: 行%{row_number}：电子邮件字段不能为空
+              email_duplicate: 电子邮件栏中有重复内容
+              email_invalid: '行 %{row_number}: 电子邮件无效'
+              invalid_column: 无效列 %{name}
+              invalid_column_name: 列<b>"%{column}"</b>无效
+              invalid_column_name_size: 列<b>"%{column}"</b>名称过长（最多 64 个）
+              invalid_column_type: 列类型必须是字符串、文本、数字、HTML 或 Markdown
+              invalid_format: 格式无效 (.xlsx)
+              invalid_number_value: <b>行#%{index}</b>列<b>"%{column}"</b>不是数字
+              invalid_string_value: <b>行#%{index}</b>列<b>"%{column}"</b>不是字符串
+              invalid_string_value_size: <b>行#%{索引}</b>列<b>"%{column}"</b>太长（最多 256）
+              no_email_column: 文件不包含电子邮件列
+              non_uniq_column: 有以下非单列 %{columns}
+        sheet_row_form:
+          attributes:
+            email:
+              blank: 电子邮件不能为空
+              not_uniq_email: 包含电子邮件的行已经存在
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: 名字不能为空
+            last_name:
+              blank: 姓氏不能为空
+            locale:
+              inclusion: 地点错误。
+            mobile_no:
+              blank: 手机号码不能为空
+              invalid: 手机号码应以加号开头，然后是国际代码，最后是电话号码
+              invite_exists_in_campaign: 同一手机号码的短信邀请已存在
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: CSV 中重复的手机号码如下： %{mobile_numbers}
+              invalid_header: 无效标头：导出短信邀请以获取正确标头
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: 电子邮件 ID 格式无效。
+        super_admin_edit:
+          attributes:
+            email:
+              blank: 电子邮件字段不能为空
+              invalid: 电子邮件无效
+              starts_with_invalid_characters: 电子邮件不能以 =、|、+、-、@、% 开头
+            first_name:
+              blank: 名字不能为空
+              starts_with_invalid_characters: 姓名不能以 =、|、+、-、@、% 开头
+            last_name:
+              blank: 姓氏不能为空
+              starts_with_invalid_characters: 姓氏不能以 =、|、+、-、@、% 开头
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: 请选择正确的标准类型
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: 活动中已经存在使用此电子邮件 ID 的用户
+              user_exists_in_project: 项目中已经存在使用此电子邮件 ID 的用户
+            import_data:
+              cant_overwrite_password: 您无权覆盖密码。
+              duplicated_emails: CSV 中重复了以下电子邮件： %{emails}
+              invalid_email: '行 %{row_number}: 无效电子邮件 %{email}'
+              invalid_header: 无效标头，从导出中获取标头
+              invalid_reports_header: 无效标头，从示例文件中获取标头
+              manager_not_found: 行 %{row_number}：活动或 CSV 中不存在电子邮件 %{email} 的经理
+              user_update_failed: '%{email} 的用户更新失败，错误信息为"%{error}'
+            locale:
+              inclusion: 地点错误
+            name:
+              starts_with_invalid_characters: 不能以 =、|、+、-、@、% 开头
+            schedule_end_date:
+              invalid_datetime: 无效
+            schedule_start_date:
+              invalid_datetime: 无效
+        user_assessment:
+          subject_and_assessment_exists: 评估和科目配对已经存在
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: 无效
+            private:
+              inclusion: 必须是布尔值
+            start_date_time:
+              invalid_datetime: 无效
+  activerecord:
+    attributes:
+      administration/assessments/assign_form:
+        access_reports: 访问报告规则
+        access_reports_at: 访问报告
+        access_reports_at_date: 日期
+        access_reports_at_time: 时间
+        client_ids: 客户租约
+        manager_ids: 管理人员
+        report_ids: 报告
+        user_ids: 用户
+      assessment:
+        active: 活跃
+        categories:
+          '360': 360 运动
+          agile: AGILE
+          assessor_form: 评估员表格
+          case_study: 案例研究
+          hogan: 霍根
+          iiht: IIHT
+          meeting: 会议
+          organisational: 调查
+          pearson: 皮尔森
+          psychometric: 评估
+          saville: 萨维尔
+          threesixty: 360 活动
+        category: 类别
+        created_at: 创建日期
+        description: 说明
+        id: 身份证
+        name: 名称
+        statuses:
+          finished: 完蛋
+        timing: 时间安排
+        types:
+          common: TTE 评估
+          hogan: 霍根
+          iiht: IIHT 评估
+          pearson: 培生评估
+          saville: 萨维尔评估
+        updated_at: 修改日期
+      assign:
+        completed_at: 完成日期
+        statuses:
+          completed: 已完成
+          in_progress: 简历
+          ineligible: 不符合条件
+          interrupted: 中断
+          not_started: 新
+          overdue: 逾期
+          timed_out: 超时
+      block:
+        active: 活跃
+        assign_to_assessment_ids: 评估
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      client:
+        applicable_level: 适用级别
+        applicable_levels:
+          campaign: 活动
+          project: 项目
+          sub_campaign: 子活动
+        category: 类别
+        created_at: 创建日期
+        id: 身份证
+        licenses: 许可证编号
+        licenses_expire: 许可证到期日
+        licenses_used: 许可证使用
+        location: 地点
+        logo: 客户徽标
+        memberships_count: 用户
+        name: 名称
+        number: 客户编号
+        privacy_consent: 启用数据处理同意
+        project_manager: TTE 项目经理
+        project_manager_id: TTE 项目经理
+        report_ids: 报告
+        strong_password_enabled: 启用强密码
+        subdomain: 子域
+        types:
+          associate: 协理
+          corporate: 企业
+          distributer: 分销商
+          other: 其他
+          partner: 合作伙伴
+          retail: 零售
+          tte: TTE
+        updated_at: 修改日期
+        year: 客户年度
+      communication:
+        created_at: 创建日期
+        id: 身份证
+        updated_at: 修改日期
+      dimension:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      factor:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        parent_id: 家长
+        questions_count: 问题数量
+        updated_at: 修改日期
+      hogan_report_setting:
+        load_report: 来自霍根的装载报告
+      innovation_style:
+        active: 活跃
+        created_at: 创建日期
+        description: 说明
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      innovation_styles_factor:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      library:
+        created_at: 创建日期
+        id: 身份证
+        type: 缩略图
+        updated_at: 修改日期
+      license:
+        id: 身份证
+        number: 许可证编号
+        overuse_number: 超额使用津贴
+        type: 许可证
+        types:
+          common: 常见问题
+          proctoring: 监考
+          threesixty: Threesixty
+        unlimited: 无限制
+        used_number: 二手许可证编号
+      membership:
+        active: 活跃
+        created_at: 创建日期
+        disabled: 禁用
+        email: 电子邮件
+        first_name: 名
+        id: 身份证
+        last_name: 姓
+        parent: 直接经理
+        parent_id: 直接经理
+        report_ids: 报告 ID
+        roles:
+          campaign_admin: 活动管理
+          client_admin: 客户管理
+          manager: 经理
+          member: 用户
+          project_admin: 项目管理
+        updated_at: 修改日期
+        user_access: 用户访问
+      norm:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+        updated_by: 编辑
+      occupation:
+        active: 活跃
+        bachelors_or_masters_qualification: 学士或硕士学位
+        created_at: 创建日期
+        description: 说明
+        diploma_qualification: 文凭资格
+        full_description: 完整说明
+        high_school_entry_roles: 高中入学角色
+        id: 身份证
+        key_career_tracks: 主要职业方向
+        name: 名称
+        potential_areas_of_study: 潜在研究领域
+        updated_at: 修改日期
+        work_environment: 工作环境
+      occupations_factor:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      product:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      question:
+        active: 活跃
+        assign_to_assessment_ids: 评估
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      report:
+        created_at: 创建日期
+        id: 身份证
+        updated_at: 修改日期
+      report_family:
+        created_at: 创建日期
+        id: 身份证
+        updated_at: 修改日期
+      task:
+        active: 活跃
+        created_at: 创建日期
+        description: 说明
+        description_label: 说明
+        factor_id: 能力
+        factor_id_label: 选择能力
+        id: 身份证
+        membership_id: 指派者
+        membership_id_label: 选择分配器
+        name: 行动项目
+        name_label: 行动项目
+        planned_completed_at: 到期日
+        planned_completed_at_label: 选择到期日
+        priority: 优先权
+        priority_label: 优先事项
+        status: 现状
+        status_label: 选择状态
+        statuses:
+          completed: 已完成
+          in_progress: 进行中
+          not_started: 未开始
+          overdue: 逾期
+        updated_at: 修改日期
+        updated_by: 编辑
+      threesixty:
+        users_result:
+          statuses:
+            completed: 已完成
+            in_progress: 简历
+            not_started: 新
+      user:
+        active: 活跃
+        created_at: 创建日期
+        current_password: 当前密码
+        disabled: 禁用
+        email: 电子邮箱地址
+        first_name: 名
+        id: 身份证
+        last_name: 姓
+        manage_client_ids: 客户租约
+        memberships: 客户租约
+        name: 名称
+        password: 密码
+        password_confirmation: 确认密码
+        role: 角色
+        roles:
+          admin: 管理员
+          admins:
+            admin: 管理员
+            campaign_admin: 活动管理
+            project_admin: 项目管理
+            regular: 客户管理
+            superadmin: 超级管理员
+          agile: AGILE
+          assessor: 评估员
+          assessor_form: 评估员表格
+          campaign_admin: 活动管理
+          case_study: 案例研究
+          client_admin: 客户管理
+          hogan: 霍根
+          iiht: IIHT
+          manager: 经理
+          meeting: 会议
+          member: 用户
+          organisational: 组织结构
+          pearson: 皮尔森
+          project_admin: 项目管理
+          psychometric: 心理测量
+          regular: 常规
+          saville: 萨维尔
+          super_admin: 超级管理员
+          superadmin: 超级管理员
+          threesixty: Threesixty
+        types:
+          anonymous: 匿名用户
+          identified: 确定的用户
+        updated_at: 修改日期
+      user_form:
+        active: 活跃
+        created_at: 创建日期
+        current_password: 当前密码
+        disabled: 禁用
+        email: 电子邮箱地址
+        first_name: 名
+        id: 身份证
+        last_name: 姓
+        parent: 直接经理
+        parent_id: 直接经理
+        password: 密码
+        password_confirmation: 确认密码
+        role: 角色
+        updated_at: 修改日期
+      users_result:
+        assessment_name: 评估名称
+        assessment_type: 评估类型
+        completed_at: 在
+        completion_reasons:
+          time_out_offline: 超时/脱机
+          time_out_online: 暂停 / 在线
+          user_completed: 用户已完成
+        email: 电子邮件
+        name: 名称
+        result_id: 结果 ID
+        started_at: 开始于
+        status: 现状
+        statuses:
+          completed: 已完成
+          in_progress: 简历
+          ineligible: 不符合条件
+          interrupted: 中断
+          not_started: 新
+          timed_out: 定时导入
+    errors:
+      messages:
+        admin_for_another_tte: 用户已在另一个 tte 中担任管理员
+        invalid_http_url: 无效 URL，请指定包含 http 或 https 协议的完整 URL。
+        not_uniqueness: 已分配任务
+      models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: 外部配置应为有效的 josn
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 公式中存在循环依赖关系。 依赖关系：%{cyclic_path}（循环路径
+        factors_norm:
+          score_from_must_be_number: 得分必须是数字
+          score_to_less_than_score_from: 得分小于从得分
+          score_to_must_be_number: 得分必须是数字
+        license:
+          attributes:
+            used_number:
+              overused: 使用的许可证不能超过分配的许可证和超额使用限制的总和。
+          overuse: 许可证 %{name} 已被过度使用
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: 最大摄入量已达上限
+        report:
+          assessments_not_hogan: 所有评估必须是霍根类型的
+          assessments_not_saville: 所有评估都必须是萨维尔类型
+          has_already_assigned: 由于评估已分配给用户或适用级别，因此无法更改
+          has_dependent_relation: 本报告针对用户
+          max_assessment_count: 您已达到 %{max} 评估的上限
+          min_assessment_count: 最少评估次数为 %{min}
+        skill_gap_report:
+          not_found: 未找到技能差距报告
         user:
           attributes:
             current_password:
               invalid: 当前密码不正确
+        user_idp_plan:
+          no_active_plan: 未找到有效的 IDP 计划
+  admin_jobs:
+    attrs:
+      operations:
+        add_campaign_reports: 添加活动报告
+        assessment_norm_export: 标准结果导出
+        assessment_raw_factor_export: 原始因子得分 出口
+        assessment_raw_result_export: 原始结果导出
+        assessment_scoring_export: 评分结果导出
+        assign_idp_to_users: 为用户分配 IDP
+        assign_reports_and_assessments: 分配报告和评估
+        bulk_create_workshop_invites: 批量发送评估中心邀请函
+        bulk_download_reports: 批量下载报告
+        bulk_download_user_reports: 批量下载用户报告
+        bulk_regenerate_reports: 再生活动报告
+        bulk_regenerate_threesixty_reports: 再生三六零主题报告
+        bulk_regenerate_user_reports: 重新生成用户报告
+        bulk_reports: 批量报告
+        bulk_rescore_campaign_factors: 批量重新评分活动因素
+        compact_completion_status_export: 紧凑型完工状态导出
+        completion_status_export: 完工状态导出
+        copy_dimension: 复制尺寸
+        create_threesixty_campaign: 创建 Threesixty 活动
+        data_report_export: 数据报告导出
+        export_admin_with_permissions: 带权限的导出管理员
+        export_assessment_questions: 出口评估问题
+        export_campaign_factors: 出口活动因素
+        export_campaign_scorings: 出口活动扫描
+        export_development_action_translations: 出口发展行动 翻译
+        export_development_actions: 出口发展行动
+        export_dimension_as_json: 导出尺寸 JSON
+        export_factor_translations: 出口系数换算
+        export_norm: 出口规范
+        export_occupations: 职业 出口
+        export_report_data: 导出报告数据
+        export_reports_and_assessments: 出口报告和评估
+        export_skill_translations: 出口技能翻译
+        export_skills: 出口技能
+        export_user_report_events: 导出用户报告事件
+        export_users: 活动用户导出
+        external_assessment_export: 外部结果导出
+        import_accesssheet: 导入 Accessheet
+        import_assessment_questions: 进口评估问题
+        import_assessors: 进口评估员
+        import_campaign_factors: 导入活动因素
+        import_datasheet: 导入数据表
+        import_development_action_translations: 进口开发行动 翻译
+        import_development_actions: 导入开发行动
+        import_dimension_from_json: 从 JSON 导入维度
+        import_external_campaign_scoring: 导入外部营销活动评分
+        import_factor_translations: 进口系数翻译
+        import_factors: 进口因素
+        import_norm: 进口规范
+        import_question_translations: 导入问题翻译
+        import_raw_data: 导入原始数据
+        import_scoring_data: 导入评分数据
+        import_skill_translations: 进口技能翻译
+        import_skills: 进口技能
+        import_sms_invites: 导入短信邀请
+        import_users: 导入用户
+        migrate_assessment_translations: 评估 翻译迁移
+        normalize_factor_scores: 因子得分标准化
+        regenerate_campaign_reports: 再生活动报告
+        regenerate_report: 再生报告
+        regenerate_threesixty_report: 再生三六零报告
+        remap_report_assessment: 重绘报告评估
+        rescore_assessment: 重新评估
+        rescore_user_assessment: 重核用户评估
+        send_sms_invites: 发送短信邀请
+        super_admin_assessment_norm_export: 超级管理员规范结果导出
+        super_admin_assessment_raw_factor_export: 超级管理员原始因子分数导出
+        super_admin_assessment_raw_result_export: 超级管理员原始结果导出
+        super_admin_datasheet_export: 超级管理员数据表导出
+        super_admin_external_assessment_export: 超级管理员外部评估导出
+        threesixty_campaign_export_completion_status: Threesixty 活动出口完成情况
+        threesixty_campaign_export_scores: Threesixty 运动得分出口
+        workshop_status_export: 评估中心状态导出
+      statuses:
+        completed: 已完成
+        completed_with_errors: 完成时有错误
+        failed: 失败
+        in_progress: 进行中
+        scheduled: 计划
+    bulk_download_reports:
+      content:
+        title: 下载报告的链接
+    close: 关闭
+    details: 详细信息
+    errors: 错误
+    invalid_job: 该通知对应已删除的记录
+    mark_as_read: 标记所有已读内容
+    more: 更多信息
+    notifications: 通知
+    results: 成果
+    super_admin:
+      errors:
+        data_processing_disabled: 数据处理被禁用。
   anonym:
     close: 关闭
     continue: 继续
+    link_invalid_error_message: 您尝试访问的链接无效，请联系管理员获取正确的 URL 并继续调查。
     notifications:
       restart:
         copy: 你已开始填写此问卷调查。你可以选择“继续”或“重新开始”。
@@ -51,39 +844,199 @@ zh:
     retake: 重考
   assessments:
     actions:
+      add_tag:
+        success_message: 标签已成功添加
+      archived:
+        success_message: 评估"%{name}"已成功存档。
+      assessment_cache:
+        remove_cache: 删除缓存
+        success_message: 成功删除缓存
       back_to_campaign: 返回至推广活动
+      back_to_dashboard: 返回控制面板
+      copy:
+        success_message: 已成功复制评估"%{name}"。
+      details: 详细信息
+      download_csv: 下载 CSV
+      edit: 编辑
+      evaluate: 评估
+      export_normed: 标准因子得分
+      export_raw_labels: 原装（带标签）
+      export_raw_scores: 原始因子得分
+      export_raw_without_labels: 原装（无标签）
       extend_time: 延长时间
+      external_scores_export: 外部评分
       goto_dashboard: 点击此处继续
+      manage_mettl_schedule: 管理梅特尔时间表
+      moderate: 中等分数
+      new_response: 新的回应
+      next_assessment: 通过下一次评估
       pending_tasks:
-        other: 您有 1 项待处理任务
+        other:
+      re_evaluate: 单击此处重新评估
+      reevaluate: 重新评估
+      remove:
+        confirm_message: 您确定要删除评估"%{name}"吗？
+        confirm_title: 需要确认
+        success_message: 评估 %{name} 已被删除
+      remove_tag:
+        success_message: 标签已成功移除
       rescore: 重新评分
+      restore:
+        success_message: 评估"%{name}"已成功恢复
+      show_usage: 显示使用情况
+      submit_another_response: 提交另一份答复
+      submit_evaluation: 提交评估
+      translations:
+        success_message: 更新评估翻译
+      unarchived:
+        success_message: 评估"%{name}"已成功解压缩
+      view: 查看
+    active: 活跃
+    archived: 存档
+    assessment: 评估
+    assessments: 评估
     audio_response:
+      pause: 暂停
       permission_denied_message: 请在浏览器中启用麦克风权限，以便记录回答内容
       permission_text: 请允许使用麦克风来录制音频
+      resume: 简历
+      saved:
+        label: 音频保存
+      saving: 保存音频
+      start_recording: 开始录制
+      stop: 停止
     card_actions:
       begin: 开始
       continue: 继续
+    categories:
+      redirecting: 重定向
+    column:
+      enable_audio_check: 启用音频检查
+      enable_network_check: 启用网络检查
+      enable_video_check: 启用视频检查
+      external_settings:
+        hogan_assessment_name: 霍根评估名称
+        iiht_assessment_name: IIHT 评估名称
+        iiht_schedule_config: 时间表配置
+        mettl_assessment_name: METTL 评估名称
+        pearson_assessment_name: 培生评估名称
+        pearson_norm_id: 皮尔逊标准 ID
+        saville_assessment_name: 萨维尔评估名称
+        simulation_assessment_name: 模拟评估名称
+      translations_migrated: 翻译已迁移
+    create: 创建
+    dashboard: 仪表板
+    dictation:
+      allow_browser_permision: 请允许使用听写功能的浏览器音频权限
+      autostopping_in: 在 %{reverseCountdown} 秒后自动停止听写
+      browser_unsupported: 您的浏览器不支持音频输入
+      dictation_active: 听写已激活
+      dictation_disabled: 听写功能当前已禁用或正在被其他问题使用
+      dictation_not_started: 语音听写无法启动
+      dictation_stopped: 语音听写停止
+      left: 左侧
+      listening: 聆听
+      minutes: 分钟
+      no_dictation_url: 服务器无法响应语音转文本功能
+      notifications:
+        autostopped: 由于持续静音 %{autocutoff} 秒，听写自动停止
+        refresh_page: 无法继续语音听写，请刷新页面重试
+      start_dictation: 开始听写
+      stop_dictation: 停止听写
+      use_speech_instructions: 使用语音输入写出此答案
+    drawer:
+      title: 评估细节
+    edit: 编辑
+    fields:
+      category:
+        agile: AGILE
+        assessor_form: 评估员表格
+        case_study: 案例研究
+        hogan: 霍根
+        iiht: IIHT
+        lead_assessor_form: 主任评估员表格
+        meeting: 会议
+        mettl: 水
+        organisational: 组织调查
+        pearson: 皮尔森
+        psychometric: 心理测量
+        saville: 萨维尔
+        simulation: 模拟
+        threesixty: 360 运动
+      status:
+        finished: 完成
+        in_progress: 进行中
+      type:
+        common: TTE 评估
+        hogan: 霍根
+        iiht: IIHT 评估
+        mettl: 梅特尔评估
+        pearson: 培生评估
+        saville: 萨维尔评估
+        simulation: 模拟评估
+    flow:
+      end_assessment_modal:
+        custom_message: 自定义评估结束信息
+        default_message: 默认的评估结束信息
+        mark_as_ineligible: 标记为不合格
+        show_uniq_identifier: 向受访者显示唯一标识符（用于匿名调查）
     instructions:
       begin_assessment: 开始
       cancel: 取消
       default: 这是一项计时活动，在点击“开始评估”后，你将有 %{time} 分钟时间完成此活动。
       title: 说明
     messages:
+      external_scores_export_scheduled: 评估分数导出工作已成功安排
       finish: 感谢你的宝贵时间。我们已记录你的回答。
+      norm_results_export_scheduled: 评估标准化结果导出工作已成功安排
+      raw_factor_export_scheduled: 评估原始因子导出工作已成功安排
+      raw_results_export_scheduled: 评估原始结果导出工作已成功安排
     page:
       back: 返回
       confirm_message: |-
         #### 系统将提交你的回答，回答提交后无法更改。
 
         点击**返回**可最后一次检查你的回答；如果已完成填写，也可直接点按**提交**。
+      invalid_session:
+        description: 如果您在其他标签页、浏览器或设备上继续进行评估，可能会出现这种情况。
+        title: 上次请求失败
       next: 下一步
       read_only: 处于只读模式，你无法更改任何结果。
       save: 保存
+      submissionFailedAlert:
+        description: 无法连接到服务器。 请刷新页面并重试。 如果还不行，请通过即时聊天或 mte.surveys@mercer.com 联系支持人员。
+        title: 上次请求失败
       submit: 提交
+      warning: 警告
+    pages:
+      edit:
+        assets: 资产
+        general_settings: 常规设置
+        translations: 翻译
     pickgrouprank:
       items: 项
     proceed: 仍然继续
+    question_info_bar:
+      select_linked_questions: 选择关联问题
+    reset: 重置
+    scoring:
+      competency: 能力
+      id: 身份证
+      score: 得分
+    screen_reader_announcements:
+      fifteen_seconds_left: 还剩 15 秒
+      five_minutes_left: 还剩 5 分钟
+      one_minute_left: 还剩 1 分钟
+      seconds_left: 还剩 %{seconds} 秒
+      thirty_seconds_left: 还剩 30 秒
+      time_is_up: 您的时间到了
+      time_is_up_for_recording: 时间已到，现在停止录制
+    single_page:
+      display_linked_questions: 显示与当前所选问题相关联的回复。
+    trash: 垃圾
     unknown_error: 遇到未知错误。
+    update: 更新
+    upload: 上传
     video_response:
       device: 允许
       device_selection:
@@ -94,6 +1047,7 @@ zh:
       media_recorder:
         failure: 此浏览器不支持视频录制。请使用 Chrome 或 Firefox 进行视频录制
         success: 请允许使用摄像头和麦克风来录制音频和视频
+        unsupported: 此浏览器不支持视频录制，请使用以下任何一种浏览器、
       recording_duration_label: 最长记录时间
       recording_stop_label: 录音将在
       requesting_permission: 请求许可...
@@ -102,6 +1056,7 @@ zh:
       saved:
         label: 已保存
       saving: 保存中…
+      seek: 寻找
       start_recording: 开始录制
       stop_recording: 停止录制
       tracker:
@@ -110,6 +1065,59 @@ zh:
         frame: 请确保你的脸部与方框对齐
         ready: 准备好录制时，请按“录制”按钮
     wait: 等待
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: 按以下顺序进行评估
+      previous_group_required: 要求完成过小组活动
+    menu:
+      assessment_center: 评估中心
+      assessments_and_reports: 评估与报告
+      idp: IDP
+      manage: 管理
+      report_approval: 报告审批设置
+      sequencing: 测序
+    report_approval:
+      add_settings: 添加设置
+      create_seetings: 创建设置
+    sequencing:
+      add_assessment_center: 增加评估中心
+      add_group: 添加组
+      assessments: 评估
+      delete_group: 删除组
+      edit_group_name: 编辑组名
+      modal:
+        delete:
+          cancel: 取消
+          cannot_delete_with_workshops: 无法删除包含讲习班的组，请先删除讲习班
+          failed: 删除"%{name}"组失败，请联系管理员
+          ok: 是，删除
+          text: 您确定要删除"%{name}"组吗？
+          title: 删除组
+      no_assessments: 拖放评估
+      no_ungrouped_assessments: 在此处拖放评估结果，以取消分组
+      ungrouped_assessments: 非分组评估
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: 评估计数
+        evaluation_status: 评估状况
+        moderation_count: 节制计数
+        moderation_status: 审核状态
+  assign_reports:
+    assessment_not_in_report: ID 为 %{assessment_id} 的评估不是 ID 为 %{report_id} 的报告的一部分
+    errors:
+      not_enought_licenses: ID 为 %{bundle_id} 的软件包没有许可证
+      user_not_found: 行 %{row}：未找到使用电子邮件"%{email}"的用户
+    report_bundle_not_found: 报告未找到 ID 为 %{bundle_id} 的软件包
+    report_not_found: 未找到 ID 为 %{report_id} 的报告
+    report_not_in_bundle: ID 为 %{report_id} 的报告不是 ID 为 %{bundle_id} 的报告包的一部分
+  assigns:
+    decorator:
+      no_description: 描述为空
+  audit_log_failures:
+    invalid_sso_token: SSO 令牌无效
+    record_not_found: 未找到记录
+    user_not_authorized: 未经授权的用户
   auth:
     current_password: 当前密码
     current_password_placeholder: 输入当前密码
@@ -119,18 +1127,23 @@ zh:
       description: 请填写所有字段以创建新密码
       submit: 提交
       title: 更新密码
+    lighthouse_logo_alt_text: 灯塔标志
     login:
+      continue_btn: 继续
       description: 请使用你的个人账户信息登录
       forgot_password: 忘记了密码？
+      hide_password: 隐藏密码
       login_btn: 登录
       magic_link_btn: 通过电子邮件发送登录链接
       not_member: 还不是会员？
       or: 或者
+      show_password: 显示密码
       sso_btn: 使用单点登录
       title: 欢迎！
     logout: 退出登录
     magic_link:
       description: 请输入您的电子邮件地址以接收登录链接
+      invalid_email: 电子邮件无效
       login_with_password: 使用密码登录
       send_me_login_link: 给我发送登录链接
       success: 我们已向"%{email}"发送了登录链接，请点击电子邮件中的链接登录。
@@ -182,14 +1195,33 @@ zh:
         invalid_code: 无效代码
         invalid_number: 手机号码不正确，请重新检查您的号码
         max_attempts_reached: 尝试次数过多，请等待 10 分钟后再试。
+  browsers:
+    chrome: 谷歌浏览器
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: 下载
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
+    firefox: 火狐浏览器
+    safari: 苹果 Safari
+    support:
+      instruction: 请下载并使用以下任何一种浏览器。
+      message: 您使用的浏览器不受 Lighthouse（兆光科技）支持。
+    upgrade:
+      instruction: 立即升级
+      message: 请使用最新版本的浏览器
   campaign:
     all_activities_are_completed: 所有活动现已完成。
     all_activities_are_completed_multiple: 此推广活动的所有活动现已完成。请前往仪表板，检查是否有其他活动分配给你。
+    already_joined: 您已经参加了这项活动
     begin: 开始你的任务
     begin_btn_msg_before_prework: 在开始计时活动之前，您必须完成以下任务
     begin_campaign_msg: 在接受评估前启动活动
     campaigns: 推广活动
     closed_campaign_message: 此推广活动已关闭。你无法参加此推广活动中的任何评估。
+    code_usage_limit_reached: 代码使用量已达上限，请联系管理员
     complete_prev: 完成所有先前的评估
     complete_tasks: 请在执行此操作前完成以下任务。
     continue: 继续你的任务
@@ -201,7 +1233,7 @@ zh:
       development: 发展
       home: 首页
       insights: 见解
-      my_direct_reports: 我的直接报告人
+      my_direct_reportees: 我的直接报告人
       my_plan: 我的计划
       profile: 个人资料
       profile_details: 详情
@@ -236,7 +1268,9 @@ zh:
           你将需要下载并安装一款特殊的浏览器来完成受监督的任务。请按照下一个画面中的说明操作。你可以在完成所有必需的活动后卸载此浏览器。
         </p>
     instructions:
+      collapse_aria_label: 显示更多信息： 虚拟学习中心
       collapse_link_text: 显示较少
+      expand_aria_label: 显示更少信息： 虚拟学习中心
       expand_link_text: 显示更多
       heading: 开始之前，请查看以下准则。祝你一切顺利！
     language:
@@ -255,6 +1289,10 @@ zh:
       last_updated_text: 个人资料上次更新日期：
       sub_heading: 填写完整的个人资料信息
       welcome_text: 欢迎，
+    reset_warning: 您只能重新启动标记为练习活动的活动。
+    restart_practice: 重新开始练习
+    restart_practice_confirmation: 你确定要重新开始练习吗？
+    restart_practice_success: 练习重新启动成功
     thank_you_for_time: 感谢你的宝贵时间
     time_left:
       cancel: 取消
@@ -264,7 +1302,137 @@ zh:
       notification_hours: 您還剩 %{hours} 小時
       notification_minutes: 您還剩 %{minutes} 分鐘
   campaign_assessment:
+    actions:
+      bulk_download: 批量下载
+      download: 下载报告
+      export_completion_status: 出口完成状态
+      export_external: 外部
+      export_normed: 标准因子得分
+      export_occupations: 职业
+      export_raw_labels: 原装（带标签）
+      export_raw_scores: 原始因子得分
+      export_raw_without_labels: 原装（无标签）
+      export_scores: 得分
+      export_scoring: 计分
+      factor_benchmark_score: 要素基准得分
+      force_generate: 强制生成
+      import_raw: 未加工
+      import_scoring: 计分
+      regenerate: 生成报告
+      rescore: 重新评估
+      reset_all_nominations: 重置所有提名
+      reset_participant: 重置所有参与者
+    allow_msg_proctoring_workshop_activity: 评估中心活动不进行监考。
+    assessment_center_heading: 评估中心详情
     assessments_heading: 你的任务
+    column:
+      assessment_name: 评估名称
+      assessor_form: 评估员表格
+      auto_assign: 自动分配
+      dimension_id: 尺寸 ID
+      id: 活动评估 ID
+      locales: 地点
+      norm: 规范
+      norm_id: 规范 ID
+      pearson_variation: 皮尔逊变异
+      prework: 前期工作
+      simulation_content_variation: 模拟内容差异
+      universal_link: 通用链接
+    drawer:
+      mettl_schedule_name: 附表名称
+      title: 评估细节
+    messages:
+      export_completion_statuses_scheduled: 完成状态 已成功计划导出作业
+      export_occupations_job_scheduled: 职业 出口工作已成功安排
+      export_reports_and_assessments_statuses_scheduled: 导出报告和评估工作已成功安排
+      external_results_export_scheduled: 外部评估导出工作已成功安排
+      norm_results_export_scheduled: 评估标准化结果导出工作已成功安排
+      normalize_factor_scores_scheduled: 因子得分标准化工作已成功调度。
+      raw_factor_export_scheduled: 评估原始因子导出工作已成功安排
+      raw_results_export_scheduled: 评估原始结果导出工作已成功安排
+      scoring_results_export_scheduled: 评估评分结果 已成功安排导出工作
+    modals:
+      import_raw:
+        body: 请参阅导出功能，提取可用于此处导入的模板。
+        success_msg: 导入已成功上传
+        title: 导入原始结果数据
+        upload: 上传
+      import_scoring:
+        body: 请参阅导出功能，提取可用于此处导入的模板。
+        success_msg: 导入已成功上传
+        title: 导入计分结果数据
+        upload: 上传
+      regenerate:
+        content: 您确定要重新生成可用报告吗？
+        title: 重新生成报告？
+      remove:
+        helper_text: 危险： 选择此选项将删除此活动中所有用户对该评估的回复。
+        msg_text: 您正在尝试删除<strong>"%{name}"</strong>评估
+        successfully: "%{name} 评估已成功删除。"
+        title: 取消评估？
+      rescore:
+        content: 您确定要重新评分吗？
+        successfully: 评估重新评分成功。
+        title: 重新评估？
+      rescore_response:
+        message: 计划为评估"%{name}"重新评分
+        title: 重核答复
+      reset:
+        content: 您确定要重置结果吗？
+        successfully: 结果数据重置成功。
+        title: 重置评估结果 %{name}?
+      update_assessor_form:
+        select_assessor: 选择评估员表格
+        success_msg: 评估员表格已成功上传
+        title: 更新评估员表格
+        update: 更新
+      update_content_variation:
+        select_schedule: 选择内容差异
+        success_msg: 模拟内容变化已成功更新
+        update: 更新
+      update_external_config:
+        text_placeholder: 外部 json 配置
+        title: 更新外部配置
+      update_locales:
+        select_locales: 选择地区
+        success_msg: 本地语言已成功更新
+        title: 更新可用地区
+      update_mettl_schedule:
+        select_schedule: 选择时间表
+        success_msg: Mettl 计划表已成功更新
+        update: 更新
+      update_norm:
+        apply: 将此更改应用于该活动中的现有用户
+        cannot_remove_norm: 无法删除已完成评估的标准。
+        select_norm: 选择规范
+        success_msg: 成功更新了规范
+        title: 更新规范
+        update: 更新
+      update_simulation_time_extension:
+        success_msg: 模拟时间扩展已成功更新
+        title: 时间延长
+        tooltip: 时间延长系数（例如，1.5 表示时间延长 50）
+        update: 更新
+      update_time:
+        additional_time: 时间（分钟）
+        title: 延长时间
+      workshop_activity_duration:
+        form:
+          duration: 持续时间（分钟
+        title: 研讨会活动时间
+    normalize_factor_scores:
+      normalization_not_allowed: 在项目设置中，此评估的因子得分标准化功能目前处于禁用状态。 请启用该功能以继续进行评估。
+      success: 成功完成因子得分标准化
+    not_allow_msg_proctoring_workshop_activity: 由于您在监考窗口内，因此无法进行评估中心活动。 要进行此活动，您需要退出监考窗口。
+    pearson_variation_form:
+      apply_to_existing_users: 将此更改应用于该活动中的现有用户
+      select: 选择变体
+      update: 更新
+      update_success: 培生变体更新成功
+    scheduled_successfully: 已成功安排评估
+    scheduling:
+      update_exists: 覆盖现有时间表
+    scheduling_time: 安排评估时间
     statuses:
       completed: 已完成
       in_progress: 进行中
@@ -273,7 +1441,96 @@ zh:
       not_started: 未开始
       timed_out: 超时
       universal_link: 通用链接
+    ungrouped_assessments_heading: 未分组
+  campaign_join_token:
+    campaign_id: 活动 ID
+    expire_in: 过期时间（秒）
+    invalid_token: 无效令牌
+    text: 文本
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: 添加报告工作已成功排队
+        success_message: 已成功添加报告
+      bulk_download: 批量下载
+      export_data: 导出数据
+    bulk_download:
+      error: 批量下载仅限于 1000 个报告文件。 当前选择有 %{count} 报告文件。 请调整开始和结束日期，以减少要下载的报告文件数量。
+    column:
+      assessor_access: 评估员访问
+      auto_assign: 自动分配
+      main_report: 主要报告
+      report_bundle: 报告包
+      report_name: 报告名称
+      user_access: 用户访问
+      user_dashboard: 用户仪表板
+    form:
+      operation: 运行
+      operation_options:
+        add_and_allow_new_response: 为现有用户添加报告并允许新的回复
+        add_with_existing_response: 向现有用户添加报告并保留现有回复
+        skip_existing: 跳过现有用户
+      report: 报告
+      report_bundle_placeholder: 选择报告包
+    messages:
+      bulk_download_error: 批量下载仅限于 1000 个报告文件。 如果您选择了多种语言，请减少下载量。
+      bulk_download_successful: 批量报告下载任务已成功安排
+      export_report_data_scheduled: 报告数据导出任务已成功安排
+    modals:
+      remove:
+        apply: 将此更改应用于该活动中的现有用户。
+        msg_text: 您正在尝试删除<strong>"%{reportName}"</strong>报告
+        title: 删除报告？
+      user_access:
+        apply: 将此更改应用于该活动中的现有用户。
+        title:
+          disable: 禁用用户访问
+          enable: 启用用户访问
+  campaign_users:
+    actions:
+      add_manager: 增加经理
+      extend_time: 延长时间
+      search_user: 搜索用户
+    assessments:
+      progress: 进展情况
+    details:
+      additional_time: 额外时间
+      assessment_center: 评估中心
+      assessment_center_invites: 评估中心邀请函
+      completed_at: 在
+      completion_status: 完成情况
+      hogan_id: 霍根 Id
+      last_login: 最后登录
+      manager: 经理
+      modals:
+        create_hogan_credentials:
+          assessments: 评估：
+          confirmation: 在文本框中输入下面给出的电子邮件，以添加新的霍根证书
+          reports: 报告：
+          successfully: 电子邮件 %{email} 用户的新 hogan 凭据已成功添加。
+          warning: 创建新的霍根证书将删除与 %{email} 旧霍根证书相关的以下评估和报告
+        remove:
+          successfully: 已成功删除电子邮件 %{email} 的用户。
+          title: 您确定要从 %{campaignName} 活动中删除此用户吗？
+      not_completed_yet: 尚未完成
+      not_logged_in_yet: 尚未登录
+      not_started_yet: 尚未开始
+      started_at: 开始于
+      statuses:
+        completed: 已完成
+        in_progress: 进行中
+        ineligible: 不符合条件
+        interrupted: 中断
+        not_started: 未开始
+        timed_out: 超时
+    modals:
+      remove: 您确定要从该广告系列中删除电子邮件名称为"%{email}"的用户吗？
   campaigns:
+    assessments_and_reports:
+      assessor_assessments: 评估员 评估
+      other_assessments: 其他摊款
+      other_assessor_assessments: 其他摊款
+      other_reports: 其他报告
     card:
       duration: 持续时间
       starts_in: 开始于
@@ -354,69 +1611,292 @@ zh:
       retake: 不，我想重考
       run_again: 再次运行
       title: 我们需要确保你的系统可以录制视频
+      upload_again: 再次上传
       uploading: 上传
   common:
     actions:
       add: 添加
+      approve: 批准
       archive: 存档
+      back_to_dashboard: 返回仪表板
+      back_to_responses: 返回回复
       cancel: 取消
+      change: 变化
       close: 关闭
+      continue: 继续
       copy: 复制
+      create: 创建
       delete: 删除
+      done: 已完成
       edit: 编辑
+      export: 出口
+      filter_by_tags: 按标签筛选
+      import: 进口
+      insert: 插入
+      ok: 好的
       remove: 移除
       reset: 重置
       resolve: 解决
       restore: 恢复
+      run: 运行
       save: 保存
+      schedule: 时间安排
       search: 搜索
       send: 发送
       start: 开始
+      submit: 提交
       unarchive: 取消存档
       unresolve: 取消解决
       update: 更新
       upload: 上传
+      upload_file: 上传文件
       verify: 验证
+      view: 查看
+      view_all_tasks: 查看所有任务
+      view_detail: 查看详情
     column:
       action: 操作
+      active: 活跃
+      allow_multiple_responses: 允许多个回复
+      approval_notification_list: 批准通知用户列表
+      approvers_list: 批准人名单
+      assessment: 评估
+      assessment_name: 评估名称
+      assessments: 评估
+      assessor: 评估员
       category: 类别
+      client: 客户
       created_at: 创建时间
+      created_by: 创建者
+      created_date: 创建日期
+      default_language: 默认语言
+      description: 说明
+      details: 详细信息
+      dimension: 尺寸
+      email: 电子邮件
+      external_report_id: 外部报告 ID
+      first_name: 姓名
+      icon: 图标
+      icon_color: 图标颜色
       id: ID
+      json:
+        answer: 回答 JSON
+        external_result: 外部结果 JSON
+        scoring: 评分 JSON
+      key: 钥匙
+      last_name: 姓氏
+      linked_activities: 相关活动
+      linked_assessment: 关联评估
+      meeting_link: 会议链接
+      modified_by: 修改
+      modified_date: 修改日期
+      name: 名称
+      owner: 业主
+      package_id: 包装 ID
+      poster: 海报
+      project: 项目
+      provider: 提供商
+      qc_user_list: 质量控制用户列表
+      report: 报告
+      report_id: 报告编号
+      require_scheduling: 要求调度
+      responses_count: 答复数
+      schedule_time: 时间安排
+      scheduling: 日程安排
+      skills: 技能
       status: 状态
+      tags: 标签
+      timing: 时间安排
+      token: 代币
+      type: 类型
+      unschedule: 取消计划
+      updated_at: 最后更新
+    errors:
+      csv_injection_validation_error: 不能以 =、|、+、-、@、% 开头
+      something_wrong: 出错了，请联系管理员。
+    messages:
+      leave_message: 您确定要离开此页面吗？ 您未保存的任何答案都将丢失。
     model:
+      admins: 管理员
+      assessment: 评估
       assessments: 评估
       campaigns: 推广活动
+      completion_statuses: 完成状态
+      datasheet: 数据表
+      projects: 项目
+      report: 报告
       reports: 报告
+      scoring: 计分
+      sms_contact: 短信联系
+      threesixty_campaign: Threesixty 运动得分
+    status:
+      completed: 已完成
+      dropped_out: 辍学
+      in_progress: 进行中
+      late: 迟到
+      no_show: 无演出
+      not_started: 未开始
+      not_status: 无状态
+      on_time: 准时
     text:
+      accepted: 已接受
+      all_pages: 所有页面
       cancel: 取消
       confirm: 确认
       continue: 继续
+      copied: 复制到剪贴板
       default: 默认
       download: 下载
+      file: 文件
+      global_import: 全球进口是什么？
+      minutes: 分钟
       na: 不适用
+      none: 无
       ok: 确定
+      reference_language: 参考语言
       response: 回答
+      selected: 精选
+      subject: 主题
+      total: 总计
+      view_as: 查看为
+    tooltips:
+      hide: 隐藏
+      view: 查看
+    validations:
+      select_locale: 请选择地区
+      should_be_whole_number: 应为整数
+  confirmation:
+    delete_comment: 你确定要删除这条评论吗？
+  custom_field:
+    field_name: 字段名称
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: 未找到"%{column_name}"列
+        numeric_value_required: 栏"%{字段}"应为数字
+        string_value_required: 栏"%{字段}"应为字符串
+      not_configured: 数据表未配置
   devise:
     administrators:
+      meta_title: 登录管理面板
+      passwords:
+        edit:
+          submit: 设置新密码
+          title: 更改密码
+        new:
+          back: 返回
+          submit: 向我发送说明
+          title: 忘记密码？
       sessions:
         new:
+          forgot_password: 忘记密码？
           submit: 登录
+          title: "<strong>欢迎</strong>，请登录"
+      shared:
+        links:
+          about: 关于
+          app_name: "© 2016 AppName"
+          contact_us: 联系我们
+          privacy: 隐私权
+    confirmations:
+      confirmed: 您的电子邮件地址已成功确认。
+      send_instructions: 几分钟后，您将收到一封电子邮件，其中说明了如何确认您的电子邮件地址。
+      send_paranoid_instructions: 如果您的电子邮件地址存在于我们的数据库中，您将在几分钟后收到一封电子邮件，其中说明了如何确认您的电子邮件地址。
     failure:
       already_authenticated: 你已在登录状态。
       inactive: 你的账户尚未激活。
       invalid: 电子邮箱或密码无效。
       invited: 你有一个待处理的邀请，请接受邀请以完成账号创建。
+      last_attempt: 在您的账户被锁定之前，您还有一次尝试的机会。
+      locked: 您的账户已锁定。
       magic_link_invalid: 登录链接无效或已过期。
       not_found_in_database: 电子邮箱或密码无效。
+      saml_user_not_present: 用户不在系统中
       timeout: 你的会话已过期。请重新登录以继续。
       unauthenticated: 你需要登录或注册才能继续。
+      unconfirmed: 您必须先确认电子邮件地址，然后才能继续。
     invitations:
       edit:
+        confirm_password_label: 确认密码
+        header: 设置密码
+        instruction: 要创建新密码，请在以下框中输入您的新密码
         password_label: 密码
+        submit: 设置新密码
+        submit_button: 设置我的密码
+        title: 创建密码
+      invitation_removed: 您的邀请已被删除。
+      invitation_token_invalid: 所提供的邀请令牌无效！
+      new:
+        header: 发送邀请
+        submit_button: 发送邀请
+      no_invitations_remaining: 无剩余邀请
+      send_instructions: 邀请电子邮件已发送至 %{email}。
+      updated: 密码设置成功，您现在登录了。
+      updated_not_active: 您的密码设置成功。
+    mailer:
+      admin_invitation_instructions:
+        accept: 点击此处接受邀请。
+        body: '您好 %{姓名}，我们已邀请您访问Lighthouse（兆光科技）人才企业测评平台的管理面板。 %{接受}或者您可以安全地忽略此邮件。 请不要与任何人共享您的访问凭证。
+
+          '
+        subject: 灯塔邀请函
+      confirmation_instructions:
+        subject: 确认说明
+      invitation_instructions:
+        body: '您好 %{姓名}，您已被添加到莱皓思，成为以下部分的管理员
+
+          '
+        login: 登录灯塔
+        sections:
+          campaign: 活动： %{section_name}
+          client: 客户租约： %{section_name}
+          project: 项目： %{section_name}
+        subject: 灯塔邀请函
+      password_change:
+        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 support@thetalententerprise.com 联系支持部门。
+
+          '
+        regards: '莱皓思团队
+
+          '
+        subject: 您的灯塔密码已更改
+      reset_password_instructions:
+        body: '您好 %{name}！有人请求提供更改密码的链接。 您可以通过下面的链接进行更改。
+
+          '
+        change_password: 更改密码
+        footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
+        regards: '莱皓思团队
+
+          '
+        subject: 重置密码说明
+      unlock_instructions:
+        body: '您好 %{姓名}！由于登录失败次数过多，您的账户已被锁定。 点击下面的链接解锁您的账户：
+
+          '
+        footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
+        regards: '莱皓思团队
+
+          '
+        subject: 账户解锁说明
+        unlock_account: 解锁我的账户
+    omniauth_callbacks:
+      failure: 由于"%{原因}"，无法从 %{kind} 验证您的身份。
+      success: 成功验证 %{kind} 账户。
     passwords:
+      edit:
+        instruction: 要创建新密码，请在以下框中输入您的新密码
+        submit: 提交
+        title: 创建密码
       invalid_email: 无效电子邮件
+      no_token: 如果您来自密码重置邮件，请确保您使用了所提供的完整 URL。
+      send_instructions: 几分钟后，您将收到一封电子邮件，内含如何重置密码的说明。
+      send_paranoid_instructions: 如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到电子邮件地址中的密码恢复链接。
+      updated: 您的密码已成功更改，现在您已登录。
+      updated_not_active: 您的密码已成功更改。
     registrations:
       communication_not_setup_error: 未设置注册电子邮件通信，请联系此项目的管理员。
+      destroyed: 再见！您的账户已成功注销，我们希望很快能再次见到您。
       new:
         email: 电子邮箱地址
         first_name: 名
@@ -430,59 +1910,234 @@ zh:
           sign_in: 登录
         terms_notice: 注册即表示你同意我们的<a href="%{terms_url}">服务条款和隐私政策</a>
         title: 立即注册
+      signed_up: 欢迎！您已成功注册。
+      signed_up_but_inactive: 您已成功注册，但由于您的账户尚未激活，我们无法为您登录。
+      signed_up_but_locked: 您已成功注册，但由于您的账户被锁定，我们无法为您登录。
+      signed_up_but_unconfirmed: 您的电子邮件地址已收到一条带有确认链接的信息，请点击链接激活您的帐户。
       success:
         actions:
           sign_in: 登录
+        instruction: 请查看您的电子邮件，了解进一步说明
+        title: 注册成功
+      update_needs_confirmation: 您已成功更新了账户，但我们需要验证您的新电子邮件地址。 请检查您的电子邮件，并点击确认链接确认您的新电子邮件地址。
+      updated: 您的账户已成功更新。
     sessions:
+      already_signed_out: 已成功退出。
       new:
         email: 电子邮箱地址
         forgot_password: 忘记了密码？
         instruction: 请使用你的个人账户信息登录
+        keep_sign_in: 是，让我保持登录状态
+        login_with_sso: 单点登录
         password_placeholder: 密码
         submit: 登录
         tabs:
           register: 注册
           sign_in: 登录
         title: 欢迎！
+      signed_in: 您已成功登录！
+      signed_in_time: 您上次登录的日期是 %{date_time}
+      signed_out: 已成功退出。
+      unsuccessful_sign_in_time: 您上次在 %{date_time} 尝试登录不成功。
     two_factor_authentication:
       attempt: 请输入你在注册电子邮箱地址中收到的一次性密码
+      attempt_failed: OTP 不正确！请重试
       code_has_been_sent: 新的一次性密码已发送至你的注册电子邮箱地址
+      contact_administrator: 请联系您的系统管理员
+      email:
+        otp:
+          subject: 您的一次性密码
+      max_login_attempts_reached: 您已达到当前 OTP 的最大尝试次数。 点击重新发送 OTP 以接收新的 OTP
+      otp: 代码
+      submit: 验证
+      success: 使用双因素身份验证登录成功。
+      title: 一次性密码
+    unlocks:
+      send_instructions: 几分钟后，您将收到一封电子邮件，内含如何解锁账户的说明。
+      send_paranoid_instructions: 如果您的账户存在，您将在几分钟后收到一封电子邮件，其中包含如何解锁的说明。
+      unlocked: 您的账户已成功解锁，请登录继续。
+      unprocessable_entity: 您的帐户无法通过此链接解锁，请联系技术支持。
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: 子域格式错误。
+        reserved_subdomain: 子域 %{value} 已保留
+        uniq_subdomain: 子域应是唯一的。
+      add_manager:
+        manager_not_found: 未找到管理员或管理员不属于同一项目
+        user_not_found: 未找到用户或不属于同一项目
+      admin:
+        already_added: 已添加电子邮件的管理员。
+      already_assigned?: 无法链接此评估 - 它已分配给"%{linked_assessor_form_name}"。
+      already_invited: 该用户已存在于您要添加的评估中心。
+      assessor_assessment:
+        already_added: 评估员评估已加入竞选活动。
+        lead_already_added: 活动中只能添加一个 "主要评估员评估"。
+      campaign_factor:
+        code_already_exists: 相同代码的因子已经存在。
+        invalid_lua_name: 应为有效的 lua 变量名
+        limit_exceeded: 您已达到 %{limit} 活动因素的最大限制。
+        name_already_exists: 同名的因子已经存在。
+        rank_not_allowed: 只有输出类型为数值的因子才能进行排序。
+      campaign_factor_group:
+        group_already_exists: 已存在同名组。
+        last_factor_group: 无法删除最后一个竞选因素组。
+      create_superadmin:
+        uniq_email: 电子邮件应为统一格式。
+      exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
+      filled?: 不能空白
       idp_template:
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
+      invalid_name: 只允许字母、数字、空格、破折号和点作为有效字符
+      invalid_value: 行号 %{row} 上的语句"%{value}"无效
+      json?: 应为有效的 JSON
+      key?: 不能空白
+      match_regexp?: 无效值
+      mettl_schedule_record_create:
+        uniq_schedule_name: 时间表名称应独一无二
+      missed?: 不能空白
+      not_allowed?: 不得更改
+      not_in_the_list?: 传递的值无效
+      not_uniq_variable: 变量"%{value}"在第 %{row} 行重新定义
+      project_assessments:
+        should_be_greater_than_zero: 结果有效期应大于 0 天
+      report_approval_settings:
+        report_exists: 该报告的报告审批设置已经存在。
+        validates_admins: 管理员无法访问活动。
+      report_families_reports:
+        report_exists: 本报告已是报告包的一部分
+      size?: 大小应小于 %{size｝
+      skill_alias:
+        unique_alias: 别名应是唯一的
+        unique_skill: 技能应独一无二
+      uniq: 系统中已存在该 Mettl 评估。 该评估的 ID 是 %{id}
+      uniq?: 应是唯一的
+      uniq_simulation: 该模拟评估已存在于系统中。 该评估的 ID 是 %{id}
+      update_workshop:
+        less_than_booked: 总席位数必须大于预订席位数
+      user_availability_date:
+        overlaps_date: 与另一个可用性重叠 %{range}
+        overlaps_time: 重叠间隔 %{interval}
+        start_date_should_be_less: 开始日期应小于结束日期
+        start_time_should_be_less: 开始时间应小于结束时间
+      user_idp_plan:
+        idp_template_already_assigned_to_user: 此 Idp 模板已分配给该用户并处于活动状态
+      user_saved_filters:
+        limit_exceeded: 您只能保存 %{limit} 过滤器，请删除已保存的过滤器以添加更多过滤器。
+        unique_name: 已存在同名过滤器。
+      workshop_invited_subject_create:
+        already_exists: 主题已存在于邀请中。
+      workshop_subject_create:
+        already_exists: 该评估中心已有主题。
+        part_of_other_workshop: 主题已是"%{workshop_name}"的参与者。
+      workshops:
+        no_available_assessor_slots: 没有可供评估员使用的时段 %{assessor}
+        no_available_manager_slots: 没有可供经理使用的插槽 %{manager}
+    users:
+      registrations:
+        new:
+          register: 注册
+          sign_in: 登录
+      sessions:
+        new:
+          register: 注册
+          sign_in: 登录
   emails:
+    nomination_approval_table:
+      evaluator_name: 评估员姓名
+      number: 没有
+      relationship: 关系
+      subject_name: 科目名称
     subject_relationship_table:
       subject_email: 主题电子邮件
       subject_name: 科目名称
       subject_relationship: 主题关系
+  empty: 空
+  enums:
+    communication:
+      body:
+        error: 电子邮件正文中的管道文本不正确。
   errors:
     assessments:
       timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该测评。
     error: 错误
     error_500: 出错了，请联系管理员。
+    error_msg: 出错了，请刷新页面，如果问题仍然存在，请联系您的管理员
     forbidden: 您没有访问该页面的权限
     forbidden_action: 您没有此操作的权限
+    invalid_session_title: 无效会话
     invalid_token: 出错了，请重新加载页面再试。
+    max_regeneration_limit: 超出最大再生限制，请联系管理部门。
+    messages:
+      data_report_blank: 数据报告不存在
     module_error: 此模块出错，请联系管理部门。
     module_error_editor: 此模块出错，请检查模块设置。
     module_props_error: 这个模块出了问题。
+    skill_gap_report:
+      not_found: 未找到技能差距报告
     try_again: 请重试
+    user_idp_plan:
+      no_active_plan: 未找到有效的 IDP 计划
+    webhooks:
+      multiple_webhook_error: 由于该项目有多个 webhook，因此无法更新 url。
+  evaluators:
+    errors:
+      can_not_processed: 无法处理
+      exists: 已存在
+      max_evaluators: 你们已经有足够多的评估员了
   factors:
     description: 说明
     factor: 系数
   frontend:
     activate: 激活
     are_you_sure: 你确定吗？
+    aria:
+      back_to_dashboard: 返回仪表板
+      back_to_tasks: 返回任务
+      calendar: 日历
+      campaign_name_description: ，活动"%{campaignName}"
+      change_language: "(更改语言）"
+      clear_date: 清除日期
+      collapse_menu: 折叠菜单
+      confirm_proceed: 确认继续
+      delete_message: 删除信息
+      drag_drop_instructions_desktop: 打开表格模式，以便使用屏幕阅读器拖放项目。
+      drag_drop_instructions_mobile: 使用屏幕阅读器时，双击并按住拖动按钮，移动到另一个项目，然后抬起手指移动项目。
+      enlarge_view_text: 放大 %{text} 的视图
+      expand_menu: 展开菜单
+      file_uploaded: 上传文件
+      lang_dropdown_description: ",更改语言"
+      pause: 暂停
+      play: 游戏
+      profile_progress: 简介完成是
+      remove_file: 删除文件
+      send_message: 发送信息
+      slider_label_instruction: 最小值：%{min} 最大值：%{max｝
+      task_btn_description: 任务 %{assessmentName}
+      task_progress_label: 任务完成情况
+      write_message: 写下您的信息
     assessment: 评估
     assessment_groups:
       create_success: 已成功建立群组
       update_success: 已成功更新群组
+    availability:
+      add_new_availability: 添加新的可用性
+      create_success: 可用性已成功创建。
+      remove_confirm:
+        content: 您确定要删除可用性吗？
+        success: 可用性已成功删除。
+        title: 删除可用性
+      update_success: 可用性已成功更新。
     background_reading: 背景资料
     bookings:
       accept_invite_msg: 你已收到邀请。请预约名额。
       add_to_calendar: 添加到日历
       add_to_calendar_tour_description: 将此预订添加至你的日历
+      add_to_google_calendar: 添加到谷歌日历
+      add_to_i_calendar: 添加到 iCalendar
+      add_to_msoffice_calendar: 添加到 Microsoft Office 365 日历
+      add_to_outlook_calendar: 添加到 Outlook 日历
+      add_to_yahoo_calendar: 添加到雅虎日历
       assessment_center_alert:
         btn_title: 推广活动
         message_part1: 在此处完成所有准备工作
@@ -520,8 +2175,11 @@ zh:
       language_required_msg: 请选择一种语言
       meeting_start_text: 距离会议开始还有：
       need_changes: 需要更改吗？
+      neurodivergence_comment_aria_label: 神经差异评论
       neurodivergence_comment_placeholder: 你的评论
       neurodivergence_question: 你是否因特殊需要或身障而需要合理的特殊安排或调整才能充分参与评估？
+      no_invites_msg: 您将被添加到评估中心，或收到邀请来预订您的时间段；一旦您成为中心的一员，您就可以点击下面的 "查看详情 "按钮来完成活动。
+      or: 或
       other_invite: 查看其他 %{count} 个邀请
       other_invites: 查看其他 %{count} 个邀请
       reason: 原因
@@ -546,24 +2204,68 @@ zh:
     break_time: 休息时间
     campaign:
       actions:
+        copy:
+          success: "%{campaignName} 已成功复制。"
         remove:
           confirmation: 在下面的文本框中输入目前的推广活动名称以移除推广活动
           success: 已成功移除 %{campaignName}。
       users:
+        actions:
+          export:
+            details: 活动用户
+            scheduled: 用户导出已成功安排。
+          export_reports_and_assessments:
+            details: 报告和评估
         completion_statuses:
           completed: 已完成
           in_progress: 进行中
           not_started: 未开始
     change_password: 更改密码
+    clients:
+      actions:
+        create:
+          create_client: 创建客户
+          create_license: 添加许可证
+        menus:
+          view_licenses: 查看许可证
+        remove:
+          confirmation: 在文本框中输入当前客户名称，删除客户
+          success: 名称为"%{clientName}"的客户已成功删除
+      projects:
+        actions:
+          remove:
+            confirmation: 在文本框中输入当前项目名称，删除项目
+            success: 名称为"%{projectName}"的项目已成功删除
     delete: 删除
     edit: 编辑
+    error_warning: 哎呀，您的评估出错了，请联系技术支持。
+    hogan:
+      cannot_start: 您现在无法启动霍根评估，请几分钟后再试。
     lighthouse_app: 默瑟灯塔
     login: 登录
+    maintenance:
+      notification: 灯塔将在 60 秒后进行定期维护
     manage: 管理
     'no': 否
+    passwordSetting:
+      update_success: 安全设置已成功更新
+    questions:
+      campaign_factor_feedback:
+        add_skill: 添加技能
+        feedback: 反馈意见
+        max_factors: 最大系数
+        min_factors: 最小系数
+        skill_factor: 技能因素
+    report_error: 哎呀，您的报告出错了，请联系技术支持。
+    request_failed_message_box:
+      message: 请刷新页面，如果问题仍然存在，请联系管理员。
+      refresh: 刷新
     resource:
       create_success: 已成功添加 %{readableResourceName}
       update_success: 已成功更新 %{readableResourceName}
+    restart: 重新启动
+    restart_progress: 评估有一些变化，请刷新页面查看变化。 刷新页面将从头开始评估。 您已经回答过的问题将自动填写。
+    saved_results: 答案已成功保存。
     session_timeout_modal:
       buttons:
         close: 关闭
@@ -574,6 +2276,15 @@ zh:
       message_after_timeout: 您的会话已超时，请重新登录。
       time_remaining: 剩余时间
       title: 会话超时警告
+    skip_to_content: 跳至内容
+    smsInvites:
+      create_success: 短信邀请已成功添加
+      update_success: 短信邀请已成功更新
+    sms_records:
+      create_success: 短信任务已成功调度
+    test_webhook:
+      create_success: Webhook 测试成功。
+      success: 成功
     update: 更新
     upload: 上传
     workshop_invited_subjects:
@@ -584,32 +2295,77 @@ zh:
         requested_rescheduling: 已申请的改期
         requested_rescheduling_rejected: 请求改期 拒绝
     'yes': 是
+  glint:
+    booking_card:
+      aria_available_time: 可用时间
+      aria_back_to_time_selection: 返回时间选择
+      aria_desc_current_month: 目前为 %{ 月名} %{ 年｝
+      aria_label_next_month: 转到下个月
+      aria_label_previous_month: 转到上个月
+      aria_timezone_select: 选择时区
+    color_picker:
+      copy_success_msg: 将 Hexcode 复制到剪贴板。
+      recent_colors: 最近使用过：
+      recommended_colors: 推荐使用：
+    datepicker_with_ranges:
+      all_time: 所有时间
+      current_month: 本月
+      current_week: 本周
+      last_month: 上个月
+      last_week: 上周
+      today: 今天
+      yesterday: 昨天
+    fontsize_modifier:
+      change_font: 更改字体大小
+      decrease_font: 减小字体大小
+      increase_font: 增大字体
+      reset_font: 重置字体大小
+    input_duration:
+      max_duration: 最长持续时间为 %{duration}
+    schedule_availability:
+      copy_to_all: 复制到所有
+      end_date: 结束日期
+      from: 来自
+      new_schedule: 添加新时间表
+      new_schedule_description: 开始时间必须早于结束时间
+      no_slots: 未增加插槽
+      required_error: 空不了
+      save: 节省
+      saved_schedule_description: 保存用户的可用时间表
+      start_date: 开始日期
+      timezone_label: 时区
+      to: 至
+    views_container:
+      aria_grid_view: 网格视图
+      aria_list_view: 列表视图
+      aria_selected: 精选
   idp:
-    actions: 操作
-    board: 看板
-    details: 详情
+    actions: 行动
+    board: 董事会
+    convert_to_draft: 轉換為草稿
+    details: 详细信息
     development_actions:
       action_private: 是
-      action_public: 否
-      add_development_action: 添加发展行动
+      action_public: 没有
+      add_development_action: 添加开发行动
       all: 全部
-      approved: 已批准
+      approved: 批准
       board_view:
         completed: 已完成
         in_progress: 进行中
         not_started: 未开始
-      completion: 完成度
+      completion: 完工
       create_my_own: 创建我自己的
       date_range: 开始日期 - 结束日期
-      generate_by_ai: 通过AI生成
+      generate_by_ai: 人工智能生成
       generate_more: 生成更多
-      generating_development_actions: 正在生成发展行动...
+      generating_development_actions: 生成发展行动...
       heading: 发展行动
       learning_from_others: 向他人学习
       manage_skills: 管理技能
       marathon: 马拉松
-      no_development_actions: 没有发展行动
-      on_the_job: 在职学习
+      no_development_actions: 无发展行动
+      on_the_job: 工作中
       other: 其他
       private: 私人
       remove: 移除
@@ -618,34 +2374,44 @@ zh:
       structured_learning: 结构化学习
       submit_plan: 提交计划
       write_here: 在此处写入...
-    direct_report_details: 直属下属详情
+    direct_reportee_details: 直属下属详情
     initial_steps:
-      add_skill_group_description: 基于你的评估结果，以下是你的一些优势和发展领域。选择你想作为发展计划一部分进一步发展的技能。
-      add_skill_group_title: 探索你的%{category}技能
+      add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
+      add_skill_group_title: 探索您的 %{category} 技能
       add_skills: 添加
       add_skills_step: 添加技能
       continue_to_rate_skills: 继续评定技能
       getting_started: 入门
-      getting_started_info: 欢迎使用你的个人发展计划(IDP)创建器。此计划将帮助你识别、管理和跟踪你的专业和个人目标，以及实现这些目标所需采取的步骤。你的专业目标可能包括行为、领导力以及技术领域的发展。你的个人发展计划是支持你职业发展和技能提升的重要工具。
+      getting_started_info: 欢迎来到您的个人发展计划 (IDP) 创建者页面。 该计划将帮助您确定、管理和跟踪您的职业和个人目标，以及实现这些目标所需的步骤。 您的职业目标可能包括行为、领导力以及技术领域的发展。 您的 IDP 是支持您的职业发展和技能提升的重要工具。
       less_skills: 显示更少技能
       more_skills: 探索更多技能
-      next: 下一步
+      next: 下一页
       no_skills_selected: 未选择技能。
-      rate_skills: 评定技能
-      rate_skills_description: 现在你已选择了发展重点，请对以下每项进行自我评定。记住根据你当前的水平进行评定，而不是基于过去或期望的水平。
-      rate_skills_title: 评定你的技能
-      rating_column_header: 你的自我评定
-      select_skills: 选择你的技能
+      rate_skills: 评分技巧
+      rate_skills_description: 现在，您已经选定了自己的发展重点，请就以下各项给自己打分。 请记住，要根据自己当前的水平打分，而不是根据自己过去或期望的水平打分。
+      rate_skills_title: 评定您的技能
+      rating_column_header: 您的自我评分
+      reflective_questions: 思考题
+      select_skills: 选择您的技能
       select_skills_placeholder: 选择技能
-      selected_skills: 已选技能
+      selected_skills: 精选技能
       skill_column_header: 技能
       skill_gap_report: 技能差距报告
     list: 列表
-    my_direct_reports: 我的直属下属
+    manage_plan: 管理计划
+    mark_as_complete: 标记为完成
+    mark_as_incomplete: 標記為不完整
+    my_direct_reportees: 我的直属下属
     my_plan:
       development_plan: 发展计划
       graphs:
+        behavioural: 行为
         categories: 类别
+        learning_on_job: 在职 (%{count})
+        learning_others: 向他人学习 (%{count})
+        learning_structured: 结构化学习（%{count})
+        other: 其他
+        technical: 技术
       save_skills: 保存技能
     pdf:
       approval_status: 审批状态
@@ -752,20 +2518,241 @@ zh:
         library: IDP库
         skills_count: 技能数量
         title: 报告摘要
-    profile_details: 个人资料详情
+    reflective_questions:
+      answer_later: 稍后回答
+      answer_placeholder: 在此写下您的答案...
+      errors:
+        max_words: 答案最多允许 %{count} 字数
+        min_words: 答案至少需要 %{count} 字数
+        required: 必须回答问题
+      max_words: 最大字数
+      min_words: 分词
+      title: 思考题
+      update_failed: 更新过程中出现错误
+      updated_successfully: 您的答案已成功更新
+      words: 字数
     skill_gap_report:
-      continue_to_rate_skills: 继续评定技能
       title: 技能差距报告
-    status: 状态
+    status: 现状
     user_idp_status:
-      approved: 已批准
-      draft: 草稿
-      pending_approval: 待批准
+      approved: 批准
+      draft: 草案
+      not_started: 未开始
+      pending_approval: 待定
     users: 用户
   idp_templates:
+    assign: 分配
+    assign_idp_template: 指定 Idp 模板
+    auto_assign: 自动分配新用户
     errors:
+      idp_template_not_found: 未找到 IDP 模板
       user_idp_template_not_found: 没有为您分配 IDP 模板。
+    idp_template: IDP 模板
+    override_exists: 覆盖和重置现有用户
+    placeholder: 选择 Idp 模板
+    save_and_assign: 保存和分配
+    success_scheduled: 已成功安排分配 IDP 的任务
+  jobs:
+    threesixty:
+      bulk_downloads: 批量下载任务已成功调度
+      export_completion_statuses_scheduled: 完成状态 已成功计划导出作业
+      export_raw_results_scheduled: 原始结果导出任务已成功安排
+      export_scores_scheduled: 分数导出任务已成功安排
+      reports:
+        download:
+          description: 下载报告，请点击链接：<a href='%{url}' target='_blank'>下载</a>
+          error: 发生错误
+          error_description: 报告生成失败，请联系管理员或尝试重新<b>下载</b>。
+          message: 报告准备就绪
+  languages:
+    af: 南非语
+    ar: 阿拉伯语
+    az: 阿塞拜疆
+    bg: 保加利亚语
+    bs: 波斯尼亚语
+    by: 白俄罗斯语
+    ca: 加泰罗尼亚语
+    cn: 中文
+    cs: 捷克语
+    cy: Cymraeg
+    da: 丹麦语
+    de: 德语
+    el: 希腊文
+    en: 英语
+    en-GB: 英语 - 英国
+    en-US: 英语 - 美国
+    eo: 世界语
+    es: 西班牙语（拉丁美洲）
+    es-ES: 西班牙语（西班牙）
+    et: 爱沙尼亚语
+    fa: 波斯语
+    fi: 芬兰语
+    fr: 法语
+    gu: 古吉拉特语
+    he: 希伯来文
+    hi: 北印度语
+    hr: 克罗地亚语
+    hu: 匈牙利语
+    id: 印度尼西亚语
+    it: 意大利语
+    ja: 日语
+    km: 高棉语
+    ko: 韩语
+    lt: 立陶宛语
+    lv: 拉脱维亚语
+    mk: 马其顿
+    mn: 蒙古语
+    ms: 马来西亚语
+    my: 缅甸
+    nb: 挪威语
+    nl: 荷兰语
+    'no': 挪威语
+    pl: 波兰语
+    pt: 葡萄牙语
+    pt-BR: 巴西葡萄牙语
+    pt-PT: 葡萄牙语
+    pt_BR: 葡萄牙语（巴西）
+    ro: 罗马尼亚语
+    ru: 俄罗斯
+    sk: 斯
+    sl: 斯洛文尼亚语
+    sr-Cyrl: 塞尔维亚西里尔文
+    sr-Latn: 塞尔维亚拉丁文
+    sv: 瑞典语
+    sw: 斯瓦希里语
+    ta: 梵语
+    th: 泰语
+    tl: 菲律宾语
+    tr: 土耳其语
+    ua: 乌克兰
+    uk: 乌克兰
+    ur: 乌尔都语
+    vi: 越南语
+    zh: 简体中文
+    zh-CN: 中文（中华人民共和国）
+    zh-HK: 中文（香港）
+    zh-Hant: 繁体中文
+    zh-TW: 中文（台湾）
+  languages_localized:
+    af: 南非语
+    ar: عربي
+    az: 阿塞拜疆
+    bg: български
+    bs: bosanski
+    by: 白俄罗斯语
+    ca: 加泰罗尼亚语
+    cn: 中国人
+    cs: čeština
+    cy: Cymraeg
+    da: 丹麦语
+    de: 德语
+    el: Ελληνικά
+    en: 英语
+    en-GB: 英语（英国）
+    en-US: 英语（美国）
+    eo: 世界语
+    es: 西班牙语
+    es-ES: Español (españa)
+    et: 爱沙尼亚语
+    fa: 波斯语
+    fi: 芬兰语
+    fr: 法语
+    gu: 古吉拉特语
+    he: 希伯来文
+    hi: हिन्दी
+    hr: 克罗地亚语
+    hu: 匈牙利语
+    id: 印度尼西亚语
+    it: 意大利语
+    ja: 日本語
+    km: 高棉语
+    ko: 韩语
+    lt: 立陶宛语
+    lv: 拉脱维亚语
+    mk: 马其顿
+    mn: 蒙古语
+    ms: 马来西亚语
+    my: 缅甸
+    nb: 挪威语
+    nl: 荷兰语
+    'no': 挪威语
+    pl: 波兰语
+    pt: 葡萄牙语
+    pt-BR: 葡萄牙语（巴西）
+    pt-PT: 葡萄牙语
+    pt_BR: 葡萄牙语（巴西）
+    ro: 罗马尼亚语
+    ru: 俄罗斯
+    sk: 斯
+    sl: 斯洛文尼亚语
+    sr-Cyrl: 塞尔维亚西里尔文
+    sr-Latn: 塞尔维亚拉丁文
+    sv: 瑞典语
+    sw: 斯瓦希里语
+    ta: 梵语
+    th: 泰语
+    tl: 菲律宾语
+    tr: 土耳其语
+    ua: 乌克兰
+    uk: 乌克兰
+    ur: 乌尔都语
+    vi: 越南语
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政區)
+    zh-Hant: 繁體中文
+    zh-TW: 漢語
+  license_usage:
+    active: 活跃
+    campaign_name: 活动名称
+    inactive: 不活动
+    status_updated_at: 最新状态更新
+    status_updated_by: 最后更新
+    subject_email: 主题电子邮件
+    subject_name: 主题名称
+    usage_overview: 查看许可证使用情况
+    usages: 用途
+  licenses:
+    enabled: 已启用
+    end_date: 结束日期
+    not_enough_idp_license: 没有足够的 IDP 许可证，请联系管理员
+    not_enough_license: '%{client_name}"没有足够的许可用于"%{report_name}"。'
+    not_enough_license_count: 许可证数量不足，请联系管理员
+    not_enough_proctoring_credits: 学分不足，无法开始监考课程
+    number: 数量
+    overuse_number: 超额使用津贴
+    report_family: 报告包
+    start_date: 开始日期
+    type: 类型
+    types:
+      common: 常见问题
+      idp: IDP
+      proctoring: 监考
+      threesixty: Threesixty
+    used_number: 二手许可证
+    used_out_of: 在 %{used}中 %{total}。
   mailer:
+    from: 人才企业
+    license:
+      expire:
+        subject: 许可证过期
+      overuse:
+        subject: 许可证过度使用
+      weekly_stats:
+        column_headers:
+          client_name: 客户名称
+          expiry_date: 有效期
+          overuse_limit: 过度使用限制
+          project_manager: 项目经理
+          remaining_count: 剩余数量
+          type: 许可证类型
+          use_count: 使用计数
+        expiry_stats: 未来 30 天内到期的许可证 ：
+        no_expiry_stats: 未来 30 天内没有许可证到期。
+        no_weekly_stats: 最近 7 天内未消费许可证。
+        notice: 注：您可以在个人资料页面取消订阅此每周电子邮件。
+        subject: 每周许可证使用统计
+        weekly_stats: 过去一周许可证使用统计 ：
     magic_link:
       body:
         dear: 亲爱的 %{name}、
@@ -773,8 +2760,29 @@ zh:
         instructions: 点击以下链接登录灯塔。
         signin_link: 登录链接
       subject: 灯塔登录链接
+    users:
+      account_disable: 您的帐户因未活动而被禁用
+      warning: 您的帐户将很快因未活动而被禁用
+  maintenance_message: 灯塔将于 %{start_date} 进行计划维护，并将在 %{duration} 小时内无法使用。
+  maintenance_submessage: 维护完成后，请刷新页面。 您将被重定向到登录页面
+  my: 我的
+  myself: 我自己
   navigation:
     logout: 退出登录
+  'no': 没有
+  nominations:
+    approval_email_error: 上一封批准邮件的发送时间为 %{last_sent_at}，下一封提醒邮件的发送时间为 %{wait_time}。
+  norms:
+    percentile:
+      columns:
+        mean: 平均值
+        name: 名称
+        standard_deviation: 标准偏差
+      messages:
+        failure: 错误：%{error}.
+        success: 因子"%{factorName}"的规范已成功更新。
+      values:
+        empty: 空
   profile:
     add_field: 添加字段
     add_photo: 添加照片
@@ -789,20 +2797,153 @@ zh:
     last_name: 姓
     locale: 偏好的语言
     male: 男
+    mandatory_fields: 表示必填字段
     not_disclosed: 不愿透露
     old_data: 您的个人资料数据已经过了 %{months} 个月，请确认详细信息以便继续操作
     password: 密码
     password_confirmation: 密码确认
+    photo: 照片
     success_update: 个人资料已成功保存
     timezone: 时区
     title: 我的个人资料
     update: 更新
     update_required: 需要更新个人资料
+  profiles:
+    edit:
+      header: 配置文件设置
+    form:
+      username: 用户名
+    update:
+      successfully: 资料已成功更新
+  registration:
+    success_update: 注册已成功保存
+  registration_code:
+    allowed_domains: 允许的域名
+    invalid_code: 活动代码无效
+    modals:
+      remove:
+        content: 您确定要删除注册代码<strong>"%{code}"</strong>吗？
+        successfully: 已成功删除注册码"%{code}"。
+      title: 注册码
+    one_domain_per_line: 每行一个域名
+    restricted_domains: 受限域名
+    token_expired: 令牌过期
+  report_approvals:
+    events:
+      approved_text: 核定文本
+      comment_added: 添加评论<i>%{text｝</i>
+      comment_removed: 已删除评论
+      comment_resolved: 已解决的意见
+      comment_unresolved: 未解决的意见
+      comment_updated: 将注释<s>%{oldText}</s>更改为<i>%{newText｝</i>
+      created_text: 新增文字
+      disapproved_text: 反驳文字
+      removed_text: 已删除文本
+      status_changed: 将状态从<i>%{from}</i>更改为<i>%{to}</i>
+      updated_text: 更新文本
+    tabs:
+      all: 全部
+      approved: 批准
+      my_tasks: 我的任务
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: 您确定要删除报告捆绑包"%{name}"吗？
+        confirm_title: 需要确认
+        success_message: 报告捆绑包 %{name} 已被删除
+    report_bundle: 报告包
+    report_bundles: 报告包
+    reports:
+      actions:
+        add: 添加新报告
+        remove:
+          confirm_message: 您确定要从"%{report_bundle_name}"中删除报告"%{name}"吗？
+          confirm_title: 需要确认
+          success_message: 报告 %{name} 已被删除
   reports:
     actions:
       add: 添加报告
+      archived:
+        success_message: 报告"%{name}"已成功存档。
+      back_to_campaign: 返回活动
+      copy:
+        success_message: 报告"%{name}"已成功复制。
+      details: 详细信息
       download: 下载报告
+      download_csv: 下载 CSV
+      edit: 编辑
+      evaluate: 评估
+      extend_time: 延长时间
+      goto_dashboard: 点击此处继续
+      re_evaluate: 单击此处重新评估
+      reevaluate: 重新评估
+      remove:
+        confirm_message: 您确定要删除报告"%{name}"吗？
+        confirm_title: 需要确认
+        success_message: 报告 %{name} 已被删除
+      rescore: 重核
+      restore:
+        success_message: 报告 %{name} 已成功恢复
+      unarchived:
+        success_message: 报告 %{name} 已成功解压缩
+      update_language: 更新语言
       view: 查看报告
+    active: 活跃
+    archived: 存档
+    builder:
+      graph:
+        properties:
+          barBorderRadius: 条形边框半径
+          barWeight: 杆重量
+          dataFormat: 数据格式
+          graphOption3D: 3D
+          graphOptionStandard: 标准
+          graphSubType: 图表子类型
+          graphTypeHorizontal: 横向
+          graphTypeVertical: 垂直
+          hideEmptyColumns: 隐藏空栏
+          hideEmptyFilters: 隐藏空筛选器
+          hideXAxisLine: 隐藏 X 轴网格线
+          hideXAxisTitle: 隐藏 X 轴标题
+          hideYAxisLine: 隐藏 Y 轴网格线
+          hideYAxisTitle: 隐藏 Y 轴标题
+          hideZeroValueColumns: 隐藏零值列
+          legendPosition: 图例 位置
+          maxValueLabel: 最大值（数字）
+          maxValueLabelPlaceholder: 最大值
+          positionBottomLeft: 左下角
+          positionBottomMiddle: 底部中间
+          positionBottomRight: 右下角
+          positionTopLeft: 左上角
+          positionTopMiddle: 顶部中间
+          positionTopRight: 右上角
+          reverse: 反向
+          showLegend: 显示图例
+    columns:
+      data_only: 仅数据
+      default_language: 默认语言
+      external_settings:
+        hogan_report_id: 霍根报告编号
+        saville_report_id: 萨维尔报告 ID
+      other_available_languages: 其他可用语言
+    create: 创建
+    dashboard: 仪表板
+    drawer:
+      title: 报告详情
+    fields:
+      provider:
+        custom_upload: 自定义上传
+        hogan: 霍根
+        internal: 内部
+        mettl: 水
+        pearson: 皮尔森
+        saville: 萨维尔
+    form:
+      load_from_mettl: 来自 Mettl 的负载
+      load_from_pearson: 从培生加载
+      none_external: 无 - 使用报告生成器
+    language: 报告语言
+    language_updated: 报告语言已成功更新
     modules:
       campaign_factors_table:
         add_condition: 添加条件
@@ -820,13 +2961,21 @@ zh:
         strengths: 优势
         then: 然后显示以下文字
         title: 标题
+      common:
+        all_factors: 所有因素
+        font: 字体
+        table_options: 表格选项
+        table_type: 表格类型
       factors_table:
         description: 描述
+        na: 不适用
         no_data: 此部分没有可用的数据。
         rank: 排名
         score: 分数
       gap_assessment:
         gap: 差距
+        hide_left_filter: 隐藏左侧过滤器
+        hide_right_filter: 隐藏右侧过滤器
         item: 指示器
         negative_gap: 负差距
         no_negative_gaps: 没有负差距
@@ -889,6 +3038,14 @@ zh:
         total: 总数
       video_response:
         no_results: 无录制视频
+    pages:
+      edit:
+        assets: 资产
+        general_settings: 常规设置
+        translations: 翻译
+    report: 报告
+    reports: 报告
+    reset: 重置
     show:
       export_pdf: 导出到 PDF
       header: 报告
@@ -900,29 +3057,358 @@ zh:
       not_available: 不可用
       on_hold: 待决
       released: 已发布
+    trash: 垃圾
+    update: 更新
+    upload: 上传
+  reset_password_modal:
+    fields:
+      automatically_generate_password: 自动生成密码
+      change_password_on_login: 登录时更改密码
+      login_link: 登录链接
+      new_password: 新密码
+      password_placeholder: 输入密码
+      send_password_email: 通过电子邮件发送密码
+      username: 用户名
+    messages:
+      reset_password_success: 用户 %{email} 密码重置成功。
+      send_password_email_success: 向用户 %{email} 发送包含密码的电子邮件。
+    title: 重置密码
+  select: 选择
   shared:
     filters:
       clear: 清除筛选
     internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
+    mte_logo_alt_text: 美世人才企业标识
     terms_conditions_privacy: 隐私声明
     tte_terms_and_condition: 条款和隐私
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: 上传新的 Accesssheet 时会删除所有现有记录，然后从工作表中上传新记录。 请确保电子表格中包含所有 Accesssheet 记录。
+      success_message: 文件已成功上传。 数据表记录导入中
+      title: 导入工作表记录
+    menu:
+      export: 出口单
+      export_info: 无数据可导出。
+      import: 导入表
+    no_sheet: 您必须先导入工作表
   simple_form:
+    error_notification:
+      default_message: 请查看下面的问题：
+    labels:
+      client:
+        applicable_level: 适用级别
+        applicable_levels:
+          campaign: 活动
+          project: 项目
+          sub_campaign: 子活动
+        category: 类别
+        created_at: 创建日期
+        id: 身份证
+        licenses: 许可证编号
+        licenses_expire: 许可证到期日
+        licenses_used: 许可证使用
+        location: 地点
+        logo: 客户徽标
+        memberships_count: 用户
+        name: 名称
+        number: 客户编号
+        privacy_consent: 启用数据处理同意
+        project_manager: TTE 项目经理
+        project_manager_id: TTE 项目经理
+        report_ids: 报告
+        strong_password_enabled: 启用强密码
+        subdomain: 子域
+        types:
+          associate: 协理
+          corporate: 企业
+          distributer: 分销商
+          other: 其他
+          partner: 合作伙伴
+          retail: 零售
+          tte: TTE
+        updated_at: 修改日期
+        year: 客户年度
+      membership:
+        role: 成员角色
+    'no': 没有
     placeholders:
+      administration/assessments/assign_form:
+        access_reports: 访问报告规则
+        access_reports_at: 访问报告
+        access_reports_at_date: 日期
+        access_reports_at_time: 时间
+        client_ids: 客户租约
+        manager_ids: 管理人员
+        report_ids: 报告
+        user_ids: 用户
       administrator:
+        active: 活跃
+        created_at: 创建日期
+        current_password: 当前密码
+        disabled: 禁用
         email: 电子邮箱地址
+        first_name: 姓名
+        id: 身份证
         last_name: 姓
+        manage_client_ids: 客户租约
+        memberships: 客户租约
+        name: 名称
+        password: 密码
+        password_confirmation: 确认密码
+        role: 角色
+        roles:
+          admin: 管理员
+          admins:
+            admin: 管理员
+            project_admin: 项目管理
+            regular: 客户管理
+            superadmin: 超级管理员
+          agile: AGILE
+          case_study: 案例研究
+          client_admin: 客户管理
+          hogan: 霍根
+          manager: 经理
+          member: 用户
+          organisational: 组织结构
+          project_admin: 项目管理
+          psychometric: 心理测量
+          regular: 常规
+          saville: 萨维尔
+          super_admin: 超级管理员
+          superadmin: 超级管理员
+          threesixty: Threesixty
+        types:
+          anonymous: 匿名用户
+          identified: 确定的用户
+        updated_at: 修改日期
+      assessment:
+        active: 活跃
+        categories:
+          '360': 360 运动
+          agile: AGILE
+          assessor_form: 评估员表格
+          case_study: 案例研究
+          hogan: 霍根
+          meeting: 会议
+          organisational: 调查
+          psychometric: 评估
+          saville: 萨维尔
+        category: 类别
+        completed_at: 完成日期
+        created_at: 创建日期
+        description: 说明
+        id: 身份证
+        name: 名称
+        statuses:
+          completed: 已完成
+          finished: 完蛋
+          in_progress: 简历
+          interrupted: 中断
+          not_started: 新
+          overdue: 逾期
+        timing: 时间安排
+        types:
+          common: TTE 评估
+          hogan: 霍根
+          saville: 萨维尔评估
+        updated_at: 修改日期
+      block:
+        active: 活跃
+        assign_to_assessment_ids: 评估
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      client:
+        applicable_level: 适用级别
+        applicable_levels:
+          campaign: 活动
+          project: 项目
+          sub_campaign: 子活动
+        category: 类别
+        created_at: 创建日期
+        id: 身份证
+        licenses: 许可证编号
+        licenses_expire: 许可证到期日
+        licenses_used: 许可证使用
+        location: 地点
+        logo: 客户徽标
+        memberships_count: 用户
+        name: 名称
+        number: 客户编号
+        privacy_consent: 启用数据处理同意
+        project_manager: TTE 项目经理
+        project_manager_id: TTE 项目经理
+        report_ids: 报告
+        strong_password_enabled: 启用强密码
+        subdomain: 子域
+        types:
+          associate: 协理
+          corporate: 企业
+          distributer: 分销商
+          other: 其他
+          partner: 合作伙伴
+          retail: 零售
+          tte: TTE
+        updated_at: 修改日期
+        year: 客户年度
+      communication:
+        created_at: 创建日期
+        id: 身份证
+        updated_at: 修改日期
+      dimension:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      factor:
+        active: 活跃
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        parent_id: 家长
+        questions_count: 问题数量
+        updated_at: 修改日期
+      library:
+        created_at: 创建日期
+        id: 身份证
+        type: 缩略图
+        updated_at: 修改日期
+      license:
+        id: 身份证
+        number: 许可证编号
+        overuse_number: 超额使用津贴
+        type: 许可证
+        types:
+          common: 常见问题
+          threesixty: Threesixty
+        unlimited: 无限制
+        used_number: 二手许可证编号
       memebrship:
+        active: 活跃
+        created_at: 创建日期
+        disabled: 禁用
+        email: 电子邮件
+        first_name: 姓名
+        id: 身份证
         last_name: 姓
+        parent: 直接经理
+        parent_id: 直接经理
+        report_ids: 报告 ID
+        roles:
+          campaign_admin: 活动管理
+          client_admin: 客户管理
+          manager: 经理
+          member: 用户
+          project_admin: 项目管理
+        updated_at: 修改日期
+        user_access: 用户访问
+      norm:
+        active: 活跃
+        bachelors_or_masters_qualification: 学士或硕士学位
+        created_at: 创建日期
+        description: 说明
+        description_label: 说明
+        diploma_qualification: 文凭资格
+        factor_id: 能力
+        factor_id_label: 选择能力
+        full_description: 完整说明
+        high_school_entry_roles: 高中入学角色
+        id: 身份证
+        key_career_tracks: 主要职业方向
+        membership_id: 指派者
+        membership_id_label: 选择分配器
+        name: 名称
+        name_label: 行动项目
+        planned_completed_at: 到期日
+        planned_completed_at_label: 选择到期日
+        potential_areas_of_study: 潜在研究领域
+        priority: 优先权
+        priority_label: 优先事项
+        status: 现状
+        status_label: 选择状态
+        statuses:
+          completed: 已完成
+          in_progress: 进行中
+          not_started: 未开始
+          overdue: 逾期
+        updated_at: 修改日期
+        updated_by: 编辑
+        work_environment: 工作环境
+      question:
+        active: 活跃
+        assign_to_assessment_ids: 评估
+        created_at: 创建日期
+        id: 身份证
+        name: 名称
+        updated_at: 修改日期
+      regenerate_reports:
+        report_ids: 报告
+      report:
+        created_at: 创建日期
+        id: 身份证
+        updated_at: 修改日期
       user:
+        active: 活跃
+        created_at: 创建日期
+        current_password: 当前密码
+        disabled: 禁用
         email: 电子邮箱地址
         first_name: 名
+        id: 身份证
         last_name: 姓
+        manage_client_ids: 客户租约
+        memberships: 客户租约
+        name: 名称
+        old_password: 旧密码
         password: 密码
+        password_confirmation: 确认密码
+        role: 角色
+        roles:
+          admin: 管理员
+          admins:
+            admin: 管理员
+            project_admin: 项目管理
+            regular: 客户管理
+            superadmin: 超级管理员
+          agile: AGILE
+          case_study: 案例研究
+          client_admin: 客户管理
+          hogan: 霍根
+          manager: 经理
+          member: 用户
+          organisational: 组织结构
+          project_admin: 项目管理
+          psychometric: 心理测量
+          regular: 常规
+          saville: 萨维尔
+          super_admin: 超级管理员
+          superadmin: 超级管理员
+          threesixty: Threesixty
+        types:
+          anonymous: 匿名用户
+          identified: 确定的用户
+        updated_at: 修改日期
       user_form:
+        active: 活跃
+        created_at: 创建日期
+        current_password: 当前密码
+        disabled: 禁用
         email: 电子邮箱地址
         first_name: 名
+        id: 身份证
         last_name: 姓
+        parent: 直接经理
+        parent_id: 直接经理
         password: 密码
+        password_confirmation: 确认密码
+        role: 角色
+        updated_at: 修改日期
+    required:
+      mark: "*"
+      text: 所需
+    'yes': 是
   subjects:
     approval_statuses:
       approved: 批准
@@ -961,6 +3447,7 @@ zh:
     action: 行动
     add: 添加
     and: 和
+    approve: 批准
     approve_all: 批准全部
     approve_all_successful: 已批准所有提名
     approve_evaluations: 批准评估
@@ -988,6 +3475,7 @@ zh:
     decline: 拒绝
     decline_invite: 拒绝邀请
     denied: 已拒绝
+    deny: 拒绝
     deny_all: 拒绝全部
     deny_all_successful: 已拒绝所有提名
     download_pdf: 下载 PDF
@@ -1000,6 +3488,7 @@ zh:
     evaluate: 评估
     evaluation: 评估
     evaluation_all_closed_message: 当前所有提名正在等待批准
+    evaluation_closed_message: 该主题的评估已结束
     evaluation_closed_nomination_message: 你无法提名此主题，因为此主题的评估已关闭
     evaluation_help_modal:
       title: 评估帮助
@@ -1017,6 +3506,8 @@ zh:
       statuses:
         success: 成功
         undelivered: 未送达
+    more_info_evaluation_label: 更多信息 - 评估
+    more_info_nomination_label: 更多信息 - 提名
     my_projects: 我的项目
     name_label: 名称
     nominate: 提名
@@ -1030,8 +3521,11 @@ zh:
       exactly: 正是 %{count}
     nominations: 提名
     options:
+      form:
+        value_not_valid: 没有有效值
       global:
         cannot_re_edit: 参与者无法编辑评估
+        disable_all_evaluations: 禁用所有评估
     or: 或
     page_title: Signify 360° 评论 - 应用级别
     participant_list:
@@ -1042,11 +3536,13 @@ zh:
         hold_report: 暂停报告
         login: 登录
         mark_as_done: 标记为完成
+        regenerate_report: 生成报告
         release_report: 发布报告
         remove_campaign: 从推广活动中移除
         remove_report_approval: 移除报告批准
         remove_report_hold_release_report: 移除报告暂停/发布
         remove_subject: 移除主题
+        reset_password: 重置密码
         unmark_as_done: 取消标记为完成
         view_report: 查看报告
         view_responses: 查看回答
@@ -1094,6 +3590,7 @@ zh:
     setup_nominations: 设置提名
     subject: 主题
     submit: 提交
+    timed_out: 超时
     total_progress: 总进度
     user_name_input_placeholder: 输入姓名或邮箱…
     validation_errors: 验证错误
@@ -1103,27 +3600,212 @@ zh:
     waiting: 等待中
     you: 你
     yourself: 你自己
+  time:
+    formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: 日/月/年 hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: 年/月/日
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
+  universal_links:
+    active: 活跃
+    allow_multiple_respones: 允许用户提交多个回复
+    png: 巴新
+    regenerate_link: 再生链接
+    successfully_generated: 成功生成
+    successfully_updated: 更新成功
+    svg: SVG
   user:
+    datasheet:
+      attribute: 属性
+      value: 价值
     fields:
       email: 电子邮箱地址
       first_name: 名
       last_name: 姓
+    form:
+      email: 电子邮件
+      first_name: 姓名
+      last_name: 姓氏
+      locale: 地点
+      operation: 运行
+      operation_options:
+        add_and_allow_new_response: 添加用户并允许新回复
+        add_with_existing_response: 添加已有回复的用户
+        skip_existing: 跳过现有用户
+    modals:
+      exports:
+        export_sign_in_url: 使用神奇登录 URL 导出
+        include_inactive_users: 导出非活动用户
+        title: 导出用户
+      import:
+        body: 请参阅 "导出 "功能，提取可用于此处 "导入 "的模板。
+        imported_reports: 报告和评估报告的导入
+        imported_users: 导入的用户数量： %{number}
+        success_msg: 上传的文件已排队等待导入，请查看通知中的状态
+        title: 导入用户
+        user_with_unchanged_passwords: 密码未修改的用户列表
+      import_reports:
+        body: 请参阅示例文件，提取可用于此处导入的模板。
+        title: 分配报告和评估
+    toolbar:
+      export: 导出用户
+      export_compact_completion_status: 紧凑型
+      export_detailed_completion_status: 详细
+      export_reports_and_assessments: 出口报告和评估
+      import: 导入用户
+      import_reports: 导入报告和评估
+  user_assessment:
+    column:
+      dimension_id: 尺寸 ID
+      id: 用户评估 ID
+      norm_id: 规范 ID
+    drawer:
+      copied: "%{name} 已复制到剪贴板。"
+      copy: 复制到剪贴板
+      mettl_schedule_name: 附表名称
+      no_data: 无数据
+      title: 评估细节
+      view: 查看
   user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: 重置进度
+          success_message: 评估 %{name} 已可编辑
+      push_test_webhook:
+        copy_request_data_success: Rquest 有效载荷已成功复制到剪贴板。
+        copy_response_body_success: 响应正文已成功复制到剪贴板。
+        copy_response_headers_success: 成功将响应标头复制到剪贴板。
+        event_name_placeholder: 活动名称
+        response_body_title: 响应机构
+        response_header_title: 响应标头
+      push_webhook:
+        submit_button_name: 推送 Webhook
+        title: 推送 Webhook
+      remove:
+        content: 您确定要删除评估"%{name}"吗？
+        successfully: "%{name} 评估已成功删除。"
+      reset:
+        content: 您确定要重置进度"%{name}"吗？
+      test_webhook:
+        submit_button_name: 发送测试
+        title: 发送 Webhook 事件测试
+    normalize_factor_scores:
+      no_scoring_data: 由于没有评分数据，无法完成因子得分的标准化。
+    progress_label: 评估进展
     redirect: 如果您想开始评估，请点击继续。
+    status:
+      completed: 已完成
+      in_progress: 进行中
+      ineligible: 不符合条件
+      interrupted: 中断
+      not_started: 未开始
+      timed_out: 超时
+    statuses:
+      evaluator_nomination_status:
+        completed: 已完成
+        declined: 拒绝
+        waiting: 等待
+      manager_evaluation_status:
+        approved: 批准
+        denied: 拒绝
+        waiting: 等待
+      manager_nomination_status:
+        approved: 批准
+        completed: 已完成
+        declined: 拒绝
+        denied: 拒绝
+        waiting: 等待
+    timer_title:
+      assessment: 评估
+      campaign: 活动
   user_reports:
     actions:
+      add: 添加报告
+      download: 下载
+      generate: 生成
       regenerate: 重新生成
+    approval_statuses:
+      approved: 批准
+      change_requested: 要求更改
+      not_ready: 未准备好
+      pending_qc: 待质检
+      qc_completed: 质量控制已完成
+      qc_in_progress: 质量控制进行中
     messages:
+      async_generation: 报告生成中，报告生成后会通知您。
       regenerate_successful: 已成功排定报告重新生成作业
     modals:
       remove:
         content: 你确定要移除报告 %{userReportName} 吗？
+        content_with_counts:
+          both: 危险：报告 %{userReportName} 有 %{commentsCount} 条评论和 %{editsCount} 条编辑。 如果从用户那里删除报告，这些评论和编辑将丢失。
+          comments: 危险：报告 %{userReportName} 有 %{commentsCount} 条评论。 如果从用户那里删除报告，这些评论将丢失。
+          edits: 危险：报告 %{userReportName} 有 %{editsCount} 个编辑。 如果从该用户删除报告，这些编辑将丢失。
         successfully: 已成功移除报告 %{userReportName}
+      remove_file:
+        content: 您确定要删除文件吗？
+        successfully: 文件已成功删除。
+      upload_file:
+        choose_file: 选择文件
+        success: 文件上传成功。
+        upload: 上传
     preview_report: 预览报告
     statuses:
       generating: 生成中
       not_prepared: 不可用
       prepared: 可用
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: 2 因子认证已禁用
+          enabled: 双因素认证已启用
+        option_to_disable: 禁用 2FA
+        option_to_enable: 启用 2FA
+      remove:
+        confirm_message: 您确定要删除电子邮件地址为"%{email}"的用户吗？
+        confirm_title: 需要确认
+        error_message: 由于错误无法删除用户 - %{error}
+        success_message: "%{email} 已被删除"
+        system_error_message: 无法删除用户，请稍后再试或联系支持人员。
+      reset_password:
+        option: 重置密码
+      unlock_user_access:
+        message: "%{email} 的用户权限已成功解锁。"
+        title: 解锁用户访问权限
+        tooltip: 该用户账户处于锁定状态
+    admins: 管理员
+    create_global_assessor: 创建全球评估员
+    create_superadmin: 创建超级管理员
+    dashboard: 仪表板
+    drawer:
+      link: 链接
+      role: 角色
+      title: 用户详细信息
+    global_assessors: 全球评估员
+    password_change_success: 密码已成功更改，请使用新密码登录。
+    roles:
+      campaign_admin: 活动管理
+      campaign_assessor: 活动评估员
+      campaign_user: 活动用户
+      client_admin: 客户管理
+      project_admin: 项目管理
+      superadmin: 超级管理员
+    superadmins: 超级管理员
+    users: 用户
   validations:
     AudioResponse:
       in_progress:
@@ -1138,6 +3820,8 @@ zh:
     TextEntry:
       Email:
         character_range: 输入的邮件消息不得少于 %{min} 或超过 %{max} 个字符。
+        max_character: 输入的电子邮件信息不得超过 %{max} 字符数。
+        min_character: 输入的电子邮件信息必须至少有 %{min} 个字符。
         subject:
           min_length: 主题字段应至少包含 10 个字符
         to:
@@ -1155,24 +3839,33 @@ zh:
     date: 你的回答必须是有效日期（年/月/日）
     each_group_contains: 每组需要包含不少于 %{min} 或不多于 %{max} 项
     email: 你的回答必须是有效的邮箱
+    exact: 请准确选择 %{个}选项
     file_upload:
+      BadRequest: 由于最后一次请求失败，文件未上传。 这可能是由于您的网络无法正常工作。 如果您的网络正常工作，请联系管理员
       EntityTooLarge: 文件大小应小于 %{maxFileSize} MB
       WrongFileType: 文件类型应为以下之一 %{allowedFileTypes}
+    invalid: 无效
     issue: 问题
     least: 请至少回答 %{min} 个选项。
     least_hotspot: 请至少回答 %{min} 个选项。
     max_character: 你的回答不得超过 %{max} 个字符。
     max_word: 你的回答不得超过 %{max} 个字。
     min_character: 你的回答不得少于 %{min} 个字符。
+    min_factor: 您的回复必须至少包含 %{min} 因子反馈。
     min_word: 你的回答不得少于 %{min} 字
+    most: 请最多选择 %{max} 个选项
     must_rank_between: 请为每个项目分配从 %{min} 到 %{max} 的值。值不得重复。
     must_select: 请从 %{min} 到 %{max} 个选项中选择
+    not_in_future: 所选日期不应是未来日期
+    not_in_past: 所选日期不应在过去
     number: 你的回答必须是数字
+    photo: 所需
     range: 请至少回答 %{min} 个且不超过 %{max} 个选项。
     required: 请回答此问题
     text: 你的回答不得包含数字
     title:
-      other: 有一个错误，请检查您的答复
+      other:
+    user_self_skill_rating_disabled: 此模板已禁用自我评级
     word_count: '字数 '
     word_range: 您的回复字数必须至少 %{min}，不超过 %{max}。
   'yes': 是

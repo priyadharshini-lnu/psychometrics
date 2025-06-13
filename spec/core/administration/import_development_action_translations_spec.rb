@@ -8,21 +8,13 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
   let!(:project) { create(:project) }
   let!(:development_action) { create(:development_action, project_id: project.id) }
   let!(:other_project_development_action) { create(:development_action, project_id: create(:project).id) }
+  let(:file) { double('file', url: file_url) }
 
   describe 'Form Validation' do
     let(:csv_file) { fixture_file_upload('development_action_translations.csv', 'text/csv') }
     let(:form) { Api::V2::Administration::DevelopmentActionTranslationImportForm.new(file: csv_file) }
 
     context 'with valid CSV data' do
-      before do
-        allow(csv_file).to receive(:read).and_return(<<~CSV
-          ID,English / en,French / fr,German / de
-          #{development_action.id}#Name,English Name,French Name,German Name
-          #{development_action.id}#Description,English Description,French Description,German Description
-        CSV
-                                                    )
-      end
-
       it 'validates successfully' do
         expect(form).to be_valid
       end
@@ -30,11 +22,12 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
 
     context 'with missing required fields' do
       before do
-        allow(csv_file).to receive(:read).and_return(<<~CSV
-          ID
-          #{development_action.id}#Name
-        CSV
-                                                    )
+        allow(CSVSafe).to receive(:read).with(csv_file.path, encoding: 'bom|utf-8', headers: true).and_return(
+          CSV.parse(<<~CSV, headers: true)
+            ID
+            #{development_action.id}#Name
+          CSV
+        )
       end
 
       it 'is invalid' do
@@ -49,27 +42,33 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
 
   describe 'Import Service' do
     context 'with invalid URL' do
-      let(:invalid_url) { 'not-a-url' }
+      let(:file_with_invalid_url) { double('file', url: 'invalid_url') }
 
       it 'returns error for invalid URL' do
-        result = described_class.new(invalid_url, project.id).call
-        expect(result).to be_an(Array)
-        expect(result).to include(
-          I18n.t('administration.development_action_translations.import.errors.invalid_url',
-                 message: I18n.t('administration.development_action_translations.import.errors.invalid_url_format'))
+        expect do
+          described_class.new(file_with_invalid_url, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t('administration.errors.invalid_url_format')
         )
       end
     end
 
     context 'with unreachable URL' do
       before do
-        stub_request(:get, file_url).to_return(status: 404, body: 'Not Found')
+        stub_request(:get, file_url).to_raise(OpenURI::HTTPError.new('404 Not Found', nil))
       end
 
       it 'returns error for failed download' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to be_an(Array)
-        expect(result.first).to include('Failed to download file')
+        expect do
+          described_class.new(file, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t(
+            'administration.errors.download_failed',
+            message: '404 Not Found'
+          )
+        )
       end
     end
 
@@ -88,7 +87,7 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
       end
 
       it 'imports translations successfully' do
-        result = described_class.new(file_url, project.id).call
+        result = described_class.new(file, project.id).call
         expect(result).to eq(true)
 
         # Check French translation
@@ -120,12 +119,15 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
       end
 
       it 'returns error for development action not in project' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to be_an(Array)
-        expect(result).to include(
-          I18n.t('administration.development_action_translations.import.errors.development_action_not_found',
-                 id: other_project_development_action.id.to_s,
-                 project_id: project.id)
+        expect do
+          described_class.new(file, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t(
+            'administration.development_action_translations.import.errors.development_action_not_found',
+            id: other_project_development_action.id.to_s,
+            project_id: project.id
+          )
         )
       end
     end
@@ -145,12 +147,15 @@ RSpec.describe Administration::ImportDevelopmentActionTranslations do
       end
 
       it 'returns error for non-existent development action' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to be_an(Array)
-        expect(result).to include(
-          I18n.t('administration.development_action_translations.import.errors.development_action_not_found',
-                 id: '999999',
-                 project_id: project.id)
+        expect do
+          described_class.new(file, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t(
+            'administration.development_action_translations.import.errors.development_action_not_found',
+            id: '999999',
+            project_id: project.id
+          )
         )
       end
     end

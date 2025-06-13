@@ -28,8 +28,9 @@ module Administration
           optional(:campaignTemplates).filled(:str?)
           optional(:auditLogs).filled(:str?)
           optional(:viewDataExports).filled(:str?)
-          optional(:skills).filled(:str?)
+          optional(:skillsTaxonomy).filled(:str?)
           optional(:developmentActions).filled(:str?)
+          optional(:aiAssistants).filled(:str?)
         end
       end
     end

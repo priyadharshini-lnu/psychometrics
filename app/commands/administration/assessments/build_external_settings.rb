@@ -26,6 +26,8 @@ module Administration
             broadcast(:ok, {})
           when Assessment::TYPES[:simulation]
             broadcast(:ok, build_simulation)
+          when Assessment::TYPES[:skillvue]
+            broadcast(:ok, build_skillvue)
         end
       end
 
@@ -68,6 +70,10 @@ module Administration
       end
 
       def build_simulation
+        { assessment_id: raw_external_settings[:assessment_id] }
+      end
+
+      def build_skillvue
         { assessment_id: raw_external_settings[:assessment_id] }
       end
     end

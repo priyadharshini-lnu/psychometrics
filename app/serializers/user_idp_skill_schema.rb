@@ -8,7 +8,7 @@ class UserIdpSkillSchema < BaseSchema
       required(:description).filled(:str?)
       required(:initial_rating).filled(:int?)
       required(:final_rating).filled(:int?)
-      required(:category).filled(:str?)
+      required(:skill_type).filled(:str?)
       required(:user_idp_development_actions).hash(UserIdpDevelopmentActionSchema.schema(_, _))
     end
   end

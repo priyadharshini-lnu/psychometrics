@@ -39,6 +39,8 @@ const connecter = connect((state: RootState) => ({
   readComment,
 })
 
+const { I18n } = window
+
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 type Props = PropsFromRedux & {
@@ -63,7 +65,7 @@ const Compose = ({ selected, disabled, onSend }) => {
   return (
     <div className={styles.compose}>
       <div className={styles.hint}>
-        {selected ? selected.name : 'Select a text module to comment'}
+        {selected ? selected.name : I18n.t('administration.reports.preview.info_to_select_module')}
       </div>
       <Input
         disabled={disabled}
@@ -71,7 +73,7 @@ const Compose = ({ selected, disabled, onSend }) => {
         onChange={e => setValue(e.currentTarget.value)}
         onKeyUp={keydown}
         suffix={disabled ? (
-          <Tooltip title="Select a text module first">
+          <Tooltip title={I18n.t('administration.reports.preview.info_to_select_module')}>
             <SendOutlined className={styles.send} />
           </Tooltip>
         ) : (
@@ -162,7 +164,7 @@ function Comments ({
     <div className={styles.comments}>
       <div className={styles.filters}>
         <Space>
-          <span>Hide Resolved</span>
+          <span>{I18n.t('administration.reports.preview.hide_resolved')}</span>
           <Switch checked={hideResolved} onChange={() => setHideResolved(!hideResolved)} />
         </Space>
       </div>

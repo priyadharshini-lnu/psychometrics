@@ -17,6 +17,7 @@ module Workshops
                                        :scheduling_lead_time,
                                        :cancellation_lead_time,
                                        :allow_late_cancellation_and_rescheduling,
+                                       :campaign_assessment_group_id,
                                        :meeting_link))
 
         workshop.workshop_assessors.where.not(user_id: params[:workshop_assessors_ids]).destroy_all

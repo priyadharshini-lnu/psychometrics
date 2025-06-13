@@ -6,6 +6,5 @@ import '~/styles/utils.less'
 import initSentry from '~/libs/initSentry'
 
 initSentry()
-
 const root = createRoot(document.getElementById('three-sixty-container'))
 root.render(<ThreeSixtyApp />)

@@ -171,7 +171,7 @@ const Project: FC<Props> = ({
     label: I18n.t('administration.idp.idp'),
   })
 
-  idpEnabled && menuItems.push(
+  idpEnabled && currentUser.permissions.accessProjectTaxonomy && menuItems.push(
     {
       key: 'taxonomy',
       icon: <ApartmentOutlined />,

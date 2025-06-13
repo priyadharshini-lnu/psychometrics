@@ -6,32 +6,36 @@ module EndUser
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,
-               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invite, :workshop, :user_assessments,
-               :practice_campaign
+               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invites, :workshops,
+               :user_assessments, :practice_campaign
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
 
-    def workshop_invite
-      workshop_invite_record = object.workshop_invites.joins(:workshop_invited_subjects).where(
+    def workshop_invites
+      workshop_invite_records = object.workshop_invites.joins(:workshop_invited_subjects).where(
         workshop_invited_subjects: { user_id: current_user.id, status: :pending },
         campaign_id: object.id
-      ).order(:created_at).last
+      ).order(:created_at)
 
-      return nil unless workshop_invite_record
+      return nil unless workshop_invite_records
 
-      ::EndUser::WorkshopInviteSerializer.new(
-        context: { current_user: current_user }
-      ).serialize(workshop_invite_record)
+      Panko::ArraySerializer.new(
+        workshop_invite_records,
+        context: { current_user: current_user },
+        each_serializer: ::EndUser::WorkshopInviteSerializer
+      ).to_a
     end
 
-    def workshop
-      workshop = Workshop.visible_to_end_user(current_user.id).where(campaign_id: object.id).first
+    def workshops
+      workshops = Workshop.visible_to_end_user(current_user.id).where(campaign_id: object.id)
 
-      return nil unless workshop
+      return nil unless workshops
 
-      ::EndUser::ShortWorkshopSerializer.new(
-        context: { current_user: current_user }
-      ).serialize(workshop)
+      Panko::ArraySerializer.new(
+        workshops,
+        context: { current_user: current_user },
+        each_serializer: ::EndUser::ShortWorkshopSerializer
+      ).to_a
     end
 
     def privacy_consent_required

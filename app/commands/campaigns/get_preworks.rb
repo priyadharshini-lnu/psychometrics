@@ -15,8 +15,8 @@ module Campaigns
 
     private
 
-    def users_campaign_assessments
-      @users_campaign_assessments ||= UserAssessment.where(campaign_id: campaign_id).with_campaign_assessments
+    def campaign_user_assessments
+      @campaign_user_assessments ||= UserAssessment.where(campaign_id: campaign_id)
     end
 
     def preworks_status_by_user
@@ -31,10 +31,10 @@ module Campaigns
     end
 
     def preworks
-      return unless users_campaign_assessments
+      return unless campaign_user_assessments
 
-      @preworks ||= users_campaign_assessments.
-                    where('campaign_assessments.prework = true').
+      @preworks ||= campaign_user_assessments.
+                    where(prework: true).
                     group('user_assessments.subject_id', 'user_assessments.status')
 
       @preworks = @preworks.where(user_assessments: { subject_id: user_id }) if user_id

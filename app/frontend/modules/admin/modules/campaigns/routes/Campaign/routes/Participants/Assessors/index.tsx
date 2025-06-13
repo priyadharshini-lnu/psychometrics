@@ -90,7 +90,7 @@ const AssessorList: React.FC<Props> = ({
         <div>
           <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
           <Search
-            placeholder="Search"
+            placeholder={I18n.t('common.actions.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
@@ -99,7 +99,7 @@ const AssessorList: React.FC<Props> = ({
             <div className={styles.newUserButton}>
               <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
                 <PlusOutlined />
-                <span>Add Assessor</span>
+                <span>{I18n.t('administration.assessor.create_assessor')}</span>
               </Button>
             </div>
           )}

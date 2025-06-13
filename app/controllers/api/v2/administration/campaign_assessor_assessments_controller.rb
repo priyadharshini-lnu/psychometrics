@@ -2,7 +2,7 @@
 
 module Api
   class V2::Administration::CampaignAssessorAssessmentsController < Api::V2::Administration::BaseController
-    validates_request_schema :create, Api::V2::CampaignAssessorAssessment::CreateContract.new
+    validates_request_schema :create, -> { Api::V2::CampaignAssessorAssessment::CreateContract.new }
 
     def subject_assessor_assessments
       render json: {
@@ -19,12 +19,6 @@ module Api
     end
 
     def serialized_assessor_user_assessments
-      assessor_user_assessments = UserAssessment.where(
-        relationship_id: Relationship.assessor_relationship.id,
-        subject_id: workshop_subject.user_id,
-        campaign_id: campaign_id
-      )
-
       Panko::ArraySerializer.new(
         assessor_user_assessments,
         each_serializer: ::Administration::Campaigns::WorkshopSubjects::AssessorUserAssessmentSerializer,
@@ -39,7 +33,26 @@ module Api
     end
 
     def campaign_assessor_assessments
-      CampaignAssessorAssessment.where(campaign_id: campaign_id)
+      CampaignAssessorAssessment.
+        joins(:assessment).
+        where(campaign_id: campaign_id).
+        where(assessment: { linked_assessment_id: [nil, *user_assessments.pluck(:assessment_id)] })
+    end
+
+    def assessor_user_assessments
+      @assessor_user_assessments ||= UserAssessment.where(
+        relationship_id: Relationship.assessor_relationship.id,
+        subject_id: workshop_subject.user_id,
+        campaign_id: campaign_id
+      )
+    end
+
+    def user_assessments
+      @user_assessments = UserAssessment.with_campaign_assessments.
+                          where(campaign_assessments: {
+                            campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id
+                          }).
+                          where(subject_id: workshop_subject.user_id, campaign_id: campaign_id)
     end
   end
 end

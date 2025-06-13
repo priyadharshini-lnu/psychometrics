@@ -10,20 +10,13 @@ RSpec.describe Administration::ImportDevelopmentActions do
   let!(:project_skill) { create(:skill, project_id: project.id) }
   let!(:other_project_skill) { create(:skill, project_id: create(:project).id) }
   let(:image_url) { 'https://example.com/course_image.jpg' }
+  let(:file) { double('file', url: file_url) }
 
   describe 'Form Validation' do
     let(:csv_file) { fixture_file_upload('development_actions.csv', 'text/csv') }
     let(:form) { Api::V2::Administration::DevelopmentActionImportForm.new(file: csv_file) }
 
     context 'with valid CSV data' do
-      before do
-        allow(csv_file).to receive(:read).and_return(<<~CSV
-          ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
-          1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31,#{image_url}
-        CSV
-                                                    )
-      end
-
       it 'validates successfully' do
         expect(form).to be_valid
       end
@@ -31,29 +24,40 @@ RSpec.describe Administration::ImportDevelopmentActions do
 
     context 'with missing required fields' do
       before do
-        allow(csv_file).to receive(:read).and_return(<<~CSV
-          ID,Name,Description
-          1,Leadership Workshop,Attend workshop
-        CSV
-                                                    )
+        allow(CSVSafe).to receive(:read).with(
+          csv_file.path,
+          encoding: 'bom|utf-8'
+        ).and_return(
+          [
+            ['ID', 'Name', 'Description'],
+            ['1', 'Leadership Workshop', 'Attend workshop']
+          ]
+        )
       end
 
       it 'is invalid' do
         expect(form).not_to be_valid
         expect(form.errors[:base]).to include(
           I18n.t('administration.development_action_import.errors.missing_columns',
-                 fields: 'SkillID, Type, Category')
+                 fields: 'SkillID, Type, DevelopmentActionType')
         )
       end
     end
 
     context 'with invalid learning style' do
       before do
-        allow(csv_file).to receive(:read).and_return(<<~CSV
-          ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate
-          1,#{global_skill.id},Leadership Workshop,Attend workshop,invalid_type,course,https://example.com/course,2025-01-01,2025-12-31
-        CSV
-                                                    )
+        allow(CSVSafe).to receive(:read).with(csv_file.path, encoding: 'bom|utf-8').and_return(
+          [
+            [
+              'ID', 'SkillID', 'Name', 'Description', 'Type', 'DevelopmentActionType',
+              'CourseURL', 'CourseStartDate', 'CourseEndDate'
+            ],
+            [
+              '1', global_skill.id, 'Leadership Workshop', 'Attend workshop', 'invalid_type',
+              'course', 'https://example.com/course', '2025-01-01', '2025-12-31'
+            ]
+          ]
+        )
       end
 
       it 'is invalid' do
@@ -70,25 +74,27 @@ RSpec.describe Administration::ImportDevelopmentActions do
 
   describe 'Import Service' do
     context 'with invalid URL' do
-      let(:invalid_url) { 'not-a-url' }
+      let(:file) { double('file', url: 'not-a-url') }
 
       it 'raises an error for invalid URL format' do
-        expect { described_class.new(invalid_url, project.id).call }.to raise_error(
+        expect { described_class.new(file, project.id).call }.to raise_error(
           Errors::ImportError,
-          I18n.t('administration.development_action_import.errors.invalid_url_format')
+          I18n.t('administration.errors.invalid_url_format')
         )
       end
     end
 
     context 'with unreachable URL' do
+      let(:file) { double('file', url: file_url) }
+
       before do
         stub_request(:get, file_url).to_raise(OpenURI::HTTPError.new('404 Not Found', nil))
       end
 
       it 'raises an error for download failure' do
-        expect { described_class.new(file_url, project.id).call }.to raise_error(
+        expect { described_class.new(file, project.id).call }.to raise_error(
           Errors::ImportError,
-          I18n.t('administration.development_action_import.errors.download_failed', message: '404 Not Found')
+          I18n.t('administration.errors.download_failed', message: '404 Not Found')
         )
       end
     end
@@ -103,11 +109,10 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate,CourseImage
               1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31,#{image_url}
             CSV
           )
-
         stub_request(:get, image_url).
           to_return(
             status: 200,
@@ -117,7 +122,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
       end
 
       it 'imports development action with course details and image' do
-        expect { described_class.new(file_url, project.id).call }.not_to raise_error
+        expect { described_class.new(file, project.id).call }.not_to raise_error
 
         development_action = DevelopmentAction.last
 
@@ -126,7 +131,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         expect(development_action.description).to eq('Attend workshop')
         expect(development_action.learning_style).to eq('structured_learning')
         expect(development_action.course_url).to eq('https://example.com/course')
-        expect(development_action.category).to eq('course')
+        expect(development_action.development_action_type).to eq('course')
         expect(development_action.project_id).to eq(project.id)
 
         # Compare dates using to_date to avoid time zone issues
@@ -145,18 +150,18 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
               1,#{project_skill.id},Project Skill Workshop,Attend workshop,structured_learning,default,https://example.com/course,2025-01-01,2025-12-31
             CSV
           )
       end
 
       it 'imports development action with project skill' do
-        expect { described_class.new(file_url, project.id).call }.not_to raise_error
+        expect { described_class.new(file, project.id).call }.not_to raise_error
         development_action = DevelopmentAction.last
         expect(development_action.skills).to include(project_skill)
         expect(development_action.project_id).to eq(project.id)
-        expect(development_action.category).to eq('default')
+        expect(development_action.development_action_type).to eq('default')
       end
     end
 
@@ -167,14 +172,14 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate,CourseImage
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate,CourseImage
               1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31,invalid-url
             CSV
           )
       end
 
       it 'raises an error for invalid image URL' do
-        expect { described_class.new(file_url, project.id).call }.to raise_error(
+        expect { described_class.new(file, project.id).call }.to raise_error(
           Errors::ImportError,
           I18n.t('administration.development_action_import.errors.invalid_image_url', url: 'invalid-url')
         )
@@ -188,14 +193,14 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
               1,#{global_skill.id},Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,invalid-date,2025-12-31
             CSV
           )
       end
 
       it 'raises an error for invalid date format' do
-        expect { described_class.new(file_url, project.id).call }.to raise_error(
+        expect { described_class.new(file, project.id).call }.to raise_error(
           Errors::ImportError,
           I18n.t('administration.development_action_import.errors.invalid_date_format', date: 'invalid-date')
         )
@@ -209,14 +214,14 @@ RSpec.describe Administration::ImportDevelopmentActions do
             status: 200,
             headers: { 'Content-Type' => 'text/csv' },
             body: <<~CSV
-              ID,SkillID,Name,Description,Type,Category,CourseURL,CourseStartDate,CourseEndDate
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
               1,999999,Leadership Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
             CSV
           )
       end
 
       it 'raises an error for non-existent skill' do
-        expect { described_class.new(file_url, project.id).call }.to raise_error(
+        expect { described_class.new(file, project.id).call }.to raise_error(
           Errors::ImportError,
           I18n.t('administration.development_action_import.errors.skill_not_found', skill_id: '999999')
         )

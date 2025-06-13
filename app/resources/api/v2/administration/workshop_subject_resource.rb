@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration::BaseResource
   attributes :attendance_status, :attended, :preworks, :workshop_activities,
-             :language, :late_duration, :scheduling_status, :created_at
+             :language, :late_duration, :scheduling_status, :created_at, :campaign_assessment_group_name,
+             :campaign_assessment_group_id
   delegate :full_name, :email, :photo_url, to: :user
 
   has_one :user
@@ -80,6 +81,14 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
         assessors
       }
     }
+  end
+
+  def campaign_assessment_group_name
+    @model.workshop.campaign_assessment_group.name
+  end
+
+  def campaign_assessment_group_id
+    @model.workshop.campaign_assessment_group.id
   end
 
   private

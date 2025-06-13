@@ -9,18 +9,27 @@ module Api
         schema Api::V2::WorkshopSubject::Schema.create_request
 
         rule(data: { relationships: { user: { data: :id } } }) do
-          existing_workshop_subject = ::WorkshopSubject.participatable.find_by(
-            campaign: _context[:campaign], user_id: value
-          )
+          workshop = ::Workshop.find_by(id: values.dig(:data, :relationships, :workshop, :data, :id))
+
+          existing_workshop_subject = ::WorkshopSubject.joins(workshop: :campaign_assessment_group).
+                                      participatable.
+                                      where(workshops: {
+                                        campaign_assessment_group_id: workshop.campaign_assessment_group_id
+                                      }).
+                                      find_by(campaign_id: _context[:campaign], user_id: value)
+
           if existing_workshop_subject
             key.failure(:part_of_other_workshop, workshop_name: existing_workshop_subject.workshop.name)
           end
         end
 
         rule(data: { relationships: { user: { data: :id } } }) do
-          subject_exists = ::WorkshopSubject.exists?(
-            user_id: value, workshop_id: values.dig(:data, :relationships, :workshop, :data, :id)
-          )
+          workshop = ::Workshop.find_by(id: values.dig(:data, :relationships, :workshop, :data, :id))
+
+          subject_exists = ::WorkshopSubject.joins(workshop: :campaign_assessment_group).
+                           where(workshops: { campaign_assessment_group_id: workshop.campaign_assessment_group_id }).
+                           exists?(workshop_id: values.dig(:data, :relationships, :workshop, :data,
+                                                           :id), user_id: value)
           key.failure(:already_exists) if subject_exists
         end
       end

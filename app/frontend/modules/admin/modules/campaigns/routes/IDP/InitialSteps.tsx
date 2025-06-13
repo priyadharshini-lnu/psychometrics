@@ -1,0 +1,176 @@
+import {
+  useEffect, useState,
+} from 'react'
+import {
+  Steps, Layout, Flex,
+  Spin,
+} from 'antd'
+import {
+  useParams, useNavigate, useLocation,
+} from 'react-router-dom'
+import { GettingStart } from './GettingStartStep'
+import { SkillGapReportStep } from './SkillGapReportStep'
+import { useResources } from '~/hooks/useResources'
+import { UserIdpPlan } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
+import { AdminAddSkills } from './AdminAddSkills'
+import { InformationBanner } from './InformationBanner'
+import { USER_IDP_PLAN_STATUS, STEPS } from './constants'
+
+const { I18n } = window
+
+export const InitialStepsComponent = () => {
+  const [currentStep, setCurrentStep] = useState(STEPS.gettingStarted)
+  const [isLoading, setIsLoading] = useState(true)
+
+  const { idp_plan_id } = useParams()
+  const { step: paramStep } = useParams()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const currentPath = location.pathname
+
+
+  const {
+    data: userIdpPlanData, fetchSingle: fetchUserIdpPlan, updateResource: updatePlan,
+  } = useResources<UserIdpPlan>(
+    'user_idp_plans',
+    {
+      apiConfig: {
+        include: ['idp_template', 'skills.development_actions', 'skills'],
+      },
+    },
+  )
+
+  const STEP_ITEMS = [
+    {
+      title: I18n.t('idp.initial_steps.getting_started'),
+      step: STEPS.gettingStarted,
+    },
+    {
+      title: I18n.t('idp.initial_steps.skill_gap_report'),
+      hide: !userIdpPlanData[0]?.skillGapReportAvailable,
+      step: STEPS.skillGapReport,
+    },
+    {
+      title: I18n.t('idp.initial_steps.add_skills_step'),
+      step: STEPS.addSkills,
+    },
+  ]
+
+  const visibleSteps = STEP_ITEMS.filter(item => !item.hide)
+  const currentStepIndex = visibleSteps.findIndex(({ step }) => step === currentStep)
+
+  useEffect(() => {
+    if (!userIdpPlanData[0]) { return }
+
+    if (userIdpPlanData[0]?.status !== USER_IDP_PLAN_STATUS.NOT_STARTED) {
+      navigate(`${currentPath.split('step')[0]}plan`)
+    }
+
+    if (paramStep === STEPS.skillGapReport && userIdpPlanData[0] && !userIdpPlanData[0]?.skillGapReportAvailable) {
+      setCurrentStep(STEPS.gettingStarted)
+      navigate(`${currentPath.split('step')[0]}step/getting_started`)
+    }
+  }, [userIdpPlanData])
+
+  useEffect(() => {
+    switch (currentPath.split('step/')[1]) {
+      case 'getting_started': setCurrentStep(STEPS.gettingStarted); break
+      case 'add_skills': setCurrentStep(STEPS.addSkills); break
+      case 'skill_gap_report': setCurrentStep(STEPS.skillGapReport); break
+      default: setCurrentStep(STEPS.gettingStarted); break
+    }
+  }, [currentPath])
+
+
+  useEffect(() => {
+    fetchUserIdpPlan({
+      id: idp_plan_id as string,
+    }).then(() => {
+      setIsLoading(false)
+    })
+  }, [idp_plan_id])
+
+  const handleNextForGettingStartedStep = () => {
+    if (!userIdpPlanData[0]?.skillGapReportAvailable) {
+      setCurrentStep(STEPS.addSkills)
+      navigate(`${currentPath.split('step')[0]}step/add_skills`)
+    } else {
+      setCurrentStep(STEPS.skillGapReport)
+      navigate(`${currentPath.split('step')[0]}step/skill_gap_report`)
+    }
+  }
+
+  const handleNextForSkillGapReportStep = () => {
+    setCurrentStep(STEPS.addSkills)
+    navigate(`${currentPath.split('step')[0]}step/add_skills`)
+  }
+
+  const handleNextForAddSkillsStep = (selectedSkills) => {
+    setIsLoading(true)
+
+    const planPayload = userIdpPlanData[0]
+    const skillPayload = {
+
+      skills: selectedSkills.map(skill => ({
+        id: skill.id,
+        category: skill.category,
+        name: skill.name,
+        skill_id: skill.id,
+      })),
+    }
+
+    updatePlan({
+      id: planPayload.id,
+      userId: planPayload.userId.toString(),
+      idpTemplateId: planPayload.idpTemplateId.toString(),
+      campaignId: planPayload.campaignId.toString(),
+      active: planPayload.active,
+      creatorId: planPayload.creatorId.toString(),
+      status: USER_IDP_PLAN_STATUS.DRAFT,
+      ...skillPayload,
+    }).then(() => {
+      setIsLoading(false)
+      navigate(`${currentPath.split('step')[0]}plan`)
+    })
+  }
+
+  const idpSteps = (
+    <>
+      <Steps
+        current={currentStepIndex === -1 ? 0 : currentStepIndex}
+        items={visibleSteps.map(({ title }) => ({ title }))}
+      />
+      {paramStep === STEPS.gettingStarted
+      && <GettingStart next={handleNextForGettingStartedStep} />}
+      {paramStep === STEPS.skillGapReport && (
+        <SkillGapReportStep
+          skillGapReportId={userIdpPlanData[0]?.skillGapReportId}
+          next={handleNextForSkillGapReportStep}
+        />
+      )}
+      {paramStep === STEPS.addSkills && (
+        <AdminAddSkills
+          userIdpSkills={userIdpPlanData[0]?.skills}
+          next={handleNextForAddSkillsStep}
+          idpTemplateId={userIdpPlanData[0]?.idpTemplateId as string}
+        />
+      )}
+    </>
+  )
+
+
+  return (
+    <>
+      <InformationBanner />
+      <Layout.Content>
+        <Flex justify="center" align="middle" vertical style={{ padding: '1rem' }}>
+          {isLoading && (
+            <Spin size="large" />
+          )}
+          {!isLoading && (userIdpPlanData[0]?.status === USER_IDP_PLAN_STATUS.NOT_STARTED ? idpSteps : <></>)}
+        </Flex>
+      </Layout.Content>
+    </>
+
+  )
+}

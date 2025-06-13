@@ -3,7 +3,8 @@
 class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseResource
   attributes :campaign_id, :start_time, :timezone, :duration, :video_call_type, :total_seats, :cancellation_lead_time,
              :scheduling_lead_time, :booked_seats, :remaining_seats, :meeting_link, :workshop_assessors_ids,
-             :workshop_managers_ids, :name, :status, :allow_late_cancellation_and_rescheduling
+             :workshop_managers_ids, :name, :status, :allow_late_cancellation_and_rescheduling,
+             :campaign_assessment_group_id
 
   has_many :workshop_managers
   has_many :workshop_assessors
@@ -11,6 +12,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   has_many :workshop_resources
   has_many :workshop_invited_subjects
   has_one :campaign
+  has_one :campaign_assessment_group
 
   filter :start_time_between, apply: lambda { |records, date_range, _options|
     records.where(start_time: (date_range.first...date_range.last.to_time.end_of_day))
@@ -44,8 +46,13 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
        scheduling_lead_time
        cancellation_lead_time
        allow_late_cancellation_and_rescheduling
+       campaign_assessment_group_id
        name
        video_call_type meeting_link status]
+  end
+
+  def campaign_assessment_group_id
+    @model.campaign_assessment_group_id.to_s
   end
 
   def remaining_seats

@@ -7,10 +7,9 @@ import {
   DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined, SyncOutlined, EyeOutlined,
 } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router-dom'
-import map from 'lodash/map'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
-  get, fetch, remove, REMOVE, loadMettlAssessments,
+  get, fetch, remove, REMOVE, loadMettlAssessments, loadSkillvueAssessments,
 } from '~/modules/admin/modules/client/core/integrations'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
@@ -32,6 +31,7 @@ const connector = connect(
     remove,
     openModal,
     loadMettlAssessments,
+    loadSkillvueAssessments,
   },
 )
 
@@ -50,6 +50,7 @@ const IntegrationsComponent: React.FC<Props> = ({
   remove,
   openModal,
   loadMettlAssessments,
+  loadSkillvueAssessments,
   isDeleteRequestInProgress,
 }) => {
   const { projectId } = useParams() as { projectId: string }
@@ -69,6 +70,13 @@ const IntegrationsComponent: React.FC<Props> = ({
     loadMettlAssessments(projectId)
       .then(() => {
         message.success(I18n.t('administration.integrations.load_mettl_success'))
+      })
+  }
+
+  const handleSkillvueLoad = () => {
+    loadSkillvueAssessments(projectId)
+      .then(() => {
+        message.success(I18n.t('administration.integrations.load_skillvue_success'))
       })
   }
 
@@ -100,7 +108,13 @@ const IntegrationsComponent: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.integrations.columns.details')}
-              render={({ name, details, provider }) => {
+              render={({
+                name,
+                mettlIntegrationDetails,
+                hoganIntegrationDetails,
+                iihtIntegrationDetails,
+                skillvueIntegrationDetails,
+              }) => {
                 if (name === 'hogan') {
                   return (
                     <>
@@ -108,7 +122,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                         {I18n.t('administration.integrations.details.provider')}
                         :
                       </b>
-                      <div>{provider}</div>
+                      <div>{hoganIntegrationDetails.provider}</div>
                     </>
                   )
                 }
@@ -121,24 +135,43 @@ const IntegrationsComponent: React.FC<Props> = ({
                         :
                       </b>
                       <div>
-                        <div>{details.completionWebhookUrl}</div>
-                        <div>{details.resultsWebhookUrl}</div>
+                        <div>{mettlIntegrationDetails.completionWebhookUrl}</div>
+                        <div>{mettlIntegrationDetails.resultsWebhookUrl}</div>
                       </div>
                     </>
                   )
                 }
 
-                if (!details) { return null }
+                if (name === 'skillvue') {
+                  return (
+                    <>
+                      <b>
+                        {I18n.t('administration.integrations.details.webhookUrls')}
+                        :
+                      </b>
+                      <div>
+                        <div>{skillvueIntegrationDetails.completionWebhookUrl}</div>
+                        <div>{skillvueIntegrationDetails.resultsWebhookUrl}</div>
+                      </div>
+                    </>
+                  )
+                }
 
-                return map(details, (value, key) => (
-                  <>
-                    <b>
-                      {I18n.t(`administration.integrations.details.${key}`)}
-                      :
-                    </b>
-                    <div>{value}</div>
-                  </>
-                ))
+                if (name === 'iiht') {
+                  return (
+                    <>
+                      <b>
+                        {I18n.t('administration.integrations.details.webhookUrl')}
+                        :
+                      </b>
+                      <div>
+                        <div>{iihtIntegrationDetails.webhookUrl}</div>
+                      </div>
+                    </>
+                  )
+                }
+
+                return null
               }}
             />
             <Column
@@ -156,6 +189,13 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </Tooltip>
                     </>
                   )}
+                  {integration.name === 'skillvue' && (
+                    <>
+                      <Tooltip title={I18n.t('administration.integrations.actions.load_skillvue_catalog')}>
+                        <SyncOutlined onClick={handleSkillvueLoad} />
+                      </Tooltip>
+                    </>
+                  )}
                   <Tooltip title={I18n.t('common.actions.edit')}>
                     <EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} />
                   </Tooltip>
@@ -164,6 +204,8 @@ const IntegrationsComponent: React.FC<Props> = ({
                       : <DeleteOutlined onClick={() => remove(projectId, integration.id)} />}
                   </Tooltip>
                 </Space>
+
+
               )}
             />
           </Table>

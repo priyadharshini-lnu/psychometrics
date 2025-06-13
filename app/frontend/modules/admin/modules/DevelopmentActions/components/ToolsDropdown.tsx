@@ -56,7 +56,8 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.export) {
     exportMenuItems.push({
       key: 'export_development_action',
-      label: I18n.t('administration.development_actions.export_development_actions'),
+      label: params.projectId ? I18n.t('administration.development_actions.export_development_actions')
+        : I18n.t('administration.development_actions.export_development_actions_project'),
     })
   }
 
@@ -64,7 +65,8 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.exportTranslations) {
     exportMenuItems.push({
       key: 'export_development_action_translations',
-      label: I18n.t('administration.development_actions.export_development_action_translations'),
+      label: params.projectId ? I18n.t('administration.development_actions.export_development_action_translations')
+        : I18n.t('administration.development_actions.export_development_action_translations_project'),
     })
   }
 

@@ -105,6 +105,11 @@ pl:
         frame: Upewnij się, że Twoja twarz pasuje do ramki
         ready: Naciśnij przycisk nagrywania, gdy będziesz gotowy do nagrywania
     wait: Czekaj
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: Nie można usunąć grupy zawierającej warsztaty, najpierw należy usunąć warsztaty
   auth:
     current_password: Aktualne hasło
     current_password_placeholder: Wprowadź bieżące hasło
@@ -196,7 +201,7 @@ pl:
       development: Rozwój
       home: Dom
       insights: Insights
-      my_direct_reports: Moi bezpośredni podwładni
+      my_direct_reportees: Moi bezpośredni podwładni
       my_plan: Mój plan
       profile: Profil
       profile_details: Detale
@@ -257,6 +262,7 @@ pl:
       notification_hours: Pozostało Ci %{hours} godziny
       notification_minutes: Masz %{minutes} minut i  na ukończenie
   campaign_assessment:
+    assessment_center_heading: Szczegóły centrum oceny
     assessments_heading: Twoje zadania
     statuses:
       completed: Zakończony
@@ -365,11 +371,14 @@ pl:
       search: Szukaj
       send: Wysłać
       start: Początek
+      submit: Prześlij
       unarchive: Unarchive
       unresolve: Nierozwiązany
       update: Aktualizacja
       upload: Przekazać plik
       verify: Weryfikacja
+      view_all_tasks: Wyświetl wszystkie zadania
+      view_detail: Zobacz szczegóły
     column:
       action: Działanie
       category: Kategoria
@@ -515,6 +524,7 @@ pl:
       need_changes: Potrzebujesz wprowadzić zmiany?
       neurodivergence_comment_placeholder: Twój komentarz
       neurodivergence_question: Czy ze względu na specjalne potrzeby lub niepełnosprawność potrzebujesz racjonalnych udogodnień lub dostosowań, aby w pełni uczestniczyć w ocenie?
+      no_invites_msg: Zostaniesz dodany do centrum oceny lub otrzymasz zaproszenie do zarezerwowania swojego miejsca; po dołączeniu do centrum możesz ukończyć działania, klikając przycisk "Wyświetl szczegóły" poniżej.
       other_invite: Zobacz %{count} więcej zaproszeń
       other_invites: Zobacz %{count} więcej zaproszeń
       reason: Powód
@@ -580,6 +590,7 @@ pl:
   idp:
     actions: Działania
     board: Tablica
+    convert_to_draft: Konwertuj na wersję roboczą
     details: Szczegóły
     development_actions:
       action_private: Tak
@@ -617,7 +628,7 @@ pl:
       structured_learning: Zorganizowane uczenie się
       submit_plan: Prześlij plan
       write_here: Pisz tutaj...
-    direct_report_details: Szczegóły bezpośrednich podwładnych
+    direct_reportee_details: Szczegóły bezpośrednich podwładnych
     initial_steps:
       add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
       add_skill_group_title: Eksploracja Twoich umiejętności %{category}
@@ -634,13 +645,17 @@ pl:
       rate_skills_description: Teraz, gdy wybrałeś swoje priorytety rozwojowe, oceń siebie w każdym z następujących obszarów. Pamiętaj, aby oceniać siebie na podstawie swojego obecnego poziomu, a nie przeszłego lub pożądanego.
       rate_skills_title: Ocena Twoich umiejętności
       rating_column_header: Twoja samoocena
+      reflective_questions: Pytania refleksyjne
       select_skills: Wybierz swoje umiejętności
       select_skills_placeholder: Wybierz umiejętności
       selected_skills: Wybrane umiejętności
       skill_column_header: Umiejętność
       skill_gap_report: Raport luk w umiejętnościach
     list: Lista
-    my_direct_reports: Moi bezpośredni podwładni
+    manage_plan: Zarządzaj planem
+    mark_as_complete: Oznacz jako ukończone
+    mark_as_incomplete: Oznacz jako niekompletne
+    my_direct_reportees: Moi bezpośredni podwładni
     my_plan:
       development_plan: Plan rozwoju
       graphs:
@@ -751,10 +766,26 @@ pl:
         library: Biblioteka IDP
         skills_count: Liczba umiejętności
         title: Podsumowanie raportu
-    profile_details: Szczegóły profilu
+    reflective_questions:
+      answer_later: Odpowiedź później
+      answer_placeholder: Wpisz tutaj swoją odpowiedź...
+      errors:
+        max_words: Odpowiedź może zawierać maksymalnie %{count} słów
+        min_words: Odpowiedź wymaga co najmniej %{count} słów
+        required: Odpowiedź na pytanie jest wymagana
+      max_words: Maksymalna liczba słów
+      min_words: Min Words
+      title: Pytania refleksyjne
+      update_failed: Wystąpił błąd podczas aktualizacji
+      updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane
+      words: Słowa
     skill_gap_report:
-      continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
       title: Raport luk w umiejętnościach
+    user_idp_status:
+      approved: Zatwierdzony
+      draft: Projekt
+      not_started: Nie rozpoczęte
+      pending_approval: Oczekujące na zatwierdzenie
   idp_templates:
     errors:
       user_idp_template_not_found: Nie przypisano do ciebie żadnego szablonu IDP.
@@ -820,6 +851,8 @@ pl:
         score: Wynik
       gap_assessment:
         gap: Gap
+        hide_left_filter: Ukryj lewy filtr
+        hide_right_filter: Ukryj prawy filtr
         item: Wskaźnik
         negative_gap: Luki ujemne
         no_negative_gaps: Nie ma żadnych negatywnych luk
@@ -1161,6 +1194,7 @@ pl:
     must_rank_between: Przypisz wartość od %{min} do %{max} dla każdego elementu. Wartości nie mogą się powtarzać.
     must_select: Wybierz spośród opcji od %{min} do %{max}
     number: Twoja odpowiedź musi być liczbą
+    photo: wymagany
     range: Prosimy o udzielenie odpowiedzi na co najmniej %{min} i nie więcej niż %{max} wyborów.
     required: Proszę o odpowiedź na to pytanie
     text: Odpowiedź nie może zawierać liczb

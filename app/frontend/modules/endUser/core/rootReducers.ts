@@ -14,6 +14,8 @@ import checkingWizard from '../modules/campaigns/core/checkingWizard'
 import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
 import idp from '../modules/campaigns/core/idp/userIdpPlan'
+import { idpApi } from '../modules/campaigns/core/idp/api'
+import idpRtk from '../modules/campaigns/core/idp/idpPlanRtk'
 import anonym from '../modules/campaigns/core/anonym'
 import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
 import config from './config'
@@ -27,6 +29,7 @@ const rootReducer = () => combineReducers({
     evaluation,
     report,
     idp,
+    idpRtk,
     campaigns,
     project,
     userAssessment,
@@ -47,6 +50,7 @@ const rootReducer = () => combineReducers({
   checkingWizard,
   connection,
   liveChat: () => ({}),
+  [idpApi.reducerPath]: idpApi.reducer,
 })
 
 export type RootState = ReturnType<ReturnType<typeof rootReducer>>

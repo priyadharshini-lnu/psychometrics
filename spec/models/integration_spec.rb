@@ -52,4 +52,52 @@ describe Integration, type: :model do
       non_mettl_integration.update!(name: 'hogan')
     end
   end
+
+  describe 'subscribe_to_skillvue_webhook' do
+    it 'enqueues Skillvue::SubscribeToWebhookJob when creating a skillvue integration' do
+      expect(Skillvue::SubscribeToWebhookJob).to receive(:perform_later).with(an_instance_of(Integer))
+
+      create(:integration, name: :skillvue)
+    end
+
+    it 'enqueues Skillvue::SubscribeToWebhookJob when updating a skillvue integration' do
+      skillvue_integration = create(:integration, name: :skillvue)
+
+      expect(Skillvue::SubscribeToWebhookJob).to receive(:perform_later).with(skillvue_integration.project_id)
+
+      skillvue_integration.update!(config: { 'api_key' => 'updated_key' })
+    end
+
+    it 'does not enqueue Skillvue::SubscribeToWebhookJob for non-skillvue integration' do
+      non_skillvue_integration = create(:integration, :hogan_integration)
+
+      expect(Skillvue::SubscribeToWebhookJob).not_to receive(:perform_later)
+
+      non_skillvue_integration.update!(name: 'hogan')
+    end
+  end
+
+  describe 'trigger_fetch_skillvue_assessments_job' do
+    it 'enqueues Skillvue::FetchAssessmentsJob when creating a skillvue integration' do
+      expect(Skillvue::FetchAssessmentsJob).to receive(:perform_later).with(an_instance_of(Integer))
+
+      create(:integration, name: :skillvue)
+    end
+
+    it 'enqueues Skillvue::FetchAssessmentsJob when updating a skillvue integration' do
+      skillvue_integration = create(:integration, name: :skillvue)
+
+      expect(Skillvue::FetchAssessmentsJob).to receive(:perform_later).with(skillvue_integration.project_id)
+
+      skillvue_integration.update!(config: { 'api_key' => 'updated_key' })
+    end
+
+    it 'does not enqueue Skillvue::FetchAssessmentsJob for non-skillvue integration' do
+      non_skillvue_integration = create(:integration, :hogan_integration)
+
+      expect(Skillvue::FetchAssessmentsJob).not_to receive(:perform_later)
+
+      non_skillvue_integration.update!(name: 'hogan')
+    end
+  end
 end

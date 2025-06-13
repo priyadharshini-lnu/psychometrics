@@ -71,20 +71,24 @@ const CampaignList: React.FC<Props> = (
         </Col>
         <div className="float-r">
           <Search
-            placeholder="Search"
+            placeholder={I18n.t('common.actions.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-          <span className={styles.filterLabel}>Status:</span>
+          <span className={styles.filterLabel}>{I18n.t('administration.campaigns.filters.status')}</span>
           <Select
             defaultValue="All"
             value={filters.statusEq || 'All'}
             className={styles.statusFilter}
             onChange={handleStatusChange}
           >
-            <Option value="All" key="All">All</Option>
-            {map(STATUSES, (val: string) => <Option value={val} key={val}>{capitalize(val)}</Option>)}
+            <Option value="All" key="All">{I18n.t('administration.campaigns.filters.all')}</Option>
+            {map(STATUSES, (val: string) => (
+              <Option value={val} key={val}>
+                {I18n.t(`administration.campaigns.filters.${val}`)}
+              </Option>
+            ))}
           </Select>
         </div>
       </Row>

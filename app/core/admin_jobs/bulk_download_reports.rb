@@ -54,7 +54,7 @@ module AdminJobs
     private
 
     def campaign_reports
-      @campaign_reports ||= campaign.campaign_reports.where(id: record.data['ids'])
+      @campaign_reports ||= campaign.campaign_reports.includes(:report).where(id: record.data['ids'])
     end
   end
 end

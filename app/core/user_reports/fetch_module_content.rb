@@ -13,13 +13,19 @@ module UserReports
       return nil unless module_id
 
       if user_report_event.event_type == 'removed_text'
-        return original_module_content
+        return strip_tags(user_report_event.details['content'])
       end
 
-      content = user_report_event.details['content']
-      return strip_tags(content) if content
-
       latest_event_content || original_module_content
+    end
+
+    def original_module_content
+      context = build_piped_text_context
+      text = Threesixty::PipedText::Perform.call!(
+        user_report_event.module_content, context
+      )
+
+      strip_tags(text)
     end
 
     private
@@ -40,19 +46,10 @@ module UserReports
         where(user_report_id: user_report_event.user_report_id).
         where('event_type LIKE ?', '%_text').
         where("details->>'module' = ?", module_id.to_s).
-        where('created_at <= ?', user_report_event.created_at).
+        where('created_at < ?', user_report_event.created_at).
         where("details->>'content' IS NOT NULL").
         order(created_at: :desc).
         first
-    end
-
-    def original_module_content
-      context = build_piped_text_context
-      text = Threesixty::PipedText::Perform.call!(
-        user_report_event.module_content, context
-      )
-
-      strip_tags(text)
     end
 
     def build_piped_text_context

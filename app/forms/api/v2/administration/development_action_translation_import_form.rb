@@ -14,12 +14,6 @@ module Api
         validate :validate_file_format
         validate :validate_file_content
 
-        def processed_file
-          return nil unless valid?
-
-          file
-        end
-
         private
 
         def validate_file_format
@@ -35,7 +29,7 @@ module Api
 
           begin
             file.rewind if file.respond_to?(:rewind)
-            @csv_data = CSVSafe.parse(file.read, headers: true)
+            @csv_data = ::CsvFileParser.call!(file, headers: true)
             headers = @csv_data.headers.map { |h| Utility::String.remove_csv_injection_marker(h.to_s) }
 
             # Check for required ID column
@@ -100,13 +94,6 @@ module Api
             errors.add(:base, I18n.t('administration.development_action_translations.import.errors.invalid_field',
                                      row: row_number, field: field))
           end
-        end
-
-        def process_file
-          return if file.blank?
-          return if errors.present?
-
-          @processed_file = file.tempfile
         end
       end
     end

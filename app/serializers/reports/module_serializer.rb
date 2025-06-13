@@ -13,7 +13,7 @@ module Reports
     def props
       return object.props if !context[:piped_text_context] || object.props['sourceType'] != 'Text'
 
-      transformer = proc { |str| "<span style='direction: ltr; display: inline-block'>#{str}</span>" }
+      transformer = proc { |str| "<span style=\"direction: ltr; display: inline-block;\">#{str}</span>" }
       text = Threesixty::PipedText::Perform.call!(
         object.props['text'], context[:piped_text_context], transformer
       )

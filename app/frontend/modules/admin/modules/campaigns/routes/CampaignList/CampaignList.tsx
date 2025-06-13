@@ -131,7 +131,7 @@ const CampaignListComponent: React.FC<Props> = ({
         <Col>
           <Space>
             <Search
-              placeholder="Search"
+              placeholder={I18n.t('common.actions.search')}
               value={filters.filterableFields}
               onChange={e => changeFilter('filterableFields', e.target.value)}
             />

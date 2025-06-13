@@ -109,6 +109,11 @@ en-US:
         frame: Please make sure that your face aligns with the frame
         ready: Press the Record button when ready to record
     wait: Wait
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: Cannot delete group containing workshops, delete workshops first
   auth:
     current_password: Current Password
     current_password_placeholder: Enter Current Password
@@ -200,7 +205,7 @@ en-US:
       development: Development
       home: Home
       insights: Insights
-      my_direct_reports: My Direct Reports
+      my_direct_reportees: My Direct Reportees
       my_plan: My Plan
       profile: Profile
       profile_details: Details
@@ -250,6 +255,7 @@ en-US:
       notification_hours: You have %{hours} hour left
       notification_minutes: you have %{minutes} minutes left
   campaign_assessment:
+    assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
     statuses:
       completed: Completed
@@ -358,11 +364,14 @@ en-US:
       search: Search
       send: Send
       start: Start
+      submit: Submit
       unarchive: Unarchive
       unresolve: Unresolve
       update: Update
       upload: Upload
       verify: Verify
+      view_all_tasks: View all tasks
+      view_detail: View Detail
     column:
       action: Action
       category: Category
@@ -504,6 +513,7 @@ en-US:
       need_changes: Need to make the changes?
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
+      no_invites_msg: You will be added to the assessment center or receive an invite to book your slot; once you're part of the center, you can complete the activities by clicking the 'View Detail' button below.
       other_invite: See %{count} more invite
       other_invites: See %{count} more invites
       reason: Reason
@@ -569,6 +579,7 @@ en-US:
   idp:
     actions: Actions
     board: Board
+    convert_to_draft: Convert to Draft
     details: Details
     development_actions:
       action_private: 'Yes'
@@ -606,7 +617,7 @@ en-US:
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
-    direct_report_details: Direct Report Details
+    direct_reportee_details: My Direct Reportee Details
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -623,13 +634,17 @@ en-US:
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
       rate_skills_title: Rating Your Skills
       rating_column_header: Your self rating
+      reflective_questions: Reflective Questions
       select_skills: Select your skills
       select_skills_placeholder: Select skills
       selected_skills: Selected Skills
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
-    my_direct_reports: My Direct Reports
+    manage_plan: Manage Plan
+    mark_as_complete: Mark as Complete
+    mark_as_incomplete: Mark as Incomplete
+    my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
       graphs:
@@ -740,9 +755,20 @@ en-US:
         library: IDP Library
         skills_count: Skills Count
         title: Report Summary
-    profile_details: Profile Details
+    reflective_questions:
+      answer_later: Answer Later
+      answer_placeholder: Write your answer here...
+      errors:
+        max_words: The answer allows a maximum %{count} words
+        min_words: The answer requires at least %{count} words
+        required: The answer to the question is required
+      max_words: Max Words
+      min_words: Min Words
+      title: Reflective Questions
+      update_failed: An error occurred during the update
+      updated_successfully: Your answers have been updated successfully
+      words: Words
     skill_gap_report:
-      continue_to_rate_skills: Continue to rate skills
       title: Skill Gap Report
   idp_templates:
     errors:
@@ -809,6 +835,8 @@ en-US:
         score: Score
       gap_assessment:
         gap: Gap
+        hide_left_filter: Hide Left Filter
+        hide_right_filter: Hide Right Filter
         item: Indicator
         negative_gap: Negative Gaps
         no_negative_gaps: There are no Negative Gaps

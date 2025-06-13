@@ -1,20 +1,22 @@
-export type AvailableDevelopmentActions = {
-    id: number,
-    name: string,
-    description: string,
-    category: string,
-    learningStyle: 'on_the_job' | 'structured_learning' | 'learning_from_others',
-    image: string | null,
-}
-
 export type DevelopmentActionLearningStyle = 'on_the_job' | 'structured_learning' | 'learning_from_others'
 
+export type AvailableDevelopmentActions = {
+    id: string | number,
+    name: string,
+    description: string,
+    developmentActionType: string | number,
+    learningStyle: DevelopmentActionLearningStyle,
+    image: string | null,
+    _destroy?: boolean
+}
+
+
 export type DevelopmentAction = {
-    id: number;
-    developmentActionId: number;
+    id: string | number;
+    developmentActionId: string | number;
     name: string;
     description: string;
-    userIdpSkillId: number;
+    userIdpSkillId: string | number;
     customAction: null | string;
     progress: number;
     startDateTime: null | string;
@@ -28,41 +30,43 @@ export type DevelopmentAction = {
 
 export type DevelopmentActionWithSkill = DevelopmentAction & {
     skill: Skill;
+    showRating?: boolean
 }
 
 export type Skill = {
-    id: number;
+    id: string | number ;
     name: string;
     description: string;
-    category: string;
-    initialRating: number;
-    finalRating: null | number;
+    skillType: string;
+    initialRating?: number;
+    finalRating?: number;
+    skillId: string | number;
 }
 
-export type UserIdpSkill = Omit<Skill, 'category' | 'description'> & {
-    skillId: number;
+export type UserIdpSkill = Omit<Skill, 'skillType' | 'description'> & {
+    skillId: string | number;
 }
 
 export type SkillWithDevelopmentActions = UserIdpSkill & {
-    developmentActions: DevelopmentAction[];
+    developmentActions: Partial<DevelopmentAction>[];
 }
 
 export type CategoryWithSkills = {
-    category: string;
+    skillType: string;
     skills: SkillWithDevelopmentActions[];
 }
 
 export type CategoryWithSkillsSummary = {
-    category: string;
+    skillType: string;
     skills: Skill[];
 }
 
 export type CategoryWithUserIdpSkills = {
-    category: string;
+    skillType: string;
     skills: UserIdpSkill[];
 }
 
 export type CategoryWithDevelopmentActions = {
-    category: string;
+    developmentActionType: string;
     developmentActions: DevelopmentActionWithSkill[];
 }

@@ -2,7 +2,7 @@ import * as t from 'io-ts'
 import { ResourceIdentifierTR } from '~/modules/admin/core/types/resource'
 import ApiAction from '~/interfaces/ApiAction'
 
-export enum DevelopmentActionCategory {
+export enum DevelopmentActionType {
   course = 'course',
   default = 'default'
 }
@@ -18,7 +18,6 @@ export const DevelopmentActionTR = t.intersection([
   t.type({
     name: t.string,
     description: t.string,
-    defaultLanguage: t.string,
     project: t.union([
       t.type({
         id: t.string,
@@ -28,8 +27,8 @@ export const DevelopmentActionTR = t.intersection([
         id: t.string,
       }),
       t.undefined]),
-    category: t.union([
-      t.keyof(DevelopmentActionCategory),
+    developmentActionType: t.union([
+      t.keyof(DevelopmentActionType),
       t.undefined,
     ]),
     courseStartDate: t.union([

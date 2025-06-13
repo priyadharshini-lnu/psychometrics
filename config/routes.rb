@@ -366,6 +366,7 @@ Rails.application.routes.draw do
             put :toggle_require_scheduling
             put :update_content_variation
             put :update_simulation_time_extension
+            put :toggle_prework
           end
         end
 
@@ -404,6 +405,7 @@ Rails.application.routes.draw do
         resources :integrations, only: %i[index create update destroy] do
           collection do
             post :load_mettl_assessments
+            post :load_skillvue_assessments
           end
         end
       end
@@ -828,6 +830,9 @@ Rails.application.routes.draw do
     post '/:project_id/mettl/results', to: 'mettl#results', as: :mettl_results_notification
     post '/:project_id/simulation/progress_notification', to: 'simulation#progress_notification',
 as: :simulation_progress_notification
+    post '/:project_id/skillvue/completion_notification', to: 'skillvue#completion_notification',
+                                                            as: :skillvue_completion_notification
+    post '/:project_id/skillvue/results', to: 'skillvue#results', as: :skillvue_results_notification
   end
 
   devise_scope :user do
@@ -835,6 +840,8 @@ as: :simulation_progress_notification
     get 'users/sign_in_link', to: 'users/magic_links#sign_in_link'
     get 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
     post 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
+    get 'users/invitation/accept', to: 'users/invitations#edit', as: :accept_user_invitation
+    patch 'users/invitation', to: 'users/invitations#update', as: :user_invitation
   end
 
   devise_for :users,
@@ -846,11 +853,11 @@ as: :simulation_progress_notification
              class_name: 'User',
              controllers: { registrations: 'users/registrations',
                             sessions: 'users/sessions',
-                            invitations: 'users/invitations',
                             passwords: 'passwords',
                             password_expired: 'users/password_expired',
                             magic_links: 'users/magic_links',
-                            unlocks: 'users/unlocks' }
+                            unlocks: 'users/unlocks' },
+            skip: :invitations
 
   namespace 'passwordless' do
     devise_for :users,
@@ -963,6 +970,12 @@ as: :simulation_progress_notification
         end
       end
 
+      resources :skillvue_user_assessments, only: [] do
+        member do
+          post :pass
+        end
+      end
+
       resources :agile_user_assessments, only: %i[show update] do
         member do
           post :events
@@ -1010,6 +1023,9 @@ as: :simulation_progress_notification
       end
 
       resources :user_idp_plans, param: :user_id, only: %i[show update] do
+        member do
+          put :update_reflection_questions
+        end
         collection do
           get :summary
         end
@@ -1060,9 +1076,7 @@ as: :simulation_progress_notification
     resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills' do
       post :save_skills, on: :collection
     end
-    resources :direct_reports, only: %i[index], controller: 'end_user/direct_reports' do
-      put :update_status, on: :member
-    end
+    resources :direct_reportees, only: %i[index], controller: 'end_user/direct_reportees'
 
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
@@ -1157,6 +1171,7 @@ as: :simulation_progress_notification
             jsonapi_relationships
             jsonapi_resources :reports, only: %i[index], controller: 'clients/reports'
             jsonapi_resources :client_privacy_settings, only: %i[index update]
+            jsonapi_resources :client_features, only: %i[index update]
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
                 post :test_connection
@@ -1183,7 +1198,13 @@ as: :simulation_progress_notification
             jsonapi_resources :idp_templates, only: %i[index create update destroy],
               controller: 'projects/idp_templates' do
                 post :uploads, on: :member
+                post :update_reflection_questions, on: :member
               end
+            jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
+              post :uploads, on: :member
+              post :import, on: :collection
+              post :export, on: :collection
+            end
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export
@@ -1323,6 +1344,7 @@ as: :simulation_progress_notification
             end
 
             jsonapi_resources :campaign_assessments, only: %i[index]
+            jsonapi_resources :campaign_assessment_groups, only: %i[index]
             jsonapi_resources :campaign_scoring_variables, only: %i[index update]
 
             jsonapi_resources :workshop_subjects, only: %i[index] do
@@ -1449,7 +1471,12 @@ as: :simulation_progress_notification
               get :get_password, on: :member
             end
           end
-          resources :user_idp_plans, only: %i[create]
+          jsonapi_resources :user_idp_plans, only: %i[create show update]
+          jsonapi_resources :user_idp_development_actions, only: %i[show index] do
+            post :bulk_update, on: :collection
+            post :generate_by_ai, on: :collection
+          end
+
           jsonapi_resources :skills, concerns: :taggable do
             post :import, on: :collection
             post :export, on: :collection
@@ -1485,7 +1512,11 @@ as: :simulation_progress_notification
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
 
           namespace :ai do
-            jsonapi_resources :assistants, relationships: false
+            jsonapi_resources :assistants, relationships: false do
+              member do
+                post :generate
+              end
+            end
           end
         end
       end

@@ -7,6 +7,7 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { IihtForm } from './IihtForm'
 import { HoganForm } from './HoganForm'
 import { MettlForm } from './MettlForm'
+import { SkillvueForm } from './SkillvueForm'
 
 const { Option } = Select
 const { I18n } = window
@@ -15,6 +16,7 @@ const integrationComponents = {
   iiht: IihtForm,
   hogan: HoganForm,
   mettl: MettlForm,
+  skillvue: SkillvueForm,
 }
 
 type OwnProps = {

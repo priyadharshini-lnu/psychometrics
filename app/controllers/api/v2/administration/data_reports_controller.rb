@@ -3,9 +3,13 @@
 module Api
   class V2::Administration::DataReportsController < Api::V2::Administration::BaseController
     validates_request_schema :create,
-                             Api::V2::DataReport::Contract.new(schema: Api::V2::DataReport::Schema.create_request)
+                             lambda {
+                               Api::V2::DataReport::Contract.new(schema: Api::V2::DataReport::Schema.create_request)
+                             }
     validates_request_schema :update,
-                             Api::V2::DataReport::Contract.new(schema: Api::V2::DataReport::Schema.update_request)
+                             lambda {
+                               Api::V2::DataReport::Contract.new(schema: Api::V2::DataReport::Schema.update_request)
+                             }
 
     def run
       AdminJob.call(:data_report_export, { data_report_id: model.id, client_id: model.owner_id }, current_user)

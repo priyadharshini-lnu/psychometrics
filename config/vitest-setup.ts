@@ -6,7 +6,9 @@ import React from 'react'
 global.I18n = I18n
 global.React = React
 
-await import('../app/assets/javascripts/administration/i18n/translations.js')
+const modules = import.meta.glob('../app/assets/javascripts/administration/i18n/*.js');
+
+await Promise.all(Object.values(modules).map(loader => loader()));
 
 vi.mock('~/modules/reports/cable/Cable.js')
 vi.mock('~/modules/survey/cable/Cable.js')

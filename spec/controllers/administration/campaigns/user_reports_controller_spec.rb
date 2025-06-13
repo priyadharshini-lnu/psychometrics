@@ -623,8 +623,9 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         id permissions assessment_id name category norm_name status norms norm_id
         additional_time is_expired is_external has_external_norm schedule_time require_scheduling
         mettl_schedule_name mettl_schedule_record_id dimension_id
-        simulation_content_variations hogan_participant_id users_result_id
+        simulation_content_variations hogan_participant_id users_result_id prework
         pearson_user_assessment_details saville_user_assessment_details simulation_user_assessment_details
+        skillvue_user_assessment_details
       ]
     )
     expect(assessment_response).to include({

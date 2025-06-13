@@ -1,6 +1,18 @@
 ---
 zh-HK:
   administration:
+    administrators:
+      permissions:
+        labels:
+          reflectionQuestions:
+            export: 出口
+            import: 進口
+            manage: 管理
+            title: IDP 反思問題
+            view: 檢視
     norms:
       import:
         download_example_csv: 下載範例 csv
+    projects:
+      privacy_settings:
+        mask_identity_for_skillvue: Skillvue 的掩膜資料

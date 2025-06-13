@@ -10,12 +10,15 @@ import {
   Button, Flex, Alert,
   Select,
 } from 'antd'
+import humps from 'humps'
 import {
   DeleteOutlined, StopOutlined, VideoCameraOutlined, LoadingOutlined,
   DownOutlined,
   AudioOutlined,
   CheckCircleFilled,
 } from '@ant-design/icons'
+import CryptoJS from 'crypto-js'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import { useRecording } from '~/context/RecordingContext'
 import VideoPlayer from './components/VideoPlayer'
@@ -50,6 +53,8 @@ interface Props {
   mediaUrl: string;
   questionId: string;
   maxDuration: number;
+  onSuccessUpload: (media: MediaResponse) => void;
+  onDeleteMedia: () => void;
   mediaResponse: {
     url: string;
     id: number;
@@ -57,6 +62,7 @@ interface Props {
 }
 
 const UPLOAD_CHUNK_SIZE = 5.5 * 1024 * 1024 // 5.5MB in bytes
+
 
 interface UrlDetails {
   media_id: string;
@@ -77,11 +83,17 @@ const formatDuration = (durationInSeconds: number): string => {
   return `${minutes.toString().padStart(2, '0')}m:${seconds.toString().padStart(2, '0')}s`
 }
 
+const calculateMD5Checksum = async (blob: Blob) => {
+  const arrayBuffer = await blob.arrayBuffer()
+  const wordArray = CryptoJS.lib.WordArray.create(arrayBuffer)
+  const md5 = CryptoJS.MD5(wordArray)
+  return CryptoJS.enc.Base64.stringify(md5)
+}
+
 const MediaRecorderComponent: React.FC<Props> = ({
-  mediaUrl, questionId, maxDuration, mediaResponse,
+  mediaUrl, questionId, maxDuration, mediaResponse, onSuccessUpload, onDeleteMedia,
 }) => {
   const { isRecording, startVideoRecording, stopVideoRecording } = useRecording()
-
   const [permissionGranted, setPermissionGranted] = useState<boolean>(false)
   const [devices, setDevices] = useState<DeviceDetails>({ videoDevices: [], audioDevices: [] })
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
@@ -206,7 +218,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
   }
 
-  const completeMediaUpload = async (): Promise<void> => {
+  const completeMediaUpload = async (completeBlob): Promise<void> => {
     if (!urlDetailsRef.current) {
       console.error('No URL details available for completing upload')
       setError('complete')('Failed to complete upload: No URL details available')
@@ -219,7 +231,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         etag: resolvedPromise.headers.etag,
         part_number: index + 1,
       }))
-
+      const checksum = await calculateMD5Checksum(completeBlob)
       const { data } = await axios.put(
         `${mediaUrl}/complete_multipart_upload`,
         {
@@ -228,18 +240,15 @@ const MediaRecorderComponent: React.FC<Props> = ({
           asset_key: urlDetailsRef.current.asset_key,
           upload_id: urlDetailsRef.current.upload_id,
           file_size: totalSize,
-          checksum: urlDetailsRef.current.checksum,
+          checksum,
           content_type: supportedMimeType,
         },
         {
           headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
         },
       )
-
-      setExistingMedia(data)
-      handleRecordingSaved()
-      resetMultipartUpload()
-      successMessage()
+      const camelizedData = humps.camelizeKeys(data)
+      handleRecordingSaved(camelizedData)
       stopVideoRecording()
     } catch (error) {
       console.error('Error completing media upload:', error)
@@ -254,8 +263,12 @@ const MediaRecorderComponent: React.FC<Props> = ({
     setPercent({})
   }
 
-  const handleRecordingSaved = (): void => {
+  const handleRecordingSaved = (data: MediaResponse): void => {
+    onSuccessUpload(data)
     setRecordingState('saved')
+    setExistingMedia(data)
+    resetMultipartUpload()
+    successMessage()
   }
 
   const handleChunkAvailable = useCallback((chunk: Blob): void => {
@@ -265,16 +278,16 @@ const MediaRecorderComponent: React.FC<Props> = ({
     uploadChunk(chunk)
   }, [])
 
-  const onStop = useCallback((blobUrl: string, blob: Blob) => {
+  const onStop = useCallback(async (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
     setVisualizing(false)
     if (stream) {
       stream.getTracks().forEach(track => track.stop())
     }
     setIsUploading(true)
-    uploadChunk(blob)
-      .then(() => completeMediaUpload())
+    uploadChunk(lastBlob)
+      .then(() => completeMediaUpload(completeBlob))
       .finally(() => setIsUploading(false))
-  }, [])
+  }, [stream])
 
   const {
     status,
@@ -357,6 +370,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         })
         setExistingVideoUrl(null)
         clearBlobUrl()
+        onDeleteMedia()
       } catch (error) {
         console.error('Error discarding existing video:', error)
         setError('discard')('Failed to discard existing video')
@@ -496,7 +510,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     if (status === 'idle' && !existingVideoUrl) {
       return {
         percent: 0,
-        label: `${I18n.t('assessments.video_response.recording_duration_label')} 
+        label: `${I18n.t('assessments.video_response.recording_duration_label')}
         ${formatDuration(maxDuration)}`,
       }
     } if (status === 'recording') {

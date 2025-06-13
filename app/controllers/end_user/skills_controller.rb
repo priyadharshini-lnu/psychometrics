@@ -7,7 +7,7 @@ class EndUser::SkillsController < ApplicationController
     skills = if params[:filters].present?
                @idp_template.available_skills.ransack(params[:filters]).result.limit(10)
              else
-               @idp_template.available_skills.sample_by_categories
+               @idp_template.available_skills.sample_by_skill_types
              end
 
     render json: ::Panko::ArraySerializer.new(

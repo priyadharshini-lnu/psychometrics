@@ -145,7 +145,7 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
               'profile' => '/admin/profile',
               'changePassword' => '/admin/profile/change_password',
               'clients' => '/admin/clients',
-              'skills' => '/admin/skills',
+              'skillsTaxonomy' => '/admin/skills_taxonomy',
               'developmentActions' => '/admin/development_actions',
               'users' => '/admin/users',
               'norms' => '/admin/norms',

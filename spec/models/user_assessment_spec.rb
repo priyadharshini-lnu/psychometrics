@@ -478,6 +478,7 @@ status: :in_progress)
              campaign: campaign,
              subject: user,
              evaluator: user,
+             prework: true,
              status: 'not_started')
     end
 

@@ -105,6 +105,7 @@ class Client < ApplicationRecord
   has_many :development_actions, dependent: :destroy, foreign_key: :project_id
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
   has_one :client_auditlog_export_setting, dependent: :destroy
+  has_one :client_feature, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
@@ -142,6 +143,7 @@ class Client < ApplicationRecord
   after_create :create_privacy_setting, if: :project?
   after_create :create_client_privacy_setting, if: :root?
   after_create :create_idp_setting, if: :project?
+  after_create :create_client_features
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -155,7 +157,7 @@ class Client < ApplicationRecord
   delegate :tfa_enabled?, to: :security_setting
   delegate :mask_identity_for_pearson?, :mask_identity_for_saville?, :mask_identity_for_hogan?,
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
-           :mask_identity_for_mettl?, :custom_privacy_consent, to: :privacy_setting
+           :mask_identity_for_mettl?, :mask_identity_for_skillvue?, :custom_privacy_consent, to: :privacy_setting
 
   scope :enabled, -> { where('NOT (clients.disabled = ? AND archived = ?)', true, true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
@@ -202,6 +204,10 @@ class Client < ApplicationRecord
 
   def mettl_config
     integrations.mettl.first&.mettl_config
+  end
+
+  def skillvue_config
+    integrations.skillvue.first&.skillvue_config
   end
 
   def saml_setting
@@ -316,6 +322,10 @@ class Client < ApplicationRecord
     )
   end
 
+  def sms_notification?
+    client_feature.sms_notification
+  end
+
   private
 
   def generate_hogan_group_name
@@ -369,6 +379,10 @@ class Client < ApplicationRecord
     config = integrations.hogan.active.last&.config
 
     config['provider'] if config.present?
+  end
+
+  def create_client_features
+    build_client_feature.save
   end
 end
 # rubocop:enable Metrics/ClassLength

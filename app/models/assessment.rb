@@ -25,6 +25,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   METTL = 'mettl'
   MEETING = 'meeting'
   SIMULATION = 'simulation'
+  SKILLVUE = 'skillvue'
 
   DEFAULT_SCORE_VALIDITY_PERIOD = 18.months.in_days
 
@@ -68,7 +69,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     iiht: IIHT,
     mettl: METTL,
     meeting: MEETING,
-    simulation: SIMULATION
+    simulation: SIMULATION,
+    skillvue: SKILLVUE
   }.freeze
 
   # Assessments constant
@@ -79,7 +81,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     pearson: 'Assessments::Pearson',
     iiht: 'Assessments::Iiht',
     mettl: 'Assessments::Mettl',
-    simulation: 'Assessments::Simulation'
+    simulation: 'Assessments::Simulation',
+    skillvue: 'Assessments::Skillvue'
   }.freeze
 
   NON_USER_ASSESSMENT_CATEGORY = [
@@ -125,6 +128,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :pearson_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :iiht_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :mettl_user_assessments, through: :user_assessments, dependent: :restrict_with_error
+  has_many :skillvue_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :simulation_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
@@ -185,6 +189,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :iiht, -> { where(type: TYPES[:iiht]) }
   scope :mettl, -> { where(type: TYPES[:mettl]) }
   scope :simulation, -> { where(type: TYPES[:simulation]) }
+  scope :skillvue, -> { where(type: TYPES[:skillvue]) }
   scope :external, -> { where.has { type.in([TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
@@ -250,6 +255,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
         PearsonAssessment.find_by(product_id: external_assessment_id)&.title
       when 'mettl'
         MettlAssessment.find_by(product_id: external_assessment_id)&.name
+      when 'skillvue'
+        SkillvueAssessment.find_by(product_id: external_assessment_id)&.name
       when 'simulation'
         Settings.providers.simulation.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
       when 'iiht'
@@ -346,12 +353,16 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     type == TYPES[:mettl]
   end
 
+  def skillvue?
+    type == TYPES[:skillvue]
+  end
+
   def simulation?
     type == TYPES[:simulation]
   end
 
   def external?
-    hogan? || saville? || pearson? || iiht? || mettl? || simulation?
+    hogan? || saville? || pearson? || iiht? || mettl? || simulation? || skillvue?
   end
 
   def internal?
@@ -398,10 +409,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def invalidate_cache
     Rails.cache.delete(serializer_cache_key)
-  end
-
-  def translations_migrated?
-    Settings.features.inline_translation_enabled && translations_migrated
   end
 
   def score_validity_period(project_id: nil)

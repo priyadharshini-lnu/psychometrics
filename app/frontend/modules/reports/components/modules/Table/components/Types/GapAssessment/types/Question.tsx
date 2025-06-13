@@ -80,6 +80,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
   filters: typeof AppStore.report.filters
+  hideLeftFilter: boolean | null,
+  hideRightFilter: boolean | null,
   gapType: PropertiesModel['props']['gapType']
   assessment_id: number
   tableStyle: TableStyleType
@@ -98,6 +100,8 @@ type Props = PropsFromRedux & OwnProps
 
 const QuestionTypeComponent: FC<Props> = ({
   filters: [leftFilter, rightFilter],
+  hideLeftFilter,
+  hideRightFilter,
   gapType,
   assessment_id,
   tableStyle,
@@ -249,6 +253,8 @@ const QuestionTypeComponent: FC<Props> = ({
                   ? I18nStore.tTableColumns(model, 'Question', 'positive_gaps.label') : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
               />
@@ -258,10 +264,11 @@ const QuestionTypeComponent: FC<Props> = ({
                   'reports.modules.gap_assessment.no_positive_gaps',
                 )}
                 hideValues={hideValues}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 columnsHeaderData={columnsHeaderData}
                 type="top"
                 paginationContext={paginationContext}
-
               />
             </>
           )}
@@ -272,6 +279,8 @@ const QuestionTypeComponent: FC<Props> = ({
                   ? I18nStore.tTableColumns(model, 'Question', 'negative_gaps.label') : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
               />
@@ -281,6 +290,8 @@ const QuestionTypeComponent: FC<Props> = ({
                   'reports.modules.gap_assessment.no_negative_gaps',
                 )}
                 hideValues={hideValues}
+                hideLeftFilter={hideLeftFilter}
+                hideRightFilter={hideRightFilter}
                 precision={precision}
                 columnsHeaderData={columnsHeaderData}
                 type="bottom"
@@ -396,12 +407,14 @@ interface THeaderProps {
   title: string
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
+  hideLeftFilter: boolean | null
+  hideRightFilter: boolean | null
   hideValues: boolean
   columnsHeaderData: ColumnsHeaderData
 }
 
 const THeader: FC<THeaderProps> = ({
-  title, leftFilter, rightFilter, hideValues, columnsHeaderData,
+  title, leftFilter, rightFilter, hideLeftFilter, hideRightFilter, hideValues, columnsHeaderData,
 }) => (
   <>
     {title.length !== 0 && (
@@ -429,8 +442,8 @@ const THeader: FC<THeaderProps> = ({
       )}
       {!hideValues && (
         <>
-          <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
-          <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
+          {!hideLeftFilter && <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>}
+          {!hideRightFilter && <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>}
           {!columnsHeaderData.gap.hide && (
             <th className={styles.label}>
               {columnsHeaderData.gap.label}
@@ -446,6 +459,8 @@ interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
   hideValues: boolean
+  hideLeftFilter: boolean | null
+  hideRightFilter: boolean | null
   precision?: number
   type: 'top' | 'bottom'
   paginationContext: PageData | null
@@ -453,7 +468,7 @@ interface TBodyProps {
 }
 
 const TBody: FC<TBodyProps> = ({
-  gaps, emptyText, hideValues, precision, type, paginationContext, columnsHeaderData,
+  gaps, emptyText, hideValues, precision, type, paginationContext, columnsHeaderData, hideLeftFilter, hideRightFilter,
 }) => {
   if (gaps.length === 0) {
     return (
@@ -485,8 +500,8 @@ const TBody: FC<TBodyProps> = ({
           {!columnsHeaderData.indicator.hide && <td>{gap.questionName}</td>}
           {!hideValues && (
             <>
-              <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>
-              <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>
+              {!hideLeftFilter && <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>}
+              {!hideRightFilter && <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>}
               { !columnsHeaderData.gap.hide && (
                 <td dir="ltr" className={gapStyle(gap.diff)}>
                   {gapValue(gap.diff)}

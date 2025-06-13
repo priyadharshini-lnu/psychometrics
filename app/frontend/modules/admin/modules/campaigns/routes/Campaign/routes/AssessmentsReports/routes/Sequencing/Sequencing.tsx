@@ -48,6 +48,10 @@ import { AddGroup } from './AddGroup'
 import { Assessment } from './Assessment'
 import { GroupedAssessmentContainer } from './GroupedAssessmentContainer'
 import { getGroupById, getItemIdFromSortingId, updateArrayItemsPositionOnIndices } from '~/utils/dnd'
+// eslint-disable-next-line max-len
+import { AddWorkshopActivityDurationModal } from './AddWorkshopActivityDurationModal'
+import Modals from '~/modules/admin/components/Modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -60,6 +64,7 @@ const connecter = connect(
     createGroup,
     removeGroup,
     updateGroup,
+    openModal,
   },
 )
 
@@ -68,6 +73,9 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 const GROUP_ID_PREFIX = 'g_'
 const ASSESSMENT_ID_PREFIX = 'a_'
 const UNGROUPED_ID = 'ungrouped'
+const MODALS = {
+  AddWorkshopActivityDurationModal,
+}
 
 const SequencingComponent: FC<PropsFromRedux> = ({
   fetchAssessmentGroups,
@@ -77,6 +85,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   createGroup,
   removeGroup,
   updateGroup,
+  openModal,
 }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -97,9 +106,6 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   ), [assessments])
 
   const sortedGroups = useMemo(() => groups.sort((groupA, groupB) => groupA.position - groupB.position), [groups])
-  const isAssessmentCenterGroup = useMemo(() => sortedGroups.some(
-    group => group.groupType === 'assessment_center',
-  ), [sortedGroups])
 
   const prefixedUngroupedAssessmentIds = useMemo(() => (unGroupedAssessments
     .sort((groupA, groupB) => groupA.position - groupB.position)
@@ -248,6 +254,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
       id: item.id,
       position: item.position,
       campaign_assessment_group_id: item.campaignAssessmentGroupId,
+      workshop_activity_duration: item.workshopActivityDuration,
     }))
 
     updateAssessmentPosition(parsedCampaignId, requestPayload)
@@ -273,6 +280,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     over: Over | null,
     overContainer: string,
     activeContainer: string,
+    duration: string | number | null,
   ) => {
     let overItems: CampaignAssessment[]
     let activeItems: CampaignAssessment[]
@@ -281,7 +289,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     let droppingAsLastUngroupedItem = false
     let overIdPosition: number
     let overAssessmentId: number
-    const activeId = active.id
+    const activeId = active?.id
     const overId = over?.id
     const activeAssessmentId = getItemIdFromSortingId(activeId)
 
@@ -309,6 +317,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
           ...item,
           campaignAssessmentGroupId: overContainer === UNGROUPED_ID ? null : overGroupId,
           position: overPos,
+          workshopActivityDuration: typeof (duration) === 'string' ? parseInt(duration, 10) : duration,
         }
       }
       if (currentPosition >= activePos) {
@@ -352,33 +361,79 @@ const SequencingComponent: FC<PropsFromRedux> = ({
         id: item.id,
         position: item.position,
         campaign_assessment_group_id: item.campaignAssessmentGroupId,
+        workshop_activity_duration: item.workshopActivityDuration || null,
       }),
     )
 
-    updateAssessmentPosition(parsedCampaignId, requestPayload)
-      .then(({ response }) => {
-        unstable_batchedUpdates(() => {
+    return new Promise((resolve, reject) => {
+      updateAssessmentPosition(parsedCampaignId, requestPayload)
+        .then(({ response }) => {
+          resolve('done')
           unstable_batchedUpdates(() => {
-            setGroups(response.groups)
-            setPastGroups(response.groups)
-            setAssessments(response.assessments)
-            setPastAssessments(response.assessments)
+            unstable_batchedUpdates(() => {
+              setGroups(response.groups)
+              setPastGroups(response.groups)
+              setAssessments(response.assessments)
+              setPastAssessments(response.assessments)
+            })
           })
         })
-      })
-      .catch(() => {
-        unstable_batchedUpdates(() => {
-          setGroups(pastGroups)
-          setAssessments(pastAssessments)
+        .catch((errData) => {
+          unstable_batchedUpdates(() => {
+            setGroups(pastGroups)
+            setAssessments(pastAssessments)
+            reject(errData)
+          })
         })
-      })
-    return null
+    })
   }
 
   const handleDragStart = ({ active }: DragStartEvent) => {
     const { id } = active
     setActiveId(id)
     return null
+  }
+
+  const handleEditScheduleTime = (assessment: CampaignAssessment, duration) => {
+    const updatedAssessment = { ...assessment, workshopActivityDuration: duration }
+    const requestPayload: UpdateAssessmentPositionRequest[] = [{
+      id: updatedAssessment.id,
+      position: updatedAssessment.position,
+      campaign_assessment_group_id: updatedAssessment.campaignAssessmentGroupId,
+      workshop_activity_duration: updatedAssessment.workshopActivityDuration || null,
+    }]
+    return new Promise((resolve, reject) => {
+      updateAssessmentPosition(parsedCampaignId, requestPayload).then(() => {
+        resolve('done')
+        unstable_batchedUpdates(() => {
+          const updateAssessment = prevAssessments => prevAssessments.map((assessment) => {
+            if (assessment.id === updatedAssessment.id) {
+              return updatedAssessment
+            }
+            return assessment
+          })
+          setAssessments(updateAssessment)
+          setPastAssessments(updateAssessment)
+        })
+      }).catch((errData) => {
+        reject(errData)
+        unstable_batchedUpdates(() => {
+          setAssessments(pastAssessments)
+        })
+      })
+    })
+  }
+
+  const handleDropOntoAssessmentCenter = (active, over, overContainer, activeContainer) => {
+    openModal('AddWorkshopActivityDurationModal', {
+      onAddScheduleTime: duration => handleAssessmentDropInDiffGroup(
+        active,
+        over,
+        overContainer,
+        activeContainer,
+        duration,
+      ),
+    })
   }
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
@@ -389,13 +444,6 @@ const SequencingComponent: FC<PropsFromRedux> = ({
       return null
     }
 
-    if (isAssessmentCenterGroup) {
-      const droppedOntoGroupId = getItemIdFromSortingId(overId)
-      const groupDroppedOnto = groups.find(group => group.id === droppedOntoGroupId)
-      if (groupDroppedOnto?.groupType === 'assessment_center') {
-        return null
-      }
-    }
 
     if (active.id in prefixedGroupWithPrefixedAssessmentIds && overId) {
       handleGroupDragnDrop(activeId, overId)
@@ -414,7 +462,16 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     }
 
     if (activeContainer !== overContainer) {
-      handleAssessmentDropInDiffGroup(active, over, overContainer, activeContainer)
+      const activeAssessment = assessments.find(assessment => assessment.id === getItemIdFromSortingId(active.id))
+      const activeItemHasWorkshopDuration = activeAssessment && !!activeAssessment.workshopActivityDuration
+      const droppedOntoGroupId = getItemIdFromSortingId(overContainer)
+      const groupDroppedOnto = groups.find(group => group.id === droppedOntoGroupId)
+      if (groupDroppedOnto?.groupType === 'assessment_center' && !activeItemHasWorkshopDuration) {
+        return handleDropOntoAssessmentCenter(active, over, overContainer, activeContainer)
+      }
+      handleAssessmentDropInDiffGroup(
+        active, over, overContainer, activeContainer, activeAssessment?.workshopActivityDuration || null,
+      )
     }
     return null
   }
@@ -495,6 +552,12 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                               sortId={`${ASSESSMENT_ID_PREFIX}${groupedAssessment.id}`}
                               assessment={groupedAssessment}
                               key={groupedAssessment.id}
+                              onEditScheduleTime={() => {
+                                openModal('AddWorkshopActivityDurationModal', {
+                                  onAddScheduleTime: duration => handleEditScheduleTime(groupedAssessment, duration),
+                                  workshopActivityDuration: groupedAssessment.workshopActivityDuration,
+                                })
+                              }}
                             />
                           </Row>
                           <br />
@@ -509,7 +572,6 @@ const SequencingComponent: FC<PropsFromRedux> = ({
           <Col xs={24} sm={24} md={12} lg={8}>
             <AddGroup
               addNewGroup={handleAddGroup}
-              hideAddAssessmentCenterBtn={!isAssessmentCenterGroup}
             />
           </Col>
         </Row>
@@ -547,6 +609,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
           document.body,
         )}
       </DndContext>
+      <Modals modals={MODALS} />
     </section>
   )
 }

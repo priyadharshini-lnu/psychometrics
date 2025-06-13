@@ -6,7 +6,7 @@ RSpec.describe Api::V2::Skill::Schema do
   let(:valid_params) do
     jsonapi_resource_request(
       'skills',
-      { id: '100', name: 'Skill Name', category: 'Category', description: 'Description', default_language: 'en' },
+      { id: '100', name: 'Skill Name', skill_type: 'Skill Type', description: 'Description', default_language: 'en' },
       { project: { id: '1', type: 'projects' } }
     )
   end
@@ -16,15 +16,14 @@ RSpec.describe Api::V2::Skill::Schema do
       schema = Api::V2::Skill::Schema.send(method).call(
         jsonapi_merge_attributes(
           valid_params,
-          { name: '', category: '', description: '', default_language: '' }
+          { name: '', skill_type: '', description: '' }
         )
       )
 
       expect(schema).to have_jsonapi_attr_error({
         name: ["can't be blank"],
-        category: ["can't be blank"],
-        description: ["can't be blank"],
-        default_language: ["can't be blank"]
+        skill_type: ["can't be blank"],
+        description: ["can't be blank"]
       })
     end
 

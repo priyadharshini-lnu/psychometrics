@@ -4,13 +4,21 @@ import { ResourceIdentifierTR } from '~/modules/admin/core/types/resource'
 const SkillTR = t.type({
   id: t.string,
   name: t.union([t.string, t.null, t.undefined]),
-  category: t.union([t.string, t.null, t.undefined]),
+  skillType: t.union([t.string, t.null, t.undefined]),
   projectId: t.union([t.string, t.null, t.undefined]),
 })
 
 export const ReportTR = t.type({
   id: t.string,
   name: t.string,
+})
+
+export const ReflectionQuestionTR = t.type({
+  id: t.string,
+  question: t.union([t.string, t.null]),
+  mandatory: t.boolean,
+  minWords: t.union([t.number, t.null]),
+  maxWords: t.union([t.number, t.null]),
 })
 
 export const IdpTR = t.intersection([
@@ -34,6 +42,7 @@ export const IdpTR = t.intersection([
     clientLogo: t.union([t.string, t.null]),
     logoType: t.string,
     showReflections: t.boolean,
+    reflectionQuestions: t.array(ReflectionQuestionTR),
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
@@ -42,7 +51,7 @@ export const IdpTR = t.intersection([
       t.undefined]),
   })])
 
-
+export type IdpTemplateReflectionQuestion = t.TypeOf<typeof ReflectionQuestionTR>
 export type Idp = t.TypeOf<typeof IdpTR>
 export type Skill = t.TypeOf<typeof SkillTR>
 export type Report = t.TypeOf<typeof ReportTR>

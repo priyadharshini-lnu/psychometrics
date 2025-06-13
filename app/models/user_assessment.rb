@@ -5,6 +5,7 @@ class UserAssessment < ApplicationRecord
   audited
 
   include HoganResource
+  include EncodableId
 
   DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
   MAX_RESET_COUNT = 3
@@ -25,6 +26,7 @@ class UserAssessment < ApplicationRecord
   has_one :iiht_user_assessment, dependent: :destroy
   has_one :mettl_user_assessment, dependent: :destroy
   has_one :simulation_user_assessment, dependent: :destroy
+  has_one :skillvue_user_assessment, dependent: :destroy
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
   has_one :threesixty_campaign, through: :campaign
@@ -39,9 +41,9 @@ class UserAssessment < ApplicationRecord
   enum :manager_evaluation_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_evaluation
   enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
-  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :assessor_form?,
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :assessor_form?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
-  delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
+  delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true
 
@@ -84,10 +86,14 @@ class UserAssessment < ApplicationRecord
   }
 
   scope :preworks, lambda { |value|
-    with_campaign_assessments.where(campaign_assessments: { prework: value })
+    where(prework: value)
   }
   scope :pending_assessments, lambda {
     where('subject_id = evaluator_id').where.not(status: %i[completed timed_out ineligible])
+  }
+
+  scope :campaign_assessment_group_eq, lambda { |group_id|
+    with_campaign_assessments.where(campaign_assessments: { campaign_assessment_group_id: group_id })
   }
 
   scope :scored, -> { where(status: :completed, score_calculated: true) }
@@ -125,8 +131,12 @@ class UserAssessment < ApplicationRecord
     %w[id subject_id campaign_id]
   end
 
+  def self.ransackable_associations(_auth_object = nil)
+    %w[campaign_assessment]
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filter_by_subject_or_assessment preworks workshop_activities]
+    %i[filter_by_subject_or_assessment preworks workshop_activities campaign_assessment_group_eq]
   end
 
   def finish_proctoring_session
@@ -373,7 +383,9 @@ class UserAssessment < ApplicationRecord
     simulation_user_assessment.update!(content_variation_id: content_variation_id)
   end
 
-  private
+  def associated_workshops
+    campaign_assessment&.campaign_assessment_group&.workshops
+  end
 
   def saville_norm_name
     Settings.providers.saville.norms.

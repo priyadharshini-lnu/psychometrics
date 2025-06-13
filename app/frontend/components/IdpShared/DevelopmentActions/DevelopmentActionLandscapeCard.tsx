@@ -7,7 +7,7 @@ import {
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons'
 import useMedia from 'use-media'
 import cs from 'classnames'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import dayjs from '~/utils/dayjs'
 import {
   updateUserIdpSkill,
@@ -15,32 +15,32 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import styles from './DevelopmentActionLandscapeCard.less'
-import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from './Types'
+import { DevelopmentAction, SkillWithDevelopmentActions } from './Types'
 import { Tags } from './Common'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
 const { RangePicker } = DatePicker
 
 const { I18n } = window
-type SkillCardProps = SkillWithDevelopmentActions & {
-  editMode?: boolean
-  onAddDevelopmentAction?: () => void
-  onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => void
-  userIdpSkillId: number
-  selfRatingEnabled: boolean
-  updateUserIdpSkill: (skillId: number,
-                      data: Partial<SkillWithDevelopmentActions>) => Promise<{ response: UserIdpSkill }>
-  removeDevelopmentActionFromPlan: (developmentAction: Partial<DevelopmentAction>) => void
-}
 
 const connector = connect((state: RootState) => ({
   selfRatingEnabled: state.campaigns.idp.selfRatingEnabled,
+  idpUser: state.campaigns.idp.user,
 }),
 {
   updateUserIdpSkill,
   removeDevelopmentActionFromPlan,
 })
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type SkillCardProps = PropsFromRedux & SkillWithDevelopmentActions & {
+  editMode?: boolean
+  onAddDevelopmentAction?: () => void
+  onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => void
+  userIdpSkillId: number
+}
 
 const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   name,
@@ -55,9 +55,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   updateUserIdpSkill,
   selfRatingEnabled,
   removeDevelopmentActionFromPlan,
+  idpUser,
 }) => {
   const handleRatingChange = (rating) => {
-    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }).catch((error) => {
+    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
     })
   }

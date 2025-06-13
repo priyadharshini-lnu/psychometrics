@@ -2,6 +2,7 @@ import * as t from 'io-ts'
 import _ from 'lodash'
 
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { ClientTR } from '~/modules/admin/modules/client/core/clients'
 import { createReducer } from '~/utils/redux'
 import { ConfigState } from '~/core/config'
 import { State as SamlSettingState } from './samlSetting'
@@ -21,7 +22,16 @@ export const ProjectTR = t.type({
   url: t.string,
 })
 
+export const ProjectTRWithClient = t.intersection([
+  ProjectTR,
+  t.type({
+    client: ClientTR,
+  }),
+])
+
 export type Project = t.TypeOf<typeof ProjectTR>
+
+export type ProjectWithClient = t.TypeOf<typeof ProjectTRWithClient>
 
 export interface State {
   config: ConfigState,

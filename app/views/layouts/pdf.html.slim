@@ -6,6 +6,7 @@ html.body-full-height
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     = csrf_meta_tags
     = javascript_include_tag 'application'
+    = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
     = vite_client_tag
     = vite_react_refresh_tag
     = render 'layouts/pys_global_state'

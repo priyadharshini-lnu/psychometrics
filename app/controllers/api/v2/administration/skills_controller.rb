@@ -5,9 +5,9 @@ module Api
     module Administration
       class SkillsController < Api::V2::Administration::BaseController
         validate_crud_requests Api::V2::Skill::Schema
-        validates_request_schema :create, Api::V2::Skill::CreateContract.new
-        validates_request_schema :index, Api::V2::Skill::Contract::Search.new
-        validates_request_schema :tags_search, Api::V2::Skill::Contract::TagsSearch.new
+        validates_request_schema :create, -> { Api::V2::Skill::CreateContract.new }
+        validates_request_schema :index, -> { Api::V2::Skill::Contract::Search.new }
+        validates_request_schema :tags_search, -> { Api::V2::Skill::Contract::TagsSearch.new }
         include Api::V2::Administration::Concerns::Taggable
 
         def tags_search
@@ -37,7 +37,7 @@ module Api
               :import_skills,
               { project_id: project&.id },
               current_user,
-              form.processed_file
+              form.file
             )
 
             render json: :ok
@@ -67,7 +67,7 @@ module Api
               :import_skill_translations,
               { project_id: project.id },
               current_user,
-              form.processed_file
+              form.file
             )
 
             render json: :ok
@@ -97,7 +97,7 @@ module Api
               :import_skills,
               { project_id: nil },
               current_user,
-              form.processed_file
+              form.file
             )
 
             render json: :ok
@@ -170,16 +170,20 @@ module Api
           }
         end
 
+        def project_id
+          super || params.dig(:filter, :project_id_eq)
+        end
+
         private
 
         def search_params
           s_params = params.require(:filter).permit(
             :project_id_eq,
-            :category_in,
+            :skill_type_in,
             :name_cont
           ).to_h
 
-          s_params[:category_in] = s_params[:category_in]&.split(',')&.map(&:strip)
+          s_params[:skill_type_in] = s_params[:skill_type_in]&.split(',')&.map(&:strip)
 
           s_params
         end

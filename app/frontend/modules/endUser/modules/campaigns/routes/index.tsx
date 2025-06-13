@@ -16,8 +16,9 @@ import { Bookings } from './Bookings'
 import MeetingRoom from './MeetingRoom'
 import { MyPlan } from './idp/MyPlan'
 import { InitialSteps } from './idp/InitialSteps'
-import { DirectReportsList } from './idp/DirectReports/List'
-import { DirectReportDetails } from './idp/DirectReports/Details'
+import { ReflectiveQuestions } from './idp/ReflectiveQuestions'
+import { DirectReporteesList } from './idp/DirectReportees/List'
+import { DirectReportDetails } from './idp/DirectReportees/Details'
 
 const CWizard = () => {
   const { assessmentId, id } = useParams() as { assessmentId: string, id: string }
@@ -102,19 +103,23 @@ const routes = [
     component: <MyPlan />,
   },
   {
+    path: '/idp/reflective_questions',
+    component: <ReflectiveQuestions />,
+  },
+  {
     path: '/idp/my_plan/:tab',
     component: <MyPlan />,
   },
   {
-    path: '/idp/direct_reports',
-    component: <DirectReportsList />,
+    path: '/idp/direct_reportees',
+    component: <DirectReporteesList />,
   },
   {
-    path: '/idp/direct_reports/:userId',
+    path: '/idp/direct_reportees/:userId',
     component: <DirectReportDetails />,
   },
   {
-    path: '/idp/direct_reports/:userId/:tab',
+    path: '/idp/direct_reportees/:userId/:tab',
     component: <DirectReportDetails />,
   },
 ]

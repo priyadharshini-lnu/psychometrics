@@ -11,8 +11,9 @@ import {
 function addDevelopmentActionsToSkills (
   skills: Record<string, Skill>,
   developmentActions: Record<string, DevelopmentAction>,
+  groupByOption = 'userIdpSkillId',
 ):SkillWithDevelopmentActions[] {
-  const groupedSkills = _.groupBy(developmentActions, 'userIdpSkillId')
+  const groupedSkills = _.groupBy(developmentActions, groupByOption)
   return _.map(skills, skill => ({
     ...skill,
     // skill here can be either Skill or UserIdpSkill, it's important to maintain skillId if present
@@ -26,35 +27,39 @@ function addDevelopmentActionsToSkills (
 function addSkillsToDevelopmentActions (
   developmentActions: Record<string, DevelopmentAction>,
   skills: Record<string, Skill>,
+  groupByOption:string,
 ): DevelopmentActionWithSkill[] {
   return _.map(developmentActions, developmentAction => ({
     ...developmentAction,
-    skill: skills[developmentAction.userIdpSkillId],
+    skill: skills[developmentAction[groupByOption]],
   }))
 }
 
-export function groupDevelopmentActionsByCategory (
+export function groupDevelopmentActionsBySkillType (
   developmentActions: Record<string, DevelopmentAction>,
   skills: Record<string, Skill>,
+  groupByOption = 'userIdpSkillId',
 ): CategoryWithDevelopmentActions[] {
   if (_.isEmpty(developmentActions) || _.isEmpty(skills)) return []
-  const enrichedDevelopmentActions = addSkillsToDevelopmentActions(developmentActions, skills)
-  const groupedByCategory = _.groupBy(enrichedDevelopmentActions, developmentAction => developmentAction.skill.category)
+  const enrichedDevelopmentActions = addSkillsToDevelopmentActions(developmentActions, skills, groupByOption)
+  const groupedByCategory = _.groupBy(enrichedDevelopmentActions,
+    developmentAction => developmentAction.skill.skillType)
 
-  return _.map(groupedByCategory, (developmentActions, category) => ({
-    category,
+  return _.map(groupedByCategory, (developmentActions, developmentActionType) => ({
+    developmentActionType,
     developmentActions,
   }))
 }
-export function groupSkillsByCategory (
+export function groupSkillsBySkillType (
   skills: Record<string, Skill>,
   developmentActions: Record<string, DevelopmentAction>,
+  groupByOption = 'userIdpSkillId',
 ): CategoryWithSkills[] {
-  const enrichedSkills = addDevelopmentActionsToSkills(skills, developmentActions)
-  const groupedByCategory = _.groupBy(enrichedSkills, 'category')
+  const enrichedSkills = addDevelopmentActionsToSkills(skills, developmentActions, groupByOption)
+  const groupedBySkillType = _.groupBy(enrichedSkills, 'skillType')
 
-  return _.map(groupedByCategory, (skills, category) => ({
-    category,
+  return _.map(groupedBySkillType, (skills, skillType) => ({
+    skillType,
     skills,
   }))
 }

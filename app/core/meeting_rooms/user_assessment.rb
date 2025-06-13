@@ -12,13 +12,13 @@ module MeetingRooms
     def get_role
       return 'attendee' if current_user.id == user_assessment.subject_id
 
-      workshop = user_assessment.subject.last_workshop(user_assessment.campaign_id)
+      workshop_ids = user_assessment.associated_workshops&.pluck(:id)
 
-      return 'none' unless workshop
+      return 'none' if workshop_ids.blank?
 
-      return 'owner' if current_user.accessible_records(::Workshop, 'workshops.view').exists?(id: workshop.id)
+      return 'owner' if current_user.accessible_records(::Workshop, 'workshops.view').exists?(id: workshop_ids)
 
-      return 'attendee' if workshop.workshop_assessors.exists?(user_id: current_user.id)
+      return 'attendee' if WorkshopAssessor.exists?(workshop_id: workshop_ids, user_id: current_user.id)
 
       'none'
     end

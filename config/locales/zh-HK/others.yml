@@ -112,6 +112,11 @@ zh-HK:
         frame: 請確保您的臉部與邊框對齊
         ready: 準備好錄影時請按「錄影」按鈕
     wait: 等等
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: 無法刪除包含工作坊的群組，請先刪除工作坊
   auth:
     current_password: 目前密碼
     current_password_placeholder: 輸入目前密碼
@@ -203,7 +208,7 @@ zh-HK:
       development: 發展
       home: 主頁
       insights: 分析
-      my_direct_reports: 我的直接報告
+      my_direct_reportees: 我的直接報告
       my_plan: 我的計劃
       profile: 個人資料
       profile_details: 詳情
@@ -268,6 +273,7 @@ zh-HK:
       notification_hours: 您有 %{hours} 小時 完成
       notification_minutes: 您有 %{minutes} 分 完成
   campaign_assessment:
+    assessment_center_heading: 評估中心詳細資訊
     assessments_heading: 您的任務
     statuses:
       completed: 已完成
@@ -376,11 +382,14 @@ zh-HK:
       search: 搜尋
       send: 發送
       start: 開始
+      submit: 提交
       unarchive: 取消存檔
       unresolve: 未解決
       update: 更新
       upload: 上載
       verify: 驗證
+      view_all_tasks: 檢視所有任務
+      view_detail: 檢視詳細內容
     column:
       action: 操作
       category: 類別
@@ -526,6 +535,7 @@ zh-HK:
       need_changes: 需要更改嗎？
       neurodivergence_comment_placeholder: 您的留言
       neurodivergence_question: 您是否因特殊需求或殘疾需要任何合理的便利或調整，以便能夠完全參與評估？
+      no_invites_msg: 您會被加入評估中心或收到預約時段的邀請函；一旦您成為中心的一員，您就可以按一下下方的「檢視詳細資料」按鈕來完成活動。
       other_invite: 查看 %{count} 個更多邀請
       other_invites: 查看 %{count} 個更多邀請
       reason: 原因
@@ -591,6 +601,7 @@ zh-HK:
   idp:
     actions: 操作
     board: 看板
+    convert_to_draft: 轉換為草稿
     details: 詳情
     development_actions:
       action_private: 是
@@ -622,7 +633,7 @@ zh-HK:
       structured_learning: 結構化學習
       submit_plan: 提交計劃
       write_here: 在此處寫入...
-    direct_report_details: 直屬下屬詳情
+    direct_reportee_details: 直屬下屬詳情
     initial_steps:
       add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
       add_skill_group_title: 探索你的%{category}技能
@@ -639,13 +650,17 @@ zh-HK:
       rate_skills_description: 現在你已選擇了發展重點，請對以下每項進行自我評定。記住根據你當前的水平進行評定，而不是基於過去或期望的水平。
       rate_skills_title: 評定你的技能
       rating_column_header: 你的自我評定
+      reflective_questions: 反思問題
       select_skills: 選擇你的技能
       select_skills_placeholder: 選擇技能
       selected_skills: 已選技能
       skill_column_header: 技能
       skill_gap_report: 技能差距報告
     list: 列表
-    my_direct_reports: 我的直屬下屬
+    manage_plan: 管理计划
+    mark_as_complete: 标记为完成
+    mark_as_incomplete: 標記為不完整
+    my_direct_reportees: 我的直屬下屬
     my_plan:
       development_plan: 發展計劃
       graphs:
@@ -756,14 +771,26 @@ zh-HK:
         library: IDP庫
         skills_count: 技能數量
         title: 報告摘要
-    profile_details: 個人資料詳情
+    reflective_questions:
+      answer_later: 稍後回答
+      answer_placeholder: 請在此寫下您的答案...
+      errors:
+        max_words: 答案最多允許 %{count} 字數
+        min_words: 答案至少需要 %{count} 字數
+        required: 需要回答問題
+      max_words: 最大字數
+      min_words: 最小字數
+      title: 反思問題
+      update_failed: 更新期間發生錯誤
+      updated_successfully: 您的答案已成功更新
+      words: 詞彙
     skill_gap_report:
-      continue_to_rate_skills: 繼續評定技能
       title: 技能差距報告
     status: 狀態
     user_idp_status:
       approved: 已批准
       draft: 草稿
+      not_started: 未开始
       pending_approval: 待批准
     users: 用戶
   idp_templates:
@@ -831,6 +858,8 @@ zh-HK:
         score: 分數
       gap_assessment:
         gap: 差距
+        hide_left_filter: 隱藏左側篩選器
+        hide_right_filter: 隱藏右篩選器
         item: 指標
         negative_gap: 負差距
         no_negative_gaps: 沒有負差距
@@ -1172,6 +1201,7 @@ zh-HK:
     must_rank_between: 請為每個項目分配從 %{min} 到 %{max} 的值。不得重複數值。
     must_select: 請從 %{min} 到 %{max} 個選項中選擇
     number: 您的回覆必須是數字
+    photo: 所需
     range: 請至少回答 %{min}，不得超過 %{max} 個選項。
     required: 請回答此問題
     text: 您的回覆不得包含數字

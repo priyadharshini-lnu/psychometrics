@@ -49,6 +49,7 @@ module Api
             required(:workshop_managers_ids).array(:string)
             required(:scheduling_lead_time).filled(:integer)
             required(:cancellation_lead_time).filled(:integer)
+            required(:campaign_assessment_group_id).filled(:string)
           end
         end
 

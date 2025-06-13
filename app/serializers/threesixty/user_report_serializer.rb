@@ -82,7 +82,8 @@ module Threesixty
       ReportSerializer.new(
         context: {
           results: results,
-          piped_text_context: context[:piped_text_context]
+          piped_text_context: context[:piped_text_context],
+          user_results: context[:user_results]
         }
       ).serialize(context[:report] || object.report)
     end

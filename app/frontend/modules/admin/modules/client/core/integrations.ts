@@ -6,7 +6,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { createReducer } from '~/utils/redux'
 
 export const get = (state: RootState) => _.get(state, ['project', 'integrations'])
-export const integrationNames = ['iiht', 'hogan', 'mettl']
+export const integrationNames = ['iiht', 'hogan', 'mettl', 'skillvue']
 
 const Integration = t.type({
   id: t.number,
@@ -40,6 +40,16 @@ export const remove = (projectId: string, id: string): ApiAction<RemoveType> => 
     url: `/administration/projects/${projectId}/integrations/${id}`,
     loader: true,
     typedResponse: RemoveTR,
+  },
+})
+
+export const LOAD_SKILLVUE_ASSESSMENTS = 'resource/campaigns/integrations/LOAD_SKILLVUE_ASSESSMENTS'
+export const loadSkillvueAssessments = (projectId: string): ApiAction<void> => ({
+  type: LOAD_SKILLVUE_ASSESSMENTS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/integrations/load_skillvue_assessments`,
+    loader: true,
   },
 })
 

@@ -72,7 +72,7 @@ const getMenuItems = (
   icon: <ReadOutlined className={styles.siderIcon} />,
   children: [
     { label: I18n.t('campaign.dashboard_menu.my_plan'), key: 'my_plan' },
-    { label: I18n.t('campaign.dashboard_menu.my_direct_reports'), key: 'my_direct_reports' },
+    { label: I18n.t('campaign.dashboard_menu.my_direct_reportees'), key: 'direct_reportees' },
   ],
 }] : [],
 ...showBookings ? [{
@@ -122,8 +122,8 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     if (menu.key === 'my_plan') {
       return navigate('/idp/my_plan')
     }
-    if (menu.key === 'my_direct_reports') {
-      return navigate('/idp/direct_reports')
+    if (menu.key === 'direct_reportees') {
+      return navigate('/idp/direct_reportees')
     }
     if (menu.key === 'tasks') {
       const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'
@@ -149,6 +149,10 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
       features?.idp_enabled,
     )
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
+  } else if (pathname.includes('/idp/')) {
+    // destructuring is not required here as we are dealing with single entity
+    // eslint-disable-next-line prefer-destructuring
+    activeItem = pathname.split('/')[2]
   } else {
     activeItem = pathname.slice(1)
     activeItem = pathname.includes('invites') ? 'invites' : activeItem

@@ -24,6 +24,7 @@ RSpec.describe Administration::ImportSkillTranslations do
   end
 
   let(:file_url) { 'https://example.com/translations.csv' }
+  let(:file) { double('file', url: file_url) }
 
   before do
     stub_request(:get, file_url).
@@ -36,7 +37,7 @@ RSpec.describe Administration::ImportSkillTranslations do
 
   describe '#call' do
     it 'updates skill translations' do
-      result = described_class.new(file_url, project.id).call
+      result = described_class.new(file, project.id).call
       expect(result).to eq(true)
 
       I18n.with_locale(:en) do
@@ -62,9 +63,14 @@ RSpec.describe Administration::ImportSkillTranslations do
       end
 
       it 'returns error message' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to include(I18n.t('administration.skills.translations.import.errors.skill_not_found',
-                                         id: '999999'))
+        expect do
+          described_class.new(file, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t(
+            'administration.skills.translations.import.errors.skill_not_found', id: '999999'
+          )
+        )
       end
     end
 
@@ -89,9 +95,15 @@ RSpec.describe Administration::ImportSkillTranslations do
       end
 
       it 'returns error message' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to include(I18n.t('administration.skills.translations.import.errors.skill_not_found',
-                                         id: other_skill.id.to_s))
+        expect do
+          described_class.new(file, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t(
+            'administration.skills.translations.import.errors.skill_not_found',
+            id: other_skill.id.to_s
+          )
+        )
       end
     end
 
@@ -104,30 +116,44 @@ RSpec.describe Administration::ImportSkillTranslations do
       end
 
       it 'returns error message' do
-        result = described_class.new(file_url, project.id).call
-        expect(result).to include(I18n.t('administration.skills.translations.import.errors.missing_columns',
-                                         columns: 'ID'))
+        expect do
+          described_class.new(file, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t(
+            'administration.skills.translations.import.errors.missing_columns',
+            columns: 'ID'
+          )
+        )
       end
     end
 
     context 'with download errors' do
       context 'when URL is invalid' do
-        let(:file_url) { 'not-a-valid-url' }
+        let(:file_with_invalid_url) { double('file', url: 'not-a-url') }
 
         it 'returns error for invalid URL' do
-          result = described_class.new(file_url, project.id).call
-          expect(result.first).to include('Invalid URL')
+          expect do
+            described_class.new(file_with_invalid_url, project.id).call
+          end.to raise_error(Errors::ImportError, 'Invalid URL format')
         end
       end
 
       context 'when file is not accessible' do
         before do
-          stub_request(:get, file_url).to_return(status: 404)
+          stub_request(:get, file_url).to_raise(OpenURI::HTTPError.new('404 Not Found', nil))
         end
 
         it 'returns error for failed download' do
-          result = described_class.new(file_url, project.id).call
-          expect(result.first).to include('Failed to download file')
+          expect do
+            described_class.new(file, project.id).call
+          end.to raise_error(
+            Errors::ImportError,
+            I18n.t(
+              'administration.errors.download_failed',
+              message: '404 Not Found'
+            )
+          )
         end
       end
     end
@@ -144,7 +170,7 @@ RSpec.describe Administration::ImportSkillTranslations do
       end
 
       it 'updates global skill translations' do
-        result = described_class.new(file_url, nil).call
+        result = described_class.new(file, nil).call
         expect(result).to eq(true)
 
         I18n.with_locale(:en) do
@@ -167,8 +193,15 @@ RSpec.describe Administration::ImportSkillTranslations do
       end
 
       it 'returns error for malformed CSV' do
-        result = described_class.new(file_url, project.id).call
-        expect(result.first).to include('Invalid CSV format')
+        expect do
+          described_class.new(file, project.id).call
+        end.to raise_error(
+          Errors::ImportError,
+          I18n.t(
+            'administration.errors.invalid_csv_format',
+            message: 'Unclosed quoted field in line 1.'
+          )
+        )
       end
     end
   end

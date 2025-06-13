@@ -6,4 +6,5 @@ javascript [nonce=content_security_policy_nonce]:
     sentryUrl: "#{ENV['SENTRY_URL']}",
     sentryDebug: "#{ENV['SENTRY_DEBUG']}",
     features: #{Settings.features.to_h.transform_values { |v| v == true }.to_json.html_safe},
+    availableAiProviders: "#{ENV['AVAILABLE_AI_PROVIDERS']}"
   }

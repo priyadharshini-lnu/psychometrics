@@ -2,11 +2,10 @@
 
 module EndUser
   class UserIdpDevelopmentActionsController < ApplicationController
+    append_before_action :pundit_authorize
     before_action :load_skill!, only: %i[generate_by_ai available_development_actions]
 
     def index
-      authorize(user, nil, policy_class: ::EndUser::UserIdpDevelopmentActionPolicy)
-
       user_idp_development_action = user_idp_plan.user_idp_development_actions.includes(:development_action)
 
       serialized_user_idp_development_actions = Panko::ArraySerializer.new(
@@ -109,7 +108,6 @@ module EndUser
     end
 
     def user
-      # TODO: Ensure that user is loaded with proper permission when using it for admin side
       @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
     end
 
@@ -146,6 +144,10 @@ module EndUser
         :generate_more,
         generated_actions: %i[description custom_action_learning_style]
       )
+    end
+
+    def pundit_authorize
+      authorize(user, nil, policy_class: ::EndUser::UserIdpDevelopmentActionPolicy, user_idp_plan: user_idp_plan)
     end
   end
 end

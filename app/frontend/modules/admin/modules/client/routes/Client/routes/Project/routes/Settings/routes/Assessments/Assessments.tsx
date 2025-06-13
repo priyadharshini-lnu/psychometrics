@@ -153,7 +153,7 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
           sortOrder={getSortOrder('updatedAt')}
         />
         <Column
-          title="Actions"
+          title={I18n.t('common.column.action')}
           key="actions"
           render={projectAssessment => (
             <ConditionalDropdown

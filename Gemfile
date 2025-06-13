@@ -2,11 +2,12 @@
 
 source 'https://rubygems.org'
 ruby '3.4.2'
+
+gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
 gem 'rack',                       '~> 2.2.14'
 
 gem 'barnes',                     '~> 0.0.7'
-gem 'bootsnap', '>= 1.12.0', require: false
 gem 'faraday',                    '~> 1.10.0'
 gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.4.0'
@@ -192,8 +193,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1'
   # A fake data generator
   ### Generate schema in each model
+  gem 'deepl-rb'
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'i18n-tasks', '~> 1.0.12'
+  gem 'i18n-tasks', '~> 1.0.15'
   gem 'rswag-specs', '~> 2.11'
   gem 'rubocop', '~> 1.72', require: false
   gem 'rubocop-performance'

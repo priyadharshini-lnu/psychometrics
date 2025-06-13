@@ -160,12 +160,17 @@ en:
             base:
               code_length: Code must be at least 3 characters long at row %{index}.
               code_required: Factor code is required at row %{index}
+              invalid_csv: Invalid Csv %{error_message}
               invalid_scoring_strategy: Invalid scoring strategy '%{strategy}' at row %{index}. Allowed strategies are %{allowed}.
               missing_headers: 'Missing required headers: %{headers}'
               name_required: Factor name is required at row %{index}
               scoring_strategy_required: Scoring strategy is required at row %{index}
             file:
               invalid_format: Please upload CSV file
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Client SMS notification is disabled
         hogan:
           attributes:
             name:
@@ -303,6 +308,10 @@ en:
             email:
               blank: Email can't be blank
               not_uniq_email: Row with email is already present
+        skillvue:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project.
         sms_invites_create:
           attributes:
             first_name:
@@ -767,6 +776,7 @@ en:
         export_factor_translations: Export Factor Translations
         export_norm: Export Norm
         export_occupations: Occupations Export
+        export_reflection_questions: Export Reflection Questions
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
         export_skill_translations: Export Skills Translations
@@ -788,6 +798,7 @@ en:
         import_norm: Import Norm
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
+        import_reflection_questions: Import Reflection Questions
         import_scoring_data: Import Scoring Data
         import_skill_translations: Import Skills Translations
         import_skills: Import Skills
@@ -925,6 +936,7 @@ en:
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
+        skillvue_assessment_name: Skillvue Assessment Name
       translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
@@ -964,6 +976,7 @@ en:
         psychometric: Psychometric
         saville: Saville
         simulation: Simulation
+        skillvue: Skillvue
         threesixty: 360 Campaign
       status:
         finished: Finished
@@ -976,6 +989,7 @@ en:
         pearson: Pearson Assessment
         saville: Saville Assessment
         simulation: Simulation Assessment
+        skillvue: Skillvue Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -1084,13 +1098,13 @@ en:
     sequencing:
       add_assessment_center: Add assessment center
       add_group: Add group
-      assessment_center_message: Assessments in this group are managed by assessment center
       assessments: Assessments
       delete_group: Delete group
       edit_group_name: Edit group name
       modal:
         delete:
           cancel: Cancel
+          cannot_delete_with_workshops: Cannot delete group containing workshops, delete workshops first
           failed: Failed to delete "%{name}" group, please contact administrator
           ok: Yes, delete
           text: Are you sure you want to delete "%{name}" group?
@@ -1235,7 +1249,7 @@ en:
       development: Development
       home: Home
       insights: Insights
-      my_direct_reports: My Direct Reports
+      my_direct_reportees: My Direct Reportees
       my_plan: My Plan
       profile: Profile
       profile_details: Details
@@ -1329,9 +1343,9 @@ en:
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
     allow_msg_proctoring_workshop_activity: Assessment center activities are not proctored.
+    assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
     column:
-      assessment_center_activity: Assessment Center Activity
       assessment_name: Assessment name
       assessor_form: Assessor Form
       auto_assign: Auto Assign
@@ -1349,6 +1363,8 @@ en:
       simulation_content_variation: Simulation Content Variation
       simulation_participant_id: Simulation Participant ID
       simulation_time_extension: Simulation Time Extension
+      skillvue_email_id: Skillvue Candidate Email ID
+      skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Universal link
     drawer:
       mettl_schedule_name: Mettl Schedule Name
@@ -1378,6 +1394,10 @@ en:
         success_msg: Import was uploaded successfully
         title: Import Scoring Results data
         upload: Upload
+      prework_setting:
+        disable: Disable prework for all existing users
+        enable: Enable prework for all existing users
+        title: Prework setting form
       regenerate:
         content: Are you sure you want to regenerate available reports?
         title: Regenerate reports?
@@ -1643,14 +1663,17 @@ en:
       copy: Copy
       create: Create
       delete: Delete
+      done: Done
       download: Download
       edit: Edit
       export: Export
+      filter: Filter
       filter_by_tags: Filter by tags
       go_back: Go Back
       import: Import
       insert: Insert
       ok: OK
+      reject: Reject
       remove: Remove
       reset: Reset
       resolve: Resolve
@@ -1663,6 +1686,7 @@ en:
       send: Send
       sign_in: Sign In
       start: Start
+      submit: Submit
       unarchive: Unarchive
       unresolve: Unresolve
       update: Update
@@ -1670,6 +1694,8 @@ en:
       upload_file: Upload File
       verify: Verify
       view: View
+      view_all_tasks: View all tasks
+      view_detail: View Detail
     column:
       action: Action
       active: Active
@@ -2010,6 +2036,7 @@ en:
       campaign_factor_group:
         group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
+      cant_be_deleted: This record can't be deleted
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
@@ -2043,6 +2070,7 @@ en:
       uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
+      uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
       update_workshop:
         less_than_booked: The total seats must be greater than booked
       user_availability_date:
@@ -2210,6 +2238,7 @@ en:
       neurodivergence_comment_aria_label: Neurodivergence comments
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
+      no_invites_msg: You will be added to the assessment center or receive an invite to book your slot; once you're part of the center, you can complete the activities by clicking the 'View Detail' button below.
       or: or
       other_invite: See %{count} more invite
       other_invites: See %{count} more invites
@@ -2373,6 +2402,7 @@ en:
   idp:
     actions: Actions
     board: Board
+    convert_to_draft: Convert to Draft
     details: Details
     development_actions:
       action_private: 'Yes'
@@ -2410,7 +2440,8 @@ en:
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
-    direct_report_details: Direct Report Details
+    direct_reportee_details: My Direct Reportee Details
+    edit_plan: Edit Plan
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -2427,13 +2458,18 @@ en:
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
       rate_skills_title: Rating Your Skills
       rating_column_header: Your self rating
+      reflective_questions: Reflective Questions
+      save: Save
       select_skills: Select your skills
       select_skills_placeholder: Select skills
       selected_skills: Selected Skills
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
-    my_direct_reports: My Direct Reports
+    manage_plan: Manage Plan
+    mark_as_complete: Mark as Complete
+    mark_as_incomplete: Mark as Incomplete
+    my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
       graphs:
@@ -2544,15 +2580,31 @@ en:
         library: IDP Library
         skills_count: Skills Count
         title: Report Summary
-    profile_details: Profile Details
+    plan: Plan
+    reflective_questions:
+      answer_later: Answer Later
+      answer_placeholder: Write your answer here...
+      errors:
+        max_words: The answer allows a maximum %{count} words
+        min_words: The answer requires at least %{count} words
+        required: The answer to the question is required
+      max_words: Max Words
+      min_words: Min Words
+      title: Reflective Questions
+      update_failed: An error occurred during the update
+      updated_successfully: Your answers have been updated successfully
+      words: Words
     skill_gap_report:
-      continue_to_rate_skills: Continue to rate skills
       title: Skill Gap Report
     status: Status
     user_idp_status:
       approved: Approved
+      completed: Completed
       draft: Draft
-      pending_approval: Pending
+      in_progress: In Progress
+      not_started: Not Started
+      pending_approval: Pending Approval
+      rejected: Rejected
     users: Users
   idp_templates:
     assign: Assign
@@ -2952,9 +3004,11 @@ en:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
+      load_from_skillvue: Load from Skillvue
       none_external: None - Use report builder
     language: Report Language
     language_updated: Report Language was updated successfully
@@ -2988,6 +3042,8 @@ en:
         score: Score
       gap_assessment:
         gap: Gap
+        hide_left_filter: Hide Left Filter
+        hide_right_filter: Hide Right Filter
         item: Indicator
         negative_gap: Negative Gaps
         no_negative_gaps: There are no Negative Gaps
@@ -3454,8 +3510,10 @@ en:
   threesixty:
     accept_privacy_modal:
       accept: Accept
-      checkbox: I have read and understood Privacy Policy mentioned above
-      title: Data processing consent
+      checkbox: By clicking this box, you agree that you have read our privacy notice to the collection and processing of your personal information as described therein, including the international transfer of your personal information.
+      checkbox_with_client_link: By clicking this box, you agree that you have read our privacy notice and our client's privacy notice and you consent to the collection and processing of your personal information as described therein, including the international transfer of your personal information.
+      privacy_notice: Privacy Notice
+      title: Consent to Process and Transfer Personal Information
     action: Action
     add: Add
     and: And
@@ -3856,6 +3914,9 @@ en:
       BadRequest: File was not uploaded as last request failed. This might be due to your internet is not working. If your internet is working please contact administrator
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
+    idp:
+      status_not_permitted: is not permitted by the user.
+      status_not_permitted_by_manager: Manager cannot update status when plan is in '%{status}' state.
     invalid: is invalid
     issue: Issue
     least: Please answer at least %{min} choice(s).
@@ -3871,6 +3932,7 @@ en:
     not_in_future: Selected date should not be in future
     not_in_past: Selected date should not be in past
     number: Your response must be a number
+    photo: required
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
     text: Your response must not contain a numbers

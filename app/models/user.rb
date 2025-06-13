@@ -206,17 +206,17 @@ class User < ApplicationRecord
     )
   end
 
-  def last_workshop_subject(campaign_id)
-    workshops ||= WorkshopSubject.where(
-      user_id: id,
-      campaign_id: campaign_id
-    ).order(:updated_at)
+  def workshop_subject(workshop_invite)
+    workshop_subjects ||= WorkshopSubject.where(user_id: id, campaign_id: workshop_invite.campaign_id).
+                          joins(:workshop_invited_subject).
+                          where(workshop_invited_subjects: { workshop_invite: workshop_invite.id }).
+                          order(:updated_at)
 
-    workshops.participatable.last || workshops.last
+    workshop_subjects.participatable.last || workshop_subjects.last
   end
 
-  def last_workshop(campaign_id)
-    last_workshop_subject(campaign_id)&.workshop
+  def workshop(workshop_invite)
+    workshop_subject(workshop_invite)&.workshop
   end
 
   def send_reset_password_instructions

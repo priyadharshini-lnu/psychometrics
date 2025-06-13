@@ -31,6 +31,18 @@ class AssessmentSerializer < Panko::Serializer
     end
   end
 
+  def instructions
+    return object.instructions if default_language?
+
+    return object.instructions unless object.translations_migrated?
+
+    instructions = object.instructions
+    translated_content = translations.dig('instructions', 0, 'props', 'content')
+    instructions['content'] = translated_content if translated_content
+
+    instructions
+  end
+
   def factors
     return [] unless object.dimension
 
@@ -130,6 +142,10 @@ class AssessmentSerializer < Panko::Serializer
     available_questions = object.questions.not_deleted.uniq { |q| q[:type] }
 
     available_questions.any? { |q| q[:type] == type }
+  end
+
+  def default_language?
+    default_language == context[:selected_locale]
   end
 
   def translations

@@ -15,13 +15,15 @@ module AdminJobs
       'Initiator Last Name',
       'Initiator Email',
       'Report ID',
+      'Report Name',
       'Module ID',
       'Module Name',
       'Module Content',
       'Event Created At',
       'Event Type',
       'Content',
-      'Report Status Changes'
+      'Previous Approval Status',
+      'Current Approval Status'
     ].freeze
 
     def generate_details
@@ -60,6 +62,7 @@ module AdminJobs
                 'initiators_user_report_events.last_name AS initiator_last_name',
                 'initiators_user_report_events.email AS initiator_email',
                 'reports.id AS report_id',
+                'reports.name AS report_name',
                 'reports_modules.name AS module_name',
                 'reports_modules.props ->> \'text\' AS module_content'
               )
@@ -95,13 +98,15 @@ module AdminJobs
         user_report_event.initiator_last_name,
         user_report_event.initiator_email,
         user_report_event.report_id,
+        user_report_event.report_name,
         user_report_event.details['module'],
         user_report_event.module_name,
         module_content(user_report_event),
         I18n.l(user_report_event.created_at, format: :short),
         user_report_event.event_type,
         extract_content(user_report_event),
-        status_changes(user_report_event)
+        user_report_event.details['from'],
+        user_report_event.details['to']
       ]
     end
 
@@ -118,6 +123,8 @@ module AdminJobs
                   "Old: #{details['old_text']}\nNew: #{details['new_text']}"
                 elsif event.event_type.start_with?('comment')
                   details['text']
+                elsif event.event_type == 'removed_text'
+                  original_module_content(event)
                 else
                   details['content']
                 end
@@ -129,8 +136,8 @@ module AdminJobs
       UserReports::FetchModuleContent.new(user_report_event).call
     end
 
-    def status_changes(event)
-      event.event_type == 'status_changed' ? event.details['from'] : nil
+    def original_module_content(user_report_event)
+      UserReports::FetchModuleContent.new(user_report_event).original_module_content
     end
 
     def start_date

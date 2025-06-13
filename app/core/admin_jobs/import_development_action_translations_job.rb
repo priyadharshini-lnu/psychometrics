@@ -4,7 +4,7 @@ module AdminJobs
   class ImportDevelopmentActionTranslationsJob < AdminJobs::Base
     def call
       result = Administration::ImportDevelopmentActionTranslations.new(
-        record.file_url,
+        record.file,
         record.data['project_id']
       ).call
 

@@ -3,7 +3,7 @@
 module Api
   class V2::Administration::IdpSettingsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::IdpSetting::Schema
-    validates_request_schema :update, V2::IdpSetting::UpdateContract.new
+    validates_request_schema :update, -> { V2::IdpSetting::UpdateContract.new }
 
     def project_id
       @model&.project_id || params.dig(:filter, :project_id_eq)

@@ -2,7 +2,7 @@
 
 module MediaResponses
   class CompleteMultipartUpload < BaseCommand
-    private_attr_reader :media_response, :asset_key, :upload_id, :parts, :file_size, :content_type
+    private_attr_reader :media_response, :asset_key, :upload_id, :parts, :file_size, :content_type, :checksum
 
     def initialize(media_response, options = {})
       @media_response = media_response
@@ -11,10 +11,11 @@ module MediaResponses
       @parts = options[:parts]
       @file_size = options[:file_size]
       @content_type = options[:content_type]
+      @checksum = options[:checksum]
     end
 
     def call
-      response = Aws::S3::Client.new.complete_multipart_upload({
+      Aws::S3::Client.new.complete_multipart_upload({
         bucket: Settings.secrets.s3_compatible_storage[:private_bucket],
         key: asset_key,
         multipart_upload: {
@@ -29,7 +30,7 @@ module MediaResponses
         key: asset_key,
         filename: file_name,
         byte_size: file_size,
-        checksum: response.etag,
+        checksum: checksum,
         content_type: content_type,
         service_name: Settings.storage.private_storage_service
       )

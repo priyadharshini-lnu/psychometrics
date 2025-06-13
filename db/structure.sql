@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -407,7 +414,8 @@ CREATE TABLE public.ai_assistants (
     user_prompt text,
     system_prompt text,
     owner_id bigint,
-    last_modified_by_id bigint
+    last_modified_by_id bigint,
+    provider_id character varying NOT NULL
 );
 
 
@@ -1558,15 +1566,45 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 
 
 --
+-- Name: client_features; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_features (
+    id bigint NOT NULL,
+    client_id bigint,
+    sms_notification boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: client_features_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_features_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_features_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_features_id_seq OWNED BY public.client_features.id;
+
+
+--
 -- Name: client_privacy_settings; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -1720,6 +1758,40 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -2190,7 +2262,7 @@ ALTER SEQUENCE public.development_action_translations_id_seq OWNED BY public.dev
 
 CREATE TABLE public.development_actions (
     id bigint NOT NULL,
-    category integer DEFAULT 0 NOT NULL,
+    development_action_type integer DEFAULT 0 NOT NULL,
     learning_style integer DEFAULT 0 NOT NULL,
     name character varying NOT NULL,
     description character varying NOT NULL,
@@ -2201,8 +2273,7 @@ CREATE TABLE public.development_actions (
     image character varying,
     course_start_date timestamp(6) without time zone,
     course_end_date timestamp(6) without time zone,
-    project_id bigint,
-    default_language character varying DEFAULT 'en'::character varying NOT NULL
+    project_id bigint
 );
 
 
@@ -2806,6 +2877,41 @@ CREATE SEQUENCE public.idp_template_development_actions_id_seq
 --
 
 ALTER SEQUENCE public.idp_template_development_actions_id_seq OWNED BY public.idp_template_development_actions.id;
+
+
+--
+-- Name: idp_template_reflection_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_template_reflection_questions (
+    id bigint NOT NULL,
+    idp_template_id bigint NOT NULL,
+    reflection_question_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    mandatory boolean DEFAULT false,
+    min_words integer,
+    max_words integer
+);
+
+
+--
+-- Name: idp_template_reflection_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_template_reflection_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_template_reflection_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_template_reflection_questions_id_seq OWNED BY public.idp_template_reflection_questions.id;
 
 
 --
@@ -3921,7 +4027,10 @@ CREATE TABLE public.privacy_consents (
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
     version smallint DEFAULT 1 NOT NULL,
-    policy_type integer DEFAULT 0
+    policy_type integer DEFAULT 0,
+    ip_address character varying,
+    user_agent character varying,
+    locale character varying
 );
 
 
@@ -4030,7 +4139,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_iiht boolean DEFAULT false,
     mask_identity_for_examus boolean DEFAULT false,
     mask_identity_for_mettl boolean DEFAULT false,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    mask_identity_for_skillvue boolean DEFAULT false
 );
 
 
@@ -4309,6 +4419,74 @@ ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 
 
 --
+-- Name: reflection_question_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reflection_question_translations (
+    id bigint NOT NULL,
+    question character varying,
+    locale character varying NOT NULL,
+    reflection_question_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: reflection_question_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reflection_question_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reflection_question_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reflection_question_translations_id_seq OWNED BY public.reflection_question_translations.id;
+
+
+--
+-- Name: reflection_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reflection_questions (
+    id bigint NOT NULL,
+    question text,
+    mandatory boolean DEFAULT false,
+    min_words integer,
+    max_words integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    project_id bigint NOT NULL
+);
+
+
+--
+-- Name: reflection_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reflection_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reflection_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reflection_questions_id_seq OWNED BY public.reflection_questions.id;
+
+
+--
 -- Name: registration_codes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4551,7 +4729,7 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages jsonb DEFAULT '[]'::jsonb
+    other_languages text[] DEFAULT '{}'::text[]
 );
 
 
@@ -5268,11 +5446,10 @@ CREATE TABLE public.skills (
     id bigint NOT NULL,
     name character varying NOT NULL,
     description character varying NOT NULL,
-    category integer DEFAULT 0 NOT NULL,
+    skill_type integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    project_id bigint,
-    default_language character varying DEFAULT 'en'::character varying NOT NULL
+    project_id bigint
 );
 
 
@@ -5357,6 +5534,74 @@ CREATE SEQUENCE public.skills_job_roles_id_seq
 --
 
 ALTER SEQUENCE public.skills_job_roles_id_seq OWNED BY public.skills_job_roles.id;
+
+
+--
+-- Name: skillvue_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.skillvue_assessments (
+    id bigint NOT NULL,
+    product_id character varying NOT NULL,
+    name character varying NOT NULL,
+    iso_code character varying,
+    expiration date,
+    project_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: skillvue_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.skillvue_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: skillvue_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.skillvue_assessments_id_seq OWNED BY public.skillvue_assessments.id;
+
+
+--
+-- Name: skillvue_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.skillvue_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    url character varying,
+    email character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: skillvue_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.skillvue_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: skillvue_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.skillvue_user_assessments_id_seq OWNED BY public.skillvue_user_assessments.id;
 
 
 --
@@ -6173,7 +6418,8 @@ CREATE TABLE public.user_assessments (
     completion_status_code character varying,
     evaluation_session_id character varying,
     score_calculated boolean DEFAULT false,
-    score_calculated_at timestamp(6) without time zone
+    score_calculated_at timestamp(6) without time zone,
+    prework boolean DEFAULT false
 );
 
 
@@ -6443,6 +6689,39 @@ CREATE SEQUENCE public.user_profiles_id_seq
 --
 
 ALTER SEQUENCE public.user_profiles_id_seq OWNED BY public.user_profiles.id;
+
+
+--
+-- Name: user_reflection_question_answers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_reflection_question_answers (
+    id bigint NOT NULL,
+    answer text,
+    reflection_question_id bigint NOT NULL,
+    user_idp_plan_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_reflection_question_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_reflection_question_answers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_reflection_question_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_reflection_question_answers_id_seq OWNED BY public.user_reflection_question_answers.id;
 
 
 --
@@ -7198,6 +7477,7 @@ CREATE TABLE public.workshops (
     name character varying,
     status integer DEFAULT 0,
     allow_late_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
+    campaign_assessment_group_id bigint,
     CONSTRAINT booked_seats_not_exceed_total_seats CHECK ((booked_seats <= total_seats)),
     CONSTRAINT booked_seats_positive CHECK ((booked_seats >= 0))
 );
@@ -7489,6 +7769,13 @@ ALTER TABLE ONLY public.client_auditlog_export_settings ALTER COLUMN id SET DEFA
 
 
 --
+-- Name: client_features id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_features ALTER COLUMN id SET DEFAULT nextval('public.client_features_id_seq'::regclass);
+
+
+--
 -- Name: client_privacy_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7514,6 +7801,13 @@ ALTER TABLE ONLY public.clients ALTER COLUMN id SET DEFAULT nextval('public.clie
 --
 
 ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('public.clients_reports_id_seq'::regclass);
+
+
+--
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
 
 
 --
@@ -7717,6 +8011,13 @@ ALTER TABLE ONLY public.idp_settings ALTER COLUMN id SET DEFAULT nextval('public
 --
 
 ALTER TABLE ONLY public.idp_template_development_actions ALTER COLUMN id SET DEFAULT nextval('public.idp_template_development_actions_id_seq'::regclass);
+
+
+--
+-- Name: idp_template_reflection_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_reflection_questions ALTER COLUMN id SET DEFAULT nextval('public.idp_template_reflection_questions_id_seq'::regclass);
 
 
 --
@@ -8000,6 +8301,20 @@ ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.qu
 
 
 --
+-- Name: reflection_question_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_question_translations ALTER COLUMN id SET DEFAULT nextval('public.reflection_question_translations_id_seq'::regclass);
+
+
+--
+-- Name: reflection_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_questions ALTER COLUMN id SET DEFAULT nextval('public.reflection_questions_id_seq'::regclass);
+
+
+--
 -- Name: registration_codes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8200,6 +8515,20 @@ ALTER TABLE ONLY public.skills_development_actions ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.skills_job_roles ALTER COLUMN id SET DEFAULT nextval('public.skills_job_roles_id_seq'::regclass);
+
+
+--
+-- Name: skillvue_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_assessments ALTER COLUMN id SET DEFAULT nextval('public.skillvue_assessments_id_seq'::regclass);
+
+
+--
+-- Name: skillvue_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.skillvue_user_assessments_id_seq'::regclass);
 
 
 --
@@ -8410,6 +8739,13 @@ ALTER TABLE ONLY public.user_idp_skills ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.user_profiles ALTER COLUMN id SET DEFAULT nextval('public.user_profiles_id_seq'::regclass);
+
+
+--
+-- Name: user_reflection_question_answers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers ALTER COLUMN id SET DEFAULT nextval('public.user_reflection_question_answers_id_seq'::regclass);
 
 
 --
@@ -8865,6 +9201,14 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 
 
 --
+-- Name: client_features client_features_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_features
+    ADD CONSTRAINT client_features_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: client_privacy_settings client_privacy_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9134,6 +9478,14 @@ ALTER TABLE ONLY public.idp_settings
 
 ALTER TABLE ONLY public.idp_template_development_actions
     ADD CONSTRAINT idp_template_development_actions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: idp_template_reflection_questions idp_template_reflection_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_reflection_questions
+    ADD CONSTRAINT idp_template_reflection_questions_pkey PRIMARY KEY (id);
 
 
 --
@@ -9465,6 +9817,22 @@ ALTER TABLE ONLY public.questions
 
 
 --
+-- Name: reflection_question_translations reflection_question_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_question_translations
+    ADD CONSTRAINT reflection_question_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reflection_questions reflection_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_questions
+    ADD CONSTRAINT reflection_questions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: registration_codes registration_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9705,6 +10073,22 @@ ALTER TABLE ONLY public.skills
 
 
 --
+-- Name: skillvue_assessments skillvue_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_assessments
+    ADD CONSTRAINT skillvue_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: skillvue_user_assessments skillvue_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_user_assessments
+    ADD CONSTRAINT skillvue_user_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sms_histories sms_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9942,6 +10326,14 @@ ALTER TABLE ONLY public.user_idp_skills
 
 ALTER TABLE ONLY public.user_profiles
     ADD CONSTRAINT user_profiles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_reflection_question_answers user_reflection_question_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers
+    ADD CONSTRAINT user_reflection_question_answers_pkey PRIMARY KEY (id);
 
 
 --
@@ -10193,6 +10585,27 @@ CREATE UNIQUE INDEX idx_on_idp_template_id_development_action_id_catego_bd39b965
 --
 
 CREATE UNIQUE INDEX idx_on_idp_template_id_skill_id_category_11f5232638 ON public.idp_template_skills USING btree (idp_template_id, skill_id, category);
+
+
+--
+-- Name: idx_on_reflection_question_id_081af4b0ec; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_reflection_question_id_081af4b0ec ON public.idp_template_reflection_questions USING btree (reflection_question_id);
+
+
+--
+-- Name: idx_on_reflection_question_id_5b36f1a8ed; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_reflection_question_id_5b36f1a8ed ON public.user_reflection_question_answers USING btree (reflection_question_id);
+
+
+--
+-- Name: idx_on_reflection_question_id_fcc1b0bca7; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_reflection_question_id_fcc1b0bca7 ON public.reflection_question_translations USING btree (reflection_question_id);
 
 
 --
@@ -10875,6 +11288,13 @@ CREATE INDEX index_client_auditlog_export_settings_on_client_id ON public.client
 
 
 --
+-- Name: index_client_features_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_features_on_client_id ON public.client_features USING btree (client_id);
+
+
+--
 -- Name: index_client_privacy_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11362,6 +11782,13 @@ CREATE INDEX index_idp_settings_on_project_id ON public.idp_settings USING btree
 --
 
 CREATE INDEX index_idp_template_development_actions_on_idp_template_id ON public.idp_template_development_actions USING btree (idp_template_id);
+
+
+--
+-- Name: index_idp_template_reflection_questions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_reflection_questions_on_idp_template_id ON public.idp_template_reflection_questions USING btree (idp_template_id);
 
 
 --
@@ -11925,6 +12352,13 @@ CREATE INDEX index_questions_on_updated_by_id ON public.questions USING btree (u
 
 
 --
+-- Name: index_reflection_questions_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reflection_questions_on_project_id ON public.reflection_questions USING btree (project_id);
+
+
+--
 -- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12268,6 +12702,27 @@ CREATE UNIQUE INDEX index_skills_on_project_id_and_name ON public.skills USING b
 
 
 --
+-- Name: index_skillvue_assessments_on_project_and_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skillvue_assessments_on_project_and_product_id ON public.skillvue_assessments USING btree (project_id, product_id);
+
+
+--
+-- Name: index_skillvue_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skillvue_assessments_on_project_id ON public.skillvue_assessments USING btree (project_id);
+
+
+--
+-- Name: index_skillvue_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skillvue_user_assessments_on_user_assessment_id ON public.skillvue_user_assessments USING btree (user_assessment_id);
+
+
+--
 -- Name: index_sms_histories_on_sms_record_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12597,6 +13052,13 @@ CREATE INDEX index_user_assessments_on_norm_id ON public.user_assessments USING 
 
 
 --
+-- Name: index_user_assessments_on_prework; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessments_on_prework ON public.user_assessments USING btree (prework);
+
+
+--
 -- Name: index_user_assessments_on_relationship_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12720,6 +13182,13 @@ CREATE INDEX index_user_idp_skills_on_user_idp_plan_id ON public.user_idp_skills
 --
 
 CREATE INDEX index_user_profiles_on_user_id ON public.user_profiles USING btree (user_id);
+
+
+--
+-- Name: index_user_reflection_question_answers_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_reflection_question_answers_on_user_idp_plan_id ON public.user_reflection_question_answers USING btree (user_idp_plan_id);
 
 
 --
@@ -13150,6 +13619,13 @@ CREATE INDEX index_workshop_subjects_on_workshop_invited_subject_id ON public.wo
 
 
 --
+-- Name: index_workshops_on_campaign_assessment_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshops_on_campaign_assessment_group_id ON public.workshops USING btree (campaign_assessment_group_id);
+
+
+--
 -- Name: index_workshops_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13562,6 +14038,14 @@ ALTER TABLE ONLY public.license_usages
 
 
 --
+-- Name: idp_template_reflection_questions fk_rails_2414e644c0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_reflection_questions
+    ADD CONSTRAINT fk_rails_2414e644c0 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
+
+
+--
 -- Name: communication_emails fk_rails_2429635fcd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13650,6 +14134,14 @@ ALTER TABLE ONLY public.power_bi_settings
 
 
 --
+-- Name: idp_template_reflection_questions fk_rails_2ca5733848; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_reflection_questions
+    ADD CONSTRAINT fk_rails_2ca5733848 FOREIGN KEY (reflection_question_id) REFERENCES public.reflection_questions(id) ON DELETE CASCADE;
+
+
+--
 -- Name: innovation_styles_factors fk_rails_2d436cbfdb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13687,6 +14179,14 @@ ALTER TABLE ONLY public.memberships_admin_roles
 
 ALTER TABLE ONLY public.oracle_credentials
     ADD CONSTRAINT fk_rails_30dd1b931a FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: client_features fk_rails_30e279c9bd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_features
+    ADD CONSTRAINT fk_rails_30e279c9bd FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -13959,6 +14459,14 @@ ALTER TABLE ONLY public.dashboards
 
 ALTER TABLE ONLY public.project_assessments
     ADD CONSTRAINT fk_rails_4e1aa7f7d5 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_reflection_question_answers fk_rails_4e78d614fb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers
+    ADD CONSTRAINT fk_rails_4e78d614fb FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id) ON DELETE CASCADE;
 
 
 --
@@ -14474,6 +14982,14 @@ ALTER TABLE ONLY public.design_settings
 
 
 --
+-- Name: reflection_question_translations fk_rails_8dff8966af; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_question_translations
+    ADD CONSTRAINT fk_rails_8dff8966af FOREIGN KEY (reflection_question_id) REFERENCES public.reflection_questions(id);
+
+
+--
 -- Name: campaign_factors fk_rails_8e6105ce73; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14607,6 +15123,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_9a8fd863c2 FOREIGN KEY (parent_id) REFERENCES public.user_report_comments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skillvue_assessments fk_rails_9ba716734a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_assessments
+    ADD CONSTRAINT fk_rails_9ba716734a FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -14842,6 +15366,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: workshops fk_rails_bad3af4e15; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops
+    ADD CONSTRAINT fk_rails_bad3af4e15 FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
 -- Name: communications_users fk_rails_bc228f8bf6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15034,6 +15566,14 @@ ALTER TABLE ONLY public.question_recoding
 
 
 --
+-- Name: user_reflection_question_answers fk_rails_d1daa1ae8e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers
+    ADD CONSTRAINT fk_rails_d1daa1ae8e FOREIGN KEY (reflection_question_id) REFERENCES public.reflection_questions(id) ON DELETE CASCADE;
+
+
+--
 -- Name: text_module_overrides fk_rails_d255d5b433; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15071,6 +15611,14 @@ ALTER TABLE ONLY public.license_usages
 
 ALTER TABLE ONLY public.idp_template_skills
     ADD CONSTRAINT fk_rails_d36f05e26d FOREIGN KEY (skill_id) REFERENCES public.skills(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skillvue_user_assessments fk_rails_d3910f4496; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_user_assessments
+    ADD CONSTRAINT fk_rails_d3910f4496 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -15458,6 +16006,14 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 
 
 --
+-- Name: reflection_questions fk_rails_f3551a0ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_questions
+    ADD CONSTRAINT fk_rails_f3551a0ee3 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: project_assessments fk_rails_f36f27136e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15592,8 +16148,23 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250610070045'),
+('20250605154240'),
+('20250602071331'),
+('20250530095701'),
+('20250528132845'),
+('20250528062059'),
+('20250522122128'),
+('20250522061329'),
+('20250521193031'),
+('20250519045905'),
+('20250516082303'),
+('20250514075923'),
+('20250512082901'),
 ('20250507111247'),
 ('20250507102952'),
+('20250506122929'),
+('20250506113935'),
 ('20250504102702'),
 ('20250430135151'),
 ('20250430110314'),
@@ -15606,6 +16177,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250415070851'),
 ('20250415064739'),
 ('20250411120337'),
+('20250411062532'),
 ('20250410170845'),
 ('20250410065159'),
 ('20250404115157'),
@@ -15616,6 +16188,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250305105355'),
 ('20250304084629'),
 ('20250304060832'),
+('20250228123228'),
 ('20250228060708'),
 ('20250226084133'),
 ('20250224095420'),
@@ -15655,6 +16228,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),
+('20241225073418'),
 ('20241224114259'),
 ('20241224114214'),
 ('20241224114112'),
@@ -16395,3 +16969,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

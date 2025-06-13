@@ -40,6 +40,7 @@ module Administration
         required(:has_external_norm).filled(:bool?)
         required(:schedule_time).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
+        required(:prework).maybe(:bool?)
         required(:dimension_id).maybe(:int?)
         required(:users_result_id).maybe(:int?)
         required(:simulation_content_variations).maybe do
@@ -53,6 +54,9 @@ module Administration
         end
         required(:pearson_user_assessment_details).maybe do
           hash(Administration::PearsonUserAssessmentSchema.schema(_, _))
+        end
+        required(:skillvue_user_assessment_details).maybe do
+          hash(Administration::SkillvueUserAssessmentSchema.schema(_, _))
         end
         required(:hogan_participant_id).maybe(:str?)
       end

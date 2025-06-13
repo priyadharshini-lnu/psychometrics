@@ -34,13 +34,14 @@ export const WorkshopList: React.FC = () => {
     basePath: `campaigns/${campaignId}/`,
     initialFilter: { start_time_between: DEFAULT_RANGE.map(date => getDateStringForSearch(date)).toString() },
     apiConfig: {
-      include: ['workshop_managers', 'workshop_assessors', 'workshop_resources'],
+      include: ['workshop_managers', 'workshop_assessors', 'workshop_resources', 'campaign_assessment_group'],
       include_meta: ['permissions'],
       trackUrl: true,
       fields: {
         workshop_managers: ['id', 'full_name', 'photo_url', 'email'],
         workshop_assessors: ['id', 'full_name', 'photo_url', 'email'],
         workshop_resources: ['name', 'url'],
+        campaign_assessment_group: ['id', 'name'],
       },
     },
   }
@@ -73,6 +74,13 @@ export const WorkshopList: React.FC = () => {
             width="15%"
             render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} />}
             sorter
+          />
+          <Resource.Column<Workshop>
+            title={I18n.t('administration.scheduling.columns.campaign_assessment_group')}
+            id="campaignAssessmentGroup.name"
+            width="10%"
+            render={(_, { campaignAssessmentGroup }) => (campaignAssessmentGroup ? campaignAssessmentGroup.name : '-')
+            }
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.duration')}

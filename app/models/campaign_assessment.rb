@@ -39,7 +39,7 @@ class CampaignAssessment < ApplicationRecord
   scope :workshop_activities, -> { where(workshop_activity: true) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name category archived campaign_id workshop_activity]
+    %w[id name category archived campaign_id workshop_activity campaign_assessment_group_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
@@ -122,6 +122,13 @@ class CampaignAssessment < ApplicationRecord
       PearsonUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
         variation: self.external_config['variation']
       )
+    end
+  end
+
+  def update_prework(prework, apply_to_existing_users = false)
+    if update!(prework: prework) && apply_to_existing_users
+      not_started_assessments = user_assessments.where(status: :not_started)
+      not_started_assessments.update_all(prework: prework)
     end
   end
 

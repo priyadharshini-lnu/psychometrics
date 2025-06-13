@@ -133,5 +133,144 @@ RSpec.describe UserIdpPlan, type: :model do
         end
       end
     end
+
+    describe 'status workflow transitions' do
+      context 'from not_started' do
+        before do
+          user_idp_plan.update(status: :not_started)
+        end
+
+        it 'can transition to draft' do
+          expect { user_idp_plan.draft! }.to change(user_idp_plan, :status).from('not_started').to('draft')
+        end
+      end
+
+      context 'from draft' do
+        before { user_idp_plan.update(status: :draft) }
+
+        it 'can transition to pending_approval' do
+          expect do
+            user_idp_plan.submit_for_approval!
+          end.to change(user_idp_plan, :status).from('draft').to('pending_approval')
+        end
+
+        it 'can transition to approved' do
+          expect { user_idp_plan.approve! }.to change(user_idp_plan, :status).from('draft').to('approved')
+        end
+      end
+
+      context 'from pending_approval' do
+        before do
+          user_idp_plan.update(status: :pending_approval)
+        end
+
+        it 'can transition to approved' do
+          expect { user_idp_plan.approve! }.to change(user_idp_plan, :status).from('pending_approval').to('approved')
+        end
+
+        it 'can transition to rejected' do
+          expect { user_idp_plan.reject! }.to change(user_idp_plan, :status).from('pending_approval').to('rejected')
+        end
+      end
+
+      context 'from approved' do
+        before do
+          user_idp_plan.update(status: :approved)
+        end
+
+        it 'can transition to in_progress and set started_at' do
+          expect { user_idp_plan.start! }.to change(user_idp_plan, :status).from('approved').to('in_progress')
+          expect(user_idp_plan.started_at).to be_within(2.seconds).of(Time.current)
+        end
+
+        it 'can transition to rejected' do
+          expect { user_idp_plan.reject! }.to change(user_idp_plan, :status).from('approved').to('rejected')
+        end
+
+        it 'can not transition to draft' do
+          expect { user_idp_plan.draft! }.to raise_error(Workflow::NoTransitionAllowed)
+        end
+      end
+
+      context 'from rejected' do
+        before do
+          user_idp_plan.update(status: :rejected)
+        end
+
+        it 'can transition to approved' do
+          expect { user_idp_plan.approve! }.to change(user_idp_plan, :status).from('rejected').to('approved')
+        end
+
+        it 'can not transition to in_progress' do
+          expect { user_idp_plan.start! }.to raise_error(Workflow::NoTransitionAllowed)
+        end
+      end
+
+      context 'from in_progress' do
+        before do
+          user_idp_plan.update(status: :in_progress)
+        end
+
+        it 'can transition to completed and set completed_at' do
+          expect { user_idp_plan.complete! }.to change(user_idp_plan, :status).from('in_progress').to('completed')
+          expect(user_idp_plan.completed_at).to be_within(1.second).of(Time.current)
+        end
+      end
+
+      context 'from completed' do
+        before do
+          user_idp_plan.update(status: :completed)
+        end
+
+        it 'does not allow transitioning to draft' do
+          expect { user_idp_plan.draft! }.to raise_error(Workflow::NoTransitionAllowed)
+        end
+      end
+    end
+  end
+
+  describe '#editable?' do
+    let(:user_idp_plan) { create(:user_idp_plan) }
+
+    {
+      editable: %i[not_started draft rejected],
+      non_editable: %i[pending_approval approved in_progress completed]
+    }.each do |editability, statuses|
+      expected_result = editability == :editable
+
+      context "#{editability} statuses" do
+        statuses.each do |status|
+          context "when status is #{status}" do
+            before { user_idp_plan.update(status: status) }
+
+            it "returns #{expected_result}" do
+              expect(user_idp_plan.editable?).to be expected_result
+            end
+          end
+        end
+      end
+    end
+  end
+  describe '#manager_editable?' do
+    let(:user_idp_plan) { create(:user_idp_plan) }
+
+    {
+      manager_editable: %i[rejected pending_approval],
+      non_manager_editable: %i[not_started draft approved in_progress completed]
+    }.each do |editability, statuses|
+      expected_result = editability == :manager_editable
+
+      context "#{editability} statuses" do
+        statuses.each do |status|
+          context "when status is #{status}" do
+            before { user_idp_plan.update(status: status) }
+
+            it "returns #{expected_result}" do
+              expect(user_idp_plan.manager_editable?).to be expected_result
+            end
+          end
+        end
+      end
+    end
   end
 end

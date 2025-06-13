@@ -2,9 +2,9 @@
 
 module Api
   class V2::Administration::UsersController < Api::V2::Administration::BaseController
-    validates_request_schema :create_superadmin, Api::V2::User::CreateSuperadminContract.new
-    validates_request_schema :create_global_assessor, Api::V2::User::CreateGlobalAssessorContract.new
-    validates_request_schema :reset_password, Api::V2::User::ResetPasswordContract.new
+    validates_request_schema :create_superadmin, -> { Api::V2::User::CreateSuperadminContract.new }
+    validates_request_schema :create_global_assessor, -> { Api::V2::User::CreateGlobalAssessorContract.new }
+    validates_request_schema :reset_password, -> { Api::V2::User::ResetPasswordContract.new }
 
     prepend_before_action :set_resource, only: %i[reset_password roles unlock_user_access]
 

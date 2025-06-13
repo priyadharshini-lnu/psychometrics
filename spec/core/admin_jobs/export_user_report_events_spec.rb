@@ -48,13 +48,15 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
         expect(data_row[9]).to eq(superadmin.last_name)
         expect(data_row[10]).to eq(superadmin.email)
         expect(data_row[11]).to eq(report.id)
-        expect(data_row[12]).to eq(module1.id)
-        expect(data_row[13]).to eq(module1.name)
-        expect(data_row[14]).to eq(module1.props['text'])
-        expect(data_row[15]).to eq(I18n.l(user_report_event.created_at, format: :short))
-        expect(data_row[16]).to eq(user_report_event.event_type)
-        expect(data_row[17]).to eq(nil)
-        expect(data_row[18]).to eq('Approved')
+        expect(data_row[12]).to eq(report.name)
+        expect(data_row[13]).to eq(module1.id)
+        expect(data_row[14]).to eq(module1.name)
+        expect(data_row[15]).to eq(module1.props['text'])
+        expect(data_row[16]).to eq(I18n.l(user_report_event.created_at, format: :short))
+        expect(data_row[17]).to eq(user_report_event.event_type)
+        expect(data_row[18]).to eq(nil)
+        expect(data_row[19]).to eq('Approved')
+        expect(data_row[20]).to eq('Change Requested')
       end
     end
 
@@ -74,7 +76,7 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
       it 'includes and strips HTML from comment text' do
         row = job.records_for_export.find { |r| r.id == comment_event.id }
         data_row = job.data_row(row)
-        expect(data_row[17]).to eq(long_text)
+        expect(data_row[18]).to eq(long_text)
       end
     end
   end

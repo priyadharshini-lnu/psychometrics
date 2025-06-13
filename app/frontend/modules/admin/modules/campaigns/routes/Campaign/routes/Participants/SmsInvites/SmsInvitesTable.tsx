@@ -119,8 +119,8 @@ const SmsInvitesComponent: React.FC<Props> = ({
         </Col>
         <Space>
           <Select
-            defaultValue="All"
-            value={filters.statusEq || 'All'}
+            defaultValue={I18n.t('administration.sms_invites.statuses.all')}
+            value={filters.statusEq || I18n.t('administration.sms_invites.statuses.all')}
             className={styles.statusFilter}
             onChange={handleUserTypeFilterChange}
           >
@@ -134,7 +134,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
             ))}
           </Select>
           <Search
-            placeholder="Search"
+            placeholder={I18n.t('common.actions.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}

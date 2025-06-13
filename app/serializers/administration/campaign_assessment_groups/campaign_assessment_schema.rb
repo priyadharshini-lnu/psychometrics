@@ -13,6 +13,7 @@ module Administration
           required(:campaign_id).filled(:int?)
           required(:assessment_id).filled(:int?)
           required(:campaign_assessment_group_id).maybe(:int?)
+          required(:workshop_activity_duration).maybe(:int?)
         end
       end
     end

@@ -7,11 +7,13 @@ export const getlighthousePrivacyUrl = (state: RootState) => _.get(state, ['conf
 export const getprivacyPolicyVersion = (state: RootState) => _.get(state, ['config', 'privacyPolicyVersion'])
 export const getCustomPrivacyConsentText = (state: RootState) => _.get(state, ['config', 'customPrivacyConsentText'])
 export const getShowBookings = (state: RootState) => _.get(state, ['config', 'showBookings'])
+export const getIdpSettings = (state: RootState) => _.get(state, ['config', 'idp'])
 
 export const defaultState = {
   agileAssetsUrl: '',
   maintenance: {
     startDate: null,
+    remainingTime: null,
   },
   profile: {
     fields: [],
@@ -24,6 +26,13 @@ export const defaultState = {
     managerApprovesIdp: false,
     managerCanEditIdp: false,
     requireAllDevelopmentActionsComplete: false,
+  },
+  design: {
+    primary_color: null,
+    error_color: null,
+    warning_color: null,
+    success_color: null,
+    info_color: null,
   },
 }
 

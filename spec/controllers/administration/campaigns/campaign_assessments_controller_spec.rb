@@ -24,6 +24,7 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentsController, type: :
 
     expect(parsed_response['campaign_assessment_group_id']).to eq campaign_assessment_group.id
     expect(parsed_response['position']).to eq 4
+    expect(campaign_assessment.reload.position).to eq 4
   end
 
   it 'update_positions' do
@@ -51,7 +52,7 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentsController, type: :
     expect(response).to have_http_status(:success)
     expect(ca1.reload.position).to eq 3
     expect(ca2.reload.position).to eq 6
-    expect(ca2.campaign_assessment_group_id).to be_nil
+    expect(ca2.reload.campaign_assessment_group_id).to be_nil
   end
 
   it 'will not update_positions for other campaign' do
@@ -71,5 +72,55 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentsController, type: :
     }
     expect(response).to have_http_status(400)
     expect(ca.reload.position).to eq 1
+    expect(ca.reload.campaign_assessment_group_id).to eq campaign_assessment_group.id
+  end
+
+  it 'saves workshop activity duration' do
+    assessment = create(:assessment)
+    ca = campaign_assessment_group.campaign_assessments.create(
+      campaign_id: campaign.id,
+      assessment: assessment,
+      workshop_activity_duration: 20
+    )
+
+    post :update_positions, params: {
+      campaign_assessments: [
+        {
+          id: ca.id,
+          position: 2,
+          campaign_assessment_group_id: campaign_assessment_group.id,
+          workshop_activity_duration: 45
+        }
+      ],
+      new_campaign_id: campaign.id
+    }
+
+    expect(response).to have_http_status(:success)
+    expect(ca.reload.workshop_activity_duration).to eq 45
+  end
+
+  it 'return error when duration is invalid' do
+    assessment = create(:assessment)
+    campaign_assessment_group.update!(group_type: :assessment_center)
+    ca = campaign_assessment_group.campaign_assessments.create(
+      campaign_id: campaign.id,
+      assessment: assessment,
+      workshop_activity_duration: 20
+    )
+
+    post :update_positions, params: {
+      campaign_assessments: [
+        {
+          id: ca.id,
+          position: 2,
+          campaign_assessment_group_id: campaign_assessment_group.id,
+          workshop_activity_duration: -5
+        }
+      ],
+      new_campaign_id: campaign.id
+    }
+
+    expect(response).to have_http_status(400)
+    expect(ca.reload.workshop_activity_duration).to eq 20
   end
 end

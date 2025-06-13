@@ -52,7 +52,6 @@
 
 // /// Translations
 //= require i18n
-//= require i18n/translations
 
 //= require jquery-fileupload/basic
 // /// inplace edit
@@ -67,4 +66,4 @@
 //= require bootstrap-datetimepicker-3
 //= require utils
 
-//= require_tree ./administration
+//= require ./administration/index

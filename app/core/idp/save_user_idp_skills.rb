@@ -36,10 +36,10 @@ module Idp
     def remove_user_idp_skills_not_part_of_plan(skills)
       existing_idp_skill_ids = skills.pluck(:id)
 
-      if skills_form.category.present?
+      if skills_form.skill_type.present?
         user_idp_plan.user_idp_skills.
           where.not(id: existing_idp_skill_ids).joins(:skill).
-          where(skills: { category: skills_form.category }).destroy_all
+          where(skills: { skill_type: skills_form.skill_type }).destroy_all
       else
         user_idp_plan.user_idp_skills.where.not(id: existing_idp_skill_ids).destroy_all
       end

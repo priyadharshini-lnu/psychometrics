@@ -1,1 +1,1 @@
-export { GettingStart } from './GettingStart'
+export { GettingStart } from '~/components/IdpShared/GettingStart'

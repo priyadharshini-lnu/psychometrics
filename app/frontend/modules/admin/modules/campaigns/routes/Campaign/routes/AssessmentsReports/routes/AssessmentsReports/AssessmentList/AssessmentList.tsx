@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Table, Row, Col, Switch, Typography, App,
+  Table, Row, Col, Switch, App,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
@@ -10,7 +10,6 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
-import { secondsToDayHoursAndMinutes } from '~/utils/time'
 import { DetailsDrawer } from './DetailsDrawer'
 
 const { Column } = Table
@@ -35,7 +34,6 @@ const AssessmentList: React.FC<Props> = ({
   updateExternalConfig,
   updatePrework,
   enableUniversalLink,
-  updateWorkshopActivity,
   toggleRequireScheduling,
   toggleAutoAssign,
   normalizeFactorScores,
@@ -49,14 +47,13 @@ const AssessmentList: React.FC<Props> = ({
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
 
-  function handleWorkshopActivitySwitchToggle (assessment: Assessment, parsedCampaignId: number, checked: boolean) {
-    if (checked) {
-      openModal('WorkshopActivityDurationFormModal', {
-        assessment, updateWorkshopActivity, parsedCampaignId, checked,
-      })
-    } else {
-      updateWorkshopActivity(parsedCampaignId, assessment.id, { workshopActivity: checked })
-    }
+  const handleTogglePrework = (assessment: Assessment, parsedCampaignId: number, checked: boolean) => {
+    openModal('ApplyToExistingUsersFormModal', {
+      assessment,
+      parsedCampaignId,
+      updatePrework,
+      checked,
+    })
   }
 
   return (
@@ -197,29 +194,11 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.prework')}
             key="category"
-            render={({ id, prework }) => (
-              <Switch
-                checked={prework}
-                onChange={checked => updatePrework(parsedCampaignId, id, checked)}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_assessment.column.assessment_center_activity')}
-            key="workshopActivity"
-            width={150}
             render={assessment => (
-              <>
-                <Switch
-                  checked={assessment.workshopActivity}
-                  onChange={checked => handleWorkshopActivitySwitchToggle(assessment, parsedCampaignId, checked)}
-                />
-                {(assessment.workshopActivity && assessment.workshopActivityDuration) ? (
-                  <Typography.Text>
-                    {` ${secondsToDayHoursAndMinutes(assessment.workshopActivityDuration * 60)}`}
-                  </Typography.Text>
-                ) : null}
-              </>
+              <Switch
+                checked={assessment.prework}
+                onChange={checked => handleTogglePrework(assessment, parsedCampaignId, checked)}
+              />
             )}
           />
           <Column

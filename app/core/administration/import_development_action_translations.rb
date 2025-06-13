@@ -2,48 +2,26 @@
 
 module Administration
   class ImportDevelopmentActionTranslations < BaseCommand
-    def initialize(file_url, project_id)
-      @file_url = file_url.to_s
+    def initialize(file, project_id)
+      @file = file
       @project_id = project_id
-      @errors = []
     end
 
     def call
       begin
-        csv_data = download_file
-        return @errors if @errors.any?
-
-        ActiveRecord::Base.transaction do
-          process_csv_data(csv_data)
-          raise ActiveRecord::Rollback if @errors.any?
-        end
-      rescue CSV::MalformedCSVError => e
-        @errors << I18n.t('administration.development_action_translations.import.errors.invalid_csv_format',
-                          message: e.message)
+        csv_data = CsvFileParser.call!(@file, headers: true)
+      rescue Errors::DownloadFailedError => e
+        raise Errors::ImportError, e.message
       end
 
-      @errors.any? ? @errors : true
+      ActiveRecord::Base.transaction do
+        process_csv_data(csv_data)
+      end
+
+      true
     end
 
     private
-
-    def download_file
-      uri = URI.parse(@file_url)
-      unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
-        raise URI::InvalidURIError,
-              I18n.t('administration.development_action_translations.import.errors.invalid_url_format')
-      end
-
-      CSV.parse(uri.open, headers: true, encoding: 'bom|utf-8')
-    rescue URI::InvalidURIError => e
-      @errors << I18n.t('administration.development_action_translations.import.errors.invalid_url',
-                        message: e.message)
-      nil
-    rescue OpenURI::HTTPError => e
-      @errors << I18n.t('administration.development_action_translations.import.errors.download_failed',
-                        message: e.message)
-      nil
-    end
 
     def process_csv_data(csv_data)
       process_by_rows(csv_data)
@@ -70,10 +48,12 @@ module Administration
     def process_development_action(id, fields)
       development_action = DevelopmentAction.find_by(id: id, project_id: @project_id)
       unless development_action
-        @errors << I18n.t('administration.development_action_translations.import.errors.development_action_not_found',
-                          id: id,
-                          project_id: @project_id)
-        return
+        raise Errors::ImportError,
+              I18n.t(
+                'administration.development_action_translations.import.errors.development_action_not_found',
+                id: id,
+                project_id: @project_id
+              )
       end
 
       name_fields = fields['Name'] || {}
@@ -107,8 +87,11 @@ module Administration
         )
       end
     rescue ActiveRecord::RecordInvalid => e
-      @errors << I18n.t('administration.development_action_translations.import.errors.save_failed',
-                        message: e.message)
+      raise Errors::ImportError,
+            I18n.t(
+              'administration.development_action_translations.import.errors.save_failed',
+              message: e.message
+            )
     end
   end
 end

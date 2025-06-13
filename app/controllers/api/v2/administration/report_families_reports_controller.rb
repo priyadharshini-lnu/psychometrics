@@ -2,8 +2,8 @@
 
 module Api
   class V2::Administration::ReportFamiliesReportsController < Api::V2::Administration::BaseController
-    validates_request_schema :create, Api::V2::ReportFamiliesReport::Contract.new
-    validates_request_schema :update, Api::V2::ReportFamiliesReport::Contract.new
+    validates_request_schema :create, -> { Api::V2::ReportFamiliesReport::Contract.new }
+    validates_request_schema :update, -> { Api::V2::ReportFamiliesReport::Contract.new }
     validate_crud_requests Api::V2::ReportFamiliesReport::Schema
 
     private

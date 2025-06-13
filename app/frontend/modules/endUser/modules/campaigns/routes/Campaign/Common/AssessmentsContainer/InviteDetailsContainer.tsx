@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import _ from 'lodash'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   Button, Space, Typography,
 } from 'antd'
@@ -17,40 +17,53 @@ import styles from './InviteDetailsContainer.less'
 const { Title } = Typography
 const { I18n } = window
 
-export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
+export const InviteDeatilsContainer = ({
+  inviteDetails, bookingDetails, groupId, groupTitleId, onAllowJoinMeeting, canJoinMeeting,
+}) => {
   const navigate = useNavigate()
+  const { campaignId } = useParams()
   const currentTime = dayjs.tz()
   const bookingStartTimeMomentObj = dayjs(bookingDetails?.startTime)
-  const [canJoinMeeting, setCanJoinMeeting] = useState(currentTime.isAfter(bookingStartTimeMomentObj))
   const secondsLeftToStartAssessmentCenter = bookingStartTimeMomentObj.diff(currentTime, 'seconds')
   const totalInvites = inviteDetails?.totalInvites || 0
   const otherInvitesCount = totalInvites - 1
-  const workshopMeetingLink = bookingDetails?.meetingLink || ''
 
-  if (bookingDetails) {
-    if (canJoinMeeting && !workshopMeetingLink) {
-      return null
-    }
+  const navigateToAssessmentCenterDetails = () => {
+    navigate(`/campaigns/${campaignId}?assessmentCenterId=${groupId}`)
+  }
+
+  const detailsLink = (
+    <Button
+      id={`ac-details-btn-${groupId}`}
+      className="ta-c mt-2"
+      size="small"
+      type="primary"
+      onClick={navigateToAssessmentCenterDetails}
+      aria-labelledby={`${groupTitleId} ac-details-btn-${groupId}`}
+    >
+      {I18n.t('common.actions.view_detail')}
+      <DirectionalArrowIcon className="fs-12" />
+    </Button>
+  )
+
+  if (!_.isEmpty(bookingDetails)) {
     return (
-      <div className={cs(styles.bookingCountdown, 'ta-c')}>
+      <div className={cs('ta-c')}>
         {canJoinMeeting ? (
-          <Button type="link" href={workshopMeetingLink} target="_blank">
-            <Title level={5} className="mb-0">
-              {I18n.t('frontend.bookings.join_workshop_meeting')}
-              {' '}
-              <DirectionalArrowIcon className="fs-12" />
-            </Title>
-          </Button>
+          <>
+            {detailsLink}
+          </>
         ) : (
           <>
             <p className="mb-0">{I18n.t('frontend.bookings.workshop_start_text')}</p>
-            <Title level={5} className="mb-0">
+            <Title level={5} className="mb-0 mt-0">
               <CountdownTimer
                 seconds={secondsLeftToStartAssessmentCenter}
-                onFinish={() => setCanJoinMeeting(true)}
+                onFinish={onAllowJoinMeeting}
                 className={styles.countdown}
               />
             </Title>
+            {detailsLink}
           </>
         ) }
       </div>
@@ -60,7 +73,7 @@ export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
     <>
       {inviteDetails ? (
         <Space size={6} className="w-100" direction="vertical">
-          <p className="mb-0">{I18n.t('frontend.bookings.accept_invite_msg')}</p>
+          <p className="mb-0 ta-c">{I18n.t('frontend.bookings.accept_invite_msg')}</p>
           <DetailsCard
             title={inviteDetails.title}
             subtitle={(
@@ -76,6 +89,8 @@ export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
             className={styles.inviteCard}
             hideTitleHighlighter
             onButtonClick={() => navigate(`/invites/${inviteDetails.id}/details?type=invite`)}
+            secondaryBtnText={I18n.t('common.actions.view_detail')}
+            onSecondaryBtnClick={navigateToAssessmentCenterDetails}
           />
           {totalInvites > 1 ? (
             <Button
@@ -90,7 +105,12 @@ export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
             </Button>
           ) : null}
         </Space>
-      ) : null}
+      ) : (
+        <>
+          <p>{I18n.t('frontend.bookings.no_invites_msg')}</p>
+          {detailsLink}
+        </>
+      )}
     </>
   )
 }

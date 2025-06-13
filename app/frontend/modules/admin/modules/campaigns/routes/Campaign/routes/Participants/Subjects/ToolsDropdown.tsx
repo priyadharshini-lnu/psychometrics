@@ -26,7 +26,7 @@ const getMenuProps = ({
   permissions.exportCompletionStatus && menuItems.push({
     type: 'group',
     key: 'completion_group',
-    label: 'Export Completion Status',
+    label: I18n.t('campaign_assessment.actions.export_completion_status'),
     children: exportMenuItems,
   })
   menuItems.push({ type: 'divider' })

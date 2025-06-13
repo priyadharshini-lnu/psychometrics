@@ -18,6 +18,7 @@ module Api
               attribute[:action].maybe(:string)
               attribute[:created_at].filled(:string)
               attribute[:updated_at].filled(:string)
+              attribute[:provider_id].maybe(:string)
             end
           end
 
@@ -38,6 +39,13 @@ module Api
               optional(:system_prompt).maybe(:string)
               optional(:user_prompt).maybe(:string)
               optional(:action).maybe(:string)
+            end
+          end
+
+          def self.generate_request
+            # No parameters needed for generate
+            Dry::Schema.JSON do
+              # This action doesn't require any input validation
             end
           end
 

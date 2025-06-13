@@ -270,7 +270,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         </Radio.Button>
       </Radio.Group>
       <Search
-        placeholder="Search"
+        placeholder={I18n.t('common.actions.search')}
         value={getFilteredValue('filterable_fields')}
         onChange={e => changeFilter('filterable_fields', e.target.value)}
       />

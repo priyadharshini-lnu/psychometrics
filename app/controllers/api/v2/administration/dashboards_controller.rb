@@ -2,7 +2,7 @@
 
 module Api
   class V2::Administration::DashboardsController < Api::V2::Administration::BaseController
-    validates_request_schema :update, Api::V2::Dashboard::UpdateContract.new
+    validates_request_schema :update, -> { Api::V2::Dashboard::UpdateContract.new }
     validate_crud_requests Api::V2::Dashboard::Schema
 
     def upload_image

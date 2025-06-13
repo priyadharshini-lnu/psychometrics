@@ -829,7 +829,6 @@ de:
     super_admin:
       errors:
         data_processing_disabled: Die Datenverarbeitung ist deaktiviert.
-  administration:
   anonym:
     close: Schließen Sie
     continue: Weiter
@@ -1086,13 +1085,13 @@ de:
     sequencing:
       add_assessment_center: Assessment Center hinzufügen
       add_group: Gruppe hinzufügen
-      assessment_center_message: Beurteilungen in dieser Gruppe werden von einem Assessment Center verwaltet
       assessments: Beurteilungen
       delete_group: Gruppe löschen
       edit_group_name: Gruppenname bearbeiten
       modal:
         delete:
           cancel: Abbrechen
+          cannot_delete_with_workshops: Gruppe mit Workshops kann nicht gelöscht werden, löschen Sie zuerst die Workshops
           failed: Gruppe "%{name}" konnte nicht gelöscht werden, bitte kontaktieren Sie den Administrator
           ok: Ja, löschen
           text: Sind Sie sicher, dass Sie die Gruppe "%{name}" löschen wollen?
@@ -1237,7 +1236,7 @@ de:
       development: Entwicklung
       home: Startseite
       insights: Einblicke
-      my_direct_reports: Meine direkten Berichte
+      my_direct_reportees: Meine direkten Berichte
       my_plan: Mein Plan
       profile: Profil
       profile_details: Details
@@ -1329,9 +1328,9 @@ de:
       reset_all_nominations: Alle Nominierungen zurücksetzen
       reset_participant: Alle Teilnehmer zurücksetzen
     allow_msg_proctoring_workshop_activity: Assessment-Center-Aktivitäten werden nicht geprüft.
+    assessment_center_heading: Assessment Center Details
     assessments_heading: Deine Aufgaben
     column:
-      assessment_center_activity: Assessment Center-Aktivität
       assessment_name: Name der Bewertung
       assessor_form: Beisitzer-Formular
       auto_assign: Automatisch zuweisen
@@ -1649,6 +1648,7 @@ de:
       search: Suchen
       send: Schicken
       start: Starten
+      submit: Einreichen
       unarchive: Dearchivieren
       unresolve: Unresolve
       update: Aktualisieren
@@ -1656,6 +1656,8 @@ de:
       upload_file: Datei hochladen
       verify: Überprüfen Sie
       view: Siehe
+      view_all_tasks: Alle Aufgaben anzeigen
+      view_detail: Ansicht Detail
     column:
       action: Aktion
       active: Aktiv
@@ -2181,6 +2183,7 @@ de:
       neurodivergence_comment_aria_label: Kommentare zur Neurodivergenz
       neurodivergence_comment_placeholder: Ihre Kommentare
       neurodivergence_question: Benötigen Sie aufgrund besonderer Bedürfnisse oder Behinderungen Anpassungen, um vollständig am Assessment teilnehmen zu können?
+      no_invites_msg: Sie werden zum Assessment Center hinzugefügt oder erhalten eine Einladung, um Ihren Platz zu reservieren. Sobald Sie Teil des Centers sind, können Sie die Aktivitäten abschließen, indem Sie auf die Schaltfläche "Details anzeigen" unten klicken.
       or: oder
       other_invite: Weitere %{count} Einladungen anzeigen
       other_invites: Weitere %{count} Einladungen anzeigen
@@ -2343,8 +2346,9 @@ de:
       aria_selected: Ausgewählte
   idp:
     actions: Aktionen
-    board: Board
-    details: Details
+    board: Vorstand
+    convert_to_draft: In Entwurf konvertieren
+    details: Einzelheiten
     development_actions:
       action_private: Ja
       action_public: Nein
@@ -2353,55 +2357,59 @@ de:
       approved: Genehmigt
       board_view:
         completed: Abgeschlossen
-        in_progress: In Bearbeitung
-        not_started: Nicht gestartet
-      completion: Abschluss
+        in_progress: In Arbeit
+        not_started: Nicht begonnen
+      completion: Fertigstellung
       create_my_own: Eigene erstellen
       date_range: Startdatum - Enddatum
-      generate_by_ai: Mit KI generieren
+      generate_by_ai: Generieren durch AI
       generate_more: Mehr generieren
-      generating_development_actions: Entwicklungsmaßnahmen werden generiert...
-      heading: Entwicklungsmaßnahmen
+      generating_development_actions: Generierung von Entwicklungsmaßnahmen...
+      heading: Entwicklungspolitische Maßnahmen
       learning_from_others: Von anderen lernen
-      manage_skills: Kompetenzen verwalten
+      manage_skills: Fertigkeiten managen
       marathon: Marathon
       no_development_actions: Keine Entwicklungsmaßnahmen
-      on_the_job: Am Arbeitsplatz
-      other: Sonstiges
+      on_the_job: Bei der Arbeit
+      other: Andere
       private: Privat
       remove: Entfernen
-      skill: Kompetenz
+      skill: Fertigkeit
       sprint: Sprint
       structured_learning: Strukturiertes Lernen
       submit_plan: Plan einreichen
       write_here: Hier schreiben...
-    direct_report_details: Details zu direkten Mitarbeitern
+    direct_reportee_details: Details zu direkten Mitarbeitern
     initial_steps:
-      add_skill_group_description: Basierend auf Ihren Bewertungsergebnissen sind hier einige Ihrer Stärken und Entwicklungsbereiche. Wählen Sie die Kompetenzen aus, die Sie als Teil Ihres Entwicklungsplans weiterentwickeln möchten.
-      add_skill_group_title: Entdecken Sie Ihre %{category} Kompetenzen
+      add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
+      add_skill_group_title: Erkunden Sie Ihre %{Kategorie}-Fähigkeiten
       add_skills: Hinzufügen
-      add_skills_step: Kompetenzen hinzufügen
-      continue_to_rate_skills: Fahren Sie mit der Bewertung der Kompetenzen fort
+      add_skills_step: Fertigkeiten hinzufügen
+      continue_to_rate_skills: Fähigkeiten weiter bewerten
       getting_started: Erste Schritte
-      getting_started_info: Willkommen bei Ihrem individuellen Entwicklungsplan (IDP). Dieser Plan hilft Ihnen, Ihre beruflichen und persönlichen Ziele zu identifizieren, zu verwalten und zu verfolgen sowie die Schritte zu planen, die Sie zur Erreichung dieser Ziele unternehmen müssen. Ihre beruflichen Ziele können verhaltensbezogene, Führungs- sowie technische Entwicklungsbereiche umfassen. Ihr IDP ist ein wesentliches Instrument zur Unterstützung Ihrer Karriereentwicklung und Kompetenzverbesserung.
-      less_skills: Weniger Kompetenzen anzeigen
-      more_skills: Mehr Kompetenzen entdecken
+      getting_started_info: Willkommen bei der Erstellung Ihres individuellen Entwicklungsplans (IDP). Dieser Plan wird Ihnen helfen, Ihre beruflichen und persönlichen Ziele zu identifizieren, zu verwalten und zu verfolgen, sowie die Schritte, die Sie unternehmen müssen, um diese Ziele zu erreichen. Ihre beruflichen Ziele können sowohl verhaltensbezogene, führungsbezogene als auch technische Entwicklungsbereiche umfassen. Ihr IDP ist ein wichtiges Instrument zur Unterstützung Ihrer beruflichen Entwicklung und zur Verbesserung Ihrer Fähigkeiten.
+      less_skills: Weniger Fähigkeiten zeigen
+      more_skills: Mehr Kompetenzen erkunden
       next: Weiter
-      no_skills_selected: Keine Kompetenzen ausgewählt.
-      rate_skills: Kompetenzen bewerten
-      rate_skills_description: Nachdem Sie Ihre Entwicklungsprioritäten ausgewählt haben, bewerten Sie sich bitte bei jeder der folgenden Kompetenzen. Denken Sie daran, sich basierend auf Ihrem aktuellen Niveau zu bewerten und nicht auf Ihrem vergangenen oder gewünschten Niveau.
-      rate_skills_title: Bewertung Ihrer Kompetenzen
-      rating_column_header: Ihre Selbstbewertung
-      select_skills: Wählen Sie Ihre Kompetenzen
-      select_skills_placeholder: Kompetenzen auswählen
-      selected_skills: Ausgewählte Kompetenzen
-      skill_column_header: Kompetenz
-      skill_gap_report: Kompetenzlückenbericht
+      no_skills_selected: Keine Fähigkeiten ausgewählt.
+      rate_skills: Fähigkeiten bewerten
+      rate_skills_description: Nachdem Sie nun Ihre Entwicklungsprioritäten ausgewählt haben, bewerten Sie sich bitte selbst zu jedem der folgenden Punkte. Denken Sie daran, dass Sie sich selbst auf der Grundlage Ihres derzeitigen Niveaus bewerten und nicht auf der Grundlage Ihres früheren oder gewünschten Niveaus.
+      rate_skills_title: Bewertung Ihrer Fertigkeiten
+      rating_column_header: Ihre Selbsteinschätzung
+      reflective_questions: Reflektierende Fragen
+      select_skills: Wählen Sie Ihre Fähigkeiten
+      select_skills_placeholder: Fähigkeiten auswählen
+      selected_skills: Ausgewählte Fertigkeiten
+      skill_column_header: Fertigkeit
+      skill_gap_report: Bericht über das Qualifikationsdefizit
     list: Liste
-    my_direct_reports: Meine direkten Mitarbeiter
+    manage_plan: Plan verwalten
+    mark_as_complete: Als abgeschlossen markieren
+    mark_as_incomplete: Als unvollständig markieren
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
+        behavioural: Verhaltensweisen
         categories: Kategorien
       save_skills: Kompetenzen speichern
     pdf:
@@ -2509,15 +2517,27 @@ de:
         library: IDP-Bibliothek
         skills_count: Anzahl der Kompetenzen
         title: Berichtszusammenfassung
-    profile_details: Profildetails
+    reflective_questions:
+      answer_later: Antwort später
+      answer_placeholder: Schreiben Sie Ihre Antwort hier...
+      errors:
+        max_words: Die Antwort erlaubt maximal %{count} Wörter
+        min_words: Die Antwort erfordert mindestens %{count} Wörter
+        required: Die Antwort auf die Frage ist erforderlich
+      max_words: Max Wörter
+      min_words: Min Worte
+      title: Reflektierende Fragen
+      update_failed: Während der Aktualisierung ist ein Fehler aufgetreten
+      updated_successfully: Ihre Antworten wurden erfolgreich aktualisiert
+      words: Wörter
     skill_gap_report:
-      continue_to_rate_skills: Fahren Sie mit der Bewertung der Kompetenzen fort
-      title: Kompetenzlückenbericht
+      title: Bericht über das Qualifikationsdefizit
     status: Status
     user_idp_status:
       approved: Genehmigt
       draft: Entwurf
-      pending_approval: Ausstehend
+      not_started: Nicht gestartet
+      pending_approval: Anhängig
     users: Benutzer
   idp_templates:
     assign: Zuweisen
@@ -2953,6 +2973,8 @@ de:
         score: Ergebnis
       gap_assessment:
         gap: lück
+        hide_left_filter: Linken Filter ausblenden
+        hide_right_filter: Rechten Filter ausblenden
         item: Indikator
         negative_gap: negativ lücken
         no_negative_gaps: Es gibt keine negativen Lücken
@@ -3419,8 +3441,10 @@ de:
   threesixty:
     accept_privacy_modal:
       accept: Annehmen
-      checkbox: Ich habe die oben genannten Datenschutzbestimmungen gelesen und verstanden
-      title: Einwilligung zur Datenverarbeitung
+      checkbox: Durch Anklicken dieses Kästchens erklären Sie sich damit einverstanden, dass Sie unseren Datenschutzhinweis zur Erfassung und Verarbeitung Ihrer persönlichen Daten wie darin beschrieben gelesen haben, einschließlich der internationalen Übermittlung Ihrer persönlichen Daten.
+      checkbox_with_client_link: Durch Anklicken dieses Kästchens erklären Sie, dass Sie unseren Datenschutzhinweis und den Datenschutzhinweis unseres Kunden gelesen haben und mit der darin beschriebenen Erfassung und Verarbeitung Ihrer personenbezogenen Daten einverstanden sind, einschließlich der internationalen Übermittlung Ihrer personenbezogenen Daten.
+      privacy_notice: Datenschutzhinweis
+      title: Zustimmung zur Verarbeitung und Übermittlung persönlicher Daten
     action: Aktion
     add: hinzufügen
     and: und
@@ -3836,6 +3860,7 @@ de:
     not_in_future: Das ausgewählte Datum sollte nicht in der Zukunft liegen
     not_in_past: Das ausgewählte Datum sollte nicht in der Vergangenheit liegen
     number: Ihre Antwort muss eine Zahl sein
+    photo: erforderlich
     range: Bitte wählen Sie mindestens %{min} und nicht mehr als %{max} Auswahlmöglichkeit(en).
     required: Bitte beantworten Sie diese Frage
     text: Ihre Antwort darf keine Zahlen enthalten

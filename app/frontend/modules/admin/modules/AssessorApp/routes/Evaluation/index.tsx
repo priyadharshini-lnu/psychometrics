@@ -1,7 +1,7 @@
 import { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Col, Row, Tabs,
+  Splitter, Tabs,
 } from 'antd'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import _ from 'lodash'
@@ -132,8 +132,8 @@ const Evaluation: FC<Props> = ({
         },
         ]}
       />
-      <Row className={styles.container}>
-        <Col span={subjectAssessments.length ? 12 : 24}>
+      <Splitter>
+        <Splitter.Panel defaultSize="50%" min={300}>
           <Tabs
             activeKey={currentAssessorFormId ? `${currentAssessorFormId}` : 'overview'}
             defaultActiveKey="overview"
@@ -141,13 +141,18 @@ const Evaluation: FC<Props> = ({
             className={styles.assessorTabs}
             destroyInactiveTabPane
           >
-            <TabPane tab="Overview" key="overview">
+            <TabPane tab={I18n.t('administration.assessor.overview')} key="overview">
               <Overview userInfo={userInfo} />
             </TabPane>
             {_.map(sortedAssessorAssesments, ({ assessments, id }) => {
               const assessment = _.last<AssessorAssessmentType>(assessments)
               return assessment && (
-                <TabPane destroyInactiveTabPane tab={assessment.name} key={id}>
+                <TabPane
+                  destroyInactiveTabPane
+                  tab={assessment.name}
+                  key={id}
+                  className="lh-splitter-fullscreen-wrapper"
+                >
                   <AssessorAssessment
                     allowMultipleResponses={assessment.allow_multiple_responses}
                     userAssessmentId={+assessment.id}
@@ -158,19 +163,19 @@ const Evaluation: FC<Props> = ({
               )
             })}
           </Tabs>
-        </Col>
-        <Col span={12}>
+        </Splitter.Panel>
+        <Splitter.Panel defaultSize="50%" min={300}>
           {subjectAssessments.length > 0 && (
-            <Tabs activeKey={`${currentAssessmentId}`} onChange={changeSubjectForm} tabBarStyle={{ margin: 0 }}>
+            <Tabs activeKey={`${currentAssessmentId}`} onChange={changeSubjectForm} className={styles.assessorTabs}>
               {subjectAssessments.map(assessment => (
-                <TabPane tab={assessment.name} key={assessment.id}>
+                <TabPane tab={assessment.name} key={assessment.id} className="lh-splitter-fullscreen-wrapper">
                   {currentAssessmentId === assessment.id && <UserAssessment subjectAssessmentId={+assessment.id} />}
                 </TabPane>
               ))}
             </Tabs>
           )}
-        </Col>
-      </Row>
+        </Splitter.Panel>
+      </Splitter>
     </div>
   )
 }

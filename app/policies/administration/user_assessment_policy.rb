@@ -58,11 +58,17 @@ module Administration
     end
 
     def rescore_response?
-      has_permission?(:results, :rescore_responses)
+      has_permission?(:results, :rescore_responses) && !record.skillvue?
     end
 
     def toggle_require_scheduling?
       @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def toggle_prework?
+      has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
     end
@@ -73,6 +79,7 @@ module Administration
         (assessment.common? ||
           assessment.saville? ||
           assessment.simulation? ||
+          assessment.skillvue? ||
           (assessment.mettl? && record.reset_count < UserAssessment::MAX_RESET_COUNT && record.completed?) ||
            (assessment.iiht? && record.completed?))
     end

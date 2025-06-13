@@ -16,6 +16,8 @@ html dir=dir lang="#{I18n.locale}"
     = vite_client_tag
 
     = stylesheet_link_tag 'threesixty_dependencies', media: 'all'
+    = javascript_include_tag "i18n/#{ui_locale}.js"
+    = javascript_include_tag "i18n/#{user_locale}.js"
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag
