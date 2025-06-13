@@ -871,7 +871,8 @@ zh-Hant:
       new_response: 新回應
       next_assessment: 通過下一次評估
       pending_tasks:
-        other:
+        one: 您有 1 個待處理的任務
+        other: 您有 %{count} 待處理任務
       re_evaluate: 按一下這裡重新評估
       reevaluate: 重新評估
       remove:
@@ -1290,7 +1291,7 @@ zh-Hant:
       notification: 您分配給此任務「%{assessmentName}」的時間為 %{totalAssessmentTime}，由於整體時間已經過去，您現在只有 %{remainingCampaignTime} 作為您完成此任務的調整時間。
     timer:
       notification_hours: 您剩餘 %{hours} 小時
-      notification_minutes: 您還剩 %{ 分鐘}分鐘
+      notification_minutes: 您還剩 %{minutes}分鐘
   campaign_assessment:
     actions:
       bulk_download: 大量下載
@@ -1524,7 +1525,7 @@ zh-Hant:
     card:
       duration: 時間長度
       starts_in: 開始於
-      starts_on: 從 %{ 日期}開始
+      starts_on: 從 %{date}開始
       will_start_shortly: 活動即將開始，請稍候
   change_password_page:
     old_password: 舊密碼
@@ -1833,7 +1834,7 @@ zh-Hant:
       confirmation_instructions:
         subject: 確認指示
       invitation_instructions:
-        body: '您好 %{姓名}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員
+        body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員
 
           '
         login: 登入 Lighthouse
@@ -1861,7 +1862,7 @@ zh-Hant:
           '
         subject: 重設密碼的說明
       unlock_instructions:
-        body: '您好 %{姓名}！您的帳號因登入失敗次數過多而被鎖定。 請點選以下連結解除鎖定您的帳號：
+        body: '您好 %{name}！您的帳號因登入失敗次數過多而被鎖定。 請點選以下連結解除鎖定您的帳號：
 
           '
         footer: 如果您沒有要求這樣做，您可以放心地忽略這封郵件。 您的密碼不會更改，直到您訪問上面的鏈接並創建一個新密碼。
@@ -1871,7 +1872,7 @@ zh-Hant:
         subject: 帳戶解鎖說明
         unlock_account: 解鎖我的帳戶
     omniauth_callbacks:
-      failure: 因為「%{原因}」，無法從 %{kind} 驗證您的身份。
+      failure: 因為「%{reason}」，無法從 %{kind} 驗證您的身份。
       success: 從 %{kind} 帳戶成功驗證。
     passwords:
       edit:
@@ -2287,7 +2288,7 @@ zh-Hant:
     booking_card:
       aria_available_time: 可用時間
       aria_back_to_time_selection: 回到時間選擇
-      aria_desc_current_month: 目前為 %{ 月名} %{ 年名｝
+      aria_desc_current_month: 目前為 %{monthName} %{year｝
       aria_label_next_month: 前往下個月
       aria_label_previous_month: 前往上個月
       aria_timezone_select: 選擇時區
@@ -2605,75 +2606,6 @@ zh-Hant:
     zh-HK: 中文（香港）
     zh-Hant: 繁體中文
     zh-TW: 中文（台灣）
-  languages_localized:
-    af: 南非語
-    ar: عربي
-    az: 阿塞拜疆語
-    bg: българский
-    bs: bosanski
-    by: 白俄羅斯語
-    ca: 卡塔爾語
-    cn: 中國人
-    cs: čeština
-    cy: Cymraeg
-    da: 丹麦语
-    de: 德語
-    el: Ελληνικά
-    en: 英語
-    en-GB: 英語
-    en-US: 英語 (US)
-    eo: 世界語
-    es: 西班牙語
-    es-ES: Español (españa)
-    et: 愛沙尼亞語
-    fa: 波斯語
-    fi: 芬蘭語
-    fr: 法語
-    gu: 古吉拉特語
-    he: 希伯來文
-    hi: हिन्दी
-    hr: 克羅地亞語
-    hu: 匈牙利語
-    id: 印尼語
-    it: 意大利文
-    ja: 日本語
-    km: 高棉語
-    ko: 韓語
-    lt: 立陶宛語
-    lv: 拉脫維亞語
-    mk: 馬其頓語
-    mn: 蒙古語
-    ms: 馬來西亞語
-    my: 緬甸
-    nb: 挪威文
-    nl: 荷蘭語
-    'no': 挪威語
-    pl: 波蘭語
-    pt: 葡萄牙語
-    pt-BR: 葡萄牙語 (巴西)
-    pt-PT: 葡萄牙語
-    pt_BR: 葡萄牙語 (巴西)
-    ro: 羅馬尼亞語
-    ru: 俄語
-    sk: 斯洛伐克語
-    sl: 斯洛文尼亞語
-    sr-Cyrl: 塞爾維亞西里爾文
-    sr-Latn: 塞爾維亞拉丁文
-    sv: 瑞典語
-    sw: 斯瓦希里語
-    ta: 梵語
-    th: 泰語
-    tl: 他加祿語
-    tr: 土耳其語
-    ua: 烏克蘭
-    uk: 烏克蘭
-    ur: 烏爾都語
-    vi: 越南語
-    zh: 簡体中文
-    zh-CN: 簡体中文
-    zh-HK: 繁體中文 (香港特別行政區)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: 活躍
     campaign_name: 活動名稱
@@ -3414,8 +3346,10 @@ zh-Hant:
   threesixty:
     accept_privacy_modal:
       accept: 接受
-      checkbox: 我已閱讀並理解上述隱私權政策
-      title: 資料處理同意書
+      checkbox: 點選此方塊，即表示您同意您已閱讀我們的隱私權聲明，同意我們收集和處理您的個人資訊，包括您個人資訊的國際傳輸。
+      checkbox_with_client_link: 點選此方塊，即表示您同意您已閱讀我們的隱私權聲明和客戶的隱私權聲明，並同意我們收集和處理其中所述的您的個人資訊，包括您個人資訊的國際傳輸。
+      privacy_notice: 隱私權聲明
+      title: 同意處理和傳輸個人資訊
     action: 行動
     add: 新增
     and: 還有
@@ -3531,7 +3465,7 @@ zh-Hant:
       report_generation_message: 報告正在產生中，當報告完成時我們會通知您。
     processing: 處理
     processing_report: 處理報告
-    progress_text: "%{已完成}的%{總計｝"
+    progress_text: "%{completed}的%{total｝"
     question:
       chat_type:
         input_placeholder: 寫下您的訊息...
@@ -3836,7 +3770,8 @@ zh-Hant:
     required: 請回答這個問題
     text: 您的回覆不得包含數字
     title:
-      other:
+      one: 有一個錯誤，請檢查您的回覆
+      other: 有 %{count} 錯誤，請檢查您的回覆
     user_self_skill_rating_disabled: 此模板的自我評級已停用
     word_count: '字數 '
     word_range: 您的回應字數必須至少 %{min}，且不超過 %{max}。

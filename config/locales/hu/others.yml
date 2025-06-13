@@ -1,0 +1,1001 @@
+---
+hu:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Minden válasz
+      numeric_comparator:
+        enter_value: Adja meg az értéket
+        select_data: Adatok kiválasztása
+      scoring:
+        select_comparison: Válassza ki az összehasonlítás típusát
+        select_factors: Tényezők kiválasztása
+        select_operation: Művelet kiválasztása
+  activerecord:
+    attributes:
+      membership:
+        first_name: Keresztnév
+        last_name: Vezetéknév
+      user:
+        email: E-mail cím
+        first_name: Keresztnév
+        last_name: Vezetéknév
+      user_form:
+        email: E-mail cím
+        first_name: Keresztnév
+        last_name: Vezetéknév
+        password: Jelszó
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: Mobilszám szükséges
+              invalid: A mobilszám érvénytelen
+              verification_expired: Az ellenőrző kód lejárt, próbálja meg újra ellenőrizni.
+        user:
+          attributes:
+            current_password:
+              invalid: A jelenlegi jelszó helytelen
+  administration: Adminisztráció
+  anonym:
+    close: Zárja be a
+    continue: Folytatás
+    notifications:
+      restart:
+        copy: Ön már elkezdte ezt a felmérést. Ön választhat a Folytatás vagy az Újraindítás között.
+        title: Folytatni?
+      retake:
+        copy: Ön már kitöltötte ezt a felmérést. Ha szeretné megismételni, kattintson az alábbi Újra kitöltés gombra.
+        title: Újra felvenni?
+    restart: Újraindítás
+    retake: Újrafelvétel
+  assessments:
+    actions:
+      back_to_campaign: Vissza a kampányhoz
+      extend_time: Idő meghosszabbítása
+      goto_dashboard: Kattintson ide a folytatáshoz
+      pending_tasks:
+        one: Önnek 1 függőben lévő feladata van
+        other: Önnek %{count} függőben lévő feladatai vannak
+      rescore: Újraértékelés
+    audio_response:
+      permission_denied_message: Kérjük, engedélyezze a mikrofon használatát a böngészőjében a válasz rögzítéséhez
+      permission_text: Kérjük, engedélyezze a mikrofon használatát a hangfelvételhez
+    card_actions:
+      begin: Kezdje
+      continue: Folytatás
+    instructions:
+      begin_assessment: Kezdje
+      cancel: Törölje
+      default: Ez egy időzített tevékenység, amint az Értékelés megkezdése gombra kattint, %{time} perc áll rendelkezésére a befejezésre.
+      title: Utasítások
+    messages:
+      finish: Köszönjük, hogy időt szakítottak ránk, és válaszait rögzítjük.
+    page:
+      back: Vissza
+      confirm_message: "## A válaszok elküldésre kerülnek, és ezután már nem módosíthatók. Kattintson a **Hátra** gombra, ha még egyszer át szeretné nézni a válaszait, vagy kattintson a **Submit** gombra, ha befejezte."
+      next: Következő
+      read_only: Csak olvasási módban van, nem módosíthat semmilyen eredményt.
+      save: Mentés
+      submit: Küldje be a
+    pickgrouprank:
+      items: Tételek
+    proceed: Mindenesetre folytassa
+    unknown_error: Ismeretlen hiba történt.
+    video_response:
+      device: Engedélyezze a
+      device_selection:
+        camera: Kamera
+        mic: Mic
+      discard: Dobja el a
+      discard_record_again: Dobja el és rögzítse újra
+      media_recorder:
+        failure: Ez a böngésző nem támogatja a videófelvételt. Kérjük, használja a Chrome vagy Firefox böngészőt a videófelvételhez
+        success: Kérjük, engedélyezze a kamera és a mikrofon használatát hang- és videofelvételek rögzítéséhez
+      recording_duration_label: A felvétel maximális időtartama
+      recording_stop_label: A felvétel leáll a
+      requesting_permission: Engedélykérés...
+      response_recorded: Felvett válasz
+      save: Mentés
+      saved:
+        label: Megtakarított videó
+      saving: Videó mentése...
+      start_recording: Felvétel indítása
+      stop_recording: Felvétel leállítása
+      tracker:
+        backward: Túl közel van a képernyőhöz. Kérem, lépjen kicsit hátrébb
+        forward: Túl messze van a képernyőtől, kérem, menjen egy kicsit közelebb
+        frame: Kérjük, győződjön meg róla, hogy az arca egy vonalban van a kerettel
+        ready: Nyomja meg a Felvétel gombot, amikor készen áll a felvételre
+    wait: Várjon
+  auth:
+    current_password: Jelenlegi jelszó
+    current_password_placeholder: Jelenlegi jelszó megadása
+    email: E-mail
+    email_placeholder: Email cím megadása
+    expired_password:
+      description: Kérjük, töltse ki az összes mezőt az új jelszó létrehozásához
+      submit: Küldje be a
+      title: Jelszó megújítása
+    login:
+      description: Kérjük, jelentkezzen be személyes fiókadataival
+      forgot_password: Elfelejtette jelszavát?
+      login_btn: Bejelentkezés
+      magic_link_btn: Email bejelentkezési link
+      not_member: Nem tag?
+      or: VAGY
+      sso_btn: Bejelentkezés egyszeri bejelentkezéssel
+      title: Üdvözöljük!
+    logout: Kijelentkezés
+    magic_link:
+      description: Kérjük, adja meg e-mail címét, hogy megkapja a bejelentkezési linket
+      login_with_password: Bejelentkezés jelszóval
+      send_me_login_link: Küldje el a bejelentkezési linket
+      success: Küldtünk Önnek egy bejelentkezési linket a '%{email}' címre. Kattintson a kapott e-mailben található linkre a bejelentkezéshez
+    mobile_number: Mobilszám
+    new_password: Új jelszó
+    new_password_placeholder: Adja meg az új jelszót
+    otp:
+      code: Kód
+      code_placeholder: Egyszeri jelszó
+      description: Kérjük, adja meg a regisztrált e-mail címére küldött OTP-t.
+      resend: OTP újraküldése
+      resend_in: Újraküldés %{timestamp} másodperc múlva
+      resend_success: OTP-t küldünk a mobilszámodra
+      sms_description: Kérjük, adja meg a mobilszámára küldött OTP-t.
+      submit: Ellenőrizze a  címet
+      title: Egyszeri jelszó
+    password: Jelszó
+    password_confirmation: Jelszó megerősítése
+    password_confirmation_placeholder: Jelszó megerősítése
+    password_placeholder: Jelszó megadása
+    registration:
+      description: Töltse ki az alábbi adatokat a regisztrációhoz és egy új fiók létrehozásához
+      email_hint: Tiszteletben tartjuk a magánéletét, és nem toleráljuk a spameket. Soha nem adjuk ki az adatait harmadik félnek
+      first_name: Keresztnév
+      first_name_placeholder: Adja meg a keresztnevét
+      have_account: Már van fiókja?
+      last_name: Vezetéknév
+      last_name_placeholder: Adja meg a vezetéknevét
+      login_now: Jelentkezzen be most!
+      registration_code: Regisztrációs kód
+      registration_code_placeholder: Regisztrációs kód megadása
+      terms_notice: A regisztrációval Ön elfogadja a <a href="%{terms_url}">Szolgáltatási feltételeket és az Adatvédelmi szabályzatot</a>
+      title: Feliratkozás
+    reset_password:
+      back_to_sign_in: Vissza a Bejelentkezéshez
+      description: Adja meg a fiókjához tartozó e-mail címet
+      submit: Jelszó visszaállítása
+      title: Elfelejtette jelszavát?
+    set_password:
+      description: Új jelszó létrehozásához kérjük, írja be az új jelszót az alábbi mezőkbe
+      submit: Küldje be a
+      title: Jelszó létrehozása
+    sign_out: Bejelentkezés más felhasználóként
+    sign_up: Feliratkozás
+    terms_link: <a href="%{terms_url}">Feltételek és adatvédelmi nyilatkozat</a>
+    verify_mobile_number:
+      error:
+        blocked: Ez a szám túl sok próbálkozás miatt blokkolva van.
+        invalid_code: Érvénytelen kód
+        invalid_number: A mobilszám helytelen. Kérjük, ellenőrizze újra a számot
+        max_attempts_reached: Túl sok próbálkozás. 10 percet várjon, mielőtt újra próbálkozna.
+  campaign:
+    all_activities_are_completed: Mostanra minden tevékenység befejeződött.
+    all_activities_are_completed_multiple: A kampány összes tevékenysége befejeződött. Kérjük, lépjen tovább az irányítópultra, és ellenőrizze, hogy vannak-e még hozzárendelt tevékenységei.
+    begin: Kezdje el a feladatokat
+    begin_btn_msg_before_prework: Az időzített kampány megkezdése előtt az alábbi feladatokat kell elvégeznie
+    begin_campaign_msg: Indítsa el a kampányt az értékelések előtt
+    campaigns: Kampányok
+    closed_campaign_message: Ez a kampány lezárult, ebben a kampányban nem tudsz értékelést végezni.
+    complete_prev: Az összes korábbi értékelés elvégzése
+    complete_tasks: Kérjük, a művelet elvégzése előtt végezze el az alábbi feladatokat.
+    continue: Folytassa feladatait
+    dashboard_instructions: Előfordulhat, hogy több tevékenységet is kijelöltek Önnek, amelyeket el kell végeznie. Kérjük, ellenőrizze, hogy az összes kampányban minden kijelölt tevékenységet elvégeztek-e.
+    dashboard_menu:
+      bookings: Foglalások
+      campaign: Kampány
+      change_password: Jelszó módosítása
+      development: Fejlesztés
+      home: Home
+      insights: Betekintés
+      my_plan: A tervem
+      profile: Profil
+      profile_details: Részletek
+      tasks: Feladatok
+    details: Részletek
+    edit_evaluation:
+      body: Tájékoztatjuk, hogy amint az Újraértékelés gombra kattint, a felmérés elejére kerül, ahol szerkesztheti a válaszokat. A korábbi válaszok továbbra is elérhetőek lesznek, de azokat az Ön által megadottak szerint módosíthatja. A szerkesztés után a folyamat befejezéséhez újra el kell küldenie az értékelést.
+      edit: Értékelje újra a  honlapot
+      title: Megerősítés
+      view: Értékelés megtekintése
+    errors:
+      invalid_status: Érvénytelen kampánystátusz
+    goto_dashboard: Menjen a műszerfalra
+    inactive_campaign_message: Jelenleg még nincs hozzárendelve semmilyen tevékenység.
+    insights_reports: Betekintések és jelentések
+    instruction_modal:
+      campaign_start_final_instructions: "<p>kérjük, vegye figyelembe, hogy nincs mód az időzítő leállítására vagy szüneteltetésére. A kampány időzítője akkor is tovább fut, ha bezárja a böngészőt, így semmiképpen ne gondoljon arra, hogy a feladatok között elhagyja a feladatokat, hogy valami mást csináljon. Ügyeljen arra, hogy a feladatok alatt minimalizálja a zavaró tényezőket. Keressen csendes környezetet, kapcsolja ki az értesítéseket az eszközökön, és kerülje a multitaskingot. Tartsa fenn a koncentrációját és maradjon koncentrált. Ha a kampány időzítője lejár, nem tudja folytatni. Ha elolvasta a fenti utasításokat, kattintson a start gombra a kijelölt feladatok folytatásához</p>\n"
+      campaign_start_instruction: |
+        <h4>Kérjük, olvassa el figyelmesen az alábbi utasításokat.</h4>
+        <p>a feladat(ok), amelyeket most fog elkezdeni, időzítettek. Amint a "Start" gombra kattint, a kampány időzítője automatikusan elindul. %{minutes} perc áll rendelkezésére, hogy az összes tevékenységet elvégezze. Kérjük, törekedjen arra, hogy a feladatokat a megadott időkereten belül elvégezze, és hatékonyan gazdálkodjon az idővel, hogy ne rohanjon az értékelési folyamat során. Ügyeljen arra, hogy a feladatokat egy menetben végezze el, így ha szünetet kell tartania, most van itt az ideje</p>
+      common_proctoring_instructions: |
+        <h4>Proctoring</h4>
+        <p>a Start gombra kattintva átirányítjuk Önt a proktoráló rendszerünkhöz. Ez figyeli a kamerát, a mikrofont és a képernyőt a munkamenet alatt. Ezeket a munkameneteket kifinomult AI rendszerünk automatikusan proktorálja, zavartalan és zökkenőmentes felhasználói élményt biztosítva. A munkameneteket azonban emberi proktorok is ellenőrizhetik. A helytelen viselkedésre vagy szabálytalanságra utaló jeleket megjelöljük. Ezt azért tesszük, hogy biztosítsuk, hogy nem történik csalási kísérlet. Ha gyanúsnak találjuk, a feladat(ok) törlésre kerülnek</p>
+      lockdown_browser_instruction: |
+        <h4>Proctoring böngésző</h4>
+        <p>a proktori feladatok elvégzéséhez le kell töltenie és telepítenie egy speciális böngészőt. Kérjük, kövesse a következő képernyőn található utasításokat. Ezt az összes szükséges tevékenység elvégzése után eltávolíthatja</p>
+    instructions:
+      collapse_link_text: Kevesebb mutatása
+      expand_link_text: Többet mutasson
+      heading: Kérjük, mielőtt belevágna, olvassa el az alábbi irányelveket. Sok sikert kívánunk!
+    language:
+      content: Ez a feladat nem érhető el az aktuálisan kiválasztott nyelven. Kérjük, a folytatáshoz válassza ki az elérhető nyelvek egyikét.
+      single_lang: Ez a feladat csak %{lang} nyelven érhető el. A folytatáshoz kattintson a "Folytatás" gombra.
+      title: Nyelv kiválasztása
+    panels:
+      dashboard: Műszerfal
+      reports: Jelentések
+    profile:
+      complete_heading: Az Ön profilja teljes
+      complete_profile_label: Most befejezni
+      edit_profile_label: Profil szerkesztése
+      incomplete_heading: Töltse ki profilját
+      last_login_text: 'Utolsó bejelentkezés :'
+      last_updated_text: 'A profilt utoljára frissítették:'
+      sub_heading: Töltse ki a teljes profilinformációt
+      welcome_text: Üdvözöljük,
+    thank_you_for_time: Köszönjük, hogy időt szakított ránk
+    time_left:
+      cancel: Törölje
+      continue: Folytatás
+      notification: A "%{assessmentName}" feladatra kiosztott ideje %{totalAssessmentTime} volt. A teljes eltelt idő miatt most már csak %{remainingCampaignTime} áll rendelkezésére, mint a feladat elvégzéséhez igazított idő.
+    timer:
+      notification_hours: Még %{hours} órája van hátra
+      notification_minutes: még %{minutes} perc van hátra
+  campaign_assessment:
+    assessment_center_heading: Értékelő központ részletei
+    assessments_heading: Az Ön feladatai
+    statuses:
+      completed: Befejezett
+      in_progress: Folyamatban
+      ineligible: Nem támogatható
+      interrupted: Megszakított
+      not_started: Nem indult
+      timed_out: Lejárt az idő
+      universal_link: Univerzális kapcsolat
+  campaigns:
+    card:
+      duration: Időtartam
+      starts_in: 'Kezdődik:'
+      starts_on: Kezdődik %{date}
+      will_start_shortly: A kampány hamarosan indul. Kérjük, várjon
+  change_password_page:
+    old_password: Régi jelszó
+    password: Jelszó
+    password_confirmation: Jelszó megerősítés
+    title: Jelszó módosítása
+    warning_message: 'Fontos: A jelszó megváltoztatása kijelentkezést eredményez.'
+  checking_wizard:
+    audio_check:
+      access: Hozzáférés
+      continue: Igen, oké a folytatáshoz
+      random_phrases:
+        eight: Legyen erős a kávéja, és legyen termékeny a napja.
+        five: Az élet jobb, ha mosolyogsz. Mosolyogj a mikrofonért!
+        four: Kagylókat árul a tengerparton.
+        nine: Ha kétségeid vannak, próbáld ki, ez a mikrofon működik!
+        one: Én sikítok, te sikítasz, mindannyian sikítunk a fagylaltért!
+        seven: Minden nap egy új kezdet. Mondd ezt hangosan és büszkén!
+        six: Pizza vagy tészta? A döntés nehéz.
+        three: Tesztelés, egy kettő három, a hang tiszta, mint lehet!.
+        two: A gyors barna róka átugrik a lusta kutyán.
+      record_title: Kérem, beszéljen és ismételje meg a következő mondatot háromszor.
+      retake: Nem, újra akarom venni
+      run_again: Fuss újra
+      test_message: nagyszerű, hogy beszélhetek veled
+    network_check:
+      continue: Folytatás
+      download: Letöltés
+      please_check_connection: Kérjük, ellenőrizze az internetkapcsolatát
+      processing: Feldolgozás
+      run_again: Fuss újra
+      run_again_title: És futtassa le újra ezt a tesztet
+      title: Kattintson a start gombra az internetsebesség-teszt megkezdéséhez.
+      upload: Feltöltés
+    steps:
+      audio_check: Mikrofon teszt
+      network_check: Internet sebesség teszt
+      system_check: Rendszerellenőrzés
+      video_check: Videokamera teszt
+    success:
+      start: Értékelés megkezdése
+      title: Ön sikeresen elvégezte az összes ellenőrzést.
+    system_check:
+      compatibility: Rendszer kompatibilitás
+      continue: Folytatás
+      failure:
+        description: A tesztben szereplő hang/videó kérdésekhez webkamera- és mikrofonengedélyekre van szükség.
+        link_text: itt
+        link_text_action: Kattintson a  címre
+        link_text_instruction: és kövesse az engedélyek megadásához szükséges lépéseket
+        refresh: Böngésző frissítése
+        refresh_text: Kattintson az alábbi gombra a böngésző frissítéséhez és a módosítások alkalmazásához
+        subtitle: Gyors javítások
+        title: Törölte a webkamera és a mikrofon engedélyeit
+      permissions: Webkamera és hang engedélyek
+      title: Az értékelés megkezdése előtt a rendszernek át kell esnie néhány ellenőrzésen.
+    video_check:
+      access: Hozzáférés
+      camera_preview: A kamera előnézet itt jelenik meg
+      continue: Igen, oké a folytatáshoz
+      description: Kattintson a Start Recording gombra, és vegye fel magát, miközben az alábbi szöveget olvassa a saját hangján
+      random_phrases:
+        eight: Ha látsz engem, akkor a videó sikeres, ha nem, akkor orvosoljuk a hibákat!
+        five: Teszteld a videódat, ne aggódj, nincs szükség Oscar-jelölésre.
+        four: Kész, kész, fókusz! A kamera a te színpadod.
+        nine: Nagy mosoly és tiszta videó,csináljuk meg ezt a tesztet jól!
+        one: Emelje fel a kezét, ha hall engem, vagy csak integessen a kamerának!
+        seven: Tükör, tükör a képernyőn, legyen tiszta a videóellenőrzés.
+        six: Fények, kamera, akció, itt az idő, hogy tündökölj!
+        ten: Egy barátságos integetéssel megbizonyosodik arról, hogy minden rendben működik.
+        three: Mondj sajtot! Vagy csak teszteld azt a tökéletes mosolyt.
+        two: Nézz a lencsébe, mosolyogj, és tégy úgy, mintha egy filmtrailerben lennél.
+      rec_text: REC
+      retake: Nem, újra akarom venni
+      run_again: Fuss újra
+      title: Biztosítanunk kell, hogy a rendszer képes legyen a videó rögzítésére
+      uploading: A  feltöltése
+  common:
+    actions:
+      add: Add
+      archive: Archívum
+      cancel: Törölje
+      close: Zárja be a
+      copy: Másolás
+      delete: Törölje a  címet
+      edit: Szerkesztés
+      remove: Távolítsa el a
+      reset: Reset
+      resolve: Feloldás
+      restore: Visszaállítás
+      save: Mentés
+      search: Keresés
+      send: Küldje el a
+      start: Indítsa el a  oldalt
+      unarchive: Unarchive
+      unresolve: Megoldhatatlan
+      update: Frissítés
+      upload: Feltöltés
+      verify: Ellenőrizze a  címet
+      view_all_tasks: Minden feladat megtekintése
+      view_detail: Részlet megtekintése
+    column:
+      action: Akció
+      category: Kategória
+      created_at: Létrehozva
+      id: Id
+      status: Állapot
+    model:
+      assessments: Értékelések
+      campaigns: Kampányok
+      reports: Jelentések
+    text:
+      cancel: Törölje
+      confirm: Megerősítés
+      continue: Folytatás
+      default: Alapértelmezett
+      download: Letöltés
+      na: N/A
+      ok: Oké
+      response: Válasz
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Bejelentkezés
+    failure:
+      already_authenticated: Ön már bejelentkezett.
+      inactive: A fiókja még nem aktivált.
+      invalid: Érvénytelen e-mail cím vagy jelszó.
+      invited: Ön egy függőben lévő meghívót kapott, fogadja el, hogy befejezze fiókja létrehozását.
+      magic_link_invalid: Érvénytelen vagy lejárt bejelentkezési link.
+      not_found_in_database: Érvénytelen e-mail cím vagy jelszó.
+      timeout: Az Ön munkamenete lejárt. Kérjük, jelentkezzen be újra a folytatáshoz.
+      unauthenticated: A folytatáshoz be kell jelentkeznie vagy regisztrálnia kell.
+    invitations:
+      edit:
+        password_label: Jelszó
+    passwords:
+      invalid_email: Érvénytelen e-mail
+    registrations:
+      communication_not_setup_error: A regisztrációs e-mail kommunikáció nincs beállítva, kérjük, lépjen kapcsolatba a projekt adminisztrátorával.
+      new:
+        email: E-mail cím
+        first_name: Keresztnév
+        instruction: Töltse ki az alábbi adatokat a regisztrációhoz és az új fiók létrehozásához
+        last_name: Vezetéknév
+        privacy_notice: Tiszteletben tartjuk a magánéletét, és nem tűrjük a spameket. Soha nem adjuk ki adatait harmadik félnek.
+        registration_code: Regisztrációs kód
+        submit: Regisztráció
+        tabs:
+          register: Regisztráció
+          sign_in: Bejelentkezés
+        terms_notice: A regisztrációval Ön elfogadja <a href="%{terms_url}">Szolgáltatási feltételeinket és Adatvédelmi szabályzatunkat</a>
+        title: Regisztráljon most
+      success:
+        actions:
+          sign_in: Bejelentkezés
+    sessions:
+      new:
+        email: E-mail cím
+        forgot_password: Elfelejtette jelszavát?
+        instruction: Kérjük, jelentkezzen be személyes fiókadataival
+        password_placeholder: Jelszó
+        submit: Bejelentkezés
+        tabs:
+          register: Regisztráció
+          sign_in: Bejelentkezés
+        title: Üdvözöljük!
+    two_factor_authentication:
+      attempt: Kérjük, adja meg a regisztrált e-mail címére kapott OTP-t
+      code_has_been_sent: Az új OTP-t elküldtük a regisztrált e-mail címére
+  emails:
+    subject_relationship_table:
+      subject_email: Tárgy Email
+      subject_name: Tárgy neve
+      subject_relationship: Tárgy Kapcsolat
+  errors:
+    assessments:
+      timed_out: Nem tudja elvégezni a %{assessment_name} értékelést, mivel lejárt az idő.
+    error: Hiba
+    error_500: Valami elromlott, forduljon a rendszergazdához.
+    forbidden: Nincs hozzáférése ehhez az oldalhoz
+    forbidden_action: Nincs jogosultsága ehhez a művelethez
+    invalid_token: Valami elromlott, kérjük, töltse újra az oldalt, és próbálja meg újra.
+    module_error: Valami baj történt ezzel a modullal, kérjük, lépjen kapcsolatba az adminisztrációval.
+    module_error_editor: Valami elromlott ezzel a modullal, kérjük, ellenőrizze a modul beállításait.
+    module_props_error: Valami elromlott ezzel a modullal.
+    try_again: Kérjük, próbálja meg újra
+  factors:
+    description: Leírás
+    factor: Tényező
+  frontend:
+    activate: Aktiválja a  címet
+    are_you_sure: Biztos vagy benne?
+    assessment: Értékelés
+    assessment_groups:
+      create_success: A csoportot sikeresen létrehoztuk
+      update_success: A csoport sikeresen frissült
+    background_reading: Háttér olvasmányok
+    bookings:
+      accept_invite_msg: Meghívót kapott, kérjük, foglalja le a helyét.
+      add_to_calendar: Hozzáadás a naptárhoz
+      add_to_calendar_tour_description: Adja hozzá ezt a foglalást a naptárához
+      assessment_center_alert:
+        btn_title: Kampány
+        message_part1: Végezze el az összes előmunkálatot ebben a
+        message_part2: mielőtt időpontot foglal.
+      assessment_center_group_name: Értékelő központ
+      booking_failed_msg: 'Nem sikerült foglalni: %{error}'
+      buttons:
+        book: Könyv
+        book_again: Foglaljon újra
+        cancel: Törölje
+        cancel_booking: Foglalás törlése
+        confirm_booking: Foglalás megerősítése
+        confirm_reschedule: Megerősítés Újratervezés
+        modify: Módosítsa a  címet
+        nevermind: Nevermind
+        no_text: Nem
+        request_cancel: Lemondási kérelem
+        request_reschedule: Átütemezési kérelem
+        reschedule: Átütemezés
+        reserve_spot: Foglalja le a helyét
+        yes_text: Igen
+      cancel_booking_confirmation: Biztos, hogy törölni szeretné ezt a foglalást?
+      cancellation_failed: 'Nem sikerült törölni a foglalást: %{error}'
+      cancellation_success: Sikeresen törölte a foglalást
+      comments_required_msg: Kérjük, adja meg észrevételeit
+      confirm_booking_description: Kérjük, a foglalás véglegesítése előtt erősítse meg, hogy ezek az adatok helyesek.
+      confirm_booking_title: Megerősíteni ezt a foglalást?
+      default_failure_msg: Nem sikerült feldolgozni a kérését, kérjük, próbálja meg később újra.
+      default_requires_msg: "%{name} kötelező"
+      join_activity_meeting: Csatlakozzon a találkozóhoz
+      join_workshop_meeting: Csatlakozzon a találkozóhoz
+      language: Nyelv
+      language_placeholder: Nyelv kiválasztása
+      language_preference_question: Van nyelvi preferenciája?
+      language_required_msg: Kérjük, válasszon nyelvet
+      meeting_start_text: 'A találkozó a következő időpontban kezdődik:'
+      need_changes: Szüksége van a változtatásokra?
+      neurodivergence_comment_placeholder: Az Ön megjegyzései
+      neurodivergence_question: Szüksége van-e bármilyen ésszerű alkalmazkodásra vagy kiigazításra különleges szükségletei vagy fogyatékossága miatt ahhoz, hogy teljes mértékben részt vehessen az értékelésben?
+      no_invites_msg: Önt felveszik az értékelőközpontba, vagy meghívót kap, hogy lefoglalja a helyét; ha már a központ tagja, az alábbi "Részletek megtekintése" gombra kattintva végezheti el a tevékenységeket.
+      other_invite: Lásd %{count} több meghívó
+      other_invites: Lásd %{count} további meghívók
+      reason: Indoklás
+      reason_for_cancel: A lemondás oka
+      reason_for_reschedule: Az átütemezés oka
+      request_cancellation_failed: 'Sikertelen a törlési kérelem: %{error}'
+      request_cancellation_success: Sikeres törlési kérelem
+      request_reschedule_failed: 'Sikertelen az átütemezési kérelem: %{error}'
+      request_reschedule_success: Sikeresen kérte az átütemezést
+      reschedule_failed_msg: 'Sikerült átütemezni: %{error}'
+      reschedule_reason_placeholder: A folytatáshoz kérjük, adja meg az átütemezés okát.
+      schedule_success: Ez a foglalás a tervek szerint
+      schedule_success_msg: Önnek és a többi résztvevőnek e-mailben küldtünk egy meghívót a naptárba, amely tartalmazza az összes részletet.
+      starts_at: 'Kezdődik: %{date}'
+      starts_in: 'Kezdődik:'
+      tab_label:
+        bookings: Foglalások
+        invites: Meghívók
+      what: Mi
+      when: Amikor
+      workshop_start_text: Az Ön értékelőközpontja a következő időpontban indul
+    break_time: Szünet
+    campaign:
+      actions:
+        remove:
+          confirmation: A kampány eltávolításához írja be az alábbi szövegmezőbe az aktuális kampány nevét
+          success: "%{campaignName} sikeresen eltávolításra került."
+      users:
+        completion_statuses:
+          completed: Befejezett
+          in_progress: Folyamatban
+          not_started: Nem indult
+    change_password: Jelszó módosítása
+    delete: Törölje a  címet
+    edit: Szerkesztés
+    lighthouse_app: Mercer világítótorony
+    login: Bejelentkezés
+    manage: Kezelje a  címet
+    'no': Nem
+    resource:
+      create_success: "%{readableResourceName} sikeresen hozzáadtuk"
+      update_success: "%{readableResourceName} sikeresen frissült"
+    session_timeout_modal:
+      buttons:
+        close: Zárja be a
+        log_out: Kijelentkezés most
+        re_login: Visszalépés
+        stay_logged_in: Maradjon bejelentkezve
+      message: Az Ön munkamenete inaktivitás miatt 2 perc múlva lejár. Kérjük, kattintson a 'Bejelentkezve marad' gombra a munkamenet folytatásához, különben automatikusan kijelentkezik.
+      message_after_timeout: Az Ön munkamenete lejárt, kérjük, jelentkezzen be újra.
+      time_remaining: Maradék idő
+      title: Munkamenet-időzavar figyelmeztetés
+    update: Frissítés
+    upload: Feltöltés
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Törölt
+        requested_cancellation: Kért törlés
+        requested_cancellation_rejected: Kért törlés Elutasítva
+        requested_rescheduling: Kért átütemezés
+        requested_rescheduling_rejected: Kérvényezett átütemezés Elutasítva
+    'yes': Igen
+  idp_templates:
+    errors:
+      user_idp_template_not_found: Önnek nem rendeltek IDP-sablont.
+  mailer:
+    magic_link:
+      body:
+        dear: Kedves %{name},
+        greetings: Üdvözlet a mai napra!
+        instructions: Kattintson az alábbi linkre a világítótoronyba való bejelentkezéshez.
+        signin_link: Bejelentkezési link
+      subject: Bejelentkezési link a Lighthouse-hoz
+  navigation:
+    logout: Kijelentkezés
+  profile:
+    add_field: Mező hozzáadása
+    add_photo: Fénykép hozzáadása
+    age: Kor
+    change_password: Jelszó módosítása
+    change_photo: Fotó módosítása
+    email: E-mail
+    female: Női
+    first_name: Keresztnév
+    gender: Gender
+    incomplete: Az Ön profiljának adatai hiányosak. Kérjük, töltse ki a profil adatait
+    last_name: Vezetéknév
+    locale: Kedvelt nyelv
+    male: Férfi
+    not_disclosed: Inkább nem közli
+    old_data: Az Ön profiljának adatai %{months} hónaposak. Kérjük, erősítse meg az adatokat a további lépésekhez
+    password: Jelszó
+    password_confirmation: Jelszó megerősítés
+    success_update: A profil sikeresen mentésre került
+    timezone: Időzóna
+    title: Profilom
+    update: Frissítés
+    update_required: Profilfrissítés szükséges
+  reports:
+    actions:
+      add: Jelentés hozzáadása
+      download: Jelentés letöltése
+      view: Jelentés megtekintése
+    modules:
+      campaign_factors_table:
+        add_condition: Feltétel hozzáadása
+        baseline_score: Alapszintű pontszám
+        blindspots: Vakfoltok
+        campaign_factor_conditions: Kampánytényező feltételek
+        cancel: Törölje
+        color: Színes
+        delete: Törölje a  címet
+        description: Leírás
+        if: Ha
+        label: Címke
+        no_conditions: Nincsenek feltételek
+        save: Mentés
+        strengths: Erősségek
+        then: Ezután jelenítse meg a következő szöveget
+        title: Cím
+      factors_table:
+        description: Leírás
+        no_data: Erre a szakaszra vonatkozóan nem állnak rendelkezésre adatok.
+        rank: Rangsor
+        score: Score
+      gap_assessment:
+        gap: Gap
+        item: Indikátor
+        negative_gap: Negatív hézagok
+        no_negative_gaps: Nincsenek negatív hiányosságok
+        no_positive_gaps: Nincsenek pozitív hiányosságok
+        positive_gap: Pozitív hézagok
+        rank: Rangsor
+        scoring_category: Kompetencia
+      highest_lowest:
+        bottom_5: ALSÓ 5
+        category: Kategória
+        highest_scores: Legmagasabb pontszámok
+        item: Indikátor
+        lowest_scores: Legalacsonyabb pontszámok
+        mean_score: Átlagos pontszám
+        rank: Rangsor
+        scoring_category: Kompetencia
+        sub_competenties: Részkompetenciák
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: Karrier erősségek és az Ön eredményei
+        career_sub_tracks: Karrier alpályák
+        key_career_tracks_within: Az alábbiakban felsoroljuk a lehetséges munkaköröket az egyes karrierutakhoz. Ne feledje, hogy ez a lista csak tájékoztató jellegű, és nem teljes. Vegye figyelembe, hogy a dőlt betűvel szedett munkakörök magasabb szintű képzettséget és/vagy tapasztalatot igényelnek.
+        potential_areas_of_study: Lehetséges tanulmányi területek
+        strength_high: Signature Strength
+        strength_low: Fejlődési erősség
+        strength_moderate: Potenciális erő
+        work_environment: Munkakörnyezet
+        your_suitability: Az Ön alkalmassága
+      single_value:
+        factor_name: Pontozási kategória
+        question_name: Kérdések
+      single_value_cluster:
+        competency: Kompetencia
+        developmental_rating: Fejlődési besorolás
+        questions: Kérdések
+      strength_clusters:
+        index_sub_factors_considered: A Thriving Index altényezői, amelyeket figyelembe vettek a %{workstyle} munkakörnyezetre vonatkozó végső pontszám megadásához
+        possible_roles: Lehetséges szerepek
+        work_environments: Várható munkakörnyezetek
+      three_sixty_default:
+        factor:
+          items: Tételek
+          max: Maximális érték
+          mean: Átlag
+          min: Minimális érték
+          standardDeviation: Standard eltérés
+          sum: Sum
+          totalResponses: Összes válasz
+          variance: Eltérés
+          weightedMean: Súlyozott átlag
+        question:
+          no_response: Nem áll rendelkezésre válasz
+        statistic: Statisztika
+        value: Érték
+      three_sixty_report_summary:
+        completed: Befejezett
+        footnote: "* Kizárva a minimális küszöbértékre vonatkozó követelmény miatt"
+        invited: Meghívott
+        relationships: Kapcsolatok
+        total: Összesen
+      video_response:
+        no_results: Nem rögzített videók
+    show:
+      export_pdf: Exportálás PDF-be
+      header: Jelentés
+    statuses:
+      approved: Jóváhagyva
+      available: Elérhető
+      denied: Elutasítva
+      incomplete: Nem teljes
+      not_available: Nem elérhető
+      on_hold: Várakozáson kívül
+      released: Megjelent
+  shared:
+    filters:
+      clear: Szűrők törlése
+    internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
+    terms_conditions_privacy: Adatvédelmi nyilatkozat
+    tte_terms_and_condition: Feltételek és adatvédelem
+  simple_form:
+    placeholders:
+      administrator:
+        email: E-mail cím
+        last_name: Vezetéknév
+      memebrship:
+        last_name: Vezetéknév
+      user:
+        email: E-mail cím
+        first_name: Keresztnév
+        last_name: Vezetéknév
+        password: Jelszó
+      user_form:
+        email: E-mail cím
+        first_name: Keresztnév
+        last_name: Vezetéknév
+        password: Jelszó
+  subjects:
+    approval_statuses:
+      approved: Jóváhagyva
+      denied: Elutasítva
+      waiting: Jóváhagyásra szorul
+    report_approval_status:
+      approved: Jóváhagyva
+      denied: Elutasítva
+      waiting: Várakozás
+    report_release_status:
+      on_hold: Várakozáson
+      released: Megjelent
+      waiting: Várakozás
+    report_statuses:
+      approved: Jóváhagyva
+      available: Elérhető
+      denied: Elutasítva
+      incomplete: Nem teljes
+      not_available: Nem elérhető
+      not_prepared: Nem kész
+      on_hold: Várakozáson
+      prepared: Kész
+      released: Megjelent
+    statuses:
+      completed: Befejezett
+      declined: Visszautasított
+      denied: Elutasítva
+      done: Kész
+      not_completed: Nem fejeződött be
+      waiting: Várakozás
+  threesixty:
+    accept_privacy_modal:
+      accept: Elfogadom
+      checkbox: Elolvastam és megértettem a fent említett Adatvédelmi szabályzatot
+      checkbox_with_client_link: Erre a mezőre kattintva Ön elfogadja, hogy elolvasta adatvédelmi nyilatkozatunkat és az ügyfelünk adatvédelmi nyilatkozatát, és hozzájárul személyes adatainak az ott leírtak szerinti gyűjtéséhez és feldolgozásához, beleértve személyes adatainak nemzetközi továbbítását is.
+      privacy_notice: Adatvédelmi nyilatkozat
+      title: Hozzájárulás a személyes adatok feldolgozásához és továbbításához
+    action: Akció
+    add: Add
+    and: És
+    approve_all: Minden jóváhagyása
+    approve_all_successful: Jóváhagyta az összes jelölést
+    approve_evaluations: Értékelések jóváhagyása
+    approve_nominations: Jelölések jóváhagyása
+    approve_reports: Jelentések jóváhagyása
+    approved: Jóváhagyva
+    approving_mail_sent: A jelölés jóváhagyására vonatkozó levelet elküldték a vezetőknek
+    as_my: mint az én
+    assessment: Értékelés
+    back_to_tasks: Vissza a feladatokhoz
+    begin: Kezdje
+    cancel: Törölje
+    close_evaluation_modal:
+      message: A jelentés megtekintése után %{pronoun_or_name} nem kaphat további értékeléseket
+      title: Biztos, hogy meg akarja nézni a jelentést?
+    closed_campaign_message: Ez a 360-as kampány lezárult, senkit sem jelölhet vagy értékelhetsz a kampányra.
+    completed: Befejezett
+    confirm: Biztos vagy benne?
+    confirmation_for_nomination_removal: Biztos, hogy el akarja távolítani a jelölést?
+    confirmation_required: Megerősítés szükséges
+    confirmation_text_incorrect: A megerősítés szövege hibás
+    confirmation_text_placeholder: Megerősítés szövege itt
+    continue: Folytatás
+    dashboard_title: Üdvözöljük %{name}
+    decline: Hanyatlás
+    decline_invite: Meghívás elutasítása
+    denied: Elutasítva
+    deny_all: Mindent megtagadni
+    deny_all_successful: Minden jelölést elutasítottak
+    download_pdf: PDF letöltése
+    download_report: Jelentés letöltése
+    download_reports: Jelentések letöltése
+    edit_user: Felhasználó szerkesztése
+    email_approve_request: Email jóváhagyási kérelem
+    email_schedules:
+      delete_successful: Az e-mail ütemezés sikeresen törlődött
+    evaluate: Értékelje a  honlapot
+    evaluation: Értékelés
+    evaluation_all_closed_message: Jelenleg az összes jelölés jóváhagyásra vár
+    evaluation_closed_nomination_message: Erre a témára nem lehet jelölni, mivel az értékelés ebben a témában lezárult
+    evaluation_help_modal:
+      title: Értékelési segítség
+    evaluations: Értékelések
+    evaluator: Értékelő
+    export_pdf: PDF exportálása
+    first_name: Keresztnév
+    first_name_error: Kérjük, adja meg a keresztnevét
+    help: Segítség
+    language: Nyelv
+    last_name: Vezetéknév
+    last_name_error: Kérjük, adja meg a vezetéknevét
+    load_results: Terhelési eredmények
+    mail_history:
+      statuses:
+        success: Siker
+        undelivered: Kézbesítetlen
+    my_projects: Projektjeim
+    name_label: Név
+    nominate: Jelölje a  címet
+    nominate_evaluators: Jelöljön ki értékelőket a következőkre
+    nomination: Jelölés
+    nomination_help_modal:
+      title: Segítség a jelöléshez
+    nomination_predicates:
+      atleast: Legalább %{count}
+      atmost: Legfeljebb %{count}
+      exactly: Pontosan %{count}
+    nominations: Jelölések
+    options:
+      global:
+        cannot_re_edit: A résztvevők nem szerkeszthetik az értékeléseket
+    or: Vagy
+    page_title: Signify 360° felülvizsgálata - Alkalmazási szint
+    participant_list:
+      actions:
+        approve_report: Jelentés jóváhagyása
+        download_report: Jelentés letöltése
+        edit: Szerkesztés
+        hold_report: Tartási jelentés
+        login: Bejelentkezés
+        mark_as_done: Jelölje késznek
+        release_report: Kiadási jelentés
+        remove_campaign: Eltávolítás a kampányból
+        remove_report_approval: Jelentés jóváhagyásának eltávolítása
+        remove_report_hold_release_report: Jelentés tartás/feloldás eltávolítása
+        remove_subject: Tárgy eltávolítása
+        unmark_as_done: Megszünteti a jelölést
+        view_report: Jelentés megtekintése
+        view_responses: Válaszok megtekintése
+      confirmation_messages:
+        approve_report: Biztos, hogy jóvá akarja hagyni a jelentést?
+        hold_report: Biztos, hogy jelentést akarsz tartani?
+        mark_evaluation_done: Biztos benne, hogy az értékelést befejezettnek szeretné jelölni? A tantárgy értékelése lezárul.
+        release_report: Biztos, hogy ki akarja adni a jelentést?
+        remove_from_campaign: Biztos, hogy el akarja távolítani a felhasználót a kampányból?
+        remove_release_hold: Biztos, hogy el akarja távolítani a Release/Hold státuszt?
+        remove_report_approval: Biztos, hogy el akarja távolítani a jelentés jóváhagyását?
+        remove_subject: Biztos vagy benne, hogy el akarod távolítani a tárgyat az e-mailnel együtt a kampányból?
+        umark_evaluation_as_complete: Biztos vagy benne, hogy nem akarod az értékelést befejezettként megjelölni?
+      report_generation_message: A jelentés elkészül, értesítjük, ha a jelentés elkészült.
+    processing: Feldolgozás
+    processing_report: Feldolgozási jelentés
+    progress_text: "%{completed} a %{total}"
+    question:
+      chat_type:
+        input_placeholder: Írja meg üzenetét...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Szerkesztés
+        max_length_warning: "%{x} karakterek maradtak"
+        message: Az Ön üzenete
+        send: Küldje el a
+        subject: Tárgy
+        successful_message: Sikeresen elküldte az e-mailt
+        to: A  címre
+    remind_all: Emlékeztessen mindenkit
+    remind_mail_sent: Emlékeztetők küldése azoknak az értékelőknek, akik még nem fejezték be az értékelést
+    report_for: Jelentés a
+    report_generation_in_progress: A jelentés elkészül, értesítjük, ha a jelentés elkészült.
+    reports: Jelentések
+    reports_help_modal:
+      title: Segítség a jelentésekhez
+    reset_campaign_confirmation: Írja be az alábbi szövegdobozba az aktuális kampány nevét az összes résztvevő visszaállításához
+    reset_nomination_confirmation: Az összes jelölés visszaállításához írja be az alábbi szövegdobozba az aktuális kampány nevét
+    save: Mentés
+    select_relationnship: Kapcsolat kiválasztása
+    select_relationship: Kapcsolat kiválasztása
+    self: Self
+    set_name_for_evaluator: Beállított név az értékelő számára
+    setup_nominations: Jelölések felállítása
+    subject: Tárgy
+    submit: Küldje be a
+    total_progress: Teljes előrehaladás
+    user_name_input_placeholder: írja be nevét vagy e-mail címét...
+    validation_errors: Érvényesítési hibák
+    view_my_report: Jelentésem megtekintése
+    view_nominations: Jelölések megtekintése
+    view_reports: Jelentések megtekintése
+    waiting: Várakozás
+    you: Te
+    yourself: Önmagad
+  user:
+    fields:
+      email: E-mail cím
+      first_name: Keresztnév
+      last_name: Vezetéknév
+  user_assessments:
+    redirect: Az értékeléshez harmadik fél webhelyére irányítjuk át Önt. Kérjük, kattintson a folytatás gombra, ha el szeretné indítani az értékelést.
+  user_reports:
+    actions:
+      regenerate: Regenerálja
+    messages:
+      regenerate_successful: A jelentés regenerálási feladatot sikeresen ütemezték
+    modals:
+      remove:
+        content: Biztos, hogy el akarja távolítani a %{userReportName} jelentést?
+        successfully: "%{userReportName} jelentés sikeresen eltávolításra került"
+    preview_report: Előzetes jelentés
+    statuses:
+      generating: Generálás
+      not_prepared: Nem elérhető
+      prepared: Elérhető
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: A hangfelvétel rögzítésre került, de nem mentésre került
+        RECORDING: A hangfelvétel folyamatban van
+        SAVING: Folyamatban van a felvett hanganyag feltöltése
+      required: Kérjük, vegye fel és mentse el a hangot, mielőtt folytatja
+    FileUpload:
+      in_progress:
+        SAVING: Fájl feltöltés folyamatban
+      required: Kérjük, töltse fel a fájlt
+    TextEntry:
+      Email:
+        character_range: A megadott e-mail üzenetnek legalább %{min} és legfeljebb %{max} karakterből kell állnia.
+        subject:
+          min_length: A tárgy mezőnek legalább 10 karakterből kell állnia
+        to:
+          required: To mező kötelező
+    VideoResponse:
+      in_progress:
+        recorded: A videó rögzítésre került, de nem mentésre került
+        recording: Videófelvétel folyamatban
+        saving: Folyamatban van a felvett videó feltöltése
+      required: Kérjük, rögzítse és mentse a videót, mielőtt folytatja
+    actions_still_in_progress: Az alábbi műveletek folyamatban vannak. Ha folytatja, elveszíti ezeket az adatokat.
+    blank: nem lehet üres
+    character_count: 'A karakterek száma '
+    character_range: A válasznak legalább %{min} és legfeljebb %{max} karakter hosszúságúnak kell lennie.
+    date: A válasznak érvényes dátumnak kell lennie (mm/dd/yyyyyy)
+    each_group_contains: Minden csoportnak legalább %{min} és legfeljebb %{max} elemet kell tartalmaznia
+    email: A válasznak érvényes e-mailnek kell lennie
+    exact: Kérjük, pontosan válassza ki a %{count} választási lehetőség(eke)t
+    file_upload:
+      EntityTooLarge: A fájl méretének kevesebbnek kell lennie, mint %{maxFileSize} MB
+      WrongFileType: A fájltípusnak a következő %{engedélyezettFileTípusok} típusok egyikének kell lennie
+    issue: Kiadvány
+    least: Kérjük, válaszoljon legalább %{min} választási lehetőség(ek)re.
+    least_hotspot: Kérjük, válaszoljon legalább %{min} választási lehetőség(ek)re.
+    max_character: Válasza nem lehet több, mint %{max} karakter.
+    max_word: A válasz nem lehet több, mint %{max} szó.
+    min_character: A válasznak legalább %{min} karaktert kell tartalmaznia.
+    min_word: A válasznak legalább %{min} szót kell tartalmaznia
+    most:
+      one: Kérjük, válasszon legfeljebb %{max} választási lehetőség(eke)t
+      other:
+    must_rank_between: Kérjük, adjon meg egy értéket %{min} és %{max} között minden egyes elemhez. Az értékek nem ismétlődhetnek.
+    must_select: Kérjük, válasszon a %{min} és %{max} közötti lehetőségek közül
+    number: A válasznak egy számnak kell lennie
+    photo: szükséges
+    range: Kérjük, legalább %{min} és legfeljebb %{max} választási lehetőség(ek)re válaszoljon.
+    required: Kérjük, válaszoljon erre a kérdésre
+    text: A válasz nem tartalmazhat számokat
+    title:
+      one: Van egy hiba, kérjük, ellenőrizze a válaszait
+      other: "%{count} hiba van, kérjük, ellenőrizze a válaszait."
+    word_count: 'Szószám '
+    word_range: A válasznak legalább %{min} és legfeljebb %{max} szót kell tartalmaznia.
+  'yes': Igen
+  your: Az Ön
+  yourself: Önmagad

@@ -36,7 +36,7 @@ const { Content } = Layout
 
 const languageOptions = locales.map(locale => ({
   key: locale,
-  label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span>,
+  label: <span lang={locale}>{I18n.t(`languages.${locale}`)}</span>,
   value: locale,
 }))
 

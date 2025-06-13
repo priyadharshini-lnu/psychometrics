@@ -54,6 +54,11 @@ pl:
       back_to_campaign: Powrót do kampanii
       extend_time: Wydłużenie czasu
       goto_dashboard: Kliknij tutaj, aby kontynuować
+      pending_tasks:
+        few:
+        many:
+        one: Masz 1 oczekujące zadanie
+        other: Masz %{count} oczekujących zadań
       rescore: Rescore
     audio_response:
       permission_denied_message: Włącz uprawnienia mikrofonu w przeglądarce, aby nagrać odpowiedź
@@ -64,7 +69,7 @@ pl:
     instructions:
       begin_assessment: Początek
       cancel: Anuluj
-      default: Jest to aktywność czasowa, po kliknięciu przycisku Rozpocznij ocenę będziesz mieć %{czas} minut na jej ukończenie.
+      default: Jest to aktywność czasowa, po kliknięciu przycisku Rozpocznij ocenę będziesz mieć %{time} minut na jej ukończenie.
       title: Instrukcje
     messages:
       finish: Dziękujemy za poświęcony czas, odpowiedzi zostały zapisane.
@@ -513,7 +518,7 @@ pl:
       confirm_booking_description: Prosimy o potwierdzenie poprawności tych danych przed sfinalizowaniem rezerwacji.
       confirm_booking_title: Potwierdzić rezerwację?
       default_failure_msg: Nie można przetworzyć żądania. Spróbuj ponownie później.
-      default_requires_msg: "%{nazwa} jest wymagana"
+      default_requires_msg: "%{name} jest wymagana"
       join_activity_meeting: Dołącz do spotkania
       join_workshop_meeting: Dołącz do spotkania
       language: Język
@@ -792,7 +797,7 @@ pl:
   mailer:
     magic_link:
       body:
-        dear: Drogi %{imię},
+        dear: Drogi %{name},
         greetings: Pozdrowienia na cały dzień!
         instructions: Kliknij poniższy link, aby zalogować się do lighthouse.
         signin_link: Link do logowania
@@ -889,7 +894,7 @@ pl:
         developmental_rating: Ocena rozwoju
         questions: Pytania
       strength_clusters:
-        index_sub_factors_considered: Podczynniki Thriving Index, które zostały uwzględnione w celu uzyskania ostatecznego wyniku dla środowiska pracy %{styl pracy}
+        index_sub_factors_considered: Podczynniki Thriving Index, które zostały uwzględnione w celu uzyskania ostatecznego wyniku dla środowiska pracy %{workstyle}
         possible_roles: Możliwe role
         work_environments: Oczekiwane środowisko pracy
       three_sixty_default:
@@ -1010,7 +1015,7 @@ pl:
     confirmation_text_incorrect: Tekst potwierdzenia jest nieprawidłowy
     confirmation_text_placeholder: Tekst potwierdzenia tutaj
     continue: Kontynuuj
-    dashboard_title: Witamy %{nazwa}
+    dashboard_title: Witamy %{name}
     decline: Spadek
     decline_invite: Odrzuć zaproszenie
     denied: Odmowa
@@ -1181,6 +1186,7 @@ pl:
     date: Odpowiedź musi zawierać prawidłową datę (mm/dd/rrrr)
     each_group_contains: Każda grupa musi zawierać nie mniej niż %{min} i nie więcej niż %{max} elementów
     email: Odpowiedź musi być prawidłową wiadomością e-mail
+    exact: Wybierz dokładnie %{count} opcji do wyboru
     file_upload:
       EntityTooLarge: Rozmiar pliku powinien być mniejszy niż %{maxFileSize} MB
       WrongFileType: Typ pliku powinien być jednym z następujących %{allowedFileTypes}
@@ -1191,6 +1197,7 @@ pl:
     max_word: Odpowiedź nie może zawierać więcej niż %{max} słów.
     min_character: Odpowiedź musi zawierać co najmniej %{min} znaków.
     min_word: Twoja odpowiedź musi zawierać co najmniej %{min} słów
+    most: Wybierz co najwyżej %{max} wybór(y)
     must_rank_between: Przypisz wartość od %{min} do %{max} dla każdego elementu. Wartości nie mogą się powtarzać.
     must_select: Wybierz spośród opcji od %{min} do %{max}
     number: Twoja odpowiedź musi być liczbą
@@ -1198,6 +1205,11 @@ pl:
     range: Prosimy o udzielenie odpowiedzi na co najmniej %{min} i nie więcej niż %{max} wyborów.
     required: Proszę o odpowiedź na to pytanie
     text: Odpowiedź nie może zawierać liczb
+    title:
+      few:
+      many:
+      one: Jest jeden błąd, sprawdź swoje odpowiedzi
+      other: Występują błędy %{count}, sprawdź swoje odpowiedzi
     word_count: 'Liczba słów '
     word_range: Odpowiedź musi zawierać co najmniej %{min} i nie więcej niż %{max} słów.
   'yes': Tak
