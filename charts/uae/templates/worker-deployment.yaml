@@ -39,6 +39,9 @@ spec:
                 name: {{ template "lighthouse.fullname" . }}-env
             - secretRef:
                 name: {{ template "lighthouse.fullname" . }}-eso-secrets
+          env:
+            - name: DB_POOL
+              value: "$(SIDEKIQ_CONCURRENCY)"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: {{ .Chart.Name }}-workers
           {{- with .Values.resources }}
