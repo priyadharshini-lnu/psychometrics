@@ -1617,13 +1617,24 @@ en:
     create: Create
     dashboard:
       capacity_name: Capacity Name
+      choose_file_format: Choose file format
+      current_values: Current Values
       dashboard_types:
         oracle_analytics: Oracle Analytics
         powerbi: PowerBi
       dashboards: Dashboards
+      default_values: Default Values
+      export_dashboard_to_file: Export Dashboard to file
+      export_job_failure: Failed to start export
+      export_job_success: Export job started. You will be notified when it completes.
+      export_with: Export with
       get_started: Get Started
+      include_hidden_report_tabs: Include Hidden Report Tabs
       initialize_msg: Initialize a Dashboard for this Campaign
       loading_failed: Dashboard loading failed.
+      only_export_current_tab: Only Export Current Tab
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
         embed_token_error_title: Unable to generate Embed token.

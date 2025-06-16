@@ -81,7 +81,8 @@ class AdminJob < ApplicationJob
     export_dimension_as_json: AdminJobs::ExportDimensionAsJson,
     import_dimension_from_json: AdminJobs::ImportDimensionFromJson,
     export_reflection_questions: AdminJobs::ExportReflectionQuestionsJob,
-    import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob
+    import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob,
+    export_dashboard_as_file: AdminJobs::ExportDashboardAsFile
   }.freeze
 
   def perform(record)

@@ -772,6 +772,7 @@ en:
         export_assessment_questions: Export Assessment Questions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_dashboard_as_file: Export Dashboard as file
         export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
         export_dimension_as_json: Export Dimension JSON

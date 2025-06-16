@@ -14,6 +14,7 @@ import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { isRequestInProgress } from '~/core/request'
 import { Menu } from './Menu'
 import routes from './routes'
+import { ToolsMenu } from './ToolsMenu'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -79,12 +80,24 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
 
   return (
     <>
-      <Menu
-        dashboardInitialized={dashboardInitialized}
-        dashboardPreviewAvailable={dashboardPreviewAvailable}
-        canManageDashboard={canManageDashboard}
-        campaignPermissions={campaignPermissions}
-      />
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16,
+      }}
+      >
+        <Menu
+          dashboardInitialized={dashboardInitialized}
+          dashboardPreviewAvailable={dashboardPreviewAvailable}
+          canManageDashboard={canManageDashboard}
+          campaignPermissions={campaignPermissions}
+        />
+        {dashboardInitialized && dashboardPreviewAvailable && (
+          <ToolsMenu
+            campaignId={campaignId}
+            projectId={projectId}
+            dashboard={dashboard}
+          />
+        )}
+      </div>
       <RouteList routes={routes} urlPrefix="" />
     </>
   )

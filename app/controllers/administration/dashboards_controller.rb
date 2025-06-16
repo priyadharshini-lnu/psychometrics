@@ -31,4 +31,20 @@ class Administration::DashboardsController < Administration::BaseController
 
     get_embed_token_async
   end
+
+  def export_file
+    authorize Dashboard, :export_file?, policy_class: Api::Administration::DashboardPolicy
+
+    AdminJob.call(
+      :export_dashboard_as_file,
+      job_params[:parameters],
+      current_user
+    )
+  end
+
+  private
+
+  def job_params
+    params.permit(:jobType, parameters: {})
+  end
 end
