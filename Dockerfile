@@ -77,6 +77,8 @@ RUN bundle check || (jobs="$(nproc)"; \
 
 FROM ruby-base as yarn-deps
 
+ARG GITHUB_TOKEN=""
+
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
 ENV NODE_VERSION 18.16.1
