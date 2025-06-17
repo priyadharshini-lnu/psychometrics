@@ -32,6 +32,11 @@ interface OwnProps {
   errors: Errors | null
 }
 
+interface AssessmentCenterGroup {
+  id: string
+  name: string
+}
+
 const connector = connect(
   (state: RootState) => ({
     availableLocales: state.config.availableLocales,
@@ -51,6 +56,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   )
   const [, setSelectedWorkshops] = useState([])
   const [searchValue, setSearchValue] = useState('')
+  const [assessmentCenterGroups, setAssessmentCenterGroups] = useState<AssessmentCenterGroup[]>([])
   const {
     data: assessmetnCenters, setData, getResource, fetch: fetchWorkshops,
   } = useResources<Workshop>('workshops', {
@@ -58,11 +64,45 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   })
 
   useEffect(() => {
-    if (workshops) {
+    if (workshops && workshops.length > 0) {
       form.setFieldValue('workshopIds', [...workshops])
       setSelectedWorkshops(form.getFieldValue('workshopIds'))
+
+      // Set the campaignAssessmentGroupId if it exists in the first workshop
+      if (workshops[0].campaignAssessmentGroupId) {
+        form.setFieldValue('campaignAssessmentGroupId', workshops[0].campaignAssessmentGroupId)
+      }
     }
   }, [workshops])
+
+  const {
+    collectionAction: assessmentGroupsAction,
+  } = useResources<AssessmentCenterGroup>(
+    'campaign_assessment_groups',
+    {
+      basePath: `campaigns/${params.campaignId}`,
+    },
+  )
+
+  useEffect(() => {
+    assessmentGroupsAction({
+      action: '',
+      method: 'get',
+      apiConfig: {
+        filter: { group_type_eq: '1' },
+      },
+    })
+      .then((response) => {
+        const groups = response as AssessmentCenterGroup[]
+        setAssessmentCenterGroups(groups)
+        if (!form.getFieldValue('campaignAssessmentGroupId') && groups.length === 1) {
+          form.setFieldValue('campaignAssessmentGroupId', groups[0].id)
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load assessment center groups:', error)
+      })
+  }, [params.campaignId])
 
   const changePreferredLang = (checked) => {
     form.setFieldValue('allowLanguagePreference', checked)
@@ -94,21 +134,39 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
 
   const searchWorkshops = useDebouncedCallback(() => {
     if (!searchValue) { return }
+    if (!form.getFieldValue('campaignAssessmentGroupId')) { return }
 
     fetchWorkshops({
       apiConfig: {
         filter: {
           search_query: searchValue,
+          campaign_assessment_group_id_eq: form.getFieldValue('campaignAssessmentGroupId'),
         },
       },
     })
   }, 200)
+
+  const handleAssessmentGroupChange = (value: string) => {
+    form.setFieldValue('campaignAssessmentGroupId', value)
+    form.setFieldValue('workshopIds', [])
+    setSelectedWorkshops([])
+    setSearchValue('')
+    setData([])
+  }
 
   const handleCancel = () => {
     onCancel?.()
   }
 
   const handleFormFinish = () => {
+    const selectedWorkshops = form.getFieldValue('workshopIds') || []
+    if (selectedWorkshops.length === 0) {
+      form.setFields([{
+        name: 'workshops',
+        errors: [I18n.t('administration.assessment_center.invite.basic_info.required_error')],
+      }])
+      return
+    }
     next()
   }
 
@@ -133,6 +191,24 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
               onFinish={handleFormFinish}
               requiredMark={false}
             >
+              <Form.Item
+                name="campaignAssessmentGroupId"
+                label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+                rules={[{ required: true }]}
+              >
+                <Select
+                  disabled={workshops && (workshops.length > 0)}
+                  placeholder={
+                    I18n.t('administration.scheduling.assessment_center_form.assessment_center_group_placeholder')}
+                  onChange={handleAssessmentGroupChange}
+                >
+                  {_.map(assessmentCenterGroups, (assessmentCenterGroup: AssessmentCenterGroup) => (
+                    <Select.Option key={assessmentCenterGroup.id} value={assessmentCenterGroup.id}>
+                      {assessmentCenterGroup.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
               <Form.Item
                 name="workshops"
                 label={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers')}

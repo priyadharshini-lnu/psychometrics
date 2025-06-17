@@ -302,6 +302,7 @@ ja:
           preferred_language: 使用可能言語
           required_error: 空っぽにはできない
           title: 基本情報
+        center_group: アセスメント・センター・グループ
         confirm_message: 招待状を本当に削除しますか？
         confirm_message_with_title: タイトル「%{invite_title}」の招待を本当に削除しますか？
         confirm_title: 確認

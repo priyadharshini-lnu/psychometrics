@@ -255,6 +255,7 @@ ar:
           preferred_language: اللغات المسموح بها
           required_error: لا يمكن أن يكون فارغًا
           title: المعلومات الأساسية
+        center_group: مجموعة مركز التقييم
         confirm_message: هل أنت متأكد أنك تريد حذف الدعوة؟
         confirm_message_with_title: هل أنت متأكد أنك تريد إزالة الدعوة بعنوان '%{invite_title}'؟
         confirm_title: تأكيد

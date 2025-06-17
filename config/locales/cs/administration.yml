@@ -302,6 +302,7 @@ cs:
           preferred_language: Povolené jazyky
           required_error: Nemůže být prázdný
           title: Základní informace
+        center_group: Skupina Assessment Center
         confirm_message: Jste si jisti, že chcete pozvánku odstranit?
         confirm_message_with_title: Opravdu chcete odstranit pozvánku s názvem '%{invite_title}'?
         confirm_title: Potvrďte

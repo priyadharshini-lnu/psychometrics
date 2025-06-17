@@ -302,6 +302,7 @@ zh:
           preferred_language: 允许使用的语言
           required_error: 不能是空的
           title: 基本信息
+        center_group: 评估中心小组
         confirm_message: 您确定要删除邀请吗？
         confirm_message_with_title: 您确定要删除标题为"%{invite_title}"的邀请吗？
         confirm_title: 确认

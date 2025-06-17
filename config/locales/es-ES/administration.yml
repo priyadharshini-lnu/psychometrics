@@ -302,6 +302,7 @@ es-ES:
           preferred_language: Lenguas permitidas
           required_error: No puede estar vacío
           title: Información básica
+        center_group: Grupo del Centro de Evaluación
         confirm_message: "¿Seguro que quieres borrar una invitación?"
         confirm_message_with_title: ¿Está seguro de que desea eliminar la invitación con el título "%{invite_title}"?
         confirm_title: Confirme

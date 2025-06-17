@@ -302,6 +302,7 @@ ko:
           preferred_language: 허용되는 언어
           required_error: 비어 있을 수 없음
           title: 기본 정보
+        center_group: 평가 센터 그룹
         confirm_message: 초대를 삭제하시겠습니까?
         confirm_message_with_title: 제목이 '%{invite_title}'인 초대를 제거하시겠습니까?
         confirm_title: 확인

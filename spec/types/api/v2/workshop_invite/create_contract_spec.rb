@@ -13,6 +13,7 @@ RSpec.describe Api::V2::WorkshopInvite::CreateContract do
         allowed_languages: ['en'],
         allow_language_preference: false,
         allow_neurodiversity_option: false,
+        campaign_assessment_group_id: '1',
         workshop_ids: [workshop.id.to_s],
         subjects: [{ user_id: user.id.to_s }],
         translations: [{ locale: 'en', title: 'Title', description: 'description' }]

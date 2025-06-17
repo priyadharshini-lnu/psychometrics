@@ -302,6 +302,7 @@ nl:
           preferred_language: Toegestane talen
           required_error: Kan niet leeg zijn
           title: Basisinformatie
+        center_group: Assessment Center Groep
         confirm_message: Weet je zeker dat je een uitnodiging wilt verwijderen?
         confirm_message_with_title: Weet je zeker dat je de uitnodiging met titel '%{invite_title}' wilt verwijderen?
         confirm_title: Bevestig

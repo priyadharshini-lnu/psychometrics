@@ -302,6 +302,7 @@ pt:
           preferred_language: Línguas permitidas
           required_error: Não pode estar vazio
           title: Informações básicas
+        center_group: Grupo do Centro de Avaliação
         confirm_message: Tem a certeza de que pretende apagar um convite?
         confirm_message_with_title: Tem a certeza de que pretende remover o convite com o título "%{invite_title}"?
         confirm_title: Confirmar

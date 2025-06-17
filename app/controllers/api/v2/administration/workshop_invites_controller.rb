@@ -65,8 +65,10 @@ module Api
     end
 
     def workshop_invite_params
-      params.require(:data).require(:attributes).permit(:campaign_id, :allow_language_preference,
-                                                        :allow_neurodiversity_option, allowed_languages: [])
+      params.require(:data).
+        require(:attributes).
+        permit(:campaign_id, :allow_language_preference, :allow_neurodiversity_option, :campaign_assessment_group_id,
+               allowed_languages: [])
     end
 
     def subjects_params

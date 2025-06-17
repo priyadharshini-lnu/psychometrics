@@ -33,7 +33,7 @@ interface BasicInfoData {
   cancellation_lead_time: number,
   scheduling_lead_time: number,
   allow_late_cancellation_and_rescheduling: boolean,
-  campaign_assessment_group_id: number,
+  campaignAssessmentGroupId: number,
   workshop_resources: {
     key: number,
     name: string,
@@ -61,7 +61,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     cancellation_lead_time: workshop?.cancellationLeadTime,
     scheduling_lead_time: workshop?.schedulingLeadTime,
     allow_late_cancellation_and_rescheduling: workshop?.allowLateCancellationAndRescheduling,
-    campaign_assessment_group_id: workshop?.campaignAssessmentGroupId,
+    campaignAssessmentGroupId: workshop?.campaignAssessmentGroupId,
   })
   const navigate = useNavigate()
   const [step, setStep] = useState(0)
@@ -111,6 +111,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
       workshopIds: (form.getFieldValue('workshopIds') || []).map(workshop => workshop.id),
       subjects: (form.getFieldValue('subjects') || []).map(user => ({ userId: user.id })),
       translations: form.getFieldValue('translations') || [],
+      campaignAssessmentGroupId: form.getFieldValue('campaignAssessmentGroupId'),
     }).then(() => {
       showSubmitPage(true)
     }).catch((errors) => {

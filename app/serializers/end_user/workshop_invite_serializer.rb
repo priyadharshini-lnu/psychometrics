@@ -18,10 +18,6 @@ module EndUser
         ).distinct.count
     end
 
-    def campaign_assessment_group_id
-      object.workshops&.first&.campaign_assessment_group_id
-    end
-
     private
 
     def current_user

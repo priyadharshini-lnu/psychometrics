@@ -302,6 +302,7 @@ de:
           preferred_language: Erlaubte Sprachen
           required_error: Kann nicht leer sein
           title: Grundlegende Informationen
+        center_group: Assessment Center Gruppe
         confirm_message: Sind Sie sicher, dass Sie eine Einladung löschen möchten?
         confirm_message_with_title: Sind Sie sicher, dass Sie die Einladung mit dem Titel '%{invite_title}' entfernen möchten?
         confirm_title: Bestätigen Sie

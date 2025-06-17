@@ -11,6 +11,9 @@ pl:
             manage: Zarządzanie
             title: Pytania refleksyjne IDP
             view: Widok
+    assessment_center:
+      invite:
+        center_group: Assessment Center Group
     norms:
       import:
         download_example_csv: Pobierz przykładowy plik csv

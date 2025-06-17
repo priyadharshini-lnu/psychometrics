@@ -319,6 +319,7 @@ en:
           preferred_language: Allowed Languages
           required_error: Can't be empty
           title: Basic Information
+        center_group: Assessment Center Group
         confirm_message: Are you sure you want to delete an invitation?
         confirm_message_with_title: Are you sure you want to remove the Invite with title '%{invite_title}'?
         confirm_title: Confirm

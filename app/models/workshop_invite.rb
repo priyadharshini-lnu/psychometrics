@@ -6,6 +6,7 @@ class WorkshopInvite < ApplicationRecord
   extend Mobility
 
   belongs_to :campaign
+  belongs_to :campaign_assessment_group
   has_many :workshop_invited_subjects, dependent: :destroy
   has_and_belongs_to_many :workshops, dependent: :destroy
   has_many :workshop_invite_logs, dependent: :destroy
