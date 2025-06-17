@@ -58,7 +58,7 @@ es-ES:
         campaign_factors_import_form:
           attributes:
             base:
-              blank: La columna '%{entidad}' no puede estar en blanco en la fila %{índice}
+              blank: La columna '%{entity}' no puede estar en blanco en la fila %{index}
               duplicate_code: Código duplicado '%{code}' en la fila %{index}
               invalid_output_type: Tipo_salida no válido '%{output_type}' en la fila %{index}
               max_limit_reached: El total de factores de campaña supera el límite máximo de %{count}
@@ -285,9 +285,9 @@ es-ES:
           attributes:
             file:
               column_type_mismatch: Se espera que la columna <b>%{col}</b> sea del tipo %{type} pero tiene <b>%{got}</b>
-              email_blank: 'Fila %{número_de_fila}: El campo Email no puede estar en blanco'
+              email_blank: 'Fila %{row_number}: El campo Email no puede estar en blanco'
               email_duplicate: Hay duplicados en la columna Email
-              email_invalid: 'Fila %{número_de_fila}: El correo electrónico no es válido'
+              email_invalid: 'Fila %{row_number}: El correo electrónico no es válido'
               invalid_column: Columna no válida %{name}
               invalid_column_name: La columna <b>"%{column}"</b> no es válida
               invalid_column_name_size: El nombre de la columna <b>"%{column}"</b> es demasiado largo (máx. 64)
@@ -295,7 +295,7 @@ es-ES:
               invalid_format: Formato no válido (.xlsx)
               invalid_number_value: <b>Fila#%{index}</b> Columna <b>"%{column}"</b> no es un Número
               invalid_string_value: <b>Row#%{index}</b> columna <b>"%{column}"</b> no es una Cadena
-              invalid_string_value_size: <b>Fila#%{índice}</b> columna <b>"%{columna}"</b> demasiado larga (máx. 256)
+              invalid_string_value_size: <b>Fila#%{index}</b> columna <b>"%{column}"</b> demasiado larga (máx. 256)
               no_email_column: El fichero no contiene la columna Email
               non_uniq_column: Existen las siguientes columnas no uniq %{columns}
         sheet_row_form:
@@ -872,12 +872,12 @@ es-ES:
       next_assessment: Pasar a la siguiente evaluación
       pending_tasks:
         many:
-        one:
-        other:
+        one: Tiene 1 tarea pendiente
+        other: Tiene %{count} tareas pendientes
       re_evaluate: Haga clic aquí para volver a evaluar
       reevaluate: Reevaluar
       remove:
-        confirm_message: ¿Está seguro de que desea eliminar la evaluación "%{nombre}"?
+        confirm_message: ¿Está seguro de que desea eliminar la evaluación "%{name}"?
         confirm_title: Confirmación requerida
         success_message: La evaluación %{name} ha sido eliminada
       remove_tag:
@@ -1031,7 +1031,7 @@ es-ES:
       fifteen_seconds_left: quedan 15 segundos
       five_minutes_left: quedan 5 minutos
       one_minute_left: queda 1 minuto
-      seconds_left: "%{segundos} segundos restantes"
+      seconds_left: "%{seconds} segundos restantes"
       thirty_seconds_left: quedan 30 segundos
       time_is_up: Se te ha acabado el tiempo
       time_is_up_for_recording: Se acabó el tiempo y la grabación se detendrá ahora
@@ -1095,7 +1095,7 @@ es-ES:
           cannot_delete_with_workshops: No se puede eliminar el grupo que contiene talleres, elimine primero los talleres
           failed: No se ha podido eliminar el grupo "%{name}", póngase en contacto con el administrador
           ok: Sí, borrar
-          text: ¿Estás seguro de que quieres eliminar el grupo "%{nombre}"?
+          text: ¿Estás seguro de que quieres eliminar el grupo "%{name}"?
           title: Borrar grupo
       no_assessments: Arrastrar y soltar las evaluaciones
       no_ungrouped_assessments: Arrastre y suelte aquí las evaluaciones para desagruparlas
@@ -1373,7 +1373,7 @@ es-ES:
         title: "¿Regenerar informes?"
       remove:
         helper_text: 'PELIGRO: Si selecciona esta opción, se eliminarán todas las respuestas de los usuarios a esta evaluación en esta campaña.'
-        msg_text: Está intentando borrar <strong>"%{nombre}"</strong> Evaluación
+        msg_text: Está intentando borrar <strong>"%{name}"</strong> Evaluación
         successfully: la evaluación %{name} se ha eliminado correctamente.
         title: "¿Suprimir la evaluación?"
       rescore:
@@ -1967,7 +1967,7 @@ es-ES:
     errors:
       add_edit_project:
         invalid_subdomain_format: Formato de subdominio incorrecto.
-        reserved_subdomain: El subdominio %{valor} está reservado
+        reserved_subdomain: El subdominio %{value} está reservado
         uniq_subdomain: El subdominio debe ser único.
       add_manager:
         manager_not_found: Gestor no encontrado o que no forma parte del mismo proyecto
@@ -2035,7 +2035,7 @@ es-ES:
         already_exists: El asunto ya existe en la invitación.
       workshop_subject_create:
         already_exists: La asignatura ya existe en este Centro de Evaluación.
-        part_of_other_workshop: El sujeto ya participa en "%{nombre_taller}".
+        part_of_other_workshop: El sujeto ya participa en "%{workshop_name}".
       workshops:
         no_available_assessor_slots: No hay plazas disponibles para el evaluador %{assessor}
         no_available_manager_slots: No hay plazas disponibles para el gestor %{manager}
@@ -2633,75 +2633,6 @@ es-ES:
     zh-HK: Chino (Hong Kong)
     zh-Hant: Chino - Tradicional
     zh-TW: Chino (Taiwán)
-  languages_localized:
-    af: Afrikaans
-    ar: عربي
-    az: Azerbaiyán
-    bg: български
-    bs: bosanski
-    by: Bielorruso
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: Inglés
-    en-GB: Inglés (UK)
-    en-US: Inglés (US)
-    eo: Esperanto
-    es: English
-    es-ES: English (españa)
-    et: Estonia
-    fa: Persa
-    fi: En finés
-    fr: Français
-    gu: Gujarati
-    he: Hebreo
-    hi: हिन्दी
-    hr: Croata
-    hu: Húngaro
-    id: Bahasa Indonesia
-    it: italiano
-    ja: 日本語
-    km: Jemer
-    ko: Coreano
-    lt: Lituania
-    lv: Letón
-    mk: Macedonia
-    mn: Mongolia
-    ms: Bahasa Malasia
-    my: Myanmar
-    nb: Noruego Bokmål
-    nl: Holandés
-    'no': Noruega
-    pl: Polski
-    pt: Português
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brasil)
-    ro: Rumano
-    ru: Ruso
-    sk: Eslovaquia
-    sl: Eslovenia
-    sr-Cyrl: Serbio cirílico
-    sr-Latn: Serbio Latino
-    sv: Sueco
-    sw: Swahili
-    ta: Tamil
-    th: Tailandés
-    tl: Tagalo
-    tr: Turco
-    ua: Ucraniano
-    uk: Ucraniano
-    ur: Urdu
-    vi: Vietnamita
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Activo
     campaign_name: Nombre de la campaña
@@ -2839,7 +2770,7 @@ es-ES:
       created_text: texto añadido
       disapproved_text: texto desautorizado
       removed_text: texto eliminado
-      status_changed: cambiado el estado de <i>%{de}</i> a <i>%{a}</i>
+      status_changed: cambiado el estado de <i>%{from}</i> a <i>%{to}</i>
       updated_text: texto actualizado
     tabs:
       all: Todos
@@ -2848,7 +2779,7 @@ es-ES:
   report_bundles:
     actions:
       remove:
-        confirm_message: ¿Está seguro de que desea eliminar el paquete de informes "%{nombre}"?
+        confirm_message: ¿Está seguro de que desea eliminar el paquete de informes "%{name}"?
         confirm_title: Confirmación requerida
         success_message: Se ha eliminado el paquete de informes %{name}
     report_bundle: Paquete de informes
@@ -2878,7 +2809,7 @@ es-ES:
       re_evaluate: Haga clic aquí para volver a evaluar
       reevaluate: Reevaluar
       remove:
-        confirm_message: ¿Está seguro de que desea eliminar el informe "%{nombre}"?
+        confirm_message: ¿Está seguro de que desea eliminar el informe "%{name}"?
         confirm_title: Confirmación requerida
         success_message: Informe %{name} ha sido eliminado
       rescore: Rescore
@@ -3442,8 +3373,10 @@ es-ES:
   threesixty:
     accept_privacy_modal:
       accept: Aceptar
-      checkbox: He leído y entiendo la «Política de privacidad» mencionada anteriormente
-      title: Consentimiento para el tratamiento de los datos
+      checkbox: Al hacer clic en esta casilla, usted acepta que ha leído nuestro aviso de privacidad sobre la recogida y el tratamiento de sus datos personales tal como se describe en el mismo, incluida la transferencia internacional de sus datos personales.
+      checkbox_with_client_link: Al hacer clic en esta casilla, usted acepta que ha leído nuestro aviso de privacidad y el aviso de privacidad de nuestros clientes y da su consentimiento para la recogida y el tratamiento de su información personal tal como se describe en ellos, incluida la transferencia internacional de su información personal.
+      privacy_notice: Confidencialidad
+      title: Consentimiento para procesar y transferir información personal
     action: Acción
     add: Añadir
     and: true
@@ -3672,7 +3605,7 @@ es-ES:
       id: ID de evaluación del usuario
       norm_id: Norma ID
     drawer:
-      copied: "%{nombre} copiado al portapapeles."
+      copied: "%{name} copiado al portapapeles."
       copy: Copiar al portapapeles
       mettl_schedule_name: Mettl Horario Nombre
       no_data: No hay datos disponibles
@@ -3695,7 +3628,7 @@ es-ES:
         submit_button_name: Push Webhook
         title: Push Webhook
       remove:
-        content: ¿Está seguro de que desea eliminar la evaluación "%{nombre}"?
+        content: ¿Está seguro de que desea eliminar la evaluación "%{name}"?
         successfully: la evaluación %{name} se ha eliminado correctamente.
       reset:
         content: ¿Estás seguro de que quieres restablecer el progreso "%{name}"?
@@ -3839,7 +3772,7 @@ es-ES:
     date: Su respuesta debe ser una fecha válida (DD/MM/AAAA)
     each_group_contains: Cada grupo debe tener al menos %{min} elementos y no más de %{max}
     email: Su respuesta debe ser un correo electrónico válido
-    exact: Seleccione exactamente %{cuenta} opción(es)
+    exact: Seleccione exactamente %{count} opción(es)
     file_upload:
       BadRequest: El archivo no se ha cargado porque la última solicitud falló. Esto puede deberse a que su conexión a Internet no funciona. Si su conexión a Internet funciona, póngase en contacto con el administrador
       EntityTooLarge: El tamaño del archivo no debe ser mayor de %{maxFileSize} MB
@@ -3865,8 +3798,8 @@ es-ES:
     text: Su respuesta no debe contener cifras
     title:
       many:
-      one:
-      other:
+      one: Hay un error, por favor compruebe sus respuestas
+      other: Hay %{count} errores, por favor compruebe sus respuestas
     user_self_skill_rating_disabled: La autocalificación está desactivada para esta plantilla
     word_count: 'Número de palabras '
     word_range: Su respuesta debe tener al menos %{min} y no más de %{max} palabras.

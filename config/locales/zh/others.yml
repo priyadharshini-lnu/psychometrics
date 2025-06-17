@@ -871,7 +871,8 @@ zh:
       new_response: 新的回应
       next_assessment: 通过下一次评估
       pending_tasks:
-        other:
+        one: 您有 1 项待处理任务
+        other: 您有 %{count} 待处理任务
       re_evaluate: 单击此处重新评估
       reevaluate: 重新评估
       remove:
@@ -1534,7 +1535,7 @@ zh:
     card:
       duration: 持续时间
       starts_in: 开始于
-      starts_on: 从 %{ 日期}开始
+      starts_on: 从 %{date}开始
       will_start_shortly: 活动即将开始，请稍候
   change_password_page:
     old_password: 旧密码
@@ -1773,8 +1774,8 @@ zh:
     errors:
       datasheet_column:
         not_found: 未找到"%{column_name}"列
-        numeric_value_required: 栏"%{字段}"应为数字
-        string_value_required: 栏"%{字段}"应为字符串
+        numeric_value_required: 栏"%{field}"应为数字
+        string_value_required: 栏"%{field}"应为字符串
       not_configured: 数据表未配置
   devise:
     administrators:
@@ -1836,14 +1837,14 @@ zh:
     mailer:
       admin_invitation_instructions:
         accept: 点击此处接受邀请。
-        body: '您好 %{姓名}，我们已邀请您访问Lighthouse（兆光科技）人才企业测评平台的管理面板。 %{接受}或者您可以安全地忽略此邮件。 请不要与任何人共享您的访问凭证。
+        body: '您好 %{name}，我们已邀请您访问Lighthouse（兆光科技）人才企业测评平台的管理面板。 %{accept}或者您可以安全地忽略此邮件。 请不要与任何人共享您的访问凭证。
 
           '
         subject: 灯塔邀请函
       confirmation_instructions:
         subject: 确认说明
       invitation_instructions:
-        body: '您好 %{姓名}，您已被添加到莱皓思，成为以下部分的管理员
+        body: '您好 %{name}，您已被添加到莱皓思，成为以下部分的管理员
 
           '
         login: 登录灯塔
@@ -1871,7 +1872,7 @@ zh:
           '
         subject: 重置密码说明
       unlock_instructions:
-        body: '您好 %{姓名}！由于登录失败次数过多，您的账户已被锁定。 点击下面的链接解锁您的账户：
+        body: '您好 %{name}！由于登录失败次数过多，您的账户已被锁定。 点击下面的链接解锁您的账户：
 
           '
         footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
@@ -1881,7 +1882,7 @@ zh:
         subject: 账户解锁说明
         unlock_account: 解锁我的账户
     omniauth_callbacks:
-      failure: 由于"%{原因}"，无法从 %{kind} 验证您的身份。
+      failure: 由于"%{reason}"，无法从 %{kind} 验证您的身份。
       success: 成功验证 %{kind} 账户。
     passwords:
       edit:
@@ -2299,7 +2300,7 @@ zh:
     booking_card:
       aria_available_time: 可用时间
       aria_back_to_time_selection: 返回时间选择
-      aria_desc_current_month: 目前为 %{ 月名} %{ 年｝
+      aria_desc_current_month: 目前为 %{monthName} %{year｝
       aria_label_next_month: 转到下个月
       aria_label_previous_month: 转到上个月
       aria_timezone_select: 选择时区
@@ -2633,75 +2634,6 @@ zh:
     zh-HK: 中文（香港）
     zh-Hant: 繁体中文
     zh-TW: 中文（台湾）
-  languages_localized:
-    af: 南非语
-    ar: عربي
-    az: 阿塞拜疆
-    bg: български
-    bs: bosanski
-    by: 白俄罗斯语
-    ca: 加泰罗尼亚语
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: 丹麦语
-    de: 德语
-    el: Ελληνικά
-    en: 英语
-    en-GB: 英语（英国）
-    en-US: 英语（美国）
-    eo: 世界语
-    es: 西班牙语
-    es-ES: Español (españa)
-    et: 爱沙尼亚语
-    fa: 波斯语
-    fi: 芬兰语
-    fr: 法语
-    gu: 古吉拉特语
-    he: 希伯来文
-    hi: हिन्दी
-    hr: 克罗地亚语
-    hu: 匈牙利语
-    id: 印度尼西亚语
-    it: 意大利语
-    ja: 日本語
-    km: 高棉语
-    ko: 韩语
-    lt: 立陶宛语
-    lv: 拉脱维亚语
-    mk: 马其顿
-    mn: 蒙古语
-    ms: 马来西亚语
-    my: 缅甸
-    nb: 挪威语
-    nl: 荷兰语
-    'no': 挪威语
-    pl: 波兰语
-    pt: 葡萄牙语
-    pt-BR: 葡萄牙语（巴西）
-    pt-PT: 葡萄牙语
-    pt_BR: 葡萄牙语（巴西）
-    ro: 罗马尼亚语
-    ru: 俄罗斯
-    sk: 斯
-    sl: 斯洛文尼亚语
-    sr-Cyrl: 塞尔维亚西里尔文
-    sr-Latn: 塞尔维亚拉丁文
-    sv: 瑞典语
-    sw: 斯瓦希里语
-    ta: 梵语
-    th: 泰语
-    tl: 菲律宾语
-    tr: 土耳其语
-    ua: 乌克兰
-    uk: 乌克兰
-    ur: 乌尔都语
-    vi: 越南语
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政區)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: 活跃
     campaign_name: 活动名称
@@ -3442,8 +3374,10 @@ zh:
   threesixty:
     accept_privacy_modal:
       accept: 接受
-      checkbox: 我已阅读并理解上述隐私政策
-      title: 数据处理同意书
+      checkbox: 点击此框，即表示您已阅读我们的隐私声明，同意我们收集和处理您的个人信息，包括国际传输您的个人信息。
+      checkbox_with_client_link: 点击此框，即表示您已阅读我们的隐私声明和我们客户的隐私声明，并同意我们收集和处理您的个人信息，包括将您的个人信息进行国际转移。
+      privacy_notice: 隐私声明
+      title: 同意处理和传输个人信息
     action: 行动
     add: 添加
     and: 和
@@ -3839,7 +3773,7 @@ zh:
     date: 你的回答必须是有效日期（年/月/日）
     each_group_contains: 每组需要包含不少于 %{min} 或不多于 %{max} 项
     email: 你的回答必须是有效的邮箱
-    exact: 请准确选择 %{个}选项
+    exact: 请准确选择 %{count}选项
     file_upload:
       BadRequest: 由于最后一次请求失败，文件未上传。 这可能是由于您的网络无法正常工作。 如果您的网络正常工作，请联系管理员
       EntityTooLarge: 文件大小应小于 %{maxFileSize} MB
@@ -3864,7 +3798,8 @@ zh:
     required: 请回答此问题
     text: 你的回答不得包含数字
     title:
-      other:
+      one: 有一个错误，请检查您的答复
+      other: 有 %{count} 错误，请检查您的回复
     user_self_skill_rating_disabled: 此模板已禁用自我评级
     word_count: '字数 '
     word_range: 您的回复字数必须至少 %{min}，不超过 %{max}。

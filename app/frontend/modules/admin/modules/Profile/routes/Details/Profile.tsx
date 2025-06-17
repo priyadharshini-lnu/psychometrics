@@ -227,12 +227,12 @@ function Profile ({
                       <Select
                         size="large"
                         showSearch
-                        filterOption={(search, option) => I18n.t(`languages_localized.${option?.value}`)
+                        filterOption={(search, option) => I18n.t(`languages.${option?.value}`)
                           .toLowerCase().includes(search.toLowerCase())}
                       >
                         {_.map(locales, locale => (
                           <Select.Option key={locale} value={locale}>
-                            {I18n.t(`languages_localized.${locale}`)}
+                            {I18n.t(`languages.${locale}`)}
                           </Select.Option>
                         ))}
                       </Select>
