@@ -221,7 +221,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
             </>
           )}
           <Form.Item
-            name="SkillType"
+            name="skillType"
             label={I18n.t('administration.skills.form.skill_type')}
           >
             <Select
