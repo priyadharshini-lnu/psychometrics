@@ -523,6 +523,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
               const prefixedAssessmentIds = sortedGroupedAssessments.map(
                 groupedAssessment => `${ASSESSMENT_ID_PREFIX}${groupedAssessment.id}`,
               )
+              const isAssessmentCenterGroup = group.groupType === 'assessment_center'
 
               return (
                 <Col xs={24} sm={24} md={12} lg={8} key={group.id}>
@@ -552,12 +553,12 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                               sortId={`${ASSESSMENT_ID_PREFIX}${groupedAssessment.id}`}
                               assessment={groupedAssessment}
                               key={groupedAssessment.id}
-                              onEditScheduleTime={() => {
+                              onEditScheduleTime={isAssessmentCenterGroup ? () => {
                                 openModal('AddWorkshopActivityDurationModal', {
                                   onAddScheduleTime: duration => handleEditScheduleTime(groupedAssessment, duration),
                                   workshopActivityDuration: groupedAssessment.workshopActivityDuration,
                                 })
-                              }}
+                              } : undefined}
                             />
                           </Row>
                           <br />
@@ -577,41 +578,78 @@ const SequencingComponent: FC<PropsFromRedux> = ({
         </Row>
         {createPortal(
           <DragOverlay adjustScale={false} dropAnimation={dropAnimation}>
-            {
-              // eslint-disable-next-line no-nested-ternary
-              activeId ? (
-                activeId in prefixedGroupWithPrefixedAssessmentIds ? (
-                  <GroupedAssessmentContainer
-                    group={getGroupById(groups, getItemIdFromSortingId(activeId), 'id')}
-                    assessmentCount={getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).length}
-                    isLoading={false}
-                  >
-                    {getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).map(groupedAssessment => (
-                      <Fragment key={groupedAssessment.id}>
-                        <Row gutter={[8, 8]}>
-                          <Assessment onEditScheduleTime={() => null} span={24} assessment={groupedAssessment} />
-                        </Row>
-                        <br />
-                      </Fragment>
-                    ))}
-                  </GroupedAssessmentContainer>
-                ) : (
-                  <Assessment
-                    assessment={[...assessments].find((assessment) => {
-                      const dragIdNum = getItemIdFromSortingId(activeId)
-                      return assessment.id === dragIdNum
-                    })}
-                    onEditScheduleTime={() => null}
-                  />
-                )
-              ) : null
-            }
+            {activeId ? (
+              <DragOverlayComponent
+                groups={groups}
+                activeId={activeId}
+                assessments={assessments}
+                prefixedGroupWithPrefixedAssessmentIds={prefixedGroupWithPrefixedAssessmentIds}
+              />
+            ) : null}
           </DragOverlay>,
           document.body,
         )}
       </DndContext>
       <Modals modals={MODALS} />
     </section>
+  )
+}
+
+type DragOverlayComponentProps = {
+  groups: CampaignAssessmentGroup[]
+  activeId: string
+  assessments: CampaignAssessment[]
+  prefixedGroupWithPrefixedAssessmentIds: Record<string, string>
+}
+
+const DragOverlayComponent:FC<DragOverlayComponentProps> = ({
+  groups, activeId, assessments, prefixedGroupWithPrefixedAssessmentIds,
+}) => {
+  const isGroupOverlay = activeId in prefixedGroupWithPrefixedAssessmentIds
+  let activeGroup: CampaignAssessmentGroup | undefined = getGroupById(groups, getItemIdFromSortingId(activeId), 'id')
+  let activeAssessment: CampaignAssessment | undefined
+  if (!isGroupOverlay) {
+    activeAssessment = [...assessments].find((assessment) => {
+      const dragIdNum = getItemIdFromSortingId(activeId)
+      return assessment.id === dragIdNum
+    })
+    activeGroup = groups.find(group => group.id === activeAssessment?.campaignAssessmentGroupId)
+  }
+  const isAssessmentCenter = activeGroup?.groupType === 'assessment_center'
+
+  return (
+    <>
+      {
+        isGroupOverlay && activeGroup ? (
+          <GroupedAssessmentContainer
+            group={activeGroup}
+            assessmentCount={getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).length}
+            isLoading={false}
+          >
+            {getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).map(groupedAssessment => (
+              <Fragment key={groupedAssessment.id}>
+                <Row gutter={[8, 8]}>
+                  <Assessment
+                    onEditScheduleTime={isAssessmentCenter ? () => null : undefined}
+                    span={24}
+                    assessment={groupedAssessment}
+                  />
+                </Row>
+                <br />
+              </Fragment>
+            ))}
+          </GroupedAssessmentContainer>
+        ) : (
+          <Assessment
+            assessment={[...assessments].find((assessment) => {
+              const dragIdNum = getItemIdFromSortingId(activeId)
+              return assessment.id === dragIdNum
+            })}
+            onEditScheduleTime={isAssessmentCenter ? () => null : undefined}
+          />
+        )
+      }
+    </>
   )
 }
 
