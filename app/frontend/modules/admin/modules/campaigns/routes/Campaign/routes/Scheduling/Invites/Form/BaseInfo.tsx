@@ -58,7 +58,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   const [searchValue, setSearchValue] = useState('')
   const [assessmentCenterGroups, setAssessmentCenterGroups] = useState<AssessmentCenterGroup[]>([])
   const {
-    data: assessmetnCenters, setData, getResource, fetch: fetchWorkshops,
+    data: assessmentCenters, setData, getResource, fetch: fetchWorkshops,
   } = useResources<Workshop>('workshops', {
     basePath: `campaigns/${params.campaignId}`,
   })
@@ -139,6 +139,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
     fetchWorkshops({
       apiConfig: {
         filter: {
+          date_filter: 'upcoming',
           search_query: searchValue,
           campaign_assessment_group_id_eq: form.getFieldValue('campaignAssessmentGroupId'),
         },
@@ -152,6 +153,15 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
     setSelectedWorkshops([])
     setSearchValue('')
     setData([])
+
+    fetchWorkshops({
+      apiConfig: {
+        filter: {
+          date_filter: 'upcoming',
+          campaign_assessment_group_id_eq: value,
+        },
+      },
+    })
   }
 
   const handleCancel = () => {
@@ -232,7 +242,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                       showSearch
                       // eslint-disable-next-line max-len
                       placeholder={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')}
-                      options={assessmetnCenters.map(workshop => ({
+                      options={assessmentCenters.map(workshop => ({
                         label: workshop.name, value: workshop.id,
                       }))}
                       onSelect={changeWorkshops}
