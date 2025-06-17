@@ -589,7 +589,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                     {getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).map(groupedAssessment => (
                       <Fragment key={groupedAssessment.id}>
                         <Row gutter={[8, 8]}>
-                          <Assessment span={24} assessment={groupedAssessment} />
+                          <Assessment onEditScheduleTime={() => null} span={24} assessment={groupedAssessment} />
                         </Row>
                         <br />
                       </Fragment>
@@ -601,6 +601,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                       const dragIdNum = getItemIdFromSortingId(activeId)
                       return assessment.id === dragIdNum
                     })}
+                    onEditScheduleTime={() => null}
                   />
                 )
               ) : null
