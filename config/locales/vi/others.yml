@@ -596,6 +596,7 @@ vi:
     last_name: Họ
     locale: Ngôn ngữ ưa thích
     male: Nam giới
+    mandatory_fields: Chỉ định các trường bắt buộc
     not_disclosed: Không muốn tiết lộ
     old_data: Dữ liệu hồ sơ của bạn đã %{months} tháng tuổi. Vui lòng xác nhận thông tin chi tiết để tiếp tục
     password: Mật khẩu

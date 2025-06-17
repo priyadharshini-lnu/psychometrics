@@ -597,6 +597,7 @@ hr:
     last_name: Prezime
     locale: Željeni jezik
     male: Muški
+    mandatory_fields: Označava obavezna polja
     not_disclosed: Radije ne bih otkrio/la
     old_data: Podaci vašeg profila stari su %{months} ​​mjeseci. Molimo potvrdite podatke kako biste mogli nastaviti dalje.
     password: Lozinka

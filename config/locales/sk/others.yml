@@ -602,6 +602,7 @@ sk:
     last_name: Priezvisko
     locale: Uprednostňovaný jazyk
     male: Muži
+    mandatory_fields: Označuje povinné polia
     not_disclosed: Radšej nezverejňovať
     old_data: Údaje vášho profilu sú %{months} mesiacov staré. Prosím, potvrďte údaje, aby ste mohli pokračovať ďalej
     password: Heslo

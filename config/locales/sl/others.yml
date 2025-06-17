@@ -602,6 +602,7 @@ sl:
     last_name: Priimek
     locale: Prednostni jezik
     male: Moški
+    mandatory_fields: Označuje obvezna polja
     not_disclosed: Raje ne bi razkrili
     old_data: Podatki vašega profila so stari %{months} mesecev. Za nadaljevanje potrdite podrobnosti
     password: Geslo

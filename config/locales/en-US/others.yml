@@ -797,6 +797,7 @@ en-US:
     last_name: Last Name
     locale: Preferred Language
     male: Male
+    mandatory_fields: Indicates mandatory fields
     not_disclosed: Prefer not to disclose
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password

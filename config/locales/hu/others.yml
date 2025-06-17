@@ -602,6 +602,7 @@ hu:
     last_name: Vezetéknév
     locale: Kedvelt nyelv
     male: Férfi
+    mandatory_fields: Kötelező mezők jelölése
     not_disclosed: Inkább nem közli
     old_data: Az Ön profiljának adatai %{months} hónaposak. Kérjük, erősítse meg az adatokat a további lépésekhez
     password: Jelszó

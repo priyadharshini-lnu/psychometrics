@@ -602,6 +602,7 @@ id:
     last_name: Nama belakang
     locale: Bahasa Pilihan
     male: Laki-laki
+    mandatory_fields: Menunjukkan bidang wajib
     not_disclosed: Memilih untuk tidak mengungkapkan
     old_data: Data profil Anda sudah berumur %{months} bulan. Harap konfirmasi detail untuk melanjutkan
     password: Kata sandi

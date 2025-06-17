@@ -818,6 +818,7 @@ pl:
     last_name: Nazwisko
     locale: Preferowany język
     male: Męski
+    mandatory_fields: Wskazuje pola obowiązkowe
     not_disclosed: Wolę nie ujawniać
     old_data: Twoje dane profilowe mają %{months} miesięcy. Potwierdź szczegóły, aby kontynuować
     password: Hasło
