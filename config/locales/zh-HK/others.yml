@@ -821,6 +821,7 @@ zh-HK:
     last_name: 姓氏
     locale: 首選語言
     male: 男性
+    mandatory_fields: 表示必填欄位
     not_disclosed: 不願透露
     old_data: 您的個人資料已過了 %{months} 個月，請確認詳細資料，以便繼續操作。
     password: 密碼

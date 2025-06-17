@@ -603,6 +603,7 @@ ro:
     last_name: Numele de familie
     locale: Limba preferată
     male: Masculin
+    mandatory_fields: Indică câmpurile obligatorii
     not_disclosed: Prefer să nu divulg
     old_data: Datele din profilul dvs. sunt vechi de %{months} luni. Vă rugăm să confirmați detaliile pentru a continua
     password: Parolă
