@@ -7,6 +7,7 @@ module Administration
 
     def index
       jobs = policy_scope(AdminJobRecord).
+             where(parent_job_id: nil).
              includes(:owner, :file_attachment).
              order(created_at: :desc).
              offset(params[:offset] || 0).

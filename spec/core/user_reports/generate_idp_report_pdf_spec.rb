@@ -10,6 +10,10 @@ describe UserReports::GenerateIdpReportPdf do
   let!(:idp_template) { create(:idp_template, project: campaign.project) }
   let!(:user_idp_plan) { create(:user_idp_plan, user: user, campaign: campaign, idp_template: idp_template) }
   let!(:current_user) { create(:superadmin) }
+  let!(:admin_job_record) do
+    create(:admin_job_record, operation: :bulk_download_idp_reports, owner: current_user,
+            data: { campaign_id: campaign.id, lang: 'en' })
+  end
 
   before do
     allow(Kernel).to receive(:system)
@@ -32,7 +36,20 @@ describe UserReports::GenerateIdpReportPdf do
 
       expect(url).to eq(
         pdf_preview_administration_new_campaign_user_idp_report_url(
-          common_url_params.merge(subdomain: Settings.subdomain, new_campaign_id: user_idp_plan.campaign.id)
+          common_url_params.merge(subdomain: Settings.subdomain, new_campaign_id: user_idp_plan.campaign.id,
+                                  include_reflective_questions: false)
+        )
+      )
+    end
+
+    it 'returns preview pdf url with reflective_questions' do
+      url = described_class.new(user_idp_plan, current_user,
+                                include_reflective_questions: true).send(:report_preview_url)
+
+      expect(url).to eq(
+        pdf_preview_administration_new_campaign_user_idp_report_url(
+          common_url_params.merge(subdomain: Settings.subdomain, new_campaign_id: user_idp_plan.campaign.id,
+                                  include_reflective_questions: true)
         )
       )
     end
@@ -46,18 +63,27 @@ describe UserReports::GenerateIdpReportPdf do
     end
 
     it 'create report pdf in tmp location where current_user is a super admin' do
-      output_path = described_class.call!(user_idp_plan, current_user)[:file_path]
+      output_path = described_class.call!(user_idp_plan, current_user, { lang: 'en' })[:file_path]
 
       expect(output_path).to include(
-        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
+        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report.pdf"
+      )
+    end
+
+    it 'create report pdf in tmp location where current_user is a super admin' do
+      output_path = described_class.call!(user_idp_plan, current_user,
+                                          { lang: 'en', include_reflective_questions: true })[:file_path]
+
+      expect(output_path).to include(
+        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report_rq.pdf"
       )
     end
 
     it 'create report pdf in tmp location where current_user is a regular user' do
-      output_path = described_class.call!(user_idp_plan, user)[:file_path]
+      output_path = described_class.call!(user_idp_plan, user, { lang: 'en' })[:file_path]
 
       expect(output_path).to include(
-        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
+        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report.pdf"
       )
     end
   end
@@ -84,7 +110,8 @@ describe UserReports::GenerateIdpReportPdf do
             file_name: report_file_name,
             file_path: "path/to/pdf/#{report_file_name}",
             update_record: true,
-            lang: 'en'
+            lang: 'en',
+            admin_job_record_id: admin_job_record.id
           },
           meta: {
             file_attribute: 'pdf_file',
@@ -98,7 +125,8 @@ describe UserReports::GenerateIdpReportPdf do
         )
       )
 
-      described_class.call!(user_idp_plan, user, { lang: 'en', file_path: 'path/to/pdf' })
+      described_class.call!(user_idp_plan, user,
+                            { lang: 'en', file_path: 'path/to/pdf', admin_job_record_id: admin_job_record.id })
     end
   end
 end

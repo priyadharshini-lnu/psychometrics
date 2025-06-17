@@ -32,6 +32,7 @@ RSpec.describe Administration::Campaigns::UserIdpReportsController, type: :contr
 
   describe 'GET download' do
     it 'redirects to the user IDP report page after initiating download' do
+      allow(Settings.features).to receive_message_chain(:url_to_pdf_faas) { true }
       expect(UserReports::GenerateIdpReportPdf).to receive(:call!)
 
       lang = 'en'

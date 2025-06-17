@@ -83,12 +83,35 @@ class UserIdpPlan < ApplicationRecord
     CampaignUser.find_by(campaign_id: campaign_id, user_id: user_id)
   end
 
+  def default_language
+    @user_idp_plan.campaign.project.available_locales.first || I18n.default_locale
+  end
+
   def skill_gap_report
     idp_template.report
   end
 
   def report_name_for_download
     "#{user.email}_idp_report_#{user.id}.pdf"
+  end
+
+  def report_pdf(locale: nil, with_reflective_questions: false)
+    scope = report_pdfs.joins(pdf_file_attachment: :blob).where(locale: locale)
+    scope = if with_reflective_questions
+              scope.where('active_storage_blobs.key like ?', '%idp_report_rq%')
+            else
+              scope.where('active_storage_blobs.key not like ?', '%idp_report_rq%')
+            end
+    scope.first
+  end
+
+  def pdf_path(locale: nil, with_reflective_questions: false)
+    report_pdf(locale: locale, with_reflective_questions: with_reflective_questions)&.pdf_file&.key
+  end
+
+  def pdf_url(locale: nil, with_reflective_questions: false, expires_in: 10.minutes)
+    report_pdf(locale: locale,
+               with_reflective_questions: with_reflective_questions)&.pdf_file&.url(expires_in: expires_in)
   end
 
   def editable?

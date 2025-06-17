@@ -27,6 +27,7 @@ import { useWindowSize } from '~/hooks/useWindowSize'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import { UserFilterModal } from './UserFilterModal'
+import BulkDownloadIdpReports from './BulkDownloadIdpReports'
 
 const MODALS = {
   UserFormModal,
@@ -36,6 +37,7 @@ const MODALS = {
   ImportReportsAndAssessmentsModal,
   PushWebhookModal,
   UserFilterModal,
+  BulkDownloadIdpReports,
 }
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',
@@ -105,6 +107,7 @@ const UserList: React.FC<Props> = ({
   const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const { modal, message } = App.useApp()
   const { width: windowWidth } = useWindowSize()
+
   useEffect(() => {
     fetch(campaignId, {
       ...tableConfig,

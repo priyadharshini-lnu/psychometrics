@@ -1,4 +1,3 @@
-import './styles/reset.css'
 import './styles/main.css'
 import { Provider } from 'react-redux'
 import { useParams } from 'react-router-dom'

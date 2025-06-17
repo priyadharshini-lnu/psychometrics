@@ -10,6 +10,7 @@ module UserReports
 
     def initialize(user_report, current_user, options = {})
       @user_report = user_report
+      @record = user_report
       @current_user = current_user
       @campaign = user_report.campaign
       @report = user_report.report

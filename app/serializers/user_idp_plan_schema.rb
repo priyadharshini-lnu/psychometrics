@@ -9,6 +9,14 @@ class UserIdpPlanSchema < BaseSchema
       required(:division).filled(:str?)
 
       required(:user_idp_skills).hash(UserIdpSkillSchema.schema(_, _))
+      required(:reflection_questions).array(:hash) do
+        required(:id).filled(:int?)
+        required(:mandatory).filled(:bool?)
+        required(:question).filled(:str?)
+        required(:min_words).maybe(:int?)
+        required(:max_words).maybe(:int?)
+        required(:answer).maybe(:str?)
+      end
     end
   end
 end

@@ -1,4 +1,3 @@
-import './styles/reset.css'
 import './styles/main.css'
 import Cover from './Page/types/Cover/Cover'
 import Last from './Page/types/Last/Last'

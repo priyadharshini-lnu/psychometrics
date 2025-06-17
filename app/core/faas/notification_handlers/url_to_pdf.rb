@@ -5,7 +5,7 @@ module Faas
     class UrlToPdf < Base
       ALLOWED_TYPES = %w[UserReport UserIdpPlan].freeze
 
-      def call # rubocop:disable Metrics/AbcSize
+      def call
         record = find_record
         if data['status'] == 'failed'
           admin_job&.update!(status: :failed, error_messages: [data['error']])
@@ -13,6 +13,8 @@ module Faas
         end
 
         if data['update_record']
+          report_pdf = find_report_pdf(record)
+
           blob = ActiveStorage::Blob.create_before_direct_upload!(
             key: data['file_path'],
             filename: data['file_name'],
@@ -20,10 +22,6 @@ module Faas
             checksum: data['checksum'],
             content_type: 'application/pdf',
             service_name: Settings.storage.private_storage_service
-          )
-
-          report_pdf = record.report_pdfs.find_or_create_by!(
-            locale: data['lang'] || I18n.locale
           )
 
           report_pdf.pdf_file&.purge_later
@@ -47,12 +45,25 @@ module Faas
           end
         end
         update_admin_job_progress(data)
+
         notify_user(data, record) if data['notify_user_id']
 
         broadcast :ok
       end
 
       private
+
+      def find_report_pdf(record)
+        if record.is_a?(UserIdpPlan)
+          report_pdf = record.report_pdfs.joins(pdf_file_attachment: :blob).
+                       find_by(blob: { key: data['file_path'] })
+          report_pdf&.pdf_file&.purge
+          report_pdf ||= record.report_pdfs.create!(locale: data['lang'] || I18n.locale)
+          report_pdf
+        else
+          record.report_pdfs.find_or_create_by!(locale: data['lang'] || I18n.locale)
+        end
+      end
 
       def find_record
         unless ALLOWED_TYPES.include?(data['record_type'])
@@ -90,6 +101,10 @@ module Faas
         return unless data['admin_job_record_id']
 
         admin_job&.increment_completed_tasks!
+
+        if admin_job.total_tasks == admin_job.completed_tasks
+          admin_job.complete!
+        end
       end
 
       def admin_job

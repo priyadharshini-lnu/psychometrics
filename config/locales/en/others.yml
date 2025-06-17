@@ -755,6 +755,7 @@ en:
         assign_idp_to_users: Assign IDP to users
         assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
+        bulk_download_idp_reports: Bulk Download IDP Reports
         bulk_download_reports: Bulk Download Reports
         bulk_download_user_reports: Bulk Download User Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
@@ -830,6 +831,8 @@ en:
         failed: Failed
         in_progress: In Progress
         scheduled: Scheduled
+    bulk_download_idp_reports:
+      already_exists: The Job to generate this IDP reports already in progress
     bulk_download_reports:
       content:
         title: Links to download reports
@@ -2609,6 +2612,8 @@ en:
       pending_approval: Pending Approval
       rejected: Rejected
     users: Users
+    with_reflection_questions: With Reflection Questions
+    without_reflection_questions: Without Reflection Questions
   idp_templates:
     assign: Assign
     assign_idp_template: Assign Idp Template
@@ -3762,6 +3767,7 @@ en:
         body: Refer to the sample file to extract a template that can be used to Import here.
         title: Assign Reports and Assessments
     toolbar:
+      bulk_download_idp_reports: Bulk Download IDP Reports
       export: Export Users
       export_compact_completion_status: Compact
       export_detailed_completion_status: Detailed

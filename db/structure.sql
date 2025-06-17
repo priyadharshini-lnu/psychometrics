@@ -246,7 +246,10 @@ CREATE TABLE public.admin_jobs (
     updated_at timestamp without time zone NOT NULL,
     total_tasks integer DEFAULT 1,
     completed_tasks integer DEFAULT 0,
-    exception character varying
+    exception character varying,
+    step character varying,
+    weight double precision,
+    parent_job_id bigint
 );
 
 
@@ -10777,6 +10780,13 @@ CREATE INDEX index_admin_jobs_on_owner_id ON public.admin_jobs USING btree (owne
 
 
 --
+-- Name: index_admin_jobs_on_parent_job_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_jobs_on_parent_job_id ON public.admin_jobs USING btree (parent_job_id);
+
+
+--
 -- Name: index_admin_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14129,6 +14139,14 @@ ALTER TABLE ONLY public.memberships
 
 
 --
+-- Name: admin_jobs fk_rails_1e3a30cff2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_jobs
+    ADD CONSTRAINT fk_rails_1e3a30cff2 FOREIGN KEY (parent_job_id) REFERENCES public.admin_jobs(id) ON DELETE SET NULL;
+
+
+--
 -- Name: communication_email_resources fk_rails_1e6187986b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16335,6 +16353,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250530122354'),
 ('20250609112516'),
 ('20250605154240'),
 ('20250605151652'),

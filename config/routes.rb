@@ -291,6 +291,7 @@ Rails.application.routes.draw do
             get :export_completion_status
             get :export_compact_completion_status
             post :search
+            post :bulk_download_idp_reports
           end
         end
 
