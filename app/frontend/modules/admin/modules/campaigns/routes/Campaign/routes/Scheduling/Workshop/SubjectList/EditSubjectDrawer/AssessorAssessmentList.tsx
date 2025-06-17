@@ -7,7 +7,7 @@ import dayjs from '~/utils/dayjs'
 
 import { ResourceAvatar } from '~/glint'
 import { PROGRESS_STATUSES } from './Constants'
-import { AssessorUserAssessment, SubjectUserAssessment } from '~/modules/admin/modules/campaigns/core/workshopSubject'
+import { AssessorUserAssessment } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 
 const { I18n } = window
 const { Column } = Table
@@ -16,11 +16,9 @@ type Props = {
   assessments: AssessorUserAssessment[]
   onEdit: (data: AssessorUserAssessment) => void
   onDelete: (data: AssessorUserAssessment) => void
-  linkedAssessments: Map<string, SubjectUserAssessment> | null
 }
 export const AssessorAssessmentList = ({
   assessments,
-  linkedAssessments,
   onEdit,
   onDelete,
 }: Props) => (
@@ -91,9 +89,8 @@ export const AssessorAssessmentList = ({
     />
     <Column
       title={I18n.t('common.column.linked_activities')}
-      dataIndex="linkedActivityId"
-      render={linkedActivityId => (linkedActivityId && linkedAssessments?.get(linkedActivityId)?.name)
-      }
+      dataIndex="linkedActivityName"
+      render={linkedActivityName => (linkedActivityName && linkedActivityName)}
     />
     <Column
       title=""

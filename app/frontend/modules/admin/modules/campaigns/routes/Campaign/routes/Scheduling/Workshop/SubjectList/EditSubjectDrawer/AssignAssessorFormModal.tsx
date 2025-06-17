@@ -95,6 +95,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
       status: assessment?.status || 'not_started',
       meetingType: values.meetingType,
       linkedActivityId: selectedAssessment.linkedActivityId,
+      linkedActivityName: selectedAssessment.linkedActivityName,
       meetingLink,
       assessmentId: values.assessmentId,
       assessor: { ...selectedAssessor, id: values.assessorUserId },

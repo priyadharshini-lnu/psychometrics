@@ -5,7 +5,8 @@ module Administration
     module WorkshopSubjects
       class AssessorUserAssessmentSerializer < Panko::Serializer
         attributes :id, :name, :status, :schedule_time, :meeting_link,
-                   :assessor, :meeting_type, :assessment_id, :linked_activity_id
+                   :assessor, :meeting_type, :assessment_id, :linked_activity_id,
+                   :linked_activity_name
 
         delegate :name, to: :assessment, allow_nil: true
         delegate :id, to: :assessment, prefix: true, allow_nil: true
@@ -26,6 +27,10 @@ module Administration
 
         def linked_activity_id
           assessment.linked_assessment_id.to_s
+        end
+
+        def linked_activity_name
+          assessment.linked_assessment&.name
         end
 
         def meeting_link

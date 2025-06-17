@@ -176,7 +176,8 @@ subject_assessor_assessments" do
             },
             'meeting_type' => nil,
             'assessment_id' => assessor_user_assessment.assessment_id,
-            'linked_activity_id' => ''
+            'linked_activity_id' => '',
+            'linked_activity_name' => nil
           }])
         end
       end
