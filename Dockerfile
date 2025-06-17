@@ -117,6 +117,7 @@ COPY --from=ruby-gems /usr/local/bundle /usr/local/bundle
 # Copy all of our app in to the image (use .dockerignore to omit patterns)
 COPY . ./
 
+ARG GITHUB_TOKEN=""
 ARG DATABASE_URL="postgresql://dummy@dummy:5432/dummy"
 ARG SECRET_KEY_BASE="dummy"
 ARG ASSET_HOST=""
