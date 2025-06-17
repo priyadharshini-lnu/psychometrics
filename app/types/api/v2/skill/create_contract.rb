@@ -10,7 +10,9 @@ module Api
         rule(data: { attributes: :name }) do
           project_id = values.dig(:data, :relationships, :project, :data, :id)
 
-          key.failure(:already_added) if ::Skill.exists?(name: value, project_id: project_id)
+          if ::Skill.where('LOWER(TRIM(name)) = ?', value.to_s.strip.downcase).exists?(project_id: project_id)
+            key.failure(:already_added)
+          end
         end
       end
     end

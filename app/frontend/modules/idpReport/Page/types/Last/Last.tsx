@@ -14,7 +14,7 @@ const Last = ({ rtl }) => {
 
   return (
     <Page rtl={rtl}>
-      <div className={cs(styles.content, styles)}>
+      <div className={cs(styles.content)}>
         <div
           className={cs(styles.background, { [styles.flipped]: rtl })}
           style={{ backgroundImage: `url(${background || bg})` }}

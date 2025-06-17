@@ -8,6 +8,10 @@ module Administration
                              create_hogan_credentials]
       skip_before_action :pundit_authorize, only: %i[spoof]
 
+      rescue_from AdminJob::AlreadyExistsError do |e|
+        render :json, status: 422, json: { errors: [e.message] }
+      end
+
       def index
         users = User.joins(:campaign_users).
                 where(campaign_users: { campaign_id: campaign.id }).
@@ -48,7 +52,9 @@ module Administration
             'import',
             'edit',
             %w[remove destroy],
-            'export_sign_in_url'
+            'export_sign_in_url',
+            'bulk_download_idp_reports',
+            'allow_include_reflective_questions'
           ],
           {
             project_id: campaign.project_id,
@@ -63,6 +69,20 @@ module Administration
           each_serializer: ::Projects::SearchUserSerializer
         ).to_a
         render json: users
+      end
+
+      def bulk_download_idp_reports
+        audit! :bulk_download_idp_reports, campaign, campaign: campaign
+        AdminJob.call(
+          :bulk_download_idp_reports,
+          {
+            campaign_id: campaign.id,
+            include_reflective_questions: params[:include_reflective_questions],
+            lang: params[:lang] || campaign.project.available_locales.first
+          },
+          current_user
+        )
+        head :ok
       end
 
       def export_completion_status

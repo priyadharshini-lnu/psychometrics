@@ -4,6 +4,8 @@ class AdminJobRecordSerializer < Panko::Serializer
   attributes :id, :operation, :progress, :data, :status, :error_messages, :content, :read, :created_at, :is_valid,
              :exception, :title_link, :details
 
+  has_many :subjobs, serializer: AdminJobRecordSerializer
+
   def title_link
     return unless is_valid
 

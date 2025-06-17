@@ -5,11 +5,33 @@ module AdminJobs
     include ActionView::Helpers::TagHelper
     include ActionView::Context
 
-    private_attr_reader :record, :owner
+    private_attr_reader :record, :owner, :stage
 
-    def initialize(record)
+    class_attribute :steps, default: []
+
+    def initialize(record, stage = nil)
       @record = record
       @owner = record.owner
+      @stage = stage
+    end
+
+    def perform_multisteps
+      stage = find_step(@stage)
+
+      subjob_record = AdminJobRecord.create!(operation: record.operation,
+                                             data: record.data,
+                                             step: stage[:name],
+                                             weight: stage[:options][:weight],
+                                             owner: owner,
+                                             parent_job: record)
+      job = stage[:klass]
+      job.perform_now(subjob_record)
+
+      broadcast :waiting
+    end
+
+    def call
+      steps.empty? ? super : perform_multisteps
     end
 
     def job_record
@@ -49,9 +71,29 @@ module AdminJobs
       def valid?(record)
         new(record).valid?
       end
+
+      def step(name, klass, options = {})
+        steps << { name: name, klass: klass, options: options }
+      end
+
+      def next_step(step)
+        step_index = steps.index { |s| s[:name] == step.to_sym }
+        return nil unless step_index
+
+        next_step_index = step_index + 1
+        steps[next_step_index] if next_step_index < steps.length
+      end
+
+      def validate(_data, _owner)
+        nil
+      end
     end
 
     private
+
+    def find_step(name)
+      name ? steps.find { |step| step[:name] == name.to_sym } : steps.first
+    end
 
     def campaign
       @campaign ||= Campaign.find_by(id: record.data['campaign_id'])

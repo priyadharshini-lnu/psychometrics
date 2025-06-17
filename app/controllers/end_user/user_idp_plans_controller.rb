@@ -58,6 +58,10 @@ module EndUser
 
     private
 
+    def allow_include_reflective_questions?
+      current_user == @user_idp_plan.user && params[:include_reflective_questions] == 'true'
+    end
+
     def user_reflection_question_answers
       @user_idp_plan.user_reflection_question_answers.group_by(&:reflection_question_id).transform_values do |answers|
         answers.map(&:answer).first

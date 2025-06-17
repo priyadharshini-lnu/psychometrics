@@ -17,7 +17,7 @@ class Skill < ApplicationRecord
   has_many :development_actions, through: :skills_development_actions
   has_many :idp_template_skills # added for sample_by_skill_types being used through template
 
-  validates :name, presence: true, uniqueness: { scope: :project_id }
+  validates :name, presence: true, uniqueness: { scope: :project_id, case_sensitive: false }
 
   enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
 

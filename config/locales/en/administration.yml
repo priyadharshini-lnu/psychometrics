@@ -3938,6 +3938,12 @@ en:
         successfully: User %{name} was deleted successfully.
       list:
         email: Email
+      modals:
+        download_idp_reports:
+          error: Failed to schedule Bulk Download IDP Reports job failed.
+          include_reflective_questions: Include Reflective Questions
+          success: Bulk Download IDP Reports job was scheduled successfully.
+          title: Bulk Download IDP Reports
       new:
         header: New user
       reset_password:

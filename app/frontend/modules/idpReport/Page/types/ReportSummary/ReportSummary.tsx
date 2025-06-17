@@ -41,7 +41,7 @@ const Card = ({ skill }) => {
               {skill.name}
             </div>
             <div className={styles.type}>
-              {I18n.t(`idp.pdf.skill_categories.${skill.skillType}`)}
+              {I18n.t(`idp.pdf.skill_categories.${skill.skill_type}`)}
             </div>
           </Flex>
           <Progress
