@@ -143,6 +143,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index', as: :dashboard
     get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'
+    post 'dashboards/:id/export_file', to: 'dashboards#export_file'
 
     resource :profiles, only: %i[update edit]
 
@@ -1028,6 +1029,15 @@ as: :simulation_progress_notification
         end
         collection do
           get :summary
+        end
+
+        member do
+          resources :comments, only: %i[index create update show], controller: 'user_idp_comments' do
+            member do
+              patch :resolve
+              patch :unresolve
+            end
+          end
         end
       end
     end

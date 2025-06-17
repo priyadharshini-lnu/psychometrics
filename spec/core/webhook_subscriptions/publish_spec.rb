@@ -18,7 +18,7 @@ describe WebhookSubscriptions::Publish do
     it 'assessment_started' do
       data = { campaign: campaign, assessment: assessment, evaluator: evaluator, subject: subject }
       expect(WebhookSystemJob).to receive(:perform_later).
-        with(webhook, {
+        with(webhook.id, {
           'event_name' => 'assessment_started',
           'event_id' => anything,
           'data' => anything
@@ -32,7 +32,7 @@ describe WebhookSubscriptions::Publish do
       webhook.update(include_locales: true)
       data = { campaign: campaign, assessment: assessment, evaluator: evaluator, subject: subject }
       expect(WebhookSystemJob).to receive(:perform_later).
-        with(webhook, {
+        with(webhook.id, {
           'event_name' => 'assessment_started',
           'event_id' => anything,
           'data' => hash_including('locale' => anything)
@@ -46,7 +46,7 @@ describe WebhookSubscriptions::Publish do
       webhook.update(include_locales: false)
       data = { campaign: campaign, assessment: assessment, evaluator: evaluator, subject: subject }
       expect(WebhookSystemJob).to receive(:perform_later).
-        with(webhook, {
+        with(webhook.id, {
           'event_name' => 'assessment_started',
           'event_id' => anything,
           'data' => hash_not_including('locale')

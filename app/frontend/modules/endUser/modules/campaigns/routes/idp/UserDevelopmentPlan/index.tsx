@@ -212,7 +212,11 @@ const UserDevelopmentPlanComponent = ({
               <Tag color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
             </Col>
           </Row>
-          <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
+          <Tabs
+            tabBarExtraContent={tab !== 'reflective_questions' ? operations : null}
+            activeKey={tab}
+            onChange={tab => changeTab(tab)}
+          >
             <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
               <DevelopmentActionListView
                 editMode={editMode}

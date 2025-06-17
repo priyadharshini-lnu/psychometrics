@@ -1477,6 +1477,7 @@ ja:
       cancel: キャンセル
       disabled: ディアスブル
       enabled: 有効
+      minute: 微細
       next: 次のページ
       reset: リセット
       save: セーブ
@@ -2535,6 +2536,9 @@ ja:
             key: 送信テスト
             label: 送信テスト
         form:
+          acceptable_rate_limit:
+            label: リクエストの上限
+            request_per: リクエスト数
           active:
             label: アクティブ
             name: アクティブ

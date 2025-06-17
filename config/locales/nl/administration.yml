@@ -1477,6 +1477,7 @@ nl:
       cancel: Annuleren
       disabled: Diasbled
       enabled: Ingeschakeld
+      minute: minuut
       next: Volgende
       reset: Reset
       save: Sla
@@ -2535,6 +2536,9 @@ nl:
             key: verzenden_test
             label: Test verzenden
         form:
+          acceptable_rate_limit:
+            label: Aanvaardbare aanvraaglimiet
+            request_per: verzoeken per
           active:
             label: Actief
             name: actief

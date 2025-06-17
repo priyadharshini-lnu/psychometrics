@@ -4,6 +4,7 @@ import {
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { filteredDevelopmentActions } from '../UserDevelopmentPlan/utils'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { getIdpSettings } from '~/modules/endUser/core/config'
@@ -69,6 +70,9 @@ const MyPlanComponent = ({
 }: Props) => {
   const [editMode, setEditMode] = useState(false)
 
+  const { tab: paramTab } = useParams() as {tab: string}
+
+
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
 
   const isPlanEditable = [
@@ -127,26 +131,26 @@ const MyPlanComponent = ({
 
   const operations = (
     <Flex gap={8}>
-      {editMode ? (
-        <Button
-          type="primary"
-          onClick={handleSave}
-        >
-          {I18n.t('common.actions.save')}
-        </Button>
-      ) : (
-        (
+      {paramTab === 'list' && (
+        editMode ? (
           <Button
-            disabled={!isPlanEditable}
             type="primary"
-            icon={<EditOutlined />}
-            onClick={() => setEditMode(true)}
+            onClick={handleSave}
           >
-            {I18n.t('idp.edit_plan')}
+            {I18n.t('common.actions.save')}
           </Button>
-        )
-      )}
-
+        ) : (
+          (
+            <Button
+              disabled={!isPlanEditable}
+              type="primary"
+              icon={<EditOutlined />}
+              onClick={() => setEditMode(true)}
+            >
+              {I18n.t('idp.edit_plan')}
+            </Button>
+          )
+        ))}
       {!editMode && (
         <>
           {allowSubmitting && (

@@ -255,3 +255,8 @@ Rails/WhereRange:
 # NOTE: It was decided that we will allow longer safe navigation chains
 Style/SafeNavigationChainLength:
   Enabled: false
+
+Rails/Exit:
+  Enabled: true
+  Exclude:
+    - lib/devtools/**/*.rb

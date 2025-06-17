@@ -1477,6 +1477,7 @@ ko:
       cancel: 취소
       disabled: 디아스블레드
       enabled: 활성화됨
+      minute: 분
       next: 다음
       reset: 초기화
       save: 저장
@@ -2535,6 +2536,9 @@ ko:
             key: send_test
             label: 테스트 보내기
         form:
+          acceptable_rate_limit:
+            label: 허용되는 요청 한도
+            request_per: 요청 당
           active:
             label: 활성
             name: 활성

@@ -1477,6 +1477,7 @@ it:
       cancel: Annullamento
       disabled: Diasbled
       enabled: Abilitato
+      minute: minuto
       next: Avanti
       reset: Reset
       save: Risparmiare
@@ -2535,6 +2536,9 @@ it:
             key: inviare_prova
             label: Inviare il test
         form:
+          acceptable_rate_limit:
+            label: Limite di richiesta accettabile
+            request_per: richieste per
           active:
             label: Attivo
             name: attivo

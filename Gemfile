@@ -210,6 +210,7 @@ end
 
 group :development do
   gem 'bullet', '~> 7.1.3'
+  gem 'dry-cli', '~> 1.2.0'
   gem 'listen', '~> 3.7.1'
   gem 'spring-watcher-listen', '~> 2.1.0'
 

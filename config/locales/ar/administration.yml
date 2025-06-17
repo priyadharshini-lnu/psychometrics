@@ -1367,6 +1367,7 @@ ar:
       cancel: إلغاء
       disabled: معطل
       enabled: مفعل
+      minute: دقيقة
       next: التالي
       reset: إعادة تعيين
       save: حفظ
@@ -2365,6 +2366,9 @@ ar:
             key: send_test
             label: Send Test
         form:
+          acceptable_rate_limit:
+            label: حد الطلب المقبول
+            request_per: الطلبات لكل
           active:
             label: Active
             name: active

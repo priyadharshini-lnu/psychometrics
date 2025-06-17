@@ -3,7 +3,7 @@ import { Button, InputNumber, Skeleton } from 'antd'
 import { pdfjs, Document, Page } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
-import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.js?url'
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
 import styles from './styles.less'
 

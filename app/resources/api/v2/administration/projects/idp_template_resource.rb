@@ -7,7 +7,8 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :behavioural_global_tags, :behavioural_client_tags,
              :technical_global_tags, :technical_client_tags,
              :logo_type, :title_text, :subtitle_text, :fields,
-             :background, :client_logo, :show_reflections, :reflection_questions
+             :background, :client_logo, :show_reflections, :reflection_questions,
+             :instructions
 
   has_one :project, class_name: 'Client'
   has_one :report

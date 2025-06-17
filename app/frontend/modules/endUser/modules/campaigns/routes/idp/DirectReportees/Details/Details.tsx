@@ -9,9 +9,11 @@ import {
   Row,
   Col,
   Empty,
+  Badge,
 } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { MessageOutlined } from '@ant-design/icons'
 import { filteredDevelopmentActions } from '../../UserDevelopmentPlan/utils'
 import { IdpUserProfileCard } from '~/components/IdpShared/IdpUserProfileCard'
 import UserDevelopmentPlan from '../../UserDevelopmentPlan'
@@ -23,6 +25,10 @@ import {
   fetchUserIdpPlan,
   updateUserIdpPlan,
   saveUserIdpDevelopmentActions,
+  fetchUserIdpComments,
+  addUserIdpComment,
+  UserIdpCommentsQuery,
+  UserIdpCommentPayload,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { DirectionalNavigateBackIcon } from '~/glint'
 
@@ -36,13 +42,17 @@ const connector = connect((state: RootState) => ({
   idpSkills: state.campaigns.idp.userIdpSkills,
   idpUser: state.campaigns.idp.user,
   status: state.campaigns.idp.status,
+  unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
   availableDevelopmentActions: state.campaigns.idp.availableDevelopmentActions,
   idpSettings: getIdpSettings(state),
+  idpComments: state.campaigns.idp.userIdpComments,
 }),
 {
   fetchUserIdpPlan,
   updateUserIdpPlan,
   saveUserIdpDevelopmentActions,
+  fetchUserIdpComments,
+  addUserIdpComment,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -56,6 +66,10 @@ const DirectReportDetailsComponent: FC<Props> = ({
   updateUserIdpPlan,
   idpSettings,
   saveUserIdpDevelopmentActions,
+  unreadCommentsCount,
+  fetchUserIdpComments,
+  addUserIdpComment,
+  idpComments,
 }) => {
   const { tab: paramTab, userId: idpUserId } = useParams() as {tab: string, userId: string}
   const [tab, setTab] = useState(paramTab || 'plan')
@@ -106,8 +120,71 @@ const DirectReportDetailsComponent: FC<Props> = ({
     })
   }
 
+  // TODO: Remove this
+  // eslint-disable-next-line no-console
+  console.log('Comments', idpComments)
+
+  const handleShowComments = (userIdpSkillId = null) => {
+    const query: UserIdpCommentsQuery = {
+      page: 1,
+    }
+
+    if (userIdpSkillId) {
+      query.q = {}
+      query.q.resourceIdEq = userIdpSkillId
+      query.q.resourceTypeEq = 'UserIdpSkill'
+    }
+    fetchUserIdpComments(idpUserId, query).then(() => {
+    }).catch(() => {
+      message.error(I18n.t('common.errors.something_wrong'))
+    })
+  }
+
+  // TODO: Add implementation for adding a comment
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleAddComment = (comment: string, userIdpSkillId = null) => {
+    const payload: UserIdpCommentPayload = {
+      content: comment,
+      resourceId: null,
+      resourceType: null,
+    }
+
+    if (userIdpSkillId) {
+      payload.resourceId = userIdpSkillId
+      payload.resourceType = 'UserIdpSkill'
+    }
+    addUserIdpComment(idpUserId, payload).then(() => {
+      // TODO: Remove this
+      // eslint-disable-next-line no-console
+      console.log('Comment added successfully')
+    }).catch(() => {
+      message.error(I18n.t('common.errors.something_wrong'))
+    })
+  }
+
   const operations = (
     <Flex gap={8}>
+      {/* TODO: TO BE REMOVED */}
+      {/* <Button
+        color="default"
+        variant="solid"
+        onClick={() => handleAddComment('Test comment')}
+      >
+        Add Test Comment
+      </Button> */}
+      <Badge count={unreadCommentsCount} size="small">
+        <Button
+          color="default"
+          variant="solid"
+          icon={(
+            <MessageOutlined />
+
+              )}
+          onClick={() => handleShowComments()}
+        >
+          {I18n.t('idp.comments')}
+        </Button>
+      </Badge>
       {!editMode
       && managerApprovesIdp
       && (

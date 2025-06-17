@@ -1477,6 +1477,7 @@ cs:
       cancel: Zrušit
       disabled: Diasbled
       enabled: Povoleno
+      minute: minuta
       next: Další
       reset: Obnovení
       save: Uložit
@@ -2535,6 +2536,9 @@ cs:
             key: send_test
             label: Odeslat test
         form:
+          acceptable_rate_limit:
+            label: Limit přijatelných požadavků
+            request_per: žádostí na
           active:
             label: Aktivní
             name: aktivní

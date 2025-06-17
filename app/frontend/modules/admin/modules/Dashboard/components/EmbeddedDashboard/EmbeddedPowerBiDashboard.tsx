@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useRef, useState,
-} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Result, Skeleton } from 'antd'
 import _ from 'lodash'
 import * as pbi from 'powerbi-client'
@@ -21,6 +19,7 @@ export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
   const [powerBiLoaded, setPowerBiLoaded] = useState(false)
   const powerBiServiceRef = useRef<pbi.Embed>()
   const powerBiService = powerBiServiceRef.current
+  const [activePageName, setActivePageName] = useState<string | null>(null)
 
   useEffect(() => {
     if (embedToken) {
@@ -74,7 +73,7 @@ export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
     }
   }
 
-  const embedPowerBiDashboard = () => {
+  const embedPowerBiDashboard = async () => {
     if (!embedToken) return
 
     const { hpmFactory, wpmpFactory, routerFactory } = pbi.factories
@@ -84,9 +83,30 @@ export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
         embedConfig(),
       )
       powerBiService.on('loaded', () => setPowerBiLoaded(true))
+
+      powerBiService.on('pageChanged', (event: { detail: { newPage?: { name?: string } } }) => {
+        if (event?.detail?.newPage?.name) {
+          setActivePageName(event.detail.newPage.name)
+        }
+      })
+
+      powerBiService.on('loaded', async () => {
+        try {
+          const report = powerBiService as pbi.Report
+          const pages = await report.getPages()
+          const activePage = pages.find((p: pbi.models.IPage) => p.isActive)
+          setActivePageName(activePage?.name || null)
+        } catch (e) {
+          setActivePageName(null)
+        }
+      })
       powerBiServiceRef.current = powerBiService
     }
   }
+
+  useEffect(() => {
+    (window as { currentPowerBiPageName?: string | null }).currentPowerBiPageName = activePageName
+  }, [activePageName])
 
   return (
     <>

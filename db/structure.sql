@@ -552,8 +552,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -714,10 +714,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
@@ -922,8 +922,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -1000,8 +999,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -1466,8 +1465,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    practice_campaign boolean DEFAULT false,
-    default_idp_template_id bigint
+    default_idp_template_id bigint,
+    practice_campaign boolean DEFAULT false
 );
 
 
@@ -1604,7 +1603,9 @@ ALTER SEQUENCE public.client_features_id_seq OWNED BY public.client_features.id;
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1758,40 +1759,6 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
-
-
---
--- Name: comments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.comments (
-    id integer NOT NULL,
-    text character varying,
-    created_by integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
-    commentable_type character varying
-);
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -2956,6 +2923,39 @@ ALTER SEQUENCE public.idp_template_skills_id_seq OWNED BY public.idp_template_sk
 
 
 --
+-- Name: idp_template_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_template_translations (
+    id bigint NOT NULL,
+    instructions jsonb DEFAULT '{}'::jsonb NOT NULL,
+    locale character varying NOT NULL,
+    idp_template_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: idp_template_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_template_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_template_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_template_translations_id_seq OWNED BY public.idp_template_translations.id;
+
+
+--
 -- Name: idp_templates; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2982,7 +2982,8 @@ CREATE TABLE public.idp_templates (
     subtitle_text character varying,
     fields json DEFAULT '["name","role","assigned_data","division","review_date","publish_date","completion_date"]'::json,
     logo_type integer DEFAULT 3,
-    show_reflections boolean DEFAULT true
+    show_reflections boolean DEFAULT true,
+    instructions jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -3407,7 +3408,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3736,6 +3737,97 @@ ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
 
 
 --
+-- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.oracle_credentials (
+    id bigint NOT NULL,
+    idcs_user_id character varying NOT NULL,
+    idcs_user_name character varying NOT NULL,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    last_accessed_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    email public.citext DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    disabled boolean DEFAULT false,
+    role character varying DEFAULT 'Users::Regular'::character varying,
+    invitation_token character varying,
+    invitation_created_at timestamp without time zone,
+    invitation_sent_at timestamp without time zone,
+    invitation_accepted_at timestamp without time zone,
+    invitation_limit integer,
+    invited_by_type character varying,
+    invited_by_id integer,
+    invitations_count integer DEFAULT 0,
+    authentication_token character varying(30),
+    is_anonym boolean DEFAULT false,
+    grants jsonb,
+    created_by_id integer,
+    modified_by_id integer,
+    spoof_token character varying,
+    encrypted_invitation_raw character varying,
+    project_id integer,
+    second_factor_attempts_count integer DEFAULT 0,
+    encrypted_otp_secret_key character varying,
+    encrypted_otp_secret_key_iv character varying,
+    encrypted_otp_secret_key_salt character varying,
+    direct_otp character varying,
+    direct_otp_sent_at timestamp without time zone,
+    totp_timestamp timestamp without time zone,
+    settings jsonb DEFAULT '{}'::jsonb,
+    already_invited boolean DEFAULT false,
+    enable_2fa boolean DEFAULT true NOT NULL,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    password_changed_at timestamp without time zone,
+    timezone character varying,
+    force_password_change boolean DEFAULT false,
+    global_assessor boolean DEFAULT false,
+    last_unsuccessful_attempt timestamp without time zone,
+    manager_id bigint,
+    mobile_number character varying,
+    mobile_verified boolean DEFAULT false,
+    unique_session_id character varying,
+    external_id character varying,
+    disabled_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: oac_users; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.oac_users AS
+ SELECT oracle_credentials.idcs_user_name AS user_name,
+    users.email
+   FROM (public.oracle_credentials
+     JOIN public.users ON ((users.id = oracle_credentials.user_id)));
+
+
+--
 -- Name: occupations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3848,21 +3940,6 @@ CREATE SEQUENCE public.old_passwords_id_seq
 --
 
 ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
-
-
---
--- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.oracle_credentials (
-    id bigint NOT NULL,
-    idcs_user_id character varying NOT NULL,
-    idcs_user_name character varying NOT NULL,
-    user_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    last_accessed_at timestamp(6) without time zone
-);
 
 
 --
@@ -4712,12 +4789,12 @@ CREATE TABLE public.reports (
     owner_id integer,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4729,7 +4806,7 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages text[] DEFAULT '{}'::text[]
+    other_languages jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -6419,7 +6496,7 @@ CREATE TABLE public.user_assessments (
     evaluation_session_id character varying,
     score_calculated boolean DEFAULT false,
     score_calculated_at timestamp(6) without time zone,
-    prework boolean DEFAULT false
+    prework boolean DEFAULT false NOT NULL
 );
 
 
@@ -6543,6 +6620,47 @@ CREATE SEQUENCE public.user_bookings_id_seq
 --
 
 ALTER SEQUENCE public.user_bookings_id_seq OWNED BY public.user_bookings.id;
+
+
+--
+-- Name: user_idp_comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_idp_comments (
+    id bigint NOT NULL,
+    content text NOT NULL,
+    user_idp_plan_id bigint,
+    created_by_id bigint,
+    resource_type character varying,
+    resource_id bigint,
+    parent_id bigint,
+    resolved_by_id bigint,
+    resolved_at timestamp(6) without time zone,
+    read_by_user_ids integer[] DEFAULT '{}'::integer[] NOT NULL,
+    replies_count integer DEFAULT 0 NOT NULL,
+    edited boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_idp_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_idp_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_idp_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_idp_comments_id_seq OWNED BY public.user_idp_comments.id;
 
 
 --
@@ -6911,71 +7029,6 @@ ALTER SEQUENCE public.user_saved_filters_id_seq OWNED BY public.user_saved_filte
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users (
-    id integer NOT NULL,
-    email public.citext DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip inet,
-    last_sign_in_ip inet,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    first_name character varying,
-    last_name character varying,
-    disabled boolean DEFAULT false,
-    role character varying DEFAULT 'Users::Regular'::character varying,
-    invitation_token character varying,
-    invitation_created_at timestamp without time zone,
-    invitation_sent_at timestamp without time zone,
-    invitation_accepted_at timestamp without time zone,
-    invitation_limit integer,
-    invited_by_type character varying,
-    invited_by_id integer,
-    invitations_count integer DEFAULT 0,
-    authentication_token character varying(30),
-    is_anonym boolean DEFAULT false,
-    grants jsonb,
-    created_by_id integer,
-    modified_by_id integer,
-    spoof_token character varying,
-    encrypted_invitation_raw character varying,
-    project_id integer,
-    second_factor_attempts_count integer DEFAULT 0,
-    encrypted_otp_secret_key character varying,
-    encrypted_otp_secret_key_iv character varying,
-    encrypted_otp_secret_key_salt character varying,
-    direct_otp character varying,
-    direct_otp_sent_at timestamp without time zone,
-    totp_timestamp timestamp without time zone,
-    settings jsonb DEFAULT '{}'::jsonb,
-    already_invited boolean DEFAULT false,
-    enable_2fa boolean DEFAULT true NOT NULL,
-    failed_attempts integer DEFAULT 0 NOT NULL,
-    unlock_token character varying,
-    locked_at timestamp without time zone,
-    password_changed_at timestamp without time zone,
-    timezone character varying,
-    force_password_change boolean DEFAULT false,
-    global_assessor boolean DEFAULT false,
-    last_unsuccessful_attempt timestamp without time zone,
-    mobile_number character varying,
-    mobile_verified boolean DEFAULT false,
-    manager_id bigint,
-    unique_session_id character varying,
-    external_id character varying,
-    disabled_at timestamp(6) without time zone
-);
-
-
---
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -7125,7 +7178,9 @@ CREATE TABLE public.webhook_subscriptions (
     include_locales boolean DEFAULT false,
     encrypted_api_key character varying,
     encrypted_api_key_iv character varying,
-    api_key_header character varying
+    api_key_header character varying,
+    rate_limit integer DEFAULT 60 NOT NULL,
+    rate_limit_period integer DEFAULT 1 NOT NULL
 );
 
 
@@ -7805,13 +7860,6 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
-
-
---
 -- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8026,6 +8074,13 @@ ALTER TABLE ONLY public.idp_template_reflection_questions ALTER COLUMN id SET DE
 --
 
 ALTER TABLE ONLY public.idp_template_skills ALTER COLUMN id SET DEFAULT nextval('public.idp_template_skills_id_seq'::regclass);
+
+
+--
+-- Name: idp_template_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_translations ALTER COLUMN id SET DEFAULT nextval('public.idp_template_translations_id_seq'::regclass);
 
 
 --
@@ -8712,6 +8767,13 @@ ALTER TABLE ONLY public.user_availability_days ALTER COLUMN id SET DEFAULT nextv
 --
 
 ALTER TABLE ONLY public.user_bookings ALTER COLUMN id SET DEFAULT nextval('public.user_bookings_id_seq'::regclass);
+
+
+--
+-- Name: user_idp_comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments ALTER COLUMN id SET DEFAULT nextval('public.user_idp_comments_id_seq'::regclass);
 
 
 --
@@ -9495,6 +9557,14 @@ ALTER TABLE ONLY public.idp_template_reflection_questions
 
 ALTER TABLE ONLY public.idp_template_skills
     ADD CONSTRAINT idp_template_skills_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: idp_template_translations idp_template_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_translations
+    ADD CONSTRAINT idp_template_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -10295,6 +10365,14 @@ ALTER TABLE ONLY public.user_availability_days
 
 ALTER TABLE ONLY public.user_bookings
     ADD CONSTRAINT user_bookings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_idp_comments user_idp_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT user_idp_comments_pkey PRIMARY KEY (id);
 
 
 --
@@ -11821,6 +11899,20 @@ CREATE INDEX index_idp_template_skills_on_skill_id ON public.idp_template_skills
 
 
 --
+-- Name: index_idp_template_translations_on_idp_template_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_idp_template_translations_on_idp_template_id_and_locale ON public.idp_template_translations USING btree (idp_template_id, locale);
+
+
+--
+-- Name: index_idp_template_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_translations_on_locale ON public.idp_template_translations USING btree (locale);
+
+
+--
 -- Name: index_idp_templates_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12703,10 +12795,10 @@ CREATE UNIQUE INDEX index_skills_on_project_id_and_name ON public.skills USING b
 
 
 --
--- Name: index_skillvue_assessments_on_project_and_product_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_skillvue_assessments_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_skillvue_assessments_on_project_and_product_id ON public.skillvue_assessments USING btree (project_id, product_id);
+CREATE UNIQUE INDEX index_skillvue_assessments_on_product_id ON public.skillvue_assessments USING btree (product_id);
 
 
 --
@@ -13106,6 +13198,62 @@ CREATE INDEX index_user_bookings_on_booked_by_resource ON public.user_bookings U
 --
 
 CREATE INDEX index_user_bookings_on_user_id ON public.user_bookings USING btree (user_id);
+
+
+--
+-- Name: index_user_idp_comments_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_created_at ON public.user_idp_comments USING btree (created_at);
+
+
+--
+-- Name: index_user_idp_comments_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_created_by_id ON public.user_idp_comments USING btree (created_by_id);
+
+
+--
+-- Name: index_user_idp_comments_on_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_parent_id ON public.user_idp_comments USING btree (parent_id);
+
+
+--
+-- Name: index_user_idp_comments_on_read_by_user_ids; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_read_by_user_ids ON public.user_idp_comments USING gin (read_by_user_ids);
+
+
+--
+-- Name: index_user_idp_comments_on_resolved_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_resolved_by_id ON public.user_idp_comments USING btree (resolved_by_id);
+
+
+--
+-- Name: index_user_idp_comments_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_resource ON public.user_idp_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_user_idp_comments_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_user_idp_plan_id ON public.user_idp_comments USING btree (user_idp_plan_id);
+
+
+--
+-- Name: index_user_idp_comments_on_user_idp_plan_id_and_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_user_idp_plan_id_and_created_by_id ON public.user_idp_comments USING btree (user_idp_plan_id, created_by_id);
 
 
 --
@@ -14614,6 +14762,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 
 --
+-- Name: user_idp_comments fk_rails_625bce6b01; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_625bce6b01 FOREIGN KEY (resolved_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: user_reports fk_rails_6280270170; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14659,6 +14815,14 @@ ALTER TABLE ONLY public.workshop_managers
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT fk_rails_667cccdf0c FOREIGN KEY (campaign_factor_group_id) REFERENCES public.campaign_factor_groups(id);
+
+
+--
+-- Name: user_idp_comments fk_rails_67fb1b4907; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_67fb1b4907 FOREIGN KEY (parent_id) REFERENCES public.user_idp_comments(id) ON DELETE CASCADE;
 
 
 --
@@ -14755,6 +14919,14 @@ ALTER TABLE ONLY public.workshop_invite_logs
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_6ec04ddf91 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_idp_comments fk_rails_6fb8f1ccac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_6fb8f1ccac FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id) ON DELETE CASCADE;
 
 
 --
@@ -14891,6 +15063,14 @@ ALTER TABLE ONLY public.mettl_assessments
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_819dfa2a29 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_idp_comments fk_rails_824db9755d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_824db9755d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -15514,7 +15694,7 @@ ALTER TABLE ONLY public.skills
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -15715,6 +15895,14 @@ ALTER TABLE ONLY public.assessors
 
 ALTER TABLE ONLY public.hogan_report_settings
     ADD CONSTRAINT fk_rails_d77e15b1b7 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
+-- Name: idp_template_translations fk_rails_d812d00ca7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_translations
+    ADD CONSTRAINT fk_rails_d812d00ca7 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id);
 
 
 --
@@ -16166,11 +16354,14 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250616053812'),
 ('20250610070045'),
+('20250609112516'),
 ('20250605154240'),
+('20250605151652'),
 ('20250602071331'),
 ('20250530095701'),
 ('20250528132845'),
 ('20250528062059'),
+('20250523071937'),
 ('20250522122128'),
 ('20250522061329'),
 ('20250521193031'),
@@ -16205,7 +16396,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250305105355'),
 ('20250304084629'),
 ('20250304060832'),
-('20250228123228'),
 ('20250228060708'),
 ('20250226084133'),
 ('20250224095420'),
@@ -16245,7 +16435,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),
-('20241225073418'),
 ('20241224114259'),
 ('20241224114214'),
 ('20241224114112'),
@@ -16986,4 +17175,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

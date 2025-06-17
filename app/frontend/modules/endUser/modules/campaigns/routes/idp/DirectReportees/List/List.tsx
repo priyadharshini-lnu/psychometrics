@@ -5,8 +5,10 @@ import {
   Typography, Avatar, Table, Tag,
   ConfigProvider,
   Layout,
+  Badge,
+  Tooltip,
 } from 'antd'
-import { Link, useSearchParams } from 'react-router-dom' // <-- import useSearchParams
+import { Link, useSearchParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BoxWithShadow } from '~/glint'
@@ -33,6 +35,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface User {
   status: string
+  unreadCommentsCount: number
   user: {
     id: number
     photo?: string
@@ -55,6 +58,11 @@ const columns = [
           <div className={styles.title}>
             <div className={styles.name}>
               {`${item.user.firstName} ${item.user.lastName}`}
+              {!!item.unreadCommentsCount && (
+                <Tooltip title={I18n.t('idp.new_comments')}>
+                  <Badge dot={!!item.unreadCommentsCount} />
+                </Tooltip>
+              )}
             </div>
             <div className={styles.email}>
               {item.user.email}

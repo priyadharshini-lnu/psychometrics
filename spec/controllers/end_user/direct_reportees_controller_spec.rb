@@ -22,8 +22,8 @@ RSpec.describe EndUser::DirectReporteesController, type: :controller do
 
       parsed = response.parsed_body
 
-      # Get what Panko serializer actually returns
-      expected_plan = EndUser::DirectReporteeSerializer.new.serialize(user_idp_plan)
+      expected_plan = EndUser::DirectReporteeSerializer.
+                      new(context: { current_user: manager }).serialize(user_idp_plan)
 
       expect(parsed['data']).to eq([expected_plan.as_json])
       expect(parsed['meta']).to eq({ 'count' => 1 })

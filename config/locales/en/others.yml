@@ -740,6 +740,8 @@ en:
           attributes:
             current_password:
               invalid: Current password is incorrect
+        user_idp_comment:
+          reply_to_reply: cannot reply to a reply (only one level of nesting allowed)
         user_idp_plan:
           no_active_plan: No active IDP plan found
   admin_jobs:
@@ -770,6 +772,7 @@ en:
         export_assessment_questions: Export Assessment Questions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_dashboard_as_file: Export Dashboard as file
         export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
         export_dimension_as_json: Export Dimension JSON
@@ -2402,6 +2405,7 @@ en:
   idp:
     actions: Actions
     board: Board
+    comments: Comments
     convert_to_draft: Convert to Draft
     details: Details
     development_actions:
@@ -2475,6 +2479,7 @@ en:
       graphs:
         categories: Categories
       save_skills: Save Skills
+    new_comments: New comment(s)
     pdf:
       approval_status: Approval Status
       cover:
@@ -2799,6 +2804,35 @@ en:
     used_out_of: "%{used} out of %{total}"
   mailer:
     from: The Talent Enterprise
+    idp:
+      manager_unread_comments:
+        body: |
+          Hello %{name},
+          You have new comments from your IDP reportees.
+
+          %{dashboard_link}
+
+          On your Direct Reportees dashboard, you can:
+          - Review new comments from members on their individual plans
+          - Provide feedback on their development goals
+          - Track progress on IDP activities
+          - Support your team's growth and development
+        dashboard_link: Visit Dashboard
+        subject: You have new comments - %{campaign_name}
+      user_unread_comments:
+        body: |
+          Hello %{name},
+          You have new comments on your development plan.
+
+          %{dashboard_link}
+
+          On your My Plan dashboard, you can:
+          - Update your development plan
+          - Read new comments and feedback
+          - Respond to questions from your manager
+          - Update your progress on development actions
+        dashboard_link: View My Plan
+        subject: You have new comments on your development plan - %{campaign_name}
     license:
       expire:
         subject: License expired
