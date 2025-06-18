@@ -28,7 +28,7 @@ export type ReactMediaRecorderHookProps = {
     audio?: boolean | MediaTrackConstraints;
     video?: boolean | MediaTrackConstraints;
     screen?: boolean;
-    onStop?: (blobUrl: string, blob: Blob) => void;
+    onStop?: (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => void;
     onStart?: () => void;
     blobPropertyBag?: BlobPropertyBag;
     mediaRecorderOptions?: MediaRecorderOptions | undefined;
@@ -284,11 +284,12 @@ export function useReactMediaRecorder ({
       { type: chunk.type },
       blobPropertyBag || (video ? { type: 'video/mp4' } : { type: 'audio/wav' }),
     )
-    const blob = new Blob(mediaChunks.current, blobProperty)
-    const url = URL.createObjectURL(blob)
+    const lastBlob = new Blob(currentChunkBuffer.current, blobProperty)
+    const completeBlob = new Blob(mediaChunks.current, blobProperty)
+    const url = URL.createObjectURL(completeBlob)
     setStatus('stopped')
     setMediaBlobUrl(url)
-    onStop(url, blob)
+    onStop(url, lastBlob, completeBlob)
 
     // clear mediaChunks and other arrays for the next recording
     mediaChunks.current = []

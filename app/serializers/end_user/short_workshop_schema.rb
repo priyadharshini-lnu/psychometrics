@@ -9,6 +9,7 @@ module EndUser
         required(:id).maybe(:int?)
         required(:start_time).maybe(:str?)
         required(:meeting_link).maybe(:str?)
+        required(:campaign_assessment_group_id).maybe(:int?)
         required(:attended).maybe(:bool?)
         required(:closed).maybe(:bool?)
       end

@@ -207,6 +207,12 @@ de:
             manage: Verwalten Sie
             title: Fragen
             view: Siehe
+          reflectionQuestions:
+            export: Exportieren
+            import: Importieren
+            manage: Verwalten Sie
+            title: IDP-Reflexionsfragen
+            view: Siehe
           registrationCodes:
             manage: Verwalten Sie
             title: Registrierungs-Codes
@@ -296,6 +302,7 @@ de:
           preferred_language: Erlaubte Sprachen
           required_error: Kann nicht leer sein
           title: Grundlegende Informationen
+        center_group: Assessment Center Gruppe
         confirm_message: Sind Sie sicher, dass Sie eine Einladung löschen möchten?
         confirm_message_with_title: Sind Sie sicher, dass Sie die Einladung mit dem Titel '%{invite_title}' entfernen möchten?
         confirm_title: Bestätigen Sie
@@ -2688,6 +2695,7 @@ de:
         mask_identity_for_mettl: Maskendaten für METTL
         mask_identity_for_pearson: Maskendaten für Pearson
         mask_identity_for_saville: Maskendaten für Saville
+        mask_identity_for_skillvue: Maskendaten für Skillvue
         privacy_link: Datenschutz-Link einschalten
         privacy_link_label: Datenschutz Link
         privacy_link_placeholder: Datenschutz Link eingeben

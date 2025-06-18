@@ -157,7 +157,7 @@ class Client < ApplicationRecord
   delegate :tfa_enabled?, to: :security_setting
   delegate :mask_identity_for_pearson?, :mask_identity_for_saville?, :mask_identity_for_hogan?,
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
-           :mask_identity_for_mettl?, :custom_privacy_consent, to: :privacy_setting
+           :mask_identity_for_mettl?, :mask_identity_for_skillvue?, :custom_privacy_consent, to: :privacy_setting
 
   scope :enabled, -> { where('NOT (clients.disabled = ? AND archived = ?)', true, true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }

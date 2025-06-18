@@ -119,7 +119,7 @@ nl:
               inclusion: Verkeerde locale
             relationship_name:
               blank: Relatie kan niet leeg zijn
-              invalid: Relatie %{naam} is ongeldig
+              invalid: Relatie %{name} is ongeldig
             subject_email:
               blank: Onderwerp E-mail kan niet leeg zijn
               invalid: Onderwerp E-mail is ongeldig
@@ -160,7 +160,7 @@ nl:
             base:
               code_length: De code moet minstens 3 tekens lang zijn op rij %{index}.
               code_required: Factorcode is vereist bij rij %{index}
-              invalid_scoring_strategy: Ongeldige scoringsstrategie '%{strategie}' op rij %{index}. Toegestane strategieën zijn %{toegestaan}.
+              invalid_scoring_strategy: Ongeldige scoringsstrategie '%{strategy}' op rij %{index}. Toegestane strategieën zijn %{allowed}.
               missing_headers: 'Verplichte headers ontbreken: %{headers}'
               name_required: Factornaam is vereist bij rij %{index}
               scoring_strategy_required: Scoringsstrategie is vereist bij rij %{index}
@@ -285,10 +285,10 @@ nl:
           attributes:
             file:
               column_type_mismatch: Kolom <b>%{col}</b> wordt verwacht van type %{type} maar kreeg <b>%{got}</b>
-              email_blank: 'Rij %{rij_nummer}: E-mailveld kan niet leeg zijn'
+              email_blank: 'Rij %{row_number}: E-mailveld kan niet leeg zijn'
               email_duplicate: Er zijn duplicaten in de kolom E-mail
-              email_invalid: 'Rij %{rij_nummer}: E-mail is ongeldig'
-              invalid_column: Ongeldige kolom %{naam}
+              email_invalid: 'Rij %{row_number}: E-mail is ongeldig'
+              invalid_column: Ongeldige kolom %{name}
               invalid_column_name: Kolom <b>"%{column}"</b> is ongeldig
               invalid_column_name_size: Kolomnaam <b>"%{column}"</b> te lang (max 64)
               invalid_column_type: Kolomtype moet zijn String, Tekst, Getal, HTML of Markdown
@@ -348,10 +348,10 @@ nl:
             import_data:
               cant_overwrite_password: U hebt geen toestemming om het wachtwoord te overschrijven.
               duplicated_emails: 'De volgende e-mail(s) zijn gedupliceerd in CSV: %{emails}'
-              invalid_email: 'Rij %{rij_nummer}: Ongeldige e-mail %{email}'
+              invalid_email: 'Rij %{row_number}: Ongeldige e-mail %{email}'
               invalid_header: Ongeldige header, neem header over van export
               invalid_reports_header: Ongeldige header, neem header uit voorbeeldbestand
-              manager_not_found: 'Rij %{rij_nummer}: Manager met e-mailadres %{email} is niet aanwezig in de campagne of in CSV'
+              manager_not_found: 'Rij %{row_number}: Manager met e-mailadres %{email} is niet aanwezig in de campagne of in CSV'
               user_update_failed: Update gebruiker mislukt voor %{email} met fout '%{error}'
             locale:
               inclusion: Verkeerde locale
@@ -713,7 +713,7 @@ nl:
           attributes:
             used_number:
               overused: De gebruikte licentie kan niet meer zijn dan de som van de toegewezen licentie en de overgebruikslimiet.
-          overuse: Licentie %{naam} wordt te veel gebruikt
+          overuse: Licentie %{name} wordt te veel gebruikt
         media_response:
           attributes:
             base:
@@ -847,14 +847,14 @@ nl:
       add_tag:
         success_message: Tag is succesvol toegevoegd
       archived:
-        success_message: Assessment "%{naam}" is succesvol gearchiveerd.
+        success_message: Assessment "%{name}" is succesvol gearchiveerd.
       assessment_cache:
         remove_cache: Cache verwijderen
         success_message: Cache succesvol verwijderd
       back_to_campaign: Terug naar Campagne
       back_to_dashboard: Terug naar Dashboard
       copy:
-        success_message: Assessment "%{naam}" is succesvol gekopieerd.
+        success_message: Assessment "%{name}" is succesvol gekopieerd.
       details: Details
       download_csv: CSV downloaden
       edit: Bewerk
@@ -871,26 +871,26 @@ nl:
       new_response: Nieuw antwoord
       next_assessment: Doorgaan naar volgende beoordeling
       pending_tasks:
-        one:
-        other:
+        one: U hebt 1 taak in behandeling
+        other: Je hebt %{count} uitstaande taken
       re_evaluate: Klik hier om opnieuw te evalueren
       reevaluate: Opnieuw evalueren
       remove:
-        confirm_message: Weet je zeker dat je de beoordeling "%{naam}" wilt verwijderen?
+        confirm_message: Weet je zeker dat je de beoordeling "%{name}" wilt verwijderen?
         confirm_title: Bevestiging vereist
-        success_message: Beoordeling %{naam} is verwijderd
+        success_message: Beoordeling %{name} is verwijderd
       remove_tag:
         success_message: Tag is succesvol verwijderd
       rescore: Rescore
       restore:
-        success_message: Beoordeling "%{naam}" is succesvol hersteld
+        success_message: Beoordeling "%{name}" is succesvol hersteld
       show_usage: Gebruik tonen
       submit_another_response: Dien nog een reactie in
       submit_evaluation: Evaluatie indienen
       translations:
         success_message: De beoordelingsvertalingen bijgewerkt
       unarchived:
-        success_message: Assessment "%{naam}" is uitgearchiveerd
+        success_message: Assessment "%{name}" is uitgearchiveerd
       view: Bekijk
     active: Actief
     archived: Gearchiveerd
@@ -984,7 +984,7 @@ nl:
     instructions:
       begin_assessment: Begin
       cancel: Annuleren
-      default: Dit is een tijdgebonden activiteit. Zodra je op Begin test klikt, heb je %{tijd} minuten om het te voltooien.
+      default: Dit is een tijdgebonden activiteit. Zodra je op Begin test klikt, heb je %{time} minuten om het te voltooien.
       title: Instructies
     messages:
       external_scores_export_scheduled: De exporttaak voor beoordelingsscores is met succes ingepland
@@ -1086,9 +1086,10 @@ nl:
       modal:
         delete:
           cancel: Annuleren
+          cannot_delete_with_workshops: Kan groep met workshops niet verwijderen, verwijder eerst workshops
           failed: Fout bij het verwijderen van "%{naam}" groep, neem contact op met beheerder
           ok: Ja, verwijderen
-          text: Weet je zeker dat je de groep "%{naam}" wilt verwijderen?
+          text: Weet je zeker dat je de groep "%{name}" wilt verwijderen?
           title: Groep verwijderen
       no_assessments: Versleep de beoordelingen
       no_ungrouped_assessments: Sleep de beoordelingen hierheen om ze te degroeperen
@@ -1101,10 +1102,10 @@ nl:
         moderation_count: Matigingstelling
         moderation_status: Moderatiestatus
   assign_reports:
-    assessment_not_in_report: Beoordeling met id %{beoordeling_id} is geen onderdeel van rapport met id %{rapport_id}
+    assessment_not_in_report: Beoordeling met id %{assessment_id} is geen onderdeel van rapport met id %{report_id}
     errors:
       not_enought_licenses: Bundel met id %{bundle_id} heeft geen licenties
-      user_not_found: 'Rij %{rij}: Gebruiker met e-mailadres ''%{email}'' niet gevonden'
+      user_not_found: 'Rij %{row}: Gebruiker met e-mailadres ''%{email}'' niet gevonden'
     report_bundle_not_found: Rapportbundel met id %{bundle_id} is niet gevonden
     report_not_found: Rapport met id %{report_id} is niet gevonden
     report_not_in_bundle: Rapport met id %{report_id} is geen onderdeel van rapportbundel met id %{bundle_id}
@@ -1288,8 +1289,8 @@ nl:
       continue: Ga verder
       notification: Je toegewezen tijd voor deze taak "%{assessmentName}" was %{totalAssessmentTime}. Vanwege de totale verstreken tijd, heb je nu slechts %{remainingCampaignTime} als je aangepaste tijd om deze taak te voltooien.
     timer:
-      notification_hours: Je hebt %{uur} uur over
-      notification_minutes: je hebt %{minuten} minuten over
+      notification_hours: Je hebt %{hours} uur over
+      notification_minutes: je hebt %{minutes} minuten over
   campaign_assessment:
     actions:
       bulk_download: Bulk downloaden
@@ -1356,20 +1357,20 @@ nl:
         title: Rapporten opnieuw genereren?
       remove:
         helper_text: 'GEVAAR: Als je dit selecteert, worden alle reacties van gebruikers op deze beoordeling in deze campagne verwijderd.'
-        msg_text: U probeert <strong>"%{naam}"</strong> te verwijderen Beoordeling
-        successfully: "%{naam} beoordeling is succesvol verwijderd."
+        msg_text: U probeert <strong>"%{name}"</strong> te verwijderen Beoordeling
+        successfully: "%{name} beoordeling is succesvol verwijderd."
         title: Beoordeling verwijderen?
       rescore:
         content: Weet je zeker dat je de beoordeling opnieuw wilt doen?
         successfully: De beoordeling werd met succes opnieuw beoordeeld.
         title: Beoordeling opnieuw beoordelen?
       rescore_response:
-        message: Herschaling gepland voor beoordeling "%{naam}"
+        message: Herschaling gepland voor beoordeling "%{name}"
         title: Reacties opnieuw scoren
       reset:
         content: Weet je zeker dat je het resultaat opnieuw wilt instellen?
         successfully: De resultaatgegevens zijn met succes gereset.
-        title: Reset resultaat voor beoordeling %{naam}?
+        title: Reset resultaat voor beoordeling %{name}?
       update_assessor_form:
         select_assessor: Selecteer beoordelaar formulier
         success_msg: Assessor Formulier is succesvol geüpload
@@ -1444,7 +1445,7 @@ nl:
       bulk_download: Bulk downloaden
       export_data: Gegevens exporteren
     bulk_download:
-      error: Bulkdownload is beperkt tot 1000 rapportbestanden. Huidige selectie heeft %{getal} rapportbestanden. Pas de begin- en einddatum aan om het aantal te downloaden rapportbestanden te verminderen.
+      error: Bulkdownload is beperkt tot 1000 rapportbestanden. Huidige selectie heeft %{count} rapportbestanden. Pas de begin- en einddatum aan om het aantal te downloaden rapportbestanden te verminderen.
     column:
       assessor_access: Toegang Assessor
       auto_assign: Automatisch toewijzen
@@ -1523,7 +1524,7 @@ nl:
     card:
       duration: Duur
       starts_in: 'Begint in:'
-      starts_on: Begint op %{datum}
+      starts_on: Begint op %{date}
       will_start_shortly: De campagne start binnenkort. Even geduld a.u.b
   change_password_page:
     old_password: Oud wachtwoord
@@ -1641,7 +1642,7 @@ nl:
       verify: Controleer
       view: Bekijk
       view_all_tasks: Bekijk alle taken
-      view_details: Bekijk Details
+      view_detail: Detail bekijken
     column:
       action: Actie
       active: Actief
@@ -1824,24 +1825,24 @@ nl:
     mailer:
       admin_invitation_instructions:
         accept: Klik hier om de uitnodiging te accepteren.
-        body: 'Hallo %{naam}, U bent uitgenodigd om toegang te krijgen tot het beheerpaneel van Lighthouse - The Talent Enterprise assessment platform. %{accept} Of u kunt deze e-mail negeren. Deel uw toegangsgegevens met niemand.
+        body: 'Hallo %{name}, U bent uitgenodigd om toegang te krijgen tot het beheerpaneel van Lighthouse - The Talent Enterprise assessment platform. %{accept} Of u kunt deze e-mail negeren. Deel uw toegangsgegevens met niemand.
 
           '
         subject: Uitnodiging voor Lighthouse
       confirmation_instructions:
         subject: Instructies voor bevestiging
       invitation_instructions:
-        body: 'Hallo %{naam}, Je bent toegevoegd aan Lighthouse als Admin voor de volgende sectie
+        body: 'Hallo %{name}, Je bent toegevoegd aan Lighthouse als Admin voor de volgende sectie
 
           '
         login: Aanmelden bij Lighthouse
         sections:
-          campaign: 'Campagne: %{sectie_naam}'
-          client: 'Huurder: %{sectie_naam}'
-          project: 'Project: %{sectie_naam}'
+          campaign: 'Campagne: %{section_name}'
+          client: 'Huurder: %{section_name}'
+          project: 'Project: %{section_name}'
         subject: Uitnodiging voor Lighthouse
       password_change:
-        body: 'Hallo %{naam}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via support@thetalententerprise.com
+        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via support@thetalententerprise.com
 
           '
         regards: 'Groeten, Lighthouse Team
@@ -1849,7 +1850,7 @@ nl:
           '
         subject: Uw Lighthouse wachtwoord is gewijzigd
       reset_password_instructions:
-        body: 'Hallo %{naam}! Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via onderstaande link.
+        body: 'Hallo %{name}! Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via onderstaande link.
 
           '
         change_password: Wachtwoord wijzigen
@@ -1859,7 +1860,7 @@ nl:
           '
         subject: Instructies om je wachtwoord opnieuw in te stellen
       unlock_instructions:
-        body: 'Hallo %{naam}! Uw account is vergrendeld vanwege een buitensporig aantal mislukte aanmeldingspogingen. Klik op de onderstaande koppeling om uw account te ontgrendelen:
+        body: 'Hallo %{name}! Uw account is vergrendeld vanwege een buitensporig aantal mislukte aanmeldingspogingen. Klik op de onderstaande koppeling om uw account te ontgrendelen:
 
           '
         footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
@@ -1869,7 +1870,7 @@ nl:
         subject: Instructies voor het deblokkeren van je account
         unlock_account: Mijn account deblokkeren
     omniauth_callbacks:
-      failure: Kan u niet verifiëren van %{kind} omdat "%{reden}".
+      failure: Kan u niet verifiëren van %{kind} omdat "%{reason}".
       success: Succesvol geverifieerd van %{kind} account.
     passwords:
       edit:
@@ -1924,9 +1925,9 @@ nl:
           sign_in: Inloggen
         title: Welkom!
       signed_in: U bent succesvol aangemeld!
-      signed_in_time: U bent voor het laatst ingelogd op %{datum_tijd}
+      signed_in_time: U bent voor het laatst ingelogd op %{date_time}
       signed_out: Succesvol afgemeld.
-      unsuccessful_sign_in_time: Uw laatste aanmeldingspoging op %{datum_tijd} is mislukt.
+      unsuccessful_sign_in_time: Uw laatste aanmeldingspoging op %{date_time} is mislukt.
     two_factor_authentication:
       attempt: Voer de OTP in die u hebt ontvangen op uw geregistreerde e-mailadres
       attempt_failed: Onjuiste OTP! Probeer het opnieuw
@@ -1949,7 +1950,7 @@ nl:
     errors:
       add_edit_project:
         invalid_subdomain_format: Verkeerd subdomeinformaat.
-        reserved_subdomain: Subdomein %{waarde} is gereserveerd
+        reserved_subdomain: Subdomein %{value} is gereserveerd
         uniq_subdomain: Subdomein moet uniek zijn.
       add_manager:
         manager_not_found: Manager niet gevonden of geen onderdeel van hetzelfde project
@@ -1972,10 +1973,10 @@ nl:
         last_factor_group: Kan laatste Campagnefactor-groep niet verwijderen.
       create_superadmin:
         uniq_email: E-mail moet uniek zijn.
-      exceeded_subjects_count: Je kunt alleen %{aantal} onderwerpen per uitnodiging toevoegen
+      exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
       filled?: kan niet leeg zijn
       invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
-      invalid_value: ongeldige instructie '%{waarde}' op regelnummer %{rij}
+      invalid_value: ongeldige instructie '%{value}' op regelnummer %{row}
       json?: Moet geldige JSON zijn
       key?: kan niet leeg zijn
       match_regexp?: ongeldige waarde
@@ -2089,7 +2090,7 @@ nl:
       delete_message: Bericht verwijderen
       drag_drop_instructions_desktop: Schakel de formulierenmodus in om de items met een schermlezer te slepen.
       drag_drop_instructions_mobile: Met een schermlezer dubbel tikken en vasthouden op een sleepknop, naar een ander item gaan en de vinger optillen om het item te verplaatsen.
-      enlarge_view_text: Vergroot weergave van %{tekst}
+      enlarge_view_text: Vergroot weergave van %{text}
       expand_menu: Menu uitbreiden
       file_uploaded: Bestand geüpload
       lang_dropdown_description: taal wijzigen
@@ -2099,7 +2100,7 @@ nl:
       remove_file: bestand verwijderen
       send_message: Verstuur bericht
       slider_label_instruction: 'min: %{min} en max: %{max}'
-      task_btn_description: taak %{beoordelingsnaam}
+      task_btn_description: taak %{assessmentName}
       task_progress_label: Taakvoltooiing is
       write_message: Schrijf je bericht
     assessment: Beoordeling
@@ -2152,7 +2153,7 @@ nl:
       confirm_booking_description: Controleer of deze gegevens correct zijn voordat u de boeking definitief maakt.
       confirm_booking_title: Deze boeking bevestigen?
       default_failure_msg: Kan uw aanvraag niet verwerken, probeer het later nog eens.
-      default_requires_msg: "%{naam} is vereist"
+      default_requires_msg: "%{name} is vereist"
       join_activity_meeting: Deelnemen aan de vergadering
       join_workshop_meeting: Deelnemen aan de vergadering
       language: Taal
@@ -2164,9 +2165,10 @@ nl:
       neurodivergence_comment_aria_label: Neurodivergentie opmerkingen
       neurodivergence_comment_placeholder: Uw opmerkingen
       neurodivergence_question: Heb je redelijke aanpassingen nodig vanwege speciale behoeften of handicaps om volledig deel te kunnen nemen aan de beoordeling?
+      no_invites_msg: Je wordt toegevoegd aan het assessment center of ontvangt een uitnodiging om je plaats te reserveren; zodra je deel uitmaakt van het center, kun je de activiteiten voltooien door op de knop 'Detail bekijken' hieronder te klikken.
       or: of
       other_invite: Zie %{count} meer uitnodigen
-      other_invites: Zie %{getal} meer uitnodigingen
+      other_invites: Zie %{count} meer uitnodigingen
       reason: Reden
       reason_for_cancel: Reden voor annulering
       reason_for_reschedule: Reden voor herschikking
@@ -2178,7 +2180,7 @@ nl:
       reschedule_reason_placeholder: Voer de reden voor het opnieuw plannen in om verder te gaan.
       schedule_success: Deze boeking is gepland
       schedule_success_msg: We hebben jou en de andere deelnemers een agenda-uitnodiging gemaild met alle details.
-      starts_at: 'Begint op: %{datum}'
+      starts_at: 'Begint op: %{date}'
       starts_in: 'Begint in:'
       tab_label:
         bookings: Boekingen
@@ -2220,7 +2222,7 @@ nl:
         actions:
           remove:
             confirmation: Voer de huidige projectnaam hieronder in het tekstvak in om het project te verwijderen
-            success: Project met naam '%{projectnaam}' is succesvol verwijderd
+            success: Project met naam '%{projectName}' is succesvol verwijderd
     delete: Verwijder
     edit: Bewerk
     error_warning: Oeps, er is iets misgegaan met je beoordeling. Neem contact op met de ondersteuning.
@@ -2284,7 +2286,7 @@ nl:
     booking_card:
       aria_available_time: beschikbare tijd
       aria_back_to_time_selection: terug naar tijdselectie
-      aria_desc_current_month: Momenteel op %{maandNaam} %{jaar}
+      aria_desc_current_month: Momenteel op %{monthName} %{year}
       aria_label_next_month: Ga naar volgende maand
       aria_label_previous_month: Ga naar vorige maand
       aria_timezone_select: Selecteer tijdzone
@@ -2306,7 +2308,7 @@ nl:
       increase_font: Lettergrootte vergroten
       reset_font: Lettergrootte opnieuw instellen
     input_duration:
-      max_duration: Maximale duur is %{duur}
+      max_duration: Maximale duur is %{duration}
     schedule_availability:
       copy_to_all: Kopiëren naar alle
       end_date: Einddatum
@@ -2362,7 +2364,7 @@ nl:
       write_here: Schrijf hier...
     initial_steps:
       add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
-      add_skill_group_title: Je %{categorie} vaardigheden verkennen
+      add_skill_group_title: Je %{category} vaardigheden verkennen
       add_skills: Voeg  toe
       add_skills_step: Vaardigheden toevoegen
       continue_to_rate_skills: Blijf vaardigheden beoordelen
@@ -2388,13 +2390,7 @@ nl:
     my_plan:
       development_plan: Ontwikkelingsplan
       graphs:
-        behavioural: Gedrag
         categories: Categorieën
-        learning_on_job: Op het werk (%{telling})
-        learning_others: Leren van anderen (%{telling})
-        learning_structured: Gestructureerd leren (%{telling})
-        other: Andere
-        technical: Technisch
       save_skills: Vaardigheden opslaan
     skill_gap_report:
       title: Rapport over vaardigheidskloof
@@ -2498,75 +2494,6 @@ nl:
     zh-HK: Chinees (Hongkong)
     zh-Hant: Chinees - Traditioneel
     zh-TW: Chinees (Taiwan)
-  languages_localized:
-    af: Afrikaans
-    ar: عربي
-    az: Azerbeidzjaans
-    bg: български
-    bs: bosanski
-    by: Wit-Russisch
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: Engels
-    en-GB: Engels (UK)
-    en-US: Engels (VS)
-    eo: Esperanto
-    es: Español
-    es-ES: Español (Spaans)
-    et: Ests
-    fa: Perzisch
-    fi: Fins
-    fr: Français
-    gu: Gujarati
-    he: Hebreeuws
-    hi: हिन्दी
-    hr: Kroatisch
-    hu: Hongaars
-    id: Bahasa Indonesië
-    it: italiano
-    ja: 日本語
-    km: Khmer
-    ko: Koreaans
-    lt: Litouws
-    lv: Lets
-    mk: Macedonisch
-    mn: Mongools
-    ms: Bahasa Maleisië
-    my: Myanmar
-    nb: Noors Bokmål
-    nl: Nederlands
-    'no': Noors
-    pl: Polski
-    pt: Portugees
-    pt-BR: Português (Brazilië)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brazilië)
-    ro: Roemeens
-    ru: Russisch
-    sk: Slowaaks
-    sl: Sloveens
-    sr-Cyrl: Servisch Cyrillisch
-    sr-Latn: Servisch Latijn
-    sv: Zweeds
-    sw: Swahili
-    ta: Tamil
-    th: Thai
-    tl: Tagalog
-    tr: Turks
-    ua: Oekraïens
-    uk: Oekraïens
-    ur: Urdu
-    vi: Vietnamees
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Actief
     campaign_name: Naam campagne
@@ -2620,7 +2547,7 @@ nl:
         weekly_stats: 'Statistieken licentiegebruik afgelopen week :'
     magic_link:
       body:
-        dear: Beste %{naam},
+        dear: Beste %{name},
         greetings: De groeten voor vandaag!
         instructions: Klik op onderstaande link om je aan te melden bij lighthouse.
         signin_link: Aanmelden Link
@@ -2628,7 +2555,7 @@ nl:
     users:
       account_disable: Je account is uitgeschakeld wegens inactiviteit
       warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit
-  maintenance_message: Lighthouse zal niet beschikbaar zijn voor gepland onderhoud op %{start_datum} en zal niet beschikbaar zijn voor %{duur} uur
+  maintenance_message: Lighthouse zal niet beschikbaar zijn voor gepland onderhoud op %{start_date} en zal niet beschikbaar zijn voor %{duration} uur
   maintenance_submessage: Vernieuw de pagina nadat het onderhoud is voltooid. U wordt doorgestuurd naar de inlogpagina
   my: Mijn
   myself: Ikzelf
@@ -2664,7 +2591,7 @@ nl:
     male: Mannelijk
     mandatory_fields: Geeft verplichte velden aan
     not_disclosed: Liever niet bekendmaken
-    old_data: Uw profielgegevens zijn %{maanden} maanden oud. Bevestig uw gegevens om verder te gaan
+    old_data: Uw profielgegevens zijn %{months} maanden oud. Bevestig uw gegevens om verder te gaan
     password: Wachtwoord
     password_confirmation: Wachtwoord bevestigen
     photo: Foto
@@ -2704,7 +2631,7 @@ nl:
       created_text: tekst toegevoegd
       disapproved_text: afgekeurde tekst
       removed_text: verwijderde tekst
-      status_changed: status gewijzigd van <i>%{van}</i> in <i>%{naar}</i>
+      status_changed: status gewijzigd van <i>%{from}</i> in <i>%{to}</i>
       updated_text: bijgewerkte tekst
     tabs:
       all: Alle
@@ -2713,26 +2640,26 @@ nl:
   report_bundles:
     actions:
       remove:
-        confirm_message: Weet je zeker dat je de rapportbundel "%{naam}" wilt verwijderen?
+        confirm_message: Weet je zeker dat je de rapportbundel "%{name}" wilt verwijderen?
         confirm_title: Bevestiging vereist
-        success_message: Rapportbundel %{naam} is verwijderd
+        success_message: Rapportbundel %{name} is verwijderd
     report_bundle: Bundel rapporten
     report_bundles: Bundels rapporten
     reports:
       actions:
         add: Nieuw rapport toevoegen
         remove:
-          confirm_message: Weet je zeker dat je het rapport "%{naam}" wilt verwijderen uit '%{report_bundle_name}'?
+          confirm_message: Weet je zeker dat je het rapport "%{name}" wilt verwijderen uit '%{report_bundle_name}'?
           confirm_title: Bevestiging vereist
-          success_message: Rapport %{naam} is verwijderd
+          success_message: Rapport %{name} is verwijderd
   reports:
     actions:
       add: Rapport toevoegen
       archived:
-        success_message: Rapport "%{naam}" is succesvol gearchiveerd.
+        success_message: Rapport "%{name}" is succesvol gearchiveerd.
       back_to_campaign: Terug naar Campagne
       copy:
-        success_message: Rapport "%{naam}" is succesvol gekopieerd.
+        success_message: Rapport "%{name}" is succesvol gekopieerd.
       details: Details
       download: Rapport downloaden
       download_csv: CSV downloaden
@@ -2743,14 +2670,14 @@ nl:
       re_evaluate: Klik hier om opnieuw te evalueren
       reevaluate: Opnieuw evalueren
       remove:
-        confirm_message: Weet je zeker dat je het rapport "%{naam}" wilt verwijderen?
+        confirm_message: Weet je zeker dat je het rapport "%{name}" wilt verwijderen?
         confirm_title: Bevestiging vereist
-        success_message: Rapport %{naam} is verwijderd
+        success_message: Rapport %{name} is verwijderd
       rescore: Rescore
       restore:
-        success_message: Rapport %{naam} is succesvol hersteld
+        success_message: Rapport %{name} is succesvol hersteld
       unarchived:
-        success_message: Rapport %{naam} is succesvol gedearchiveerd
+        success_message: Rapport %{name} is succesvol gedearchiveerd
       update_language: Taal bijwerken
       view: Rapport bekijken
     active: Actief
@@ -2877,7 +2804,7 @@ nl:
         developmental_rating: Waardering Ontwikkeling
         questions: Vragen
       strength_clusters:
-        index_sub_factors_considered: Thriving Index-subfactoren waarmee rekening is gehouden om uw eindscore voor de %{werkstijl} werkomgeving te bepalen
+        index_sub_factors_considered: Thriving Index-subfactoren waarmee rekening is gehouden om uw eindscore voor de %{workstyle} werkomgeving te bepalen
         possible_roles: Mogelijke rollen
         work_environments: Verwachte werkomgevingen
       three_sixty_default:
@@ -3307,8 +3234,10 @@ nl:
   threesixty:
     accept_privacy_modal:
       accept: Accepteer
-      checkbox: Ik heb bovenstaand privacybeleid gelezen en begrepen
-      title: Toestemming voor gegevensverwerking
+      checkbox: Door op dit vakje te klikken, gaat u ermee akkoord dat u onze privacyverklaring hebt gelezen met betrekking tot het verzamelen en verwerken van uw persoonlijke gegevens zoals daarin beschreven, inclusief de internationale overdracht van uw persoonlijke gegevens.
+      checkbox_with_client_link: Door op dit vakje te klikken, stemt u ermee in dat u onze privacyverklaring en de privacyverklaring van onze klant hebt gelezen en stemt u in met het verzamelen en verwerken van uw persoonlijke gegevens zoals daarin beschreven, inclusief de internationale overdracht van uw persoonlijke gegevens.
+      privacy_notice: Privacyverklaring
+      title: Toestemming voor het verwerken en overdragen van persoonlijke gegevens
     action: Actie
     add: Voeg  toe
     and: En
@@ -3336,7 +3265,7 @@ nl:
     confirmation_text_incorrect: De bevestigingstekst is onjuist
     confirmation_text_placeholder: Bevestigingstekst hier
     continue: Ga verder
-    dashboard_title: Welkom %{naam}
+    dashboard_title: Welkom %{name}
     decline: Daling
     decline_invite: Uitnodiging weigeren
     denied: Geweigerd
@@ -3424,7 +3353,7 @@ nl:
       report_generation_message: We laten je weten wanneer het rapport klaar is.
     processing: Verwerking
     processing_report: Verwerkingsrapport
-    progress_text: "%{voltooid} van %{totaal}"
+    progress_text: "%{completed} van %{total}"
     question:
       chat_type:
         input_placeholder: Schrijf je bericht...
@@ -3537,7 +3466,7 @@ nl:
       id: ID gebruikersbeoordeling
       norm_id: Norm ID
     drawer:
-      copied: "%{naam} gekopieerd naar klembord."
+      copied: "%{name} gekopieerd naar klembord."
       copy: Kopiëren naar klembord
       mettl_schedule_name: Mettl Schema Naam
       no_data: Geen gegevens beschikbaar
@@ -3548,7 +3477,7 @@ nl:
       actions:
         reset_progress:
           name: Vooruitgang resetten
-          success_message: Beoordeling %{naam} is klaar voor bewerking
+          success_message: Beoordeling %{name} is klaar voor bewerking
       push_test_webhook:
         copy_request_data_success: Rquest Payload succesvol gekopieerd naar klembord.
         copy_response_body_success: Response body succesvol gekopieerd naar klembord.
@@ -3561,9 +3490,9 @@ nl:
         title: Push Webhook
       remove:
         content: Weet je zeker dat je de beoordeling "%{name}" wilt verwijderen?
-        successfully: "%{naam} beoordeling is succesvol verwijderd."
+        successfully: "%{name} beoordeling is succesvol verwijderd."
       reset:
-        content: Weet je zeker dat je de voortgang "%{naam}" wilt resetten?
+        content: Weet je zeker dat je de voortgang "%{name}" wilt resetten?
       test_webhook:
         submit_button_name: Test verzenden
         title: Webhook-gebeurtenistest verzenden
@@ -3704,7 +3633,7 @@ nl:
     date: Je antwoord moet een geldige datum zijn (mm/dd/jjjj)
     each_group_contains: Elke groep mag niet minder dan %{min} en niet meer dan %{max} items bevatten
     email: Je antwoord moet een geldig e-mailadres zijn
-    exact: Selecteer precies %{aantal} keuze(s)
+    exact: Selecteer precies %{count} keuze(s)
     file_upload:
       BadRequest: Het bestand is niet geüpload omdat het laatste verzoek is mislukt. Dit kan komen doordat uw internet niet werkt. Als uw internet werkt, neem dan contact op met de beheerder
       EntityTooLarge: De bestandsgrootte moet kleiner zijn dan %{maxFileSize} MB
@@ -3724,12 +3653,13 @@ nl:
     not_in_future: De geselecteerde datum mag niet in de toekomst liggen
     not_in_past: De geselecteerde datum mag niet in het verleden liggen
     number: Je antwoord moet een getal zijn
+    photo: vereist
     range: Beantwoord ten minste %{min} en niet meer dan %{max} keuze(s).
     required: Beantwoord deze vraag
     text: Je antwoord mag geen getallen bevatten
     title:
-      one:
-      other:
+      one: Er is een fout opgetreden, controleer uw antwoorden
+      other: Er zijn %{count} fouten, controleer uw antwoorden a.u.b.
     user_self_skill_rating_disabled: Zelfclassificatie is uitgeschakeld voor deze sjabloon
     word_count: 'Aantal woorden '
     word_range: Je antwoord moet minstens %{min} en niet meer dan %{max} woorden bevatten.

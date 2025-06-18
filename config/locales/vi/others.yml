@@ -1,0 +1,993 @@
+---
+vi:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Tất cả các phản hồi
+      numeric_comparator:
+        enter_value: Nhập giá trị
+        select_data: Chọn dữ liệu
+      scoring:
+        select_comparison: Chọn loại so sánh
+        select_factors: Chọn các yếu tố
+        select_operation: Chọn hoạt động
+  activerecord:
+    attributes:
+      membership:
+        first_name: Tên đầu tiên
+        last_name: Họ
+      user:
+        email: Địa chỉ Email
+        first_name: Tên đầu tiên
+        last_name: Họ
+      user_form:
+        email: Địa chỉ Email
+        first_name: Tên đầu tiên
+        last_name: Họ
+        password: Mật khẩu
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: Số điện thoại di động là bắt buộc
+              invalid: Số điện thoại di động không hợp lệ
+              verification_expired: Mã xác minh đã hết hạn. Bạn có thể thử xác minh lại.
+        user:
+          attributes:
+            current_password:
+              invalid: Mật khẩu hiện tại không đúng
+  administration: Sự quản lý
+  anonym:
+    close: Đóng
+    continue: Tiếp tục
+    notifications:
+      restart:
+        copy: Bạn đã bắt đầu khảo sát này. Bạn có thể chọn Tiếp tục hoặc Khởi động lại.
+        title: Tiếp tục?
+      retake:
+        copy: Bạn đã hoàn thành khảo sát này. Để làm lại, vui lòng nhấp vào nút Làm lại bên dưới.
+        title: Làm lại?
+    restart: Khởi động lại
+    retake: Làm lại
+  assessments:
+    actions:
+      back_to_campaign: Quay lại Chiến dịch
+      extend_time: Kéo dài thời gian
+      goto_dashboard: Nhấp vào đây để tiếp tục
+      pending_tasks:
+        one: Bạn có 1 nhiệm vụ đang chờ xử lý
+        other: Bạn có %{count} nhiệm vụ đang chờ xử lý
+      rescore: Điểm lại
+    audio_response:
+      permission_denied_message: Vui lòng bật quyền micrô trong trình duyệt của bạn để ghi lại câu trả lời
+      permission_text: Vui lòng cho phép sử dụng micrô để ghi âm
+    card_actions:
+      begin: Bắt đầu
+      continue: Tiếp tục
+    instructions:
+      begin_assessment: Bắt đầu
+      cancel: Hủy bỏ
+      default: Đây là hoạt động có tính thời gian, sau khi bạn nhấp vào Bắt đầu đánh giá, bạn sẽ có %{time} phút để hoàn thành.
+      title: Hướng dẫn
+    messages:
+      finish: Cảm ơn bạn đã dành thời gian. Phản hồi của bạn đã được ghi lại.
+    page:
+      back: Mặt sau
+      confirm_message: "## Câu trả lời của bạn sẽ được gửi đi và không thể thay đổi sau đó. Nhấp vào **Quay lại** để xem lại câu trả lời của bạn lần cuối hoặc nhấp vào **Gửi** nếu bạn đã hoàn tất."
+      next: Kế tiếp
+      read_only: Ở chế độ chỉ đọc, bạn không thể thay đổi bất kỳ kết quả nào.
+      save: Cứu
+      submit: Nộp
+    pickgrouprank:
+      items: Mặt hàng
+    proceed: Tiến hành Dù sao
+    unknown_error: Đã xảy ra lỗi không xác định.
+    video_response:
+      device: Cho phép
+      device_selection:
+        camera: Máy ảnh
+        mic: Mic
+      discard: Bỏ đi
+      discard_record_again: Bỏ và ghi lại lần nữa
+      media_recorder:
+        failure: Trình duyệt này không hỗ trợ Quay Video. Vui lòng sử dụng Chrome hoặc Firefox để Quay Video
+        success: Vui lòng cho phép sử dụng camera và micrô để ghi âm thanh và video
+      recording_duration_label: Thời lượng ghi âm tối đa
+      recording_stop_label: Việc ghi âm sẽ dừng lại ở
+      requesting_permission: Đang yêu cầu cấp phép...
+      response_recorded: Phản hồi được ghi lại
+      save: Cứu
+      saved:
+        label: Video đã lưu
+      saving: Đang lưu video...
+      start_recording: Bắt đầu ghi âm
+      stop_recording: Dừng ghi âm
+      tracker:
+        backward: Bạn đang ở quá gần màn hình. Vui lòng di chuyển ra xa một chút
+        forward: Bạn đang ở quá xa màn hình. Vui lòng di chuyển gần hơn một chút
+        frame: Hãy đảm bảo khuôn mặt của bạn thẳng hàng với khung
+        ready: Nhấn nút Ghi khi đã sẵn sàng ghi âm
+    wait: Chờ đợi
+  auth:
+    current_password: Mật khẩu hiện tại
+    current_password_placeholder: Nhập mật khẩu hiện tại
+    email: E-mail
+    email_placeholder: Nhập địa chỉ Email
+    expired_password:
+      description: Vui lòng điền vào tất cả các trường để tạo mật khẩu mới
+      submit: Nộp
+      title: Làm mới mật khẩu của bạn
+    login:
+      description: Vui lòng đăng nhập bằng thông tin tài khoản cá nhân của bạn
+      forgot_password: Quên mật khẩu?
+      login_btn: Đăng nhập
+      magic_link_btn: Gửi cho tôi liên kết đăng nhập qua email
+      not_member: Bạn chưa phải là thành viên?
+      or: HOẶC
+      sso_btn: Đăng nhập bằng Đăng nhập một lần
+      title: Chào mừng!
+    logout: Đăng xuất
+    magic_link:
+      description: Vui lòng nhập địa chỉ email của bạn để nhận liên kết đăng nhập
+      login_with_password: Đăng nhập bằng mật khẩu
+      send_me_login_link: Gửi cho tôi liên kết đăng nhập
+      success: Chúng tôi đã gửi cho bạn một liên kết đăng nhập tới &#39;%{email}&#39;. Nhấp vào liên kết trong email mà bạn sẽ nhận được để đăng nhập
+    mobile_number: Số điện thoại di động
+    new_password: Mật khẩu mới
+    new_password_placeholder: Nhập mật khẩu mới
+    otp:
+      code: Mã số
+      code_placeholder: Mật khẩu dùng một lần
+      description: Vui lòng nhập OTP đã được gửi đến địa chỉ email đã đăng ký của bạn.
+      resend: Gửi lại OTP
+      resend_in: Gửi lại sau %{timestamp} giây
+      resend_success: OTP được gửi đến số điện thoại di động của bạn
+      sms_description: Vui lòng nhập OTP đã được gửi tới số điện thoại di động của bạn.
+      submit: Xác minh
+      title: Mật khẩu một lần
+    password: Mật khẩu
+    password_confirmation: Xác nhận mật khẩu
+    password_confirmation_placeholder: Nhập mật khẩu xác nhận
+    password_placeholder: Nhập mật khẩu
+    registration:
+      description: Điền thông tin bên dưới để đăng ký và tạo tài khoản mới
+      email_hint: Chúng tôi tôn trọng quyền riêng tư của bạn và không chấp nhận thư rác. Chúng tôi sẽ không bao giờ cung cấp thông tin của bạn cho bất kỳ bên thứ ba nào
+      first_name: Tên đầu tiên
+      first_name_placeholder: Nhập Tên
+      have_account: Bạn đã có tài khoản?
+      last_name: Họ
+      last_name_placeholder: Nhập Họ
+      login_now: Đăng nhập ngay!
+      registration_code: Mã đăng ký
+      registration_code_placeholder: Nhập Mã Đăng Ký
+      terms_notice: Bằng cách đăng ký, bạn đồng ý với <a href="%{terms_url}">Điều khoản dịch vụ và Chính sách bảo mật</a> của chúng tôi
+      title: Đăng ký
+    reset_password:
+      back_to_sign_in: Quay lại Đăng nhập
+      description: Nhập email liên kết với tài khoản của bạn
+      submit: Đặt lại mật khẩu
+      title: Quên mật khẩu?
+    set_password:
+      description: Để tạo mật khẩu mới, vui lòng nhập mật khẩu mới của bạn vào các ô bên dưới
+      submit: Nộp
+      title: Tạo mật khẩu
+    sign_out: Đăng nhập với tư cách là người dùng khác
+    sign_up: Đăng ký
+    terms_link: <a href="%{terms_url}">Điều khoản và Tuyên bố về quyền riêng tư</a>
+    verify_mobile_number:
+      error:
+        blocked: Số này bị chặn do có quá nhiều lần thử.
+        invalid_code: Mã không hợp lệ
+        invalid_number: Số điện thoại di động không đúng. Vui lòng kiểm tra lại số của bạn
+        max_attempts_reached: Quá nhiều lần thử. Vui lòng đợi 10 phút trước khi thử lại.
+  campaign:
+    all_activities_are_completed: Mọi hoạt động hiện đã hoàn tất.
+    all_activities_are_completed_multiple: Mọi hoạt động cho chiến dịch này hiện đã hoàn tất. Vui lòng tiến hành đến Bảng điều khiển và kiểm tra xem bạn có hoạt động nào khác được chỉ định không.
+    begin: Bắt đầu nhiệm vụ của bạn
+    begin_btn_msg_before_prework: Bạn phải hoàn thành các nhiệm vụ dưới đây trước khi bắt đầu chiến dịch có thời gian
+    begin_campaign_msg: Bắt đầu chiến dịch trước khi thực hiện đánh giá
+    campaigns: Chiến dịch
+    closed_campaign_message: Chiến dịch này đã kết thúc. Bạn không thể thực hiện bất kỳ đánh giá nào trong chiến dịch này.
+    complete_prev: Hoàn thành tất cả các đánh giá trước đó
+    complete_tasks: Vui lòng hoàn thành các nhiệm vụ bên dưới trước khi thực hiện hành động này.
+    continue: Tiếp tục nhiệm vụ của bạn
+    dashboard_instructions: Bạn có thể đã được giao nhiều hoạt động cần hoàn thành. Vui lòng đảm bảo kiểm tra xem tất cả các hoạt động được giao đã được hoàn thành trong tất cả các chiến dịch hay chưa.
+    dashboard_menu:
+      bookings: Đặt chỗ
+      campaign: Chiến dịch
+      change_password: Thay đổi mật khẩu
+      development: Phát triển
+      home: Trang chủ
+      insights: Thông tin chi tiết
+      my_plan: Kế hoạch của tôi
+      profile: Hồ sơ
+      profile_details: Chi tiết
+      tasks: Nhiệm vụ
+    details: Chi tiết
+    edit_evaluation:
+      body: Xin lưu ý rằng khi bạn nhấp vào Đánh giá lại, bạn sẽ được chuyển hướng đến phần đầu của khảo sát, nơi bạn có thể chỉnh sửa các phản hồi. Các phản hồi trước đó vẫn sẽ khả dụng nhưng bạn có thể thay đổi chúng theo ý muốn của mình. Sau khi chỉnh sửa, bạn sẽ phải gửi lại đánh giá để hoàn tất quy trình.
+      edit: Đánh giá lại
+      title: Xác nhận
+      view: Xem Đánh giá
+    errors:
+      invalid_status: Trạng thái chiến dịch không hợp lệ
+    goto_dashboard: Đi đến Bảng điều khiển
+    inactive_campaign_message: Hiện tại, bạn chưa được giao bất kỳ hoạt động nào.
+    insights_reports: Thông tin chi tiết &amp; Báo cáo
+    instruction_modal:
+      campaign_start_final_instructions: "<p>Xin lưu ý rằng không có cách nào để Dừng hoặc Tạm dừng bộ đếm thời gian. Bộ đếm thời gian chiến dịch sẽ tiếp tục chạy ngay cả khi bạn đóng trình duyệt, do đó, bạn không nên nghĩ đến việc để các tác vụ ở giữa để làm việc khác. Hãy đảm bảo giảm thiểu sự mất tập trung trong khi thực hiện các tác vụ. Tìm một môi trường yên tĩnh, tắt thông báo trên thiết bị của bạn và tránh làm nhiều việc cùng lúc. Duy trì sự tập trung và luôn chú ý. Khi bộ đếm thời gian chiến dịch hết hạn, bạn sẽ không thể tiếp tục. Nếu bạn đã đọc kỹ các hướng dẫn ở trên, vui lòng nhấp vào bắt đầu để tiếp tục các tác vụ được giao.</p>\n"
+      campaign_start_instruction: "<h4>Vui lòng đọc kỹ các hướng dẫn sau đây.</h4><p> Nhiệm vụ bạn sắp bắt đầu được tính thời gian. Khi bạn nhấp vào “Bắt đầu”, bộ đếm thời gian chiến dịch sẽ tự động bắt đầu. Bạn có %{minutes} phút để hoàn thành tất cả các hoạt động. Vui lòng cố gắng hoàn thành các nhiệm vụ trong khung thời gian được chỉ định và quản lý thời gian hiệu quả để tránh vội vã trong quá trình đánh giá. Đảm bảo hoàn thành các nhiệm vụ cùng một lúc để nếu bạn cần nghỉ ngơi, thì Bây giờ là lúc.</p>\n"
+      common_proctoring_instructions: "<h4>Giám sát</h4><p> Khi nhấp vào nút Bắt đầu, bạn sẽ được chuyển hướng đến hệ thống giám sát của chúng tôi. Hệ thống này sẽ giám sát camera, micrô và màn hình của bạn trong suốt phiên làm việc. Các phiên làm việc này được giám sát tự động bởi hệ thống AI tinh vi của chúng tôi, mang đến trải nghiệm người dùng mượt mà và không bị gián đoạn. Tuy nhiên, các phiên làm việc cũng có thể được giám sát bởi giám thị. Bất kỳ dấu hiệu nào của hành vi sai trái hoặc bất thường sẽ được đánh dấu. Điều này được thực hiện để đảm bảo rằng không có hành vi gian lận nào được thực hiện. Nếu phát hiện nghi ngờ, nhiệm vụ của bạn sẽ bị hủy.</p>\n"
+      lockdown_browser_instruction: "<h4>Trình duyệt giám sát</h4><p> Bạn sẽ được yêu cầu tải xuống và cài đặt trình duyệt đặc biệt để hoàn thành các nhiệm vụ được giám sát. Vui lòng làm theo hướng dẫn ở màn hình tiếp theo. Bạn có thể gỡ cài đặt sau khi hoàn tất tất cả các hoạt động bắt buộc.</p>\n"
+    instructions:
+      collapse_link_text: Hiển thị ít hơn
+      expand_link_text: Hiển thị thêm
+      heading: Vui lòng xem lại các hướng dẫn bên dưới trước khi bạn bắt đầu. Chúng tôi chúc bạn mọi điều tốt đẹp nhất!
+    language:
+      content: Nhiệm vụ này không khả dụng bằng ngôn ngữ hiện đang chọn. Vui lòng chọn một trong các ngôn ngữ khả dụng để tiếp tục.
+      single_lang: Nhiệm vụ này chỉ khả dụng trong %{lang}. Nhấp vào &quot;Tiếp tục&quot; để tiếp tục.
+      title: Chọn ngôn ngữ
+    panels:
+      dashboard: Bảng điều khiển
+      reports: Báo cáo
+    profile:
+      complete_heading: Hồ sơ của bạn đã hoàn tất
+      complete_profile_label: Hoàn thành ngay
+      edit_profile_label: Chỉnh sửa hồ sơ
+      incomplete_heading: Hoàn thiện hồ sơ của bạn
+      last_login_text: 'Lần đăng nhập cuối cùng vào:'
+      last_updated_text: 'Hồ sơ được cập nhật lần cuối vào:'
+      sub_heading: Hoàn thành thông tin hồ sơ đầy đủ của bạn
+      welcome_text: Chào mừng,
+    thank_you_for_time: Cảm ơn bạn đã dành thời gian
+    time_left:
+      cancel: Hủy bỏ
+      continue: Tiếp tục
+      notification: Thời gian phân bổ cho nhiệm vụ này &quot;%{assessmentName}&quot; là %{totalAssessmentTime}. Do tổng thời gian đã trôi qua, hiện tại bạn chỉ có %{remainingCampaignTime} là thời gian điều chỉnh để hoàn thành nhiệm vụ này.
+    timer:
+      notification_hours: Bạn còn %{hours} giờ nữa
+      notification_minutes: bạn còn %{minutes} phút nữa
+  campaign_assessment:
+    assessment_center_heading: Chi tiết về Trung tâm Đánh giá
+    assessments_heading: Nhiệm vụ của bạn
+    statuses:
+      completed: Hoàn thành
+      in_progress: Đang tiến hành
+      ineligible: Không đủ điều kiện
+      interrupted: Bị gián đoạn
+      not_started: Chưa bắt đầu
+      timed_out: Đã hết thời gian
+      universal_link: Liên kết phổ quát
+  campaigns:
+    card:
+      duration: Khoảng thời gian
+      starts_in: 'Bắt đầu vào:'
+      starts_on: Bắt đầu vào %{date}
+      will_start_shortly: Chiến dịch sẽ bắt đầu sớm. Vui lòng đợi
+  change_password_page:
+    old_password: Mật khẩu cũ
+    password: Mật khẩu
+    password_confirmation: Xác nhận mật khẩu
+    title: Thay đổi mật khẩu
+    warning_message: 'Quan trọng: Việc thay đổi mật khẩu sẽ đăng xuất bạn.'
+  checking_wizard:
+    audio_check:
+      access: Truy cập
+      continue: Vâng, Ok để tiếp tục
+      random_phrases:
+        eight: Chúc bạn có một tách cà phê ngon và một ngày làm việc hiệu quả.
+        five: Cuộc sống sẽ tốt đẹp hơn khi bạn mỉm cười. Hãy mỉm cười trước mic!
+        four: Cô ấy bán vỏ sò ở bờ biển.
+        nine: Nếu còn nghi ngờ, hãy thử xem mic này có hoạt động không!
+        one: Tôi hét lên, bạn hét lên, tất cả chúng ta đều hét lên vì kem!
+        seven: Mỗi ngày là một khởi đầu mới. Hãy nói to và tự hào nhé!
+        six: Pizza hay mì ống? Quyết định thật khó khăn.
+        three: Kiểm tra, một hai ba, âm thanh rõ ràng nhất có thể!.
+        two: Con cáo nâu nhanh nhẹn nhảy qua con chó lười.
+      record_title: Hãy nói và lặp lại câu sau 3 lần.
+      retake: Không, tôi muốn thi lại
+      run_again: Chạy lại
+      test_message: rất vui khi được nói chuyện với bạn
+    network_check:
+      continue: Tiếp tục
+      download: Tải về
+      please_check_connection: Vui lòng kiểm tra kết nối Internet của bạn
+      processing: Xử lý
+      run_again: Chạy lại
+      run_again_title: Và chạy thử nghiệm này một lần nữa
+      title: Nhấp vào bắt đầu để bắt đầu kiểm tra tốc độ internet.
+      upload: Tải lên
+    steps:
+      audio_check: Kiểm tra micrô
+      network_check: Kiểm tra tốc độ Internet
+      system_check: Kiểm tra hệ thống
+      video_check: Kiểm tra máy quay video
+    success:
+      start: Bắt đầu đánh giá
+      title: Bạn đã hoàn tất mọi bước kiểm tra thành công.
+    system_check:
+      compatibility: Khả năng tương thích của hệ thống
+      continue: Tiếp tục
+      failure:
+        description: Cần có quyền sử dụng Webcam và Micrô cho các Câu hỏi Âm thanh/Video trong Bài kiểm tra này.
+        link_text: đây
+        link_text_action: Nhấp chuột
+        link_text_instruction: và làm theo các bước để cấp quyền
+        refresh: Làm mới trình duyệt
+        refresh_text: Nhấp vào bên dưới để làm mới trình duyệt và áp dụng các thay đổi
+        subtitle: Sửa chữa nhanh
+        title: Bạn đã hủy quyền sử dụng Webcam và Micrô
+      permissions: Quyền sử dụng Webcam và Âm thanh
+      title: Trước khi bắt đầu đánh giá này, hệ thống của bạn cần phải trải qua một số bước kiểm tra.
+    video_check:
+      access: Truy cập
+      camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
+      continue: Vâng, Ok để tiếp tục
+      description: Nhấp vào Bắt đầu ghi âm và tự ghi âm khi đọc đoạn văn bên dưới bằng giọng nói của bạn
+      random_phrases:
+        eight: Nếu bạn có thể nhìn thấy tôi thì video đã thành công. Nếu không, chúng ta sẽ khắc phục sự cố!
+        five: Đừng lo lắng khi đang kiểm tra video của bạn, không cần đề cử giải Oscar.
+        four: Sẵn sàng, chuẩn bị, tập trung! Máy ảnh chính là sân khấu của bạn.
+        nine: Cười thật tươi và quay video rõ nét, chúng ta hãy hoàn thành bài kiểm tra này thật tốt nhé!
+        one: Hãy giơ tay lên nếu bạn có thể nghe thấy tôi hoặc chỉ cần vẫy tay chào máy ảnh!
+        seven: Gương kia, gương kia trên màn hình, hãy kiểm tra video cho sạch sẽ.
+        six: Đèn, máy quay, hành động, đây là thời điểm bạn tỏa sáng!
+        ten: Một cái vẫy tay thân thiện sẽ đảm bảo mọi thứ hoạt động tốt.
+        three: Nói &quot;cheese&quot;! Hoặc chỉ cần thử nụ cười hoàn hảo của bạn.
+        two: Nhìn vào ống kính, mỉm cười và tưởng tượng bạn đang ở trong đoạn giới thiệu phim.
+      rec_text: GHI NHẬN
+      retake: Không, tôi muốn thi lại
+      run_again: Chạy lại
+      title: Chúng tôi cần đảm bảo hệ thống của bạn có thể ghi lại video
+      uploading: Đang tải lên
+  common:
+    actions:
+      add: Thêm vào
+      archive: Lưu trữ
+      cancel: Hủy bỏ
+      close: Đóng
+      copy: Sao chép
+      delete: Xóa bỏ
+      edit: Biên tập
+      remove: Di dời
+      reset: Cài lại
+      resolve: Giải quyết
+      restore: Khôi phục
+      save: Cứu
+      search: Tìm kiếm
+      send: Gửi
+      start: Bắt đầu
+      unarchive: Bỏ lưu trữ
+      unresolve: Chưa giải quyết
+      update: Cập nhật
+      upload: Tải lên
+      verify: Xác minh
+      view_all_tasks: Xem tất cả tác vụ
+      view_detail: Xem chi tiết
+    column:
+      action: Hoạt động
+      category: Loại
+      created_at: Được tạo ra tại
+      id: Nhận dạng
+      status: Trạng thái
+    model:
+      assessments: Đánh giá
+      campaigns: Chiến dịch
+      reports: Báo cáo
+    text:
+      cancel: Hủy bỏ
+      confirm: Xác nhận
+      continue: Tiếp tục
+      default: Mặc định
+      download: Tải về
+      na: Không có
+      ok: Được rồi
+      response: Phản ứng
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Đăng nhập
+    failure:
+      already_authenticated: Bạn đã đăng nhập.
+      inactive: Tài khoản của bạn chưa được kích hoạt.
+      invalid: Email hoặc mật khẩu không hợp lệ.
+      invited: Bạn có lời mời đang chờ xử lý, hãy chấp nhận để hoàn tất việc tạo tài khoản.
+      magic_link_invalid: Liên kết đăng nhập không hợp lệ hoặc đã hết hạn.
+      not_found_in_database: Email hoặc mật khẩu không hợp lệ.
+      timeout: Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.
+      unauthenticated: Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục.
+    invitations:
+      edit:
+        password_label: Mật khẩu
+    passwords:
+      invalid_email: Email không hợp lệ
+    registrations:
+      communication_not_setup_error: Chưa thiết lập được email đăng ký, vui lòng liên hệ với người quản lý dự án này.
+      new:
+        email: Địa chỉ Email
+        first_name: Tên đầu tiên
+        instruction: Điền thông tin bên dưới để đăng ký và tạo tài khoản mới
+        last_name: Họ
+        privacy_notice: Chúng tôi tôn trọng quyền riêng tư của bạn và không chấp nhận thư rác. Chúng tôi sẽ không bao giờ cung cấp thông tin của bạn cho bất kỳ bên thứ ba nào.
+        registration_code: Mã đăng ký
+        submit: Đăng ký
+        tabs:
+          register: Đăng ký
+          sign_in: Đăng nhập
+        terms_notice: Bằng cách đăng ký, bạn đồng ý với <a href="%{terms_url}">Điều khoản dịch vụ và Chính sách bảo mật</a> của chúng tôi
+        title: Đăng ký ngay
+      success:
+        actions:
+          sign_in: Đăng nhập
+    sessions:
+      new:
+        email: Địa chỉ Email
+        forgot_password: Quên mật khẩu?
+        instruction: Vui lòng đăng nhập bằng thông tin tài khoản cá nhân của bạn
+        password_placeholder: Mật khẩu
+        submit: Đăng nhập
+        tabs:
+          register: Đăng ký
+          sign_in: Đăng nhập
+        title: Chào mừng!
+    two_factor_authentication:
+      attempt: Vui lòng nhập OTP mà bạn đã nhận được tại địa chỉ email đã đăng ký của bạn
+      code_has_been_sent: Mã OTP mới của bạn đã được gửi đến địa chỉ email đã đăng ký của bạn
+  emails:
+    subject_relationship_table:
+      subject_email: Tiêu đề Email
+      subject_name: Tên chủ đề
+      subject_relationship: Mối quan hệ chủ đề
+  errors:
+    assessments:
+      timed_out: Bạn sẽ không thể làm bài đánh giá %{assessment_name} vì thời gian làm bài đã hết.
+    error: Lỗi
+    error_500: Có lỗi xảy ra. Hãy liên hệ với quản trị viên của bạn.
+    forbidden: Bạn không có quyền truy cập vào trang này
+    forbidden_action: Bạn không có quyền thực hiện hành động này
+    invalid_token: Có lỗi xảy ra. Vui lòng tải lại trang và thử lại.
+    module_error: Có lỗi xảy ra với module này, vui lòng liên hệ với ban quản trị.
+    module_error_editor: Có lỗi xảy ra với module này, vui lòng kiểm tra cài đặt module.
+    module_props_error: Có lỗi xảy ra với mô-đun này.
+    try_again: Vui lòng thử lại
+  factors:
+    description: Sự miêu tả
+    factor: Nhân tố
+  frontend:
+    activate: Kích hoạt
+    are_you_sure: Bạn có chắc không?
+    assessment: Đánh giá
+    assessment_groups:
+      create_success: Nhóm đã được tạo thành công
+      update_success: Nhóm đã được cập nhật thành công
+    background_reading: Đọc Bối cảnh
+    bookings:
+      accept_invite_msg: Bạn đã nhận được lời mời. Vui lòng giữ chỗ.
+      add_to_calendar: Thêm vào Lịch
+      add_to_calendar_tour_description: Thêm đặt phòng này vào lịch của bạn
+      assessment_center_alert:
+        btn_title: Chiến dịch
+        message_part1: Hoàn thành tất cả các công việc chuẩn bị trong này
+        message_part2: trước khi đặt chỗ.
+      assessment_center_group_name: Trung tâm đánh giá
+      booking_failed_msg: 'Không đặt được chỗ: %{error}'
+      buttons:
+        book: Sách
+        book_again: Đặt lại sách
+        cancel: Hủy bỏ
+        cancel_booking: Hủy đặt phòng
+        confirm_booking: Xác nhận đặt phòng
+        confirm_reschedule: Xác nhận lên lịch lại
+        modify: Biến đổi
+        nevermind: Đừng bận tâm
+        no_text: KHÔNG
+        request_cancel: Yêu cầu hủy bỏ
+        request_reschedule: Yêu cầu đổi lịch
+        reschedule: Lên lịch lại
+        reserve_spot: Đặt chỗ của bạn
+        yes_text: Đúng
+      cancel_booking_confirmation: Bạn có chắc chắn muốn hủy đặt phòng này không?
+      cancellation_failed: 'Không thể hủy đặt phòng: %{error}'
+      cancellation_success: Đã hủy đặt phòng thành công
+      comments_required_msg: Vui lòng nhập ý kiến của bạn
+      confirm_booking_description: Vui lòng xác nhận những thông tin này là chính xác trước khi hoàn tất đặt phòng.
+      confirm_booking_title: Xác nhận đặt chỗ này?
+      default_failure_msg: Không thể xử lý yêu cầu của bạn. Vui lòng thử lại sau.
+      default_requires_msg: "%{name} là bắt buộc"
+      join_activity_meeting: Tham gia cuộc họp
+      join_workshop_meeting: Tham gia cuộc họp
+      language: Ngôn ngữ
+      language_placeholder: Chọn ngôn ngữ
+      language_preference_question: Bạn có ngôn ngữ ưa thích không?
+      language_required_msg: Vui lòng chọn một ngôn ngữ
+      meeting_start_text: 'Cuộc họp sẽ bắt đầu vào lúc:'
+      need_changes: Cần thực hiện thay đổi?
+      neurodivergence_comment_placeholder: Bình luận của bạn
+      neurodivergence_question: Bạn có cần bất kỳ sự điều chỉnh hoặc hỗ trợ hợp lý nào do nhu cầu đặc biệt hoặc khuyết tật để có thể tham gia đầy đủ vào quá trình đánh giá không?
+      no_invites_msg: Bạn sẽ được thêm vào trung tâm đánh giá hoặc nhận được lời mời để đặt lịch hẹn; sau khi trở thành thành viên của trung tâm, bạn có thể hoàn thành các hoạt động bằng cách nhấp vào nút 'Xem chi tiết' bên dưới.
+      other_invite: Xem thêm %{count} lời mời
+      other_invites: Xem thêm %{count} lời mời
+      reason: Lý do
+      reason_for_cancel: Lý do hủy bỏ
+      reason_for_reschedule: Lý do để lên lịch lại
+      request_cancellation_failed: 'Không thể yêu cầu hủy: %{error}'
+      request_cancellation_success: Đã yêu cầu hủy thành công
+      request_reschedule_failed: 'Không thể yêu cầu lên lịch lại: %{error}'
+      request_reschedule_success: Đã yêu cầu đổi lịch thành công
+      reschedule_failed_msg: 'Không thể lên lịch lại: %{error}'
+      reschedule_reason_placeholder: Để tiếp tục, vui lòng nhập lý do đổi lịch.
+      schedule_success: Đặt phòng này được lên lịch
+      schedule_success_msg: Chúng tôi đã gửi email cho bạn và những người tham dự khác một lời mời lịch trình với đầy đủ thông tin chi tiết.
+      starts_at: 'Bắt đầu tại: %{date}'
+      starts_in: 'Bắt đầu vào:'
+      tab_label:
+        bookings: Đặt chỗ
+        invites: Lời mời
+      what: Cái gì
+      when: Khi
+      workshop_start_text: Trung tâm đánh giá của bạn sẽ bắt đầu vào
+    break_time: Giờ nghỉ giải lao
+    campaign:
+      actions:
+        remove:
+          confirmation: Nhập tên chiến dịch hiện tại được đưa ra bên dưới vào hộp văn bản để xóa chiến dịch
+          success: "%{campaignName} đã được xóa thành công."
+      users:
+        completion_statuses:
+          completed: Hoàn thành
+          in_progress: Đang tiến hành
+          not_started: Chưa bắt đầu
+    change_password: Thay đổi mật khẩu
+    delete: Xóa bỏ
+    edit: Biên tập
+    lighthouse_app: Ngọn hải đăng Mercer
+    login: Đăng nhập
+    manage: Quản lý
+    'no': KHÔNG
+    resource:
+      create_success: "%{readableResourceName} đã được thêm thành công"
+      update_success: "%{readableResourceName} đã được cập nhật thành công"
+    session_timeout_modal:
+      buttons:
+        close: Đóng
+        log_out: Đăng xuất ngay
+        re_login: Đăng nhập lại
+        stay_logged_in: Giữ đăng nhập
+      message: Phiên của bạn sẽ hết hạn sau 2 phút do không hoạt động. Vui lòng nhấp vào &#39;Giữ đăng nhập&#39; để tiếp tục phiên của bạn, nếu không bạn sẽ tự động bị đăng xuất.
+      message_after_timeout: Phiên làm việc của bạn đã hết thời gian, vui lòng đăng nhập lại.
+      time_remaining: Thời gian còn lại
+      title: Cảnh báo hết thời gian phiên
+    update: Cập nhật
+    upload: Tải lên
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Đã hủy
+        requested_cancellation: Yêu cầu hủy bỏ
+        requested_cancellation_rejected: Yêu cầu hủy bỏ bị từ chối
+        requested_rescheduling: Yêu cầu lên lịch lại
+        requested_rescheduling_rejected: Yêu cầu lên lịch lại bị từ chối
+    'yes': Đúng
+  idp_templates:
+    errors:
+      user_idp_template_not_found: Bạn chưa được chỉ định mẫu IDP nào.
+  mailer:
+    magic_link:
+      body:
+        dear: Kính gửi %{name},
+        greetings: Xin chào ngày mới!
+        instructions: Nhấp vào liên kết bên dưới để đăng nhập vào lighthouse.
+        signin_link: Liên kết đăng nhập
+      subject: Liên kết đăng nhập cho Lighthouse
+  navigation:
+    logout: Đăng xuất
+  profile:
+    add_field: Thêm trường
+    add_photo: Thêm ảnh
+    age: Tuổi
+    change_password: Thay đổi mật khẩu
+    change_photo: Thay đổi ảnh
+    email: E-mail
+    female: Nữ giới
+    first_name: Tên đầu tiên
+    gender: Giới tính
+    incomplete: Chi tiết hồ sơ của bạn chưa đầy đủ. Vui lòng hoàn thành chi tiết hồ sơ của bạn
+    last_name: Họ
+    locale: Ngôn ngữ ưa thích
+    male: Nam giới
+    mandatory_fields: Chỉ định các trường bắt buộc
+    not_disclosed: Không muốn tiết lộ
+    old_data: Dữ liệu hồ sơ của bạn đã %{months} tháng tuổi. Vui lòng xác nhận thông tin chi tiết để tiếp tục
+    password: Mật khẩu
+    password_confirmation: Xác nhận mật khẩu
+    success_update: Hồ sơ đã được lưu thành công
+    timezone: Múi giờ
+    title: Hồ sơ của tôi
+    update: Cập nhật
+    update_required: Yêu cầu cập nhật hồ sơ
+  reports:
+    actions:
+      add: Thêm báo cáo
+      download: Tải báo cáo
+      view: Xem báo cáo
+    modules:
+      campaign_factors_table:
+        add_condition: Thêm điều kiện
+        baseline_score: Điểm cơ bản
+        blindspots: Điểm mù
+        campaign_factor_conditions: Điều kiện của yếu tố chiến dịch
+        cancel: Hủy bỏ
+        color: Màu sắc
+        delete: Xóa bỏ
+        description: Sự miêu tả
+        if: Nếu như
+        label: Nhãn
+        no_conditions: Không có điều kiện
+        save: Cứu
+        strengths: Điểm mạnh
+        then: Sau đó hiển thị văn bản sau
+        title: Tiêu đề
+      factors_table:
+        description: Sự miêu tả
+        no_data: Không có dữ liệu nào có sẵn cho phần này.
+        rank: Thứ hạng
+        score: Điểm
+      gap_assessment:
+        gap: Khoảng cách
+        item: Chỉ số
+        negative_gap: Khoảng cách tiêu cực
+        no_negative_gaps: Không có khoảng cách tiêu cực
+        no_positive_gaps: Không có khoảng cách tích cực
+        positive_gap: Khoảng cách tích cực
+        rank: Thứ hạng
+        scoring_category: Năng lực
+      highest_lowest:
+        bottom_5: DƯỚI 5
+        category: Loại
+        highest_scores: Điểm cao nhất
+        item: Chỉ số
+        lowest_scores: Điểm thấp nhất
+        mean_score: Điểm trung bình
+        rank: Thứ hạng
+        scoring_category: Năng lực
+        sub_competenties: Năng lực phụ
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: Điểm mạnh nghề nghiệp và kết quả của bạn
+        career_sub_tracks: Các chuyên ngành phụ của sự nghiệp
+        key_career_tracks_within: Dưới đây là danh sách các vai trò công việc tiềm năng cho từng hướng nghề nghiệp. Hãy nhớ rằng danh sách này chỉ mang tính chất tham khảo và không đầy đủ. Xin lưu ý rằng các vai trò in nghiêng yêu cầu trình độ học vấn và/hoặc kinh nghiệm cao hơn.
+        potential_areas_of_study: Các lĩnh vực nghiên cứu tiềm năng
+        strength_high: Sức mạnh chữ ký
+        strength_low: Sức mạnh phát triển
+        strength_moderate: Sức mạnh tiềm tàng
+        work_environment: Môi trường làm việc
+        your_suitability: Sự phù hợp của bạn
+      single_value:
+        factor_name: Thể loại chấm điểm
+        question_name: Câu hỏi
+      single_value_cluster:
+        competency: Năng lực
+        developmental_rating: Đánh giá phát triển
+        questions: Câu hỏi
+      strength_clusters:
+        index_sub_factors_considered: Các yếu tố phụ của Chỉ số thịnh vượng đã được xem xét để cung cấp điểm số cuối cùng của bạn cho môi trường làm việc %{workstyle}
+        possible_roles: Vai trò có thể
+        work_environments: Môi trường làm việc mong đợi
+      three_sixty_default:
+        factor:
+          items: Mặt hàng
+          max: Giá trị tối đa
+          mean: Nghĩa là
+          min: Giá trị tối thiểu
+          standardDeviation: Độ lệch chuẩn
+          sum: Tổng
+          totalResponses: Tổng số phản hồi
+          variance: Phương sai
+          weightedMean: Trung bình có trọng số
+        question:
+          no_response: Không có phản hồi nào có sẵn
+        statistic: Thống kê
+        value: Giá trị
+      three_sixty_report_summary:
+        completed: Hoàn thành
+        footnote: "* Không bao gồm do yêu cầu ngưỡng tối thiểu"
+        invited: Được mời
+        relationships: Mối quan hệ
+        total: Tổng cộng
+      video_response:
+        no_results: Không có video nào được ghi lại
+    show:
+      export_pdf: Xuất sang PDF
+      header: Báo cáo
+    statuses:
+      approved: Tán thành
+      available: Có sẵn
+      denied: Từ chối
+      incomplete: Chưa hoàn thành
+      not_available: Không có sẵn
+      on_hold: Đang giữ
+      released: Phát hành
+  shared:
+    filters:
+      clear: Xóa bộ lọc
+    internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
+    terms_conditions_privacy: Tuyên bố về quyền riêng tư
+    tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
+  simple_form:
+    placeholders:
+      administrator:
+        email: Địa chỉ Email
+        last_name: Họ
+      memebrship:
+        last_name: Họ
+      user:
+        email: Địa chỉ Email
+        first_name: Tên đầu tiên
+        last_name: Họ
+        password: Mật khẩu
+      user_form:
+        email: Địa chỉ Email
+        first_name: Tên đầu tiên
+        last_name: Họ
+        password: Mật khẩu
+  subjects:
+    approval_statuses:
+      approved: Tán thành
+      denied: Từ chối
+      waiting: Cần sự chấp thuận
+    report_approval_status:
+      approved: Tán thành
+      denied: Từ chối
+      waiting: Chờ
+    report_release_status:
+      on_hold: Đang tạm dừng
+      released: Phát hành
+      waiting: Chờ
+    report_statuses:
+      approved: Tán thành
+      available: Có sẵn
+      denied: Từ chối
+      incomplete: Chưa hoàn thành
+      not_available: Không có sẵn
+      not_prepared: Chưa sẵn sàng
+      on_hold: Đang tạm dừng
+      prepared: Xong
+      released: Phát hành
+    statuses:
+      completed: Hoàn thành
+      declined: Từ chối
+      denied: Từ chối
+      done: Xong
+      not_completed: Chưa hoàn thành
+      waiting: Chờ
+  threesixty:
+    accept_privacy_modal:
+      accept: Chấp nhận
+      checkbox: Tôi đã đọc và hiểu Chính sách bảo mật được đề cập ở trên
+      title: Sự đồng ý xử lý dữ liệu
+    action: Hoạt động
+    add: Thêm vào
+    and: Và
+    approve_all: Phê duyệt tất cả
+    approve_all_successful: Đã chấp thuận tất cả các đề cử
+    approve_evaluations: Phê duyệt Đánh giá
+    approve_nominations: Phê duyệt đề cử
+    approve_reports: Phê duyệt báo cáo
+    approved: Tán thành
+    approving_mail_sent: Thư chấp thuận đề cử đã được gửi đến các nhà quản lý
+    as_my: như của tôi
+    assessment: Đánh giá
+    back_to_tasks: Quay lại nhiệm vụ
+    begin: Bắt đầu
+    cancel: Hủy bỏ
+    close_evaluation_modal:
+      message: Sau khi bạn xem báo cáo, %{pronoun_or_name} sẽ không thể nhận được bất kỳ đánh giá nào nữa
+      title: Bạn có chắc chắn muốn xem báo cáo không?
+    closed_campaign_message: Chiến dịch 360 này đã kết thúc. Bạn không thể đề cử hoặc đánh giá bất kỳ ai cho chiến dịch này.
+    completed: Hoàn thành
+    confirm: Bạn có chắc không?
+    confirmation_for_nomination_removal: Bạn có chắc chắn muốn xóa đề cử không?
+    confirmation_required: Cần xác nhận
+    confirmation_text_incorrect: Văn bản xác nhận không đúng
+    confirmation_text_placeholder: Văn bản xác nhận ở đây
+    continue: Tiếp tục
+    dashboard_title: Chào mừng %{name}
+    decline: Sự suy sụp
+    decline_invite: Từ chối lời mời
+    denied: Từ chối
+    deny_all: Từ chối tất cả
+    deny_all_successful: Từ chối tất cả các đề cử
+    download_pdf: Tải xuống PDF
+    download_report: Tải xuống báo cáo
+    download_reports: Tải xuống báo cáo
+    edit_user: Chỉnh sửa người dùng
+    email_approve_request: Yêu cầu phê duyệt email
+    email_schedules:
+      delete_successful: Lịch trình email đã được xóa thành công
+    evaluate: Đánh giá
+    evaluation: Sự đánh giá
+    evaluation_all_closed_message: Hiện tại tất cả các đề cử đang chờ phê duyệt
+    evaluation_closed_nomination_message: Bạn không thể đề cử cho chủ đề này vì thời gian đánh giá cho chủ đề này đã đóng
+    evaluation_help_modal:
+      title: Trợ giúp đánh giá
+    evaluations: Đánh giá
+    evaluator: Người đánh giá
+    export_pdf: Xuất PDF
+    first_name: Tên đầu tiên
+    first_name_error: Vui lòng nhập Tên
+    help: Giúp đỡ
+    language: Ngôn ngữ
+    last_name: Họ
+    last_name_error: Vui lòng nhập Họ
+    load_results: Tải kết quả
+    mail_history:
+      statuses:
+        success: Thành công
+        undelivered: Chưa giao hàng
+    my_projects: Dự án của tôi
+    name_label: Tên
+    nominate: Đề cử
+    nominate_evaluators: Đề cử Người đánh giá
+    nomination: Đề cử
+    nomination_help_modal:
+      title: Trợ giúp đề cử
+    nomination_predicates:
+      atleast: Ít nhất %{count}
+      atmost: Tối đa %{count}
+      exactly: Chính xác %{count}
+    nominations: Đề cử
+    options:
+      global:
+        cannot_re_edit: Người tham gia không thể chỉnh sửa đánh giá
+    or: Hoặc
+    page_title: Đánh giá Signify 360° - Áp dụng Cấp độ
+    participant_list:
+      actions:
+        approve_report: Phê duyệt báo cáo
+        download_report: Tải xuống báo cáo
+        edit: Biên tập
+        hold_report: Giữ báo cáo
+        login: Đăng nhập
+        mark_as_done: Đánh dấu là đã xong
+        release_report: Báo cáo phát hành
+        remove_campaign: Xóa khỏi chiến dịch
+        remove_report_approval: Xóa phê duyệt báo cáo
+        remove_report_hold_release_report: Xóa Báo cáo Giữ/Phát hành
+        remove_subject: Xóa chủ đề
+        unmark_as_done: Bỏ đánh dấu là xong
+        view_report: Xem báo cáo
+        view_responses: Xem phản hồi
+      confirmation_messages:
+        approve_report: Bạn có chắc chắn muốn chấp thuận báo cáo không?
+        hold_report: Bạn có chắc chắn muốn giữ báo cáo không?
+        mark_evaluation_done: Bạn có chắc chắn muốn đánh dấu đánh giá là đã hoàn thành không? Đánh giá sẽ đóng cho chủ đề này.
+        release_report: Bạn có chắc chắn muốn phát hành báo cáo không?
+        remove_from_campaign: Bạn có chắc chắn muốn xóa người dùng khỏi chiến dịch không?
+        remove_release_hold: Bạn có chắc chắn muốn xóa trạng thái Phát hành/Giữ không?
+        remove_report_approval: Bạn có chắc chắn muốn xóa phê duyệt báo cáo không?
+        remove_subject: Bạn có chắc chắn muốn xóa chủ đề có email khỏi chiến dịch không?
+        umark_evaluation_as_complete: Bạn có chắc chắn muốn bỏ đánh giá là đã hoàn tất không?
+      report_generation_message: Báo cáo đang được tạo. Chúng tôi sẽ thông báo cho bạn khi báo cáo đã sẵn sàng.
+    processing: Xử lý
+    processing_report: Báo cáo xử lý
+    progress_text: "%{completed} trong tổng số %{total}"
+    question:
+      chat_type:
+        input_placeholder: Viết tin nhắn của bạn...
+      email_type:
+        bcc: Bcc
+        cc: Đồng hồ
+        edit: Biên tập
+        max_length_warning: Còn lại %{x} ký tự
+        message: Tin nhắn của bạn
+        send: Gửi
+        subject: Chủ thể
+        successful_message: Bạn đã gửi email thành công
+        to: ĐẾN
+    remind_all: Nhắc nhở tất cả
+    remind_mail_sent: Lời nhắc nhở được gửi đến những người đánh giá chưa hoàn thành việc đánh giá
+    report_for: Báo cáo cho
+    report_generation_in_progress: Báo cáo đang được tạo. Chúng tôi sẽ thông báo cho bạn khi báo cáo đã sẵn sàng.
+    reports: Báo cáo
+    reports_help_modal:
+      title: Báo cáo trợ giúp
+    reset_campaign_confirmation: Nhập tên chiến dịch hiện tại được đưa ra bên dưới vào hộp văn bản để thiết lập lại tất cả người tham gia
+    reset_nomination_confirmation: Nhập tên chiến dịch hiện tại được đưa ra bên dưới vào hộp văn bản để thiết lập lại tất cả các đề cử
+    save: Cứu
+    select_relationnship: Chọn mối quan hệ
+    select_relationship: Chọn mối quan hệ
+    self: Bản thân
+    set_name_for_evaluator: Đặt tên cho Người đánh giá
+    setup_nominations: Thiết lập đề cử
+    subject: Chủ thể
+    submit: Nộp
+    total_progress: Tổng tiến độ
+    user_name_input_placeholder: nhập tên hoặc email...
+    validation_errors: Lỗi xác thực
+    view_my_report: Xem báo cáo của tôi
+    view_nominations: Xem đề cử
+    view_reports: Xem báo cáo
+    waiting: Chờ
+    you: Bạn
+    yourself: Bản thân bạn
+  user:
+    fields:
+      email: Địa chỉ Email
+      first_name: Tên đầu tiên
+      last_name: Họ
+  user_assessments:
+    redirect: Bạn sẽ được chuyển hướng đến trang web của bên thứ ba để đánh giá này. Vui lòng nhấp vào tiếp tục nếu bạn muốn bắt đầu đánh giá.
+  user_reports:
+    actions:
+      regenerate: Tái tạo
+    messages:
+      regenerate_successful: Báo cáo công việc tái tạo đã được lên lịch thành công
+    modals:
+      remove:
+        content: Bạn có chắc chắn muốn xóa báo cáo %{userReportName} không?
+        successfully: Báo cáo %{userReportName} đã được xóa thành công
+    preview_report: Xem trước báo cáo
+    statuses:
+      generating: Tạo ra
+      not_prepared: Không có sẵn
+      prepared: Có sẵn
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Âm thanh được ghi lại nhưng không được lưu
+        RECORDING: Đang ghi âm
+        SAVING: Đang tải lên bản ghi âm
+      required: Vui lòng ghi âm và lưu lại âm thanh trước khi bạn tiếp tục
+    FileUpload:
+      in_progress:
+        SAVING: Đang tải tập tin lên
+      required: Vui lòng tải tập tin lên
+    TextEntry:
+      Email:
+        character_range: Nội dung email nhập vào phải có độ dài ít nhất là %{min} và không quá %{max} ký tự.
+        subject:
+          min_length: Trường chủ đề phải có tối thiểu 10 ký tự
+        to:
+          required: Để trường được yêu cầu
+    VideoResponse:
+      in_progress:
+        recorded: Video đã được ghi lại nhưng không được lưu
+        recording: Đang ghi hình video
+        saving: Đang tải lên video đã ghi
+      required: Vui lòng ghi lại và lưu video trước khi bạn tiếp tục
+    actions_still_in_progress: Các hành động bên dưới đang được tiến hành. Nếu bạn tiếp tục, bạn sẽ mất những dữ liệu này.
+    blank: không thể để trống
+    character_count: 'Số lượng ký tự '
+    character_range: Phản hồi của bạn phải dài ít nhất %{min} và không quá %{max} ký tự.
+    date: Phản hồi của bạn phải là ngày hợp lệ (mm/dd/yyyy)
+    each_group_contains: Mỗi nhóm cần chứa không ít hơn %{min} và không nhiều hơn %{max} mục
+    email: Phản hồi của bạn phải là một email hợp lệ
+    exact: Vui lòng chọn chính xác %{count} lựa chọn
+    file_upload:
+      EntityTooLarge: Kích thước tệp phải nhỏ hơn %{maxFileSize} MB
+      WrongFileType: Loại tệp phải là một trong những loại sau %{allowedFileTypes}
+    issue: Vấn đề
+    least: Vui lòng trả lời ít nhất %{min} lựa chọn.
+    least_hotspot: Vui lòng trả lời ít nhất %{min} lựa chọn.
+    max_character: Câu trả lời của bạn không được dài quá %{max} ký tự.
+    max_word: Câu trả lời của bạn không được dài quá %{max} từ.
+    min_character: Phản hồi của bạn phải chứa ít nhất %{min} ký tự.
+    min_word: Câu trả lời của bạn phải dài ít nhất %{min} từ
+    most:
+      other: Vui lòng chọn tối đa %{max} lựa chọn
+    must_rank_between: Vui lòng chỉ định giá trị từ %{min} đến %{max} cho mỗi mục. Giá trị không được lặp lại.
+    must_select: Vui lòng chọn từ %{min} đến %{max} lựa chọn
+    number: Câu trả lời của bạn phải là một con số
+    photo: yêu cầu
+    range: Vui lòng trả lời ít nhất %{min} và không quá %{max} lựa chọn.
+    required: Xin hãy trả lời câu hỏi này
+    text: Câu trả lời của bạn không được chứa số
+    title:
+      one: Có một lỗi, vui lòng kiểm tra lại phản hồi của bạn
+      other: Có %{count} lỗi, vui lòng kiểm tra lại phản hồi của bạn
+    word_count: 'Số lượng từ '
+    word_range: Câu trả lời của bạn phải dài ít nhất %{min} và không quá %{max} từ.
+  'yes': Đúng
+  your: Của bạn
+  yourself: Bản thân bạn

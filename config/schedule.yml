@@ -76,11 +76,6 @@ load_pearson_assessments_to_table:
   class: Pearson::LoadAssessmentsToTableJob
   queue_as: cron_tasks
 
-dashboard_auto_refresh:
-  cron: "*/5 * * * *" # At every 5th minute
-  class: Dashboards::AutoRefresh
-  queue: cron_tasks
-
 recalculate_proctoring_credits:
   cron: "*/10 * * * *" # Every 10 minutes
   class: Licenses::RecalculateProctoringCredits

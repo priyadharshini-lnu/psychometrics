@@ -1087,6 +1087,7 @@ fr:
       modal:
         delete:
           cancel: Annuler
+          cannot_delete_with_workshops: Impossible de supprimer un groupe contenant des ateliers, il faut d'abord supprimer les ateliers.
           failed: Échec de la suppression du groupe "%{name}", veuillez contacter l'administrateur
           ok: Oui, supprimer
           text: Êtes-vous sûr de vouloir supprimer le groupe "%{name}" ?
@@ -1644,7 +1645,7 @@ fr:
       verify: Vérifier
       view: Voir
       view_all_tasks: Voir toutes les tâches
-      view_details: Afficher les détails
+      view_detail: Voir le détail
     column:
       action: Action
       active: Actif
@@ -2170,6 +2171,7 @@ fr:
       neurodivergence_comment_aria_label: Commentaires sur la neurodivergence
       neurodivergence_comment_placeholder: Vos commentaires
       neurodivergence_question: Avez-vous besoin d'aménagements ou d'ajustements raisonnables en raison de besoins particuliers ou de handicaps pour participer pleinement à l'évaluation ?
+      no_invites_msg: Vous serez ajouté au centre d'évaluation ou recevrez une invitation à réserver votre place. Une fois que vous ferez partie du centre, vous pourrez effectuer les activités en cliquant sur le bouton "Voir les détails" ci-dessous.
       or: ou
       other_invite: Voir %{count} plus d'invitations
       other_invites: Voir %{count} plus d'invitations
@@ -2625,75 +2627,6 @@ fr:
     zh-HK: Chinois (Hong Kong)
     zh-Hant: Chinois - Traditionnel
     zh-TW: Chinois (Taiwan)
-  languages_localized:
-    af: Afrikaans
-    ar: عربي
-    az: Azerbaïdjan
-    bg: български
-    bs: bosanski
-    by: Biélorusse
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: Anglais
-    en-GB: Anglais (UK)
-    en-US: Anglais (US)
-    eo: Espéranto
-    es: Espagnol
-    es-ES: Español (españa)
-    et: Estonien
-    fa: Persan
-    fi: Finlandais
-    fr: Français
-    gu: Gujarati
-    he: Hébreu
-    hi: हिन्दी
-    hr: Croate
-    hu: Hongrois
-    id: Bahasa Indonesia
-    it: italien
-    ja: 日本語
-    km: Khmer
-    ko: Coréen
-    lt: Lituanien
-    lv: Letton
-    mk: Macédonien
-    mn: Mongol
-    ms: Malaisie
-    my: Myanmar
-    nb: Norvégien Bokmål
-    nl: Néerlandais
-    'no': Norvégien
-    pl: Polski
-    pt: Português
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brasil)
-    ro: Roumain
-    ru: Russie
-    sk: Slovaque
-    sl: Slovène
-    sr-Cyrl: Cyrillique serbe
-    sr-Latn: Serbe latin
-    sv: Suédois
-    sw: Swahili
-    ta: Tamoul
-    th: Thaïlande
-    tl: Tagalog
-    tr: Turc
-    ua: Ukrainien
-    uk: Ukrainien
-    ur: Urdu
-    vi: Vietnamien
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Actif
     campaign_name: Nom de la campagne
@@ -3853,6 +3786,7 @@ fr:
     not_in_future: La date sélectionnée ne doit pas être dans le futur
     not_in_past: La date sélectionnée ne doit pas être dans le passé
     number: Votre réponse doit être un nombre
+    photo: requis
     range: Veuillez répondre à un minimum de %{min} et à un maximum de %{max} de choix.
     required: Veuillez répondre à cette question
     text: Votre réponse ne doit pas contenir de chiffres

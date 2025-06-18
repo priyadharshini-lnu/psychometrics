@@ -109,6 +109,11 @@ en-US:
         frame: Please make sure that your face aligns with the frame
         ready: Press the Record button when ready to record
     wait: Wait
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: Cannot delete group containing workshops, delete workshops first
   auth:
     current_password: Current Password
     current_password_placeholder: Enter Current Password
@@ -366,7 +371,7 @@ en-US:
       upload: Upload
       verify: Verify
       view_all_tasks: View all tasks
-      view_details: View Details
+      view_detail: View Detail
     column:
       action: Action
       category: Category
@@ -508,6 +513,7 @@ en-US:
       need_changes: Need to make the changes?
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
+      no_invites_msg: You will be added to the assessment center or receive an invite to book your slot; once you're part of the center, you can complete the activities by clicking the 'View Detail' button below.
       other_invite: See %{count} more invite
       other_invites: See %{count} more invites
       reason: Reason
@@ -792,6 +798,7 @@ en-US:
     last_name: Last Name
     locale: Preferred Language
     male: Male
+    mandatory_fields: Indicates mandatory fields
     not_disclosed: Prefer not to disclose
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
@@ -1160,8 +1167,7 @@ en-US:
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
-    exact:
-      one: Please select exactly %{count} choice(s)
+    exact: Please select exactly %{count} choice(s)
     file_upload:
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}

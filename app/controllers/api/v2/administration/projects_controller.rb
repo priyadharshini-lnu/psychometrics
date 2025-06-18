@@ -2,9 +2,9 @@
 
 module Api
   class V2::Administration::ProjectsController < Api::V2::Administration::BaseController
-    validates_request_schema :update, Api::V2::Projects::UpdateContract.new
-    validates_request_schema :create, Api::V2::Projects::CreateContract.new
-    validates_request_schema :add_manager, Api::V2::Projects::AddManagerContract.new
+    validates_request_schema :update, -> { Api::V2::Projects::UpdateContract.new }
+    validates_request_schema :create, -> { Api::V2::Projects::CreateContract.new }
+    validates_request_schema :add_manager, -> { Api::V2::Projects::AddManagerContract.new }
 
     validate_crud_requests Api::V2::Projects::Schema
 

@@ -27,10 +27,13 @@ module Administration
       end
 
       def destroy
-        ::CampaignAssessmentGroups::Destroy.call!(campaign, resource)
-        audit! :delete, campaign, campaign: campaign, payload: resource.log_attribute_for_delete
-
-        render json: params[:id]
+        ::CampaignAssessmentGroups::Destroy.call!(campaign, resource) do
+          on(:ok) do
+            audit! :delete, campaign, campaign: campaign, payload: resource.log_attribute_for_delete
+            render json: params[:id]
+          end
+          on(:error) { |errors| return render json: { errors: errors }, status: 400 }
+        end
       end
 
       def update_positions

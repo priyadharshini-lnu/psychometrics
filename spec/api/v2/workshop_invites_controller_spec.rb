@@ -10,10 +10,11 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
   let!(:superadmin) { create(:superadmin) }
   let!(:workshop) { create(:workshop, campaign: campaign) }
   let!(:workshop2) { create(:workshop, campaign: campaign) }
-  let!(:workshop_invite) { create(:workshop_invite) }
+  let!(:workshop_invite) { create(:workshop_invite, campaign_assessment_group: campaign_assessment_group) }
   let!(:workshop_invite_id) { workshop_invite.id }
   let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
   let!(:user1) { create(:user, email: 'user1@test.test') }
+  let!(:campaign_assessment_group) { create(:campaign_assessment_group, campaign: campaign) }
 
   before do
     sign_in(superadmin)
@@ -41,7 +42,9 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
               description: 'Workshop description',
               subjects_count: 1,
               allow_language_preference: true,
-              allow_neurodiversity_option: true
+              allow_neurodiversity_option: true,
+              campaign_assessment_group_id: '1',
+              campaign_assessment_group_name: 'Group Name'
             }
           }
         }]
@@ -56,8 +59,13 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
   end
 
   path '/campaigns/{campaign_id}/workshop_invites' do
-    before { create(:campaign_user, campaign: campaign, user: user1) }
+    before do
+      create(:campaign_user, campaign: campaign, user: user1)
+    end
+
     post 'Create a Workshop Invite' do
+      let(:campaign_assessment_group) { create(:campaign_assessment_group, campaign: campaign) }
+
       operationId 'CreateWorkshop'
       description 'Create new Workshop'
       tags 'Workshops'
@@ -70,24 +78,29 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
 
       response '200', 'Workshop Created' do
         schema '$ref' => '#/components/schemas/WorkshopInviteResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'workshop_invites',
-            attributes: {
-              title: 'Workshop title',
-              description: 'Workshop description',
-              subjects_count: 1,
-              allow_language_preference: true,
-              allow_neurodiversity_option: true,
-              subjects: [{ user_id: '111' }],
-              translations: [
-                { locale: 'en', title: 'title', description: 'description' },
-                { locale: 'ar', title: 'arabic', description: 'ar_description' }
-              ],
-              workshop_ids: ['1']
+
+        let(:example_response) do
+          {
+            data: {
+              type: 'workshop_invites',
+              attributes: {
+                title: 'Workshop title',
+                description: 'Workshop description',
+                subjects_count: 1,
+                allow_language_preference: true,
+                allow_neurodiversity_option: true,
+                subjects: [{ user_id: '111' }],
+                translations: [
+                  { locale: 'en', title: 'title', description: 'description' },
+                  { locale: 'ar', title: 'arabic', description: 'ar_description' }
+                ],
+                workshop_ids: ['1']
+              }
             }
           }
-        }
+        end
+
+        examples 'application/json' => :example_response
 
         let(:body) do
           {
@@ -97,6 +110,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
                 allow_language_preference: true,
                 allow_neurodiversity_option: true,
                 allowed_languages: [],
+                campaign_assessment_group_id: campaign_assessment_group.id.to_s,
                 subjects: [{ user_id: user1.id.to_s }],
                 translations: [
                   { locale: 'en', title: 'title', description: 'description' },
@@ -123,6 +137,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
           expect(workshop_invite.workshops.count).to eq(2)
           expect(workshop_invite.workshops).to include(workshop)
           expect(workshop_invite.workshops).to include(workshop2)
+          expect(workshop_invite.campaign_assessment_group_id).to eq(campaign_assessment_group.id)
         end
       end
     end

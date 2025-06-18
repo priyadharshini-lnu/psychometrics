@@ -106,9 +106,6 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   ), [assessments])
 
   const sortedGroups = useMemo(() => groups.sort((groupA, groupB) => groupA.position - groupB.position), [groups])
-  const isAssessmentCenterGroup = useMemo(() => sortedGroups.some(
-    group => group.groupType === 'assessment_center',
-  ), [sortedGroups])
 
   const prefixedUngroupedAssessmentIds = useMemo(() => (unGroupedAssessments
     .sort((groupA, groupB) => groupA.position - groupB.position)
@@ -257,6 +254,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
       id: item.id,
       position: item.position,
       campaign_assessment_group_id: item.campaignAssessmentGroupId,
+      workshop_activity_duration: item.workshopActivityDuration,
     }))
 
     updateAssessmentPosition(parsedCampaignId, requestPayload)
@@ -282,7 +280,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     over: Over | null,
     overContainer: string,
     activeContainer: string,
-    duration: string | null,
+    duration: string | number | null,
   ) => {
     let overItems: CampaignAssessment[]
     let activeItems: CampaignAssessment[]
@@ -464,14 +462,16 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     }
 
     if (activeContainer !== overContainer) {
-      if (isAssessmentCenterGroup) {
-        const droppedOntoGroupId = getItemIdFromSortingId(overContainer)
-        const groupDroppedOnto = groups.find(group => group.id === droppedOntoGroupId)
-        if (groupDroppedOnto?.groupType === 'assessment_center') {
-          return handleDropOntoAssessmentCenter(active, over, overContainer, activeContainer)
-        }
+      const activeAssessment = assessments.find(assessment => assessment.id === getItemIdFromSortingId(active.id))
+      const activeItemHasWorkshopDuration = activeAssessment && !!activeAssessment.workshopActivityDuration
+      const droppedOntoGroupId = getItemIdFromSortingId(overContainer)
+      const groupDroppedOnto = groups.find(group => group.id === droppedOntoGroupId)
+      if (groupDroppedOnto?.groupType === 'assessment_center' && !activeItemHasWorkshopDuration) {
+        return handleDropOntoAssessmentCenter(active, over, overContainer, activeContainer)
       }
-      handleAssessmentDropInDiffGroup(active, over, overContainer, activeContainer, null)
+      handleAssessmentDropInDiffGroup(
+        active, over, overContainer, activeContainer, activeAssessment?.workshopActivityDuration || null,
+      )
     }
     return null
   }
@@ -523,6 +523,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
               const prefixedAssessmentIds = sortedGroupedAssessments.map(
                 groupedAssessment => `${ASSESSMENT_ID_PREFIX}${groupedAssessment.id}`,
               )
+              const isAssessmentCenterGroup = group.groupType === 'assessment_center'
 
               return (
                 <Col xs={24} sm={24} md={12} lg={8} key={group.id}>
@@ -552,12 +553,12 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                               sortId={`${ASSESSMENT_ID_PREFIX}${groupedAssessment.id}`}
                               assessment={groupedAssessment}
                               key={groupedAssessment.id}
-                              onEditScheduleTime={() => {
+                              onEditScheduleTime={isAssessmentCenterGroup ? () => {
                                 openModal('AddWorkshopActivityDurationModal', {
                                   onAddScheduleTime: duration => handleEditScheduleTime(groupedAssessment, duration),
                                   workshopActivityDuration: groupedAssessment.workshopActivityDuration,
                                 })
-                              }}
+                              } : undefined}
                             />
                           </Row>
                           <br />
@@ -577,40 +578,78 @@ const SequencingComponent: FC<PropsFromRedux> = ({
         </Row>
         {createPortal(
           <DragOverlay adjustScale={false} dropAnimation={dropAnimation}>
-            {
-              // eslint-disable-next-line no-nested-ternary
-              activeId ? (
-                activeId in prefixedGroupWithPrefixedAssessmentIds ? (
-                  <GroupedAssessmentContainer
-                    group={getGroupById(groups, getItemIdFromSortingId(activeId), 'id')}
-                    assessmentCount={getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).length}
-                    isLoading={false}
-                  >
-                    {getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).map(groupedAssessment => (
-                      <Fragment key={groupedAssessment.id}>
-                        <Row gutter={[8, 8]}>
-                          <Assessment span={24} assessment={groupedAssessment} />
-                        </Row>
-                        <br />
-                      </Fragment>
-                    ))}
-                  </GroupedAssessmentContainer>
-                ) : (
-                  <Assessment
-                    assessment={[...assessments].find((assessment) => {
-                      const dragIdNum = getItemIdFromSortingId(activeId)
-                      return assessment.id === dragIdNum
-                    })}
-                  />
-                )
-              ) : null
-            }
+            {activeId ? (
+              <DragOverlayComponent
+                groups={groups}
+                activeId={activeId}
+                assessments={assessments}
+                prefixedGroupWithPrefixedAssessmentIds={prefixedGroupWithPrefixedAssessmentIds}
+              />
+            ) : null}
           </DragOverlay>,
           document.body,
         )}
       </DndContext>
       <Modals modals={MODALS} />
     </section>
+  )
+}
+
+type DragOverlayComponentProps = {
+  groups: CampaignAssessmentGroup[]
+  activeId: string
+  assessments: CampaignAssessment[]
+  prefixedGroupWithPrefixedAssessmentIds: Record<string, string>
+}
+
+const DragOverlayComponent:FC<DragOverlayComponentProps> = ({
+  groups, activeId, assessments, prefixedGroupWithPrefixedAssessmentIds,
+}) => {
+  const isGroupOverlay = activeId in prefixedGroupWithPrefixedAssessmentIds
+  let activeGroup: CampaignAssessmentGroup | undefined = getGroupById(groups, getItemIdFromSortingId(activeId), 'id')
+  let activeAssessment: CampaignAssessment | undefined
+  if (!isGroupOverlay) {
+    activeAssessment = [...assessments].find((assessment) => {
+      const dragIdNum = getItemIdFromSortingId(activeId)
+      return assessment.id === dragIdNum
+    })
+    activeGroup = groups.find(group => group.id === activeAssessment?.campaignAssessmentGroupId)
+  }
+  const isAssessmentCenter = activeGroup?.groupType === 'assessment_center'
+
+  return (
+    <>
+      {
+        isGroupOverlay && activeGroup ? (
+          <GroupedAssessmentContainer
+            group={activeGroup}
+            assessmentCount={getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).length}
+            isLoading={false}
+          >
+            {getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).map(groupedAssessment => (
+              <Fragment key={groupedAssessment.id}>
+                <Row gutter={[8, 8]}>
+                  <Assessment
+                    onEditScheduleTime={isAssessmentCenter ? () => null : undefined}
+                    span={24}
+                    assessment={groupedAssessment}
+                  />
+                </Row>
+                <br />
+              </Fragment>
+            ))}
+          </GroupedAssessmentContainer>
+        ) : (
+          <Assessment
+            assessment={[...assessments].find((assessment) => {
+              const dragIdNum = getItemIdFromSortingId(activeId)
+              return assessment.id === dragIdNum
+            })}
+            onEditScheduleTime={isAssessmentCenter ? () => null : undefined}
+          />
+        )
+      }
+    </>
   )
 }
 

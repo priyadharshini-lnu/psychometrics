@@ -12,6 +12,7 @@ module Administration
             required(:name).filled(:str?)
             required(:assessment_id).filled(:int?)
             required(:linked_activity_id).maybe(:str?)
+            required(:linked_activity_name).maybe(:str?)
           end
         end
       end

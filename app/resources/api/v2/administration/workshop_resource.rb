@@ -33,7 +33,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
     results
   }
 
-  ransack_filters %i[search_query workshop_invited_subjects_user_id_eq]
+  ransack_filters %i[search_query workshop_invited_subjects_user_id_eq campaign_assessment_group_id_eq]
 
   def fetchable_fields
     super - %i[workshop_assessors_ids workshop_managers_ids]

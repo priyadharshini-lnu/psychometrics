@@ -36,7 +36,7 @@ const { Content } = Layout
 
 const languageOptions = locales.map(locale => ({
   key: locale,
-  label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span>,
+  label: <span lang={locale}>{I18n.t(`languages.${locale}`)}</span>,
   value: locale,
 }))
 
@@ -218,7 +218,7 @@ function ProfileComponent ({
                         validateStatus={errors?.photo ? 'error' : ''}
                         name="photo"
                         rules={[
-                          { required: requiredFields.photo, message: I18n.t('simple_form.required.text') },
+                          { required: requiredFields.photo, message: I18n.t('validations.photo') },
                         ]}
                       >
                         <Upload

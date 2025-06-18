@@ -289,13 +289,13 @@ ja:
               email_duplicate: Eメール欄に重複があります
               email_invalid: '行 %{row_number}: 電子メールが無効です。'
               invalid_column: 無効な列 %{name} です。
-              invalid_column_name: 列<b>"%{column}"</b>が無効です。
-              invalid_column_name_size: 列<b>"%{column}"</b>名が長すぎます (最大 64)
+              invalid_column_name: 列<b>'%{column}'</b>が無効です。
+              invalid_column_name_size: 列<b>'%{column}'</b>名が長すぎます (最大 64)
               invalid_column_type: カラムタイプはString、Text、Number、HTML、またはMarkdownでなければなりません。
               invalid_format: 無効な形式 (.xlsx)
-              invalid_number_value: <b>行#%{index}</b>列<b>"%{column}"</b>は数値ではありません。
-              invalid_string_value: <b>行#%{index}</b>列<b>"%{column}"</b>は文字列ではありません。
-              invalid_string_value_size: <b>行#%{index}</b>列<b>"%{column}"</b>が長すぎます (最大 256)
+              invalid_number_value: "<b>行#%{index}</b>列<b>'%{column}'</b>は数値ではありません。"
+              invalid_string_value: "<b>行#%{index}</b>列<b>'%{column}'</b>は文字列ではありません。"
+              invalid_string_value_size: "<b>行#%{index}</b>列<b>'%{column}'</b>が長すぎます (最大 256)"
               no_email_column: ファイルにEmailカラムが含まれていない
               non_uniq_column: 以下の非単一列 %{column} があります。
         sheet_row_form:
@@ -847,14 +847,14 @@ ja:
       add_tag:
         success_message: タグは正常に追加された
       archived:
-        success_message: アセスメント "%{name}" は正常にアーカイブされました。
+        success_message: アセスメント '%{name}' は正常にアーカイブされました。
       assessment_cache:
         remove_cache: キャッシュの削除
         success_message: キャッシュの削除に成功
       back_to_campaign: キャンペーンに戻る
       back_to_dashboard: ダッシュボードに戻る
       copy:
-        success_message: 評価 "%{name}" は正常にコピーされました。
+        success_message: 評価 '%{name}' は正常にコピーされました。
       details: 詳細
       download_csv: CSVダウンロード
       edit: 編集
@@ -871,25 +871,26 @@ ja:
       new_response: 新たな対応
       next_assessment: 次の審査に進む
       pending_tasks:
-        other:
+        one: 保留中のタスクが1つあります
+        other: 保留中のタスクが %{count} 個あります。
       re_evaluate: 再評価はこちら
       reevaluate: 再評価
       remove:
-        confirm_message: 本当に「%{名前}」という評価を削除したいのですか？
+        confirm_message: 本当に「%{name}」という評価を削除したいのですか？
         confirm_title: 要確認
         success_message: 評価 %{name} は削除されました。
       remove_tag:
         success_message: タグは正常に削除された
       rescore: 再得点する
       restore:
-        success_message: アセスメント "%{name}" は正常にリストアされました。
+        success_message: アセスメント '%{name}' は正常にリストアされました。
       show_usage: 使用法を表示
       submit_another_response: 別の回答を提出する
       submit_evaluation: 評価の提出
       translations:
         success_message: 評価翻訳が更新された
       unarchived:
-        success_message: アセスメント "%{name}" は正常にアーカイブ解除されました。
+        success_message: アセスメント '%{name}' は正常にアーカイブ解除されました。
       view: 表示
     active: アクティブ
     archived: アーカイブ
@@ -1029,7 +1030,7 @@ ja:
       fifteen_seconds_left: 残り15秒
       five_minutes_left: 残り5分
       one_minute_left: 残り1分
-      seconds_left: 残り %{秒}秒
+      seconds_left: 残り %{seconds}秒
       thirty_seconds_left: 残り30秒
       time_is_up: 時間切れ
       time_is_up_for_recording: 時間切れです。
@@ -1090,9 +1091,10 @@ ja:
       modal:
         delete:
           cancel: キャンセル
+          cannot_delete_with_workshops: ワークショップを含むグループは削除できません。
           failed: name}"グループの削除に失敗しました。
           ok: はい、削除
-          text: 本当に"%{name}"グループを削除しますか？
+          text: 本当に'%{name}'グループを削除しますか？
           title: グループ削除
       no_assessments: 評価をドラッグ・アンド・ドロップする
       no_ungrouped_assessments: ここに評価をドラッグ＆ドロップして、グループ化を解除します。
@@ -1176,7 +1178,7 @@ ja:
       login_now: 今すぐログインしてください。
       registration_code: 登録コード
       registration_code_placeholder: 登録コードを入力してください
-      terms_notice: 登録することで、<a href="%{terms_url}">利用規約とプライバシーポリシー</a>に同意したものとみなされます
+      terms_notice: 登録することで、<a href='%{terms_url}'>利用規約とプライバシーポリシー</a>に同意したものとみなされます
       title: 新規登録
     reset_password:
       back_to_sign_in: サインインに戻る
@@ -1189,7 +1191,7 @@ ja:
       title: パスワードを作成
     sign_out: 別のユーザーでログイン
     sign_up: 新規登録
-    terms_link: <a href="%{terms_url}">利用規約とプライバシーに関する声明</a>
+    terms_link: "<a href='%{terms_url}'>利用規約とプライバシーに関する声明</a>"
     verify_mobile_number:
       error:
         blocked: この番号は試行回数が多すぎるためブロックされています。
@@ -1369,7 +1371,7 @@ ja:
         title: レポートの再生成？
       remove:
         helper_text: '危険: これを選択すると、このキャンペーンにおけるこの評価に対するすべてのユーザーの回答が削除されます。'
-        msg_text: あなたは<strong>"%{name}"</strong>評価を削除しようとしています。
+        msg_text: あなたは<strong>'%{name}'</strong>評価を削除しようとしています。
         successfully: アセスメントが正常に削除されました。
         title: 評価を外す？
       rescore:
@@ -1377,7 +1379,7 @@ ja:
         successfully: 評価は無事再スコアされた。
         title: 査定をやり直す？
       rescore_response:
-        message: 評価"%{名前}"の再採点が予定されています。
+        message: 評価'%{name}'の再採点が予定されています。
         title: リスコアの回答
       reset:
         content: 本当に結果をリセットしたいのか？
@@ -1655,7 +1657,7 @@ ja:
       verify: ベリファイ
       view: 表示
       view_all_tasks: すべてのタスクを表示
-      view_details: 詳細を表示します
+      view_detail: 詳細を見る
     column:
       action: アクション
       active: アクティブ
@@ -1855,7 +1857,7 @@ ja:
           project: プロジェクト：%{section_name}。
         subject: ライトハウスへの招待
       password_change:
-        body: 'こんにちは、%{名前}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに support@thetalententerprise.com までご連絡ください。
+        body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに support@thetalententerprise.com までご連絡ください。
 
           '
         regards: 'ライトハウス・チーム
@@ -1873,7 +1875,7 @@ ja:
           '
         subject: パスワードのリセット方法
       unlock_instructions:
-        body: 'こんにちは %{名前}！ログインに失敗した回数が多すぎるため、アカウントがロックされました。 以下のリンクをクリックして、アカウントのロックを解除してください：
+        body: 'こんにちは %{name}！ログインに失敗した回数が多すぎるため、アカウントがロックされました。 以下のリンクをクリックして、アカウントのロックを解除してください：
 
           '
         footer: 上記のリンクにアクセスして新しいパスワードを作成するまで、パスワードは変更されません。
@@ -1883,7 +1885,7 @@ ja:
         subject: アカウントのロック解除方法
         unlock_account: アカウントのロック解除
     omniauth_callbacks:
-      failure: 理由"%{reason}"のため、%{kind} からあなたを認証できませんでした。
+      failure: 理由'%{reason}'のため、%{kind} からあなたを認証できませんでした。
       success: kind}アカウントからの認証に成功しました。
     passwords:
       edit:
@@ -1910,7 +1912,7 @@ ja:
         tabs:
           register: 新規登録
           sign_in: サインイン
-        terms_notice: 登録することで、<a href="%{terms_url}">利用規約とプライバシーポリシー</a>に同意したものとみなされます
+        terms_notice: 登録することで、<a href='%{terms_url}'>利用規約とプライバシーポリシー</a>に同意したものとみなされます
         title: 今すぐ登録
       signed_up: ようこそ！登録は完了しました。
       signed_up_but_inactive: サインアップに成功しましたが、アカウントが有効化されていないため、サインインできませんでした。
@@ -1940,7 +1942,7 @@ ja:
       signed_in: サインインに成功しました！
       signed_in_time: 最後にサインインしたのは %{date_time} です。
       signed_out: サインアウトに成功。
-      unsuccessful_sign_in_time: date_time}での最後のサインインは失敗しました。
+      unsuccessful_sign_in_time: "%{date_time}での最後のサインインは失敗しました。"
     two_factor_authentication:
       attempt: ご登録のメールアドレス宛てに届いたOTPを入力してください
       attempt_failed: OTPが正しくありません。
@@ -1963,7 +1965,7 @@ ja:
     errors:
       add_edit_project:
         invalid_subdomain_format: サブドメインの形式が正しくない。
-        reserved_subdomain: サブドメイン %{値} は予約されています。
+        reserved_subdomain: サブドメイン %{value} は予約されています。
         uniq_subdomain: サブドメインは一意でなければならない。
       add_manager:
         manager_not_found: マネージャーが見つからないか、同じプロジェクトに属していない
@@ -2018,22 +2020,22 @@ ja:
       update_workshop:
         less_than_booked: 総座席数が予約席数を上回っていること
       user_availability_date:
-        overlaps_date: 別の可用性と重なる %{範囲}。
+        overlaps_date: 別の可用性と重なる %{range}。
         overlaps_time: オーバーラップ間隔 %{interval}
         start_date_should_be_less: 開始日は終了日よりも短いこと
         start_time_should_be_less: 開始時間は終了時間より短くする
       user_idp_plan:
         idp_template_already_assigned_to_user: このIdpテンプレートはすでにこのユーザーに割り当てられており、アクティブです。
       user_saved_filters:
-        limit_exceeded: 保存できるフィルターは%{制限}までです。
+        limit_exceeded: 保存できるフィルターは%{limit}までです。
         unique_name: 同じ名前のフィルターがすでに存在する。
       workshop_invited_subject_create:
         already_exists: サブジェクトはすでに招待に存在している。
       workshop_subject_create:
         already_exists: このアセスメントセンターには既に件名が存在する。
-        part_of_other_workshop: 対象者は既に '%{ワークショップ名}' の参加者です。
+        part_of_other_workshop: 対象者は既に '%{workshop_name}' の参加者です。
       workshops:
-        no_available_assessor_slots: 査定者の空き枠がありません %{査定者}。
+        no_available_assessor_slots: 査定者の空き枠がありません %{assessor}。
         no_available_manager_slots: マネージャ %{manager} に使用可能なスロットはありません。
     users:
       registrations:
@@ -2097,7 +2099,7 @@ ja:
       back_to_dashboard: ダッシュボードに戻る
       back_to_tasks: タスクに戻る
       calendar: カレンダー
-      campaign_name_description: キャンペーン"%{campaignName}"の場合。
+      campaign_name_description: キャンペーン'%{campaignName}'の場合。
       change_language: "(言語の変更)"
       clear_date: 晴れた日
       collapse_menu: 折りたたみメニュー
@@ -2180,6 +2182,7 @@ ja:
       neurodivergence_comment_aria_label: ニューロダイバージェンスのコメント
       neurodivergence_comment_placeholder: コメント
       neurodivergence_question: アセスメントに十分に参加するために、特別なニーズや障害に対する、相応の便宜や調整が必要ですか？
+      no_invites_msg: アセスメント・センターに追加されるか、または枠を予約するための招待が届きます。センターに参加したら、下の「詳細を見る」ボタンをクリックしてアクティビティを完了することができます。
       or: または
       other_invite: あと%{count}件の招待状を見る
       other_invites: あと%{count}件の招待状を見る
@@ -2300,7 +2303,7 @@ ja:
     booking_card:
       aria_available_time: 使用可能時間
       aria_back_to_time_selection: 時間選択に戻る
-      aria_desc_current_month: 現在、%{月名} %{年}にいる。
+      aria_desc_current_month: 現在、%{monthName} %{year}にいる。
       aria_label_next_month: 来月へ
       aria_label_previous_month: 前月へ
       aria_timezone_select: タイムゾーンを選択
@@ -2407,13 +2410,7 @@ ja:
     my_plan:
       development_plan: 開発計画
       graphs:
-        behavioural: 行動
         categories: カテゴリー
-        learning_on_job: 仕事中 (%{カウント})
-        learning_others: 他人から学ぶ (%{カウント})
-        learning_structured: 構造化された学習 (%{件数})
-        other: その他
-        technical: テクニカル
       save_skills: セーブ・スキル
     pdf:
       approval_status: 承認状況
@@ -2635,75 +2632,6 @@ ja:
     zh-HK: 中国語（香港）
     zh-Hant: 中国語 - 繁体字
     zh-TW: 中国語（台湾）
-  languages_localized:
-    af: アフリカーンス
-    ar: عربي
-    az: アゼルバイジャン
-    bg: български
-    bs: ボサンスキー
-    by: ベラルーシ語
-    ca: カタラ
-    cn: 中国人
-    cs: 中国
-    cy: Cymraeg
-    da: ダンスク
-    de: ドイツ語
-    el: Ελληνικά
-    en: 英語
-    en-GB: 英語（英国）
-    en-US: 英語
-    eo: エスペラント
-    es: スペイン語
-    es-ES: スペイン語
-    et: エストニア語
-    fa: ペルシャ語
-    fi: フィンランド語
-    fr: フランセ
-    gu: グジャラート
-    he: ヘブライ語
-    hi: हिन्दी
-    hr: クロアチア語
-    hu: ハンガリー語
-    id: インドネシア語
-    it: イタリア語
-    ja: 日本語
-    km: クメール語
-    ko: 韓国語
-    lt: リトアニア語
-    lv: ラトビア語
-    mk: マケドニア語
-    mn: モンゴル語
-    ms: マレーシア語
-    my: ミャンマー
-    nb: ノルウェー語ブークモール
-    nl: オランダ語
-    'no': ノルウェー語
-    pl: ポーランド語
-    pt: ポルトガル語
-    pt-BR: ポルトガル語（ブラジル）
-    pt-PT: ポルトガル語
-    pt_BR: ポルトガル語（ブラジル）
-    ro: ルーマニア語
-    ru: ロシア語
-    sk: スロバキア語
-    sl: スロベニア語
-    sr-Cyrl: セルビア語キリル
-    sr-Latn: セルビア語ラテン語
-    sv: スウェーデン
-    sw: スワヒリ語
-    ta: タミル語
-    th: タイ
-    tl: タガログ語
-    tr: トルコ語
-    ua: ウクライナ語
-    uk: ウクライナ語
-    ur: ウルドゥー語
-    vi: ベトナム語
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文（香港特別行政区）
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: アクティブ
     campaign_name: キャンペーン名
@@ -2718,7 +2646,7 @@ ja:
     enabled: 有効
     end_date: 終了日
     not_enough_idp_license: IDPライセンスが不足しています。
-    not_enough_license: "'%{client_name}' には '%{report_name}' 用の十分なライセンスがありません。"
+    not_enough_license: '"%{client_name}" には "%{report_name}" 用の十分なライセンスがありません。'
     not_enough_license_count: ライセンスが足りません。
     not_enough_proctoring_credits: 試験監督セッションを開始する単位が足りない
     number: 番号
@@ -2801,7 +2729,7 @@ ja:
     male: 男性
     mandatory_fields: 必須フィールドを示す
     not_disclosed: 開示したくない
-    old_data: あなたのプロフィールデータは、%{月}ヶ月前のものです。 先に進むには、詳細を確認してください。
+    old_data: あなたのプロフィールデータは、%{months}ヶ月前のものです。 先に進むには、詳細を確認してください。
     password: パスワード
     password_confirmation: パスワード確認
     photo: 写真
@@ -2850,7 +2778,7 @@ ja:
   report_bundles:
     actions:
       remove:
-        confirm_message: レポート・バンドル "%{name}" を本当に削除しますか?
+        confirm_message: レポート・バンドル '%{name}' を本当に削除しますか?
         confirm_title: 要確認
         success_message: レポート・バンドル %{name} が削除されました。
     report_bundle: レポート・バンドル
@@ -2859,17 +2787,17 @@ ja:
       actions:
         add: 新しいレポートの追加
         remove:
-          confirm_message: 本当に'%{report_bundle_name}'からレポート"%{name}"を削除しますか?
+          confirm_message: 本当に'%{report_bundle_name}'からレポート'%{name}'を削除しますか?
           confirm_title: 要確認
           success_message: レポート %{name} は削除されました
   reports:
     actions:
       add: レポートを追加
       archived:
-        success_message: レポート "%{name}" が正常にアーカイブされました。
+        success_message: レポート '%{name}' が正常にアーカイブされました。
       back_to_campaign: キャンペーンに戻る
       copy:
-        success_message: レポート "%{name}" が正常にコピーされました。
+        success_message: レポート '%{name}' が正常にコピーされました。
       details: 詳細
       download: レポートをダウンロード
       download_csv: CSVダウンロード
@@ -2880,7 +2808,7 @@ ja:
       re_evaluate: 再評価はこちら
       reevaluate: 再評価
       remove:
-        confirm_message: 本当にレポート "%{name}" を削除しますか?
+        confirm_message: 本当にレポート '%{name}' を削除しますか?
         confirm_title: 要確認
         success_message: レポート %{name} は削除されました
       rescore: リスコア
@@ -3444,8 +3372,10 @@ ja:
   threesixty:
     accept_privacy_modal:
       accept: 同意する
-      checkbox: 私は上記のプライバシーポリシーを読み、理解しました
-      title: データ処理に関する同意
+      checkbox: このボックスをクリックすることにより、お客様は、個人情報の国際移転を含め、そこに記載されているお客様の個人情報の収集および処理に関する当社のプライバシー通知を読んだことに同意したものとみなされます。
+      checkbox_with_client_link: このボックスをクリックすることで、お客様は当社の個人情報保護方針およびクライアントの個人情報保護方針をお読みになり、そこに記載されているお客様の個人情報の収集および処理（お客様の個人情報の国際的な移転を含む）に同意されたものとみなされます。
+      privacy_notice: プライバシーポリシー
+      title: 個人情報の処理および転送に関する同意
     action: アクション
     add: 追加
     and: および
@@ -3518,9 +3448,9 @@ ja:
     nomination_help_modal:
       title: 推薦のヘルプ
     nomination_predicates:
-      atleast: 少なくとも
-      atmost: 最大でも%{カウント}である。
-      exactly: 正確に %{カウント}。
+      atleast: 少なくとも %{count}
+      atmost: 最大でも%{count}である。
+      exactly: 正確に %{count}。
     nominations: 推薦
     options:
       form:
@@ -3654,7 +3584,7 @@ ja:
       import:
         body: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
         imported_reports: レポートと評価はインポートされた
-        imported_users: 'インポートされたユーザの数: %{数}。'
+        imported_users: 'インポートされたユーザの数: %{number}。'
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
         title: インポートユーザー
         user_with_unchanged_passwords: パスワードが変更されていないユーザーのリスト
@@ -3697,10 +3627,10 @@ ja:
         submit_button_name: プッシュ・ウェブフック
         title: プッシュ・ウェブフック
       remove:
-        content: 本当に「%{名前}」を削除したいのですか？
+        content: 本当に「%{name}」を削除したいのですか？
         successfully: アセスメントが正常に削除されました。
       reset:
-        content: 本当に"%{名前}"の進捗をリセットしたいのですか？
+        content: 本当に'%{name}'の進捗をリセットしたいのですか？
       test_webhook:
         submit_button_name: 送信テスト
         title: Webhookイベント送信テスト
@@ -3823,7 +3753,7 @@ ja:
       Email:
         character_range: メールメッセージの入力は、%{min}文字以上%{max}文字以下にしてください。
         max_character: 入力される電子メール・メッセージは%{max}文字以下でなければなりません。
-        min_character: 入力された電子メール・メッセージは少なくとも%{分}文字でなければなりません。
+        min_character: 入力された電子メール・メッセージは少なくとも%{min}文字でなければなりません。
         subject:
           min_length: 件名フィールドは10文字以上にしてください
         to:
@@ -3841,7 +3771,7 @@ ja:
     date: 回答は有効な日付（MM/DD/YYYY）にしてください
     each_group_contains: 各グループには、%{min}以上%{max}以下の項目が含まれている必要があります
     email: 回答は有効なメールアドレスにしてください
-    exact: 選択肢を正確に選んでください。
+    exact: 正確に%{count}個のオプションを選択してください
     file_upload:
       BadRequest: 最後のリクエストが失敗したため、ファイルがアップロードされませんでした。 インターネットが機能していないことが原因かもしれません。 インターネットが機能している場合は、管理者に連絡してください。
       EntityTooLarge: ファイルサイズは%{maxFileSize}MB未満にしてください
@@ -3853,7 +3783,7 @@ ja:
     max_character: 回答は、%{max}文字以下にしてください。
     max_word: 回答は、%{max}語以下にしてください。
     min_character: 回答は、%{min}文字以上にしてください。
-    min_factor: あなたの回答には、少なくとも%{分}の要因フィードバックが含まれていなければならない。
+    min_factor: あなたの回答には、少なくとも%{min}の要因フィードバックが含まれていなければならない。
     min_word: 回答は、%{min}語以上にしてください
     most: 最大%{max}の選択肢を選んでください。
     must_rank_between: 各項目に%{min}から%{max}までの値を割り当ててください。値を繰り返すことはできません。
@@ -3861,14 +3791,16 @@ ja:
     not_in_future: 選択された日付は未来であってはならない
     not_in_past: 選択された日付は過去であってはならない
     number: 回答は数字にしてください
+    photo: 必須
     range: "%{min}個以上%{max}個以下の選択肢に回答してください。"
     required: この質問に答えてください
     text: 回答に数字を含めることはできません
     title:
-      other:
+      one: エラーが1つあります。
+      other: "%{count}エラーがあります。"
     user_self_skill_rating_disabled: このテンプレートでは自己評価は無効です
     word_count: '単語数 '
-    word_range: 回答は少なくとも%{分}、%{最大}語以内でなければなりません。
+    word_range: 回答は少なくとも%{min}、%{max}語以内でなければなりません。
   'yes': はい
   your: あなたの
   yourself: あなた自身

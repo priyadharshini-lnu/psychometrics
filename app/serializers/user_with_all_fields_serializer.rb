@@ -20,7 +20,7 @@ class UserWithAllFieldsSerializer < Panko::Serializer
   def locale
     return if user_profile.locale.nil?
 
-    I18n.t("languages_localized.#{user_profile.locale}")
+    I18n.t("languages.#{user_profile.locale}")
   end
 
   def gender

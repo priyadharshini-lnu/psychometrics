@@ -47,6 +47,10 @@ class Workshop < ApplicationRecord
 
   after_save :create_meeting_room, if: -> { video_call_internal? && meeting_room.blank? }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[campaign_assessment_group_id campaign_id duration id name status]
+  end
+
   def self.ransackable_associations(_auth_object = nil)
     %i[workshop_invited_subjects]
   end

@@ -207,6 +207,12 @@ ko:
             manage: 관리
             title: 질문
             view: 보기
+          reflectionQuestions:
+            export: 내보내기
+            import: 가져오기
+            manage: 관리
+            title: IDP 반영 질문
+            view: 보기
           registrationCodes:
             manage: 관리
             title: 등록 코드
@@ -296,6 +302,7 @@ ko:
           preferred_language: 허용되는 언어
           required_error: 비어 있을 수 없음
           title: 기본 정보
+        center_group: 평가 센터 그룹
         confirm_message: 초대를 삭제하시겠습니까?
         confirm_message_with_title: 제목이 '%{invite_title}'인 초대를 제거하시겠습니까?
         confirm_title: 확인
@@ -2688,6 +2695,7 @@ ko:
         mask_identity_for_mettl: METTL용 마스크 데이터
         mask_identity_for_pearson: 피어슨의 마스크 데이터
         mask_identity_for_saville: Saville의 마스크 데이터
+        mask_identity_for_skillvue: 스킬뷰용 마스크 데이터
         privacy_link: 개인정보 링크 사용
         privacy_link_label: 개인정보 보호 링크
         privacy_link_placeholder: 개인정보 보호 링크 입력

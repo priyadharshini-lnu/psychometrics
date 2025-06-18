@@ -207,6 +207,12 @@ en:
             manage: Manage
             title: Questions
             view: View
+          reflectionQuestions:
+            export: Export
+            import: Import
+            manage: Manage
+            title: IDP Reflection Questions
+            view: View
           registrationCodes:
             manage: Manage
             title: Registration Codes
@@ -313,6 +319,7 @@ en:
           preferred_language: Allowed Languages
           required_error: Can't be empty
           title: Basic Information
+        center_group: Assessment Center Group
         confirm_message: Are you sure you want to delete an invitation?
         confirm_message_with_title: Are you sure you want to remove the Invite with title '%{invite_title}'?
         confirm_title: Confirm
@@ -890,7 +897,7 @@ en:
           approvers: Approvers
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
-          do_not_send_notifications: Do Not Send Notifications
+          do_not_send_notifications: Do not send emails to users[QC, Approvers & Approval notification]
           modal_title: Report Approval Settings
           qc_users: QC Users
           remove_modal_success: 'Approval setting for report id: %{reportId} was deleted successfully '
@@ -2790,6 +2797,7 @@ en:
         mask_identity_for_mettl: Mask data for METTL
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
+        mask_identity_for_skillvue: Mask data for Skillvue
         privacy_link: Enable Privacy Link
         privacy_link_label: Privacy Link
         privacy_link_placeholder: Enter Privacy Link

@@ -62,7 +62,7 @@ pt:
               duplicate_code: Código duplicado "%{code}" na linha %{index}
               invalid_output_type: Tipo de saída inválido '%{output_type}' na linha %{index}
               max_limit_reached: O total de factores da campanha excede o limite máximo de %{count}
-              missing_headers: 'Faltam cabeçalhos obrigatórios: %{cabeçalhos}'
+              missing_headers: 'Faltam cabeçalhos obrigatórios: %{headers}'
               type_mismatch: Incompatibilidade de tipo de saída para o código '%{code}' na linha %{index}
             file:
               invalid_format: Carregar ficheiro xlsx
@@ -119,7 +119,7 @@ pt:
               inclusion: Localidade incorrecta
             relationship_name:
               blank: A relação não pode estar em branco
-              invalid: A relação %{nome} é inválida
+              invalid: A relação %{name} é inválida
             subject_email:
               blank: O assunto do e-mail não pode estar em branco
               invalid: Assunto O e-mail é inválido
@@ -160,8 +160,8 @@ pt:
             base:
               code_length: O código deve ter pelo menos 3 caracteres na linha %{index}.
               code_required: O código do fator é necessário na linha %{index}
-              invalid_scoring_strategy: Estratégia de pontuação inválida "%{estratégia}" na linha %{índice}. As estratégias permitidas são %{permitidas}.
-              missing_headers: 'Faltam cabeçalhos obrigatórios: %{cabeçalhos}'
+              invalid_scoring_strategy: Estratégia de pontuação inválida "%{strategy}" na linha %{índice}. As estratégias permitidas são %{permitidas}.
+              missing_headers: 'Faltam cabeçalhos obrigatórios: %{headers}'
               name_required: O nome do fator é necessário na linha %{index}
               scoring_strategy_required: A estratégia de pontuação é necessária na linha %{index}
             file:
@@ -285,17 +285,17 @@ pt:
           attributes:
             file:
               column_type_mismatch: Espera-se que a coluna <b>%{col}</b> seja do tipo %{type} mas obteve <b>%{got}</b>
-              email_blank: 'Linha %{número_da_linha}: o campo E-mail não pode estar em branco'
+              email_blank: 'Linha %{row_number}: o campo E-mail não pode estar em branco'
               email_duplicate: Existem duplicados na coluna Email
-              email_invalid: 'Linha %{número_da_linha}: O correio eletrónico é inválido'
+              email_invalid: 'Linha %{row_number}: O correio eletrónico é inválido'
               invalid_column: Coluna inválida %{name}
-              invalid_column_name: A coluna <b>"%{coluna}"</b> é inválida
-              invalid_column_name_size: Nome da coluna <b>"%{coluna}"</b> demasiado longo (máx. 64)
+              invalid_column_name: A coluna <b>"%{column}"</b> é inválida
+              invalid_column_name_size: Nome da coluna <b>"%{column}"</b> demasiado longo (máx. 64)
               invalid_column_type: O tipo de coluna deve ser String, Text, Number, HTML ou Markdown
               invalid_format: Formato inválido (.xlsx)
-              invalid_number_value: <b>Linha#%{índice}</b> Coluna <b>"%{coluna}"</b> não é um número
-              invalid_string_value: <b>Linha#%{índice}</b> coluna <b>"%{coluna}"</b> não é uma cadeia de caracteres
-              invalid_string_value_size: <b>Linha#%{índice}</b> coluna <b>"%{coluna}"</b> demasiado longa (máx. 256)
+              invalid_number_value: <b>Linha#%{index}</b> Coluna <b>"%{column}"</b> não é um número
+              invalid_string_value: <b>Linha#%{index}</b> coluna <b>"%{column}"</b> não é uma cadeia de caracteres
+              invalid_string_value_size: <b>Linha#%{index}</b> coluna <b>"%{column}"</b> demasiado longa (máx. 256)
               no_email_column: O ficheiro não contém a coluna Email
               non_uniq_column: Existem as seguintes colunas não uniq %{columns}
         sheet_row_form:
@@ -348,10 +348,10 @@ pt:
             import_data:
               cant_overwrite_password: Não tem permissão para substituir a palavra-passe.
               duplicated_emails: 'O(s) seguinte(s) correio(s) eletrónico(s) está(ão) duplicado(s) no CSV: %{emails}'
-              invalid_email: 'Linha %{número_da_linha}: correio eletrónico inválido %{email}'
+              invalid_email: 'Linha %{row_number}: correio eletrónico inválido %{email}'
               invalid_header: Cabeçalho inválido, retirar cabeçalho da exportação
               invalid_reports_header: Cabeçalho inválido, retirar cabeçalho do ficheiro de amostra
-              manager_not_found: 'Linha %{número_da_linha}: o gestor com o correio eletrónico %{email} não está presente na campanha ou no CSV'
+              manager_not_found: 'Linha %{row_number}: o gestor com o correio eletrónico %{email} não está presente na campanha ou no CSV'
               user_update_failed: A atualização do utilizador falhou para %{email} com o erro "%{error}
             locale:
               inclusion: Localidade incorrecta
@@ -871,9 +871,8 @@ pt:
       new_response: Nova resposta
       next_assessment: Passar para a avaliação seguinte
       pending_tasks:
-        many:
-        one:
-        other:
+        one: Tem 1 tarefa pendente
+        other: Tem %{count} tarefas pendentes
       re_evaluate: Clique aqui para reavaliar
       reevaluate: Reavaliar
       remove:
@@ -1090,6 +1089,7 @@ pt:
       modal:
         delete:
           cancel: Cancelar
+          cannot_delete_with_workshops: Não é possível eliminar o grupo que contém workshops, eliminar primeiro os workshops
           failed: Falha ao eliminar o grupo "%{nome}", contactar o administrador
           ok: Sim, apagar
           text: Tem a certeza de que pretende eliminar o grupo "%{nome}"?
@@ -1656,7 +1656,7 @@ pt:
       verify: Verificar
       view: Ver
       view_all_tasks: Ver todas as tarefas
-      view_details: Ver detalhes
+      view_detail: Ver detalhes
     column:
       action: Ação
       active: Ativo
@@ -2181,6 +2181,7 @@ pt:
       neurodivergence_comment_aria_label: Comentários sobre a neurodivergência
       neurodivergence_comment_placeholder: Os seus comentários
       neurodivergence_question: Precisa de alguma adaptação ou ajuste razoável devido a necessidades especiais ou deficiências para participar plenamente na avaliação?
+      no_invites_msg: Será adicionado ao centro de avaliação ou receberá um convite para reservar a sua vaga; assim que fizer parte do centro, pode completar as actividades clicando no botão "Ver detalhes" abaixo.
       or: ou
       other_invite: Ver mais %{count} convite
       other_invites: Ver mais %{count} convites
@@ -2636,75 +2637,6 @@ pt:
     zh-HK: Chinês (Hong Kong)
     zh-Hant: Chinês - Tradicional
     zh-TW: Chinês (Taiwan)
-  languages_localized:
-    af: Africâner
-    ar: عربي
-    az: Azerbaijanês
-    bg: български
-    bs: bosanski
-    by: Bielorrusso
-    ca: catalão
-    cn: 中国人
-    cs: português
-    cy: Cymraeg
-    da: dansk
-    de: Alemão
-    el: Ελληνικά
-    en: Inglês
-    en-GB: Inglês (Reino Unido)
-    en-US: Inglês (EUA)
-    eo: Esperanto
-    es: Espanhol
-    es-ES: Español (españa)
-    et: Estónio
-    fa: Persa
-    fi: Finlandês
-    fr: Francês
-    gu: Gujarati
-    he: Hebraico
-    hi: हिन्दी
-    hr: Croata
-    hu: Húngaro
-    id: Bahasa Indonésia
-    it: italiano
-    ja: 日本語
-    km: Khmer
-    ko: Coreano
-    lt: Lituano
-    lv: Letão
-    mk: Macedónio
-    mn: Mongol
-    ms: Bahasa Malásia
-    my: Myanmar
-    nb: Norueguês Bokmål
-    nl: Holandês
-    'no': Norueguês
-    pl: Polaco
-    pt: Português
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brasil)
-    ro: Romeno
-    ru: Russo
-    sk: Eslovaco
-    sl: Esloveno
-    sr-Cyrl: Cirílico sérvio
-    sr-Latn: Latim sérvio
-    sv: Sueco
-    sw: Suaíli
-    ta: Tamil
-    th: Tailandês
-    tl: Tagalo
-    tr: Turco
-    ua: Ucraniano
-    uk: Ucraniano
-    ur: Urdu
-    vi: Vietnamita
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Ativo
     campaign_name: Nome da campanha
@@ -3445,8 +3377,10 @@ pt:
   threesixty:
     accept_privacy_modal:
       accept: Aceitar
-      checkbox: Li e compreendi a Política de Privacidade acima mencionada
-      title: Consentimento para o tratamento de dados
+      checkbox: Ao clicar nesta caixa, o utilizador concorda que leu a nossa declaração de privacidade relativa à recolha e ao tratamento das suas informações pessoais, tal como descrito na mesma, incluindo a transferência internacional das suas informações pessoais.
+      checkbox_with_client_link: Ao clicar nesta caixa, o utilizador concorda que leu a nossa declaração de privacidade e a declaração de privacidade do nosso cliente e autoriza a recolha e o tratamento das suas informações pessoais tal como aí descrito, incluindo a transferência internacional das suas informações pessoais.
+      privacy_notice: Aviso de privacidade
+      title: Consentimento para processar e transferir informações pessoais
     action: Ação
     add: Adicionar
     and: E
@@ -3862,13 +3796,14 @@ pt:
     not_in_future: A data selecionada não deve ser no futuro
     not_in_past: A data selecionada não deve ser no passado
     number: A sua resposta deve ser um número
+    photo: necessário
     range: Responda pelo menos %{min} e não mais do que %{max} opção(ões).
     required: Responda a esta questão
     text: A sua resposta não pode conter números
     title:
       many:
-      one:
-      other:
+      one: Há um erro, por favor verifique as suas respostas
+      other: Existem %{count} erros, por favor verifique as suas respostas
     user_self_skill_rating_disabled: A auto-classificação está desactivada para este modelo
     word_count: 'Contagem de palavras '
     word_range: A sua resposta deve ter pelo menos %{min} e não mais do que %{max} palavras.

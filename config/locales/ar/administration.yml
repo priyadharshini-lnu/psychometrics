@@ -176,6 +176,12 @@ ar:
           questions:
             manage: إدارة
             view: عرض
+          reflectionQuestions:
+            export: التصدير
+            import: الاستيراد
+            manage: الإدارة
+            title: أسئلة التأملات الخاصة بالمشردين داخلياً
+            view: عرض
           registrationCodes:
             manage: إدارة
             view: عرض
@@ -249,6 +255,7 @@ ar:
           preferred_language: اللغات المسموح بها
           required_error: لا يمكن أن يكون فارغًا
           title: المعلومات الأساسية
+        center_group: مجموعة مركز التقييم
         confirm_message: هل أنت متأكد أنك تريد حذف الدعوة؟
         confirm_message_with_title: هل أنت متأكد أنك تريد إزالة الدعوة بعنوان '%{invite_title}'؟
         confirm_title: تأكيد
@@ -2513,6 +2520,7 @@ ar:
         mask_identity_for_mettl: Mask data for METTL
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
+        mask_identity_for_skillvue: بيانات القناع لسكيلفيو
         privacy_link: Enable Privacy Link
         privacy_link_label: Privacy Link
         privacy_link_placeholder: Enter Privacy Link

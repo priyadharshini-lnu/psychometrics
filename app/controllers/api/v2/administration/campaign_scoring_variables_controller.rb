@@ -2,7 +2,7 @@
 
 module Api
   class V2::Administration::CampaignScoringVariablesController < Api::V2::Administration::BaseController
-    validates_request_schema :update, Api::V2::CampaignScoringVariable::Contract.new
+    validates_request_schema :update, -> { Api::V2::CampaignScoringVariable::Contract.new }
 
     def index
       render json: {

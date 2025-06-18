@@ -25,8 +25,8 @@ module EndUser
         required(:practice_campaign).maybe(:bool?)
         required(:campaign_options).hash(EndUser::CampaignOptionsSchema.schema(_, _))
         required(:user_assessments).array(EndUser::UserAssessmentSchema.schema(_, _))
-        required(:workshop_invite).maybe(:hash, EndUser::WorkshopInviteSchema.schema(_, _))
-        required(:workshop).maybe(:hash, EndUser::ShortWorkshopSchema.schema(_, _))
+        required(:workshop_invites).array(EndUser::WorkshopInviteSchema.schema(_, _))
+        required(:workshops).array(EndUser::ShortWorkshopSchema.schema(_, _))
       end
     end
   end

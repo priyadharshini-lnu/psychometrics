@@ -5,7 +5,7 @@ module Api
     validate_crud_requests Api::V2::ReportApprovalSetting::Schema
     validates_request_schema :create, :create_contract_based_on_provider
     validates_request_schema :update, :update_contract_based_on_provider
-    validates_request_schema :copy, Api::V2::Report::CopyContract.new
+    validates_request_schema :copy, -> { Api::V2::Report::CopyContract.new }
     include Api::V2::Administration::Concerns::Taggable
 
     INTEGRATIONS_CONTRACTS = {

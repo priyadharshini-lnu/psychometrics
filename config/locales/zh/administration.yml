@@ -207,6 +207,12 @@ zh:
             manage: 管理
             title: 问题
             view: 查看
+          reflectionQuestions:
+            export: 出口
+            import: 进口
+            manage: 管理
+            title: IDP 反思问题
+            view: 查看
           registrationCodes:
             manage: 管理
             title: 注册码
@@ -296,6 +302,7 @@ zh:
           preferred_language: 允许使用的语言
           required_error: 不能是空的
           title: 基本信息
+        center_group: 评估中心小组
         confirm_message: 您确定要删除邀请吗？
         confirm_message_with_title: 您确定要删除标题为"%{invite_title}"的邀请吗？
         confirm_title: 确认
@@ -2692,6 +2699,7 @@ zh:
         mask_identity_for_mettl: METTL 的掩码数据
         mask_identity_for_pearson: 皮尔逊的掩码数据
         mask_identity_for_saville: 萨维尔面具数据
+        mask_identity_for_skillvue: Skillvue 的面具数据
         privacy_link: 启用隐私链接
         privacy_link_label: 隐私链接
         privacy_link_placeholder: 输入隐私链接

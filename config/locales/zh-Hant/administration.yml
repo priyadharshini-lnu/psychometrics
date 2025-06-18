@@ -207,6 +207,12 @@ zh-Hant:
             manage: 管理
             title: 問題
             view: 檢視
+          reflectionQuestions:
+            export: 出口
+            import: 進口
+            manage: 管理
+            title: IDP 反思問題
+            view: 檢視
           registrationCodes:
             manage: 管理
             title: 註冊碼
@@ -296,6 +302,7 @@ zh-Hant:
           preferred_language: 允許的語言
           required_error: 不能是空的
           title: 基本資訊
+        center_group: 評估中心小組
         confirm_message: 您確定要刪除邀請函？
         confirm_message_with_title: 您確定要移除標題為 '%{invite_title}' 的「邀請」嗎？
         confirm_title: 確認
@@ -2688,6 +2695,7 @@ zh-Hant:
         mask_identity_for_mettl: METTL 的掩模資料
         mask_identity_for_pearson: Pearson 的遮罩資料
         mask_identity_for_saville: 薩維爾的面具資料
+        mask_identity_for_skillvue: Skillvue 的掩膜資料
         privacy_link: 啟用隱私連結
         privacy_link_label: 隱私權連結
         privacy_link_placeholder: 輸入隱私權連結

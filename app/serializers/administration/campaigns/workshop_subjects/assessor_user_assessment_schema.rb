@@ -22,6 +22,7 @@ module Administration
             end
             required(:meeting_type).maybe(:str?)
             required(:linked_activity_id).maybe(:str?)
+            required(:linked_activity_name).maybe(:str?)
           end
         end
       end

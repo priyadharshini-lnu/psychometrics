@@ -58,16 +58,16 @@ ko:
         campaign_factors_import_form:
           attributes:
             base:
-              blank: "'%{엔터티}' 열은 %{색인} 행에서 비워 둘 수 없습니다"
-              duplicate_code: 인덱스} 행에 코드 '%{코드}'를 중복합니다
-              invalid_output_type: 인덱스} 행에 잘못된 출력 유형 '%{출력 유형}'이 있습니다
-              max_limit_reached: 총 캠페인 계수가 최대 한도인 %{카운트}를 초과합니다
-              missing_headers: '누락된 필수 헤더: %{헤더}'
-              type_mismatch: 인덱스} 행의 '%{코드}' 코드에 대한 출력 유형이 일치하지 않습니다
+              blank: "'%{entity}' 열은 %{index} 행에서 비워 둘 수 없습니다"
+              duplicate_code: 행 %{index}에 중복된 코드 '%{code}'가 있습니다.
+              invalid_output_type: 행 %{index}에서 잘못된 출력 유형 '%{output_type}'이(가) 있습니다.
+              max_limit_reached: 총 캠페인 계수가 최대 한도인 %{count}를 초과합니다
+              missing_headers: '누락된 필수 헤더: %{headers}'
+              type_mismatch: 출력 유형이 행 %{index}의 코드 '%{code}'와 일치하지 않습니다.
             file:
               invalid_format: Xlsx 파일을 업로드하세요
             resource:
-              must_exist: 리소스}가 존재해야 합니다
+              must_exist: "%{resource}가 존재해야 합니다"
         campaigns_external_scores_import_form:
           attributes:
             file:
@@ -110,7 +110,7 @@ ko:
             evaluator_locale:
               inclusion: 잘못된 로캘
             evaluator_password:
-              too_short: 평가자 암호가 너무 짧습니다(최소값은 %{자수}입니다)
+              too_short: 평가자 암호가 너무 짧습니다(최소값은 %{count}입니다)
             first_name:
               blank: 이름은 비워 둘 수 없습니다
             last_name:
@@ -119,11 +119,11 @@ ko:
               inclusion: 잘못된 로캘
             relationship_name:
               blank: 관계는 공백이 될 수 없습니다
-              invalid: 관계 %{이름}이(가) 잘못되었습니다
+              invalid: 관계 %{name}이(가) 잘못되었습니다
             subject_email:
               blank: 제목 이메일은 비워 둘 수 없습니다
               invalid: 제목 이메일이 잘못되었습니다
-              not_exists: 이메일 주소 %{이메일}로 제목을 찾을 수 없습니다
+              not_exists: 이메일 주소 %{email}로 제목을 찾을 수 없습니다
         email_schedule:
           attributes:
             content:
@@ -158,11 +158,11 @@ ko:
         factor_import_form:
           attributes:
             base:
-              code_length: 인덱스} 행의 코드 길이는 3자 이상이어야 합니다.
+              code_length: "%{index} 행의 코드 길이는 3자 이상이어야 합니다."
               code_required: 행 %{index}에 팩터 코드가 필요합니다
-              invalid_scoring_strategy: 인덱스} 행에 잘못된 채점 전략 '%{전략}'이 있습니다. 허용되는 전략은 %{허용된 전략}입니다.
-              missing_headers: '누락된 필수 헤더: %{헤더}'
-              name_required: 행 %{인덱스}에 팩터 이름이 필요합니다
+              invalid_scoring_strategy: 행 {index}에 잘못된 채점 전략 '%{strategy}'이(가) 있습니다. 허용되는 전략은 %{allowed}입니다.
+              missing_headers: '누락된 필수 헤더: %{headers}'
+              name_required: 행 %{index}에 팩터 이름이 필요합니다
               scoring_strategy_required: 행 %{index}에 채점 전략이 필요합니다
             file:
               invalid_format: CSV 파일을 업로드하세요
@@ -187,7 +187,7 @@ ko:
             locale:
               inclusion: 잘못된 로캘
             password:
-              too_short: 비밀번호가 너무 짧습니다. 최소 %{자수}자 필요
+              too_short: 비밀번호가 너무 짧습니다. 최소 %{count}자 필요
         mettl:
           attributes:
             name:
@@ -204,7 +204,7 @@ ko:
               blank: 성은 비워 둘 수 없습니다
             password:
               contains_repeats: 비밀번호에는 반복되는 내용이 없어야 합니다
-              too_short: 비밀번호가 너무 짧습니다. 최소 %{자수}자 필요
+              too_short: 비밀번호가 너무 짧습니다. 최소 %{count}자 필요
               too_weak: 비밀번호에는 소문자 1개, 대문자 1개, 숫자 1개, 특수 문자 1개 이상이 포함되어야 합니다.
         questions_import_block_form:
           attributes:
@@ -284,18 +284,18 @@ ko:
         sheet:
           attributes:
             file:
-              column_type_mismatch: 열 <b>%{col}은</b> (는) %{유형}이어야 하지만 <b>%{갓}을</b>(를) 가져왔습니다
-              email_blank: '행 %{행_번호}: 이메일 필드를 비워 둘 수 없습니다'
+              column_type_mismatch: 열 <b>%{col}은</b> (는) %{type}이어야 하지만 <b>%{got}을</b>(를) 가져왔습니다
+              email_blank: '행 %{row_number}: 이메일 필드를 비워 둘 수 없습니다'
               email_duplicate: 이메일 열에 중복된 항목이 있습니다
-              email_invalid: '행 %{행_번호}: 이메일이 잘못되었습니다'
-              invalid_column: 잘못된 열 %{이름}
-              invalid_column_name: 열 <b>"%{열}"</b> 이(가) 잘못되었습니다
-              invalid_column_name_size: <b>"%{열}"</b> 열 이름이 너무 깁니다(최대 64개)
+              email_invalid: '행 %{행row_number_번호}: 이메일이 잘못되었습니다'
+              invalid_column: 잘못된 열 %{name}
+              invalid_column_name: 열 <b>"%{column}"</b> 이(가) 잘못되었습니다
+              invalid_column_name_size: <b>"%{column}"</b> 열 이름이 너무 깁니다(최대 64개)
               invalid_column_type: 열 유형은 문자열, 텍스트, 숫자, HTML 또는 마크다운이어야 합니다
               invalid_format: 잘못된 형식(.xlsx)
-              invalid_number_value: <b>행#%{색인}</b> 열 <b>"%{열}"</b> 이 숫자가 아닙니다
-              invalid_string_value: <b>행#%{색인}</b> 열 <b>"%{열}"</b> 이 문자열이 아닙니다
-              invalid_string_value_size: <b>행#%{색인}</b> 열 <b>"%{열}"</b> 이 너무 깁니다(최대 256)
+              invalid_number_value: <b>행#%{index}</b> 열 <b>"%{column}"</b> 이 숫자가 아닙니다
+              invalid_string_value: <b>행#%{index}</b> 열 <b>"%{column}"</b> 이 문자열이 아닙니다
+              invalid_string_value_size: <b>행#%{index}</b> 열 <b>"%{column}"</b> 이 너무 깁니다(최대 256)
               no_email_column: 파일에 이메일 열이 포함되어 있지 않습니다
               non_uniq_column: 유니크가 아닌 %{column} 열이 다음과 같습니다
         sheet_row_form:
@@ -347,12 +347,12 @@ ko:
               user_exists_in_project: 이 이메일 ID를 가진 사용자가 프로젝트에 이미 존재합니다
             import_data:
               cant_overwrite_password: 비밀번호를 덮어쓸 수 있는 권한이 없습니다.
-              duplicated_emails: '다음 이메일이 CSV에 중복되어 있습니다: %{이메일}'
-              invalid_email: '행 %{행_번호}: 잘못된 이메일 %{이메일}입니다'
+              duplicated_emails: '다음 이메일이 CSV에 중복되어 있습니다: %{emails}'
+              invalid_email: '행 %{row_number}: 잘못된 이메일 %{email}입니다'
               invalid_header: 잘못된 헤더, 내보내기에서 헤더 가져옴
               invalid_reports_header: 헤더가 잘못되었습니다. 샘플 파일에서 헤더를 가져옵니다
-              manager_not_found: '행 %{행_번호}: 이메일 %{이메일}을 사용하는 관리자가 캠페인 또는 CSV에 없습니다'
-              user_update_failed: 오류 '%{오류}'로 %{이메일}에 대한 사용자 업데이트에 실패했습니다
+              manager_not_found: '행 %{row_number}: 이메일 %{email}을 사용하는 관리자가 캠페인 또는 CSV에 없습니다'
+              user_update_failed: 오류 '%{email}'로 %{error}에 대한 사용자 업데이트에 실패했습니다
             locale:
               inclusion: 잘못된 로캘
             name:
@@ -704,7 +704,7 @@ ko:
         campaign_factor:
           attributes:
             formula:
-              cyclic_dependency_found: '공식에 순환 종속성이 있습니다. 종속성: %{순환_경로}'
+              cyclic_dependency_found: '공식에 순환 종속성이 있습니다. 종속성: %{cyclic_path}'
         factors_norm:
           score_from_must_be_number: 점수는 숫자여야 합니다
           score_to_less_than_score_from: 다음 점수가 다음 점수보다 작습니다
@@ -713,7 +713,7 @@ ko:
           attributes:
             used_number:
               overused: 사용된 라이선스는 할당된 라이선스와 초과 사용 한도의 합계를 초과할 수 없습니다.
-          overuse: 라이선스 %{이름}이(가) 과도하게 사용되었습니다
+          overuse: 라이선스 %{name}이(가) 과도하게 사용되었습니다
         media_response:
           attributes:
             base:
@@ -723,7 +723,7 @@ ko:
           assessments_not_saville: 모든 평가는 새빌 유형이어야 합니다
           has_already_assigned: 평가는 이미 사용자 또는 해당 레벨에 할당되었으므로 변경할 수 없습니다
           has_dependent_relation: 이 보고서는 사용자에게 할당됩니다
-          max_assessment_count: 최대 %{최대} 평가 한도에 도달했습니다
+          max_assessment_count: 최대 %{max} 평가 한도에 도달했습니다
           min_assessment_count: 최소 평가 횟수는 %{min}입니다
         skill_gap_report:
           not_found: 기술 격차 보고서를 찾을 수 없습니다
@@ -847,14 +847,14 @@ ko:
       add_tag:
         success_message: 태그가 성공적으로 추가되었습니다
       archived:
-        success_message: 평가 "%{이름}"을(를) 성공적으로 아카이브했습니다.
+        success_message: 평가 "%{name}"을(를) 성공적으로 아카이브했습니다.
       assessment_cache:
         remove_cache: 캐시 제거
         success_message: 캐시 제거 성공
       back_to_campaign: 캠페인으로 돌아가기
       back_to_dashboard: 대시보드로 돌아가기
       copy:
-        success_message: 평가 "%{이름}"이(가) 성공적으로 복사되었습니다.
+        success_message: 평가 "%{name}"이(가) 성공적으로 복사되었습니다.
       details: 세부 정보
       download_csv: CSV 다운로드
       edit: 편집
@@ -871,25 +871,26 @@ ko:
       new_response: 새로운 응답
       next_assessment: 다음 평가로 넘어가기
       pending_tasks:
-        other:
+        one: 보류 중인 작업이 1개 있습니다.
+        other: 보류 중인 작업이 %{count}개 있습니다.
       re_evaluate: 재평가하려면 여기를 클릭하세요
       reevaluate: 재평가
       remove:
-        confirm_message: '"%{이름}" 평가를 삭제하시겠습니까?'
+        confirm_message: '"%{name}" 평가를 삭제하시겠습니까?'
         confirm_title: 확인 필요
-        success_message: 평가 %{이름}이 제거되었습니다
+        success_message: 평가 %{name}이 제거되었습니다
       remove_tag:
         success_message: 태그가 성공적으로 제거되었습니다
       rescore: 재점수
       restore:
-        success_message: 평가 "%{이름}"이(가) 성공적으로 복원되었습니다
+        success_message: 평가 "%{name}"이(가) 성공적으로 복원되었습니다
       show_usage: 사용량 표시
       submit_another_response: 다른 응답 제출
       submit_evaluation: 평가 제출
       translations:
         success_message: 평가 번역 업데이트
       unarchived:
-        success_message: 평가 "%{이름}"이(가) 성공적으로 보관 해제되었습니다
+        success_message: 평가 "%{name}"이(가) 성공적으로 보관 해제되었습니다
       view: 보기
     active: 활성
     archived: 아카이브
@@ -939,7 +940,7 @@ ko:
       minutes: 분
       no_dictation_url: 서버가 음성 텍스트 변환 기능에 응답하지 못함
       notifications:
-        autostopped: 몇 초 동안 계속 침묵하여 받아쓰기가 자동으로 중지되었습니다(%{자동 차단}초)
+        autostopped: 몇 초 동안 계속 침묵하여 받아쓰기가 자동으로 중지되었습니다(%{autocutoff}초)
         refresh_page: 음성 받아쓰기를 계속할 수 없는 경우 페이지를 새로 고쳐서 다시 시도하세요
       start_dictation: 받아쓰기 시작
       stop_dictation: 받아쓰기 중지
@@ -1024,7 +1025,7 @@ ko:
       fifteen_seconds_left: 15초 남았습니다
       five_minutes_left: 5분 남았습니다
       one_minute_left: 1분 남았습니다
-      seconds_left: 남은 %{초}초
+      seconds_left: 남은 %{seconds}초
       thirty_seconds_left: 30초 남았습니다
       time_is_up: 시간이 다 되었습니다
       time_is_up_for_recording: 시간이 다 되어 녹화가 중지됩니다
@@ -1085,9 +1086,10 @@ ko:
       modal:
         delete:
           cancel: 취소
+          cannot_delete_with_workshops: 워크샵이 포함된 그룹을 삭제할 수 없으므로 먼저 워크샵을 삭제하세요.
           failed: '"%{이름}" 그룹을 삭제하지 못했습니다. 관리자에게 문의하세요'
           ok: 예, 삭제
-          text: '"%{이름}" 그룹을 삭제하시겠습니까?'
+          text: '"%{name}" 그룹을 삭제하시겠습니까?'
           title: 그룹 삭제
       no_assessments: 평가를 끌어다 놓기
       no_ungrouped_assessments: 평가를 여기로 끌어다 놓아 그룹을 해제합니다
@@ -1102,11 +1104,11 @@ ko:
   assign_reports:
     assessment_not_in_report: ID가 %{assessment_id}인 평가는 ID가 %{report_id}인 보고서에 포함되지 않습니다
     errors:
-      not_enought_licenses: 번들 ID가 %{번들_id}인 번들에 라이선스가 없습니다
-      user_not_found: '행 %{행}: 이메일 ''%{이메일}''을(를) 가진 사용자를 찾을 수 없습니다'
-    report_bundle_not_found: 아이디가 %{번들_id}인 보고서 번들을 찾을 수 없습니다
-    report_not_found: ID %{보고서_id}의 보고서를 찾을 수 없습니다
-    report_not_in_bundle: ID %{보고서_id}가 %{번들_id}가 있는 보고서 번들에 속하지 않은 보고서입니다
+      not_enought_licenses: 번들 ID가 %{bundle_id}인 번들에 라이선스가 없습니다
+      user_not_found: '행 %{행}: 이메일 ''%{email}''을(를) 가진 사용자를 찾을 수 없습니다'
+    report_bundle_not_found: 아이디가 %{bundle_id}인 보고서 번들을 찾을 수 없습니다
+    report_not_found: ID %{report_id}의 보고서를 찾을 수 없습니다
+    report_not_in_bundle: ID %{report_id}가 %{bundle_id}가 있는 보고서 번들에 속하지 않은 보고서입니다
   assigns:
     decorator:
       no_description: 설명이 비어 있습니다
@@ -1229,6 +1231,7 @@ ko:
       development: 개발
       home: 홈
       insights: 인사이트
+      my_direct_reportees: 내 직접 보고 대상
       my_plan: 내 요금제
       profile: 프로필
       profile_details: 세부 정보
@@ -1248,7 +1251,7 @@ ko:
       campaign_start_final_instructions: "<p>타이머를 중지하거나 일시 중지하는 방법은 없습니다. 브라우저를 닫아도 캠페인 타이머는 계속 실행되므로 중간에 다른 일을 하기 위해 작업을 중단할 생각은 하지 마세요. 작업 중 방해 요소를 최소화하세요. 조용한 환경을 찾고, 기기에서 알림을 끄고, 멀티태스킹을 피하세요. 집중력을 유지하고 집중하세요. 캠페인 타이머가 다 지나면 계속할 수 없습니다. 위의 지침을 모두 읽었다면 시작을 클릭하여 할당된 작업을 계속 진행하시기 바랍니다</p>\n"
       campaign_start_instruction: |
         <h4>다음 지침을 잘 읽어주세요.</h4>
-        <p>시작하려는 작업에는 시간이 정해져 있습니다. '시작'을 클릭하면 캠페인 타이머가 자동으로 시작됩니다. 모든 활동을 완료하는 데 남은 시간은 %{분}입니다. 지정된 시간 내에 작업을 완료하고 평가 과정을 서두르지 않도록 시간을 효율적으로 관리하세요. 한 번에 작업을 완료해야 하므로 잠시 쉬고 싶다면 지금이 바로 그 시간입니다</p>
+        <p>시작하려는 작업에는 시간이 정해져 있습니다. '시작'을 클릭하면 캠페인 타이머가 자동으로 시작됩니다. 모든 활동을 완료하는 데 남은 시간은 %{minutes}입니다. 지정된 시간 내에 작업을 완료하고 평가 과정을 서두르지 않도록 시간을 효율적으로 관리하세요. 한 번에 작업을 완료해야 하므로 잠시 쉬고 싶다면 지금이 바로 그 시간입니다</p>
       common_proctoring_instructions: |
         <h4>감독</h4>
         <p>시작 버튼을 클릭하면 감독 시스템으로 리디렉션되며, 세션이 진행되는 동안 카메라, 마이크, 화면을 모니터링합니다. 이러한 세션은 정교한 AI 시스템에 의해 자동으로 감독되어 중단 없이 원활한 사용자 경험을 제공합니다. 그러나 세션은 인간 감독자가 검토할 수도 있습니다. 부정 행위나 부정 행위의 징후가 발견되면 플래그가 표시됩니다. 이는 부정 행위 시도를 방지하기 위한 것입니다. 의심이 발견되면 작업은 취소될 수 있습니다</p>
@@ -1263,7 +1266,7 @@ ko:
       heading: 시작하기 전에 아래 가이드라인을 검토해 주세요. 최선을 다하시길 바랍니다!
     language:
       content: 이 작업은 현재 선택한 언어로 사용할 수 없습니다. 계속하려면 사용 가능한 언어 중 하나를 선택하세요.
-      single_lang: 이 작업은 %{언어}에서만 사용할 수 있습니다. 계속하려면 "진행"을 클릭합니다.
+      single_lang: 이 작업은 %{lang}에서만 사용할 수 있습니다. 계속하려면 "진행"을 클릭합니다.
       title: 언어 선택
     panels:
       dashboard: 대시보드
@@ -1285,10 +1288,10 @@ ko:
     time_left:
       cancel: 취소
       continue: 계속하기
-      notification: 이 작업 "%{평가 이름}"에 할당된 시간은 %{총평가 시간}이었습니다. 전체 경과 시간으로 인해 이제 이 작업을 완료하기 위한 조정된 시간은 %{잔여 캠페인 시간}뿐입니다.
+      notification: 이 작업 "%{assessmentName}"에 할당된 시간은 %{totalAssessmentTime}이었습니다. 전체 경과 시간으로 인해 이제 이 작업을 완료하기 위한 조정된 시간은 %{remainingCampaignTime}뿐입니다.
     timer:
-      notification_hours: 남은 시간은 %{시간}시간입니다
-      notification_minutes: 분이 남았습니다
+      notification_hours: 남은 시간은 %{hours}시간입니다
+      notification_minutes: "%{minutes} 분이 남았습니다"
   campaign_assessment:
     actions:
       bulk_download: 대량 다운로드
@@ -1355,20 +1358,20 @@ ko:
         title: 보고서를 다시 생성하시겠습니까?
       remove:
         helper_text: '위험: 이 옵션을 선택하면 이 캠페인에서 이 평가에 대한 모든 사용자의 응답이 제거됩니다.'
-        msg_text: <strong>"%{이름}"</strong> 평가를 삭제하려고 합니다
-        successfully: 이름} 평가가 성공적으로 제거되었습니다.
+        msg_text: <strong>"%{name}"</strong> 평가를 삭제하려고 합니다
+        successfully: "%{name} 평가가 성공적으로 제거되었습니다."
         title: 평가를 제거하시겠습니까?
       rescore:
         content: 평가를 다시 채점하시겠습니까?
         successfully: 평가가 성공적으로 완료되었습니다.
         title: 재평가?
       rescore_response:
-        message: '"%{이름}" 평가를 위해 채점 예약됨'
+        message: '"%{name}" 평가를 위해 채점 예약됨'
         title: 응답 재채점
       reset:
         content: 결과를 초기화하시겠습니까?
         successfully: 결과 데이터가 성공적으로 재설정되었습니다.
-        title: 평가 결과 %{이름}을(를) 초기화하시겠습니까?
+        title: 평가 결과 %{name}을(를) 초기화하시겠습니까?
       update_assessor_form:
         select_assessor: 평가자 양식 선택
         success_msg: 평가자 양식이 성공적으로 업로드되었습니다
@@ -1443,7 +1446,7 @@ ko:
       bulk_download: 대량 다운로드
       export_data: 데이터 내보내기
     bulk_download:
-      error: 대량 다운로드는 보고서 파일 1,000개로 제한됩니다. 현재 선택 항목에 %{개}개의 보고서 파일이 있습니다. 다운로드할 보고서 파일 수를 줄이려면 시작 날짜와 종료 날짜를 조정하세요.
+      error: 대량 다운로드는 보고서 파일 1,000개로 제한됩니다. 현재 선택 항목에 %{count}개의 보고서 파일이 있습니다. 다운로드할 보고서 파일 수를 줄이려면 시작 날짜와 종료 날짜를 조정하세요.
     column:
       assessor_access: 평가자 액세스
       auto_assign: 자동 할당
@@ -1467,7 +1470,7 @@ ko:
     modals:
       remove:
         apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
-        msg_text: <strong>"%{보고서 이름}"</strong> 보고서를 삭제하려고 합니다
+        msg_text: <strong>"%{reportName}"</strong> 보고서를 삭제하려고 합니다
         title: 신고 삭제?
       user_access:
         apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
@@ -1495,11 +1498,11 @@ ko:
           assessments: '평가:'
           confirmation: 새 호건 자격 증명을 추가하려면 아래 텍스트 상자에 이메일을 입력하세요
           reports: '보고서:'
-          successfully: 이메일 %{이메일}을 사용하는 사용자에 대한 새 호건 자격 증명을 추가했습니다.
-          warning: 새 호건 자격 증명을 만들면 %{이메일}에 대한 이전 호건 자격 증명과 연결된 다음 평가 및 보고서가 제거됩니다
+          successfully: 이메일 %{email}을 사용하는 사용자에 대한 새 호건 자격 증명을 추가했습니다.
+          warning: 새 호건 자격 증명을 만들면 %{email}에 대한 이전 호건 자격 증명과 연결된 다음 평가 및 보고서가 제거됩니다
         remove:
-          successfully: 이메일 %{이메일}을 가진 사용자가 성공적으로 제거되었습니다.
-          title: 캠페인 %{캠페인명}에서 이 사용자를 제거하시겠습니까?
+          successfully: 이메일 %{email}을 가진 사용자가 성공적으로 제거되었습니다.
+          title: 캠페인 %{campaignName}에서 이 사용자를 제거하시겠습니까?
       not_completed_yet: 아직 완료되지 않음
       not_logged_in_yet: 아직 로그인하지 않았습니다
       not_started_yet: 아직 시작되지 않음
@@ -1512,7 +1515,7 @@ ko:
         not_started: 시작되지 않음
         timed_out: 시간 초과
     modals:
-      remove: 이메일 '%{이메일}'을 사용하는 사용자를 이 캠페인에서 제거하시겠습니까?
+      remove: 이메일 '%{email}'을 사용하는 사용자를 이 캠페인에서 제거하시겠습니까?
   campaigns:
     assessments_and_reports:
       assessor_assessments: 평가자 평가
@@ -1640,7 +1643,7 @@ ko:
       verify: 확인
       view: 보기
       view_all_tasks: 모든 작업 보기
-      view_details: 세부정보 보기
+      view_detail: 세부 정보 보기
     column:
       action: 액션
       active: 활성
@@ -1759,8 +1762,8 @@ ko:
   datasheet:
     errors:
       datasheet_column:
-        not_found: 열 '%{열_이름}'을(를) 찾을 수 없습니다
-        numeric_value_required: "'%{필드}' 열은 숫자여야 합니다"
+        not_found: 열 '%{column_name}'을(를) 찾을 수 없습니다
+        numeric_value_required: "'%{field}' 열은 숫자여야 합니다"
         string_value_required: 열 '%{field}'는 문자열이어야 합니다
       not_configured: 데이터시트 구성되지 않음
   devise:
@@ -1817,30 +1820,30 @@ ko:
         header: 초대 보내기
         submit_button: 초대 보내기
       no_invitations_remaining: 남은 초대 없음
-      send_instructions: 초대 이메일이 %{이메일}로 전송되었습니다.
+      send_instructions: 초대 이메일이 %{email}로 전송되었습니다.
       updated: 비밀번호가 성공적으로 설정되었습니다. 이제 로그인했습니다.
       updated_not_active: 비밀번호가 성공적으로 설정되었습니다.
     mailer:
       admin_invitation_instructions:
         accept: 초대를 수락하려면 여기를 클릭하세요.
-        body: '안녕하세요 %{이름} 님, 인재 기업 평가 플랫폼인 라이트하우스의 관리자 패널에 액세스하도록 초대되었습니다. 수락] 또는 이 이메일을 무시해도 됩니다. 액세스 자격 증명을 다른 사람과 공유하지 마세요.
+        body: '안녕하세요 %{name} 님, 인재 기업 평가 플랫폼인 라이트하우스의 관리자 패널에 액세스하도록 초대되었습니다. 수락] 또는 이 이메일을 무시해도 됩니다. 액세스 자격 증명을 다른 사람과 공유하지 마세요.
 
           '
         subject: 라이트하우스로의 초대
       confirmation_instructions:
         subject: 확인 지침
       invitation_instructions:
-        body: '안녕하세요 %{이름} 님, 다음 섹션의 관리자로 라이트하우스에 추가되었습니다
+        body: '안녕하세요 %{name} 님, 다음 섹션의 관리자로 라이트하우스에 추가되었습니다
 
           '
         login: 라이트하우스에 로그인
         sections:
-          campaign: '캠페인: %{섹션_이름}'
-          client: '클라이언트 테넌시: %{섹션_이름}'
-          project: '프로젝트: %{섹션_이름}'
+          campaign: '캠페인: %{section_name}'
+          client: '클라이언트 테넌시: %{section_name}'
+          project: '프로젝트: %{section_name}'
         subject: 라이트하우스로의 초대
       password_change:
-        body: '안녕하세요 %{이름} 님! 비밀번호가 변경되었습니다. 이 요청을 하지 않은 경우 즉시 지원팀(support@thetalententerprise.com)으로 문의하시기 바랍니다
+        body: '안녕하세요 %{name} 님! 비밀번호가 변경되었습니다. 이 요청을 하지 않은 경우 즉시 지원팀(support@thetalententerprise.com)으로 문의하시기 바랍니다
 
           '
         regards: '라이트하우스 팀
@@ -1848,7 +1851,7 @@ ko:
           '
         subject: 라이트하우스 비밀번호가 변경되었습니다
       reset_password_instructions:
-        body: '안녕하세요 %{이름} 님! 누군가 비밀번호를 변경할 수 있는 링크를 요청했습니다. 아래 링크를 통해 비밀번호를 변경할 수 있습니다.
+        body: '안녕하세요 %{name} 님! 누군가 비밀번호를 변경할 수 있는 링크를 요청했습니다. 아래 링크를 통해 비밀번호를 변경할 수 있습니다.
 
           '
         change_password: 비밀번호 변경
@@ -1858,7 +1861,7 @@ ko:
           '
         subject: 비밀번호 재설정 방법
       unlock_instructions:
-        body: '안녕하세요 %{이름} 님! 로그인 시도 횟수가 너무 많아 계정이 잠겼습니다. 아래 링크를 클릭하여 계정의 잠금을 해제하세요:
+        body: '안녕하세요 %{name} 님! 로그인 시도 횟수가 너무 많아 계정이 잠겼습니다. 아래 링크를 클릭하여 계정의 잠금을 해제하세요:
 
           '
         footer: 요청하지 않은 경우 이 이메일을 무시해도 됩니다. 위의 링크에 액세스하여 새 비밀번호를 생성할 때까지 비밀번호는 변경되지 않습니다.
@@ -1868,8 +1871,8 @@ ko:
         subject: 계정 잠금 해제 지침
         unlock_account: 내 계정 잠금 해제
     omniauth_callbacks:
-      failure: '"%{이유}" 때문에 %{종류}에서 사용자를 인증할 수 없습니다.'
-      success: 종류] 계정에서 인증에 성공했습니다.
+      failure: '"%{kind}" 때문에 %{reason}에서 사용자를 인증할 수 없습니다.'
+      success: "%{kind} 계정에서 인증에 성공했습니다."
     passwords:
       edit:
         instruction: 새 비밀번호를 만들려면 아래 상자에 새 비밀번호를 입력하세요
@@ -1923,9 +1926,9 @@ ko:
           sign_in: 로그인
         title: 환영합니다!
       signed_in: 로그인에 성공했습니다!
-      signed_in_time: 마지막으로 로그인한 날짜는 %{날짜_시간}입니다
+      signed_in_time: 마지막으로 로그인한 날짜는 %{date_time}입니다
       signed_out: 로그아웃에 성공했습니다.
-      unsuccessful_sign_in_time: 날짜_시간}에 마지막으로 로그인하지 못했습니다.
+      unsuccessful_sign_in_time: "%{date_time}에 마지막으로 로그인하지 못했습니다."
     two_factor_authentication:
       attempt: 등록된 이메일 주소로 받은 OTP를 입력하세요
       attempt_failed: OTP가 잘못되었습니다! 다시 시도하세요
@@ -1948,14 +1951,14 @@ ko:
     errors:
       add_edit_project:
         invalid_subdomain_format: 하위 도메인 형식이 잘못되었습니다.
-        reserved_subdomain: 하위 도메인 %{값}이 예약되었습니다
+        reserved_subdomain: 하위 도메인 %{value}이 예약되었습니다
         uniq_subdomain: 하위 도메인은 고유해야 합니다.
       add_manager:
         manager_not_found: 관리자를 찾을 수 없거나 동일한 프로젝트에 속하지 않음
         user_not_found: 사용자를 찾을 수 없거나 동일한 프로젝트에 속하지 않은 사용자
       admin:
         already_added: 이메일이 이미 추가된 관리자입니다.
-      already_assigned?: 이 평가를 연결할 수 없습니다. 이 평가는 이미 '%{연결된_평가자_양식_이름}'에 할당되어 있습니다.
+      already_assigned?: 이 평가를 연결할 수 없습니다. 이 평가는 이미 '%{linked_assessor_form_name}'에 할당되어 있습니다.
       already_invited: 이 사용자는 추가하려는 평가 센터에 이미 존재합니다.
       assessor_assessment:
         already_added: 평가자 평가는 이미 캠페인에 추가되었습니다.
@@ -1963,7 +1966,7 @@ ko:
       campaign_factor:
         code_already_exists: 동일한 코드를 가진 요소가 이미 존재합니다.
         invalid_lua_name: 는 유효한 루아 변수 이름이어야 합니다
-        limit_exceeded: 캠페인 계수의 최대 한도 %{한도}에 도달했습니다.
+        limit_exceeded: 캠페인 계수의 최대 한도 %{limit}에 도달했습니다.
         name_already_exists: 같은 이름의 요소가 이미 존재합니다.
         rank_not_allowed: 출력 유형이 숫자인 요소만 순위를 매길 수 있습니다.
       campaign_factor_group:
@@ -1971,10 +1974,10 @@ ko:
         last_factor_group: 마지막 캠페인 요소 그룹을 삭제할 수 없습니다.
       create_superadmin:
         uniq_email: 이메일은 고유해야 합니다.
-      exceeded_subjects_count: 초대당 %{개수}명의 피사체만 추가할 수 있습니다
+      exceeded_subjects_count: 초대당 %{count}명의 피사체만 추가할 수 있습니다
       filled?: 비어있을 수 없습니다
       invalid_name: 알파벳, 숫자, 공백, 대시 및 점만 유효한 문자로 허용됩니다
-      invalid_value: 줄 번호 %{행}에 잘못된 문 '%{값}'이 있습니다
+      invalid_value: 줄 번호 %{value}에 잘못된 문 '%{row}'이 있습니다
       json?: 유효한 JSON이어야 합니다
       key?: 비어있을 수 없습니다
       match_regexp?: 유효하지 않은 값
@@ -1983,7 +1986,7 @@ ko:
       missed?: 비어있을 수 없습니다
       not_allowed?: 변경할 수 없습니다
       not_in_the_list?: 잘못된 값이 전달되었습니다
-      not_uniq_variable: 행 번호 %{행}에서 변수 '%{값}'이(가) 재정의되었습니다
+      not_uniq_variable: 행 번호 %{value}에서 변수 '%{row}'이(가) 재정의되었습니다
       project_assessments:
         should_be_greater_than_zero: 결과 유효 기간은 0일 이상이어야 합니다
       report_approval_settings:
@@ -1991,7 +1994,7 @@ ko:
         validates_admins: 관리자는 캠페인에 액세스할 수 없습니다.
       report_families_reports:
         report_exists: 이 보고서는 이미 보고서 번들의 일부입니다
-      size?: 크기는 %{크기}보다 작아야 합니다
+      size?: 크기는 %{size}보다 작아야 합니다
       skill_alias:
         unique_alias: 별칭은 고유해야 합니다
         unique_skill: 스킬은 고유해야 합니다
@@ -2001,23 +2004,23 @@ ko:
       update_workshop:
         less_than_booked: 총 좌석 수가 예약된 좌석 수보다 많아야 합니다
       user_availability_date:
-        overlaps_date: 다른 가용성 %{범위}와 겹침
-        overlaps_time: 겹침 간격 %{간격}
+        overlaps_date: 다른 가용성 %{range}와 겹침
+        overlaps_time: 겹침 간격 %{interval}
         start_date_should_be_less: 시작 날짜는 종료 날짜보다 작아야 합니다
         start_time_should_be_less: 시작 시간은 종료 시간보다 짧아야 합니다
       user_idp_plan:
         idp_template_already_assigned_to_user: 이 Idp 템플릿은 이미 이 사용자에게 할당되어 있으며 활성화되어 있습니다
       user_saved_filters:
-        limit_exceeded: 제한] 개의 필터만 저장할 수 있으며, 더 추가하려면 저장된 필터를 삭제해 주세요.
+        limit_exceeded: "%{limit} 개의 필터만 저장할 수 있으며, 더 추가하려면 저장된 필터를 삭제해 주세요."
         unique_name: 같은 이름의 필터가 이미 존재합니다.
       workshop_invited_subject_create:
         already_exists: 초대장에 제목이 이미 존재합니다.
       workshop_subject_create:
         already_exists: 이 평가 센터에 과목이 이미 존재합니다.
-        part_of_other_workshop: 주체가 이미 '%{워크샵_이름}'의 참가자입니다.
+        part_of_other_workshop: 주체가 이미 '%{workshop_name}'의 참가자입니다.
       workshops:
-        no_available_assessor_slots: 평가자 %{평가자}에 사용할 수 있는 슬롯이 없습니다
-        no_available_manager_slots: 관리자 %{관리자}에게 사용 가능한 슬롯이 없습니다
+        no_available_assessor_slots: 평가자 %{assessor}에 사용할 수 있는 슬롯이 없습니다
+        no_available_manager_slots: 관리자 %{manager}에게 사용 가능한 슬롯이 없습니다
     users:
       registrations:
         new:
@@ -2044,7 +2047,7 @@ ko:
         error: 이메일 본문에 잘못된 파이펫 텍스트가 있습니다.
   errors:
     assessments:
-      timed_out: 시간이 초과되었으므로 %{평가_이름} 평가에 응시할 수 없습니다.
+      timed_out: 시간이 초과되었으므로 %{assessment_name} 평가에 응시할 수 없습니다.
     error: 오류
     error_500: 문제가 발생했습니다. 관리자에게 문의하세요.
     error_msg: 문제가 발생했습니다. 페이지를 새로 고친 후 문제가 지속되면 관리자에게 문의하세요
@@ -2080,7 +2083,7 @@ ko:
       back_to_dashboard: 대시보드로 돌아가기
       back_to_tasks: 작업으로 돌아가기
       calendar: 캘린더
-      campaign_name_description: 캠페인 "%{캠페인이름}"의 경우
+      campaign_name_description: 캠페인 "%{campaignName}"의 경우
       change_language: "(언어 변경)"
       clear_date: 날짜 지우기
       collapse_menu: 메뉴 축소
@@ -2098,7 +2101,7 @@ ko:
       remove_file: 파일 제거
       send_message: 메시지 보내기
       slider_label_instruction: '최소: %{min} 및 최대: %{max}'
-      task_btn_description: 작업 %{평가 이름}
+      task_btn_description: 작업 %{assessmentName}
       task_progress_label: 작업 완료는
       write_message: 메시지 작성
     assessment: 평가
@@ -2128,7 +2131,7 @@ ko:
         message_part1: 모든 사전 작업을 완료하세요
         message_part2: 슬롯을 예약하기 전에
       assessment_center_group_name: 평가 센터
-      booking_failed_msg: '슬롯을 예약하지 못했습니다: %{오류}'
+      booking_failed_msg: '슬롯을 예약하지 못했습니다: %{error}'
       buttons:
         book: 예약
         book_again: 다시 예약하기
@@ -2145,13 +2148,13 @@ ko:
         reserve_spot: 자리 예약하기
         yes_text: 예
       cancel_booking_confirmation: 이 예약을 취소하시겠습니까?
-      cancellation_failed: '예약을 취소하지 못했습니다: %{오류}'
+      cancellation_failed: '예약을 취소하지 못했습니다: %{error}'
       cancellation_success: 예약을 성공적으로 취소했습니다
       comments_required_msg: 의견을 입력하세요
       confirm_booking_description: 예약을 완료하기 전에 이러한 세부 정보가 정확한지 확인해 주세요.
       confirm_booking_title: 이 예약을 확인하시겠습니까?
       default_failure_msg: 요청을 처리할 수 없습니다. 나중에 다시 시도하세요.
-      default_requires_msg: "%{이름}은(는) 필수 입력 사항입니다"
+      default_requires_msg: "%{name}은(는) 필수 입력 사항입니다"
       join_activity_meeting: 미팅 참여
       join_workshop_meeting: 미팅 참여
       language: 언어
@@ -2163,21 +2166,22 @@ ko:
       neurodivergence_comment_aria_label: 신경 발산 댓글
       neurodivergence_comment_placeholder: 귀하의 의견
       neurodivergence_question: 평가에 완전히 참여하기 위해 특별한 필요나 장애로 인해 합리적인 편의나 조정이 필요하신가요?
+      no_invites_msg: 평가 센터에 추가되거나 슬롯 예약 초대를 받게 되며, 센터에 참여하게 되면 아래의 '세부 정보 보기' 버튼을 클릭하여 활동을 완료할 수 있습니다.
       or: 또는
       other_invite: 카운트] 더 초대하기 참조
       other_invites: 카운트] 더 많은 초대 참조
       reason: 이유
       reason_for_cancel: 취소 사유
       reason_for_reschedule: 일정 변경 이유
-      request_cancellation_failed: '취소 요청에 실패했습니다: %{오류}'
+      request_cancellation_failed: '취소 요청에 실패했습니다: %{error}'
       request_cancellation_success: 취소 요청 성공
-      request_reschedule_failed: '일정 변경을 요청하지 못했습니다: %{오류}'
+      request_reschedule_failed: '일정 변경을 요청하지 못했습니다: %{error}'
       request_reschedule_success: 일정 변경을 성공적으로 요청했습니다
-      reschedule_failed_msg: '일정을 변경하지 못했습니다: %{오류}'
+      reschedule_failed_msg: '일정을 변경하지 못했습니다: %{error}'
       reschedule_reason_placeholder: 계속하려면 일정 변경 사유를 입력하세요.
       schedule_success: 이 예약은 예정되어 있습니다
       schedule_success_msg: 귀하와 다른 참석자에게 모든 세부 정보가 포함된 캘린더 초대장을 이메일로 보냈습니다.
-      starts_at: '시작 날짜: %{날짜}'
+      starts_at: '시작 날짜: %{date}'
       starts_in: '시작됩니다:'
       tab_label:
         bookings: 예약
@@ -2189,10 +2193,10 @@ ko:
     campaign:
       actions:
         copy:
-          success: 캠페인 이름 %{캠페인 이름}이 성공적으로 복사되었습니다.
+          success: 캠페인 이름 %{campaignName}이 성공적으로 복사되었습니다.
         remove:
           confirmation: 캠페인을 제거하려면 아래 텍스트 상자에 현재 캠페인 이름을 입력합니다
-          success: 성공
+          success: "%{campaignName}이 성공적으로 제거되었습니다."
       users:
         actions:
           export:
@@ -2214,12 +2218,12 @@ ko:
           view_licenses: 라이선스 보기
         remove:
           confirmation: 클라이언트를 제거하려면 아래 텍스트 상자에 현재 클라이언트 이름을 입력합니다
-          success: 클라이언트 이름이 '%{클라이언트 이름}'인 클라이언트가 성공적으로 제거되었습니다
+          success: 클라이언트 이름이 '%{clientName}'인 클라이언트가 성공적으로 제거되었습니다
       projects:
         actions:
           remove:
             confirmation: 프로젝트를 제거하려면 아래 텍스트 상자에 현재 프로젝트 이름을 입력하세요
-            success: 프로젝트 이름이 '%{프로젝트 이름}'인 프로젝트가 성공적으로 제거되었습니다
+            success: 프로젝트 이름이 '%{projectName}'인 프로젝트가 성공적으로 제거되었습니다
     delete: 삭제
     edit: 편집
     error_warning: 평가에 문제가 발생했습니다. 지원팀에 문의하세요.
@@ -2245,8 +2249,8 @@ ko:
       message: 마지막 요청이 실패했습니다. 페이지를 새로고침하고 문제가 지속되면 관리자에게 문의하세요.
       refresh: 새로 고침
     resource:
-      create_success: "%{읽을 수 있는 리소스 이름}이(가) 성공적으로 추가되었습니다"
-      update_success: "%{읽을 수 있는 리소스 이름}이(가) 성공적으로 업데이트되었습니다"
+      create_success: "%{readableResourceName}이(가) 성공적으로 추가되었습니다"
+      update_success: "%{readableResourceName}이(가) 성공적으로 업데이트되었습니다"
     restart: 다시 시작
     restart_progress: 평가에 몇 가지 변경 사항이 있습니다. 변경 사항을 확인하려면 페이지를 새로 고치세요. 페이지를 새로 고치면 평가가 처음부터 다시 시작됩니다. 이미 답변한 질문은 자동으로 채워집니다.
     saved_results: 답변이 성공적으로 저장되었습니다.
@@ -2283,7 +2287,7 @@ ko:
     booking_card:
       aria_available_time: 사용 가능한 시간
       aria_back_to_time_selection: 시간 선택으로 돌아가기
-      aria_desc_current_month: 현재 %{월 이름} %{연도}
+      aria_desc_current_month: 현재 %{monthName} %{year}
       aria_label_next_month: 다음 달로 이동
       aria_label_previous_month: 이전 달로 이동
       aria_timezone_select: 표준 시간대 선택
@@ -2305,7 +2309,7 @@ ko:
       increase_font: 글꼴 크기 늘리기
       reset_font: 글꼴 크기 재설정
     input_duration:
-      max_duration: 최대 기간은 %{기간}입니다
+      max_duration: 최대 기간은 %{duration}입니다
     schedule_availability:
       copy_to_all: 모두에게 복사
       end_date: 종료 날짜
@@ -2384,16 +2388,11 @@ ko:
     manage_plan: 계획 관리
     mark_as_complete: 완료로 표시
     mark_as_incomplete: 미완료로 표시
+    my_direct_reportees: 내 직접 보고 대상
     my_plan:
       development_plan: 개발 계획
       graphs:
-        behavioural: 행동
         categories: 카테고리
-        learning_on_job: 업무 중(%{카운트})
-        learning_others: 다른 사람으로부터 학습 (%{카운트})
-        learning_structured: 구조화된 학습(%{개수})
-        other: 기타
-        technical: 기술
       save_skills: 스킬 저장
     skill_gap_report:
       title: 기술 격차 보고서
@@ -2497,75 +2496,6 @@ ko:
     zh-HK: 중국어(홍콩)
     zh-Hant: 중국어 - 번체
     zh-TW: 중국어(대만)
-  languages_localized:
-    af: 아프리칸스어
-    ar: 日本語
-    az: 아제르바이잔
-    bg: български
-    bs: 보산스키
-    by: 벨로루시어
-    ca: 카탈라
-    cn: 中国人
-    cs: 체코어
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: 영어
-    en-GB: 영어(영국)
-    en-US: 영어(미국)
-    eo: 에스페란토
-    es: Español
-    es-ES: Español (에스파냐)
-    et: 에스토니아어
-    fa: 페르시아어
-    fi: 핀란드어
-    fr: Français
-    gu: 구자라트어
-    he: 히브리어
-    hi: हिन्दी
-    hr: 크로아티아어
-    hu: 헝가리어
-    id: 바하사 인도네시아
-    it: 이탈리아어
-    ja: 日本語
-    km: 크메르어
-    ko: 한국어
-    lt: 리투아니아어
-    lv: 라트비아어
-    mk: 마케도니아어
-    mn: 몽골어
-    ms: 말레이시아 바하사
-    my: 미얀마
-    nb: 노르웨이 복말
-    nl: 네덜란드어
-    'no': Norwegian
-    pl: Polski
-    pt: 포르투갈어
-    pt-BR: 포르투갈어(브라질)
-    pt-PT: 포르투갈어(포르투갈)
-    pt_BR: 포르투갈어(브라질)
-    ro: 루마니아어
-    ru: 러시아어
-    sk: 슬로바키아어
-    sl: 슬로베니아어
-    sr-Cyrl: 세르비아어 키릴 문자
-    sr-Latn: 세르비아어 라틴어
-    sv: 스웨덴어
-    sw: 스와힐리어
-    ta: 타밀어
-    th: Thai
-    tl: 타갈로그어
-    tr: 터키어
-    ua: 우크라이나어
-    uk: 우크라이나어
-    ur: 우르두어
-    vi: 베트남어
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政區)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: 활성
     campaign_name: 캠페인 이름
@@ -2580,7 +2510,7 @@ ko:
     enabled: 활성화됨
     end_date: 종료 날짜
     not_enough_idp_license: IDP 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
-    not_enough_license: "'%{클라이언트_이름}'에 '%{보고서_이름}'에 대한 라이선스가 충분하지 않습니다"
+    not_enough_license: "'%{client_name}'에 '%{report_name}'에 대한 라이선스가 충분하지 않습니다"
     not_enough_license_count: 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
     not_enough_proctoring_credits: 감독 세션을 시작하기에 학점이 부족합니다
     number: 번호
@@ -2627,7 +2557,7 @@ ko:
     users:
       account_disable: 활동이 없어 계정이 비활성화되었습니다
       warning: 활동이 없어 곧 계정이 비활성화됩니다
-  maintenance_message: 라이트하우스가 %{시작_날짜}에 예정된 유지 관리를 위해 다운되며 %{기간}시간 동안 사용할 수 없습니다
+  maintenance_message: 라이트하우스가 %{start_date}에 예정된 유지 관리를 위해 다운되며 %{duration}시간 동안 사용할 수 없습니다
   maintenance_submessage: 점검이 완료된 후 페이지를 새로고침하세요. 로그인 페이지로 리디렉션됩니다
   my: My
   myself: 내 자신
@@ -2635,7 +2565,7 @@ ko:
     logout: 로그아웃
   'no': 아니요
   nominations:
-    approval_email_error: 마지막 이메일 승인은 %{마지막_발송_시간}에 전송되었습니다. 다음 알림 메일은 %{대기_시간}에 보낼 수 있습니다
+    approval_email_error: 마지막 이메일 승인은 %{last_sent_at}에 전송되었습니다. 다음 알림 메일은 %{wait_time}에 보낼 수 있습니다
   norms:
     percentile:
       columns:
@@ -2643,8 +2573,8 @@ ko:
         name: 이름
         standard_deviation: 표준 편차
       messages:
-        failure: '오류: %{오류}.'
-        success: "'%{인자 이름}' 팩터에 대한 규범이 업데이트되었습니다."
+        failure: '오류: %{error}.'
+        success: "'%{factorName}' 팩터에 대한 규범이 업데이트되었습니다."
       values:
         empty: 비어 있음
   profile:
@@ -2663,7 +2593,7 @@ ko:
     male: 남성
     mandatory_fields: 필수 필드를 표시합니다
     not_disclosed: 공개하지 않기를 원합니다
-    old_data: 프로필 데이터가 %{개월}개월이 지났습니다. 계속 진행하려면 세부 정보를 확인해 주세요
+    old_data: 프로필 데이터가 %{months}개월이 지났습니다. 계속 진행하려면 세부 정보를 확인해 주세요
     password: 비밀번호
     password_confirmation: 비밀번호 확인
     photo: 사진
@@ -2686,8 +2616,8 @@ ko:
     invalid_code: 잘못된 캠페인 코드
     modals:
       remove:
-        content: 등록 코드 <strong>"%{코드}"</strong>를 제거하시겠습니까?
-        successfully: 등록 코드 '%{코드}'를 성공적으로 제거했습니다.
+        content: 등록 코드 <strong>"%{code}"</strong>를 제거하시겠습니까?
+        successfully: 등록 코드 '%{code}'를 성공적으로 제거했습니다.
       title: 등록 코드
     one_domain_per_line: 한 줄당 하나의 도메인 이름
     restricted_domains: 제한된 도메인
@@ -2695,15 +2625,15 @@ ko:
   report_approvals:
     events:
       approved_text: 승인된 텍스트
-      comment_added: 댓글 <i>%{텍스트}</i> 추가
+      comment_added: 댓글 <i>%{text}</i> 추가
       comment_removed: 삭제된 댓글
       comment_resolved: 해결된 댓글
       comment_unresolved: 해결되지 않은 댓글
-      comment_updated: 주석을 <s>%{oldText}에서</s> <i>%{새 텍스트}로</i> 변경했습니다
+      comment_updated: 주석을 <s>%{oldText}에서</s> <i>%{newText}로</i> 변경했습니다
       created_text: 텍스트 추가
       disapproved_text: 승인되지 않은 텍스트
       removed_text: 제거된 텍스트
-      status_changed: 에서 <i>%{에서}로</i> 상태가 변경되었습니다 <i></i>
+      status_changed: 에서 <i>%{from}로</i> 상태가 변경되었습니다 <i>%{to}</i>
       updated_text: 업데이트된 텍스트
     tabs:
       all: 모두
@@ -2712,26 +2642,26 @@ ko:
   report_bundles:
     actions:
       remove:
-        confirm_message: 보고서 번들 "%{이름}"을 삭제하시겠습니까?
+        confirm_message: 보고서 번들 "%{name}"을 삭제하시겠습니까?
         confirm_title: 확인 필요
-        success_message: 보고서 번들 %{이름}이(가) 삭제되었습니다
+        success_message: 보고서 번들 %{name}이(가) 삭제되었습니다
     report_bundle: 보고서 번들
     report_bundles: 보고서 번들
     reports:
       actions:
         add: 새 보고서 추가
         remove:
-          confirm_message: '''%{보고서_번들_이름}''에서 "%{이름}" 보고서를 삭제하시겠습니까?'
+          confirm_message: '''%{report_bundle_name}''에서 "%{name}" 보고서를 삭제하시겠습니까?'
           confirm_title: 확인 필요
-          success_message: 보고서 %{이름}이(가) 삭제되었습니다
+          success_message: 보고서 %{name}이(가) 삭제되었습니다
   reports:
     actions:
       add: 추가
       archived:
-        success_message: '"%{이름}" 보고서를 성공적으로 보관했습니다.'
+        success_message: '"%{name}" 보고서를 성공적으로 보관했습니다.'
       back_to_campaign: 캠페인으로 돌아가기
       copy:
-        success_message: '"%{이름}" 보고서를 성공적으로 복사했습니다.'
+        success_message: '"%{name}" 보고서를 성공적으로 복사했습니다.'
       details: 세부 정보
       download: 다운로드
       download_csv: CSV 다운로드
@@ -2742,14 +2672,14 @@ ko:
       re_evaluate: 재평가하려면 여기를 클릭하세요
       reevaluate: 재평가
       remove:
-        confirm_message: '"%{이름}" 보고서를 삭제하시겠습니까?'
+        confirm_message: '"%{name}" 보고서를 삭제하시겠습니까?'
         confirm_title: 확인 필요
-        success_message: 이름} 신고가 제거되었습니다
+        success_message: "%{name} 신고가 제거되었습니다"
       rescore: 재점수
       restore:
-        success_message: 보고서 %{이름}이(가) 성공적으로 복원되었습니다
+        success_message: 보고서 %{name}이(가) 성공적으로 복원되었습니다
       unarchived:
-        success_message: 이름 %{이름}을(를) 성공적으로 보관 해제했습니다
+        success_message: 이름 %{name}을(를) 성공적으로 보관 해제했습니다
       update_language: 언어 업데이트
       view: 보기
     active: 활성
@@ -2934,8 +2864,8 @@ ko:
       send_password_email: 이메일을 통해 비밀번호 보내기
       username: 사용자 이름
     messages:
-      reset_password_success: 사용자 %{이메일} 비밀번호를 성공적으로 재설정했습니다.
-      send_password_email_success: 사용자 %{이메일}에게 비밀번호가 포함된 이메일을 보냈습니다.
+      reset_password_success: 사용자 %{email} 비밀번호를 성공적으로 재설정했습니다.
+      send_password_email_success: 사용자 %{email}에게 비밀번호가 포함된 이메일을 보냈습니다.
     title: 비밀번호 재설정
   select: 선택
   shared:
@@ -3306,8 +3236,10 @@ ko:
   threesixty:
     accept_privacy_modal:
       accept: 수락
-      checkbox: 본인은 위에 언급된 개인정보 보호정책을 읽고 이해했습니다
-      title: 데이터 처리 동의
+      checkbox: 이 확인란을 클릭하면 개인정보의 국제 전송을 포함하여 여기에 설명된 개인정보 수집 및 처리에 대한 당사의 개인정보 취급방침을 읽었음에 동의하는 것입니다.
+      checkbox_with_client_link: 이 확인란을 클릭하면 당사의 개인정보 처리방침 및 고객의 개인정보 처리방침을 읽었으며, 개인정보의 국제 전송을 포함하여 여기에 설명된 대로 개인정보를 수집 및 처리하는 데 동의하는 것으로 간주됩니다.
+      privacy_notice: 개인정보 고지
+      title: 개인정보 처리 및 전송에 대한 동의
     action: 액션
     add: 추가
     and: 그리고
@@ -3335,7 +3267,7 @@ ko:
     confirmation_text_incorrect: 확인 텍스트가 올바르지 않습니다
     confirmation_text_placeholder: 확인 텍스트는 여기
     continue: 계속하기
-    dashboard_title: 환영합니다 %{이름}
+    dashboard_title: 환영합니다 %{name}
     decline: 거절
     decline_invite: 초대 거절
     denied: 거부됨
@@ -3380,9 +3312,9 @@ ko:
     nomination_help_modal:
       title: 추천 도움말
     nomination_predicates:
-      atleast: 카운트] 이상
-      atmost: 최대 %{카운트}
-      exactly: 정확히 %{카운트}
+      atleast: "%{count} 이상"
+      atmost: 최대 %{count}
+      exactly: 정확히 %{count}
     nominations: 추천
     options:
       form:
@@ -3423,7 +3355,7 @@ ko:
       report_generation_message: 보고서가 생성 중입니다. 보고서가 준비되면 알려드리겠습니다.
     processing: 처리
     processing_report: 처리 보고서
-    progress_text: 완료된 %{총계} 중 %{총계}
+    progress_text: 완료된 %{completed} 중 %{total}
     question:
       chat_type:
         input_placeholder: 메시지 작성...
@@ -3516,7 +3448,7 @@ ko:
       import:
         body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
         imported_reports: 보고서 및 평가를 가져왔습니다
-        imported_users: '가져온 사용자 수: %{숫자}'
+        imported_users: '가져온 사용자 수: %{number}'
         success_msg: 업로드한 파일을 가져오기 위해 대기열에 추가되었습니다. 알림에서 상태를 확인하세요
         title: 사용자 가져오기
         user_with_unchanged_passwords: 비밀번호가 변경되지 않은 사용자 목록
@@ -3547,7 +3479,7 @@ ko:
       actions:
         reset_progress:
           name: 진행 상황 재설정
-          success_message: 평가 %{이름}을 수정할 준비가 되었습니다
+          success_message: 평가 %{name}을 수정할 준비가 되었습니다
       push_test_webhook:
         copy_request_data_success: Rquest 페이로드가 클립보드에 성공적으로 복사되었습니다.
         copy_response_body_success: 응답 본문이 클립보드에 성공적으로 복사되었습니다.
@@ -3559,10 +3491,10 @@ ko:
         submit_button_name: 푸시 웹훅
         title: 푸시 웹훅
       remove:
-        content: '"%{이름}" 평가를 제거하시겠습니까?'
-        successfully: 이름} 평가가 성공적으로 제거되었습니다.
+        content: '"%{name}" 평가를 제거하시겠습니까?'
+        successfully: "%{name} 평가가 성공적으로 제거되었습니다."
       reset:
-        content: 진행률 "%{이름}"을 초기화하시겠습니까?
+        content: 진행률 "%{name}"을 초기화하시겠습니까?
       test_webhook:
         submit_button_name: 테스트 보내기
         title: 웹훅 이벤트 보내기 테스트
@@ -3613,12 +3545,12 @@ ko:
       regenerate_successful: 보고서 재생성 작업이 성공적으로 예약되었습니다
     modals:
       remove:
-        content: 사용자 보고서 %{사용자 보고서 이름}을 제거하시겠습니까?
+        content: 사용자 보고서 %{userReportName}을 제거하시겠습니까?
         content_with_counts:
           both: '위험: %{userReportName} 보고서에 %{commentsCount}개의 댓글과 %{editsCount}개의 편집 내용이 있습니다. 사용자로부터 보고서를 제거하면 이러한 댓글과 편집 내용이 손실됩니다.'
-          comments: '위험: %{사용자 보고서 이름} 보고서에 %{댓글 수}개의 댓글이 있습니다. 사용자로부터 보고서를 제거하면 이러한 댓글이 손실됩니다.'
-          edits: '위험: %{사용자 보고서 이름} 보고서에 %{편집 횟수}개의 편집 내용이 있습니다. 사용자로부터 보고서를 제거하면 이러한 편집 내용이 손실됩니다.'
-        successfully: 사용자 보고서 이름} 보고서를 성공적으로 제거했습니다
+          comments: '위험: %{userReportName} 보고서에 %{commentsCount}개의 댓글이 있습니다. 사용자로부터 보고서를 제거하면 이러한 댓글이 손실됩니다.'
+          edits: '위험: %{userReportName} 보고서에 %{editsCount}개의 편집 내용이 있습니다. 사용자로부터 보고서를 제거하면 이러한 편집 내용이 손실됩니다.'
+        successfully: "%{userReportName} 보고서를 성공적으로 제거했습니다"
       remove_file:
         content: 파일을 제거하시겠습니까?
         successfully: 파일이 성공적으로 제거되었습니다.
@@ -3640,10 +3572,10 @@ ko:
         option_to_disable: 2FA 비활성화
         option_to_enable: 2FA 사용
       remove:
-        confirm_message: 이메일 '%{이메일}'을 사용하는 사용자를 삭제하시겠습니까?
+        confirm_message: 이메일 '%{email}'을 사용하는 사용자를 삭제하시겠습니까?
         confirm_title: 확인 필요
-        error_message: 오류로 인해 사용자를 제거할 수 없습니다 - %{오류}
-        success_message: email}이(가) 삭제되었습니다
+        error_message: 오류로 인해 사용자를 제거할 수 없습니다 - %{error}
+        success_message: "%{email}이(가) 삭제되었습니다"
         system_error_message: 사용자를 제거할 수 없습니다. 나중에 다시 시도하거나 지원팀에 문의하세요.
       reset_password:
         option: 비밀번호 재설정
@@ -3683,9 +3615,9 @@ ko:
       required: 필수
     TextEntry:
       Email:
-        character_range: 입력한 이메일 메시지는 %{최소}자 이상 %{최대}자 이하여야 합니다.
-        max_character: 입력한 이메일 메시지는 %{최대}자를 넘지 않아야 합니다.
-        min_character: 입력한 이메일 메시지는 %{분}자 이상이어야 합니다.
+        character_range: 입력한 이메일 메시지는 %{min}자 이상 %{max}자 이하여야 합니다.
+        max_character: 입력한 이메일 메시지는 %{max}자를 넘지 않아야 합니다.
+        min_character: 입력한 이메일 메시지는 %{min}자 이상이어야 합니다.
         subject:
           min_length: 제목 필드는 최소 10자 이상이어야 합니다
         to:
@@ -3699,38 +3631,40 @@ ko:
     actions_still_in_progress: 아래 작업이 진행 중입니다. 계속 진행하면 이러한 데이터가 손실됩니다.
     blank: 비어있을 수 없습니다
     character_count: '문자 수 '
-    character_range: 응답은 최소 %{분} 이상 최대 %{최대}자 이상이어야 합니다.
+    character_range: 응답은 최소 %{min} 이상 최대 %{max}자 이상이어야 합니다.
     date: 응답은 유효한 날짜(월/일/년/월/일)여야 합니다
-    each_group_contains: 각 그룹에는 %{최소}개 이상 %{최대}개 이하의 항목이 포함되어야 합니다
+    each_group_contains: 각 그룹에는 %{min}개 이상 %{max}개 이하의 항목이 포함되어야 합니다
     email: 이메일
-    exact: 선택 항목을 정확히 %{개수}개 선택해 주세요
+    exact: 선택 항목을 정확히 %{count}개 선택해 주세요
     file_upload:
       BadRequest: 마지막 요청이 실패하여 파일이 업로드되지 않았습니다. 인터넷이 작동하지 않기 때문일 수 있습니다. 인터넷이 작동하는 경우 관리자에게 문의하세요
-      EntityTooLarge: 파일 크기는 %{최대 파일 크기}MB 미만이어야 합니다
+      EntityTooLarge: 파일 크기는 %{maxFileSize}MB 미만이어야 합니다
       WrongFileType: 파일 유형은 다음 %{allowedFileTypes} 중 하나이어야 합니다
     invalid: 가 유효하지 않습니다
     issue: 이슈
-    least: 최소 %{분}개 이상 선택해 주세요.
-    least_hotspot: 최소 %{분}개 이상 선택해 주세요.
-    max_character: 응답은 %{최대}자를 넘지 않아야 합니다.
-    max_word: 응답은 %{최대}단어를 넘지 않아야 합니다.
-    min_character: 응답에는 최소 %{분}자 이상이 포함되어야 합니다.
-    min_factor: 응답에는 %{분} 이상의 요소 피드백이 포함되어야 합니다.
-    min_word: 응답은 최소 %{분}단어 이상이어야 합니다
-    most: 최대 %{최대}개의 선택 항목을 선택하세요
-    must_rank_between: 각 항목에 %{최소값}에서 %{최대값} 사이의 값을 지정해 주세요. 값은 반복할 수 없습니다.
-    must_select: 최소] ~ 최대] 중에서 선택해 주세요
+    least: 최소 %{min}개 이상 선택해 주세요.
+    least_hotspot: 최소 %{min}개 이상 선택해 주세요.
+    max_character: 응답은 %{max}자를 넘지 않아야 합니다.
+    max_word: 응답은 %{max}단어를 넘지 않아야 합니다.
+    min_character: 응답에는 최소 %{min}자 이상이 포함되어야 합니다.
+    min_factor: 응답에는 %{min} 이상의 요소 피드백이 포함되어야 합니다.
+    min_word: 응답은 최소 %{min}단어 이상이어야 합니다
+    most: 최대 %{max}개의 선택 항목을 선택하세요
+    must_rank_between: 각 항목에 %{min}에서 %{max} 사이의 값을 지정해 주세요. 값은 반복할 수 없습니다.
+    must_select: "%{min} ~ %{max} 중에서 선택해 주세요"
     not_in_future: 선택한 날짜는 미래가 아니어야 합니다
     not_in_past: 선택한 날짜가 과거가 아니어야 합니다
     number: 번호
-    range: 최소 %{분} 이상 최대 %{최대}개까지 선택해 주세요.
+    photo: 필수
+    range: 최소 %{min} 이상 최대 %{max}개까지 선택해 주세요.
     required: 필수
     text: 텍스트
     title:
-      other:
+      one: 오류가 하나 있습니다. 응답을 확인해 주세요.
+      other: "%{count} 오류가 발생했습니다. 응답을 확인해 주세요."
     user_self_skill_rating_disabled: 이 템플릿에는 자체 평가가 비활성화되어 있습니다
     word_count: '단어 수 '
-    word_range: 응답은 최소 %{분} 이상 최대 %{최대}단어여야 합니다.
+    word_range: 응답은 최소 %{min} 이상 최대 %{max}단어여야 합니다.
   'yes': 예
   your: 귀하의
   yourself: 나 자신

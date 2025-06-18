@@ -62,6 +62,7 @@ unless Rails.env.test?
         'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
+      connect_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
       object_src = [
         "https://#{Settings.secrets.s3_compatible_storage.public_bucket}.s3.#{Settings.secrets.s3_compatible_storage.region}.amazonaws.com",
@@ -90,8 +91,6 @@ unless Rails.env.test?
           "#{protocol}://*.#{mocker_api_domain}", "#{protocol}://#{mocker_api_domain}"
         )
       end
-
-      policy.report_uri 'https://webhook.site/f4b15a4b-6e16-401b-9bbb-716cb198157a' if Rails.env.production?
     end
   end
   # rubocop:enable Metrics/BlockLength

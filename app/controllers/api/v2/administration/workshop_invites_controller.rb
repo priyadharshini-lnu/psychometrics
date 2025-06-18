@@ -3,8 +3,8 @@
 module Api
   class V2::Administration::WorkshopInvitesController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopInvite::Schema
-    validates_request_schema :create, Api::V2::WorkshopInvite::CreateContract.new
-    validates_request_schema :create_relationship, Api::V2::WorkshopInvite::CreateRelationshipsContract.new
+    validates_request_schema :create, -> { Api::V2::WorkshopInvite::CreateContract.new }
+    validates_request_schema :create_relationship, -> { Api::V2::WorkshopInvite::CreateRelationshipsContract.new }
 
     prepend_before_action :set_workshops, only: %i[create]
 
@@ -65,8 +65,10 @@ module Api
     end
 
     def workshop_invite_params
-      params.require(:data).require(:attributes).permit(:campaign_id, :allow_language_preference,
-                                                        :allow_neurodiversity_option, allowed_languages: [])
+      params.require(:data).
+        require(:attributes).
+        permit(:campaign_id, :allow_language_preference, :allow_neurodiversity_option, :campaign_assessment_group_id,
+               allowed_languages: [])
     end
 
     def subjects_params

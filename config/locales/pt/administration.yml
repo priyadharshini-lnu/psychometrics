@@ -207,6 +207,12 @@ pt:
             manage: Gerir
             title: Perguntas
             view: Ver
+          reflectionQuestions:
+            export: Exportação
+            import: Importação
+            manage: Gerir
+            title: Perguntas de reflexão sobre o PDI
+            view: Ver
           registrationCodes:
             manage: Gerir
             title: Códigos de registo
@@ -296,6 +302,7 @@ pt:
           preferred_language: Línguas permitidas
           required_error: Não pode estar vazio
           title: Informações básicas
+        center_group: Grupo do Centro de Avaliação
         confirm_message: Tem a certeza de que pretende apagar um convite?
         confirm_message_with_title: Tem a certeza de que pretende remover o convite com o título "%{invite_title}"?
         confirm_title: Confirmar
@@ -2688,6 +2695,7 @@ pt:
         mask_identity_for_mettl: Dados de máscara para METTL
         mask_identity_for_pearson: Dados da máscara para Pearson
         mask_identity_for_saville: Dados de máscara para Saville
+        mask_identity_for_skillvue: Dados de máscara para Skillvue
         privacy_link: Ativar a ligação de privacidade
         privacy_link_label: Ligação de privacidade
         privacy_link_placeholder: Introduzir ligação de privacidade

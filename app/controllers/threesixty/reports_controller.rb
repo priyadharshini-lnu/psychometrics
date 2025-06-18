@@ -39,7 +39,8 @@ module Threesixty
               threesixty_campaign: @campaign,
               default_language: @campaign_report.effective_default_language,
               available_languages: @campaign_report.available_languages,
-              lang: params[:lang] || @campaign_report.effective_default_language
+              lang: params[:lang] || @campaign_report.effective_default_language,
+              user_results: @user_report.user_results(view_report_as: current_user)
             }
           ).serialize(@user_report)
         end

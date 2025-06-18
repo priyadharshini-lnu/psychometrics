@@ -5,7 +5,7 @@ module Api
     before_action :load_skill!, only: %i[generate_by_ai]
 
     validate_crud_requests Api::V2::UserIdpDevelopmentAction::Schema
-    validates_request_schema :bulk_update, Api::V2::UserIdpDevelopmentAction::Schema.bulk_update
+    validates_request_schema :bulk_update, -> { Api::V2::UserIdpDevelopmentAction::Schema.bulk_update }
 
     def bulk_update
       plan_id = bulk_update_params[:user_idp_development_actions]&.first&.[](:user_idp_plan_id)

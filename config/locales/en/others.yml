@@ -1110,6 +1110,7 @@ en:
       modal:
         delete:
           cancel: Cancel
+          cannot_delete_with_workshops: Cannot delete group containing workshops, delete workshops first
           failed: Failed to delete "%{name}" group, please contact administrator
           ok: Yes, delete
           text: Are you sure you want to delete "%{name}" group?
@@ -1700,7 +1701,7 @@ en:
       verify: Verify
       view: View
       view_all_tasks: View all tasks
-      view_details: View Details
+      view_detail: View Detail
     column:
       action: Action
       active: Active
@@ -2243,6 +2244,7 @@ en:
       neurodivergence_comment_aria_label: Neurodivergence comments
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
+      no_invites_msg: You will be added to the assessment center or receive an invite to book your slot; once you're part of the center, you can complete the activities by clicking the 'View Detail' button below.
       or: or
       other_invite: See %{count} more invite
       other_invites: See %{count} more invites
@@ -3971,6 +3973,7 @@ en:
     not_in_future: Selected date should not be in future
     not_in_past: Selected date should not be in past
     number: Your response must be a number
+    photo: required
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
     text: Your response must not contain a numbers

@@ -8,7 +8,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
   let!(:workshop) do
     create(:workshop, booked_seats: 0, total_seats: 10, start_time: Time.current.advance(days: 1))
   end
-  let(:workshop_invite) do
+  let!(:workshop_invite) do
     create(
       :workshop_invite, workshops: [workshop], allowed_languages: ['en, ar'],
       allow_neurodiversity_option: true, allow_language_preference: true
@@ -61,8 +61,8 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
 
     it 'returns the workshop booking' do
       workshop_invited_subject.update!(status: 'accepted')
-
       workshop_subject
+      workshop_subject.update!(workshop_invited_subject_id: workshop_invited_subject.id)
 
       get :fetch_booking, params: { id: workshop_invite.id }
 

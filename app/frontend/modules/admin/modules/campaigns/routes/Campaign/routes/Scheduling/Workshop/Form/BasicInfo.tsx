@@ -66,7 +66,11 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
       },
     })
       .then((response) => {
-        setAssessmentCenterGroups(response as AssessmentCenterGroup[])
+        const groups = response as AssessmentCenterGroup[]
+        setAssessmentCenterGroups(groups)
+        if (groups.length === 1) {
+          form.setFieldValue('campaignAssessmentGroupId', groups[0].id)
+        }
       })
       .catch((error) => {
         console.error('Failed to load assessment center groups:', error)
@@ -166,7 +170,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             </Col>
             <Col xs={24} sm={12} lg={8}>
               <Form.Item
-                name="campaign_assessment_group_id"
+                name="campaignAssessmentGroupId"
                 label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
                 {...fieldLayout}
                 rules={[{ required: true }]}

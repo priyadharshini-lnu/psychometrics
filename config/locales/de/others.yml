@@ -1091,6 +1091,7 @@ de:
       modal:
         delete:
           cancel: Abbrechen
+          cannot_delete_with_workshops: Gruppe mit Workshops kann nicht gelöscht werden, löschen Sie zuerst die Workshops
           failed: Gruppe "%{name}" konnte nicht gelöscht werden, bitte kontaktieren Sie den Administrator
           ok: Ja, löschen
           text: Sind Sie sicher, dass Sie die Gruppe "%{name}" löschen wollen?
@@ -1656,7 +1657,7 @@ de:
       verify: Überprüfen Sie
       view: Siehe
       view_all_tasks: Alle Aufgaben anzeigen
-      view_details: Details anzeigen
+      view_detail: Ansicht Detail
     column:
       action: Aktion
       active: Aktiv
@@ -2182,6 +2183,7 @@ de:
       neurodivergence_comment_aria_label: Kommentare zur Neurodivergenz
       neurodivergence_comment_placeholder: Ihre Kommentare
       neurodivergence_question: Benötigen Sie aufgrund besonderer Bedürfnisse oder Behinderungen Anpassungen, um vollständig am Assessment teilnehmen zu können?
+      no_invites_msg: Sie werden zum Assessment Center hinzugefügt oder erhalten eine Einladung, um Ihren Platz zu reservieren. Sobald Sie Teil des Centers sind, können Sie die Aktivitäten abschließen, indem Sie auf die Schaltfläche "Details anzeigen" unten klicken.
       or: oder
       other_invite: Weitere %{count} Einladungen anzeigen
       other_invites: Weitere %{count} Einladungen anzeigen
@@ -2405,6 +2407,7 @@ de:
     manage_plan: Plan verwalten
     mark_as_complete: Als abgeschlossen markieren
     mark_as_incomplete: Als unvollständig markieren
+    my_direct_reportees: Meine direkten Berichte
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
@@ -2631,75 +2634,6 @@ de:
     zh-HK: Chinesisch (Hongkong)
     zh-Hant: Chinesisch - Traditionell
     zh-TW: Chinesisch (Taiwan)
-  languages_localized:
-    af: Afrikaans
-    ar: عربي
-    az: Aserbaidschanisch
-    bg: български
-    bs: bosanski
-    by: Weißrussisch
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: Englisch
-    en-GB: Englisch (UK)
-    en-US: Englisch (US)
-    eo: Esperanto
-    es: Español
-    es-ES: Español (españa)
-    et: Estnisch
-    fa: Persisch
-    fi: Finnisch
-    fr: Französisch
-    gu: Gujarati
-    he: Hebräisch
-    hi: हिन्दी
-    hr: Kroatisch
-    hu: Ungarisch
-    id: Bahasa Indonesien
-    it: italienisch
-    ja: 日本語
-    km: Khmer
-    ko: Koreanisch
-    lt: Litauisch
-    lv: Lettisch
-    mk: Mazedonisch
-    mn: Mongolei
-    ms: Bahasa Malaysia
-    my: Myanmar
-    nb: Norwegisch Bokmål
-    nl: Niederländisch
-    'no': Norwegisch
-    pl: Polski
-    pt: Português
-    pt-BR: Português (Brasilien)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brasilien)
-    ro: Rumänisch
-    ru: Russisch
-    sk: Slowakisch
-    sl: Slowenisch
-    sr-Cyrl: Serbisch Kyrillisch
-    sr-Latn: Serbisch Latein
-    sv: Schwedisch
-    sw: Suaheli
-    ta: Tamilisch
-    th: Thailändisch
-    tl: Tagalog
-    tr: Türkisch
-    ua: Ukrainisch
-    uk: Ukrainisch
-    ur: Urdu
-    vi: Vietnamesisch
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Aktiv
     campaign_name: Name der Kampagne
@@ -3705,7 +3639,7 @@ de:
     normalize_factor_scores:
       no_scoring_data: Die Normalisierung der Faktorwerte kann nicht abgeschlossen werden, da keine Daten zur Bewertung vorliegen.
     progress_label: Bewertung der Fortschritte
-    redirect: Du wirst für diese Bewertung auf die Website eines Drittanbieters weitergeleitet. Bitte klicke auf „Weiter“, wenn du die Aufgabe starten möchtest.
+    redirect: Du wirst für diese Bewertung auf die Website eines Drittanbieters weitergeleitet. Bitte klicke auf „Fortfahren“, wenn du die Aufgabe starten möchtest.
     status:
       completed: Abgeschlossen
       in_progress: In Arbeit
@@ -3859,6 +3793,7 @@ de:
     not_in_future: Das ausgewählte Datum sollte nicht in der Zukunft liegen
     not_in_past: Das ausgewählte Datum sollte nicht in der Vergangenheit liegen
     number: Ihre Antwort muss eine Zahl sein
+    photo: erforderlich
     range: Bitte wählen Sie mindestens %{min} und nicht mehr als %{max} Auswahlmöglichkeit(en).
     required: Bitte beantworten Sie diese Frage
     text: Ihre Antwort darf keine Zahlen enthalten

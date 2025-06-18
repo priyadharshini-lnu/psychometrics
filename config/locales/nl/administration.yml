@@ -207,6 +207,12 @@ nl:
             manage: Beheer
             title: Vragen
             view: Bekijk
+          reflectionQuestions:
+            export: Exporteer
+            import: Importeren
+            manage: Beheer
+            title: Vragen voor IDP-reflectie
+            view: Bekijk
           registrationCodes:
             manage: Beheer
             title: Registratiecodes
@@ -296,6 +302,7 @@ nl:
           preferred_language: Toegestane talen
           required_error: Kan niet leeg zijn
           title: Basisinformatie
+        center_group: Assessment Center Groep
         confirm_message: Weet je zeker dat je een uitnodiging wilt verwijderen?
         confirm_message_with_title: Weet je zeker dat je de uitnodiging met titel '%{invite_title}' wilt verwijderen?
         confirm_title: Bevestig
@@ -2688,6 +2695,7 @@ nl:
         mask_identity_for_mettl: Maskergegevens voor METTL
         mask_identity_for_pearson: Maskergegevens voor Pearson
         mask_identity_for_saville: Maskergegevens voor Saville
+        mask_identity_for_skillvue: Maskergegevens voor Skillvue
         privacy_link: Privacylink inschakelen
         privacy_link_label: Privacy link
         privacy_link_placeholder: Privacylink invoeren

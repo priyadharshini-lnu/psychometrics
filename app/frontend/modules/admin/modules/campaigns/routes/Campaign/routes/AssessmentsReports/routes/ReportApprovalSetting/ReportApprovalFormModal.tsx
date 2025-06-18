@@ -227,7 +227,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
 
           <Form.Item
             name="qcUserIds"
-            label={I18n.t('administration.campaigns.assessment_reports.qc_users')}
+            label={I18n.t('administration.campaigns.assessment_reports.report_approval.qc_users')}
             rules={[{ required: true }]}
           >
             <Select
@@ -252,7 +252,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           {!form.getFieldValue('approversNotRequired') && (
             <Form.Item
               name="approverUserIds"
-              label={I18n.t('administration.campaigns.assessment_reports.approvers')}
+              label={I18n.t('administration.campaigns.assessment_reports.report_approval.approvers')}
               rules={[{ required: true }]}
             >
               <Select
@@ -277,7 +277,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           {!form.getFieldValue('doNotSendNotifications') && (
             <Form.Item
               name="approvalNotificationUserIds"
-              label={I18n.t('administration.campaigns.assessment_reports.approval_notification_users')}
+              label={I18n.t('administration.campaigns.assessment_reports.report_approval.approval_notification_users')}
               rules={[{ required: true }]}
             >
               <Select

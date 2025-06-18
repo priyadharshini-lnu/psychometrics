@@ -1,0 +1,1004 @@
+---
+ro:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Toate răspunsurile
+      numeric_comparator:
+        enter_value: Introduceți valoarea
+        select_data: Selectați datele
+      scoring:
+        select_comparison: Alegeți tipul de comparare
+        select_factors: Selectați factorii
+        select_operation: Selectați operațiunea
+  activerecord:
+    attributes:
+      membership:
+        first_name: Numele și prenumele
+        last_name: Numele de familie
+      user:
+        email: Adresă de e-mail
+        first_name: Numele și prenumele
+        last_name: Numele de familie
+      user_form:
+        email: Adresa de e-mail
+        first_name: Numele și prenumele
+        last_name: Numele de familie
+        password: Parolă
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: Numărul de telefon mobil este necesar
+              invalid: Numărul de telefon mobil este invalid
+              verification_expired: Codul de verificare a expirat. Puteți încerca să verificați din nou.
+        user:
+          attributes:
+            current_password:
+              invalid: Parola curentă este incorectă
+  administration: Administrație
+  anonym:
+    close: Închidere
+    continue: Continuați
+    notifications:
+      restart:
+        copy: Ați început deja acest sondaj. Puteți alege să continuați sau să reporniți.
+        title: Continuați?
+      retake:
+        copy: Ați completat deja acest chestionar. Pentru a-l relua, vă rugăm să faceți clic pe butonul Refacere de mai jos.
+        title: Reluare?
+    restart: Repornire
+    retake: Reluare
+  assessments:
+    actions:
+      back_to_campaign: Înapoi la campanie
+      extend_time: Extindeți timpul
+      goto_dashboard: Faceți clic aici pentru a continua
+      pending_tasks:
+        few:
+        one: Aveți 1 sarcină în așteptare
+        other: Aveți %{count} sarcini în așteptare
+      rescore: Rescore
+    audio_response:
+      permission_denied_message: Vă rugăm să activați permisiunea de microfon în browserul dvs. pentru a înregistra răspunsul
+      permission_text: Vă rugăm să permiteți utilizarea microfonului pentru înregistrarea audio
+    card_actions:
+      begin: Începeți
+      continue: Continuați
+    instructions:
+      begin_assessment: Începeți
+      cancel: Anulează
+      default: Aceasta este o activitate cronometrată, odată ce faceți clic pe Începe evaluarea, veți avea %{time} minute la dispoziție.
+      title: Instrucțiuni
+    messages:
+      finish: Vă mulțumim pentru timpul acordat. Răspunsurile dvs. au fost acum înregistrate.
+    page:
+      back: Înapoi
+      confirm_message: "## Răspunsurile dvs. vor fi trimise și nu vor mai putea fi modificate după această etapă. Faceți clic pe **Back** pentru a vă revizui răspunsurile o ultimă dată sau faceți clic pe **Submit** dacă ați terminat."
+      next: Următorul
+      read_only: Este modul numai citire, nu puteți modifica niciun rezultat.
+      save: Salvați
+      submit: Trimite
+    pickgrouprank:
+      items: Articole
+    proceed: Continuați oricum
+    unknown_error: A apărut o eroare necunoscută.
+    video_response:
+      device: Permiteți
+      device_selection:
+        camera: Aparat foto
+        mic: Microfon
+      discard: Aruncă
+      discard_record_again: Aruncați și înregistrați din nou
+      media_recorder:
+        failure: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați Chrome sau Firefox pentru înregistrarea video
+        success: Vă rugăm să permiteți utilizarea camerei și a microfonului pentru înregistrarea audio și video
+      recording_duration_label: Durata maximă de înregistrare
+      recording_stop_label: Înregistrarea se va opri în
+      requesting_permission: Solicitarea permisiunii...
+      response_recorded: Răspuns înregistrat
+      save: Salvați
+      saved:
+        label: Video salvat
+      saving: Salvarea video...
+      start_recording: Începeți înregistrarea
+      stop_recording: Opriți înregistrarea
+      tracker:
+        backward: Sunteți prea aproape de ecran. Vă rugăm să vă îndepărtați puțin
+        forward: Sunteți prea departe de ecran. Vă rugăm să vă apropiați puțin
+        frame: Vă rugăm să vă asigurați că fața dvs. se aliniază cu rama
+        ready: Apăsați butonul Record (Înregistrare) când sunteți gata să înregistrați
+    wait: Așteptați
+  auth:
+    current_password: Parolă curentă
+    current_password_placeholder: Introduceți parola curentă
+    email: E-mail
+    email_placeholder: Introduceți adresa de e-mail
+    expired_password:
+      description: Vă rugăm să completați toate câmpurile pentru a crea o parolă nouă
+      submit: Trimite
+      title: Reînnoiți parola
+    login:
+      description: Vă rugăm să vă conectați cu informațiile contului dvs. personal
+      forgot_password: Ați uitat parola?
+      login_btn: Autentificare
+      magic_link_btn: Trimite-mi prin e-mail link-ul de conectare
+      not_member: Nu sunteți membru?
+      or: SAU
+      sso_btn: Autentificare cu Single Sign-On
+      title: Bine ați venit!
+    logout: Ieșire
+    magic_link:
+      description: Vă rugăm să introduceți adresa dvs. de e-mail pentru a primi un link de conectare
+      login_with_password: Autentificare cu parolă
+      send_me_login_link: Trimiteți-mi link-ul de conectare
+      success: V-am trimis un link de conectare la "%{email}". Faceți clic pe link-ul din e-mailul pe care l-ați primit pentru a vă conecta
+    mobile_number: Număr de mobil
+    new_password: Parolă nouă
+    new_password_placeholder: Introduceți noua parolă
+    otp:
+      code: Cod
+      code_placeholder: Parolă unică
+      description: Vă rugăm să introduceți OTP-ul care a fost trimis la adresa dvs. de e-mail înregistrată.
+      resend: Trimiteți din nou OTP
+      resend_in: Reîntoarcere în %{timestamp} secunde
+      resend_success: OTP este trimis la numărul dvs. de telefon mobil
+      sms_description: Vă rugăm să introduceți OTP-ul care a fost trimis pe numărul dvs. de telefon mobil.
+      submit: Verificare
+      title: Parolă unică
+    password: Parolă
+    password_confirmation: Confirmați parola
+    password_confirmation_placeholder: Introduceți confirmarea parolei
+    password_placeholder: Introduceți parola
+    registration:
+      description: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
+      email_hint: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți
+      first_name: Numele și prenumele
+      first_name_placeholder: Introduceți prenumele
+      have_account: Aveți deja un cont?
+      last_name: Numele de familie
+      last_name_placeholder: Introduceți numele de familie
+      login_now: Conectați-vă acum!
+      registration_code: Codul de înregistrare
+      registration_code_placeholder: Introduceți codul de înregistrare
+      terms_notice: Prin înregistrare, sunteți de acord cu <a href="%{terms_url}">Termenii</a> și <a href="%{terms_url}">condițiile</a> noastre <a href="%{terms_url}">de utilizare și cu Politica de confidențialitate</a>
+      title: Înscriere
+    reset_password:
+      back_to_sign_in: Înapoi la Conectare
+      description: Introduceți adresa de e-mail asociată contului dvs
+      submit: Resetați parola
+      title: Ați uitat parola?
+    set_password:
+      description: Pentru a crea o parolă nouă, vă rugăm să introduceți noua parolă în casetele de mai jos
+      submit: Trimite
+      title: Crearea parolei
+    sign_out: Conectați-vă ca utilizator diferit
+    sign_up: Înscriere
+    terms_link: <a href="%{terms_url}">Termeni și declarație de confidențialitate</a>
+    verify_mobile_number:
+      error:
+        blocked: Acest număr este blocat din cauza prea multor încercări.
+        invalid_code: Cod invalid
+        invalid_number: Numărul de telefon mobil este incorect. Vă rugăm să verificați din nou numărul dvs
+        max_attempts_reached: Prea multe încercări. Vă rugăm să așteptați 10 minute înainte de a încerca din nou.
+  campaign:
+    all_activities_are_completed: Toate activitățile sunt acum finalizate.
+    all_activities_are_completed_multiple: Toate activitățile pentru această campanie sunt acum finalizate. Vă rugăm să mergeți la tabloul de bord și să verificați dacă mai aveți alte activități alocate.
+    begin: Începeți sarcinile
+    begin_btn_msg_before_prework: Trebuie să îndepliniți următoarele sarcini înainte de a începe campania cronometrată
+    begin_campaign_msg: Începeți campania înainte de a lua evaluări
+    campaigns: Campanii
+    closed_campaign_message: Această campanie este închisă. Nu puteți efectua nicio evaluare în cadrul acestei campanii.
+    complete_prev: Completați toate evaluările anterioare
+    complete_tasks: Vă rugăm să completați sarcinile de mai jos înainte de a lua această măsură.
+    continue: Continuați-vă sarcinile
+    dashboard_instructions: Este posibil să vă fi fost atribuite mai multe activități pe care trebuie să le finalizați. Vă rugăm să verificați dacă toate activitățile atribuite au fost finalizate în toate campaniile.
+    dashboard_menu:
+      bookings: Rezervări
+      campaign: Campanie
+      change_password: Schimbare parolă
+      development: Dezvoltare
+      home: Acasă
+      insights: Perspective
+      my_plan: Planul meu
+      profile: Profil
+      profile_details: Detalii
+      tasks: Sarcini
+    details: Detalii
+    edit_evaluation:
+      body: Vă informăm că, odată ce faceți clic pe Reevaluare, veți fi redirecționat către începutul sondajului, unde puteți edita răspunsurile. Răspunsurile anterioare vor fi în continuare disponibile, dar le puteți modifica după cum doriți. După editare, va trebui să retrimiteți evaluarea pentru a finaliza procesul.
+      edit: Reevaluare
+      title: Confirmați
+      view: Vezi evaluarea
+    errors:
+      invalid_status: Stare campanie invalidă
+    goto_dashboard: Mergeți la tabloul de bord
+    inactive_campaign_message: În prezent, nu vi s-a atribuit nicio activitate.
+    insights_reports: Perspective și rapoarte
+    instruction_modal:
+      campaign_start_final_instructions: "<p>vă rugăm să fiți conștienți de faptul că nu există nicio modalitate de a opri sau de a întrerupe cronometrul. Cronometrul campaniei va continua să ruleze chiar și atunci când închideți browserul, astfel încât nu trebuie să vă gândiți în niciun moment să lăsați sarcinile între ele pentru a face altceva. Asigurați-vă că reduceți la minimum distragerile în timpul sarcinilor. Găsiți un mediu liniștit, dezactivați notificările de pe dispozitivele dvs. și evitați multitasking-ul. Păstrați-vă concentrarea și rămâneți concentrat. Odată ce cronometrul campaniei se termină, nu veți mai putea continua. Dacă ați citit instrucțiunile de mai sus, vă rugăm să faceți clic pe Start pentru a continua sarcinile atribuite</p>\n"
+      campaign_start_instruction: |
+        <h4>Vă rugăm să citiți corect următoarele instrucțiuni.</h4>
+        <p>sarcinile pe care urmează să le începeți sunt cronometrate. După ce faceți clic pe "Start", cronometrul campaniei va porni automat. Aveți %{minute} minute pentru a finaliza toate activitățile. Vă rugăm să vă propuneți să finalizați sarcinile în intervalul de timp desemnat și să gestionați timpul în mod eficient pentru a evita grăbirea procesului de evaluare. Asigurați-vă că finalizați sarcinile dintr-o dată, astfel încât, dacă trebuie să faceți o pauză, acum este momentul</p>
+      common_proctoring_instructions: |
+        <h4>Proctoring</h4>
+        <p>după ce faceți clic pe butonul Start, veți fi redirecționat către sistemul nostru de supraveghere. Acesta vă va monitoriza camera, microfonul și ecranul în timpul sesiunii. Aceste sesiuni sunt supravegheate automat de sistemul nostru sofisticat de inteligență artificială, oferind o experiență de utilizare neîntreruptă și fără probleme. Cu toate acestea, sesiunile pot fi, de asemenea, revizuite de supraveghetori umani. Orice semne de conduită necorespunzătoare sau nereguli vor fi semnalate. Acest lucru se face pentru a ne asigura că nu se fac încercări de înșelăciune. Dacă se constată suspiciuni, sarcina sau sarcinile dvs. vor fi anulate</p>
+      lockdown_browser_instruction: |
+        <h4>Browser de control</h4>
+        <p>vi se va solicita să descărcați și să instalați un browser special pentru a îndeplini sarcinile de supraveghere. Vă rugăm să urmați instrucțiunile din ecranul următor. Puteți dezinstala acest browser după finalizarea tuturor activităților necesare</p>
+    instructions:
+      collapse_link_text: Arată mai puțin
+      expand_link_text: Arată mai multe
+      heading: Vă rugăm să consultați liniile directoare de mai jos înainte de a începe. Vă dorim toate cele bune!
+    language:
+      content: Această sarcină nu este disponibilă în limba selectată în prezent. Vă rugăm să selectați una dintre limbile disponibile pentru a continua.
+      single_lang: Această sarcină este disponibilă numai în %{lang}. Faceți clic pe "Continuați" pentru a continua.
+      title: Selectați limba
+    panels:
+      dashboard: Tablou de bord
+      reports: Rapoarte
+    profile:
+      complete_heading: Profilul dvs. este complet
+      complete_profile_label: Completați acum
+      edit_profile_label: Editare profil
+      incomplete_heading: Completează-ți profilul
+      last_login_text: 'Ultima autentificare pe :'
+      last_updated_text: 'Profilul a fost actualizat ultima dată pe:'
+      sub_heading: Completați informațiile complete ale profilului dvs
+      welcome_text: Bine ați venit,
+    thank_you_for_time: Vă mulțumim pentru timpul acordat
+    time_left:
+      cancel: Anulează
+      continue: Continuați
+      notification: Timpul alocat pentru această sarcină "%{assessmentName}" a fost %{totalAssessmentTime}. Din cauza timpului total scurs, aveți acum doar %{remainingCampaignTime} ca timp ajustat pentru a finaliza această sarcină.
+    timer:
+      notification_hours: Mai aveți %{hours} oră
+      notification_minutes: mai aveți %{minute} minute
+  campaign_assessment:
+    assessment_center_heading: Detalii privind centrul de evaluare
+    assessments_heading: Sarcinile dvs
+    statuses:
+      completed: Completat
+      in_progress: În curs de desfășurare
+      ineligible: Ineligibil
+      interrupted: Întrerupt
+      not_started: Nu a început
+      timed_out: Timed Out
+      universal_link: Legătură universală
+  campaigns:
+    card:
+      duration: Durată
+      starts_in: 'Începe în:'
+      starts_on: Începe la %{data}
+      will_start_shortly: Campania va începe în scurt timp. Vă rugăm să așteptați
+  change_password_page:
+    old_password: Parolă veche
+    password: Parolă
+    password_confirmation: Confirmarea parolei
+    title: Schimbare parolă
+    warning_message: 'Important: Schimbarea parolei vă va deconecta.'
+  checking_wizard:
+    audio_check:
+      access: Acces
+      continue: Da, Ok pentru a continua
+      random_phrases:
+        eight: Fie ca cafeaua ta să fie tare și ziua ta să fie productivă.
+        five: Viața este mai frumoasă atunci când zâmbești. Zâmbește pentru microfon!
+        four: Ea vinde scoici pe malul mării.
+        nine: Atunci când aveți îndoieli, testați acest microfon funcționează!
+        one: Eu strig, tu strigi, toți strigăm după înghețată!
+        seven: Fiecare zi este un nou început. Spune-o tare și mândru!
+        six: Pizza sau paste? Deciziile sunt dificile.
+        three: Testare, unu doi trei, sunetul este cât se poate de clar!.
+        two: Vulpea maro iute sare peste câinele leneș.
+      record_title: Vă rugăm să vorbiți și să repetați următoarea propoziție de 3 ori.
+      retake: Nu, vreau să reiau
+      run_again: Aleargă din nou
+      test_message: mă bucur să vorbesc cu tine
+    network_check:
+      continue: Continuați
+      download: Descărcare
+      please_check_connection: Vă rugăm să verificați conexiunea dvs. la internet
+      processing: Procesare
+      run_again: Aleargă din nou
+      run_again_title: Și rulați acest test din nou
+      title: Faceți clic pe Start pentru a începe testul de viteză la internet.
+      upload: Încărcare
+    steps:
+      audio_check: Test microfon
+      network_check: Test de viteză pe internet
+      system_check: Verificarea sistemului
+      video_check: Testul camerei video
+    success:
+      start: Începeți evaluarea
+      title: Ați finalizat cu succes toate verificările.
+    system_check:
+      compatibility: Compatibilitatea sistemului
+      continue: Continuați
+      failure:
+        description: Pentru întrebările audio/video din acest test sunt necesare permisiuni pentru webcam și microfon.
+        link_text: aici
+        link_text_action: Faceți clic pe
+        link_text_instruction: și urmați pașii pentru a oferi permisiuni
+        refresh: Actualizați browserul
+        refresh_text: Faceți clic mai jos pentru a actualiza browserul și a aplica modificările
+        subtitle: Soluții rapide
+        title: Ai anulat permisiunile pentru Webcam și Microfon
+      permissions: Permisiuni pentru webcam și audio
+      title: Înainte de a începe această evaluare, sistemul dvs. trebuie să fie supus unor verificări.
+    video_check:
+      access: Acces
+      camera_preview: Previzualizarea camerei va apărea aici
+      continue: Da, Ok pentru a continua
+      description: Faceți clic pe Start Recording și înregistrați-vă în timp ce citiți pasajul de mai jos cu propria voce
+      random_phrases:
+        eight: Dacă mă puteți vedea, videoclipul este un succes. Dacă nu, rezolvăm problemele!
+        five: Testați-vă videoclipul, nu vă faceți griji, nu este necesară nominalizarea la Oscar.
+        four: Gata, set, focalizare! Camera este scena ta.
+        nine: Zâmbete mari și video clar, să facem acest test cum trebuie!
+        one: Ridicați mâna dacă mă auziți sau doar faceți cu mâna pentru cameră!
+        seven: Oglindă, oglindă pe ecran, ca verificarea video să fie curată.
+        six: Lumini, cameră, acțiune, acesta este momentul tău să strălucești!
+        ten: Un val prietenos se asigură că totul funcționează bine.
+        three: Spuneți cheese! Sau testați zâmbetul perfect.
+        two: Uitați-vă la obiectiv, zâmbiți și prefaceți-vă că sunteți într-o rulotă de film.
+      rec_text: REC
+      retake: Nu, vreau să reiau
+      run_again: Aleargă din nou
+      title: Trebuie să ne asigurăm că sistemul dvs. poate înregistra înregistrarea video
+      uploading: Încărcare
+  common:
+    actions:
+      add: Adaugă
+      archive: Arhivă
+      cancel: Anulează
+      close: Închidere
+      copy: Copiați
+      delete: Ștergeți
+      edit: Editare
+      remove: Eliminați
+      reset: Resetare
+      resolve: Rezolvați
+      restore: Restaurare
+      save: Salvați
+      search: Căutare
+      send: Trimiteți
+      start: Start
+      unarchive: Dezarhivare
+      unresolve: Nerezolvat
+      update: Actualizare
+      upload: Încărcare
+      verify: Verificare
+      view_all_tasks: Vizualizați toate sarcinile
+      view_detail: Vezi detalii
+    column:
+      action: Acțiune
+      category: Categorie
+      created_at: Creat la
+      id: Id
+      status: Statut
+    model:
+      assessments: Evaluări
+      campaigns: Campanii
+      reports: Rapoarte
+    text:
+      cancel: Anulează
+      confirm: Confirmați
+      continue: Continuați
+      default: Implicit
+      download: Descărcare
+      na: N/A
+      ok: Bine
+      response: Răspuns
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Autentificare
+    failure:
+      already_authenticated: Sunteți deja conectat.
+      inactive: Contul dvs. nu este încă activat.
+      invalid: E-mail sau parolă invalidă.
+      invited: Aveți o invitație în așteptare, acceptați-o pentru a finaliza crearea contului dvs.
+      magic_link_invalid: Link de conectare invalid sau expirat.
+      not_found_in_database: E-mail sau parolă invalidă.
+      timeout: Sesiunea dvs. a expirat. Vă rugăm să vă autentificați din nou pentru a continua.
+      unauthenticated: Trebuie să vă conectați sau să vă înregistrați înainte de a continua.
+    invitations:
+      edit:
+        password_label: Parolă
+    passwords:
+      invalid_email: E-mail invalid
+    registrations:
+      communication_not_setup_error: Comunicarea prin e-mail de înregistrare nu este configurată, vă rugăm să contactați administratorul acestui proiect.
+      new:
+        email: Adresă de e-mail
+        first_name: Numele și prenumele
+        instruction: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
+        last_name: Numele de familie
+        privacy_notice: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți.
+        registration_code: Codul de înregistrare
+        submit: Înregistrare
+        tabs:
+          register: Înregistrare
+          sign_in: Înregistrează-te
+        terms_notice: Prin înregistrare, sunteți de acord cu <a href="%{terms_url}">Termenii</a> și <a href="%{terms_url}">condițiile</a> noastre <a href="%{terms_url}">de utilizare și cu Politica de confidențialitate</a>
+        title: Înregistrați-vă acum
+      success:
+        actions:
+          sign_in: Înregistrează-te
+    sessions:
+      new:
+        email: Adresa de e-mail
+        forgot_password: Ați uitat parola?
+        instruction: Vă rugăm să vă conectați cu informațiile contului dvs. personal
+        password_placeholder: Parolă
+        submit: Autentificare
+        tabs:
+          register: Înregistrare
+          sign_in: Autentificare
+        title: Bine ați venit!
+    two_factor_authentication:
+      attempt: Vă rugăm să introduceți OTP-ul pe care l-ați primit la adresa dvs. de e-mail înregistrată
+      code_has_been_sent: Noul dvs. OTP a fost trimis la adresa dvs. de e-mail înregistrată
+  emails:
+    subject_relationship_table:
+      subject_email: Subiect Email
+      subject_name: Numele subiectului
+      subject_relationship: Subiect Relație
+  errors:
+    assessments:
+      timed_out: Nu veți putea efectua evaluarea %{assessment_name}, deoarece timpul a expirat.
+    error: Eroare
+    error_500: Ceva nu a mers bine. Contactați administratorul.
+    forbidden: Nu aveți acces la această pagină
+    forbidden_action: Nu aveți permisiuni pentru această acțiune
+    invalid_token: Ceva nu a mers bine. Vă rugăm să reîncărcați pagina și să încercați din nou.
+    module_error: Ceva nu a mers bine cu acest modul, vă rugăm să contactați administrația.
+    module_error_editor: Ceva nu a mers bine cu acest modul, vă rugăm să verificați setările modulului.
+    module_props_error: Ceva nu a mers bine cu acest modul.
+    try_again: Vă rugăm să încercați din nou
+  factors:
+    description: Descriere
+    factor: Factor
+  frontend:
+    activate: Activați
+    are_you_sure: Sunteți sigur?
+    assessment: Evaluare
+    assessment_groups:
+      create_success: Grupul a fost creat cu succes
+      update_success: Grupul a fost actualizat cu succes
+    background_reading: Lectura de fundal
+    bookings:
+      accept_invite_msg: Ați primit o invitație. Vă rugăm să vă rezervați locul.
+      add_to_calendar: Adăugare la calendar
+      add_to_calendar_tour_description: Adăugați această rezervare la calendarul dvs
+      assessment_center_alert:
+        btn_title: Campanie
+        message_part1: Completați toate prelucrările din acest
+        message_part2: înainte de a rezerva un slot.
+      assessment_center_group_name: Centrul de evaluare
+      booking_failed_msg: 'Nu s-a reușit rezervarea slotului: %{error}'
+      buttons:
+        book: Carte
+        book_again: Rezervați din nou
+        cancel: Anulează
+        cancel_booking: Anulare rezervare
+        confirm_booking: Confirmarea rezervării
+        confirm_reschedule: Confirmare Reprogramare
+        modify: Modificați
+        nevermind: Nevermind
+        no_text: Nu
+        request_cancel: Cerere de anulare
+        request_reschedule: Cerere de reprogramare
+        reschedule: Reprogramare
+        reserve_spot: Rezervă-ți locul
+        yes_text: Da
+      cancel_booking_confirmation: Sunteți sigur că doriți să anulați această rezervare?
+      cancellation_failed: 'Nu am reușit să anulez rezervarea: %{error}'
+      cancellation_success: Rezervarea a fost anulată cu succes
+      comments_required_msg: Vă rugăm să introduceți comentariile dvs
+      confirm_booking_description: Vă rugăm să confirmați că aceste detalii sunt corecte înainte de finalizarea rezervării.
+      confirm_booking_title: Confirmați această rezervare?
+      default_failure_msg: Nu a fost posibilă procesarea solicitării dvs. Vă rugăm să încercați din nou mai târziu.
+      default_requires_msg: "%{name} este necesar"
+      join_activity_meeting: Participă la reuniune
+      join_workshop_meeting: Participă la reuniune
+      language: Limba
+      language_placeholder: Selectați o limbă
+      language_preference_question: Aveți o preferință lingvistică?
+      language_required_msg: Vă rugăm să selectați o limbă
+      meeting_start_text: 'Reuniunea va începe în:'
+      need_changes: Trebuie să faceți modificări?
+      neurodivergence_comment_placeholder: Comentariile dvs
+      neurodivergence_question: Aveți nevoie de acomodări sau ajustări rezonabile din cauza unor nevoi speciale sau dizabilități pentru a participa pe deplin la evaluare?
+      no_invites_msg: Veți fi adăugat la centrul de evaluare sau veți primi o invitație pentru a vă rezerva un loc; odată ce faceți parte din centru, puteți finaliza activitățile făcând clic pe butonul "Vezi detalii" de mai jos.
+      other_invite: Vedeți %{count} mai multe invitații
+      other_invites: Vedeți %{count} mai multe invitații
+      reason: Motivul
+      reason_for_cancel: Motivul anulării
+      reason_for_reschedule: Motivul reprogramării
+      request_cancellation_failed: 'Cererea de anulare a eșuat: %{error}'
+      request_cancellation_success: Cerere de anulare acceptată
+      request_reschedule_failed: 'A eșuat solicitarea de reprogramare: %{error}'
+      request_reschedule_success: Cerere de reprogramare acceptată
+      reschedule_failed_msg: 'A eșuat reprogramarea: %{error}'
+      reschedule_reason_placeholder: Pentru a continua, vă rugăm să introduceți motivul reprogramării.
+      schedule_success: Această rezervare este programată
+      schedule_success_msg: Ți-am trimis ție și celorlalți participanți o invitație în calendar cu toate detaliile.
+      starts_at: 'Începe la: %{date}'
+      starts_in: 'Începe în:'
+      tab_label:
+        bookings: Rezervări
+        invites: Invitații
+      what: Ce
+      when: Când
+      workshop_start_text: Centrul dvs. de evaluare va începe în
+    break_time: Pauză
+    campaign:
+      actions:
+        remove:
+          confirmation: Introduceți numele campaniei actuale în caseta de text de mai jos pentru a elimina campania
+          success: "%{campaignName} a fost eliminat cu succes."
+      users:
+        completion_statuses:
+          completed: Completat
+          in_progress: În curs de desfășurare
+          not_started: Nu a început
+    change_password: Modificarea parolei
+    delete: Ștergeți
+    edit: Editare
+    lighthouse_app: Farul Mercer
+    login: Autentificare
+    manage: Gestionați
+    'no': Nu
+    resource:
+      create_success: "%{readableResourceName} a fost adăugat cu succes"
+      update_success: "%{readableResourceName} a fost actualizat cu succes"
+    session_timeout_modal:
+      buttons:
+        close: Închidere
+        log_out: Deconectați-vă acum
+        re_login: Conectați-vă din nou
+        stay_logged_in: Rămâneți conectat
+      message: Sesiunea dvs. se va încheia în 2 minute din cauza inactivității. Vă rugăm să faceți clic pe "Rămâneți conectat" pentru a vă continua sesiunea sau veți fi deconectat automat.
+      message_after_timeout: Sesiunea dvs. a expirat, vă rugăm să vă autentificați din nou.
+      time_remaining: Timp rămas
+      title: Avertisment de expirare a sesiunii
+    update: Actualizare
+    upload: Încărcare
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Anulat
+        requested_cancellation: Anularea solicitată
+        requested_cancellation_rejected: Cerere de anulare Respins
+        requested_rescheduling: Reprogramare solicitată
+        requested_rescheduling_rejected: Solicitat Reprogramare Respins
+    'yes': Da
+  idp_templates:
+    errors:
+      user_idp_template_not_found: Nu v-a fost atribuit niciun șablon IDP.
+  mailer:
+    magic_link:
+      body:
+        dear: Dragă %{name},
+        greetings: Salutări pentru această zi!
+        instructions: Faceți clic pe linkul de mai jos pentru a vă conecta la Lighthouse.
+        signin_link: Link de conectare
+      subject: Link de conectare pentru Lighthouse
+  navigation:
+    logout: Deconectați-vă
+  profile:
+    add_field: Adaugă câmp
+    add_photo: Adaugă fotografie
+    age: Vârsta
+    change_password: Schimbare parolă
+    change_photo: Schimbați fotografia
+    email: E-mail
+    female: Femei
+    first_name: Numele și prenumele
+    gender: Gen
+    incomplete: Detaliile profilului dvs. sunt incomplete. Vă rugăm să completați detaliile profilului dvs
+    last_name: Numele de familie
+    locale: Limba preferată
+    male: Masculin
+    mandatory_fields: Indică câmpurile obligatorii
+    not_disclosed: Prefer să nu divulg
+    old_data: Datele din profilul dvs. sunt vechi de %{months} luni. Vă rugăm să confirmați detaliile pentru a continua
+    password: Parolă
+    password_confirmation: Confirmarea parolei
+    success_update: Profilul a fost salvat cu succes
+    timezone: Zona orară
+    title: Profilul meu
+    update: Actualizare
+    update_required: Sunt necesare actualizări ale profilului
+  reports:
+    actions:
+      add: Adaugă raport
+      download: Descărcați raportul
+      view: Vezi raportul
+    modules:
+      campaign_factors_table:
+        add_condition: Adaugă condiție
+        baseline_score: Scorul de referință
+        blindspots: Blindspots
+        campaign_factor_conditions: Condițiile factorului de campanie
+        cancel: Anulează
+        color: Culoare
+        delete: Ștergeți
+        description: Descriere
+        if: Dacă
+        label: Etichetă
+        no_conditions: Nu există condiții
+        save: Salvați
+        strengths: Puncte forte
+        then: Apoi afișați următorul text
+        title: Titlu
+      factors_table:
+        description: Descriere
+        no_data: Nu există date disponibile pentru această secțiune.
+        rank: Rang
+        score: Punctaj
+      gap_assessment:
+        gap: Gap
+        item: Indicator
+        negative_gap: Lacune negative
+        no_negative_gaps: Nu există lacune negative
+        no_positive_gaps: Nu există lacune pozitive
+        positive_gap: Lacune pozitive
+        rank: Rang
+        scoring_category: Competențe
+      highest_lowest:
+        bottom_5: INFERIOR 5
+        category: Categorie
+        highest_scores: Cele mai mari scoruri
+        item: Indicator
+        lowest_scores: Cele mai mici scoruri
+        mean_score: Scor mediu
+        rank: Rang
+        scoring_category: Competențe
+        sub_competenties: Subcompetențe
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: Punctele forte ale carierei și rezultatele tale
+        career_sub_tracks: Sub-piste de carieră
+        key_career_tracks_within: Mai jos este prezentată o listă a potențialelor roluri profesionale pentru fiecare dintre pistele de carieră. Rețineți că această listă este doar orientativă și nu exhaustivă. Rețineți că rolurile în italice necesită un nivel mai ridicat de educație și/sau experiență.
+        potential_areas_of_study: Domenii potențiale de studiu
+        strength_high: Puterea semnăturii
+        strength_low: Puterea de dezvoltare
+        strength_moderate: Putere potențială
+        work_environment: Mediul de lucru
+        your_suitability: Adecvarea dvs
+      single_value:
+        factor_name: Categoria de notare
+        question_name: Întrebări
+      single_value_cluster:
+        competency: Competențe
+        developmental_rating: Evaluarea dezvoltării
+        questions: Întrebări
+      strength_clusters:
+        index_sub_factors_considered: Subfactorii Thriving Index care au fost luați în considerare pentru a vă oferi scorul final pentru mediul de lucru %{workstyle}
+        possible_roles: Roluri posibile
+        work_environments: Mediile de lucru preconizate
+      three_sixty_default:
+        factor:
+          items: Articole
+          max: Valoare maximă
+          mean: Medie
+          min: Valoare minimă
+          standardDeviation: Deviație standard
+          sum: Suma
+          totalResponses: Total răspunsuri
+          variance: Variație
+          weightedMean: Media ponderată
+        question:
+          no_response: Niciun răspuns disponibil
+        statistic: Statistică
+        value: Valoare
+      three_sixty_report_summary:
+        completed: Completat
+        footnote: "* Exclus din cauza cerinței privind pragul minim"
+        invited: Invitat
+        relationships: Relații
+        total: Total
+      video_response:
+        no_results: Nu există înregistrări video
+    show:
+      export_pdf: Export în PDF
+      header: Raport
+    statuses:
+      approved: Aprobat
+      available: Disponibil
+      denied: Refuzat
+      incomplete: Incomplet
+      not_available: Nu este disponibil
+      on_hold: În așteptare
+      released: Eliberat
+  shared:
+    filters:
+      clear: Ștergeți filtrele
+    internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
+    terms_conditions_privacy: Declarație de confidențialitate
+    tte_terms_and_condition: Termeni și confidențialitate
+  simple_form:
+    placeholders:
+      administrator:
+        email: Adresă de e-mail
+        last_name: Numele de familie
+      memebrship:
+        last_name: Numele de familie
+      user:
+        email: Adresă de e-mail
+        first_name: Numele și prenumele
+        last_name: Numele de familie
+        password: Parolă
+      user_form:
+        email: Adresă de e-mail
+        first_name: Numele și prenumele
+        last_name: Numele de familie
+        password: Parolă
+  subjects:
+    approval_statuses:
+      approved: Aprobat
+      denied: Refuzat
+      waiting: Necesită aprobare
+    report_approval_status:
+      approved: Aprobat
+      denied: Refuzat
+      waiting: În așteptare
+    report_release_status:
+      on_hold: În așteptare
+      released: Eliberat
+      waiting: În așteptare
+    report_statuses:
+      approved: Aprobat
+      available: Disponibil
+      denied: Refuzat
+      incomplete: Incomplet
+      not_available: Nu este disponibil
+      not_prepared: Nu sunt gata
+      on_hold: În așteptare
+      prepared: Efectuat
+      released: Eliberat
+    statuses:
+      completed: Completat
+      declined: Declinat
+      denied: Refuzat
+      done: Efectuat
+      not_completed: Nefinalizat
+      waiting: În așteptare
+  threesixty:
+    accept_privacy_modal:
+      accept: Acceptați
+      checkbox: Am citit și am înțeles Politica de confidențialitate menționată mai sus
+      checkbox_with_client_link:
+      title: Consimțământul privind prelucrarea datelor
+    action: Acțiune
+    add: Adaugă
+    and: Și
+    approve_all: Aprobați toate
+    approve_all_successful: A aprobat toate nominalizările
+    approve_evaluations: Aprobarea evaluărilor
+    approve_nominations: Aprobarea nominalizărilor
+    approve_reports: Aprobarea rapoartelor
+    approved: Aprobat
+    approving_mail_sent: Managerilor le-a fost trimisă corespondența pentru aprobarea nominalizării
+    as_my: ca mea
+    assessment: Evaluare
+    back_to_tasks: Înapoi la sarcini
+    begin: Începeți
+    cancel: Anulează
+    close_evaluation_modal:
+      message: Odată ce ați vizualizat raportul, %{pronoun_or_name} nu va mai putea primi alte evaluări
+      title: Sunteți sigur că doriți să vizualizați raportul?
+    closed_campaign_message: Această campanie 360 este închisă. Nu puteți nominaliza sau evalua pe nimeni pentru această campanie.
+    completed: Completat
+    confirm: Sunteți sigur?
+    confirmation_for_nomination_removal: Sunteți sigur că doriți să eliminați nominalizarea
+    confirmation_required: Confirmare necesară
+    confirmation_text_incorrect: Textul de confirmare este incorect
+    confirmation_text_placeholder: Textul de confirmare aici
+    continue: Continuați
+    dashboard_title: Bine ați venit %{name}
+    decline: Declin
+    decline_invite: Declinați invitația
+    denied: Refuzat
+    deny_all: Refuzați toate
+    deny_all_successful: A refuzat toate nominalizările
+    download_pdf: Descarcă PDF
+    download_report: Descărcați raportul
+    download_reports: Descărcați rapoarte
+    edit_user: Editare utilizator
+    email_approve_request: Cerere de aprobare prin e-mail
+    email_schedules:
+      delete_successful: Programul de e-mail a fost șters cu succes
+    evaluate: Evaluați
+    evaluation: Evaluare
+    evaluation_all_closed_message: În prezent, toate nominalizările sunt în așteptarea aprobării
+    evaluation_closed_nomination_message: Nu puteți nominaliza pentru acest subiect deoarece evaluarea este închisă pentru acest subiect
+    evaluation_help_modal:
+      title: Ajutor pentru evaluare
+    evaluations: Evaluări
+    evaluator: Evaluator
+    export_pdf: Export PDF
+    first_name: Numele și prenumele
+    first_name_error: Vă rugăm să introduceți prenumele
+    help: Ajutor
+    language: Limba
+    last_name: Numele de familie
+    last_name_error: Vă rugăm să introduceți numele de familie
+    load_results: Rezultatele încărcării
+    mail_history:
+      statuses:
+        success: Succes
+        undelivered: Nedepusă
+    my_projects: Proiectele mele
+    name_label: Nume și prenume
+    nominate: Nominalizare
+    nominate_evaluators: Nominalizați evaluatori pentru
+    nomination: Nominalizare
+    nomination_help_modal:
+      title: Ajutor pentru nominalizare
+    nomination_predicates:
+      atleast: Cel puțin %{count}
+      atmost: Cel mult %{count}
+      exactly: Exact %{count}
+    nominations: Nominalizări
+    options:
+      global:
+        cannot_re_edit: Participanții nu pot edita evaluările
+    or: Sau
+    page_title: Signify 360° Recenzie - Nivel de aplicare
+    participant_list:
+      actions:
+        approve_report: Aprobă raportul
+        download_report: Descărcați raportul
+        edit: Editare
+        hold_report: Raport de așteptare
+        login: Autentificare
+        mark_as_done: Marcați ca finalizat
+        release_report: Raport de eliberare
+        remove_campaign: Eliminați din campanie
+        remove_report_approval: Eliminarea aprobării raportului
+        remove_report_hold_release_report: Eliminarea reținerii/eliberării raportului
+        remove_subject: Eliminați subiectul
+        unmark_as_done: Debifați ca finalizat
+        view_report: Vezi raportul
+        view_responses: Vezi răspunsurile
+      confirmation_messages:
+        approve_report: Sunteți sigur că doriți să aprobați raportul?
+        hold_report: Sunteți sigur că doriți să păstrați raportul?
+        mark_evaluation_done: Sunteți sigur că doriți să marcați evaluarea ca finalizată? Evaluarea va fi închisă pentru acest subiect.
+        release_report: Sunteți sigur că doriți să publicați raportul?
+        remove_from_campaign: Sunteți sigur că doriți să eliminați utilizatorul din campanie?
+        remove_release_hold: Sunteți sigur că doriți să eliminați statutul de Eliberare/ reținere?
+        remove_report_approval: Sunteți sigur că doriți să eliminați aprobarea raportului?
+        remove_subject: Sunteți sigur că doriți să eliminați subiectul cu e-mail din campanie?
+        umark_evaluation_as_complete: Sunteți sigur că doriți să debifați evaluarea ca fiind finalizată?
+      report_generation_message: Raportul este în curs de generare. Vă vom anunța când raportul este gata.
+    processing: Procesare
+    processing_report: Raport de prelucrare
+    progress_text: "%{completed} din %{total}"
+    question:
+      chat_type:
+        input_placeholder: Scrie-ți mesajul...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Editare
+        max_length_warning: "%{x} caractere rămase"
+        message: Mesajul dvs
+        send: Trimiteți
+        subject: Subiect
+        successful_message: Ați trimis cu succes e-mailul
+        to: La
+    remind_all: Reamintiți tuturor
+    remind_mail_sent: Memento-uri trimise evaluatorilor care nu au finalizat evaluarea
+    report_for: Raport pentru
+    report_generation_in_progress: Raportul este în curs de generare. Vă vom anunța când raportul este gata.
+    reports: Rapoarte
+    reports_help_modal:
+      title: Ajutor pentru rapoarte
+    reset_campaign_confirmation: Introduceți numele campaniei actuale în caseta de text de mai jos pentru a reseta toți participanții
+    reset_nomination_confirmation: Introduceți numele campaniei actuale în caseta de text de mai jos pentru a reseta toate nominalizările
+    save: Salvați
+    select_relationnship: Selectați relația
+    select_relationship: Selectați relația
+    self: Sine
+    set_name_for_evaluator: Setați numele pentru evaluator
+    setup_nominations: Stabilirea nominalizărilor
+    subject: Subiect
+    submit: Trimite
+    total_progress: Progres total
+    user_name_input_placeholder: tastați numele sau adresa de e-mail...
+    validation_errors: Erori de validare
+    view_my_report: Vizualizați raportul meu
+    view_nominations: Vezi nominalizările
+    view_reports: Vizualizați rapoartele
+    waiting: În așteptare
+    you: Tu
+    yourself: Tu însuți
+  user:
+    fields:
+      email: Adresă de e-mail
+      first_name: Numele și prenumele
+      last_name: Numele de familie
+  user_assessments:
+    redirect: Veți fi redirecționat către site-ul unei terțe părți pentru această evaluare. Vă rugăm să faceți clic pe continuare dacă doriți să începeți evaluarea.
+  user_reports:
+    actions:
+      regenerate: Regenerare
+    messages:
+      regenerate_successful: Activitatea de regenerare a rapoartelor a fost programată cu succes
+    modals:
+      remove:
+        content: Sunteți sigur că doriți să eliminați raportul %{userReportName}?
+        successfully: raportul %{userReportName} a fost eliminat cu succes
+    preview_report: Raport de previzualizare
+    statuses:
+      generating: Generarea
+      not_prepared: Nu este disponibil
+      prepared: Disponibil
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Audio este înregistrat, dar nu este salvat
+        RECORDING: Înregistrarea audio este în curs
+        SAVING: Încărcarea înregistrării audio este în curs
+      required: Vă rugăm să înregistrați și să salvați înregistrarea audio înainte de a continua
+    FileUpload:
+      in_progress:
+        SAVING: Încărcarea fișierului este în curs
+      required: Vă rugăm să încărcați fișierul
+    TextEntry:
+      Email:
+        character_range: Mesajul de e-mail introdus trebuie să conțină cel puțin %{min} și cel mult %{max} caractere.
+        subject:
+          min_length: Câmpul Subiect trebuie să aibă minimum 10 caractere
+        to:
+          required: Câmpul To este obligatoriu
+    VideoResponse:
+      in_progress:
+        recorded: Videoclipul este înregistrat, dar nu este salvat
+        recording: Înregistrarea video este în curs
+        saving: Încărcarea înregistrării video este în curs
+      required: Vă rugăm să înregistrați și să salvați videoclipul înainte de a continua
+    actions_still_in_progress: Acțiunile de mai jos sunt în curs de desfășurare. Dacă continuați, veți pierde aceste date.
+    blank: nu poate fi gol
+    character_count: 'Numărătoarea caracterelor '
+    character_range: Răspunsul dumneavoastră trebuie să aibă cel puțin %{min} și cel mult %{max} caractere.
+    date: Răspunsul dvs. trebuie să fie o dată valabilă (mm/dd/aaaa)
+    each_group_contains: Fiecare grup trebuie să conțină nu mai puțin de %{min} și nu mai mult de %{max} elemente
+    email: Răspunsul dvs. trebuie să fie un e-mail valid
+    exact: Vă rugăm să selectați exact %{count} alegere(uri)
+    file_upload:
+      EntityTooLarge: Dimensiunea fișierului trebuie să fie mai mică de %{maxFileSize} MB
+      WrongFileType: Tipul de fișier trebuie să fie unul dintre următoarele %{allowedFileTypes}
+    issue: Problema
+    least: Vă rugăm să răspundeți la cel puțin %{min} alegere(uri).
+    least_hotspot: Vă rugăm să răspundeți la cel puțin %{min} alegere(uri).
+    max_character: Răspunsul dvs. nu trebuie să aibă mai mult de %{max} caractere.
+    max_word: Răspunsul dvs. nu trebuie să depășească %{max} cuvinte.
+    min_character: Răspunsul dvs. trebuie să conțină cel puțin %{min} caractere.
+    min_word: Răspunsul dvs. trebuie să fie de cel puțin %{min} cuvinte
+    most:
+      few:
+      one: Vă rugăm să selectați cel mult %{max} alegere(uri)
+      other:
+    must_rank_between: Vă rugăm să atribuiți o valoare de la %{min} la %{max} pentru fiecare element. Valorile nu pot fi repetate.
+    must_select: Vă rugăm să selectați de la %{min} la %{max} opțiuni
+    number: Răspunsul dvs. trebuie să fie un număr
+    photo: necesare
+    range: Vă rugăm să răspundeți la cel puțin %{min} și la cel mult %{max} alegere(uri).
+    required: Vă rugăm să răspundeți la această întrebare
+    text: Răspunsul dumneavoastră nu trebuie să conțină un număr
+    title:
+      few:
+      one: Există o eroare, vă rugăm să vă verificați răspunsurile
+      other: Au existat %{count} erori, vă rugăm să verificați răspunsul.
+    word_count: 'Număr de cuvinte '
+    word_range: Răspunsul dumneavoastră trebuie să conțină cel puțin %{min} și cel mult %{max} cuvinte.
+  'yes': Da
+  your: Dvs
+  yourself: Tu însuți

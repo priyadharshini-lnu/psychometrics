@@ -55,7 +55,8 @@ zh-HK:
       extend_time: 延長時間
       goto_dashboard: 點擊此處繼續
       pending_tasks:
-        other: 您有 1 個待處理的任務
+        one: 您有 1 個待處理的任務
+        other: 您有 %{count} 待處理任務
       rescore: 重新安排
     audio_response:
       permission_denied_message: 請在瀏覽器中啟用咪高峰權限以錄製您的回答。
@@ -112,6 +113,11 @@ zh-HK:
         frame: 請確保您的臉部與邊框對齊
         ready: 準備好錄影時請按「錄影」按鈕
     wait: 等等
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: 無法刪除包含工作坊的群組，請先刪除工作坊
   auth:
     current_password: 目前密碼
     current_password_placeholder: 輸入目前密碼
@@ -282,7 +288,7 @@ zh-HK:
     card:
       duration: 時間長度
       starts_in: 開始於
-      starts_on: 從 %{ 日期}開始
+      starts_on: 從 %{date}開始
       will_start_shortly: 活動即將開始，請稍候
   change_password_page:
     old_password: 舊密碼
@@ -384,7 +390,7 @@ zh-HK:
       upload: 上載
       verify: 驗證
       view_all_tasks: 檢視所有任務
-      view_details: 查看詳細信息
+      view_detail: 檢視詳細內容
     column:
       action: 操作
       category: 類別
@@ -530,6 +536,7 @@ zh-HK:
       need_changes: 需要更改嗎？
       neurodivergence_comment_placeholder: 您的留言
       neurodivergence_question: 您是否因特殊需求或殘疾需要任何合理的便利或調整，以便能夠完全參與評估？
+      no_invites_msg: 您會被加入評估中心或收到預約時段的邀請函；一旦您成為中心的一員，您就可以按一下下方的「檢視詳細資料」按鈕來完成活動。
       other_invite: 查看 %{count} 個更多邀請
       other_invites: 查看 %{count} 個更多邀請
       reason: 原因
@@ -815,6 +822,7 @@ zh-HK:
     last_name: 姓氏
     locale: 首選語言
     male: 男性
+    mandatory_fields: 表示必填欄位
     not_disclosed: 不願透露
     old_data: 您的個人資料已過了 %{months} 個月，請確認詳細資料，以便繼續操作。
     password: 密碼
@@ -1183,6 +1191,7 @@ zh-HK:
     date: 您的回覆必須是有效日期 （月／日／年）
     each_group_contains: 每組需要包含不少於 %{min} 或不多於 %{max} 個項目
     email: 您的回覆必須是有效的電郵
+    exact: 請準確選擇 %{count} 個選項
     file_upload:
       EntityTooLarge: 檔案大小應小於 %{maxFileSize}MB
       WrongFileType: 檔案類型應為以下其中一種 %{allowedFileTypes}
@@ -1193,14 +1202,17 @@ zh-HK:
     max_word: 您的回覆不得超過 %{max} 字數。
     min_character: 您的回覆必須至少 %{min} 個字元。
     min_word: 您的回覆不得少於 %{min} 個字
+    most: 請選擇最多 %{max} 個選項
     must_rank_between: 請為每個項目分配從 %{min} 到 %{max} 的值。不得重複數值。
     must_select: 請從 %{min} 到 %{max} 個選項中選擇
     number: 您的回覆必須是數字
+    photo: 所需
     range: 請至少回答 %{min}，不得超過 %{max} 個選項。
     required: 請回答此問題
     text: 您的回覆不得包含數字
     title:
-      other: 有一個錯誤，請檢查您的回覆
+      one: 有一個錯誤，請檢查您的迴復。
+      other: 有%{count}錯誤，請檢查您的迴復。
     word_count: '字數 '
     word_range: 您的回應字數必須至少 %{min}，且不超過 %{max}。
   'yes': 是

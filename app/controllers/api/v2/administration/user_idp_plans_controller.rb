@@ -3,7 +3,7 @@
 module Api
   class V2::Administration::UserIdpPlansController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::UserIdpPlan::Schema
-    validates_request_schema :create, Api::V2::UserIdpPlan::CreateContract.new
+    validates_request_schema :create, -> { Api::V2::UserIdpPlan::CreateContract.new }
 
     def create
       user = User.find(user_idp_plan_params[:user_id])

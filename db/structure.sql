@@ -4219,7 +4219,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_iiht boolean DEFAULT false,
     mask_identity_for_examus boolean DEFAULT false,
     mask_identity_for_mettl boolean DEFAULT false,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    mask_identity_for_skillvue boolean DEFAULT false
 );
 
 
@@ -7354,7 +7355,8 @@ CREATE TABLE public.workshop_invites (
     allow_neurodiversity_option boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    campaign_id bigint
+    campaign_id bigint,
+    campaign_assessment_group_id bigint
 );
 
 
@@ -13706,6 +13708,13 @@ CREATE INDEX index_workshop_invited_subjects_on_workshop_invite_id ON public.wor
 
 
 --
+-- Name: index_workshop_invites_on_campaign_assessment_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invites_on_campaign_assessment_group_id ON public.workshop_invites USING btree (campaign_assessment_group_id);
+
+
+--
 -- Name: index_workshop_invites_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15051,6 +15060,14 @@ ALTER TABLE ONLY public.reports_modules
 
 
 --
+-- Name: workshop_invites fk_rails_7d9ff1544c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites
+    ADD CONSTRAINT fk_rails_7d9ff1544c FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
 -- Name: mettl_assessments fk_rails_7f18bbad7b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16353,6 +16370,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250616053812'),
+('20250610070045'),
 ('20250530122354'),
 ('20250609112516'),
 ('20250605154240'),

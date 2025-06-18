@@ -112,6 +112,11 @@ ar:
         frame: الرجاء التأكد من أن وجهك يحاذي الإطار المرسوم على الشاشه
         ready: 'اضغط على زر التسجيل عندما تكون جاهزاً '
     wait: انتظر
+  assessments_reports:
+    sequencing:
+      modal:
+        delete:
+          cannot_delete_with_workshops: لا يمكن حذف المجموعة التي تحتوي على ورش عمل، احذف ورش العمل أولاً
   auth:
     current_password: كلمة المرور الحالية
     current_password_placeholder: إدخل كلمة السر الحالية
@@ -385,7 +390,7 @@ ar:
       upload: تحميل
       verify: تحقق
       view_all_tasks: عرض جميع المهام
-      view_details: عرض التفاصيل
+      view_detail: عرض التفاصيل
     column:
       action: نشاط
       category: فئة
@@ -532,6 +537,7 @@ ar:
       need_changes: هل تحتاج إلى إجراء التغييرات؟
       neurodivergence_comment_placeholder: تعليقاتك
       neurodivergence_question: هل تحتاج إلى أي تسهيلات أو تعديلات معقولة بسبب الاحتياجات الخاصة أو الإعاقات للمشاركة بشكل كامل في التقييم؟
+      no_invites_msg: ستتم إضافتك إلى مركز التقييم أو ستتلقى دعوة لحجز مكانك؛ وبمجرد انضمامك إلى المركز، يمكنك إكمال الأنشطة بالنقر على زر "عرض التفاصيل" أدناه.
       other_invite: شاهد %{count} دعوة إضافية
       other_invites: عرض %{count} من الدعوات الإضافية
       reason: سبب
@@ -846,6 +852,7 @@ ar:
     last_name: إسم العائلة
     locale: لغة
     male: رجل
+    mandatory_fields: يشير إلى الحقول الإلزامية
     not_disclosed: أنا أفضل عدم الإفصاح
     old_data: بيانات ملفك الشخصي هي %{شهور} من العمر. يرجى تأكيد التفاصيل للمتابعة
     password: كلمة المرور

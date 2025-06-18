@@ -1,14 +1,21 @@
 ---
 zh-HK:
   administration:
-    common:
-      minute: 分
+    administrators:
+      permissions:
+        labels:
+          reflectionQuestions:
+            export: 出口
+            import: 進口
+            manage: 管理
+            title: IDP 反思問題
+            view: 檢視
+    assessment_center:
+      invite:
+        center_group: 評估中心小組
     norms:
       import:
         download_example_csv: 下載範例 csv
-    project_tabs:
-      webhooks:
-        form:
-          acceptable_rate_limit:
-            label: 可接受的請求上限
-            request_per: 每
+    projects:
+      privacy_settings:
+        mask_identity_for_skillvue: Skillvue 的掩膜資料

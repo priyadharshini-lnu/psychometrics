@@ -16,7 +16,7 @@ module Api
     }.freeze
 
     protect_from_forgery with: :null_session
-    class_attribute :_crud_schema_class, :_request_schemas
+    class_attribute :_crud_schema_class, :_request_schemas, :_cached_schema_or_contract
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
@@ -42,6 +42,7 @@ module Api
     end
 
     def self.validates_request_schema(action, schema)
+      self._cached_schema_or_contract ||= {}
       self._request_schemas ||= {}
       self._request_schemas[action] = schema
     end
@@ -49,9 +50,15 @@ module Api
     def validate_requests_schema # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       schema_validation = nil
       action = params[:action].to_sym
-      if _request_schemas&.dig(action)
-        schema_or_contract = _request_schemas&.dig(action)
-        schema_or_contract = send(schema_or_contract) if schema_or_contract.is_a?(Symbol)
+      schema_or_contract = _request_schemas&.dig(action)
+      if schema_or_contract
+        schema_or_contract = if schema_or_contract.is_a?(Symbol)
+                               send(schema_or_contract)
+                             elsif _cached_schema_or_contract[action]
+                               _cached_schema_or_contract[action]
+                             else
+                               _cached_schema_or_contract[action] = schema_or_contract.call
+                             end
         schema_validation = if schema_or_contract.is_a?(Dry::Schema::Processor)
                               schema_or_contract.call(params.permit!.to_h)
                             else
