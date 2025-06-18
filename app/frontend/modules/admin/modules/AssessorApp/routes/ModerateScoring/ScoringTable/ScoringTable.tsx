@@ -7,6 +7,7 @@ import {
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import type { ColumnsType } from 'antd/es/table'
+import { CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE } from '~/modules/admin/constants/campaignFactors'
 import {
   Factor, FactorTR, Score, ScoreTR, CampaignFactorValue, CampaignFactorValueTR, Weightage,
 } from '~/modules/admin/modules/campaigns/core/combinedScoring'
@@ -63,7 +64,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
           factor_type_eq: 'assessor_scoring',
         },
         page: {
-          size: 200,
+          size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
         },
       },
     },
@@ -95,7 +96,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
           campaign_factor_factor_type_eq: 'assessor_scoring',
         },
         page: {
-          size: 200,
+          size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
         },
       },
     },
@@ -107,6 +108,11 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     isLoading: isWeightageLoading,
   } = useResources<Weightage>('campaign_assessor_assessment_factor_weights', {
     basePath: `campaigns/${campaignId}`,
+    apiConfig: {
+      page: {
+        size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
+      },
+    },
   })
 
   const [disabled, setDisabled] = useState<boolean>(true)
