@@ -90,7 +90,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
           canManageDashboard={canManageDashboard}
           campaignPermissions={campaignPermissions}
         />
-        {dashboardInitialized && dashboardPreviewAvailable && (
+        {dashboardInitialized && dashboardPreviewAvailable && dashboard?.dashboardType === 'powerbi' && (
           <ToolsMenu
             campaignId={campaignId}
             projectId={projectId}
