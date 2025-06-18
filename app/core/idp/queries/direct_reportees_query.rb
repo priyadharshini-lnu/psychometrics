@@ -19,7 +19,6 @@ module Idp
             user_idp_plans: { active: true },
             users: { manager_id: @manager_id }
           ).
-          where.not(user_idp_plans: { status: %w[draft not_started] }).
           includes(:user).
           distinct
       end

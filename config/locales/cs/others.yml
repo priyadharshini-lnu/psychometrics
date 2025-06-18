@@ -2376,6 +2376,7 @@ cs:
       on_the_job: Při práci
       other: Jiné
       private: Soukromé
+      publish_plan: Publikovat plán
       remove: Odstranit
       skill: Dovednost
       sprint: Sprint

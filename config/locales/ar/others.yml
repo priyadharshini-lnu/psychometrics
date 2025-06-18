@@ -643,6 +643,7 @@ ar:
       on_the_job: في العمل
       other: أخرى
       private: خاص
+      publish_plan: نشر الخطة
       remove: إزالة
       skill: مهارة
       sprint: سباق قصير

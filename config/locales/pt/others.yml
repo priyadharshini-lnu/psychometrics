@@ -2370,6 +2370,7 @@ pt:
       on_the_job: No trabalho
       other: Outros
       private: Privado
+      publish_plan: Publicar plano
       remove: Remover
       skill: Habilidade
       sprint: Sprint

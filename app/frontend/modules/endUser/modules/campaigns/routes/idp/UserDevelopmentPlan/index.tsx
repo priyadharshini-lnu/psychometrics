@@ -41,6 +41,7 @@ import { ReflectiveQuestions } from '~/modules/endUser/modules/campaigns/routes/
 const { I18n } = window
 
 const connector = connect((state: RootState) => ({
+  currentUser: state.currentUser,
   idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
   idpSkills: state.campaigns.idp.userIdpSkills,
   availableDevelopmentActions: state.campaigns.idp.availableDevelopmentActions,
@@ -70,6 +71,7 @@ const emptySkillCategory = {
 }
 
 const UserDevelopmentPlanComponent = ({
+  currentUser,
   fetchAvailableDevelopmentActions,
   addDevelopmentActionInPlan,
   updateDevelopmentActionInPlan,
@@ -127,7 +129,7 @@ const UserDevelopmentPlanComponent = ({
   }, [paramTab])
 
   useEffect(() => {
-    if (status && status === USER_IDP_PLAN_STATUS.NOT_STARTED) {
+    if (status && status === USER_IDP_PLAN_STATUS.NOT_STARTED && currentUser.id === idpUserId) {
       navigate('/idp/steps/getting_started')
     }
   }, [status])

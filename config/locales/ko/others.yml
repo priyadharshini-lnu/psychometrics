@@ -2352,6 +2352,7 @@ ko:
       on_the_job: 업무 중
       other: 기타
       private: 비공개
+      publish_plan: 게시 계획
       remove: 제거
       skill: 스킬
       sprint: 스프린트

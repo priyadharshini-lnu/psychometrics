@@ -615,6 +615,7 @@ pl:
       on_the_job: W trakcie pracy
       other: Inne
       private: Prywatne
+      publish_plan: Publikuj plan
       remove: Usuń
       skill: Umiejętność
       sprint: Sprint

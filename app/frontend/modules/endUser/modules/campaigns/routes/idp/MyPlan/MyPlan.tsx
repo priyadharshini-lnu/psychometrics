@@ -81,10 +81,15 @@ const MyPlanComponent = ({
     USER_IDP_PLAN_STATUS.NOT_STARTED,
   ].includes(status)
 
-  const allowSubmitting = [
+  const allowSubmitting = managerApprovesIdp && [
     USER_IDP_PLAN_STATUS.DRAFT,
     USER_IDP_PLAN_STATUS.REJECTED,
   ].includes(status)
+
+  const showPublishPlanButton = (!managerApprovesIdp && status === USER_IDP_PLAN_STATUS.DRAFT)
+           || (managerApprovesIdp && status === USER_IDP_PLAN_STATUS.APPROVED)
+
+  const showEditPlanButton = !['board', 'reflective_questions'].includes(paramTab)
 
   const handleCompletion = () => {
     const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
@@ -131,7 +136,7 @@ const MyPlanComponent = ({
 
   const operations = (
     <Flex gap={8}>
-      {paramTab === 'list' && (
+      {showEditPlanButton && (
         editMode ? (
           <Button
             type="primary"
@@ -161,11 +166,11 @@ const MyPlanComponent = ({
             </Button>
           )}
 
-          {status === USER_IDP_PLAN_STATUS.APPROVED && (
+          {showPublishPlanButton && (
             <Button
               onClick={handleStartPlan}
             >
-              {I18n.t('idp.development_actions.start_plan')}
+              {I18n.t('idp.development_actions.publish_plan')}
             </Button>
           )}
 

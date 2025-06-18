@@ -2357,6 +2357,7 @@ it:
       on_the_job: Sul lavoro
       other: Altro
       private: Privato
+      publish_plan: Pubblica piano
       remove: Rimuovere
       skill: Abilità
       sprint: Sprint
