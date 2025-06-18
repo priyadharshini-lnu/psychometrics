@@ -9,6 +9,7 @@ import ModuleModel from '~/modules/reports/models/Module'
 import LayoutManager from '~/modules/reports/models/LayoutManager'
 import styles from './PropertyPanel.less'
 import StylesEditor from '~/modules/reports/components/StylesEditor'
+import { useLocalStorage } from '~/hooks/useLocalStorage'
 
 const { $ } = window
 const { Panel } = Collapse
@@ -41,6 +42,12 @@ const PropertyPanel = (props) => {
   const [scrollTop, setScrollTop] = useState(0)
 
   const module = modules[0]
+
+  const [settings] = useLocalStorage('reportSettings', {
+    propertiesPanel: {
+      width: 280,
+    },
+  })
 
   useEffect(() => {
     const inspectorEl = $(inspector.current)
@@ -274,7 +281,9 @@ const PropertyPanel = (props) => {
   }
 
   const inspectorClasses = [styles.inspector]
-  let style = {}
+  let style = {
+    width: settings.propertiesPanel.width - 1,
+  }
   if (popupOpen) {
     inspectorClasses.push(styles.dropdownOpen)
     if (scrollTop > 0) {
