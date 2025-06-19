@@ -283,6 +283,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
           disabled={readOnly}
           min={0}
           value={finalScores[factor.factorId]}
+          precision={2}
           onChange={value => handleFinalScoreChange(factor.factorId, value)}
         />
       ),
