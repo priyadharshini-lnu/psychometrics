@@ -1686,11 +1686,15 @@ cs:
         csv_file_required: Musí to být soubor CSV
         image_download_failed: 'Nepodařilo se stáhnout obrázek z %{url}: %{message}'
         invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
-        invalid_date_format: 'Nesprávný formát data: %{date}'
-        invalid_development_action_type: 'Řádek %{řádek}: Neplatná kategorie ''%{hodnota}''. Platné kategorie jsou: %{valid_categories}'
-        invalid_image_file: 'Neplatný soubor obrázku: %{zpráva}'
+        invalid_date: Formát data pro %{date} je neplatný.
+        invalid_date_format: 'Row %{row}: Neplatný formát data pro %{field}.'
+        invalid_development_action_type: 'Řádek %{row}: Neplatná kategorie ''%{value}''. Platné kategorie jsou: %{valid_development_action_types}'
+        invalid_duration_format: 'Po dobu trvání jsou povoleny pouze číselné hodnoty.Row %{row}: %{value} není platné trvání. '
+        invalid_image_file: 'Neplatný soubor obrázku: %{message}'
         invalid_image_url: 'Nesprávný formát adresy URL obrázku: %{url}'
-        invalid_learning_style: 'Řádek %{řádek}: Neplatný styl učení ''%{hodnota}''. Platné typy jsou: %{valid_types}'
+        invalid_languages: Neplatné dostupné jazyky %{invalid_languages} pro řádek %{row}.
+        invalid_learning_style: 'Řádek %{row}: Neplatný styl učení ''%{value}''. Platné typy jsou: %{valid_types}'
+        languages_only_for_courses: Dostupné jazyky lze nastavit pouze pro vývojové akce typu „kurzu“.Odstraňte dostupný jazyk pro řádek %{row} nebo změňte typ vývojové akce na „kurz“.
         missing_columns: 'Chybí povinné sloupce: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Dovednost nebyla nalezena pro ID: %{skill_id}'
@@ -1712,6 +1716,9 @@ cs:
       development_action_types:
         course: Kurz
         default: Výchozí
+      duration:
+        max_length: Nemůže být větší než 1 rok
+        min_length: Nemůže být menší než 1 minuta
       edit:
         header: Upravit vývoj Akce
       export:
@@ -1728,11 +1735,13 @@ cs:
       export_global_development_actions: Globální rozvojové akce
       export_global_development_actions_translations: Překlady globální rozvojové akce
       form:
+        available_languages: Dostupné jazyky
         client_placeholder: Výběr klienta
         course_image: Obrázek kurzu
         course_link: Odkaz na kurz
         description: Popis
         development_action_type: Typ rozvojové akce
+        duration: Trvání
         end_date: Datum ukončení
         learning_style: Styl učení
         name: Název

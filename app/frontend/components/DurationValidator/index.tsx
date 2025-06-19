@@ -7,12 +7,17 @@ interface DurationValidator {
         minError: string
         maxError: string
         requiredError: string
+        required?: boolean
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }): (rule: any, value: any) => Promise<void>
 }
+
 export const durationValidator: DurationValidator = ({
-  minMinutes, maxMinutes, minError, maxError, requiredError,
+  minMinutes, maxMinutes, minError, maxError, requiredError, required = true,
 }) => (_, value) => {
+  if (!required && !value) {
+    return Promise.resolve()
+  }
   if (!value) {
     return Promise.reject(new Error(requiredError))
   }

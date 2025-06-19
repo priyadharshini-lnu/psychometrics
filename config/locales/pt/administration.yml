@@ -1686,11 +1686,15 @@ pt:
         csv_file_required: Deve ser um ficheiro CSV
         image_download_failed: 'Falha ao descarregar a imagem de %{url}: %{mensagem}'
         invalid_csv_format: 'Formato CSV inválido: %{mensagem}'
-        invalid_date_format: 'Formato de data inválido: %{date}'
+        invalid_date: O formato de data para %{date} é inválido.
+        invalid_date_format: 'Linha %{row}: formato de data inválida para %{field}.'
         invalid_development_action_type: 'Linha %{row}: Tipo de ação de desenvolvimento inválido ''%{value}''. Os tipos de ação de desenvolvimento válidos são: %{valid_development_action_types}'
+        invalid_duration_format: 'Somente valores numéricos são permitidos por duração.Linha %{row}: %{value} não é uma duração válida. '
         invalid_image_file: 'Ficheiro de imagem inválido: %{mensagem}'
         invalid_image_url: 'Formato de URL de imagem inválido: %{url}'
-        invalid_learning_style: 'Linha %{linha}: estilo de aprendizagem inválido "%{valor}" Os tipos válidos são: %{tipos_válidos}'
+        invalid_languages: INVALIDADOS DISPONÍVEIS DISPONÍVEIS %{invalid_languages} para linha %{row}.
+        invalid_learning_style: 'Linha %{row}: estilo de aprendizagem inválido "%{value}" Os tipos válidos são: %{valid_types}'
+        languages_only_for_courses: Os idiomas disponíveis só podem ser definidos para ações de desenvolvimento do tipo "curso".Remova o idioma disponível para a linha %{row} ou altere o tipo de ação de desenvolvimento para "curso".
         missing_columns: 'Estão a faltar colunas obrigatórias: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Habilidade não encontrada para ID: %{skill_id}'
@@ -1712,6 +1716,9 @@ pt:
       development_action_types:
         course: Curso
         default: Predefinição
+      duration:
+        max_length: Não pode ser maior que 1 ano
+        min_length: Não pode ser inferior a 1 minuto
       edit:
         header: Editar Ação de Desenvolvimento
       export:
@@ -1728,11 +1735,13 @@ pt:
       export_global_development_actions: Acções de desenvolvimento global
       export_global_development_actions_translations: Traduções da Ação para o Desenvolvimento Global
       form:
+        available_languages: Idiomas disponíveis
         client_placeholder: Selecionar um cliente
         course_image: Imagem do curso
         course_link: Ligação do curso
         description: Descrição
         development_action_type: Tipo de Ação de Desenvolvimento
+        duration: Duração
         end_date: Data final
         learning_style: Estilo de aprendizagem
         name: Nome

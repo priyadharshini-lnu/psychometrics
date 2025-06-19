@@ -1686,11 +1686,15 @@ zh-Hant:
         csv_file_required: 必須是 CSV 檔案
         image_download_failed: 從 %{url} 下載影像失敗： %{message}
         invalid_csv_format: 無效的 CSV 格式：%{message}。
-        invalid_date_format: 無效日期格式： %{date}
+        invalid_date: "％{date}的日期格式無效。"
+        invalid_date_format: 行％{row}：％{field}的無效日期格式
         invalid_development_action_type: 行 %{row}：無效的開發作業類型「%{value}」。有效的開發行動類型是：%{valid_development_action_types}。
+        invalid_duration_format: 持續時間僅允許數字值。行％{row}：％{value}不是有效的持續時間。
         invalid_image_file: 無效的影像檔案：%{message}。
         invalid_image_url: 無效的圖片 URL 格式：%{url}。
+        invalid_languages: 無效的可用語言％{invalid_languages}對於行％{row}。
         invalid_learning_style: 行 %{row}：無效的學習樣式 '%{value}'。 有效的類型是：%{valid_types}。
+        languages_only_for_courses: 可用語言只能設置為“課程”類型的開發動作。請刪除ROW％{row}的可用語言，或將開發操作的類型更改為“課程”。
         missing_columns: 缺少必填欄位： %{fields}
         save_failed: 搶救失敗的研發項目：%{message}。
         skill_not_found: 未找到 ID 的技能： %{skill_id}
@@ -1712,6 +1716,9 @@ zh-Hant:
       development_action_types:
         course: 課程
         default: 預設
+      duration:
+        max_length: 不能大於1年
+        min_length: 不能少於1分鐘
       edit:
         header: 編輯開發行動
       export:
@@ -1728,11 +1735,13 @@ zh-Hant:
       export_global_development_actions: 全球發展行動
       export_global_development_actions_translations: 全球發展行動翻譯
       form:
+        available_languages: 可用語言
         client_placeholder: 選擇客戶
         course_image: 課程圖片
         course_link: 課程連結
         description: 說明
         development_action_type: 發展行動類型
+        duration: 期間
         end_date: 結束日期
         learning_style: 學習風格
         name: 名稱

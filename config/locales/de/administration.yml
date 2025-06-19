@@ -1686,11 +1686,15 @@ de:
         csv_file_required: Muss eine CSV-Datei sein
         image_download_failed: 'Herunterladen des Bildes von %{url} fehlgeschlagen: %{Meldung}'
         invalid_csv_format: 'Ungültiges CSV-Format: %{Meldung}'
-        invalid_date_format: 'Ungültiges Datumsformat: %{date}'
+        invalid_date: Datumsformat für %{date} ist ungültig.
+        invalid_date_format: 'Rij %{row}: ongeldige datumindeling voor %{field}. '
         invalid_development_action_type: 'Zeile %{row}: Ungültiger Entwicklungsaktionstyp ''%{value}''. Gültige Entwicklungsaktionstypen sind: %{valid_development_action_types}'
+        invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer. '
         invalid_image_file: 'Ungültige Bilddatei: %{message}'
         invalid_image_url: 'Ungültiges Bild-URL-Format: %{url}'
+        invalid_languages: Ungültige verfügbare Sprachen %{invalid_languages} für Zeilen %{row}.
         invalid_learning_style: 'Zeile %{row}: Ungültiger Lernstil ''%{value}''. Gültige Typen sind: %{valid_types}'
+        languages_only_for_courses: Verfügbare Sprachen können nur für Entwicklungsaktionen vom Typ "Kurs" eingestellt werden.Bitte entfernen Sie die verfügbare Sprache für Zeilen %{row} oder ändern Sie die Art der Entwicklungsaktion in "Kurs".
         missing_columns: 'Erforderliche Spalten fehlen: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Fertigkeit für ID nicht gefunden: %{skill_id}'
@@ -1712,6 +1716,9 @@ de:
       development_action_types:
         course: Kurs
         default: Standard
+      duration:
+        max_length: Kann nicht größer als 1 Jahr sein
+        min_length: Kann nicht weniger als 1 Minute sein
       edit:
         header: Entwicklung bearbeiten Aktion
       export:
@@ -1728,11 +1735,13 @@ de:
       export_global_development_actions: Globale Entwicklungsmaßnahmen
       export_global_development_actions_translations: Globale Entwicklungsmaßnahmen Übersetzungen
       form:
+        available_languages: Verfügbare Sprachen
         client_placeholder: Wählen Sie einen Kunden
         course_image: Kursbild
         course_link: Link zum Kurs
         description: Beschreibung
         development_action_type: Entwicklungsaktionstyp
+        duration: Dauer
         end_date: Enddatum
         learning_style: Lernstil
         name: Name

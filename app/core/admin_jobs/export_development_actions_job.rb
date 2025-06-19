@@ -15,10 +15,12 @@ module AdminJobs
         Type
         ProjectID
         DevelopmentActionType
+        AvailableLanguages
         CourseURL
         CourseStartDate
         CourseEndDate
         CourseImage
+        Duration
       ]
     end
 
@@ -37,10 +39,12 @@ module AdminJobs
           development_action.learning_style,
           development_action.project_id,
           development_action.development_action_type,
+          development_action.available_languages.join(', '),
           development_action.course_url,
           development_action.course_start_date&.strftime('%Y-%m-%d'),
           development_action.course_end_date&.strftime('%Y-%m-%d'),
-          development_action.image_url
+          development_action.image_url,
+          development_action.duration
         ]
       end
     end

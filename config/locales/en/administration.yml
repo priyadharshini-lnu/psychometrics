@@ -1727,11 +1727,15 @@ en:
         csv_file_required: Must be a CSV file
         image_download_failed: 'Failed to download image from %{url}: %{message}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
-        invalid_date_format: 'Invalid date format: %{date}'
-        invalid_development_action_type: 'Řádek %{row}: Neplatný typ vývojové akce ''%{value}''. Platné typy akcí vývoje jsou: %{valid_development_action_types}'
+        invalid_date: Date format for %{date} is invalid.
+        invalid_date_format: 'Row %{row}: Invalid date format for %{field}.'
+        invalid_development_action_type: 'Row %{row}: Invalid development action type %{value}. Valid development action types are: %{valid_development_action_types}.'
+        invalid_duration_format: 'Only numeric values are allowed for duration. Row %{row}: %{value} is not a valid duration.'
         invalid_image_file: 'Invalid image file: %{message}'
         invalid_image_url: 'Invalid image URL format: %{url}'
+        invalid_languages: Invalid available languages %{invalid_languages} for row %{row}.
         invalid_learning_style: 'Row %{row}: Invalid learning style ''%{value}''. Valid types are: %{valid_types}'
+        languages_only_for_courses: Available Languages can only be set for development actions of type "Course". Please remove the available language for row %{row} or change the type of development action to "Course".
         missing_columns: 'Required columns are missing: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Skill not found for ID: %{skill_id}'
@@ -1755,6 +1759,9 @@ en:
       development_action_types:
         course: Course
         default: Default
+      duration:
+        max_length: Cannot be greater than 1 year
+        min_length: Cannot be less than 1 minute
       edit:
         header: Edit Development Action
       export:
@@ -1773,11 +1780,13 @@ en:
       export_global_development_actions: Global Development Actions
       export_global_development_actions_translations: Global Development Action Translations
       form:
+        available_languages: Available Languages
         client_placeholder: Select a Client
         course_image: Course Image
         course_link: Course Link
         description: Description
         development_action_type: Development Action Type
+        duration: Duration
         end_date: End Date
         learning_style: Learning Style
         name: Name

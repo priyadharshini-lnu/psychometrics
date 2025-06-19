@@ -1686,12 +1686,16 @@ it:
         csv_file_required: Deve essere un file CSV
         image_download_failed: 'Download immagine fallito da %{url}: %{message}'
         invalid_csv_format: 'Formato CSV non valido: %{message}'
-        invalid_date_format: 'Formato data non valido: %{date}'
+        invalid_date: Il formato della data per %{date} non è valido.
+        invalid_date_format: 'Riga %{row}: formato della data non valido per %{field}.'
         invalid_development_action_type: 'Riga %{row}: Tipo di azione di sviluppo non valido ''%{value}''. I tipi di azione di sviluppo validi sono: %{valid_development_action_types}'
+        invalid_duration_format: 'Sono consentiti solo valori numerici per durata.Riga %{row}: %{value} non è una durata valida. "a. "'
         invalid_image_file: 'File immagine non valido: %{messaggio}'
         invalid_image_url: 'Formato URL immagine non valido: %{url}'
+        invalid_languages: Lingue disponibili non valide %{invalid_languages} per riga %{row}.
         invalid_learning_style: 'Riga %{row}: stile di apprendimento non valido ''%{value}''. I tipi validi sono: %{valid_types}'
-        missing_columns: 'Mancano le colonne richieste: %{campi}'
+        languages_only_for_courses: Le lingue disponibili possono essere impostate solo per le azioni di sviluppo del tipo "Corso".Rimuovere la lingua disponibile per riga %{row} o modificare il tipo di azione di sviluppo in "Corso".
+        missing_columns: 'Mancano le colonne richieste: %{fields}'
         save_failed: 'Salvataggio dell''azione di sviluppo fallita: %{message}'
         skill_not_found: 'Abilità non trovata per l''ID: %{skill_id}'
     development_action_translations:
@@ -1712,6 +1716,9 @@ it:
       development_action_types:
         course: Corso
         default: Predefinito
+      duration:
+        max_length: Non può essere maggiore di 1 anno
+        min_length: Non può essere inferiore a 1 minuto
       edit:
         header: Modifica Azione di sviluppo
       export:
@@ -1728,11 +1735,13 @@ it:
       export_global_development_actions: Azioni di sviluppo globale
       export_global_development_actions_translations: Traduzioni dell'Azione per lo sviluppo globale
       form:
+        available_languages: Lingue disponibili
         client_placeholder: Selezionare un cliente
         course_image: Immagine del corso
         course_link: Link al corso
         description: Descrizione
         development_action_type: Tipo di azione di sviluppo
+        duration: Durata
         end_date: Data di fine
         learning_style: Stile di apprendimento
         name: Nome

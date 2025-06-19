@@ -1584,10 +1584,14 @@ ar:
         csv_file_required: يجب أن يكون ملف CSV
         image_download_failed: 'فشل تنزيل الصورة من %{url}: %{message}'
         invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
-        invalid_date_format: 'تنسيق التاريخ غير صالح: %{date}'
+        invalid_date: تنسيق التاريخ لـ ٪ {date} غير صالح.
+        invalid_date_format: 'ROW ٪ {row}: تنسيق تاريخ غير صالح لـ ٪ {field}.'
+        invalid_duration_format: 'يسمح فقط للقيم الرقمية بالمدة.الصف ٪ {row}: ٪ {value} ليس مدة صالحة.'
         invalid_image_file: 'ملف الصورة غير صالح: %{message}'
         invalid_image_url: 'تنسيق عنوان URL للصورة غير صالح: %{url}'
+        invalid_languages: اللغات المتاحة غير صالحة ٪ {invalid_languages} للصف ٪ {row}.
         invalid_learning_style: 'الصف %{row}: نمط تعلم غير صالح ''%{value}''. الأنواع الصالحة هي: %{valid_types}'
+        languages_only_for_courses: لا يمكن تعيين اللغات المتاحة إلا لإجراءات تطوير النوع "الدورة".يرجى إزالة اللغة المتاحة للصف ٪ {row} أو تغيير نوع إجراء التطوير إلى "الدورة".
         missing_columns: 'الأعمدة المطلوبة مفقودة: %{fields}'
         save_failed: 'فشل حفظ إجراء التطوير: %{message}'
         skill_not_found: 'لم يتم العثور على المهارة للمعرف: %{skill_id}'
@@ -1599,6 +1603,9 @@ ar:
       development_action_types:
         course: دورة
         default: افتراضي
+      duration:
+        max_length: لا يمكن أن يكون أكبر من سنة واحدة
+        min_length: لا يمكن أن يكون أقل من دقيقة واحدة
       edit:
         header: تعديل إجراء التطوير
       export:
@@ -1608,10 +1615,12 @@ ar:
       export_development_actions: تصدير إجراءات التطوير بناءً على المشروع
       export_global_development_actions: تصدير إجراءات التطوير العالمية
       form:
+        available_languages: اللغات المتاحة
         course_image: صورة الدورة
         course_link: رابط الدورة
         description: الوصف
         development_action_type: نوع عمل التطوير
+        duration: مدة
         end_date: تاريخ الانتهاء
         learning_style: نمط التعلم
         name: الاسم

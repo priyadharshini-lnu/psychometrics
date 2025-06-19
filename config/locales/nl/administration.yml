@@ -1686,11 +1686,15 @@ nl:
         csv_file_required: Moet een CSV-bestand zijn
         image_download_failed: 'Downloaden van afbeelding van %{url} mislukt: %{message}'
         invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
-        invalid_date_format: 'Ongeldig datumformaat: %{datum}'
+        invalid_date: Datumformaat voor %{date} is ongeldig.
+        invalid_date_format: 'Row %{row}: ongeldige datumindeling voor %{field}.'
         invalid_development_action_type: 'Rij %{row}: Ongeldig type ontwikkelingsactie ''%{value}''. Geldige typen ontwikkelingsacties zijn: %{valid_development_action_types}'
+        invalid_duration_format: 'Alleen numerieke waarden zijn toegestaan ​​voor de duur.Rij %{row}: %{value} is geen geldige duur. '
         invalid_image_file: 'Ongeldig afbeeldingsbestand: %{message}'
         invalid_image_url: 'Ongeldig URL-formaat voor afbeelding: %{url}'
+        invalid_languages: Ongeldige beschikbare talen %{invalid_languages} voor rij %{row}.
         invalid_learning_style: 'Rij %{row}: Ongeldige leerstijl ''%{value}''. Geldige types zijn: %{valid_types}'
+        languages_only_for_courses: Beschikbare talen kunnen alleen worden ingesteld voor ontwikkelingsacties van het type "cursus".Verwijder de beschikbare taal voor rij %{row} of wijzig het type ontwikkelingsactie in "cursus".
         missing_columns: 'Verplichte kolommen ontbreken: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Vaardigheid niet gevonden voor ID: %{skill_id}'
@@ -1712,6 +1716,9 @@ nl:
       development_action_types:
         course: Cursus
         default: Standaard
+      duration:
+        max_length: Kan niet groter zijn dan 1 jaar
+        min_length: Kan niet minder zijn dan 1 minuut
       edit:
         header: Bewerken Ontwikkelingsactie
       export:
@@ -1728,11 +1735,13 @@ nl:
       export_global_development_actions: Wereldwijde ontwikkelingsacties
       export_global_development_actions_translations: Global Development Action Vertalingen
       form:
+        available_languages: Beschikbare talen
         client_placeholder: Selecteer een klant
         course_image: Cursusbeeld
         course_link: Cursuslink
         description: Beschrijving
         development_action_type: Type ontwikkelingsactie
+        duration: Duur
         end_date: Einddatum
         learning_style: Leerstijl
         name: Naam

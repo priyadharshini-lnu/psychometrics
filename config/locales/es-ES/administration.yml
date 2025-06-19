@@ -1686,11 +1686,15 @@ es-ES:
         csv_file_required: Debe ser un archivo CSV
         image_download_failed: 'Error al descargar la imagen de %{url}: %{message}'
         invalid_csv_format: 'Formato CSV no válido: %{message}'
-        invalid_date_format: 'Formato de fecha no válido: %{date}'
+        invalid_date: El formato de fecha para %{date} no es válido.
+        invalid_date_format: 'Fila %{row}: formato de fecha no válido para %{field}.'
         invalid_development_action_type: 'Fila %{row}: Tipo de acción de desarrollo ''%{value}'' no válido. Los tipos de acción de desarrollo válidos son: %{valid_development_action_types}'
+        invalid_duration_format: 'Solo se permiten valores numéricos para la duración.Fila %{row}: %{value} no es una duración válida.'
         invalid_image_file: 'Archivo de imagen no válido: %{message}'
         invalid_image_url: 'Formato de URL de imagen no válido: %{url}'
+        invalid_languages: Idiomas disponibles no válidos %{invalid_languages} para fila %{row}.
         invalid_learning_style: 'Fila %{row}: Estilo de aprendizaje ''%{value}'' no válido Los tipos válidos son: %{valid_types}'
+        languages_only_for_courses: Los idiomas disponibles solo se pueden establecer para acciones de desarrollo del tipo "curso".Elimine el idioma disponible para fila %{row} o cambie el tipo de acción de desarrollo a "curso".
         missing_columns: 'Faltan columnas obligatorias: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Habilidad no encontrada para ID: %{skill_id}'
@@ -1712,6 +1716,9 @@ es-ES:
       development_action_types:
         course: Curso
         default: Por defecto
+      duration:
+        max_length: No puede ser mayor de 1 año
+        min_length: No puede ser menos de 1 minuto
       edit:
         header: Editar acción de desarrollo
       export:
@@ -1728,11 +1735,13 @@ es-ES:
       export_global_development_actions: Acciones globales de desarrollo
       export_global_development_actions_translations: Traducciones de Global Development Action
       form:
+        available_languages: Idiomas disponibles
         client_placeholder: Seleccione un cliente
         course_image: Imagen del curso
         course_link: Enlace al curso
         description: Descripción
         development_action_type: Tipo de acción de desarrollo
+        duration: Duración
         end_date: Fecha final
         learning_style: Estilo de aprendizaje
         name: Nombre

@@ -1686,11 +1686,15 @@ ja:
         csv_file_required: CSVファイルであること
         image_download_failed: url}からの画像のダウンロードに失敗しました。
         invalid_csv_format: '無効な CSV 形式: %{message} です。'
-        invalid_date_format: '無効な日付形式: %{date}'
+        invalid_date: "％{date}の日付形式は無効です。"
+        invalid_date_format: row％{row}：％{field}の無効な日付形式。
         invalid_development_action_type: '行 %{row}: 開発アクションタイプ ''%{value}'' が無効です。有効な開発アクションタイプは次のとおりです: %{valid_development_action_types}'
+        invalid_duration_format: 数値のみが許可されます。row％{row}：％{value}は有効な期間ではありません。
         invalid_image_file: 無効な画像ファイルです。
         invalid_image_url: '無効な画像URLフォーマット: %{url}'
+        invalid_languages: row％{row}の利用可能な言語％{invalid_languages}。
         invalid_learning_style: '行 %{row}: 無効な学習スタイル ''%{value}'' です。 有効なタイプは %{valid_types} です。'
+        languages_only_for_courses: 利用可能な言語は、タイプ「コース」の開発アクションにのみ設定できます。row％{row}の利用可能な言語を削除するか、開発アクションのタイプを「コース」に変更してください。
         missing_columns: '必須列がありません: %{fields}.'
         save_failed: 失敗した開発プロジェクトの復旧： %{message}
         skill_not_found: 'ID: %{skill_id} に対応するスキルが見つかりません。'
@@ -1712,6 +1716,9 @@ ja:
       development_action_types:
         course: コース
         default: デフォルト
+      duration:
+        max_length: 1年を超えることはできません
+        min_length: 1分未満にすることはできません
       edit:
         header: 編集開発アクション
       export:
@@ -1728,11 +1735,13 @@ ja:
       export_global_development_actions: グローバル開発アクション
       export_global_development_actions_translations: グローバル開発アクションの翻訳
       form:
+        available_languages: 利用可能な言語
         client_placeholder: クライアントの選択
         course_image: コースイメージ
         course_link: コースリンク
         description: 説明
         development_action_type: 開発アクションのタイプ
+        duration: 間隔
         end_date: 終了日
         learning_style: 学習スタイル
         name: 名称

@@ -12,7 +12,8 @@ import { Panel } from '~/glint/components/Panel/Panel'
 import { useResources } from '~/hooks/useResources'
 import styles from './Form.less'
 import { ResourcesItems } from './ResourcesItems'
-import { durationValidator } from '../utils'
+import { durationValidator } from '~/components/DurationValidator'
+
 
 const fieldLayout = {
   labelCol: { span: 24 },
