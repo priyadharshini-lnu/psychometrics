@@ -185,6 +185,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'bundler-audit', require: false
   gem 'byebug', platform: :mri
+  gem 'dry-cli', '~> 1.2.0'
   gem 'factory_bot_rails'
   gem 'hirb'
   gem 'parallel_tests', '~> 4.2'
@@ -210,7 +211,6 @@ end
 
 group :development do
   gem 'bullet', '~> 7.1.3'
-  gem 'dry-cli', '~> 1.2.0'
   gem 'listen', '~> 3.7.1'
   gem 'spring-watcher-listen', '~> 2.1.0'
 
@@ -222,6 +222,7 @@ group :development do
   gem 'ruby-lsp-rails', '~> 0.4.0'
   gem 'solargraph', '~>0.54.0'
 end
+
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.37.1'

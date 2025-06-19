@@ -98,6 +98,8 @@ Metrics/BlockNesting:
 
 Metrics/ClassLength:
   Max: 200
+  Exclude:
+    - lib/devtools/**/*
 
 Metrics/CyclomaticComplexity:
   Max: 10

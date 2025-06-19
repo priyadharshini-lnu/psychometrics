@@ -3,7 +3,7 @@
 module Devtools
   module CLI
     module Commands
-      class AssignUserReport < Base # rubocop:disable Metrics/ClassLength
+      class AssignUserReport < Base
         attr_reader :script_id
 
         desc 'Assign report to user in campaign'
