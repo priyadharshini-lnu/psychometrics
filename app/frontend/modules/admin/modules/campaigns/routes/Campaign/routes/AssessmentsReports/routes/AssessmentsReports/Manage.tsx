@@ -216,7 +216,7 @@ const Manage: React.FC<Props> = ({
           </Button>
         </Row>
 
-        <AssessorAssessmentList />
+        {campaignPermissions.viewAssessors && <AssessorAssessmentList />}
 
         {campaignPermissions.viewAssessors && otherAsessorAssessments.length > 0 && (
           <>
