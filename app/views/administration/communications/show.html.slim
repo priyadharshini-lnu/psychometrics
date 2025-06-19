@@ -1,4 +1,9 @@
 .col-md-8.col-md-offset-2
+  - if @available_locales.length > 1
+    .row.mbm
+      .col-md-12
+        = render partial: 'application/lang', locals: { locales: @available_locales, selected_locale: @selected_locale }
+
   ul.list-group
     - if current_user.is?(:superadmin) && @communication.owner
       li.list-group-item
@@ -52,13 +57,17 @@
         li.list-group-item
           strong.mrs = t('.stop_reminder_datetime')
           = "#{I18n.l(@communication.stop_reminder_datetime, format: :short)} (GST)"
+
     li.list-group-item
       strong.mrs = t('.subject')
-      = @communication.subject
+      - if @available_locales.length > 1
+        span.label.label-info.mrs = @selected_locale.upcase
+      = @translated_subject.presence
     li.list-group-item
-      p
-        strong = t('.body')
-      = raw Utility::SanitizeHtml.process(@communication.body)
+      strong.mrs = t('.body')
+      - if @available_locales.length > 1
+        span.label.label-info.mls = @selected_locale.upcase
+      p = @translated_body.present? ? raw(Utility::SanitizeHtml.process(@translated_body)) : ""
 
 .col-md-1
   = link_to t('.back'), administration_communications_path, class: 'btn btn-default'

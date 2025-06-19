@@ -1490,6 +1490,17 @@ ko:
         successfully: 통신 %{이름}이(가) 성공적으로 삭제되었습니다.
       edit:
         header: 커뮤니케이션 편집
+      edit_translation:
+        body_label: 본문 레이블
+        copy: 복사
+        locale_label: 로케일
+        no_reference_body: 참조 본문이 없습니다
+        no_reference_subject: 참조 제목이 없습니다
+        reference_body_label: 참조 본문 레이블
+        reference_subject_label: 참조 제목 레이블
+        subject_label: 제목 레이블
+        title: 번역 편집
+        update_button: 번역 업데이트
       form:
         all: 모두
         assessment_completion_status_code: 평가 완료 상태 코드
@@ -1509,6 +1520,7 @@ ko:
         idp_template_rejected: IDP 거부됨
         invitation: 초대
         kind: 커뮤니케이션 유형
+        locale: 로케일
         magic_link_email: 매직 링크 이메일
         new_assignment: 새 과제
         new_users: 신규 사용자
@@ -1562,6 +1574,7 @@ ko:
           copy: 복사 커뮤니케이션
           delete: 커뮤니케이션 삭제
           download: 커뮤니케이션 기록 다운로드
+          edit_translation: 번역 편집
           view: 커뮤니케이션 보기
       show:
         assessment: '평가:'
@@ -1584,10 +1597,13 @@ ko:
         copy: 복사 커뮤니케이션
         destroy: 커뮤니케이션 삭제
         download: 커뮤니케이션 기록 다운로드
+        edit_translation: 번역 편집
         title: 커뮤니케이션 옵션
         view: 커뮤니케이션 보기
       toggle_status:
         successfully: 통신이 성공적으로 업데이트되었습니다.
+      update_translation:
+        successfully_updated: 번역이 성공적으로 업데이트되었습니다.
     components:
       input_duration:
         placeholder: "'1일 2시간 3분'으로 입력합니다"

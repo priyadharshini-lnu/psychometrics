@@ -789,6 +789,8 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
+        put :update_translation, path: 'translation'
+        get :edit_translation
       end
 
       match :new_form, on: :collection, via: %i[post patch put]

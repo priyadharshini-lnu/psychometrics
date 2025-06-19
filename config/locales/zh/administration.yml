@@ -1492,6 +1492,17 @@ zh:
         successfully: 通信 %{name} 已成功删除。
       edit:
         header: 编辑通讯
+      edit_translation:
+        body_label: 正文标签
+        copy: 复制
+        locale_label: 区域设置
+        no_reference_body: 没有可用的参考内容
+        no_reference_subject: 没有可用的参考主题
+        reference_body_label: 参考正文标签
+        reference_subject_label: 参考主题标签
+        subject_label: 主题标签
+        title: 编辑翻译
+        update_button: 更新翻译
       form:
         all: 全部
         assessment_completion_status_code: 评估完成状态代码
@@ -1511,6 +1522,7 @@ zh:
         idp_template_rejected: 拒绝的境内流离失所者
         invitation: 邀请函
         kind: 通信类型
+        locale: 区域设置
         magic_link_email: 魔法链接电子邮件
         new_assignment: 新任务
         new_users: 新用户
@@ -1564,6 +1576,7 @@ zh:
           copy: 复制交流
           delete: 删除通信
           download: 下载《传播史
+          edit_translation: 编辑翻译
           view: 查看交流
       show:
         assessment: 评估：
@@ -1586,10 +1599,13 @@ zh:
         copy: 复制交流
         destroy: 删除通信
         download: 下载《传播史
+        edit_translation: 编辑翻译
         title: 通信的选择
         view: 查看交流
       toggle_status:
         successfully: 通信已成功更新。
+      update_translation:
+        successfully_updated: 翻译已成功更新。
     components:
       input_duration:
         placeholder: 输入 "1d 2h 3m

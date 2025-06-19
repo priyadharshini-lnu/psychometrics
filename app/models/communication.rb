@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Communication < ApplicationRecord
-  audited
+  extend Mobility
+  translates :subject, :body
 
+  audited
   include OwnerValidations
 
   WORKSHOP_COMMUNICATION_KINDS = %w[

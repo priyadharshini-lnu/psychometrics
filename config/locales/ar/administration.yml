@@ -1380,6 +1380,17 @@ ar:
         successfully: تم حذف الاتصال %{name} بنجاح.
       edit:
         header: تعديل الاتصال
+      edit_translation:
+        body_label: تسمية النص
+        copy: نسخ
+        locale_label: الإعدادات المحلية
+        no_reference_body: لا يوجد نص مرجعي متاح
+        no_reference_subject: لا يوجد موضوع مرجعي متاح
+        reference_body_label: تسمية النص المرجعي
+        reference_subject_label: تسمية الموضوع المرجعي
+        subject_label: تسمية الموضوع
+        title: تحرير الترجمة
+        update_button: تحديث الترجمة
       form:
         all: الكل
         assessment_completion_status_code: رمز حالة إكمال التقييم
@@ -1407,6 +1418,7 @@ ar:
         idp_template_rejected: تم رفض IDP
         invitation: دعوة
         kind: أنواع الاتصالات
+        locale: اللغة
         magic_link_email: بريد إلكتروني برابط سحري
         new_assignment: تعيين جديد
         new_users: مستخدمون جدد
@@ -1460,6 +1472,7 @@ ar:
           copy: نسخ الاتصال
           delete: حذف الاتصال
           download: تنزيل سجل الاتصال
+          edit_translation: تحرير الترجمة
           view: عرض الاتصال
       show:
         assessment: 'التقييم:'
@@ -1482,10 +1495,13 @@ ar:
         copy: نسخ الاتصال
         destroy: حذف الاتصال
         download: تنزيل سجل الاتصال
+        edit_translation: تحرير الترجمة
         title: خيارات الاتصال
         view: عرض الاتصال
       toggle_status:
         successfully: تم تحديث الاتصال بنجاح.
+      update_translation:
+        successfully_updated: تم تحديث الترجمة بنجاح.
     components:
       input_duration:
         placeholder: أدخل كـ '1d 2h 3m'

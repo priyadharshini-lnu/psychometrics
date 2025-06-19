@@ -1490,6 +1490,17 @@ nl:
         successfully: Communicatie %{naam} is succesvol verwijderd.
       edit:
         header: Communicatie bewerken
+      edit_translation:
+        body_label: Tekstlabel
+        copy: Kopiëren
+        locale_label: Locatie
+        no_reference_body: Geen referentie-inhoud beschikbaar
+        no_reference_subject: Geen referentieonderwerp beschikbaar
+        reference_body_label: Referentie tekstlabel
+        reference_subject_label: Referentie onderwerplabel
+        subject_label: Onderwerplabel
+        title: Vertaling bewerken
+        update_button: Vertaling bijwerken
       form:
         all: Alle
         assessment_completion_status_code: Statuscode voltooiing beoordeling
@@ -1509,6 +1520,7 @@ nl:
         idp_template_rejected: IDP Afgewezen
         invitation: Uitnodiging
         kind: Soorten communicatie
+        locale: Locatie
         magic_link_email: Magische link e-mail
         new_assignment: Nieuwe opdracht
         new_users: Nieuwe gebruikers
@@ -1562,6 +1574,7 @@ nl:
           copy: Kopie Communicatie
           delete: Communicatie verwijderen
           download: Download Communicatiegeschiedenis
+          edit_translation: Vertaling bewerken
           view: Bekijk communicatie
       show:
         assessment: 'Beoordeling:'
@@ -1584,10 +1597,13 @@ nl:
         copy: Kopie Communicatie
         destroy: Communicatie verwijderen
         download: Download Communicatiegeschiedenis
+        edit_translation: Vertaling bewerken
         title: Opties voor communicatie
         view: Bekijk communicatie
       toggle_status:
         successfully: Communicatie is met succes bijgewerkt.
+      update_translation:
+        successfully_updated: De vertaling is succesvol bijgewerkt.
     components:
       input_duration:
         placeholder: Invoeren als '1d 2h 3m'

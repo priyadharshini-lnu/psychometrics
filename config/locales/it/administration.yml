@@ -1490,6 +1490,17 @@ it:
         successfully: La comunicazione %{nome} è stata cancellata con successo.
       edit:
         header: Modifica Comunicazione
+      edit_translation:
+        body_label: Etichetta corpo
+        copy: Copia
+        locale_label: Impostazioni locali
+        no_reference_body: Nessun corpo di riferimento disponibile
+        no_reference_subject: Nessun oggetto di riferimento disponibile
+        reference_body_label: Etichetta corpo di riferimento
+        reference_subject_label: Etichetta oggetto di riferimento
+        subject_label: Etichetta oggetto
+        title: Modifica traduzione
+        update_button: Aggiorna traduzione
       form:
         all: Tutti
         assessment_completion_status_code: Codice di stato di completamento della valutazione
@@ -1509,6 +1520,7 @@ it:
         idp_template_rejected: IDP Rifiutato
         invitation: Invito
         kind: Tipi di comunicazione
+        locale: Impostazioni locali
         magic_link_email: Magic Link Email
         new_assignment: Nuovo incarico
         new_users: Nuovi utenti
@@ -1562,6 +1574,7 @@ it:
           copy: Copiare la comunicazione
           delete: Cancellare la comunicazione
           download: Scaricare Storia della comunicazione
+          edit_translation: Modifica traduzione
           view: Visualizza la comunicazione
       show:
         assessment: 'Valutazione:'
@@ -1584,10 +1597,13 @@ it:
         copy: Copiare la comunicazione
         destroy: Cancellare la comunicazione
         download: Scaricare Storia della comunicazione
+        edit_translation: Modifica traduzione
         title: Opzioni di comunicazione
         view: Visualizza la comunicazione
       toggle_status:
         successfully: La comunicazione è stata aggiornata con successo.
+      update_translation:
+        successfully_updated: La traduzione è stata aggiornata con successo.
     components:
       input_duration:
         placeholder: Immettere come "1d 2h 3m"

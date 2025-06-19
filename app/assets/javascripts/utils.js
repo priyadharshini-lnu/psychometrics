@@ -1,10 +1,16 @@
 Utils = {
   copyToClipboard: function(text) {
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val(text).select();
-    document.execCommand("copy");
-    $temp.remove();
+    // Use modern Clipboard API if available
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+    } else {
+      // Fallback for older browsers
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val(text).select();
+      document.execCommand("copy");
+      $temp.remove();
+    }
   },
   isElementInViewport: function(el) {
     var rect = el.getBoundingClientRect();

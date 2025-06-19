@@ -1835,6 +1835,40 @@ ALTER SEQUENCE public.communication_emails_id_seq OWNED BY public.communication_
 
 
 --
+-- Name: communication_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_translations (
+    id bigint NOT NULL,
+    subject character varying,
+    body text,
+    locale character varying NOT NULL,
+    communication_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_translations_id_seq OWNED BY public.communication_translations.id;
+
+
+--
 -- Name: communications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7877,6 +7911,13 @@ ALTER TABLE ONLY public.communication_emails ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: communication_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_translations ALTER COLUMN id SET DEFAULT nextval('public.communication_translations_id_seq'::regclass);
+
+
+--
 -- Name: communications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9320,6 +9361,14 @@ ALTER TABLE ONLY public.communication_email_resources
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT communication_emails_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_translations communication_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_translations
+    ADD CONSTRAINT communication_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -11524,6 +11573,13 @@ CREATE INDEX index_communication_emails_on_workshop_invite_id ON public.communic
 
 
 --
+-- Name: index_communication_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_translations_on_locale ON public.communication_translations USING btree (locale);
+
+
+--
 -- Name: index_communications_copy_memberships; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11612,6 +11668,13 @@ CREATE INDEX index_communications_users_on_user_id ON public.communications_user
 --
 
 CREATE INDEX index_course_schedules_on_development_action_id ON public.course_schedules USING btree (development_action_id);
+
+
+--
+-- Name: index_d7f2c041d1fd872ae4c401b79ce81a4ed229f121; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_d7f2c041d1fd872ae4c401b79ce81a4ed229f121 ON public.communication_translations USING btree (communication_id, locale);
 
 
 --
@@ -15508,6 +15571,14 @@ ALTER TABLE ONLY public.dimensions
 
 
 --
+-- Name: communication_translations fk_rails_af0644ded0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_translations
+    ADD CONSTRAINT fk_rails_af0644ded0 FOREIGN KEY (communication_id) REFERENCES public.communications(id);
+
+
+--
 -- Name: factor_benchmark_scores fk_rails_b025f0548c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16372,14 +16443,15 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250616053812'),
 ('20250610070045'),
-('20250530122354'),
 ('20250609112516'),
 ('20250605154240'),
 ('20250605151652'),
 ('20250602071331'),
+('20250530122354'),
 ('20250530095701'),
 ('20250528132845'),
 ('20250528062059'),
+('20250526181739'),
 ('20250523071937'),
 ('20250522122128'),
 ('20250522061329'),
@@ -17194,3 +17266,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

@@ -1490,6 +1490,17 @@ de:
         successfully: Kommunikation %{name} wurde erfolgreich gelöscht.
       edit:
         header: Kommunikation bearbeiten
+      edit_translation:
+        body_label: Textkörper-Bezeichnung
+        copy: Kopieren
+        locale_label: Gebietsschema
+        no_reference_body: Kein Referenzinhalt verfügbar
+        no_reference_subject: Kein Referenzbetreff verfügbar
+        reference_body_label: Referenz-Textkörper-Bezeichnung
+        reference_subject_label: Referenz-Betreff-Bezeichnung
+        subject_label: Betreff-Bezeichnung
+        title: Übersetzung bearbeiten
+        update_button: Übersetzung aktualisieren
       form:
         all: Alle
         assessment_completion_status_code: Code für den Abschluss der Beurteilung
@@ -1509,6 +1520,7 @@ de:
         idp_template_rejected: IDP Abgelehnt
         invitation: Einladung
         kind: Kommunikationstypen
+        locale: Gebietsschema
         magic_link_email: Magischer Link E-Mail
         new_assignment: Neue Aufgabe
         new_users: Neue Benutzer
@@ -1562,6 +1574,7 @@ de:
           copy: Kommunikation kopieren
           delete: Kommunikation löschen
           download: Download Kommunikationsgeschichte
+          edit_translation: Übersetzung bearbeiten
           view: Ansicht Kommunikation
       show:
         assessment: 'Bewertung:'
@@ -1584,10 +1597,13 @@ de:
         copy: Kommunikation kopieren
         destroy: Kommunikation löschen
         download: Download Kommunikationsgeschichte
+        edit_translation: Übersetzung bearbeiten
         title: Die Optionen der Kommunikation
         view: Ansicht Kommunikation
       toggle_status:
         successfully: Die Kommunikation wurde erfolgreich aktualisiert.
+      update_translation:
+        successfully_updated: Die Übersetzung wurde erfolgreich aktualisiert.
     components:
       input_duration:
         placeholder: Eingabe als '1d 2h 3m'

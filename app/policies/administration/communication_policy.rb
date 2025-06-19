@@ -34,6 +34,21 @@ module Administration
         @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
+    def edit?
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+    end
+
+    def edit_translation?
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+    end
+
+    def update_translation?
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+    end
+
     class Scope < Scope
       def resolve
         scope = super

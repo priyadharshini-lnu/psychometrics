@@ -6,5 +6,7 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
     li = link_to t('.download'), [:download_history, :administration, resource]
   - if policy(resource, { project_id: resource.project_id }).copy?
     li = link_to t('.copy'), [:copy, :administration, resource], remote: true
+  - if policy(resource, { project_id: resource.project_id }).edit_translation?
+    li = link_to t('.edit_translation'), [:edit_translation, :administration, resource], remote: true
   - if policy(resource, { project_id: resource.project_id }).destroy?
     li = link_to(t('.destroy'), { action: :destroy, id: resource }, remote: true, method: :delete, data: { confirm: resource.decorate.delete_confirmation })

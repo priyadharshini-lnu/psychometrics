@@ -1490,6 +1490,17 @@ zh-Hant:
         successfully: 通訊 %{name} 已成功刪除。
       edit:
         header: 編輯通訊
+      edit_translation:
+        body_label: 正文標籤
+        copy: 複製
+        locale_label: 區域設定
+        no_reference_body: 沒有可用的參考內容
+        no_reference_subject: 沒有可用的參考主題
+        reference_body_label: 參考正文標籤
+        reference_subject_label: 參考主題標籤
+        subject_label: 主題標籤
+        title: 編輯翻譯
+        update_button: 更新翻譯
       form:
         all: 全部
         assessment_completion_status_code: 評估完成狀態代碼
@@ -1509,6 +1520,7 @@ zh-Hant:
         idp_template_rejected: 拒絕的 IDP
         invitation: 邀請函
         kind: 溝通類型
+        locale: 區域設定
         magic_link_email: Magic Link 電子郵件
         new_assignment: 新任務
         new_users: 新使用者
@@ -1562,6 +1574,7 @@ zh-Hant:
           copy: 複製通訊
           delete: 刪除通訊
           download: 下載通訊歷史
+          edit_translation: 編輯翻譯
           view: 檢視通訊
       show:
         assessment: 評估：
@@ -1584,10 +1597,13 @@ zh-Hant:
         copy: 複製通訊
         destroy: 刪除通訊
         download: 下載通訊歷史
+        edit_translation: 編輯翻譯
         title: 通訊的選項
         view: 檢視通訊
       toggle_status:
         successfully: 通訊已成功更新。
+      update_translation:
+        successfully_updated: 翻譯已成功更新。
     components:
       input_duration:
         placeholder: 輸入為「1d 2h 3m

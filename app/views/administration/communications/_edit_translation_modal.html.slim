@@ -1,0 +1,60 @@
+.modal.fade role='dialog' tabindex='-1' data-backdrop='static'
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close type='button' data-dismiss='modal' aria-label='Close'
+          span aria-hidden='true' &times;
+        h4.modal-title = t('administration.communications.edit_translation.title')
+      = simple_form_for(@communication,
+          url: update_translation_administration_communication_path(@communication),
+          remote: true,
+          method: :put,
+          html: { id: 'edit_translation_form' }) do |f|
+        .modal-body
+          .form-inputs.clearfix
+            / Locale selection
+            .form-group
+              = label_tag :locale, t('administration.communications.edit_translation.locale_label'), class: 'control-label'
+              = select_tag :locale,
+                  options_for_select(@available_locales.map { |locale| [I18n.t("languages.#{locale}"), locale] }, @selected_locale),
+                  { class: 'form-control', form: 'edit_translation_form' }
+
+            / English Subject Reference
+            .form-group
+              = label_tag :reference_subject, t('administration.communications.edit_translation.reference_subject_label'), class: 'control-label'
+              .form-control-static.d-flex.align-items-center
+                .flex-grow-1
+                  = @reference_subject || t('administration.communications.edit_translation.no_reference_subject')
+                button.btn.btn-sm.btn-outline-secondary.ml-2.copy-btn type='button' data-copy-text="#{@reference_subject}" nonce="#{content_security_policy_nonce}"
+                  i.fa.fa-copy aria-hidden='true'
+                  = t('administration.communications.edit_translation.copy')
+
+            / Locale Subject
+            = f.input :subject,
+                label: t('administration.communications.edit_translation.subject_label'),
+                input_html: { class: 'form-control', value: @translated_subject }
+
+            / English Body Reference
+            .form-group
+              = label_tag :reference_body, t('administration.communications.edit_translation.reference_body_label'), class: 'control-label'
+              .position-relative
+                .form-control-static style='max-height: 200px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9;'
+                  = simple_format(@reference_body || t('administration.communications.edit_translation.no_reference_body'))
+                button.btn.btn-sm.btn-outline-secondary.position-absolute.copy-btn type='button' data-copy-text="#{@reference_body}" nonce="#{content_security_policy_nonce}" style='top: 5px; right: 5px;'
+                  i.fa.fa-copy aria-hidden='true'
+                  = t('administration.communications.edit_translation.copy')
+
+            / Locale Body
+            .form-group
+              = label_tag :body, t('administration.communications.edit_translation.body_label'), class: 'control-label'
+              = f.input :body, as: :hidden, input_html: { id: 'translation_body_value', value: @translated_body }, label: false
+              #translation_froala_editor
+
+            .help-block
+              = simple_format(t('administration.communications.form.body_mustache'))
+
+        .modal-footer
+          .btn-group
+            = f.button :submit, t('administration.communications.edit_translation.update_button'), class: 'btn btn-info'
+            button.btn.btn-default type='button' data-dismiss='modal' = t('administration.close')
+

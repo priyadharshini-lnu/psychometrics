@@ -1510,6 +1510,17 @@ en:
         successfully: Communication %{name} was deleted successfully.
       edit:
         header: Edit Communication
+      edit_translation:
+        body_label: Body
+        copy: Copy
+        locale_label: Locale
+        no_reference_body: No reference body available
+        no_reference_subject: No reference subject available
+        reference_body_label: Reference Body
+        reference_subject_label: Reference Subject
+        subject_label: Subject
+        title: Edit Translation
+        update_button: Update Translation
       form:
         all: All
         assessment_completion_status_code: Assessment Completion Status Code
@@ -1539,6 +1550,7 @@ en:
         idp_template_rejected: IDP Rejected
         invitation: Invitation
         kind: Communication Types
+        locale: Locale
         magic_link_email: Magic Link Email
         new_assignment: New Assignment
         new_users: New Users
@@ -1592,6 +1604,7 @@ en:
           copy: Copy Communication
           delete: Delete Communication
           download: Download Communication History
+          edit_translation: Edit Translation
           view: View Communication
       show:
         assessment: 'Assessment:'
@@ -1614,10 +1627,13 @@ en:
         copy: Copy Communication
         destroy: Delete Communication
         download: Download Communication History
+        edit_translation: Edit Translation
         title: Communication's options
         view: View Communication
       toggle_status:
         successfully: Communication was updated successfully.
+      update_translation:
+        successfully_updated: Translation was updated successfully.
     components:
       input_duration:
         placeholder: Enter as '1d 2h 3m'

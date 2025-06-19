@@ -1,0 +1,64 @@
+$('#modal-container').html('<%= j render(partial: "edit_translation_modal") %>');
+var $modal = $('#modal-container .modal');
+$modal.modal('show');
+
+$modal.on('shown.bs.modal', function() {
+  if (typeof renderTranslationForm === 'function') {
+    renderTranslationForm('translation_froala_editor');
+  }
+});
+
+$('#edit_translation_form').off('ajax:success ajax:error');
+
+function copyToClipboard(button) {
+  var textToCopy = button.getAttribute('data-copy-text');
+  if (textToCopy) {
+    Utils.copyToClipboard(textToCopy);
+    noty({ text: 'Text copied to clipboard successfully', type: 'success' });
+  }
+}
+
+window.copyToClipboard = copyToClipboard;
+
+$modal.find('.copy-btn').on('click', function() {
+  copyToClipboard(this);
+});
+
+$('#edit_translation_form').on('ajax:success', function(event, data, status, xhr) {
+  var response = data;
+  if (response.success) {
+    if (response.message) {
+      noty({text: response.message, type: 'success'});
+    }
+
+    $modal.modal('hide');
+    $modal.on('hidden.bs.modal', function() {
+      $(this).remove();
+      delete window.copyToClipboard;
+      location.reload();
+    });
+  }
+}).on('ajax:error', function(event, xhr, status, error) {
+  var response = xhr.responseJSON;
+
+  $('.modal-body .alert-danger').remove();
+
+  if (response && response.errors) {
+    var errorHtml = '<div class="alert alert-danger"><ul>';
+    $.each(response.errors, function(field, messages) {
+      $.each(messages, function(index, message) {
+        errorHtml += '<li>' + field + ': ' + message + '</li>';
+      });
+    });
+    errorHtml += '</ul></div>';
+    $('.modal-body').prepend(errorHtml);
+  } else {
+    var errorHtml = '<div class="alert alert-danger">An error occurred while updating the translation. Please try again.</div>';
+    $('.modal-body').prepend(errorHtml);
+  }
+});
+
+$modal.on('hidden.bs.modal', function() {
+  delete window.copyToClipboard;
+  $(this).remove();
+});

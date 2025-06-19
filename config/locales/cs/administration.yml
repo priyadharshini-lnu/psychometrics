@@ -1490,6 +1490,17 @@ cs:
         successfully: Komunikace %{jméno} byla úspěšně odstraněna.
       edit:
         header: Upravit komunikaci
+      edit_translation:
+        body_label: Štítek těla
+        copy: Kopírovat
+        locale_label: Místní nastavení
+        no_reference_body: Žádné referenční tělo není k dispozici
+        no_reference_subject: Není k dispozici žádný referenční předmět
+        reference_body_label: Štítek referenčního těla
+        reference_subject_label: Štítek referenčního předmětu
+        subject_label: Štítek předmětu
+        title: Upravit překlad
+        update_button: Aktualizovat překlad
       form:
         all: Všechny
         assessment_completion_status_code: Kód stavu dokončení hodnocení
@@ -1509,6 +1520,7 @@ cs:
         idp_template_rejected: IDP Odmítnuto
         invitation: Pozvánka
         kind: Typy komunikace
+        locale: Místní nastavení
         magic_link_email: Kouzelný odkaz E-mail
         new_assignment: Nové zadání
         new_users: Noví uživatelé
@@ -1562,6 +1574,7 @@ cs:
           copy: Kopírovat komunikaci
           delete: Odstranit komunikaci
           download: Stáhnout Historie komunikace
+          edit_translation: Upravit překlad
           view: Zobrazit komunikaci
       show:
         assessment: 'Hodnocení:'
@@ -1584,10 +1597,13 @@ cs:
         copy: Kopírovat komunikaci
         destroy: Odstranit komunikaci
         download: Stáhnout Historie komunikace
+        edit_translation: Upravit překlad
         title: Možnosti komunikace
         view: Zobrazit komunikaci
       toggle_status:
         successfully: Komunikace byla úspěšně aktualizována.
+      update_translation:
+        successfully_updated: Překlad byl úspěšně aktualizován.
     components:
       input_duration:
         placeholder: Zadejte jako "1d 2h 3m"

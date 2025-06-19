@@ -1490,6 +1490,17 @@ es-ES:
         successfully: La comunicación %{name} se ha eliminado correctamente.
       edit:
         header: Editar Comunicación
+      edit_translation:
+        body_label: Etiqueta del cuerpo
+        copy: Copiar
+        locale_label: Configuración regional
+        no_reference_body: No hay cuerpo de referencia disponible
+        no_reference_subject: No hay asunto de referencia disponible
+        reference_body_label: Etiqueta del cuerpo de referencia
+        reference_subject_label: Etiqueta del asunto de referencia
+        subject_label: Etiqueta del asunto
+        title: Editar traducción
+        update_button: Actualizar traducción
       form:
         all: Todos
         assessment_completion_status_code: Código de estado de finalización de la evaluación
@@ -1509,6 +1520,7 @@ es-ES:
         idp_template_rejected: PDI Rechazado
         invitation: Invitación
         kind: Tipos de comunicación
+        locale: Configuración regional
         magic_link_email: Correo electrónico de Magic Link
         new_assignment: Nueva asignación
         new_users: Nuevos usuarios
@@ -1562,6 +1574,7 @@ es-ES:
           copy: Copia Comunicación
           delete: Borrar comunicación
           download: Descargar Historia de la Comunicación
+          edit_translation: Editar traducción
           view: Ver Comunicación
       show:
         assessment: 'Evaluación:'
@@ -1584,10 +1597,13 @@ es-ES:
         copy: Copia Comunicación
         destroy: Borrar comunicación
         download: Descargar Historia de la Comunicación
+        edit_translation: Editar traducción
         title: Opciones de comunicación
         view: Ver Comunicación
       toggle_status:
         successfully: La comunicación se ha actualizado correctamente.
+      update_translation:
+        successfully_updated: La traducción se actualizó exitosamente.
     components:
       input_duration:
         placeholder: Introducir como '1d 2h 3m'

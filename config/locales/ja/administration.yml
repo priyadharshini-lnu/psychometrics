@@ -1490,6 +1490,17 @@ ja:
         successfully: 通信 %{name} は正常に削除されました。
       edit:
         header: コミュニケーションを編集する
+      edit_translation:
+        body_label: 本文ラベル
+        copy: コピー
+        locale_label: ロケール
+        no_reference_body: 参照本文がありません
+        no_reference_subject: 参照件名がありません
+        reference_body_label: 参照本文ラベル
+        reference_subject_label: 参照件名ラベル
+        subject_label: 件名ラベル
+        title: 翻訳を編集
+        update_button: 翻訳を更新
       form:
         all: すべて
         assessment_completion_status_code: 評価完了ステータスコード
@@ -1509,6 +1520,7 @@ ja:
         idp_template_rejected: IDP却下
         invitation: 招待
         kind: コミュニケーションの種類
+        locale: ロケール
         magic_link_email: マジックリンクメール
         new_assignment: 新しい任務
         new_users: 新規ユーザー
@@ -1562,6 +1574,7 @@ ja:
           copy: コピー・コミュニケーション
           delete: コミュニケーション削除
           download: ダウンロード コミュニケーションの歴史
+          edit_translation: 翻訳を編集
           view: コミュニケーションを見る
       show:
         assessment: 評価だ：
@@ -1584,10 +1597,13 @@ ja:
         copy: コピー・コミュニケーション
         destroy: コミュニケーション削除
         download: ダウンロード コミュニケーションの歴史
+        edit_translation: 翻訳を編集
         title: コミュニケーションの選択肢
         view: コミュニケーションを見る
       toggle_status:
         successfully: 通信は正常に更新されました。
+      update_translation:
+        successfully_updated: 翻訳が正常に更新されました。
     components:
       input_duration:
         placeholder: 1d 2h 3m」と入力する。
