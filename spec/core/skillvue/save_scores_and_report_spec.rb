@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe Skillvue::SaveScoresAndReport do
   let(:user_assessment) { create(:user_assessment) }
   let(:users_result) { create(:users_result, assessment: user_assessment.assessment) }
+  let(:encoded_id) { UserAssessment.encode_id(user_assessment.id) }
   let(:scores_and_report) do
     {
       'type' => 'report.ready',
@@ -12,12 +13,11 @@ RSpec.describe Skillvue::SaveScoresAndReport do
         'candidate' => {
           'name' => '45282',
           'surname' => '45282',
-          'email' => "#{user_assessment.id}-bcf2cd3be@example.com",
+          'email' => 'bcf2cd3be@example.com',
           'timestamp' => '2025-06-02T05:36:59.827Z',
           'position' => 'Test Position',
           'language' => 'en'
         },
-        'report' => 'https://gpt-reports-storage.s3.eu-west-1.amazonaws.com/demo/4391a51016e15ee2cdab0fc07be4c473/report_light.pdf',
         'overallMatchPercentage' => 65,
         'skills' => [
           {
@@ -38,7 +38,8 @@ RSpec.describe Skillvue::SaveScoresAndReport do
           }
         ]
       },
-      'userId' => "#{user_assessment.id}-bcf2cd3be@example.com",
+      'pdfUrl' => 'https://gpt-reports-storage.s3.eu-west-1.amazonaws.com/demo/4391a51016e15ee2cdab0fc07be4c473/report_light.pdf',
+      'userId' => encoded_id,
       'timestamp' => '2025-06-02T05:36:59.827Z'
     }
   end
@@ -76,7 +77,7 @@ RSpec.describe Skillvue::SaveScoresAndReport do
       user_report = double('UserReport')
       allow(user_assessment).to receive(:user_reports).with(:skillvue).and_return([user_report])
       expect(user_report).to receive(:attach_pdf!).with(
-        scores_and_report['payload']['report'],
+        scores_and_report['pdfUrl'],
         'skillvue-report.pdf'
       )
 

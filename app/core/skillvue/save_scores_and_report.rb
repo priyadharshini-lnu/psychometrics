@@ -19,7 +19,7 @@ module Skillvue
 
       generate_internal_reports
 
-      pdf_report_url = scores_and_report.dig('payload', 'report')
+      pdf_report_url = scores_and_report['pdfUrl']
 
       return broadcast :ok if pdf_report_url.blank?
 
