@@ -5,10 +5,11 @@ module Devtools
     module Commands
       module I18n
         class TranslationImport < Base
-          desc 'Import translations from a generated XLSX file into YAML files'
+          desc 'Import translations from a XLSX file into YAML files'
           option :file_path,
                  desc: 'Path to the XLSX file containing translations',
-                 required: true
+                 required: true,
+                 alias: :fp
 
           def call(file_path:, **)
             @file_path = file_path
@@ -32,7 +33,7 @@ module Devtools
 
           def display_header
             cli_log "\nI18n Translation Import"
-            cli_log "=====================\n\n"
+            cli_log "=========================\n\n"
             cli_log "Source file: #{file_path}"
           end
 
@@ -51,12 +52,8 @@ module Devtools
           def parse_xlsx_file
             cli_log 'Parsing XLSX file...'
             @available_locales = get_available_locales
-            cli_log "Found locale folders: #{@available_locales.join(', ')}"
-
-            require 'roo'
             workbook = Roo::Excelx.new(file_path)
             worksheet = workbook.sheet(0)
-
             parse_worksheet(worksheet)
           end
 
@@ -74,6 +71,7 @@ module Devtools
           def parse_worksheet(worksheet)
             headers = nil
             translations_by_locale = Hash.new { |h, k| h[k] = {} }
+            @deleted_keys = {} # Store keys that need to be deleted
 
             (1..worksheet.last_row).each do |row_index|
               row_values = worksheet.row(row_index)
@@ -87,6 +85,8 @@ module Devtools
             end
 
             cli_log "Found translations for #{translations_by_locale.size} locales"
+            cli_log "Found #{@deleted_keys.sum { |_, keys| keys.size }} keys to delete" if @deleted_keys.any?
+
             translations_by_locale
           end
 
@@ -98,6 +98,7 @@ module Devtools
 
             return if file_name.nil? || key.nil?
 
+            process_deleted_keys(row_values, headers, file_name, key, @deleted_keys)
             process_locales(row_values, headers, file_name, key, translations_by_locale)
           end
 
@@ -129,11 +130,53 @@ module Devtools
               cli_log "\nProcessing locale: #{locale}"
               process_locale_files(locale, files)
             end
+
+            process_deleted_keys_for_all_locales if @deleted_keys&.any?
+          end
+
+          def process_deleted_keys_for_all_locales
+            cli_log "\nProcessing deleted keys..."
+
+            @available_locales.each do |locale|
+              next if locale == 'en' # Skip English as it's the source
+
+              deleted_count = remove_deleted_keys_for_locale(locale)
+
+              cli_log "Removed #{deleted_count} keys from #{locale} locale files" if deleted_count.positive?
+            end
+          end
+
+          def remove_deleted_keys_for_locale(locale)
+            deleted_count = 0
+            @deleted_keys.each do |file_name, keys|
+              locale_file_path = File.join('config', 'locales', locale, file_name)
+              next unless File.exist?(locale_file_path)
+
+              yaml_data = load_yaml_file(locale_file_path)
+
+              keys.each do |key|
+                deleted_count += remove_key_from_yaml(yaml_data, key, locale)
+              end
+
+              # Check for any empty hashes at the root level
+              yaml_data.each do |root_key, value|
+                next unless value.is_a?(Hash) && value.empty?
+
+                yaml_data.delete(root_key)
+                deleted_count += 1
+              end
+
+              save_yaml_file(locale_file_path, yaml_data)
+            end
+
+            deleted_count
           end
 
           def process_locale_files(locale, files)
             files.each do |file_name, keys|
               locale_file_path = File.join('config', 'locales', locale, file_name)
+              next unless File.exist?(locale_file_path)
+
               cli_log "  Updating file: #{locale_file_path}"
 
               total_keys, updated_keys = update_yaml_file(locale_file_path, keys, locale)
@@ -184,6 +227,69 @@ module Devtools
             changed = current[last_key] != value
             current[last_key] = value
             changed
+          end
+
+          # Collect keys that need to be deleted
+          def process_deleted_keys(row_values, headers, file_name, key, deleted_keys)
+            action_index = headers.index('Action')
+            return unless action_index && row_values[action_index] == 'deleted'
+
+            deleted_keys[file_name] ||= []
+            deleted_keys[file_name] << key
+
+            cli_log "  Found key to delete: #{key} in #{file_name}"
+          end
+
+          # Remove a key from the YAML data
+          def remove_key_from_yaml(yaml_data, key, locale)
+            path_parts = [locale, *key.split('.')]
+            current = yaml_data
+            parent_path = path_parts[0..-2]
+
+            parent_path.each do |part|
+              return 0 unless current.is_a?(Hash) && current.key?(part)
+
+              current = current[part]
+            end
+
+            if current.is_a?(Hash) && current.key?(path_parts.last)
+              current.delete(path_parts.last)
+              cleanup_empty_parents(yaml_data, parent_path)
+
+              return 1
+            end
+
+            0
+          end
+
+          # Recursively clean up empty parent nodes
+          def cleanup_empty_parents(yaml_data, path_parts)
+            return if path_parts.empty? # No parents to clean
+
+            # Start from the full path and work backwards
+            depth = path_parts.length
+
+            while depth.positive?
+              current_path = path_parts[0...depth]
+              parent_path = path_parts[0...(depth - 1)]
+              current_key = current_path.last
+
+              # Navigate to the parent of the current node
+              current_parent = yaml_data
+              parent_path.each do |part|
+                current_parent = current_parent[part] if current_parent.is_a?(Hash) && current_parent.key?(part)
+              end
+
+              # Check if the current node is empty and can be removed
+              if current_parent.is_a?(Hash) && current_parent.key?(current_key) && current_parent[current_key].blank?
+                current_parent.delete(current_key)
+              else
+                # If this node isn't empty, we don't need to check parents further up
+                break
+              end
+
+              depth -= 1
+            end
           end
         end
       end

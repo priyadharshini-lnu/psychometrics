@@ -7,33 +7,51 @@ module Devtools
         class TranslationChanges < Base
           private_attr_reader :source_branch, :target_branch, :notification_emails, :temp_dirs, :source, :folder_path
 
-          desc 'Check difference between branches in translation files'
+          desc 'Check difference between english translation between 2 branches or a branch and a folder'
           option :source,
                  desc: 'Source type to compare (branch or folder)',
                  default: 'branch',
-                 enum: %w[branch folder]
+                 enum: %w[branch folder],
+                 alias: :s
           option :source_branch,
                  desc: 'Source branch to compare against (required when source is branch)',
-                 required: false
+                 required: false,
+                 alias: :sb
           option :folder_path,
                  desc: 'Path to folder containing translation files (required when source is folder)',
-                 required: false
+                 required: false,
+                 alias: :fp
           option :target_branch,
                  desc: 'Target branch/Current branch to compare',
-                 required: true
+                 required: true,
+                 alias: :tb
           option :notification_emails,
                  desc: 'Comma-separated list of email addresses to notify when changes are found',
-                 default: nil
+                 default: nil,
+                 alias: :ne
+          option :output_file,
+                 desc: 'Path to save the output XLSX file (optional)',
+                 default: nil,
+                 alias: :of
+          option :only,
+                 desc: 'Comma-separated list of change types to include (new,updated,deleted)',
+                 default: 'new,updated,deleted',
+                 alias: :o
 
-          def call(target_branch:, source: 'branch', source_branch: nil, folder_path: nil, notification_emails: nil, **) # rubocop:disable Metrics/ParameterLists
+          # rubocop:disable Metrics/ParameterLists
+          def call(target_branch:, source: 'branch', source_branch: nil, folder_path: nil, notification_emails: nil,
+                   output_file: nil, only: 'new,updated,deleted', **)
             @source = source
             @source_branch = source_branch
             @target_branch = target_branch
             @folder_path = folder_path
             @notification_emails = notification_emails
+            @output_file = output_file
+            @included_change_types = only.to_s.split(',').map(&:strip)
 
             display_header
             validate_source_parameters
+            validate_included_change_types
             display_source_target_info
 
             check_git_available
@@ -54,6 +72,7 @@ module Devtools
               cleanup_temp_dirs(@temp_dirs)
             end
           end
+          # rubocop:enable Metrics/ParameterLists
 
           def display_header
             cli_log "\nI18n Key Changes Comparison"
@@ -68,6 +87,8 @@ module Devtools
             else
               validate_folder_path
             end
+
+            validate_included_change_types
           end
 
           def validate_source_type
@@ -92,6 +113,21 @@ module Devtools
             end
           end
 
+          def validate_included_change_types
+            valid_types = %w[new updated deleted]
+            invalid_types = @included_change_types - valid_types
+
+            unless invalid_types.empty?
+              cli_error "Error: Invalid change type(s) specified: #{invalid_types.join(', ')}. " \
+                        "Valid types are: #{valid_types.join(', ')}"
+            end
+
+            if @included_change_types.empty?
+              cli_error 'Error: At least one change type must be specified. ' \
+                        "Valid types are: #{valid_types.join(', ')}"
+            end
+          end
+
           def display_source_target_info
             if @source == 'branch'
               cli_log "Source branch: #{source_branch}"
@@ -100,6 +136,7 @@ module Devtools
             end
 
             cli_log "Target branch: #{target_branch}"
+            cli_log "Included change types: #{@included_change_types.join(', ')}"
           end
 
           private
@@ -264,7 +301,7 @@ module Devtools
                 key: key,
                 new_value: flatten_hash(source_data)[key],
                 old_value: nil,
-                action: 'newly_added'
+                action: 'new'
               }
             end
           end
@@ -295,24 +332,33 @@ module Devtools
 
           def generate_xlsx_report(changes)
             cli_log "\nChanges found: #{changes.size}"
+            original_count = changes.size
+            changes = changes.select { |change| @included_change_types.include?(change[:action]) }
+            filtered_count = original_count - changes.size
+            if filtered_count.zero?
+              cli_log "Filtered out #{filtered_count} changes (only including: #{@included_change_types.join(', ')})"
+            end
 
-            # Generate Excel file only if changes were found
             if changes.empty?
-              cli_log 'No changes found between branches. Excel report not generated.'
+              cli_log 'No changes found matching the specified change types. Excel report not generated.'
               return nil
             end
 
-            # Prepare output directory
-            tmp_dir = prepare_output_directory
-
-            # Generate filename based on source and target
-            xlsx_filename = generate_xlsx_filename
-            xlsx_file = File.join(tmp_dir, xlsx_filename)
+            xlsx_file = if @output_file
+                          # Use the specified output file path
+                          FileUtils.mkdir_p(File.dirname(@output_file))
+                          @output_file
+                        else
+                          # Use the default path
+                          tmp_dir = prepare_output_directory
+                          xlsx_filename = generate_xlsx_filename
+                          File.join(tmp_dir, xlsx_filename)
+                        end
 
             cli_log 'Generating Excel report...'
             write_xlsx_file(xlsx_file, changes)
 
-            cli_log "Excel report generated: #{File.expand_path(xlsx_file)}"
+            cli_log "Translation Changes File: #{File.expand_path(xlsx_file)}"
             xlsx_file
           end
 
