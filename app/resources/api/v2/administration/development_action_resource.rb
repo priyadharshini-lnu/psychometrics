@@ -38,7 +38,11 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
   end
 
   def self.records(opts = {})
-    super.with_attached_image.includes(:project, :skills)
+    super.with_attached_image.includes(
+      :translations, :project,
+      skills: [:translations],
+      project: [:creator, :modifier, { design_setting: :logo_attachment }]
+    )
   end
 
   def course_url

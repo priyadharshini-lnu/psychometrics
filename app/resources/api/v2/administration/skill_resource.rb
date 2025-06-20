@@ -39,6 +39,10 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     super + %i[project.name]
   end
 
+  def self.records(opts = {})
+    super.includes(:translations)
+  end
+
   ransack_filters %i[
     name_cont
     skill_type_in
