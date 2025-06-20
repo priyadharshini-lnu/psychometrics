@@ -18,7 +18,7 @@ module Api
               attribute[:action].maybe(:string)
               attribute[:created_at].filled(:string)
               attribute[:updated_at].filled(:string)
-              attribute[:provider_id].maybe(:string)
+              attribute[:model_id].maybe(:string)
             end
           end
 
@@ -29,6 +29,7 @@ module Api
               required(:system_prompt).filled(:string)
               required(:user_prompt).filled(:string)
               required(:action).filled(:string)
+              required(:model_id).filled(:string)
             end
           end
 
@@ -39,6 +40,7 @@ module Api
               optional(:system_prompt).maybe(:string)
               optional(:user_prompt).maybe(:string)
               optional(:action).maybe(:string)
+              optional(:model_id).filled(:string)
             end
           end
 

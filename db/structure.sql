@@ -363,17 +363,56 @@ ALTER SEQUENCE public.agiles_id_seq OWNED BY public.agiles.id;
 
 
 --
+-- Name: ai_assistant_chats; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assistant_chats (
+    id bigint NOT NULL,
+    model_id character varying,
+    ai_assistant_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    client_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assistant_chats_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assistant_chats_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assistant_chats_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assistant_chats_id_seq OWNED BY public.ai_assistant_chats.id;
+
+
+--
 -- Name: ai_assistant_requests; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.ai_assistant_requests (
     id bigint NOT NULL,
-    input_tokens bigint,
-    output_tokens bigint,
-    total_tokens bigint,
+    input_tokens bigint DEFAULT 0,
+    output_tokens bigint DEFAULT 0,
     request_body_checksum character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    role character varying,
+    content text,
+    model_id character varying,
+    ai_assistant_id bigint,
+    ai_assistant_chat_id bigint NOT NULL,
+    ai_assistant_tool_call_id bigint
 );
 
 
@@ -397,6 +436,40 @@ ALTER SEQUENCE public.ai_assistant_requests_id_seq OWNED BY public.ai_assistant_
 
 
 --
+-- Name: ai_assistant_tool_calls; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assistant_tool_calls (
+    id bigint NOT NULL,
+    ai_assistant_request_id bigint NOT NULL,
+    tool_call_id character varying NOT NULL,
+    name character varying NOT NULL,
+    arguments jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assistant_tool_calls_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assistant_tool_calls_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assistant_tool_calls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assistant_tool_calls_id_seq OWNED BY public.ai_assistant_tool_calls.id;
+
+
+--
 -- Name: ai_assistants; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -411,7 +484,7 @@ CREATE TABLE public.ai_assistants (
     system_prompt text,
     owner_id bigint,
     last_modified_by_id bigint,
-    provider_id character varying NOT NULL
+    model_id character varying
 );
 
 
@@ -7621,10 +7694,24 @@ ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agile
 
 
 --
+-- Name: ai_assistant_chats id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_chats_id_seq'::regclass);
+
+
+--
 -- Name: ai_assistant_requests id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_requests ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_requests_id_seq'::regclass);
+
+
+--
+-- Name: ai_assistant_tool_calls id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_tool_calls ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_tool_calls_id_seq'::regclass);
 
 
 --
@@ -9029,11 +9116,27 @@ ALTER TABLE ONLY public.agiles
 
 
 --
+-- Name: ai_assistant_chats ai_assistant_chats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT ai_assistant_chats_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: ai_assistant_requests ai_assistant_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_requests
     ADD CONSTRAINT ai_assistant_requests_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_assistant_tool_calls ai_assistant_tool_calls_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_tool_calls
+    ADD CONSTRAINT ai_assistant_tool_calls_pkey PRIMARY KEY (id);
 
 
 --
@@ -10839,6 +10942,62 @@ CREATE INDEX index_agile_events_on_users_result_id ON public.agile_events USING 
 --
 
 CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessment_id);
+
+
+--
+-- Name: index_ai_assistant_chats_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_ai_assistant_id ON public.ai_assistant_chats USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_ai_assistant_chats_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_client_id ON public.ai_assistant_chats USING btree (client_id);
+
+
+--
+-- Name: index_ai_assistant_chats_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_user_id ON public.ai_assistant_chats USING btree (user_id);
+
+
+--
+-- Name: index_ai_assistant_requests_on_ai_assistant_chat_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_requests_on_ai_assistant_chat_id ON public.ai_assistant_requests USING btree (ai_assistant_chat_id);
+
+
+--
+-- Name: index_ai_assistant_requests_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_requests_on_ai_assistant_id ON public.ai_assistant_requests USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_ai_assistant_requests_on_ai_assistant_tool_call_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_requests_on_ai_assistant_tool_call_id ON public.ai_assistant_requests USING btree (ai_assistant_tool_call_id);
+
+
+--
+-- Name: index_ai_assistant_tool_calls_on_ai_assistant_request_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_tool_calls_on_ai_assistant_request_id ON public.ai_assistant_tool_calls USING btree (ai_assistant_request_id);
+
+
+--
+-- Name: index_ai_assistant_tool_calls_on_tool_call_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_ai_assistant_tool_calls_on_tool_call_id ON public.ai_assistant_tool_calls USING btree (tool_call_id);
 
 
 --
@@ -14516,6 +14675,14 @@ ALTER TABLE ONLY public.libraries
 
 
 --
+-- Name: ai_assistant_chats fk_rails_3c77b7a900; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_3c77b7a900 FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_email_histories fk_rails_3cb35a810a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15116,6 +15283,14 @@ ALTER TABLE ONLY public.user_assessments
 
 
 --
+-- Name: ai_assistant_requests fk_rails_81e44e1700; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_requests
+    ADD CONSTRAINT fk_rails_81e44e1700 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: user_idp_comments fk_rails_824db9755d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15481,6 +15656,14 @@ ALTER TABLE ONLY public.text_module_overrides
 
 ALTER TABLE ONLY public.assessments_clients
     ADD CONSTRAINT fk_rails_a7b4e42c48 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_assistant_chats fk_rails_a92f88de99; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_a92f88de99 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -15921,6 +16104,14 @@ ALTER TABLE ONLY public.workshop_managers
 
 ALTER TABLE ONLY public.clients_reports
     ADD CONSTRAINT fk_rails_d62c12c5d3 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_assistant_chats fk_rails_d6359b75ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_d6359b75ff FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -16410,6 +16601,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250620000000'),
 ('20250616053812'),
 ('20250610070045'),
 ('20250609112516'),

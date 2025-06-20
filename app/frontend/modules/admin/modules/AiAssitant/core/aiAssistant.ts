@@ -6,7 +6,7 @@ export const AiAssistantTR = t.intersection([
   t.type({
     name: t.string,
     description: t.string,
-    providerId: t.string,
+    modelId: t.string,
     systemPrompt: t.string,
     userPrompt: t.string,
     action: t.string,

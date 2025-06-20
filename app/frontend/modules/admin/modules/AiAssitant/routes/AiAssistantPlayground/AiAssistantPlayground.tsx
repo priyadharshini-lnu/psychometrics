@@ -228,7 +228,7 @@ export const AiAssistantPlayground: React.FC = () => {
                       />
                     </Form.Item>
                     <Form.Item
-                      name="providerId"
+                      name="modelId"
                       label="Provider"
                     >
                       <Select>
@@ -294,7 +294,7 @@ export const AiAssistantPlayground: React.FC = () => {
                     <div className={styles.settingsSection}>
                       <div className={styles.settingsLabel}>Provider</div>
                       <Paragraph className={styles.promptText}>
-                        {AI_PROVIDERS[selectedAssistant.providerId]?.name}
+                        {AI_PROVIDERS[selectedAssistant.modelId]?.name}
                       </Paragraph>
                     </div>
 
