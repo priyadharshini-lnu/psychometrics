@@ -30,11 +30,11 @@ module PowerBi
               username: config[:username],
               roles: ['self'],
               datasets: [dataset_id]
+            },
+            settings: {
+              includeHiddenPages: false
             }
-          ],
-          settings: {
-            includeHiddenPages: parameters['include_hidden_tabs']
-          }
+          ]
         }.tap do |config|
           config[:pages] = [{ pageName: parameters['current_page_name'] }] if parameters['only_current_tab']
         end

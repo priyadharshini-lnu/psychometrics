@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Button, Dropdown, Menu, message, Modal, Radio,
+  Button, Dropdown, Menu, message, Modal,
 } from 'antd'
 import {
   DownOutlined, ToolOutlined, FilePdfOutlined, LoadingOutlined,
@@ -19,7 +19,6 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({ campaignId, projectId, das
   const [isExporting, setIsExporting] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [exportFormat, setExportFormat] = useState<'PDF' | 'PPTX'>('PDF')
-  const [includeHiddenTabs, setIncludeHiddenTabs] = useState(false)
   const [onlyCurrentTab, setOnlyCurrentTab] = useState(false)
   const { I18n } = window
   const dispatch = useDispatch()
@@ -45,7 +44,6 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({ campaignId, projectId, das
         dashboard.datasetId ?? '',
         'dashboard_pdf_export',
         exportFormat,
-        includeHiddenTabs,
         onlyCurrentTab,
         currentPageName,
       ))
@@ -110,22 +108,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({ campaignId, projectId, das
             <option value="PPTX">{I18n.t('administration.dashboard.pptx')}</option>
           </select>
         </div>
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ display: 'block', marginBottom: 4 }}>{I18n.t('administration.dashboard.export_with')}</label>
-          <Radio.Group
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
-            <Radio value="current">{I18n.t('administration.dashboard.current_values')}</Radio>
-            <Radio value="default">{I18n.t('administration.dashboard.default_values')}</Radio>
-          </Radio.Group>
-        </div>
         {/* Checkboxes */}
-        <div style={{ marginBottom: 8 }}>
-          <label style={{ display: 'block', marginBottom: 4 }}>
-            <input type="checkbox" style={{ marginRight: 8 }} onChange={e => setIncludeHiddenTabs(e.target.checked)} />
-            {I18n.t('administration.dashboard.include_hidden_report_tabs')}
-          </label>
-        </div>
         <div>
           <label style={{ display: 'block', marginBottom: 4 }}>
             <input type="checkbox" style={{ marginRight: 8 }} onChange={e => setOnlyCurrentTab(e.target.checked)} />

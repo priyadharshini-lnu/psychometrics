@@ -11,7 +11,6 @@ export const exportDashboardFile = (
   datasetId: string,
   projectPath: string,
   format: 'PDF' | 'PPTX' = 'PDF',
-  includeHiddenTabs: boolean,
   onlyCurrentTab: boolean,
   currentPageName: string | null = null,
 ) => ({
@@ -30,7 +29,6 @@ export const exportDashboardFile = (
         datasetId,
         projectPath,
         format,
-        includeHiddenTabs,
         onlyCurrentTab,
         currentPageName,
       },
