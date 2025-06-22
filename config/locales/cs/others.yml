@@ -1232,9 +1232,9 @@ cs:
       campaign: Kampaň
       change_password: Změnit heslo
       development: Vývoj
+      direct_reportees: Přímí zástupci
       home: Domov
       insights: Poznatky
-      my_direct_reportees: Moji přímí podřízení
       my_plan: Můj plán
       profile: Profil
       profile_details: Detaily
@@ -2345,6 +2345,29 @@ cs:
   idp:
     actions: Akce
     board: Přehled
+    comment_details:
+      add_comment: Přidat komentář
+      add_comment_placeholder: Přidat komentář...
+      add_reply_placeholder: Přidat odpověď...
+      go_to_skill: Přejít na dovednost
+    comments:
+      close: Zavřít
+      comments: Komentáře
+      filter_comments: Filtrovat komentáře
+      mark_as_resolved: Označit jako vyřešené
+      mark_as_unresolved: Označit jako nevyřešené
+      replied: Odpovězeno
+      replies: Odpovědi
+      reply: Odpovědět
+      resolve: Vyřešit
+      resolved: Vyřešeno
+      resolved_message: Tento komentář byl vyřešen a odpovědi jsou zakázány.
+      show_only_read: Zobrazit pouze přečtené
+      show_only_resolved: Zobrazit vyřešené
+      show_only_unread: Zobrazit nepřečtené
+      show_only_unresolved: Zobrazit pouze nevyřešené
+      sort_by_date: Seřadit podle data
+      you: Vy
     convert_to_draft: Převést na koncept
     details: Podrobnosti
     development_actions:
@@ -2384,7 +2407,6 @@ cs:
       structured_learning: Strukturované učení
       submit_plan: Odeslat plán
       write_here: Pište zde...
-    direct_reportee_details: Podrobnosti o přímých podřízených
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2411,7 +2433,6 @@ cs:
     manage_plan: Spravovat plán
     mark_as_complete: Označit jako dokončené
     mark_as_incomplete: Označit jako nedokončené
-    my_direct_reportees: Moji přímí podřízení
     my_plan:
       development_plan: Rozvojový plán
       graphs:

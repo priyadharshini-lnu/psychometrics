@@ -1234,9 +1234,9 @@ ja:
       campaign: キャンペーン
       change_password: パスワードを変更
       development: 開発
+      direct_reportees: 直下のレポート
       home: ホーム
       insights: インサイト
-      my_direct_reportees: 私の直属の部下
       my_plan: 私の計画
       profile: プロフィール
       profile_details: 詳細
@@ -2346,6 +2346,29 @@ ja:
   idp:
     actions: 行動
     board: ボード
+    comment_details:
+      add_comment: コメントを追加
+      add_comment_placeholder: コメントを追加...
+      add_reply_placeholder: 返信を追加...
+      go_to_skill: スキルに移動する
+    comments:
+      close: 閉じる
+      comments: コメント
+      filter_comments: コメントをフィルター
+      mark_as_resolved: 解決済みとしてマーク
+      mark_as_unresolved: 未解決としてマーク
+      replied: 返信済み
+      replies: 返信
+      reply: 返信
+      resolve: 解決
+      resolved: 解決済み
+      resolved_message: このコメントは解決され、返信は無効になりました。
+      show_only_read: 既読のみ表示
+      show_only_resolved: 解決済みを表示
+      show_only_unread: 未読のみ表示
+      show_only_unresolved: 未解決のみ表示
+      sort_by_date: 日付順に並べ替え
+      you: あなた
     convert_to_draft: ドラフトに変換
     details: 詳細
     development_actions:
@@ -2379,7 +2402,6 @@ ja:
       structured_learning: 体系的学習
       submit_plan: プランを提出
       write_here: ここに記入してください...
-    direct_reportee_details: 直属の部下の詳細
     initial_steps:
       add_skill_group_description: アセスメント結果に基づき、あなたの強みと伸ばすべき分野をご紹介します。 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
       add_skill_group_title: カテゴリー}のスキルを探る
@@ -2406,7 +2428,6 @@ ja:
     manage_plan: 計画の管理
     mark_as_complete: 完了としてマーク
     mark_as_incomplete: 未完了としてマークする
-    my_direct_reportees: 私の直属の部下
     my_plan:
       development_plan: 開発計画
       graphs:

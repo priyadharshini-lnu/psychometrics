@@ -1229,9 +1229,9 @@ zh-Hant:
       campaign: 活動
       change_password: 變更密碼
       development: 發展
+      direct_reportees: 直下報告
       home: 首頁
       insights: 洞察力
-      my_direct_reportees: 我的直接報告
       my_plan: 我的計劃
       profile: 簡介
       profile_details: 詳細資訊
@@ -2331,6 +2331,29 @@ zh-Hant:
   idp:
     actions: 行動
     board: 董事會
+    comment_details:
+      add_comment: 新增評論
+      add_comment_placeholder: 新增評論...
+      add_reply_placeholder: 新增回覆...
+      go_to_skill: 查看技能
+    comments:
+      close: 關閉
+      comments: 評論
+      filter_comments: 篩選評論
+      mark_as_resolved: 標記為已解決
+      mark_as_unresolved: 標記為未解決
+      replied: 已回覆
+      replies: 回覆
+      reply: 回覆
+      resolve: 解決
+      resolved: 已解決
+      resolved_message: 此評論已解決，回覆已停用。
+      show_only_read: 只顯示已讀
+      show_only_resolved: 顯示已解決
+      show_only_unread: 只顯示未讀
+      show_only_unresolved: 只顯示未解決
+      sort_by_date: 按日期排序
+      you: 您
     convert_to_draft: 转换为草稿
     details: 詳細資訊
     development_actions:

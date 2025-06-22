@@ -1229,6 +1229,7 @@ nl:
       campaign: Campagne
       change_password: Wachtwoord wijzigen
       development: Ontwikkeling
+      direct_reportees: Directe rapporten
       home: Home
       insights: Inzichten
       my_plan: Mijn plan
@@ -2329,6 +2330,29 @@ nl:
   idp:
     actions: Acties
     board: Raad van bestuur
+    comment_details:
+      add_comment: Opmerking toevoegen
+      add_comment_placeholder: Opmerking toevoegen...
+      add_reply_placeholder: Antwoord toevoegen...
+      go_to_skill: Ga naar vaardigheid
+    comments:
+      close: Sluiten
+      comments: Opmerkingen
+      filter_comments: Opmerkingen filteren
+      mark_as_resolved: Markeren als opgelost
+      mark_as_unresolved: Markeren als onopgelost
+      replied: Beantwoord
+      replies: Antwoorden
+      reply: Antwoorden
+      resolve: Oplossen
+      resolved: Opgelost
+      resolved_message: Deze opmerking is opgelost en antwoorden zijn uitgeschakeld.
+      show_only_read: Alleen gelezen tonen
+      show_only_resolved: Opgeloste tonen
+      show_only_unread: Alleen ongelezen tonen
+      show_only_unresolved: Alleen onopgeloste tonen
+      sort_by_date: Sorteren op datum
+      you: Jij
     convert_to_draft: Converteren naar concept
     details: Details
     development_actions:

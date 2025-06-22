@@ -1232,9 +1232,9 @@ pt:
       campaign: Campanha
       change_password: Alterar a palavra-passe
       development: Desenvolvimento
+      direct_reportees: Collegati
       home: Início
       insights: Informações
-      my_direct_reportees: Os meus subordinados diretos
       my_plan: O meu plano
       profile: Perfil
       profile_details: Detalhes
@@ -2345,6 +2345,29 @@ pt:
   idp:
     actions: Acções
     board: Direção
+    comment_details:
+      add_comment: Adicionar comentário
+      add_comment_placeholder: Adicionar comentário...
+      add_reply_placeholder: Adicionar resposta...
+      go_to_skill: Ir para habilidade
+    comments:
+      close: Fechar
+      comments: Comentários
+      filter_comments: Filtrar comentários
+      mark_as_resolved: Marcar como resolvido
+      mark_as_unresolved: Marcar como não resolvido
+      replied: Respondido
+      replies: Respostas
+      reply: Responder
+      resolve: Resolver
+      resolved: Resolvido
+      resolved_message: Este comentário foi resolvido e as respostas estão desativadas.
+      show_only_read: Mostrar apenas lidos
+      show_only_resolved: Mostrar resolvidos
+      show_only_unread: Mostrar apenas não lidos
+      show_only_unresolved: Mostrar apenas não resolvidos
+      sort_by_date: Ordenar por data
+      you: Você
     convert_to_draft: Converter em rascunho
     details: Detalhes
     development_actions:
@@ -2378,7 +2401,6 @@ pt:
       structured_learning: Aprendizagem estruturada
       submit_plan: Apresentar plano
       write_here: Escreva aqui...
-    direct_reportee_details: Detalhes do Relatório Direto
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: Explorar as suas competências de %{categoria}
@@ -2405,7 +2427,6 @@ pt:
     manage_plan: Gerenciar plano
     mark_as_complete: Marcar como concluído
     mark_as_incomplete: Marcar como incompleto
-    my_direct_reportees: Os Meus Relatórios Diretos
     my_plan:
       development_plan: Plano de desenvolvimento
       graphs:

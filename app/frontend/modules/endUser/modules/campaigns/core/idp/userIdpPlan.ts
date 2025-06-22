@@ -21,7 +21,14 @@ const UPDATE_USER_IDP_SKILL = 'IDP/MY_PLAN/UPDATE_USER_IDP_SKILL'
 const SAVE_USER_IDP_SKILLS = 'IDP/MY_PLAN/SAVE_USER_IDP_SKILLS'
 const FETCH_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_IDP_SKILLS'
 const FETCH_USER_IDP_COMMENTS = 'IDP/MY_PLAN/FETCH_USER_IDP_COMMENTS'
+const FETCH_USER_IDP_COMMENT_BY_ID = 'IDP/MY_PLAN/FETCH_USER_IDP_COMMENT_BY_ID'
+const FETCH_USER_IDP_COMMENT_BY_SKILL_ID = 'IDP/MY_PLAN/FETCH_USER_IDP_COMMENT_BY_SKILL_ID'
 const ADD_USER_IDP_COMMENT = 'IDP/MY_PLAN/ADD_USER_IDP_COMMENT'
+const ADD_USER_IDP_COMMENT_REPLY = 'IDP/MY_PLAN/ADD_USER_IDP_COMMENT_REPLY'
+const ADD_USER_IDP_COMMENT_REPLY_BY_SKILL_ID = 'IDP/MY_PLAN/ADD_USER_IDP_COMMENT_REPLY_BY_SKILL_ID'
+const MARK_COMMENT_RESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_RESOLVED'
+const MARK_COMMENT_UNRESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_UNRESOLVED'
+const SHOW_COMMENTS_FOR_SKILL_ID = 'IDP/MY_PLAN/SHOW_COMMENTS_FOR_SKILL_ID'
 
 interface UserIdpPlan {
   status: string | null;
@@ -35,7 +42,37 @@ interface UserIdpPlan {
   user: object;
   unreadCommentsCount: number;
   userIdpComments: object[];
-  userIdpCommentsTotalCount: number;
+  userIdpCommentsTotalCount: number | null;
+  showCommentsForSkillId: number | null;
+  userIdpCommentsBySkillId: Record<string, UserIdpComment[]>;
+  userIdpCommentsBySkillIdTotalCount: Record<string, number>;
+}
+
+export interface UserIdpComment {
+  id: string
+  content: string
+  createdAt: string
+  resourceId: string
+  resourceType: string
+  repliesCount: number
+  edited: boolean
+  unreadRepliesCount: number
+  parentId: number | null
+  resolvedAt: string | null
+  replies: UserIdpComment[]
+  createdBy: {
+    photo: string
+    id: string
+    firstName: string
+    lastName: string
+    email: string
+  }
+  resolvedBy: {
+    id: string
+    firstName: string
+    lastName: string
+    email: string
+  } | null
 }
 
 interface GenerateDevelopmentActionsByAIPayload {
@@ -51,15 +88,21 @@ export interface UserIdpCommentPayload {
   content: string;
 }
 
+export interface UserIdpCommentReplyPayload {
+  content: string;
+  parentId: string;
+}
+
 export interface UserIdpCommentsQuery {
   page: number;
-  perPage?: number;
+  pageSize?: number;
   loadReplies?: boolean;
   unreadByUser?: boolean;
   q?: {
     resourceIdEq?: string;
     resourceTypeEq?: string;
     resolvedEq?: boolean;
+    unreadByUser?: boolean;
     s?: string;
   }
 }
@@ -119,13 +162,53 @@ export const updateDevelopmentActionProgressInPlan = (
   },
 })
 
-export const fetchUserIdpComments = (idpUserId: string, query: UserIdpCommentsQuery = { page: 1 }) => ({
+interface UserIdpCommentsResponse {
+  data: UserIdpComment[]
+  meta: {
+    count: number
+  }
+}
+
+export const fetchUserIdpComments = (
+  idpUserId: string, query: UserIdpCommentsQuery = { page: 1, pageSize: 25 },
+):ApiAction<UserIdpCommentsResponse> => ({
   type: FETCH_USER_IDP_COMMENTS,
   request: {
     url: `/user_idp_plans/${idpUserId}/comments`,
     body: query,
     method: 'get',
   },
+})
+
+export const fetchUserIdpCommentById = (
+  idpUserId: string, commentId: string,
+):ApiAction<UserIdpComment> => ({
+  type: FETCH_USER_IDP_COMMENT_BY_ID,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments/${commentId}`,
+    method: 'get',
+  },
+})
+
+export const fetchUserIdpCommentBySkillId = (
+  idpUserId: string, skillId: string, query: UserIdpCommentsQuery = { page: 1, pageSize: 25 },
+):ApiAction<UserIdpCommentsResponse> => ({
+  type: FETCH_USER_IDP_COMMENT_BY_SKILL_ID,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments`,
+    body: {
+      q: {
+        ...query.q,
+        resourceIdEq: skillId,
+        resourceTypeEq: 'UserIdpSkill',
+      },
+      page: query.page,
+      pageSize: query.pageSize,
+      loadReplies: true,
+    },
+    method: 'get',
+  },
+  skillId,
 })
 
 export const addUserIdpComment = (idpUserId: string, payload: UserIdpCommentPayload) => ({
@@ -135,6 +218,50 @@ export const addUserIdpComment = (idpUserId: string, payload: UserIdpCommentPayl
     method: 'post',
     body: payload,
   },
+})
+
+export const addUserIdpCommentReply = (idpUserId: string, payload: UserIdpCommentReplyPayload) => ({
+  type: ADD_USER_IDP_COMMENT_REPLY,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments`,
+    method: 'post',
+    body: payload,
+  },
+})
+
+export const addUserIdpCommentReplyBySkillId = (
+  idpUserId: string,
+  skillId: string,
+  payload: UserIdpCommentReplyPayload,
+) => ({
+  type: ADD_USER_IDP_COMMENT_REPLY_BY_SKILL_ID,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments`,
+    method: 'post',
+    body: payload,
+  },
+  skillId,
+})
+
+export const markCommentResolved = (idpUserId: string, commentId: string) => ({
+  type: MARK_COMMENT_RESOLVED,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments/${commentId}/resolve`,
+    method: 'patch',
+  },
+})
+
+export const markCommentUnresolved = (idpUserId: string, commentId: string) => ({
+  type: MARK_COMMENT_UNRESOLVED,
+  request: {
+    url: `/user_idp_plans/${idpUserId}/comments/${commentId}/unresolve?loadReplies=true`,
+    method: 'patch',
+  },
+})
+
+export const showCommentsForSkillId = (skillId: string | null) => ({
+  type: SHOW_COMMENTS_FOR_SKILL_ID,
+  skillId,
 })
 
 // TODO: Remove if not being used
@@ -226,6 +353,11 @@ export const HANDLERS = {
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
       user: userIdpPlan.user,
       unreadCommentsCount: userIdpPlan.unreadCommentsCount,
+      userIdpComments: [],
+      userIdpCommentsTotalCount: null,
+      userIdpCommentsBySkillId: {},
+      userIdpCommentsBySkillIdTotalCount: {},
+      showCommentsForSkillId: null,
     }
   },
   [FETCH_DIRECT_REPORTS]: (state, action) => ({
@@ -353,10 +485,28 @@ export const HANDLERS = {
       newState.userIdpSkills = updateUserIdpSkillComments(
         state,
         resourceId,
-        existingComments => [...existingComments, ...comments],
+        () => comments,
       )
     }
 
+    return newState
+  },
+  [FETCH_USER_IDP_COMMENT_BY_SKILL_ID]: (state, action) => {
+    const { skillId } = action.requestAction
+
+    const { data: comments, meta } = action.response
+
+    const newState = {
+      ...state,
+      userIdpCommentsBySkillId: {
+        ...state.userIdpCommentsBySkillId,
+        [skillId]: comments,
+      },
+      userIdpCommentsBySkillIdTotalCount: {
+        ...state.userIdpCommentsBySkillIdTotalCount,
+        [skillId]: meta.count,
+      },
+    }
     return newState
   },
   [ADD_USER_IDP_COMMENT]: (state, action) => {
@@ -365,18 +515,123 @@ export const HANDLERS = {
 
     const newState = {
       ...state,
-      userIdpComments: [...(state.userIdpComments || []), newComment],
+      userIdpComments: [newComment, ...(state.userIdpComments || [])],
     }
 
     if (resourceId && resourceType) {
       newState.userIdpSkills = updateUserIdpSkillComments(
         state,
         resourceId,
-        existingComments => [...existingComments, newComment],
+        existingComments => [newComment, ...existingComments],
       )
+      newState.userIdpCommentsBySkillId = {
+        ...state.userIdpCommentsBySkillId,
+        [resourceId]: [newComment, ...(state.userIdpCommentsBySkillId[resourceId] || [])],
+      }
+      newState.userIdpCommentsBySkillIdTotalCount = {
+        ...state.userIdpCommentsBySkillIdTotalCount,
+        [resourceId]: state.userIdpCommentsBySkillIdTotalCount[resourceId] + 1,
+      }
     }
 
     return newState
+  },
+  [ADD_USER_IDP_COMMENT_REPLY_BY_SKILL_ID]: (state, action) => {
+    const newReply = action.response.data
+    const { skillId } = action.requestAction
+    let replies: UserIdpComment[] = []
+
+    // Check if the skill comments exist before trying to map
+    if (!state.userIdpCommentsBySkillId?.[skillId]) {
+      return state
+    }
+
+    const newComments = [...(state.userIdpCommentsBySkillId[skillId].map((c: UserIdpComment) => {
+      if (c.id === newReply.parentId) {
+        replies = [...(c.replies || []), newReply]
+        return {
+          ...c,
+          repliesCount: c.repliesCount + 1,
+          replies,
+        }
+      }
+      return c
+    }))]
+
+    const newState = {
+      ...state,
+      userIdpCommentsBySkillId: {
+        ...state.userIdpCommentsBySkillId,
+        [skillId]: newComments,
+      },
+      userIdpComments: [...state.userIdpComments.map(c => (c.id === newReply.parentId ? {
+        ...c,
+        replies,
+      } : c))],
+    }
+    return newState
+  },
+  [ADD_USER_IDP_COMMENT_REPLY]: (state, action) => {
+    const newReply = action.response.data
+    const { parentId } = newReply
+    return {
+      ...state,
+      userIdpComments: [...state.userIdpComments.map(c => (c.id === parentId ? {
+        ...c,
+        repliesCount: c.repliesCount + 1,
+        replies: [...(c.replies || []), newReply],
+      } : c))],
+    }
+  },
+  [MARK_COMMENT_RESOLVED]: (state, action) => {
+    const comment = action.response.data
+    const newState = {
+      ...state,
+      userIdpComments: state.userIdpComments.map(c => (c.id === comment.id ? { ...comment, replies: c.replies } : c)),
+    }
+
+    if (comment.resourceId && state.userIdpCommentsBySkillId[comment.resourceId]) {
+      newState.userIdpCommentsBySkillId = {
+        ...state.userIdpCommentsBySkillId,
+        [comment.resourceId]: state.userIdpCommentsBySkillId[comment.resourceId].map(c => (c.id === comment.id
+          ? { ...comment, replies: c.replies }
+          : c)),
+      }
+    }
+
+    return newState
+  },
+  [MARK_COMMENT_UNRESOLVED]: (state, action) => {
+    const comment = action.response.data
+    const newState = {
+      ...state,
+      userIdpComments: state.userIdpComments.map(c => (c.id === comment.id ? { ...comment, replies: c.replies } : c)),
+    }
+
+    if (comment.resourceId && state.userIdpCommentsBySkillId[comment.resourceId]) {
+      newState.userIdpCommentsBySkillId = {
+        ...state.userIdpCommentsBySkillId,
+        [comment.resourceId]: state.userIdpCommentsBySkillId[comment.resourceId].map(c => (c.id === comment.id
+          ? { ...comment, replies: c.replies }
+          : c)),
+      }
+    }
+
+    return newState
+  },
+  [FETCH_USER_IDP_COMMENT_BY_ID]: (state, action) => {
+    const comment = action.response.data
+    return {
+      ...state,
+      userIdpComments: [...state.userIdpComments.map(c => (c.id === comment.id ? comment : c))],
+    }
+  },
+  [SHOW_COMMENTS_FOR_SKILL_ID]: (state, action) => {
+    const { skillId } = action
+    return {
+      ...state,
+      showCommentsForSkillId: skillId?.toString(),
+    }
   },
 }
 
@@ -392,7 +647,10 @@ export const defaultState: UserIdpPlan = {
   user: {},
   unreadCommentsCount: 0,
   userIdpComments: [],
-  userIdpCommentsTotalCount: 0,
+  userIdpCommentsTotalCount: null,
+  showCommentsForSkillId: null,
+  userIdpCommentsBySkillId: {},
+  userIdpCommentsBySkillIdTotalCount: {},
 }
 
 export default function reducer (state = defaultState, action) {

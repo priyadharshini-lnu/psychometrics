@@ -1230,9 +1230,9 @@ it:
       campaign: Attività
       change_password: Modifica della password
       development: Sviluppo
+      direct_reportees: Collegati
       home: Home
       insights: Approfondimenti
-      my_direct_reportees: I miei rapporti diretti
       my_plan: Il mio piano
       profile: Profilo
       profile_details: Dettagli
@@ -2333,6 +2333,29 @@ it:
   idp:
     actions: Azioni
     board: Consiglio di amministrazione
+    comment_details:
+      add_comment: Aggiungi commento
+      add_comment_placeholder: Aggiungi commento...
+      add_reply_placeholder: Aggiungi una risposta...
+      go_to_skill: Vai all'abilità
+    comments:
+      close: Chiudi
+      comments: Commenti
+      filter_comments: Filtra commenti
+      mark_as_resolved: Segna come risolto
+      mark_as_unresolved: Segna come non risolto
+      replied: Risposto
+      replies: Risposte
+      reply: Rispondi
+      resolve: Risolvi
+      resolved: Risolto
+      resolved_message: Questo commento è stato risolto e le risposte sono disabilitate.
+      show_only_read: Mostra solo letti
+      show_only_resolved: Mostra solo risolti
+      show_only_unread: Mostra solo non letti
+      show_only_unresolved: Mostra solo non risolti
+      sort_by_date: Ordina per data
+      you: Tu
     convert_to_draft: Converti in bozza
     details: Dettagli
     development_actions:
@@ -2366,7 +2389,6 @@ it:
       structured_learning: Apprendimento strutturato
       submit_plan: Invia il piano
       write_here: Scrivi qui...
-    direct_reportee_details: Dettagli Report Diretto
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
       add_skill_group_title: Esplorare le proprie capacità di %{categoria}
@@ -2393,7 +2415,6 @@ it:
     manage_plan: Gestisci piano
     mark_as_complete: Contrassegna come completato
     mark_as_incomplete: Contrassegna come incompleto
-    my_direct_reportees: I Miei Report Diretti
     my_plan:
       development_plan: Piano di sviluppo
       graphs:

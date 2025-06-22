@@ -1230,9 +1230,9 @@ fr:
       campaign: Campagne
       change_password: Modifier le mot de passe
       development: Développement
+      direct_reportees: Subordonnés
       home: Accueil
       insights: Perspectives
-      my_direct_reportees: Mes subordonnés directs
       my_plan: Mon plan
       profile: Profil
       profile_details: Détails
@@ -2335,6 +2335,29 @@ fr:
   idp:
     actions: Actions
     board: Conseil d'administration
+    comment_details:
+      add_comment: Ajouter un commentaire
+      add_comment_placeholder: Ajouter un commentaire...
+      add_reply_placeholder: Ajouter une réponse...
+      go_to_skill: Aller à la compétence
+    comments:
+      close: Fermer
+      comments: Commentaires
+      filter_comments: Filtrer les commentaires
+      mark_as_resolved: Marquer comme résolu
+      mark_as_unresolved: Marquer comme non résolu
+      replied: Répondu
+      replies: Réponses
+      reply: Répondre
+      resolve: Résoudre
+      resolved: Résolu
+      resolved_message: Ce commentaire a été résolu et les réponses sont désactivées.
+      show_only_read: Afficher uniquement les lues
+      show_only_resolved: Afficher uniquement les résolus
+      show_only_unread: Afficher uniquement les non lus
+      show_only_unresolved: Afficher uniquement les non résolus
+      sort_by_date: Trier par date
+      you: Vous
     convert_to_draft: Convertir en brouillon
     details: Détails
     development_actions:
@@ -2368,7 +2391,6 @@ fr:
       structured_learning: Apprentissage structuré
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
-    direct_reportee_details: Détails des subordonnés directs
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
       add_skill_group_title: Explorer vos compétences %{catégorie}
@@ -2395,7 +2417,6 @@ fr:
     manage_plan: Gérer le forfait
     mark_as_complete: Marquer comme terminé
     mark_as_incomplete: Marquer comme incomplet
-    my_direct_reportees: Mes subordonnés directs
     my_plan:
       development_plan: Plan de développement
       graphs:

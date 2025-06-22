@@ -1,22 +1,16 @@
 import _ from 'lodash'
 import {
-  useState, FC, useEffect,
+  useState, FC,
 } from 'react'
 import {
-  Tabs, Typography, Flex, Button, Layout, Space,
+  Typography, Flex, Button,
   message,
   Tag,
-  Row,
-  Col,
-  Empty,
-  Badge,
+  Avatar,
 } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { MessageOutlined } from '@ant-design/icons'
 import { filteredDevelopmentActions } from '../../UserDevelopmentPlan/utils'
-import { IdpUserProfileCard } from '~/components/IdpShared/IdpUserProfileCard'
-import UserDevelopmentPlan from '../../UserDevelopmentPlan'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '~/components/IdpShared/constants'
 import { getIdpSettings } from '~/modules/endUser/core/config'
@@ -26,14 +20,12 @@ import {
   updateUserIdpPlan,
   saveUserIdpDevelopmentActions,
   fetchUserIdpComments,
-  addUserIdpComment,
-  UserIdpCommentsQuery,
-  UserIdpCommentPayload,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { DirectionalNavigateBackIcon } from '~/glint'
 
 import styles from '../DirectReportees.less'
 import { CheckCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import UserDevelopmentPlan from '../../UserDevelopmentPlan'
 
 const { I18n } = window
 
@@ -45,14 +37,12 @@ const connector = connect((state: RootState) => ({
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
   availableDevelopmentActions: state.campaigns.idp.availableDevelopmentActions,
   idpSettings: getIdpSettings(state),
-  idpComments: state.campaigns.idp.userIdpComments,
 }),
 {
   fetchUserIdpPlan,
   updateUserIdpPlan,
   saveUserIdpDevelopmentActions,
   fetchUserIdpComments,
-  addUserIdpComment,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -66,16 +56,10 @@ const DirectReportDetailsComponent: FC<Props> = ({
   updateUserIdpPlan,
   idpSettings,
   saveUserIdpDevelopmentActions,
-  unreadCommentsCount,
-  fetchUserIdpComments,
-  addUserIdpComment,
-  idpComments,
 }) => {
-  const { tab: paramTab, userId: idpUserId } = useParams() as {tab: string, userId: string}
-  const [tab, setTab] = useState(paramTab || 'plan')
+  const { userId: idpUserId } = useParams() as { userId: string }
   const [editMode, setEditMode] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
-
   const { managerApprovesIdp, managerCanEditIdp } = idpSettings
 
   const isPlanEditable = [
@@ -91,16 +75,6 @@ const DirectReportDetailsComponent: FC<Props> = ({
   ].includes(status)
 
   const navigate = useNavigate()
-  const changeTab = (tab: string) => {
-    setTab(tab)
-    navigate(`/idp/direct_reportees/${idpUserId}/${tab}`)
-  }
-
-  useEffect(() => {
-    if (paramTab !== tab) {
-      setTab(paramTab || 'plan')
-    }
-  }, [paramTab])
 
   const handleSave = () => {
     setEditMode(false)
@@ -120,74 +94,9 @@ const DirectReportDetailsComponent: FC<Props> = ({
     })
   }
 
-  // TODO: Remove this
-  // eslint-disable-next-line no-console
-  console.log('Comments', idpComments)
-
-  const handleShowComments = (userIdpSkillId = null) => {
-    const query: UserIdpCommentsQuery = {
-      page: 1,
-    }
-
-    if (userIdpSkillId) {
-      query.q = {}
-      query.q.resourceIdEq = userIdpSkillId
-      query.q.resourceTypeEq = 'UserIdpSkill'
-    }
-    fetchUserIdpComments(idpUserId, query).then(() => {
-    }).catch(() => {
-      message.error(I18n.t('common.errors.something_wrong'))
-    })
-  }
-
-  // TODO: Add implementation for adding a comment
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleAddComment = (comment: string, userIdpSkillId = null) => {
-    const payload: UserIdpCommentPayload = {
-      content: comment,
-      resourceId: null,
-      resourceType: null,
-    }
-
-    if (userIdpSkillId) {
-      payload.resourceId = userIdpSkillId
-      payload.resourceType = 'UserIdpSkill'
-    }
-    addUserIdpComment(idpUserId, payload).then(() => {
-      // TODO: Remove this
-      // eslint-disable-next-line no-console
-      console.log('Comment added successfully')
-    }).catch(() => {
-      message.error(I18n.t('common.errors.something_wrong'))
-    })
-  }
-
   const operations = (
-    <Flex gap={8}>
-      {/* TODO: TO BE REMOVED */}
-      {/* <Button
-        color="default"
-        variant="solid"
-        onClick={() => handleAddComment('Test comment')}
-      >
-        Add Test Comment
-      </Button> */}
-      <Badge count={unreadCommentsCount} size="small">
-        <Button
-          color="default"
-          variant="solid"
-          icon={(
-            <MessageOutlined />
-
-              )}
-          onClick={() => handleShowComments()}
-        >
-          {I18n.t('idp.comments')}
-        </Button>
-      </Badge>
-      {!editMode
-      && managerApprovesIdp
-      && (
+    <>
+      {(!editMode && managerApprovesIdp) ? (
         <>
           <Button
             type="default"
@@ -209,7 +118,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
               ? I18n.t('idp.user_idp_status.approved') : I18n.t('common.actions.approve')}
           </Button>
         </>
-      )}
+      ) : null}
 
       {editMode ? (
         <Button
@@ -230,47 +139,55 @@ const DirectReportDetailsComponent: FC<Props> = ({
           </Button>
         )
       )}
-    </Flex>
+    </>
   )
+
+  const header = (
+    <Flex
+      align="center"
+      justify="space-between"
+      className="p-5 pt-2"
+      style={{
+        borderBottom: '1px solid #f0f0f0',
+      }}
+    >
+      <Flex align="center" gap={16} style={{ flex: 1 }}>
+        <DirectionalNavigateBackIcon
+          onClick={() => navigate('/idp/direct_reportees')}
+        />
+        <Flex align="center" gap={16}>
+          <Avatar
+            size={32}
+            src={idpUser?.avatarUrl}
+            style={{ fontSize: 16 }}
+          >
+            {idpUser?.name ? idpUser.name[0].toUpperCase() : 'U'}
+          </Avatar>
+          <Flex vertical style={{ minWidth: 120 }}>
+            <Typography.Text strong>{idpUser?.name || '—'}</Typography.Text>
+            <Typography.Text type="secondary">{idpUser?.email || ''}</Typography.Text>
+          </Flex>
+        </Flex>
+      </Flex>
+      <Tag color={STATUS_COLORS[status]}>
+        {I18n.t(`idp.user_idp_status.${status}`)}
+      </Tag>
+    </Flex>
+
+  )
+
 
   return (
     <IdpPageLayoutWrapper>
-      <Layout.Content className={styles.pageContent}>
-        <Row align="middle" justify="center">
-          <Col flex="auto">
-            <Space>
-              <DirectionalNavigateBackIcon
-                onClick={() => navigate('/idp/direct_reportees')}
-                style={{ fontSize: '18px', verticalAlign: 'middle' }}
-              />
-              <Typography.Title level={3}>
-                {I18n.t('idp.direct_reportee_details')}
-              </Typography.Title>
-            </Space>
-          </Col>
-          <Col>
-            <Tag color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
-          </Col>
-        </Row>
-        <Space size="large" direction="vertical" className="w-100">
-          <IdpUserProfileCard idpUser={idpUser} />
-          <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
-            <Tabs.TabPane tab={I18n.t('idp.plan')} key="plan">
-              <UserDevelopmentPlan
-                idpUserId={idpUserId}
-                editMode={editMode}
-                viewType="list"
-              />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab={I18n.t('idp.skill_gap_report.title')} key="skill_gap_report">
-              <Empty />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab={I18n.t('idp.reflective_questions.title')} key="reflective_questions">
-              <Empty />
-            </Tabs.TabPane>
-          </Tabs>
-        </Space>
-      </Layout.Content>
+      <Flex className={styles.detailsPageContent}>
+        <UserDevelopmentPlan
+          header={header}
+          idpUserId={idpUserId}
+          editMode={editMode}
+          viewType="tabs"
+          operations={operations}
+        />
+      </Flex>
     </IdpPageLayoutWrapper>
   )
 }

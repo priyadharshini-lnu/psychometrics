@@ -4,7 +4,9 @@ import {
   message,
   Tooltip,
 } from 'antd'
-import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons'
+import {
+  DeleteOutlined, EditOutlined, PlusOutlined,
+} from '@ant-design/icons'
 import useMedia from 'use-media'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
@@ -18,6 +20,7 @@ import styles from './DevelopmentActionLandscapeCard.less'
 import { DevelopmentAction, SkillWithDevelopmentActions } from './Types'
 import { Tags } from './Common'
 import { RootState } from '~/modules/endUser/core/rootReducers'
+import { SkillCommentsPopover } from './SkillCommentPopover'
 
 const { RangePicker } = DatePicker
 
@@ -91,7 +94,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   ))
 
   return (
-    <Flex vertical>
+    <Flex vertical id={`skill-${userIdpSkillId}`}>
       <Flex
         justify="space-between"
         className={`${styles.border_b_1} ${styles.py_12}`}
@@ -99,6 +102,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
         <Flex gap={12}>
           {header}
         </Flex>
+        <SkillCommentsPopover
+          skillId={userIdpSkillId.toString()}
+          skillName={name}
+        />
       </Flex>
       {developmentActionCards}
       {editMode ? (

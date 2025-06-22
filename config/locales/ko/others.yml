@@ -1229,9 +1229,9 @@ ko:
       campaign: 캠페인
       change_password: 비밀번호 변경
       development: 개발
+      direct_reportees: 직접 보고서
       home: 홈
       insights: 인사이트
-      my_direct_reportees: 내 직접 보고 대상
       my_plan: 내 요금제
       profile: 프로필
       profile_details: 세부 정보
@@ -2330,6 +2330,29 @@ ko:
   idp:
     actions: 작업
     board: 보드
+    comment_details:
+      add_comment: 댓글 추가
+      add_comment_placeholder: 댓글 추가...
+      add_reply_placeholder: 답글 추가...
+      go_to_skill: 스킬로 이동
+    comments:
+      close: 닫기
+      comments: 댓글
+      filter_comments: 댓글 필터
+      mark_as_resolved: 해결됨으로 표시
+      mark_as_unresolved: 미해결로 표시
+      replied: 답글 작성됨
+      replies: 답글
+      reply: 답글
+      resolve: 해결
+      resolved: 해결됨
+      resolved_message: 이 댓글이 해결되었으며 답글이 비활성화되었습니다.
+      show_only_read: 읽은 것만 표시
+      show_only_resolved: 해결된 항목 표시
+      show_only_unread: 읽지 않은 것만 표시
+      show_only_unresolved: 미해결만 표시
+      sort_by_date: 날짜순 정렬
+      you: 당신
     convert_to_draft: 초안으로 변환
     details: 세부 정보
     development_actions:
@@ -2388,7 +2411,6 @@ ko:
     manage_plan: 계획 관리
     mark_as_complete: 완료로 표시
     mark_as_incomplete: 미완료로 표시
-    my_direct_reportees: 내 직접 보고 대상
     my_plan:
       development_plan: 개발 계획
       graphs:

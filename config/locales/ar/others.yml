@@ -206,9 +206,9 @@ ar:
       campaign: الحملة
       change_password: تغيير كلمة المرور
       development: تطوير
+      direct_reportees: الموظفين المباشرين
       home: الصفحة الرئيسية
       insights: البصائر
-      my_direct_reportees: تقاريري المباشرة
       my_plan: خطتي
       profile: تفاصيلي
       profile_details: تفاصيل
@@ -618,6 +618,29 @@ ar:
   idp:
     actions: الإجراءات
     board: اللوحة
+    comment_details:
+      add_comment: إضافة تعليق
+      add_comment_placeholder: إضافة تعليق...
+      add_reply_placeholder: إضافة رد...
+      go_to_skill: الذهاب إلى المهارة
+    comments:
+      close: إغلاق
+      comments: تعليقات
+      filter_comments: تصفية التعليقات
+      mark_as_resolved: حل
+      mark_as_unresolved: حل
+      replied: تم الرد
+      replies: ردود
+      reply: رد
+      resolve: حل
+      resolved: محلول
+      resolved_message: تم حل هذا التعليق وتم تعطيل الردود.
+      show_only_read: إظهار المقروء
+      show_only_resolved: إظهار المحلولة
+      show_only_unread: إظهار الغير مقروء
+      show_only_unresolved: إظهار الغير محلولة
+      sort_by_date: ترتيب حسب التاريخ
+      you: أنت
     convert_to_draft: تحويل إلى مسودة
     details: التفاصيل
     development_actions:
@@ -657,7 +680,6 @@ ar:
       structured_learning: تعلم منظم
       submit_plan: تقديم الخطة
       write_here: اكتب هنا...
-    direct_reportee_details: تفاصيل التقرير المباشر
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
       add_skill_group_title: استكشاف مهاراتك في %{category}
@@ -683,7 +705,6 @@ ar:
     list: قائمة
     manage_plan: إدارة الخطة
     mark_as_incomplete: وضع علامة على أنها غير مكتملة
-    my_direct_reportees: تقاريري المباشرة
     my_plan:
       development_plan: خطة التطوير
       graphs:

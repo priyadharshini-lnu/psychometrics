@@ -1232,9 +1232,9 @@ zh:
       campaign: 推广活动
       change_password: 更改密码
       development: 发展
+      direct_reportees: 直下报告
       home: 首页
       insights: 见解
-      my_direct_reportees: 我的直接报告人
       my_plan: 我的计划
       profile: 个人资料
       profile_details: 详情
@@ -2343,6 +2343,29 @@ zh:
   idp:
     actions: 行动
     board: 董事会
+    comment_details:
+      add_comment: 添加评论
+      add_comment_placeholder: 添加评论...
+      add_reply_placeholder: 添加回复...
+      go_to_skill: 查看技能
+    comments:
+      close: 关闭
+      comments: 评论
+      filter_comments: 筛选评论
+      mark_as_resolved: 标记为已解决
+      mark_as_unresolved: 标记为未解决
+      replied: 已回复
+      replies: 回复
+      reply: 回复
+      resolve: 解决
+      resolved: 已解决
+      resolved_message: 此评论已解决，回复已禁用。
+      show_only_read: 只显示已读
+      show_only_resolved: 显示已解决
+      show_only_unread: 只显示未读
+      show_only_unresolved: 只显示未解决
+      sort_by_date: 按日期排序
+      you: 您
     convert_to_draft: 轉換為草稿
     details: 详细信息
     development_actions:
@@ -2376,7 +2399,6 @@ zh:
       structured_learning: 结构化学习
       submit_plan: 提交计划
       write_here: 在此处写入...
-    direct_reportee_details: 直属下属详情
     initial_steps:
       add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
       add_skill_group_title: 探索您的 %{category} 技能
@@ -2403,7 +2425,6 @@ zh:
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
-    my_direct_reportees: 我的直属下属
     my_plan:
       development_plan: 发展计划
       graphs:

@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Layout, Modal,
+  Button, Flex, Modal,
 } from 'antd'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
@@ -16,6 +16,7 @@ import {
   updateUserIdpPlan,
   fetchUserIdpPlan,
   saveUserIdpDevelopmentActions,
+  fetchUserIdpComments,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import styles from './MyPlan.less'
@@ -49,11 +50,13 @@ const connector = connect((state: RootState) => ({
   status: state.campaigns.idp.status,
   idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
   idpConfig: getIdpSettings(state),
+  unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
 }),
 {
   updateUserIdpPlan,
   fetchUserIdpPlan,
   saveUserIdpDevelopmentActions,
+  fetchUserIdpComments,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -69,9 +72,7 @@ const MyPlanComponent = ({
   saveUserIdpDevelopmentActions,
 }: Props) => {
   const [editMode, setEditMode] = useState(false)
-
   const { tab: paramTab } = useParams() as {tab: string}
-
 
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
 
@@ -188,13 +189,13 @@ const MyPlanComponent = ({
 
   return (
     <IdpPageLayoutWrapper>
-      <Layout.Content className={styles.pageContent}>
+      <Flex className={styles.pageContent}>
         <UserDevelopmentPlan
           idpUserId={currentUser.id}
           editMode={editMode}
           operations={operations}
         />
-      </Layout.Content>
+      </Flex>
     </IdpPageLayoutWrapper>
   )
 }

@@ -1253,9 +1253,9 @@ en:
       campaign: Campaign
       change_password: Change Password
       development: Development
+      direct_reportees: Direct Reportees
       home: Home
       insights: Insights
-      my_direct_reportees: My Direct Reportees
       my_plan: My Plan
       profile: Profile
       profile_details: Details
@@ -2408,7 +2408,29 @@ en:
   idp:
     actions: Actions
     board: Board
-    comments: Comments
+    comment_details:
+      add_comment: Add Comment
+      add_comment_placeholder: Add a comment...
+      add_reply_placeholder: Add a reply...
+      go_to_skill: Go to skill
+    comments:
+      close: Close
+      comments: Comments
+      filter_comments: Filter comments
+      mark_as_resolved: Mark as resolved
+      mark_as_unresolved: Mark as unresolved
+      replied: Replied
+      replies: Replies
+      reply: Reply
+      resolve: Resolve
+      resolved: Resolved
+      resolved_message: This comment has been resolved and replies are disabled.
+      show_only_read: Show only read
+      show_only_resolved: Show only resolved
+      show_only_unread: Show only unread
+      show_only_unresolved: Show only unresolved
+      sort_by_date: Sort by date
+      you: You
     convert_to_draft: Convert to Draft
     details: Details
     development_actions:
@@ -2448,7 +2470,6 @@ en:
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
-    direct_reportee_details: My Direct Reportee Details
     edit_plan: Edit Plan
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
@@ -2477,7 +2498,6 @@ en:
     manage_plan: Manage Plan
     mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
-    my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
       graphs:

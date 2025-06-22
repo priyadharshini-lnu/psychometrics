@@ -1234,9 +1234,9 @@ de:
       campaign: Event
       change_password: Passwort ändern
       development: Entwicklung
+      direct_reportees: Direkte Berichte
       home: Startseite
       insights: Einblicke
-      my_direct_reportees: Meine direkten Berichte
       my_plan: Mein Plan
       profile: Profil
       profile_details: Details
@@ -2347,6 +2347,29 @@ de:
   idp:
     actions: Aktionen
     board: Vorstand
+    comment_details:
+      add_comment: Kommentar hinzufügen
+      add_comment_placeholder: Kommentar hinzufügen...
+      add_reply_placeholder: Antwort hinzufügen...
+      go_to_skill: Fähigkeit anzeigen
+    comments:
+      close: Schließen
+      comments: Kommentare
+      filter_comments: Kommentare filtern
+      mark_as_resolved: Als gelöst markieren
+      mark_as_unresolved: Als ungelöst markieren
+      replied: Beantwortet
+      replies: Antworten
+      reply: Antworten
+      resolve: Lösen
+      resolved: Gelöst
+      resolved_message: Dieser Kommentar wurde gelöst und Antworten sind deaktiviert.
+      show_only_read: Nur gelesene anzeigen
+      show_only_resolved: Gelöste anzeigen
+      show_only_unread: Nur ungelesene anzeigen
+      show_only_unresolved: Nur ungelöste anzeigen
+      sort_by_date: Nach Datum sortieren
+      you: Du
     convert_to_draft: In Entwurf konvertieren
     details: Einzelheiten
     development_actions:
@@ -2380,7 +2403,6 @@ de:
       structured_learning: Strukturiertes Lernen
       submit_plan: Plan einreichen
       write_here: Hier schreiben...
-    direct_reportee_details: Details zu direkten Mitarbeitern
     initial_steps:
       add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
       add_skill_group_title: Erkunden Sie Ihre %{Kategorie}-Fähigkeiten
@@ -2407,7 +2429,6 @@ de:
     manage_plan: Plan verwalten
     mark_as_complete: Als abgeschlossen markieren
     mark_as_incomplete: Als unvollständig markieren
-    my_direct_reportees: Meine direkten Berichte
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
