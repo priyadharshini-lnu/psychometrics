@@ -31,6 +31,10 @@ nl:
             blank: Antwoorden kunnen niet leeg zijn
           group_id:
             blank: Groepsid kan niet leeg zijn
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{block_name}" heeft dubbele configuraties: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ nl:
               too_short: Het wachtwoord van de evaluator is te kort (het minimum is %{count} tekens)
             first_name:
               blank: Voornaam kan niet leeg zijn
+            job_role:
+              cannot_be_same: Doelfunctie moet verschillen van huidige functie
+              not_found: Jobrol '%{naam}' niet gevonden in project of globale rollen
             last_name:
               blank: Achternaam kan niet leeg zijn
             locale:
@@ -182,12 +189,25 @@ nl:
               invalid: E-mail is ongeldig
             first_name:
               blank: Voornaam kan niet leeg zijn
+            job_role:
+              cannot_be_same: Doelfunctie moet verschillen van huidige functie
             last_name:
               blank: Achternaam kan niet leeg zijn
             locale:
               inclusion: Verkeerde locale
             password:
               too_short: Wachtwoord is te kort. Minimum %{count} teken vereist
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Waarde %{column_name} kan niet leeg zijn in rij %{row_number}
+              invalid_format: CSV-bestand uploaden
+              invalid_job_role_id: Id in rij %{row_number} is geen geldige functierol-ID
+              invalid_locale: Locale bij rij %{rij_nummer} is geen geldige locale
+              missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
+              parsing_failed: 'Fout tijdens het parsen van bestand, fout: %{error}.'
+            project:
+              must_exist: Project moet bestaan
         mettl:
           attributes:
             name:
@@ -303,6 +323,12 @@ nl:
             email:
               blank: E-mail kan niet leeg zijn
               not_uniq_email: Rij met e-mail is al aanwezig
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ten minste één functierol moet ingeschakeld zijn met een vaardigheidstype geselecteerd voor %{block_name}
+              invalid_skill_type: 'Ongeldig vaardigheidstype %{skill_type} voor %{role_name} voor %{block_name}. Geldige opties: %{valid_options}'
+              props_missing: Job
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +362,16 @@ nl:
             last_name:
               blank: Achternaam kan niet leeg zijn
               starts_with_invalid_characters: Achternaam kan niet beginnen met =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Rij %{rij}: Dubbele waarde %{waarde} voor %{veld}'
+              invalid_format: Upload xlsx-bestand
+              missing_headers: "%{sheet_name} blad mist vereiste koppen: %{headers}"
+              missing_sheets: 'Ontbrekende vereiste bladen: %{sheets}'
+              missing_value: 'Rij %{row}: Ontbrekende waarde voor %{field}'
+            project:
+              must_exist: Project moet bestaan
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +800,10 @@ nl:
         export_development_actions: Acties voor exportontwikkeling
         export_dimension_as_json: Dimensie JSON exporteren
         export_factor_translations: Exportfactor Vertalingen
+        export_job_roles_translations: Jobrollen exporteren Vertalingen
         export_norm: Exportnorm
         export_occupations: Beroepen Export
+        export_proficiency_levels: Exportvaardigheidsniveaus
         export_report_data: Rapportgegevens exporteren
         export_reports_and_assessments: Rapporten en beoordelingen exporteren
         export_skill_translations: Exportvaardigheden Vertalingen
@@ -784,12 +822,15 @@ nl:
         import_external_campaign_scoring: Externe campagnescores importeren
         import_factor_translations: Importfactor Vertalingen
         import_factors: Importfactoren
+        import_job_roles_translations: Jobrollen importeren Vertalingen
         import_norm: Norm importeren
+        import_proficiency_level_translations: Vertalingen op vaardigheidsniveau importeren
         import_question_translations: Vragen importeren Vertalingen
         import_raw_data: Ruwe gegevens importeren
         import_scoring_data: Scoringsgegevens importeren
         import_skill_translations: Importvaardigheden Vertalingen
         import_skills: Vaardigheden importeren
+        import_skills_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_sms_invites: SMS-uitnodiging importeren
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie
@@ -1656,6 +1697,7 @@ nl:
       assessor: Assessor
       category: Categorie
       client: Klant
+      code: Code
       created_at: Gemaakt op
       created_by: Gemaakt door
       created_date: Datum aangemaakt
@@ -1978,6 +2020,8 @@ nl:
       filled?: kan niet leeg zijn
       invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
       invalid_value: ongeldige instructie '%{value}' op regelnummer %{row}
+      job_roles:
+        unique_within_job_group: Er bestaat al een functierol met dezelfde naam.
       json?: Moet geldige JSON zijn
       key?: kan niet leeg zijn
       match_regexp?: ongeldige waarde
@@ -1998,6 +2042,9 @@ nl:
       skill_alias:
         unique_alias: Alias moet uniek zijn
         unique_skill: Vaardigheden moeten uniek zijn
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Vaardigheid en functie moeten bij hetzelfde project horen of globaal zijn.
+        unique_mappings: Er bestaat al een mapping met dezelfde vaardigheid en functie.
       uniq: Deze Mettl beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq?: moet uniek zijn
       uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}

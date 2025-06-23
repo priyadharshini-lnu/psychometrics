@@ -2222,6 +2222,42 @@ ja:
         requested_rescheduling_rejected: リスケジュール却下
         rescheduled: 予定変更
       subject: 対象
+    job_role:
+      column:
+        job_group: 職務グループ
+      export:
+        failure_msg: 翻訳のエクスポート時のエラー
+        success_msg: 進行中の開発アクションをエクスポートする。
+      form:
+        code: コード
+        description: 説明
+        job_group: 職務グループ
+        name: 名称
+        title: 仕事の役割
+      global: グローバルな仕事は役割か？
+      import:
+        download_example_csv: サンプルcsvをダウンロード
+        success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
+      import_action:
+        translations: 役割の翻訳をインポートする
+      translations: 職務の翻訳
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: 期待される能力レベル
+        job_role: 仕事の役割
+        skill: スキル
+      form:
+        expected_proficiency_level: 期待される能力レベル
+        job_role: 仕事の役割
+        skill: スキル
+        title: スキル・ジョブ・マッピング
+      global: グローバルスキルはジョブマッピングか？
+      import:
+        taxonomy: 分類学
+    job_roles:
+      export:
+        translations:
+          details: 詳細
     libraries:
       create:
         successfully: 項目 %{name} が正常に作成されました。
@@ -2494,6 +2530,68 @@ ja:
         successfully: 成功裏に
       toggle_status:
         successfully: 成功裏に
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: レベル定義は定義の配列でなければならない。
+          level_definition_must_match_level: は正確に%{予想}レベルを含んでいなければならないが、%{実際}は与えられた。
+          must_be_unique: ユニークでなければならない
+          proficiency_level_exists: このスキルとプロジェクトを持つProficiencyLevelがすでに存在する。
+          proficiency_level_exists_for_category: このカテゴリのProficiencyLevelはすでに存在する。
+          project_level_all_skills_exists: all_skills'熟練度レベルはすでに存在する。
+          skill_must_exist: 熟練度タイプ'by_skill'では、スキルが存在しなければならない。
+      export:
+        details: 詳細
+        failure_msg: 熟練度レベルのエクスポート時のエラー
+        success_msg: 進行中の開発アクションのエクスポート
+        translations:
+          details: 翻訳能力レベル
+      fields:
+        level: レベル
+        level_description: レベル説明
+        level_name: レベル名
+        proficiency_translations: 翻訳能力
+        proficiency_type: 熟練度タイプ
+        skill: スキル
+        skill_category: スキルカテゴリー
+        skill_name: スキル名
+        title: 熟練度
+      import:
+        actions:
+          proficiency: 輸入能力
+          translations: 輸入技能翻訳
+        errors:
+          all_skills_global_exists: 行 %{row_number}：グローバルレベル 'all_skills' ProficiencyLevel が既に存在します。
+          all_skills_project_exists: 行 %{row_number}：プロジェクト・レベル 'all_skills' ProficiencyLevel が既に存在します。
+          by_category_exists: 行 %{row_number}：by_category'ProficiencyLevelは、このプロジェクトとスキル・カテゴリに既に存在します。
+          by_category_missing: 行 %{row_number}：by_category'タイプでは、プロジェクトとスキル・カテゴリが存在する必要があります。
+          by_skill_exists: 行 %{row_number}：by_skill'ProficiencyLevelは、このプロジェクトとスキルに既に存在します。
+          by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
+          invalid_csv_format: '無効な CSV 形式: %{message} です。'
+          invalid_json: 行 %{line}：LevelDefinition - %{message} に無効な JSON があります。
+          invalid_json_structure: description'や'summary'といったキーを持つJSONオブジェクトでなければならない。
+          invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
+          missing_columns: '必須列がありません: %{fields}.'
+          missing_required_fields: 行 %{line}：必須フィールドがありません (%{fields})
+          save_failed: 行 %{line}：メッセージ
+        job_queued: 技能レベルのインポートジョブがキューに入れられました。
+      translations:
+        export:
+          failure_msg: 翻訳のエクスポート時のエラー
+          success_msg: 進行中の開発アクションをエクスポートする。
+        import:
+          errors:
+            invalid_csv_format: '無効な CSV 形式: %{message} です。'
+            invalid_locales: 無効なロケール
+            level_not_found: 'ID: %{level_id} に対応するレベルが見つかりません。'
+            missing_columns: '必須列がありません: %{fields}.'
+            missing_required_columns: '必要な列がありません: %{columns}.'
+            row_id_blank: 行 %{row}：IDを空白にすることはできません
+            save_failed: スキル ID %{id} の処理エラーです：メッセージ
+      type:
+        all_skills: すべてのスキル
+        by_category: カテゴリー別
+        by_skill: スキル別
     profile:
       change_password: パスワードの変更
       details: 詳細
@@ -3369,6 +3467,7 @@ ja:
         description: 説明
         name: 名称
         project_placeholder: プロジェクトを選択する
+        skill_group: スキルグループ
         skill_type: スキルタイプ
         title: スキル
       global: グローバル・スキルとは何か？
@@ -3391,6 +3490,8 @@ ja:
             skill_not_found: ID %{id} を持つスキルが見つかりません。
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: スキル・ジョブ・マッピング
+        job_roles: 仕事の役割
         proficiency: 熟練度
         skills: スキル
     sms_histories:
@@ -3594,6 +3695,14 @@ ja:
           other: 合計：1
       more_actions: より多くの行動
     taxonomy:
+      import:
+        download_example_file: 例題ファイルのダウンロード
+        success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
+      import_action:
+        taxonomy: タクソノミーのインポート
+      job_roles: 仕事の役割
+      proficiency: 熟練度
+      skill_job_mappings: スキル・ジョブ・マッピング
       skills: スキル
       title: 分類学
     templates:

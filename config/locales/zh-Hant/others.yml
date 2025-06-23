@@ -31,6 +31,10 @@ zh-Hant:
             blank: 答案不能為空白
           group_id:
             blank: 群組 ID 不能為空
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 區塊「%{block_name}」有重複的設定：%{duplicate_configurations}。
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ zh-Hant:
               too_short: 評估器密碼過短 (最少為 %{count} 字元)
             first_name:
               blank: 名字不能為空
+            job_role:
+              cannot_be_same: 目標工作角色必須與目前工作角色不同
+              not_found: 在專案或全局角色中找不到工作角色 '%{name}'
             last_name:
               blank: 姓氏不能為空
             locale:
@@ -182,12 +189,25 @@ zh-Hant:
               invalid: 電子郵件無效
             first_name:
               blank: 名字不能為空
+            job_role:
+              cannot_be_same: 目標工作角色必須與目前工作角色不同
             last_name:
               blank: 姓氏不能為空
             locale:
               inclusion: 錯誤的地區
             password:
               too_short: 密碼太短，需要最少 %{count} 字元
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: 在 %{row_number} 行上的 %{column_name} 值不能為空。
+              invalid_format: 請上傳 CSV 檔案
+              invalid_job_role_id: "%{row_number} 行的 ID 不是有效的工作角色 ID"
+              invalid_locale: 行 %{row_number} 上的區域語言不是有效的區域語言
+              missing_required_columns: 缺少必填欄位：%{columns}。
+              parsing_failed: 解析檔案時發生錯誤，錯誤：%{error}.
+            project:
+              must_exist: 專案必須存在
         mettl:
           attributes:
             name:
@@ -303,6 +323,12 @@ zh-Hant:
             email:
               blank: 電子郵件不能為空白
               not_uniq_email: 包含電子郵件的行已經存在
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必須啟用至少一個工作角色，並選取 %{block_name} 的技能類型。
+              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能類型無效。有效選項： %{valid_options}"
+              props_missing: 工作機會
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +362,16 @@ zh-Hant:
             last_name:
               blank: 姓氏不能為空
               starts_with_invalid_characters: 姓氏不能以 =、|、+、-、@、% 開頭
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 行 %{row}：%{field} 的 %{value} 值重複
+              invalid_format: 請上傳 xlsx 檔案
+              missing_headers: "%{sheet_name} 工作表缺少所需的標題： %{headers}"
+              missing_sheets: 缺少所需的工作表：%{sheets}
+              missing_value: 行 %{row}：缺少 %{field} 的值
+            project:
+              must_exist: 專案必須存在
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +800,10 @@ zh-Hant:
         export_development_actions: 出口發展行動
         export_dimension_as_json: 匯出尺寸 JSON
         export_factor_translations: 出口因素換算
+        export_job_roles_translations: 匯出工作角色翻譯
         export_norm: 出口規範
         export_occupations: 職業 出口
+        export_proficiency_levels: 出口能力等級
         export_report_data: 匯出報告資料
         export_reports_and_assessments: 出口報告和評估
         export_skill_translations: 出口技能翻譯
@@ -784,12 +822,15 @@ zh-Hant:
         import_external_campaign_scoring: 匯入外部廣告系列計分
         import_factor_translations: 進口因素轉換
         import_factors: 進口因素
+        import_job_roles_translations: 匯入工作角色翻譯
         import_norm: 進口規範
+        import_proficiency_level_translations: 進口能力等級翻譯
         import_question_translations: 匯入問題翻譯
         import_raw_data: 匯入原始資料
         import_scoring_data: 匯入評分資料
         import_skill_translations: 輸入技能翻譯
         import_skills: 進口技能
+        import_skills_rater_taxonomies: 匯入技能評核員分類標準
         import_sms_invites: 匯入簡訊邀請
         import_users: 匯入使用者
         migrate_assessment_translations: 評估 翻譯轉移
@@ -1657,6 +1698,7 @@ zh-Hant:
       assessor: 評稅員
       category: 類別
       client: 客戶
+      code: 代碼
       created_at: 建立於
       created_by: 建立者
       created_date: 建立日期
@@ -1979,6 +2021,8 @@ zh-Hant:
       filled?: 不能空白
       invalid_name: 僅允許字母、數字、空格、破折號和點為有效字元
       invalid_value: 行號 %{row} 上的語句 '%{value}' 無效
+      job_roles:
+        unique_within_job_group: 同名的工作角色已經存在。
       json?: 應為有效的 JSON
       key?: 不能空白
       match_regexp?: 無效值
@@ -1999,6 +2043,9 @@ zh-Hant:
       skill_alias:
         unique_alias: 別名應該是唯一的
         unique_skill: 技能應該是獨一無二的
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
+        unique_mappings: 具有相同技能和工作角色的映射已經存在。
       uniq: 此 Mettl 評估已存在於系統中。 此評估的 ID 為 %{id}
       uniq?: 應該是唯一的
       uniq_simulation: 該模擬評估已存在於系統中。 該評估的 ID 為 %{id}

@@ -60,7 +60,7 @@ const TagList: React.FC<TagListProps> = ({ initialTags, config }) => {
 
   return (
     <>
-      {tags.map(tag => (
+      {tags?.map(tag => (
         <Tooltip title={tag} key={tag}>
           <Tag closable={config.editable} onClose={() => handleClose(tag)}>{tag}</Tag>
         </Tooltip>

@@ -11,6 +11,48 @@ hu:
         select_comparison: Válassza ki az összehasonlítás típusát
         select_factors: Tényezők kiválasztása
         select_operation: Művelet kiválasztása
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'A "%{blokk_név}" blokkban duplikált konfigurációk vannak: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: A cél munkakörnek meg kell különböznie a jelenlegi munkakörtől.
+              not_found: A '%{név}' szerepkör nem található a projekt vagy a globális szerepkörök között.
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: A cél munkakörnek meg kell különböznie a jelenlegi munkakörtől.
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Az %{oszlop_név} érték nem lehet üres a %{sor_szám} sorban.
+              invalid_format: Kérjük, töltse fel a CSV fájlt
+              invalid_job_role_id: A %{sor_szám} sorban lévő azonosító nem érvényes munkakör azonosító
+              invalid_locale: A %{sor_szám} sorban lévő helyi nyelv nem érvényes helyi nyelv
+              missing_required_columns: 'Hiányzó kötelező oszlopok: %{columns}'
+              parsing_failed: 'Hiba a fájl elemzése közben, hiba: %{error}.'
+            project:
+              must_exist: A projektnek léteznie kell
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Legalább egy munkakörnek engedélyezettnek kell lennie, és a %{block_name} számára kiválasztott készségtípust kell kiválasztani.
+              invalid_skill_type: 'Érvénytelen képességtípus %{skill_type} a %{role_name} számára %{block_name}. Érvényes opciók: %{valid_options}'
+              props_missing: Állás
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Sor %{sor}: érték %{value} duplikált értéke %{field}-hez'
+              invalid_format: Kérjük, töltse fel az xlsx fájlt
+              missing_headers: "%{sheet_name} lapról hiányoznak a szükséges fejlécek: %{headers}"
+              missing_sheets: 'Hiányzó kötelező lapok: %{lapok}'
+              missing_value: 'Sor %{sor}: Hiányzó érték %{field}'
+            project:
+              must_exist: A projektnek léteznie kell
   activerecord:
     attributes:
       membership:
@@ -37,6 +79,13 @@ hu:
           attributes:
             current_password:
               invalid: A jelenlegi jelszó helytelen
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Exportálás munkakörök fordítások
+        export_proficiency_levels: Exportképességi szintek
+        import_job_roles_translations: Munkakörök importálása Fordítások
+        import_skills_rater_taxonomies: Képességértékelő taxonómiák importálása
   administration: Adminisztráció
   anonym:
     close: Zárja be a
@@ -374,6 +423,7 @@ hu:
     column:
       action: Akció
       category: Kategória
+      code: 'Kód:'
       created_at: Létrehozva
       id: Id
       status: Állapot
@@ -441,6 +491,13 @@ hu:
     two_factor_authentication:
       attempt: Kérjük, adja meg a regisztrált e-mail címére kapott OTP-t
       code_has_been_sent: Az új OTP-t elküldtük a regisztrált e-mail címére
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Ugyanilyen nevű munkakör már létezik.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: A készségnek és a munkakörnek ugyanahhoz a projekthez kell tartoznia, vagy globálisnak kell lennie.
+        unique_mappings: Már létezik egy azonos készséggel és munkakörrel rendelkező leképezés.
   emails:
     subject_relationship_table:
       subject_email: Tárgy Email

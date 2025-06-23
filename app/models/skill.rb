@@ -10,7 +10,9 @@ class Skill < ApplicationRecord
   translates :name, :description
 
   belongs_to :project
+  belongs_to :skill_group, optional: true
 
+  has_one :proficiency_level
   has_many :skills_job_roles
   has_many :job_roles, through: :skills_job_roles
   has_many :skills_development_actions, dependent: :destroy

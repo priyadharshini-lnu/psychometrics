@@ -16,7 +16,8 @@ module Threesixty
           result = subjects.map do |subject|
             ActiveRecord::Base.transaction do
               subject_user = fetch_or_create_subject_user(subject)
-              create_campaign_user(subject_user)
+              campaign_user = create_campaign_user(subject_user)
+              assign_job_roles(campaign_user, subject)
               create_membership(subject_user)
               create_users_report(subject_user)
               create_subject(subject_user)
@@ -31,13 +32,14 @@ module Threesixty
 
       def fetch_or_create_subject_user(subject)
         if (user = project_users_indexed[subject[:email].downcase])
-          user.update!(subject.except(:password, :locale))
+          user.update!(subject.except(:password, :locale, :current_job_role, :target_job_role))
           user.user_profile.update!(locale: subject[:locale])
           @existing_subjects_whose_password_not_changed << user if subject[:password].present?
           user
         else
           new_user = ::Users::Regular.create!(
-            subject.merge(project: project, create_by_invite: subject[:password].blank?).except(:locale)
+            subject.merge(project: project, create_by_invite: subject[:password].blank?).
+            except(:locale, :current_job_role, :target_job_role)
           )
           new_user.user_profile.update!(locale: subject[:locale])
           AuditLogModule.audit!(:create, new_user, campaign: threesixty_campaign.campaign,
@@ -68,6 +70,23 @@ module Threesixty
       private
 
       attr_reader :subjects, :threesixty_campaign, :project
+
+      def assign_job_roles(campaign_user, subject)
+        campaign_user.update!(
+          current_job_role: find_job_role(subject[:current_job_role]),
+          target_job_role: find_job_role(subject[:target_job_role])
+        )
+      end
+
+      def find_job_role(role_name)
+        return nil if role_name.blank?
+
+        JobRole.find_by(
+          'name = ? AND (project_id = ? OR project_id IS NULL)',
+          role_name,
+          project.id
+        )
+      end
 
       def project_users_indexed
         @project_users_indexed ||= User.

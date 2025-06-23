@@ -31,6 +31,10 @@ ko:
             blank: 답변은 비워 둘 수 없습니다
           group_id:
             blank: 그룹 ID는 비워 둘 수 없습니다
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: '"%{블록 이름}" 블록에 중복 구성이 있습니다: %{중복 구성}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ ko:
               too_short: 평가자 암호가 너무 짧습니다(최소값은 %{count}입니다)
             first_name:
               blank: 이름은 비워 둘 수 없습니다
+            job_role:
+              cannot_be_same: 대상 직무 역할은 현재 직무 역할과 달라야 합니다.
+              not_found: 프로젝트 또는 글로벌 역할에서 '%{이름}' 직책을 찾을 수 없습니다.
             last_name:
               blank: 성은 비워 둘 수 없습니다
             locale:
@@ -182,12 +189,25 @@ ko:
               invalid: 이메일이 유효하지 않습니다
             first_name:
               blank: 이름은 비워 둘 수 없습니다
+            job_role:
+              cannot_be_same: 대상 직무 역할은 현재 직무 역할과 달라야 합니다.
             last_name:
               blank: 성은 비워 둘 수 없습니다
             locale:
               inclusion: 잘못된 로캘
             password:
               too_short: 비밀번호가 너무 짧습니다. 최소 %{count}자 필요
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: 행 %{행_번호}에서 %{열_이름} 값을 비울 수 없습니다.
+              invalid_format: CSV 파일을 업로드하세요.
+              invalid_job_role_id: 행 %{행_번호}의 ID가 올바른 직무 역할 ID가 아닙니다.
+              invalid_locale: 행 %{row_number}의 로캘이 올바른 로캘이 아닙니다.
+              missing_required_columns: '누락된 필수 열: %{열}'
+              parsing_failed: '파일을 구문 분석하는 동안 오류가 발생했습니다(오류: %{오류}).'
+            project:
+              must_exist: 프로젝트가 존재해야 합니다.
         mettl:
           attributes:
             name:
@@ -303,6 +323,12 @@ ko:
             email:
               blank: 이메일은 비워 둘 수 없습니다
               not_uniq_email: 이메일이 있는 행이 이미 존재합니다
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 블록 이름]에 대해 선택된 스킬 유형으로 하나 이상의 직무 역할이 활성화되어 있어야 합니다.
+              invalid_skill_type: '역할_이름]의 %{블록_이름}에 대한 %{스킬 유형 %{스킬_유형}이(가) 잘못되었습니다. 유효한 옵션: %{valid_options}'
+              props_missing: Job
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +362,16 @@ ko:
             last_name:
               blank: 성은 비워 둘 수 없습니다
               starts_with_invalid_characters: 성은 =, |, +, -, @, %로 시작할 수 없습니다
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: '행 %{행}: 필드}에 대해 %{값} 값을 중복했습니다.'
+              invalid_format: xlsx 파일을 업로드하세요.
+              missing_headers: "%{시트_이름} 시트에 필수 헤더가 없습니다: %{헤더}"
+              missing_sheets: '필요한 시트가 누락되었습니다: %{시트}'
+              missing_value: '행 %{행}: 필드}에 누락된 값이 있습니다.'
+            project:
+              must_exist: 프로젝트가 존재해야 합니다.
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +800,10 @@ ko:
         export_development_actions: 수출 개발 작업
         export_dimension_as_json: 차원 JSON 내보내기
         export_factor_translations: 내보내기 팩터 번역
+        export_job_roles_translations: 직무 역할 번역 내보내기
         export_norm: 내보내기 규범
         export_occupations: 직업 내보내기
+        export_proficiency_levels: 내보내기 숙련도 수준
         export_report_data: 보고서 데이터 내보내기
         export_reports_and_assessments: 내보내기 보고서 및 평가
         export_skill_translations: 기술 번역 내보내기
@@ -784,12 +822,15 @@ ko:
         import_external_campaign_scoring: 외부 캠페인 점수 가져오기
         import_factor_translations: 가져오기 계수 번역
         import_factors: 가져오기 요소
+        import_job_roles_translations: 직무 역할 번역 가져오기
         import_norm: 가져오기 규범
+        import_proficiency_level_translations: 숙련도 수준 번역 가져오기
         import_question_translations: 질문 번역 가져오기
         import_raw_data: 원시 데이터 가져오기
         import_scoring_data: 채점 데이터 가져오기
         import_skill_translations: 스킬 번역 가져오기
         import_skills: 스킬 가져오기
+        import_skills_rater_taxonomies: 스킬 평가자 분류체계 가져오기
         import_sms_invites: SMS 초대 가져오기
         import_users: 사용자 가져오기
         migrate_assessment_translations: 평가 번역 마이그레이션
@@ -1656,6 +1697,7 @@ ko:
       assessor: 평가자
       category: 카테고리
       client: 클라이언트
+      code: 코드
       created_at: 만든 곳
       created_by: 만든 사람
       created_date: 생성 날짜
@@ -1978,6 +2020,8 @@ ko:
       filled?: 비어있을 수 없습니다
       invalid_name: 알파벳, 숫자, 공백, 대시 및 점만 유효한 문자로 허용됩니다
       invalid_value: 줄 번호 %{value}에 잘못된 문 '%{row}'이 있습니다
+      job_roles:
+        unique_within_job_group: 같은 이름의 직무 역할이 이미 존재합니다.
       json?: 유효한 JSON이어야 합니다
       key?: 비어있을 수 없습니다
       match_regexp?: 유효하지 않은 값
@@ -1998,6 +2042,9 @@ ko:
       skill_alias:
         unique_alias: 별칭은 고유해야 합니다
         unique_skill: 스킬은 고유해야 합니다
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: 스킬과 직무는 동일한 프로젝트에 속하거나 글로벌한 것이어야 합니다.
+        unique_mappings: 동일한 스킬과 직무 역할을 가진 매핑이 이미 존재합니다.
       uniq: 이 Mettl 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
       uniq?: 고유해야 합니다
       uniq_simulation: 이 시뮬레이션 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다

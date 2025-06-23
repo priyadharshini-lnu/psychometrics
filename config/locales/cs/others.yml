@@ -31,6 +31,10 @@ cs:
             blank: Odpovědi nemohou být prázdné
           group_id:
             blank: Id skupiny nemůže být prázdné
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{název_bloku}" má duplicitní konfigurace: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ cs:
               too_short: Heslo hodnotitele je příliš krátké (minimum je %{count} znaků)
             first_name:
               blank: Křestní jméno nesmí být prázdné
+            job_role:
+              cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
+              not_found: Pracovní role '%{name}' nebyla nalezena v projektových ani globálních rolích
             last_name:
               blank: Příjmení nesmí být prázdné
             locale:
@@ -182,12 +189,25 @@ cs:
               invalid: E-mail je neplatný
             first_name:
               blank: Křestní jméno nesmí být prázdné
+            job_role:
+              cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
             last_name:
               blank: Příjmení nesmí být prázdné
             locale:
               inclusion: Špatné umístění
             password:
               too_short: Heslo je příliš krátké. Je vyžadován minimální počet znaků %{count}
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Hodnota %{název_sloupce} nemůže být prázdná na řádku %{číslo_řádku}
+              invalid_format: Nahrajte prosím soubor CSV
+              invalid_job_role_id: Id na řádku %{číslo_řádku} není platné ID pracovní role
+              invalid_locale: Locale na řádku %{číslo_řádku} není platné locale
+              missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
+              parsing_failed: 'Chyba při zpracování souboru, chyba: %{error}.'
+            project:
+              must_exist: Projekt musí existovat
         mettl:
           attributes:
             name:
@@ -303,6 +323,12 @@ cs:
             email:
               blank: E-mail nemůže být prázdný
               not_uniq_email: Řádek s e-mailem je již přítomen
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
+              invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
+              props_missing: Práce
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +362,16 @@ cs:
             last_name:
               blank: Příjmení nesmí být prázdné
               starts_with_invalid_characters: Příjmení nesmí začínat znaky =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Řádek %{řádek}: Duplicitní hodnota %{hodnota} pro %{pole}'
+              invalid_format: Nahrajte prosím soubor xlsx
+              missing_headers: "%{název_listu} chybí požadované záhlaví: %{záhlaví}"
+              missing_sheets: 'Chybějící požadované listy: %{listy}'
+              missing_value: 'Řádek %{řádek}: Chybějící hodnota pro %{pole}'
+            project:
+              must_exist: Projekt musí existovat
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +800,10 @@ cs:
         export_development_actions: Akce na rozvoj vývozu
         export_dimension_as_json: Export rozměru JSON
         export_factor_translations: Překlady exportních faktorů
+        export_job_roles_translations: Export pracovních rolí Překlady
         export_norm: Norma pro vývoz
         export_occupations: Povolání Export
+        export_proficiency_levels: Úrovně odborné způsobilosti pro export
         export_report_data: Export dat sestavy
         export_reports_and_assessments: Exportní zprávy a hodnocení
         export_skill_translations: Exportní dovednosti Překlady
@@ -784,12 +822,15 @@ cs:
         import_external_campaign_scoring: Importování externího bodování kampaní
         import_factor_translations: Překlady importních faktorů
         import_factors: Faktory dovozu
+        import_job_roles_translations: Import pracovních rolí Překlady
         import_norm: Importní norma
+        import_proficiency_level_translations: Importovat překlady na úrovni pokročilosti
         import_question_translations: Překlady importních otázek
         import_raw_data: Import surových dat
         import_scoring_data: Import dat pro skórování
         import_skill_translations: Importovat dovednosti Překlady
         import_skills: Dovednosti pro import
+        import_skills_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_sms_invites: Importovat pozvánku SMS
         import_users: Import uživatelů
         migrate_assessment_translations: Hodnocení Překlad migrace
@@ -1669,6 +1710,7 @@ cs:
       assessor: Posuzovatel
       category: Kategorie
       client: Klient
+      code: Kód
       created_at: Vytvořeno v
       created_by: Vytvořil
       created_date: Datum vytvoření
@@ -1993,6 +2035,8 @@ cs:
         tag_or_skill_required: Vyberte prosím buď štítek nebo dovednost, když je vybrána možnost "Vybráno".
       invalid_name: jako platné znaky jsou povoleny pouze abeceda, číslo, mezera, pomlčka a tečka
       invalid_value: neplatný příkaz '%{value}' na řádku číslo %{row}
+      job_roles:
+        unique_within_job_group: Pracovní role se stejným názvem již existuje.
       json?: Měl by to být platný JSON
       key?: nemůže být prázdný
       match_regexp?: neplatná hodnota
@@ -2013,6 +2057,9 @@ cs:
       skill_alias:
         unique_alias: Alias by měl být jedinečný
         unique_skill: Dovednost by měla být jedinečná
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Dovednost a pracovní role musí patřit ke stejnému projektu nebo být globální.
+        unique_mappings: Mapování se stejnou dovedností a pracovní rolí již existuje.
       uniq: Toto posouzení Mettl je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq?: by měly být jedinečné
       uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}

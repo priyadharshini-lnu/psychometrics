@@ -2222,6 +2222,42 @@ de:
         requested_rescheduling_rejected: Umterminierung Abgelehnt
         rescheduled: Umgeplant
       subject: Thema
+    job_role:
+      column:
+        job_group: Berufsgruppe
+      export:
+        failure_msg: Fehler beim Exportieren von Übersetzungen
+        success_msg: Export von laufenden Entwicklungsmaßnahmen.
+      form:
+        code: Code
+        description: Beschreibung
+        job_group: Berufsgruppe
+        name: Name
+        title: Berufsrolle
+      global: Ist Global Job Role?
+      import:
+        download_example_csv: Download Beispiel csv
+        success_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import aufgenommen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
+      import_action:
+        translations: Job-Rollen-Übersetzungen importieren
+      translations: Job-Rollen-Übersetzungen
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Erwartetes Kompetenzniveau
+        job_role: Berufsrolle
+        skill: Fähigkeit
+      form:
+        expected_proficiency_level: Erwartetes Kompetenzniveau
+        job_role: Berufsrolle
+        skill: Fähigkeit
+        title: Zuordnung
+      global: Ist Global Skill Job Mapping?
+      import:
+        taxonomy: Taxonomie
+    job_roles:
+      export:
+        translations:
+          details: Einzelheiten
     libraries:
       create:
         successfully: Element %{Name} wurde erfolgreich erstellt.
@@ -2494,6 +2530,68 @@ de:
         successfully: Erfolgreich
       toggle_status:
         successfully: Erfolgreich
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Die Ebenendefinition muss ein Array von Definitionen sein.
+          level_definition_must_match_level: muss genau %{erwartete} Werte enthalten, aber %{tatsächliche} wurden angegeben
+          must_be_unique: Muss einzigartig sein
+          proficiency_level_exists: Ein ProficiencyLevel mit dieser Fähigkeit und diesem Projekt existiert bereits
+          proficiency_level_exists_for_category: Ein ProficiencyLevel für diese Kategorie existiert bereits
+          project_level_all_skills_exists: Es gibt bereits eine Befähigungsstufe "all_skills".
+          skill_must_exist: Fertigkeit muss für proficiency_type 'by_skill' vorhanden sein
+      export:
+        details: Einzelheiten
+        failure_msg: Fehler beim Exportieren von Kompetenzstufen
+        success_msg: Exportieren laufender Entwicklungsmaßnahmen
+        translations:
+          details: Proficiency Level Translations
+      fields:
+        level: Ebene
+        level_description: Ebene Beschreibung
+        level_name: Ebene Name
+        proficiency_translations: Proficiency-Übersetzungen
+        proficiency_type: Befähigungsart
+        skill: Fertigkeit
+        skill_category: Kategorie der Fertigkeiten
+        skill_name: Name der Fertigkeit
+        title: Befähigung
+      import:
+        actions:
+          proficiency: Importkenntnisse
+          translations: Proficiency-Übersetzungen importieren
+        errors:
+          all_skills_global_exists: 'Zeile %{row_number}: Ein ProficiencyLevel auf globaler Ebene ''all_skills'' existiert bereits'
+          all_skills_project_exists: 'Zeile %{row_number}: Ein ProficiencyLevel auf Projektebene ''all_skills'' existiert bereits'
+          by_category_exists: 'Zeile %{row_number}: Ein ''by_category'' ProficiencyLevel existiert bereits für dieses Projekt und diese Kompetenzkategorie'
+          by_category_missing: 'Zeile %{row_number}: Projekt und Fähigkeitskategorie müssen für den Typ "by_category" vorhanden sein'
+          by_skill_exists: 'Zeile %{row_number}: Ein ''by_skill'' ProficiencyLevel existiert bereits für dieses Projekt und diesen Skill'
+          by_skill_missing: 'Zeile %{row_number}: Projekt und Fertigkeit müssen für den Typ ''by_skill'' vorhanden sein'
+          invalid_csv_format: 'Ungültiges CSV-Format: %{Meldung}'
+          invalid_json: 'Zeile %{line}: Ungültiges JSON in LevelDefinition - %{message}'
+          invalid_json_structure: muss ein JSON-Objekt mit Schlüsseln wie "Beschreibung" und "Zusammenfassung" sein
+          invalid_proficiency_type: 'Zeile %{row_number}: Ungültiger oder fehlender ProficiencyType'
+          missing_columns: 'Fehlende erforderliche Spalten: %{fields}'
+          missing_required_fields: 'Zeile %{line}: Fehlende Pflichtfelder (%{fields})'
+          save_failed: 'Zeile %{line}: %{Nachricht}'
+        job_queued: Der Importauftrag für die Kompetenzstufen wurde in die Warteschlange gestellt.
+      translations:
+        export:
+          failure_msg: Fehler beim Exportieren von Übersetzungen
+          success_msg: Export von laufenden Entwicklungsmaßnahmen.
+        import:
+          errors:
+            invalid_csv_format: 'Ungültiges CSV-Format: %{Meldung}'
+            invalid_locales: Ungültiges Gebietsschema
+            level_not_found: 'Level nicht gefunden für ID: %{level_id}'
+            missing_columns: 'Fehlende erforderliche Spalten: %{fields}'
+            missing_required_columns: 'Fehlende erforderliche Spalten: %{columns}'
+            row_id_blank: 'Zeile %{row}: ID kann nicht leer sein'
+            save_failed: 'Fehler bei der Verarbeitung der Skill-ID %{id}: %{Meldung}'
+      type:
+        all_skills: Alle Fertigkeiten
+        by_category: Nach Kategorie
+        by_skill: Durch Geschicklichkeit
     profile:
       change_password: Passwort ändern
       details: Einzelheiten
@@ -3369,6 +3467,7 @@ de:
         description: Beschreibung
         name: Name
         project_placeholder: Wählen Sie ein Projekt
+        skill_group: Skill-Gruppe
         skill_type: Fähigkeitstyp
         title: Fertigkeit
       global: Ist Global Skill?
@@ -3391,6 +3490,8 @@ de:
             skill_not_found: Skill mit ID %{id} nicht gefunden
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Skill Job Mappings
+        job_roles: Job-Rollen
         proficiency: Befähigung
         skills: Fertigkeiten
     sms_histories:
@@ -3596,6 +3697,14 @@ de:
           other: ''
       more_actions: Weitere Aktionen
     taxonomy:
+      import:
+        download_example_file: Beispieldatei herunterladen
+        success_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import aufgenommen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
+      import_action:
+        taxonomy: Taxonomie importieren
+      job_roles: Berufsrollen
+      proficiency: Befähigung
+      skill_job_mappings: Zuordnungen
       skills: Fertigkeiten
       title: Taxonomie
     templates:

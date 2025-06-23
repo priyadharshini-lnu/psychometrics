@@ -11,6 +11,48 @@ zh-HK:
         select_comparison: 選擇比較類型
         select_factors: 選擇因素
         select_operation: 選擇操作
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 區塊「%{block_name}」有重複的設定：%{duplicate_configurations}。
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: 目標工作角色必須與目前工作角色不同
+              not_found: 在專案或全局角色中找不到工作角色 '%{name}'
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: 目標工作角色必須與目前工作角色不同
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: 在 %{row_number} 行上的 %{column_name} 值不能為空。
+              invalid_format: 請上傳 CSV 檔案
+              invalid_job_role_id: "%{row_number} 行的 ID 不是有效的工作角色 ID"
+              invalid_locale: 行 %{row_number} 上的區域語言不是有效的區域語言
+              missing_required_columns: 缺少必填欄位：%{columns}。
+              parsing_failed: 解析檔案時發生錯誤，錯誤：%{error}.
+            project:
+              must_exist: 專案必須存在
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必須啟用至少一個工作角色，並選取 %{block_name} 的技能類型。
+              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能類型無效。有效選項： %{valid_options}"
+              props_missing: 工作機會
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 行 %{row}：%{field} 的 %{value} 值重複
+              invalid_format: 請上傳 xlsx 檔案
+              missing_headers: "%{sheet_name} 工作表缺少所需的標題： %{headers}"
+              missing_sheets: 缺少所需的工作表：%{sheets}
+              missing_value: 行 %{row}：缺少 %{field} 的值
+            project:
+              must_exist: 專案必須存在
   activerecord:
     attributes:
       membership:
@@ -33,10 +75,28 @@ zh-HK:
               blank: 需要手機號碼
               invalid: 手機號碼無效
               verification_expired: 驗證碼已過期，您可以嘗試重新驗證。
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 第 %{row} 行：欄位 %{field} 的數值 %{value} 重複
+              invalid_format: 請上傳 xlsx 檔案
+              missing_headers: "%{sheet_name} 工作表缺少必要標題：%{headers}"
+              missing_sheets: 缺少必要的工作表：%{sheets}
+              missing_value: 第 %{row} 行：欄位 %{field} 缺少數值
+            project:
+              must_exist: 項目必須存在
         user:
           attributes:
             current_password:
               invalid: 目前密碼不正確
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: 匯出工作角色翻譯
+        export_proficiency_levels: 出口能力等級
+        import_job_roles_translations: 匯入工作角色翻譯
+        import_proficiency_level_translations: 進口能力等級翻譯
+        import_skills_rater_taxonomies: 匯入技能評核員分類標準
   anonym:
     close: 關閉
     continue: 繼續
@@ -394,6 +454,7 @@ zh-HK:
     column:
       action: 操作
       category: 類別
+      code: 代碼
       created_at: 建立時間
       id: ID
       status: 狀態
@@ -465,6 +526,11 @@ zh-HK:
     errors:
       idp_template:
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
+      job_roles:
+        unique_within_job_group: 已有相同名稱的職位角色存在。
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
+        unique_mappings: 具有相同技能和工作角色的映射已經存在。
   emails:
     subject_relationship_table:
       subject_email: 主題電子郵件

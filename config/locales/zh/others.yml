@@ -31,6 +31,10 @@ zh:
             blank: 答案不能为空
           group_id:
             blank: 组 ID 不能为空
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 区块"%{block_name}"有重复配置： %{duplicate_configurations}
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ zh:
               too_short: 评估者密码太短（最少为 %{count} 字符）
             first_name:
               blank: 名字不能为空
+            job_role:
+              cannot_be_same: 目标工作角色必须与当前工作角色不同
+              not_found: 在项目或全局角色中未发现工作角色"%{name}
             last_name:
               blank: 姓氏不能为空
             locale:
@@ -182,12 +189,25 @@ zh:
               invalid: 电子邮件无效
             first_name:
               blank: 名字不能为空
+            job_role:
+              cannot_be_same: 目标工作角色必须与当前工作角色不同
             last_name:
               blank: 姓氏不能为空
             locale:
               inclusion: 地点错误
             password:
               too_short: 密码太短，至少需要 %{count} 字符
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: 行 %{row_number} 上的值 %{column_name} 不能为空
+              invalid_format: 请上传 CSV 文件
+              invalid_job_role_id: 行 %{row_number} 中的 Id 不是有效的工作角色 ID
+              invalid_locale: 第 %{row_number} 行上的本地语言不是有效的本地语言
+              missing_required_columns: 缺少必填列： %{columns}
+              parsing_failed: 解析文件时出错，错误：%{error}.
+            project:
+              must_exist: 项目必须存在
         mettl:
           attributes:
             name:
@@ -303,6 +323,12 @@ zh:
             email:
               blank: 电子邮件不能为空
               not_uniq_email: 包含电子邮件的行已经存在
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必须启用至少一个工作角色，并为 %{block_name} 选择一个技能类型。
+              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能类型无效。有效选项： %{valid_options}"
+              props_missing: 工作
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +362,16 @@ zh:
             last_name:
               blank: 姓氏不能为空
               starts_with_invalid_characters: 姓氏不能以 =、|、+、-、@、% 开头
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 第 %{row} 行：字段 %{field} 的值 %{value} 重复
+              invalid_format: 请上传 xlsx 文件
+              missing_headers: "%{sheet_name} 工作表缺少必要的表头：%{headers}"
+              missing_sheets: 缺少必要的工作表：%{sheets}
+              missing_value: 第 %{row} 行：字段 %{field} 的值缺失
+            project:
+              must_exist: 项目必须存在
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +800,10 @@ zh:
         export_development_actions: 出口发展行动
         export_dimension_as_json: 导出尺寸 JSON
         export_factor_translations: 出口系数换算
+        export_job_roles_translations: 导出工作角色翻译
         export_norm: 出口规范
         export_occupations: 职业 出口
+        export_proficiency_levels: 出口能力水平
         export_report_data: 导出报告数据
         export_reports_and_assessments: 出口报告和评估
         export_skill_translations: 出口技能翻译
@@ -784,12 +822,15 @@ zh:
         import_external_campaign_scoring: 导入外部营销活动评分
         import_factor_translations: 进口系数翻译
         import_factors: 进口因素
+        import_job_roles_translations: 导入工作角色翻译
         import_norm: 进口规范
+        import_proficiency_level_translations: 进口熟练程度翻译
         import_question_translations: 导入问题翻译
         import_raw_data: 导入原始数据
         import_scoring_data: 导入评分数据
         import_skill_translations: 进口技能翻译
         import_skills: 进口技能
+        import_skills_rater_taxonomies: 导入技能评级器分类标准
         import_sms_invites: 导入短信邀请
         import_users: 导入用户
         migrate_assessment_translations: 评估 翻译迁移
@@ -1667,6 +1708,7 @@ zh:
       assessor: 评估员
       category: 类别
       client: 客户
+      code: 代码
       created_at: 创建时间
       created_by: 创建者
       created_date: 创建日期
@@ -1991,6 +2033,8 @@ zh:
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
       invalid_name: 只允许字母、数字、空格、破折号和点作为有效字符
       invalid_value: 行号 %{row} 上的语句"%{value}"无效
+      job_roles:
+        unique_within_job_group: 具有相同名称的职位角色已存在。
       json?: 应为有效的 JSON
       key?: 不能空白
       match_regexp?: 无效值
@@ -2011,6 +2055,9 @@ zh:
       skill_alias:
         unique_alias: 别名应是唯一的
         unique_skill: 技能应独一无二
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: 技能和工作角色必须属于同一项目或全球项目。
+        unique_mappings: 相同技能和工作角色的映射已经存在。
       uniq: 系统中已存在该 Mettl 评估。 该评估的 ID 是 %{id}
       uniq?: 应是唯一的
       uniq_simulation: 该模拟评估已存在于系统中。 该评估的 ID 是 %{id}

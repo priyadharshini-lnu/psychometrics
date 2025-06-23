@@ -173,6 +173,10 @@ en:
             manage: Manage
             title: IDP Templates
             view: View
+          jobRoles:
+            manage: Manage
+            title: Job Roles
+            view: View
           mediaLibraries:
             manage: Manage
             title: Media Libraries
@@ -185,6 +189,13 @@ en:
           norms:
             manage: Manage
             title: Norms
+            view: View
+          proficiencyLevels:
+            export: Export Proficiency Levels
+            export_translations: Export Proficiency Levels translations
+            import: Import Proficiency Levels
+            import_translations: Import Proficiency Levels Translations
+            manage: Manage
             view: View
           projectSettings:
             assessments: Assessments
@@ -249,10 +260,10 @@ en:
             view_report: View Report
             view_stats: View Stats
           skills:
-            export: Export
-            export_translations: Export translation
-            import: Import
-            import_translations: Import translation
+            export: Export Skills
+            export_translations: Export Skills Translations
+            import: Import Skills
+            import_translations: Import Skills Translations
             manage: Manage
             title: Skills
             view: View
@@ -1905,7 +1916,6 @@ en:
     enable: Enable
     errors:
       csv_file_required: File must be a CSV file
-      download_failed: 'Failed to download file: %{message}'
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
       invalid_csv_format: 'Invalid CSV format: %{message}'
       invalid_url: 'Invalid URL: %{message}'
@@ -2311,6 +2321,44 @@ en:
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
       subject: Subject
+    job_role:
+      column:
+        job_group: Job Group
+      export:
+        failure_msg: Error while exporting translations
+        success_msg: Exporting development actions in progress.
+      export_action:
+        translations: Export Job Role Translations
+      form:
+        code: Code
+        description: Description
+        job_group: Job Group
+        name: Name
+        title: Job Role
+      global: Is Global Job Role?
+      import:
+        download_example_csv: Download Example csv
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        translations: Import Job Role Translations
+      translations: Job Role Translations
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Expected Proficiency Level
+        job_role: Job Role
+        skill: Skill
+      form:
+        expected_proficiency_level: Expected Proficiency Level
+        job_role: Job Role
+        skill: Skill
+        title: Skill Job Mapping
+      global: Is Global Skill Job Mapping?
+      import:
+        taxonomy: Taxonomy
+    job_roles:
+      export:
+        translations:
+          details: Details
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2584,6 +2632,72 @@ en:
         successfully: Successfully
       toggle_status:
         successfully: Successfully
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Level definition must be an array of definitions.
+          level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
+          must_be_unique: Must be unique
+          proficiency_level_exists: A ProficiencyLevel with this skill and project already exists
+          proficiency_level_exists_for_category: A ProficiencyLevel for this category already exists
+          project_level_all_skills_exists: A 'all_skills' proficiency level already exists
+          skill_must_exist: Skill must be present for proficiency_type 'by_skill'
+      export:
+        actions:
+          proficiency: Export Proficiency
+          translations: Export Proficiency Translations
+        details: Details
+        failure_msg: Error while exporting proficiency levels
+        success_msg: Exporting development actions in progress
+        translations:
+          details: Proficiency Level Translations
+      fields:
+        level: Level
+        level_description: Level Description
+        level_name: Level Name
+        proficiency_translations: Proficiency Translations
+        proficiency_type: Proficiency Type
+        skill: Skill
+        skill_category: Skill Category
+        skill_name: Skill name
+        title: Proficiency
+      global: Is Global Proficiency?
+      import:
+        actions:
+          proficiency: Import Proficiency
+          translations: Import Proficiency Translations
+        errors:
+          all_skills_global_exists: 'Row %{row_number}: A global-level ''all_skills'' ProficiencyLevel already exists'
+          all_skills_project_exists: 'Row %{row_number}: A project-level ''all_skills'' ProficiencyLevel already exists'
+          by_category_exists: 'Row %{row_number}: A ''by_category'' ProficiencyLevel already exists for this project and skill category'
+          by_category_missing: 'Row %{row_number}: Project and Skill Category must be present for ''by_category'' type'
+          by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
+          by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
+          invalid_csv_format: 'Invalid CSV format: %{message}'
+          invalid_json: 'Line %{line}: Invalid JSON in LevelDefinition - %{message}'
+          invalid_json_structure: must be a JSON object with keys like 'description' and 'summary'
+          invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
+          missing_columns: 'Missing required columns: %{fields}'
+          missing_required_fields: 'Line %{line}: Missing required fields (%{fields})'
+          save_failed: 'Line %{line}: %{message}'
+        job_queued: Proficiency levels import job has been queued
+      translations:
+        export:
+          failure_msg: Error while exporting translations
+          success_msg: Exporting development actions in progress.
+        import:
+          errors:
+            invalid_csv_format: 'Invalid CSV format: %{message}'
+            invalid_locales: Invalid locale
+            level_not_found: 'Level not found for ID: %{level_id}'
+            missing_columns: 'Missing required columns: %{fields}'
+            missing_required_columns: 'Missing required columns: %{columns}'
+            row_id_blank: 'Row %{row}: ID cannot be blank'
+            save_failed: 'Error processing Skill ID %{id}: %{message}'
+      type:
+        all_skills: All Skills
+        by_category: By Category
+        by_skill: By Skill
     profile:
       change_password: Change password
       details: Details
@@ -3508,6 +3622,7 @@ en:
         description: Description
         name: Name
         project_placeholder: Select a Project
+        skill_group: Skill Group
         skill_type: Skill Type
         title: Skill
       global: Is Global Skill?
@@ -3532,6 +3647,8 @@ en:
             skill_not_found: Skill with ID %{id} not found
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Skill Job Mappings
+        job_roles: Job Roles
         proficiency: Proficiency
         skills: Skills
     sms_histories:
@@ -3743,6 +3860,14 @@ en:
           zero: 'Total : 0'
       more_actions: More actions
     taxonomy:
+      import:
+        download_example_file: Download Example File
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        taxonomy: Import Taxonomy
+      job_roles: Job Roles
+      proficiency: Proficiency
+      skill_job_mappings: Skill Job Mappings
       skills: Skills
       title: Taxonomy
     templates:

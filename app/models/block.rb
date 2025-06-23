@@ -32,6 +32,11 @@ class Block < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  enum :block_type, {
+    regular: 0,
+    skills_rater: 1
+  }
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name created_at]
   end

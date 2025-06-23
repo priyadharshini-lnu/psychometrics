@@ -1524,6 +1524,34 @@ as: :simulation_progress_notification
 
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
 
+          jsonapi_resources :skills_rater_assessments do
+            collection do
+              post :import_taxonomies
+            end
+          end
+
+          jsonapi_resources :job_roles, only: %i[index create update destroy] do
+            collection do
+              post :import_translations
+              post :export_translations
+            end
+          end
+
+          jsonapi_resources :proficiency_levels,
+                            only: %i[create show index update destroy],
+                            controller: 'proficiency_levels' do
+            collection do
+              post :import
+              post :import_translations
+              post :export
+              post :export_translations
+            end
+          end
+
+          jsonapi_resources :skills_job_roles, only: %i[index create update destroy]
+          jsonapi_resources :job_groups, only: %i[index]
+          jsonapi_resources :skill_groups, only: %i[index]
+
           namespace :ai do
             jsonapi_resources :assistants, relationships: false do
               member do

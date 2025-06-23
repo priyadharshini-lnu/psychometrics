@@ -11,6 +11,48 @@ pl:
         select_comparison: Wybierz typ porównania
         select_factors: Wybierz Czynniki
         select_operation: Wybierz opcję Operacja
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{nazwa_bloku}" ma zduplikowane konfiguracje: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Docelowa rola zawodowa musi różnić się od obecnej roli zawodowej.
+              not_found: Rola zadania '%{nazwa}' nie została znaleziona w projekcie lub rolach globalnych
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Docelowa rola zawodowa musi różnić się od obecnej roli zawodowej.
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Wartość %{nazwa_kolumny} nie może być pusta w wierszu %{numer_wiersza}.
+              invalid_format: Prześlij plik CSV
+              invalid_job_role_id: Identyfikator w wierszu %{numer_wiersza} nie jest prawidłowym identyfikatorem roli zadania
+              invalid_locale: Lokalizacja w wierszu %{numer_wiersza} nie jest prawidłową lokalizacją
+              missing_required_columns: 'Brakujące wymagane kolumny: %{kolumny}'
+              parsing_failed: 'Błąd podczas analizowania pliku, błąd: %{error}.'
+            project:
+              must_exist: Projekt musi istnieć
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Co najmniej jedna rola zawodowa musi być włączona z typem umiejętności wybranym dla %{block_name}.
+              invalid_skill_type: 'Nieprawidłowy typ umiejętności %{skill_type} dla %{role_name} dla %{block_name}. Prawidłowe opcje: %{valid_options}'
+              props_missing: Praca
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Wiersz %{row}: Zduplikowana wartość %{value} dla %{field}.'
+              invalid_format: Prześlij plik xlsx
+              missing_headers: 'W arkuszu %{sheet_name} brakuje wymaganych nagłówków: %{headers}'
+              missing_sheets: 'Brakujące wymagane arkusze: %{arkusze}'
+              missing_value: 'Wiersz %{row}: Brakująca wartość dla %{field}'
+            project:
+              must_exist: Projekt musi istnieć
   activerecord:
     attributes:
       membership:
@@ -37,6 +79,14 @@ pl:
           attributes:
             current_password:
               invalid: Bieżące hasło jest nieprawidłowe
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Eksportuj tłumaczenia ról zawodowych
+        export_proficiency_levels: Poziomy biegłości w eksporcie
+        import_job_roles_translations: Importowanie tłumaczeń ról zadań
+        import_proficiency_level_translations: Importuj tłumaczenia na poziomie biegłości
+        import_skills_rater_taxonomies: Importowanie taksonomii Skill Rater
   anonym:
     close: Zamknij
     continue: Kontynuuj
@@ -387,6 +437,7 @@ pl:
     column:
       action: Działanie
       category: Kategoria
+      code: Kod
       created_at: Utworzono w
       id: Id
       status: Status
@@ -458,6 +509,11 @@ pl:
     errors:
       idp_template:
         tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane”, wybierz tag lub umiejętność.
+      job_roles:
+        unique_within_job_group: Rola zawodowa o tej samej nazwie już istnieje.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Umiejętność i rola muszą należeć do tego samego projektu lub być globalne.
+        unique_mappings: Mapowanie z tymi samymi umiejętnościami i rolą zawodową już istnieje.
   emails:
     subject_relationship_table:
       subject_email: Przedmiot E-mail

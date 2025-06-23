@@ -2071,6 +2071,42 @@ ar:
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
       subject: Subject
+    job_role:
+      column:
+        job_group: مجموعة الوظائف
+      export:
+        failure_msg: خطأ أثناء تصدير الترجمات
+        success_msg: تصدير إجراءات التطوير قيد التنفيذ.
+      form:
+        code: الرمز
+        description: الوصف
+        job_group: مجموعة الوظائف
+        name: الاسم
+        title: الدور الوظيفي
+      global: هل دور الوظيفة العالمية؟
+      import:
+        download_example_csv: تنزيل مثال csv
+        success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
+      import_action:
+        translations: استيراد ترجمات الأدوار الوظيفية
+      translations: ترجمات الأدوار الوظيفية
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: مستوى الكفاءة المتوقع
+        job_role: الدور الوظيفي
+        skill: المهارة
+      form:
+        expected_proficiency_level: مستوى الكفاءة المتوقع
+        job_role: الدور الوظيفي
+        skill: المهارة
+        title: التعيين
+      global: هل تخطيط وظيفة المهارات العالمية؟
+      import:
+        taxonomy: التصنيف
+    job_roles:
+      export:
+        translations:
+          details: التفاصيل
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2330,6 +2366,69 @@ ar:
         report: Report
         review: Review
       resource_name: Proctoring Sessions
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: يجب أن يكون تعريف المستوى مصفوفة من التعريفات.
+          level_definition_must_match_level: يجب أن يحتوي على %{المتوقع} بالضبط، ولكن تم إعطاء %{الفعلية}
+          must_be_unique: يجب أن تكون فريدة من نوعها
+          proficiency_level_exists: مستوى الكفاءة مع هذه المهارة والمشروع موجود بالفعل
+          proficiency_level_exists_for_category: مستوى الكفاءة لهذه الفئة موجود بالفعل
+          project_level_all_skills_exists: مستوى كفاءة "جميع_المهارات" موجود بالفعل
+          skill_must_exist: يجب أن تكون المهارة موجودة لنوع الكفاءة 'حسب_المهارة'
+      export:
+        details: التفاصيل
+        failure_msg: خطأ أثناء تصدير مستويات الكفاءة
+        success_msg: تصدير إجراءات التطوير قيد التنفيذ
+        translations:
+          details: ترجمات مستوى الكفاءة
+      fields:
+        level: المستوى
+        level_description: وصف المستوى
+        level_name: اسم المستوى
+        proficiency_translations: ترجمات الكفاءة
+        proficiency_type: نوع الكفاءة
+        skill: المهارة
+        skill_category: فئة المهارة
+        skill_name: اسم المهارة
+        title: الكفاءة
+      global: هل الكفاءة العالمية؟
+      import:
+        actions:
+          proficiency: كفاءة الاستيراد
+          translations: استيراد ترجمات الكفاءة في الترجمة
+        errors:
+          all_skills_global_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "كل_المهارات" على المستوى العام موجود بالفعل'
+          all_skills_project_exists: 'الصف %{صف_رقم}: مستوى كفاءة "جميع_المهارات" على مستوى المشروع موجود بالفعل'
+          by_category_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "حسب_الفئة" موجود بالفعل لهذا المشروع وفئة المهارة'
+          by_category_missing: 'الصف %{صف_رقم}: يجب أن يكون المشروع وفئة المهارة موجودين لنوع "حسب_الفئة'
+          by_skill_exists: 'الصف %{صف_رقم}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
+          by_skill_missing: 'الصف %{صف_رقم}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
+          invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{الرسالة}'
+          invalid_json: 'السطر %{الخط}: JSON غير صالح في LevelDefinition - %{الرسالة}'
+          invalid_json_structure: يجب أن يكون كائن JSON بمفاتيح مثل "الوصف" و"الملخص
+          invalid_proficiency_type: 'الصف %{صف_رقم}: نوع الكفاءة غير صالح أو مفقود'
+          missing_columns: 'الأعمدة المطلوبة المفقودة: %{الحقول}'
+          missing_required_fields: 'السطر %{خط}: حقول مطلوبة مفقودة (%{حقول})'
+          save_failed: 'السطر %{السطر}: %{الرسالة}'
+        job_queued: تم وضع مهمة استيراد مستويات الكفاءة في قائمة الانتظار
+      translations:
+        export:
+          failure_msg: خطأ أثناء تصدير الترجمات
+          success_msg: تصدير إجراءات التطوير قيد التنفيذ.
+        import:
+          errors:
+            invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{الرسالة}'
+            invalid_locales: لغة محلية غير صالحة
+            level_not_found: 'لم يتم العثور على مستوى المعرف: %{level_id}'
+            missing_columns: 'الأعمدة المطلوبة المفقودة: %{الحقول}'
+            missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
+            row_id_blank: 'الصف %{صف}: لا يمكن أن يكون المعرف فارغاً'
+            save_failed: 'خطأ في معالجة معرّف المهارة %{id}: %{الرسالة}'
+      type:
+        all_skills: جميع المهارات
+        by_category: حسب الفئة
+        by_skill: حسب المهارة
     profile:
       change_password: Change password
       details: Details
@@ -3161,11 +3260,16 @@ ar:
         description: Description
         name: Name
         project_placeholder: Select a Project
+        skill_group: مجموعة المهارات
         skill_type: نوع المهارة
         title: Skill
       import:
         download_example_csv: Download Example csv
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    skills_taxonomy:
+      tabs:
+        job_role_skill_mapping: تعيينات وظائف المهارة
+        job_roles: الأدوار الوظيفية
     sms_histories:
       columns:
         first_name: First Name
@@ -3374,6 +3478,17 @@ ar:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
       more_actions: More actions
+    taxonomy:
+      import:
+        download_example_file: تنزيل ملف المثال
+        success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
+      import_action:
+        taxonomy: استيراد التصنيف
+      job_roles: الأدوار الوظيفية
+      proficiency: الكفاءة
+      skill_job_mappings: التعيينات
+      skills: المهارات
+      title: التصنيف
     templates:
       blocks:
         copy:

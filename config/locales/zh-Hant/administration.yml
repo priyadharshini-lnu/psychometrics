@@ -2222,6 +2222,42 @@ zh-Hant:
         requested_rescheduling_rejected: 重新排程 拒絕
         rescheduled: 改期
       subject: 主題
+    job_role:
+      column:
+        job_group: 工作群組
+      export:
+        failure_msg: 匯出翻譯時發生錯誤
+        success_msg: 出口開發行動正在進行中。
+      form:
+        code: 代碼
+        description: 說明
+        job_group: 工作群組
+        name: 名稱
+        title: 工作角色
+      global: 全球工作角色？
+      import:
+        download_example_csv: 下載範例 csv
+        success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
+      import_action:
+        translations: 匯入工作角色翻譯
+      translations: 工作角色翻譯
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: 預期能力等級
+        job_role: 工作角色
+        skill: 技術
+      form:
+        expected_proficiency_level: 預期能力等級
+        job_role: 工作角色
+        skill: 技術
+        title: 技能工作映射
+      global: 全球技能工作映射嗎？
+      import:
+        taxonomy: 分類學
+    job_roles:
+      export:
+        translations:
+          details: 詳細資訊
     libraries:
       create:
         successfully: 項目 %{name} 已成功建立。
@@ -2494,6 +2530,69 @@ zh-Hant:
         successfully: 成功
       toggle_status:
         successfully: 成功
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Level 定義必須是一個定義陣列。
+          level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
+          must_be_unique: 必須獨一無二
+          proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
+          proficiency_level_exists_for_category: 此類別的 ProficiencyLevel 已經存在
+          project_level_all_skills_exists: 已存在「all_skills」能力等級
+          skill_must_exist: 技能必須存在於 proficiency_type 'by_skill' 中。
+      export:
+        details: 詳細資訊
+        failure_msg: 匯出能力等級時發生錯誤
+        success_msg: 輸出開發中的行動
+        translations:
+          details: 能力等級翻譯
+      fields:
+        level: 等級
+        level_description: 等級描述
+        level_name: 等級名稱
+        proficiency_translations: 能力翻譯
+        proficiency_type: 能力類型
+        skill: 技術
+        skill_category: 技能類別
+        skill_name: 技能名稱
+        title: 能力
+      global: 全球能力是嗎？
+      import:
+        actions:
+          proficiency: 進口能力
+          translations: 進口能力翻譯
+        errors:
+          all_skills_global_exists: 行 %{row_number}：全局層級 'all_skills' 的 ProficiencyLevel 已經存在
+          all_skills_project_exists: 行 %{row_number}：專案層級 'all_skills' 的 ProficiencyLevel 已經存在
+          by_category_exists: 行 %{row_number}：此專案和技能類別已存在 'by_category' ProficiencyLevel
+          by_category_missing: 行 %{row_number}：by_category' 類型必須有專案和技能類別
+          by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
+          by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
+          invalid_csv_format: 無效的 CSV 格式：%{message}。
+          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 無效 - %{message}
+          invalid_json_structure: 必須是一個 JSON 物件，具有類似 'description「 和 」summary' 的鍵
+          invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
+          missing_columns: 缺少必填欄位：%{fields}。
+          missing_required_fields: 行 %{line}：缺少必填欄位 (%{fields})
+          save_failed: 行 %{line}：%{message}
+        job_queued: 能力等級匯入工作已排隊
+      translations:
+        export:
+          failure_msg: 匯出翻譯時發生錯誤
+          success_msg: 出口開發行動正在進行中。
+        import:
+          errors:
+            invalid_csv_format: 無效的 CSV 格式：%{message}。
+            invalid_locales: 無效的區域語言
+            level_not_found: 未找到 ID 的等級：%{level_id}。
+            missing_columns: 缺少必填欄位：%{fields}。
+            missing_required_columns: 缺少必填欄位：%{columns}。
+            row_id_blank: 行 %{row}：ID 不能為空白
+            save_failed: 處理技能 ID %{id} 出錯：%{message}
+      type:
+        all_skills: 所有技能
+        by_category: 依類別
+        by_skill: 按技術
     profile:
       change_password: 變更密碼
       details: 詳細資訊
@@ -3369,6 +3468,7 @@ zh-Hant:
         description: 說明
         name: 名稱
         project_placeholder: 選擇專案
+        skill_group: 技能組
         skill_type: 技能類型
         title: 技術
       global: 全球技能？
@@ -3391,6 +3491,8 @@ zh-Hant:
             skill_not_found: 未找到 ID 為 %{id} 的技能
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: 技能工作對應
+        job_roles: 工作角色
         proficiency: 精通
         skills: 技能
     sms_histories:
@@ -3594,6 +3696,14 @@ zh-Hant:
           other: '總數 : 1'
       more_actions: 更多行動
     taxonomy:
+      import:
+        download_example_file: 下載範例檔案
+        success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
+      import_action:
+        taxonomy: 匯入分類系統
+      job_roles: 工作角色
+      proficiency: 能力
+      skill_job_mappings: 技能工作對應
       skills: 技術
       title: 分類學
     templates:

@@ -1,0 +1,146 @@
+import React from 'react'
+import * as t from 'io-ts'
+import { PlusOutlined } from '@ant-design/icons'
+import { App, Button } from 'antd'
+import { useParams } from 'react-router-dom'
+import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { User } from '~/modules/admin/modules/client/core/users'
+import { ToolsDropdown } from './ToolsDropdown'
+
+const { I18n } = window
+
+type Props = {
+  openModal: (modalName: string, modalProps?: unknown) => void
+}
+export const ProficiencyFilters: React.FC<Props> = ({
+  openModal,
+}) => {
+  const { resource } = useResourceContext<User>()
+  const params = useParams()
+
+  const tableLoading = resource.isLoading('fetch')
+
+  const { message } = App.useApp()
+
+  const handleProficiencyImport = (data:FormData,
+    projectId: number, successCallback:()=>void, failureCallback:(error)=>void) => {
+    let action = 'proficiency_levels/import'
+    if (projectId) {
+      action += `?project_id=${projectId}`
+    }
+    resource.uploadFileAction(action, data)
+      .then(() => {
+        successCallback()
+        message.info(I18n.t('administration.proficiency_levels.import.job_queued'))
+      })
+      .catch((error) => {
+        failureCallback(error)
+      })
+  }
+
+  const handleTranslationsImport = (data:FormData,
+    projectId: number, successCallback:()=>void, failureCallback:(error)=>void) => {
+    let action = 'proficiency_levels/import_translations'
+    if (projectId) {
+      action += `?project_id=${projectId}`
+    }
+    resource.uploadFileAction(action, data)
+      .then(() => {
+        successCallback()
+        message.info(I18n.t('administration.proficiency_levels.import.job_queued'))
+      })
+      .catch((error) => {
+        failureCallback(error)
+      })
+  }
+
+  const handleProficiencyExport = (selectedProjectId?: number) => {
+    let action = 'export'
+    if (params.projectId || selectedProjectId) {
+      action += `?project_id=${params.projectId ?? selectedProjectId}`
+    }
+    resource.collectionAction({
+      action,
+      method: 'post',
+      responseType: t.literal('ok'),
+    }).then(() => {
+      message.info(I18n.t('administration.proficiency_levels.export.success_msg'))
+    }).catch(() => {
+      message.error(I18n.t('administration.proficiency_levels.export.failure_msg'))
+    })
+  }
+
+  const handleExportTranslations = (selectedProjectId?: number) => {
+    let action = 'export_translations'
+    if (params.projectId || selectedProjectId) {
+      action += `?project_id=${params.projectId ?? selectedProjectId}`
+    }
+    resource.collectionAction({
+      action,
+      method: 'post',
+      responseType: t.literal('ok'),
+    }).then(() => {
+      message.info(I18n.t('administration.proficiency_levels.translations.export.success_msg'))
+    }).catch(() => {
+      message.error(I18n.t('administration.proficiency_levels.translations.export.failure_msg'))
+    })
+  }
+
+  const handleToolAction = (action: string) => {
+    switch (action) {
+      case 'import_proficiency':
+        openModal('ProficiencyImportModal', {
+          handleImport: handleProficiencyImport,
+          title: I18n.t('administration.proficiency_levels.import.actions.proficiency'),
+          csvFilePath: '/example_csv/proficiency-sample.csv',
+          allowGlobalImport: resource.meta.permissions?.importGlobal,
+        })
+        break
+      case 'import_translations':
+        openModal('ProficiencyImportModal', {
+          handleImport: handleTranslationsImport,
+          title: I18n.t('administration.proficiency_levels.import.actions.translations'),
+          csvFilePath: '/example_csv/proficiency-translations-sample.csv',
+          allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
+        })
+        break
+      case 'export_proficiency':
+        if (params.projectId) {
+          handleProficiencyExport()
+        } else {
+          openModal('ProficiencyExportModal', {
+            handleExport: handleProficiencyExport,
+            title: I18n.t('administration.proficiency_levels.export.actions.proficiency'),
+          })
+        }
+        break
+      case 'export_translations':
+        if (params.projectId) {
+          handleExportTranslations()
+        } else {
+          openModal('ProficiencyExportModal', {
+            handleExport: handleExportTranslations,
+            title: I18n.t('administration.proficiency_levels.export.actions.translations'),
+          })
+        }
+        break
+      default:
+    }
+  }
+
+  const handleCreateMappingModal = () => {
+    openModal('ProficiencyModal')
+  }
+
+  return (
+    <Resource.Filter name="filterable_fields">
+      <ToolsDropdown
+        onClick={handleToolAction}
+      />
+      <Button type="primary" disabled={tableLoading} onClick={handleCreateMappingModal}>
+        <PlusOutlined />
+        {I18n.t('common.actions.create')}
+      </Button>
+    </Resource.Filter>
+  )
+}

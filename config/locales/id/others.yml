@@ -11,6 +11,48 @@ id:
         select_comparison: Pilih Jenis Perbandingan
         select_factors: Pilih Faktor
         select_operation: Pilih Operasi
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{nama_blok}" memiliki konfigurasi duplikat: %{konfigurasi_duplikat}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Peran pekerjaan target harus berbeda dari peran pekerjaan saat ini
+              not_found: Peran pekerjaan '%{nama}' tidak ditemukan dalam peran proyek atau global
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Peran pekerjaan target harus berbeda dari peran pekerjaan saat ini
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Nilai %{nama_kolom} tidak boleh kosong pada baris %{nomor_baris}
+              invalid_format: Silakan unggah file CSV
+              invalid_job_role_id: Id pada baris %{baris_nomor} bukan merupakan ID peran pekerjaan yang valid
+              invalid_locale: Lokasi di baris %{baris_nomor} bukan merupakan lokasi yang valid
+              missing_required_columns: 'Kolom yang diperlukan tidak ada: %{kolom-kolom}'
+              parsing_failed: 'Kesalahan saat mem-parsing file, kesalahan: %{error}.'
+            project:
+              must_exist: Proyek harus ada
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{nama_blok}
+              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{jenis_keterampilan} untuk %{nama_peran} untuk %{nama_blok}. Opsi yang valid: %{valid_options}'
+              props_missing: Pekerjaan
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Baris %{baris}: Nilai duplikat %{nilai} untuk %{bidang}'
+              invalid_format: Silakan unggah file xlsx
+              missing_headers: "%{nama_sheet} sheet tidak ada header yang diperlukan: %{header}"
+              missing_sheets: 'Lembar yang diperlukan hilang: %{lembaran}'
+              missing_value: 'Baris %{baris}: Nilai yang hilang untuk %{baris}'
+            project:
+              must_exist: Proyek harus ada
   activerecord:
     attributes:
       membership:
@@ -37,6 +79,13 @@ id:
           attributes:
             current_password:
               invalid: Kata sandi saat ini salah
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Penerjemahan Peran Pekerjaan Ekspor
+        export_proficiency_levels: Tingkat Kemahiran Ekspor
+        import_job_roles_translations: Impor Terjemahan Peran Pekerjaan
+        import_skills_rater_taxonomies: Impor Taksonomi Penilai Keterampilan
   administration: Administrasi
   anonym:
     close: Tutup
@@ -374,6 +423,7 @@ id:
     column:
       action: Tindakan
       category: Kategori
+      code: Kode
       created_at: Dibuat di
       id: Id
       status: Status
@@ -441,6 +491,13 @@ id:
     two_factor_authentication:
       attempt: Masukkan OTP yang telah Anda terima di alamat email yang terdaftar
       code_has_been_sent: OTP baru Anda telah dikirim ke alamat email yang terdaftar
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Peran pekerjaan dengan nama yang sama sudah ada.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Keahlian dan peran pekerjaan harus berasal dari proyek yang sama atau bersifat global.
+        unique_mappings: Pemetaan dengan keterampilan dan peran pekerjaan yang sama sudah ada.
   emails:
     subject_relationship_table:
       subject_email: Email Subjek

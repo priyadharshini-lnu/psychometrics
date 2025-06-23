@@ -2218,10 +2218,46 @@ it:
         pending: In attesa
         requested_cancellation: Cancellazione richiesta
         requested_cancellation_rejected: Cancellazione Rifiutata
-        requested_rescheduling: Riprogrammazione richiesta
-        requested_rescheduling_rejected: Riprogrammazione Rifiutata
-        rescheduled: Riprogrammato
-      subject: Oggetto
+        requested_rescheduling: Ripianificazione Richiesta
+        requested_rescheduling_rejected: Ripianificazione Rifiutata
+        rescheduled: Ripianificato
+      subject: Soggetto
+    job_role:
+      column:
+        job_group: Gruppo di lavoro
+      export:
+        failure_msg: Errore durante l'esportazione delle traduzioni
+        success_msg: Esportazione di azioni di sviluppo in corso.
+      form:
+        code: Codice
+        description: Descrizione
+        job_group: Gruppo di lavoro
+        name: Nome
+        title: Ruolo lavorativo
+      global: Il ruolo del lavoro è globale?
+      import:
+        download_example_csv: Scarica l'esempio csv
+        success_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche.
+      import_action:
+        translations: Importazione delle traduzioni dei ruoli lavorativi
+      translations: Traduzioni dei ruoli lavorativi
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Livello di competenza previsto
+        job_role: Ruolo lavorativo
+        skill: Competenza
+      form:
+        expected_proficiency_level: Livello di competenza previsto
+        job_role: Ruolo lavorativo
+        skill: Competenza
+        title: Associazione
+      global: La mappatura delle competenze globali è una mappatura del lavoro?
+      import:
+        taxonomy: Tassonomia
+    job_roles:
+      export:
+        translations:
+          details: Dettagli
     libraries:
       create:
         successfully: L'elemento %{nome} è stato creato con successo.
@@ -2494,6 +2530,68 @@ it:
         successfully: Con successo
       toggle_status:
         successfully: Con successo
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: La definizione del livello deve essere un array di definizioni.
+          level_definition_must_match_level: deve contenere esattamente i livelli %{attesi}, ma quelli %{effettivi} sono stati dati
+          must_be_unique: Deve essere unico
+          proficiency_level_exists: Esiste già un livello di competenza con questa abilità e questo progetto.
+          proficiency_level_exists_for_category: Esiste già un livello di competenza per questa categoria.
+          project_level_all_skills_exists: Esiste già un livello di competenza "all_skills".
+          skill_must_exist: L'abilità deve essere presente per il tipo di competenza "by_skill".
+      export:
+        details: Dettagli
+        failure_msg: Errore durante l'esportazione dei livelli di competenza
+        success_msg: Esportazione di azioni di sviluppo in corso
+        translations:
+          details: Traduzioni a livello di competenza
+      fields:
+        level: Livello
+        level_description: Descrizione del livello
+        level_name: Nome del livello
+        proficiency_translations: Traduzioni di competenza
+        proficiency_type: Tipo di competenza
+        skill: Abilità
+        skill_category: Categoria di abilità
+        skill_name: Nome dell'abilità
+        title: Competenza
+      import:
+        actions:
+          proficiency: Competenza nell'importazione
+          translations: Importazione di traduzioni di competenza
+        errors:
+          all_skills_global_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel di livello globale ''all_skills''.'
+          all_skills_project_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''all_skills'' a livello di progetto.'
+          by_category_exists: 'Riga %{numero_riga}: Esiste già un livello di competenza ''per_categoria'' per questo progetto e per questa categoria di competenze.'
+          by_category_missing: 'Riga %{numero_riga}: Il progetto e la categoria di competenza devono essere presenti per il tipo ''by_category''.'
+          by_skill_exists: 'Riga %{numero_riga}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
+          by_skill_missing: 'Riga %{numero_riga}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
+          invalid_csv_format: 'Formato CSV non valido: %{messaggio}'
+          invalid_json: 'Linea %{line}: JSON non valido in LevelDefinition - %{message}'
+          invalid_json_structure: deve essere un oggetto JSON con chiavi come "description" e "summary".
+          invalid_proficiency_type: 'Riga %{numero_riga}: Tipo di competenza non valido o mancante'
+          missing_columns: 'Colonne obbligatorie mancanti: %{campi}'
+          missing_required_fields: 'Linea %{linea}: Campi obbligatori mancanti (%{campi})'
+          save_failed: 'Linea %{linea}: %{messaggio}'
+        job_queued: Il lavoro di importazione dei livelli di competenza è stato messo in coda
+      translations:
+        export:
+          failure_msg: Errore durante l'esportazione delle traduzioni
+          success_msg: Esportazione di azioni di sviluppo in corso.
+        import:
+          errors:
+            invalid_csv_format: 'Formato CSV non valido: %{messaggio}'
+            invalid_locales: Locale non valido
+            level_not_found: 'Livello non trovato per l''ID: %{level_id}'
+            missing_columns: 'Colonne obbligatorie mancanti: %{campi}'
+            missing_required_columns: 'Colonne mancanti: %{colonne}'
+            row_id_blank: 'Riga %{row}: L''ID non può essere vuoto'
+            save_failed: 'Errore nell''elaborazione dello Skill ID %{id}: %{messaggio}'
+      type:
+        all_skills: Tutte le competenze
+        by_category: Per categoria
+        by_skill: Da Skill
     profile:
       change_password: Modifica della password
       details: Dettagli
@@ -3372,6 +3470,7 @@ it:
         description: Descrizione
         name: Nome
         project_placeholder: Selezionare un progetto
+        skill_group: Gruppo di abilità
         skill_type: Tipo di abilità
         title: Abilità
       global: L'abilità globale?
@@ -3394,6 +3493,8 @@ it:
             skill_not_found: Abilità con ID %{id} non trovata
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Mappature delle competenze
+        job_roles: Ruoli lavorativi
         proficiency: Competenza
         skills: Competenze
     sms_histories:
@@ -3601,6 +3702,14 @@ it:
           other: ''
       more_actions: Altre azioni
     taxonomy:
+      import:
+        download_example_file: Scarica il file di esempio
+        success_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche.
+      import_action:
+        taxonomy: Importazione della tassonomia
+      job_roles: Ruoli lavorativi
+      proficiency: Competenza
+      skill_job_mappings: Mappature delle competenze
       skills: Competenze
       title: Tassonomia
     templates:

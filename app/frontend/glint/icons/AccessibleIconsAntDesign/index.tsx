@@ -49,6 +49,9 @@ import Icon, {
   VideoCameraOutlined as AntdVideoCameraOutlined,
   StopOutlined as AntdStopOutlined,
   WarningOutlined as AntdWarningOutlined,
+  ToolOutlined as AntdToolOutlined,
+  CloudDownloadOutlined as AntdCloudDownloadOutlined,
+  FilterFilled as AntdFilterFilled,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -107,3 +110,6 @@ export const AudioOutlined = withAccessibilityProps(AntdAudioOutlined)
 export const VideoCameraOutlined = withAccessibilityProps(AntdVideoCameraOutlined)
 export const StopOutlined = withAccessibilityProps(AntdStopOutlined)
 export const WarningOutlined = withAccessibilityProps(AntdWarningOutlined)
+export const ToolOutlined = withAccessibilityProps(AntdToolOutlined)
+export const CloudDownloadOutlined = withAccessibilityProps(AntdCloudDownloadOutlined)
+export const FilterFilled = withAccessibilityProps(AntdFilterFilled)

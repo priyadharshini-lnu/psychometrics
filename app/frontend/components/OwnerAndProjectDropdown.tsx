@@ -3,11 +3,13 @@ import {
 } from 'react'
 import {
   Form, Select,
+  Spin,
 } from 'antd'
 import { debounce } from 'lodash'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { Project } from '~/modules/admin/modules/client/core/projects'
 import { useResources } from '~/hooks/useResources'
+import { RequestType } from '~/hooks/useResources/interfaces'
 
 const { I18n } = window
 
@@ -17,6 +19,7 @@ type Props = {
   onProjectsSearch?: (value?: string) => void,
   onOwnersSearch?: (value?: string) => void,
   onValuesChange?: (changedValues: Record<string, string>, values?: Record<string, string>) => void,
+  isLoading?: (action: RequestType) => boolean
 }
 
 export const OwnerAndProjectDropdown = forwardRef(({
@@ -25,6 +28,7 @@ export const OwnerAndProjectDropdown = forwardRef(({
   onProjectsSearch,
   onOwnersSearch,
   onValuesChange,
+  isLoading,
 }: Props, ref) => {
   const [form] = Form.useForm()
   const ownerId = Form.useWatch('ownerId', form)
@@ -89,6 +93,7 @@ export const OwnerAndProjectDropdown = forwardRef(({
             }))}
             disabled={!ownerId}
             placeholder={I18n.t('administration.skills.form.project_placeholder')}
+            notFoundContent={isLoading?.('fetch') ? <Spin size="small" /> : null}
           />
         </Form.Item>
       </>
@@ -98,7 +103,9 @@ export const OwnerAndProjectDropdown = forwardRef(({
 
 
 export const useClientsAndProjectsResource = (ownerId : string) => {
-  const { data: owners, fetch: fetchOwners, setData: setOwners } = useResources<Client>('clients')
+  const {
+    data: owners, fetch: fetchOwners, setData: setOwners, isLoading,
+  } = useResources<Client>('clients')
   const {
     data: projects, fetch: fetchProjects, setData:
         setProjects,
@@ -127,5 +134,6 @@ export const useClientsAndProjectsResource = (ownerId : string) => {
     setProjects,
     handleProjectsSearch,
     handleOwnersSearch,
+    isLoading,
   }
 }

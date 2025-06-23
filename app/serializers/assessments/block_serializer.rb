@@ -2,7 +2,7 @@
 
 module Assessments
   class BlockSerializer < Panko::Serializer
-    attributes :id, :name, :position, :deleted, :props, :created_at, :template_id, :questions
+    attributes :id, :name, :position, :deleted, :props, :created_at, :template_id, :questions, :block_type
 
     def props
       return object.props if default_language?

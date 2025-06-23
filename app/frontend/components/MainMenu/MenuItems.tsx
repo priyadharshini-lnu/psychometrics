@@ -145,6 +145,8 @@ const Link = ({ href, children }) => {
 export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
   featureFlags?: Record<string, boolean>) => {
   const idpEnabled = camelizeKeys(featureFlags ?? {})?.idpEnabled
+  const skillRaterEnabled = camelizeKeys(featureFlags ?? {})?.skillRaterEnabled
+
   return [
     hasSubmenu ? {
       key: 'showSubmenu',
@@ -193,7 +195,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean,
       label: <Link href={permissions.aiAssistants}>{I18n.t('administration.navigation.ai_assistants')}</Link>,
       icon: <i className="fa fa-diamond" />,
     } : null,
-    permissions.skillsTaxonomy && idpEnabled ? {
+    permissions.skillsTaxonomy && (idpEnabled || skillRaterEnabled) ? {
       key: 'skills_taxonomy',
       label: <Link href={permissions.skillsTaxonomy}>{I18n.t('administration.navigation.skills_taxonomy')}</Link>,
       icon: <i aria-hidden="true" className="fa fa-book" />,

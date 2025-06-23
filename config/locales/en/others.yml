@@ -31,6 +31,10 @@ en:
             blank: Answers can't be blank
           group_id:
             blank: Group id can't be blank
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Block %{block_name} has duplicate configurations: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ en:
               too_short: Evaluator password is too short (minimum is %{count} characters)
             first_name:
               blank: First name can't be blank
+            job_role:
+              cannot_be_same: Target job role must be different from current job role
+              not_found: Job role '%{name}' not found in project or global roles
             last_name:
               blank: Last name can't be blank
             locale:
@@ -187,12 +194,26 @@ en:
               invalid: Email is invalid
             first_name:
               blank: First name can't be blank
+            job_role:
+              cannot_be_same: Target job role must be different from current job role
+              not_found: Job role '%{name}' not found in project or global roles
             last_name:
               blank: Last name can't be blank
             locale:
               inclusion: Wrong locale
             password:
               too_short: Password is too short. Minimum %{count} character required
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Value %{column_name} cannot be blank at row %{row_number}
+              invalid_format: Please upload CSV file
+              invalid_job_role_id: Id at row %{row_number} is not a valid job role ID
+              invalid_locale: Locale at row %{row_number} is not a valid locale
+              missing_required_columns: 'Missing required columns: %{columns}'
+              parsing_failed: 'Error while parsing file, error: %{error}.'
+            project:
+              must_exist: Project must exist
         mettl:
           attributes:
             name:
@@ -308,6 +329,12 @@ en:
             email:
               blank: Email can't be blank
               not_uniq_email: Row with email is already present
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: At least one job role must be enabled with a skill type selected for %{block_name}
+              invalid_skill_type: 'Invalid skill type %{skill_type} for %{role_name} for %{block_name}. Valid options: %{valid_options}'
+              props_missing: Job
         skillvue:
           attributes:
             name:
@@ -345,6 +372,16 @@ en:
             last_name:
               blank: Last name can't be blank
               starts_with_invalid_characters: Last Name can't start with =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Row %{row}: Duplicate value %{value} for %{field}'
+              invalid_format: Please upload xlsx file
+              missing_headers: "%{sheet_name} sheet is missing required headers: %{headers}"
+              missing_sheets: 'Missing required sheets: %{sheets}'
+              missing_value: 'Row %{row}: Missing value for %{field}'
+            project:
+              must_exist: Project must exist
         update_norm:
           attributes:
             norm_type:
@@ -778,8 +815,11 @@ en:
         export_development_actions: Export Development Actions
         export_dimension_as_json: Export Dimension JSON
         export_factor_translations: Export Factor Translations
+        export_job_roles_translations: Export Job Roles Translations
         export_norm: Export Norm
         export_occupations: Occupations Export
+        export_proficiency_level_translations: Export Proficiency Level Translations
+        export_proficiency_levels: Export Proficiency Levels
         export_reflection_questions: Export Reflection Questions
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
@@ -799,13 +839,17 @@ en:
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_factors: Import Factors
+        import_job_roles_translations: Import Job Roles Translations
         import_norm: Import Norm
+        import_proficiency_level_translations: Import Proficiency Level Translations
+        import_proficiency_levels: Import Proficiency Levels
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_reflection_questions: Import Reflection Questions
         import_scoring_data: Import Scoring Data
         import_skill_translations: Import Skills Translations
         import_skills: Import Skills
+        import_skills_rater_taxonomies: Import Skill Rater Taxonomies
         import_sms_invites: Import SMS Invite
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
@@ -1714,6 +1758,7 @@ en:
       assessor: Assessor
       category: Category
       client: Client
+      code: Code
       created_at: Created At
       created_by: Created By
       created_date: Created Date
@@ -1796,6 +1841,7 @@ en:
       default: Default
       download: Download
       file: File
+      global_export: Is Global Export?
       global_import: Is Global Import?
       minutes: Minutes
       na: N/A
@@ -2051,6 +2097,8 @@ en:
         tag_or_skill_required: Please select either a tag or a skill when the "Selected" option is chosen.
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
       invalid_value: invalid statement '%{value}' on line number %{row}
+      job_roles:
+        unique_within_job_group: A job role with the same name already exists.
       json?: Should be valid JSON
       key?: can't be blank
       match_regexp?: invalid value
@@ -2073,6 +2121,9 @@ en:
       skill_alias:
         unique_alias: Alias should be unique
         unique_skill: Skill should be unique
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Skill and job role must belong to same project or be global.
+        unique_mappings: A mapping with the same skill and job role already exists.
       uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}

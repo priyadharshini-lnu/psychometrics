@@ -2222,6 +2222,42 @@ cs:
         requested_rescheduling_rejected: Změna termínu Zamítnuto
         rescheduled: Přeloženo na
       subject: Předmět
+    job_role:
+      column:
+        job_group: Pracovní skupina
+      export:
+        failure_msg: Chyba při exportu překladů
+        success_msg: Exportování probíhajících vývojových akcí.
+      form:
+        code: Kód
+        description: Popis
+        job_group: Pracovní skupina
+        name: Název
+        title: Pracovní role
+      global: Je globální pracovní role?
+      import:
+        download_example_csv: Stáhnout příklad csv
+        success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+      import_action:
+        translations: Importovat překlady pracovních rolí
+      translations: Překlady pracovních rolí
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Očekávaná úroveň znalostí
+        job_role: Pracovní role
+        skill: Dovednost
+      form:
+        expected_proficiency_level: Očekávaná úroveň znalostí
+        job_role: Pracovní role
+        skill: Dovednost
+        title: Mapování dovedností
+      global: Je globální mapování pracovních míst?
+      import:
+        taxonomy: Taxonomie
+    job_roles:
+      export:
+        translations:
+          details: Podrobnosti na
     libraries:
       create:
         successfully: Položka %{název} byla úspěšně vytvořena.
@@ -2494,6 +2530,69 @@ cs:
         successfully: Úspěšně
       toggle_status:
         successfully: Úspěšně
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Definice úrovně musí být polem definic.
+          level_definition_must_match_level: musí obsahovat přesně %{očekávané} úrovně, ale %{skutečné} byly dány
+          must_be_unique: Musí být jedinečné
+          proficiency_level_exists: Již existuje úroveň ProficiencyLevel s touto dovedností a projektem.
+          proficiency_level_exists_for_category: ProficiencyLevel pro tuto kategorii již existuje
+          project_level_all_skills_exists: Úroveň způsobilosti "all_skills" již existuje
+          skill_must_exist: Dovednost musí být přítomna pro proficiency_type 'by_skill'
+      export:
+        details: Podrobnosti na
+        failure_msg: Chyba při exportu úrovní pokročilosti
+        success_msg: Exportování probíhajících vývojových akcí
+        translations:
+          details: Překlady na úrovni pokročilosti
+      fields:
+        level: Úroveň
+        level_description: Popis úrovně
+        level_name: Název úrovně
+        proficiency_translations: Odborné překlady
+        proficiency_type: Typ odbornosti
+        skill: Dovednost
+        skill_category: Kategorie dovedností
+        skill_name: Název dovednosti
+        title: Znalost
+      global: Je globální odbornost?
+      import:
+        actions:
+          proficiency: Znalost importu
+          translations: Překlady pro dovozce
+        errors:
+          all_skills_global_exists: 'Řádek %{číslo_řádku}: již existuje globální úroveň ''all_skills'' ProficiencyLevel'
+          all_skills_project_exists: 'Řádek %{číslo_řádku}: Již existuje úroveň způsobilosti ''all_skills'' na úrovni projektu'
+          by_category_exists: 'Řádek %{číslo_řádku}: ProficiencyLevel již existuje pro tento projekt a kategorii dovedností ''by_category''.'
+          by_category_missing: 'Řádek %{číslo_řádku}: Kategorie projektu a dovednosti musí být přítomny pro typ ''by_category'''
+          by_skill_exists: 'Řádek %{číslo_řádku}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
+          by_skill_missing: 'Řádek %{číslo_řádku}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
+          invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
+          invalid_json: 'Řádek %{řádek}: Invalid JSON in LevelDefinition - %{message}'
+          invalid_json_structure: musí být objekt JSON s klíči jako 'description' a 'summary'.
+          invalid_proficiency_type: 'Řádek %{číslo_řádku}: Neplatný nebo chybějící ProficiencyType'
+          missing_columns: 'Chybějící povinné sloupce: %{pole}'
+          missing_required_fields: 'Řádek %{řádek}: Chybějící povinná pole (%{pole})'
+          save_failed: 'Řádek %{řádek}: %{zpráva}'
+        job_queued: Úloha importu úrovní znalostí byla zařazena do fronty
+      translations:
+        export:
+          failure_msg: Chyba při exportu překladů
+          success_msg: Exportování probíhajících vývojových akcí.
+        import:
+          errors:
+            invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
+            invalid_locales: Neplatné locale
+            level_not_found: 'Úroveň nebyla nalezena pro ID: %{level_id}'
+            missing_columns: 'Chybějící povinné sloupce: %{pole}'
+            missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
+            row_id_blank: 'Řádek %{řádek}: ID nemůže být prázdné'
+            save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{zpráva}'
+      type:
+        all_skills: Všechny dovednosti
+        by_category: Podle kategorie
+        by_skill: Podle dovednosti
     profile:
       change_password: Změna hesla
       details: Podrobnosti na
@@ -3369,6 +3468,7 @@ cs:
         description: Popis
         name: Název
         project_placeholder: Výběr projektu
+        skill_group: Skupina dovedností
         skill_type: Typ dovednosti
         title: Dovednost
       global: Je globální dovednost?
@@ -3391,6 +3491,8 @@ cs:
             skill_not_found: Dovednost s ID %{id} nebyla nalezena
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Mapování dovedností
+        job_roles: Pracovní role
         proficiency: Proficience
         skills: Dovednosti
     sms_histories:
@@ -3600,6 +3702,14 @@ cs:
           other: ''
       more_actions: Další akce
     taxonomy:
+      import:
+        download_example_file: Stáhnout soubor s příkladem
+        success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+      import_action:
+        taxonomy: Import taxonomie
+      job_roles: Pracovní role
+      proficiency: Znalost
+      skill_job_mappings: Mapování dovedností
       skills: Dovednosti
       title: Taxonomie
     templates:

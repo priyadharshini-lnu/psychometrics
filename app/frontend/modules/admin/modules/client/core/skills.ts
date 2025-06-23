@@ -4,17 +4,17 @@ import { ResourceIdentifierTR } from '~/modules/admin/core/types/resource'
 export const SkillTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
-    name: t.string,
+    name: t.union([t.string, t.undefined]),
     description: t.union([t.string, t.undefined]),
     skillType: t.union([t.string, t.undefined]),
     project: t.union([
       t.type({
-        id: t.string,
-        name: t.string,
-        clientId: t.string,
+        id: t.union([t.string, t.undefined]),
+        name: t.union([t.string, t.undefined]),
+        clientId: t.union([t.string, t.undefined]),
       }),
       t.type({
-        id: t.string,
+        id: t.union([t.string, t.undefined]),
       }),
       t.undefined]),
     tagList: t.union([t.array(t.string), t.undefined]),

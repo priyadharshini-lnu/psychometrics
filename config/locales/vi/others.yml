@@ -11,6 +11,48 @@ vi:
         select_comparison: Chọn loại so sánh
         select_factors: Chọn các yếu tố
         select_operation: Chọn hoạt động
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Khối "%{block_name}" có các cấu hình trùng lặp: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
+              not_found: Vị trí công việc '%{name}' không được tìm thấy trong dự án hoặc các vai trò toàn cầu.
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Giá trị %{column_name} không được để trống tại hàng %{row_number}
+              invalid_format: Vui lòng tải lên tệp CSV.
+              invalid_job_role_id: ID tại hàng %{row_number} không phải là ID vai trò công việc hợp lệ.
+              invalid_locale: Vùng ngôn ngữ tại hàng %{row_number} không phải là vùng ngôn ngữ hợp lệ.
+              missing_required_columns: 'Thiếu các cột bắt buộc: %{columns}'
+              parsing_failed: 'Lỗi khi phân tích tệp, lỗi: %{error}.'
+            project:
+              must_exist: Dự án phải tồn tại.
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ít nhất một vị trí công việc phải được kích hoạt với loại kỹ năng được chọn cho %{block_name}
+              invalid_skill_type: 'Loại kỹ năng không hợp lệ %{skill_type} cho %{role_name} cho %{block_name}. Các tùy chọn hợp lệ: %{valid_options}'
+              props_missing: Công việc
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Dòng %{row}: Giá trị trùng lặp %{value} cho trường %{field}'
+              invalid_format: Vui lòng tải lên tệp xlsx.
+              missing_headers: 'Bảng %{sheet_name} thiếu các tiêu đề bắt buộc: %{headers}'
+              missing_sheets: 'Thiếu các trang bắt buộc: %{sheets}'
+              missing_value: 'Dòng %{row}: Thiếu giá trị cho %{field}'
+            project:
+              must_exist: Dự án phải tồn tại.
   activerecord:
     attributes:
       membership:
@@ -37,6 +79,13 @@ vi:
           attributes:
             current_password:
               invalid: Mật khẩu hiện tại không đúng
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Dịch các vị trí công việc cho xuất khẩu
+        export_proficiency_levels: Cấp độ thành thạo xuất khẩu
+        import_job_roles_translations: Nhập bản dịch các vai trò công việc
+        import_skills_rater_taxonomies: Nhập các phân loại đánh giá kỹ năng
   administration: Sự quản lý
   anonym:
     close: Đóng
@@ -368,6 +417,7 @@ vi:
     column:
       action: Hoạt động
       category: Loại
+      code: Mã
       created_at: Được tạo ra tại
       id: Nhận dạng
       status: Trạng thái
@@ -435,6 +485,13 @@ vi:
     two_factor_authentication:
       attempt: Vui lòng nhập OTP mà bạn đã nhận được tại địa chỉ email đã đăng ký của bạn
       code_has_been_sent: Mã OTP mới của bạn đã được gửi đến địa chỉ email đã đăng ký của bạn
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Vị trí công việc có tên tương tự đã tồn tại.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Kỹ năng và vai trò công việc phải thuộc cùng một dự án hoặc là toàn cầu.
+        unique_mappings: Một bản đồ chức năng với cùng kỹ năng và vai trò công việc đã tồn tại.
   emails:
     subject_relationship_table:
       subject_email: Tiêu đề Email

@@ -11,6 +11,48 @@ ar:
         select_comparison: اختر نوع المقارنة
         select_factors: عوامل الاختيار
         select_operation: حدد العملية
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'يحتوي المكوِّن "%{block_name}" على تكوينات مكررة: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: يجب أن يكون الدور الوظيفي المستهدف مختلفاً عن الدور الوظيفي الحالي
+              not_found: دور الوظيفة "%{الاسم}" غير موجود في المشروع أو الأدوار العامة
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: يجب أن يكون الدور الوظيفي المستهدف مختلفاً عن الدور الوظيفي الحالي
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: لا يمكن أن تكون القيمة %{اسم_العمود} فارغة في الصف %{رقم_الصف}
+              invalid_format: يُرجى تحميل ملف CSV
+              invalid_job_role_id: المعرّف في الصف %{row_number} ليس معرّف دور وظيفي صالح
+              invalid_locale: اللغة المحلية في الصف %{row_number} ليست لغة محلية صالحة
+              missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
+              parsing_failed: 'خطأ أثناء تحليل الملف، خطأ: %{خطأ}.'
+            project:
+              must_exist: يجب أن يكون المشروع موجوداً
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: يجب تمكين دور وظيفي واحد على الأقل مع تحديد نوع المهارة لـ %{block_name}
+              invalid_skill_type: 'نوع المهارة غير صالح %{نوع_المهارة} لـ %{اسم_الدور} لـ %{اسم_الحظر}. الخيارات الصالحة: %{الخيارات_الصحيحة} لـ %{الخيارات_الصحيحة}'
+              props_missing: الوظيفة
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'الصف %{صف}: القيمة المكررة %{القيمة} لـ %{حقل}'
+              invalid_format: يُرجى تحميل ملف xlsx
+              missing_headers: "%{اسم_الورقة} الورقة ناقصة الرؤوس المطلوبة: %{رؤوس}"
+              missing_sheets: 'الأوراق المطلوبة مفقودة: %{الأوراق}'
+              missing_value: 'الصف %{صف}: قيمة مفقودة لـ %{حقل}'
+            project:
+              must_exist: يجب أن يكون المشروع موجوداً
   activerecord:
     attributes:
       membership:
@@ -27,6 +69,16 @@ ar:
         password: كلمه السر
     errors:
       models:
+      taxonomies_import_form:
+        attributes:
+          file:
+            duplicate_value: 'الصف %{row}: القيمة المكررة %{value} للحقل %{field}'
+            invalid_format: يرجى تحميل ملف xlsx
+            missing_headers: 'ورقة %{sheet_name} تفتقد الرؤوس المطلوبة: %{headers}'
+            missing_sheets: 'الأوراق المطلوبة المفقودة: %{sheets}'
+            missing_value: 'الصف %{row}: القيمة مفقودة للحقل %{field}'
+          project:
+            must_exist: يجب أن يوجد المشروع
         register:
           attributes:
             mobile_number:
@@ -37,6 +89,14 @@ ar:
           attributes:
             current_password:
               invalid: كلمة المرور الحالية غير صحيحة
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: تصدير ترجمات الأدوار الوظيفية
+        export_proficiency_levels: مستويات كفاءة التصدير
+        import_job_roles_translations: استيراد ترجمات الأدوار الوظيفية
+        import_proficiency_level_translations: استيراد الترجمات على مستوى الكفاءة
+        import_skills_rater_taxonomies: استيراد تصنيفات مقيمي المهارات
   anonym:
     close: يغلق
     continue: استمرار
@@ -394,6 +454,7 @@ ar:
     column:
       action: نشاط
       category: فئة
+      code: الرمز
       created_at: تم إنشاؤها في
       id: الهوية
       name: اسم
@@ -466,6 +527,11 @@ ar:
     errors:
       idp_template:
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
+      job_roles:
+        unique_within_job_group: يوجد دور وظيفي بنفس الاسم بالفعل.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: يجب أن تنتمي المهارة والدور الوظيفي إلى نفس المشروع أو أن يكونا عالميين.
+        unique_mappings: يوجد بالفعل تعيين بنفس المهارة والدور الوظيفي.
   emails:
     subject_relationship_table:
       subject_email: ايميل المشارك

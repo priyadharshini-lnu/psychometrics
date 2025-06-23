@@ -31,6 +31,10 @@ es-ES:
             blank: Las respuestas no pueden estar en blanco
           group_id:
             blank: El id de grupo no puede estar en blanco
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'El bloque "%{block_name}" tiene configuraciones duplicadas: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ es-ES:
               too_short: La contraseña del evaluador es demasiado corta (el mínimo es %{count} caracteres)
             first_name:
               blank: El nombre no puede estar en blanco
+            job_role:
+              cannot_be_same: El puesto de trabajo de destino debe ser diferente del actual
+              not_found: El rol de trabajo '%{name}' no se encuentra en el proyecto ni en los roles globales.
             last_name:
               blank: El apellido no puede estar en blanco
             locale:
@@ -182,12 +189,25 @@ es-ES:
               invalid: El correo electrónico no es válido
             first_name:
               blank: El nombre no puede estar en blanco
+            job_role:
+              cannot_be_same: El puesto de trabajo de destino debe ser diferente del actual
             last_name:
               blank: El apellido no puede estar en blanco
             locale:
               inclusion: Localización incorrecta
             password:
               too_short: La contraseña es demasiado corta. Se requiere un mínimo de %{count} caracteres
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: El valor %{column_name} no puede estar en blanco en la fila %{row_number}.
+              invalid_format: Cargue el archivo CSV
+              invalid_job_role_id: El ID de la fila %{row_number} no es un ID de función de trabajo válido.
+              invalid_locale: La configuración regional de la fila %{row_number} no es válida.
+              missing_required_columns: 'Faltan columnas obligatorias: %{columns}'
+              parsing_failed: 'Error al analizar el archivo, error: %{error}.'
+            project:
+              must_exist: El proyecto debe existir
         mettl:
           attributes:
             name:
@@ -303,6 +323,12 @@ es-ES:
             email:
               blank: El correo electrónico no puede estar en blanco
               not_uniq_email: La fila con el correo electrónico ya está presente
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Al menos un rol de trabajo debe estar habilitado con un tipo de habilidad seleccionada para %{block_name}
+              invalid_skill_type: 'Tipo de habilidad %{skill_type} no válido para %{role_name} para %{block_name}. Opciones válidas: %{valid_options}'
+              props_missing: Empleo
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +362,16 @@ es-ES:
             last_name:
               blank: El apellido no puede estar en blanco
               starts_with_invalid_characters: El apellido no puede empezar por =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Fila %{row}: Valor duplicado %{value} para %{field}'
+              invalid_format: Por favor, sube un archivo xlsx
+              missing_headers: 'La hoja %{sheet_name} no tiene los encabezados requeridos: %{headers}'
+              missing_sheets: 'Faltan hojas requeridas: %{sheets}'
+              missing_value: 'Fila %{row}: Falta valor para %{field}'
+            project:
+              must_exist: El proyecto debe existir
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +800,10 @@ es-ES:
         export_development_actions: Acciones de desarrollo de las exportaciones
         export_dimension_as_json: Exportar dimensión JSON
         export_factor_translations: Traducciones de los factores de exportación
+        export_job_roles_translations: Exportar traducciones de funciones
         export_norm: Norma de exportación
         export_occupations: Ocupaciones Exportación
+        export_proficiency_levels: Niveles de aptitud para exportar
         export_report_data: Exportar datos de informes
         export_reports_and_assessments: Exportación de informes y evaluaciones
         export_skill_translations: Exportación Traducciones especializadas
@@ -784,12 +822,15 @@ es-ES:
         import_external_campaign_scoring: Importar la puntuación de campañas externas
         import_factor_translations: Traducciones de factores de importación
         import_factors: Factores de importación
+        import_job_roles_translations: Importar traducciones de funciones
         import_norm: Norma de importación
+        import_proficiency_level_translations: Importación de traducciones de nivel superior
         import_question_translations: Importar traducciones de preguntas
         import_raw_data: Importar datos brutos
         import_scoring_data: Importar datos de puntuación
         import_skill_translations: Importación de traducciones especializadas
         import_skills: Habilidades de importación
+        import_skills_rater_taxonomies: Importar taxonomías de evaluadores de competencias
         import_sms_invites: Importar invitación SMS
         import_users: Importar usuarios
         migrate_assessment_translations: Evaluación Traducción migración
@@ -1672,6 +1713,7 @@ es-ES:
       assessor: Asesor
       category: Categoría
       client: Cliente
+      code: Código
       created_at: Creado/a el
       created_by: Creado por
       created_date: Fecha de creación
@@ -1996,6 +2038,8 @@ es-ES:
         tag_or_skill_required: Seleccione una etiqueta o una habilidad cuando se elija la opción "Seleccionado".
       invalid_name: sólo se admiten como caracteres válidos el alfabeto, el número, los espacios, el guión y el punto
       invalid_value: declaración inválida '%{value}' en la línea número %{row}
+      job_roles:
+        unique_within_job_group: Ya existe un puesto con el mismo nombre en el grupo.
       json?: Debe ser JSON válido
       key?: no puede estar en blanco
       match_regexp?: valor no válido
@@ -2016,6 +2060,9 @@ es-ES:
       skill_alias:
         unique_alias: El alias debe ser único
         unique_skill: La habilidad debe ser única
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: La competencia y la función deben pertenecer al mismo proyecto o ser globales.
+        unique_mappings: Ya existe una asignación con la misma cualificación y función.
       uniq: Esta evaluación Mettl ya está presente en el sistema. ID de esta evaluación es %{id}
       uniq?: debe ser único
       uniq_simulation: Esta evaluación de simulación ya está presente en el sistema. El ID de esta evaluación es %{id}

@@ -11,6 +11,48 @@ bg:
         select_comparison: Изберете тип сравнение
         select_factors: Избор на фактори
         select_operation: Изберете операция
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Блокът "%{име_блок}" има дублирани конфигурации: %{дублирани_конфигурации}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
+              not_found: Ролята на длъжността '%{име}' не е намерена в проекта или глобалните роли
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Стойността %{column_name} не може да бъде празна в ред %{row_number}
+              invalid_format: Моля, качете CSV файл
+              invalid_job_role_id: Идентификаторът в ред %{row_number} не е валиден идентификатор на роля в работата
+              invalid_locale: Локалът на ред %{row_number} не е валиден локал
+              missing_required_columns: 'Липсват задължителни колони: %{columns}'
+              parsing_failed: 'Грешка при обработката на файла, грешка: %{error}.'
+            project:
+              must_exist: Проектът трябва да съществува
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Трябва да е активирана поне една роля за работа с избран тип умения за %{block_name}
+              invalid_skill_type: 'Невалиден тип умение %{skill_type} за %{role_name} за %{block_name}. Допустими опции: %{valid_options}'
+              props_missing: Работа
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Ред %{row}: Дублираща се стойност %{стойност} за %{поле}'
+              invalid_format: Моля, качете xlsx файл
+              missing_headers: "%{sheet_name} липсват задължителните заглавия на листа: %{headers}"
+              missing_sheets: 'Липсват необходимите листове: %{sheets}'
+              missing_value: 'Ред %{row}: Липсваща стойност за %{поле}'
+            project:
+              must_exist: Проектът трябва да съществува
   activerecord:
     attributes:
       membership:
@@ -37,6 +79,13 @@ bg:
           attributes:
             current_password:
               invalid: Текущата парола е неправилна
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Експорт на работни роли Преводи
+        export_proficiency_levels: Нива на владеене на експорт
+        import_job_roles_translations: Импортиране на работни роли Преводи
+        import_skills_rater_taxonomies: Импортиране на таксономии за оценяване на уменията
   administration: Администрация
   anonym:
     close: Затвори
@@ -374,6 +423,7 @@ bg:
     column:
       action: Действие
       category: Категория
+      code: Код
       created_at: Създаден в
       id: Id
       status: Статус
@@ -441,6 +491,13 @@ bg:
     two_factor_authentication:
       attempt: Моля, въведете OTP, което сте получили на регистрирания си имейл адрес
       code_has_been_sent: Новият ви OTP е изпратен на регистрирания ви имейл адрес
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Вече съществува роля за работа със същото име.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Умението и работната роля трябва да принадлежат към един и същ проект или да са глобални.
+        unique_mappings: Вече съществува картографиране със същото умение и длъжностна роля.
   emails:
     subject_relationship_table:
       subject_email: Тема Имейл

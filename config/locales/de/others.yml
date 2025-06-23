@@ -31,6 +31,10 @@ de:
             blank: Antworten können nicht leer sein
           group_id:
             blank: Gruppen-ID kann nicht leer sein
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Block "%{block_name}" hat doppelte Konfigurationen: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -51,6 +55,16 @@ de:
               blank: Berichtsbündel-ID kann nicht leer sein
             report_id:
               blank: Die Berichts-ID darf nicht leer sein
+        axonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Zeile %{row}: Doppelter Wert %{value} für %{field}'
+              invalid_format: Bitte laden Sie eine xlsx-Datei hoch
+              missing_headers: "%{sheet_name}-Blatt fehlt die erforderlichen Kopfzeilen: %{headers}"
+              missing_sheets: 'Fehlende erforderliche Blätter: %{sheets}'
+              missing_value: 'Zeile %{row}: Fehlender Wert für %{field}'
+            project:
+              must_exist: Projekt muss existieren
         campaign_factor_import_form:
           attributes:
             file:
@@ -113,6 +127,9 @@ de:
               too_short: Das Passwort des Auswerters ist zu kurz (das Minimum sind %{count} Zeichen)
             first_name:
               blank: Der Vorname darf nicht leer sein
+            job_role:
+              cannot_be_same: Die Zielfunktion muss sich von der aktuellen Funktion unterscheiden
+              not_found: Jobrolle '%{name}' nicht in Projekt- oder globalen Rollen gefunden
             last_name:
               blank: Nachname darf nicht leer sein
             locale:
@@ -182,12 +199,25 @@ de:
               invalid: E-Mail ist ungültig
             first_name:
               blank: Der Vorname darf nicht leer sein
+            job_role:
+              cannot_be_same: Die Zielfunktion muss sich von der aktuellen Funktion unterscheiden
             last_name:
               blank: Nachname darf nicht leer sein
             locale:
               inclusion: Falsches Gebietsschema
             password:
               too_short: Das Passwort ist zu kurz, mindestens %{count} Zeichen erforderlich
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Wert %{column_name} kann in Zeile %{row_number} nicht leer sein
+              invalid_format: Bitte CSV-Datei hochladen
+              invalid_job_role_id: Id in Zeile %{row_number} ist keine gültige Job-Rollen-ID
+              invalid_locale: Gebietsschema in Zeile %{row_number} ist kein gültiges Gebietsschema
+              missing_required_columns: 'Fehlende erforderliche Spalten: %{columns}'
+              parsing_failed: 'Fehler beim Parsen der Datei, Fehler: %{error}.'
+            project:
+              must_exist: Projekt muss existieren
         mettl:
           attributes:
             name:
@@ -303,6 +333,12 @@ de:
             email:
               blank: E-Mail kann nicht leer sein
               not_uniq_email: Zeile mit E-Mail ist bereits vorhanden
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Für %{block_name} muss mindestens eine Jobrolle mit einer ausgewählten Fertigkeitsart aktiviert sein.
+              invalid_skill_type: 'Ungültiger Skilltyp %{skill_type} für %{role_name} für %{block_name}. Gültige Optionen: %{valid_options}'
+              props_missing: Job
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +372,16 @@ de:
             last_name:
               blank: Nachname darf nicht leer sein
               starts_with_invalid_characters: Nachname darf nicht mit =, |, +, -, @, % beginnen
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Zeile %{row}: Duplizierter Wert %{value} für %{field}'
+              invalid_format: Bitte xlsx-Datei hochladen
+              missing_headers: "%{sheet_name} Blatt fehlt erforderliche Kopfzeile: %{headers}"
+              missing_sheets: 'Fehlende erforderliche Blätter: %{Blätter}'
+              missing_value: 'Zeile %{row}: Fehlender Wert für %{field}'
+            project:
+              must_exist: Projekt muss existieren
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +810,10 @@ de:
         export_development_actions: Maßnahmen zur Exportentwicklung
         export_dimension_as_json: Dimension JSON exportieren
         export_factor_translations: Export-Faktor-Übersetzungen
+        export_job_roles_translations: Exportieren von Job-Rollen-Übersetzungen
         export_norm: Norm exportieren
         export_occupations: Berufe Export
+        export_proficiency_levels: Leistungsniveaus exportieren
         export_report_data: Berichtsdaten exportieren
         export_reports_and_assessments: Berichte und Beurteilungen exportieren
         export_skill_translations: Exportkompetenzen Übersetzungen
@@ -784,12 +832,15 @@ de:
         import_external_campaign_scoring: Externes Kampagnen-Scoring importieren
         import_factor_translations: Import-Faktor-Übersetzungen
         import_factors: Import-Faktoren
+        import_job_roles_translations: Importieren von Job-Rollen-Übersetzungen
         import_norm: Norm importieren
+        import_proficiency_level_translations: Importieren von Übersetzungen der Proficiency Level
         import_question_translations: Fragenübersetzungen importieren
         import_raw_data: Rohdaten importieren
         import_scoring_data: Scoring-Daten importieren
         import_skill_translations: Importfähigkeiten Übersetzungen
         import_skills: Import-Fähigkeiten
+        import_skills_rater_taxonomies: Taxonomien für Skill Rater importieren
         import_sms_invites: SMS-Einladung importieren
         import_users: Benutzer importieren
         migrate_assessment_translations: Bewertung Übersetzung Migration
@@ -1670,6 +1721,7 @@ de:
       assessor: Assessor
       category: Kategorie
       client: Kunde
+      code: Code
       created_at: Erstellt am
       created_by: Erstellt von
       created_date: Erstellt am
@@ -1991,8 +2043,12 @@ de:
         uniq_email: E-Mail sollte einheitlich sein.
       exceeded_subjects_count: Sie können nur %{count} Themen pro Einladung hinzufügen
       filled?: kann nicht leer sein
+      idp_template:
+        tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
       invalid_name: nur Alphabet, Zahl, Leerzeichen, Bindestrich und Punkt sind als gültige Zeichen erlaubt
       invalid_value: ungültige Anweisung '%{value}' in Zeile Nummer %{row}
+      job_roles:
+        unique_within_job_group: Eine Jobrolle mit demselben Namen existiert bereits.
       json?: Sollte gültiges JSON sein
       key?: kann nicht leer sein
       match_regexp?: ungültiger Wert
@@ -2013,6 +2069,9 @@ de:
       skill_alias:
         unique_alias: Alias sollte eindeutig sein
         unique_skill: Die Fähigkeit sollte einzigartig sein
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Fähigkeit und Jobrolle müssen zum selben Projekt gehören oder global sein.
+        unique_mappings: Es gibt bereits ein Mapping mit der gleichen Qualifikation und Aufgabenstellung.
       uniq: Diese Mettl-Bewertung ist bereits im System vorhanden. Die ID dieser Bewertung lautet %{id}
       uniq?: sollte einzigartig sein
       uniq_simulation: Diese Simulationsbeurteilung ist bereits im System vorhanden. Die ID dieser Beurteilung lautet %{id}

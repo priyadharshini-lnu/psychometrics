@@ -2222,6 +2222,42 @@ nl:
         requested_rescheduling_rejected: Herschikking Afgewezen
         rescheduled: Verpland
       subject: Onderwerp
+    job_role:
+      column:
+        job_group: Functiegroep
+      export:
+        failure_msg: Fout tijdens het exporteren van vertalingen
+        success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
+      form:
+        code: Code
+        description: Beschrijving
+        job_group: Functiegroep
+        name: Naam
+        title: Functie
+      global: Is wereldwijde baan rol?
+      import:
+        download_example_csv: Voorbeeld csv downloaden
+        success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
+      import_action:
+        translations: Importeren van functievertalingen
+      translations: Functie Vertalingen
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Verwacht vaardigheidsniveau
+        job_role: Functie
+        skill: Vaardigheid
+      form:
+        expected_proficiency_level: Verwacht vaardigheidsniveau
+        job_role: Functie
+        skill: Vaardigheid
+        title: Vaardigheden Functie in kaart brengen
+      global: Is Global Skill Job Mapping?
+      import:
+        taxonomy: Taxonomie
+    job_roles:
+      export:
+        translations:
+          details: Details
     libraries:
       create:
         successfully: Item %{naam} is succesvol aangemaakt.
@@ -2494,6 +2530,69 @@ nl:
         successfully: Succesvol
       toggle_status:
         successfully: Succesvol
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: De niveaudefinitie moet een array van definities zijn.
+          level_definition_must_match_level: moet precies %{verwachte} niveaus bevatten, maar %{werkelijke} werden gegeven
+          must_be_unique: Moet uniek zijn
+          proficiency_level_exists: Er bestaat al een ProficiencyLevel met deze vaardigheid en dit project
+          proficiency_level_exists_for_category: Er bestaat al een ProficiencyLevel voor deze categorie
+          project_level_all_skills_exists: Er bestaat al een vaardigheidsniveau 'all_skills
+          skill_must_exist: Vaardigheid moet aanwezig zijn voor vaardigheidstype 'by_skill'.
+      export:
+        details: Details
+        failure_msg: Fout bij het exporteren van vaardigheidsniveaus
+        success_msg: Lopende ontwikkelingsacties exporteren
+        translations:
+          details: Vertalingen op hoog niveau
+      fields:
+        level: Niveau
+        level_description: Niveau Beschrijving
+        level_name: Niveau Naam
+        proficiency_translations: Bekwaamheid Vertalingen
+        proficiency_type: Type bekwaamheid
+        skill: Vaardigheid
+        skill_category: Vaardigheidscategorie
+        skill_name: Naam vaardigheid
+        title: Bekwaamheid
+      global: Is mondiale vaardigheid?
+      import:
+        actions:
+          proficiency: Importvaardigheden
+          translations: Vertalingen importeren
+        errors:
+          all_skills_global_exists: 'Rij %{rij_nummer}: Er bestaat al een ProficiencyLevel op globaal niveau ''all_skills'
+          all_skills_project_exists: 'Rij %{rij_nummer}: Er bestaat al een ProficiencyLevel op projectniveau ''all_skills'
+          by_category_exists: 'Rij %{rij_nummer}: Er bestaat al een ''by_category'' ProficiencyLevel voor dit project en deze vaardigheidscategorie'
+          by_category_missing: 'Rij %{rij_nummer}: Project en vaardigheidscategorie moeten aanwezig zijn voor ''by_category''-type'
+          by_skill_exists: 'Rij %{rij_nummer}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
+          by_skill_missing: 'Rij %{rij_nummer}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
+          invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+          invalid_json: 'Regel %{regel}: Ongeldige JSON in LevelDefinition - %{message}'
+          invalid_json_structure: moet een JSON-object zijn met sleutels als "description" en "summary".
+          invalid_proficiency_type: 'Rij %{rij_nummer}: Ongeldig of ontbrekend ProficiencyType'
+          missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
+          missing_required_fields: 'Regel %{regel}: Verplichte velden ontbreken (%{fields})'
+          save_failed: 'Regel %{regel}: %{bericht}'
+        job_queued: Vaardigheidsniveaus importtaak is in de wachtrij geplaatst
+      translations:
+        export:
+          failure_msg: Fout bij het exporteren van vertalingen
+          success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
+        import:
+          errors:
+            invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+            invalid_locales: Ongeldige locale
+            level_not_found: 'Niveau niet gevonden voor ID: %{level_id}'
+            missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
+            missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
+            row_id_blank: 'Rij %{row}: ID kan niet leeg zijn'
+            save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{bericht}'
+      type:
+        all_skills: Alle vaardigheden
+        by_category: Per categorie
+        by_skill: Door Behendigheid
     profile:
       change_password: Wachtwoord wijzigen
       details: Details
@@ -3369,6 +3468,7 @@ nl:
         description: Beschrijving
         name: Naam
         project_placeholder: Selecteer een project
+        skill_group: Vaardigheidsgroep
         skill_type: Vaardigheidstype
         title: Vaardigheid
       global: Is globale vaardigheid?
@@ -3391,6 +3491,7 @@ nl:
             skill_not_found: Vaardigheid met ID %{id} niet gevonden
     skills_taxonomy:
       tabs:
+        job_roles: Functierollen
         proficiency: Vaardigheid
         skills: Vaardigheden
     sms_histories:
@@ -3596,6 +3697,14 @@ nl:
           other: ''
       more_actions: Meer acties
     taxonomy:
+      import:
+        download_example_file: Voorbeeldbestand downloaden
+        success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
+      import_action:
+        taxonomy: Taxonomie importeren
+      job_roles: Functierollen
+      proficiency: Bekwaamheid
+      skill_job_mappings: Vaardigheidstaken toewijzingen
       skills: Vaardigheden
       title: Taxonomie
     templates:

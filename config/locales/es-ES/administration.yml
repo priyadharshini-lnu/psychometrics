@@ -2221,7 +2221,43 @@ es-ES:
         requested_rescheduling: Reprogramación solicitada
         requested_rescheduling_rejected: Reprogramación Rechazada
         rescheduled: Reprogramado
-      subject: Asunto
+      subject: Sujeto
+    job_role:
+      column:
+        job_group: Grupo de trabajo
+      export:
+        failure_msg: Error al exportar traducciones
+        success_msg: Exportación de acciones de desarrollo en curso.
+      form:
+        code: Código
+        description: Descripción
+        job_group: Grupo de trabajo
+        name: Nombre
+        title: Rol de trabajo
+      global: "¿Es Global Job Role?"
+      import:
+        download_example_csv: Descargar Ejemplo csv
+        success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+      import_action:
+        translations: Importar traducciones de funciones
+      translations: Traducciones de funciones
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Nivel de competencia esperado
+        job_role: Rol de trabajo
+        skill: Habilidad
+      form:
+        expected_proficiency_level: Nivel de competencia esperado
+        job_role: Rol de trabajo
+        skill: Habilidad
+        title: Asignación
+      global: "¿Es Global Skill Job Mapping?"
+      import:
+        taxonomy: Taxonomía
+    job_roles:
+      export:
+        translations:
+          details: Detalles
     libraries:
       create:
         successfully: El elemento %{name} se ha creado correctamente.
@@ -2494,6 +2530,69 @@ es-ES:
         successfully: Con éxito
       toggle_status:
         successfully: Con éxito
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: La definición de nivel debe ser una matriz de definiciones.
+          level_definition_must_match_level: debe contener exactamente %{expected} niveles, pero %{actual} se dieron
+          must_be_unique: Debe ser único
+          proficiency_level_exists: Ya existe un ProficiencyLevel con esta habilidad y proyecto
+          proficiency_level_exists_for_category: Ya existe un ProficiencyLevel para esta categoría
+          project_level_all_skills_exists: Ya existe un nivel de competencia 'all_skills
+          skill_must_exist: La habilidad debe estar presente para el proficiency_type 'by_skill'
+      export:
+        details: Detalles
+        failure_msg: Error al exportar niveles de competencia
+        success_msg: Exportación de acciones de desarrollo en curso
+        translations:
+          details: Traducciones de nivel superior
+      fields:
+        level: Nivel
+        level_description: Descripción del nivel
+        level_name: Nivel Nombre
+        proficiency_translations: Traducciones especializadas
+        proficiency_type: Tipo de competencia
+        skill: Habilidad
+        skill_category: Categoría de competencias
+        skill_name: Nombre de la habilidad
+        title: Dominio
+      global: "¿Es la competencia global?"
+      import:
+        actions:
+          proficiency: Capacidad de importación
+          translations: Importar Traducciones Proficiency
+        errors:
+          all_skills_global_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel de nivel global ''all_skills'
+          all_skills_project_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''all_skills'' a nivel de proyecto.'
+          by_category_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''by_category'' para este proyecto y categoría de habilidad.'
+          by_category_missing: 'Fila %{número_de_fila}: Project y Skill Category deben estar presentes para el tipo ''by_category'
+          by_skill_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''by_skill'' para este proyecto y habilidad.'
+          by_skill_missing: 'Fila %{número_de_fila}: Project y Skill deben estar presentes para el tipo ''by_skill'
+          invalid_csv_format: 'Formato CSV no válido: %{message}'
+          invalid_json: 'Línea %{line}: JSON inválido en LevelDefinition - %{message}'
+          invalid_json_structure: debe ser un objeto JSON con claves como "description" y "summary".
+          invalid_proficiency_type: 'Fila %{número_de_fila}: ProficiencyType inválido o faltante'
+          missing_columns: 'Faltan columnas obligatorias: %{fields}'
+          missing_required_fields: 'Línea %{line}: Faltan campos obligatorios (%{fields})'
+          save_failed: 'Línea %{line}: %{message}'
+        job_queued: Se ha puesto en cola un trabajo de importación de niveles de competencia
+      translations:
+        export:
+          failure_msg: Error al exportar traducciones
+          success_msg: Exportación de acciones de desarrollo en curso.
+        import:
+          errors:
+            invalid_csv_format: 'Formato CSV no válido: %{message}'
+            invalid_locales: Configuración regional no válida
+            level_not_found: 'Nivel no encontrado para ID: %{level_id}'
+            missing_columns: 'Faltan columnas obligatorias: %{fields}'
+            missing_required_columns: 'Faltan columnas obligatorias: %{columns}'
+            row_id_blank: 'Fila %{row}: ID no puede estar en blanco'
+            save_failed: 'Error al procesar Skill ID %{id}: %{message}'
+      type:
+        all_skills: Todas las competencias
+        by_category: Por categoría
+        by_skill: Por habilidad
     profile:
       change_password: Cambiar contraseña
       details: Detalles
@@ -3370,6 +3469,7 @@ es-ES:
         description: Descripción
         name: Nombre
         project_placeholder: Seleccione un proyecto
+        skill_group: Grupo de competencias
         skill_type: Tipo de habilidad
         title: Habilidad
       global: "¿Es Global Skill?"
@@ -3392,6 +3492,8 @@ es-ES:
             skill_not_found: Habilidad con ID %{id} no encontrada
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Asignación de funciones
+        job_roles: Funciones
         proficiency: Dominio
         skills: Habilidades
     sms_histories:
@@ -3599,6 +3701,14 @@ es-ES:
           other: ''
       more_actions: Más acciones
     taxonomy:
+      import:
+        download_example_file: Descargar archivo de ejemplo
+        success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+      import_action:
+        taxonomy: Importar taxonomía
+      job_roles: Roles de trabajo
+      proficiency: Dominio
+      skill_job_mappings: Asignaciones
       skills: Habilidades
       title: Taxonomía
     templates:

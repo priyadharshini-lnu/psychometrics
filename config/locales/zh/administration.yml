@@ -2226,6 +2226,42 @@ zh:
         requested_rescheduling_rejected: 重新安排 拒绝
         rescheduled: 改期
       subject: 主题
+    job_role:
+      column:
+        job_group: 工作小组
+      export:
+        failure_msg: 导出翻译时出错
+        success_msg: 导出开发行动正在进行中。
+      form:
+        code: 代码
+        description: 说明
+        job_group: 工作小组
+        name: 名称
+        title: 工作角色
+      global: 全球工作角色是什么？
+      import:
+        download_example_csv: 下载 csv 示例
+        success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
+      import_action:
+        translations: 导入工作角色翻译
+      translations: 工作角色翻译
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: 预期能力水平
+        job_role: 工作角色
+        skill: 技能
+      form:
+        expected_proficiency_level: 预期能力水平
+        job_role: 工作角色
+        skill: 技能
+        title: 技能岗位制图
+      global: 全球技能工作图谱是什么？
+      import:
+        taxonomy: 分类学
+    job_roles:
+      export:
+        translations:
+          details: 详细信息
     libraries:
       create:
         successfully: 项目 %{name} 创建成功。
@@ -2498,6 +2534,69 @@ zh:
         successfully: 成功
       toggle_status:
         successfully: 成功
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: 级别定义必须是一个定义数组。
+          level_definition_must_match_level: 必须完全包含 %{ 预期}水平，但给出了 %{ 实际}水平。
+          must_be_unique: 必须独一无二
+          proficiency_level_exists: 已存在具有该技能和项目的 ProficiencyLevel
+          proficiency_level_exists_for_category: 该类别的熟练程度等级已经存在
+          project_level_all_skills_exists: 已存在 "all_skills "能力级别
+          skill_must_exist: 技能类型 "by_skill "必须包含技能
+      export:
+        details: 详细信息
+        failure_msg: 导出熟练程度时出错
+        success_msg: 导出发展中行动
+        translations:
+          details: 熟练水平翻译
+      fields:
+        level: 级别
+        level_description: 等级描述
+        level_name: 级别名称
+        proficiency_translations: 熟练翻译
+        proficiency_type: 能力类型
+        skill: 技能
+        skill_category: 技能类别
+        skill_name: 技能名称
+        title: 熟练程度
+      global: 全球能力是什么？
+      import:
+        actions:
+          proficiency: 进口能力
+          translations: 进口能力翻译
+        errors:
+          all_skills_global_exists: 行 %{row_number}：已存在全局级别 "all_skills"（所有技能）ProficiencyLevel
+          all_skills_project_exists: 行 %{row_number}：已经存在一个项目级别的 "all_skills "熟练级别
+          by_category_exists: 行 %{row_number}：此项目和技能类别已存在 "by_category "熟练级别
+          by_category_missing: 行 %{row_number}：by_category "类型必须有项目和技能类别
+          by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
+          by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
+          invalid_csv_format: CSV 格式无效： %{message}
+          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 无效 - %{message}
+          invalid_json_structure: 必须是一个 JSON 对象，包含 "描述 "和 "摘要 "等关键字
+          invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
+          missing_columns: 缺少必填列： %{fields}
+          missing_required_fields: 行 %{line}：缺少必填字段 (%{fields})
+          save_failed: 行 %{line}：%{message}
+        job_queued: 能力水平导入工作已排队
+      translations:
+        export:
+          failure_msg: 导出翻译时出错
+          success_msg: 导出开发行动正在进行中。
+        import:
+          errors:
+            invalid_csv_format: CSV 格式无效： %{message}
+            invalid_locales: 本地语言无效
+            level_not_found: 未找到 ID 为 %{level_id} 的级别
+            missing_columns: 缺少必填列： %{fields}
+            missing_required_columns: 缺少必填列： %{columns}
+            row_id_blank: 行 %{row}：ID 不能为空
+            save_failed: 技能 ID %{id} 处理错误：%{message｝
+      type:
+        all_skills: 所有技能
+        by_category: 按类别
+        by_skill: 通过技能
     profile:
       change_password: 更改密码
       details: 详细信息
@@ -3375,6 +3474,7 @@ zh:
         description: 说明
         name: 名称
         project_placeholder: 选择项目
+        skill_group: 技能组
         skill_type: 技能类型
         title: 技能
       global: 全球技能是什么？
@@ -3397,6 +3497,8 @@ zh:
             skill_not_found: 未找到 ID 为 %{id} 的技能
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: 技能岗位映射
+        job_roles: 工作角色
         proficiency: 熟练
         skills: 技能
     sms_histories:
@@ -3600,6 +3702,14 @@ zh:
           other: '共计 : 1'
       more_actions: 更多行动
     taxonomy:
+      import:
+        download_example_file: 下载示例文件
+        success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
+      import_action:
+        taxonomy: 导入分类标准
+      job_roles: 工作角色
+      proficiency: 熟练程度
+      skill_job_mappings: 技能岗位映射
       skills: 技能
       title: 分类学
     templates:

@@ -5,6 +5,8 @@ require 'rails_helper'
 describe Threesixty::Subjects::ImportOneForm do
   let(:project) { create(:project) }
   let(:campaign) { create(:campaign, project: project) }
+  let!(:project_job_role) { create(:job_role, name: 'Developer', project: project) }
+  let!(:global_job_role) { create(:job_role, name: 'Global Role', project: nil) }
 
   it 'validates presence of first_name' do
     form = described_class.new(first_name: '').with_context(campaign: campaign)
@@ -38,5 +40,45 @@ describe Threesixty::Subjects::ImportOneForm do
     form = described_class.new(locale: 'invalid').with_context(campaign: campaign)
     form.validate
     expect(form.errors.messages[:locale]).to include('Wrong locale')
+  end
+
+  it 'rejects invalid job role names' do
+    form = described_class.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'jon@example.com',
+      current_job_role: 'Nonexistent Role'
+    ).with_context(campaign: campaign)
+
+    form.validate
+    expect(form.errors.messages[:base]).to include(
+      "Job role 'Nonexistent Role' not found in project or global roles"
+    )
+  end
+
+  it 'works when no job roles are specified' do
+    form = described_class.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john@example.com'
+    ).with_context(campaign: campaign)
+
+    expect(form.validate).to be true
+    expect(form.errors).to be_empty
+  end
+
+  it 'rejects when current and target roles are the same' do
+    form = described_class.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'joh@e.cm',
+      current_job_role: 'Developer',
+      target_job_role: 'Developer'
+    ).with_context(campaign: campaign)
+
+    form.validate
+    expect(form.errors.messages[:base]).to include(
+      'Target job role must be different from current job role'
+    )
   end
 end
