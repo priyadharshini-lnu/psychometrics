@@ -14,6 +14,9 @@ pl:
     assessment_center:
       invite:
         center_group: Assessment Center Group
+    communications:
+      show:
+        assessment_center_group: Assessment Center Group
     job_role:
       column:
         job_group: Grupa zawodowa

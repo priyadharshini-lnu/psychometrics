@@ -13,6 +13,9 @@ zh-HK:
     assessment_center:
       invite:
         center_group: 評估中心小組
+    communications:
+      show:
+        assessment_center_group: 評估中心小組
     job_role:
       column:
         job_group: 工作群組

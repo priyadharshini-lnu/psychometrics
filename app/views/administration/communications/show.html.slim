@@ -28,6 +28,10 @@
     li.list-group-item
       strong.mrs = t('.communication_type')
       = @communication.kind_i18n
+    - if @communication.campaign_assessment_group
+      li.list-group-item
+        strong.mrs = t('.assessment_center_group')
+        = @communication.campaign_assessment_group.name
     - if @communication.assessment
       li.list-group-item
         strong.mrs = t('.assessment')

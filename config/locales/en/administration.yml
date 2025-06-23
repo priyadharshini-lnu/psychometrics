@@ -1619,6 +1619,7 @@ en:
           view: View Communication
       show:
         assessment: 'Assessment:'
+        assessment_center_group: Assessment Center Group
         back: Back
         body: 'Body:'
         campaign: 'Campaign:'

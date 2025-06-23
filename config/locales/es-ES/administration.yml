@@ -1578,6 +1578,7 @@ es-ES:
           view: Ver Comunicación
       show:
         assessment: 'Evaluación:'
+        assessment_center_group: Grupo del Centro de Evaluación
         back: Volver
         body: 'Cuerpo:'
         campaign: 'Campaña:'

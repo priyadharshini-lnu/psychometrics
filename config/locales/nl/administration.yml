@@ -1578,6 +1578,7 @@ nl:
           view: Bekijk communicatie
       show:
         assessment: 'Beoordeling:'
+        assessment_center_group: Assessment Center Groep
         back: Terug
         body: 'Lichaam:'
         campaign: 'Campagne:'

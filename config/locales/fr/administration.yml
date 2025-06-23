@@ -1578,6 +1578,7 @@ fr:
           view: Voir la communication
       show:
         assessment: 'Évaluation :'
+        assessment_center_group: Groupe du centre d'évaluation
         back: Retour
         body: 'Le corps :'
         campaign: 'Campagne :'

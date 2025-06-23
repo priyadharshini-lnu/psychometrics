@@ -9,6 +9,12 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
 --
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -1965,7 +1971,8 @@ CREATE TABLE public.communications (
     last_ran_at timestamp without time zone,
     updated_by_id bigint,
     assessment_completion_status_code character varying,
-    delivery_delay_hours integer
+    delivery_delay_hours integer,
+    campaign_assessment_group_id bigint
 );
 
 
@@ -12011,6 +12018,13 @@ CREATE INDEX index_communications_on_assessment_id ON public.communications USIN
 
 
 --
+-- Name: index_communications_on_campaign_assessment_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_campaign_assessment_group_id ON public.communications USING btree (campaign_assessment_group_id);
+
+
+--
 -- Name: index_communications_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16045,6 +16059,14 @@ ALTER TABLE ONLY public.threesixty_reminder_histories
 
 
 --
+-- Name: communications fk_rails_a3fa31bbf3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications
+    ADD CONSTRAINT fk_rails_a3fa31bbf3 FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
 -- Name: workshops fk_rails_a420799614; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17075,6 +17097,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250421072058'),
 ('20250421071841'),
 ('20250620000000'),
+('20250619111229'),
 ('20250616053812'),
 ('20250610070045'),
 ('20250609112516'),

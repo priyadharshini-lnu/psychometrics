@@ -1578,6 +1578,7 @@ de:
           view: Ansicht Kommunikation
       show:
         assessment: 'Bewertung:'
+        assessment_center_group: Assessment Center Gruppe
         back: Zurück
         body: 'Körper:'
         campaign: 'Kampagne:'

@@ -14,6 +14,10 @@ module Communications
         find_each do |communication|
           workshop_subject = WorkshopSubject.find(communication.workshop_subject_id)
 
+          # Only create email if assessment groups match
+          next unless workshop_subject.workshop_invite&.campaign_assessment_group_id ==
+                      communication.campaign_assessment_group_id
+
           communication.emails.create(
             campaign_user: workshop_subject.campaign_user,
             workshop_id: workshop_subject.workshop_id,

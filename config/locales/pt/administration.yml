@@ -1578,6 +1578,7 @@ pt:
           view: Ver Comunicação
       show:
         assessment: 'Avaliação:'
+        assessment_center_group: Grupo do Centro de Avaliação
         back: Voltar
         body: 'Corpo:'
         campaign: 'Campanha:'

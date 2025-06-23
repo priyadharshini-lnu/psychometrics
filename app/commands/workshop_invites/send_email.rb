@@ -42,13 +42,20 @@ module WorkshopInvites
     end
 
     def send_invite_email
-      communication = campaign.communications.workshop_invite.last
+      communication = campaign.
+                      communications.
+                      workshop_invite.
+                      where(campaign_assessment_group_id: workshop_invite.campaign_assessment_group_id).last
       return false unless communication
 
       communication.emails.create(
         campaign_user: campaign_user,
         workshop_invite: workshop_invited_subject.workshop_invite
       )
+    end
+
+    def workshop_invite
+      workshop_invited_subject.workshop_invite
     end
   end
 end

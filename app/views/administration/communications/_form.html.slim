@@ -39,6 +39,12 @@
           input_html: { data: { live_search: true,
             behavior: 'communication-changeable' }, disabled: @copying_communication },
           label: t('.kind')
+      - if @communication_facade.show_assessment_center_groups?
+          = f.hidden_field :campaign_assessment_group_id if @copying_communication
+          = f.association :campaign_assessment_group,
+            collection: @communication_facade.assessment_center_groups,
+            input_html: { data: { live_search: true,
+              behavior: @communication_facade.assessment_center_group_behavior }, disabled: @copying_communication}
       - if @communication_facade.show_assessments?
         = f.association :assessment,
             collection: @communication_facade.assessments,

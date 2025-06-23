@@ -1578,6 +1578,7 @@ ko:
           view: 커뮤니케이션 보기
       show:
         assessment: '평가:'
+        assessment_center_group: 평가 센터 그룹
         back: 뒤로
         body: 'Body:'
         campaign: '캠페인:'

@@ -4,7 +4,7 @@ module Facades
   module Administration
     class Communication
       attr_reader :owners, :projects, :campaigns, :communication, :memberships, :form, :delivery_rules,
-                  :assessments
+                  :assessments, :assessment_center_groups
 
       include EmailDelivery
 
@@ -18,6 +18,7 @@ module Facades
         @delivery_rules = fetch_delivery_rules
         @memberships = fetch_memberships
         @assessments = fetch_assessments
+        @assessment_center_groups = fetch_assessment_center_groups
       end
 
       def show_projects?
@@ -46,6 +47,10 @@ module Facades
 
       def show_kind?
         form.end_level_id.present?
+      end
+
+      def show_assessment_center_groups?
+        workshop_communication?
       end
 
       def show_delivery_rules?
@@ -105,6 +110,11 @@ module Facades
         'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
       end
 
+      def assessment_center_group_behavior
+        'communication-changeable sub_campaign_id owner-resettable client-resettable project-resettable ' \
+          'campaign-resettable'
+      end
+
       def show_inputs_for_date_and_time?
         return false if %w[invitation other].exclude?(form.kind)
 
@@ -141,6 +151,12 @@ module Facades
         return Client.none if form.project_id.blank?
 
         ::Administration::CampaignPolicy::Scope.new(user, Campaign).resolve.where(project_id: form.project_id)
+      end
+
+      def fetch_assessment_center_groups
+        return CampaignAssessmentGroup.none if form.campaign_id.blank?
+
+        CampaignAssessmentGroup.assessment_center.where(campaign_id: form.campaign_id).order(:name)
       end
 
       def client_policy_scope(user)
