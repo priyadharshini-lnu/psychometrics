@@ -2279,7 +2279,7 @@ zh-Hant:
         updated_at: 修改日期
         upload: 上傳新檔案
       new:
-        header: 新資料夾
+        header: 上傳檔案
       resource:
         confirmations:
           delete:

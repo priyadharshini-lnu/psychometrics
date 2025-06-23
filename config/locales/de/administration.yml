@@ -2266,7 +2266,7 @@ de:
       edit:
         header: Bearbeiten
       index:
-        new_folder: Neue Mappe
+        new_folder: Neuer Ordner
         owner: Eigentümer
         title: Mediathek
         upload: Hochladen
@@ -2279,7 +2279,7 @@ de:
         updated_at: Geändertes Datum
         upload: Neue Datei hochladen
       new:
-        header: Neue Mappe
+        header: Dateien hochladen
       resource:
         confirmations:
           delete:

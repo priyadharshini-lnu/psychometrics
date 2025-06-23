@@ -2279,7 +2279,7 @@ es-ES:
         updated_at: Fecha modificada
         upload: Cargar nuevo archivo
       new:
-        header: Nueva carpeta
+        header: Cargar archivos
       resource:
         confirmations:
           delete:

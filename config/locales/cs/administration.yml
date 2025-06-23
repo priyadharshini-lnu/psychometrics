@@ -2279,7 +2279,7 @@ cs:
         updated_at: Datum úpravy
         upload: Nahrát nový soubor
       new:
-        header: Nová složka
+        header: Nahrát soubory
       resource:
         confirmations:
           delete:

@@ -2279,7 +2279,7 @@ it:
         updated_at: Data di modifica
         upload: Caricare un nuovo file
       new:
-        header: Nuova cartella
+        header: Carica file
       resource:
         confirmations:
           delete:

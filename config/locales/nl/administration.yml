@@ -2279,7 +2279,7 @@ nl:
         updated_at: Gewijzigde datum
         upload: Nieuw bestand uploaden
       new:
-        header: Nieuwe map
+        header: Bestanden uploaden
       resource:
         confirmations:
           delete:

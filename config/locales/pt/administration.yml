@@ -2279,7 +2279,7 @@ pt:
         updated_at: Data de modificação
         upload: Carregar novo ficheiro
       new:
-        header: Nova pasta
+        header: Carregar arquivos
       resource:
         confirmations:
           delete:

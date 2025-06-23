@@ -2279,7 +2279,7 @@ fr:
         updated_at: Date de modification
         upload: Télécharger un nouveau fichier
       new:
-        header: Nouveau dossier
+        header: Télécharger des fichiers
       resource:
         confirmations:
           delete:

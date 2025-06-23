@@ -2283,7 +2283,7 @@ zh:
         updated_at: 修改日期
         upload: 上传新文件
       new:
-        header: 新文件夹
+        header: 上传文件
       resource:
         confirmations:
           delete:

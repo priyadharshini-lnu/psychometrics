@@ -2367,7 +2367,7 @@ en:
       edit:
         header: Edit
       index:
-        new_folder: New Folder
+        new_folder: New folder
         owner: Owner
         title: Media library
         upload: Upload
@@ -2380,7 +2380,7 @@ en:
         updated_at: Modified date
         upload: Upload new file
       new:
-        header: New Folder
+        header: Upload Files
       resource:
         confirmations:
           delete:

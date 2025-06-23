@@ -2279,7 +2279,7 @@ ja:
         updated_at: 変更日
         upload: 新規ファイルのアップロード
       new:
-        header: 新しいフォルダ
+        header: ファイルをアップロード
       resource:
         confirmations:
           delete:

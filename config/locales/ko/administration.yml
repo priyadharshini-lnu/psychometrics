@@ -2279,7 +2279,7 @@ ko:
         updated_at: 수정된 날짜
         upload: 새 파일 업로드
       new:
-        header: 새 폴더
+        header: 파일 업로드
       resource:
         confirmations:
           delete:
