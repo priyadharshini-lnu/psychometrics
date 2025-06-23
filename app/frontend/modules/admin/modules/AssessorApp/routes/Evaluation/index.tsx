@@ -100,8 +100,8 @@ const Evaluation: FC<Props> = ({
     }
   }
 
-  const changeSubjectForm = (id) => {
-    changeSubjectAssessment(id)
+  const changeSubjectForm = (id: string) => {
+    changeSubjectAssessment(+id)
   }
 
   const sortedAssessorAssesments = _.sortBy(
