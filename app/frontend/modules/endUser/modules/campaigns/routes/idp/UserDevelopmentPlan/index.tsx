@@ -44,7 +44,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   DevelopmentActionListView,
   DevelopmentAction,
-  CategoryWithSkillsSummary,
+  Skill,
 } from '~/components/IdpShared/DevelopmentActions'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
 import { groupSkillsBySkillType } from './utils'
@@ -90,11 +90,6 @@ type Props = PropsFromRedux & {
   header?: React.ReactNode;
 }
 
-const emptySkillCategory = {
-  skillType: '',
-  skills: [],
-}
-
 const UserDevelopmentPlanComponent = ({
   currentUser,
   fetchAvailableDevelopmentActions,
@@ -133,10 +128,12 @@ const UserDevelopmentPlanComponent = ({
   const [tab, setTab] = useState(paramTab || 'list')
   const [isCommentsDrawerOpen, setIsCommentsDrawerOpen] = useState(false)
   const [showAddSkill, setShowAddSkill] = useState(false)
-  const [pickedCategoryToAddMoreSkills, setPickedCategoryToAddMoreSkills] = useState<CategoryWithSkillsSummary>(
-    emptySkillCategory,
-  )
-  const [skillCategory, setSkillCategory] = useState<CategoryWithSkillsSummary>(emptySkillCategory)
+  const [allSkills, setAllSkills] = useState<Skill[]>(([]))
+
+  const [selectedSkills, setSelectedSkills] = useState<Skill[]>([])
+
+  const [isLoading, setIsLoading] = useState(false)
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Comments state - only isCommentsLoading is managed internally
@@ -154,13 +151,20 @@ const UserDevelopmentPlanComponent = ({
 
   const searchSkillResource = useSearchSkills()
 
+  const skillCategories = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
+    skillType,
+    skills,
+  }))
+
   const changeTab = (tab: string) => {
     setTab(tab)
     navigate(`/idp/my_plan/${tab}`)
   }
 
   useEffect(() => {
-    fetchUserIdpPlan(idpUserId).catch((error) => {
+    fetchUserIdpPlan(idpUserId).then(({ response }) => {
+      setSelectedSkills(response.data.userIdpSkills)
+    }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
       navigate('/')
     })
@@ -180,16 +184,11 @@ const UserDevelopmentPlanComponent = ({
 
   useEffect(() => {
     if (showAddSkill) {
-      fetchIdpSkills({
-        filterBySkillType: pickedCategoryToAddMoreSkills?.skillType,
-      }).then(({ response }) => {
-        setSkillCategory({
-          skillType: pickedCategoryToAddMoreSkills?.skillType || '',
-          skills: response,
-        })
+      setIsLoading(true)
+      fetchIdpSkills().then(({ response }) => {
+        setIsLoading(false)
+        setAllSkills(response)
       })
-    } else {
-      setSkillCategory(emptySkillCategory)
     }
   }, [showAddSkill])
 
@@ -203,40 +202,36 @@ const UserDevelopmentPlanComponent = ({
 
   const handleSelectSkill = (skills) => {
     // Add skillId to skills
-    const userIdpSkill = skills.map(skill => ({
+    const userIdpSkills = skills.map(skill => ({
       ...skill,
       skillId: skill.id,
     }))
-    setPickedCategoryToAddMoreSkills({
-      skillType: pickedCategoryToAddMoreSkills?.skillType || '',
-      skills: _.uniqBy([...pickedCategoryToAddMoreSkills?.skills, ...userIdpSkill], 'skillId'),
-    })
+    setSelectedSkills([...selectedSkills, ...userIdpSkills])
   }
 
   const handleFinishAddSkill = () => {
     saveUserIdpSkills(
-      pickedCategoryToAddMoreSkills.skills, pickedCategoryToAddMoreSkills.skillType, idpUserId,
+      selectedSkills, null, idpUserId,
     ).then(() => (
       setShowAddSkill(false)
     ))
   }
 
   const handleDeselectSkill = (skillId) => {
-    setPickedCategoryToAddMoreSkills({
-      skillType: pickedCategoryToAddMoreSkills?.skillType || '',
-      skills: pickedCategoryToAddMoreSkills?.skills.filter(
-        userIdpSkill => userIdpSkill.skillId !== skillId,
-      ),
-    })
+    setSelectedSkills(selectedSkills.filter(skill => (skill.skillId !== skillId)))
   }
 
   const handleUpdateDevelopmentActionProgress = (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => {
     updateDevelopmentActionProgressInPlan(developmentAction, idpUserId)
   }
 
-  const handleAddMoreSkill = (category) => {
+  const handleAddMoreSkill = () => {
     setShowAddSkill(true)
-    setPickedCategoryToAddMoreSkills(category)
+  }
+
+  // If no status is available, then it's still loading
+  if (!status || isLoading) {
+    return <PageLoadSpinner size="large" />
   }
 
   // Comment-related functions
@@ -455,26 +450,28 @@ const UserDevelopmentPlanComponent = ({
     </Row>
   )
 
+  if (showAddSkill) {
+    return (
+      <div>
+        <Button
+          type="text"
+          icon={<CloseOutlined />}
+          onClick={() => setShowAddSkill(false)}
+        />
+        <AddSkillsStep
+          addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
+          skillCategories={skillCategories}
+          onFinishAddSkill={handleFinishAddSkill}
+          selectedSkills={selectedSkills}
+          onDeselectSkill={handleDeselectSkill}
+          onAddSkill={handleSelectSkill}
+          searchSkillResource={searchSkillResource}
+        />
+      </div>
+    )
+  }
   return (
     <>
-      {showAddSkill ? (
-        <div>
-          <Button
-            type="text"
-            icon={<CloseOutlined />}
-            onClick={() => setShowAddSkill(false)}
-          />
-          <AddSkillsStep
-            addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
-            skillCategories={[skillCategory]}
-            onFinishAddSkill={handleFinishAddSkill}
-            selectedSkills={pickedCategoryToAddMoreSkills?.skills || []}
-            onDeselectSkill={handleDeselectSkill}
-            onAddSkill={handleSelectSkill}
-            searchSkillResource={searchSkillResource}
-          />
-        </div>
-      ) : null}
       { viewType === 'tabs'
         ? (
           <>

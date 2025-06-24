@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  Avatar, Button, Flex, Typography, Divider,
+  Avatar, Button, Flex, Typography,
 } from 'antd'
 import _ from 'lodash'
 import { EditOutlined } from '@ant-design/icons'
@@ -30,9 +30,8 @@ type DevelopmentActionListViewProps = {
   availableDevelopmentActions: AvailableDevelopmentActions[]
   onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onShowAvailableDevelopmentAction?: (skillId: number | string | null) => void
-  onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onAddMoreSkills: (category: CategoryWithSkills) => void;
+  onAddMoreSkills: () => void;
   onRemoveDevelopmentAction: (developmentAction: DevelopmentAction) => void
 }
 
@@ -45,7 +44,6 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
   onShowAvailableDevelopmentAction,
   onRemoveDevelopmentAction,
   onUpdateDevelopmentAction,
-  onUpdateDevelopmentActionProgress,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
@@ -131,7 +129,6 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
         onAddDevelopmentAction={() => handleShowAvailableDevelopmentAction(skill)}
         onRemoveDevelopmentAction={onRemoveDevelopmentAction}
         onUpdateDevelopmentAction={onUpdateDevelopmentAction}
-        onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
         developmentActions={skill.developmentActions}
         name={skill.name}
       />
@@ -187,16 +184,14 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
                 {renderCards(category.skills)}
               </Flex>
             </Flex>
-            {editMode ? (
-              <>
-                <Divider className="mt-4" />
-                <Button onClick={() => onAddMoreSkills(category)} icon={<EditOutlined />} className="ps-0" type="link">
-                  {I18n.t('idp.development_actions.manage_skills')}
-                </Button>
-              </>
-            ) : null}
+
           </BoxWithShadow>
         ))}
+        {editMode ? (
+          <Button onClick={() => onAddMoreSkills()} icon={<EditOutlined />} style={{ alignSelf: 'flex-end' }}>
+            {I18n.t('idp.development_actions.manage_skills')}
+          </Button>
+        ) : null}
       </Flex>
       <AddDevelopmentActionModal
         data={availableDevelopmentActions}

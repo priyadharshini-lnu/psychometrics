@@ -94,7 +94,7 @@ const MyPlanComponent = ({
   const showPublishPlanButton = (!managerApprovesIdp && status === USER_IDP_PLAN_STATUS.DRAFT)
            || (managerApprovesIdp && status === USER_IDP_PLAN_STATUS.APPROVED)
 
-  const showEditPlanButton = !['board', 'reflective_questions'].includes(paramTab)
+  const showEditPlanButton = !['reflective_questions'].includes(paramTab)
 
 
   const handleCompletion = () => {

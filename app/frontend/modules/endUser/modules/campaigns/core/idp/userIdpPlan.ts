@@ -298,7 +298,7 @@ export const fetchAvailableDevelopmentActions = (userId: string, userIdpSkillId:
   },
 })
 
-export const fetchUserIdpPlan = (userId: string) => ({
+export const fetchUserIdpPlan = (userId: string):ApiAction<{data:UserIdpPlan}> => ({
   type: FETCH_USER_IDP_PLAN,
   request: {
     url: `/user_idp_plans/${userId}`,
