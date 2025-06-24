@@ -6,7 +6,7 @@ class IdpTemplate < ApplicationRecord
   include RansackSearchableFields
   include ActiveStorageAttachable
 
-  translates :instructions
+  translates :instructions, :title_text, :subtitle_text
   belongs_to :project, class_name: 'Client'
   belongs_to :report
   has_many :idp_template_skills, dependent: :destroy
@@ -44,6 +44,15 @@ class IdpTemplate < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name]
+  end
+
+  def translations=(values)
+    values.each do |locale, translation|
+      Mobility.with_locale(locale) do
+        self.title_text = translation[:title_text]
+        self.subtitle_text = translation[:subtitle_text]
+      end
+    end
   end
 
   def available_skills

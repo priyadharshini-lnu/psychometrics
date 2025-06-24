@@ -74,6 +74,8 @@ const IDPTemplateForm = ({
     try {
       setIsLoading(true)
       const values = await form.validateFields()
+      const { translations } = form.getFieldsValue(['translations'])
+
 
       const skills: Pick<Skill, 'id'>[] = _.flatten([
         values.behavioralGlobalSkills || [],
@@ -102,6 +104,7 @@ const IDPTemplateForm = ({
         logoType: values.logoType,
         fields: values.fields,
         showReflections: values.showReflections,
+        translations: translations || {},
       }
 
       let hasError = false
@@ -348,7 +351,7 @@ const IDPTemplateForm = ({
                   forceRender: true,
                   key: 'appearance',
                   disabled: !idp,
-                  children: <AppearanceTab idp={idp} />,
+                  children: <AppearanceTab idp={idp} form={form} />,
                 },
                 {
                   label: idp

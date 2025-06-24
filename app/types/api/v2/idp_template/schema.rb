@@ -17,6 +17,11 @@ module Api
             attribute[:technical_global_tags].array(:string)
             attribute[:technical_client_tags].array(:string)
             attribute[:self_rating_enabled].filled(:bool)
+            attribute[:translations].hash do
+              optional(:title_text).maybe(:string)
+              optional(:subtitle_text).maybe(:string)
+            end
+
             optional(:reflection_questions).array(:hash) do
               required(:reflection_question_id).filled(:string)
               required(:mandatory).filled(:bool)

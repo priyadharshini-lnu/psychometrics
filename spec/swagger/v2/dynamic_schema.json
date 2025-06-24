@@ -15148,6 +15148,21 @@
                   "type": "boolean",
                   "nullable": false
                 },
+                "translations": {
+                  "type": "object",
+                  "properties": {
+                    "title_text": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "subtitle_text": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [],
+                  "nullable": false
+                },
                 "reflection_questions": {
                   "type": "array",
                   "items": {
@@ -15202,7 +15217,8 @@
                 "behavioural_client_tags",
                 "technical_global_tags",
                 "technical_client_tags",
-                "self_rating_enabled"
+                "self_rating_enabled",
+                "translations"
               ],
               "nullable": false
             }
@@ -15895,6 +15911,21 @@
                 "type": "boolean",
                 "nullable": false
               },
+              "translations": {
+                "type": "object",
+                "properties": {
+                  "title_text": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "subtitle_text": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
               "reflection_questions": {
                 "type": "array",
                 "items": {
@@ -15949,7 +15980,8 @@
               "behavioural_client_tags",
               "technical_global_tags",
               "technical_client_tags",
-              "self_rating_enabled"
+              "self_rating_enabled",
+              "translations"
             ],
             "nullable": false
           }
@@ -16025,6 +16057,21 @@
                 "type": "boolean",
                 "nullable": false
               },
+              "translations": {
+                "type": "object",
+                "properties": {
+                  "title_text": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "subtitle_text": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
               "reflection_questions": {
                 "type": "array",
                 "items": {
@@ -16079,7 +16126,8 @@
               "behavioural_client_tags",
               "technical_global_tags",
               "technical_client_tags",
-              "self_rating_enabled"
+              "self_rating_enabled",
+              "translations"
             ],
             "nullable": false
           },

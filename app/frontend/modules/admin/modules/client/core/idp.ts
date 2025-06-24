@@ -43,6 +43,10 @@ export const IdpTR = t.intersection([
     logoType: t.string,
     showReflections: t.boolean,
     reflectionQuestions: t.array(ReflectionQuestionTR),
+    translations: t.record(t.string, t.partial({
+      titleText: t.union([t.string, t.null]),
+      subtitleText: t.union([t.string, t.null]),
+    })),
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),

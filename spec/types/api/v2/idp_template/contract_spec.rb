@@ -29,7 +29,8 @@ RSpec.describe Api::V2::IdpTemplate::Contract do
         technical_client_skill_settings: 'none',
         title_text: nil,
         subtitle_text: nil,
-        logo_type: 'both'
+        logo_type: 'both',
+        translations: {}
       },
       {
         skills: [
