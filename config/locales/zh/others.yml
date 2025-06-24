@@ -2589,6 +2589,7 @@ zh:
         skills_count: 技能数量
         title: 报告摘要
     reflective_questions:
+      already_completed: IDP 已经完成，现在不能回答问题。
       answer_later: 稍后回答
       answer_placeholder: 在此写下您的答案...
       errors:

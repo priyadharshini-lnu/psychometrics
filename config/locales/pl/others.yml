@@ -850,6 +850,7 @@ pl:
         skills_count: Liczba umiejętności
         title: Podsumowanie raportu
     reflective_questions:
+      already_completed: IDP został już ukończony, nie możesz teraz odpowiadać na pytania.
       answer_later: Odpowiedź później
       answer_placeholder: Wpisz tutaj swoją odpowiedź...
       errors:

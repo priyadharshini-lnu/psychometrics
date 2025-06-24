@@ -2463,6 +2463,8 @@ ko:
       graphs:
         categories: 카테고리
       save_skills: 스킬 저장
+    reflective_questions:
+      already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.
     skill_gap_report:
       title: 기술 격차 보고서
     status: 상태

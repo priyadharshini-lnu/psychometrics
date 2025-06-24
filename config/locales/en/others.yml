@@ -2662,6 +2662,7 @@ en:
         title: Report Summary
     plan: Plan
     reflective_questions:
+      already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer_later: Answer Later
       answer_placeholder: Write your answer here...
       errors:
@@ -4027,6 +4028,7 @@ en:
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
     idp:
+      reflective_questions_required: Answers to reflective questions are required for IDP
       status_not_permitted: is not permitted by the user.
       status_not_permitted_by_manager: Manager cannot update status when plan is in '%{status}' state.
     invalid: is invalid

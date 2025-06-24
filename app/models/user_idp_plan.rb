@@ -18,6 +18,7 @@ class UserIdpPlan < ApplicationRecord
   has_many :idp_report_pdfs, dependent: :destroy
   has_many :user_idp_comments, dependent: :destroy
   has_many :reflection_questions, through: :idp_template
+  has_many :idp_template_reflection_questions, through: :idp_template
   has_many :user_reflection_question_answers, dependent: :destroy
 
   delegate :client, to: :campaign

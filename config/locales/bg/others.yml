@@ -632,6 +632,9 @@ bg:
         requested_rescheduling: Поискано разсрочване
         requested_rescheduling_rejected: Поискано Разсрочване Отхвърлено
     'yes': Да
+  idp:
+    reflective_questions:
+      already_completed: ИДП вече е попълнен, не можете да отговаряте на въпросите сега.
   idp_templates:
     errors:
       user_idp_template_not_found: Не ви е зададен шаблон на IDP.

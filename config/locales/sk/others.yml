@@ -632,6 +632,9 @@ sk:
         requested_rescheduling: Požadované preloženie termínu
         requested_rescheduling_rejected: Požadované Presunutie termínu Zamietnuté
     'yes': Áno
+  idp:
+    reflective_questions:
+      already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
   idp_templates:
     errors:
       user_idp_template_not_found: Nebola vám priradená žiadna šablóna IDP.

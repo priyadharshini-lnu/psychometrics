@@ -626,6 +626,9 @@ th:
         requested_rescheduling: การขอเลื่อนกำหนดการใหม่
         requested_rescheduling_rejected: การขอเลื่อนกำหนดการถูกปฏิเสธ
     'yes': ใช่
+  idp:
+    reflective_questions:
+      already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
   idp_templates:
     errors:
       user_idp_template_not_found: ไม่ได้รับการกำหนดเทมเพลต IDP ให้กับคุณ

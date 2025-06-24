@@ -2579,6 +2579,7 @@ it:
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
     reflective_questions:
+      already_completed: L'IDP è già stato completato, non è possibile rispondere alle domande ora.
       answer_later: Risposta successiva
       answer_placeholder: Scrivi qui la tua risposta...
       errors:

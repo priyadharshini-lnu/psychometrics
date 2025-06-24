@@ -626,6 +626,9 @@ vi:
         requested_rescheduling: Yêu cầu lên lịch lại
         requested_rescheduling_rejected: Yêu cầu lên lịch lại bị từ chối
     'yes': Đúng
+  idp:
+    reflective_questions:
+      already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
   idp_templates:
     errors:
       user_idp_template_not_found: Bạn chưa được chỉ định mẫu IDP nào.

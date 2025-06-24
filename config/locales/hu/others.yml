@@ -632,6 +632,9 @@ hu:
         requested_rescheduling: Kért átütemezés
         requested_rescheduling_rejected: Kérvényezett átütemezés Elutasítva
     'yes': Igen
+  idp:
+    reflective_questions:
+      already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
   idp_templates:
     errors:
       user_idp_template_not_found: Önnek nem rendeltek IDP-sablont.

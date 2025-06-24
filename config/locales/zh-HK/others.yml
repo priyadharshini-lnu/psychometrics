@@ -861,6 +861,7 @@ zh-HK:
         skills_count: 技能數量
         title: 報告摘要
     reflective_questions:
+      already_completed: IDP 已經完成，您現在無法回答問題。
       answer_later: 稍後回答
       answer_placeholder: 請在此寫下您的答案...
       errors:

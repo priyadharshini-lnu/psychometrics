@@ -2591,6 +2591,7 @@ cs:
         skills_count: Počet dovedností
         title: Shrnutí zprávy
     reflective_questions:
+      already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
       answer_later: Odpověď Později
       answer_placeholder: Napište sem svou odpověď...
       errors:

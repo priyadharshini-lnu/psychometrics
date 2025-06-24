@@ -2588,6 +2588,7 @@ es-ES:
         skills_count: Recuento de Habilidades
         title: Resumen del Informe
     reflective_questions:
+      already_completed: El PDI ya se ha completado, no puede responder a las preguntas ahora.
       answer_later: Respuesta
       answer_placeholder: Escribe aquí tu respuesta...
       errors:

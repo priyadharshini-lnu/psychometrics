@@ -2463,6 +2463,8 @@ nl:
       graphs:
         categories: Categorieën
       save_skills: Vaardigheden opslaan
+    reflective_questions:
+      already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
     skill_gap_report:
       title: Rapport over vaardigheidskloof
     status: Status

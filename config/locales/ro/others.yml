@@ -633,6 +633,9 @@ ro:
         requested_rescheduling: Reprogramare solicitată
         requested_rescheduling_rejected: Solicitat Reprogramare Respins
     'yes': Da
+  idp:
+    reflective_questions:
+      already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
   idp_templates:
     errors:
       user_idp_template_not_found: Nu v-a fost atribuit niciun șablon IDP.

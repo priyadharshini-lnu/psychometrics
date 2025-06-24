@@ -1,5 +1,5 @@
 import {
-  Button, Dropdown, Flex, message, Modal,
+  Button, Flex, message, Modal, Dropdown,
   notification, Space,
 } from 'antd'
 import _ from 'lodash'
@@ -122,9 +122,13 @@ const MyPlanComponent = ({
 
   const handleSubmitPlan = () => {
     if (managerApprovesIdp) {
-      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL)
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL).catch((error) => {
+        message.error(error)
+      })
     } else {
-      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED)
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED).catch((error) => {
+        message.error(error)
+      })
     }
   }
 

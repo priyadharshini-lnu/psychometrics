@@ -48,7 +48,12 @@ module EndUser
 
     def update_reflection_questions
       authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
-      Idp::UpdateUserReflectionQuestions.call!(@user_idp_plan, params[:reflection_questions])
+      result = Idp::UpdateUserReflectionQuestions.call!(@user_idp_plan, params[:reflection_questions])
+      unless result
+        return render json: { error: t('idp.reflective_questions.already_completed') },
+                      status: :unprocessable_entity
+      end
+
       render json: {
         data: Panko::ArraySerializer.new(
           @user_idp_plan.idp_template.idp_template_reflection_questions,

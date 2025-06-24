@@ -835,6 +835,7 @@ en-US:
         skills_count: Skills Count
         title: Report Summary
     reflective_questions:
+      already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer_later: Answer Later
       answer_placeholder: Write your answer here...
       errors:

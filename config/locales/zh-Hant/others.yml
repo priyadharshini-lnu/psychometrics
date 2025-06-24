@@ -2575,6 +2575,8 @@ zh-Hant:
         library: IDP庫
         skills_count: 技能數量
         title: 報告摘要
+    reflective_questions:
+      already_completed: IDP 已經完成，您現在無法回答問題。
     skill_gap_report:
       title: 技能差距報告
     status: 狀態

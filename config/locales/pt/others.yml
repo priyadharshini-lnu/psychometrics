@@ -2591,6 +2591,7 @@ pt:
         skills_count: Contagem de Competências
         title: Resumo do Relatório
     reflective_questions:
+      already_completed: O PDI já foi concluído, não pode responder às perguntas agora.
       answer_later: Responder mais tarde
       answer_placeholder: Escreve aqui a tua resposta...
       errors:

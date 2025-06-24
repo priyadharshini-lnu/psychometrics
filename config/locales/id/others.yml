@@ -632,6 +632,9 @@ id:
         requested_rescheduling: Penjadwalan Ulang yang Diminta
         requested_rescheduling_rejected: Permintaan Penjadwalan Ulang Ditolak
     'yes': Ya
+  idp:
+    reflective_questions:
+      already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
   idp_templates:
     errors:
       user_idp_template_not_found: Tidak ada templat IDP yang ditetapkan untuk Anda.

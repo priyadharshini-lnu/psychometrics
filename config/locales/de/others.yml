@@ -2600,6 +2600,7 @@ de:
         skills_count: Anzahl der Kompetenzen
         title: Berichtszusammenfassung
     reflective_questions:
+      already_completed: Der IDP ist bereits abgeschlossen, Sie können die Fragen jetzt nicht mehr beantworten.
       answer_later: Antwort später
       answer_placeholder: Schreiben Sie Ihre Antwort hier...
       errors:

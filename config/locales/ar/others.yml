@@ -882,6 +882,7 @@ ar:
         skills_count: عدد المهارات
         title: ملخص التقرير
     reflective_questions:
+      already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer_later: أجب لاحقًا
       answer_placeholder: اكتب إجابتك هنا...
       errors:

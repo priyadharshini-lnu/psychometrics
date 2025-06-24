@@ -569,6 +569,9 @@ sr-Cyrl:
         requested_rescheduling: Захтевано је поновно заказивање
         requested_rescheduling_rejected: Захтевано поновно заказивање је одбијено
     'yes': Да
+  idp:
+    reflective_questions:
+      already_completed: Интегрисани план (ИПР) је већ завршен, сада не можете одговарати на питања.
   idp_templates:
     errors:
       user_idp_template_not_found: Није вам додељен ниједан шаблон за идентификацију личности.

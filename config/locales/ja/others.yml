@@ -2586,6 +2586,7 @@ ja:
         skills_count: スキル数
         title: レポート概要
     reflective_questions:
+      already_completed: IDPはすでに完成しているので、今質問に答えることはできない。
       answer_later: 回答は後ほど
       answer_placeholder: 答えをここに書いてください
       errors:

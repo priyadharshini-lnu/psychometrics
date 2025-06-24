@@ -2581,6 +2581,7 @@ fr:
         skills_count: Nombre de compétences
         title: Résumé du rapport
     reflective_questions:
+      already_completed: Le PDI a déjà été complété, vous ne pouvez pas répondre aux questions maintenant.
       answer_later: Réponse plus tard
       answer_placeholder: Inscrivez votre réponse ici...
       errors:

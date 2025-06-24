@@ -632,6 +632,9 @@ sl:
         requested_rescheduling: Zahtevana sprememba urnika
         requested_rescheduling_rejected: Zahtevano Prestavitev na kasnejši datum Zavrnjeno
     'yes': Da
+  idp:
+    reflective_questions:
+      already_completed: Dokument IDP je bil že izpolnjen, zato zdaj ne morete odgovarjati na vprašanja.
   idp_templates:
     errors:
       user_idp_template_not_found: Ni vam bila dodeljena nobena predloga IDP.
