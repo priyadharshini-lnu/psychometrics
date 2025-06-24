@@ -2019,6 +2019,9 @@ zh-Hant:
         uniq_email: 電子郵件應該是單一的。
       exceeded_subjects_count: 每次邀請只能新增 %{count} 主題
       filled?: 不能空白
+      idp_template:
+        content_required: 說明需要內容
+        tag_or_skill_required: 選擇"已選擇"選項時，請選擇標籤或技能。
       invalid_name: 僅允許字母、數字、空格、破折號和點為有效字元
       invalid_value: 行號 %{row} 上的語句 '%{value}' 無效
       job_roles:

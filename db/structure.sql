@@ -3084,7 +3084,7 @@ ALTER SEQUENCE public.idp_template_skills_id_seq OWNED BY public.idp_template_sk
 
 CREATE TABLE public.idp_template_translations (
     id bigint NOT NULL,
-    instructions jsonb DEFAULT '{}'::jsonb NOT NULL,
+    instructions jsonb DEFAULT '{"content": ""}'::jsonb NOT NULL,
     locale character varying NOT NULL,
     idp_template_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
@@ -3141,7 +3141,7 @@ CREATE TABLE public.idp_templates (
     fields json DEFAULT '["name","role","assigned_data","division","review_date","publish_date","completion_date"]'::json,
     logo_type integer DEFAULT 3,
     show_reflections boolean DEFAULT true,
-    instructions jsonb DEFAULT '{}'::jsonb NOT NULL
+    instructions jsonb DEFAULT '{"content": ""}'::jsonb NOT NULL
 );
 
 

@@ -2096,7 +2096,8 @@ de:
         no_available_assessor_slots: Keine freien Slots für Assessor %{assessor}
         no_available_manager_slots: Keine freien Slots für Manager %{manager}
     idp_template:
-      tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
+      content_required: Inhalt ist für Anweisungen erforderlich
+      tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt" gewählt ist.
     users:
       registrations:
         new:

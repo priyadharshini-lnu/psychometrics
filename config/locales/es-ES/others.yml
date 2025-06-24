@@ -2035,6 +2035,7 @@ es-ES:
       exceeded_subjects_count: Sólo puede añadir %{count} sujetos por invitación
       filled?: no puede estar en blanco
       idp_template:
+        content_required: Se requiere contenido para las instrucciones
         tag_or_skill_required: Seleccione una etiqueta o una habilidad cuando se elija la opción "Seleccionado".
       invalid_name: sólo se admiten como caracteres válidos el alfabeto, el número, los espacios, el guión y el punto
       invalid_value: declaración inválida '%{value}' en la línea número %{row}

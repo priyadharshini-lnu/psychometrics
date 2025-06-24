@@ -2021,6 +2021,9 @@ it:
         uniq_email: L'e-mail deve essere unica.
       exceeded_subjects_count: È possibile aggiungere solo %{count} soggetti per ogni invito
       filled?: non può essere vuoto
+      idp_template:
+        content_required: Il contenuto è richiesto per le istruzioni
+        tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
       invalid_name: solo i caratteri alfabetici, i numeri, gli spazi, i trattini e i punti sono ammessi come caratteri validi
       invalid_value: istruzione non valida "%{value}" sulla riga numero %{row}
       job_roles:

@@ -525,6 +525,7 @@ zh-HK:
   dry_errors:
     errors:
       idp_template:
+        content_required: 說明需要內容
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
       job_roles:
         unique_within_job_group: 已有相同名稱的職位角色存在。

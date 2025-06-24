@@ -2018,6 +2018,9 @@ nl:
         uniq_email: E-mail moet uniek zijn.
       exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
       filled?: kan niet leeg zijn
+      idp_template:
+        content_required: Inhoud is vereist voor instructies
+        tag_or_skill_required: Selecteer een tag of vaardigheid wanneer de optie "Geselecteerd" wordt gekozen.
       invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
       invalid_value: ongeldige instructie '%{value}' op regelnummer %{row}
       job_roles:

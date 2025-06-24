@@ -8,7 +8,7 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :technical_global_tags, :technical_client_tags,
              :logo_type, :title_text, :subtitle_text, :fields,
              :background, :client_logo, :show_reflections, :reflection_questions,
-             :instructions, :translations
+             :instructions, :translations, :available_locales
 
   has_one :project, class_name: 'Client'
   has_one :report
@@ -28,6 +28,10 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
         hash[:subtitle_text] = translation.subtitle_text
       end
     end
+  end
+
+  def available_locales
+    @model.translations.pluck(:locale).uniq || [I18n.default_locale]
   end
 
   def reflection_questions

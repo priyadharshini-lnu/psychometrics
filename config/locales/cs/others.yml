@@ -2032,6 +2032,7 @@ cs:
       exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
       filled?: nemůže být prázdný
       idp_template:
+        content_required: Pro pokyny je vyžadován obsah
         tag_or_skill_required: Vyberte prosím buď štítek nebo dovednost, když je vybrána možnost "Vybráno".
       invalid_name: jako platné znaky jsou povoleny pouze abeceda, číslo, mezera, pomlčka a tečka
       invalid_value: neplatný příkaz '%{value}' na řádku číslo %{row}

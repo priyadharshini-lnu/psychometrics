@@ -1210,10 +1210,11 @@ as: :simulation_progress_notification
             jsonapi_resources :report_families_reports
           end
           jsonapi_resources :projects, only: :show do
-            jsonapi_resources :idp_templates, only: %i[index create update destroy],
+            jsonapi_resources :idp_templates, only: %i[index create update destroy show],
               controller: 'projects/idp_templates' do
                 post :uploads, on: :member
                 post :update_reflection_questions, on: :member
+                patch :update_instructions, on: :member
               end
             jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
               post :uploads, on: :member

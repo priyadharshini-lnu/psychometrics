@@ -526,6 +526,7 @@ ar:
   dry_errors:
     errors:
       idp_template:
+        content_required: المحتوى مطلوب للتعليمات
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
       job_roles:
         unique_within_job_group: يوجد دور وظيفي بنفس الاسم بالفعل.

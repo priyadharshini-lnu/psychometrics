@@ -2094,6 +2094,7 @@ en:
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
       idp_template:
+        content_required: Content is required for instructions
         tag_or_skill_required: Please select either a tag or a skill when the "Selected" option is chosen.
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
       invalid_value: invalid statement '%{value}' on line number %{row}

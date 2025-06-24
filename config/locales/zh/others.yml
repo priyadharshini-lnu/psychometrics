@@ -2030,7 +2030,8 @@ zh:
       exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
       filled?: 不能空白
       idp_template:
-        tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
+        content_required: 指令需要内容
+        tag_or_skill_required: 选择"已选择"选项时，请选择标签或技能。
       invalid_name: 只允许字母、数字、空格、破折号和点作为有效字符
       invalid_value: 行号 %{row} 上的语句"%{value}"无效
       job_roles:

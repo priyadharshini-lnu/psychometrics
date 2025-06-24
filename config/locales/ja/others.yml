@@ -2033,6 +2033,7 @@ ja:
       exceeded_subjects_count: 1回の招待で追加できる被写体は %{count} だけです。
       filled?: 空白は許されない
       idp_template:
+        content_required: 指示にはコンテンツが必要です
         tag_or_skill_required: "「選択済み」オプションを選択した場合は、タグまたはスキルのいずれかを選択してください。"
       invalid_name: 有効な文字は、アルファベット、数字、スペース、ダッシュ、ドットのみです。
       invalid_value: 行番号 %{row} に無効な文 '%{value}' があります。
