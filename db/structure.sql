@@ -16,6 +16,13 @@ SET row_security = off;
 
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1150,7 +1157,8 @@ CREATE TABLE public.campaign_assessor_assessments (
     assessment_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    allow_multiple_responses boolean DEFAULT false
+    allow_multiple_responses boolean DEFAULT false,
+    campaign_assessment_group_id bigint
 );
 
 
@@ -11045,6 +11053,13 @@ CREATE INDEX idx_on_assessment_id_3b131a93ee ON public.campaign_assessor_assessm
 
 
 --
+-- Name: idx_on_campaign_assessment_group_id_b2579ac76b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_campaign_assessment_group_id_b2579ac76b ON public.campaign_assessor_assessments USING btree (campaign_assessment_group_id);
+
+
+--
 -- Name: idx_on_campaign_id_bbe9cda192; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16125,6 +16140,14 @@ ALTER TABLE ONLY public.text_module_overrides
 
 
 --
+-- Name: campaign_assessor_assessments fk_rails_a5e89b4d8c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT fk_rails_a5e89b4d8c FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
 -- Name: assessments_clients fk_rails_a7b4e42c48; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17123,6 +17146,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250622122302'),
 ('20250616122251'),
 ('20250618100750'),
 ('20250613121201'),

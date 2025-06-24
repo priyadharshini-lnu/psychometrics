@@ -34,7 +34,6 @@ export const useWorkshopSubjectResources = (
     },
   )
 
-
   const { data: subjecUserAssessments, fetch: fetchAssessments } = useResources<SubjectUserAssessment>(
     'user_assessments',
     {
