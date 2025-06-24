@@ -335,6 +335,18 @@ class Client < ApplicationRecord
     client_feature.sms_notification
   end
 
+  def ai_assisted_idp?
+    client_feature.ai_assisted_idp
+  end
+
+  def ai_assistants?
+    client_feature.ai_assistants
+  end
+
+  def global_skills?
+    client_feature.global_skills
+  end
+
   private
 
   def generate_hogan_group_name

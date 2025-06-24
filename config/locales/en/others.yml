@@ -2090,6 +2090,8 @@ en:
         group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
       cant_be_deleted: This record can't be deleted
+      client_feature:
+        ai_assisted_idp_feature_error: Can't be true if ai assistants feature is disabled
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite

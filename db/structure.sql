@@ -1660,7 +1660,10 @@ CREATE TABLE public.client_features (
     client_id bigint,
     sms_notification boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    ai_assisted_idp boolean DEFAULT false NOT NULL,
+    ai_assistants boolean DEFAULT false NOT NULL,
+    global_skills boolean DEFAULT false NOT NULL
 );
 
 
@@ -17146,6 +17149,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250622114250'),
 ('20250622122302'),
 ('20250616122251'),
 ('20250618100750'),

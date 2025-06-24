@@ -1058,6 +1058,13 @@ en:
         success_msg: Import was uploaded successfully
       modal:
         title: Import External Campaign Scores
+    client_features:
+      client_features: Client Features
+      form:
+        ai_assistants: AI Assistants
+        ai_assisted_idp: AI Assisted IDP
+        global_skills: Global Skills
+        sms_notification: SMS Notification
     clients:
       api_keys:
         init_breadcrumbs:
@@ -3549,10 +3556,6 @@ en:
       tabs:
         admin_roles: Admin Roles
         feature_flags: Feature Flags
-        settings:
-          feature_toggled_error: Feature toggle failed
-          feature_toggled_success: Feature toggled successfully
-          sms_notification: SMS Notification
         siem: SIEM
         skill_aliases: Skill Aliases
     sheets:
