@@ -35,7 +35,7 @@ module UserReports::GeneratePdfConcern
     report_pdf = if record.is_a?(UserIdpPlan)
                    record.report_pdf(
                      locale: options[:lang],
-                     with_reflective_questions: options[:include_reflective_questions]
+                     include_reflective_questions: options[:include_reflective_questions]
                    )
                  end
     report_pdf ||= record.report_pdfs.find_or_create_by!(locale: options[:lang])
@@ -51,6 +51,10 @@ module UserReports::GeneratePdfConcern
     webhook_message[:notify_user_id] = current_user.id if options[:notify_user]
     webhook_message[:update_record] = options[:update_record] != false
     webhook_message[:admin_job_record_id] = options[:admin_job_record_id] if options[:admin_job_record_id]
+    webhook_message[:async_request_uuid] = options[:async_request_uuid] if options[:async_request_uuid]
+    if options[:include_reflective_questions]
+      webhook_message[:include_reflective_questions] = options[:include_reflective_questions]
+    end
 
     faas_option = default_report_export_options.merge(
       output_file_path: file_path,

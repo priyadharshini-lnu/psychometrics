@@ -1,5 +1,6 @@
 import {
-  Button, Flex, Modal,
+  Button, Dropdown, Flex, message, Modal,
+  notification, Space,
 } from 'antd'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
@@ -11,16 +12,17 @@ import { getIdpSettings } from '~/modules/endUser/core/config'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import UserDevelopmentPlan from '../UserDevelopmentPlan'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-
 import {
   updateUserIdpPlan,
   fetchUserIdpPlan,
   saveUserIdpDevelopmentActions,
+  AsyncDownloadTR,
   fetchUserIdpComments,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
-
+import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import styles from './MyPlan.less'
-import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { DownloadOutlined, DownOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const { I18n } = window
 
@@ -62,6 +64,7 @@ const connector = connect((state: RootState) => ({
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
+
 const MyPlanComponent = ({
   idpDevelopmentActions,
   currentUser,
@@ -75,6 +78,7 @@ const MyPlanComponent = ({
   const { tab: paramTab } = useParams() as {tab: string}
 
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
+
 
   const isPlanEditable = [
     USER_IDP_PLAN_STATUS.DRAFT,
@@ -91,6 +95,7 @@ const MyPlanComponent = ({
            || (managerApprovesIdp && status === USER_IDP_PLAN_STATUS.APPROVED)
 
   const showEditPlanButton = !['board', 'reflective_questions'].includes(paramTab)
+
 
   const handleCompletion = () => {
     const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
@@ -134,6 +139,49 @@ const MyPlanComponent = ({
       fetchUserIdpPlan(currentUser.id)
     ))
   }
+
+
+  const {
+    asyncLoading, makeAsyncRequest,
+  } = useAsyncRequestResponse({
+    url: `/user_idp_plans/${currentUser.id}/download`,
+    data: {},
+    responseType: AsyncDownloadTR,
+    pollingInterval: 15,
+  })
+
+
+  const menu = {
+    items: [{
+      label: I18n.t('idp.without_reflection_questions'),
+      key: 'without_rq',
+      icon: <DownloadOutlined />,
+    }],
+    onClick: ({ key }) => {
+      message.success(I18n.t('threesixty.report_generation_in_progress'), 3)
+
+      makeAsyncRequest({
+        lang: I18n.currentLocale(),
+        includeReflectiveQuestions: key === 'with_rq',
+      }).then((response) => {
+        const config = {
+          message: I18n.t('jobs.threesixty.reports.download.message'),
+          description: <SafeHTML html={
+            I18n.t('jobs.threesixty.reports.download.description', { url: response.responseData })}
+          />,
+          duration: 0,
+        }
+        const type = response.type || 'success'
+        notification[type](config)
+      })
+    },
+  }
+
+  menu.items.unshift({
+    label: I18n.t('idp.with_reflection_questions'),
+    key: 'with_rq',
+    icon: <DownloadOutlined />,
+  })
 
   const operations = (
     <Flex gap={8}>
@@ -182,6 +230,14 @@ const MyPlanComponent = ({
               {I18n.t('idp.development_actions.mark_as_complete')}
             </Button>
           )}
+          <Dropdown menu={menu} trigger={['click']}>
+            <Button loading={asyncLoading} icon={<DownloadOutlined />}>
+              <Space>
+                {I18n.t('common.actions.download')}
+                <DownOutlined />
+              </Space>
+            </Button>
+          </Dropdown>
         </>
       )}
     </Flex>

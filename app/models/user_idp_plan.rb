@@ -96,9 +96,10 @@ class UserIdpPlan < ApplicationRecord
     "#{user.email}_idp_report_#{user.id}.pdf"
   end
 
-  def report_pdf(locale: nil, with_reflective_questions: false)
+  def report_pdf(locale: nil, include_reflective_questions: false)
     scope = report_pdfs.joins(pdf_file_attachment: :blob).where(locale: locale)
-    scope = if with_reflective_questions
+
+    scope = if include_reflective_questions
               scope.where('active_storage_blobs.key like ?', '%idp_report_rq%')
             else
               scope.where('active_storage_blobs.key not like ?', '%idp_report_rq%')
@@ -106,13 +107,13 @@ class UserIdpPlan < ApplicationRecord
     scope.first
   end
 
-  def pdf_path(locale: nil, with_reflective_questions: false)
-    report_pdf(locale: locale, with_reflective_questions: with_reflective_questions)&.pdf_file&.key
+  def pdf_path(locale: nil, include_reflective_questions: false)
+    report_pdf(locale: locale, include_reflective_questions: include_reflective_questions)&.pdf_file&.key
   end
 
-  def pdf_url(locale: nil, with_reflective_questions: false, expires_in: 10.minutes)
+  def pdf_url(locale: nil, include_reflective_questions: false, expires_in: 10.minutes)
     report_pdf(locale: locale,
-               with_reflective_questions: with_reflective_questions)&.pdf_file&.url(expires_in: expires_in)
+               include_reflective_questions: include_reflective_questions)&.pdf_file&.url(expires_in: expires_in)
   end
 
   def editable?

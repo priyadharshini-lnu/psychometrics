@@ -95,4 +95,27 @@ describe Faas::NotificationHandlers::UrlToPdf do
       'notify_user_id' => user_report.user_id, 'file_path' => 'upload/abc.pdf', 'checksum' => '0', 'file_size' => 0
     })
   end
+
+  it 'update async request' do
+    allow(Settings).to receive_message_chain(
+      :secrets, :s3_compatible_storage, :[]
+    ).with(:private_bucket).and_return('s3_private_bucket')
+
+    allow_any_instance_of(ActiveStorage::Blob).to receive(:url).and_return('https://presigned_url.cc')
+    allow_any_instance_of(UserIdpPlan).to receive(:pdf_url).and_return('url/to/idp_report.pdf')
+
+    response = AsyncResponseRequest::AsyncResponse.new(processing_status: :completed,
+                                                       async_request_uuid: 'abcd',
+                                                       response_data: 'url/to/idp_report.pdf',
+                                                       response_type: :json)
+
+    expect(AsyncResponseRequest::SetAsyncResponse).to receive(:call!).with(
+      async_response: response
+    )
+    described_class.call!({
+      'record_type' => 'UserIdpPlan', 'record_id' => user_idp_plan.id, 'file_name' => 'abc.pdf',
+      'update_record' => true, 'file_path' => 'upload/abc.pdf', 'checksum' => '0', 'file_size' => 0,
+      'async_request_uuid' => 'abcd', 'lang' => 'en', 'include_reflective_questions' => true
+    })
+  end
 end

@@ -71,8 +71,10 @@ module Idp
     def download_idp_reports_from_s3
       user_idp_plans_with_pdf.each do |user_plan|
         lang = job_record.data['lang']
-        pdf_url = user_plan.pdf_url(locale: lang,
-                                    with_reflective_questions: job_record.data['include_reflective_questions'])
+        pdf_url = user_plan.pdf_url(
+          locale: lang,
+          include_reflective_questions: job_record.data['include_reflective_questions']
+        )
         next unless pdf_url
 
         download_report(pdf_url, user_plan, lang)

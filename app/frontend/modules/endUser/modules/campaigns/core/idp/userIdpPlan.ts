@@ -2,8 +2,8 @@ import { USER_IDP_PLAN_STATUS } from 'components/IdpShared/constants'
 import { Skill, DevelopmentAction } from 'components/IdpShared/DevelopmentActions'
 import _ from 'lodash'
 import ApiAction from 'interfaces/ApiAction'
+import * as t from 'io-ts'
 import { getRequestQuery, updateUserIdpSkillComments } from './utils'
-
 
 export const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
 const UPDATE_USER_IDP_PLAN = 'IDP/MY_PLAN/UPDATE_USER_IDP_PLAN'
@@ -29,6 +29,21 @@ const ADD_USER_IDP_COMMENT_REPLY_BY_SKILL_ID = 'IDP/MY_PLAN/ADD_USER_IDP_COMMENT
 const MARK_COMMENT_RESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_RESOLVED'
 const MARK_COMMENT_UNRESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_UNRESOLVED'
 const SHOW_COMMENTS_FOR_SKILL_ID = 'IDP/MY_PLAN/SHOW_COMMENTS_FOR_SKILL_ID'
+
+
+export const AsyncDownloadTR = t.type({
+  status: t.string,
+  response: t.type({
+    asyncRequestUuid: t.string,
+    processingStatus: t.string,
+    responseType: t.string,
+    responseData: t.union([
+      t.string,
+      t.null,
+      t.type({}),
+    ]),
+  }),
+})
 
 interface UserIdpPlan {
   status: string | null;

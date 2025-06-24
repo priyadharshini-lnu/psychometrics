@@ -111,7 +111,9 @@ describe UserReports::GenerateIdpReportPdf do
             file_path: "path/to/pdf/#{report_file_name}",
             update_record: true,
             lang: 'en',
-            admin_job_record_id: admin_job_record.id
+            admin_job_record_id: admin_job_record.id,
+            async_request_uuid: 'abcd',
+            include_reflective_questions: true
           },
           meta: {
             file_attribute: 'pdf_file',
@@ -125,8 +127,16 @@ describe UserReports::GenerateIdpReportPdf do
         )
       )
 
-      described_class.call!(user_idp_plan, user,
-                            { lang: 'en', file_path: 'path/to/pdf', admin_job_record_id: admin_job_record.id })
+      described_class.call!(
+        user_idp_plan, user,
+        {
+          lang: 'en',
+          file_path: 'path/to/pdf',
+          admin_job_record_id: admin_job_record.id,
+          include_reflective_questions: true,
+          async_request_uuid: 'abcd'
+        }
+      )
     end
   end
 end

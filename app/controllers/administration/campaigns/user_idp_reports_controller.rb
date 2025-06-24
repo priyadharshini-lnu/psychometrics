@@ -4,10 +4,10 @@ module Administration
   module Campaigns
     class UserIdpReportsController < Administration::Campaigns::BaseController
       include AuthenticateByToken
+      include UserReports::IdpReportGeneration
 
       before_action :set_resource, only: %i[show download pdf_preview]
       before_action :pundit_authorize
-      prepend_before_action :authenticate_by_token!, only: %i[pdf_preview]
 
       def show
         Mobility.with_locale(params[:lang]) do
@@ -49,23 +49,6 @@ module Administration
 
           format.json { head :ok }
         end
-      end
-
-      # This action is used to generate pdf by puppeter
-      def pdf_preview
-        Mobility.with_locale(params[:lang] || resource.campaign.project.available_locales.first) do
-          @data = {
-            template: IdpTemplateSerializer.new.serialize(resource.idp_template),
-            user_idp: UserIdpPlanSerializer.new(
-              context: {
-                reflection_answers: user_reflection_question_answers
-              }
-            ).serialize(resource)
-          }
-        end
-        @pdf_export = true
-
-        render 'administration/campaigns/user_idp_reports/idp_report', layout: 'pdf'
       end
 
       def user_reflection_question_answers

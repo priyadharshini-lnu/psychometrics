@@ -2,7 +2,11 @@
 
 module EndUser
   class UserIdpPlansController < ApplicationController
-    before_action :load_user_idp_plan, only: %i[show update update_reflection_questions]
+    include AsyncRequestHandler
+    include UserReports::IdpReportGeneration
+    skip_before_action :authenticate_user!, only: [:pdf_preview]
+
+    before_action :load_user_idp_plan, only: %i[show update update_reflection_questions download pdf_preview]
     before_action :load_skill_gap_report_status, only: %i[show]
 
     def summary
@@ -56,10 +60,19 @@ module EndUser
       }
     end
 
+    async_request :download, handler: ::Idp::AsyncDownload,
+      permit_params: lambda { |params|
+        {
+          user_id: user.id,
+          lang: params[:lang],
+          include_reflective_questions: allow_include_reflective_questions?
+        }
+      }
+
     private
 
     def allow_include_reflective_questions?
-      current_user == @user_idp_plan.user && params[:include_reflective_questions] == 'true'
+      current_user == @user_idp_plan.user && params[:include_reflective_questions] == true
     end
 
     def user_reflection_question_answers
@@ -70,6 +83,10 @@ module EndUser
 
     def user
       @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
+    end
+
+    def resource
+      @user_idp_plan
     end
 
     def load_user_idp_plan

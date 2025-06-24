@@ -123,11 +123,11 @@ const useAsyncRequestResponse = <T>({
     }
   }
 
-  const makeAsyncRequest = (): Promise<ApiAction<T>> => {
+  const makeAsyncRequest = (extraData = {}): Promise<ApiAction<T>> => {
     setAsyncLoading(true)
     return new Promise(async (resolve, reject) => {
       try {
-        const { response } = await postQueueRequest(data)
+        const { response } = await postQueueRequest({ ...data, ...extraData })
         const { asyncRequestUuid } = response
 
         if (asyncRequestUuid === undefined) {

@@ -45,6 +45,7 @@ module Faas
           end
         end
         update_admin_job_progress(data)
+        update_async_request(data, record)
 
         notify_user(data, record) if data['notify_user_id']
 
@@ -105,6 +106,19 @@ module Faas
         if admin_job.total_tasks == admin_job.completed_tasks
           admin_job.complete!
         end
+      end
+
+      def update_async_request(data, record)
+        return unless data['async_request_uuid']
+
+        async_response = AsyncResponseRequest::AsyncResponse.new(
+          async_request_uuid: data['async_request_uuid'],
+          processing_status: :completed,
+          response_data: record.pdf_url(locale: data['lang'],
+                                        include_reflective_questions: data['include_reflective_questions'])
+        )
+
+        AsyncResponseRequest::SetAsyncResponse.call!(async_response: async_response)
       end
 
       def admin_job
