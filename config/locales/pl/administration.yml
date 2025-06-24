@@ -5,6 +5,8 @@ pl:
     administrators:
       permissions:
         labels:
+          proficiency_level:
+            title: Poziomy biegłości
           reflectionQuestions:
             export: Eksport
             import: Import
@@ -18,7 +20,7 @@ pl:
       minute: minuta
     communications:
       show:
-        assessment_center_group: Assessment Center Group
+        assessment_center_group: 'Assessment Center Group:'
     idp:
       intro_message: Wiadomość wprowadzająca
       intro_message_hint: Aby zmodyfikować wiadomość powitalną, najpierw zapisz szablon IDP i włącz te ustawienia.

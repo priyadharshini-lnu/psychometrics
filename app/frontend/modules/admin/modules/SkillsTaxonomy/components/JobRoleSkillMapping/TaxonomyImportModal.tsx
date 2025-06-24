@@ -138,11 +138,10 @@ export const TaxonomyImportModal: React.FC<OwnProps> = ({
         <Button
           key="submit"
           type="primary"
-          disabled={!file}
+          disabled={!file || (!globalImportSwitch && !projectId)}
           onClick={() => {
             form.submit()
-          }
-          }
+          }}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
           {I18n.t('common.actions.update')}

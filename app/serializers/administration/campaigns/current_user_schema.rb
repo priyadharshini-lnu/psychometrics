@@ -42,6 +42,7 @@ module Administration
               optional(:registration_settings).maybe(:array).each(:str?)
               optional(:skills).maybe(:array).each(:str?)
               optional(:development_actions).maybe(:array).each(:str?)
+              optional(:proficiency_levels).maybe(:array).each(:str?)
               optional(:response_meta).maybe(:array).each(:str?)
             end
           end

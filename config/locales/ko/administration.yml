@@ -186,6 +186,8 @@ ko:
             manage: 관리
             title: 규범
             view: 보기
+          proficiency_level:
+            title: 숙련도 수준
           projectSettings:
             assessments: 평가
             design: 디자인
@@ -1578,7 +1580,7 @@ ko:
           view: 커뮤니케이션 보기
       show:
         assessment: '평가:'
-        assessment_center_group: 평가 센터 그룹
+        assessment_center_group: '평가 센터 그룹:'
         back: 뒤로
         body: 'Body:'
         campaign: '캠페인:'

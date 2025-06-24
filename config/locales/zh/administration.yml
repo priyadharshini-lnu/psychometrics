@@ -186,6 +186,8 @@ zh:
             manage: 管理
             title: 规范
             view: 查看
+          proficiency_level:
+            title: 能力水平
           projectSettings:
             assessments: 评估
             design: 设计
@@ -1580,7 +1582,7 @@ zh:
           view: 查看交流
       show:
         assessment: 评估：
-        assessment_center_group: 评估中心小组
+        assessment_center_group: 评估中心小组：
         back: 返回
         body: 身体
         campaign: 活动：

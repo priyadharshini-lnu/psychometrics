@@ -158,6 +158,8 @@ ar:
           norms:
             manage: إدارة
             view: عرض
+          proficiency_level:
+            title: مستويات الكفاءة
           projectSettings:
             assessments: التقييمات
             design: التصميم
@@ -1476,7 +1478,7 @@ ar:
           view: عرض الاتصال
       show:
         assessment: 'التقييم:'
-        assessment_center_group: مجموعة مركز التقييم
+        assessment_center_group: 'مجموعة مركز التقييم:'
         back: رجوع
         body: 'النص:'
         campaign: 'الحملة:'

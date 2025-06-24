@@ -186,6 +186,8 @@ fr:
             manage: Gérer
             title: Normes
             view: Voir
+          proficiency_level:
+            title: Niveaux de compétence
           projectSettings:
             assessments: Évaluations
             design: Conception
@@ -1578,7 +1580,7 @@ fr:
           view: Voir la communication
       show:
         assessment: 'Évaluation :'
-        assessment_center_group: Groupe du centre d'évaluation
+        assessment_center_group: 'Groupe du centre d''évaluation :'
         back: Retour
         body: 'Le corps :'
         campaign: 'Campagne :'

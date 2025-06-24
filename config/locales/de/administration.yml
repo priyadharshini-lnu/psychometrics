@@ -186,6 +186,8 @@ de:
             manage: Verwalten Sie
             title: Normen
             view: Siehe
+          proficiency_level:
+            title: Leistungsniveaus
           projectSettings:
             assessments: Beurteilungen
             design: Gestaltung
@@ -1578,7 +1580,7 @@ de:
           view: Ansicht Kommunikation
       show:
         assessment: 'Bewertung:'
-        assessment_center_group: Assessment Center Gruppe
+        assessment_center_group: 'Assessment Center Gruppe:'
         back: Zurück
         body: 'Körper:'
         campaign: 'Kampagne:'

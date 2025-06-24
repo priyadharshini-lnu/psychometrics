@@ -186,6 +186,8 @@ nl:
             manage: Beheer
             title: Normen
             view: Bekijk
+          proficiency_level:
+            title: Vaardigheidsniveaus
           projectSettings:
             assessments: Beoordeling
             design: Ontwerp
@@ -1578,7 +1580,7 @@ nl:
           view: Bekijk communicatie
       show:
         assessment: 'Beoordeling:'
-        assessment_center_group: Assessment Center Groep
+        assessment_center_group: 'Assessment Center Group:'
         back: Terug
         body: 'Lichaam:'
         campaign: 'Campagne:'

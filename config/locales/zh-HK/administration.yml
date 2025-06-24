@@ -4,6 +4,8 @@ zh-HK:
     administrators:
       permissions:
         labels:
+          proficiency_level:
+            title: 能力等級
           reflectionQuestions:
             export: 出口
             import: 進口
@@ -17,7 +19,7 @@ zh-HK:
       minute: 分
     communications:
       show:
-        assessment_center_group: 評估中心小組
+        assessment_center_group: 評估中心小組：
     idp:
       intro_message: 介绍信息
       intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。

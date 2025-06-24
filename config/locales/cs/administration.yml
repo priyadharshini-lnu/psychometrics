@@ -186,6 +186,8 @@ cs:
             manage: Správa
             title: Normy
             view: Zobrazit
+          proficiency_level:
+            title: Úrovně odborné způsobilosti
           projectSettings:
             assessments: Hodnocení
             design: Design
@@ -1578,7 +1580,7 @@ cs:
           view: Zobrazit komunikaci
       show:
         assessment: 'Hodnocení:'
-        assessment_center_group: Skupina Assessment Center
+        assessment_center_group: 'Skupina Assessment Center:'
         back: Zpět
         body: 'Tělo:'
         campaign: 'Kampaň:'

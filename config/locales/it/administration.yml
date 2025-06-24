@@ -186,6 +186,8 @@ it:
             manage: Gestire
             title: Norme
             view: Vista
+          proficiency_level:
+            title: Livelli di competenza
           projectSettings:
             assessments: Valutazioni
             design: Design
@@ -1578,7 +1580,7 @@ it:
           view: Visualizza la comunicazione
       show:
         assessment: 'Valutazione:'
-        assessment_center_group: Gruppo Assessment Center
+        assessment_center_group: 'Gruppo Assessment Center:'
         back: Indietro
         body: 'Corpo:'
         campaign: 'Campagna:'

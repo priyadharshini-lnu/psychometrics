@@ -186,6 +186,8 @@ pt:
             manage: Gerir
             title: Normas
             view: Ver
+          proficiency_level:
+            title: Níveis de proficiência
           projectSettings:
             assessments: Avaliações
             design: Conceção
@@ -1578,7 +1580,7 @@ pt:
           view: Ver Comunicação
       show:
         assessment: 'Avaliação:'
-        assessment_center_group: Grupo do Centro de Avaliação
+        assessment_center_group: 'Grupo do Centro de Avaliação:'
         back: Voltar
         body: 'Corpo:'
         campaign: 'Campanha:'

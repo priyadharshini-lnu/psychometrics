@@ -186,6 +186,8 @@ ja:
             manage: 管理
             title: 規範
             view: 表示
+          proficiency_level:
+            title: 熟練度レベル
           projectSettings:
             assessments: アセスメント
             design: デザイン

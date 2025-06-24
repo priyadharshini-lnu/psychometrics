@@ -186,6 +186,8 @@ zh-Hant:
             manage: 管理
             title: 規範
             view: 檢視
+          proficiency_level:
+            title: 能力等級
           projectSettings:
             assessments: 評估
             design: 設計
@@ -1578,7 +1580,7 @@ zh-Hant:
           view: 檢視通訊
       show:
         assessment: 評估：
-        assessment_center_group: 評估中心小組
+        assessment_center_group: 評估中心小組：
         back: 返回
         body: 身體：
         campaign: 活動：
