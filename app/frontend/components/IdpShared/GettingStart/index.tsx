@@ -1,18 +1,12 @@
-import { FC } from 'react'
 import { Space, Typography } from 'antd'
 import { ButtonWithArrow, BoxWithShadow } from '~/glint'
 import { RocketLaunchIcon } from '~/glint/icons'
-import VideoPlayer from '~/modules/survey/components/modules/VideoResponse/VideoPlayer'
 import styles from './GettingStart.less'
-
-// to be replaced with actual video url
-const mediaResponse = {
-  url: '',
-}
+import { SafeHTML } from '~/components/SafeHTML'
 
 const { I18n } = window
 
-export const GettingStart = ({ next }) => (
+export const GettingStart = ({ next, introMessage }) => (
   <>
     <BoxWithShadow className={styles.box}>
       <Space size="middle" direction="vertical" className="ta-c">
@@ -20,10 +14,7 @@ export const GettingStart = ({ next }) => (
           <LaunchIcon />
         </div>
         <Typography.Title level={4}>{I18n.t('idp.initial_steps.getting_started')}</Typography.Title>
-        <Typography.Text>
-          {I18n.t('idp.initial_steps.getting_started_info')}
-        </Typography.Text>
-        <VideoPlayerContainer mediaResponse={mediaResponse} />
+        <SafeHTML html={introMessage} config="adminRichText" />
         <div className="flex justify-center">
           <ButtonWithArrow
             label={I18n.t('common.actions.continue')}
@@ -35,20 +26,6 @@ export const GettingStart = ({ next }) => (
       </Space>
     </BoxWithShadow>
   </>
-)
-
-type VideoPlayerContainerProps = {
-  mediaResponse: {
-    url: string
-  }
-}
-const VideoPlayerContainer: FC<VideoPlayerContainerProps> = ({ mediaResponse }) => (
-  <div className="flex justify-center">
-    <div className={`${styles.video}`}>
-      <VideoPlayer mediaResponse={mediaResponse} />
-    </div>
-  </div>
-
 )
 
 const LaunchIcon = () => (

@@ -1214,7 +1214,7 @@ as: :simulation_progress_notification
               controller: 'projects/idp_templates' do
                 post :uploads, on: :member
                 post :update_reflection_questions, on: :member
-                patch :update_instructions, on: :member
+                post :update_instructions, on: :member
               end
             jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
               post :uploads, on: :member

@@ -61,6 +61,7 @@ interface UserIdpPlan {
   showCommentsForSkillId: number | null;
   userIdpCommentsBySkillId: Record<string, UserIdpComment[]>;
   userIdpCommentsBySkillIdTotalCount: Record<string, number>;
+  introMessage: string;
 }
 
 export interface UserIdpComment {
@@ -367,6 +368,7 @@ export const HANDLERS = {
       skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
       user: userIdpPlan.user,
+      introMessage: userIdpPlan.instructions.content,
       unreadCommentsCount: userIdpPlan.unreadCommentsCount,
       userIdpComments: [],
       userIdpCommentsTotalCount: null,
@@ -662,6 +664,7 @@ export const defaultState: UserIdpPlan = {
   user: {},
   unreadCommentsCount: 0,
   userIdpComments: [],
+  introMessage: '',
   userIdpCommentsTotalCount: null,
   showCommentsForSkillId: null,
   userIdpCommentsBySkillId: {},

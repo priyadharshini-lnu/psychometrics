@@ -1998,7 +1998,12 @@ de:
       global_skills: Globale Fertigkeiten
       idp: IDP
       idp_template: IDP-Vorlage hinzufügen
+      intro_message: Einführungsnachricht
+      intro_message_hint: Um die Einführungsnachricht zu ändern, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
+      intro_message_success: Einführungsnachricht erfolgreich gespeichert
+      locales: Orte
       none: Keine
+      reference_locale: Referenzgebietsschema
       select_by_tags: Nach Tags auswählen
       select_skill_gap_report: Bericht zur Qualifikationslücke auswählen
       select_specific_skills: Spezifische Fertigkeiten auswählen

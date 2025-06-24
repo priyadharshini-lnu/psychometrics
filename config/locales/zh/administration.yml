@@ -2002,7 +2002,12 @@ zh:
       global_skills: 全球技能
       idp: IDP
       idp_template: 添加 IDP 模板
+      intro_message: 介绍信息
+      intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。
+      intro_message_success: 简介信息已成功保存
+      locales: 区域设置
       none: 无
+      reference_locale: 参考区域设置
       select_by_tags: 按标签选择
       select_skill_gap_report: 选择技能差距报告
       select_specific_skills: 选择特定技能

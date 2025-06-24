@@ -1998,7 +1998,12 @@ it:
       global_skills: Competenze globali
       idp: IDP
       idp_template: Aggiungi modello IDP
+      intro_message: Messaggio introduttivo
+      intro_message_hint: Per modificare il messaggio introduttivo, salvare prima il modello IDP per abilitare queste impostazioni.
+      intro_message_success: Messaggio introduttivo salvato correttamente
+      locales: Località
       none: Nessuno
+      reference_locale: Località di riferimento
       select_by_tags: Seleziona per tag
       select_skill_gap_report: Selezionare il rapporto sulle carenze di competenze
       select_specific_skills: Selezionare le competenze specifiche

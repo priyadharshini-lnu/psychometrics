@@ -1998,7 +1998,12 @@ ko:
       global_skills: 글로벌 기술
       idp: IDP
       idp_template: IDP 템플릿 추가
+      intro_message: 소개 메시지
+      intro_message_hint: 소개 메시지를 수정하려면 먼저 IDP 템플릿을 저장하여 해당 설정을 활성화하세요.
+      intro_message_success: 소개 메시지가 성공적으로 저장되었습니다.
+      locales: 로케일
       none: 없음
+      reference_locale: 참조 로케일
       select_by_tags: 태그별 선택
       select_skill_gap_report: 스킬 갭 보고서 선택
       select_specific_skills: 특정 기술 선택

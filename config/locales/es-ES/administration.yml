@@ -1998,7 +1998,12 @@ es-ES:
       global_skills: Habilidades globales
       idp: PDI
       idp_template: Añadir plantilla IDP
+      intro_message: Mensaje de introducción
+      intro_message_hint: Para modificar el mensaje de introducción, primero guarde la plantilla IDP para habilitar estas configuraciones.
+      intro_message_success: Mensaje de introducción guardado exitosamente
+      locales: Lugar
       none: Ninguno
+      reference_locale: Localidad de referencia
       select_by_tags: Seleccionar por etiquetas
       select_skill_gap_report: Seleccionar el informe sobre las carencias de competencias
       select_specific_skills: Seleccionar competencias específicas

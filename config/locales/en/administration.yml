@@ -2069,6 +2069,10 @@ en:
       global_skills: Global Skills
       idp: IDP
       idp_template: Add IDP Template
+      intro_message: Intro Message
+      intro_message_hint: To modify the intro message, please save the IDP template first to enable these settings.
+      intro_message_success: Intro message saved successfully
+      locales: Locales
       logo_image: Logo image
       logo_type:
         both: Mercer and Client logos
@@ -2078,6 +2082,7 @@ en:
       logo_type_label: Logo Type
       no_reflection_questions_selected: No Reflection Questions selected
       none: None
+      reference_locale: Reference Locale
       reflection_questions: Reflection Questions
       reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.
       reflection_questions_updated: Reflection Questions updated successfully.

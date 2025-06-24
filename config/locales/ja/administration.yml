@@ -1998,7 +1998,12 @@ ja:
       global_skills: グローバル・スキル
       idp: アイディーピー
       idp_template: IDPテンプレートの追加
+      intro_message: 導入メッセージ
+      intro_message_hint: 紹介メッセージを変更するには、まず IDP テンプレートを保存してこれらの設定を有効にしてください。
+      intro_message_success: 紹介メッセージが正常に保存されました
+      locales: ロケール
       none: なし
+      reference_locale: 参照ロケール
       select_by_tags: タグで選ぶ
       select_skill_gap_report: スキル・ギャップ・レポートを選択
       select_specific_skills: 特定のスキルを選択する

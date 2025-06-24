@@ -1998,7 +1998,12 @@ pt:
       global_skills: Competências globais
       idp: PDI
       idp_template: Adicionar modelo de PDI
+      intro_message: Mensagem de introdução
+      intro_message_hint: Para modificar a mensagem de introdução, guarde primeiro o modelo IDP para ativar estas definições.
+      intro_message_success: Mensagem de introdução guardada com sucesso
+      locales: Locais
       none: Nenhum
+      reference_locale: Local de referência
       select_by_tags: Selecionar por etiquetas
       select_skill_gap_report: Selecionar relatório de lacunas de competências
       select_specific_skills: Selecionar competências específicas

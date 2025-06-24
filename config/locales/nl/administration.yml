@@ -1998,7 +1998,12 @@ nl:
       global_skills: Wereldwijde vaardigheden
       idp: IDP
       idp_template: IDP-sjabloon toevoegen
+      intro_message: Introbericht
+      intro_message_hint: Om het introductiebericht te kunnen wijzigen, moet u eerst de IDP-sjabloon opslaan om deze instellingen in te schakelen.
+      intro_message_success: Introbericht succesvol opgeslagen
+      locales: Landinstellingen
       none: Geen
+      reference_locale: Referentieland
       select_by_tags: Selecteer op tags
       select_skill_gap_report: Selecteer rapport over vaardigheidskloof
       select_specific_skills: Selecteer specifieke vaardigheden

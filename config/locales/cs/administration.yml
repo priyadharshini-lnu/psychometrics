@@ -1998,7 +1998,12 @@ cs:
       global_skills: Globální dovednosti
       idp: IDP
       idp_template: Přidání šablony IDP
+      intro_message: Úvodní zpráva
+      intro_message_hint: Chcete-li upravit úvodní zprávu, nejprve uložte šablonu IDP, abyste tato nastavení povolili.
+      intro_message_success: Úvodní zpráva byla úspěšně uložena
+      locales: Locales
       none: Žádné
+      reference_locale: Referenční národní prostředí
       select_by_tags: Vybrat podle značek
       select_skill_gap_report: Vyberte zprávu o nedostatku dovedností
       select_specific_skills: Vyberte konkrétní dovednosti

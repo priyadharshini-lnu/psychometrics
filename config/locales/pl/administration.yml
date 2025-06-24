@@ -14,9 +14,17 @@ pl:
     assessment_center:
       invite:
         center_group: Assessment Center Group
+    common:
+      minute: minuta
     communications:
       show:
         assessment_center_group: Assessment Center Group
+    idp:
+      intro_message: Wiadomość wprowadzająca
+      intro_message_hint: Aby zmodyfikować wiadomość powitalną, najpierw zapisz szablon IDP i włącz te ustawienia.
+      intro_message_success: Wiadomość wprowadzająca została pomyślnie zapisana
+      locales: Lokalizacje
+      reference_locale: Ustawienia regionalne odniesienia
     job_role:
       column:
         job_group: Grupa zawodowa

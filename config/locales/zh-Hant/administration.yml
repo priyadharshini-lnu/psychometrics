@@ -1998,7 +1998,12 @@ zh-Hant:
       global_skills: 全球技能
       idp: IDP
       idp_template: 新增 IDP 範本
+      intro_message: 介紹訊息
+      intro_message_hint: 若要修改介紹訊息，請先儲存 IDP 範本以啟用這些設定。
+      intro_message_success: 簡介資訊已成功保存
+      locales: 區域設置
       none: 無
+      reference_locale: 參考區域設定
       select_by_tags: 依標籤選擇
       select_skill_gap_report: 選擇技能差距報告
       select_specific_skills: 選擇特定技能

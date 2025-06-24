@@ -12,9 +12,12 @@ import { useResourceContext } from '~/modules/admin/components/Resource'
 import SkillsAndTagsSelection, { SkillsOption } from './SkillsAndTagsSelection'
 import {
   Idp, Skill, Report, ReportTR,
+  IntroMessageTR,
 } from '~/modules/admin/modules/client/core/idp'
 import { AppearanceTab } from './AppearanceTab'
 import { ReflectionQuestionsTab } from './ReflectionQuestionsTab'
+import { IntroMessage } from './IntroMessage'
+
 
 const { I18n } = window
 
@@ -140,6 +143,7 @@ const IDPTemplateForm = ({
         } catch (e) { /* empty */ }
       }
 
+
       setIsModalVisible(hasError)
       resource.fetch()
     } finally {
@@ -218,6 +222,27 @@ const IDPTemplateForm = ({
 
   const reports = idp?.report ? availableReports.concat(idp?.report) : availableReports
 
+
+  const handleIntroMessage = async () => {
+    const values = await form.validateFields()
+
+    resource.collectionAction({
+      method: 'post',
+      action: `${idp?.id}/update_instructions`,
+      body: {
+        instructions: {
+          content: values.instructions,
+        },
+        locale: values.locale,
+      },
+      apiConfig: {},
+      responseType: IntroMessageTR,
+    }).then(() => {
+      close()
+      message.success(I18n.t('administration.idp.intro_message_success'))
+      resource.fetch()
+    })
+  }
   return (
     <Modal
       title={I18n.t(idp ? 'administration.idp.edit_template' : 'administration.idp.idp_template')}
@@ -232,7 +257,7 @@ const IDPTemplateForm = ({
         <Button key="back" onClick={close}>
           {I18n.t('common.actions.cancel')}
         </Button>,
-        activeTab !== 'reflection_questions' && (
+        !['reflection_questions', 'intro_message'].includes(activeTab) && (
           <Button
             key="submit"
             type="primary"
@@ -240,6 +265,16 @@ const IDPTemplateForm = ({
           >
             {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
             {I18n.t(idp ? 'common.actions.update' : 'common.actions.add')}
+          </Button>
+        ),
+        activeTab === 'intro_message' && (
+          <Button
+            key="submit"
+            type="primary"
+            onClick={handleIntroMessage}
+          >
+            {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+            {I18n.t('common.actions.update')}
           </Button>
         ),
       ]}
@@ -339,6 +374,19 @@ const IDPTemplateForm = ({
                       </Col>
                     </Row>
                   ),
+                },
+                {
+                  label: idp
+                    ? I18n.t('administration.idp.intro_message')
+                    : (
+                      <Tooltip title={I18n.t('administration.idp.intro_message_hint')}>
+                        {I18n.t('administration.idp.intro_message')}
+                      </Tooltip>
+                    ),
+                  forceRender: true,
+                  key: 'intro_message',
+                  disabled: !idp,
+                  children: <IntroMessage idp={idp as Idp} form={form} />,
                 },
                 {
                   label: idp
