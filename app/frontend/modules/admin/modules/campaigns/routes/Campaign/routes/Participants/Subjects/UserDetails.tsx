@@ -11,6 +11,7 @@ import { camelizeKeys } from '~/utils/object'
 import { isRequestInProgress } from '~/core/request'
 import AssessmentsReports from './AssessmentsReports'
 import AssessmentCenter from './AssessmentCenter'
+import AssessmentCenterInvites from './AssessmentCenterInvites'
 import { Idp } from './Idp'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getStatusesCount } from '~/modules/admin/modules/campaigns/core/userAssessments'
@@ -168,6 +169,13 @@ export const UserDetails: React.FC<Props> = ({
       key: 'assessment_center',
       label: I18n.t('assessments_reports.menu.assessment_center'),
       children: <AssessmentCenter />,
+    })
+  }
+  if (user.permissions.viewWorkshopDetails) {
+    tabs.push({
+      key: 'assessment_center_invites',
+      label: I18n.t('assessments_reports.menu.assessment_center_invites'),
+      children: <AssessmentCenterInvites />,
     })
   }
   if (idpEnabled) {

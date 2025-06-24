@@ -1,3 +1,3 @@
-import AssessmentCenter from './AssessmentCenter'
+import WorkshopList from './WorkshopList'
 
-export default AssessmentCenter
+export default WorkshopList
