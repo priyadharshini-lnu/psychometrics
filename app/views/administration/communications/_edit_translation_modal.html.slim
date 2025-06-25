@@ -43,6 +43,10 @@
                 button.btn.btn-sm.btn-outline-secondary.position-absolute.copy-btn type='button' data-copy-text="#{@reference_body}" nonce="#{content_security_policy_nonce}" style='top: 5px; right: 5px;'
                   i.fa.fa-copy aria-hidden='true'
                   = t('administration.communications.edit_translation.copy')
+              .text-info.small.mt-1
+                br
+                i.fa.fa-info-circle aria-hidden='true' style='margin-right: 6px;'
+                 = t('administration.communications.edit_translation.copy_to_code_editor_hint')
 
             / Locale Body
             .form-group

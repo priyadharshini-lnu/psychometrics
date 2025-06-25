@@ -1497,6 +1497,7 @@ zh:
       edit_translation:
         body_label: 正文标签
         copy: 复制
+        copy_to_code_editor_hint: 提示：复制上面的参考文本并切换到代码编辑器模式以便更轻松地编辑 HTML
         locale_label: 区域设置
         no_reference_body: 没有可用的参考内容
         no_reference_subject: 没有可用的参考主题

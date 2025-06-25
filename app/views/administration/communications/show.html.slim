@@ -1,8 +1,12 @@
 .col-md-8.col-md-offset-2
   - if @available_locales.length > 1
     .row.mbm
-      .col-md-12
-        = render partial: 'application/lang', locals: { locales: @available_locales, selected_locale: @selected_locale }
+      .col-md-12.text-right
+        .form-group.form-inline
+          = label_tag :locale, 'Language:', class: 'control-label mrs'
+          = select_tag :locale,
+              options_for_select(@available_locales.map { |locale| [I18n.t("languages.#{locale}"), locale] }, @selected_locale),
+              { class: 'form-control', id: 'show_page_locale' }
 
   ul.list-group
     - if current_user.is?(:superadmin) && @communication.owner
@@ -65,13 +69,41 @@
     li.list-group-item
       strong.mrs = t('.subject')
       - if @available_locales.length > 1
-        span.label.label-info.mrs = @selected_locale.upcase
-      = @translated_subject.presence
+        span.label.label-info.mrs#subject-locale-badge = @selected_locale.upcase
+      span#translated-subject = @translated_subject.presence
     li.list-group-item
       strong.mrs = t('.body')
       - if @available_locales.length > 1
-        span.label.label-info.mls = @selected_locale.upcase
-      p = @translated_body.present? ? raw(Utility::SanitizeHtml.process(@translated_body)) : ""
+        span.label.label-info.mls#body-locale-badge = @selected_locale.upcase
+      div#translated-body
+        = @translated_body.present? ? raw(Utility::SanitizeHtml.process(@translated_body)) : ""
 
 .col-md-1
   = link_to t('.back'), administration_communications_path, class: 'btn btn-default'
+
+javascript [nonce=content_security_policy_nonce]:
+  $(document).ready(function() {
+    $('#show_page_locale').on('change', function() {
+      var selectedLocale = $(this).val();
+
+      $.ajax({
+        url: '#{administration_communication_path(@communication)}',
+        method: 'GET',
+        data: { lang: selectedLocale },
+        dataType: 'json',
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+          $('#subject-locale-badge').text(selectedLocale.toUpperCase());
+          $('#body-locale-badge').text(selectedLocale.toUpperCase());
+
+          $('#translated-subject').text(response.translated_subject || '');
+          $('#translated-body').html(response.translated_body_html || '');
+        },
+        error: function(xhr, status, error) {
+          noty({ text: 'Error loading translation data', type: 'error' });
+        }
+      });
+    });
+  });

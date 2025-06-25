@@ -1495,6 +1495,7 @@ es-ES:
       edit_translation:
         body_label: Etiqueta del cuerpo
         copy: Copiar
+        copy_to_code_editor_hint: 'Consejo: Copie el texto de referencia de arriba y cambie al modo editor de código para una edición HTML más fácil'
         locale_label: Configuración regional
         no_reference_body: No hay cuerpo de referencia disponible
         no_reference_subject: No hay asunto de referencia disponible

@@ -1495,6 +1495,7 @@ fr:
       edit_translation:
         body_label: Corps
         copy: Copier
+        copy_to_code_editor_hint: 'Conseil : Copiez le texte de référence ci-dessus et passez en mode éditeur de code pour une édition HTML plus facile'
         locale_label: Paramètres régionaux
         no_reference_body: Aucun corps de référence disponible
         no_reference_subject: Aucun sujet de référence disponible

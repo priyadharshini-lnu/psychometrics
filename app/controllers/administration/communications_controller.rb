@@ -39,6 +39,16 @@ module Administration
         @translated_subject = @communication.subject
         @translated_body = @communication.body
       end
+
+      respond_to do |format|
+        format.html
+        format.json do
+          render json: {
+            translated_subject: @translated_subject,
+            translated_body_html: Utility::SanitizeHtml.process(@translated_body.to_s)
+          }
+        end
+      end
     end
 
     def new
@@ -149,7 +159,19 @@ module Administration
       end
 
       respond_to do |format|
-        format.js { render :edit_translation }
+        if params[:locale].present?
+          format.json do
+            render json: {
+              translated_subject: @translated_subject,
+              translated_body: @translated_body,
+              reference_subject: @reference_subject,
+              reference_body: @reference_body,
+              selected_locale: @selected_locale
+            }
+          end
+        else
+          format.js { render :edit_translation }
+        end
       end
     end
 

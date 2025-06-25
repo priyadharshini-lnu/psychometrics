@@ -1495,6 +1495,7 @@ zh-Hant:
       edit_translation:
         body_label: 正文標籤
         copy: 複製
+        copy_to_code_editor_hint: 提示：複製上面的參考文字並切換到程式碼編輯器模式以便更輕鬆地編輯 HTML
         locale_label: 區域設定
         no_reference_body: 沒有可用的參考內容
         no_reference_subject: 沒有可用的參考主題

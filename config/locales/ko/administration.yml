@@ -1495,6 +1495,7 @@ ko:
       edit_translation:
         body_label: 본문 레이블
         copy: 복사
+        copy_to_code_editor_hint: '팁: 위의 참조 텍스트를 복사하고 코드 편집기 모드로 전환하여 HTML 편집을 더 쉽게 하세요'
         locale_label: 로케일
         no_reference_body: 참조 본문이 없습니다
         no_reference_subject: 참조 제목이 없습니다

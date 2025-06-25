@@ -1495,6 +1495,7 @@ de:
       edit_translation:
         body_label: Textkörper-Bezeichnung
         copy: Kopieren
+        copy_to_code_editor_hint: 'Tipp: Kopieren Sie den obigen Referenztext und wechseln Sie in den Code-Editor-Modus für eine einfachere HTML-Bearbeitung'
         locale_label: Gebietsschema
         no_reference_body: Kein Referenzinhalt verfügbar
         no_reference_subject: Kein Referenzbetreff verfügbar

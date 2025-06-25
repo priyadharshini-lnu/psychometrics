@@ -1534,6 +1534,7 @@ en:
       edit_translation:
         body_label: Body
         copy: Copy
+        copy_to_code_editor_hint: 'Tip: Copy the reference text above and switch to code editor mode for easier HTML editing'
         locale_label: Locale
         no_reference_body: No reference body available
         no_reference_subject: No reference subject available

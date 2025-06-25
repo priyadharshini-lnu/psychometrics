@@ -1495,6 +1495,7 @@ it:
       edit_translation:
         body_label: Etichetta corpo
         copy: Copia
+        copy_to_code_editor_hint: 'Suggerimento: Copia il testo di riferimento sopra e passa alla modalità editor di codice per una modifica HTML più facile'
         locale_label: Impostazioni locali
         no_reference_body: Nessun corpo di riferimento disponibile
         no_reference_subject: Nessun oggetto di riferimento disponibile

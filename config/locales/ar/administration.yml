@@ -1385,6 +1385,7 @@ ar:
       edit_translation:
         body_label: تسمية النص
         copy: نسخ
+        copy_to_code_editor_hint: 'نصيحة: انسخ النص المرجعي أعلاه وانتقل إلى وضع محرر الكود لتحرير HTML بسهولة أكبر'
         locale_label: الإعدادات المحلية
         no_reference_body: لا يوجد نص مرجعي متاح
         no_reference_subject: لا يوجد موضوع مرجعي متاح

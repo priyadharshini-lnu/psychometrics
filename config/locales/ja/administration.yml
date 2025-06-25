@@ -1495,6 +1495,7 @@ ja:
       edit_translation:
         body_label: 本文ラベル
         copy: コピー
+        copy_to_code_editor_hint: 'ヒント: 上記の参照テキストをコピーして、コードエディターモードに切り替えると、HTMLの編集が簡単になります'
         locale_label: ロケール
         no_reference_body: 参照本文がありません
         no_reference_subject: 参照件名がありません
