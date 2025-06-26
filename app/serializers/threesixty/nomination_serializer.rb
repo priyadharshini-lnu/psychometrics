@@ -23,7 +23,9 @@ module Threesixty
     end
 
     def options
-      ::Threesixty::CampaignOptionsSerializer.new.serialize(object.campaign.threesixty_campaign.option)
+      ::Threesixty::CampaignOptionsSerializer.new(
+        context: { current_user: current_user }
+      ).serialize(object.campaign.threesixty_campaign.option)
     end
 
     def can_send_request_approval_email
