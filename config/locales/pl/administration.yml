@@ -139,8 +139,10 @@ pl:
       info:
         campaign_assessment_group: Grupa Centrum Oceny
     skills:
+      applicable_proficiency_levels: Obowiązujące poziomy biegłości
       form:
         skill_group: Grupa umiejętności
+      skill_details: Szczegóły umiejętności
     skills_taxonomy:
       tabs:
         job_role_skill_mapping: Mapowania zadań umiejętności

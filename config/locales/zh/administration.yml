@@ -3462,6 +3462,7 @@ zh:
         rows: 行数
         settings: 设置
     skills:
+      applicable_proficiency_levels: 适用的能力水平
       errors:
         search:
           all_and_project_id_mutually_exclusive: 当提供 project_id_eq 时，不能全部为真
@@ -3497,6 +3498,7 @@ zh:
       import_action:
         skills_title: 进口技能
         skills_translations_title: 进口技能翻译
+      skill_details: 技能详情
       skill_translations: 技能翻译
       title: 技能
       translations:

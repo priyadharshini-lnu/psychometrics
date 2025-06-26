@@ -3456,6 +3456,7 @@ nl:
         rows: Rijen
         settings: Instellingen
     skills:
+      applicable_proficiency_levels: Toepasselijke vaardigheidsniveaus
       errors:
         search:
           all_and_project_id_mutually_exclusive: Alles kan niet waar zijn als project_id_eq is opgegeven
@@ -3491,6 +3492,7 @@ nl:
       import_action:
         skills_title: Vaardigheden importeren
         skills_translations_title: Importvaardigheden Vertalingen
+      skill_details: Vaardigheden
       skill_translations: Vaardigheden Vertalingen
       title: Vaardigheden
       translations:

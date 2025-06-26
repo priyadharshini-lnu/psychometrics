@@ -3610,6 +3610,7 @@ en:
         rows: Rows
         settings: Settings
     skills:
+      applicable_proficiency_levels: Applicable Proficiency Levels
       columns:
         skill_type: Skill Type
       errors:
@@ -3649,6 +3650,7 @@ en:
       import_action:
         skills_title: Import Skills
         skills_translations_title: Import Skills Translations
+      skill_details: Skill Details
       skill_translations: Skills Translations
       skill_translations_project: Skill Translations based on Project
       skills_project: Skills based on Project

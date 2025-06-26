@@ -3456,6 +3456,7 @@ zh-Hant:
         rows: 行數
         settings: 設定
     skills:
+      applicable_proficiency_levels: 適用的能力等級
       errors:
         search:
           all_and_project_id_mutually_exclusive: 當提供 project_id_eq 時，所有項目都不能為真
@@ -3491,6 +3492,7 @@ zh-Hant:
       import_action:
         skills_title: 進口技能
         skills_translations_title: 輸入技能翻譯
+      skill_details: 技能詳情
       skill_translations: 技能翻譯
       title: 技術
       translations:

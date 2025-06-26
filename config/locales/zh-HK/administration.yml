@@ -133,8 +133,10 @@ zh-HK:
       privacy_settings:
         mask_identity_for_skillvue: Skillvue 的掩膜資料
     skills:
+      applicable_proficiency_levels: 適用的能力等級
       form:
         skill_group: 技能組
+      skill_details: 技能詳情
     skills_taxonomy:
       tabs:
         job_roles: 工作角色

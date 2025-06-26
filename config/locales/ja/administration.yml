@@ -3455,6 +3455,7 @@ ja:
         rows: 列
         settings: 設定
     skills:
+      applicable_proficiency_levels: 該当する能力レベル
       errors:
         search:
           all_and_project_id_mutually_exclusive: project_id_eqが指定された場合、すべてがtrueになる。
@@ -3490,6 +3491,7 @@ ja:
       import_action:
         skills_title: インポート・スキル
         skills_translations_title: 輸入技能翻訳
+      skill_details: スキル詳細
       skill_translations: 技能翻訳
       title: スキル
       translations:

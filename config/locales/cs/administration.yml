@@ -3456,6 +3456,7 @@ cs:
         rows: Řádky
         settings: Nastavení
     skills:
+      applicable_proficiency_levels: Použitelné úrovně způsobilosti
       errors:
         search:
           all_and_project_id_mutually_exclusive: Vše nemůže být pravda, pokud je zadáno project_id_eq
@@ -3491,6 +3492,7 @@ cs:
       import_action:
         skills_title: Dovednosti pro import
         skills_translations_title: Importovat dovednosti Překlady
+      skill_details: Podrobnosti o dovednostech
       skill_translations: Překlady dovedností
       title: Dovednosti
       translations:

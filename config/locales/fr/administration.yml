@@ -3458,6 +3458,7 @@ fr:
         rows: Rangs
         settings: Paramètres
     skills:
+      applicable_proficiency_levels: Niveaux de compétence applicables
       errors:
         search:
           all_and_project_id_mutually_exclusive: Tout ne peut pas être vrai lorsque project_id_eq est fourni
@@ -3492,6 +3493,7 @@ fr:
       import_action:
         skills_title: Compétences en matière d'importation
         skills_translations_title: Compétences d'importation Traductions
+      skill_details: Détails des compétences
       skill_translations: Compétences Traductions
       title: Compétences
       translations:

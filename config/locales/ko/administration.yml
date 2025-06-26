@@ -3454,6 +3454,7 @@ ko:
         rows: 행
         settings: 설정
     skills:
+      applicable_proficiency_levels: 적용 가능한 숙련도 수준
       errors:
         search:
           all_and_project_id_mutually_exclusive: Project_id_eq가 제공되면 모두 참일 수 없습니다
@@ -3489,6 +3490,7 @@ ko:
       import_action:
         skills_title: 스킬 가져오기
         skills_translations_title: 스킬 번역 가져오기
+      skill_details: 기술 세부 정보
       skill_translations: 기술 번역
       title: 기술
       translations:

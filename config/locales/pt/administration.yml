@@ -3455,6 +3455,7 @@ pt:
         rows: Filas
         settings: Definições
     skills:
+      applicable_proficiency_levels: Níveis de proficiência aplicáveis
       errors:
         search:
           all_and_project_id_mutually_exclusive: Todos não podem ser verdadeiros quando project_id_eq é fornecido
@@ -3490,6 +3491,7 @@ pt:
       import_action:
         skills_title: Competências de importação
         skills_translations_title: Traduções de competências de importação
+      skill_details: Detalhes da habilidade
       skill_translations: Competências Traduções
       title: Competências
       translations:

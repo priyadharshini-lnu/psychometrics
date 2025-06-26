@@ -3455,6 +3455,7 @@ de:
         rows: Zeilen
         settings: Einstellungen
     skills:
+      applicable_proficiency_levels: Anwendbare Qualifikationsniveaus
       errors:
         search:
           all_and_project_id_mutually_exclusive: Alle können nicht wahr sein, wenn project_id_eq angegeben wird
@@ -3490,6 +3491,7 @@ de:
       import_action:
         skills_title: Import-Fähigkeiten
         skills_translations_title: Importfähigkeiten Übersetzungen
+      skill_details: Details zur Fertigkeit
       skill_translations: Fertigkeiten Übersetzungen
       title: Fertigkeiten
       translations:

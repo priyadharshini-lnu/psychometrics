@@ -10,6 +10,14 @@ module Api
         validates_request_schema :tags_search, -> { Api::V2::Skill::Contract::TagsSearch.new }
         include Api::V2::Administration::Concerns::Taggable
 
+        def proficiency_levels
+          skill = ::Skill.find_by(id: params[:id])
+          result = Skills::GetProficiencyLevel.call(skill)
+
+          jsonapi_render json: result[:ok][:proficiency_level],
+                         options: { resource: Api::V2::Administration::ProficiencyLevelResource }
+        end
+
         def tags_search
           scoped_skills = Api::Administration::SkillPolicy::Scope.new(current_user, ::Skill).resolve
 

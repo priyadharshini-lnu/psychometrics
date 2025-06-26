@@ -3458,6 +3458,7 @@ it:
         rows: Righe
         settings: Impostazioni
     skills:
+      applicable_proficiency_levels: Livelli di competenza applicabili
       errors:
         search:
           all_and_project_id_mutually_exclusive: Tutti non possono essere veri quando viene fornito project_id_eq
@@ -3493,6 +3494,7 @@ it:
       import_action:
         skills_title: Importazione di competenze
         skills_translations_title: Traduzioni di competenze di importazione
+      skill_details: Dettagli sulla competenza
       skill_translations: Traduzioni di competenze
       title: Competenze
       translations:

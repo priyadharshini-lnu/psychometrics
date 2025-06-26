@@ -1497,6 +1497,7 @@ as: :simulation_progress_notification
             post :import, on: :collection
             post :export, on: :collection
             get :tags_search, on: :collection
+            get :proficiency_levels, on: :member
             post :import_translations, on: :collection
             post :export_translations, on: :collection
             post :import_global, on: :collection

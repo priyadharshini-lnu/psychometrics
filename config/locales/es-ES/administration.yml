@@ -3457,6 +3457,7 @@ es-ES:
         rows: Filas
         settings: Ajustes
     skills:
+      applicable_proficiency_levels: Niveles de competencia aplicables
       errors:
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
@@ -3492,6 +3493,7 @@ es-ES:
       import_action:
         skills_title: Habilidades de importación
         skills_translations_title: Importación de traducciones especializadas
+      skill_details: Más información
       skill_translations: Traducción de competencias
       title: Habilidades
       translations:
