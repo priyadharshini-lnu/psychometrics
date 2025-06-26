@@ -3605,6 +3605,7 @@ zh-Hant:
     skills:
       applicable_proficiency_levels: 適用的能力等級
       columns:
+        skill_group: 技能組
         skill_type: 技能類型
       errors:
         import:

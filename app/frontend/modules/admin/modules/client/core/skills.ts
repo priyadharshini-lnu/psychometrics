@@ -1,6 +1,14 @@
 import * as t from 'io-ts'
 import { ResourceIdentifierTR } from '~/modules/admin/core/types/resource'
 
+export const skillGroupTR = t.intersection([
+  ResourceIdentifierTR,
+  t.type({
+    name: t.string,
+  }),
+])
+
+
 export const SkillTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
@@ -18,6 +26,7 @@ export const SkillTR = t.intersection([
       }),
       t.undefined]),
     tagList: t.union([t.array(t.string), t.undefined]),
+    skillGroup: t.union([skillGroupTR, t.undefined]),
   })])
 
 export type Skill = t.TypeOf<typeof SkillTR>

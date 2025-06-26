@@ -3603,6 +3603,7 @@ es-ES:
     skills:
       applicable_proficiency_levels: Niveles de competencia aplicables
       columns:
+        skill_group: Grupo de competencias
         skill_type: Tipo de habilidad
       errors:
         import:

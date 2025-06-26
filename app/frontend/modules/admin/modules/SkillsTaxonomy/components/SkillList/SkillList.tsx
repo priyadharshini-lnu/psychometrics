@@ -48,10 +48,10 @@ const SkillList: React.FC<PropsFromRedux> = ({ features, openModal }) => {
     trackUrl: true,
     responseType: SkillTR,
     apiConfig: {
-      include: ['project'],
+      include: ['project', 'skill_group'],
       include_meta: ['permissions'],
       filter: projectIdFilter,
-      fields: { projects: ['name', 'client_id'] },
+      fields: { projects: ['name', 'client_id'], skill_groups: ['name'] },
     },
   }
 

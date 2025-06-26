@@ -3615,6 +3615,7 @@ ar:
     skills:
       applicable_proficiency_levels: مستويات الكفاءة المطبقة
       columns:
+        skill_group: مجموعة المهارات
         skill_type: نوع المهارة
       errors:
         import:

@@ -3605,6 +3605,7 @@ ja:
     skills:
       applicable_proficiency_levels: 該当する能力レベル
       columns:
+        skill_group: スキルグループ
         skill_type: スキルの種類
       errors:
         import:

@@ -3605,6 +3605,7 @@ pt:
     skills:
       applicable_proficiency_levels: Níveis de proficiência aplicáveis
       columns:
+        skill_group: Grupo de competências
         skill_type: Tipo de habilidade
       errors:
         import:

@@ -3603,6 +3603,7 @@ ko:
     skills:
       applicable_proficiency_levels: 적용 가능한 숙련도 수준
       columns:
+        skill_group: 스킬 그룹
         skill_type: 스킬 유형
       errors:
         import:

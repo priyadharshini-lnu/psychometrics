@@ -3611,6 +3611,7 @@ zh:
     skills:
       applicable_proficiency_levels: 适用的能力水平
       columns:
+        skill_group: 技能组
         skill_type: 技能类型
       errors:
         import:

@@ -66,16 +66,16 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           sorter
         />
         <Resource.Column<Skill>
-          title={I18n.t('common.column.description')}
-          id="description"
-          render={skill => <Typography.Text>{skill.description}</Typography.Text>}
-          sorter
-        />
-        <Resource.Column<Skill>
           title={I18n.t('administration.skills.columns.skill_type')}
           id="skill_type"
           width={200}
           render={skill => <Typography.Text>{getLabelForEnumValue(SkillTypeEnum, skill.skillType)}</Typography.Text>}
+        />
+        <Resource.Column<Skill>
+          title={I18n.t('administration.skills.columns.skill_group')}
+          id="skillGroupId"
+          render={skill => <Typography.Text>{skill.skillGroup?.name}</Typography.Text>}
+          sorter
         />
         {!projectId && (
           <Resource.Column<Skill>
