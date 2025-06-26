@@ -13,7 +13,10 @@ module Administration
         end
 
         def private_key
-          object.mettl_config['private_key']
+          key = object.mettl_config['private_key']
+          return nil if key.blank?
+
+          "#{'*' * (key.length - 4)}#{key[-4..]}"
         end
 
         def api_base_url

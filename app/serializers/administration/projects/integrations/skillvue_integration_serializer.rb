@@ -7,7 +7,10 @@ module Administration
         attributes :api_key, :completion_webhook_url, :results_webhook_url
 
         def api_key
-          object.skillvue_config['api_key']
+          key = object.skillvue_config['api_key']
+          return nil if key.blank?
+
+          "#{'*' * (key.length - 4)}#{key[-4..]}"
         end
 
         def completion_webhook_url
