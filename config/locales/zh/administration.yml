@@ -2588,6 +2588,7 @@ zh:
           missing_columns: 缺少必填列： %{fields}
           missing_required_fields: 行 %{line}：缺少必填字段 (%{fields})
           save_failed: 行 %{line}：%{message}
+          skill_not_found: 行 %{row_number}：技能无效或缺失
         job_queued: 能力水平导入工作已排队
       translations:
         export:

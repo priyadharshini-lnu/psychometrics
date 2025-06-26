@@ -446,6 +446,7 @@ ro:
       download: Descărcare
       na: N/A
       ok: Bine
+      refer_export_file: Consultați funcționalitatea Export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
       response: Răspuns
   devise:
     administrators:

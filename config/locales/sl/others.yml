@@ -445,6 +445,7 @@ sl:
       download: Prenesi
       na: NI RELEVANTNO
       ok: Ok
+      refer_export_file: V funkciji Izvoz izberite predlogo, ki jo lahko uporabite za uvoz.
       response: Odziv
   devise:
     administrators:

@@ -445,6 +445,7 @@ id:
       download: Unduh
       na: N/A
       ok: Baiklah
+      refer_export_file: Lihat fungsi Ekspor untuk mengekstrak template yang dapat digunakan untuk Mengimpor di sini.
       response: Tanggapan
   devise:
     administrators:

@@ -477,6 +477,7 @@ ar:
       download: تحميل
       na: N / A
       ok: موافق
+      refer_export_file: ارجع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
       response: الإجابة
   devise:
     administrators:

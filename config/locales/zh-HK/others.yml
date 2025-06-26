@@ -476,6 +476,7 @@ zh-HK:
       download: 下載
       na: 不適用
       ok: 好
+      refer_export_file: 請參閱匯出功能，擷取可用於在此匯入的範本。
       response: 回應
   devise:
     administrators:

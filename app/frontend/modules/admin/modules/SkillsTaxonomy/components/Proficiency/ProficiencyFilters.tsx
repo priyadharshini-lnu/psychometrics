@@ -100,7 +100,6 @@ export const ProficiencyFilters: React.FC<Props> = ({
         openModal('ProficiencyImportModal', {
           handleImport: handleTranslationsImport,
           title: I18n.t('administration.proficiency_levels.import.actions.translations'),
-          csvFilePath: '/example_csv/proficiency-translations-sample.csv',
           allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
         })
         break

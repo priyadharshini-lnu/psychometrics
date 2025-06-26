@@ -60,7 +60,6 @@ export const JobRolesFilters: React.FC<Props> = ({
     if (action === 'import_translations') {
       openModal('JobRolesImportModal', {
         handleImport: handleTranslationsImport,
-        csvFilePath: '/example_csv/job-roles-sample.csv',
         title: I18n.t('administration.job_role.import_action.translations'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })

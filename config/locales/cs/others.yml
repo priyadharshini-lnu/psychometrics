@@ -1803,6 +1803,7 @@ cs:
       na: Neznámé
       none: Žádné
       ok: OK
+      refer_export_file: Viz funkce Export pro získání šablony, kterou lze použít k importu.
       reference_language: Referenční jazyk
       response: Reakce
       selected: Vybrané stránky

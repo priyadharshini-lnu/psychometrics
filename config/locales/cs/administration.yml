@@ -2584,6 +2584,7 @@ cs:
           missing_columns: 'Chybějící povinné sloupce: %{pole}'
           missing_required_fields: 'Řádek %{řádek}: Chybějící povinná pole (%{pole})'
           save_failed: 'Řádek %{řádek}: %{zpráva}'
+          skill_not_found: 'Řádek %{číslo_řádku}: Neplatná nebo chybějící dovednost'
         job_queued: Úloha importu úrovní znalostí byla zařazena do fronty
       translations:
         export:

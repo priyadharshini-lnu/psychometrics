@@ -446,6 +446,7 @@ en-US:
       download: Download
       na: N/A
       ok: Ok
+      refer_export_file: Refer to the Export functionality to extract a template that can be used to Import here.
       response: Response
   devise:
     administrators:

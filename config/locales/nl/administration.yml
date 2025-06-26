@@ -2584,6 +2584,7 @@ nl:
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
           missing_required_fields: 'Regel %{regel}: Verplichte velden ontbreken (%{fields})'
           save_failed: 'Regel %{regel}: %{bericht}'
+          skill_not_found: 'Rij %{rij_nummer}: Ongeldige of ontbrekende vaardigheid'
         job_queued: Vaardigheidsniveaus importtaak is in de wachtrij geplaatst
       translations:
         export:

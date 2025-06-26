@@ -439,6 +439,7 @@ vi:
       download: Tải về
       na: Không có
       ok: Được rồi
+      refer_export_file: Tham khảo tính năng Xuất để trích xuất một mẫu có thể được sử dụng để Nhập vào đây.
       response: Phản ứng
   devise:
     administrators:

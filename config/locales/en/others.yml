@@ -1853,6 +1853,7 @@ en:
       na: N/A
       none: None
       ok: Ok
+      refer_export_file: Refer to the Export functionality to extract a template that can be used to Import here.
       reference_language: Reference Language
       response: Response
       select: Select

@@ -2584,6 +2584,7 @@ zh-Hant:
           missing_columns: 缺少必填欄位：%{fields}。
           missing_required_fields: 行 %{line}：缺少必填欄位 (%{fields})
           save_failed: 行 %{line}：%{message}
+          skill_not_found: 行 %{row_number}：無效或遺失技能
         job_queued: 能力等級匯入工作已排隊
       translations:
         export:

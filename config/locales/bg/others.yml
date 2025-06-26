@@ -445,6 +445,7 @@ bg:
       download: Изтегляне
       na: N/A
       ok: Добре
+      refer_export_file: Вижте функцията за експортиране, за да извлечете шаблон, който може да се използва за импортиране тук.
       response: Отговор
   devise:
     administrators:

@@ -2583,6 +2583,7 @@ it:
           missing_columns: 'Colonne obbligatorie mancanti: %{campi}'
           missing_required_fields: 'Linea %{linea}: Campi obbligatori mancanti (%{campi})'
           save_failed: 'Linea %{linea}: %{messaggio}'
+          skill_not_found: 'Riga %{numero_riga}: Skill non valido o mancante'
         job_queued: Il lavoro di importazione dei livelli di competenza è stato messo in coda
       translations:
         export:

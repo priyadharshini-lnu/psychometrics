@@ -32,14 +32,15 @@ module AdminJobs
 
       structured_data = process_level_definitions(translations)
 
-      structured_data.each_with_index do |_def, index|
-        %w[name level description].each do |field|
+      structured_data.each_with_index do |def_item, index|
+        level = def_item['level'].to_s
+        %w[name description].each do |field|
           values = I18n.available_locales.map do |locale|
             get_field_value(translations[locale.to_s], index, field)
           end
 
-          # Create a row with the JSONPath notation ID and values
-          rows << ["#{proficiency_level.id}#LevelDefinition.$[#{index}].#{field}", *values]
+          # Create a row with the JSONPath notation ID and values, using level
+          rows << ["#{proficiency_level.id}#LevelDefinition.$[#{level}].#{field}", *values]
         end
       end
 

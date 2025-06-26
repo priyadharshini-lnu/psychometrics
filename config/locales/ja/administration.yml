@@ -2583,6 +2583,7 @@ ja:
           missing_columns: '必須列がありません: %{fields}.'
           missing_required_fields: 行 %{line}：必須フィールドがありません (%{fields})
           save_failed: 行 %{line}：メッセージ
+          skill_not_found: 行 %{row_number}：無効または見つからないスキル
         job_queued: 技能レベルのインポートジョブがキューに入れられました。
       translations:
         export:

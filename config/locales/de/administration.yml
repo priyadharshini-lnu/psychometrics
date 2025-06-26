@@ -2583,6 +2583,7 @@ de:
           missing_columns: 'Fehlende erforderliche Spalten: %{fields}'
           missing_required_fields: 'Zeile %{line}: Fehlende Pflichtfelder (%{fields})'
           save_failed: 'Zeile %{line}: %{Nachricht}'
+          skill_not_found: 'Zeile %{row_number}: Ungültig oder fehlender Skill'
         job_queued: Der Importauftrag für die Kompetenzstufen wurde in die Warteschlange gestellt.
       translations:
         export:

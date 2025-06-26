@@ -2583,6 +2583,7 @@ pt:
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'
           missing_required_fields: 'Linha %{linha}: Faltam campos obrigatórios (%{fields})'
           save_failed: 'Linha %{linha}: %{mensagem}'
+          skill_not_found: 'Linha %{número_da_linha}: Competência inválida ou em falta'
         job_queued: A tarefa de importação de níveis de proficiência foi colocada em fila de espera
       translations:
         export:

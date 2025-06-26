@@ -110,6 +110,7 @@ pl:
           missing_columns: 'Brakujące wymagane kolumny: %{fields}'
           missing_required_fields: 'Linia %{line}: Brakujące wymagane pola (%{fields})'
           save_failed: 'Linia %{line}: %{komunikat}'
+          skill_not_found: 'Wiersz %{numer_wiersza}: Nieprawidłowy lub brakujący skill'
         job_queued: Zadanie importu poziomów biegłości zostało umieszczone w kolejce
       translations:
         export:

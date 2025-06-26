@@ -1804,6 +1804,7 @@ ja:
       na: 該当なし
       none: なし
       ok: OK
+      refer_export_file: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
       reference_language: 参考言語
       response: 回答
       selected: 厳選された

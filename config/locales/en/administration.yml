@@ -2698,6 +2698,7 @@ en:
           missing_columns: 'Missing required columns: %{fields}'
           missing_required_fields: 'Line %{line}: Missing required fields (%{fields})'
           save_failed: 'Line %{line}: %{message}'
+          skill_not_found: 'Row %{row_number}: Invalid or missing Skill'
         job_queued: Proficiency levels import job has been queued
       translations:
         export:

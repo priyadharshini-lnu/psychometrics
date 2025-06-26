@@ -1790,6 +1790,7 @@ nl:
       na: N.V.T
       none: Geen
       ok: Ok
+      refer_export_file: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
       reference_language: Referentietaal
       response: Reactie
       selected: Geselecteerd

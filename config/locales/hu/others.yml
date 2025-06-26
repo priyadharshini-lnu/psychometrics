@@ -445,6 +445,7 @@ hu:
       download: Letöltés
       na: N/A
       ok: Oké
+      refer_export_file: Az Exportálás funkcióval kivonhat egy sablont, amely felhasználható az Importáláshoz.
       response: Válasz
   devise:
     administrators:

@@ -1792,6 +1792,7 @@ it:
       na: N/D
       none: Nessuno
       ok: Ok
+      refer_export_file: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
       reference_language: Lingua di riferimento
       response: Risposta
       select: Selezionare

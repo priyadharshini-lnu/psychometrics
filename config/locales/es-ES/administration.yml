@@ -2584,6 +2584,7 @@ es-ES:
           missing_columns: 'Faltan columnas obligatorias: %{fields}'
           missing_required_fields: 'Línea %{line}: Faltan campos obligatorios (%{fields})'
           save_failed: 'Línea %{line}: %{message}'
+          skill_not_found: 'Fila %{número_de_fila}: Habilidad inválida o ausente'
         job_queued: Se ha puesto en cola un trabajo de importación de niveles de competencia
       translations:
         export:

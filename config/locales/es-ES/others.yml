@@ -1806,6 +1806,7 @@ es-ES:
       na: N/A
       none: Ninguno
       ok: De acuerdo
+      refer_export_file: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
       reference_language: Lengua de referencia
       response: Respuesta
       selected: Selección

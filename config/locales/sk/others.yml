@@ -445,6 +445,7 @@ sk:
       download: Stiahnite si
       na: NEUPLATŇUJE SA
       ok: Ok
+      refer_export_file: Pozrite si funkciu Export, aby ste získali šablónu, ktorú môžete použiť na Import sem.
       response: Odpoveď
   devise:
     administrators:

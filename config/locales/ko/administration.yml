@@ -2584,6 +2584,7 @@ ko:
           missing_columns: '누락된 필수 열: %{fields}'
           missing_required_fields: '줄 %{줄}: 누락된 필수 필드(%{필드})'
           save_failed: '줄 %{줄}: %{메시지}'
+          skill_not_found: '행 %{행_번호}: 유효하지 않거나 누락된 스킬입니다.'
         job_queued: 숙련도 수준 가져오기 작업이 대기열에 추가되었습니다.
       translations:
         export:

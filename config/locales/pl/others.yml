@@ -459,6 +459,7 @@ pl:
       download: Pobierz
       na: NIE DOTYCZY
       ok: Ok
+      refer_export_file: Zapoznaj się z funkcją eksportu, aby wyodrębnić szablon, którego można użyć do zaimportowania w tym miejscu.
       response: Odpowiedź
   devise:
     administrators:

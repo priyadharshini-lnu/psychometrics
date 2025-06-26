@@ -1803,6 +1803,7 @@ pt:
       na: N/A
       none: Nenhum
       ok: OK
+      refer_export_file: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
       reference_language: Língua de referência
       response: Resposta
       selected: Selecionado
