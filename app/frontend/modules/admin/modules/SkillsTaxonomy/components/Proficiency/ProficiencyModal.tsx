@@ -38,7 +38,6 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
   } = useResources<Client>('clients')
 
-  const [selectedLevel, setSelectedLevel] = useState<number>(proficiencyLevel?.level ?? 0)
   const [levelDefinitions, setLevelDefinitions] = useState<{
     level: number
     name: string
@@ -48,6 +47,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   const ownersLoading = isOwnerLoading('fetch')
 
   const global = Form.useWatch('global', form)
+  const level = Form.useWatch('level', form)
 
   const fetchOwnersByValue = (value: string) => fetchOwners({
     apiConfig: {
@@ -62,7 +62,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   }, 300)
 
   const {
-    data: skills, fetch: fetchSkills, isLoading: isSkillsLoading,
+    data: skills, fetch: fetchSkills, isLoading: isSkillsLoading, setData: setSkills,
   } = useResources('skills', {
     apiConfig: {
       filter: {
@@ -72,10 +72,28 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   })
 
   useEffect(() => {
+    if (proficiencyLevel) {
+      fetchSkills({
+        apiConfig: {
+          filter: {
+            name_cont: proficiencyLevel?.skill?.name ?? '',
+            ...(
+              proficiencyLevel?.project?.id
+                ? { project_id_eq: proficiencyLevel?.project?.id }
+                : {}
+            ),
+          },
+        },
+      })
+    }
+  }, [proficiencyLevel])
+
+  useEffect(() => {
     form.resetFields(['ownerId'])
   }, [global])
 
   const ownerId = Form.useWatch(['ownerId'], form)
+  const projectId = Form.useWatch(['projectId'], form)
   const getProjects = (): OptionsType[] => {
     if (!proficiencyLevel || !proficiencyLevel.project) {
       return projects
@@ -92,6 +110,11 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     setProjects([])
     form.resetFields(['projectId'])
   }, [ownerId])
+
+  useEffect(() => {
+    setSkills([])
+    form.resetFields(['skillId'])
+  }, [projectId, global])
 
   const handleProjectSearch = debounce((value) => {
     fetchProjects({
@@ -111,14 +134,31 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     return Promise.resolve()
   }
 
+  const handleLevelDefinitionChange = (idx: number, key: string, value: string | number) => {
+    setLevelDefinitions((currLevelDefinitions) => {
+      const newLevelDefinitions = currLevelDefinitions.map((item, itemIdx) => {
+        if (itemIdx === idx) {
+          return {
+            ...item,
+            [key]: value,
+          }
+        }
+        return item
+      })
+      return newLevelDefinitions
+    })
+  }
+
   const columns = [
     {
+      key: 'level',
       title: I18n.t('administration.proficiency_levels.fields.level'),
       dataIndex: 'level',
       width: 100,
       render: (_: unknown, record, index: number) => (
         <Form.Item
           name={['levelDefinition', index, 'level']}
+          normalize={value => Number(value)}
           rules={[
             { required: true },
             {
@@ -126,11 +166,16 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
             },
           ]}
         >
-          <Input />
+          <Input
+            onInput={e => handleLevelDefinitionChange(
+              index, 'level', Number((e.target as HTMLInputElement).value),
+            )}
+          />
         </Form.Item>
       ),
     },
     {
+      key: 'name',
       title: I18n.t('administration.proficiency_levels.fields.level_name'),
       dataIndex: 'name',
       render: (_: unknown, record, index: number) => (
@@ -138,11 +183,14 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
           name={['levelDefinition', index, 'name']}
           rules={[{ required: true }]}
         >
-          <Input />
+          <Input
+            onInput={e => handleLevelDefinitionChange(index, 'name', (e.target as HTMLInputElement).value)}
+          />
         </Form.Item>
       ),
     },
     {
+      key: 'description',
       title: I18n.t('administration.proficiency_levels.fields.level_description'),
       dataIndex: 'description',
       render: (_: unknown, record, index: number) => (
@@ -150,7 +198,9 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
           name={['levelDefinition', index, 'description']}
           rules={[{ required: true }]}
         >
-          <Input />
+          <Input
+            onInput={e => handleLevelDefinitionChange(index, 'description', (e.target as HTMLInputElement).value)}
+          />
         </Form.Item>
       ),
     },
@@ -159,27 +209,44 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   const debouncedFetchSkills = useCallback(debounce((value) => {
     fetchSkills({
       apiConfig: {
-        filter: { name_cont: value },
+        filter: {
+          name_cont: value,
+          ...(
+            params.projectId || proficiencyLevel?.project?.id
+              ? { project_id_eq: params.projectId || proficiencyLevel?.project?.id }
+              : {}
+          ),
+        },
       },
     })
   }, 300), [])
 
   useEffect(() => {
-    const newLevelDefinitions = Array.from({ length: selectedLevel }).map((_, idx: number) => ({
-      name: '', description: '', level: idx + 1,
-    }))
-    setLevelDefinitions(newLevelDefinitions)
-  }, [selectedLevel])
-
-  useEffect(() => {
-    form.setFieldValue('levelDefinition', levelDefinitions)
-  }, [levelDefinitions])
+    setLevelDefinitions((currLevelDefinitions) => {
+      const newLevelDefinitions = Array.from({ length: level }).map((_, idx: number) => {
+        const currLevelDefinition = currLevelDefinitions?.[idx]
+        if (currLevelDefinition) {
+          return currLevelDefinition
+        }
+        return {
+          name: '',
+          description: '',
+          level: idx + 1,
+        }
+      })
+      return newLevelDefinitions
+    })
+  }, [level])
 
   useEffect(() => {
     if (proficiencyLevel) {
       setLevelDefinitions(proficiencyLevel.levelDefinition)
     }
   }, [proficiencyLevel])
+
+  useEffect(() => {
+    form.setFieldValue('levelDefinition', levelDefinitions)
+  }, [levelDefinitions])
 
   const transformValues = (values) => {
     delete values.global
@@ -265,6 +332,22 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     >
       {() => (
         <>
+          {!params.projectId && (
+            <>
+              {!proficiencyLevel && (
+                <>
+                  <Form.Item
+                    name="global"
+                    label={I18n.t('administration.proficiency_levels.global')}
+                  >
+                    <Switch />
+                  </Form.Item>
+                  {renderClientSelector()}
+                </>
+              )}
+              {renderProjectSelector()}
+            </>
+          )}
           <Form.Item
             name="proficiencyType"
             label={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
@@ -323,22 +406,6 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
               </Form.Item>
             ) : null
           }
-          {!params.projectId && (
-            <>
-              {!proficiencyLevel && (
-                <>
-                  <Form.Item
-                    name="global"
-                    label={I18n.t('administration.proficiency_levels.global')}
-                  >
-                    <Switch />
-                  </Form.Item>
-                  {renderClientSelector()}
-                </>
-              )}
-              {renderProjectSelector()}
-            </>
-          )}
           <Form.Item
             name="level"
             label={I18n.t('administration.proficiency_levels.fields.level')}
@@ -346,7 +413,6 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
           >
             <Select
               showSearch
-              onChange={setSelectedLevel}
             >
               {Array.from({ length: 9 })?.map((_, index: number) => (
                 <Select.Option key={index + 2} value={index + 2}>{index + 2}</Select.Option>

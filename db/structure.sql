@@ -9,12 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
 --
 -- Name: public; Type: SCHEMA; Schema: -; Owner: -
 --
@@ -5789,7 +5783,8 @@ CREATE TABLE public.skills_job_roles (
     job_role_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    expected_proficiency_level integer
+    expected_proficiency_level integer,
+    project_id bigint
 );
 
 
@@ -13416,6 +13411,13 @@ CREATE INDEX index_skills_job_roles_on_job_role_id ON public.skills_job_roles US
 
 
 --
+-- Name: index_skills_job_roles_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skills_job_roles_on_project_id ON public.skills_job_roles USING btree (project_id);
+
+
+--
 -- Name: index_skills_job_roles_on_skill_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13430,17 +13432,17 @@ CREATE INDEX index_skills_on_project_id ON public.skills USING btree (project_id
 
 
 --
--- Name: index_skills_on_skill_group_id; Type: INDEX; Schema: public; Owner: -
---
-
-
-CREATE INDEX index_skills_on_skill_group_id ON public.skills USING btree (skill_group_id);
-
-
 -- Name: index_skills_on_project_id_and_name; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_skills_on_project_id_and_name ON public.skills USING btree (project_id, name);
+
+
+--
+-- Name: index_skills_on_skill_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skills_on_skill_group_id ON public.skills USING btree (skill_group_id);
 
 
 --
@@ -15722,18 +15724,19 @@ ALTER TABLE ONLY public.reports_modules
 
 
 --
--- Name: proficiency_level_translations fk_rails_7e2f5d2b33; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.proficiency_level_translations
-    ADD CONSTRAINT fk_rails_7e2f5d2b33 FOREIGN KEY (proficiency_level_id) REFERENCES public.proficiency_levels(id);
-
-
 -- Name: workshop_invites fk_rails_7d9ff1544c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.workshop_invites
     ADD CONSTRAINT fk_rails_7d9ff1544c FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
+-- Name: proficiency_level_translations fk_rails_7e2f5d2b33; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_level_translations
+    ADD CONSTRAINT fk_rails_7e2f5d2b33 FOREIGN KEY (proficiency_level_id) REFERENCES public.proficiency_levels(id);
 
 
 --
@@ -15753,13 +15756,6 @@ ALTER TABLE ONLY public.user_assessments
 
 
 --
- -- Name: campaign_users fk_rails_842e3c5f7e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_users
-    ADD CONSTRAINT fk_rails_842e3c5f7e FOREIGN KEY (target_job_role_id) REFERENCES public.job_roles(id);
-
-
 -- Name: ai_assistant_requests fk_rails_81e44e1700; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15773,6 +15769,14 @@ ALTER TABLE ONLY public.ai_assistant_requests
 
 ALTER TABLE ONLY public.user_idp_comments
     ADD CONSTRAINT fk_rails_824db9755d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_users fk_rails_842e3c5f7e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_users
+    ADD CONSTRAINT fk_rails_842e3c5f7e FOREIGN KEY (target_job_role_id) REFERENCES public.job_roles(id);
 
 
 --
@@ -16888,6 +16892,14 @@ ALTER TABLE ONLY public.bulk_reports
 
 
 --
+-- Name: skills_job_roles fk_rails_eb22ce8ffe; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skills_job_roles
+    ADD CONSTRAINT fk_rails_eb22ce8ffe FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assigns_reports fk_rails_eb27834cf2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17150,28 +17162,18 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250624125911'),
 ('20250612122526'),
-('20250622114250'),
 ('20250622122302'),
-('20250616122251'),
-('20250618100750'),
-('20250613121201'),
-('20250611091619'),
-('20250526161051'),
-('20250519061737'),
-('20250515140030'),
-('20250515123148'),
-('20250507133702'),
-('20250507113234'),
-('20250505090254'),
-('20250429103216'),
-('20250421113712'),
-('20250421113540'),
-('20250421072058'),
-('20250421071841'),
+('20250622114250'),
+('20250620104201'),
 ('20250620000000'),
 ('20250619111229'),
+('20250618100750'),
+('20250616122251'),
 ('20250616053812'),
+('20250613121201'),
+('20250611091619'),
 ('20250610070045'),
 ('20250609112516'),
 ('20250605154240'),
@@ -17183,26 +17185,38 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250528132845'),
 ('20250528062059'),
 ('20250526181739'),
+('20250526161051'),
 ('20250523071937'),
 ('20250522122128'),
 ('20250522061329'),
 ('20250521193031'),
+('20250519061737'),
 ('20250519045905'),
 ('20250516082303'),
+('20250515140030'),
+('20250515123148'),
 ('20250514075923'),
 ('20250512082901'),
+('20250507133702'),
+('20250507113234'),
 ('20250507111247'),
 ('20250507102952'),
 ('20250506122929'),
 ('20250506113935'),
+('20250505090254'),
 ('20250504102702'),
 ('20250430135151'),
 ('20250430110314'),
 ('20250429125102'),
+('20250429103216'),
 ('20250427174443'),
 ('20250425102837'),
 ('20250423120813'),
 ('20250423114951'),
+('20250421113712'),
+('20250421113540'),
+('20250421072058'),
+('20250421071841'),
 ('20250416102558'),
 ('20250415070851'),
 ('20250415064739'),
@@ -17999,3 +18013,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

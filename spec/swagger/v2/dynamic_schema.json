@@ -8045,6 +8045,10 @@
                   "type": "boolean",
                   "nullable": true
                 },
+                "mask_identity_for_skillvue": {
+                  "type": "boolean",
+                  "nullable": true
+                },
                 "disable_data_processing": {
                   "type": "boolean",
                   "nullable": true
@@ -8173,6 +8177,10 @@
                 "nullable": true
               },
               "mask_identity_for_mettl": {
+                "type": "boolean",
+                "nullable": true
+              },
+              "mask_identity_for_skillvue": {
                 "type": "boolean",
                 "nullable": true
               },
@@ -11324,6 +11332,10 @@
                 "type": "boolean",
                 "nullable": false
               },
+              "campaign_assessment_group_id": {
+                "type": "string",
+                "nullable": false
+              },
               "workshop_ids": {
                 "type": "array",
                 "items": {
@@ -11380,6 +11392,7 @@
             "required": [
               "allow_language_preference",
               "allow_neurodiversity_option",
+              "campaign_assessment_group_id",
               "translations"
             ],
             "nullable": false

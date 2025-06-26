@@ -88,6 +88,7 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
               attributes: {
                 job_role_id: job_role.id,
                 skill_id: skill.id,
+                project_id: project.id,
                 expected_proficiency_level: 3
               }
             }
@@ -98,8 +99,8 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
           expect(response).to have_http_status(:created)
           data = JSON.parse(response.body)['data']
 
-          expect(data['attributes']['skill_id']).to eq(skill.id)
-          expect(data['attributes']['job_role_id']).to eq(job_role.id)
+          expect(data['attributes']['skill_id']).to eq(skill.id.to_s)
+          expect(data['attributes']['job_role_id']).to eq(job_role.id.to_s)
           expect(data['attributes']['expected_proficiency_level']).to eq(3)
         end
       end

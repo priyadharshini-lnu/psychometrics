@@ -72,10 +72,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
   }, 300)
 
   useEffect(() => {
-    fetchSkillGroups()
-  }, [])
-
-  useEffect(() => {
     form.resetFields(['ownerId'])
   }, [global])
 
@@ -90,6 +86,24 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       },
     })
   }, 300), [])
+
+  const debouncedFetchSkillGroups = useCallback(debounce((value) => {
+    fetchSkillGroups({
+      apiConfig: {
+        filter: { name_cont: value },
+      },
+    })
+  }, 300), [])
+
+  useEffect(() => {
+    if (skill) {
+      fetchSkillGroups({
+        apiConfig: {
+          filter: { name_cont: '' },
+        },
+      })
+    }
+  }, [skill])
 
   const ownerId = Form.useWatch(['ownerId'], form)
   const getProjects = (): OptionsType[] => {
@@ -250,13 +264,17 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
             </Select>
           </Form.Item>
           <Form.Item
-            name="skill_group_id"
+            name="skillGroupId"
             label={I18n.t('administration.skills.form.skill_group')}
           >
             <Select
               showSearch
               filterOption={false}
               loading={isSkillGroupsLoading('fetch')}
+              onSearch={(value) => {
+                debouncedFetchSkillGroups(value)
+              }}
+              notFoundContent={isSkillGroupsLoading('fetch') ? <Spin size="small" /> : null}
             >
               {skillGroups.map((item: {id: string, name: string}) => (
                 <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>

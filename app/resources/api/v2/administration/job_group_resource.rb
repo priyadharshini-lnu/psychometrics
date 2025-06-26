@@ -7,7 +7,7 @@ class Api::V2::Administration::JobGroupResource < Api::V2::Administration::BaseR
 
   delegate :level_label, to: :@model
 
-  ransack_filters %i[filterable_fields end_level_groups include_global_groups]
+  ransack_filters %i[name_cont filterable_fields end_level_groups include_global_groups]
 
   def ancestors
     @model.ancestors.pluck(:name)

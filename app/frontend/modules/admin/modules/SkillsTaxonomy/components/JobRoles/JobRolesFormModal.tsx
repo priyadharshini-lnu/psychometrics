@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import {
   Form, Input, Select,
   Spin,
@@ -36,9 +36,12 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
     data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
   } = useResources<Client>('clients')
 
+  const global = Form.useWatch('global', form)
+  const projectId = Form.useWatch('projectId', form)
+
   const {
     data: jobGroups,
-    fetch: fetchJobGroups, isLoading: isJobGroupsLoading,
+    fetch: fetchJobGroups, isLoading: isJobGroupsLoading, setData: setJobGroups,
   } = useResources('job_groups', {
     apiConfig: {
       filter: {
@@ -48,9 +51,30 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
     } as ApiConfig,
   })
 
-  const ownersLoading = isOwnerLoading('fetch')
+  const debouncedFetchJobGroups = useCallback(debounce((value) => {
+    fetchJobGroups({
+      apiConfig: {
+        filter: {
+          name_cont: value,
+          ...(
+            (projectId) ? { project_id: projectId } : {}
+          ),
+        },
+      },
+    })
+  }, 300), [projectId])
 
-  const global = Form.useWatch('global', form)
+  useEffect(() => {
+    if (jobRole) {
+      fetchJobGroups({
+        apiConfig: {
+          filter: { name_cont: jobRole.jobGroup?.name ?? '' },
+        },
+      })
+    }
+  }, [jobRole])
+
+  const ownersLoading = isOwnerLoading('fetch')
 
   const fetchOwnersByValue = (value: string) => fetchOwners({
     apiConfig: {
@@ -65,12 +89,13 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
   }, 300)
 
   useEffect(() => {
-    fetchJobGroups()
-  }, [])
-
-  useEffect(() => {
     form.resetFields(['ownerId'])
   }, [global])
+
+  useEffect(() => {
+    setJobGroups([])
+    form.resetFields(['jobGroupId'])
+  }, [global, projectId])
 
   const ownerId = Form.useWatch(['ownerId'], form)
   const getProjects = (): OptionsType[] => {
@@ -104,7 +129,9 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
     delete values.ownerId
     return {
       ...values,
-      project_id: values.projectId ? Number(values.projectId) : undefined,
+      project_id: (params.projectId || values.projectId)
+        ? Number(params.projectId || values.projectId)
+        : undefined,
       job_group_id: Number(values.jobGroupId),
     }
   }
@@ -225,8 +252,13 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
           >
             <Select
               showSearch
+              allowClear
               filterOption={false}
               loading={isJobGroupsLoading('fetch')}
+              onSearch={(value) => {
+                debouncedFetchJobGroups(value)
+              }}
+              notFoundContent={isJobGroupsLoading('fetch') ? <Spin size="small" /> : null}
             >
               {jobGroups?.map((item: JobGroup) => (
                 <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>

@@ -5,6 +5,7 @@ class SkillsJobRole < ApplicationRecord
 
   belongs_to :skill
   belongs_to :job_role
+  belongs_to :project
 
   validates :expected_proficiency_level, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 

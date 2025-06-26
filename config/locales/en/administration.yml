@@ -2655,8 +2655,9 @@ en:
           invalid_format: Level definition must be an array of definitions.
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
           must_be_unique: Must be unique
-          proficiency_level_exists: A ProficiencyLevel with this skill and project already exists
-          proficiency_level_exists_for_category: A ProficiencyLevel for this category already exists
+          proficiency_level_exists: A Proficiency Level with this skill and project already exists
+          proficiency_level_exists_for_all_skills: A Proficiency Level for all skills already exits
+          proficiency_level_exists_for_category: A Proficiency Level for this category already exists
           project_level_all_skills_exists: A 'all_skills' proficiency level already exists
           skill_must_exist: Skill must be present for proficiency_type 'by_skill'
       export:

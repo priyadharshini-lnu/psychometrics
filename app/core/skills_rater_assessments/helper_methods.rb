@@ -64,7 +64,8 @@ module SkillsRaterAssessments
     def create_job_role_skill_mapping(job_role, skill, proficiency_level)
       mapping = SkillsJobRole.find_or_initialize_by(
         job_role_id: job_role.id,
-        skill_id: skill.id
+        skill_id: skill.id,
+        project_id: project&.id
       )
       mapping.expected_proficiency_level = proficiency_level
       mapping.save!

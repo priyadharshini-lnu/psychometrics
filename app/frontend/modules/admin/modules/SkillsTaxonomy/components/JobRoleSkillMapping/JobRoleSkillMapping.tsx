@@ -35,8 +35,9 @@ const JobRoles: React.FC<PropsFromRedux> = ({ features, openModal }) => {
   const config = {
     trackUrl: true,
     apiConfig: {
-      include: ['job_role', 'skill'], // todo: include project
+      include: ['project', 'job_role', 'skill'],
       include_meta: ['permissions'],
+      // fields: { skills: ['name'], jobRoles: ['name'] },
       ...(projectId ? { project_id: projectId } : {}),
     },
   }

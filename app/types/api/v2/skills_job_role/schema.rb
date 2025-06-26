@@ -13,6 +13,7 @@ module Api
             attribute[:expected_proficiency_level].filled(:integer)
             attribute[:job_role_id].filled(:integer)
             attribute[:skill_id].filled(:integer)
+            attribute[:project_id].maybe(:integer)
           end
         end
       end

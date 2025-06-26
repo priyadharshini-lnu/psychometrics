@@ -41,7 +41,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
 
   const {
     data: jobRoles,
-    fetch: fetchJobRoles, isLoading: isJobRolesLoading,
+    fetch: fetchJobRoles, isLoading: isJobRolesLoading, setData: setJobRoles,
   } = useResources('job_roles', {
     apiConfig: {
       filter: {
@@ -65,9 +65,10 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
     })
   }, 300), [selectedProjectId, global])
 
+
   const {
     data: skills,
-    fetch: fetchSkills, isLoading: isSkillsLoading,
+    fetch: fetchSkills, isLoading: isSkillsLoading, setData: setSkills,
   } = useResources('skills', {
     apiConfig: {
       filter: {
@@ -89,6 +90,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
       },
     })
   }, 300), [selectedProjectId, global])
+
 
   const ownersLoading = isOwnerLoading('fetch')
 
@@ -127,6 +129,8 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
   }, [ownerId])
 
   useEffect(() => {
+    setSkills([])
+    setJobRoles([])
     form.resetFields(['skillId', 'jobRoleId'])
   }, [selectedProjectId, global])
 
@@ -142,10 +146,9 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
   const transformValues = (values) => {
     delete values.global
     delete values.ownerId
-    delete values.projectId
     return {
       ...values,
-      project_id: params.projectId ? Number(values.projectId) : undefined,
+      project_id: (params.projectId || values.projectId) ? Number(params.projectId || values.projectId) : null,
       job_role_id: Number(values.jobRoleId),
       skill_id: Number(values.skillId),
       expected_proficiency_level: Number(values.expectedProficiencyLevel),
@@ -247,6 +250,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
             name="jobRoleId"
             label={I18n.t('administration.job_role_skill_mapping.form.job_role')}
             rules={[{ required: true }]}
+            // normalize={value => Number(value)}
           >
             <Select
               showSearch
@@ -266,6 +270,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
             name="skillId"
             label={I18n.t('administration.job_role_skill_mapping.form.skill')}
             rules={[{ required: true }]}
+            // normalize={value => Number(value)}
           >
             <Select
               showSearch
@@ -285,6 +290,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
             name="expectedProficiencyLevel"
             label={I18n.t('administration.job_role_skill_mapping.form.expected_proficiency_level')}
             rules={[{ required: true }]}
+            // normalize={value => Number(value)}
           >
             <Select
               showSearch
