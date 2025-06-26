@@ -29,6 +29,7 @@ module Administration
 
     def new
       @_resource = resource_class.new(type: params[:type], parent_id: params[:parent_id])
+      @custom_header = t('administration.libraries.index.new_folder') if params[:type] == 'folder'
     end
 
     # GET /administration/resources/1/edit
@@ -37,30 +38,20 @@ module Administration
     end
 
     def create
-      @_resource = resource_class.new(resource_params)
+      files = Array(resource_params[:files]).compact_blank
+      resources = build_resources(files, resource_params)
 
-      resource.created_by = current_user
-      resource.updated_by = current_user
-
-      if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
-        resource.owner_id = current_user.client_admin_client_ids.first
-      end
-
-      respond_to do |format|
-        if resource.save
-          audit! :create, resource, payload: resource_params
-          format.js
-        else
-          format.js { render :new }
-        end
-      end
+      save_resources(resources)
     end
 
     # PATCH/PUT /administration/resources/1
     def update
+      file = Array(resource_params[:files]).compact_blank.first
       resource.updated_by = current_user
       respond_to do |format|
-        if resource.update(resource_params)
+        if resource.update(resource_params.except(:files).tap do |resource_params|
+          resource_params.merge!(file: file) if file.present?
+        end)
           audit! :update, resource, payload: resource_params
           format.js
         else
@@ -108,7 +99,51 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :file, :type, :parent_id, :file_cache, :owner_id)
+      params.require(:resource).permit(:name, :description, :type, :parent_id, :file_cache, :owner_id, files: [])
+    end
+
+    def assign_common_attributes(resource)
+      resource.created_by = current_user
+      resource.updated_by = current_user
+      if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
+        resource.owner_id = current_user.client_admin_client_ids.first
+      end
+    end
+
+    def build_resources(files, params)
+      return [build_folder_resource(params)] if files.empty? && params[:type] == 'folder'
+
+      files.filter_map { |file| build_file_resource(file, params) }
+    end
+
+    def build_file_resource(file, params)
+      return unless file.is_a?(ActionDispatch::Http::UploadedFile)
+
+      resource = resource_class.new(params.except(:files).merge(file: file))
+      assign_common_attributes(resource)
+      resource
+    end
+
+    def build_folder_resource(params)
+      resource = resource_class.new(params)
+      assign_common_attributes(resource)
+      resource
+    end
+
+    def save_resources(resources)
+      ActiveRecord::Base.transaction { resources.each(&:save!) }
+      respond_to do |format|
+        if resources.all?(&:persisted?) && resources.any?
+          resources.each { |res| audit! :create, res, payload: resource_params }
+          format.js
+        else
+          format.js { render :new }
+        end
+      end
+    rescue ActiveRecord::RecordInvalid
+      respond_to do |format|
+        format.js { render :new }
+      end
     end
   end
 end

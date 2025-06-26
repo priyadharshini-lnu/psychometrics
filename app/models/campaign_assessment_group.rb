@@ -4,6 +4,7 @@ class CampaignAssessmentGroup < ApplicationRecord
   audited
 
   has_many :campaign_assessments, dependent: :nullify
+  has_many :communications, dependent: :destroy
   has_many :workshops
   belongs_to :campaign
 

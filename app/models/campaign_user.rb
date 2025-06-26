@@ -8,6 +8,9 @@ class CampaignUser < ApplicationRecord
 
   belongs_to :user
   belongs_to :campaign
+  belongs_to :current_job_role, class_name: 'JobRole', optional: true
+  belongs_to :target_job_role, class_name: 'JobRole', optional: true
+
   has_one :project, through: :campaign
   has_many :campaign_assessments, through: :campaign
   has_many :evaluation_results, through: :user

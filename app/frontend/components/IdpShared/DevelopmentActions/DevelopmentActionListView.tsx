@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Avatar, Button, Flex, Typography, Divider,
+  Avatar, Button, Flex, Typography,
 } from 'antd'
 import _ from 'lodash'
 import { EditOutlined } from '@ant-design/icons'
@@ -31,7 +31,7 @@ type SkillsContainerProps = {
   onShowAvailableDevelopmentAction?: (skillId: string | number | null) => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onAddMoreSkills: (category: CategoryWithSkills) => void;
+  onAddMoreSkills: () => void;
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
@@ -184,16 +184,18 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
                 {renderCards(category.skills)}
               </Flex>
             </Flex>
-            {editMode ? (
-              <>
-                <Divider className="mt-4" />
-                <Button onClick={() => onAddMoreSkills(category)} icon={<EditOutlined />} className="ps-0" type="link">
-                  {I18n.t('idp.development_actions.manage_skills')}
-                </Button>
-              </>
-            ) : null}
+
           </BoxWithShadow>
         ))}
+        {editMode ? (
+          <Button
+            onClick={() => onAddMoreSkills()}
+            icon={<EditOutlined />}
+            style={{ alignSelf: 'flex-end' }}
+          >
+            {I18n.t('idp.development_actions.manage_skills')}
+          </Button>
+        ) : null}
       </Flex>
       <AddDevelopmentActionModal
         data={availableDevelopmentActions}

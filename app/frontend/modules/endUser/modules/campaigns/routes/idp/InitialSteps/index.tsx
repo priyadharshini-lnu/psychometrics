@@ -39,6 +39,7 @@ const connector = connect((state: RootState) => ({
   skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
   selfRatingEnabled: state.campaigns.idp.selfRatingEnabled,
   currentUser: state.currentUser,
+  introMessage: state.campaigns.idp.introMessage,
 }),
 {
   fetchUserIdpPlan,
@@ -52,6 +53,7 @@ const InitialStepsComponent = ({
   updateUserIdpPlan,
   skillGapReportAvailable,
   selfRatingEnabled,
+  introMessage,
 }) => {
   const { step: paramStep } = useParams() as {step: string}
   const navigate = useNavigate()
@@ -143,7 +145,12 @@ const InitialStepsComponent = ({
                 items={visibleSteps.map(({ title }) => ({ title }))}
               />
             </BoxWithShadow>
-            {paramStep === STEPS.gettingStarted && <GettingStart next={handleNextForGettingStartedStep} />}
+            {paramStep === STEPS.gettingStarted && (
+              <GettingStart
+                introMessage={introMessage}
+                next={handleNextForGettingStartedStep}
+              />
+            )}
             {paramStep === STEPS.skillGapReport && (
               <SkillGapReportStep
                 next={() => next(STEPS.addSkills)}

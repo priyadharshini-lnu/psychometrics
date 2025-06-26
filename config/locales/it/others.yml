@@ -31,6 +31,10 @@ it:
             blank: Le risposte non possono essere vuote
           group_id:
             blank: L'id del gruppo non può essere vuoto
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Il blocco "%{block_name}" ha configurazioni duplicate: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ it:
               too_short: La password del valutatore è troppo corta (il minimo è %{count} caratteri)
             first_name:
               blank: Il nome non può essere vuoto
+            job_role:
+              cannot_be_same: Il ruolo di destinazione deve essere diverso da quello attuale.
+              not_found: Il ruolo lavorativo '%{nome}' non è stato trovato nei ruoli del progetto o globali
             last_name:
               blank: Il cognome non può essere vuoto
             locale:
@@ -182,12 +189,25 @@ it:
               invalid: L'e-mail non è valida
             first_name:
               blank: Il nome non può essere vuoto
+            job_role:
+              cannot_be_same: Il ruolo di destinazione deve essere diverso da quello attuale.
             last_name:
               blank: Il cognome non può essere vuoto
             locale:
               inclusion: Localizzazione errata
             password:
               too_short: La password è troppo corta. È richiesto un minimo di %{count} caratteri
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Il valore %{nome_colonna} non può essere vuoto alla riga %{numero_riga}.
+              invalid_format: Caricare il file CSV
+              invalid_job_role_id: L'ID della riga %{row_number} non è un ID valido per il ruolo lavorativo.
+              invalid_locale: Il locale alla riga %{numero_riga} non è un locale valido
+              missing_required_columns: 'Colonne mancanti: %{colonne}'
+              parsing_failed: 'Errore durante l''analisi del file, errore: %{error}.'
+            project:
+              must_exist: Il progetto deve esistere
         mettl:
           attributes:
             name:
@@ -303,6 +323,16 @@ it:
             email:
               blank: L'e-mail non può essere vuota
               not_uniq_email: La riga con l'e-mail è già presente
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Almeno un ruolo lavorativo deve essere abilitato con un tipo di abilità selezionata per %{block_name}
+              invalid_skill_type: 'Tipo di abilità non valido %{skill_type} per %{role_name} per %{block_name}. Opzioni valide: %{opzioni_valide}'
+              props_missing: Lavoro
+        skillvue:
+          attributes:
+            name:
+              not_unique: Questa integrazione è già presente in questo progetto.
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ it:
             last_name:
               blank: Il cognome non può essere vuoto
               starts_with_invalid_characters: Il cognome non può iniziare con =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Riga %{row}: Valore duplicato %{valore} per %{campo}'
+              invalid_format: Caricare il file xlsx
+              missing_headers: 'Il foglio %{nome_foglio} manca di intestazioni necessarie: %{intestazioni}'
+              missing_sheets: 'Mancano i fogli richiesti: %{fogli}'
+              missing_value: 'Riga %{row}: Valore mancante per %{campo}'
+            project:
+              must_exist: Il progetto deve esistere
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ it:
         export_development_actions: Azioni di sviluppo delle esportazioni
         export_dimension_as_json: Esportazione della dimensione JSON
         export_factor_translations: Traduzioni dei fattori di esportazione
+        export_job_roles_translations: Esportazione di ruoli lavorativi Traduzioni
         export_norm: Norma di esportazione
         export_occupations: Occupazioni Esportazione
+        export_proficiency_levels: Livelli di competenza per l'esportazione
         export_report_data: Esportazione dei dati del rapporto
         export_reports_and_assessments: Esportazione di rapporti e valutazioni
         export_skill_translations: Traduzioni di competenze per l'esportazione
@@ -784,12 +826,15 @@ it:
         import_external_campaign_scoring: Importazione del punteggio della campagna esterna
         import_factor_translations: Traduzioni dei fattori di importazione
         import_factors: Fattori di importazione
+        import_job_roles_translations: Importazione delle traduzioni dei ruoli lavorativi
         import_norm: Norma di importazione
+        import_proficiency_level_translations: Importazione di traduzioni di livello di competenza
         import_question_translations: Importazione di traduzioni di domande
         import_raw_data: Importazione di dati grezzi
         import_scoring_data: Importazione dei dati di punteggio
         import_skill_translations: Traduzioni di competenze di importazione
         import_skills: Importazione di competenze
+        import_skills_rater_taxonomies: Importazione delle tassonomie degli Skill Rater
         import_sms_invites: Importazione di un invito via SMS
         import_users: Importazione di utenti
         migrate_assessment_translations: Valutazione Migrazione di traduzione
@@ -925,6 +970,7 @@ it:
         pearson_norm_id: ID norma Pearson
         saville_assessment_name: Valutazione Saville Nome
         simulation_assessment_name: Simulazione Nome della valutazione
+        skillvue_assessment_name: Nome della valutazione Skillvue
       translations_migrated: Traduzione migrata
     create: Creare
     dashboard: Cruscotto
@@ -964,6 +1010,7 @@ it:
         psychometric: Psicometrico
         saville: Saville
         simulation: Simulazione
+        skillvue: Skillvue
         threesixty: campagna 360
       status:
         finished: Finito
@@ -1230,9 +1277,9 @@ it:
       campaign: Attività
       change_password: Modifica della password
       development: Sviluppo
+      direct_reportees: Collegati
       home: Home
       insights: Approfondimenti
-      my_direct_reportees: I miei rapporti diretti
       my_plan: Il mio piano
       profile: Profilo
       profile_details: Dettagli
@@ -1329,6 +1376,8 @@ it:
       pearson_variation: Variazione Pearson
       prework: Prelavoro
       simulation_content_variation: Variazione del contenuto della simulazione
+      skillvue_email_id: ID e-mail del candidato Skillvue
+      skillvue_external_assessment_id: ID valutazione Skillvue
       universal_link: Collegamento universale
     drawer:
       mettl_schedule_name: Nome del programma Mettl
@@ -1344,6 +1393,11 @@ it:
       raw_results_export_scheduled: Il lavoro di esportazione dei risultati grezzi della valutazione è stato pianificato con successo
       scoring_results_export_scheduled: Il lavoro di esportazione dei risultati della valutazione è stato pianificato con successo
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Qualcosa è andato storto. Contattare l'amministratore
+        placeholder: Selezionare un gruppo di Assessment Center
+        success_message: Il Gruppo di valutazione della campagna di valutazione è stato assegnato con successo
+        title: Gruppo Assessment Center
       import_raw:
         body: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
         success_msg: L'importazione è stata caricata con successo
@@ -1658,6 +1712,7 @@ it:
       assessor: Valutatore
       category: Categoria
       client: Cliente
+      code: Codice
       created_at: Creato a
       created_by: Creato da
       created_date: Data di creazione
@@ -1745,6 +1800,7 @@ it:
       na: N/D
       none: Nessuno
       ok: Ok
+      refer_export_file: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
       reference_language: Lingua di riferimento
       response: Risposta
       select: Selezionare
@@ -1979,8 +2035,13 @@ it:
         uniq_email: L'e-mail deve essere unica.
       exceeded_subjects_count: È possibile aggiungere solo %{count} soggetti per ogni invito
       filled?: non può essere vuoto
+      idp_template:
+        content_required: Il contenuto è richiesto per le istruzioni
+        tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
       invalid_name: solo i caratteri alfabetici, i numeri, gli spazi, i trattini e i punti sono ammessi come caratteri validi
       invalid_value: istruzione non valida "%{value}" sulla riga numero %{row}
+      job_roles:
+        unique_within_job_group: Esiste già un ruolo lavorativo con lo stesso nome.
       json?: Deve essere un JSON valido
       key?: non può essere vuoto
       match_regexp?: valore non valido
@@ -2001,9 +2062,13 @@ it:
       skill_alias:
         unique_alias: L'alias deve essere unico
         unique_skill: L'abilità deve essere unica
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: La competenza e il ruolo lavorativo devono appartenere allo stesso progetto o essere globali.
+        unique_mappings: Esiste già una mappatura con le stesse competenze e lo stesso ruolo.
       uniq: Questa valutazione Mettl è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq?: dovrebbe essere unico
       uniq_simulation: Questa valutazione di simulazione è già presente nel sistema. L'ID di questa valutazione è %{id}
+      uniq_skillvue: Questa valutazione Skillvue è già presente nel sistema. L'ID di questa valutazione è %{id}
       update_workshop:
         less_than_booked: I posti totali devono essere maggiori di quelli prenotati
       user_availability_date:
@@ -2333,6 +2398,29 @@ it:
   idp:
     actions: Azioni
     board: Consiglio di amministrazione
+    comment_details:
+      add_comment: Aggiungi commento
+      add_comment_placeholder: Aggiungi commento...
+      add_reply_placeholder: Aggiungi una risposta...
+      go_to_skill: Vai all'abilità
+    comments:
+      close: Chiudi
+      comments: Commenti
+      filter_comments: Filtra commenti
+      mark_as_resolved: Segna come risolto
+      mark_as_unresolved: Segna come non risolto
+      replied: Risposto
+      replies: Risposte
+      reply: Rispondi
+      resolve: Risolvi
+      resolved: Risolto
+      resolved_message: Questo commento è stato risolto e le risposte sono disabilitate.
+      show_only_read: Mostra solo letti
+      show_only_resolved: Mostra solo risolti
+      show_only_unread: Mostra solo non letti
+      show_only_unresolved: Mostra solo non risolti
+      sort_by_date: Ordina per data
+      you: Tu
     convert_to_draft: Converti in bozza
     details: Dettagli
     development_actions:
@@ -2359,13 +2447,13 @@ it:
       on_the_job: Sul lavoro
       other: Altro
       private: Privato
+      publish_plan: Pubblica piano
       remove: Rimuovere
       skill: Abilità
       sprint: Sprint
       structured_learning: Apprendimento strutturato
       submit_plan: Invia il piano
       write_here: Scrivi qui...
-    direct_reportee_details: Dettagli Report Diretto
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
       add_skill_group_title: Esplorare le proprie capacità di %{categoria}
@@ -2373,7 +2461,6 @@ it:
       add_skills_step: Aggiungi competenze
       continue_to_rate_skills: Continuare a valutare le competenze
       getting_started: Come iniziare
-      getting_started_info: Benvenuti nel creatore del vostro Piano di Sviluppo Individuale (IDP), che vi aiuterà a identificare, gestire e monitorare i vostri obiettivi professionali e personali, nonché i passi da compiere per raggiungerli. I vostri obiettivi professionali possono includere aree di sviluppo comportamentali, di leadership e tecniche. Il vostro IDP è uno strumento essenziale per supportare lo sviluppo della vostra carriera e il miglioramento delle vostre competenze.
       less_skills: Mostra meno competenze
       more_skills: Esplora altre competenze
       next: Avanti
@@ -2392,7 +2479,6 @@ it:
     manage_plan: Gestisci piano
     mark_as_complete: Contrassegna come completato
     mark_as_incomplete: Contrassegna come incompleto
-    my_direct_reportees: I Miei Report Diretti
     my_plan:
       development_plan: Piano di sviluppo
       graphs:
@@ -2510,6 +2596,7 @@ it:
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
     reflective_questions:
+      already_completed: L'IDP è già stato completato, non è possibile rispondere alle domande ora.
       answer_later: Risposta successiva
       answer_placeholder: Scrivi qui la tua risposta...
       errors:
@@ -2624,75 +2711,6 @@ it:
     zh-HK: Cinese (Hong Kong)
     zh-Hant: Cinese tradizionale
     zh-TW: Cinese (Taiwan)
-  languages_localized:
-    af: Afrikaans
-    ar: عربي
-    az: Azerbaigian
-    bg: български
-    bs: bosanski
-    by: Bielorusso
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: Inglese
-    en-GB: Inglese (UK)
-    en-US: Inglese (USA)
-    eo: Esperanto
-    es: Español
-    es-ES: Español (españa)
-    et: Estone
-    fa: Persiano
-    fi: Finlandese
-    fr: Français
-    gu: Gujarati
-    he: Ebraico
-    hi: हिन्दी
-    hr: Croato
-    hu: Ungherese
-    id: Bahasa Indonesia
-    it: Italiano
-    ja: 日本語
-    km: Khmer
-    ko: Coreano
-    lt: Lituano
-    lv: Lettone
-    mk: Macedone
-    mn: Mongolo
-    ms: Bahasa Malesia
-    my: Myanmar
-    nb: Norvegese Bokmål
-    nl: Olandese
-    'no': Norvegese
-    pl: Polski
-    pt: Portoghese
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portogallo)
-    pt_BR: Português (Brasil)
-    ro: Rumeno
-    ru: Russo
-    sk: Slovacco
-    sl: Sloveno
-    sr-Cyrl: Serbo cirillico
-    sr-Latn: Serbo latino
-    sv: Svedese
-    sw: Swahili
-    ta: Tamil
-    th: Thailandese
-    tl: Tagalog
-    tr: Turco
-    ua: Ucraino
-    uk: Ucraino
-    ur: Urdu
-    vi: Vietnamita
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Attivo
     campaign_name: Nome della campagna
@@ -2929,9 +2947,11 @@ it:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Carico da Mettl
       load_from_pearson: Carico da Pearson
+      load_from_skillvue: Carico da Skillvue
       none_external: Nessuno - Utilizzare il costruttore di report
     language: Lingua del rapporto
     language_updated: La lingua del report è stata aggiornata con successo

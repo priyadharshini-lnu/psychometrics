@@ -1,0 +1,3 @@
+SkillID,Name,Description,Type,DevelopmentActionType,Duration,AvailableLanguages,CourseStartDate,CourseEndDate,CourseURL,CourseImage
+,Missing SkillID,Description,structured_learning,course,10,en,2025-06-01,2025-06-10,http://example.com/course1,image1.png
+2,,Description,structured_learning,course,abc,en,2025-07-01,2025-07-08,http://example.com/course2,image2.png

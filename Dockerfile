@@ -77,6 +77,8 @@ RUN bundle check || (jobs="$(nproc)"; \
 
 FROM ruby-base as yarn-deps
 
+ARG GITHUB_TOKEN=""
+
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
 ENV NODE_VERSION 18.16.1
@@ -115,6 +117,7 @@ COPY --from=ruby-gems /usr/local/bundle /usr/local/bundle
 # Copy all of our app in to the image (use .dockerignore to omit patterns)
 COPY . ./
 
+ARG GITHUB_TOKEN=""
 ARG DATABASE_URL="postgresql://dummy@dummy:5432/dummy"
 ARG SECRET_KEY_BASE="dummy"
 ARG ASSET_HOST=""

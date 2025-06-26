@@ -7,8 +7,9 @@ module Integrations
     attribute :private_key, String
     attribute :name, String
 
-    validates :public_key, :private_key, :name, :api_base_url, presence: true
+    validates :public_key, :name, :api_base_url, presence: true
     validate :unique_public_key
+    validates :private_key, presence: true, if: -> { context.integration.nil? }
 
     def unique_public_key
       existing_integration = Integration.mettl.where.not(id: id).exists?(["config ->> 'public_key' = ?", public_key])
@@ -24,7 +25,10 @@ module Integrations
 
     def private_key
       new_private_key = super
-      Base64.encode64(Encryptor.encrypt(new_private_key)) if new_private_key.present?
+      return nil if new_private_key.blank? && !context.integration
+      return context.integration&.config&.dig('private_key') if new_private_key.blank?
+
+      Base64.encode64(Encryptor.encrypt(new_private_key))
     end
   end
 end

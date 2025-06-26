@@ -95,20 +95,26 @@ ar:
         labels:
           apiKeys:
             manage: إدارة
+            title: مفاتيح واجهة برمجة التطبيقات
             view: عرض
           assessments:
             manage: إدارة
+            title: التقييمات
             view: عرض
           assessors:
             manage: إدارة
+            title: المقيّمون
             view: عرض
           auditLogs:
+            title: سجلات التدقيق
             view: عرض
           auditReports:
             admin_permissions: تصدير أدوار وأذونات المسؤولين
+            title: تقارير المراجعة
             user_report_events: سجلات موافقة التقارير
           campaignFactors:
             manage: إدارة
+            title: عوامل الحملة
             view: عرض
           campaigns:
             bulk_download: تنزيل جماعي
@@ -123,41 +129,77 @@ ar:
             participant_options: خيارات المشاركين
             report_options: خيارات التقارير
             reset_nominations: إعادة تعيين الترشيحات
+            title: الحملات
             view: عرض
             view_factor_benchmark_scores: عرض درجات عوامل القياس
             view_stats: عرض الإحصائيات
           clients:
             export_data_report: تصدير تقرير البيانات
             manage: إدارة
+            title: العملاء
             view: عرض
             view_licenses: عرض التراخيص
           communications:
             manage: إدارة
+            title: الاتصالات
             view: عرض
           dashboards:
             accesssheet_manage: إدارة ورقة الوصول
             accesssheet_settings: إعدادات ورقة الوصول
             accesssheet_view: عرض ورقة الوصول
+            title: لوحات المعلومات
             view: عرض
           datasheets:
             manage: إدارة
+            title: أوراق البيانات
+            view: عرض
+          developmentActions:
+            export: التصدير
+            export_global: التصدير العالمي
+            export_global_translations: تصدير الترجمات العالمية
+            export_translations: ترجمات التصدير
+            import: الاستيراد
+            import_global: الاستيراد العالمي
+            import_global_translations: استيراد الترجمات العالمية
+            import_translations: استيراد الترجمات
+            manage: الإدارة
+            title: إجراءات التنمية
             view: عرض
           dimensions:
             manage: إدارة
+            title: الأبعاد
             view: عرض
           idpTemplates:
             manage: إدارة
+            title: قوالب IDP
+            view: عرض
+          jobRoles:
+            manage: الإدارة
+            title: الأدوار الوظيفية
             view: عرض
           mediaLibraries:
             manage: إدارة
+            title: المكتبات الإعلامية
             view: عرض
           messages:
             email: البريد الإلكتروني
             instructions: التعليمات
             options: الخيارات
+            title: الرسائل
           norms:
             manage: إدارة
+            title: المعايير
             view: عرض
+          proficiencyLevels:
+            export: مستويات كفاءة التصدير
+            export_translations: ترجمات مستويات كفاءة التصدير
+            import: مستويات كفاءة الاستيراد
+            import_translations: ترجمات مستويات كفاءة الاستيراد
+            manage: الإدارة
+            title: مستويات الكفاءة
+            view: عرض
+          proficiency_level:
+            title: مستويات الكفاءة
           projectSettings:
             assessments: التقييمات
             design: التصميم
@@ -167,14 +209,17 @@ ar:
             saml: SAML
             security: الأمان
             smtp: SMTP
+            title: إعدادات المشروع
             webhooks: Webhooks
           projects:
             manage: إدارة
             manage_admins: إدارة المسؤولين
             manage_users: إدارة المستخدمين
+            title: المشاريع
             view: عرض
           questions:
             manage: إدارة
+            title: الأسئلة
             view: عرض
           reflectionQuestions:
             export: التصدير
@@ -184,16 +229,22 @@ ar:
             view: عرض
           registrationCodes:
             manage: إدارة
+            title: رموز التسجيل
             view: عرض
           registrationSettings:
             manage: إدارة
+            title: إعدادات التسجيل
           reports:
             manage: إدارة
+            title: التقارير
             view: عرض
+          responseMeta:
+            title: الاستجابة الفوقية
           results:
             approve_report: الموافقة على التقرير
             bulk_download: تنزيل جماعي
             bulk_regenerate_reports: إعادة إنشاء التقارير بشكل جماعي
+            bulk_update_evaluation_status: حالة تقييم التحديث المجمّع للتقييم
             download_report: تنزيل التقرير
             edit_report: تعديل التقرير
             export_occupations: تصدير المهن
@@ -208,23 +259,50 @@ ar:
             reset_progress: إعادة تعيين التقدم
             reset_responses: إعادة تعيين الردود
             scores: الدرجات
+            title: النتائج
             view_report: عرض التقرير
             view_stats: عرض الإحصائيات
           skills:
+            export: مهارات التصدير
+            export_translations: ترجمات مهارات التصدير
+            import: مهارات الاستيراد
+            import_translations: ترجمات مهارات الاستيراد
             manage: إدارة
+            title: المهارات
             view: عرض
           smsHistories:
             manage: إدارة
+            title: تواريخ الرسائل النصية القصيرة
             view: عرض
           smsInvites:
             manage: إدارة
+            title: الدعوات عبر الرسائل النصية القصيرة
             view: عرض
           users:
             reset_password: إعادة تعيين كلمة المرور
+            title: المستخدمون
           workshops:
             export_status: حالة التصدير
             manage: إدارة
+            title: ورش العمل
             view: منظر
+    ai_assistants:
+      actions:
+        playground: ساحة اللعب
+      ai_assistants: مساعدو الذكاء الاصطناعي
+      ai_assistants_playground: ملعب مساعد الذكاء الاصطناعي
+      column:
+        ai_action: إجراء الذكاء الاصطناعي
+        provider: المزود
+      form:
+        action: الإجراء
+        description: الوصف
+        name: الاسم
+        provider: المزود
+        system_prompt: موجه النظام
+        title: مساعد الذكاء الاصطناعي
+        user_prompt: موجه المستخدم
+    any: " - أي -"
     api:
       campaigns:
         validate_form:
@@ -255,6 +333,7 @@ ar:
           preferred_language: اللغات المسموح بها
           required_error: لا يمكن أن يكون فارغًا
           title: المعلومات الأساسية
+        center_group: مجموعة مركز التقييم
         confirm_message: هل أنت متأكد أنك تريد حذف الدعوة؟
         confirm_message_with_title: هل أنت متأكد أنك تريد إزالة الدعوة بعنوان '%{invite_title}'؟
         confirm_title: تأكيد
@@ -348,6 +427,7 @@ ar:
       successfully_scheduled: تم جدولة استيراد الأسئلة بنجاح.
     assessments:
       assessment: التقييم
+      assessment_report: التقييمات
       copy:
         copy: نسخ
         copy_assessment: نسخ التقييم
@@ -361,12 +441,16 @@ ar:
         header: إعدادات التقييم
       errors:
         owner_validation: ليس لديك إذن %{permission} لـ %{resource_name} الخاص بـ %{client_name}
+      export:
+        questions: أسئلة التصدير
+      export_questions_toastr: تمت جدولة مهمة تصدير الأسئلة بنجاح
       flow: التدفق
       linkedAssessment:
         assessment_title: اختر الأسئلة من %{name}
         title: اختر الأسئلة المرتبطة
       map_norms: تعيين المعايير
       menu:
+        export_questions: أسئلة التصدير
         import_questions: استيراد الأسئلة
         managage_campaign_factors: إدارة عوامل الحملة
       new:
@@ -380,6 +464,7 @@ ar:
         per_page: لكل صفحة
         plural:
           block: الكتل
+          choice: الاختيارات
           question: الأسئلة
         present_only: عرض فقط
         question_per_factor_and_show: الأسئلة لكل عامل وعرض
@@ -402,11 +487,16 @@ ar:
             title: "<strong>%{status}</strong> %{name}؟"
       restore:
         successfully: تم استعادة التقييم %{name} بنجاح.
+      scoring_strategy:
+        average: المتوسط
+        sum: سوم
+        title: استراتيجية تسجيل النقاط
       settings:
         disable_continue_to_dashboard: تعطيل زر "متابعة إلى لوحة التحكم"
         disable_nav_btn: تعطيل زر التنقل للخلف
         enable_back: تمكين زر الرجوع
         enable_progress: تمكين شريط التقدم
+        enable_save: تمكين زر الحفظ
         enable_single_question_page: عرض سؤال واحد لكل صفحة
         enable_single_question_page_confirm: سيؤدي ذلك إلى تحديث عشوائية الكتل لكل صفحة إلى 1. هل أنت متأكد؟
         enable_timer: تمكين المؤقت
@@ -444,6 +534,7 @@ ar:
         subject_name: اسم المشارك
       completed_at: اكتمل في
       count: "%{count} مقيمين"
+      create_assessor: إضافة مقيم
       evaluations: التقييمات
       mailer:
         subject: مشاركون جدد تمت إضافتهم لتقييمك
@@ -482,6 +573,7 @@ ar:
         refresh: تحديث
         reports: التقارير
         reports_count: "%{count} تقارير"
+      overview: لمحة عامة
       remove_confirmation: هل أنت متأكد أنك تريد إزالة المقيم بالبريد الإلكتروني %{email} من هذه الحملة؟
       statuses:
         completed: مكتمل
@@ -521,6 +613,7 @@ ar:
     assigns_reports:
       edit:
         header: تعديل تعيين التقرير
+    attention: انتباه
     audit_log:
       action: الإجراء
       audit_logs: سجلات التدقيق
@@ -662,7 +755,10 @@ ar:
       users_import: استيراد
     bulk_reports:
       create:
+        no_data: لا توجد بيانات
         successfully: يتم الآن إنشاء التقارير وسيتم إعلامك عبر البريد الإلكتروني عند الانتهاء.
+      download:
+        removed: تمت الإزالة
       form:
         end_date: تاريخ الانتهاء
         start_date: تاريخ البدء
@@ -770,9 +866,12 @@ ar:
         name: الاسم
         name_placeholder: أدخل الاسم
         owner: المالك
+        owner_placeholder: اختر مالكاً
         report: التقرير
         report_placeholder: اختر تقريرًا
         title: قالب الحملة
+      image_fields:
+        remove: إزالة
       index:
         new: إضافة
         title: قوالب الحملات
@@ -807,16 +906,33 @@ ar:
       actions: إدارة
       assessment_reports:
         report_approval:
+          allow_bulk_approve: السماح بالموافقة المجمعة
+          allow_qc_bulk_submit: السماح بالإرسال المجمّع لمراقبة الجودة
+          approval_notification_users: مستخدمو إشعار الموافقة
+          approvers: الموافقون
           approvers_can_edit: يمكن للموافقين التعديل
           approvers_not_required: الموافقة غير مطلوبة
           do_not_send_notifications: لا ترسل إشعارات
           modal_title: إعدادات موافقة التقرير
+          qc_users: مستخدمو مراقبة الجودة
           remove_modal_success: 'تم حذف إعداد الموافقة للتقرير بمعرف: %{reportId} بنجاح'
           remove_modal_text: 'هل أنت متأكد أنك تريد حذف هذا الإعداد للتقرير بمعرف: %{reportId}؟'
+          report: تقرير
+          settings: الإعدادات
       assessors:
         spoof:
           successfully: تم تسجيل الدخول بنجاح كمستخدم %{name}
+      copy: نسخ
+      delete: حذف
+      edit: تحرير
       extend_time_success_message: تم تمديد مؤقت الحملة إلى %{minutes} دقيقة
+      filters:
+        active: نشط
+        all: الكل
+        archived: الأرشيف
+        closed: مغلق
+        inactive: غير نشط
+        status: الحالة
       form:
         name: الاسم
         practice_campaign: حملة تدريبية
@@ -833,6 +949,20 @@ ar:
         add_multi_rater_campaign: إضافة حملة متعددة التقييمات
       modals:
         create_threesixity:
+          advance_settings:
+            campaign_template: قالب الحملة
+            factors: العوامل
+          base_settings:
+            active: نشط
+            archive: الأرشيف
+            assessment: التقييم
+            closed: مغلق
+            empty: فارغة
+            inactive: غير نشط
+            name: الاسم
+            previous: السابق
+            standard: قياسي
+            status: الحالة
           close:
             content: هل أنت متأكد أنك تريد إغلاق منشئ الحملة متعددة التقييمات؟ سيتم فقدان أي عمل تخصيص غير محفوظ. يرجى تأكيد قرارك.
             title: إغلاق منشئ الحملة متعددة التقييمات؟
@@ -870,6 +1000,7 @@ ar:
         prework_required: لا تسمح بحجز المركز إذا لم يتم إكمال الأعمال التحضيرية
         prework_required_for_invite: إرسال بريد الدعوة فقط عند اكتمال الأعمال التحضيرية
         proctoring:
+          allow_on_assessment_center: السماح بالمراقبة في مركز التقييم
           enable: تمكين المراقبة
           identification: التحقق
           identifications:
@@ -905,9 +1036,14 @@ ar:
         common: عادي
         threesixty: متعدد التقييمات
       users:
+        add_user: إضافة مستخدم
         completion_status: حالة الإكمال
         created_by: تم الإنشاء بواسطة
         email: البريد الإلكتروني
+        filters:
+          all: الكل
+          anonymous: مجهول
+          identified: تم تحديدها
         id: المعرف
         is_active: نشط
         name: الاسم
@@ -919,13 +1055,26 @@ ar:
     campaigns_external_scores_import:
       errors:
         invalid_campaign_factor_codes: 'أكواد عوامل الحملة التالية غير صالحة: %{codes}'
+        missing_headers: رؤوس مفقودة
         missing_users: 'البريد الإلكتروني التالي غير موجود: %{emails}'
       import:
         example_csv: تنزيل ملف csv مثال
         success_msg: تم تحميل الاستيراد بنجاح
       modal:
         title: استيراد درجات الحملة الخارجية
+    client_features:
+      client_features: ميزات العميل
+      form:
+        ai_assistants: مساعدو الذكاء الاصطناعي
+        ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
+        global_skills: المهارات العالمية
+        sms_notification: إشعار الرسائل النصية القصيرة
     clients:
+      api_keys:
+        init_breadcrumbs:
+          breadcrumb: فتات الخبز
+      archive:
+        successfully: بنجاح
       base:
         active: نشط
         archived: أرشيف
@@ -1338,6 +1487,9 @@ ar:
         update:
           successfully: تم تحديث المشروع %{name} بنجاح.
       registration_codes:
+        column:
+          code: الكود
+          usage_stats: إحصائيات الاستخدام
         errors:
           count_invalid: لا يمكن أن يكون أقل من used_count = %{use_count}
           criteria: يمكن أن يحتوي فقط على أحرف وأرقام، واصلة (-) وتسطير سفلي (_)
@@ -1365,7 +1517,11 @@ ar:
       back: رجوع
       cancel: إلغاء
       disabled: معطل
+      download_sample_file: تنزيل ملف العينة
       enabled: مفعل
+      import:
+        failure_msg: خطأ أثناء استيراد الملف.
+      minute: دقيقة
       next: التالي
       reset: إعادة تعيين
       save: حفظ
@@ -1378,6 +1534,18 @@ ar:
         successfully: تم حذف الاتصال %{name} بنجاح.
       edit:
         header: تعديل الاتصال
+      edit_translation:
+        body_label: تسمية النص
+        copy: نسخ
+        copy_to_code_editor_hint: 'نصيحة: انسخ النص المرجعي أعلاه وانتقل إلى وضع محرر الكود لتحرير HTML بسهولة أكبر'
+        locale_label: الإعدادات المحلية
+        no_reference_body: لا يوجد نص مرجعي متاح
+        no_reference_subject: لا يوجد موضوع مرجعي متاح
+        reference_body_label: تسمية النص المرجعي
+        reference_subject_label: تسمية الموضوع المرجعي
+        subject_label: تسمية الموضوع
+        title: تحرير الترجمة
+        update_button: تحديث الترجمة
       form:
         all: الكل
         assessment_completion_status_code: رمز حالة إكمال التقييم
@@ -1400,11 +1568,14 @@ ar:
           not_started: إذا لم يبدأ التقييم
           send_now: إرسال الآن
           specific_datetime: الإرسال في
+        development_action_deadline_missed: فوات الموعد النهائي للعمل التطويري
+        idp_deadline_missed: فوات الموعد النهائي للمشردين داخلياً
         idp_template_approved: تم اعتماد IDP
         idp_template_assigned: تم تعيين IDP
         idp_template_rejected: تم رفض IDP
         invitation: دعوة
         kind: أنواع الاتصالات
+        locale: اللغة
         magic_link_email: بريد إلكتروني برابط سحري
         new_assignment: تعيين جديد
         new_users: مستخدمون جدد
@@ -1458,9 +1629,11 @@ ar:
           copy: نسخ الاتصال
           delete: حذف الاتصال
           download: تنزيل سجل الاتصال
+          edit_translation: تحرير الترجمة
           view: عرض الاتصال
       show:
         assessment: 'التقييم:'
+        assessment_center_group: 'مجموعة مركز التقييم:'
         back: رجوع
         body: 'النص:'
         campaign: 'الحملة:'
@@ -1480,23 +1653,33 @@ ar:
         copy: نسخ الاتصال
         destroy: حذف الاتصال
         download: تنزيل سجل الاتصال
+        edit_translation: تحرير الترجمة
         title: خيارات الاتصال
         view: عرض الاتصال
       toggle_status:
         successfully: تم تحديث الاتصال بنجاح.
+      update_translation:
+        successfully_updated: تم تحديث الترجمة بنجاح.
     components:
       input_duration:
         placeholder: أدخل كـ '1d 2h 3m'
     create: إنشاء
     dashboard:
       capacity_name: اسم السعة
+      choose_file_format: اختر تنسيق الملف
       dashboard_types:
         oracle_analytics: Oracle Analytics
         powerbi: PowerBi
       dashboards: لوحات التحكم
+      export_dashboard_to_file: تصدير لوحة التحكم إلى ملف
+      export_job_failure: فشل في بدء التصدير
+      export_job_success: بدأت مهمة التصدير. سيتم إعلامك عند اكتمالها.
       get_started: ابدأ الآن
       initialize_msg: قم بتهيئة لوحة تحكم لهذه الحملة
       loading_failed: فشل تحميل لوحة التحكم.
+      only_export_current_tab: تصدير علامة التبويب الحالي فقط
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: يرجى التحقق من صحة معرف مجموعة البيانات ومعرف التقرير في الإعدادات.
         embed_token_error_title: تعذر إنشاء رمز التضمين.
@@ -1566,13 +1749,30 @@ ar:
         csv_file_required: يجب أن يكون ملف CSV
         image_download_failed: 'فشل تنزيل الصورة من %{url}: %{message}'
         invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
-        invalid_date_format: 'تنسيق التاريخ غير صالح: %{date}'
+        invalid_date: تنسيق التاريخ لـ ٪ {date} غير صالح.
+        invalid_date_format: 'ROW ٪ {row}: تنسيق تاريخ غير صالح لـ ٪ {field}.'
+        invalid_development_action_type: 'الصف %{row}: نوع إجراء التطوير غير صالح %{value}. أنواع إجراءات التطوير الصالحة هي: %{valid_development_action_types}.'
+        invalid_duration_format: 'يسمح فقط للقيم الرقمية بالمدة.الصف ٪ {row}: ٪ {value} ليس مدة صالحة.'
         invalid_image_file: 'ملف الصورة غير صالح: %{message}'
         invalid_image_url: 'تنسيق عنوان URL للصورة غير صالح: %{url}'
+        invalid_languages: اللغات المتاحة غير صالحة ٪ {invalid_languages} للصف ٪ {row}.
         invalid_learning_style: 'الصف %{row}: نمط تعلم غير صالح ''%{value}''. الأنواع الصالحة هي: %{valid_types}'
+        languages_only_for_courses: لا يمكن تعيين اللغات المتاحة إلا لإجراءات تطوير النوع "الدورة".يرجى إزالة اللغة المتاحة للصف ٪ {row} أو تغيير نوع إجراء التطوير إلى "الدورة".
         missing_columns: 'الأعمدة المطلوبة مفقودة: %{fields}'
         save_failed: 'فشل حفظ إجراء التطوير: %{message}'
         skill_not_found: 'لم يتم العثور على المهارة للمعرف: %{skill_id}'
+    development_action_translations:
+      import:
+        errors:
+          blank_id: 'الصف %{row}: لا يمكن أن يكون المعرف فارغاً'
+          development_action_not_found: لم يتم العثور على إجراء التطوير
+          invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
+          invalid_field: 'الصف %{row}: الحقل غير صالح "%{field}"، يجب أن يكون "الاسم" أو "الوصف"'
+          invalid_file_format: يجب أن يكون الملف ملف CSV
+          invalid_id: 'الصف %{row}: يجب أن يكون المعرف رقمًا'
+          invalid_id_format: 'الصف %{row}: يجب أن يكون المعرف بالصيغة "ID#field"'
+          missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
+          save_failed: 'فشل الحفظ: %{message}'
     development_actions:
       create:
         successfully: تم إنشاء إجراء التطوير "%{name}" بنجاح.
@@ -1581,19 +1781,34 @@ ar:
       development_action_types:
         course: دورة
         default: افتراضي
+      duration:
+        max_length: لا يمكن أن يكون أكبر من سنة واحدة
+        min_length: لا يمكن أن يكون أقل من دقيقة واحدة
       edit:
         header: تعديل إجراء التطوير
       export:
         details: تفاصيل الملف
+        failure_msg: خطأ أثناء تصدير الترجمات
         success_msg: جاري تصدير إجراءات التطوير. يرجى التحقق من الحالة في الإشعارات.
         title: تصدير
+        translation_details: التفاصيل
+      export_actions:
+        development_action_translations_title: ترجمات إجراءات تنمية الصادرات
+        development_actions_title: إجراءات تنمية الصادرات
+      export_development_action_translations: ترجمات العمل الإنمائي
+      export_development_action_translations_project: ترجمات العمل الإنمائي على أساس المشروع
       export_development_actions: تصدير إجراءات التطوير بناءً على المشروع
+      export_development_actions_project: إجراءات التنمية على أساس المشروع
       export_global_development_actions: تصدير إجراءات التطوير العالمية
+      export_global_development_actions_translations: ترجمات العمل الإنمائي العالمي
       form:
+        available_languages: اللغات المتاحة
+        client_placeholder: اختر عميل
         course_image: صورة الدورة
         course_link: رابط الدورة
         description: الوصف
         development_action_type: نوع عمل التطوير
+        duration: مدة
         end_date: تاريخ الانتهاء
         learning_style: نمط التعلم
         name: الاسم
@@ -1603,6 +1818,7 @@ ar:
         start_date: تاريخ البدء
         title: إجراء التطوير
         upload: تحميل
+      global: هل العمل الإنمائي العالمي؟
       heading: إجراءات التطوير
       import:
         download_example_csv: تنزيل ملف csv مثال
@@ -1614,6 +1830,8 @@ ar:
       import_development_actions: إجراءات التطوير
       import_development_actions_translations: ترجمات إجراءات التطوير
       learning_styles:
+        cannot_be_blank: لا يمكن أن تكون فارغة
+        invalid: يجب أن يكون واحدًا من التعلم_في_الوظيفة، والتعلم_المنظم، والتعلم_من_الآخرين
         learning_from_others: التعلم من الآخرين [20]
         on_the_job: أثناء العمل [70]
         structured_learning: التعلم المنظم [10]
@@ -1640,15 +1858,31 @@ ar:
         successfully: تم حذف البعد %{name} بنجاح.
       edit:
         header: تعديل اسم البعد
+      export_json:
+        successfully: تصدير JSON المقرر للبعد %{name}.
       export_translations_scheduled:
         successfully: تم جدولة تصدير الترجمات للبعد %{name}.
       form:
         enable_innovation_styles: تمكين أنماط الابتكار
         enable_occupations: تمكين المهن
+      import_factors:
+        import: الاستيراد
+        sample_file: نموذج ملف العينة
+        successfully: مهمة عوامل الاستيراد المجدولة للبعد %{name}.
+        title: عوامل الاستيراد
+      import_modal:
+        cancel: إلغاء
+        continue: تابع
+        import: الاستيراد
+        import_dimension: بُعد الاستيراد
       import_translations:
         error: حدث خطأ أثناء استيراد الترجمات للبعد %{name}.
         successfully: تم جدولة استيراد الترجمات للبعد %{name}.
+      import_translations_scheduled:
+        error: خطأ
       index:
+        create_dimension: إنشاء البُعد
+        import_dimension: بُعد الاستيراد
         new: إضافة
         owner: المالك
         title: الأبعاد
@@ -1675,6 +1909,7 @@ ar:
           copy: نسخ البعد
           delete: حذف البعد
           edit: تعديل اسم البعد
+          export_json: تصدير JSON للاستيراد في منصة أخرى
       sidebar:
         copy: نسخ البعد
         destroy: حذف البعد
@@ -1695,7 +1930,12 @@ ar:
       project_participants: Participants | %{project}
     enable: Enable
     errors:
+      csv_file_required: يجب أن يكون الملف ملف CSV
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
+      invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
+      invalid_url: 'عنوان URL غير صالح: %{message}'
+      invalid_url_format: تنسيق عنوان URL غير صالح
+      missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
     factors:
       copy:
         error: "'%{name}' factor was not copied"
@@ -1819,6 +2059,9 @@ ar:
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
       all: All
+      appearance: المظهر
+      appearance_hint: لتعديل المظهر، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
+      background_image: صورة الخلفية
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
       edit_template: Edit IDP Template
@@ -1826,25 +2069,62 @@ ar:
       enter_template_description_error: Template description is required.
       enter_template_name: Name
       enter_template_name_error: Template name is required
+      errors:
+        update: التحديث غير مسموح به لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم. تم حفظ تغييرات المظهر.
+      fields:
+        assigned_data: البيانات المعينة
+        completion_date: تاريخ الانتهاء
+        division: الشعبة
+        name: الاسم
+        publish_date: تاريخ النشر
+        review_date: تاريخ المراجعة
+        role: الدور الحالي
+      fields_label: الحقول
       global_skills: Global Skills
       idp: IDP
       idp_template: Add IDP Template
+      intro_message: رسالة مقدمة
+      intro_message_hint: لتعديل رسالة المقدمة، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
+      intro_message_success: تم حفظ رسالة المقدمة بنجاح
+      locales: اللغات
+      logo_image: صورة الشعار
+      logo_type:
+        both: شعارات ميرسر والعميل
+        client_only: شعار العميل فقط
+        mercer_only: شعار ميرسر فقط
+        none: بدون شعارات
+      logo_type_label: نوع الشعار
+      no_reflection_questions_selected: لم يتم اختيار أي أسئلة للتفكير
       none: None
+      reference_locale: لغة مرجعية
+      reflection_questions: أسئلة للتفكير
+      reflection_questions_hint: لتعديل أسئلة الانعكاس، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
+      reflection_questions_updated: تم تحديث أسئلة التفكير بنجاح.
+      remove: إزالة
       select_by_tags: Select by Tags
+      select_reflection_question: ابدأ الكتابة للبحث واختيار السؤال
       select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
       selected: Selected
       self_rating: Enable Self Rating
+      show_reflections: عرض الانعكاسات
       skill_gap_report: Skill Gap Report
+      skills: المهارات
+      subtitle_text: نص الترجمة
       tab:
+        development_actions: إجراءات التنمية
+        reflection_questions: أسئلة للتفكير
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills
       template_details: Template Details
+      title_text: نص العنوان
+      update_reflection_questions: تحديث أسئلة التأملات
     idp_setting:
       allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
       manager_can_edit_idp: Manager can edit IDP
+      require_all_development_actions_complete: اشتراط اكتمال جميع إجراءات التطوير
     import: Import
     imports:
       assessments:
@@ -1856,6 +2136,10 @@ ar:
           import: Import
       errors:
         invalid_format: Invalid File format
+        norm:
+          dimension_not_found: لم يتم العثور على البُعد %{dimension_name} لـ %{client_name}
+          factor_mismatch: البعد %{dimension_name} لا يحتوي على العامل %{factor_name}
+          not_set_dimension: يجب كتابة اسم "البُعد" في الخلية الثانية من الصف الأول
         result:
           answer_invalid: "[Row %{row}] Answer for qid %{question_id} is invalid: %{error}"
           date_errors:
@@ -1987,6 +2271,7 @@ ar:
         add: Integrations
         back: Back to Integrations
         load_mettl_catalog: Load Mettl Assessment Catalog
+        load_skillvue_catalog: تحميل كتالوج تقييم المهارات
       columns:
         active: Active
         details: Details
@@ -1997,6 +2282,7 @@ ar:
         webhookUrls: Webhook URLs
       integrations: Integrations
       load_mettl_success: Load mettl assessments job is successfully enqueued
+      load_skillvue_success: تم تحميل مهمة تقييمات مهارات التحميل بنجاح
       modal:
         hogan:
           provider: Provider
@@ -2009,20 +2295,31 @@ ar:
           tenant_id: Tenant ID
           user: User
         mettl:
+          apiBaseUrl: نقطة نهاية واجهة برمجة التطبيقات
+          apiBaseUrlRequired: نقطة نهاية API مطلوبة.
           privateKey: Private Key
           privateKeyRequired: Private key is required.
           publicKey: Public Key
           publicKeyRequired: Public key is required.
+          servers:
+            mettl_eu: أوروبا
+            mettl_india: الهند
+        skillvue:
+          apiKey: مفتاح واجهة برمجة التطبيقات
+          apiKeyRequired: مفتاح API مطلوب
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        skillvue: سكيلفيو
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
           tenant_id_present: Tenant id is already present in other project
         mettl:
           public_key_present: Public key is already present in other project
+        skillvue:
+          api_key_present: مفتاح API موجود بالفعل في مشروع آخر
       view_all_schedules: View All Mettl Schedules
     invited_subject:
       add_btn: Add Subject
@@ -2044,6 +2341,44 @@ ar:
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
       subject: Subject
+    job_role:
+      column:
+        job_group: مجموعة الوظائف
+      export:
+        failure_msg: خطأ أثناء تصدير الترجمات
+        success_msg: تصدير إجراءات التطوير قيد التنفيذ.
+      export_action:
+        translations: ترجمات دور وظيفة التصدير
+      form:
+        code: الرمز
+        description: الوصف
+        job_group: مجموعة الوظائف
+        name: الاسم
+        title: الدور الوظيفي
+      global: هل دور الوظيفة العالمية؟
+      import:
+        download_example_csv: تنزيل مثال csv
+        success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
+      import_action:
+        translations: استيراد ترجمات الأدوار الوظيفية
+      translations: ترجمات الأدوار الوظيفية
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: مستوى الكفاءة المتوقع
+        job_role: الدور الوظيفي
+        skill: المهارة
+      form:
+        expected_proficiency_level: مستوى الكفاءة المتوقع
+        job_role: الدور الوظيفي
+        skill: المهارة
+        title: التعيين
+      global: هل تخطيط وظيفة المهارات العالمية؟
+      import:
+        taxonomy: التصنيف
+    job_roles:
+      export:
+        translations:
+          details: التفاصيل
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2052,7 +2387,7 @@ ar:
       edit:
         header: Edit
       index:
-        new_folder: New Folder
+        new_folder: New folder
         owner: Owner
         title: Media library
         upload: Upload
@@ -2065,7 +2400,7 @@ ar:
         updated_at: Modified date
         upload: Upload new file
       new:
-        header: New Folder
+        header: Upload files
       resource:
         confirmations:
           delete:
@@ -2097,6 +2432,7 @@ ar:
         successfully: User %{name} was updated successfully.
     meta_title: Administration panel
     navigation:
+      ai_assistants: مساعدو الذكاء الاصطناعي
       assessments: التقييمات
       assessments_reports: التقييمات والتقارير
       assessor_dashboard: لوحة معلومات المقيم
@@ -2129,6 +2465,7 @@ ar:
       reports: التقارير
       scheduling: الجدولة
       show_submenu: عرض القائمة الفرعية
+      skills_taxonomy: تصنيف المهارات
       user_profile_details: تفاصيل الملف الشخصي للمستخدم
       user_report_events: أحداث تقارير المستخدم
       users: المستخدمون
@@ -2147,8 +2484,13 @@ ar:
         factors: Factors
         inplace_title: Enter value
         title: Norm Editor
+      export:
+        success_msg: تمت جدولة مهمة تصدير المعيار بنجاح. يرجى التحقق من الحالة في الإشعارات.
       import:
         download_example_csv: تنزيل مثال csv
+        select_file_validation: يرجى تحديد مالك وملف قبل الإرسال.
+        success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
+        title: استيراد المعايير
       index:
         import: Import
         new: Add
@@ -2303,6 +2645,81 @@ ar:
         report: Report
         review: Review
       resource_name: Proctoring Sessions
+    products:
+      copy:
+        error: خطأ
+      destroy:
+        successfully: بنجاح
+      toggle_status:
+        successfully: بنجاح
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: يجب أن يكون تعريف المستوى مصفوفة من التعريفات.
+          level_definition_must_match_level: يجب أن يحتوي على %{expected} بالضبط، ولكن تم إعطاء %{actual}
+          must_be_unique: يجب أن تكون فريدة من نوعها
+          proficiency_level_exists: مستوى الكفاءة مع هذه المهارة والمشروع موجود بالفعل
+          proficiency_level_exists_for_all_skills: مستوى الكفاءة لجميع المهارات الموجودة بالفعل
+          proficiency_level_exists_for_category: مستوى الكفاءة لهذه الفئة موجود بالفعل
+          project_level_all_skills_exists: مستوى كفاءة "جميع_المهارات" موجود بالفعل
+          skill_must_exist: يجب أن تكون المهارة موجودة لنوع الكفاءة 'حسب_المهارة'
+      export:
+        actions:
+          proficiency: كفاءة التصدير
+          translations: ترجمات كفاءة التصدير
+        details: التفاصيل
+        failure_msg: خطأ أثناء تصدير مستويات الكفاءة
+        success_msg: تصدير إجراءات التطوير قيد التنفيذ
+        translations:
+          details: ترجمات مستوى الكفاءة
+      fields:
+        level: المستوى
+        level_description: وصف المستوى
+        level_name: اسم المستوى
+        proficiency_translations: ترجمات الكفاءة
+        proficiency_type: نوع الكفاءة
+        skill: المهارة
+        skill_category: فئة المهارة
+        skill_name: اسم المهارة
+        title: الكفاءة
+      global: هل الكفاءة العالمية؟
+      import:
+        actions:
+          proficiency: كفاءة الاستيراد
+          translations: استيراد ترجمات الكفاءة في الترجمة
+        errors:
+          all_skills_global_exists: 'الصف %{row_number}: مستوى الكفاءة "كل_المهارات" على المستوى العام موجود بالفعل'
+          all_skills_project_exists: 'الصف %{row_number}: مستوى كفاءة "جميع_المهارات" على مستوى المشروع موجود بالفعل'
+          by_category_exists: 'الصف %{row_number}: مستوى الكفاءة "حسب_الفئة" موجود بالفعل لهذا المشروع وفئة المهارة'
+          by_category_missing: 'الصف %{row_number}: يجب أن يكون المشروع وفئة المهارة موجودين لنوع "حسب_الفئة'
+          by_skill_exists: 'الصف %{row_number}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
+          by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
+          invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
+          invalid_json: 'السطر %{line}: JSON غير صالح في LevelDefinition - %{message}'
+          invalid_json_structure: يجب أن يكون كائن JSON بمفاتيح مثل "الوصف" و"الملخص
+          invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
+          missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
+          missing_required_fields: 'السطر %{line}: حقول مطلوبة مفقودة (%{fields})'
+          save_failed: 'السطر %{line}: %{message}'
+          skill_not_found: 'الصف %{row_number}: مهارة غير صالحة أو مفقودة'
+        job_queued: تم وضع مهمة استيراد مستويات الكفاءة في قائمة الانتظار
+      translations:
+        export:
+          failure_msg: خطأ أثناء تصدير الترجمات
+          success_msg: تصدير إجراءات التطوير قيد التنفيذ.
+        import:
+          errors:
+            invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
+            invalid_locales: لغة محلية غير صالحة
+            level_not_found: 'لم يتم العثور على مستوى المعرف: %{level_id}'
+            missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
+            missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{columns}'
+            row_id_blank: 'الصف %{row}: لا يمكن أن يكون المعرف فارغاً'
+            save_failed: 'خطأ في معالجة معرّف المهارة %{id}: %{message}'
+      type:
+        all_skills: جميع المهارات
+        by_category: حسب الفئة
+        by_skill: حسب المهارة
     profile:
       change_password: Change password
       details: Details
@@ -2311,6 +2728,9 @@ ar:
       edit:
         success: Profile was updated successfully.
         title: Profile Editor
+      update:
+        edit:
+          success: تم تحديث الملف الشخصي بنجاح.
     project:
       tools:
         workshop_status_export: Workshop Status Export
@@ -2339,6 +2759,7 @@ ar:
         column:
           name: Name
           normalize_factor_scores: Normalize Factor Scores
+          user_result_validity_in_days: صلاحية النتيجة
         delete:
           content: Are you sure you want to delete assessment '%{name}'?
           success: Assessment '%{name}' was deleted successfully.
@@ -2347,6 +2768,8 @@ ar:
           assessment_placeholder: Select Assessment
           assessment_required: Assessment is required
           normalize_factor_scores: Normalize Factor Scores
+          user_result_validity_in_days: صلاحية النتيجة بالأيام
+        title: التقييمات
       design: Design
       general: General
       privacy: Privacy
@@ -2364,10 +2787,21 @@ ar:
             key: send_test
             label: Send Test
         form:
+          acceptable_rate_limit:
+            label: حد الطلب المقبول
+            request_per: الطلبات لكل
           active:
             label: Active
             name: active
           auth_type:
+            api_key:
+              label: مفتاح واجهة برمجة التطبيقات
+              name: مفتاح_مفتاح_API
+              value: API_مفتاح_مفتاح_المصادقة
+            api_key_header:
+              format_error: يُسمح فقط بالحروف والأرقام والشرطة السفلية والواصلات
+              label: رأس مفتاح API
+              name: رأس مفتاح apiKeyHeader
             basic:
               label: Basic
               value: basic_auth
@@ -2444,6 +2878,11 @@ ar:
       addProject: Add Project
       assessment_settings:
         search: Search Assessment
+      clients:
+        confirmations:
+          detach_from_project:
+            body: الجسم
+            title: العنوان
       columns:
         project_number: Project Number
       design_settings:
@@ -2522,12 +2961,26 @@ ar:
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
       profile_settings:
+        form_fields:
+          enabled: ممكّنة
+          half_size: نصف الحجم
+          locked: مغلق
+          name: الاسم
+          remove: إزالة
+          required: مطلوب
+          sort: فرز
+        month: الشهر
         never: Never
         update_in: Notify Profile Update in
         year: Year
       registration_settings:
         hide_signup: Hide Sign up option
         require_mobile_number: Require Mobile Number
+      users:
+        confirmations:
+          detach_from_project:
+            body: الجسم
+            title: العنوان
       webhook_settings:
         add: Add Webhook
         column_active: Active
@@ -2560,7 +3013,32 @@ ar:
             title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Updated successfully.
+    reflection_questions:
+      delete_confirmation: هل تريد بالتأكيد حذف سؤال التفكير هذا؟
+      export:
+        action: أسئلة التفكير في التصدير
+        details: تفاصيل الملف
+        failure_msg: خطأ أثناء تصدير الملف.
+        success_msg: تصدير أسئلة التفكير قيد التنفيذ. يرجى التحقق من الحالة في الإشعارات.
+      form:
+        mandatory: إلزامي
+        max_words: الحد الأقصى للكلمات
+        min_words: الحد الأدنى من الكلمات
+        question: سؤال
+        title: سؤال تأملي
+      import:
+        action: أسئلة التفكير في الاستيراد
+        errors:
+          invalid_max_words_column_format: تنسيق قيمة عمود الحد الأقصى للكلمات غير صحيح %{row}
+          invalid_min_words_column_format: تنسيق قيمة عمود "الحد الأدنى للكلمات" غير صالح %{row}
+          invalid_required_column_format: تنسيق قيمة العمود الإلزامي غير صالح %{row}
+          missing_eng_question: محتوى السؤال باللغة الإنجليزية مفقود %{row}
+          save_failed: فشل الحفظ %{message}
+        failure_msg: خطأ أثناء استيراد الملف.
+        success_msg: استيراد أسئلة التفكير قيد التقدم. يرجى التحقق من الحالة في الإشعارات.
+      question: سؤال
     report_approval:
+      bulk_approve_success: "%{sent_for_approval} تم الإرسال للموافقة. %{approved} تمت الموافقة على التقارير. %{ignored} تقارير تتطلب موافقة يدوية بسبب تغييرات/تعليقات مراقبة الجودة."
       columns:
         actions: Actions
         approval_status: Approval Status
@@ -2674,9 +3152,11 @@ ar:
         qc_completed: QC Completed
         qc_in_progress: QC in Progress
     reports:
+      bulk_marked_as_done: تم وضع علامة "تم" على أنه تم
       bulk_upload:
         choose_file: Choose File
         no_file_selected: No file selected
+        sample_file: نموذج ملف العينة
         title: Bulk Upload Campaign Factors
         upload_success: Uploaded successfully
       copy:
@@ -2699,6 +3179,10 @@ ar:
       new:
         header: Select Report
       preview:
+        comments: التعليقات
+        hide_resolved: إخفاء تم حلها
+        history: التاريخ
+        info_to_select_module: حدد وحدة نصية للتعليق عليها
         title: Preview
       regenerate:
         successfully: Report successfully sent for regeneration
@@ -2750,6 +3234,7 @@ ar:
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
       saml: SAML
       saml_setting: SAML Setting
+      save: إعداد الحفظ
       sso_service_url: SSO Service Url
       successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
     save: Save
@@ -2762,6 +3247,7 @@ ar:
         schedule_time: Schedule Time
       add_subject: Add subject
       assessment_center_form:
+        add_more: أضف المزيد
         allow_late_cancellation_and_scheduling: Allow late cancellation and scheduling
         assessment_center_group: مجموعة مركز التقييم
         assessment_center_group_placeholder: اختر مجموعة مركز التقييم
@@ -2780,6 +3266,7 @@ ar:
         duration_min_error: Cannot be less than 15 minutes
         duration_placeholder: E.g. 4h 30m
         manager_ids_label: Center Managers
+        meeting_link: رابط الاجتماع
         meetings_and_resources: Meetings & Resources
         name_label: Name
         next: Next
@@ -2796,6 +3283,7 @@ ar:
         seats_label: Seats
         time_label: Time
         timezone_label: Timezone
+        url_label: عنوان URL
         video_call_type:
           custom: Custom
           internal: Internal
@@ -2819,6 +3307,7 @@ ar:
         attendance: Attendance
         attended: Attended
         booked_at: Booked At
+        campaign_assessment_group: مجموعة مركز التقييم
         campaign_name: Campaign Name
         duration: Duration
         managers: Mangers
@@ -3038,6 +3527,8 @@ ar:
       send_unlock_email: Send unlock email
       session_timeout_duration: Session Timeout Duration
       tfa_enabled: Enable Two Factor Authentication
+    security_settings:
+      security_setting: إعدادات الأمان
     settings:
       admin_roles:
         admin_role_single: Admin Role
@@ -3073,6 +3564,7 @@ ar:
         successful_remove: Skill alias '%{skill_alias}' was deleted successfully.
       tabs:
         admin_roles: Admin Roles
+        feature_flags: أعلام الميزات
         siem: SIEM
         skill_aliases: Skill Aliases
     sheets:
@@ -3121,21 +3613,66 @@ ar:
         rows: Rows
         settings: Settings
     skills:
+      applicable_proficiency_levels: مستويات الكفاءة المطبقة
+      columns:
+        skill_group: مجموعة المهارات
+        skill_type: نوع المهارة
       errors:
+        import:
+          missing_fields_data: 'السطر %{line_number}: الحقول المطلوبة ناقصة: %{fields}'
+          save_failed: 'السطر %{line_number}: فشل في حفظ المهارة "%{name}": %{message}'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
           invalid_global_value: 'must be one of: true, false'
+          invalid_skill_type: يجب أن تكون مهارة صالحة
           query_too_short: is required and must belonger than 3 characters
+      export:
+        details: التفاصيل
+        failure_msg: خطأ أثناء تصدير الترجمات
+        success_msg: تصدير إجراءات التطوير قيد التنفيذ.
+        title: التصدير
+        translations:
+          details: ترجمات المهارات
+      export_action:
+        skills_title: مهارات التصدير
+        skills_translations_title: ترجمات مهارات التصدير
       form:
+        client_placeholder: اختر عميل
         description: Description
         name: Name
         project_placeholder: Select a Project
+        skill_group: مجموعة المهارات
         skill_type: نوع المهارة
         title: Skill
+      global: هل المهارة العالمية؟
+      global_skills: المهارات العالمية
+      global_translations: ترجمات المهارات العالمية
       import:
         download_example_csv: Download Example csv
+        info_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        skills_title: مهارات الاستيراد
+        skills_translations_title: ترجمات مهارات الاستيراد
+      skill_details: تفاصيل المهارة
+      skill_translations: ترجمات المهارات
+      skill_translations_project: ترجمات المهارات على أساس المشروع
+      skills_project: المهارات القائمة على المشروع
+      title: المهارات
+      translations:
+        import:
+          errors:
+            invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
+            missing_columns: 'الأعمدة المفقودة المطلوبة: %{columns}'
+            save_failed: 'خطأ في معالجة معرّف المهارة %{id}: %{message}'
+            skill_not_found: المهارة ذات المعرف %{id} غير موجودة
+    skills_taxonomy:
+      tabs:
+        job_role_skill_mapping: تعيينات وظائف المهارة
+        job_roles: الأدوار الوظيفية
+        proficiency: الكفاءة
+        skills: المهارات
     sms_histories:
       columns:
         first_name: First Name
@@ -3344,6 +3881,17 @@ ar:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
       more_actions: More actions
+    taxonomy:
+      import:
+        download_example_file: تنزيل ملف المثال
+        success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
+      import_action:
+        taxonomy: استيراد التصنيف
+      job_roles: الأدوار الوظيفية
+      proficiency: الكفاءة
+      skill_job_mappings: التعيينات
+      skills: المهارات
+      title: التصنيف
     templates:
       blocks:
         copy:
@@ -3386,6 +3934,8 @@ ar:
           new: New Block
           new_assign: Assign Block
           title: Block's options
+        toggle_status:
+          successfully: بنجاح
       questions:
         copy:
           error: Question
@@ -3427,6 +3977,8 @@ ar:
           new: New Question
           new_assign: Assign Question
           title: Question's options
+        toggle_status:
+          successfully: بنجاح
     threesixty_campaigns:
       email_templates:
         approve_nomination:
@@ -3554,6 +4106,12 @@ ar:
         successfully: User %{name} was deleted successfully.
       list:
         email: Email
+      modals:
+        download_idp_reports:
+          error: فشل جدولة مهمة تقارير IDP للتنزيل الجماعي فشلت مهمة تقارير IDP المجمعة.
+          include_reflective_questions: تضمين الأسئلة الانعكاسية
+          success: تمت جدولة مهمة تنزيل تقارير IDP المجمعة بنجاح.
+          title: تنزيل تقارير IDP بالجملة
       new:
         header: New user
       reset_password:
@@ -3587,6 +4145,8 @@ ar:
         successfully: User %{name} was updated successfully.
       toggle_status:
         successfully: User %{name} was updated successfully.
+      toolbar:
+        title: الأدوات
       update:
         successfully: User %{name} was updated successfully.
       user: User
@@ -3605,3 +4165,4 @@ ar:
     workshop_subjects:
       errors:
         update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.
+    years: السنوات

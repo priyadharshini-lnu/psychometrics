@@ -72,7 +72,9 @@ describe Api::V2::Administration::WebhooksController, swagger_doc: 'v2/swagger.j
               url: 'http://www.dummy_webhook.com',
               active: false,
               auth_type: 'none',
-              username: 'Jon'
+              username: 'Jon',
+              rate_limit: 100,
+              rate_limit_period: 1
             }
           }
         }
@@ -86,7 +88,9 @@ describe Api::V2::Administration::WebhooksController, swagger_doc: 'v2/swagger.j
                 url: 'http://www.dummy_webhook.com',
                 active: false,
                 auth_type: 'no_auth',
-                username: 'Jon'
+                username: 'Jon',
+                rate_limit: 100,
+                rate_limit_period: 1
               }
             }
           }

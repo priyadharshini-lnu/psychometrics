@@ -17,6 +17,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import styles from './ReflectiveQuestions.less'
 import Editor from './Editor'
 import { useAppSelector } from '~/modules/endUser/store/hooks'
+import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 
 const { I18n } = window
 
@@ -110,13 +111,14 @@ export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => 
       message.success(I18n.t('idp.reflective_questions.updated_successfully'))
       onSave && onSave()
     } catch (error) {
-      message.error(I18n.t('idp.reflective_questions.update_failed'))
+      message.error(error?.data?.error || I18n.t('idp.reflective_questions.update_failed'))
     }
   }
 
   if (!status) {
     return <PageLoadSpinner size="large" />
   }
+
   return (
     <Layout.Content className={styles.pageContent}>
       <Flex justify="space-between" align="middle" className={styles.header}>
@@ -140,6 +142,7 @@ export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => 
           {reflectionQuestions.map(question => (
             <ReflectiveQuestion
               key={question.id}
+              status={status}
               question={question}
               value={answers[question.id]?.content || ''}
               error={errors[question.id]}
@@ -152,6 +155,7 @@ export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => 
       <Flex justify="flex-end">
         <Button
           loading={isLoading}
+          disabled={status === USER_IDP_PLAN_STATUS.COMPLETED}
           onClick={onSubmit}
           type="primary"
           size="small"
@@ -164,7 +168,7 @@ export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => 
 }
 
 const ReflectiveQuestion = ({
-  question, value, onChange, error,
+  question, value, onChange, error, status,
 }) => (
   <Flex vertical flex={1}>
     <Space direction="vertical">
@@ -179,7 +183,7 @@ const ReflectiveQuestion = ({
         help={error ? error.join(' ') : undefined}
         className={cs(styles.questionInput, { [styles.withError]: error?.length })}
       >
-        <Editor content={value} handleContentChange={onChange} />
+        <Editor content={value} handleContentChange={onChange} readOnly={status === USER_IDP_PLAN_STATUS.COMPLETED} />
       </Form.Item>
       <Space size="large">
         <Space className={styles.minmaxInfo}>

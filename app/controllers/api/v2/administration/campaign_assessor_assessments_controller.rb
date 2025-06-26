@@ -3,6 +3,7 @@
 module Api
   class V2::Administration::CampaignAssessorAssessmentsController < Api::V2::Administration::BaseController
     validates_request_schema :create, -> { Api::V2::CampaignAssessorAssessment::CreateContract.new }
+    validates_request_schema :update, -> { Api::V2::CampaignAssessorAssessment::UpdateContract.new }
 
     def subject_assessor_assessments
       render json: {
@@ -34,9 +35,8 @@ module Api
 
     def campaign_assessor_assessments
       CampaignAssessorAssessment.
-        joins(:assessment).
-        where(campaign_id: campaign_id).
-        where(assessment: { linked_assessment_id: [nil, *user_assessments.pluck(:assessment_id)] })
+        where(campaign_id: campaign_id, campaign_assessment_group_id: campaign_assessment_group_id).
+        includes(:assessment, assessment: %i[translations linked_assessment])
     end
 
     def assessor_user_assessments
@@ -44,15 +44,19 @@ module Api
         relationship_id: Relationship.assessor_relationship.id,
         subject_id: workshop_subject.user_id,
         campaign_id: campaign_id
-      )
+      ).includes(:assessment, assessment: %i[translations linked_assessment])
     end
 
     def user_assessments
       @user_assessments = UserAssessment.with_campaign_assessments.
                           where(campaign_assessments: {
-                            campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id
+                            campaign_assessment_group_id: campaign_assessment_group_id
                           }).
                           where(subject_id: workshop_subject.user_id, campaign_id: campaign_id)
+    end
+
+    def campaign_assessment_group_id
+      workshop_subject.workshop.campaign_assessment_group_id
     end
   end
 end

@@ -15,7 +15,7 @@ export const calculateAverageScores = (
         count += 1
       }
     })
-    averages[factor.factorId] = count > 0 ? (total / count).toFixed(1) : '-'
+    averages[factor.factorId] = count > 0 ? (total / count).toFixed(2) : '-'
   })
   return averages
 }

@@ -24,7 +24,7 @@ module Administration
             }
           ).serialize(@assessment) }
         else
-          render json: { error: true }, status: 400
+          render json: { error: true, errors: builder.errors }, status: :unprocessable_entity
         end
       end
 

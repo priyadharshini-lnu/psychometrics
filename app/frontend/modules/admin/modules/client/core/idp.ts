@@ -42,7 +42,15 @@ export const IdpTR = t.intersection([
     clientLogo: t.union([t.string, t.null]),
     logoType: t.string,
     showReflections: t.boolean,
+    instructions: t.type({
+      content: t.string,
+    }),
+    availableLocales: t.array(t.string),
     reflectionQuestions: t.array(ReflectionQuestionTR),
+    translations: t.record(t.string, t.partial({
+      titleText: t.union([t.string, t.null]),
+      subtitleText: t.union([t.string, t.null]),
+    })),
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
@@ -50,6 +58,12 @@ export const IdpTR = t.intersection([
       ReportTR,
       t.undefined]),
   })])
+
+export const IntroMessageTR = t.type({
+  instructions: t.union([t.type({}), t.type({
+    content: t.string,
+  })]),
+})
 
 export type IdpTemplateReflectionQuestion = t.TypeOf<typeof ReflectionQuestionTR>
 export type Idp = t.TypeOf<typeof IdpTR>

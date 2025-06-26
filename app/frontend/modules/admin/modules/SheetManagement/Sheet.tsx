@@ -89,7 +89,7 @@ const SheetComponent: FC<Props> = ({
   columnDefinitions,
   parentResourceType,
   parentResourceId,
-  tableConfig: { filters, page },
+  tableConfig: { filters, page, pageSize },
   tableConfig,
   changeFilter,
   changePage,
@@ -234,7 +234,7 @@ const SheetComponent: FC<Props> = ({
         <Col>
           <Pagination
             current={page}
-            pageSize={settings.pagination.defaultPageSize}
+            pageSize={pageSize}
             total={total}
             onChange={changePage}
             hideOnSinglePage
@@ -274,5 +274,6 @@ export const Sheet = withEnhancedTable<OwnProps>(
   'sheet',
   {
     maintainHistory: true,
+    pageSize: settings.pagination.defaultPageSize,
   },
 )

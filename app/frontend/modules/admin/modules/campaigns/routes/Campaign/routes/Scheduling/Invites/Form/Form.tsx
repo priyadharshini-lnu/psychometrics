@@ -50,6 +50,7 @@ export const InvitesForm = () => {
       allowNeurodiversityOption: form.getFieldValue('allowNeurodiversityOption'),
       workshopIds: (form.getFieldValue('workshopIds') || []).map(workshop => workshop.id),
       subjects: (form.getFieldValue('subjects') || []).map(user => ({ userId: user.id })),
+      campaignAssessmentGroupId: form.getFieldValue('campaignAssessmentGroupId'),
       translations: form.getFieldValue('translations') || [],
     }).then(() => {
       showSubmitPage(true)

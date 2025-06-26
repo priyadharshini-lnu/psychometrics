@@ -16,7 +16,9 @@ class UserIdpPlan < ApplicationRecord
   has_many :communication_emails, through: :communication_email_resources
   has_one :license_usage, as: :consumer
   has_many :idp_report_pdfs, dependent: :destroy
+  has_many :user_idp_comments, dependent: :destroy
   has_many :reflection_questions, through: :idp_template
+  has_many :idp_template_reflection_questions, through: :idp_template
   has_many :user_reflection_question_answers, dependent: :destroy
 
   delegate :client, to: :campaign
@@ -40,6 +42,7 @@ class UserIdpPlan < ApplicationRecord
     state :draft do
       event :submit_for_approval, transitions_to: :pending_approval
       event :approve, transitions_to: :approved
+      event :start, transitions_to: :in_progress
     end
     state :pending_approval do
       event :approve, transitions_to: :approved
@@ -74,8 +77,16 @@ class UserIdpPlan < ApplicationRecord
     }
   end
 
+  def unread_comments_count_by(user)
+    user_idp_comments.unread_by_user(user).count
+  end
+
   def campaign_user
     CampaignUser.find_by(campaign_id: campaign_id, user_id: user_id)
+  end
+
+  def default_language
+    @user_idp_plan.campaign.project.available_locales.first || I18n.default_locale
   end
 
   def skill_gap_report
@@ -84,6 +95,26 @@ class UserIdpPlan < ApplicationRecord
 
   def report_name_for_download
     "#{user.email}_idp_report_#{user.id}.pdf"
+  end
+
+  def report_pdf(locale: nil, include_reflective_questions: false)
+    scope = report_pdfs.joins(pdf_file_attachment: :blob).where(locale: locale)
+
+    scope = if include_reflective_questions
+              scope.where('active_storage_blobs.key like ?', '%idp_report_rq%')
+            else
+              scope.where('active_storage_blobs.key not like ?', '%idp_report_rq%')
+            end
+    scope.first
+  end
+
+  def pdf_path(locale: nil, include_reflective_questions: false)
+    report_pdf(locale: locale, include_reflective_questions: include_reflective_questions)&.pdf_file&.key
+  end
+
+  def pdf_url(locale: nil, include_reflective_questions: false, expires_in: 10.minutes)
+    report_pdf(locale: locale,
+               include_reflective_questions: include_reflective_questions)&.pdf_file&.url(expires_in: expires_in)
   end
 
   def editable?

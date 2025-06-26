@@ -10,17 +10,16 @@ module Api
 
         def self.attributes(attribute, _)
           proc do
-            # Required fields
             attribute[:name].filled(:string)
             attribute[:description].filled(:string)
             attribute[:development_action_type].filled(:string)
             attribute[:learning_style].filled(:string)
-
-            # Optional fields - only validated if present
             optional(:course_url).maybe(:str?)
             optional(:course_start_date).maybe(:any)
             optional(:course_end_date).maybe(:any)
             optional(:image).maybe(:any)
+            optional(:available_languages).maybe(:array)
+            optional(:duration).maybe(:integer)
           end
         end
 

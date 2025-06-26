@@ -44,7 +44,7 @@ module WebhookSubscriptions
       project.webhooks.active.not_deleted.includes(:topics).find_each do |webhook|
         next unless webhook.topics.pluck(:name).include?(event_name.to_s)
 
-        WebhookSystemJob.perform_later(webhook, event_as_json(webhook))
+        WebhookSystemJob.perform_later(webhook.id, event_as_json(webhook))
       end
       broadcast(:ok)
     end

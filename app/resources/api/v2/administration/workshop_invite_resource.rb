@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration::BaseResource
   attributes :title, :description, :created_at, :subjects_count, :allowed_languages, :allow_language_preference,
-             :allow_neurodiversity_option, :subjects, :translations, :workshop_ids, :campaign_id
+             :allow_neurodiversity_option, :subjects, :translations, :workshop_ids, :campaign_id,
+             :campaign_assessment_group_id, :campaign_assessment_group_name
 
   has_many :workshops, exclude_links: :default
   has_many :workshop_invited_subjects
@@ -21,6 +22,10 @@ class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration:
 
   def subjects_count
     workshop_invited_subjects.count
+  end
+
+  def campaign_assessment_group_name
+    @model.campaign_assessment_group&.name
   end
 
   ransack_filters %i[campaign_id_eq title_cont]

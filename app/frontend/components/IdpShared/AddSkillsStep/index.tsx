@@ -50,8 +50,9 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
 
   const isSelectedSkillsDirty = !_.isEqual(initialSelectedSkillsNames.sort(), selectedSkillsNames.sort())
 
-  const disableAddSkillButton = isStepsRoute ? !selectedSkillsNames.length : !isSelectedSkillsDirty
-
+  const disableAddSkillButton = isStepsRoute ? !selectedSkillsNames.length
+    : (!isSelectedSkillsDirty || !selectedSkillsNames.length
+    )
   return (
     <>
       <Row gutter={[24, 24]} className="mt-6">
@@ -64,6 +65,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
               )
               return (
                 <SkillsGroupCard
+                  key={skillCategory.skillType}
                   skillCategory={{ skillType: skillCategory.skillType, skills: skillsAvailableForSelection }}
                   onAddSkill={onAddSkill}
                   onRemoveSkill={onDeselectSkill}

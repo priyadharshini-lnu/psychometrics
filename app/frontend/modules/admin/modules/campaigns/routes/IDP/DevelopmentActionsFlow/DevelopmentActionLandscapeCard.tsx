@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import {
-  Progress, Popover, Button, Slider, Flex, Typography, DatePicker,
+  Progress, Button, Flex, Typography, DatePicker,
   Tooltip,
 } from 'antd'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
@@ -31,7 +30,6 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
   editMode,
   onAddDevelopmentAction,
   onUpdateDevelopmentAction,
-  onUpdateDevelopmentActionProgress,
   onRemoveDevelopmentAction,
 }) => {
   const developmentActionCards = developmentActions.map(developmentAction => (
@@ -40,7 +38,6 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
       editMode={editMode}
       developmentAction={developmentAction}
       onUpdateDevelopmentAction={onUpdateDevelopmentAction}
-      onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
       onRemoveDevelopmentAction={onRemoveDevelopmentAction}
     />
   ))
@@ -106,12 +103,9 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
 const Card = ({
   developmentAction,
   onUpdateDevelopmentAction,
-  onUpdateDevelopmentActionProgress,
   editMode,
   onRemoveDevelopmentAction,
 }) => {
-  const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
-  const [editing, setEditing] = useState(false)
   const isTablet = useMedia({
     maxWidth: 768,
   })
@@ -125,79 +119,31 @@ const Card = ({
     })
   }
 
-
-  const handleProgressChange = (value: number) => {
-    setEditableProgress(value)
-  }
-
-  const saveProgress = () => {
-    setEditing(false)
-    if (editMode) {
-      onUpdateDevelopmentAction({
-        ...developmentAction,
-        progress: editableProgress,
-      })
-    } else {
-      onUpdateDevelopmentActionProgress({ id: developmentAction.id, progress: editableProgress })
-    }
-  }
-
-  const cancelEditing = () => {
-    setEditing(false)
-    setEditableProgress(developmentAction.progress)
-  }
-
-  const popoverContent = (
-    <Flex vertical>
-      <Slider
-        min={0}
-        max={100}
-        value={editableProgress}
-        onChange={handleProgressChange}
-        tooltip={{
-          formatter: value => `${value}%`,
-        }}
-      />
-      <Flex gap={8} justify="flex-end">
-        <Button size="small" onClick={cancelEditing}>Cancel</Button>
-        <Button type="primary" size="small" onClick={saveProgress}>Save</Button>
+  const progress = (
+    <Flex
+      flex={6}
+      className={cs(
+        {
+          [styles.p_12]: !isTablet,
+          [styles.pb_8]: isTablet,
+        },
+      )}
+    >
+      {isTablet ? (
+        <Flex flex={1} className={styles.label}>
+          {I18n.t('idp.development_actions.completion')}
+        </Flex>
+      ) : null}
+      <Flex
+        vertical
+        flex={1}
+        gap={4}
+        justify="flex-start"
+        align="flex-end"
+      >
+        <Progress percent={developmentAction.progress} className={styles.m_none} />
       </Flex>
     </Flex>
-  )
-
-  const progress = (
-    <Popover
-      content={popoverContent}
-      title="Edit Progress"
-      trigger="click"
-      open={editing}
-      onOpenChange={setEditing}
-    >
-      <Flex
-        flex={6}
-        className={cs(
-          {
-            [styles.p_12]: !isTablet,
-            [styles.pb_8]: isTablet,
-          },
-        )}
-      >
-        {isTablet ? (
-          <Flex flex={1} className={styles.label}>
-            {I18n.t('idp.development_actions.completion')}
-          </Flex>
-        ) : null}
-        <Flex
-          vertical
-          flex={1}
-          gap={4}
-          justify="flex-start"
-          align="flex-end"
-        >
-          <Progress percent={editableProgress} className={styles.m_none} />
-        </Flex>
-      </Flex>
-    </Popover>
   )
 
 

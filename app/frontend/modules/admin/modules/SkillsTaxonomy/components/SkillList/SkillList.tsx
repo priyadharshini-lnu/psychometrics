@@ -12,6 +12,8 @@ import { SkillsImportModal } from './SkillsImportModal'
 import { SkillsExportModal } from './SkillsExportModal'
 import { Tabs } from '../Tabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { getFeatures } from '~/core/config'
+import { RootState } from '~/core/reducers'
 
 const MODALS = {
   SkillsImportModal,
@@ -20,7 +22,8 @@ const MODALS = {
 }
 
 const connecter = connect(
-  () => ({
+  (state: RootState) => ({
+    features: getFeatures(state),
   }),
   {
     openModal,
@@ -31,7 +34,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 
 const { I18n } = window
 
-const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
+const SkillList: React.FC<PropsFromRedux> = ({ features, openModal }) => {
   const { projectId: projectIdParam } = useParams()
 
   let projectIdFilter
@@ -45,10 +48,10 @@ const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
     trackUrl: true,
     responseType: SkillTR,
     apiConfig: {
-      include: ['project'],
+      include: ['project', 'skill_group'],
       include_meta: ['permissions'],
       filter: projectIdFilter,
-      fields: { projects: ['name', 'client_id'] },
+      fields: { projects: ['name', 'client_id'], skill_groups: ['name'] },
     },
   }
 
@@ -71,7 +74,7 @@ const SkillList: React.FC<PropsFromRedux> = ({ openModal }) => {
           ]}
         />
       )}
-      { !projectIdParam && <Tabs />}
+      { !projectIdParam && <Tabs featureFlags={features} />}
       <Resource config={config} name="skills">
         <SkillsFilter openModal={openModal} />
         <SkillsTable openModal={handleOpenModal} />

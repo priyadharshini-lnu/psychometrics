@@ -1,0 +1,999 @@
+---
+sr-Cyrl:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: Сви одговори
+      numeric_comparator:
+        enter_value: Унесите вредност
+        select_data: Изаберите податке
+      scoring:
+        select_comparison: Изаберите тип поређења
+        select_factors: Изаберите факторе
+        select_operation: Изаберите операцију
+  activerecord:
+    attributes:
+      membership:
+        first_name: Име
+        last_name: Презиме
+      user:
+        email: Адреса е-поште
+        first_name: Име
+        last_name: Презиме
+      user_form:
+        email: Адреса е-поште
+        first_name: Име
+        last_name: Презиме
+        password: Лозинка
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: Број мобилног телефона је обавезан
+              invalid: Број мобилног телефона је неважећи
+              verification_expired: Верификациони код је истекао. Можете покушати поново да верификујете.
+        user:
+          attributes:
+            current_password:
+              invalid: Тренутна лозинка је нетачна
+  administration: Администрација
+  anonym:
+    close: Затвори
+    continue: Настави
+    notifications:
+      restart:
+        copy: Већ сте започели ову анкету. Можете изабрати да наставите или поново покренете.
+        title: Наставити?
+      retake:
+        copy: Већ сте попунили ову анкету. Да бисте је поново попунили, кликните на дугме „Понови“ испод.
+        title: Поново снимити?
+    restart: Поново покрени
+    retake: Поново сними
+  assessments:
+    actions:
+      back_to_campaign: Назад на кампању
+      extend_time: Продужи време
+      goto_dashboard: Кликните овде да бисте наставили
+      pending_tasks:
+        one: Имате 1 задатак на чекању
+        other: Имате %{count} задатака на чекању
+      rescore: Поново бодуј
+    audio_response:
+      permission_denied_message: Молимо вас да омогућите микрофон у вашем прегледачу да бисте снимили одговор
+      permission_text: Молим вас, дозволите коришћење микрофона за снимање звука
+    card_actions:
+      begin: Почетак
+      continue: Настави
+    instructions:
+      begin_assessment: Почетак
+      cancel: Откажи
+      default: Ово је активност са ограниченим временом, када кликнете на дугме „Почни процену“, имаћете %{time} минута да је завршите.
+      title: Упутства
+    messages:
+      finish: Хвала вам на времену. Ваши одговори су сада забележени.
+    page:
+      back: Назад
+      confirm_message: "## Ваши одговори ће бити послати и не могу се мењати након овога. Кликните на **Назад** да бисте још једном прегледали своје одговоре или кликните на **Пошаљи** ако сте завршили."
+      next: Следеће
+      read_only: Само је у режиму читања, не можете мењати резултате.
+      save: Сачувај
+      submit: Пошаљи
+    pickgrouprank:
+      items: Ставке
+    proceed: Ипак настави
+    unknown_error: Дошло је до непознате грешке.
+    video_response:
+      device: Дозволи
+      device_selection:
+        camera: Камера
+        mic: Микрофон
+      discard: Одбаци
+      discard_record_again: Одбаци и поново сними
+      media_recorder:
+        failure: Овај прегледач не подржава снимање видеа. Користите Chrome или Firefox за снимање видеа.
+        success: Молимо вас да дозволите коришћење камере и микрофона за снимање звука и видеа
+      recording_duration_label: Максимално трајање снимања
+      recording_stop_label: Снимање ће се зауставити за
+      requesting_permission: Тражење дозволе...
+      response_recorded: Одговор је забележен
+      save: Сачувај
+      saved:
+        label: Видео је сачуван
+      saving: Чување видеа...
+      start_recording: Почни снимање
+      stop_recording: Заустави снимање
+      tracker:
+        backward: Преблизу сте екрану. Молимо вас да се мало померите уназад.
+        forward: Превише сте удаљени од екрана. Молимо вас да се мало приближите.
+        frame: Молимо вас да се уверите да је ваше лице поравнато са оквиром
+        ready: Притисните дугме за снимање када сте спремни за снимање
+    wait: Чекај
+  auth:
+    current_password: Тренутна лозинка
+    current_password_placeholder: Унесите тренутну лозинку
+    email: Е-пошта
+    email_placeholder: Унесите адресу е-поште
+    expired_password:
+      description: Молимо вас да попуните сва поља да бисте креирали нову лозинку
+      submit: Пошаљи
+      title: Обновите лозинку
+    login:
+      description: Молимо вас да се пријавите са својим личним подацима о налогу
+      forgot_password: Заборавили сте лозинку?
+      login_btn: Пријава
+      magic_link_btn: Пошаљи ми имејл са линком за пријаву
+      not_member: Нисте члан?
+      or: ИЛИ
+      sso_btn: Пријавите се помоћу јединственог пријављивања
+      title: Добродошли!
+    logout: Одјава
+    magic_link:
+      description: Молимо вас да унесете своју адресу е-поште да бисте добили линк за пријаву
+      login_with_password: Пријавите се лозинком
+      send_me_login_link: Пошаљи ми линк за пријаву
+      success: Послали смо вам линк за пријаву на &#39;%{email}&#39;. Кликните на линк у имејлу који сте примили да бисте се пријавили.
+    mobile_number: Број мобилног телефона
+    new_password: Нова лозинка
+    new_password_placeholder: Унесите нову лозинку
+    otp:
+      code: Код
+      code_placeholder: Једнократна лозинка
+      description: Молимо вас да унесете OTP који је послат на вашу регистровану адресу е-поште.
+      resend: Поново пошаљи једнократну лозинку
+      resend_in: Поново пошаљи за %{timestamp} секунди
+      resend_success: OTP се шаље на ваш број мобилног телефона
+      sms_description: Молимо вас да унесете OTP који је послат на ваш број мобилног телефона.
+      submit: Верификуј
+      title: Једнократна лозинка
+    password: Лозинка
+    password_confirmation: Потврдите лозинку
+    password_confirmation_placeholder: Унесите потврду лозинке
+    password_placeholder: Унесите лозинку
+    registration:
+      description: Попуните податке испод да бисте се регистровали и креирали нови налог
+      email_hint: Поштујемо вашу приватност и не толеришемо спам. Никада нећемо дати ваше податке трећим лицима.
+      first_name: Име
+      first_name_placeholder: Унесите име
+      have_account: Већ имате налог?
+      last_name: Презиме
+      last_name_placeholder: Унесите презиме
+      login_now: Пријавите се сада!
+      registration_code: Регистрациони код
+      registration_code_placeholder: Унесите регистрациони код
+      terms_notice: Регистрацијом се слажете са нашим <a href="%{terms_url}">Условима коришћења услуга и Политиком приватности</a>
+      title: Региструј се
+    reset_password:
+      back_to_sign_in: Назад на пријаву
+      description: Унесите имејл адресу повезану са вашим налогом
+      submit: Ресетуј лозинку
+      title: Заборавили сте лозинку?
+    set_password:
+      description: Да бисте креирали нову лозинку, унесите је у поља испод
+      submit: Пошаљи
+      title: Креирај лозинку
+    sign_out: Пријавите се као други корисник
+    sign_up: Региструј се
+    terms_link: <a href="%{terms_url}">Услови и изјава о приватности</a>
+    verify_mobile_number:
+      error:
+        blocked: Овај број је блокиран због превише покушаја.
+        invalid_code: Неважећи код
+        invalid_number: Број мобилног телефона је нетачан. Молимо вас да поново проверите свој број.
+        max_attempts_reached: Превише покушаја. Молимо сачекајте 10 минута пре него што покушате поново.
+  campaign:
+    all_activities_are_completed: Све активности су сада завршене.
+    all_activities_are_completed_multiple: Све активности за ову кампању су сада завршене. Молимо вас да пређете на контролну таблу и проверите да ли имате додељене још неке активности.
+    begin: Започните своје задатке
+    begin_btn_msg_before_prework: Морате да завршите доле наведене задатке пре него што започнете временски ограничену кампању
+    begin_campaign_msg: Започните кампању пре полагања процена
+    campaigns: Кампање
+    closed_campaign_message: Ова кампања је затворена. Не можете полагати никакве процене у оквиру ове кампање.
+    complete_prev: Завршите све претходне процене
+    complete_tasks: Молимо вас да завршите доленаведене задатке пре него што предузмете ову акцију.
+    continue: Наставите са својим задацима
+    dashboard_instructions: Можда вам је додељено више активности које треба да завршите. Молимо вас да проверите да ли су све додељене активности завршене у свим кампањама.
+    dashboard_menu:
+      bookings: Резервације
+      campaign: Кампања
+      change_password: Промена лозинке
+      development: Развој
+      home: Дом
+      insights: Увиди
+      my_plan: Мој план
+      profile: Профил
+      profile_details: Детаљи
+      tasks: Задаци
+    details: Детаљи
+    edit_evaluation:
+      body: Молимо вас да имате у виду да када кликнете на „Поново процени“, бићете преусмерени на почетак анкете где можете да измените одговоре. Претходни одговори ће и даље бити доступни, али их можете променити према свом укусу. Након уређивања, мораћете поново да пошаљете процену да бисте завршили процес.
+      edit: Поново процените
+      title: Потврди
+      view: Погледајте процену
+    errors:
+      invalid_status: Неважећи статус кампање
+    goto_dashboard: Идите на контролну таблу
+    inactive_campaign_message: Тренутно вам нису додељене никакве активности.
+    insights_reports: Увиди и извештаји
+    instruction_modal:
+      campaign_start_final_instructions: "<p>Имајте на уму да не постоји начин да зауставите или паузирате тајмер. Тајмер кампање ће наставити да ради чак и када затворите прегледач, тако да ни у једном тренутку не би требало да размишљате о томе да оставите задатке између да бисте радили нешто друго. Обавезно минимизирајте ометања током задатака. Пронађите мирно окружење, искључите обавештења на својим уређајима и избегавајте обављање више задатака истовремено. Одржавајте концентрацију и останите фокусирани. Када тајмер кампање истекне, нећете моћи да наставите. Ако сте прочитали горња упутства, кликните на „старт“ да бисте наставили са додељеним задацима.</p>\n"
+      campaign_start_instruction: "<h4>Молимо вас да пажљиво прочитате следећа упутства.</h4><p> Задаци које ћете ускоро започети су временски ограничени. Када кликнете на „Старт“, тајмер кампање ће се аутоматски покренути. Имате %{minutes} минута да завршите све активности. Молимо вас да тежите да завршите задатке у предвиђеном временском оквиру и ефикасно управљате временом како бисте избегли журбу кроз процес евалуације. Обавезно завршите задатке одједном, тако да ако вам је потребна пауза, сада је време.</p>\n"
+      common_proctoring_instructions: "<h4>Надзор</h4><p> Након што кликнете на дугме „Старт“, бићете преусмерени на наш систем за надзор. Он ће пратити вашу камеру, микрофон и екран током ваше сесије. Ове сесије аутоматски надгледа наш софистицирани систем вештачке интелигенције, пружајући непрекидно и глатко корисничко искуство. Међутим, сесије могу прегледати и људски надзорници. Сви знаци недоличног понашања или неправилности биће означени. Ово се ради како би се осигурало да нема покушаја варања. Уколико се пронађу сумње, ваш(и) задатак(и) ће бити отказан(и).</p>\n"
+      lockdown_browser_instruction: "<h4>Прегледач за надзор</h4><p> Биће потребно да преузмете и инсталирате посебан прегледач да бисте завршили задатке под надзором. Пратите упутства на следећем екрану. Можете га деинсталирати након што завршите све потребне активности.</p>\n"
+    instructions:
+      collapse_link_text: Прикажи мање
+      expand_link_text: Прикажи више
+      heading: Молимо вас да прегледате доленаведене смернице пре него што почнете. Желимо вам све најбоље!
+    language:
+      content: Овај задатак није доступан на тренутно изабраном језику. Изаберите један од доступних језика да бисте наставили.
+      single_lang: Овај задатак је доступан само у %{lang} језику. Кликните на „Настави“ да бисте наставили.
+      title: Изаберите језик
+    panels:
+      dashboard: Контролна табла
+      reports: Извештаји
+    profile:
+      complete_heading: Ваш профил је комплетан
+      complete_profile_label: Заврши сада
+      edit_profile_label: Измени профил
+      incomplete_heading: Попуните свој профил
+      last_login_text: 'Последње пријављивање:'
+      last_updated_text: 'Профил је последњи пут ажуриран:'
+      sub_heading: Попуните све информације о свом профилу
+      welcome_text: Добродошли,
+    thank_you_for_time: Хвала вам на времену
+    time_left:
+      cancel: Откажи
+      continue: Настави
+      notification: Ваше додељено време за овај задатак „%{assessmentName}“ је било %{totalAssessmentTime}. Због укупног протеклог времена, сада вам је преостало само %{remainingCampaignTime} као прилагођено време за завршетак овог задатка.
+    timer:
+      notification_hours: Остало вам је %{hours} сат
+      notification_minutes: Остало вам је %{minutes} минута
+  campaign_assessment:
+    assessment_center_heading: Детаљи центра за процену
+    assessments_heading: Ваши задаци
+    statuses:
+      completed: Завршено
+      in_progress: У току
+      ineligible: Неиспуњава услове
+      interrupted: Прекинуто
+      not_started: Није започето
+      timed_out: Временски истекло
+      universal_link: Универзална веза
+  campaigns:
+    card:
+      duration: Трајање
+      starts_in: 'Почиње за:'
+      starts_on: Почиње %{date}
+      will_start_shortly: Кампања ће ускоро почети. Молимо сачекајте.
+  change_password_page:
+    old_password: Стара лозинка
+    password: Лозинка
+    password_confirmation: Потврда лозинке
+    title: Промена лозинке
+    warning_message: 'Важно: Промена лозинке ће вас одјавити.'
+  checking_wizard:
+    audio_check:
+      access: Приступ
+      continue: Да, желим да наставим
+      random_phrases:
+        eight: Нека вам кафа буде јака, а дан продуктиван.
+        five: Живот је бољи када се смејеш. Осмехни се за микрофон!
+        four: Она продаје шкољке поред мора.
+        nine: Када сте у недоумици, тестирајте овај микрофон, ради!
+        one: Ја вриштим, ти вриштиш, сви вриштимо за сладолед!
+        seven: Сваки дан је нови почетак. Реците то гласно и поносно!
+        six: Пица или паста? Тешке су одлуке.
+        three: Тестирање, један два три, звук је јасан колико год може бити!
+        two: Брза смеђа лисица прескаче лењог пса.
+      record_title: Молим вас, изговорите и поновите следећу реченицу 3 пута.
+      retake: Не, желим поново да узмем
+      run_again: Трчи поново
+      test_message: Драго ми је да разговарам са тобом
+    network_check:
+      continue: Настави
+      download: Преузми
+      please_check_connection: Молимо вас да проверите своју интернет везу
+      processing: Обрада
+      run_again: Трчи поново
+      run_again_title: И поново покрените овај тест
+      title: Кликните на „старт“ да бисте започели тест брзине интернета.
+      upload: Отпреми
+    steps:
+      audio_check: Тест микрофона
+      network_check: Тест брзине интернета
+      system_check: Провера система
+      video_check: Тест видео камере
+    success:
+      start: Почни процену
+      title: Успешно сте завршили све провере.
+    system_check:
+      compatibility: Компатибилност система
+      continue: Настави
+      failure:
+        description: За аудио/видео питања у овом тесту потребне су дозволе за веб камеру и микрофон.
+        link_text: овде
+        link_text_action: Кликните
+        link_text_instruction: и пратите кораке за давање дозвола
+        refresh: Освежи прегледач
+        refresh_text: Кликните испод да бисте освежили прегледач и применили промене
+        subtitle: Брза решења
+        title: Отказали сте дозволе за веб камеру и микрофон
+      permissions: Дозволе за веб камеру и звук
+      title: Пре него што започнете ову процену, ваш систем мора да прође кроз неке провере.
+    video_check:
+      access: Приступ
+      camera_preview: Преглед камере ће се појавити овде
+      continue: Да, желим да наставим
+      description: Кликните на Почни снимање и снимите себе док читате доњи одломак својим гласом
+      random_phrases:
+        eight: Ако ме видите, видео је успео. Ако не, решавамо проблем!
+        five: Тестирам ваш видео, не брините, није потребна номинација за Оскара.
+        four: Спремни, позор, фокус! Камера је твоја сцена.
+        nine: Велики осмеси и јасан видео, хајде да урадимо овај тест како треба!
+        one: Подигните руку ако ме чујете или само махните камери!
+        seven: Огледалце, огледалце на екрану, нека видео провера буде чиста.
+        six: Светла, камера, акција, ово је твоје време да заблисташ!
+        ten: Пријатељски махање осигурава да све функционише како треба.
+        three: Реци сир! Или само испробај тај савршени осмех.
+        two: Погледајте у објектив, осмехните се и замислите се као да сте у филмском трејлеру.
+      rec_text: СНИМАЊЕ
+      retake: Не, желим поново да узмем
+      run_again: Трчи поново
+      title: Морамо да се уверимо да ваш систем може да снима видео
+      uploading: Отпремање
+  common:
+    actions:
+      add: Додај
+      archive: Архива
+      cancel: Откажи
+      close: Затвори
+      copy: Копија
+      delete: Обриши
+      edit: Измени
+      remove: Уклони
+      reset: Ресетуј
+      resolve: Решити
+      restore: Врати
+      save: Сачувај
+      search: Претрага
+      send: Пошаљи
+      start: Почетак
+      unarchive: Врати из архиве
+      unresolve: Нерешено
+      update: Ажурирање
+      upload: Отпреми
+      verify: Верификуј
+      view_all_tasks: Прикажи све задатке
+      view_detail: Виев Детаил
+    column:
+      action: Акција
+      category: Категорија
+      created_at: Направљено у
+      id: ИД
+      status: Статус
+    model:
+      assessments: Процене
+      campaigns: Кампање
+      reports: Извештаји
+    text:
+      cancel: Откажи
+      confirm: Потврди
+      continue: Настави
+      default: Подразумевано
+      download: Преузми
+      na: Н/Д
+      ok: У реду
+      response: Одговор
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Пријава
+    failure:
+      already_authenticated: Већ сте пријављени.
+      inactive: Ваш налог још није активиран.
+      invalid: Неважећа имејл адреса или лозинка.
+      invited: Имате позивницу на чекању, прихватите је да бисте завршили креирање налога.
+      magic_link_invalid: Неважећи или истекли линк за пријаву.
+      not_found_in_database: Неважећа имејл адреса или лозинка.
+      timeout: Ваша сесија је истекла. Молимо вас да се поново пријавите да бисте наставили.
+      unauthenticated: Морате се пријавити или регистровати пре него што наставите.
+    invitations:
+      edit:
+        password_label: Лозинка
+    passwords:
+      invalid_email: Неважећа имејл адреса
+    registrations:
+      communication_not_setup_error: Комуникација путем имејла за регистрацију није подешена, контактирајте администратора овог пројекта.
+      new:
+        email: Адреса е-поште
+        first_name: Име
+        instruction: Попуните податке испод да бисте се регистровали и креирали нови налог
+        last_name: Презиме
+        privacy_notice: Поштујемо вашу приватност и не толеришемо спам. Никада нећемо дати ваше податке трећим лицима.
+        registration_code: Регистрациони код
+        submit: Региструј се
+        tabs:
+          register: Региструј се
+          sign_in: Пријавите се
+        terms_notice: Регистрацијом се слажете са нашим <a href="%{terms_url}">Условима коришћења услуга и Политиком приватности</a>
+        title: Региструјте се сада
+      success:
+        actions:
+          sign_in: Пријавите се
+    sessions:
+      new:
+        email: Адреса е-поште
+        forgot_password: Заборавили сте лозинку?
+        instruction: Молимо вас да се пријавите са својим личним подацима о налогу
+        password_placeholder: Лозинка
+        submit: Пријава
+        tabs:
+          register: Региструј се
+          sign_in: Пријава
+        title: Добродошли!
+    two_factor_authentication:
+      attempt: Молимо вас да унесете OTP који сте добили на регистровану адресу е-поште
+      code_has_been_sent: Ваш нови OTP је послат на вашу регистровану адресу е-поште
+  emails:
+    subject_relationship_table:
+      subject_email: Наслов имејла
+      subject_name: Име субјекта
+      subject_relationship: Однос са субјектом
+  errors:
+    assessments:
+      timed_out: Нећете моћи да полажете %{assessment_name} тест јер је истекао.
+    error: Грешка
+    error_500: Дошло је до грешке. Контактирајте администратора.
+    forbidden: Немате приступ овој страници
+    forbidden_action: Немате дозволе за ову радњу
+    invalid_token: Дошло је до грешке. Поново учитајте страницу и покушајте поново.
+    module_error: Дошло је до грешке са овим модулом, контактирајте администрацију.
+    module_error_editor: Дошло је до грешке са овим модулом, проверите подешавања модула.
+    module_props_error: Нешто је пошло наопако са овим модулом.
+    try_again: Молим вас покушајте поново
+  factors:
+    description: Опис
+    factor: Фактор
+  frontend:
+    activate: Активирај
+    are_you_sure: Јеси ли сигуран/сигурна?
+    assessment: Процена
+    assessment_groups:
+      create_success: Група је успешно креирана
+      update_success: Група је успешно ажурирана
+    background_reading: Позадинско читање
+    bookings:
+      accept_invite_msg: Добили сте позив. Молимо вас да резервишете свој термин.
+      add_to_calendar: Додај у календар
+      add_to_calendar_tour_description: Додајте ову резервацију у свој календар
+      assessment_center_alert:
+        btn_title: Кампања
+        message_part1: Завршите све припремне радове у овом
+        message_part2: пре резервације термина.
+      assessment_center_group_name: Центар за процену
+      booking_failed_msg: 'Резервисање термина није успело: %{error}'
+      buttons:
+        book: Књига
+        book_again: Резервишите поново
+        cancel: Откажи
+        cancel_booking: Откажи резервацију
+        confirm_booking: Потврди резервацију
+        confirm_reschedule: Потврди промену распореда
+        modify: Измени
+        nevermind: Нема везе
+        no_text: Не
+        request_cancel: Захтев за отказивање
+        request_reschedule: Захтев за поновно заказивање
+        reschedule: Поново закажите
+        reserve_spot: Резервишите своје место
+        yes_text: Да
+      cancel_booking_confirmation: Да ли сте сигурни да желите да откажете ову резервацију?
+      cancellation_failed: 'Отказивање резервације није успело: %{error}'
+      cancellation_success: Резервација је успешно отказана
+      comments_required_msg: Молимо вас да унесете своје коментаре
+      confirm_booking_description: Молимо вас да потврдите да су ови подаци тачни пре него што завршите резервацију.
+      confirm_booking_title: Потврдити ову резервацију?
+      default_failure_msg: Није могуће обрадити ваш захтев. Молимо вас покушајте поново касније.
+      default_requires_msg: "%{name} је обавезно"
+      join_activity_meeting: Придружите се састанку
+      join_workshop_meeting: Придружите се састанку
+      language: Језик
+      language_placeholder: Изаберите језик
+      language_preference_question: Да ли имате језичке преференције?
+      language_required_msg: Изаберите језик
+      meeting_start_text: 'Састанак ће почети за:'
+      need_changes: Да ли треба направити промене?
+      neurodivergence_comment_placeholder: Ваши коментари
+      neurodivergence_question: Да ли су вам потребне неке разумне прилагођавања или смештаји због посебних потреба или инвалидитета да бисте у потпуности учествовали у процени?
+      no_invites_msg: Бићете додати у центар за процену или ћете добити позив да закажете термин; када постанете део центра, можете завршити активности кликом на дугме „Прикажи детаље“ испод.
+      other_invite: Погледајте још %{count} позива
+      other_invites: Погледајте још %{count} позивница
+      reason: Разлог
+      reason_for_cancel: Разлог за отказивање
+      reason_for_reschedule: Разлог за репрограмирање
+      request_cancellation_failed: 'Захтев за отказивање није успео: %{error}'
+      request_cancellation_success: Захтев за отказивање је успешно послат
+      request_reschedule_failed: 'Није успело захтевање промене распореда: %{error}'
+      request_reschedule_success: Захтев за промену термина је успешно послат
+      reschedule_failed_msg: 'Промена распореда није успела: %{error}'
+      reschedule_reason_placeholder: Да бисте наставили, унесите разлог за промену распореда.
+      schedule_success: Ова резервација је заказана
+      schedule_success_msg: Послали смо вама и осталим учесницима позивницу у календару са свим детаљима путем имејла.
+      starts_at: 'Почиње у: %{date}'
+      starts_in: 'Почиње за:'
+      tab_label:
+        bookings: Резервације
+        invites: Позиви
+      what: Шта
+      when: Када
+      workshop_start_text: Ваш центар за процену ће почети за
+    break_time: Пауза
+    campaign:
+      actions:
+        remove:
+          confirmation: Унесите тренутни назив кампање наведен испод у текстуално поље да бисте уклонили кампању
+          success: Кампања %{campaignName} је успешно уклоњена.
+      users:
+        completion_statuses:
+          completed: Завршено
+          in_progress: У току
+          not_started: Није започето
+    change_password: Промени лозинку
+    delete: Обриши
+    edit: Измени
+    lighthouse_app: Светионик Мерсер
+    login: Пријава
+    manage: Управљај
+    'no': Не
+    resource:
+      create_success: "%{readableResourceName} је успешно додат"
+      update_success: "%{readableResourceName} је успешно ажуриран"
+    session_timeout_modal:
+      buttons:
+        close: Затвори
+        log_out: Одјавите се сада
+        re_login: Пријавите се поново
+        stay_logged_in: Останите пријављени
+      message: Ваша сесија ће истећи за 2 минута због неактивности. Кликните на „Остани пријављен“ да бисте наставили сесију, или ћете бити аутоматски одјављени.
+      message_after_timeout: Ваша сесија је истекла, молимо вас да се поново пријавите.
+      time_remaining: Преостало време
+      title: Упозорење о временском ограничењу сесије
+    update: Ажурирање
+    upload: Отпреми
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Отказано
+        requested_cancellation: Захтевано отказивање
+        requested_cancellation_rejected: Захтевано отказивање је одбијено
+        requested_rescheduling: Захтевано је поновно заказивање
+        requested_rescheduling_rejected: Захтевано поновно заказивање је одбијено
+    'yes': Да
+  idp:
+    reflective_questions:
+      already_completed: Интегрисани план (ИПР) је већ завршен, сада не можете одговарати на питања.
+  idp_templates:
+    errors:
+      user_idp_template_not_found: Није вам додељен ниједан шаблон за идентификацију личности.
+  mailer:
+    magic_link:
+      body:
+        dear: Драги/а %{name},
+        greetings: Поздрав за данашњи дан!
+        instructions: Кликните на линк испод да бисте се пријавили на светионик.
+        signin_link: Линк за пријаву
+      subject: Линк за пријаву на Lighthouse
+  navigation:
+    logout: Одјавите се
+  profile:
+    add_field: Додај поље
+    add_photo: Додај фотографију
+    age: Узраст
+    change_password: Промена лозинке
+    change_photo: Промени фотографију
+    email: Е-пошта
+    female: Женско
+    first_name: Име
+    gender: Пол
+    incomplete: Подаци вашег профила су непотпуни. Молимо вас да попуните податке профила.
+    last_name: Презиме
+    locale: Жељени језик
+    male: Мушки
+    mandatory_fields: Означава обавезна поља
+    not_disclosed: Радије не бих открио/ла
+    old_data: Подаци вашег профила су стари %{months} ​​месеци. Молимо вас да потврдите детаље да бисте наставили даље.
+    password: Лозинка
+    password_confirmation: Потврда лозинке
+    success_update: Профил је успешно сачуван
+    timezone: Временска зона
+    title: Мој профил
+    update: Ажурирање
+    update_required: Потребна су ажурирања профила
+  reports:
+    actions:
+      add: Додај извештај
+      download: Преузми извештај
+      view: Прикажи извештај
+    modules:
+      campaign_factors_table:
+        add_condition: Додај услов
+        baseline_score: Основни резултат
+        blindspots: Слепе тачке
+        campaign_factor_conditions: Услови фактора кампање
+        cancel: Откажи
+        color: Боја
+        delete: Обриши
+        description: Опис
+        if: Ако
+        label: Ознака
+        no_conditions: Без услова
+        save: Сачувај
+        strengths: Снаге
+        then: Затим прикажите следећи текст
+        title: Наслов
+      factors_table:
+        description: Опис
+        no_data: Нема доступних података за овај одељак.
+        rank: Ранг
+        score: Резултат
+      gap_assessment:
+        gap: Јаз
+        item: Индикатор
+        negative_gap: Негативне празнине
+        no_negative_gaps: Нема негативних празнина
+        no_positive_gaps: Нема позитивних празнина
+        positive_gap: Позитивне празнине
+        rank: Ранг
+        scoring_category: Компетенција
+      highest_lowest:
+        bottom_5: ДОЊИ 5
+        category: Категорија
+        highest_scores: Највиши резултати
+        item: Индикатор
+        lowest_scores: Најнижи резултати
+        mean_score: Просечан резултат
+        rank: Ранг
+        scoring_category: Компетенција
+        sub_competenties: Подкомпетенције
+        top_5: ТОП 5
+      potential_career_full:
+        career_strengths_and_results: Снаге каријере и ваши резултати
+        career_sub_tracks: Под-прагови каријере
+        key_career_tracks_within: Испод је листа потенцијалних радних места за сваку од каријерних области. Имајте на уму да је ова листа само индикативна и није исцрпна. Имајте на уму да радна места написана курзивом захтевају виши ниво образовања и/или искуства.
+        potential_areas_of_study: Потенцијалне области студија
+        strength_high: Снага потписа
+        strength_low: Развојна снага
+        strength_moderate: Потенцијална снага
+        work_environment: Радно окружење
+        your_suitability: Ваша подобност
+      single_value:
+        factor_name: Категорија бодовања
+        question_name: Питања
+      single_value_cluster:
+        competency: Компетенција
+        developmental_rating: Развојна оцена
+        questions: Питања
+      strength_clusters:
+        index_sub_factors_considered: Подфактори Индекса просперитета који су узети у обзир да би се добила ваша коначна оцена за радно окружење %{workstyle}
+        possible_roles: Могуће улоге
+        work_environments: Очекивана радна окружења
+      three_sixty_default:
+        factor:
+          items: Ставке
+          max: Максимална вредност
+          mean: Просечна вредност
+          min: Минимална вредност
+          standardDeviation: Стандардна девијација
+          sum: Збир
+          totalResponses: Укупан број одговора
+          variance: Варијанса
+          weightedMean: Пондерисана средња вредност
+        question:
+          no_response: Нема доступног одговора
+        statistic: Статистика
+        value: Вредност
+      three_sixty_report_summary:
+        completed: Завршено
+        footnote: "* Искључено због захтева за минималним прагом"
+        invited: Позван
+        relationships: Односи
+        total: Укупно
+      video_response:
+        no_results: Нема снимљених видео снимака
+    show:
+      export_pdf: Извоз у PDF
+      header: Пријави
+    statuses:
+      approved: Одобрено
+      available: Доступно
+      denied: Одбијено
+      incomplete: Непотпуно
+      not_available: Није доступно
+      on_hold: На чекању
+      released: Објављено
+  shared:
+    filters:
+      clear: Обриши филтере
+    internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
+    terms_conditions_privacy: Изјава о приватности
+    tte_terms_and_condition: Услови и приватност
+  simple_form:
+    placeholders:
+      administrator:
+        email: Адреса е-поште
+        last_name: Презиме
+      memebrship:
+        last_name: Презиме
+      user:
+        email: Адреса е-поште
+        first_name: Име
+        last_name: Презиме
+        password: Лозинка
+      user_form:
+        email: Адреса е-поште
+        first_name: Име
+        last_name: Презиме
+        password: Лозинка
+  subjects:
+    approval_statuses:
+      approved: Одобрено
+      denied: Одбијено
+      waiting: Потребно је одобрење
+    report_approval_status:
+      approved: Одобрено
+      denied: Одбијено
+      waiting: Чекање
+    report_release_status:
+      on_hold: На чекању
+      released: Објављено
+      waiting: Чекање
+    report_statuses:
+      approved: Одобрено
+      available: Доступно
+      denied: Одбијено
+      incomplete: Непотпуно
+      not_available: Није доступно
+      not_prepared: Није спремно
+      on_hold: На чекању
+      prepared: Готово
+      released: Објављено
+    statuses:
+      completed: Завршено
+      declined: Одбијено
+      denied: Одбијено
+      done: Готово
+      not_completed: Није завршено
+      waiting: Чекање
+  threesixty:
+    accept_privacy_modal:
+      accept: Прихвати
+      checkbox: Прочитао/ла сам и разумео/ла сам горе наведену Политику приватности
+      title: Сагласност за обраду података
+    action: Акција
+    add: Додај
+    and: И
+    approve_all: Одобри све
+    approve_all_successful: Одобрене све номинације
+    approve_evaluations: Одобравање евалуација
+    approve_nominations: Одобри номинације
+    approve_reports: Одобравање извештаја
+    approved: Одобрено
+    approving_mail_sent: Порука за одобравање номинације је послата менаџерима
+    as_my: као мој
+    assessment: Процена
+    back_to_tasks: Назад на задатке
+    begin: Почетак
+    cancel: Откажи
+    close_evaluation_modal:
+      message: Када прегледате извештај, %{pronoun_or_name} неће моћи да добија даље евалуације
+      title: Да ли сте сигурни да желите да погледате извештај?
+    closed_campaign_message: Ова 360 кампања је затворена. Не можете номиновати или оцењивати никога за ову кампању.
+    completed: Завршено
+    confirm: Јеси ли сигуран/сигурна?
+    confirmation_for_nomination_removal: Да ли сте сигурни да желите да уклоните номинацију
+    confirmation_required: Потребна је потврда
+    confirmation_text_incorrect: Текст потврде је нетачан
+    confirmation_text_placeholder: Текст потврде овде
+    continue: Настави
+    dashboard_title: Добродошли %{name}
+    decline: Одбијање
+    decline_invite: Одбиј позив
+    denied: Одбијено
+    deny_all: Одбиј све
+    deny_all_successful: Одбијене све номинације
+    download_pdf: Преузми ПДФ
+    download_report: Преузми извештај
+    download_reports: Преузми извештаје
+    edit_user: Уреди корисника
+    email_approve_request: Захтев за одобрење имејла
+    email_schedules:
+      delete_successful: Распоред е-поште је успешно обрисан
+    evaluate: Процени
+    evaluation: Евалуација
+    evaluation_all_closed_message: Тренутно све номинације чекају одобрење
+    evaluation_closed_nomination_message: Не можете номиновати за ову тему јер је евалуација за њу затворена
+    evaluation_help_modal:
+      title: Помоћ при евалуацији
+    evaluations: Евалуације
+    evaluator: Евалуатор
+    export_pdf: Извези PDF
+    first_name: Име
+    first_name_error: Молимо унесите име
+    help: Помоћ
+    language: Језик
+    last_name: Презиме
+    last_name_error: Молимо унесите презиме
+    load_results: Учитај резултате
+    mail_history:
+      statuses:
+        success: Успех
+        undelivered: Неиспоручено
+    my_projects: Моји пројекти
+    name_label: Име
+    nominate: Номинуј
+    nominate_evaluators: Номиновати евалуаторе за
+    nomination: Номинација
+    nomination_help_modal:
+      title: Помоћ при номинацији
+    nomination_predicates:
+      atleast: Најмање %{count}
+      atmost: Највише %{count}
+      exactly: Тачно %{count}
+    nominations: Номинације
+    options:
+      global:
+        cannot_re_edit: Учесници не могу да мењају евалуације
+    or: Или
+    page_title: Signify 360° преглед - Примени ниво
+    participant_list:
+      actions:
+        approve_report: Одобри извештај
+        download_report: Преузми извештај
+        edit: Измени
+        hold_report: Задржај извештај
+        login: Пријава
+        mark_as_done: Означи као готово
+        release_report: Извештај о објављивању
+        remove_campaign: Уклони из кампање
+        remove_report_approval: Уклони одобрење извештаја
+        remove_report_hold_release_report: Уклони задржавање/ослобађање извештаја
+        remove_subject: Уклони наслов
+        unmark_as_done: Уклони ознаку као завршено
+        view_report: Прикажи извештај
+        view_responses: Погледајте одговоре
+      confirmation_messages:
+        approve_report: Да ли сте сигурни да желите да одобрите извештај?
+        hold_report: Да ли сте сигурни да желите да задржите извештај?
+        mark_evaluation_done: Да ли сте сигурни да желите да означите евалуацију као завршену? Евалуација ће бити затворена за ову тему.
+        release_report: Да ли сте сигурни да желите да објавите извештај?
+        remove_from_campaign: Да ли сте сигурни да желите да уклоните корисника из кампање?
+        remove_release_hold: Да ли сте сигурни да желите да уклоните статус „Отпусти/Задржај“?
+        remove_report_approval: Да ли сте сигурни да желите да уклоните одобрење извештаја?
+        remove_subject: Да ли сте сигурни да желите да уклоните наслов са имејлом из кампање?
+        umark_evaluation_as_complete: Да ли сте сигурни да желите да уклоните ознаку са евалуације као завршене?
+      report_generation_message: Извештај се генерише. Обавестићемо вас када извештај буде спреман.
+    processing: Обрада
+    processing_report: Извештај о обради
+    progress_text: "%{completed} од %{total}"
+    question:
+      chat_type:
+        input_placeholder: Напишите своју поруку...
+      email_type:
+        bcc: Скривена копија
+        cc: Копија
+        edit: Измени
+        max_length_warning: Преостало је %{x} знакова
+        message: Ваша порука
+        send: Пошаљи
+        subject: Предмет
+        successful_message: Успешно сте послали имејл
+        to: До
+    remind_all: Подсети све
+    remind_mail_sent: Подсетници послати евалуаторима који нису завршили евалуацију
+    report_for: Пријави за
+    report_generation_in_progress: Извештај се генерише. Обавестићемо вас када извештај буде спреман.
+    reports: Извештаји
+    reports_help_modal:
+      title: Помоћ за извештаје
+    reset_campaign_confirmation: Унесите тренутни назив кампање наведен испод у текстуално поље да бисте ресетовали све учеснике
+    reset_nomination_confirmation: Унесите тренутни назив кампање наведен испод у текстуално поље да бисте ресетовали све номинације
+    save: Сачувај
+    select_relationnship: Изаберите везу
+    select_relationship: Изаберите везу
+    self: Само
+    set_name_for_evaluator: Постави име за евалуатора
+    setup_nominations: Поставите номинације
+    subject: Предмет
+    submit: Пошаљи
+    total_progress: Укупан напредак
+    user_name_input_placeholder: укуцајте име или имејл...
+    validation_errors: Грешке при валидацији
+    view_my_report: Погледајте мој извештај
+    view_nominations: Погледајте номинације
+    view_reports: Прикажи извештаје
+    waiting: Чекање
+    you: Ти
+    yourself: Ви сами
+  user:
+    fields:
+      email: Адреса е-поште
+      first_name: Име
+      last_name: Презиме
+  user_assessments:
+    redirect: Бићете преусмерени на сајт треће стране за ову процену. Кликните на дугме „Настави“ ако желите да започнете процену.
+  user_reports:
+    actions:
+      regenerate: Регенериши
+    messages:
+      regenerate_successful: Задатак регенерације извештаја је успешно заказан
+    modals:
+      remove:
+        content: Да ли сте сигурни да желите да уклоните извештај %{userReportName}?
+        successfully: Извештај %{userReportName} је успешно уклоњен
+    preview_report: Преглед извештаја
+    statuses:
+      generating: Генерисање
+      not_prepared: Није доступно
+      prepared: Доступно
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Звук је снимљен, али није сачуван
+        RECORDING: Снимање звука је у току
+        SAVING: Отпремање снимљеног звука је у току
+      required: Молимо вас да снимите и сачувате аудио пре него што наставите
+    FileUpload:
+      in_progress:
+        SAVING: Отпремање датотеке је у току
+      required: Молимо вас да отпремите датотеку
+    TextEntry:
+      Email:
+        character_range: Унета имејл порука мора имати најмање %{min} и највише %{max} знакова.
+        subject:
+          min_length: Поље за наслов треба да има најмање 10 карактера
+        to:
+          required: Поље „До“ је обавезно
+    VideoResponse:
+      in_progress:
+        recorded: Видео је снимљен, али није сачуван
+        recording: Снимање видеа је у току
+        saving: Отпремање снимљеног видеа је у току
+      required: Молимо вас да снимите и сачувате видео пре него што наставите
+    actions_still_in_progress: Доле наведене радње су у току. Ако наставите, изгубићете ове податке.
+    blank: не може бити празно
+    character_count: 'Број знакова '
+    character_range: Ваш одговор мора бити дугачак најмање %{min} и не више од %{max} знакова.
+    date: Ваш одговор мора бити важећи датум (мм/дд/гггг)
+    each_group_contains: Свака група треба да садржи не мање од %{min} и не више од %{max} ставки
+    email: Ваш одговор мора бити важећа имејл адреса
+    exact: Молимо вас да изаберете тачно %{count} избора
+    file_upload:
+      EntityTooLarge: Величина датотеке треба да буде мања од %{maxFileSize} MB
+      WrongFileType: Тип датотеке треба да буде један од следећих %{allowedFileTypes}
+    issue: Проблем
+    least: Молимо вас да одговорите на најмање %{min} одговора.
+    least_hotspot: Молимо вас да одговорите на најмање %{min} одговора.
+    max_character: Ваш одговор не сме бити дужи од %{max} знакова.
+    max_word: Ваш одговор не сме бити дужи од %{max} речи.
+    min_character: Ваш одговор мора да садржи најмање %{min} знакова.
+    min_word: Ваш одговор мора имати најмање %{min} речи
+    most:
+      few:
+      one: Изаберите највише %{max} избора
+      other:
+    must_rank_between: Молимо вас да доделите вредност од %{min} до %{max} за сваку ставку. Вредности се не смеју понављати.
+    must_select: Изаберите од %{min} до %{max} опција
+    number: Ваш одговор мора бити број
+    photo: потребно
+    range: Молимо вас да одговорите на најмање %{min} и не више од %{max} одговора.
+    required: Молим вас, одговорите на ово питање
+    text: Ваш одговор не сме да садржи бројеве
+    title:
+      few:
+      one: Постоји једна грешка, молимо вас да проверите своје одговоре
+      other: Постоје грешке %{count}, молимо вас да проверите свој одговор.
+    word_count: 'Број речи '
+    word_range: Ваш одговор мора бити дугачак најмање %{min} и не више од %{max} речи.
+  'yes': Да
+  your: Твој
+  yourself: Ви сами

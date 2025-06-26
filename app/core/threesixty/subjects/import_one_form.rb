@@ -8,18 +8,47 @@ module Threesixty
       attribute :email, String
       attribute :password, String
       attribute :locale, String
+      attribute :current_job_role, String
+      attribute :target_job_role, String
 
       validates :password, length: { within: Devise.password_length }, allow_blank: true
       validates :password, allow_blank: true, strong_password: true, if: :enable_strong_password?
       validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
-
       validates :email, :first_name, :last_name, presence: true
       validates :email, format: { with: Devise.email_regexp }
+
+      validate :validate_job_roles
+      validate :ensure_current_and_target_job_roles_are_different
 
       private
 
       def enable_strong_password?
         context.campaign.project.security_setting.enforce_strong_password
+      end
+
+      def validate_job_roles
+        validate_job_role(:current_job_role)
+        validate_job_role(:target_job_role)
+      end
+
+      def validate_job_role(role_attribute)
+        role_name = send(role_attribute)
+        return if role_name.blank?
+
+        project = context.campaign.project
+        unless JobRole.exists?(name: role_name, project: project) ||
+               JobRole.exists?(name: role_name, project_id: nil)
+          errors.add(:base,
+                     I18n.t('activemodel.errors.models.import_one.attributes.job_role.not_found', name: role_name))
+        end
+      end
+
+      def ensure_current_and_target_job_roles_are_different
+        return if current_job_role.blank? || target_job_role.blank?
+
+        if current_job_role == target_job_role
+          errors.add(:base, I18n.t('activemodel.errors.models.import_one.attributes.job_role.cannot_be_same'))
+        end
       end
     end
   end

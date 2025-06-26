@@ -15,11 +15,7 @@ module EndUser
           user_id: current_user.id,
           workshop_invites: { campaign_id: object.campaign_id },
           workshops: { campaign_assessment_group_id: campaign_assessment_group_id }
-        ).count
-    end
-
-    def campaign_assessment_group_id
-      object.workshops&.first&.campaign_assessment_group_id
+        ).distinct.count
     end
 
     private

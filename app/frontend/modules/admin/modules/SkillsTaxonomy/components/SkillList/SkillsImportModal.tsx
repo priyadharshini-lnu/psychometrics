@@ -155,14 +155,18 @@ export const SkillsImportModal: React.FC<OwnProps> = ({
         </Button>,
       ]}
     >
-      <div className="mbl" style={{ fontSize: '16px' }}>
-        <a href={csvFilePath}>
-          <CloudDownloadOutlined />
-          <span className="mls">
-            {I18n.t('administration.skills.import.download_example_csv')}
-          </span>
-        </a>
-      </div>
+      {csvFilePath ? (
+        <div className="mbl" style={{ fontSize: '16px' }}>
+          <a href={csvFilePath}>
+            <CloudDownloadOutlined />
+            <span className="mls">
+              {I18n.t('administration.skills.import.download_example_csv')}
+            </span>
+          </a>
+        </div>
+      ) : (
+        <p>{I18n.t('common.text.refer_export_file')}</p>
+      )}
       {errors.length ? (
         <Alert
           message={false}

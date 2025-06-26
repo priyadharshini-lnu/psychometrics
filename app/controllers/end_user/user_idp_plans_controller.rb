@@ -2,7 +2,11 @@
 
 module EndUser
   class UserIdpPlansController < ApplicationController
-    before_action :load_user_idp_plan, only: %i[show update update_reflection_questions]
+    include AsyncRequestHandler
+    include UserReports::IdpReportGeneration
+    skip_before_action :authenticate_user!, only: [:pdf_preview]
+
+    before_action :load_user_idp_plan, only: %i[show update update_reflection_questions download pdf_preview]
     before_action :load_skill_gap_report_status, only: %i[show]
 
     def summary
@@ -19,6 +23,7 @@ module EndUser
           data: EndUser::IdpPlanSerializer.new(
             context: {
               skill_gap_report_available: @skill_gap_report_available,
+              current_user: current_user,
               reflection_answers: user_reflection_question_answers
             }
           ).serialize(@user_idp_plan)
@@ -43,7 +48,12 @@ module EndUser
 
     def update_reflection_questions
       authorize(current_user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
-      Idp::UpdateUserReflectionQuestions.call!(@user_idp_plan, params[:reflection_questions])
+      result = Idp::UpdateUserReflectionQuestions.call!(@user_idp_plan, params[:reflection_questions])
+      unless result
+        return render json: { error: t('idp.reflective_questions.already_completed') },
+                      status: :unprocessable_entity
+      end
+
       render json: {
         data: Panko::ArraySerializer.new(
           @user_idp_plan.idp_template.idp_template_reflection_questions,
@@ -55,7 +65,20 @@ module EndUser
       }
     end
 
+    async_request :download, handler: ::Idp::AsyncDownload,
+      permit_params: lambda { |params|
+        {
+          user_id: user.id,
+          lang: params[:lang],
+          include_reflective_questions: allow_include_reflective_questions?
+        }
+      }
+
     private
+
+    def allow_include_reflective_questions?
+      current_user == @user_idp_plan.user && params[:include_reflective_questions] == true
+    end
 
     def user_reflection_question_answers
       @user_idp_plan.user_reflection_question_answers.group_by(&:reflection_question_id).transform_values do |answers|
@@ -65,6 +88,10 @@ module EndUser
 
     def user
       @user ||= params[:user_id].present? ? User.find(params[:user_id]) : current_user
+    end
+
+    def resource
+      @user_idp_plan
     end
 
     def load_user_idp_plan

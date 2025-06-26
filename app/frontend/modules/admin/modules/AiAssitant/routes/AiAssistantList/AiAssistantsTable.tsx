@@ -52,8 +52,8 @@ export const AiAssistantsTable: React.FC<Props> = ({ openModal }) => (
     />
     <Resource.Column<AiAssistant>
       title={I18n.t('administration.ai_assistants.column.provider')}
-      id="providerId"
-      render={aiAssistant => (AI_PROVIDERS[aiAssistant.providerId]?.name)}
+      id="modelId"
+      render={aiAssistant => (AI_PROVIDERS[aiAssistant.modelId]?.name)}
       width={200}
       sorter
     />

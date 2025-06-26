@@ -30,6 +30,9 @@ AllCops:
     - db/migrate/20250207113529_add_consumer_to_license_usages.rb
     - db/migrate/20250224075920_add_columns_to_saml_setting.rb
     - db/migrate/20250226084133_add_qc_level_settings_to_report_approval_settings.rb
+    - db/migrate/20250429125102_add_api_key_fields_to_webhook_subscriptions.rb
+    - db/migrate/20250430135151_add_columns_to_user_idp_plan.rb
+    - db/migrate/20250504102702_add_prompt_to_assistant.rb
 
   UseCache: true
   CacheRootDirectory: tmp
@@ -95,6 +98,8 @@ Metrics/BlockNesting:
 
 Metrics/ClassLength:
   Max: 200
+  Exclude:
+    - lib/devtools/**/*
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -252,3 +257,8 @@ Rails/WhereRange:
 # NOTE: It was decided that we will allow longer safe navigation chains
 Style/SafeNavigationChainLength:
   Enabled: false
+
+Rails/Exit:
+  Enabled: true
+  Exclude:
+    - lib/devtools/**/*.rb

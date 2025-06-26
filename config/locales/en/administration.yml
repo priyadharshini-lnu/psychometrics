@@ -173,6 +173,10 @@ en:
             manage: Manage
             title: IDP Templates
             view: View
+          jobRoles:
+            manage: Manage
+            title: Job Roles
+            view: View
           mediaLibraries:
             manage: Manage
             title: Media Libraries
@@ -186,6 +190,16 @@ en:
             manage: Manage
             title: Norms
             view: View
+          proficiencyLevels:
+            export: Export Proficiency Levels
+            export_translations: Export Proficiency Levels translations
+            import: Import Proficiency Levels
+            import_translations: Import Proficiency Levels Translations
+            manage: Manage
+            title: Proficiency Levels
+            view: View
+          proficiency_level:
+            title: Proficiency Levels
           projectSettings:
             assessments: Assessments
             design: Design
@@ -249,10 +263,10 @@ en:
             view_report: View Report
             view_stats: View Stats
           skills:
-            export: Export
-            export_translations: Export translation
-            import: Import
-            import_translations: Import translation
+            export: Export Skills
+            export_translations: Export Skills Translations
+            import: Import Skills
+            import_translations: Import Skills Translations
             manage: Manage
             title: Skills
             view: View
@@ -319,6 +333,7 @@ en:
           preferred_language: Allowed Languages
           required_error: Can't be empty
           title: Basic Information
+        center_group: Assessment Center Group
         confirm_message: Are you sure you want to delete an invitation?
         confirm_message_with_title: Are you sure you want to remove the Invite with title '%{invite_title}'?
         confirm_title: Confirm
@@ -449,6 +464,7 @@ en:
         per_page: per page
         plural:
           block: blocks
+          choice: choices
           question: questions
         present_only: Present only
         question_per_factor_and_show: questions per factor and show
@@ -1046,6 +1062,13 @@ en:
         success_msg: Import was uploaded successfully
       modal:
         title: Import External Campaign Scores
+    client_features:
+      client_features: Client Features
+      form:
+        ai_assistants: AI Assistants
+        ai_assisted_idp: AI Assisted IDP
+        global_skills: Global Skills
+        sms_notification: SMS Notification
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1496,6 +1519,7 @@ en:
       enabled: Enabled
       import:
         failure_msg: Error while importing file.
+      minute: minute
       next: Next
       reset: Reset
       save: Save
@@ -1508,6 +1532,18 @@ en:
         successfully: Communication %{name} was deleted successfully.
       edit:
         header: Edit Communication
+      edit_translation:
+        body_label: Body
+        copy: Copy
+        copy_to_code_editor_hint: 'Tip: Copy the reference text above and switch to code editor mode for easier HTML editing'
+        locale_label: Locale
+        no_reference_body: No reference body available
+        no_reference_subject: No reference subject available
+        reference_body_label: Reference Body
+        reference_subject_label: Reference Subject
+        subject_label: Subject
+        title: Edit Translation
+        update_button: Update Translation
       form:
         all: All
         assessment_completion_status_code: Assessment Completion Status Code
@@ -1537,6 +1573,7 @@ en:
         idp_template_rejected: IDP Rejected
         invitation: Invitation
         kind: Communication Types
+        locale: Locale
         magic_link_email: Magic Link Email
         new_assignment: New Assignment
         new_users: New Users
@@ -1590,9 +1627,11 @@ en:
           copy: Copy Communication
           delete: Delete Communication
           download: Download Communication History
+          edit_translation: Edit Translation
           view: View Communication
       show:
         assessment: 'Assessment:'
+        assessment_center_group: 'Assessment Center Group:'
         back: Back
         body: 'Body:'
         campaign: 'Campaign:'
@@ -1612,23 +1651,33 @@ en:
         copy: Copy Communication
         destroy: Delete Communication
         download: Download Communication History
+        edit_translation: Edit Translation
         title: Communication's options
         view: View Communication
       toggle_status:
         successfully: Communication was updated successfully.
+      update_translation:
+        successfully_updated: Translation was updated successfully.
     components:
       input_duration:
         placeholder: Enter as '1d 2h 3m'
     create: Create
     dashboard:
       capacity_name: Capacity Name
+      choose_file_format: Choose file format
       dashboard_types:
         oracle_analytics: Oracle Analytics
         powerbi: PowerBi
       dashboards: Dashboards
+      export_dashboard_to_file: Export Dashboard to file
+      export_job_failure: Failed to start export
+      export_job_success: Export job started. You will be notified when it completes.
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
       loading_failed: Dashboard loading failed.
+      only_export_current_tab: Only Export Current Tab
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
         embed_token_error_title: Unable to generate Embed token.
@@ -1698,11 +1747,15 @@ en:
         csv_file_required: Must be a CSV file
         image_download_failed: 'Failed to download image from %{url}: %{message}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
-        invalid_date_format: 'Invalid date format: %{date}'
-        invalid_development_action_type: 'Řádek %{row}: Neplatný typ vývojové akce ''%{value}''. Platné typy akcí vývoje jsou: %{valid_development_action_types}'
+        invalid_date: Date format for %{date} is invalid.
+        invalid_date_format: 'Row %{row}: Invalid date format for %{field}.'
+        invalid_development_action_type: 'Row %{row}: Invalid development action type %{value}. Valid development action types are: %{valid_development_action_types}.'
+        invalid_duration_format: 'Only numeric values are allowed for duration. Row %{row}: %{value} is not a valid duration.'
         invalid_image_file: 'Invalid image file: %{message}'
         invalid_image_url: 'Invalid image URL format: %{url}'
+        invalid_languages: Invalid available languages %{invalid_languages} for row %{row}.
         invalid_learning_style: 'Row %{row}: Invalid learning style ''%{value}''. Valid types are: %{valid_types}'
+        languages_only_for_courses: Available Languages can only be set for development actions of type "Course". Please remove the available language for row %{row} or change the type of development action to "Course".
         missing_columns: 'Required columns are missing: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Skill not found for ID: %{skill_id}'
@@ -1726,6 +1779,9 @@ en:
       development_action_types:
         course: Course
         default: Default
+      duration:
+        max_length: Cannot be greater than 1 year
+        min_length: Cannot be less than 1 minute
       edit:
         header: Edit Development Action
       export:
@@ -1744,11 +1800,13 @@ en:
       export_global_development_actions: Global Development Actions
       export_global_development_actions_translations: Global Development Action Translations
       form:
+        available_languages: Available Languages
         client_placeholder: Select a Client
         course_image: Course Image
         course_link: Course Link
         description: Description
         development_action_type: Development Action Type
+        duration: Duration
         end_date: End Date
         learning_style: Learning Style
         name: Name
@@ -1871,7 +1929,6 @@ en:
     enable: Enable
     errors:
       csv_file_required: File must be a CSV file
-      download_failed: 'Failed to download file: %{message}'
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
       invalid_csv_format: 'Invalid CSV format: %{message}'
       invalid_url: 'Invalid URL: %{message}'
@@ -2024,6 +2081,10 @@ en:
       global_skills: Global Skills
       idp: IDP
       idp_template: Add IDP Template
+      intro_message: Intro Message
+      intro_message_hint: To modify the intro message, please save the IDP template first to enable these settings.
+      intro_message_success: Intro message saved successfully
+      locales: Locales
       logo_image: Logo image
       logo_type:
         both: Mercer and Client logos
@@ -2033,6 +2094,7 @@ en:
       logo_type_label: Logo Type
       no_reflection_questions_selected: No Reflection Questions selected
       none: None
+      reference_locale: Reference Locale
       reflection_questions: Reflection Questions
       reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.
       reflection_questions_updated: Reflection Questions updated successfully.
@@ -2277,6 +2339,44 @@ en:
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
       subject: Subject
+    job_role:
+      column:
+        job_group: Job Group
+      export:
+        failure_msg: Error while exporting translations
+        success_msg: Exporting development actions in progress.
+      export_action:
+        translations: Export Job Role Translations
+      form:
+        code: Code
+        description: Description
+        job_group: Job Group
+        name: Name
+        title: Job Role
+      global: Is Global Job Role?
+      import:
+        download_example_csv: Download Example csv
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        translations: Import Job Role Translations
+      translations: Job Role Translations
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Expected Proficiency Level
+        job_role: Job Role
+        skill: Skill
+      form:
+        expected_proficiency_level: Expected Proficiency Level
+        job_role: Job Role
+        skill: Skill
+        title: Skill Job Mapping
+      global: Is Global Skill Job Mapping?
+      import:
+        taxonomy: Taxonomy
+    job_roles:
+      export:
+        translations:
+          details: Details
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2285,7 +2385,7 @@ en:
       edit:
         header: Edit
       index:
-        new_folder: New Folder
+        new_folder: New folder
         owner: Owner
         title: Media library
         upload: Upload
@@ -2298,7 +2398,7 @@ en:
         updated_at: Modified date
         upload: Upload new file
       new:
-        header: New Folder
+        header: Upload Files
       resource:
         confirmations:
           delete:
@@ -2550,6 +2650,74 @@ en:
         successfully: Successfully
       toggle_status:
         successfully: Successfully
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Level definition must be an array of definitions.
+          level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
+          must_be_unique: Must be unique
+          proficiency_level_exists: A Proficiency Level with this skill and project already exists
+          proficiency_level_exists_for_all_skills: A Proficiency Level for all skills already exits
+          proficiency_level_exists_for_category: A Proficiency Level for this category already exists
+          project_level_all_skills_exists: A 'all_skills' proficiency level already exists
+          skill_must_exist: Skill must be present for proficiency_type 'by_skill'
+      export:
+        actions:
+          proficiency: Export Proficiency
+          translations: Export Proficiency Translations
+        details: Details
+        failure_msg: Error while exporting proficiency levels
+        success_msg: Exporting development actions in progress
+        translations:
+          details: Proficiency Level Translations
+      fields:
+        level: Level
+        level_description: Level Description
+        level_name: Level Name
+        proficiency_translations: Proficiency Translations
+        proficiency_type: Proficiency Type
+        skill: Skill
+        skill_category: Skill Category
+        skill_name: Skill name
+        title: Proficiency
+      global: Is Global Proficiency?
+      import:
+        actions:
+          proficiency: Import Proficiency
+          translations: Import Proficiency Translations
+        errors:
+          all_skills_global_exists: 'Row %{row_number}: A global-level ''all_skills'' ProficiencyLevel already exists'
+          all_skills_project_exists: 'Row %{row_number}: A project-level ''all_skills'' ProficiencyLevel already exists'
+          by_category_exists: 'Row %{row_number}: A ''by_category'' ProficiencyLevel already exists for this project and skill category'
+          by_category_missing: 'Row %{row_number}: Project and Skill Category must be present for ''by_category'' type'
+          by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
+          by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
+          invalid_csv_format: 'Invalid CSV format: %{message}'
+          invalid_json: 'Line %{line}: Invalid JSON in LevelDefinition - %{message}'
+          invalid_json_structure: must be a JSON object with keys like 'description' and 'summary'
+          invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
+          missing_columns: 'Missing required columns: %{fields}'
+          missing_required_fields: 'Line %{line}: Missing required fields (%{fields})'
+          save_failed: 'Line %{line}: %{message}'
+          skill_not_found: 'Row %{row_number}: Invalid or missing Skill'
+        job_queued: Proficiency levels import job has been queued
+      translations:
+        export:
+          failure_msg: Error while exporting translations
+          success_msg: Exporting development actions in progress.
+        import:
+          errors:
+            invalid_csv_format: 'Invalid CSV format: %{message}'
+            invalid_locales: Invalid locale
+            level_not_found: 'Level not found for ID: %{level_id}'
+            missing_columns: 'Missing required columns: %{fields}'
+            missing_required_columns: 'Missing required columns: %{columns}'
+            row_id_blank: 'Row %{row}: ID cannot be blank'
+            save_failed: 'Error processing Skill ID %{id}: %{message}'
+      type:
+        all_skills: All Skills
+        by_category: By Category
+        by_skill: By Skill
     profile:
       change_password: Change password
       details: Details
@@ -2617,6 +2785,9 @@ en:
             key: send_test
             label: Send Test
         form:
+          acceptable_rate_limit:
+            label: Acceptable request limit
+            request_per: requests per
           active:
             label: Active
             name: active
@@ -3392,10 +3563,6 @@ en:
       tabs:
         admin_roles: Admin Roles
         feature_flags: Feature Flags
-        settings:
-          feature_toggled_error: Feature toggle failed
-          feature_toggled_success: Feature toggled successfully
-          sms_notification: SMS Notification
         siem: SIEM
         skill_aliases: Skill Aliases
     sheets:
@@ -3444,7 +3611,9 @@ en:
         rows: Rows
         settings: Settings
     skills:
+      applicable_proficiency_levels: Applicable Proficiency Levels
       columns:
+        skill_group: Skill Group
         skill_type: Skill Type
       errors:
         import:
@@ -3471,6 +3640,7 @@ en:
         description: Description
         name: Name
         project_placeholder: Select a Project
+        skill_group: Skill Group
         skill_type: Skill Type
         title: Skill
       global: Is Global Skill?
@@ -3482,6 +3652,7 @@ en:
       import_action:
         skills_title: Import Skills
         skills_translations_title: Import Skills Translations
+      skill_details: Skill Details
       skill_translations: Skills Translations
       skill_translations_project: Skill Translations based on Project
       skills_project: Skills based on Project
@@ -3495,6 +3666,8 @@ en:
             skill_not_found: Skill with ID %{id} not found
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Skill Job Mappings
+        job_roles: Job Roles
         proficiency: Proficiency
         skills: Skills
     sms_histories:
@@ -3706,6 +3879,14 @@ en:
           zero: 'Total : 0'
       more_actions: More actions
     taxonomy:
+      import:
+        download_example_file: Download Example File
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        taxonomy: Import Taxonomy
+      job_roles: Job Roles
+      proficiency: Proficiency
+      skill_job_mappings: Skill Job Mappings
       skills: Skills
       title: Taxonomy
     templates:
@@ -3922,6 +4103,12 @@ en:
         successfully: User %{name} was deleted successfully.
       list:
         email: Email
+      modals:
+        download_idp_reports:
+          error: Failed to schedule Bulk Download IDP Reports job failed.
+          include_reflective_questions: Include Reflective Questions
+          success: Bulk Download IDP Reports job was scheduled successfully.
+          title: Bulk Download IDP Reports
       new:
         header: New user
       reset_password:

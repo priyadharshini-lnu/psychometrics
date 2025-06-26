@@ -243,6 +243,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
               meetingLink: campaignAssessment?.meetingLink || '',
               meetingType: campaignAssessment?.meetingType || '',
               linkedActivityId: campaignAssessment?.linkedActivityId || '',
+              linkedActivityName: campaignAssessment?.linkedActivityName || '',
               assessmentId: deleteAssessment.assessmentId,
               assessor: null,
               source: ASSESSMENT_SOURCE.CAMPAIGN_ASSESSOR_ASSESSMENTS,
@@ -430,7 +431,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
               )}
               <AssessorAssessmentList
                 assessments={combinedAssessorAssessments}
-                linkedAssessments={assessmentsMap}
                 onEdit={handleOpenAssignAssessorFormModal}
                 onDelete={handleDeleteAssessorForm}
               />

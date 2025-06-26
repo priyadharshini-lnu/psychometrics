@@ -150,7 +150,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'name' => 'skillvue',
           'active' => true,
           'skillvue_integration_details' => {
-            'api_key' => 'some_api_key',
+            'api_key' => '********_key',
             'completion_webhook_url' => nil,
             'results_webhook_url' => nil
           },
@@ -201,7 +201,7 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'mettl_integration_details' => {
             'api_base_url' => 'https://api.mettl.com',
             'public_key' => 'public_key',
-            'private_key' => 'private_key',
+            'private_key' => '*******_key',
             'completion_webhook_url' => webhooks_mettl_completion_notification_url(
               host: Settings.domain,
               subdomain: Settings.subdomain,

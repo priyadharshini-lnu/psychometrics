@@ -9,7 +9,10 @@ module Communications
       # rubocop:disable Layout/MultilineMethodCallIndentation
       workshop_invited_subjects = WorkshopInvitedSubject.pending.
         joins(workshop_invite: :workshops).
-        where(workshop_invites: { campaign_id: campaign.id }).
+        where(workshop_invites: {
+          campaign_id: campaign.id,
+          campaign_assessment_group_id: communication.campaign_assessment_group_id
+        }).
         where(%{
           workshops.total_seats > workshops.booked_seats AND
           NOW() < (

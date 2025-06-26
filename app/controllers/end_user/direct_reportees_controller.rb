@@ -4,14 +4,15 @@ class EndUser::DirectReporteesController < ApplicationController
   append_before_action :pundit_authorize
 
   def index
-    plans = Idp::DirectReporteesQuery.new(current_user.id, @current_project.id).query
+    plans = Idp::Queries::DirectReporteesQuery.new(current_user.id, @current_project.id).query
 
     paginated_plans = plans.page(params[:page]).per(params[:page_size] || 25)
 
     render json: {
       data: ::Panko::ArraySerializer.new(
         paginated_plans,
-        each_serializer: ::EndUser::DirectReporteeSerializer
+        each_serializer: ::EndUser::DirectReporteeSerializer,
+        context: { current_user: current_user }
       ).to_a,
       meta: {
         count: plans.count

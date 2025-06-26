@@ -20,9 +20,9 @@ describe('Test calculateAverageScores', () => {
     const result = calculateAverageScores(columnsData, evaluatorsData)
 
     expect(result).toEqual({
-      factor1: '5.3',
-      factor2: '5.0',
-      factor3: '4.7',
+      factor1: '5.33',
+      factor2: '5.00',
+      factor3: '4.67',
     })
   });
   it('should return "-" for factors with no scores provided by evaluators', () => {
@@ -38,8 +38,8 @@ describe('Test calculateAverageScores', () => {
     ]
     const result = calculateAverageScores(columnsData, evaluatorsData)
     expect(result).toEqual({
-      factor1: '5.3',
-      factor2: '5.0',
+      factor1: '5.33',
+      factor2: '5.00',
       factor3: '-',
     })
   });
@@ -54,9 +54,9 @@ describe('Test calculateAverageScores', () => {
     ]
     const result = calculateAverageScores(columnsData, evaluatorsData)
     expect(result).toEqual({
-      factor1: '5.0',
-      factor2: '7.0',
-      factor3: '9.0',
+      factor1: '5.00',
+      factor2: '7.00',
+      factor3: '9.00',
     })
   });
   it('should return an empty object when given empty input arrays', () => {

@@ -56,6 +56,9 @@ export const UserIdpPlanTR = t.type({
   skills: t.array(SkillsTR),
   userIdpDevelopmentActions: t.array(DevelopmentActionsTR),
   userIdpSkills: t.array(SkillsTR),
+  instructions: t.type({
+    content: t.string,
+  }),
 })
 
 

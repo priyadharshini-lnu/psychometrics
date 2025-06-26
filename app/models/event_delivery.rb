@@ -3,7 +3,7 @@
 class EventDelivery < ApplicationRecord
   belongs_to :resource, polymorphic: true
 
-  enum :event_type, { new_assessor_assessment: 0 }
+  enum :event_type, { new_assessor_assessment: 0, user_idp_unread_comments: 1 }
 
   enum :delivery_type, { email: 0, sms: 1 }
 

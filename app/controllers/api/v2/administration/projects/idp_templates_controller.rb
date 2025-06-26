@@ -6,6 +6,7 @@ module Api
     validate_crud_requests Api::V2::IdpTemplate::Schema
     validates_request_schema :create, :create_request_contract_and_schema
     validates_request_schema :update, :update_request_contract_and_schema
+    validates_request_schema :update_instructions, :update_instructions_request_contract_and_schema
 
     def create_request_contract_and_schema
       Api::V2::IdpTemplate::Contract.new(
@@ -19,20 +20,52 @@ module Api
       )
     end
 
+    def update_instructions_request_contract_and_schema
+      Api::V2::IdpTemplate::UpdateInstructionsContract.new(
+        schema: Api::V2::IdpTemplate::Schema.update_instructions_request
+      )
+    end
+
+    def show
+      locale = params[:query][:locale] || I18n.default_locale
+
+      Mobility.with_locale(locale) do
+        jsonapi_render json: @model
+      end
+    end
+
     def update
-      return super if @user_idp_plan.blank?
-
-      @model.update(appearance_params)
-
-      render json: {
-        error: t('administration.idp.errors.update')
-      }, status: :bad_request
+      if @user_idp_plan.present?
+        if @model.update(appearance_params)
+          render json: {
+            error: t('administration.idp.errors.update')
+          }, status: :bad_request
+        else
+          render json: { errors: @model.errors }, status: :unprocessable_entity
+        end
+      else
+        super
+      end
     end
 
     def update_reflection_questions
       IdpTemplates::UpdateReflectionQuestions.call(@model, params[:data][:attributes][:reflection_questions])
 
       jsonapi_render json: @model
+    end
+
+    def update_instructions
+      locale = params[:data][:attributes][:locale] || I18n.default_locale
+      instructions = params[:data][:attributes][:instructions]
+
+      Mobility.with_locale(locale) do
+        @model.update!(instructions: instructions)
+        jsonapi_render json: @model
+      end
+    rescue StandardError
+      render json: {
+        error: t('administration.idp.errors.update')
+      }, status: :bad_request
     end
 
     def uploads
@@ -61,8 +94,9 @@ module Api
     end
 
     def appearance_params
-      params.required(:data).required(:attributes).permit(:title_text, :subtitle_text, :logo_type, :show_reflections,
-                                                          fields: [])
+      params.required(:data).required(:attributes).permit(:title_text, :subtitle_text, :logo_type,
+                                                          :show_reflections, :show_reflection_questions,
+                                                          fields: [], translations: {})
     end
 
     def uploads_params

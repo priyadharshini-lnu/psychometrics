@@ -1,3 +1,5 @@
+@import "~/styles/spacing.less";
+
 .maxWidth30Chars {
   max-width: 20rem;
 }
@@ -9,6 +11,10 @@
 .iconSecondaryColor {
   // Desperate attempt, fix with LH-1231
   color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.badge {
+  top: -@space-4;
 }
 
 .editableText:global(.ant-typography-edit-content) {

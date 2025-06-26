@@ -41,6 +41,7 @@ export const AssessorUserAssessmentTR = t.type({
   meetingLink: t.union([t.string, t.null]),
   meetingType: t.union([t.string, t.null]),
   linkedActivityId: t.union([t.string, t.null]),
+  linkedActivityName: t.union([t.string, t.null]),
   assessor: t.union([AssessorTR, t.null]),
   source: t.union([t.string, t.null]),
 })

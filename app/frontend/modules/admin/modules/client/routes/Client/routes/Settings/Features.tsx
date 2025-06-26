@@ -1,21 +1,25 @@
 import React, { useEffect } from 'react'
 import {
-  Switch, Form, Space, Typography, Spin, message,
+  Switch, Form, Typography, Button, Spin,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
+import ResourceForm from '~/components/ResourceForm'
 
 const { Title } = Typography
 const { I18n } = window
 
 interface ClientFeatures {
   smsNotification: boolean;
+  aiAssistants: boolean;
+  aiAssistedIdp: boolean;
   id: string;
 }
 
 export const Features: React.FC = () => {
   const { clientId } = useParams() as { clientId: string }
-
+  const [form] = Form.useForm()
+  const aiAssistants = Form.useWatch('aiAssistants', form)
   const {
     data: featuresData,
     fetch: fetchFeature,
@@ -35,40 +39,102 @@ export const Features: React.FC = () => {
     fetchFeature()
   }, [clientId])
 
-  const features = featuresData[0] || { smsNotification: false }
+  const features = featuresData[0] || {
+    smsNotification: false, aiAssistants: false, aiAssistedIDP: false,
+  }
 
-  const handleFeatureUpdate = async (smsNotification: boolean) => {
-    if (!features.id) return
+  const isFetchLoading = isLoading('fetch')
 
-    try {
-      await updateResource({ id: features.id, smsNotification })
-      message.success(I18n.t('administration.settings.tabs.settings.feature_toggled_success'))
-    } catch (error) {
-      console.error('Error updating client features:', error)
-      message.error(I18n.t('administration.settings.tabs.settings.feature_toggled_error'))
+  useEffect(() => {
+    if (!aiAssistants) {
+      form.setFieldsValue({
+        aiAssistedIdp: false,
+      })
+    }
+  }, [aiAssistants])
+
+  const transformValues = (values) => {
+    const transformedValues = {
+      ...values,
+      smsNotification: values.smsNotification || false,
+      aiAssistants: values.aiAssistants || false,
+      aiAssistedIdp: !values.aiAssistants ? false : values.aiAssistedIdp || false,
+      globalSkills: values.globalSkills || false,
+    }
+    return {
+      ...transformedValues,
     }
   }
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="p-6 pt-0">
       <Title level={4}>{I18n.t('administration.settings.tabs.feature_flags')}</Title>
-      <Form layout="horizontal">
-        <Space direction="vertical" style={{ width: '100%' }}>
-          <Form.Item
-            label={I18n.t('administration.settings.tabs.settings.sms_notification')}
-            labelCol={{ style: { minWidth: '370px', textAlign: 'left' } }}
+      { isFetchLoading ? (
+        <div className="flex justify-center">
+          <Spin />
+        </div>
+      )
+        : (
+          <ResourceForm
+            resourceName="client_features"
+            readableResourceName={I18n.t('administration.client_features.client_features')}
+            resource={features}
+            storeManager={{ form }}
+            request={{ updateResource }}
+            scrollToFirstError
+            showSuccessMessages
+            formProps={{
+              layout: 'horizontal',
+              labelCol: {
+                sm: 24, md: 10, lg: 8, xl: 8,
+              },
+              labelAlign: 'left',
+            }}
+            transformValues={transformValues}
           >
-            { isLoading('fetch') ? (
-              <Spin size="small" />
-            ) : (
-              <Switch
-                checked={!!features.smsNotification}
-                onChange={checked => handleFeatureUpdate(checked)}
-              />
+            {() => (
+              <>
+                <Form.Item
+                  name="smsNotification"
+                  label={I18n.t('administration.client_features.form.sms_notification')}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  name="aiAssistants"
+                  label={I18n.t('administration.client_features.form.ai_assistants')}
+                >
+                  <Switch />
+                </Form.Item>
+                {aiAssistants
+                  ? (
+                    <Form.Item
+                      name="aiAssistedIdp"
+                      label={I18n.t('administration.client_features.form.ai_assisted_idp')}
+                    >
+                      <Switch />
+                    </Form.Item>
+                  ) : null
+                }
+                <Form.Item
+                  name="globalSkills"
+                  label={I18n.t('administration.client_features.form.global_skills')}
+                >
+                  <Switch />
+                </Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="mb-16"
+                  loading={isLoading(`update@${featuresData[0]?.id}`)}
+                >
+                  {I18n.t('common.actions.update')}
+                </Button>
+              </>
             )}
-          </Form.Item>
-        </Space>
-      </Form>
+          </ResourceForm>
+        )
+      }
     </div>
   )
 }

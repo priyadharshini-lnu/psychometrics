@@ -31,6 +31,10 @@ es-ES:
             blank: Las respuestas no pueden estar en blanco
           group_id:
             blank: El id de grupo no puede estar en blanco
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'El bloque "%{block_name}" tiene configuraciones duplicadas: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -58,7 +62,7 @@ es-ES:
         campaign_factors_import_form:
           attributes:
             base:
-              blank: La columna '%{entidad}' no puede estar en blanco en la fila %{índice}
+              blank: La columna '%{entity}' no puede estar en blanco en la fila %{index}
               duplicate_code: Código duplicado '%{code}' en la fila %{index}
               invalid_output_type: Tipo_salida no válido '%{output_type}' en la fila %{index}
               max_limit_reached: El total de factores de campaña supera el límite máximo de %{count}
@@ -113,6 +117,9 @@ es-ES:
               too_short: La contraseña del evaluador es demasiado corta (el mínimo es %{count} caracteres)
             first_name:
               blank: El nombre no puede estar en blanco
+            job_role:
+              cannot_be_same: El puesto de trabajo de destino debe ser diferente del actual
+              not_found: El rol de trabajo '%{name}' no se encuentra en el proyecto ni en los roles globales.
             last_name:
               blank: El apellido no puede estar en blanco
             locale:
@@ -182,12 +189,25 @@ es-ES:
               invalid: El correo electrónico no es válido
             first_name:
               blank: El nombre no puede estar en blanco
+            job_role:
+              cannot_be_same: El puesto de trabajo de destino debe ser diferente del actual
             last_name:
               blank: El apellido no puede estar en blanco
             locale:
               inclusion: Localización incorrecta
             password:
               too_short: La contraseña es demasiado corta. Se requiere un mínimo de %{count} caracteres
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: El valor %{column_name} no puede estar en blanco en la fila %{row_number}.
+              invalid_format: Cargue el archivo CSV
+              invalid_job_role_id: El ID de la fila %{row_number} no es un ID de función de trabajo válido.
+              invalid_locale: La configuración regional de la fila %{row_number} no es válida.
+              missing_required_columns: 'Faltan columnas obligatorias: %{columns}'
+              parsing_failed: 'Error al analizar el archivo, error: %{error}.'
+            project:
+              must_exist: El proyecto debe existir
         mettl:
           attributes:
             name:
@@ -285,9 +305,9 @@ es-ES:
           attributes:
             file:
               column_type_mismatch: Se espera que la columna <b>%{col}</b> sea del tipo %{type} pero tiene <b>%{got}</b>
-              email_blank: 'Fila %{número_de_fila}: El campo Email no puede estar en blanco'
+              email_blank: 'Fila %{row_number}: El campo Email no puede estar en blanco'
               email_duplicate: Hay duplicados en la columna Email
-              email_invalid: 'Fila %{número_de_fila}: El correo electrónico no es válido'
+              email_invalid: 'Fila %{row_number}: El correo electrónico no es válido'
               invalid_column: Columna no válida %{name}
               invalid_column_name: La columna <b>"%{column}"</b> no es válida
               invalid_column_name_size: El nombre de la columna <b>"%{column}"</b> es demasiado largo (máx. 64)
@@ -295,7 +315,7 @@ es-ES:
               invalid_format: Formato no válido (.xlsx)
               invalid_number_value: <b>Fila#%{index}</b> Columna <b>"%{column}"</b> no es un Número
               invalid_string_value: <b>Row#%{index}</b> columna <b>"%{column}"</b> no es una Cadena
-              invalid_string_value_size: <b>Fila#%{índice}</b> columna <b>"%{columna}"</b> demasiado larga (máx. 256)
+              invalid_string_value_size: <b>Fila#%{index}</b> columna <b>"%{column}"</b> demasiado larga (máx. 256)
               no_email_column: El fichero no contiene la columna Email
               non_uniq_column: Existen las siguientes columnas no uniq %{columns}
         sheet_row_form:
@@ -303,6 +323,16 @@ es-ES:
             email:
               blank: El correo electrónico no puede estar en blanco
               not_uniq_email: La fila con el correo electrónico ya está presente
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Al menos un rol de trabajo debe estar habilitado con un tipo de habilidad seleccionada para %{block_name}
+              invalid_skill_type: 'Tipo de habilidad %{skill_type} no válido para %{role_name} para %{block_name}. Opciones válidas: %{valid_options}'
+              props_missing: Empleo
+        skillvue:
+          attributes:
+            name:
+              not_unique: Esta integración ya está presente en este proyecto.
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ es-ES:
             last_name:
               blank: El apellido no puede estar en blanco
               starts_with_invalid_characters: El apellido no puede empezar por =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Fila %{row}: Valor duplicado %{value} para %{field}'
+              invalid_format: Por favor, sube un archivo xlsx
+              missing_headers: 'La hoja %{sheet_name} no tiene los encabezados requeridos: %{headers}'
+              missing_sheets: 'Faltan hojas requeridas: %{sheets}'
+              missing_value: 'Fila %{row}: Falta valor para %{field}'
+            project:
+              must_exist: El proyecto debe existir
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ es-ES:
         export_development_actions: Acciones de desarrollo de las exportaciones
         export_dimension_as_json: Exportar dimensión JSON
         export_factor_translations: Traducciones de los factores de exportación
+        export_job_roles_translations: Exportar traducciones de funciones
         export_norm: Norma de exportación
         export_occupations: Ocupaciones Exportación
+        export_proficiency_levels: Niveles de aptitud para exportar
         export_report_data: Exportar datos de informes
         export_reports_and_assessments: Exportación de informes y evaluaciones
         export_skill_translations: Exportación Traducciones especializadas
@@ -784,12 +826,15 @@ es-ES:
         import_external_campaign_scoring: Importar la puntuación de campañas externas
         import_factor_translations: Traducciones de factores de importación
         import_factors: Factores de importación
+        import_job_roles_translations: Importar traducciones de funciones
         import_norm: Norma de importación
+        import_proficiency_level_translations: Importación de traducciones de nivel superior
         import_question_translations: Importar traducciones de preguntas
         import_raw_data: Importar datos brutos
         import_scoring_data: Importar datos de puntuación
         import_skill_translations: Importación de traducciones especializadas
         import_skills: Habilidades de importación
+        import_skills_rater_taxonomies: Importar taxonomías de evaluadores de competencias
         import_sms_invites: Importar invitación SMS
         import_users: Importar usuarios
         migrate_assessment_translations: Evaluación Traducción migración
@@ -872,12 +917,12 @@ es-ES:
       next_assessment: Pasar a la siguiente evaluación
       pending_tasks:
         many:
-        one:
-        other:
+        one: Tiene 1 tarea pendiente
+        other: Tiene %{count} tareas pendientes
       re_evaluate: Haga clic aquí para volver a evaluar
       reevaluate: Reevaluar
       remove:
-        confirm_message: ¿Está seguro de que desea eliminar la evaluación "%{nombre}"?
+        confirm_message: ¿Está seguro de que desea eliminar la evaluación "%{name}"?
         confirm_title: Confirmación requerida
         success_message: La evaluación %{name} ha sido eliminada
       remove_tag:
@@ -925,6 +970,7 @@ es-ES:
         pearson_norm_id: Norma Pearson ID
         saville_assessment_name: Evaluación Saville Nombre
         simulation_assessment_name: Simulación Evaluación Nombre
+        skillvue_assessment_name: Evaluación Skillvue Nombre
       translations_migrated: Traducción migrada
     create: Cree
     dashboard: Cuadro de mandos
@@ -964,6 +1010,7 @@ es-ES:
         psychometric: Psicométrico
         saville: Saville
         simulation: Simulación
+        skillvue: Skillvue
         threesixty: campaña 360
       status:
         finished: Terminado
@@ -1031,7 +1078,7 @@ es-ES:
       fifteen_seconds_left: quedan 15 segundos
       five_minutes_left: quedan 5 minutos
       one_minute_left: queda 1 minuto
-      seconds_left: "%{segundos} segundos restantes"
+      seconds_left: "%{seconds} segundos restantes"
       thirty_seconds_left: quedan 30 segundos
       time_is_up: Se te ha acabado el tiempo
       time_is_up_for_recording: Se acabó el tiempo y la grabación se detendrá ahora
@@ -1095,7 +1142,7 @@ es-ES:
           cannot_delete_with_workshops: No se puede eliminar el grupo que contiene talleres, elimine primero los talleres
           failed: No se ha podido eliminar el grupo "%{name}", póngase en contacto con el administrador
           ok: Sí, borrar
-          text: ¿Estás seguro de que quieres eliminar el grupo "%{nombre}"?
+          text: ¿Estás seguro de que quieres eliminar el grupo "%{name}"?
           title: Borrar grupo
       no_assessments: Arrastrar y soltar las evaluaciones
       no_ungrouped_assessments: Arrastre y suelte aquí las evaluaciones para desagruparlas
@@ -1235,9 +1282,9 @@ es-ES:
       campaign: Campaña
       change_password: Cambiar contraseña
       development: Desarrollo
+      direct_reportees: Direct Reportees
       home: Inicio
       insights: Información
-      my_direct_reportees: Mis informes directos
       my_plan: Mi plan
       profile: Perfil
       profile_details: Datos
@@ -1343,6 +1390,8 @@ es-ES:
       pearson_variation: Variación Pearson
       prework: Trabajo previo
       simulation_content_variation: Variación del contenido de la simulación
+      skillvue_email_id: ID de correo electrónico del candidato Skillvue
+      skillvue_external_assessment_id: Evaluación de Skillvue ID
       universal_link: Enlace universal
     drawer:
       mettl_schedule_name: Mettl Horario Nombre
@@ -1358,6 +1407,11 @@ es-ES:
       raw_results_export_scheduled: El trabajo de exportación de los resultados brutos de la evaluación se programó correctamente
       scoring_results_export_scheduled: Se ha programado con éxito la exportación de los resultados de la evaluación
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Algo ha ido mal. Póngase en contacto con el administrador
+        placeholder: Seleccione un grupo de centros de evaluación
+        success_message: Se ha asignado con éxito el Grupo de Evaluación de la Campaña de Evaluación
+        title: Grupo del Centro de Evaluación
       import_raw:
         body: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
         success_msg: La importación se ha cargado correctamente
@@ -1373,7 +1427,7 @@ es-ES:
         title: "¿Regenerar informes?"
       remove:
         helper_text: 'PELIGRO: Si selecciona esta opción, se eliminarán todas las respuestas de los usuarios a esta evaluación en esta campaña.'
-        msg_text: Está intentando borrar <strong>"%{nombre}"</strong> Evaluación
+        msg_text: Está intentando borrar <strong>"%{name}"</strong> Evaluación
         successfully: la evaluación %{name} se ha eliminado correctamente.
         title: "¿Suprimir la evaluación?"
       rescore:
@@ -1672,6 +1726,7 @@ es-ES:
       assessor: Asesor
       category: Categoría
       client: Cliente
+      code: Código
       created_at: Creado/a el
       created_by: Creado por
       created_date: Fecha de creación
@@ -1759,6 +1814,7 @@ es-ES:
       na: N/A
       none: Ninguno
       ok: De acuerdo
+      refer_export_file: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
       reference_language: Lengua de referencia
       response: Respuesta
       selected: Selección
@@ -1967,7 +2023,7 @@ es-ES:
     errors:
       add_edit_project:
         invalid_subdomain_format: Formato de subdominio incorrecto.
-        reserved_subdomain: El subdominio %{valor} está reservado
+        reserved_subdomain: El subdominio %{value} está reservado
         uniq_subdomain: El subdominio debe ser único.
       add_manager:
         manager_not_found: Gestor no encontrado o que no forma parte del mismo proyecto
@@ -1993,9 +2049,12 @@ es-ES:
       exceeded_subjects_count: Sólo puede añadir %{count} sujetos por invitación
       filled?: no puede estar en blanco
       idp_template:
+        content_required: Se requiere contenido para las instrucciones
         tag_or_skill_required: Seleccione una etiqueta o una habilidad cuando se elija la opción "Seleccionado".
       invalid_name: sólo se admiten como caracteres válidos el alfabeto, el número, los espacios, el guión y el punto
       invalid_value: declaración inválida '%{value}' en la línea número %{row}
+      job_roles:
+        unique_within_job_group: Ya existe un puesto con el mismo nombre en el grupo.
       json?: Debe ser JSON válido
       key?: no puede estar en blanco
       match_regexp?: valor no válido
@@ -2016,9 +2075,13 @@ es-ES:
       skill_alias:
         unique_alias: El alias debe ser único
         unique_skill: La habilidad debe ser única
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: La competencia y la función deben pertenecer al mismo proyecto o ser globales.
+        unique_mappings: Ya existe una asignación con la misma cualificación y función.
       uniq: Esta evaluación Mettl ya está presente en el sistema. ID de esta evaluación es %{id}
       uniq?: debe ser único
       uniq_simulation: Esta evaluación de simulación ya está presente en el sistema. El ID de esta evaluación es %{id}
+      uniq_skillvue: Esta evaluación Skillvue ya está presente en el sistema. El ID de esta evaluación es %{id}.
       update_workshop:
         less_than_booked: El total de plazas debe ser superior al reservado
       user_availability_date:
@@ -2035,7 +2098,7 @@ es-ES:
         already_exists: El asunto ya existe en la invitación.
       workshop_subject_create:
         already_exists: La asignatura ya existe en este Centro de Evaluación.
-        part_of_other_workshop: El sujeto ya participa en "%{nombre_taller}".
+        part_of_other_workshop: El sujeto ya participa en "%{workshop_name}".
       workshops:
         no_available_assessor_slots: No hay plazas disponibles para el evaluador %{assessor}
         no_available_manager_slots: No hay plazas disponibles para el gestor %{manager}
@@ -2348,6 +2411,29 @@ es-ES:
   idp:
     actions: Acciones
     board: Tablero
+    comment_details:
+      add_comment: Agregar comentario
+      add_comment_placeholder: Agregar comentario...
+      add_reply_placeholder: Agregar respuesta...
+      go_to_skill: Ir a habilidad
+    comments:
+      close: Cerrar
+      comments: Comentarios
+      filter_comments: Filtrar comentarios
+      mark_as_resolved: Marcar como resuelto
+      mark_as_unresolved: Marcar como no resuelto
+      replied: Respondido
+      replies: Respuestas
+      reply: Responder
+      resolve: Resolver
+      resolved: Resuelto
+      resolved_message: Este comentario ha sido resuelto y las respuestas están deshabilitadas.
+      show_only_read: Mostrar solo leídos
+      show_only_resolved: Mostrar solo resueltos
+      show_only_unread: Mostrar solo no leídos
+      show_only_unresolved: Mostrar solo no resueltos
+      sort_by_date: Ordenar por fecha
+      you: Tú
     convert_to_draft: Convertir a borrador
     details: Detalles
     development_actions:
@@ -2374,13 +2460,13 @@ es-ES:
       on_the_job: En el trabajo
       other: Otro
       private: Privado
+      publish_plan: Publicar plano
       remove: Eliminar
       skill: Habilidad
       sprint: Sprint
       structured_learning: Aprendizaje estructurado
       submit_plan: Enviar Plan
       write_here: Escriba aquí...
-    direct_reportee_details: Detalles del Informe Directo
     initial_steps:
       add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
       add_skill_group_title: Explorando Sus Habilidades de %{category}
@@ -2388,7 +2474,6 @@ es-ES:
       add_skills_step: Añadir Habilidades
       continue_to_rate_skills: Continuar para evaluar habilidades
       getting_started: Comenzando
-      getting_started_info: Bienvenido/a a su creador de Plan de Desarrollo Individual (PDI). Este plan le ayudará a identificar, gestionar y seguir sus objetivos profesionales y personales, así como los pasos que debe dar para lograrlos. Sus objetivos profesionales pueden incluir áreas de desarrollo conductual, liderazgo y técnico. Su PDI es una herramienta esencial para apoyar el desarrollo de su carrera y la mejora de habilidades.
       less_skills: Mostrar menos habilidades
       more_skills: Explorar más habilidades
       next: Siguiente
@@ -2407,7 +2492,6 @@ es-ES:
     manage_plan: Gestionar plan
     mark_as_complete: Marcar como completa
     mark_as_incomplete: Marcar como incompleta
-    my_direct_reportees: Mis Informes Directos
     my_plan:
       development_plan: Plan de Desarrollo
       graphs:
@@ -2519,6 +2603,7 @@ es-ES:
         skills_count: Recuento de Habilidades
         title: Resumen del Informe
     reflective_questions:
+      already_completed: El PDI ya se ha completado, no puede responder a las preguntas ahora.
       answer_later: Respuesta
       answer_placeholder: Escribe aquí tu respuesta...
       errors:
@@ -2633,75 +2718,6 @@ es-ES:
     zh-HK: Chino (Hong Kong)
     zh-Hant: Chino - Tradicional
     zh-TW: Chino (Taiwán)
-  languages_localized:
-    af: Afrikaans
-    ar: عربي
-    az: Azerbaiyán
-    bg: български
-    bs: bosanski
-    by: Bielorruso
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: Inglés
-    en-GB: Inglés (UK)
-    en-US: Inglés (US)
-    eo: Esperanto
-    es: English
-    es-ES: English (españa)
-    et: Estonia
-    fa: Persa
-    fi: En finés
-    fr: Français
-    gu: Gujarati
-    he: Hebreo
-    hi: हिन्दी
-    hr: Croata
-    hu: Húngaro
-    id: Bahasa Indonesia
-    it: italiano
-    ja: 日本語
-    km: Jemer
-    ko: Coreano
-    lt: Lituania
-    lv: Letón
-    mk: Macedonia
-    mn: Mongolia
-    ms: Bahasa Malasia
-    my: Myanmar
-    nb: Noruego Bokmål
-    nl: Holandés
-    'no': Noruega
-    pl: Polski
-    pt: Português
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brasil)
-    ro: Rumano
-    ru: Ruso
-    sk: Eslovaquia
-    sl: Eslovenia
-    sr-Cyrl: Serbio cirílico
-    sr-Latn: Serbio Latino
-    sv: Sueco
-    sw: Swahili
-    ta: Tamil
-    th: Tailandés
-    tl: Tagalo
-    tr: Turco
-    ua: Ucraniano
-    uk: Ucraniano
-    ur: Urdu
-    vi: Vietnamita
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Activo
     campaign_name: Nombre de la campaña
@@ -2839,7 +2855,7 @@ es-ES:
       created_text: texto añadido
       disapproved_text: texto desautorizado
       removed_text: texto eliminado
-      status_changed: cambiado el estado de <i>%{de}</i> a <i>%{a}</i>
+      status_changed: cambiado el estado de <i>%{from}</i> a <i>%{to}</i>
       updated_text: texto actualizado
     tabs:
       all: Todos
@@ -2848,7 +2864,7 @@ es-ES:
   report_bundles:
     actions:
       remove:
-        confirm_message: ¿Está seguro de que desea eliminar el paquete de informes "%{nombre}"?
+        confirm_message: ¿Está seguro de que desea eliminar el paquete de informes "%{name}"?
         confirm_title: Confirmación requerida
         success_message: Se ha eliminado el paquete de informes %{name}
     report_bundle: Paquete de informes
@@ -2878,7 +2894,7 @@ es-ES:
       re_evaluate: Haga clic aquí para volver a evaluar
       reevaluate: Reevaluar
       remove:
-        confirm_message: ¿Está seguro de que desea eliminar el informe "%{nombre}"?
+        confirm_message: ¿Está seguro de que desea eliminar el informe "%{name}"?
         confirm_title: Confirmación requerida
         success_message: Informe %{name} ha sido eliminado
       rescore: Rescore
@@ -2938,9 +2954,11 @@ es-ES:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carga de Pearson
+      load_from_skillvue: Cargar desde Skillvue
       none_external: Ninguno - Utilizar el generador de informes
     language: Idioma del informe
     language_updated: El idioma del informe se ha actualizado correctamente
@@ -3442,8 +3460,10 @@ es-ES:
   threesixty:
     accept_privacy_modal:
       accept: Aceptar
-      checkbox: He leído y entiendo la «Política de privacidad» mencionada anteriormente
-      title: Consentimiento para el tratamiento de los datos
+      checkbox: Al hacer clic en esta casilla, usted acepta que ha leído nuestro aviso de privacidad sobre la recogida y el tratamiento de sus datos personales tal como se describe en el mismo, incluida la transferencia internacional de sus datos personales.
+      checkbox_with_client_link: Al hacer clic en esta casilla, usted acepta que ha leído nuestro aviso de privacidad y el aviso de privacidad de nuestros clientes y da su consentimiento para la recogida y el tratamiento de su información personal tal como se describe en ellos, incluida la transferencia internacional de su información personal.
+      privacy_notice: Confidencialidad
+      title: Consentimiento para procesar y transferir información personal
     action: Acción
     add: Añadir
     and: true
@@ -3672,7 +3692,7 @@ es-ES:
       id: ID de evaluación del usuario
       norm_id: Norma ID
     drawer:
-      copied: "%{nombre} copiado al portapapeles."
+      copied: "%{name} copiado al portapapeles."
       copy: Copiar al portapapeles
       mettl_schedule_name: Mettl Horario Nombre
       no_data: No hay datos disponibles
@@ -3695,7 +3715,7 @@ es-ES:
         submit_button_name: Push Webhook
         title: Push Webhook
       remove:
-        content: ¿Está seguro de que desea eliminar la evaluación "%{nombre}"?
+        content: ¿Está seguro de que desea eliminar la evaluación "%{name}"?
         successfully: la evaluación %{name} se ha eliminado correctamente.
       reset:
         content: ¿Estás seguro de que quieres restablecer el progreso "%{name}"?
@@ -3839,7 +3859,7 @@ es-ES:
     date: Su respuesta debe ser una fecha válida (DD/MM/AAAA)
     each_group_contains: Cada grupo debe tener al menos %{min} elementos y no más de %{max}
     email: Su respuesta debe ser un correo electrónico válido
-    exact: Seleccione exactamente %{cuenta} opción(es)
+    exact: Seleccione exactamente %{count} opción(es)
     file_upload:
       BadRequest: El archivo no se ha cargado porque la última solicitud falló. Esto puede deberse a que su conexión a Internet no funciona. Si su conexión a Internet funciona, póngase en contacto con el administrador
       EntityTooLarge: El tamaño del archivo no debe ser mayor de %{maxFileSize} MB
@@ -3865,8 +3885,8 @@ es-ES:
     text: Su respuesta no debe contener cifras
     title:
       many:
-      one:
-      other:
+      one: Hay un error, por favor compruebe sus respuestas
+      other: Hay %{count} errores, por favor compruebe sus respuestas
     user_self_skill_rating_disabled: La autocalificación está desactivada para esta plantilla
     word_count: 'Número de palabras '
     word_range: Su respuesta debe tener al menos %{min} y no más de %{max} palabras.

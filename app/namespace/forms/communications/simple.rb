@@ -22,6 +22,7 @@ module Forms
       property :end_level_id, type: Types::Params::Integer | Types::Params::Nil
       property :reminder_type, default: 'custom'
       property :stop_reminder, type: Types::Params::Bool | Types::Params::Nil
+      property :campaign_assessment_group_id, type: Types::Params::Integer | Types::Params::Nil
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
@@ -31,6 +32,9 @@ module Forms
       validates :campaign, presence: true, if: :campaign_validation_required?
       validates :assessment_id, presence: true, if: proc { kind == 'completion' }
       validates :assessment, presence: true, if: proc { assessment_id.present? }
+      validates :campaign_assessment_group_id, presence: true, if: proc {
+        ::Communication::WORKSHOP_COMMUNICATION_KINDS.include?(kind)
+      }
 
       validates :stop_reminder_datetime, presence: true,
                 date: { after: proc { DateTime.current } },

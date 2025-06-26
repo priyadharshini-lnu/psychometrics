@@ -59,7 +59,7 @@ describe Pearson::SaveScoresAndReports do
       before do
         stub_request(:get, "#{config[:base_api_url]}/v1/results/#{pearson_user_assessment.schedule_id}").
           with(query: { products: [{ productId: 'test-assessment-id', normId: 'test-norm-id',
-                                     reportId: ['test-report-id'] }] }.to_query).
+                                     reportId: ['test-report-id'] }], includeSessionData: '1' }.to_query).
           to_return(body: response_body.to_json)
 
         allow_any_instance_of(Report).to receive(:default_language).and_return('en')
@@ -103,7 +103,7 @@ describe Pearson::SaveScoresAndReports do
 
         stub_request(:get, "#{config[:base_api_url]}/v1/results/#{pearson_user_assessment.schedule_id}").
           with(query: { products: [{ productId: 'test-assessment-id', normId: 'test-norm-id',
-                                     reportId: ['test-report-id'] }] }.to_query).
+                                     reportId: ['test-report-id'] }], includeSessionData: '1' }.to_query).
           to_return(body: response_body.to_json)
 
         allow(UsersResults::GenerateReports).to receive(:call)
@@ -134,7 +134,7 @@ describe Pearson::SaveScoresAndReports do
 
         stub_request(:get, "#{config[:base_api_url]}/v1/results/#{pearson_user_assessment.schedule_id}").
           with(query: { products: [{ productId: 'test-assessment-id', normId: 'test-norm-id',
-                                     reportId: ['test-report-id'] }] }.to_query).
+                                     reportId: ['test-report-id'] }], includeSessionData: '1' }.to_query).
           to_return(body: response_body.to_json)
 
         stub_request(:get, 'https://example.com/report1.pdf').
@@ -167,7 +167,7 @@ describe Pearson::SaveScoresAndReports do
       before do
         stub_request(:get, "#{config[:base_api_url]}/v1/results/#{pearson_user_assessment.schedule_id}").
           with(query: { products: [{ productId: 'test-assessment-id', normId: 'test-norm-id',
-                                     reportId: ['test-report-id'] }] }.to_query).
+                                     reportId: ['test-report-id'] }], includeSessionData: '1' }.to_query).
           to_return(body: response_body.to_json)
 
         allow_any_instance_of(UserAssessment).to receive(:user_reports).with(:pearson).and_return(UserReport.none)
@@ -200,7 +200,7 @@ describe Pearson::SaveScoresAndReports do
 
         stub_request(:get, "#{config[:base_api_url]}/v1/results/#{pearson_user_assessment.schedule_id}").
           with(query: { products: [{ productId: 'test-assessment-id', normId: 'test-norm-id',
-                                     reportId: ['test-report-id'] }] }.to_query).
+                                     reportId: ['test-report-id'] }], includeSessionData: '1' }.to_query).
           to_return(body: response_body.to_json)
       end
 

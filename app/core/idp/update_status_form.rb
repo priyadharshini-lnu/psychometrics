@@ -9,6 +9,7 @@ module Idp
     validates :status, presence: true
     validate :status_is_permitted_for_current_user
     validate :manager_cannot_update_forbidden_states
+    validate :requires_reflective_questions, if: -> { status == 'completed' }
 
     PERMITTED_STATUSES = {
       manager: %w[approved rejected],
@@ -46,6 +47,21 @@ module Idp
     end
 
     private
+
+    def requires_reflective_questions
+      unless all_required_reflective_questions_answered?
+        errors.add(:base, I18n.t('validations.idp.reflective_questions_required'))
+      end
+    end
+
+    def all_required_reflective_questions_answered?
+      question_ids = user_idp_plan.idp_template_reflection_questions.where(mandatory: true).
+                     pluck(:reflection_question_id)
+      answers = user_idp_plan.user_reflection_question_answers.where(reflection_question_id: question_ids).
+                where.not(answer: nil)
+
+      question_ids.count == answers.count
+    end
 
     def status_is_permitted_for_current_user
       unless allowed_statuses_for_current_user.include?(status)

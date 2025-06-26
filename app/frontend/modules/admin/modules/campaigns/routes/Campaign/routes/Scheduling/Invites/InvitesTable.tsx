@@ -73,6 +73,11 @@ export const InvitesTable = () => {
             )}
           />
           <Resource.Column<WorkshopInvite>
+            title={I18n.t('administration.assessment_center.invite.center_group')}
+            width="15%"
+            id="campaignAssessmentGroupName"
+          />
+          <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.subjects.title')}
             width="15%"
             id="subjectsCount"

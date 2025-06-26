@@ -1,0 +1,157 @@
+@import "~/styles/antv4.variable.less";
+@import "~/styles/spacing.less";
+
+.commentsContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px 24px 12px 24px;
+}
+
+.headerTitle {
+  margin: 0 !important;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.headerTitleCount {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.headerSubtitle {
+  font-size: 0.75rem;
+}
+
+.scrollableArea {
+  overflow-y: auto;
+}
+
+
+.commentsContent {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.addCommentSection {
+  padding:  1.5rem 1.5rem 0 1.5rem;
+  background-color: #fff;
+}
+
+.emptyMessage {
+  font-size: 0.75rem; // 12px
+  margin-bottom: 8px;
+}
+
+.commentItemTopSpacer {
+  height: 1.5rem;
+}
+
+.commentItem {
+  border-color: @border-color-base !important;
+  &:hover, &:active {
+    .commentItemHeader {
+      border-inline-start: 3px solid var(--ant-primary-color);
+    }
+    .commentContent {
+      border-inline-start: 3px solid var(--ant-primary-color);
+    }
+  }
+  :global(.ant-collapse-header:focus-visible) {
+    outline-offset: -4px !important;
+  }
+}
+
+:global(.ant-collapse-item-active) {
+    .commentItemHeader {
+      border-inline-start: 3px solid var(--ant-primary-color);
+    }
+    .commentContent {
+      border-inline-start: 3px solid var(--ant-primary-color);
+    }
+  }
+
+
+.commentItemHeader {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-inline-start: 3px solid transparent;
+}
+
+.commentContent {
+  border-inline-start: 3px solid transparent;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  width: 100%;
+}
+
+
+.commentItemUnresolved {
+  background-color: #fff;
+}
+
+.commentItemResolved {
+  background-color: var(--ant-primary-light-bg);
+}
+
+.commentResolvedMessage {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.commentResolvedButton {
+  color: var(--ant-success-color);
+}
+
+.commentResolvedText {
+  font-size: 0.6875rem; // 11px
+  font-style: italic;
+}
+
+
+.replyContent {
+  width: 100%;
+}
+
+.replyUserText {
+  font-size: 0.625rem; // 10px
+}
+
+.replyDateText {
+  font-size: 0.5625rem; // 9px
+}
+
+
+.inputSender {
+  font-size: 0.75rem; // 12px
+  border-color: @normal-color;
+  ::placeholder {
+    color: var(--ant-text-color);
+  }
+  :global {
+    .ant-sender-content {
+      padding-block: 0.5rem;
+    }
+  }
+  &:focus-within {
+    box-shadow: none;
+  }
+  &::after {
+    border-width: 1px;
+    box-shadow: none;
+  }
+}
+
+.sendButton {
+  color: var(--ant-primary-color);
+}
+
+.loadingContainer {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}

@@ -9,10 +9,12 @@ class AdminJobRecord < ApplicationRecord
 
   belongs_to :owner, class_name: 'User'
   has_one :data_report_job
+  has_many :subjobs, class_name: 'AdminJobRecord', foreign_key: :parent_job_id, dependent: :destroy
+  belongs_to :parent_job, class_name: 'AdminJobRecord', optional: true
 
   has_one_attachment :file, service: Settings.storage.private_storage_service
 
-  validates :file, content_type: %w[csv xlsx xls zip json]
+  validates :file, content_type: %w[csv xlsx xls zip json pdf pptx]
 
   def attachment_storage_path(attribute_name, filename)
     "private/admin_job/#{id}/#{attribute_name}/#{filename}"
@@ -91,7 +93,16 @@ class AdminJobRecord < ApplicationRecord
     export_skills: 69,
     bulk_update_evaluation_status: 70,
     export_reflection_questions: 71,
-    import_reflection_questions: 72
+    import_reflection_questions: 72,
+    import_skills_rater_taxonomies: 73,
+    import_proficiency_levels: 74,
+    export_proficiency_levels: 75,
+    export_proficiency_level_translations: 76,
+    import_proficiency_level_translations: 77,
+    import_job_roles_translations: 78,
+    export_job_roles_translations: 79,
+    export_dashboard_as_file: 80,
+    bulk_download_idp_reports: 81
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
@@ -101,7 +112,13 @@ class AdminJobRecord < ApplicationRecord
   def progress
     return 100 if completed? || total_tasks.zero?
 
-    (completed_tasks / total_tasks.to_f * 100).floor
+    if subjobs.empty?
+      (completed_tasks / total_tasks.to_f * 100).floor
+    else
+      subjobs.reduce(0) do |sum, subjob|
+        sum + (subjob.progress * (subjob.weight || 1))
+      end.floor
+    end
   end
 
   def increment_completed_tasks!
@@ -109,7 +126,10 @@ class AdminJobRecord < ApplicationRecord
 
     with_lock do
       self.completed_tasks = completed_tasks + 1
-      self.status = :completed if completed_tasks == total_tasks
+      if completed_tasks >= total_tasks
+        self.status = :completed
+        parent_job&.run_next_subjob(self)
+      end
       save!
     end
   end
@@ -118,9 +138,26 @@ class AdminJobRecord < ApplicationRecord
     return if completed?
 
     update!(status: :completed, completed_tasks: total_tasks, error_messages: error_messages, exception: exception)
+
+    parent_job&.complete!(error_messages: error_messages, exception: exception) if exception
+  end
+
+  def fail!(error_messages = [], exception = nil)
+    return if failed?
+
+    update!(status: :failed, error_messages: error_messages, exception: exception)
+    parent_job&.fail!(error_messages, exception)
+  end
+
+  def run_next_subjob(prev_job)
+    next_job = AdminJob::JOBS[operation.to_sym].next_step(prev_job.step)
+
+    AdminJob.call_subjob(self, next_job[:name]) if next_job
   end
 
   def broadcast(action)
+    return parent_job&.broadcast(action) if parent_job
+
     AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new.serialize(self))
   end
 

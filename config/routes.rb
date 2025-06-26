@@ -143,6 +143,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index', as: :dashboard
     get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'
+    post 'dashboards/:id/export_file', to: 'dashboards#export_file'
 
     resource :profiles, only: %i[update edit]
 
@@ -290,6 +291,7 @@ Rails.application.routes.draw do
             get :export_completion_status
             get :export_compact_completion_status
             post :search
+            post :bulk_download_idp_reports
           end
         end
 
@@ -787,6 +789,8 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
+        put :update_translation, path: 'translation'
+        get :edit_translation
       end
 
       match :new_form, on: :collection, via: %i[post patch put]
@@ -1025,9 +1029,20 @@ as: :simulation_progress_notification
       resources :user_idp_plans, param: :user_id, only: %i[show update] do
         member do
           put :update_reflection_questions
+          post :download
+          get :pdf_preview
         end
         collection do
           get :summary
+        end
+
+        member do
+          resources :comments, only: %i[index create update show], controller: 'user_idp_comments' do
+            member do
+              patch :resolve
+              patch :unresolve
+            end
+          end
         end
       end
     end
@@ -1195,10 +1210,11 @@ as: :simulation_progress_notification
             jsonapi_resources :report_families_reports
           end
           jsonapi_resources :projects, only: :show do
-            jsonapi_resources :idp_templates, only: %i[index create update destroy],
+            jsonapi_resources :idp_templates, only: %i[index create update destroy show],
               controller: 'projects/idp_templates' do
                 post :uploads, on: :member
                 post :update_reflection_questions, on: :member
+                post :update_instructions, on: :member
               end
             jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
               post :uploads, on: :member
@@ -1481,6 +1497,7 @@ as: :simulation_progress_notification
             post :import, on: :collection
             post :export, on: :collection
             get :tags_search, on: :collection
+            get :proficiency_levels, on: :member
             post :import_translations, on: :collection
             post :export_translations, on: :collection
             post :import_global, on: :collection
@@ -1510,6 +1527,34 @@ as: :simulation_progress_notification
           jsonapi_resources :users_results, only: :show
 
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
+
+          jsonapi_resources :skills_rater_assessments do
+            collection do
+              post :import_taxonomies
+            end
+          end
+
+          jsonapi_resources :job_roles, only: %i[index create update destroy] do
+            collection do
+              post :import_translations
+              post :export_translations
+            end
+          end
+
+          jsonapi_resources :proficiency_levels,
+                            only: %i[create show index update destroy],
+                            controller: 'proficiency_levels' do
+            collection do
+              post :import
+              post :import_translations
+              post :export
+              post :export_translations
+            end
+          end
+
+          jsonapi_resources :skills_job_roles, only: %i[index create update destroy]
+          jsonapi_resources :job_groups, only: %i[index]
+          jsonapi_resources :skill_groups, only: %i[index]
 
           namespace :ai do
             jsonapi_resources :assistants, relationships: false do

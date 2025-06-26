@@ -1,0 +1,1076 @@
+---
+th:
+  activemodel:
+    attributes:
+      condition:
+        all_responses: คำตอบทั้งหมด
+      numeric_comparator:
+        enter_value: ป้อนค่า
+        select_data: เลือกข้อมูล
+      scoring:
+        select_comparison: เลือกประเภทการเปรียบเทียบ
+        select_factors: เลือกปัจจัย
+        select_operation: เลือกการดำเนินการ
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'บล็อก "%{block_name}" มีการกำหนดค่าซ้ำ: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
+              not_found: ตำแหน่งงาน '%{name}' ไม่พบในโปรเจ็กต์หรือบทบาทระดับโลก
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: ค่า %{column_name} ไม่สามารถเว้นว่างได้ที่แถว %{row_number}
+              invalid_format: กรุณาอัปโหลดไฟล์ CSV
+              invalid_job_role_id: Id ที่แถว %{row_number} ไม่ใช่รหัสตำแหน่งงานที่ถูกต้อง
+              invalid_locale: Locale ที่แถว %{row_number} ไม่ใช่ locale ที่ถูกต้อง
+              missing_required_columns: 'คอลัมน์ที่จำเป็นขาดหายไป: %{columns}'
+              parsing_failed: 'เกิดข้อผิดพลาดขณะวิเคราะห์ไฟล์, ข้อผิดพลาด: %{error}.'
+            project:
+              must_exist: โครงการต้องมีอยู่
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: อย่างน้อยหนึ่งตำแหน่งงานต้องเปิดใช้งานด้วยประเภททักษะที่เลือกสำหรับ %{block_name}
+              invalid_skill_type: 'ประเภททักษะไม่ถูกต้อง %{skill_type} สำหรับ %{role_name} สำหรับ %{block_name}. ตัวเลือกที่ถูกต้อง: %{valid_options}'
+              props_missing: งาน
+        skillvue:
+          attributes:
+            name:
+              not_unique: การผสานรวมนี้มีอยู่แล้วสำหรับโครงการนี้
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'แถว %{row}: ค่าซ้ำ %{value} สำหรับ %{field}'
+              invalid_format: กรุณาอัปโหลดไฟล์ xlsx
+              missing_headers: 'แผ่นงาน %{sheet_name} ไม่มีส่วนหัวที่จำเป็น: %{headers}'
+              missing_sheets: 'แผ่นงานที่จำเป็นขาดหายไป: %{sheets}'
+              missing_value: 'แถว %{row}: ไม่มีค่าสำหรับ %{field}'
+            project:
+              must_exist: โครงการต้องมีอยู่
+  activerecord:
+    attributes:
+      membership:
+        first_name: ชื่อจริง
+        last_name: นามสกุล
+      user:
+        email: ที่อยู่อีเมล์
+        first_name: ชื่อจริง
+        last_name: นามสกุล
+      user_form:
+        email: ที่อยู่อีเมล์
+        first_name: ชื่อจริง
+        last_name: นามสกุล
+        password: รหัสผ่าน
+    errors:
+      models:
+        register:
+          attributes:
+            mobile_number:
+              blank: จำเป็นต้องมีหมายเลขโทรศัพท์มือถือ
+              invalid: หมายเลขมือถือไม่ถูกต้อง
+              verification_expired: รหัสยืนยันหมดอายุแล้ว คุณสามารถลองยืนยันอีกครั้ง
+        user:
+          attributes:
+            current_password:
+              invalid: รหัสผ่านปัจจุบันไม่ถูกต้อง
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: ส่งออกบทบาทงานแปล
+        export_proficiency_levels: ระดับความชำนาญในการส่งออก
+        import_job_roles_translations: นำเข้าการแปลบทบาทงาน
+        import_skills_rater_taxonomies: นำเข้าหมวดหมู่ผู้ประเมินทักษะภาษี
+  administration: การบริหาร
+  anonym:
+    close: ปิด
+    continue: ดำเนินการต่อ
+    notifications:
+      restart:
+        copy: คุณได้เริ่มการสำรวจนี้แล้ว คุณสามารถเลือกที่จะดำเนินการต่อหรือเริ่มใหม่อีกครั้ง
+        title: ดำเนินการต่อ?
+      retake:
+        copy: คุณได้ทำแบบสำรวจนี้เสร็จเรียบร้อยแล้ว หากต้องการทำแบบสำรวจอีกครั้ง โปรดคลิกปุ่มทำแบบสำรวจอีกครั้งด้านล่าง
+        title: เอาใหม่?
+    restart: เริ่มใหม่อีกครั้ง
+    retake: เอาใหม่
+  assessments:
+    actions:
+      back_to_campaign: กลับไปยังแคมเปญ
+      extend_time: ขยายเวลา
+      goto_dashboard: คลิกที่นี่เพื่อดำเนินการต่อ
+      pending_tasks:
+        one: คุณมีงานค้างอยู่ 1 งาน
+        other: คุณมีงานค้างอยู่ %{count} งาน
+      rescore: คะแนนอีกครั้ง
+    audio_response:
+      permission_denied_message: กรุณาเปิดใช้งานการอนุญาตไมโครโฟนในเบราว์เซอร์ของคุณเพื่อบันทึกคำตอบ
+      permission_text: กรุณาอนุญาตให้ใช้ไมโครโฟนในการบันทึกเสียง
+    card_actions:
+      begin: เริ่ม
+      continue: ดำเนินการต่อ
+    column:
+      external_settings:
+        skillvue_assessment_name: ชื่อการประเมินของ Skillvue
+    fields:
+      category:
+        skillvue: สกิลวิว
+    instructions:
+      begin_assessment: เริ่ม
+      cancel: ยกเลิก
+      default: นี่เป็นกิจกรรมที่มีกำหนดเวลา เมื่อคุณคลิกเริ่มการประเมิน คุณจะมีเวลา %{time} นาทีในการทำจนเสร็จ
+      title: คำแนะนำ
+    messages:
+      finish: ขอขอบคุณสำหรับเวลาของคุณ คำตอบของคุณได้รับการบันทึกไว้แล้ว
+    page:
+      back: กลับ
+      confirm_message: "## คำตอบของคุณจะถูกส่งและไม่สามารถเปลี่ยนแปลงได้หลังจากนี้ คลิก **ย้อนกลับ** เพื่อตรวจสอบคำตอบของคุณอีกครั้ง หรือคลิก **ส่ง** หากคุณทำเสร็จแล้ว"
+      next: ต่อไป
+      read_only: เป็นโหมดอ่านอย่างเดียว คุณไม่สามารถเปลี่ยนแปลงผลลัพธ์ใดๆ ได้
+      save: บันทึก
+      submit: ส่ง
+    pickgrouprank:
+      items: รายการ
+    proceed: ดำเนินการต่อไป
+    unknown_error: เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ
+    video_response:
+      device: อนุญาต
+      device_selection:
+        camera: กล้อง
+        mic: ไมค์
+      discard: ทิ้ง
+      discard_record_again: ทิ้งและบันทึกใหม่อีกครั้ง
+      media_recorder:
+        failure: เบราว์เซอร์นี้ไม่รองรับการบันทึกวิดีโอ โปรดใช้ Chrome หรือ Firefox สำหรับการบันทึกวิดีโอ
+        success: กรุณาอนุญาตให้ใช้กล้องและไมโครโฟนในการบันทึกเสียงและวิดีโอ
+      recording_duration_label: ระยะเวลาบันทึกสูงสุด
+      recording_stop_label: การบันทึกจะหยุดใน
+      requesting_permission: กำลังขออนุญาต...
+      response_recorded: บันทึกการตอบกลับแล้ว
+      save: บันทึก
+      saved:
+        label: วิดีโอที่บันทึกไว้
+      saving: กำลังบันทึกวีดีโอ...
+      start_recording: เริ่มการบันทึก
+      stop_recording: หยุดการบันทึก
+      tracker:
+        backward: คุณอยู่ใกล้หน้าจอเกินไป กรุณาขยับถอยหลังเล็กน้อย
+        forward: คุณอยู่ไกลจากหน้าจอเกินไป กรุณาขยับเข้ามาใกล้อีกนิด
+        frame: กรุณาตรวจสอบให้แน่ใจว่าใบหน้าของคุณอยู่ในแนวเดียวกับกรอบ
+        ready: กดปุ่มบันทึกเมื่อพร้อมที่จะบันทึก
+    wait: รอ
+  auth:
+    current_password: รหัสผ่านปัจจุบัน
+    current_password_placeholder: กรอกรหัสผ่านปัจจุบัน
+    email: อีเมล
+    email_placeholder: กรอกที่อยู่อีเมล์
+    expired_password:
+      description: กรุณากรอกข้อมูลให้ครบถ้วนเพื่อสร้างรหัสผ่านใหม่
+      submit: ส่ง
+      title: ต่ออายุรหัสผ่านของคุณ
+    login:
+      description: กรุณาเข้าสู่ระบบด้วยข้อมูลบัญชีส่วนตัวของคุณ
+      forgot_password: ลืมรหัสผ่าน?
+      login_btn: เข้าสู่ระบบ
+      magic_link_btn: ส่งลิงค์เข้าสู่ระบบให้ฉันทางอีเมล
+      not_member: ไม่ใช่สมาชิก?
+      or: หรือ
+      sso_btn: เข้าสู่ระบบด้วยการลงชื่อเข้าใช้ครั้งเดียว
+      title: ยินดีต้อนรับ!
+    logout: ออกจากระบบ
+    magic_link:
+      description: กรุณากรอกอีเมล์ของคุณเพื่อรับลิงค์เข้าสู่ระบบ
+      login_with_password: เข้าสู่ระบบด้วยรหัสผ่าน
+      send_me_login_link: ส่งลิงค์เข้าสู่ระบบมาให้ฉัน
+      success: เราได้ส่งลิงก์สำหรับเข้าสู่ระบบไปยัง &#39;%{email}&#39; ให้คุณแล้ว คลิกลิงก์ในอีเมลที่คุณจะได้รับเพื่อเข้าสู่ระบบ
+    mobile_number: เบอร์มือถือ
+    new_password: รหัสผ่านใหม่
+    new_password_placeholder: กรอกรหัสผ่านใหม่
+    otp:
+      code: รหัส
+      code_placeholder: รหัสผ่านครั้งเดียว
+      description: กรุณาระบุรหัส OTP ที่ส่งไปยังอีเมล์ที่คุณลงทะเบียนไว้
+      resend: ส่งรหัส OTP อีกครั้ง
+      resend_in: ส่งอีกครั้งภายใน %{timestamp} วินาที
+      resend_success: OTP ถูกส่งไปยังหมายเลขโทรศัพท์มือถือของคุณ
+      sms_description: กรุณากรอกรหัส OTP ที่ส่งไปยังหมายเลขโทรศัพท์มือถือของคุณ
+      submit: ตรวจสอบ
+      title: รหัสผ่านครั้งเดียว
+    password: รหัสผ่าน
+    password_confirmation: ยืนยันรหัสผ่าน
+    password_confirmation_placeholder: กรอกยืนยันรหัสผ่าน
+    password_placeholder: กรอกรหัสผ่าน
+    registration:
+      description: กรอกรายละเอียดด้านล่างเพื่อลงทะเบียนและสร้างบัญชีใหม่
+      email_hint: เราเคารพความเป็นส่วนตัวของคุณและไม่ยอมให้มีสแปม เราจะไม่เปิดเผยข้อมูลของคุณให้กับบุคคลที่สามโดยเด็ดขาด
+      first_name: ชื่อจริง
+      first_name_placeholder: กรุณากรอกชื่อ
+      have_account: มีบัญชีอยู่แล้วใช่ไหม?
+      last_name: นามสกุล
+      last_name_placeholder: กรุณากรอกนามสกุล
+      login_now: เข้าสู่ระบบทันที!
+      registration_code: รหัสลงทะเบียน
+      registration_code_placeholder: กรอกรหัสลงทะเบียน
+      terms_notice: เมื่อคุณลงทะเบียน คุณยอมรับ <a href="%{terms_url}">เงื่อนไขการบริการและนโยบายความเป็นส่วนตัว</a> ของเรา
+      title: สมัครสมาชิก
+    reset_password:
+      back_to_sign_in: กลับไปยังหน้าลงชื่อเข้าใช้
+      description: ป้อนอีเมล์ที่เชื่อมโยงกับบัญชีของคุณ
+      submit: รีเซ็ตรหัสผ่าน
+      title: ลืมรหัสผ่าน?
+    set_password:
+      description: เพื่อสร้างรหัสผ่านใหม่ โปรดป้อนรหัสผ่านใหม่ของคุณในกล่องด้านล่าง
+      submit: ส่ง
+      title: สร้างรหัสผ่าน
+    sign_out: เข้าสู่ระบบเป็นผู้ใช้อื่น
+    sign_up: สมัครสมาชิก
+    terms_link: <a href="%{terms_url}">เงื่อนไขและนโยบายความเป็นส่วนตัว</a>
+    verify_mobile_number:
+      error:
+        blocked: หมายเลขนี้ถูกบล็อคเนื่องจากมีการพยายามมากเกินไป
+        invalid_code: รหัสไม่ถูกต้อง
+        invalid_number: หมายเลขโทรศัพท์มือถือไม่ถูกต้อง กรุณาตรวจสอบหมายเลขของคุณอีกครั้ง
+        max_attempts_reached: พยายามมากเกินไป กรุณารอ 10 นาทีก่อนลองอีกครั้ง
+  campaign:
+    all_activities_are_completed: กิจกรรมทั้งหมดเสร็จสมบูรณ์แล้ว
+    all_activities_are_completed_multiple: กิจกรรมทั้งหมดสำหรับแคมเปญนี้เสร็จสมบูรณ์แล้ว โปรดดำเนินการไปที่แดชบอร์ดและตรวจสอบว่าคุณมีกิจกรรมอื่น ๆ ที่ได้รับมอบหมายหรือไม่
+    begin: เริ่มต้นงานของคุณ
+    begin_btn_msg_before_prework: คุณต้องทำภารกิจด้านล่างให้เสร็จก่อนจึงจะเริ่มแคมเปญแบบจำกัดเวลาได้
+    begin_campaign_msg: เริ่มแคมเปญก่อนเข้ารับการประเมิน
+    campaigns: การรณรงค์
+    closed_campaign_message: แคมเปญนี้ปิดลงแล้ว คุณไม่สามารถทำการประเมินใดๆ ภายในแคมเปญนี้ได้
+    complete_prev: ทำการประเมินครั้งก่อนให้ครบถ้วน
+    complete_tasks: กรุณาดำเนินการงานด้านล่างนี้ให้เสร็จเรียบร้อยก่อนดำเนินการนี้
+    continue: ดำเนินการงานของคุณต่อไป
+    dashboard_instructions: คุณอาจได้รับมอบหมายให้ทำกิจกรรมหลายอย่างซึ่งคุณต้องดำเนินการให้เสร็จสิ้น โปรดตรวจสอบให้แน่ใจว่าได้ดำเนินการกิจกรรมที่ได้รับมอบหมายทั้งหมดให้เสร็จสิ้นในทุกแคมเปญแล้ว
+    dashboard_menu:
+      bookings: การจอง
+      campaign: แคมเปญ
+      change_password: เปลี่ยนรหัสผ่าน
+      development: การพัฒนา
+      home: บ้าน
+      insights: ข้อมูลเชิงลึก
+      my_plan: แผนของฉัน
+      profile: ประวัติโดยย่อ
+      profile_details: รายละเอียด
+      tasks: ภารกิจ
+    details: รายละเอียด
+    edit_evaluation:
+      body: โปรดทราบว่าเมื่อคุณคลิกประเมินใหม่แล้ว คุณจะถูกนำไปยังจุดเริ่มต้นของแบบสำรวจซึ่งคุณสามารถแก้ไขคำตอบได้ คำตอบก่อนหน้านี้จะยังคงมีอยู่ แต่คุณสามารถเปลี่ยนแปลงได้ตามที่คุณต้องการ เมื่อแก้ไขแล้ว คุณจะต้องส่งแบบสำรวจใหม่อีกครั้งเพื่อให้กระบวนการเสร็จสมบูรณ์
+      edit: ประเมินใหม่อีกครั้ง
+      title: ยืนยัน
+      view: ดูการประเมิน
+    errors:
+      invalid_status: สถานะแคมเปญไม่ถูกต้อง
+    goto_dashboard: ไปที่แดชบอร์ด
+    inactive_campaign_message: ในขณะนี้คุณยังไม่ได้รับการกำหนดกิจกรรมใดๆ
+    insights_reports: ข้อมูลเชิงลึกและรายงาน
+    instruction_modal:
+      campaign_start_final_instructions: "<p>โปรดทราบว่าไม่มีวิธีใดที่จะหยุดหรือหยุดตัวจับเวลาได้ ตัวจับเวลาแคมเปญจะยังคงทำงานต่อไปแม้ว่าคุณจะปิดเบราว์เซอร์ ดังนั้นคุณไม่ควรคิดที่จะออกจากงานระหว่างนั้นเพื่อทำอย่างอื่น อย่าลืมลดสิ่งรบกวนระหว่างทำงาน หาสภาพแวดล้อมที่เงียบสงบ ปิดการแจ้งเตือนบนอุปกรณ์ของคุณ และหลีกเลี่ยงการทำหลายอย่างพร้อมกัน รักษาสมาธิและจดจ่ออยู่กับงาน เมื่อตัวจับเวลาแคมเปญหมดลง คุณจะไม่สามารถดำเนินการต่อได้ หากคุณได้อ่านคำแนะนำข้างต้นแล้ว โปรดคลิกเริ่มเพื่อดำเนินการงานที่ได้รับมอบหมายต่อ</p>\n"
+      campaign_start_instruction: "<h4>กรุณาอ่านคำแนะนำต่อไปนี้อย่างถูกต้อง</h4><p> ภารกิจที่คุณกำลังจะเริ่มนั้นมีกำหนดเวลาไว้แล้ว เมื่อคุณคลิก &quot;เริ่ม&quot; ตัวจับเวลาแคมเปญจะเริ่มทำงานโดยอัตโนมัติ คุณมีเวลา %{minutes} นาทีในการทำกิจกรรมทั้งหมดให้เสร็จสิ้น โปรดพยายามทำภารกิจให้เสร็จสิ้นภายในกรอบเวลาที่กำหนด และจัดการเวลาอย่างมีประสิทธิภาพเพื่อหลีกเลี่ยงการเร่งรีบในการประเมินผล ตรวจสอบให้แน่ใจว่าคุณทำภารกิจให้เสร็จสิ้นในครั้งเดียว ดังนั้นหากคุณต้องการพัก ก็ถึงเวลาแล้ว</p>\n"
+      common_proctoring_instructions: "<h4>การคุมสอบ</h4><p> เมื่อคลิกปุ่มเริ่ม คุณจะถูกนำไปยังระบบตรวจสอบของเรา ซึ่งจะตรวจสอบกล้อง ไมโครโฟน และหน้าจอของคุณในระหว่างเซสชัน ระบบ AI ที่ซับซ้อนของเราจะทำการตรวจสอบเซสชันเหล่านี้โดยอัตโนมัติ ซึ่งจะทำให้ผู้ใช้ได้รับประสบการณ์การใช้งานที่ราบรื่นและต่อเนื่อง อย่างไรก็ตาม เซสชันต่างๆ อาจได้รับการตรวจสอบโดยเจ้าหน้าที่ตรวจสอบที่เป็นมนุษย์ด้วยเช่นกัน หากพบสัญญาณของการประพฤติมิชอบหรือความผิดปกติใดๆ จะถูกทำเครื่องหมายไว้ การดำเนินการนี้ทำขึ้นเพื่อให้แน่ใจว่าไม่มีการพยายามโกง หากพบข้อสงสัย งานของคุณจะถูกยกเลิก</p>\n"
+      lockdown_browser_instruction: "<h4>เบราว์เซอร์ตรวจสอบ</h4><p> คุณจะต้องดาวน์โหลดและติดตั้งเบราว์เซอร์พิเศษเพื่อทำภารกิจที่ตรวจสอบให้เสร็จสิ้น โปรดปฏิบัติตามคำแนะนำในหน้าจอถัดไป คุณสามารถถอนการติดตั้งได้หลังจากดำเนินกิจกรรมที่จำเป็นทั้งหมดเสร็จสิ้น</p>\n"
+    instructions:
+      collapse_link_text: แสดงน้อยลง
+      expand_link_text: แสดงเพิ่มเติม
+      heading: โปรดตรวจสอบแนวทางด้านล่างก่อนเริ่มต้น เราขอให้คุณโชคดี!
+    language:
+      content: งานนี้ไม่สามารถใช้ได้ในภาษาที่เลือกในปัจจุบัน กรุณาเลือกภาษาที่พร้อมใช้งานเพื่อดำเนินการต่อ
+      single_lang: งานนี้ใช้ได้เฉพาะใน %{lang} เท่านั้น คลิก &quot;ดำเนินการต่อ&quot; เพื่อดำเนินการต่อ
+      title: เลือกภาษา
+    panels:
+      dashboard: แผงหน้าปัด
+      reports: รายงาน
+    profile:
+      complete_heading: โปรไฟล์ของคุณเสร็จสมบูรณ์แล้ว
+      complete_profile_label: เสร็จสมบูรณ์แล้วตอนนี้
+      edit_profile_label: แก้ไขโปรไฟล์
+      incomplete_heading: กรอกข้อมูลส่วนตัวของคุณให้ครบถ้วน
+      last_login_text: 'เข้าสู่ระบบครั้งล่าสุดเมื่อ :'
+      last_updated_text: 'โปรไฟล์ได้รับการอัปเดตล่าสุดเมื่อ:'
+      sub_heading: กรอกข้อมูลโปรไฟล์ของคุณให้ครบถ้วน
+      welcome_text: ยินดีต้อนรับ,
+    thank_you_for_time: ขอบคุณสำหรับเวลาของคุณ
+    time_left:
+      cancel: ยกเลิก
+      continue: ดำเนินการต่อ
+      notification: เวลาที่คุณจัดสรรให้กับงาน &quot;%{assessmentName}&quot; คือ %{totalAssessmentTime} เนื่องจากเวลาที่ผ่านไปทั้งหมด ตอนนี้คุณจึงมีเวลาเพียง %{remainingCampaignTime} เท่านั้นที่ปรับให้เหมาะสมสำหรับการทำงานนี้ให้เสร็จสมบูรณ์
+    timer:
+      notification_hours: คุณเหลือเวลาอีก %{hours} ชั่วโมง
+      notification_minutes: คุณเหลือเวลาอีก %{minutes} นาที
+  campaign_assessment:
+    assessment_center_heading: รายละเอียดศูนย์ประเมิน
+    assessments_heading: งานของคุณ
+    column:
+      skillvue_email_id: อีเมลผู้สมัคร Skillvue
+      skillvue_external_assessment_id: รหัสการประเมิน Skillvue
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: เกิดข้อผิดพลาด โปรดติดต่อผู้ดูแลระบบ
+        placeholder: เลือกกลุ่มศูนย์ประเมิน
+        success_message: กลุ่มการประเมินแคมเปญผู้ประเมินได้รับการมอบหมายสำเร็จ
+        title: ศูนย์ประเมินผลกลุ่ม
+    statuses:
+      completed: สมบูรณ์
+      in_progress: อยู่ระหว่างดำเนินการ
+      ineligible: ไม่มีสิทธิ์
+      interrupted: ถูกขัดจังหวะ
+      not_started: ยังไม่ได้เริ่มต้น
+      timed_out: หมดเวลาแล้ว
+      universal_link: ลิงค์สากล
+  campaigns:
+    card:
+      duration: ระยะเวลา
+      starts_in: 'เริ่มต้นใน:'
+      starts_on: เริ่มวันที่ %{date}
+      will_start_shortly: แคมเปญจะเริ่มเร็วๆ นี้ กรุณารอสักครู่
+  change_password_page:
+    old_password: รหัสผ่านเก่า
+    password: รหัสผ่าน
+    password_confirmation: การยืนยันรหัสผ่าน
+    title: เปลี่ยนรหัสผ่าน
+    warning_message: 'สิ่งสำคัญ: การเปลี่ยนรหัสผ่านจะทำให้คุณออกจากระบบ'
+  checking_wizard:
+    audio_check:
+      access: เข้าถึง
+      continue: ใช่ ตกลงเพื่อดำเนินการต่อ
+      random_phrases:
+        eight: ขอให้กาแฟของคุณเข้มข้น และขอให้วันของคุณเป็นวันแห่งการสร้างสรรค์
+        five: ชีวิตจะดีขึ้นเมื่อคุณยิ้ม ยิ้มให้กับไมค์!
+        four: เธอขายเปลือกหอยริมทะเล
+        nine: เมื่อมีข้อสงสัย ให้ทดลองใช้ไมโครโฟนนี้ดู!
+        one: ฉันกรี๊ด คุณกรี๊ด เราก็กรี๊ดเพื่อไอศกรีมกันทั้งนั้น!
+        seven: ทุกวันคือการเริ่มต้นใหม่ จงพูดออกมาดังๆ และภาคภูมิใจ!
+        six: พิซซ่าหรือพาสต้า? การตัดสินใจเป็นเรื่องยาก
+        three: ทดสอบ หนึ่ง สอง สาม เสียงชัดเจนสุดๆ!.
+        two: สุนัขจิ้งจอกสีน้ำตาลกระโดดข้ามสุนัขขี้เกียจ
+      record_title: กรุณาพูดประโยคต่อไปนี้ซ้ำ 3 ครั้ง
+      retake: ไม่ ฉันต้องการสอบใหม่
+      run_again: วิ่งอีกครั้ง
+      test_message: ดีใจที่ได้คุยกับคุณ
+    network_check:
+      continue: ดำเนินการต่อ
+      download: ดาวน์โหลด
+      please_check_connection: กรุณาตรวจสอบการเชื่อมต่ออินเตอร์เน็ตของคุณ
+      processing: กำลังประมวลผล
+      run_again: วิ่งอีกครั้ง
+      run_again_title: และรันการทดสอบนี้ใหม่อีกครั้ง
+      title: คลิกเริ่มเพื่อเริ่มทดสอบความเร็วอินเตอร์เน็ต
+      upload: อัพโหลด
+    steps:
+      audio_check: ทดสอบไมโครโฟน
+      network_check: ทดสอบความเร็วอินเตอร์เน็ต
+      system_check: การตรวจสอบระบบ
+      video_check: ทดสอบกล้องวิดีโอ
+    success:
+      start: เริ่มการประเมิน
+      title: คุณได้ทำการตรวจสอบเสร็จเรียบร้อยแล้ว
+    system_check:
+      compatibility: ความเข้ากันได้ของระบบ
+      continue: ดำเนินการต่อ
+      failure:
+        description: ต้องได้รับอนุญาตในการใช้เว็บแคมและไมโครโฟนสำหรับคำถามด้านเสียง/วิดีโอในแบบทดสอบนี้
+        link_text: ที่นี่
+        link_text_action: คลิก
+        link_text_instruction: และทำตามขั้นตอนการให้สิทธิ์
+        refresh: รีเฟรชเบราว์เซอร์
+        refresh_text: คลิกด้านล่างเพื่อรีเฟรชเบราว์เซอร์และใช้การเปลี่ยนแปลง
+        subtitle: การแก้ไขด่วน
+        title: คุณได้ยกเลิกสิทธิ์การใช้งานเว็บแคมและไมโครโฟนแล้ว
+      permissions: การอนุญาตการเข้าถึงเว็บแคมและเสียง
+      title: ก่อนที่จะเริ่มการประเมินนี้ ระบบของคุณต้องได้รับการตรวจสอบบางอย่าง
+    video_check:
+      access: เข้าถึง
+      camera_preview: ตัวอย่างกล้องจะปรากฏที่นี่
+      continue: ใช่ ตกลงเพื่อดำเนินการต่อ
+      description: คลิกที่เริ่มบันทึกและบันทึกตัวเองในขณะที่อ่านข้อความด้านล่างด้วยเสียงของคุณเอง
+      random_phrases:
+        eight: หากคุณเห็นฉัน แสดงว่าวิดีโอนั้นประสบความสำเร็จ หากไม่เห็น เราจะแก้ไขปัญหา!
+        five: ทดสอบวิดีโอของคุณ ไม่ต้องกังวล ไม่จำเป็นต้องเข้าชิงรางวัลออสการ์
+        four: เตรียมพร้อม ตั้งสมาธิ กล้องคือเวทีของคุณ
+        nine: ยิ้มกว้างๆ และวีดีโอที่ชัดเจน มาทำแบบทดสอบนี้ให้ถูกต้องกันเถอะ!
+        one: ยกมือขึ้นถ้าคุณได้ยินฉันหรือแค่โบกมือให้กล้อง!
+        seven: กระจก กระจกบนหน้าจอ ให้วีดีโอเช็คได้สะอาด
+        six: ไฟ, กล้อง, แอ็คชั่น นี่คือเวลาของคุณที่จะเปล่งประกาย!
+        ten: การโบกมือเป็นมิตรจะทำให้ทุกอย่างทำงานได้ดี
+        three: พูดว่าชีสสิ! หรือแค่ทดสอบรอยยิ้มที่สมบูรณ์แบบของคุณ
+        two: ดูที่เลนส์ ยิ้ม และแกล้งทำเป็นว่าคุณอยู่ในตัวอย่างภาพยนตร์
+      rec_text: บันทึก
+      retake: ไม่ ฉันต้องการสอบใหม่
+      run_again: วิ่งอีกครั้ง
+      title: เราจำเป็นต้องตรวจสอบให้แน่ใจว่าระบบของคุณสามารถบันทึกวิดีโอได้
+      uploading: การอัพโหลด
+  common:
+    actions:
+      add: เพิ่ม
+      archive: คลังเก็บเอกสารสำคัญ
+      cancel: ยกเลิก
+      close: ปิด
+      copy: สำเนา
+      delete: ลบ
+      edit: แก้ไข
+      remove: ลบ
+      reset: รีเซ็ต
+      resolve: การแก้ปัญหา
+      restore: คืนค่า
+      save: บันทึก
+      search: ค้นหา
+      send: ส่ง
+      start: เริ่ม
+      unarchive: ยกเลิกการเก็บถาวร
+      unresolve: ไม่สามารถแก้ไขได้
+      update: อัปเดต
+      upload: อัพโหลด
+      verify: ตรวจสอบ
+      view_all_tasks: ดูงานทั้งหมด
+      view_detail: ดูรายละเอียด
+    column:
+      action: การกระทำ
+      category: หมวดหมู่
+      code: โค้ด
+      created_at: สร้างเมื่อ
+      id: รหัส
+      status: สถานะ
+    model:
+      assessments: การประเมินผล
+      campaigns: การรณรงค์
+      reports: รายงาน
+    text:
+      cancel: ยกเลิก
+      confirm: ยืนยัน
+      continue: ดำเนินการต่อ
+      default: ค่าเริ่มต้น
+      download: ดาวน์โหลด
+      na: ไม่มีข้อมูล
+      ok: ตกลง
+      refer_export_file: โปรดดูที่ฟังก์ชันการส่งออกเพื่อดึงเทมเพลตที่สามารถใช้สำหรับการนำเข้าที่นี่
+      response: การตอบสนอง
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: เข้าสู่ระบบ
+    failure:
+      already_authenticated: คุณได้ลงชื่อเข้าใช้เรียบร้อยแล้ว
+      inactive: บัญชีของคุณยังไม่ได้เปิดใช้งาน
+      invalid: อีเมลหรือรหัสผ่านไม่ถูกต้อง
+      invited: คุณมีคำเชิญที่กำลังรอการดำเนินการ โปรดยอมรับเพื่อเสร็จสิ้นการสร้างบัญชีของคุณ
+      magic_link_invalid: ลิงค์เข้าสู่ระบบไม่ถูกต้องหรือหมดอายุ
+      not_found_in_database: อีเมลหรือรหัสผ่านไม่ถูกต้อง
+      timeout: เซสชันของคุณหมดอายุแล้ว กรุณาเข้าสู่ระบบอีกครั้งเพื่อดำเนินการต่อ
+      unauthenticated: คุณต้องเข้าสู่ระบบหรือลงทะเบียนก่อนดำเนินการต่อ
+    invitations:
+      edit:
+        password_label: รหัสผ่าน
+    passwords:
+      invalid_email: อีเมล์ไม่ถูกต้อง
+    registrations:
+      communication_not_setup_error: ไม่ได้ตั้งค่าการสื่อสารอีเมลการลงทะเบียน กรุณาติดต่อผู้ดูแลระบบของโครงการนี้
+      new:
+        email: ที่อยู่อีเมล์
+        first_name: ชื่อจริง
+        instruction: กรอกรายละเอียดด้านล่างเพื่อลงทะเบียนและสร้างบัญชีใหม่
+        last_name: นามสกุล
+        privacy_notice: เราเคารพความเป็นส่วนตัวของคุณและไม่ยอมให้มีสแปม เราจะไม่เปิดเผยข้อมูลของคุณให้กับบุคคลที่สามโดยเด็ดขาด
+        registration_code: รหัสลงทะเบียน
+        submit: ลงทะเบียน
+        tabs:
+          register: ลงทะเบียน
+          sign_in: เข้าสู่ระบบ
+        terms_notice: เมื่อคุณลงทะเบียน คุณยอมรับ <a href="%{terms_url}">เงื่อนไขการบริการและนโยบายความเป็นส่วนตัว</a> ของเรา
+        title: ลงทะเบียนตอนนี้
+      success:
+        actions:
+          sign_in: เข้าสู่ระบบ
+    sessions:
+      new:
+        email: ที่อยู่อีเมล์
+        forgot_password: ลืมรหัสผ่าน?
+        instruction: กรุณาเข้าสู่ระบบด้วยข้อมูลบัญชีส่วนตัวของคุณ
+        password_placeholder: รหัสผ่าน
+        submit: เข้าสู่ระบบ
+        tabs:
+          register: ลงทะเบียน
+          sign_in: เข้าสู่ระบบ
+        title: ยินดีต้อนรับ!
+    two_factor_authentication:
+      attempt: กรุณากรอกรหัส OTP ที่คุณได้รับทางอีเมล์ที่ลงทะเบียนไว้
+      code_has_been_sent: OTP ใหม่ของคุณได้ถูกส่งไปยังที่อยู่อีเมลที่คุณลงทะเบียนไว้แล้ว
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: มีตำแหน่งงานที่มีชื่อเดียวกันอยู่แล้ว
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: ทักษะและบทบาทงานต้องอยู่ในโครงการเดียวกันหรือเป็นแบบทั่วโลก
+        unique_mappings: มีการจับคู่ที่มีทักษะและบทบาทงานเดียวกันอยู่แล้ว
+      uniq_skillvue: การประเมิน Skillvue นี้มีอยู่ในระบบแล้ว รหัสการประเมินนี้คือ %{id}
+  emails:
+    subject_relationship_table:
+      subject_email: หัวข้ออีเมล์
+      subject_name: ชื่อเรื่อง
+      subject_relationship: ความสัมพันธ์ของเรื่อง
+  errors:
+    assessments:
+      timed_out: คุณจะไม่สามารถทำการประเมิน %{assessment_name} ได้ เนื่องจากหมดเวลาแล้ว
+    error: ข้อผิดพลาด
+    error_500: มีบางอย่างผิดพลาด โปรดติดต่อผู้ดูแลระบบของคุณ
+    forbidden: คุณไม่สามารถเข้าถึงหน้านี้ได้
+    forbidden_action: คุณไม่มีสิทธิ์ในการดำเนินการนี้
+    invalid_token: มีบางอย่างผิดพลาด โปรดโหลดหน้าใหม่และลองอีกครั้ง
+    module_error: มีบางอย่างผิดพลาดกับโมดูลนี้ โปรดติดต่อฝ่ายบริหาร
+    module_error_editor: มีบางอย่างผิดพลาดกับโมดูลนี้ โปรดตรวจสอบการตั้งค่าโมดูล
+    module_props_error: มีบางอย่างผิดพลาดเกิดขึ้นกับโมดูลนี้
+    try_again: กรุณาลองอีกครั้ง
+  factors:
+    description: คำอธิบาย
+    factor: ปัจจัย
+  frontend:
+    activate: เปิดใช้งาน
+    are_you_sure: คุณแน่ใจมั้ย?
+    assessment: การประเมิน
+    assessment_groups:
+      create_success: กลุ่มถูกสร้างขึ้นสำเร็จแล้ว
+      update_success: กลุ่มได้รับการอัพเดตเรียบร้อยแล้ว
+    background_reading: การอ่านเบื้องต้น
+    bookings:
+      accept_invite_msg: คุณได้รับคำเชิญ กรุณาจองเวลาของคุณ
+      add_to_calendar: เพิ่มลงในปฏิทิน
+      add_to_calendar_tour_description: เพิ่มการจองนี้ลงในปฏิทินของคุณ
+      assessment_center_alert:
+        btn_title: แคมเปญ
+        message_part1: ดำเนินการเตรียมงานทั้งหมดในนี้ให้เสร็จสิ้น
+        message_part2: ก่อนที่จะจองช่องเวลา
+      assessment_center_group_name: ศูนย์ประเมินผล
+      booking_failed_msg: 'ไม่สามารถจองช่องได้: %{error}'
+      buttons:
+        book: หนังสือ
+        book_again: จองอีกครั้ง
+        cancel: ยกเลิก
+        cancel_booking: ยกเลิกการจอง
+        confirm_booking: ยืนยันการจอง
+        confirm_reschedule: ยืนยันการกำหนดเวลาใหม่
+        modify: แก้ไข
+        nevermind: ช่างเถอะ
+        no_text: เลขที่
+        request_cancel: คำร้องขอการยกเลิก
+        request_reschedule: คำร้องขอเลื่อนการนัดหมาย
+        reschedule: การจัดตารางใหม่
+        reserve_spot: สำรองที่นั่งของคุณ
+        yes_text: ใช่
+      cancel_booking_confirmation: คุณแน่ใจว่าต้องการยกเลิกการจองนี้หรือไม่?
+      cancellation_failed: 'การยกเลิกการจองล้มเหลว: %{error}'
+      cancellation_success: ยกเลิกการจองสำเร็จแล้ว
+      comments_required_msg: กรุณาใส่ความคิดเห็นของคุณ
+      confirm_booking_description: โปรดยืนยันว่ารายละเอียดเหล่านี้ถูกต้องก่อนทำการสรุปการจอง
+      confirm_booking_title: ยืนยันการจองนี้หรือไม่?
+      default_failure_msg: ไม่สามารถดำเนินการตามคำขอของคุณได้ โปรดลองอีกครั้งในภายหลัง
+      default_requires_msg: "%{name} เป็นสิ่งจำเป็น"
+      join_activity_meeting: เข้าร่วมการประชุม
+      join_workshop_meeting: เข้าร่วมการประชุม
+      language: ภาษา
+      language_placeholder: เลือกภาษา
+      language_preference_question: คุณมีความต้องการด้านภาษาหรือไม่?
+      language_required_msg: กรุณาเลือกภาษา
+      meeting_start_text: 'การประชุมจะเริ่มในเวลา:'
+      need_changes: จำเป็นต้องทำการเปลี่ยนแปลงหรือไม่?
+      neurodivergence_comment_placeholder: ความคิดเห็นของคุณ
+      neurodivergence_question: คุณต้องการที่พักหรือการปรับเปลี่ยนที่สมเหตุสมผลใดๆ เนื่องจากความต้องการพิเศษหรือความพิการเพื่อเข้าร่วมการประเมินอย่างครบถ้วนหรือไม่
+      no_invites_msg: คุณจะถูกเพิ่มเข้าสู่ศูนย์ประเมินหรือได้รับเชิญให้จองเวลาของคุณ; เมื่อคุณเป็นส่วนหนึ่งของศูนย์แล้ว คุณสามารถทำกิจกรรมได้โดยคลิกที่ปุ่ม 'ดูรายละเอียด' ด้านล่าง
+      other_invite: ดูคำเชิญเพิ่มเติมอีก %{count} รายการ
+      other_invites: ดูคำเชิญเพิ่มเติมอีก %{count} รายการ
+      reason: เหตุผล
+      reason_for_cancel: เหตุผลในการยกเลิก
+      reason_for_reschedule: เหตุผลในการกำหนดตารางใหม่
+      request_cancellation_failed: 'ไม่สามารถร้องขอการยกเลิกได้: %{error}'
+      request_cancellation_success: แจ้งขอยกเลิกสำเร็จแล้ว
+      request_reschedule_failed: 'ไม่สามารถร้องขอการกำหนดเวลาใหม่ได้: %{error}'
+      request_reschedule_success: การร้องขอการกำหนดเวลาใหม่สำเร็จแล้ว
+      reschedule_failed_msg: 'ไม่สามารถกำหนดเวลาใหม่ได้: %{error}'
+      reschedule_reason_placeholder: หากต้องการดำเนินการต่อ โปรดกรอกเหตุผลในการกำหนดเวลาใหม่
+      schedule_success: การจองนี้ได้รับการกำหนดเวลาไว้แล้ว
+      schedule_success_msg: เราได้ส่งอีเมลคำเชิญเข้าร่วมปฏิทินพร้อมรายละเอียดทั้งหมดไปยังคุณและผู้เข้าร่วมคนอื่นๆ แล้ว
+      starts_at: 'เริ่มต้นที่: %{date}'
+      starts_in: 'เริ่มต้นใน:'
+      tab_label:
+        bookings: การจอง
+        invites: คำเชิญ
+      what: อะไร
+      when: เมื่อไร
+      workshop_start_text: ศูนย์การประเมินของคุณจะเริ่มต้นใน
+    break_time: เวลาพัก
+    campaign:
+      actions:
+        remove:
+          confirmation: ป้อนชื่อแคมเปญปัจจุบันที่ระบุไว้ด้านล่างในกล่องข้อความเพื่อลบแคมเปญ
+          success: "%{campaignName} ถูกนำออกเรียบร้อยแล้ว"
+      users:
+        completion_statuses:
+          completed: สมบูรณ์
+          in_progress: อยู่ระหว่างดำเนินการ
+          not_started: ยังไม่ได้เริ่มต้น
+    change_password: เปลี่ยนรหัสผ่าน
+    delete: ลบ
+    edit: แก้ไข
+    lighthouse_app: ประภาคารเมอร์เซอร์
+    login: เข้าสู่ระบบ
+    manage: จัดการ
+    'no': เลขที่
+    resource:
+      create_success: เพิ่ม %{readableResourceName} สำเร็จแล้ว
+      update_success: "%{readableResourceName} ได้รับการอัปเดตเรียบร้อยแล้ว"
+    session_timeout_modal:
+      buttons:
+        close: ปิด
+        log_out: ออกจากระบบตอนนี้
+        re_login: เข้าสู่ระบบอีกครั้ง
+        stay_logged_in: อยู่ในระบบต่อไป
+      message: เซสชันของคุณจะหมดเวลาใน 2 นาทีเนื่องจากไม่มีการใช้งาน โปรดคลิก &quot;อยู่ในระบบต่อไป&quot; เพื่อดำเนินการเซสชันต่อ มิฉะนั้น คุณจะออกจากระบบโดยอัตโนมัติ
+      message_after_timeout: เซสชั่นของคุณหมดเวลาแล้ว กรุณาเข้าสู่ระบบอีกครั้ง
+      time_remaining: เวลาที่เหลืออยู่
+      title: คำเตือนการหมดเวลาเซสชั่น
+    update: อัปเดต
+    upload: อัพโหลด
+    workshop_invited_subjects:
+      statuses:
+        cancelled: ยกเลิก
+        requested_cancellation: คำร้องขอการยกเลิก
+        requested_cancellation_rejected: การร้องขอการยกเลิกถูกปฏิเสธ
+        requested_rescheduling: การขอเลื่อนกำหนดการใหม่
+        requested_rescheduling_rejected: การขอเลื่อนกำหนดการถูกปฏิเสธ
+    'yes': ใช่
+  idp:
+    reflective_questions:
+      already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
+  idp_templates:
+    errors:
+      user_idp_template_not_found: ไม่ได้รับการกำหนดเทมเพลต IDP ให้กับคุณ
+  mailer:
+    magic_link:
+      body:
+        dear: เรียนคุณ%{name}
+        greetings: สวัสดีวันใหม่!
+        instructions: คลิกลิงก์ด้านล่างเพื่อลงชื่อเข้าใช้ Lighthouse
+        signin_link: ลิงค์ลงชื่อเข้าใช้
+      subject: ลิงค์ลงชื่อเข้าใช้สำหรับ Lighthouse
+  navigation:
+    logout: ออกจากระบบ
+  profile:
+    add_field: เพิ่มฟิลด์
+    add_photo: เพิ่มรูปภาพ
+    age: อายุ
+    change_password: เปลี่ยนรหัสผ่าน
+    change_photo: เปลี่ยนรูปภาพ
+    email: อีเมล
+    female: หญิง
+    first_name: ชื่อจริง
+    gender: เพศ
+    incomplete: รายละเอียดโปรไฟล์ของคุณไม่ครบถ้วน กรุณากรอกรายละเอียดโปรไฟล์ของคุณให้ครบถ้วน
+    last_name: นามสกุล
+    locale: ภาษาที่ต้องการ
+    male: ชาย
+    mandatory_fields: ระบุช่องที่ต้องกรอก
+    not_disclosed: ไม่ประสงค์จะเปิดเผย
+    old_data: ข้อมูลโปรไฟล์ของคุณมีอายุ %{months} เดือน กรุณายืนยันรายละเอียดเพื่อดำเนินการต่อ
+    password: รหัสผ่าน
+    password_confirmation: การยืนยันรหัสผ่าน
+    success_update: บันทึกโปรไฟล์สำเร็จแล้ว
+    timezone: เขตเวลา
+    title: โปรไฟล์ของฉัน
+    update: อัปเดต
+    update_required: จำเป็นต้องอัปเดตโปรไฟล์
+  reports:
+    actions:
+      add: เพิ่มรายงาน
+      download: ดาวน์โหลดรายงาน
+      view: ดูรายงาน
+    form:
+      load_from_skillvue: โหลดจาก Skillvue
+    modules:
+      campaign_factors_table:
+        add_condition: เพิ่มเงื่อนไข
+        baseline_score: คะแนนพื้นฐาน
+        blindspots: จุดบอด
+        campaign_factor_conditions: เงื่อนไขปัจจัยการรณรงค์
+        cancel: ยกเลิก
+        color: สี
+        delete: ลบ
+        description: คำอธิบาย
+        if: ถ้า
+        label: ฉลาก
+        no_conditions: ไม่มีเงื่อนไข
+        save: บันทึก
+        strengths: จุดแข็ง
+        then: แล้วแสดงข้อความต่อไปนี้
+        title: ชื่อ
+      factors_table:
+        description: คำอธิบาย
+        no_data: ไม่มีข้อมูลสำหรับส่วนนี้
+        rank: อันดับ
+        score: คะแนน
+      gap_assessment:
+        gap: ช่องว่าง
+        item: ตัวบ่งชี้
+        negative_gap: ช่องว่างเชิงลบ
+        no_negative_gaps: ไม่มีช่องว่างเชิงลบ
+        no_positive_gaps: ไม่มีช่องว่างเชิงบวก
+        positive_gap: ช่องว่างเชิงบวก
+        rank: อันดับ
+        scoring_category: ความสามารถ
+      highest_lowest:
+        bottom_5: 5 ล่าง
+        category: หมวดหมู่
+        highest_scores: คะแนนสูงสุด
+        item: ตัวบ่งชี้
+        lowest_scores: คะแนนต่ำสุด
+        mean_score: คะแนนเฉลี่ย
+        rank: อันดับ
+        scoring_category: ความสามารถ
+        sub_competenties: ความสามารถย่อย
+        top_5: อันดับ 5
+      potential_career_full:
+        career_strengths_and_results: จุดแข็งในอาชีพและผลลัพธ์ของคุณ
+        career_sub_tracks: อาชีพย่อย
+        key_career_tracks_within: ด้านล่างนี้คือรายชื่อตำแหน่งงานที่เป็นไปได้สำหรับสายอาชีพแต่ละสาย โปรดทราบว่ารายชื่อนี้เป็นเพียงตัวอย่างเท่านั้นและไม่ครอบคลุมทั้งหมด โปรดทราบว่าตำแหน่งงานที่เป็นตัวเอียงต้องมีระดับการศึกษาและ/หรือประสบการณ์ที่สูงกว่า
+        potential_areas_of_study: พื้นที่ที่มีศักยภาพในการศึกษา
+        strength_high: ความแข็งแกร่งของลายเซ็น
+        strength_low: ความแข็งแกร่งด้านพัฒนาการ
+        strength_moderate: ศักยภาพความแข็งแกร่ง
+        work_environment: สภาพแวดล้อมการทำงาน
+        your_suitability: ความเหมาะสมของคุณ
+      single_value:
+        factor_name: หมวดหมู่การให้คะแนน
+        question_name: คำถาม
+      single_value_cluster:
+        competency: ความสามารถ
+        developmental_rating: ระดับพัฒนาการ
+        questions: คำถาม
+      strength_clusters:
+        index_sub_factors_considered: ปัจจัยย่อยของ Thriving Index ที่ถูกนำมาพิจารณาเพื่อให้คะแนนสุดท้ายของคุณสำหรับสภาพแวดล้อมการทำงาน %{workstyle}
+        possible_roles: บทบาทที่เป็นไปได้
+        work_environments: สภาพแวดล้อมการทำงานที่คาดหวัง
+      three_sixty_default:
+        factor:
+          items: รายการ
+          max: มูลค่าสูงสุด
+          mean: หมายถึง
+          min: ค่าต่ำสุด
+          standardDeviation: ค่าเบี่ยงเบนมาตรฐาน
+          sum: ผลรวม
+          totalResponses: จำนวนการตอบกลับทั้งหมด
+          variance: ความแปรปรวน
+          weightedMean: ค่าเฉลี่ยถ่วงน้ำหนัก
+        question:
+          no_response: ไม่มีการตอบกลับ
+        statistic: สถิติ
+        value: ค่า
+      three_sixty_report_summary:
+        completed: สมบูรณ์
+        footnote: "* ยกเว้นเนื่องจากเกณฑ์ขั้นต่ำที่กำหนด"
+        invited: เชิญ
+        relationships: ความสัมพันธ์
+        total: ทั้งหมด
+      video_response:
+        no_results: ไม่มีวิดีโอที่บันทึกไว้
+    show:
+      export_pdf: ส่งออกเป็น PDF
+      header: รายงาน
+    statuses:
+      approved: ที่ได้รับการอนุมัติ
+      available: มีอยู่
+      denied: ปฏิเสธ
+      incomplete: ไม่สมบูรณ์
+      not_available: ไม่สามารถใช้งานได้
+      on_hold: อยู่ระหว่างการระงับ
+      released: ปล่อยแล้ว
+  shared:
+    filters:
+      clear: ล้างตัวกรอง
+    internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
+    terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
+    tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
+  simple_form:
+    placeholders:
+      administrator:
+        email: ที่อยู่อีเมล์
+        last_name: นามสกุล
+      memebrship:
+        last_name: นามสกุล
+      user:
+        email: ที่อยู่อีเมล์
+        first_name: ชื่อจริง
+        last_name: นามสกุล
+        password: รหัสผ่าน
+      user_form:
+        email: ที่อยู่อีเมล์
+        first_name: ชื่อจริง
+        last_name: นามสกุล
+        password: รหัสผ่าน
+  subjects:
+    approval_statuses:
+      approved: ที่ได้รับการอนุมัติ
+      denied: ปฏิเสธ
+      waiting: ต้องได้รับการอนุมัติ
+    report_approval_status:
+      approved: ที่ได้รับการอนุมัติ
+      denied: ปฏิเสธ
+      waiting: ซึ่งรอคอย
+    report_release_status:
+      on_hold: อยู่ระหว่างการระงับ
+      released: ปล่อยแล้ว
+      waiting: ซึ่งรอคอย
+    report_statuses:
+      approved: ที่ได้รับการอนุมัติ
+      available: มีอยู่
+      denied: ปฏิเสธ
+      incomplete: ไม่สมบูรณ์
+      not_available: ไม่สามารถใช้งานได้
+      not_prepared: ยังไม่พร้อม
+      on_hold: อยู่ระหว่างการระงับ
+      prepared: เสร็จแล้ว
+      released: ปล่อยแล้ว
+    statuses:
+      completed: สมบูรณ์
+      declined: ปฏิเสธ
+      denied: ปฏิเสธ
+      done: เสร็จแล้ว
+      not_completed: ยังไม่เสร็จสมบูรณ์
+      waiting: ซึ่งรอคอย
+  threesixty:
+    accept_privacy_modal:
+      accept: ยอมรับ
+      checkbox: ฉันได้อ่านและเข้าใจนโยบายความเป็นส่วนตัวที่กล่าวไว้ข้างต้นแล้ว
+      title: การยินยอมการประมวลผลข้อมูล
+    action: การกระทำ
+    add: เพิ่ม
+    and: และ
+    approve_all: อนุมัติทั้งหมด
+    approve_all_successful: อนุมัติการเสนอชื่อทั้งหมด
+    approve_evaluations: การอนุมัติการประเมินผล
+    approve_nominations: อนุมัติการเสนอชื่อ
+    approve_reports: อนุมัติรายงาน
+    approved: ที่ได้รับการอนุมัติ
+    approving_mail_sent: อีเมลแจ้งอนุมัติการเสนอชื่อได้ถูกส่งไปยังผู้จัดการแล้ว
+    as_my: เป็นของฉัน
+    assessment: การประเมิน
+    back_to_tasks: กลับไปยังงาน
+    begin: เริ่ม
+    cancel: ยกเลิก
+    close_evaluation_modal:
+      message: เมื่อคุณดูรายงานแล้ว %{pronoun_or_name} จะไม่สามารถรับการประเมินเพิ่มเติมใดๆ ได้
+      title: คุณแน่ใจว่าต้องการดูรายงานหรือไม่?
+    closed_campaign_message: แคมเปญ 360 นี้ปิดลงแล้ว คุณไม่สามารถเสนอชื่อหรือประเมินใครก็ตามสำหรับแคมเปญนี้ได้
+    completed: สมบูรณ์
+    confirm: คุณแน่ใจมั้ย?
+    confirmation_for_nomination_removal: คุณแน่ใจหรือไม่ว่าต้องการลบการเสนอชื่อ
+    confirmation_required: จำเป็นต้องมีการยืนยัน
+    confirmation_text_incorrect: ข้อความยืนยันไม่ถูกต้อง
+    confirmation_text_placeholder: ข้อความยืนยันที่นี่
+    continue: ดำเนินการต่อ
+    dashboard_title: ยินดีต้อนรับ %{name}
+    decline: ปฏิเสธ
+    decline_invite: ปฏิเสธคำเชิญ
+    denied: ปฏิเสธ
+    deny_all: ปฏิเสธทั้งหมด
+    deny_all_successful: ปฏิเสธการเสนอชื่อทั้งหมด
+    download_pdf: ดาวน์โหลด PDF
+    download_report: ดาวน์โหลดรายงาน
+    download_reports: ดาวน์โหลดรายงาน
+    edit_user: แก้ไขผู้ใช้
+    email_approve_request: คำขออนุมัติทางอีเมล์
+    email_schedules:
+      delete_successful: ลบตารางอีเมลเรียบร้อยแล้ว
+    evaluate: ประเมิน
+    evaluation: การประเมิน
+    evaluation_all_closed_message: ขณะนี้การเสนอชื่อทั้งหมดอยู่ระหว่างรอการอนุมัติ
+    evaluation_closed_nomination_message: คุณไม่สามารถเสนอชื่อสำหรับวิชานี้ได้เนื่องจากการประเมินวิชานี้ปิดแล้ว
+    evaluation_help_modal:
+      title: ความช่วยเหลือในการประเมิน
+    evaluations: การประเมินผล
+    evaluator: ผู้ประเมิน
+    export_pdf: ส่งออก PDF
+    first_name: ชื่อจริง
+    first_name_error: กรุณากรอกชื่อ
+    help: ช่วย
+    language: ภาษา
+    last_name: นามสกุล
+    last_name_error: กรุณากรอกนามสกุล
+    load_results: โหลดผลลัพธ์
+    mail_history:
+      statuses:
+        success: ความสำเร็จ
+        undelivered: ไม่ได้รับการจัดส่ง
+    my_projects: โครงการของฉัน
+    name_label: ชื่อ
+    nominate: เสนอชื่อ
+    nominate_evaluators: เสนอชื่อผู้ประเมินให้
+    nomination: การเสนอชื่อ
+    nomination_help_modal:
+      title: ความช่วยเหลือในการเสนอชื่อ
+    nomination_predicates:
+      atleast: อย่างน้อย %{count}
+      atmost: มากที่สุด %{count}
+      exactly: ถูกต้อง %{count}
+    nominations: การเสนอชื่อเข้าชิง
+    options:
+      global:
+        cannot_re_edit: ผู้เข้าร่วมไม่สามารถแก้ไขการประเมินได้
+    or: หรือ
+    page_title: รีวิว Signify 360° - สมัครระดับ
+    participant_list:
+      actions:
+        approve_report: รายงานการอนุมัติ
+        download_report: ดาวน์โหลดรายงาน
+        edit: แก้ไข
+        hold_report: รายงานการถือครอง
+        login: เข้าสู่ระบบ
+        mark_as_done: ทำเครื่องหมายว่าเสร็จสิ้น
+        release_report: รายงานการปล่อยตัว
+        remove_campaign: ลบออกจากแคมเปญ
+        remove_report_approval: การลบการอนุมัติรายงาน
+        remove_report_hold_release_report: การลบรายงานการระงับ/ปล่อย
+        remove_subject: ลบหัวเรื่อง
+        unmark_as_done: ยกเลิกการทำเครื่องหมายว่าเสร็จสิ้น
+        view_report: ดูรายงาน
+        view_responses: ดูการตอบกลับ
+      confirmation_messages:
+        approve_report: คุณแน่ใจว่าต้องการอนุมัติรายงานหรือไม่?
+        hold_report: คุณแน่ใจว่าต้องการจะเก็บรายงานไว้หรือไม่?
+        mark_evaluation_done: คุณแน่ใจหรือไม่ว่าต้องการทำเครื่องหมายการประเมินว่าเสร็จสิ้น การประเมินจะถูกปิดสำหรับหัวข้อนี้
+        release_report: คุณแน่ใจว่าต้องการเผยแพร่รายงานหรือไม่?
+        remove_from_campaign: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้ออกจากแคมเปญ?
+        remove_release_hold: คุณแน่ใจว่าต้องการลบสถานะปล่อย/ระงับหรือไม่
+        remove_report_approval: คุณแน่ใจว่าต้องการลบการอนุมัติรายงานหรือไม่?
+        remove_subject: คุณแน่ใจหรือไม่ว่าต้องการลบหัวเรื่องอีเมลจากแคมเปญ?
+        umark_evaluation_as_complete: คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการทำเครื่องหมายการประเมินว่าเสร็จสิ้น?
+      report_generation_message: กำลังสร้างรายงาน เราจะแจ้งให้คุณทราบเมื่อรายงานพร้อมแล้ว
+    processing: กำลังประมวลผล
+    processing_report: รายงานการประมวลผล
+    progress_text: "%{completed} จาก %{total}"
+    question:
+      chat_type:
+        input_placeholder: เขียนข้อความของคุณ...
+      email_type:
+        bcc: สำเนาลับ
+        cc: ซีซี
+        edit: แก้ไข
+        max_length_warning: เหลือ %{x} ตัวอักษร
+        message: ข้อความของคุณ
+        send: ส่ง
+        subject: เรื่อง
+        successful_message: คุณได้ส่งอีเมล์สำเร็จแล้ว
+        to: ถึง
+    remind_all: เตือนทุกสิ่ง
+    remind_mail_sent: ส่งคำเตือนถึงผู้ประเมินที่ยังไม่ได้ทำการประเมิน
+    report_for: รายงานสำหรับ
+    report_generation_in_progress: กำลังสร้างรายงาน เราจะแจ้งให้คุณทราบเมื่อรายงานพร้อมแล้ว
+    reports: รายงาน
+    reports_help_modal:
+      title: รายงานช่วยเหลือ
+    reset_campaign_confirmation: ป้อนชื่อแคมเปญปัจจุบันที่ระบุไว้ด้านล่างในกล่องข้อความเพื่อรีเซ็ตผู้เข้าร่วมทั้งหมด
+    reset_nomination_confirmation: ป้อนชื่อแคมเปญปัจจุบันที่ระบุไว้ด้านล่างในกล่องข้อความเพื่อรีเซ็ตการเสนอชื่อทั้งหมด
+    save: บันทึก
+    select_relationnship: เลือกความสัมพันธ์
+    select_relationship: เลือกความสัมพันธ์
+    self: ตัวเอง
+    set_name_for_evaluator: ตั้งชื่อให้กับผู้ประเมิน
+    setup_nominations: ตั้งค่าการเสนอชื่อ
+    subject: เรื่อง
+    submit: ส่ง
+    total_progress: ความคืบหน้าโดยรวม
+    user_name_input_placeholder: พิมพ์ชื่อหรืออีเมล์...
+    validation_errors: ข้อผิดพลาดในการตรวจสอบ
+    view_my_report: ดูรายงานของฉัน
+    view_nominations: ดูการเสนอชื่อ
+    view_reports: ดูรายงาน
+    waiting: ซึ่งรอคอย
+    you: คุณ
+    yourself: ตัวคุณเอง
+  user:
+    fields:
+      email: ที่อยู่อีเมล์
+      first_name: ชื่อจริง
+      last_name: นามสกุล
+  user_assessments:
+    redirect: คุณจะถูกนำไปยังไซต์ของบุคคลที่สามเพื่อทำการประเมินนี้ โปรดคลิกดำเนินการต่อหากคุณต้องการเริ่มการประเมิน
+  user_reports:
+    actions:
+      regenerate: สร้างขึ้นใหม่
+    messages:
+      regenerate_successful: รายงานงานการสร้างใหม่ได้รับการกำหนดตารางสำเร็จแล้ว
+    modals:
+      remove:
+        content: คุณแน่ใจหรือไม่ว่าต้องการลบรายงาน %{userReportName}?
+        successfully: รายงาน %{userReportName} ถูกเอาออกเรียบร้อยแล้ว
+    preview_report: รายงานการดูตัวอย่าง
+    statuses:
+      generating: กำลังสร้าง
+      not_prepared: ไม่สามารถใช้งานได้
+      prepared: มีอยู่
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: บันทึกเสียงแล้วแต่ไม่ได้บันทึก
+        RECORDING: อยู่ระหว่างการบันทึกเสียง
+        SAVING: กำลังดำเนินการอัพโหลดไฟล์เสียงที่บันทึกไว้
+      required: กรุณาบันทึกและบันทึกเสียงก่อนดำเนินการต่อ
+    FileUpload:
+      in_progress:
+        SAVING: กำลังอัพโหลดไฟล์อยู่
+      required: กรุณาอัพโหลดไฟล์
+    TextEntry:
+      Email:
+        character_range: ข้อความอีเมล์ที่ป้อนต้องมีความยาวอย่างน้อย %{min} และไม่เกิน %{max} อักขระ
+        subject:
+          min_length: ช่องหัวเรื่องควรมีอย่างน้อย 10 ตัวอักษร
+        to:
+          required: ต้องระบุช่อง
+    VideoResponse:
+      in_progress:
+        recorded: วีดีโอถูกบันทึกแต่ไม่ได้บันทึก
+        recording: อยู่ระหว่างการบันทึกวีดีโอ
+        saving: กำลังอัพโหลดวิดีโอที่บันทึกไว้
+      required: กรุณาบันทึกและบันทึกวิดีโอไว้ก่อนที่จะดำเนินการต่อ
+    actions_still_in_progress: การดำเนินการต่อไปนี้อยู่ระหว่างดำเนินการ หากคุณดำเนินการต่อ คุณจะสูญเสียข้อมูลเหล่านี้
+    blank: ไม่สามารถว่างเปล่าได้
+    character_count: 'ตัวอักษรนับ '
+    character_range: คำตอบของคุณต้องมีความยาวอย่างน้อย %{min} และไม่เกิน %{max} อักขระ
+    date: คำตอบของคุณต้องเป็นวันที่ถูกต้อง (mm/dd/yyyy)
+    each_group_contains: แต่ละกลุ่มต้องมีรายการไม่น้อยกว่า %{min} และไม่เกิน %{max} รายการ
+    email: การตอบกลับของคุณจะต้องเป็นอีเมลที่ถูกต้อง
+    exact: กรุณาเลือก %{count} ตัวเลือกให้พอดี
+    file_upload:
+      EntityTooLarge: ขนาดไฟล์ควรน้อยกว่า %{maxFileSize} MB
+      WrongFileType: ประเภทไฟล์ควรเป็นหนึ่งใน %{allowedFileTypes} ต่อไปนี้
+    issue: ปัญหา
+    least: กรุณาตอบอย่างน้อย %{min} ตัวเลือก
+    least_hotspot: กรุณาตอบอย่างน้อย %{min} ตัวเลือก
+    max_character: คำตอบของคุณต้องมีความยาวไม่เกิน %{max} อักขระ
+    max_word: คำตอบของคุณต้องไม่เกิน %{max} คำ
+    min_character: คำตอบของคุณต้องมีความยาวอย่างน้อย %{min} อักขระ
+    min_word: คำตอบของคุณต้องมีอย่างน้อย %{min} คำ
+    most:
+      other: กรุณาเลือกสูงสุด %{max} ตัวเลือก
+    must_rank_between: โปรดกำหนดค่าตั้งแต่ %{min} ถึง %{max} สำหรับแต่ละรายการ ค่าไม่สามารถซ้ำกันได้
+    must_select: กรุณาเลือกจากตัวเลือก %{min} ถึง %{max}
+    number: คำตอบของคุณต้องเป็นตัวเลข
+    photo: ที่จำเป็น
+    range: กรุณาตอบอย่างน้อย %{min} และไม่เกิน %{max} ตัวเลือก
+    required: กรุณาตอบคำถามนี้
+    text: คำตอบของคุณต้องไม่มีตัวเลข
+    title:
+      one: มีข้อผิดพลาด 1 ข้อ กรุณาตรวจสอบคำตอบของคุณ
+      other: มีข้อผิดพลาด %{count} ข้อ กรุณาตรวจสอบคำตอบของคุณ
+    word_count: 'นับคำ '
+    word_range: คำตอบของคุณต้องมีอย่างน้อย %{min} และไม่เกิน %{max} คำ
+  'yes': ใช่
+  your: ของคุณ
+  yourself: ตัวคุณเอง

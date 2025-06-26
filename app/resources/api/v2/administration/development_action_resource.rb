@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :development_action_type, :course_url, :course_start_date, :course_end_date,
-             :project_id, :learning_style, :image, :skill_ids, :created_at, :updated_at, :global
+             :project_id, :learning_style, :image, :skill_ids, :created_at, :updated_at, :global,
+             :available_languages, :duration
 
   has_one :project
   has_many :skills
@@ -37,7 +38,11 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
   end
 
   def self.records(opts = {})
-    super.with_attached_image.includes(:project, :skills)
+    super.with_attached_image.includes(
+      :translations, :project,
+      skills: [:translations],
+      project: [:creator, :modifier, { design_setting: :logo_attachment }]
+    )
   end
 
   def course_url

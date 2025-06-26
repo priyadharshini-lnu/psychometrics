@@ -75,6 +75,16 @@ module Administration
         )
       end
 
+      def bulk_download_idp_reports?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :bulk_download_idp_reports, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
+      def allow_include_reflective_questions?
+        @user.is?(:superadmin)
+      end
+
       def export_compact_completion_status?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id

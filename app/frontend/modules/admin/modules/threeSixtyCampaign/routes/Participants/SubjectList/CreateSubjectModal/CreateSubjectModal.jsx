@@ -11,25 +11,33 @@ import ErrorAlertBox from '~/components/ErrorAlertBox'
 import userPresenter from '~/presenters/user'
 import UserAutocomplete from '~/components/UserAutocomplete'
 import { setIn } from '~/utils/immutable'
+import { useResources } from '~/hooks/useResources'
 
-const tableFields = [
+const getTableFields = jobRoles => [
+  { name: 'Email', key: 'email' },
+  { name: 'First Name', key: 'firstName' },
+  { name: 'Last Name', key: 'lastName' },
+  { name: 'Locale', key: 'locale' },
   {
-    name: 'Email',
-    key: 'email',
+    name: 'Current Job Role',
+    key: 'currentJobRole',
+    type: 'Select',
+    values: () => jobRoles?.map(role => ({
+      label: role.name,
+      value: role.name,
+    })) || [],
   },
   {
-    name: 'First Name',
-    key: 'firstName',
-  },
-  {
-    name: 'Last Name',
-    key: 'lastName',
-  },
-  {
-    name: 'Locale',
-    key: 'locale',
+    name: 'Target Job Role',
+    key: 'targetJobRole',
+    type: 'Select',
+    values: () => jobRoles?.map(role => ({
+      label: role.name,
+      value: role.name,
+    })) || [],
   },
 ]
+
 
 const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
 
@@ -58,6 +66,16 @@ export default function CreateSubjectModal ({
     setAutocompletedUser(userPresenter.getFullNameWithEmail(data))
     fillSubjects(newSubjects)
   }
+
+  const {
+    data: jobRoles = [],
+    fetch: fetchJobRoles,
+  } = useResources(`job_roles?project_id=${projectId}`)
+
+  useEffect(() => {
+    fetchJobRoles()
+  }, [])
+
 
   return (
     <Modal
@@ -89,7 +107,7 @@ export default function CreateSubjectModal ({
         </AntForm.Item>
       </Form>
       <Divider />
-      <SpreadSheet entities={subjects} fields={tableFields} updateEntities={fillSubjects} />
+      <SpreadSheet entities={subjects} fields={getTableFields(jobRoles)} updateEntities={fillSubjects} />
       <ErrorAlertBox errors={errors} />
     </Modal>
   )

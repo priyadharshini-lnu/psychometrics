@@ -308,6 +308,27 @@ jobs:
           paths:
             - tmp/rubocop_cache
 
+  # Checks for translation (i18n) key changes when merging to review or master branches
+  # Generates a CSV report and saves it as an artifact
+  notify_translation_changes:
+    executor: tte-executor-full
+    steps:
+      - checkout
+      - bundle_restore
+      - setup_db:
+          processes: 1
+      - run:
+          name: Check for I18n key changes
+          command: |
+            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
+              TARGET_BRANCH="review"
+            else
+              TARGET_BRANCH="master"
+            fi
+            bundle exec bin/devtools I18n translation_changes --source-branch=${CIRCLE_BRANCH} --target-branch=${TARGET_BRANCH} --notification-emails="${TRANSLATION_CHANGES_NOTIFICATION_EMAIL}"
+      - store_artifacts:
+          path: /tmp/i18n_changes
+
   bundle_assets:
     executor: tte-executor
     resource_class: xlarge
@@ -361,7 +382,7 @@ jobs:
             cp config/database.yml.sample config/database.yml
             bundle exec rake i18n:js:export
             (find tmp/cache/vitest -type f -mtime +15 -delete) || echo "No old cache files to prune"
-            yarn test --coverage --maxWorkers 7 --minWorkers 5 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=8 && yarn run coveralls < coverage/lcov.info
+            yarn test --coverage --maxWorkers 6 --minWorkers 5 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=8 && yarn run coveralls < coverage/lcov.info
       - run:
           name: Vitest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.vitest.flag
@@ -443,7 +464,7 @@ jobs:
           image: psychometrics
           tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-${CIRCLE_SHA1:0:7}'
           use-buildkit: true
-          extra_build_args: '--build-arg BUILDKIT_INLINE_CACHE=1 --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_ORG=$SENTRY_ORG --build-arg SENTRY_PROJECT=$SENTRY_PROJECT --build-arg SENTRY_DEBUG=$SENTRY_DEBUG'
+          extra_build_args: '--build-arg BUILDKIT_INLINE_CACHE=1 --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_ORG=$SENTRY_ORG --build-arg SENTRY_PROJECT=$SENTRY_PROJECT --build-arg SENTRY_DEBUG=$SENTRY_DEBUG --build-arg GITHUB_TOKEN=$GITHUB_TOKEN'
           registry: lhcontregistry.azurecr.io
       - aws-cli/setup:
           profile_name: default
@@ -644,6 +665,14 @@ workflows:
       - rubocop:
           requires:
             - bundle
+      - notify_translation_changes:
+          requires:
+            - bundle_assets
+          filters:
+              branches:
+                only:
+                  - review
+                  - master
       - bundle_assets:
           requires:
             - yarn
@@ -676,7 +705,6 @@ workflows:
             branches:
               only:
                 - develop
-                - 1171475-ruby-upgrade
       - heroku_release:
           name: heroku_release_develop
           app-name: tte-lighthouse-develop

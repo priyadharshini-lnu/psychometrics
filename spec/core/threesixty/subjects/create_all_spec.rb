@@ -6,6 +6,9 @@ describe Threesixty::Subjects::CreateAll do
   let(:project) { create(:project) }
   let(:campaign) { create(:campaign, project: project) }
   let(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
+  let!(:current_role) { create(:job_role, name: 'Developer', project: project) }
+  let!(:target_role) { create(:job_role, name: 'Senior Developer', project: project) }
+  let!(:global_role) { create(:job_role, name: 'Global Role', project: nil) }
 
   before do
     allow(Licenses::CreateThreesixtySubject).to receive(:call!).and_return(true)
@@ -79,6 +82,63 @@ describe Threesixty::Subjects::CreateAll do
       expect(result[:subjects].map { |s| s.user.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
       expect(participants.map { |s| s.evaluator.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
       expect(participants.map { |s| s.subject.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
+    end
+
+    context 'with job role assignments' do
+      it 'assigns current and target job roles to new users' do
+        subject_data = {
+          email: 'new@example.com',
+          current_job_role: 'Developer',
+          target_job_role: 'Senior Developer'
+        }
+
+        result = described_class.call!([subject_data], threesixty_campaign)
+        campaign_user = CampaignUser.find_by(user: result[:subjects].first.user, campaign: campaign)
+
+        expect(campaign_user.current_job_role).to eq(current_role)
+        expect(campaign_user.target_job_role).to eq(target_role)
+      end
+
+      it 'assigns global job roles when specified' do
+        subject_data = {
+          email: 'new@example.com',
+          current_job_role: 'Global Role'
+        }
+
+        result = described_class.call!([subject_data], threesixty_campaign)
+        campaign_user = CampaignUser.find_by(user: result[:subjects].first.user, campaign: campaign)
+
+        expect(campaign_user.current_job_role).to eq(global_role)
+        expect(campaign_user.target_job_role).to be_nil
+      end
+
+      it 'updates job roles for existing users' do
+        user = create(:user, project: project, email: 'existing@example.com')
+        create(:campaign_user, user: user, campaign: campaign)
+
+        subject_data = {
+          email: 'existing@example.com',
+          target_job_role: 'Senior Developer'
+        }
+
+        described_class.call!([subject_data], threesixty_campaign)
+        campaign_user = CampaignUser.find_by(user: user, campaign: campaign)
+
+        expect(campaign_user.target_job_role).to eq(target_role)
+        expect(campaign_user.current_job_role).to be_nil
+      end
+
+      it 'ignores invalid job role names' do
+        subject_data = {
+          email: 'invalid@example.com',
+          current_job_role: 'Nonexistent Role'
+        }
+
+        result = described_class.call!([subject_data], threesixty_campaign)
+        campaign_user = CampaignUser.find_by(user: result[:subjects].first.user, campaign: campaign)
+
+        expect(campaign_user.current_job_role).to be_nil
+      end
     end
   end
 end

@@ -31,6 +31,7 @@ module Api
             optional(:allowed_languages).array(:string)
             required(:allow_language_preference).filled(:bool)
             required(:allow_neurodiversity_option).filled(:bool)
+            required(:campaign_assessment_group_id).filled(:string)
             optional(:workshop_ids).array(:string)
             optional(:subjects).array(subject)
             required(:translations).array(translation)

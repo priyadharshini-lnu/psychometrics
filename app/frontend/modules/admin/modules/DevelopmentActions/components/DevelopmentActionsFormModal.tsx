@@ -21,6 +21,9 @@ import {
   DevelopmentActionType,
   DevelopmentActionLearningStyle,
 } from '~/modules/admin/modules/client/core/developmentAction'
+import InputDuration from '~/components/InputDuration'
+import { durationValidator } from '~/components/DurationValidator'
+
 
 const { Option } = Select
 
@@ -44,6 +47,8 @@ const { I18n } = window
 export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmentAction }) => {
   const { resource } = useResourceContext<DevelopmentAction>()
   const dispatch = useDispatch()
+
+  const { availableLocales } = I18n
 
   const { projectId: projectIdParam } = useParams()
 
@@ -310,6 +315,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           course_start_date: developmentAction?.courseStartDate ? dayjs(developmentAction.courseStartDate) : null,
           course_end_date: developmentAction?.courseEndDate ? dayjs(developmentAction.courseEndDate) : null,
           image: developmentAction?.image,
+          availableLanguages: developmentAction?.availableLanguages || [],
         },
       }}
     >
@@ -329,6 +335,11 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           <Form.Item
             name="description"
             label={I18n.t('administration.development_actions.form.description')}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
           >
             <Input />
           </Form.Item>
@@ -422,6 +433,23 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                       />
                     </Form.Item>
                   </Flex>
+                  {
+                    developmentActionType === DevelopmentActionType.course && (
+                      <Form.Item
+                        name="availableLanguages"
+                        label={I18n.t('administration.development_actions.form.available_languages')}
+                      >
+                        <Select mode="multiple">
+                          {availableLocales
+                            .map(locale => (
+                              <Select.Option key={locale} value={locale}>
+                                {I18n.t(`languages.${locale}`)}
+                              </Select.Option>
+                            ))}
+                        </Select>
+                      </Form.Item>
+                    )
+                  }
                 </>
               ) : null
           }
@@ -444,6 +472,28 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                   ))
               }
             </Select>
+          </Form.Item>
+          <Form.Item
+            name="duration"
+            label={I18n.t('administration.development_actions.form.duration')}
+            rules={[
+              {
+                validator: durationValidator({
+                  minMinutes: 1,
+                  maxMinutes: 24 * 60 * 365,
+                  minError: I18n.t('administration.development_actions.duration.min_length'),
+                  maxError: I18n.t('administration.development_actions.duration.max_length'),
+                  requiredError: '',
+                  required: false,
+                }),
+              },
+            ]}
+          >
+            <InputDuration
+              value=""
+              onChange={() => {}}
+              placeholder={I18n.t('administration.components.input_duration.placeholder')}
+            />
           </Form.Item>
           <Form.Item
             name="skillIds"

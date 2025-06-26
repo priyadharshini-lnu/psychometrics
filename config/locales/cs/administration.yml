@@ -29,16 +29,16 @@ cs:
         edit:
           admin_role_select: Vyberte roli správce
           admin_roles: Role správce
-          create_success: Správce '%{jméno}' byl úspěšně vytvořen
+          create_success: Správce '%{name}' byl úspěšně vytvořen
           email: E-mail
           first_name: Křestní jméno
           first_name_required: Křestní jméno je povinné
           last_name: Příjmení
           last_name_required: Příjmení je povinné
-          no_edit_permission: Nemáte oprávnění k úpravám administrátora '%{jméno}'
+          no_edit_permission: Nemáte oprávnění k úpravám administrátora '%{name}'
           save: Uložit
           update: Aktualizace
-          update_success: Admin '%{jméno}' byl úspěšně aktualizován
+          update_success: Admin '%{name}' byl úspěšně aktualizován
         notes:
           threesixty_permission: Oprávnění specifická pro kampaně 360
           title: Poznámky
@@ -173,6 +173,10 @@ cs:
             manage: Správa
             title: Šablony IDP
             view: Zobrazit
+          jobRoles:
+            manage: Správa
+            title: Pracovní role
+            view: Zobrazit
           mediaLibraries:
             manage: Správa
             title: Knihovny médií
@@ -186,6 +190,16 @@ cs:
             manage: Správa
             title: Normy
             view: Zobrazit
+          proficiencyLevels:
+            export: Úrovně odborné způsobilosti pro export
+            export_translations: Úrovně znalostí pro export překlady
+            import: Úrovně odborné způsobilosti importu
+            import_translations: Úrovně pokročilosti importu Překlady
+            manage: Správa
+            title: Úrovně odborné způsobilosti
+            view: Zobrazit
+          proficiency_level:
+            title: Úrovně odborné způsobilosti
           projectSettings:
             assessments: Hodnocení
             design: Design
@@ -230,6 +244,7 @@ cs:
             approve_report: Schválení zprávy
             bulk_download: Hromadné stahování
             bulk_regenerate_reports: Hromadné přegenerování sestav
+            bulk_update_evaluation_status: Hromadná aktualizace stavu hodnocení
             download_report: Stáhnout zprávu
             edit_report: Upravit zprávu
             export_occupations: Vývozní profese
@@ -271,6 +286,22 @@ cs:
             manage: Správa
             title: Workshopy
             view: Zobrazit
+    ai_assistants:
+      actions:
+        playground: Dětské hřiště
+      ai_assistants: Asistenti AI
+      ai_assistants_playground: AI Assistant Playground
+      column:
+        ai_action: Akce AI
+        provider: Poskytovatel
+      form:
+        action: Akce
+        description: Popis
+        name: Název
+        provider: Poskytovatel
+        system_prompt: Systémová výzva
+        title: Asistent s umělou inteligencí
+        user_prompt: Výzva pro uživatele
     any: " - Jakýkoli - "
     api:
       campaigns:
@@ -302,10 +333,11 @@ cs:
           preferred_language: Povolené jazyky
           required_error: Nemůže být prázdný
           title: Základní informace
+        center_group: Skupina Assessment Center
         confirm_message: Jste si jisti, že chcete pozvánku odstranit?
         confirm_message_with_title: Opravdu chcete odstranit pozvánku s názvem '%{invite_title}'?
         confirm_title: Potvrďte
-        exceeded_subjects_count: Kampaň má %{uživatelů} subjektů. Na jednu pozvánku můžete přidat pouze %{počet} subjektů
+        exceeded_subjects_count: Kampaň má %{users} subjektů. Na jednu pozvánku můžete přidat pouze %{count} subjektů
         id: ID
         invites: Pozvánky
         next: Další
@@ -330,7 +362,7 @@ cs:
           cancel: Zrušit
           count: "%{count} Subjekty"
           csv_error: 'Řádek%{index}: uživatel s e-mailem %{email} není v této kampani zařazen'
-          csv_imported: "%{počet} importovaných subjektů"
+          csv_imported: "%{count} importovaných subjektů"
           description: Subjekty můžete přidávat jednotlivě pomocí vyhledávání nebo hromadně nahrát soubor csv.
           download: Stáhnout
           file_example: Odkaz na příkladový soubor pro nahrání informací o subjektech.
@@ -354,7 +386,7 @@ cs:
           add: Přidat
           name: Název
           remove_confirm:
-            content: Opravdu chcete odebrat středisko hodnocení s názvem '%{jméno}'?
+            content: Opravdu chcete odebrat středisko hodnocení s názvem '%{name}'?
             success: Assessment Center bylo úspěšně odstraněno.
             title: Potvrďte
       invite_request:
@@ -362,8 +394,8 @@ cs:
         reason: Důvod
         reject: Odmítnout
         remove_confirm:
-          content: Jste si jisti, že chcete %{akce} %{stav} z %{jméno předmětu}?
-          success: "%{status} z %{jméno subjektu} byla %{akce} úspěšně provedena."
+          content: Jste si jisti, že chcete %{action} %{status} z %{subjectName}?
+          success: "%{status} z %{subjectName} byla %{action} úspěšně provedena."
           title: "%{action} %{status}"
         status: Stav
         subject_name: Jméno subjektu
@@ -385,7 +417,7 @@ cs:
       errors:
         doesnt_have_header: "'%{sub_header}' nemá hlavičku"
         invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
-        invalid_scores: Skóre pro faktor %{název_faktoru} jsou neplatná. Skóre by měly být číselné hodnoty oddělené čárkou
+        invalid_scores: Skóre pro faktor %{factor_name} jsou neplatná. Skóre by měly být číselné hodnoty oddělené čárkou
         invalid_sub_header: "'%{sub_header}' není platný podnadpis pro hlavičku '%{header}'"
         scores_not_allowed: Skóre lze přidávat pouze u otázek typu MultiChoice a Matrix
         unavailable_factors: "%{unavailable_factor_names} faktory nejsou v dimenzi přítomny"
@@ -400,21 +432,21 @@ cs:
         copy: kopírovat
         copy_assessment: Posouzení kopírování
         name: Název
-        successfully: Posouzení "%{jméno}" bylo úspěšně zkopírováno.
+        successfully: Posouzení "%{name}" bylo úspěšně zkopírováno.
       create:
-        successfully: Hodnocení "%{jméno}" bylo úspěšně vytvořeno.
+        successfully: Hodnocení "%{name}" bylo úspěšně vytvořeno.
       destroy:
-        successfully: Hodnocení "%{jméno}" bylo úspěšně odstraněno.
+        successfully: Hodnocení "%{name}" bylo úspěšně odstraněno.
       edit:
         header: Nastavení hodnocení
       errors:
-        owner_validation: Nemáte oprávnění %{název_zdroje} %{oprávnění} pro %{název_klienta}
+        owner_validation: Nemáte oprávnění %{resource_name} %{permission} pro %{client_name}
       export:
         questions: Otázky k exportu
       export_questions_toastr: Otázky Exportní úloha byla úspěšně naplánována
       flow: Průtok
       linkedAssessment:
-        assessment_title: Vybrat otázky z %{jméno}
+        assessment_title: Vybrat otázky z %{name}
         title: Vybrané propojené otázky
       map_norms: Mapové normy
       menu:
@@ -432,6 +464,7 @@ cs:
         per_page: na stránku
         plural:
           block: bloky
+          choice: volby
           question: otázky
         present_only: Pouze přítomnost
         question_per_factor_and_show: otázky na faktor a ukázat
@@ -451,9 +484,9 @@ cs:
             title: "<strong>Posouzení</strong> soft delete?"
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} toto hodnocení?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
-        successfully: Posouzení %{název} bylo úspěšně obnoveno.
+        successfully: Posouzení %{name} bylo úspěšně obnoveno.
       scoring_strategy:
         average: Průměr
         sum: Součet
@@ -471,13 +504,13 @@ cs:
         instructions: Povolení pokynů
         title: Nastavení hodnocení
       soft_delete:
-        successfully: Hodnocení %{jméno} bylo úspěšně přesunuto do koše.
+        successfully: Hodnocení %{name} bylo úspěšně přesunuto do koše.
       toggle_archive:
-        successfully: Hodnocení %{jméno} proběhlo %{stav} úspěšně.
+        successfully: Hodnocení %{name} proběhlo %{status} úspěšně.
       toggle_status:
-        successfully: Hodnocení %{název} bylo úspěšně aktualizováno.
+        successfully: Hodnocení %{name} bylo úspěšně aktualizováno.
       update:
-        successfully: Hodnocení %{název} bylo úspěšně aktualizováno.
+        successfully: Hodnocení %{name} bylo úspěšně aktualizováno.
     assessor:
       add_subject_modal:
         assessment: Hodnocení
@@ -576,7 +609,7 @@ cs:
         confirmations:
           delete:
             body: "<p>Opravdu chcete toto přiřazení odstranit?</p>"
-            title: Smazat <strong>%{jméno}</strong>?
+            title: Smazat <strong>%{name}</strong>?
     assigns_reports:
       edit:
         header: Úprava přiřazení sestavy
@@ -638,11 +671,11 @@ cs:
         title: Nastavení bloku
     blocks:
       copy:
-        successfully: Blok %{název} byl úspěšně zkopírován.
+        successfully: Blok %{name} byl úspěšně zkopírován.
       create:
-        successfully: Blok %{název} byl úspěšně vytvořen.
+        successfully: Blok %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Blok %{název} byl úspěšně odstraněn.
+        successfully: Blok %{name} byl úspěšně odstraněn.
       edit:
         header: Blok úprav
       new:
@@ -654,7 +687,7 @@ cs:
             title: Smazat <strong>blok</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tohoto bloku?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
     bookings:
       errors:
         already_booked: Místo v letadle jste si již rezervovali.
@@ -739,11 +772,11 @@ cs:
         assessment_factors: Faktory jsou načteny
         assessment_update: Hodnocení je aktualizováno
         block_clone: Blok je zkopírován
-        block_create: Blok %{jméno} je vytvořen
+        block_create: Blok %{name} je vytvořen
         block_create_by_template: Blok byl načten ze šablony
         block_destroy: Blok byl odstraněn
-        block_move_down: Blok %{název} je přesunut dolů
-        block_move_up: Blok %{název} je přesunut nahoru
+        block_move_down: Blok %{name} je přesunut dolů
+        block_move_up: Blok %{name} je přesunut nahoru
         block_permanent_destroy: Blok je trvale odstraněn
         block_rename: Blok je přejmenován
         block_restore: Blok je obnoven
@@ -753,7 +786,7 @@ cs:
         comment_create: Komentář je vytvořen
         comment_destroy: Komentář byl smazán
         geo_filter: Filtrování dat
-        module_create: Modul %{název} je vytvořen
+        module_create: Modul %{name} je vytvořen
         module_destroy: Modul byl odstraněn
         module_insert_after: Modul je vložen po
         module_insert_before: Modul je vložen před
@@ -761,14 +794,14 @@ cs:
         module_move_up: Modul je posunut nahoru
         module_rename: Modul je přejmenován
         module_update: Modul je aktualizován
-        page_create: Stránka %{název} je vytvořena
+        page_create: Stránka %{name} je vytvořena
         page_destroy: Stránka byla smazána
-        page_move_down: Stránka %{název} je přesunuta dolů
-        page_move_up: Stránka %{název} je přesunuta nahoru
+        page_move_down: Stránka %{name} je přesunuta dolů
+        page_move_up: Stránka %{name} je přesunuta nahoru
         page_rename: Stránka je přejmenována
         page_update: Stránka je aktualizována
         question_clone: Otázka je zkopírována
-        question_create: Je vytvořena otázka %{jméno}
+        question_create: Je vytvořena otázka %{name}
         question_create_by_template: Otázka byla načtena ze šablony
         question_create_from_template: Otázka je vytvořena ze šablony
         question_destroy: Otázka byla smazána
@@ -792,22 +825,22 @@ cs:
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: ID hodnocení '%{assessment_id}' nebylo v kampani nalezeno
-        code_already_exists: Faktor se stejným kódem '%{kód}' již existuje.
+        code_already_exists: Faktor se stejným kódem '%{code}' již existuje.
         factor_not_in_assessment_dimension: Id faktoru '%{factor_id}' není součástí dimenze hodnocení
         invalid_lua_name: Kód '%{code}' by měl být platný název proměnné lua
-        invalid_name_format: Název '%{jméno}' by měl odpovídat očekávanému formátu.
-        max_limit_reached: Nelze vytvořit více než %{počet} faktorů kampaně.
+        invalid_name_format: Název '%{name}' by měl odpovídat očekávanému formátu.
+        max_limit_reached: Nelze vytvořit více než %{count} faktorů kampaně.
         missing_assessment_id: Vyžaduje se ID pro posouzení.
         missing_assessment_score_type: Vyžaduje se typ hodnocení.
         missing_factor_id: Je vyžadováno ID faktoru.
-        name_already_exists: Faktor se stejným názvem '%{jméno}' již existuje.
-        name_size_exceded: Název by neměl přesáhnout %{velikost} znaků.
+        name_already_exists: Faktor se stejným názvem '%{name}' již existuje.
+        name_size_exceded: Název by neměl přesáhnout %{size} znaků.
     campaign_factors:
       delete:
         confirm_message:
-          assessor_scoring: Chystáte se odstranit bodování hodnotitele. Ztratíte všechna moderovaná hodnocení hodnotitele pro tento faktor '%{název_faktoru}'. Jste si jisti, že chcete pokračovat?
-          default: Opravdu chcete odstranit faktor kampaně '%{název_faktoru}'?
-          external_score: Chystáte se odstranit externí bodování. Ztratíte externí bodování, které je spojeno s tímto faktorem '%{název_faktoru}'. Určitě chcete pokračovat?
+          assessor_scoring: Chystáte se odstranit bodování hodnotitele. Ztratíte všechna moderovaná hodnocení hodnotitele pro tento faktor '%{factor_name}'. Jste si jisti, že chcete pokračovat?
+          default: Opravdu chcete odstranit faktor kampaně '%{factor_name}'?
+          external_score: Chystáte se odstranit externí bodování. Ztratíte externí bodování, které je spojeno s tímto faktorem '%{factor_name}'. Určitě chcete pokračovat?
     campaign_factors_import:
       errors:
         invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
@@ -818,11 +851,11 @@ cs:
         owner: Majitel
         report: Nahlásit
       copy:
-        successfully: Klientská smlouva %{název} byla úspěšně zkopírována.
+        successfully: Klientská smlouva %{name} byla úspěšně zkopírována.
       create:
-        successfully: Klientský nájemní vztah %{název} byl úspěšně vytvořen.
+        successfully: Klientský nájemní vztah %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Klientský nájemní vztah %{název} byl úspěšně odstraněn.
+        successfully: Klientský nájemní vztah %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit klienta
       errors:
@@ -852,23 +885,23 @@ cs:
       new:
         header: Nový klient
       remove_confirm:
-        content: Opravdu chcete odstranit šablonu kampaně '%{jméno}'?
-        success: Šablona kampaně '%{název}' byla úspěšně odstraněna.
+        content: Opravdu chcete odstranit šablonu kampaně '%{name}'?
+        success: Šablona kampaně '%{name}' byla úspěšně odstraněna.
         title: Odstranění šablony kampaně
       resource:
         confirmations:
           delete:
             body: "<p>Opravdu chcete tuto šablonu kampaně odstranit?</p>\n"
-            title: Smazat <strong>%{jméno}</strong>?
+            title: Smazat <strong>%{name}</strong>?
         in_progress:
           deleting: Odstranění
         tooltips:
           delete: Odstranit klienta
           edit: Upravit klienta
       toggle_status:
-        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+        successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
       update:
-        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+        successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
     campaigns:
       actions: Správa
       assessment_reports:
@@ -888,11 +921,11 @@ cs:
           settings: Nastavení
       assessors:
         spoof:
-          successfully: Byl jste úspěšně přihlášen jako %{jméno}
+          successfully: Byl jste úspěšně přihlášen jako %{name}
       copy: Kopírovat
       delete: Odstranit
       edit: Upravit
-      extend_time_success_message: Časovač kampaně prodloužen na %{minut} minut
+      extend_time_success_message: Časovač kampaně prodloužen na %{minutes} minut
       filters:
         active: Aktivní
         all: Všechny
@@ -1029,6 +1062,13 @@ cs:
         success_msg: Import byl úspěšně nahrán
       modal:
         title: Import výsledků externích kampaní
+    client_features:
+      client_features: Funkce klienta
+      form:
+        ai_assistants: Asistenti AI
+        ai_assisted_idp: IDP s asistencí AI
+        global_skills: Globální dovednosti
+        sms_notification: Upozornění SMS
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1046,11 +1086,11 @@ cs:
         type: Typ
         year: Rok
       copy:
-        successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně zkopírována.
+        successfully: Klientská smlouva o pronájmu '%{name}' byla úspěšně zkopírována.
       create:
-        successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně vytvořena.
+        successfully: Klientská smlouva o pronájmu '%{name}' byla úspěšně vytvořena.
       destroy:
-        successfully: Klientský nájemní vztah %{název} byl úspěšně odstraněn.
+        successfully: Klientský nájemní vztah %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit klienta
       licenses:
@@ -1058,7 +1098,7 @@ cs:
           confirmations:
             toggle_status:
               body: "<p>Jste si jisti, že chcete %{status} této licence?</p>\n"
-              title: "<strong>%{status}</strong> Licence pro %{jméno}?"
+              title: "<strong>%{status}</strong> Licence pro %{name}?"
         show:
           used_out_of: "%{used_number} z %{number}"
       new:
@@ -1068,8 +1108,8 @@ cs:
           archive: Archiv
           unarchive: Odarchivovat
         archive:
-          content: Jste si jisti, že chcete archivovat '%{název_projektu}'?
-          success: Projekt '%{jméno_projektu}' byl úspěšně archivován.
+          content: Jste si jisti, že chcete archivovat '%{project_name}'?
+          success: Projekt '%{project_name}' byl úspěšně archivován.
           title: Archivní projekt
         assign_assessments:
           add_assessment: Přidat hodnocení
@@ -1078,14 +1118,14 @@ cs:
           add_report: Přidat zprávu
         campaigns:
           archive:
-            successfully: Kampaň '%{název}' byla úspěšně archivována.
+            successfully: Kampaň '%{name}' byla úspěšně archivována.
           copy:
-            error: Kampaň '%{jméno}' nebyla zkopírována.
-            successfully: Kampaň '%{název}' byla úspěšně zkopírována.
+            error: Kampaň '%{name}' nebyla zkopírována.
+            successfully: Kampaň '%{name}' byla úspěšně zkopírována.
           create:
-            successfully: Kampaň '%{název}' byla úspěšně vytvořena.
+            successfully: Kampaň '%{name}' byla úspěšně vytvořena.
           destroy:
-            successfully: Kampaň '%{název}' byla úspěšně odstraněna.
+            successfully: Kampaň '%{name}' byla úspěšně odstraněna.
           edit:
             header: Upravit kampaň
           export:
@@ -1154,14 +1194,14 @@ cs:
             view_licenses: Zobrazit licence
           sub_campaigns:
             archive:
-              successfully: Dílčí kampaň %{název} byla úspěšně archivována.
+              successfully: Dílčí kampaň %{name} byla úspěšně archivována.
             copy:
-              error: Podkampaně %{název} nebyly zkopírovány.
-              successfully: Dílčí kampaň %{název} byla úspěšně zkopírována.
+              error: Podkampaně %{name} nebyly zkopírovány.
+              successfully: Dílčí kampaň %{name} byla úspěšně zkopírována.
             create:
-              successfully: Dílčí kampaň %{název} byla úspěšně vytvořena.
+              successfully: Dílčí kampaň %{name} byla úspěšně vytvořena.
             destroy:
-              successfully: Dílčí kampaň %{název} byla úspěšně odstraněna.
+              successfully: Dílčí kampaň %{name} byla úspěšně odstraněna.
             edit:
               header: Upravit dílčí kampaň
             export:
@@ -1224,20 +1264,20 @@ cs:
               title: Možnosti dílčí kampaně
               view_licenses: Zobrazit licence
             toggle_status:
-              successfully: Dílčí kampaň %{název} byla úspěšně aktualizována.
+              successfully: Dílčí kampaň %{name} byla úspěšně aktualizována.
             update:
-              successfully: Dílčí kampaň %{název} byla úspěšně aktualizována.
+              successfully: Dílčí kampaň %{name} byla úspěšně aktualizována.
           toggle_status:
-            successfully: Kampaň %{název} byla úspěšně aktualizována.
+            successfully: Kampaň %{name} byla úspěšně aktualizována.
           update:
-            successfully: Kampaň %{název} byla úspěšně aktualizována.
+            successfully: Kampaň %{name} byla úspěšně aktualizována.
         copy:
-          error: Projekt %{název} nebyl zkopírován.
-          successfully: Projekt %{název} byl úspěšně zkopírován.
+          error: Projekt %{name} nebyl zkopírován.
+          successfully: Projekt %{name} byl úspěšně zkopírován.
         create:
-          successfully: Projekt %{název} byl úspěšně vytvořen.
+          successfully: Projekt %{name} byl úspěšně vytvořen.
         destroy:
-          successfully: Projekt %{název} byl úspěšně odstraněn.
+          successfully: Projekt %{name} byl úspěšně odstraněn.
         edit:
           header: Upravit projekt
         export:
@@ -1350,17 +1390,17 @@ cs:
             in_progress: Probíhá
             not_started: Nebylo zahájeno
           copy:
-            error: Klientská nájemní smlouva '%{název}' nebyla zkopírována.
-            successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně zkopírována.
+            error: Klientská nájemní smlouva '%{name}' nebyla zkopírována.
+            successfully: Klientská smlouva o pronájmu '%{name}' byla úspěšně zkopírována.
           create:
-            successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně vytvořena.
+            successfully: Klientská smlouva o pronájmu '%{name}' byla úspěšně vytvořena.
           designs:
             form:
               no_background: Zatím žádné pozadí
               no_logo: Zatím žádné logo
           destroy:
-            error: Nelze odstranit '%{jméno}', protože existují některé závislé asociace subjektů nebo hodnotitelů.
-            successfully: Klientská smlouva o pronájmu '%{název}' byla úspěšně odstraněna.
+            error: Nelze odstranit '%{name}', protože existují některé závislé asociace subjektů nebo hodnotitelů.
+            successfully: Klientská smlouva o pronájmu '%{name}' byla úspěšně odstraněna.
           edit:
             header: Upravit kampaň 360
           export:
@@ -1378,7 +1418,7 @@ cs:
             new: Přidat kampaň 360
             title: 360 Kampaně
           license:
-            header: "%{jméno} - Upravit licenci"
+            header: "%{name} - Upravit licenci"
           licenses:
             update:
               duplicate_licenses: Máte duplicitní licence
@@ -1399,22 +1439,22 @@ cs:
           resource:
             confirmations:
               delete:
-                body: "<p>Jste si jisti, že je chcete odstranit?</p> <p>Tuto akci nelze vrátit zpět. Tímto krokem se trvale odstraní kampaň <strong>%{název}</strong>, dílčí kampaně a všechna sdružení.</p> <p>Pro potvrzení zadejte <strong>%{jméno}</strong>.</p>"
-                title: Smazat <strong>%{jméno}</strong>?
+                body: "<p>Jste si jisti, že je chcete odstranit?</p> <p>Tuto akci nelze vrátit zpět. Tímto krokem se trvale odstraní kampaň <strong>%{name}</strong>, dílčí kampaně a všechna sdružení.</p> <p>Pro potvrzení zadejte <strong>%{name}</strong>.</p>"
+                title: Smazat <strong>%{name}</strong>?
               disable:
                 body:
                   '0': "<p>Určitě chcete archivovat?</p> <p>Všechny kampaně, dílčí kampaně a uživatelé budou také archivovány</p>"
                   '1': "<p>Určitě chcete archivovat?</p> <p>Všechny dílčí kampaně a uživatelé budou také archivováni</p>"
                   '2': "<p>Určitě chcete archivovat?</p> <p>Všichni uživatelé budou také archivováni</p>"
                   '3': "<p>Určitě chcete archivovat?</p> <p>Všichni uživatelé budou také archivováni</p>"
-                title: Archivovat <strong>%{jméno}</strong>?
+                title: Archivovat <strong>%{name}</strong>?
               enable:
                 body:
                   '0': "<p>Určitě chcete zrušit archivaci?</p>"
                   '1': "<p>Určitě chcete zrušit archivaci?</p>"
                   '2': "<p>Určitě chcete zrušit archivaci?</p>"
                   '3': "<p>Určitě chcete zrušit archivaci?</p>"
-                title: Odarchivovat <strong>%{jméno}</strong>?
+                title: Odarchivovat <strong>%{name}</strong>?
             export_results: Výsledky exportu
             raw_results: Surové výsledky
             tooltips:
@@ -1432,18 +1472,18 @@ cs:
               assessment_type: Typ hodnocení
               title: Statistiky
           toggle_status:
-            successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+            successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
           update:
-            successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+            successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
           url: Url
         toggle_status:
-          successfully: Projekt %{název} byl úspěšně aktualizován.
+          successfully: Projekt %{name} byl úspěšně aktualizován.
         unarchive:
-          content: Jste si jisti, že chcete zrušit archivaci '%{název_projektu}'?
-          success: Projekt '%{název_projektu}'' byl úspěšně odarchivován.
+          content: Jste si jisti, že chcete zrušit archivaci '%{project_name}'?
+          success: Projekt '%{project_name}'' byl úspěšně odarchivován.
           title: Projekt Unarchive
         update:
-          successfully: Projekt %{název} byl úspěšně aktualizován.
+          successfully: Projekt %{name} byl úspěšně aktualizován.
       registration_codes:
         column:
           code: Kód
@@ -1458,24 +1498,28 @@ cs:
       resource:
         confirmations:
           delete:
-            title: Smazat <strong>%{jméno}</strong>?
+            title: Smazat <strong>%{name}</strong>?
           disable:
-            title: Archiv <strong>%{jméno}</strong>?
+            title: Archiv <strong>%{name}</strong>?
           enable:
-            title: Odarchivovat <strong>%{jméno}</strong>?
+            title: Odarchivovat <strong>%{name}</strong>?
       tenancies: Nájemní smlouvy klientů
       threesixty_campaign: Kampaň Threesixty
       toggle_status:
-        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+        successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
       update:
-        successfully: Klientská nájemní smlouva %{název} byla úspěšně aktualizována.
+        successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
     close: Zavřít
     common:
       add: Přidat
       back: Zpět
       cancel: Zrušit
       disabled: Diasbled
+      download_sample_file: Stáhnout ukázkový soubor
       enabled: Povoleno
+      import:
+        failure_msg: Chyba při importu souboru.
+      minute: minuta
       next: Další
       reset: Obnovení
       save: Uložit
@@ -1485,9 +1529,21 @@ cs:
       create:
         successfully: Komunikace byla úspěšně vytvořena.
       destroy:
-        successfully: Komunikace %{jméno} byla úspěšně odstraněna.
+        successfully: Komunikace %{name} byla úspěšně odstraněna.
       edit:
         header: Upravit komunikaci
+      edit_translation:
+        body_label: Štítek těla
+        copy: Kopírovat
+        copy_to_code_editor_hint: 'Tip: Zkopírujte referenční text výše a přepněte do režimu editoru kódu pro snazší úpravu HTML'
+        locale_label: Místní nastavení
+        no_reference_body: Žádné referenční tělo není k dispozici
+        no_reference_subject: Není k dispozici žádný referenční předmět
+        reference_body_label: Štítek referenčního těla
+        reference_subject_label: Štítek referenčního předmětu
+        subject_label: Štítek předmětu
+        title: Upravit překlad
+        update_button: Aktualizovat překlad
       form:
         all: Všechny
         assessment_completion_status_code: Kód stavu dokončení hodnocení
@@ -1502,11 +1558,14 @@ cs:
           not_started: Pokud není hodnocení zahájeno
           send_now: Odeslat nyní
           specific_datetime: Odeslat na adresu
+        development_action_deadline_missed: Zmeškání lhůty pro vývojové akce
+        idp_deadline_missed: Zmeškaný termín IDP
         idp_template_approved: Schválený IDP
         idp_template_assigned: Přidělený IDP
         idp_template_rejected: IDP Odmítnuto
         invitation: Pozvánka
         kind: Typy komunikace
+        locale: Místní nastavení
         magic_link_email: Kouzelný odkaz E-mail
         new_assignment: Nové zadání
         new_users: Noví uživatelé
@@ -1552,7 +1611,7 @@ cs:
             title: Smazat <strong>komunikaci</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tohoto sdělení?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopírování
           deleting: Odstranění
@@ -1560,9 +1619,11 @@ cs:
           copy: Kopírovat komunikaci
           delete: Odstranit komunikaci
           download: Stáhnout Historie komunikace
+          edit_translation: Upravit překlad
           view: Zobrazit komunikaci
       show:
         assessment: 'Hodnocení:'
+        assessment_center_group: 'Skupina Assessment Center:'
         back: Zpět
         body: 'Tělo:'
         campaign: 'Kampaň:'
@@ -1582,23 +1643,33 @@ cs:
         copy: Kopírovat komunikaci
         destroy: Odstranit komunikaci
         download: Stáhnout Historie komunikace
+        edit_translation: Upravit překlad
         title: Možnosti komunikace
         view: Zobrazit komunikaci
       toggle_status:
         successfully: Komunikace byla úspěšně aktualizována.
+      update_translation:
+        successfully_updated: Překlad byl úspěšně aktualizován.
     components:
       input_duration:
         placeholder: Zadejte jako "1d 2h 3m"
     create: Vytvořit
     dashboard:
       capacity_name: Název kapacity
+      choose_file_format: Výběr formátu souboru
       dashboard_types:
         oracle_analytics: Oracle Analytics
         powerbi: PowerBi
       dashboards: Přístrojové panely
+      export_dashboard_to_file: Exportovat přístrojový panel do souboru
+      export_job_failure: Nepodařilo se spustit export
+      export_job_success: Zahájení exportu. Po jejím dokončení budete informováni.
       get_started: Začněte
       initialize_msg: Inicializace ovládacího panelu pro tuto kampaň
       loading_failed: Načítání přístrojové desky se nezdařilo.
+      only_export_current_tab: Exportovat pouze aktuální kartu
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: Zkontrolujte, zda je Dataset a Report Id v nastavení správné.
         embed_token_error_title: Nelze vygenerovat vložený token.
@@ -1664,36 +1735,45 @@ cs:
       started: Začínáme v
     development_action_import:
       errors:
-        blank_field: 'Řádek %{řádek}: %{pole} nemůže být prázdné'
+        blank_field: 'Řádek %{row}: %{field} nemůže být prázdné'
         csv_file_required: Musí to být soubor CSV
         image_download_failed: 'Nepodařilo se stáhnout obrázek z %{url}: %{message}'
-        invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
-        invalid_date_format: 'Nesprávný formát data: %{date}'
-        invalid_development_action_type: 'Řádek %{řádek}: Neplatná kategorie ''%{hodnota}''. Platné kategorie jsou: %{valid_categories}'
-        invalid_image_file: 'Neplatný soubor obrázku: %{zpráva}'
+        invalid_csv_format: 'Nesprávný formát CSV: %{message}'
+        invalid_date: Formát data pro %{date} je neplatný.
+        invalid_date_format: 'Row %{row}: Neplatný formát data pro %{field}.'
+        invalid_development_action_type: 'Řádek %{row}: Neplatná kategorie ''%{value}''. Platné kategorie jsou: %{valid_development_action_types}'
+        invalid_duration_format: 'Po dobu trvání jsou povoleny pouze číselné hodnoty.Row %{row}: %{value} není platné trvání. '
+        invalid_image_file: 'Neplatný soubor obrázku: %{message}'
         invalid_image_url: 'Nesprávný formát adresy URL obrázku: %{url}'
-        invalid_learning_style: 'Řádek %{řádek}: Neplatný styl učení ''%{hodnota}''. Platné typy jsou: %{valid_types}'
+        invalid_languages: Neplatné dostupné jazyky %{invalid_languages} pro řádek %{row}.
+        invalid_learning_style: 'Řádek %{row}: Neplatný styl učení ''%{value}''. Platné typy jsou: %{valid_types}'
+        languages_only_for_courses: Dostupné jazyky lze nastavit pouze pro vývojové akce typu „kurzu“.Odstraňte dostupný jazyk pro řádek %{row} nebo změňte typ vývojové akce na „kurz“.
         missing_columns: 'Chybí povinné sloupce: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Dovednost nebyla nalezena pro ID: %{skill_id}'
     development_action_translations:
       import:
         errors:
-          blank_id: 'Řádek %{řádek}: ID nemůže být prázdné'
+          blank_id: 'Řádek %{row}: ID nemůže být prázdné'
           development_action_not_found: Vývojová akce nebyla nalezena
-          invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
+          invalid_csv_format: 'Nesprávný formát CSV: %{message}'
+          invalid_field: 'Řádek %{řádek}: Musí to být "Název" nebo "Popis".'
           invalid_file_format: Soubor musí být CSV
-          invalid_id: 'Řádek %{řádek}: ID musí být číslo'
-          missing_columns: 'Chybějící povinné sloupce: %{pole}'
+          invalid_id: 'Řádek %{row}: ID musí být číslo'
+          invalid_id_format: 'Řádek %{row}: ID musí být ve formátu "id#pole".'
+          missing_columns: 'Chybějící povinné sloupce: %{fields}'
           save_failed: Uložení se nezdařilo
     development_actions:
       create:
-        successfully: Vývojová akce "%{název}" byla úspěšně vytvořena.
+        successfully: Vývojová akce "%{name}" byla úspěšně vytvořena.
       destroy:
-        successfully: Vývojová akce "%{název}" byla úspěšně odstraněna.
+        successfully: Vývojová akce "%{name}" byla úspěšně odstraněna.
       development_action_types:
         course: Kurz
         default: Výchozí
+      duration:
+        max_length: Nemůže být větší než 1 rok
+        min_length: Nemůže být menší než 1 minuta
       edit:
         header: Upravit vývoj Akce
       export:
@@ -1706,15 +1786,19 @@ cs:
         development_action_translations_title: Akce pro rozvoj exportu Překlady
         development_actions_title: Akce na rozvoj vývozu
       export_development_action_translations: Vývojová akce Překlady na základě projektu
+      export_development_action_translations_project: Vývojová akce Překlady na základě projektu
       export_development_actions: Rozvojové akce na základě projektu
+      export_development_actions_project: Rozvojové akce na základě projektu
       export_global_development_actions: Globální rozvojové akce
       export_global_development_actions_translations: Překlady globální rozvojové akce
       form:
+        available_languages: Dostupné jazyky
         client_placeholder: Výběr klienta
         course_image: Obrázek kurzu
         course_link: Odkaz na kurz
         description: Popis
         development_action_type: Typ rozvojové akce
+        duration: Trvání
         end_date: Datum ukončení
         learning_style: Styl učení
         name: Název
@@ -1750,30 +1834,31 @@ cs:
             title: Smazat <strong>vývojovou akci</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tuto vývojovou akci?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Vývojová akce byla úspěšně aktualizována.
       update:
-        successfully: Vývojová akce "%{název}" byla úspěšně aktualizována.
+        successfully: Vývojová akce "%{name}" byla úspěšně aktualizována.
     dimensions:
       copy_scheduled:
-        successfully: Kopírování naplánované pro rozměr %{název}
+        successfully: Kopírování naplánované pro rozměr %{name}
       create:
-        successfully: "%{název} dimenze byla úspěšně vytvořena"
+        successfully: "%{name} dimenze byla úspěšně vytvořena"
       destroy:
-        successfully: Rozměr %{název} byl úspěšně odstraněn.
+        successfully: Rozměr %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit název rozměru
       export_json:
-        successfully: Export JSON naplánovaný pro dimenzi %{název}.
+        successfully: Export JSON naplánovaný pro dimenzi %{name}.
       export_translations_scheduled:
-        successfully: Export překladů naplánovaný pro dimenzi %{název}.
+        successfully: Export překladů naplánovaný pro dimenzi %{name}.
       form:
         enable_innovation_styles: Umožnit inovační styly
         enable_occupations: Umožnit povolání
       import_factors:
         import: Import
-        successfully: Úloha importních faktorů naplánovaná pro dimenzi %{název}.
+        sample_file: Ukázkový soubor
+        successfully: Úloha importních faktorů naplánovaná pro dimenzi %{name}.
         title: Faktory dovozu
       import_modal:
         cancel: Zrušit
@@ -1781,8 +1866,8 @@ cs:
         import: Import
         import_dimension: Rozměr importu
       import_translations:
-        error: Chyba při importu překladů pro rozměr %{název}.
-        successfully: Import překladů naplánovaný pro dimenzi %{název}.
+        error: Chyba při importu překladů pro rozměr %{name}.
+        successfully: Import překladů naplánovaný pro dimenzi %{name}.
       import_translations_scheduled:
         error: Chyba
       index:
@@ -1806,7 +1891,7 @@ cs:
             title: Smazat <strong>rozměr</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tento rozměr?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopírování
           deleting: Odstranění
@@ -1828,23 +1913,28 @@ cs:
         header: Faktorové překlady
         import: Import
       update:
-        successfully: rozměr %{název} byl úspěšně aktualizován
+        successfully: rozměr %{name} byl úspěšně aktualizován
     disable: Zakázat
     document_titles:
-      project_assessors: Hodnotitelé | %{projekt}
-      project_participants: Účastníci | %{projekt}
+      project_assessors: Hodnotitelé | %{project}
+      project_participants: Účastníci | %{project}
     enable: Povolit
     errors:
+      csv_file_required: Soubor musí být CSV
       error_msg: Něco se pokazilo. Obnovte prosím stránku a pokud problém přetrvává, kontaktujte správce
+      invalid_csv_format: 'Nesprávný formát CSV: %{message}'
+      invalid_url: 'Neplatná adresa URL: %{message}'
+      invalid_url_format: Nesprávný formát adresy URL
+      missing_columns: 'Chybějící povinné sloupce: %{fields}'
     errror_msg: Errror msg
     factors:
       copy:
         error: faktor '%{name}' nebyl zkopírován
-        successfully: Faktor '%{jméno}' byl úspěšně zkopírován.
+        successfully: Faktor '%{name}' byl úspěšně zkopírován.
       create:
-        successfully: faktor %{jméno} byl úspěšně vytvořen.
+        successfully: faktor %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Faktor "%{jméno}" byl úspěšně odstraněn.
+        successfully: Faktor "%{name}" byl úspěšně odstraněn.
       edit:
         header: Upravit název faktoru
       form:
@@ -1908,7 +1998,7 @@ cs:
             title: Smazat <strong>faktor</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete tento faktor %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopírování
           deleting: Odstranění
@@ -1935,7 +2025,7 @@ cs:
       toggle_status:
         successfully: Faktor byl úspěšně aktualizován.
       update:
-        successfully: "%{jméno} faktor byl úspěšně aktualizován"
+        successfully: "%{name} faktor byl úspěšně aktualizován"
     genders:
       female: Ženy
       male: Muži
@@ -1952,7 +2042,7 @@ cs:
     hogan:
       errors:
         new_assessment_response_not_allowed:
-          detailed_error_message: Pro hodnocení hogan %{název_hodnocení} nelze přidat novou odpověď, protože toto hodnocení je již přiřazeno a spuštěno uživatelem %{email}. Pro tohoto uživatele můžete vytvořit nový účet hogan, který mu umožní hodnocení opakovat.
+          detailed_error_message: Pro hodnocení hogan %{assessment_name} nelze přidat novou odpověď, protože toto hodnocení je již přiřazeno a spuštěno uživatelem %{email}. Pro tohoto uživatele můžete vytvořit nový účet hogan, který mu umožní hodnocení opakovat.
           short_error_message: Pro hodnocení hogan %{assessment_name} nelze přidat novou odpověď, protože toto hodnocení je již přiřazeno a spuštěno uživatelem %{email}
     idp:
       actions:
@@ -1960,6 +2050,9 @@ cs:
         success: "%{idpName} byl úspěšně odstraněn."
       add_idp_template: Přidání šablony IDP
       all: Všechny
+      appearance: Vzhled
+      appearance_hint: Chcete-li upravit vzhled, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
+      background_image: Obrázek na pozadí
       behavioral_skills: Behaviorální dovednosti
       client_skills: Klientské dovednosti
       edit_template: Upravit šablonu IDP
@@ -1967,26 +2060,62 @@ cs:
       enter_template_description_error: Je vyžadován popis šablony.
       enter_template_name: Název
       enter_template_name_error: Název šablony je povinný
+      errors:
+        update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele. Změny vzhledu byly uloženy.
+      fields:
+        assigned_data: Přiřazená data
+        completion_date: Datum dokončení
+        division: Divize
+        name: Název
+        publish_date: Datum zveřejnění
+        review_date: Datum recenze
+        role: Současná role
+      fields_label: Pole
       global_skills: Globální dovednosti
       idp: IDP
       idp_template: Přidání šablony IDP
+      intro_message: Úvodní zpráva
+      intro_message_hint: Chcete-li upravit úvodní zprávu, nejprve uložte šablonu IDP, abyste tato nastavení povolili.
+      intro_message_success: Úvodní zpráva byla úspěšně uložena
+      locales: Locales
+      logo_image: Obrázek loga
+      logo_type:
+        both: Loga společnosti Mercer a klienta
+        client_only: Pouze logo klienta
+        mercer_only: Pouze logo Mercer
+        none: Bez loga
+      logo_type_label: Typ loga
+      no_reflection_questions_selected: Nebyly vybrány žádné otázky k zamyšlení
       none: Žádné
+      reference_locale: Referenční národní prostředí
+      reflection_questions: Otázky k zamyšlení
+      reflection_questions_hint: Chcete-li upravit otázky k zamyšlení, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
+      reflection_questions_updated: Otázky k zamyšlení byly úspěšně aktualizovány.
+      remove: Odstranění stránky
       select_by_tags: Vybrat podle značek
+      select_reflection_question: Začněte psát a vyberte otázku
       select_skill_gap_report: Vyberte zprávu o nedostatku dovedností
       select_specific_skills: Vyberte konkrétní dovednosti
       selected: Vybrané stránky
       self_rating: Povolit vlastní hodnocení
+      show_reflections: Zobrazit reflexe
       skill_gap_report: Zpráva o nedostatku dovedností
+      skills: Dovednosti
+      subtitle_text: Text titulku
       tab:
         development_actions: Vývojové akce
+        reflection_questions: Otázky k zamyšlení
         settings: Nastavení
         templates: Šablony
       technical_skills: Technické dovednosti
       template_details: Podrobnosti o šabloně
+      title_text: Text názvu
+      update_reflection_questions: Aktualizace otázek k zamyšlení
     idp_setting:
       allow_global_skills: Povolit globální dovednosti
       manager_approves_idp: Manažer schvaluje IDP
       manager_can_edit_idp: Správce může upravovat IDP
+      require_all_development_actions_complete: Požadavek na dokončení všech vývojových činností
     import: Import
     imports:
       assessments:
@@ -1999,11 +2128,11 @@ cs:
       errors:
         invalid_format: Nesprávný formát souboru
         norm:
-          dimension_not_found: Rozměr %{název_rozměru} pro %{název_klienta} nebyl nalezen
-          factor_mismatch: Rozměr %{název_rozměru} nemá faktor %{název_faktoru}
+          dimension_not_found: Rozměr %{dimension_name} pro %{client_name} nebyl nalezen
+          factor_mismatch: Rozměr %{dimension_name} nemá faktor %{factor_name}
           not_set_dimension: Název rozměru by měl být zapsán ve druhé buňce prvního řádku
         result:
-          answer_invalid: "[Řádek %{řádek}] Odpověď pro qid %{question_id} je neplatná: %{error}"
+          answer_invalid: "[Řádek %{row}] Odpověď pro qid %{question_id} je neplatná: %{error}"
           date_errors:
             both_dates_required: Pro stav dokončeno je vyžadováno jak started_at, tak completed_at
             completed_at_should_be_after_started_at: completed_at musí být za started_at, aby byl stav dokončen
@@ -2011,10 +2140,10 @@ cs:
             dates_not_in_future: Data by neměla být v budoucnosti
             dates_should_be_empty: Data by měla být prázdná pro stav not_started
             started_at_required: Pro stav in_progress je vyžadováno platné started_at
-          error: "[Řádek %{řádek}] %{chybný}"
-          invalid_assign: "[Řádek %{řádek}] Nelze najít záznam pro zadané ID výsledku. Pokud chcete vytvořit nový výsledek, nechte prosím sloupec ID výsledku prázdný"
-          invalid_date: "[Řádek %{řádek}] %{chybný}"
-          question_invalid: "[Řádek %{řádek}] Otázka %{question_id} je neplatná"
+          error: "[Řádek %{row}] %{error}"
+          invalid_assign: "[Řádek %{row}] Nelze najít záznam pro zadané ID výsledku. Pokud chcete vytvořit nový výsledek, nechte prosím sloupec ID výsledku prázdný"
+          invalid_date: "[Řádek %{row}] %{error}"
+          question_invalid: "[Řádek %{row}] Otázka %{question_id} je neplatná"
           user:
             record_not_found: Nelze najít existujícího uživatele s e-mailem %{email}.
           user_assessment:
@@ -2022,7 +2151,7 @@ cs:
         translation:
           error: "[Překlad %{id}] %{error}"
           invalid_format: Nesprávný formát souboru
-        unknown_type: 'Neznámý typ souboru: %{jméno souboru}'
+        unknown_type: 'Neznámý typ souboru: %{filename}'
       form:
         description: Viz funkce Export pro získání šablony, kterou lze použít k importu.
         import: Import
@@ -2062,9 +2191,9 @@ cs:
         subjects: Předměty
     innovation_styles:
       create:
-        successfully: Inovační styl %{název} byl úspěšně vytvořen.
+        successfully: Inovační styl %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Inovační styl %{název} byl úspěšně odstraněn.
+        successfully: Inovační styl %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit styl inovace
       form:
@@ -2096,9 +2225,9 @@ cs:
         successfully: Inovační styl byl úspěšně aktualizován.
     innovation_styles_factors:
       create:
-        successfully: Faktor %{jméno} byl úspěšně vytvořen.
+        successfully: Faktor %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Faktor %{jméno} byl úspěšně odpojen.
+        successfully: Faktor %{name} byl úspěšně odpojen.
       edit:
         header: Faktor úprav
       index:
@@ -2133,6 +2262,7 @@ cs:
         add: Integrace
         back: Zpět na Integrace
         load_mettl_catalog: Katalog hodnocení zatížení Mettl
+        load_skillvue_catalog: Načíst katalog hodnocení dovedností Skillvue
       columns:
         active: Aktivní
         details: Podrobnosti na
@@ -2143,6 +2273,7 @@ cs:
         webhookUrls: Adresy URL webhooku
       integrations: Integrace
       load_mettl_success: Úloha pro vyhodnocování mettlů zatížení je úspěšně zařazena do fronty
+      load_skillvue_success: Úloha Load skillvue assessments byla úspěšně zařazena do fronty
       modal:
         hogan:
           provider: Poskytovatel
@@ -2164,16 +2295,22 @@ cs:
           servers:
             mettl_eu: Evropa
             mettl_india: Indie
+        skillvue:
+          apiKey: Klíč API
+          apiKeyRequired: Je vyžadován klíč API
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        skillvue: Skillvue
       validations:
         iiht:
           tenancy_name_present: Název nájmu je již uveden v jiném projektu
           tenant_id_present: Id nájemce je již uvedeno v jiném projektu
         mettl:
           public_key_present: Veřejný klíč se již nachází v jiném projektu
+        skillvue:
+          api_key_present: Klíč API již existuje v jiném projektu
       view_all_schedules: Zobrazit všechny plány Mettl
     invited_subject:
       add_btn: Přidat předmět
@@ -2195,11 +2332,49 @@ cs:
         requested_rescheduling_rejected: Změna termínu Zamítnuto
         rescheduled: Přeloženo na
       subject: Předmět
+    job_role:
+      column:
+        job_group: Pracovní skupina
+      export:
+        failure_msg: Chyba při exportu překladů
+        success_msg: Exportování probíhajících vývojových akcí.
+      export_action:
+        translations: Překlady exportních pracovních rolí
+      form:
+        code: Kód
+        description: Popis
+        job_group: Pracovní skupina
+        name: Název
+        title: Pracovní role
+      global: Je globální pracovní role?
+      import:
+        download_example_csv: Stáhnout příklad csv
+        success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+      import_action:
+        translations: Importovat překlady pracovních rolí
+      translations: Překlady pracovních rolí
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Očekávaná úroveň znalostí
+        job_role: Pracovní role
+        skill: Dovednost
+      form:
+        expected_proficiency_level: Očekávaná úroveň znalostí
+        job_role: Pracovní role
+        skill: Dovednost
+        title: Mapování dovedností
+      global: Je globální mapování pracovních míst?
+      import:
+        taxonomy: Taxonomie
+    job_roles:
+      export:
+        translations:
+          details: Podrobnosti na
     libraries:
       create:
-        successfully: Položka %{název} byla úspěšně vytvořena.
+        successfully: Položka %{name} byla úspěšně vytvořena.
       destroy:
-        successfully: Položka %{název} byla úspěšně odstraněna.
+        successfully: Položka %{name} byla úspěšně odstraněna.
       edit:
         header: Upravit
       index:
@@ -2216,38 +2391,39 @@ cs:
         updated_at: Datum úpravy
         upload: Nahrát nový soubor
       new:
-        header: Nová složka
+        header: Nahrát soubory
       resource:
         confirmations:
           delete:
-            body: "<p>Opravdu chcete odstranit %{jméno}?</p>\n"
-            title: Smazat <strong>%{jméno}</strong>?
+            body: "<p>Opravdu chcete odstranit %{name}?</p>\n"
+            title: Smazat <strong>%{name}</strong>?
         tooltips:
           delete: Odstranit
           edit: Upravit
       update:
-        successfully: Položka %{název} byla úspěšně aktualizována.
+        successfully: Položka %{name} byla úspěšně aktualizována.
     memberships:
       admin_chosen:
         successfully: Uživatelé správce byli úspěšně aktualizováni.
       create:
-        successfully: Uživatel %{jméno} byl úspěšně vytvořen.
+        successfully: Uživatel %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Uživatel %{jméno} byl úspěšně odstraněn.
+        successfully: Uživatel %{name} byl úspěšně odstraněn.
       new:
         header: Nový uživatel
       reset_password:
-        successfully: Uživatel %{jméno} obdrží během několika minut e-mail s pokyny, jak obnovit své heslo.
+        successfully: Uživatel %{name} obdrží během několika minut e-mail s pokyny, jak obnovit své heslo.
       spoof:
-        successfully: Byl jste úspěšně přihlášen jako %{jméno}
+        successfully: Byl jste úspěšně přihlášen jako %{name}
       toggle_membership_status:
-        successfully: Členství v %{jméno} bylo úspěšně aktualizováno.
+        successfully: Členství v %{name} bylo úspěšně aktualizováno.
       toggle_status:
-        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+        successfully: Uživatel %{name} byl úspěšně aktualizován.
       update:
-        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+        successfully: Uživatel %{name} byl úspěšně aktualizován.
     meta_title: Administrativní panel
     navigation:
+      ai_assistants: Asistenti AI
       assessments: Hodnocení
       assessments_reports: Hodnocení a zprávy
       assessor_dashboard: Přístrojový panel hodnotitele
@@ -2288,11 +2464,11 @@ cs:
     norms:
       copy:
         error: 'Norma #%{id} nebyla zkopírována.'
-        successfully: Norma "%{název}" byla úspěšně zkopírována.
+        successfully: Norma "%{name}" byla úspěšně zkopírována.
       create:
-        successfully: Norma "%{název}" byla úspěšně vytvořena.
+        successfully: Norma "%{name}" byla úspěšně vytvořena.
       destroy:
-        successfully: Norma "%{název}" byla úspěšně odstraněna.
+        successfully: Norma "%{name}" byla úspěšně odstraněna.
       edit:
         header: Přejmenování normy
       editor:
@@ -2324,7 +2500,7 @@ cs:
       norms: Normy
       remove:
         confirm: Pro potvrzení zadejte do textového pole níže uvedený název normy
-        warning: Jste si jisti, že chcete odstranit normu "%{jméno}"?
+        warning: Jste si jisti, že chcete odstranit normu "%{name}"?
       resource:
         confirmations:
           delete:
@@ -2332,7 +2508,7 @@ cs:
             title: Smazat <strong>normu</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tuto normu?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopírování
           deleting: Odstranění
@@ -2354,16 +2530,16 @@ cs:
       toggle_status:
         successfully: Norma byla úspěšně aktualizována.
       update:
-        successfully: Norma %{název} byla úspěšně aktualizována.
+        successfully: Norma %{name} byla úspěšně aktualizována.
     notification_bell_icon: Ikona zvonku oznámení
     noty:
       error_408: Tato akce trvá příliš dlouho. Zkuste stránku načíst znovu.
       error_500: Něco se pokazilo. Kontaktujte správce.
     occupations:
       create:
-        successfully: Povolání %{jméno} bylo úspěšně vytvořeno.
+        successfully: Povolání %{name} bylo úspěšně vytvořeno.
       destroy:
-        successfully: Povolání %{jméno} bylo úspěšně smazáno.
+        successfully: Povolání %{name} bylo úspěšně smazáno.
       edit:
         header: Upravit povolání
       form:
@@ -2396,9 +2572,9 @@ cs:
         successfully: Povolání bylo úspěšně aktualizováno.
     occupations_factors:
       create:
-        successfully: Faktor %{jméno} byl úspěšně vytvořen.
+        successfully: Faktor %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Faktor %{jméno} byl úspěšně odpojen.
+        successfully: Faktor %{name} byl úspěšně odpojen.
       edit:
         header: Faktor úprav
       index:
@@ -2429,7 +2605,7 @@ cs:
       toggle_status:
         successfully: Faktor byl úspěšně aktualizován.
       update:
-        successfully: Faktor %{jméno} byl úspěšně aktualizován.
+        successfully: Faktor %{name} byl úspěšně aktualizován.
     participants:
       tabs:
         assessors: Posuzovatelé
@@ -2467,6 +2643,74 @@ cs:
         successfully: Úspěšně
       toggle_status:
         successfully: Úspěšně
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Definice úrovně musí být polem definic.
+          level_definition_must_match_level: musí obsahovat přesně %{expected} úrovně, ale %{actual} byly dány
+          must_be_unique: Musí být jedinečné
+          proficiency_level_exists: Již existuje úroveň ProficiencyLevel s touto dovedností a projektem.
+          proficiency_level_exists_for_all_skills: Úroveň způsobilosti pro všechny dovednosti již existuje.
+          proficiency_level_exists_for_category: ProficiencyLevel pro tuto kategorii již existuje
+          project_level_all_skills_exists: Úroveň způsobilosti "all_skills" již existuje
+          skill_must_exist: Dovednost musí být přítomna pro proficiency_type 'by_skill'
+      export:
+        actions:
+          proficiency: Znalost exportu
+          translations: Překlady pro export
+        details: Podrobnosti na
+        failure_msg: Chyba při exportu úrovní pokročilosti
+        success_msg: Exportování probíhajících vývojových akcí
+        translations:
+          details: Překlady na úrovni pokročilosti
+      fields:
+        level: Úroveň
+        level_description: Popis úrovně
+        level_name: Název úrovně
+        proficiency_translations: Odborné překlady
+        proficiency_type: Typ odbornosti
+        skill: Dovednost
+        skill_category: Kategorie dovedností
+        skill_name: Název dovednosti
+        title: Znalost
+      global: Je globální odbornost?
+      import:
+        actions:
+          proficiency: Znalost importu
+          translations: Překlady pro dovozce
+        errors:
+          all_skills_global_exists: 'Řádek %{row_number}: již existuje globální úroveň ''all_skills'' ProficiencyLevel'
+          all_skills_project_exists: 'Řádek %{row_number}: Již existuje úroveň způsobilosti ''all_skills'' na úrovni projektu'
+          by_category_exists: 'Řádek %{row_number}: ProficiencyLevel již existuje pro tento projekt a kategorii dovedností ''by_category''.'
+          by_category_missing: 'Řádek %{row_number}: Kategorie projektu a dovednosti musí být přítomny pro typ ''by_category'''
+          by_skill_exists: 'Řádek %{row_number}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
+          by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
+          invalid_csv_format: 'Nesprávný formát CSV: %{message}'
+          invalid_json: 'Řádek %{line}: Invalid JSON in LevelDefinition - %{message}'
+          invalid_json_structure: musí být objekt JSON s klíči jako 'description' a 'summary'.
+          invalid_proficiency_type: 'Řádek %{row_number}: Neplatný nebo chybějící ProficiencyType'
+          missing_columns: 'Chybějící povinné sloupce: %{fields}'
+          missing_required_fields: 'Řádek %{line}: Chybějící povinná pole (%{fields})'
+          save_failed: 'Řádek %{line}: %{message}'
+          skill_not_found: 'Řádek %{row_number}: Neplatná nebo chybějící dovednost'
+        job_queued: Úloha importu úrovní znalostí byla zařazena do fronty
+      translations:
+        export:
+          failure_msg: Chyba při exportu překladů
+          success_msg: Exportování probíhajících vývojových akcí.
+        import:
+          errors:
+            invalid_csv_format: 'Nesprávný formát CSV: %{message}'
+            invalid_locales: Neplatné locale
+            level_not_found: 'Úroveň nebyla nalezena pro ID: %{level_id}'
+            missing_columns: 'Chybějící povinné sloupce: %{fields}'
+            missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
+            row_id_blank: 'Řádek %{row}: ID nemůže být prázdné'
+            save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{message}'
+      type:
+        all_skills: Všechny dovednosti
+        by_category: Podle kategorie
+        by_skill: Podle dovednosti
     profile:
       change_password: Změna hesla
       details: Podrobnosti na
@@ -2508,7 +2752,7 @@ cs:
           normalize_factor_scores: Normalizace skóre faktorů
           user_result_validity_in_days: Platnost výsledku
         delete:
-          content: Opravdu chcete odstranit hodnocení '%{jméno}'?
+          content: Opravdu chcete odstranit hodnocení '%{name}'?
           success: Hodnocení '%{name}' bylo úspěšně odstraněno.
           title: Odstranit hodnocení
         form:
@@ -2534,10 +2778,21 @@ cs:
             key: send_test
             label: Odeslat test
         form:
+          acceptable_rate_limit:
+            label: Limit přijatelných požadavků
+            request_per: žádostí na
           active:
             label: Aktivní
             name: aktivní
           auth_type:
+            api_key:
+              label: Klíč API
+              name: api_key
+              value: api_key_auth
+            api_key_header:
+              format_error: Povolena jsou pouze písmena, číslice, podtržítka a pomlčky.
+              label: Záhlaví klíče API
+              name: apiKeyHeader
             basic:
               label: Základní
               value: basic_auth
@@ -2578,7 +2833,7 @@ cs:
             label: Uživatelské jméno
             name: uživatelské jméno
         remove_webhook:
-          content: Smazat %{popis}?
+          content: Smazat %{description}?
           title: Odstranit
         title: Webové háčky
     project_users:
@@ -2593,18 +2848,18 @@ cs:
       confirm_delete: Ano, vymazat
       confirm_send: Ano, pošlete
       delete: Odstranit
-      delete_error: Nepodařilo se odstranit hodnotitele '%{jméno}'. Obraťte se prosím na svého správce.
-      delete_success: Hodnotitel '%{jméno}' byl úspěšně odstraněn.
+      delete_error: Nepodařilo se odstranit hodnotitele '%{name}'. Obraťte se prosím na svého správce.
+      delete_success: Hodnotitel '%{name}' byl úspěšně odstraněn.
       edit: Upravit
       edit_assessor: Upravit hodnotitele
       filter_campaigns: Bez kampaní
       form_first_name: Křestní jméno
       form_last_name: Příjmení
-      modal_delete_content: Opravdu chcete odstranit hodnotitele '%{jméno}'?
+      modal_delete_content: Opravdu chcete odstranit hodnotitele '%{name}'?
       modal_delete_title: Vymazat hodnotitele
       modal_reset_email_content: Opravdu chcete odeslat odkaz na obnovení hesla na adresu '%{email}'?
       model_reset_email: Obnovení hesla hodnotitele
-      no_edit_permission: Nemáte oprávnění upravovat hodnotitele '%{jméno}'
+      no_edit_permission: Nemáte oprávnění upravovat hodnotitele '%{name}'
       reset_mail_error: Nepodařilo se odeslat odkaz na obnovení hesla na adresu '%{email}'. Kontaktujte prosím svého správce.
       reset_mail_success: Odkaz na obnovení hesla byl úspěšně odeslán na adresu '%{email}'
       save: Uložit
@@ -2635,7 +2890,7 @@ cs:
         bg_upload: Nahrát
         client_logo_label: Logo klienta
         contrast_ratio_warning: 'Poznámka: Použití této základní barvy může porušit požadavek na kontrastní poměr pro čitelnost textu.'
-        contrast_ratio_warning_lighter_color: 'Poznámka: Použití této barvy %{název} může porušit požadavek na kontrastní poměr pro čitelnost textu. Zkuste použít tmavší barvu.'
+        contrast_ratio_warning_lighter_color: 'Poznámka: Použití této barvy %{name} může porušit požadavek na kontrastní poměr pro čitelnost textu. Zkuste použít tmavší barvu.'
         error_color: Barva chyby
         info_color: Informační barva
         logo_upload: Nahrát
@@ -2728,11 +2983,11 @@ cs:
         search: Vyhledávání Webhoook
     questions:
       copy:
-        successfully: Otázka "%{jméno}" byla úspěšně zkopírována.
+        successfully: Otázka "%{name}" byla úspěšně zkopírována.
       create:
-        successfully: Otázka "%{jméno}" byla úspěšně vytvořena.
+        successfully: Otázka "%{name}" byla úspěšně vytvořena.
       destroy:
-        successfully: Otázka "%{jméno}" byla úspěšně smazána.
+        successfully: Otázka "%{name}" byla úspěšně smazána.
       edit:
         header: Upravit otázku
       index:
@@ -2746,9 +3001,33 @@ cs:
             title: Smazat <strong>otázku</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tuto otázku?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Úspěšně aktualizováno.
+    reflection_questions:
+      delete_confirmation: Opravdu chcete tuto otázku k zamyšlení smazat?
+      export:
+        action: Otázky k reflexi exportu
+        details: Podrobnosti o souboru
+        failure_msg: Chyba při exportu souboru.
+        success_msg: Probíhá export otázek k zamyšlení. Stav zkontrolujte v oznámeních.
+      form:
+        mandatory: Povinné
+        max_words: Maximální počet slov
+        min_words: Minimální počet slov
+        question: Otázka
+        title: Otázka k zamyšlení
+      import:
+        action: Otázky k zamyšlení o importu
+        errors:
+          invalid_max_words_column_format: Nesprávný formát hodnoty sloupce Maximum slov %{row}
+          invalid_min_words_column_format: Neplatný formát hodnoty sloupce Minimální slova %{row}
+          invalid_required_column_format: Nesprávný formát hodnoty povinného sloupce %{row}
+          missing_eng_question: Chybějící obsah otázky v angličtině %{row}
+          save_failed: Uložení se nezdařilo %{message}
+        failure_msg: Chyba při importu souboru.
+        success_msg: Probíhá import otázek k zamyšlení. Stav zkontrolujte v oznámeních.
+      question: Otázka
     report_approval:
       bulk_approve_success: "%{sent_for_approval} odesláno ke schválení. %{approved} zprávy schváleny. %{ignored} zprávy vyžadují ruční schválení kvůli změnám/komentářům QC."
       columns:
@@ -2791,7 +3070,7 @@ cs:
         invalid_factor_params: Nesprávný formát parametrů faktorů kampaně
         name: Název
         no_boundary_space: Název nesmí začínat ani končit mezerou
-        too_many_factors: Nelze vytvořit více než %{počet} faktorů kampaně
+        too_many_factors: Nelze vytvořit více než %{count} faktorů kampaně
         tools: Nástroje
         type: Typ
       pagination:
@@ -2807,9 +3086,9 @@ cs:
         repeat_modules: Opakování modulů
     report_families:
       create:
-        successfully: Svazek sestav %{název} byl úspěšně vytvořen.
+        successfully: Svazek sestav %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Svazek sestav %{název} byl úspěšně odstraněn.
+        successfully: Svazek sestav %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit název svazku zpráv
       index:
@@ -2837,7 +3116,7 @@ cs:
             title: Smazat <strong>zprávu</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tento Svazek zpráv?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           delete: Odstranění svazku zpráv
           edit: Upravit svazek zpráv
@@ -2846,7 +3125,7 @@ cs:
         edit: Upravit balíček zpráv
         title: Možnosti hlášení Svazek
       update:
-        successfully: Svazek sestav %{název} byl úspěšně aktualizován.
+        successfully: Svazek sestav %{name} byl úspěšně aktualizován.
     report_review:
       abort_qc: Přerušení kontroly kvality
       approve: Schválit
@@ -2864,20 +3143,22 @@ cs:
         qc_completed: QC Dokončeno
         qc_in_progress: Probíhající kontrola kvality
     reports:
+      bulk_marked_as_done: Hromadně označeno jako hotové
       bulk_upload:
         choose_file: Zvolte Soubor
         no_file_selected: Není vybrán žádný soubor
+        sample_file: Ukázkový soubor
         title: Faktory kampaně hromadného nahrávání
         upload_success: Úspěšně nahráno
       copy:
         copy: kopírovat
         copy_report: Kopírování zprávy
         name: Název
-        successfully: Zpráva '%{název}' byla úspěšně zkopírována.
+        successfully: Zpráva '%{name}' byla úspěšně zkopírována.
       create:
-        successfully: Zpráva '%{název}' byla úspěšně vytvořena.
+        successfully: Zpráva '%{name}' byla úspěšně vytvořena.
       destroy:
-        successfully: Hlášení '%{jméno}' bylo úspěšně odstraněno.
+        successfully: Hlášení '%{name}' bylo úspěšně odstraněno.
       edit:
         header: Upravit název zprávy
       modals:
@@ -2911,17 +3192,17 @@ cs:
             title: Soft Delete <strong>Report</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete tuto zprávu %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
-        successfully: Zpráva %{název} byla úspěšně obnovena.
+        successfully: Zpráva %{name} byla úspěšně obnovena.
       soft_delete:
-        successfully: Zpráva %{jméno} byla úspěšně přesunuta do koše.
+        successfully: Zpráva %{name} byla úspěšně přesunuta do koše.
       toggle_archive:
-        successfully: Hodnocení %{jméno} proběhlo %{stav} úspěšně.
+        successfully: Hodnocení %{name} proběhlo %{status} úspěšně.
       toggle_status:
         successfully: Zpráva byla úspěšně aktualizována.
       update:
-        successfully: Zpráva %{název} byla úspěšně aktualizována.
+        successfully: Zpráva %{name} byla úspěšně aktualizována.
     resource:
       remove_confirm:
         message: Opravdu chcete tento zdroj odebrat?
@@ -2959,6 +3240,8 @@ cs:
       assessment_center_form:
         add_more: Přidat více
         allow_late_cancellation_and_scheduling: Povolení pozdního zrušení a plánování
+        assessment_center_group: Skupina Assessment Center
+        assessment_center_group_placeholder: Vyberte skupinu Assessment Center
         assessor_ids_label: Posuzovatelé
         back: Zpět
         basic_info_panel:
@@ -3015,6 +3298,7 @@ cs:
         attendance: Docházka
         attended: Zúčastnil se
         booked_at: Rezervováno v
+        campaign_assessment_group: Skupina Assessment Center
         campaign_name: Název kampaně
         duration: Doba trvání
         managers: Mangers
@@ -3040,6 +3324,7 @@ cs:
         allowed: Povolené
         assessors: Posuzovatelé
         booked: Rezervovaná místa
+        campaign_assessment_group: Skupina Assessment Center
         cancellation_lead_time: Doba trvání zrušení
         cancellation_tooltip: Uživatel by mohl zrušit rezervaci do %{date}
         date: Datum a čas
@@ -3057,12 +3342,12 @@ cs:
         timezone: Časové pásmo
         total_seats: Celkový počet míst
       resources:
-        confirm_message: Opravdu chcete odstranit prostředek '%{název_zdroje}'?
+        confirm_message: Opravdu chcete odstranit prostředek '%{resource_name}'?
         confirm_title: Požadované potvrzení
         create: Vytvořit zdroj
         invalid_url: Neplatná adresa URL. Zadejte kompletní adresu url s protokolem http nebo https.
         resource: Zdroje
-        successful_remove: Prostředek Assessment Center %{název_prostředku} byl úspěšně odstraněn.
+        successful_remove: Prostředek Assessment Center %{resource_name} byl úspěšně odstraněn.
       schedule_assessments: Plánování hodnocení
       scheduling_statuses:
         cancelled: Zrušeno
@@ -3155,7 +3440,7 @@ cs:
         success: Faktory kampaně úspěšně odstraněny
         title: Odstranění faktorů kampaně
         warning: Chystáte se odstranit všechny faktory kampaně a všechna přidružená skóre uživatelů. Jste si jisti, že chcete tuto akci provést?
-      remove_factor_group_confirmation_content: Opravdu chcete odstranit skupinu faktorů '%{jméno_skupiny}'?
+      remove_factor_group_confirmation_content: Opravdu chcete odstranit skupinu faktorů '%{group_name}'?
       remove_factor_group_confirmation_title: Odstranění skupiny faktorů
       required_error: Nemůže být prázdný
       save: Uložit
@@ -3237,11 +3522,11 @@ cs:
     settings:
       admin_roles:
         admin_role_single: Role správce
-        confirm_message: Opravdu chcete odstranit roli správce '%{jméno_role}'?
+        confirm_message: Opravdu chcete odstranit roli správce '%{role_name}'?
         create: Přidání role správce
         description: Popis
         name: Název
-        successful_remove: Role správce '%{název_role}' byla úspěšně odstraněna.
+        successful_remove: Role správce '%{role_name}' byla úspěšně odstraněna.
       siem:
         description: Popis
         destination_type: Typ cíle
@@ -3269,6 +3554,7 @@ cs:
         successful_remove: Alias dovednosti '%{skill_alias}' byl úspěšně odstraněn.
       tabs:
         admin_roles: Role správce
+        feature_flags: Příznaky funkcí
         siem: SIEM
         skill_aliases: Pseudonymy dovedností
     sheets:
@@ -3317,7 +3603,14 @@ cs:
         rows: Řádky
         settings: Nastavení
     skills:
+      applicable_proficiency_levels: Použitelné úrovně způsobilosti
+      columns:
+        skill_group: Skupina dovedností
+        skill_type: Typ dovednosti
       errors:
+        import:
+          missing_fields_data: 'Řádek %{line_number}: Chybějící povinná pole: %{fields}'
+          save_failed: 'Řádek %{line_number}: Nepodařilo se uložit dovednost ''%{name}'': %{message}'
         search:
           all_and_project_id_mutually_exclusive: Vše nemůže být pravda, pokud je zadáno project_id_eq
           invalid_all_value: 'musí být jedna z následujících hodnot: true, false'
@@ -3339,6 +3632,7 @@ cs:
         description: Popis
         name: Název
         project_placeholder: Výběr projektu
+        skill_group: Skupina dovedností
         skill_type: Typ dovednosti
         title: Dovednost
       global: Je globální dovednost?
@@ -3351,16 +3645,22 @@ cs:
       import_action:
         skills_title: Dovednosti pro import
         skills_translations_title: Importovat dovednosti Překlady
+      skill_details: Podrobnosti o dovednostech
       skill_translations: Překlady dovedností
+      skill_translations_project: Překlady dovedností na základě projektu
+      skills_project: Dovednosti založené na projektu
       title: Dovednosti
       translations:
         import:
           errors:
-            invalid_csv_format: 'Nesprávný formát CSV: %{zpráva}'
-            save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{zpráva}'
+            invalid_csv_format: 'Nesprávný formát CSV: %{message}'
+            missing_columns: 'Chybějící povinné sloupce: %{columns}'
+            save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{message}'
             skill_not_found: Dovednost s ID %{id} nebyla nalezena
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Mapování dovedností
+        job_roles: Pracovní role
         proficiency: Proficience
         skills: Dovednosti
     sms_histories:
@@ -3418,7 +3718,7 @@ cs:
           btn_name: Odesílání SMS
           title: Odesílání SMS
         pipetext_details: "{{{křestní_jméno}}} - Křestní jméno příjemce<br />{{{last_name}}} - Příjmení příjemce<br />{{{invite_url}} - Odkaz pro registraci\n"
-        segment_length_msg: Odhadovaný počet segmentů této zprávy je %{délka segmentu}.
+        segment_length_msg: Odhadovaný počet segmentů této zprávy je %{segment_length}.
         segment_length_range_msg: Odhadovaný počet segmentů této zprávy je mezi %{min_segment_length} a %{max_segment_length}.
       statuses:
         all: Všechny
@@ -3498,7 +3798,7 @@ cs:
         y_title: Počet uživatelů
     sub_factors:
       destroy:
-        successfully: Podfaktor %{název} byl úspěšně odstraněn.
+        successfully: Podfaktor %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit název dílčího faktoru
       new:
@@ -3568,8 +3868,17 @@ cs:
           many:
           one: 'Celkem : 1'
           other: ''
+          zero: 'Celkem : 0'
       more_actions: Další akce
     taxonomy:
+      import:
+        download_example_file: Stáhnout soubor s příkladem
+        success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
+      import_action:
+        taxonomy: Import taxonomie
+      job_roles: Pracovní role
+      proficiency: Znalost
+      skill_job_mappings: Mapování dovedností
       skills: Dovednosti
       title: Taxonomie
     templates:
@@ -3577,7 +3886,7 @@ cs:
         copy:
           error: Blok \
         destroy:
-          successfully: Blok %{název} byl úspěšně odstraněn.
+          successfully: Blok %{name} byl úspěšně odstraněn.
         edit:
           header: Blok úprav
         index:
@@ -3620,7 +3929,7 @@ cs:
         copy:
           error: Otázka
         destroy:
-          successfully: Otázka %{jméno} byla úspěšně smazána.
+          successfully: Otázka %{name} byla úspěšně smazána.
         edit:
           header: Upravit otázku
         index:
@@ -3781,48 +4090,54 @@ cs:
     update: Aktualizace
     users:
       create:
-        successfully: Uživatel %{jméno} byl úspěšně vytvořen.
+        successfully: Uživatel %{name} byl úspěšně vytvořen.
       destroy:
-        successfully: Uživatel %{jméno} byl úspěšně odstraněn.
+        successfully: Uživatel %{name} byl úspěšně odstraněn.
       list:
         email: E-mail
+      modals:
+        download_idp_reports:
+          error: Nepodařilo se naplánovat úlohu Hromadné stahování sestav IDP.
+          include_reflective_questions: Zahrňte reflektivní otázky
+          success: Úloha Hromadné stahování sestav IDP byla úspěšně naplánována.
+          title: Hromadné stahování zpráv IDP
       new:
         header: Nový uživatel
       reset_password:
-        successfully: Uživatel %{jméno} obdrží během několika minut e-mail s pokyny, jak obnovit své heslo.
+        successfully: Uživatel %{name} obdrží během několika minut e-mail s pokyny, jak obnovit své heslo.
       resource:
         confirmations:
           change_password:
             body: "<p>Určitě chcete poslat pokyny s odkazem na změnu hesla?</p>\n"
-            title: Změna hesla <strong>%{jméno}</strong>?
+            title: Změna hesla <strong>%{name}</strong>?
           delete:
             body: "<p>Opravdu chcete tohoto uživatele odstranit?</p>\n"
-            title: Smazat <strong>%{jméno}</strong>?
+            title: Smazat <strong>%{name}</strong>?
           membership:
             delete:
               body: "<p>Jste si jisti, že chcete odstranit?</p>\n"
-              title: Smazat <strong>%{jméno}</strong> z %{jméno_klienta} Klientské nájemní smlouvy?
+              title: Smazat <strong>%{name}</strong> z %{client_name} Klientské nájemní smlouvy?
             toggle_status:
               body: "<p>Jste si jisti, že chcete %{status} tohoto členství?</p>\n"
-              title: členství <strong>%{status}</strong> %{jméno}?
+              title: členství <strong>%{status}</strong> %{name}?
           toggle_enable_2fa:
-            body: "<p>Jste si jisti, že chcete %{status} 2FA pro %{jméno}?</p>\n"
+            body: "<p>Jste si jisti, že chcete %{status} 2FA pro %{name}?</p>\n"
             title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tohoto uživatele?</p>\n"
-            title: "<strong>%{status}</strong> %{jméno}?"
+            title: "<strong>%{status}</strong> %{name}?"
       spoof:
-        successfully: Byl jste úspěšně přihlášen jako %{jméno}
+        successfully: Byl jste úspěšně přihlášen jako %{name}
       toggle_enable_2fa:
         disable: Zakázat 2FA
         enable: Povolení 2FA
-        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+        successfully: Uživatel %{name} byl úspěšně aktualizován.
       toggle_status:
-        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+        successfully: Uživatel %{name} byl úspěšně aktualizován.
       toolbar:
         title: Nástroje
       update:
-        successfully: Uživatel %{jméno} byl úspěšně aktualizován.
+        successfully: Uživatel %{name} byl úspěšně aktualizován.
       user: Uživatel
     webhook:
       connection_failure: Nelze se připojit k url adrese webhooku. Ověřte prosím, zda je url adresa webhooku správná..

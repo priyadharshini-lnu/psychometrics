@@ -31,6 +31,10 @@ cs:
             blank: Odpovědi nemohou být prázdné
           group_id:
             blank: Id skupiny nemůže být prázdné
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{název_bloku}" má duplicitní konfigurace: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -67,7 +71,7 @@ cs:
             file:
               invalid_format: Nahrajte prosím soubor xlsx
             resource:
-              must_exist: "%{zdroj} musí existovat"
+              must_exist: "%{resource} musí existovat"
         campaigns_external_scores_import_form:
           attributes:
             file:
@@ -110,16 +114,19 @@ cs:
             evaluator_locale:
               inclusion: Špatné umístění
             evaluator_password:
-              too_short: Heslo hodnotitele je příliš krátké (minimum je %{počet} znaků)
+              too_short: Heslo hodnotitele je příliš krátké (minimum je %{count} znaků)
             first_name:
               blank: Křestní jméno nesmí být prázdné
+            job_role:
+              cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
+              not_found: Pracovní role '%{name}' nebyla nalezena v projektových ani globálních rolích
             last_name:
               blank: Příjmení nesmí být prázdné
             locale:
               inclusion: Špatné umístění
             relationship_name:
               blank: Vztah nemůže být prázdný
-              invalid: Vztah %{jméno} je neplatný
+              invalid: Vztah %{name} je neplatný
             subject_email:
               blank: Předmět E-mail nemůže být prázdný
               invalid: Předmět E-mail je neplatný
@@ -160,7 +167,7 @@ cs:
             base:
               code_length: Kód musí mít na řádku %{index} alespoň 3 znaky.
               code_required: Kód faktoru je vyžadován na řádku %{index}
-              invalid_scoring_strategy: Neplatná bodovací strategie '%{strategie}' na řádku %{index}. Povolené strategie jsou %{povoleno}.
+              invalid_scoring_strategy: Neplatná bodovací strategie '%{strategy}' na řádku %{index}. Povolené strategie jsou %{allowed}.
               missing_headers: 'Chybějící požadované hlavičky: %{headers}'
               name_required: Název faktoru je vyžadován na řádku %{index}
               scoring_strategy_required: Bodovací strategie je vyžadována na řádku %{index}
@@ -182,12 +189,25 @@ cs:
               invalid: E-mail je neplatný
             first_name:
               blank: Křestní jméno nesmí být prázdné
+            job_role:
+              cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
             last_name:
               blank: Příjmení nesmí být prázdné
             locale:
               inclusion: Špatné umístění
             password:
               too_short: Heslo je příliš krátké. Je vyžadován minimální počet znaků %{count}
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Hodnota %{název_sloupce} nemůže být prázdná na řádku %{číslo_řádku}
+              invalid_format: Nahrajte prosím soubor CSV
+              invalid_job_role_id: Id na řádku %{číslo_řádku} není platné ID pracovní role
+              invalid_locale: Locale na řádku %{číslo_řádku} není platné locale
+              missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
+              parsing_failed: 'Chyba při zpracování souboru, chyba: %{error}.'
+            project:
+              must_exist: Projekt musí existovat
         mettl:
           attributes:
             name:
@@ -285,17 +305,17 @@ cs:
           attributes:
             file:
               column_type_mismatch: Sloupec <b>%{col}</b> má být typu %{type}, ale dostal <b>%{got}</b>
-              email_blank: 'Řádek %{číslo_řádku}: Pole Email nemůže být prázdné'
+              email_blank: 'Řádek %{row_number}: Pole Email nemůže být prázdné'
               email_duplicate: Ve sloupci E-mail jsou duplikáty
-              email_invalid: 'Řádek %{číslo_řádku}: Email je neplatný'
-              invalid_column: Neplatný sloupec %{název}
-              invalid_column_name: Sloupec <b>"%{sloupec}"</b> je neplatný
-              invalid_column_name_size: Příliš dlouhý název sloupce <b>"%{sloupec}</b> " (max. 64)
+              email_invalid: 'Řádek %{row_number}: Email je neplatný'
+              invalid_column: Neplatný sloupec %{name}
+              invalid_column_name: Sloupec <b>"%{column}"</b> je neplatný
+              invalid_column_name_size: Příliš dlouhý název sloupce <b>"%{column}</b> " (max. 64)
               invalid_column_type: Typ sloupce musí být String, Text, Číslo, HTML nebo Markdown
               invalid_format: Nesprávný formát (.xlsx)
-              invalid_number_value: <b>Řádek#%{index}</b> Sloupec <b>"%{sloupec}</b> " není číslo
-              invalid_string_value: <b>Řádek#%{index}</b> sloupec <b>"%{sloupec}</b> " není řetězec
-              invalid_string_value_size: <b>Řádek#%{index}</b> sloupec <b>"%{sloupec}</b> " je příliš dlouhý (max. 256)
+              invalid_number_value: <b>Řádek#%{index}</b> Sloupec <b>"%{column}</b> " není číslo
+              invalid_string_value: <b>Řádek#%{index}</b> sloupec <b>"%{column}</b> " není řetězec
+              invalid_string_value_size: <b>Řádek#%{index}</b> sloupec <b>"%{column}</b> " je příliš dlouhý (max. 256)
               no_email_column: Soubor neobsahuje sloupec E-mail
               non_uniq_column: Existují následující sloupce, které nejsou uniq %{columns}
         sheet_row_form:
@@ -303,6 +323,16 @@ cs:
             email:
               blank: E-mail nemůže být prázdný
               not_uniq_email: Řádek s e-mailem je již přítomen
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
+              invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
+              props_missing: Práce
+        skillvue:
+          attributes:
+            name:
+              not_unique: Tato integrace je v tomto projektu již přítomna.
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ cs:
             last_name:
               blank: Příjmení nesmí být prázdné
               starts_with_invalid_characters: Příjmení nesmí začínat znaky =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Řádek %{řádek}: Duplicitní hodnota %{hodnota} pro %{pole}'
+              invalid_format: Nahrajte prosím soubor xlsx
+              missing_headers: "%{název_listu} chybí požadované záhlaví: %{záhlaví}"
+              missing_sheets: 'Chybějící požadované listy: %{listy}'
+              missing_value: 'Řádek %{řádek}: Chybějící hodnota pro %{pole}'
+            project:
+              must_exist: Projekt musí existovat
         update_norm:
           attributes:
             norm_type:
@@ -348,10 +388,10 @@ cs:
             import_data:
               cant_overwrite_password: Nemáte oprávnění přepisovat heslo.
               duplicated_emails: 'Následující e-maily jsou v CSV duplicitní: %{emails}'
-              invalid_email: 'Řádek %{číslo_řádku}: Neplatný e-mail %{email}'
+              invalid_email: 'Řádek %{row_number}: Neplatný e-mail %{email}'
               invalid_header: Neplatná hlavička, převezměte hlavičku z exportu
               invalid_reports_header: Neplatná hlavička, převezměte hlavičku ze vzorového souboru
-              manager_not_found: 'Řádek %{číslo_řádku}: Manažer s e-mailem %{email} není přítomen v kampani ani v CSV'
+              manager_not_found: 'Řádek %{row_number}: Manažer s e-mailem %{email} není přítomen v kampani ani v CSV'
               user_update_failed: Aktualizace uživatele se nezdařila pro %{email} s chybou '%{error}'
             locale:
               inclusion: Špatné umístění
@@ -713,7 +753,7 @@ cs:
           attributes:
             used_number:
               overused: Použitá licence nesmí být větší než součet přidělených licencí a limitu nadměrného použití.
-          overuse: Licence %{jméno} je nadužívána
+          overuse: Licence %{name} je nadužívána
         media_response:
           attributes:
             base:
@@ -764,8 +804,10 @@ cs:
         export_development_actions: Akce na rozvoj vývozu
         export_dimension_as_json: Export rozměru JSON
         export_factor_translations: Překlady exportních faktorů
+        export_job_roles_translations: Export pracovních rolí Překlady
         export_norm: Norma pro vývoz
         export_occupations: Povolání Export
+        export_proficiency_levels: Úrovně odborné způsobilosti pro export
         export_report_data: Export dat sestavy
         export_reports_and_assessments: Exportní zprávy a hodnocení
         export_skill_translations: Exportní dovednosti Překlady
@@ -784,12 +826,15 @@ cs:
         import_external_campaign_scoring: Importování externího bodování kampaní
         import_factor_translations: Překlady importních faktorů
         import_factors: Faktory dovozu
+        import_job_roles_translations: Import pracovních rolí Překlady
         import_norm: Importní norma
+        import_proficiency_level_translations: Importovat překlady na úrovni pokročilosti
         import_question_translations: Překlady importních otázek
         import_raw_data: Import surových dat
         import_scoring_data: Import dat pro skórování
         import_skill_translations: Importovat dovednosti Překlady
         import_skills: Dovednosti pro import
+        import_skills_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_sms_invites: Importovat pozvánku SMS
         import_users: Import uživatelů
         migrate_assessment_translations: Hodnocení Překlad migrace
@@ -847,14 +892,14 @@ cs:
       add_tag:
         success_message: Tag byl úspěšně přidán
       archived:
-        success_message: Hodnocení "%{jméno}" bylo úspěšně archivováno.
+        success_message: Hodnocení "%{name}" bylo úspěšně archivováno.
       assessment_cache:
         remove_cache: Odstranění mezipaměti
         success_message: Úspěšně odstraněna mezipaměť
       back_to_campaign: Zpět na kampaň
       back_to_dashboard: Zpět na přístrojovou desku
       copy:
-        success_message: Hodnocení "%{jméno}" bylo úspěšně zkopírováno.
+        success_message: Hodnocení "%{name}" bylo úspěšně zkopírováno.
       details: Podrobnosti na
       download_csv: Stáhnout CSV
       edit: Upravit
@@ -871,28 +916,26 @@ cs:
       new_response: Nová reakce
       next_assessment: Postup do dalšího hodnocení
       pending_tasks:
-        few:
-        many:
         one: Máte 1 nevyřízený úkol
-        other:
+        other: Máte %{count} nevyřízených úkolů
       re_evaluate: Klikněte zde pro přehodnocení
       reevaluate: Přehodnocení
       remove:
-        confirm_message: Opravdu chcete odstranit hodnocení "%{jméno}"?
+        confirm_message: Opravdu chcete odstranit hodnocení "%{name}"?
         confirm_title: Požadované potvrzení
-        success_message: Hodnocení %{jméno} bylo odstraněno
+        success_message: Hodnocení %{name} bylo odstraněno
       remove_tag:
         success_message: Značka byla úspěšně odstraněna
       rescore: Přehodnocení výsledků
       restore:
-        success_message: Hodnocení "%{jméno}" bylo úspěšně obnoveno
+        success_message: Hodnocení "%{name}" bylo úspěšně obnoveno
       show_usage: Zobrazit použití
       submit_another_response: Odeslat další odpověď
       submit_evaluation: Odeslat hodnocení
       translations:
         success_message: Aktualizované překlady hodnocení
       unarchived:
-        success_message: Posouzení "%{jméno}" bylo úspěšně odarchivováno
+        success_message: Posouzení "%{name}" bylo úspěšně odarchivováno
       view: Zobrazit
     active: Aktivní
     archived: Archivováno
@@ -926,6 +969,7 @@ cs:
         pearson_norm_id: Pearsonova norma ID
         saville_assessment_name: Hodnocení Saville Název
         simulation_assessment_name: Hodnocení simulace Název
+        skillvue_assessment_name: Název hodnocení Skillvue
       translations_migrated: Přeloženo
     create: Vytvořit
     dashboard: Přístrojová deska
@@ -965,6 +1009,7 @@ cs:
         psychometric: Psychometrické údaje
         saville: Saville
         simulation: Simulace
+        skillvue: Skillvue
         threesixty: kampaň 360
       status:
         finished: Dokončeno
@@ -1030,7 +1075,7 @@ cs:
       fifteen_seconds_left: zbývá 15 sekund
       five_minutes_left: zbývá 5 minut
       one_minute_left: zbývá 1 minuta
-      seconds_left: "%{sekundy} zbývají sekundy"
+      seconds_left: "%{seconds} zbývají sekundy"
       thirty_seconds_left: zbývá 30 sekund
       time_is_up: Váš čas vypršel
       time_is_up_for_recording: Čas vypršel a nahrávání bude ukončeno
@@ -1094,7 +1139,7 @@ cs:
           cannot_delete_with_workshops: Nelze odstranit skupinu obsahující workshopy, nejprve odstraňte workshopy
           failed: Nepodařilo se odstranit skupinu "%{jméno}", kontaktujte prosím správce
           ok: Ano, vymazat
-          text: Opravdu chcete odstranit skupinu "%{jméno}"?
+          text: Opravdu chcete odstranit skupinu "%{name}"?
           title: Odstranit skupinu
       no_assessments: Přetažení hodnocení
       no_ungrouped_assessments: Přetáhněte sem hodnocení pro rozřazení do skupin
@@ -1110,7 +1155,7 @@ cs:
     assessment_not_in_report: Hodnocení s id %{assessment_id} není součástí zprávy s id %{report_id}
     errors:
       not_enought_licenses: Svazek s id %{bundle_id} nemá licence
-      user_not_found: 'Řádek %{řádek}: Uživatel s e-mailem ''%{email}'' nenalezen'
+      user_not_found: 'Řádek %{row}: Uživatel s e-mailem ''%{email}'' nenalezen'
     report_bundle_not_found: Zpráva Svazek s id %{bundle_id} nebyl nalezen
     report_not_found: Zpráva s id %{report_id} nebyla nalezena
     report_not_in_bundle: Zpráva s id %{report_id} není součástí balíčku zpráv s id %{bundle_id}
@@ -1234,9 +1279,9 @@ cs:
       campaign: Kampaň
       change_password: Změnit heslo
       development: Vývoj
+      direct_reportees: Přímí zástupci
       home: Domov
       insights: Poznatky
-      my_direct_reportees: Moji přímí podřízení
       my_plan: Můj plán
       profile: Profil
       profile_details: Detaily
@@ -1342,6 +1387,8 @@ cs:
       pearson_variation: Pearsonova variace
       prework: Předpráce
       simulation_content_variation: Varianta obsahu simulace
+      skillvue_email_id: Skillvue Emailové ID kandidáta
+      skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Univerzální odkaz
     drawer:
       mettl_schedule_name: Mettl Plán Název
@@ -1357,6 +1404,11 @@ cs:
       raw_results_export_scheduled: Úloha exportu surových výsledků hodnocení byla úspěšně naplánována
       scoring_results_export_scheduled: Výsledky bodového hodnocení Exportní úloha byla úspěšně naplánována
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Něco se pokazilo. Kontaktujte prosím správce
+        placeholder: Vyberte skupinu Assessment Center
+        success_message: Posuzovatel Posuzovací skupina kampaně byla úspěšně přiřazena
+        title: Skupina Assessment Center
       import_raw:
         body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
         success_msg: Import byl úspěšně nahrán
@@ -1372,20 +1424,20 @@ cs:
         title: Regenerovat zprávy?
       remove:
         helper_text: 'NEBEZPEČÍ: Výběrem této možnosti odstraníte všechny odpovědi uživatelů na toto hodnocení v této kampani.'
-        msg_text: Snažíte se odstranit <strong>"%{jméno}"</strong> Hodnocení
-        successfully: posouzení %{název} bylo úspěšně odstraněno.
+        msg_text: Snažíte se odstranit <strong>"%{name}"</strong> Hodnocení
+        successfully: posouzení %{name} bylo úspěšně odstraněno.
         title: Odstranit hodnocení?
       rescore:
         content: Jste si jisti, že chcete hodnocení přehodnotit?
         successfully: Hodnocení proběhlo úspěšně.
         title: Přehodnocení?
       rescore_response:
-        message: Přehodnocení naplánované pro hodnocení "%{jméno}"
+        message: Přehodnocení naplánované pro hodnocení "%{name}"
         title: Reakce na výsledky
       reset:
         content: Jste si jisti, že chcete obnovit výsledek?
         successfully: Výsledná data byla úspěšně resetována.
-        title: Resetovat výsledek pro hodnocení %{jméno}?
+        title: Resetovat výsledek pro hodnocení %{name}?
       update_assessor_form:
         select_assessor: Formulář Select Assessor
         success_msg: Formulář hodnotitele byl úspěšně nahrán
@@ -1460,7 +1512,7 @@ cs:
       bulk_download: Hromadné stahování
       export_data: Export dat
     bulk_download:
-      error: Hromadné stahování je omezeno na 1000 souborů sestav. Aktuální výběr má %{počet} souborů sestav. Upravte prosím datum začátku a konce, abyste snížili počet stahovaných souborů sestav.
+      error: Hromadné stahování je omezeno na 1000 souborů sestav. Aktuální výběr má %{count} souborů sestav. Upravte prosím datum začátku a konce, abyste snížili počet stahovaných souborů sestav.
     column:
       assessor_access: Přístup hodnotitele
       auto_assign: Automatické přiřazení
@@ -1484,7 +1536,7 @@ cs:
     modals:
       remove:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
-        msg_text: Pokoušíte se odstranit zprávu <strong>"%{název zprávy}</strong> "
+        msg_text: Pokoušíte se odstranit zprávu <strong>"%{reportName}</strong> "
         title: Odstranit zprávu?
       user_access:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
@@ -1671,6 +1723,7 @@ cs:
       assessor: Posuzovatel
       category: Kategorie
       client: Klient
+      code: Kód
       created_at: Vytvořeno v
       created_by: Vytvořil
       created_date: Datum vytvoření
@@ -1758,6 +1811,7 @@ cs:
       na: Neznámé
       none: Žádné
       ok: OK
+      refer_export_file: Viz funkce Export pro získání šablony, kterou lze použít k importu.
       reference_language: Referenční jazyk
       response: Reakce
       selected: Vybrané stránky
@@ -1778,8 +1832,8 @@ cs:
     errors:
       datasheet_column:
         not_found: Sloupec '%{column_name}' nebyl nalezen
-        numeric_value_required: Sloupec '%{pole}' by mělo být číslo
-        string_value_required: Sloupec '%{pole}' by měl být řetězec
+        numeric_value_required: Sloupec '%{field}' by mělo být číslo
+        string_value_required: Sloupec '%{field}' by měl být řetězec
       not_configured: Datový list není nakonfigurován
   devise:
     administrators:
@@ -1841,24 +1895,24 @@ cs:
     mailer:
       admin_invitation_instructions:
         accept: Kliknutím zde přijmete pozvání.
-        body: 'Dobrý den, %{jméno}, byli jste pozváni k přístupu do panelu správce platformy Lighthouse - The Talent Enterprise assessment. %{přijímám} Nebo můžete tento e-mail bez obav ignorovat. Prosím, nikomu nesdělujte své přístupové údaje.
+        body: 'Dobrý den, %{name}, byli jste pozváni k přístupu do panelu správce platformy Lighthouse - The Talent Enterprise assessment. %{accept} Nebo můžete tento e-mail bez obav ignorovat. Prosím, nikomu nesdělujte své přístupové údaje.
 
           '
         subject: Pozvánka do Lighthouse
       confirmation_instructions:
         subject: Pokyny pro potvrzení
       invitation_instructions:
-        body: 'Dobrý den, %{jméno}, Byl jste přidán do Lighthouse jako správce následující sekce
+        body: 'Dobrý den, %{name}, Byl jste přidán do Lighthouse jako správce následující sekce
 
           '
         login: Přihlášení k Lighthouse
         sections:
-          campaign: 'Kampaň: %{název_oddílu}'
-          client: 'Nájemní vztah klienta: %{název_oddílu}'
-          project: 'Projekt: %{název_oddílu}'
+          campaign: 'Kampaň: %{section_name}'
+          client: 'Nájemní vztah klienta: %{section_name}'
+          project: 'Projekt: %{section_name}'
         subject: Pozvánka do Lighthouse
       password_change:
-        body: 'Dobrý den, %{jméno}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese support@thetalententerprise.com
+        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese support@thetalententerprise.com
 
           '
         regards: 'S pozdravem, tým Lighthouse
@@ -1866,7 +1920,7 @@ cs:
           '
         subject: Vaše heslo k Majáku se změnilo
       reset_password_instructions:
-        body: 'Dobrý den, %{jméno}! Někdo si vyžádal odkaz na změnu hesla. Můžete tak učinit prostřednictvím níže uvedeného odkazu.
+        body: 'Dobrý den, %{name}! Někdo si vyžádal odkaz na změnu hesla. Můžete tak učinit prostřednictvím níže uvedeného odkazu.
 
           '
         change_password: Změna hesla
@@ -1876,7 +1930,7 @@ cs:
           '
         subject: Pokyny pro obnovení hesla
       unlock_instructions:
-        body: 'Dobrý den, %{jméno}! Váš účet byl zablokován z důvodu nadměrného počtu neúspěšných pokusů o přihlášení. Kliknutím na níže uvedený odkaz svůj účet odemknete:
+        body: 'Dobrý den, %{name}! Váš účet byl zablokován z důvodu nadměrného počtu neúspěšných pokusů o přihlášení. Kliknutím na níže uvedený odkaz svůj účet odemknete:
 
           '
         footer: Pokud jste o to nepožádali, můžete tento e-mail bez obav ignorovat. Vaše heslo se nezmění, dokud nepřistoupíte na výše uvedený odkaz a nevytvoříte si nové.
@@ -1886,8 +1940,8 @@ cs:
         subject: Pokyny pro odemknutí účtu
         unlock_account: Odemknutí mého účtu
     omniauth_callbacks:
-      failure: Nelze vás ověřit z %{druhu}, protože "%{důvod}".
-      success: Úspěšně ověřeno z účtu %{druh}.
+      failure: Nelze vás ověřit z %{kind}, protože "%{reason}".
+      success: Úspěšně ověřeno z účtu %{kind}.
     passwords:
       edit:
         instruction: Chcete-li vytvořit nové heslo, zadejte ho do níže uvedených políček
@@ -1943,7 +1997,7 @@ cs:
       signed_in: Úspěšně jste se přihlásili!
       signed_in_time: Naposledy jste se přihlásili dne %{date_time}
       signed_out: Úspěšně se odhlásil.
-      unsuccessful_sign_in_time: Váš poslední pokus o přihlášení dne %{datum_čas} byl neúspěšný.
+      unsuccessful_sign_in_time: Váš poslední pokus o přihlášení dne %{date_time} byl neúspěšný.
     two_factor_authentication:
       attempt: Zadejte jednorázové heslo, které jste obdrželi na registrovanou e-mailovou adresu
       attempt_failed: Nesprávné OTP! Zkuste to prosím znovu
@@ -1966,7 +2020,7 @@ cs:
     errors:
       add_edit_project:
         invalid_subdomain_format: Špatný formát subdomény.
-        reserved_subdomain: Subdoména %{hodnota} je rezervována
+        reserved_subdomain: Subdoména %{value} je rezervována
         uniq_subdomain: Subdoména by měla být jedinečná.
       add_manager:
         manager_not_found: Správce nenalezen nebo není součástí stejného projektu
@@ -1989,12 +2043,15 @@ cs:
         last_factor_group: Nelze odstranit poslední skupinu faktorů kampaně.
       create_superadmin:
         uniq_email: E-mail by měl být uniq.
-      exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{počet} subjektů
+      exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
       filled?: nemůže být prázdný
       idp_template:
+        content_required: Pro pokyny je vyžadován obsah
         tag_or_skill_required: Vyberte prosím buď štítek nebo dovednost, když je vybrána možnost "Vybráno".
       invalid_name: jako platné znaky jsou povoleny pouze abeceda, číslo, mezera, pomlčka a tečka
-      invalid_value: neplatný příkaz '%{hodnota}' na řádku číslo %{řádek}
+      invalid_value: neplatný příkaz '%{value}' na řádku číslo %{row}
+      job_roles:
+        unique_within_job_group: Pracovní role se stejným názvem již existuje.
       json?: Měl by to být platný JSON
       key?: nemůže být prázdný
       match_regexp?: neplatná hodnota
@@ -2003,7 +2060,7 @@ cs:
       missed?: nemůže být prázdný
       not_allowed?: není dovoleno měnit
       not_in_the_list?: předána neplatná hodnota
-      not_uniq_variable: proměnná '%{hodnota}' nadefinována na řádku číslo %{řádek}
+      not_uniq_variable: proměnná '%{value}' nadefinována na řádku číslo %{row}
       project_assessments:
         should_be_greater_than_zero: Platnost výsledku by měla být delší než 0 dní
       report_approval_settings:
@@ -2015,13 +2072,17 @@ cs:
       skill_alias:
         unique_alias: Alias by měl být jedinečný
         unique_skill: Dovednost by měla být jedinečná
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Dovednost a pracovní role musí patřit ke stejnému projektu nebo být globální.
+        unique_mappings: Mapování se stejnou dovedností a pracovní rolí již existuje.
       uniq: Toto posouzení Mettl je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq?: by měly být jedinečné
       uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
+      uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
       update_workshop:
         less_than_booked: Celkový počet míst musí být větší než rezervovaný
       user_availability_date:
-        overlaps_date: Překrývá jinou dostupnost %{rozsah}
+        overlaps_date: Překrývá jinou dostupnost %{range}
         overlaps_time: Překrývá interval %{interval}
         start_date_should_be_less: Datum zahájení by mělo být kratší než datum ukončení
         start_time_should_be_less: Čas zahájení by měl být kratší než čas ukončení
@@ -2034,7 +2095,7 @@ cs:
         already_exists: Předmět již ve výzvě existuje.
       workshop_subject_create:
         already_exists: Předmět již v tomto středisku hodnocení existuje.
-        part_of_other_workshop: Subjekt je již účastníkem '%{název_workshopu}'.
+        part_of_other_workshop: Subjekt je již účastníkem '%{workshop_name}'.
       workshops:
         no_available_assessor_slots: Žádné volné sloty pro hodnotitele %{assessor}
         no_available_manager_slots: Pro manažera nejsou k dispozici žádné sloty %{manager}
@@ -2304,7 +2365,7 @@ cs:
     booking_card:
       aria_available_time: dostupný čas
       aria_back_to_time_selection: zpět na výběr času
-      aria_desc_current_month: Aktuálně na %{název měsíce} %{rok}
+      aria_desc_current_month: Aktuálně na %{monthName} %{year}
       aria_label_next_month: Přejít na další měsíc
       aria_label_previous_month: Přejít na předchozí měsíc
       aria_timezone_select: Vyberte časové pásmo
@@ -2347,6 +2408,29 @@ cs:
   idp:
     actions: Akce
     board: Přehled
+    comment_details:
+      add_comment: Přidat komentář
+      add_comment_placeholder: Přidat komentář...
+      add_reply_placeholder: Přidat odpověď...
+      go_to_skill: Přejít na dovednost
+    comments:
+      close: Zavřít
+      comments: Komentáře
+      filter_comments: Filtrovat komentáře
+      mark_as_resolved: Označit jako vyřešené
+      mark_as_unresolved: Označit jako nevyřešené
+      replied: Odpovězeno
+      replies: Odpovědi
+      reply: Odpovědět
+      resolve: Vyřešit
+      resolved: Vyřešeno
+      resolved_message: Tento komentář byl vyřešen a odpovědi jsou zakázány.
+      show_only_read: Zobrazit pouze přečtené
+      show_only_resolved: Zobrazit vyřešené
+      show_only_unread: Zobrazit nepřečtené
+      show_only_unresolved: Zobrazit pouze nevyřešené
+      sort_by_date: Seřadit podle data
+      you: Vy
     convert_to_draft: Převést na koncept
     details: Podrobnosti
     development_actions:
@@ -2378,6 +2462,7 @@ cs:
       on_the_job: Při práci
       other: Jiné
       private: Soukromé
+      publish_plan: Publikovat plán
       remove: Odstranit
       skill: Dovednost
       sprint: Sprint
@@ -2385,7 +2470,6 @@ cs:
       structured_learning: Strukturované učení
       submit_plan: Odeslat plán
       write_here: Pište zde...
-    direct_reportee_details: Podrobnosti o přímých podřízených
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2393,7 +2477,6 @@ cs:
       add_skills_step: Přidat dovednosti
       continue_to_rate_skills: Pokračovat k hodnocení dovedností
       getting_started: Začínáme
-      getting_started_info: Vítejte v tvůrci individuálního rozvojového plánu (IDP). Tento plán vám pomůže identifikovat, řídit a sledovat vaše profesní a osobní cíle, stejně jako kroky, které je třeba učinit k jejich dosažení. Vaše profesní cíle mohou zahrnovat behaviorální, vůdčí i technické oblasti rozvoje. Váš IDP je základním nástrojem pro podporu vašeho kariérního rozvoje a zlepšování dovedností.
       less_skills: Zobrazit méně dovedností
       more_skills: Prozkoumat více dovedností
       next: Další
@@ -2412,7 +2495,6 @@ cs:
     manage_plan: Spravovat plán
     mark_as_complete: Označit jako dokončené
     mark_as_incomplete: Označit jako nedokončené
-    my_direct_reportees: Moji přímí podřízení
     my_plan:
       development_plan: Rozvojový plán
       graphs:
@@ -2524,10 +2606,11 @@ cs:
         skills_count: Počet dovedností
         title: Shrnutí zprávy
     reflective_questions:
+      already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
       answer_later: Odpověď Později
       answer_placeholder: Napište sem svou odpověď...
       errors:
-        max_words: Odpověď umožňuje maximálně %{počet} slov
+        max_words: Odpověď umožňuje maximálně %{count} slov
         min_words: Odpověď vyžaduje alespoň %{count} slov
         required: Odpověď na otázku je nutná
       max_words: Maximální počet slov
@@ -2638,75 +2721,6 @@ cs:
     zh-HK: Čínština (Hongkong)
     zh-Hant: Čínština - tradiční
     zh-TW: Čínština (Tchaj-wan)
-  languages_localized:
-    af: Afrikánština
-    ar: عربي
-    az: Ázerbájdžán
-    bg: български
-    bs: bosanski
-    by: Běloruský
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: Angličtina
-    en-GB: Angličtina (Velká Británie)
-    en-US: Angličtina (USA)
-    eo: Esperanto
-    es: Español
-    es-ES: Španělština (españa)
-    et: Estonština
-    fa: Perský
-    fi: Finsko
-    fr: Français
-    gu: Gudžarátština
-    he: Hebrejština
-    hi: हिन्दी
-    hr: Chorvatský
-    hu: Maďarština
-    id: Bahasa Indonesia
-    it: italiano
-    ja: 日本語
-    km: Khmer
-    ko: Korejský
-    lt: Litevština
-    lv: Lotyšský
-    mk: Makedonština
-    mn: Mongolský
-    ms: Bahasa Malajsie
-    my: Myanmar
-    nb: Norský jazyk Bokmål
-    nl: Holandský
-    'no': Norština
-    pl: Polski
-    pt: Português
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portugalsko)
-    pt_BR: Português (Brasil)
-    ro: Rumunština
-    ru: Ruský
-    sk: Slovenská
-    sl: Slovinština
-    sr-Cyrl: Srbská cyrilice
-    sr-Latn: Srbská latina
-    sv: Švédský
-    sw: Svahilština
-    ta: Tamil
-    th: Thai
-    tl: Tagalog
-    tr: Turecký
-    ua: Ukrajinský
-    uk: Ukrajinský
-    ur: Urdu
-    vi: Vietnamci
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     active: Aktivní
     campaign_name: Název kampaně
@@ -2721,7 +2735,7 @@ cs:
     enabled: Povoleno
     end_date: Datum ukončení
     not_enough_idp_license: Není dostatek licencí IDP, kontaktujte správce
-    not_enough_license: "'%{jméno_klienta}' nemá dostatek licencí pro '%{jméno_zprávy}'"
+    not_enough_license: "'%{client_name}' nemá dostatek licencí pro '%{report_name}'"
     not_enough_license_count: Nedostatek licencí, kontaktujte prosím správce
     not_enough_proctoring_credits: Nedostatek kreditů pro zahájení proctoringu
     number: Číslo
@@ -2768,7 +2782,7 @@ cs:
     users:
       account_disable: Váš účet byl zablokován z důvodu nečinnosti
       warning: Váš účet bude brzy deaktivován z důvodu nečinnosti
-  maintenance_message: Lighthouse bude dne %{start_date} odstaven z důvodu plánované údržby a bude nedostupný po dobu %{délka} hodin
+  maintenance_message: Lighthouse bude dne %{start_date} odstaven z důvodu plánované údržby a bude nedostupný po dobu %{duration} hodin
   maintenance_submessage: Po dokončení údržby prosím obnovte stránku. Budete přesměrováni na přihlašovací stránku
   my: Moje
   myself: Já sám
@@ -2785,7 +2799,7 @@ cs:
         standard_deviation: Směrodatná odchylka
       messages:
         failure: 'Chyba: %{error}.'
-        success: Norma pro faktor '%{název faktoru}' byla úspěšně aktualizována.
+        success: Norma pro faktor '%{factorName}' byla úspěšně aktualizována.
       values:
         empty: Prázdné stránky
   profile:
@@ -2844,7 +2858,7 @@ cs:
       created_text: přidaný text
       disapproved_text: neschválený text
       removed_text: odstraněný text
-      status_changed: změnil stav z <i>%{z}</i> na <i>%{do}</i>
+      status_changed: změnil stav z <i>%{from}</i> na <i>%{to}</i>
       updated_text: aktualizovaný text
     tabs:
       all: Všechny
@@ -2853,26 +2867,26 @@ cs:
   report_bundles:
     actions:
       remove:
-        confirm_message: Jste si jisti, že chcete odstranit svazek sestav "%{název}"?
+        confirm_message: Jste si jisti, že chcete odstranit svazek sestav "%{name}"?
         confirm_title: Požadované potvrzení
-        success_message: Svazek hlášení %{název} byl odstraněn
+        success_message: Svazek hlášení %{name} byl odstraněn
     report_bundle: Svazek zpráv
     report_bundles: Svazky zpráv
     reports:
       actions:
         add: Přidat novou zprávu
         remove:
-          confirm_message: Jste si jisti, že chcete odstranit sestavu "%{jméno}" z '%{jméno_zpravy_svazek}'?
+          confirm_message: Jste si jisti, že chcete odstranit sestavu "%{name}" z '%{report_bundle_name}'?
           confirm_title: Požadované potvrzení
-          success_message: Zpráva %{jméno} byla smazána
+          success_message: Zpráva %{name} byla smazána
   reports:
     actions:
       add: Přidat zprávu
       archived:
-        success_message: Zpráva "%{jméno}" byla úspěšně archivována.
+        success_message: Zpráva "%{name}" byla úspěšně archivována.
       back_to_campaign: Zpět na kampaň
       copy:
-        success_message: Zpráva "%{jméno}" byla úspěšně zkopírována.
+        success_message: Zpráva "%{name}" byla úspěšně zkopírována.
       details: Podrobnosti na
       download: Stáhnout zprávu
       download_csv: Stáhnout CSV
@@ -2883,14 +2897,14 @@ cs:
       re_evaluate: Klikněte zde pro přehodnocení
       reevaluate: Přehodnocení
       remove:
-        confirm_message: Jste si jisti, že chcete smazat zprávu "%{jméno}"?
+        confirm_message: Jste si jisti, že chcete smazat zprávu "%{name}"?
         confirm_title: Požadované potvrzení
-        success_message: Hlášení %{jméno} bylo odstraněno
+        success_message: Hlášení %{name} bylo odstraněno
       rescore: Rescore
       restore:
-        success_message: Hlášení %{jméno} bylo úspěšně obnoveno
+        success_message: Hlášení %{name} bylo úspěšně obnoveno
       unarchived:
-        success_message: Hlášení %{jméno} bylo úspěšně odarchivováno
+        success_message: Hlášení %{name} bylo úspěšně odarchivováno
       update_language: Jazyk aktualizace
       view: Zobrazit zprávu
     active: Aktivní
@@ -2943,9 +2957,11 @@ cs:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Zatížení od Mettl
       load_from_pearson: Zatížení od společnosti Pearson
+      load_from_skillvue: Zatížení od Skillvue
       none_external: Žádné - Použijte nástroj pro tvorbu sestav
     language: Jazyk zprávy
     language_updated: Jazyk sestavy byl úspěšně aktualizován
@@ -3447,8 +3463,10 @@ cs:
   threesixty:
     accept_privacy_modal:
       accept: Přijmout
-      checkbox: Přečetl/a jsem si výše uvedené zásady ochrany osobních údajů a rozumím jim
-      title: Souhlas se zpracováním údajů
+      checkbox: Kliknutím na toto políčko souhlasíte s tím, že jste si přečetli naše oznámení o ochraně osobních údajů, které se týká shromažďování a zpracování vašich osobních údajů, jak je v něm popsáno, včetně mezinárodního přenosu vašich osobních údajů.
+      checkbox_with_client_link: Kliknutím na toto políčko souhlasíte s tím, že jste si přečetli naše oznámení o ochraně osobních údajů a oznámení o ochraně osobních údajů našich klientů, a souhlasíte se shromažďováním a zpracováním vašich osobních údajů, jak je v nich popsáno, včetně mezinárodního přenosu vašich osobních údajů.
+      privacy_notice: Oznámení o ochraně osobních údajů
+      title: Souhlas se zpracováním a předáváním osobních údajů
     action: Akce
     add: Přidat
     and: A
@@ -3657,7 +3675,7 @@ cs:
       import:
         body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
         imported_reports: Zprávy a hodnocení byly importovány
-        imported_users: 'Počet importovaných uživatelů: %{počet}'
+        imported_users: 'Počet importovaných uživatelů: %{number}'
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních
         title: Import uživatelů
         user_with_unchanged_passwords: Seznam uživatelů, jejichž hesla nebyla změněna
@@ -3677,7 +3695,7 @@ cs:
       id: ID hodnocení uživatele
       norm_id: ID normy
     drawer:
-      copied: "%{jméno} zkopírováno do schránky."
+      copied: "%{name} zkopírováno do schránky."
       copy: Kopírování do schránky
       mettl_schedule_name: Mettl Plán Název
       no_data: Nejsou k dispozici žádné údaje
@@ -3688,7 +3706,7 @@ cs:
       actions:
         reset_progress:
           name: Obnovení postupu
-          success_message: Hodnocení %{jméno} je připraveno k editaci
+          success_message: Hodnocení %{name} je připraveno k editaci
       push_test_webhook:
         copy_request_data_success: Rquest Payload úspěšně zkopírován do schránky.
         copy_response_body_success: Tělo odpovědi bylo úspěšně zkopírováno do schránky.
@@ -3700,10 +3718,10 @@ cs:
         submit_button_name: Push Webhook
         title: Push Webhook
       remove:
-        content: Opravdu chcete odstranit hodnocení "%{jméno}"?
-        successfully: posouzení %{název} bylo úspěšně odstraněno.
+        content: Opravdu chcete odstranit hodnocení "%{name}"?
+        successfully: posouzení %{name} bylo úspěšně odstraněno.
       reset:
-        content: Jste si jisti, že chcete obnovit postup "%{jméno}"?
+        content: Jste si jisti, že chcete obnovit postup "%{name}"?
       test_webhook:
         submit_button_name: Odeslat test
         title: Odeslání testu události Webhook
@@ -3757,7 +3775,7 @@ cs:
         content: Opravdu chcete odstranit zprávu %{userReportName}?
         content_with_counts:
           both: 'NEBEZPEČÍ: Zpráva %{userReportName} má %{commentsCount} komentářů a %{editsCount} editací. Pokud zprávu uživateli odeberete, tyto komentáře a editace budou ztraceny.'
-          comments: 'NEBEZPEČÍ: Hlášení %{jméno uživateleHlášení} má %{počet komentářů}. Pokud byste hlášení uživateli odebrali, tyto komentáře by se ztratily.'
+          comments: 'NEBEZPEČÍ: Hlášení %{userReportName} má %{commentsCount}. Pokud byste hlášení uživateli odebrali, tyto komentáře by se ztratily.'
           edits: 'NEBEZPEČÍ: Hlášení %{userReportName} má %{editsCount} editací. Pokud byste hlášení uživateli odebrali, tyto editace by byly ztraceny.'
         successfully: Zpráva %{userReportName} byla úspěšně odstraněna
       remove_file:
@@ -3872,7 +3890,7 @@ cs:
       few:
       many:
       one: Vyskytla se jedna chyba, zkontrolujte své odpovědi
-      other:
+      other: Vyskytlo se %{count} chyb, zkontrolujte prosím své odpovědi.
     user_self_skill_rating_disabled: Vlastní hodnocení je pro tuto šablonu zakázáno
     word_count: 'Počet slov '
     word_range: Vaše odpověď musí mít alespoň %{min} a ne více %{max} slov.

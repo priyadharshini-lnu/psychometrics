@@ -14,6 +14,7 @@ import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 import { SkillTypeEnum } from '../../constants'
+import { ApiConfig } from '~/hooks/useResources/interfaces'
 
 const { Option } = Select
 
@@ -32,6 +33,8 @@ const { I18n } = window
 const MAX_TAG_BATCH_SIZE = 100
 
 export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
+  const params = useParams()
+
   const { resource } = useResourceContext<Skill>()
   const [form] = Form.useForm()
   const {
@@ -42,7 +45,15 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
   } = useResources<Tag>('tags', { apiConfig: { query: { taggable_resource_type: TaggableResourceType.Skill } } })
 
-  const params = useParams()
+  const {
+    data: skillGroups,
+    fetch: fetchSkillGroups, isLoading: isSkillGroupsLoading,
+  } = useResources('skill_groups', {
+    apiConfig: {
+      filter: { end_level_groups: 'true' },
+      project_id: params?.projectId,
+    } as ApiConfig,
+  })
 
   const ownersLoading = isOwnerLoading('fetch')
 
@@ -60,7 +71,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     fetchOwnersByValue(value)
   }, 300)
 
-
   useEffect(() => {
     form.resetFields(['ownerId'])
   }, [global])
@@ -76,6 +86,24 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       },
     })
   }, 300), [])
+
+  const debouncedFetchSkillGroups = useCallback(debounce((value) => {
+    fetchSkillGroups({
+      apiConfig: {
+        filter: { name_cont: value },
+      },
+    })
+  }, 300), [])
+
+  useEffect(() => {
+    if (skill) {
+      fetchSkillGroups({
+        apiConfig: {
+          filter: { name_cont: '' },
+        },
+      })
+    }
+  }, [skill])
 
   const ownerId = Form.useWatch(['ownerId'], form)
   const getProjects = (): OptionsType[] => {
@@ -167,6 +195,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     delete values.ownerId
     return {
       ...values,
+      project_id: params.projectId,
     }
   }
 
@@ -221,7 +250,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
             </>
           )}
           <Form.Item
-            name="SkillType"
+            name="skillType"
             label={I18n.t('administration.skills.form.skill_type')}
           >
             <Select
@@ -232,6 +261,24 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
                   <Option key={value} value={value}>{key}</Option>
                 ))
               }
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="skillGroupId"
+            label={I18n.t('administration.skills.form.skill_group')}
+          >
+            <Select
+              showSearch
+              filterOption={false}
+              loading={isSkillGroupsLoading('fetch')}
+              onSearch={(value) => {
+                debouncedFetchSkillGroups(value)
+              }}
+              notFoundContent={isSkillGroupsLoading('fetch') ? <Spin size="small" /> : null}
+            >
+              {skillGroups.map((item: {id: string, name: string}) => (
+                <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item

@@ -132,7 +132,8 @@ subject_assessor_assessments" do
         let(:linked_assessment) { create(:assessment) }
         let(:assessment) { create(:assessment, linked_assessment_id: linked_assessment.id) }
         let(:campaign_assessor_assessment) do
-          create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
+          create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment,
+          campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
         end
         let!(:campaign_assessment) do
           create(:campaign_assessment, campaign: campaign,
@@ -176,7 +177,8 @@ subject_assessor_assessments" do
             },
             'meeting_type' => nil,
             'assessment_id' => assessor_user_assessment.assessment_id,
-            'linked_activity_id' => ''
+            'linked_activity_id' => '',
+            'linked_activity_name' => nil
           }])
         end
       end

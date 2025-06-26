@@ -7,7 +7,8 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :behavioural_global_tags, :behavioural_client_tags,
              :technical_global_tags, :technical_client_tags,
              :logo_type, :title_text, :subtitle_text, :fields,
-             :background, :client_logo, :show_reflections, :reflection_questions
+             :background, :client_logo, :show_reflections, :reflection_questions,
+             :instructions, :translations, :available_locales
 
   has_one :project, class_name: 'Client'
   has_one :report
@@ -15,6 +16,23 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
   has_many :skills, through: :idp_template_skills, class_name: 'Skill'
 
   ransack_filters %i[filterable_fields]
+
+  def self.updatable_fields(_)
+    super + %i[translations]
+  end
+
+  def translations
+    @model.translations.group_by(&:locale).transform_values do |translations|
+      translations.each_with_object({}) do |translation, hash|
+        hash[:title_text] = translation.title_text
+        hash[:subtitle_text] = translation.subtitle_text
+      end
+    end
+  end
+
+  def available_locales
+    @model.translations.pluck(:locale).uniq || [I18n.default_locale]
+  end
 
   def reflection_questions
     @model.idp_template_reflection_questions.map do |itrq|

@@ -12,6 +12,8 @@ export const WorkshopInviteTR = t.type({
   subjects: t.array(t.type({ subjectId: t.string })),
   workshopIds: t.array(t.string),
   campaignId: t.string,
+  campaignAssessmentGroupId: t.string,
+  campaignAssessmentGroupName: t.string,
   translations: t.array(t.type({
     locale: t.string,
     title: t.string,

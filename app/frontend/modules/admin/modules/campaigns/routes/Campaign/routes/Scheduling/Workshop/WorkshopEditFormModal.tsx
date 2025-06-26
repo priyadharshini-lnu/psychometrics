@@ -4,7 +4,7 @@ import {
   Form, Typography, InputNumber, Input, Radio, Switch, Select,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { durationValidator } from './utils'
+import { durationValidator } from '~/components/DurationValidator'
 import InputDuration from '~/components/InputDuration'
 import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'

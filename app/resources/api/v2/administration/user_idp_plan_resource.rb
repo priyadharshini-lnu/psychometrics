@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::UserIdpPlanResource < Api::V2::Administration::BaseResource
   attributes :user_id, :idp_template_id, :campaign_id, :active, :creator_id, :status, :skill_gap_report_id,
-             :skill_gap_report_available
+             :skill_gap_report_available, :instructions
 
   has_one :idp_template
   has_many :skills, through: :user_idp_skills
@@ -27,5 +27,12 @@ class Api::V2::Administration::UserIdpPlanResource < Api::V2::Administration::Ba
       campaign_id: @model.campaign_id,
       status: 'prepared'
     )
+  end
+
+  def instructions
+    locale = @model.user.locale || I18n.default_locale
+    Mobility.with_locale(locale) do
+      @model.idp_template&.instructions
+    end
   end
 end

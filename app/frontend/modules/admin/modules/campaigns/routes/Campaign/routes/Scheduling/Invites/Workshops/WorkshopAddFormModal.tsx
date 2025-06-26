@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Form, Input, Select, Row, Col, Tag,
 } from 'antd'
@@ -19,9 +19,36 @@ interface Props {
   close(): void
 }
 
+interface WorkshopInviteResponse {
+  id: string;
+  campaignAssessmentGroupId: string;
+}
+
 export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext<Workshop>()
   const { inviteId, campaignId } = useParams() as { campaignId: string, inviteId: string }
+  const [campaignAssessmentGroupId, setCampaignAssessmentGroupId] = useState<string>()
+
+  const { fetchSingle } = useResources<WorkshopInvite>('workshop_invites', {
+    basePath: `campaigns/${campaignId}`,
+  })
+
+  useEffect(() => {
+    if (inviteId) {
+      fetchSingle({
+        id: inviteId,
+        apiConfig: {
+          fields: {
+            workshop_invites: ['campaign_assessment_group_id'],
+          },
+        },
+      }).then((response: WorkshopInviteResponse) => {
+        if (response?.campaignAssessmentGroupId) {
+          setCampaignAssessmentGroupId(response.campaignAssessmentGroupId)
+        }
+      })
+    }
+  }, [inviteId])
 
   const { addRelationships } = useResources<WorkshopInvite>('workshop_invites', {
     basePath: `/campaigns/${campaignId}/workshop_invites/${inviteId}`,
@@ -35,6 +62,12 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
   } = useResources<Workshop>('workshops', {
     basePath: `campaigns/${campaignId}`,
   })
+
+  useEffect(() => {
+    if (campaignAssessmentGroupId) {
+      loadWorkshops()
+    }
+  }, [campaignAssessmentGroupId])
 
   const changeWorkshops = (value) => {
     setSearchValue('')
@@ -50,16 +83,27 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
     setSelectedWorkshops(selectedWorkshops.filter(w => w.id !== id))
   }
 
-  const searchWorkshops = useDebouncedCallback(() => {
-    if (!searchValue) { return }
+  const loadWorkshops = (search?: string) => {
+    if (!campaignAssessmentGroupId) { return }
+
+    const filter: Record<string, string> = {
+      date_filter: 'upcoming',
+      campaign_assessment_group_id_eq: campaignAssessmentGroupId,
+    }
+
+    if (search) {
+      filter.search_query = search
+    }
 
     fetchWorkshops({
       apiConfig: {
-        filter: {
-          search_query: searchValue,
-        },
+        filter,
       },
     })
+  }
+
+  const searchWorkshops = useDebouncedCallback(() => {
+    loadWorkshops(searchValue)
   }, 200)
 
   const create = () => {
