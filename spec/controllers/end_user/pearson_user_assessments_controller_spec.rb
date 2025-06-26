@@ -62,19 +62,61 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
     end
     let(:request_params) { { id: user_assessment.id, jwt: jwt_token } }
 
-    it 'mark user_assessment as completed if saville assessment is completed and redirect to campaign' do
-      allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('Completed')
-      get :redirect, params: request_params
+    context 'when assessment is completed' do
+      before { allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('Completed') }
 
-      expect(user_assessment.reload.completed?).to eq(true)
-      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
+      it 'marks user_assessment as completed and redirects' do
+        get :redirect, params: request_params
+
+        expect(user_assessment.reload.completed?).to eq(true)
+        expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
+      end
     end
 
-    it "doesn't mark user_assessment as completed if saville assessment is not completed" do
-      allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('InProgress')
-      get :redirect, params: request_params
+    context 'when assessment is in_progress and timed out' do
+      before { allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('In_Progress') }
 
-      expect(user_assessment.reload.completed?).to eq(false)
+      it 'sets status to timed_out and redirecrs' do
+        get :redirect, params: request_params
+
+        expect(user_assessment.reload.timed_out?).to eq(true)
+        expect(user_assessment.completion_reason).to eq('time_out_offline')
+        expect(response).to redirect_to(
+          assessment_completed_path(
+            campaign,
+            user_assessment_id: user_assessment.id
+          )
+        )
+      end
+    end
+
+    context 'when assessment has error' do
+      before { allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('Error') }
+
+      it 'sets status to timed_out and redirects' do
+        get :redirect, params: request_params
+
+        expect(user_assessment.reload.timed_out?).to eq(true)
+        expect(user_assessment.completion_reason).to eq('time_out_offline')
+
+        expect(response).to redirect_to(
+          assessment_completed_path(
+            campaign,
+            user_assessment_id: user_assessment.id
+          )
+        )
+      end
+    end
+
+    context 'when assessment has result' do
+      before { allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('Has_Result') }
+
+      it 'marks user_assessment as completed and redirects' do
+        get :redirect, params: request_params
+
+        expect(user_assessment.reload.completed?).to eq(true)
+        expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
+      end
     end
   end
 end

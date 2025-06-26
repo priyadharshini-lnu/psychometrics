@@ -2,18 +2,24 @@
 
 module Pearson
   class SaveScoresAndReports < Base
-    private_attr_reader :user_assessment
+    private_attr_reader :user_assessment, :pearson_user_assessment
 
     def initialize(user_assessment)
       @user_assessment = user_assessment
+      @pearson_user_assessment = user_assessment.pearson_user_assessment
     end
 
-    def call # rubocop:disable  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    def call # rubocop:disable  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity,Metrics/AbcSize
       schedule_id = user_assessment.pearson_user_assessment.schedule_id
       response = client.get("v1/results/#{schedule_id}", query_params)
       scores_and_report = ::JSON.parse(response.body).dig('data', 'candidates', 0, 'products', 0, 'results')
+      error_details = scores_and_report.dig('sessionData', 'errorDetails')
       scores = scores_and_report.dig('scores', 'items')
       report_items = scores_and_report.dig('reports', 'items').select { |item| item['type'].casecmp('pdf').zero? }
+
+      if error_details.present?
+        pearson_user_assessment.update!(error_details: error_details)
+      end
 
       raise StandardError, 'Pearson assessment scores and reports not available' if scores.blank? && report_items.blank?
 
@@ -53,7 +59,7 @@ module Pearson
           ]
         }
       end
-      params
+      params.merge(includeSessionData: 1)
     end
 
     def generate_internal_reports

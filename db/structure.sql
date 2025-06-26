@@ -4096,7 +4096,8 @@ CREATE TABLE public.pearson_user_assessments (
     schedule_id character varying,
     url character varying,
     norm_id character varying,
-    variation character varying
+    variation character varying,
+    error_details jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -17149,6 +17150,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250612122526'),
 ('20250622114250'),
 ('20250622122302'),
 ('20250616122251'),
