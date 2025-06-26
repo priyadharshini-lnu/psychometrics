@@ -329,6 +329,10 @@ it:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Almeno un ruolo lavorativo deve essere abilitato con un tipo di abilità selezionata per %{block_name}
               invalid_skill_type: 'Tipo di abilità non valido %{skill_type} per %{role_name} per %{block_name}. Opzioni valide: %{opzioni_valide}'
               props_missing: Lavoro
+        skillvue:
+          attributes:
+            name:
+              not_unique: Questa integrazione è già presente in questo progetto.
         sms_invites_create:
           attributes:
             first_name:
@@ -966,6 +970,7 @@ it:
         pearson_norm_id: ID norma Pearson
         saville_assessment_name: Valutazione Saville Nome
         simulation_assessment_name: Simulazione Nome della valutazione
+        skillvue_assessment_name: Nome della valutazione Skillvue
       translations_migrated: Traduzione migrata
     create: Creare
     dashboard: Cruscotto
@@ -1005,6 +1010,7 @@ it:
         psychometric: Psicometrico
         saville: Saville
         simulation: Simulazione
+        skillvue: Skillvue
         threesixty: campagna 360
       status:
         finished: Finito
@@ -1370,6 +1376,8 @@ it:
       pearson_variation: Variazione Pearson
       prework: Prelavoro
       simulation_content_variation: Variazione del contenuto della simulazione
+      skillvue_email_id: ID e-mail del candidato Skillvue
+      skillvue_external_assessment_id: ID valutazione Skillvue
       universal_link: Collegamento universale
     drawer:
       mettl_schedule_name: Nome del programma Mettl
@@ -2060,6 +2068,7 @@ it:
       uniq: Questa valutazione Mettl è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq?: dovrebbe essere unico
       uniq_simulation: Questa valutazione di simulazione è già presente nel sistema. L'ID di questa valutazione è %{id}
+      uniq_skillvue: Questa valutazione Skillvue è già presente nel sistema. L'ID di questa valutazione è %{id}
       update_workshop:
         less_than_booked: I posti totali devono essere maggiori di quelli prenotati
       user_availability_date:
@@ -2938,9 +2947,11 @@ it:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Carico da Mettl
       load_from_pearson: Carico da Pearson
+      load_from_skillvue: Carico da Skillvue
       none_external: Nessuno - Utilizzare il costruttore di report
     language: Lingua del rapporto
     language_updated: La lingua del report è stata aggiornata con successo

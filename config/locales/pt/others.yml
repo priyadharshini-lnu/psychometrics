@@ -329,6 +329,10 @@ pt:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pelo menos um posto de trabalho deve estar ativado com um tipo de competência selecionado para %{block_name}
               invalid_skill_type: 'Tipo de habilidade inválido %{skill_type} para %{role_name} para %{block_name}. Opções válidas: %{opções_válidas}'
               props_missing: Emprego
+        skillvue:
+          attributes:
+            name:
+              not_unique: Esta integração já está presente para este projeto.
         sms_invites_create:
           attributes:
             first_name:
@@ -965,6 +969,7 @@ pt:
         pearson_norm_id: Norma de Pearson ID
         saville_assessment_name: Avaliação Saville Nome
         simulation_assessment_name: Nome da avaliação da simulação
+        skillvue_assessment_name: Skillvue Nome da avaliação
       translations_migrated: Tradução Migrada
     create: Criar
     dashboard: Painel de controlo
@@ -1004,6 +1009,7 @@ pt:
         psychometric: Psicométrico
         saville: Saville
         simulation: Simulação
+        skillvue: Skillvue
         threesixty: campanha 360
       status:
         finished: Acabado
@@ -1381,6 +1387,8 @@ pt:
       pearson_variation: Variação de Pearson
       prework: Pré-trabalho
       simulation_content_variation: Variação do conteúdo da simulação
+      skillvue_email_id: ID do e-mail do candidato Skillvue
+      skillvue_external_assessment_id: ID de avaliação de Skillvue
       universal_link: Ligação universal
     drawer:
       mettl_schedule_name: Nome do calendário Mettl
@@ -2069,6 +2077,7 @@ pt:
       uniq: Esta avaliação Mettl já está presente no sistema. O ID desta avaliação é %{id}
       uniq?: deve ser único
       uniq_simulation: Esta avaliação de simulação já está presente no sistema. O ID desta avaliação é %{id}
+      uniq_skillvue: Esta avaliação Skillvue já está presente no sistema. O ID desta avaliação é %{id}
       update_workshop:
         less_than_booked: O total de lugares deve ser superior ao reservado
       user_availability_date:
@@ -2950,6 +2959,7 @@ pt:
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carregar de Pearson
+      load_from_skillvue: Carregar de Skillvue
       none_external: Nenhum - Utilizar o criador de relatórios
     language: Idioma do relatório
     language_updated: O idioma do relatório foi atualizado com sucesso

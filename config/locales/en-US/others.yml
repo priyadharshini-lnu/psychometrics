@@ -43,6 +43,10 @@ en-US:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: At least one job role must be enabled with a skill type selected for %{block_name}
               invalid_skill_type: 'Invalid skill type %{skill_type} for %{role_name} for %{block_name}. Valid options: %{valid_options}'
               props_missing: Job
+        skillvue:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project.
         taxonomies_import_form:
           attributes:
             file:
@@ -114,6 +118,12 @@ en-US:
     card_actions:
       begin: Begin
       continue: Continue
+    column:
+      external_settings:
+        skillvue_assessment_name: Skillvue Assessment Name
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Begin
       cancel: Cancel
@@ -306,6 +316,9 @@ en-US:
   campaign_assessment:
     assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
+    column:
+      skillvue_email_id: Skillvue Candidate Email ID
+      skillvue_external_assessment_id: Skillvue Assessment ID
     modals:
       assessor_campaign_assessment_group:
         error_message: Something went wrong. Please contact administrator
@@ -506,6 +519,7 @@ en-US:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Skill and job role must belong to same project or be global.
         unique_mappings: A mapping with the same skill and job role already exists.
+      uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
   emails:
     subject_relationship_table:
       subject_email: Subject Email
@@ -898,6 +912,8 @@ en-US:
       add: Add Report
       download: Download report
       view: View Report
+    form:
+      load_from_skillvue: Load from Skillvue
     modules:
       campaign_factors_table:
         add_condition: Add Condition

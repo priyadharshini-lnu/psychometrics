@@ -43,6 +43,10 @@ zh-HK:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必須啟用至少一個工作角色，並選取 %{block_name} 的技能類型。
               invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能類型無效。有效選項： %{valid_options}"
               props_missing: 工作機會
+        skillvue:
+          attributes:
+            name:
+              not_unique: 本專案已具備此整合功能。
         taxonomies_import_form:
           attributes:
             file:
@@ -124,6 +128,12 @@ zh-HK:
     card_actions:
       begin: 開始
       continue: 繼續
+    column:
+      external_settings:
+        skillvue_assessment_name: Skillvue 評估名稱
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: 開始
       cancel: 取消
@@ -336,6 +346,9 @@ zh-HK:
   campaign_assessment:
     assessment_center_heading: 評估中心詳細資訊
     assessments_heading: 您的任務
+    column:
+      skillvue_email_id: Skillvue 候選人電子郵件 ID
+      skillvue_external_assessment_id: Skillvue 評估 ID
     modals:
       assessor_campaign_assessment_group:
         error_message: 出錯了。請聯絡管理員
@@ -539,6 +552,7 @@ zh-HK:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
         unique_mappings: 具有相同技能和工作角色的映射已經存在。
+      uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
   emails:
     subject_relationship_table:
       subject_email: 主題電子郵件
@@ -932,6 +946,8 @@ zh-HK:
       add: 添加報告
       download: 下載報告
       view: 查看報告
+    form:
+      load_from_skillvue: 從 Skillvue 載入
     modules:
       campaign_factors_table:
         add_condition: 新增條件

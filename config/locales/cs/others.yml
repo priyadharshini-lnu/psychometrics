@@ -329,6 +329,10 @@ cs:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
               invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
               props_missing: Práce
+        skillvue:
+          attributes:
+            name:
+              not_unique: Tato integrace je v tomto projektu již přítomna.
         sms_invites_create:
           attributes:
             first_name:
@@ -965,6 +969,7 @@ cs:
         pearson_norm_id: Pearsonova norma ID
         saville_assessment_name: Hodnocení Saville Název
         simulation_assessment_name: Hodnocení simulace Název
+        skillvue_assessment_name: Název hodnocení Skillvue
       translations_migrated: Přeloženo
     create: Vytvořit
     dashboard: Přístrojová deska
@@ -1004,6 +1009,7 @@ cs:
         psychometric: Psychometrické údaje
         saville: Saville
         simulation: Simulace
+        skillvue: Skillvue
         threesixty: kampaň 360
       status:
         finished: Dokončeno
@@ -1381,6 +1387,8 @@ cs:
       pearson_variation: Pearsonova variace
       prework: Předpráce
       simulation_content_variation: Varianta obsahu simulace
+      skillvue_email_id: Skillvue Emailové ID kandidáta
+      skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Univerzální odkaz
     drawer:
       mettl_schedule_name: Mettl Plán Název
@@ -2070,6 +2078,7 @@ cs:
       uniq: Toto posouzení Mettl je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq?: by měly být jedinečné
       uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
+      uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
       update_workshop:
         less_than_booked: Celkový počet míst musí být větší než rezervovaný
       user_availability_date:
@@ -2948,9 +2957,11 @@ cs:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Zatížení od Mettl
       load_from_pearson: Zatížení od společnosti Pearson
+      load_from_skillvue: Zatížení od Skillvue
       none_external: Žádné - Použijte nástroj pro tvorbu sestav
     language: Jazyk zprávy
     language_updated: Jazyk sestavy byl úspěšně aktualizován

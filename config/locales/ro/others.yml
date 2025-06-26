@@ -43,6 +43,10 @@ ro:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Cel puțin un rol de post trebuie să fie activat cu un tip de competență selectat pentru %{block_name}
               invalid_skill_type: 'Tipul de abilitate nevalid %{skill_type} pentru %{role_name} pentru %{block_name}. Opțiuni valide: %{valid_options}'
               props_missing: Loc de muncă
+        skillvue:
+          attributes:
+            name:
+              not_unique: Această integrare este deja prezentă pentru acest proiect.
         taxonomies_import_form:
           attributes:
             file:
@@ -115,6 +119,12 @@ ro:
     card_actions:
       begin: Începeți
       continue: Continuați
+    column:
+      external_settings:
+        skillvue_assessment_name: Skillvue Denumire evaluare
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Începeți
       cancel: Anulează
@@ -307,6 +317,9 @@ ro:
   campaign_assessment:
     assessment_center_heading: Detalii privind centrul de evaluare
     assessments_heading: Sarcinile dvs
+    column:
+      skillvue_email_id: Adresa de e-mail a candidatului Skillvue
+      skillvue_external_assessment_id: Skillvue Evaluare ID
     modals:
       assessor_campaign_assessment_group:
         error_message: Ceva nu a mers bine. Vă rugăm să contactați administratorul
@@ -506,6 +519,7 @@ ro:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Competența și rolul postului trebuie să aparțină aceluiași proiect sau să fie globale.
         unique_mappings: Există deja o corespondență cu aceleași competențe și roluri.
+      uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
   emails:
     subject_relationship_table:
       subject_email: Subiect Email
@@ -685,6 +699,8 @@ ro:
       add: Adaugă raport
       download: Descărcați raportul
       view: Vezi raportul
+    form:
+      load_from_skillvue: Încărcați de la Skillvue
     modules:
       campaign_factors_table:
         add_condition: Adaugă condiție

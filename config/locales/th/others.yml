@@ -43,6 +43,10 @@ th:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: อย่างน้อยหนึ่งตำแหน่งงานต้องเปิดใช้งานด้วยประเภททักษะที่เลือกสำหรับ %{block_name}
               invalid_skill_type: 'ประเภททักษะไม่ถูกต้อง %{skill_type} สำหรับ %{role_name} สำหรับ %{block_name}. ตัวเลือกที่ถูกต้อง: %{valid_options}'
               props_missing: งาน
+        skillvue:
+          attributes:
+            name:
+              not_unique: การผสานรวมนี้มีอยู่แล้วสำหรับโครงการนี้
         taxonomies_import_form:
           attributes:
             file:
@@ -114,6 +118,12 @@ th:
     card_actions:
       begin: เริ่ม
       continue: ดำเนินการต่อ
+    column:
+      external_settings:
+        skillvue_assessment_name: ชื่อการประเมินของ Skillvue
+    fields:
+      category:
+        skillvue: สกิลวิว
     instructions:
       begin_assessment: เริ่ม
       cancel: ยกเลิก
@@ -300,6 +310,9 @@ th:
   campaign_assessment:
     assessment_center_heading: รายละเอียดศูนย์ประเมิน
     assessments_heading: งานของคุณ
+    column:
+      skillvue_email_id: อีเมลผู้สมัคร Skillvue
+      skillvue_external_assessment_id: รหัสการประเมิน Skillvue
     modals:
       assessor_campaign_assessment_group:
         error_message: เกิดข้อผิดพลาด โปรดติดต่อผู้ดูแลระบบ
@@ -499,6 +512,7 @@ th:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: ทักษะและบทบาทงานต้องอยู่ในโครงการเดียวกันหรือเป็นแบบทั่วโลก
         unique_mappings: มีการจับคู่ที่มีทักษะและบทบาทงานเดียวกันอยู่แล้ว
+      uniq_skillvue: การประเมิน Skillvue นี้มีอยู่ในระบบแล้ว รหัสการประเมินนี้คือ %{id}
   emails:
     subject_relationship_table:
       subject_email: หัวข้ออีเมล์
@@ -678,6 +692,8 @@ th:
       add: เพิ่มรายงาน
       download: ดาวน์โหลดรายงาน
       view: ดูรายงาน
+    form:
+      load_from_skillvue: โหลดจาก Skillvue
     modules:
       campaign_factors_table:
         add_condition: เพิ่มเงื่อนไข

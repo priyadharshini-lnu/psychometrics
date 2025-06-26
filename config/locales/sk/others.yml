@@ -43,6 +43,10 @@ sk:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pre %{názov_bloku} musí byť povolená aspoň jedna pracovná rola s vybraným typom zručnosti
               invalid_skill_type: 'Neplatný typ zručnosti %{skill_type} pre %{role_name} pre %{block_name}. Platné možnosti: %{valid_options}'
               props_missing: Práca
+        skillvue:
+          attributes:
+            name:
+              not_unique: Táto integrácia je už v tomto projekte prítomná.
         taxonomies_import_form:
           attributes:
             file:
@@ -114,6 +118,12 @@ sk:
     card_actions:
       begin: Začíname na adrese
       continue: Pokračovať
+    column:
+      external_settings:
+        skillvue_assessment_name: Názov hodnotenia Skillvue
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Začíname na adrese
       cancel: Zrušiť
@@ -306,6 +316,9 @@ sk:
   campaign_assessment:
     assessment_center_heading: Podrobnosti o hodnotiacom centre
     assessments_heading: Vaše úlohy
+    column:
+      skillvue_email_id: Skillvue Kandidát Email ID
+      skillvue_external_assessment_id: Skillvue Assessment ID
     modals:
       assessor_campaign_assessment_group:
         error_message: Niečo sa pokazilo. Prosím, kontaktujte správcu
@@ -505,6 +518,7 @@ sk:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Zručnosť a pracovná úloha musia patriť k tomu istému projektu alebo musia byť globálne.
         unique_mappings: Mapovanie s rovnakými zručnosťami a pracovnou úlohou už existuje.
+      uniq_skillvue: Toto hodnotenie Skillvue je už v systéme prítomné. ID tohto hodnotenia je %{id}
   emails:
     subject_relationship_table:
       subject_email: Predmet E-mail
@@ -684,6 +698,8 @@ sk:
       add: Pridať správu
       download: Stiahnite si správu
       view: Zobraziť správu
+    form:
+      load_from_skillvue: Načítať z aplikácie Skillvue
     modules:
       campaign_factors_table:
         add_condition: Pridať podmienku

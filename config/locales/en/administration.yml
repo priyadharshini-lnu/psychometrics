@@ -464,6 +464,7 @@ en:
         per_page: per page
         plural:
           block: blocks
+          choice: choices
           question: questions
         present_only: Present only
         question_per_factor_and_show: questions per factor and show

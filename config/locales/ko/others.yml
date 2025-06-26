@@ -329,6 +329,10 @@ ko:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 블록 이름]에 대해 선택된 스킬 유형으로 하나 이상의 직무 역할이 활성화되어 있어야 합니다.
               invalid_skill_type: '역할_이름]의 %{블록_이름}에 대한 %{스킬 유형 %{스킬_유형}이(가) 잘못되었습니다. 유효한 옵션: %{valid_options}'
               props_missing: Job
+        skillvue:
+          attributes:
+            name:
+              not_unique: 이 통합 기능은 이 프로젝트에 이미 존재합니다.
         sms_invites_create:
           attributes:
             first_name:
@@ -965,6 +969,7 @@ ko:
         pearson_norm_id: 피어슨 표준 ID
         saville_assessment_name: 새빌 평가 이름
         simulation_assessment_name: 시뮬레이션 평가 이름
+        skillvue_assessment_name: 스킬뷰 평가 이름
       translations_migrated: 번역 마이그레이션
     create: 만들기
     dashboard: 대시보드
@@ -1004,6 +1009,7 @@ ko:
         psychometric: 사이코메트릭
         saville: Saville
         simulation: 시뮬레이션
+        skillvue: 스킬뷰
         threesixty: 360 캠페인
       status:
         finished: 완료
@@ -1369,6 +1375,8 @@ ko:
       pearson_variation: 피어슨 변형
       prework: 사전 작업
       simulation_content_variation: 시뮬레이션 콘텐츠 변형
+      skillvue_email_id: 스킬뷰 응시자 이메일 ID
+      skillvue_external_assessment_id: 스킬뷰 평가 ID
       universal_link: 유니버설 링크
     drawer:
       mettl_schedule_name: 메틀 스케줄 이름
@@ -2057,6 +2065,7 @@ ko:
       uniq: 이 Mettl 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
       uniq?: 고유해야 합니다
       uniq_simulation: 이 시뮬레이션 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
+      uniq_skillvue: 이 스킬뷰 평가는 이미 시스템에 존재합니다. 이 평가의 ID는 %{id}입니다.
       update_workshop:
         less_than_booked: 총 좌석 수가 예약된 좌석 수보다 많아야 합니다
       user_availability_date:
@@ -2814,6 +2823,7 @@ ko:
     form:
       load_from_mettl: Mettl에서 로드
       load_from_pearson: 피어슨에서 로드
+      load_from_skillvue: 스킬뷰에서 로드
       none_external: 없음 - 보고서 작성기 사용
     language: 보고 언어
     language_updated: 보고서 언어가 성공적으로 업데이트되었습니다

@@ -329,6 +329,10 @@ zh:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必须启用至少一个工作角色，并为 %{block_name} 选择一个技能类型。
               invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能类型无效。有效选项： %{valid_options}"
               props_missing: 工作
+        skillvue:
+          attributes:
+            name:
+              not_unique: 本项目已经实现了这种整合。
         sms_invites_create:
           attributes:
             first_name:
@@ -965,6 +969,7 @@ zh:
         pearson_norm_id: 皮尔逊标准 ID
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
+        skillvue_assessment_name: Skillvue 评估名称
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -1004,6 +1009,7 @@ zh:
         psychometric: 心理测量
         saville: 萨维尔
         simulation: 模拟
+        skillvue: Skillvue
         threesixty: 360 运动
       status:
         finished: 完成
@@ -1379,6 +1385,8 @@ zh:
       pearson_variation: 皮尔逊变异
       prework: 前期工作
       simulation_content_variation: 模拟内容差异
+      skillvue_email_id: Skillvue 候选人电子邮件 ID
+      skillvue_external_assessment_id: Skillvue 评估 ID
       universal_link: 通用链接
     drawer:
       mettl_schedule_name: 附表名称
@@ -2068,6 +2076,7 @@ zh:
       uniq: 系统中已存在该 Mettl 评估。 该评估的 ID 是 %{id}
       uniq?: 应是唯一的
       uniq_simulation: 该模拟评估已存在于系统中。 该评估的 ID 是 %{id}
+      uniq_skillvue: 系统中已存在此技能评估。该评估的 ID 是 %{id}
       update_workshop:
         less_than_booked: 总席位数必须大于预订席位数
       user_availability_date:
@@ -2946,9 +2955,11 @@ zh:
         mettl: 水
         pearson: 皮尔森
         saville: 萨维尔
+        skillvue: Skillvue
     form:
       load_from_mettl: 来自 Mettl 的负载
       load_from_pearson: 从培生加载
+      load_from_skillvue: 从 Skillvue 装载
       none_external: 无 - 使用报告生成器
     language: 报告语言
     language_updated: 报告语言已成功更新

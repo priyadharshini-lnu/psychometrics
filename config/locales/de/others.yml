@@ -339,6 +339,10 @@ de:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Für %{block_name} muss mindestens eine Jobrolle mit einer ausgewählten Fertigkeitsart aktiviert sein.
               invalid_skill_type: 'Ungültiger Skilltyp %{skill_type} für %{role_name} für %{block_name}. Gültige Optionen: %{valid_options}'
               props_missing: Job
+        skillvue:
+          attributes:
+            name:
+              not_unique: Diese Integration ist bei diesem Projekt bereits vorhanden.
         sms_invites_create:
           attributes:
             first_name:
@@ -975,6 +979,7 @@ de:
         pearson_norm_id: Pearson-Norm-ID
         saville_assessment_name: Saville-Bewertung Name
         simulation_assessment_name: Simulation Bewertung Name
+        skillvue_assessment_name: Skillvue Bewertung Name
       translations_migrated: Übersetzung migriert
     create: Erstellen
     dashboard: Dashboard
@@ -1014,6 +1019,7 @@ de:
         psychometric: Psychometrische Daten
         saville: Saville
         simulation: Simulation
+        skillvue: Skillvue
         threesixty: 360-Kampagne
       status:
         finished: Fertige
@@ -1393,6 +1399,8 @@ de:
       pearson_variation: Pearson-Variation
       prework: Vorarbeit
       simulation_content_variation: Simulation Inhaltsvariation
+      skillvue_email_id: Skillvue-Kandidaten-E-Mail-ID
+      skillvue_external_assessment_id: Skillvue Bewertung ID
       universal_link: Universeller Link
     drawer:
       mettl_schedule_name: Mettl Zeitplan Name
@@ -2081,6 +2089,7 @@ de:
       uniq: Diese Mettl-Bewertung ist bereits im System vorhanden. Die ID dieser Bewertung lautet %{id}
       uniq?: sollte einzigartig sein
       uniq_simulation: Diese Simulationsbeurteilung ist bereits im System vorhanden. Die ID dieser Beurteilung lautet %{id}
+      uniq_skillvue: Diese Skillvue-Bewertung ist bereits im System vorhanden. Die ID dieser Beurteilung lautet %{id}
       update_workshop:
         less_than_booked: Die Gesamtzahl der Sitzplätze muss größer sein als die gebuchten
       user_availability_date:
@@ -2957,9 +2966,11 @@ de:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Belastung aus Mettl
       load_from_pearson: Laden von Pearson
+      load_from_skillvue: Laden von Skillvue
       none_external: Keine - Berichtserstellung verwenden
     language: Sprache des Berichts
     language_updated: Berichtssprache wurde erfolgreich aktualisiert

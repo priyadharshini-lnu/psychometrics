@@ -43,6 +43,10 @@ sl:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Vsaj ena vloga delovnega mesta mora biti omogočena z izbrano vrsto spretnosti za %{naziv_bloka}
               invalid_skill_type: 'Nepravilna vrsta spretnosti %{skill_type} za %{role_name} za %{block_name}. Veljavne možnosti: %{valid_options}'
               props_missing: Delo
+        skillvue:
+          attributes:
+            name:
+              not_unique: Ta integracija je pri tem projektu že prisotna.
         taxonomies_import_form:
           attributes:
             file:
@@ -114,6 +118,12 @@ sl:
     card_actions:
       begin: Začni
       continue: Nadaljuj
+    column:
+      external_settings:
+        skillvue_assessment_name: Skillvue Ime ocene
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Začni
       cancel: Prekliči
@@ -306,6 +316,9 @@ sl:
   campaign_assessment:
     assessment_center_heading: Podrobnosti o centru za ocenjevanje
     assessments_heading: Vaše naloge
+    column:
+      skillvue_email_id: Skillvue Kandidat Email ID
+      skillvue_external_assessment_id: Skillvue Ocena ID
     modals:
       assessor_campaign_assessment_group:
         error_message: Nekaj je šlo narobe. Obrnite se na skrbnika
@@ -505,6 +518,7 @@ sl:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Spretnost in vloga delovnega mesta morata pripadati istemu projektu ali biti globalna.
         unique_mappings: Mapiranje z enakim znanjem in delovnim mestom že obstaja.
+      uniq_skillvue: Ta ocena Skillvue je že prisotna v sistemu. ID te ocene je %{id}
   emails:
     subject_relationship_table:
       subject_email: Zadeva E-pošta
@@ -684,6 +698,8 @@ sl:
       add: Dodajanje poročila
       download: Prenesi poročilo
       view: Prikaži poročilo
+    form:
+      load_from_skillvue: Obremenitev iz Skillvue
     modules:
       campaign_factors_table:
         add_condition: Dodajanje pogoja

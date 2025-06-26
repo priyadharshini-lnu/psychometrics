@@ -43,6 +43,10 @@ ar:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: يجب تمكين دور وظيفي واحد على الأقل مع تحديد نوع المهارة لـ %{block_name}
               invalid_skill_type: 'نوع المهارة غير صالح %{نوع_المهارة} لـ %{اسم_الدور} لـ %{اسم_الحظر}. الخيارات الصالحة: %{الخيارات_الصحيحة} لـ %{الخيارات_الصحيحة}'
               props_missing: الوظيفة
+        skillvue:
+          attributes:
+            name:
+              not_unique: هذا التكامل موجود بالفعل في هذا المشروع.
         taxonomies_import_form:
           attributes:
             file:
@@ -125,6 +129,12 @@ ar:
     card_actions:
       begin: ابدأ
       continue: استمرار
+    column:
+      external_settings:
+        skillvue_assessment_name: اسم تقييم المهارات
+    fields:
+      category:
+        skillvue: سكيلفيو
     instructions:
       begin_assessment: ابدأ
       cancel: إلغاء
@@ -335,6 +345,9 @@ ar:
   campaign_assessment:
     assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
+    column:
+      skillvue_email_id: معرف البريد الإلكتروني للمرشح سكيلفيو
+      skillvue_external_assessment_id: معرّف تقييم سكيلفيو
     modals:
       assessor_campaign_assessment_group:
         error_message: حدث خطأ ما يرجى الاتصال بالمسؤول
@@ -540,6 +553,7 @@ ar:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: يجب أن تنتمي المهارة والدور الوظيفي إلى نفس المشروع أو أن يكونا عالميين.
         unique_mappings: يوجد بالفعل تعيين بنفس المهارة والدور الوظيفي.
+      uniq_skillvue: تقييم Skillvue هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
   emails:
     subject_relationship_table:
       subject_email: ايميل المشارك
@@ -962,6 +976,8 @@ ar:
       add: إضافة تقرير
       download: تحميل التقرير
       view: عرض التقرير
+    form:
+      load_from_skillvue: تحميل من سكيلفيو
     modules:
       campaign_factors_table:
         add_condition: إضافة شرط

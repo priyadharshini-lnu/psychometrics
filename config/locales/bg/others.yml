@@ -43,6 +43,10 @@ bg:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Трябва да е активирана поне една роля за работа с избран тип умения за %{block_name}
               invalid_skill_type: 'Невалиден тип умение %{skill_type} за %{role_name} за %{block_name}. Допустими опции: %{valid_options}'
               props_missing: Работа
+        skillvue:
+          attributes:
+            name:
+              not_unique: Тази интеграция вече е налице за този проект.
         taxonomies_import_form:
           attributes:
             file:
@@ -114,6 +118,12 @@ bg:
     card_actions:
       begin: Започнете с
       continue: Продължи
+    column:
+      external_settings:
+        skillvue_assessment_name: Оценка на Skillvue Име
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Започнете с
       cancel: Отмяна на
@@ -306,6 +316,9 @@ bg:
   campaign_assessment:
     assessment_center_heading: Подробности за центъра за оценяване
     assessments_heading: Вашите задачи
+    column:
+      skillvue_email_id: Skillvue Кандидат Имейл ID
+      skillvue_external_assessment_id: Skillvue Оценка ID
     modals:
       assessor_campaign_assessment_group:
         error_message: Нещо се е объркало. Моля, свържете се с администратора
@@ -505,6 +518,7 @@ bg:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Умението и работната роля трябва да принадлежат към един и същ проект или да са глобални.
         unique_mappings: Вече съществува картографиране със същото умение и длъжностна роля.
+      uniq_skillvue: Тази оценка на уменията вече е налична в системата. ID на тази оценка е %{id}
   emails:
     subject_relationship_table:
       subject_email: Тема Имейл
@@ -684,6 +698,8 @@ bg:
       add: Добавяне на доклад
       download: Изтегляне на доклад
       view: Преглед на доклада
+    form:
+      load_from_skillvue: Зареждане от Skillvue
     modules:
       campaign_factors_table:
         add_condition: Добавяне на условие

@@ -43,6 +43,10 @@ hu:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Legalább egy munkakörnek engedélyezettnek kell lennie, és a %{block_name} számára kiválasztott készségtípust kell kiválasztani.
               invalid_skill_type: 'Érvénytelen képességtípus %{skill_type} a %{role_name} számára %{block_name}. Érvényes opciók: %{valid_options}'
               props_missing: Állás
+        skillvue:
+          attributes:
+            name:
+              not_unique: Ez az integráció már jelen van ennél a projektnél.
         taxonomies_import_form:
           attributes:
             file:
@@ -114,6 +118,12 @@ hu:
     card_actions:
       begin: Kezdje
       continue: Folytatás
+    column:
+      external_settings:
+        skillvue_assessment_name: Skillvue Értékelés neve
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Kezdje
       cancel: Törölje
@@ -306,6 +316,9 @@ hu:
   campaign_assessment:
     assessment_center_heading: Értékelő központ részletei
     assessments_heading: Az Ön feladatai
+    column:
+      skillvue_email_id: Skillvue Jelölt e-mail azonosítója
+      skillvue_external_assessment_id: Skillvue Értékelési ID
     modals:
       assessor_campaign_assessment_group:
         error_message: Valami rosszul sült el. Kérjük, lépjen kapcsolatba a rendszergazdával
@@ -505,6 +518,7 @@ hu:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: A készségnek és a munkakörnek ugyanahhoz a projekthez kell tartoznia, vagy globálisnak kell lennie.
         unique_mappings: Már létezik egy azonos készséggel és munkakörrel rendelkező leképezés.
+      uniq_skillvue: Ez a Skillvue-értékelés már jelen van a rendszerben. Az értékelés azonosítója %{id}
   emails:
     subject_relationship_table:
       subject_email: Tárgy Email
@@ -684,6 +698,8 @@ hu:
       add: Jelentés hozzáadása
       download: Jelentés letöltése
       view: Jelentés megtekintése
+    form:
+      load_from_skillvue: Betöltés a Skillvue-tól
     modules:
       campaign_factors_table:
         add_condition: Feltétel hozzáadása

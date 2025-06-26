@@ -329,6 +329,10 @@ nl:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ten minste één functierol moet ingeschakeld zijn met een vaardigheidstype geselecteerd voor %{block_name}
               invalid_skill_type: 'Ongeldig vaardigheidstype %{skill_type} voor %{role_name} voor %{block_name}. Geldige opties: %{valid_options}'
               props_missing: Job
+        skillvue:
+          attributes:
+            name:
+              not_unique: Deze integratie is al aanwezig voor dit project.
         sms_invites_create:
           attributes:
             first_name:
@@ -965,6 +969,7 @@ nl:
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville beoordeling Naam
         simulation_assessment_name: Simulatie Beoordeling Naam
+        skillvue_assessment_name: Skillvue Beoordeling Naam
       translations_migrated: Vertaling gemigreerd
     create: Maak
     dashboard: Dashboard
@@ -1004,6 +1009,7 @@ nl:
         psychometric: Psychometrisch
         saville: Saville
         simulation: Simulatie
+        skillvue: Skillvue
         threesixty: 360 Campagne
       status:
         finished: Afgewerkt
@@ -1369,6 +1375,8 @@ nl:
       pearson_variation: Pearson Variatie
       prework: Voorwerk
       simulation_content_variation: Simulatie Inhoud Variatie
+      skillvue_email_id: Skillvue Kandidaat Email ID
+      skillvue_external_assessment_id: Skillvue Beoordeling ID
       universal_link: Universele link
     drawer:
       mettl_schedule_name: Mettl Schema Naam
@@ -2057,6 +2065,7 @@ nl:
       uniq: Deze Mettl beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq?: moet uniek zijn
       uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
+      uniq_skillvue: Deze Skillvue beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       update_workshop:
         less_than_booked: Het totaal aantal geboekte zitplaatsen moet groter zijn dan
       user_availability_date:
@@ -2814,6 +2823,7 @@ nl:
     form:
       load_from_mettl: Belasting van Mettl
       load_from_pearson: Laden van Pearson
+      load_from_skillvue: Belasting van Skillvue
       none_external: Geen - Gebruik rapportbouwer
     language: Rapport Taal
     language_updated: Rapporttaal is met succes bijgewerkt

@@ -329,6 +329,10 @@ ja:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: block_name} で選択されたスキル・タイプで、少なくとも 1 つのジョブ・ロールが有効になっている必要があります。
               invalid_skill_type: 'block_name} の %{role_name} に対する無効なスキル・タイプ %{skill_type}。有効なオプション: %{valid_options} です。'
               props_missing: 仕事
+        skillvue:
+          attributes:
+            name:
+              not_unique: この統合はすでにこのプロジェクトに存在している。
         sms_invites_create:
           attributes:
             first_name:
@@ -965,6 +969,7 @@ ja:
         pearson_norm_id: ピアソン規範ID
         saville_assessment_name: サヴィル査定名
         simulation_assessment_name: シミュレーション評価名
+        skillvue_assessment_name: スキルビュー評価名
       translations_migrated: 翻訳の移行
     create: 作成
     dashboard: ダッシュボード
@@ -1004,6 +1009,7 @@ ja:
         psychometric: サイコメトリック
         saville: サヴィル
         simulation: シミュレーション
+        skillvue: スキルビュー
         threesixty: 360キャンペーン
       status:
         finished: 終了
@@ -1382,6 +1388,8 @@ ja:
       pearson_variation: ピアソン・バリエーション
       prework: プレワーク
       simulation_content_variation: シミュレーションの内容
+      skillvue_email_id: スキルビュー候補者のEメールアドレス
+      skillvue_external_assessment_id: スキルビュー査定ID
       universal_link: ユニバーサルリンク
     drawer:
       mettl_schedule_name: メットル・スケジュール名
@@ -2071,6 +2079,7 @@ ja:
       uniq: このMettlアセスメントはすでにシステムに存在しています。 このアセスメントのIDは%{id}です。
       uniq?: ユニークでなければならない
       uniq_simulation: このシミュレーション評価はシステムに既に存在しています。 この評価のIDは%{id}です。
+      uniq_skillvue: このスキルビューアセスメントはすでにシステムに存在しています。このアセスメントのIDは %{id} です。
       update_workshop:
         less_than_booked: 総座席数が予約席数を上回っていること
       user_availability_date:
@@ -2946,6 +2955,7 @@ ja:
     form:
       load_from_mettl: メトルからのロード
       load_from_pearson: ピアソンからのロード
+      load_from_skillvue: スキルビューからのロード
       none_external: なし - レポートビルダーを使用
     language: レポート言語
     language_updated: レポート言語が正常に更新されました

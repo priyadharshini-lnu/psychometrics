@@ -173,6 +173,10 @@ ja:
             manage: 管理
             title: IDPテンプレート
             view: 表示
+          jobRoles:
+            manage: 管理
+            title: 仕事の役割
+            view: 表示
           mediaLibraries:
             manage: 管理
             title: メディア・ライブラリー
@@ -185,6 +189,14 @@ ja:
           norms:
             manage: 管理
             title: 規範
+            view: 表示
+          proficiencyLevels:
+            export: 輸出技能レベル
+            export_translations: 輸出技能レベルの翻訳
+            import: インポート技能レベル
+            import_translations: 輸入熟練度翻訳
+            manage: 管理
+            title: 熟練度レベル
             view: 表示
           proficiency_level:
             title: 熟練度レベル
@@ -232,6 +244,7 @@ ja:
             approve_report: 報告書の承認
             bulk_download: 一括ダウンロード
             bulk_regenerate_reports: レポートの一括再生成
+            bulk_update_evaluation_status: 評価ステータスの一括更新
             download_report: レポートダウンロード
             edit_report: 編集レポート
             export_occupations: 輸出職業
@@ -273,6 +286,22 @@ ja:
             manage: 管理
             title: ワークショップ
             view: 表示
+    ai_assistants:
+      actions:
+        playground: 遊び場
+      ai_assistants: AIアシスタント
+      ai_assistants_playground: AIアシスタント・プレイグラウンド
+      column:
+        ai_action: AIアクション
+        provider: プロバイダー
+      form:
+        action: アクション
+        description: 説明
+        name: 名称
+        provider: プロバイダー
+        system_prompt: システムプロンプト
+        title: AIアシスタント
+        user_prompt: ユーザープロンプト
     any: " - どれでも "
     api:
       campaigns:
@@ -435,6 +464,7 @@ ja:
         per_page: ページあたり
         plural:
           block: ブロック
+          choice: 選択肢
           question: 質問
         present_only: プレゼントのみ
         question_per_factor_and_show: 要因ごとの質問と表示
@@ -656,7 +686,7 @@ ja:
             body: "<p>本当にこのブロックを削除しますか？</p>\n"
             title: "<strong>ブロックを</strong>削除しますか？"
           toggle_status:
-            body: "<p>本当にこのブロックを%{状態}にしますか？</p>\n"
+            body: "<p>本当にこのブロックを%{status}にしますか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
     bookings:
       errors:
@@ -808,9 +838,9 @@ ja:
     campaign_factors:
       delete:
         confirm_message:
-          assessor_scoring: このファクター「%{ファクター名}」のモデレートされた評価者スコアがすべて失われます。 本当に続行しますか?
+          assessor_scoring: このファクター「%{factor_name}」のモデレートされた評価者スコアがすべて失われます。 本当に続行しますか?
           default: キャンペーンファクター「%{factor_name}」を本当に削除しますか？
-          external_score: 外部スコアリングを削除しようとしています。 このファクター'%{ファクター名}'に関連付けられた外部スコアが失われます。 本当に続行しますか?
+          external_score: 外部スコアリングを削除しようとしています。 このファクター'%{factor_name}'に関連付けられた外部スコアが失われます。 本当に続行しますか?
     campaign_factors_import:
       errors:
         invalid_headers: '以下のヘッダは無効です: %{headers}.'
@@ -895,7 +925,7 @@ ja:
       copy: コピー
       delete: 削除
       edit: 編集
-      extend_time_success_message: キャンペーン・タイマーを%{分}分に延長
+      extend_time_success_message: キャンペーン・タイマーを%{minutes}分に延長
       filters:
         active: アクティブ
         all: すべて
@@ -1032,6 +1062,13 @@ ja:
         success_msg: インポートは正常にアップロードされました。
       modal:
         title: 外部キャンペーンスコアのインポート
+    client_features:
+      client_features: クライアントの特徴
+      form:
+        ai_assistants: AIアシスタント
+        ai_assisted_idp: AIアシストIDP
+        global_skills: グローバル・スキル
+        sms_notification: SMS通知
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1060,7 +1097,7 @@ ja:
         resource:
           confirmations:
             toggle_status:
-              body: "<p>本当にこのライセンスを%{ステータス}にしますか？</p>\n"
+              body: "<p>本当にこのライセンスを%{status}にしますか？</p>\n"
               title: "<strong>ステータス} %{</strong>名前}のライセンスは？"
         show:
           used_out_of: 数}のうち、%{使用数}を使用。
@@ -1071,8 +1108,8 @@ ja:
           archive: アーカイブ
           unarchive: アーカイブ解除
         archive:
-          content: 本当に'%{プロジェクト名}'をアーカイブしますか？
-          success: プロジェクト '%{プロジェクト名}' は正常にアーカイブされました。
+          content: 本当に'%{project_name}'をアーカイブしますか？
+          success: プロジェクト '%{project_name}' は正常にアーカイブされました。
           title: アーカイブ・プロジェクト
         assign_assessments:
           add_assessment: 評価の追加
@@ -1157,12 +1194,12 @@ ja:
             view_licenses: ライセンスを見る
           sub_campaigns:
             archive:
-              successfully: サブキャンペーン %{名前} が正常にアーカイブされました。
+              successfully: サブキャンペーン %{name} が正常にアーカイブされました。
             copy:
               error: サブ・キャンペーン %{name} がコピーされませんでした。
-              successfully: サブキャンペーン %{名前} が正常にコピーされました。
+              successfully: サブキャンペーン %{name} が正常にコピーされました。
             create:
-              successfully: サブキャンペーン %{名前} が正常に作成されました。
+              successfully: サブキャンペーン %{name} が正常に作成されました。
             destroy:
               successfully: サブキャンペーン %{name} は正常に削除されました。
             edit:
@@ -1227,9 +1264,9 @@ ja:
               title: サブキャンペーンのオプション
               view_licenses: ライセンスを見る
             toggle_status:
-              successfully: サブキャンペーン %{名前} が正常に更新されました。
+              successfully: サブキャンペーン %{name} が正常に更新されました。
             update:
-              successfully: サブキャンペーン %{名前} が正常に更新されました。
+              successfully: サブキャンペーン %{name} が正常に更新されました。
           toggle_status:
             successfully: キャンペーン %{name} が正常に更新されました。
           update:
@@ -1442,7 +1479,7 @@ ja:
         toggle_status:
           successfully: プロジェクト %{name} が正常に更新されました。
         unarchive:
-          content: 本当に'%{プロジェクト名}'をアン・アーカイブしますか？
+          content: 本当に'%{project_name}'をアン・アーカイブしますか？
           success: プロジェクト '%{project_name}' は正常にアーカイブ解除されました。
           title: アナーカイブ・プロジェクト
         update:
@@ -1478,7 +1515,10 @@ ja:
       back: バック
       cancel: キャンセル
       disabled: ディアスブル
+      download_sample_file: サンプルファイルのダウンロード
       enabled: 有効
+      import:
+        failure_msg: ファイルのインポート中にエラーが発生しました。
       minute: 微細
       next: 次のページ
       reset: リセット
@@ -1518,6 +1558,8 @@ ja:
           not_started: 評価が開始されない場合
           send_now: 今すぐ送信
           specific_datetime: 送信先
+        development_action_deadline_missed: 開発アクションの期限切れ
+        idp_deadline_missed: IDPの締切に間に合わず
         idp_template_approved: IDP承認
         idp_template_assigned: 割り当てられたIDP
         idp_template_rejected: IDP却下
@@ -1614,13 +1656,20 @@ ja:
     create: 作成
     dashboard:
       capacity_name: 容量名
+      choose_file_format: ファイル形式の選択
       dashboard_types:
         oracle_analytics: オラクル・アナリティクス
         powerbi: パワービー
       dashboards: ダッシュボード
+      export_dashboard_to_file: ダッシュボードをファイルにエクスポート
+      export_job_failure: エクスポートの開始に失敗しました
+      export_job_success: エクスポート作業を開始しました。完了すると通知されます。
       get_started: スタート
       initialize_msg: このキャンペーンのダッシュボードを初期化する
       loading_failed: ダッシュボードの読み込みに失敗しました。
+      only_export_current_tab: 現在のタブのみエクスポート
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: 設定のデータセットとレポートIDが正しいか確認してください。
         embed_token_error_title: Embed トークンを生成できません。
@@ -1665,7 +1714,7 @@ ja:
       configuration: 構成
       errors:
         factor_not_found: 評価対象外
-        inclusion: '無効なタイプ、有効なタイプ: %{値}。'
+        inclusion: '無効なタイプ、有効なタイプ: %{values}。'
         not_found: 見つからない
         not_owned: 顧客所有ではない
       form:
@@ -1708,8 +1757,10 @@ ja:
           blank_id: '行 %{row}: ID は空白にできません。'
           development_action_not_found: 開発アクションが見つかりません
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
+          invalid_field: 行 %{row}：フィールド "%{field}" が無効です。"Name" または "Description" でなければなりません。
           invalid_file_format: ファイルはCSVファイルでなければならない
           invalid_id: '行 %{row}: ID は数字でなければなりません。'
+          invalid_id_format: 行 %{row}：IDは "id#field "の形式でなければならない。
           missing_columns: '必須列がありません: %{fields}.'
           save_failed: 保存に失敗
     development_actions:
@@ -1735,7 +1786,9 @@ ja:
         development_action_translations_title: 輸出開発アクション 翻訳
         development_actions_title: 輸出開発アクション
       export_development_action_translations: プロジェクトに基づく開発行為翻訳
+      export_development_action_translations_project: プロジェクトに基づく開発行為翻訳
       export_development_actions: プロジェクトに基づく開発アクション
+      export_development_actions_project: プロジェクトに基づく開発アクション
       export_global_development_actions: グローバル開発アクション
       export_global_development_actions_translations: グローバル開発アクションの翻訳
       form:
@@ -1804,6 +1857,7 @@ ja:
         enable_occupations: 職業を可能にする
       import_factors:
         import: 輸入
+        sample_file: サンプルファイル
         successfully: ディメンジョン %{name} に対してスケジュールされたインポート要因ジョブ。
         title: 輸入要因
       import_modal:
@@ -1863,10 +1917,15 @@ ja:
     disable: 無効
     document_titles:
       project_assessors: アセッサ｜%{project}。
-      project_participants: 参加者｜%{プロジェクト}。
+      project_participants: 参加者｜%{project}。
     enable: 有効にする
     errors:
+      csv_file_required: ファイルはCSVファイルでなければならない
       error_msg: ページを更新し、それでも問題が解決しない場合は、管理者に連絡してください。
+      invalid_csv_format: '無効な CSV 形式: %{message} です。'
+      invalid_url: 無効な URL です：メッセージ
+      invalid_url_format: 無効なURL形式
+      missing_columns: '必須列がありません: %{fields}.'
     errror_msg: エラーメッセージ
     factors:
       copy:
@@ -1938,7 +1997,7 @@ ja:
             body: "<p>本当にこのファクターを削除しますか？</p>\n"
             title: "<strong>ファクターを</strong>削除しますか？"
           toggle_status:
-            body: "<p>本当にこのファクターを%{状態}にしたいのですか？</p>\n"
+            body: "<p>本当にこのファクターを%{status}にしたいのですか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
         in_progress:
           copying: コピー
@@ -1984,13 +2043,16 @@ ja:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: この評価はすでにユーザ %{email} によって割り当てられ、開始されているため、hogan 評価 %{assessment_name} に対して新しいレスポンスを追加することはできません。 このユーザに対して新しい hogan アカウントを作成することで、ユーザが評価を再受験できるようになります。
-          short_error_message: hoganアセスメント%{アセスメント名}はすでにユーザ%{メールアドレス}によって割り当てられ、開始されているため、新しいレスポンスを追加できません。
+          short_error_message: hoganアセスメント%{assessment_name}はすでにユーザ%{email}によって割り当てられ、開始されているため、新しいレスポンスを追加できません。
     idp:
       actions:
         remove_confirm: テンプレートを削除するには、以下のテキストボックスに現在のテンプレート名を入力してください。
         success: idpName}は正常に削除されました。
       add_idp_template: IDPテンプレートの追加
       all: すべて
+      appearance: 外観
+      appearance_hint: 外観を変更するには、まずIDPテンプレートを保存して、これらの設定を有効にしてください。
+      background_image: 背景画像
       behavioral_skills: 行動スキル
       client_skills: クライアント・スキル
       edit_template: IDPテンプレートの編集
@@ -1998,6 +2060,17 @@ ja:
       enter_template_description_error: テンプレートの説明が必要です。
       enter_template_name: 名称
       enter_template_name_error: テンプレート名は必須
+      errors:
+        update: IDP テンプレートがすでにユーザー IDP プランに関連付けられているため、更新できません。外観の変更が保存されました。
+      fields:
+        assigned_data: 割り当てデータ
+        completion_date: 完了日
+        division: 部門
+        name: 名称
+        publish_date: 発行日
+        review_date: 審査日
+        role: 現在の役割
+      fields_label: フィールド
       global_skills: グローバル・スキル
       idp: アイディーピー
       idp_template: IDPテンプレートの追加
@@ -2005,24 +2078,44 @@ ja:
       intro_message_hint: 紹介メッセージを変更するには、まず IDP テンプレートを保存してこれらの設定を有効にしてください。
       intro_message_success: 紹介メッセージが正常に保存されました
       locales: ロケール
+      logo_image: ロゴイメージ
+      logo_type:
+        both: マーサーとクライアントのロゴ
+        client_only: クライアントのロゴのみ
+        mercer_only: マーサーのロゴのみ
+        none: ロゴなし
+      logo_type_label: ロゴタイプ
+      no_reflection_questions_selected: 選択された振り返りの質問はありません
       none: なし
       reference_locale: 参照ロケール
+      reflection_questions: 振り返りの質問
+      reflection_questions_hint: 振り返りの質問を変更するには、まず IDP テンプレートを保存して、これらの設定を有効にしてください。
+      reflection_questions_updated: リフレクション・クエスチョンが正常に更新されました。
+      remove: 削除
       select_by_tags: タグで選ぶ
+      select_reflection_question: 検索するために入力を開始し、質問を選択する
       select_skill_gap_report: スキル・ギャップ・レポートを選択
       select_specific_skills: 特定のスキルを選択する
       selected: 厳選された
       self_rating: 自己評価を有効にする
+      show_reflections: ショー・リフレクションズ
       skill_gap_report: スキル・ギャップ・レポート
+      skills: スキル
+      subtitle_text: 字幕テキスト
       tab:
         development_actions: 開発アクション
+        reflection_questions: 振り返りの質問
         settings: 設定
         templates: テンプレート
       technical_skills: テクニカル・スキル
       template_details: テンプレート詳細
+      title_text: タイトルテキスト
+      update_reflection_questions: アップデートに関する質問
     idp_setting:
       allow_global_skills: グローバルスキルの習得
       manager_approves_idp: マネージャーがIDPを承認
       manager_can_edit_idp: マネージャーはIDPを編集できる
+      require_all_development_actions_complete: すべての開発行為の完了を要求する
     import: 輸入
     imports:
       assessments:
@@ -2047,9 +2140,9 @@ ja:
             dates_not_in_future: 日付は未来であってはならない
             dates_should_be_empty: 未着手ステータスの場合、日付は空でなければならない。
             started_at_required: 進行中ステータスには有効な started_at が必要です。
-          error: "[行 %{row}] %{エラー}。"
+          error: "[行 %{row}] %{error}。"
           invalid_assign: "[行 %{row}] 指定された結果IDのレコードが見つかりません。 新しい結果を作成する場合は、結果ID列を空にしてください。"
-          invalid_date: "[行 %{row}] %{エラー}。"
+          invalid_date: "[行 %{row}] %{error}。"
           question_invalid: "[行 %{row}] 質問 %{question_id} は無効です。"
           user:
             record_not_found: 電子メール %{email} を持つ既存のユーザが見つかりません。
@@ -2058,7 +2151,7 @@ ja:
         translation:
           error: "[翻訳 %{id}] %{error}."
           invalid_format: 無効なファイル形式
-        unknown_type: '不明なファイル・タイプ: %{ファイル名}。'
+        unknown_type: '不明なファイル・タイプ: %{filename}。'
       form:
         description: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
         import: 輸入
@@ -2169,6 +2262,7 @@ ja:
         add: 統合
         back: 統合に戻る
         load_mettl_catalog: ロードメーター・アセスメント・カタログ
+        load_skillvue_catalog: スキルビューアセスメントカタログを読み込む
       columns:
         active: アクティブ
         details: 詳細
@@ -2179,6 +2273,7 @@ ja:
         webhookUrls: ウェブフックURL
       integrations: 統合
       load_mettl_success: ロードメトル評価ジョブが正常にキューイングされました。
+      load_skillvue_success: ロードスキルビュー評価ジョブが正常にキューイングされました。
       modal:
         hogan:
           provider: プロバイダー
@@ -2200,16 +2295,22 @@ ja:
           servers:
             mettl_eu: ヨーロッパ
             mettl_india: インド
+        skillvue:
+          apiKey: APIキー
+          apiKeyRequired: APIキーが必要です。
       names:
         hogan: ホーガン
         iiht: IIHT
         mettl: メトTL
+        skillvue: スキルビュー
       validations:
         iiht:
           tenancy_name_present: テナント名がすでに他のプロジェクトに存在する
           tenant_id_present: テナントIDがすでに他のプロジェクトに存在する
         mettl:
           public_key_present: 公開鍵はすでに他のプロジェクトに存在する
+        skillvue:
+          api_key_present: APIキーがすでに他のプロジェクトに存在する
       view_all_schedules: すべてのMettlのスケジュールを見る
     invited_subject:
       add_btn: 主題の追加
@@ -2237,6 +2338,8 @@ ja:
       export:
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 進行中の開発アクションをエクスポートする。
+      export_action:
+        translations: 輸出の仕事の役割の翻訳
       form:
         code: コード
         description: 説明
@@ -2292,7 +2395,7 @@ ja:
       resource:
         confirmations:
           delete:
-            body: "<p>本当に%{名前}を削除しますか？</p>\n"
+            body: "<p>本当に%{name}を削除しますか？</p>\n"
             title: "<strong>名前}を</strong>削除しますか？"
         tooltips:
           delete: 削除
@@ -2320,6 +2423,7 @@ ja:
         successfully: ユーザ %{name} は正常に更新されました。
     meta_title: 管理パネル
     navigation:
+      ai_assistants: AIアシスタント
       assessments: アセスメント
       assessments_reports: アセスメント＆レポート
       assessor_dashboard: 査定者ダッシュボード
@@ -2396,14 +2500,14 @@ ja:
       norms: 規範
       remove:
         confirm: テキストボックスに以下のノルム名を入力して確認する。
-        warning: 本当にノルム"%{名前}"を削除したいのですか？
+        warning: 本当にノルム"%{name}"を削除したいのですか？
       resource:
         confirmations:
           delete:
             body: "<p>本当にこのノームを削除しますか？</p>\n"
             title: "<strong>ノームを</strong>削除しますか？"
           toggle_status:
-            body: "<p>本当にこのノームを%{状態}にしたいのですか？</p>\n"
+            body: "<p>本当にこのノームを%{status}にしたいのですか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
         in_progress:
           copying: コピー
@@ -2543,13 +2647,17 @@ ja:
       errors:
         create:
           invalid_format: レベル定義は定義の配列でなければならない。
-          level_definition_must_match_level: は正確に%{予想}レベルを含んでいなければならないが、%{実際}は与えられた。
+          level_definition_must_match_level: は正確に%{expected}レベルを含んでいなければならないが、%{actual}は与えられた。
           must_be_unique: ユニークでなければならない
           proficiency_level_exists: このスキルとプロジェクトを持つProficiencyLevelがすでに存在する。
+          proficiency_level_exists_for_all_skills: すべてのスキルの熟練度レベルはすでに終了している。
           proficiency_level_exists_for_category: このカテゴリのProficiencyLevelはすでに存在する。
           project_level_all_skills_exists: all_skills'熟練度レベルはすでに存在する。
           skill_must_exist: 熟練度タイプ'by_skill'では、スキルが存在しなければならない。
       export:
+        actions:
+          proficiency: 輸出能力
+          translations: 輸出技能翻訳
         details: 詳細
         failure_msg: 熟練度レベルのエクスポート時のエラー
         success_msg: 進行中の開発アクションのエクスポート
@@ -2565,6 +2673,7 @@ ja:
         skill_category: スキルカテゴリー
         skill_name: スキル名
         title: 熟練度
+      global: グローバル・プロフィシェンシーとは何か？
       import:
         actions:
           proficiency: 輸入能力
@@ -2676,6 +2785,14 @@ ja:
             label: アクティブ
             name: アクティブ
           auth_type:
+            api_key:
+              label: APIキー
+              name: api_key
+              value: api_key_auth
+            api_key_header:
+              format_error: アルファベット、数字、アンダースコア、ハイフンのみが使用可能です。
+              label: APIキー・ヘッダ
+              name: apiKeyHeader
             basic:
               label: ベーシック
               value: 基本認証
@@ -2742,7 +2859,7 @@ ja:
       modal_delete_title: アセッサーの削除
       modal_reset_email_content: パスワードリセットリンクを'%{email}'に送信しますか？
       model_reset_email: 査定者のパスワードをリセットする
-      no_edit_permission: 評価者 '%{名前}' を編集する権限がありません。
+      no_edit_permission: 評価者 '%{name}' を編集する権限がありません。
       reset_mail_error: パスワードリセットリンクを '%{email}' に送信できませんでした。 管理者に連絡してください。
       reset_mail_success: パスワード再設定リンクが '%{email}' に送信されました。
       save: セーブ
@@ -2883,10 +3000,34 @@ ja:
             body: "<p>この質問を削除してもよろしいですか？</p>\n"
             title: "<strong>質問を</strong>削除しますか？"
           toggle_status:
-            body: "<p>本当にこの質問を%{状態}にしますか？</p>\n"
+            body: "<p>本当にこの質問を%{status}にしますか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
       toggle_status:
         successfully: 無事に更新された。
+    reflection_questions:
+      delete_confirmation: この「振り返り問題」を削除してもよろしいですか？
+      export:
+        action: 輸出に関する質問
+        details: ファイル詳細
+        failure_msg: ファイルのエクスポート中にエラーが発生しました。
+        success_msg: 振り返り問題のエクスポートが進行中です。通知で状況を確認してください。
+      form:
+        mandatory: 必須
+        max_words: 最大文字数
+        min_words: 最小文字数
+        question: 質問
+        title: リフレクション・クエスチョン
+      import:
+        action: 輸入に関する質問
+        errors:
+          invalid_max_words_column_format: 無効な Maximum Words 列値形式 %{row}.
+          invalid_min_words_column_format: 無効な最小単語列値形式 %{row}.
+          invalid_required_column_format: 無効な必須列値形式 %{row}。
+          missing_eng_question: 英語の質問内容の欠落 %{row}
+          save_failed: 保存に失敗しました。
+        failure_msg: ファイルのインポート中にエラーが発生しました。
+        success_msg: リフレクション問題のインポートが進行中です。通知で状況を確認してください。
+      question: 質問
     report_approval:
       bulk_approve_success: "%{sent_for_approval}は承認のために送信されました。 %{approved}レポートは承認されました。 %{ignored}レポートはQCの変更/コメントにより手動承認が必要です。"
       columns:
@@ -2974,7 +3115,7 @@ ja:
             body: "<p>このレポートバンドルは本当に削除しますか？</p>\n"
             title: "<strong>レポートを</strong>削除しますか？"
           toggle_status:
-            body: "<p>このレポートバンドルは本当に%{状態}にしますか？</p>\n"
+            body: "<p>このレポートバンドルは本当に%{status}にしますか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
         tooltips:
           delete: レポートバンドルの削除
@@ -3002,9 +3143,11 @@ ja:
         qc_completed: QC完了
         qc_in_progress: 進行中のQC
     reports:
+      bulk_marked_as_done: 完了として一括マーク
       bulk_upload:
         choose_file: ファイルを選択
         no_file_selected: ファイルが選択されていない
+        sample_file: サンプルファイル
         title: 一括アップロードキャンペーンの要因
         upload_success: アップロード成功
       copy:
@@ -3048,7 +3191,7 @@ ja:
             body: "<p>本当にこのレポートをソフト削除しますか？</p>\n"
             title: ソフト削除<strong>レポート</strong>？
           toggle_status:
-            body: "<p>このレポートを本当に %{状態} にしますか？</p>\n"
+            body: "<p>このレポートを本当に %{status} にしますか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
       restore:
         successfully: レポート %{name} が正常にリストアされました。
@@ -3097,6 +3240,8 @@ ja:
       assessment_center_form:
         add_more: 追加
         allow_late_cancellation_and_scheduling: レイト・キャンセルとスケジューリング
+        assessment_center_group: アセスメント・センター・グループ
+        assessment_center_group_placeholder: セレクト・アセスメント・センター・グループ
         assessor_ids_label: アセッサ
         back: バック
         basic_info_panel:
@@ -3153,6 +3298,7 @@ ja:
         attendance: 出席
         attended: 出席
         booked_at: 予約済み
+        campaign_assessment_group: アセスメント・センター・グループ
         campaign_name: キャンペーン名
         duration: 期間
         managers: マネージャー
@@ -3178,8 +3324,9 @@ ja:
         allowed: 可
         assessors: アセッサ
         booked: 予約席
+        campaign_assessment_group: アセスメント・センター・グループ
         cancellation_lead_time: キャンセル・リードタイム
-        cancellation_tooltip: ユーザーは%{日付}まで予約をキャンセルできる。
+        cancellation_tooltip: ユーザーは%{date}まで予約をキャンセルできる。
         date: 日時
         duration: 期間
         join_meeting: ジョイン・ルーム
@@ -3190,7 +3337,7 @@ ja:
         not_allowed: 不可
         remaining: 残席
         scheduling_lead_time: リードタイムのスケジューリング
-        scheduling_tooltip: ユーザは%{日付}までのスロットを予約できる。
+        scheduling_tooltip: ユーザは%{date}までのスロットを予約できる。
         search_placehoder: ID、Eメール、名前で検索
         timezone: タイムゾーン
         total_seats: 総座席数
@@ -3407,6 +3554,7 @@ ja:
         successful_remove: スキル・エイリアス '%{skill_alias}' は正常に削除されました。
       tabs:
         admin_roles: 管理者の役割
+        feature_flags: フィーチャー・フラッグ
         siem: シーイーエム
         skill_aliases: スキルの別名
     sheets:
@@ -3456,7 +3604,12 @@ ja:
         settings: 設定
     skills:
       applicable_proficiency_levels: 該当する能力レベル
+      columns:
+        skill_type: スキルの種類
       errors:
+        import:
+          missing_fields_data: '行 %{line_number}：必須フィールドがありません: %{fields}'
+          save_failed: '行 %{line_number}：スキル ''%{name}'' の保存に失敗しました: %{message}.'
         search:
           all_and_project_id_mutually_exclusive: project_id_eqが指定された場合、すべてがtrueになる。
           invalid_all_value: true、falseのいずれかでなければならない。
@@ -3493,12 +3646,15 @@ ja:
         skills_translations_title: 輸入技能翻訳
       skill_details: スキル詳細
       skill_translations: 技能翻訳
+      skill_translations_project: プロジェクトに基づく技能翻訳
+      skills_project: プロジェクトに基づくスキル
       title: スキル
       translations:
         import:
           errors:
             invalid_csv_format: '無効な CSV 形式: %{message} です。'
-            save_failed: 'スキル ID %{id} の処理エラー: %{メッセージ}。'
+            missing_columns: '必要な列がありません: %{columns}.'
+            save_failed: 'スキル ID %{id} の処理エラー: %{message}。'
             skill_not_found: ID %{id} を持つスキルが見つかりません。
     skills_taxonomy:
       tabs:
@@ -3702,9 +3858,12 @@ ja:
     table:
       entries:
         selected:
+          one: 1行選択
           other: 1行選択
         total:
+          one: 合計：1
           other: 合計：1
+          zero: 合計：0
       more_actions: より多くの行動
     taxonomy:
       import:
@@ -3931,6 +4090,12 @@ ja:
         successfully: ユーザ %{name} は正常に削除されました。
       list:
         email: 電子メール
+      modals:
+        download_idp_reports:
+          error: IDP レポートの一括ダウンロード・ジョブのスケジュールに失敗しました。
+          include_reflective_questions: 反省的な質問を含む
+          success: IDP レポートの一括ダウンロード・ジョブが正常にスケジュールされました。
+          title: IDPレポートの一括ダウンロード
       new:
         header: 新規ユーザー
       reset_password:
@@ -3948,13 +4113,13 @@ ja:
               body: "<p>本当に削除しますか？</p>\n"
               title: client_name}クライアント・テナンシーから<strong>%{name}を</strong>削除しますか？
             toggle_status:
-              body: "<p>本当にこの会員資格を%{ステータス}にしますか？</p>\n"
+              body: "<p>本当にこの会員資格を%{status}にしますか？</p>\n"
               title: "<strong>ステータス}</strong>%{名前}のメンバーシップは？"
           toggle_enable_2fa:
-            body: "<p>本当に%{名前}に%{ステータス} 2FAをしますか？</p>\n"
+            body: "<p>本当に%{status}に%{name} 2FAをしますか？</p>\n"
             title: "<strong>ステータス}</strong>2FA"
           toggle_status:
-            body: "<p>本当にこのユーザを%{ステータス}にしますか？</p>\n"
+            body: "<p>本当にこのユーザを%{status}にしますか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
       spoof:
         successfully: 名前}としてのログインに成功しました。

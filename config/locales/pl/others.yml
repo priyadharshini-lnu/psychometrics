@@ -43,6 +43,10 @@ pl:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Co najmniej jedna rola zawodowa musi być włączona z typem umiejętności wybranym dla %{block_name}.
               invalid_skill_type: 'Nieprawidłowy typ umiejętności %{skill_type} dla %{role_name} dla %{block_name}. Prawidłowe opcje: %{valid_options}'
               props_missing: Praca
+        skillvue:
+          attributes:
+            name:
+              not_unique: Ta integracja jest już obecna w tym projekcie.
         taxonomies_import_form:
           attributes:
             file:
@@ -116,6 +120,12 @@ pl:
     card_actions:
       begin: Zaczynać
       continue: Dalej
+    column:
+      external_settings:
+        skillvue_assessment_name: Nazwa oceny Skillvue
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Początek
       cancel: Anuluj
@@ -319,6 +329,9 @@ pl:
   campaign_assessment:
     assessment_center_heading: Szczegóły centrum oceny
     assessments_heading: Twoje zadania
+    column:
+      skillvue_email_id: Identyfikator e-mail kandydata Skillvue
+      skillvue_external_assessment_id: Skillvue Assessment ID
     modals:
       assessor_campaign_assessment_group:
         error_message: Coś poszło nie tak. Prosimy o kontakt z administratorem
@@ -522,6 +535,7 @@ pl:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Umiejętność i rola muszą należeć do tego samego projektu lub być globalne.
         unique_mappings: Mapowanie z tymi samymi umiejętnościami i rolą zawodową już istnieje.
+      uniq_skillvue: Ta ocena Skillvue jest już obecna w systemie. Identyfikator tej oceny to %{id}
   emails:
     subject_relationship_table:
       subject_email: Przedmiot E-mail
@@ -919,6 +933,8 @@ pl:
       add: Dodaj raport
       download: Pobierz raport
       view: Wyświetl raport
+    form:
+      load_from_skillvue: Załaduj ze Skillvue
     modules:
       campaign_factors_table:
         add_condition: Dodaj warunek

@@ -329,6 +329,10 @@ es-ES:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Al menos un rol de trabajo debe estar habilitado con un tipo de habilidad seleccionada para %{block_name}
               invalid_skill_type: 'Tipo de habilidad %{skill_type} no válido para %{role_name} para %{block_name}. Opciones válidas: %{valid_options}'
               props_missing: Empleo
+        skillvue:
+          attributes:
+            name:
+              not_unique: Esta integración ya está presente en este proyecto.
         sms_invites_create:
           attributes:
             first_name:
@@ -966,6 +970,7 @@ es-ES:
         pearson_norm_id: Norma Pearson ID
         saville_assessment_name: Evaluación Saville Nombre
         simulation_assessment_name: Simulación Evaluación Nombre
+        skillvue_assessment_name: Evaluación Skillvue Nombre
       translations_migrated: Traducción migrada
     create: Cree
     dashboard: Cuadro de mandos
@@ -1005,6 +1010,7 @@ es-ES:
         psychometric: Psicométrico
         saville: Saville
         simulation: Simulación
+        skillvue: Skillvue
         threesixty: campaña 360
       status:
         finished: Terminado
@@ -1384,6 +1390,8 @@ es-ES:
       pearson_variation: Variación Pearson
       prework: Trabajo previo
       simulation_content_variation: Variación del contenido de la simulación
+      skillvue_email_id: ID de correo electrónico del candidato Skillvue
+      skillvue_external_assessment_id: Evaluación de Skillvue ID
       universal_link: Enlace universal
     drawer:
       mettl_schedule_name: Mettl Horario Nombre
@@ -2073,6 +2081,7 @@ es-ES:
       uniq: Esta evaluación Mettl ya está presente en el sistema. ID de esta evaluación es %{id}
       uniq?: debe ser único
       uniq_simulation: Esta evaluación de simulación ya está presente en el sistema. El ID de esta evaluación es %{id}
+      uniq_skillvue: Esta evaluación Skillvue ya está presente en el sistema. El ID de esta evaluación es %{id}.
       update_workshop:
         less_than_booked: El total de plazas debe ser superior al reservado
       user_availability_date:
@@ -2945,9 +2954,11 @@ es-ES:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carga de Pearson
+      load_from_skillvue: Cargar desde Skillvue
       none_external: Ninguno - Utilizar el generador de informes
     language: Idioma del informe
     language_updated: El idioma del informe se ha actualizado correctamente

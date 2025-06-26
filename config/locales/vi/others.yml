@@ -43,6 +43,10 @@ vi:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ít nhất một vị trí công việc phải được kích hoạt với loại kỹ năng được chọn cho %{block_name}
               invalid_skill_type: 'Loại kỹ năng không hợp lệ %{skill_type} cho %{role_name} cho %{block_name}. Các tùy chọn hợp lệ: %{valid_options}'
               props_missing: Công việc
+        skillvue:
+          attributes:
+            name:
+              not_unique: Tính năng tích hợp này đã được triển khai cho dự án này.
         taxonomies_import_form:
           attributes:
             file:
@@ -114,6 +118,12 @@ vi:
     card_actions:
       begin: Bắt đầu
       continue: Tiếp tục
+    column:
+      external_settings:
+        skillvue_assessment_name: Tên đánh giá Skillvue
+    fields:
+      category:
+        skillvue: Kỹ năng trực quan
     instructions:
       begin_assessment: Bắt đầu
       cancel: Hủy bỏ
@@ -300,6 +310,9 @@ vi:
   campaign_assessment:
     assessment_center_heading: Chi tiết về Trung tâm Đánh giá
     assessments_heading: Nhiệm vụ của bạn
+    column:
+      skillvue_email_id: ID Email Ứng viên Skillvue
+      skillvue_external_assessment_id: Mã đánh giá Skillvue
     modals:
       assessor_campaign_assessment_group:
         error_message: Có sự cố xảy ra. Vui lòng liên hệ với quản trị viên.
@@ -499,6 +512,7 @@ vi:
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Kỹ năng và vai trò công việc phải thuộc cùng một dự án hoặc là toàn cầu.
         unique_mappings: Một bản đồ chức năng với cùng kỹ năng và vai trò công việc đã tồn tại.
+      uniq_skillvue: Đánh giá Skillvue này đã có sẵn trong hệ thống. Mã định danh của đánh giá này là %{id}
   emails:
     subject_relationship_table:
       subject_email: Tiêu đề Email
@@ -678,6 +692,8 @@ vi:
       add: Thêm báo cáo
       download: Tải báo cáo
       view: Xem báo cáo
+    form:
+      load_from_skillvue: Tải từ Skillvue
     modules:
       campaign_factors_table:
         add_condition: Thêm điều kiện
