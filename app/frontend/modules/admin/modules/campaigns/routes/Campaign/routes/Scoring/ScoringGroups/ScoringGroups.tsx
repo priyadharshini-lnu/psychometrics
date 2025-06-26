@@ -22,6 +22,9 @@ import { ConnectedProps, connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Key } from 'antd/lib/table/interface'
 import { useResources } from '~/hooks/useResources'
+import {
+  CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
+} from '~/modules/admin/constants/campaignFactors'
 import { AddGroupForm } from './AddGroupForm'
 import { AddEditFactorForm } from './AddEditFactorForm'
 import { GroupCard, GroupCardSortable, type CampaignFactorGroup } from './GroupCard'
@@ -120,7 +123,7 @@ const ScoringGroupsComponent = (props: Props) => {
           assessments: ['id', 'name'],
           factors: ['id', 'name'],
         },
-        page: { size: 300 },
+        page: { size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE },
       },
     },
   )

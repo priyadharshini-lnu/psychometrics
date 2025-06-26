@@ -1,6 +1,9 @@
 import cs from 'classnames'
 import { useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
+import {
+  CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
+} from '~/modules/admin/constants/campaignFactors'
 import styles from './styles.less'
 import { useResources } from '~/hooks/useResources'
 import { CampaignFactorGroup } from '../../../core/scoreModerate'
@@ -25,6 +28,9 @@ export const OverallScoring = ({ header, refresh }) => {
         campaign_factor_groups: ['name', 'campaign_factors'],
         campaign_factors: ['name', 'output_type'],
       },
+      page: {
+        size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
+      },
     },
   })
   const {
@@ -39,7 +45,7 @@ export const OverallScoring = ({ header, refresh }) => {
           user_id_eq: userId,
         },
         page: {
-          size: 100,
+          size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
         },
       },
     },
