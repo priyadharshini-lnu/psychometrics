@@ -306,6 +306,12 @@ sl:
   campaign_assessment:
     assessment_center_heading: Podrobnosti o centru za ocenjevanje
     assessments_heading: Vaše naloge
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Nekaj je šlo narobe. Obrnite se na skrbnika
+        placeholder: Izberite skupino ocenjevalnega središča
+        success_message: Assessor Campaign Ocenjevalna skupina je bila uspešno dodeljena
+        title: Skupina Assessment Center
     statuses:
       completed: Zaključeno
       in_progress: V teku

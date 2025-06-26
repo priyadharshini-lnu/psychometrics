@@ -307,6 +307,12 @@ ro:
   campaign_assessment:
     assessment_center_heading: Detalii privind centrul de evaluare
     assessments_heading: Sarcinile dvs
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Ceva nu a mers bine. Vă rugăm să contactați administratorul
+        placeholder: Selectați un grup de centre de evaluare
+        success_message: Evaluator Campania Grupul de evaluare a fost atribuit cu succes
+        title: Assessment Center Group
     statuses:
       completed: Completat
       in_progress: În curs de desfășurare

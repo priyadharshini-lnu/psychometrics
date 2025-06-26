@@ -306,6 +306,12 @@ en-US:
   campaign_assessment:
     assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Something went wrong. Please contact administrator
+        placeholder: Select an Assessment Center Group
+        success_message: Assessor Campaign Assessment Group was assigned successfully
+        title: Assessment Center Group
     statuses:
       completed: Completed
       in_progress: In Progress

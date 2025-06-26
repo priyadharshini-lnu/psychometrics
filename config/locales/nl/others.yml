@@ -1384,6 +1384,11 @@ nl:
       raw_results_export_scheduled: De exporttaak Assessment Raw Results is met succes ingepland
       scoring_results_export_scheduled: Beoordelingsscores exporttaak is met succes ingepland
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Er is iets misgegaan. Neem contact op met de beheerder
+        placeholder: Selecteer een Assessment Center-groep
+        success_message: Assessor Campagnebeoordelingsgroep is succesvol toegewezen
+        title: Assessment Center Groep
       import_raw:
         body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
         success_msg: Het importeren is gelukt

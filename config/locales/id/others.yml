@@ -306,6 +306,12 @@ id:
   campaign_assessment:
     assessment_center_heading: Rincian Pusat Penilaian
     assessments_heading: Tugas Anda
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Ada yang tidak beres. Silakan hubungi administrator
+        placeholder: Memilih Grup Pusat Penilaian
+        success_message: Penilai Kelompok Penilai Kampanye berhasil ditugaskan
+        title: Kelompok Pusat Penilaian
     statuses:
       completed: Selesai
       in_progress: Sedang Berlangsung

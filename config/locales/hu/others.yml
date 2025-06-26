@@ -306,6 +306,12 @@ hu:
   campaign_assessment:
     assessment_center_heading: Értékelő központ részletei
     assessments_heading: Az Ön feladatai
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Valami rosszul sült el. Kérjük, lépjen kapcsolatba a rendszergazdával
+        placeholder: Válasszon ki egy értékelőközpont-csoportot
+        success_message: Az értékelő kampány értékelési csoportját sikeresen kijelölték
+        title: Assessment Center csoport
     statuses:
       completed: Befejezett
       in_progress: Folyamatban

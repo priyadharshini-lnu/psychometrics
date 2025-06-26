@@ -300,6 +300,12 @@ vi:
   campaign_assessment:
     assessment_center_heading: Chi tiết về Trung tâm Đánh giá
     assessments_heading: Nhiệm vụ của bạn
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Có sự cố xảy ra. Vui lòng liên hệ với quản trị viên.
+        placeholder: Chọn nhóm trung tâm đánh giá
+        success_message: Nhóm Đánh giá Chiến dịch Đánh giá đã được giao nhiệm vụ thành công.
+        title: Trung tâm Đánh giá Nhóm
     statuses:
       completed: Hoàn thành
       in_progress: Đang tiến hành

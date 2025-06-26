@@ -1394,6 +1394,11 @@ zh:
       raw_results_export_scheduled: 评估原始结果导出工作已成功安排
       scoring_results_export_scheduled: 评估评分结果 已成功安排导出工作
     modals:
+      assessor_campaign_assessment_group:
+        error_message: 出错了。请联系管理员
+        placeholder: 选择评估中心组
+        success_message: 成功指派评估员运动评估小组
+        title: 评估中心小组
       import_raw:
         body: 请参阅导出功能，提取可用于此处导入的模板。
         success_msg: 导入已成功上传

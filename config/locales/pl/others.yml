@@ -319,6 +319,12 @@ pl:
   campaign_assessment:
     assessment_center_heading: Szczegóły centrum oceny
     assessments_heading: Twoje zadania
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Coś poszło nie tak. Prosimy o kontakt z administratorem
+        placeholder: Wybierz grupę centrum oceny
+        success_message: Assessor Campaign Assessment Group została pomyślnie przydzielona
+        title: Assessment Center Group
     statuses:
       completed: Zakończony
       in_progress: W trakcie

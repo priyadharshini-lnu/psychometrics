@@ -300,6 +300,12 @@ th:
   campaign_assessment:
     assessment_center_heading: รายละเอียดศูนย์ประเมิน
     assessments_heading: งานของคุณ
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: เกิดข้อผิดพลาด โปรดติดต่อผู้ดูแลระบบ
+        placeholder: เลือกกลุ่มศูนย์ประเมิน
+        success_message: กลุ่มการประเมินแคมเปญผู้ประเมินได้รับการมอบหมายสำเร็จ
+        title: ศูนย์ประเมินผลกลุ่ม
     statuses:
       completed: สมบูรณ์
       in_progress: อยู่ระหว่างดำเนินการ

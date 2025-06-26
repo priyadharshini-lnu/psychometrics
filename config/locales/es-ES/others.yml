@@ -1399,6 +1399,11 @@ es-ES:
       raw_results_export_scheduled: El trabajo de exportación de los resultados brutos de la evaluación se programó correctamente
       scoring_results_export_scheduled: Se ha programado con éxito la exportación de los resultados de la evaluación
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Algo ha ido mal. Póngase en contacto con el administrador
+        placeholder: Seleccione un grupo de centros de evaluación
+        success_message: Se ha asignado con éxito el Grupo de Evaluación de la Campaña de Evaluación
+        title: Grupo del Centro de Evaluación
       import_raw:
         body: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
         success_msg: La importación se ha cargado correctamente

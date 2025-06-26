@@ -36,6 +36,8 @@ import {
 import { SchedulingCampaignAssessmentModal } from './AssessmentList/SchedulingCampaignAssessmentModal'
 import { UserFilterModal } from '../../../Participants/Subjects/UserFilterModal'
 import { ApplyToExistingUsersFormModal } from './AssessmentList/ApplyToExistingUsersModal'
+import AssessorCampaignAssessmentGroupModal from
+  './AssessorAssessmentCenterGroupModal/AssessorAssessmentCenterGroupModal'
 
 const MODALS = {
   AddReportModal,
@@ -53,6 +55,7 @@ const MODALS = {
   ApplyToExistingUsersFormModal,
   SchedulingCampaignAssessmentModal,
   UserFilterModal,
+  AssessorCampaignAssessmentGroupModal,
 }
 
 const { I18n } = window
@@ -206,6 +209,7 @@ const Manage: React.FC<Props> = ({
             onClick={
               () => openModal('AddAssessorAssessmentModal', {
                 addAssessorAssessment: createResource,
+                campaignId,
               })
             }
           >

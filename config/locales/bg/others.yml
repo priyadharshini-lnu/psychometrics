@@ -306,6 +306,12 @@ bg:
   campaign_assessment:
     assessment_center_heading: Подробности за центъра за оценяване
     assessments_heading: Вашите задачи
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Нещо се е объркало. Моля, свържете се с администратора
+        placeholder: Изберете група от Центъра за оценяване
+        success_message: Assessor Campaign Assessment Group е назначена успешно
+        title: Група Център за оценяване
     statuses:
       completed: Завършен
       in_progress: В процес на изпълнение

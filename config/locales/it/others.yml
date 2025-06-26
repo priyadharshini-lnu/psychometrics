@@ -1385,6 +1385,11 @@ it:
       raw_results_export_scheduled: Il lavoro di esportazione dei risultati grezzi della valutazione è stato pianificato con successo
       scoring_results_export_scheduled: Il lavoro di esportazione dei risultati della valutazione è stato pianificato con successo
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Qualcosa è andato storto. Contattare l'amministratore
+        placeholder: Selezionare un gruppo di Assessment Center
+        success_message: Il Gruppo di valutazione della campagna di valutazione è stato assegnato con successo
+        title: Gruppo Assessment Center
       import_raw:
         body: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
         success_msg: L'importazione è stata caricata con successo

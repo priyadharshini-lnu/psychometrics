@@ -1408,6 +1408,11 @@ de:
       raw_results_export_scheduled: Exportauftrag für Bewertungsrohdaten wurde erfolgreich geplant
       scoring_results_export_scheduled: Bewertungsergebnisse Exportauftrag wurde erfolgreich geplant
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Es ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Administrator
+        placeholder: Wählen Sie eine Assessment Center-Gruppe
+        success_message: Assessor Campaign Assessment Group wurde erfolgreich zugewiesen
+        title: Assessment Center Gruppe
       import_raw:
         body: Mit der Exportfunktion können Sie eine Vorlage extrahieren, die Sie für den Import verwenden können.
         success_msg: Der Import wurde erfolgreich hochgeladen

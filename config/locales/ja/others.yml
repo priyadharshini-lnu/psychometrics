@@ -1397,6 +1397,11 @@ ja:
       raw_results_export_scheduled: アセスメント生結果のエクスポートジョブが正常にスケジュールされました。
       scoring_results_export_scheduled: 評価採点結果エクスポートジョブは正常にスケジュールされました。
     modals:
+      assessor_campaign_assessment_group:
+        error_message: 何か問題が発生しました。管理者に連絡してください。
+        placeholder: アセスメントセンターグループの選択
+        success_message: アセッサ・キャンペーン・アセスメント・グループの割り当てに成功
+        title: アセスメント・センター・グループ
       import_raw:
         body: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
         success_msg: インポートは正常にアップロードされました。

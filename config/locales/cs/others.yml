@@ -1396,6 +1396,11 @@ cs:
       raw_results_export_scheduled: Úloha exportu surových výsledků hodnocení byla úspěšně naplánována
       scoring_results_export_scheduled: Výsledky bodového hodnocení Exportní úloha byla úspěšně naplánována
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Něco se pokazilo. Kontaktujte prosím správce
+        placeholder: Vyberte skupinu Assessment Center
+        success_message: Posuzovatel Posuzovací skupina kampaně byla úspěšně přiřazena
+        title: Skupina Assessment Center
       import_raw:
         body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
         success_msg: Import byl úspěšně nahrán

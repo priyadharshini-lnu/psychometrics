@@ -335,6 +335,12 @@ ar:
   campaign_assessment:
     assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: حدث خطأ ما يرجى الاتصال بالمسؤول
+        placeholder: اختر مجموعة مركز التقييم
+        success_message: تم تعيين مجموعة تقييم حملة المقيم بنجاح
+        title: مجموعة مركز التقييم
     statuses:
       completed: تم اكماله
       in_progress: قيد التنفيذ

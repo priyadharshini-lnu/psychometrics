@@ -336,6 +336,12 @@ zh-HK:
   campaign_assessment:
     assessment_center_heading: 評估中心詳細資訊
     assessments_heading: 您的任務
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: 出錯了。請聯絡管理員
+        placeholder: 選擇評估中心組
+        success_message: 成功指派評估員活動評估小組
+        title: 評估中心小組
     statuses:
       completed: 已完成
       in_progress: 進行中

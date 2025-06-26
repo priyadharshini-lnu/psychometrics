@@ -1384,6 +1384,11 @@ zh-Hant:
       raw_results_export_scheduled: 評估原始結果匯出工作排程成功
       scoring_results_export_scheduled: 評估計分結果 輸出工作排程成功
     modals:
+      assessor_campaign_assessment_group:
+        error_message: 出錯了。請聯絡管理員
+        placeholder: 選擇評估中心組
+        success_message: 成功指派評估員活動評估小組
+        title: 評估中心小組
       import_raw:
         body: 請參閱匯出功能，擷取可用於在此匯入的範本。
         success_msg: 匯入已成功上傳

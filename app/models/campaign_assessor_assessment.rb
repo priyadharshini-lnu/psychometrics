@@ -5,6 +5,8 @@ class CampaignAssessorAssessment < ApplicationRecord
 
   belongs_to :campaign
   belongs_to :assessment
+  belongs_to :campaign_assessment_group
+
   has_many :factors, -> { distinct }, through: :assessment
 
   def self.ransackable_attributes(_auth_object = nil)

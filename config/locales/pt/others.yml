@@ -1396,6 +1396,11 @@ pt:
       raw_results_export_scheduled: A tarefa de exportação dos resultados brutos da avaliação foi agendada com êxito
       scoring_results_export_scheduled: Resultados da avaliação A tarefa de exportação foi agendada com êxito
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Algo correu mal. Contacte o administrador
+        placeholder: Selecionar um grupo de centros de avaliação
+        success_message: O Grupo de Avaliação da Campanha de Assessores foi atribuído com sucesso
+        title: Grupo do Centro de Avaliação
       import_raw:
         body: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
         success_msg: A importação foi carregada com sucesso

@@ -306,6 +306,12 @@ sk:
   campaign_assessment:
     assessment_center_heading: Podrobnosti o hodnotiacom centre
     assessments_heading: Vaše úlohy
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Niečo sa pokazilo. Prosím, kontaktujte správcu
+        placeholder: Vyberte skupinu Assessment Center
+        success_message: Hodnotiteľ Hodnotiaca skupina kampane bola úspešne pridelená
+        title: Skupina Assessment Center
     statuses:
       completed: Dokončené
       in_progress: V štádiu rozpracovanosti

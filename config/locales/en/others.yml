@@ -1431,6 +1431,11 @@ en:
       raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
       scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Something went wrong. Please contact administrator
+        placeholder: Select an Assessment Center Group
+        success_message: Assessor Campaign Assessment Group was assigned successfully
+        title: Assessment Center Group
       bulk_update_evaluation:
         content: Are you sure you want to mark all selected subjects as %{status}?
         successfully: Successfully marked as %{status}.
