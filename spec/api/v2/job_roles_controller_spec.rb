@@ -62,7 +62,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
             project_ids = json_response['data'].map do |role|
               role['attributes']['project_id']
             end
-            expect(project_ids).to include(project.id, nil)
+            expect(project_ids).to include(project.id.to_s)
           end
         end
       end

@@ -14,6 +14,10 @@ class Api::V2::Administration::SkillsJobRoleResource < Api::V2::Administration::
     super + %i[skill.name job_role.name project.name]
   end
 
+  def project_id
+    @model.project_id.to_s
+  end
+
   def skill_id
     @model.skill_id.to_s
   end
@@ -27,6 +31,7 @@ class Api::V2::Administration::SkillsJobRoleResource < Api::V2::Administration::
       opts[:context][:user], ::SkillsJobRole,
       { project_id: opts[:context][:project]&.id,
         filter: opts[:context][:filter] }
-    ).resolve
+    ).resolve.
+      includes(job_role: :translations, skill: :translations)
   end
 end

@@ -12,11 +12,20 @@ class Api::V2::Administration::JobRoleResource < Api::V2::Administration::BaseRe
     super + %i[project.name]
   end
 
+  def project_id
+    @model.project_id.to_s
+  end
+
+  def job_group_id
+    @model.job_group_id.to_s
+  end
+
   def self.records(opts = {})
     ::Api::Administration::JobRolePolicy::Scope.new(
       opts[:context][:user], ::JobRole,
       { project_id: opts[:context][:project]&.id,
         filter: opts[:context][:filter] }
-    ).resolve
+    ).resolve.
+      includes(:translations)
   end
 end

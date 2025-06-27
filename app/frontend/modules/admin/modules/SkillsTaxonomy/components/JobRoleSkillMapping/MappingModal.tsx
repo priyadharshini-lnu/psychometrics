@@ -39,10 +39,15 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
     data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
   } = useResources<Client>('clients')
 
+  const shouldFetchDependent = useCallback(
+    () => (global || params.projectId || selectedProjectId),
+    [global, params, selectedProjectId],
+  )
+
   const {
     data: jobRoles,
     fetch: fetchJobRoles, isLoading: isJobRolesLoading, setData: setJobRoles,
-  } = useResources('job_roles', {
+  } = useResources<JobRole>('job_roles', {
     apiConfig: {
       filter: {
         // end_level_groups: 'true',
@@ -54,6 +59,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
   })
 
   const debouncedFetchJobRoles = useCallback(debounce((value) => {
+    if (!shouldFetchDependent()) return
     fetchJobRoles({
       apiConfig: {
         filter: {
@@ -63,13 +69,12 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
         },
       },
     })
-  }, 300), [selectedProjectId, global])
-
+  }, 300), [selectedProjectId, global, shouldFetchDependent])
 
   const {
     data: skills,
     fetch: fetchSkills, isLoading: isSkillsLoading, setData: setSkills,
-  } = useResources('skills', {
+  } = useResources<Skill>('skills', {
     apiConfig: {
       filter: {
         ...(params?.projectId ? { project_id_eq: params?.projectId } : {}),
@@ -80,6 +85,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
   })
 
   const debouncedFetchSkills = useCallback(debounce((value) => {
+    if (!shouldFetchDependent()) return
     fetchSkills({
       apiConfig: {
         filter: {
@@ -89,7 +95,7 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
         },
       },
     })
-  }, 300), [selectedProjectId, global])
+  }, 300), [selectedProjectId, global, shouldFetchDependent])
 
 
   const ownersLoading = isOwnerLoading('fetch')
@@ -111,12 +117,26 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
   }, [global])
 
   const ownerId = Form.useWatch(['ownerId'], form)
-  const getProjects = (): OptionsType[] => {
-    if (!mapping || !mapping.project) {
-      return projects
-    }
 
-    return [...projects, mapping.project] as OptionsType[]
+  const getProjects = (): OptionsType[] => {
+    if (!projects?.length && mapping?.project) {
+      return [mapping.project] as OptionsType[]
+    }
+    return projects
+  }
+
+  const getJobRoles = (): JobRole[] => {
+    if (!jobRoles?.length && mapping?.jobRole) {
+      return [mapping.jobRole]
+    }
+    return jobRoles
+  }
+
+  const getSkills = (): Skill[] => {
+    if (!skills?.length && mapping?.skill) {
+      return [mapping.skill]
+    }
+    return skills
   }
 
   const {
@@ -250,7 +270,6 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
             name="jobRoleId"
             label={I18n.t('administration.job_role_skill_mapping.form.job_role')}
             rules={[{ required: true }]}
-            // normalize={value => Number(value)}
           >
             <Select
               showSearch
@@ -260,17 +279,16 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
               }}
               notFoundContent={isJobRolesLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
-            >
-              {jobRoles?.map((item: JobRole) => (
-                <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
-              ))}
-            </Select>
+              options={getJobRoles().map(p => ({
+                value: p.id,
+                label: p.name,
+              }))}
+            />
           </Form.Item>
           <Form.Item
             name="skillId"
             label={I18n.t('administration.job_role_skill_mapping.form.skill')}
             rules={[{ required: true }]}
-            // normalize={value => Number(value)}
           >
             <Select
               showSearch
@@ -280,17 +298,16 @@ export const MappingModal: React.FC<Props> = ({ close, mapping }) => {
               }}
               notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
-            >
-              {skills?.map((item: Skill) => (
-                <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
-              ))}
-            </Select>
+              options={getSkills().map(p => ({
+                value: p.id,
+                label: p.name,
+              }))}
+            />
           </Form.Item>
           <Form.Item
             name="expectedProficiencyLevel"
             label={I18n.t('administration.job_role_skill_mapping.form.expected_proficiency_level')}
             rules={[{ required: true }]}
-            // normalize={value => Number(value)}
           >
             <Select
               showSearch

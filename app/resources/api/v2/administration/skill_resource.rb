@@ -30,6 +30,10 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     @model.project_id.to_s
   end
 
+  def skill_group_id
+    @model.skill_group_id.to_s
+  end
+
   def tag_list
     @model.all_tags_list
   end

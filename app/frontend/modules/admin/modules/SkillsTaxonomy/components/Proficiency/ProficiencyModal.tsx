@@ -48,6 +48,8 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
 
   const global = Form.useWatch('global', form)
   const level = Form.useWatch('level', form)
+  const ownerId = Form.useWatch(['ownerId'], form)
+  const projectId = Form.useWatch(['projectId'], form)
 
   const fetchOwnersByValue = (value: string) => fetchOwners({
     apiConfig: {
@@ -61,9 +63,14 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     fetchOwnersByValue(value)
   }, 300)
 
+  const shouldFetchDependent = useCallback(
+    () => (global || params.projectId || projectId),
+    [global, projectId, params],
+  )
+
   const {
     data: skills, fetch: fetchSkills, isLoading: isSkillsLoading, setData: setSkills,
-  } = useResources('skills', {
+  } = useResources<Skill>('skills', {
     apiConfig: {
       filter: {
         project_id_eq: params.projectId || '',
@@ -72,34 +79,21 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   })
 
   useEffect(() => {
-    if (proficiencyLevel) {
-      fetchSkills({
-        apiConfig: {
-          filter: {
-            name_cont: proficiencyLevel?.skill?.name ?? '',
-            ...(
-              proficiencyLevel?.project?.id
-                ? { project_id_eq: proficiencyLevel?.project?.id }
-                : {}
-            ),
-          },
-        },
-      })
-    }
-  }, [proficiencyLevel])
-
-  useEffect(() => {
     form.resetFields(['ownerId'])
   }, [global])
 
-  const ownerId = Form.useWatch(['ownerId'], form)
-  const projectId = Form.useWatch(['projectId'], form)
   const getProjects = (): OptionsType[] => {
-    if (!proficiencyLevel || !proficiencyLevel.project) {
-      return projects
+    if (!projects?.length && proficiencyLevel?.project) {
+      return [proficiencyLevel.project] as OptionsType[]
     }
+    return projects
+  }
 
-    return [...projects, proficiencyLevel.project] as OptionsType[]
+  const getSkills = (): Skill[] => {
+    if (!skills?.length && proficiencyLevel?.skill) {
+      return [proficiencyLevel.skill]
+    }
+    return skills
   }
 
   const {
@@ -207,6 +201,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   ]
 
   const debouncedFetchSkills = useCallback(debounce((value) => {
+    if (!shouldFetchDependent()) return
     fetchSkills({
       apiConfig: {
         filter: {
@@ -219,7 +214,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
         },
       },
     })
-  }, 300), [])
+  }, 300), [proficiencyLevel, shouldFetchDependent])
 
   useEffect(() => {
     setLevelDefinitions((currLevelDefinitions) => {
@@ -379,11 +374,11 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
                   }}
                   notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : null}
                   filterOption={false}
-                >
-                  {skills?.map((item: Skill) => (
-                    <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
-                  ))}
-                </Select>
+                  options={getSkills().map(p => ({
+                    value: p.id,
+                    label: p.name,
+                  }))}
+                />
               </Form.Item>
             ) : null
           }

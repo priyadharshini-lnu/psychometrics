@@ -62,47 +62,51 @@ const DetailsDrawerComponent: FC<Props> = ({
             {skill.description}
           </Descriptions.Item>
         </Descriptions>
-        <Skeleton loading={isLoading('fetch')} active>
-          <Descriptions
-            title={I18n.t('administration.skills.applicable_proficiency_levels')}
-            layout="horizontal"
-            rootClassName="mb-6 w-100"
-            bordered
-            column={1}
-          >
-            <Descriptions.Item
-              label={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
-              key="description"
-              className="va-t w-30"
-              labelStyle={{ width: '30%' }}
-              contentStyle={{ width: '70%' }}
-            >
-              {I18n.t(`administration.proficiency_levels.type.${proficiencyLevel?.proficiencyType}`)}
-            </Descriptions.Item>
-          </Descriptions>
-          <Table
-            style={{ width: '100%' }}
-            dataSource={proficiencyLevel?.levelDefinition}
-            columns={[
-              {
-                title: I18n.t('administration.proficiency_levels.fields.level'),
-                key: 'level',
-                dataIndex: 'level',
-              },
-              {
-                title: I18n.t('administration.proficiency_levels.fields.level_name'),
-                key: 'name',
-                dataIndex: 'name',
-              },
-              {
-                title: I18n.t('administration.proficiency_levels.fields.level_description'),
-                key: 'description',
-                dataIndex: 'description',
-              },
-            ]}
-            pagination={false}
-          />
-        </Skeleton>
+        {
+          proficiencyLevel?.proficiencyType ? (
+            <Skeleton loading={isLoading('fetch')} active>
+              <Descriptions
+                title={I18n.t('administration.skills.applicable_proficiency_levels')}
+                layout="horizontal"
+                rootClassName="mb-6 w-100"
+                bordered
+                column={1}
+              >
+                <Descriptions.Item
+                  label={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
+                  key="description"
+                  className="va-t w-30"
+                  labelStyle={{ width: '30%' }}
+                  contentStyle={{ width: '70%' }}
+                >
+                  {I18n.t(`administration.proficiency_levels.type.${proficiencyLevel?.proficiencyType}`)}
+                </Descriptions.Item>
+              </Descriptions>
+              <Table
+                style={{ width: '100%' }}
+                dataSource={proficiencyLevel?.levelDefinition}
+                columns={[
+                  {
+                    title: I18n.t('administration.proficiency_levels.fields.level'),
+                    key: 'level',
+                    dataIndex: 'level',
+                  },
+                  {
+                    title: I18n.t('administration.proficiency_levels.fields.level_name'),
+                    key: 'name',
+                    dataIndex: 'name',
+                  },
+                  {
+                    title: I18n.t('administration.proficiency_levels.fields.level_description'),
+                    key: 'description',
+                    dataIndex: 'description',
+                  },
+                ]}
+                pagination={false}
+              />
+            </Skeleton>
+          ) : null
+        }
       </Row>
     </Drawer>
   )

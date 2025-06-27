@@ -42,7 +42,7 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
   const {
     data: jobGroups,
     fetch: fetchJobGroups, isLoading: isJobGroupsLoading, setData: setJobGroups,
-  } = useResources('job_groups', {
+  } = useResources<JobGroup>('job_groups', {
     apiConfig: {
       filter: {
         end_level_groups: 'true',
@@ -51,7 +51,19 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
     } as ApiConfig,
   })
 
+  const shouldFetchDependent = useCallback(
+    () => (global || params.projectId || projectId),
+    [global, projectId, params],
+  )
+  const getJobGroups = (): JobGroup[] => {
+    if (!jobGroups?.length && jobRole?.jobGroup) {
+      return [jobRole.jobGroup]
+    }
+    return jobGroups
+  }
+
   const debouncedFetchJobGroups = useCallback(debounce((value) => {
+    if (!shouldFetchDependent()) return
     fetchJobGroups({
       apiConfig: {
         filter: {
@@ -62,17 +74,7 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
         },
       },
     })
-  }, 300), [projectId])
-
-  useEffect(() => {
-    if (jobRole) {
-      fetchJobGroups({
-        apiConfig: {
-          filter: { name_cont: jobRole.jobGroup?.name ?? '' },
-        },
-      })
-    }
-  }, [jobRole])
+  }, 300), [projectId, shouldFetchDependent])
 
   const ownersLoading = isOwnerLoading('fetch')
 
@@ -98,12 +100,12 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
   }, [global, projectId])
 
   const ownerId = Form.useWatch(['ownerId'], form)
-  const getProjects = (): OptionsType[] => {
-    if (!jobRole || !jobRole.project) {
-      return projects
-    }
 
-    return [...projects, jobRole.project] as OptionsType[]
+  const getProjects = (): OptionsType[] => {
+    if (!projects?.length && jobRole?.project) {
+      return [jobRole.project] as OptionsType[]
+    }
+    return projects
   }
 
   const {
@@ -259,11 +261,11 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
                 debouncedFetchJobGroups(value)
               }}
               notFoundContent={isJobGroupsLoading('fetch') ? <Spin size="small" /> : null}
-            >
-              {jobGroups?.map((item: JobGroup) => (
-                <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
-              ))}
-            </Select>
+              options={getJobGroups().map(p => ({
+                value: p.id,
+                label: p.name,
+              }))}
+            />
           </Form.Item>
         </>
       )}

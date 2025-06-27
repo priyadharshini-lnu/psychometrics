@@ -37,7 +37,7 @@ const JobRoles: React.FC<PropsFromRedux> = ({ features, openModal }) => {
     apiConfig: {
       include: ['project', 'job_role', 'skill'],
       include_meta: ['permissions'],
-      // fields: { skills: ['name'], jobRoles: ['name'] },
+      fields: { skills: ['name'], jobRoles: ['name'] },
       ...(projectId ? { project_id: projectId } : {}),
     },
   }

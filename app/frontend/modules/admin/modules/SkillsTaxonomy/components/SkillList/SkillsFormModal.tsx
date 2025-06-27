@@ -15,6 +15,7 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 import { SkillTypeEnum } from '../../constants'
 import { ApiConfig } from '~/hooks/useResources/interfaces'
+import { SkillGroup } from '~/modules/admin/modules/client/core/skillGroups'
 
 const { Option } = Select
 
@@ -48,12 +49,19 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
   const {
     data: skillGroups,
     fetch: fetchSkillGroups, isLoading: isSkillGroupsLoading,
-  } = useResources('skill_groups', {
+  } = useResources<SkillGroup>('skill_groups', {
     apiConfig: {
       filter: { end_level_groups: 'true' },
       project_id: params?.projectId,
     } as ApiConfig,
   })
+
+  const getSkillGroups = () => {
+    if (!skillGroups?.length && skill?.skillGroup) {
+      return [skill.skillGroup]
+    }
+    return skillGroups
+  }
 
   const ownersLoading = isOwnerLoading('fetch')
 
@@ -95,23 +103,13 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     })
   }, 300), [])
 
-  useEffect(() => {
-    if (skill) {
-      fetchSkillGroups({
-        apiConfig: {
-          filter: { name_cont: '' },
-        },
-      })
-    }
-  }, [skill])
-
   const ownerId = Form.useWatch(['ownerId'], form)
-  const getProjects = (): OptionsType[] => {
-    if (!skill || !skill.project) {
-      return projects
-    }
 
-    return [...projects, skill.project] as OptionsType[]
+  const getProjects = (): OptionsType[] => {
+    if (!projects?.length && skill?.project) {
+      return [...projects, skill.project] as OptionsType[]
+    }
+    return projects
   }
 
   const {
@@ -275,11 +273,11 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
                 debouncedFetchSkillGroups(value)
               }}
               notFoundContent={isSkillGroupsLoading('fetch') ? <Spin size="small" /> : null}
-            >
-              {skillGroups.map((item: {id: string, name: string}) => (
-                <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
-              ))}
-            </Select>
+              options={getSkillGroups().map(p => ({
+                value: p.id,
+                label: p.name,
+              }))}
+            />
           </Form.Item>
           <Form.Item
             name="tagList"

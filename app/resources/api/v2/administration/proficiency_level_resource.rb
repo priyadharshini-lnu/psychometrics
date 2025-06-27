@@ -23,7 +23,12 @@ module Api
               project_id: project_id,
               filter: opts[:context][:filter] || opts[:context][:params]['filter']
             }
-          ).resolve
+          ).resolve.
+            includes(:translations, skill: :translations)
+        end
+
+        def skill_id
+          @model.skill_id.to_s
         end
 
         def self.sortable_fields(context)
