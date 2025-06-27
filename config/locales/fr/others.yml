@@ -1902,7 +1902,7 @@ fr:
           project: 'Projet : %{section_name}'
         subject: Invitation au phare
       password_change:
-        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse support@thetalententerprise.com
+        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com
 
           '
         regards: 'Cordialement, l''équipe de Lighthouse

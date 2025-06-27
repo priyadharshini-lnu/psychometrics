@@ -1924,7 +1924,7 @@ de:
           project: 'Projekt: %{section_name}'
         subject: Einladung zum Leuchtturm
       password_change:
-        body: 'Hallo %{Name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter support@thetalententerprise.com
+        body: 'Hallo %{Name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com
 
           '
         regards: 'Mit freundlichen Grüßen, Lighthouse Team

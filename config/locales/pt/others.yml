@@ -1912,7 +1912,7 @@ pt:
           project: 'Projeto: %{nome_da_secção}'
         subject: Convite para o Lighthouse
       password_change:
-        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em support@thetalententerprise.com
+        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com
 
           '
         regards: 'Cumprimentos, Equipa do Farol

@@ -1910,7 +1910,7 @@ zh:
           project: 项目： %{section_name}
         subject: 灯塔邀请函
       password_change:
-        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 support@thetalententerprise.com 联系支持部门。
+        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。
 
           '
         regards: '莱皓思团队
