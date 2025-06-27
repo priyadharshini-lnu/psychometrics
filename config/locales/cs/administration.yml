@@ -1548,7 +1548,15 @@ cs:
         all: Všechny
         assessment_completion_status_code: Kód stavu dokončení hodnocení
         assessment_completion_status_code_hint: Pokud je zadán kód dokončení, bude odeslán pouze v případě, že hodnocení uživatele má tento kód stavu dokončení.
-        body_mustache: "{{{user_link}} - Odkaz na platformu pro stávající uživatele nebo jednorázový odkaz pro nastavení hesla pro nové uživatele {{{user_url}} - Stejný jako user_link, ale místo hypertextového odkazu pouze URL {{{user_link_qrcode}}} - Vložení QR kódu vygenerovaného z user_link {{first_name}} - Křestní jméno příjemce {{last_name}} - Příjmení příjemce {{email}} - E-mail příjemce {{schedule_start_date}} - Datum zahájení rozvrhu {{schedule_end_date}} - Datum ukončení rozvrhu\n"
+        body_mustache: |
+          "{{{user_link}} - Odkaz na platformu pro stávající uživatele nebo jednorázový odkaz pro nastavení hesla pro nové uživatele
+           {{{user_url}} - Stejný jako user_link, ale místo hypertextového odkazu pouze URL
+           {{{user_link_qrcode}}} - Vložení QR kódu vygenerovaného z user_link
+           {{first_name}} - Křestní jméno příjemce
+           {{last_name}} - Příjmení příjemce
+           {{email}} - E-mail příjemce
+           {{schedule_start_date}} - Datum zahájení rozvrhu
+           {{schedule_end_date}} - Datum ukončení rozvrhu"
         completion: Dokončení
         delivery_at: Dodání na (GST)
         delivery_delay_hours: Zpoždění dodávky (v hodinách)
@@ -3371,9 +3379,10 @@ cs:
         add_assessor_form: Přidat formulář Assessor
         assessments: Hodnocení
         assessor_forms: Formuláře pro odhadce
-        confirm_message: 'Jste si jisti, že chcete zrušit účast subjektu s e-mailem ''%{subject_email}''?<br />po označení jako zrušený se tento subjekt nebude moci účastnit hodnotícího centra.
-
-          '
+        confirm_message: |
+          'Jste si jisti, že chcete zrušit účast subjektu s e-mailem ''%{subject_email}''?
+          <br />
+          po označení jako zrušený se tento subjekt nebude moci účastnit hodnotícího centra.'
         confirm_title: Potvrzení je vyžadováno
         edit_assessor_form: Upravit formulář hodnotitele
         form_title: Plánování hodnocení
@@ -3717,7 +3726,12 @@ cs:
         modal:
           btn_name: Odesílání SMS
           title: Odesílání SMS
-        pipetext_details: "{{{křestní_jméno}}} - Křestní jméno příjemce<br />{{{last_name}}} - Příjmení příjemce<br />{{{invite_url}} - Odkaz pro registraci\n"
+        pipetext_details: |
+          {{{křestní_jméno}}} - Křestní jméno příjemce
+          <br />
+          {{{last_name}}} - Příjmení příjemce
+          <br />
+          {{{invite_url}} - Odkaz pro registraci
         segment_length_msg: Odhadovaný počet segmentů této zprávy je %{segment_length}.
         segment_length_range_msg: Odhadovaný počet segmentů této zprávy je mezi %{min_segment_length} a %{max_segment_length}.
       statuses:
@@ -3859,15 +3873,11 @@ cs:
     table:
       entries:
         selected:
-          few:
-          many:
           one: vybrán 1 řádek
-          other: ''
+          other: "{{count}} řádky vybrány"
         total:
-          few:
-          many:
           one: 'Celkem : 1'
-          other: ''
+          other: 'Celkem : {{count}}'
           zero: 'Celkem : 0'
       more_actions: Další akce
     taxonomy:
@@ -4155,5 +4165,3 @@ cs:
       errors:
         update_assessor_for_failure: Podrobnosti o schůzce nelze přidat, protože neexistuje žádná související činnost subjektu.
     years: Roky
-  administration.users.toolbar:
-    title: Nástroje

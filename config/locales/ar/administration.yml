@@ -1097,9 +1097,7 @@ ar:
         resource:
           confirmations:
             toggle_status:
-              body: 'هل أنت متأكد أنك تريد %{status} هذه الرخصة؟
-
-                '
+              body: 'هل أنت متأكد أنك تريد %{status} هذه الرخصة؟ '
               title: "<strong>%{status}</strong> رخصة لـ %{name}؟"
         show:
           used_out_of: "%{used_number} من %{number}"
@@ -1936,6 +1934,7 @@ ar:
       invalid_url: 'عنوان URL غير صالح: %{message}'
       invalid_url_format: تنسيق عنوان URL غير صالح
       missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
+    errror_msg: رسالة خطأ
     factors:
       copy:
         error: "'%{name}' factor was not copied"

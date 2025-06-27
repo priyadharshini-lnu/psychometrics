@@ -480,9 +480,7 @@ zh:
             body: "<p>您确定要删除此评估吗？</p>\n"
             title: 删除<strong>评估</strong>？
           soft_delete:
-            body: '<p>您确定要软删除此 "评估 "吗？</p>
-
-              '
+            body: <p>您确定要软删除此 "评估 "吗？</p>
             title: 软删除<strong>评估</strong>？
           toggle_status:
             body: "<p>您确定要 %{status} 本次评估吗？</p>\n"
@@ -1550,7 +1548,15 @@ zh:
         all: 全部
         assessment_completion_status_code: 评估完成状态代码
         assessment_completion_status_code_hint: 如果指定了完成代码，则只有在用户的评估具有该完成状态代码时才会发送。
-        body_mustache: "{{{user_link}} - 现有用户的平台链接或新用户设置密码的一次性链接 {{{user_url}} - 与 user_link 相同，但只有 URL 而非超链接 {{{user_link_qrcode}} - 嵌入从 user_link 生成的 QR 代码 {{first_name}} - 接收者姓名 {{last_name}} - 接收者姓氏 {{email}} - 接收者电子邮件 {{schedule_start_date}} - 计划开始日期 {{schedule_end_date}} - 计划结束日期\n"
+        body_mustache: |
+          "{{{user_link}} - 现有用户的平台链接或新用户设置密码的一次性链接
+           {{{user_url}} - 与 user_link 相同，但只有 URL 而非超链接
+           {{{user_link_qrcode}} - 嵌入从 user_link 生成的 QR 代码
+           {{first_name}} - 接收者姓名
+           {{last_name}} - 接收者姓氏
+           {{email}} - 接收者电子邮件
+           {{schedule_start_date}} - 计划开始日期
+           {{schedule_end_date}} - 计划结束日期"
         completion: 完工
         delivery_at: 交货价格（消费税）
         delivery_delay_hours: 交货延迟（小时）
@@ -1832,9 +1838,7 @@ zh:
       resource:
         confirmations:
           delete:
-            body: '<p>您确定要删除此 "开发行动 "吗？</p>
-
-              '
+            body: <p>您确定要删除此 "开发行动 "吗？</p>
             title: 删除<strong>开发行动</strong>?
           toggle_status:
             body: "<p>您确定要 %{status} 此开发活动吗？</p>\n"
@@ -3109,9 +3113,7 @@ zh:
         resource:
           confirmations:
             delete:
-              body: '<p>您确定要从 "报告捆绑包 "中删除此报告吗？</p>
-
-                '
+              body: <p>您确定要从 "报告捆绑包 "中删除此报告吗？</p>
               title: 从<strong>报告</strong>包中删除<strong>报告</strong>？
           tooltips:
             delete: 从报告包中删除报告
@@ -3377,9 +3379,10 @@ zh:
         add_assessor_form: 添加评估员表格
         assessments: 评估
         assessor_forms: 评估员表格
-        confirm_message: '您确定要取消电子邮件名为"%{subject_email}"的受试者的参与资格吗？<br />一旦标记为取消，该受试者将无法参加评估中心的活动。
-
-          '
+        confirm_message: |
+          '您确定要取消电子邮件名为"%{subject_email}"的受试者的参与资格吗？
+          <br />
+          一旦标记为取消，该受试者将无法参加评估中心的活动。'
         confirm_title: 需要确认
         edit_assessor_form: 编辑评估员表格
         form_title: 安排评估
@@ -3723,7 +3726,12 @@ zh:
         modal:
           btn_name: 发送短信
           title: 发送短信
-        pipetext_details: "{{{first_name}} - 接收人的名<br />{{{last_name}}}--收件人的姓<br />{{{invite_url}}} - 注册链接\n"
+        pipetext_details: |
+          "{{{first_name}} - 接收人的名
+          <br />
+          {{{last_name}}}--收件人的姓
+          <br />
+          {{{invite_url}}} - 注册链接"
         segment_length_msg: 此报文的预计段落数为 %{segment_length}。
         segment_length_range_msg: 此报文的估计段数介于 %{min_segment_length} 和 %{max_segment_length} 之间。
       statuses:
@@ -3866,10 +3874,10 @@ zh:
       entries:
         selected:
           one: 选中 1 行
-          other: 选中 1 行
+          other: 选中 {{count}} 行
         total:
           one: '共计 : 1'
-          other: '共计 : 1'
+          other: '共计 : {{count}}'
           zero: '总计 : 0'
       more_actions: 更多行动
     taxonomy:
@@ -4157,5 +4165,3 @@ zh:
       errors:
         update_assessor_for_failure: 由于没有关联的主题活动，因此无法添加会议详细信息。
     years: 年数
-  administration.users.toolbar:
-    title: 工具

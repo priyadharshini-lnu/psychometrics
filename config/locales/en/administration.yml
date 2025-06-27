@@ -1934,6 +1934,7 @@ en:
       invalid_url: 'Invalid URL: %{message}'
       invalid_url_format: Invalid URL format
       missing_columns: 'Missing required columns: %{fields}'
+    errror_msg: error message
     factors:
       copy:
         error: "'%{name}' factor was not copied"
@@ -3649,6 +3650,7 @@ en:
       import:
         download_example_csv: Download Example csv
         info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
         skills_title: Import Skills
         skills_translations_title: Import Skills Translations

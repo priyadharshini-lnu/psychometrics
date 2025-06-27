@@ -1548,7 +1548,15 @@ ja:
         all: すべて
         assessment_completion_status_code: 評価完了ステータスコード
         assessment_completion_status_code_hint: 完了コードが指定された場合、ユーザーの評価がこの完了ステータスコードを持つ場合にのみ送信されます。
-        body_mustache: "{{user_link}} - 既存ユーザー用のプラットフォームへのリンク、または新規ユーザー用のパスワードを設定するための1回限りのリンク {{user_url}} - user_link と同じですが、ハイパーリンクの代わりに URL のみ {{user_link_qrcode}} - user_link から生成された QR コードを埋め込む {{first_name}} - 受信者の名前 {{last_name}} - 受信者の姓 {{email}} - 受信者のメールアドレス {{schedule_start_date}} - スケジュール開始日 {{schedule_end_date}} - スケジュール終了日\n"
+        body_mustache: |
+          "{{user_link}} - 既存ユーザー用のプラットフォームへのリンク、または新規ユーザー用のパスワードを設定するための1回限りのリンク
+           {{user_url}} - user_link と同じですが、ハイパーリンクの代わりに URL のみ
+           {{user_link_qrcode}} - user_link から生成された QR コードを埋め込む
+           {{first_name}} - 受信者の名前
+           {{last_name}} - 受信者の姓
+           {{email}} - 受信者のメールアドレス
+           {{schedule_start_date}} - スケジュール開始日
+           {{schedule_end_date}} - スケジュール終了日"
         completion: 完成
         delivery_at: 配送料（GST）
         delivery_delay_hours: 配達遅延（時間）
@@ -3371,9 +3379,10 @@ ja:
         add_assessor_form: アセッサーの追加フォーム
         assessments: アセスメント
         assessor_forms: 査定フォーム
-        confirm_message: 'メール「%{subject_email}」を持つ対象者の参加をキャンセルしてもよろしいですか?<br />キャンセルとマークされると、この被験者はアセスメントセンターに参加できなくなります。
-
-          '
+        confirm_message: |
+          'メール「%{subject_email}」を持つ対象者の参加をキャンセルしてもよろしいですか?
+          <br />
+          キャンセルとマークされると、この被験者はアセスメントセンターに参加できなくなります。'
         confirm_title: 要確認
         edit_assessor_form: アセッサーのフォームを編集する
         form_title: 査定スケジュール
@@ -3717,7 +3726,12 @@ ja:
         modal:
           btn_name: SMS送信
           title: SMS送信
-        pipetext_details: "{{first_name}} - 受取人の姓<br />{{last_name}} - 受信者の姓<br />{{invite_url}} - 登録リンク\n"
+        pipetext_details: |
+          "{{first_name}} - 受取人の姓
+          <br />
+          {{last_name}} - 受信者の姓
+          <br />
+          {{invite_url}} - 登録リンク"
         segment_length_msg: このメッセージの推定セグメント数は %{segment_length} です。
         segment_length_range_msg: このメッセージの推定セグメント数は %{min_segment_length} から %{max_segment_length} の間です。
       statuses:
@@ -4151,5 +4165,3 @@ ja:
       errors:
         update_assessor_for_failure: リンクされた対象アクティビティがないため、ミーティングの詳細を追加することはできません。
     years: 年
-  administration.users.toolbar:
-    title: ツール

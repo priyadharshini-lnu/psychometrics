@@ -1548,7 +1548,15 @@ pt:
         all: Todos
         assessment_completion_status_code: Código do estado de conclusão da avaliação
         assessment_completion_status_code_hint: Se for especificado um código de conclusão, este só será enviado se a avaliação do utilizador tiver este código de estado de conclusão.
-        body_mustache: "{{{user_link}} - Ligação à Plataforma para utilizadores existentes ou uma ligação única para definir uma palavra-passe para novos utilizadores {{{user_url}} - Igual a user_link mas apenas o URL em vez de uma hiperligação {{user_link_qrcode}}} - Código QR incorporado gerado a partir de user_link {{first_name}} - Primeiro nome do destinatário {{last_name}} - Último nome do destinatário {{email}} - E-mail do destinatário {{schedule_start_date}} - Data de início do calendário {{schedule_end_date}} - Data de fim do calendário\n"
+        body_mustache: |
+          "{{{user_link}} - Ligação à Plataforma para utilizadores existentes ou uma ligação única para definir uma palavra-passe para novos utilizadores
+          {{{user_url}} - Igual a user_link mas apenas o URL em vez de uma hiperligação
+          {{user_link_qrcode}}} - Código QR incorporado gerado a partir de user_link
+          {{first_name}} - Primeiro nome do destinatário
+          {{last_name}} - Último nome do destinatário
+          {{email}} - E-mail do destinatário
+          {{schedule_start_date}} - Data de início do calendário
+          {{schedule_end_date}} - Data de fim do calendário"
         completion: Conclusão
         delivery_at: Entrega em (GST)
         delivery_delay_hours: Prazo de entrega (horas)
@@ -3371,9 +3379,10 @@ pt:
         add_assessor_form: Adicionar formulário de avaliador
         assessments: Avaliações
         assessor_forms: Formulários para avaliadores
-        confirm_message: 'Tem a certeza de que pretende cancelar a participação do sujeito com o endereço eletrónico "%{subject_email}"?<br />uma vez marcado como cancelado, este sujeito não poderá participar no centro de avaliação.
-
-          '
+        confirm_message: |
+          'Tem a certeza de que pretende cancelar a participação do sujeito com o endereço eletrónico "%{subject_email}"?
+          <br />
+          uma vez marcado como cancelado, este sujeito não poderá participar no centro de avaliação.'
         confirm_title: Confirmação necessária
         edit_assessor_form: Editar formulário do assessor
         form_title: Agendar avaliações
@@ -3717,7 +3726,12 @@ pt:
         modal:
           btn_name: Enviar SMS
           title: Enviar SMS
-        pipetext_details: "{{{first_name}}} - Primeiro nome do destinatário<br />{{{last_name}} - Último nome do destinatário<br />{{{invite_url}}} - Link de registo\n"
+        pipetext_details: |
+          "{{{first_name}}} - Primeiro nome do destinatário
+          <br />
+          {{{last_name}} - Último nome do destinatário
+          <br />
+          {{{invite_url}}} - Link de registo"
         segment_length_msg: O número estimado de segmentos para esta mensagem é %{segment_length}.
         segment_length_range_msg: O número estimado de segmentos para esta mensagem situa-se entre %{min_segment_length} e %{max_segment_length}.
       statuses:
@@ -3859,13 +3873,11 @@ pt:
     table:
       entries:
         selected:
-          many:
           one: 1 linha selecionada
-          other: ''
+          other: "{{count}} linhas selecionadas"
         total:
-          many:
           one: 'Total: 1'
-          other: ''
+          other: 'Total: {{count}}'
           zero: 'Total : 0'
       more_actions: Mais acções
     taxonomy:
@@ -4153,5 +4165,3 @@ pt:
       errors:
         update_assessor_for_failure: Os detalhes da reunião não podem ser adicionados porque não existe uma atividade temática associada.
     years: Anos
-  administration.users.toolbar:
-    title: Ferramentas

@@ -1548,7 +1548,15 @@ it:
         all: Tutti
         assessment_completion_status_code: Codice di stato di completamento della valutazione
         assessment_completion_status_code_hint: Se si specifica un codice di completamento, questo verrà inviato solo se la valutazione dell'utente ha questo codice di stato di completamento.
-        body_mustache: "{{{user_link}} - Link alla piattaforma per gli utenti esistenti o un link una tantum per impostare una password per i nuovi utenti {{user_url}} - Come user_link ma solo l'URL invece di un collegamento ipertestuale {{user_link_qrcode}} - Incorpora il codice QR generato da user_link {{first_name}} - Nome del destinatario {{last_name}} - Cognome del destinatario {{email}} - Email del destinatario {{schedule_start_date}} - Data di inizio del calendario {{schedule_end_date}} - Data di fine del calendario\n"
+        body_mustache: |
+          "{{{user_link}} - Link alla piattaforma per gli utenti esistenti o un link una tantum per impostare una password per i nuovi utenti
+           {{user_url}} - Come user_link ma solo l'URL invece di un collegamento ipertestuale
+           {{user_link_qrcode}} - Incorpora il codice QR generato da user_link
+           {{first_name}} - Nome del destinatario
+           {{last_name}} - Cognome del destinatario
+           {{email}} - Email del destinatario
+           {{schedule_start_date}} - Data di inizio del calendario
+           {{schedule_end_date}} - Data di fine del calendario"
         completion: Completamento
         delivery_at: Consegna a (GST)
         delivery_delay_hours: Ritardo nella consegna (ore)
@@ -3371,9 +3379,10 @@ it:
         add_assessor_form: Modulo Aggiungi valutatore
         assessments: Valutazioni
         assessor_forms: Moduli per il valutatore
-        confirm_message: 'Siete sicuri di voler cancellare la partecipazione del soggetto con l''email ''%{subject_email}''?<br />una volta contrassegnato come annullato, questo soggetto non potrà più partecipare all''assessment center.
-
-          '
+        confirm_message: |
+          'Siete sicuri di voler cancellare la partecipazione del soggetto con l''email ''%{subject_email}''?
+          <br />
+          una volta contrassegnato come annullato, questo soggetto non potrà più partecipare all''assessment center.'
         confirm_title: Richiesta di conferma
         edit_assessor_form: Modifica del modulo di valutazione
         form_title: Programmare le valutazioni
@@ -3717,7 +3726,12 @@ it:
         modal:
           btn_name: Inviare SMS
           title: Inviare SMS
-        pipetext_details: "{{first_name}} - Nome del destinatario<br />{{{last_name}} - Cognome del destinatario<br />{{invite_url}} - Link di registrazione\n"
+        pipetext_details: |
+          "{{first_name}} - Nome del destinatario
+          <br />
+          {{{last_name}} - Cognome del destinatario
+          <br />
+          {{invite_url}} - Link di registrazione"
         segment_length_msg: Il numero stimato di segmenti per questo messaggio è %{segment_length}.
         segment_length_range_msg: Il numero stimato di segmenti per questo messaggio è compreso tra %{min_segment_length} e %{max_segment_length}.
       statuses:
@@ -3859,13 +3873,11 @@ it:
     table:
       entries:
         selected:
-          many:
           one: 1 riga selezionata
-          other: ''
+          other: "{{count}} righe selezionate"
         total:
-          many:
           one: 'Totale : 1'
-          other: ''
+          other: 'Totale :  {{count}}'
           zero: 'Totale : 0'
       more_actions: Altre azioni
     taxonomy:
@@ -4153,5 +4165,3 @@ it:
       errors:
         update_assessor_for_failure: I dettagli della riunione non possono essere aggiunti perché non c'è un'attività collegata al soggetto.
     years: Anni
-  administration.users.toolbar:
-    title: Strumenti
