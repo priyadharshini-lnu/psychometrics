@@ -2370,6 +2370,12 @@ es-ES:
       export:
         translations:
           details: Detalles
+      translations:
+        import:
+          errors:
+            job_role_not_found: Función de trabajo con ID %{id} no encontrada
+            missing_columns: 'Faltan columnas obligatorias: %{columns}'
+            save_failed: 'Error al procesar Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: El elemento %{name} se ha creado correctamente.

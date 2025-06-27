@@ -2370,6 +2370,12 @@ fr:
       export:
         translations:
           details: Détails
+      translations:
+        import:
+          errors:
+            job_role_not_found: La fonction avec l'ID %{id} n'a pas été trouvée
+            missing_columns: 'Colonnes manquantes : %{columns}'
+            save_failed: 'Erreur de traitement de l''ID de rôle de travail %{id} : %{message}'
     libraries:
       create:
         successfully: L'élément %{name} a été créé avec succès.

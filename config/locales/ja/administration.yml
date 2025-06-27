@@ -2370,6 +2370,12 @@ ja:
       export:
         translations:
           details: 詳細
+      translations:
+        import:
+          errors:
+            job_role_not_found: ID %{id} を持つジョブ・ロールが見つかりません。
+            missing_columns: '必要な列がありません: %{columns}.'
+            save_failed: ジョブ役割 ID %{id} の処理エラーです：メッセージ
     libraries:
       create:
         successfully: 項目 %{name} が正常に作成されました。

@@ -2370,6 +2370,12 @@ zh-Hant:
       export:
         translations:
           details: 詳細資訊
+      translations:
+        import:
+          errors:
+            job_role_not_found: 未找到 ID 為 %{id} 的工作角色
+            missing_columns: 缺少必填欄位：%{columns}。
+            save_failed: 處理工作角色 ID %{id} 出錯：%{message}
     libraries:
       create:
         successfully: 項目 %{name} 已成功建立。

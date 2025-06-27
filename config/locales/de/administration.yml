@@ -2370,6 +2370,12 @@ de:
       export:
         translations:
           details: Einzelheiten
+      translations:
+        import:
+          errors:
+            job_role_not_found: Jobrolle mit ID %{id} nicht gefunden
+            missing_columns: 'Fehlende erforderliche Spalten: %{columns}'
+            save_failed: 'Fehler bei der Verarbeitung der Job-Rollen-ID %{id}: %{Meldung}'
     libraries:
       create:
         successfully: Element %{name} wurde erfolgreich erstellt.

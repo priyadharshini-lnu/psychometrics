@@ -2370,6 +2370,12 @@ it:
       export:
         translations:
           details: Dettagli
+      translations:
+        import:
+          errors:
+            job_role_not_found: Ruolo lavorativo con ID %{id} non trovato
+            missing_columns: 'Colonne mancanti: %{colonne}'
+            save_failed: 'Errore nell''elaborazione del Job Role ID %{id}: %{messaggio}'
     libraries:
       create:
         successfully: L'elemento %{name} è stato creato con successo.

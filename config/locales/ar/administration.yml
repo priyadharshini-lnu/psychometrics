@@ -2379,6 +2379,12 @@ ar:
       export:
         translations:
           details: التفاصيل
+      translations:
+        import:
+          errors:
+            job_role_not_found: دور الوظيفة مع المعرف %{id} غير موجود
+            missing_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
+            save_failed: 'خطأ في معالجة معرف دور الوظيفة %{id}: %{الرسالة}'
     libraries:
       create:
         successfully: Item %{name} was created successfully.

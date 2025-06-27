@@ -2374,6 +2374,12 @@ zh:
       export:
         translations:
           details: 详细信息
+      translations:
+        import:
+          errors:
+            job_role_not_found: 未找到 ID 为 %{id} 的工作角色
+            missing_columns: 缺少必填列： %{columns}
+            save_failed: 处理工作角色 ID %{id} 时出错：%{message｝
     libraries:
       create:
         successfully: 项目 %{name} 创建成功。

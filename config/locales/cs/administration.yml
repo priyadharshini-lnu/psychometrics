@@ -2370,6 +2370,12 @@ cs:
       export:
         translations:
           details: Podrobnosti na
+      translations:
+        import:
+          errors:
+            job_role_not_found: Pracovní role s ID %{id} nebyla nalezena
+            missing_columns: 'Chybějící povinné sloupce: %{columns}'
+            save_failed: 'Chyba při zpracování ID role úlohy %{id}: %{zpráva}'
     libraries:
       create:
         successfully: Položka %{name} byla úspěšně vytvořena.

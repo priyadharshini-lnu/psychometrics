@@ -2378,6 +2378,12 @@ en:
       export:
         translations:
           details: Details
+      translations:
+        import:
+          errors:
+            job_role_not_found: Job role with ID %{id} not found
+            missing_columns: 'Missing required columns: %{columns}'
+            save_failed: 'Error processing Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} was created successfully.

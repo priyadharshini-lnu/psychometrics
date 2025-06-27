@@ -2370,6 +2370,12 @@ nl:
       export:
         translations:
           details: Details
+      translations:
+        import:
+          errors:
+            job_role_not_found: Jobrol met ID %{id} niet gevonden
+            missing_columns: 'Ontbrekende verplichte kolommen: %{columns}'
+            save_failed: 'Fout bij het verwerken van Job Role-ID %{id}: %{bericht}'
     libraries:
       create:
         successfully: Item %{name} is succesvol aangemaakt.
