@@ -665,9 +665,20 @@ workflows:
       - rubocop:
           requires:
             - bundle
-      - notify_translation_changes:
+      - hold:
+          name: approve_notify_translation_changes
+          type: approval
+          context: notify-translation-changes
           requires:
             - bundle_assets
+          filters:
+              branches:
+                only:
+                  - review
+                  - master
+      - notify_translation_changes:
+          requires:
+            - approve_notify_translation_changes
           filters:
               branches:
                 only:
