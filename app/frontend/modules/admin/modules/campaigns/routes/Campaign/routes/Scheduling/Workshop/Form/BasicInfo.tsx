@@ -44,6 +44,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
   const [videoCallType, setVideoCallType] = useState<number>(initialValues.video_call_type)
   const [dateFieldStatus, setDateFieldStatus] = useState<'success' | 'error'>('success')
   const [assessmentCenterGroups, setAssessmentCenterGroups] = useState<AssessmentCenterGroup[]>([])
+  const [openCalendar, setOpenCalendar] = useState<boolean>(false)
 
   const { campaignId } = useParams<{ campaignId: string }>()
 
@@ -57,6 +58,21 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
   )
 
   const sortDates = (dates: dayjs.Dayjs[]) => dates.sort((a, b) => a.valueOf() - b.valueOf())
+
+  useEffect(() => {
+    const clickHandler = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest('.custom-calendar-panel') && !target.closest('.date-picker-input')) {
+        openCalendar && setOpenCalendar(false)
+      }
+    }
+
+    document.addEventListener('click', clickHandler)
+
+    return () => {
+      document.removeEventListener('click', clickHandler)
+    }
+  }, [openCalendar])
 
   useEffect(() => {
     assessmentGroupsAction({
@@ -135,6 +151,18 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                 help={dateFieldStatus === 'success' ? '' : I18n.t('administration.scheduling.errors.date_required')}
               >
                 <DatePicker
+                  className="date-picker-input"
+                  onOpenChange={(open) => {
+                    open && setOpenCalendar(open)
+                  }}
+                  open={openCalendar}
+                  panelRender={panelNode => (
+                    <div
+                      className="custom-calendar-panel"
+                    >
+                      {panelNode}
+                    </div>
+                  )}
                   format="DD/MM/YYYY"
                   value={null}
                   onCalendarChange={handleDateChange}
