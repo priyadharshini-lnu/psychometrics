@@ -29,6 +29,7 @@ const { I18n } = window
 const connector = connect((state: RootState) => ({
   selfRatingEnabled: state.campaigns.idp.selfRatingEnabled,
   idpUser: state.campaigns.idp.user,
+  currentUser: state.currentUser,
 }),
 {
   updateUserIdpSkill,
@@ -58,8 +59,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   updateUserIdpSkill,
   selfRatingEnabled,
   removeDevelopmentActionFromPlan,
-  idpUser,
+  idpUser, currentUser,
 }) => {
+  const canEditProgress = currentUser.id === idpUser.id
+
   const handleRatingChange = (rating) => {
     updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
@@ -90,6 +93,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       onUpdateDevelopmentAction={onUpdateDevelopmentAction}
       onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
       onRemoveDevelopmentAction={removeDevelopmentActionFromPlan}
+      canEditProgress={canEditProgress}
     />
   ))
 
@@ -160,6 +164,7 @@ const Card = ({
   onUpdateDevelopmentActionProgress,
   editMode,
   onRemoveDevelopmentAction,
+  canEditProgress,
 }) => {
   const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
@@ -226,7 +231,7 @@ const Card = ({
       content={popoverContent}
       title="Edit Progress"
       trigger="click"
-      open={editing}
+      open={canEditProgress && editing}
       onOpenChange={setEditing}
     >
       <Flex
@@ -253,7 +258,7 @@ const Card = ({
           align="flex-end"
         >
           <Progress percent={editableProgress} className={styles.m_none} />
-          {isHovering || isTablet ? (
+          {canEditProgress && (isHovering || isTablet) ? (
             <Button
               type="default"
               shape="circle"

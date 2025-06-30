@@ -162,8 +162,10 @@ const UserDevelopmentPlanComponent = ({
   }
 
   useEffect(() => {
+    setIsLoading(true)
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
       setSelectedSkills(response.data.userIdpSkills)
+      setIsLoading(false)
     }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
       navigate('/')
