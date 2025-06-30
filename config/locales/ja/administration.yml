@@ -2692,12 +2692,8 @@ ja:
           by_skill_exists: 行 %{row_number}：by_skill'ProficiencyLevelは、このプロジェクトとスキルに既に存在します。
           by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
-          invalid_json: 行 %{line}：LevelDefinition - %{message} に無効な JSON があります。
-          invalid_json_structure: description'や'summary'といったキーを持つJSONオブジェクトでなければならない。
           invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
           missing_columns: '必須列がありません: %{fields}.'
-          missing_required_fields: 行 %{line}：必須フィールドがありません (%{fields})
-          save_failed: 行 %{line}：メッセージ
           skill_not_found: 行 %{row_number}：無効または見つからないスキル
         job_queued: 技能レベルのインポートジョブがキューに入れられました。
       translations:

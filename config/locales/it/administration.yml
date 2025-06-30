@@ -2692,12 +2692,8 @@ it:
           by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
-          invalid_json: 'Linea %{line}: JSON non valido in LevelDefinition - %{message}'
-          invalid_json_structure: deve essere un oggetto JSON con chiavi come "description" e "summary".
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
           missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
-          missing_required_fields: 'Linea %{line}: Campi obbligatori mancanti (%{fields})'
-          save_failed: 'Linea %{line}: %{message}'
           skill_not_found: 'Riga %{row_number}: Skill non valido o mancante'
         job_queued: Il lavoro di importazione dei livelli di competenza è stato messo in coda
       translations:

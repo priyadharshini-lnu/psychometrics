@@ -2692,12 +2692,8 @@ zh-Hant:
           by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
           invalid_csv_format: 無效的 CSV 格式：%{message}。
-          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 無效 - %{message}
-          invalid_json_structure: 必須是一個 JSON 物件，具有類似 'description「 和 」summary' 的鍵
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
           missing_columns: 缺少必填欄位：%{fields}。
-          missing_required_fields: 行 %{line}：缺少必填欄位 (%{fields})
-          save_failed: 行 %{line}：%{message}
           skill_not_found: 行 %{row_number}：無效或遺失技能
         job_queued: 能力等級匯入工作已排隊
       translations:

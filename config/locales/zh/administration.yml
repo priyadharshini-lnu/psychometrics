@@ -2696,12 +2696,8 @@ zh:
           by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
           by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
           invalid_csv_format: CSV 格式无效： %{message}
-          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 无效 - %{message}
-          invalid_json_structure: 必须是一个 JSON 对象，包含 "描述 "和 "摘要 "等关键字
           invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
           missing_columns: 缺少必填列： %{fields}
-          missing_required_fields: 行 %{line}：缺少必填字段 (%{fields})
-          save_failed: 行 %{line}：%{message}
           skill_not_found: 行 %{row_number}：技能无效或缺失
         job_queued: 能力水平导入工作已排队
       translations:

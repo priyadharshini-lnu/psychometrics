@@ -2692,12 +2692,8 @@ fr:
           by_skill_exists: 'Ligne %{row_number} : Un niveau de compétence "by_skill" existe déjà pour ce projet et cette compétence.'
           by_skill_missing: 'Ligne %{row_number} : Le projet et la compétence doivent être présents pour le type "by_skill".'
           invalid_csv_format: 'Format CSV non valide : %{message}'
-          invalid_json: 'Ligne %{line} : JSON invalide dans LevelDefinition - %{message}'
-          invalid_json_structure: doit être un objet JSON avec des clés telles que "description" et "résumé".
           invalid_proficiency_type: 'Ligne %{row_number} : Type de compétence non valide ou manquant'
           missing_columns: 'Colonnes obligatoires manquantes : %{fields}'
-          missing_required_fields: 'Ligne %{line} : Champs obligatoires manquants (%{fields})'
-          save_failed: 'Ligne %{line} : %{message}'
           skill_not_found: 'Ligne %{row_number} : Compétence invalide ou manquante'
         job_queued: Niveaux de compétence Le travail d'importation a été mis en file d'attente
       translations:

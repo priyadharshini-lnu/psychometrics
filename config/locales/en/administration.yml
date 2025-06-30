@@ -2700,12 +2700,8 @@ en:
           by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
           invalid_csv_format: 'Invalid CSV format: %{message}'
-          invalid_json: 'Line %{line}: Invalid JSON in LevelDefinition - %{message}'
-          invalid_json_structure: must be a JSON object with keys like 'description' and 'summary'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
           missing_columns: 'Missing required columns: %{fields}'
-          missing_required_fields: 'Line %{line}: Missing required fields (%{fields})'
-          save_failed: 'Line %{line}: %{message}'
           skill_not_found: 'Row %{row_number}: Invalid or missing Skill'
         job_queued: Proficiency levels import job has been queued
       translations:

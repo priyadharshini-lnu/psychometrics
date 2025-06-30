@@ -6,7 +6,7 @@ export const ProficiencyLevelTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
     proficiencyType: t.string,
-    skillId: t.union([t.number, t.null]),
+    skillId: t.union([t.string, t.null]),
     skillCategory: t.union([t.string, t.null]),
     level: t.number,
     levelDefinition: t.array(

@@ -2701,12 +2701,8 @@ ar:
           by_skill_exists: 'الصف %{row_number}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
-          invalid_json: 'السطر %{line}: JSON غير صالح في LevelDefinition - %{message}'
-          invalid_json_structure: يجب أن يكون كائن JSON بمفاتيح مثل "الوصف" و"الملخص
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
-          missing_required_fields: 'السطر %{line}: حقول مطلوبة مفقودة (%{fields})'
-          save_failed: 'السطر %{line}: %{message}'
           skill_not_found: 'الصف %{row_number}: مهارة غير صالحة أو مفقودة'
         job_queued: تم وضع مهمة استيراد مستويات الكفاءة في قائمة الانتظار
       translations:

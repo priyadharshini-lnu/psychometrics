@@ -2692,12 +2692,8 @@ ko:
           by_skill_exists: '행 %{row_number}: 이 프로젝트 및 스킬에 대해 ''by_skill'' 숙련도 레벨이 이미 존재합니다.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
-          invalid_json: '줄 %{line}: LevelDefinition - %{message}에 잘못된 JSON이 있습니다.'
-          invalid_json_structure: 는 'description' 및 'summary'와 같은 키가 있는 JSON 객체여야 합니다.
           invalid_proficiency_type: '행 %{row_number}: 잘못되었거나 누락된 숙련도 유형입니다.'
           missing_columns: '누락된 필수 열: %{fields}'
-          missing_required_fields: '줄 %{line}: 누락된 필수 필드(%{fields})'
-          save_failed: '줄 %{line}: %{message}'
           skill_not_found: '행 %{row_number}: 유효하지 않거나 누락된 스킬입니다.'
         job_queued: 숙련도 수준 가져오기 작업이 대기열에 추가되었습니다.
       translations:

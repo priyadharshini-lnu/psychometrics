@@ -2692,12 +2692,8 @@ pt:
           by_skill_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_skill'' para este projeto e competência'
           by_skill_missing: 'Linha %{row_number}: O projeto e a competência têm de estar presentes para o tipo ''by_skill'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
-          invalid_json: 'Linha %{line}: JSON inválido em LevelDefinition - %{message}'
-          invalid_json_structure: deve ser um objeto JSON com chaves como "description" e "summary
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'
-          missing_required_fields: 'Linha %{line}: Faltam campos obrigatórios (%{fields})'
-          save_failed: 'Linha %{line}: %{message}'
           skill_not_found: 'Linha %{row_number}: Competência inválida ou em falta'
         job_queued: A tarefa de importação de níveis de proficiência foi colocada em fila de espera
       translations:

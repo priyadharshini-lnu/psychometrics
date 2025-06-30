@@ -14,38 +14,40 @@ module AdminJobs
     end
 
     def headers
-      %w[ID Project ProficiencyType SkillCategory SkillName TotalLevels LevelNumber LevelName LevelDescription]
+      base_headers = %w[ID Project ProficiencyType SkillCategory SkillName TotalLevels]
+      max_levels = ProficiencyLevel.where(project_id: project&.id).maximum(:level) || 0
+      level_headers = if max_levels.positive?
+                        Array.new(max_levels) do |i|
+                          ["Level#{i + 1}", "Name#{i + 1}", "Description#{i + 1}"]
+                        end.flatten
+                      else
+                        []
+                      end
+      base_headers + level_headers
     end
 
     def records_for_export
-      rows = []
-      ProficiencyLevel.where(project_id: project&.id).includes(:skill).find_each do |pl|
-        # Sort level_definition array by level number before creating rows
-        sorted_levels = pl.level_definition.sort_by { |def_item| def_item['level'].to_i }
-        sorted_levels.each do |level_def|
-          rows << {
-            proficiency_level: pl,
-            level_def: level_def
-          }
-        end
-      end
-      rows
+      ProficiencyLevel.where(project_id: project&.id).includes(:skill)
     end
 
     def data_row(record)
-      pl = record[:proficiency_level]
-      level_def = record[:level_def]
-      [
-        pl.id,
-        pl.project_id,
-        pl.proficiency_type,
-        pl.skill_category,
-        pl.skill&.name,
-        pl.level,
-        level_def['level'],
-        level_def['name'],
-        level_def['description']
+      base_data = [
+        record.id,
+        record.project_id,
+        record.proficiency_type,
+        record.skill_category,
+        record.skill&.name,
+        record.level
       ]
+
+      record.level_definition.each do |level_def|
+        level_num = level_def['level'].to_i
+        next unless level_num <= record.level
+
+        base_data.push(level_def['level'], level_def['name'], level_def['description'])
+      end
+
+      base_data
     end
 
     def file_name

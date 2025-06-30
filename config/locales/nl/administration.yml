@@ -2692,12 +2692,8 @@ nl:
           by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
-          invalid_json: 'Regel %{line}: Ongeldige JSON in LevelDefinition - %{message}'
-          invalid_json_structure: moet een JSON-object zijn met sleutels als "description" en "summary".
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
-          missing_required_fields: 'Regel %{line}: Verplichte velden ontbreken (%{fields})'
-          save_failed: 'Regel %{line}: %{message}'
           skill_not_found: 'Rij %{row_number}: Ongeldige of ontbrekende vaardigheid'
         job_queued: Vaardigheidsniveaus importtaak is in de wachtrij geplaatst
       translations:

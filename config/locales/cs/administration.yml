@@ -2692,12 +2692,8 @@ cs:
           by_skill_exists: 'Řádek %{row_number}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
           by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
-          invalid_json: 'Řádek %{line}: Invalid JSON in LevelDefinition - %{message}'
-          invalid_json_structure: musí být objekt JSON s klíči jako 'description' a 'summary'.
           invalid_proficiency_type: 'Řádek %{row_number}: Neplatný nebo chybějící ProficiencyType'
           missing_columns: 'Chybějící povinné sloupce: %{fields}'
-          missing_required_fields: 'Řádek %{line}: Chybějící povinná pole (%{fields})'
-          save_failed: 'Řádek %{line}: %{message}'
           skill_not_found: 'Řádek %{row_number}: Neplatná nebo chybějící dovednost'
         job_queued: Úloha importu úrovní znalostí byla zařazena do fronty
       translations:

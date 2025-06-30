@@ -8,8 +8,8 @@ module Api
       class ProficiencyLevelImportForm
         include ActiveModel::Model
 
-        REQUIRED_FIELDS = %w[ProficiencyType SkillCategory TotalLevels LevelNumber LevelName LevelDescription].freeze
-        OPTIONAL_FIELDS = %w[SkillName].freeze
+        REQUIRED_FIELDS = %w[ProficiencyType TotalLevels].freeze
+        OPTIONAL_FIELDS = %w[SkillName SkillCategory].freeze
         ALL_FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
 
         attr_accessor :file, :ignore_duplicates, :project_id
