@@ -20,6 +20,7 @@ module CampaignScoring
       validate_string_type
       validate_numeric_type
       validate_not_infinite
+      validate_not_nan
     end
 
     private
@@ -53,6 +54,13 @@ module CampaignScoring
       if factor_value.is_a?(Numeric) && factor_value.infinite?
         raise CampaignScoring::Exceptions::WrongOutputType,
               "Expected factor value for '#{campaign_factor.code}'. Got Infinity value"
+      end
+    end
+
+    def validate_not_nan
+      if factor_value.is_a?(Float) && factor_value.nan?
+        raise CampaignScoring::Exceptions::WrongOutputType,
+              "Expected factor value for '#{campaign_factor.code}'. Got NaN value"
       end
     end
   end

@@ -99,5 +99,18 @@ RSpec.describe CampaignScoring::CampaignFactorValueValidator do
                            "Expected factor value for 'previous_score'. Got Infinity value")
       end
     end
+
+    context 'when factor_value is NaN' do
+      let(:output_type) { 'numeric' }
+
+      let(:factor_value) { Float::NAN }
+
+      it 'raises a WrongOutputType error' do
+        expect do
+          subject.call
+        end.to raise_error(CampaignScoring::Exceptions::WrongOutputType,
+                           "Expected factor value for 'previous_score'. Got NaN value")
+      end
+    end
   end
 end
