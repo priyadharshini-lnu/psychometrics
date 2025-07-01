@@ -2,6 +2,7 @@
 
 require 'dry/cli'
 require_relative 'cli/commands/assign_user_report'
+require_relative 'cli/commands/export_schema'
 require_relative 'cli/commands/I18n/auto_translate_xlsx'
 require_relative 'cli/commands/I18n/auto_translate_yml'
 require_relative 'cli/commands/I18n/translation_changes'
@@ -13,6 +14,7 @@ module Devtools
     extend Dry::CLI::Registry
 
     register 'assign-user-report', Devtools::CLI::Commands::AssignUserReport
+    register 'export-schema', Devtools::CLI::Commands::ExportSchema
     register 'send-email', Devtools::CLI::Commands::SendEmail
 
     register 'I18n' do |prefix|
