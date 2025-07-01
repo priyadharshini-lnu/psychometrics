@@ -9,7 +9,7 @@ module Administration
       def show
         render json: ::Assessments::AssessmentSerializer.new(
           context: {
-            locale: params[:lang] || @assessment.default_language
+            locale: params[:assessment_lang] || @assessment.default_language
           }
         ).serialize(@assessment)
       end
