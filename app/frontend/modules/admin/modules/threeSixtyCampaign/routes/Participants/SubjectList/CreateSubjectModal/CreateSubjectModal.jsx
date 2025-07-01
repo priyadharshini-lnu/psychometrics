@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { connect } from 'react-redux'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
@@ -12,36 +13,46 @@ import userPresenter from '~/presenters/user'
 import UserAutocomplete from '~/components/UserAutocomplete'
 import { setIn } from '~/utils/immutable'
 import { useResources } from '~/hooks/useResources'
+import { getFeatures } from '~/core/config'
 
-const getTableFields = jobRoles => [
-  { name: 'Email', key: 'email' },
-  { name: 'First Name', key: 'firstName' },
-  { name: 'Last Name', key: 'lastName' },
-  { name: 'Locale', key: 'locale' },
-  {
-    name: 'Current Job Role',
-    key: 'currentJobRole',
-    type: 'Select',
-    values: () => jobRoles?.map(role => ({
-      label: role.name,
-      value: role.name,
-    })) || [],
-  },
-  {
-    name: 'Target Job Role',
-    key: 'targetJobRole',
-    type: 'Select',
-    values: () => jobRoles?.map(role => ({
-      label: role.name,
-      value: role.name,
-    })) || [],
-  },
-]
+const getTableFields = (jobRoles, skillRaterEnabled) => {
+  const fields = [
+    { name: 'Email', key: 'email' },
+    { name: 'First Name', key: 'firstName' },
+    { name: 'Last Name', key: 'lastName' },
+    { name: 'Locale', key: 'locale' },
+  ]
+
+  if (skillRaterEnabled) {
+    fields.push(
+      {
+        name: 'Current Job Role',
+        key: 'currentJobRole',
+        type: 'Select',
+        values: () => jobRoles?.map(role => ({
+          label: role.name,
+          value: role.name,
+        })) || [],
+      },
+      {
+        name: 'Target Job Role',
+        key: 'targetJobRole',
+        type: 'Select',
+        values: () => jobRoles?.map(role => ({
+          label: role.name,
+          value: role.name,
+        })) || [],
+      },
+    )
+  }
+
+  return fields
+}
 
 
 const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
 
-export default function CreateSubjectModal ({
+function CreateSubjectModal ({
   closeModal,
   autocompletedUsers,
   fillSubjects,
@@ -50,6 +61,7 @@ export default function CreateSubjectModal ({
   subjects,
   creationInProgress,
   clearForm,
+  features,
 }) {
   const { campaignId, projectId } = useParams()
   useEffect(() => () => {
@@ -75,7 +87,7 @@ export default function CreateSubjectModal ({
   useEffect(() => {
     fetchJobRoles()
   }, [])
-
+  const skillRaterEnabled = features?.skill_rater_enabled
 
   return (
     <Modal
@@ -107,8 +119,18 @@ export default function CreateSubjectModal ({
         </AntForm.Item>
       </Form>
       <Divider />
-      <SpreadSheet entities={subjects} fields={getTableFields(jobRoles)} updateEntities={fillSubjects} />
+      <SpreadSheet
+        entities={subjects}
+        fields={getTableFields(jobRoles, skillRaterEnabled)}
+        updateEntities={fillSubjects}
+      />
       <ErrorAlertBox errors={errors} />
     </Modal>
   )
 }
+
+const mapStateToProps = state => ({
+  features: getFeatures(state),
+})
+
+export default connect(mapStateToProps)(CreateSubjectModal)
