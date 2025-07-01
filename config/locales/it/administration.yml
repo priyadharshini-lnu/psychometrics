@@ -4067,6 +4067,14 @@ it:
         messages:
           title: Messaggi
         participants:
+          subjects:
+            add_subjects: Aggiungi soggetti
+            current_job_role: Ruolo lavorativo attuale
+            email: Email
+            first_name: Nome
+            last_name: Cognome
+            locale: Locale
+            target_job_role: Ruolo lavorativo di destinazione
           title: Partecipanti
         report:
           menu:

@@ -4067,6 +4067,14 @@ zh-Hant:
         messages:
           title: 訊息
         participants:
+          subjects:
+            add_subjects: 新增主題
+            current_job_role: 目前的工作角色
+            email: 電子郵件
+            first_name: 名
+            last_name: 姓
+            locale: 語言環境
+            target_job_role: 目標工作角色
           title: 參與者
         report:
           menu:

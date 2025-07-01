@@ -4067,6 +4067,14 @@ nl:
         messages:
           title: Berichten
         participants:
+          subjects:
+            add_subjects: Onderwerpen toevoegen
+            current_job_role: Huidige Functierol
+            email: Email
+            first_name: Voornaam
+            last_name: Achternaam
+            locale: Lokaal
+            target_job_role: Doel Functierol
           title: Deelnemers
         report:
           menu:

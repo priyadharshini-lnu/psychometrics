@@ -4067,6 +4067,14 @@ ko:
         messages:
           title: 메시지
         participants:
+          subjects:
+            add_subjects: 주제 추가
+            current_job_role: 현재 직무 역할
+            email: Email
+            first_name: 이름
+            last_name: 성
+            locale: 로캘
+            target_job_role: 대상 직무 역할
           title: 참가자
         report:
           menu:

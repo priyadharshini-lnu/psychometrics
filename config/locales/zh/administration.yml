@@ -4067,6 +4067,14 @@ zh:
         messages:
           title: 信息
         participants:
+          subjects:
+            add_subjects: 添加主题
+            current_job_role: 当前工作角色
+            email: 电子邮件
+            first_name: 名字
+            last_name: 姓氏
+            locale: 地点
+            target_job_role: 目标工作角色
           title: 与会者
         report:
           menu:

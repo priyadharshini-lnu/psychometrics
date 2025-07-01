@@ -4067,6 +4067,14 @@ ja:
         messages:
           title: メッセージ
         participants:
+          subjects:
+            add_subjects: 件名の追加
+            current_job_role: 現在の職務
+            email: Email
+            first_name: ファーストネーム
+            last_name: ラストネーム
+            locale: ロケール
+            target_job_role: 目標職務
           title: 参加者
         report:
           menu:

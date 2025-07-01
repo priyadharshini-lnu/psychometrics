@@ -15,18 +15,20 @@ import { setIn } from '~/utils/immutable'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
 
+const { I18n } = window
+
 const getTableFields = (jobRoles, skillRaterEnabled) => {
   const fields = [
-    { name: 'Email', key: 'email' },
-    { name: 'First Name', key: 'firstName' },
-    { name: 'Last Name', key: 'lastName' },
-    { name: 'Locale', key: 'locale' },
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email'), key: 'email' },
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'), key: 'firstName' },
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name'), key: 'lastName' },
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'), key: 'locale' },
   ]
 
   if (skillRaterEnabled) {
     fields.push(
       {
-        name: 'Current Job Role',
+        name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role'),
         key: 'currentJobRole',
         type: 'Select',
         values: () => jobRoles?.map(role => ({
@@ -35,7 +37,7 @@ const getTableFields = (jobRoles, skillRaterEnabled) => {
         })) || [],
       },
       {
-        name: 'Target Job Role',
+        name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role'),
         key: 'targetJobRole',
         type: 'Select',
         values: () => jobRoles?.map(role => ({
@@ -92,16 +94,16 @@ function CreateSubjectModal ({
   return (
     <Modal
       width={700}
-      title="Add subjects"
+      title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
       open
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>
-          Cancel
+          {I18n.t('common.actions.cancel')}
         </Button>,
         <Button key="submit" type="primary" disabled={creationInProgress} onClick={handleOk}>
           <CheckOutlined />
-          Add
+          {I18n.t('common.actions.add')}
         </Button>,
       ]}
     >

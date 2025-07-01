@@ -4067,6 +4067,14 @@ es-ES:
         messages:
           title: Mensajes
         participants:
+          subjects:
+            add_subjects: Añadir temas
+            current_job_role: Rol actual del trabajo
+            email: Correo electrónico
+            first_name: Nombre
+            last_name: Apellido
+            locale: Local
+            target_job_role: Rol de trabajo objetivo
           title: Participantes
         report:
           menu:

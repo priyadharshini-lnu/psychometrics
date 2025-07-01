@@ -4067,6 +4067,14 @@ de:
         messages:
           title: Nachrichten
         participants:
+          subjects:
+            add_subjects: Betreff hinzufügen
+            current_job_role: Aktuelle Berufsrolle
+            email: E-Mail
+            first_name: Vorname
+            last_name: Nachname
+            locale: Schauplatz
+            target_job_role: Zielberufsrolle
           title: Teilnehmer
         report:
           menu:

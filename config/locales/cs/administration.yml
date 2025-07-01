@@ -4067,6 +4067,14 @@ cs:
         messages:
           title: Zprávy
         participants:
+          subjects:
+            add_subjects: Přidat subjekty
+            current_job_role: Aktuální pracovní role
+            email: E-mail
+            first_name: Jméno
+            last_name: Příjmení
+            locale: Lokalita
+            target_job_role: Cílová pracovní role
           title: Účastníci
         report:
           menu:
