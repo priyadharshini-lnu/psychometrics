@@ -15,7 +15,7 @@ module Communications
           workshop_subject = WorkshopSubject.find(communication.workshop_subject_id)
 
           # Only create email if assessment groups match
-          next unless workshop_subject.workshop_invite&.campaign_assessment_group_id ==
+          next unless workshop_subject.workshop&.campaign_assessment_group_id ==
                       communication.campaign_assessment_group_id
 
           communication.emails.create(
