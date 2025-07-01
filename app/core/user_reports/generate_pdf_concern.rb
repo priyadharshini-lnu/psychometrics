@@ -30,7 +30,7 @@ module UserReports::GeneratePdfConcern
     webhook_message = { record_id: record.id, record_type: record.class.name, file_name: report_file_name,
                         file_path: file_path, lang: options[:lang] }
     webhook_message[:notify_user_id] = current_user.id if options[:notify_user]
-    webhook_message[:update_record] = true # options[:update_record] != false
+    webhook_message[:update_record] = options[:update_record] != false
     webhook_message[:admin_job_record_id] = options[:admin_job_record_id] if options[:admin_job_record_id]
 
     faas_option = default_report_export_options.merge(
@@ -58,7 +58,7 @@ module UserReports::GeneratePdfConcern
     )
 
     Faas::UrlToPdf.call!(faas_option)
-    { file_name: report_file_name }
+    { file_name: report_file_name, file_path: file_path }
   end
 
   def make_path
