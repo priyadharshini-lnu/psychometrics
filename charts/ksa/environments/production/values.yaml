@@ -8,7 +8,7 @@ image:
   pullPolicy: IfNotPresent
 
 web:
-  replica: 18
+  replica: 12
 worker:
   replica: 2
 
