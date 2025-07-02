@@ -20,7 +20,7 @@ module Swagger
         },
         contact: {
           name: 'TTE Support',
-          email: 'support@thetalententerprise.com',
+          email: 'mte.support@mercer.com',
           url: 'https://thetalententerprise.com'
         },
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',

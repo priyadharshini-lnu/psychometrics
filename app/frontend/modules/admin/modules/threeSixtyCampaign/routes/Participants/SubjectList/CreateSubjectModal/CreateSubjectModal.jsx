@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { connect } from 'react-redux'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
@@ -12,36 +13,48 @@ import userPresenter from '~/presenters/user'
 import UserAutocomplete from '~/components/UserAutocomplete'
 import { setIn } from '~/utils/immutable'
 import { useResources } from '~/hooks/useResources'
+import { getFeatures } from '~/core/config'
 
-const getTableFields = jobRoles => [
-  { name: 'Email', key: 'email' },
-  { name: 'First Name', key: 'firstName' },
-  { name: 'Last Name', key: 'lastName' },
-  { name: 'Locale', key: 'locale' },
-  {
-    name: 'Current Job Role',
-    key: 'currentJobRole',
-    type: 'Select',
-    values: () => jobRoles?.map(role => ({
-      label: role.name,
-      value: role.name,
-    })) || [],
-  },
-  {
-    name: 'Target Job Role',
-    key: 'targetJobRole',
-    type: 'Select',
-    values: () => jobRoles?.map(role => ({
-      label: role.name,
-      value: role.name,
-    })) || [],
-  },
-]
+const { I18n } = window
+
+const getTableFields = (jobRoles, skillRaterEnabled) => {
+  const fields = [
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email'), key: 'email' },
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'), key: 'firstName' },
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name'), key: 'lastName' },
+    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'), key: 'locale' },
+  ]
+
+  if (skillRaterEnabled) {
+    fields.push(
+      {
+        name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role'),
+        key: 'currentJobRole',
+        type: 'Select',
+        values: () => jobRoles?.map(role => ({
+          label: role.name,
+          value: role.name,
+        })) || [],
+      },
+      {
+        name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role'),
+        key: 'targetJobRole',
+        type: 'Select',
+        values: () => jobRoles?.map(role => ({
+          label: role.name,
+          value: role.name,
+        })) || [],
+      },
+    )
+  }
+
+  return fields
+}
 
 
 const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
 
-export default function CreateSubjectModal ({
+function CreateSubjectModal ({
   closeModal,
   autocompletedUsers,
   fillSubjects,
@@ -50,6 +63,7 @@ export default function CreateSubjectModal ({
   subjects,
   creationInProgress,
   clearForm,
+  features,
 }) {
   const { campaignId, projectId } = useParams()
   useEffect(() => () => {
@@ -75,21 +89,21 @@ export default function CreateSubjectModal ({
   useEffect(() => {
     fetchJobRoles()
   }, [])
-
+  const skillRaterEnabled = features?.skill_rater_enabled
 
   return (
     <Modal
       width={700}
-      title="Add subjects"
+      title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
       open
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>
-          Cancel
+          {I18n.t('common.actions.cancel')}
         </Button>,
         <Button key="submit" type="primary" disabled={creationInProgress} onClick={handleOk}>
           <CheckOutlined />
-          Add
+          {I18n.t('common.actions.add')}
         </Button>,
       ]}
     >
@@ -107,8 +121,18 @@ export default function CreateSubjectModal ({
         </AntForm.Item>
       </Form>
       <Divider />
-      <SpreadSheet entities={subjects} fields={getTableFields(jobRoles)} updateEntities={fillSubjects} />
+      <SpreadSheet
+        entities={subjects}
+        fields={getTableFields(jobRoles, skillRaterEnabled)}
+        updateEntities={fillSubjects}
+      />
       <ErrorAlertBox errors={errors} />
     </Modal>
   )
 }
+
+const mapStateToProps = state => ({
+  features: getFeatures(state),
+})
+
+export default connect(mapStateToProps)(CreateSubjectModal)

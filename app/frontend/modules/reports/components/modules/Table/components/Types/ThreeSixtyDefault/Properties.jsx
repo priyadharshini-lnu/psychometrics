@@ -2,6 +2,7 @@ import { Component } from 'react'
 import Select from 'react-select'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import { Checkbox } from 'antd'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import AppStore from '~/modules/reports/store/AppStore'
@@ -79,6 +80,16 @@ class Properties extends Component {
         <List model={model} onChange={this.onChange} questions={questions} />
         <div className="mtm">
           <PropertyFilter modules={modules} />
+        </div>
+        <div className={styles.divider} />
+        <div className="mtm">
+          <Checkbox
+            value={model.props.randomizeAnswers}
+            onChange={e => this.onChange('randomizeAnswers', e.target.checked)}
+            checked={model.props.randomizeAnswers}
+          >
+            Randomize answers order
+          </Checkbox>
         </div>
         <div className={styles.divider} />
         {modules.length > 1 ? null

@@ -1548,7 +1548,15 @@ ko:
         all: 모두
         assessment_completion_status_code: 평가 완료 상태 코드
         assessment_completion_status_code_hint: 완료 코드가 지정된 경우 사용자의 평가에 이 완료 상태 코드가 있는 경우에만 전송됩니다.
-        body_mustache: "{{{user_link}}} - 기존 사용자를 위한 플랫폼 링크 또는 신규 사용자를 위한 비밀번호 설정을 위한 1회 전용 링크 {{{user_url}}} - user_link와 동일하지만 하이퍼링크 대신 URL만 {{{user_link_qrcode}}} - user_link에서 생성된 QR코드 포함 {{first_name}} - 수신자 이름 {{last_name}} - 수신자 성 {{email}} - 수신자 이메일 {{schedule_start_date}} - 스케줄 시작 날짜 {{chedule_end_date}} - 일정 종료일 {{schedule_end_date}} - 예약 종료일 {{{user_list}} - 예약 완료일\n"
+        body_mustache: |
+          "{{{user_link}}} - 기존 사용자를 위한 플랫폼 링크 또는 신규 사용자를 위한 비밀번호 설정을 위한 1회 전용 링크
+          {{{user_url}}} - user_link와 동일하지만 하이퍼링크 대신 URL만
+          {{{user_link_qrcode}}} - user_link에서 생성된 QR코드 포함
+          {{first_name}} - 수신자 이름
+          {{last_name}} - 수신자 성
+          {{email}} - 수신자 이메일
+          {{schedule_start_date}} - 스케줄 시작 날짜
+          {{schedule_end_date}} - 예약 종료일
         completion: 완료
         delivery_at: 배송 (GST)
         delivery_delay_hours: 배송 지연(시간)
@@ -3373,7 +3381,10 @@ ko:
         add_assessor_form: 평가자 양식 추가
         assessments: 평가
         assessor_forms: 평가자 양식
-        confirm_message: "'%{subject_email}' 이메일을 사용하는 피험자의 참여를 취소하시겠습니까?<br />취소됨으로 표시되면 이 과목은 평가 센터에 참여할 수 없습니다.\n"
+        confirm_message: |
+          "'%{subject_email}' 이메일을 사용하는 피험자의 참여를 취소하시겠습니까?
+          <br />
+          취소됨으로 표시되면 이 과목은 평가 센터에 참여할 수 없습니다.\n"
         confirm_title: 확인 필요
         edit_assessor_form: 평가자 양식 편집
         form_title: 평가 일정 예약
@@ -3717,7 +3728,12 @@ ko:
         modal:
           btn_name: SMS 보내기
           title: SMS 보내기
-        pipetext_details: "{{{first_name}}} - 받는 사람 이름<br />{{{last_name}}} - 수신자 성<br />{{{invite_url}}} - 등록 링크\n"
+        pipetext_details: |
+          "{{{first_name}}} - 받는 사람 이름
+           <br />
+           {{{last_name}}} - 수신자 성
+           <br />
+           {{{invite_url}}} - 등록 링크"
         segment_length_msg: 이 메시지의 예상 세그먼트 수는 %{segment_length}입니다.
         segment_length_range_msg: 이 메시지의 예상 세그먼트 수는 %{min_segment_length}에서 %{max_segment_length} 사이입니다.
       statuses:
@@ -3863,7 +3879,7 @@ ko:
           other: 1행 선택됨
         total:
           one: '합계 : 1'
-          other: '합계 : 1'
+          other: '합계 : {{count}}'
           zero: '합계 : 0'
       more_actions: 더 많은 작업
     taxonomy:
@@ -4053,6 +4069,14 @@ ko:
         messages:
           title: 메시지
         participants:
+          subjects:
+            add_subjects: 주제 추가
+            current_job_role: 현재 직무 역할
+            email: Email
+            first_name: 이름
+            last_name: 성
+            locale: 로캘
+            target_job_role: 대상 직무 역할
           title: 참가자
         report:
           menu:
@@ -4151,5 +4175,3 @@ ko:
       errors:
         update_assessor_for_failure: 연결된 주제 활동이 없으므로 미팅 세부 정보를 추가할 수 없습니다.
     years: 년
-  administration.users.toolbar:
-    title: 도구

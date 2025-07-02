@@ -1915,7 +1915,7 @@ es-ES:
           project: 'Proyecto: %{section_name}'
         subject: Invitación a Lighthouse
       password_change:
-        body: 'Hola %{name}! Su contraseña ha sido cambiada. Si no ha realizado esta solicitud, póngase en contacto con el servicio de asistencia inmediatamente en support@thetalententerprise.com
+        body: 'Hola %{name}! Su contraseña ha sido cambiada. Si no ha realizado esta solicitud, póngase en contacto con el servicio de asistencia inmediatamente en mte.support@mercer.com
 
           '
         regards: 'Saludos, Equipo Lighthouse

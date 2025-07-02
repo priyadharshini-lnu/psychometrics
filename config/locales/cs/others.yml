@@ -1912,7 +1912,7 @@ cs:
           project: 'Projekt: %{section_name}'
         subject: Pozvánka do Lighthouse
       password_change:
-        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese support@thetalententerprise.com
+        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com
 
           '
         regards: 'S pozdravem, tým Lighthouse

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import cs from 'classnames'
 import { connect } from 'react-redux'
+import seedrandom from 'seedrandom'
 import AppStore from '~/modules/reports/store/AppStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import ResultStore from '~/modules/reports/store/ResultStore'
@@ -9,6 +10,7 @@ import { PaginationContext } from './PaginationContext'
 import styles from '../styles.less'
 import { useModulePagination } from '~/hooks/useModulePagination'
 import { SafeHTML } from '~/components/SafeHTML'
+import array from '~/utils/array'
 
 const Question = ({
   model, questions, insertPaginationPage, preview,
@@ -60,6 +62,7 @@ function FilterTable ({
   const getResults = () => {
     if (!ResultStore.realResults) return MOCK_RESULTS
 
+    let results
     if (question.type === 'FactorSelect') {
       const answers = _.get(
         ResultStore, ['results', model.assessment_id, 'resultsByFilter', filter.id, 'questions', question.id, 0],
@@ -68,11 +71,15 @@ function FilterTable ({
 
       const assessment = AppStore.getAssessmentById(model.assessment_id)
       const factors = AppStore.factors[assessment.dimensionId]
-
-      return _.compact(answers.map((id) => {
+      results = _.compact(answers.map((id) => {
         const factor = factors.find(f => f.id === id)
         return factor?.name
       }))
+
+      if (model.props.randomizeAnswers) {
+        results = array.shuffle(results, seedrandom(ResultStore.user.id.toString() + model.id))
+      }
+      return results
     }
 
     const answers = _.get(
@@ -81,7 +88,13 @@ function FilterTable ({
 
     if (!answers) return null
 
-    return _.compact(answers).map(answer => answer[0].value)
+    results = _.compact(answers).map(answer => answer[0].value)
+
+    if (model.props.randomizeAnswers) {
+      results = array.shuffle(results, seedrandom(ResultStore.user.id.toString() + model.id))
+    }
+
+    return results
   }
 
   return (

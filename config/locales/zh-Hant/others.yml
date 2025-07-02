@@ -1900,7 +1900,7 @@ zh-Hant:
           project: 專案：%{section_name}
         subject: 燈塔邀請函
       password_change:
-        body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 support@thetalententerprise.com
+        body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com
 
           '
         regards: 'Lighthouse 團隊

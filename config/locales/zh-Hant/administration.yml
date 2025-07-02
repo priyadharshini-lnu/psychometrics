@@ -1548,7 +1548,15 @@ zh-Hant:
         all: 全部
         assessment_completion_status_code: 評估完成狀態代碼
         assessment_completion_status_code_hint: 如果指定了完成代碼，則只有在使用者的評估具有此完成狀態代碼時才會傳送。
-        body_mustache: "{{{user_link}} - 現有使用者的平台連結，或新使用者設定密碼的一次性連結 {{{user_url}} - 與 user_link 相同，但只有 URL 而非超連結 {{{user_link_qrcode}} - 嵌入由 user_link 產生的 QR Code {{first_name}} - 接收者的名 {{last_name}} - 接收者的姓 {{email}} - 接收者的電子郵件 {{schedule_start_date}} - 排程開始日期 {{schedule_end_date}} - 排程結束日期\n"
+        body_mustache: |
+          "{{{user_link}} - 現有使用者的平台連結，或新使用者設定密碼的一次性連結
+           {{{user_url}} - 與 user_link 相同，但只有 URL 而非超連結
+           {{{user_link_qrcode}} - 嵌入由 user_link 產生的 QR Code
+           {{first_name}} - 接收者的名
+           {{last_name}} - 接收者的姓
+           {{email}} - 接收者的電子郵件
+           {{schedule_start_date}} - 排程開始日期
+           {{schedule_end_date}} - 排程結束日期"
         completion: 完成
         delivery_at: 運費 (GST)
         delivery_delay_hours: 交貨延遲（小時）
@@ -3373,9 +3381,10 @@ zh-Hant:
         add_assessor_form: 新增評稅員表格
         assessments: 評估
         assessor_forms: 評稅員表格
-        confirm_message: '您確定要取消電子郵件為 ''%{subject_email}'' 的受試者的參與資格嗎？<br />一旦標記為取消，該受試者將無法參加評估中心。
-
-          '
+        confirm_message: |
+          '您確定要取消電子郵件為 ''%{subject_email}'' 的受試者的參與資格嗎？
+          <br />
+          一旦標記為取消，該受試者將無法參加評估中心。'
         confirm_title: 需要確認
         edit_assessor_form: 編輯評估員表格
         form_title: 安排評估
@@ -3719,7 +3728,12 @@ zh-Hant:
         modal:
           btn_name: 傳送簡訊
           title: 傳送簡訊
-        pipetext_details: "{{{first_name}} - 收件人的名<br />{{{last_name}} - 收件人姓氏<br />{{{invite_url}} - 註冊連結\n"
+        pipetext_details: |
+          "{{{first_name}} - 收件人的名
+          <br />
+          {{{last_name}} - 收件人姓氏
+          <br />
+          {{{invite_url}} - 註冊連結"
         segment_length_msg: 此訊息的估計區段數是 %{segment_length}。
         segment_length_range_msg: 此訊息的估計區段數介乎 %{min_segment_length} 與 %{max_segment_length} 之間。
       statuses:
@@ -3862,10 +3876,10 @@ zh-Hant:
       entries:
         selected:
           one: 選取 1 行
-          other: 選取 1 行
+          other: 選取 {{count}} 行
         total:
           one: '總數 : 1'
-          other: '總數 : 1'
+          other: '總數 : {{count}}'
           zero: '總數 : 0'
       more_actions: 更多行動
     taxonomy:
@@ -4055,6 +4069,14 @@ zh-Hant:
         messages:
           title: 訊息
         participants:
+          subjects:
+            add_subjects: 新增主題
+            current_job_role: 目前的工作角色
+            email: 電子郵件
+            first_name: 名
+            last_name: 姓
+            locale: 語言環境
+            target_job_role: 目標工作角色
           title: 參與者
         report:
           menu:
@@ -4153,5 +4175,3 @@ zh-Hant:
       errors:
         update_assessor_for_failure: 由於沒有連結的主題活動，因此無法新增會議詳細資訊。
     years: 年數
-  administration.users.toolbar:
-    title: 工具

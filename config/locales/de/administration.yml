@@ -1548,7 +1548,15 @@ de:
         all: Alle
         assessment_completion_status_code: Code für den Abschluss der Beurteilung
         assessment_completion_status_code_hint: Wenn ein Abschlusscode angegeben wird, wird er nur gesendet, wenn die Bewertung des Benutzers diesen Abschlusscode aufweist.
-        body_mustache: "{{{user_link}}} - Link zur Plattform für bestehende Benutzer oder ein einmaliger Link zum Festlegen eines Passworts für neue Benutzer {{user_url}}} - Wie user_link, aber nur die URL anstelle eines Hyperlinks {{user_link_qrcode}} - QR-Code einbetten, der von user_link generiert wurde {{first_name}} - Vorname des Empfängers {{last_name}} - Nachname des Empfängers {{email}} - E-Mail des Empfängers {{schedule_start_date}} - Startdatum des Zeitplans {{schedule_end_date}} - Enddatum des Zeitplans\n"
+        body_mustache: |
+          "{{{user_link}}} - Link zur Plattform für bestehende Benutzer oder ein einmaliger Link zum Festlegen eines Passworts für neue Benutzer
+           {{user_url}}} - Wie user_link, aber nur die URL anstelle eines Hyperlinks
+           {{user_link_qrcode}} - QR-Code einbetten, der von user_link generiert wurde
+           {{first_name}} - Vorname des Empfängers
+           {{last_name}} - Nachname des Empfängers
+           {{email}} - E-Mail des Empfängers
+           {{schedule_start_date}} - Startdatum des Zeitplans
+           {{schedule_end_date}} - Enddatum des Zeitplans"
         completion: Fertigstellung
         delivery_at: Lieferung zum (GST)
         delivery_delay_hours: Lieferverzug (Stunden)
@@ -3373,9 +3381,10 @@ de:
         add_assessor_form: Formular Assessor hinzufügen
         assessments: Beurteilungen
         assessor_forms: Formulare für Assessoren
-        confirm_message: 'Sind Sie sicher, dass Sie die Teilnahme des Betreffs mit der E-Mail ''%{subject_email}'' stornieren möchten?<br />sobald er als storniert markiert ist, kann dieser Teilnehmer nicht mehr am Assessment Center teilnehmen.
-
-          '
+        confirm_message: |
+          'Sind Sie sicher, dass Sie die Teilnahme des Betreffs mit der E-Mail ''%{subject_email}'' stornieren möchten?
+          <br />
+          sobald er als storniert markiert ist, kann dieser Teilnehmer nicht mehr am Assessment Center teilnehmen.'
         confirm_title: Bestätigung erforderlich
         edit_assessor_form: Prüferformular bearbeiten
         form_title: Beurteilungen einplanen
@@ -3719,7 +3728,12 @@ de:
         modal:
           btn_name: SMS versenden
           title: SMS versenden
-        pipetext_details: "{{first_name}}} - Vorname des Empfängers<br />{{last_name}}} - Nachname des Empfängers<br />{{invite_url}} - Registrierungslink\n"
+        pipetext_details: |
+          "{{first_name}}} - Vorname des Empfängers
+          <br />
+          {{last_name}}} - Nachname des Empfängers
+          <br />
+          {{invite_url}} - Registrierungslink"
         segment_length_msg: Die geschätzte Anzahl der Segmente für diese Nachricht ist %{segment_length}.
         segment_length_range_msg: Die geschätzte Anzahl der Segmente für diese Nachricht liegt zwischen %{min_segment_length} und %{max_segment_length}.
       statuses:
@@ -3862,10 +3876,10 @@ de:
       entries:
         selected:
           one: 1 Zeile ausgewählt
-          other: ''
+          other: "{{count}} Zeilen ausgewählt"
         total:
           one: 'Gesamt : 1'
-          other: ''
+          other: 'Gesamt : {{count}}'
           zero: 'Gesamt : 0'
       more_actions: Weitere Aktionen
     taxonomy:
@@ -4055,6 +4069,14 @@ de:
         messages:
           title: Nachrichten
         participants:
+          subjects:
+            add_subjects: Betreff hinzufügen
+            current_job_role: Aktuelle Berufsrolle
+            email: E-Mail
+            first_name: Vorname
+            last_name: Nachname
+            locale: Schauplatz
+            target_job_role: Zielberufsrolle
           title: Teilnehmer
         report:
           menu:
@@ -4153,5 +4175,3 @@ de:
       errors:
         update_assessor_for_failure: Besprechungsdetails können nicht hinzugefügt werden, da es keine verknüpfte thematische Aktivität gibt.
     years: Jahre
-  administration.users.toolbar:
-    title: Werkzeuge

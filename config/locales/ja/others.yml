@@ -1913,7 +1913,7 @@ ja:
           project: プロジェクト：%{section_name}。
         subject: ライトハウスへの招待
       password_change:
-        body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに support@thetalententerprise.com までご連絡ください。
+        body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに mte.support@mercer.com までご連絡ください。
 
           '
         regards: 'ライトハウス・チーム

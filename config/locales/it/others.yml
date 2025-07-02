@@ -1902,7 +1902,7 @@ it:
           project: 'Progetto: %{section_name}'
         subject: Invito al Faro
       password_change:
-        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo support@thetalententerprise.com
+        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo mte.support@mercer.com
 
           '
         regards: 'Saluti, team Lighthouse

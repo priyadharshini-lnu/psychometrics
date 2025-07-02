@@ -29,7 +29,7 @@ describe WorkshopSubject, type: :model do
   describe '#send_workshop_booked_email' do
     let(:campaign) { create(:campaign) }
     let(:assessment_group) { create(:campaign_assessment_group, campaign: campaign, group_type: 1) }
-    let(:workshop) { create(:workshop, campaign: campaign) }
+    let(:workshop) { create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group) }
     let(:workshop_invite) do
       create(:workshop_invite, workshops: [workshop], campaign: campaign, campaign_assessment_group: assessment_group)
     end
@@ -61,6 +61,7 @@ describe WorkshopSubject, type: :model do
 
       it 'does not send email for different assessment group' do
         other_assessment_group = create(:campaign_assessment_group, campaign: campaign, group_type: 1)
+        workshop.update!(campaign_assessment_group: other_assessment_group)
         other_workshop_invite = create(:workshop_invite,
                                        workshops: [workshop],
                                        campaign: campaign,
@@ -109,7 +110,7 @@ describe WorkshopSubject, type: :model do
   describe '#send_workshop_cancelled_email' do
     let(:campaign) { create(:campaign) }
     let(:assessment_group) { create(:campaign_assessment_group, campaign: campaign, group_type: 1) }
-    let(:workshop) { create(:workshop, campaign: campaign) }
+    let(:workshop) { create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group) }
     let(:workshop_invite) do
       create(:workshop_invite, workshops: [workshop], campaign: campaign, campaign_assessment_group: assessment_group)
     end
@@ -157,6 +158,7 @@ describe WorkshopSubject, type: :model do
 
       it 'does not send email for different assessment group' do
         other_assessment_group = create(:campaign_assessment_group, campaign: campaign, group_type: 0)
+        workshop.update!(campaign_assessment_group: other_assessment_group)
         other_workshop_invite = create(:workshop_invite,
                                        workshops: [workshop],
                                        campaign: campaign,

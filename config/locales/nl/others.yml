@@ -1899,7 +1899,7 @@ nl:
           project: 'Project: %{section_name}'
         subject: Uitnodiging voor Lighthouse
       password_change:
-        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via support@thetalententerprise.com
+        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via mte.support@mercer.com
 
           '
         regards: 'Groeten, Lighthouse Team

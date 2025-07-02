@@ -1548,7 +1548,15 @@ nl:
         all: Alle
         assessment_completion_status_code: Statuscode voltooiing beoordeling
         assessment_completion_status_code_hint: Als er een voltooiingscode wordt gespecificeerd, dan zal deze alleen worden verzonden als de beoordeling van de gebruiker deze voltooiingsstatuscode heeft.
-        body_mustache: "{{{user_link}} - Link naar het Platform voor bestaande gebruikers of een eenmalige link om een wachtwoord in te stellen voor nieuwe gebruikers {{user_url}} - Hetzelfde als user_link maar dan alleen de URL in plaats van een hyperlink {{{user_link_qrcode}} - QR Code insluiten die is gegenereerd vanuit user_link {{first_name}} - Voornaam ontvanger {{last_name}} - Achternaam ontvanger {{email}} - E-mail ontvanger {{schedule_start_date}} - Begindatum planning {{schedule_end_date}} - Einddatum planning\n"
+        body_mustache: |
+          "{{{user_link}} - Link naar het Platform voor bestaande gebruikers of een eenmalige link om een wachtwoord in te stellen voor nieuwe gebruikers
+          {{user_url}} - Hetzelfde als user_link maar dan alleen de URL in plaats van een hyperlink
+          {{{user_link_qrcode}} - QR Code insluiten die is gegenereerd vanuit user_link
+          {{first_name}} - Voornaam ontvanger
+          {{last_name}} - Achternaam ontvanger
+          {{email}} - E-mail ontvanger
+          {{schedule_start_date}} - Begindatum planning
+          {{schedule_end_date}} - Einddatum planning"
         completion: Voltooiing
         delivery_at: Levering bij (GST)
         delivery_delay_hours: Vertraging bij levering (uren)
@@ -3373,9 +3381,10 @@ nl:
         add_assessor_form: Formulier voor beoordelaar toevoegen
         assessments: Beoordeling
         assessor_forms: Formulieren voor taxateurs
-        confirm_message: 'Weet je zeker dat je de deelname van de proefpersoon met het e-mailadres ''%{subject_email}'' wilt annuleren?<br />eenmaal gemarkeerd als geannuleerd, zal deze proefpersoon niet meer kunnen deelnemen aan het assessment.
-
-          '
+        confirm_message: |
+          'Weet je zeker dat je de deelname van de proefpersoon met het e-mailadres ''%{subject_email}'' wilt annuleren?
+          <br />
+          eenmaal gemarkeerd als geannuleerd, zal deze proefpersoon niet meer kunnen deelnemen aan het assessment.'
         confirm_title: Bevestiging vereist
         edit_assessor_form: Formulier voor beoordelaar bewerken
         form_title: Plan beoordelingen
@@ -3719,7 +3728,12 @@ nl:
         modal:
           btn_name: SMS verzenden
           title: SMS verzenden
-        pipetext_details: "{{first_name}} - Voornaam ontvanger<br />{{last_name}} - Achternaam ontvanger<br />{{invite_url}} - Registratielink\n"
+        pipetext_details: |
+          "{{first_name}} - Voornaam ontvanger
+          <br />
+          {{last_name}} - Achternaam ontvanger
+          <br />
+          {{invite_url}} - Registratielink"
         segment_length_msg: Geschat aantal segmenten voor dit bericht is %{segment_length}.
         segment_length_range_msg: Geschat aantal segmenten voor dit bericht ligt tussen %{min_segment_length} en %{max_segment_length}.
       statuses:
@@ -3862,10 +3876,10 @@ nl:
       entries:
         selected:
           one: 1 rij geselecteerd
-          other: ''
+          other: "{{count}} rijen geselecteerd"
         total:
           one: 'Totaal : 1'
-          other: ''
+          other: 'Totaal : {{count}}'
           zero: 'Totaal : 0'
       more_actions: Meer acties
     taxonomy:
@@ -4055,6 +4069,14 @@ nl:
         messages:
           title: Berichten
         participants:
+          subjects:
+            add_subjects: Onderwerpen toevoegen
+            current_job_role: Huidige Functierol
+            email: Email
+            first_name: Voornaam
+            last_name: Achternaam
+            locale: Lokaal
+            target_job_role: Doel Functierol
           title: Deelnemers
         report:
           menu:
@@ -4153,5 +4175,3 @@ nl:
       errors:
         update_assessor_for_failure: Vergadergegevens kunnen niet worden toegevoegd omdat er geen gekoppelde onderwerpactiviteit is.
     years: Jaren
-  administration.users.toolbar:
-    title: Gereedschap

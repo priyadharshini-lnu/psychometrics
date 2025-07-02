@@ -20,13 +20,13 @@ export const Dashboard = (props) => {
   const [params] = useSearchParams()
   const navigate = useNavigate()
 
-  const currentLocale = params.get('lang') || defaultLocale
+  const currentLocale = params.get('assessmentLang') || defaultLocale
 
   const showOptions = defaultLocale === currentLocale
 
   useEffect(() => {
-    if (!params.get('lang') && defaultLocale) {
-      navigate(`?lang=${defaultLocale}`)
+    if (!params.get('assessmentLang') && defaultLocale) {
+      navigate(`?assessmentLang=${defaultLocale}`)
     }
   }, [defaultLocale])
 

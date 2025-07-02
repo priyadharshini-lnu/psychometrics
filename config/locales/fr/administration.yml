@@ -1548,7 +1548,15 @@ fr:
         all: Tous
         assessment_completion_status_code: Code du statut d'achèvement de l'évaluation
         assessment_completion_status_code_hint: Si un code d'achèvement est spécifié, il ne sera envoyé que si l'évaluation de l'utilisateur a ce code d'achèvement.
-        body_mustache: "{{{user_link}}} - Lien vers la plateforme pour les utilisateurs existants ou un lien unique pour définir un mot de passe pour les nouveaux utilisateurs {{user_url}} - Identique à user_link mais uniquement l'URL au lieu d'un hyperlien {{user_link_qrcode}}} - Intégrer le code QR généré par user_link {{first_name}} - Prénom du destinataire {{last_name}} - Nom du destinataire {{email}} - Courriel du destinataire {{schedule_start_date}} - Date de début de la programmation {{schedule_end_date}} - Date de fin de la programmation\n"
+        body_mustache: |
+          "{{{user_link}}} - Lien vers la plateforme pour les utilisateurs existants ou un lien unique pour définir un mot de passe pour les nouveaux utilisateurs
+           {{user_url}} - Identique à user_link mais uniquement l'URL au lieu d'un hyperlien
+           {{user_link_qrcode}}} - Intégrer le code QR généré par user_link
+           {{first_name}} - Prénom du destinataire
+           {{last_name}} - Nom du destinataire
+           {{email}} - Courriel du destinataire
+           {{schedule_start_date}} - Date de début de la programmation
+           {{schedule_end_date}} - Date de fin de la programmation"
         completion: Achèvement
         delivery_at: Livraison à (GST)
         delivery_delay_hours: Délai de livraison (heures)
@@ -3373,9 +3381,10 @@ fr:
         add_assessor_form: Ajouter un formulaire pour l'évaluateur
         assessments: Évaluations
         assessor_forms: Formulaires de l'évaluateur
-        confirm_message: 'Êtes-vous sûr de vouloir annuler la participation du sujet dont l''adresse électronique est "%{subject_email}" ?<br />une fois marqué comme annulé, ce sujet ne pourra plus participer à l''assessment center.
-
-          '
+        confirm_message: |
+          'Êtes-vous sûr de vouloir annuler la participation du sujet dont l''adresse électronique est "%{subject_email}" ?
+          <br />
+          une fois marqué comme annulé, ce sujet ne pourra plus participer à l''assessment center.'
         confirm_title: Confirmation requise
         edit_assessor_form: Modifier le formulaire de l'évaluateur
         form_title: Planifier les évaluations
@@ -3719,7 +3728,12 @@ fr:
         modal:
           btn_name: Envoyer un SMS
           title: Envoyer un SMS
-        pipetext_details: "{{{first_name}}} - Prénom du destinataire<br />{{{last_name}} - Nom de famille du destinataire<br />{{{invite_url}}} - Lien d'inscription\n"
+        pipetext_details: |
+          "{{{first_name}}} - Prénom du destinataire
+          <br />
+          {{{last_name}} - Nom de famille du destinataire
+          <br />
+          {{{invite_url}}} - Lien d'inscription"
         segment_length_msg: Le nombre estimé de segments pour ce message est %{segment_length}.
         segment_length_range_msg: Le nombre estimé de segments pour ce message est compris entre %{min_segment_length} et %{max_segment_length}.
       statuses:
@@ -3861,13 +3875,11 @@ fr:
     table:
       entries:
         selected:
-          many:
           one: 1 ligne sélectionnée
-          other: ''
+          other: "{{count}} lignes sélectionnées"
         total:
-          many:
           one: 'Total : 1'
-          other: ''
+          other: 'Total : {{count}}'
           zero: 'Total : 0'
       more_actions: Plus d'actions
     taxonomy:
@@ -4057,6 +4069,14 @@ fr:
         messages:
           title: Messages
         participants:
+          subjects:
+            add_subjects: Ajouter des sujets
+            current_job_role: Rôle professionnel actuel
+            email: Email
+            first_name: Prénom
+            last_name: Nom de famille
+            locale: Localité
+            target_job_role: Rôle professionnel cible
           title: Les participants
         report:
           menu:
@@ -4155,5 +4175,3 @@ fr:
       errors:
         update_assessor_for_failure: Les détails de la réunion ne peuvent pas être ajoutés car il n'y a pas d'activité liée au sujet.
     years: Années
-  administration.users.toolbar:
-    title: Outils
