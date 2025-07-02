@@ -114,7 +114,7 @@ class BaseController < ActionController::Base
   end
 
   def send_tmp_file(file_path, options = {})
-    if file_path.start_with?(Rails.root.join('tmp').to_s)
+    if file_path&.start_with?(Rails.root.join('tmp').to_s)
       send_file file_path, options
     else
       head :not_found

@@ -58,7 +58,7 @@ module UserReports::GeneratePdfConcern
     )
 
     Faas::UrlToPdf.call!(faas_option)
-    { file_name: report_file_name, file_path: file_path }
+    { file_name: report_file_name }
   end
 
   def make_path
