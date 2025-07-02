@@ -2060,16 +2060,18 @@ de:
       all: Alle
       appearance: Erscheinungsbild
       appearance_hint: Um das Erscheinungsbild zu ändern, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
+      appearance_success: Erscheinungsbild-Einstellungen erfolgreich gespeichert
       background_image: Hintergrundbild
       behavioral_skills: Verhaltenstechnische Fertigkeiten
       client_skills: Client-Fähigkeiten
+      details_updated: IDP-Details erfolgreich aktualisiert
       edit_template: IDP-Vorlage bearbeiten
       enter_template_description: Beschreibung
       enter_template_description_error: Die Beschreibung der Vorlage ist erforderlich.
       enter_template_name: Name
       enter_template_name_error: Name der Vorlage ist erforderlich
       errors:
-        update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist. Die Änderungen des Erscheinungsbildes wurden gespeichert.
+        update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist.
       fields:
         assigned_data: Zugewiesene Daten
         completion_date: Datum der Fertigstellung
@@ -2109,6 +2111,11 @@ de:
       show_reflections: Reflektionen zeigen
       skill_gap_report: Bericht über das Qualifikationsdefizit
       skills: Fertigkeiten
+      skills_updated: IDP Skills erfolgreich aktualisiert
+      status:
+        draft: Entwurf
+        published: Veröffentlicht
+      status_updated: IDP-Status erfolgreich aktualisiert
       subtitle_text: Text des Untertitels
       tab:
         development_actions: Entwicklungspolitische Maßnahmen

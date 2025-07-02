@@ -1679,6 +1679,7 @@ zh-Hant:
       import: 進口
       insert: 插入
       ok: OK
+      publish: 發表
       remove: 移除
       reset: 重設
       resolve: 決心
@@ -1691,6 +1692,7 @@ zh-Hant:
       start: 開始
       submit: 提交
       unarchive: 未歸檔
+      unpublish: 取消出版
       unresolve: 未解決
       update: 更新
       upload: 上傳

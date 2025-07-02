@@ -418,6 +418,7 @@ vi:
       copy: Sao chép
       delete: Xóa bỏ
       edit: Biên tập
+      publish: Xuất bản
       remove: Di dời
       reset: Cài lại
       resolve: Giải quyết
@@ -427,6 +428,7 @@ vi:
       send: Gửi
       start: Bắt đầu
       unarchive: Bỏ lưu trữ
+      unpublish: Hủy đăng
       unresolve: Chưa giải quyết
       update: Cập nhật
       upload: Tải lên

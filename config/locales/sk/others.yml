@@ -424,6 +424,7 @@ sk:
       copy: Kopírovať
       delete: Odstrániť
       edit: Upraviť
+      publish: Publikovať
       remove: Odstránenie stránky
       reset: Obnovenie
       resolve: Vyriešiť
@@ -433,6 +434,7 @@ sk:
       send: Odoslať
       start: Štart
       unarchive: Zrušiť archiváciu
+      unpublish: Zrušenie zverejnenia
       unresolve: Neriešené
       update: Aktualizácia
       upload: Nahrať

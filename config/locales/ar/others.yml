@@ -454,6 +454,7 @@ ar:
       copy: نسخ
       delete: حذف
       edit: تعديل
+      publish: النشر
       remove: إزالة
       reset: إعادة
       resolve: حل
@@ -464,6 +465,7 @@ ar:
       start: ابدأ
       submit: إرسال
       unarchive: أخرج من الأرشيف
+      unpublish: إلغاء النشر
       unresolve: إلغاء الحل
       update: تحديث
       upload: تحميل

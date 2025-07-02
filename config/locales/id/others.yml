@@ -424,6 +424,7 @@ id:
       copy: Salin
       delete: Menghapus
       edit: Sunting
+      publish: Menerbitkan
       remove: Menghapus
       reset: Atur ulang
       resolve: Menyelesaikan
@@ -433,6 +434,7 @@ id:
       send: Kirim
       start: Mulai
       unarchive: Tidak diarsipkan
+      unpublish: Batalkan penerbitan
       unresolve: Tidak terselesaikan
       update: Memperbarui
       upload: Unggah

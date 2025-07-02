@@ -1692,6 +1692,7 @@ ja:
       import: 輸入
       insert: 挿入
       ok: OK
+      publish: 出版
       remove: 削除
       reset: リセット
       resolve: 解決
@@ -1704,6 +1705,7 @@ ja:
       start: 開始
       submit: 投稿する
       unarchive: アーカイブを解除
+      unpublish: 未発表
       unresolve: 未解決にする
       update: 更新
       upload: アップロード

@@ -424,6 +424,7 @@ en-US:
       copy: Copy
       delete: Delete
       edit: Edit
+      publish: Publish
       remove: Remove
       reset: Reset
       resolve: Resolve
@@ -434,6 +435,7 @@ en-US:
       start: Start
       submit: Submit
       unarchive: Unarchive
+      unpublish: Unpublish
       unresolve: Unresolve
       update: Update
       upload: Upload

@@ -2060,16 +2060,18 @@ it:
       all: Tutti
       appearance: Aspetto
       appearance_hint: Per modificare l'aspetto, salvare prima il modello IDP per abilitare queste impostazioni.
+      appearance_success: Impostazioni dell'aspetto salvate con successo
       background_image: Immagine di sfondo
       behavioral_skills: Abilità comportamentali
       client_skills: Competenze del cliente
+      details_updated: Dettagli IDP aggiornati con successo
       edit_template: Modifica del modello IDP
       enter_template_description: Descrizione
       enter_template_description_error: La descrizione del modello è necessaria.
       enter_template_name: Nome
       enter_template_name_error: Il nome del modello è obbligatorio
       errors:
-        update: Aggiornamento non consentito perché il modello IDP è già associato a un piano IDP utente. Le modifiche all'aspetto sono state salvate.
+        update: Aggiornamento non consentito perché il modello IDP è già associato a un piano IDP utente.
       fields:
         assigned_data: Dati assegnati
         completion_date: Data di completamento
@@ -2109,6 +2111,11 @@ it:
       show_reflections: Mostra Riflessioni
       skill_gap_report: Rapporto sul divario di competenze
       skills: Competenze
+      skills_updated: Competenze IDP aggiornate con successo
+      status:
+        draft: Bozza
+        published: Pubblicato
+      status_updated: Stato IDP aggiornato con successo
       subtitle_text: Testo del sottotitolo
       tab:
         development_actions: Azioni di sviluppo

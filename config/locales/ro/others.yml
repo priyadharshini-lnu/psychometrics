@@ -425,6 +425,7 @@ ro:
       copy: Copiați
       delete: Ștergeți
       edit: Editare
+      publish: Publicare
       remove: Eliminați
       reset: Resetare
       resolve: Rezolvați
@@ -434,6 +435,7 @@ ro:
       send: Trimiteți
       start: Start
       unarchive: Dezarhivare
+      unpublish: Nepublicați
       unresolve: Nerezolvat
       update: Actualizare
       upload: Încărcare

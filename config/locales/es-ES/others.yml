@@ -1694,6 +1694,7 @@ es-ES:
       import: Importar
       insert: Inserte
       ok: OK
+      publish: Publique
       remove: Eliminar
       reset: Restablecer
       resolve: Resolver
@@ -1706,6 +1707,7 @@ es-ES:
       start: Iniciar
       submit: Enviar
       unarchive: Sacar del archivo
+      unpublish: Anule la publicación de
       unresolve: Deshacer la resolución
       update: Actualizar
       upload: Subir

@@ -454,6 +454,7 @@ zh-HK:
       copy: 複製
       delete: 刪除
       edit: 編輯
+      publish: 發表
       remove: 刪除
       reset: 重設
       resolve: 解決
@@ -464,6 +465,7 @@ zh-HK:
       start: 開始
       submit: 提交
       unarchive: 取消存檔
+      unpublish: 取消出版
       unresolve: 未解決
       update: 更新
       upload: 上載

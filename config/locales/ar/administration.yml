@@ -2060,16 +2060,18 @@ ar:
       all: All
       appearance: المظهر
       appearance_hint: لتعديل المظهر، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
+      appearance_success: تم حفظ إعدادات المظهر بنجاح
       background_image: صورة الخلفية
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
+      details_updated: تم تحديث تفاصيل IDP بنجاح
       edit_template: Edit IDP Template
       enter_template_description: Description
       enter_template_description_error: Template description is required.
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
-        update: التحديث غير مسموح به لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم. تم حفظ تغييرات المظهر.
+        update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
         assigned_data: البيانات المعينة
         completion_date: تاريخ الانتهاء
@@ -2109,6 +2111,11 @@ ar:
       show_reflections: عرض الانعكاسات
       skill_gap_report: Skill Gap Report
       skills: المهارات
+      skills_updated: تم تحديث مهارات المشردين داخلياً بنجاح
+      status:
+        draft: المسودة
+        published: منشورة
+      status_updated: تم تحديث حالة IDP بنجاح
       subtitle_text: نص الترجمة
       tab:
         development_actions: إجراءات التنمية

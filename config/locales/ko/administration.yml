@@ -2060,16 +2060,18 @@ ko:
       all: 모두
       appearance: 모양
       appearance_hint: 모양을 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
+      appearance_success: 모양 설정이 성공적으로 저장됨
       background_image: 배경 이미지
       behavioral_skills: 행동 기술
       client_skills: 클라이언트 기술
+      details_updated: IDP 세부 정보 업데이트 성공
       edit_template: IDP 템플릿 편집
       enter_template_description: 설명
       enter_template_description_error: 템플릿 설명은 필수입니다.
       enter_template_name: 이름
       enter_template_name_error: 템플릿 이름은 필수입니다
       errors:
-        update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다. 모양 변경 사항이 저장되었습니다.
+        update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
         assigned_data: 할당된 데이터
         completion_date: 완료 날짜
@@ -2109,6 +2111,11 @@ ko:
       show_reflections: 반사 표시
       skill_gap_report: 기술 격차 보고서
       skills: 기술
+      skills_updated: IDP 스킬 업데이트 성공
+      status:
+        draft: 초안
+        published: 게시됨
+      status_updated: IDP 상태 업데이트 성공
       subtitle_text: 자막 텍스트
       tab:
         development_actions: 개발 작업

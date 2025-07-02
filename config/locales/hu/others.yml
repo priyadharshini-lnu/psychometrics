@@ -424,6 +424,7 @@ hu:
       copy: Másolás
       delete: Törölje a  címet
       edit: Szerkesztés
+      publish: Közzététel
       remove: Távolítsa el a
       reset: Reset
       resolve: Feloldás
@@ -433,6 +434,7 @@ hu:
       send: Küldje el a
       start: Indítsa el a  oldalt
       unarchive: Unarchive
+      unpublish: Unpublish
       unresolve: Megoldhatatlan
       update: Frissítés
       upload: Feltöltés

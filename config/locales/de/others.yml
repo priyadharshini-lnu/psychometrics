@@ -1702,6 +1702,7 @@ de:
       import: Importieren
       insert: Einfügen
       ok: OK
+      publish: veröffentlichen.
       remove: Entfernen
       reset: Rücksetzen
       resolve: Beschließen
@@ -1714,6 +1715,7 @@ de:
       start: Starten
       submit: Einreichen
       unarchive: Dearchivieren
+      unpublish: Unveröffentlicht
       unresolve: Unresolve
       update: Aktualisieren
       upload: Hochladen

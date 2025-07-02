@@ -5,7 +5,7 @@ import {
 import debounce from 'lodash/debounce'
 import {
   CategorizedSkills,
-} from 'modules/admin/modules/client/routes/Client/routes/Project/routes/Idp/IdpList/IDPTemplateForm'
+} from './SkillsForm'
 import { useResources } from '~/hooks/useResources'
 import { Skill as SkillType } from '~/modules/admin/modules/client/core/skills'
 

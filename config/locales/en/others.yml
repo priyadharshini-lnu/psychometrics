@@ -1729,6 +1729,7 @@ en:
       import: Import
       insert: Insert
       ok: OK
+      publish: Publish
       reject: Reject
       remove: Remove
       reset: Reset
@@ -1744,6 +1745,7 @@ en:
       start: Start
       submit: Submit
       unarchive: Unarchive
+      unpublish: Unpublish
       unresolve: Unresolve
       update: Update
       upload: Upload

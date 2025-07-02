@@ -1680,6 +1680,7 @@ fr:
       import: Importation
       insert: Insérer
       ok: OK
+      publish: Publier
       remove: Retirer
       reset: Remise à zéro
       resolve: Résoudre
@@ -1692,6 +1693,7 @@ fr:
       start: Démarrage
       submit: Soumettre
       unarchive: Désarchiver
+      unpublish: Dépublier
       unresolve: Non résolu
       update: Mise à jour
       upload: Télécharger

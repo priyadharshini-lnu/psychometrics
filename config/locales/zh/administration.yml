@@ -2060,16 +2060,18 @@ zh:
       all: 全部
       appearance: 外观
       appearance_hint: 要修改外观，请先保存 IDP 模板，以启用这些设置。
+      appearance_success: 成功保存外观设置
       background_image: 背景图片
       behavioral_skills: 行为技能
       client_skills: 客户技能
+      details_updated: 成功更新 IDP 详情
       edit_template: 编辑 IDP 模板
       enter_template_description: 说明
       enter_template_description_error: 需要模板说明。
       enter_template_name: 名称
       enter_template_name_error: 模板名称为必填项
       errors:
-        update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。外观更改已保存。
+        update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
         assigned_data: 指定数据
         completion_date: 完成日期
@@ -2109,6 +2111,11 @@ zh:
       show_reflections: 展示反思
       skill_gap_report: 技能差距报告
       skills: 技能
+      skills_updated: IDP 技能更新成功
+      status:
+        draft: 草案
+        published: 已出版
+      status_updated: IDP 状态更新成功
       subtitle_text: 字幕文本
       tab:
         development_actions: 发展行动

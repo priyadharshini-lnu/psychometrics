@@ -1213,6 +1213,7 @@ as: :simulation_progress_notification
             jsonapi_resources :idp_templates, only: %i[index create update destroy show],
               controller: 'projects/idp_templates' do
                 post :uploads, on: :member
+                post :update_appearance, on: :member
                 post :update_reflection_questions, on: :member
                 post :update_instructions, on: :member
               end

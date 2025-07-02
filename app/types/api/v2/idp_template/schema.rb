@@ -17,21 +17,12 @@ module Api
             attribute[:technical_global_tags].array(:string)
             attribute[:technical_client_tags].array(:string)
             attribute[:self_rating_enabled].filled(:bool)
-            attribute[:translations].hash do
-              optional(:title_text).maybe(:string)
-              optional(:subtitle_text).maybe(:string)
-            end
 
-            optional(:reflection_questions).array(:hash) do
-              required(:reflection_question_id).filled(:string)
-              required(:mandatory).filled(:bool)
-              optional(:min_words).maybe(:integer)
-              optional(:max_words).maybe(:integer)
-            end
             optional(:behavioral_global_skill_settings).maybe(:string)
             optional(:behavioral_client_skill_settings).maybe(:string)
             optional(:technical_global_skill_settings).maybe(:string)
             optional(:technical_client_skill_settings).maybe(:string)
+            optional(:status).maybe(:string)
           end
         end
 
@@ -42,6 +33,10 @@ module Api
               required(:mandatory).filled(:bool)
               optional(:min_words).maybe(:integer)
               optional(:max_words).maybe(:integer)
+              optional(:translations).hash do
+                optional(:title_text).maybe(:string)
+                optional(:subtitle_text).maybe(:string)
+              end
             end
           end
         end
@@ -53,32 +48,18 @@ module Api
           end
         end
 
-        def self.update_request
+        def self.create_request
           json_api_attributes do
-            optional(:name).maybe(:string)
-            optional(:description).maybe(:string)
-            optional(:behavioural_global_tags).array(:string)
-            optional(:behavioural_client_tags).array(:string)
-            optional(:technical_global_tags).array(:string)
-            optional(:technical_client_tags).array(:string)
+            required(:name).filled(:string)
+            required(:description).filled(:string)
             optional(:self_rating_enabled).maybe(:bool)
-            optional(:reflection_questions).array(:hash) do
-              required(:reflection_question_id).filled(:string)
-              required(:mandatory).filled(:bool)
-              optional(:min_words).maybe(:integer)
-              optional(:max_words).maybe(:integer)
-            end
-            optional(:behavioral_global_skill_settings).maybe(:string)
-            optional(:behavioral_client_skill_settings).maybe(:string)
-            optional(:technical_global_skill_settings).maybe(:string)
-            optional(:technical_client_skill_settings).maybe(:string)
           end
         end
 
         def self.relationships(_)
           [
             { name: :skills, resource: :skills, relationship: :many, required: false, allowed_blank: true },
-            { name: :project, resource: :clients, relationship: :one, required: true },
+            { name: :project, resource: :clients, relationship: :one, required: false },
             { name: :report, resource: :reports, relationship: :one, required: false, allowed_blank: true }
           ]
         end

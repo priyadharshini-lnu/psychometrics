@@ -1680,6 +1680,7 @@ it:
       import: Importazione
       insert: Inserire
       ok: OK
+      publish: Pubblicare
       remove: Rimuovere
       reset: Reset
       resolve: Risolvere
@@ -1692,6 +1693,7 @@ it:
       start: Inizio
       submit: Invia
       unarchive: Disarchivio
+      unpublish: Non pubblicare
       unresolve: Non risolvere
       update: Aggiornamento
       upload: Caricare

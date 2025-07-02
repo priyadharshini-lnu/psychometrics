@@ -1679,6 +1679,7 @@ nl:
       import: Importeren
       insert: Invoegen
       ok: OK
+      publish: Publiceer
       remove: Verwijder
       reset: Reset
       resolve: Oplossen
@@ -1690,6 +1691,7 @@ nl:
       send: Stuur
       start: Start
       unarchive: Unarchive
+      unpublish: Verwijder
       unresolve: Niet oplossen
       update: Update
       upload: Uploaden

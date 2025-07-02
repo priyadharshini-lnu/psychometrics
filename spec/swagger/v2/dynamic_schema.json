@@ -15080,9 +15080,7 @@
                       "nullable": false
                     }
                   },
-                  "required": [
-                    "data"
-                  ],
+                  "required": [],
                   "nullable": false
                 },
                 "report": {
@@ -15109,9 +15107,7 @@
                   "nullable": false
                 }
               },
-              "required": [
-                "project"
-              ],
+              "required": [],
               "nullable": false
             },
             "attributes": {
@@ -15161,51 +15157,6 @@
                   "type": "boolean",
                   "nullable": false
                 },
-                "translations": {
-                  "type": "object",
-                  "properties": {
-                    "title_text": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "subtitle_text": {
-                      "type": "string",
-                      "nullable": true
-                    }
-                  },
-                  "required": [],
-                  "nullable": false
-                },
-                "reflection_questions": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "reflection_question_id": {
-                        "type": "string",
-                        "nullable": false
-                      },
-                      "mandatory": {
-                        "type": "boolean",
-                        "nullable": false
-                      },
-                      "min_words": {
-                        "type": "integer",
-                        "nullable": true
-                      },
-                      "max_words": {
-                        "type": "integer",
-                        "nullable": true
-                      }
-                    },
-                    "required": [
-                      "reflection_question_id",
-                      "mandatory"
-                    ],
-                    "nullable": false
-                  },
-                  "nullable": false
-                },
                 "behavioral_global_skill_settings": {
                   "type": "string",
                   "nullable": true
@@ -15221,6 +15172,10 @@
                 "technical_client_skill_settings": {
                   "type": "string",
                   "nullable": true
+                },
+                "status": {
+                  "type": "string",
+                  "nullable": true
                 }
               },
               "required": [
@@ -15230,8 +15185,7 @@
                 "behavioural_client_tags",
                 "technical_global_tags",
                 "technical_client_tags",
-                "self_rating_enabled",
-                "translations"
+                "self_rating_enabled"
               ],
               "nullable": false
             }
@@ -15239,7 +15193,6 @@
           "required": [
             "id",
             "type",
-            "relationships",
             "attributes"
           ],
           "nullable": false
@@ -15843,9 +15796,7 @@
                     "nullable": false
                   }
                 },
-                "required": [
-                  "data"
-                ],
+                "required": [],
                 "nullable": false
               },
               "report": {
@@ -15872,9 +15823,7 @@
                 "nullable": false
               }
             },
-            "required": [
-              "project"
-            ],
+            "required": [],
             "nullable": false
           },
           "attributes": {
@@ -15924,51 +15873,6 @@
                 "type": "boolean",
                 "nullable": false
               },
-              "translations": {
-                "type": "object",
-                "properties": {
-                  "title_text": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "subtitle_text": {
-                    "type": "string",
-                    "nullable": true
-                  }
-                },
-                "required": [],
-                "nullable": false
-              },
-              "reflection_questions": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "reflection_question_id": {
-                      "type": "string",
-                      "nullable": false
-                    },
-                    "mandatory": {
-                      "type": "boolean",
-                      "nullable": false
-                    },
-                    "min_words": {
-                      "type": "integer",
-                      "nullable": true
-                    },
-                    "max_words": {
-                      "type": "integer",
-                      "nullable": true
-                    }
-                  },
-                  "required": [
-                    "reflection_question_id",
-                    "mandatory"
-                  ],
-                  "nullable": false
-                },
-                "nullable": false
-              },
               "behavioral_global_skill_settings": {
                 "type": "string",
                 "nullable": true
@@ -15984,6 +15888,10 @@
               "technical_client_skill_settings": {
                 "type": "string",
                 "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "nullable": true
               }
             },
             "required": [
@@ -15993,8 +15901,7 @@
               "behavioural_client_tags",
               "technical_global_tags",
               "technical_client_tags",
-              "self_rating_enabled",
-              "translations"
+              "self_rating_enabled"
             ],
             "nullable": false
           }
@@ -16002,7 +15909,6 @@
         "required": [
           "id",
           "type",
-          "relationships",
           "attributes"
         ],
         "nullable": false
@@ -16018,11 +15924,6 @@
       "data": {
         "type": "object",
         "properties": {
-          "type": {
-            "type": "string",
-            "description": "Must be equal to idp_templates",
-            "nullable": false
-          },
           "attributes": {
             "type": "object",
             "properties": {
@@ -16034,208 +15935,20 @@
                 "type": "string",
                 "nullable": false
               },
-              "behavioural_global_tags": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "nullable": false
-                },
-                "nullable": false
-              },
-              "behavioural_client_tags": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "nullable": false
-                },
-                "nullable": false
-              },
-              "technical_global_tags": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "nullable": false
-                },
-                "nullable": false
-              },
-              "technical_client_tags": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "nullable": false
-                },
-                "nullable": false
-              },
               "self_rating_enabled": {
                 "type": "boolean",
-                "nullable": false
-              },
-              "translations": {
-                "type": "object",
-                "properties": {
-                  "title_text": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "subtitle_text": {
-                    "type": "string",
-                    "nullable": true
-                  }
-                },
-                "required": [],
-                "nullable": false
-              },
-              "reflection_questions": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "reflection_question_id": {
-                      "type": "string",
-                      "nullable": false
-                    },
-                    "mandatory": {
-                      "type": "boolean",
-                      "nullable": false
-                    },
-                    "min_words": {
-                      "type": "integer",
-                      "nullable": true
-                    },
-                    "max_words": {
-                      "type": "integer",
-                      "nullable": true
-                    }
-                  },
-                  "required": [
-                    "reflection_question_id",
-                    "mandatory"
-                  ],
-                  "nullable": false
-                },
-                "nullable": false
-              },
-              "behavioral_global_skill_settings": {
-                "type": "string",
-                "nullable": true
-              },
-              "behavioral_client_skill_settings": {
-                "type": "string",
-                "nullable": true
-              },
-              "technical_global_skill_settings": {
-                "type": "string",
-                "nullable": true
-              },
-              "technical_client_skill_settings": {
-                "type": "string",
                 "nullable": true
               }
             },
             "required": [
               "name",
-              "description",
-              "behavioural_global_tags",
-              "behavioural_client_tags",
-              "technical_global_tags",
-              "technical_client_tags",
-              "self_rating_enabled",
-              "translations"
-            ],
-            "nullable": false
-          },
-          "relationships": {
-            "type": "object",
-            "properties": {
-              "skills": {
-                "type": "object",
-                "properties": {
-                  "data": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "description": "Must be equal to skills",
-                          "nullable": false
-                        },
-                        "id": {
-                          "type": "string",
-                          "nullable": false
-                        }
-                      },
-                      "required": [],
-                      "nullable": true
-                    },
-                    "nullable": true
-                  }
-                },
-                "required": [],
-                "nullable": false
-              },
-              "project": {
-                "type": "object",
-                "properties": {
-                  "data": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "description": "Must be equal to clients",
-                        "nullable": false
-                      },
-                      "id": {
-                        "type": "string",
-                        "nullable": false
-                      }
-                    },
-                    "required": [
-                      "type",
-                      "id"
-                    ],
-                    "nullable": false
-                  }
-                },
-                "required": [
-                  "data"
-                ],
-                "nullable": false
-              },
-              "report": {
-                "type": "object",
-                "properties": {
-                  "data": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "description": "Must be equal to reports",
-                        "nullable": false
-                      },
-                      "id": {
-                        "type": "string",
-                        "nullable": false
-                      }
-                    },
-                    "required": [],
-                    "nullable": true
-                  }
-                },
-                "required": [],
-                "nullable": false
-              }
-            },
-            "required": [
-              "project"
+              "description"
             ],
             "nullable": false
           }
         },
         "required": [
-          "type",
-          "attributes",
-          "relationships"
+          "attributes"
         ],
         "nullable": false
       }
@@ -17676,6 +17389,21 @@
                     "max_words": {
                       "type": "integer",
                       "nullable": true
+                    },
+                    "translations": {
+                      "type": "object",
+                      "properties": {
+                        "title_text": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "subtitle_text": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [],
+                      "nullable": false
                     }
                   },
                   "required": [

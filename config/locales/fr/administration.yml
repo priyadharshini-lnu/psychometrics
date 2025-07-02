@@ -2060,16 +2060,18 @@ fr:
       all: Tous
       appearance: Apparence
       appearance_hint: Pour modifier l'apparence, veuillez d'abord enregistrer le modèle IDP afin d'activer ces paramètres.
+      appearance_success: Les paramètres d'apparence ont été sauvegardés avec succès
       background_image: Image de fond
       behavioral_skills: Compétences comportementales
       client_skills: Compétences des clients
+      details_updated: Mise à jour réussie des détails du PDI
       edit_template: Modifier le modèle de PDI
       enter_template_description: Description
       enter_template_description_error: La description du modèle est obligatoire.
       enter_template_name: Nom
       enter_template_name_error: Le nom du modèle est obligatoire
       errors:
-        update: La mise à jour n'est pas autorisée car le modèle IDP est déjà associé à un plan IDP d'utilisateur. Les modifications d'apparence ont été enregistrées.
+        update: La mise à jour n'est pas autorisée car le modèle IDP est déjà associé à un plan IDP utilisateur.
       fields:
         assigned_data: Données attribuées
         completion_date: Date d'achèvement
@@ -2109,6 +2111,11 @@ fr:
       show_reflections: Montrer les réflexions
       skill_gap_report: Rapport sur les lacunes en matière de compétences
       skills: Compétences
+      skills_updated: Mise à jour réussie des compétences du PDI
+      status:
+        draft: Projet
+        published: Publié
+      status_updated: Statut de la PDI mis à jour avec succès
       subtitle_text: Texte du sous-titre
       tab:
         development_actions: Actions de développement

@@ -437,6 +437,7 @@ pl:
       copy: Kopia
       delete: Kasować
       edit: Edytować
+      publish: Publikować
       remove: Usunąć
       reset: Nastawić
       resolve: Rozwiązać
@@ -447,6 +448,7 @@ pl:
       start: Początek
       submit: Prześlij
       unarchive: Unarchive
+      unpublish: Nie publikować
       unresolve: Nierozwiązany
       update: Aktualizacja
       upload: Przekazać plik

@@ -21,6 +21,8 @@ class IdpTemplate < ApplicationRecord
   enum :suggested_development_actions_selection_type, { none: 0, all: 1, selected: 2 },
        prefix: :suggested_development_actions
 
+  enum :status, { draft: 0, published: 1 }, prefix: true
+
   store_accessor :skill_settings, %i[behavioral_global behavioral_client], suffix: true
   store_accessor :skill_settings, %i[technical_global technical_client], suffix: true
 

@@ -8,23 +8,37 @@ import {
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import { ReflectionQuestion } from 'modules/admin/modules/client/core/reflectionQuestion'
 import debounce from 'lodash/debounce'
+import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import {
-  Idp, IdpTemplateReflectionQuestion,
+  Idp, IdpTR, IdpTemplateReflectionQuestion,
 } from '~/modules/admin/modules/client/core/idp'
-import { useResourceContext } from '~/modules/admin/components/Resource'
 
 const { I18n } = window
 const { Text } = Typography
 
-type ReflectionQuestionsTabProps = {
-  idp?: Idp,
-  projectId: string
+type ReflectionQuestionsFormProps = {
+  idp: Idp,
+  fetch: () => void,
 }
 
-export const ReflectionQuestionsTab: FC<ReflectionQuestionsTabProps> = ({ idp, projectId }) => {
-  const { resource } = useResourceContext<Idp>()
-  if (!idp) { return null }
+export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp, fetch }) => {
+  const { projectId } = useParams() as { projectId: string, id: string }
+
+  const baseApiConfig = {
+    basePath: `projects/${projectId}`,
+    trackUrl: true,
+    responseType: IdpTR,
+    apiConfig: {
+      fields: {
+        skills: ['id', 'name', 'skill_type', 'project_id'],
+      },
+      include: ['skills', 'report'],
+    },
+  }
+
+  const { memberAction, isLoading } = useResources<Idp>('idp_templates', baseApiConfig)
+
 
   const [reflectionQuestions, setReflectionQuestions] = useState<IdpTemplateReflectionQuestion[]>(
     idp.reflectionQuestions || [],
@@ -39,17 +53,17 @@ export const ReflectionQuestionsTab: FC<ReflectionQuestionsTabProps> = ({ idp, p
     },
   })
 
-  const isUpdating = resource.isLoading(`post/update_reflection_questions@${idp.id}`)
+  const isUpdating = isLoading(`post/update_reflection_questions@${idp.id}`)
 
   const save = () => {
-    resource.memberAction({
+    memberAction({
       id: idp.id,
       action: 'update_reflection_questions',
       method: 'post',
       body: { reflectionQuestions },
     }).then(() => {
       message.success(I18n.t('administration.idp.reflection_questions_updated'))
-      resource.fetch()
+      fetch()
     })
   }
 
@@ -98,7 +112,7 @@ export const ReflectionQuestionsTab: FC<ReflectionQuestionsTabProps> = ({ idp, p
 
   return (
     <Row gutter={[16, 16]}>
-      <Col span={24}>
+      <Col span={16}>
         <Card title={I18n.t('administration.idp.reflection_questions')}>
           <Space direction="vertical" style={{ width: '100%' }}>
             <Flex gap={16}>
@@ -136,6 +150,7 @@ export const ReflectionQuestionsTab: FC<ReflectionQuestionsTabProps> = ({ idp, p
                 dataSource={reflectionQuestions}
                 rowKey="id"
                 pagination={false}
+                bordered
                 columns={[
                   {
                     title: I18n.t('administration.reflection_questions.form.question'),
@@ -211,3 +226,5 @@ export const ReflectionQuestionsTab: FC<ReflectionQuestionsTabProps> = ({ idp, p
     </Row>
   )
 }
+
+export default ReflectionQuestionsForm

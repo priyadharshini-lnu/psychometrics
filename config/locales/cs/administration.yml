@@ -2060,16 +2060,18 @@ cs:
       all: Všechny
       appearance: Vzhled
       appearance_hint: Chcete-li upravit vzhled, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
+      appearance_success: Nastavení vzhledu bylo úspěšně uloženo
       background_image: Obrázek na pozadí
       behavioral_skills: Behaviorální dovednosti
       client_skills: Klientské dovednosti
+      details_updated: Úspěšná aktualizace údajů IDP
       edit_template: Upravit šablonu IDP
       enter_template_description: Popis
       enter_template_description_error: Je vyžadován popis šablony.
       enter_template_name: Název
       enter_template_name_error: Název šablony je povinný
       errors:
-        update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele. Změny vzhledu byly uloženy.
+        update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
         assigned_data: Přiřazená data
         completion_date: Datum dokončení
@@ -2109,6 +2111,11 @@ cs:
       show_reflections: Zobrazit reflexe
       skill_gap_report: Zpráva o nedostatku dovedností
       skills: Dovednosti
+      skills_updated: Úspěšná aktualizace dovedností IDP
+      status:
+        draft: Návrh
+        published: Zveřejněno na
+      status_updated: Stav IDP úspěšně aktualizován
       subtitle_text: Text titulku
       tab:
         development_actions: Vývojové akce

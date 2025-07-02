@@ -1679,6 +1679,7 @@ ko:
       import: 가져오기
       insert: 삽입
       ok: 확인
+      publish: 게시
       remove: 제거
       reset: 초기화
       resolve: 해결
@@ -1690,6 +1691,7 @@ ko:
       send: 보내기
       start: 시작
       unarchive: 보관 해제
+      unpublish: 게시 취소
       unresolve: 해결 취소
       update: 업데이트
       upload: 업로드

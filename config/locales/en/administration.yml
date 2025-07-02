@@ -2061,16 +2061,18 @@ en:
       all: All
       appearance: Appearance
       appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
+      appearance_success: Appearance settings saved successfully
       background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
+      details_updated: IDP Details updated successfully
       edit_template: Edit IDP Template
       enter_template_description: Description
       enter_template_description_error: Template description is required.
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
-        update: Update not allowed because the IDP template is already associated with a user IDP plan. Appearance changes has been saved.
+        update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
         assigned_data: Assigned Data
         completion_date: Completion Date
@@ -2110,6 +2112,11 @@ en:
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
       skills: Skills
+      skills_updated: IDP Skills updated successfully
+      status:
+        draft: Draft
+        published: Published
+      status_updated: IDP Status updated successfully
       subtitle_text: Subtitle text
       tab:
         development_actions: Development Actions

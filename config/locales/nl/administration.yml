@@ -2060,16 +2060,18 @@ nl:
       all: Alle
       appearance: Uiterlijk
       appearance_hint: Om het uiterlijk aan te passen, moet je de IDP-sjabloon eerst opslaan om deze instellingen te activeren.
+      appearance_success: Uiterlijkinstellingen succesvol opgeslagen
       background_image: Achtergrondafbeelding
       behavioral_skills: Gedragsvaardigheden
       client_skills: Vaardigheden voor klanten
+      details_updated: IDP Details succesvol bijgewerkt
       edit_template: IDP-sjabloon bewerken
       enter_template_description: Beschrijving
       enter_template_description_error: Sjabloonbeschrijving is vereist.
       enter_template_name: Naam
       enter_template_name_error: Sjabloonnaam is vereist
       errors:
-        update: Bijwerken niet toegestaan omdat de IDP-sjabloon al is gekoppeld aan een IDP-plan van een gebruiker. Wijzigingen in uiterlijk zijn opgeslagen.
+        update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
         assigned_data: Toegewezen gegevens
         completion_date: Datum van voltooiing
@@ -2109,6 +2111,11 @@ nl:
       show_reflections: Reflecties tonen
       skill_gap_report: Rapport over vaardigheidskloof
       skills: Vaardigheden
+      skills_updated: IDP Vaardigheden succesvol bijgewerkt
+      status:
+        draft: Ontwerp
+        published: Gepubliceerd
+      status_updated: IDP-status succesvol bijgewerkt
       subtitle_text: Ondertitel tekst
       tab:
         development_actions: Ontwikkelingsacties

@@ -2060,16 +2060,18 @@ ja:
       all: すべて
       appearance: 外観
       appearance_hint: 外観を変更するには、まずIDPテンプレートを保存して、これらの設定を有効にしてください。
+      appearance_success: アピアランス設定の保存に成功
       background_image: 背景画像
       behavioral_skills: 行動スキル
       client_skills: クライアント・スキル
+      details_updated: IDP詳細の更新に成功
       edit_template: IDPテンプレートの編集
       enter_template_description: 説明
       enter_template_description_error: テンプレートの説明が必要です。
       enter_template_name: 名称
       enter_template_name_error: テンプレート名は必須
       errors:
-        update: IDP テンプレートがすでにユーザー IDP プランに関連付けられているため、更新できません。外観の変更が保存されました。
+        update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
         assigned_data: 割り当てデータ
         completion_date: 完了日
@@ -2109,6 +2111,11 @@ ja:
       show_reflections: ショー・リフレクションズ
       skill_gap_report: スキル・ギャップ・レポート
       skills: スキル
+      skills_updated: IDPスキルの更新に成功
+      status:
+        draft: ドラフト
+        published: 出版
+      status_updated: IDPステータスの更新に成功
       subtitle_text: 字幕テキスト
       tab:
         development_actions: 開発アクション

@@ -2060,16 +2060,18 @@ es-ES:
       all: Todos
       appearance: Apariencia
       appearance_hint: Para modificar la apariencia, guarde primero la plantilla IDP para habilitar estos ajustes.
+      appearance_success: Ajustes de apariencia guardados correctamente
       background_image: Imagen de fondo
       behavioral_skills: Habilidades conductuales
       client_skills: Competencias de los clientes
+      details_updated: Datos del PDI actualizados correctamente
       edit_template: Editar plantilla IDP
       enter_template_description: Descripción
       enter_template_description_error: La descripción de la plantilla es obligatoria.
       enter_template_name: Nombre
       enter_template_name_error: El nombre de la plantilla es obligatorio
       errors:
-        update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario. Se han guardado los cambios de aspecto.
+        update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario.
       fields:
         assigned_data: Datos asignados
         completion_date: Fecha de finalización
@@ -2109,6 +2111,11 @@ es-ES:
       show_reflections: Mostrar reflexiones
       skill_gap_report: Informe sobre el déficit de cualificaciones
       skills: Habilidades
+      skills_updated: Competencias del PDI actualizadas con éxito
+      status:
+        draft: Borrador
+        published: Publicado en
+      status_updated: Estado del PDI actualizado correctamente
       subtitle_text: Texto del subtítulo
       tab:
         development_actions: Acciones de desarrollo

@@ -2060,16 +2060,18 @@ pt:
       all: Todos
       appearance: Aparência
       appearance_hint: Para modificar o aspeto, guarde primeiro o modelo IDP para ativar estas definições.
+      appearance_success: Definições de aspeto guardadas com êxito
       background_image: Imagem de fundo
       behavioral_skills: Competências comportamentais
       client_skills: Competências dos clientes
+      details_updated: Detalhes do PDI actualizados com êxito
       edit_template: Editar modelo de PDI
       enter_template_description: Descrição
       enter_template_description_error: A descrição do modelo é obrigatória.
       enter_template_name: Nome
       enter_template_name_error: O nome do modelo é obrigatório
       errors:
-        update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador. As alterações de aparência foram guardadas.
+        update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador.
       fields:
         assigned_data: Dados atribuídos
         completion_date: Data de conclusão
@@ -2109,6 +2111,11 @@ pt:
       show_reflections: Mostrar reflexões
       skill_gap_report: Relatório de défice de competências
       skills: Competências
+      skills_updated: Competências do PDI actualizadas com êxito
+      status:
+        draft: Projeto
+        published: Publicado
+      status_updated: Estado da PDI atualizado com êxito
       subtitle_text: Texto da legenda
       tab:
         development_actions: Acções de desenvolvimento

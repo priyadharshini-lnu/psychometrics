@@ -1691,6 +1691,7 @@ pt:
       import: Importação
       insert: Inserir
       ok: OK
+      publish: Publicar
       remove: Remover
       reset: Repor
       resolve: Resolver
@@ -1703,6 +1704,7 @@ pt:
       start: Iniciar
       submit: Enviar
       unarchive: Desarquivar
+      unpublish: Cancelar a publicação
       unresolve: Reabrir
       update: Atualizar
       upload: Carregar

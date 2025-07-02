@@ -418,6 +418,7 @@ th:
       copy: สำเนา
       delete: ลบ
       edit: แก้ไข
+      publish: เผยแพร่
       remove: ลบ
       reset: รีเซ็ต
       resolve: การแก้ปัญหา
@@ -427,6 +428,7 @@ th:
       send: ส่ง
       start: เริ่ม
       unarchive: ยกเลิกการเก็บถาวร
+      unpublish: เผยแพร่
       unresolve: ไม่สามารถแก้ไขได้
       update: อัปเดต
       upload: อัพโหลด

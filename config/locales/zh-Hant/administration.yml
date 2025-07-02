@@ -2060,16 +2060,18 @@ zh-Hant:
       all: 全部
       appearance: 外觀
       appearance_hint: 若要修改外觀，請先儲存 IDP 模版，以啟用這些設定。
+      appearance_success: 外觀設定已成功儲存
       background_image: 背景圖片
       behavioral_skills: 行為技巧
       client_skills: 客戶技能
+      details_updated: IDP 詳細資料已成功更新
       edit_template: 編輯 IDP 範本
       enter_template_description: 說明
       enter_template_description_error: 範本描述為必填項目。
       enter_template_name: 名稱
       enter_template_name_error: 模板名稱為必填項目
       errors:
-        update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。外觀變更已儲存。
+        update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
         assigned_data: 指定資料
         completion_date: 完成日期
@@ -2109,6 +2111,11 @@ zh-Hant:
       show_reflections: 展覽反思
       skill_gap_report: 技能差距報告
       skills: 技術
+      skills_updated: IDP 技能更新成功
+      status:
+        draft: 草案
+        published: 已出版
+      status_updated: IDP 狀態更新成功
       subtitle_text: 字幕文字
       tab:
         development_actions: 發展行動

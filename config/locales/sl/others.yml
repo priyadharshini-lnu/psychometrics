@@ -424,6 +424,7 @@ sl:
       copy: Kopiraj
       delete: Izbriši
       edit: Uredi
+      publish: Objavite
       remove: Odstranite
       reset: Ponastavitev
       resolve: Reševanje
@@ -433,6 +434,7 @@ sl:
       send: Pošlji
       start: Začetek
       unarchive: Odprava arhiviranja
+      unpublish: Odprava objave
       unresolve: Nerazrešitev
       update: Posodobitev
       upload: Naložite

@@ -1691,6 +1691,7 @@ cs:
       import: Import
       insert: Vložte
       ok: OK
+      publish: Zveřejnit
       remove: Odstranit
       reset: Obnovit
       resolve: Vyřešit
@@ -1703,6 +1704,7 @@ cs:
       start: Spustit
       submit: Odeslat
       unarchive: Odebrat z archivu
+      unpublish: Zrušení publikování
       unresolve: Označit jako nevyřešené
       update: Aktualizovat
       upload: Nahrát

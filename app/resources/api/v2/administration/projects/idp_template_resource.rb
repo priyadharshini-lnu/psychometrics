@@ -8,7 +8,7 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :technical_global_tags, :technical_client_tags,
              :logo_type, :title_text, :subtitle_text, :fields,
              :background, :client_logo, :show_reflections, :reflection_questions,
-             :instructions, :translations, :available_locales
+             :instructions, :translations, :available_locales, :status, :allow_edit
 
   has_one :project, class_name: 'Client'
   has_one :report
@@ -44,6 +44,10 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
         max_words: itrq.max_words
       }
     end
+  end
+
+  def allow_edit
+    !UserIdpPlan.exists?(idp_template_id: @model.id)
   end
 
   def background
