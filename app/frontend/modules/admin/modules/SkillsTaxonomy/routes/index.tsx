@@ -5,6 +5,7 @@ const SkillList = lazy(() => import('../components/SkillList'))
 const JobRoles = lazy(() => import('../components/JobRoles'))
 const JobRoleSkillMapping = lazy(() => import('../components/JobRoleSkillMapping'))
 const Proficiency = lazy(() => import('../components/Proficiency'))
+const Settings = lazy(() => import('../components/Settings'))
 
 export const routes = [
   { redirect: true, from: '/', to: 'skills' },
@@ -23,6 +24,10 @@ export const routes = [
   {
     path: '/proficiency',
     component: <Proficiency />,
+  },
+  {
+    path: '/settings',
+    component: <Settings />,
   },
 ]
 

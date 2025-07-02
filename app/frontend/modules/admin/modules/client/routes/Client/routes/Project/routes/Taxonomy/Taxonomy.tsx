@@ -2,13 +2,14 @@ import { FC } from 'react'
 import { Menu } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import JobRoles from '~/modules/admin/modules/SkillsTaxonomy/components/JobRoles'
 import { MenuItem } from '~/interfaces/Antd'
 import RouteList from '~/components/RouteList'
 import routeUtils from '~/utils/route'
+import JobRoles from '~/modules/admin/modules/SkillsTaxonomy/components/JobRoles'
 import Proficiency from '~/modules/admin/modules/SkillsTaxonomy/components/Proficiency'
 import JobRoleSkillMapping from '~/modules/admin/modules/SkillsTaxonomy/components/JobRoleSkillMapping'
 import SkillList from '~/modules/admin/modules/SkillsTaxonomy/components/SkillList'
+import Settings from '~/modules/admin/modules/SkillsTaxonomy/components/Settings'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/modules/admin/core/rootReducers'
 
@@ -45,6 +46,10 @@ const TaxonomyComponent: FC<PropsFromRedux> = ({ features }) => {
       path: '/proficiency',
       component: <Proficiency />,
     } : null,
+    skillRaterEnabled ? {
+      path: '/settings',
+      component: <Settings />,
+    } : null,
   ].filter(Boolean)
 
   const onSelect = ({ key }) => {
@@ -71,6 +76,11 @@ const TaxonomyComponent: FC<PropsFromRedux> = ({ features }) => {
     menuItems.push({
       key: '/proficiency',
       label: I18n.t('administration.taxonomy.proficiency'),
+    })
+
+    menuItems.push({
+      key: '/settings',
+      label: I18n.t('administration.breadcrumbs.settings'),
     })
   }
 
