@@ -122,7 +122,7 @@ RSpec.describe Api::V2::Administration::SkillImportForm do
 
   describe 'REQUIRED_FIELDS constant' do
     it 'contains the expected fields' do
-      expect(described_class::REQUIRED_FIELDS).to eq(%w[ID Name Description])
+      expect(described_class::REQUIRED_FIELDS).to eq(%w[Name Description])
     end
 
     it 'is frozen' do

@@ -6,7 +6,7 @@ module Api
       class SkillImportForm
         include ActiveModel::Model
 
-        REQUIRED_FIELDS = %w[ID Name Description].freeze
+        REQUIRED_FIELDS = %w[Name Description].freeze
 
         attr_accessor :file, :project_id
 

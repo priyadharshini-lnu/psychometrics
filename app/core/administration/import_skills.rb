@@ -2,9 +2,6 @@
 
 module Administration
   class ImportSkills < BaseCommand
-    REQUIRED_FIELDS = %w[ID Name Description].freeze
-    REQUIRED_VALUES = %w[Name Description].freeze
-
     def initialize(file, project_id)
       @file = file
       @project_id = project_id
