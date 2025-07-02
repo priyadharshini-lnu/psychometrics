@@ -2439,9 +2439,14 @@ ko:
       generate_more: 더 많은 생성
       generating_development_actions: 개발 작업 생성...
       heading: 개발 작업
+      incomplete_error: 개발 작업 완료되지 않음
+      incomplete_error_message: 일부 개발 작업이 완료되지 않았습니다. IDP를 제출하기 전에 완료해 주세요.
+      incomplete_warning: 개발 작업 완료되지 않음
+      incomplete_warning_message: 일부 개발 작업이 완료되지 않았습니다. IDP를 완료로 표시하시겠습니까?
       learning_from_others: 다른 사람에게서 배우기
       manage_skills: 스킬 관리
       marathon: 마라톤
+      mark_as_complete: 완료로 표시
       no_development_actions: 개발 작업 없음
       on_the_job: 업무 중
       other: 기타
@@ -2450,9 +2455,11 @@ ko:
       remove: 제거
       skill: 스킬
       sprint: 스프린트
+      start_plan: 계획 시작
       structured_learning: 구조화된 학습
       submit_plan: 계획 제출
       write_here: 여기에 쓰기...
+    edit_plan: 계획 수정
     initial_steps:
       add_skill_group_description: 평가 결과에 따라 강점과 개발이 필요한 영역은 다음과 같습니다. 개발 계획의 일부로 더 발전시키고 싶은 기술을 선택하세요.
       add_skill_group_title: 카테고리] 스킬 살펴보기
@@ -2468,6 +2475,7 @@ ko:
       rate_skills_description: 이제 개발 우선순위를 선택했으니 다음 각 항목에 대해 자신을 평가해 주세요. 과거 또는 원하는 수준이 아닌 현재 수준을 기준으로 자신을 평가해야 한다는 점을 잊지 마세요.
       rate_skills_title: 실력 평가하기
       rating_column_header: 자기 평가
+      save: 구하다
       select_skills: 기술 선택
       select_skills_placeholder: 기술 선택
       selected_skills: 선택 기술
@@ -2482,6 +2490,8 @@ ko:
       graphs:
         categories: 카테고리
       save_skills: 스킬 저장
+    new_comments: 새 댓글
+    plan: 계획
     reflective_questions:
       already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.
     skill_gap_report:
@@ -2489,10 +2499,15 @@ ko:
     status: 상태
     user_idp_status:
       approved: 승인됨
+      completed: 완료됨
       draft: 초안
+      in_progress: 진행 중
       not_started: 시작되지 않음
       pending_approval: 보류 중
+      rejected: 거부됨
     users: 사용자
+    with_reflection_questions: 성찰 질문 포함
+    without_reflection_questions: 성찰 질문 없음
   idp_templates:
     assign: 할당
     assign_idp_template: Idp 템플릿 할당

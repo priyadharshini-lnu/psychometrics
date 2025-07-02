@@ -2442,6 +2442,10 @@ fr:
       generate_more: Générer plus
       generating_development_actions: Générer des actions de développement...
       heading: Actions de développement
+      incomplete_error: Actions de développement incomplètes
+      incomplete_error_message: Certaines actions de développement sont incomplètes. Veuillez les terminer avant de soumettre votre PDI.
+      incomplete_warning: Actions de développement incomplètes
+      incomplete_warning_message: Certaines actions de développement sont incomplètes. Voulez-vous vraiment marquer votre PDI comme terminé ?
       learning_from_others: Apprendre des autres
       manage_skills: Gérer les compétences
       marathon: Marathon
@@ -2453,9 +2457,11 @@ fr:
       remove: Retirer
       skill: Compétence
       sprint: Sprint
+      start_plan: Démarrer le plan
       structured_learning: Apprentissage structuré
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
+    edit_plan: Modifier le plan
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
       add_skill_group_title: Explorer vos compétences %{catégorie}
@@ -2472,6 +2478,7 @@ fr:
       rate_skills_title: Évaluer ses compétences
       rating_column_header: Votre auto-évaluation
       reflective_questions: Questions de réflexion
+      save: Enregistrer
       select_skills: Sélectionnez vos compétences
       select_skills_placeholder: Sélectionner les compétences
       selected_skills: Compétences sélectionnées
@@ -2492,6 +2499,7 @@ fr:
         other: Autres
         technical: Technique
       save_skills: Sauvegarder les compétences
+    new_comments: Nouveau(x) commentaire(s)
     pdf:
       approval_status: Statut d'approbation
       cover:
@@ -2597,6 +2605,7 @@ fr:
         library: Bibliothèque PDI
         skills_count: Nombre de compétences
         title: Résumé du rapport
+    plan: Plan
     reflective_questions:
       already_completed: Le PDI a déjà été complété, vous ne pouvez pas répondre aux questions maintenant.
       answer_later: Réponse plus tard
@@ -2616,10 +2625,15 @@ fr:
     status: Statut
     user_idp_status:
       approved: Approuvé
+      completed: Terminé
       draft: Projet
+      in_progress: En cours
       not_started: Non démarré
       pending_approval: En attente
+      rejected: Rejeté
     users: Utilisateurs
+    with_reflection_questions: Avec questions de réflexion
+    without_reflection_questions: Sans questions de réflexion
   idp_templates:
     assign: Attribuer
     assign_idp_template: Attribuer un modèle Idp

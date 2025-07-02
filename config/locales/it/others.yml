@@ -2442,9 +2442,14 @@ it:
       generate_more: Generare di più
       generating_development_actions: Generare azioni di sviluppo...
       heading: Azioni di sviluppo
+      incomplete_error: Azioni di sviluppo incomplete
+      incomplete_error_message: Alcune azioni di sviluppo sono incomplete. Completale prima di inviare il tuo IDP.
+      incomplete_warning: Azioni di sviluppo incomplete
+      incomplete_warning_message: Alcune azioni di sviluppo sono incomplete. Vuoi davvero contrassegnare il tuo IDP come completato?
       learning_from_others: Imparare dagli altri
       manage_skills: Gestire le competenze
       marathon: Maratona
+      mark_as_complete: Segna come completato
       no_development_actions: Nessuna azione di sviluppo
       on_the_job: Sul lavoro
       other: Altro
@@ -2453,9 +2458,11 @@ it:
       remove: Rimuovere
       skill: Abilità
       sprint: Sprint
+      start_plan: Avvia piano
       structured_learning: Apprendimento strutturato
       submit_plan: Invia il piano
       write_here: Scrivi qui...
+    edit_plan: Modifica piano
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
       add_skill_group_title: Esplorare le proprie capacità di %{categoria}
@@ -2472,6 +2479,7 @@ it:
       rate_skills_title: Valutazione delle competenze
       rating_column_header: La vostra autovalutazione
       reflective_questions: Domande di riflessione
+      save: Salva
       select_skills: Seleziona le tue competenze
       select_skills_placeholder: Seleziona competenze
       selected_skills: Competenze Selezionate
@@ -2492,6 +2500,7 @@ it:
         other: Altro
         technical: Tecnica
       save_skills: Salvataggio delle competenze
+    new_comments: Nuovo/i commento/i
     pdf:
       approval_status: Stato di Approvazione
       cover:
@@ -2597,6 +2606,7 @@ it:
         library: Libreria PSI
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
+    plan: Piano
     reflective_questions:
       already_completed: L'IDP è già stato completato, non è possibile rispondere alle domande ora.
       answer_later: Risposta successiva
@@ -2616,10 +2626,15 @@ it:
     status: Stato
     user_idp_status:
       approved: Approvato
+      completed: Completato
       draft: Bozza
+      in_progress: In corso
       not_started: Non iniziato
       pending_approval: In attesa
+      rejected: Rifiutato
     users: Utenti
+    with_reflection_questions: Con domande di riflessione
+    without_reflection_questions: Senza domande di riflessione
   idp_templates:
     assign: Assegnazione
     assign_idp_template: Assegnazione del modello Idp

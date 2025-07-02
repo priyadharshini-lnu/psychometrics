@@ -2455,9 +2455,14 @@ es-ES:
       generate_more: Generar Más
       generating_development_actions: Generando acciones de desarrollo...
       heading: Acciones de Desarrollo
+      incomplete_error: Acciones de desarrollo incompletas
+      incomplete_error_message: Algunas acciones de desarrollo están incompletas. Por favor, complételas antes de enviar su IDP.
+      incomplete_warning: Acciones de desarrollo incompletas
+      incomplete_warning_message: Algunas acciones de desarrollo están incompletas. ¿Está seguro de que desea marcar su IDP como completo?
       learning_from_others: Aprendiendo de otros
       manage_skills: Gestionar Habilidades
       marathon: Maratón
+      mark_as_complete: Mark as Complete
       no_development_actions: No hay acciones de desarrollo
       on_the_job: En el trabajo
       other: Otro
@@ -2466,9 +2471,11 @@ es-ES:
       remove: Eliminar
       skill: Habilidad
       sprint: Sprint
+      start_plan: Iniciar plan
       structured_learning: Aprendizaje estructurado
       submit_plan: Enviar Plan
       write_here: Escriba aquí...
+    edit_plan: Editar plan
     initial_steps:
       add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
       add_skill_group_title: Explorando Sus Habilidades de %{category}
@@ -2485,6 +2492,7 @@ es-ES:
       rate_skills_title: Evaluando Sus Habilidades
       rating_column_header: Su autoevaluación
       reflective_questions: Preguntas de reflexión
+      save: Guardar
       select_skills: Seleccione sus habilidades
       select_skills_placeholder: Seleccionar habilidades
       selected_skills: Habilidades Seleccionadas
@@ -2499,6 +2507,7 @@ es-ES:
       graphs:
         categories: Categorías
       save_skills: Guardar Habilidades
+    new_comments: Nuevos comentarios
     pdf:
       approval_status: Estado de Aprobación
       cover:
@@ -2604,6 +2613,7 @@ es-ES:
         library: Biblioteca PDI
         skills_count: Recuento de Habilidades
         title: Resumen del Informe
+    plan: Plan
     reflective_questions:
       already_completed: El PDI ya se ha completado, no puede responder a las preguntas ahora.
       answer_later: Respuesta
@@ -2623,10 +2633,15 @@ es-ES:
     status: Estado
     user_idp_status:
       approved: Aprobado
+      completed: Completado
       draft: Borrador
+      in_progress: En progreso
       not_started: No iniciado
       pending_approval: Pendiente
+      rejected: Rechazado
     users: Usuarios
+    with_reflection_questions: Con preguntas de reflexión
+    without_reflection_questions: Sin preguntas de reflexión
   idp_templates:
     assign: Asignar
     assign_idp_template: Asignar plantilla Idp

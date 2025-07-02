@@ -2472,6 +2472,7 @@ cs:
       structured_learning: Strukturované učení
       submit_plan: Odeslat plán
       write_here: Pište zde...
+    edit_plan: Upravit plán
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2488,6 +2489,7 @@ cs:
       rate_skills_title: Hodnocení vašich dovedností
       rating_column_header: Vaše sebehodnocení
       reflective_questions: Reflektivní otázky
+      save: Uložit
       select_skills: Vyberte své dovednosti
       select_skills_placeholder: Vyberte dovednosti
       selected_skills: Vybrané dovednosti
@@ -2502,6 +2504,7 @@ cs:
       graphs:
         categories: Kategorie
       save_skills: Uložit dovednosti
+    new_comments: Nový(é) komentář(e)
     pdf:
       approval_status: Stav schválení
       cover:
@@ -2607,6 +2610,7 @@ cs:
         library: Knihovna IDP
         skills_count: Počet dovedností
         title: Shrnutí zprávy
+    plan: Plán
     reflective_questions:
       already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
       answer_later: Odpověď Později
@@ -2626,10 +2630,15 @@ cs:
     status: Stav
     user_idp_status:
       approved: Schváleno
+      completed: Dokončeno
       draft: Návrh
+      in_progress: Probíhá
       not_started: Nezahájeno
       pending_approval: Čeká se na
+      rejected: Zamítnuto
     users: Uživatelé
+    with_reflection_questions: S otázkami k reflexi
+    without_reflection_questions: Bez otázek k reflexi
   idp_templates:
     assign: Přiřazení
     assign_idp_template: Přiřazení šablony Idp

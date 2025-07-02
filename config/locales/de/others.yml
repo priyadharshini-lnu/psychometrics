@@ -2466,9 +2466,14 @@ de:
       generate_more: Mehr generieren
       generating_development_actions: Generierung von Entwicklungsmaßnahmen...
       heading: Entwicklungspolitische Maßnahmen
+      incomplete_error: Unvollständige Entwicklungsaktionen
+      incomplete_error_message: Einige Entwicklungsaktionen sind unvollständig. Bitte schließen Sie diese ab, bevor Sie Ihren IDP einreichen.
+      incomplete_warning: Unvollständige Entwicklungsaktionen
+      incomplete_warning_message: Einige Entwicklungsaktionen sind unvollständig. Möchten Sie Ihren IDP wirklich als abgeschlossen markieren?
       learning_from_others: Von anderen lernen
       manage_skills: Fertigkeiten managen
       marathon: Marathon
+      mark_as_complete: Als abgeschlossen markieren
       no_development_actions: Keine Entwicklungsmaßnahmen
       on_the_job: Bei der Arbeit
       other: Andere
@@ -2477,9 +2482,11 @@ de:
       remove: Entfernen
       skill: Fertigkeit
       sprint: Sprint
+      start_plan: Plan starten
       structured_learning: Strukturiertes Lernen
       submit_plan: Plan einreichen
       write_here: Hier schreiben...
+    edit_plan: Plan bearbeiten
     initial_steps:
       add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
       add_skill_group_title: Erkunden Sie Ihre %{Kategorie}-Fähigkeiten
@@ -2496,6 +2503,7 @@ de:
       rate_skills_title: Bewertung Ihrer Fertigkeiten
       rating_column_header: Ihre Selbsteinschätzung
       reflective_questions: Reflektierende Fragen
+      save: Speichern
       select_skills: Wählen Sie Ihre Fähigkeiten
       select_skills_placeholder: Fähigkeiten auswählen
       selected_skills: Ausgewählte Fertigkeiten
@@ -2511,6 +2519,7 @@ de:
         behavioural: Verhaltensweisen
         categories: Kategorien
       save_skills: Kompetenzen speichern
+    new_comments: Neue(r) Kommentar(e)
     pdf:
       approval_status: Genehmigungsstatus
       cover:
@@ -2616,6 +2625,7 @@ de:
         library: IDP-Bibliothek
         skills_count: Anzahl der Kompetenzen
         title: Berichtszusammenfassung
+    plan: Plan
     reflective_questions:
       already_completed: Der IDP ist bereits abgeschlossen, Sie können die Fragen jetzt nicht mehr beantworten.
       answer_later: Antwort später
@@ -2635,10 +2645,15 @@ de:
     status: Status
     user_idp_status:
       approved: Genehmigt
+      completed: Abgeschlossen
       draft: Entwurf
+      in_progress: In Bearbeitung
       not_started: Nicht gestartet
       pending_approval: Anhängig
+      rejected: Abgelehnt
     users: Benutzer
+    with_reflection_questions: Mit Reflexionsfragen
+    without_reflection_questions: Ohne Reflexionsfragen
   idp_templates:
     assign: Zuweisen
     assign_idp_template: Idp-Vorlage zuweisen

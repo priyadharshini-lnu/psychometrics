@@ -2453,6 +2453,10 @@ ja:
       generate_more: さらに増やす
       generating_development_actions: 開発アクションの生成...
       heading: 開発アクション
+      incomplete_error: 開発アクションが未完了です
+      incomplete_error_message: 一部の開発アクションが未完了です。IDP を提出する前に、これらのアクションを完了してください。
+      incomplete_warning: 開発アクションが未完了です
+      incomplete_warning_message: 一部の開発アクションが未完了です。IDP を完了としてマークしてもよろしいですか？
       learning_from_others: 他者から学ぶ
       manage_skills: スキルの管理
       marathon: マラソン
@@ -2464,9 +2468,11 @@ ja:
       remove: 削除
       skill: スキル
       sprint: スプリント
+      start_plan: 計画を開始
       structured_learning: 体系的学習
       submit_plan: プランを提出
       write_here: ここに記入してください...
+    edit_plan: プランの編集
     initial_steps:
       add_skill_group_description: アセスメント結果に基づき、あなたの強みと伸ばすべき分野をご紹介します。 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
       add_skill_group_title: カテゴリー}のスキルを探る
@@ -2483,6 +2489,7 @@ ja:
       rate_skills_title: スキルの評価
       rating_column_header: 自己評価
       reflective_questions: 反省的な質問
+      save: 保存
       select_skills: スキルを選択する
       select_skills_placeholder: スキルを選択する
       selected_skills: 厳選されたスキル
@@ -2497,6 +2504,7 @@ ja:
       graphs:
         categories: カテゴリー
       save_skills: セーブ・スキル
+    new_comments: 新しいコメント
     pdf:
       approval_status: 承認状況
       cover:
@@ -2602,6 +2610,7 @@ ja:
         library: IDPライブラリ
         skills_count: スキル数
         title: レポート概要
+    plan: プラン
     reflective_questions:
       already_completed: IDPはすでに完成しているので、今質問に答えることはできない。
       answer_later: 回答は後ほど
@@ -2621,10 +2630,15 @@ ja:
     status: ステータス
     user_idp_status:
       approved: 承認済み
+      completed: 完了
       draft: ドラフト
+      in_progress: 進行中
       not_started: 未開始
       pending_approval: 申請中
+      rejected: 拒否
     users: ユーザー
+    with_reflection_questions: リフレクション質問あり
+    without_reflection_questions: リフレクション質問なし
   idp_templates:
     assign: アサイン
     assign_idp_template: Idpテンプレートの割り当て
