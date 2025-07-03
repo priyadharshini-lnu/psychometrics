@@ -27,6 +27,10 @@ class EndUser::SkillvueUserAssessmentsController < ApplicationController
     redirect_to campaign_path(@user_assessment.campaign_id)
   end
 
+  def complete_user_assessment(user_assessment)
+    user_assessment.complete! unless user_assessment.completed?
+  end
+
   def set_user_assessment
     @user_assessment = UserAssessment.find_by(id: params[:id], evaluator_id: current_user.id)
   end
