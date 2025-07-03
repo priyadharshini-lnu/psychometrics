@@ -2075,6 +2075,7 @@ ja:
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
         assigned_data: 割り当てデータ
+        assigned_date: 担当日
         completion_date: 完了日
         division: 部門
         name: 名称

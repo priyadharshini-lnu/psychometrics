@@ -14,7 +14,7 @@ const CONTAINER_HEIGHT = 630
 // const ROW_GAP = 16
 // const HEADER_HEIGHT = 30 + ROW_GAP
 
-const Technical = ({ skills, rtl }) => {
+const Technical = ({ skills, rtl, status }) => {
   const container = useRef<HTMLElement>(null)
 
   return (
@@ -40,10 +40,18 @@ const Technical = ({ skills, rtl }) => {
                     {I18n.t('idp.pdf.approval_status')}
                   </div>
                   <Flex gap={16} align="center">
-                    <div className={cs(styles.statusBox, styles.active)}>{I18n.t('idp.pdf.statuses.not_reviewed')}</div>
-                    <div className={cs(styles.statusBox)}>{I18n.t('idp.pdf.statuses.pending_approval')}</div>
-                    <div className={cs(styles.statusBox)}>{I18n.t('idp.pdf.statuses.approved')}</div>
-                    <div className={cs(styles.statusBox)}>{I18n.t('idp.pdf.statuses.completed')}</div>
+                    <div className={cs(styles.statusBox, { [styles.active]: status === 'draft' })}>
+                      {I18n.t('idp.pdf.statuses.not_reviewed')}
+                    </div>
+                    <div className={cs(styles.statusBox, { [styles.active]: status === 'pending_approval' })}>
+                      {I18n.t('idp.pdf.statuses.pending_approval')}
+                    </div>
+                    <div className={cs(styles.statusBox, { [styles.active]: status === 'approved' })}>
+                      {I18n.t('idp.pdf.statuses.approved')}
+                    </div>
+                    <div className={cs(styles.statusBox, { [styles.active]: status === 'completed' })}>
+                      {I18n.t('idp.pdf.statuses.completed')}
+                    </div>
                   </Flex>
                 </Flex>
               </Flex>

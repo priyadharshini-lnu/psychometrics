@@ -2075,6 +2075,7 @@ de:
         update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist.
       fields:
         assigned_data: Zugewiesene Daten
+        assigned_date: Zugewiesenes Datum
         completion_date: Datum der Fertigstellung
         division: Abteilung
         name: Name

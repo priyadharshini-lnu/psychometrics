@@ -2578,6 +2578,7 @@ en:
       cover:
         fields:
           assigned_data: Assigned Date
+          assigned_date: Assigned Date
           completion_date: Completion Date
           division: Division
           name: Name

@@ -660,6 +660,10 @@ sk:
         requested_rescheduling_rejected: Požadované Presunutie termínu Zamietnuté
     'yes': Áno
   idp:
+    pdf:
+      cover:
+        fields:
+          assigned_date: Pridelený dátum
     reflective_questions:
       already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
   idp_templates:

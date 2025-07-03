@@ -2075,6 +2075,7 @@ cs:
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
         assigned_data: Přiřazená data
+        assigned_date: Přidělené datum
         completion_date: Datum dokončení
         division: Divize
         name: Název

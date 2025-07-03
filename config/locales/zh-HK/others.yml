@@ -787,6 +787,7 @@ zh-HK:
       cover:
         fields:
           assigned_data: 分配日期
+          assigned_date: 指定日期
           completion_date: 完成日期
           division: 部門
           name: 姓名

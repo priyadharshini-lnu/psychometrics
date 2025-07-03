@@ -2516,6 +2516,7 @@ ja:
       cover:
         fields:
           assigned_data: 割り当て日
+          assigned_date: 担当日
           completion_date: 完了日
           division: 部門
           name: 名前

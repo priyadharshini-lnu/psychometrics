@@ -660,6 +660,10 @@ sl:
         requested_rescheduling_rejected: Zahtevano Prestavitev na kasnejši datum Zavrnjeno
     'yes': Da
   idp:
+    pdf:
+      cover:
+        fields:
+          assigned_date: Dodeljeni datum
     reflective_questions:
       already_completed: Dokument IDP je bil že izpolnjen, zato zdaj ne morete odgovarjati na vprašanja.
   idp_templates:

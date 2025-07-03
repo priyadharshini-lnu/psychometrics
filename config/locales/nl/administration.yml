@@ -2075,6 +2075,7 @@ nl:
         update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
         assigned_data: Toegewezen gegevens
+        assigned_date: Toegewezen Datum
         completion_date: Datum van voltooiing
         division: Divisie
         name: Naam

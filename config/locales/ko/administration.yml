@@ -2075,6 +2075,7 @@ ko:
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
         assigned_data: 할당된 데이터
+        assigned_date: 할당된 날짜
         completion_date: 완료 날짜
         division: 부서
         name: 이름

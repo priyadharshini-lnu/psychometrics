@@ -67,7 +67,7 @@ const DevelopmentAction = ({ developmentAction }) => {
   return (
     <Flex className={styles.developAction} align="center">
       <div className={cs(styles.description)} style={{ borderColor: color }}>
-        {developmentAction.custom_action}
+        {developmentAction.custom_action || developmentAction.name}
       </div>
 
       <Flex vertical flex={1} gap={8}>
@@ -75,12 +75,12 @@ const DevelopmentAction = ({ developmentAction }) => {
           <div className={styles.date}>
             {I18n.t('idp.pdf.idp.start_date')}
             {' '}
-            <strong>{dayjs(developmentAction.start_date_time).format('d MMM YYYY')}</strong>
+            <strong>{dayjs(developmentAction.start_date_time).format('DD MMM YYYY')}</strong>
           </div>
           <div className={styles.date}>
             {I18n.t('idp.pdf.idp.end_date')}
             {' '}
-            <strong>{dayjs(developmentAction.end_date_time).format('d MMM YYYY')}</strong>
+            <strong>{dayjs(developmentAction.end_date_time).format('DD MMM YYYY')}</strong>
           </div>
         </Flex>
         <Flex gap={12} align="center">

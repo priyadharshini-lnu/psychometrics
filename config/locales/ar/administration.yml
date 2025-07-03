@@ -2075,6 +2075,7 @@ ar:
         update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
         assigned_data: البيانات المعينة
+        assigned_date: تاريخ التعيين
         completion_date: تاريخ الانتهاء
         division: الشعبة
         name: الاسم

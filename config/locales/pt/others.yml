@@ -2512,6 +2512,7 @@ pt:
       cover:
         fields:
           assigned_data: Data Atribuída
+          assigned_date: Data atribuída
           completion_date: Data de Conclusão
           division: Divisão
           name: Nome

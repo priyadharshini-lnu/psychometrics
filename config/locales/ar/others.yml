@@ -817,6 +817,7 @@ ar:
       cover:
         fields:
           assigned_data: تاريخ التعيين
+          assigned_date: تاريخ التعيين
           completion_date: تاريخ الإكمال
           division: القسم
           name: الاسم

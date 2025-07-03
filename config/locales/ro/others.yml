@@ -661,6 +661,10 @@ ro:
         requested_rescheduling_rejected: Solicitat Reprogramare Respins
     'yes': Da
   idp:
+    pdf:
+      cover:
+        fields:
+          assigned_date: Data atribuirii
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
   idp_templates:

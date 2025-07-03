@@ -13,12 +13,21 @@ I18n.locale = document.body.getAttribute('data-locale')
 const FIELDS = [
   'name',
   'role',
-  'assigned_data',
+  'assigned_date',
   'division',
   'review_date',
   'publish_date',
   'completion_date',
 ]
+
+const FIELD_TO_DATA = {
+  name: 'name',
+  role: 'role',
+  division: 'division',
+  assigned_date: 'assigned_date',
+  publish_date: 'start_date',
+  completion_date: 'completion_date',
+}
 
 const Cover = ({ rtl }) => {
   const template = useAppSelector(state => state.idp.template)
@@ -79,7 +88,7 @@ const Cover = ({ rtl }) => {
                         {I18n.t(`idp.pdf.cover.fields.${item}`)}
                       </div>
                       <div className={styles.value}>
-                        {userIdp[item] || ''}
+                        {userIdp[FIELD_TO_DATA[item]] || ''}
                       </div>
                     </div>
                   ))}

@@ -28,6 +28,11 @@ interface DevelopmentAction {
 interface UserIdp {
   user_idp_skills: Skill[]
   reflection_questions: ReflectionQuestion[]
+  status: string
+  start_date: string
+  assigned_date: string
+  end_date: string
+  completed_date: string
 }
 
 interface IdpReportState {
@@ -55,6 +60,11 @@ const initialState: IdpReportState = {
   userIdp: {
     user_idp_skills: [],
     reflection_questions: [],
+    status: '',
+    start_date: '',
+    assigned_date: '',
+    end_date: '',
+    completed_date: '',
   },
 }
 

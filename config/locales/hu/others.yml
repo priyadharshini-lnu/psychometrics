@@ -660,6 +660,10 @@ hu:
         requested_rescheduling_rejected: Kérvényezett átütemezés Elutasítva
     'yes': Igen
   idp:
+    pdf:
+      cover:
+        fields:
+          assigned_date: Hozzárendelt dátum
     reflective_questions:
       already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
   idp_templates:

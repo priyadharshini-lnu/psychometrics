@@ -660,6 +660,10 @@ id:
         requested_rescheduling_rejected: Permintaan Penjadwalan Ulang Ditolak
     'yes': Ya
   idp:
+    pdf:
+      cover:
+        fields:
+          assigned_date: Tanggal Penugasan
     reflective_questions:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
   idp_templates:

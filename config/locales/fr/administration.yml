@@ -2075,6 +2075,7 @@ fr:
         update: La mise à jour n'est pas autorisée car le modèle IDP est déjà associé à un plan IDP utilisateur.
       fields:
         assigned_data: Données attribuées
+        assigned_date: Date assignée
         completion_date: Date d'achèvement
         division: Division
         name: Nom

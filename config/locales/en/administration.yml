@@ -2076,6 +2076,7 @@ en:
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
         assigned_data: Assigned Data
+        assigned_date: Assigned Date
         completion_date: Completion Date
         division: Division
         name: Name

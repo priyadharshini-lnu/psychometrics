@@ -2531,6 +2531,7 @@ de:
       cover:
         fields:
           assigned_data: Zuweisungsdatum
+          assigned_date: Zugewiesenes Datum
           completion_date: Abschlussdatum
           division: Abteilung
           name: Name

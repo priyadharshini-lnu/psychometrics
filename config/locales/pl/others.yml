@@ -776,6 +776,7 @@ pl:
       cover:
         fields:
           assigned_data: Data przydzielenia
+          assigned_date: Przypisana data
           completion_date: Data ukończenia
           division: Dział
           name: Imię i nazwisko

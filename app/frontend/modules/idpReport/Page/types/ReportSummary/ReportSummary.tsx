@@ -148,7 +148,9 @@ const ReportSummary = ({ rtl }) => {
                   </h1>
                   <Flex gap={16} align="center">
                     {I18n.t('idp.pdf.summary.current_status')}
-                    <div className={cs(styles.statusBox, styles.active)}>{I18n.t('idp.pdf.statuses.not_reviewed')}</div>
+                    <div className={cs(styles.statusBox, styles.active)}>
+                      {I18n.t(`idp.pdf.statuses.${idp.status}`)}
+                    </div>
                   </Flex>
                 </Flex>
                 <Flex gap={20} className={styles.counters}>

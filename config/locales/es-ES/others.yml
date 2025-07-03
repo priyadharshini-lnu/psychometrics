@@ -2519,6 +2519,7 @@ es-ES:
       cover:
         fields:
           assigned_data: Fecha Asignada
+          assigned_date: Fecha asignada
           completion_date: Fecha de Finalización
           division: División
           name: Nombre

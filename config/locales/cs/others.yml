@@ -2516,6 +2516,7 @@ cs:
       cover:
         fields:
           assigned_data: Datum přiřazení
+          assigned_date: Přidělené datum
           completion_date: Datum dokončení
           division: Oddělení
           name: Jméno

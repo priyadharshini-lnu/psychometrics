@@ -666,6 +666,10 @@ bg:
         requested_rescheduling_rejected: Поискано Разсрочване Отхвърлено
     'yes': Да
   idp:
+    pdf:
+      cover:
+        fields:
+          assigned_date: Присвоена дата
     reflective_questions:
       already_completed: ИДП вече е попълнен, не можете да отговаряте на въпросите сега.
   idp_templates:

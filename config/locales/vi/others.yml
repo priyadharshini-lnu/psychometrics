@@ -654,6 +654,10 @@ vi:
         requested_rescheduling_rejected: Yêu cầu lên lịch lại bị từ chối
     'yes': Đúng
   idp:
+    pdf:
+      cover:
+        fields:
+          assigned_date: Ngày được giao
     reflective_questions:
       already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
   idp_templates:

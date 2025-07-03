@@ -2512,6 +2512,7 @@ it:
       cover:
         fields:
           assigned_data: Data di Assegnazione
+          assigned_date: Data di assegnazione
           completion_date: Data di Completamento
           division: Divisione
           name: Nome

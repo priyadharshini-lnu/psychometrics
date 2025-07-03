@@ -2497,6 +2497,10 @@ ko:
         categories: 카테고리
       save_skills: 스킬 저장
     new_comments: 새 댓글
+    pdf:
+      cover:
+        fields:
+          assigned_date: 할당된 날짜
     plan: 계획
     reflective_questions:
       already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.

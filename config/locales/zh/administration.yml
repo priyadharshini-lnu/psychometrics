@@ -2075,6 +2075,7 @@ zh:
         update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
         assigned_data: 指定数据
+        assigned_date: 指定日期
         completion_date: 完成日期
         division: 分部
         name: 名称

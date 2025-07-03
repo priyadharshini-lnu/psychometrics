@@ -2075,6 +2075,7 @@ es-ES:
         update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario.
       fields:
         assigned_data: Datos asignados
+        assigned_date: Fecha asignada
         completion_date: Fecha de finalización
         division: División
         name: Nombre
