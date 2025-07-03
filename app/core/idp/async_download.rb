@@ -7,7 +7,8 @@ class Idp::AsyncDownload < AsyncResponseRequest::AsyncRequestHandler
     UserReports::GenerateIdpReportPdf.call!(user_idp_plan, user, {
       lang: params[:lang] || I18n.locale,
       include_reflective_questions: params[:include_reflective_questions],
-      async_request_uuid: context[:async_request_uuid]
+      async_request_uuid: context[:async_request_uuid],
+      update_record: false
     })
 
     broadcast :pending

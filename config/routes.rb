@@ -242,7 +242,7 @@ Rails.application.routes.draw do
         resources :user_idp_reports do
           member do
             get :pdf_preview
-            get :download
+            post :download
           end
         end
         resources :user_reports do

@@ -13,7 +13,7 @@ const DOWNLOAD_IDP_REPORT = 'idp/DOWNLOAD_IDP_REPORT'
 export const downloadIdpReport = (campaignId: string, id: string, withRQ: boolean): ApiAction<null> => ({
   type: DOWNLOAD_IDP_REPORT,
   request: {
-    method: 'get',
+    method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_idp_reports/${id}/download`,
     body: {
       include_reflective_questions: withRQ,

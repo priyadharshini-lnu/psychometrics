@@ -3385,7 +3385,8 @@ CREATE TABLE public.idp_report_pdfs (
     first_generated_at timestamp(6) without time zone,
     last_generated_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    include_reflective_questions boolean DEFAULT false
 );
 
 
@@ -17359,6 +17360,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250703094817'),
 ('20250701114237'),
 ('20250624125911'),
 ('20250624110503'),

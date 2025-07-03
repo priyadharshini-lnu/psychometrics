@@ -22,7 +22,8 @@ module Idp
           user_idp_plan, current_user,
           admin_job_record_id: job_record.id,
           lang: job_record.data['lang'],
-          include_reflective_questions: job_record.data['include_reflective_questions'] || false
+          include_reflective_questions: job_record.data['include_reflective_questions'] || false,
+          update_record: false
         )
       end
 

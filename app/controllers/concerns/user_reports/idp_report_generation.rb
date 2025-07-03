@@ -21,6 +21,7 @@ module UserReports::IdpReportGeneration
         ).serialize(resource)
       }
     end
+
     @pdf_export = true
 
     render 'administration/campaigns/user_idp_reports/idp_report', layout: 'pdf'

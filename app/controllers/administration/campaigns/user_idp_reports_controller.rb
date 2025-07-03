@@ -60,7 +60,7 @@ module Administration
       private
 
       def allow_include_reflective_questions?
-        current_user.superadmin? && params[:include_reflective_questions] == 'true'
+        current_user.superadmin? && params[:include_reflective_questions] == true
       end
 
       # rubocop:disable Naming/MemoizedInstanceVariableName

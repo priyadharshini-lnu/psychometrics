@@ -98,14 +98,7 @@ class UserIdpPlan < ApplicationRecord
   end
 
   def report_pdf(locale: nil, include_reflective_questions: false)
-    scope = report_pdfs.joins(pdf_file_attachment: :blob).where(locale: locale)
-
-    scope = if include_reflective_questions
-              scope.where('active_storage_blobs.key like ?', '%idp_report_rq%')
-            else
-              scope.where('active_storage_blobs.key not like ?', '%idp_report_rq%')
-            end
-    scope.first
+    report_pdfs.find_by(locale: locale, include_reflective_questions: include_reflective_questions)
   end
 
   def pdf_path(locale: nil, include_reflective_questions: false)
