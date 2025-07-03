@@ -3,11 +3,21 @@
 class EndUser::SkillvueUserAssessmentsController < ApplicationController
   include AsyncRequestHandler
 
-  before_action :set_user_assessment, only: %i[pass]
+  before_action :set_user_assessment, only: %i[pass redirect]
   before_action :can_start_based_on_sequencing, only: %i[pass]
 
   async_request :pass, handler: ::Skillvue::StartAssessment,
     permit_params: ->(params) { params.require(:skillvue_user_assessment).permit(:id) }
+
+  def redirect
+    if @user_assessment
+      campaign = @user_assessment&.campaign
+      complete_user_assessment(@user_assessment)
+      redirect_to assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id)
+    else
+      redirect_to root_path
+    end
+  end
 
   private
 
