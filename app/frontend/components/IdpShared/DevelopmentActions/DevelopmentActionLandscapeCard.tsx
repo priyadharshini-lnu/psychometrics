@@ -140,6 +140,7 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
             endDateTime ? dayjs(endDateTime) : null,
           ]}
           format={format}
+          disabledDate={current => current && current < dayjs().startOf('day')}
           onChange={onDateRangeChange}
         />
       </Flex>

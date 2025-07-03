@@ -455,6 +455,7 @@ ar:
       continue: استمرار
       copy: نسخ
       delete: حذف
+      download: تحميل
       edit: تعديل
       publish: النشر
       remove: إزالة
@@ -717,6 +718,7 @@ ar:
     'yes': نعم
   idp:
     actions: الإجراءات
+    behavioral: سلوكية
     board: اللوحة
     comment_details:
       add_comment: إضافة تعليق
@@ -780,6 +782,7 @@ ar:
       structured_learning: تعلم منظم
       submit_plan: تقديم الخطة
       write_here: اكتب هنا...
+    edit_plan: تحرير الخطة
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
       add_skill_group_title: استكشاف مهاراتك في %{category}
@@ -914,6 +917,7 @@ ar:
         library: مكتبة خطة التطوير الفردية
         skills_count: عدد المهارات
         title: ملخص التقرير
+    plan: يخطط
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer_later: أجب لاحقًا
@@ -931,12 +935,16 @@ ar:
     skill_gap_report:
       title: تقرير فجوة المهارات
     status: الحالة
+    technical: اِصطِلاحِيّ
     user_idp_status:
       approved: تمت الموافقة
+      completed: مكتمل
       draft: مسودة
       not_started: لم يبدأ
       pending_approval: قيد الموافقة
     users: المستخدمون
+    with_reflection_questions: مع أسئلة التأمل
+    without_reflection_questions: أسئلة بدون تفكير
   idp_templates:
     assign: تعيين
     assign_idp_template: تعيين قالب خطة التطوير الفردية

@@ -2476,6 +2476,7 @@ en:
       aria_selected: Selected
   idp:
     actions: Actions
+    behavioral: Behavioral
     board: Board
     comment_details:
       add_comment: Add Comment
@@ -2695,6 +2696,7 @@ en:
     skill_gap_report:
       title: Skill Gap Report
     status: Status
+    technical: Technical
     user_idp_status:
       approved: Approved
       completed: Completed

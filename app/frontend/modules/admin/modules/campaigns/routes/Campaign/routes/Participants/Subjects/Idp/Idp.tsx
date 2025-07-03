@@ -96,7 +96,7 @@ export const Idp: React.FC<{}> = () => {
     <Flex vertical>
       <h3>{I18n.t('idp_templates.assign_idp_template')}</h3>
 
-      <Flex justify="space-between">
+      <Flex wrap justify="space-between">
         <Flex className="m4">
           <Select
             showSearch

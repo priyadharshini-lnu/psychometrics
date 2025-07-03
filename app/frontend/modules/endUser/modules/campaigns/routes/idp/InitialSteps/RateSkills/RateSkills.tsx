@@ -85,8 +85,14 @@ export const RateSkillsComponent = ({
           pagination={false}
         />
       </BoxWithShadow>
-      <div className="flex justify-end mt-6">
-        <ButtonWithArrow loading={isSubmittingPlan} label="Next" size="small" type="primary" onClick={next} />
+      <div className="flex justify-center mt-6">
+        <ButtonWithArrow
+          loading={isSubmittingPlan}
+          label={I18n.t('idp.initial_steps.next')}
+          size="small"
+          type="primary"
+          onClick={next}
+        />
       </div>
     </>
   )

@@ -41,7 +41,7 @@ export const InformationBanner = () => {
     <Flex style={{ backgroundColor: '#FAFAFA', padding: '1rem', flexWrap: 'wrap' }}>
       <Button type="link" icon={<ArrowLeftOutlined />} onClick={handleBack} />
       <Flex gap={8}>
-        <Avatar size={32} src={user[0]?.photoUrl} />
+        <Avatar size={32} src={user[0]?.photoUrl} style={{ marginInlineStart: '8px' }} />
         <Flex vertical>
           <Typography.Text>
             {user[0]?.fullName}

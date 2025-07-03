@@ -178,7 +178,9 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
                 <Avatar size={24} src={renderSkillCategoryIcon(category.skillType)} />
-                <h3 className={styles.h3}>{category.skillType}</h3>
+                <h3 className={styles.h3}>
+                  {I18n.t(`idp.${category.skillType.toLowerCase()}`)}
+                </h3>
               </Flex>
               <Flex gap={12} vertical>
                 {renderCards(category.skills)}
@@ -191,7 +193,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           <Button
             onClick={() => onAddMoreSkills()}
             icon={<EditOutlined />}
-            style={{ alignSelf: 'flex-end' }}
+            style={{ alignSelf: 'center' }}
           >
             {I18n.t('idp.development_actions.manage_skills')}
           </Button>

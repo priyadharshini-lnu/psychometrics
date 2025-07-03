@@ -2405,6 +2405,7 @@ fr:
       aria_selected: Sélectionné
   idp:
     actions: Actions
+    behavioral: Comportementale
     board: Conseil d'administration
     comment_details:
       add_comment: Ajouter un commentaire
@@ -2629,6 +2630,7 @@ fr:
     skill_gap_report:
       title: Rapport sur les lacunes en matière de compétences
     status: Statut
+    technical: Technique
     user_idp_status:
       approved: Approuvé
       completed: Terminé

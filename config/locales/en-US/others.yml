@@ -662,6 +662,7 @@ en-US:
     'yes': true
   idp:
     actions: Actions
+    behavioral: Behavioral
     board: Board
     comment_details:
       add_comment: Add Comment
@@ -876,6 +877,7 @@ en-US:
       words: Words
     skill_gap_report:
       title: Skill Gap Report
+    technical: Technical
   idp_templates:
     errors:
       user_idp_template_not_found: No IDP template has been assigned to you.
