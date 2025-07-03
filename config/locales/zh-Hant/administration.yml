@@ -1745,6 +1745,7 @@ zh-Hant:
       errors:
         blank_field: '行 %{row}: %{field} 不能為空白'
         csv_file_required: 必須是 CSV 檔案
+        development_action_not_in_project: '行 %{row}: 開發動作 ID %{development_action_id} 不屬於此專案'
         image_download_failed: 從 %{url} 下載影像失敗： %{message}
         invalid_csv_format: 無效的 CSV 格式：%{message}。
         invalid_date: "％{date}的日期格式無效。"
@@ -3629,6 +3630,7 @@ zh-Hant:
         import:
           missing_fields_data: '行 %{line_number}：缺少必填欄位: %{fields}'
           save_failed: 第 %{line_number} 行：儲存技能 '%{name}' 失敗： %{message}
+          skill_not_in_project: 行 %{line_number}：技能 ID %{skill_id} 不屬於此專案
         search:
           all_and_project_id_mutually_exclusive: 當提供 project_id_eq 時，所有項目都不能為真
           invalid_all_value: 必須是其中之一：true、false

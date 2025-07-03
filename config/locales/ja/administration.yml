@@ -1745,6 +1745,7 @@ ja:
       errors:
         blank_field: '行 %{row}: %{field} は空白にできません。'
         csv_file_required: CSVファイルであること
+        development_action_not_in_project: '行 %{row}: 開発アクション ID %{development_action_id} はこのプロジェクトに属していません'
         image_download_failed: url}からの画像のダウンロードに失敗しました。
         invalid_csv_format: '無効な CSV 形式: %{message} です。'
         invalid_date: "％{date}の日付形式は無効です。"
@@ -3629,6 +3630,7 @@ ja:
         import:
           missing_fields_data: '行 %{line_number}：必須フィールドがありません: %{fields}'
           save_failed: '行 %{line_number}：スキル ''%{name}'' の保存に失敗しました: %{message}.'
+          skill_not_in_project: '行 %{line_number}: スキル ID %{skill_id} はこのプロジェクトに属していません'
         search:
           all_and_project_id_mutually_exclusive: project_id_eqが指定された場合、すべてがtrueになる。
           invalid_all_value: true、falseのいずれかでなければならない。

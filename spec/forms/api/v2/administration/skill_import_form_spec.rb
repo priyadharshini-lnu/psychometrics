@@ -117,6 +117,73 @@ RSpec.describe Api::V2::Administration::SkillImportForm do
           )
         )
       end
+
+      context 'project validation' do
+        let(:project) { create(:project) }
+        let(:other_project) { create(:project) }
+        let!(:skill_in_project) { create(:skill, project_id: project.id) }
+        let!(:skill_in_other_project) { create(:skill, project_id: other_project.id) }
+
+        it 'validates skill belongs to project when project_id is set' do
+          form.project_id = project.id
+
+          allow(CSVSafe).to receive(:read).and_return([
+            ['ID', 'Name', 'Description'],
+            [skill_in_other_project.id.to_s, 'Test Skill', 'Description']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).to include(
+            I18n.t(
+              'administration.skills.errors.import.skill_not_in_project',
+              skill_id: skill_in_other_project.id,
+              line_number: 2
+            )
+          )
+        end
+
+        it 'allows skill that belongs to the project' do
+          form.project_id = project.id
+
+          allow(CSVSafe).to receive(:read).and_return([
+            ['ID', 'Name', 'Description'],
+            [skill_in_project.id.to_s, 'Test Skill', 'Description']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).not_to include(
+            match(/does not belong to this project/)
+          )
+        end
+
+        it 'skips validation when skill ID is blank' do
+          form.project_id = project.id
+
+          allow(CSVSafe).to receive(:read).and_return([
+            ['ID', 'Name', 'Description'],
+            ['', 'Test Skill', 'Description']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).not_to include(
+            match(/does not belong to this project/)
+          )
+        end
+
+        it 'skips validation when project_id is blank' do
+          form.project_id = nil
+
+          allow(CSVSafe).to receive(:read).and_return([
+            ['ID', 'Name', 'Description'],
+            [skill_in_other_project.id.to_s, 'Test Skill', 'Description']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).not_to include(
+            match(/does not belong to this project/)
+          )
+        end
+      end
     end
   end
 

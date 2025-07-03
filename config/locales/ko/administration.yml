@@ -1745,6 +1745,7 @@ ko:
       errors:
         blank_field: '행 %{row}: %{field}는 비워 둘 수 없습니다'
         csv_file_required: CSV 파일이어야 합니다
+        development_action_not_in_project: '행 %{row}: 개발 작업 ID %{development_action_id}가 이 프로젝트에 속하지 않습니다'
         image_download_failed: 'URL}에서 이미지를 다운로드하지 못했습니다: %{메시지}'
         invalid_csv_format: '잘못된 CSV 형식: %{message}'
         invalid_date: "%{date}의 날짜 형식은 유효하지 않습니다."
@@ -3629,6 +3630,7 @@ ko:
         import:
           missing_fields_data: '줄 %{line_number}: 누락된 필수 필드: %{fields}'
           save_failed: '줄 %{line_number}: 스킬 ''%{name}'': %{message}을(를) 저장하지 못했습니다.'
+          skill_not_in_project: '줄 %{line_number}: 스킬 ID %{skill_id}가 이 프로젝트에 속하지 않습니다'
         search:
           all_and_project_id_mutually_exclusive: Project_id_eq가 제공되면 모두 참일 수 없습니다
           invalid_all_value: 는 참, 거짓 중 하나여야 합니다

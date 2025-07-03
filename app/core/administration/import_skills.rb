@@ -47,7 +47,7 @@ module Administration
 
     def initialize_skill(row)
       if row['ID'].present?
-        Skill.find_by(id: row['ID']) || Skill.new
+        Skill.find_by(id: row['ID'], project_id: @project_id) || Skill.new
       else
         Skill.new
       end

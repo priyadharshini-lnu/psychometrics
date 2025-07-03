@@ -62,6 +62,24 @@ module Api
               )
             )
           end
+
+          validate_skill_belongs_to_project(row, row_number)
+        end
+
+        def validate_skill_belongs_to_project(row, row_number)
+          return if row['ID'].blank? || project_id.blank?
+
+          skill = ::Skill.find_by(id: row['ID'])
+          if skill.present? && skill.project_id != project_id
+            errors.add(
+              :base,
+              I18n.t(
+                'administration.skills.errors.import.skill_not_in_project',
+                skill_id: row['ID'],
+                line_number: row_number
+              )
+            )
+          end
         end
 
         def validates_headers

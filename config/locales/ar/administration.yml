@@ -1745,6 +1745,7 @@ ar:
       errors:
         blank_field: 'الصف %{row}: %{field} لا يمكن أن يكون فارغًا'
         csv_file_required: يجب أن يكون ملف CSV
+        development_action_not_in_project: 'الصف %{row}: معرف إجراء التطوير %{development_action_id} لا ينتمي إلى هذا المشروع'
         image_download_failed: 'فشل تنزيل الصورة من %{url}: %{message}'
         invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
         invalid_date: تنسيق التاريخ لـ ٪ {date} غير صالح.
@@ -3629,6 +3630,7 @@ ar:
         import:
           missing_fields_data: 'السطر %{line_number}: الحقول المطلوبة ناقصة: %{fields}'
           save_failed: 'السطر %{line_number}: فشل في حفظ المهارة "%{name}": %{message}'
+          skill_not_in_project: 'السطر %{line_number}: معرف المهارة %{skill_id} لا ينتمي إلى هذا المشروع'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'

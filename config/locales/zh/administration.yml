@@ -1745,6 +1745,7 @@ zh:
       errors:
         blank_field: '行 %{row}: %{field} 不能为空'
         csv_file_required: 必须是 CSV 文件
+        development_action_not_in_project: '行 %{row}: 开发活动 ID %{development_action_id} 不属于此项目'
         image_download_failed: 从 %{url} 下载图像失败： %{message}
         invalid_csv_format: CSV 格式无效： %{message}
         invalid_date: "％{date}的日期格式无效。"
@@ -3629,6 +3630,7 @@ zh:
         import:
           missing_fields_data: 行 %{line_number}：缺少必填字段：%{字段｝
           save_failed: 行 %{line_number}：保存技能"%{name}"失败： %{message}
+          skill_not_in_project: 行 %{line_number}：技能 ID %{skill_id} 不属于此项目
         search:
           all_and_project_id_mutually_exclusive: 当提供 project_id_eq 时，不能全部为真
           invalid_all_value: 必须是：true、false

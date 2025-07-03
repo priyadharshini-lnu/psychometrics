@@ -1745,6 +1745,7 @@ nl:
       errors:
         blank_field: 'Rij %{row}: %{field} kan niet leeg zijn'
         csv_file_required: Moet een CSV-bestand zijn
+        development_action_not_in_project: 'Rij %{row}: Ontwikkelingsactie ID %{development_action_id} behoort niet tot dit project'
         image_download_failed: 'Downloaden van afbeelding van %{url} mislukt: %{message}'
         invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
         invalid_date: Datumformaat voor %{date} is ongeldig.
@@ -3629,6 +3630,7 @@ nl:
         import:
           missing_fields_data: 'Regel %{line_number}: Verplichte velden ontbreken: %{fields}'
           save_failed: 'Regel %{line_number}: Opslaan van vaardigheid ''%{name}'' mislukt: %{message}'
+          skill_not_in_project: 'Regel %{line_number}: Vaardigheid ID %{skill_id} behoort niet tot dit project'
         search:
           all_and_project_id_mutually_exclusive: Alles kan niet waar zijn als project_id_eq is opgegeven
           invalid_all_value: 'moet een van de volgende zijn: waar, onwaar'

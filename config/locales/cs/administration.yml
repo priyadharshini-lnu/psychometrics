@@ -1745,6 +1745,7 @@ cs:
       errors:
         blank_field: 'Řádek %{row}: %{field} nemůže být prázdné'
         csv_file_required: Musí to být soubor CSV
+        development_action_not_in_project: 'Řádek %{row}: ID vývojové akce %{development_action_id} nepatří do tohoto projektu'
         image_download_failed: 'Nepodařilo se stáhnout obrázek z %{url}: %{message}'
         invalid_csv_format: 'Nesprávný formát CSV: %{message}'
         invalid_date: Formát data pro %{date} je neplatný.
@@ -3629,6 +3630,7 @@ cs:
         import:
           missing_fields_data: 'Řádek %{line_number}: Chybějící povinná pole: %{fields}'
           save_failed: 'Řádek %{line_number}: Nepodařilo se uložit dovednost ''%{name}'': %{message}'
+          skill_not_in_project: 'Řádek %{line_number}: ID dovednosti %{skill_id} nepatří do tohoto projektu'
         search:
           all_and_project_id_mutually_exclusive: Vše nemůže být pravda, pokud je zadáno project_id_eq
           invalid_all_value: 'musí být jedna z následujících hodnot: true, false'

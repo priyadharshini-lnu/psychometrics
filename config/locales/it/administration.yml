@@ -1745,6 +1745,7 @@ it:
       errors:
         blank_field: 'Riga %{row}: %{field} non può essere vuoto'
         csv_file_required: Deve essere un file CSV
+        development_action_not_in_project: 'Riga %{row}: L''ID dell''azione di sviluppo %{development_action_id} non appartiene a questo progetto'
         image_download_failed: 'Download immagine fallito da %{url}: %{message}'
         invalid_csv_format: 'Formato CSV non valido: %{message}'
         invalid_date: Il formato della data per %{date} non è valido.
@@ -3629,6 +3630,7 @@ it:
         import:
           missing_fields_data: 'Linea %{line_number}: Campi obbligatori mancanti: %{fields}'
           save_failed: 'Linea %{line_number}: Fallito il salvataggio dell''abilità ''%{name}'': %{message}'
+          skill_not_in_project: 'Linea %{line_number}: L''ID dell''abilità %{skill_id} non appartiene a questo progetto'
         search:
           all_and_project_id_mutually_exclusive: Tutti non possono essere veri quando viene fornito project_id_eq
           invalid_all_value: 'deve essere uno dei seguenti: vero, falso'

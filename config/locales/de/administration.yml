@@ -1745,6 +1745,7 @@ de:
       errors:
         blank_field: 'Zeile %{row}: %{field} kann nicht leer sein'
         csv_file_required: Muss eine CSV-Datei sein
+        development_action_not_in_project: 'Zeile %{row}: Entwicklungsaktion ID %{development_action_id} gehört nicht zu diesem Projekt'
         image_download_failed: 'Herunterladen des Bildes von %{url} fehlgeschlagen: %{message}'
         invalid_csv_format: 'Ungültiges CSV-Format: %{message}'
         invalid_date: Datumsformat für %{date} ist ungültig.
@@ -3629,6 +3630,7 @@ de:
         import:
           missing_fields_data: 'Zeile %{line_number}: Fehlende Pflichtfelder: %{fields}'
           save_failed: 'Zeile %{line_number}: Speichern der Fertigkeit ''%{name}'' fehlgeschlagen: %{message}'
+          skill_not_in_project: 'Zeile %{line_number}: Skill ID %{skill_id} gehört nicht zu diesem Projekt'
         search:
           all_and_project_id_mutually_exclusive: Alle können nicht wahr sein, wenn project_id_eq angegeben wird
           invalid_all_value: 'muss einer der folgenden Werte sein: true, false'

@@ -1746,6 +1746,7 @@ en:
       errors:
         blank_field: 'Row %{row}: %{field} cannot be blank'
         csv_file_required: Must be a CSV file
+        development_action_not_in_project: 'Line %{row}: Development Action ID %{development_action_id} does not belong to this project'
         image_download_failed: 'Failed to download image from %{url}: %{message}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
         invalid_date: Date format for %{date} is invalid.
@@ -3630,6 +3631,7 @@ en:
         import:
           missing_fields_data: 'Line %{line_number}: Missing required fields: %{fields}'
           save_failed: 'Line %{line_number}: Failed to save skill ''%{name}'': %{message}'
+          skill_not_in_project: 'Line %{line_number}: Skill ID %{skill_id} does not belong to this project'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'

@@ -1745,6 +1745,7 @@ es-ES:
       errors:
         blank_field: 'Fila %{row}: %{field} no puede estar en blanco'
         csv_file_required: Debe ser un archivo CSV
+        development_action_not_in_project: 'Fila %{row}: El ID de acción de desarrollo %{development_action_id} no pertenece a este proyecto'
         image_download_failed: 'Error al descargar la imagen de %{url}: %{message}'
         invalid_csv_format: 'Formato CSV no válido: %{message}'
         invalid_date: El formato de fecha para %{date} no es válido.
@@ -3629,6 +3630,7 @@ es-ES:
         import:
           missing_fields_data: 'Línea %{line_number}: Faltan campos obligatorios: %{fields}'
           save_failed: 'Línea %{line_number}: Error al guardar la habilidad ''%{name}'': %{message}'
+          skill_not_in_project: 'Línea %{line_number}: El ID de habilidad %{skill_id} no pertenece a este proyecto'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'debe ser uno de los siguientes: true, false'

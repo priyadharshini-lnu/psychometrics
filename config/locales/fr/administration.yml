@@ -1745,6 +1745,7 @@ fr:
       errors:
         blank_field: 'Ligne %{row} : %{field} ne peut pas être vide'
         csv_file_required: Doit être un fichier CSV
+        development_action_not_in_project: 'Ligne %{row} : L''ID de l''action de développement %{development_action_id} n''appartient pas à ce projet'
         image_download_failed: 'Échec du téléchargement de l''image de %{url} : %{message}'
         invalid_csv_format: 'Format CSV non valide : %{message}'
         invalid_date: Le format de date pour% {date} n'est pas valide.
@@ -3629,6 +3630,7 @@ fr:
         import:
           missing_fields_data: 'Ligne %{line_number} : Champs obligatoires manquants : %{fields}'
           save_failed: 'Ligne %{line_number} : L''enregistrement de la compétence ''%{name}'' a échoué : %{message}'
+          skill_not_in_project: 'Ligne %{line_number} : L''ID de compétence %{skill_id} n''appartient pas à ce projet'
         search:
           all_and_project_id_mutually_exclusive: Tout ne peut pas être vrai lorsque project_id_eq est fourni
           invalid_all_value: 'doit être l''un de : true, false'

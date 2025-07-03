@@ -34,7 +34,8 @@ module Api
 
     def import
       form = Api::V2::Administration::DevelopmentActionImportForm.new(
-        file: params[:file]
+        file: params[:file],
+        project_id: project&.id
       )
 
       if form.valid?
