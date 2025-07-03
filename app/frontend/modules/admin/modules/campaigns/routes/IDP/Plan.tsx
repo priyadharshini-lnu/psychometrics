@@ -34,7 +34,7 @@ export const Plan = () => {
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>([])
 
 
-  const { idp_plan_id } = useParams()
+  const { idpPlanId } = useParams()
   const { tab: paramTab } = useParams()
 
   const [tab, setTab] = useState(paramTab || 'list')
@@ -69,12 +69,12 @@ export const Plan = () => {
 
   useEffect(() => {
     fetchUserIdpPlan({
-      id: idp_plan_id as string,
+      id: idpPlanId as string,
     }).then((res: UserIdpPlan) => {
       setSelectedSkills(res.userIdpSkills)
       setIsLoading(false)
     })
-  }, [idp_plan_id])
+  }, [idpPlanId])
 
   useEffect(() => {
     if (userIdpPlanData.length) {
@@ -146,7 +146,7 @@ export const Plan = () => {
     const idpDaCollection = idpDevelopmentActionsPayload.reduce((acc, da) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const daPayload:any = {}
-      daPayload.userIdpPlanId = Number(idp_plan_id)
+      daPayload.userIdpPlanId = Number(idpPlanId)
       daPayload.userIdpSkillId = Number(da.userIdpSkillId)
       daPayload.developmentActionId = da.developmentActionId ? Number(da.developmentActionId) : null
       daPayload.startDateTime = da.startDateTime ?? undefined

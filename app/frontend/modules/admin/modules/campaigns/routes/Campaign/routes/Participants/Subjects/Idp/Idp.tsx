@@ -140,7 +140,7 @@ export const Idp: React.FC<{}> = () => {
             <Button
               onClick={() => {
               // eslint-disable-next-line max-len
-                navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/user/${id}/idp_plan/${activeIdpPlan?.id.toString()}/step/getting_started`)
+                navigate(`${activeIdpPlan?.id}/step/getting_started`)
               }}
             >
               {I18n.t('idp.manage_plan')}

@@ -4,32 +4,44 @@ import {
 import {
   Flex,
   Avatar,
-  Typography, Divider,
+  Button,
+  Typography,
+  Divider,
 } from 'antd'
 import {
+  ArrowLeftOutlined,
+} from '@ant-design/icons'
+import {
+  useNavigate,
   useParams,
 } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import { IdpUser } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 
 export const InformationBanner = () => {
-  const { user_id } = useParams()
+  const { campaignId, userId, projectId } = useParams()
+  const navigate = useNavigate()
 
   const {
     data: user, fetchSingle: fetchUser, isLoading: isUserLoading,
   } = useResources<IdpUser>('users')
 
   useEffect(() => {
-    fetchUser({ id: user_id as string })
-  }, [user_id])
+    fetchUser({ id: userId as string })
+  }, [userId])
+
+  const handleBack = () => {
+    navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/subjects/${userId}/idp`)
+  }
 
 
   if (isUserLoading('fetch')) return null
 
   return (
-    <Flex justify="space-between" gap="large" style={{ backgroundColor: '#FAFAFA', padding: '1rem', flexWrap: 'wrap' }}>
-      <Flex>
-        <Avatar size={32} src={user[0]?.photoUrl} style={{ marginRight: '8px' }} />
+    <Flex style={{ backgroundColor: '#FAFAFA', padding: '1rem', flexWrap: 'wrap' }}>
+      <Button type="link" icon={<ArrowLeftOutlined />} onClick={handleBack} />
+      <Flex gap={8}>
+        <Avatar size={32} src={user[0]?.photoUrl} />
         <Flex vertical>
           <Typography.Text>
             {user[0]?.fullName}
