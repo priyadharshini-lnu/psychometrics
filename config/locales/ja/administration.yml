@@ -1598,6 +1598,7 @@ ja:
         type: タイプ
       list:
         actions: 行動
+        assessment_center_group: アセスメント・センター・グループ
         author: 作成者
         campaign: キャンペーン
         client_name: クライアント

@@ -16,7 +16,10 @@ module Administration
                         :project,
                         :campaign,
                         :sub_campaign,
-                        :created_by
+                        :campaign_assessment_group,
+                        :created_by,
+                        :project_campaign,
+                        :translations
                       ).
                       ransack(params[:q])
 

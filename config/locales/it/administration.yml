@@ -1598,6 +1598,7 @@ it:
         type: Tipo
       list:
         actions: Azioni
+        assessment_center_group: Gruppo Assessment Center
         author: Creato da
         campaign: Campagna
         client_name: Cliente

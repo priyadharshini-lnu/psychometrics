@@ -1598,6 +1598,7 @@ ko:
         type: 유형
       list:
         actions: 작업
+        assessment_center_group: 평가 센터 그룹
         author: 만든 사람
         campaign: 캠페인
         client_name: 클라이언트

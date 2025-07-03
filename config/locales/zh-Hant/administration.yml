@@ -1598,6 +1598,7 @@ zh-Hant:
         type: 類型
       list:
         actions: 行動
+        assessment_center_group: 評估中心小組
         author: 創建者
         campaign: 活動
         client_name: 客戶

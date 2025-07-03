@@ -1598,6 +1598,7 @@ es-ES:
         type: Tipo
       list:
         actions: Acciones
+        assessment_center_group: Grupo del Centro de Evaluación
         author: Creado por
         campaign: Campaña
         client_name: Cliente

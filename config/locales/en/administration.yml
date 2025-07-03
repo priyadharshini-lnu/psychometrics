@@ -1599,6 +1599,7 @@ en:
         type: Type
       list:
         actions: Actions
+        assessment_center_group: Assessment Center Group
         author: Created by
         campaign: Campaign
         client_name: Client

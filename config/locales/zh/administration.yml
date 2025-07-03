@@ -1598,6 +1598,7 @@ zh:
         type: 类型
       list:
         actions: 行动
+        assessment_center_group: 评估中心小组
         author: 创建者
         campaign: 活动
         client_name: 客户
