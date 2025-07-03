@@ -2033,6 +2033,8 @@ nl:
       campaign_factor_group:
         group_already_exists: Er bestaat al een groep met dezelfde naam.
         last_factor_group: Kan laatste Campagnefactor-groep niet verwijderen.
+      campaign_idps:
+        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de campagne toewijst.
       create_superadmin:
         uniq_email: E-mail moet uniek zijn.
       exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
@@ -2080,6 +2082,7 @@ nl:
         start_time_should_be_less: Starttijd moet korter zijn dan eindtijd
       user_idp_plan:
         idp_template_already_assigned_to_user: Dit Idp-sjabloon is al toegewezen aan deze gebruiker en is actief
+        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de gebruiker toewijst.
       user_saved_filters:
         limit_exceeded: Je kunt maar %{limit} opgeslagen filters hebben. Verwijder opgeslagen filters om er meer toe te voegen.
         unique_name: Er bestaat al een filter met dezelfde naam.

@@ -2044,6 +2044,8 @@ zh:
       campaign_factor_group:
         group_already_exists: 已存在同名组。
         last_factor_group: 无法删除最后一个竞选因素组。
+      campaign_idps:
+        idp_template_not_published: 该IDP模板尚未发布，请在分配到广告系列之前将其发布。
       create_superadmin:
         uniq_email: 电子邮件应为统一格式。
       exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
@@ -2091,6 +2093,7 @@ zh:
         start_time_should_be_less: 开始时间应小于结束时间
       user_idp_plan:
         idp_template_already_assigned_to_user: 此 Idp 模板已分配给该用户并处于活动状态
+        idp_template_not_published: 该IDP模板尚未发布，请在分配给用户之前将其发布。
       user_saved_filters:
         limit_exceeded: 您只能保存 %{limit} 过滤器，请删除已保存的过滤器以添加更多过滤器。
         unique_name: 已存在同名过滤器。

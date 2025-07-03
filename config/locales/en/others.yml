@@ -2100,6 +2100,8 @@ en:
       campaign_factor_group:
         group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
+      campaign_idps:
+        idp_template_not_published: This Idp Template is not published yet, please publish it before assigning to campaign.
       cant_be_deleted: This record can't be deleted
       client_feature:
         ai_assisted_idp_feature_error: Can't be true if ai assistants feature is disabled
@@ -2152,6 +2154,7 @@ en:
         start_time_should_be_less: Start time should be less than end time
       user_idp_plan:
         idp_template_already_assigned_to_user: This Idp Template is already assiged to this user and is active
+        idp_template_not_published: This Idp Template is not published yet, please publish it before assigning to user.
       user_saved_filters:
         limit_exceeded: You can only have %{limit} saved filters, kindly delete saved filters to add more.
         unique_name: A filter with the same name already exists.

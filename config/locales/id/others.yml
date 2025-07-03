@@ -515,12 +515,16 @@ id:
       code_has_been_sent: OTP baru Anda telah dikirim ke alamat email yang terdaftar
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikan sebelum menugaskan kampanye.
       job_roles:
         unique_within_job_group: Peran pekerjaan dengan nama yang sama sudah ada.
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Keahlian dan peran pekerjaan harus berasal dari proyek yang sama atau bersifat global.
         unique_mappings: Pemetaan dengan keterampilan dan peran pekerjaan yang sama sudah ada.
       uniq_skillvue: Penilaian Skillvue ini sudah ada di dalam sistem. ID dari penilaian ini adalah %{id}
+      user_idp_plan:
+        idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikannya sebelum menetapkan kepada pengguna.
   emails:
     subject_relationship_table:
       subject_email: Email Subjek

@@ -509,12 +509,16 @@ vi:
       code_has_been_sent: Mã OTP mới của bạn đã được gửi đến địa chỉ email đã đăng ký của bạn
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: Mẫu IDP này chưa được xuất bản, vui lòng xuất bản nó trước khi gán cho chiến dịch.
       job_roles:
         unique_within_job_group: Vị trí công việc có tên tương tự đã tồn tại.
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Kỹ năng và vai trò công việc phải thuộc cùng một dự án hoặc là toàn cầu.
         unique_mappings: Một bản đồ chức năng với cùng kỹ năng và vai trò công việc đã tồn tại.
       uniq_skillvue: Đánh giá Skillvue này đã có sẵn trong hệ thống. Mã định danh của đánh giá này là %{id}
+      user_idp_plan:
+        idp_template_not_published: Mẫu IDP này chưa được xuất bản, vui lòng xuất bản nó trước khi gán cho người dùng.
   emails:
     subject_relationship_table:
       subject_email: Tiêu đề Email

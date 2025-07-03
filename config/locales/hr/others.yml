@@ -436,6 +436,12 @@ hr:
     two_factor_authentication:
       attempt: Molimo unesite OTP koji ste primili na svoju registriranu adresu e-pošte
       code_has_been_sent: Vaš novi OTP je poslan na vašu registriranu adresu e-pošte
+  dry_errors:
+    errors:
+      campaign_idps:
+        idp_template_not_published: Ovaj predložak IDP -a još nije objavljen, objavite ga prije nego što dodijelite kampanju.
+      user_idp_plan:
+        idp_template_not_published: Ovaj predložak IDP -a još nije objavljen, objavite ga prije dodjele korisniku.
   emails:
     subject_relationship_table:
       subject_email: Predmet e-pošte

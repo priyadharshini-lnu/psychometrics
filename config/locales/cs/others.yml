@@ -2046,6 +2046,8 @@ cs:
       campaign_factor_group:
         group_already_exists: Skupina se stejným názvem již existuje.
         last_factor_group: Nelze odstranit poslední skupinu faktorů kampaně.
+      campaign_idps:
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením kampaně.
       create_superadmin:
         uniq_email: E-mail by měl být uniq.
       exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
@@ -2093,6 +2095,7 @@ cs:
         start_time_should_be_less: Čas zahájení by měl být kratší než čas ukončení
       user_idp_plan:
         idp_template_already_assigned_to_user: Tato šablona Idp je již přiřazena tomuto uživateli a je aktivní
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením uživateli.
       user_saved_filters:
         limit_exceeded: Můžete mít pouze %{limit} uložených filtrů, pokud chcete přidat další, laskavě uložené filtry odstraňte.
         unique_name: Filtr se stejným názvem již existuje.

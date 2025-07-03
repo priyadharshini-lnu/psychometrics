@@ -515,12 +515,16 @@ sl:
       code_has_been_sent: Na vaš registrirani e-poštni naslov je bila poslana nova OTP
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite kampanjo.
       job_roles:
         unique_within_job_group: Vloga delovnega mesta z istim imenom že obstaja.
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Spretnost in vloga delovnega mesta morata pripadati istemu projektu ali biti globalna.
         unique_mappings: Mapiranje z enakim znanjem in delovnim mestom že obstaja.
       uniq_skillvue: Ta ocena Skillvue je že prisotna v sistemu. ID te ocene je %{id}
+      user_idp_plan:
+        idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite uporabniku.
   emails:
     subject_relationship_table:
       subject_email: Zadeva E-pošta

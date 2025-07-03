@@ -2034,6 +2034,8 @@ zh-Hant:
       campaign_factor_group:
         group_already_exists: 已存在同名的群組。
         last_factor_group: 無法刪除最後一個 Campaign 因子群組。
+      campaign_idps:
+        idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
       create_superadmin:
         uniq_email: 電子郵件應該是單一的。
       exceeded_subjects_count: 每次邀請只能新增 %{count} 主題
@@ -2081,6 +2083,7 @@ zh-Hant:
         start_time_should_be_less: 開始時間應小於結束時間
       user_idp_plan:
         idp_template_already_assigned_to_user: 此 Idp 範本已指定給此使用者，並已啟用。
+        idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
       user_saved_filters:
         limit_exceeded: 您只能擁有 %{limit} 已儲存的篩選條件，請刪除已儲存的篩選條件以新增更多篩選條件。
         unique_name: 已存在同名的篩選器。

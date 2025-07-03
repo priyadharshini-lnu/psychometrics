@@ -15,7 +15,7 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
   has_many :idp_template_skills
   has_many :skills, through: :idp_template_skills, class_name: 'Skill'
 
-  ransack_filters %i[filterable_fields]
+  ransack_filters %i[filterable_fields status_eq]
 
   def self.updatable_fields(_)
     super + %i[translations]

@@ -2046,6 +2046,8 @@ pt:
       campaign_factor_group:
         group_already_exists: Já existe um grupo com o mesmo nome.
         last_factor_group: Não é possível eliminar o último grupo de factores de campanha.
+      campaign_idps:
+        idp_template_not_published: Este modelo de IDP ainda não foi publicado, publique -o antes de atribuir a campanha.
       create_superadmin:
         uniq_email: O correio eletrónico deve ser uniq.
       exceeded_subjects_count: Só é possível adicionar %{count} temas por convite
@@ -2092,6 +2094,7 @@ pt:
         start_time_should_be_less: A hora de início deve ser inferior à hora de fim
       user_idp_plan:
         idp_template_already_assigned_to_user: Este modelo de Idp já foi atribuído a este utilizador e está ativo
+        idp_template_not_published: Este modelo IDP ainda não foi publicado, publique -o antes de atribuir ao usuário.
       user_saved_filters:
         limit_exceeded: Só pode ter %{limite} filtros guardados, por favor elimine os filtros guardados para adicionar mais.
         unique_name: Já existe um filtro com o mesmo nome.

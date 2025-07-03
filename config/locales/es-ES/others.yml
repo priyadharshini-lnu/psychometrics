@@ -2049,6 +2049,8 @@ es-ES:
       campaign_factor_group:
         group_already_exists: Ya existe un grupo con el mismo nombre.
         last_factor_group: No se puede eliminar el último grupo de factores de Campaña.
+      campaign_idps:
+        idp_template_not_published: Esta plantilla de IDP aún no se publica, publíquela antes de asignar a la campaña.
       create_superadmin:
         uniq_email: El correo electrónico debe ser uniq.
       exceeded_subjects_count: Sólo puede añadir %{count} sujetos por invitación
@@ -2096,6 +2098,7 @@ es-ES:
         start_time_should_be_less: La hora de inicio debe ser inferior a la hora de finalización
       user_idp_plan:
         idp_template_already_assigned_to_user: Esta Plantilla Idp ya está asignada a este usuario y está activa
+        idp_template_not_published: Esta plantilla de IDP aún no se publica, publíquela antes de asignar al usuario.
       user_saved_filters:
         limit_exceeded: Sólo puede tener %{limit} filtros guardados, por favor borre los filtros guardados para añadir más.
         unique_name: Ya existe un filtro con el mismo nombre.

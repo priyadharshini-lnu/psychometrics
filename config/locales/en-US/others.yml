@@ -516,12 +516,16 @@ en-US:
       code_has_been_sent: Your new OTP has been sent to your registered email address
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: This Idp Template is not published yet, please publish it before assigning to campaign.
       job_roles:
         unique_within_job_group: A job role with the same name already exists.
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Skill and job role must belong to same project or be global.
         unique_mappings: A mapping with the same skill and job role already exists.
       uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
+      user_idp_plan:
+        idp_template_not_published: This Idp Template is not published yet, please publish it before assigning to user.
   emails:
     subject_relationship_table:
       subject_email: Subject Email

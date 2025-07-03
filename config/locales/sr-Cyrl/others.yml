@@ -435,6 +435,12 @@ sr-Cyrl:
     two_factor_authentication:
       attempt: Молимо вас да унесете OTP који сте добили на регистровану адресу е-поште
       code_has_been_sent: Ваш нови OTP је послат на вашу регистровану адресу е-поште
+  dry_errors:
+    errors:
+      campaign_idps:
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кампање.
+      user_idp_plan:
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кориснику.
   emails:
     subject_relationship_table:
       subject_email: Наслов имејла

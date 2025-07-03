@@ -509,12 +509,16 @@ th:
       code_has_been_sent: OTP ใหม่ของคุณได้ถูกส่งไปยังที่อยู่อีเมลที่คุณลงทะเบียนไว้แล้ว
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: เทมเพลต IDP นี้ยังไม่เผยแพร่โปรดเผยแพร่ก่อนที่จะมอบหมายให้แคมเปญ
       job_roles:
         unique_within_job_group: มีตำแหน่งงานที่มีชื่อเดียวกันอยู่แล้ว
       skills_job_roles:
         must_belong_to_same_project_or_be_global: ทักษะและบทบาทงานต้องอยู่ในโครงการเดียวกันหรือเป็นแบบทั่วโลก
         unique_mappings: มีการจับคู่ที่มีทักษะและบทบาทงานเดียวกันอยู่แล้ว
       uniq_skillvue: การประเมิน Skillvue นี้มีอยู่ในระบบแล้ว รหัสการประเมินนี้คือ %{id}
+      user_idp_plan:
+        idp_template_not_published: เทมเพลต IDP นี้ยังไม่เผยแพร่โปรดเผยแพร่ก่อนที่จะมอบหมายให้ผู้ใช้
   emails:
     subject_relationship_table:
       subject_email: หัวข้ออีเมล์

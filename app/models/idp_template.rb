@@ -29,6 +29,10 @@ class IdpTemplate < ApplicationRecord
   has_one_image_attachment :client_logo, variants: [:thumb]
   has_one_image_attachment :background, variants: [:thumb]
 
+  ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
+    parent.table[:status]
+  end
+
   def attachment_storage_path(attribute_name, filename)
     "public/projects/#{project.id}/idp_templates/#{id}/#{attribute_name}/#{filename}"
   end
@@ -45,7 +49,7 @@ class IdpTemplate < ApplicationRecord
   validate :skills_or_tags_must_be_present_if_selected
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name]
+    %w[id name status]
   end
 
   def translations=(values)

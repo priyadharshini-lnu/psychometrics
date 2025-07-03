@@ -36,6 +36,7 @@ export const Idp: React.FC<{}> = () => {
       trackUrl: true,
       responseType: IdpTemplateTR,
       apiConfig: {
+        filter: { status_eq: 'published' },
         fields: { idp_templates: ['name', 'description'] },
       },
     },

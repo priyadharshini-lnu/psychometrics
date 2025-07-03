@@ -553,6 +553,8 @@ ar:
         cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
         manager_not_found: المدير غير موجود أو لا ينتمي إلى نفس المشروع
         user_not_found: المستخدم غير موجود أو لا ينتمي إلى نفس المشروع
+      campaign_idps:
+        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين إلى الحملة.
       idp_template:
         content_required: المحتوى مطلوب للتعليمات
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
@@ -562,6 +564,8 @@ ar:
         must_belong_to_same_project_or_be_global: يجب أن تنتمي المهارة والدور الوظيفي إلى نفس المشروع أو أن يكونا عالميين.
         unique_mappings: يوجد بالفعل تعيين بنفس المهارة والدور الوظيفي.
       uniq_skillvue: تقييم Skillvue هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
+      user_idp_plan:
+        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين للمستخدم.
   emails:
     subject_relationship_table:
       subject_email: ايميل المشارك

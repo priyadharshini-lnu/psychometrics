@@ -5,7 +5,7 @@ require 'swagger_helper'
 
 describe Api::V2::Administration::UserIdpPlansController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:user) { create(:user) }
-  let!(:idp_template) { create(:idp_template) }
+  let!(:idp_template) { create(:idp_template, :published) }
   let!(:campaign) { create(:campaign) }
   let!(:superadmin) { create(:superadmin) }
   let!(:idp_template1) { create(:idp_template) }

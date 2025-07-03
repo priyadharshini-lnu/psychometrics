@@ -515,12 +515,16 @@ sk:
       code_has_been_sent: Vaše nové OTP bolo odoslané na vašu registrovanú e-mailovú adresu
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: Táto šablóna IDP ešte nie je zverejnená, pred pridelením kampane ju uverejnite.
       job_roles:
         unique_within_job_group: Úloha s rovnakým názvom už existuje.
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Zručnosť a pracovná úloha musia patriť k tomu istému projektu alebo musia byť globálne.
         unique_mappings: Mapovanie s rovnakými zručnosťami a pracovnou úlohou už existuje.
       uniq_skillvue: Toto hodnotenie Skillvue je už v systéme prítomné. ID tohto hodnotenia je %{id}
+      user_idp_plan:
+        idp_template_not_published: Táto šablóna IDP ešte nie je zverejnená, pred priradením používateľovi ju zverejnite.
   emails:
     subject_relationship_table:
       subject_email: Predmet E-mail

@@ -8,7 +8,7 @@ describe Api::V2::Administration::Campaigns::CampaignIdpsController, swagger_doc
   let!(:assessor) { create(:user, :assessor) }
   let!(:campaign) { create(:campaign) }
   let!(:idp_template) { create(:idp_template) }
-  let!(:idp_template2) { create(:idp_template) }
+  let!(:idp_template2) { create(:idp_template, :published) }
   let(:user) { create(:user) }
   let(:campaign_id) { campaign.id }
   let(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }

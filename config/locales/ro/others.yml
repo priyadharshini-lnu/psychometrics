@@ -516,12 +516,16 @@ ro:
       code_has_been_sent: Noul dvs. OTP a fost trimis la adresa dvs. de e-mail înregistrată
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui campaniei.
       job_roles:
         unique_within_job_group: Un rol de post cu același nume există deja.
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Competența și rolul postului trebuie să aparțină aceluiași proiect sau să fie globale.
         unique_mappings: Există deja o corespondență cu aceleași competențe și roluri.
       uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
+      user_idp_plan:
+        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui utilizatorului.
   emails:
     subject_relationship_table:
       subject_email: Subiect Email

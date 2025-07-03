@@ -529,6 +529,8 @@ pl:
       code_has_been_sent: Nowy kod OTP został wysłany na zarejestrowany adres e-mail
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: Ten szablon IDP nie jest jeszcze opublikowany, publikuj go przed przypisaniem do kampanii.
       idp_template:
         content_required: Treść jest wymagana w instrukcjach
         tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane", wybierz tag lub umiejętność.
@@ -538,6 +540,8 @@ pl:
         must_belong_to_same_project_or_be_global: Umiejętność i rola muszą należeć do tego samego projektu lub być globalne.
         unique_mappings: Mapowanie z tymi samymi umiejętnościami i rolą zawodową już istnieje.
       uniq_skillvue: Ta ocena Skillvue jest już obecna w systemie. Identyfikator tej oceny to %{id}
+      user_idp_plan:
+        idp_template_not_published: Ten szablon IDP nie jest jeszcze opublikowany, publikuj go przed przypisaniem użytkownika.
   emails:
     subject_relationship_table:
       subject_email: Przedmiot E-mail

@@ -2036,6 +2036,8 @@ fr:
       campaign_factor_group:
         group_already_exists: Un groupe portant le même nom existe déjà.
         last_factor_group: Impossible de supprimer le dernier groupe de facteurs de campagne.
+      campaign_idps:
+        idp_template_not_published: Ce modèle de PDI n'est pas encore publié, veuillez le publier avant de s'attaquer à la campagne.
       create_superadmin:
         uniq_email: L'email doit être unique.
       exceeded_subjects_count: Vous ne pouvez ajouter que %{count} sujets par invitation
@@ -2080,6 +2082,7 @@ fr:
         start_time_should_be_less: L'heure de début doit être inférieure à l'heure de fin
       user_idp_plan:
         idp_template_already_assigned_to_user: Ce modèle Idp est déjà attribué à cet utilisateur et est actif
+        idp_template_not_published: Ce modèle IDP n'est pas encore publié, veuillez le publier avant d'attribuer à l'utilisateur.
       user_saved_filters:
         limit_exceeded: Vous ne pouvez avoir qu'une %{limit} de filtres enregistrés, veuillez supprimer les filtres enregistrés pour en ajouter d'autres.
         unique_name: Un filtre portant le même nom existe déjà.

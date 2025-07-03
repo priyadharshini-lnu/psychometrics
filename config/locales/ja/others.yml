@@ -2047,6 +2047,8 @@ ja:
       campaign_factor_group:
         group_already_exists: 同じ名前のグループがすでに存在する。
         last_factor_group: 最後のキャンペーン要因グループを削除できません。
+      campaign_idps:
+        idp_template_not_published: このIDPテンプレートはまだ公開されていません。キャンペーンに割り当てる前に公開してください。
       create_superadmin:
         uniq_email: 電子メールはユニックでなければならない。
       exceeded_subjects_count: 1回の招待で追加できる被写体は %{count} だけです。
@@ -2094,6 +2096,7 @@ ja:
         start_time_should_be_less: 開始時間は終了時間より短くする
       user_idp_plan:
         idp_template_already_assigned_to_user: このIdpテンプレートはすでにこのユーザーに割り当てられており、アクティブです。
+        idp_template_not_published: このIDPテンプレートはまだ公開されていません。ユーザーに割り当てる前に公開してください。
       user_saved_filters:
         limit_exceeded: 保存できるフィルターは%{limit}までです。
         unique_name: 同じ名前のフィルターがすでに存在する。
