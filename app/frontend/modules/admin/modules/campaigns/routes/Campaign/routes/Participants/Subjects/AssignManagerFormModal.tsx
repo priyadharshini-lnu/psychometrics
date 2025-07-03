@@ -38,9 +38,7 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
   const [selectedManagerId, setSelectedManagerId] = useState<number | undefined>(manager.id)
 
   const assignManager = (userId: number) => {
-    if (!selectedManagerId) return
-
-    addManager(projectId, userId, selectedManagerId)
+    addManager(projectId, userId, selectedManagerId || null)
       .then(() => {
         close()
         form.resetFields()
@@ -52,18 +50,18 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
       apiConfig: {
         filter: {
           search_query: '',
+          exclude_user_id: userId.toString(),
         },
       },
     })
-  }, [])
+  }, [userId])
 
   const handleInputChange = (value: string) => {
-    if (!value) return
-
     fetchUsers({
       apiConfig: {
         filter: {
           search_query: value,
+          exclude_user_id: userId.toString(),
         },
       },
     })
@@ -101,10 +99,10 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
             <Form.Item
               name="managerId"
               label={I18n.t('campaign_users.details.manager')}
-              rules={[{ required: true }]}
             >
               <Select
                 showSearch
+                allowClear
                 placeholder={(
                   <Space>
                     <SearchOutlined />

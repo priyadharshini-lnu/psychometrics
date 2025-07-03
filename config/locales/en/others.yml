@@ -777,6 +777,8 @@ en:
           attributes:
             current_password:
               invalid: Current password is incorrect
+            manager_id:
+              cannot_be_self: User cannot be assigned as their own manager
         user_idp_comment:
           reply_to_reply: cannot reply to a reply (only one level of nesting allowed)
         user_idp_plan:
@@ -2079,6 +2081,7 @@ en:
         reserved_subdomain: Subdomain %{value} is reserved
         uniq_subdomain: Subdomain should be unique.
       add_manager:
+        cannot_be_self: User cannot be assigned as their own manager
         manager_not_found: Manager not found or not part of the same project
         user_not_found: User not found or not part of the same project
       admin:

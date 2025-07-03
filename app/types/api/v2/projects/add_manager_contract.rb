@@ -8,20 +8,26 @@ module Api
 
         schema do
           required(:id).filled(:string)
-          required(:manager_id).filled(:string)
+          optional(:manager_id).maybe(:string)
           required(:user_id).filled(:string)
         end
 
         rule(:manager_id) do
-          manager = ::User.find_by(id: value, project_id: values[:id])
+          next if value.nil?
 
+          manager = ::User.find_by(id: value, project_id: values[:id])
           key.failure(:manager_not_found) if manager.blank?
         end
 
         rule(:user_id) do
           user = ::User.find_by(id: value, project_id: values[:id])
-
           key.failure(:user_not_found) if user.blank?
+        end
+
+        rule(:manager_id, :user_id) do
+          next if values[:manager_id].nil?
+
+          key(:manager_id).failure(:cannot_be_self) if values[:manager_id] == values[:user_id]
         end
       end
     end

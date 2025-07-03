@@ -771,6 +771,8 @@ nl:
           attributes:
             current_password:
               invalid: Huidig wachtwoord is onjuist
+            manager_id:
+              cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
         user_idp_plan:
           no_active_plan: Geen actief IDP-plan gevonden
   admin_jobs:
@@ -2012,6 +2014,7 @@ nl:
         reserved_subdomain: Subdomein %{value} is gereserveerd
         uniq_subdomain: Subdomein moet uniek zijn.
       add_manager:
+        cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
         manager_not_found: Manager niet gevonden of geen onderdeel van hetzelfde project
         user_not_found: Gebruiker niet gevonden of maakt geen deel uit van hetzelfde project
       admin:

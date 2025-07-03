@@ -771,6 +771,8 @@ es-ES:
           attributes:
             current_password:
               invalid: La contraseña actual no es correcta
+            manager_id:
+              cannot_be_self: El usuario no puede asignarse como su propio gestor
         user_idp_plan:
           no_active_plan: No se ha encontrado ningún plan PDI activo
   admin_jobs:
@@ -2028,6 +2030,7 @@ es-ES:
         reserved_subdomain: El subdominio %{value} está reservado
         uniq_subdomain: El subdominio debe ser único.
       add_manager:
+        cannot_be_self: El usuario no puede asignarse como su propio gestor
         manager_not_found: Gestor no encontrado o que no forma parte del mismo proyecto
         user_not_found: Usuario no encontrado o que no forma parte del mismo proyecto
       admin:

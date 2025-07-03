@@ -93,6 +93,8 @@ ar:
           attributes:
             current_password:
               invalid: كلمة المرور الحالية غير صحيحة
+            manager_id:
+              cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
   admin_jobs:
     attrs:
       operations:
@@ -547,6 +549,10 @@ ar:
       code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
   dry_errors:
     errors:
+      add_manager:
+        cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
+        manager_not_found: المدير غير موجود أو لا ينتمي إلى نفس المشروع
+        user_not_found: المستخدم غير موجود أو لا ينتمي إلى نفس المشروع
       idp_template:
         content_required: المحتوى مطلوب للتعليمات
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"

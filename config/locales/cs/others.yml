@@ -771,6 +771,8 @@ cs:
           attributes:
             current_password:
               invalid: Současné heslo je nesprávné
+            manager_id:
+              cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
         user_idp_plan:
           no_active_plan: Nebyl nalezen žádný aktivní plán IDP
   admin_jobs:
@@ -2025,6 +2027,7 @@ cs:
         reserved_subdomain: Subdoména %{value} je rezervována
         uniq_subdomain: Subdoména by měla být jedinečná.
       add_manager:
+        cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
         manager_not_found: Správce nenalezen nebo není součástí stejného projektu
         user_not_found: Uživatel nebyl nalezen nebo není součástí stejného projektu
       admin:

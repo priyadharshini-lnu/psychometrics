@@ -771,6 +771,8 @@ zh:
           attributes:
             current_password:
               invalid: 当前密码不正确
+            manager_id:
+              cannot_be_self: 用户不能被指定为自己的经理
         user_idp_plan:
           no_active_plan: 未找到有效的 IDP 计划
   admin_jobs:
@@ -2023,6 +2025,7 @@ zh:
         reserved_subdomain: 子域 %{value} 已保留
         uniq_subdomain: 子域应是唯一的。
       add_manager:
+        cannot_be_self: 用户不能被指定为自己的经理
         manager_not_found: 未找到管理员或管理员不属于同一项目
         user_not_found: 未找到用户或不属于同一项目
       admin:

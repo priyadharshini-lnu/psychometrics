@@ -771,6 +771,8 @@ fr:
           attributes:
             current_password:
               invalid: Le mot de passe actuel est incorrect
+            manager_id:
+              cannot_be_self: L'utilisateur ne peut pas être assigné comme son propre gestionnaire
         user_idp_plan:
           no_active_plan: Aucun plan d'action actif n'a été trouvé
   admin_jobs:
@@ -2015,6 +2017,7 @@ fr:
         reserved_subdomain: Le sous-domaine %{value} est réservé
         uniq_subdomain: Le sous-domaine doit être unique.
       add_manager:
+        cannot_be_self: L'utilisateur ne peut pas être assigné comme son propre gestionnaire
         manager_not_found: Gestionnaire introuvable ou ne faisant pas partie du même projet
         user_not_found: Utilisateur introuvable ou ne faisant pas partie du même projet
       admin:

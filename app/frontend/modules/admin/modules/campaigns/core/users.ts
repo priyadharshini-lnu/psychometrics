@@ -189,7 +189,7 @@ export const setUserDetails = (userDetails: UserDetails) => ({
   userDetails,
 })
 
-export const addManager = (projectId: number, UserId: number, managerId: number) => ({
+export const addManager = (projectId: number, UserId: number, managerId: number | null) => ({
   type: ADD_MANAGER,
   request: {
     method: 'put',

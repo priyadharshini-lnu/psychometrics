@@ -771,6 +771,8 @@ zh-Hant:
           attributes:
             current_password:
               invalid: 目前的密碼不正確
+            manager_id:
+              cannot_be_self: 用戶不能被指定為自己的管理員
         user_idp_plan:
           no_active_plan: 未找到有效的 IDP 計劃
   admin_jobs:
@@ -2013,6 +2015,7 @@ zh-Hant:
         reserved_subdomain: 子網域 %{value} 已保留
         uniq_subdomain: 子網域應該是唯一的。
       add_manager:
+        cannot_be_self: 用戶不能被指定為自己的管理員
         manager_not_found: 未找到管理員或不屬於同一專案
         user_not_found: 使用者未找到或不屬於同一專案
       admin:

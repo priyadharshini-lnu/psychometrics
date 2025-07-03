@@ -781,6 +781,8 @@ de:
           attributes:
             current_password:
               invalid: Aktuelles Passwort ist falsch
+            manager_id:
+              cannot_be_self: Benutzer kann nicht als sein eigener Manager zugewiesen werden
         user_idp_plan:
           no_active_plan: Kein aktiver IDP-Plan gefunden
   admin_jobs:
@@ -2037,6 +2039,7 @@ de:
         reserved_subdomain: Subdomain %{value} ist reserviert
         uniq_subdomain: Die Subdomain sollte eindeutig sein.
       add_manager:
+        cannot_be_self: Benutzer kann nicht als sein eigener Manager zugewiesen werden
         manager_not_found: Manager nicht gefunden oder nicht Teil desselben Projekts
         user_not_found: Benutzer nicht gefunden oder nicht Teil desselben Projekts
       admin:

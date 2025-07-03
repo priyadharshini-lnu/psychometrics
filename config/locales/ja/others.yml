@@ -771,6 +771,8 @@ ja:
           attributes:
             current_password:
               invalid: パスワードが間違っています
+            manager_id:
+              cannot_be_self: ユーザーは自分自身をマネージャーとして割り当てることはできません
         user_idp_plan:
           no_active_plan: 有効なIDP計画が見つからない
   admin_jobs:
@@ -2026,6 +2028,7 @@ ja:
         reserved_subdomain: サブドメイン %{value} は予約されています。
         uniq_subdomain: サブドメインは一意でなければならない。
       add_manager:
+        cannot_be_self: ユーザーは自分自身をマネージャーとして割り当てることはできません
         manager_not_found: マネージャーが見つからないか、同じプロジェクトに属していない
         user_not_found: ユーザーが見つからないか、同じプロジェクトに属していない
       admin:
