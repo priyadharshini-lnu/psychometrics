@@ -11,6 +11,52 @@ ar:
         select_comparison: اختر نوع المقارنة
         select_factors: عوامل الاختيار
         select_operation: حدد العملية
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'يحتوي المكوِّن "%{block_name}" على تكوينات مكررة: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: يجب أن يكون الدور الوظيفي المستهدف مختلفاً عن الدور الوظيفي الحالي
+              not_found: دور الوظيفة "%{الاسم}" غير موجود في المشروع أو الأدوار العامة
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: يجب أن يكون الدور الوظيفي المستهدف مختلفاً عن الدور الوظيفي الحالي
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: لا يمكن أن تكون القيمة %{اسم_العمود} فارغة في الصف %{رقم_الصف}
+              invalid_format: يُرجى تحميل ملف CSV
+              invalid_job_role_id: المعرّف في الصف %{row_number} ليس معرّف دور وظيفي صالح
+              invalid_locale: اللغة المحلية في الصف %{row_number} ليست لغة محلية صالحة
+              missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
+              parsing_failed: 'خطأ أثناء تحليل الملف، خطأ: %{خطأ}.'
+            project:
+              must_exist: يجب أن يكون المشروع موجوداً
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: يجب تمكين دور وظيفي واحد على الأقل مع تحديد نوع المهارة لـ %{block_name}
+              invalid_skill_type: 'نوع المهارة غير صالح %{نوع_المهارة} لـ %{اسم_الدور} لـ %{اسم_الحظر}. الخيارات الصالحة: %{الخيارات_الصحيحة} لـ %{الخيارات_الصحيحة}'
+              props_missing: الوظيفة
+        skillvue:
+          attributes:
+            name:
+              not_unique: هذا التكامل موجود بالفعل في هذا المشروع.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'الصف %{صف}: القيمة المكررة %{القيمة} لـ %{حقل}'
+              invalid_format: يُرجى تحميل ملف xlsx
+              missing_headers: "%{اسم_الورقة} الورقة ناقصة الرؤوس المطلوبة: %{رؤوس}"
+              missing_sheets: 'الأوراق المطلوبة مفقودة: %{الأوراق}'
+              missing_value: 'الصف %{صف}: قيمة مفقودة لـ %{حقل}'
+            project:
+              must_exist: يجب أن يكون المشروع موجوداً
   activerecord:
     attributes:
       membership:
@@ -27,6 +73,16 @@ ar:
         password: كلمه السر
     errors:
       models:
+      taxonomies_import_form:
+        attributes:
+          file:
+            duplicate_value: 'الصف %{row}: القيمة المكررة %{value} للحقل %{field}'
+            invalid_format: يرجى تحميل ملف xlsx
+            missing_headers: 'ورقة %{sheet_name} تفتقد الرؤوس المطلوبة: %{headers}'
+            missing_sheets: 'الأوراق المطلوبة المفقودة: %{sheets}'
+            missing_value: 'الصف %{row}: القيمة مفقودة للحقل %{field}'
+          project:
+            must_exist: يجب أن يوجد المشروع
         register:
           attributes:
             mobile_number:
@@ -37,6 +93,14 @@ ar:
           attributes:
             current_password:
               invalid: كلمة المرور الحالية غير صحيحة
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: تصدير ترجمات الأدوار الوظيفية
+        export_proficiency_levels: مستويات كفاءة التصدير
+        import_job_roles_translations: استيراد ترجمات الأدوار الوظيفية
+        import_proficiency_level_translations: استيراد الترجمات على مستوى الكفاءة
+        import_skills_rater_taxonomies: استيراد تصنيفات مقيمي المهارات
   anonym:
     close: يغلق
     continue: استمرار
@@ -65,6 +129,12 @@ ar:
     card_actions:
       begin: ابدأ
       continue: استمرار
+    column:
+      external_settings:
+        skillvue_assessment_name: اسم تقييم المهارات
+    fields:
+      category:
+        skillvue: سكيلفيو
     instructions:
       begin_assessment: ابدأ
       cancel: إلغاء
@@ -206,9 +276,9 @@ ar:
       campaign: الحملة
       change_password: تغيير كلمة المرور
       development: تطوير
+      direct_reportees: الموظفين المباشرين
       home: الصفحة الرئيسية
       insights: البصائر
-      my_direct_reportees: تقاريري المباشرة
       my_plan: خطتي
       profile: تفاصيلي
       profile_details: تفاصيل
@@ -275,6 +345,15 @@ ar:
   campaign_assessment:
     assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
+    column:
+      skillvue_email_id: معرف البريد الإلكتروني للمرشح سكيلفيو
+      skillvue_external_assessment_id: معرّف تقييم سكيلفيو
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: حدث خطأ ما يرجى الاتصال بالمسؤول
+        placeholder: اختر مجموعة مركز التقييم
+        success_message: تم تعيين مجموعة تقييم حملة المقيم بنجاح
+        title: مجموعة مركز التقييم
     statuses:
       completed: تم اكماله
       in_progress: قيد التنفيذ
@@ -394,6 +473,7 @@ ar:
     column:
       action: نشاط
       category: فئة
+      code: الرمز
       created_at: تم إنشاؤها في
       id: الهوية
       name: اسم
@@ -410,6 +490,7 @@ ar:
       download: تحميل
       na: N / A
       ok: موافق
+      refer_export_file: ارجع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
       response: الإجابة
   devise:
     administrators:
@@ -465,7 +546,14 @@ ar:
   dry_errors:
     errors:
       idp_template:
+        content_required: المحتوى مطلوب للتعليمات
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
+      job_roles:
+        unique_within_job_group: يوجد دور وظيفي بنفس الاسم بالفعل.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: يجب أن تنتمي المهارة والدور الوظيفي إلى نفس المشروع أو أن يكونا عالميين.
+        unique_mappings: يوجد بالفعل تعيين بنفس المهارة والدور الوظيفي.
+      uniq_skillvue: تقييم Skillvue هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
   emails:
     subject_relationship_table:
       subject_email: ايميل المشارك
@@ -618,6 +706,29 @@ ar:
   idp:
     actions: الإجراءات
     board: اللوحة
+    comment_details:
+      add_comment: إضافة تعليق
+      add_comment_placeholder: إضافة تعليق...
+      add_reply_placeholder: إضافة رد...
+      go_to_skill: الذهاب إلى المهارة
+    comments:
+      close: إغلاق
+      comments: تعليقات
+      filter_comments: تصفية التعليقات
+      mark_as_resolved: حل
+      mark_as_unresolved: حل
+      replied: تم الرد
+      replies: ردود
+      reply: رد
+      resolve: حل
+      resolved: محلول
+      resolved_message: تم حل هذا التعليق وتم تعطيل الردود.
+      show_only_read: إظهار المقروء
+      show_only_resolved: إظهار المحلولة
+      show_only_unread: إظهار الغير مقروء
+      show_only_unresolved: إظهار الغير محلولة
+      sort_by_date: ترتيب حسب التاريخ
+      you: أنت
     convert_to_draft: تحويل إلى مسودة
     details: التفاصيل
     development_actions:
@@ -649,6 +760,7 @@ ar:
       on_the_job: في العمل
       other: أخرى
       private: خاص
+      publish_plan: نشر الخطة
       remove: إزالة
       skill: مهارة
       sprint: سباق قصير
@@ -656,7 +768,6 @@ ar:
       structured_learning: تعلم منظم
       submit_plan: تقديم الخطة
       write_here: اكتب هنا...
-    direct_reportee_details: تفاصيل التقرير المباشر
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
       add_skill_group_title: استكشاف مهاراتك في %{category}
@@ -664,7 +775,6 @@ ar:
       add_skills_step: إضافة مهارات
       continue_to_rate_skills: متابعة لتقييم المهارات
       getting_started: البدء
-      getting_started_info: مرحبًا بك في منشئ خطة التطوير الفردية الخاصة بك. ستساعدك هذه الخطة في تحديد وإدارة وتتبع أهدافك المهنية والشخصية وكذلك الخطوات التي يجب اتخاذها لتحقيق تلك الأهداف. قد تتضمن أهدافك المهنية مجالات سلوكية وقيادية وكذلك مجالات تقنية للتطوير. خطة التطوير الفردية الخاصة بك هي أداة أساسية لدعم تطويرك المهني وتعزيز مهاراتك.
       less_skills: عرض مهارات أقل
       more_skills: استكشاف المزيد من المهارات
       next: التالي
@@ -682,7 +792,6 @@ ar:
     list: قائمة
     manage_plan: إدارة الخطة
     mark_as_incomplete: وضع علامة على أنها غير مكتملة
-    my_direct_reportees: تقاريري المباشرة
     my_plan:
       development_plan: خطة التطوير
       graphs:
@@ -794,6 +903,7 @@ ar:
         skills_count: عدد المهارات
         title: ملخص التقرير
     reflective_questions:
+      already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer_later: أجب لاحقًا
       answer_placeholder: اكتب إجابتك هنا...
       errors:
@@ -866,6 +976,8 @@ ar:
       add: إضافة تقرير
       download: تحميل التقرير
       view: عرض التقرير
+    form:
+      load_from_skillvue: تحميل من سكيلفيو
     modules:
       campaign_factors_table:
         add_condition: إضافة شرط

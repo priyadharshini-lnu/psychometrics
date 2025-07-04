@@ -9,7 +9,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
   let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
-  let!(:assistant) { create(:ai_assistant, owner: client, provider_id: 'azure-openai') }
+  let!(:assistant) { create(:assistant, owner: client, model_id: 'azure-openai') }
   let!(:assistant_id) { assistant.id }
   let(:mock_provider_config) do
     config_double = double('ProviderConfig')
@@ -95,9 +95,9 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
                   system_prompt: { type: :string, example: 'You are a helpful assistant' },
                   user_prompt: { type: :string, example: 'How can I help you?' },
                   action: { type: :string, example: 'assist' },
-                  provider_id: { type: :string, example: 'azure-openai' }
+                  model_id: { type: :string, example: 'azure-openai' }
                 },
-                required: %w[name description system_prompt user_prompt action provider_id]
+                required: %w[name description system_prompt user_prompt action model_id]
               }
             }
           }
@@ -115,7 +115,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
                 system_prompt: 'You are a helpful assistant',
                 user_prompt: 'How can I help you?',
                 action: 'assist',
-                provider_id: 'azure-openai'
+                model_id: 'azure-openai'
               }
             }
           }
@@ -132,7 +132,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           expect(data).to have_key('created_at')
           expect(data).to have_key('updated_at')
           expect(data['name']).to eq('Test Assistant')
-          expect(data['provider_id']).to eq('azure-openai')
+          expect(data['model_id']).to eq('azure-openai')
         end
       end
     end
@@ -249,10 +249,10 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
 
           before do
             # Mock the Service instead of the AI client directly
-            allow(AI::Assistants::Service).
+            allow(AI::AssistantService).
               to receive(:call).
-              with(assistant_id.to_s, nil).
-              and_return({ ok: 'This is a test AI response' })
+              with(assistant_id.to_s, superadmin, nil).
+              and_return({ ok: { message: 'This is a test AI response' } })
           end
 
           run_test! do |response|
@@ -268,9 +268,9 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           let(:id) { 'non-existent-id' }
 
           before do
-            allow(AI::Assistants::Service).
+            allow(AI::AssistantService).
               to receive(:call).
-              with('non-existent-id', nil).
+              with('non-existent-id', superadmin, nil).
               and_raise(ActiveRecord::RecordNotFound.new)
           end
 
@@ -288,9 +288,9 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
 
           before do
             # Simulate an error in the service
-            allow(AI::Assistants::Service).
+            allow(AI::AssistantService).
               to receive(:call).
-              with(assistant_id.to_s, nil).
+              with(assistant_id.to_s, superadmin, nil).
               and_raise(StandardError.new('AI provider error'))
           end
 

@@ -10,5 +10,5 @@ export interface TableProps {
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
   getFilteredValue(column: string): FilterValue | null | undefined
-  changePage(page: number): void
+  changePage(page: number, pageSize?: number): void
 }

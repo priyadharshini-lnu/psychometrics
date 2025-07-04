@@ -30,7 +30,7 @@ export const InitialStepsComponent = () => {
 
 
   const {
-    data: userIdpPlanData, fetchSingle: fetchUserIdpPlan, updateResource: updatePlan,
+    fetchSingle: fetchUserIdpPlan, updateResource: updatePlan, getResource,
   } = useResources<UserIdpPlan>(
     'user_idp_plans',
     {
@@ -40,6 +40,8 @@ export const InitialStepsComponent = () => {
     },
   )
 
+  const userIdpPlanData = getResource(idp_plan_id as string) as UserIdpPlan
+
   const STEP_ITEMS = [
     {
       title: I18n.t('idp.initial_steps.getting_started'),
@@ -47,7 +49,7 @@ export const InitialStepsComponent = () => {
     },
     {
       title: I18n.t('idp.initial_steps.skill_gap_report'),
-      hide: !userIdpPlanData[0]?.skillGapReportAvailable,
+      hide: !userIdpPlanData?.skillGapReportAvailable,
       step: STEPS.skillGapReport,
     },
     {
@@ -60,13 +62,13 @@ export const InitialStepsComponent = () => {
   const currentStepIndex = visibleSteps.findIndex(({ step }) => step === currentStep)
 
   useEffect(() => {
-    if (!userIdpPlanData[0]) { return }
+    if (!userIdpPlanData) { return }
 
-    if (userIdpPlanData[0]?.status !== USER_IDP_PLAN_STATUS.NOT_STARTED) {
+    if (userIdpPlanData?.status !== USER_IDP_PLAN_STATUS.NOT_STARTED) {
       navigate(`${currentPath.split('step')[0]}plan`)
     }
 
-    if (paramStep === STEPS.skillGapReport && userIdpPlanData[0] && !userIdpPlanData[0]?.skillGapReportAvailable) {
+    if (paramStep === STEPS.skillGapReport && userIdpPlanData && !userIdpPlanData?.skillGapReportAvailable) {
       setCurrentStep(STEPS.gettingStarted)
       navigate(`${currentPath.split('step')[0]}step/getting_started`)
     }
@@ -91,7 +93,7 @@ export const InitialStepsComponent = () => {
   }, [idp_plan_id])
 
   const handleNextForGettingStartedStep = () => {
-    if (!userIdpPlanData[0]?.skillGapReportAvailable) {
+    if (!userIdpPlanData?.skillGapReportAvailable) {
       setCurrentStep(STEPS.addSkills)
       navigate(`${currentPath.split('step')[0]}step/add_skills`)
     } else {
@@ -108,7 +110,7 @@ export const InitialStepsComponent = () => {
   const handleNextForAddSkillsStep = (selectedSkills) => {
     setIsLoading(true)
 
-    const planPayload = userIdpPlanData[0]
+    const planPayload = userIdpPlanData
     const skillPayload = {
 
       skills: selectedSkills.map(skill => ({
@@ -141,18 +143,23 @@ export const InitialStepsComponent = () => {
         items={visibleSteps.map(({ title }) => ({ title }))}
       />
       {paramStep === STEPS.gettingStarted
-      && <GettingStart next={handleNextForGettingStartedStep} />}
+      && (
+        <GettingStart
+          introMessage={userIdpPlanData?.instructions.content}
+          next={handleNextForGettingStartedStep}
+        />
+      )}
       {paramStep === STEPS.skillGapReport && (
         <SkillGapReportStep
-          skillGapReportId={userIdpPlanData[0]?.skillGapReportId}
+          skillGapReportId={userIdpPlanData?.skillGapReportId}
           next={handleNextForSkillGapReportStep}
         />
       )}
       {paramStep === STEPS.addSkills && (
         <AdminAddSkills
-          userIdpSkills={userIdpPlanData[0]?.skills}
+          userIdpSkills={userIdpPlanData?.skills}
           next={handleNextForAddSkillsStep}
-          idpTemplateId={userIdpPlanData[0]?.idpTemplateId as string}
+          idpTemplateId={userIdpPlanData?.idpTemplateId as string}
         />
       )}
     </>
@@ -167,7 +174,7 @@ export const InitialStepsComponent = () => {
           {isLoading && (
             <Spin size="large" />
           )}
-          {!isLoading && (userIdpPlanData[0]?.status === USER_IDP_PLAN_STATUS.NOT_STARTED ? idpSteps : <></>)}
+          {!isLoading && (userIdpPlanData?.status === USER_IDP_PLAN_STATUS.NOT_STARTED ? idpSteps : <></>)}
         </Flex>
       </Layout.Content>
     </>

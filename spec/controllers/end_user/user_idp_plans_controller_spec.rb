@@ -114,4 +114,23 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
       end
     end
   end
+
+  describe 'async download' do
+    it 'initiates async download' do
+      allow(AsyncRequestHandlerJob).to receive(:perform_later) do |**args|
+        AsyncRequestHandlerJob.perform_now(**args)
+      end
+
+      expect(Idp::AsyncDownload).to receive(:call!)
+      expect(AsyncResponseRequest::SetAsyncResponse).to receive(:call!).at_least(1)
+
+      post :download, params: {
+        user_id: user.id,
+        lang: 'en',
+        include_reflective_questions: true
+      }
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end

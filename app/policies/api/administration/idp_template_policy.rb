@@ -19,11 +19,19 @@ module Api
         has_permission?(:idp_templates, :manage)
       end
 
+      def show?
+        has_permission?(:idp_templates, :view)
+      end
+
       def uploads?
         has_permission?(:idp_templates, :manage)
       end
 
       def update_reflection_questions?
+        has_permission?(:idp_templates, :manage)
+      end
+
+      def update_instructions?
         has_permission?(:idp_templates, :manage)
       end
 

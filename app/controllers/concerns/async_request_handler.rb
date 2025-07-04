@@ -10,7 +10,7 @@ module AsyncRequestHandler
   class_methods do
     def async_request(action_name, handler:, permit_params:)
       define_method(action_name) do
-        context = default_async_request_context.merge(params: permit_params.call(params))
+        context = default_async_request_context.merge(params: instance_exec(params, &permit_params))
 
         AsyncRequestHandlerJob.perform_later(context: context, handler: handler)
 

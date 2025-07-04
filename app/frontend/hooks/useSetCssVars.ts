@@ -24,7 +24,7 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
       addCssVars(rootElement, cssVars)
     } else {
       const {
-        colorPrimary, colorWarning, colorError, colorPrimaryBg, colorText,
+        colorPrimary, colorWarning, colorError, colorPrimaryBg, colorText, colorSuccess,
       } = token
       const colorPalette = generate(colorPrimary)
       const lightColorPalette = generate(colorPalette[0])
@@ -39,6 +39,7 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
         { varName: '--ant-error-color', value: colorError },
         { varName: '--ant-primary-color-outline', value: colorPrimaryBg },
         { varName: '--ant-text-color', value: colorText },
+        { varName: '--ant-success-color', value: colorSuccess },
       ]
       const cssVarColors = [
         { varName: '--grey-text', value: '#757575' },

@@ -62,7 +62,12 @@ class WorkshopSubject < ApplicationRecord
   end
 
   def send_workshop_booked_email
-    communication = campaign.communications.workshop_booked.last
+    communication = campaign.
+                    communications.
+                    workshop_booked.
+                    where(campaign_assessment_group_id: workshop.campaign_assessment_group_id).
+                    last
+
     return unless communication
 
     communication.emails.create(
@@ -71,7 +76,9 @@ class WorkshopSubject < ApplicationRecord
   end
 
   def send_workshop_cancelled_email
-    communication = campaign.communications.workshop_cancelled.last
+    communication = campaign.communications.workshop_cancelled.
+                    where(campaign_assessment_group_id: workshop.campaign_assessment_group_id).last
+
     return unless communication
 
     communication.emails.create(

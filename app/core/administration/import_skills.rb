@@ -66,12 +66,21 @@ module Administration
 
       skill.assign_attributes(attributes)
       assign_tags(skill, row)
+      assign_skill_group(skill, row)
     end
 
     def assign_tags(skill, row)
       return if row['Tag'].blank?
 
       skill.tag_list = row['Tag'].split(',').map(&:strip)
+    end
+
+    def assign_skill_group(skill, row)
+      return if row['SkillGroup'].blank?
+
+      name = row['SkillGroup'].strip
+      skill_group = SkillGroup.find_by(name: name, project_id: @project_id)
+      skill.skill_group = skill_group if skill_group.present?
     end
 
     def normalize_skill_type(skill_type)

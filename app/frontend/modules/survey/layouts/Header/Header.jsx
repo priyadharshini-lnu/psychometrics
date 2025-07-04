@@ -29,7 +29,7 @@ const Header = (props) => {
   const [params] = useSearchParams()
   const { availableLocales } = I18n
 
-  const currentLocale = params.get('lang') || 'en'
+  const currentLocale = params.get('assessmentLang') || 'en'
 
   const {
     blocksWithQuestions, instructions, openCampaignFactorsModal,
@@ -114,7 +114,7 @@ const Header = (props) => {
   }
 
   const changeLocale = (value) => {
-    navigate(`/administration/assessments/${id}?lang=${value}`)
+    navigate(`/administration/assessments/${id}?assessmentLang=${value}`)
   }
 
   const handleQuestionsExport = () => {
@@ -174,7 +174,7 @@ const Header = (props) => {
           style={{ display: 'none' }}
           ref={previewFormRef}
           target="_blank"
-          action={`${location.pathname}/preview?lang=${currentLocale}`}
+          action={`${location.pathname}/preview?assessmentLang=${currentLocale}`}
           method="POST"
         >
           <input

@@ -31,6 +31,10 @@ en:
             blank: Answers can't be blank
           group_id:
             blank: Group id can't be blank
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Block %{block_name} has duplicate configurations: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ en:
               too_short: Evaluator password is too short (minimum is %{count} characters)
             first_name:
               blank: First name can't be blank
+            job_role:
+              cannot_be_same: Target job role must be different from current job role
+              not_found: Job role '%{name}' not found in project or global roles
             last_name:
               blank: Last name can't be blank
             locale:
@@ -187,12 +194,26 @@ en:
               invalid: Email is invalid
             first_name:
               blank: First name can't be blank
+            job_role:
+              cannot_be_same: Target job role must be different from current job role
+              not_found: Job role '%{name}' not found in project or global roles
             last_name:
               blank: Last name can't be blank
             locale:
               inclusion: Wrong locale
             password:
               too_short: Password is too short. Minimum %{count} character required
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Value %{column_name} cannot be blank at row %{row_number}
+              invalid_format: Please upload CSV file
+              invalid_job_role_id: Id at row %{row_number} is not a valid job role ID
+              invalid_locale: Locale at row %{row_number} is not a valid locale
+              missing_required_columns: 'Missing required columns: %{columns}'
+              parsing_failed: 'Error while parsing file, error: %{error}.'
+            project:
+              must_exist: Project must exist
         mettl:
           attributes:
             name:
@@ -308,6 +329,12 @@ en:
             email:
               blank: Email can't be blank
               not_uniq_email: Row with email is already present
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: At least one job role must be enabled with a skill type selected for %{block_name}
+              invalid_skill_type: 'Invalid skill type %{skill_type} for %{role_name} for %{block_name}. Valid options: %{valid_options}'
+              props_missing: Job
         skillvue:
           attributes:
             name:
@@ -345,6 +372,16 @@ en:
             last_name:
               blank: Last name can't be blank
               starts_with_invalid_characters: Last Name can't start with =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Row %{row}: Duplicate value %{value} for %{field}'
+              invalid_format: Please upload xlsx file
+              missing_headers: "%{sheet_name} sheet is missing required headers: %{headers}"
+              missing_sheets: 'Missing required sheets: %{sheets}'
+              missing_value: 'Row %{row}: Missing value for %{field}'
+            project:
+              must_exist: Project must exist
         update_norm:
           attributes:
             norm_type:
@@ -740,6 +777,8 @@ en:
           attributes:
             current_password:
               invalid: Current password is incorrect
+        user_idp_comment:
+          reply_to_reply: cannot reply to a reply (only one level of nesting allowed)
         user_idp_plan:
           no_active_plan: No active IDP plan found
   admin_jobs:
@@ -753,6 +792,7 @@ en:
         assign_idp_to_users: Assign IDP to users
         assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
+        bulk_download_idp_reports: Bulk Download IDP Reports
         bulk_download_reports: Bulk Download Reports
         bulk_download_user_reports: Bulk Download User Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
@@ -770,12 +810,16 @@ en:
         export_assessment_questions: Export Assessment Questions
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_dashboard_as_file: Export Dashboard as file
         export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
         export_dimension_as_json: Export Dimension JSON
         export_factor_translations: Export Factor Translations
+        export_job_roles_translations: Export Job Roles Translations
         export_norm: Export Norm
         export_occupations: Occupations Export
+        export_proficiency_level_translations: Export Proficiency Level Translations
+        export_proficiency_levels: Export Proficiency Levels
         export_reflection_questions: Export Reflection Questions
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
@@ -795,13 +839,17 @@ en:
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_factors: Import Factors
+        import_job_roles_translations: Import Job Roles Translations
         import_norm: Import Norm
+        import_proficiency_level_translations: Import Proficiency Level Translations
+        import_proficiency_levels: Import Proficiency Levels
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_reflection_questions: Import Reflection Questions
         import_scoring_data: Import Scoring Data
         import_skill_translations: Import Skills Translations
         import_skills: Import Skills
+        import_skills_rater_taxonomies: Import Skill Rater Taxonomies
         import_sms_invites: Import SMS Invite
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
@@ -827,6 +875,8 @@ en:
         failed: Failed
         in_progress: In Progress
         scheduled: Scheduled
+    bulk_download_idp_reports:
+      already_exists: The Job to generate this IDP reports already in progress
     bulk_download_reports:
       content:
         title: Links to download reports
@@ -1087,6 +1137,7 @@ en:
       previous_group_required: Previous group completion required
     menu:
       assessment_center: Assessment Center
+      assessment_center_invites: Assessment Center Invites
       assessments_and_reports: Assessments & Reports
       idp: IDP
       manage: Manage
@@ -1247,9 +1298,9 @@ en:
       campaign: Campaign
       change_password: Change Password
       development: Development
+      direct_reportees: Direct Reportees
       home: Home
       insights: Insights
-      my_direct_reportees: My Direct Reportees
       my_plan: My Plan
       profile: Profile
       profile_details: Details
@@ -1380,6 +1431,11 @@ en:
       raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
       scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Something went wrong. Please contact administrator
+        placeholder: Select an Assessment Center Group
+        success_message: Assessor Campaign Assessment Group was assigned successfully
+        title: Assessment Center Group
       bulk_update_evaluation:
         content: Are you sure you want to mark all selected subjects as %{status}?
         successfully: Successfully marked as %{status}.
@@ -1708,6 +1764,7 @@ en:
       assessor: Assessor
       category: Category
       client: Client
+      code: Code
       created_at: Created At
       created_by: Created By
       created_date: Created Date
@@ -1790,11 +1847,13 @@ en:
       default: Default
       download: Download
       file: File
+      global_export: Is Global Export?
       global_import: Is Global Import?
       minutes: Minutes
       na: N/A
       none: None
       ok: Ok
+      refer_export_file: Refer to the Export functionality to extract a template that can be used to Import here.
       reference_language: Reference Language
       response: Response
       select: Select
@@ -1905,7 +1964,7 @@ en:
 
           Your password has been changed.
 
-          If you did not make this request, please contact Support immediately at support@thetalententerprise.com
+          If you did not make this request, please contact Support immediately at mte.support@mercer.com
         regards: |
           Regards,
           Lighthouse Team
@@ -2037,14 +2096,19 @@ en:
         group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
       cant_be_deleted: This record can't be deleted
+      client_feature:
+        ai_assisted_idp_feature_error: Can't be true if ai assistants feature is disabled
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
       idp_template:
+        content_required: Content is required for instructions
         tag_or_skill_required: Please select either a tag or a skill when the "Selected" option is chosen.
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
       invalid_value: invalid statement '%{value}' on line number %{row}
+      job_roles:
+        unique_within_job_group: A job role with the same name already exists.
       json?: Should be valid JSON
       key?: can't be blank
       match_regexp?: invalid value
@@ -2067,6 +2131,9 @@ en:
       skill_alias:
         unique_alias: Alias should be unique
         unique_skill: Skill should be unique
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Skill and job role must belong to same project or be global.
+        unique_mappings: A mapping with the same skill and job role already exists.
       uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
@@ -2402,6 +2469,29 @@ en:
   idp:
     actions: Actions
     board: Board
+    comment_details:
+      add_comment: Add Comment
+      add_comment_placeholder: Add a comment...
+      add_reply_placeholder: Add a reply...
+      go_to_skill: Go to skill
+    comments:
+      close: Close
+      comments: Comments
+      filter_comments: Filter comments
+      mark_as_resolved: Mark as resolved
+      mark_as_unresolved: Mark as unresolved
+      replied: Replied
+      replies: Replies
+      reply: Reply
+      resolve: Resolve
+      resolved: Resolved
+      resolved_message: This comment has been resolved and replies are disabled.
+      show_only_read: Show only read
+      show_only_resolved: Show only resolved
+      show_only_unread: Show only unread
+      show_only_unresolved: Show only unresolved
+      sort_by_date: Sort by date
+      you: You
     convert_to_draft: Convert to Draft
     details: Details
     development_actions:
@@ -2433,6 +2523,7 @@ en:
       on_the_job: On the job
       other: Other
       private: Private
+      publish_plan: Publish Plan
       remove: Remove
       skill: Skill
       sprint: Sprint
@@ -2440,7 +2531,6 @@ en:
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
-    direct_reportee_details: My Direct Reportee Details
     edit_plan: Edit Plan
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
@@ -2449,7 +2539,6 @@ en:
       add_skills_step: Add Skills
       continue_to_rate_skills: Continue to rate skills
       getting_started: Getting Started
-      getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
       less_skills: Show less skills
       more_skills: Explore more skills
       next: Next
@@ -2469,12 +2558,12 @@ en:
     manage_plan: Manage Plan
     mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
-    my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
       graphs:
         categories: Categories
       save_skills: Save Skills
+    new_comments: New comment(s)
     pdf:
       approval_status: Approval Status
       cover:
@@ -2582,6 +2671,7 @@ en:
         title: Report Summary
     plan: Plan
     reflective_questions:
+      already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer_later: Answer Later
       answer_placeholder: Write your answer here...
       errors:
@@ -2606,6 +2696,8 @@ en:
       pending_approval: Pending Approval
       rejected: Rejected
     users: Users
+    with_reflection_questions: With Reflection Questions
+    without_reflection_questions: Without Reflection Questions
   idp_templates:
     assign: Assign
     assign_idp_template: Assign Idp Template
@@ -2799,6 +2891,35 @@ en:
     used_out_of: "%{used} out of %{total}"
   mailer:
     from: The Talent Enterprise
+    idp:
+      manager_unread_comments:
+        body: |
+          Hello %{name},
+          You have new comments from your IDP reportees.
+
+          %{dashboard_link}
+
+          On your Direct Reportees dashboard, you can:
+          - Review new comments from members on their individual plans
+          - Provide feedback on their development goals
+          - Track progress on IDP activities
+          - Support your team's growth and development
+        dashboard_link: Visit Dashboard
+        subject: You have new comments - %{campaign_name}
+      user_unread_comments:
+        body: |
+          Hello %{name},
+          You have new comments on your development plan.
+
+          %{dashboard_link}
+
+          On your My Plan dashboard, you can:
+          - Update your development plan
+          - Read new comments and feedback
+          - Respond to questions from your manager
+          - Update your progress on development actions
+        dashboard_link: View My Plan
+        subject: You have new comments on your development plan - %{campaign_name}
     license:
       expire:
         subject: License expired
@@ -3730,6 +3851,7 @@ en:
         body: Refer to the sample file to extract a template that can be used to Import here.
         title: Assign Reports and Assessments
     toolbar:
+      bulk_download_idp_reports: Bulk Download IDP Reports
       export: Export Users
       export_compact_completion_status: Compact
       export_detailed_completion_status: Detailed
@@ -3915,6 +4037,7 @@ en:
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
     idp:
+      reflective_questions_required: Answers to reflective questions are required for IDP
       status_not_permitted: is not permitted by the user.
       status_not_permitted_by_manager: Manager cannot update status when plan is in '%{status}' state.
     invalid: is invalid

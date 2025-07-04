@@ -17,7 +17,7 @@
                         input_html: { data: { live_search: true } }
       = f.input :description
       - unless f.object.folder?
-        = f.input :file
+        = f.input :files, as: :file, input_html: { multiple: true }
 
   .modal-footer
     .btn-group

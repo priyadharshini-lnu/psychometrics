@@ -197,5 +197,41 @@ RSpec.describe Administration::ImportSkills do
         expect(another_project_skill.project_id).to eq(another_project.id)
       end
     end
+
+    context 'with skill group assignment' do
+      let!(:skill_group) { create(:skill_group, name: 'Programming', project: project) }
+
+      it 'assigns existing skill group to the skill' do
+        csv_with_group = [
+          ['ID', 'Name', 'Description', 'SkillType', 'SkillGroup', 'Tag'],
+          [nil, 'JavaScript', 'JavaScript programming', 'technical', 'Programming', 'frontend']
+        ]
+
+        allow(CsvFileParser).to receive(:call!).with(file).and_return(csv_with_group)
+
+        result = described_class.new(file, project.id).call
+        expect(result).to eq true
+
+        skill = Skill.find_by(name: 'JavaScript')
+        expect(skill).to be_present
+        expect(skill.skill_group).to eq(skill_group)
+      end
+
+      it 'does not assign non-existent skill group' do
+        csv_with_group = [
+          ['ID', 'Name', 'Description', 'SkillType', 'SkillGroup', 'Tag'],
+          [nil, 'JavaScript', 'JavaScript programming', 'technical', 'NonExistent', 'frontend']
+        ]
+
+        allow(CsvFileParser).to receive(:call!).with(file).and_return(csv_with_group)
+
+        result = described_class.new(file, project.id).call
+        expect(result).to eq true
+
+        skill = Skill.find_by(name: 'JavaScript')
+        expect(skill).to be_present
+        expect(skill.skill_group).to be_nil
+      end
+    end
   end
 end

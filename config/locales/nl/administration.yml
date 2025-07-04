@@ -29,16 +29,16 @@ nl:
         edit:
           admin_role_select: Selecteer beheerdersrol
           admin_roles: Beheerdersrollen
-          create_success: Admin '%{naam}' is succesvol aangemaakt
+          create_success: Admin '%{name}' is succesvol aangemaakt
           email: E-mail
           first_name: Voornaam
           first_name_required: Voornaam is verplicht
           last_name: Achternaam
           last_name_required: Achternaam is verplicht
-          no_edit_permission: Je hebt geen rechten om admin '%{naam}' te bewerken
+          no_edit_permission: Je hebt geen rechten om admin '%{name}' te bewerken
           save: Sla
           update: Update
-          update_success: Admin '%{naam}' is succesvol bijgewerkt
+          update_success: Admin '%{name}' is succesvol bijgewerkt
         notes:
           threesixty_permission: Rechten specifiek voor 360 campagnes
           title: Opmerkingen
@@ -173,6 +173,10 @@ nl:
             manage: Beheer
             title: IDP-sjablonen
             view: Bekijk
+          jobRoles:
+            manage: Beheer
+            title: Functierollen
+            view: Bekijk
           mediaLibraries:
             manage: Beheer
             title: Media Bibliotheken
@@ -186,6 +190,16 @@ nl:
             manage: Beheer
             title: Normen
             view: Bekijk
+          proficiencyLevels:
+            export: Exportvaardigheidsniveaus
+            export_translations: Vertalingen exportvaardigheidsniveaus
+            import: Niveaus importeren
+            import_translations: Niveaus importeren Vertalingen
+            manage: Beheer
+            title: Vaardigheidsniveaus
+            view: Bekijk
+          proficiency_level:
+            title: Vaardigheidsniveaus
           projectSettings:
             assessments: Beoordeling
             design: Ontwerp
@@ -230,6 +244,7 @@ nl:
             approve_report: Verslag goedkeuren
             bulk_download: Bulk downloaden
             bulk_regenerate_reports: Bulk rapporten opnieuw genereren
+            bulk_update_evaluation_status: Evaluatiestatus in bulk bijwerken
             download_report: Rapport downloaden
             edit_report: Bewerk rapport
             export_occupations: Exportberoepen
@@ -271,6 +286,22 @@ nl:
             manage: Beheer
             title: Workshops
             view: Bekijk
+    ai_assistants:
+      actions:
+        playground: Speeltuin
+      ai_assistants: AI assistenten
+      ai_assistants_playground: AI assistent speeltuin
+      column:
+        ai_action: AI-Actie
+        provider: Aanbieder
+      form:
+        action: Actie
+        description: Beschrijving
+        name: Naam
+        provider: Aanbieder
+        system_prompt: Systeem prompt
+        title: AI-assistent
+        user_prompt: Gebruikersprompt
     any: " - Elke - "
     api:
       campaigns:
@@ -306,7 +337,7 @@ nl:
         confirm_message: Weet je zeker dat je een uitnodiging wilt verwijderen?
         confirm_message_with_title: Weet je zeker dat je de uitnodiging met titel '%{invite_title}' wilt verwijderen?
         confirm_title: Bevestig
-        exceeded_subjects_count: Campagne heeft %{gebruikers} onderwerpen. Je kunt alleen %{aantal} onderwerpen per uitnodiging toevoegen
+        exceeded_subjects_count: Campagne heeft %{users} onderwerpen. Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
         id: ID
         invites: Nodigt  uit
         next: Volgende
@@ -355,7 +386,7 @@ nl:
           add: Voeg  toe
           name: Naam
           remove_confirm:
-            content: Weet je zeker dat je Assessment Center met de naam '%{naam}' wilt verwijderen?
+            content: Weet je zeker dat je Assessment Center met de naam '%{name}' wilt verwijderen?
             success: Assessment Center is succesvol verwijderd.
             title: Bevestig
       invite_request:
@@ -363,9 +394,9 @@ nl:
         reason: Reden
         reject: Weiger
         remove_confirm:
-          content: Weet je zeker dat je %{actie} %{status} van %{onderwerpnaam} wilt?
-          success: "%{status} van %{onderwerpnaam} was %{actie} met succes."
-          title: "%{actie} %{status}"
+          content: Weet je zeker dat je %{action} %{status} van %{subjectName} wilt?
+          success: "%{status} van %{subjectName} was %{action} met succes."
+          title: "%{action} %{status}"
         status: Status
         subject_name: Onderwerp Naam
         workshop_time: Workshop tijd
@@ -386,7 +417,7 @@ nl:
       errors:
         doesnt_have_header: "%{sub_header}' heeft geen header"
         invalid_headers: 'De volgende headers zijn ongeldig: %{headers}'
-        invalid_scores: Scores voor factor %{factor_naam} zijn ongeldig. Scores moeten numerieke waarden zijn die door komma's worden gescheiden
+        invalid_scores: Scores voor factor %{factor_name} zijn ongeldig. Scores moeten numerieke waarden zijn die door komma's worden gescheiden
         invalid_sub_header: "%{sub_header}' is geen geldige subheader voor header '%{header}'"
         scores_not_allowed: Scores kunnen alleen worden toegevoegd voor meerkeuzevragen en matrixvragen
         unavailable_factors: "%{unavailable_factor_names} factoren zijn niet aanwezig in een dimensie"
@@ -401,11 +432,11 @@ nl:
         copy: kopie
         copy_assessment: Kopie Beoordeling
         name: Naam
-        successfully: Assessment "%{naam}" is succesvol gekopieerd.
+        successfully: Assessment "%{name}" is succesvol gekopieerd.
       create:
-        successfully: Assessment "%{naam}" is succesvol aangemaakt.
+        successfully: Assessment "%{name}" is succesvol aangemaakt.
       destroy:
-        successfully: Beoordeling "%{naam}" is succesvol verwijderd.
+        successfully: Beoordeling "%{name}" is succesvol verwijderd.
       edit:
         header: Beoordelingsinstellingen
       errors:
@@ -415,7 +446,7 @@ nl:
       export_questions_toastr: Vragen Exporttaak is met succes gepland
       flow: Stroom
       linkedAssessment:
-        assessment_title: Selecteer vragen uit %{naam}
+        assessment_title: Selecteer vragen uit %{name}
         title: Gekoppelde vragen selecteren
       map_norms: Kaart Normen
       menu:
@@ -433,6 +464,7 @@ nl:
         per_page: per pagina
         plural:
           block: blokkeert
+          choice: keuzes
           question: vragen
         present_only: Alleen aanwezig
         question_per_factor_and_show: vragen per factor en toon
@@ -452,9 +484,9 @@ nl:
             title: "<strong>Beoordeling</strong> zacht verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je deze beoordeling wilt %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
-        successfully: Assessment %{naam} is succesvol hersteld.
+        successfully: Assessment %{name} is succesvol hersteld.
       scoring_strategy:
         average: Gemiddeld
         sum: Som
@@ -472,13 +504,13 @@ nl:
         instructions: Instructies inschakelen
         title: Beoordelingsinstellingen
       soft_delete:
-        successfully: Assessment %{naam} is succesvol verplaatst naar de prullenbak.
+        successfully: Assessment %{name} is succesvol verplaatst naar de prullenbak.
       toggle_archive:
-        successfully: Beoordeling %{naam} was %{status} succesvol.
+        successfully: Beoordeling %{name} was %{status} succesvol.
       toggle_status:
-        successfully: Assessment %{naam} is succesvol bijgewerkt.
+        successfully: Assessment %{name} is succesvol bijgewerkt.
       update:
-        successfully: Assessment %{naam} is succesvol bijgewerkt.
+        successfully: Assessment %{name} is succesvol bijgewerkt.
     assessor:
       add_subject_modal:
         assessment: Beoordeling
@@ -577,7 +609,7 @@ nl:
         confirmations:
           delete:
             body: "<p>Weet je zeker dat je deze toewijzing wilt verwijderen?</p>"
-            title: "<strong>%{naam}</strong> verwijderen ?"
+            title: "<strong>%{name}</strong> verwijderen ?"
     assigns_reports:
       edit:
         header: Rapporttoewijzing bewerken
@@ -639,11 +671,11 @@ nl:
         title: Blok Instellingen
     blocks:
       copy:
-        successfully: Blok %{naam} is succesvol gekopieerd.
+        successfully: Blok %{name} is succesvol gekopieerd.
       create:
-        successfully: Blok %{naam} is succesvol aangemaakt.
+        successfully: Blok %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Blok %{naam} is succesvol verwijderd.
+        successfully: Blok %{name} is succesvol verwijderd.
       edit:
         header: Bewerk blok
       new:
@@ -655,7 +687,7 @@ nl:
             title: "<strong>Blok</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je dit blok %{status} wilt geven?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
     bookings:
       errors:
         already_booked: Je hebt er al een stoel voor gereserveerd.
@@ -740,11 +772,11 @@ nl:
         assessment_factors: Factoren worden opgehaald
         assessment_update: Beoordeling wordt bijgewerkt
         block_clone: Blok wordt gekopieerd
-        block_create: Blok %{naam} is aangemaakt
+        block_create: Blok %{name} is aangemaakt
         block_create_by_template: Blok is geladen van sjabloon
         block_destroy: Blok is verwijderd
-        block_move_down: Blok %{naam} is naar beneden verplaatst
-        block_move_up: Blok %{naam} is naar boven verplaatst
+        block_move_down: Blok %{name} is naar beneden verplaatst
+        block_move_up: Blok %{name} is naar boven verplaatst
         block_permanent_destroy: Blokkering wordt permanent verwijderd
         block_rename: Blok wordt hernoemd
         block_restore: Blok is hersteld
@@ -754,7 +786,7 @@ nl:
         comment_create: Commentaar is gemaakt
         comment_destroy: Commentaar is verwijderd
         geo_filter: Gefilterde gegevens
-        module_create: Module %{naam} is aangemaakt
+        module_create: Module %{name} is aangemaakt
         module_destroy: Module is verwijderd
         module_insert_after: Module wordt ingevoegd na
         module_insert_before: Module wordt ingevoegd voordat
@@ -762,14 +794,14 @@ nl:
         module_move_up: Module wordt omhoog verplaatst
         module_rename: Module wordt hernoemd
         module_update: Module is bijgewerkt
-        page_create: Pagina %{naam} is aangemaakt
+        page_create: Pagina %{name} is aangemaakt
         page_destroy: Pagina is verwijderd
-        page_move_down: Pagina %{naam} is naar beneden verplaatst
-        page_move_up: Pagina %{naam} is naar boven verplaatst
+        page_move_down: Pagina %{name} is naar beneden verplaatst
+        page_move_up: Pagina %{name} is naar boven verplaatst
         page_rename: Pagina wordt hernoemd
         page_update: Pagina is bijgewerkt
         question_clone: Vraag is gekopieerd
-        question_create: Vraag %{naam} is gemaakt
+        question_create: Vraag %{name} is gemaakt
         question_create_by_template: Vraag is geladen vanuit sjabloon
         question_create_from_template: Vraag wordt gemaakt van sjabloon
         question_destroy: Vraag is verwijderd
@@ -796,19 +828,19 @@ nl:
         code_already_exists: Er bestaat al een factor met dezelfde code '%{code}'.
         factor_not_in_assessment_dimension: Factor id '%{factor_id}' maakt geen deel uit van de dimensie van de beoordeling
         invalid_lua_name: De code '%{code}' moet een geldige lua-variabelenaam zijn
-        invalid_name_format: De naam '%{naam}' moet overeenkomen met het verwachte formaat.
-        max_limit_reached: Er kunnen niet meer dan %{aantal} campagnefactoren worden aangemaakt.
+        invalid_name_format: De naam '%{name}' moet overeenkomen met het verwachte formaat.
+        max_limit_reached: Er kunnen niet meer dan %{count} campagnefactoren worden aangemaakt.
         missing_assessment_id: Assessment id is vereist.
         missing_assessment_score_type: Het type beoordelingsscore is vereist.
         missing_factor_id: Factor id is vereist.
-        name_already_exists: Er bestaat al een factor met dezelfde naam '%{naam}'.
+        name_already_exists: Er bestaat al een factor met dezelfde naam '%{name}'.
         name_size_exceded: De naam mag niet langer zijn dan %{size} tekens.
     campaign_factors:
       delete:
         confirm_message:
-          assessor_scoring: U staat op het punt om de scores van de beoordelaars te verwijderen. U zult alle gemodereerde scores van de beoordelaars voor deze factor '%{factor_naam}' verliezen. Weet u zeker dat u door wilt gaan?
-          default: Weet je zeker dat je de campagnefactor '%{factor_naam}' wilt verwijderen?
-          external_score: U staat op het punt om Externe scores te verwijderen. U verliest externe scores die zijn gekoppeld aan deze factor '%{factor_naam}'. Weet u zeker dat u door wilt gaan?
+          assessor_scoring: U staat op het punt om de scores van de beoordelaars te verwijderen. U zult alle gemodereerde scores van de beoordelaars voor deze factor '%{factor_name}' verliezen. Weet u zeker dat u door wilt gaan?
+          default: Weet je zeker dat je de campagnefactor '%{factor_name}' wilt verwijderen?
+          external_score: U staat op het punt om Externe scores te verwijderen. U verliest externe scores die zijn gekoppeld aan deze factor '%{factor_name}'. Weet u zeker dat u door wilt gaan?
     campaign_factors_import:
       errors:
         invalid_headers: 'De volgende headers zijn ongeldig: %{headers}'
@@ -819,11 +851,11 @@ nl:
         owner: Eigenaar
         report: Rapporteer
       copy:
-        successfully: Client Tenancy %{naam} is succesvol gekopieerd.
+        successfully: Client Tenancy %{name} is succesvol gekopieerd.
       create:
-        successfully: Client Tenancy %{naam} is succesvol aangemaakt.
+        successfully: Client Tenancy %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Client Tenancy %{naam} is succesvol verwijderd.
+        successfully: Client Tenancy %{name} is succesvol verwijderd.
       edit:
         header: Klant bewerken
       errors:
@@ -853,23 +885,23 @@ nl:
       new:
         header: Nieuwe klant
       remove_confirm:
-        content: Weet je zeker dat je de campagnesjabloon '%{naam}' wilt verwijderen?
-        success: Campagnesjabloon '%{naam}' is succesvol verwijderd.
+        content: Weet je zeker dat je de campagnesjabloon '%{name}' wilt verwijderen?
+        success: Campagnesjabloon '%{name}' is succesvol verwijderd.
         title: Campagnesjabloon verwijderen
       resource:
         confirmations:
           delete:
             body: "<p>Weet je zeker dat je deze campagnesjabloon wilt verwijderen?</p>\n"
-            title: "<strong>%{naam}</strong> verwijderen ?"
+            title: "<strong>%{name}</strong> verwijderen ?"
         in_progress:
           deleting: Verwijderen
         tooltips:
           delete: Klant verwijderen
           edit: Klant bewerken
       toggle_status:
-        successfully: Client Tenancy %{naam} is succesvol bijgewerkt.
+        successfully: Client Tenancy %{name} is succesvol bijgewerkt.
       update:
-        successfully: Client Tenancy %{naam} is succesvol bijgewerkt.
+        successfully: Client Tenancy %{name} is succesvol bijgewerkt.
     campaigns:
       actions: Beheer
       assessment_reports:
@@ -889,11 +921,11 @@ nl:
           settings: Instellingen
       assessors:
         spoof:
-          successfully: U bent succesvol ingelogd als %{naam}
+          successfully: U bent succesvol ingelogd als %{name}
       copy: Kopie
       delete: Verwijder
       edit: Bewerk
-      extend_time_success_message: Campagnetimer verlengd tot %{minuten} minuten
+      extend_time_success_message: Campagnetimer verlengd tot %{minutes} minuten
       filters:
         active: Actief
         all: Alle
@@ -1030,6 +1062,13 @@ nl:
         success_msg: Het importeren is gelukt
       modal:
         title: Externe campagnescores importeren
+    client_features:
+      client_features: Klantkenmerken
+      form:
+        ai_assistants: AI assistenten
+        ai_assisted_idp: AI Geassisteerde IDP
+        global_skills: Wereldwijde vaardigheden
+        sms_notification: SMS-melding
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1047,11 +1086,11 @@ nl:
         type: Type
         year: Jaar
       copy:
-        successfully: Client Tenancy '%{naam}' is succesvol gekopieerd.
+        successfully: Client Tenancy '%{name}' is succesvol gekopieerd.
       create:
-        successfully: Client Tenancy '%{naam}' is succesvol aangemaakt.
+        successfully: Client Tenancy '%{name}' is succesvol aangemaakt.
       destroy:
-        successfully: Client Tenancy %{naam} is succesvol verwijderd.
+        successfully: Client Tenancy %{name} is succesvol verwijderd.
       edit:
         header: Klant bewerken
       licenses:
@@ -1059,9 +1098,9 @@ nl:
           confirmations:
             toggle_status:
               body: "<p>Weet je zeker dat je %{status} deze licentie wilt gebruiken?</p>\n"
-              title: "<strong>%{status}</strong> Licentie voor %{naam}?"
+              title: "<strong>%{status}</strong> Licentie voor %{name}?"
         show:
-          used_out_of: "%{gebruikt_aantal} van %{aantal}"
+          used_out_of: "%{used_number} van %{number}"
       new:
         header: Nieuwe klant
       projects:
@@ -1069,8 +1108,8 @@ nl:
           archive: Archief
           unarchive: Unarchive
         archive:
-          content: Weet je zeker dat je '%{project_naam}' wilt archiveren?
-          success: Project '%{project_naam}' is succesvol gearchiveerd.
+          content: Weet je zeker dat je '%{project_name}' wilt archiveren?
+          success: Project '%{project_name}' is succesvol gearchiveerd.
           title: Archief Project
         assign_assessments:
           add_assessment: Beoordeling toevoegen
@@ -1079,14 +1118,14 @@ nl:
           add_report: Rapport toevoegen
         campaigns:
           archive:
-            successfully: Campagne '%{naam}' is succesvol gearchiveerd.
+            successfully: Campagne '%{name}' is succesvol gearchiveerd.
           copy:
-            error: Campagne '%{naam}' is niet gekopieerd.
-            successfully: Campagne '%{naam}' is succesvol gekopieerd.
+            error: Campagne '%{name}' is niet gekopieerd.
+            successfully: Campagne '%{name}' is succesvol gekopieerd.
           create:
-            successfully: Campagne '%{naam}' is succesvol aangemaakt.
+            successfully: Campagne '%{name}' is succesvol aangemaakt.
           destroy:
-            successfully: Campagne '%{naam}' is succesvol verwijderd.
+            successfully: Campagne '%{name}' is succesvol verwijderd.
           edit:
             header: Campagne bewerken
           export:
@@ -1155,14 +1194,14 @@ nl:
             view_licenses: Bekijk licenties
           sub_campaigns:
             archive:
-              successfully: Subcampagne %{naam} is succesvol gearchiveerd.
+              successfully: Subcampagne %{name} is succesvol gearchiveerd.
             copy:
-              error: Subcampagne %{naam} is niet gekopieerd.
-              successfully: Subcampagne %{naam} is succesvol gekopieerd.
+              error: Subcampagne %{name} is niet gekopieerd.
+              successfully: Subcampagne %{name} is succesvol gekopieerd.
             create:
-              successfully: Subcampagne %{naam} is succesvol aangemaakt.
+              successfully: Subcampagne %{name} is succesvol aangemaakt.
             destroy:
-              successfully: Subcampagne %{naam} is succesvol verwijderd.
+              successfully: Subcampagne %{name} is succesvol verwijderd.
             edit:
               header: Subcampagne bewerken
             export:
@@ -1225,20 +1264,20 @@ nl:
               title: Opties voor subcampagnes
               view_licenses: Bekijk licenties
             toggle_status:
-              successfully: Subcampagne %{naam} is bijgewerkt.
+              successfully: Subcampagne %{name} is bijgewerkt.
             update:
-              successfully: Subcampagne %{naam} is bijgewerkt.
+              successfully: Subcampagne %{name} is bijgewerkt.
           toggle_status:
-            successfully: Campagne %{naam} is bijgewerkt.
+            successfully: Campagne %{name} is bijgewerkt.
           update:
-            successfully: Campagne %{naam} is bijgewerkt.
+            successfully: Campagne %{name} is bijgewerkt.
         copy:
-          error: Project %{naam} is niet gekopieerd.
-          successfully: Project %{naam} is succesvol gekopieerd.
+          error: Project %{name} is niet gekopieerd.
+          successfully: Project %{name} is succesvol gekopieerd.
         create:
-          successfully: Project %{naam} is succesvol aangemaakt.
+          successfully: Project %{name} is succesvol aangemaakt.
         destroy:
-          successfully: Project %{naam} is succesvol verwijderd.
+          successfully: Project %{name} is succesvol verwijderd.
         edit:
           header: Project bewerken
         export:
@@ -1351,17 +1390,17 @@ nl:
             in_progress: In uitvoering
             not_started: Niet gestart
           copy:
-            error: Client Tenancy '%{naam}' is niet gekopieerd.
-            successfully: Client Tenancy '%{naam}' is succesvol gekopieerd.
+            error: Client Tenancy '%{name}' is niet gekopieerd.
+            successfully: Client Tenancy '%{name}' is succesvol gekopieerd.
           create:
-            successfully: Client Tenancy '%{naam}' is succesvol aangemaakt.
+            successfully: Client Tenancy '%{name}' is succesvol aangemaakt.
           designs:
             form:
               no_background: Nog geen achtergrond
               no_logo: Nog geen logo
           destroy:
-            error: Kan '%{naam}' niet verwijderen omdat er afhankelijke associaties van subjecten of beoordelaars bestaan.
-            successfully: Client Tenancy '%{naam}' is succesvol verwijderd.
+            error: Kan '%{name}' niet verwijderen omdat er afhankelijke associaties van subjecten of beoordelaars bestaan.
+            successfully: Client Tenancy '%{name}' is succesvol verwijderd.
           edit:
             header: Bewerk 360-campagne
           export:
@@ -1379,7 +1418,7 @@ nl:
             new: 360-campagne toevoegen
             title: 360 campagnes
           license:
-            header: "%{naam} - Licentie bewerken"
+            header: "%{name} - Licentie bewerken"
           licenses:
             update:
               duplicate_licenses: Je hebt dubbele licenties
@@ -1401,21 +1440,21 @@ nl:
             confirmations:
               delete:
                 body: "<p>Weet je zeker dat je wilt verwijderen?</p> <p>Deze actie kan niet ongedaan worden gemaakt. Hierdoor worden de <strong>%{naam}</strong> campagne, subcampagnes en alle koppelingen permanent verwijderd.</p> <p>Typ <strong>%{naam}</strong> om te bevestigen.</p>"
-                title: "<strong>%{naam}</strong> verwijderen?"
+                title: "<strong>%{name}</strong> verwijderen?"
               disable:
                 body:
                   '0': "<p>Weet je zeker dat je wilt archiveren?</p> <p>Alle campagnes, subcampagnes en gebruikers worden ook gearchiveerd</p>"
                   '1': "<p>Weet je zeker dat je wilt archiveren?</p> <p>Alle subcampagnes en gebruikers worden ook gearchiveerd</p>"
                   '2': "<p>Weet je zeker dat je wilt archiveren?</p> <p>Alle gebruikers worden ook gearchiveerd</p>"
                   '3': "<p>Weet je zeker dat je wilt archiveren?</p> <p>Alle gebruikers worden ook gearchiveerd</p>"
-                title: Archief <strong>%{naam}</strong>?
+                title: Archief <strong>%{name}</strong>?
               enable:
                 body:
                   '0': "<p>Weet je zeker dat je wilt unarchiveren?</p>"
                   '1': "<p>Weet je zeker dat je wilt unarchiveren?</p>"
                   '2': "<p>Weet je zeker dat je wilt unarchiveren?</p>"
                   '3': "<p>Weet je zeker dat je wilt unarchiveren?</p>"
-                title: Unarchive <strong>%{naam}</strong>?
+                title: Unarchive <strong>%{name}</strong>?
             export_results: Resultaten exporteren
             raw_results: Ruwe resultaten
             tooltips:
@@ -1433,18 +1472,18 @@ nl:
               assessment_type: Soort beoordeling
               title: Statistieken
           toggle_status:
-            successfully: Client Tenancy %{naam} is succesvol bijgewerkt.
+            successfully: Client Tenancy %{name} is succesvol bijgewerkt.
           update:
-            successfully: Client Tenancy %{naam} is succesvol bijgewerkt.
+            successfully: Client Tenancy %{name} is succesvol bijgewerkt.
           url: Url
         toggle_status:
-          successfully: Project %{naam} is succesvol bijgewerkt.
+          successfully: Project %{name} is succesvol bijgewerkt.
         unarchive:
           content: Weet je zeker dat je '%{project_name}' wilt uitarchiveren?
-          success: Project '%{project_naam}' is succesvol gedearchiveerd.
+          success: Project '%{project_name}' is succesvol gedearchiveerd.
           title: Unarchive Project
         update:
-          successfully: Project %{naam} is succesvol bijgewerkt.
+          successfully: Project %{name} is succesvol bijgewerkt.
       registration_codes:
         column:
           code: Code
@@ -1459,24 +1498,28 @@ nl:
       resource:
         confirmations:
           delete:
-            title: "<strong>%{naam}</strong> verwijderen ?"
+            title: "<strong>%{name}</strong> verwijderen ?"
           disable:
-            title: Archief <strong>%{naam}</strong>?
+            title: Archief <strong>%{name}</strong>?
           enable:
-            title: Unarchive <strong>%{naam}</strong>?
+            title: Unarchive <strong>%{name}</strong>?
       tenancies: Huurcontracten voor klanten
       threesixty_campaign: Campagne Drieënzestig
       toggle_status:
-        successfully: Client Tenancy %{naam} is succesvol bijgewerkt.
+        successfully: Client Tenancy %{name} is succesvol bijgewerkt.
       update:
-        successfully: Client Tenancy %{naam} is succesvol bijgewerkt.
+        successfully: Client Tenancy %{name} is succesvol bijgewerkt.
     close: Sluit
     common:
       add: Voeg  toe
       back: Terug
       cancel: Annuleren
       disabled: Diasbled
+      download_sample_file: Voorbeeldbestand downloaden
       enabled: Ingeschakeld
+      import:
+        failure_msg: Fout bij importeren bestand.
+      minute: minuut
       next: Volgende
       reset: Reset
       save: Sla
@@ -1486,14 +1529,34 @@ nl:
       create:
         successfully: Communicatie is met succes gemaakt.
       destroy:
-        successfully: Communicatie %{naam} is succesvol verwijderd.
+        successfully: Communicatie %{name} is succesvol verwijderd.
       edit:
         header: Communicatie bewerken
+      edit_translation:
+        body_label: Tekstlabel
+        copy: Kopiëren
+        copy_to_code_editor_hint: 'Tip: Kopieer de referentietekst hierboven en schakel naar code-editormodus voor eenvoudigere HTML-bewerking'
+        locale_label: Locatie
+        no_reference_body: Geen referentie-inhoud beschikbaar
+        no_reference_subject: Geen referentieonderwerp beschikbaar
+        reference_body_label: Referentie tekstlabel
+        reference_subject_label: Referentie onderwerplabel
+        subject_label: Onderwerplabel
+        title: Vertaling bewerken
+        update_button: Vertaling bijwerken
       form:
         all: Alle
         assessment_completion_status_code: Statuscode voltooiing beoordeling
         assessment_completion_status_code_hint: Als er een voltooiingscode wordt gespecificeerd, dan zal deze alleen worden verzonden als de beoordeling van de gebruiker deze voltooiingsstatuscode heeft.
-        body_mustache: "{{{user_link}} - Link naar het Platform voor bestaande gebruikers of een eenmalige link om een wachtwoord in te stellen voor nieuwe gebruikers {{user_url}} - Hetzelfde als user_link maar dan alleen de URL in plaats van een hyperlink {{{user_link_qrcode}} - QR Code insluiten die is gegenereerd vanuit user_link {{first_name}} - Voornaam ontvanger {{last_name}} - Achternaam ontvanger {{email}} - E-mail ontvanger {{schedule_start_date}} - Begindatum planning {{schedule_end_date}} - Einddatum planning\n"
+        body_mustache: |
+          "{{{user_link}} - Link naar het Platform voor bestaande gebruikers of een eenmalige link om een wachtwoord in te stellen voor nieuwe gebruikers
+          {{user_url}} - Hetzelfde als user_link maar dan alleen de URL in plaats van een hyperlink
+          {{{user_link_qrcode}} - QR Code insluiten die is gegenereerd vanuit user_link
+          {{first_name}} - Voornaam ontvanger
+          {{last_name}} - Achternaam ontvanger
+          {{email}} - E-mail ontvanger
+          {{schedule_start_date}} - Begindatum planning
+          {{schedule_end_date}} - Einddatum planning"
         completion: Voltooiing
         delivery_at: Levering bij (GST)
         delivery_delay_hours: Vertraging bij levering (uren)
@@ -1503,11 +1566,14 @@ nl:
           not_started: Als de beoordeling niet wordt gestart
           send_now: Nu verzenden
           specific_datetime: Verzenden naar
+        development_action_deadline_missed: Ontwikkelingsactie Deadline gemist
+        idp_deadline_missed: Deadline IDP gemist
         idp_template_approved: IDP Goedgekeurd
         idp_template_assigned: IDP toegewezen
         idp_template_rejected: IDP Afgewezen
         invitation: Uitnodiging
         kind: Soorten communicatie
+        locale: Locatie
         magic_link_email: Magische link e-mail
         new_assignment: Nieuwe opdracht
         new_users: Nieuwe gebruikers
@@ -1553,7 +1619,7 @@ nl:
             title: "<strong>Communicatie</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je deze mededeling wilt %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopiëren
           deleting: Verwijderen
@@ -1561,9 +1627,11 @@ nl:
           copy: Kopie Communicatie
           delete: Communicatie verwijderen
           download: Download Communicatiegeschiedenis
+          edit_translation: Vertaling bewerken
           view: Bekijk communicatie
       show:
         assessment: 'Beoordeling:'
+        assessment_center_group: 'Assessment Center Group:'
         back: Terug
         body: 'Lichaam:'
         campaign: 'Campagne:'
@@ -1583,23 +1651,33 @@ nl:
         copy: Kopie Communicatie
         destroy: Communicatie verwijderen
         download: Download Communicatiegeschiedenis
+        edit_translation: Vertaling bewerken
         title: Opties voor communicatie
         view: Bekijk communicatie
       toggle_status:
         successfully: Communicatie is met succes bijgewerkt.
+      update_translation:
+        successfully_updated: De vertaling is succesvol bijgewerkt.
     components:
       input_duration:
         placeholder: Invoeren als '1d 2h 3m'
     create: Maak
     dashboard:
       capacity_name: Capaciteit Naam
+      choose_file_format: Kies bestandsformaat
       dashboard_types:
         oracle_analytics: Oracle Analytics
         powerbi: PowerBi
       dashboards: Dashboards
+      export_dashboard_to_file: Dashboard exporteren naar bestand
+      export_job_failure: Exporteren niet gestart
+      export_job_success: De exporttaak is gestart. U ontvangt een melding wanneer de taak is voltooid.
       get_started: Aan de slag
       initialize_msg: Een Dashboard initialiseren voor deze campagne
       loading_failed: Het laden van het dashboard is mislukt.
+      only_export_current_tab: Alleen huidig tabblad exporteren
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: Controleer of de Dataset en Rapport-id in de instellingen correct zijn.
         embed_token_error_title: Embed token kan niet worden gegenereerd.
@@ -1644,7 +1722,7 @@ nl:
       configuration: Configuratie
       errors:
         factor_not_found: niet gevonden in het beoordelingsgebied
-        inclusion: 'ongeldig type, geldige types: %{waarden}'
+        inclusion: 'ongeldig type, geldige types: %{values}'
         not_found: niet gevonden
         not_owned: geen eigendom van klant
       form:
@@ -1669,11 +1747,15 @@ nl:
         csv_file_required: Moet een CSV-bestand zijn
         image_download_failed: 'Downloaden van afbeelding van %{url} mislukt: %{message}'
         invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
-        invalid_date_format: 'Ongeldig datumformaat: %{datum}'
+        invalid_date: Datumformaat voor %{date} is ongeldig.
+        invalid_date_format: 'Row %{row}: ongeldige datumindeling voor %{field}.'
         invalid_development_action_type: 'Rij %{row}: Ongeldig type ontwikkelingsactie ''%{value}''. Geldige typen ontwikkelingsacties zijn: %{valid_development_action_types}'
+        invalid_duration_format: 'Alleen numerieke waarden zijn toegestaan ​​voor de duur.Rij %{row}: %{value} is geen geldige duur. '
         invalid_image_file: 'Ongeldig afbeeldingsbestand: %{message}'
         invalid_image_url: 'Ongeldig URL-formaat voor afbeelding: %{url}'
+        invalid_languages: Ongeldige beschikbare talen %{invalid_languages} voor rij %{row}.
         invalid_learning_style: 'Rij %{row}: Ongeldige leerstijl ''%{value}''. Geldige types zijn: %{valid_types}'
+        languages_only_for_courses: Beschikbare talen kunnen alleen worden ingesteld voor ontwikkelingsacties van het type "cursus".Verwijder de beschikbare taal voor rij %{row} of wijzig het type ontwikkelingsactie in "cursus".
         missing_columns: 'Verplichte kolommen ontbreken: %{fields}'
         save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
         skill_not_found: 'Vaardigheid niet gevonden voor ID: %{skill_id}'
@@ -1683,18 +1765,23 @@ nl:
           blank_id: 'Rij %{row}: ID kan niet leeg zijn'
           development_action_not_found: Ontwikkelingsactie niet gevonden
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+          invalid_field: 'Rij %{row}: Ongeldig veld "%{field}", moet "Naam" of "Beschrijving" zijn'
           invalid_file_format: Bestand moet een CSV-bestand zijn
           invalid_id: 'Rij %{row}: ID moet een nummer zijn'
+          invalid_id_format: 'Rij %{row}: ID moet het formaat "id#field" hebben.'
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
           save_failed: Opslaan mislukt
     development_actions:
       create:
-        successfully: Ontwikkelactie "%{naam}" is succesvol aangemaakt.
+        successfully: Ontwikkelactie "%{name}" is succesvol aangemaakt.
       destroy:
-        successfully: Ontwikkelactie "%{naam}" is succesvol verwijderd.
+        successfully: Ontwikkelactie "%{name}" is succesvol verwijderd.
       development_action_types:
         course: Cursus
         default: Standaard
+      duration:
+        max_length: Kan niet groter zijn dan 1 jaar
+        min_length: Kan niet minder zijn dan 1 minuut
       edit:
         header: Bewerken Ontwikkelingsactie
       export:
@@ -1707,15 +1794,19 @@ nl:
         development_action_translations_title: Exportontwikkelingsacties Vertalingen
         development_actions_title: Acties voor exportontwikkeling
       export_development_action_translations: Ontwikkeling Actie Vertalingen gebaseerd op Project
+      export_development_action_translations_project: Ontwikkeling Actie Vertalingen gebaseerd op Project
       export_development_actions: Ontwikkelingsacties op basis van project
+      export_development_actions_project: Ontwikkelingsacties op basis van project
       export_global_development_actions: Wereldwijde ontwikkelingsacties
       export_global_development_actions_translations: Global Development Action Vertalingen
       form:
+        available_languages: Beschikbare talen
         client_placeholder: Selecteer een klant
         course_image: Cursusbeeld
         course_link: Cursuslink
         description: Beschrijving
         development_action_type: Type ontwikkelingsactie
+        duration: Duur
         end_date: Einddatum
         learning_style: Leerstijl
         name: Naam
@@ -1751,30 +1842,31 @@ nl:
             title: "<strong>Ontwikkelingsactie</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je deze ontwikkelingsactie wilt %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Ontwikkelingsactie is met succes bijgewerkt.
       update:
-        successfully: Ontwikkelactie "%{naam}" is bijgewerkt.
+        successfully: Ontwikkelactie "%{name}" is bijgewerkt.
     dimensions:
       copy_scheduled:
-        successfully: Kopiëren gepland voor dimensie %{naam}
+        successfully: Kopiëren gepland voor dimensie %{name}
       create:
-        successfully: "%{naam} dimensie is succesvol aangemaakt"
+        successfully: "%{name} dimensie is succesvol aangemaakt"
       destroy:
-        successfully: Dimensie %{naam} is succesvol verwijderd.
+        successfully: Dimensie %{name} is succesvol verwijderd.
       edit:
         header: Naam dimensie bewerken
       export_json:
-        successfully: Exporteren van JSON gepland voor dimensie %{naam}.
+        successfully: Exporteren van JSON gepland voor dimensie %{name}.
       export_translations_scheduled:
-        successfully: Exportvertalingen gepland voor dimensie %{naam}.
+        successfully: Exportvertalingen gepland voor dimensie %{name}.
       form:
         enable_innovation_styles: Innovatiestijlen mogelijk maken
         enable_occupations: Beroepen mogelijk maken
       import_factors:
         import: Importeren
-        successfully: Taak importfactoren gepland voor dimensie %{naam}.
+        sample_file: Voorbeeldbestand
+        successfully: Taak importfactoren gepland voor dimensie %{name}.
         title: Importfactoren
       import_modal:
         cancel: Annuleren
@@ -1782,8 +1874,8 @@ nl:
         import: Importeren
         import_dimension: Dimensie importeren
       import_translations:
-        error: Fout bij het importeren van vertalingen voor dimensie %{naam}.
-        successfully: Importvertalingen gepland voor dimensie %{naam}.
+        error: Fout bij het importeren van vertalingen voor dimensie %{name}.
+        successfully: Importvertalingen gepland voor dimensie %{name}.
       import_translations_scheduled:
         error: Fout
       index:
@@ -1807,7 +1899,7 @@ nl:
             title: "<strong>Dimensie</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je deze dimensie wilt %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopiëren
           deleting: Verwijderen
@@ -1829,23 +1921,28 @@ nl:
         header: Factorvertalingen
         import: Importeren
       update:
-        successfully: "%{naam} dimensie is succesvol bijgewerkt"
+        successfully: "%{name} dimensie is succesvol bijgewerkt"
     disable: Uitschakelen
     document_titles:
       project_assessors: Beoordelaars
       project_participants: Deelnemers %{project}
     enable: Inschakelen
     errors:
+      csv_file_required: Bestand moet een CSV-bestand zijn
       error_msg: Er is iets misgegaan. Vernieuw de pagina en neem contact op met uw beheerder als het probleem zich nog steeds voordoet
+      invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+      invalid_url: 'Ongeldige URL: %{message}'
+      invalid_url_format: Ongeldig URL-formaat
+      missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
     errror_msg: Foutmelding msg
     factors:
       copy:
-        error: factor '%{naam}' is niet gekopieerd
-        successfully: Factor '%{naam}' is succesvol gekopieerd.
+        error: factor '%{name}' is niet gekopieerd
+        successfully: Factor '%{name}' is succesvol gekopieerd.
       create:
-        successfully: "%{naam} factor is succesvol aangemaakt."
+        successfully: "%{name} factor is succesvol aangemaakt."
       destroy:
-        successfully: Factor "%{naam}" is succesvol verwijderd.
+        successfully: Factor "%{name}" is succesvol verwijderd.
       edit:
         header: Factornaam bewerken
       form:
@@ -1909,7 +2006,7 @@ nl:
             title: "<strong>Factor</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je deze Factor wilt %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopiëren
           deleting: Verwijderen
@@ -1936,7 +2033,7 @@ nl:
       toggle_status:
         successfully: Factor is met succes bijgewerkt.
       update:
-        successfully: "%{naam} factor is succesvol bijgewerkt"
+        successfully: "%{name} factor is succesvol bijgewerkt"
     genders:
       female: Vrouw
       male: Mannelijk
@@ -1961,6 +2058,9 @@ nl:
         success: "%{idpName} is succesvol verwijderd."
       add_idp_template: IDP-sjabloon toevoegen
       all: Alle
+      appearance: Uiterlijk
+      appearance_hint: Om het uiterlijk aan te passen, moet je de IDP-sjabloon eerst opslaan om deze instellingen te activeren.
+      background_image: Achtergrondafbeelding
       behavioral_skills: Gedragsvaardigheden
       client_skills: Vaardigheden voor klanten
       edit_template: IDP-sjabloon bewerken
@@ -1968,26 +2068,62 @@ nl:
       enter_template_description_error: Sjabloonbeschrijving is vereist.
       enter_template_name: Naam
       enter_template_name_error: Sjabloonnaam is vereist
+      errors:
+        update: Bijwerken niet toegestaan omdat de IDP-sjabloon al is gekoppeld aan een IDP-plan van een gebruiker. Wijzigingen in uiterlijk zijn opgeslagen.
+      fields:
+        assigned_data: Toegewezen gegevens
+        completion_date: Datum van voltooiing
+        division: Divisie
+        name: Naam
+        publish_date: Publicatiedatum
+        review_date: Herzieningsdatum
+        role: Huidige rol
+      fields_label: Velden
       global_skills: Wereldwijde vaardigheden
       idp: IDP
       idp_template: IDP-sjabloon toevoegen
+      intro_message: Introbericht
+      intro_message_hint: Om het introductiebericht te kunnen wijzigen, moet u eerst de IDP-sjabloon opslaan om deze instellingen in te schakelen.
+      intro_message_success: Introbericht succesvol opgeslagen
+      locales: Landinstellingen
+      logo_image: Afbeelding logo
+      logo_type:
+        both: Mercer- en klantlogo's
+        client_only: Alleen klantlogo
+        mercer_only: Alleen Mercer-logo
+        none: Zonder logo's
+      logo_type_label: Type logo
+      no_reflection_questions_selected: Geen reflectievragen geselecteerd
       none: Geen
+      reference_locale: Referentieland
+      reflection_questions: Reflectie vragen
+      reflection_questions_hint: Om de reflectievragen aan te passen, moet je de IDP-sjabloon eerst opslaan om deze instellingen te activeren.
+      reflection_questions_updated: Reflectievragen succesvol bijgewerkt.
+      remove: Verwijder
       select_by_tags: Selecteer op tags
+      select_reflection_question: Begin te typen om te zoeken en selecteer de vraag
       select_skill_gap_report: Selecteer rapport over vaardigheidskloof
       select_specific_skills: Selecteer specifieke vaardigheden
       selected: Geselecteerd
       self_rating: Zelfclassificatie inschakelen
+      show_reflections: Reflecties tonen
       skill_gap_report: Rapport over vaardigheidskloof
+      skills: Vaardigheden
+      subtitle_text: Ondertitel tekst
       tab:
         development_actions: Ontwikkelingsacties
+        reflection_questions: Reflectie vragen
         settings: Instellingen
         templates: Sjablonen
       technical_skills: Technische vaardigheden
       template_details: Sjabloon Details
+      title_text: Titel tekst
+      update_reflection_questions: Update Reflectievragen
     idp_setting:
       allow_global_skills: Wereldwijde vaardigheden toestaan
       manager_approves_idp: Manager keurt IDP goed
       manager_can_edit_idp: Manager kan IDP bewerken
+      require_all_development_actions_complete: Alle ontwikkelingsacties voltooien
     import: Importeren
     imports:
       assessments:
@@ -2000,11 +2136,11 @@ nl:
       errors:
         invalid_format: Ongeldig bestandsformaat
         norm:
-          dimension_not_found: Dimensie %{dimensie_naam} voor %{client_naam} is niet gevonden
-          factor_mismatch: Dimensie %{dimensie_naam} heeft geen factor %{factor_naam}
+          dimension_not_found: Dimensie %{dimension_name} voor %{client_name} is niet gevonden
+          factor_mismatch: Dimensie %{dimension_name} heeft geen factor %{factor_name}
           not_set_dimension: De naam van de dimensie moet worden geschreven in de tweede cel van de eerste rij
         result:
-          answer_invalid: "[Rij %{rij}] Antwoord voor qid %{vraag_id} is ongeldig: %{fout}"
+          answer_invalid: "[Rij %{row}] Antwoord voor qid %{question_id} is ongeldig: %{error}"
           date_errors:
             both_dates_required: Zowel started_at als completed_at zijn vereist voor de status completed
             completed_at_should_be_after_started_at: completed_at moet na started_at liggen om de status completed te krijgen
@@ -2012,14 +2148,14 @@ nl:
             dates_not_in_future: Data mogen niet in de toekomst liggen
             dates_should_be_empty: Data moeten leeg zijn voor status not_started
             started_at_required: Geldige started_at is vereist voor status in_progress
-          error: "[Rij %{rij}] %{fout}"
-          invalid_assign: "[Rij %{rij}] Kan geen record vinden voor opgegeven resultaat-ID. Als u een nieuw resultaat wilt maken, laat dan de kolom resultaat-ID leeg"
-          invalid_date: "[Rij %{rij}] %{fout}"
-          question_invalid: "[Rij %{rij}] Vraag %{vraag_id} is ongeldig"
+          error: "[Rij %{row}] %{error}"
+          invalid_assign: "[Rij %{row}] Kan geen record vinden voor opgegeven resultaat-ID. Als u een nieuw resultaat wilt maken, laat dan de kolom resultaat-ID leeg"
+          invalid_date: "[Rij %{row}] %{error}"
+          question_invalid: "[Rij %{row}] Vraag %{question_id} is ongeldig"
           user:
             record_not_found: Kan geen bestaande gebruiker vinden met e-mailadres %{email}.
           user_assessment:
-            record_not_found: Kan geen record vinden van beoordeling met id %{beoordeling_id} toegewezen aan gebruiker.
+            record_not_found: Kan geen record vinden van beoordeling met id %{assessment_id} toegewezen aan gebruiker.
         translation:
           error: "[Vertaling %{id}] %{error}"
           invalid_format: Ongeldig bestandsformaat
@@ -2063,9 +2199,9 @@ nl:
         subjects: Onderwerpen
     innovation_styles:
       create:
-        successfully: Innovatiestijl %{naam} is succesvol aangemaakt.
+        successfully: Innovatiestijl %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Innovatiestijl %{naam} is succesvol verwijderd.
+        successfully: Innovatiestijl %{name} is succesvol verwijderd.
       edit:
         header: Innovatiestijl bewerken
       form:
@@ -2097,9 +2233,9 @@ nl:
         successfully: Innovation Style is succesvol bijgewerkt.
     innovation_styles_factors:
       create:
-        successfully: Factor %{naam} is succesvol aangemaakt.
+        successfully: Factor %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Factor %{naam} is succesvol losgekoppeld.
+        successfully: Factor %{name} is succesvol losgekoppeld.
       edit:
         header: Bewerk Factor
       index:
@@ -2134,6 +2270,7 @@ nl:
         add: Integraties
         back: Terug naar Integraties
         load_mettl_catalog: Load Mettl Beoordelingscatalogus
+        load_skillvue_catalog: Skillvue-beoordelingscatalogus laden
       columns:
         active: Actief
         details: Details
@@ -2144,6 +2281,7 @@ nl:
         webhookUrls: Webhook URL's
       integrations: Integraties
       load_mettl_success: Laad mettl beoordeelt taak is succesvol enqueued
+      load_skillvue_success: De taak voor het laden van vaardigheidsbeoordelingen is met succes in de wachtrij geplaatst
       modal:
         hogan:
           provider: Aanbieder
@@ -2165,16 +2303,22 @@ nl:
           servers:
             mettl_eu: Europa
             mettl_india: India
+        skillvue:
+          apiKey: API-sleutel
+          apiKeyRequired: API-sleutel is vereist
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        skillvue: Skillvue
       validations:
         iiht:
           tenancy_name_present: Huurdersnaam komt al voor in ander project
           tenant_id_present: Huurder id is al aanwezig in ander project
         mettl:
           public_key_present: De openbare sleutel is al aanwezig in een ander project
+        skillvue:
+          api_key_present: API-sleutel is al aanwezig in ander project
       view_all_schedules: Bekijk alle Mettl schema's
     invited_subject:
       add_btn: Onderwerp toevoegen
@@ -2196,11 +2340,49 @@ nl:
         requested_rescheduling_rejected: Herschikking Afgewezen
         rescheduled: Verpland
       subject: Onderwerp
+    job_role:
+      column:
+        job_group: Functiegroep
+      export:
+        failure_msg: Fout tijdens het exporteren van vertalingen
+        success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
+      export_action:
+        translations: Vertalingen exporteren
+      form:
+        code: Code
+        description: Beschrijving
+        job_group: Functiegroep
+        name: Naam
+        title: Functie
+      global: Is wereldwijde baan rol?
+      import:
+        download_example_csv: Voorbeeld csv downloaden
+        success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
+      import_action:
+        translations: Importeren van functievertalingen
+      translations: Functie Vertalingen
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Verwacht vaardigheidsniveau
+        job_role: Functie
+        skill: Vaardigheid
+      form:
+        expected_proficiency_level: Verwacht vaardigheidsniveau
+        job_role: Functie
+        skill: Vaardigheid
+        title: Vaardigheden Functie in kaart brengen
+      global: Is Global Skill Job Mapping?
+      import:
+        taxonomy: Taxonomie
+    job_roles:
+      export:
+        translations:
+          details: Details
     libraries:
       create:
-        successfully: Item %{naam} is succesvol aangemaakt.
+        successfully: Item %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Item %{naam} is succesvol verwijderd.
+        successfully: Item %{name} is succesvol verwijderd.
       edit:
         header: Bewerk
       index:
@@ -2217,38 +2399,39 @@ nl:
         updated_at: Gewijzigde datum
         upload: Nieuw bestand uploaden
       new:
-        header: Nieuwe map
+        header: Bestanden uploaden
       resource:
         confirmations:
           delete:
-            body: "<p>Weet je zeker dat je %{naam} wilt verwijderen?</p>\n"
-            title: "<strong>%{naam}</strong> verwijderen ?"
+            body: "<p>Weet je zeker dat je %{name} wilt verwijderen?</p>\n"
+            title: "<strong>%{name}</strong> verwijderen ?"
         tooltips:
           delete: Verwijder
           edit: Bewerk
       update:
-        successfully: Item %{naam} is bijgewerkt.
+        successfully: Item %{name} is bijgewerkt.
     memberships:
       admin_chosen:
         successfully: Admin-gebruikers is succesvol bijgewerkt.
       create:
-        successfully: Gebruiker %{naam} is succesvol aangemaakt.
+        successfully: Gebruiker %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Gebruiker %{naam} is succesvol verwijderd.
+        successfully: Gebruiker %{name} is succesvol verwijderd.
       new:
         header: Nieuwe gebruiker
       reset_password:
-        successfully: Gebruiker %{naam} ontvangt binnen enkele minuten een e-mail met instructies om zijn/haar wachtwoord opnieuw in te stellen.
+        successfully: Gebruiker %{name} ontvangt binnen enkele minuten een e-mail met instructies om zijn/haar wachtwoord opnieuw in te stellen.
       spoof:
-        successfully: U bent succesvol ingelogd als %{naam}
+        successfully: U bent succesvol ingelogd als %{name}
       toggle_membership_status:
-        successfully: Lidmaatschap van %{naam} is succesvol bijgewerkt.
+        successfully: Lidmaatschap van %{name} is succesvol bijgewerkt.
       toggle_status:
-        successfully: Gebruiker %{naam} is succesvol bijgewerkt.
+        successfully: Gebruiker %{name} is succesvol bijgewerkt.
       update:
-        successfully: Gebruiker %{naam} is succesvol bijgewerkt.
+        successfully: Gebruiker %{name} is succesvol bijgewerkt.
     meta_title: Administratiepaneel
     navigation:
+      ai_assistants: AI assistenten
       assessments: Beoordeling
       assessments_reports: Beoordelingen en rapporten
       assessor_dashboard: Dashboard voor beoordelaars
@@ -2289,11 +2472,11 @@ nl:
     norms:
       copy:
         error: 'Norm #%{id} is niet gekopieerd.'
-        successfully: Norm "%{naam}" is succesvol gekopieerd.
+        successfully: Norm "%{name}" is succesvol gekopieerd.
       create:
-        successfully: Norm "%{naam}" is succesvol aangemaakt.
+        successfully: Norm "%{name}" is succesvol aangemaakt.
       destroy:
-        successfully: Norm "%{naam}" is succesvol verwijderd.
+        successfully: Norm "%{name}" is succesvol verwijderd.
       edit:
         header: Norm hernoemen
       editor:
@@ -2333,7 +2516,7 @@ nl:
             title: "<strong>Norm</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je deze Norm wilt %{status}?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Kopiëren
           deleting: Verwijderen
@@ -2355,16 +2538,16 @@ nl:
       toggle_status:
         successfully: Norm is met succes bijgewerkt.
       update:
-        successfully: Norm %{naam} is bijgewerkt.
+        successfully: Norm %{name} is bijgewerkt.
     notification_bell_icon: Pictogram Meldingsbel
     noty:
       error_408: Deze actie duurt te lang. Probeer de pagina opnieuw te laden.
       error_500: Er is iets misgegaan. Neem contact op met uw beheerder.
     occupations:
       create:
-        successfully: Beroep %{naam} is succesvol aangemaakt.
+        successfully: Beroep %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Bezetting %{naam} is succesvol verwijderd.
+        successfully: Bezetting %{name} is succesvol verwijderd.
       edit:
         header: Bewerk bezetting
       form:
@@ -2397,9 +2580,9 @@ nl:
         successfully: Bezetting is succesvol bijgewerkt.
     occupations_factors:
       create:
-        successfully: Factor %{naam} is succesvol aangemaakt.
+        successfully: Factor %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Factor %{naam} is succesvol losgekoppeld.
+        successfully: Factor %{name} is succesvol losgekoppeld.
       edit:
         header: Bewerk Factor
       index:
@@ -2430,7 +2613,7 @@ nl:
       toggle_status:
         successfully: Factor is met succes bijgewerkt.
       update:
-        successfully: Factor %{naam} is succesvol bijgewerkt.
+        successfully: Factor %{name} is succesvol bijgewerkt.
     participants:
       tabs:
         assessors: Taxateurs
@@ -2468,6 +2651,74 @@ nl:
         successfully: Succesvol
       toggle_status:
         successfully: Succesvol
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: De niveaudefinitie moet een array van definities zijn.
+          level_definition_must_match_level: moet precies %{expected} niveaus bevatten, maar %{actual} werden gegeven
+          must_be_unique: Moet uniek zijn
+          proficiency_level_exists: Er bestaat al een ProficiencyLevel met deze vaardigheid en dit project
+          proficiency_level_exists_for_all_skills: Er bestaat al een vaardigheidsniveau voor alle vaardigheden
+          proficiency_level_exists_for_category: Er bestaat al een ProficiencyLevel voor deze categorie
+          project_level_all_skills_exists: Er bestaat al een vaardigheidsniveau 'all_skills
+          skill_must_exist: Vaardigheid moet aanwezig zijn voor vaardigheidstype 'by_skill'.
+      export:
+        actions:
+          proficiency: Exportvaardigheden
+          translations: Exportvaardigheden Vertalingen
+        details: Details
+        failure_msg: Fout bij het exporteren van vaardigheidsniveaus
+        success_msg: Lopende ontwikkelingsacties exporteren
+        translations:
+          details: Vertalingen op hoog niveau
+      fields:
+        level: Niveau
+        level_description: Niveau Beschrijving
+        level_name: Niveau Naam
+        proficiency_translations: Bekwaamheid Vertalingen
+        proficiency_type: Type bekwaamheid
+        skill: Vaardigheid
+        skill_category: Vaardigheidscategorie
+        skill_name: Naam vaardigheid
+        title: Bekwaamheid
+      global: Is mondiale vaardigheid?
+      import:
+        actions:
+          proficiency: Importvaardigheden
+          translations: Vertalingen importeren
+        errors:
+          all_skills_global_exists: 'Rij %{row_number}: Er bestaat al een ProficiencyLevel op globaal niveau ''all_skills'
+          all_skills_project_exists: 'Rij %{row_number}: Er bestaat al een ProficiencyLevel op projectniveau ''all_skills'
+          by_category_exists: 'Rij %{row_number}: Er bestaat al een ''by_category'' ProficiencyLevel voor dit project en deze vaardigheidscategorie'
+          by_category_missing: 'Rij %{row_number}: Project en vaardigheidscategorie moeten aanwezig zijn voor ''by_category''-type'
+          by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
+          by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
+          invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+          invalid_json: 'Regel %{line}: Ongeldige JSON in LevelDefinition - %{message}'
+          invalid_json_structure: moet een JSON-object zijn met sleutels als "description" en "summary".
+          invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
+          missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
+          missing_required_fields: 'Regel %{line}: Verplichte velden ontbreken (%{fields})'
+          save_failed: 'Regel %{line}: %{message}'
+          skill_not_found: 'Rij %{row_number}: Ongeldige of ontbrekende vaardigheid'
+        job_queued: Vaardigheidsniveaus importtaak is in de wachtrij geplaatst
+      translations:
+        export:
+          failure_msg: Fout bij het exporteren van vertalingen
+          success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
+        import:
+          errors:
+            invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+            invalid_locales: Ongeldige locale
+            level_not_found: 'Niveau niet gevonden voor ID: %{level_id}'
+            missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
+            missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
+            row_id_blank: 'Rij %{row}: ID kan niet leeg zijn'
+            save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{message}'
+      type:
+        all_skills: Alle vaardigheden
+        by_category: Per categorie
+        by_skill: Door Behendigheid
     profile:
       change_password: Wachtwoord wijzigen
       details: Details
@@ -2509,8 +2760,8 @@ nl:
           normalize_factor_scores: Factorscores normaliseren
           user_result_validity_in_days: Resultaat Geldigheid
         delete:
-          content: Weet je zeker dat je de beoordeling '%{naam}' wilt verwijderen?
-          success: Beoordeling '%{naam}' is succesvol verwijderd.
+          content: Weet je zeker dat je de beoordeling '%{name}' wilt verwijderen?
+          success: Beoordeling '%{name}' is succesvol verwijderd.
           title: Beoordeling verwijderen
         form:
           assessment_placeholder: Selecteer beoordeling
@@ -2535,10 +2786,21 @@ nl:
             key: verzenden_test
             label: Test verzenden
         form:
+          acceptable_rate_limit:
+            label: Aanvaardbare aanvraaglimiet
+            request_per: verzoeken per
           active:
             label: Actief
             name: actief
           auth_type:
+            api_key:
+              label: API-sleutel
+              name: api_sleutel
+              value: api_sleutel_auth
+            api_key_header:
+              format_error: Alleen letters, cijfers, underscores en koppeltekens zijn toegestaan
+              label: API-sleutel header
+              name: apiKeyHeader
             basic:
               label: Basis
               value: basis_auth
@@ -2594,18 +2856,18 @@ nl:
       confirm_delete: Ja, verwijderen
       confirm_send: Ja, stuur
       delete: Verwijder
-      delete_error: Kan beoordelaar '%{naam}' niet verwijderen. Neem contact op met je beheerder.
-      delete_success: Assessor '%{naam}' is succesvol verwijderd.
+      delete_error: Kan beoordelaar '%{name}' niet verwijderen. Neem contact op met je beheerder.
+      delete_success: Assessor '%{name}' is succesvol verwijderd.
       edit: Bewerk
       edit_assessor: Bewerk beoordelaar
       filter_campaigns: Zonder campagnes
       form_first_name: Voornaam
       form_last_name: Achternaam
-      modal_delete_content: Weet je zeker dat je beoordelaar '%{naam}' wilt verwijderen?
+      modal_delete_content: Weet je zeker dat je beoordelaar '%{name}' wilt verwijderen?
       modal_delete_title: Schrappen beoordelaar
       modal_reset_email_content: Weet je zeker dat je de wachtwoord reset link naar '%{email}' wilt sturen?
       model_reset_email: Herstel wachtwoord beoordelaar
-      no_edit_permission: U hebt geen rechten om beoordelaar '%{naam}' te bewerken
+      no_edit_permission: U hebt geen rechten om beoordelaar '%{name}' te bewerken
       reset_mail_error: Kan reset-wachtwoordlink niet verzenden naar '%{email}'. Neem contact op met uw beheerder.
       reset_mail_success: Reset wachtwoord link succesvol verzonden naar '%{email}'
       save: Sla
@@ -2729,11 +2991,11 @@ nl:
         search: Zoeken in Webhoook
     questions:
       copy:
-        successfully: Vraag "%{naam}" is succesvol gekopieerd.
+        successfully: Vraag "%{name}" is succesvol gekopieerd.
       create:
-        successfully: Vraag "%{naam}" is succesvol aangemaakt.
+        successfully: Vraag "%{name}" is succesvol aangemaakt.
       destroy:
-        successfully: Vraag "%{naam}" is succesvol verwijderd.
+        successfully: Vraag "%{name}" is succesvol verwijderd.
       edit:
         header: Bewerk vraag
       index:
@@ -2747,9 +3009,33 @@ nl:
             title: "<strong>Vraag</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je %{status} deze vraag wilt beantwoorden?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Met succes bijgewerkt.
+    reflection_questions:
+      delete_confirmation: Weet je zeker dat je deze reflectievraag wilt verwijderen?
+      export:
+        action: Vragen over exportreflectie
+        details: Bestand Details
+        failure_msg: Fout tijdens exporteren bestand.
+        success_msg: Het exporteren van reflectievragen is bezig. Controleer de status in de meldingen.
+      form:
+        mandatory: Verplicht
+        max_words: Maximaal aantal woorden
+        min_words: Minimum woorden
+        question: Vraag
+        title: Reflectie Vraag
+      import:
+        action: Vragen over importeren
+        errors:
+          invalid_max_words_column_format: Ongeldig maximaal aantal woorden kolomwaarde formaat %{row}
+          invalid_min_words_column_format: Ongeldig Minimum Words kolomwaarde formaat %{row}
+          invalid_required_column_format: Ongeldig Formaat verplichte kolomwaarde %{row}
+          missing_eng_question: Ontbrekende Engelse vraaginhoud %{row}
+          save_failed: Opslaan mislukt %{message}
+        failure_msg: Fout bij importeren bestand.
+        success_msg: Het importeren van reflectievragen is bezig. Controleer de status in de meldingen.
+      question: Vraag
     report_approval:
       bulk_approve_success: "%{sent_for_approval} verzonden voor goedkeuring. %{approved} rapporten goedgekeurd. %{ignored} rapporten vereisen handmatige goedkeuring vanwege QC wijzigingen/opmerkingen."
       columns:
@@ -2792,7 +3078,7 @@ nl:
         invalid_factor_params: Formaat campagnefactoren ongeldig
         name: Naam
         no_boundary_space: Naam kan niet beginnen of eindigen met een spatie
-        too_many_factors: Kan niet meer dan %{aantal} campagnefactoren maken
+        too_many_factors: Kan niet meer dan %{count} campagnefactoren maken
         tools: Gereedschap
         type: Type
       pagination:
@@ -2808,9 +3094,9 @@ nl:
         repeat_modules: Modules herhalen
     report_families:
       create:
-        successfully: Rapportbundel %{naam} is succesvol aangemaakt.
+        successfully: Rapportbundel %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Rapportbundel %{naam} is succesvol verwijderd.
+        successfully: Rapportbundel %{name} is succesvol verwijderd.
       edit:
         header: Rapportbundelnaam bewerken
       index:
@@ -2838,7 +3124,7 @@ nl:
             title: "<strong>Rapport</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je %{status} deze rapportbundel wilt?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           delete: Rapportbundel verwijderen
           edit: Rapportbundel bewerken
@@ -2847,7 +3133,7 @@ nl:
         edit: Rapportbundel bewerken
         title: Opties voor bundels rapporteren
       update:
-        successfully: Rapportbundel %{naam} is bijgewerkt.
+        successfully: Rapportbundel %{name} is bijgewerkt.
     report_review:
       abort_qc: QC afbreken
       approve: Goedkeuren
@@ -2865,20 +3151,22 @@ nl:
         qc_completed: QC Voltooid
         qc_in_progress: QC in uitvoering
     reports:
+      bulk_marked_as_done: Bulk Gemarkeerd als Gereed
       bulk_upload:
         choose_file: Kies bestand
         no_file_selected: Geen bestand geselecteerd
+        sample_file: Voorbeeldbestand
         title: Bulk Upload Campagne Factoren
         upload_success: Succesvol geüpload
       copy:
         copy: kopie
         copy_report: Kopieer Rapport
         name: Naam
-        successfully: Rapport '%{naam}' is succesvol gekopieerd.
+        successfully: Rapport '%{name}' is succesvol gekopieerd.
       create:
-        successfully: Rapport '%{naam}' is succesvol aangemaakt.
+        successfully: Rapport '%{name}' is succesvol aangemaakt.
       destroy:
-        successfully: Rapport '%{naam}' is succesvol verwijderd.
+        successfully: Rapport '%{name}' is succesvol verwijderd.
       edit:
         header: Rapportnaam bewerken
       modals:
@@ -2912,17 +3200,17 @@ nl:
             title: "<strong>Verslag</strong> zacht verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je %{status} dit rapport wilt zien?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
-        successfully: Rapport %{naam} is met succes hersteld.
+        successfully: Rapport %{name} is met succes hersteld.
       soft_delete:
-        successfully: Rapport %{naam} is met succes verplaatst naar de prullenbak.
+        successfully: Rapport %{name} is met succes verplaatst naar de prullenbak.
       toggle_archive:
-        successfully: Beoordeling %{naam} was %{status} succesvol.
+        successfully: Beoordeling %{name} was %{status} succesvol.
       toggle_status:
         successfully: Rapport is met succes bijgewerkt.
       update:
-        successfully: Rapport %{naam} is bijgewerkt.
+        successfully: Rapport %{name} is bijgewerkt.
     resource:
       remove_confirm:
         message: Weet je zeker dat je deze bron wilt verwijderen?
@@ -2960,6 +3248,8 @@ nl:
       assessment_center_form:
         add_more: Meer toevoegen
         allow_late_cancellation_and_scheduling: Laat annulering en planning toe
+        assessment_center_group: Assessment Center Groep
+        assessment_center_group_placeholder: Selecteer Assessment Center-groep
         assessor_ids_label: Taxateurs
         back: Terug
         basic_info_panel:
@@ -3016,6 +3306,7 @@ nl:
         attendance: Aanwezigheid
         attended: Bijgewoond
         booked_at: Geboekt bij
+        campaign_assessment_group: Assessment Center Groep
         campaign_name: Naam campagne
         duration: Duur
         managers: Mangers
@@ -3041,8 +3332,9 @@ nl:
         allowed: Toegestaan
         assessors: Taxateurs
         booked: Geboekte plaatsen
+        campaign_assessment_group: Assessment Center Groep
         cancellation_lead_time: Annulering Levertijd
-        cancellation_tooltip: De gebruiker kan de boeking annuleren tot %{datum}
+        cancellation_tooltip: De gebruiker kan de boeking annuleren tot %{date}
         date: Datum en tijd
         duration: Duur
         join_meeting: Kamer
@@ -3053,7 +3345,7 @@ nl:
         not_allowed: Niet toegestaan
         remaining: Resterende plaatsen
         scheduling_lead_time: Doorlooptijd planning
-        scheduling_tooltip: De gebruiker kan een slot boeken tot %{datum}
+        scheduling_tooltip: De gebruiker kan een slot boeken tot %{date}
         search_placehoder: Zoeken op id, e-mail of naam
         timezone: Tijdzone
         total_seats: Totaal aantal zitplaatsen
@@ -3087,9 +3379,10 @@ nl:
         add_assessor_form: Formulier voor beoordelaar toevoegen
         assessments: Beoordeling
         assessor_forms: Formulieren voor taxateurs
-        confirm_message: 'Weet je zeker dat je de deelname van de proefpersoon met het e-mailadres ''%{subject_email}'' wilt annuleren?<br />eenmaal gemarkeerd als geannuleerd, zal deze proefpersoon niet meer kunnen deelnemen aan het assessment.
-
-          '
+        confirm_message: |
+          'Weet je zeker dat je de deelname van de proefpersoon met het e-mailadres ''%{subject_email}'' wilt annuleren?
+          <br />
+          eenmaal gemarkeerd als geannuleerd, zal deze proefpersoon niet meer kunnen deelnemen aan het assessment.'
         confirm_title: Bevestiging vereist
         edit_assessor_form: Formulier voor beoordelaar bewerken
         form_title: Plan beoordelingen
@@ -3270,6 +3563,7 @@ nl:
         successful_remove: Skill alias '%{skill_alias}' is verwijderd.
       tabs:
         admin_roles: Beheerdersrollen
+        feature_flags: Functie Vlaggen
         siem: SIEM
         skill_aliases: Vaardigheden aliassen
     sheets:
@@ -3318,7 +3612,14 @@ nl:
         rows: Rijen
         settings: Instellingen
     skills:
+      applicable_proficiency_levels: Toepasselijke vaardigheidsniveaus
+      columns:
+        skill_group: Vaardigheidsgroep
+        skill_type: Type vaardigheid
       errors:
+        import:
+          missing_fields_data: 'Regel %{line_number}: Verplichte velden ontbreken: %{fields}'
+          save_failed: 'Regel %{line_number}: Opslaan van vaardigheid ''%{name}'' mislukt: %{message}'
         search:
           all_and_project_id_mutually_exclusive: Alles kan niet waar zijn als project_id_eq is opgegeven
           invalid_all_value: 'moet een van de volgende zijn: waar, onwaar'
@@ -3340,6 +3641,7 @@ nl:
         description: Beschrijving
         name: Naam
         project_placeholder: Selecteer een project
+        skill_group: Vaardigheidsgroep
         skill_type: Vaardigheidstype
         title: Vaardigheid
       global: Is globale vaardigheid?
@@ -3352,16 +3654,22 @@ nl:
       import_action:
         skills_title: Vaardigheden importeren
         skills_translations_title: Importvaardigheden Vertalingen
+      skill_details: Vaardigheden
       skill_translations: Vaardigheden Vertalingen
+      skill_translations_project: Vaardigheid Vertalingen gebaseerd op Project
+      skills_project: Vaardigheden gebaseerd op Project
       title: Vaardigheden
       translations:
         import:
           errors:
             invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+            missing_columns: 'Ontbrekende verplichte kolommen: %{columns}'
             save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{message}'
             skill_not_found: Vaardigheid met ID %{id} niet gevonden
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Vaardigheidstaken toewijzingen
+        job_roles: Functierollen
         proficiency: Vaardigheid
         skills: Vaardigheden
     sms_histories:
@@ -3418,8 +3726,13 @@ nl:
         modal:
           btn_name: SMS verzenden
           title: SMS verzenden
-        pipetext_details: "{{first_name}} - Voornaam ontvanger<br />{{last_name}} - Achternaam ontvanger<br />{{invite_url}} - Registratielink\n"
-        segment_length_msg: Geschat aantal segmenten voor dit bericht is %{segment_lengte}.
+        pipetext_details: |
+          "{{first_name}} - Voornaam ontvanger
+          <br />
+          {{last_name}} - Achternaam ontvanger
+          <br />
+          {{invite_url}} - Registratielink"
+        segment_length_msg: Geschat aantal segmenten voor dit bericht is %{segment_length}.
         segment_length_range_msg: Geschat aantal segmenten voor dit bericht ligt tussen %{min_segment_length} en %{max_segment_length}.
       statuses:
         all: Alle
@@ -3499,7 +3812,7 @@ nl:
         y_title: Aantal gebruikers
     sub_factors:
       destroy:
-        successfully: Sub-factor %{naam} is succesvol verwijderd.
+        successfully: Sub-factor %{name} is succesvol verwijderd.
       edit:
         header: Naam subfactor bewerken
       new:
@@ -3561,12 +3874,21 @@ nl:
       entries:
         selected:
           one: 1 rij geselecteerd
-          other: ''
+          other: "{{count}} rijen geselecteerd"
         total:
           one: 'Totaal : 1'
-          other: ''
+          other: 'Totaal : {{count}}'
+          zero: 'Totaal : 0'
       more_actions: Meer acties
     taxonomy:
+      import:
+        download_example_file: Voorbeeldbestand downloaden
+        success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
+      import_action:
+        taxonomy: Taxonomie importeren
+      job_roles: Functierollen
+      proficiency: Bekwaamheid
+      skill_job_mappings: Vaardigheidstaken toewijzingen
       skills: Vaardigheden
       title: Taxonomie
     templates:
@@ -3574,7 +3896,7 @@ nl:
         copy:
           error: Blok
         destroy:
-          successfully: Blok %{naam} is succesvol verwijderd.
+          successfully: Blok %{name} is succesvol verwijderd.
         edit:
           header: Bewerk blok
         index:
@@ -3617,7 +3939,7 @@ nl:
         copy:
           error: Vraag
         destroy:
-          successfully: Vraag %{naam} is succesvol verwijderd.
+          successfully: Vraag %{name} is succesvol verwijderd.
         edit:
           header: Bewerk vraag
         index:
@@ -3745,6 +4067,14 @@ nl:
         messages:
           title: Berichten
         participants:
+          subjects:
+            add_subjects: Onderwerpen toevoegen
+            current_job_role: Huidige Functierol
+            email: Email
+            first_name: Voornaam
+            last_name: Achternaam
+            locale: Lokaal
+            target_job_role: Doel Functierol
           title: Deelnemers
         report:
           menu:
@@ -3778,48 +4108,54 @@ nl:
     update: Update
     users:
       create:
-        successfully: Gebruiker %{naam} is succesvol aangemaakt.
+        successfully: Gebruiker %{name} is succesvol aangemaakt.
       destroy:
-        successfully: Gebruiker %{naam} is succesvol verwijderd.
+        successfully: Gebruiker %{name} is succesvol verwijderd.
       list:
         email: E-mail
+      modals:
+        download_idp_reports:
+          error: De taak Bulk Download IDP-rapporten is niet ingepland.
+          include_reflective_questions: Reflectieve vragen opnemen
+          success: Bulk Download IDP Reports taak is succesvol gepland.
+          title: Bulk IDP-rapporten downloaden
       new:
         header: Nieuwe gebruiker
       reset_password:
-        successfully: Gebruiker %{naam} ontvangt binnen enkele minuten een e-mail met instructies om zijn/haar wachtwoord opnieuw in te stellen.
+        successfully: Gebruiker %{name} ontvangt binnen enkele minuten een e-mail met instructies om zijn/haar wachtwoord opnieuw in te stellen.
       resource:
         confirmations:
           change_password:
             body: "<p>Weet je zeker dat je instructies wilt sturen met een link om je wachtwoord te wijzigen?</p>\n"
-            title: Wachtwoord wijzigen <strong>%{naam}</strong>?
+            title: Wachtwoord wijzigen <strong>%{name}</strong>?
           delete:
             body: "<p>Weet je zeker dat je deze gebruiker wilt verwijderen?</p>\n"
-            title: "<strong>%{naam}</strong> verwijderen ?"
+            title: "<strong>%{name}</strong> verwijderen ?"
           membership:
             delete:
               body: "<p>Weet je zeker dat je wilt verwijderen?</p>\n"
-              title: "<strong>%{naam}</strong> verwijderen uit %{client_name} Client Tenancy?"
+              title: "<strong>%{name}</strong> verwijderen uit %{client_name} Client Tenancy?"
             toggle_status:
               body: "<p>Weet je zeker dat je %{status} dit Lidmaatschap wilt?</p>\n"
-              title: "<strong>%{status}</strong> %{naam}'s Lidmaatschap?"
+              title: "<strong>%{status}</strong> %{name}'s Lidmaatschap?"
           toggle_enable_2fa:
-            body: "<p>Weet je zeker dat je %{status} 2FA wilt voor %{naam}?</p>\n"
+            body: "<p>Weet je zeker dat je %{status} 2FA wilt voor %{name}?</p>\n"
             title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>Weet je zeker dat je deze gebruiker %{status} wilt geven?</p>\n"
-            title: "<strong>%{status}</strong> %{naam}?"
+            title: "<strong>%{status}</strong> %{name}?"
       spoof:
-        successfully: U bent succesvol ingelogd als %{naam}
+        successfully: U bent succesvol ingelogd als %{name}
       toggle_enable_2fa:
         disable: 2FA uitschakelen
         enable: 2FA inschakelen
-        successfully: Gebruiker %{naam} is succesvol bijgewerkt.
+        successfully: Gebruiker %{name} is succesvol bijgewerkt.
       toggle_status:
-        successfully: Gebruiker %{naam} is succesvol bijgewerkt.
+        successfully: Gebruiker %{name} is succesvol bijgewerkt.
       toolbar:
         title: Gereedschap
       update:
-        successfully: Gebruiker %{naam} is succesvol bijgewerkt.
+        successfully: Gebruiker %{name} is succesvol bijgewerkt.
       user: Gebruiker
     webhook:
       connection_failure: Kan geen verbinding maken met de webhook url. Controleer of de webhook url correct is.
@@ -3837,5 +4173,3 @@ nl:
       errors:
         update_assessor_for_failure: Vergadergegevens kunnen niet worden toegevoegd omdat er geen gekoppelde onderwerpactiviteit is.
     years: Jaren
-  administration.users.toolbar:
-    title: Gereedschap

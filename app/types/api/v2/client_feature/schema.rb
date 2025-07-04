@@ -11,6 +11,9 @@ module Api
         def self.attributes(attribute, _type)
           proc do
             attribute[:sms_notification].maybe(:bool)
+            attribute[:ai_assistants].maybe(:bool)
+            attribute[:ai_assisted_idp].maybe(:bool)
+            attribute[:global_skills].maybe(:bool)
           end
         end
       end

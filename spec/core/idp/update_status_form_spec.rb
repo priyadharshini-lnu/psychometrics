@@ -9,6 +9,7 @@ describe Idp::UpdateStatusForm do
   let(:user_idp_plan) { create(:user_idp_plan, user: idp_user, idp_template: idp_template, status: 'draft') }
   let(:project) { user_idp_plan.campaign.project }
   let(:idp_setting) { create(:idp_setting, project_id: project.id, manager_approves_idp: manager_approves_idp) }
+  let(:reflection_question) { create(:reflection_question, project_id: project.id) }
 
   before { allow(user_idp_plan.project).to receive(:idp_setting).and_return(idp_setting) }
 
@@ -139,6 +140,41 @@ describe Idp::UpdateStatusForm do
       expect(form.validate).to eq true
       expect(form.save!).to eq false
       expect(form.errors[:base].first).to match(/There is no event complete defined for the pending_approval state/)
+    end
+  end
+
+  context 'mandatory reflective questions should be answered' do
+    let(:manager_approves_idp) { true }
+    let(:current_user) { idp_user }
+    let(:new_status) { 'completed' }
+
+    before do
+      user_idp_plan.update!(status: 'in_progress')
+      user_idp_plan.idp_template.idp_template_reflection_questions.create!(
+        reflection_question: reflection_question,
+        mandatory: true
+      )
+    end
+
+    it 'validates that all mandatory reflective questions are answered' do
+      expect(form.validate).to eq false
+      expect(form.errors[:base]).to include(I18n.t('validations.idp.reflective_questions_required'))
+      expect(form.save!).to eq false
+    end
+
+    context 'when all mandatory reflective questions are answered' do
+      before do
+        user_idp_plan.user_reflection_question_answers.create!(
+          reflection_question: reflection_question,
+          answer: 'Some answer'
+        )
+      end
+
+      it 'allows the status to be updated' do
+        expect(form.validate).to eq true
+        expect(form.save!).to eq true
+        expect(user_idp_plan.reload.status).to eq('completed')
+      end
     end
   end
 end

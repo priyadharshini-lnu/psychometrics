@@ -3,8 +3,8 @@ import { Flex } from 'antd'
 import cs from 'classnames'
 import bg from '../../../assets/MainBackground.png'
 import mercer from '../../../assets/MercerLogo.svg'
-import styles from './Cover.less'
 import Page from '../../Page'
+import styles from './Cover.less'
 import { useAppSelector } from '~/modules/idpReport/hooks/redux'
 
 const { I18n } = window
@@ -37,7 +37,7 @@ const Cover = ({ rtl }) => {
 
   return (
     <Page rtl={rtl}>
-      <div className={cs(styles.content, styles)}>
+      <div className={cs(styles.content)}>
         <div
           className={cs(styles.background, { [styles.flipped]: rtl })}
           style={{ backgroundImage: `url(${background || bg})` }}

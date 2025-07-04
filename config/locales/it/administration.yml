@@ -29,16 +29,16 @@ it:
         edit:
           admin_role_select: Selezionare il ruolo di amministratore
           admin_roles: Ruoli amministrativi
-          create_success: L'amministratore '%{nome}' è stato creato con successo
+          create_success: L'amministratore '%{name}' è stato creato con successo
           email: Email
           first_name: Nome
           first_name_required: Il nome è obbligatorio
           last_name: Cognome
           last_name_required: Il cognome è obbligatorio
-          no_edit_permission: Non hai il permesso di modificare l'amministratore '%{nome}'
+          no_edit_permission: Non hai il permesso di modificare l'amministratore '%{name}'
           save: Risparmiare
           update: Aggiornamento
-          update_success: L'amministratore '%{nome}' è stato aggiornato con successo
+          update_success: L'amministratore '%{name}' è stato aggiornato con successo
         notes:
           threesixty_permission: Autorizzazioni specifiche per le campagne 360
           title: Note
@@ -173,6 +173,10 @@ it:
             manage: Gestire
             title: Modelli di IDP
             view: Vista
+          jobRoles:
+            manage: Gestire
+            title: Ruoli lavorativi
+            view: Vista
           mediaLibraries:
             manage: Gestire
             title: Biblioteche multimediali
@@ -186,6 +190,16 @@ it:
             manage: Gestire
             title: Norme
             view: Vista
+          proficiencyLevels:
+            export: Livelli di competenza per l'esportazione
+            export_translations: Traduzioni dei livelli di competenza per l'esportazione
+            import: Livelli di competenza dell'importazione
+            import_translations: Importazione dei livelli di competenza Traduzioni
+            manage: Gestire
+            title: Livelli di competenza
+            view: Vista
+          proficiency_level:
+            title: Livelli di competenza
           projectSettings:
             assessments: Valutazioni
             design: Design
@@ -230,6 +244,7 @@ it:
             approve_report: Approvare il rapporto
             bulk_download: Scaricamento in blocco
             bulk_regenerate_reports: Rigenerazione in blocco dei rapporti
+            bulk_update_evaluation_status: Aggiornamento massivo dello stato di valutazione
             download_report: Scarica il rapporto
             edit_report: Rapporto di modifica
             export_occupations: Occupazioni per l'esportazione
@@ -271,6 +286,22 @@ it:
             manage: Gestire
             title: Laboratori
             view: Vista
+    ai_assistants:
+      actions:
+        playground: Parco giochi
+      ai_assistants: Assistenti AI
+      ai_assistants_playground: Parco giochi per assistenti AI
+      column:
+        ai_action: Azione AI
+        provider: Fornitore
+      form:
+        action: Azione
+        description: Descrizione
+        name: Nome
+        provider: Fornitore
+        system_prompt: Prompt del sistema
+        title: Assistente AI
+        user_prompt: Prompt dell'utente
     any: " - Qualsiasi - "
     api:
       campaigns:
@@ -306,7 +337,7 @@ it:
         confirm_message: Siete sicuri di voler eliminare un invito?
         confirm_message_with_title: Si è sicuri di voler rimuovere l'invito con titolo '%{invite_title}'?
         confirm_title: Confermare
-        exceeded_subjects_count: La campagna ha %{utenti} soggetti. È possibile aggiungere solo %{count} soggetti per ogni invito
+        exceeded_subjects_count: La campagna ha %{users} soggetti. È possibile aggiungere solo %{count} soggetti per ogni invito
         id: ID
         invites: Inviti
         next: Avanti
@@ -355,7 +386,7 @@ it:
           add: Aggiungi
           name: Nome
           remove_confirm:
-            content: Siete sicuri di voler rimuovere l'Assessment Center con il nome '%{nome}'?
+            content: Siete sicuri di voler rimuovere l'Assessment Center con il nome '%{name}'?
             success: Assessment Center è stato rimosso con successo.
             title: Confermare
       invite_request:
@@ -365,7 +396,7 @@ it:
         remove_confirm:
           content: Sei sicuro di volere %{action} %{status} da %{subjectName}?
           success: "%{status} da %{subjectName} è stato %{action} con successo."
-          title: "%{azione} %{stato}"
+          title: "%{action} %{status}"
         status: Stato
         subject_name: Nome del soggetto
         workshop_time: Tempo di workshop
@@ -386,10 +417,10 @@ it:
       errors:
         doesnt_have_header: "'%{sub_header}' non ha un'intestazione"
         invalid_headers: 'Le seguenti intestazioni non sono valide: %{headers}'
-        invalid_scores: I punteggi per il fattore %{nome_fattore} non sono validi. I punteggi devono essere valori numerici separati da virgole
+        invalid_scores: I punteggi per il fattore %{factor_name} non sono validi. I punteggi devono essere valori numerici separati da virgole
         invalid_sub_header: "'%{sub_header}' non è una sottovoce valida per l'intestazione '%{header}'"
         scores_not_allowed: I punteggi possono essere aggiunti solo per le domande a scelta multipla e a matrice
-        unavailable_factors: i fattori %{nome_fattore_non_disponibile} non sono presenti in una dimensione
+        unavailable_factors: i fattori %{unavailable_factor_names} non sono presenti in una dimensione
       modal:
         download_xls: Scarica il file XLSX di esempio
         title: Domande sull'importazione
@@ -401,21 +432,21 @@ it:
         copy: copia
         copy_assessment: Valutazione della copia
         name: Nome
-        successfully: La valutazione "%{nome}" è stata copiata con successo.
+        successfully: La valutazione "%{name}" è stata copiata con successo.
       create:
-        successfully: La valutazione "%{nome}" è stata creata con successo.
+        successfully: La valutazione "%{name}" è stata creata con successo.
       destroy:
-        successfully: La valutazione "%{nome}" è stata eliminata con successo.
+        successfully: La valutazione "%{name}" è stata eliminata con successo.
       edit:
         header: Impostazioni di valutazione
       errors:
-        owner_validation: Non si dispone dei permessi di %{nome_risorsa} %{permission} per %{nome_cliente}
+        owner_validation: Non si dispone dei permessi di %{resource_name} %{permission} per %{client_name}
       export:
         questions: Domande sull'esportazione
       export_questions_toastr: Domande Il lavoro di esportazione è stato pianificato con successo
       flow: Flusso
       linkedAssessment:
-        assessment_title: Selezionare le domande da %{nome}
+        assessment_title: Selezionare le domande da %{name}
         title: Selezionare le domande collegate
       map_norms: Norme sulla mappa
       menu:
@@ -433,6 +464,7 @@ it:
         per_page: per pagina
         plural:
           block: blocchi
+          choice: scelte
           question: domande
         present_only: Solo presente
         question_per_factor_and_show: domande per fattore e mostra
@@ -452,9 +484,9 @@ it:
             title: "<strong>Valutazione</strong> Soft Delete?"
           toggle_status:
             body: "<p>Sei sicuro di volere %{status} questa Valutazione?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
-        successfully: La valutazione %{nome} è stata ripristinata con successo.
+        successfully: La valutazione %{name} è stata ripristinata con successo.
       scoring_strategy:
         average: Media
         sum: Somma
@@ -472,13 +504,13 @@ it:
         instructions: Istruzioni di abilitazione
         title: Impostazioni di valutazione
       soft_delete:
-        successfully: La valutazione %{nome} è stata spostata nel cestino con successo.
+        successfully: La valutazione %{name} è stata spostata nel cestino con successo.
       toggle_archive:
-        successfully: La valutazione %{nome} è stata %{status} con successo.
+        successfully: La valutazione %{name} è stata %{status} con successo.
       toggle_status:
-        successfully: La valutazione %{nome} è stata aggiornata con successo.
+        successfully: La valutazione %{name} è stata aggiornata con successo.
       update:
-        successfully: La valutazione %{nome} è stata aggiornata con successo.
+        successfully: La valutazione %{name} è stata aggiornata con successo.
     assessor:
       add_subject_modal:
         assessment: Valutazione
@@ -577,7 +609,7 @@ it:
         confirmations:
           delete:
             body: "<p>Sei sicuro di voler cancellare questa assegnazione?</p>"
-            title: Cancellare <strong>%{nome}</strong>?
+            title: Cancellare <strong>%{name}</strong>?
     assigns_reports:
       edit:
         header: Modifica dell'assegnazione del rapporto
@@ -639,11 +671,11 @@ it:
         title: Impostazioni del blocco
     blocks:
       copy:
-        successfully: Il blocco %{nome} è stato copiato con successo.
+        successfully: Il blocco %{name} è stato copiato con successo.
       create:
-        successfully: Il blocco %{nome} è stato creato con successo.
+        successfully: Il blocco %{name} è stato creato con successo.
       destroy:
-        successfully: Il blocco %{nome} è stato cancellato con successo.
+        successfully: Il blocco %{name} è stato cancellato con successo.
       edit:
         header: Blocco di modifica
       new:
@@ -655,7 +687,7 @@ it:
             title: Cancellare <strong>il blocco</strong>?
           toggle_status:
             body: "<p>Sei sicuro di volere %{status} questo blocco?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
     bookings:
       errors:
         already_booked: Avete già prenotato un posto a sedere.
@@ -740,11 +772,11 @@ it:
         assessment_factors: I fattori vengono recuperati
         assessment_update: La valutazione è aggiornata
         block_clone: Il blocco viene copiato
-        block_create: Il blocco %{nome} è stato creato
+        block_create: Il blocco %{name} è stato creato
         block_create_by_template: Il blocco è stato caricato dal modello
         block_destroy: Il blocco è stato cancellato
-        block_move_down: Il blocco %{nome} è stato spostato in basso
-        block_move_up: Il blocco %{nome} è stato spostato in alto
+        block_move_down: Il blocco %{name} è stato spostato in basso
+        block_move_up: Il blocco %{name} è stato spostato in alto
         block_permanent_destroy: Il blocco viene eliminato in modo permanente
         block_rename: Il blocco viene rinominato
         block_restore: Il blocco viene ripristinato
@@ -754,7 +786,7 @@ it:
         comment_create: Il commento viene creato
         comment_destroy: Il commento è stato cancellato
         geo_filter: Dati filtrati
-        module_create: Il modulo %{nome} è stato creato
+        module_create: Il modulo %{name} è stato creato
         module_destroy: Il modulo è stato cancellato
         module_insert_after: Il modulo viene inserito dopo
         module_insert_before: Il modulo viene inserito prima di
@@ -762,14 +794,14 @@ it:
         module_move_up: Il modulo viene spostato in alto
         module_rename: Il modulo viene rinominato
         module_update: Il modulo è aggiornato
-        page_create: La pagina %{nome} è stata creata
+        page_create: La pagina %{name} è stata creata
         page_destroy: La pagina è stata cancellata
-        page_move_down: La pagina %{nome} è stata spostata in basso
-        page_move_up: La pagina %{nome} è stata spostata in alto
+        page_move_down: La pagina %{name} è stata spostata in basso
+        page_move_up: La pagina %{name} è stata spostata in alto
         page_rename: La pagina viene rinominata
         page_update: La pagina è aggiornata
         question_clone: La domanda viene copiata
-        question_create: La domanda %{nome} è stata creata
+        question_create: La domanda %{name} è stata creata
         question_create_by_template: La domanda è stata caricata dal modello
         question_create_from_template: La domanda viene creata dal modello
         question_destroy: La domanda è stata cancellata
@@ -796,19 +828,19 @@ it:
         code_already_exists: Esiste già un fattore con lo stesso codice "%{code}".
         factor_not_in_assessment_dimension: L'id del fattore '%{factor_id}' non fa parte della dimensione della valutazione
         invalid_lua_name: Il codice '%{code}' dovrebbe essere un nome di variabile lua valido
-        invalid_name_format: Il nome "%{nome}" deve corrispondere al formato previsto.
+        invalid_name_format: Il nome "%{name}" deve corrispondere al formato previsto.
         max_limit_reached: Non è possibile creare più di %{count} fattori di campagna.
         missing_assessment_id: È necessario un ID di valutazione.
         missing_assessment_score_type: Il tipo di punteggio della valutazione è richiesto.
         missing_factor_id: È richiesto l'id del fattore.
-        name_already_exists: Esiste già un fattore con lo stesso nome "%{nome}".
+        name_already_exists: Esiste già un fattore con lo stesso nome "%{name}".
         name_size_exceded: Il nome non deve superare i caratteri %{size}.
     campaign_factors:
       delete:
         confirm_message:
-          assessor_scoring: Si stanno per cancellare i punteggi dei valutatori. Si perderanno tutti i punteggi dei valutatori moderati per questo fattore '%{nome_fattore}'. Si è sicuri di voler procedere?
-          default: Si è sicuri di voler eliminare il fattore della campagna '%{nome_fattore}'?
-          external_score: Si sta per eliminare il punteggio esterno. Si perderanno i punteggi esterni associati a questo fattore '%{nome_fattore}'. Si è sicuri di voler procedere?
+          assessor_scoring: Si stanno per cancellare i punteggi dei valutatori. Si perderanno tutti i punteggi dei valutatori moderati per questo fattore '%{factor_name}'. Si è sicuri di voler procedere?
+          default: Si è sicuri di voler eliminare il fattore della campagna '%{factor_name}'?
+          external_score: Si sta per eliminare il punteggio esterno. Si perderanno i punteggi esterni associati a questo fattore '%{factor_name}'. Si è sicuri di voler procedere?
     campaign_factors_import:
       errors:
         invalid_headers: 'Le seguenti intestazioni non sono valide: %{headers}'
@@ -819,11 +851,11 @@ it:
         owner: Proprietario
         report: Rapporto
       copy:
-        successfully: Il contratto di locazione del cliente %{nome} è stato copiato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato copiato con successo.
       create:
-        successfully: Il contratto di locazione del cliente %{nome} è stato creato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato creato con successo.
       destroy:
-        successfully: Il contratto di locazione del cliente %{nome} è stato cancellato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato cancellato con successo.
       edit:
         header: Modifica del cliente
       errors:
@@ -853,23 +885,23 @@ it:
       new:
         header: Nuovo cliente
       remove_confirm:
-        content: Si è sicuri di voler rimuovere il modello di campagna '%{nome}'?
-        success: Il modello di campagna '%{nome}' è stato rimosso con successo.
+        content: Si è sicuri di voler rimuovere il modello di campagna '%{name}'?
+        success: Il modello di campagna '%{name}' è stato rimosso con successo.
         title: Rimuovere il modello di campagna
       resource:
         confirmations:
           delete:
             body: "<p>Siete sicuri di voler eliminare questo modello di campagna?</p>\n"
-            title: Cancellare <strong>%{nome}</strong>?
+            title: Cancellare <strong>%{name}</strong>?
         in_progress:
           deleting: Eliminazione
         tooltips:
           delete: Cancellare il cliente
           edit: Modifica del cliente
       toggle_status:
-        successfully: Il contratto di locazione del cliente %{nome} è stato aggiornato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
       update:
-        successfully: Il contratto di locazione del cliente %{nome} è stato aggiornato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
     campaigns:
       actions: Gestire
       assessment_reports:
@@ -889,11 +921,11 @@ it:
           settings: Impostazioni
       assessors:
         spoof:
-          successfully: L'accesso è stato effettuato con successo come %{nome}
+          successfully: L'accesso è stato effettuato con successo come %{name}
       copy: Copia
       delete: Cancellare
       edit: Modifica
-      extend_time_success_message: Timer della campagna esteso a %{minuti} minuti
+      extend_time_success_message: Timer della campagna esteso a %{minutes} minuti
       filters:
         active: Attivo
         all: Tutti
@@ -1030,6 +1062,13 @@ it:
         success_msg: L'importazione è stata caricata con successo
       modal:
         title: Importare i punteggi delle campagne esterne
+    client_features:
+      client_features: Caratteristiche del cliente
+      form:
+        ai_assistants: Assistenti AI
+        ai_assisted_idp: AI Assistito IDP
+        global_skills: Competenze globali
+        sms_notification: Notifica via SMS
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1047,11 +1086,11 @@ it:
         type: Tipo
         year: Anno
       copy:
-        successfully: Il contratto di locazione del cliente "%{nome}" è stato copiato con successo.
+        successfully: Il contratto di locazione del cliente "%{name}" è stato copiato con successo.
       create:
-        successfully: Il contratto di locazione del cliente '%{nome}' è stato creato con successo.
+        successfully: Il contratto di locazione del cliente '%{name}' è stato creato con successo.
       destroy:
-        successfully: Il contratto di locazione del cliente %{nome} è stato cancellato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato cancellato con successo.
       edit:
         header: Modifica del cliente
       licenses:
@@ -1059,9 +1098,9 @@ it:
           confirmations:
             toggle_status:
               body: "<p>Sei sicuro di volere %{status} questa licenza?</p>\n"
-              title: "<strong>%{status}</strong> Licenza per %{nome}?"
+              title: "<strong>%{status}</strong> Licenza per %{name}?"
         show:
-          used_out_of: "%{used} su %{number}"
+          used_out_of: "%{used_number} su %{number}"
       new:
         header: Nuovo cliente
       projects:
@@ -1069,8 +1108,8 @@ it:
           archive: Archivio
           unarchive: Disarchivio
         archive:
-          content: Si è sicuri di voler archiviare '%{nome_progetto}'?
-          success: Il progetto '%{nome_progetto}' è stato archiviato con successo.
+          content: Si è sicuri di voler archiviare '%{project_name}'?
+          success: Il progetto '%{project_name}' è stato archiviato con successo.
           title: Progetto d'archivio
         assign_assessments:
           add_assessment: Aggiungi valutazione
@@ -1079,14 +1118,14 @@ it:
           add_report: Aggiungi rapporto
         campaigns:
           archive:
-            successfully: La campagna "%{nome}" è stata archiviata con successo.
+            successfully: La campagna "%{name}" è stata archiviata con successo.
           copy:
-            error: La campagna "%{nome}" non è stata copiata.
-            successfully: La campagna "%{nome}" è stata copiata con successo.
+            error: La campagna "%{name}" non è stata copiata.
+            successfully: La campagna "%{name}" è stata copiata con successo.
           create:
-            successfully: La campagna "%{nome}" è stata creata con successo.
+            successfully: La campagna "%{name}" è stata creata con successo.
           destroy:
-            successfully: La campagna "%{nome}" è stata cancellata con successo.
+            successfully: La campagna "%{name}" è stata cancellata con successo.
           edit:
             header: Modifica campagna
           export:
@@ -1155,14 +1194,14 @@ it:
             view_licenses: Visualizza le licenze
           sub_campaigns:
             archive:
-              successfully: La sotto-campagna %{nome} è stata archiviata con successo.
+              successfully: La sotto-campagna %{name} è stata archiviata con successo.
             copy:
-              error: La sotto-campagna %{nome} non è stata copiata.
-              successfully: La sotto-campagna %{nome} è stata copiata con successo.
+              error: La sotto-campagna %{name} non è stata copiata.
+              successfully: La sotto-campagna %{name} è stata copiata con successo.
             create:
-              successfully: La sotto-campagna %{nome} è stata creata con successo.
+              successfully: La sotto-campagna %{name} è stata creata con successo.
             destroy:
-              successfully: La sotto-campagna %{nome} è stata eliminata con successo.
+              successfully: La sotto-campagna %{name} è stata eliminata con successo.
             edit:
               header: Modifica della sotto-campagna
             export:
@@ -1225,20 +1264,20 @@ it:
               title: Opzioni della sotto-campagna
               view_licenses: Visualizza le licenze
             toggle_status:
-              successfully: La sotto-campagna %{nome} è stata aggiornata con successo.
+              successfully: La sotto-campagna %{name} è stata aggiornata con successo.
             update:
-              successfully: La sotto-campagna %{nome} è stata aggiornata con successo.
+              successfully: La sotto-campagna %{name} è stata aggiornata con successo.
           toggle_status:
-            successfully: La campagna %{nome} è stata aggiornata con successo.
+            successfully: La campagna %{name} è stata aggiornata con successo.
           update:
-            successfully: La campagna %{nome} è stata aggiornata con successo.
+            successfully: La campagna %{name} è stata aggiornata con successo.
         copy:
-          error: Il progetto %{nome} non è stato copiato.
-          successfully: Il progetto %{nome} è stato copiato con successo.
+          error: Il progetto %{name} non è stato copiato.
+          successfully: Il progetto %{name} è stato copiato con successo.
         create:
-          successfully: Il progetto %{nome} è stato creato con successo.
+          successfully: Il progetto %{name} è stato creato con successo.
         destroy:
-          successfully: Il progetto %{nome} è stato cancellato con successo.
+          successfully: Il progetto %{name} è stato cancellato con successo.
         edit:
           header: Modifica del progetto
         export:
@@ -1351,17 +1390,17 @@ it:
             in_progress: In corso
             not_started: Non iniziato
           copy:
-            error: Il contratto di locazione del cliente "%{nome}" non è stato copiato.
-            successfully: Il contratto di locazione del cliente "%{nome}" è stato copiato con successo.
+            error: Il contratto di locazione del cliente "%{name}" non è stato copiato.
+            successfully: Il contratto di locazione del cliente "%{name}" è stato copiato con successo.
           create:
-            successfully: Il contratto di locazione del cliente '%{nome}' è stato creato con successo.
+            successfully: Il contratto di locazione del cliente '%{name}' è stato creato con successo.
           designs:
             form:
               no_background: Non c'è ancora uno sfondo
               no_logo: Non c'è ancora un logo
           destroy:
-            error: Non è possibile cancellare '%{nome}' perché esistono associazioni dipendenti di soggetti o valutatori.
-            successfully: L'affitto del cliente '%{nome}' è stato cancellato con successo.
+            error: Non è possibile cancellare '%{name}' perché esistono associazioni dipendenti di soggetti o valutatori.
+            successfully: L'affitto del cliente '%{name}' è stato cancellato con successo.
           edit:
             header: Modifica campagna 360
           export:
@@ -1379,7 +1418,7 @@ it:
             new: Aggiungi campagna 360
             title: campagne 360
           license:
-            header: "%{nome} - Modifica licenza"
+            header: "%{name} - Modifica licenza"
           licenses:
             update:
               duplicate_licenses: Avete licenze duplicate
@@ -1401,21 +1440,21 @@ it:
             confirmations:
               delete:
                 body: "<p>Si è sicuri di voler eliminare?</p> <p>Questa azione non può essere annullata e cancellerà definitivamente la campagna <strong>%{nome}</strong>, le sotto-campagne e tutte le associazioni.</p> <p>Digitare <strong>%{nome}</strong> per confermare.</p>"
-                title: Cancellare <strong>%{nome}</strong>?
+                title: Cancellare <strong>%{name}</strong>?
               disable:
                 body:
                   '0': "<p>Siete sicuri di voler archiviare?</p> <p>Anche tutte le campagne, le sotto-campagne e gli utenti saranno archiviati</p>"
                   '1': "<p>Sei sicuro di voler archiviare?</p> <p>Anche tutte le sotto-campagne e gli utenti saranno archiviati</p>"
                   '2': "<p>Sei sicuro di voler archiviare?</p> <p>Anche tutti gli utenti saranno archiviati</p>"
                   '3': "<p>Sei sicuro di voler archiviare?</p> <p>Anche tutti gli utenti saranno archiviati</p>"
-                title: Archivio <strong>%{nome}</strong>?
+                title: Archivio <strong>%{name}</strong>?
               enable:
                 body:
                   '0': "<p>Sei sicuro di voler disarchiviare?</p>"
                   '1': "<p>Sei sicuro di voler disarchiviare?</p>"
                   '2': "<p>Sei sicuro di voler disarchiviare?</p>"
                   '3': "<p>Sei sicuro di voler disarchiviare?</p>"
-                title: Disarchiviare <strong>%{nome}</strong>?
+                title: Disarchiviare <strong>%{name}</strong>?
             export_results: Esportazione dei risultati
             raw_results: Risultati grezzi
             tooltips:
@@ -1433,18 +1472,18 @@ it:
               assessment_type: Tipo di valutazione
               title: Statistiche
           toggle_status:
-            successfully: Il contratto di locazione del cliente %{nome} è stato aggiornato con successo.
+            successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
           update:
-            successfully: Il contratto di locazione del cliente %{nome} è stato aggiornato con successo.
+            successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
           url: Url
         toggle_status:
-          successfully: Il progetto %{nome} è stato aggiornato con successo.
+          successfully: Il progetto %{name} è stato aggiornato con successo.
         unarchive:
-          content: Si è sicuri di voler disarchiviare '%{nome_progetto}'?
-          success: Il progetto '%{nome_progetto}' è stato disarchiviato con successo.
+          content: Si è sicuri di voler disarchiviare '%{project_name}'?
+          success: Il progetto '%{project_name}' è stato disarchiviato con successo.
           title: Progetto Unarchive
         update:
-          successfully: Il progetto %{nome} è stato aggiornato con successo.
+          successfully: Il progetto %{name} è stato aggiornato con successo.
       registration_codes:
         column:
           code: Codice
@@ -1459,24 +1498,28 @@ it:
       resource:
         confirmations:
           delete:
-            title: Cancellare <strong>%{nome}</strong>?
+            title: Cancellare <strong>%{name}</strong>?
           disable:
-            title: Archivio <strong>%{nome}</strong>?
+            title: Archivio <strong>%{name}</strong>?
           enable:
-            title: Disarchiviare <strong>%{nome}</strong>?
+            title: Disarchiviare <strong>%{name}</strong>?
       tenancies: Locazioni dei clienti
       threesixty_campaign: Campagna Threesixty
       toggle_status:
-        successfully: Il contratto di locazione del cliente %{nome} è stato aggiornato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
       update:
-        successfully: Il contratto di locazione del cliente %{nome} è stato aggiornato con successo.
+        successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
     close: Chiudere
     common:
       add: Aggiungi
       back: Indietro
       cancel: Annullamento
       disabled: Diasbled
+      download_sample_file: Scarica il file di esempio
       enabled: Abilitato
+      import:
+        failure_msg: Errore durante l'importazione del file.
+      minute: minuto
       next: Avanti
       reset: Reset
       save: Risparmiare
@@ -1486,14 +1529,34 @@ it:
       create:
         successfully: La comunicazione è stata creata con successo.
       destroy:
-        successfully: La comunicazione %{nome} è stata cancellata con successo.
+        successfully: La comunicazione %{name} è stata cancellata con successo.
       edit:
         header: Modifica Comunicazione
+      edit_translation:
+        body_label: Etichetta corpo
+        copy: Copia
+        copy_to_code_editor_hint: 'Suggerimento: Copia il testo di riferimento sopra e passa alla modalità editor di codice per una modifica HTML più facile'
+        locale_label: Impostazioni locali
+        no_reference_body: Nessun corpo di riferimento disponibile
+        no_reference_subject: Nessun oggetto di riferimento disponibile
+        reference_body_label: Etichetta corpo di riferimento
+        reference_subject_label: Etichetta oggetto di riferimento
+        subject_label: Etichetta oggetto
+        title: Modifica traduzione
+        update_button: Aggiorna traduzione
       form:
         all: Tutti
         assessment_completion_status_code: Codice di stato di completamento della valutazione
         assessment_completion_status_code_hint: Se si specifica un codice di completamento, questo verrà inviato solo se la valutazione dell'utente ha questo codice di stato di completamento.
-        body_mustache: "{{{user_link}} - Link alla piattaforma per gli utenti esistenti o un link una tantum per impostare una password per i nuovi utenti {{user_url}} - Come user_link ma solo l'URL invece di un collegamento ipertestuale {{user_link_qrcode}} - Incorpora il codice QR generato da user_link {{first_name}} - Nome del destinatario {{last_name}} - Cognome del destinatario {{email}} - Email del destinatario {{schedule_start_date}} - Data di inizio del calendario {{schedule_end_date}} - Data di fine del calendario\n"
+        body_mustache: |
+          "{{{user_link}} - Link alla piattaforma per gli utenti esistenti o un link una tantum per impostare una password per i nuovi utenti
+           {{user_url}} - Come user_link ma solo l'URL invece di un collegamento ipertestuale
+           {{user_link_qrcode}} - Incorpora il codice QR generato da user_link
+           {{first_name}} - Nome del destinatario
+           {{last_name}} - Cognome del destinatario
+           {{email}} - Email del destinatario
+           {{schedule_start_date}} - Data di inizio del calendario
+           {{schedule_end_date}} - Data di fine del calendario"
         completion: Completamento
         delivery_at: Consegna a (GST)
         delivery_delay_hours: Ritardo nella consegna (ore)
@@ -1503,11 +1566,14 @@ it:
           not_started: Se la valutazione non viene avviata
           send_now: Invia ora
           specific_datetime: Inviare a
+        development_action_deadline_missed: Scadenza dell'azione di sviluppo non rispettata
+        idp_deadline_missed: Scadenza IDP non rispettata
         idp_template_approved: IDP Approvato
         idp_template_assigned: IDP Assegnato
         idp_template_rejected: IDP Rifiutato
         invitation: Invito
         kind: Tipi di comunicazione
+        locale: Impostazioni locali
         magic_link_email: Magic Link Email
         new_assignment: Nuovo incarico
         new_users: Nuovi utenti
@@ -1553,7 +1619,7 @@ it:
             title: Cancellare la <strong>comunicazione</strong>?
           toggle_status:
             body: "<p>Si è sicuri di voler %{status} questa comunicazione?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copiare
           deleting: Eliminazione
@@ -1561,16 +1627,18 @@ it:
           copy: Copiare la comunicazione
           delete: Cancellare la comunicazione
           download: Scaricare Storia della comunicazione
+          edit_translation: Modifica traduzione
           view: Visualizza la comunicazione
       show:
         assessment: 'Valutazione:'
+        assessment_center_group: 'Gruppo Assessment Center:'
         back: Indietro
         body: 'Corpo:'
         campaign: 'Campagna:'
         client: 'Cliente:'
         communication_type: 'Tipo di comunicazione:'
         delivery_rule: 'Regola di consegna:'
-        every_interval: Ogni %{intervallo}
+        every_interval: Ogni %{interval}
         owner: 'Proprietario:'
         project: 'Progetto:'
         recipients: 'Destinatari:'
@@ -1583,23 +1651,33 @@ it:
         copy: Copiare la comunicazione
         destroy: Cancellare la comunicazione
         download: Scaricare Storia della comunicazione
+        edit_translation: Modifica traduzione
         title: Opzioni di comunicazione
         view: Visualizza la comunicazione
       toggle_status:
         successfully: La comunicazione è stata aggiornata con successo.
+      update_translation:
+        successfully_updated: La traduzione è stata aggiornata con successo.
     components:
       input_duration:
         placeholder: Immettere come "1d 2h 3m"
     create: Creare
     dashboard:
       capacity_name: Capacità Nome
+      choose_file_format: Scegliere il formato del file
       dashboard_types:
         oracle_analytics: Oracle Analytics
         powerbi: PowerBi
       dashboards: Cruscotti
+      export_dashboard_to_file: Esportazione del dashboard su file
+      export_job_failure: Impossibile avviare l'esportazione
+      export_job_success: Il lavoro di esportazione è iniziato. L'utente riceverà una notifica al termine dell'operazione.
       get_started: Iniziare
       initialize_msg: Inizializza una dashboard per questa campagna
       loading_failed: Caricamento del cruscotto non riuscito.
+      only_export_current_tab: Esporta solo la scheda corrente
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: Controllare se l'ID del set di dati e del rapporto nelle impostazioni è corretto.
         embed_token_error_title: Impossibile generare il token Embed.
@@ -1644,7 +1722,7 @@ it:
       configuration: Configurazione
       errors:
         factor_not_found: non presente nell'ambito della valutazione
-        inclusion: 'tipo non valido, tipi validi: %{valori}'
+        inclusion: 'tipo non valido, tipi validi: %{values}'
         not_found: non trovato
         not_owned: non di proprietà del cliente
       form:
@@ -1669,12 +1747,16 @@ it:
         csv_file_required: Deve essere un file CSV
         image_download_failed: 'Download immagine fallito da %{url}: %{message}'
         invalid_csv_format: 'Formato CSV non valido: %{message}'
-        invalid_date_format: 'Formato data non valido: %{date}'
+        invalid_date: Il formato della data per %{date} non è valido.
+        invalid_date_format: 'Riga %{row}: formato della data non valido per %{field}.'
         invalid_development_action_type: 'Riga %{row}: Tipo di azione di sviluppo non valido ''%{value}''. I tipi di azione di sviluppo validi sono: %{valid_development_action_types}'
-        invalid_image_file: 'File immagine non valido: %{messaggio}'
+        invalid_duration_format: 'Sono consentiti solo valori numerici per durata.Riga %{row}: %{value} non è una durata valida. "a. "'
+        invalid_image_file: 'File immagine non valido: %{message}'
         invalid_image_url: 'Formato URL immagine non valido: %{url}'
+        invalid_languages: Lingue disponibili non valide %{invalid_languages} per riga %{row}.
         invalid_learning_style: 'Riga %{row}: stile di apprendimento non valido ''%{value}''. I tipi validi sono: %{valid_types}'
-        missing_columns: 'Mancano le colonne richieste: %{campi}'
+        languages_only_for_courses: Le lingue disponibili possono essere impostate solo per le azioni di sviluppo del tipo "Corso".Rimuovere la lingua disponibile per riga %{row} o modificare il tipo di azione di sviluppo in "Corso".
+        missing_columns: 'Mancano le colonne richieste: %{fields}'
         save_failed: 'Salvataggio dell''azione di sviluppo fallita: %{message}'
         skill_not_found: 'Abilità non trovata per l''ID: %{skill_id}'
     development_action_translations:
@@ -1682,19 +1764,24 @@ it:
         errors:
           blank_id: 'Riga %{row}: l''ID non può essere vuoto'
           development_action_not_found: Azione di sviluppo non trovata
-          invalid_csv_format: 'Formato CSV non valido: %{messaggio}'
+          invalid_csv_format: 'Formato CSV non valido: %{message}'
+          invalid_field: 'Riga %{row}: Campo non valido "%{field}", deve essere "Nome" o "Descrizione".'
           invalid_file_format: Il file deve essere un file CSV
           invalid_id: 'Riga %{row}: l''ID deve essere un numero'
-          missing_columns: 'Colonne obbligatorie mancanti: %{campi}'
+          invalid_id_format: 'Riga %{row}: L''ID deve essere nel formato "id#campo".'
+          missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
           save_failed: Salvataggio fallito
     development_actions:
       create:
-        successfully: L'azione di sviluppo "%{nome}" è stata creata con successo.
+        successfully: L'azione di sviluppo "%{name}" è stata creata con successo.
       destroy:
-        successfully: L'azione di sviluppo "%{nome}" è stata eliminata con successo.
+        successfully: L'azione di sviluppo "%{name}" è stata eliminata con successo.
       development_action_types:
         course: Corso
         default: Predefinito
+      duration:
+        max_length: Non può essere maggiore di 1 anno
+        min_length: Non può essere inferiore a 1 minuto
       edit:
         header: Modifica Azione di sviluppo
       export:
@@ -1707,15 +1794,19 @@ it:
         development_action_translations_title: Azioni di sviluppo delle esportazioni Traduzioni
         development_actions_title: Azioni di sviluppo delle esportazioni
       export_development_action_translations: Azione di sviluppo Traduzioni basate sul progetto
+      export_development_action_translations_project: Azione di sviluppo Traduzioni basate sul progetto
       export_development_actions: Azioni di sviluppo basate sul progetto
+      export_development_actions_project: Azioni di sviluppo basate sul progetto
       export_global_development_actions: Azioni di sviluppo globale
       export_global_development_actions_translations: Traduzioni dell'Azione per lo sviluppo globale
       form:
+        available_languages: Lingue disponibili
         client_placeholder: Selezionare un cliente
         course_image: Immagine del corso
         course_link: Link al corso
         description: Descrizione
         development_action_type: Tipo di azione di sviluppo
+        duration: Durata
         end_date: Data di fine
         learning_style: Stile di apprendimento
         name: Nome
@@ -1751,30 +1842,31 @@ it:
             title: Cancellare l'<strong>azione di sviluppo</strong>?
           toggle_status:
             body: "<p>Si è sicuri di voler %{status} questa Azione di sviluppo?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: L'azione di sviluppo è stata aggiornata con successo.
       update:
-        successfully: L'azione di sviluppo "%{nome}" è stata aggiornata con successo.
+        successfully: L'azione di sviluppo "%{name}" è stata aggiornata con successo.
     dimensions:
       copy_scheduled:
-        successfully: Copia programmata per la dimensione %{nome}
+        successfully: Copia programmata per la dimensione %{name}
       create:
         successfully: la dimensione %{name} è stata creata con successo
       destroy:
-        successfully: La dimensione %{nome} è stata cancellata con successo.
+        successfully: La dimensione %{name} è stata cancellata con successo.
       edit:
         header: Modifica del nome della dimensione
       export_json:
-        successfully: Esportazione JSON programmata per la dimensione %{nome}.
+        successfully: Esportazione JSON programmata per la dimensione %{name}.
       export_translations_scheduled:
-        successfully: Traduzioni di esportazione previste per la dimensione %{nome}.
+        successfully: Traduzioni di esportazione previste per la dimensione %{name}.
       form:
         enable_innovation_styles: Abilitare gli stili di innovazione
         enable_occupations: Abilitare le professioni
       import_factors:
         import: Importazione
-        successfully: Lavoro di importazione dei fattori pianificato per la dimensione %{nome}.
+        sample_file: File di esempio
+        successfully: Lavoro di importazione dei fattori pianificato per la dimensione %{name}.
         title: Fattori di importazione
       import_modal:
         cancel: Annullamento
@@ -1782,8 +1874,8 @@ it:
         import: Importazione
         import_dimension: Dimensione di importazione
       import_translations:
-        error: Errore durante l'importazione delle traduzioni per la dimensione %{nome}.
-        successfully: Importazione di traduzioni prevista per la dimensione %{nome}.
+        error: Errore durante l'importazione delle traduzioni per la dimensione %{name}.
+        successfully: Importazione di traduzioni prevista per la dimensione %{name}.
       import_translations_scheduled:
         error: Errore
       index:
@@ -1807,7 +1899,7 @@ it:
             title: Cancellare la <strong>dimensione</strong>?
           toggle_status:
             body: "<p>Sei sicuro di volere %{status} questa Dimensione?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copiare
           deleting: Eliminazione
@@ -1829,23 +1921,28 @@ it:
         header: Traduzioni dei fattori
         import: Importazione
       update:
-        successfully: la dimensione %{nome} è stata aggiornata con successo
+        successfully: la dimensione %{name} è stata aggiornata con successo
     disable: Disattivare
     document_titles:
       project_assessors: Valutatori | %{project}
       project_participants: Partecipanti | %{project}
     enable: Abilitazione
     errors:
+      csv_file_required: Il file deve essere un file CSV
       error_msg: Qualcosa è andato storto. Aggiornare la pagina e, se il problema persiste, contattare l'amministratore
+      invalid_csv_format: 'Formato CSV non valido: %{message}'
+      invalid_url: 'URL non valido: %{message}'
+      invalid_url_format: Formato URL non valido
+      missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
     errror_msg: Errore msg
     factors:
       copy:
-        error: il fattore '%{nome}' non è stato copiato
-        successfully: Il fattore '%{nome}' è stato copiato con successo.
+        error: il fattore '%{name}' non è stato copiato
+        successfully: Il fattore '%{name}' è stato copiato con successo.
       create:
         successfully: il fattore %{name} è stato creato con successo.
       destroy:
-        successfully: Il fattore "%{nome}" è stato eliminato con successo.
+        successfully: Il fattore "%{name}" è stato eliminato con successo.
       edit:
         header: Modifica del nome del fattore
       form:
@@ -1909,7 +2006,7 @@ it:
             title: Cancellare <strong>il fattore</strong>?
           toggle_status:
             body: "<p>Sei sicuro di volere %{status} questo Fattore?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copiare
           deleting: Eliminazione
@@ -1936,7 +2033,7 @@ it:
       toggle_status:
         successfully: Il fattore è stato aggiornato con successo.
       update:
-        successfully: il fattore %{nome} è stato aggiornato con successo
+        successfully: il fattore %{name} è stato aggiornato con successo
     genders:
       female: Donna
       male: Uomo
@@ -1953,14 +2050,17 @@ it:
     hogan:
       errors:
         new_assessment_response_not_allowed:
-          detailed_error_message: Non è possibile aggiungere una nuova risposta per la valutazione hogan %{nome_valutazione}, poiché questa valutazione è già stata assegnata e avviata dall'utente %{email}. È possibile creare un nuovo account hogan per questo utente e consentirgli di ripetere la valutazione.
-          short_error_message: Non è possibile aggiungere una nuova risposta per la valutazione hogan %{nome_valutazione} in quanto questa valutazione è già assegnata e avviata dall'utente %{email}
+          detailed_error_message: Non è possibile aggiungere una nuova risposta per la valutazione hogan %{assessment_name}, poiché questa valutazione è già stata assegnata e avviata dall'utente %{email}. È possibile creare un nuovo account hogan per questo utente e consentirgli di ripetere la valutazione.
+          short_error_message: Non è possibile aggiungere una nuova risposta per la valutazione hogan %{assessment_name} in quanto questa valutazione è già assegnata e avviata dall'utente %{email}
     idp:
       actions:
         remove_confirm: Per rimuovere il modello, inserire il nome del modello corrente indicato di seguito nella casella di testo
         success: "%{idpName} è stato rimosso con successo."
       add_idp_template: Aggiungi modello IDP
       all: Tutti
+      appearance: Aspetto
+      appearance_hint: Per modificare l'aspetto, salvare prima il modello IDP per abilitare queste impostazioni.
+      background_image: Immagine di sfondo
       behavioral_skills: Abilità comportamentali
       client_skills: Competenze del cliente
       edit_template: Modifica del modello IDP
@@ -1968,26 +2068,62 @@ it:
       enter_template_description_error: La descrizione del modello è necessaria.
       enter_template_name: Nome
       enter_template_name_error: Il nome del modello è obbligatorio
+      errors:
+        update: Aggiornamento non consentito perché il modello IDP è già associato a un piano IDP utente. Le modifiche all'aspetto sono state salvate.
+      fields:
+        assigned_data: Dati assegnati
+        completion_date: Data di completamento
+        division: Divisione
+        name: Nome
+        publish_date: Data di pubblicazione
+        review_date: Data di revisione
+        role: Ruolo attuale
+      fields_label: Campi
       global_skills: Competenze globali
       idp: IDP
       idp_template: Aggiungi modello IDP
+      intro_message: Messaggio introduttivo
+      intro_message_hint: Per modificare il messaggio introduttivo, salvare prima il modello IDP per abilitare queste impostazioni.
+      intro_message_success: Messaggio introduttivo salvato correttamente
+      locales: Località
+      logo_image: Immagine del logo
+      logo_type:
+        both: Loghi di Mercer e del cliente
+        client_only: Solo il logo del cliente
+        mercer_only: Solo logo Mercer
+        none: Senza logo
+      logo_type_label: Tipo di logo
+      no_reflection_questions_selected: Nessuna domanda di riflessione selezionata
       none: Nessuno
+      reference_locale: Località di riferimento
+      reflection_questions: Domande di riflessione
+      reflection_questions_hint: Per modificare le domande di riflessione, salvare prima il modello IDP per abilitare queste impostazioni.
+      reflection_questions_updated: Domande di riflessione aggiornate con successo.
+      remove: Rimuovere
       select_by_tags: Seleziona per tag
+      select_reflection_question: Iniziare a digitare per cercare e selezionare la domanda
       select_skill_gap_report: Selezionare il rapporto sulle carenze di competenze
       select_specific_skills: Selezionare le competenze specifiche
       selected: Selezionato
       self_rating: Abilita l'autovalutazione
+      show_reflections: Mostra Riflessioni
       skill_gap_report: Rapporto sul divario di competenze
+      skills: Competenze
+      subtitle_text: Testo del sottotitolo
       tab:
         development_actions: Azioni di sviluppo
+        reflection_questions: Domande di riflessione
         settings: Impostazioni
         templates: Modelli
       technical_skills: Competenze tecniche
       template_details: Dettagli del modello
+      title_text: Testo del titolo
+      update_reflection_questions: Domande di riflessione sull'aggiornamento
     idp_setting:
       allow_global_skills: Consentire competenze globali
       manager_approves_idp: Il manager approva l'IDP
       manager_can_edit_idp: Il gestore può modificare l'IDP
+      require_all_development_actions_complete: Richiedere il completamento di tutte le azioni di sviluppo
     import: Importazione
     imports:
       assessments:
@@ -2000,8 +2136,8 @@ it:
       errors:
         invalid_format: Formato file non valido
         norm:
-          dimension_not_found: La dimensione %{nome_dimensione} per %{nome_cliente} non è stata trovata
-          factor_mismatch: La dimensione %{nome_dimensione} non ha il fattore %{nome_fattore}
+          dimension_not_found: La dimensione %{dimension_name} per %{client_name} non è stata trovata
+          factor_mismatch: La dimensione %{dimension_name} non ha il fattore %{factor_name}
           not_set_dimension: Il nome della dimensione deve essere scritto nella seconda cella della prima riga
         result:
           answer_invalid: "[Riga %{row}] La risposta per qid %{question_id} non è valida: %{error}"
@@ -2012,16 +2148,16 @@ it:
             dates_not_in_future: Le date non devono essere nel futuro
             dates_should_be_empty: Le date devono essere vuote per lo stato not_started
             started_at_required: Per lo stato in_progress è necessaria una data di inizio valida
-          error: "[Riga %{row}] %{errore}"
+          error: "[Riga %{row}] %{error}"
           invalid_assign: "[Riga %{row}] Impossibile trovare un record per l'ID risultato specificato. Se si desidera creare un nuovo risultato, lasciare vuota la colonna ID risultato"
-          invalid_date: "[Riga %{row}] %{errore}"
+          invalid_date: "[Riga %{row}] %{error}"
           question_invalid: "[Riga %{row}] La domanda %{question_id} non è valida"
           user:
             record_not_found: Impossibile trovare l'utente esistente con l'email %{email}.
           user_assessment:
             record_not_found: Non è possibile trovare il record della valutazione con id %{assessment_id} assegnato all'utente.
         translation:
-          error: "[Traduzione %{id}] %{errore}"
+          error: "[Traduzione %{id}] %{error}"
           invalid_format: Formato file non valido
         unknown_type: 'Tipo di file sconosciuto: %{filename}'
       form:
@@ -2063,7 +2199,7 @@ it:
         subjects: Soggetti
     innovation_styles:
       create:
-        successfully: Lo stile di innovazione %{nome} è stato creato con successo.
+        successfully: Lo stile di innovazione %{name} è stato creato con successo.
       destroy:
         successfully: Innovation Style %{name} è stato eliminato con successo.
       edit:
@@ -2097,9 +2233,9 @@ it:
         successfully: Lo stile di innovazione è stato aggiornato con successo.
     innovation_styles_factors:
       create:
-        successfully: Il fattore %{nome} è stato creato con successo.
+        successfully: Il fattore %{name} è stato creato con successo.
       destroy:
-        successfully: Il fattore %{nome} è stato staccato con successo.
+        successfully: Il fattore %{name} è stato staccato con successo.
       edit:
         header: Fattore di modifica
       index:
@@ -2134,6 +2270,7 @@ it:
         add: Integrazioni
         back: Torna a Integrazioni
         load_mettl_catalog: Catalogo di valutazione Load Mettl
+        load_skillvue_catalog: Caricare il catalogo di valutazione Skillvue
       columns:
         active: Attivo
         details: Dettagli
@@ -2144,6 +2281,7 @@ it:
         webhookUrls: URL dei webhook
       integrations: Integrazioni
       load_mettl_success: Il lavoro di valutazione del carico è stato inserito con successo
+      load_skillvue_success: Il lavoro di caricamento delle valutazioni di skillvue è stato eseguito con successo.
       modal:
         hogan:
           provider: Fornitore
@@ -2165,16 +2303,22 @@ it:
           servers:
             mettl_eu: Europa
             mettl_india: India
+        skillvue:
+          apiKey: Chiave API
+          apiKeyRequired: È richiesta la chiave API
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        skillvue: Skillvue
       validations:
         iiht:
           tenancy_name_present: Il nome dell'affitto è già presente in un altro progetto
           tenant_id_present: L'id dell'inquilino è già presente in un altro progetto
         mettl:
           public_key_present: La chiave pubblica è già presente in un altro progetto
+        skillvue:
+          api_key_present: La chiave API è già presente in un altro progetto
       view_all_schedules: Visualizza tutti gli orari di Mettl
     invited_subject:
       add_btn: Aggiungi soggetto
@@ -2192,15 +2336,53 @@ it:
         pending: In attesa
         requested_cancellation: Cancellazione richiesta
         requested_cancellation_rejected: Cancellazione Rifiutata
-        requested_rescheduling: Riprogrammazione richiesta
-        requested_rescheduling_rejected: Riprogrammazione Rifiutata
-        rescheduled: Riprogrammato
-      subject: Oggetto
+        requested_rescheduling: Ripianificazione Richiesta
+        requested_rescheduling_rejected: Ripianificazione Rifiutata
+        rescheduled: Ripianificato
+      subject: Soggetto
+    job_role:
+      column:
+        job_group: Gruppo di lavoro
+      export:
+        failure_msg: Errore durante l'esportazione delle traduzioni
+        success_msg: Esportazione di azioni di sviluppo in corso.
+      export_action:
+        translations: Esportazione di traduzioni di ruoli lavorativi
+      form:
+        code: Codice
+        description: Descrizione
+        job_group: Gruppo di lavoro
+        name: Nome
+        title: Ruolo lavorativo
+      global: Il ruolo del lavoro è globale?
+      import:
+        download_example_csv: Scarica l'esempio csv
+        success_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche.
+      import_action:
+        translations: Importazione delle traduzioni dei ruoli lavorativi
+      translations: Traduzioni dei ruoli lavorativi
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Livello di competenza previsto
+        job_role: Ruolo lavorativo
+        skill: Competenza
+      form:
+        expected_proficiency_level: Livello di competenza previsto
+        job_role: Ruolo lavorativo
+        skill: Competenza
+        title: Associazione
+      global: La mappatura delle competenze globali è una mappatura del lavoro?
+      import:
+        taxonomy: Tassonomia
+    job_roles:
+      export:
+        translations:
+          details: Dettagli
     libraries:
       create:
-        successfully: L'elemento %{nome} è stato creato con successo.
+        successfully: L'elemento %{name} è stato creato con successo.
       destroy:
-        successfully: L'elemento %{nome} è stato eliminato con successo.
+        successfully: L'elemento %{name} è stato eliminato con successo.
       edit:
         header: Modifica
       index:
@@ -2217,38 +2399,39 @@ it:
         updated_at: Data di modifica
         upload: Caricare un nuovo file
       new:
-        header: Nuova cartella
+        header: Carica file
       resource:
         confirmations:
           delete:
-            body: "<p>Siete sicuri di voler cancellare %{nome}?</p>\n"
-            title: Cancellare <strong>%{nome}</strong>?
+            body: "<p>Siete sicuri di voler cancellare %{name}?</p>\n"
+            title: Cancellare <strong>%{name}</strong>?
         tooltips:
           delete: Cancellare
           edit: Modifica
       update:
-        successfully: L'elemento %{nome} è stato aggiornato con successo.
+        successfully: L'elemento %{name} è stato aggiornato con successo.
     memberships:
       admin_chosen:
         successfully: Gli utenti amministrativi sono stati aggiornati con successo.
       create:
-        successfully: L'utente %{nome} è stato creato con successo.
+        successfully: L'utente %{name} è stato creato con successo.
       destroy:
-        successfully: L'utente %{nome} è stato cancellato con successo.
+        successfully: L'utente %{name} è stato cancellato con successo.
       new:
         header: Nuovo utente
       reset_password:
-        successfully: L'utente %{nome} riceverà in pochi minuti un'e-mail con le istruzioni per reimpostare la propria password.
+        successfully: L'utente %{name} riceverà in pochi minuti un'e-mail con le istruzioni per reimpostare la propria password.
       spoof:
-        successfully: L'accesso è stato effettuato con successo come %{nome}
+        successfully: L'accesso è stato effettuato con successo come %{name}
       toggle_membership_status:
-        successfully: L'iscrizione di %{nome} è stata aggiornata con successo.
+        successfully: L'iscrizione di %{name} è stata aggiornata con successo.
       toggle_status:
-        successfully: L'utente %{nome} è stato aggiornato con successo.
+        successfully: L'utente %{name} è stato aggiornato con successo.
       update:
-        successfully: L'utente %{nome} è stato aggiornato con successo.
+        successfully: L'utente %{name} è stato aggiornato con successo.
     meta_title: Pannello di amministrazione
     navigation:
+      ai_assistants: Assistenti AI
       assessments: Valutazioni
       assessments_reports: Valutazioni e rapporti
       assessor_dashboard: Cruscotto valutatore
@@ -2289,11 +2472,11 @@ it:
     norms:
       copy:
         error: 'La norma #%{id} non è stata copiata.'
-        successfully: La norma "%{nome}" è stata copiata con successo.
+        successfully: La norma "%{name}" è stata copiata con successo.
       create:
-        successfully: La norma "%{nome}" è stata creata con successo.
+        successfully: La norma "%{name}" è stata creata con successo.
       destroy:
-        successfully: La norma "%{nome}" è stata eliminata con successo.
+        successfully: La norma "%{name}" è stata eliminata con successo.
       edit:
         header: Rinominare la norma
       editor:
@@ -2325,7 +2508,7 @@ it:
       norms: Norme
       remove:
         confirm: Inserite il nome della norma sotto indicato nella casella di testo per confermare
-        warning: Siete sicuri di voler cancellare la norma "%{nome}"?
+        warning: Siete sicuri di voler cancellare la norma "%{name}"?
       resource:
         confirmations:
           delete:
@@ -2333,7 +2516,7 @@ it:
             title: Cancellare <strong>Norm</strong>?
           toggle_status:
             body: "<p>Sei sicuro di volere %{status} questa norma?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copiare
           deleting: Eliminazione
@@ -2355,16 +2538,16 @@ it:
       toggle_status:
         successfully: La norma è stata aggiornata con successo.
       update:
-        successfully: La norma %{nome} è stata aggiornata con successo.
+        successfully: La norma %{name} è stata aggiornata con successo.
     notification_bell_icon: Icona Campana di Notifica
     noty:
       error_408: Questa azione richiede troppo tempo. Provare a ricaricare la pagina.
       error_500: Qualcosa è andato storto. Contattare l'amministratore.
     occupations:
       create:
-        successfully: L'occupazione %{nome} è stata creata con successo.
+        successfully: L'occupazione %{name} è stata creata con successo.
       destroy:
-        successfully: L'occupazione %{nome} è stata cancellata con successo.
+        successfully: L'occupazione %{name} è stata cancellata con successo.
       edit:
         header: Modifica occupazione
       form:
@@ -2397,9 +2580,9 @@ it:
         successfully: L'occupazione è stata aggiornata con successo.
     occupations_factors:
       create:
-        successfully: Il fattore %{nome} è stato creato con successo.
+        successfully: Il fattore %{name} è stato creato con successo.
       destroy:
-        successfully: Il fattore %{nome} è stato staccato con successo.
+        successfully: Il fattore %{name} è stato staccato con successo.
       edit:
         header: Fattore di modifica
       index:
@@ -2430,7 +2613,7 @@ it:
       toggle_status:
         successfully: Il fattore è stato aggiornato con successo.
       update:
-        successfully: Il fattore %{nome} è stato aggiornato con successo.
+        successfully: Il fattore %{name} è stato aggiornato con successo.
     participants:
       tabs:
         assessors: Valutatori
@@ -2468,6 +2651,74 @@ it:
         successfully: Con successo
       toggle_status:
         successfully: Con successo
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: La definizione del livello deve essere un array di definizioni.
+          level_definition_must_match_level: deve contenere esattamente i livelli %{expected}, ma quelli %{actual} sono stati dati
+          must_be_unique: Deve essere unico
+          proficiency_level_exists: Esiste già un livello di competenza con questa abilità e questo progetto.
+          proficiency_level_exists_for_all_skills: Esiste già un livello di competenza per tutte le abilità.
+          proficiency_level_exists_for_category: Esiste già un livello di competenza per questa categoria.
+          project_level_all_skills_exists: Esiste già un livello di competenza "all_skills".
+          skill_must_exist: L'abilità deve essere presente per il tipo di competenza "by_skill".
+      export:
+        actions:
+          proficiency: Competenza nell'esportazione
+          translations: Traduzioni di competenza per l'esportazione
+        details: Dettagli
+        failure_msg: Errore durante l'esportazione dei livelli di competenza
+        success_msg: Esportazione di azioni di sviluppo in corso
+        translations:
+          details: Traduzioni a livello di competenza
+      fields:
+        level: Livello
+        level_description: Descrizione del livello
+        level_name: Nome del livello
+        proficiency_translations: Traduzioni di competenza
+        proficiency_type: Tipo di competenza
+        skill: Abilità
+        skill_category: Categoria di abilità
+        skill_name: Nome dell'abilità
+        title: Competenza
+      global: La competenza globale?
+      import:
+        actions:
+          proficiency: Competenza nell'importazione
+          translations: Importazione di traduzioni di competenza
+        errors:
+          all_skills_global_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel di livello globale ''all_skills''.'
+          all_skills_project_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''all_skills'' a livello di progetto.'
+          by_category_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''per_categoria'' per questo progetto e per questa categoria di competenze.'
+          by_category_missing: 'Riga %{row_number}: Il progetto e la categoria di competenza devono essere presenti per il tipo ''by_category''.'
+          by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
+          by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
+          invalid_csv_format: 'Formato CSV non valido: %{message}'
+          invalid_json: 'Linea %{line}: JSON non valido in LevelDefinition - %{message}'
+          invalid_json_structure: deve essere un oggetto JSON con chiavi come "description" e "summary".
+          invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
+          missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
+          missing_required_fields: 'Linea %{line}: Campi obbligatori mancanti (%{fields})'
+          save_failed: 'Linea %{line}: %{message}'
+          skill_not_found: 'Riga %{row_number}: Skill non valido o mancante'
+        job_queued: Il lavoro di importazione dei livelli di competenza è stato messo in coda
+      translations:
+        export:
+          failure_msg: Errore durante l'esportazione delle traduzioni
+          success_msg: Esportazione di azioni di sviluppo in corso.
+        import:
+          errors:
+            invalid_csv_format: 'Formato CSV non valido: %{message}'
+            invalid_locales: Locale non valido
+            level_not_found: 'Livello non trovato per l''ID: %{level_id}'
+            missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
+            missing_required_columns: 'Colonne mancanti: %{columns}'
+            row_id_blank: 'Riga %{row}: L''ID non può essere vuoto'
+            save_failed: 'Errore nell''elaborazione dello Skill ID %{id}: %{message}'
+      type:
+        all_skills: Tutte le competenze
+        by_category: Per categoria
+        by_skill: Da Skill
     profile:
       change_password: Modifica della password
       details: Dettagli
@@ -2509,8 +2760,8 @@ it:
           normalize_factor_scores: Normalizzare i punteggi dei fattori
           user_result_validity_in_days: Validità del risultato
         delete:
-          content: Siete sicuri di voler cancellare la valutazione "%{nome}"?
-          success: La valutazione "%{nome}" è stata cancellata con successo.
+          content: Siete sicuri di voler cancellare la valutazione "%{name}"?
+          success: La valutazione "%{name}" è stata cancellata con successo.
           title: Eliminare la valutazione
         form:
           assessment_placeholder: Selezionare la valutazione
@@ -2535,10 +2786,21 @@ it:
             key: inviare_prova
             label: Inviare il test
         form:
+          acceptable_rate_limit:
+            label: Limite di richiesta accettabile
+            request_per: richieste per
           active:
             label: Attivo
             name: attivo
           auth_type:
+            api_key:
+              label: Chiave API
+              name: chiave_api
+              value: api_key_auth
+            api_key_header:
+              format_error: Sono ammessi solo lettere, numeri, trattini e trattini bassi.
+              label: Intestazione della chiave API
+              name: apiKeyHeader
             basic:
               label: Base
               value: basic_auth
@@ -2579,7 +2841,7 @@ it:
             label: Nome utente
             name: nome utente
         remove_webhook:
-          content: Cancellare %{descrizione}?
+          content: Cancellare %{description}?
           title: Cancellare
         title: Ganci web
     project_users:
@@ -2594,18 +2856,18 @@ it:
       confirm_delete: Sì, eliminare
       confirm_send: Sì, inviare
       delete: Cancellare
-      delete_error: Impossibile eliminare il valutatore "%{nome}". Contattare l'amministratore.
-      delete_success: Il valutatore "%{nome}" è stato cancellato con successo.
+      delete_error: Impossibile eliminare il valutatore "%{name}". Contattare l'amministratore.
+      delete_success: Il valutatore "%{name}" è stato cancellato con successo.
       edit: Modifica
       edit_assessor: Modifica del valutatore
       filter_campaigns: Senza campagne
       form_first_name: Nome
       form_last_name: Cognome
-      modal_delete_content: È sicuro di voler cancellare il valutatore '%{nome}'?
+      modal_delete_content: È sicuro di voler cancellare il valutatore '%{name}'?
       modal_delete_title: Cancellare il valutatore
       modal_reset_email_content: Sei sicuro di voler inviare il link per la reimpostazione della password a '%{email}'?
       model_reset_email: Reimpostare la password del valutatore
-      no_edit_permission: Non hai il permesso di modificare il valutatore "%{nome}"
+      no_edit_permission: Non hai il permesso di modificare il valutatore "%{name}"
       reset_mail_error: Impossibile inviare il link per la reimpostazione della password a '%{email}'. Contattare l'amministratore.
       reset_mail_success: Il link per la reimpostazione della password è stato inviato con successo a '%{email}'
       save: Risparmiare
@@ -2636,7 +2898,7 @@ it:
         bg_upload: Caricare
         client_logo_label: Logo del cliente
         contrast_ratio_warning: 'Nota: l''uso di questo colore primario può violare il requisito del rapporto di contrasto per la leggibilità del testo.'
-        contrast_ratio_warning_lighter_color: 'Nota: l''uso di questo colore %{nome} può violare il requisito del rapporto di contrasto per la leggibilità del testo. Provare a usare un colore più scuro.'
+        contrast_ratio_warning_lighter_color: 'Nota: l''uso di questo colore %{name} può violare il requisito del rapporto di contrasto per la leggibilità del testo. Provare a usare un colore più scuro.'
         error_color: Colore dell'errore
         info_color: Info Colore
         logo_upload: Caricare
@@ -2729,11 +2991,11 @@ it:
         search: Cerca su Webhoook
     questions:
       copy:
-        successfully: La domanda "%{nome}" è stata copiata con successo.
+        successfully: La domanda "%{name}" è stata copiata con successo.
       create:
-        successfully: La domanda "%{nome}" è stata creata con successo.
+        successfully: La domanda "%{name}" è stata creata con successo.
       destroy:
-        successfully: La domanda "%{nome}" è stata cancellata con successo.
+        successfully: La domanda "%{name}" è stata cancellata con successo.
       edit:
         header: Modifica Domanda
       index:
@@ -2747,11 +3009,35 @@ it:
             title: Cancellare la <strong>domanda</strong>?
           toggle_status:
             body: "<p>Sei sicuro di voler fare la %{status} di questa domanda?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Aggiornato con successo.
+    reflection_questions:
+      delete_confirmation: Siete sicuri di voler cancellare questa domanda di riflessione?
+      export:
+        action: Domande di riflessione sull'esportazione
+        details: Dettagli del file
+        failure_msg: Errore durante l'esportazione del file.
+        success_msg: L'esportazione delle domande di riflessione è in corso. Controllare lo stato nelle notifiche.
+      form:
+        mandatory: Obbligatorio
+        max_words: Parole massime
+        min_words: Parole minime
+        question: Domanda
+        title: Domanda di riflessione
+      import:
+        action: Domande di riflessione sull'importazione
+        errors:
+          invalid_max_words_column_format: Formato del valore della colonna Maximum Words non valido %{row}
+          invalid_min_words_column_format: Formato del valore della colonna Parole minime non valido %{row}
+          invalid_required_column_format: Formato non valido del valore della colonna obbligatoria %{row}
+          missing_eng_question: Contenuto mancante della domanda in inglese %{row}
+          save_failed: Salvataggio fallito %{message}
+        failure_msg: Errore durante l'importazione del file.
+        success_msg: L'importazione delle domande di riflessione è in corso. Controllare lo stato nelle notifiche.
+      question: Domanda
     report_approval:
-      bulk_approve_success: "%{inviato_per_approvazione} inviato per l'approvazione. %{approvato} rapporti approvati. %{ignorato} rapporti che richiedono l'approvazione manuale a causa di modifiche/commenti del CQ."
+      bulk_approve_success: "%{sent_for_approval} inviato per l'approvazione. %{approved} rapporti approvati. %{ignored} rapporti che richiedono l'approvazione manuale a causa di modifiche/commenti del CQ."
       columns:
         actions: Azioni
         approval_status: Stato di approvazione
@@ -2808,9 +3094,9 @@ it:
         repeat_modules: Ripetere i moduli
     report_families:
       create:
-        successfully: Il bundle di report %{nome} è stato creato con successo.
+        successfully: Il bundle di report %{name} è stato creato con successo.
       destroy:
-        successfully: Il pacchetto di report %{nome} è stato eliminato con successo.
+        successfully: Il pacchetto di report %{name} è stato eliminato con successo.
       edit:
         header: Modifica del nome del pacchetto di report
       index:
@@ -2838,7 +3124,7 @@ it:
             title: Cancellare il <strong>rapporto</strong>?
           toggle_status:
             body: "<p>Si è sicuri di voler %{status} questo pacchetto di report?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           delete: Eliminare il pacchetto di rapporti
           edit: Modifica del pacchetto di rapporti
@@ -2847,7 +3133,7 @@ it:
         edit: Modifica del pacchetto di rapporti
         title: Opzioni del bundle di report
       update:
-        successfully: Il pacchetto di report %{nome} è stato aggiornato con successo.
+        successfully: Il pacchetto di report %{name} è stato aggiornato con successo.
     report_review:
       abort_qc: Interrompere il CQ
       approve: Approvare
@@ -2865,20 +3151,22 @@ it:
         qc_completed: CQ Completato
         qc_in_progress: CQ in corso
     reports:
+      bulk_marked_as_done: Segnato come fatto
       bulk_upload:
         choose_file: Scegliere il file
         no_file_selected: Nessun file selezionato
+        sample_file: File di esempio
         title: Fattori di campagna per il caricamento massivo
         upload_success: Caricato con successo
       copy:
         copy: copia
         copy_report: Rapporto di copia
         name: Nome
-        successfully: Il rapporto "%{nome}" è stato copiato con successo.
+        successfully: Il rapporto "%{name}" è stato copiato con successo.
       create:
-        successfully: Il rapporto "%{nome}" è stato creato con successo.
+        successfully: Il rapporto "%{name}" è stato creato con successo.
       destroy:
-        successfully: Il rapporto "%{nome}" è stato cancellato con successo.
+        successfully: Il rapporto "%{name}" è stato cancellato con successo.
       edit:
         header: Modifica del nome del rapporto
       modals:
@@ -2912,17 +3200,17 @@ it:
             title: Eliminazione morbida del <strong>rapporto</strong>?
           toggle_status:
             body: "<p>Sei sicuro di voler %{status} questo Rapporto?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
-        successfully: Il rapporto %{nome} è stato ripristinato con successo.
+        successfully: Il rapporto %{name} è stato ripristinato con successo.
       soft_delete:
-        successfully: Il rapporto %{nome} è stato spostato nel cestino con successo.
+        successfully: Il rapporto %{name} è stato spostato nel cestino con successo.
       toggle_archive:
-        successfully: La valutazione %{nome} è stata %{status} con successo.
+        successfully: La valutazione %{name} è stata %{status} con successo.
       toggle_status:
         successfully: Il rapporto è stato aggiornato con successo.
       update:
-        successfully: Il rapporto %{nome} è stato aggiornato con successo.
+        successfully: Il rapporto %{name} è stato aggiornato con successo.
     resource:
       remove_confirm:
         message: Sei sicuro di voler rimuovere questa risorsa?
@@ -2932,7 +3220,7 @@ it:
       cert: Certificato
       config_details:
         acs_url: URL del servizio consumatori di asserzioni
-        copied: Copiato %{elemento}
+        copied: Copiato %{element}
         issuer: Id dell'entità/assegnatario
         title: Configurare Idp con le seguenti informazioni
       email_pipetext: Invia un'e-mail a Pipetext
@@ -3018,6 +3306,7 @@ it:
         attendance: Presenza
         attended: Partecipato
         booked_at: Prenotato presso
+        campaign_assessment_group: Gruppo Assessment Center
         campaign_name: Nome della campagna
         duration: Durata
         managers: Mangiatoie
@@ -3061,12 +3350,12 @@ it:
         timezone: Fuso orario
         total_seats: Totale posti a sedere
       resources:
-        confirm_message: Si è sicuri di voler cancellare la risorsa '%{nome_risorsa}'?
+        confirm_message: Si è sicuri di voler cancellare la risorsa '%{resource_name}'?
         confirm_title: Conferma richiesta
         create: Crea risorsa
         invalid_url: URL non valido. Specificare l'URL completo con il protocollo http o https.
         resource: Risorse
-        successful_remove: La risorsa %{nome_risorsa} dell'Assessment Center è stata eliminata con successo.
+        successful_remove: La risorsa %{resource_name} dell'Assessment Center è stata eliminata con successo.
       schedule_assessments: Programmare le valutazioni
       scheduling_statuses:
         cancelled: Annullato
@@ -3090,9 +3379,10 @@ it:
         add_assessor_form: Modulo Aggiungi valutatore
         assessments: Valutazioni
         assessor_forms: Moduli per il valutatore
-        confirm_message: 'Siete sicuri di voler cancellare la partecipazione del soggetto con l''email ''%{subject_email}''?<br />una volta contrassegnato come annullato, questo soggetto non potrà più partecipare all''assessment center.
-
-          '
+        confirm_message: |
+          'Siete sicuri di voler cancellare la partecipazione del soggetto con l''email ''%{subject_email}''?
+          <br />
+          una volta contrassegnato come annullato, questo soggetto non potrà più partecipare all''assessment center.'
         confirm_title: Richiesta di conferma
         edit_assessor_form: Modifica del modulo di valutazione
         form_title: Programmare le valutazioni
@@ -3159,7 +3449,7 @@ it:
         success: Fattori della campagna rimossi con successo
         title: Rimuovere i fattori della campagna
         warning: Si stanno per eliminare tutti i fattori di campagna e tutti i punteggi associati per gli utenti. Si è sicuri di voler eseguire questa azione?
-      remove_factor_group_confirmation_content: Si è sicuri di voler rimuovere il gruppo di fattori '%{nome_gruppo}'?
+      remove_factor_group_confirmation_content: Si è sicuri di voler rimuovere il gruppo di fattori '%{group_name}'?
       remove_factor_group_confirmation_title: Rimuovere il gruppo di fattori
       required_error: Non può essere vuoto
       save: Risparmiare
@@ -3241,11 +3531,11 @@ it:
     settings:
       admin_roles:
         admin_role_single: Ruolo di amministratore
-        confirm_message: Si è sicuri di voler eliminare il ruolo di amministratore '%{nome_ruolo}'?
+        confirm_message: Si è sicuri di voler eliminare il ruolo di amministratore '%{role_name}'?
         create: Aggiungere il ruolo di amministratore
         description: Descrizione
         name: Nome
-        successful_remove: Il ruolo di amministratore '%{nome_ruolo}' è stato cancellato con successo.
+        successful_remove: Il ruolo di amministratore '%{role_name}' è stato cancellato con successo.
       siem:
         description: Descrizione
         destination_type: Tipo di destinazione
@@ -3273,6 +3563,7 @@ it:
         successful_remove: L'alias dell'abilità '%{skill_alias}' è stato cancellato con successo.
       tabs:
         admin_roles: Ruoli amministrativi
+        feature_flags: Bandiere delle funzioni
         siem: SIEM
         skill_aliases: Alias di abilità
     sheets:
@@ -3321,7 +3612,14 @@ it:
         rows: Righe
         settings: Impostazioni
     skills:
+      applicable_proficiency_levels: Livelli di competenza applicabili
+      columns:
+        skill_group: Gruppo di abilità
+        skill_type: Tipo di abilità
       errors:
+        import:
+          missing_fields_data: 'Linea %{line_number}: Campi obbligatori mancanti: %{fields}'
+          save_failed: 'Linea %{line_number}: Fallito il salvataggio dell''abilità ''%{name}'': %{message}'
         search:
           all_and_project_id_mutually_exclusive: Tutti non possono essere veri quando viene fornito project_id_eq
           invalid_all_value: 'deve essere uno dei seguenti: vero, falso'
@@ -3343,6 +3641,7 @@ it:
         description: Descrizione
         name: Nome
         project_placeholder: Selezionare un progetto
+        skill_group: Gruppo di abilità
         skill_type: Tipo di abilità
         title: Abilità
       global: L'abilità globale?
@@ -3355,16 +3654,22 @@ it:
       import_action:
         skills_title: Importazione di competenze
         skills_translations_title: Traduzioni di competenze di importazione
+      skill_details: Dettagli sulla competenza
       skill_translations: Traduzioni di competenze
+      skill_translations_project: Traduzioni di competenze in base al progetto
+      skills_project: Competenze basate sul progetto
       title: Competenze
       translations:
         import:
           errors:
-            invalid_csv_format: 'Formato CSV non valido: %{messaggio}'
-            save_failed: 'Errore nell''elaborazione dello Skill ID %{id}: %{messaggio}'
+            invalid_csv_format: 'Formato CSV non valido: %{message}'
+            missing_columns: 'Colonne mancanti: %{columns}'
+            save_failed: 'Errore nell''elaborazione dello Skill ID %{id}: %{message}'
             skill_not_found: Abilità con ID %{id} non trovata
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: Mappature delle competenze
+        job_roles: Ruoli lavorativi
         proficiency: Competenza
         skills: Competenze
     sms_histories:
@@ -3421,7 +3726,12 @@ it:
         modal:
           btn_name: Inviare SMS
           title: Inviare SMS
-        pipetext_details: "{{first_name}} - Nome del destinatario<br />{{{last_name}} - Cognome del destinatario<br />{{invite_url}} - Link di registrazione\n"
+        pipetext_details: |
+          "{{first_name}} - Nome del destinatario
+          <br />
+          {{{last_name}} - Cognome del destinatario
+          <br />
+          {{invite_url}} - Link di registrazione"
         segment_length_msg: Il numero stimato di segmenti per questo messaggio è %{segment_length}.
         segment_length_range_msg: Il numero stimato di segmenti per questo messaggio è compreso tra %{min_segment_length} e %{max_segment_length}.
       statuses:
@@ -3502,7 +3812,7 @@ it:
         y_title: Numero di utenti
     sub_factors:
       destroy:
-        successfully: Il sottofattore %{nome} è stato eliminato con successo.
+        successfully: Il sottofattore %{name} è stato eliminato con successo.
       edit:
         header: Modifica del nome del sottofattore
       new:
@@ -3563,15 +3873,22 @@ it:
     table:
       entries:
         selected:
-          many:
           one: 1 riga selezionata
-          other: ''
+          other: "{{count}} righe selezionate"
         total:
-          many:
           one: 'Totale : 1'
-          other: ''
+          other: 'Totale :  {{count}}'
+          zero: 'Totale : 0'
       more_actions: Altre azioni
     taxonomy:
+      import:
+        download_example_file: Scarica il file di esempio
+        success_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche.
+      import_action:
+        taxonomy: Importazione della tassonomia
+      job_roles: Ruoli lavorativi
+      proficiency: Competenza
+      skill_job_mappings: Mappature delle competenze
       skills: Competenze
       title: Tassonomia
     templates:
@@ -3579,7 +3896,7 @@ it:
         copy:
           error: Blocco
         destroy:
-          successfully: Il blocco %{nome} è stato cancellato con successo.
+          successfully: Il blocco %{name} è stato cancellato con successo.
         edit:
           header: Blocco di modifica
         index:
@@ -3622,7 +3939,7 @@ it:
         copy:
           error: Domanda
         destroy:
-          successfully: La domanda %{nome} è stata cancellata con successo.
+          successfully: La domanda %{name} è stata cancellata con successo.
         edit:
           header: Modifica Domanda
         index:
@@ -3750,6 +4067,14 @@ it:
         messages:
           title: Messaggi
         participants:
+          subjects:
+            add_subjects: Aggiungi soggetti
+            current_job_role: Ruolo lavorativo attuale
+            email: Email
+            first_name: Nome
+            last_name: Cognome
+            locale: Locale
+            target_job_role: Ruolo lavorativo di destinazione
           title: Partecipanti
         report:
           menu:
@@ -3783,48 +4108,54 @@ it:
     update: Aggiornamento
     users:
       create:
-        successfully: L'utente %{nome} è stato creato con successo.
+        successfully: L'utente %{name} è stato creato con successo.
       destroy:
-        successfully: L'utente %{nome} è stato cancellato con successo.
+        successfully: L'utente %{name} è stato cancellato con successo.
       list:
         email: Email
+      modals:
+        download_idp_reports:
+          error: Impossibile pianificare il lavoro Bulk Download IDP Reports.
+          include_reflective_questions: Includere domande di riflessione
+          success: Il lavoro Bulk Download IDP Reports è stato pianificato con successo.
+          title: Scaricare in blocco i rapporti IDP
       new:
         header: Nuovo utente
       reset_password:
-        successfully: L'utente %{nome} riceverà in pochi minuti un'e-mail con le istruzioni per reimpostare la propria password.
+        successfully: L'utente %{name} riceverà in pochi minuti un'e-mail con le istruzioni per reimpostare la propria password.
       resource:
         confirmations:
           change_password:
             body: "<p>Sei sicuro di voler inviare le istruzioni con il link per cambiare la password?</p>\n"
-            title: Cambiare la password <strong>%{nome}</strong>?
+            title: Cambiare la password <strong>%{name}</strong>?
           delete:
             body: "<p>Siete sicuri di voler cancellare questo utente?</p>\n"
-            title: Cancellare <strong>%{nome}</strong>?
+            title: Cancellare <strong>%{name}</strong>?
           membership:
             delete:
               body: "<p>Sei sicuro di voler cancellare?</p>\n"
-              title: Cancellare <strong>%{nome}</strong> da %{nome_cliente} Contratto di locazione cliente?
+              title: Cancellare <strong>%{name}</strong> da %{client_name} Contratto di locazione cliente?
             toggle_status:
               body: "<p>Sei sicuro di volere %{status} questa iscrizione?</p>\n"
-              title: "<strong>%{status}</strong> %{nome} è iscritto?"
+              title: "<strong>%{status}</strong> %{name} è iscritto?"
           toggle_enable_2fa:
-            body: "<p>Sei sicuro di voler fare %{status} 2FA per %{nome}?</p>\n"
-            title: "<strong>%{stato}</strong> 2FA"
+            body: "<p>Sei sicuro di voler fare %{status} 2FA per %{name}?</p>\n"
+            title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>Sei sicuro di volere %{status} questo utente?</p>\n"
-            title: "<strong>%{status}</strong> %{nome}?"
+            title: "<strong>%{status}</strong> %{name}?"
       spoof:
-        successfully: L'accesso è stato effettuato con successo come %{nome}
+        successfully: L'accesso è stato effettuato con successo come %{name}
       toggle_enable_2fa:
         disable: Disattivare 2FA
         enable: Abilitare 2FA
-        successfully: L'utente %{nome} è stato aggiornato con successo.
+        successfully: L'utente %{name} è stato aggiornato con successo.
       toggle_status:
-        successfully: L'utente %{nome} è stato aggiornato con successo.
+        successfully: L'utente %{name} è stato aggiornato con successo.
       toolbar:
         title: Strumenti
       update:
-        successfully: L'utente %{nome} è stato aggiornato con successo.
+        successfully: L'utente %{name} è stato aggiornato con successo.
       user: Utente
     webhook:
       connection_failure: Impossibile connettersi all'url del webhook. Verificare se l'url del webhook è corretto...
@@ -3842,5 +4173,3 @@ it:
       errors:
         update_assessor_for_failure: I dettagli della riunione non possono essere aggiunti perché non c'è un'attività collegata al soggetto.
     years: Anni
-  administration.users.toolbar:
-    title: Strumenti

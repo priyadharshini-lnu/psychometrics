@@ -13,6 +13,8 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
                     description: 'Test Description',
                     learning_style: 'structured_learning',
                     development_action_type: 'course',
+                    available_languages: %w[en ar],
+                    duration: 120,
                     course_url: 'https://example.com',
                     course_start_date: Date.new(2024, 1, 1),
                     course_end_date: Date.new(2024, 12, 31))
@@ -42,10 +44,12 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
         Type
         ProjectID
         DevelopmentActionType
+        AvailableLanguages
         CourseURL
         CourseStartDate
         CourseEndDate
         CourseImage
+        Duration
       ])
     end
   end
@@ -60,10 +64,12 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
         'structured_learning',
         project.id,
         'course',
+        'en, ar',
         'https://example.com',
         development_action.course_start_date.to_date.strftime('%Y-%m-%d'),
         development_action.course_end_date.to_date.strftime('%Y-%m-%d'),
-        'http://example.com/test-image.png' # Use a fixed URL for testing
+        'http://example.com/test-image.png',
+        120
       ]
     end
 
@@ -94,7 +100,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
       allow(development_action).to receive(:image_url).and_return(nil)
 
       data_rows = job.data_row(development_action)
-      expect(data_rows.map(&:last)).to all(be_nil)
+      expect(data_rows.map { |row| row[-2] }).to all(be_nil)
     end
   end
 

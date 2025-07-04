@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Communication < ApplicationRecord
-  audited
+  extend Mobility
+  translates :subject, :body
 
+  audited
   include OwnerValidations
 
   WORKSHOP_COMMUNICATION_KINDS = %w[
@@ -36,6 +38,7 @@ class Communication < ApplicationRecord
   belongs_to :end_level, class_name: 'Client', optional: true
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
+  belongs_to :campaign_assessment_group, optional: true
   has_many :workshops, through: :project_campaign
   has_many :workshop_subjects, through: :project_campaign
 

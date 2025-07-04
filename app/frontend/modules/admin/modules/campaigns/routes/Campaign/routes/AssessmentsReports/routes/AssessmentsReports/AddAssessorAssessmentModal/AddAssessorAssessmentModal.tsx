@@ -1,5 +1,5 @@
 import { debounce } from 'lodash'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Select, Spin } from 'antd'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { CreateResource } from '~/hooks/useResources/interfaces'
@@ -9,20 +9,28 @@ import { useResources } from '~/hooks/useResources'
 const { Option } = Select
 const { I18n } = window
 
+
+interface AssessmentCenterGroup {
+  id: string
+  name: string
+}
+interface Assessment {
+  id: string,
+  name: string,
+}
+
 interface OwnProps {
   close(): void
   addAssessorAssessment: CreateResource<CampaignAssessorAssessments>
+  campaignId: string
 }
 
 export type Props = OwnProps
 
 const AddAssessorAssessmentModal: React.FC<Props> = ({
-  close, addAssessorAssessment,
+  close, addAssessorAssessment, campaignId,
 }) => {
-  interface Assessment {
-    id: string,
-    name: string,
-  }
+  const [assessmentCenterGroups, setAssessmentCenterGroups] = useState<AssessmentCenterGroup[]>([])
 
   const {
     data: assessments, fetch: fetchAssessments, isLoading,
@@ -46,6 +54,30 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
     fetchAssessmentsByValue('')
   }, [])
 
+
+  const {
+    collectionAction: assessmentGroupsAction,
+  } = useResources<AssessmentCenterGroup>(
+    'campaign_assessment_groups',
+    {
+      basePath: `campaigns/${campaignId}`,
+    },
+  )
+
+  useEffect(() => {
+    assessmentGroupsAction({
+      action: '',
+      method: 'get',
+      apiConfig: {
+        filter: { group_type_eq: '1' },
+      },
+    })
+      .then((response) => {
+        const assessment_center_group = response as AssessmentCenterGroup[]
+        setAssessmentCenterGroups(assessment_center_group)
+      })
+  }, [])
+
   return (
     <ResourceFormModal
       resourceName="campaignAssessorAssessments"
@@ -58,7 +90,10 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
     >
       {() => (
         <>
-          <Form.Item name="assessmentId">
+          <Form.Item
+            name="assessmentId"
+            label={I18n.t('administration.assessor_assessment.name')}
+          >
             <Select
               showSearch
               filterOption={false}
@@ -73,6 +108,24 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
                   <Option key={id} value={id}>{name}</Option>
                 ))
               }
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            name="campaignAssessmentGroupId"
+            label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+          >
+            <Select
+              placeholder={
+                I18n.t('campaign_assessment.modals.assessor_campaign_assessment_group.placeholder')
+              }
+              allowClear
+            >
+              {assessmentCenterGroups.map((assessmentCenterGroup: AssessmentCenterGroup) => (
+                <Select.Option key={assessmentCenterGroup.id} value={assessmentCenterGroup.id}>
+                  {assessmentCenterGroup.name}
+                </Select.Option>
+              ))}
             </Select>
           </Form.Item>
         </>

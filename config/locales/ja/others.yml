@@ -31,6 +31,10 @@ ja:
             blank: 空欄は不可
           group_id:
             blank: グループIDは空白にできない
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'ブロック "%{block_name}" に重複した構成があります: %{duplicate_configurations}.'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ ja:
               too_short: 評価者のパスワードが短すぎる（最小値は %{count} 文字）。
             first_name:
               blank: 名前は空白にできない
+            job_role:
+              cannot_be_same: 目標とする職務は現在の職務と異なること
+              not_found: ジョブ・ロール '%{name}' がプロジェクトまたはグローバル・ロールに見つかりません。
             last_name:
               blank: 姓は空白にできない
             locale:
@@ -182,12 +189,25 @@ ja:
               invalid: 電子メールが無効です
             first_name:
               blank: 名前は空白にできない
+            job_role:
+              cannot_be_same: 目標とする職務は現在の職務と異なること
             last_name:
               blank: 姓は空白にできない
             locale:
               inclusion: 間違ったロケール
             password:
               too_short: パスワードが短すぎます。 最低 %{count} 文字が必要です。
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: 値 %{column_name} を行 %{row_number} で空白にすることはできません。
+              invalid_format: CSVファイルをアップロードしてください。
+              invalid_job_role_id: 行 %{row_number} の ID は有効なジョブ・ロール ID ではありません。
+              invalid_locale: 行 %{row_number} のロケールは有効なロケールではありません。
+              missing_required_columns: '必要な列がありません: %{columns}.'
+              parsing_failed: ファイルの解析中にエラーが発生しました。
+            project:
+              must_exist: プロジェクトが存在すること
         mettl:
           attributes:
             name:
@@ -303,6 +323,16 @@ ja:
             email:
               blank: 電子メールは空白にできない
               not_uniq_email: Eメールを含む行はすでに存在する
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: block_name} で選択されたスキル・タイプで、少なくとも 1 つのジョブ・ロールが有効になっている必要があります。
+              invalid_skill_type: 'block_name} の %{role_name} に対する無効なスキル・タイプ %{skill_type}。有効なオプション: %{valid_options} です。'
+              props_missing: 仕事
+        skillvue:
+          attributes:
+            name:
+              not_unique: この統合はすでにこのプロジェクトに存在している。
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ ja:
             last_name:
               blank: 姓は空白にできない
               starts_with_invalid_characters: 名字は=、 |、+、-、@、%で始まることはできない。
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: '行 %{row}: フィールド %{field} に重複する値 %{value}'
+              invalid_format: xlsxファイルをアップロードしてください
+              missing_headers: "%{sheet_name} シートに必要なヘッダーがありません: %{headers}"
+              missing_sheets: '必要なシートが見つかりません: %{sheets}'
+              missing_value: '行 %{row}: フィールド %{field} の値がありません'
+            project:
+              must_exist: プロジェクトが存在する必要があります
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ ja:
         export_development_actions: 輸出開発アクション
         export_dimension_as_json: ディメンションJSONエクスポート
         export_factor_translations: 輸出係数翻訳
+        export_job_roles_translations: 仕事の役割の翻訳をエクスポート
         export_norm: 輸出規範
         export_occupations: 輸出
+        export_proficiency_levels: 輸出技能レベル
         export_report_data: レポートデータのエクスポート
         export_reports_and_assessments: レポートと評価のエクスポート
         export_skill_translations: 輸出技能翻訳
@@ -784,12 +826,15 @@ ja:
         import_external_campaign_scoring: 外部キャンペーンスコアリングのインポート
         import_factor_translations: 輸入係数翻訳
         import_factors: 輸入要因
+        import_job_roles_translations: 仕事の役割の翻訳をインポートする
         import_norm: 輸入規範
+        import_proficiency_level_translations: 輸入熟練度翻訳
         import_question_translations: 輸入質問翻訳
         import_raw_data: 生データのインポート
         import_scoring_data: 採点データのインポート
         import_skill_translations: 輸入技能翻訳
         import_skills: インポート・スキル
+        import_skills_rater_taxonomies: スキル評価者タクソノミーのインポート
         import_sms_invites: インポートSMS招待
         import_users: インポートユーザー
         migrate_assessment_translations: アセスメント 翻訳移行
@@ -924,6 +969,7 @@ ja:
         pearson_norm_id: ピアソン規範ID
         saville_assessment_name: サヴィル査定名
         simulation_assessment_name: シミュレーション評価名
+        skillvue_assessment_name: スキルビュー評価名
       translations_migrated: 翻訳の移行
     create: 作成
     dashboard: ダッシュボード
@@ -963,6 +1009,7 @@ ja:
         psychometric: サイコメトリック
         saville: サヴィル
         simulation: シミュレーション
+        skillvue: スキルビュー
         threesixty: 360キャンペーン
       status:
         finished: 終了
@@ -1234,9 +1281,9 @@ ja:
       campaign: キャンペーン
       change_password: パスワードを変更
       development: 開発
+      direct_reportees: 直下のレポート
       home: ホーム
       insights: インサイト
-      my_direct_reportees: 私の直属の部下
       my_plan: 私の計画
       profile: プロフィール
       profile_details: 詳細
@@ -1341,6 +1388,8 @@ ja:
       pearson_variation: ピアソン・バリエーション
       prework: プレワーク
       simulation_content_variation: シミュレーションの内容
+      skillvue_email_id: スキルビュー候補者のEメールアドレス
+      skillvue_external_assessment_id: スキルビュー査定ID
       universal_link: ユニバーサルリンク
     drawer:
       mettl_schedule_name: メットル・スケジュール名
@@ -1356,6 +1405,11 @@ ja:
       raw_results_export_scheduled: アセスメント生結果のエクスポートジョブが正常にスケジュールされました。
       scoring_results_export_scheduled: 評価採点結果エクスポートジョブは正常にスケジュールされました。
     modals:
+      assessor_campaign_assessment_group:
+        error_message: 何か問題が発生しました。管理者に連絡してください。
+        placeholder: アセスメントセンターグループの選択
+        success_message: アセッサ・キャンペーン・アセスメント・グループの割り当てに成功
+        title: アセスメント・センター・グループ
       import_raw:
         body: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
         success_msg: インポートは正常にアップロードされました。
@@ -1670,6 +1724,7 @@ ja:
       assessor: アセッサ
       category: カテゴリー
       client: クライアント
+      code: コード
       created_at: 作成日時：
       created_by: 作成者
       created_date: 作成日
@@ -1757,6 +1812,7 @@ ja:
       na: 該当なし
       none: なし
       ok: OK
+      refer_export_file: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
       reference_language: 参考言語
       response: 回答
       selected: 厳選された
@@ -1857,7 +1913,7 @@ ja:
           project: プロジェクト：%{section_name}。
         subject: ライトハウスへの招待
       password_change:
-        body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに support@thetalententerprise.com までご連絡ください。
+        body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに mte.support@mercer.com までご連絡ください。
 
           '
         regards: 'ライトハウス・チーム
@@ -1991,9 +2047,12 @@ ja:
       exceeded_subjects_count: 1回の招待で追加できる被写体は %{count} だけです。
       filled?: 空白は許されない
       idp_template:
+        content_required: 指示にはコンテンツが必要です
         tag_or_skill_required: "「選択済み」オプションを選択した場合は、タグまたはスキルのいずれかを選択してください。"
       invalid_name: 有効な文字は、アルファベット、数字、スペース、ダッシュ、ドットのみです。
       invalid_value: 行番号 %{row} に無効な文 '%{value}' があります。
+      job_roles:
+        unique_within_job_group: 同じ名前の職種が既に存在します。
       json?: 有効なJSONでなければならない
       key?: 空白は許されない
       match_regexp?: 無効値
@@ -2014,9 +2073,13 @@ ja:
       skill_alias:
         unique_alias: エイリアスは一意でなければならない
         unique_skill: スキルはユニークでなければならない
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: スキルと職務は同じプロジェクトに属するか、グローバルでなければならない。
+        unique_mappings: 同じスキルと職務を持つマッピングがすでに存在する。
       uniq: このMettlアセスメントはすでにシステムに存在しています。 このアセスメントのIDは%{id}です。
       uniq?: ユニークでなければならない
       uniq_simulation: このシミュレーション評価はシステムに既に存在しています。 この評価のIDは%{id}です。
+      uniq_skillvue: このスキルビューアセスメントはすでにシステムに存在しています。このアセスメントのIDは %{id} です。
       update_workshop:
         less_than_booked: 総座席数が予約席数を上回っていること
       user_availability_date:
@@ -2346,6 +2409,29 @@ ja:
   idp:
     actions: 行動
     board: ボード
+    comment_details:
+      add_comment: コメントを追加
+      add_comment_placeholder: コメントを追加...
+      add_reply_placeholder: 返信を追加...
+      go_to_skill: スキルに移動する
+    comments:
+      close: 閉じる
+      comments: コメント
+      filter_comments: コメントをフィルター
+      mark_as_resolved: 解決済みとしてマーク
+      mark_as_unresolved: 未解決としてマーク
+      replied: 返信済み
+      replies: 返信
+      reply: 返信
+      resolve: 解決
+      resolved: 解決済み
+      resolved_message: このコメントは解決され、返信は無効になりました。
+      show_only_read: 既読のみ表示
+      show_only_resolved: 解決済みを表示
+      show_only_unread: 未読のみ表示
+      show_only_unresolved: 未解決のみ表示
+      sort_by_date: 日付順に並べ替え
+      you: あなた
     convert_to_draft: ドラフトに変換
     details: 詳細
     development_actions:
@@ -2372,13 +2458,13 @@ ja:
       on_the_job: 仕事について
       other: その他
       private: プライベート
+      publish_plan: 計画の公開
       remove: 削除
       skill: スキル
       sprint: スプリント
       structured_learning: 体系的学習
       submit_plan: プランを提出
       write_here: ここに記入してください...
-    direct_reportee_details: 直属の部下の詳細
     initial_steps:
       add_skill_group_description: アセスメント結果に基づき、あなたの強みと伸ばすべき分野をご紹介します。 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
       add_skill_group_title: カテゴリー}のスキルを探る
@@ -2386,7 +2472,6 @@ ja:
       add_skills_step: スキルの追加
       continue_to_rate_skills: 技能の評価を続ける
       getting_started: はじめに
-      getting_started_info: 個人能力開発計画（IDP）作成ツールへようこそ。 この計画は、仕事上および個人的な目標と、その目標を達成するために必要なステップを特定、管理、追跡するのに役立ちます。 仕事上の目標には、行動、リーダーシップ、技術的な開発分野が含まれます。 IDPは、あなたのキャリア開発とスキル向上をサポートする不可欠なツールです。
       less_skills: スキルが低い
       more_skills: もっとスキルを磨く
       next: 次のページ
@@ -2405,7 +2490,6 @@ ja:
     manage_plan: 計画の管理
     mark_as_complete: 完了としてマーク
     mark_as_incomplete: 未完了としてマークする
-    my_direct_reportees: 私の直属の部下
     my_plan:
       development_plan: 開発計画
       graphs:
@@ -2517,6 +2601,7 @@ ja:
         skills_count: スキル数
         title: レポート概要
     reflective_questions:
+      already_completed: IDPはすでに完成しているので、今質問に答えることはできない。
       answer_later: 回答は後ほど
       answer_placeholder: 答えをここに書いてください
       errors:
@@ -2870,6 +2955,7 @@ ja:
     form:
       load_from_mettl: メトルからのロード
       load_from_pearson: ピアソンからのロード
+      load_from_skillvue: スキルビューからのロード
       none_external: なし - レポートビルダーを使用
     language: レポート言語
     language_updated: レポート言語が正常に更新されました

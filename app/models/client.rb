@@ -79,6 +79,15 @@ class Client < ApplicationRecord
   has_many :owned_questions, foreign_key: :owner_id, class_name: 'Question', dependent: :destroy
   has_many :owned_libraries, foreign_key: :owner_id, class_name: 'Library', dependent: :destroy
 
+  # Self Rater Assessments
+  has_many :job_groups, dependent: :destroy, foreign_key: :project_id
+  has_many :job_roles, through: :job_groups
+
+  has_many :skill_groups, dependent: :destroy, foreign_key: :project_id
+  has_many :skills, through: :skill_groups
+
+  has_many :taxonomy_levels, foreign_key: :project_id, dependent: :destroy
+
   # Self association
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) },
            foreign_key: :tte_id, class_name: 'Client'
@@ -324,6 +333,18 @@ class Client < ApplicationRecord
 
   def sms_notification?
     client_feature.sms_notification
+  end
+
+  def ai_assisted_idp?
+    client_feature.ai_assisted_idp
+  end
+
+  def ai_assistants?
+    client_feature.ai_assistants
+  end
+
+  def global_skills?
+    client_feature.global_skills
   end
 
   private

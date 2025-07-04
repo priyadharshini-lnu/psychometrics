@@ -77,6 +77,8 @@ module AllowedPermissions
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
+    'proficiency_levels' => %w[view manage import export import_translations export_translations],
+    'job_roles' => %w[view manage],
     'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations]
@@ -148,9 +150,11 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
-    'reflection_questions' => %w[view manage import export],
+    'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'skills' => %w[view manage import export import_translations export_translations],
-    'development_actions' => %w[view manage import export import_translations export_translations]
+    'job_roles' => %w[view manage],
+    'development_actions' => %w[view manage import export import_translations export_translations],
+    'reflection_questions' => %w[view manage import export]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {
@@ -193,6 +197,7 @@ module AllowedPermissions
     ],
     'workshops' => %w[view manage],
     'idp_templates' => %w[view manage],
+    'proficiency_levels' => %w[view],
     'skills' => %w[view]
   }.freeze
 

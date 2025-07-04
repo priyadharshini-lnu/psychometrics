@@ -19,7 +19,7 @@ module Administration
           end
 
           sheet_rows = sheet.rows.ransack(params[:filters]).result
-          paginated_sheet_rows = sheet_rows.order(:id).page(params[:page])
+          paginated_sheet_rows = sheet_rows.order(:id).page(params[:page]).per(params[:size])
           serialized_sheet_rows = paginated_sheet_rows.map do |row|
             SheetRows::GetData.call!(row, sheet: sheet, without_types: SheetColumn::ADVANCE_TYPES)
           end

@@ -468,10 +468,13 @@ status: :in_progress)
 
   describe '#send_workshop_invite_email' do
     let(:campaign) { create(:campaign) }
+    let(:assessment_group) { create(:campaign_assessment_group, campaign: campaign, group_type: 1) }
     let(:user) { create(:user, project: campaign.project) }
     let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
     let(:workshop) { create(:workshop, campaign_id: campaign.id) }
-    let!(:workshop_invite) { create(:workshop_invite, workshops: [workshop], campaign: campaign) }
+    let!(:workshop_invite) do
+      create(:workshop_invite, workshops: [workshop], campaign: campaign, campaign_assessment_group: assessment_group)
+    end
 
     let!(:prework_user_assessment) do
       create(:user_assessment,
@@ -492,6 +495,7 @@ status: :in_progress)
 
     let!(:communication) do
       create(:communication, kind: :workshop_invite,
+        campaign_assessment_group: assessment_group,
         campaign_id: campaign.id, project_id: campaign.project.id, client_id: campaign.project.parent.id)
     end
 
@@ -518,9 +522,30 @@ status: :in_progress)
         expect(communication.emails.count).to eq(1)
       end
 
+      it 'does not send emails for workshops from different campaign assessment groups' do
+        # Create a workshop invite with different assessment group
+        other_assessment_group = create(:campaign_assessment_group, campaign: campaign, group_type: 1)
+        other_workshop_invite = create(:workshop_invite,
+                                       workshops: [workshop],
+                                       campaign: campaign,
+                                       campaign_assessment_group: other_assessment_group)
+
+        # Create invited subject for both workshop invites
+        create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite)
+        create(:workshop_invited_subject, user: user, workshop_invite: other_workshop_invite)
+
+        # Complete the assessment
+        prework_user_assessment.update!(status: 'completed')
+
+        expect(communication.reload.emails.count).to eq(1)
+        expect(communication.emails.first.workshop_invite).to eq(workshop_invite)
+      end
+
       it 'does not send duplicate mails' do
-        workshop_invite2 = create(:workshop_invite, workshops: [workshop], campaign: campaign, title: 'Workshop 2')
-        workshop_invite3 = create(:workshop_invite, workshops: [workshop], campaign: campaign, title: 'Workshop 3')
+        workshop_invite2 = create(:workshop_invite, workshops: [workshop], campaign: campaign, title: 'Workshop 2',
+campaign_assessment_group: assessment_group)
+        workshop_invite3 = create(:workshop_invite, workshops: [workshop], campaign: campaign, title: 'Workshop 3',
+campaign_assessment_group: assessment_group)
 
         create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite)
         create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite2)

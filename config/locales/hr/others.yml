@@ -570,6 +570,9 @@ hr:
         requested_rescheduling: Zatraženo ponovno zakazivanje
         requested_rescheduling_rejected: Zatraženo premještanje termina odbijeno
     'yes': Da
+  idp:
+    reflective_questions:
+      already_completed: IDP je već završen, sada ne možete odgovarati na pitanja.
   idp_templates:
     errors:
       user_idp_template_not_found: Nije vam dodijeljen nijedan IDP predložak.

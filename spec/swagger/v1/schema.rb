@@ -26,7 +26,7 @@ module Swagger
           ## Introduction
           Lighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.
 
-          To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact Mercer Talent Enterprise for more information about getting started.
+          To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact Mercer for more information about getting started.
 
           ## Base URL
           All URLs referenced in this documentation have the following base component.

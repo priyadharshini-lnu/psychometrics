@@ -31,6 +31,10 @@ pt:
             blank: As respostas não podem estar em branco
           group_id:
             blank: O ID do grupo não pode estar em branco
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'O bloco "%{nome_do_bloco}" tem configurações duplicadas: %{configurações_duplicadas}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ pt:
               too_short: A palavra-passe do avaliador é demasiado curta (o mínimo é %{count} caracteres)
             first_name:
               blank: O nome próprio não pode estar em branco
+            job_role:
+              cannot_be_same: O posto de trabalho pretendido deve ser diferente do posto de trabalho atual
+              not_found: A função "%{nome}" não foi encontrada no projeto ou nas funções globais
             last_name:
               blank: O apelido não pode estar em branco
             locale:
@@ -182,12 +189,25 @@ pt:
               invalid: O correio eletrónico é inválido
             first_name:
               blank: O nome próprio não pode estar em branco
+            job_role:
+              cannot_be_same: O posto de trabalho pretendido deve ser diferente do posto de trabalho atual
             last_name:
               blank: O apelido não pode estar em branco
             locale:
               inclusion: Localidade incorrecta
             password:
               too_short: A palavra-passe é demasiado curta. É necessário um mínimo de %{count} caracteres
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: O valor %{nome_da_coluna} não pode estar em branco na linha %{número_da_linha}
+              invalid_format: Carregar ficheiro CSV
+              invalid_job_role_id: O ID na linha %{número_da_linha} não é um ID de cargo válido
+              invalid_locale: A localidade na linha %{número_da_linha} não é uma localidade válida
+              missing_required_columns: 'Faltam colunas obrigatórias: %{colunas}'
+              parsing_failed: 'Erro ao analisar o ficheiro, erro: %{erro}.'
+            project:
+              must_exist: O projeto deve existir
         mettl:
           attributes:
             name:
@@ -303,6 +323,16 @@ pt:
             email:
               blank: O correio eletrónico não pode estar em branco
               not_uniq_email: A linha com o correio eletrónico já está presente
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pelo menos um posto de trabalho deve estar ativado com um tipo de competência selecionado para %{block_name}
+              invalid_skill_type: 'Tipo de habilidade inválido %{skill_type} para %{role_name} para %{block_name}. Opções válidas: %{opções_válidas}'
+              props_missing: Emprego
+        skillvue:
+          attributes:
+            name:
+              not_unique: Esta integração já está presente para este projeto.
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ pt:
             last_name:
               blank: O apelido não pode estar em branco
               starts_with_invalid_characters: O apelido não pode começar por =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Linha %{row}: Valor duplicado %{value} para %{field}'
+              invalid_format: Por favor, envie um arquivo xlsx
+              missing_headers: 'A planilha %{sheet_name} está sem os cabeçalhos obrigatórios: %{headers}'
+              missing_sheets: 'Faltam as planilhas obrigatórias: %{sheets}'
+              missing_value: 'Linha %{row}: Valor ausente para %{field}'
+            project:
+              must_exist: O projeto deve existir
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ pt:
         export_development_actions: Acções de desenvolvimento das exportações
         export_dimension_as_json: Exportar dimensão JSON
         export_factor_translations: Traduções de factores de exportação
+        export_job_roles_translations: Exportação Funções de trabalho Traduções
         export_norm: Norma de exportação
         export_occupations: Profissões Exportação
+        export_proficiency_levels: Níveis de proficiência em exportação
         export_report_data: Exportar dados do relatório
         export_reports_and_assessments: Relatórios e avaliações de exportação
         export_skill_translations: Competências de exportação Traduções
@@ -784,12 +826,15 @@ pt:
         import_external_campaign_scoring: Importar pontuação de campanha externa
         import_factor_translations: Traduções de factores de importação
         import_factors: Factores de importação
+        import_job_roles_translations: Importar traduções de funções de trabalho
         import_norm: Norma de importação
+        import_proficiency_level_translations: Importação de traduções de nível de proficiência
         import_question_translations: Importar traduções de perguntas
         import_raw_data: Importar dados brutos
         import_scoring_data: Importar dados de avaliação
         import_skill_translations: Traduções de competências de importação
         import_skills: Competências de importação
+        import_skills_rater_taxonomies: Importar taxonomias de avaliadores de competências
         import_sms_invites: Importar convite SMS
         import_users: Importar utilizadores
         migrate_assessment_translations: Avaliação Tradução migração
@@ -924,6 +969,7 @@ pt:
         pearson_norm_id: Norma de Pearson ID
         saville_assessment_name: Avaliação Saville Nome
         simulation_assessment_name: Nome da avaliação da simulação
+        skillvue_assessment_name: Skillvue Nome da avaliação
       translations_migrated: Tradução Migrada
     create: Criar
     dashboard: Painel de controlo
@@ -963,6 +1009,7 @@ pt:
         psychometric: Psicométrico
         saville: Saville
         simulation: Simulação
+        skillvue: Skillvue
         threesixty: campanha 360
       status:
         finished: Acabado
@@ -1232,9 +1279,9 @@ pt:
       campaign: Campanha
       change_password: Alterar a palavra-passe
       development: Desenvolvimento
+      direct_reportees: Collegati
       home: Início
       insights: Informações
-      my_direct_reportees: Os meus subordinados diretos
       my_plan: O meu plano
       profile: Perfil
       profile_details: Detalhes
@@ -1340,6 +1387,8 @@ pt:
       pearson_variation: Variação de Pearson
       prework: Pré-trabalho
       simulation_content_variation: Variação do conteúdo da simulação
+      skillvue_email_id: ID do e-mail do candidato Skillvue
+      skillvue_external_assessment_id: ID de avaliação de Skillvue
       universal_link: Ligação universal
     drawer:
       mettl_schedule_name: Nome do calendário Mettl
@@ -1355,6 +1404,11 @@ pt:
       raw_results_export_scheduled: A tarefa de exportação dos resultados brutos da avaliação foi agendada com êxito
       scoring_results_export_scheduled: Resultados da avaliação A tarefa de exportação foi agendada com êxito
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Algo correu mal. Contacte o administrador
+        placeholder: Selecionar um grupo de centros de avaliação
+        success_message: O Grupo de Avaliação da Campanha de Assessores foi atribuído com sucesso
+        title: Grupo do Centro de Avaliação
       import_raw:
         body: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
         success_msg: A importação foi carregada com sucesso
@@ -1669,6 +1723,7 @@ pt:
       assessor: Assessor
       category: Categoria
       client: Cliente
+      code: Código
       created_at: Criado em
       created_by: Criado por
       created_date: Data de criação
@@ -1756,6 +1811,7 @@ pt:
       na: N/A
       none: Nenhum
       ok: OK
+      refer_export_file: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
       reference_language: Língua de referência
       response: Resposta
       selected: Selecionado
@@ -1856,7 +1912,7 @@ pt:
           project: 'Projeto: %{nome_da_secção}'
         subject: Convite para o Lighthouse
       password_change:
-        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em support@thetalententerprise.com
+        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com
 
           '
         regards: 'Cumprimentos, Equipa do Farol
@@ -1993,6 +2049,8 @@ pt:
         tag_or_skill_required: Selecione uma etiqueta ou uma habilidade quando a opção "Selecionado" for escolhida.
       invalid_name: apenas o alfabeto, o número, os espaços, o traço e o ponto são permitidos como caracteres válidos
       invalid_value: declaração inválida '%{value}' na linha número %{row}
+      job_roles:
+        unique_within_job_group: Já existe um cargo com o mesmo nome neste grupo de cargos.
       json?: Deve ser um JSON válido
       key?: não pode estar em branco
       match_regexp?: valor inválido
@@ -2013,9 +2071,13 @@ pt:
       skill_alias:
         unique_alias: O pseudónimo deve ser único
         unique_skill: A competência deve ser única
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: A competência e a função devem pertencer ao mesmo projeto ou ser globais.
+        unique_mappings: Já existe um mapeamento com a mesma competência e função.
       uniq: Esta avaliação Mettl já está presente no sistema. O ID desta avaliação é %{id}
       uniq?: deve ser único
       uniq_simulation: Esta avaliação de simulação já está presente no sistema. O ID desta avaliação é %{id}
+      uniq_skillvue: Esta avaliação Skillvue já está presente no sistema. O ID desta avaliação é %{id}
       update_workshop:
         less_than_booked: O total de lugares deve ser superior ao reservado
       user_availability_date:
@@ -2345,6 +2407,29 @@ pt:
   idp:
     actions: Acções
     board: Direção
+    comment_details:
+      add_comment: Adicionar comentário
+      add_comment_placeholder: Adicionar comentário...
+      add_reply_placeholder: Adicionar resposta...
+      go_to_skill: Ir para habilidade
+    comments:
+      close: Fechar
+      comments: Comentários
+      filter_comments: Filtrar comentários
+      mark_as_resolved: Marcar como resolvido
+      mark_as_unresolved: Marcar como não resolvido
+      replied: Respondido
+      replies: Respostas
+      reply: Responder
+      resolve: Resolver
+      resolved: Resolvido
+      resolved_message: Este comentário foi resolvido e as respostas estão desativadas.
+      show_only_read: Mostrar apenas lidos
+      show_only_resolved: Mostrar resolvidos
+      show_only_unread: Mostrar apenas não lidos
+      show_only_unresolved: Mostrar apenas não resolvidos
+      sort_by_date: Ordenar por data
+      you: Você
     convert_to_draft: Converter em rascunho
     details: Detalhes
     development_actions:
@@ -2371,13 +2456,13 @@ pt:
       on_the_job: No trabalho
       other: Outros
       private: Privado
+      publish_plan: Publicar plano
       remove: Remover
       skill: Habilidade
       sprint: Sprint
       structured_learning: Aprendizagem estruturada
       submit_plan: Apresentar plano
       write_here: Escreva aqui...
-    direct_reportee_details: Detalhes do Relatório Direto
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: Explorar as suas competências de %{categoria}
@@ -2385,7 +2470,6 @@ pt:
       add_skills_step: Adicionar competências
       continue_to_rate_skills: Continuar a avaliar as competências
       getting_started: Como começar
-      getting_started_info: Bem-vindo ao criador do seu Plano de Desenvolvimento Individual (PDI). Este plano ajudá-lo-á a identificar, gerir e acompanhar os seus objectivos profissionais e pessoais, bem como os passos a dar para os atingir. Os seus objectivos profissionais podem incluir áreas de desenvolvimento comportamental, de liderança e técnicas. O seu PDI é uma ferramenta essencial para apoiar o desenvolvimento da sua carreira e a melhoria das suas competências.
       less_skills: Mostrar menos competências
       more_skills: Explorar mais competências
       next: Seguinte
@@ -2404,7 +2488,6 @@ pt:
     manage_plan: Gerenciar plano
     mark_as_complete: Marcar como concluído
     mark_as_incomplete: Marcar como incompleto
-    my_direct_reportees: Os Meus Relatórios Diretos
     my_plan:
       development_plan: Plano de desenvolvimento
       graphs:
@@ -2522,6 +2605,7 @@ pt:
         skills_count: Contagem de Competências
         title: Resumo do Relatório
     reflective_questions:
+      already_completed: O PDI já foi concluído, não pode responder às perguntas agora.
       answer_later: Responder mais tarde
       answer_placeholder: Escreve aqui a tua resposta...
       errors:
@@ -2875,6 +2959,7 @@ pt:
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carregar de Pearson
+      load_from_skillvue: Carregar de Skillvue
       none_external: Nenhum - Utilizar o criador de relatórios
     language: Idioma do relatório
     language_updated: O idioma do relatório foi atualizado com sucesso

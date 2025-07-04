@@ -57,6 +57,7 @@ export const EXPORT_COMPACT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPO
 export const EXPORT_USERS = 'resource/campaigns/users/EXPORT_USERS'
 export const ASSIGN_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/ASSIGN_REPORTS_AND_ASSESSMENTS'
 export const EXPORT_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/EXPORT_REPORTS_AND_ASSESSMENTS'
+export const DOWNLOAD_IDP_REPORTS = 'resource/campaigns/users/DOWNLOAD_IDP_REPORTS'
 export const ADD_MANAGER = 'users/ADD_MANAGER'
 export const CREATE_HOGAN_CREDENTIAL = 'users/CREATE_HOGAN_CREDENTIAL'
 export interface ShortUser {
@@ -106,6 +107,16 @@ export const assignReportsAndAssessments = (campaignId: number, body: any): ApiA
     body,
     loader: true,
     contentType: 'multipart/form-data;',
+  },
+})
+
+export const bulkDownloadIdpReports = (campaignId: number, body: Record<string, string>): ApiAction<ShortUser[]> => ({
+  type: DOWNLOAD_IDP_REPORTS,
+  campaignId,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/users/bulk_download_idp_reports`,
+    body,
   },
 })
 

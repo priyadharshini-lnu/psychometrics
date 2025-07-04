@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignAssessorAssessmentResource < Api::V2::Administration::BaseResource
-  attributes :assessment_name, :assessment_id, :campaign_id, :linked_assessment_name, :allow_multiple_responses
+  attributes :assessment_name, :assessment_id, :campaign_id, :linked_assessment_name, :allow_multiple_responses,
+             :campaign_assessment_group_name, :campaign_assessment_group_id
 
   has_one :assessment
   has_many :factors
@@ -15,7 +16,11 @@ class Api::V2::Administration::CampaignAssessorAssessmentResource < Api::V2::Adm
   before_create -> { @model.campaign_id = context[:params]['campaign_id'] }
 
   def self.updatable_fields(_)
-    %i[allow_multiple_responses]
+    %i[allow_multiple_responses campaign_assessment_group_id]
+  end
+
+  def campaign_assessment_group_name
+    @model.campaign_assessment_group&.name
   end
 
   def assessment_id

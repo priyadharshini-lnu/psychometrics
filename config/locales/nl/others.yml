@@ -31,6 +31,10 @@ nl:
             blank: Antwoorden kunnen niet leeg zijn
           group_id:
             blank: Groepsid kan niet leeg zijn
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{block_name}" heeft dubbele configuraties: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ nl:
               too_short: Het wachtwoord van de evaluator is te kort (het minimum is %{count} tekens)
             first_name:
               blank: Voornaam kan niet leeg zijn
+            job_role:
+              cannot_be_same: Doelfunctie moet verschillen van huidige functie
+              not_found: Jobrol '%{naam}' niet gevonden in project of globale rollen
             last_name:
               blank: Achternaam kan niet leeg zijn
             locale:
@@ -182,12 +189,25 @@ nl:
               invalid: E-mail is ongeldig
             first_name:
               blank: Voornaam kan niet leeg zijn
+            job_role:
+              cannot_be_same: Doelfunctie moet verschillen van huidige functie
             last_name:
               blank: Achternaam kan niet leeg zijn
             locale:
               inclusion: Verkeerde locale
             password:
               too_short: Wachtwoord is te kort. Minimum %{count} teken vereist
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Waarde %{column_name} kan niet leeg zijn in rij %{row_number}
+              invalid_format: CSV-bestand uploaden
+              invalid_job_role_id: Id in rij %{row_number} is geen geldige functierol-ID
+              invalid_locale: Locale bij rij %{rij_nummer} is geen geldige locale
+              missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
+              parsing_failed: 'Fout tijdens het parsen van bestand, fout: %{error}.'
+            project:
+              must_exist: Project moet bestaan
         mettl:
           attributes:
             name:
@@ -303,6 +323,16 @@ nl:
             email:
               blank: E-mail kan niet leeg zijn
               not_uniq_email: Rij met e-mail is al aanwezig
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ten minste één functierol moet ingeschakeld zijn met een vaardigheidstype geselecteerd voor %{block_name}
+              invalid_skill_type: 'Ongeldig vaardigheidstype %{skill_type} voor %{role_name} voor %{block_name}. Geldige opties: %{valid_options}'
+              props_missing: Job
+        skillvue:
+          attributes:
+            name:
+              not_unique: Deze integratie is al aanwezig voor dit project.
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ nl:
             last_name:
               blank: Achternaam kan niet leeg zijn
               starts_with_invalid_characters: Achternaam kan niet beginnen met =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Rij %{rij}: Dubbele waarde %{waarde} voor %{veld}'
+              invalid_format: Upload xlsx-bestand
+              missing_headers: "%{sheet_name} blad mist vereiste koppen: %{headers}"
+              missing_sheets: 'Ontbrekende vereiste bladen: %{sheets}'
+              missing_value: 'Rij %{row}: Ontbrekende waarde voor %{field}'
+            project:
+              must_exist: Project moet bestaan
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ nl:
         export_development_actions: Acties voor exportontwikkeling
         export_dimension_as_json: Dimensie JSON exporteren
         export_factor_translations: Exportfactor Vertalingen
+        export_job_roles_translations: Jobrollen exporteren Vertalingen
         export_norm: Exportnorm
         export_occupations: Beroepen Export
+        export_proficiency_levels: Exportvaardigheidsniveaus
         export_report_data: Rapportgegevens exporteren
         export_reports_and_assessments: Rapporten en beoordelingen exporteren
         export_skill_translations: Exportvaardigheden Vertalingen
@@ -784,12 +826,15 @@ nl:
         import_external_campaign_scoring: Externe campagnescores importeren
         import_factor_translations: Importfactor Vertalingen
         import_factors: Importfactoren
+        import_job_roles_translations: Jobrollen importeren Vertalingen
         import_norm: Norm importeren
+        import_proficiency_level_translations: Vertalingen op vaardigheidsniveau importeren
         import_question_translations: Vragen importeren Vertalingen
         import_raw_data: Ruwe gegevens importeren
         import_scoring_data: Scoringsgegevens importeren
         import_skill_translations: Importvaardigheden Vertalingen
         import_skills: Vaardigheden importeren
+        import_skills_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_sms_invites: SMS-uitnodiging importeren
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie
@@ -924,6 +969,7 @@ nl:
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville beoordeling Naam
         simulation_assessment_name: Simulatie Beoordeling Naam
+        skillvue_assessment_name: Skillvue Beoordeling Naam
       translations_migrated: Vertaling gemigreerd
     create: Maak
     dashboard: Dashboard
@@ -963,6 +1009,7 @@ nl:
         psychometric: Psychometrisch
         saville: Saville
         simulation: Simulatie
+        skillvue: Skillvue
         threesixty: 360 Campagne
       status:
         finished: Afgewerkt
@@ -1229,6 +1276,7 @@ nl:
       campaign: Campagne
       change_password: Wachtwoord wijzigen
       development: Ontwikkeling
+      direct_reportees: Directe rapporten
       home: Home
       insights: Inzichten
       my_plan: Mijn plan
@@ -1327,6 +1375,8 @@ nl:
       pearson_variation: Pearson Variatie
       prework: Voorwerk
       simulation_content_variation: Simulatie Inhoud Variatie
+      skillvue_email_id: Skillvue Kandidaat Email ID
+      skillvue_external_assessment_id: Skillvue Beoordeling ID
       universal_link: Universele link
     drawer:
       mettl_schedule_name: Mettl Schema Naam
@@ -1342,6 +1392,11 @@ nl:
       raw_results_export_scheduled: De exporttaak Assessment Raw Results is met succes ingepland
       scoring_results_export_scheduled: Beoordelingsscores exporttaak is met succes ingepland
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Er is iets misgegaan. Neem contact op met de beheerder
+        placeholder: Selecteer een Assessment Center-groep
+        success_message: Assessor Campagnebeoordelingsgroep is succesvol toegewezen
+        title: Assessment Center Groep
       import_raw:
         body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
         success_msg: Het importeren is gelukt
@@ -1655,6 +1710,7 @@ nl:
       assessor: Assessor
       category: Categorie
       client: Klant
+      code: Code
       created_at: Gemaakt op
       created_by: Gemaakt door
       created_date: Datum aangemaakt
@@ -1742,6 +1798,7 @@ nl:
       na: N.V.T
       none: Geen
       ok: Ok
+      refer_export_file: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
       reference_language: Referentietaal
       response: Reactie
       selected: Geselecteerd
@@ -1842,7 +1899,7 @@ nl:
           project: 'Project: %{section_name}'
         subject: Uitnodiging voor Lighthouse
       password_change:
-        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via support@thetalententerprise.com
+        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via mte.support@mercer.com
 
           '
         regards: 'Groeten, Lighthouse Team
@@ -1975,8 +2032,13 @@ nl:
         uniq_email: E-mail moet uniek zijn.
       exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
       filled?: kan niet leeg zijn
+      idp_template:
+        content_required: Inhoud is vereist voor instructies
+        tag_or_skill_required: Selecteer een tag of vaardigheid wanneer de optie "Geselecteerd" wordt gekozen.
       invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
       invalid_value: ongeldige instructie '%{value}' op regelnummer %{row}
+      job_roles:
+        unique_within_job_group: Er bestaat al een functierol met dezelfde naam.
       json?: Moet geldige JSON zijn
       key?: kan niet leeg zijn
       match_regexp?: ongeldige waarde
@@ -1997,9 +2059,13 @@ nl:
       skill_alias:
         unique_alias: Alias moet uniek zijn
         unique_skill: Vaardigheden moeten uniek zijn
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Vaardigheid en functie moeten bij hetzelfde project horen of globaal zijn.
+        unique_mappings: Er bestaat al een mapping met dezelfde vaardigheid en functie.
       uniq: Deze Mettl beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq?: moet uniek zijn
       uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
+      uniq_skillvue: Deze Skillvue beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       update_workshop:
         less_than_booked: Het totaal aantal geboekte zitplaatsen moet groter zijn dan
       user_availability_date:
@@ -2329,6 +2395,29 @@ nl:
   idp:
     actions: Acties
     board: Raad van bestuur
+    comment_details:
+      add_comment: Opmerking toevoegen
+      add_comment_placeholder: Opmerking toevoegen...
+      add_reply_placeholder: Antwoord toevoegen...
+      go_to_skill: Ga naar vaardigheid
+    comments:
+      close: Sluiten
+      comments: Opmerkingen
+      filter_comments: Opmerkingen filteren
+      mark_as_resolved: Markeren als opgelost
+      mark_as_unresolved: Markeren als onopgelost
+      replied: Beantwoord
+      replies: Antwoorden
+      reply: Antwoorden
+      resolve: Oplossen
+      resolved: Opgelost
+      resolved_message: Deze opmerking is opgelost en antwoorden zijn uitgeschakeld.
+      show_only_read: Alleen gelezen tonen
+      show_only_resolved: Opgeloste tonen
+      show_only_unread: Alleen ongelezen tonen
+      show_only_unresolved: Alleen onopgeloste tonen
+      sort_by_date: Sorteren op datum
+      you: Jij
     convert_to_draft: Converteren naar concept
     details: Details
     development_actions:
@@ -2355,6 +2444,7 @@ nl:
       on_the_job: Op het werk
       other: Andere
       private: Privé
+      publish_plan: Plan publiceren
       remove: Verwijder
       skill: Vaardigheid
       sprint: Sprint
@@ -2368,7 +2458,6 @@ nl:
       add_skills_step: Vaardigheden toevoegen
       continue_to_rate_skills: Blijf vaardigheden beoordelen
       getting_started: Aan de slag
-      getting_started_info: Welkom bij de maker van uw individueel ontwikkelingsplan (IDP). Dit plan helpt u bij het identificeren, beheren en volgen van uw professionele en persoonlijke doelen en de stappen die u moet nemen om deze doelen te bereiken. Uw professionele doelen kunnen zowel gedrags-, leiderschaps- als technische ontwikkelingsgebieden omvatten. Uw IDP is een essentieel hulpmiddel om uw loopbaanontwikkeling en vaardigheidsverbetering te ondersteunen.
       less_skills: Minder vaardigheden tonen
       more_skills: Ontdek meer vaardigheden
       next: Volgende
@@ -2391,6 +2480,8 @@ nl:
       graphs:
         categories: Categorieën
       save_skills: Vaardigheden opslaan
+    reflective_questions:
+      already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
     skill_gap_report:
       title: Rapport over vaardigheidskloof
     status: Status
@@ -2732,6 +2823,7 @@ nl:
     form:
       load_from_mettl: Belasting van Mettl
       load_from_pearson: Laden van Pearson
+      load_from_skillvue: Belasting van Skillvue
       none_external: Geen - Gebruik rapportbouwer
     language: Rapport Taal
     language_updated: Rapporttaal is met succes bijgewerkt

@@ -57,6 +57,10 @@ module Pearson
               {
                 key: 'FamilyName',
                 value: maskable_identity.last_name
+              },
+              {
+                key: 'ForceContinueOnError',
+                value: true
               }
             ]
           }

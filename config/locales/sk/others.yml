@@ -11,6 +11,52 @@ sk:
         select_comparison: Výber typu porovnania
         select_factors: Vybrané faktory
         select_operation: Vyberte operáciu
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{názov_bloku}" má duplicitné konfigurácie: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Cieľová pracovná úloha sa musí líšiť od súčasnej pracovnej úlohy
+              not_found: Úloha '%{name}' nebola nájdená v projektových alebo globálnych úlohách
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Cieľová pracovná úloha sa musí líšiť od súčasnej pracovnej úlohy
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Hodnota %{názov_stĺpca} nemôže byť prázdna v riadku %{číslo_riadku}
+              invalid_format: Nahrajte prosím súbor CSV
+              invalid_job_role_id: Id v riadku %{číslo_riadku} nie je platné ID úlohy
+              invalid_locale: Locale v riadku %{číslo_riadku} nie je platné locale
+              missing_required_columns: 'Chýbajúce požadované stĺpce: %{columns}'
+              parsing_failed: 'Chyba pri analyzovaní súboru, chyba: %{error}.'
+            project:
+              must_exist: Projekt musí existovať
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pre %{názov_bloku} musí byť povolená aspoň jedna pracovná rola s vybraným typom zručnosti
+              invalid_skill_type: 'Neplatný typ zručnosti %{skill_type} pre %{role_name} pre %{block_name}. Platné možnosti: %{valid_options}'
+              props_missing: Práca
+        skillvue:
+          attributes:
+            name:
+              not_unique: Táto integrácia je už v tomto projekte prítomná.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Riadok %{riadok}: Duplicitná hodnota %{hodnota} pre %{pole}'
+              invalid_format: Prosím, nahrajte súbor xlsx
+              missing_headers: "%{názov_listu} chýbajú požadované hlavičky: %{hlavičky}"
+              missing_sheets: 'Chýbajúce požadované listy: %{hárky}'
+              missing_value: 'Riadok %{riadok}: Chýbajúca hodnota pre %{pole}'
+            project:
+              must_exist: Projekt musí existovať
   activerecord:
     attributes:
       membership:
@@ -37,6 +83,13 @@ sk:
           attributes:
             current_password:
               invalid: Aktuálne heslo je nesprávne
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Export pracovných rolí Preklady
+        export_proficiency_levels: Úrovne odbornej spôsobilosti pri exporte
+        import_job_roles_translations: Import pracovných rolí Preklady
+        import_skills_rater_taxonomies: Import taxonómií hodnotiteľov zručností
   administration: Administratíva
   anonym:
     close: Zatvoriť
@@ -65,6 +118,12 @@ sk:
     card_actions:
       begin: Začíname na adrese
       continue: Pokračovať
+    column:
+      external_settings:
+        skillvue_assessment_name: Názov hodnotenia Skillvue
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Začíname na adrese
       cancel: Zrušiť
@@ -257,6 +316,15 @@ sk:
   campaign_assessment:
     assessment_center_heading: Podrobnosti o hodnotiacom centre
     assessments_heading: Vaše úlohy
+    column:
+      skillvue_email_id: Skillvue Kandidát Email ID
+      skillvue_external_assessment_id: Skillvue Assessment ID
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Niečo sa pokazilo. Prosím, kontaktujte správcu
+        placeholder: Vyberte skupinu Assessment Center
+        success_message: Hodnotiteľ Hodnotiaca skupina kampane bola úspešne pridelená
+        title: Skupina Assessment Center
     statuses:
       completed: Dokončené
       in_progress: V štádiu rozpracovanosti
@@ -374,6 +442,7 @@ sk:
     column:
       action: Akcia
       category: Kategória
+      code: Kód
       created_at: Vytvorené v
       id: Id
       status: Stav
@@ -389,6 +458,7 @@ sk:
       download: Stiahnite si
       na: NEUPLATŇUJE SA
       ok: Ok
+      refer_export_file: Pozrite si funkciu Export, aby ste získali šablónu, ktorú môžete použiť na Import sem.
       response: Odpoveď
   devise:
     administrators:
@@ -441,6 +511,14 @@ sk:
     two_factor_authentication:
       attempt: Zadajte OTP, ktoré ste dostali na svoju registrovanú e-mailovú adresu
       code_has_been_sent: Vaše nové OTP bolo odoslané na vašu registrovanú e-mailovú adresu
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Úloha s rovnakým názvom už existuje.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Zručnosť a pracovná úloha musia patriť k tomu istému projektu alebo musia byť globálne.
+        unique_mappings: Mapovanie s rovnakými zručnosťami a pracovnou úlohou už existuje.
+      uniq_skillvue: Toto hodnotenie Skillvue je už v systéme prítomné. ID tohto hodnotenia je %{id}
   emails:
     subject_relationship_table:
       subject_email: Predmet E-mail
@@ -575,6 +653,9 @@ sk:
         requested_rescheduling: Požadované preloženie termínu
         requested_rescheduling_rejected: Požadované Presunutie termínu Zamietnuté
     'yes': Áno
+  idp:
+    reflective_questions:
+      already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
   idp_templates:
     errors:
       user_idp_template_not_found: Nebola vám priradená žiadna šablóna IDP.
@@ -617,6 +698,8 @@ sk:
       add: Pridať správu
       download: Stiahnite si správu
       view: Zobraziť správu
+    form:
+      load_from_skillvue: Načítať z aplikácie Skillvue
     modules:
       campaign_factors_table:
         add_condition: Pridať podmienku

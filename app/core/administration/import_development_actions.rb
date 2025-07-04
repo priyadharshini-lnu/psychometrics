@@ -3,7 +3,7 @@
 module Administration
   class ImportDevelopmentActions < BaseCommand
     REQUIRED_FIELDS = %w[SkillID Name Description Type DevelopmentActionType].freeze
-    OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
+    OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage AvailableLanguages Duration].freeze
 
     def initialize(file, project_id)
       @file = file
@@ -44,6 +44,13 @@ module Administration
       development_action.course_url = row_data['CourseURL']
       development_action.course_start_date = parse_date(row_data['CourseStartDate'])
       development_action.course_end_date = parse_date(row_data['CourseEndDate'])
+      development_action.duration = row_data['Duration']&.to_i
+
+      if development_action.course?
+        development_action.available_languages = row_data[
+          'AvailableLanguages'
+        ].to_s.split(',').map(&:strip).compact_blank
+      end
 
       if row_data['CourseImage'].present?
         attach_image(development_action, row_data['CourseImage'])
@@ -102,7 +109,7 @@ message: e.message)
       Date.parse(date_string)
     rescue Date::Error
       raise Errors::ImportError,
-            I18n.t('administration.development_action_import.errors.invalid_date_format', date: date_string)
+            I18n.t('administration.development_action_import.errors.invalid_date', date: date_string)
     end
   end
 end

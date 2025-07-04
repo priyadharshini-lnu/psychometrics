@@ -22,7 +22,7 @@ export const calculateWeightedAverageScores = (
         count += 1
       }
     })
-    weightedAverages[factor.factorId] = count > 0 ? (totalWeightedScore / count).toFixed(1) : '-'
+    weightedAverages[factor.factorId] = count > 0 ? (totalWeightedScore / count).toFixed(2) : '-'
   })
   return weightedAverages
 }

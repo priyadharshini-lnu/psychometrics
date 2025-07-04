@@ -5,7 +5,8 @@ module Integrations
     attribute :api_key, String
     attribute :name, String
 
-    validates :api_key, :name, presence: true
+    validates :name, presence: true
+    validates :api_key, presence: true, if: -> { context&.integration.nil? }
     validate :unique_api_key
 
     def unique_api_key
@@ -17,7 +18,9 @@ module Integrations
 
     def api_key
       new_api_key = super
-      Base64.encode64(Encryptor.encrypt(new_api_key)) if new_api_key.present?
+      return Base64.encode64(Encryptor.encrypt(new_api_key)) if new_api_key.present?
+
+      context&.integration ? context.integration.config['api_key'] : nil
     end
   end
 end

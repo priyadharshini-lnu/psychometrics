@@ -4,6 +4,7 @@ module Api
   module V2
     module Administration
       class ClientFeaturesController < Api::V2::Administration::BaseController
+        validates_request_schema :update, -> { Api::V2::ClientFeature::Contract.new }
         validate_crud_requests Api::V2::ClientFeature::Schema
 
         def context

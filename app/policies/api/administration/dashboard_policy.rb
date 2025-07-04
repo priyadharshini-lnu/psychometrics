@@ -35,6 +35,10 @@ module Api
         can_manage_dashboard?
       end
 
+      def export_file?
+        can_manage_dashboard?
+      end
+
       private
 
       def can_manage_dashboard?

@@ -4,12 +4,22 @@ require 'rails_helper'
 
 describe Communications::WorkshopUpcomingReminderJob, type: :job do
   let(:campaign) { create(:campaign) }
+  let(:assessment_group) { create(:campaign_assessment_group, campaign: campaign, group_type: 1) }
   let(:project) { campaign.project }
   let(:campaign_user) { create(:campaign_user, campaign: campaign) }
   let(:user) { campaign_user.user }
   let!(:communication) do
     create(:communication, kind: :workshop_upcoming_reminder,
+      campaign_assessment_group: assessment_group,
       campaign_id: campaign.id, project_id: project.id, client_id: project.parent.id)
+  end
+
+  it 'creates communication_email for workshop_subject from same assessment group 2 day before workshop starts' do
+    workshop, = create_workshop__with_subject(2.days.from_now)
+    described_class.perform_now
+
+    communication_email = CommunicationEmail.find_by(campaign_user: campaign_user, workshop: workshop)
+    expect(communication_email).to be_present
   end
 
   it 'creates communication_email for workshop_subject 2 day before workshop starts' do
@@ -93,9 +103,28 @@ describe Communications::WorkshopUpcomingReminderJob, type: :job do
     expect(communication_email).to eq(nil)
   end
 
+  it 'does not create communication_email for workshop_subject from different assessment group' do
+    other_assessment_group = create(:campaign_assessment_group, campaign: campaign, group_type: 1)
+    workshop = create(:workshop, start_time: 2.days.from_now, campaign: campaign, status: :open,
+campaign_assessment_group: other_assessment_group)
+    workshop_invite = create(:workshop_invite, workshops: [workshop], campaign: campaign,
+                           campaign_assessment_group: other_assessment_group)
+    create(:workshop_subject, workshop: workshop, user: user, campaign: campaign,
+           workshop_invite: workshop_invite, scheduling_status: :scheduled)
+
+    described_class.perform_now
+
+    communication_email = CommunicationEmail.find_by(campaign_user: campaign_user, workshop: workshop)
+    expect(communication_email).to be_nil
+  end
+
   def create_workshop__with_subject(start_time)
-    workshop = create(:workshop, start_time: start_time, campaign: campaign, status: :open)
-    workshop_subject = create(:workshop_subject, workshop: workshop, user: user, campaign: campaign)
+    workshop = create(:workshop, start_time: start_time, campaign: campaign, status: :open,
+campaign_assessment_group: assessment_group)
+    workshop_invite = create(:workshop_invite, workshops: [workshop], campaign: campaign,
+                           campaign_assessment_group: assessment_group)
+    workshop_subject = create(:workshop_subject, workshop: workshop, user: user, campaign: campaign,
+                            workshop_invite: workshop_invite, scheduling_status: :scheduled)
     [workshop, workshop_subject]
   end
 end

@@ -11,6 +11,52 @@ th:
         select_comparison: เลือกประเภทการเปรียบเทียบ
         select_factors: เลือกปัจจัย
         select_operation: เลือกการดำเนินการ
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'บล็อก "%{block_name}" มีการกำหนดค่าซ้ำ: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
+              not_found: ตำแหน่งงาน '%{name}' ไม่พบในโปรเจ็กต์หรือบทบาทระดับโลก
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: ค่า %{column_name} ไม่สามารถเว้นว่างได้ที่แถว %{row_number}
+              invalid_format: กรุณาอัปโหลดไฟล์ CSV
+              invalid_job_role_id: Id ที่แถว %{row_number} ไม่ใช่รหัสตำแหน่งงานที่ถูกต้อง
+              invalid_locale: Locale ที่แถว %{row_number} ไม่ใช่ locale ที่ถูกต้อง
+              missing_required_columns: 'คอลัมน์ที่จำเป็นขาดหายไป: %{columns}'
+              parsing_failed: 'เกิดข้อผิดพลาดขณะวิเคราะห์ไฟล์, ข้อผิดพลาด: %{error}.'
+            project:
+              must_exist: โครงการต้องมีอยู่
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: อย่างน้อยหนึ่งตำแหน่งงานต้องเปิดใช้งานด้วยประเภททักษะที่เลือกสำหรับ %{block_name}
+              invalid_skill_type: 'ประเภททักษะไม่ถูกต้อง %{skill_type} สำหรับ %{role_name} สำหรับ %{block_name}. ตัวเลือกที่ถูกต้อง: %{valid_options}'
+              props_missing: งาน
+        skillvue:
+          attributes:
+            name:
+              not_unique: การผสานรวมนี้มีอยู่แล้วสำหรับโครงการนี้
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'แถว %{row}: ค่าซ้ำ %{value} สำหรับ %{field}'
+              invalid_format: กรุณาอัปโหลดไฟล์ xlsx
+              missing_headers: 'แผ่นงาน %{sheet_name} ไม่มีส่วนหัวที่จำเป็น: %{headers}'
+              missing_sheets: 'แผ่นงานที่จำเป็นขาดหายไป: %{sheets}'
+              missing_value: 'แถว %{row}: ไม่มีค่าสำหรับ %{field}'
+            project:
+              must_exist: โครงการต้องมีอยู่
   activerecord:
     attributes:
       membership:
@@ -37,6 +83,13 @@ th:
           attributes:
             current_password:
               invalid: รหัสผ่านปัจจุบันไม่ถูกต้อง
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: ส่งออกบทบาทงานแปล
+        export_proficiency_levels: ระดับความชำนาญในการส่งออก
+        import_job_roles_translations: นำเข้าการแปลบทบาทงาน
+        import_skills_rater_taxonomies: นำเข้าหมวดหมู่ผู้ประเมินทักษะภาษี
   administration: การบริหาร
   anonym:
     close: ปิด
@@ -65,6 +118,12 @@ th:
     card_actions:
       begin: เริ่ม
       continue: ดำเนินการต่อ
+    column:
+      external_settings:
+        skillvue_assessment_name: ชื่อการประเมินของ Skillvue
+    fields:
+      category:
+        skillvue: สกิลวิว
     instructions:
       begin_assessment: เริ่ม
       cancel: ยกเลิก
@@ -251,6 +310,15 @@ th:
   campaign_assessment:
     assessment_center_heading: รายละเอียดศูนย์ประเมิน
     assessments_heading: งานของคุณ
+    column:
+      skillvue_email_id: อีเมลผู้สมัคร Skillvue
+      skillvue_external_assessment_id: รหัสการประเมิน Skillvue
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: เกิดข้อผิดพลาด โปรดติดต่อผู้ดูแลระบบ
+        placeholder: เลือกกลุ่มศูนย์ประเมิน
+        success_message: กลุ่มการประเมินแคมเปญผู้ประเมินได้รับการมอบหมายสำเร็จ
+        title: ศูนย์ประเมินผลกลุ่ม
     statuses:
       completed: สมบูรณ์
       in_progress: อยู่ระหว่างดำเนินการ
@@ -368,6 +436,7 @@ th:
     column:
       action: การกระทำ
       category: หมวดหมู่
+      code: โค้ด
       created_at: สร้างเมื่อ
       id: รหัส
       status: สถานะ
@@ -383,6 +452,7 @@ th:
       download: ดาวน์โหลด
       na: ไม่มีข้อมูล
       ok: ตกลง
+      refer_export_file: โปรดดูที่ฟังก์ชันการส่งออกเพื่อดึงเทมเพลตที่สามารถใช้สำหรับการนำเข้าที่นี่
       response: การตอบสนอง
   devise:
     administrators:
@@ -435,6 +505,14 @@ th:
     two_factor_authentication:
       attempt: กรุณากรอกรหัส OTP ที่คุณได้รับทางอีเมล์ที่ลงทะเบียนไว้
       code_has_been_sent: OTP ใหม่ของคุณได้ถูกส่งไปยังที่อยู่อีเมลที่คุณลงทะเบียนไว้แล้ว
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: มีตำแหน่งงานที่มีชื่อเดียวกันอยู่แล้ว
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: ทักษะและบทบาทงานต้องอยู่ในโครงการเดียวกันหรือเป็นแบบทั่วโลก
+        unique_mappings: มีการจับคู่ที่มีทักษะและบทบาทงานเดียวกันอยู่แล้ว
+      uniq_skillvue: การประเมิน Skillvue นี้มีอยู่ในระบบแล้ว รหัสการประเมินนี้คือ %{id}
   emails:
     subject_relationship_table:
       subject_email: หัวข้ออีเมล์
@@ -569,6 +647,9 @@ th:
         requested_rescheduling: การขอเลื่อนกำหนดการใหม่
         requested_rescheduling_rejected: การขอเลื่อนกำหนดการถูกปฏิเสธ
     'yes': ใช่
+  idp:
+    reflective_questions:
+      already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
   idp_templates:
     errors:
       user_idp_template_not_found: ไม่ได้รับการกำหนดเทมเพลต IDP ให้กับคุณ
@@ -611,6 +692,8 @@ th:
       add: เพิ่มรายงาน
       download: ดาวน์โหลดรายงาน
       view: ดูรายงาน
+    form:
+      load_from_skillvue: โหลดจาก Skillvue
     modules:
       campaign_factors_table:
         add_condition: เพิ่มเงื่อนไข

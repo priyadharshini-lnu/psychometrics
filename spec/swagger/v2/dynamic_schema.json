@@ -844,7 +844,8 @@
                     "pearson",
                     "iiht",
                     "mettl",
-                    "simulation"
+                    "simulation",
+                    "skillvue"
                   ],
                   "nullable": false
                 },
@@ -1442,7 +1443,8 @@
                   "pearson",
                   "iiht",
                   "mettl",
-                  "simulation"
+                  "simulation",
+                  "skillvue"
                 ],
                 "nullable": false
               },
@@ -8043,6 +8045,10 @@
                   "type": "boolean",
                   "nullable": true
                 },
+                "mask_identity_for_skillvue": {
+                  "type": "boolean",
+                  "nullable": true
+                },
                 "disable_data_processing": {
                   "type": "boolean",
                   "nullable": true
@@ -8171,6 +8177,10 @@
                 "nullable": true
               },
               "mask_identity_for_mettl": {
+                "type": "boolean",
+                "nullable": true
+              },
+              "mask_identity_for_skillvue": {
                 "type": "boolean",
                 "nullable": true
               },
@@ -8422,13 +8432,23 @@
               "active": {
                 "type": "boolean",
                 "nullable": false
+              },
+              "rate_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "rate_limit_period": {
+                "type": "integer",
+                "nullable": false
               }
             },
             "required": [
               "url",
               "description",
               "auth_type",
-              "active"
+              "active",
+              "rate_limit",
+              "rate_limit_period"
             ],
             "nullable": false
           }
@@ -8491,13 +8511,23 @@
               "active": {
                 "type": "boolean",
                 "nullable": false
+              },
+              "rate_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "rate_limit_period": {
+                "type": "integer",
+                "nullable": false
               }
             },
             "required": [
               "url",
               "description",
               "auth_type",
-              "active"
+              "active",
+              "rate_limit",
+              "rate_limit_period"
             ],
             "nullable": false
           }
@@ -8561,6 +8591,14 @@
               },
               "active": {
                 "type": "boolean",
+                "nullable": false
+              },
+              "rate_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "rate_limit_period": {
+                "type": "integer",
                 "nullable": false
               }
             },
@@ -8644,13 +8682,23 @@
                 "active": {
                   "type": "boolean",
                   "nullable": false
+                },
+                "rate_limit": {
+                  "type": "integer",
+                  "nullable": false
+                },
+                "rate_limit_period": {
+                  "type": "integer",
+                  "nullable": false
                 }
               },
               "required": [
                 "url",
                 "description",
                 "auth_type",
-                "active"
+                "active",
+                "rate_limit",
+                "rate_limit_period"
               ],
               "nullable": false
             }
@@ -11284,6 +11332,10 @@
                 "type": "boolean",
                 "nullable": false
               },
+              "campaign_assessment_group_id": {
+                "type": "string",
+                "nullable": false
+              },
               "workshop_ids": {
                 "type": "array",
                 "items": {
@@ -11340,6 +11392,7 @@
             "required": [
               "allow_language_preference",
               "allow_neurodiversity_option",
+              "campaign_assessment_group_id",
               "translations"
             ],
             "nullable": false
@@ -13489,6 +13542,10 @@
               "cancellation_lead_time": {
                 "type": "integer",
                 "nullable": false
+              },
+              "campaign_assessment_group_id": {
+                "type": "string",
+                "nullable": false
               }
             },
             "required": [
@@ -13497,7 +13554,8 @@
               "workshop_assessors_ids",
               "workshop_managers_ids",
               "scheduling_lead_time",
-              "cancellation_lead_time"
+              "cancellation_lead_time",
+              "campaign_assessment_group_id"
             ],
             "nullable": false
           }
@@ -15103,6 +15161,21 @@
                   "type": "boolean",
                   "nullable": false
                 },
+                "translations": {
+                  "type": "object",
+                  "properties": {
+                    "title_text": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "subtitle_text": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [],
+                  "nullable": false
+                },
                 "reflection_questions": {
                   "type": "array",
                   "items": {
@@ -15157,7 +15230,8 @@
                 "behavioural_client_tags",
                 "technical_global_tags",
                 "technical_client_tags",
-                "self_rating_enabled"
+                "self_rating_enabled",
+                "translations"
               ],
               "nullable": false
             }
@@ -15850,6 +15924,21 @@
                 "type": "boolean",
                 "nullable": false
               },
+              "translations": {
+                "type": "object",
+                "properties": {
+                  "title_text": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "subtitle_text": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
               "reflection_questions": {
                 "type": "array",
                 "items": {
@@ -15904,7 +15993,8 @@
               "behavioural_client_tags",
               "technical_global_tags",
               "technical_client_tags",
-              "self_rating_enabled"
+              "self_rating_enabled",
+              "translations"
             ],
             "nullable": false
           }
@@ -15980,6 +16070,21 @@
                 "type": "boolean",
                 "nullable": false
               },
+              "translations": {
+                "type": "object",
+                "properties": {
+                  "title_text": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "subtitle_text": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
               "reflection_questions": {
                 "type": "array",
                 "items": {
@@ -16034,7 +16139,8 @@
               "behavioural_client_tags",
               "technical_global_tags",
               "technical_client_tags",
-              "self_rating_enabled"
+              "self_rating_enabled",
+              "translations"
             ],
             "nullable": false
           },

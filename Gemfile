@@ -185,6 +185,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'bundler-audit', require: false
   gem 'byebug', platform: :mri
+  gem 'dry-cli', '~> 1.2.0'
   gem 'factory_bot_rails'
   gem 'hirb'
   gem 'parallel_tests', '~> 4.2'
@@ -221,6 +222,7 @@ group :development do
   gem 'ruby-lsp-rails', '~> 0.4.0'
   gem 'solargraph', '~>0.54.0'
 end
+
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.37.1'
@@ -265,3 +267,6 @@ gem 'oci', '~> 2.20.0'
 
 # Sidekiq queue concurrency control
 gem 'sidekiq-throttled', '~> 1.5.2'
+
+# To integrate with LLMs
+gem 'ruby_llm', '~> 1.3.1'

@@ -8,9 +8,24 @@ module Api
           'campaign_assessor_assessments'
         end
 
-        def self.attributes(attribute, _)
+        def self.attributes(attribute, type)
+          case type
+            when :update
+              update_campaign_assessment_group_attributes(attribute)
+            else
+              base_attributes(attribute)
+          end
+        end
+
+        def self.base_attributes(attribute)
           proc do
             attribute[:assessment_id].filled(:string)
+          end
+        end
+
+        def self.update_campaign_assessment_group_attributes(attribute)
+          proc do
+            attribute[:campaign_assessment_group_id].maybe(:string)
           end
         end
       end

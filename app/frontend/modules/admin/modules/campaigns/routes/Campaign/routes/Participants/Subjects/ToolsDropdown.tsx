@@ -48,7 +48,11 @@ const getMenuProps = ({
     key: 'export_reports_and_assessments',
     label: I18n.t('user.toolbar.export_reports_and_assessments'),
   })
-
+  menuItems.push({ type: 'divider' })
+  permissions.bulkDownloadIdpReports && menuItems.push({
+    key: 'bulk_download_idp_reports',
+    label: I18n.t('user.toolbar.bulk_download_idp_reports'),
+  })
 
   const handleMenuClick = ({ key }) => {
     if (key === 'export_completion') {
@@ -68,6 +72,12 @@ const getMenuProps = ({
     }
     if (key === 'export_reports_and_assessments') {
       return onExportReportsAndAssessments(campaignId)
+    }
+
+    if (key === 'bulk_download_idp_reports') {
+      return openModal('BulkDownloadIdpReports', {
+        campaignId, allowReflectionQuestions: permissions.allowIncludeReflectiveQuestions,
+      })
     }
   }
 

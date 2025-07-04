@@ -11,6 +11,52 @@ vi:
         select_comparison: Chọn loại so sánh
         select_factors: Chọn các yếu tố
         select_operation: Chọn hoạt động
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Khối "%{block_name}" có các cấu hình trùng lặp: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
+              not_found: Vị trí công việc '%{name}' không được tìm thấy trong dự án hoặc các vai trò toàn cầu.
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Giá trị %{column_name} không được để trống tại hàng %{row_number}
+              invalid_format: Vui lòng tải lên tệp CSV.
+              invalid_job_role_id: ID tại hàng %{row_number} không phải là ID vai trò công việc hợp lệ.
+              invalid_locale: Vùng ngôn ngữ tại hàng %{row_number} không phải là vùng ngôn ngữ hợp lệ.
+              missing_required_columns: 'Thiếu các cột bắt buộc: %{columns}'
+              parsing_failed: 'Lỗi khi phân tích tệp, lỗi: %{error}.'
+            project:
+              must_exist: Dự án phải tồn tại.
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ít nhất một vị trí công việc phải được kích hoạt với loại kỹ năng được chọn cho %{block_name}
+              invalid_skill_type: 'Loại kỹ năng không hợp lệ %{skill_type} cho %{role_name} cho %{block_name}. Các tùy chọn hợp lệ: %{valid_options}'
+              props_missing: Công việc
+        skillvue:
+          attributes:
+            name:
+              not_unique: Tính năng tích hợp này đã được triển khai cho dự án này.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Dòng %{row}: Giá trị trùng lặp %{value} cho trường %{field}'
+              invalid_format: Vui lòng tải lên tệp xlsx.
+              missing_headers: 'Bảng %{sheet_name} thiếu các tiêu đề bắt buộc: %{headers}'
+              missing_sheets: 'Thiếu các trang bắt buộc: %{sheets}'
+              missing_value: 'Dòng %{row}: Thiếu giá trị cho %{field}'
+            project:
+              must_exist: Dự án phải tồn tại.
   activerecord:
     attributes:
       membership:
@@ -37,6 +83,13 @@ vi:
           attributes:
             current_password:
               invalid: Mật khẩu hiện tại không đúng
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Dịch các vị trí công việc cho xuất khẩu
+        export_proficiency_levels: Cấp độ thành thạo xuất khẩu
+        import_job_roles_translations: Nhập bản dịch các vai trò công việc
+        import_skills_rater_taxonomies: Nhập các phân loại đánh giá kỹ năng
   administration: Sự quản lý
   anonym:
     close: Đóng
@@ -65,6 +118,12 @@ vi:
     card_actions:
       begin: Bắt đầu
       continue: Tiếp tục
+    column:
+      external_settings:
+        skillvue_assessment_name: Tên đánh giá Skillvue
+    fields:
+      category:
+        skillvue: Kỹ năng trực quan
     instructions:
       begin_assessment: Bắt đầu
       cancel: Hủy bỏ
@@ -251,6 +310,15 @@ vi:
   campaign_assessment:
     assessment_center_heading: Chi tiết về Trung tâm Đánh giá
     assessments_heading: Nhiệm vụ của bạn
+    column:
+      skillvue_email_id: ID Email Ứng viên Skillvue
+      skillvue_external_assessment_id: Mã đánh giá Skillvue
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Có sự cố xảy ra. Vui lòng liên hệ với quản trị viên.
+        placeholder: Chọn nhóm trung tâm đánh giá
+        success_message: Nhóm Đánh giá Chiến dịch Đánh giá đã được giao nhiệm vụ thành công.
+        title: Trung tâm Đánh giá Nhóm
     statuses:
       completed: Hoàn thành
       in_progress: Đang tiến hành
@@ -368,6 +436,7 @@ vi:
     column:
       action: Hoạt động
       category: Loại
+      code: Mã
       created_at: Được tạo ra tại
       id: Nhận dạng
       status: Trạng thái
@@ -383,6 +452,7 @@ vi:
       download: Tải về
       na: Không có
       ok: Được rồi
+      refer_export_file: Tham khảo tính năng Xuất để trích xuất một mẫu có thể được sử dụng để Nhập vào đây.
       response: Phản ứng
   devise:
     administrators:
@@ -435,6 +505,14 @@ vi:
     two_factor_authentication:
       attempt: Vui lòng nhập OTP mà bạn đã nhận được tại địa chỉ email đã đăng ký của bạn
       code_has_been_sent: Mã OTP mới của bạn đã được gửi đến địa chỉ email đã đăng ký của bạn
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Vị trí công việc có tên tương tự đã tồn tại.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Kỹ năng và vai trò công việc phải thuộc cùng một dự án hoặc là toàn cầu.
+        unique_mappings: Một bản đồ chức năng với cùng kỹ năng và vai trò công việc đã tồn tại.
+      uniq_skillvue: Đánh giá Skillvue này đã có sẵn trong hệ thống. Mã định danh của đánh giá này là %{id}
   emails:
     subject_relationship_table:
       subject_email: Tiêu đề Email
@@ -569,6 +647,9 @@ vi:
         requested_rescheduling: Yêu cầu lên lịch lại
         requested_rescheduling_rejected: Yêu cầu lên lịch lại bị từ chối
     'yes': Đúng
+  idp:
+    reflective_questions:
+      already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
   idp_templates:
     errors:
       user_idp_template_not_found: Bạn chưa được chỉ định mẫu IDP nào.
@@ -611,6 +692,8 @@ vi:
       add: Thêm báo cáo
       download: Tải báo cáo
       view: Xem báo cáo
+    form:
+      load_from_skillvue: Tải từ Skillvue
     modules:
       campaign_factors_table:
         add_condition: Thêm điều kiện

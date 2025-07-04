@@ -5,6 +5,11 @@ FactoryBot.define do
     name { "Job #{Faker::Lorem.characters(number: 5)}" }
     description { Faker::Lorem.sentence }
 
-    skills { create_list(:skill, 3) }
+    trait :with_skills do
+      after(:create) do |job_role|
+        skills = create_list(:skill, 3)
+        job_role.skills << skills
+      end
+    end
   end
 end

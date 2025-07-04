@@ -202,7 +202,10 @@ RSpec.describe Administration::ImportDevelopmentActions do
       it 'raises an error for invalid date format' do
         expect { described_class.new(file, project.id).call }.to raise_error(
           Errors::ImportError,
-          I18n.t('administration.development_action_import.errors.invalid_date_format', date: 'invalid-date')
+          I18n.t(
+            'administration.development_action_import.errors.invalid_date',
+            date: 'invalid-date'
+          )
         )
       end
     end

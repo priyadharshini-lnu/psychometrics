@@ -1,3 +1,3 @@
-﻿ID,Name,Description,SkillType,Tag
-1,Leadership,Description 1,behavioral,"tag1,tag2"
-2,Programming,Description 2,technical,tag3
+﻿ID,Name,Description,SkillType,SkillGroup,Tag
+1,Leadership,Description 1,behavioral,,"tag1,tag2"
+2,Programming,Description 2,technical,,tag3

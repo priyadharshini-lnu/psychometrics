@@ -11,6 +11,52 @@ en-US:
         select_comparison: Choose Comparison Type
         select_factors: Select Factors
         select_operation: Select Operation
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Block "%{block_name}" has duplicate configurations: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Target job role must be different from current job role
+              not_found: Job role '%{name}' not found in project or global roles
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Target job role must be different from current job role
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Value %{column_name} cannot be blank at row %{row_number}
+              invalid_format: Please upload CSV file
+              invalid_job_role_id: Id at row %{row_number} is not a valid job role ID
+              invalid_locale: Locale at row %{row_number} is not a valid locale
+              missing_required_columns: 'Missing required columns: %{columns}'
+              parsing_failed: 'Error while parsing file, error: %{error}.'
+            project:
+              must_exist: Project must exist
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: At least one job role must be enabled with a skill type selected for %{block_name}
+              invalid_skill_type: 'Invalid skill type %{skill_type} for %{role_name} for %{block_name}. Valid options: %{valid_options}'
+              props_missing: Job
+        skillvue:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Row %{row}: Duplicate value %{value} for %{field}'
+              invalid_format: Please upload xlsx file
+              missing_headers: "%{sheet_name} sheet is missing required headers: %{headers}"
+              missing_sheets: 'Missing required sheets: %{sheets}'
+              missing_value: 'Row %{row}: Missing value for %{field}'
+            project:
+              must_exist: Project must exist
   activerecord:
     attributes:
       membership:
@@ -37,6 +83,13 @@ en-US:
           attributes:
             current_password:
               invalid: Current password is incorrect
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Export Job Roles Translations
+        export_proficiency_levels: Export Proficiency Levels
+        import_job_roles_translations: Import Job Roles Translations
+        import_skills_rater_taxonomies: Import Skill Rater Taxonomies
   administration: Administration
   anonym:
     close: Close
@@ -65,6 +118,12 @@ en-US:
     card_actions:
       begin: Begin
       continue: Continue
+    column:
+      external_settings:
+        skillvue_assessment_name: Skillvue Assessment Name
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Begin
       cancel: Cancel
@@ -203,9 +262,9 @@ en-US:
       campaign: Campaign
       change_password: Change Password
       development: Development
+      direct_reportees: Direct Reportees
       home: Home
       insights: Insights
-      my_direct_reportees: My Direct Reportees
       my_plan: My Plan
       profile: Profile
       profile_details: Details
@@ -257,6 +316,15 @@ en-US:
   campaign_assessment:
     assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
+    column:
+      skillvue_email_id: Skillvue Candidate Email ID
+      skillvue_external_assessment_id: Skillvue Assessment ID
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Something went wrong. Please contact administrator
+        placeholder: Select an Assessment Center Group
+        success_message: Assessor Campaign Assessment Group was assigned successfully
+        title: Assessment Center Group
     statuses:
       completed: Completed
       in_progress: In Progress
@@ -375,6 +443,7 @@ en-US:
     column:
       action: Action
       category: Category
+      code: Code
       created_at: Created At
       id: Id
       status: Status
@@ -390,6 +459,7 @@ en-US:
       download: Download
       na: N/A
       ok: Ok
+      refer_export_file: Refer to the Export functionality to extract a template that can be used to Import here.
       response: Response
   devise:
     administrators:
@@ -442,6 +512,14 @@ en-US:
     two_factor_authentication:
       attempt: Please enter the OTP, you have received at your registered email address
       code_has_been_sent: Your new OTP has been sent to your registered email address
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: A job role with the same name already exists.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Skill and job role must belong to same project or be global.
+        unique_mappings: A mapping with the same skill and job role already exists.
+      uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
   emails:
     subject_relationship_table:
       subject_email: Subject Email
@@ -579,6 +657,29 @@ en-US:
   idp:
     actions: Actions
     board: Board
+    comment_details:
+      add_comment: Add Comment
+      add_comment_placeholder: Add a comment...
+      add_reply_placeholder: Add a reply...
+      go_to_skill: Go to skill
+    comments:
+      close: Close
+      comments: Comments
+      filter_comments: Filter comments
+      mark_as_resolved: Mark as resolved
+      mark_as_unresolved: Mark as unresolved
+      replied: Replied
+      replies: Replies
+      reply: Reply
+      resolve: Resolve
+      resolved: Resolved
+      resolved_message: This comment has been resolved and replies are disabled.
+      show_only_read: Show only read
+      show_only_resolved: Show only resolved
+      show_only_unread: Show only unread
+      show_only_unresolved: Show only unresolved
+      sort_by_date: Sort by date
+      you: You
     convert_to_draft: Convert to Draft
     details: Details
     development_actions:
@@ -610,6 +711,7 @@ en-US:
       on_the_job: On the job
       other: Other
       private: Private
+      publish_plan: Publish Plan
       remove: Remove
       skill: Skill
       sprint: Sprint
@@ -617,7 +719,6 @@ en-US:
       structured_learning: Structured learning
       submit_plan: Submit Plan
       write_here: Write here...
-    direct_reportee_details: My Direct Reportee Details
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -625,7 +726,6 @@ en-US:
       add_skills_step: Add Skills
       continue_to_rate_skills: Continue to rate skills
       getting_started: Getting Started
-      getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
       less_skills: Show less skills
       more_skills: Explore more skills
       next: Next
@@ -644,7 +744,6 @@ en-US:
     manage_plan: Manage Plan
     mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
-    my_direct_reportees: My Direct Reportees
     my_plan:
       development_plan: Development Plan
       graphs:
@@ -756,6 +855,7 @@ en-US:
         skills_count: Skills Count
         title: Report Summary
     reflective_questions:
+      already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer_later: Answer Later
       answer_placeholder: Write your answer here...
       errors:
@@ -812,6 +912,8 @@ en-US:
       add: Add Report
       download: Download report
       view: View Report
+    form:
+      load_from_skillvue: Load from Skillvue
     modules:
       campaign_factors_table:
         add_condition: Add Condition

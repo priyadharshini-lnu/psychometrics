@@ -11,6 +11,52 @@ id:
         select_comparison: Pilih Jenis Perbandingan
         select_factors: Pilih Faktor
         select_operation: Pilih Operasi
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{nama_blok}" memiliki konfigurasi duplikat: %{konfigurasi_duplikat}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Peran pekerjaan target harus berbeda dari peran pekerjaan saat ini
+              not_found: Peran pekerjaan '%{nama}' tidak ditemukan dalam peran proyek atau global
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Peran pekerjaan target harus berbeda dari peran pekerjaan saat ini
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Nilai %{nama_kolom} tidak boleh kosong pada baris %{nomor_baris}
+              invalid_format: Silakan unggah file CSV
+              invalid_job_role_id: Id pada baris %{baris_nomor} bukan merupakan ID peran pekerjaan yang valid
+              invalid_locale: Lokasi di baris %{baris_nomor} bukan merupakan lokasi yang valid
+              missing_required_columns: 'Kolom yang diperlukan tidak ada: %{kolom-kolom}'
+              parsing_failed: 'Kesalahan saat mem-parsing file, kesalahan: %{error}.'
+            project:
+              must_exist: Proyek harus ada
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{nama_blok}
+              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{jenis_keterampilan} untuk %{nama_peran} untuk %{nama_blok}. Opsi yang valid: %{valid_options}'
+              props_missing: Pekerjaan
+        skillvue:
+          attributes:
+            name:
+              not_unique: Integrasi ini sudah ada untuk proyek ini.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Baris %{baris}: Nilai duplikat %{nilai} untuk %{bidang}'
+              invalid_format: Silakan unggah file xlsx
+              missing_headers: "%{nama_sheet} sheet tidak ada header yang diperlukan: %{header}"
+              missing_sheets: 'Lembar yang diperlukan hilang: %{lembaran}'
+              missing_value: 'Baris %{baris}: Nilai yang hilang untuk %{baris}'
+            project:
+              must_exist: Proyek harus ada
   activerecord:
     attributes:
       membership:
@@ -37,6 +83,13 @@ id:
           attributes:
             current_password:
               invalid: Kata sandi saat ini salah
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Penerjemahan Peran Pekerjaan Ekspor
+        export_proficiency_levels: Tingkat Kemahiran Ekspor
+        import_job_roles_translations: Impor Terjemahan Peran Pekerjaan
+        import_skills_rater_taxonomies: Impor Taksonomi Penilai Keterampilan
   administration: Administrasi
   anonym:
     close: Tutup
@@ -65,6 +118,12 @@ id:
     card_actions:
       begin: Mulai
       continue: Lanjutkan
+    column:
+      external_settings:
+        skillvue_assessment_name: Nama Penilaian Skillvue
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Mulai
       cancel: Batal
@@ -257,6 +316,15 @@ id:
   campaign_assessment:
     assessment_center_heading: Rincian Pusat Penilaian
     assessments_heading: Tugas Anda
+    column:
+      skillvue_email_id: ID Email Kandidat Skillvue
+      skillvue_external_assessment_id: ID Penilaian Skillvue
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Ada yang tidak beres. Silakan hubungi administrator
+        placeholder: Memilih Grup Pusat Penilaian
+        success_message: Penilai Kelompok Penilai Kampanye berhasil ditugaskan
+        title: Kelompok Pusat Penilaian
     statuses:
       completed: Selesai
       in_progress: Sedang Berlangsung
@@ -374,6 +442,7 @@ id:
     column:
       action: Tindakan
       category: Kategori
+      code: Kode
       created_at: Dibuat di
       id: Id
       status: Status
@@ -389,6 +458,7 @@ id:
       download: Unduh
       na: N/A
       ok: Baiklah
+      refer_export_file: Lihat fungsi Ekspor untuk mengekstrak template yang dapat digunakan untuk Mengimpor di sini.
       response: Tanggapan
   devise:
     administrators:
@@ -441,6 +511,14 @@ id:
     two_factor_authentication:
       attempt: Masukkan OTP yang telah Anda terima di alamat email yang terdaftar
       code_has_been_sent: OTP baru Anda telah dikirim ke alamat email yang terdaftar
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Peran pekerjaan dengan nama yang sama sudah ada.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Keahlian dan peran pekerjaan harus berasal dari proyek yang sama atau bersifat global.
+        unique_mappings: Pemetaan dengan keterampilan dan peran pekerjaan yang sama sudah ada.
+      uniq_skillvue: Penilaian Skillvue ini sudah ada di dalam sistem. ID dari penilaian ini adalah %{id}
   emails:
     subject_relationship_table:
       subject_email: Email Subjek
@@ -575,6 +653,9 @@ id:
         requested_rescheduling: Penjadwalan Ulang yang Diminta
         requested_rescheduling_rejected: Permintaan Penjadwalan Ulang Ditolak
     'yes': Ya
+  idp:
+    reflective_questions:
+      already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
   idp_templates:
     errors:
       user_idp_template_not_found: Tidak ada templat IDP yang ditetapkan untuk Anda.
@@ -617,6 +698,8 @@ id:
       add: Tambah Laporan
       download: Unduh laporan
       view: Lihat Laporan
+    form:
+      load_from_skillvue: Memuat dari Skillvue
     modules:
       campaign_factors_table:
         add_condition: Tambahkan Kondisi

@@ -73,7 +73,13 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
                 behavioral_global_skill_settings: 'selected',
                 behavioral_client_skill_settings: 'none',
                 technical_global_skill_settings: 'none',
-                technical_client_skill_settings: 'none'
+                technical_client_skill_settings: 'none',
+                translations: {
+                  en: {
+                    title_text: 'Example Template Title',
+                    subtitle_text: 'Example Template Subtitle'
+                  }
+                }
               },
               relationships: {
                 project: {
@@ -123,6 +129,14 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
           expect(idp_template_response).to have_attribute(:behavioral_client_skill_settings).with_value('none')
           expect(idp_template_response).to have_attribute(:technical_global_skill_settings).with_value('none')
           expect(idp_template_response).to have_attribute(:technical_client_skill_settings).with_value('none')
+          expect(idp_template_response).to have_attribute(:translations).with_value(
+            {
+              'en' => {
+                'title_text' => 'Example Template Title',
+                'subtitle_text' => 'Example Template Subtitle'
+              }
+            }
+          )
         end
       end
     end

@@ -8,8 +8,8 @@ I18n.locale = document.body.getAttribute('data-locale')
 const IDP = ({ rtl }) => {
   const { user_idp_skills: skills } = useAppSelector(state => state.idp.userIdp)
 
-  const behavioralSkills = skills.filter(skill => skill.skillType === 'behavioral')
-  const technicalSkills = skills.filter(skill => skill.skillType === 'technical')
+  const behavioralSkills = skills.filter(skill => skill.skill_type === 'behavioral')
+  const technicalSkills = skills.filter(skill => skill.skill_type === 'technical')
 
   return (
     <>

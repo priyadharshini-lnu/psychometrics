@@ -67,7 +67,7 @@ describe('Test calculateWeightedAverageScores', () => {
 
     const result = calculateWeightedAverageScores(columnsData, evaluatorsData, FactorWeightagesData);
 
-    expect(result).toEqual({ factor1: '2.0', factor2: '2.3' });
+    expect(result).toEqual({ factor1: '2.05', factor2: '2.25' });
   });
 
   it('should handle null and undefined scores', () => {
@@ -88,6 +88,6 @@ describe('Test calculateWeightedAverageScores', () => {
 
     const result = calculateWeightedAverageScores(columnsData, evaluatorsData, FactorWeightagesData);
 
-    expect(result).toEqual({ factor1: '-', factor2: '2.3' });
+    expect(result).toEqual({ factor1: '-', factor2: '2.25' });
   });
 });

@@ -105,3 +105,8 @@ disable_inactive_users:
   cron: "0 5 * * *"  # Runs daily at 5 AM
   class: DisableInactiveUsersJob
   queue: cron_tasks
+
+send_idp_comments_notifications:
+  cron: "0 */12 * * *" # At every 12th hour
+  class: SendIdpCommentsNotificationsJob
+  queue_as: cron_tasks

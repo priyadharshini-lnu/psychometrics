@@ -10,16 +10,18 @@ module Idp
     end
 
     def call
+      return broadcast :ok, false if @user_plan.completed?
+
       UserIdpPlan.transaction do
         reflection_questions_params.each do |reflection_question|
           @user_plan.user_reflection_question_answers.find_or_initialize_by(
             reflection_question_id: reflection_question[:id]
           ).update!(
-            answer: reflection_question[:answer]
+            answer: reflection_question[:answer].presence
           )
         end
       end
-      broadcast :ok
+      broadcast :ok, true
     end
   end
 end

@@ -72,7 +72,7 @@ const getMenuItems = (
   icon: <ReadOutlined className={styles.siderIcon} />,
   children: [
     { label: I18n.t('campaign.dashboard_menu.my_plan'), key: 'my_plan' },
-    { label: I18n.t('campaign.dashboard_menu.my_direct_reportees'), key: 'direct_reportees' },
+    { label: I18n.t('campaign.dashboard_menu.direct_reportees'), key: 'direct_reportees' },
   ],
 }] : [],
 ...showBookings ? [{

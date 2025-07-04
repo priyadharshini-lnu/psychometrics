@@ -12,6 +12,12 @@ module EndUser
         required(:skill_gap_report_available).filled(:bool?)
         required(:self_rating_enabled).filled(:bool?)
         required(:user).hash(IdpUserSchema.schema(context, options))
+        required(:unread_comments_count).filled(:int?)
+        required(:instructions).maybe do
+          hash do
+            optional(:content).filled(:str?)
+          end
+        end
 
         optional(:user_idp_skills).array(:hash) do
           required(:id).filled(:int?)

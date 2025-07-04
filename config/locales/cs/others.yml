@@ -31,6 +31,10 @@ cs:
             blank: Odpovědi nemohou být prázdné
           group_id:
             blank: Id skupiny nemůže být prázdné
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{název_bloku}" má duplicitní konfigurace: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ cs:
               too_short: Heslo hodnotitele je příliš krátké (minimum je %{count} znaků)
             first_name:
               blank: Křestní jméno nesmí být prázdné
+            job_role:
+              cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
+              not_found: Pracovní role '%{name}' nebyla nalezena v projektových ani globálních rolích
             last_name:
               blank: Příjmení nesmí být prázdné
             locale:
@@ -182,12 +189,25 @@ cs:
               invalid: E-mail je neplatný
             first_name:
               blank: Křestní jméno nesmí být prázdné
+            job_role:
+              cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
             last_name:
               blank: Příjmení nesmí být prázdné
             locale:
               inclusion: Špatné umístění
             password:
               too_short: Heslo je příliš krátké. Je vyžadován minimální počet znaků %{count}
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Hodnota %{název_sloupce} nemůže být prázdná na řádku %{číslo_řádku}
+              invalid_format: Nahrajte prosím soubor CSV
+              invalid_job_role_id: Id na řádku %{číslo_řádku} není platné ID pracovní role
+              invalid_locale: Locale na řádku %{číslo_řádku} není platné locale
+              missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
+              parsing_failed: 'Chyba při zpracování souboru, chyba: %{error}.'
+            project:
+              must_exist: Projekt musí existovat
         mettl:
           attributes:
             name:
@@ -303,6 +323,16 @@ cs:
             email:
               blank: E-mail nemůže být prázdný
               not_uniq_email: Řádek s e-mailem je již přítomen
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
+              invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
+              props_missing: Práce
+        skillvue:
+          attributes:
+            name:
+              not_unique: Tato integrace je v tomto projektu již přítomna.
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ cs:
             last_name:
               blank: Příjmení nesmí být prázdné
               starts_with_invalid_characters: Příjmení nesmí začínat znaky =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Řádek %{řádek}: Duplicitní hodnota %{hodnota} pro %{pole}'
+              invalid_format: Nahrajte prosím soubor xlsx
+              missing_headers: "%{název_listu} chybí požadované záhlaví: %{záhlaví}"
+              missing_sheets: 'Chybějící požadované listy: %{listy}'
+              missing_value: 'Řádek %{řádek}: Chybějící hodnota pro %{pole}'
+            project:
+              must_exist: Projekt musí existovat
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ cs:
         export_development_actions: Akce na rozvoj vývozu
         export_dimension_as_json: Export rozměru JSON
         export_factor_translations: Překlady exportních faktorů
+        export_job_roles_translations: Export pracovních rolí Překlady
         export_norm: Norma pro vývoz
         export_occupations: Povolání Export
+        export_proficiency_levels: Úrovně odborné způsobilosti pro export
         export_report_data: Export dat sestavy
         export_reports_and_assessments: Exportní zprávy a hodnocení
         export_skill_translations: Exportní dovednosti Překlady
@@ -784,12 +826,15 @@ cs:
         import_external_campaign_scoring: Importování externího bodování kampaní
         import_factor_translations: Překlady importních faktorů
         import_factors: Faktory dovozu
+        import_job_roles_translations: Import pracovních rolí Překlady
         import_norm: Importní norma
+        import_proficiency_level_translations: Importovat překlady na úrovni pokročilosti
         import_question_translations: Překlady importních otázek
         import_raw_data: Import surových dat
         import_scoring_data: Import dat pro skórování
         import_skill_translations: Importovat dovednosti Překlady
         import_skills: Dovednosti pro import
+        import_skills_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_sms_invites: Importovat pozvánku SMS
         import_users: Import uživatelů
         migrate_assessment_translations: Hodnocení Překlad migrace
@@ -924,6 +969,7 @@ cs:
         pearson_norm_id: Pearsonova norma ID
         saville_assessment_name: Hodnocení Saville Název
         simulation_assessment_name: Hodnocení simulace Název
+        skillvue_assessment_name: Název hodnocení Skillvue
       translations_migrated: Přeloženo
     create: Vytvořit
     dashboard: Přístrojová deska
@@ -963,6 +1009,7 @@ cs:
         psychometric: Psychometrické údaje
         saville: Saville
         simulation: Simulace
+        skillvue: Skillvue
         threesixty: kampaň 360
       status:
         finished: Dokončeno
@@ -1232,9 +1279,9 @@ cs:
       campaign: Kampaň
       change_password: Změnit heslo
       development: Vývoj
+      direct_reportees: Přímí zástupci
       home: Domov
       insights: Poznatky
-      my_direct_reportees: Moji přímí podřízení
       my_plan: Můj plán
       profile: Profil
       profile_details: Detaily
@@ -1340,6 +1387,8 @@ cs:
       pearson_variation: Pearsonova variace
       prework: Předpráce
       simulation_content_variation: Varianta obsahu simulace
+      skillvue_email_id: Skillvue Emailové ID kandidáta
+      skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Univerzální odkaz
     drawer:
       mettl_schedule_name: Mettl Plán Název
@@ -1355,6 +1404,11 @@ cs:
       raw_results_export_scheduled: Úloha exportu surových výsledků hodnocení byla úspěšně naplánována
       scoring_results_export_scheduled: Výsledky bodového hodnocení Exportní úloha byla úspěšně naplánována
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Něco se pokazilo. Kontaktujte prosím správce
+        placeholder: Vyberte skupinu Assessment Center
+        success_message: Posuzovatel Posuzovací skupina kampaně byla úspěšně přiřazena
+        title: Skupina Assessment Center
       import_raw:
         body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
         success_msg: Import byl úspěšně nahrán
@@ -1669,6 +1723,7 @@ cs:
       assessor: Posuzovatel
       category: Kategorie
       client: Klient
+      code: Kód
       created_at: Vytvořeno v
       created_by: Vytvořil
       created_date: Datum vytvoření
@@ -1756,6 +1811,7 @@ cs:
       na: Neznámé
       none: Žádné
       ok: OK
+      refer_export_file: Viz funkce Export pro získání šablony, kterou lze použít k importu.
       reference_language: Referenční jazyk
       response: Reakce
       selected: Vybrané stránky
@@ -1856,7 +1912,7 @@ cs:
           project: 'Projekt: %{section_name}'
         subject: Pozvánka do Lighthouse
       password_change:
-        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese support@thetalententerprise.com
+        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com
 
           '
         regards: 'S pozdravem, tým Lighthouse
@@ -1990,9 +2046,12 @@ cs:
       exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
       filled?: nemůže být prázdný
       idp_template:
+        content_required: Pro pokyny je vyžadován obsah
         tag_or_skill_required: Vyberte prosím buď štítek nebo dovednost, když je vybrána možnost "Vybráno".
       invalid_name: jako platné znaky jsou povoleny pouze abeceda, číslo, mezera, pomlčka a tečka
       invalid_value: neplatný příkaz '%{value}' na řádku číslo %{row}
+      job_roles:
+        unique_within_job_group: Pracovní role se stejným názvem již existuje.
       json?: Měl by to být platný JSON
       key?: nemůže být prázdný
       match_regexp?: neplatná hodnota
@@ -2013,9 +2072,13 @@ cs:
       skill_alias:
         unique_alias: Alias by měl být jedinečný
         unique_skill: Dovednost by měla být jedinečná
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Dovednost a pracovní role musí patřit ke stejnému projektu nebo být globální.
+        unique_mappings: Mapování se stejnou dovedností a pracovní rolí již existuje.
       uniq: Toto posouzení Mettl je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq?: by měly být jedinečné
       uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
+      uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
       update_workshop:
         less_than_booked: Celkový počet míst musí být větší než rezervovaný
       user_availability_date:
@@ -2345,6 +2408,29 @@ cs:
   idp:
     actions: Akce
     board: Přehled
+    comment_details:
+      add_comment: Přidat komentář
+      add_comment_placeholder: Přidat komentář...
+      add_reply_placeholder: Přidat odpověď...
+      go_to_skill: Přejít na dovednost
+    comments:
+      close: Zavřít
+      comments: Komentáře
+      filter_comments: Filtrovat komentáře
+      mark_as_resolved: Označit jako vyřešené
+      mark_as_unresolved: Označit jako nevyřešené
+      replied: Odpovězeno
+      replies: Odpovědi
+      reply: Odpovědět
+      resolve: Vyřešit
+      resolved: Vyřešeno
+      resolved_message: Tento komentář byl vyřešen a odpovědi jsou zakázány.
+      show_only_read: Zobrazit pouze přečtené
+      show_only_resolved: Zobrazit vyřešené
+      show_only_unread: Zobrazit nepřečtené
+      show_only_unresolved: Zobrazit pouze nevyřešené
+      sort_by_date: Seřadit podle data
+      you: Vy
     convert_to_draft: Převést na koncept
     details: Podrobnosti
     development_actions:
@@ -2376,6 +2462,7 @@ cs:
       on_the_job: Při práci
       other: Jiné
       private: Soukromé
+      publish_plan: Publikovat plán
       remove: Odstranit
       skill: Dovednost
       sprint: Sprint
@@ -2383,7 +2470,6 @@ cs:
       structured_learning: Strukturované učení
       submit_plan: Odeslat plán
       write_here: Pište zde...
-    direct_reportee_details: Podrobnosti o přímých podřízených
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2391,7 +2477,6 @@ cs:
       add_skills_step: Přidat dovednosti
       continue_to_rate_skills: Pokračovat k hodnocení dovedností
       getting_started: Začínáme
-      getting_started_info: Vítejte v tvůrci individuálního rozvojového plánu (IDP). Tento plán vám pomůže identifikovat, řídit a sledovat vaše profesní a osobní cíle, stejně jako kroky, které je třeba učinit k jejich dosažení. Vaše profesní cíle mohou zahrnovat behaviorální, vůdčí i technické oblasti rozvoje. Váš IDP je základním nástrojem pro podporu vašeho kariérního rozvoje a zlepšování dovedností.
       less_skills: Zobrazit méně dovedností
       more_skills: Prozkoumat více dovedností
       next: Další
@@ -2410,7 +2495,6 @@ cs:
     manage_plan: Spravovat plán
     mark_as_complete: Označit jako dokončené
     mark_as_incomplete: Označit jako nedokončené
-    my_direct_reportees: Moji přímí podřízení
     my_plan:
       development_plan: Rozvojový plán
       graphs:
@@ -2522,6 +2606,7 @@ cs:
         skills_count: Počet dovedností
         title: Shrnutí zprávy
     reflective_questions:
+      already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
       answer_later: Odpověď Později
       answer_placeholder: Napište sem svou odpověď...
       errors:
@@ -2872,9 +2957,11 @@ cs:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Zatížení od Mettl
       load_from_pearson: Zatížení od společnosti Pearson
+      load_from_skillvue: Zatížení od Skillvue
       none_external: Žádné - Použijte nástroj pro tvorbu sestav
     language: Jazyk zprávy
     language_updated: Jazyk sestavy byl úspěšně aktualizován

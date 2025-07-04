@@ -37,7 +37,7 @@ export const fetch = (assessmentId, currentLocale) => ({
   request: {
     url: `/administration/assessments/${assessmentId}/builders`,
     body: {
-      lang: currentLocale,
+      assessmentLang: currentLocale,
     },
     camelize: false,
     loader: true,

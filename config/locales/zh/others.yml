@@ -31,6 +31,10 @@ zh:
             blank: 答案不能为空
           group_id:
             blank: 组 ID 不能为空
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 区块"%{block_name}"有重复配置： %{duplicate_configurations}
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ zh:
               too_short: 评估者密码太短（最少为 %{count} 字符）
             first_name:
               blank: 名字不能为空
+            job_role:
+              cannot_be_same: 目标工作角色必须与当前工作角色不同
+              not_found: 在项目或全局角色中未发现工作角色"%{name}
             last_name:
               blank: 姓氏不能为空
             locale:
@@ -182,12 +189,25 @@ zh:
               invalid: 电子邮件无效
             first_name:
               blank: 名字不能为空
+            job_role:
+              cannot_be_same: 目标工作角色必须与当前工作角色不同
             last_name:
               blank: 姓氏不能为空
             locale:
               inclusion: 地点错误
             password:
               too_short: 密码太短，至少需要 %{count} 字符
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: 行 %{row_number} 上的值 %{column_name} 不能为空
+              invalid_format: 请上传 CSV 文件
+              invalid_job_role_id: 行 %{row_number} 中的 Id 不是有效的工作角色 ID
+              invalid_locale: 第 %{row_number} 行上的本地语言不是有效的本地语言
+              missing_required_columns: 缺少必填列： %{columns}
+              parsing_failed: 解析文件时出错，错误：%{error}.
+            project:
+              must_exist: 项目必须存在
         mettl:
           attributes:
             name:
@@ -303,6 +323,16 @@ zh:
             email:
               blank: 电子邮件不能为空
               not_uniq_email: 包含电子邮件的行已经存在
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必须启用至少一个工作角色，并为 %{block_name} 选择一个技能类型。
+              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能类型无效。有效选项： %{valid_options}"
+              props_missing: 工作
+        skillvue:
+          attributes:
+            name:
+              not_unique: 本项目已经实现了这种整合。
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ zh:
             last_name:
               blank: 姓氏不能为空
               starts_with_invalid_characters: 姓氏不能以 =、|、+、-、@、% 开头
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 第 %{row} 行：字段 %{field} 的值 %{value} 重复
+              invalid_format: 请上传 xlsx 文件
+              missing_headers: "%{sheet_name} 工作表缺少必要的表头：%{headers}"
+              missing_sheets: 缺少必要的工作表：%{sheets}
+              missing_value: 第 %{row} 行：字段 %{field} 的值缺失
+            project:
+              must_exist: 项目必须存在
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ zh:
         export_development_actions: 出口发展行动
         export_dimension_as_json: 导出尺寸 JSON
         export_factor_translations: 出口系数换算
+        export_job_roles_translations: 导出工作角色翻译
         export_norm: 出口规范
         export_occupations: 职业 出口
+        export_proficiency_levels: 出口能力水平
         export_report_data: 导出报告数据
         export_reports_and_assessments: 出口报告和评估
         export_skill_translations: 出口技能翻译
@@ -784,12 +826,15 @@ zh:
         import_external_campaign_scoring: 导入外部营销活动评分
         import_factor_translations: 进口系数翻译
         import_factors: 进口因素
+        import_job_roles_translations: 导入工作角色翻译
         import_norm: 进口规范
+        import_proficiency_level_translations: 进口熟练程度翻译
         import_question_translations: 导入问题翻译
         import_raw_data: 导入原始数据
         import_scoring_data: 导入评分数据
         import_skill_translations: 进口技能翻译
         import_skills: 进口技能
+        import_skills_rater_taxonomies: 导入技能评级器分类标准
         import_sms_invites: 导入短信邀请
         import_users: 导入用户
         migrate_assessment_translations: 评估 翻译迁移
@@ -924,6 +969,7 @@ zh:
         pearson_norm_id: 皮尔逊标准 ID
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
+        skillvue_assessment_name: Skillvue 评估名称
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -963,6 +1009,7 @@ zh:
         psychometric: 心理测量
         saville: 萨维尔
         simulation: 模拟
+        skillvue: Skillvue
         threesixty: 360 运动
       status:
         finished: 完成
@@ -1232,9 +1279,9 @@ zh:
       campaign: 推广活动
       change_password: 更改密码
       development: 发展
+      direct_reportees: 直下报告
       home: 首页
       insights: 见解
-      my_direct_reportees: 我的直接报告人
       my_plan: 我的计划
       profile: 个人资料
       profile_details: 详情
@@ -1338,6 +1385,8 @@ zh:
       pearson_variation: 皮尔逊变异
       prework: 前期工作
       simulation_content_variation: 模拟内容差异
+      skillvue_email_id: Skillvue 候选人电子邮件 ID
+      skillvue_external_assessment_id: Skillvue 评估 ID
       universal_link: 通用链接
     drawer:
       mettl_schedule_name: 附表名称
@@ -1353,6 +1402,11 @@ zh:
       raw_results_export_scheduled: 评估原始结果导出工作已成功安排
       scoring_results_export_scheduled: 评估评分结果 已成功安排导出工作
     modals:
+      assessor_campaign_assessment_group:
+        error_message: 出错了。请联系管理员
+        placeholder: 选择评估中心组
+        success_message: 成功指派评估员运动评估小组
+        title: 评估中心小组
       import_raw:
         body: 请参阅导出功能，提取可用于此处导入的模板。
         success_msg: 导入已成功上传
@@ -1667,6 +1721,7 @@ zh:
       assessor: 评估员
       category: 类别
       client: 客户
+      code: 代码
       created_at: 创建时间
       created_by: 创建者
       created_date: 创建日期
@@ -1754,6 +1809,7 @@ zh:
       na: 不适用
       none: 无
       ok: 确定
+      refer_export_file: 请参阅导出功能，提取可用于此处导入的模板。
       reference_language: 参考语言
       response: 回答
       selected: 精选
@@ -1854,7 +1910,7 @@ zh:
           project: 项目： %{section_name}
         subject: 灯塔邀请函
       password_change:
-        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 support@thetalententerprise.com 联系支持部门。
+        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。
 
           '
         regards: '莱皓思团队
@@ -1988,9 +2044,12 @@ zh:
       exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
       filled?: 不能空白
       idp_template:
-        tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
+        content_required: 指令需要内容
+        tag_or_skill_required: 选择"已选择"选项时，请选择标签或技能。
       invalid_name: 只允许字母、数字、空格、破折号和点作为有效字符
       invalid_value: 行号 %{row} 上的语句"%{value}"无效
+      job_roles:
+        unique_within_job_group: 具有相同名称的职位角色已存在。
       json?: 应为有效的 JSON
       key?: 不能空白
       match_regexp?: 无效值
@@ -2011,9 +2070,13 @@ zh:
       skill_alias:
         unique_alias: 别名应是唯一的
         unique_skill: 技能应独一无二
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: 技能和工作角色必须属于同一项目或全球项目。
+        unique_mappings: 相同技能和工作角色的映射已经存在。
       uniq: 系统中已存在该 Mettl 评估。 该评估的 ID 是 %{id}
       uniq?: 应是唯一的
       uniq_simulation: 该模拟评估已存在于系统中。 该评估的 ID 是 %{id}
+      uniq_skillvue: 系统中已存在此技能评估。该评估的 ID 是 %{id}
       update_workshop:
         less_than_booked: 总席位数必须大于预订席位数
       user_availability_date:
@@ -2343,6 +2406,29 @@ zh:
   idp:
     actions: 行动
     board: 董事会
+    comment_details:
+      add_comment: 添加评论
+      add_comment_placeholder: 添加评论...
+      add_reply_placeholder: 添加回复...
+      go_to_skill: 查看技能
+    comments:
+      close: 关闭
+      comments: 评论
+      filter_comments: 筛选评论
+      mark_as_resolved: 标记为已解决
+      mark_as_unresolved: 标记为未解决
+      replied: 已回复
+      replies: 回复
+      reply: 回复
+      resolve: 解决
+      resolved: 已解决
+      resolved_message: 此评论已解决，回复已禁用。
+      show_only_read: 只显示已读
+      show_only_resolved: 显示已解决
+      show_only_unread: 只显示未读
+      show_only_unresolved: 只显示未解决
+      sort_by_date: 按日期排序
+      you: 您
     convert_to_draft: 轉換為草稿
     details: 详细信息
     development_actions:
@@ -2369,13 +2455,13 @@ zh:
       on_the_job: 工作中
       other: 其他
       private: 私人
+      publish_plan: 发布计划
       remove: 移除
       skill: 技能
       sprint: 冲刺
       structured_learning: 结构化学习
       submit_plan: 提交计划
       write_here: 在此处写入...
-    direct_reportee_details: 直属下属详情
     initial_steps:
       add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
       add_skill_group_title: 探索您的 %{category} 技能
@@ -2383,7 +2469,6 @@ zh:
       add_skills_step: 添加技能
       continue_to_rate_skills: 继续评定技能
       getting_started: 入门
-      getting_started_info: 欢迎来到您的个人发展计划 (IDP) 创建者页面。 该计划将帮助您确定、管理和跟踪您的职业和个人目标，以及实现这些目标所需的步骤。 您的职业目标可能包括行为、领导力以及技术领域的发展。 您的 IDP 是支持您的职业发展和技能提升的重要工具。
       less_skills: 显示更少技能
       more_skills: 探索更多技能
       next: 下一页
@@ -2402,7 +2487,6 @@ zh:
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
-    my_direct_reportees: 我的直属下属
     my_plan:
       development_plan: 发展计划
       graphs:
@@ -2520,6 +2604,7 @@ zh:
         skills_count: 技能数量
         title: 报告摘要
     reflective_questions:
+      already_completed: IDP 已经完成，现在不能回答问题。
       answer_later: 稍后回答
       answer_placeholder: 在此写下您的答案...
       errors:
@@ -2870,9 +2955,11 @@ zh:
         mettl: 水
         pearson: 皮尔森
         saville: 萨维尔
+        skillvue: Skillvue
     form:
       load_from_mettl: 来自 Mettl 的负载
       load_from_pearson: 从培生加载
+      load_from_skillvue: 从 Skillvue 装载
       none_external: 无 - 使用报告生成器
     language: 报告语言
     language_updated: 报告语言已成功更新

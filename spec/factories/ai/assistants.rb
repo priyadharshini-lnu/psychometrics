@@ -7,9 +7,9 @@ FactoryBot.define do
     action { 'chat' }
     user_prompt { 'Ask me anything' }
     system_prompt { 'Be helpful and concise' }
+    model_id { 'gpt-4o-mini' }
 
-    # Optional associations
-    owner { nil }
-    last_modified_by { nil }
+    association :owner, factory: :tenancy
+    association :last_modified_by, factory: :user
   end
 end

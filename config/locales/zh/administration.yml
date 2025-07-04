@@ -173,6 +173,10 @@ zh:
             manage: 管理
             title: IDP 模板
             view: 查看
+          jobRoles:
+            manage: 管理
+            title: 工作角色
+            view: 查看
           mediaLibraries:
             manage: 管理
             title: 媒体图书馆
@@ -186,6 +190,16 @@ zh:
             manage: 管理
             title: 规范
             view: 查看
+          proficiencyLevels:
+            export: 出口能力水平
+            export_translations: 出口能力水平翻译
+            import: 进口能力等级
+            import_translations: 进口能力水平翻译
+            manage: 管理
+            title: 能力水平
+            view: 查看
+          proficiency_level:
+            title: 能力水平
           projectSettings:
             assessments: 评估
             design: 设计
@@ -230,6 +244,7 @@ zh:
             approve_report: 批准报告
             bulk_download: 批量下载
             bulk_regenerate_reports: 批量重新生成报告
+            bulk_update_evaluation_status: 批量更新评估状态
             download_report: 下载报告
             edit_report: 编辑报告
             export_occupations: 出口职业
@@ -271,6 +286,22 @@ zh:
             manage: 管理
             title: 工作坊
             view: 查看
+    ai_assistants:
+      actions:
+        playground: 游乐场
+      ai_assistants: 人工智能助理
+      ai_assistants_playground: 人工智能助理游乐场
+      column:
+        ai_action: 人工智能行动
+        provider: 提供商
+      form:
+        action: 行动
+        description: 说明
+        name: 名称
+        provider: 提供商
+        system_prompt: 系统提示
+        title: 人工智能助理
+        user_prompt: 用户提示
     any: " - 任何 - "
     api:
       campaigns:
@@ -306,7 +337,7 @@ zh:
         confirm_message: 您确定要删除邀请吗？
         confirm_message_with_title: 您确定要删除标题为"%{invite_title}"的邀请吗？
         confirm_title: 确认
-        exceeded_subjects_count: 活动有 %{ 用户}主题。 每次邀请只能添加 %{ 数量}主题
+        exceeded_subjects_count: 活动有 %{users}主题。 每次邀请只能添加 %{count}主题
         id: 身份证
         invites: 邀请
         next: 下一页
@@ -433,6 +464,7 @@ zh:
         per_page: 每页
         plural:
           block: 大厦
+          choice: 选择
           question: 问题
         present_only: 仅出席
         question_per_factor_and_show: 每个因素的问题，并显示
@@ -448,9 +480,7 @@ zh:
             body: "<p>您确定要删除此评估吗？</p>\n"
             title: 删除<strong>评估</strong>？
           soft_delete:
-            body: '<p>您确定要软删除此 "评估 "吗？</p>
-
-              '
+            body: <p>您确定要软删除此 "评估 "吗？</p>
             title: 软删除<strong>评估</strong>？
           toggle_status:
             body: "<p>您确定要 %{status} 本次评估吗？</p>\n"
@@ -1032,6 +1062,13 @@ zh:
         success_msg: 导入已成功上传
       modal:
         title: 导入外部营销活动评分
+    client_features:
+      client_features: 客户特点
+      form:
+        ai_assistants: 人工智能助理
+        ai_assisted_idp: AI 援助的境内流离失所者
+        global_skills: 全球技能
+        sms_notification: 短信通知
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1478,7 +1515,11 @@ zh:
       back: 返回
       cancel: 取消
       disabled: Diasbled
+      download_sample_file: 下载样本文件
       enabled: 已启用
+      import:
+        failure_msg: 导入文件时出错。
+      minute: 分钟
       next: 下一页
       reset: 重置
       save: 节省
@@ -1491,11 +1532,31 @@ zh:
         successfully: 通信 %{name} 已成功删除。
       edit:
         header: 编辑通讯
+      edit_translation:
+        body_label: 正文标签
+        copy: 复制
+        copy_to_code_editor_hint: 提示：复制上面的参考文本并切换到代码编辑器模式以便更轻松地编辑 HTML
+        locale_label: 区域设置
+        no_reference_body: 没有可用的参考内容
+        no_reference_subject: 没有可用的参考主题
+        reference_body_label: 参考正文标签
+        reference_subject_label: 参考主题标签
+        subject_label: 主题标签
+        title: 编辑翻译
+        update_button: 更新翻译
       form:
         all: 全部
         assessment_completion_status_code: 评估完成状态代码
         assessment_completion_status_code_hint: 如果指定了完成代码，则只有在用户的评估具有该完成状态代码时才会发送。
-        body_mustache: "{{{user_link}} - 现有用户的平台链接或新用户设置密码的一次性链接 {{{user_url}} - 与 user_link 相同，但只有 URL 而非超链接 {{{user_link_qrcode}} - 嵌入从 user_link 生成的 QR 代码 {{first_name}} - 接收者姓名 {{last_name}} - 接收者姓氏 {{email}} - 接收者电子邮件 {{schedule_start_date}} - 计划开始日期 {{schedule_end_date}} - 计划结束日期\n"
+        body_mustache: |
+          "{{{user_link}} - 现有用户的平台链接或新用户设置密码的一次性链接
+           {{{user_url}} - 与 user_link 相同，但只有 URL 而非超链接
+           {{{user_link_qrcode}} - 嵌入从 user_link 生成的 QR 代码
+           {{first_name}} - 接收者姓名
+           {{last_name}} - 接收者姓氏
+           {{email}} - 接收者电子邮件
+           {{schedule_start_date}} - 计划开始日期
+           {{schedule_end_date}} - 计划结束日期"
         completion: 完工
         delivery_at: 交货价格（消费税）
         delivery_delay_hours: 交货延迟（小时）
@@ -1505,11 +1566,14 @@ zh:
           not_started: 如果未开始评估
           send_now: 现在发送
           specific_datetime: 发送至
+        development_action_deadline_missed: 错过发展行动最后期限
+        idp_deadline_missed: 错过 IDP 截止日期
         idp_template_approved: IDP 批准
         idp_template_assigned: 分配的 IDP
         idp_template_rejected: 拒绝的境内流离失所者
         invitation: 邀请函
         kind: 通信类型
+        locale: 区域设置
         magic_link_email: 魔法链接电子邮件
         new_assignment: 新任务
         new_users: 新用户
@@ -1563,9 +1627,11 @@ zh:
           copy: 复制交流
           delete: 删除通信
           download: 下载《传播史
+          edit_translation: 编辑翻译
           view: 查看交流
       show:
         assessment: 评估：
+        assessment_center_group: 评估中心小组：
         back: 返回
         body: 身体
         campaign: 活动：
@@ -1585,23 +1651,33 @@ zh:
         copy: 复制交流
         destroy: 删除通信
         download: 下载《传播史
+        edit_translation: 编辑翻译
         title: 通信的选择
         view: 查看交流
       toggle_status:
         successfully: 通信已成功更新。
+      update_translation:
+        successfully_updated: 翻译已成功更新。
     components:
       input_duration:
         placeholder: 输入 "1d 2h 3m
     create: 创建
     dashboard:
       capacity_name: 能力名称
+      choose_file_format: 选择文件格式
       dashboard_types:
         oracle_analytics: 甲骨文分析
         powerbi: PowerBi
       dashboards: 仪表板
+      export_dashboard_to_file: 将仪表板导出到文件
+      export_job_failure: 导出失败
+      export_job_success: 导出工作已开始。完成后会通知您。
       get_started: 开始
       initialize_msg: 为该活动初始化仪表板
       loading_failed: 仪表板加载失败。
+      only_export_current_tab: 仅导出当前选项卡
+      pdf: PDF
+      pptx: PPTX
       preview:
         embed_token_error_description: 请检查设置中的数据集和报告 ID 是否正确。
         embed_token_error_title: 无法生成嵌入式令牌。
@@ -1671,22 +1747,28 @@ zh:
         csv_file_required: 必须是 CSV 文件
         image_download_failed: 从 %{url} 下载图像失败： %{message}
         invalid_csv_format: CSV 格式无效： %{message}
-        invalid_date_format: 日期格式无效： %{date}
+        invalid_date: "％{date}的日期格式无效。"
+        invalid_date_format: 行％{row}：％{field}的无效日期格式。
         invalid_development_action_type: 第 %{row} 行：开发行动类型“%{value}”无效。有效的开发行动类型为：%{valid_development_action_types}
+        invalid_duration_format: 持续时间仅允许数字值。行％{row}：％{value}不是有效的持续时间。
         invalid_image_file: 无效图像文件：%{信息｝
         invalid_image_url: 图像 URL 格式无效：%{url} %{url}
+        invalid_languages: 无效的可用语言％{invalid_languages}对于行％{row}。
         invalid_learning_style: 行 %{row}：学习类型"%{value}"无效。 有效类型为：%{valid_types}。
+        languages_only_for_courses: 可用语言只能设置为“课程”类型的开发动作。请删除ROW％{row}的可用语言，或将开发操作的类型更改为“课程”。
         missing_columns: 缺少必填列： %{fields}
         save_failed: '挽救失败的开发项目: %{message}'
         skill_not_found: 未找到 ID 为 %{skill_id} 的技能
     development_action_translations:
       import:
         errors:
-          blank_id: 行 %{行}：ID 不能为空
+          blank_id: 行 %{row}：ID 不能为空
           development_action_not_found: 未找到开发行动
           invalid_csv_format: CSV 格式无效： %{message}
+          invalid_field: 行 %{row}：无效字段"%{field}"，必须为 "名称 "或 "描述"
           invalid_file_format: 文件必须是 CSV 文件
-          invalid_id: 行 %{行}：ID 必须是数字
+          invalid_id: 行 %{row}：ID 必须是数字
+          invalid_id_format: 行 %{row}：ID 必须为 "id#字段 "格式
           missing_columns: 缺少必填列： %{fields}
           save_failed: 保存失败
     development_actions:
@@ -1697,6 +1779,9 @@ zh:
       development_action_types:
         course: 课程
         default: 默认值
+      duration:
+        max_length: 不能大于1年
+        min_length: 不能少于1分钟
       edit:
         header: 编辑发展行动
       export:
@@ -1709,15 +1794,19 @@ zh:
         development_action_translations_title: 出口发展行动 翻译
         development_actions_title: 出口发展行动
       export_development_action_translations: 基于项目的发展行动翻译
+      export_development_action_translations_project: 基于项目的发展行动翻译
       export_development_actions: 基于项目的发展行动
+      export_development_actions_project: 基于项目的发展行动
       export_global_development_actions: 全球发展行动
       export_global_development_actions_translations: 全球发展行动 翻译
       form:
+        available_languages: 可用语言
         client_placeholder: 选择客户
         course_image: 课程图像
         course_link: 课程链接
         description: 说明
         development_action_type: 发展行动类型
+        duration: 期间
         end_date: 结束日期
         learning_style: 学习方式
         name: 名称
@@ -1749,9 +1838,7 @@ zh:
       resource:
         confirmations:
           delete:
-            body: '<p>您确定要删除此 "开发行动 "吗？</p>
-
-              '
+            body: <p>您确定要删除此 "开发行动 "吗？</p>
             title: 删除<strong>开发行动</strong>?
           toggle_status:
             body: "<p>您确定要 %{status} 此开发活动吗？</p>\n"
@@ -1778,6 +1865,7 @@ zh:
         enable_occupations: 启用职业
       import_factors:
         import: 进口
+        sample_file: 样本文件
         successfully: 为维度 %{name} 计划了导入因子作业。
         title: 进口因素
       import_modal:
@@ -1840,7 +1928,12 @@ zh:
       project_participants: 参与者
     enable: 启用
     errors:
+      csv_file_required: 文件必须是 CSV 文件
       error_msg: 出错了，请刷新页面，如果问题仍然存在，请联系您的管理员
+      invalid_csv_format: CSV 格式无效： %{message}
+      invalid_url: 无效 URL：%{message}
+      invalid_url_format: URL 格式无效
+      missing_columns: 缺少必填列： %{fields}
     errror_msg: 错误信息
     factors:
       copy:
@@ -1965,6 +2058,9 @@ zh:
         success: "%{idpName} 已成功删除。"
       add_idp_template: 添加 IDP 模板
       all: 全部
+      appearance: 外观
+      appearance_hint: 要修改外观，请先保存 IDP 模板，以启用这些设置。
+      background_image: 背景图片
       behavioral_skills: 行为技能
       client_skills: 客户技能
       edit_template: 编辑 IDP 模板
@@ -1972,26 +2068,62 @@ zh:
       enter_template_description_error: 需要模板说明。
       enter_template_name: 名称
       enter_template_name_error: 模板名称为必填项
+      errors:
+        update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。外观更改已保存。
+      fields:
+        assigned_data: 指定数据
+        completion_date: 完成日期
+        division: 分部
+        name: 名称
+        publish_date: 发布日期
+        review_date: 审查日期
+        role: 当前角色
+      fields_label: 字段
       global_skills: 全球技能
       idp: IDP
       idp_template: 添加 IDP 模板
+      intro_message: 介绍信息
+      intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。
+      intro_message_success: 简介信息已成功保存
+      locales: 区域设置
+      logo_image: 徽标图像
+      logo_type:
+        both: 美世和客户标识
+        client_only: 仅限客户徽标
+        mercer_only: 仅有美世徽标
+        none: 无标志
+      logo_type_label: 徽标类型
+      no_reflection_questions_selected: 未选择反思问题
       none: 无
+      reference_locale: 参考区域设置
+      reflection_questions: 思考题
+      reflection_questions_hint: 要修改反思问题，请先保存 IDP 模板以启用这些设置。
+      reflection_questions_updated: 反思问题已成功更新。
+      remove: 移除
       select_by_tags: 按标签选择
+      select_reflection_question: 开始键入搜索并选择问题
       select_skill_gap_report: 选择技能差距报告
       select_specific_skills: 选择特定技能
       selected: 精选
       self_rating: 启用自我评级
+      show_reflections: 展示反思
       skill_gap_report: 技能差距报告
+      skills: 技能
+      subtitle_text: 字幕文本
       tab:
         development_actions: 发展行动
+        reflection_questions: 思考题
         settings: 设置
         templates: 模板
       technical_skills: 技术技能
       template_details: 模板详情
+      title_text: 标题文本
+      update_reflection_questions: 更新反思问题
     idp_setting:
       allow_global_skills: 允许使用全球技能
       manager_approves_idp: 经理批准 IDP
       manager_can_edit_idp: 管理员可以编辑 IDP
+      require_all_development_actions_complete: 要求完成所有开发行动
     import: 进口
     imports:
       assessments:
@@ -2138,6 +2270,7 @@ zh:
         add: 集成
         back: 返回集成
         load_mettl_catalog: 载荷测量评估目录
+        load_skillvue_catalog: 加载 Skillvue 评估目录
       columns:
         active: 活跃
         details: 详细信息
@@ -2148,6 +2281,7 @@ zh:
         webhookUrls: Webhook URL
       integrations: 集成
       load_mettl_success: 负载计量评估工作已成功排队
+      load_skillvue_success: 加载技能评估工作已成功排队
       modal:
         hogan:
           provider: 提供商
@@ -2169,16 +2303,22 @@ zh:
           servers:
             mettl_eu: 欧洲
             mettl_india: 印度
+        skillvue:
+          apiKey: API 密钥
+          apiKeyRequired: 需要 API 密钥
       names:
         hogan: 霍根
         iiht: IIHT
         mettl: METTL
+        skillvue: Skillvue
       validations:
         iiht:
           tenancy_name_present: 租户名称已出现在其他项目中
           tenant_id_present: 租户 ID 已存在于其他项目中
         mettl:
           public_key_present: 公钥已存在于其他项目中
+        skillvue:
+          api_key_present: API 密钥已存在于其他项目中
       view_all_schedules: 查看所有梅特尔航班时刻表
     invited_subject:
       add_btn: 添加主题
@@ -2200,6 +2340,44 @@ zh:
         requested_rescheduling_rejected: 重新安排 拒绝
         rescheduled: 改期
       subject: 主题
+    job_role:
+      column:
+        job_group: 工作小组
+      export:
+        failure_msg: 导出翻译时出错
+        success_msg: 导出开发行动正在进行中。
+      export_action:
+        translations: 出口职位角色翻译
+      form:
+        code: 代码
+        description: 说明
+        job_group: 工作小组
+        name: 名称
+        title: 工作角色
+      global: 全球工作角色是什么？
+      import:
+        download_example_csv: 下载 csv 示例
+        success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
+      import_action:
+        translations: 导入工作角色翻译
+      translations: 工作角色翻译
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: 预期能力水平
+        job_role: 工作角色
+        skill: 技能
+      form:
+        expected_proficiency_level: 预期能力水平
+        job_role: 工作角色
+        skill: 技能
+        title: 技能岗位制图
+      global: 全球技能工作图谱是什么？
+      import:
+        taxonomy: 分类学
+    job_roles:
+      export:
+        translations:
+          details: 详细信息
     libraries:
       create:
         successfully: 项目 %{name} 创建成功。
@@ -2221,7 +2399,7 @@ zh:
         updated_at: 修改日期
         upload: 上传新文件
       new:
-        header: 新文件夹
+        header: 上传文件
       resource:
         confirmations:
           delete:
@@ -2253,6 +2431,7 @@ zh:
         successfully: 用户 %{name} 已成功更新。
     meta_title: 管理面板
     navigation:
+      ai_assistants: 人工智能助理
       assessments: 评估
       assessments_reports: 评估与报告
       assessor_dashboard: 评估员仪表板
@@ -2472,6 +2651,74 @@ zh:
         successfully: 成功
       toggle_status:
         successfully: 成功
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: 级别定义必须是一个定义数组。
+          level_definition_must_match_level: 必须完全包含 %{expected}水平，但给出了 %{actual}水平。
+          must_be_unique: 必须独一无二
+          proficiency_level_exists: 已存在具有该技能和项目的 ProficiencyLevel
+          proficiency_level_exists_for_all_skills: 所有技能的熟练等级已经存在
+          proficiency_level_exists_for_category: 该类别的熟练程度等级已经存在
+          project_level_all_skills_exists: 已存在 "all_skills "能力级别
+          skill_must_exist: 技能类型 "by_skill "必须包含技能
+      export:
+        actions:
+          proficiency: 出口能力
+          translations: 出口能力翻译
+        details: 详细信息
+        failure_msg: 导出熟练程度时出错
+        success_msg: 导出发展中行动
+        translations:
+          details: 熟练水平翻译
+      fields:
+        level: 级别
+        level_description: 等级描述
+        level_name: 级别名称
+        proficiency_translations: 熟练翻译
+        proficiency_type: 能力类型
+        skill: 技能
+        skill_category: 技能类别
+        skill_name: 技能名称
+        title: 熟练程度
+      global: 全球能力是什么？
+      import:
+        actions:
+          proficiency: 进口能力
+          translations: 进口能力翻译
+        errors:
+          all_skills_global_exists: 行 %{row_number}：已存在全局级别 "all_skills"（所有技能）ProficiencyLevel
+          all_skills_project_exists: 行 %{row_number}：已经存在一个项目级别的 "all_skills "熟练级别
+          by_category_exists: 行 %{row_number}：此项目和技能类别已存在 "by_category "熟练级别
+          by_category_missing: 行 %{row_number}：by_category "类型必须有项目和技能类别
+          by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
+          by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
+          invalid_csv_format: CSV 格式无效： %{message}
+          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 无效 - %{message}
+          invalid_json_structure: 必须是一个 JSON 对象，包含 "描述 "和 "摘要 "等关键字
+          invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
+          missing_columns: 缺少必填列： %{fields}
+          missing_required_fields: 行 %{line}：缺少必填字段 (%{fields})
+          save_failed: 行 %{line}：%{message}
+          skill_not_found: 行 %{row_number}：技能无效或缺失
+        job_queued: 能力水平导入工作已排队
+      translations:
+        export:
+          failure_msg: 导出翻译时出错
+          success_msg: 导出开发行动正在进行中。
+        import:
+          errors:
+            invalid_csv_format: CSV 格式无效： %{message}
+            invalid_locales: 本地语言无效
+            level_not_found: 未找到 ID 为 %{level_id} 的级别
+            missing_columns: 缺少必填列： %{fields}
+            missing_required_columns: 缺少必填列： %{columns}
+            row_id_blank: 行 %{row}：ID 不能为空
+            save_failed: 技能 ID %{id} 处理错误：%{message｝
+      type:
+        all_skills: 所有技能
+        by_category: 按类别
+        by_skill: 通过技能
     profile:
       change_password: 更改密码
       details: 详细信息
@@ -2539,10 +2786,21 @@ zh:
             key: 发送测试
             label: 发送测试
         form:
+          acceptable_rate_limit:
+            label: 可接受的申请上限
+            request_per: 每
           active:
             label: 活跃
             name: 活动
           auth_type:
+            api_key:
+              label: API 密钥
+              name: api_key
+              value: api_key_auth
+            api_key_header:
+              format_error: 只允许使用字母、数字、下划线和连字符
+              label: API 密钥头
+              name: apiKeyHeader
             basic:
               label: 基本
               value: 基本身份验证
@@ -2754,6 +3012,30 @@ zh:
             title: "<strong>%{status}</strong>%{name}?"
       toggle_status:
         successfully: 更新成功。
+    reflection_questions:
+      delete_confirmation: 您确定要删除这个反思问题吗？
+      export:
+        action: 出口反思问题
+        details: 文件详情
+        failure_msg: 导出文件时出错。
+        success_msg: 正在导出反思问题。请在通知中查看状态。
+      form:
+        mandatory: 强制性
+        max_words: 最多字数
+        min_words: 最少字数
+        question: 问题
+        title: 思考题
+      import:
+        action: 进口反思问题
+        errors:
+          invalid_max_words_column_format: 最大字数列值格式无效 %{row}
+          invalid_min_words_column_format: 最小字数列值格式无效 %{row}
+          invalid_required_column_format: 强制列值格式无效 %{row}
+          missing_eng_question: 缺少英语问题内容 %{row}
+          save_failed: 保存失败 %{message｝
+        failure_msg: 导入文件时出错。
+        success_msg: 正在导入反思问题。请查看通知中的状态。
+      question: 问题
     report_approval:
       bulk_approve_success: "%{sent_for_approval}已发送供审批。%{approved}已审批的报告。%{ignored}因质量控制修改/评论而需要人工审批的报告。"
       columns:
@@ -2831,9 +3113,7 @@ zh:
         resource:
           confirmations:
             delete:
-              body: '<p>您确定要从 "报告捆绑包 "中删除此报告吗？</p>
-
-                '
+              body: <p>您确定要从 "报告捆绑包 "中删除此报告吗？</p>
               title: 从<strong>报告</strong>包中删除<strong>报告</strong>？
           tooltips:
             delete: 从报告包中删除报告
@@ -2871,9 +3151,11 @@ zh:
         qc_completed: 质量控制已完成
         qc_in_progress: 质量控制进行中
     reports:
+      bulk_marked_as_done: 批量标记为已完成
       bulk_upload:
         choose_file: 选择文件
         no_file_selected: 未选择文件
+        sample_file: 样本文件
         title: 批量上传活动因素
         upload_success: 上传成功
       copy:
@@ -2966,6 +3248,8 @@ zh:
       assessment_center_form:
         add_more: 添加更多
         allow_late_cancellation_and_scheduling: 允许延迟取消和调度
+        assessment_center_group: 评估中心小组
+        assessment_center_group_placeholder: 选择评估中心组
         assessor_ids_label: 评估员
         back: 返回
         basic_info_panel:
@@ -3022,6 +3306,7 @@ zh:
         attendance: 出席情况
         attended: 出席
         booked_at: 预订地点
+        campaign_assessment_group: 评估中心小组
         campaign_name: 活动名称
         duration: 持续时间
         managers: 管理人员
@@ -3047,6 +3332,7 @@ zh:
         allowed: 允许
         assessors: 评估员
         booked: 已预订座位
+        campaign_assessment_group: 评估中心小组
         cancellation_lead_time: 取消预订所需时间
         cancellation_tooltip: 用户可以取消预订，直至 %{ 日期｝
         date: 日期和时间
@@ -3059,7 +3345,7 @@ zh:
         not_allowed: 不允许
         remaining: 剩余席位
         scheduling_lead_time: 排产准备时间
-        scheduling_tooltip: 用户可以预订 %{ 日期}之前的时段
+        scheduling_tooltip: 用户可以预订 %{date}之前的时段
         search_placehoder: 按 ID、电子邮件或姓名搜索
         timezone: 时区
         total_seats: 总席位数
@@ -3093,9 +3379,10 @@ zh:
         add_assessor_form: 添加评估员表格
         assessments: 评估
         assessor_forms: 评估员表格
-        confirm_message: '您确定要取消电子邮件名为"%{subject_email}"的受试者的参与资格吗？<br />一旦标记为取消，该受试者将无法参加评估中心的活动。
-
-          '
+        confirm_message: |
+          '您确定要取消电子邮件名为"%{subject_email}"的受试者的参与资格吗？
+          <br />
+          一旦标记为取消，该受试者将无法参加评估中心的活动。'
         confirm_title: 需要确认
         edit_assessor_form: 编辑评估员表格
         form_title: 安排评估
@@ -3276,6 +3563,7 @@ zh:
         successful_remove: 技能别名"%{skill_alias}"已成功删除。
       tabs:
         admin_roles: 管理员角色
+        feature_flags: 功能标志
         siem: SIEM
         skill_aliases: 技能别名
     sheets:
@@ -3324,7 +3612,14 @@ zh:
         rows: 行数
         settings: 设置
     skills:
+      applicable_proficiency_levels: 适用的能力水平
+      columns:
+        skill_group: 技能组
+        skill_type: 技能类型
       errors:
+        import:
+          missing_fields_data: 行 %{line_number}：缺少必填字段：%{字段｝
+          save_failed: 行 %{line_number}：保存技能"%{name}"失败： %{message}
         search:
           all_and_project_id_mutually_exclusive: 当提供 project_id_eq 时，不能全部为真
           invalid_all_value: 必须是：true、false
@@ -3346,6 +3641,7 @@ zh:
         description: 说明
         name: 名称
         project_placeholder: 选择项目
+        skill_group: 技能组
         skill_type: 技能类型
         title: 技能
       global: 全球技能是什么？
@@ -3358,16 +3654,22 @@ zh:
       import_action:
         skills_title: 进口技能
         skills_translations_title: 进口技能翻译
+      skill_details: 技能详情
       skill_translations: 技能翻译
+      skill_translations_project: 基于项目的技能翻译
+      skills_project: 基于项目的技能
       title: 技能
       translations:
         import:
           errors:
             invalid_csv_format: CSV 格式无效： %{message}
+            missing_columns: 缺少必填列： %{columns}
             save_failed: 处理技能 ID %{id} 时出错： %{message}
             skill_not_found: 未找到 ID 为 %{id} 的技能
     skills_taxonomy:
       tabs:
+        job_role_skill_mapping: 技能岗位映射
+        job_roles: 工作角色
         proficiency: 熟练
         skills: 技能
     sms_histories:
@@ -3424,7 +3726,12 @@ zh:
         modal:
           btn_name: 发送短信
           title: 发送短信
-        pipetext_details: "{{{first_name}} - 接收人的名<br />{{{last_name}}}--收件人的姓<br />{{{invite_url}}} - 注册链接\n"
+        pipetext_details: |
+          "{{{first_name}} - 接收人的名
+          <br />
+          {{{last_name}}}--收件人的姓
+          <br />
+          {{{invite_url}}} - 注册链接"
         segment_length_msg: 此报文的预计段落数为 %{segment_length}。
         segment_length_range_msg: 此报文的估计段数介于 %{min_segment_length} 和 %{max_segment_length} 之间。
       statuses:
@@ -3566,11 +3873,22 @@ zh:
     table:
       entries:
         selected:
-          other: 选中 1 行
+          one: 选中 1 行
+          other: 选中 {{count}} 行
         total:
-          other: '共计 : 1'
+          one: '共计 : 1'
+          other: '共计 : {{count}}'
+          zero: '总计 : 0'
       more_actions: 更多行动
     taxonomy:
+      import:
+        download_example_file: 下载示例文件
+        success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
+      import_action:
+        taxonomy: 导入分类标准
+      job_roles: 工作角色
+      proficiency: 熟练程度
+      skill_job_mappings: 技能岗位映射
       skills: 技能
       title: 分类学
     templates:
@@ -3749,6 +4067,14 @@ zh:
         messages:
           title: 信息
         participants:
+          subjects:
+            add_subjects: 添加主题
+            current_job_role: 当前工作角色
+            email: 电子邮件
+            first_name: 名字
+            last_name: 姓氏
+            locale: 地点
+            target_job_role: 目标工作角色
           title: 与会者
         report:
           menu:
@@ -3787,6 +4113,12 @@ zh:
         successfully: 用户 %{name} 已成功删除。
       list:
         email: 电子邮件
+      modals:
+        download_idp_reports:
+          error: 批量下载 IDP 报告任务计划失败。
+          include_reflective_questions: 包括反思性问题
+          success: 批量下载 IDP 报告任务已成功调度。
+          title: 批量下载 IDP 报告
       new:
         header: 新用户
       reset_password:
@@ -3841,5 +4173,3 @@ zh:
       errors:
         update_assessor_for_failure: 由于没有关联的主题活动，因此无法添加会议详细信息。
     years: 年数
-  administration.users.toolbar:
-    title: 工具

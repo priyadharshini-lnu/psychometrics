@@ -52,7 +52,7 @@ export const AiAssistantFormModal: React.FC<Props> = ({ close, aiAssistant }) =>
             <Input.TextArea rows={4} />
           </Form.Item>
           <Form.Item
-            name="providerId"
+            name="modelId"
             label={I18n.t('administration.ai_assistants.form.provider')}
             rules={[{ required: true }]}
           >

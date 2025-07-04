@@ -7,10 +7,10 @@ module Api
         validate_crud_requests Api::V2::AI::Assistant::Schema
 
         def generate
-          result = ::AI::Assistants::Service.call(params[:id], params.dig(:data, :attributes, :prompt))
+          result = ::AI::AssistantService.call(params[:id], current_user, params.dig(:data, :attributes, :prompt))
           if result[:ok]
-            message = result[:ok]
-            render json: { id: params[:id], attributes: { message: message } }, status: :ok
+            response = result[:ok]
+            render json: { id: params[:id], attributes: response }, status: :ok
           else
             jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
           end

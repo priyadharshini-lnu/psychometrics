@@ -10,14 +10,16 @@ class Skill < ApplicationRecord
   translates :name, :description
 
   belongs_to :project
+  belongs_to :skill_group, optional: true
 
+  has_one :proficiency_level
   has_many :skills_job_roles
   has_many :job_roles, through: :skills_job_roles
   has_many :skills_development_actions, dependent: :destroy
   has_many :development_actions, through: :skills_development_actions
   has_many :idp_template_skills # added for sample_by_skill_types being used through template
 
-  validates :name, presence: true, uniqueness: { scope: :project_id }
+  validates :name, presence: true, uniqueness: { scope: :project_id, case_sensitive: false }
 
   enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
 

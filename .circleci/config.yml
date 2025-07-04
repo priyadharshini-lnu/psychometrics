@@ -308,6 +308,27 @@ jobs:
           paths:
             - tmp/rubocop_cache
 
+  # Checks for translation (i18n) key changes when merging to review or master branches
+  # Generates a CSV report and saves it as an artifact
+  notify_translation_changes:
+    executor: tte-executor-full
+    steps:
+      - checkout
+      - bundle_restore
+      - setup_db:
+          processes: 1
+      - run:
+          name: Check for I18n key changes
+          command: |
+            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
+              TARGET_BRANCH="review"
+            else
+              TARGET_BRANCH="master"
+            fi
+            bundle exec bin/devtools I18n translation_changes --source-branch=${CIRCLE_BRANCH} --target-branch=${TARGET_BRANCH} --notification-emails="${TRANSLATION_CHANGES_NOTIFICATION_EMAIL}"
+      - store_artifacts:
+          path: /tmp/i18n_changes
+
   bundle_assets:
     executor: tte-executor
     resource_class: xlarge
@@ -644,6 +665,25 @@ workflows:
       - rubocop:
           requires:
             - bundle
+      - hold:
+          name: approve_notify_translation_changes
+          type: approval
+          context: notify-translation-changes
+          requires:
+            - bundle_assets
+          filters:
+              branches:
+                only:
+                  - review
+                  - master
+      - notify_translation_changes:
+          requires:
+            - approve_notify_translation_changes
+          filters:
+              branches:
+                only:
+                  - review
+                  - master
       - bundle_assets:
           requires:
             - yarn
@@ -676,7 +716,6 @@ workflows:
             branches:
               only:
                 - develop
-                - 1171475-ruby-upgrade
       - heroku_release:
           name: heroku_release_develop
           app-name: tte-lighthouse-develop
@@ -690,14 +729,14 @@ workflows:
                 - develop
       - build_docker_image:
           name: build_image_review
-          app-name: tte-lighthouse
+          app-name: tte-lighthouse-review
           filters:
             branches:
               only:
                 - review
       - heroku_release:
           name: heroku_release_review
-          app-name: tte-lighthouse
+          app-name: tte-lighthouse-review
           requires:
             - build_image_review
             - vitest

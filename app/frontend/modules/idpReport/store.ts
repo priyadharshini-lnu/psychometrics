@@ -16,7 +16,7 @@ interface Template {
 }
 
 interface Skill {
-  skillType: string
+  skill_type: string
   user_idp_development_actions: DevelopmentAction[]
 }
 
@@ -27,11 +27,20 @@ interface DevelopmentAction {
 
 interface UserIdp {
   user_idp_skills: Skill[]
+  reflection_questions: ReflectionQuestion[]
 }
 
 interface IdpReportState {
   template: Template
   userIdp: UserIdp
+}
+interface ReflectionQuestion {
+  id: string
+  question: string | null
+  mandatory: boolean
+  min_words: number | null
+  max_words: number | null
+  answer?: string
 }
 
 interface IdpReportResponse {
@@ -45,6 +54,7 @@ const initialState: IdpReportState = {
   },
   userIdp: {
     user_idp_skills: [],
+    reflection_questions: [],
   },
 }
 

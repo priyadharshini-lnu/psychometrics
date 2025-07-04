@@ -52,4 +52,30 @@ RSpec.describe Api::V2::Skill::CreateContract do
       I18n.t('dry_errors.errors.skill.already_added')
     )
   end
+
+  it 'validates name for case insensitivity' do
+    create(:skill, name: 'Skill Name', project_id: project.id)
+
+    params = valid_params.deep_merge(data: { attributes: { name: 'skill name' } })
+
+    contract = described_class.new.call(params, {})
+
+    expect(contract.failure?).to eq(true)
+    expect(contract.errors[:data][:attributes][:name]).to include(
+      I18n.t('dry_errors.errors.skill.already_added')
+    )
+  end
+
+  it 'validates name for leading/trailing spaces' do
+    create(:skill, name: 'Skill Name', project_id: project.id)
+
+    params = valid_params.deep_merge(data: { attributes: { name: ' Skill Name ' } })
+
+    contract = described_class.new.call(params, {})
+
+    expect(contract.failure?).to eq(true)
+    expect(contract.errors[:data][:attributes][:name]).to include(
+      I18n.t('dry_errors.errors.skill.already_added')
+    )
+  end
 end

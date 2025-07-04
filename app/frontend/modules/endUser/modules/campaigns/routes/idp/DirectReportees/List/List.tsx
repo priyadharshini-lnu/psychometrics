@@ -4,9 +4,11 @@ import {
 import {
   Typography, Avatar, Table, Tag,
   ConfigProvider,
-  Layout,
+  Badge,
+  Tooltip,
+  Flex,
 } from 'antd'
-import { Link, useSearchParams } from 'react-router-dom' // <-- import useSearchParams
+import { Link, useSearchParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BoxWithShadow } from '~/glint'
@@ -33,6 +35,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface User {
   status: string
+  unreadCommentsCount: number
   user: {
     id: number
     photo?: string
@@ -55,6 +58,11 @@ const columns = [
           <div className={styles.title}>
             <div className={styles.name}>
               {`${item.user.firstName} ${item.user.lastName}`}
+              {!!item.unreadCommentsCount && (
+                <Tooltip title={I18n.t('idp.new_comments')}>
+                  <Badge dot={!!item.unreadCommentsCount} />
+                </Tooltip>
+              )}
             </div>
             <div className={styles.email}>
               {item.user.email}
@@ -106,8 +114,10 @@ export const Component: FC<PropsFromRedux> = ({
 
   return (
     <IdpPageLayoutWrapper>
-      <Layout.Content className={styles.pageContent}>
-        <Typography.Title level={3}>{I18n.t('idp.my_direct_reportees')}</Typography.Title>
+      <Flex className={styles.pageContent}>
+        <Typography.Title level={4} style={{ margin: 0 }}>
+          {I18n.t('campaign.dashboard_menu.direct_reportees')}
+        </Typography.Title>
         <BoxWithShadow className={styles.box}>
           <ConfigProvider
             theme={{
@@ -132,7 +142,7 @@ export const Component: FC<PropsFromRedux> = ({
             />
           </ConfigProvider>
         </BoxWithShadow>
-      </Layout.Content>
+      </Flex>
     </IdpPageLayoutWrapper>
   )
 }

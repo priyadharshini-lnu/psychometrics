@@ -9,11 +9,12 @@ import {
 } from 'react-router-dom'
 import { DevelopmentActionListView } from './DevelopmentActionsFlow/DevelopmentActionListView'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
-import { DevelopmentActionBoardView, CategoryWithSkillsSummary } from '~/components/IdpShared/DevelopmentActions'
-import { groupDevelopmentActionsBySkillType, groupSkillsBySkillType }
+import { groupSkillsBySkillType }
   from '~/modules/endUser/modules/campaigns/routes/idp/MyPlan/utils'
 import { useResources } from '~/hooks/useResources'
-import { UserIdpPlan, UserIdpDevelopmentActions, IdpSkills } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
+import {
+  UserIdpPlan, UserIdpDevelopmentActions, IdpSkills, UserIdpSkills,
+} from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { InformationBanner } from './InformationBanner'
 import { USER_IDP_PLAN_STATUS } from './constants'
 import { useSearchSkills } from './AdminAddSkills/useSearchSkills'
@@ -21,11 +22,6 @@ import { useSearchSkills } from './AdminAddSkills/useSearchSkills'
 const { I18n } = window
 
 type UserIdpDevelopmentActionPayloadType = UserIdpDevelopmentActions & {_destroy: boolean }
-
-const emptySkillCategory = {
-  skillType: '',
-  skills: [],
-}
 
 export const Plan = () => {
   const [showAddSkill, setShowAddSkill] = useState(false)
@@ -35,11 +31,7 @@ export const Plan = () => {
   const [idpDevelopmentActionsPayload,
     setIDPDevelopmentActionsPayload] = useState<UserIdpDevelopmentActionPayloadType[]>([])
   const [availableIDPDevelopmentActions, setAvailableIDPDevelopmentActions] = useState<UserIdpDevelopmentActions[]>([])
-  const [pickedCategoryToAddMoreSkills,
-    setPickedCategoryToAddMoreSkills] = useState<CategoryWithSkillsSummary>(
-      emptySkillCategory,
-    )
-  const [skillCategory, setSkillCategory] = useState<CategoryWithSkillsSummary>(emptySkillCategory)
+  const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>([])
 
 
   const { idp_plan_id } = useParams()
@@ -78,7 +70,8 @@ export const Plan = () => {
   useEffect(() => {
     fetchUserIdpPlan({
       id: idp_plan_id as string,
-    }).then(() => {
+    }).then((res: UserIdpPlan) => {
+      setSelectedSkills(res.userIdpSkills)
       setIsLoading(false)
     })
   }, [idp_plan_id])
@@ -107,21 +100,11 @@ export const Plan = () => {
     normalizedUserIdpDevelopmentActions),
   [userIdpSkills, normalizedUserIdpDevelopmentActions])
 
-  const boardData = useMemo(() => groupDevelopmentActionsBySkillType(normalizedUserIdpDevelopmentActions,
-    userIdpSkills),
-  [normalizedUserIdpDevelopmentActions, userIdpSkills])
 
-  useEffect(() => {
-    if (showAddSkill) {
-      setSkillCategory({
-        skillType: pickedCategoryToAddMoreSkills?.skillType || '',
-        skills: allSkills.filter(skill => skill.skillType === pickedCategoryToAddMoreSkills?.skillType),
-      })
-    } else {
-      setSkillCategory(emptySkillCategory)
-    }
-  }, [showAddSkill, allSkills])
-
+  // Commenting board data to avoid unnecessary changes
+  // const boardData =  useMemo(() => groupDevelopmentActionsBySkillType(normalizedUserIdpDevelopmentActions,
+  //   userIdpSkills),
+  // [normalizedUserIdpDevelopmentActions, userIdpSkills])
 
   const changeTab = (tab: string) => {
     setTab(tab)
@@ -187,7 +170,7 @@ export const Plan = () => {
     })
   }
 
-  const handleAddMoreSkill = (skillsGroupedByCategory) => {
+  const handleAddMoreSkill = () => {
     setIsLoading(true)
     fetchIdpSkillDetails({
       apiConfig: {
@@ -200,48 +183,36 @@ export const Plan = () => {
       setSkills(response.data)
       setIsLoading(false)
       setShowAddSkill(true)
-      setPickedCategoryToAddMoreSkills(skillsGroupedByCategory)
     })
   }
 
   const handleFinishAddSkill = () => {
     setShowAddSkill(false)
-    handleNextForAddSkillsStep(pickedCategoryToAddMoreSkills.skills, pickedCategoryToAddMoreSkills.skillType)
+    handleNextForAddSkillsStep()
   }
 
   const handleDeselectSkill = (skillId) => {
-    setPickedCategoryToAddMoreSkills({
-      skillType: pickedCategoryToAddMoreSkills?.skillType || '',
-      skills: pickedCategoryToAddMoreSkills?.skills.filter(
-        userIdpSkill => userIdpSkill.skillId !== skillId,
-      ),
-    })
+    setSelectedSkills(selectedSkills.filter(skill => skill.skillId !== skillId))
   }
 
   const handleSelectSkill = (skills) => {
     // Add skillId to skills
+
     const userIdpSkill = skills.map(skill => ({
       ...skill,
       skillId: skill.id,
     }))
-    setPickedCategoryToAddMoreSkills({
-      skillType: pickedCategoryToAddMoreSkills?.skillType || '',
-      skills: _.uniqBy([...pickedCategoryToAddMoreSkills?.skills, ...userIdpSkill], 'skillId'),
-    })
+    setSelectedSkills([...selectedSkills, ...userIdpSkill])
   }
 
-  const handleNextForAddSkillsStep = (selectedSkills, selectedCategory) => {
+  const handleNextForAddSkillsStep = () => {
     setIsLoading(true)
 
     const planPayload = userIdpPlanData[0]
 
-    const remainingCategory = userIdpPlanData[0]?.userIdpSkills.filter(skill => skill.skillType !== selectedCategory)
-
-    const allSkills = [...selectedSkills, ...remainingCategory]
-
     const skillPayload = {
 
-      skills: allSkills.map(skill => ({
+      skills: selectedSkills.map(skill => ({
         id: skill.skillId,
         name: skill.name,
       })),
@@ -264,20 +235,22 @@ export const Plan = () => {
 
   const operations = (
     <Flex gap={8}>
-      {editMode ? (
-        <Button
-          type="primary"
-          onClick={handleSave}
-        >
-          {I18n.t('common.actions.save')}
-        </Button>
-      ) : (
-        <Button
-          type="primary"
-          onClick={() => setEditMode(true)}
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>
+      {tab === 'list' && (
+        editMode ? (
+          <Button
+            type="primary"
+            onClick={handleSave}
+          >
+            {I18n.t('common.actions.save')}
+          </Button>
+        ) : (
+          <Button
+            type="primary"
+            onClick={() => setEditMode(true)}
+          >
+            {I18n.t('common.actions.edit')}
+          </Button>
+        )
       )}
       {
         userIdpPlanData[0]?.status === USER_IDP_PLAN_STATUS.IN_PROGRESS && (
@@ -334,6 +307,11 @@ export const Plan = () => {
     </Flex>
   )
 
+  const skillCategories = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
+    skillType,
+    skills,
+  }))
+
 
   const plan = showAddSkill ? (
     <div>
@@ -344,9 +322,9 @@ export const Plan = () => {
       />
       <AddSkillsStep
         addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
-        skillCategories={[skillCategory]}
+        skillCategories={skillCategories}
         onFinishAddSkill={handleFinishAddSkill}
-        selectedSkills={pickedCategoryToAddMoreSkills?.skills || []}
+        selectedSkills={selectedSkills}
         onDeselectSkill={handleDeselectSkill}
         onAddSkill={handleSelectSkill}
         searchSkillResource={searchSkillResource}
@@ -355,7 +333,12 @@ export const Plan = () => {
   ) : (
     <>
       <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
-      <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
+      <Tabs
+        tabBarExtraContent={tab !== 'reflective_questions'
+          ? operations : null}
+        activeKey={tab}
+        onChange={tab => changeTab(tab)}
+      >
         <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
           <DevelopmentActionListView
             editMode={editMode}
@@ -368,9 +351,9 @@ export const Plan = () => {
             onAddMoreSkills={handleAddMoreSkill}
           />
         </Tabs.TabPane>
-        <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
+        {/* <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
           <DevelopmentActionBoardView developmentActionTypes={boardData} showRating={false} />
-        </Tabs.TabPane>
+        </Tabs.TabPane> */}
       </Tabs>
     </>
   )

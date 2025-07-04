@@ -49,6 +49,10 @@ export const DevelopmentActionTR = t.intersection([
         name: t.string,
       })),
       t.undefined]),
+    availableLanguages: t.union([
+      t.array(t.string),
+      t.undefined,
+    ]),
   })])
 
 export type DevelopmentAction = t.TypeOf<typeof DevelopmentActionTR>

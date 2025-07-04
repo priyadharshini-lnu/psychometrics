@@ -21,8 +21,8 @@ interface Props {
   withBg?: boolean
 }
 
-export const LangDropdown: React.FC<Props> = ({
-  locales, currentLocale, onChange, withBg,
+export const LangDropdown: React.FC<Props & { useLoading?: boolean }> = ({
+  locales, currentLocale, onChange, withBg, useLoading = true,
 }) => {
   const [loading, setLoading] = useState(false)
   const [openMenu, setOpenChange] = useState(false)
@@ -31,7 +31,7 @@ export const LangDropdown: React.FC<Props> = ({
   })
 
   const onSelect = ({ key }) => {
-    setLoading(true)
+    setLoading(useLoading)
     onChange(key)
   }
 

@@ -246,7 +246,10 @@ CREATE TABLE public.admin_jobs (
     updated_at timestamp without time zone NOT NULL,
     total_tasks integer DEFAULT 1,
     completed_tasks integer DEFAULT 0,
-    exception character varying
+    exception character varying,
+    step character varying,
+    weight double precision,
+    parent_job_id bigint
 );
 
 
@@ -367,17 +370,56 @@ ALTER SEQUENCE public.agiles_id_seq OWNED BY public.agiles.id;
 
 
 --
+-- Name: ai_assistant_chats; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assistant_chats (
+    id bigint NOT NULL,
+    model_id character varying,
+    ai_assistant_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    client_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assistant_chats_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assistant_chats_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assistant_chats_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assistant_chats_id_seq OWNED BY public.ai_assistant_chats.id;
+
+
+--
 -- Name: ai_assistant_requests; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.ai_assistant_requests (
     id bigint NOT NULL,
-    input_tokens bigint,
-    output_tokens bigint,
-    total_tokens bigint,
+    input_tokens bigint DEFAULT 0,
+    output_tokens bigint DEFAULT 0,
     request_body_checksum character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    role character varying,
+    content text,
+    model_id character varying,
+    ai_assistant_id bigint,
+    ai_assistant_chat_id bigint NOT NULL,
+    ai_assistant_tool_call_id bigint
 );
 
 
@@ -401,6 +443,40 @@ ALTER SEQUENCE public.ai_assistant_requests_id_seq OWNED BY public.ai_assistant_
 
 
 --
+-- Name: ai_assistant_tool_calls; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assistant_tool_calls (
+    id bigint NOT NULL,
+    ai_assistant_request_id bigint NOT NULL,
+    tool_call_id character varying NOT NULL,
+    name character varying NOT NULL,
+    arguments jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assistant_tool_calls_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assistant_tool_calls_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assistant_tool_calls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assistant_tool_calls_id_seq OWNED BY public.ai_assistant_tool_calls.id;
+
+
+--
 -- Name: ai_assistants; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -415,7 +491,7 @@ CREATE TABLE public.ai_assistants (
     system_prompt text,
     owner_id bigint,
     last_modified_by_id bigint,
-    provider_id character varying NOT NULL
+    model_id character varying
 );
 
 
@@ -890,7 +966,8 @@ CREATE TABLE public.blocks (
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
     template_id integer,
-    owner_id integer
+    owner_id integer,
+    block_type integer DEFAULT 0
 );
 
 
@@ -1074,7 +1151,8 @@ CREATE TABLE public.campaign_assessor_assessments (
     assessment_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    allow_multiple_responses boolean DEFAULT false
+    allow_multiple_responses boolean DEFAULT false,
+    campaign_assessment_group_id bigint
 );
 
 
@@ -1425,7 +1503,9 @@ CREATE TABLE public.campaign_users (
     campaign_scores_calculated_date timestamp(6) without time zone,
     campaign_scores_finalized_date timestamp(6) without time zone,
     campaign_scores_errors json,
-    external_id character varying
+    external_id character varying,
+    current_job_role_id bigint,
+    target_job_role_id bigint
 );
 
 
@@ -1574,7 +1654,10 @@ CREATE TABLE public.client_features (
     client_id bigint,
     sms_notification boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    ai_assisted_idp boolean DEFAULT false NOT NULL,
+    ai_assistants boolean DEFAULT false NOT NULL,
+    global_skills boolean DEFAULT false NOT NULL
 );
 
 
@@ -1865,6 +1948,40 @@ ALTER SEQUENCE public.communication_emails_id_seq OWNED BY public.communication_
 
 
 --
+-- Name: communication_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_translations (
+    id bigint NOT NULL,
+    subject character varying,
+    body text,
+    locale character varying NOT NULL,
+    communication_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_translations_id_seq OWNED BY public.communication_translations.id;
+
+
+--
 -- Name: communications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1892,7 +2009,8 @@ CREATE TABLE public.communications (
     last_ran_at timestamp without time zone,
     updated_by_id bigint,
     assessment_completion_status_code character varying,
-    delivery_delay_hours integer
+    delivery_delay_hours integer,
+    campaign_assessment_group_id bigint
 );
 
 
@@ -2273,7 +2391,9 @@ CREATE TABLE public.development_actions (
     image character varying,
     course_start_date timestamp(6) without time zone,
     course_end_date timestamp(6) without time zone,
-    project_id bigint
+    project_id bigint,
+    duration integer,
+    available_languages jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -2956,6 +3076,41 @@ ALTER SEQUENCE public.idp_template_skills_id_seq OWNED BY public.idp_template_sk
 
 
 --
+-- Name: idp_template_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_template_translations (
+    id bigint NOT NULL,
+    instructions jsonb DEFAULT '{"content": ""}'::jsonb NOT NULL,
+    locale character varying NOT NULL,
+    idp_template_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    title_text character varying,
+    subtitle_text character varying
+);
+
+
+--
+-- Name: idp_template_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_template_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_template_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_template_translations_id_seq OWNED BY public.idp_template_translations.id;
+
+
+--
 -- Name: idp_templates; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2982,7 +3137,8 @@ CREATE TABLE public.idp_templates (
     subtitle_text character varying,
     fields json DEFAULT '["name","role","assigned_data","division","review_date","publish_date","completion_date"]'::json,
     logo_type integer DEFAULT 3,
-    show_reflections boolean DEFAULT true
+    show_reflections boolean DEFAULT true,
+    instructions jsonb DEFAULT '{"content": ""}'::jsonb NOT NULL
 );
 
 
@@ -3147,6 +3303,40 @@ ALTER SEQUENCE public.integrations_id_seq OWNED BY public.integrations.id;
 
 
 --
+-- Name: job_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.job_groups (
+    id bigint NOT NULL,
+    project_id bigint,
+    name character varying NOT NULL,
+    ancestry character varying,
+    ancestry_depth integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: job_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.job_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: job_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.job_groups_id_seq OWNED BY public.job_groups.id;
+
+
+--
 -- Name: job_role_translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3189,7 +3379,10 @@ CREATE TABLE public.job_roles (
     name character varying NOT NULL,
     description character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    code character varying,
+    project_id bigint,
+    job_group_id bigint
 );
 
 
@@ -3637,35 +3830,6 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 
 
 --
--- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_assessment_factor_scores (
-    id bigint NOT NULL,
-    user_assessment_id bigint NOT NULL,
-    factor_id bigint NOT NULL,
-    scores jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
-   FROM public.user_assessment_factor_scores;
-
-
---
 -- Name: norms; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3926,7 +4090,8 @@ CREATE TABLE public.pearson_user_assessments (
     schedule_id character varying,
     url character varying,
     norm_id character varying,
-    variation character varying
+    variation character varying,
+    error_details jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -4199,6 +4364,75 @@ CREATE SEQUENCE public.proctoring_sessions_id_seq
 --
 
 ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sessions.id;
+
+
+--
+-- Name: proficiency_level_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.proficiency_level_translations (
+    id bigint NOT NULL,
+    proficiency_level_id bigint NOT NULL,
+    locale character varying NOT NULL,
+    level_definition jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: proficiency_level_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.proficiency_level_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: proficiency_level_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.proficiency_level_translations_id_seq OWNED BY public.proficiency_level_translations.id;
+
+
+--
+-- Name: proficiency_levels; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.proficiency_levels (
+    id bigint NOT NULL,
+    project_id bigint,
+    proficiency_type integer NOT NULL,
+    skill_category integer,
+    level integer NOT NULL,
+    level_definition jsonb DEFAULT '[]'::jsonb NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    skill_id bigint
+);
+
+
+--
+-- Name: proficiency_levels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.proficiency_levels_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: proficiency_levels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.proficiency_levels_id_seq OWNED BY public.proficiency_levels.id;
 
 
 --
@@ -5405,6 +5639,40 @@ ALTER SEQUENCE public.skill_aliases_id_seq OWNED BY public.skill_aliases.id;
 
 
 --
+-- Name: skill_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.skill_groups (
+    id bigint NOT NULL,
+    project_id bigint,
+    name character varying NOT NULL,
+    ancestry character varying,
+    ancestry_depth integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: skill_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.skill_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: skill_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.skill_groups_id_seq OWNED BY public.skill_groups.id;
+
+
+--
 -- Name: skill_translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5449,7 +5717,8 @@ CREATE TABLE public.skills (
     skill_type integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    project_id bigint
+    project_id bigint,
+    skill_group_id bigint
 );
 
 
@@ -5513,7 +5782,9 @@ CREATE TABLE public.skills_job_roles (
     skill_id bigint NOT NULL,
     job_role_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    expected_proficiency_level integer,
+    project_id bigint
 );
 
 
@@ -5826,6 +6097,40 @@ CREATE SEQUENCE public.tags_id_seq
 --
 
 ALTER SEQUENCE public.tags_id_seq OWNED BY public.tags.id;
+
+
+--
+-- Name: taxonomy_levels; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taxonomy_levels (
+    id bigint NOT NULL,
+    project_id bigint,
+    hierarchy_type character varying NOT NULL,
+    depth integer,
+    label character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: taxonomy_levels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taxonomy_levels_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxonomy_levels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taxonomy_levels_id_seq OWNED BY public.taxonomy_levels.id;
 
 
 --
@@ -6330,6 +6635,20 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 
 --
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -6419,7 +6738,7 @@ CREATE TABLE public.user_assessments (
     evaluation_session_id character varying,
     score_calculated boolean DEFAULT false,
     score_calculated_at timestamp(6) without time zone,
-    prework boolean DEFAULT false
+    prework boolean DEFAULT false NOT NULL
 );
 
 
@@ -6543,6 +6862,47 @@ CREATE SEQUENCE public.user_bookings_id_seq
 --
 
 ALTER SEQUENCE public.user_bookings_id_seq OWNED BY public.user_bookings.id;
+
+
+--
+-- Name: user_idp_comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_idp_comments (
+    id bigint NOT NULL,
+    content text NOT NULL,
+    user_idp_plan_id bigint,
+    created_by_id bigint,
+    resource_type character varying,
+    resource_id bigint,
+    parent_id bigint,
+    resolved_by_id bigint,
+    resolved_at timestamp(6) without time zone,
+    read_by_user_ids integer[] DEFAULT '{}'::integer[] NOT NULL,
+    replies_count integer DEFAULT 0 NOT NULL,
+    edited boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_idp_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_idp_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_idp_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_idp_comments_id_seq OWNED BY public.user_idp_comments.id;
 
 
 --
@@ -6966,9 +7326,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
+    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
-    manager_id bigint,
     unique_session_id character varying,
     external_id character varying,
     disabled_at timestamp(6) without time zone
@@ -7125,7 +7485,9 @@ CREATE TABLE public.webhook_subscriptions (
     include_locales boolean DEFAULT false,
     encrypted_api_key character varying,
     encrypted_api_key_iv character varying,
-    api_key_header character varying
+    api_key_header character varying,
+    rate_limit integer DEFAULT 60 NOT NULL,
+    rate_limit_period integer DEFAULT 1 NOT NULL
 );
 
 
@@ -7560,10 +7922,24 @@ ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agile
 
 
 --
+-- Name: ai_assistant_chats id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_chats_id_seq'::regclass);
+
+
+--
 -- Name: ai_assistant_requests id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_requests ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_requests_id_seq'::regclass);
+
+
+--
+-- Name: ai_assistant_tool_calls id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_tool_calls ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_tool_calls_id_seq'::regclass);
 
 
 --
@@ -7826,6 +8202,13 @@ ALTER TABLE ONLY public.communication_emails ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: communication_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_translations ALTER COLUMN id SET DEFAULT nextval('public.communication_translations_id_seq'::regclass);
+
+
+--
 -- Name: communications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8029,6 +8412,13 @@ ALTER TABLE ONLY public.idp_template_skills ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: idp_template_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_translations ALTER COLUMN id SET DEFAULT nextval('public.idp_template_translations_id_seq'::regclass);
+
+
+--
 -- Name: idp_templates id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8061,6 +8451,13 @@ ALTER TABLE ONLY public.innovation_styles_factors ALTER COLUMN id SET DEFAULT ne
 --
 
 ALTER TABLE ONLY public.integrations ALTER COLUMN id SET DEFAULT nextval('public.integrations_id_seq'::regclass);
+
+
+--
+-- Name: job_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_groups ALTER COLUMN id SET DEFAULT nextval('public.job_groups_id_seq'::regclass);
 
 
 --
@@ -8257,6 +8654,20 @@ ALTER TABLE ONLY public.privacy_settings ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval('public.proctoring_sessions_id_seq'::regclass);
+
+
+--
+-- Name: proficiency_level_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_level_translations ALTER COLUMN id SET DEFAULT nextval('public.proficiency_level_translations_id_seq'::regclass);
+
+
+--
+-- Name: proficiency_levels id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_levels ALTER COLUMN id SET DEFAULT nextval('public.proficiency_levels_id_seq'::regclass);
 
 
 --
@@ -8491,6 +8902,13 @@ ALTER TABLE ONLY public.skill_aliases ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: skill_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_groups ALTER COLUMN id SET DEFAULT nextval('public.skill_groups_id_seq'::regclass);
+
+
+--
 -- Name: skill_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8572,6 +8990,13 @@ ALTER TABLE ONLY public.taggings ALTER COLUMN id SET DEFAULT nextval('public.tag
 --
 
 ALTER TABLE ONLY public.tags ALTER COLUMN id SET DEFAULT nextval('public.tags_id_seq'::regclass);
+
+
+--
+-- Name: taxonomy_levels id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxonomy_levels ALTER COLUMN id SET DEFAULT nextval('public.taxonomy_levels_id_seq'::regclass);
 
 
 --
@@ -8712,6 +9137,13 @@ ALTER TABLE ONLY public.user_availability_days ALTER COLUMN id SET DEFAULT nextv
 --
 
 ALTER TABLE ONLY public.user_bookings ALTER COLUMN id SET DEFAULT nextval('public.user_bookings_id_seq'::regclass);
+
+
+--
+-- Name: user_idp_comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments ALTER COLUMN id SET DEFAULT nextval('public.user_idp_comments_id_seq'::regclass);
 
 
 --
@@ -8954,11 +9386,27 @@ ALTER TABLE ONLY public.agiles
 
 
 --
+-- Name: ai_assistant_chats ai_assistant_chats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT ai_assistant_chats_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: ai_assistant_requests ai_assistant_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_requests
     ADD CONSTRAINT ai_assistant_requests_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_assistant_tool_calls ai_assistant_tool_calls_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_tool_calls
+    ADD CONSTRAINT ai_assistant_tool_calls_pkey PRIMARY KEY (id);
 
 
 --
@@ -9258,6 +9706,14 @@ ALTER TABLE ONLY public.communication_emails
 
 
 --
+-- Name: communication_translations communication_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_translations
+    ADD CONSTRAINT communication_translations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: communications communications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9498,6 +9954,14 @@ ALTER TABLE ONLY public.idp_template_skills
 
 
 --
+-- Name: idp_template_translations idp_template_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_translations
+    ADD CONSTRAINT idp_template_translations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: idp_templates idp_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9535,6 +9999,14 @@ ALTER TABLE ONLY public.innovation_styles
 
 ALTER TABLE ONLY public.integrations
     ADD CONSTRAINT integrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: job_groups job_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_groups
+    ADD CONSTRAINT job_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -9767,6 +10239,22 @@ ALTER TABLE ONLY public.privacy_settings
 
 ALTER TABLE ONLY public.proctoring_sessions
     ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: proficiency_level_translations proficiency_level_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_level_translations
+    ADD CONSTRAINT proficiency_level_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: proficiency_levels proficiency_levels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_levels
+    ADD CONSTRAINT proficiency_levels_pkey PRIMARY KEY (id);
 
 
 --
@@ -10042,6 +10530,14 @@ ALTER TABLE ONLY public.skill_aliases
 
 
 --
+-- Name: skill_groups skill_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_groups
+    ADD CONSTRAINT skill_groups_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: skill_translations skill_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10135,6 +10631,14 @@ ALTER TABLE ONLY public.taggings
 
 ALTER TABLE ONLY public.tags
     ADD CONSTRAINT tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxonomy_levels taxonomy_levels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxonomy_levels
+    ADD CONSTRAINT taxonomy_levels_pkey PRIMARY KEY (id);
 
 
 --
@@ -10295,6 +10799,14 @@ ALTER TABLE ONLY public.user_availability_days
 
 ALTER TABLE ONLY public.user_bookings
     ADD CONSTRAINT user_bookings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_idp_comments user_idp_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT user_idp_comments_pkey PRIMARY KEY (id);
 
 
 --
@@ -10540,6 +11052,13 @@ CREATE INDEX idx_on_assessment_id_3b131a93ee ON public.campaign_assessor_assessm
 
 
 --
+-- Name: idx_on_campaign_assessment_group_id_b2579ac76b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_campaign_assessment_group_id_b2579ac76b ON public.campaign_assessor_assessments USING btree (campaign_assessment_group_id);
+
+
+--
 -- Name: idx_on_campaign_id_bbe9cda192; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10586,6 +11105,20 @@ CREATE UNIQUE INDEX idx_on_idp_template_id_development_action_id_catego_bd39b965
 --
 
 CREATE UNIQUE INDEX idx_on_idp_template_id_skill_id_category_11f5232638 ON public.idp_template_skills USING btree (idp_template_id, skill_id, category);
+
+
+--
+-- Name: idx_on_proficiency_level_id_locale_e9e7beb006; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_proficiency_level_id_locale_e9e7beb006 ON public.proficiency_level_translations USING btree (proficiency_level_id, locale);
+
+
+--
+-- Name: idx_on_project_id_hierarchy_type_depth_ec0c21635f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_project_id_hierarchy_type_depth_ec0c21635f ON public.taxonomy_levels USING btree (project_id, hierarchy_type, depth);
 
 
 --
@@ -10701,6 +11234,13 @@ CREATE INDEX index_admin_jobs_on_owner_id ON public.admin_jobs USING btree (owne
 
 
 --
+-- Name: index_admin_jobs_on_parent_job_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_jobs_on_parent_job_id ON public.admin_jobs USING btree (parent_job_id);
+
+
+--
 -- Name: index_admin_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10733,6 +11273,62 @@ CREATE INDEX index_agile_events_on_users_result_id ON public.agile_events USING 
 --
 
 CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessment_id);
+
+
+--
+-- Name: index_ai_assistant_chats_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_ai_assistant_id ON public.ai_assistant_chats USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_ai_assistant_chats_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_client_id ON public.ai_assistant_chats USING btree (client_id);
+
+
+--
+-- Name: index_ai_assistant_chats_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_user_id ON public.ai_assistant_chats USING btree (user_id);
+
+
+--
+-- Name: index_ai_assistant_requests_on_ai_assistant_chat_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_requests_on_ai_assistant_chat_id ON public.ai_assistant_requests USING btree (ai_assistant_chat_id);
+
+
+--
+-- Name: index_ai_assistant_requests_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_requests_on_ai_assistant_id ON public.ai_assistant_requests USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_ai_assistant_requests_on_ai_assistant_tool_call_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_requests_on_ai_assistant_tool_call_id ON public.ai_assistant_requests USING btree (ai_assistant_tool_call_id);
+
+
+--
+-- Name: index_ai_assistant_tool_calls_on_ai_assistant_request_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_tool_calls_on_ai_assistant_request_id ON public.ai_assistant_tool_calls USING btree (ai_assistant_request_id);
+
+
+--
+-- Name: index_ai_assistant_tool_calls_on_tool_call_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_ai_assistant_tool_calls_on_tool_call_id ON public.ai_assistant_tool_calls USING btree (tool_call_id);
 
 
 --
@@ -11240,10 +11836,24 @@ CREATE INDEX index_campaign_users_on_completion_status ON public.campaign_users 
 
 
 --
+-- Name: index_campaign_users_on_current_job_role_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_current_job_role_id ON public.campaign_users USING btree (current_job_role_id);
+
+
+--
 -- Name: index_campaign_users_on_started_at; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_campaign_users_on_started_at ON public.campaign_users USING btree (started_at);
+
+
+--
+-- Name: index_campaign_users_on_target_job_role_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_target_job_role_id ON public.campaign_users USING btree (target_job_role_id);
 
 
 --
@@ -11436,6 +12046,13 @@ CREATE INDEX index_communication_emails_on_workshop_invite_id ON public.communic
 
 
 --
+-- Name: index_communication_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_translations_on_locale ON public.communication_translations USING btree (locale);
+
+
+--
 -- Name: index_communications_copy_memberships; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11454,6 +12071,13 @@ CREATE INDEX index_communications_memberships ON public.communications_membershi
 --
 
 CREATE INDEX index_communications_on_assessment_id ON public.communications USING btree (assessment_id);
+
+
+--
+-- Name: index_communications_on_campaign_assessment_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_campaign_assessment_group_id ON public.communications USING btree (campaign_assessment_group_id);
 
 
 --
@@ -11524,6 +12148,13 @@ CREATE INDEX index_communications_users_on_user_id ON public.communications_user
 --
 
 CREATE INDEX index_course_schedules_on_development_action_id ON public.course_schedules USING btree (development_action_id);
+
+
+--
+-- Name: index_d7f2c041d1fd872ae4c401b79ce81a4ed229f121; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_d7f2c041d1fd872ae4c401b79ce81a4ed229f121 ON public.communication_translations USING btree (communication_id, locale);
 
 
 --
@@ -11821,6 +12452,20 @@ CREATE INDEX index_idp_template_skills_on_skill_id ON public.idp_template_skills
 
 
 --
+-- Name: index_idp_template_translations_on_idp_template_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_idp_template_translations_on_idp_template_id_and_locale ON public.idp_template_translations USING btree (idp_template_id, locale);
+
+
+--
+-- Name: index_idp_template_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_translations_on_locale ON public.idp_template_translations USING btree (locale);
+
+
+--
 -- Name: index_idp_templates_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11870,6 +12515,27 @@ CREATE INDEX index_integrations_on_project_id ON public.integrations USING btree
 
 
 --
+-- Name: index_job_groups_on_ancestry; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_job_groups_on_ancestry ON public.job_groups USING btree (ancestry);
+
+
+--
+-- Name: index_job_groups_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_job_groups_on_project_id ON public.job_groups USING btree (project_id);
+
+
+--
+-- Name: index_job_groups_on_project_id_and_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_job_groups_on_project_id_and_name ON public.job_groups USING btree (project_id, name);
+
+
+--
 -- Name: index_job_role_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11898,10 +12564,24 @@ CREATE INDEX index_job_role_translations_on_name_and_locale ON public.job_role_t
 
 
 --
+-- Name: index_job_roles_on_job_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_job_roles_on_job_group_id ON public.job_roles USING btree (job_group_id);
+
+
+--
 -- Name: index_job_roles_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_job_roles_on_name ON public.job_roles USING btree (name);
+
+
+--
+-- Name: index_job_roles_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_job_roles_on_project_id ON public.job_roles USING btree (project_id);
 
 
 --
@@ -12245,6 +12925,34 @@ CREATE INDEX index_privacy_settings_on_project_id ON public.privacy_settings USI
 --
 
 CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_sessions USING btree (campaign_user_id);
+
+
+--
+-- Name: index_proficiency_level_translations_on_proficiency_level_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proficiency_level_translations_on_proficiency_level_id ON public.proficiency_level_translations USING btree (proficiency_level_id);
+
+
+--
+-- Name: index_proficiency_levels_on_proficiency_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proficiency_levels_on_proficiency_type ON public.proficiency_levels USING btree (proficiency_type);
+
+
+--
+-- Name: index_proficiency_levels_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proficiency_levels_on_project_id ON public.proficiency_levels USING btree (project_id);
+
+
+--
+-- Name: index_proficiency_levels_on_skill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proficiency_levels_on_skill_id ON public.proficiency_levels USING btree (skill_id);
 
 
 --
@@ -12633,6 +13341,27 @@ CREATE INDEX index_skill_aliases_on_skill_id ON public.skill_aliases USING btree
 
 
 --
+-- Name: index_skill_groups_on_ancestry; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skill_groups_on_ancestry ON public.skill_groups USING btree (ancestry);
+
+
+--
+-- Name: index_skill_groups_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skill_groups_on_project_id ON public.skill_groups USING btree (project_id);
+
+
+--
+-- Name: index_skill_groups_on_project_id_and_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skill_groups_on_project_id_and_name ON public.skill_groups USING btree (project_id, name);
+
+
+--
 -- Name: index_skill_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12682,6 +13411,13 @@ CREATE INDEX index_skills_job_roles_on_job_role_id ON public.skills_job_roles US
 
 
 --
+-- Name: index_skills_job_roles_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skills_job_roles_on_project_id ON public.skills_job_roles USING btree (project_id);
+
+
+--
 -- Name: index_skills_job_roles_on_skill_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12703,10 +13439,17 @@ CREATE UNIQUE INDEX index_skills_on_project_id_and_name ON public.skills USING b
 
 
 --
--- Name: index_skillvue_assessments_on_project_and_product_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_skills_on_skill_group_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_skillvue_assessments_on_project_and_product_id ON public.skillvue_assessments USING btree (project_id, product_id);
+CREATE INDEX index_skills_on_skill_group_id ON public.skills USING btree (skill_group_id);
+
+
+--
+-- Name: index_skillvue_assessments_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skillvue_assessments_on_product_id ON public.skillvue_assessments USING btree (product_id);
 
 
 --
@@ -12847,6 +13590,13 @@ CREATE INDEX index_taggings_on_tenant ON public.taggings USING btree (tenant);
 --
 
 CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
+
+
+--
+-- Name: index_taxonomy_levels_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxonomy_levels_on_project_id ON public.taxonomy_levels USING btree (project_id);
 
 
 --
@@ -13106,6 +13856,62 @@ CREATE INDEX index_user_bookings_on_booked_by_resource ON public.user_bookings U
 --
 
 CREATE INDEX index_user_bookings_on_user_id ON public.user_bookings USING btree (user_id);
+
+
+--
+-- Name: index_user_idp_comments_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_created_at ON public.user_idp_comments USING btree (created_at);
+
+
+--
+-- Name: index_user_idp_comments_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_created_by_id ON public.user_idp_comments USING btree (created_by_id);
+
+
+--
+-- Name: index_user_idp_comments_on_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_parent_id ON public.user_idp_comments USING btree (parent_id);
+
+
+--
+-- Name: index_user_idp_comments_on_read_by_user_ids; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_read_by_user_ids ON public.user_idp_comments USING gin (read_by_user_ids);
+
+
+--
+-- Name: index_user_idp_comments_on_resolved_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_resolved_by_id ON public.user_idp_comments USING btree (resolved_by_id);
+
+
+--
+-- Name: index_user_idp_comments_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_resource ON public.user_idp_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_user_idp_comments_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_user_idp_plan_id ON public.user_idp_comments USING btree (user_idp_plan_id);
+
+
+--
+-- Name: index_user_idp_comments_on_user_idp_plan_id_and_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_user_idp_plan_id_and_created_by_id ON public.user_idp_comments USING btree (user_idp_plan_id, created_by_id);
 
 
 --
@@ -13742,6 +14548,14 @@ ALTER TABLE ONLY public.profile_settings
 
 
 --
+-- Name: skills fk_rails_026350ab95; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skills
+    ADD CONSTRAINT fk_rails_026350ab95 FOREIGN KEY (skill_group_id) REFERENCES public.skill_groups(id);
+
+
+--
 -- Name: report_approval_settings fk_rails_0338cad702; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13987,6 +14801,14 @@ ALTER TABLE ONLY public.course_schedules
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT fk_rails_1e06b93eb5 FOREIGN KEY (project_membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: admin_jobs fk_rails_1e3a30cff2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_jobs
+    ADD CONSTRAINT fk_rails_1e3a30cff2 FOREIGN KEY (parent_job_id) REFERENCES public.admin_jobs(id) ON DELETE SET NULL;
 
 
 --
@@ -14318,6 +15140,14 @@ ALTER TABLE ONLY public.libraries
 
 
 --
+-- Name: ai_assistant_chats fk_rails_3c77b7a900; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_3c77b7a900 FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_email_histories fk_rails_3cb35a810a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14614,6 +15444,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 
 --
+-- Name: user_idp_comments fk_rails_625bce6b01; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_625bce6b01 FOREIGN KEY (resolved_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: user_reports fk_rails_6280270170; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14659,6 +15497,14 @@ ALTER TABLE ONLY public.workshop_managers
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT fk_rails_667cccdf0c FOREIGN KEY (campaign_factor_group_id) REFERENCES public.campaign_factor_groups(id);
+
+
+--
+-- Name: user_idp_comments fk_rails_67fb1b4907; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_67fb1b4907 FOREIGN KEY (parent_id) REFERENCES public.user_idp_comments(id) ON DELETE CASCADE;
 
 
 --
@@ -14755,6 +15601,14 @@ ALTER TABLE ONLY public.workshop_invite_logs
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_6ec04ddf91 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_idp_comments fk_rails_6fb8f1ccac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_6fb8f1ccac FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id) ON DELETE CASCADE;
 
 
 --
@@ -14878,6 +15732,14 @@ ALTER TABLE ONLY public.workshop_invites
 
 
 --
+-- Name: proficiency_level_translations fk_rails_7e2f5d2b33; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_level_translations
+    ADD CONSTRAINT fk_rails_7e2f5d2b33 FOREIGN KEY (proficiency_level_id) REFERENCES public.proficiency_levels(id);
+
+
+--
 -- Name: mettl_assessments fk_rails_7f18bbad7b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14891,6 +15753,30 @@ ALTER TABLE ONLY public.mettl_assessments
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_819dfa2a29 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE SET NULL;
+
+
+--
+-- Name: ai_assistant_requests fk_rails_81e44e1700; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_requests
+    ADD CONSTRAINT fk_rails_81e44e1700 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
+-- Name: user_idp_comments fk_rails_824db9755d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_824db9755d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_users fk_rails_842e3c5f7e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_users
+    ADD CONSTRAINT fk_rails_842e3c5f7e FOREIGN KEY (target_job_role_id) REFERENCES public.job_roles(id);
 
 
 --
@@ -14971,6 +15857,14 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.hogan_credentials
     ADD CONSTRAINT fk_rails_8b50dd238d FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: job_groups fk_rails_8bebc41e84; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_groups
+    ADD CONSTRAINT fk_rails_8bebc41e84 FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -15230,6 +16124,14 @@ ALTER TABLE ONLY public.threesixty_reminder_histories
 
 
 --
+-- Name: communications fk_rails_a3fa31bbf3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications
+    ADD CONSTRAINT fk_rails_a3fa31bbf3 FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
 -- Name: workshops fk_rails_a420799614; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15246,11 +16148,27 @@ ALTER TABLE ONLY public.text_module_overrides
 
 
 --
+-- Name: campaign_assessor_assessments fk_rails_a5e89b4d8c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT fk_rails_a5e89b4d8c FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+
+
+--
 -- Name: assessments_clients fk_rails_a7b4e42c48; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assessments_clients
     ADD CONSTRAINT fk_rails_a7b4e42c48 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_assistant_chats fk_rails_a92f88de99; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_a92f88de99 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -15286,6 +16204,14 @@ ALTER TABLE ONLY public.user_idp_skills
 
 
 --
+-- Name: campaign_users fk_rails_ac3edb40a0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_users
+    ADD CONSTRAINT fk_rails_ac3edb40a0 FOREIGN KEY (current_job_role_id) REFERENCES public.job_roles(id);
+
+
+--
 -- Name: threesixty_email_schedules fk_rails_ac81b040c5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15307,6 +16233,14 @@ ALTER TABLE ONLY public.reports_campaign_factors
 
 ALTER TABLE ONLY public.dimensions
     ADD CONSTRAINT fk_rails_ae68a3a37d FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_translations fk_rails_af0644ded0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_translations
+    ADD CONSTRAINT fk_rails_af0644ded0 FOREIGN KEY (communication_id) REFERENCES public.communications(id);
 
 
 --
@@ -15518,6 +16452,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: taxonomy_levels fk_rails_cb13b90645; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxonomy_levels
+    ADD CONSTRAINT fk_rails_cb13b90645 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: media_responses fk_rails_cbc8996aca; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15670,6 +16612,14 @@ ALTER TABLE ONLY public.license_usages
 
 
 --
+-- Name: proficiency_levels fk_rails_d5d16ef0fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_levels
+    ADD CONSTRAINT fk_rails_d5d16ef0fd FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: workshop_managers fk_rails_d60918274d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15683,6 +16633,14 @@ ALTER TABLE ONLY public.workshop_managers
 
 ALTER TABLE ONLY public.clients_reports
     ADD CONSTRAINT fk_rails_d62c12c5d3 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_assistant_chats fk_rails_d6359b75ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_d6359b75ff FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -15718,6 +16676,14 @@ ALTER TABLE ONLY public.hogan_report_settings
 
 
 --
+-- Name: idp_template_translations fk_rails_d812d00ca7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_translations
+    ADD CONSTRAINT fk_rails_d812d00ca7 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id);
+
+
+--
 -- Name: idp_template_skills fk_rails_d863699667; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15747,6 +16713,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.profile_field_values
     ADD CONSTRAINT fk_rails_da47a0e23d FOREIGN KEY (user_profile_id) REFERENCES public.user_profiles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: job_roles fk_rails_dbfcfb127b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_roles
+    ADD CONSTRAINT fk_rails_dbfcfb127b FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -15878,6 +16852,14 @@ ALTER TABLE ONLY public.user_idp_skills
 
 
 --
+-- Name: job_roles fk_rails_e89ecf4513; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_roles
+    ADD CONSTRAINT fk_rails_e89ecf4513 FOREIGN KEY (job_group_id) REFERENCES public.job_groups(id);
+
+
+--
 -- Name: assessment_translations fk_rails_e8b68f05ba; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15907,6 +16889,14 @@ ALTER TABLE ONLY public.threesixty_evaluators
 
 ALTER TABLE ONLY public.bulk_reports
     ADD CONSTRAINT fk_rails_ea7da51ed5 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skills_job_roles fk_rails_eb22ce8ffe; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skills_job_roles
+    ADD CONSTRAINT fk_rails_eb22ce8ffe FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -15947,6 +16937,14 @@ ALTER TABLE ONLY public.norms
 
 ALTER TABLE ONLY public.campaign_assessor_assessments
     ADD CONSTRAINT fk_rails_ee2e737b88 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skill_groups fk_rails_eee5517ca5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_groups
+    ADD CONSTRAINT fk_rails_eee5517ca5 FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -16164,32 +17162,61 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250624125911'),
+('20250612122526'),
+('20250622122302'),
+('20250622114250'),
+('20250620104201'),
+('20250620000000'),
+('20250619111229'),
+('20250618100750'),
+('20250616122251'),
 ('20250616053812'),
+('20250613121201'),
+('20250611091619'),
 ('20250610070045'),
+('20250609112516'),
 ('20250605154240'),
+('20250605151652'),
+('20250603083219'),
 ('20250602071331'),
+('20250530122354'),
 ('20250530095701'),
 ('20250528132845'),
 ('20250528062059'),
+('20250526181739'),
+('20250526161051'),
+('20250523071937'),
 ('20250522122128'),
 ('20250522061329'),
 ('20250521193031'),
+('20250519061737'),
 ('20250519045905'),
 ('20250516082303'),
+('20250515140030'),
+('20250515123148'),
 ('20250514075923'),
 ('20250512082901'),
+('20250507133702'),
+('20250507113234'),
 ('20250507111247'),
 ('20250507102952'),
 ('20250506122929'),
 ('20250506113935'),
+('20250505090254'),
 ('20250504102702'),
 ('20250430135151'),
 ('20250430110314'),
 ('20250429125102'),
+('20250429103216'),
 ('20250427174443'),
 ('20250425102837'),
 ('20250423120813'),
 ('20250423114951'),
+('20250421113712'),
+('20250421113540'),
+('20250421072058'),
+('20250421071841'),
 ('20250416102558'),
 ('20250415070851'),
 ('20250415064739'),
@@ -16986,4 +18013,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

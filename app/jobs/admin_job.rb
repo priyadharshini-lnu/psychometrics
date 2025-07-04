@@ -8,6 +8,12 @@ class AdminJob < ApplicationJob
     Sentry.capture_exception(error)
   end
 
+  class AlreadyExistsError < StandardError
+    def initialize
+      super(I18n.t('admin_jobs.bulk_download_idp_reports.already_exists'))
+    end
+  end
+
   JOBS = {
     import_users: AdminJobs::ImportUsers,
     import_assessors: AdminJobs::ImportAssessors,
@@ -67,6 +73,7 @@ class AdminJob < ApplicationJob
     migrate_assessment_translations: AdminJobs::MigrateAssessmentTranslations,
     add_campaign_reports: AdminJobs::AddCampaignsReports,
     import_skills: AdminJobs::ImportSkillsJob,
+    import_proficiency_levels: AdminJobs::ImportProficiencyLevelsJob,
     import_development_actions: AdminJobs::ImportDevelopmentActionsJob,
     export_development_actions: AdminJobs::ExportDevelopmentActionsJob,
     assign_idp_to_users: AdminJobs::AssignIdpToUsers,
@@ -80,13 +87,22 @@ class AdminJob < ApplicationJob
     export_assessment_questions: AdminJobs::ExportAssessmentQuestions,
     export_dimension_as_json: AdminJobs::ExportDimensionAsJson,
     import_dimension_from_json: AdminJobs::ImportDimensionFromJson,
+    import_skills_rater_taxonomies: AdminJobs::SkillsRater::ImportTaxonomies,
+    export_proficiency_levels: AdminJobs::ExportProficiencyLevelsJob,
+    export_proficiency_level_translations: AdminJobs::ExportProficiencyLevelTranslationsJob,
+    import_proficiency_level_translations: AdminJobs::ImportProficiencyLevelTranslationsJob,
+    import_job_roles_translations: AdminJobs::ImportJobRolesTranslations,
+    export_job_roles_translations: AdminJobs::ExportJobRolesTranslations,
     export_reflection_questions: AdminJobs::ExportReflectionQuestionsJob,
-    import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob
+    import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob,
+    export_dashboard_as_file: AdminJobs::ExportDashboardAsFile,
+    bulk_download_idp_reports: AdminJobs::BulkDownloadIdpReports
   }.freeze
 
-  def perform(record)
+  def perform(record, stage = nil)
     record.update!(status: :in_progress)
-    JOBS[record.operation.to_sym].call(record) do
+
+    JOBS[record.operation.to_sym].call(record, stage) do
       on(:ok) do |response|
         record.complete!
         record.update(response) if response
@@ -99,11 +115,16 @@ class AdminJob < ApplicationJob
 
   class << self
     def call(operation, data, owner, file = nil)
+      JOBS[operation.to_sym].validate(data, owner)
       record = AdminJobRecord.create!(operation: operation, data: data, file: file, owner: owner)
 
       record.broadcast(:create)
       perform_later(record)
       record
+    end
+
+    def call_subjob(record, step)
+      AdminJob.perform_later(record, step)
     end
   end
 end

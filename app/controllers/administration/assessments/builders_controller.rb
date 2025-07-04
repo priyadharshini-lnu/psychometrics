@@ -9,7 +9,7 @@ module Administration
       def show
         render json: ::Assessments::AssessmentSerializer.new(
           context: {
-            locale: params[:lang] || @assessment.default_language
+            locale: params[:assessment_lang] || @assessment.default_language
           }
         ).serialize(@assessment)
       end
@@ -24,7 +24,7 @@ module Administration
             }
           ).serialize(@assessment) }
         else
-          render json: { error: true }, status: 400
+          render json: { error: true, errors: builder.errors }, status: :unprocessable_entity
         end
       end
 

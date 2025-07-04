@@ -86,7 +86,6 @@ export const SkillsFilter: React.FC<Props> = ({
     if (action === 'import_translations') {
       openModal('SkillsImportModal', {
         handleImport: handleSkillsTranslationsImport,
-        csvFilePath: '/example_csv/skills-translations-sample.csv',
         title: I18n.t('administration.skills.import_action.skills_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })
@@ -150,7 +149,7 @@ export const SkillsFilter: React.FC<Props> = ({
 
   return (
     <Resource.Filter
-      name="name_cont"
+      name="filterable_fields"
       showTagFilter
       tagFilterConfig={{ taggable_resource_type: TaggableResourceType.Skill }}
     >

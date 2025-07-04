@@ -23,7 +23,7 @@ const { I18n } = window
 
 type Props = PropsFromRedux
 
-const AssessmentList: React.FC<Props> = () => {
+const AssessmentList: React.FC<Props> = ({ openModal }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const { modal } = App.useApp()
 
@@ -101,6 +101,22 @@ const AssessmentList: React.FC<Props> = () => {
                     chagneAllowMultipleResponses(resource, value)
                   }}
                 />
+              )}
+            />
+            <Column
+              title={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+              key="assessmentCenterGroups"
+              render={resource => (
+                <a
+                  onClick={() => openModal('AssessorCampaignAssessmentGroupModal', {
+                    campaignId: resource.campaignId,
+                    campaignAssessorAssessmentId: resource.id,
+                    campaignAssessmentGroupName: resource.campaignAssessmentGroupName,
+                  })
+                  }
+                >
+                  {resource.campaignAssessmentGroupName || I18n.t('frontend.manage')}
+                </a>
               )}
             />
             <Column

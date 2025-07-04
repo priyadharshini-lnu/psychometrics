@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseResource
-  attributes :name, :description, :skill_type, :created_at, :updated_at, :project_id, :tag_list, :global
+  attributes :name, :description, :skill_type, :created_at, :updated_at, :project_id, :tag_list, :global,
+             :skill_group_id
 
   has_one :project
+  has_one :skill_group
   has_many :development_actions
+
   add_tag_filter
 
   def created_at
@@ -37,6 +40,10 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
 
   def self.sortable_fields(context)
     super + %i[project.name]
+  end
+
+  def self.records(opts = {})
+    super.includes(:translations)
   end
 
   ransack_filters %i[

@@ -11,6 +11,52 @@ pl:
         select_comparison: Wybierz typ porównania
         select_factors: Wybierz Czynniki
         select_operation: Wybierz opcję Operacja
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{nazwa_bloku}" ma zduplikowane konfiguracje: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Docelowa rola zawodowa musi różnić się od obecnej roli zawodowej.
+              not_found: Rola zadania '%{nazwa}' nie została znaleziona w projekcie lub rolach globalnych
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Docelowa rola zawodowa musi różnić się od obecnej roli zawodowej.
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Wartość %{nazwa_kolumny} nie może być pusta w wierszu %{numer_wiersza}.
+              invalid_format: Prześlij plik CSV
+              invalid_job_role_id: Identyfikator w wierszu %{numer_wiersza} nie jest prawidłowym identyfikatorem roli zadania
+              invalid_locale: Lokalizacja w wierszu %{numer_wiersza} nie jest prawidłową lokalizacją
+              missing_required_columns: 'Brakujące wymagane kolumny: %{kolumny}'
+              parsing_failed: 'Błąd podczas analizowania pliku, błąd: %{error}.'
+            project:
+              must_exist: Projekt musi istnieć
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Co najmniej jedna rola zawodowa musi być włączona z typem umiejętności wybranym dla %{block_name}.
+              invalid_skill_type: 'Nieprawidłowy typ umiejętności %{skill_type} dla %{role_name} dla %{block_name}. Prawidłowe opcje: %{valid_options}'
+              props_missing: Praca
+        skillvue:
+          attributes:
+            name:
+              not_unique: Ta integracja jest już obecna w tym projekcie.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Wiersz %{row}: Zduplikowana wartość %{value} dla %{field}.'
+              invalid_format: Prześlij plik xlsx
+              missing_headers: 'W arkuszu %{sheet_name} brakuje wymaganych nagłówków: %{headers}'
+              missing_sheets: 'Brakujące wymagane arkusze: %{arkusze}'
+              missing_value: 'Wiersz %{row}: Brakująca wartość dla %{field}'
+            project:
+              must_exist: Projekt musi istnieć
   activerecord:
     attributes:
       membership:
@@ -37,6 +83,14 @@ pl:
           attributes:
             current_password:
               invalid: Bieżące hasło jest nieprawidłowe
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Eksportuj tłumaczenia ról zawodowych
+        export_proficiency_levels: Poziomy biegłości w eksporcie
+        import_job_roles_translations: Importowanie tłumaczeń ról zadań
+        import_proficiency_level_translations: Importuj tłumaczenia na poziomie biegłości
+        import_skills_rater_taxonomies: Importowanie taksonomii Skill Rater
   anonym:
     close: Zamknij
     continue: Kontynuuj
@@ -66,6 +120,12 @@ pl:
     card_actions:
       begin: Zaczynać
       continue: Dalej
+    column:
+      external_settings:
+        skillvue_assessment_name: Nazwa oceny Skillvue
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Początek
       cancel: Anuluj
@@ -204,9 +264,9 @@ pl:
       campaign: Kampania
       change_password: Zmień hasło
       development: Rozwój
+      direct_reportees: Direktywni
       home: Dom
       insights: Insights
-      my_direct_reportees: Moi bezpośredni podwładni
       my_plan: Mój plan
       profile: Profil
       profile_details: Detale
@@ -269,6 +329,15 @@ pl:
   campaign_assessment:
     assessment_center_heading: Szczegóły centrum oceny
     assessments_heading: Twoje zadania
+    column:
+      skillvue_email_id: Identyfikator e-mail kandydata Skillvue
+      skillvue_external_assessment_id: Skillvue Assessment ID
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Coś poszło nie tak. Prosimy o kontakt z administratorem
+        placeholder: Wybierz grupę centrum oceny
+        success_message: Assessor Campaign Assessment Group została pomyślnie przydzielona
+        title: Assessment Center Group
     statuses:
       completed: Zakończony
       in_progress: W trakcie
@@ -387,6 +456,7 @@ pl:
     column:
       action: Działanie
       category: Kategoria
+      code: Kod
       created_at: Utworzono w
       id: Id
       status: Status
@@ -402,6 +472,7 @@ pl:
       download: Pobierz
       na: NIE DOTYCZY
       ok: Ok
+      refer_export_file: Zapoznaj się z funkcją eksportu, aby wyodrębnić szablon, którego można użyć do zaimportowania w tym miejscu.
       response: Odpowiedź
   devise:
     administrators:
@@ -457,7 +528,14 @@ pl:
   dry_errors:
     errors:
       idp_template:
-        tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane”, wybierz tag lub umiejętność.
+        content_required: Treść jest wymagana w instrukcjach
+        tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane", wybierz tag lub umiejętność.
+      job_roles:
+        unique_within_job_group: Rola zawodowa o tej samej nazwie już istnieje.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Umiejętność i rola muszą należeć do tego samego projektu lub być globalne.
+        unique_mappings: Mapowanie z tymi samymi umiejętnościami i rolą zawodową już istnieje.
+      uniq_skillvue: Ta ocena Skillvue jest już obecna w systemie. Identyfikator tej oceny to %{id}
   emails:
     subject_relationship_table:
       subject_email: Przedmiot E-mail
@@ -595,6 +673,29 @@ pl:
   idp:
     actions: Działania
     board: Tablica
+    comment_details:
+      add_comment: Dodaj komentarz
+      add_comment_placeholder: Dodaj komentarz...
+      add_reply_placeholder: Dodaj odpowiedź...
+      go_to_skill: Przejdź do umiejętności
+    comments:
+      close: Zamknij
+      comments: Komentarze
+      filter_comments: Filtruj komentarze
+      mark_as_resolved: Oznacz jako rozwiązane
+      mark_as_unresolved: Oznacz jako nierozwiązane
+      replied: Odpowiedziano
+      replies: Odpowiedzi
+      reply: Odpowiedz
+      resolve: Rozwiąż
+      resolved: Rozwiązane
+      resolved_message: Ten komentarz został rozwiązany i odpowiedzi są wyłączone.
+      show_only_read: Pokaż tylko przeczytane
+      show_only_resolved: Pokaż rozwiązane
+      show_only_unread: Pokaż tylko nieprzeczytane
+      show_only_unresolved: Pokaż tylko nierozwiązane
+      sort_by_date: Sortuj według daty
+      you: Ty
     convert_to_draft: Konwertuj na wersję roboczą
     details: Szczegóły
     development_actions:
@@ -626,6 +727,7 @@ pl:
       on_the_job: W trakcie pracy
       other: Inne
       private: Prywatne
+      publish_plan: Publikuj plan
       remove: Usuń
       skill: Umiejętność
       sprint: Sprint
@@ -633,7 +735,6 @@ pl:
       structured_learning: Zorganizowane uczenie się
       submit_plan: Prześlij plan
       write_here: Pisz tutaj...
-    direct_reportee_details: Szczegóły bezpośrednich podwładnych
     initial_steps:
       add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
       add_skill_group_title: Eksploracja Twoich umiejętności %{category}
@@ -641,7 +742,6 @@ pl:
       add_skills_step: Dodaj umiejętności
       continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
       getting_started: Rozpoczęcie
-      getting_started_info: Witamy w kreatorze Indywidualnego Planu Rozwoju (IDP). Ten plan pomoże Ci zidentyfikować, zarządzać i śledzić Twoje zawodowe i osobiste cele, a także kroki, które musisz podjąć, aby je osiągnąć. Twoje cele zawodowe mogą obejmować behawioralne, przywódcze, a także techniczne obszary rozwoju. Twój IDP jest istotnym narzędziem wspierającym rozwój kariery i doskonalenie umiejętności.
       less_skills: Pokaż mniej umiejętności
       more_skills: Odkryj więcej umiejętności
       next: Dalej
@@ -660,7 +760,6 @@ pl:
     manage_plan: Zarządzaj planem
     mark_as_complete: Oznacz jako ukończone
     mark_as_incomplete: Oznacz jako niekompletne
-    my_direct_reportees: Moi bezpośredni podwładni
     my_plan:
       development_plan: Plan rozwoju
       graphs:
@@ -772,6 +871,7 @@ pl:
         skills_count: Liczba umiejętności
         title: Podsumowanie raportu
     reflective_questions:
+      already_completed: IDP został już ukończony, nie możesz teraz odpowiadać na pytania.
       answer_later: Odpowiedź później
       answer_placeholder: Wpisz tutaj swoją odpowiedź...
       errors:
@@ -833,6 +933,8 @@ pl:
       add: Dodaj raport
       download: Pobierz raport
       view: Wyświetl raport
+    form:
+      load_from_skillvue: Załaduj ze Skillvue
     modules:
       campaign_factors_table:
         add_condition: Dodaj warunek

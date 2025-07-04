@@ -10,7 +10,7 @@ module Builders
       current_user
     end
 
-    attr_accessor :current_user, :assessment, :assessment_params, :trash, :selected_locale
+    attr_accessor :current_user, :assessment, :assessment_params, :trash, :selected_locale, :errors
 
     def initialize(assessment, params, current_user)
       @current_user = current_user
@@ -28,10 +28,8 @@ module Builders
           save_assessment_translations
         end
       end
-    # TODO: remove StandardError??
-    rescue ActiveRecord::RecordInvalid, StandardError => e
-      Rails.logger.info(e)
-
+    rescue StandardError => e
+      handle_errors(e)
       false
     end
 
@@ -43,6 +41,15 @@ module Builders
                             :data_sheet_columns, :instructions, :options, :default_norm_id,
                             :linked_questions, :campaign_factors_list
                           ))
+
+      form = Administration::Assessments::AllBlocksForm.new(
+        blocks: @assessment_params[:blocks]
+      )
+
+      unless form.valid?
+        raise ActiveModel::ValidationError, form
+      end
+
       @assessment_params[:blocks].each do |block_params|
         id = block_params.delete(:id)
         questions = block_params.delete(:questions)
@@ -89,6 +96,18 @@ module Builders
 
     def default_language?
       selected_locale == @assessment.default_language
+    end
+
+    def handle_errors(e)
+      @errors = case e
+                  when ActiveModel::ValidationError
+                    e.model.errors.full_messages
+                  when ActiveRecord::RecordInvalid
+                    e.record.errors.full_messages
+                  else
+                    [e.message]
+                end
+      Rails.logger.error(e)
     end
   end
 end

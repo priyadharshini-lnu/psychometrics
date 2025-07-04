@@ -79,6 +79,7 @@ features:
   webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
   react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
   idp_enabled: <%= ENV.fetch('IDP_ENABLED', 'false') == 'true' %>
+  skill_rater_enabled: <%= ENV.fetch('SKILL_RATER_ENABLED', 'false') == 'true' %>
   new_video_recording_ui: <%= ENV.fetch('NEW_VIDEO_RECORDING_UI', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
@@ -1568,7 +1569,7 @@ providers:
       - id: DF91FEA8-3417-494A-8C11-335C6E047B9A
         name: Swift Analysis Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
       - id: A0AEFB82-6E7E-4FE1-B003-893EEE88704C
-        name: Swift Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+        name: Swift Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: 8463AD1E-02E3-474C-B68E-D86B5F7971B9
         name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
       - id: 34A42DC9-66BF-469F-A71A-FC6390C22C0F
@@ -1582,7 +1583,7 @@ providers:
       - id: 5D0C00E3-3837-4F38-AD45-717F20570E73
         name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
       - id: DF6050E3-2F99-49C5-AC74-047102143402
-        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: F6BADEA2-7243-4FC1-AE32-3E148587688E
         name: Swift Executive Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: 6D54A4CB-185C-4ABF-9077-6D3428BBAEBC
@@ -1610,7 +1611,7 @@ providers:
       - id: B92E1215-D96F-4371-9D1D-F7581932109F
         name: Verbal Analysis Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
       - id: 73966581-5022-446C-9394-381DB81B3B27
-        name: Verbal Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+        name: Verbal Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: 7B81005D-A319-470A-BC98-2269E819FB0D
         name: Wave Focus Styles V4 - Individual Contributors (INT, IA, 2021)
       - id: C11548CA-FE01-445F-88EA-0F6ACE4474D0
@@ -2122,7 +2123,7 @@ providers:
       - id: A6C2E73E-F415-42BD-9E67-F979FA8FE6D8
         name: Professionals & Managers (AF, IA, 2021)
       - id: 08432BB7-6BB4-4CD5-919D-FB94481E034E
-        name: Professionals & Managers (UK, IA, 2009
+        name: Professionals & Managers (UK, IA, 2009)
       - id: 098444FD-6867-4E12-84AB-FBD353663CE5
         name: Graduates - All (US, IA, 2017)
       - id: A0D314F2-C9FC-4400-A322-FBF77781B789
@@ -2281,12 +2282,12 @@ saml:
   idp_entity_id: <%= ENV.fetch('SAML_IDP_ENTITY_ID', nil) %>
   idp_sso_service_url: <%= ENV.fetch('SAML_IDP_SSO_SERVICE_URL', nil) %>
 ai_providers:
-  - id: azure-openai
-    api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY', nil) %>
-    provider: AzureOpenai
-    name: Azure OpenAI
-    endpoint: <%= ENV.fetch('AZURE_OPENAI_API_ENDPOINT', nil) %>
-    description: "Azure OpenAI"
+  - model_id: <%= ENV.fetch('AZURE_OPENAI_MODEL', 'gpt-4o') %>
+    name: GPT-4o
+    description: "GPT-4o by openai on Azure"
     data_processing_locations: ""
     data_at_rest_location: ""
+    context:
+      openai_api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY', nil) %>
+      openai_api_base: <%= ENV.fetch('AZURE_OPENAI_API_BASE_ENDPOINT', nil) %>
 available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>

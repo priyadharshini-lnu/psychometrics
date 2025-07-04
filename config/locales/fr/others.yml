@@ -31,6 +31,10 @@ fr:
             blank: Les réponses ne peuvent pas être vides
           group_id:
             blank: L'identifiant du groupe ne peut pas être vide
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Le bloc "%{nom_du_bloc}" a des configurations dupliquées : %{configurations_dupliquées}'
         assessment_question_import_form:
           attributes:
             file:
@@ -113,6 +117,9 @@ fr:
               too_short: Le mot de passe de l'évaluateur est trop court (le minimum est %{count} caractères)
             first_name:
               blank: Le prénom ne peut pas être vide
+            job_role:
+              cannot_be_same: La fonction visée doit être différente de la fonction actuelle.
+              not_found: Le rôle "%{nom}" n'est pas trouvé dans le projet ou les rôles globaux.
             last_name:
               blank: Le nom de famille ne peut pas être vide
             locale:
@@ -182,12 +189,25 @@ fr:
               invalid: L'adresse électronique n'est pas valide
             first_name:
               blank: Le prénom ne peut pas être vide
+            job_role:
+              cannot_be_same: La fonction visée doit être différente de la fonction actuelle.
             last_name:
               blank: Le nom de famille ne peut pas être vide
             locale:
               inclusion: Localité incorrecte
             password:
               too_short: Le mot de passe est trop court. %{count} caractères minimum requis
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: La valeur %{nom_de_colonne} ne peut pas être vide à la ligne %{numéro_de_la_rangée}
+              invalid_format: Veuillez télécharger le fichier CSV
+              invalid_job_role_id: L'identifiant de la ligne %{numéro_de_la_rangée} n'est pas un identifiant de rôle professionnel valide.
+              invalid_locale: La locale à la ligne %{numéro_de_la_rangée} n'est pas une locale valide
+              missing_required_columns: 'Colonnes manquantes : %{columns}'
+              parsing_failed: 'Erreur lors de l''analyse du fichier, erreur : %{error}.'
+            project:
+              must_exist: Le projet doit exister
         mettl:
           attributes:
             name:
@@ -303,6 +323,16 @@ fr:
             email:
               blank: L'email ne peut pas être vide
               not_uniq_email: La ligne avec l'email est déjà présente
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Au moins un rôle professionnel doit être activé avec un type de compétence sélectionné pour %{nom_du_bloc}
+              invalid_skill_type: 'Type de compétence non valide %{skill_type} pour %{role_name} pour %{block_name}. Options valides : %{options_valides}'
+              props_missing: Emploi
+        skillvue:
+          attributes:
+            name:
+              not_unique: Cette intégration est déjà présente dans ce projet.
         sms_invites_create:
           attributes:
             first_name:
@@ -336,6 +366,16 @@ fr:
             last_name:
               blank: Le nom de famille ne peut pas être vide
               starts_with_invalid_characters: Le nom de famille ne peut pas commencer par =, |, +, -, @, %
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Ligne %{row} : Valeur en double %{valeur} pour %{champ}'
+              invalid_format: Veuillez télécharger le fichier xlsx
+              missing_headers: 'La feuille %{nom_de_la_feuille} ne contient pas les en-têtes requis : %{en-têtes}'
+              missing_sheets: 'Feuilles manquantes : %{fiches}'
+              missing_value: 'Ligne %{row} : Valeur manquante pour %{field}'
+            project:
+              must_exist: Le projet doit exister
         update_norm:
           attributes:
             norm_type:
@@ -764,8 +804,10 @@ fr:
         export_development_actions: Actions de développement des exportations
         export_dimension_as_json: Exporter la dimension JSON
         export_factor_translations: Traductions des facteurs d'exportation
+        export_job_roles_translations: Exportation Rôles professionnels Traductions
         export_norm: Norme d'exportation
         export_occupations: Professions Exportation
+        export_proficiency_levels: Niveaux de compétence à l'exportation
         export_report_data: Exporter les données du rapport
         export_reports_and_assessments: Exporter des rapports et des évaluations
         export_skill_translations: Compétences à l'exportation Traductions
@@ -784,12 +826,15 @@ fr:
         import_external_campaign_scoring: Importer une notation de campagne externe
         import_factor_translations: Traductions des facteurs d'importation
         import_factors: Facteurs d'importation
+        import_job_roles_translations: Importation Rôles professionnels Traductions
         import_norm: Norme d'importation
+        import_proficiency_level_translations: Traductions du niveau de compétence en matière d'importation
         import_question_translations: Traductions des questions d'importation
         import_raw_data: Importer des données brutes
         import_scoring_data: Importer des données de notation
         import_skill_translations: Compétences d'importation Traductions
         import_skills: Compétences en matière d'importation
+        import_skills_rater_taxonomies: Importer les taxonomies des évaluateurs de compétences
         import_sms_invites: Importer une invitation par SMS
         import_users: Importer des utilisateurs
         migrate_assessment_translations: Évaluation Traduction migration
@@ -925,6 +970,7 @@ fr:
         pearson_norm_id: Norme de Pearson ID
         saville_assessment_name: Nom de l'évaluation de Saville
         simulation_assessment_name: Nom de l'évaluation de la simulation
+        skillvue_assessment_name: Skillvue Nom de l'évaluation
       translations_migrated: Traduction migrée
     create: Créer
     dashboard: Tableau de bord
@@ -964,6 +1010,7 @@ fr:
         psychometric: Psychométrie
         saville: Saville
         simulation: Simulation
+        skillvue: Skillvue
         threesixty: campagne 360
       status:
         finished: Fini
@@ -1230,9 +1277,9 @@ fr:
       campaign: Campagne
       change_password: Modifier le mot de passe
       development: Développement
+      direct_reportees: Subordonnés
       home: Accueil
       insights: Perspectives
-      my_direct_reportees: Mes subordonnés directs
       my_plan: Mon plan
       profile: Profil
       profile_details: Détails
@@ -1329,6 +1376,8 @@ fr:
       pearson_variation: Variation de Pearson
       prework: Prétravail
       simulation_content_variation: Variation du contenu de la simulation
+      skillvue_email_id: Adresse électronique du candidat Skillvue
+      skillvue_external_assessment_id: Évaluation de Skillvue ID
       universal_link: Lien universel
     drawer:
       mettl_schedule_name: Nom du programme Mettl
@@ -1344,6 +1393,11 @@ fr:
       raw_results_export_scheduled: La tâche d'exportation des résultats bruts de l'évaluation a été programmée avec succès
       scoring_results_export_scheduled: Résultats de la notation de l'évaluation Le travail d'exportation a été programmé avec succès
     modals:
+      assessor_campaign_assessment_group:
+        error_message: Un problème s'est produit. Veuillez contacter l'administrateur
+        placeholder: Sélectionner un groupe de centres d'évaluation
+        success_message: Campagne de l'évaluateur Le groupe d'évaluation a été attribué avec succès
+        title: Groupe du centre d'évaluation
       import_raw:
         body: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
         success_msg: L'importation a été téléchargée avec succès
@@ -1658,6 +1712,7 @@ fr:
       assessor: Assesseur
       category: Catégorie
       client: Client
+      code: Code
       created_at: Créé à
       created_by: Créé par
       created_date: Date de création
@@ -1745,6 +1800,7 @@ fr:
       na: N/A
       none: Aucun
       ok: Ok
+      refer_export_file: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
       reference_language: Langue de référence
       response: Réponse
       select: Sélectionner
@@ -1846,7 +1902,7 @@ fr:
           project: 'Projet : %{section_name}'
         subject: Invitation au phare
       password_change:
-        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse support@thetalententerprise.com
+        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com
 
           '
         regards: 'Cordialement, l''équipe de Lighthouse
@@ -1981,6 +2037,8 @@ fr:
       filled?: ne peut être vide
       invalid_name: seuls l'alphabet, les chiffres, les espaces, les tirets et les points sont autorisés comme caractères valides
       invalid_value: déclaration invalide '%{value}' sur la ligne numéro %{row}
+      job_roles:
+        unique_within_job_group: Un rôle d'emploi portant le même nom existe déjà.
       json?: Doit être un JSON valide
       key?: ne peut être vide
       match_regexp?: valeur non valide
@@ -2001,9 +2059,13 @@ fr:
       skill_alias:
         unique_alias: L'alias doit être unique
         unique_skill: Les compétences doivent être uniques
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: La compétence et le rôle professionnel doivent appartenir au même projet ou être globaux.
+        unique_mappings: Il existe déjà une correspondance avec les mêmes compétences et la même fonction.
       uniq: Cette évaluation Mettl est déjà présente dans le système. L'identifiant de cette évaluation est %{id}
       uniq?: doit être unique
       uniq_simulation: Cette évaluation de simulation est déjà présente dans le système. L'identifiant de cette évaluation est %{id}
+      uniq_skillvue: Cette évaluation Skillvue est déjà présente dans le système. L'ID de cette évaluation est %{id}
       update_workshop:
         less_than_booked: Le nombre total de places doit être supérieur au nombre de places réservées
       user_availability_date:
@@ -2025,6 +2087,7 @@ fr:
         no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assessor}
         no_available_manager_slots: Aucun emplacement disponible pour le manager %{manager}
     idp_template:
+      content_required: Le contenu est requis pour les instructions
       tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
     users:
       registrations:
@@ -2335,6 +2398,29 @@ fr:
   idp:
     actions: Actions
     board: Conseil d'administration
+    comment_details:
+      add_comment: Ajouter un commentaire
+      add_comment_placeholder: Ajouter un commentaire...
+      add_reply_placeholder: Ajouter une réponse...
+      go_to_skill: Aller à la compétence
+    comments:
+      close: Fermer
+      comments: Commentaires
+      filter_comments: Filtrer les commentaires
+      mark_as_resolved: Marquer comme résolu
+      mark_as_unresolved: Marquer comme non résolu
+      replied: Répondu
+      replies: Réponses
+      reply: Répondre
+      resolve: Résoudre
+      resolved: Résolu
+      resolved_message: Ce commentaire a été résolu et les réponses sont désactivées.
+      show_only_read: Afficher uniquement les lues
+      show_only_resolved: Afficher uniquement les résolus
+      show_only_unread: Afficher uniquement les non lus
+      show_only_unresolved: Afficher uniquement les non résolus
+      sort_by_date: Trier par date
+      you: Vous
     convert_to_draft: Convertir en brouillon
     details: Détails
     development_actions:
@@ -2361,13 +2447,13 @@ fr:
       on_the_job: Au travail
       other: Autres
       private: Privé
+      publish_plan: Publier le plan
       remove: Retirer
       skill: Compétence
       sprint: Sprint
       structured_learning: Apprentissage structuré
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
-    direct_reportee_details: Détails des subordonnés directs
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
       add_skill_group_title: Explorer vos compétences %{catégorie}
@@ -2375,7 +2461,6 @@ fr:
       add_skills_step: Ajouter des compétences
       continue_to_rate_skills: Continuer à évaluer les compétences
       getting_started: Pour commencer
-      getting_started_info: Bienvenue sur le site du créateur de votre plan de développement individuel (PDI). Ce plan vous aidera à identifier, gérer et suivre vos objectifs professionnels et personnels ainsi que les étapes à franchir pour atteindre ces objectifs. Vos objectifs professionnels peuvent inclure des domaines de développement comportementaux, techniques et de leadership. Votre PDI est un outil essentiel pour soutenir votre développement de carrière et l'amélioration de vos compétences.
       less_skills: Montrer moins de compétences
       more_skills: Explorer d'autres compétences
       next: Suivant
@@ -2394,7 +2479,6 @@ fr:
     manage_plan: Gérer le forfait
     mark_as_complete: Marquer comme terminé
     mark_as_incomplete: Marquer comme incomplet
-    my_direct_reportees: Mes subordonnés directs
     my_plan:
       development_plan: Plan de développement
       graphs:
@@ -2512,6 +2596,7 @@ fr:
         skills_count: Nombre de compétences
         title: Résumé du rapport
     reflective_questions:
+      already_completed: Le PDI a déjà été complété, vous ne pouvez pas répondre aux questions maintenant.
       answer_later: Réponse plus tard
       answer_placeholder: Inscrivez votre réponse ici...
       errors:
@@ -2862,9 +2947,11 @@ fr:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Chargement de Mettl
       load_from_pearson: Chargement de Pearson
+      load_from_skillvue: Chargement de Skillvue
       none_external: Aucun - Utiliser le générateur de rapports
     language: Langue du rapport
     language_updated: La langue du rapport a été mise à jour avec succès

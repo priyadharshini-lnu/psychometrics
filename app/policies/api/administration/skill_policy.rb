@@ -27,6 +27,10 @@ module Api
         has_permission?('skills', 'view', project_id: project_id)
       end
 
+      def proficiency_levels?
+        has_permission?('skills', 'view', project_id: project_id)
+      end
+
       def tags_search?
         search?
       end

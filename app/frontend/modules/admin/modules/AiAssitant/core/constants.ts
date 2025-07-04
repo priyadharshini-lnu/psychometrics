@@ -1,7 +1,7 @@
 export const AI_PROVIDERS = {
-  'azure-openai': {
-    id: 'azure-openai',
-    name: 'Azure OpenAI',
+  'gpt-4o': {
+    id: 'gpt-4o',
+    name: 'GPT-4o',
   },
 }
 

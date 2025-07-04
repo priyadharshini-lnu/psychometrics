@@ -11,6 +11,52 @@ sl:
         select_comparison: Izberite vrsto primerjave
         select_factors: Izbrani dejavniki
         select_operation: Izberite operacijo
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok "%{naslov_bloka}" ima podvojene konfiguracije: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Ciljno delovno mesto se mora razlikovati od trenutnega delovnega mesta.
+              not_found: Vloga delovnega mesta '%{name}' ni najdena v projektnih ali globalnih vlogah
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Ciljno delovno mesto se mora razlikovati od trenutnega delovnega mesta.
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Vrednost %{naslov_stolpca} ne more biti prazna v vrstici %{številka_vrstice}
+              invalid_format: Prenesite datoteko CSV
+              invalid_job_role_id: Id v vrstici %{številka_vrstice} ni veljavni ID vloge delovnega mesta
+              invalid_locale: Locale v vrstici %{številka vrstice} ni veljaven locale
+              missing_required_columns: 'Manjkajo zahtevani stolpci: %{columns}'
+              parsing_failed: 'Napaka pri analizi datoteke, napaka: %{error}.'
+            project:
+              must_exist: Projekt mora obstajati
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Vsaj ena vloga delovnega mesta mora biti omogočena z izbrano vrsto spretnosti za %{naziv_bloka}
+              invalid_skill_type: 'Nepravilna vrsta spretnosti %{skill_type} za %{role_name} za %{block_name}. Veljavne možnosti: %{valid_options}'
+              props_missing: Delo
+        skillvue:
+          attributes:
+            name:
+              not_unique: Ta integracija je pri tem projektu že prisotna.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Vrstica %{row}: Podvojena vrednost %{vrednost} za %{polje}'
+              invalid_format: Prosimo, naložite datoteko xlsx
+              missing_headers: "%{naslov_listov} v listu manjkajo zahtevane glave: %{glave}"
+              missing_sheets: 'Manjkajo zahtevani listi: %{listov}'
+              missing_value: 'Vrstica %{row}: Manjkajoča vrednost za %{polje}'
+            project:
+              must_exist: Projekt mora obstajati
   activerecord:
     attributes:
       membership:
@@ -37,6 +83,13 @@ sl:
           attributes:
             current_password:
               invalid: Sedanje geslo je napačno
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Izvoz delovnih vlog Prevodi
+        export_proficiency_levels: Stopnje strokovnosti pri izvozu
+        import_job_roles_translations: Uvoz delovnih vlog Prevodi
+        import_skills_rater_taxonomies: Uvoz taksonomij ocenjevalcev spretnosti
   administration: Uprava
   anonym:
     close: Zapri
@@ -65,6 +118,12 @@ sl:
     card_actions:
       begin: Začni
       continue: Nadaljuj
+    column:
+      external_settings:
+        skillvue_assessment_name: Skillvue Ime ocene
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Začni
       cancel: Prekliči
@@ -257,6 +316,15 @@ sl:
   campaign_assessment:
     assessment_center_heading: Podrobnosti o centru za ocenjevanje
     assessments_heading: Vaše naloge
+    column:
+      skillvue_email_id: Skillvue Kandidat Email ID
+      skillvue_external_assessment_id: Skillvue Ocena ID
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Nekaj je šlo narobe. Obrnite se na skrbnika
+        placeholder: Izberite skupino ocenjevalnega središča
+        success_message: Assessor Campaign Ocenjevalna skupina je bila uspešno dodeljena
+        title: Skupina Assessment Center
     statuses:
       completed: Zaključeno
       in_progress: V teku
@@ -374,6 +442,7 @@ sl:
     column:
       action: Akcija
       category: Kategorija
+      code: Koda
       created_at: Ustvarjeno na
       id: Id
       status: Status
@@ -389,6 +458,7 @@ sl:
       download: Prenesi
       na: NI RELEVANTNO
       ok: Ok
+      refer_export_file: V funkciji Izvoz izberite predlogo, ki jo lahko uporabite za uvoz.
       response: Odziv
   devise:
     administrators:
@@ -441,6 +511,14 @@ sl:
     two_factor_authentication:
       attempt: Vnesite OTP, ki ste ga prejeli na svoj registrirani e-poštni naslov
       code_has_been_sent: Na vaš registrirani e-poštni naslov je bila poslana nova OTP
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Vloga delovnega mesta z istim imenom že obstaja.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Spretnost in vloga delovnega mesta morata pripadati istemu projektu ali biti globalna.
+        unique_mappings: Mapiranje z enakim znanjem in delovnim mestom že obstaja.
+      uniq_skillvue: Ta ocena Skillvue je že prisotna v sistemu. ID te ocene je %{id}
   emails:
     subject_relationship_table:
       subject_email: Zadeva E-pošta
@@ -575,6 +653,9 @@ sl:
         requested_rescheduling: Zahtevana sprememba urnika
         requested_rescheduling_rejected: Zahtevano Prestavitev na kasnejši datum Zavrnjeno
     'yes': Da
+  idp:
+    reflective_questions:
+      already_completed: Dokument IDP je bil že izpolnjen, zato zdaj ne morete odgovarjati na vprašanja.
   idp_templates:
     errors:
       user_idp_template_not_found: Ni vam bila dodeljena nobena predloga IDP.
@@ -617,6 +698,8 @@ sl:
       add: Dodajanje poročila
       download: Prenesi poročilo
       view: Prikaži poročilo
+    form:
+      load_from_skillvue: Obremenitev iz Skillvue
     modules:
       campaign_factors_table:
         add_condition: Dodajanje pogoja
