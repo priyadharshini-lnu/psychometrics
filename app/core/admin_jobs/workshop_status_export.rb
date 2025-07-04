@@ -26,6 +26,7 @@ module AdminJobs
         'Prework Status',
         'Prework Completed Date',
         'Scheduling Status',
+        'AC Group Name',
         'AC Name',
         'AC Invite',
         'AC Activity Completion',
@@ -54,6 +55,7 @@ module AdminJobs
       latest_workshop_subject = campaign_user.workshop_subjects.max_by(&:created_at)
       latest_workshop = latest_workshop_subject&.workshop
       scheduling_status = latest_workshop_subject&.scheduling_status
+      assessment_group_name = latest_workshop_subject&.workshop&.campaign_assessment_group&.name
 
       [
         campaign_user.user_id,
@@ -65,6 +67,7 @@ module AdminJobs
         prework_status,
         prework_status == 'Completed' ? last_prework_completed_at(campaign_user)&.to_s : nil,
         scheduling_status&.humanize,
+        assessment_group_name,
         latest_workshop&.name,
         campaign_user.workshop_invited_subjects.present? ? 'Invited' : 'Not Invited',
         scheduling_status == 'scheduled' ? assessment_center_status(campaign_user) : nil,
