@@ -2471,7 +2471,7 @@ it:
     edit_plan: Modifica piano
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
-      add_skill_group_title: Esplorare le proprie capacità di %{categoria}
+      add_skill_group_title: Esplorare le proprie capacità di %{category} Competenze
       add_skills: Aggiungi
       add_skills_step: Aggiungi competenze
       continue_to_rate_skills: Continuare a valutare le competenze

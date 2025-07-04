@@ -2493,9 +2493,10 @@ de:
       submit_plan: Plan einreichen
       write_here: Hier schreiben...
     edit_plan: Plan bearbeiten
+    edit_progress: Fortschritt bearbeiten
     initial_steps:
       add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
-      add_skill_group_title: Erkunden Sie Ihre %{Kategorie}-Fähigkeiten
+      add_skill_group_title: Erkunden Sie Ihre %{category}-Fähigkeiten
       add_skills: Hinzufügen
       add_skills_step: Fertigkeiten hinzufügen
       continue_to_rate_skills: Fähigkeiten weiter bewerten

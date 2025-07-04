@@ -70,7 +70,7 @@ export const SkillsGroupCard: FC<Props> = ({
         />
         <div>
           <Title className="mb-0" level={4}>
-            {I18n.t('idp.initial_steps.add_skill_group_title', { category: _.capitalize(skillCategory.skillType) })}
+            {I18n.t('idp.initial_steps.add_skill_group_title', { category: I18n.t(`idp.${skillCategory.skillType}`) })}
           </Title>
           <Paragraph>
             {/* API changes not available yet */}

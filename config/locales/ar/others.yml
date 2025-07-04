@@ -783,9 +783,10 @@ ar:
       submit_plan: تقديم الخطة
       write_here: اكتب هنا...
     edit_plan: تحرير الخطة
+    edit_progress: تحرير التقدم
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
-      add_skill_group_title: استكشاف مهاراتك في %{category}
+      add_skill_group_title: استكشاف مهار %{category} اتك في
       add_skills: إضافة
       add_skills_step: إضافة مهارات
       continue_to_rate_skills: متابعة لتقييم المهارات

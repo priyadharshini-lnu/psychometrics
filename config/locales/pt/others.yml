@@ -2473,7 +2473,7 @@ pt:
       write_here: Escreva aqui...
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
-      add_skill_group_title: Explorar as suas competências de %{categoria}
+      add_skill_group_title: Explorar as suas competências de %{category} Competências
       add_skills: Adicionar
       add_skills_step: Adicionar competências
       continue_to_rate_skills: Continuar a avaliar as competências

@@ -221,8 +221,8 @@ const Card = ({
         }}
       />
       <Flex gap={8} justify="flex-end">
-        <Button size="small" onClick={cancelEditing}>Cancel</Button>
-        <Button type="primary" size="small" onClick={saveProgress}>Save</Button>
+        <Button size="small" onClick={cancelEditing}>{I18n.t('common.actions.cancel')}</Button>
+        <Button type="primary" size="small" onClick={saveProgress}>{I18n.t('common.actions.save')}</Button>
       </Flex>
     </Flex>
   )
@@ -230,7 +230,7 @@ const Card = ({
   const progress = (
     <Popover
       content={popoverContent}
-      title="Edit Progress"
+      title={I18n.t('idp.edit_progress')}
       trigger="click"
       open={canEditProgress && editing}
       onOpenChange={setEditing}

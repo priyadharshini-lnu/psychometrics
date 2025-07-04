@@ -2469,9 +2469,10 @@ fr:
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
     edit_plan: Modifier le plan
+    edit_progress: Modifier la progression
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
-      add_skill_group_title: Explorer vos compétences %{catégorie}
+      add_skill_group_title: Explorer vos compétences %{category} Compétences
       add_skills: Ajouter
       add_skills_step: Ajouter des compétences
       continue_to_rate_skills: Continuer à évaluer les compétences
