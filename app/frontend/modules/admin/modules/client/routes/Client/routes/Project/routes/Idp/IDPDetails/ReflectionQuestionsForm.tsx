@@ -1,5 +1,5 @@
 import {
-  FC, useCallback, useState,
+  FC, useCallback, useEffect, useState,
 } from 'react'
 import {
   Col, Row, Button, Flex, Card, Select, Space, Typography, Divider,
@@ -55,6 +55,10 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
 
   const isUpdating = isLoading(`post/update_reflection_questions@${idp.id}`)
 
+  useEffect(() => {
+    fetchReflectionQuestions()
+  }, [])
+
   const save = () => {
     memberAction({
       id: idp.id,
@@ -71,7 +75,6 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
 
   const searchHandler = useCallback(
     debounce((query) => {
-      if (query.length < 3) return
       fetchReflectionQuestions({ apiConfig: { filter: { project_id_eq: projectId, question_cont: query } } })
     }, 300),
     [],
