@@ -60,7 +60,7 @@ spec:
               - name: Host
                 value: "{{ .Values.env.APP_SUB_DOMAIN }}.{{ .Values.env.APP_DOMAIN }}"
           readinessProbe:
-            initialDelaySeconds: 50
+            initialDelaySeconds: 80
             httpGet:
               path: /
               port: {{ int .Values.services.internlPort }}
