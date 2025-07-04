@@ -5,7 +5,7 @@ module Threesixty
     attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions, :user_report_id,
                :report_download_url
 
-    has_one :user, serializer: UserSerializer
+    has_one :user, serializer: SubjectUserSerializer
 
     def status
       Threesixty::Participants::GetStatus.call!(

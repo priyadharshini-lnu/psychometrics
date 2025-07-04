@@ -4,6 +4,7 @@ import {
   Table, Row, Col, App, Checkbox,
 } from 'antd'
 import { useParams, useSearchParams } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { CountDisplay } from '~/components/CountDisplay'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
@@ -20,10 +21,11 @@ import Pagination from '../../../components/Pagination'
 import SearchInput from '../SearchInput'
 import { useWindowSize } from '~/hooks/useWindowSize'
 import { useSelectAll } from '~/hooks/useSelectAll'
+import { getFeatures } from '~/core/config'
 
 const { Column } = Table
 
-export default function SubjectList ({
+function SubjectList ({
   fetchSubjects,
   update,
   remove,
@@ -41,6 +43,7 @@ export default function SubjectList ({
   reportDefaultLanguage,
   reportIcon,
   reportName,
+  features,
 }) {
   const { projectId, campaignId } = useParams()
   const [params] = useSearchParams()
@@ -159,6 +162,22 @@ export default function SubjectList ({
               key="user_email"
               render={({ user }) => user.email}
             />
+
+            {features?.skill_rater_enabled && (
+              <>
+                <Column
+                  title="Current Job Role"
+                  key="current_job_role"
+                  render={({ user }) => user.currentJobRole || '—'}
+                />
+                <Column
+                  title="Target Job Role"
+                  key="target_job_role"
+                  render={({ user }) => user.targetJobRole || '—'}
+                />
+              </>
+            )}
+
             <Column
               title="Evaluations Received"
               dataIndex="evaluators"
@@ -237,3 +256,9 @@ export default function SubjectList ({
     </>
   )
 }
+
+const mapStateToProps = state => ({
+  features: getFeatures(state),
+})
+
+export default connect(mapStateToProps)(SubjectList)

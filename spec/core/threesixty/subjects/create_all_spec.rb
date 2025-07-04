@@ -99,19 +99,6 @@ describe Threesixty::Subjects::CreateAll do
         expect(campaign_user.target_job_role).to eq(target_role)
       end
 
-      it 'assigns global job roles when specified' do
-        subject_data = {
-          email: 'new@example.com',
-          current_job_role: 'Global Role'
-        }
-
-        result = described_class.call!([subject_data], threesixty_campaign)
-        campaign_user = CampaignUser.find_by(user: result[:subjects].first.user, campaign: campaign)
-
-        expect(campaign_user.current_job_role).to eq(global_role)
-        expect(campaign_user.target_job_role).to be_nil
-      end
-
       it 'updates job roles for existing users' do
         user = create(:user, project: project, email: 'existing@example.com')
         create(:campaign_user, user: user, campaign: campaign)

@@ -35,8 +35,7 @@ module Threesixty
         return if role_name.blank?
 
         project = context.campaign.project
-        unless JobRole.exists?(name: role_name, project: project) ||
-               JobRole.exists?(name: role_name, project_id: nil)
+        unless JobRole.exists?(name: role_name, project: project)
           errors.add(:base,
                      I18n.t('activemodel.errors.models.create_one.attributes.job_role.not_found', name: role_name))
         end
