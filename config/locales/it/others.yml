@@ -2595,6 +2595,7 @@ it:
       statuses:
         approved: Rivisto e Approvato
         completed: Completato
+        draft: Bozza
         not_reviewed: Non Rivisto
         pending_approval: In Revisione
       summary:

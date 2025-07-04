@@ -2595,6 +2595,7 @@ fr:
       statuses:
         approved: Revu et approuvé
         completed: Terminé
+        draft: Projet
         not_reviewed: Non revu
         pending_approval: En cours de révision
       summary:

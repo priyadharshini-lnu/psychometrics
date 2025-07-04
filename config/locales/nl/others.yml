@@ -2501,6 +2501,8 @@ nl:
       cover:
         fields:
           assigned_date: Toegewezen Datum
+      statuses:
+        draft: Ontwerp
     plan: Plan
     reflective_questions:
       already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.

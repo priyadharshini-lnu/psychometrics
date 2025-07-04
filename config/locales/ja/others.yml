@@ -2599,6 +2599,7 @@ ja:
       statuses:
         approved: レビュー済み・承認済み
         completed: 完了
+        draft: ドラフト
         not_reviewed: 未レビュー
         pending_approval: レビュー中
       summary:

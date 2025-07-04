@@ -859,6 +859,7 @@ pl:
       statuses:
         approved: Przejrzane i zatwierdzone
         completed: Ukończone
+        draft: Wersja robocza
         not_reviewed: Nieprzejrzane
         pending_approval: W trakcie przeglądu
       summary:

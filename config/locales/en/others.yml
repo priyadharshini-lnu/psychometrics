@@ -2661,6 +2661,7 @@ en:
       statuses:
         approved: Reviewed and Approved
         completed: Completed
+        draft: Draft
         not_reviewed: Not Reviewed
         pending_approval: In Review
       summary:

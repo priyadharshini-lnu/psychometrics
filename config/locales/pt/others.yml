@@ -2595,6 +2595,7 @@ pt:
       statuses:
         approved: Revisto e Aprovado
         completed: Concluído
+        draft: Projeto
         not_reviewed: Não Revisto
         pending_approval: Em Revisão
       summary:

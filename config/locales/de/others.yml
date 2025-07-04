@@ -2614,6 +2614,7 @@ de:
       statuses:
         approved: Überprüft und genehmigt
         completed: Abgeschlossen
+        draft: Entwurf
         not_reviewed: Nicht überprüft
         pending_approval: In Überprüfung
       summary:

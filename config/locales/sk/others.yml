@@ -664,6 +664,8 @@ sk:
       cover:
         fields:
           assigned_date: Pridelený dátum
+      statuses:
+        draft: Návrh
     reflective_questions:
       already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
   idp_templates:

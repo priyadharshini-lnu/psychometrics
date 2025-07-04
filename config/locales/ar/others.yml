@@ -900,6 +900,7 @@ ar:
       statuses:
         approved: تمت المراجعة والموافقة
         completed: مكتمل
+        draft: المسودة
         not_reviewed: لم تتم المراجعة
         pending_approval: قيد المراجعة
       summary:

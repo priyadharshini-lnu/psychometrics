@@ -2599,6 +2599,7 @@ cs:
       statuses:
         approved: Zkontrolováno a schváleno
         completed: Dokončeno
+        draft: Návrh
         not_reviewed: Nezkontrolováno
         pending_approval: V kontrole
       summary:

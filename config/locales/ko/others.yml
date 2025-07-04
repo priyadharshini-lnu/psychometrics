@@ -2501,6 +2501,8 @@ ko:
       cover:
         fields:
           assigned_date: 할당된 날짜
+      statuses:
+        draft: 초안
     plan: 계획
     reflective_questions:
       already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.

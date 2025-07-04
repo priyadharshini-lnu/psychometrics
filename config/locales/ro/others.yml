@@ -665,6 +665,8 @@ ro:
       cover:
         fields:
           assigned_date: Data atribuirii
+      statuses:
+        draft: Proiect
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
   idp_templates:

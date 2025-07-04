@@ -2602,6 +2602,7 @@ es-ES:
       statuses:
         approved: Revisado y Aprobado
         completed: Completado
+        draft: Borrador
         not_reviewed: No Revisado
         pending_approval: En Revisión
       summary:

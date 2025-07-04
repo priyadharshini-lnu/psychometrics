@@ -670,6 +670,8 @@ bg:
       cover:
         fields:
           assigned_date: Присвоена дата
+      statuses:
+        draft: Проект
     reflective_questions:
       already_completed: ИДП вече е попълнен, не можете да отговаряте на въпросите сега.
   idp_templates:

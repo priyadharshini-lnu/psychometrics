@@ -658,6 +658,8 @@ vi:
       cover:
         fields:
           assigned_date: Ngày được giao
+      statuses:
+        draft: Bản nháp
     reflective_questions:
       already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
   idp_templates:

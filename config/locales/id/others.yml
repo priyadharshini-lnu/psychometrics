@@ -664,6 +664,8 @@ id:
       cover:
         fields:
           assigned_date: Tanggal Penugasan
+      statuses:
+        draft: Konsep
     reflective_questions:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
   idp_templates:

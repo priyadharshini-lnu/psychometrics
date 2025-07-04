@@ -664,6 +664,8 @@ sl:
       cover:
         fields:
           assigned_date: Dodeljeni datum
+      statuses:
+        draft: Osnutek
     reflective_questions:
       already_completed: Dokument IDP je bil že izpolnjen, zato zdaj ne morete odgovarjati na vprašanja.
   idp_templates:

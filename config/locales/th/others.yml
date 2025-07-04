@@ -658,6 +658,8 @@ th:
       cover:
         fields:
           assigned_date: วันที่กำหนด
+      statuses:
+        draft: ร่าง
     reflective_questions:
       already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
   idp_templates:

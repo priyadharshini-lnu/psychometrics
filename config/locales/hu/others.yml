@@ -664,6 +664,8 @@ hu:
       cover:
         fields:
           assigned_date: Hozzárendelt dátum
+      statuses:
+        draft: Tervezet
     reflective_questions:
       already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
   idp_templates:
