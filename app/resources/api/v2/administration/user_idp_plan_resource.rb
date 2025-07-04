@@ -30,9 +30,6 @@ class Api::V2::Administration::UserIdpPlanResource < Api::V2::Administration::Ba
   end
 
   def instructions
-    locale = @model.user.locale || I18n.default_locale
-    Mobility.with_locale(locale) do
-      @model.idp_template&.instructions
-    end
+    @model.idp_template&.instructions
   end
 end
