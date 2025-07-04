@@ -11,6 +11,7 @@ module Api
         def self.attributes(_attribute, _)
           proc do
             required(:threesixty_type).filled(:string)
+            optional(:threesixty_category).filled(:string)
             required(:campaign_template_id).filled(:string)
             required(:factors).array(:integer)
             required(:questions).array(:hash) do
@@ -38,6 +39,7 @@ module Api
         def self.create_campaign
           json_api_attributes do
             required(:threesixty_type).filled(:string)
+            optional(:threesixty_category).filled(:string)
             optional(:campaign_template_id).filled(:string)
             optional(:factors).array(:integer)
             optional(:questions).array(:hash) do

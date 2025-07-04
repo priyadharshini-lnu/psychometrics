@@ -15,6 +15,7 @@ class Question < ApplicationRecord
   belongs_to :owner, class_name: 'Client'
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
+  belongs_to :skill, optional: true
 
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
@@ -69,6 +70,8 @@ class Question < ApplicationRecord
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
   }
+
+  scope :skills_rater, -> { where.not(skill_id: nil) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name created_at updated_at]
@@ -140,6 +143,10 @@ class Question < ApplicationRecord
 
   def of_sub_type?(*types)
     types.include?(props['type'])
+  end
+
+  def skills_rater?
+    type == 'SkillsRater'
   end
 
   private

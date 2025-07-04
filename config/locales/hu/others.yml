@@ -41,8 +41,11 @@ hu:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Legalább egy munkakörnek engedélyezettnek kell lennie, és a %{block_name} számára kiválasztott készségtípust kell kiválasztani.
+              at_least_one_job_role_required: "%{skill_type} legalább egy munkakörre van szükség %{block_name} esetében"
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Legalább egy készségtípusnak engedélyezve kell lennie a %{block_name} számára kiválasztott munkakörrel.
+              invalid_job_role_type: 'Érvénytelen munkakör %{job_role} %{skill_type} %{block_name} számára. Érvényes opciók: %{valid_options}'
               invalid_skill_type: 'Érvénytelen képességtípus %{skill_type} a %{role_name} számára %{block_name}. Érvényes opciók: %{valid_options}'
-              props_missing: Állás
+              props_missing: Hiányzik a %{block_név} készségkonfiguráció.
         skillvue:
           attributes:
             name:

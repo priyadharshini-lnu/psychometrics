@@ -56,18 +56,13 @@ module Administration
       def find_duplicate_configs(block, seen_configs)
         duplicates = []
 
-        (block.dig('props', 'job_roles') || {}).each do |role, config|
+        (block.dig('props', 'skills_config') || {}).each do |skill_type, config|
           next unless config['enabled']
 
-          Array(config['skill_types']).each do |skill_type|
-            next if skill_type.blank?
-
-            key = "#{role}:#{skill_type}"
-            if seen_configs.include?(key)
-              duplicates << "#{role.humanize} (#{skill_type.to_s.humanize})"
-            else
-              seen_configs.add(key)
-            end
+          if seen_configs.include?(skill_type)
+            duplicates << skill_type.humanize
+          else
+            seen_configs.add(skill_type)
           end
         end
 

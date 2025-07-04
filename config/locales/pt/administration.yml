@@ -960,7 +960,9 @@ pt:
             empty: Vazio
             inactive: Inativo
             name: Nome
+            normal: Normal
             previous: Anterior
+            skills_rater: Avaliador de competências
             standard: Padrão
             status: Estado
           close:
@@ -3839,7 +3841,19 @@ pt:
         successfully: O subfactor foi atualizado com êxito.
     survey_builder:
       builder_area:
+        current_job: Emprego atual
+        job_role_required: Selecione pelo menos uma função
         options: Opções
+        skill_rater_config: Configuração do avaliador de competências
+        target_job: Emprego alvo
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Avaliador de competências
+        skill_types:
+          behavioural: Comportamental
+          other: Outros
+          technical: Técnica
       property_panel:
         add_n_a_option: Adicionar opção N/A
         allow_content_copy: Permitir a cópia de conteúdos

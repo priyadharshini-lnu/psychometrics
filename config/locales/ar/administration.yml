@@ -960,7 +960,9 @@ ar:
             empty: فارغة
             inactive: غير نشط
             name: الاسم
+            normal: عادي
             previous: السابق
+            skills_rater: مقيّم المهارات
             standard: قياسي
             status: الحالة
           close:
@@ -3839,7 +3841,19 @@ ar:
         successfully: Sub-Factor was updated successfully.
     survey_builder:
       builder_area:
+        current_job: الوظيفة الحالية
+        job_role_required: يرجى تحديد دور وظيفي واحد على الأقل
         options: Options
+        skill_rater_config: تكوين مقيِّم المهارات
+        target_job: الوظيفة المستهدفة
+      models:
+        block_types:
+          regular: عادي
+          skill_rater: مقيّم المهارات
+        skill_types:
+          behavioural: السلوكيات
+          other: أخرى
+          technical: التقنية
       property_panel:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying

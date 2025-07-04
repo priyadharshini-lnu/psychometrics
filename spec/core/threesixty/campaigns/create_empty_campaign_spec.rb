@@ -44,5 +44,14 @@ describe Threesixty::Campaigns::CreateEmptyCampaign do
     it 'creates dimension' do
       expect(threesixty_campaign.assessment.dimension).to be_persisted
     end
+
+    context 'when threesixty_category is skills_rater' do
+      let(:form) { Threesixty::Campaigns::CreateForm.new(name: campaign_name, threesixty_category: 'skills_rater') }
+
+      it 'creates a skills_rater dimension' do
+        expect(threesixty_campaign.assessment.dimension).to be_persisted
+        expect(threesixty_campaign.assessment.dimension.dimension_type).to eq('skills_rater')
+      end
+    end
   end
 end

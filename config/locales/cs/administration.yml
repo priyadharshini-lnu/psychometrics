@@ -960,7 +960,9 @@ cs:
             empty: Prázdné stránky
             inactive: Neaktivní
             name: Název
+            normal: Normální
             previous: Předchozí
+            skills_rater: Hodnocení dovedností
             standard: Standardní
             status: Stav
           close:
@@ -3839,7 +3841,19 @@ cs:
         successfully: Dílčí faktor byl úspěšně aktualizován.
     survey_builder:
       builder_area:
+        current_job: Současná práce
+        job_role_required: Vyberte prosím alespoň jednu pracovní pozici
         options: Možnosti
+        skill_rater_config: Konfigurace hodnocení dovedností
+        target_job: Cílová práce
+      models:
+        block_types:
+          regular: Pravidelné
+          skill_rater: Hodnocení dovedností
+        skill_types:
+          behavioural: Chování
+          other: Další
+          technical: Technická stránka
       property_panel:
         add_n_a_option: Přidat možnost N/A
         allow_content_copy: Povolit kopírování obsahu

@@ -960,7 +960,9 @@ de:
             empty: Leere
             inactive: Inaktiv
             name: Name
+            normal: Normal
             previous: Vorherige
+            skills_rater: Skills Rater
             standard: Standard
             status: Status
           close:
@@ -3839,7 +3841,19 @@ de:
         successfully: Sub-Faktor wurde erfolgreich aktualisiert.
     survey_builder:
       builder_area:
+        current_job: Aktueller Job
+        job_role_required: Bitte wählen Sie mindestens eine Berufsrolle aus
         options: Optionen
+        skill_rater_config: Skill Rater Konfiguration
+        target_job: Ziel Job
+      models:
+        block_types:
+          regular: Regelmäßig
+          skill_rater: Skill Rater
+        skill_types:
+          behavioural: Verhaltensweisen
+          other: Andere
+          technical: Technisch
       property_panel:
         add_n_a_option: Option N/A hinzufügen
         allow_content_copy: Kopieren von Inhalten zulassen

@@ -13,7 +13,7 @@ import _ from 'lodash'
 import { CampaignCreatorSVG } from './CampaignCreatorSVG'
 import { STATUSES } from '~/constants/campaign'
 import { Assessment } from '~/modules/admin/modules/campaigns/core/list'
-import { TYPES as THREESIXTY_TYPES } from '~/modules/admin/constants/threesixtyCampaign'
+import { THREESIXTY_CATEGORY, TYPES as THREESIXTY_TYPES } from '~/modules/admin/constants/threesixtyCampaign'
 import styles from './ThreesixtyCampaignFormModal.less'
 
 const { I18n } = window
@@ -25,6 +25,7 @@ type Props = {
     name: string;
     status: string;
     threesixty_type: string;
+    threesixty_category: string;
   } | null
   assessments: Assessment[]
 }
@@ -33,6 +34,7 @@ const BaseSettingsForm = ({
   onFinish, onClose, initialSettings, assessments,
 }: Props) => {
   const [form] = Form.useForm()
+  const category = Form.useWatch('threesixty_category', form)
   const [isCreate, setIsCreate] = useState((initialSettings
     && initialSettings.threesixty_type === THREESIXTY_TYPES.EMPTY) ?? true)
   const [isPrevious360, setIsPrevious360] = useState((initialSettings
@@ -65,6 +67,7 @@ const BaseSettingsForm = ({
         name: initialSettings?.name ? initialSettings.name : '',
         status: initialSettings?.status || STATUSES.ACTIVE,
         threesixty_type: initialSettings?.threesixty_type || THREESIXTY_TYPES.EMPTY,
+        threesixty_category: initialSettings?.threesixty_category || THREESIXTY_CATEGORY.NORMAL,
       }}
       form={form}
       className="h-100"
@@ -109,6 +112,29 @@ const BaseSettingsForm = ({
 
             <Flex vertical className="w-100">
               <Form.Item
+                name="threesixty_category"
+                label="Category"
+                required
+              >
+                <Radio.Group className="ps-4">
+                  <Space>
+                    <Radio
+                      value={THREESIXTY_CATEGORY.NORMAL}
+                    >
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.normal')}
+                    </Radio>
+                    <Radio
+                      value={THREESIXTY_CATEGORY.SKILLS_RATER}
+                    >
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.skills_rater')}
+                    </Radio>
+                  </Space>
+                </Radio.Group>
+              </Form.Item>
+            </Flex>
+
+            <Flex vertical className="w-100">
+              <Form.Item
                 name="threesixty_type"
                 label="Type"
                 required
@@ -121,15 +147,15 @@ const BaseSettingsForm = ({
                       {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.empty')}
                     </Radio>
                     <Radio
-                      value={THREESIXTY_TYPES.STANDARD_360}
-                    >
-                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
-                    </Radio>
-                    <Radio
                       value={THREESIXTY_TYPES.PREVIOUS_360}
                     >
                       {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.previous')}
                     </Radio>
+                    {category !== THREESIXTY_CATEGORY.SKILLS_RATER && (
+                      <Radio value={THREESIXTY_TYPES.STANDARD_360}>
+                        {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
+                      </Radio>
+                    )}
                   </Space>
                 </Radio.Group>
               </Form.Item>

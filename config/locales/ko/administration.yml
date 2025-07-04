@@ -960,7 +960,9 @@ ko:
             empty: 비어 있음
             inactive: 비활성
             name: 이름
+            normal: 보통
             previous: 이전 게시물
+            skills_rater: 스킬 평가자
             standard: 표준
             status: 상태
           close:
@@ -3839,7 +3841,19 @@ ko:
         successfully: 하위 요소가 성공적으로 업데이트되었습니다.
     survey_builder:
       builder_area:
+        current_job: 현재 작업
+        job_role_required: 직무를 하나 이상 선택해 주세요.
         options: 옵션
+        skill_rater_config: 스킬 평가자 구성
+        target_job: 대상 작업
+      models:
+        block_types:
+          regular: 일반
+          skill_rater: 스킬 평가자
+        skill_types:
+          behavioural: 행동
+          other: 기타
+          technical: 기술
       property_panel:
         add_n_a_option: N/A 옵션 추가
         allow_content_copy: 콘텐츠 복사 허용

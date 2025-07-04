@@ -1,0 +1,164 @@
+---
+zh-HK:
+  administration:
+    administrators:
+      permissions:
+        labels:
+          proficiency_level:
+            title: 能力等級
+          reflectionQuestions:
+            export: 出口
+            import: 進口
+            manage: 管理
+            title: IDP 反思問題
+            view: 檢視
+    assessment_center:
+      invite:
+        center_group: 評估中心小組
+    campaigns:
+      modals:
+        create_threesixity:
+          base_settings:
+            normal: 正常
+            skills_rater: 技能評核員
+    common:
+      minute: 分
+    communications:
+      show:
+        assessment_center_group: 評估中心小組：
+    idp:
+      intro_message: 介绍信息
+      intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。
+      intro_message_success: 简介信息已成功保存
+      locales: 区域设置
+      reference_locale: 参考区域设置
+    job_role:
+      column:
+        job_group: 工作群組
+      export:
+        failure_msg: 匯出翻譯時發生錯誤
+        success_msg: 出口開發行動正在進行中。
+      form:
+        code: 代碼
+        description: 說明
+        job_group: 工作群組
+        name: 名稱
+        title: 工作角色
+      global: 全球工作角色？
+      import:
+        download_example_csv: 下載範例 csv
+        success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
+      import_action:
+        translations: 匯入工作角色翻譯
+      translations: 工作角色翻譯
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: 預期能力等級
+        job_role: 工作角色
+        skill: 技術
+      form:
+        expected_proficiency_level: 預期能力等級
+        job_role: 工作角色
+        skill: 技術
+        title: 技能工作映射
+      global: 全球技能工作映射嗎？
+      import:
+        taxonomy: 分類學
+    job_roles:
+      export:
+        translations:
+          details: 詳細資訊
+    norms:
+      import:
+        download_example_csv: 下載範例 csv
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Level 定義必須是一個定義陣列。
+          level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
+          must_be_unique: 必須獨一無二
+          proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
+          proficiency_level_exists_for_category: 此類別的 ProficiencyLevel 已經存在
+          project_level_all_skills_exists: 已存在「all_skills」能力等級
+          skill_must_exist: 技能必須存在於 proficiency_type 'by_skill' 中。
+      export:
+        details: 詳細資訊
+        failure_msg: 匯出能力等級時發生錯誤
+        success_msg: 輸出開發中的行動
+        translations:
+          details: 能力等級翻譯
+      fields:
+        level: 等級
+        level_description: 等級描述
+        level_name: 等級名稱
+        proficiency_translations: 能力翻譯
+        proficiency_type: 能力類型
+        skill: 技術
+        skill_category: 技能類別
+        skill_name: 技能名稱
+        title: 能力
+      global: 全球能力是嗎？
+      import:
+        actions:
+          proficiency: 進口能力
+          translations: 進口能力翻譯
+        errors:
+          all_skills_global_exists: 行 %{row_number}：全局層級 'all_skills' 的 ProficiencyLevel 已經存在
+          all_skills_project_exists: 行 %{row_number}：專案層級 'all_skills' 的 ProficiencyLevel 已經存在
+          by_category_exists: 行 %{row_number}：此專案和技能類別已存在 'by_category' ProficiencyLevel
+          by_category_missing: 行 %{row_number}：by_category' 類型必須有專案和技能類別
+          by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
+          by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
+          invalid_csv_format: 無效的 CSV 格式：%{message}。
+          invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
+          missing_columns: 缺少必填欄位：%{fields}。
+        job_queued: 能力等級匯入工作已排隊
+      translations:
+        export:
+          failure_msg: 匯出翻譯時發生錯誤
+          success_msg: 出口開發行動正在進行中。
+        import:
+          errors:
+            invalid_csv_format: 無效的 CSV 格式：%{message}。
+            invalid_locales: 無效的區域語言
+            level_not_found: 未找到 ID 的等級：%{level_id}。
+            missing_columns: 缺少必填欄位：%{fields}。
+            missing_required_columns: 缺少必填欄位：%{columns}。
+            row_id_blank: 行 %{row}：ID 不能為空白
+            save_failed: 處理技能 ID %{id} 出錯：%{message}
+      type:
+        all_skills: 所有技能
+        by_category: 依類別
+        by_skill: 按技術
+    projects:
+      privacy_settings:
+        mask_identity_for_skillvue: Skillvue 的掩膜資料
+    skills:
+      form:
+        skill_group: 技能組
+    skills_taxonomy:
+      tabs:
+        job_roles: 工作角色
+    survey_builder:
+      builder_area:
+        current_job: 目前工作
+        job_role_required: 請至少選擇一個工作角色
+        skill_rater_config: 技能評定員配置
+        target_job: 目標工作
+      models:
+        block_types:
+          regular: 常規
+          skill_rater: 技能評定員
+        skill_types:
+          behavioural: 行為
+          other: 其他
+          technical: 技術
+    taxonomy:
+      import:
+        download_example_file: 下載範例檔案
+        success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
+      import_action:
+        taxonomy: 匯入分類系統
+      job_roles: 工作角色
+      proficiency: 能力
+      skill_job_mappings: 技能工作對應

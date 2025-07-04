@@ -15,7 +15,8 @@ class ReportSerializer < Panko::Serializer
       each_serializer: Reports::AssessmentSerializer,
       context: {
         piped_text_context: context[:piped_text_context],
-        locale: current_lang
+        locale: current_lang,
+        campaign_user: context[:campaign_user]
       }
     ).to_a
   end

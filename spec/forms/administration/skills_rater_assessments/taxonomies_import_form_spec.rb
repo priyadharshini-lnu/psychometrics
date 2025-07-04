@@ -136,7 +136,7 @@ RSpec.describe Administration::SkillsRaterAssessments::TaxonomiesImportForm do
           'Job Roles sheet is missing required headers:',
           'Job Group 1 - Code, Job Group 1 - Name,',
           'Job Group 2 - Code, Job Group 2 - Name,',
-          'Job Title Code, Job Title Name'
+          'Job Title Code, Job Description, Job Title Name'
         ].join(' ')
         expect(form.errors[:file]).to include(/#{Regexp.escape(expected_error)}/)
       end

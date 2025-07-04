@@ -14,6 +14,7 @@ import Captcha from './Captcha'
 import PickGroupRank from './PickGroupRank'
 import FactorSelect from './FactorSelect'
 import CampaignFactorFeedback from './CampaignFactorFeedback'
+import SkillsRater from './SkillsRater'
 
 export default {
   MultipleChoice,
@@ -32,4 +33,5 @@ export default {
   PickGroupRank,
   FactorSelect,
   CampaignFactorFeedback,
+  SkillsRater,
 }

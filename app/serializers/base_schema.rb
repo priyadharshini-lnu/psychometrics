@@ -34,7 +34,7 @@ class BaseSchema
   def self.whitelisted_schemas
     [UsersResultSchema, ::Api::V1::ResultSchema, ::Administration::DetailsDatasheetRowSchema, AuditLogSchema,
      ActiveRecordAuditSchema, EndUser::CurrentUserSchema, AssessorScoresSchema, AdminJobRecordSchema,
-     AssessmentSchema, QuestionSchema, BlockSchema, HighlightSchema,
+     AssessmentSchema, QuestionSchema, SkillsRaterQuestionSchema, BlockSchema, HighlightSchema,
      Reports::FilterSchema, Reports::CampaignFactorSchema, Reports::AssessmentSchema, Reports::PageSchema,
      Reports::ModuleSchema, ReportSchema, UserDashboardSchema, UsersResults::AgileSchema,
      Threesixty::EndUser::CampaignNomineeSchema, Threesixty::CampaignOptionsSchema, Threesixty::UserReportSchema,

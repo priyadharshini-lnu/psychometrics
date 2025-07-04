@@ -1,0 +1,49 @@
+@import '~/styles/spacing.less';
+@import '~/modules/survey/styles/variables.less';
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #ececec;
+  border-radius: 6px;
+  & :global(.ant-radio) {
+    margin-inline-start: 0.5rem;
+    margin-inline-end: 0.5rem;
+  }
+
+  &>:global(.ant-radio-wrapper){
+    position: relative;
+    margin-inline-end: 0;
+    padding: 1rem;
+    &:not(:last-child) {
+      border-bottom: 1px solid #ececec;
+    }
+  }
+}
+
+.checkIcon {
+  z-index: 1;
+  background-color: @white;
+  border-radius: 50%;
+  color: @white;
+  font-size: 0.8em;
+  padding: 0.4em;
+  border: 1px solid var(--grey-border);
+  position: absolute;
+  left: 1.3125rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.buttonActive.checkIcon {
+    background-color: var(--ant-primary-color);
+}
+
+:global(.rtl) {
+  .checkIcon {
+    left: unset;
+    right: 1.3125rem;
+  }
+}

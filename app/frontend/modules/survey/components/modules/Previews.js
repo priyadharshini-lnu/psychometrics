@@ -18,6 +18,7 @@ import { VideoResponsePreview } from './VideoResponse'
 import FileUploadPreview from './FileUpload/components/Preview'
 import { AudioResponsePreview } from './AudioResponse'
 import { CampaignFactorFeedbackPreview } from './CampaignFactorFeedback'
+import { SkillsRaterPreview } from './SkillsRater'
 
 export default {
   StaticContentPreview,
@@ -40,4 +41,5 @@ export default {
   AudioResponsePreview,
   CampaignFactorFeedbackPreview,
   FactorSelectPreview,
+  SkillsRaterPreview,
 }

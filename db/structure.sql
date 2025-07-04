@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -2482,7 +2489,8 @@ CREATE TABLE public.dimensions (
     occupations_enabled boolean DEFAULT false NOT NULL,
     innovation_styles_enabled boolean DEFAULT false NOT NULL,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    dimension_type integer DEFAULT 0
 );
 
 
@@ -2668,7 +2676,8 @@ CREATE TABLE public.factors (
     scale_min double precision,
     scale_max double precision,
     custom_formula character varying,
-    "precision" integer
+    "precision" integer,
+    skill_id bigint
 );
 
 
@@ -4875,7 +4884,8 @@ CREATE TABLE public.questions (
     assessment_id integer,
     owner_id integer,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    skill_id bigint
 );
 
 
@@ -6361,7 +6371,8 @@ CREATE TABLE public.threesixty_campaigns (
     report_id bigint,
     status integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    category integer DEFAULT 0
 );
 
 
@@ -12415,6 +12426,13 @@ CREATE INDEX index_factors_on_parent_id ON public.factors USING btree (parent_id
 
 
 --
+-- Name: index_factors_on_skill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_on_skill_id ON public.factors USING btree (skill_id);
+
+
+--
 -- Name: index_factors_scoring_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12660,6 +12678,13 @@ CREATE INDEX index_job_role_translations_on_name_and_locale ON public.job_role_t
 
 
 --
+-- Name: index_job_roles_on_code_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_job_roles_on_code_and_project_id ON public.job_roles USING btree (code, project_id);
+
+
+--
 -- Name: index_job_roles_on_job_group_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12667,10 +12692,10 @@ CREATE INDEX index_job_roles_on_job_group_id ON public.job_roles USING btree (jo
 
 
 --
--- Name: index_job_roles_on_name; Type: INDEX; Schema: public; Owner: -
+-- Name: index_job_roles_on_name_and_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_job_roles_on_name ON public.job_roles USING btree (name);
+CREATE UNIQUE INDEX index_job_roles_on_name_and_project_id ON public.job_roles USING btree (name, project_id);
 
 
 --
@@ -13143,6 +13168,13 @@ CREATE INDEX index_questions_on_created_by_id ON public.questions USING btree (c
 
 
 --
+-- Name: index_questions_on_skill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_questions_on_skill_id ON public.questions USING btree (skill_id);
+
+
+--
 -- Name: index_questions_on_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13507,6 +13539,13 @@ CREATE INDEX index_skills_job_roles_on_job_role_id ON public.skills_job_roles US
 
 
 --
+-- Name: index_skills_job_roles_on_job_role_skill_and_project; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skills_job_roles_on_job_role_skill_and_project ON public.skills_job_roles USING btree (job_role_id, skill_id, project_id);
+
+
+--
 -- Name: index_skills_job_roles_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13518,6 +13557,13 @@ CREATE INDEX index_skills_job_roles_on_project_id ON public.skills_job_roles USI
 --
 
 CREATE INDEX index_skills_job_roles_on_skill_id ON public.skills_job_roles USING btree (skill_id);
+
+
+--
+-- Name: index_skills_on_name_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skills_on_name_and_project_id ON public.skills USING btree (name, project_id);
 
 
 --
@@ -14908,6 +14954,14 @@ ALTER TABLE ONLY public.admin_jobs
 
 
 --
+-- Name: questions fk_rails_1e5e392d5a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.questions
+    ADD CONSTRAINT fk_rails_1e5e392d5a FOREIGN KEY (skill_id) REFERENCES public.skills(id);
+
+
+--
 -- Name: communication_email_resources fk_rails_1e6187986b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15681,6 +15735,14 @@ ALTER TABLE ONLY public.job_role_translations
 
 ALTER TABLE ONLY public.registration_settings
     ADD CONSTRAINT fk_rails_6dc2196721 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factors fk_rails_6dd2ac3794; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_6dd2ac3794 FOREIGN KEY (skill_id) REFERENCES public.skills(id);
 
 
 --
@@ -17260,8 +17322,13 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250703094817'),
 ('20250701114237'),
+('20250628000002'),
+('20250627045222'),
+('20250626102948'),
+('20250625073055'),
 ('20250624125911'),
 ('20250624110503'),
+('20250623090517'),
 ('20250622122302'),
 ('20250622114250'),
 ('20250620104201'),

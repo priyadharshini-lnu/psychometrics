@@ -38,7 +38,8 @@ module UserReports::PdfGeneration
             campaign: resource.campaign,
             threesixty_campaign: resource.threesixty_campaign,
             options: resource.threesixty_campaign&.option,
-            lang: params[:lang]
+            lang: params[:lang],
+            campaign_user: resource.campaign_user
           }
         ).serialize(resource)
       end

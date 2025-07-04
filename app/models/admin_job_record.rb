@@ -102,7 +102,8 @@ class AdminJobRecord < ApplicationRecord
     import_job_roles_translations: 78,
     export_job_roles_translations: 79,
     export_dashboard_as_file: 80,
-    bulk_download_idp_reports: 81
+    bulk_download_idp_reports: 81,
+    sync_skills_rater_assessment_entities: 82
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

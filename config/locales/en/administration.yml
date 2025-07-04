@@ -960,7 +960,9 @@ en:
             empty: Empty
             inactive: Inactive
             name: Name
+            normal: Normal
             previous: Previous
+            skills_rater: Skills Rater
             standard: Standard
             status: Status
           close:
@@ -3840,7 +3842,19 @@ en:
         successfully: Sub-Factor was updated successfully.
     survey_builder:
       builder_area:
+        current_job: Current Job
+        job_role_required: Please select at least one job role
         options: Options
+        skill_rater_config: Skill Rater configuration
+        target_job: Target Job
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Skill Rater
+        skill_types:
+          behavioural: Behavioural
+          other: Other
+          technical: Technical
       property_panel:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying

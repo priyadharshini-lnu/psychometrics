@@ -960,7 +960,9 @@ zh-Hant:
             empty: 空
             inactive: 閒置
             name: 名稱
+            normal: 正常
             previous: 上一頁
+            skills_rater: 技能評核員
             standard: 標準
             status: 狀態
           close:
@@ -3839,7 +3841,19 @@ zh-Hant:
         successfully: 子因素已成功更新。
     survey_builder:
       builder_area:
+        current_job: 目前工作
+        job_role_required: 請至少選擇一個工作角色
         options: 選項
+        skill_rater_config: 技能評定員配置
+        target_job: 目標工作
+      models:
+        block_types:
+          regular: 常規
+          skill_rater: 技能評定員
+        skill_types:
+          behavioural: 行為
+          other: 其他
+          technical: 技術
       property_panel:
         add_n_a_option: 新增不適用選項
         allow_content_copy: 允許內容複製

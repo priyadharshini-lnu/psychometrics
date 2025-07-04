@@ -127,7 +127,8 @@ class UserReportSerializer < Panko::Serializer
         user_results: results,
         piped_text_context: context[:options],
         campaign: object.campaign,
-        lang: context[:lang]
+        lang: context[:lang],
+        campaign_user: context[:campaign_user]
       }
     ).serialize(context[:report])
   end

@@ -41,8 +41,11 @@ th:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: อย่างน้อยหนึ่งตำแหน่งงานต้องเปิดใช้งานด้วยประเภททักษะที่เลือกสำหรับ %{block_name}
+              at_least_one_job_role_required: จำเป็นต้องมีตำแหน่งงานอย่างน้อยหนึ่งตำแหน่งสำหรับ %{skill_type} สำหรับ %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: ต้องเปิดใช้งานทักษะอย่างน้อยหนึ่งประเภทพร้อมเลือกบทบาทงานสำหรับ %{block_name}
+              invalid_job_role_type: 'ตำแหน่งงานไม่ถูกต้อง %{job_role} สำหรับ %{skill_type} สำหรับ %{block_name}. ตัวเลือกที่ถูกต้อง: %{valid_options}'
               invalid_skill_type: 'ประเภททักษะไม่ถูกต้อง %{skill_type} สำหรับ %{role_name} สำหรับ %{block_name}. ตัวเลือกที่ถูกต้อง: %{valid_options}'
-              props_missing: งาน
+              props_missing: การกำหนดค่าทักษะไม่พบสำหรับ %{block_name}
         skillvue:
           attributes:
             name:

@@ -12,51 +12,50 @@ module Administration
       private
 
       def validate_props
-        if props.blank? || props['job_roles'].blank?
+        if props.blank? || props['skills_config'].blank?
           errors.add(:base, :props_missing, block_name: block_name)
           return
         end
 
-        job_roles = props['job_roles']
-        enabled_roles = job_roles.select { |_, config| enabled_job_role?(config) }
+        skills_config = props['skills_config']
+        enabled_skills = skills_config.select { |_, config| enabled_skill_type?(config) }
 
-        if enabled_roles.empty?
-          errors.add(:base, :at_least_one_job_role_must_be_enabled_with_a_skill_type_selected, block_name:)
+        if enabled_skills.empty?
+          errors.add(:base, :at_least_one_skill_type_must_be_enabled_with_a_job_role_selected, block_name:)
           return
         end
 
-        enabled_roles.each do |role_name, config|
-          validate_skill_types(role_name, config)
+        enabled_skills.each do |skill_type, config|
+          validate_job_roles(skill_type, config)
         end
       end
 
-      def validate_skill_types(role_name, config)
-        skill_types = Array(config['skill_types']).compact_blank
+      def validate_job_roles(skill_type, config)
+        job_roles = Array(config['job_roles']).compact_blank
 
-        if skill_types.empty?
-          errors.add(:base, :at_least_one_skill_type_required, role_name: role_name.humanize, block_name:)
+        if job_roles.empty?
+          errors.add(:base, :at_least_one_job_role_required, skill_type: skill_type.humanize, block_name:)
           return
         end
 
-        skill_types.each do |skill_type|
-          next if valid_skill_types.include?(skill_type.to_s)
+        job_roles.each do |job_role|
+          next if valid_job_roles.include?(job_role.to_s)
 
-          errors.add(:base, :invalid_skill_type,
-                     skill_type: skill_type,
-                     role_name: role_name.humanize,
-                     valid_options: valid_skill_types.join(', '),
+          errors.add(:base, :invalid_job_role_type,
+                     job_role: job_role,
+                     skill_type: skill_type.humanize,
+                     valid_options: valid_job_roles.join(', '),
                      block_name: block_name)
         end
       end
 
-      def enabled_job_role?(config)
+      def enabled_skill_type?(config)
         config.is_a?(Hash) &&
-          config['enabled'] == true &&
-          Array(config['skill_types']).any?(&:present?)
+          config['enabled'] == true
       end
 
-      def valid_skill_types
-        @valid_skill_types ||= Skill.skill_types.keys
+      def valid_job_roles
+        @valid_job_roles ||= %w[current_job_role target_job_role]
       end
 
       def block_name

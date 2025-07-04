@@ -960,7 +960,9 @@ nl:
             empty: Leeg
             inactive: Inactief
             name: Naam
+            normal: Normaal
             previous: Vorige
+            skills_rater: Vaardigheden beoordelaar
             standard: Standaard
             status: Status
           close:
@@ -3839,7 +3841,19 @@ nl:
         successfully: Subfactor is met succes bijgewerkt.
     survey_builder:
       builder_area:
+        current_job: Huidige baan
+        job_role_required: Selecteer ten minste één functie
         options: Opties
+        skill_rater_config: Configuratie vaardigheidsbeoordelaar
+        target_job: Streefbaan
+      models:
+        block_types:
+          regular: Gewoon
+          skill_rater: Vaardigheid Rater
+        skill_types:
+          behavioural: Gedrag
+          other: Andere
+          technical: Technisch
       property_panel:
         add_n_a_option: N.v.t.-optie toevoegen
         allow_content_copy: Inhoud kopiëren toestaan

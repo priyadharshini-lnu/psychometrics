@@ -327,8 +327,11 @@ zh:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必须启用至少一个工作角色，并为 %{block_name} 选择一个技能类型。
+              at_least_one_job_role_required: "%{block_name} 的 %{skill_type} 至少需要一个工作角色"
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: 为 %{block_name} 选择的工作角色必须至少启用一种技能类型。
+              invalid_job_role_type: "%{block_name} 的 %{skill_type} 的 %{job_role} 工作角色无效。有效选项： %{valid_options}"
               invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能类型无效。有效选项： %{valid_options}"
-              props_missing: 工作
+              props_missing: 缺少 %{block_name} 的技能配置
         skillvue:
           attributes:
             name:

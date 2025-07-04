@@ -22,13 +22,17 @@ module Threesixty
       end
       # rubocop:enable Metrics/ParameterLists
 
-      def call
+      def call # rubocop:disable Metrics/AbcSize
         factor_ids = form.factors.presence || source_assessment.dimension.all_factors.pluck(:id)
 
-        result = Dimensions::Copy.call!(
-          source_assessment.dimension, factor_ids, client, new_dimension_name: form.name
-        )
-        new_dimension = result[:new_dimension]
+        new_dimension = if form.skills_rater?
+                          skills_rater_dimension
+                        else
+                          result = Dimensions::Copy.call!(
+                            source_assessment.dimension, factor_ids, client, new_dimension_name: form.name
+                          )
+                          result[:new_dimension]
+                        end
 
         event = ::Assessments::CopyAssessment.call(
           source_assessment.id, user, client.id, skip_owner_validation: true,
@@ -39,12 +43,13 @@ module Threesixty
 
         @new_assessment = event[:ok][:assessment]
         @questions_mapping = event[:ok][:questions_mapping]
-        update_factor_ids(result[:old_to_new_factor_mapping])
+
+        update_factor_ids(result[:old_to_new_factor_mapping]) if result
 
         @new_report = ::Reports::CopyReport.call!(source_report.id, user, client.id, new_report_name: resource_name)
 
         new_assessment.update!(dimension_id: new_dimension.id)
-        update_new_report(result[:old_to_new_factor_mapping])
+        update_new_report(result[:old_to_new_factor_mapping]) if result
         update_threesixty_campaign
 
         broadcast :ok, threesixty_campaign
@@ -77,6 +82,12 @@ module Threesixty
         threesixty_campaign.assessment_id = new_assessment.id
         threesixty_campaign.report_id = new_report.id
         threesixty_campaign.save!
+      end
+
+      private
+
+      def skills_rater_dimension
+        Dimension.skills_rater_dimension(project)
       end
     end
   end

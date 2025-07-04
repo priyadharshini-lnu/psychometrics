@@ -960,7 +960,9 @@ ja:
             empty: 空
             inactive: 活動休止中
             name: 名称
+            normal: ノーマル
             previous: 前へ
+            skills_rater: 技能評価者
             standard: スタンダード
             status: ステータス
           close:
@@ -3839,7 +3841,19 @@ ja:
         successfully: サブファクターは正常に更新されました。
     survey_builder:
       builder_area:
+        current_job: 現在の仕事
+        job_role_required: 少なくとも1つの職務を選択してください
         options: オプション
+        skill_rater_config: スキルレイターの設定
+        target_job: 目標の仕事
+      models:
+        block_types:
+          regular: レギュラー
+          skill_rater: 技能評価者
+        skill_types:
+          behavioural: 行動
+          other: その他
+          technical: テクニカル
       property_panel:
         add_n_a_option: N/Aオプションを追加
         allow_content_copy: コンテンツのコピーを許可する

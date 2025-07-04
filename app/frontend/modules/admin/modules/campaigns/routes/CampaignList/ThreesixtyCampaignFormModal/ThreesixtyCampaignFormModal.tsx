@@ -27,7 +27,8 @@ type Props = OwnProps & PropsFromRedux
 type baseSettings = {
   name: string,
    threesixty_type: string,
-   status: string
+   status: string,
+   threesixty_category: string
   }
 
 const ThreesixtyCampaignFormModal: React.FC<Props> = ({

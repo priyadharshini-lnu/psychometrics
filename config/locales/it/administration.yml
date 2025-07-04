@@ -960,7 +960,9 @@ it:
             empty: Vuoto
             inactive: Inattivo
             name: Nome
+            normal: Normale
             previous: Precedente
+            skills_rater: Rater delle competenze
             standard: Standard
             status: Stato
           close:
@@ -3839,7 +3841,19 @@ it:
         successfully: Il sottofattore è stato aggiornato con successo.
     survey_builder:
       builder_area:
+        current_job: Lavoro attuale
+        job_role_required: Selezionare almeno un ruolo lavorativo
         options: Opzioni
+        skill_rater_config: Configurazione degli Skill Rater
+        target_job: Obiettivo Lavoro
+      models:
+        block_types:
+          regular: Regolare
+          skill_rater: Abilità Rater
+        skill_types:
+          behavioural: Comportamentale
+          other: Altro
+          technical: Tecnica
       property_panel:
         add_n_a_option: Aggiungere l'opzione N/A
         allow_content_copy: Consentire la copia dei contenuti

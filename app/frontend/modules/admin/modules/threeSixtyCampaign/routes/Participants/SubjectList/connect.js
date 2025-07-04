@@ -19,7 +19,7 @@ export default connect(
       },
       campaignDetails: {
         campaignId: currentCampaignId, reportAvailableLanguages, reportDefaultLanguage,
-        reportIcon, reportName,
+        reportIcon, reportName, category,
       },
     },
   }) => ({
@@ -33,6 +33,7 @@ export default connect(
     currentCampaignId,
     reportIcon,
     reportName,
+    category,
   }),
   dispatch => ({
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),

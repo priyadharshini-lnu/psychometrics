@@ -41,8 +41,11 @@ ro:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Cel puțin un rol de post trebuie să fie activat cu un tip de competență selectat pentru %{block_name}
+              at_least_one_job_role_required: Cel puțin un rol este necesar pentru %{skill_type} pentru %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Cel puțin un tip de competență trebuie să fie activat cu un rol de post selectat pentru %{block_name}
+              invalid_job_role_type: 'Rolul postului %{job_role} invalid pentru %{skill_type} pentru %{block_name}. Opțiuni valide: %{valid_options}'
               invalid_skill_type: 'Tipul de abilitate nevalid %{skill_type} pentru %{role_name} pentru %{block_name}. Opțiuni valide: %{valid_options}'
-              props_missing: Loc de muncă
+              props_missing: Lipsește configurația competențelor pentru %{block_name}
         skillvue:
           attributes:
             name:

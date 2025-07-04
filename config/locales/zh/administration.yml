@@ -960,7 +960,9 @@ zh:
             empty: 空
             inactive: 不活动
             name: 名称
+            normal: 正常
             previous: 上一页
+            skills_rater: 技能评级员
             standard: 标准
             status: 现状
           close:
@@ -3839,7 +3841,19 @@ zh:
         successfully: 子因子已成功更新。
     survey_builder:
       builder_area:
+        current_job: 当前工作
+        job_role_required: 请至少选择一个工作角色
         options: 选项
+        skill_rater_config: 技能评级器配置
+        target_job: 目标职位
+      models:
+        block_types:
+          regular: 常规
+          skill_rater: 技能评级员
+        skill_types:
+          behavioural: 行为
+          other: 其他
+          technical: 技术
       property_panel:
         add_n_a_option: 添加不适用选项
         allow_content_copy: 允许复制内容

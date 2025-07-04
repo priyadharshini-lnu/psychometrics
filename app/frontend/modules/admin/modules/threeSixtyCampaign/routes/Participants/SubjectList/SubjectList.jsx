@@ -43,6 +43,7 @@ function SubjectList ({
   reportDefaultLanguage,
   reportIcon,
   reportName,
+  category,
   features,
 }) {
   const { projectId, campaignId } = useParams()
@@ -51,7 +52,7 @@ function SubjectList ({
   const { message } = App.useApp()
   const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
   const { width: windowWidth } = useWindowSize()
-
+  const isSkillsRater = category === 'skills_rater'
   const {
     isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
   } = useSelectAll(false, subjects)
@@ -248,7 +249,7 @@ function SubjectList ({
           </div>
         </Col>
       </Row>
-      <CreateSubjectModal />
+      <CreateSubjectModal isSkillsRater={isSkillsRater} />
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />

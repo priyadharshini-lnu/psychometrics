@@ -960,7 +960,9 @@ fr:
             empty: Vide
             inactive: Inactif
             name: Nom
+            normal: Normal
             previous: Précédent
+            skills_rater: Évaluateur de compétences
             standard: Standard
             status: Statut
           close:
@@ -3839,7 +3841,19 @@ fr:
         successfully: Le sous-facteur a été mis à jour avec succès.
     survey_builder:
       builder_area:
+        current_job: Emploi actuel
+        job_role_required: Veuillez sélectionner au moins une fonction
         options: Options
+        skill_rater_config: Configuration de l'évaluateur de compétences
+        target_job: Emploi cible
+      models:
+        block_types:
+          regular: Régulière
+          skill_rater: Évaluateur de compétences
+        skill_types:
+          behavioural: Comportementale
+          other: Autres
+          technical: Technique
       property_panel:
         add_n_a_option: Ajouter l'option N/A
         allow_content_copy: Autoriser la copie de contenu

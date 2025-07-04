@@ -25,7 +25,8 @@ class AssessmentSerializer < Panko::Serializer
         context: {
           piped_text_context: piped_text_context,
           selected_locale: context[:selected_locale],
-          translations: translations
+          translations: translations,
+          campaign_user: context[:campaign_user] || {}
         }
       ).to_a
     end

@@ -6,3 +6,8 @@ export const TYPES = {
   STANDARD_360,
   PREVIOUS_360,
 }
+
+export const THREESIXTY_CATEGORY = {
+  NORMAL: 'normal',
+  SKILLS_RATER: 'skills_rater',
+}

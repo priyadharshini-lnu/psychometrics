@@ -65,9 +65,12 @@ module Administration
         return unless roo_excel.sheets.include?(sheet_name)
 
         sheet = roo_excel.sheet(sheet_name)
-        actual_headers = sheet.row(1).compact
+        actual_headers = sheet.row(1).compact.map { |h| normalize_header(h) }
 
-        missing_headers = expected_headers - actual_headers
+        missing_headers = expected_headers.reject do |expected|
+          actual_headers.include?(normalize_header(expected))
+        end
+
         if missing_headers.any?
           errors.add(:file, :missing_headers, sheet_name: sheet_name, headers: missing_headers.join(', '))
         end
@@ -78,7 +81,7 @@ module Administration
           sheet_name: 'Job Roles',
           group_levels_sheet_name: 'Job Group Levels',
           group_label: 'Job Group',
-          extra_columns: ['Job Title Code', 'Job Title Name']
+          extra_columns: ['Job Title Code', 'Job Description', 'Job Title Name']
         )
       end
 
@@ -133,15 +136,21 @@ module Administration
               errors.add(:file, :missing_value, row: row_index, field: header)
             end
 
-            if unique_columns.include?(header)
-              if unique_trackers[header].include?(value)
+            unique_column = unique_columns.find { |col| normalize_header(header) == normalize_header(col) }
+
+            if unique_column
+              if unique_trackers[unique_column].include?(value)
                 errors.add(:file, :duplicate_value, row: row_index, value: value, field: header)
               else
-                unique_trackers[header].add(value)
+                unique_trackers[unique_column].add(value)
               end
             end
           end
         end
+      end
+
+      def normalize_header(header)
+        header.to_s.downcase.gsub(/(\d)\s*-\s*/, '\1 - ').squish
       end
 
       def project

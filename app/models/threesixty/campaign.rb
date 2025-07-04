@@ -34,6 +34,8 @@ module Threesixty
              :project, :participants, :datasheet, to: :campaign
     delegate :logo, to: :client
 
+    enum :category, { normal: 0, skills_rater: 1 }
+
     EMPTY = 'empty'
     STANDARD_360 = 'standard_360'
     PREVIOUS_360 = 'previous_360'

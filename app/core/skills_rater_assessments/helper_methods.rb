@@ -71,5 +71,17 @@ module SkillsRaterAssessments
       mapping.save!
       mapping
     end
+
+    def normalize_header(header)
+      header.to_s.downcase.gsub(/(\d)\s*-\s*/, '\1 - ').squish
+    end
+
+    def find_header_index(headers, expected_header)
+      normalized_expected = normalize_header(expected_header)
+      headers.each_with_index do |header, index|
+        return index if normalize_header(header) == normalized_expected
+      end
+      nil
+    end
   end
 end

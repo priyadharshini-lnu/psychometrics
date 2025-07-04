@@ -3,7 +3,7 @@
 module Threesixty
   module Campaigns
     class CreateEmptyCampaign < BaseCommand
-      private_attr_reader :threesixty_campaign, :project, :client, :user, :resource_name
+      private_attr_reader :threesixty_campaign, :project, :client, :user, :resource_name, :form
 
       def initialize(form, project, user, resource_name:)
         @threesixty_campaign = ::Threesixty::Campaigns::Build.call!(form, project)
@@ -11,16 +11,10 @@ module Threesixty
         @client = project.client
         @user = user
         @resource_name = resource_name
+        @form = form
       end
 
       def call
-        dimension = Dimension.create!(
-          name: resource_name,
-          created_by: user,
-          updated_by: user,
-          skip_owner_validation: true,
-          owner_id: client.id
-        )
         assessment = Assessment.new(name: resource_name,
                                     owner_id: client.id,
                                     created_by: user,
@@ -47,6 +41,22 @@ module Threesixty
         threesixty_campaign.save!
 
         broadcast :ok, threesixty_campaign
+      end
+
+      private
+
+      def dimension
+        @dimension ||= if form.skills_rater?
+                         Dimension.skills_rater_dimension(project)
+                       else
+                         Dimension.create!(
+                           name: resource_name,
+                           created_by: user,
+                           updated_by: user,
+                           skip_owner_validation: true,
+                           owner_id: client.id
+                         )
+                       end
       end
     end
   end

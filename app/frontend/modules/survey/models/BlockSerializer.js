@@ -14,6 +14,7 @@ export class BlockSerializer {
     block.saveAsTemplate = attrs.save_as_template || false
     block.templateId = attrs.template_id
     block.deletedAt = attrs.deleted_at
+    block.blockType = attrs.block_type || attrs.blockType
     if (_.isEmpty(attrs.props)) {
       block.props = { randomization: { type: 'No' }, buttons: { prev_button: 'Previous', next_button: 'Next' } }
     } else {
@@ -34,6 +35,7 @@ export class BlockSerializer {
       save_as_template: block.saveAsTemplate,
       deleted_at: block.deletedAt,
       questions: block.questions,
+      block_type: block.blockType,
     }
   }
 }

@@ -35,14 +35,14 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
             'block_type' => 'skills_rater',
             'name' => 'Valid Block',
             'props' => {
-              'job_roles' => {
-                'current_job_role' => {
+              'skills_config' => {
+                'technical' => {
                   'enabled' => true,
-                  'skill_types' => %w[technical behavioral]
+                  'job_roles' => %w[current_job_role target_job_role]
                 },
-                'target_job_role' => {
+                'behavioral' => {
                   'enabled' => true,
-                  'skill_types' => 'behavioral'
+                  'job_roles' => ['current_job_role']
                 }
               }
             }
@@ -61,14 +61,14 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
             'block_type' => 'skills_rater',
             'name' => 'Invalid Block',
             'props' => {
-              'job_roles' => {
-                'current_job_role' => {
+              'skills_config' => {
+                'technical' => {
                   'enabled' => false,
-                  'skill_types' => ''
+                  'job_roles' => []
                 },
-                'target_job_role' => {
+                'behavioral' => {
                   'enabled' => false,
-                  'skill_types' => ''
+                  'job_roles' => []
                 }
               }
             }
@@ -78,7 +78,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
         it 'is invalid and includes individual block errors' do
           form = described_class.new(blocks: [invalid_skills_rater_block])
           expect(form).not_to be_valid
-          expect(form.errors[:base]).to include(match(/at least one job role must be enabled/i))
+          expect(form.errors[:base]).to include(match(/at least one skill type must be enabled/i))
         end
       end
 
@@ -106,10 +106,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               'block_type' => 'skills_rater',
               'name' => 'Block 1',
               'props' => {
-                'job_roles' => {
-                  'current_job_role' => {
+                'skills_config' => {
+                  'technical' => {
                     'enabled' => true,
-                    'skill_types' => 'technical'
+                    'job_roles' => ['current_job_role']
                   }
                 }
               }
@@ -118,10 +118,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               'block_type' => 'skills_rater',
               'name' => 'Block 2',
               'props' => {
-                'job_roles' => {
-                  'current_job_role' => {
+                'skills_config' => {
+                  'behavioral' => {
                     'enabled' => true,
-                    'skill_types' => 'behavioral'
+                    'job_roles' => ['current_job_role']
                   }
                 }
               }
@@ -130,10 +130,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               'block_type' => 'skills_rater',
               'name' => 'Block 3',
               'props' => {
-                'job_roles' => {
-                  'target_job_role' => {
+                'skills_config' => {
+                  'other' => {
                     'enabled' => true,
-                    'skill_types' => 'technical'
+                    'job_roles' => ['target_job_role']
                   }
                 }
               }
@@ -154,10 +154,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               'block_type' => 'skills_rater',
               'name' => 'Block 1',
               'props' => {
-                'job_roles' => {
-                  'current_job_role' => {
+                'skills_config' => {
+                  'technical' => {
                     'enabled' => true,
-                    'skill_types' => 'technical'
+                    'job_roles' => ['current_job_role']
                   }
                 }
               }
@@ -166,10 +166,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               'block_type' => 'skills_rater',
               'name' => 'Block 2',
               'props' => {
-                'job_roles' => {
-                  'current_job_role' => {
+                'skills_config' => {
+                  'technical' => {
                     'enabled' => true,
-                    'skill_types' => 'technical'
+                    'job_roles' => ['target_job_role']
                   }
                 }
               }
@@ -183,7 +183,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
           expect(form.errors[:base]).to include(
             I18n.t('activemodel.errors.models.all_blocks_form.attributes.base.duplicate_block',
                    block_name: 'Block 2',
-                   duplicate_configurations: 'Current job role (Technical)')
+                   duplicate_configurations: 'Technical')
           )
         end
       end
@@ -195,14 +195,14 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               'block_type' => 'skills_rater',
               'name' => 'Block 1',
               'props' => {
-                'job_roles' => {
-                  'current_job_role' => {
+                'skills_config' => {
+                  'technical' => {
                     'enabled' => true,
-                    'skill_types' => 'technical'
+                    'job_roles' => ['current_job_role']
                   },
-                  'target_job_role' => {
+                  'behavioral' => {
                     'enabled' => true,
-                    'skill_types' => 'behavioral'
+                    'job_roles' => ['target_job_role']
                   }
                 }
               }
@@ -211,14 +211,14 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               'block_type' => 'skills_rater',
               'name' => 'Block 2',
               'props' => {
-                'job_roles' => {
-                  'current_job_role' => {
+                'skills_config' => {
+                  'technical' => {
                     'enabled' => true,
-                    'skill_types' => 'technical'
+                    'job_roles' => ['target_job_role']
                   },
-                  'target_job_role' => {
+                  'behavioral' => {
                     'enabled' => true,
-                    'skill_types' => 'behavioral'
+                    'job_roles' => ['current_job_role']
                   }
                 }
               }
@@ -232,7 +232,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
           expect(form.errors[:base]).to include(
             I18n.t('activemodel.errors.models.all_blocks_form.attributes.base.duplicate_block',
                    block_name: 'Block 2',
-                   duplicate_configurations: 'Current job role (Technical) and Target job role (Behavioral)')
+                   duplicate_configurations: 'Technical and Behavioral')
           )
         end
       end
@@ -267,10 +267,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
         'block_type' => 'skills_rater',
         'name' => 'Test Block',
         'props' => {
-          'job_roles' => {
-            'current_job_role' => {
+          'skills_config' => {
+            'technical' => {
               'enabled' => true,
-              'skill_types' => 'invalid_type'
+              'job_roles' => ['invalid_role']
             }
           }
         }
@@ -281,25 +281,25 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
       form = described_class.new(blocks: [skills_rater_block])
       expect(form).not_to be_valid
       expect(form.errors[:base]).to include(
-        I18n.t('activemodel.errors.models.skills_rater_block_form.attributes.base.invalid_skill_type',
-               skill_type: 'invalid_type',
-               role_name: 'Current job role',
-               valid_options: 'behavioral, technical, other',
+        I18n.t('activemodel.errors.models.skills_rater_block_form.attributes.base.invalid_job_role_type',
+               job_role: 'invalid_role',
+               skill_type: 'Technical',
+               valid_options: 'current_job_role, target_job_role',
                block_name: 'Test Block')
       )
     end
 
-    context 'no job roles enabled' do
-      let(:no_job_roles_enabled_block) do
+    context 'no skill types enabled' do
+      let(:no_skill_types_enabled_block) do
         [
           {
             'block_type' => 'skills_rater',
             'name' => 'Valid Block',
             'props' => {
-              'job_roles' => {
-                'current_job_role' => {
+              'skills_config' => {
+                'technical' => {
                   'enabled' => true,
-                  'skill_types' => 'technical'
+                  'job_roles' => ['current_job_role']
                 }
               }
             }
@@ -308,10 +308,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
             'block_type' => 'skills_rater',
             'name' => 'Invalid Block',
             'props' => {
-              'job_roles' => {
-                'current_job_role' => {
+              'skills_config' => {
+                'technical' => {
                   'enabled' => false,
-                  'skill_types' => ''
+                  'job_roles' => []
                 }
               }
             }
@@ -320,10 +320,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
       end
 
       it 'validates all blocks' do
-        form = described_class.new(blocks: no_job_roles_enabled_block)
+        form = described_class.new(blocks: no_skill_types_enabled_block)
         expect(form).not_to be_valid
         expect(form.errors[:base]).to include(
-          I18n.t('activemodel.errors.models.skills_rater_block_form.attributes.base.at_least_one_job_role_must_be_enabled_with_a_skill_type_selected', # rubocop:disable Layout/LineLength
+          I18n.t('activemodel.errors.models.skills_rater_block_form.attributes.base.at_least_one_skill_type_must_be_enabled_with_a_job_role_selected', # rubocop:disable Layout/LineLength
                  block_name: 'Invalid Block')
         )
       end

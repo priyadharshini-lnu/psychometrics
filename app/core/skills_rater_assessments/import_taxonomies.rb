@@ -41,6 +41,7 @@ module SkillsRaterAssessments
     def import_job_group_and_job_roles
       level_count = number_of_group_levels('Job Group Levels')
       sheet = sheet('Job Roles')
+      job_roles_headers = sheet.row(1)
 
       (FIRST_DATA_ROW..sheet.last_row).each do |row_index|
         row = sheet.row(row_index)
@@ -61,9 +62,9 @@ module SkillsRaterAssessments
         end
 
         # After processing all job group levels, create job role
-        job_title_code = row[level_count * 2]
-        job_description = row[(level_count * 2) + 1]
-        job_title_name = row[(level_count * 2) + 2]
+        job_title_code = row[find_header_index(job_roles_headers, 'Job Title Code') || (level_count * 2)]
+        job_description = row[find_header_index(job_roles_headers, 'Job Description') || ((level_count * 2) + 1)]
+        job_title_name = row[find_header_index(job_roles_headers, 'Job Title Name') || ((level_count * 2) + 2)]
 
         find_or_create_job_role(job_title_name, job_title_code, job_description, job_group)
       end
@@ -72,6 +73,7 @@ module SkillsRaterAssessments
     def import_skill_group_and_skills
       level_count = number_of_group_levels('Skill Group Levels')
       sheet = sheet('Skills')
+      skill_headers = sheet.row(1)
 
       (FIRST_DATA_ROW..sheet.last_row).each do |row_index|
         row = sheet.row(row_index)
@@ -89,11 +91,9 @@ module SkillsRaterAssessments
         end
 
         # Skill data starts after all group levels
-        start_index = level_count * 2
-        # skill_code = row[start_index]
-        skill_name = row[start_index + 1]
-        skill_definition = row[start_index + 2]
-        skill_type = row[start_index + 3]
+        skill_name = row[find_header_index(skill_headers, 'Skill Name') || ((level_count * 2) + 1)]
+        skill_definition = row[find_header_index(skill_headers, 'Skill Definition') || ((level_count * 2) + 2)]
+        skill_type = row[find_header_index(skill_headers, 'Skill Type') || ((level_count * 2) + 3)]
 
         find_or_create_skill(
           skill_name,
@@ -106,13 +106,14 @@ module SkillsRaterAssessments
 
     def import_job_role_skills
       sheet = sheet('Job Roles And Skills Mapping')
+      headers = sheet.row(1)
 
       (FIRST_DATA_ROW..sheet.last_row).each do |row_index|
         row = sheet.row(row_index)
 
-        job_role_code = row[0]
-        skill_name = row[1]
-        proficiency_level = row[2]
+        job_role_code = row[find_header_index(headers, 'Job Title Code') || 0]
+        skill_name = row[find_header_index(headers, 'Skill Name') || 1]
+        proficiency_level = row[find_header_index(headers, 'Expected Proficiency Level') || 2]
 
         job_role = JobRole.find_by(code: job_role_code, project_id: project&.id)
         skill = Skill.find_by(name: skill_name, project_id: project&.id)

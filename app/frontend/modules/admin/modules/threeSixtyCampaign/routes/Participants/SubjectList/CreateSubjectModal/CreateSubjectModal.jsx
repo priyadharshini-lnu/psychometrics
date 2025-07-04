@@ -17,7 +17,7 @@ import { getFeatures } from '~/core/config'
 
 const { I18n } = window
 
-const getTableFields = (jobRoles, skillRaterEnabled) => {
+const getTableFields = (jobRoles, isSkillsRater) => {
   const fields = [
     { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email'), key: 'email' },
     { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'), key: 'firstName' },
@@ -25,7 +25,7 @@ const getTableFields = (jobRoles, skillRaterEnabled) => {
     { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'), key: 'locale' },
   ]
 
-  if (skillRaterEnabled) {
+  if (isSkillsRater) {
     fields.push(
       {
         name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role'),
@@ -63,6 +63,7 @@ function CreateSubjectModal ({
   subjects,
   creationInProgress,
   clearForm,
+  isSkillsRater,
   features,
 }) {
   const { campaignId, projectId } = useParams()
@@ -123,7 +124,7 @@ function CreateSubjectModal ({
       <Divider />
       <SpreadSheet
         entities={subjects}
-        fields={getTableFields(jobRoles, skillRaterEnabled)}
+        fields={getTableFields(jobRoles, (skillRaterEnabled && isSkillsRater))}
         updateEntities={fillSubjects}
       />
       <ErrorAlertBox errors={errors} />

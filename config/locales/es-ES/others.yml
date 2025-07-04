@@ -327,8 +327,11 @@ es-ES:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Al menos un rol de trabajo debe estar habilitado con un tipo de habilidad seleccionada para %{block_name}
+              at_least_one_job_role_required: Se requiere al menos un rol de trabajo para %{skill_type} para %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Al menos un tipo de habilidad debe estar habilitado con un rol de trabajo seleccionado para %{block_name}
+              invalid_job_role_type: 'Función %{job_role} no válida para %{skill_type} para %{block_name}. Opciones válidas: %{valid_options}'
               invalid_skill_type: 'Tipo de habilidad %{skill_type} no válido para %{role_name} para %{block_name}. Opciones válidas: %{valid_options}'
-              props_missing: Empleo
+              props_missing: Falta la configuración de habilidades para %{block_name}
         skillvue:
           attributes:
             name:
