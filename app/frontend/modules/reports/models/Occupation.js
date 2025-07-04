@@ -32,6 +32,13 @@ _.extend(Occupation.prototype, {
       id: this.id,
       name: this.name,
       description: this.description,
+      fullDescription: this.fullDescription,
+      potentialAreasOfStudy: this.potentialAreasOfStudy,
+      keyCareerTracks: this.keyCareerTracks,
+      highSchoolEntryRoles: this.highSchoolEntryRoles,
+      diplomaQualification: this.diplomaQualification,
+      bachelorsOrMastersQualification: this.bachelorsOrMastersQualification,
+      workEnvironment: this.workEnvironment,
     }
   },
 })
