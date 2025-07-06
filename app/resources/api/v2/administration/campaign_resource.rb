@@ -40,7 +40,9 @@ class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseR
           'pdf_password',
           'view_campaign_scoring',
           'view_campaign_scoring_setting',
-          'manage_campaign_scoring'
+          'manage_campaign_scoring',
+          'view_assessments_and_reports',
+          'manage_report_approval_settings'
         ],
         {
           project_id: @model.project_id,

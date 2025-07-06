@@ -41,7 +41,6 @@ const AssessmentList: React.FC<Props> = ({
   updatePearsonVariation,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
-
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -79,6 +78,7 @@ const AssessmentList: React.FC<Props> = ({
             render={({ autoAssign, id }) => (
               <Switch
                 checked={autoAssign}
+                disabled={!permissions.toggleAutoAssign}
                 onChange={() => toggleAutoAssign(parsedCampaignId, id, !autoAssign)}
               />
             )}
@@ -89,6 +89,7 @@ const AssessmentList: React.FC<Props> = ({
             render={({ requireScheduling, id }) => (
               <Switch
                 checked={requireScheduling}
+                disabled={!permissions.toggleRequireScheduling}
                 onChange={() => {
                   toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
                 }}
@@ -197,6 +198,7 @@ const AssessmentList: React.FC<Props> = ({
             render={assessment => (
               <Switch
                 checked={assessment.prework}
+                disabled={!permissions.updatePrework}
                 onChange={checked => handleTogglePrework(assessment, parsedCampaignId, checked)}
               />
             )}

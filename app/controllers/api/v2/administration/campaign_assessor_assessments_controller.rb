@@ -55,6 +55,24 @@ module Api
                           where(subject_id: workshop_subject.user_id, campaign_id: campaign_id)
     end
 
+    def meta_details
+      {
+        permissions: lambda {
+          GetPermissionsHash.call!(
+            Api::Administration::CampaignAssessorAssessmentPolicy,
+            context[:user],
+            @model,
+            %w[
+              create
+              update
+              destroy
+            ],
+            { campaign_id: campaign_id }
+          )
+        }
+      }
+    end
+
     def campaign_assessment_group_id
       workshop_subject.workshop.campaign_assessment_group_id
     end

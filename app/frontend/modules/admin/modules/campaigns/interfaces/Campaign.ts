@@ -37,6 +37,8 @@ export default interface Campaign {
     manageCampaignScoring: boolean
     viewCampaignScoringSetting: boolean
     viewAuditReports: boolean
+    viewAssessmentsAndReports: boolean
+    manageReportApprovalSettings: boolean
   }
 }
 
