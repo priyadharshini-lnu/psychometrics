@@ -77,25 +77,17 @@ module Administration
       level_definitions = []
 
       1.upto(max_levels) do |level_num|
-        base_index = get_column_index_for_level(level_num)
-        level_value = row.values[base_index]
+        level_value = row["Level#{level_num}"]
         next if level_value.blank?
 
         level_definitions << {
           'level' => level_value.to_i,
-          'name' => row.values[base_index + 1],
-          'description' => row.values[base_index + 2]
+          'name' => row["Name#{level_num}"],
+          'description' => row["Description#{level_num}"]
         }
       end
 
       level_definitions
-    end
-
-    def get_column_index_for_level(level_num)
-      base_columns = 6
-      columns_per_level = 3
-
-      base_columns + ((level_num - 1) * columns_per_level)
     end
   end
 end

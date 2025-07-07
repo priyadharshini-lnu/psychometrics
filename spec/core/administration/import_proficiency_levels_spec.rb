@@ -57,6 +57,50 @@ RSpec.describe Administration::ImportProficiencyLevels do
       end
     end
 
+    context 'without id and project columns' do
+      let(:csv_content) do
+        [
+          ['ProficiencyType', 'SkillCategory', 'SkillName', 'TotalLevels', 'Level1', 'Name1',
+           'Description1', 'Level2', 'Name2', 'Description2', 'Level3', 'Name3', 'Description3'],
+          ['all_skills', '', '', 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
+           'Intermediate level description', 3, 'Advanced', 'Advanced level description']
+        ]
+      end
+
+      it 'creates a new proficiency level' do
+        expect { import }.to change(ProficiencyLevel, :count).by(1)
+      end
+
+      it 'sets the correct attributes' do
+        import
+        proficiency_level = ProficiencyLevel.last
+
+        expect(proficiency_level).to have_attributes(
+          project_id: project.id,
+          proficiency_type: 'all_skills',
+          level: 3
+        )
+
+        expect(proficiency_level.level_definition).to match_array([
+          {
+            'level' => 1,
+            'name' => 'Basic',
+            'description' => 'Basic level description'
+          },
+          {
+            'level' => 2,
+            'name' => 'Intermediate',
+            'description' => 'Intermediate level description'
+          },
+          {
+            'level' => 3,
+            'name' => 'Advanced',
+            'description' => 'Advanced level description'
+          }
+        ])
+      end
+    end
+
     context 'with existing record ID' do
       let!(:existing_level) { create(:proficiency_level, project_id: project.id) }
       let(:csv_content) do
