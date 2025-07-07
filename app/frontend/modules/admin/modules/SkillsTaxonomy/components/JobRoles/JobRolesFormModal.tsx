@@ -229,7 +229,7 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
             label={I18n.t('administration.job_role.form.description')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input.TextArea />
           </Form.Item>
           {!params.projectId && (
             <>

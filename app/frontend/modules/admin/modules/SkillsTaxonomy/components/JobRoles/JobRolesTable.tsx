@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   App,
   Button, MenuProps, Typography,
@@ -11,6 +11,7 @@ import { JobRole } from '~/modules/admin/modules/client/core/jobRoles'
 import { ProjectFilter } from '~/components/ProjectFilter'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 import { FilterFilled } from '~/glint/icons/AccessibleIconsAntDesign'
+import { DetailsDrawer } from './DetailsDrawer'
 
 const { I18n } = window
 
@@ -19,6 +20,8 @@ type Props = {
 }
 
 export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
+  const [jobRoleDetails, setJobRoleDetails] = useState<JobRole>()
+
   const { modal, message } = App.useApp()
 
   const { resource } = useResourceContext()
@@ -56,95 +59,101 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
   }
 
   return (
-    <Resource.Table pagination>
-      <Resource.Column<JobRole>
-        title={I18n.t('common.column.id')}
-        id="id"
-        sorter
-        render={jobRole => (
-          jobRole.id
-        )}
-        width={200}
-      />
-
-      <Resource.Column<JobRole>
-        title={I18n.t('common.column.name')}
-        id="name"
-        render={(_, jobRole) => (
-          <div>
-            <Typography.Text>{jobRole.name}</Typography.Text>
-          </div>
-        )}
-        sorter
-      />
-
-      <Resource.Column<JobRole>
-        title={I18n.t('common.column.code')}
-        id="code"
-        render={(_, jobRole) => (
-          <div>
-            <Typography.Text>{jobRole.code}</Typography.Text>
-          </div>
-        )}
-        sorter
-      />
-
-      <Resource.Column<JobRole>
-        title={I18n.t('common.column.description')}
-        id="description"
-        render={jobRole => <Typography.Text>{jobRole.description}</Typography.Text>}
-        sorter
-      />
-
-      <Resource.Column<JobRole>
-        title={I18n.t('administration.job_role.column.job_group')}
-        id="jobGroupId"
-        render={jobRole => <Typography.Text>{jobRole.jobGroup?.name}</Typography.Text>}
-        sorter
-      />
-
-      {!projectId && (
+    <>
+      <Resource.Table pagination>
         <Resource.Column<JobRole>
-          title={I18n.t('common.column.project')}
-          id="project.name"
-          render={jobRole => (jobRole.project?.id ? (
-            <Typography.Link
-              copyable
-              href={`/admin/projects/${jobRole.project?.id}/new_campaigns?filters[statusEq]=active`}
-              target="_blank"
-            >
-              {jobRole.project?.name}
-            </Typography.Link>
-          ) : null)}
-          width={200}
+          title={I18n.t('common.column.id')}
+          id="id"
           sorter
-          filterDropdown={() => (
-            <ProjectFilter />
+          render={jobRole => (
+            jobRole.id
           )}
-          filterIcon={() => (
-            <FilterFilled
-              style={{
-                color: isProjectFilterApplied
-                  ? DEFAULT_PRIMARY_COLOR : undefined,
-              }}
-            />
-          )}
+          width={200}
         />
-      )}
+        <Resource.Column<JobRole>
+          title={I18n.t('common.column.name')}
+          id="name"
+          render={(_, jobRole) => (
+            <Typography.Link onClick={() => setJobRoleDetails(jobRole)}>
+              {jobRole.name}
+            </Typography.Link>
+          )}
+          sorter
+        />
 
-      <Resource.Column<JobRole>
-        title={I18n.t('common.column.action')}
-        id="action"
-        render={(_, jobRole) => (
-          <Dropdown
-            jobRole={jobRole}
-            onDelete={handleJobRoleDeletion}
-            openModal={openModal}
+        <Resource.Column<JobRole>
+          title={I18n.t('common.column.code')}
+          id="code"
+          render={(_, jobRole) => (
+            <div>
+              <Typography.Text>{jobRole.code}</Typography.Text>
+            </div>
+          )}
+          sorter
+        />
+
+        <Resource.Column<JobRole>
+          title={I18n.t('administration.job_role.column.job_group')}
+          id="jobGroupId"
+          render={jobRole => <Typography.Text>{jobRole.jobGroup?.name}</Typography.Text>}
+          sorter
+        />
+
+        {!projectId && (
+          <Resource.Column<JobRole>
+            title={I18n.t('common.column.project')}
+            id="project.name"
+            render={jobRole => (jobRole.project?.id ? (
+              <Typography.Link
+                copyable
+                href={`/admin/projects/${jobRole.project?.id}/new_campaigns?filters[statusEq]=active`}
+                target="_blank"
+              >
+                {jobRole.project?.name}
+              </Typography.Link>
+            ) : null)}
+            width={200}
+            sorter
+            filterDropdown={() => (
+              <ProjectFilter />
+            )}
+            filterIcon={() => (
+              <FilterFilled
+                style={{
+                  color: isProjectFilterApplied
+                    ? DEFAULT_PRIMARY_COLOR : undefined,
+                }}
+              />
+            )}
           />
         )}
-        width={100}
-      />
-    </Resource.Table>
+
+        <Resource.Column<JobRole>
+          title={I18n.t('common.column.updated_at')}
+          id="updatedAt"
+          width={200}
+          sorter
+        />
+
+        <Resource.Column<JobRole>
+          title={I18n.t('common.column.action')}
+          id="action"
+          render={(_, jobRole) => (
+            <Dropdown
+              jobRole={jobRole}
+              onDelete={handleJobRoleDeletion}
+              openModal={openModal}
+            />
+          )}
+          width={100}
+        />
+      </Resource.Table>
+      {
+        jobRoleDetails ? (
+          <DetailsDrawer onClose={() => setJobRoleDetails(undefined)} jobRole={jobRoleDetails} />
+        ) : null
+      }
+    </>
   )
 }
 

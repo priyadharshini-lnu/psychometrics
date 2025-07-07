@@ -2355,6 +2355,8 @@ es-ES:
     job_role:
       column:
         job_group: Grupo de trabajo
+        skill_id: Id. de habilidad
+        skill_name: Nombre de la habilidad
       export:
         failure_msg: Error al exportar traducciones
         success_msg: Exportación de acciones de desarrollo en curso.
@@ -2372,6 +2374,7 @@ es-ES:
         success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
       import_action:
         translations: Importar traducciones de funciones
+      job_role_details: Detalles del puesto
       translations: Traducciones de funciones
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ es-ES:
         download_example_file: Descargar archivo de ejemplo
         success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
       import_action:
-        taxonomy: Importar taxonomía
+        taxonomy: Importar taxonomía de competencias
       job_roles: Roles de trabajo
       proficiency: Dominio
       skill_job_mappings: Asignaciones
       skills: Habilidades
-      title: Taxonomía
+      title: Taxonomía de competencias
     templates:
       blocks:
         copy:

@@ -148,7 +148,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       key: 'level',
       title: I18n.t('administration.proficiency_levels.fields.level'),
       dataIndex: 'level',
-      width: 100,
+      width: '10%',
       render: (_: unknown, record, index: number) => (
         <Form.Item
           name={['levelDefinition', index, 'level']}
@@ -172,6 +172,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       key: 'name',
       title: I18n.t('administration.proficiency_levels.fields.level_name'),
       dataIndex: 'name',
+      width: '24%',
       render: (_: unknown, record, index: number) => (
         <Form.Item
           name={['levelDefinition', index, 'name']}
@@ -207,14 +208,14 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
         filter: {
           name_cont: value,
           ...(
-            params.projectId || proficiencyLevel?.project?.id
+            params.projectId || proficiencyLevel?.project?.id || projectId
               ? { project_id_eq: params.projectId || proficiencyLevel?.project?.id }
               : {}
           ),
         },
       },
     })
-  }, 300), [proficiencyLevel, shouldFetchDependent])
+  }, 300), [proficiencyLevel, shouldFetchDependent, params, projectId])
 
   useEffect(() => {
     setLevelDefinitions((currLevelDefinitions) => {
@@ -318,7 +319,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       close={close}
       storeManager={{ form }}
       scrollToFirstError
-      modalProps={{ width: 720 }}
+      modalProps={{ width: 'min(860px, 80%)' }}
       request={{
         createResource: resource.createResource,
         updateResource: resource.updateResource,

@@ -2355,6 +2355,8 @@ zh:
     job_role:
       column:
         job_group: 工作小组
+        skill_id: 技能编号
+        skill_name: 技能名称
       export:
         failure_msg: 导出翻译时出错
         success_msg: 导出开发行动正在进行中。
@@ -2372,6 +2374,7 @@ zh:
         success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
       import_action:
         translations: 导入工作角色翻译
+      job_role_details: 工作角色详情
       translations: 工作角色翻译
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ zh:
         download_example_file: 下载示例文件
         success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
       import_action:
-        taxonomy: 导入分类标准
+        taxonomy: 导入技能分类标准
       job_roles: 工作角色
       proficiency: 熟练程度
       skill_job_mappings: 技能岗位映射
       skills: 技能
-      title: 分类学
+      title: 技能分类法
     templates:
       blocks:
         copy:

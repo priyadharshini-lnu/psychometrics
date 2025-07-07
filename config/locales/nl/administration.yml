@@ -2355,6 +2355,8 @@ nl:
     job_role:
       column:
         job_group: Functiegroep
+        skill_id: Vaardigheid Id
+        skill_name: Naam vaardigheid
       export:
         failure_msg: Fout tijdens het exporteren van vertalingen
         success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
@@ -2372,6 +2374,7 @@ nl:
         success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
       import_action:
         translations: Importeren van functievertalingen
+      job_role_details: Functie details
       translations: Functie Vertalingen
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ nl:
         download_example_file: Voorbeeldbestand downloaden
         success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
       import_action:
-        taxonomy: Taxonomie importeren
+        taxonomy: Taxonomie vaardigheden importeren
       job_roles: Functierollen
       proficiency: Bekwaamheid
       skill_job_mappings: Vaardigheidstaken toewijzingen
       skills: Vaardigheden
-      title: Taxonomie
+      title: Taxonomie van vaardigheden
     templates:
       blocks:
         copy:

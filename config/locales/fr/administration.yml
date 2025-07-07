@@ -2355,6 +2355,8 @@ fr:
     job_role:
       column:
         job_group: Groupe de travail
+        skill_id: Id compétence
+        skill_name: Nom de la compétence
       export:
         failure_msg: Erreur lors de l'exportation des traductions
         success_msg: Des actions de développement de l'exportation sont en cours.
@@ -2372,6 +2374,7 @@ fr:
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
       import_action:
         translations: Importation Emploi Rôle Traductions
+      job_role_details: Détails du rôle de l'emploi
       translations: Rôle de l'emploi Traductions
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ fr:
         download_example_file: Télécharger le fichier d'exemple
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
       import_action:
-        taxonomy: Importer une taxonomie
+        taxonomy: Importer la taxonomie des compétences
       job_roles: Rôles professionnels
       proficiency: Compétence
       skill_job_mappings: Mises en correspondance des compétences et des emplois
       skills: Compétences
-      title: Taxonomie
+      title: Taxonomie des compétences
     templates:
       blocks:
         copy:

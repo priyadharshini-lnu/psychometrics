@@ -2356,6 +2356,8 @@ en:
     job_role:
       column:
         job_group: Job Group
+        skill_id: Skill Id
+        skill_name: Skill Name
       export:
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress.
@@ -2373,6 +2375,7 @@ en:
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
         translations: Import Job Role Translations
+      job_role_details: Job Role Details
       translations: Job Role Translations
     job_role_skill_mapping:
       column:
@@ -2386,7 +2389,7 @@ en:
         title: Skill Job Mapping
       global: Is Global Skill Job Mapping?
       import:
-        taxonomy: Taxonomy
+        taxonomy: Skills Taxonomy
     job_roles:
       export:
         translations:
@@ -3913,12 +3916,12 @@ en:
         download_example_file: Download Example File
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
-        taxonomy: Import Taxonomy
+        taxonomy: Import Skills Taxonomy
       job_roles: Job Roles
       proficiency: Proficiency
       skill_job_mappings: Skill Job Mappings
       skills: Skills
-      title: Taxonomy
+      title: Skills Taxonomy
     templates:
       blocks:
         copy:

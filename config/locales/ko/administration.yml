@@ -2355,6 +2355,8 @@ ko:
     job_role:
       column:
         job_group: 작업 그룹
+        skill_id: 스킬 ID
+        skill_name: 기술 이름
       export:
         failure_msg: 번역 내보내기 중 오류 발생
         success_msg: 진행 중인 개발 작업 내보내기.
@@ -2372,6 +2374,7 @@ ko:
         success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
       import_action:
         translations: 직무 역할 번역 가져오기
+      job_role_details: 직무 역할 세부 정보
       translations: 직무 역할 번역
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ ko:
         download_example_file: 예제 파일 다운로드
         success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
       import_action:
-        taxonomy: 분류법 가져오기
+        taxonomy: 스킬 분류 가져오기
       job_roles: 직무 역할
       proficiency: 숙련도
       skill_job_mappings: 스킬 직무 매핑
       skills: 기술
-      title: 분류
+      title: 기술 분류
     templates:
       blocks:
         copy:

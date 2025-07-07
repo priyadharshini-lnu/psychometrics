@@ -2355,6 +2355,8 @@ zh-Hant:
     job_role:
       column:
         job_group: 工作群組
+        skill_id: 技能 ID
+        skill_name: 技能名稱
       export:
         failure_msg: 匯出翻譯時發生錯誤
         success_msg: 出口開發行動正在進行中。
@@ -2372,6 +2374,7 @@ zh-Hant:
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
         translations: 匯入工作角色翻譯
+      job_role_details: 工作角色詳情
       translations: 工作角色翻譯
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ zh-Hant:
         download_example_file: 下載範例檔案
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
-        taxonomy: 匯入分類系統
+        taxonomy: 匯入技能分類系統
       job_roles: 工作角色
       proficiency: 能力
       skill_job_mappings: 技能工作對應
       skills: 技術
-      title: 分類學
+      title: 技能分類學
     templates:
       blocks:
         copy:

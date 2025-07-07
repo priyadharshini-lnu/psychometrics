@@ -229,7 +229,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
             label={I18n.t('administration.skills.form.description')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input.TextArea />
           </Form.Item>
           {!params.projectId && (
             <>

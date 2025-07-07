@@ -2355,6 +2355,8 @@ ar:
     job_role:
       column:
         job_group: مجموعة الوظائف
+        skill_id: معرّف المهارة
+        skill_name: اسم المهارة
       export:
         failure_msg: خطأ أثناء تصدير الترجمات
         success_msg: تصدير إجراءات التطوير قيد التنفيذ.
@@ -2372,6 +2374,7 @@ ar:
         success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
       import_action:
         translations: استيراد ترجمات الأدوار الوظيفية
+      job_role_details: تفاصيل الدور الوظيفي
       translations: ترجمات الأدوار الوظيفية
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ ar:
         download_example_file: تنزيل ملف المثال
         success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
       import_action:
-        taxonomy: استيراد التصنيف
+        taxonomy: تصنيف مهارات الاستيراد
       job_roles: الأدوار الوظيفية
       proficiency: الكفاءة
       skill_job_mappings: التعيينات
       skills: المهارات
-      title: التصنيف
+      title: تصنيف المهارات
     templates:
       blocks:
         copy:

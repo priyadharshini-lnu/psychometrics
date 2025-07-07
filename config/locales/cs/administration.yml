@@ -2355,6 +2355,8 @@ cs:
     job_role:
       column:
         job_group: Pracovní skupina
+        skill_id: Id dovednosti
+        skill_name: Název dovednosti
       export:
         failure_msg: Chyba při exportu překladů
         success_msg: Exportování probíhajících vývojových akcí.
@@ -2372,6 +2374,7 @@ cs:
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
       import_action:
         translations: Importovat překlady pracovních rolí
+      job_role_details: Podrobnosti o pracovní pozici
       translations: Překlady pracovních rolí
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ cs:
         download_example_file: Stáhnout soubor s příkladem
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
       import_action:
-        taxonomy: Import taxonomie
+        taxonomy: Import taxonomie dovedností
       job_roles: Pracovní role
       proficiency: Znalost
       skill_job_mappings: Mapování dovedností
       skills: Dovednosti
-      title: Taxonomie
+      title: Taxonomie dovedností
     templates:
       blocks:
         copy:

@@ -42,8 +42,8 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.id')}
           id="id"
           sorter
-          render={skill => (
-            skill.id
+          render={jobRole => (
+            jobRole.id
           )}
           width={200}
         />
@@ -52,9 +52,9 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           id="name"
           render={(_, skill) => (
             <>
-              <Button type="link" onClick={() => setSkillDetails(skill)}>
+              <Typography.Link onClick={() => setSkillDetails(skill)} style={{ marginRight: 12 }}>
                 {skill.name}
-              </Button>
+              </Typography.Link>
               <TagList
                 initialTags={skill.tagList as string[]}
                 config={{

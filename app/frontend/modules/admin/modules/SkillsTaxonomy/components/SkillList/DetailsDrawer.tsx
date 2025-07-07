@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Drawer, Descriptions, Row, Skeleton,
   Table,
+  Tag,
 } from 'antd'
 import { Skill } from '~/modules/admin/modules/client/core/skills'
 import { useResources } from '~/hooks/useResources'
@@ -53,6 +54,24 @@ const DetailsDrawerComponent: FC<Props> = ({
           column={1}
         >
           <Descriptions.Item
+            label={I18n.t('common.column.id')}
+            key="description"
+            className="va-t w-30"
+            labelStyle={{ width: '30%' }}
+            contentStyle={{ width: '70%' }}
+          >
+            {skill.id}
+          </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('common.column.name')}
+            key="description"
+            className="va-t w-30"
+            labelStyle={{ width: '30%' }}
+            contentStyle={{ width: '70%' }}
+          >
+            {skill.name}
+          </Descriptions.Item>
+          <Descriptions.Item
             label={I18n.t('common.column.description')}
             key="description"
             className="va-t w-30"
@@ -80,6 +99,11 @@ const DetailsDrawerComponent: FC<Props> = ({
                   contentStyle={{ width: '70%' }}
                 >
                   {I18n.t(`administration.proficiency_levels.type.${proficiencyLevel?.proficiencyType}`)}
+                  {
+                    !proficiencyLevel?.project?.id ? (
+                      <Tag color="gold" bordered style={{ marginLeft: '10px' }}>Global</Tag>
+                    ) : null
+                  }
                 </Descriptions.Item>
               </Descriptions>
               <Table

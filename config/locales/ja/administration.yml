@@ -2355,6 +2355,8 @@ ja:
     job_role:
       column:
         job_group: 職務グループ
+        skill_id: スキルID
+        skill_name: スキル名
       export:
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 進行中の開発アクションをエクスポートする。
@@ -2372,6 +2374,7 @@ ja:
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
       import_action:
         translations: 役割の翻訳をインポートする
+      job_role_details: 職務内容
       translations: 職務の翻訳
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ ja:
         download_example_file: 例題ファイルのダウンロード
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
       import_action:
-        taxonomy: タクソノミーのインポート
+        taxonomy: スキル分類法のインポート
       job_roles: 仕事の役割
       proficiency: 熟練度
       skill_job_mappings: スキル・ジョブ・マッピング
       skills: スキル
-      title: 分類学
+      title: スキル分類法
     templates:
       blocks:
         copy:

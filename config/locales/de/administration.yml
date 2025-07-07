@@ -2355,6 +2355,8 @@ de:
     job_role:
       column:
         job_group: Berufsgruppe
+        skill_id: Fertigkeit Id
+        skill_name: Skill Name
       export:
         failure_msg: Fehler beim Exportieren von Übersetzungen
         success_msg: Export von laufenden Entwicklungsmaßnahmen.
@@ -2372,6 +2374,7 @@ de:
         success_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import aufgenommen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
       import_action:
         translations: Job-Rollen-Übersetzungen importieren
+      job_role_details: Details zur Job-Rolle
       translations: Job-Rollen-Übersetzungen
     job_role_skill_mapping:
       column:
@@ -3912,12 +3915,12 @@ de:
         download_example_file: Beispieldatei herunterladen
         success_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import aufgenommen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
       import_action:
-        taxonomy: Taxonomie importieren
+        taxonomy: Taxonomie der Fertigkeiten importieren
       job_roles: Berufsrollen
       proficiency: Befähigung
       skill_job_mappings: Zuordnungen
       skills: Fertigkeiten
-      title: Taxonomie
+      title: Taxonomie der Fertigkeiten
     templates:
       blocks:
         copy:
