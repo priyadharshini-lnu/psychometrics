@@ -55,7 +55,9 @@ class HomeController < ApplicationController
   end
 
   def privacy_statement
-    I18n.locale = %w[en fr de it].include?(params[:lang]) ? params[:lang] : I18n.default_locale
+    locale = params[:lang]
+    locale = 'es-ES' if params[:lang] == 'es-es'
+    I18n.locale = %w[en fr de it es-ES].include?(locale) ? locale : I18n.default_locale
     render html: nil, layout: 'policy'
   end
 
