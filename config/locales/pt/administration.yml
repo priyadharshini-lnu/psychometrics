@@ -3845,8 +3845,14 @@ pt:
     survey_builder:
       builder_area:
         current_job: Emprego atual
+        default_not_applicable_label: Não há oportunidade de aprender ou demonstrar competências
+        enable_not_applicable: Ativar a opção N/A
+        enable_required_validation: Ativar a validação obrigatória
+        force_response: Resposta da força
         job_role_required: Selecione pelo menos uma função
+        not_applicable_label: Não aplicável Rótulo
         options: Opções
+        request_response: Resposta ao pedido
         skill_rater_config: Configuração do avaliador de competências
         target_job: Emprego alvo
       models:

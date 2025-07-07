@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   Popover, Button, Dropdown, Form,
-  Checkbox, Typography,
+  Checkbox, Typography, Radio, Input,
 } from 'antd'
 import Block from '~/modules/survey/models/Block'
 import Menu from '~/modules/survey/components/ModulesMenu'
@@ -121,21 +121,42 @@ const AddBlockMenu = ({ onAddBlock }) => {
 
 const SkillRater = ({ model, updateBlockProps }) => {
   const initialJobRolesData = model.props?.skills_config
+  const initialRequiredValidation = model.props?.required_validation
+  const initialNotApplicable = model.props?.not_applicable
   const [form] = Form.useForm()
   const technicalEnabled = Form.useWatch(['technical', 'enabled'], form)
   const behavioralEnabled = Form.useWatch(['behavioral', 'enabled'], form)
   const otherEnabled = Form.useWatch(['other', 'enabled'], form)
+  const requireValidationEnabled = Form.useWatch(['required_validation', 'enabled'], form)
+  const notApplicableEnabled = Form.useWatch(['not_applicable', 'enabled'], form)
 
   const handleFieldsChange = () => {
     const allFormFields = form.getFieldsValue()
-    updateBlockProps(model, { skills_config: allFormFields })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { required_validation, not_applicable, ...skillsConfig } = allFormFields
+
+    updateBlockProps(model, {
+      skills_config: skillsConfig,
+      required_validation,
+      not_applicable,
+    })
+  }
+
+  const initialValues = {
+    ...initialJobRolesData,
+    required_validation: initialRequiredValidation || { enabled: false, type: 'Force' },
+    not_applicable: {
+      enabled: initialNotApplicable?.enabled || false,
+      label: initialNotApplicable?.label
+        || I18n.t('administration.survey_builder.builder_area.default_not_applicable_label'),
+    },
   }
 
   return (
     <Form
       form={form}
       onFieldsChange={handleFieldsChange}
-      initialValues={initialJobRolesData}
+      initialValues={initialValues}
       className={styles.skillRaterForm}
       layout="vertical"
     >
@@ -175,9 +196,73 @@ const SkillRater = ({ model, updateBlockProps }) => {
         </Checkbox>
       </Form.Item>
       {otherEnabled && <JobRoleFormItem name="other" />}
+
+      <div>
+        <hr style={{ borderColor: '#d9d9d9' }} />
+      </div>
+
+      <RequiredValidationFormItem requireValidationEnabled={requireValidationEnabled} />
+
+      <div>
+        <hr style={{ borderColor: '#d9d9d9' }} />
+      </div>
+
+      <NotApplicableFormItem notApplicableEnabled={notApplicableEnabled} />
     </Form>
   )
 }
+
+const RequiredValidationFormItem = ({ requireValidationEnabled }) => (
+  <>
+    <Form.Item
+      className="mb-0"
+      name={['required_validation', 'enabled']}
+      valuePropName="checked"
+    >
+      <Checkbox>
+        {I18n.t('administration.survey_builder.builder_area.enable_required_validation')}
+      </Checkbox>
+    </Form.Item>
+    {requireValidationEnabled && (
+      <Form.Item
+        className="mb-6 ms-8"
+        name={['required_validation', 'type']}
+      >
+        <Radio.Group>
+          <Radio value="Force">
+            {I18n.t('administration.survey_builder.builder_area.force_response')}
+          </Radio>
+          <Radio value="Request">
+            {I18n.t('administration.survey_builder.builder_area.request_response')}
+          </Radio>
+        </Radio.Group>
+      </Form.Item>
+    )}
+  </>
+)
+
+const NotApplicableFormItem = ({ notApplicableEnabled }) => (
+  <>
+    <Form.Item
+      className="mb-0"
+      name={['not_applicable', 'enabled']}
+      valuePropName="checked"
+    >
+      <Checkbox>
+        {I18n.t('administration.survey_builder.builder_area.enable_not_applicable')}
+      </Checkbox>
+    </Form.Item>
+    {notApplicableEnabled && (
+      <Form.Item
+        className="mb-6 ms-8"
+        name={['not_applicable', 'label']}
+        label={I18n.t('administration.survey_builder.builder_area.not_applicable_label')}
+      >
+        <Input />
+      </Form.Item>
+    )}
+  </>
+)
 
 const JobRoleFormItem = ({ name }) => (
   <Form.Item

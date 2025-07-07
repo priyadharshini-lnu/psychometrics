@@ -3845,8 +3845,14 @@ it:
     survey_builder:
       builder_area:
         current_job: Lavoro attuale
+        default_not_applicable_label: Nessuna opportunità di apprendere o dimostrare abilità
+        enable_not_applicable: Abilita l'opzione N/A
+        enable_required_validation: Abilita la convalida richiesta
+        force_response: Risposta della forza
         job_role_required: Selezionare almeno un ruolo lavorativo
+        not_applicable_label: Non applicabile Etichetta
         options: Opzioni
+        request_response: Risposta alla richiesta
         skill_rater_config: Configurazione degli Skill Rater
         target_job: Obiettivo Lavoro
       models:

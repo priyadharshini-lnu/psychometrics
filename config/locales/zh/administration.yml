@@ -3845,8 +3845,14 @@ zh:
     survey_builder:
       builder_area:
         current_job: 当前工作
+        default_not_applicable_label: 没有机会学习或展示技能
+        enable_not_applicable: 启用不适用选项
+        enable_required_validation: 启用必要的验证
+        force_response: 部队反应
         job_role_required: 请至少选择一个工作角色
+        not_applicable_label: 不适用 标签
         options: 选项
+        request_response: 请求答复
         skill_rater_config: 技能评级器配置
         target_job: 目标职位
       models:

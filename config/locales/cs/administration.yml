@@ -3845,8 +3845,14 @@ cs:
     survey_builder:
       builder_area:
         current_job: Současná práce
+        default_not_applicable_label: Žádná příležitost naučit se nebo prokázat dovednosti
+        enable_not_applicable: Povolit možnost N/A
+        enable_required_validation: Povolení požadovaného ověření
+        force_response: Reakce síly
         job_role_required: Vyberte prosím alespoň jednu pracovní pozici
+        not_applicable_label: Nepoužitelný štítek
         options: Možnosti
+        request_response: Odpověď na žádost
         skill_rater_config: Konfigurace hodnocení dovedností
         target_job: Cílová práce
       models:

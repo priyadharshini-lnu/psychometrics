@@ -1,6 +1,7 @@
 import { BaseBuilderModel, BasePropertiesModel, BasePreviewModel } from './Base'
 
 export interface BuilderModel extends BaseBuilderModel<Props, ModuleConfig> {}
+export const NOT_APPLICABLE = 'not_applicable'
 
 export interface PropertiesModel
   extends BasePropertiesModel<Props, ModuleConfig> {
@@ -28,6 +29,8 @@ interface Props {
   proficiencyLevels: Array<proficiencyLevel>
   skillName: string
   skillDescription: string
+  notApplicableLabel?: string
+  notApplicable?: boolean
 }
 
 interface ModuleConfig {}

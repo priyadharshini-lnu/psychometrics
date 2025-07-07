@@ -3846,8 +3846,14 @@ en:
     survey_builder:
       builder_area:
         current_job: Current Job
+        default_not_applicable_label: No opportunity to learn about or demonstrate skill
+        enable_not_applicable: Enable N/A option
+        enable_required_validation: Enable Required Validation
+        force_response: Force response
         job_role_required: Please select at least one job role
+        not_applicable_label: Not Applicable Label
         options: Options
+        request_response: Request response
         skill_rater_config: Skill Rater configuration
         target_job: Target Job
       models:

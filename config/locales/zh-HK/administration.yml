@@ -142,7 +142,13 @@ zh-HK:
     survey_builder:
       builder_area:
         current_job: 目前工作
+        default_not_applicable_label: 沒有機會學習或展示技能
+        enable_not_applicable: 啟用不適用選項
+        enable_required_validation: 啟用必要的驗證
+        force_response: 原力回應
         job_role_required: 請至少選擇一個工作角色
+        not_applicable_label: 不適用 標籤
+        request_response: 請求回應
         skill_rater_config: 技能評定員配置
         target_job: 目標工作
       models:

@@ -3845,8 +3845,14 @@ ja:
     survey_builder:
       builder_area:
         current_job: 現在の仕事
+        default_not_applicable_label: 技術について学んだり、技術を発揮したりする機会がない
+        enable_not_applicable: N/Aオプションを有効にする
+        enable_required_validation: 必須バリデーションを有効にする
+        force_response: フォース・レスポンス
         job_role_required: 少なくとも1つの職務を選択してください
+        not_applicable_label: 非該当 ラベル
         options: オプション
+        request_response: リクエスト・レスポンス
         skill_rater_config: スキルレイターの設定
         target_job: 目標の仕事
       models:

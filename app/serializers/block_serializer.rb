@@ -10,7 +10,8 @@ class BlockSerializer < Panko::Serializer
       context: {
         piped_text_context: context[:piped_text_context],
         selected_locale: context[:selected_locale],
-        translations: context[:translations]
+        translations: context[:translations],
+        block: object
       }
     ).to_a
   end

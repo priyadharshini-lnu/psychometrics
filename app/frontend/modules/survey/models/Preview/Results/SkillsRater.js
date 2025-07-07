@@ -14,12 +14,15 @@ _.extend(SkillsRater.prototype, {
   },
 
   results () {
-    return this.result.answers
+    return {
+      answers: this.result.answers,
+      not_applicable: this.result.notApplicable,
+    }
   },
 
   // Force Response
   requiredValidation () {
-    return this.result.answers?.length > 0
+    return this.result.answers?.length > 0 || this.result.notApplicable
   },
 })
 

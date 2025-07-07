@@ -149,7 +149,13 @@ pl:
     survey_builder:
       builder_area:
         current_job: Obecna praca
+        default_not_applicable_label: Brak możliwości poznania lub zademonstrowania umiejętności
+        enable_not_applicable: Włącz opcję Nie dotyczy
+        enable_required_validation: Włącz wymaganą walidację
+        force_response: Reakcja siłowa
         job_role_required: Wybierz co najmniej jedną rolę zawodową
+        not_applicable_label: Nie dotyczy Etykieta
+        request_response: Odpowiedź na żądanie
         skill_rater_config: Konfiguracja Skill Ratera
         target_job: Docelowa praca
       models:

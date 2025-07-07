@@ -9,7 +9,7 @@ import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 import useForceUpdate from '~/hooks/useUpdate'
 
-import { PreviewModel } from '~/modules/survey/interfaces/questions/SkillsRater'
+import { PreviewModel, NOT_APPLICABLE } from '~/modules/survey/interfaces/questions/SkillsRater'
 
 import styles from './SkillsRaterPreview.less'
 
@@ -39,7 +39,9 @@ const SkillsRaterPreviewComponent: FC<Props> = ({
   const forceUpdate = useForceUpdate()
   const {
     result,
-    props: { proficiencyLevels, skillName, skillDescription },
+    props: {
+      proficiencyLevels, skillName, skillDescription, notApplicableLabel, notApplicable,
+    },
   } = model
 
 
@@ -47,11 +49,18 @@ const SkillsRaterPreviewComponent: FC<Props> = ({
     const value = event?.target?.value ?? ''
     const isMouseClick = event?.nativeEvent?.x && event?.nativeEvent?.y
 
-    result.notApplicable = false
-
-    if (value.length !== 0) {
-      result.answer(parseInt(value, 10))
+    if (value === NOT_APPLICABLE) {
+      result.notApplicable = true
+      result.answers = []
+      result.reduxAnswer()
+    } else {
+      result.notApplicable = false
+      if (value.length !== 0) {
+        result.answer(parseInt(value, 10))
+      }
+      result.reduxAnswer()
     }
+
     if (singleQuestionFlow && isMouseClick) {
       nextPage()
     }
@@ -68,6 +77,9 @@ const SkillsRaterPreviewComponent: FC<Props> = ({
       readOnly={readOnly}
       handleChoiceChange={handleChoiceChange}
       focusFirstInput={focus}
+      notApplicableLabel={notApplicableLabel}
+      notApplicable={result.notApplicable}
+      notApplicableEnabled={notApplicable}
     />
   )
 }
@@ -81,6 +93,9 @@ interface TextChoicesProps {
   handleChoiceChange: (e: RadioChangeEvent) => void
   focusFirstInput: boolean
   readOnly?: boolean
+  notApplicableLabel?: string
+  notApplicable: boolean
+  notApplicableEnabled?: boolean
 }
 
 const TextChoices: FC<TextChoicesProps> = ({
@@ -92,6 +107,9 @@ const TextChoices: FC<TextChoicesProps> = ({
   handleChoiceChange,
   focusFirstInput,
   readOnly,
+  notApplicableLabel,
+  notApplicable,
+  notApplicableEnabled,
 }) => {
   const firstInputRef = useRef<HTMLInputElement>(null)
 
@@ -107,28 +125,48 @@ const TextChoices: FC<TextChoicesProps> = ({
         className={styles.radioGroup}
         disabled={readOnly}
         onChange={handleChoiceChange}
-        value={answers.find(answer => answer.value)?.level ?? ''}
-        options={proficiencyLevels.map(proficiencyLevel => ({
-          label: (
-            <>
-              <span
-                aria-hidden="true"
-                className={cs('fa fa-check', styles.checkIcon,
-                  { [styles.buttonActive]: answers.find(answer => answer.value)?.level === proficiencyLevel.level })}
-              />
-              <label className="mb-0" htmlFor={`pf-level-${questionId}-${proficiencyLevel.level}`}>
-                {proficiencyLevel.name}
-              </label>
-              <span
-                className="font-normal"
-              >
-                {` - ${proficiencyLevel.description}`}
-              </span>
-            </>
-          ),
-          value: proficiencyLevel.level,
-          id: `pf-level-${questionId}-${proficiencyLevel.level}`,
-        }))}
+        value={notApplicable ? NOT_APPLICABLE : (answers.find(answer => answer.value)?.level ?? '')}
+        options={[
+          ...proficiencyLevels.map(proficiencyLevel => ({
+            label: (
+              <>
+                <span
+                  aria-hidden="true"
+                  className={cs('fa fa-check', styles.checkIcon,
+                    { [styles.buttonActive]: answers.find(answer => answer.value)?.level === proficiencyLevel.level })}
+                />
+                <label className="mb-0" htmlFor={`pf-level-${questionId}-${proficiencyLevel.level}`}>
+                  {proficiencyLevel.name}
+                </label>
+                <span
+                  className="font-normal"
+                >
+                  {` - ${proficiencyLevel.description}`}
+                </span>
+              </>
+            ),
+            value: proficiencyLevel.level,
+            id: `pf-level-${questionId}-${proficiencyLevel.level}`,
+          })),
+          ...(notApplicableEnabled && notApplicableLabel ? [{
+            label: (
+              <>
+                <span
+                  aria-hidden="true"
+                  className={cs('fa fa-check', styles.checkIcon,
+                    { [styles.buttonActive]: notApplicable })}
+                />
+                <span
+                  className="font-normal"
+                >
+                  {notApplicableLabel}
+                </span>
+              </>
+            ),
+            value: NOT_APPLICABLE,
+            id: `not-applicable-${questionId}`,
+          }] : []),
+        ]}
       />
     </>
   )

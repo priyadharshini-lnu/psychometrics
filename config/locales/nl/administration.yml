@@ -3845,8 +3845,14 @@ nl:
     survey_builder:
       builder_area:
         current_job: Huidige baan
+        default_not_applicable_label: Geen mogelijkheid om vaardigheden te leren of te demonstreren
+        enable_not_applicable: N/A-optie inschakelen
+        enable_required_validation: Vereiste validatie inschakelen
+        force_response: Reactie op kracht
         job_role_required: Selecteer ten minste één functie
+        not_applicable_label: Niet van toepassing Label
         options: Opties
+        request_response: Antwoord op verzoek
         skill_rater_config: Configuratie vaardigheidsbeoordelaar
         target_job: Streefbaan
       models:

@@ -3845,8 +3845,14 @@ ar:
     survey_builder:
       builder_area:
         current_job: الوظيفة الحالية
+        default_not_applicable_label: لا توجد فرصة للتعلم أو إظهار المهارة
+        enable_not_applicable: تمكين الخيار غير متاح/غير متاح
+        enable_required_validation: تمكين التحقق من الصحة المطلوبة
+        force_response: استجابة القوة
         job_role_required: يرجى تحديد دور وظيفي واحد على الأقل
+        not_applicable_label: ملصق غير قابل للتطبيق
         options: Options
+        request_response: الاستجابة للطلب
         skill_rater_config: تكوين مقيِّم المهارات
         target_job: الوظيفة المستهدفة
       models:
