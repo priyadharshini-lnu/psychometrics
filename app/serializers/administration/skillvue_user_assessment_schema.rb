@@ -8,6 +8,7 @@ module Administration
 
         required(:email).maybe(:str?)
         required(:external_assessment_id).filled(:str?)
+        required(:external_user_id).maybe(:str?)
       end
     end
   end

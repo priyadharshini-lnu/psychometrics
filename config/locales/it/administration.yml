@@ -4209,3 +4209,6 @@ it:
       errors:
         update_assessor_for_failure: I dettagli della riunione non possono essere aggiunti perché non c'è un'attività collegata al soggetto.
     years: Anni
+  campaign_assessment:
+    column:
+      external_user_id: ID candidato Skillvue

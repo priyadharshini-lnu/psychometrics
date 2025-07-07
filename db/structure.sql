@@ -6192,7 +6192,8 @@ CREATE TABLE public.skillvue_user_assessments (
     url character varying,
     email character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    external_user_id character varying
 );
 
 
@@ -17413,6 +17414,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250627045222'),
 ('20250626102948'),
 ('20250625073055'),
+('20250702073753'),
 ('20250624125911'),
 ('20250624110503'),
 ('20250623090517'),

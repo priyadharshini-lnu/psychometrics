@@ -13,6 +13,7 @@ describe Skillvue::InviteCandidate do
   let!(:skillvue_user_assessment) do
     create(:skillvue_user_assessment, user_assessment: user_assessment)
   end
+  let(:encoded_id) { UserAssessment.encode_id(user_assessment.id) }
 
   let(:interview_url) { Faker::Internet.url }
 
@@ -23,7 +24,7 @@ describe Skillvue::InviteCandidate do
       'data' => {
         'interview_url' => interview_url,
         'candidate' => {
-          'id' => 'WY5P7W',
+          'id' => encoded_id,
           'name' => '23740',
           'surname' => '23740',
           'email' => 'wy5p7w-ac068a3c0a@example.com',
@@ -53,6 +54,7 @@ describe Skillvue::InviteCandidate do
 
         expect(skillvue_user_assessment.url).to eq(interview_url)
         expect(skillvue_user_assessment.email).to eq('wy5p7w-ac068a3c0a@example.com')
+        expect(skillvue_user_assessment.external_user_id).to eq(encoded_id)
       end
     end
 

@@ -45,7 +45,8 @@ module Skillvue
     def save_skillvue_user_assessment(result)
       user_assessment.skillvue_user_assessment.update!(
         url: result['data']['interview_url'],
-        email: result['data']['candidate']['email']
+        email: result['data']['candidate']['email'],
+        external_user_id: result['data']['candidate']['id']
       )
     end
 

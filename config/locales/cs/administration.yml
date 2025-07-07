@@ -4209,3 +4209,6 @@ cs:
       errors:
         update_assessor_for_failure: Podrobnosti o schůzce nelze přidat, protože neexistuje žádná související činnost subjektu.
     years: Roky
+  campaign_assessment:
+    column:
+      external_user_id: ID kandidáta Skillvue

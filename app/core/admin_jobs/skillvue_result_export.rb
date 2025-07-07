@@ -2,14 +2,14 @@
 
 module AdminJobs
   class SkillvueResultExport < BaseExportAssessment
-    RESULT_HEADERS_DATA = %w[overallMatchPercentage].freeze
+    RESULT_HEADERS_DATA = %w[skills_matching_percentage overall_analysis].freeze
 
     private
 
     def headers
       [
         'Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-        'Relationship', 'Started At', 'Completed At', 'Status', 'Overall Match Percentage'
+        'Relationship', 'Started At', 'Completed At', 'Status', 'Skills Matching Percentage', 'Overall Analysis'
       ]
     end
 

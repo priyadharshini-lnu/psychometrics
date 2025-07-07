@@ -6,15 +6,8 @@ require 'csv'
 describe AdminJobs::SkillvueResultExport do
   let(:external_results) do
     {
-      'overallMatchPercentage' => 65,
-      'candidate' => {
-        'name' => '45282',
-        'surname' => '45282',
-        'email' => 'bcf2cd3be@example.com',
-        'timestamp' => '2025-06-02T05:36:59.827Z',
-        'position' => 'MTE Test',
-        'language' => 'en'
-      }
+      'skills_matching_percentage' => '65',
+      'overall_analysis' => 'Good teamwork and collaboration skills demonstrated'
     }
   end
   let(:user) { create(:user, first_name: 'test', last_name: 'test', email: 'user+6.78@example.com') }
@@ -64,7 +57,8 @@ describe AdminJobs::SkillvueResultExport do
         'Started At',
         'Completed At',
         'Status',
-        'Overall Match Percentage'
+        'Skills Matching Percentage',
+        'Overall Analysis'
       ]
 
       expect(actual_headers).to eq(expected_headers)
@@ -86,7 +80,8 @@ describe AdminJobs::SkillvueResultExport do
         user_assessment.started_at.try(:strftime, '%D %r'),
         user_assessment.completed_at.try(:strftime, '%D %r'),
         I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
-        external_results['overallMatchPercentage'].to_s
+        external_results['skills_matching_percentage'].to_s,
+        external_results['overall_analysis'].to_s
       ]
 
       expect(actual_data).to eq(expected_data)
@@ -101,7 +96,8 @@ describe AdminJobs::SkillvueResultExport do
         csv = CSV.read(active_storage_file_path(job_record.file), headers: true)
         actual_data = csv[0].fields
 
-        expect(actual_data[-1]).to be_nil # Overall Match Percentage should be nil
+        expect(actual_data[-2]).to be_nil # Skills Matching Percentage should be nil
+        expect(actual_data[-1]).to be_nil # Overall Analysis should be nil
       end
     end
 
@@ -111,7 +107,10 @@ describe AdminJobs::SkillvueResultExport do
                user_assessment: create(:user_assessment,
                                        campaign: campaign,
                                        assessment: assessment),
-               external_results: { 'overallMatchPercentage' => 75 })
+               external_results: {
+                 'skills_matching_percentage' => '75',
+                 'overall_analysis' => 'Excellent communication and leadership'
+               })
       end
 
       it 'exports all results' do
@@ -120,8 +119,14 @@ describe AdminJobs::SkillvueResultExport do
         csv = CSV.read(active_storage_file_path(job_record.file), headers: true)
 
         expect(csv.count).to eq(2) # 2 data rows
-        scores = csv.map { |row| row['Overall Match Percentage'] }
+        scores = csv.map { |row| row['Skills Matching Percentage'] }
         expect(scores).to match_array(%w[65 75])
+
+        analyses = csv.map { |row| row['Overall Analysis'] }
+        expect(analyses).to match_array([
+          'Good teamwork and collaboration skills demonstrated',
+          'Excellent communication and leadership'
+        ])
       end
     end
   end

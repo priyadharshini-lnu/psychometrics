@@ -198,7 +198,8 @@ module Campaigns
         existing_skillvue_user_assessment = existing_result&.skillvue_user_assessment
         user_assessment.create_skillvue_user_assessment(
           url: existing_skillvue_user_assessment&.url,
-          email: existing_skillvue_user_assessment&.email
+          email: existing_skillvue_user_assessment&.email,
+          external_user_id: existing_skillvue_user_assessment&.external_user_id
         )
       end
 

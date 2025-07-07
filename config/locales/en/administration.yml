@@ -4210,3 +4210,6 @@ en:
       errors:
         update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.
     years: Years
+  campaign_assessment:
+    column:
+      external_user_id: Skillvue Candidate ID
