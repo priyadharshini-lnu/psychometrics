@@ -11,16 +11,18 @@ interface OwnProps {
   prefix?: string
 }
 const Menu: React.FC<OwnProps & PropsFromRedux> = ({
-  prefix,
+  prefix, campaignPermissions,
 }) => {
   const navigate = useNavigate()
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
 
-  const menuItems = [
-    { key: '/manage', label: I18n.t('assessments_reports.menu.manage') },
-    { key: '/sequencing', label: I18n.t('assessments_reports.menu.sequencing') },
-    { key: '/report_approval', label: I18n.t('assessments_reports.menu.report_approval') },
-  ]
+  const menuItems = [{ key: '/manage', label: I18n.t('assessments_reports.menu.manage') }]
+  if (campaignPermissions.manageCampaigns) {
+    menuItems.push({ key: '/sequencing', label: I18n.t('assessments_reports.menu.sequencing') })
+  }
+  if (campaignPermissions.manageReportApprovalSettings) {
+    menuItems.push({ key: '/report_approval', label: I18n.t('assessments_reports.menu.report_approval') })
+  }
 
   return (
     <div className="position-relative">

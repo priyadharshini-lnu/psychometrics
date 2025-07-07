@@ -994,17 +994,29 @@ providers:
       - id: mte-apply
         name: MTE Apply
         possible_languages:
-          - en
+          - cs
           - de
+          - en
+          - es
           - fr
           - it
+          - ja
+          - pt
+          - zh-Hans
+          - zh-Hant
       - id: mte-trial
         name: MTE Apply Trial
         possible_languages:
-          - en
+          - cs
           - de
+          - en
+          - es
           - fr
           - it
+          - ja
+          - pt
+          - zh-Hans
+          - zh-Hant
       - id: mte-shape
         name: MTE Shape
         possible_languages:

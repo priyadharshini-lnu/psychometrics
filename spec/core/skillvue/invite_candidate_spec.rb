@@ -14,19 +14,20 @@ describe Skillvue::InviteCandidate do
     create(:skillvue_user_assessment, user_assessment: user_assessment)
   end
 
-  let(:redirect_url) { 'https://demo-cam.algointerview.it/36d0676c454f67d39e67aee0699a2edd/d07bd8b697006dbb8cca6a9fea552dc9' }
+  let(:interview_url) { Faker::Internet.url }
 
   let!(:registration_response) do
     {
       'success' => true,
       'error' => nil,
       'data' => {
-        'redirect_url' => redirect_url,
+        'interview_url' => interview_url,
         'candidate' => {
-          'id' => '4@example.com',
-          'name' => '45280',
-          'surname' => '45280',
-          'email' => '4@example.com'
+          'id' => 'WY5P7W',
+          'name' => '23740',
+          'surname' => '23740',
+          'email' => 'wy5p7w-ac068a3c0a@example.com',
+          'redirect_url' => 'https://mercer.ttedev.me:3030/skillvue_user_assessments/26110/redirect?jwt=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIzNzQwLCJleHAiOjE3NTE1MjkyODN9.eWwvIlBLN2Jhsa8eHi6Sy2Ozc-bO7Qsx3_dli0ZKW10&project_id=288'
         }
       }
     }
@@ -50,8 +51,8 @@ describe Skillvue::InviteCandidate do
       it 'invites candidate' do
         subject.call
 
-        expect(skillvue_user_assessment.url).to eq(redirect_url)
-        expect(skillvue_user_assessment.email).to eq('4@example.com')
+        expect(skillvue_user_assessment.url).to eq(interview_url)
+        expect(skillvue_user_assessment.email).to eq('wy5p7w-ac068a3c0a@example.com')
       end
     end
 

@@ -125,7 +125,7 @@ const Manage: React.FC<Props> = ({
 
 
   const {
-    createResource,
+    createResource, meta: campaignAssessorAssessmentsMeta,
   } = useResources<CampaignAssessorAssessments>(
     'campaign_assessor_assessments',
     {
@@ -204,20 +204,23 @@ const Manage: React.FC<Props> = ({
               {I18n.t('campaigns.assessments_and_reports.assessor_assessments')}
             </h3>
           </Col>
-          <Button
-            type="primary"
-            onClick={
-              () => openModal('AddAssessorAssessmentModal', {
-                addAssessorAssessment: createResource,
-                campaignId,
-              })
-            }
-          >
-            <PlusOutlined />
-            <span>
-              {I18n.t('administration.assessor_assessment.add')}
-            </span>
-          </Button>
+
+          {campaignAssessorAssessmentsMeta?.permissions?.create
+            && (
+              <Button
+                type="primary"
+                onClick={
+                () => openModal('AddAssessorAssessmentModal', {
+                  addAssessorAssessment: createResource,
+                })
+              }
+              >
+                <PlusOutlined />
+                <span>
+                  {I18n.t('administration.assessor_assessment.add')}
+                </span>
+              </Button>
+            )}
         </Row>
 
         {campaignPermissions.viewAssessors && <AssessorAssessmentList />}

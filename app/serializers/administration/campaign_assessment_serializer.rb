@@ -87,7 +87,9 @@ module Administration
           'normalize_factor_scores',
           'update_content_variation',
           'update_available_locales',
-          'update_pearson_variation'
+          'update_pearson_variation',
+          'toggle_require_scheduling',
+          'update_prework'
         ],
         {
           project_id: context[:project_id],

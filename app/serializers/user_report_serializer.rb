@@ -79,7 +79,11 @@ class UserReportSerializer < Panko::Serializer
   def options
     return unless context[:options]
 
-    Threesixty::CampaignOptionsSerializer.new.serialize(context[:options])
+    Threesixty::CampaignOptionsSerializer.new(
+      context: {
+        current_user: current_user
+      }
+    ).serialize(context[:options])
   end
 
   def evalaution_completed_for_subject

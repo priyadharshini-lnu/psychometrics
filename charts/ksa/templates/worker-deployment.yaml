@@ -61,14 +61,14 @@ spec:
               path: /
               port: 7433
               scheme: "HTTP"
-            initialDelaySeconds: 30 # app specific. Time your sidekiq takes to start processing.
+            initialDelaySeconds: 50 # app specific. Time your sidekiq takes to start processing.
             timeoutSeconds: 5 # can be much less
           readinessProbe:
             httpGet:
               path: /
               port: 7433
               scheme: "HTTP"
-            initialDelaySeconds: 30 # app specific
+            initialDelaySeconds: 50 # app specific
             timeoutSeconds: 5 # can be much less
           lifecycle:
             preStop:

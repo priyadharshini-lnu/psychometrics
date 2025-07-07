@@ -10,7 +10,12 @@ module Administration
     end
 
     def get_columns
-      render json: json_columns(sheet&.sheet_columns)
+      columns = sheet&.sheet_columns
+      if columns
+        render json: json_columns(columns)
+      else
+        render json: []
+      end
     end
 
     def add_column

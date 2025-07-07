@@ -44,7 +44,7 @@ module Skillvue
 
     def save_skillvue_user_assessment(result)
       user_assessment.skillvue_user_assessment.update!(
-        url: result['data']['redirect_url'],
+        url: result['data']['interview_url'],
         email: result['data']['candidate']['email']
       )
     end
@@ -58,10 +58,21 @@ module Skillvue
         id: encoded_user_assessment_id,
         name: maskable_identity.first_name,
         surname: maskable_identity.last_name,
-        email: email
+        email: email,
+        redirect_url: redirect_url
       }
 
       body.to_json
+    end
+
+    def redirect_url
+      Utility::Url.generate(
+        :redirect_skillvue_user_assessment_url,
+        id: user_assessment.id,
+        project_id: project.id,
+        subdomain: project.subdomain,
+        jwt: jwt_token
+      )
     end
 
     def product_id

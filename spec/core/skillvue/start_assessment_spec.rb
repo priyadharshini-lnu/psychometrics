@@ -22,12 +22,13 @@ describe Skillvue::StartAssessment do
       'success' => true,
       'error' => nil,
       'data' => {
-        'redirect_url' => skillvue_assessment_url,
+        'interview_url' => skillvue_assessment_url,
         'candidate' => {
-          'id' => '4@example.com',
-          'name' => '45280',
-          'surname' => '45280',
-          'email' => '4@example.com'
+          'id' => 'WY5P7W',
+          'name' => '23740',
+          'surname' => '23740',
+          'email' => 'wy5p7w-ac068a3c0a@example.com',
+          'redirect_url' => 'https://mercer.ttedev.me:3030/simulation_user_assessments/26110/redirect?jwt=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIzNzQwLCJleHAiOjE3NTE1MjkyODN9.eWwvIlBLN2Jhsa8eHi6Sy2Ozc-bO7Qsx3_dli0ZKW10&project_id=288'
         }
       }
     }
@@ -96,7 +97,7 @@ describe Skillvue::StartAssessment do
 
       context 'when skillvue user assessment does not have a URL' do
         before do
-          allow(user_assessment).to receive(:skillvue_user_assessment).and_return(nil)
+          user_assessment.skillvue_user_assessment.update!(url: nil)
         end
 
         it 'returns the redirect URL of the skillvue user assessment' do

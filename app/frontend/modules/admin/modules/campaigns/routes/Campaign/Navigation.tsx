@@ -37,7 +37,7 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     <Link route={`${basePath}/scheduling`}>{I18n.t('administration.navigation.scheduling')}</Link>,
     icon: <CalendarOutlined />,
   } : null,
-  permissions.manageCampaigns ? {
+  permissions.viewAssessmentsAndReports ? {
     key: 'assessments_reports',
     label:
     <Link route={`${basePath}/assessments_reports`}>{I18n.t('administration.navigation.assessments_reports')}</Link>,

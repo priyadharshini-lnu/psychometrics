@@ -230,6 +230,9 @@ module Administration
             update_norm
             update_assessor_form
             update_available_locales
+            toggle_auto_assign
+            toggle_require_scheduling
+            update_prework
           ],
           {
             project_id: campaign.project_id,
